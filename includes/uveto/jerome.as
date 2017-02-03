@@ -159,7 +159,7 @@ public function jeromePeggingII():void
 	output("\n\nYou take hold of his mammoth meat pole again, your fingers wrapping around half of it at best. Angling it up you get a good look at the underside, a series of heavy ridges along the bottom just perfect to strum along with your thumb- and strum you do. The combination of your index finger dancing over one of the nubs behind his fat cockhead and your thumb rubbing along the ridges has Jerome moaning and growling in seconds, his pleasure confirmed by the heavy flow of pre liberally oozing from his cock and quickly spilling over your fingers.");
 
 	output("\n\nWith the bear thoroughly blissed out by your relatively sedate, all things considered, handjob, he doesn’t seem to notice when you switch hands, leaving you with one [pc.hand] full of cock and one [pc.hand] full of slick pre. Your grin intensifies a thousand fold");
-	if (pc.hasCock())
+	if (cIdx >= 0)
 	{
 		output(" as you");
 		if (pc.isTaur()) output(" struggle to reach back");
@@ -228,7 +228,7 @@ public function jeromePeggingIIITaur():void
 	if (cIdx == -1) output("faux");
 	output("cock nestled right up against his asshole.");
 
-	output("\n\n" + (pc as PlayerCharacter).short.substring(0, 1) + "-[pc.name].");
+	output("\n\n<i>“" + (pc as PlayerCharacter).short.substring(0, 1) + "-[pc.name].”</i>");
 
 	output("\n\n<i>“Then </i>ask<i> me for it.”</i> You grind against his ass in emphasis, reminding your strapping bear exactly what he’s requesting.");
 
@@ -281,7 +281,7 @@ public function jeromePeggingIIITaur():void
 		output("\n\nAlmost there now; you bare down on the bear and glide the last few inches of your");
 		if (cIdx >= 0) output(" [pc.cock]");
 		else output(" equine holocock");
-		output(" into him, right down until your [pc.sheath "+cIdx+"] nudges past his heavy balls and bumps into the plump little donut of his ass. Finally hilted, you start to work yourself into a little rhythm, humping the final few inches of your cock into him.");
+		output(" into him, right down until your " + (cIdx >= 0 ? ("[pc.sheath "+cIdx+"]") : ("hardlight base")) + " nudges past his heavy balls and bumps into the plump little donut of his ass. Finally hilted, you start to work yourself into a little rhythm, humping the final few inches of your cock into him.");
 
 		output("\n\nYour belly grinds heavily into his cock with every thrust, a near constant stream of pre liberally pooling against your undercarriage and running down his cock... a faucet of lubrication oozing over his balls to drip across the top of your");
 		if (cIdx == -1) output(" glowing");
@@ -343,7 +343,7 @@ public function jeromePeggingIIIBiped():void
 	if (cIdx == -1) output("faux");
 	output("cock nestled right up against his asshole.");
 
-	output("\n\n" + (pc as PlayerCharacter).short.substring(0, 1) + "-[pc.name].");
+	output("\n\n<i>“" + (pc as PlayerCharacter).short.substring(0, 1) + "-[pc.name].”</i>");
 
 	output("\n\n<i>“Then </i>ask<i> me for it.”</i> You grind against his ass in emphasis, reminding your strapping bear exactly what he’s requesting.");
 
@@ -411,7 +411,7 @@ public function jeromePeggingIIIBiped():void
 		
 		output("\n\n");
 		if (pc.biggestTitSize() >= 4) output("Every motion is deep enough to pop the head of his cock out from between your [pc.chest], only to thrust back between them again a moment later. ");
-		output("You grind his cock heavily against yourself with every thrust, a near constant stream of pre liberally oozing down your [pc.belly] and over his balls... a faucet of lubrication dribbling across your [pc.sheath "+cIdx+"].");
+		output("You grind his cock heavily against yourself with every thrust, a near constant stream of pre liberally oozing down your [pc.belly] and over his balls... a faucet of lubrication dribbling across your " + (cIdx >= 0 ? ("[pc.sheath "+cIdx+"]") : ("hardlight base")) + ".");
 		
 		output("\n\nWith one final retreat you settle your hips into the perfect angle, your target now properly sighted, and thrust, hard. Your");
 		if (cIdx == -1) output(" faux");
@@ -419,7 +419,7 @@ public function jeromePeggingIIIBiped():void
 		
 		output("\n\nHis dick flexes and throbs within your grip as it spews his heavy, thick load");
 		if (pc.biggestTitSize() >= 2) output(" between your tits and");
-		output(" over the bottom of your [pc.face], only for it to ooze back down and thoroughly coat the bear’s stout belly too. The suckling warmth sheathed so tightly around your [pc.cock "+cIdx+"] milks you firmly, hoovering an orgasm out of you.");
+		output(" over the bottom of your [pc.face], only for it to ooze back down and thoroughly coat the bear’s stout belly too. The suckling warmth sheathed so tightly around your " + (cIdx >= 0 ? ("[pc.cock "+cIdx+"]") : ("strap-on")) + " milks you firmly, hoovering an orgasm out of you.");
 	}
 
 	output("\n\nStars explode across your vision as you struggle to stay upright under your own power, your legs threatening to give up from under you as his own orgasm tapers off.");
