@@ -3871,7 +3871,7 @@ package classes.GameData
 		
 		public function removeHostileCreature(remC:Creature):void
 		{
-			_hostiles.splice(remC);
+			_hostiles.splice(_hostiles.indexOf(remC), 1);
 			showCombatUI();
 		}
 		

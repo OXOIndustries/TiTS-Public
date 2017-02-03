@@ -416,14 +416,18 @@
 
 			output("\n\n<i>“Cowards!”</i> the priestess shouts after them, snarling like a feral beast. The males don't so much as look over their shoulders, but disappear into the ice with their tails between their legs.");
 
-			output("\n\nShe grunts and stamps her staff on the ice, returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I'll show you the might of the spirits all on my own!”<i>");
+			output("\n\nShe grunts and stamps her staff on the ice, returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I'll show you the might of the spirits all on my own!”</i>");
 
 			output("\n\nThe priestess bears her fangs and swings her staff around, levelling the glowing green tip at your [pc.chest].\n\n");
 			
 			for (var i:int = 0; i < alliedCreatures.length; i++)
 			{
 				var tC:Creature = alliedCreatures[i] as Creature;
-				if (tC is MilodanMaleGroup) CombatManager.removeHostileCreature(tC);
+				if (tC is MilodanMaleGroup)
+				{
+					CombatManager.removeHostileCreature(tC);
+					i--;
+				}
 			}
 		}
 	}

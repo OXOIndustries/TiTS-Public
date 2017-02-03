@@ -76,7 +76,7 @@
 			this.level = 8;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 180;
+			this.HPMod = (kGAMECLASS.debug ? 0 : 180);
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 

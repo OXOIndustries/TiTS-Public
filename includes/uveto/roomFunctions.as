@@ -1336,7 +1336,7 @@ public function GRM44Fight():void
 			}
 		}
 		
-		if (fem.hasStatusEffect("Males Escaped"))
+		if (fem.malesRan)
 		{
 			s += "\n\nThe male milodans have booked it, leaving the priestess alone!";
 		}
