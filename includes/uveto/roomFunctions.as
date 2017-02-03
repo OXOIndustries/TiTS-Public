@@ -1087,8 +1087,8 @@ public function approachKazraAndLorre():void
 		output("\n\nLorre struggles to her feet with both hands on her gravid belly. The pregnant Essyra gives you a shy little smile from behind her mate. <i>“Back to trade again?”</i>");
 		
 		output("\n\nKazra chuckles and waves you in. <i>“Come, warm yourself by the fire.");
-		if (silly) output(" The weather outside is frightful, after all...");
-		else output(" You look like you’re about to turn blue.");
+		if (silly) output(" The weather outside is frightful, after all...”</i>");
+		else output(" You look like you’re about to turn blue.”</i>");
 	}
 
 	clearMenu();

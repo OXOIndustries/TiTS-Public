@@ -1554,14 +1554,14 @@ public function initUvetoRooms():void
 
 	/* NORTH RIFT EXIT */
 	rooms["UVIP Z6"] = new RoomClass(this);
-	rooms["UVIP Z6"].roomName = "RIFT\nAPPROACH"; // 9999
+	rooms["UVIP Z6"].roomName = "RIFT\nAPPROACH";
 	rooms["UVIP Z6"].description = "A long, winding path through ice and snow leads back from the Rift to the snowy fields closer to Irestead, back westward. To the east is a vast, endless, and nearly featureless sheet of ice: the glacial plain of the Rift. You could easily get lost there, swallowed by by the snow-flurries and storms with nothing to guide you. Best to stick to the handful of vague footpaths worn into the ice...";
 	rooms["UVIP Z6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z6"].westExit = "UVIP X6";
 	rooms["UVIP Z6"].eastExit = "UVGR C6";
 	rooms["UVIP Z6"].moveMinutes = 6;
-	rooms["UVIP Z6"].addFlag(GLOBAL.ICYTUNDRA);
+	rooms["UVIP Z6"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVIP Z6"].addFlag(GLOBAL.HAZARD);
 	rooms["UVIP Z6"].runOnEnter = TundraEncounterBonus;
 	
@@ -2182,7 +2182,7 @@ public function initUvetoRooms():void
 	rooms["UVGR M6"].planet = "PLANET: UVETO VII";
 	rooms["UVGR M6"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR M6"].northExit = "UVGR M4";
-	rooms["UVGR M6"].eastExit = "UVGR K6";
+	rooms["UVGR M6"].westExit = "UVGR K6";
 	rooms["UVGR M6"].moveMinutes = 1;
 	rooms["UVGR M6"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR M6"].runOnEnter = null;// 9999 Female Stormguard
@@ -2215,7 +2215,7 @@ public function initUvetoRooms():void
 	rooms["UVGR G4"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G4"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G4"].northExit = "UVGR G2";
-	rooms["UVGR G4"].southExit = "UVGR G4";
+	rooms["UVGR G4"].southExit = "UVGR G6";
 	rooms["UVGR G4"].moveMinutes = 12;
 	rooms["UVGR G4"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVGR G4"].addFlag(GLOBAL.HAZARD);
@@ -2393,7 +2393,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S18"] = new RoomClass(this);
 	rooms["UVGR S18"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S18"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see";
+	rooms["UVGR S18"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S18"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S18"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S18"].northExit = "UVGR S16";
@@ -2404,7 +2404,7 @@ public function initUvetoRooms():void
 	rooms["UVGR S18"].runOnEnter = GlacialRiftCoast;
 
 	rooms["UVGR S20"] = new RoomClass(this);
-	rooms["UVGR S20"].roomName = "";
+	rooms["UVGR S20"].roomName = "THE EASTERN\nCOAST";
 	rooms["UVGR S20"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S20"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S20"].system = "SYSTEM: SIRETTA";
