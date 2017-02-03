@@ -2494,6 +2494,7 @@ public function initUvetoRooms():void
 	rooms["UVGR S34"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S34"].northExit = "UVGR S32";
 	rooms["UVGR S34"].southExit = "UVGR S36";
+	rooms["UVGR S34"].westExit = "UVGR Q34";
 	rooms["UVGR S34"].moveMinutes = 12;
 	rooms["UVGR S34"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVGR S34"].addFlag(GLOBAL.HAZARD);
