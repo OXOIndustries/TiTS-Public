@@ -58,10 +58,6 @@ package classes.Items.Transformatives
 		protected function rand(max: Number): Number {
  			return int(Math.random() * max);
  		}
- 		public function hasSharkScales():Boolean
- 		{
- 			return (kGAMECLASS.pc.skinType == GLOBAL.SKIN_TYPE_SCALES && kGAMECLASS.pc.hasSkinFlag(GLOBAL.FLAG_LUBRICATED));
- 		}
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
