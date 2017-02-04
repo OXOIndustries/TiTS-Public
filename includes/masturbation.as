@@ -1484,7 +1484,7 @@ public function milkturbation():void
 		//10% per 400 mLs over 1L. So: 2L: 25%, 4L: 75%, etc
 		var orgasmOdds:int = 0;
 		if(pc.milkQ() >= 1000) orgasmOdds += (pc.milkQ() - 1000) / 40;
-		if(pc.isTreated()) orgasmOdds = 100;
+		if(pc.isTreated() && orgasmOdds < 100) orgasmOdds = 100;
 		var orgasmed:Boolean = (rand(100) + 1 <= orgasmOdds);
 		if(pc.lust() < 33) orgasmed = false;
 		//End: Didn't orgasm due to not enough milking (20% or less chance of orgasm)
