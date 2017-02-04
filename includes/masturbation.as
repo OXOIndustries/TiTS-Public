@@ -1356,7 +1356,7 @@ public function milkturbation():void
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
 		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.cumColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
-		pc.lust(5+rand(3));
+		pc.lust(5 + rand(3));
 		pc.boostLactation(1);
 	}
 	//Milk Success!
@@ -1486,18 +1486,19 @@ public function milkturbation():void
 		if(pc.milkQ() >= 1000) orgasmOdds += (pc.milkQ() - 1000) / 40;
 		if(pc.isTreated()) orgasmOdds = 100;
 		var orgasmed:Boolean = (rand(100) + 1 <= orgasmOdds);
+		if(pc.lust() < 33) orgasmed = false;
 		//End: Didn't orgasm due to not enough milking (20% or less chance of orgasm)
 		if(!orgasmed && orgasmOdds <= 20)
 		{
 			output("\n\nSlowing to a trickle as your supply exhausts itself, your " + possessive(pc.chestDesc()) + " flow finally gives up in spite of your relentless tugging. You’ve milked out as much as you can by hand, leaving yourself with sore, glossy nipples and a moistened front. Tending to such a sensitive area has left you with a certain residual warmth in your [pc.crotch]");
-			pc.lust(10+rand(4));
+			pc.lust(10 + rand(4));
 			if(pc.lust() < pc.lustMax()) output(", but it’s not unmanageable.");
 			else {
-				output(", and you’re going to have to masturbate immediately if you want to have any chance of thinking straight in the near future.");
+				output(", <b>and you’re going to have to masturbate immediately if you want to have any chance of thinking straight in the near future.</b>");
 			}
 		}
 		//End: Got really close to orgasm but couldn't quite get there -> Immediately choose a random fap scene for next (had a chance above 20%)
-		else if(orgasmOdds > 20 && !orgasmed)
+		else if(!orgasmed && orgasmOdds > 20)
 		{
 			output("\n\nMoaning as your flow gradually tapers off, your fingers go wild on your [pc.chest], tugging, squeezing, and pulling in an effort to take you to orgasm. Milking has felt so good, so wonderfully, sensuously swell, that you’ve let yourself grow aroused beyond reason. Your slick teats ache from the constant stimulation, but it’s a wonderfully satisfying ache that sends tingles of ");
 			if(pc.hasVagina()) output("crotch-dampening ");
