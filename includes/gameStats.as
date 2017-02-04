@@ -5407,6 +5407,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["PUPPYSLUTMAS_2014"] != undefined) kaedePlanets.push(" Ausaril");
 			if(flags["KAEDE_MYRELLION_ENCOUNTER"] != undefined) kaedePlanets.push(" Myrellion");
 			if(flags["KAEDE_MET_ON_UVETO"] != undefined) kaedePlanets.push(" Uveto");
+			if(flags["KAEDE_CANADA_MET"] != undefined) kaedePlanets.push(" Canadia");
 			if(kaedePlanets.length > 0) output2(", Seen on" + CompressToList(kaedePlanets));
 			if(flags["KAEDE_NT_ENCOUNTER"] != undefined)
 			{

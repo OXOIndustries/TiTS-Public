@@ -54,7 +54,7 @@ package classes.Items.Transformatives
 			this.description = "a blister pack of “Amber Seed”";
 			//Displayed on tooltips during mouseovers
 			// Note: it not "may" cause, it "will". It contained some ramblings about how nut could be nanomachine doped, but it was droped.
-			this.tooltip = "Conventional transformative in the form of a large... nut? You can only guess at whether it was grown naturally, or through synthetic process. A big, flashy label says “Brand new FluidShift technology! Quick and painless!” You spot a line of fine print at the back stating: “May cancel lactation in mammalian species.”";
+			this.tooltip = "Conventional avian transformative in the form of a large... nut? You can only guess at whether it was grown naturally, or through synthetic process. A big, flashy label says “Brand new FluidShift technology! Quick and painless!” You spot a line of fine print at the back stating: “May cancel lactation in mammalian species.”";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

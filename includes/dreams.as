@@ -27,7 +27,7 @@ public function dreamChances():Boolean
 		{
 			dreams.push(angelDreamGo);
 		}
-		if(annoIsCrew() && flags["MET_SYRI"] != undefined) dreams.push(shotgunWeddingDream);
+		if(annoIsCrew() && flags["MET_SYRI"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO" && pc.hasCock()) dreams.push(shotgunWeddingDream);
 	}
 	if(dreams.length > 0) 
 	{
@@ -161,7 +161,7 @@ public function shotgunWeddingDream2():void
 		output(" a thirsty dog lapping at water: your tongue powerfully stroking her pearl at the apex of each lick, pulling back her hood.");
 	}
 	//PC has long tongue:
-	else output("\n\nYour inhuman tongue slithers into her love-tunnel like a self-lubricated cock. You just keep unfurling more and more oral muscle into Anno until you reach her cervix. After giving it a few loving little flicks, you sensuously withdraw your muscle until it’s completely outside of her. You proceed to tenderly wrap a few inches of tongue around her pearl, digging under her clitoral hood before rapidly withdrawing your tongue in the exact same pattern you unfurled it in to begin with, drawing her hood back in the process. You alternate between plundering her pussy and worshipping her button, hearing muffled screams of pleasure the whole time.}");
+	else output("\n\nYour inhuman tongue slithers into her love-tunnel like a self-lubricated cock. You just keep unfurling more and more oral muscle into Anno until you reach her cervix. After giving it a few loving little flicks, you sensuously withdraw your muscle until it’s completely outside of her. You proceed to tenderly wrap a few inches of tongue around her pearl, digging under her clitoral hood before rapidly withdrawing your tongue in the exact same pattern you unfurled it in to begin with, drawing her hood back in the process. You alternate between plundering her pussy and worshipping her button, hearing muffled screams of pleasure the whole time.");
 	output("\n\nA few minutes of this has her going wild until with ");
 	if(silly) output("an awooo!");
 	else output("a howl");
@@ -279,13 +279,16 @@ public function shotgunWeddingDream3(cockHolding:Creature):void
 		pc.cocks[x].knotMultiplier = cockHolding.cocks[x].knotMultiplier;
 		pc.cocks[x].flaccidMultiplier = cockHolding.cocks[x].flaccidMultiplier;
 		pc.cocks[x].virgin = cockHolding.cocks[x].virgin;	//to make it work in a similar fashion as copyVagina
+		// Clear previous flags
+		pc.cocks[x].cockFlags = [];
+		// Renew to original flags
 		for(var y:int = 0; y < cockHolding.cocks[x].cockFlags.length; y++)
 		{
 			pc.cocks[x].cockFlags.push(cockHolding.cocks[x].cockFlags[y]);
 		}
 	}
 
-	output("<i>“[pc.name]. [pc.name]! Damn boss, what kind of dream are you having?!?”</i> You wake with a start to Anno shaking you. After a moment her words sink in, and you look at your surroundings. You are in your bed, covered in [pc.cumVisc], with Anno lying next to you, her tail, lower back, and enchanting butt plastered in your [pc.cumVisc] as well. Your bitch- no, your lover, breaks her frown and laughs softly. <i>“You got yourself, the bed, and me covered in your [pc.cum]. As much as I may love the stuff, I also love being warned when this sort of thing is going to happen.”</i>");
+	output("<i>“[pc.name]. [pc.name]! Damn boss, what kind of dream are you having?!?”</i> You wake with a start to Anno shaking you. After a moment her words sink in, and you look at your surroundings. You are in your bed, covered in [pc.cumVisc], with Anno lying next to you, her tail, lower back, and enchanting butt plastered in your [pc.cumVisc] as well. Your bitch - no, your lover - breaks her frown and laughs softly. <i>“You got yourself, the bed, and me covered in your [pc.cum]. As much as I may love the stuff, I also love being warned when this sort of thing is going to happen.”</i>");
 	output("\n\nYou wipe the sleep from your eyes before apologizing to Anno. You roll out of bed and start stripping the sheets with her help.");
 	output("\n\n<i>“So who was it boss? Who or what did you bust your nut all over in your dream?”</i> ");
 	if(pc.isNice()) output("Sheepishly");
