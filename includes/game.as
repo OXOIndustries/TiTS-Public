@@ -133,7 +133,8 @@ public function disableExploreEvents():Boolean
 	return false;
 }
 
-public function mainGameMenu(minutesMoved:Number = 0):void {
+public function mainGameMenu(minutesMoved:Number = 0):void
+{
 	flags["COMBAT MENU SEEN"] = undefined;
 	
 	if (flags["PC_UPBRINGING"] == undefined)
@@ -197,6 +198,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	if (!disableExploreEvents())
 	{
 		if (tryEncounterFreedomBeef()) return;
+		if (currentLocation == shipLocation)
+		{
+			if(seranigansTrigger("hijacked")) return;
+		}
 	}
 	
 	if(inCombat()) 
@@ -547,6 +552,7 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	if (flags["RECRUITED_CELISE"] > 0) counter++;
 	if (reahaRecruited()) counter++;
 	if (!annoNotRecruited()) counter++;
+	if (seraRecruited()) counter++;
 	if (bessIsFollower()) counter++;
 	if (yammiIsCrew()) counter++;
 	if (gooArmorIsCrew()) counter++;
@@ -626,6 +632,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
 		}
 		//output("\n\n{PC has Freed Reaha and Anno, add to Anno’s random selection: }");
+	}
+	if (seraIsCrew())
+	{
+		other++;
+		if (!counter)
+		{
+			crewMessages += seraOnShipBonus((count + other) - 1);
+		}
 	}
 	if (bessIsCrew())
 	{
@@ -1292,7 +1306,10 @@ public function showerMenu():void {
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function showerOptions(option:int = 0):void {
+public function showerOptions(option:int = 0):void
+{
+	if(seranigansTrigger("shower")) return;
+	
 	clearOutput();
 	clearMenu();
 	var showerSex:int = 0;
@@ -1380,7 +1397,8 @@ public function sneakBackYouNudist():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function move(arg:String, goToMainMenu:Boolean = true):void {
+public function move(arg:String, goToMainMenu:Boolean = true):void
+{
 	//Prevent movement for nudists into nude-restricted zones.
 	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
@@ -1928,6 +1946,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		laneHandleCredits(totalDays);
 		updateBothriocAddiction(totalDays);
 		processOmegaFever();
+		seraBitcheningStoreInventory(totalDays);
 	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
@@ -2362,6 +2381,7 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 		}
 		
 		seraNurseryVisitCheck(totalAttempts);
+		seranigansCheck(totalAttempts);
 	}
 }
 

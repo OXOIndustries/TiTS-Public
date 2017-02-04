@@ -2267,12 +2267,6 @@
 				case "mistress":
 				case "master":
 					buffer = mf("master", "mistress");
-					break
-				case "man":
-					buffer = mf("man", "woman");
-					break
-				case "guy":
-					buffer = mf("guy","girl");
 					break;
 				case "he":
 				case "she":
@@ -2297,6 +2291,8 @@
 				case "eirs":
 					buffer = mf("his", "hers");
 					break;
+				case "man":
+				case "woman":
 				case "manWoman":
 					buffer = mf("man", "woman");
 					break;
@@ -3721,6 +3717,11 @@
 		public function LQ():Number
 		{
 			return Math.round(libido() / libidoMax() * 100);
+		}
+		
+		public function lustQ():Number
+		{
+			return Math.round(lust() / lustMax() * 100);
 		}
 		
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 

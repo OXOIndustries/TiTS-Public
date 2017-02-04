@@ -53,22 +53,6 @@ public function pcSeraPregDays():int
 	return minutesToDays(pregTime);
 }
 
-// Boost Sera's raunchiness.
-public function seraLustGain(minPassed:int = 60):void
-{
-	chars["SERA"].lust(2 * minPassed);
-	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness += (1.5 * minPassed);
-	if(chars["SERA"].ballFullness > 100) chars["SERA"].ballFullness = 100;
-	chars["SERA"].minutesSinceCum += minPassed;
-}
-public function serasBodyIsReady():void
-{
-	chars["SERA"].lust(9000);
-	chars["SERA"].ballFullness = 100;
-	chars["SERA"].cumQualityRaw = 1;
-	//chars["SERA"].minutesSinceCum = 9000;
-}
-
 // Party Check
 public function seraPartySuccess():Boolean
 {
@@ -817,7 +801,7 @@ public function seraHasKidInNursery(unnamed:Boolean = false):Boolean
 }
 public function seraNurseryVisitCheck(totalAttempts:int = 1):void
 {
-	if(totalAttempts < 1 || currentLocation == "DARK CHRYSALIS") return;
+	if(totalAttempts < 1 || (!seraRecruited() && currentLocation == "DARK CHRYSALIS")) return;
 	
 	var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
 	
