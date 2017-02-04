@@ -7,7 +7,7 @@ SERA_CREWMEMBER					Sera’s crew member status (0 - off ship, 1 - on ship)
 SERA_OBEDIENCE					Sera’s obedience score
 SERA_OBEDIENCE_MIN				Sera’s obedience minimum score
 SERA_OBEDIENCE_MAX				Sera’s obedience maximum score
-SERA_MERCHANT					Sera’s merchant flag--also tracks item pools
+SERA_MERCHANT					Sera’s merchant flag
 SERA_BUSINESS_SETUP				Timestamp in days for Sera’s new business
 SERA_REPAID_LOAN				Debt repayment for Sera’s new business
 
@@ -210,7 +210,8 @@ public function sentientAcquisitionsBuyOutSera():void
 	
 	clearMenu();
 	// [Yes] [No]
-	addButton(0, "Yes", sentientAcquisitionsBuyOutSeraYes);
+	if(pc.hasGenitals()) addButton(0, "Yes", sentientAcquisitionsBuyOutSeraYes);
+	else addDisabledButton(0, "Yes", "Yes", "This relationship requires genitals to work properly!");
 	addButton(1, "No", sentientAcquisitionsBuyOutSeraNo);
 	
 	return;
@@ -238,7 +239,7 @@ public function sentientAcquisitionsBuyOutSeraYes():void
 	
 	output("The tarratch’s entrepreneurialism swiftly overtakes his doubt. A tablet and stylus is pushed into your hands, displaying a splurge of information about your purchase as well as a picture of her. It’s an old one – she doesn’t have purple skin, and has brown, perfectly normal human eyes. That self-assured smirk though. That’s definitely Sera. You imagine her expression when she realizes what you’ve done, and you feel a fairly similar expression to one she’s wearing in the picture climb onto your own face.");
 	output("\n\n<i>“Before you sign, " + pc.mf("Mr.", "Ms.") + " Steele...”</i> Teron points at several tick boxes above the blank at the bottom. <i>“You are our first customer, and you have immediately volunteered to take a problem case off our hands. I’d like to offer our sincere gratitude by providing some popular mod options for your acquisition, pro bono. The obedience collar comes as standard on this category of servant, but many acquirers");
-	if(pc.isMale()) output(" - particularly of the male persuasion -");
+	if(pc.hasCock()) output(" - particularly of the male persuasion -");
 	output(" prefer to have hermaphrodite stock de-phallused. We can have that done, quickly and painlessly. Female human stock also have a bodily quirk that if present supposedly attests to their inexperience. An... um...”</i>");
 	output("\n\n<i>“Vacuum seal,”</i> says Attica, grinning.");
 	output("\n\n<i>“Right. The vacuum seal. We can have that reapplied to your purchase if you wish. Finally, purple is such a bold, tempestuous color for an indentured servant, don’t you think? Perhaps " + pc.mf("sir", "madam") + " would prefer their purchase in a nice, suitable pink.”</i>");
@@ -251,9 +252,11 @@ public function sentientAcquisitionsBuyOutSeraYes():void
 	output("\n<b>Skin:</b> " + (!chars["SERA"].hasStatusEffect("Tickled Pink") ? "Keep the Same" : "Change to Pink"));
 	
 	clearMenu();
-	addButton(0, "Penis", sentientAcquisitionsBuyOutSeraYesPenis);
+	if(pc.hasCock()) addButton(0, "Penis", sentientAcquisitionsBuyOutSeraYesPenis);
+	else addDisabledButton(0, "Penis", "Penis", "At least one member of this relationship requires a penis!");
 	addButton(1, "Vagina", sentientAcquisitionsBuyOutSeraYesVagina);
 	addButton(2, "Skin", sentientAcquisitionsBuyOutSeraYesSkin);
+	addButton(13, "Don’t Sign", sentientAcquisitionsBuyOutSeraNo);
 	addButton(14, "Next", sentientAcquisitionsBuyOutSeraYesNext);
 	
 	return;
@@ -660,7 +663,7 @@ public function approachServantSera(introText:Boolean = false):void
 		// [Appearance] [Tease] [Buttfuck] [Punish]
 		addButton(0, "Appearance", seraAppearance);
 		
-		if(pc.hasCock()) addButton(1, "Tease", seraBitchTrainingTease, undefined, "Tease", "Tease your demonic slave.");
+		if(pc.hasCock()) addButton(1, "CuntTease", seraBitchTrainingTease, undefined, "Cunt Tease", "Tease your demonic slave.");
 		else if(chars["SERA"].hasCock() && pc.hasVagina()) addButton(1, "CockTease", seraBitchTrainingFemTease, undefined, "Cock Tease", "Cock-tease your futa slave, and maybe give her some release.");
 		else addDisabledButton(1, "Tease", "Tease", "The possible genital combinations are not present for you to try this!");
 		
@@ -700,13 +703,14 @@ public function approachServantSera(introText:Boolean = false):void
 				if(!InCollection(pc.eyeType, [GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC])) output(" your [pc.eyes] becoming brilliant yellow and reptilian");
 				else output(" your reptilian eyes growing extra pupils");
 				output(",");
-				if(!pc.isNaga()) output(" your [pc.legOrlegs] melting into a huge, sinuous snake tail");
+				if(!pc.isNaga()) output(" your [pc.legOrLegs] melting into a huge, sinuous snake tail");
 				else output(" your naga half branching out terrifyingly into an armored arachnid body");
 				output("...");
 				output("\n\n<i>“Oh, hey [pc.master].”</i> Sera is sorting through the many delivery boxes now stacked around her room. Kaleidoscopic holo-letters, spelling out ONE STOP POP UP MOD SHOP, float over her head. <i>“I ain’t exactly gonna be Mrs. Reliable, careening all across the frontier with you,”</i> she sighs, examining a bottle of Semen’s Friend. <i>“But that’s alright - the corporation fronts have ‘reliable’ sewn up anyway. I will offer racey stuff, a constantly changing catalogue, good advice delivered hard, and most importantly gosh. Darn. Discounts.”</i> She grins at you lopsidedly. <i>“After something?”</i>");
 				
 				// [Buy] added to main Sera hub
-				flags["SERA_MERCHANT"] = 0;
+				flags["SERA_MERCHANT"] = 1;
+				seraBitcheningStoreRandomize();
 			}
 			else if(pc.hasStatusEffect("Seranigans") && pc.statusEffectv1("Seranigans") != 0)
 			{
@@ -761,8 +765,8 @@ public function approachServantSera(introText:Boolean = false):void
 		
 		addButton(3, "Talk", seraBitcheningTalk);
 		
-		if(pc.hasStatusEffect("Seranigans Punishment")) addButton(4, "Punish", seraBitcheningPunishMenu, true, "Punish", "Punish Sera for being a bad slave.");
-		else addDisabledButton(4, "Punish", "Punish", "Sera hasn’t done anything bad to deserve punishment for.");
+		if(pc.hasStatusEffect("Seranigans Punishment")) addButton(4, "Punish", seraBitcheningPunishMenu, undefined, "Punish", "Punish Sera for being a bad slave.");
+		else addDisabledButton(4, "Punish", "Punish", "She’s not done anything to deserve one. But she will. Eventually.");
 		
 		addButton(5, "Sex", seraBitcheningSexMenu, undefined, "Sex", "Approach your slave for some sex.");
 	}
@@ -3109,12 +3113,75 @@ public function seraBitcheningStoreInventory(totalDays:int):void
 	// Rotate inventory every 7th day
 	var nWeeks:int = Math.round(((days % 7) + totalDays) / 7);
 	
-	while(nWeeks > 0)
-	{
-		flags["SERA_MERCHANT"]++;
-		if(flags["SERA_MERCHANT"] > 5) flags["SERA_MERCHANT"] = 0;
-		nWeeks--;
-	}
+	if(nWeeks > 0) seraBitcheningStoreRandomize();
+}
+public function seraBitcheningStoreRandomize():void
+{
+	chars["SERA"].inventory = [];
+	
+	// Group A
+	// ManUp, Estrobloom, Junk in the Trunk, Tittyblossom, Condensol, Virection
+	var groupA:Array = [];
+	groupA.push(new ManUp());
+	groupA.push(new Estrobloom());
+	groupA.push(new Tittyblossom());
+	groupA.push(new JunkTrunk());
+	groupA.push(new Condensol());
+	groupA.push(new Virection());
+	// Group B
+	// DendroGro, Bumpy Road, Knot A Problem, Circumscriber, Equilibricum, Semen’s Friend
+	var groupB:Array = [];
+	groupB.push(new DendroGro());
+	groupB.push(new BumpyRoad());
+	groupB.push(new KnotAProblem());
+	groupB.push(new Circumscriber());
+	groupB.push(new Equilicum());
+	groupB.push(new SemensFriend());
+	// Group C
+	// Clippex, Lactaid, Mighty Tight, Anusoft, Magic Milker, Pussyblossom
+	var groupC:Array = [];
+	groupC.push(new Clippex());
+	groupC.push(new Lactaid());
+	groupC.push(new Chocolac());
+	groupC.push(new MightyTight());
+	groupC.push(new Anusoft());
+	groupC.push(new MagicMilker());
+	groupC.push(new Pussybloom());
+	groupC.push(new Pussyblossom());
+	// Group D
+	// Throbb, Gush, Rubber Made, ClearYu, DumbFuck, Rainbotox
+	var groupD:Array = [];
+	groupD.push(new Throbb());
+	groupD.push(new Gush());
+	groupD.push(new RubberMade());
+	groupD.push(new ClearYu());
+	groupD.push(new Dumbfuck());
+	groupD.push(new Rainbotox());
+	// Group E
+	// Terran Treat, Ausar Treat, Nepeta, DracoGuard, Ovir Ace, Nuki Cookies
+	var groupE:Array = [];
+	groupE.push(new TerranTreats());
+	groupE.push(new AusarTreats());
+	groupE.push(new Nepeta());
+	groupE.push(new DracoGuard());
+	groupE.push(new OvirAce());
+	groupE.push(new NukiCookies());
+	// Group F
+	// Mino Charge, Lucifier, Sylvanol, Dovebalm, Bovinium, Hornitol
+	var groupF:Array = [];
+	groupF.push(new MinoCharge());
+	groupF.push(new Bovinium());
+	groupF.push(new Lucifier());
+	groupF.push(new Sylvanol());
+	groupF.push(new DoveBalm());
+	groupF.push(new Hornitol());
+	
+	chars["SERA"].inventory.push(groupA[rand(groupA.length)]);
+	chars["SERA"].inventory.push(groupB[rand(groupB.length)]);
+	chars["SERA"].inventory.push(groupC[rand(groupC.length)]);
+	chars["SERA"].inventory.push(groupD[rand(groupD.length)]);
+	chars["SERA"].inventory.push(groupE[rand(groupE.length)]);
+	chars["SERA"].inventory.push(groupF[rand(groupF.length)]);
 }
 public function seraBitcheningStore(response:String = "buy"):void
 {
@@ -3136,74 +3203,6 @@ public function seraBitcheningStore(response:String = "buy"):void
 	// Sera works similarly to CoC’s Benoit: Her stock is 6 items chosen randomly from 6 separate pools that change from week to week. She sells everything at a 0.8 rate.
 	chars["SERA"].sellMarkup = 0.8;
 	chars["SERA"].buyMarkdown = 0.8;
-	
-	chars["SERA"].inventory = [];
-	
-	switch(flags["SERA_MERCHANT"])
-	{
-		// Group A
-		// ManUp, Estrobloom, Junk in the Trunk, Tittyblossom, Condensol, Virection
-		case 0:
-			chars["SERA"].inventory.push(new ManUp());
-			chars["SERA"].inventory.push(new Estrobloom());
-			chars["SERA"].inventory.push(new Tittyblossom());
-			chars["SERA"].inventory.push(new JunkTrunk());
-			chars["SERA"].inventory.push(new Condensol());
-			chars["SERA"].inventory.push(new Virection());
-			break;
-		// Group B
-		// DendroGro, Bumpy Road, Knot A Problem, Circumscriber, Equilibricum, Semen’s Friend
-		case 1:
-			chars["SERA"].inventory.push(new DendroGro());
-			chars["SERA"].inventory.push(new BumpyRoad());
-			chars["SERA"].inventory.push(new KnotAProblem());
-			chars["SERA"].inventory.push(new Circumscriber());
-			chars["SERA"].inventory.push(new Equilicum());
-			chars["SERA"].inventory.push(new SemensFriend());
-			//chars["SERA"].inventory.push(new Chocolac());
-			break;
-		// Group C
-		// Clippex, Lactaid, Mighty Tight, Anusoft, Magic Milker, Pussyblossom
-		case 2:
-			chars["SERA"].inventory.push(new Clippex());
-			chars["SERA"].inventory.push(new Lactaid());
-			chars["SERA"].inventory.push(new MightyTight());
-			chars["SERA"].inventory.push(new Anusoft());
-			chars["SERA"].inventory.push(new MagicMilker());
-			//chars["SERA"].inventory.push(new Pussybloom());
-			chars["SERA"].inventory.push(new Pussyblossom());
-			break;
-		// Group D
-		// Throbb, Gush, Rubber Made, ClearYu, DumbFuck, Rainbotox
-		case 3:
-			chars["SERA"].inventory.push(new Throbb());
-			chars["SERA"].inventory.push(new Gush());
-			chars["SERA"].inventory.push(new RubberMade());
-			chars["SERA"].inventory.push(new ClearYu());
-			chars["SERA"].inventory.push(new Dumbfuck());
-			chars["SERA"].inventory.push(new Rainbotox());
-			break;
-		// Group E
-		// Terran Treat, Ausar Treat, Nepeta, DracoGuard, Ovir Ace, Nuki Cookies
-		case 4:
-			chars["SERA"].inventory.push(new TerranTreats());
-			chars["SERA"].inventory.push(new AusarTreats());
-			chars["SERA"].inventory.push(new Nepeta());
-			chars["SERA"].inventory.push(new DracoGuard());
-			chars["SERA"].inventory.push(new OvirAce());
-			chars["SERA"].inventory.push(new NukiCookies());
-			break;
-		// Group F
-		// Mino Charge, Lucifier, Sylvanol, Dovebalm, Bovinium, Hornitol
-		case 5:
-			chars["SERA"].inventory.push(new MinoCharge());
-			chars["SERA"].inventory.push(new Bovinium());
-			chars["SERA"].inventory.push(new Lucifier());
-			chars["SERA"].inventory.push(new Sylvanol());
-			chars["SERA"].inventory.push(new DoveBalm());
-			chars["SERA"].inventory.push(new Hornitol());
-			break;
-	}
 	
 	if(flags["ZODEE_GALOQUEST"] != undefined)
 	{
@@ -3277,8 +3276,8 @@ public function seraBitcheningSexMenu():void
 	
 	if(chars["SERA"].hasVagina())
 	{
-		if(pc.hasStatusEffect("Sera Tease Cooldown")) addDisabledButton(btnSlot++, "Tease", "Tease", "Probably best to let her recharge. Build that frustration up.");
-		else addButton(btnSlot++, "Tease", seraBitcheningSexTeaseF, undefined, "Tease", "There’s no longer an objective to it, but it’s still fun to make her beg, right?");
+		if(pc.hasStatusEffect("Sera Tease Cooldown")) addDisabledButton(btnSlot++, "CuntTease", "Cunt Tease", "Probably best to let her recharge. Build that frustration up.");
+		else addButton(btnSlot++, "CuntTease", seraBitcheningSexTeaseF, undefined, "Cunt Tease", "There’s no longer an objective to it, but it’s still fun to make her beg, right?");
 	}
 	
 	if(pc.hasVagina() && chars["SERA"].hasCock()) addButton(btnSlot++, "Ride", seraBitcheningSexRide, undefined, "Ride", "Vaginally ride her cock.");
@@ -3459,7 +3458,7 @@ public function seraBitcheningSexTitfuck():void
 	output("\n\n<i>“Kneel in front of me,”</i> you instruct");
 	if(!pc.isCrotchExposed()) output(", peeling off your [pc.lowerGarments] and allowing your densely erect cock" + (pc.cocks.length == 1 ? "" : "s") + " to spill out as you do");
 	output(". The heavily modified human affects impishness but knows she must obey; slithering off her bed, crawling on the floor towards you with exaggerated jounces of her hips and shoulders like the demonic pet she is.");
-	output("\n\n<i>“I do so love my boobs,”</i> she croons, grinning up at you wickedly as she massages them, flesh plumping out between her claws, shifting inwards to rub at her nipples. You grunt your approval as she reaches out with one hand to grip your [pc.cock " + cIdx + "] at the " + (!pc.hasKnot(cIdx) ? "base" : "knot") + ", leaning forward to teasingly, fleetingly licking the underside. <i>“Got such a nice heft to them. You push them out, bounce them this way and that, and idiots will stare, and drool, and then do anything you tell them... except you, [pc.master]. Of course.”</i> Lusty evil radiates up from in front of your [pc.legOrlegs].");
+	output("\n\n<i>“I do so love my boobs,”</i> she croons, grinning up at you wickedly as she massages them, flesh plumping out between her claws, shifting inwards to rub at her nipples. You grunt your approval as she reaches out with one hand to grip your [pc.cock " + cIdx + "] at the " + (!pc.hasKnot(cIdx) ? "base" : "knot") + ", leaning forward to teasingly, fleetingly licking the underside. <i>“Got such a nice heft to them. You push them out, bounce them this way and that, and idiots will stare, and drool, and then do anything you tell them... except you, [pc.master]. Of course.”</i> Lusty evil radiates up from in front of your [pc.legOrLegs].");
 	// Massive cum production:
 	if(pc.cumQ() >= 2000)
 	{
@@ -3593,7 +3592,7 @@ public function seraBitcheningSexDoublePenetration():void
 	output("\n\nAfter a few more minutes of slamming into her tight holes, you feel Sera’s sphincter and vagina tighten and spasm around your [pc.cockNounSimple " + cIdx + "]. <i>“Don’t you dare cum until I tell you to do so, you little slut,”</i> you growl into her ear. She grimaces as she tries to control her urges, and you pick up the pace, roughly fucking her until you feel an all too familiar twitch in your " + (pc.balls > 0 ? "[pc.sack]" : "[pc.cock " + cIdx + "]") + ", signalling your imminent explosion. You hold out as long as you can, then let the feeling rush through [pc.eachCock], [pc.cum] blasting out and painting her colon and vagina [pc.cumColor].");
 	if(pc.hasTailCock()) output(" Your [pc.tailCock] isn’t far behind, blowing it’s load into her mouth.");
 	output(" Her eyes roll back as she’s overwhelmed by your immense virility. <i>“Cum!”</i> you yell, remembering Sera’s predicament at the last moment.");
-	output("\n\nHer sphincter and vagina clamp down around your [pc.cockNounSimple " + cIdx + "] as she cums to the feeling of your [pc.cum] filling her up to the brim. She cums quite hard, femcum drenching your [pc.legOrlegs],");
+	output("\n\nHer sphincter and vagina clamp down around your [pc.cockNounSimple " + cIdx + "] as she cums to the feeling of your [pc.cum] filling her up to the brim. She cums quite hard, femcum drenching your [pc.legOrLegs],");
 	if(chars["SERA"].hasCock()) output(" and her dick blows rope after rope of sticky jizz onto the cabin wall and bedsheets,");
 	output(" warm proof of her intense, mind-blowing orgasm.");
 	output("\n\nYou pull out of her, and she simply collapses, too drained by the extreme pleasure and rough fucking to do much else. Her holes gape a little, [pc.cumColor] seed dripping out and forming a large puddle on the bed. You " + (!pc.isBimbo() ? "chuckle" : "giggle") + " as you admire your handiwork, your demon slave panting on the bed while your cum drips out of her ass and pussy.");
@@ -3911,7 +3910,7 @@ public function seraBitcheningPunishCumRation():void
 	output("\n\n<i>“Gonna give your bitch what she needs?”</i> she husks, toothily leering up at you, fingers circling her nipples. <i>“Got the guts to take charge, big [pc.boy]?”</i> She gives your bulging head a long, luscious lick, sending pleasure tingling all the way up your spine. <i>“Seems like you talk a lot about being on top, but I’m the one doing all the w-”</i> You push your [pc.hips] forward at the same time as you pull her head forward, forcefully introducing " + (pc.cLength(cIdx) >= 11.5 ? "most" : "all") + " of your [pc.cock " + cIdx + "] to " + (pc.cLength(cIdx) < 11.5 ? "the back of her throat" : "her gullet") + ". She gags once and then gets a masterful handle on the reflex, her throat clenching wetly around your " + (pc.cLength(cIdx) < 11.5 ? "sensitive bell-end" : "length") + ", practically begging you to use it. Which, once you’ve pulled out once and sunk back into it again to ascertain the demoness can indeed take it, is exactly what you do.");
 	output("\n\nObscene, sloppy, slurping noises fill the room, your [pc.hips] / [pc.balls] slapping against her pretty chin, down which a steady stream of saliva and pre-cum runs,");
 	if(pc.cLength(cIdx) >= 11.5) output(" her neck bulging up with each sweet pump");
-	output(". As you thrust and clench up your [pc.legOrlegs] to pile-drive your musky, saliva-lubed dick into that deep, hidden slut tunnel you consider how much abuse, vitriol and sneering has poured from it over the years. The “gack!” and “schlop”s you’re drawing from it now are infinitely more pleasant, at least to your ears. You draw your [pc.cock " + cIdx + "] outwards slowly so that your [pc.cockHead] touches the inside of her lips, allowing her to recover momentarily; she slides her tongue along the sternly bulging underside and “mmm”s deeply, impatient with horny, whorish hunger, trying to drive you on. Wonderful.");
+	output(". As you thrust and clench up your [pc.legOrLegs] to pile-drive your musky, saliva-lubed dick into that deep, hidden slut tunnel you consider how much abuse, vitriol and sneering has poured from it over the years. The “gack!” and “schlop”s you’re drawing from it now are infinitely more pleasant, at least to your ears. You draw your [pc.cock " + cIdx + "] outwards slowly so that your [pc.cockHead] touches the inside of her lips, allowing her to recover momentarily; she slides her tongue along the sternly bulging underside and “mmm”s deeply, impatient with horny, whorish hunger, trying to drive you on. Wonderful.");
 	output("\n\nYou hold her up and penetrate her tight silky " + (pc.cLength(cIdx) < 11.5 ? "mouth" : "throat") + " right up to the quick with half a dozen more intense, deliberate thrusts, with each one stating unequivocally what its primary function is: polishing your cock from head to base to a worshipful shine. When the need tightening [pc.eachCock] is finally far too much you pull out. With immense effort you keep your hands steady, grab the bowl and with a single slide of your hand and throaty gasp, finally unload. What feels like gallons of pressurized [pc.cum] surges up your duct and fountains noisily into the bowl, a clenching, dizzying orgasm which goes on and on.");
 	if(pc.cumQ() >= 5000)
 	{
@@ -3952,9 +3951,21 @@ public function seraBitcheningPunishCumRation():void
 // Walkies
 // Requires Leash in inventory, doesn’t need to be equipped since that’s a faff.
 // If PC has other usable accessories in inventory (possibly link to ship storage also?)
+private var seraWalkItems:Array = [];
+private function seraHasItem(setItem:ItemSlotClass):Boolean
+{
+	if(seraWalkItems.length == 0) return false;
+	
+	for(var i:int = 0; i < seraWalkItems.length; i++)
+	{
+		if(seraWalkItems[i].shortName == setItem.shortName) return true;;
+	}
+	
+	return false;
+}
 public function seraBitcheningPunishWalkies(initialize:Boolean = false):void
 {
-	if(initialize) chars["SERA"].inventory = [];
+	if(initialize) seraWalkItems = [];
 	
 	clearOutput();
 	showSera();
@@ -3971,11 +3982,11 @@ public function seraBitcheningPunishWalkAcc():void
 	output("\n\n<u><b>Accessories</b></u>");
 	output("\n* Leather Leash");
 	
-	if(chars["SERA"].inventory.length > 0)
+	if(seraWalkItems.length > 0)
 	{
-		for(var i:int = 0; i < chars["SERA"].inventory.length; i++)
+		for(var i:int = 0; i < seraWalkItems.length; i++)
 		{
-			output("\n* " + (StringUtil.toDisplayCase(chars["SERA"].inventory[i].longName)));
+			output("\n* " + (StringUtil.toDisplayCase(seraWalkItems[i].longName)));
 		}
 	}
 	
@@ -3989,45 +4000,49 @@ public function seraBitcheningPunishWalkAcc():void
 	setItem = (new SchoolgirlOutfit());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(!chars["SERA"].hasItem(setItem)) addButton(0, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
+		if(seraHasItem(new SchoolgirlCostume())) addDisabledButton(0, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		else if(!seraHasItem(setItem)) addButton(0, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(0, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
 	setItem = (new SchoolgirlCostume());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(!chars["SERA"].hasItem(setItem)) addButton(5, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
+		if(seraHasItem(new SchoolgirlOutfit())) addDisabledButton(5, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		else if(!seraHasItem(setItem)) addButton(5, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(5, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
 	
 	setItem = (new GravCuffs());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(!chars["SERA"].hasItem(setItem)) addButton(1, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
+		if(!seraHasItem(setItem)) addButton(1, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(1, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
 	
 	setItem = (new Whip());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(!chars["SERA"].hasItem(setItem)) addButton(2, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
+		if(seraHasItem(new BioWhip())) addDisabledButton(2, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		else if(!seraHasItem(setItem)) addButton(2, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(2, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
 	setItem = (new BioWhip());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(!chars["SERA"].hasItem(setItem)) addButton(7, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
+		if(seraHasItem(new Whip())) addDisabledButton(7, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		else if(!seraHasItem(setItem)) addButton(7, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(7, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
 	
-	if(chars["SERA"].inventory.length > 0) addButton(13, "Reset", seraBitcheningPunishWalkies, true, "Reset Accessories", "Try taking different items.");
-	else addDisabledButton(14, "Reset");
+	if(seraWalkItems.length > 0) addButton(13, "Reset", seraBitcheningPunishWalkies, true, "Reset Accessories", "Try taking different items.");
+	else addDisabledButton(13, "Reset");
 	addButton(14, "Let’s Go", seraBitcheningPunishWalkiesGo, undefined, "Let’s Go", "Ready to go!");
 	
 	return;
 }
-public function seraBitcheningPunishWalkAccSelect(item:*):void
+public function seraBitcheningPunishWalkAccSelect(setItem:ItemSlotClass):void
 {
-	if(item != null && !chars["SERA"].hasItem(item)) chars["SERA"].inventory.push(item);
+	if(setItem != null && !seraHasItem(setItem)) seraWalkItems.push(setItem);
 	
 	seraBitcheningPunishWalkies();
 	
@@ -4040,9 +4055,9 @@ public function seraBitcheningPunishWalkiesGo():void
 	showSera();
 	author("Nonesuch");
 	
-	var hasSchoolgirl:Boolean = (chars["SERA"].hasItem(new SchoolgirlOutfit()) || chars["SERA"].hasItem(new SchoolgirlCostume()));
-	var hasCuffs:Boolean = (chars["SERA"].hasItem(new GravCuffs()));
-	var hasWhip:Boolean = (chars["SERA"].hasItem(new Whip()) || chars["SERA"].hasItem(new BioWhip()));
+	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
+	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
+	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
 	
 	// S.Girl O.
 	if(hasSchoolgirl)
@@ -4104,9 +4119,9 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = (chars["SERA"].hasItem(new SchoolgirlOutfit()) || chars["SERA"].hasItem(new SchoolgirlCostume()));
-	var hasCuffs:Boolean = (chars["SERA"].hasItem(new GravCuffs()));
-	var hasWhip:Boolean = (chars["SERA"].hasItem(new Whip()) || chars["SERA"].hasItem(new BioWhip()));
+	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
+	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
+	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
 	
 	output("You maintain a brisk but casual pace as you exit your ship into the empty hangar and head towards the elevator, lead trailing behind you, giving her plenty of time to get used to how fast she has to click-clack on her high heels behind you to stop her collar tightening. For your part, you keep a soft grip on the lock - it wouldn’t do at all to be dragging her around like a trawler net of fish - but whenever you feel the tether is playing out a bit too long, you give it a little squeeze. Having a feel of that delicious weight at the other end, at the same time as chivvying her along.");
 	output("\n\nYou don’t take her to the Merchant Deck, where she can see what’s happened to the Dark Chrysalis. You aren’t <i>that</i> cruel. The two of you are hardly going to stand out much near the red light district anyway. Instead, you get the lift to take you to the floor above. Sera’s expression is blank, her slit eyes turned to the ceiling, but in the cramped space of the lift you can hear her breath come thick and fast; you don’t think she realizes how hard she’s biting her own lip. You give her a comforting squeeze on the boob as the door slides open, and you step confidently out into the well-lit hubbub of the Res Deck.");
@@ -4141,7 +4156,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 		{
 			passerB = witness[rand(witness.length)];
 		}
-		if(rand(2) == 0 && eventQueue.indexOf(passerB) == -1) eventQueue.push(passerB);
+		if((witness.length >= 4 || rand(2) == 0) && eventQueue.indexOf(passerB) == -1) eventQueue.push(passerB);
 	}
 	
 	if(eventQueue.indexOf(seraBitcheningPunishWalkiesNext) == -1) eventQueue.push(seraBitcheningPunishWalkiesNext);
@@ -4162,7 +4177,7 @@ public function seraBitcheningPunishWalkiesWitnessAina():void
 	showSera();
 	author("Nonesuch");
 	
-	var hasWhip:Boolean = (chars["SERA"].hasItem(new Whip()) || chars["SERA"].hasItem(new BioWhip()));
+	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
 	
 	output("<i>“[pc.name]! Hi!”</i> You hear Aina long before you see her; the steady clop-clop-clop falters and then speeds up when she sees you coming the other way. The centauress’s initial friendly grin turns into a puzzled frown, further embellished by a blush, when she fully takes the two of you in. <i>“What are you - ? Who is - ?”</i>");
 	output("\n\n<i>“Hey Aina,”</i> you say brightly. <i>“Lovely today, isn’t it? I’m just taking my bitch out for a stroll. Say hello, Sera.”</i>");
@@ -4191,7 +4206,7 @@ public function seraBitcheningPunishWalkiesWitnessFyn():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = (chars["SERA"].hasItem(new SchoolgirlOutfit()) || chars["SERA"].hasItem(new SchoolgirlCostume()));
+	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
 	
 	output("<i>“What’s all this then?”</i>");
 	output("\n\nOne moment you’re on your own in a quiet spot of the Northern Plaza; the next Fyn the vildarii is standing by your side, taking in the two of you with interest.");
@@ -4226,7 +4241,7 @@ public function seraBitcheningPunishWalkiesWitnessSemith():void
 	generateMap();
 	showLocationName();
 	
-	output("\n\nYou run into Semith the vulkrim along the Eastern Plaza, engrossed in his holo-pad. The besuited little devil gives you a distracted grin at first glance, a more interested gaze at the second.");
+	output("You run into Semith the vulkrim along the Eastern Plaza, engrossed in his holo-pad. The besuited little devil gives you a distracted grin at first glance, a more interested gaze at the second.");
 	output("\n\n<i>“Hello, [pc.name]. What a toothsome piece of candy you’ve got yourself there! How did you come by that? A cruiser raid? Prisoner rehabilitation scheme? Debt acquisition?”</i> He draws back with a self-admonishing hiss. <i>“Sorry. It’s rude to ask, isn’t it? It’s just... seeing a bright young thing like you busily acquiring exotic possessions, it takes me right back to my salad days.”</i> He sighs heavily, flagrantly eyeing Sera. <i>“And - if you don’t mind me saying - she looks a lot like what female vulkrimi look like, at least as the archives have it.”</i>");
 	output("\n\n<i>“Not at all,”</i> you reply. <i>“Say thank you to the nice man for saying you look like a scorpion demon blow-up doll, Sera.”</i>");
 	output("\n\n<i>“Th... thank you, sir,”</i> says Sera lowly, staring at the floor.");
@@ -4250,7 +4265,7 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	generateMap();
 	showLocationName();
 	
-	var hasWhip:Boolean = (chars["SERA"].hasItem(new Whip()) || chars["SERA"].hasItem(new BioWhip()));
+	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
 	
 	output("<i>“M-mistress?!”</i> A pale, petite rahn is staring at you from across the concourse, goggle-eyed.");
 	output("\n\n<i>“Oh One...”</i> moans Sera. <i>“Anything but this. PLEASE.”</i> The leash tugs backwards in your hand. You firmly lock it.");
@@ -4283,9 +4298,9 @@ public function seraBitcheningPunishWalkiesNext():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = (chars["SERA"].hasItem(new SchoolgirlOutfit()) || chars["SERA"].hasItem(new SchoolgirlCostume()));
-	var hasCuffs:Boolean = (chars["SERA"].hasItem(new GravCuffs()));
-	var hasWhip:Boolean = (chars["SERA"].hasItem(new Whip()) || chars["SERA"].hasItem(new BioWhip()));
+	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
+	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
+	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
 	
 	output("Casually presenting your well-trained pet to the public like this has only made the domineering arousal saturating your [pc.groin] all the more brazen and fiery, and along the quieter southern balustrade you decide to do something about it. What use is an obedient fuck-pet if you can’t have them satiate you as and when you demand it, after all? You lead her behind a holo-board advertising new apartments. Her breath, hot and heavy, is in your ears as you turn and calmly consider the succulent succubus");
 	if(hasSchoolgirl) output(" school girl");
@@ -4324,9 +4339,9 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 	showSera();
 	author("Nonesuch");
 	
-	var hasSchoolgirl:Boolean = (chars["SERA"].hasItem(new SchoolgirlOutfit()) || chars["SERA"].hasItem(new SchoolgirlCostume()));
-	var hasCuffs:Boolean = (chars["SERA"].hasItem(new GravCuffs()));
-	var hasWhip:Boolean = (chars["SERA"].hasItem(new Whip()) || chars["SERA"].hasItem(new BioWhip()));
+	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
+	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
+	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
 	
 	switch(response)
 	{
@@ -4344,7 +4359,7 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 			output("\n\nYou voice your enjoyment with deep exhalations and groans as her head bobs, pushing that spry sleeve of wet silk further and further down your shaft, making it feel like it’s filling with hot iron. You jerk the leash upwards to make sure she gets");
 			if(pc.cLength(cIdx) >= 11.5) output(" as far down your massive dick as she can");
 			else output(" all the way down to your " + (pc.hasKnot(cIdx) ? "[pc.knot]" : "base") + ", nose pressing into your crotch");
-			output(". You’re a short distance away from the main drag, towards the apartments still under construction, but surely anyone who looks clearly towards the advertisement you’re behind will be able to see your [pc.legOrlegs], and the pretty pair of [sera.skinColor] knees in front of them. It sends a lightning-like thrill through your veins, intensifying the pleasure of a good, deep suck. Undoubtedly this all occurs to Sera, too; the breath whistles out of her nose as she hollows her cheeks around your [pc.cock " + cIdx + "], the phosphorescence of her eyes flicking incessantly towards the lights of the plaza.");
+			output(". You’re a short distance away from the main drag, towards the apartments still under construction, but surely anyone who looks clearly towards the advertisement you’re behind will be able to see your [pc.legOrLegs], and the pretty pair of [sera.skinColor] knees in front of them. It sends a lightning-like thrill through your veins, intensifying the pleasure of a good, deep suck. Undoubtedly this all occurs to Sera, too; the breath whistles out of her nose as she hollows her cheeks around your [pc.cock " + cIdx + "], the phosphorescence of her eyes flicking incessantly towards the lights of the plaza.");
 			output("\n\n");
 			if(hasCuffs) output("Hands cuffed behind her back makes this a bit challenging for her, so as your lust intensifies you help her out.");
 			else output("Goddamn...");
@@ -4361,7 +4376,7 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 			output("\n\n<i>“Yes [pc.master].”</i> No back-chat, no pouting, no smirking; the Sera that would do that has retreated far away, replaced by one that is a vessel of submissiveness, one that happily accepts the need to serve and be punished. She kneels and flicks at your [pc.clit] with the tip of her tongue, rolling over it until it is bulging out of its hood before moving further upward, lips pressing into your soft flesh as she licks along the line of your sensitive channel.");
 			if(hasCuffs) output(" It’s slightly awkward for her, what with her hands firmly cuffed behind her back, but it does make her amusing to watch. As well as pushing her plush boobs out in a very pleasing manner.");
 			output("\n\nYou voice your enjoyment with deep sighs and groans as her head moves, lapping at the entrance of your [pc.vagina " + vIdx + "] with long, lavish drags of her tongue until [pc.femcum] is " + (pc.isSquirter(vIdx) ? "dribbling" : "coursing") + " readily down her chin. You jerk the leash upwards impatiently as your lust blossoms, forcing her to get her wriggling, hot mouth muscle up into your cunt proper and caressing you within.");
-			output("\n\nYou’re a short distance away from the main drag, towards the apartments still under construction, but surely anyone who looks clearly towards the advertisement you’re behind will be able to see your [pc.legOrlegs], and the pretty pair of [sera.skinColor] knees in between them. It sends a lightning-like thrill through your veins, intensifying the pleasure of a good, worshipful munch. Undoubtedly this all occurs to Sera, too; the breath whistling out of her nose tickles your mound as she drags her tongue over your g-spot repeatedly, the phosphorescence of her eyes flicking incessantly towards the lights of the plaza.");
+			output("\n\nYou’re a short distance away from the main drag, towards the apartments still under construction, but surely anyone who looks clearly towards the advertisement you’re behind will be able to see your [pc.legOrLegs], and the pretty pair of [sera.skinColor] knees in between them. It sends a lightning-like thrill through your veins, intensifying the pleasure of a good, worshipful munch. Undoubtedly this all occurs to Sera, too; the breath whistling out of her nose tickles your mound as she drags her tongue over your g-spot repeatedly, the phosphorescence of her eyes flicking incessantly towards the lights of the plaza.");
 			output("\n\n");
 			if(hasCuffs) output("Hands cuffed behind her back makes this a bit challenging for her, so as your lust intensifies you help her out.");
 			else output("Goddamn...");
@@ -4378,7 +4393,7 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 			output("\n\n<i>“Yes [pc.master].”</i> No back-chat, no pouting, no smirking; the Sera that would do that has retreated far away, replaced by one that is a vessel of submissiveness, one that happily accepts the need to serve and be punished. She kneels and flicks at your [pc.asshole] with the tip of her tongue, rolling over its sensitive edge. With a pause, she presses her lips into one of your [pc.butts], raining it in kisses before resuming her oral stimulation.");
 			if(hasCuffs) output(" It’s slightly awkward for her, what with her hands firmly cuffed behind her back, but it does make her amusing to watch. As well as pushing her plush boobs out in a very pleasing manner.");
 			output("\n\nYou voice your enjoyment with deep sighs and groans as her head moves, tickling your rim with long, lavish drags of her tongue until a shiver shoots up your spine. You jerk the leash upwards impatiently as your lust blossoms, forcing her to get her wriggling, hot mouth muscle up into your asshole proper and caressing you within.");
-			output("\n\nYou’re a short distance away from the main drag, towards the apartments still under construction, but surely anyone who looks clearly towards the advertisement you’re behind will be able to see your [pc.legOrlegs], and the pretty pair of [sera.skinColor] knees in between them. It sends a lightning-like thrill through your veins, intensifying the pleasure of a good, worshipful munch. Undoubtedly this all occurs to Sera, too; the breath whistling out of her nose tickles your mound as she drags her tongue over your sensitive spot repeatedly, the phosphorescence of her eyes flicking incessantly towards the lights of the plaza.");
+			output("\n\nYou’re a short distance away from the main drag, towards the apartments still under construction, but surely anyone who looks clearly towards the advertisement you’re behind will be able to see your [pc.legOrLegs], and the pretty pair of [sera.skinColor] knees in between them. It sends a lightning-like thrill through your veins, intensifying the pleasure of a good, worshipful munch. Undoubtedly this all occurs to Sera, too; the breath whistling out of her nose tickles your mound as she drags her tongue over your sensitive spot repeatedly, the phosphorescence of her eyes flicking incessantly towards the lights of the plaza.");
 			output("\n\n");
 			if(hasCuffs) output("Hands cuffed behind her back makes this a bit challenging for her, so as your lust intensifies you help her out.");
 			else output("Goddamn...");
@@ -4422,7 +4437,7 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 public function seraBitcheningPunishWalkiesEnd():void
 {
 	IncrementFlag("SERA_BITCHENING_PUNISH_WALKIES");
-	chars["SERA"].inventory = [];
+	seraWalkItems = [];
 	
 	chars["SERA"].removeStatusEffect("Sera Masturbated");
 	pc.removeStatusEffect("Seranigans Punishment");

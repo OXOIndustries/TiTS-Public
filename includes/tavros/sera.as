@@ -388,6 +388,12 @@ public function talkToSera():void
 }
 public function seraTalkMenu():void
 {
+	if(seraRecruited())
+	{
+		seraBitcheningTalkMenu();
+		return;
+	}
+	
 	clearMenu();
 	// [Early life] [Recent life] [Demons] [Furries]
 	addButton(0, "Early Life", seraTalkTopics, "early life");
@@ -420,7 +426,6 @@ public function seraTalkTopics(response:String = ""):void
 	clearOutput();
 	author("Nonesuch");
 	showSera();
-	seraTalkMenu();
 	
 	switch(response)
 	{
@@ -436,6 +441,7 @@ public function seraTalkTopics(response:String = ""):void
 			else output("\n\n<i>“Don’t even f- flipping well think about it,”</i> she snarls.");
 			processTime(5);
 			flags["SERA_TALKS_PAST"] = 1;
+			seraTalkMenu();
 			addDisabledButton(0,"Early Life");
 			break;
 		case "recent life":
@@ -467,6 +473,7 @@ public function seraTalkTopics(response:String = ""):void
 			}
 			processTime(6);
 			flags["SERA_TALKS_PRESENT"] = 1;
+			seraTalkMenu();
 			addDisabledButton(1,"Recent Life");
 			break;
 		case "demons":
@@ -478,9 +485,16 @@ public function seraTalkTopics(response:String = ""):void
 			output("\n\n<i>“And the demon stuff?”</i> you supply.");
 			output("\n\n<i>“Hmm? Well, after that it became a bit of an obsession. I loved biblical imagery, and I loved that feeling I had in that final year, of being an irresistible corruptive influence... the fact that it wound my parents up to no end was just a pleasing side-effect. If they’d known I would grow horns by the time I was twenty, maybe they wouldn’t have blown a gasket quite so hard when I got a piercing at fifteen. Fortunately many other people had the same urges as me long ago, so finding demon mods wasn’t hard. Refining it, though, becoming exactly what I wanted... that was difficult.”</i> She thins her lips, absently touching the pale glow on her ivory horns.");
 			output("\n\n<i>“You’ve got to be so careful, dosing yourself with mods, getting exactly the effect you need. First time I took the phosphorous mod I ended up glowing on my tits and back too – took me forever to find something that reversed it just enough for it to stay on my horns. And Lucifier was only a temp-mod back then, so I had to hit the right combo of incubus and succubus boosters so that I kept a body to die for whilst growing out a nice, big dick. Tough. And expensive.”</i> She pauses for a moment, introspective.");
-			if(silly) output("\n\n<i>“You could have just save scummed,”</i> you murmur.");
-			else output("\n\n<i>“You what?”</i> You shake your head, grinning it away. She glares at you suspiciously for a moment longer before continuing.");
-			output("\n\n<i>“Once that was right, I got Permaperk – keeps your ass and tits up where they belong.”</i> She jumps in her " + (!seraRecruited() ? "seat" : "bed") + ", allowing her big, impossibly pert breasts to bounce and palpitate mesmerically. <i>“Always sold separately to the boob boosters, just to make you pay twice. Finally, I invested in this.”</i> She touches the metal harness which curls around her frame. <i>“Fucking hard to maintain as perfect a body as this once you’ve got it. This does the work for me – keeps my gene mods in balance, whittles off fat molecules and puts them where they belong. Pricey as hell, but worth it. I gotta advertise this shop through myself, after all.”</i>");
+			if(silly)
+			{
+				output("\n\n<i>“You could have just save scummed,”</i> you murmur.");
+				output("\n\n<i>“You what?”</i> You shake your head, grinning it away. She glares at you suspiciously for a moment longer before continuing.");
+			}
+			output("\n\n<i>“Once that was right, I got Permaperk – keeps your ass and tits up where they belong.”</i> She jumps in her " + (!seraRecruited() ? "seat" : "bed") + ", allowing her big, impossibly pert breasts to bounce and palpitate mesmerically. <i>“Always sold separately to the boob boosters, just to make you pay twice. Finally, I invested in this.”</i> She touches the metal harness which curls around her frame. <i>“Fucking hard to maintain as perfect a body as this once you’ve got it. This does the work for me – keeps my gene mods in balance, whittles off fat molecules and puts them where they belong. Pricey as hell, but worth it. I");
+			if(!seraRecruited()) output(" gotta advertise this shop");
+			else if(flags["SERA_MERCHANT"] != undefined) output(" gotta advertise my business");
+			else output(" had to advertise my shop");
+			output(" through myself, after all.”</i>");
 			if(!seraRecruited())
 			{
 				output("\n\nYou’ve listened to all this with a growing sense of disquiet.");
@@ -511,6 +525,7 @@ public function seraTalkTopics(response:String = ""):void
 			}
 			processTime(10);
 			flags["SERA_TALKS_DEMONS"] = 1;
+			seraTalkMenu();
 			addDisabledButton(2,"Demons");
 			break;
 		case "furries":
@@ -575,6 +590,7 @@ public function seraTalkTopics(response:String = ""):void
 			}
 			processTime(4);
 			flags["SERA_TALKS_FURRIES"] = 1;
+			seraTalkMenu();
 			addDisabledButton(3,"Furries");
 			break;
 	}
