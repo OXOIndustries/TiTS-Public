@@ -1848,12 +1848,15 @@
 					buffer = tailCocksDescript();
 					break;
 				case "cockOrStrapon":
+				case "cockOrHardlight":
 					buffer = cockOrStrapon(arg2,0);
 					break;
 				case "cockOrStraponNoun":
+				case "cockOrHardlightNoun":
 					buffer = cockOrStrapon(arg2,-1);
 					break;
 				case "cockOrStraponFull":
+				case "cockOrHardlightFull":
 					buffer = cockOrStrapon(arg2,1);
 					break;
 				case "hardlightCock":
@@ -2268,12 +2271,6 @@
 				case "mistress":
 				case "master":
 					buffer = mf("master", "mistress");
-					break
-				case "man":
-					buffer = mf("man", "woman");
-					break
-				case "guy":
-					buffer = mf("guy","girl");
 					break;
 				case "he":
 				case "she":
@@ -2298,12 +2295,27 @@
 				case "eirs":
 					buffer = mf("his", "hers");
 					break;
+				case "sir":
+				case "ma'am":
+					buffer = mf("sir", "ma’am");
+					break;
+				case "mister":
+				case "miss":
+					buffer = mf("mister", "miss");
+					break;
+				case "Mr":
+				case "Ms":
+					buffer = mf("Mr", "Ms");
+					break;
+				case "man":
+				case "woman":
 				case "manWoman":
 					buffer = mf("man", "woman");
 					break;
 				case "boy":
 				case "girl":
 				case "boyGirl":
+				case "girlBoy":
 					buffer = mf("boy", "girl");
 					break;
 				case "guy":
@@ -3724,6 +3736,11 @@
 		public function LQ():Number
 		{
 			return Math.round(libido() / libidoMax() * 100);
+		}
+		
+		public function lustQ():Number
+		{
+			return Math.round(lust() / lustMax() * 100);
 		}
 		
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 

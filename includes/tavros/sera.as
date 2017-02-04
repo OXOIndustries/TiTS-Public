@@ -2,14 +2,14 @@
 //Store Description
 public function darkChrysalisStorefront():void
 {
-	if(seraAtNursery())
+	if(!seraRecruited() && seraAtNursery())
 	{
 		output("\n\nNo lights are on in the Dark Chrysalis - not even its pornographic “Come Back Later” sign. Perhaps Sera is out somewhere.");
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 		return;
 	}
 	
-	if(pc.hasStatusEffect("Dark Chrysalis Closed"))
+	if(!seraRecruited() && pc.hasStatusEffect("Dark Chrysalis Closed"))
 	{
 		output("\n\nThe Dark Chrysalis is closed. Even its “Doing a Slut” sign is dark. You suspect its proprietor is sleeping off a heavy hangover.");
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
@@ -24,6 +24,7 @@ public function darkChrysalisStorefront():void
 }
 public function darkChrysalisIsOpen():Boolean
 {
+	if(seraRecruited()) return true;
 	if(seraAtNursery() || pc.hasStatusEffect("Dark Chrysalis Closed")) return false;
 	return true;
 }
@@ -37,15 +38,49 @@ public function seraBustDisplay(nude:Boolean = false):String
 {
 	var sBust:String = "SERA";
 	
-	if(seraAtNursery() && 9999 == 0) sBust += "_MOM";
-	else if(nude) sBust += "_NUDE";
+	if(9999 == 0)
+	{
+		if(chars["SERA"].skinTone == "bright pink") sBust += "_PINK";
+		if(!chars["SERA"].hasCock()) sBust += "_VAG";
+		if(seraAtNursery()) sBust += "_MOM";
+	}
+	if(nude) sBust += "_NUDE";
 	
 	return sBust;
+}
+
+// Boost Sera's raunchiness.
+public function seraLustGain(minPassed:int = 60):void
+{
+	chars["SERA"].lust(Math.round(minPassed / 30));
+	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness += (1.5 * minPassed);
+	if(chars["SERA"].ballFullness > 100) chars["SERA"].ballFullness = 100;
+	if(chars["SERA"].lust() >= 100) chars["SERA"].minutesSinceCum += minPassed;
+}
+public function serasBodyIsReady():void
+{
+	chars["SERA"].lust(9000);
+	chars["SERA"].ballFullness = 100;
+	chars["SERA"].cumQualityRaw = 1;
+	//chars["SERA"].minutesSinceCum = 9000;
 }
 
 public function seraBonusFunction():Boolean
 {
 	flags["NAV_DISABLED"] = undefined;
+	
+	if(seraRecruited())
+	{
+		mods4UChrysalisBonus();
+		return true;
+	}
+	if(flags["SERA_ACQUIRED_DATE"] != undefined && (GetGameTimestamp() - flags["SERA_ACQUIRED_DATE"] > 180))
+	{
+		seraIsRepoed();
+		return true;
+	}
+	
+	output("The interior of this shop is difficult to make out thanks to a combination of dim lighting and a smoky haze that smells vaguely of walnuts. Looking around, you manage to locate the source of the illumination - four custom glowbulbs pumping out an unnatural-looking blue-black aura. The walls are covered in shelves with dozens of perverted-looking nicknames, many of them demonic in theme, and the lone counter in the back of the store is similarly decorated.");
 	
 	if(flags["MET_SERA"] == undefined)
 	{
@@ -220,7 +255,7 @@ public function seraMenu(toLeave:Boolean = false):void
 }
 
 //Sell Routing
-public function seraSellCheck():void
+public function seraDebtCheck():Boolean
 {
 	if(pc.statusEffectv1("Sera Credit Debt") > 9000)
 	{
@@ -232,7 +267,14 @@ public function seraSellCheck():void
 		output("You ask the demoness if she would be willing to purchase any of your items.");
 		output("\n\nSera looks at you a moment and flips open her sales terminal, taking a quick glance at her numbers for the week. <i>“Umm, how about... no.”</i>");
 		output("\n\nYou give her a disapproving look.");
-		output("\n\n<i>“Hey, I don’t know how it is on </i>your<i> star in the galaxy, but in the world I live in: if I don’t have the cash, I can’t buy your junk.”</i> She gives a knowing scoff. <i>“Are you </i>trying<i> to run me under? I have a business to run here - I’m not a bank!”</i>");
+		if(!seraRecruited())
+		{
+			output("\n\n<i>“Hey, I don’t know how it is on </i>your<i> star in the galaxy, but in the world I live in: if I don’t have the cash, I can’t buy your junk.”</i> She gives a knowing scoff. <i>“Are you </i>trying<i> to run me under? I have a business to run here - I’m not a bank!”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“No more unloading your shit on me for a while now,”</i> Sera warns. <i>“I may be out of debt now, but this is still a business, not a charity shop.”</i>");
+		}
 		output("\n\nYou try to interject, but she answers your response with her own. <i>“Look, money is tight here, so give me...");
 		if(timeLeft >= (5 * 24 * 60)) output(" about a week or so from now");
 		else if(timeLeft >= (3 * 24 * 60)) output(" a few days or so from now");
@@ -245,13 +287,18 @@ public function seraSellCheck():void
 		clearMenu();
 		addButton(0, "Nevermind", seraMenu);
 		addButton(1, "Buy", buyItem);
-		return;
+		return true;
 	}
-	
+	return false;
+}
+public function seraSellCheck():void
+{
 	shopkeep = chars["SERA"];
-	chars["SERA"].keeperSell = "You ask the demon-lady if she would be willing to purchase any of your items.\n\n"
-	if(pc.statusEffectv1("Sera Credit Debt") > 3000) chars["SERA"].keeperSell += "Sera winces a bit and looks at you. "
-	chars["SERA"].keeperSell += "<i>“Sure, I’ll buy any resellable drugs you might have - but I’m not made of money so don’t think I’ll be buying from you willy-nilly like some other shopkeepers. Debt’s a fucking bitch, you hear?”</i>\n\nWhat would you like to sell?\n";
+	chars["SERA"].keeperSell = "You ask the demon-lady if she would be willing to purchase any of your items.";
+	chars["SERA"].keeperSell += "\n\n";
+	if(pc.statusEffectv1("Sera Credit Debt") > 3000) chars["SERA"].keeperSell += "Sera winces a bit and looks at you. ";
+	chars["SERA"].keeperSell += "<i>“Sure, I’ll buy any resellable drugs you might have - but I’m not made of money so don’t think I’ll be buying from you willy-nilly like some other shopkeepers. Debt’s a fucking bitch, you hear?”</i>";
+	chars["SERA"].keeperSell += "\n\nWhat would you like to sell?\n";
 	sellItem();
 }
 //Appearance
@@ -259,18 +306,45 @@ public function seraAppearance():void
 {
 	clearOutput();
 	showSera();
-	output("Sera looks like a six-foot, one inch tall demon more than anything else. A set of ridged horns, glowing with phosphorescent luminescence, curl outwards from her forehead. Additionally, her skin is a mild purple that only serves to further her unholy air. Black sclera ring her golden, glowing irises, split by lizard-like pupils. Above them, a row of gleaming, metal piercings line her brow. Her slightly upturned nose is unremarkable, aside from the single stud in her left nostril. Pale blue hair cascades around her visage like fine silk tapestries arranged to tastefully frame her.");
-	output("\n\nA choker of black-lined, blue-glowing conduits rings her neck, matched on her torso by a sable corset dotted by hard metal and glowing, technological baubles. Pentagonal plates have grown out of her shoulders, though you cannot tell if they exist as armor or ornamentation. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so beautifully.");
-	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They’re nicely rounded and capped with a pair of cerulean nipples that are ever so slightly pebbled in the air-conditioned station air. They’re the kind of boobs that just beg to be fondled, and Sera’s open display of them shows just how much she knows it.");
-	output("\n\nA foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. Sera’s ass is nothing to sneeze at either; it’s large, nicely rounded, and crowned with a prehensile, spaded tail. She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
-	output("\n\nStrappy thigh-highs and garters join her technological-looking corset to her shapely legs. Her feet are perched upon toe-covering, six-inch platform heels, but she walks in them as if it were the most natural thing in the world, perhaps counterbalanced by the tail you noticed earlier");
-	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] > 0 || flags["SERA_TIT_FUCK_LUCKY_DIP"] > 0) output("--or because of the jag of gleaming, navy horn you know she’s got growing down from each heel, natural and rather alarming demonic stilettos");
+	
+	if(!chars["SERA"].hasCock() || chars["SERA"].skinTone == "bright pink") output("Despite the modifications you’ve given her, Sera continues to look more like a six-foot, one inch tall demon than anything else.");
+	else output("Sera looks like a six-foot, one inch tall demon more than anything else.");
+	output(" A set of ridged horns, glowing with phosphorescent luminescence, curl outwards from her forehead.");
+	if(chars["SERA"].skinTone == "bright pink") output(" Her skin is a bright, girly pink, accentuating her femininity.");
+	else output(" Additionally, her skin is a mild purple that only serves to further her unholy air.");
+	output(" Black sclera ring her golden, glowing irises, split by lizard-like pupils. Above them, a row of gleaming, metal piercings line her brow. Her slightly upturned nose is unremarkable, aside from the single stud in her left nostril. Pale blue hair cascades around her visage like fine silk tapestries arranged to tastefully frame her face.");
+	if(seraRecruited()) output("\n\nA silver slave collar rings her neck, complete with an innocuous lead hasp at the back; a tasteful, permanent reminder of her status. Ornamental pentagonal plates grow out of her shoulders. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so exquisitely.");
+	else output("\n\nA choker of black-lined, blue-glowing conduits rings her neck, matched on her torso by a sable corset dotted by hard metal and glowing, technological baubles. Pentagonal plates have grown out of her shoulders, though you cannot tell if they exist as armor or ornamentation. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so beautifully.");
+	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They’re nicely rounded and capped with a pair of " + chars["SERA"].nippleColor + " nipples that are ever so slightly pebbled in the air-conditioned station air. They’re the kind of boobs that just beg to be fondled");
+	if(!seraRecruited()) output(", and Sera’s open display of them shows just how much she knows it");
 	output(".");
-	output("\n\nAll in all, Sera appears to be the kind of woman who enjoys everything sexuality has to offer and pursues it aggressively.");
+	output("\n\n");
+	if(chars["SERA"].hasCock()) output("A foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. ");
+	output("Sera’s ass is nothing to sneeze at either; it’s large, nicely rounded, and crowned with a prehensile, spaded tail.");
+	if(seraRecruited()) output(" The spade at the end seems a little big and bulgy, reminiscent of a cock head.");
+	else output(" She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
+	if(seraRecruited())
+	{
+		output("\n\nSilk fishnets and garters join her technological-looking frilly corset to her shapely legs. Her feet are perched upon toe-covering, six-inch stilettos, but when she walks in them it’s as if it’s the most natural thing in the world, perhaps counterbalanced by her tail.");
+		output("\n\n<b>");
+		if(chars["SERA"].lust() < 33) output("She eyes you with an insolent smirk, completely relaxed.");
+		else if(chars["SERA"].lust() < 66) output("She seems slightly on edge; her tail flicks this way and that fretfully, and her slit eyes dart around the room, distracted.");
+		else output("She looks flushed. She bites her lip and drums her fingers on her thigh with an air of frustration. When you affect to look away from her you can see her touch her erect nipples impulsively in the corner of your eye. It’s obvious she’s currently very pent up and aroused.");
+		output("</b>");
+	}
+	else
+	{
+		output("\n\nStrappy thigh-highs and garters join her technological-looking corset to her shapely legs. Her feet are perched upon toe-covering, six-inch platform heels, but she walks in them as if it were the most natural thing in the world, perhaps counterbalanced by the tail you noticed earlier");
+		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] > 0 || flags["SERA_TIT_FUCK_LUCKY_DIP"] > 0) output("--or because of the jag of gleaming, navy horn you know she’s got growing down from each heel, natural and rather alarming demonic stilettos");
+		output(".");
+		output("\n\nAll in all, Sera appears to be the kind of woman who enjoys everything sexuality has to offer and pursues it aggressively.");
+	}
 	
 	processTime(1);
+	
 	clearMenu();
-	addButton(0,"Next",approachSera);
+	if(seraRecruited()) addButton(0,"Next",approachServantSera);
+	else addButton(0,"Next",approachSera);
 }
 
 //Why Is Sera Pissed Off?
@@ -348,79 +422,161 @@ public function seraTalkTopics(response:String = ""):void
 	showSera();
 	seraTalkMenu();
 	
-	if(response == "early life")
+	switch(response)
 	{
-		output("You ask where she came from.");
-		output("\n\n<i>“Earth, believe it or not,”</i> the tall succubus says. <i>“Terra Firma itself. Can be a pretty shitty place if you aren’t well off, but my parents were. Well off enough to send me to an all-girl Church of the One school, anyway. Think I can still do a Hail Marianne.”</i>");
-		output("\n\n<i>“You’re religious?”</i>");
-		output("\n\n<i>“What do you think?”</i> she sneers, displaying her sharp teeth at you, her horns gently glowing green. <i>“Look, I don’t care what you or anyone else believes. Ol’ fossil-planting sky magician ain’t got nothing on the illusions some people live under. But I hate - HATE – people telling me what to do and think, and that’s all that organized religion is.”</i> She pauses. <i>“I did like some of the imagery, though. In the old scripture. Sin, and temptation, and - the concept of a fall from grace resulting in new, dirty knowledge and ideas and above all </i>power<i>. Yeah, I liked that a lot.”</i> She drums her fingers on the counter and sighs. <i>“But apart from that, fucking hated it. Everything I’ve ever done has been about getting away from my upbringing. The rules, the rosaries, the bible lessons, what you were supposed to think about them rather than what you actually did, my mom making me eat cigarettes, the uptight biddies who ran the place, the fucking uniform...”</i>");
-		output("\n\nYou can’t help but ");
-		if(pc.isBimbo() || pc.isNice()) output("giggle");
-		else output("snicker");
-		output(" to yourself as a thought occurs. Several parts of Sera glow at you balefully.");
-		output("\n\n<i>“Laugh it up,”</i> she growls. <i>“That image you’ve got in your head right now? The white blouse, school skirt and pigtails? That’s you, next time we fuck.”</i>");
-		processTime(5);
-		flags["SERA_TALKS_PAST"] = 1;
-		addDisabledButton(0,"Early Life");
-	}
-	else if(response == "recent life")
-	{
-		output("You ask how she came to be on the station.");
-		output("\n\n<i>“I had to get away from Earth,”</i> she says. <i>“Away from my parents. My dad used to stage interventions. Fly out to wherever I was bunking, and drive me back to their big clean house in their big clean suburb. Every time was a new page turned, a new 12 step plan of how I was going to become a clean-living productive member of society, and hopefully in due course a submissive housewife to a coke snorting businessman strung out on Mayjay, just like my mom.”</i> The demon girl laughs, almost sounding nostalgic. <i>“I used to get calls from her, every month. “You aren’t still smoking dear? Have you found yourself a job? How about a nice boy, dear?” Why yes mother I’ve found a couple of nice boys in fact, I’m holding their leashes right now.”</i> She cackles to herself, and sighs. <i>“They forced me to do the business course. They did do that. And with that, and my own savings, I came out here when the frontier rush began, and set up this place.”</i>");
-		output("\n\n<i>“Did you use your family’s money to do it?”</i> you ask. Sera’s eyes narrow.");
-		output("\n\n<i>“Hell fucking no,”</i> she spits. <i>“Here’s a life lesson for you, pet: the richer a man is, the more tight-fisted he becomes. My dad would never have allowed me to own a place like this, and even if he did he’d know exactly where I was, and he’d have his thumb on me at all times. I did this all with my money, and with loans.”</i>");
-		output("\n\nYou think about bringing up your own dad, but decide that would probably be a bad idea right now. Instead, you ask if she misses Earth.");
-		output("\n\n<i>“Sometimes,”</i> she admits. She toys with a dreamcatcher’s dangling phalluses, set near her chair. <i>“It’s still a wonderful world, though you don’t really realize that until you’ve been to a few others. And it was a bit of a wrench leaving all my bitches behind. But even there I think I needed a fresh start, and it’s not so hard to find new ones. You don’t even need to look. You display what you are and adopt the right attitude, they come to you.”</i> She grins at you, pleased and possessive.");
-		processTime(6);
-		flags["SERA_TALKS_PRESENT"] = 1;
-		addDisabledButton(1,"Recent Life");
-	}
-	else if(response == "demons")
-	{
-		output("You ask how she came to look the way she does.");
-		output("\n\n<i>“It wasn’t easy,”</i> Sera says, her cerulean lips curling into a smile, your question clearly pleasing her. <i>“It began with penis envy, pure and simple. Coming of age in an all-girl’s religious school – you know how many of them I wanted to bang? All that uptightness, all that starch, all those things you weren’t allowed to talk about, with no release to it all, goddamn... every time a classmate started to fret about something like the font of the school magazine, I just wanted to bend her over my table and make her think about nothing but how good it is to get royally rammed for the rest of the day. And eventually, fingers weren’t enough. So I sold my jet-bike, and used the money for a mod.”</i> She slides her hand along her veiny shaft fondly.");
-		output("\n\n<i>“Wasn’t as big as this then. But it was big enough to make me the most popular girl in the final year. Even the cliquesters and girls who took the One thing seriously, who’d call me a slut or Satan’s bitch in the corridor... they’d come. And come. And come. That was the best, when they did. When I made them say my name. Almost made up for the rest of my childhood, that did.”</i> She sighs blissfully, turgid with memory.");
-		output("\n\n<i>“And the demon stuff?”</i> you supply.");
-		output("\n\n<i>“Hmm? Well, after that it became a bit of an obsession. I loved biblical imagery, and I loved that feeling I had in that final year, of being an irresistible corruptive influence... the fact that it wound my parents up to no end was just a pleasing side-effect. If they’d known I would grow horns by the time I was twenty, maybe they wouldn’t have blown a gasket quite so hard when I got a piercing at fifteen. Fortunately many other people had the same urges as me long before, so finding demon mods wasn’t hard. Refining it, though, becoming exactly what I wanted... that was difficult.”</i> She thins her lips, absently touching the pale glow on her ivory horns.");
-		output("\n\n<i>“You’ve got to be so careful, dosing yourself with mods, getting the exact effect you need. First time I took the phosphorous mod, I ended up glowing on my tits and back too – took me forever to find something that reversed it just enough for it to stay on my horns. And Lucifier was only a temp-mod back then, so I had to hit the right combo of incubus and succubus boosters so that I kept a body to die for whilst growing out a nice, big dick. Tough. And expensive.”</i> She pauses for a moment, introspective.");
-		if(silly) output("\n\n<i>“You could just save scum,”</i> you murmur.");
-		else output("\n\n<i>“You what?”</i> You shake your head, grinning it away. She glares at you suspiciously for a moment longer before continuing.");
-		output("\n\n<i>“Once that was right, I got Permaperk – keeps your ass and tits up where they belong.”</i> She jumps in her seat, allowing her big, impossibly pert breasts to bounce and palpitate mesmerically. <i>“Always sold separately to the boob boosters, just to make you pay twice. Finally, I invested in this.”</i> She touches the metal harness which curls around her frame. <i>“Fucking hard to maintain as perfect a body as this once you’ve got it. This does the work for me – keeps my gene mods in balance, whittles off fat molecules and puts them where they belong. Pricey as hell, but worth it. I gotta advertise this shop through myself, after all.”</i>");
-		output("\n\nYou’ve listened to all this with a growing sense of disquiet.");
-		output("\n\n<i>“How badly are you in debt?”</i> you say quietly. The pleased smile runs right off Sera’s face.");
-		output("\n\n<i>“That’s none of your business,”</i> she answers tersely. <i>“You are my fuck toy, not accountant. But just so we’re clear, I am fine. So long as this shop is a success. And it will be.”</i>");
-		output("\n\nYou may have gained an insight into why she hates Fur Effect so much.");
-		processTime(10);
-		flags["SERA_TALKS_DEMONS"] = 1;
-		addDisabledButton(2,"Demons");
-	}
-	else if(response == "furries")
-	{
-		output("You ask why she hates furries so much.");
-		output("\n\n<i>“They’re just... ugh!”</i> She grasps the air in anger with her claws. <i>“They’re using fucking wax crayons whilst other people are trying to make art. Look, I’m not hung up on animal features per se - they can be nice in moderation.");
-		if(pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE)
-		{
-			output(" Those fluffy ears, for example? Perfect for a cute ");
-			if(pc.earType == GLOBAL.TYPE_FELINE) output("kitty slut");
-			else output("slut puppy");
-			output(" such as yourself.");
-		}
-		output("”</i>");
-		output("\n\n<i>“And some aliens can’t help naturally looking gross. But the people who use those mods, they’re almost always some utter cretin who is so hopeless at human interaction they’ve fallen in love with an animal to the point where they want to BE the animal - See, animals can’t ever tell you you reek of B.O. and that you’re all clingy and weird - So then they spend their life savings on a dozen doses of the same mod and wallop it down. Bang! Now they’re a walking sperm whale or whatever the fuck. Then they show off their disgusting muzzles and snouts to each other, pretending they’re gene mod veterans. But there’s no craftsmanship.”</i>");
-		output("\n\n<i>“Then you’ve got people like the bitch across the way.”</i> She gestures contemptuously out of the door.");
-		output("\n\n<i>“Enablers. Freaking aliens who do the same damn thing! She wants to be a panda but her race isn’t even mammal, she doesn’t have nips.");
-		if(chars["JADE"].breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_TENTACLED) output(" Does she try and find something that would give her them? Of course she fucking doesn’t! So now she’s got weird-ass featureless blobs of meat hanging off her pasty chest.");
-		else output(" She actually needs someone like you to come along and tell her how weird those featureless blobs of meat hanging off her pasty chest look!");
-		output(" Least she got the fat bit right,”</i> she finishes in an angry mutter. <i>“Not that she actually intended that.”</i>");
-		// Furry:
-		if(pc.isNaga() || pc.isTaur() || pc.isDrider() || pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) || !InCollection(pc.skinType, [GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO]))
-		{
-			output("\n\n<i>“So, uh...”</i> you say, hesitantly. Sera looks at you with a strange mix of contempt and fondness.");
-			output("\n\n<i>“If I had a problem with you looking like someone who works in a kiddie amusement park you would know about it by now, sweetheart,”</i> she says. She leers at you toothily. <i>“I actually </i>like<i> you that way. Working out the aggression on one of the clowns themselves? More satisfying than I thought.”</i>");
-		}
-		processTime(4);
-		flags["SERA_TALKS_FURRIES"] = 1;
-		addDisabledButton(3,"Furries");
+		case "early life":
+			output("You ask where she came from.");
+			output("\n\n<i>“Earth, believe it or not,”</i> the tall succubus says. <i>“Terra Firma itself. Can be a pretty shitty place if you aren’t well off, but my parents were. Well off enough to send me to an all-girl Church of the One school, anyway. Think I can still do a Hail Marianne.”</i>");
+			output("\n\n<i>“You’re religious?”</i>");
+			output("\n\n<i>“What do you think?”</i> she sneers, displaying her sharp teeth at you, her horns gently glowing green. <i>“Look, I don’t care what you or anyone else believes. Ol’ fossil-planting sky magician ain’t got nothing on the illusions some people live under. But I " + (!seraRecruited() ? "hate - HATE" : "hated - HATED") + " – people telling me what to do and think, and that’s all that organized religion is.”</i>");
+			output("\n\nShe pauses.");
+			output("\n\n<i>“I did like some of the imagery, though. In the old scripture. Sin, and temptation, and - the concept of a fall from grace resulting in new, dirty knowledge and ideas and above all </i>power<i>. Yeah, I liked that a lot.”</i> She drums her fingers on the " + (!seraRecruited() ? "counter" : "sheets") + " and sighs. <i>“But apart from that, fucking hated it. Everything I’ve ever done has been about getting away from my upbringing. The rules, the rosaries, the bible lessons, what you were supposed to think about them rather than what you actually did, my mom making me eat cigarettes, the uptight biddies who ran the place, the fucking uniform...”</i>");
+			output("\n\nYou can’t help but " + ((!pc.isBimbo() && !pc.isNice()) ? "snicker" : "giggle") + " to yourself as a thought occurs. Several parts of Sera glow at you balefully.");
+			if(!seraRecruited()) output("\n\n<i>“Laugh it up,”</i> she growls. <i>“That image you’ve got in your head right now? The white blouse, school skirt and pigtails? That’s you, next time we fuck.”</i>");
+			else output("\n\n<i>“Don’t even f- flipping well think about it,”</i> she snarls.");
+			processTime(5);
+			flags["SERA_TALKS_PAST"] = 1;
+			addDisabledButton(0,"Early Life");
+			break;
+		case "recent life":
+			output("You ask how she came to be on " + (!seraRecruited() ? "the s" : "Tavros S") + "tation.");
+			output("\n\n<i>“I had to get away from Earth,”</i> she says. <i>“Away from my parents. My dad used to stage interventions. Fly out to wherever I was bunking, and drive me back to their big clean house in their big clean suburb. Every time was a new page turned, a new 12 step plan of how I was going to become a clean-living productive member of society, and hopefully in due course a submissive housewife to a coke snorting businessman strung out on Mayjay, just like my mom.”</i>");
+			output("\n\nThe demon girl laughs, almost sounding nostalgic.");
+			output("\n\n<i>“I used to get calls from her, every month. ‘You aren’t still smoking dear? Have you found yourself a job? How about a nice boy, dear?’ Why yes mother I’ve found a couple of nice boys in fact, I’m holding their leashes right now.”</i> She cackles to herself, and sighs. <i>“They forced me to do the business course. They did do that. And with that, and my own savings, I came out here when the frontier rush began, and set up " + (!seraRecruited() ? "this place" : "the Chrysalis") + ".”</i>");
+			output("\n\n<i>“Did you use your family’s money to do it?”</i> you ask. Sera’s eyes narrow.");
+			output("\n\n<i>“Hell fucking no,”</i> she spits. <i>“Here’s a life lesson for you, " + (!seraRecruited() ? "pet" : "[pc.master]") + ": the richer a man is, the more tight-fisted he becomes. My dad would never have allowed me to own a place like this, and even if he did he’d know exactly where I was, and he’d have his thumb on me at all times. I did " + (!seraRecruited() ? "this" : "it") + " all with my money, and with loans." + (!seraRecruited() ? "" : " And I don’t care... I don’t fucking well care...") + "”</i>");
+			if(!seraRecruited())
+			{
+				output("\n\nYou think about bringing up your own dad, but decide that would probably be a bad idea right now. Instead, you ask if she misses Earth.");
+				output("\n\n<i>“Sometimes,”</i> she admits. She toys with a dreamcatcher’s dangling phalluses, set near her chair. <i>“It’s still a wonderful world, though you don’t really realize that until you’ve been to a few others. And it was a bit of a wrench leaving all my bitches behind. But even there I think I needed a fresh start, and it’s not so hard to find new ones. You don’t even need to look. You display what you are and adopt the right attitude, they come to you.”</i> She grins at you, pleased and possessive.");
+			}
+			else
+			{
+				output("\n\nHer eyes swim slightly.");
+				output("\n\n<i>“... I don’t care,”</i> she repeats, once she’s taken a deep breath, <i>“that this is pretty much exactly what dad said would happen. It might have been a colossal fuck up, but it was </i>my<i> colossal fuck up. I would rather be here");
+				if(pc.hasCock()) output(" sucking dick");
+				else if(pc.hasVagina()) output(" being force-fed pussy");
+				else output(" kneeling for sex");
+				output(" than in a Dark Chrysalis owned by him.”</i> She looks you in the eye defiantly. <i>“That’s the truth.”</i>");
+				output("\n\nYou think about saying something about her language, but ultimately decide that might be a bit cruel");
+				if(pc.isAss()) output(" even for you");
+				output(". Instead, you ask if she misses Earth.");
+				output("\n\n<i>“Sometimes,”</i> the demon-morph admits. She absentmindedly draws patterns on the sheets with a claw. <i>“It’s still a wonderful world, though you don’t really realize that until you’ve been to a few others. And it was a bit of a wrench leaving all my bitches behind. But even there I think I needed a fresh start, and it’s not so hard to find new ones.”</i>");
+				output("\n\n<i>“It isn’t,”</i> you agree. <i>“Got to pay good credits for the really juicy ones, though.”</i>");
+				output("\n\n<i>“You’re such an assh- asinine person,”</i> she snaps, though she’s sporting a small grin as she says it.");
+			}
+			processTime(6);
+			flags["SERA_TALKS_PRESENT"] = 1;
+			addDisabledButton(1,"Recent Life");
+			break;
+		case "demons":
+			output("You ask how she came to look the way she does.");
+			output("\n\n<i>“It wasn’t easy,”</i> Sera says, her cerulean lips curling into a smile, your question clearly pleasing her. <i>“It began with penis envy, pure and simple. Coming of age in an all-girl’s religious school – you know how many of them I wanted to bang? All that uptightness, all that starch, all those things you weren’t allowed to talk about, with no release to it all, goddamn... every time a classmate started to fret about something like the font of the school magazine, I just wanted to bend her over my table and make her think about nothing but how good it is to get royally rammed for the rest of the day. And eventually, fingers weren’t enough. So I sold my jet-bike, and used the money for a mod.”</i>");
+			if(chars["SERA"].hasCock()) output(" She slides her hand along her veiny shaft fondly.");
+			else output(" She smiles in fond, poignant memory.");
+			output("\n\n<i>“Wasn’t as big as " + (chars["SERA"].hasCock() ? "this" : "it got to be") + " then. But it was big enough to make me the most popular girl in the final year. Even the cliquesters and girls who took the One thing seriously, who’d call me a slut or Satan’s bitch in the corridor... they’d come. And come. And come. That was the best, when they did. When I made them say my name. Almost made up for the rest of my childhood, that did.”</i> She sighs blissfully" + (chars["SERA"].hasCock() ? ", turgid with memory" : "") + ".");
+			output("\n\n<i>“And the demon stuff?”</i> you supply.");
+			output("\n\n<i>“Hmm? Well, after that it became a bit of an obsession. I loved biblical imagery, and I loved that feeling I had in that final year, of being an irresistible corruptive influence... the fact that it wound my parents up to no end was just a pleasing side-effect. If they’d known I would grow horns by the time I was twenty, maybe they wouldn’t have blown a gasket quite so hard when I got a piercing at fifteen. Fortunately many other people had the same urges as me long ago, so finding demon mods wasn’t hard. Refining it, though, becoming exactly what I wanted... that was difficult.”</i> She thins her lips, absently touching the pale glow on her ivory horns.");
+			output("\n\n<i>“You’ve got to be so careful, dosing yourself with mods, getting exactly the effect you need. First time I took the phosphorous mod I ended up glowing on my tits and back too – took me forever to find something that reversed it just enough for it to stay on my horns. And Lucifier was only a temp-mod back then, so I had to hit the right combo of incubus and succubus boosters so that I kept a body to die for whilst growing out a nice, big dick. Tough. And expensive.”</i> She pauses for a moment, introspective.");
+			if(silly) output("\n\n<i>“You could have just save scummed,”</i> you murmur.");
+			else output("\n\n<i>“You what?”</i> You shake your head, grinning it away. She glares at you suspiciously for a moment longer before continuing.");
+			output("\n\n<i>“Once that was right, I got Permaperk – keeps your ass and tits up where they belong.”</i> She jumps in her " + (!seraRecruited() ? "seat" : "bed") + ", allowing her big, impossibly pert breasts to bounce and palpitate mesmerically. <i>“Always sold separately to the boob boosters, just to make you pay twice. Finally, I invested in this.”</i> She touches the metal harness which curls around her frame. <i>“Fucking hard to maintain as perfect a body as this once you’ve got it. This does the work for me – keeps my gene mods in balance, whittles off fat molecules and puts them where they belong. Pricey as hell, but worth it. I gotta advertise this shop through myself, after all.”</i>");
+			if(!seraRecruited())
+			{
+				output("\n\nYou’ve listened to all this with a growing sense of disquiet.");
+				output("\n\n<i>“How badly are you in debt?”</i> you say quietly. The pleased smile runs right off Sera’s face.");
+				output("\n\n<i>“That’s none of your business,”</i> she answers tersely. <i>“You are my fuck toy, not accountant. But just so we’re clear, I am fine. So long as this shop is a success. And it will be.”</i>");
+				output("\n\nYou may have gained an insight into why she hates Fur Effect so much.");
+			}
+			else
+			{
+				output("\n\n<i>“No wonder you wound up in so much debt!”</i> you exclaim, shaking your head.");
+				output("\n\n<i>“And you’re the benefactor of it all, aren’t you?”</i> she shoots back. <i>“Alright, so now I’m someone’s pet slut. I still look like what I always dreamed of, how I feel inside.");
+				if(!chars["SERA"].hasCock() || chars["SERA"].skinTone == "bright pink")
+				{
+					output(" Your totally stupid modifications aside.”</i>");
+					output("\n\n<i>“You look way cuter");
+					if(chars["SERA"].skinTone == "bright pink") output(" in pink");
+					if(!chars["SERA"].hasCock() && chars["SERA"].skinTone == "bright pink") output(" and");
+					if(!chars["SERA"].hasCock()) output(" without that big ugly dick");
+					output(",”</i> you assert. <i>“And it suits you a lot better for where you are now.”</i>");
+					output("\n\nShe doesn’t have a response to this, except to look sullen and blush.");
+				}
+				else
+				{
+					output(" Once my term with you is over, I will still have that.”</i>");
+					output("\n\n<i>“If,”</i> you point out, <i>“I don’t decide to modify you to suit my own tastes before then. Terms of the contract allow it.”</i>");
+					output("\n\nShe doesn’t have a response to this, except to look sullen and blush.");
+				}
+			}
+			processTime(10);
+			flags["SERA_TALKS_DEMONS"] = 1;
+			addDisabledButton(2,"Demons");
+			break;
+		case "furries":
+			output("You ask why she hates furries so much.");
+			output("\n\n<i>“They’re just... ugh!”</i> She grasps the air in anger with her claws. <i>“They’re using fucking wax crayons whilst other people are trying to make art. Look, I’m not hung up on animal features per se - they can be nice in moderation.");
+			if(!seraRecruited())
+			{
+				if(pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE)
+				{
+					output(" Those fluffy ears, for example? Perfect for a cute ");
+					if(pc.earType == GLOBAL.TYPE_FELINE) output("kitty slut");
+					else output("slut puppy");
+					output(" such as yourself.");
+				}
+				output("”</i>");
+				output("\n\n<i>“");
+			}
+			else
+			{
+				output(" ");
+			}
+			output("And some aliens can’t help naturally looking gross. But the people who use those mods, they’re almost always some utter cretin who is so hopeless at human interaction they’ve fallen in love with an animal to the point where they want to BE the animal - See, animals can’t ever tell you you reek of B.O. and that you’re all clingy and weird - So then they spend their life savings on a dozen doses of the same mod and wallop it down. Bang! Now they’re a walking sperm whale or whatever the fuck. Then they show off their disgusting muzzles and snouts to each other, pretending they’re gene mod veterans. But there’s no craftsmanship.");
+			if(seraRecruited()) output(" Then you’ve got people like the bitch who had her shop opposite mine.");
+			output("”</i>");
+			output("\n\n");
+			if(!seraRecruited()) output("<i>“Then you’ve got people like the bitch across the way.”</i> ");
+			output("She gestures contemptuously");
+			if(!seraRecruited()) output(" out of the door");
+			output(".");
+			output("\n\n<i>“Enablers. Freaking aliens who do the same damn thing! She wants to be a panda but her race isn’t even mammal, she doesn’t have nips.");
+			if(!seraRecruited())
+			{
+				if(chars["JADE"].breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_TENTACLED) output(" Does she try and find something that would give her them? Of course she fucking doesn’t! So now she’s got weird-ass featureless blobs of meat hanging off her pasty chest.");
+				else output(" She actually needs someone like you to come along and tell her how weird those featureless blobs of meat hanging off her pasty chest look!");
+			}
+			else
+			{
+				if(chars["JADE"].breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_TENTACLED) output(" Did she try and find something that would give her them? Of course she fucking didn’t! So now she’s got weird-ass featureless blobs of meat hanging off her pasty chest.");
+				else output(" She actually needed someone like you to come along and tell her how weird those featureless blobs of meat hanging off her pasty chest looked!");
+			}
+			output(" Least she got the fat bit right,”</i> she finishes in an angry mutter. <i>“Not that she actually intended that.”</i>");
+			// Furry:
+			if(pc.isNaga() || pc.isTaur() || pc.isDrider() || pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) || !InCollection(pc.skinType, [GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_FEATHERS]))
+			{
+				if(!seraRecruited())
+				{
+					output("\n\n<i>“So, uh...”</i> you say, hesitantly. Sera looks at you with a strange mix of contempt and fondness.");
+					output("\n\n<i>“If I had a problem with you looking like someone who works in a kiddie amusement park you would know about it by now, sweetheart,”</i> she says. She leers at you toothily. <i>“I actually </i>like<i> you that way. Working out the aggression on one of the clowns themselves? More satisfying than I thought.”</i>");
+				}
+				// Furry AND submitted:
+				else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4)
+				{
+					output("\n\n<i>“Funny how these things work out, isn’t it,”</i> you smirk. She glares daggers at you.");
+					output("\n\n<i>“If you enslaved me just because of what I said to you before,”</i> she snarls, <i>“that makes you the smallest muzzle-mutant in existence. Which is some achievement. No offence, ‘[pc.master]’.”</i>");
+				}
+				// Furry AND did not submit:
+				else
+				{
+					output("\n\n<i>“Funny how these things work out, isn’t it,”</i> you smirk. She glares daggers at you.");
+					output("\n\n<i>“It’s a f- gosh darn riot,”</i> she snaps. <i>“I love being the sex slave of someone who makes me dry heave every time they enter the room.”</i>");
+				}
+			}
+			processTime(4);
+			flags["SERA_TALKS_FURRIES"] = 1;
+			addDisabledButton(3,"Furries");
+			break;
 	}
 }
 
@@ -559,6 +715,10 @@ public function timesFuckedSera():Number
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) totalSex += flags["SERA_TIT_FUCK_LUCKY_DIP"];
 	if(flags["SERA_PARTY_FUCKED"] != undefined) totalSex += flags["SERA_PARTY_FUCKED"];
 	if(flags["SERA_TAILED"] != undefined) totalSex += flags["SERA_TAILED"];
+	
+	if(flags["SERA_BITCHENING_RIDE"] != undefined) totalSex += flags["SERA_BITCHENING_RIDE"];
+	if(flags["SERA_BITCHENING_BUTTFUCK"] != undefined) totalSex += flags["SERA_BITCHENING_BUTTFUCK"];
+	if(flags["SERA_BITCHENING_SEXED"] != undefined) totalSex += flags["SERA_BITCHENING_SEXED"];
 	
 	return totalSex;
 }

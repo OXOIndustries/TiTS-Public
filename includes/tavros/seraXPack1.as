@@ -66,7 +66,7 @@ public function seraSexXXXTFModsAsk():void
 	author("Nonesuch");
 	showSera();
 	
-	output("<i>“Do you have anything that’s a bit more... ”</i> You want to say “interesting”. <i>“... exotic?”</i>");
+	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“... exotic?”</i>");
 	
 	// PC has submitted
 	if(flags["SERA_TRIPLE_X_RATED"] >= 4)
@@ -76,7 +76,7 @@ public function seraSexXXXTFModsAsk():void
 		output("\n\n<i>“Hmm. I think you’ll have to earn a look at them, pet. Be obedient, get on your");
 		if(pc.hasKnees()) output(" knees");
 		else output(" kneel");
-		output(" down and open that pretty mouth of yours enough times, and who knows how I’ll reward you... ”</i> she finishes on a tuneful, teasing note. You struggle not to roll your eyes.");
+		output(" down and open that pretty mouth of yours enough times, and who knows how I’ll reward you...”</i> she finishes on a tuneful, teasing note. You struggle not to roll your eyes.");
 		processTime(2);
 	}
 	// PC has not submitted 
@@ -1478,7 +1478,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			output(" Sera waves a claw lazily.");
 			output("\n\n<i>“[pc.name], meet Jardi. She is a go’rahn and a bitch. Jardi, meet [pc.name]. [pc.He] is a [pc.race] and also a bitch.”</i> She bites her lower lip as she considers the two of you, before getting up. <i>“I’m going to make some adjustments in the back. You two have a chat. You’re going to be working together very closely soon.”</i>");
 			output("\n\nJardi looks across at you shyly as the succubus strides out of the room. Feeling you should take the initiative, you ask the pretty gel-girl how she got to know Sera.");
-			output("\n\n<i>“I work on the flight deck. I didn’t come in here for anything specifically, I just like exploring the station, meeting new people. But when I came in here... uh... ”</i> She twiddles her fingers, her cheeks turning a lovely rose color. <i>“I don’t know how much you know about the rahn, but we’re a very open and casual people when it comes to sex. Very... consensual? When I encountered something as forceful as that, I kind of... You know how they tell you when you meet a new people to wear a breathing mask, because they might be carrying stuff your immune system has no resistance to?”</i>");
+			output("\n\n<i>“I work on the flight deck. I didn’t come in here for anything specifically, I just like exploring the station, meeting new people. But when I came in here... uh...”</i> She twiddles her fingers, her cheeks turning a lovely rose color. <i>“I don’t know how much you know about the rahn, but we’re a very open and casual people when it comes to sex. Very... consensual? When I encountered something as forceful as that, I kind of... You know how they tell you when you meet a new people to wear a breathing mask, because they might be carrying stuff your immune system has no resistance to?”</i>");
 			output("\n\nYou tell her you understand. She looks at you with her big, brown eyes.");
 			output("\n\n<i>“Are all human relationships like this?”</i> You only have time to laugh before Sera’s voice comes floating out of the door behind the counter.");
 			output("\n\n<i>“You two. Down the corridor and on your right. Now.”</i> You proffer your hand companionably to Jardi, who takes it with a grateful smile. Together you head on through and into the gloom of the room on your right.");
@@ -2248,7 +2248,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		// Lucifier
 		else
 		{
-			output("<i>“I managed to sell almost my entire stock of Lucifier,”</i> she grunts. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Wondered what I used to make me look like this? Does almost everything – the skin, the horns, the eyes... ”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
+			output("<i>“I managed to sell almost my entire stock of Lucifier,”</i> she grunts. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Wondered what I used to make me look like this? Does almost everything – the skin, the horns, the eyes...”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
 			output("<i>“...it’s popular on human colonies. Out here though – well, you try explaining to an alien its cultural significance. And frontier explorers steer clear of it because it... ungh... does things to your libido. Big things.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
 			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] strains helplessly against your abdomen as she rides over your prostate again and again.");

@@ -64,7 +64,7 @@ public function approachKaedeInNewCanadia():void
 	processTime(3);
 	clearMenu();
 	//[How’s Things?]
-	addButton(0,"How's Things?",kaedeHowsThingsOnCanadia,undefined,"How's Things?","Get a status update on the life and times of Kaede Entara.");
+	addButton(0,"How’s Things?",kaedeHowsThingsOnCanadia,undefined,"How’s Things?","Get a status update on the life and times of Kaede Entara.");
 	//[Her Friend]
 	addButton(1,"Her Friend",kaedesFriendoTalkOnCanadia,undefined,"Her Friend","Who’s this friend Kaede mentioned?");
 	//[Vesperia]
@@ -97,7 +97,7 @@ public function kaedeHowsThingsOnCanadia():void
 	else output("</i>");
 
 	processTime(10);
-	addDisabledButton(0,"How's Things","How's Things","You already asked this.");
+	addDisabledButton(0,"How’s Things","How’s Things","You already asked this.");
 }
 
 //Her Friend
@@ -217,7 +217,7 @@ public function repeatKaedeMenuNewCanadia():void
 	addButton(1,"TouchFluffTail",touchKaedesFluffyTailWhosAGoodGirlSheIs,undefined,"Touch Fluffy Tail","Give Kaede’s fluffy ginger tail a little love.");
 	//[Get a Room]
 	if(pc.lust() >= 33) addButton(2,"Get a Room",getARoomWithKaede,undefined,"Get a Room","Take Kaede to one of the lodge’s rooms for some fun.");
-	else addDisabledButton(2,"Get a Room","Get a Room","You aren't aroused enough for that.");
+	else addDisabledButton(2,"Get a Room","Get a Room","You aren’t aroused enough for that.");
 	//[Leave]
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -314,7 +314,7 @@ public function keepTailScritching():void
 	if(flags["KAEDE_PUBLIC_SHAME"] != undefined) 
 	{
 		output("Before you get any funny ideas again, Kaede grabs your wrist and gives you a playful but meaningful swat on the cheek with the tip of her tail. <i>“Oh no you don’t! Not again!”</i> she huffs. <i>“That was the most embarrassing thing ever. You wanna tease me over the edge, let’s go to my room!”</i>");
-		if(pc.isAss() || pc.isBro()) output("\n\nLike that'll stop you.");
+		if(pc.isAss() || pc.isBro()) output("\n\nLike that’ll stop you.");
 		else options = false;
 	}
 	
@@ -323,10 +323,10 @@ public function keepTailScritching():void
 
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Get a Room",getARoomWithKaede,undefined,"Get a Room","Take Kaede to one of the lodge’s rooms for some fun.");
-	else addDisabledButton(0,"Get a Room","Get a Room","You aren't aroused enough for that.");
+	else addDisabledButton(0,"Get a Room","Get a Room","You aren’t aroused enough for that.");
 	addButton(1,"Leave Off",yesThatsEnoughKaede);
 	if(options) addButton(2,"MAX TEASE",maximumTeaseTheSloot,undefined,"MAX TEASE","Let’s see just how much Kaede can really take.");
-	else addDisabledButton(2,"MAX TEASE","MAX TEASE","Looks like you can't get away with pulling that one off twice...");
+	else addDisabledButton(2,"MAX TEASE","MAX TEASE","Looks like you can’t get away with pulling that one off twice...");
 	//[Get a Room] [Leave Off] [MAXIMUM TEASE]
 }
 
@@ -397,7 +397,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 		if(x == -1) x = -2;
 	}
 	else if(pc.hasHardLightEquipped() && x < 0) x = -1;
-	if(x == -2) { output("ERROR. INVALID WANGER. DEFAULTING TO HARDLIGHT VARIANT. PLZ NOTIFY FEN."); x = -1; }
+	if(x == -2) { output("ERROR. INVALID WANGER. DEFAULTING TO HARDLIGHT VARIANT. PLZ NOTIFY FEN.\n\n"); x = -1; }
 
 	output("You lean down over the ginger pup, running your hands up her shirt until your palms are on her breasts, feeling her nipples pressing through the thin layer of cloth between your flesh and hers. Her breath catches as your thumbs brush across her stiff little peaks, spending a moment to rub and pinch them before reaching up and cupping her cheeks. She smiles up at you, inviting a kiss onto those rosy lips; her legs curl up around your [pc.hips], locking over your ass and pulling you in.");
 	output("\n\nSometime during your lengthy entwinement, Kaede’s arms slip down and pull her shirt up, breaking your kiss when she peels it over her head. She’s gone braless, leaving her perky C-cups bouncing until you seize hold of them again, squeezing the sinfully soft mounds until she’s squirming and arching her back, pressing that little package of hers against your thigh.");
@@ -412,7 +412,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	if(pc.hasCock()) output("wraps a hand around your [pc.cock " + x + "], stroking your hardening length.");
 	//hardlight:
 	else output("finds her way to the activation button hidden in your [pc.lowerUndergarment]. Your hardlight cock springs to life in a rush of sensation, forming a solid, glowing shaft of luminescent artificial cockflesh right into her hand.");
-	output(" Kaede glances between the bottle and her hand around your [pc.cockOrStrapon], smiling lasiviously up at you.");
+	output(" Kaede glances between the bottle and her hand around your [pc.cockOrStrapon " + x + "], smiling lasiviously up at you.");
 
 	output("\n\n<i>“Just work it in for me,”</i> you tell her, tweaking one of her pink nipples. The bottle pops open with a flick of your thumb, and you start pouring a line of lube from your base to your crown, covering Kaede’s fingers as you go. As commanded, she starts stroking as soon as you’ve given her something to work with, using her hand to smear the cool liquid around in a nice, even glaze. All you need to do is sit back and enjoy the handjob, pouring on extra lube or groping Kaede’s cock and tits as you please.");
 	output("\n\nBefore long she’s a mess, her belly slathered in run-off lube and her dick leaking a salty white from all the teasing, hard as a rock despite the lack of dedicated attention. <i>“Nice and ready,”</i> Kaede says, leaning up to plant a kiss on your ");
@@ -433,7 +433,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	output(". Her whole body feels like it’s going wild, muscles spasming in a vain attempt to adjust to your thick manhood stretching out her ass. Your [pc.hips] roll forward, pushing more and more dickmeat into her until you’re sitting flush against her tight little rump, squeezing her hips between your [pc.legs] and letting your throbbing erection settle in her bowels. Your hands play across her butt, kneading the halfbreed’s supple, pale flesh between your fingers. Slowly, she starts to relax, finally getting used to your unyielding hardness stretching out her tailhole.");
 	if(pc.hasCock()) pc.cockChange();
 	output("\n\n<i>“Okay. Okay...”</i> Kaede breathes between soft little moans. <i>“Startin’ to feel good back there. I think... I think it’s okay to move now.”</i>");
-	output("\n\nYou didn’t know you were waiting on her permission, but now that you have it... Giving Kaede’s cheek an affectionate squeeze, you start to rock your hips back - a little more quickly than with your entrance - and Kaede starts moaning for you, oh so sweetly. No sense giving her time to recover now: you keep your [pc.hips] moving, sawing your shaft  back out and in again, picking up speed with every thrust.");
+	output("\n\nYou didn’t know you were waiting on her permission, but now that you have it... Giving Kaede’s cheek an affectionate squeeze, you start to rock your hips back - a little more quickly than with your entrance - and Kaede starts moaning for you, oh so sweetly. No sense giving her time to recover now: you keep your [pc.hips] moving, sawing your shaft back out and in again, picking up speed with every thrust.");
 	output("\n\nThe heavy, wet sounds of flesh slapping against flesh echo through the room, accompanied by Kaede’s whimpering grunts of pleasure and the creaking of the bedframe under you. Your hands plant themselves on Kaede’s shoulderblades, pushing the cock-hungry halfbreed into the sheets, letting your hammering crotch do the same to her ass. Kaede sinks into the bed, tail flicking against your [pc.face], her body completely at your mercy.");
 	output("\n\nAnd she’s loving every second of it.");
 	output("\n\nKaede’s tailhole squeezes hard around your thrusting dick, and you can feel something thick and meaty throbbing against your thigh, leaking to the beat of Kaede’s racing heart. A few moments later, she gives voice to it: <i>“O-oh fuck! Too much, too much, too-”</i>");

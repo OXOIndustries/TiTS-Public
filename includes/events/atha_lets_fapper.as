@@ -9,6 +9,9 @@ public function hasSmutOptions():Boolean
 //Enter Ship > Masturbate > Smut
 public function smutFapMenu(fromPrevious:Boolean = false):void
 {
+	if(seranigansTrigger("computer")) return;
+	if(seraBitcheningDebtCheck()) return;
+	
 	clearOutput();
 	clearBust();
 	showName("\nSMUT");
