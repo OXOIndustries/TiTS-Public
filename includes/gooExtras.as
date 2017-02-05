@@ -809,7 +809,7 @@ public function newGooStyle():void
 	//[Pigtails]
 	if(pc.hairStyle != "pigtails" && pc.hairLength >= 5) addGhostButton(2,"Pigtails",gooStyle,"pigtails","Pigtails","Style your hair into pigtails.");
 	else if(pc.hairStyle != "pigtails") addDisabledGhostButton(2,"Pigtails","Pigtails","Your hair isn’t long enough to get put into pigtails.");
-	else addDisabledGhostButton(2,"Pigtails","Pigtails","You already have a ponytail.");
+	else addDisabledGhostButton(2,"Pigtails","Pigtails","You already have a pigtails.");
 	//[Curls]
 	if(pc.hairStyle != "curls") addGhostButton(3,"Curls",gooStyle,"curls","Curls","Style your hair into curls.");
 	else addDisabledGhostButton(3,"Curls","Curls","You already have your hair curled.");
