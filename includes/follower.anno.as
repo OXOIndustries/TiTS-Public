@@ -3069,7 +3069,7 @@ public function annoUvetoHuskarFoursomeSure():void
 	output("\n\n<i>“You don’t even work for Steele Tech,”</i> Anno teases, stepping in front of you and grabbing Marina’s ass all the way around both your waists - no mean feat, and one that leaves her chest mashed firmly against your");
 	if (pc.tallness <= 60) output(" face");
 	else output("s.");
-	output(" Anno’s heartbeat is arace, pounding through her heaving chest under her black catsuit. <i>“Not that I disagree or anything... I mean, who’re we to tell [pc.name] Steele what to do with company property?”</i>");
+	output(" Anno’s heartbeat is racing, pounding through her heaving chest under her black catsuit. <i>“Not that I disagree or anything... I mean, who’re we to tell [pc.name] Steele what to do with company property?”</i>");
 	
 	output("\n\nGalina sits back against her desk, rubbing the crown of the viridian cock between the cleft of her breasts in one hand and starting to massage the swampy gulf between her legs with the other. She keeps eye contact firmly on you, smiling lustily as her sister and colleague grind against you from either side, practically bathing you in the smell of randy ausar-babe and the feeling of soft, feminine flesh through tissue-thin latex.");
 	
@@ -3216,9 +3216,9 @@ public function annoUvetoHuskarFoursomeMountUpIII():void
 	output(" that it glides through your clenching muscles, going so deep that you’re sure your stomach must be bulging with the sheer mass of alien cock.");
 
 	output("\n\nAgain and again, Galina thrusts the toy into your [pc.vagOrAss], stirring it around before drawing it out almost to the tip. Your");
-	if (!pc.hasVagina()) output(" anal ring");
-	else output(" pussylips");
-	output(" throb with need even when the toy is still, but every motion leaves you reeling and moaning like the ");
+	if (!pc.hasVagina()) output(" anal ring throbs");
+	else output(" pussylips throb");
+	output(" with need even when the toy is still, but every motion leaves you reeling and moaning like the ");
 	if (!pc.hasVagina()) output("anal-");
 	output("whore you are.");
 	
