@@ -231,7 +231,7 @@ public function goodGirlSexForErra():void
 	//hasCock:
 	if(x >= 0)
 	{
-		output("\n\nGrinning, you bend yourself over Erra, [pc.chest] pressing into her back, making the puppy squirm while the [pc.cockHead " + x + "] of your stiffening shaft brushes against the folds of her sex. She shudders, body quivering, as you bring yourself closer to one of her raised wolf-ears and ask, <i>“Does puppy want a bone?”</i> She most certainly does, nodding hurriedly as you lift a hand to scratch between her ears. Not wanting to keep such a good girl waiting, you start to push into her, spreading her nether lips lips with ease, already loosened from your oral pleasures. Her love tunnel hugs at your [pc.cock " + x + "] as you slide it into her, keeping your tool nice and warm until ");
+		output("\n\nGrinning, you bend yourself over Erra, [pc.chest] pressing into her back, making the puppy squirm while the [pc.cockHead " + x + "] of your stiffening shaft brushes against the folds of her sex. She shudders, body quivering, as you bring yourself closer to one of her raised wolf-ears and ask, <i>“Does puppy want a bone?”</i> She most certainly does, nodding hurriedly as you lift a hand to scratch between her ears. Not wanting to keep such a good girl waiting, you start to push into her, spreading her nether lips with ease, already loosened from your oral pleasures. Her love tunnel hugs at your [pc.cock " + x + "] as you slide it into her, keeping your tool nice and warm until ");
 		if(pc.hasKnot(x)) output("your penetration is halted by your [pc.knot " + x + "].");
 		else output("you finally bottom out inside her.");
 		pc.cockChange();

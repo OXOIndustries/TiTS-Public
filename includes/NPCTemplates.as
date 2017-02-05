@@ -118,6 +118,8 @@
 	prepChar(justUpdate, "ARAKEI", AraKei);
 	prepChar(justUpdate, "GWEN", Gwen);
 	prepChar(justUpdate, "BEA", Bea);
+	prepChar(justUpdate, "CHRYSALISDRONE", ChrysalisDrone);
+	prepChar(justUpdate, "KAZRA", Kazra);
 	
 	
 	// Check all characters have version information set

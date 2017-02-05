@@ -427,7 +427,12 @@
 					}
 					if(cuntToBe >= 0)
 					{
-						kGAMECLASS.output("\n\nYour eyes widen as something suddenly pimples into existence at the back end of [pc.oneVagina]. You go carefully with your rummaging fingers but even so you cannot prevent a gasp leaving your lips when you discover what it is: <b>a second clit located at the bottom of your vaginal opening</b>, bulging and eager to your touch. This is certainly going to make sex... interesting.");
+						kGAMECLASS.output("\n\nYour eyes widen as something suddenly pimples into existence at the");
+						//kGAMECLASS.output(" back end of [pc.oneVagina]");
+						kGAMECLASS.output(" end of your [pc.vagina " + cuntToBe + "]");
+						kGAMECLASS.output(". You go carefully with your rummaging fingers but even so you cannot prevent a gasp leaving your lips when you discover what it is: <b>a second clit located at");
+						//kGAMECLASS.output(" the bottom of");
+						kGAMECLASS.output(" your vaginal opening</b>, bulging and eager to your touch. This is certainly going to make sex... interesting.");
 						pc.vaginas[cuntToBe].clits = 2;
 						changes++;
 						pc.lust(15);

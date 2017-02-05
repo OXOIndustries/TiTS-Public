@@ -16,10 +16,10 @@
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
 	
-	public class MilodanMale extends Creature
+	public class MilodanMaleGroup extends Creature
 	{
 		//constructor
-		public function MilodanMale()
+		public function MilodanMaleGroup()
 		{
 			this._latestVersion = 1
 			this.version = _latestVersion;
@@ -76,7 +76,7 @@
 			this.level = 8;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 350;
+			this.HPMod = (kGAMECLASS.debug ? 0 : 180);
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
@@ -233,7 +233,7 @@
 			{
 				case "heavy club":
 					this.meleeWeapon.attack = 3;
-					this.meleeWeapon.baseDamage.kinetic.damageValue = 15;
+					this.meleeWeapon.baseDamage.kinetic.damageValue = 10;
 					this.meleeWeapon.longName = "heavy club";
 					this.meleeWeapon.description = "a heavy club";
 					this.meleeWeapon.attackVerb = "smash";
@@ -241,7 +241,7 @@
 					break;
 				case "axe":
 					this.meleeWeapon.attack = 3;
-					this.meleeWeapon.baseDamage.kinetic.damageValue = 13;
+					this.meleeWeapon.baseDamage.kinetic.damageValue = 8;
 					this.meleeWeapon.longName = "axe";
 					this.meleeWeapon.description = "an axe";
 					this.meleeWeapon.attackVerb = "slash";
@@ -249,7 +249,7 @@
 					break;
 				case "claw":
 					this.meleeWeapon.attack = 3;
-					this.meleeWeapon.baseDamage.kinetic.damageValue = 10;
+					this.meleeWeapon.baseDamage.kinetic.damageValue = 8;
 					this.meleeWeapon.longName = "claw";
 					this.meleeWeapon.description = "a claw";
 					this.meleeWeapon.attackVerb = "claw";

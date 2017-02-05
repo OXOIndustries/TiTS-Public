@@ -579,6 +579,7 @@ public function inessaBuyGo():void
 	author("JimThermic");
 	shopkeep = chars["INESSA"];
 	shopkeep.keeperBuy = "You tell Inessa that you’d like to buy something. She beams and brings up a holographic stock guide.\n\n<i>“Sure! What would you like - clothes, sex gear, something else..?”</i>\n";
+	
 	//Have biowhip if gotten to Myrellion.
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
@@ -586,6 +587,13 @@ public function inessaBuyGo():void
 	}
 	//Else no whip
 	else chars["INESSA"].destroyItem(new BioWhip());
+	
+	if(flags["MET_SERA"] != undefined)
+	{
+		if(!chars["INESSA"].hasItem(new LeatherLeash())) chars["INESSA"].inventory.push(new LeatherLeash());
+	}
+	else chars["INESSA"].destroyItem(new LeatherLeash());
+	
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
 	//[Sex Gear] [Clothes] [Other]

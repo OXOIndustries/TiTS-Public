@@ -438,7 +438,14 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	}
 }
 
-public function sellItem():void {
+public function sellItem():void
+{
+	// Inturruptions
+	if(shopkeep is Sera)
+	{
+		if(seraDebtCheck()) return;
+	}
+	
 	clearOutput();
 	output(shopkeep.keeperSell);
 	var sellOptions:Boolean = kGAMECLASS.gameOptions.vendorToggle;
@@ -1642,6 +1649,7 @@ public function hasShipStorage():Boolean
 public function shipStorageMenuRoot():void
 {
 	// Special Events
+	if(seranigansTrigger("storage")) return;
 	if(flags["WULFE_ON_SHIP"] == false)
 	{
 		activateSiegwulfe();

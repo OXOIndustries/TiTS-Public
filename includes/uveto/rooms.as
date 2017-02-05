@@ -991,15 +991,16 @@ public function initUvetoRooms():void
 
 	/* SOUTH EXIT TO RIFT */
 	rooms["UVIP Z34"] = new RoomClass(this); // 9999
-	rooms["UVIP Z34"].roomName = "[PH] GLACIAL\nRIFT";
-	rooms["UVIP Z34"].description = "(Placeholder) GLACIAL RIFT MAP";
+	rooms["UVIP Z34"].roomName = "RIFT\nAPPROACH";
+	rooms["UVIP Z34"].description = "A long, winding path through ice and snow leads back from the Rift to the snowy fields closer to Irestead, back westward. To the east is a vast, endless, and nearly featureless sheet of ice: the glacial plain of the Rift. You could easily get lost there, swallowed by by the snow-flurries and storms with nothing to guide you. Best to stick to the handful of vague footpaths worn into the ice...";
 	rooms["UVIP Z34"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z34"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z34"].westExit = "UVIP X34";
+	rooms["UVIP Z34"].eastExit = "UVGR C34";
 	rooms["UVIP Z34"].moveMinutes = 12;
 	rooms["UVIP Z34"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVIP Z34"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP Z34"].runOnEnter = HereBeDragonBonus; //Frostwyrm placeholder location
+	rooms["UVIP Z34"].runOnEnter = GlacialRiftEncounterBonus; //Frostwyrm placeholder location
 
 	/* NORTH END */
 	rooms["UVIP F36"] = new RoomClass(this);
@@ -1549,20 +1550,20 @@ public function initUvetoRooms():void
 	rooms["UVIP X6"].moveMinutes = 12;
 	rooms["UVIP X6"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVIP X6"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP X6"].runOnEnter = TundraEncounterBonus;
+	rooms["UVIP X6"].runOnEnter = GlacialRiftEncounterBonus;
 
 	/* NORTH RIFT EXIT */
 	rooms["UVIP Z6"] = new RoomClass(this);
-	rooms["UVIP Z6"].roomName = "[PH] GLACIAL\nRIFT"; // 9999
-	rooms["UVIP Z6"].description = "(Placeholder) GLACIAL RIFT MAP";
+	rooms["UVIP Z6"].roomName = "RIFT\nAPPROACH";
+	rooms["UVIP Z6"].description = "A long, winding path through ice and snow leads back from the Rift to the snowy fields closer to Irestead, back westward. To the east is a vast, endless, and nearly featureless sheet of ice: the glacial plain of the Rift. You could easily get lost there, swallowed by by the snow-flurries and storms with nothing to guide you. Best to stick to the handful of vague footpaths worn into the ice...";
 	rooms["UVIP Z6"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z6"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z6"].westExit = "UVIP X6";
+	rooms["UVIP Z6"].eastExit = "UVGR C6";
 	rooms["UVIP Z6"].moveMinutes = 6;
-	rooms["UVIP Z6"].addFlag(GLOBAL.ICYTUNDRA);
+	rooms["UVIP Z6"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVIP Z6"].addFlag(GLOBAL.HAZARD);
 	rooms["UVIP Z6"].runOnEnter = TundraEncounterBonus;
-	rooms["UVIP Z6"].runOnEnter = HereBeDragonBonus; //Frostwyrm placeholder location
 	
 
 	/* CENTER BRANCH */
@@ -1689,14 +1690,893 @@ public function initUvetoRooms():void
 
 	/* CENTER EXIT TO RIFT */
 	rooms["UVIP Z22"] = new RoomClass(this);
-	rooms["UVIP Z22"].roomName = "[PH] GLACIAL\nRIFT"; // 9999
-	rooms["UVIP Z22"].description = "(Placeholder) GLACIAL RIFT";
+	rooms["UVIP Z22"].roomName = "RIFT\nAPPROACH"; // 9999
+	rooms["UVIP Z22"].description = "A long, winding path through ice and snow leads back from the Rift to the snowy fields closer to Irestead, back westward. To the east is a vast, endless, and nearly featureless sheet of ice: the glacial plain of the Rift. You could easily get lost there, swallowed by by the snow-flurries and storms with nothing to guide you. Best to stick to the handful of vague footpaths worn into the ice...";
 	rooms["UVIP Z22"].planet = "PLANET: UVETO VII";
 	rooms["UVIP Z22"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP Z22"].westExit = "UVIP X22";
+	rooms["UVIP Z22"].eastExit = "UVGR C22";
 	rooms["UVIP Z22"].moveMinutes = 12;
 	rooms["UVIP Z22"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVIP Z22"].addFlag(GLOBAL.HAZARD);
-	rooms["UVIP Z22"].runOnEnter = TundraEncounterBonus;
-	rooms["UVIP Z22"].runOnEnter = HereBeDragonBonus; //Frostwyrm placeholder location
+	rooms["UVIP Z22"].runOnEnter = GlacialRiftEncounterBonus;
+	
+	/* South end of Rift */
+	rooms["UVGR C34"] = new RoomClass(this);
+	rooms["UVGR C34"].roomName = "SOUTHERN\nPATH";
+	rooms["UVGR C34"].description = "A well-worn footpath leads from the ice plains back west to the vast, open expanse of the Glacial Rift -- a titanic glacier that marks the coastlands of the ‘continent’. It would seem this path sees a lot of traffic -- enough that the ice is worn down by constant walking.";
+	rooms["UVGR C34"].planet = "PLANET: UVETO VII";
+	rooms["UVGR C34"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR C34"].eastExit = "UVGR E34";
+	rooms["UVGR C34"].westExit = "UVIP Z34";
+	rooms["UVGR C34"].moveMinutes = 12;
+	rooms["UVGR C34"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR C34"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR C34"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR E34"] = new RoomClass(this);
+	rooms["UVGR E34"].roomName = "SOUTHERN\nPATH";
+	rooms["UVGR E34"].description = "The path back to Irestead veers southward here, connecting the ice plains to the vast expanse of the Rift. A sign is staked into the ground with flickering holo-projected characters reading “WARNING: DANGEROUS TERRAIN. PROCEED AT OWN RISK”.";
+	rooms["UVGR E34"].planet = "PLANET: UVETO VII";
+	rooms["UVGR E34"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR E34"].southExit = "UVGR E36";
+	rooms["UVGR E34"].westExit = "UVGR C34";
+	rooms["UVGR E34"].moveMinutes = 12;
+	rooms["UVGR E34"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR E34"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR E34"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR E36"] = new RoomClass(this);
+	rooms["UVGR E36"].roomName = "CRASHED\nDRONE";
+	rooms["UVGR E36"].description = "The path here is marred by debris half-frozen into the ice itself, and so covered with snow that you trip over it with nearly every other step. You can just barely make out the casing of a drone off to the west, marked with the symbol of Akkadi. ";
+	rooms["UVGR E36"].planet = "PLANET: UVETO VII";
+	rooms["UVGR E36"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR E36"].northExit = "UVGR E34";
+	rooms["UVGR E36"].southExit = "UVGR E38";
+	rooms["UVGR E36"].moveMinutes = 12;
+	rooms["UVGR E36"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR E36"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR E36"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR E38"] = new RoomClass(this);
+	rooms["UVGR E38"].roomName = "GLACIAL\nWASTELAND";
+	rooms["UVGR E38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn't far, given the weather. The path you're on curves from north to east here, bending around a snowman sculpted in the shame of a particularly rotund huskar. Some's stuck a rock carved into the shape of a canid dick into the snowman's mouth, and it looks like someone's mashed their face in between the effigy's prodigious, plump tits.";
+	rooms["UVGR E38"].planet = "PLANET: UVETO VII";
+	rooms["UVGR E38"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR E38"].northExit = "UVGR E36";
+	rooms["UVGR E38"].eastExit = "UVGR G38";
+	rooms["UVGR E38"].moveMinutes = 12;
+	rooms["UVGR E38"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR E38"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR E38"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G38"] = new RoomClass(this);
+	rooms["UVGR G38"].roomName = "GLACIAL\nWASTELAND";
+	rooms["UVGR G38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn't far, given the weather. There's evidence of an east-west path here, but much of the ice has been cracked and crushed by some massive impact, like a titan took a hammer to it.";
+	rooms["UVGR G38"].runOnEnter = function():Boolean {
+		if (CodexManager.hasUnlockedEntry("Frostwyrm")) output(" Or maybe a frostwyrm landed here...");
+		return GlacialRiftEncounterBonus();
+	}
+	rooms["UVGR G38"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G38"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G38"].eastExit = "UVGR I38";
+	rooms["UVGR G38"].westExit = "UVGR E38";
+	rooms["UVGR G38"].moveMinutes = 12;
+	rooms["UVGR G38"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G38"].addFlag(GLOBAL.HAZARD);
+
+	rooms["UVGR I38"] = new RoomClass(this);
+	rooms["UVGR I38"].roomName = "GLACIAL\nWASTELAND";
+	rooms["UVGR I38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn't far, given the weather. Luckily, there's a footpath worn into the ice, leading you west or east.";
+	rooms["UVGR I38"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I38"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I38"].eastExit = "UVGR K38";
+	rooms["UVGR I38"].westExit = "UVGR G38";
+	rooms["UVGR I38"].moveMinutes = 12;
+	rooms["UVGR I38"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I38"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I38"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K38"] = new RoomClass(this);
+	rooms["UVGR K38"].roomName = "GLACIAL\nWASTELAND";
+	rooms["UVGR K38"].description = "Ice and snow stretches on for miles around, it would seem, and the mist and shifting of the banks leaves it all but impossible to get your bearings. All you can do to keep your bearings is to stay on the path: west or north. ";
+	rooms["UVGR K38"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K38"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K38"].northExit = "UVGR K36";
+	rooms["UVGR K38"].westExit = "UVGR I38";
+	rooms["UVGR K38"].moveMinutes = 12;
+	rooms["UVGR K38"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K38"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K38"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K36"] = new RoomClass(this);
+	rooms["UVGR K36"].roomName = "GLACIAL\nWASTELAND";
+	rooms["UVGR K36"].description = "You stand in the middle of a vast, icy plain. Between the mists and the constant shift of the snow, you can't make out any detail more than a few yards in any direction. All you can do to find your way is keep following the narrow trail, north or south.";
+	rooms["UVGR K36"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K36"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K36"].northExit = "UVGR K34";
+	rooms["UVGR K36"].southExit = "UVGR K38";
+	rooms["UVGR K36"].moveMinutes = 12;
+	rooms["UVGR K36"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K36"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K36"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K34"] = new RoomClass(this);
+	rooms["UVGR K34"].roomName = "CROSSED\nPATHS";
+	rooms["UVGR K34"].description = "Two paths through the ice conjoin here: one going north to south, and another heading east, towards the coast. Northeast, you see a large crag in the ice, but from this angle the contents are invisible.";
+	rooms["UVGR K34"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K34"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K34"].northExit = "UVGR K32";
+	rooms["UVGR K34"].eastExit = "UVGR M34";
+	rooms["UVGR K34"].southExit = "UVGR K36";
+	rooms["UVGR K34"].moveMinutes = 12;
+	rooms["UVGR K34"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K34"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K34"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K32"] = new RoomClass(this);
+	rooms["UVGR K32"].roomName = "WESTERN\nSPIRE GARDEN";
+	rooms["UVGR K32"].description = "You're travelling along the edge of a great crevasse in the ice, filled with thousands of jagged black spires reaching almost up to the surface. There's no way to safely get down there from here -- not without spearing yourself, anyway.";
+	rooms["UVGR K32"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K32"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K32"].northExit = "UVGR K30";
+	rooms["UVGR K32"].southExit = "UVGR K34";
+	rooms["UVGR K32"].moveMinutes = 12;
+	rooms["UVGR K32"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K32"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K32"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K30"] = new RoomClass(this);
+	rooms["UVGR K30"].roomName = "WESTERN\nSPIRE GARDEN";
+	rooms["UVGR K30"].description = "You're travelling along the edge of a great crevasse in the ice, filled with thousands of jagged black spires reaching almost up to the surface. There's no way to safely get down there from here -- not without spearing yourself, anyway.";
+	rooms["UVGR K30"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K30"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K30"].northExit = "UVGR K28";
+	rooms["UVGR K30"].southExit = "UVGR K32";
+	rooms["UVGR K30"].moveMinutes = 12;
+	rooms["UVGR K30"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K30"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K30"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K28"] = new RoomClass(this);
+	rooms["UVGR K28"].roomName = "NORTHWESTERN\nSPIRE GARDEN";
+	rooms["UVGR K28"].description = "You're at the corner of a great crevasse in the ice, a plunging abyss filled with black spires jutting up to almost the height of the surface. There's no way down there from here -- or likely anywhere, given how close together and jagged the spires are. In addition to the path back south, there's a fork both east along the crag and west from here.";
+	rooms["UVGR K28"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K28"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K28"].eastExit = "UVGR M28";
+	rooms["UVGR K28"].southExit = "UVGR K30";
+	rooms["UVGR K28"].westExit = "UVGR I28";
+	rooms["UVGR K28"].moveMinutes = 12;
+	rooms["UVGR K28"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K28"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K28"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR M28"] = new RoomClass(this);
+	rooms["UVGR M28"].roomName = "NORTHERN\nSPIRE GARDEN";
+	rooms["UVGR M28"].description = "To the south is a great crack in the glacier, with snow and ice tumbling town into a vast garden of black, jagged spires jutting up from the depths. Just below you, you can see several small nests tucked against the ice shelf on little ledges -- some sort of small bird, maybe?";
+	rooms["UVGR M28"].planet = "PLANET: UVETO VII";
+	rooms["UVGR M28"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR M28"].eastExit = "UVGR O28";
+	rooms["UVGR M28"].westExit = "UVGR K28";
+	rooms["UVGR M28"].moveMinutes = 12;
+	rooms["UVGR M28"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR M28"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR M28"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR O28"] = new RoomClass(this);
+	rooms["UVGR O28"].roomName = "NORTHERN\nSPIRE GARDEN";
+	rooms["UVGR O28"].description = "The eastward way terminates here in a man-sized snowbank that's overrun any trace of the path. Someone's been here recently, drawing shapes and faces in the white fluff. There's even a snow-angel, with pointed canine ears and hips like a leithan.";
+	rooms["UVGR O28"].planet = "PLANET: UVETO VII";
+	rooms["UVGR O28"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR O28"].westExit = "UVGR M28";
+	rooms["UVGR O28"].moveMinutes = 12;
+	rooms["UVGR O28"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR O28"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR O28"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I28"] = new RoomClass(this);
+	rooms["UVGR I28"].roomName = "NARROW\nPATH";
+	rooms["UVGR I28"].description = "A narrow footpath is worn into the ice here, connecting the way past the spire garden to a small mound of ice-blocks formed into a low wall, protecting the moorings of a tall, broad tent made of tanned hides and strung out between carved pillars of that black stone you keep seeing. Around it is a vast expanse of flat ice, as far as the eye can see to the north and west.\n\nAttached to the tent's little entranceway is a sign chiseled out of rock that your microbes translate as “Greetings! Traders welcome!”";
+	rooms["UVGR I28"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I28"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I28"].northExit = "UVGR I26";
+	rooms["UVGR I28"].eastExit = "UVGR K28";
+	rooms["UVGR I28"].moveMinutes = 12;
+	rooms["UVGR I28"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I28"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I28"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I26"] = new RoomClass(this);
+	rooms["UVGR I26"].roomName = "ESSYRA\nTRADING POST";
+	rooms["UVGR I26"].description = "The inside of the hovel is a wide, cozy den covered in fur rugs and blankets, keeping away the chill of the ice and soaking up with warmth from a fire pit in the center.";
+	rooms["UVGR I26"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I26"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I26"].southExit = "UVGR I28";
+	rooms["UVGR I26"].moveMinutes = 1;
+	rooms["UVGR I26"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR I26"].runOnEnter = GlacialRiftLonesomeTent;
+
+	rooms["UVGR M34"] = new RoomClass(this);
+	rooms["UVGR M34"].roomName = "SOUTHERN\nSPIRE GARDEN";
+	rooms["UVGR M34"].description = "You're in the middle of a winding path going east to west, but your attention is constantly drawn north, to a great crevasse in the ice. The bottom of the abyss is home to thousands of slender black spires, reaching up to almost touch the surface. Each ends in a jagged, spiked point -- sure death to anything that falls inside.";
+	rooms["UVGR M34"].planet = "PLANET: UVETO VII";
+	rooms["UVGR M34"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR M34"].eastExit = "UVGR O34";
+	rooms["UVGR M34"].westExit = "UVGR K34";
+	rooms["UVGR M34"].moveMinutes = 12;
+	rooms["UVGR M34"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR M34"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR M34"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR O34"] = new RoomClass(this);
+	rooms["UVGR O34"].roomName = "COASTAL\nAPPROACH";
+	rooms["UVGR O34"].description = "In the distance to the east, you can make out a shimmering, misty coastline: a sheer dropoff from the edge of the ice into the eastern ocean. The path back to safety, of course, lies to the west. North of you is a deep chasm in the ice, invisible from a distance, which is filled with thousands of slender black spires.";
+	rooms["UVGR O34"].planet = "PLANET: UVETO VII";
+	rooms["UVGR O34"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR O34"].eastExit = "UVGR Q34";
+	rooms["UVGR O34"].westExit = "UVGR M34";
+	rooms["UVGR O34"].moveMinutes = 12;
+	rooms["UVGR O34"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR O34"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR O34"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR Q34"] = new RoomClass(this);
+	rooms["UVGR Q34"].roomName = "COASTAL\nAPPROACH";
+	rooms["UVGR Q34"].description = "To the east lies a vast, sprawling coastline -- the very edge of the Glacial Rift, before it gives over to a great icy ocean. There aren't many safe paths around here, though: you're on one of the few reliable ways on or off the Rift. The way back towards Irestead is west of here. Far, far west.";
+	rooms["UVGR Q34"].planet = "PLANET: UVETO VII";
+	rooms["UVGR Q34"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR Q34"].eastExit = "UVGR S34";
+	rooms["UVGR Q34"].westExit = "UVGR O34";
+	rooms["UVGR Q34"].moveMinutes = 12;
+	rooms["UVGR Q34"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR Q34"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR Q34"].runOnEnter = GlacialRiftEncounterBonus;
+
+	/* Center Fork */
+	rooms["UVGR C22"] = new RoomClass(this);
+	rooms["UVGR C22"].roomName = "CENTER\nPATH";
+	rooms["UVGR C22"].description = "The central path leads from Irestead and the ice plains onto the vast, empty expanse of the Glacial Rift. The ice has been worn down with constant foot traffic, clearly marking the path forward and back.";
+	rooms["UVGR C22"].planet = "PLANET: UVETO VII";
+	rooms["UVGR C22"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR C22"].eastExit = "UVGR E22";
+	rooms["UVGR C22"].westExit = "UVIP Z22";
+	rooms["UVGR C22"].moveMinutes = 12;
+	rooms["UVGR C22"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR C22"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR C22"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR E22"] = new RoomClass(this);
+	rooms["UVGR E22"].roomName = "CENTER\nPATH";
+	rooms["UVGR E22"].description = "The central path leads from Irestead and the ice plains onto the vast, empty expanse of the Glacial Rift. The ice has been worn down with constant foot traffic, clearly marking the path forward and back.";
+	rooms["UVGR E22"].planet = "PLANET: UVETO VII";
+	rooms["UVGR E22"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR E22"].northExit = "UVGR E20";
+	rooms["UVGR E22"].westExit = "UVGR C22";
+	rooms["UVGR E22"].moveMinutes = 12;
+	rooms["UVGR E22"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR E22"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR E22"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR E20"] = new RoomClass(this);
+	rooms["UVGR E20"].roomName = "CENTER\nPATH";
+	rooms["UVGR E20"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. Several tribal totems adorn the path here, driven low into the ice so that they can't be seen very far away. Most of them are in the shape of cats or feline humanoids. Milodan, maybe?";
+	rooms["UVGR E20"].planet = "PLANET: UVETO VII";
+	rooms["UVGR E20"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR E20"].northExit = "UVGR E18";
+	rooms["UVGR E20"].southExit = "UVGR E22";
+	rooms["UVGR E20"].moveMinutes = 12;
+	rooms["UVGR E20"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR E20"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR E20"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR E18"] = new RoomClass(this);
+	rooms["UVGR E18"].roomName = "WINDING\nPATH";
+	rooms["UVGR E18"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. There's a curve in the path here, going east and south, which leads back towards Irestead.";
+	rooms["UVGR E18"].planet = "PLANET: UVETO VII";
+	rooms["UVGR E18"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR E18"].eastExit = "UVGR G18";
+	rooms["UVGR E18"].southExit = "UVGR E20";
+	rooms["UVGR E18"].moveMinutes = 12;
+	rooms["UVGR E18"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR E18"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR E18"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G18"] = new RoomClass(this);
+	rooms["UVGR G18"].roomName = "WINDING\nPATHS";
+	rooms["UVGR G18"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. The ‘road’ of sorts you've been following branches here, going north, east, and west. To the south is a small crack in the ice, maybe twenty feet across, and too narrow to even reach an arm down into.";
+	rooms["UVGR G18"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G18"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G18"].northExit = "UVGR G16";
+	rooms["UVGR G18"].eastExit = "UVGR I18";
+	rooms["UVGR G18"].westExit = "UVGR E18";
+	rooms["UVGR G18"].moveMinutes = 12;
+	rooms["UVGR G18"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G18"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G18"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I18"] = new RoomClass(this);
+	rooms["UVGR I18"].roomName = "WINDING\nPATHS";
+	rooms["UVGR I18"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. This eastward passage connects to a small field of ice, a little lower down than everything else around you.";
+	rooms["UVGR I18"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I18"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I18"].eastExit = "UVGR K18";
+	rooms["UVGR I18"].westExit = "UVGR G18";
+	rooms["UVGR I18"].moveMinutes = 12;
+	rooms["UVGR I18"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I18"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I18"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K18"] = new RoomClass(this);
+	rooms["UVGR K18"].roomName = "ICE\nFIELD";
+	rooms["UVGR K18"].description = "You're at the edge of an extremely large, low-lying plain of sheer ice. There's a way back out to the west, and to the south... there's a small hollow in the ice, a little cove worn out by someone's chipping away at the ice.";
+	rooms["UVGR K18"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K18"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K18"].southExit = "UVGR K20";
+	rooms["UVGR K18"].westExit = "UVGR I18";
+	rooms["UVGR K18"].moveMinutes = 12;
+	rooms["UVGR K18"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K18"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K18"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K20"] = new RoomClass(this);
+	rooms["UVGR K20"].roomName = "SMALL\nHOLLOW";
+	rooms["UVGR K20"].description = "A little hollow is carved into the ice, giving you some much-needed shelter from the howling winds of the plains. While it's not the nicest place on this little moon, <b>should be safe to rest here</b>.";
+	rooms["UVGR K20"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K20"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K20"].northExit = "UVGR K18";
+	rooms["UVGR K20"].moveMinutes = 1;
+	rooms["UVGR K20"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR K20"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G16"] = new RoomClass(this);
+	rooms["UVGR G16"].roomName = "WINDING\nPATHS";
+	rooms["UVGR G16"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. You can't see much in the glaring whiteout of the Rift, but you can sort of make out of a branch in the path to the south, and a lot of twisting and turning to the north.";
+	rooms["UVGR G16"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G16"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G16"].northExit = "UVGR G14";
+	rooms["UVGR G16"].southExit = "UVGR G18";
+	rooms["UVGR G16"].moveMinutes = 12;
+	rooms["UVGR G16"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G16"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G16"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G14"] = new RoomClass(this);
+	rooms["UVGR G14"].roomName = "WINDING\nPATHS";
+	rooms["UVGR G14"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. You've got a long, more-or-less straight path going north and south from here, though there's not much to look at in any direction.";
+	rooms["UVGR G14"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G14"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G14"].northExit = "UVGR G12";
+	rooms["UVGR G14"].southExit = "UVGR G16";
+	rooms["UVGR G14"].moveMinutes = 12;
+	rooms["UVGR G14"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G14"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G14"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G12"] = new RoomClass(this);
+	rooms["UVGR G12"].roomName = "WINDING\nPATHS";
+	rooms["UVGR G12"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. Here, the obvious trail winds east and south, curving around several large mounds of snow that've been pushed aside.";
+	rooms["UVGR G12"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G12"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G12"].eastExit = "UVGR I12";
+	rooms["UVGR G12"].southExit = "UVGR G14";
+	rooms["UVGR G12"].moveMinutes = 12;
+	rooms["UVGR G12"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G12"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G12"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I12"] = new RoomClass(this);
+	rooms["UVGR I12"].roomName = "TRANSPARENT\nICE";
+	rooms["UVGR I12"].description = "The ice underneath your [pc.feet] is relatively fresh, compared to some of the Rift, and it's semi-transparent in places. Deep beneath the surface, you can see what appear to be enormous bones -- and you do mean enormous, many of them larger than you are. Thankfully, whatever that creature was is long gone. ";
+	rooms["UVGR I12"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I12"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I12"].northExit = "UVGR I10";
+	rooms["UVGR I12"].westExit = "UVGR G12";
+	rooms["UVGR I12"].moveMinutes = 12;
+	rooms["UVGR I12"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I12"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I12"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I10"] = new RoomClass(this);
+	rooms["UVGR I10"].roomName = "CRACKED\nICE";
+	rooms["UVGR I10"].description = "The ice here is cracked, forming spiderwebs of jagged  lines beneath your [pc.feet]. Luckily, it seems safe enough to traverse -- just have to watch your step!  There's a clearly-worn path through the snow and ice, going north and south.";
+	rooms["UVGR I10"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I10"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I10"].northExit = "UVGR I8";
+	rooms["UVGR I10"].southExit = "UVGR I12";
+	rooms["UVGR I10"].moveMinutes = 12;
+	rooms["UVGR I10"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I10"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I10"].runOnEnter = GlacialRiftEncounterBonus;
+
+	/* NORTH FORK */
+
+	rooms["UVGR C6"] = new RoomClass(this);
+	rooms["UVGR C6"].roomName = "NORTHERN\nPATH";
+	rooms["UVGR C6"].description = "You're moving along a narrow path carved through the ice -- or more likely, worn into it through frequent traffic. The local milodan and korgonne probably come this way pretty often, though you wonder how they all knew to follow the same route.\n\nThe back to the ice fields is to the west, and the worn path continues through a gentle southern curve.";
+	rooms["UVGR C6"].planet = "PLANET: UVETO VII";
+	rooms["UVGR C6"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR C6"].southExit = "UVGR C8";
+	rooms["UVGR C6"].westExit = "UVIP Z6";
+	rooms["UVGR C6"].moveMinutes = 12;
+	rooms["UVGR C6"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR C6"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR C6"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR C8"] = new RoomClass(this);
+	rooms["UVGR C8"].roomName = "NORTHERN\nPATH";
+	rooms["UVGR C8"].description = "A huge, sprawling field of black spires jut up from the ice immediately south of where you are, preventing any kind of passage -- they're growing closer together than the trees of the great Sthorin forest! Your only means of progression are either north towards Irestead, or eastwards onto the Rift.";
+	rooms["UVGR C8"].planet = "PLANET: UVETO VII";
+	rooms["UVGR C8"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR C8"].northExit = "UVGR C6";
+	rooms["UVGR C8"].eastExit = "UVGR E8";
+	rooms["UVGR C8"].moveMinutes = 12;
+	rooms["UVGR C8"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR C8"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR C8"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR E8"] = new RoomClass(this);
+	rooms["UVGR E8"].roomName = "NORTHERN\nPATH";
+	rooms["UVGR E8"].description = "A huge, sprawling field of black spires jut up from the ice immediately south of where you are, preventing any kind of passage. You catch a few glimpses of movement between them -- small, furry creatures moving on multiple legs. Maybe they're eating the rock?";
+	rooms["UVGR E8"].planet = "PLANET: UVETO VII";
+	rooms["UVGR E8"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR E8"].eastExit = "UVGR G8";
+	rooms["UVGR E8"].westExit = "UVGR C8";
+	rooms["UVGR E8"].moveMinutes = 12;
+	rooms["UVGR E8"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR E8"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR E8"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G8"] = new RoomClass(this);
+	rooms["UVGR G8"].roomName = "\nCLIFFSIDE";
+	rooms["UVGR G8"].description = "Though the path goes east to west here, you're now travelling in the shadow of a small cliff -- maybe 20 feet up -- to the north. Looks like there's a way up a little east of here.";
+	rooms["UVGR G8"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G8"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G8"].eastExit = "UVGR I8";
+	rooms["UVGR G8"].westExit = "UVGR E8";
+	rooms["UVGR G8"].moveMinutes = 12;
+	rooms["UVGR G8"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G8"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G8"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I8"] = new RoomClass(this);
+	rooms["UVGR I8"].roomName = "CLIFFSIDE\nBOTTOM";
+	rooms["UVGR I8"].description = "The ice has formed a small mountain north of here, some twenty or thirty feet higher than the rest of the rift. A narrow path has been chipped into the ice, forming what seem like stairs going up to the top of the hill -- and someone's even pitoned ropes into the ice, making it easier to climb on up.";
+	rooms["UVGR I8"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I8"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I8"].northExit = "UVGR I6";
+	rooms["UVGR I8"].southExit = "UVGR I10";
+	rooms["UVGR I8"].westExit = "UVGR G8";
+	rooms["UVGR I8"].moveMinutes = 12;
+	rooms["UVGR I8"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I8"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I8"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I6"] = new RoomClass(this);
+	rooms["UVGR I6"].roomName = "CLIFFSIDE\nTOP";
+	rooms["UVGR I6"].description = "You're at the top of a set of stairs carved into the cliffside, allowing you to descend onto the level of the rest of the glacier. The very pinnacle of the mountain you're on lies to the east, capped by a crown of black spires that pierce the clouds. Westward lies a winding path that seems to lead towards another, grander cliff face.";
+	rooms["UVGR I6"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I6"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I6"].eastExit = "UVGR K6";
+	rooms["UVGR I6"].southExit = "UVGR I8";
+	rooms["UVGR I6"].westExit = "UVGR G6";
+	rooms["UVGR I6"].moveMinutes = 12;
+	rooms["UVGR I6"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I6"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I6"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K6"] = new RoomClass(this);
+	rooms["UVGR K6"].roomName = "RIFT\nPLATEAU";
+	rooms["UVGR K6"].description = "This is the path to the very tip of the mountaintop, leading towards that crown of black spires to the east. Westward is a long path leading back down, or towards what looks like the coast.";
+	rooms["UVGR K6"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K6"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K6"].eastExit = "UVGR M6";
+	rooms["UVGR K6"].westExit = "UVGR I6";
+	rooms["UVGR K6"].moveMinutes = 12;
+	rooms["UVGR K6"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K6"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K6"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR M6"] = new RoomClass(this);
+	rooms["UVGR M6"].roomName = "PLATEAU\nAPPROACH";
+	rooms["UVGR M6"].description = "A chunk of ice to the north of the floes has been carved out with a laser, leaving a smooth, narrow incline. Ropes have been pitoned into the sides of the glacial ice, giving whoever needs to come and go from the plateau overhead some handholds to work with. Without them, it'd be a slippery mess trying to get up. The passage itself is narrow, walled on either side by sheer ice, barely wide enough for two people to squeeze through abreast.\n\nOn either side of the incline's top, you can see a pair of snow-camo turrets sitting low to the ice, long barrels sweeping steadily from side to side in search of hostile targets. When you enter their line of sight, both barrels snap over to you, scanning... and then beep quietly and resume their watch";
+	rooms["UVGR M6"].planet = "PLANET: UVETO VII";
+	rooms["UVGR M6"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR M6"].northExit = "UVGR M4";
+	rooms["UVGR M6"].westExit = "UVGR K6";
+	rooms["UVGR M6"].moveMinutes = 1;
+	rooms["UVGR M6"].addFlag(GLOBAL.INDOOR);
+	rooms["UVGR M6"].runOnEnter = null;// 9999 Female Stormguard
+
+	rooms["UVGR M4"] = new RoomClass(this);
+	rooms["UVGR M4"].roomName = "PLATEAU\nCAMP";
+	rooms["UVGR M4"].description = "You're standing in the middle of a wide, flat plateau of ice overlooking the northern-most reaches of the Rift. Several pillars of obsidian-black rock jut up from the ice and snow, forming a sort of henge around the center of plateau. A spindly Q-COMM beacon is sitting in the middle of all of them, pulsing with a red light every few seconds.";
+	rooms["UVGR M4"].planet = "PLANET: UVETO VII";
+	rooms["UVGR M4"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR M4"].southExit = "UVGR M6";
+	rooms["UVGR M4"].moveMinutes = 1;
+	rooms["UVGR M4"].addFlag(GLOBAL.INDOOR);
+	rooms["UVGR M4"].runOnEnter = GlacialRiftPlateauCamp; // 9999 Female Stormguard
+
+	rooms["UVGR G6"] = new RoomClass(this);
+	rooms["UVGR G6"].roomName = "\nCLIFFSIDE";
+	rooms["UVGR G6"].description = "You're standing on a cliffside, looking down over the rest of the Rift -- some twenty feet down, you'd guess. There's a foot-worn path north from here, leading towards a sheer drop -- the eponymous Rift.";
+	rooms["UVGR G6"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G6"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G6"].northExit = "UVGR G4";
+	rooms["UVGR G6"].eastExit = "UVGR I6";
+	rooms["UVGR G6"].moveMinutes = 12;
+	rooms["UVGR G6"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G6"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G6"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G4"] = new RoomClass(this);
+	rooms["UVGR G4"].roomName = "COASTAL\nAPPROACH";
+	rooms["UVGR G4"].description = "To the immediate north of where you stand is the very coast of the glacial you've been exploring. A great gulf separates yours from the next, a deep cleft in the ice leading into a seemingly bottomless abyss. Southwards lies the interior of the glacier, back to safety.";
+	rooms["UVGR G4"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G4"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G4"].northExit = "UVGR G2";
+	rooms["UVGR G4"].southExit = "UVGR G6";
+	rooms["UVGR G4"].moveMinutes = 12;
+	rooms["UVGR G4"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G4"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G4"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR G2"] = new RoomClass(this);
+	rooms["UVGR G2"].roomName = "THE GLACIAL\nRIFT";
+	rooms["UVGR G2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. There's a safe path south from here, back towards the center of the ice plain.";
+	rooms["UVGR G2"].planet = "PLANET: UVETO VII";
+	rooms["UVGR G2"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR G2"].eastExit = "UVGR I2";
+	rooms["UVGR G2"].southExit = "UVGR G4";
+	rooms["UVGR G2"].moveMinutes = 12;
+	rooms["UVGR G2"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR G2"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR G2"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR I2"] = new RoomClass(this);
+	rooms["UVGR I2"].roomName = "THE GLACIAL\nRIFT";
+	rooms["UVGR I2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR I2"].planet = "PLANET: UVETO VII";
+	rooms["UVGR I2"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR I2"].eastExit = "UVGR K2";
+	rooms["UVGR I2"].westExit = "UVGR G2";
+	rooms["UVGR I2"].moveMinutes = 12;
+	rooms["UVGR I2"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR I2"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR I2"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR K2"] = new RoomClass(this);
+	rooms["UVGR K2"].roomName = "";
+	rooms["UVGR K2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR K2"].planet = "PLANET: UVETO VII";
+	rooms["UVGR K2"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR K2"].eastExit = "UVGR M2";
+	rooms["UVGR K2"].westExit = "UVGR I2";
+	rooms["UVGR K2"].moveMinutes = 12;
+	rooms["UVGR K2"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR K2"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR K2"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR M2"] = new RoomClass(this);
+	rooms["UVGR M2"].roomName = "THE GLACIAL\nRIFT";
+	rooms["UVGR M2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.\n\nSouth of here you can see a hill crowned with a ring of black pillars, reaching up into the clouds. You can't see a safe way from here to there, though.";
+	rooms["UVGR M2"].planet = "PLANET: UVETO VII";
+	rooms["UVGR M2"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR M2"].eastExit = "UVGR O2";
+	rooms["UVGR M2"].westExit = "UVGR K2";
+	rooms["UVGR M2"].moveMinutes = 12;
+	rooms["UVGR M2"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR M2"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR M2"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR O2"] = new RoomClass(this);
+	rooms["UVGR O2"].roomName = "THE GLACIAL\nRIFT";
+	rooms["UVGR O2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR O2"].planet = "PLANET: UVETO VII";
+	rooms["UVGR O2"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR O2"].eastExit = "UVGR Q2";
+	rooms["UVGR O2"].westExit = "UVGR M2";
+	rooms["UVGR O2"].moveMinutes = 12;
+	rooms["UVGR O2"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR O2"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR O2"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR Q2"] = new RoomClass(this);
+	rooms["UVGR Q2"].roomName = "THE GLACIAL\nRIFT";
+	rooms["UVGR Q2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR Q2"].planet = "PLANET: UVETO VII";
+	rooms["UVGR Q2"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR Q2"].eastExit = "UVGR S2";
+	rooms["UVGR Q2"].westExit = "UVGR O2";
+	rooms["UVGR Q2"].moveMinutes = 12;
+	rooms["UVGR Q2"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR Q2"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR Q2"].runOnEnter = GlacialRiftEncounterBonus;
+
+	rooms["UVGR S2"] = new RoomClass(this);
+	rooms["UVGR S2"].roomName = "THE GLACIAL\nRIFT";
+	rooms["UVGR S2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch west as far as the eye can see.\n\nEast of here, on the other hand, is the vastness of the Uvetan ocean. Overhead hangs the oppressive sphere of the gas giant you're orbiting, reflecting in a cascade of oranges and reds across the water's surface, broken only by smaller icebergs and tiny, drifting islands of ice. The coastlands stretch on southwards for miles of smooth, seemingly safe walking.";
+	rooms["UVGR S2"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S2"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S2"].southExit = "UVGR S4";
+	rooms["UVGR S2"].westExit = "UVGR Q2";
+	rooms["UVGR S2"].moveMinutes = 12;
+	rooms["UVGR S2"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S2"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S2"].runOnEnter = GlacialRiftEncounterBonus;
+
+	/* East Coast */
+
+	rooms["UVGR S4"] = new RoomClass(this);
+	rooms["UVGR S4"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S4"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S4"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S4"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S4"].northExit = "UVGR S2";
+	rooms["UVGR S4"].southExit = "UVGR S6";
+	rooms["UVGR S4"].moveMinutes = 12;
+	rooms["UVGR S4"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S4"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S4"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S6"] = new RoomClass(this);
+	rooms["UVGR S6"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S6"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S6"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S6"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S6"].northExit = "UVGR S4";
+	rooms["UVGR S6"].southExit = "UVGR S8";
+	rooms["UVGR S6"].moveMinutes = 12;
+	rooms["UVGR S6"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S6"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S6"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S8"] = new RoomClass(this);
+	rooms["UVGR S8"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S8"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S8"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S8"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S8"].northExit = "UVGR S6";
+	rooms["UVGR S8"].southExit = "UVGR S10";
+	rooms["UVGR S8"].moveMinutes = 12;
+	rooms["UVGR S8"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S8"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S8"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S10"] = new RoomClass(this);
+	rooms["UVGR S10"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S10"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S10"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S10"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S10"].northExit = "UVGR S8";
+	rooms["UVGR S10"].southExit = "UVGR S12";
+	rooms["UVGR S10"].moveMinutes = 12;
+	rooms["UVGR S10"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S10"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S10"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S12"] = new RoomClass(this);
+	rooms["UVGR S12"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S12"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S12"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S12"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S12"].northExit = "UVGR S10";
+	rooms["UVGR S12"].southExit = "UVGR S14";
+	rooms["UVGR S12"].moveMinutes = 12;
+	rooms["UVGR S12"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S12"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S12"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S14"] = new RoomClass(this);
+	rooms["UVGR S14"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S14"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S14"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S14"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S14"].northExit = "UVGR S12";
+	rooms["UVGR S14"].southExit = "UVGR S16";
+	rooms["UVGR S14"].moveMinutes = 12;
+	rooms["UVGR S14"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S14"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S14"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S16"] = new RoomClass(this);
+	rooms["UVGR S16"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S16"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S16"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S16"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S16"].northExit = "UVGR S14";
+	rooms["UVGR S16"].southExit = "UVGR S18";
+	rooms["UVGR S16"].moveMinutes = 12;
+	rooms["UVGR S16"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S16"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S16"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S18"] = new RoomClass(this);
+	rooms["UVGR S18"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S18"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S18"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S18"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S18"].northExit = "UVGR S16";
+	rooms["UVGR S18"].southExit = "UVGR S20";
+	rooms["UVGR S18"].moveMinutes = 12;
+	rooms["UVGR S18"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S18"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S18"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S20"] = new RoomClass(this);
+	rooms["UVGR S20"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S20"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S20"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S20"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S20"].northExit = "UVGR S18";
+	rooms["UVGR S20"].southExit = "UVGR S22";
+	rooms["UVGR S20"].moveMinutes = 12;
+	rooms["UVGR S20"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S20"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S20"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S22"] = new RoomClass(this);
+	rooms["UVGR S22"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S22"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S22"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S22"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S22"].northExit = "UVGR S20";
+	rooms["UVGR S22"].southExit = "UVGR S24";
+	rooms["UVGR S22"].moveMinutes = 12;
+	rooms["UVGR S22"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S22"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S22"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S24"] = new RoomClass(this);
+	rooms["UVGR S24"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S24"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S24"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S24"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S24"].northExit = "UVGR S22";
+	rooms["UVGR S24"].southExit = "UVGR S26";
+	rooms["UVGR S24"].moveMinutes = 12;
+	rooms["UVGR S24"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S24"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S24"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S26"] = new RoomClass(this);
+	rooms["UVGR S26"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S26"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S26"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S26"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S26"].northExit = "UVGR S24";
+	rooms["UVGR S26"].southExit = "UVGR S28";
+	rooms["UVGR S26"].moveMinutes = 12;
+	rooms["UVGR S26"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S26"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S26"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S28"] = new RoomClass(this);
+	rooms["UVGR S28"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S28"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S28"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S28"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S28"].northExit = "UVGR S26";
+	rooms["UVGR S28"].southExit = "UVGR S30";
+	rooms["UVGR S28"].moveMinutes = 12;
+	rooms["UVGR S28"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S28"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S28"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S30"] = new RoomClass(this);
+	rooms["UVGR S30"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S30"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S30"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S30"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S30"].northExit = "UVGR S28";
+	rooms["UVGR S30"].southExit = "UVGR S32";
+	rooms["UVGR S30"].moveMinutes = 12;
+	rooms["UVGR S30"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S30"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S30"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S32"] = new RoomClass(this);
+	rooms["UVGR S32"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S32"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S32"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S32"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S32"].northExit = "UVGR S30";
+	rooms["UVGR S32"].southExit = "UVGR S34";
+	rooms["UVGR S32"].moveMinutes = 12;
+	rooms["UVGR S32"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S32"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S32"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S34"] = new RoomClass(this);
+	rooms["UVGR S34"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S34"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see. There's a path leading westward, back into the heart of the glacier, here -- one of the very, very few safe ways off the narrow coast.";
+	rooms["UVGR S34"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S34"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S34"].northExit = "UVGR S32";
+	rooms["UVGR S34"].southExit = "UVGR S36";
+	rooms["UVGR S34"].westExit = "UVGR Q34";
+	rooms["UVGR S34"].moveMinutes = 12;
+	rooms["UVGR S34"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S34"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S34"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S36"] = new RoomClass(this);
+	rooms["UVGR S36"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S36"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S36"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S36"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S36"].northExit = "UVGR S34";
+	rooms["UVGR S36"].southExit = "UVGR S38";
+	rooms["UVGR S36"].moveMinutes = 12;
+	rooms["UVGR S36"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S36"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S36"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S38"] = new RoomClass(this);
+	rooms["UVGR S38"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S38"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S38"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S38"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S38"].northExit = "UVGR S36";
+	rooms["UVGR S38"].southExit = "UVGR S40";
+	rooms["UVGR S38"].moveMinutes = 12;
+	rooms["UVGR S38"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S38"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S38"].runOnEnter = GlacialRiftCoast;
+
+	rooms["UVGR S40"] = new RoomClass(this);
+	rooms["UVGR S40"].roomName = "THE EASTERN\nCOAST";
+	rooms["UVGR S40"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see. So far south, in fact, that you completely lose sight of it into the snow and mists. There doesn't appear to be any safe path going thataways anymore. Best you turn around.\n\nUnless... there's a small hollow just a little bit inland, to the west, and there's a rope leading out from it and over the edge of the Rift. Wonder what that's all about?";
+	rooms["UVGR S40"].planet = "PLANET: UVETO VII";
+	rooms["UVGR S40"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR S40"].northExit = "UVGR S38";
+	rooms["UVGR S40"].westExit = "UVGR Q40";
+	rooms["UVGR S40"].moveMinutes = 12;
+	rooms["UVGR S40"].addFlag(GLOBAL.FROZENTUNDRA);
+	rooms["UVGR S40"].addFlag(GLOBAL.HAZARD);
+	rooms["UVGR S40"].runOnEnter = GlacialRiftS40;
+
+	rooms["UVGR Q40"] = new RoomClass(this);
+	rooms["UVGR Q40"].roomName = "EXPEDITION\nPOINT";
+	rooms["UVGR Q40"].description = "A small camp was established here once, you think: there are tattered tents and frozen crates standing half-buried in the snow. A single, heavy industrial rope has been secured into the ice via a piton, and trails off past the camp and over the edge of the Rift.";
+	rooms["UVGR Q40"].planet = "PLANET: UVETO VII";
+	rooms["UVGR Q40"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR Q40"].eastExit = "UVGR S40";
+	rooms["UVGR Q40"].moveMinutes = 1;
+	rooms["UVGR Q40"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR Q40"].runOnEnter = GlacialRiftQ40;
+
+	/* Artifact Thinger */
+
+	rooms["UVGR O42"] = new RoomClass(this);
+	rooms["UVGR O42"].roomName = "HIDDEN\nCAVE";
+	rooms["UVGR O42"].description = "You're at the bottom of a small cave, narrow and icy, but strangely warm... The eastern edge is open to the ocean coast, dropping down onto the vastness of the depths. Southwards would lead you inwards, deeper into the cave.";
+	rooms["UVGR O42"].planet = "PLANET: UVETO VII";
+	rooms["UVGR O42"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR O42"].southExit = "UVGR O44";
+	rooms["UVGR O42"].moveMinutes = 1;
+	rooms["UVGR O42"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR O42"].runOnEnter = GlacialRiftO42;
+
+	rooms["UVGR O44"] = new RoomClass(this);
+	rooms["UVGR O44"].roomName = "HIDDEN\nCAVE";
+	rooms["UVGR O44"].description = "You're at a branch in the cave -- the main tunnel breaks off into several tiny crevices and hidey-holes, but only one of them, directly westward, seems passable to someone of your size.";
+	rooms["UVGR O44"].planet = "PLANET: UVETO VII";
+	rooms["UVGR O44"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR O44"].northExit = "UVGR O42";
+	rooms["UVGR O44"].westExit = "UVGR M44";
+	rooms["UVGR O44"].moveMinutes = 1;
+	rooms["UVGR O44"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR O44"].runOnEnter = GlacialRiftO44;
+
+	rooms["UVGR M44"] = new RoomClass(this);
+	rooms["UVGR M44"].roomName = "HIDDEN\nSHRINE";
+	rooms["UVGR M44"].description = "The ice here has been shaped into a mostly rounded, smooth chamber. At its center lies an altar, decorated with tribal fetishes and scarred by claw marks all over. There's no sign of the milodan that you saw here before...";
+	rooms["UVGR M44"].planet = "PLANET: UVETO VII";
+	rooms["UVGR M44"].system = "SYSTEM: SIRETTA";
+	rooms["UVGR M44"].eastExit = "UVGR O44";
+	rooms["UVGR M44"].moveMinutes = 1;
+	rooms["UVGR M44"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR M44"].runOnEnter = GlacialRiftM44;
+
 }

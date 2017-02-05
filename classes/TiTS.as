@@ -1,8 +1,9 @@
 ﻿package classes
 {
-
 	import classes.GameData.Perks;
 	import classes.TiTS_Settings;
+	import classes.UIComponents.ContentModule;
+	import classes.UIComponents.ContentModules.GameTextModule;
 	import classes.UIComponents.MainButton;
 	import fl.transitions.Tween;
 	import flash.display.DisplayObject;
@@ -181,6 +182,7 @@
 		include "../includes/tavros/semith.as";
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
+		include "../includes/tavros/seraXPack2.as";
 		include "../includes/tavros/seraXPreg.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
@@ -452,7 +454,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.17";
+			version = "0.7.18";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1307,6 +1309,11 @@
 		{
 			return chars["BEA"];
 		}
+		public function get kazra():Kazra
+		{
+			return chars["KAZRA"];
+		}
+		
 		private var _dbgtestvar:int = 0;
 		public function dbgshieldparsertag():String
 		{

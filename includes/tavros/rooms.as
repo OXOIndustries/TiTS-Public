@@ -174,7 +174,7 @@ public function initTavrosRooms():void
 	//107 The Dark Chrysalis
 	rooms["DARK CHRYSALIS"] = new RoomClass(this);
 	rooms["DARK CHRYSALIS"].roomName = "SHOP: DARK\nCHRYSALIS";
-	rooms["DARK CHRYSALIS"].description = "The interior of this shop is difficult to make out thanks to a combination of dim lighting and a smoky haze that smells vaguely of walnuts. Looking around, you manage to locate the source of the illumination - four custom glowbulbs pumping out an unnatural-looking blue-black aura. The walls are covered in shelves with dozens of perverted-looking nicknames, many of them demonic in theme, and the lone counter in the back of the store is similarly decorated.";
+	rooms["DARK CHRYSALIS"].description = "";
 	rooms["DARK CHRYSALIS"].planet = "TAVROS STATION";
 	rooms["DARK CHRYSALIS"].system = "SYSTEM: KALAS";
 	rooms["DARK CHRYSALIS"].westExit = "9018";
@@ -335,10 +335,11 @@ public function initTavrosRooms():void
 	rooms["9009"].system = "SYSTEM: KALAS";
 	rooms["9009"].southExit = "9010";
 	rooms["9009"].northExit = "9008";
+	rooms["9009"].eastExit = "ACQUISITIONS";
 	rooms["9009"].moveMinutes = 1;
 	rooms["9009"].addFlag(GLOBAL.INDOOR);
 	rooms["9009"].addFlag(GLOBAL.PUBLIC);
-	rooms["9009"].runOnEnter = undefined;
+	rooms["9009"].runOnEnter = redlightNEBonus;
 
 	//9010
 	rooms["9010"] = new RoomClass(this);
@@ -467,6 +468,19 @@ public function initTavrosRooms():void
 	rooms["9018"].addFlag(GLOBAL.PUBLIC);
 	rooms["9018"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["9018"].runOnEnter = merchantThoroughfareBonus;
+
+	// SENTIENT ACQUISITIONS
+	rooms["ACQUISITIONS"] = new RoomClass(this);
+	rooms["ACQUISITIONS"].roomName = "SENTIENT\nACQUISITIONS";
+	rooms["ACQUISITIONS"].description = "";
+	rooms["ACQUISITIONS"].planet = "TAVROS STATION";
+	rooms["ACQUISITIONS"].system = "SYSTEM: KALAS";
+	rooms["ACQUISITIONS"].westExit = "9009";
+	rooms["ACQUISITIONS"].moveMinutes = 1;
+	rooms["ACQUISITIONS"].addFlag(GLOBAL.INDOOR);
+	rooms["ACQUISITIONS"].addFlag(GLOBAL.PUBLIC);
+	rooms["ACQUISITIONS"].addFlag(GLOBAL.NPC);
+	rooms["ACQUISITIONS"].runOnEnter = sentientAcquisitionsBonus;
 
 	//INESSA
 	rooms["INESSA"] = new RoomClass(this);

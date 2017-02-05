@@ -948,7 +948,7 @@ public function varmintDisappears():void
 {
 	clearOutput();
 	author("Savin");
-	//showBust("VARMINT");
+	showBust("");
 	showName("MISSING\nVARMINT");
 	clearMenu();
 	

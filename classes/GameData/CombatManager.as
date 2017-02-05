@@ -90,6 +90,10 @@ package classes.GameData
 		{
 			combatContainer.addHostileCreature(newC);
 		}
+		public static function removeHostileCreature(remC:Creature):void
+		{
+			combatContainer.removeHostileCreature(remC);
+		}
 		
 		public static const SPECIFIC_TARGET_DEFEATED:String = "target_defeat";
 		public static const ENTIRE_PARTY_DEFEATED:String = "all_defeated";
@@ -235,6 +239,11 @@ package classes.GameData
 		{
 			if (combatContainer) return combatContainer.hasEnemyOfClass(t);
 			return false;
+		}
+		public static function getEnemyOfClass(t:Class):Creature
+		{
+			if (combatContainer) return combatContainer.getEnemyOfClass(t);
+			return null;
 		}
 		public static function hasFriendlyOfClass(t:Class):Boolean
 		{

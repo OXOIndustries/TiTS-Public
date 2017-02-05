@@ -321,6 +321,7 @@
 			
 			// Effect: Boosts max HP and poison resistance by 10% for 24 hours
 			if (hasStatusEffect("Heart Tea")) r.poison.damageValue = r.poison.damageValue * 1.1;
+			if (hasStatusEffect("Hot Meal")) r.burning.resistanceValue += 10.0;
 			
 			// Effect: Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive
 			// Fen Nerf: -35% Burning
@@ -1847,12 +1848,15 @@
 					buffer = tailCocksDescript();
 					break;
 				case "cockOrStrapon":
+				case "cockOrHardlight":
 					buffer = cockOrStrapon(arg2,0);
 					break;
 				case "cockOrStraponNoun":
+				case "cockOrHardlightNoun":
 					buffer = cockOrStrapon(arg2,-1);
 					break;
 				case "cockOrStraponFull":
+				case "cockOrHardlightFull":
 					buffer = cockOrStrapon(arg2,1);
 					break;
 				case "hardlightCock":
@@ -2267,12 +2271,6 @@
 				case "mistress":
 				case "master":
 					buffer = mf("master", "mistress");
-					break
-				case "man":
-					buffer = mf("man", "woman");
-					break
-				case "guy":
-					buffer = mf("guy","girl");
 					break;
 				case "he":
 				case "she":
@@ -2297,12 +2295,27 @@
 				case "eirs":
 					buffer = mf("his", "hers");
 					break;
+				case "sir":
+				case "ma'am":
+					buffer = mf("sir", "ma’am");
+					break;
+				case "mister":
+				case "miss":
+					buffer = mf("mister", "miss");
+					break;
+				case "Mr":
+				case "Ms":
+					buffer = mf("Mr", "Ms");
+					break;
+				case "man":
+				case "woman":
 				case "manWoman":
 					buffer = mf("man", "woman");
 					break;
 				case "boy":
 				case "girl":
 				case "boyGirl":
+				case "girlBoy":
 					buffer = mf("boy", "girl");
 					break;
 				case "guy":
@@ -3612,7 +3625,8 @@
 
 			var currPhys:int = physiqueRaw + physiqueMod;
 
-			if(hasStatusEffect("Tripped")) currPhys -= 4;
+			if (hasStatusEffect("Tripped")) currPhys -= 4;
+			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 
 			if (currPhys > physiqueMax()) 
 			{
@@ -3656,6 +3670,7 @@
 			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
+			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
 
 			if (currReflexes > reflexesMax())
 			{
@@ -3721,6 +3736,11 @@
 		public function LQ():Number
 		{
 			return Math.round(libido() / libidoMax() * 100);
+		}
+		
+		public function lustQ():Number
+		{
+			return Math.round(lust() / lustMax() * 100);
 		}
 		
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 
@@ -4331,6 +4351,7 @@
 			if (hasStatusEffect("Resolve")) temp += 50;
 			if (hasStatusEffect("Water Veil")) temp += statusEffectv2("Water Veil");
 			if (hasStatusEffect("Spear Wall")) temp += 50;
+			if (hasStatusEffect("Leech Empowerment")) temp += 50;
 			//Nonspecific evasion boost status effect enemies can use.
 			temp += statusEffectv1("Evasion Boost");
 			//Now reduced by restraints - 25% per point
@@ -6871,6 +6892,15 @@
 			
 			return null;
 		}
+		
+		public function removeStatusByRef(ref:StorageClass):void
+		{
+			var idx:int = statusEffects.indexOf(ref);
+			if (idx >= 0)
+			{
+				statusEffects.splice(idx, 1);
+			}
+		}
 
 		public function getPerkEffect(perkName:String):StorageClass
 		{
@@ -9358,6 +9388,9 @@
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
 			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
+			return false;
+		}
+		public function hasJetpack():Boolean {
 			return false;
 		}
 		//PC can swim?
@@ -14833,6 +14866,10 @@
 			}
 			return false;
 		}
+		public function hasHardLightAvailable():Boolean
+		{
+			return hasHardLightUpgraded() || hasHardLightStrapOn();
+		}
 		public function hardLightVolume():Number
 		{
 			return 30;
@@ -14857,7 +14894,7 @@
 				//Have cock? Use it by default
 				if(hasCock()) idxOverride = 0;
 				//No dick? Use the hard light
-				else if(hasHardLightEquipped()) idxOverride = -1;
+				else if(hasHardLightAvailable()) idxOverride = -1;
 				//No hard light, use your clit.
 				else if(clitLength >= 4 && totalClits() > 0) idxOverride = -2;
 				//Nothing appropriate? Must be a strap-on
@@ -16847,6 +16884,21 @@
 		public function getCombatDescriptionExtension():void
 		{
 			// noop
+		}
+		
+		// These functions override the "creature is down" messages in group fights.
+		// If they are null, the standard descriptions are used.
+		// If they return a 0-length string ("") _no_ description is output.
+		// Anything else is output. There is no baked in formatting to the output, but new lines are created.
+		// f.ex do: return "<b>She ded!</b>"
+		public function downedViaLust():String
+		{
+			return null;
+		}
+		
+		public function downedViaHP():String
+		{
+			return null;
 		}
 		
 		public var btnTargetText:String // Base text used for buttons

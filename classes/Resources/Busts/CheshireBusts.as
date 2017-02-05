@@ -75,6 +75,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/milodanmale.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE:Class;
+		public var Bounds_MILODANMALE:Rectangle = new Rectangle(20, 1, 62, 62);
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
