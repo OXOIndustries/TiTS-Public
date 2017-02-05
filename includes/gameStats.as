@@ -2537,6 +2537,18 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["NAYNA_DRONES_TURNED_IN"] != undefined) output2("\n<b>* Weather Drones Turned In:</b> " + flags["NAYNA_DRONES_TURNED_IN"]);
 				sideCount++;
 			}
+			// Fertility Ritual
+			if(flags["UVGR_SAVICITE_IDOL"] != undefined)
+			{
+				output2("\n<b><u>Milodan Ritual</u></b>");
+				output2("\n<b>* Status:</b> Seen ritual");
+				switch(flags["UVGR_SAVICITE_IDOL"])
+				{
+					case -1: output2(", Did not take idol");
+					case 1: output2(", Took idol");
+				}
+				sideCount++;
+			}
 			// Mrs. Reasner
 			if(flags["BEA_QUEST"] != undefined)
 			{
@@ -5242,12 +5254,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Kirila:</b> Met her");
 				variousCount++;
 			}
+			// Essyra Trading Post
+			if(flags["MET_KAZRA_AND_LORRE"] != undefined)
+			{
+				output2("\n<b><u>Essyra Trading Post</u></b>");
+				output2("\n<b>* Kazra and Lorre:</b> Met them");
+				variousCount++;
+			}
 			// Ice Plains
-			if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["9999"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
 				if(flags["MET_MILODAN_MALE"] != undefined) output2("\n<b>* Male Milodan, Times Encountered:</b> " + flags["MET_MILODAN_MALE"]);
+				if(flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined)
+				{
+					output2("\n<b>* Milodan Priestess, Times Encountered:</b> " + flags["FERTILITY_PRIESTESSES_FOUGHT"]);
+					if(flags["FERTILITY_PRIESTESSES_FUCKED"] != undefined) output2("\n<b>* Milodan Priestess, Times Fucked Her Vagina:</b> " + flags["FERTILITY_PRIESTESSES_FUCKED"]);
+				}
 				if(flags["9999"] != undefined) output2("\n<b>* Stormguard Lancer, Times Encountered:</b> " + flags["9999"]);
 				// Abandoned Outpost
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
@@ -5266,7 +5290,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			
 			
 			// Resources
 			if(flags["9999"] != undefined)

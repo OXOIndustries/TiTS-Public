@@ -323,7 +323,7 @@
 			
 			if (numAdded > 0)
 			{
-				output("The priestess raises her staff and utters a word your translators don't quite catch before slamming the shaft down upon the ice. Suddenly, the male milodan");
+				output("The priestess raises her staff and utters a word your translators don’t quite catch before slamming the shaft down upon the ice. Suddenly, the male milodan");
 				if (numAdded == 1) output("’s");
 				else output("s’");
 				output(" eyes go wide, and begin to glow. The cavern fills with the sounds of snarling cats, enraged by some unseen force. Uh-oh...");
@@ -342,7 +342,7 @@
 			}
 			else
 			{
-				output(" and you suddenly feel very bored. Slowly, you blink and yawn, stretching out, unable to help yourself despite the imminent danger. <b>You simply can't bring yourself to act!</b>");
+				output(" and you suddenly feel very bored. Slowly, you blink and yawn, stretching out, unable to help yourself despite the imminent danger. <b>You simply can’t bring yourself to act!</b>");
 				
 				target.createStatusEffect("Stunned",2,1,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
 			}
@@ -352,7 +352,7 @@
 		{
 			//Psychic lust attack. 
 
-			output("Grinning wickedly, the milodan woman cups one of her breasts, pinching the bone piercing in her nipple between two fingers. At first you think she's trying to tease you, as so many wild aliens seem to try to, but a flash of her staff's crystal tells another story. You feel a sudden pressure in your skull, like it's inside a vice. When you blink, your vision is overwhelmed by images, flashing through your eyes -- images of");
+			output("Grinning wickedly, the milodan woman cups one of her breasts, pinching the bone piercing in her nipple between two fingers. At first you think she’s trying to tease you, as so many wild aliens seem to try to, but a flash of her staff’s crystal tells another story. You feel a sudden pressure in your skull, like it’s inside a vice. When you blink, your vision is overwhelmed by images, flashing through your eyes -- images of");
 			if (target.hasCock()) output(" you rutting with the priestess, bending her over on the ice and filling her with your seed again and again.");
 			else output(" the priestess throwing you onto your back and riding your face, engulfing all your senses in sweet, black quim for hours on end!");
 			
@@ -377,11 +377,11 @@
 			output("The priestess extends a hand towards you, the other gripping her staff and cracking in on the ground between you. A second later, you feel a pressure in your chest, like her hand is somehow reaching out and grabbing at your heart.");
 			if (willpower() + rand(100) < target.WQ() * 0.75)
 			{
-				output(" You steel yourself and do resist, throwing all your willpower against the priestess's invasion of your body.");
+				output(" You steel yourself and do resist, throwing all your willpower against the priestess’s invasion of your body.");
 			}
 			else
 			{
-				output(" Your limbs begin to feel leaden, way too heavy... like all the strength's just drained out of you. And the world seems to be moving so much faster all around you. <b>Some psychic force has weakened you!</b>");
+				output(" Your limbs begin to feel leaden, way too heavy... like all the strength’s just drained out of you. And the world seems to be moving so much faster all around you. <b>Some psychic force has weakened you!</b>");
 				
 				var duration:int = 3 + rand(3);
 				createStatusEffect("Leech Empowerment", duration, 0, 0, 0, false, "DefenseUp", "The priestess has been bolstered by draining your energy!", true, 0, 0xFFFFFF);
@@ -393,11 +393,11 @@
 		{
 			//Basic Lust attack. 
 
-			output("The priestess sets her staff into the ice and grabs her melons in both hands, squeezing her supple flesh so that her fingers sink into the lush snowy fur coating her body. Her pierced nipples jut out between her digits, charcoal promontories just begging to be sucked and played with... and the way she moves her hands, eyes lowered and staring shamelessly at your groin... she's all but inviting you to just surrender into her arms and do just that.");
+			output("The priestess sets her staff into the ice and grabs her melons in both hands, squeezing her supple flesh so that her fingers sink into the lush snowy fur coating her body. Her pierced nipples jut out between her digits, charcoal promontories just begging to be sucked and played with... and the way she moves her hands, eyes lowered and staring shamelessly at your groin... she’s all but inviting you to just surrender into her arms and do just that.");
 			
 			if (target.lust() * (target.LQ() / 100) < rand(target.lustMax()))
 			{
-				output(" You grit your teeth and force yourself to look away -- no way you're letting a little T&A get the better of you!");
+				output(" You grit your teeth and force yourself to look away -- no way you’re letting a little T&A get the better of you!");
 			}
 			else
 			{
@@ -414,9 +414,9 @@
 
 			output("\n\nThey start running, shoving past you and each other before dashing into the tunnel.");
 
-			output("\n\n<i>“Cowards!”</i> the priestess shouts after them, snarling like a feral beast. The males don't so much as look over their shoulders, but disappear into the ice with their tails between their legs.");
+			output("\n\n<i>“Cowards!”</i> the priestess shouts after them, snarling like a feral beast. The males don’t so much as look over their shoulders, but disappear into the ice with their tails between their legs.");
 
-			output("\n\nShe grunts and stamps her staff on the ice, returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I'll show you the might of the spirits all on my own!”</i>");
+			output("\n\nShe grunts and stamps her staff on the ice, returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I’ll show you the might of the spirits all on my own!”</i>");
 
 			output("\n\nThe priestess bears her fangs and swings her staff around, levelling the glowing green tip at your [pc.chest].\n\n");
 			

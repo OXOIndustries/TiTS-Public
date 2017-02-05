@@ -1740,7 +1740,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR E38"] = new RoomClass(this);
 	rooms["UVGR E38"].roomName = "GLACIAL\nWASTELAND";
-	rooms["UVGR E38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn't far, given the weather. The path you're on curves from north to east here, bending around a snowman sculpted in the shame of a particularly rotund huskar. Some's stuck a rock carved into the shape of a canid dick into the snowman's mouth, and it looks like someone's mashed their face in between the effigy's prodigious, plump tits.";
+	rooms["UVGR E38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn’t far, given the weather. The path you’re on curves from north to east here, bending around a snowman sculpted in the shame of a particularly rotund huskar. Some’s stuck a rock carved into the shape of a canid dick into the snowman’s mouth, and it looks like someone’s mashed their face in between the effigy’s prodigious, plump tits.";
 	rooms["UVGR E38"].planet = "PLANET: UVETO VII";
 	rooms["UVGR E38"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR E38"].northExit = "UVGR E36";
@@ -1752,7 +1752,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G38"] = new RoomClass(this);
 	rooms["UVGR G38"].roomName = "GLACIAL\nWASTELAND";
-	rooms["UVGR G38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn't far, given the weather. There's evidence of an east-west path here, but much of the ice has been cracked and crushed by some massive impact, like a titan took a hammer to it.";
+	rooms["UVGR G38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn’t far, given the weather. There’s evidence of an east-west path here, but much of the ice has been cracked and crushed by some massive impact, like a titan took a hammer to it.";
 	rooms["UVGR G38"].runOnEnter = function():Boolean {
 		if (CodexManager.hasUnlockedEntry("Frostwyrm")) output(" Or maybe a frostwyrm landed here...");
 		return GlacialRiftEncounterBonus();
@@ -1767,7 +1767,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I38"] = new RoomClass(this);
 	rooms["UVGR I38"].roomName = "GLACIAL\nWASTELAND";
-	rooms["UVGR I38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn't far, given the weather. Luckily, there's a footpath worn into the ice, leading you west or east.";
+	rooms["UVGR I38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn’t far, given the weather. Luckily, there’s a footpath worn into the ice, leading you west or east.";
 	rooms["UVGR I38"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I38"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I38"].eastExit = "UVGR K38";
@@ -1791,7 +1791,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR K36"] = new RoomClass(this);
 	rooms["UVGR K36"].roomName = "GLACIAL\nWASTELAND";
-	rooms["UVGR K36"].description = "You stand in the middle of a vast, icy plain. Between the mists and the constant shift of the snow, you can't make out any detail more than a few yards in any direction. All you can do to find your way is keep following the narrow trail, north or south.";
+	rooms["UVGR K36"].description = "You stand in the middle of a vast, icy plain. Between the mists and the constant shift of the snow, you can’t make out any detail more than a few yards in any direction. All you can do to find your way is keep following the narrow trail, north or south.";
 	rooms["UVGR K36"].planet = "PLANET: UVETO VII";
 	rooms["UVGR K36"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR K36"].northExit = "UVGR K34";
@@ -1816,7 +1816,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR K32"] = new RoomClass(this);
 	rooms["UVGR K32"].roomName = "WESTERN\nSPIRE GARDEN";
-	rooms["UVGR K32"].description = "You're travelling along the edge of a great crevasse in the ice, filled with thousands of jagged black spires reaching almost up to the surface. There's no way to safely get down there from here -- not without spearing yourself, anyway.";
+	rooms["UVGR K32"].description = "You’re travelling along the edge of a great crevasse in the ice, filled with thousands of jagged black spires reaching almost up to the surface. There’s no way to safely get down there from here -- not without spearing yourself, anyway.";
 	rooms["UVGR K32"].planet = "PLANET: UVETO VII";
 	rooms["UVGR K32"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR K32"].northExit = "UVGR K30";
@@ -1828,7 +1828,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR K30"] = new RoomClass(this);
 	rooms["UVGR K30"].roomName = "WESTERN\nSPIRE GARDEN";
-	rooms["UVGR K30"].description = "You're travelling along the edge of a great crevasse in the ice, filled with thousands of jagged black spires reaching almost up to the surface. There's no way to safely get down there from here -- not without spearing yourself, anyway.";
+	rooms["UVGR K30"].description = "You’re travelling along the edge of a great crevasse in the ice, filled with thousands of jagged black spires reaching almost up to the surface. There’s no way to safely get down there from here -- not without spearing yourself, anyway.";
 	rooms["UVGR K30"].planet = "PLANET: UVETO VII";
 	rooms["UVGR K30"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR K30"].northExit = "UVGR K28";
@@ -1840,7 +1840,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR K28"] = new RoomClass(this);
 	rooms["UVGR K28"].roomName = "NORTHWESTERN\nSPIRE GARDEN";
-	rooms["UVGR K28"].description = "You're at the corner of a great crevasse in the ice, a plunging abyss filled with black spires jutting up to almost the height of the surface. There's no way down there from here -- or likely anywhere, given how close together and jagged the spires are. In addition to the path back south, there's a fork both east along the crag and west from here.";
+	rooms["UVGR K28"].description = "You’re at the corner of a great crevasse in the ice, a plunging abyss filled with black spires jutting up to almost the height of the surface. There’s no way down there from here -- or likely anywhere, given how close together and jagged the spires are. In addition to the path back south, there’s a fork both east along the crag and west from here.";
 	rooms["UVGR K28"].planet = "PLANET: UVETO VII";
 	rooms["UVGR K28"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR K28"].eastExit = "UVGR M28";
@@ -1865,7 +1865,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR O28"] = new RoomClass(this);
 	rooms["UVGR O28"].roomName = "NORTHERN\nSPIRE GARDEN";
-	rooms["UVGR O28"].description = "The eastward way terminates here in a man-sized snowbank that's overrun any trace of the path. Someone's been here recently, drawing shapes and faces in the white fluff. There's even a snow-angel, with pointed canine ears and hips like a leithan.";
+	rooms["UVGR O28"].description = "The eastward way terminates here in a man-sized snowbank that’s overrun any trace of the path. Someone’s been here recently, drawing shapes and faces in the white fluff. There’s even a snow-angel, with pointed canine ears and hips like a leithan.";
 	rooms["UVGR O28"].planet = "PLANET: UVETO VII";
 	rooms["UVGR O28"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR O28"].westExit = "UVGR M28";
@@ -1876,7 +1876,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I28"] = new RoomClass(this);
 	rooms["UVGR I28"].roomName = "NARROW\nPATH";
-	rooms["UVGR I28"].description = "A narrow footpath is worn into the ice here, connecting the way past the spire garden to a small mound of ice-blocks formed into a low wall, protecting the moorings of a tall, broad tent made of tanned hides and strung out between carved pillars of that black stone you keep seeing. Around it is a vast expanse of flat ice, as far as the eye can see to the north and west.\n\nAttached to the tent's little entranceway is a sign chiseled out of rock that your microbes translate as “Greetings! Traders welcome!”";
+	rooms["UVGR I28"].description = "A narrow footpath is worn into the ice here, connecting the way past the spire garden to a small mound of ice-blocks formed into a low wall, protecting the moorings of a tall, broad tent made of tanned hides and strung out between carved pillars of that black stone you keep seeing. Around it is a vast expanse of flat ice, as far as the eye can see to the north and west.\n\nAttached to the tent’s little entranceway is a sign chiseled out of rock that your microbes translate as “Greetings! Traders welcome!”";
 	rooms["UVGR I28"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I28"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I28"].northExit = "UVGR I26";
@@ -1894,11 +1894,12 @@ public function initUvetoRooms():void
 	rooms["UVGR I26"].southExit = "UVGR I28";
 	rooms["UVGR I26"].moveMinutes = 1;
 	rooms["UVGR I26"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR I26"].addFlag(GLOBAL.COMMERCE);
 	rooms["UVGR I26"].runOnEnter = GlacialRiftLonesomeTent;
 
 	rooms["UVGR M34"] = new RoomClass(this);
 	rooms["UVGR M34"].roomName = "SOUTHERN\nSPIRE GARDEN";
-	rooms["UVGR M34"].description = "You're in the middle of a winding path going east to west, but your attention is constantly drawn north, to a great crevasse in the ice. The bottom of the abyss is home to thousands of slender black spires, reaching up to almost touch the surface. Each ends in a jagged, spiked point -- sure death to anything that falls inside.";
+	rooms["UVGR M34"].description = "You’re in the middle of a winding path going east to west, but your attention is constantly drawn north, to a great crevasse in the ice. The bottom of the abyss is home to thousands of slender black spires, reaching up to almost touch the surface. Each ends in a jagged, spiked point -- sure death to anything that falls inside.";
 	rooms["UVGR M34"].planet = "PLANET: UVETO VII";
 	rooms["UVGR M34"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR M34"].eastExit = "UVGR O34";
@@ -1922,7 +1923,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR Q34"] = new RoomClass(this);
 	rooms["UVGR Q34"].roomName = "COASTAL\nAPPROACH";
-	rooms["UVGR Q34"].description = "To the east lies a vast, sprawling coastline -- the very edge of the Glacial Rift, before it gives over to a great icy ocean. There aren't many safe paths around here, though: you're on one of the few reliable ways on or off the Rift. The way back towards Irestead is west of here. Far, far west.";
+	rooms["UVGR Q34"].description = "To the east lies a vast, sprawling coastline -- the very edge of the Glacial Rift, before it gives over to a great icy ocean. There aren’t many safe paths around here, though: you’re on one of the few reliable ways on or off the Rift. The way back towards Irestead is west of here. Far, far west.";
 	rooms["UVGR Q34"].planet = "PLANET: UVETO VII";
 	rooms["UVGR Q34"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR Q34"].eastExit = "UVGR S34";
@@ -1959,7 +1960,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR E20"] = new RoomClass(this);
 	rooms["UVGR E20"].roomName = "CENTER\nPATH";
-	rooms["UVGR E20"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. Several tribal totems adorn the path here, driven low into the ice so that they can't be seen very far away. Most of them are in the shape of cats or feline humanoids. Milodan, maybe?";
+	rooms["UVGR E20"].description = "Somebody’s been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it’s making traversal quite a bit easier. Several tribal totems adorn the path here, driven low into the ice so that they can’t be seen very far away. Most of them are in the shape of cats or feline humanoids. Milodan, maybe?";
 	rooms["UVGR E20"].planet = "PLANET: UVETO VII";
 	rooms["UVGR E20"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR E20"].northExit = "UVGR E18";
@@ -1971,7 +1972,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR E18"] = new RoomClass(this);
 	rooms["UVGR E18"].roomName = "WINDING\nPATH";
-	rooms["UVGR E18"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. There's a curve in the path here, going east and south, which leads back towards Irestead.";
+	rooms["UVGR E18"].description = "Somebody’s been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it’s making traversal quite a bit easier. There’s a curve in the path here, going east and south, which leads back towards Irestead.";
 	rooms["UVGR E18"].planet = "PLANET: UVETO VII";
 	rooms["UVGR E18"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR E18"].eastExit = "UVGR G18";
@@ -1983,7 +1984,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G18"] = new RoomClass(this);
 	rooms["UVGR G18"].roomName = "WINDING\nPATHS";
-	rooms["UVGR G18"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. The ‘road’ of sorts you've been following branches here, going north, east, and west. To the south is a small crack in the ice, maybe twenty feet across, and too narrow to even reach an arm down into.";
+	rooms["UVGR G18"].description = "Somebody’s been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it’s making traversal quite a bit easier. The ‘road’ of sorts you’ve been following branches here, going north, east, and west. To the south is a small crack in the ice, maybe twenty feet across, and too narrow to even reach an arm down into.";
 	rooms["UVGR G18"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G18"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G18"].northExit = "UVGR G16";
@@ -1996,7 +1997,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I18"] = new RoomClass(this);
 	rooms["UVGR I18"].roomName = "WINDING\nPATHS";
-	rooms["UVGR I18"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. This eastward passage connects to a small field of ice, a little lower down than everything else around you.";
+	rooms["UVGR I18"].description = "Somebody’s been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it’s making traversal quite a bit easier. This eastward passage connects to a small field of ice, a little lower down than everything else around you.";
 	rooms["UVGR I18"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I18"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I18"].eastExit = "UVGR K18";
@@ -2008,7 +2009,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR K18"] = new RoomClass(this);
 	rooms["UVGR K18"].roomName = "ICE\nFIELD";
-	rooms["UVGR K18"].description = "You're at the edge of an extremely large, low-lying plain of sheer ice. There's a way back out to the west, and to the south... there's a small hollow in the ice, a little cove worn out by someone's chipping away at the ice.";
+	rooms["UVGR K18"].description = "You’re at the edge of an extremely large, low-lying plain of sheer ice. There’s a way back out to the west, and to the south... there’s a small hollow in the ice, a little cove worn out by someone’s chipping away at the ice.";
 	rooms["UVGR K18"].planet = "PLANET: UVETO VII";
 	rooms["UVGR K18"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR K18"].southExit = "UVGR K20";
@@ -2020,7 +2021,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR K20"] = new RoomClass(this);
 	rooms["UVGR K20"].roomName = "SMALL\nHOLLOW";
-	rooms["UVGR K20"].description = "A little hollow is carved into the ice, giving you some much-needed shelter from the howling winds of the plains. While it's not the nicest place on this little moon, <b>should be safe to rest here</b>.";
+	rooms["UVGR K20"].description = "A little hollow is carved into the ice, giving you some much-needed shelter from the howling winds of the plains. While it’s not the nicest place on this little moon, <b>should be safe to rest here</b>.";
 	rooms["UVGR K20"].planet = "PLANET: UVETO VII";
 	rooms["UVGR K20"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR K20"].northExit = "UVGR K18";
@@ -2030,7 +2031,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G16"] = new RoomClass(this);
 	rooms["UVGR G16"].roomName = "WINDING\nPATHS";
-	rooms["UVGR G16"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. You can't see much in the glaring whiteout of the Rift, but you can sort of make out of a branch in the path to the south, and a lot of twisting and turning to the north.";
+	rooms["UVGR G16"].description = "Somebody’s been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it’s making traversal quite a bit easier. You can’t see much in the glaring whiteout of the Rift, but you can sort of make out of a branch in the path to the south, and a lot of twisting and turning to the north.";
 	rooms["UVGR G16"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G16"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G16"].northExit = "UVGR G14";
@@ -2042,7 +2043,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G14"] = new RoomClass(this);
 	rooms["UVGR G14"].roomName = "WINDING\nPATHS";
-	rooms["UVGR G14"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. You've got a long, more-or-less straight path going north and south from here, though there's not much to look at in any direction.";
+	rooms["UVGR G14"].description = "Somebody’s been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it’s making traversal quite a bit easier. You’ve got a long, more-or-less straight path going north and south from here, though there’s not much to look at in any direction.";
 	rooms["UVGR G14"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G14"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G14"].northExit = "UVGR G12";
@@ -2054,7 +2055,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G12"] = new RoomClass(this);
 	rooms["UVGR G12"].roomName = "WINDING\nPATHS";
-	rooms["UVGR G12"].description = "Somebody's been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it's making traversal quite a bit easier. Here, the obvious trail winds east and south, curving around several large mounds of snow that've been pushed aside.";
+	rooms["UVGR G12"].description = "Somebody’s been using the paths here quite a bit -- enough to wear the ice down by nearly a foot. Maybe one of the local tribes lives nearby? Either way, it’s making traversal quite a bit easier. Here, the obvious trail winds east and south, curving around several large mounds of snow that’ve been pushed aside.";
 	rooms["UVGR G12"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G12"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G12"].eastExit = "UVGR I12";
@@ -2066,7 +2067,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I12"] = new RoomClass(this);
 	rooms["UVGR I12"].roomName = "TRANSPARENT\nICE";
-	rooms["UVGR I12"].description = "The ice underneath your [pc.feet] is relatively fresh, compared to some of the Rift, and it's semi-transparent in places. Deep beneath the surface, you can see what appear to be enormous bones -- and you do mean enormous, many of them larger than you are. Thankfully, whatever that creature was is long gone. ";
+	rooms["UVGR I12"].description = "The ice underneath your [pc.feet] is relatively fresh, compared to some of the Rift, and it’s semi-transparent in places. Deep beneath the surface, you can see what appear to be enormous bones -- and you do mean enormous, many of them larger than you are. Thankfully, whatever that creature was is long gone. ";
 	rooms["UVGR I12"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I12"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I12"].northExit = "UVGR I10";
@@ -2078,7 +2079,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I10"] = new RoomClass(this);
 	rooms["UVGR I10"].roomName = "CRACKED\nICE";
-	rooms["UVGR I10"].description = "The ice here is cracked, forming spiderwebs of jagged  lines beneath your [pc.feet]. Luckily, it seems safe enough to traverse -- just have to watch your step!  There's a clearly-worn path through the snow and ice, going north and south.";
+	rooms["UVGR I10"].description = "The ice here is cracked, forming spiderwebs of jagged lines beneath your [pc.feet]. Luckily, it seems safe enough to traverse -- just have to watch your step! There’s a clearly-worn path through the snow and ice, going north and south.";
 	rooms["UVGR I10"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I10"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I10"].northExit = "UVGR I8";
@@ -2092,7 +2093,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR C6"] = new RoomClass(this);
 	rooms["UVGR C6"].roomName = "NORTHERN\nPATH";
-	rooms["UVGR C6"].description = "You're moving along a narrow path carved through the ice -- or more likely, worn into it through frequent traffic. The local milodan and korgonne probably come this way pretty often, though you wonder how they all knew to follow the same route.\n\nThe back to the ice fields is to the west, and the worn path continues through a gentle southern curve.";
+	rooms["UVGR C6"].description = "You’re moving along a narrow path carved through the ice -- or more likely, worn into it through frequent traffic. The local milodan and korgonne probably come this way pretty often, though you wonder how they all knew to follow the same route.\n\nThe back to the ice fields is to the west, and the worn path continues through a gentle southern curve.";
 	rooms["UVGR C6"].planet = "PLANET: UVETO VII";
 	rooms["UVGR C6"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR C6"].southExit = "UVGR C8";
@@ -2104,7 +2105,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR C8"] = new RoomClass(this);
 	rooms["UVGR C8"].roomName = "NORTHERN\nPATH";
-	rooms["UVGR C8"].description = "A huge, sprawling field of black spires jut up from the ice immediately south of where you are, preventing any kind of passage -- they're growing closer together than the trees of the great Sthorin forest! Your only means of progression are either north towards Irestead, or eastwards onto the Rift.";
+	rooms["UVGR C8"].description = "A huge, sprawling field of black spires jut up from the ice immediately south of where you are, preventing any kind of passage -- they’re growing closer together than the trees of the great Sthorin forest! Your only means of progression are either north towards Irestead, or eastwards onto the Rift.";
 	rooms["UVGR C8"].planet = "PLANET: UVETO VII";
 	rooms["UVGR C8"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR C8"].northExit = "UVGR C6";
@@ -2116,7 +2117,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR E8"] = new RoomClass(this);
 	rooms["UVGR E8"].roomName = "NORTHERN\nPATH";
-	rooms["UVGR E8"].description = "A huge, sprawling field of black spires jut up from the ice immediately south of where you are, preventing any kind of passage. You catch a few glimpses of movement between them -- small, furry creatures moving on multiple legs. Maybe they're eating the rock?";
+	rooms["UVGR E8"].description = "A huge, sprawling field of black spires jut up from the ice immediately south of where you are, preventing any kind of passage. You catch a few glimpses of movement between them -- small, furry creatures moving on multiple legs. Maybe they’re eating the rock?";
 	rooms["UVGR E8"].planet = "PLANET: UVETO VII";
 	rooms["UVGR E8"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR E8"].eastExit = "UVGR G8";
@@ -2128,7 +2129,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G8"] = new RoomClass(this);
 	rooms["UVGR G8"].roomName = "\nCLIFFSIDE";
-	rooms["UVGR G8"].description = "Though the path goes east to west here, you're now travelling in the shadow of a small cliff -- maybe 20 feet up -- to the north. Looks like there's a way up a little east of here.";
+	rooms["UVGR G8"].description = "Though the path goes east to west here, you’re now travelling in the shadow of a small cliff -- maybe 20 feet up -- to the north. Looks like there’s a way up a little east of here.";
 	rooms["UVGR G8"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G8"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G8"].eastExit = "UVGR I8";
@@ -2140,7 +2141,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I8"] = new RoomClass(this);
 	rooms["UVGR I8"].roomName = "CLIFFSIDE\nBOTTOM";
-	rooms["UVGR I8"].description = "The ice has formed a small mountain north of here, some twenty or thirty feet higher than the rest of the rift. A narrow path has been chipped into the ice, forming what seem like stairs going up to the top of the hill -- and someone's even pitoned ropes into the ice, making it easier to climb on up.";
+	rooms["UVGR I8"].description = "The ice has formed a small mountain north of here, some twenty or thirty feet higher than the rest of the rift. A narrow path has been chipped into the ice, forming what seem like stairs going up to the top of the hill -- and someone’s even pitoned ropes into the ice, making it easier to climb on up.";
 	rooms["UVGR I8"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I8"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I8"].northExit = "UVGR I6";
@@ -2153,7 +2154,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I6"] = new RoomClass(this);
 	rooms["UVGR I6"].roomName = "CLIFFSIDE\nTOP";
-	rooms["UVGR I6"].description = "You're at the top of a set of stairs carved into the cliffside, allowing you to descend onto the level of the rest of the glacier. The very pinnacle of the mountain you're on lies to the east, capped by a crown of black spires that pierce the clouds. Westward lies a winding path that seems to lead towards another, grander cliff face.";
+	rooms["UVGR I6"].description = "You’re at the top of a set of stairs carved into the cliffside, allowing you to descend onto the level of the rest of the glacier. The very pinnacle of the mountain you’re on lies to the east, capped by a crown of black spires that pierce the clouds. Westward lies a winding path that seems to lead towards another, grander cliff face.";
 	rooms["UVGR I6"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I6"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I6"].eastExit = "UVGR K6";
@@ -2178,7 +2179,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR M6"] = new RoomClass(this);
 	rooms["UVGR M6"].roomName = "PLATEAU\nAPPROACH";
-	rooms["UVGR M6"].description = "A chunk of ice to the north of the floes has been carved out with a laser, leaving a smooth, narrow incline. Ropes have been pitoned into the sides of the glacial ice, giving whoever needs to come and go from the plateau overhead some handholds to work with. Without them, it'd be a slippery mess trying to get up. The passage itself is narrow, walled on either side by sheer ice, barely wide enough for two people to squeeze through abreast.\n\nOn either side of the incline's top, you can see a pair of snow-camo turrets sitting low to the ice, long barrels sweeping steadily from side to side in search of hostile targets. When you enter their line of sight, both barrels snap over to you, scanning... and then beep quietly and resume their watch";
+	rooms["UVGR M6"].description = "A chunk of ice to the north of the floes has been carved out with a laser, leaving a smooth, narrow incline. Ropes have been pitoned into the sides of the glacial ice, giving whoever needs to come and go from the plateau overhead some handholds to work with. Without them, it’d be a slippery mess trying to get up. The passage itself is narrow, walled on either side by sheer ice, barely wide enough for two people to squeeze through abreast.\n\nOn either side of the incline’s top, you can see a pair of snow-camo turrets sitting low to the ice, long barrels sweeping steadily from side to side in search of hostile targets. When you enter their line of sight, both barrels snap over to you, scanning... and then beep quietly and resume their watch";
 	rooms["UVGR M6"].planet = "PLANET: UVETO VII";
 	rooms["UVGR M6"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR M6"].northExit = "UVGR M4";
@@ -2189,7 +2190,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR M4"] = new RoomClass(this);
 	rooms["UVGR M4"].roomName = "PLATEAU\nCAMP";
-	rooms["UVGR M4"].description = "You're standing in the middle of a wide, flat plateau of ice overlooking the northern-most reaches of the Rift. Several pillars of obsidian-black rock jut up from the ice and snow, forming a sort of henge around the center of plateau. A spindly Q-COMM beacon is sitting in the middle of all of them, pulsing with a red light every few seconds.";
+	rooms["UVGR M4"].description = "You’re standing in the middle of a wide, flat plateau of ice overlooking the northern-most reaches of the Rift. Several pillars of obsidian-black rock jut up from the ice and snow, forming a sort of henge around the center of plateau. A spindly Q-COMM beacon is sitting in the middle of all of them, pulsing with a red light every few seconds.";
 	rooms["UVGR M4"].planet = "PLANET: UVETO VII";
 	rooms["UVGR M4"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR M4"].southExit = "UVGR M6";
@@ -2199,7 +2200,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G6"] = new RoomClass(this);
 	rooms["UVGR G6"].roomName = "\nCLIFFSIDE";
-	rooms["UVGR G6"].description = "You're standing on a cliffside, looking down over the rest of the Rift -- some twenty feet down, you'd guess. There's a foot-worn path north from here, leading towards a sheer drop -- the eponymous Rift.";
+	rooms["UVGR G6"].description = "You’re standing on a cliffside, looking down over the rest of the Rift -- some twenty feet down, you’d guess. There’s a foot-worn path north from here, leading towards a sheer drop -- the eponymous Rift.";
 	rooms["UVGR G6"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G6"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G6"].northExit = "UVGR G4";
@@ -2211,7 +2212,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G4"] = new RoomClass(this);
 	rooms["UVGR G4"].roomName = "COASTAL\nAPPROACH";
-	rooms["UVGR G4"].description = "To the immediate north of where you stand is the very coast of the glacial you've been exploring. A great gulf separates yours from the next, a deep cleft in the ice leading into a seemingly bottomless abyss. Southwards lies the interior of the glacier, back to safety.";
+	rooms["UVGR G4"].description = "To the immediate north of where you stand is the very coast of the glacial you’ve been exploring. A great gulf separates yours from the next, a deep cleft in the ice leading into a seemingly bottomless abyss. Southwards lies the interior of the glacier, back to safety.";
 	rooms["UVGR G4"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G4"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G4"].northExit = "UVGR G2";
@@ -2223,7 +2224,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR G2"] = new RoomClass(this);
 	rooms["UVGR G2"].roomName = "THE GLACIAL\nRIFT";
-	rooms["UVGR G2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. There's a safe path south from here, back towards the center of the ice plain.";
+	rooms["UVGR G2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. There’s a safe path south from here, back towards the center of the ice plain.";
 	rooms["UVGR G2"].planet = "PLANET: UVETO VII";
 	rooms["UVGR G2"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR G2"].eastExit = "UVGR I2";
@@ -2235,7 +2236,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR I2"] = new RoomClass(this);
 	rooms["UVGR I2"].roomName = "THE GLACIAL\nRIFT";
-	rooms["UVGR I2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR I2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there’s no visible way back down from here.";
 	rooms["UVGR I2"].planet = "PLANET: UVETO VII";
 	rooms["UVGR I2"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR I2"].eastExit = "UVGR K2";
@@ -2247,7 +2248,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR K2"] = new RoomClass(this);
 	rooms["UVGR K2"].roomName = "";
-	rooms["UVGR K2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR K2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there’s no visible way back down from here.";
 	rooms["UVGR K2"].planet = "PLANET: UVETO VII";
 	rooms["UVGR K2"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR K2"].eastExit = "UVGR M2";
@@ -2259,7 +2260,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR M2"] = new RoomClass(this);
 	rooms["UVGR M2"].roomName = "THE GLACIAL\nRIFT";
-	rooms["UVGR M2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.\n\nSouth of here you can see a hill crowned with a ring of black pillars, reaching up into the clouds. You can't see a safe way from here to there, though.";
+	rooms["UVGR M2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there’s no visible way back down from here.\n\nSouth of here you can see a hill crowned with a ring of black pillars, reaching up into the clouds. You can’t see a safe way from here to there, though.";
 	rooms["UVGR M2"].planet = "PLANET: UVETO VII";
 	rooms["UVGR M2"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR M2"].eastExit = "UVGR O2";
@@ -2271,7 +2272,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR O2"] = new RoomClass(this);
 	rooms["UVGR O2"].roomName = "THE GLACIAL\nRIFT";
-	rooms["UVGR O2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR O2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there’s no visible way back down from here.";
 	rooms["UVGR O2"].planet = "PLANET: UVETO VII";
 	rooms["UVGR O2"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR O2"].eastExit = "UVGR Q2";
@@ -2283,7 +2284,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR Q2"] = new RoomClass(this);
 	rooms["UVGR Q2"].roomName = "THE GLACIAL\nRIFT";
-	rooms["UVGR Q2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there's no visible way back down from here.";
+	rooms["UVGR Q2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there’s no visible way back down from here.";
 	rooms["UVGR Q2"].planet = "PLANET: UVETO VII";
 	rooms["UVGR Q2"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR Q2"].eastExit = "UVGR S2";
@@ -2295,7 +2296,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S2"] = new RoomClass(this);
 	rooms["UVGR S2"].roomName = "THE GLACIAL\nRIFT";
-	rooms["UVGR S2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch west as far as the eye can see.\n\nEast of here, on the other hand, is the vastness of the Uvetan ocean. Overhead hangs the oppressive sphere of the gas giant you're orbiting, reflecting in a cascade of oranges and reds across the water's surface, broken only by smaller icebergs and tiny, drifting islands of ice. The coastlands stretch on southwards for miles of smooth, seemingly safe walking.";
+	rooms["UVGR S2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch west as far as the eye can see.\n\nEast of here, on the other hand, is the vastness of the Uvetan ocean. Overhead hangs the oppressive sphere of the gas giant you’re orbiting, reflecting in a cascade of oranges and reds across the water’s surface, broken only by smaller icebergs and tiny, drifting islands of ice. The coastlands stretch on southwards for miles of smooth, seemingly safe walking.";
 	rooms["UVGR S2"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S2"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S2"].southExit = "UVGR S4";
@@ -2309,7 +2310,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S4"] = new RoomClass(this);
 	rooms["UVGR S4"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S4"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S4"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S4"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S4"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S4"].northExit = "UVGR S2";
@@ -2321,7 +2322,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S6"] = new RoomClass(this);
 	rooms["UVGR S6"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S6"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S6"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S6"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S6"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S6"].northExit = "UVGR S4";
@@ -2333,7 +2334,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S8"] = new RoomClass(this);
 	rooms["UVGR S8"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S8"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S8"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S8"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S8"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S8"].northExit = "UVGR S6";
@@ -2345,7 +2346,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S10"] = new RoomClass(this);
 	rooms["UVGR S10"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S10"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S10"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S10"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S10"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S10"].northExit = "UVGR S8";
@@ -2357,7 +2358,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S12"] = new RoomClass(this);
 	rooms["UVGR S12"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S12"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S12"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S12"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S12"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S12"].northExit = "UVGR S10";
@@ -2369,7 +2370,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S14"] = new RoomClass(this);
 	rooms["UVGR S14"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S14"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S14"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S14"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S14"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S14"].northExit = "UVGR S12";
@@ -2381,7 +2382,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S16"] = new RoomClass(this);
 	rooms["UVGR S16"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S16"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S16"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S16"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S16"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S16"].northExit = "UVGR S14";
@@ -2393,7 +2394,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S18"] = new RoomClass(this);
 	rooms["UVGR S18"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S18"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S18"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S18"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S18"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S18"].northExit = "UVGR S16";
@@ -2405,7 +2406,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S20"] = new RoomClass(this);
 	rooms["UVGR S20"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S20"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S20"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S20"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S20"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S20"].northExit = "UVGR S18";
@@ -2417,7 +2418,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S22"] = new RoomClass(this);
 	rooms["UVGR S22"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S22"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S22"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S22"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S22"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S22"].northExit = "UVGR S20";
@@ -2429,7 +2430,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S24"] = new RoomClass(this);
 	rooms["UVGR S24"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S24"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S24"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S24"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S24"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S24"].northExit = "UVGR S22";
@@ -2441,7 +2442,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S26"] = new RoomClass(this);
 	rooms["UVGR S26"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S26"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S26"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S26"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S26"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S26"].northExit = "UVGR S24";
@@ -2453,7 +2454,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S28"] = new RoomClass(this);
 	rooms["UVGR S28"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S28"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S28"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S28"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S28"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S28"].northExit = "UVGR S26";
@@ -2465,7 +2466,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S30"] = new RoomClass(this);
 	rooms["UVGR S30"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S30"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S30"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S30"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S30"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S30"].northExit = "UVGR S28";
@@ -2477,7 +2478,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S32"] = new RoomClass(this);
 	rooms["UVGR S32"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S32"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S32"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S32"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S32"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S32"].northExit = "UVGR S30";
@@ -2489,7 +2490,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S34"] = new RoomClass(this);
 	rooms["UVGR S34"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S34"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see. There's a path leading westward, back into the heart of the glacier, here -- one of the very, very few safe ways off the narrow coast.";
+	rooms["UVGR S34"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see. There’s a path leading westward, back into the heart of the glacier, here -- one of the very, very few safe ways off the narrow coast.";
 	rooms["UVGR S34"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S34"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S34"].northExit = "UVGR S32";
@@ -2502,7 +2503,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S36"] = new RoomClass(this);
 	rooms["UVGR S36"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S36"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S36"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S36"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S36"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S36"].northExit = "UVGR S34";
@@ -2514,7 +2515,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S38"] = new RoomClass(this);
 	rooms["UVGR S38"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S38"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
+	rooms["UVGR S38"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see.";
 	rooms["UVGR S38"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S38"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S38"].northExit = "UVGR S36";
@@ -2526,7 +2527,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR S40"] = new RoomClass(this);
 	rooms["UVGR S40"].roomName = "THE EASTERN\nCOAST";
-	rooms["UVGR S40"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water's surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see. So far south, in fact, that you completely lose sight of it into the snow and mists. There doesn't appear to be any safe path going thataways anymore. Best you turn around.\n\nUnless... there's a small hollow just a little bit inland, to the west, and there's a rope leading out from it and over the edge of the Rift. Wonder what that's all about?";
+	rooms["UVGR S40"].description = "To the east stretches a vast and endlessly beautiful stretch of ocean, reaching far past the horizon. Uveto Prime, the swirling gas giant in the sky, reflects in a brilliant rainbow of reds and oranges across the water’s surface, as if in perpetual twilight. The ocean is marred only by small islands of ice, drifting with the currents and tidal pulls of the immense body high above.\n\nThe coastland stretches north and south, as far as the eye can see. So far south, in fact, that you completely lose sight of it into the snow and mists. There doesn’t appear to be any safe path going thataways anymore. Best you turn around.\n\nUnless... there’s a small hollow just a little bit inland, to the west, and there’s a rope leading out from it and over the edge of the Rift. Wonder what that’s all about?";
 	rooms["UVGR S40"].planet = "PLANET: UVETO VII";
 	rooms["UVGR S40"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR S40"].northExit = "UVGR S38";
@@ -2550,7 +2551,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR O42"] = new RoomClass(this);
 	rooms["UVGR O42"].roomName = "HIDDEN\nCAVE";
-	rooms["UVGR O42"].description = "You're at the bottom of a small cave, narrow and icy, but strangely warm... The eastern edge is open to the ocean coast, dropping down onto the vastness of the depths. Southwards would lead you inwards, deeper into the cave.";
+	rooms["UVGR O42"].description = "You’re at the bottom of a small cave, narrow and icy, but strangely warm... The eastern edge is open to the ocean coast, dropping down onto the vastness of the depths. Southwards would lead you inwards, deeper into the cave.";
 	rooms["UVGR O42"].planet = "PLANET: UVETO VII";
 	rooms["UVGR O42"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR O42"].southExit = "UVGR O44";
@@ -2560,7 +2561,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR O44"] = new RoomClass(this);
 	rooms["UVGR O44"].roomName = "HIDDEN\nCAVE";
-	rooms["UVGR O44"].description = "You're at a branch in the cave -- the main tunnel breaks off into several tiny crevices and hidey-holes, but only one of them, directly westward, seems passable to someone of your size.";
+	rooms["UVGR O44"].description = "You’re at a branch in the cave -- the main tunnel breaks off into several tiny crevices and hidey-holes, but only one of them, directly westward, seems passable to someone of your size.";
 	rooms["UVGR O44"].planet = "PLANET: UVETO VII";
 	rooms["UVGR O44"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR O44"].northExit = "UVGR O42";
@@ -2571,7 +2572,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR M44"] = new RoomClass(this);
 	rooms["UVGR M44"].roomName = "HIDDEN\nSHRINE";
-	rooms["UVGR M44"].description = "The ice here has been shaped into a mostly rounded, smooth chamber. At its center lies an altar, decorated with tribal fetishes and scarred by claw marks all over. There's no sign of the milodan that you saw here before...";
+	rooms["UVGR M44"].description = "The ice here has been shaped into a mostly rounded, smooth chamber. At its center lies an altar, decorated with tribal fetishes and scarred by claw marks all over. There’s no sign of the milodan that you saw here before...";
 	rooms["UVGR M44"].planet = "PLANET: UVETO VII";
 	rooms["UVGR M44"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR M44"].eastExit = "UVGR O44";

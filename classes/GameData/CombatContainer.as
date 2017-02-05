@@ -406,7 +406,7 @@ package classes.GameData
 							}
 						}
 						
-						output("\n\n<b>The male" + (numMales == 1 ? " shakes his head" : "s shake their heads") + " as if coming out of a daze, blinking and looking around. The glow's gone now, thank goodness.</b>");
+						output("\n\n<b>The male" + (numMales == 1 ? " shakes his head" : "s shake their heads") + " as if coming out of a daze, blinking and looking around. The glow’s gone now, thank goodness.</b>");
 					}
 					
 					target.removeStatusByRef(ew);
@@ -432,7 +432,7 @@ package classes.GameData
 				pl.value1--;
 				if (pl.value1 < 0)
 				{
-					output("\n\nYou feel a surge of regained strength -- <b>the witch's leeching power has worn off!</b>");
+					output("\n\nYou feel a surge of regained strength -- <b>the witch’s leeching power has worn off!</b>");
 					
 					target.removeStatusByRef(pl);
 				}
