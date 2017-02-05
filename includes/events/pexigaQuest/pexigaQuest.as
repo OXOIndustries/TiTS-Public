@@ -717,7 +717,7 @@ public function talkToBimboBadgerAboutPexiga():void
 	clearOutput();
 	showDrBadger();
 	author("Adjatha");
-	if(!pc.isBimbo()) output("Frankly, you doubt if this will work, but hope springs eternal, right? You stand in front of the bimbotized <i>“Doctor”</i> Badger and take her down the brief history of the pexiga on your ship. You explain how her body’s basically shut itself down. With shrug, you ask the zapped mad scientist if there’s anything she can do to give some modicum of intellect to the girl.");
+	if(!pc.isBimbo()) output("Frankly, you doubt if this will work, but hope springs eternal, right? You stand in front of the bimbotized <i>“Doctor”</i> Badger and take her down the brief history of the pexiga on your ship. You explain how her body’s basically shut itself down. With a shrug, you ask the zapped mad scientist if there’s anything she can do to give some modicum of intellect to the girl.");
 	else output("Doc Badger is, like, the smartest person you know. Afterall, she’s always coming up with cool new inventions and stuff. You launch into a kind of rambling explanation of the blue girl and her brain troubles. <i>“It’s no good having somebody who can’t enjoy themselves! You’re a big smarty, right Badger? You could TOTALLY do something to help! You’ve got got, like brains for days. Weeks, probably.”</i>");
 	output("\n\nBadger remains silent through your entire speech, her tongue lolling from one side of her mouth. Big, vacant eyes fixed on you, she nods a few times, but by the time you finish, her face lights up. <i>“Oooh! Make somebody smart? Instead of dumb?”</i> Her face scrunches up in deliberation. <i>“ Like, why would I wanna to do that? Bein’ dumb is great!”</i>");
 	//normal

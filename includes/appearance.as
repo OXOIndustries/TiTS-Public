@@ -1719,15 +1719,15 @@ public function appearance(forTarget:Creature):void
 			if (target.legCount < 4) 
 			{
 				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
-				if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
-				else output2(" plantigrade");
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
 				output2(" legs grow downwards from your waist, ending in " + target.feet(true, true) + ".");
 			}
 			else
 			{
 				output2(" You have");
 				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
-				else output2(" plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
 				output2(" legs that end in " + target.feet(true,true) + ".");
 			}
 		}
@@ -1788,7 +1788,7 @@ public function appearance(forTarget:Creature):void
 						else
 						{
 							if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", shaped into digitigrade legs and");
-							if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
+							else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", shaped into plantigrade legs and");
 							output2(" ending in " + target.feet());
 						}
 					}
@@ -1798,17 +1798,41 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.legType == GLOBAL.TYPE_FELINE)
 		{
-			if(target.isTaur()) output2(" Your digitigrade legs end in soft, " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo-" : "") + "padded cat-paws.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow downwards from your waist, ending in soft, " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo-" : "") + "padded cat-paws.");
+			if(target.isTaur())
+			{
+				output2(" Your");
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs end in soft, " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo-" : "") + "padded cat-paws.");
+			}
+			else
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow downwards from your waist, ending in soft, " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo-" : "") + "padded cat-paws.");
+			}
 		}
 		else if(target.legType == GLOBAL.TYPE_LIZAN)
 		{
-			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
+			if(target.legCount < 4)
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are three long toes on the front and a small hind-claw on the back.");
+			}
 			else output2(" Your " + plural(target.leg(true)) + " end in clawed feet, tipped with three long toes and a small hind-claw on the back.");
 		}
 		else if(target.legType == GLOBAL.TYPE_RASKVEL)
 		{
-			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " plantigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are four long toes tipping the humanoid soles.");
+			if(target.legCount < 4)
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow down from your " + target.hipDescript() + ", ending in clawed feet. There are four long toes tipping the humanoid soles.");
+			}
 			else output2(" Your " + plural(target.leg(true)) + " end in clawed feet, tipped with four long toes at the front of the terran-like soles.");
 		}
 		else if(target.legType == GLOBAL.TYPE_LAPINE) 
@@ -1830,7 +1854,7 @@ public function appearance(forTarget:Creature):void
 				else output2(target.skinFurScales(true, true, true, true));
 				output2(" below");
 			}
-			output2(". Your feet are digitigrade, with long sharp claw-tipped toes.");
+			output2(". Your feet " + (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) ? "are digitigrade, with" : "have") + " long sharp claw-tipped toes.");
 		}
 		else if(target.legType == GLOBAL.TYPE_KANGAROO) 
 		{
@@ -1863,13 +1887,31 @@ public function appearance(forTarget:Creature):void
 		else if(target.legType == GLOBAL.TYPE_KUITAN) output2(" Your legs, though covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", are humanlike. Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
 		else if(target.legType == GLOBAL.TYPE_PANDA)
 		{
-			if(target.isTaur()) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) ? "digitigrade" : "plantigrade") + " legs end in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "fluffy") + " panda-paws.");
-			else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " " + (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) ? "digitigrade" : "plantigrade") + " legs grow downwards from your waist, ending in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "fluffy") + " panda-paws.");
+			if(target.isTaur())
+			{
+				output2(" Your");
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs end in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "fluffy") + " panda-paws.");
+			}
+			else
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow downwards from your waist, ending in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "fluffy") + " panda-paws.");
+			}
 			output2(" You even have " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "blunt" : "sharp-looking") + " claws growing from the tips of your short toes.");
 		}
 		else if(target.legType == GLOBAL.TYPE_FROG)
 		{
-			if(target.legCount < 4) output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " digitigrade legs grow down from your " + target.hipDescript() + ", ending in three-toed, webbed, frog-like feet. They look built for leaping and sticking to flat surfaces rather than running.");
+			if(target.legCount < 4)
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)));
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow down from your " + target.hipDescript() + ", ending in three-toed, webbed, frog-like feet. They look built for leaping and sticking to flat surfaces rather than running.");
+			}
 			else output2(" Your " + plural(target.leg(true)) + " look built for leaping than running, ending in three-toed, webbed, frog-like feet.");
 		}
 		else if (target.legType == GLOBAL.TYPE_OVIR)
@@ -1881,15 +1923,39 @@ public function appearance(forTarget:Creature):void
 			}
 			else
 			{
-				if(target.isTaur()) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled") + ", plantigrade legs end in human-like feet.");
-				else output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled") + ", plantigrade legs extend below your waist, ending in human-like feet.");
+				if(target.isTaur())
+				{
+					output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled"));
+					if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", plantigrade");
+					else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", digitigrade");
+					output2(" legs end in human-like feet.");
+				}
+				else
+				{
+					output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "scaled"));
+					if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", plantigrade");
+					else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", digitigrade");
+					output2(" legs extend below your waist, ending in human-like feet.");
+				}
 			}
 		}
 		//Shark Legs:
 		else if(target.legType == GLOBAL.TYPE_SHARK)
 		{
-			if(target.legCount == 2) output2(" Your plantigrade legs are powerful, with small fins protruding from your ankles and webbed toes, perfect for swimming.");
-			else output2(" Your " + num2Text(target.legCount) + " plantigrade legs come with webbing and small fins to better propel you through water.");
+			if(target.legCount == 2)
+			{
+				output2(" Your");
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				output2(" legs are powerful, with small fins protruding from your ankles and webbed toes, perfect for swimming.");
+			}
+			else
+			{
+				output2(" Your " + num2Text(target.legCount));
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				output2(" legs come with webbing and small fins to better propel you through water.");
+			}
 		}
 		//Catch all
 		else
