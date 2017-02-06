@@ -3,8 +3,6 @@
 //Bar Text
 public function erraBarText(num:Number):void
 {
-	showErra();
-	author("Hugs Alright");
 	if(flags["MET_ERRA"] == undefined)
 	{
 		output("\n\nThere’s a black-haired Ausar girl reclined against the bar, looking your way, tail gently swaying behind her. Seems like she could be some fun.");
@@ -223,7 +221,7 @@ public function goodGirlSexForErra():void
 	author("Hugs Alright");
 	var x:int = -1;
 	if(pc.hasCock()) x = pc.cockThatFits(erraVaginalCapacity());
-	author("Hugs Alright");
+	
 	output("With a smile you lean forward and close Erra’s collar around her neck, taking hold of her leash. <i>“I think you’ve been a pretty good girl,”</i> you state, placing a hand between your puppy’s jet-black wolf-ears, making her elicit a contented sigh as she starts to nuzzle against your palm.");
 	output("\n\nYou take a moment to scritch at Erra’s ears, running your hand through her short, dark mane until her breath starts to stutter and quiver. Giving your puppy a few last pets, you pull back, revealing her wide smile and wagging tail. <i>“Why don’t you get on the edge of the bed, girl?”</i> you suggest, making Erra’s tail wag even faster as you stand up off the bed and give her leash a tug. She’s quick to do as you say, bringing herself to the edge of the mattress, still on all fours, before turning around and presenting her oh-so firm and gropable booty.");
 	output("\n\nKneeling down, you get yourself level with your puppy’s butt, gaze fixed on her lube-leaking pussy. You lick your lips and grab Erra’s ass with both hands, spreading her lower cheeks, giving you unrestricted access to her sex. While your pet wiggles with anticipation, you spread her velvety folds with your thumbs, drawing a shuddering breath from the leash-bound ausar. Not needing any encouragement other than Erra’s trembling figure, you dig in, [pc.tongue] already penetrating your puppy’s quim, delving deep to seek out her g-spot. She starts to moan and whimper as you have your way with her, sounds of pleasure turning to squeals as you knead and squeeze her ass in your hands.");
@@ -279,7 +277,7 @@ public function erraGoodGirl2():void
 	author("Hugs Alright");
 	var x:int = -1;
 	if(pc.hasCock()) x = pc.cockThatFits(erraVaginalCapacity());
-	author("Hugs Alright");
+	
 	output("A familiar feeling of fur-on-skin wakes you; your vision is hazy with post-coital bliss, but you look down to see that Erra has moved a bit in her sleep, and is now nuzzling her head into your [pc.chest]. You grin at the sight of the smug ausar’s soft-side put on display and give her a pat on the back to wake her.");
 	output("\n\nShe lets out a little yawn and moves her head to look up at you, <i>“Hey, [pc.name],”</i> she says, <i>“Stick around for seconds or... ?”</i>");
 	output("\n\nYou roll your eyes at her and pull ");
@@ -311,8 +309,7 @@ public function badGirlAnalErraStuff():void
 	author("Hugs Alright");
 	var x:int = -1;
 	if(pc.hasCock()) x = pc.cockThatFits(erraAnalCapacity());
-
-	author("Hugs Alright");
+	
 	output("Without a word you bound forward, grabbing Erra’s shoulders and pushing her onto her back. She hits the mattress with a yelp, but a smirk still remains on her face. You straddle her, leering at her athletic frame while you trail a finger along the edge of her fluffy, black ears. Your teasing touch makes her whimper, her face curling with desire as you whisper into her ear. <i>“I think you’ve been a very bad girl,”</i> you murmur, removing your finger from her ears, <i>“And bad girls need to be punished.”</i> You take hold of Erra’s collar and buckle it nice and tight around her neck before you straighten yourself, smiling at the sight of your freshly collared pet. Taking hold of her leash you give it sharp tug, pulling her upward before you bark out <i>“Ass up, girl!”</i>");
 	output("\n\nManaging to keep her smug demeanor, Erra rolls onto her stomach with her ass in the air and her face against the mattress, tail raised invitingly as she looks back at you with an eager grin. You don’t think she’ll stay that way for long. Keeping her leash taut, you reach your hands down to grab her firm, gropable butt... all yours to have your way with. Erra starts to whimper as you knead her ass in your dexterous grip. You give her behind a solid squeeze and spread her lower cheeks wide, giving you a good view of her tight little tailhole.");
 	output("\n\nDubious thoughts cross your mind as you gaze upon Erra’s winking pucker, and you plan to put them into action. You quickly wet a finger and bring it to meet your puppy’s asshole. She tenses and shivers, whining gently as you press your naughty digit into her. <i>“Better loosen up, girl,”</i> you tell her, <i>“Unless you want me to go in dry.”</i> She forces herself to relax after hearing that, allowing your finger to slip into her supple hole. Your pet squirms and clenches her fists, trying to quell the sensation of your digits probing her.");

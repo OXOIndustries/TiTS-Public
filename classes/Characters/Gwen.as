@@ -20,8 +20,6 @@
 			
 			this.short = "Gwen";
 			this.originalRace = "puzai";
-			this.keeperBuy = "";
-			this.keeperSell = "";
 
 			inventory.push(new ExplorersCloak(), new GemstoneLinks(), new SleekParka(), new HardlightAGBra(), new SlepraDownBra());
 			

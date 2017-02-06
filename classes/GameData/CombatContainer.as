@@ -1178,7 +1178,7 @@ package classes.GameData
 			
 			if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 			{
-				if (pc.hasStatusEffect("Stunned")) output("\n<b>You’re still stunned!</b>");
+				if (pc.hasStatusEffect("Stunned")) output("\n\n<b>You’re still stunned!</b>");
 				addButton(0, "Recover", doStunRecover, pc);
 				return;
 			}
@@ -1187,15 +1187,15 @@ package classes.GameData
 			{
 				if (pc.hasStatusEffect("Naleen Coiled"))
 				{
-					output("\n<b>You are wrapped up in coils!</b>");
+					output("\n\n<b>You are wrapped up in coils!</b>");
 				}
 				else if (pc.hasStatusEffect("Mimbrane Smother"))
 				{
-					output("\n<b>You are being smothered by a Mimbrane!</b>");
+					output("\n\n<b>You are being smothered by a Mimbrane!</b>");
 				}
 				else
 				{
-					output("\n<b>You are grappled and unable to fight normally!</b>");
+					output("\n\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
 				addButton(0, "Struggle", doStruggleRecover, pc);
@@ -4149,7 +4149,7 @@ package classes.GameData
 						target.getCombatDescriptionExtension();
 						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
 						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
-						if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
+						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
 						else showMonsterArousalFlavor(target);
 					}
 				}

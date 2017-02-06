@@ -21,8 +21,6 @@
 			
 			this.short = "Kazra";
 			this.originalRace = "essrya";
-			this.keeperBuy = "";
-			this.keeperSell = "";
 
 			inventory.push(new HeatBelt(), new ThermalPack(), new PlasmaHawk(), new HideVestAndBreeches(), new EssyraGreatspear(), new RoastedZhorBeast());
 			
