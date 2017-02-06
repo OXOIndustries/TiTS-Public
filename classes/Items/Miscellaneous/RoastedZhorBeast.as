@@ -35,7 +35,7 @@
 			this.description = "a spear of roasted zhor beast meat";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A spear of roasted meat, bought steaming off of Lorre's cookfire and covered in native Uvetan spices. Sure to ward off the cold and fill your belly.";
+			this.tooltip = "A spear of roasted meat, bought steaming off of Lorre’s cookfire and covered in native Uvetan spices. Sure to ward off the cold and fill your belly.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -67,7 +67,7 @@
 			var heatEffect:StorageClass = target.getStatusEffect("Hot Meal");
 			if (heatEffect == null)
 			{
-				target.createStatusEffect("Hot Meal", 0, 0, 0, 0, false, "Icon_Cooking", "A hearty meal sat heavily in your belly helps to warm you through.", false, 240, 0xFFFFFF);
+				target.createStatusEffect("Hot Meal", 0, 0, 0, 0, false, "Icon_Cooking", ((target is PlayerCharacter) ? "A hearty meal sat heavily in your belly helps to warm you through." : "A hearty meal that warms the body."), false, 240, 0xFFFFFF);
 			}
 			else
 			{
