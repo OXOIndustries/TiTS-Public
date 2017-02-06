@@ -1424,7 +1424,7 @@ public function initUvetoRooms():void
 		}
 		else
 		{
-			output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>.");
+			output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>");
 			addButton(0, "Maglev S.", move, "UVI P40");
 		}
 		return false;

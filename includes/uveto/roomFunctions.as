@@ -956,7 +956,7 @@ public function drLessauBonus():Boolean
 
 public function uvetoMaglevStation():Boolean
 {
-	removeUvetoColdBonus();
+	//removeUvetoColdBonus();
 	
 	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(0, "Probe");
 	else addButton(0, "Probe", move, "UVIP R10");

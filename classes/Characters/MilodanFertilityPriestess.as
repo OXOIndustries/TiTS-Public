@@ -265,7 +265,7 @@
 					}
 				}
 			}
-			else if (_malesRan == false)
+			else if (_malesRan == false && alliedCreatures.length > 1)
 			{
 				malesRunAway(alliedCreatures);
 			}
