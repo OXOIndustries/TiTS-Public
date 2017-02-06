@@ -2208,6 +2208,8 @@ public function crystalGooCodexEntry():void
 public function bothriocCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Bothrioc"));
 	outputCodex("<b>Name (Singular & Plural):</b> Bothrioc");
 	outputCodex("\n<b>Sexes:</b> Monogendered, generally regarded as feminine. A subtype comprising less than 5% of the population are known as the “quadommes” due to their tendency to keep a large harem of submissives and their unique physical characteristics.");
@@ -2259,7 +2261,7 @@ public function essyraCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("9999");
-
+	
 	outputCodex(header("Essyras"));
 	outputCodex("<b>Name:</b> Essyra (Singular), Essyras (Plural)");
 	outputCodex("\n<b>Genders:</b> Female and Hermaphrodites");
@@ -2304,6 +2306,8 @@ public function essyraCodexEntry():void
 public function frostwyrmCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("FROSTWYRM");
+	
 	outputCodex(header("Frostwyrm"));
 	outputCodex("<b>Name:</b> Unknown (Colloquially: Frostwyrm)");
 	outputCodex("\n<b>Genders:</b> Unknown. Assumed Male and Female.");
@@ -2350,6 +2354,8 @@ public function frostwyrmCodexEntry():void
 public function korgonneCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("KORGONNE_FEMALE");
+	
 	outputCodex(header("Korgonne"));
 	outputCodex("<i>Honest little furballs as tough as they are short.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Korgonne");
@@ -2400,6 +2406,8 @@ public function korgonneCodexEntry():void
 public function lurelingsCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Lureling"));
 	outputCodex("<b>Genders:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> 8\' 0\" to 8\' 8\" at the shoulders. Roughly 9\' from tip to tail.");
@@ -2452,6 +2460,9 @@ public function lurelingsCodexEntry():void
 public function milodanCodexEntry():void
 {
 	clearOutputCodex();
+	var randBust:Array = ["MILODANMALE","MILODANFEM","MILODAN_PRIESTESS"];
+	showBust(randBust[rand(randBust.length)]);
+	
 	outputCodex(header("Milodan"));
 	outputCodex("<b>Name:</b> Milodan");
 	outputCodex("\n<b>Genders:</b> Males and Females, Rare Hermaphrodites");
@@ -2493,6 +2504,8 @@ public function milodanCodexEntry():void
 public function divraniCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Divrani"));
 	outputCodex("<b>Name:</b> Divrani (singular and plural)");
 	outputCodex("\n<b>Genders:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
@@ -2556,6 +2569,8 @@ public function divraniCodexEntry():void
 public function hyraxxiCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Hyraxxi"));
 	outputCodex("<b>Name:</b> Hyraxx (Singular), Hyraxxi (Plural, Adjectival)");
 	outputCodex("\n<b>Genders:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");

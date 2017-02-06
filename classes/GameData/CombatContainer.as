@@ -1433,7 +1433,7 @@ package classes.GameData
 				output("<b>");
 				if(pc.hasStatusEffect("Flushed")) output("The warmth in your lower body");
 				else output("The Fuck Fever");
-				output(" won’t let you get away from a potential dicking !</b>");
+				output(" won’t let you get away from a potential dicking!</b>");
 				processCombat();
 			}
 			else if (kGAMECLASS.debug)

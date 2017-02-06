@@ -8,10 +8,21 @@
 //Pre-fite text
 //Description of terrain goes here as prelude to encounter
 
-public function showMilodanMale():void
+public function showMilodanMale(nude:Boolean = false):void
 {
-	showBust("MILODANMALE");
+	showBust(bustDisplayMilodanMale(nude));
 	showName("MALE\nMILODAN");
+}
+public function bustDisplayMilodanMale(nude:Boolean = false):String
+{
+	var sBust:String = "MILODANMALE";
+	
+	// 9999 - Special artist exceptions!
+	if(kGAMECLASS.gameOptions.configuredBustPreferences["MILODANMALE"] != "SHOU") return sBust;
+	
+	if(nude) sBust += "_NUDE";
+	
+	return sBust;
 }
 
 public function milodanCombatPrep():Creature
@@ -156,7 +167,7 @@ public function winVsMilodanMale():void
 public function doggieStyleDatSaberDoggie():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	var x:int = pc.cockThatFits(chars["MILODAN_MALE"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -189,7 +200,7 @@ public function doggieStyleDatSaberDoggie():void
 public function dontLetTheMilodanGetOffHesADork(x:int):void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("<i>Nah, fuck it</i>, you decide. He lost fair and square, and now you’re going to take him for all he’s worth. You hilt yourself a few more times,");
 	//pc has >1 balls:
@@ -274,7 +285,7 @@ public function dontLetTheMilodanGetOffHesADork(x:int):void
 public function yesGetTheMilodanOff(x:int):void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("<i>Oho, yes</i>, you think. What better way to make him sorry for attacking you than to slowly, sensually demonstrate that getting fucked in the ass is its own reward? ");
 	if(!pc.isTaur()) output("You gently slide one hand down to his sheath, coaxing his considerable cock out into your hand. ");
@@ -363,7 +374,7 @@ public function yesGetTheMilodanOff(x:int):void
 public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("Pushing him onto his back");
 	if(!pc.isNude()) output(" and casually disrobing");
@@ -401,7 +412,7 @@ public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 public function takeALootInYerCooterFromMildan(x:int):void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("You might as well reward him for being such a good fucktoy. Getting to pump his jizz into your well-fucked pussy is the <i>least</i> you can grant him after letting you ride him to orgasm for so long.");
 	output("\n\n<i>“Your lucky day, kittydog. I’m going to ride you, and I’m not going to stop until you pop,”</i> you declare, smiling down at him.");
@@ -424,7 +435,7 @@ public function takeALootInYerCooterFromMildan(x:int):void
 public function noPuppyPoppersForYou():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("He <i>has</i> been such a wonderful fucktoy... but he still lost, and losers don’t get to cum inside. You resume riding him, your butt bouncing off his groin while he grunts, curling and uncurling his fingers.");
 	output("\n\n<i>“You’re fighting your instincts, huh?”</i> you ask with a knowing smile, throwing your head back in seductive exultation. <i>“You just wanna grab me... hold me down and fuck me senseless, don’t you?”</i>");
@@ -445,7 +456,7 @@ public function noPuppyPoppersForYou():void
 public function takeMaleMilodanForAnAnalRide():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("You give him a gentle push and he falls onto his butt, his loincloth already tented as he watches you ");
 	if(!pc.isNude()) output("disrobe");
@@ -524,7 +535,7 @@ public function takeMaleMilodanForAnAnalRide():void
 public function taurssionaryWithFloofyBoyslut():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("<i>“Get up,”</i> you command, beckoning the milodan over. <i>“On your knees. Oof, that’s cold,”</i> you complain as you lie down, rolling onto your back with your legs spread. <i>“Get over here and warm me up.”</i>");
 	output("\n\nThe milodan scuffles forward on his knees, eyes fixated on your [pc.vagOrAss] and his cock tenting his loincloth. Once it’s clear that you’re giving him the lead, he wastes no time in grabbing your hindlegs and sliding his prick into your warm fuckhole, a pleased grunt escaping his lips at the reprieve from the harsh wind. You throw your head back and moan while he pushes in, the nubs on his crown rubbing your sensitive walls in all the right ways as he spreads you wide around his cock.");
@@ -551,7 +562,7 @@ public function taurssionaryWithFloofyBoyslut():void
 public function keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("<i>“Don’t - stop!”</i> you pant wildly, your humanoid half supported only by your shaky arms as you close your eyes. <i>“Oh, </i>fuuuck!<i>”</i>");
 	output("\n\nYour lower half completely locks up in orgasm, every muscle tensed to the point it’s almost painful while the waves of pleasure roll over you.");
@@ -585,7 +596,7 @@ public function keepGoingAndBadEndYourselfOrSomeShitOnMilodanEndurance():void
 public function cumFromMilodanButtpounds():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("As hard as it is to say so, having him cum now rather than in six hours is probably for the best. You reach down and grab a handful of his hair, resisting the urge to just run your fingers through it and moan like a whore, and pull his head up to meet your eyes.");
 	output("\n\n<i>“Cum in me,”</i> you gasp, hoping he gets the message.");
@@ -604,7 +615,7 @@ public function cumFromMilodanButtpounds():void
 public function giveMilodanMalesStinkyButtholeALick():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("You indicate he should get on all fours and given no choice in the matter, he shakily obeys your command. The furred barbarian looks back at you with some trepidation, clearly not too eager to be penetrated. You smirk - boy, have you got a surprise for him. He squeezes his eyes shut and turns back around as you kneel behind him, bracing himself for the dick in his ass that never makes its appearance.");
 	output("\n\nHe starts when you bend down and gently sweep your tongue across his pucker, a low rumbling emanating from his throat as you slide your hand down his muscular buttock and around to caress his sheath. Between your [pc.tongue] tenderly slipping across his slowly-relaxing asshole and your hand rubbing his sheath, it’s not long before you coax his cock out.");
@@ -669,7 +680,7 @@ public function leaveDatMilodanHesASlutAnywayItsNotLiekYouLikedHimOrAnythingBaka
 public function lossSceneToMaleMilodan():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("You collapse onto the ice, the savage beating of the milodan too much to bear. He saunters over to you casually, the confident hunter having secured his quarry. ");
 	if(enemy.meleeWeapon.longName != "claw") output("Dropping his weapon");
@@ -750,7 +761,7 @@ public function lossSceneToMaleMilodan():void
 public function pussyWrasslin():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	var win:Boolean = (pc.physique()/2 + rand(20) + 1 >= enemy.physique()/2 + 10);
 	//nontaur success
@@ -842,7 +853,7 @@ public function pussyWrasslin():void
 public function dontWrassleBecauseWrasslinIsDumbAndYourPussyNeedsFucked():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("<i>No</i>, you think dreamily, you’re perfectly content to just lie there and take it. He did beat you, after all, and now he’s claiming his prize. Seemingly sensing your utter submission, the milodan tightens his grip around your hips and begins slamming into your sodden pussy over and over. Using his immense arm strength he pulls you down his cock by your hips, right to the base every time he thrusts. Before long, you’re unconsciously following along in his motions.");
 	output("\n\n<i>“Good,”</i> he grunts in approval. He sure doesn’t talk much, but he’s clearly happy you’ve accepted your role.");
@@ -886,7 +897,7 @@ public function dontWrassleBecauseWrasslinIsDumbAndYourPussyNeedsFucked():void
 public function cockwrassleTheMilodanMale():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	var win:Boolean = (pc.physique()/2 + rand(20) + 1 >= enemy.physique()/2 + 10);
 	if(win && !pc.isTaur()) 
@@ -958,7 +969,7 @@ public function cockwrassleTheMilodanMale():void
 public function dontWrestleTheMilodanBecauseHisCockIsBetterThanYours():void
 {
 	clearOutput();
-	showMilodanMale();
+	showMilodanMale(true);
 	author("Wsan");
 	output("<i>No</i>, you think dreamily, you’re perfectly content to just lie there and take it. He did beat you, after all, and now he’s claiming his prize. Seemingly sensing your utter submission, the milodan tightens his grip around your hips and begins slamming into your asshole over and over. Using his immense arm strength he pulls you down his cock by your hips, right to the base every time he thrusts. Before long, you’re unconsciously following along in his motions.");
 	output("\n\n<i>“Good,”</i> he grunts in approval. He sure doesn’t talk much, but he’s clearly happy you’ve accepted your role.");
