@@ -62,7 +62,7 @@ package classes.Items.Miscellaneous
 			
 			if (usingCreature == kGAMECLASS.pc)
 			{
-				if (target.isImmobilized() || target.isDefeated())
+				if (target.isImmobilized() || (usingCreature != target && target.isDefeated()))
 				{
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 					kGAMECLASS.clearOutput();
@@ -93,7 +93,11 @@ package classes.Items.Miscellaneous
 				}
 				
 				hpChange = gainHP(target);
-				if(hpChange > 0) kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + ((usingCreature == target || target.isPlural) ? "have" : "has") + " gained " + hpChange + " HP!</b>");
+				if(hpChange > 0)
+				{
+					if(usingCreature == target) kGAMECLASS.output(" <b>You have gained " + hpChange + " HP!</b>");
+					else kGAMECLASS.output(" <b>" + (inCombat() ? StringUtil.capitalize(target.getCombatName(), false) : (target.capitalA + target.short)) + " " + (target.isPlural ? "have" : "has") + " gained " + hpChange + " HP!</b>");
+				}
 				target.HP(hpChange);
 			}
 			else

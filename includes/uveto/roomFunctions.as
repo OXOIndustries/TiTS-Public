@@ -1062,10 +1062,10 @@ public function GlacialRiftLonesomeTent():Boolean
 		output(" Kazra and Lorre turn to greet you with familiar smiles.");
 	}
 
-	if (!CodexManager.entryUnlocked("Essyra"))
+	if (!CodexManager.entryUnlocked("Essyras"))
 	{
 		output("\nYour Codex beeps out that these are Essyra, natives of Uveto who are by and large friendly to off-worlders.");
-		CodexManager.unlockEntry("Essyra");
+		CodexManager.unlockEntry("Essyras");
 	}
 	
 	addButton(0, "Trade", approachKazraAndLorre);
@@ -1100,8 +1100,9 @@ public function approachKazraAndLorre():void
 		output("\n\nLorre struggles to her feet with both hands on her gravid belly. The pregnant Essyra gives you a shy little smile from behind her mate. <i>“Back to trade again?”</i>");
 		
 		output("\n\nKazra chuckles and waves you in. <i>“Come, warm yourself by the fire.");
-		if (silly) output(" The weather outside is frightful, after all...”</i>");
-		else output(" You look like you’re about to turn blue.”</i>");
+		if (silly) output(" The weather outside is frightful, after all...");
+		else output(" You look like you’re about to turn blue.");
+		output("”</i>");
 	}
 
 	clearMenu();

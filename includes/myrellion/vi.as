@@ -1981,7 +1981,9 @@ public function inflateViBoobs():void
 	//FirstTime:
 	if(flags["INFLATED_VI"] == undefined)
 	{
-		output("You pull out your gathered reserves of silicone from New Texas, snatched from the claws of varmints. Now, you’re planning to put it to good use, pumping it into Vi’s titties to make them deliciously big and hefty.");
+		output("You pull out your gathered reserves of silicone");
+		//output(" from New Texas, snatched from the claws of varmints");
+		output(". Now, you’re planning to put it to good use, pumping it into Vi’s titties to make them deliciously big and hefty.");
 		output("\n\nUpon spotting the seized silicone, Vi loudly gasps. <i>“That’s a Kiha-corp product! You can’t possibly be planning to cross-use company merchandise?”</i> Her silky thighs rub together even more. <i>“Pumping me full of the competitor’s product... that’s so lewd!”</i>");
 		output("\n\nYou ask Vi where her input slot is for the silicone. The femme-bot coughs. <i>“Um, in my nipples, " + pc.mf("sir","ma’am") + ". My unit doesn’t come with a spinal input port for that sort of thing.”</i>");
 	}
@@ -2033,7 +2035,8 @@ public function inflateViBoobs():void
 	output("\n\nTitilated, you bring up one of the transparent tubes and slide it into her gaping nipple-holes. You wiggle it into her areolae and deep into her plump breasts. Stopping when you feel some resistance, you take your hand away. With the see-through tubing, you can still see deep into her pale tit-flesh. She clamps down on the plastic tubing and warps its shape. Her lumpy papilla tube presses against it just like a vaginal passage. It’s conveniently hands free, and you slip the other tube into her right breast, watching in amazement as she clamps down on that one as well.");
 	output("\n\n<i>“I’m ready for pumping now, " + pc.mf("sir","ma’am") + ",”</i> Vi blushingly informs you, twin tubes jutting out of her dilated nipple-holes. The sight itself is very lewd, and you feel your ");
 	if(pc.hasCock()) output("[pc.cocks] throb even harder");
-	else output("skin flush and prickle.");
+	else output("skin flush and prickle");
+	output(".");
 	output("\n\nReaching down, you flick on the silicone pump, and there’s a low whir. Thick, lucid drops of the sticky liquid roll up the tube and into her tits, chased by thicker gauzy globs that eagerly force themselves deep into her spread out areolae. When the first generous dollop slips and slides into her exposed breasts, the snowy-skinned nurse gasps and her eyelashes wildly flutter. Her buxom chest jiggles with her suddenly erratic breathing. <i>“T-this is so strange to process... I have no parameters for this!”</i>");
 	output("\n\nShe must have <i>some</i> similar parameters, by the way her pale mound is suddenly leaking down her quivering thighs. She loses control of them shortly after, planting her plush butt on the nearby bed and wiggling her butt into it. It’s not long at all before the pristine hospital sheets are soaked with her synthetic lady-juices, leaving a gigantic wet patch right under her rotund and quivering behind. What a naughty girl, messing up the sheets like that!");
 	output("\n\nAs she clings desperately to the sheet fabric, you turn up the pump, grinning as more gauzy globs shoot up the tubes and into her ample breast-flesh. Her already deep cleavage is shivering and shaking about as she wiggles and moans, stimulated and gasping from each slick dollop fired into her yawning nipples. There’s a sharp girlish cry, and a thin arching stream squirts out from her hairless pussy, dripping and splashing on the ground before you. Her snowy-white snatch is now sloppy and wet with her juices, her round clit protruding and engorged, as she reaches down and rubs it instinctively to draw out her orgasm.");
