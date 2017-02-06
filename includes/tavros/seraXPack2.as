@@ -339,7 +339,8 @@ public function seraIsRepoed():void
 	chars["SERA"].lust(0, true);
 	chars["SERA"].minutesSinceCum = 0;
 	if(flags["SERA_NO_SEX"] != undefined) flags["SERA_NO_SEX"] = undefined;
-	if(pc.hasStatusEffect("Dark Chrysalis Closed")) pc.removeStatusEffect("Dark Chrysalis Closed");
+	pc.removeStatusEffect("Dark Chrysalis Closed");
+	pc.removeStatusEffect("Sera Credit Debt");
 	
 	clearOutput();
 	author("Nonesuch");
@@ -845,7 +846,7 @@ public function seraBitchTrainingTease():void
 		output("Ignoring Sera for the moment, you open the natty, silver “starter kit” the Tarratch gave you. As you were told there are many bits and bobs in here which might help you with the wilful hellion you now own, but what you are particularly looking for is – ah.");
 		output("\n\nYou grin at Sera as you withdraw a pair of handcuffs, the same silver color as her collar, and dangle them in front of her.");
 		output("\n\n<i>“So what you’re saying is, you’ve never even done rope work before,”</i> she sneers in response. <i>“Do you think a half hour of amateur fumbling is going to make me putty in your hands? You’re dealing with an expert, [pc.boy]. Anything you try is going to look absolutely pathetic.”</i>");
-		output("\n\nYou ignore her bluster and drop onto the bed next to her, deliberately pushing your weight into her side. She tenses up as you take her hands and cuff them behind her back, forcing her high, plentiful boobs outwards. You slide around so that your [pc.chest] is pushing into her back, your hands roaming across her warm, flawless [sera.skinNoun]; waiting for her muscles to relax, forcing her to get used to your presence. You breathe gently on her neck as you cup one of her breasts, brushing over the nub of an erect nipple, pressing your hardening [pc.eachCock] into the rise of her round butt, enjoying the fine, pliant give of your slave at your leisure as you work your way downwards. You feel something moving fretfully by your thigh and swiftly reach down to catch her tail, trapping it in your armpit.");
+		output("\n\nYou ignore her bluster and drop onto the bed next to her, deliberately pushing your weight into her side. She tenses up as you take her hands and cuff them behind her back, forcing her high, plentiful boobs outwards. You slide around so that your [pc.chest] is pushing into her back, your hands roaming across her warm, flawless [sera.skinNoun]; waiting for her muscles to relax, forcing her to get used to your presence. You breathe gently on her neck as you cup one of her breasts, brushing over the nub of an erect nipple, pressing " + (pc.cocks.length == 1 ? "your hardening cock" : "each of your hardening cocks") + " into the rise of her round butt, enjoying the fine, pliant give of your slave at your leisure as you work your way downwards. You feel something moving fretfully by your thigh and swiftly reach down to catch her tail, trapping it in your armpit.");
 		output("\n\n<i>“Look,”</i> she snaps, shifting irritably in your grasp, <i>“if you’re going to fuck me just do it. Don’t embarrass us both by trying foreplay. I’m not going to enjoy this, whatever you do.”</i> Again you say nothing. You slide your hand across the plain of her lower stomach,");
 		if(chars["SERA"].hasCock()) output(" momentarily grasp her thick, semi-erect cock and give it a playful tug,");
 		output(" and then with a soft “ah”, as if you’ve just discovered something important, squeeze between the warmth of her thighs and touch her bare pussy.");
@@ -1958,7 +1959,7 @@ public function seraBitchTrainingButtfuck():void
 		output("\n\n<i>“Do you in the pussy instead?”</i> you carefully stretch her wet lips wide with it");
 		if(chars["SERA"].vaginas[0].hymen) output(", pressing against her hymen");
 		output(". <i>“I will " + (chars["SERA"].hasCock() ? "pet" : "hun") + " – but you’re going to have to ask if you ever want me to put it there. " + (chars["SERA"].vaginas[0].hymen ? "You are a virgin, after all" : "Nicely") + ".”</i>");
-		output("\n\n<i>“Fuck off!”</i> she spits. You shrug, smirk, and trail your straining [pc.oneCock] back to the wrinkle of her anus. It’s oiled and gently parted now, the plump flesh surrounding it lavish with lubricant – and it feels fantastically tight when you clutch her hips and slowly but firmly penetrate it.");
+		output("\n\n<i>“Fuck off!”</i> she spits. You shrug, smirk, and trail " + (pc.cocks.length == 1 ? "your straining cock" : "one of your straining cocks") + " back to the wrinkle of her anus. It’s oiled and gently parted now, the plump flesh surrounding it lavish with lubricant – and it feels fantastically tight when you clutch her hips and slowly but firmly penetrate it.");
 		output("\n\nYou have to go slow – Sera is definitely new to this, grunting and growling with discomfort every slick inch you introduce into her constrictive backside, tensing up hard around you every couple of seconds. As slow and stop-start as it is you rather enjoy this learning process, the heat and rings of contraction around your hard cock, giving small words of encouragement to her every time she manages to holster some more of it and remains relaxed when you push back in. She doesn’t respond, but you find yourself fantasizing how good this will feel when she is finally able to take it like a champ; finding this area of callowness in your otherwise experienced succubus and breaking her in is satisfying.");
 		// Cock > 11.5 inches:
 		if(pc.cLength(cIdx) >= 11.5)
@@ -2181,7 +2182,7 @@ public function seraBitchTrainingPunishSpank(fromMenu:Boolean = false):void
 		{
 			output("\n\n<i>“For getting off against my instructions,”</i> you reply evenly.");
 			output("\n\n<i>“That was YOUR fault, you complete cretin!”</i> she howls, outraged. <i>“You’re seriously going to punish me because you just utterly embarrassed yourself?”</i>");
-			output("\n\n<i>“Just lie in my lap and take it with a bit of dignity,”</i> you sigh, " + (pc.hasLegs() ? "sitting" : "placing") + " yourself down on the bunk. Sera knows she can’t disobey, and after spending as long as she thinks she can get away with away from you sidles over and places the dense weight of her stomach on the top of your [pc.hips].");
+			output("\n\n<i>“Just lie in my lap and take it with a bit of dignity,”</i> you sigh, " + (pc.hasLegs() ? "sitting" : "placing") + " yourself down on the bunk. Sera knows she can’t disobey, and after spending as long as she thinks she can get away with while away from you, she sidles over and places the dense weight of her stomach on the top of your [pc.hips].");
 			output("\n\n<i>“You can spunk as much money on enslaving people as you like,”</i> she says, looking over her shoulder at you with fierce dislike. <i>“But it doesn’t stop you being a fucking incompetent dom.”</i>");
 		}
 		// Chosen immediately after Sera masturbated:
@@ -2198,7 +2199,7 @@ public function seraBitchTrainingPunishSpank(fromMenu:Boolean = false):void
 		{
 			output("\n\n<i>“For calling me names, for having a foul mouth, for doing nothing but hanging around in bed messing about on the extranet...”</i> you count the offences off on your fingers.");
 			output("\n\n<i>“Right, so basically you’re going to punish me for being who I am,”</i> strops Sera. <i>“Message to " + pc.mf("king creepazoid", "queen psycho-bitch") + ": I’m not your fucking doormat. You can’t force me to like being here.”</i>");
-			output("\n\n<i>“Just lie in my lap and take it with a bit of dignity,”</i> you sigh, " + (pc.hasLegs() ? "sitting" : "placing") + " yourself down on the bunk. Sera knows she can’t disobey, and after spending as long as she thinks she can get away with away from you sidles over and places the dense weight of her stomach on top of your [pc.hips].");
+			output("\n\n<i>“Just lie in my lap and take it with a bit of dignity,”</i> you sigh, " + (pc.hasLegs() ? "sitting" : "placing") + " yourself down on the bunk. Sera knows she can’t disobey, and after spending as long as she thinks she can get away with while away from you, she sidles over and places the dense weight of her stomach on top of your [pc.hips].");
 		}
 		// Standard
 		if(!seraMasturbated)
