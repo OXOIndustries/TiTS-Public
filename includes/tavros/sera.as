@@ -72,7 +72,7 @@ public function seraBonusFunction():Boolean
 	if(seraRecruited())
 	{
 		mods4UChrysalisBonus();
-		return true;
+		return false;
 	}
 	if(flags["SERA_ACQUIRED_DATE"] != undefined && (GetGameTimestamp() - flags["SERA_ACQUIRED_DATE"] > 180))
 	{
