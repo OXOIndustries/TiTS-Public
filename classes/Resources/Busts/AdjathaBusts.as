@@ -119,6 +119,16 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/dryad.png", mimeType = "image/png")]
 		public var Bust_DRYAD:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/eimear.png", mimeType = "image/png")]
+		public var Bust_CFS_EIMEAR:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/eimear_nude.png", mimeType = "image/png")]
+		public var Bust_CFS_EIMEAR_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/erra.png", mimeType = "image/png")]
+		public var Bust_ERRA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/erra_nude.png", mimeType = "image/png")]
+		public var Bust_ERRA_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/estallia.png", mimeType = "image/png")]
 		public var Bust_ESTALLIA:Class;
 		public var Bounds_ESTALLIA:Rectangle = new Rectangle(45, 3, 60, 60);
@@ -194,6 +204,9 @@ package classes.Resources.Busts
 		public var Bust_KALLY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kally_nude.png", mimeType = "image/png")]
 		public var Bust_KALLY_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/kitsune-traders.png", mimeType = "image/png")]
+		public var Bust_KAZRA_AND_LORRE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
@@ -403,6 +416,10 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/tlako.png", mimeType = "image/png")]
 		public var Bust_TLAKO:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/rocket_pods.png", mimeType = "image/png")]
+		public var Bust_TURRET:Class;
+		public var Bounds_TURRET:Rectangle = new Rectangle(70, 3, 80, 80);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande.png", mimeType = "image/png")]
 		public var Bust_VAANDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande_nude.png", mimeType = "image/png")]
@@ -549,6 +566,16 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/eimear.png", mimeType = "image/png")]
+			public var Full_CFS_EIMEAR:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/eimear_nude.png", mimeType = "image/png")]
+			public var Full_CFS_EIMEAR_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erra.png", mimeType = "image/png")]
+			public var Full_ERRA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erra_nude.png", mimeType = "image/png")]
+			public var Full_ERRA_NUDE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/estallia.png", mimeType = "image/png")]
 			public var Full_ESTALLIA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/estallia_nude.png", mimeType = "image/png")]
@@ -617,6 +644,9 @@ package classes.Resources.Busts
 			public var Full_KALLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally_nude.png", mimeType = "image/png")]
 			public var Full_KALLY_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kitsune-traders.png", mimeType = "image/png")]
+			public var Full_KAZRA_AND_LORRE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
@@ -814,6 +844,9 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tlako.png", mimeType = "image/png")]
 			public var Full_TLAKO:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rocket_pods.png", mimeType = "image/png")]
+			public var Full_TURRET:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande.png", mimeType = "image/png")]
 			public var Full_VAANDE:Class;

@@ -1783,7 +1783,8 @@ public function zilCallgirlStopWhoreNursery():void
 	output("An idea strikes you, and you smile up at Zheniya. <i>“How about I offer you a job?”</i>");
 
 	output("\n\nShe cranes her head to the side, pursing her lips. You continue, explaining that you own the nursery, after all, and Briget is more than happy to accept your recommendations for new staff. You’re sure she could make herself useful there, even if it’s just cleaning or cooking");
-	if (ChildManager.mobileInAgeRangeYears(14, -1)) output(" or maybe even teaching spear-fighting to your offspring. Physical education’s kind of lacking up there anyway.");
+	if (ChildManager.mobileInAgeRangeYears(14, -1)) output(" or maybe even teaching spear-fighting to your offspring. Physical education’s kind of lacking up there anyway");
+	output(".");
 	
 	output("\n\nZheniya listens attentively through your proposal, murmuring softly to herself as you finish. <i>“You’re a master of compromise, aren’t you?”</i> she laughs after a moment’s thought. <i>“Among zil, raising children was always a communal effort. The whole village would work together for it. If I can help with your other children, and you with mine... well, that just feels like home.”</i>");
 	

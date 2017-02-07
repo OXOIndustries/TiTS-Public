@@ -1045,7 +1045,7 @@ public function cfsGoLewdMassage():void
 {
 	clearOutput();
 	author("Gardeford");
-	showBust("CFS_EIMEAR");
+	showBust("CFS_EIMEAR_NUDE");
 	showName("\nEIMEAR");
 
 	output("You wait patiently until the days last customer leaves the store, walking up to Eimear’s desk and leaning toward her.");

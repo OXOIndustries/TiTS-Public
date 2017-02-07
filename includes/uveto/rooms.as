@@ -1424,7 +1424,7 @@ public function initUvetoRooms():void
 		}
 		else
 		{
-			output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>.");
+			output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>");
 			addButton(0, "Maglev S.", move, "UVI P40");
 		}
 		return false;
@@ -2281,7 +2281,11 @@ public function initUvetoRooms():void
 	rooms["UVGR O2"].addFlag(GLOBAL.FROZENTUNDRA);
 	rooms["UVGR O2"].addFlag(GLOBAL.HAZARD);
 	rooms["UVGR O2"].runOnEnter = GlacialRiftEncounterBonus;
+}
 
+public function initUvetoRoomsII():void
+{
+	
 	rooms["UVGR Q2"] = new RoomClass(this);
 	rooms["UVGR Q2"].roomName = "THE GLACIAL\nRIFT";
 	rooms["UVGR Q2"].description = "You stand on the very western-most edge of the Glacial Rift, a massive cleft in the ice separating your glacier from the northern one. Looking over the edge presents a dizzying view of the bottomless abyss, the sheen of ice giving way to impenetrable darkness far before the water swallows the heart of the ice. The coastlands stretch east and west as far as the eye can see, and there’s no visible way back down from here.";
@@ -2579,5 +2583,4 @@ public function initUvetoRooms():void
 	rooms["UVGR M44"].moveMinutes = 1;
 	rooms["UVGR M44"].addFlag(GLOBAL.CAVE);
 	rooms["UVGR M44"].runOnEnter = GlacialRiftM44;
-
 }

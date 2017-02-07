@@ -240,7 +240,7 @@
 			if (numMales > 0)
 			{
 				// Change to use Empowering Word if the CD isn't active
-				if (ewCD == null && rand(3) == 0)
+				if (!hasStatusEffect("Disarmed") && ewCD == null && rand(3) == 0)
 				{
 					empoweringWord(alliedCreatures);
 					return;
@@ -265,15 +265,15 @@
 					}
 				}
 			}
-			else if (_malesRan == false)
+			else if (_malesRan == false && alliedCreatures.length > 1)
 			{
 				malesRunAway(alliedCreatures);
 			}
 			
 			var attacks:Array = [];
-			attacks.push( { v: staffBonk, w: 15 } );
+			if (!hasStatusEffect("Disarmed")) attacks.push( { v: staffBonk, w: 15 } );
 			if (!hasStatusEffect("Mind Blast Cooldown") && !target.hasStatusEffect("Stunned")) attacks.push( { v: mindBlast, w: 5 } );
-			attacks.push( { v: implantedImagery, w: 5 } );
+			if (!hasStatusEffect("Disarmed")) attacks.push( { v: implantedImagery, w: 5 } );
 			if (!hasStatusEffect("Used Leech")) attacks.push( { v: psychicLeech, w: 5 } );
 			attacks.push( { v: tease, w: 10 } );
 			
@@ -374,7 +374,9 @@
 		{
 			//	Temporarily lowers the PC's Physique and Reflexes, and boosts her Evasion. Resisted by Willpower. Effects lasts for 3-5 turns. 1/encounter.
 
-			output("The priestess extends a hand towards you, the other gripping her staff and cracking in on the ground between you. A second later, you feel a pressure in your chest, like her hand is somehow reaching out and grabbing at your heart.");
+			output("The priestess extends a hand towards you");
+			if(!hasStatusEffect("Disarmed")) output(", the other gripping her staff and cracking in on the ground between you");
+			output(". A second later, you feel a pressure in your chest, like her hand is somehow reaching out and grabbing at your heart.");
 			if (willpower() + rand(100) < target.WQ() * 0.75)
 			{
 				output(" You steel yourself and do resist, throwing all your willpower against the priestess’s invasion of your body.");
@@ -393,7 +395,9 @@
 		{
 			//Basic Lust attack. 
 
-			output("The priestess sets her staff into the ice and grabs her melons in both hands, squeezing her supple flesh so that her fingers sink into the lush snowy fur coating her body. Her pierced nipples jut out between her digits, charcoal promontories just begging to be sucked and played with... and the way she moves her hands, eyes lowered and staring shamelessly at your groin... she’s all but inviting you to just surrender into her arms and do just that.");
+			output("The priestess");
+			if(!hasStatusEffect("Disarmed")) output(" sets her staff into the ice and");
+			output(" grabs her melons in both hands, squeezing her supple flesh so that her fingers sink into the lush snowy fur coating her body. Her pierced nipples jut out between her digits, charcoal promontories just begging to be sucked and played with... and the way she moves her hands, eyes lowered and staring shamelessly at your groin... she’s all but inviting you to just surrender into her arms and do just that.");
 			
 			if (target.lust() * (target.LQ() / 100) < rand(target.lustMax()))
 			{
@@ -416,9 +420,13 @@
 
 			output("\n\n<i>“Cowards!”</i> the priestess shouts after them, snarling like a feral beast. The males don’t so much as look over their shoulders, but disappear into the ice with their tails between their legs.");
 
-			output("\n\nShe grunts and stamps her staff on the ice, returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I’ll show you the might of the spirits all on my own!”</i>");
+			output("\n\nShe grunts");
+			if(!hasStatusEffect("Disarmed")) output(" and stamps her staff on the ice");
+			output(", returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I’ll show you the might of the spirits all on my own!”</i>");
 
-			output("\n\nThe priestess bears her fangs and swings her staff around, levelling the glowing green tip at your [pc.chest].\n\n");
+			output("\n\nThe priestess bears her fangs");
+			if(!hasStatusEffect("Disarmed")) output(" and swings her staff around");
+			output(", levelling the glowing green tip at your [pc.chest].\n\n");
 			
 			for (var i:int = 0; i < alliedCreatures.length; i++)
 			{

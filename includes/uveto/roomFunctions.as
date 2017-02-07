@@ -956,7 +956,7 @@ public function drLessauBonus():Boolean
 
 public function uvetoMaglevStation():Boolean
 {
-	removeUvetoColdBonus();
+	//removeUvetoColdBonus();
 	
 	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(0, "Probe");
 	else addButton(0, "Probe", move, "UVIP R10");
@@ -1062,10 +1062,10 @@ public function GlacialRiftLonesomeTent():Boolean
 		output(" Kazra and Lorre turn to greet you with familiar smiles.");
 	}
 
-	if (!CodexManager.entryUnlocked("Essyra"))
+	if (!CodexManager.entryUnlocked("Essyras"))
 	{
 		output("\nYour Codex beeps out that these are Essyra, natives of Uveto who are by and large friendly to off-worlders.");
-		CodexManager.unlockEntry("Essyra");
+		CodexManager.unlockEntry("Essyras");
 	}
 	
 	addButton(0, "Trade", approachKazraAndLorre);
@@ -1075,7 +1075,7 @@ public function GlacialRiftLonesomeTent():Boolean
 public function approachKazraAndLorre():void
 {
 	clearOutput();
-	showBust("KAZRA", "LORRE");
+	showBust("KAZRA_AND_LORRE");
 	author("Savin");
 
 	if (flags["MET_KAZRA_AND_LORRE"] == undefined)
@@ -1100,8 +1100,9 @@ public function approachKazraAndLorre():void
 		output("\n\nLorre struggles to her feet with both hands on her gravid belly. The pregnant Essyra gives you a shy little smile from behind her mate. <i>“Back to trade again?”</i>");
 		
 		output("\n\nKazra chuckles and waves you in. <i>“Come, warm yourself by the fire.");
-		if (silly) output(" The weather outside is frightful, after all...”</i>");
-		else output(" You look like you’re about to turn blue.”</i>");
+		if (silly) output(" The weather outside is frightful, after all...");
+		else output(" You look like you’re about to turn blue.");
+		output("”</i>");
 	}
 
 	clearMenu();
@@ -1180,7 +1181,7 @@ public function GlacialRiftM44():Boolean
 	{
 		flags["UVGR_SAVICITE_IDOL"] = -1;
 
-		showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+		showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(), bustDisplayMilodanMale());
 		
 		output("\n\nYou slowly make your way around the bend in the icy tunnel, following the natural curves of the frigid glacier’s heart until you find yourself stepping into a small, almost perfectly circular chamber at the tunnel’s end. The indistinct voices you heard before echoing throughout the place solidify into those of three figures standing here, chanting and swaying before a solid block of ice, maybe four feet high and perfectly smooth on the top.");
 
@@ -1194,7 +1195,7 @@ public function GlacialRiftM44():Boolean
 		clearMenu();
 		addButton(0, "Watch", GRM44Watch, undefined, "Watch", "No sense endangering yourself. Let’s see what they’re up to down here.");
 		addButton(1, "Interrupt", GRM44Interrupt, undefined, "Interrupt", "Though you doubt they’ll appreciate the interruption, you’ve got your eye on that idol of theirs... if that’s actually pure savicite, it could be worth a fortune.");
-		addButton(2, "Leave", function():void {
+		addButton(14, "Leave", function():void {
 			currentLocation = "UVGR O44";
 			clearOutput();
 	
@@ -1224,7 +1225,7 @@ public function GRM44Interrupt():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(), bustDisplayMilodanMale());
 	
 	if (!CodexManager.entryUnlocked("Milodan"))
 	{
@@ -1247,7 +1248,7 @@ public function GRM44Watch():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 	
 	pc.lust(25);
 	
@@ -1271,7 +1272,7 @@ public function GRM44Watch():void
 	
 	output("\n\nOne of the males immediately steps up, grabbing the woman’s hips and thrusting himself into the sodden slit between her legs. His mate throws her head back and howls in pleasure, digging her claws into the flat plane of the ice beneath her. From where you’re at, you can only catch glimpses of the long, black feline member pumping in and out of her pussy, but that of the other milodan is fully in view: he stands beside the coupling pair, and the female reaches out to grab his dark manhood, stroking it off while she’s pumped full of the other man’s dick.");
 	
-	output("\n\nThe sounds of the three cat-folks’ coupling echo throughout the strange chamber, a mix of grunts, growls, howls, and the heavy beats of flesh and fur slapping against each other. it isn’t all that long before the first male grunts and lunges forward, digging his teeth into the woman’s shoulder and his claws into her flanks, harsh enough to draw blood. She gasps, locking her legs behind his ass and pulling him closer, forcing him to the hilt inside her. A second later and he staggers back, a slimey bridge of steaming white goo connecting the crown of his tapered prick to the female’s slit.");
+	output("\n\nThe sounds of the three cat-folks’ coupling echo throughout the strange chamber, a mix of grunts, growls, howls, and the heavy beats of flesh and fur slapping against each other. It isn’t all that long before the first male grunts and lunges forward, digging his teeth into the woman’s shoulder and his claws into her flanks, harsh enough to draw blood. She gasps, locking her legs behind his ass and pulling him closer, forcing him to the hilt inside her. A second later and he staggers back, a slimey bridge of steaming white goo connecting the crown of his tapered prick to the female’s slit.");
 	
 	output("\n\nThe second male shoves the first aside and takes his place. thrusting himself into the cat-woman’s cum-stuffed quim. She just smiles and strokes his cheek, inviting him inside herself with easy, lustful desire.");
 	
@@ -1303,7 +1304,7 @@ public function GRM44Run():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 
 	output("You look between the naked males, the cum-stuffed woman, and the strange cock-like stone on the altar... and decide that discretion is the better part of valor. You turn and book it down the tunnel, back the way you came. There’s no time to look over your shoulder, but you hear uproarious laughter echoing behind you, and the scraping of claws on the ice.");
 
@@ -1384,10 +1385,14 @@ public function GRM44Fight():void
 
 public function pcDefeatsFertilityPriestess(isRepeat:Boolean = false):void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	if (!isRepeat)
 	{
 		clearOutput();
-		showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+		showBust("MILODAN_PRIESTESS");
 		author("Savin");
 
 		output("With a gasp, the milodan priestess collapses onto her knees,");
@@ -1400,6 +1405,7 @@ public function pcDefeatsFertilityPriestess(isRepeat:Boolean = false):void
 		var mfem:MilodanFertilityPriestess = enemy is MilodanFertilityPriestess ? enemy as MilodanFertilityPriestess : null;
 		if (mfem != null && !mfem.malesRan) output("\n\nWhile you’re distracted with the priestess, the pair of males make a break for it. You lunge after them, but slip on the ice and your grab comes off short. They scarper off down the cavern, shouting back that they’ll find help. Guess you’d better finish up here quickly...");
 	}
+	output("\n\n");
 
 	//[Fuck her] [Get Licked] [Take Idol] [Leave]
 	clearMenu();
@@ -1412,7 +1418,7 @@ public function pcDefeatsFertilityPriestess(isRepeat:Boolean = false):void
 public function fertilityPriestessGetLicked():void
 {
 	clearOutput();
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS");
 	author("Savin");
 
 	output("You stride towards the defeated milodan, shoving her back down onto the ice with");
@@ -1468,6 +1474,7 @@ public function fertilityPriestessGetLicked():void
 	if (pc.isBimbo() || pc.isMisc()) output(" is a good girl");
 	else output(" did good");
 	output(". You pull out of her pussy at the same time, making her gasp and squirm until you’re well out of reach, gathering your gear and leaving the woman to her lonely orgasm.");
+	output("\n\n");
 
 	processTime(10+rand(5));
 
@@ -1480,7 +1487,7 @@ public function fertilityPriestessGetLicked():void
 public function fertilityPriestessFuckHer():void
 {
 	clearOutput();
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS");
 	author("Savin");
 
 	output("You stride over to the defeated tigress and give her a rough, playful push down onto her back. She hisses as her fur graces the frigid ice, but she’s clearly used to the Uvetan cold: the only sign she feels it is in the two big, black nipples jutting up from her snowy fur. Or maybe she’s just turned on by losing, you wonder aloud. The prideful priestess snarls, baring her fangs at you... but one of her hands instinctively goes to the dark slit between her legs, and another gropes at one of her weighty breasts, pinching around the bone piercing through her teat. As you approach, your pull aside your gear and");
@@ -1525,7 +1532,7 @@ public function fertilityPriestessFuckHer():void
 public function fertilityPriestessFuckHerGoHard():void
 {
 	clearOutput();
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS");
 	author("Savin");
 
 	output("If that’s what she wants...");
@@ -1575,6 +1582,7 @@ public function fertilityPriestessFuckHerGoHard():void
 	}
 
 	output("\n\nYou grin down and plant a parting kiss on her dusky lips before grabbing your gear and turning to leave.");
+	output("\n\n");
 
 	processTime(15+rand(5));
 	pc.orgasm();
@@ -1586,7 +1594,7 @@ public function fertilityPriestessFuckHerGoHard():void
 public function fertilityPriestessFuckHerSwitch():void
 {
 	clearOutput();
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS");
 	author("Savin");
 
 	output("You grin down at her and hook your hands under her arms. In one thrust, you pull your [pc.cockOrStrapon] from her slavering slit and roll the tiger-like alien over, shoving her face in the ice and hiking her ass in the air. The priestess yips in surprise, but her tail starts swishing eagerly. She reaches back and spreads her pussylips for you, inviting you back into the warm embrace of her sex. But you have other plans.");
@@ -1648,6 +1656,7 @@ public function fertilityPriestessFuckHerSwitch():void
 	if (pc.isAss()) output("We’ll see about that.");
 	else output("Uh-huh.");
 	output(" You grab your gear and step away, leaving her to recover on the ice.");
+	output("\n\n");
 
 	processTime(10+rand(5));
 	pc.orgasm();
@@ -1658,7 +1667,7 @@ public function fertilityPriestessFuckHerSwitch():void
 public function fertilityPriestessTakeIdol():void
 {
 	clearOutput();
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS");
 	author("Savin");
 
 	pc.addHard(2);
@@ -1688,10 +1697,14 @@ public function fertilityPriestessTakeIdol():void
 
 public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	if (!isRepeat)
 	{
 		clearOutput();
-		showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+		showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 		author("Savin");
 
 		if (pc.lust() >= pc.lustMax())
@@ -1765,6 +1778,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		output(" Thigh-fur stained with your seed, the cat-like alien takes her idol and withdraws into the icy chill");
 		if (!isRepeat && priestess != null && !priestess.malesRan) output(", taking her two minions with her");
 		output(", seemingly contented by your dick’s offering. You’re left alone to recover your stamina... and your dignity.");
+		output("\n\n");
 
 		processTime(30+rand(15));
 		IncrementFlag("FERTILITY_PRIESTESSES_FUCKED");
@@ -1860,6 +1874,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		output("\n\nThe priestess huffs and turns, striding out of the cave with her alien idol tucked under one arm. You flop back against the altar and sigh, a sense of relief");
 		if (pc.lust() >= pc.lustMax()) output(" and blue-balled desire");
 		output(" overtaking you. Well, it could have been worse...");
+		output("\n\n");
 
 		processTime(10+rand(5));
 		CombatManager.genericLoss();
@@ -1870,7 +1885,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 public function fertilityPriestessPcKnockUpII(vagIdx:int):void
 {
 	clearOutput();
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 	author("Savin");
 
 	output("The cat-man laughs, sending vibrations from his belly through his dick. <i>“As you say,”</i> he says, groping one of her bone-pierced breasts before returning his hands to your [pc.hips].");
@@ -1924,12 +1939,13 @@ public function fertilityPriestessPcKnockUpII(vagIdx:int):void
 public function fertilityPriestessPcKnockUpIII(vagIdx:int):void
 {
 	clearOutput();
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 	author("Savin");
 
 	output("You gasp and shoot straight up, glancing around in a panic. What the... what just happened to you? The ice is all around you, reeking of sex and sweat... but the milodan are gone. You’ve been cleaned up since your encounter, though your ass and pussy both feel loose and tender from the fucking. You have no doubt that the males’ cum has settled deep inside you by now, and that woman’s “ritual”... You shudder, wrapping your arms around your bare chest.");
 	
 	output("\n\nAnd, of course, that dildo-like idol is gone. A small fortune in savicite, that was... Damn.");
+	output("\n\n");
 
 	pc.orgasm();
 
@@ -1945,7 +1961,7 @@ public function GRM44Flirt():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 
 	output("Flashing your best Steele smile, you put your hands up in a sign of peace and say that sure, you were watching. How could you not, with so much beauty and passion on display just a few minutes ago. That was quite the show they put on, you add - you enjoyed it quite a bit.");
 	
@@ -1963,7 +1979,7 @@ public function GRM44Apologize():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("MILODAN_PRIESTESS", "MILODANMALE", "MILODANMALE");
+	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(true), bustDisplayMilodanMale(true));
 
 	output("You blush and apologize, saying you hadn’t come here intending to peep on her and... whatever it was they were doing.");
 	
@@ -2046,6 +2062,10 @@ public function soloFertilityPriestessFight():void
 
 public function pcRepeatFertilityPriestessVictory():void
 {
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
 	clearOutput();
 	author("Savin");
 	showBust("MILODAN_PRIESTESS");
@@ -2075,6 +2095,10 @@ public function pcRepeatFertilityPriestessLoss():void
 
 	if (!pc.hasCock())
 	{
+		userInterface.hideNPCStats();
+		userInterface.leftBarDefaults();
+		generateMap();
+		
 		output("\n\nThe priestess makes short work of your [pc.gear], tearing enough of your kit aside to get a good look at your");
 		if (pc.HP() <= 0) output(" battered");
 		else output(" desperately lusty");
@@ -2130,6 +2154,7 @@ public function pcRepeatFertilityPriestessLoss():void
 		output("\n\nStaggering to her feet, the priestess dusts herself off her runs a hand through her fur. <i>“Now why don’t you head back to your big city in the west like all the other aliens with your tail tucked between your legs.”</i>");
 
 		output("\n\nShe sneers down at you and grabs her cloak and staff, turning back to the frozen wastes of the north and leaving you to scramble for your gear to keep warm...");
+		output("\n\n");
 
 		processTime(10+rand(5));
 		pc.orgasm();

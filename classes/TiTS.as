@@ -502,6 +502,7 @@
 			initializeMyrellionRooms();
 			kquest2InitRooms();
 			initUvetoRooms();
+			initUvetoRoomsII();
 			kiInitRooms();
 			initVesperiaRoom();
 			

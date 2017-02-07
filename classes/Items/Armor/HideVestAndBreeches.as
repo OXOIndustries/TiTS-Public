@@ -27,7 +27,7 @@ package classes.Items.Armor
 			
 			this.description = "a hide set of vest & breeches";
 			
-			this.tooltip = "A simple but warm and comfortable outfit made of tanned hides, leather, and furs. It won't do much to protect you from modern weapons, but at least you'll look good.";
+			this.tooltip = "A simple but warm and comfortable outfit made of tanned hides, leather, and furs. It won’t do much to protect you from modern weapons, but at least you’ll look good.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

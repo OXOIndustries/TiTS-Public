@@ -203,7 +203,17 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "MILODANMALE";
+			var str:String = "MILODANMALE";
+			
+			// 9999 - Special artist exceptions!
+			if(kGAMECLASS.gameOptions.configuredBustPreferences["MILODANMALE"] != "SHOU") return str;
+			
+			switch(this.meleeWeapon.longName)
+			{
+				case "heavy club": str += "_CLUB"; break;
+				case "axe": str += "_AXE"; break;
+			}
+			return str;
 		}
 		override public function physiqueMax(): Number {
 			return 75;
@@ -255,7 +265,7 @@
 					this.meleeWeapon.attackVerb = "claw";
 					this.meleeWeapon.attackNoun = "claw";
 					break;
-				}
+			}
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

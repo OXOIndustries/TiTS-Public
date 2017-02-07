@@ -70,7 +70,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
 
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Enessa", enessaCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Essyras", essyraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Korgonne", korgonneCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Lurelings", lurelingsCodexEntry);
@@ -2208,6 +2208,8 @@ public function crystalGooCodexEntry():void
 public function bothriocCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Bothrioc"));
 	outputCodex("<b>Name (Singular & Plural):</b> Bothrioc");
 	outputCodex("\n<b>Sexes:</b> Monogendered, generally regarded as feminine. A subtype comprising less than 5% of the population are known as the “quadommes” due to their tendency to keep a large harem of submissives and their unique physical characteristics.");
@@ -2255,49 +2257,57 @@ public function bothriocCodexEntry():void
 
 /* Uveto */
 
-public function enessaCodexEntry():void
+public function essyraCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("ENESSA"); // 9999
-
-	outputCodex(header("ENESSA"));
-	outputCodex("<b>Name:</b> Enessa (Singular), Enessae (Plural)");
-	outputCodex("\n<b>Genders:</b> Hermaphrodites");
+	showBust("9999");
+	
+	outputCodex(header("Essyras"));
+	outputCodex("<b>Name:</b> Essyra (Singular), Essyras (Plural)");
+	outputCodex("\n<b>Genders:</b> Female and Hermaphrodites");
 	outputCodex("\n<b>Height:</b> 6\' 6\" to 7\' 0\"");
 	outputCodex("\n<b>Hair:</b> Snow-white, pink, or light blue");
 	outputCodex("\n<b>Eyes:</b> Pink, human in shape and size");
-	outputCodex("\n<b>Ears:</b> Enessae have large, fox-like ears");
-	outputCodex("\n<b>Tails:</b> Enessae have thick, furry tails in the same number as their penile tendrils (between six and ten). These tails are bushy and fox-like, typically the same color as their head hair.");
+	outputCodex("\n<b>Ears:</b> Essyras have large, vulpine ears");
+	outputCodex("\n<b>Tails:</b> Essyras have several thick, furry tails: usually between six and nine, and in the case of hermaphrodites, always in the same number as their penile tendrils.");
 	outputCodex("\n\n");
 
-
 	outputCodex(blockHeader("Combat"));
-	outputCodex("Enessae are consummate huntresses, combining a natural stealth and agility with amazonian strength. Most prefer to fight with a bow or throwing spear, giving them sure strikes from ambush before finishing their prey in close combat with daggers or axes. Enessae prefer armor made of treated hides and leather, usually from local predators they’ve slain and in snowy colors to maintain their natural camouflage.");
+	outputCodex("Essyras are consummate huntresses, combining a natural stealth and agility with amazonian strength. Most prefer to fight with a bow or throwing spear, giving them sure strikes from ambush before finishing their prey in close combat with daggers or axes. Essyras prefer armor made of treated hides and leather, usually from local predators they’ve slain and in snowy colors to maintain their natural camouflage. Centuries after their homeworld was colonized by the ausar, many essyra have adapted to use salvaged arms and armor from spacers to supplement their traditional hunting styles.");
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Environs"));
-	outputCodex("Natives of the snowy world of Uveto, enessae are well-adjusted to cold weather and snow. Their natural adaptation includes snow-white skin and cold-colored hair, effectively making them albino (complete with pink eyes), and intense body heat compounded by a tremendous ability to store body fats for warmth, much like the colonial ausar have adapted. These body fats are usually stored in the belly, buttocks, and breasts, giving a well-fed Enessa an extremely curvy appearance. This chubby body type should not be underestimated, however, as enessae are also considerably stronger than the average human, owing to their size and natural musculature -- an important attribute, owing to their primitive style of hunting.");
+	outputCodex("Natives of the snowy world of Uveto, essyras are well-adjusted to cold weather and snow. Their natural adaptation includes snow-white skin and cold-colored hair, effectively making them what other species might consider albinos (complete with pink eyes and susceptibility to skin disorder), and have intense body heat which is compounded by a tremendous ability to store body fats for warmth, much like the colonial ausar have adapted. These body fats are usually stored in the belly, buttox, and breasts, giving a well-fed essyra an extremely curvaceous appearance. This chubby body-type should not be underestimated, however, as essyras are also considerably stronger than the average human, owing to their size and natural musculature.");
 	outputCodex("\n\n");
 
-	outputCodex(blockHeader("Reproduction"));
-	outputCodex("Enessae are a race entirely composed of hermaphrodites, meaning they have only one sex. Each Enessa has a fairly basic vagina, functionally similar to that of a human’s with a small clitoris and black lips. Their female organs are surrounded by a writhing mass of thin tentacles that fill the role of penises. Most Enessae have between 6 and 10 penile tendrils, each between 6 and 10 inches in length with a series of three bulbous knots near the base that inflate during intercourse, growing turgid during and after orgasm to bind mates together. Enessae typically have one ‘dominant’ penis that is longer and thicker than the others, growing up to 16 inches in length. These tentacles are prehensile, and each has its own internal testes. This allows each tendril to have its own refractory period -- meaning a particularly amorous Enessa can keep a sexual encounter going for hours, right up until exhaustion takes hold.");
-	outputCodex("\n\nEnessae pregnancy is fundamentally mammalian, with penetrative sex resulting in pregnancies that last six months. Once young are born, they grow quickly to adulthood over the course of one year. They are helpless for only a few days. This quick rise to adulthood is offset by the very short lifespan of enessae, who rarely live more than 10 years.");
-	outputCodex("\n\nWhen two enessae engage in intercourse, impregnation of both partners is seen as highly undesirable and to be avoided, as the sire is expected to take care of her lover while she is with child. When pairs of enessae become mated, it is usually for life, and one of the pair will assume the ongoing role of mother and caregiver, and one the father and provider. In instances where enessae mate with offworlders or natives of other races, they have shown strong tendencies towards impregnating their partner rather than carrying children themselves.");
-	outputCodex("\n\nCulture & Society: Enessae are solitary creatures, usually living alone or with a single mate and their children. Enessae typically live in large, easily moved tents made of bone, leather, and hide from large animals. They are prone to staying in the same abodes for extended periods of time, sometimes several years, so long as good hunting maintains.");
-	outputCodex("\n\nWhile first contact explorers initially feared interaction with enessae huntresses during early exploration of Uveto, the enessae were eventually discovered to be surprisingly friendly towards off-worlders, and instances of violence were remarkably low. Indeed, several huntresses volunteered to act as guides and hunters for early exploration teams, and were instrumental in early mappings of the surface before the modern sensory relays were installed. Enessae DNA was even used in the early variants of the “huskar” gene mod that has allowed colonists to comfortably inhabit Uveto - a fact that many huntresses relish, treating the colonists as their “children.”");
-	outputCodex("\n\nThis friendship has maintained quite well since then. Enessae freely come and go from Irestead and other settlements, and many take ausar colonists as mates. Despite many, many generations of the short-lived race having passed since first contact, enessae today still treat the huskar as their responsibility, and there are many instances of them intervening to rescue an endangered colonist from a predator or natural hazard.");
+	outputCodex(blockHeader("Sexuality & Reproduction"));
+	outputCodex("The essyra are a race entirely composed of feminine individuals, broken into both a female and hermaphrodite sex. They appear to share a single social gender between them, as is common for species with feminine hermaphrodites. All members of the species have a galactic-standard vagina in the usual place for bipeds, completely with black lips and a sensitive clitoris.");
+	outputCodex("\n\nHermaphrodite essyra have a number of penile tendrils that surround their feminine sex, in the same number as the individual’s tails (usually between six and nine) between 6 and 10 inches in length. Each tentacle has a series of three bulbous knots near the base that inflate during intercourse, growing turgid during and after orgasm to bind mates together. Essyra typically have one “dominant” penis that is longer and thicker than the others, growing up to 16 inches in length.");
+	outputCodex("\n\nThese tentacles are prehensile, and each has its own internal testes located inside the base-most knot. This allows each tendril to have its own refractory period -- meaning a particularly amorous essyra can keep a sexual encounter going for hours, effectively indefinitely until exhaustion takes hold.");
+	outputCodex("\n\nEssyra reproduction is fundamentally mammalian, with penetrative sex resulting in pregnancies that last six months. Once young are born, they grow quickly to adulthood over the course of one year. They are helpless for only a few days. This quick rise to adulthood is offset by the very short lifespan of essyras, who rarely live more than 10 years. When two essyran hermaphrodites engage in intercourse, impregnation of both partners is seen as highly undesirable, as the sire is expected to take care of her lover while she is with child.");
+	outputCodex("\n\nWhen pairs of essyras become mated, it is usually for life, and one of the pair will assume the ongoing role of mother and caregiver, and one the father and provider. In instances where essyra mate with offworlders or natives of other races, they have shown strong tendencies towards impregnating their partner or restricting themselves to non reproductive sex. Single motherhood appears to carry an extreme social stigma among the species.");
+	outputCodex("\n\n");
+	
+	outputCodex(blockHeader("Culture & Society"));
+	outputCodex("Essyras are solitary creatures, usually living alone or with a single mate and their children. Essyra typically live in large, easily moved tents made of bone, leather, and hide from large animals. They are prone to staying in the same abodes for extended periods of time, sometimes several years, so long as good hunting maintains, only occasionally shifting their home’s location with the changing ice floes and snow accumulation.");
+	outputCodex("\n\nWhile explorers initially feared interaction with essyra huntresses during early exploration based on their fearsome reputation among other native species, the essyra were eventually discovered to be surprisingly friendly towards off-worlders, and instances of violence were remarkably low. Indeed, several huntresses volunteered to act as guides and hunters for the initial exploration teams, and were instrumental in early mappings of the surface before the modern sensor relays were installed. Essyra DNA was even used in the early variants of the “huskar” gene mod that has allowed colonists to comfortably inhabit Uveto -- a fact that many huntresses relish, treating the colonists as their “children.”");
+	outputCodex("\n\nThis friendship has maintained quite well since then. Essyras freely come and go from Irestead and other settlements, and many take ausar colonists as mates. Despite many, many generations of the short-lived race having passed since first contact, essyras today still treat the huskar as their “responsibility,” and there have been countless instances of them intervening to rescue an endangered colonist from a predator or natural hazard.");
 	outputCodex("\n\n");
 
-	outputCodex(blockHeader("Lureling Enessae"));
-	outputCodex("Of special note is the relationship between the enessae and another species native to Uveto: the so-called ‘lurelings’, powerfully psionic creatures that live beneath the ice. Though research on the matter is thus far limited, it appears that enessae are very susceptible to psionics. It appears that lurelings prey on young enessae, psychically dominating them -- usually for life. The dominated enessa will follow her master above the ice, acting like a lure for adventurers and feeding back sensual pleasures to their master once they’ve secured a mate.");
-
-	outputCodex("Lureling-bound enessae have existed since before First Contact, and appear to have diverged from their free-willed kin on a biological level. Different combinations of sexes, including pure female and male enessae, one apparently selectively bred for their appearance or other physical traits that help them attain mates for their master’s pleasure.");
+	outputCodex(blockHeader("Lureling Essyras"));
+	outputCodex("Of special note is the relationship between the essyra and another species native to Uveto: the so-called “lurelings,” powerfully psionic creatures that live beneath the ice. Though research on the matter is thus far limited, it appears that essyras are very susceptible to psionics, much moreso than other Uvetan races, and have developed no natural talent themselves. Lurelings prey on young essyras, taking advantage of their low mental defenses to psychically dominate them -- usually for life.");
+	outputCodex("\n\nThe dominated essyra will follow her master above the ice, acting like a sexual lure for adventurers and feeding back sensual pleasures to their master once they’ve secured a mate. The purpose of these actions is poorly understood, as no reliable contact has ever been established with the lurelings, but by all accounts they appear to engage in both the domination and luring for pleasure, rather than any biological imperative.");
+	outputCodex("\n\nUnsurprisingly, essyra kill lurelings on sight. Other races treat lure-essyra with a mix of difference and amusement, as encountering them usually means easy sex, and the lure usually carries deep-sea treasure or bounties of fish taken by her master to trade in villages.");
+	outputCodex("\n\nLureling-bound essyras have existed since before First Contact, and appear to have diverged from their free-willed kin on a biological level. Different combinations of sexes, including pure female and male essyras, are apparently selectively bred for their appearance or other physical traits that help them attain mates for their master’s pleasure.");
 	outputCodex("\n\n");
-	CodexManager.viewedEntry("Enessa");
+
+	CodexManager.viewedEntry("Essyras");
 }
 public function frostwyrmCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("FROSTWYRM");
+	
 	outputCodex(header("Frostwyrm"));
 	outputCodex("<b>Name:</b> Unknown (Colloquially: Frostwyrm)");
 	outputCodex("\n<b>Genders:</b> Unknown. Assumed Male and Female.");
@@ -2344,6 +2354,8 @@ public function frostwyrmCodexEntry():void
 public function korgonneCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("KORGONNE_FEMALE");
+	
 	outputCodex(header("Korgonne"));
 	outputCodex("<i>Honest little furballs as tough as they are short.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Korgonne");
@@ -2394,6 +2406,8 @@ public function korgonneCodexEntry():void
 public function lurelingsCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Lureling"));
 	outputCodex("<b>Genders:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> 8\' 0\" to 8\' 8\" at the shoulders. Roughly 9\' from tip to tail.");
@@ -2446,6 +2460,9 @@ public function lurelingsCodexEntry():void
 public function milodanCodexEntry():void
 {
 	clearOutputCodex();
+	var randBust:Array = ["MILODANMALE","MILODANFEM","MILODAN_PRIESTESS"];
+	showBust(randBust[rand(randBust.length)]);
+	
 	outputCodex(header("Milodan"));
 	outputCodex("<b>Name:</b> Milodan");
 	outputCodex("\n<b>Genders:</b> Males and Females, Rare Hermaphrodites");
@@ -2487,6 +2504,8 @@ public function milodanCodexEntry():void
 public function divraniCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Divrani"));
 	outputCodex("<b>Name:</b> Divrani (singular and plural)");
 	outputCodex("\n<b>Genders:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
@@ -2550,6 +2569,8 @@ public function divraniCodexEntry():void
 public function hyraxxiCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Hyraxxi"));
 	outputCodex("<b>Name:</b> Hyraxx (Singular), Hyraxxi (Plural, Adjectival)");
 	outputCodex("\n<b>Genders:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");

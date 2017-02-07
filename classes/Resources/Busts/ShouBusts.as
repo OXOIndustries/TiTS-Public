@@ -365,6 +365,19 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/midee.png", mimeType = "image/png")]
 		public var Bust_MIDEE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male.png", mimeType = "image/png")]
+		public var Bust_MILODANMALE:Class;
+		public var Bounds_MILODANMALE:Rectangle = new Rectangle(30, 0, 65, 62);
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_club.png", mimeType = "image/png")]
+		public var Bust_MILODANMALE_CLUB:Class;
+		public var Bounds_MILODANMALE_CLUB:Rectangle = new Rectangle(30, 0, 65, 62);
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_axe.png", mimeType = "image/png")]
+		public var Bust_MILODANMALE_AXE:Class;
+		public var Bounds_MILODANMALE_AXE:Rectangle = new Rectangle(30, 0, 65, 62);
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_nude.png", mimeType = "image/png")]
+		public var Bust_MILODANMALE_NUDE:Class;
+		public var Bounds_MILODANMALE_NUDE:Rectangle = new Rectangle(30, 0, 65, 62);
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
 		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
@@ -869,13 +882,22 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/marina_nude.png", mimeType = "image/png")]
 			public var Full_MARINA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/midee.png", mimeType = "image/png")]
+			public var Full_MIDEE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male.png", mimeType = "image/png")]
+			public var Full_MILODANMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_club.png", mimeType = "image/png")]
+			public var Full_MILODANMALE_CLUB:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_axe.png", mimeType = "image/png")]
+			public var Full_MILODANMALE_AXE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_nude.png", mimeType = "image/png")]
+			public var Full_MILODANMALE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_FEMALE:Class;
 			/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_FEMALE:Class;*/
-
-			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/midee.png", mimeType = "image/png")]
-			public var Full_MIDEE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/myr_gold_bathers.png", mimeType = "image/png")]
 			public var Full_MYR_GOLD_BATHERS:Class;			
