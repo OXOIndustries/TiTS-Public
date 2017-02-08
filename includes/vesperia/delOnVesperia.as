@@ -192,7 +192,7 @@ public function delDrinkMenu():void
 	{
 		addButton(6,"Body Shots",bodyShotsWithDel,undefined,"Body Shots","Yeah, you see something you want alright.")
 	}
-	else if(hours >= 18) addDisabledButton(6,"Body Shots","Body Shots","It's too busy to do this right now.");
+	else if(hours >= 18) addDisabledButton(6,"Body Shots","Body Shots","It’s too busy to do this right now.");
 	else addDisabledButton(6,"Body Shots","Body Shots","You cannot afford this.\n\nPrice: 100 Credits.");
 	addButton(14,"Back",delBacksies);
 }
@@ -413,7 +413,7 @@ public function sexWithKallysDel():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 1000) >= 0) addButton(0,"Buttfuck Her",fuckDelsAss,undefined,"Buttfuck Her","Fuck her ass.");
+		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 200) >= 0) addButton(0,"Buttfuck Her",fuckDelsAss,undefined,"Buttfuck Her","Fuck her ass.");
 		else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You’re too big to fuck her ass.");
 	}
 	else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You need a penis");
@@ -529,7 +529,7 @@ public function sitOnDelsFaceAtKallys():void
 	output("You grin lustily at the feminized beauty pressed up against you, letting your hands wander down her back and over her jiggly behind. As nice as her ass is, your eyes fix on another prize: her full, pink-hued lips, glistening in the sultry light of the rustic lodge.");
 	output("\n\n<i>“Why don’t you get up on the bar for me, cutey?”</i>");
 	output("\n\nThe bartender babe blushes, practically melting into your arms, all but begging to be shown her proper place underneath you once again. <i>“Miss Kally said I had to stop doing that in the common area, but the baths are okay... This way.”</i>");
-	output("\n\nYou follow behind, slapping her on the ass to speed her on her way. Neither of you pays much attention to the doorway as you pass through it, only each other and a nearby bench that's just the right height. She obediently clambers up onto it, getting more than a few cat-calls from lounging bathers as she makes ready for her upcoming ordeal, cheeks flushed bright red as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command and trying not to ");
+	output("\n\nYou follow behind, slapping her on the ass to speed her on her way. Neither of you pays much attention to the doorway as you pass through it, only each other and a nearby bench that’s just the right height. She obediently clambers up onto it, getting more than a few cat-calls from lounging bathers as she makes ready for her upcoming ordeal, cheeks flushed bright red as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command and trying not to ");
 	//hosscawk;
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("draw too much attention to the pillar of meat starting to get hard between her legs.");
 	else output("give away the fact that her little knee-skirt is tenting something awful.");

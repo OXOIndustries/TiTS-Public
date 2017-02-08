@@ -736,16 +736,17 @@ public function kallyTalkMenu():void
 	else addDisabledButton(9,"Locked","Locked","You don’t know enough to discuss this topic, but you’re pretty sure it somehow relates to her relationship with Kiro.");
 
 	if(MailManager.isEntryUnlocked("del_moved")) addButton(10,"Delilah",askKallyAboutDelilah,undefined,"Delilah","Ask Kally about her new employee, Delilah.");
-	else addDisabledButton(10,"Locked","Locked","Kally has no oher employees to ask about.");
+	else addDisabledButton(10,"Locked","Locked","Kally has no other employees to ask about.");
 	
 	addButton(14,"Back",backToKallyMain);
 }
 
+// Delilah
 public function askKallyAboutDelilah():void
 {
 	clearOutput();
 	showKally();
-	Delilah
+	processTime(5);
 	output("<i>“So you bought Del?”</i>");
 	output("\n\nKally leans over on the bar and waggles a furry finger at you. <i>“I don’t own Del. I own her contract. Slavery’s illegal, you know!”</i> She shakes her head sadly, then brushes a shimmering lock of chocolate hair out of her eyes. <i>“Truth be told, I needed an extra hand and saw an opportunity to help somebody else out of a shitty situation. When I heard what she’d been through, I couldn’t let her go back to that, [pc.name]. She’s been pumped full of so many mods and so many dicks that as soon as she got in the door, she was reaching under my skirt to suck my dick.”</i>");
 	output("\n\nThat sounds an awful lot like Delilah.");
