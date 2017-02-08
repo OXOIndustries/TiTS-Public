@@ -734,8 +734,39 @@ public function kallyTalkMenu():void
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == -1) addDisabledButton(9,"Picardine","Picardine","You already discussed this with Kiro and decided not to dwell on it.");
 	else if(flags["KIRO_KALLY_PICARDINE_QUEST"] == undefined) addDisabledButton(9,"Locked","Locked","You don’t know enough to discuss this topic. Perhaps you should talk to her about other things first.");
 	else addDisabledButton(9,"Locked","Locked","You don’t know enough to discuss this topic, but you’re pretty sure it somehow relates to her relationship with Kiro.");
+
+	if(MailManager.isEntryUnlocked("del_moved")) addButton(10,"Delilah",askKallyAboutDelilah,undefined,"Delilah","Ask Kally about her new employee, Delilah.");
+	else addDisabledButton(10,"Locked","Locked","Kally has no oher employees to ask about.");
 	
 	addButton(14,"Back",backToKallyMain);
+}
+
+public function askKallyAboutDelilah():void
+{
+	clearOutput();
+	showKally();
+	Delilah
+	output("<i>“So you bought Del?”</i>");
+	output("\n\nKally leans over on the bar and waggles a furry finger at you. <i>“I don’t own Del. I own her contract. Slavery’s illegal, you know!”</i> She shakes her head sadly, then brushes a shimmering lock of chocolate hair out of her eyes. <i>“Truth be told, I needed an extra hand and saw an opportunity to help somebody else out of a shitty situation. When I heard what she’d been through, I couldn’t let her go back to that, [pc.name]. She’s been pumped full of so many mods and so many dicks that as soon as she got in the door, she was reaching under my skirt to suck my dick.”</i>");
+	output("\n\nThat sounds an awful lot like Delilah.");
+	output("\n\nLooking over your shoulder, Kally fixes her eyes on the slutty shemale. She chews her ebony lip, sighing heavily. <i>“It took the better part of a day to get her to stop fucking the customers in the main room, and I had to call in a favor from Sylvie, our resident peace-keeper, to keep her out of jail.”</i> She shudders from tail to tits. <i>“The poor thing seemed to think that complimentary orgasms were a major part of customer satisfaction.”</i>");
+	output("\n\n");
+	if(pc.isBimbo()) output("Wait... they aren’t? You can’t think of a thing more satisfying than getting to hand out a few dozen orgasms.");
+	else output("You wisely don’t mention your own contribution to her state.");
+	output("\n\n<i>“But she’s doing really well now,”</i> Kally says, fidgeting. <i>“I’ve seen someone work quite so hard, or be quite so eager to please. Sometimes, I’ll have something that needs taken care, and she’ll be right there, on top of it, before I have a chance to react. And her hands! So quick and dexterous, coaxing out every drop...”</i> ");
+	if(kiroKallyThreesomes() > 0) output("Kally waves languidly at Del, then adds, <i>“Her gag reflex is pretty much gone too. She gets all moody if I don’t let her milk me herself. I’m not so cruel as to deny her a safe way to indulge her lusts.");
+	else output("Her tail waves back and forth nervously, and Kally stammers, <i>“...from the bottles! She’s very efficient!");
+	output("”</i>");
+	output("\n\n<i>“Right,”</i> you say, ");
+	if(kiroKallyThreesomes() > 0) output("smiling lecherously at the kui-tan.");
+	else if(flags["MET_DEL_SHEMALE"] != undefined) output("knowing all too well how much Del loves getting her face stuffed full of the kui-tan’s meat.");
+	else output("now convinced that the kui-tan is getting blowies on the regular from her new employee.");
+	output("\n\nGrabbing a rag, Kally wipes up a wet patch on the bar in a hurry. <i>“So I’m helping her get back on her feet. If she can stick to the plan I recommended her, she’ll be a free woman before long. It’s the least I can do.”</i>");
+	output("\n\nDelilah shimmies up next to you, depositing a few empty glasses upon the bar with a wiggle and a wink. <i>“Mistress Kally, could you help me get some Kui Creamers from the back? You know I can’t get them on my own...”</i>");
+	output("\n\nKally’s tail sticks straight up, and something thuds heavily into one of the coolers beneath the bar. <i>“M-maybe later. Check on tables six and eight, and if I’m free after, we can make up a whole bunch.”</i>");
+	output("\n\nDel licks her lips, kisses your cheek, and spins away, ass wiggling outrageously.");
+	output("\n\n<i>“So uh, I’d better get back to work,”</i> Kally says. While Del had you distracted, Kally shifted pose to lean over the counter, hiding the rest of her body behind the obscuring wall of her generous tits, but there’s no concealing the rigid tips of her nipples.");
+	kallyBarMenu();
 }
 
 //Own Bar?
