@@ -422,16 +422,17 @@ public function chatUpDatPexigaYooooo():void
 	if(bimbo) output("It’s important that [pexiga.name] learn some stuff so everybody knows how smart she is now. Who better to learn from than you?");
 	else output("You take a few minutes to chat with your pexiga pet, walking her through some of the more complicated aspects of civilization as best you can. Her understanding is limited, but she’s at least attentive.");
 
-	//Select a random chat each time"
+	//Select a random chat each time
 	var chats:Array = [1,2,8];
-	
-	var selectedNumber:Number = chats[rand(chats.length)];
 	if(annoIsCrew()) chats.push(3);
 	if(bessIsCrew()) chats.push(4);
 	if(celiseIsCrew()) chats.push(5);
 	if(gooArmorIsCrew() || hasGooArmorOnSelf()) chats.push(6);
 	if(reahaIsCrew()) chats.push(7);
-	//Chat 1"
+	
+	var selectedNumber:Number = chats[rand(chats.length)];
+	
+	//Chat 1
 	if(selectedNumber == 1)
 	{
 		output("\n\nOn the off chance you’d like to take [pexiga.name] for walkies one of these days, it’s important she realize that she can’t just jump onto whoever she likes to taste or mate with them. The concept of personal space is utterly alien to her.");
@@ -453,7 +454,7 @@ public function chatUpDatPexigaYooooo():void
 		output("\n\n<i>“That’s... not exactly what I meant.”</i> With a sigh, you start over from the beginning.");
 		processTime(5);
 	}
-	//Chat 2"
+	//Chat 2
 	else if(selectedNumber == 2)
 	{
 		output("\n\n[pexiga.name] asks you about her vocal piercing. <i>“How come other people don’t have onna these?”</i>");
@@ -476,7 +477,7 @@ public function chatUpDatPexigaYooooo():void
 		output("\n\nNoticing your uncertainty and concern, [pexiga.name] scoots closer to you and rubs the soft spines of her hair against your [pc.skinFurScales]. <i>“Don’t worry, [pexiga.name] just won’t turn off,”</i> she reassures you.");
 		processTime(6);
 	}
-	//Chat 3 (if player has Anno)"
+	//Chat 3 (if player has Anno)
 	else if(selectedNumber == 3)
 	{
 		output("\n\n[pexiga.name] falls quiet and fiddles with her tail’s broad tip a bit dejectedly. <i>“Something on your mind?”</i> you ask ");
@@ -495,7 +496,7 @@ public function chatUpDatPexigaYooooo():void
 		output("\n\nYour pexiga nods enthusiastically and you can’t help but wonder if Anno’s gonna have the girl pulling at her tail for days.");
 		processTime(5);
 	}
-	//Chat 4 (if player has bess.name)"
+	//Chat 4 (if player has bess.name)
 	else if(selectedNumber == 4)
 	{
 		output("\n\nWhile talking to the silver girl, a thought strikes you. [bess.name] complained recently that [pexiga.name] had taken to licking [bess.himHer] when she thinks the bot’s asleep. It might be time to talk to your little beastie about personal space. <i>“Say, [pexiga.name], you haven’t been playing with [bess.himHer] recently, have you?”</i>");
@@ -509,7 +510,7 @@ public function chatUpDatPexigaYooooo():void
 		output("\n\n<i>“That’s very considerate of you, but [bess.name] is a robot. [bess.HeShe] doesn’t get cold. Also, you should really ask people before licking them. Also, why only lick [bess.hisHer] ass?”</i>");
 		output("\n\n[pexiga.name] glances away from you, her tail thumping the ground. <i>“I dunno.”</i>");
 		output("\n\nHopeless. <i>“Just... just ask beforehand next time, okay? If you keep polishing [bess.hisHer] posterior at night, you’ll end up blinding us all with the mirror sheen.”</i>");
-		output("\n\nTongue hanging out, she shrugs, but fresh globs of syrupy-drool start rolling down her mouth. She’s probably thinking of the synthetic " + pc.mf("boy","girl") + "’s rump right now.");
+		output("\n\nTongue hanging out, she shrugs, but fresh globs of syrupy-drool start rolling down her mouth. She’s probably thinking of the synthetic " + bess.mf("boy","girl") + "’s rump right now.");
 		processTime(6);
 	}
 	//Chat 5 (if player has Celise)
@@ -521,33 +522,33 @@ public function chatUpDatPexigaYooooo():void
 		output("\n\n<i>“Miss Cee! She’s real nice.”</i>");
 		output("\n\n<i>“Miss Cee? You mean Celise?”</i>");
 		output("\n\n<i>“Yep yep yep! We explore an’ find fun stuff all over the place.”</i>");
-		output("\n\nThis smells like trouble brewing. The last thing you need are two bimbos poking around your ship. In the best case, they’d just send goofy pictures of themselves to all your contacts. More likely, they’d get some fluids in the console and end up breaking something. <i>“That’s fine, but just stay away from the electronics, okay? We wouldn’t want your saliva getting anywhere delicate, would be?”</i>");
+		output("\n\nThis smells like trouble brewing. The last thing you need is two bimbos poking around your ship. In the best case, they’d just send goofy pictures of themselves to all your contacts. More likely, they’d get some fluids in the console and end up breaking something. <i>“That’s fine, but just stay away from the electronics, okay? We wouldn’t want your saliva getting anywhere delicate, would we?”</i>");
 		output("\n\n[pexiga.name] seems a little confused. <i>“But Missy says she loves when I get my tongue in her delicates. She’s yummy, too. All salty.”</i>");
 		output("\n\nThat little green galotian is such a bad influence. Still, better them playing with each other than playing with the ship’s controls.");
 		processTime(4);
 	}
-	//chat 6 (if player has Nova)"
+	//chat 6 (if player has Nova)
 	else if(selectedNumber == 6)
 	{
-		output("\n\n[pexiga.name] rolls onto her back and plays with her big, bouncy tits while the two of you are talking. <i>“Do you mate with Miss [nova.name]?”</i> she asks out of nowhere.");
+		output("\n\n[pexiga.name] rolls onto her back and plays with her big, bouncy tits while the two of you are talking. <i>“Do you mate with Miss [goo.name]?”</i> she asks out of nowhere.");
 		if(bimbo) output("\n\n<i>“Yup!”</i> you reply happily. <i>“Whenever I have a chance and when I’m not wearing her, ya know. Why do you ask?”</i>");
 		else output("\n\nThat’s more probing than you’re used to from the carefree pexiga. A bit taken aback, you ask her what she means.");
-		output("\n\n<i>“She’s so shiny all the time. I get shiny after mating, so Miss [nova.name] must mate a lot.”</i>");
-		if(bimbo) output("\n\nGeez, that’s a good point. <i>“Maybe, um, maybe [nova.name]’s nano-ma-sheens fuck each other?”</i> To be honest, you’re not real sure how she works at all.");
+		output("\n\n<i>“She’s so shiny all the time. I get shiny after mating, so Miss [goo.name] must mate a lot.”</i>");
+		if(bimbo) output("\n\nGeez, that’s a good point. <i>“Maybe, um, maybe [goo.name]’s nano-ma-sheens fuck each other?”</i> To be honest, you’re not real sure how she works at all.");
 		else output(" You explain that the nanomachine girl is made of metal, so she’s shiny all the time. It doesn’t have anything to do with sex.");
 		output("\n\n<i>“What’s a nana sheen?”</i> the silver girl asks, eyes wide with wonder.");
-		output("\n\n<i>“It’s like one robot made up of lots of tiny robots.”</i> Seeing that she doesn’t understand, you consider elaborating before just giving her a pat on the head. <i>“She’s like a liquid robot.”</i>.");
+		output("\n\n<i>“It’s like one robot made up of lots of tiny robots.”</i> Seeing that she doesn’t understand, you consider elaborating before just giving her a pat on the head. <i>“She’s like a liquid robot.”</i>");
 		output("\n\n<i>“Oooooooooh.”</i> [pexiga.name] nods, sagely. <i>“She tastes funny, tho. Like tiny sparks.”</i>");
-		output("\n\n<i>“Uh, maybe you shouldn’t give her too many kisses,”</i> you advise. With [pexiga.name]’s proclivity for licking harder than most people fuck, she might end up with more of [nova.name] in her belly than left on the ship.");
+		output("\n\n<i>“Uh, maybe you shouldn’t give her too many kisses,”</i> you advise. With [pexiga.name]’s proclivity for licking harder than most people fuck, she might end up with more of [goo.name] in her belly than left on the ship.");
 	}
-	//chat 7 (if player has Reaha)"
+	//chat 7 (if player has Reaha)
 	else if(selectedNumber == 7)
 	{
 		output("\n\n[pexiga.name] squeezes her breasts studiously, examining her inverted, cyan nipples. First she tries one, then the other, to no effect. Huffing, she plops down in front of you and tugs your hand urgently.");
 		output("\n\n<i>“How come I’m not leaking?”</i> she asks in a worried tone. As she asks, the steady pitter patter of drool rains down from her swinging tongue, providing evidence to the contrary.");
 		output("\n\nYou assume she means leaking from her breasts, obviously. <i>“Well, you just aren’t producing any milk. I don’t actually know if pexigas lactate at all.”</i>");
 		output("\n\n<i>“Aw,”</i> she whines. <i>“But Miss Rea leaks all the time! If I leaked from my boobies, I’d get twice the milkings!”</i> She gently pushes you, with petulant insistence. <i>“Make me leak?”</i>");
-		output("\n\nLowering yourself to her level, you examine the silver girl’s breasts. Her teats have retained their dark blue coloration, but she seems to be lacking any actual nipple at their peaks. At first glance, they seems to be inverted, but when you poke at the slight indentation where they ought to be, you find tight holes instead of traditional nips.");
+		output("\n\nLowering yourself to her level, you examine the silver girl’s breasts. Her teats have retained their dark blue coloration, but she seems to be lacking any actual nipple at their peaks. At first glance, they seem to be inverted, but when you poke at the slight indentation where they ought to be, you find tight holes instead of traditional nips.");
 		output("\n\nSquirming under your examination, [pexiga.name] can’t help but lick her teased bosom, the tip of her tongue sliding inside of her dimpled nipple protectively. A thought strikes you and you reach the tip of your little finger toward a breast. With a little pressure, you push the digit inward and find the hole is quite deep. Moaning and whining, she gnaws at the gag in her mouth as you push deeper and deeper.");
 		output("\n\nEventually, you feel moisture on your finger, so you pull back and find your pinkie covered in a thick, cream-colored substance. It smells faintly of vanilla and when you lick it, it tastes almost like pastry frosting. Baby pexiga must use their long tongues to get at their mother’s bounty, like hummingbirds licking up nectar from flowers.");
 		output("\n\n<i>“Sorry, kiddo. I don’t think you’ll be leaking from there any time soon.”</i> You pat her on the head to comfort her, but apparently the nipple penetration made her forget all about her jealousy for Reaha’s bovine attributes. A blissed-out look of intoxicated delight is fixed on [pexiga.name]’s face and she hardly registers the world around her.");
@@ -555,12 +556,12 @@ public function chatUpDatPexigaYooooo():void
 		processTime(7);
 		pc.lust(4);
 	}
-	//chat 8"
+	//chat 8
 	else
 	{
-		output("\n\nYou figure it wouldn’t hurt to spend a little time with [pexiga.name] and look at what she does all day. Leaning against one of the kitchen tables, you quietly just watch her patrolling Yammi’s kitchen. In the cook’s absence, the white-scaled girl, seems lost in some imaginary hunt. She stalks slowly around on all fours, sniffing the air while her tongue experimentally tastes various objects.");
+		output("\n\nYou figure it wouldn’t hurt to spend a little time with [pexiga.name] and look at what she does all day. Leaning against one of the kitchen tables, you quietly just watch her patrolling Yammi’s kitchen. In the cook’s absence, the white-scaled girl seems lost in some imaginary hunt. She stalks slowly around on all fours, sniffing the air while her tongue experimentally tastes various objects.");
 		output("\n\nYou’re tempted to break the silence, but but she does first. <i>“Gotta protect territory,”</i> her piercing translates, the quiet, electronic voice seemingly startling the pexiga herself. <i>“Stupid tongue. Stop talking!”</i> She grabs for her moist organ with both hands, but reflexively yanks it away at the same time.");
-		output("\n\nStartled, she narrows her eyes and raises her tail. Slowly she reaches out to bat at the gold piercing, but before she reaches it, her tail zip around and grabs her wrist. <i>“Attack!”</i> she cries out, descending into a flurry of limbs as she attempts to seize both her tongue and her tail at the same time. A silver ball of activity, she flops and leaps about, banging into cupboards, knocking over pots and pans, and spilling bowls filled with cooking ingredients.");
+		output("\n\nStartled, she narrows her eyes and raises her tail. Slowly she reaches out to bat at the gold piercing, but before she reaches it, her tail zips around and grabs her wrist. <i>“Attack!”</i> she cries out, descending into a flurry of limbs as she attempts to seize both her tongue and her tail at the same time. A silver ball of activity, she flops and leaps about, banging into cupboards, knocking over pots and pans, and spilling bowls filled with cooking ingredients.");
 		output("\n\nStepping in before she wrecks Yammi’s kitchen entirely, you grab her tail in one hand and tongue in the other, hoisting them upwards and out of her reach. <i>“Woah, girl. That’s enough,”</i> you stress with a firm tone.");
 		output("\n\n[pexiga.name] flips over onto her back and looks up at you with big, blue eyes full of innocence. Her tongue starts to wag back and forth while her tail curls around your arm affectionately. <i>“Hai hai,”</i> she giggles.");
 		output("\n\nYou raise an eyebrow at the girl. Is she just trying to act like she didn’t do anything wrong, or did she actually forget that she nearly tore the room apart trying to chase her tongue and tail at the same time? Honestly, it’s as likely to be the one as the other.");
