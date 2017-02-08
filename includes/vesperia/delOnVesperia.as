@@ -13,12 +13,12 @@ public function showDel(nude:Boolean = false):void
 	if(!MailManager.isEntryUnlocked("del_moved"))
 	{
 		showName("\nDEL");
-		showBust("DEL" + bust_Append);
+		showBust("DELILAH" + bust_Append);
 	}
 	else
 	{
 		showName("\nDELILAH");
-		showBust("DELILAH" + bust_Append);
+		showBust("DELILAH_SHEMALE" + bust_Append);
 	}
 }
 //Content Pack Intro
