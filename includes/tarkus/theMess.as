@@ -14,10 +14,12 @@ public function timesDelilahSexed(arg:int = 0):int
 
 public function delilahSubmissiveness():int
 {
+	var subLevel:Number = 0;
 	var tailBonus:Number = 0;
 	if(flags["DEL_TAIL_TRAINED"] != undefined) tailBonus = flags["DEL_TAIL_TRAINED"] * 2;
 	//Tentacle training counts for double (because tentacle training also increases the del-sex-count)
-	return (timesDelilahSexed() - tailBonus);
+	subLevel = (timesDelilahSexed() + tailBonus);
+	return (subLevel < 5 ? subLevel : 5);
 }
 
 public function messBonusFunction():Boolean
@@ -41,7 +43,7 @@ public function barBonusFunction():Boolean
 		if(flags["MET_DEL"] == undefined) addButton(0,"Bartender",approachDCLTrap,undefined,"Bartender","Approach the bartender for a drink or something.");
 		else addButton(0,"Del",approachDCLTrap,undefined,"Del","Approach Del the bartender for a drink or some other service.");
 	}
-	else addDisabledButton(0,"Bartender","Bartender","Del isn't working the bar any longer. It looks like they're having a tough time finding a replacement.");
+	else addDisabledButton(0,"Bartender","Bartender","Del isn’t working the bar any longer. It looks like they’re having a tough time finding a replacement.");
 	addButton(1,"Watch TV",stephIrsonEpisodeTwo,undefined,"Watch TV","Watch the television. It looks like an episode of Steph Irson: Galactic Hunter is on.");
 	roamingBarEncounter(2);
 	return false;
@@ -51,6 +53,7 @@ public function barBonusFunction():Boolean
 public function orderFoodFromTheMess():void
 {
 	clearOutput();
+	showBust("");
 	author("Savin");
 	output("You snag one of the waitresses and ask for a menu. She nods and scurries off toward the front, vanishing into the crowd of bodies flooding through the place. You plop down at one of the benches to await your menu, and are quickly surrounded by raskvel, also waiting on their orders. They crowd around you, seemingly heedless of your personal space, noses and hands poking all over your alien form for what must be half an hour before your waitress returns with a glass of water and a menu. She scoots off before you can ask for a proper drink or an appetizer.");
 	output("\n\nFor fuck’s sake. You spend a few minutes looking through the menu, find the closest thing to terran food you can see, and grab a different waiter walking by to place your order when it’s clear the first isn’t coming back today. He nods, scribbling it down before bolting off to another table, utterly ignoring the clamoring family of raskvel around you.");
@@ -62,6 +65,13 @@ public function orderFoodFromTheMess():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function stretchDelilahsButt():void
+{
+	if(chars["DELILAH"].analCapacity() < 1000) chars["DELILAH"].ass.bonusCapacity += 10;
+	if(chars["DELILAH"].ass.loosenessRaw < 4) chars["DELILAH"].ass.loosenessRaw++;
+	if(chars["DELILAH"].analVirgin) chars["DELILAH"].analVirgin = false;
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
+}
 //[Bartender; First Time]
 public function approachDCLTrap():void
 {
@@ -69,6 +79,9 @@ public function approachDCLTrap():void
 	author("Savin");
 	userInterface.showName("\nDELILAH");
 	userInterface.showBust("DELILAH");
+	
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined && chars["DELILAH"].analVirgin) chars["DELILAH"].analVirgin = false;
+	
 	if(flags["MET_DEL"] == undefined)
 	{
 		flags["MET_DEL"] = 1;
@@ -112,8 +125,17 @@ public function approachDCLTrap():void
 		//[{PC has dick:}Sex] [{PC has a cun:} Face Sit] [Drink] [Leave]
 	}
 	processTime(1);
+	approachDCLMenu();
+}
+public function approachDCLMenu():void
+{
 	clearMenu();
-	if(pc.hasCock() && pc.lust() >= 33) addButton(0,"Buttsex",buttStretchDelsAnus,undefined,"Buttsex","Take the “free” trapslut out for a spin.");
+	
+	if(pc.hasCock() && pc.lust() >= 33)
+	{
+		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 1000) >= 0) addButton(0,"Buttsex",buttStretchDelsAnus,undefined,"Buttsex","Take the “free” trapslut out for a spin.");
+		else addDisabledButton(0,"Buttsex","Buttsex","You’re too big to fuck her ass.");
+	}
 	else addDisabledButton(0,"Buttsex","Buttsex","You need to be sufficiently turned on and have a dick to take this trap for a spin.");
 	if(pc.hasVagina() && pc.lust() >= 33) addButton(1,"Face Sit",sitOnDelilahsFace,undefined,"Face Sit","Sit on the trapslut’s face and make her go to work pleasing you.");
 	else addDisabledButton(1,"Face Sit","Face Sit","Sitting on Del’s face requires you have a vagina and be suitably lusty.");
@@ -121,18 +143,23 @@ public function approachDCLTrap():void
 
 	//Slut Training
 	//Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
-	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(3,"SlutTraining",delilahSlutTraining,undefined,"SlutTraining"," Delilah needs to learn how to properly service her clients with that tight little ass of hers. You’re the perfect person to show her how it’s done...");
-	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be a trappy, non anal virgin so that you can show Delilah how it’s done.");
+	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(3,"SlutTraining",delilahSlutTraining,undefined,"Slut Training","Delilah needs to learn how to properly service her clients with that tight little ass of hers. You’re the perfect person to show her how it’s done...");
+	else addDisabledButton(3,"SlutTraining","Slut Training","Slut training requires you to be a trappy, non-anal virgin so that you can show Delilah how it’s done.");
 
-	//Disarm Trap - secret cunt-tail 'reacharound' on Delilah (first draft)
-	//Hungry tail overrides lust reqs
-	if (pc.hasCuntSnake() && (pc.hasCock() || pc.hasHardLightEquipped()) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7) addButton(4,"TailScrew",disarmDelsTrap,undefined,"Tail Screw","Fuck with Bethany by fucking Del - let the trap hump your tailpussy while you fuck her, so she feels like at least half a man.");
-	//Normal lust reqs
-	else if((pc.hasCock() || pc.hasHardLightEquipped()) && pc.hasCuntTail() && pc.lust() >= 33) addButton(4,"TailScrew",disarmDelsTrap,undefined,"Tail Screw","Fuck with Bethany by fucking Del - let the trap hump your tailpussy while you fuck her, so she feels like at least half a man.");
-	else if(!pc.hasCuntTail()) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
-	else if(!(pc.hasCock() || pc.hasHardLightEquipped())) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
-	else addDisabledButton(4,"TailScrew","Tail Screw","You’re not horny enough to fuck Del, and neither is your tail-pussy.");
+	if(timesDelilahSexed() >= 1)
+	{
+		//Disarm Trap - secret cunt-tail 'reacharound' on Delilah (first draft)
+		//Hungry tail overrides lust reqs
+		if (pc.hasCuntSnake() && (pc.hasCock() || pc.hasHardLightEquipped()) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7) addButton(4,"TailScrew",disarmDelsTrap,undefined,"Tail Screw","Fuck with Bethany by fucking Del - let the trap hump your tailpussy while you fuck her, so she feels like at least half a man.");
+		//Normal lust reqs
+		else if((pc.hasCock() || pc.hasHardLightEquipped()) && pc.hasCuntTail() && pc.lust() >= 33) addButton(4,"TailScrew",disarmDelsTrap,undefined,"Tail Screw","Fuck with Bethany by fucking Del - let the trap hump your tailpussy while you fuck her, so she feels like at least half a man.");
+		else if(!pc.hasCuntTail()) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
+		else if(!(pc.hasCock() || pc.hasHardLightEquipped())) addDisabledButton(4,"TailScrew","Tail Screw","You need a tail-pussy and either a cock that fits or a hardlight sextoy to enact this plan.");
+		else addDisabledButton(4,"TailScrew","Tail Screw","You’re not horny enough to fuck Del, and neither is your tail-pussy.");
+	}
+	
 	if(peacekeeperTalkAvailable()) addButton(5,"Peacekeepers",dclPeacekeeperTalk);
+	
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -149,17 +176,7 @@ public function approachDCLBooty():void
 	output("\n\nShe (he?) scowls at you, arms crossing under her barely-noticeable bust. <i>“I am! Really! But Beth makes me wear this until I’m “broken in” for her! I didn’t... I thought I was just going to be a bartender!”</i>");
 	output("\n\nWell, it seems there’s a tight little boy-pussy for the taking here. And she can’t say no. Then again, that’d be taking advantage, wouldn’t it?");
 	processTime(1);
-	clearMenu();
-	if(pc.hasCock() && pc.lust() >= 33) addButton(0,"Buttsex",buttStretchDelsAnus,undefined,"Buttsex","Take the “free” trapslut out for a spin.");
-	else addDisabledButton(0,"Buttsex","Buttsex","You need to be sufficiently turned on and have a dick to take this trap for a spin.");
-	if(pc.hasVagina() && pc.lust() >= 33) addButton(1,"Face Sit",sitOnDelilahsFace,undefined,"Face Sit","Sit on the trapslut’s face and make her go to work pleasing you.");
-	else addDisabledButton(1,"Face Sit","Face Sit","Sitting on Del’s face requires you have a vagina and be suitably lusty.");
-	addButton(2,"Get Drink",getADrinkFromDCLsButt,undefined,"Get Drink","Ask about purchasing a drink.");
-	//Slut Training
-	//Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
-	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(3,"SlutTraining",delilahSlutTraining,undefined,"SlutTraining"," Delilah needs to learn how to properly service her clients with that tight little ass of hers. You’re the perfect person to show her how it’s done...");
-	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be a trappy, non anal virgin so that you can show Delilah how it’s done.");
-	addButton(14,"Leave",mainGameMenu);
+	approachDCLMenu();
 }
 
 //[Drink]
@@ -357,9 +374,9 @@ public function buttStretchDelsAnus():void
 	output(" boypussy, you don’t know how long you’re going to hold out. Her ass feels like a vice, so tight around your [pc.cock " + x + "] its nearly painful, yet with every thrust you can feel the twitch and spasm of her muscles as her little sphincter tries to push you out or draw you in, you’re never sure. Either way, it’s making a tight, wet, squirming hole for you to fuck, ushering you inexorably towards your now-inevitable orgasm.");
 	output("\n\nYou feel your cock swelling inside her, cum rushing through your [pc.cock " + x + "] towards the waiting receptacle of the trap-whore’s wanton hole. She seems to sense the oncoming climax, and responds with a shrill yelp of pleasure, her own cock twitching madly, so close yet so far from orgasm. She reaches up and grabs your shoulders, clutching tightly at you as you flood her bowels with cum. Shockwaves of pleasure tear through your body as [pc.cumColor] ropes let loose from your [pc.cock " + x + "], smearing the trap’s rectal walls with your sticky seed. Your [pc.hips] piston away, thrusting you as deep into her ass as you can go before you’ve finished, making sure to bust your nut straight into her spasming colon, giving it a taste of cum before you’re finally finished.");
 	output("\n\nYou shudder with an absolute contentment, panting heavily as your cock starts to deflate in the trap’s well-fucked ass. Slowly, you withdraw yourself from her hole, giving the act of her use a note of finality as you wipe your prick off on her thigh, smearing it with the last trickles of your seed. For her part, the trap-slut’s all but insensate, leaning back on the bar with her cock rock-hard and swaying, begging for relief you’re not going to give her. Instead, you collect your gear and step back, leaving the little whore’s legs spread and ass agape as the crowd that’d collected around you during your lewd, public act gets ready to get intimate with the whore. Looks like she’ll be busy for a good long while!");
-	if(chars["DELILAH"].analCapacity() < 1000) chars["DELILAH"].ass.bonusCapacity += 10;
-	if(chars["DELILAH"].ass.loosenessRaw < 4) chars["DELILAH"].ass.loosenessRaw++;
-	flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
+	
+	stretchDelilahsButt();
+	
 	pc.orgasm();
 	timesDelilahSexed(1);
 	pc.exhibitionism(1);

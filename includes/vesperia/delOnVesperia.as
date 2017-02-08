@@ -60,6 +60,9 @@ public function delCanadiaMeeting():void
 {
 	clearOutput();
 	showDel();
+	
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined && chars["DELILAH"].analVirgin) chars["DELILAH"].analVirgin = false;
+	
 	if(flags["MET_DEL_SHEMALE"] == undefined)
 	{
 		output("That couldn’t be Del, could it? She’s about the right height, same hair and chocolatey skin, same outfit... but you definitely don’t remember the crossdressing slave being so bouncy. Literally and figuratively: this girl’s packing some serious meat in her trunk, jiggling with every step, and her maid’s blouse is buttoned down enough to show off some serious cleavage. This girl’s gotta be packing D-cups at the very least, practically spilling out of her shirt.");
@@ -132,7 +135,7 @@ public function delVesperiaMenu():void
 	addButton(0,"Drinks",drinkFromDel,undefined,"Drinks","Get a drink from the slutty waitress.");
 	addButton(1,"Talk",talkToDel,undefined,"Talk","Sit and chat with Del.");
 	if(pc.lust() >= 33) addButton(2,"Sex",sexWithKallysDel,undefined,"Sex","Take Del to pound town.");
-	else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for that.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -409,8 +412,8 @@ public function sexWithKallysDel():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(chars["DELILAH"].analCapacity()) >= 0) addButton(0,"Buttfuck Her",fuckDelsAss,undefined,"Buttfuck Her","Fuck her ass.");
-		else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You're too big to fuck her ass.");
+		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 1000) >= 0) addButton(0,"Buttfuck Her",fuckDelsAss,undefined,"Buttfuck Her","Fuck her ass.");
+		else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You’re too big to fuck her ass.");
 	}
 	else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You need a penis");
 	if(pc.hasVagina()) addButton(1,"Face Sittng",sitOnDelsFaceAtKallys,undefined,"Face Sitting","Sit on Del’s Face.");
@@ -426,7 +429,7 @@ public function fuckDelsAss():void
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“How about you let me play with this new ass of yours?”</i> you say, grinning lustfully at the curvy bimbo-body pressed up against you. <i>“For old time’s sake.”</i>");
-	output("\n\n<i>“How ‘bout just for ‘I’m horny as hell’s’ sake?”</i> she giggles,grinding against you in excitement at the prospect of another taste of your bitch-breaking cock. At your word, she obediently slips out of your lap and spins around to present her hindquarters to you, getting more than a few cat-calls from her customers as she makes ready for her upcoming ordeal. Her chocolate-hued cheeks flush as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command. ");
+	output("\n\n<i>“How ‘bout just for ‘I’m horny as hell’s’ sake?”</i> she giggles, grinding against you in excitement at the prospect of another taste of your bitch-breaking cock. At your word, she obediently slips out of your lap and spins around to present her hindquarters to you, getting more than a few cat-calls from her customers as she makes ready for her upcoming ordeal. Her chocolate-hued cheeks flush as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command. ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("Her massive equine endowment throbs half-hard between her legs, dangling out from under her skirt.");
 	else output("Del moans breathlessly, rubbing at her tiny prick through her skirt, eeking out some pleasure for herself while you enjoy the show.");
 
@@ -436,7 +439,7 @@ public function fuckDelsAss():void
 	output("\n\nShe eagerly drops to her knees, already oh so eager for a taste of your cock. She opens wide, ready to recieve your package. You step forward, tossing your equipment onto the bar and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore’s face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock.");
 	output("\n\n<i>“My favorite snack! Mmm, I love the taste of your cock...”</i> she purrs, nuzzling the shaft of your [pc.cock] affectionately as her tongue lavishes it with affection. <i>“The first... and the best...”</i> she adds happily, planting a kiss on the tip. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut.");
 	output("\n\n<i>“Juuust like that,”</i> you moan through clenched teeth, trying to control yourself. Your fingers snake through the whore’s blonde-dyed hair, coaxing her on as she licks and kisses at the underside of your member, slowly but surely working herself up to taking it wholesale. ");
-	if(pc.balls > 1) output("But first, she lets a hand wander free up one of your [pc.legs], caressing the tender flesh slowly as she works up to your base, hands cupping your swinging sack, rolling your nads between her dainty little fingers. The slutty, dusky whore grins up at you, her mouth trailing kisses down your girthy length until she can lap at your [pc. balls], lavishing your hefty nuts with the tip of her eager tongue before opening wide and swallowing them up, suckling on your gonads like a pair of teats. You groan and shudder, trying not to cum as your sexy shemale slut sucks on your sack like the pro she’s turned out to be.");
+	if(pc.balls > 1) output("But first, she lets a hand wander free up one of your [pc.legs], caressing the tender flesh slowly as she works up to your base, hands cupping your swinging sack, rolling your nads between her dainty little fingers. The slutty, dusky whore grins up at you, her mouth trailing kisses down your girthy length until she can lap at your [pc.balls], lavishing your hefty nuts with the tip of her eager tongue before opening wide and swallowing them up, suckling on your gonads like a pair of teats. You groan and shudder, trying not to cum as your sexy shemale slut sucks on your sack like the pro she’s turned out to be.");
 
 	output("\n\nFinally, the cock-craving whore makes her way back up to the crown of your cock, slowly opening her lips to welcome in your manhood and ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("spreading her knees to giver her hands access to her throbbing equine hardon. She’s well and truly used to everyone in the bar oggling her horsecock, just like they do to her mistress, so she shows no shame in wrapping both hands around her member and stroking it from flare to medial ring.");
@@ -451,7 +454,7 @@ public function fuckDelsAss():void
 	if(pc.balls > 1)
 	{
 		if(pc.cocks[x].cLength() >= 12) output(" until her throat is bulging with your massive meat, so much crammed down her that she looks ready to burst");
-		else output(" until your [pc. balls] slap her chin");
+		else output(" until your [pc.balls] slap her chin");
 	}
 	output(". The trap-slut gags and cries out as she’s suddenly and violently face-fucked, but the growing crowd around the two of you cheers as you fill her mouth with cock.");
 
@@ -489,6 +492,7 @@ public function delGetsButtplowedAtKallysPart2(x:int):void
 	else output("your hips press into hers, your shaft fully buried");
 	output(". She cries out, fingers digging into the edge of the bar as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");
 
+	stretchDelilahsButt();
 	pc.cockChange();
 
 	output("\n\nBut that’s the last kindness you’re going to show this wanton whore’s little pucker. You draw yourself only half-way out before slamming back home, thrusting back with all the force your [pc.hips] can muster, sending shockwaves through the flesh of the lusty slut’s bubble butt. Her prick jumps in response to your next thrust, hopping straight up and twitching visibly as a bead of creamy white beads at its tip. You consider giving her a little tug to help her along, but then... that’d defeat the purpose! This slut’s supposed to be a little anal whore, so by God that’s what she’ll be. You reaffirm your grip on her broad hips and start pounding with a vengeance, faster and harder until Del’s whining and moaning with every push, crying her pleasure aloud with utter abandon. You can barely reconcile the bashful little trap you met back on Tarkus with this moaning, giggling whore, spilling cum all over her own belly as you pound her ass.");
@@ -499,11 +503,14 @@ public function delGetsButtplowedAtKallysPart2(x:int):void
 	output("\n\nIt doesn’t take long before somebody’s hoisted her back onto the bar and thrust into her still-open asshole, using your cum as lube to ream her hard. You give Del a little wink and step back, collecting your gear and leaving her to satisfy her owner’s horny patrons.");
 	processTime(20);
 	pc.orgasm();
+	
+	timesDelilahSexed(1);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
-//Sit on Del's Face
+//Sit on Del’s Face
 //Now works for [pc.vagOrAss " + x + "]. PC still needs a gender tho.
 
 public function sitOnDelsFaceAtKallys():void
@@ -582,6 +589,9 @@ public function sitOnDelsFaceAtKallys():void
 	output("\n\n<i>“Delicious,”</i> she grins, tongue lapping up her salty seed like a good little whore. You make sure your hands are spotless before swinging off the bar, hiking her legs off the edge to put her ass in the air for the next customer. She gives a sharp cry of pleasure as she’s quickly speared on a dick, leaving you to get your gear and catch your breath.");
 	processTime(45);
 	pc.orgasm();
+	
+	timesDelilahSexed(1);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -609,7 +619,7 @@ public function sitOnDelsFaceAtKallys():void
 
 	output("\n\nThat’s not the only thing that’s going to be kissing it, either. You let a pair of fingers slink down to your [pc.vagina], spreading the lips of your labia wide just shy of the trap’s chin, almost close enough to let your excitement drool down into her lips.");
 	//if 1-4:
-	if(flags["DEL_FACESAT"] == undefined ||  flags["DEL_FACESAT"] < 5) output(" <i>“Wait... you... you really want me to... to...”</i> she sputters indignantly, trying to hide the little tentpole between her slender legs");
+	if(flags["DEL_FACESAT"] == undefined || flags["DEL_FACESAT"] < 5) output(" <i>“Wait... you... you really want me to... to...”</i> she sputters indignantly, trying to hide the little tentpole between her slender legs");
 	else output(" She blushes, licking her lips. <i>“I love the taste of your pussy juices, mistress,”</i> she coos, eyes transfixed by your slit”</i>");
 	output(". Slowly, her tongue slips out from her dark lips, one long slurp across your [pc.cunt]. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut. Maybe in her previous life, she might have been pretty popular with the ladies...");
 	output("\n\nYou let yourself give a little moan as the trap-slut goes down on you, tongue delving deep between your folds. <i>“That’s it, girl... Now, why don’t we have you do the alphabet?”</i>");
@@ -654,7 +664,7 @@ public function sitOnDelsFaceAtKallys():void
 		output("\n\n<i>“You got me dirty,”</i> you chide, putting a spunky fingertip to her lips. She opens wide for you. <i>“You gotta clean up after yourself, little girl.”</i>");
 		output("\n\n<i>“Delicious,”</i> she grins, tongue lapping up her salty seed like a good little whore. You make sure your hands are spotless before swinging off the bar, hiking her legs off the edge to put her ass in the air for the next customer. She gives a sharp cry of pleasure as she’s quickly speared on a dick, leaving you to get your gear and catch your breath.");
 	}
-	IncrementFlag("DEL_FACESAT")
+	IncrementFlag("DEL_FACESAT");
 	processTime(45);
 	pc.orgasm();
 	clearMenu();
