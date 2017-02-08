@@ -133,7 +133,7 @@ public function approachDCLMenu():void
 	
 	if(pc.hasCock() && pc.lust() >= 33)
 	{
-		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 1000) >= 0) addButton(0,"Buttsex",buttStretchDelsAnus,undefined,"Buttsex","Take the “free” trapslut out for a spin.");
+		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 200) >= 0) addButton(0,"Buttsex",buttStretchDelsAnus,undefined,"Buttsex","Take the “free” trapslut out for a spin.");
 		else addDisabledButton(0,"Buttsex","Buttsex","You’re too big to fuck her ass.");
 	}
 	else addDisabledButton(0,"Buttsex","Buttsex","You need to be sufficiently turned on and have a dick to take this trap for a spin.");
