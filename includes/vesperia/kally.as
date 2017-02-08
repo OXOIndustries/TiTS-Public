@@ -753,7 +753,7 @@ public function askKallyAboutDelilah():void
 	output("\n\n");
 	if(pc.isBimbo()) output("Wait... they aren’t? You can’t think of a thing more satisfying than getting to hand out a few dozen orgasms.");
 	else output("You wisely don’t mention your own contribution to her state.");
-	output("\n\n<i>“But she’s doing really well now,”</i> Kally says, fidgeting. <i>“I’ve seen someone work quite so hard, or be quite so eager to please. Sometimes, I’ll have something that needs taken care, and she’ll be right there, on top of it, before I have a chance to react. And her hands! So quick and dexterous, coaxing out every drop...”</i> ");
+	output("\n\n<i>“But she’s doing really well now,”</i> Kally says, fidgeting. <i>“I’ve never seen someone work quite so hard, or be quite so eager to please. Sometimes, I’ll have something that needs taken care of, and she’ll be right there, on top of it, before I have a chance to react. And her hands! So quick and dexterous, coaxing out every drop...”</i> ");
 	if(kiroKallyThreesomes() > 0) output("Kally waves languidly at Del, then adds, <i>“Her gag reflex is pretty much gone too. She gets all moody if I don’t let her milk me herself. I’m not so cruel as to deny her a safe way to indulge her lusts.");
 	else output("Her tail waves back and forth nervously, and Kally stammers, <i>“...from the bottles! She’s very efficient!");
 	output("”</i>");
