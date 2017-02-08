@@ -1,6 +1,6 @@
 ﻿public function pexigaIsCrew():Boolean
 {
-	if (pexiga.hasPerk("Ditz Speech")) return true;
+	if (pexiga.hasPerk("Ditz Speech") && yammiIsCrew()) return true;
 	return false;
 }
 public function pexigaRecruited():Boolean

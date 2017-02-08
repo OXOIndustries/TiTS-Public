@@ -164,8 +164,14 @@ public function saliresIcedTeats():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You head into the Iced Teats shop, looking to enjoy something cool and delicious. When you enter, a blue skinned woman with black hair smiles at you, her light blue vest barely holding her bulging D-cup breasts in place. She greets you with the familiar <i>“Welcome to Iced Teats! My name is Salire, what can I get for you today?”</i> She has the eager happiness of someone new to their job and looking to make a good impression.");
+	if(yammiRecruited() && !yammiIsCrew())
+	{
+		output("\n\nYammi is hanging around, eating some iced cream and talking shop with Salire. When she sees you, her eyes light up hopefully.");
+		addButton(1,"Yammi",yammiReRecruitApproach);
+	}
 	addButton(0,"Salire", salireApproach, undefined, "Salire", "Order a frozen treat from Salire.");
 }
+
 public function salireApproach():void
 {
 	clearOutput();
@@ -246,7 +252,79 @@ public function yammiFollowerMenu():void
 	//[Flirt]
 	//Repeat entrance to sex scenes. Replaces previous <i>“Flirt”</i> scenes.
 	if(flags["SEXED_YAMMI"] != undefined) addButton(3,"Flirt",flirtWithYammiBruh,undefined,"Flirt","See if your favorite chef is up for a little fun...");
+	addButton(13,"Evict",askYammiToLeave,undefined,"Evict","Potentially kick Yammi off your ship for the time being.");
 	addButton(14, "Back", crew);
+}
+
+public function askYammiToLeave():void
+{
+	clearOutput();
+	showYammi();
+	output("<i>“Hey Yammi, do you have somewhere to stay if I need to free up your bunk on the ship for a while?”</i>");
+	output("\n\nYammi cocks her head to the side, looking at you sidelong. <i>“What’s the matter Boss? You don’t like my cooking?”</i>");
+	output("\n\n<i>“It’s not that,”</i> you explain, <i>“I’m just thinking of doing some reorganizing on the ship.”</i>");
+	output("\n\n<i>“Oh.”</i> Yammi taps her chin. <i>“I think I could hang around on New Texas, if you want. Between Iced Teats and the the grill in Big T’s place, there’s bound to be some place that’ll let me pick up some extra scratch doing food prep. Those big bulls have huge appetites, especially after they spend all afternoon plowing some ditzy cow.”</i> She looks around. <i>“You need me to make tracks now, Boss?”</i>");
+	output("\n\nAre you sure you want to get rid of Yammi?");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Yes",yesRemoveYammiFromShip);
+	addButton(1,"No",noDontRemoveYammiYaCunt);
+}
+
+public function yesRemoveYammiFromShip():void
+{
+	clearOutput();
+	showYammi();
+	output("You nod.");
+	output("\n\nYammi gathers her things in short order");
+	if(pexigaIsCrew()) output(", along with [pexiga.name]");
+	output(". <i>“Don’t get any funny ideas just because I’m not around. You need to eat if you want to win this thing.”</i> She gives you a kiss on the cheek on her way out.");
+	
+	output("\n\n(<b>Yammi ");
+	if(pexigaIsCrew()) output("and [pexiga.name] are no longer on your crew. You can find them again on New Texas.</b>)");
+	else output("is no longer on your crew. You can find her again on New Texas.</b>)");
+	processTime(5);
+	flags["YAMMI_IS_CREW"] = 0;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function noDontRemoveYammiYaCunt():void
+{
+	clearOutput();
+	showYammi();
+	output("<i>“Nah, but I might need to later.”</i>");
+	output("\n\n<i>“You’re the boss, Boss.”</i>");
+	yammiFollowerMenu();
+}
+public function yammiReRecruitApproach():void
+{
+	clearOutput();
+	showYammi();
+	output("<i>“Hey, Boss. Ready to stop eating slop and get a real meal?”</i> Yammi smiles, excited to get back out amongst the stars.");
+	output("\n\nDo you want to add Yammi back to your crew?");
+	clearMenu();
+	addButton(0,"Yes",yesGetYammiBack);
+	addButton(1,"No",noGettingYammiBackToday);
+}
+
+public function yesGetYammiBack():void
+{
+	clearOutput();
+	showYammi();
+	output("You tell Yammi to grab her things and get back on the ship. She's out the door before you finish.\n\n(<b>Yammi is back on your crew.</b>)");
+	if(pexigaRecruited()) output("\n(<b>And the Pexiga probably came with her!</b>)");
+	flags["YAMMI_IS_CREW"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function noGettingYammiBackToday():void
+{
+	clearOutput();
+	showYammi();
+	output("Yammi tries not to let her disappointment show when you inform her that you won't be taking her back onboard yet.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function yammiTalkRouter():void
