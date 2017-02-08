@@ -205,6 +205,7 @@ public function configureMails():void
 	MailManager.addMailEntry("jade_dumplings", "I’m making <i>special</i> dumplings, if you want some, come to the shop ;)\n\n~Jade", "Dumplings!","Jade","professional_panda@cmail.com",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 }
 
 public function cuzName():String

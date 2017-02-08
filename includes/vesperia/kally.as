@@ -129,8 +129,9 @@ public function kallyBonusRoomTexts():Boolean
 			addButton(0,"Kally",approachKally);
 		}
 	}
-	roamingBarEncounter(1);
-	if(kaedeBlurb4KuiCountryBarAndGrilllll(2)) return true;
+	if(MailManager.isEntryUnlocked("del_moved")) delBonus(1);
+	roamingBarEncounter(2);
+	if(kaedeBlurb4KuiCountryBarAndGrilllll(3)) return true;
 	return false;
 }
 
