@@ -315,7 +315,10 @@ public function seraAppearance():void
 	output(" Black sclera ring her golden, glowing irises, split by lizard-like pupils. Above them, a row of gleaming, metal piercings line her brow. Her slightly upturned nose is unremarkable, aside from the single stud in her left nostril. Pale blue hair cascades around her visage like fine silk tapestries arranged to tastefully frame her face.");
 	if(seraRecruited()) output("\n\nA silver slave collar rings her neck, complete with an innocuous lead hasp at the back; a tasteful, permanent reminder of her status. Ornamental pentagonal plates grow out of her shoulders. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so exquisitely.");
 	else output("\n\nA choker of black-lined, blue-glowing conduits rings her neck, matched on her torso by a sable corset dotted by hard metal and glowing, technological baubles. Pentagonal plates have grown out of her shoulders, though you cannot tell if they exist as armor or ornamentation. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so beautifully.");
-	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They’re nicely rounded and capped with a pair of " + chars["SERA"].nippleColor + " nipples that are ever so slightly pebbled in the air-conditioned station air. They’re the kind of boobs that just beg to be fondled");
+	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They’re nicely rounded and capped with a pair of " + chars["SERA"].nippleColor + " nipples that are ever so slightly pebbled in the");
+	if(seraRecruited()) output(" open");
+	else output(" air-conditioned station");
+	output(" air. They’re the kind of boobs that just beg to be fondled");
 	if(!seraRecruited()) output(", and Sera’s open display of them shows just how much she knows it");
 	output(".");
 	output("\n\n");

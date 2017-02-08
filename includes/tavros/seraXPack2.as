@@ -54,9 +54,9 @@ public function sentientAcquisitionsBonus():Boolean
 	{
 		showBust("TERON", "ATTICA");
 		
-		output("With a slight amount of apprehension you pass through the pale glare of the shop’s facade. The interior is done up in a sharp, minimalist chic, all polished wood floors and spindly furniture done up in blacks, whites and grays. On either side of the counter two tall, insectile humanoids are standing face-to-face. Their faces are pale skinned and their limbs armored in black chitin, the same color as their liquid, pupil-less eyes. They are good looking in an austere, androgynous kind of way, complimented by their sharp business dress. If they’re conversing, they’re doing it very quietly. They each have a ruff of wide, diaphanous feathers around their necks which they are fluttering at each other vigorously, like hummingbird wings. There’s something not quite right about them; their movement distracts and tugs at your eye, insisting you look at them closer. Color spreads across and below the shimmering surfaces, impossibly thin and infinitely deep at the same time...");
+		output("With a slight amount of apprehension you pass through the pale glare of the shop’s facade. The interior is done up in a sharp, minimalist chic, all polished wood floors and spindly furniture done up in blacks, whites and grays. On either side of the counter two tall, insectile humanoids are standing face-to-face. Their faces are pale skinned and their limbs armored in black chitin, the same color as their liquid, pupil-less eyes. They are good looking in an austere, androgynous kind of way, complimented by their sharp business dress. If they’re conversing, they’re doing it very quietly. They each have a ruff of wide, diaphanous feathers around their necks that flutter at each other vigorously, like hummingbird wings. There’s something not quite right about them; their movement distracts and tugs at your eye, insisting you look at them closer. Color spreads across and below the shimmering surfaces, impossibly thin and infinitely deep at the same time...");
 		output("\n\nThe two creatures seem to notice you and in a single movement brush their feathers back, clipping them behind their necks into some sort of hood attached to their shoulders.");
-		output("\n\n<i>“Sorry about that rue collar, we didn’t see you standing there,”</i> says one in a brisk, dry tone which buzzes slightly at the edges. Your codex beeps urgently.");
+		output("\n\n<i>“Sorry about that, rue collar, we didn’t see you standing there,”</i> says one in a brisk, dry tone which buzzes slightly at the edges. Your codex beeps urgently.");
 		output("\n\n<i>“Tarratch. Semi-restricted insectoid race, noted for ability to transfix sentient beings, psychic feeding habits and proclivity for piracy. Should not be approached under any circumstances.”</i>");
 		
 		CodexManager.unlockEntry("Tarratch");
@@ -113,7 +113,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 		output("”</i>");
 		output("\n\n<i>“And how do you... acquire them?”</i>");
 		output("\n\n<i>“Repossession, mostly.”</i> Attica places a delicate emphasis on “mostly”. <i>“We are silent partners in a number of loan and mod companies. If a mod-happy deadbeat cannot pay their monthly installments... well, it’s difficult to repossess someone’s eye stalks specifically isn’t it?”</i>");
-		output("\n\n<i>“The female who sold the rights of this place to us was not just a brute but a fool,”</i> Teron murmurs, a salacious smile spreading across his long, elegant face. <i>“Frontier rushes are a time of hasty business decisions; of people mortgaging themselves to the hilt to come out here with a spaceship; of new, beautiful and deliciously naïve sentients. The acquisitions that will be flowing through this spaceport in the months to come will be a wonder to behold.”</i> He sighs. <i>“But right now there is little to try and tempt you with, rue collar.");
+		output("\n\n<i>“The female who sold the rights of this place to us was not just a brute but a fool,”</i> Teron murmurs, a salacious smile spreading across his long, elegant face. <i>“Frontier rushes are a time of hasty business decisions; of people mortgaging themselves to the hilt to come out here with a spaceship; of new, beautiful and deliciously naive sentients. The acquisitions that will be flowing through this spaceport in the months to come will be a wonder to behold.”</i> He sighs. <i>“But right now there is little to try and tempt you with, rue collar.");
 		// Sera taken:
 		if(flags["SERA_ACQUIRED_DATE"] != undefined) output(" With our problem case gone, we are simply waiting for the trade from the frontier to start trickling in. Come back in a month’s time or so, we’ll have many fresh and exotic pieces of property to show you.");
 		// Sera still on:
@@ -366,8 +366,14 @@ public function seraIsRepoed():void
 	}
 	output("\n\n<i>“Your possessions will be sold and put towards paying off your debt,”</i> says Attica briskly. <i>“For now, you will accompany your new owner...”</i> At the last word Sera finally reaches a decision about which of the repo-sects she most wants to kill. She rushes at Attica screaming, teeth and claws bared.");
 	output("\n\n<i>“That’s enough!”</i> The female tarratch’s feathers unfurl and vibrate vigorously, and the succubus freezes, staring into the buzzing, shifting, hypnotizing fan. You avert your eyes.");
-	output("\n\n<i>“You will listen to me now worthless rue collar, and you will listen carefully. You shall learn to show gratitude to your new owner. [pc.He] has paid off the debt you so carelessly ran up, and removed all obligations from your life except one: To serve [pc.him] well. Believe me when I say there are far worse owners you could have ended up with – we were drawing up a list of them when [pc.he] stepped in. You shall learn to show gratitude to your new owner mostly, though, because that collar you are now wearing will shock you if you raise your hands against [pc.him], or if you travel outside [pc.his] ship without permission. Do you understand?”</i> As Attica speaks Teron steps over to you, pressing into your side as he hands you a small, steel remote and a briefcase.");
+	output("\n\n<i>“You will listen to me now, worthless rue collar, and you will listen carefully. You shall learn to show gratitude to your new owner. [pc.He] has paid off the debt you so carelessly ran up, and removed all obligations from your life except one: To serve [pc.him] well. Believe me when I say there are far worse owners you could have ended up with – we were drawing up a list of them when [pc.he] stepped in. You shall learn to show gratitude to your new owner mostly, though, because that collar you are now wearing will shock you if you raise your hands against [pc.him], or if you travel outside [pc.his] ship without permission. Do you understand?”</i> As Attica speaks Teron steps over to you, pressing into your side as he hands you a small, steel remote and a briefcase.");
 	output("\n\n<i>“Your documentation and starter pack,”</i> he murmurs, as you both look at Sera, slack-jawed and staring into the hypnotic ruff, her mouth working, trying and failing to form words. <i>“I’m sure you’ll find one or two things of interest in there. The remote controls her collar. You can use that to let her outside your ship, or zap her if she’s bad. Keep it somewhere safe. The best of luck to you, " + pc.mf("Mr.", "Ms.") + " Steele – you will need it.”</i> He pats you on the back as Attica points imperiously at the door. In a daze Sera swivels and walks over to you. You depart the Dark Chrysalis, your new crewmate in tow.");
+	
+	if(!pc.hasKeyItem("Acquisitions Starter Kit"))
+	{
+		output("\n\n<b>You have obtained a Sentient Acquisitions Starter Kit!</b>");
+		pc.createKeyItem("Acquisitions Starter Kit", 0, 0, 0, 0, "A collar-and-remote bundle from Sentient Acquisitions.");
+	}
 	
 	processTime(5);
 	
@@ -386,11 +392,11 @@ public function seraIsRepoedPtII():void
 	showSera();
 	author("Nonesuch");
 	
-	output("You are almost back to the landing bay before the Tarratch’s hypnosis fades; in this time you have the opportunity to look Sera over carefully. In the light outside her gloomy shop it’s even more obvious what a fantastic body she has. Her large, flawless boobs and bum, each impossibly round and pert, bounce as she walks,");
+	output("You are almost back to the landing bay before the tarratch’s hypnosis fades; in this time you have the opportunity to look Sera over carefully. In the light outside her gloomy shop it’s even more obvious what a fantastic body she has. Her large, flawless boobs and bum, each impossibly round and pert, bounce as she walks,");
 	if(chars["SERA"].hasCock()) output(" her prestigious dick bobbing back and forth,");
 	output(" drawing plenty of attention on Tavros’s wide corridors. You find yourself feeling rather proud of owning such a fine-looking slave.");
 	if(!chars["SERA"].hasCock()) output(" She looks even better, at least to your eyes, without that big, ugly dick she used to have bobbing around in front of her.");
-	output(" Sentient Acquisitions have even gone to the trouble of redressing her. She still has her glowing harness, but it has been subtly rearranged into a slightly frilled corset. Similarly she still has thigh high stockings, but instead of imposing leather they are now silk fishnets, replete with stilettos on her feet. Her horns, eyes and claws continue to make her look pretty imposing, but she definitely looks more come-hither than coming-to-get-you now.");
+	output(" Sentient Acquisitions have even gone to the trouble of redressing her. She still has her glowing harness, but it has been subtly rearranged into a slightly frilled corset. Similarly, she still has thigh high stockings, but instead of imposing leather they are now silk fishnets, replete with stilettos on her feet. Her horns, eyes and claws continue to make her look pretty imposing, but she definitely looks more come-hither than coming-to-get-you now.");
 	if(chars["SERA"].skinTone == "bright pink") output(" Teron was right – coloring her skin pink on top of this accentuates her new look perfectly. She actually looks quite sweet when she gets angry now.");
 	output("\n\nHer stilettos clack faster and more purposefully as she comes to her senses, and you ponder how to break the ice. But she does that for you.");
 	// PC submitted to Sera:
@@ -830,7 +836,7 @@ public function seraBitchTrainingTease():void
 	
 	// Final
 	// Requires: 80 Obedience, Medium/High Arousal
-	if(obedience >= 80 && chars["SERA"].lust() >= 33)
+	if(obedience >= 80 && chars["SERA"].lust() >= 33 && pc.lust() >= 33)
 	{
 		seraBitchTrainingTeaseFinale();
 		return;
@@ -876,6 +882,8 @@ public function seraBitchTrainingTease():void
 			output(".");
 			output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out.");
 		}
+		
+		pc.lust(15);
 	}
 	// 0-40
 	else if(obedience <= 40)
@@ -902,6 +910,8 @@ public function seraBitchTrainingTease():void
 			output(".");
 			output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out.");
 		}
+		
+		pc.lust(15);
 	}
 	// 41-80
 	else
@@ -910,7 +920,7 @@ public function seraBitchTrainingTease():void
 		output("\n\n<i>“Going to ‘reward’ me, are you?”</i> she purrs. She shifts her hips upwards on the bed, displaying her trim, gleaming pussy to you");
 		if(chars["SERA"].hasCock()) output(" and letting her tumescent prick flop volubly onto the duvet");
 		output(". <i>“It’d better be good. I’ve been ever so good today.”</i>");
-		output("\n\nYou drop onto the bed next to her, deliberately pushing your weight into her side, quietly revelling in the tiny sigh she makes as you do. You’ve drilled this game into her enough times that she’s entirely relaxed as you take her hands and cuff them behind her back; but it wouldn’t be a game if she wasn’t competing against you, constantly seeking an advantage. She pushes her boobs out more than is strictly necessary by her posture, draws another low sigh out, pushes her [sera.skinColor], warm-smelling flesh into your hands as you gazing over your shoulder in a mocking, sultry manner, sneering wickedly.");
+		output("\n\nYou drop onto the bed next to her, deliberately pushing your weight into her side, quietly revelling in the tiny sigh she makes as you do. You’ve drilled this game into her enough times that she’s entirely relaxed as you take her hands and cuff them behind her back; but it wouldn’t be a game if she wasn’t competing against you, constantly seeking an advantage. She thrusts her boobs out more than is strictly necessary by her posture, draws another low sigh out, pushes her [sera.skinColor], warm-smelling flesh into your hands as you gaze over your shoulder in a mocking, sultry manner, sneering wickedly.");
 		output("\n\n<i>“Better get on with it,”</i> she whispers. <i>“Wouldn’t want you to jizz everywhere before you’ve even tried to do anything with me.”</i>");
 		output("\n\nYou squeeze one of her breasts in response, sinking your fingers deep into the softness there, making her exaggeratedly catch her breath. It is honestly difficult to not get aroused by the nearness of her exquisitely crafted body and her teasing. [pc.EachCock] hardens against her round behind");
 		if(pc.hasVagina()) output(" as your " + (pc.vaginas.length == 1 ? "pussy juices itself" : "pussies juice themselves") + " eagerly");
@@ -962,7 +972,7 @@ public function seraBitchTrainingTeaseRelease():void
 		{
 			output("You are happy enough to comply, upping the pace of your ministrations, lapping your fingers deep into the ripe, split fruit of the succubus’s sex");
 			if(chars["SERA"].hasCock()) output(" as you jerk her straining cock relentlessly");
-			output(". Sera arches her back and cries out triumphantly as she reaches it, her plush butt pressing into [pc.eachCock] as her pussy spasms and spurts around your sticky fingers");
+			output(". Sera arches her back and cries out triumphantly as she reaches her climax, her plush butt pressing into [pc.eachCock] as her pussy spasms and spurts around your sticky fingers");
 			if(chars["SERA"].hasCock()) output(", her cock hardening and seizing up in your grasp, forcefully fountaining cum upwards, spattering onto the bed and her thighs");
 			output(".");
 			output("\n\n<i>“Ahhhh...”</i> she sighs when she’s done, flopping down onto the cover and looking up at you with complacent disregard as you take her cuffs off. <i>“That was a pretty professional jerk off, I’ll give you that. Shame you’re such a massive " + pc.mf("creepazoid", "cow") + ", really – I could have used nice, attentive hands like yours, once.”</i> She closes her inhuman eyes and disappears into a doze.");
@@ -1023,7 +1033,7 @@ public function seraBitchTrainingTeaseRelease():void
 		{
 			output("You are happy enough to comply, upping the pace of your ministrations, lapping your fingers deep into the ripe, split fruit of the succubus’s sex");
 			if(chars["SERA"].hasCock()) output(" as you jerk her straining cock relentlessly");
-			output(". Sera arches her back and cries out triumphantly as she reaches it, her plush butt pressing into [pc.eachCock] as her pussy spasms and spurts around your sticky fingers");
+			output(". Sera arches her back and cries out triumphantly as she reaches her climax, her plush butt pressing into [pc.eachCock] as her pussy spasms and spurts around your sticky fingers");
 			if(chars["SERA"].hasCock()) output(", her cock hardening and seizing up in your grasp, forcefully fountaining cum upwards, spattering onto the bed and her thighs");
 			output(".");
 			output("\n\n<i>“Ahhhh...”</i> she sighs when she’s done, flopping down onto the cover and looking up at you with complacent disregard as you take her cuffs off. <i>“That was a pretty professional jerk off, I’ll give you that. Shame you’re such a massive " + pc.mf("creepazoid", "cow") + ", really – I could have used nice, attentive hands like yours, once.”</i> She closes her inhuman eyes and disappears into a doze.");
@@ -1089,7 +1099,7 @@ public function seraBitchTrainingTeaseRelease():void
 		{
 			output("It is perfectly lovely in the moment, driven by the heft of her warm flesh and the sensual fireworks show she’s treating you to, to consent and send her flying down that hill. You up the pace of your ministrations, lapping your fingers deep into her pussy");
 			if(chars["SERA"].hasCock()) output(" as you jerk her straining cock relentlessly");
-			output(", touching the spots you know will drive her inhuman eyes up into their sockets. Sera arches her back and cries out triumphantly as she reaches it, her plush butt pressing into [pc.eachCock] as her pussy spasms and spurts around your sticky fingers");
+			output(", touching the spots you know will drive her inhuman eyes up into their sockets. Sera arches her back and cries out triumphantly as she reaches her climax, her plush butt pressing into [pc.eachCock] as her pussy spasms and spurts around your sticky fingers");
 			if(chars["SERA"].hasCock()) output(", her cock hardening and seizing up in your grasp, forcefully fountaining cum upwards, spattering onto the bed and her thighs");
 			output(".");
 			output("\n\n<i>“Ahhhh...”</i> she sighs when she’s done, flopping down onto the cover and looking up at you with lazy, happy complacency. <i>“So good. So obedient.”</i>");
@@ -1138,6 +1148,8 @@ public function seraBitchTrainingTeaseRelease():void
 			chars["SERA"].orgasm();
 		}
 	}
+	
+	pc.lust(15);
 	
 	IncrementFlag("SERA_BITCHENING_TEASE");
 	IncrementFlag("SERA_BITCHENING_TEASE_RELEASE");
@@ -1220,6 +1232,8 @@ public function seraBitchTrainingTeaseDeny():void
 		}
 	}
 	
+	pc.lust(15);
+	
 	processTime(2);
 	IncrementFlag("SERA_BITCHENING_TEASE");
 	IncrementFlag("SERA_BITCHENING_TEASE_DENY");
@@ -1265,7 +1279,7 @@ public function seraBitchTrainingTeaseFinale():void
 	if(!chars["SERA"].hasCock()) output(" along her stomach");
 	else output(" along her thickening erection");
 	output(", giving you the eyes as she does. You feel a surge of triumphant passion at the sight: your once obstinate, obnoxious demon girl wantonly advertising her need to you. It’s time to finish this.");
-	output("\n\nYou drop onto the bed next to her, deliberately pushing your weight into her side, quietly revelling in the tiny sigh she makes as you do. You’ve drilled this routine into her enough times that she’s entirely relaxed as you take her hands and cuff them behind her back. She pushes her boobs out more than is strictly necessary by her posture, draws another low sigh out, pushes her warm-smelling [sera.skinColor] flesh into your hands as you gazing over your shoulder in a mocking, sultry manner, sneering wickedly.");
+	output("\n\nYou drop onto the bed next to her, deliberately pushing your weight into her side, quietly revelling in the tiny sigh she makes as you do. You’ve drilled this routine into her enough times that she’s entirely relaxed as you take her hands and cuff them behind her back. She thrusts her boobs out more than is strictly necessary by her posture, draws another low sigh out, pushes her warm-smelling [sera.skinColor] flesh into your hands as you gaze over your shoulder in a mocking, sultry manner, sneering wickedly.");
 	output("\n\n<i>“Better get on with it,”</i> she whispers. <i>“Wouldn’t want you to jizz everywh-”</i> You don’t let her finish. You grasp her behind the head and kiss her roughly, mashing your [pc.lips] into hers as you take one of her breasts and squeeze it, sinking your fingers deep into the softness there, rolling your fingertips over an erect nipple. Her hot breath touches the back of your throat as she responds, opening her mouth to wrap her tongue wetly around yours whilst writhing her body against your form, trying as ever to lose you in the wonderful shift and touch of her body.");
 	output("\n\nYou are beyond playing that game, though – you know who here really needs this. You suddenly heft her forwards, taking your kiss with it as you splay her hips, allowing you to push your thickening [pc.cock " + fits + "] between her thighs, using the delightful, soft friction there to become fully erect. She gasps into your mouth as you touch her sopping heat with it, flexing your [pc.hips] to rub it teasingly over her entrance, smoothing back and forth across the stubborn nub of her bulging clit.");
 	if(!chars["SERA"].hasCock()) output(" You keep your hand where it is, molding it ruthlessly into her breast, trapping her nipple in alternating squeezes and caresses.");
@@ -1352,7 +1366,7 @@ public function seraBitchTrainingFemTease():void
 	if(flags["SERA_BITCHENING_TEASE"] == undefined && obedience <= 40)
 	{
 		output("<i>“On all fours,”</i> you say breezily. Sera insolently stares at you for as long as she thinks she can get away with before complying, slowly shifting around on the bed so her hands and knees are sunk into the quilt. You work your way around her, enjoying the sight of her plump [sera.skinColor] butt in the air and her juicy thick cock dangling heavily downwards. It is this latter article that you wrap a hand around and begin to slowly jerk, letting the fingers of your other hand roam up the shallow valley of her back, gently sinking them into one of her generous breasts.");
-		output("\n\n<i>“So, what,”</i> sneers Sera, almost laughing as her male sex swells and hardens underneath your touch, <i>“you bought me so you could jerk me off? Could’ve done that without ruining my life, you know. Would’ve been all for it. Got some well-practiced wrists, there.”</i> You brush over the nub of an erect nipple and bend down to her ear before responding, never stopping your grip shifting up and down her hot meat, tightening and loosening rhythmically.");
+		output("\n\n<i>“So, what,”</i> sneers Sera, almost laughing as her male sex swells and hardens underneath your touch, <i>“you bought me so you could jerk me off? Could’ve done that without ruining my life, you know. Would’ve been all for it. Got some well-practiced wrists there.”</i> You brush over the nub of an erect nipple and bend down to her ear before responding, never stopping your grip shifting up and down her hot meat, tightening and loosening rhythmically.");
 		output("\n\n<i>“This is the only way you will be getting release in the foreseeable future, dear,”</i> you breathe. <i>“Not when I’m riding you and certainly not by whacking off like a hormonal teenager; like this, bent over and getting a nice milking from your [pc.master].”</i>");
 		output("\n\n<i>“You’re fucking insane,”</i> the demon snaps, craning her head away from you. <i>“Fumble over my dick while breathing through your mouth if you like, not as if I can stop you. But if you think you’re going to make it mean more than the palm of my hand you’re mistaken, sick " + pc.mf("prick", "bitch") + ".”</i>");
 		output("\n\nYou ignore her bluster and deliberately push your [pc.chest] into her side, waiting for her muscles to relax, forcing her to get used to your presence, enjoying the fine, pliant give of your slave all the while. You slowly coil her, feeling all the way up and down her shaft, trying to seek out particularly sensitive spots that make her twitch and bulge in your grip. With the other hand you slide back down, over her big round bottom and between the warmth of her thighs to touch her bare pussy.");
@@ -1360,17 +1374,21 @@ public function seraBitchTrainingFemTease():void
 		output("\n\n<i>“That’s how it always is, jerk,”</i> she retorts. <i>“To do with the mods I took, not you.”</i> You fancy there is just the slightest tremble in her voice and you grin, sinking another finger in as you carefully explore her moist, silky folds, tantalizing her female sex before withdrawing, picking up the pace of her date with Rosie Palms as you do.");
 		output("\n\nSera tries to say something else, but it’s lost in a breathless grunt as you knead her full, straining erection with everything you’ve got, whipping your tight grip up and down it, circling first one erect nipple then the other as you do. It’s easy enough to turn such a highly sexed creature on but you pay careful attention to her, trying to note what movement of your hands particularly makes her tighten her muscles, arch her back, tail flick spasmodically, gasp with involuntary pleasure.");
 		output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out at last.");
+		
+		pc.lust(15);
 	}
 	// 0-40
 	else if(obedience <= 40)
 	{
 		output("Grinning, you tell her to get on all fours.");
 		output("\n\n<i>“Oh goodie, it’s amateur fumble night again,”</i> Sera sighs. <i>“Why do you bother with this shit? Slithering over me like the world’s creepiest ona-hole. It’s embarrassing.”</i>");
-		output("\n\nYou ignore her bluster and patiently wait for her to assume the position - on her bed, bum in the air, ample breasts and cock dangling downwards. You clamber up there yourself and deliberately press your weight into her side, stroking a finger down the curving depression of her spine, waiting for the tenseness in her muscles to dissipate. Once you feel she’s used to your presence you dip your hand below her flat stomach and grasp her, as ever, semi-erect dick.");
+		output("\n\nYou ignore her bluster and patiently wait for her to assume the position - on her bed, bum in the air, ample breasts and cock dangling downwards. You clamber up there yourself and deliberately press your weight into her side, stroking a finger down the curving depression of her spine, waiting for the tenseness in her muscles to dissipate. Once you feel she’s used to your presence, you dip your hand below her flat stomach and grasp her, as ever, semi-erect dick.");
 		output("\n\nYou know there’s a grain of truth to her sniping - you’ve going to have to be able to really push her buttons if this mode of training is going to work. So as you shuffle your grip up and down her increasingly hard and hot meat, you let your other hand travel over the succubus’s fantastically modified body: over the peachy rise of her behind, across her nipples, along the nape of her neck and behind her pointed ears, trying to listen closely to when her breath catches or when her muscles tense up again to what you are doing. Sera accepts this in what she probably imagines is stoical, long-suffering silence, eyes closed, tail flicking spasmodically and jerking her hips into your tight grip as she increasingly gets into it.");
-		output("\n\nYou lead your hand backwards to the moist cleft of her female sex, opening and caressing her inner lips. It’s easy to find the sturdy nub of her clit, protruding out of her lips as it is. You circle and then gently play with it, nudging and sliding over it as you continue to jerk her, tightening, softening and bending your grasp around her thick cock. When her pussy is practically frothing with arousal, you switch your focus to the sensitive nubs of her nipples, playing and sliding over with them with sex-slicked fingers.");
+		output("\n\nYou lead your hand backwards to the moist cleft of her female sex, opening and caressing her inner lips. It’s easy to find the sturdy nub of her clit, protruding out of her lips as it is. You circle and then gently play with it, nudging and sliding over it as you continue to jerk her, tightening, softening and bending your grasp around her thick cock. When her pussy is practically frothing with arousal, you switch your focus to the sensitive nubs of her nipples, playing and sliding over them with sex-slicked fingers.");
 		output("\n\nFinally you are fingering and pumping her wickedly enough for her breath to be whistling through her teeth and flexing her thighs, cock dark and arching urgently in the shifting, softening, tightening swivel of your hand.");
 		output("\n\n<i>“F- fuck! Get me off then! Do it!”</i> she cries out.");
+		
+		pc.lust(15);
 	}
 	// 41-80
 	else
@@ -1384,6 +1402,8 @@ public function seraBitchTrainingFemTease():void
 		output("\n\nSera grunts, muscles knotted in her neck, claws clutching the duvet helplessly. She knows it’s useless to affect indifference or to exhort you to fuck her - but she’s since worked out a better way of fighting back. She sinuously writhes her form, butt and breasts jiggling, drawing you further and further into the delight of touching and teasing her over-sexed form. You’re feeling hot and slightly unfocused when blunt pressure snakes into the entrance of your [pc.vagina " + vIdx + "], spreading your lips and pressing against your sensitive inner walls. Your [pc.lips] form an “o” shape as Sera skilfully slides her tail tip over your [pc.clit] and then spears inwards, filling it with firm warmth, the sly succubus having kept her lithe dick-tipped appendage limp beneath you, waiting on tenterhooks all along.");
 		output("\n\nIn the heat of the moment it’s too pleasurable to climb down and force her to stop - you continue to jerk her whilst she spears her thick, ropy tail into your increasingly wet sex, sensation shivering into your core. You grit your teeth and try and keep focused, tightening your grip on her heaving breast, rubbing her erect nipple between your fingers as you rub her engorged frenulum closely. It’s difficult to tell how much she’s exaggerating her moans and gasps, but there’s nothing artificial about the way she’s pumping her thighs into your hand, translating that into writhing her tail into you. She gazes over her shoulder, yellow eyes slit, and caresses your g-spot. You suddenly feel very light-headed.");
 		output("\n\n<i>“Go on,”</i> says a teasing voice. <i>“Do it.”</i>");
+		
+		pc.lust(35);
 	}
 	
 	processTime(6);
@@ -1418,7 +1438,7 @@ public function seraBitchTrainingTeaseFemRelease():void
 		// Low Arousal:
 		if(chars["SERA"].lust() < 33)
 		{
-			output("You are happy enough to comply, upping the pace of your ministrations, jerking her bulging cock relentlessly until the succubus arches her back and cries out triumphantly as she reaches it, plush breast heaving in your hand as her cock seizes up in your grasp again and again, spurting a fountain of cum onto the duvet, spattering onto the bed and her thighs.");
+			output("You are happy enough to comply, upping the pace of your ministrations, jerking her bulging cock relentlessly until the succubus arches her back and cries out triumphantly as she reaches her climax, plush breast heaving in your hand as her cock seizes up in your grasp again and again, spurting a fountain of cum onto the duvet, spattering onto the bed and her thighs.");
 			output("\n\n<i>“Ahhhh...”</i> she sighs when she’s done, flopping down onto the cover next to the generous mess she’s made and looking up at you with complacent disregard, oozing cock lolling. <i>“That was a pretty professional jerk off, I’ll give you that. Shame you’re such a massive " + pc.mf("creepazoid", "cow") + ", really – I could have used nice, attentive hands like yours, once.”</i> She closes her yellow eyes and disappears into a doze.");
 			
 			processTime(1);
@@ -1431,7 +1451,7 @@ public function seraBitchTrainingTeaseFemRelease():void
 		{
 			output("You concentrate, slowing the relentless jerking of her bulging cock just slightly, trying to keep her as close to the edge as you can without clearing it.");
 			output("\n\n<i>“Say ‘Please may I cum, [pc.master]’,”</i> you breathe. <i>“Then I’ll let you.”</i>");
-			output("\n\n<i>“No! Fuck you!”</i> Sera grits out. You wind your hand down almost all the way for about eight seconds, down to a teasing fondle along her swollen frenulum and then pick it up again. You don’t know how long you can keep this up – your wrist is sore and she is champing at the bit, thrusting herself as hard as she can into your grip, trying to get herself off via her own steam.");
+			output("\n\n<i>“No! Fuck you!”</i> Sera grits out. You wind your hand down almost all the way for about eight seconds, down to a teasing fondle along her swollen frenulum and then pick it up again. You don’t know how long you can keep this up – your wrist is sore and she is champing at the bit, thrusting herself as hard as she can into your grip, trying to get off via her own steam.");
 			output("\n\n<i>“Say it,”</i> you insist. <i>“Please may I cum, [pc.master]. It’s so easy... and it’s so close...”</i> The two of you struggle against each other for a while longer - a fretful, dirty battle neither is willing to concede. In the pit of one of her heavy pants you think Sera whisper something. It could have been “please”?... She lunges her hips forward with a triumphant shout, arching her back as she flexes her way to orgasm. Her plush breast heaves in your hand as her cock seizes up in your grasp again and again, spurting a fountain of cum onto the duvet, spattering onto the bed and her thighs.");
 			output("\n\n<i>“Ahhhh...”</i> she sighs when she’s done, flopping down onto the cover next to the mess she’s made and looking up at you with complacent disregard. <i>“I told you it was a waste of time, but then I suppose you can’t help being such a massive " + pc.mf("creepazoid", "cow") + ". It’s a shame, too – you’ve got such nice, attentive hands. I could have found a use for you, once.”</i> You say nothing in return, simply gazing at her levelly. You think she’s talking a bit too loud, bit too fast. Maybe you’re imagining it. It could have been any sound she made in the spur of the moment, rearranged by your ears into something you wanted to hear. What you are certain about is she doesn’t look you in the eye before she disappears into a deep, post-coital doze.");
 			
@@ -1445,7 +1465,7 @@ public function seraBitchTrainingTeaseFemRelease():void
 		{
 			output("You concentrate, slowing the relentless jerking of her bulging cock just slightly, trying to keep her as close to the edge as you can without clearing it.");
 			output("\n\n<i>“Say ‘Please may I cum, [pc.master]’,”</i> you breathe. <i>“Then I’ll let you.”</i>");
-			output("\n\nSera says nothing, gritting her teeth determinedly. She is deep in the moment; her eyes closed, her muscles knotted up, her arousal so fierce it looks almost painful. Sensing an advantage, you wind your hand down almost all the way for about eight seconds, down to a teasing fondle along her swollen frenulum and then pick it up again. You don’t know how long you can keep this up – your wrist is sore and she is champing at the bit, thrusting herself as hard as she can into your grip, trying to get herself off via her own steam. You catch an erect nipple between your fingers and rub them together.");
+			output("\n\nSera says nothing, gritting her teeth determinedly. She is deep in the moment; her eyes closed, her muscles knotted up, her arousal so fierce it looks almost painful. Sensing an advantage, you wind your hand down almost all the way for about eight seconds, down to a teasing fondle along her swollen frenulum and then pick it up again. You don’t know how long you can keep this up – your wrist is sore and she is champing at the bit, thrusting herself as hard as she can into your grip, trying to get off via her own steam. You catch an erect nipple between your fingers and rub them together.");
 			output("\n\n<i>“Say it,”</i> you insist. <i>“Please may I cum, [pc.master]. It’s so easy... and it’s so close...”</i> Sera’s back is arched, claws scrunching the sheets, saliva shining on her parted lips. The two of you struggle against each other for a while longer.");
 			output("\n\n<i>“Please let me cum!”</i> Sera cries out at last, the words coming out in an urgent jumble. Immediately you up your rhythm, briskly cranking her to the high you’ve been keeping just out of her reach. Her eyes roll and her limbs spasm as her cock seizes up in your grasp, forcefully spattering cum onto the bed in an uncontrolled fountain, a dribble of pussy juice rolling down her thigh. It’s a pretty breathtaking orgasm, even seen and felt second-hand – her plush breast heaves into your hand whilst she throws her frame into each ecstatic contraction.");
 			output("\n\nYou gently lay her down on her side on a non-soaked part of the bed when she’s finally done, letting the low hum of your voice soundtrack her woozy come down.");
@@ -1463,7 +1483,7 @@ public function seraBitchTrainingTeaseFemRelease():void
 		// Low Arousal:
 		if(chars["SERA"].lust() < 33)
 		{
-			output("You are happy enough to comply, upping the pace of your ministrations, jerking her bulging cock relentlessly until the succubus arches her back and cries out triumphantly as she reaches it, plush breast heaving in your hand as her cock seizes up in your grasp again and again, spurting a fountain of cum onto the duvet, spattering onto the bed and her thighs.");
+			output("You are happy enough to comply, upping the pace of your ministrations, jerking her bulging cock relentlessly until the succubus arches her back and cries out triumphantly as she reaches her climax, plush breast heaving in your hand as her cock seizes up in your grasp again and again, spurting a fountain of cum onto the duvet, spattering onto the bed and her thighs.");
 			output("\n\n<i>“Ahhhh...”</i> she sighs when she’s done, flopping down onto the cover next to the generous mess she’s made and looking up at you with complacent disregard, oozing cock lolling. <i>“That was a pretty professional jerk off, I’ll give you that. Shame you’re such a massive " + pc.mf("creepazoid", "cow") + ", really – I could have used nice, attentive hands like yours, once.”</i> She closes her inhuman eyes and disappears into a doze.");
 			
 			processTime(1);
@@ -1476,7 +1496,7 @@ public function seraBitchTrainingTeaseFemRelease():void
 		{
 			output("You concentrate, slowing the relentless jerking of her bulging cock just slightly, trying to keep her as close to the edge as you can without clearing it.");
 			output("\n\n<i>“Say ‘Please may I cum, [pc.master]’,”</i> you breathe. <i>“Then I’ll let you.”</i>");
-			output("\n\nSera says nothing, gritting her teeth determinedly. She is deep in the moment; her eyes closed, her muscles knotted up, her arousal so fierce it looks almost painful. Sensing an advantage, you wind your hand down almost all the way for about eight seconds, down to a teasing fondle along her swollen frenulum and then pick it up again. You don’t know how long you can keep this up – your wrist is sore and she is champing at the bit, thrusting herself as hard as she can into your grip, trying to get herself off via her own steam. You catch an erect nipple between your fingers and rub it slowly.");
+			output("\n\nSera says nothing, gritting her teeth determinedly. She is deep in the moment; her eyes closed, her muscles knotted up, her arousal so fierce it looks almost painful. Sensing an advantage, you wind your hand down almost all the way for about eight seconds, down to a teasing fondle along her swollen frenulum and then pick it up again. You don’t know how long you can keep this up – your wrist is sore and she is champing at the bit, thrusting herself as hard as she can into your grip, trying to get off via her own steam. You catch an erect nipple between your fingers and rub it slowly.");
 			output("\n\n<i>“Say it,”</i> you insist. <i>“Please may I cum, [pc.master]. It’s so easy... and it’s so close...”</i> Sera’s back is arched, claws scrunching the sheets, saliva shining on her parted lips. The two of you struggle with each other on the precipice for a while longer.");
 			output("\n\n<i>“Please let me cum!”</i> Sera cries out at last, the words coming out in an urgent jumble. Immediately you up your rhythm, briskly cranking her to the high you’ve been keeping just out of her reach. Her eyes roll and her limbs spasm as her cock seizes up in your grasp, forcefully spattering cum onto the bed in an uncontrolled fountain, a dribble of pussy juice rolling down her thigh. It’s a pretty breathtaking orgasm, even seen and felt second-hand – her plush breast heaves into your hand whilst she throws her frame into each ecstatic contraction.");
 			output("\n\nYou gently lay her down on her side on a non-soaked part of the bed when she’s finally done, letting the low hum of your voice soundtrack her woozy come down.");
@@ -1511,7 +1531,7 @@ public function seraBitchTrainingTeaseFemRelease():void
 		// Low Arousal:
 		if(chars["SERA"].lust() < 33)
 		{
-			output("It is perfectly lovely in the moment, driven by the pump of her ropey, coiling tail and the heft of her luscious body, to consent and send her flying down that hill. You up the pace of your ministrations, jerking her straining cock relentlessly, touching the spots and squeezing the bands of flesh you know will drive her inhuman eyes up into their sockets. Sera arches her back and cries out triumphantly as she reaches it, her tail burying itself as deep as it can into your [pc.vagina " + rand(pc.vaginas.length) + "], plush breast heaving in your hand as her prestigious dick seizes up in your grasp and flexes copious amounts of cum onto the duvet, spattering onto her thighs.");
+			output("It is perfectly lovely in the moment, driven by the pump of her ropey, coiling tail and the heft of her luscious body, to consent and send her flying down that hill. You up the pace of your ministrations, jerking her straining cock relentlessly, touching the spots and squeezing the bands of flesh you know will drive her inhuman eyes up into their sockets. Sera arches her back and cries out triumphantly as she reaches her climax, her tail burying itself as deep as it can into your [pc.vagina " + rand(pc.vaginas.length) + "], plush breast heaving in your hand as her prestigious dick seizes up in your grasp and flexes copious amounts of cum onto the duvet, spattering onto her thighs.");
 			output("\n\n<i>“Ahhhh...”</i> she sighs when she’s done, flopping down onto the cover and looking up at you with lazy, happy complacency. <i>“So good. So obedient.”</i>");
 			output("\n\nYou fervently hope, taking off her cuffs as she drifts off into a peaceful doze, that she was referring to herself rather than you.");
 			
@@ -1549,6 +1569,8 @@ public function seraBitchTrainingTeaseFemRelease():void
 			chars["SERA"].orgasm();
 		}
 	}
+	
+	pc.lust(15);
 	
 	IncrementFlag("SERA_BITCHENING_TEASE");
 	IncrementFlag("SERA_BITCHENING_TEASE_RELEASE");
@@ -1619,6 +1641,8 @@ public function seraBitchTrainingTeaseFemDeny():void
 		}
 	}
 	
+	pc.lust(15);
+	
 	processTime(2);
 	IncrementFlag("SERA_BITCHENING_TEASE");
 	IncrementFlag("SERA_BITCHENING_TEASE_DENY");
@@ -1665,7 +1689,7 @@ public function seraBitchTrainingRide():void
 	
 	// Final
 	// Requires: 80 obedience, medium/high lust
-	if(obedience >= 80 && chars["SERA"].lust() >= 33)
+	if(obedience >= 80 && chars["SERA"].lust() >= 33 && pc.lust() >= 33)
 	{
 		seraBitchTrainingRideFinale(vIdx);
 		return;
@@ -1675,7 +1699,7 @@ public function seraBitchTrainingRide():void
 	if(flags["SERA_BITCHENING_RIDE"] == undefined)
 	{
 		output("<i>“On your back,”</i> you order. Sera rolls over lazily on her bunk, making it look like a whim of hers rather than a follow of your command.");
-		output("\n\n<i>“Got an itch, bitch?”</i> she smirks. She opens her thick [sera.skinColor] hips to give her thick dick room. Given the spotlight, there’s no denying it is a magnificent, intimidating member; a hairless base reaching upwards into a full foot of veined bulge that’s never entirely flaccid, framed by two well-formed, swollen balls. It’s small wonder she’s spent most of her adult life trying to stick it into anything that twitches. You would if you owned that");
+		output("\n\n<i>“Got an itch, bitch?”</i> she smirks. She opens her thick [sera.skinColor] hips to give her fat dick room. Given the spotlight, there’s no denying it is a magnificent, intimidating member; a hairless base reaching upwards into a full foot of veined bulge that’s never entirely flaccid, framed by two well-formed, swollen balls. It’s small wonder she’s spent most of her adult life trying to stick it into anything that twitches. You would if you owned that");
 		if(pc.hasCock())
 		{
 			output(" even on top of the one");
@@ -1683,7 +1707,7 @@ public function seraBitchTrainingRide():void
 			output(" you already have");
 		}
 		output(", too. The muscles in her thigh clench and it rears upwards, almost at her command.");
-		output("\n\n<i>“Think you can stop drooling long enough to remember what it is you wanted to do with me?”</i> the succubus sneers. Idly she wraps her fingers around the base of her dick and flicks the ring of one of her nipple piercing, considering you with sensuous, heavy-lidded disdain. <i>“So this is it, is it? You took my fucking life away, just so you could imagine yourself " + pc.mf("king", "queen") + " shit of turd mountain, and then get some hot dick up you? Could’ve given you that, if you’d just asked nicely.”</i> She sniffs, hand gently caressing her cock, tightening it into a full erection. <i>“I should tell you to fuck off, but it’s not like I’ve got anything better to do, so if you want to have a suck, you may as well go ahead. Do a decent enough job and you might just get me in the mood to wreck that prissy little pussy of yours, who knows...”</i>");
+		output("\n\n<i>“Think you can stop drooling long enough to remember what it is you wanted to do with me?”</i> the succubus sneers. Idly she wraps her fingers around the base of her dick and flicks the ring of one of her nipple piercings, considering you with sensuous, heavy-lidded disdain. <i>“So this is it, is it? You took my fucking life away, just so you could imagine yourself " + pc.mf("king", "queen") + " shit of turd mountain, and then get some hot dick up you? Could’ve given you that, if you’d just asked nicely.”</i> She sniffs, hand gently caressing her cock, tightening it into a full erection. <i>“I should tell you to fuck off, but it’s not like I’ve got anything better to do, so if you want to have a suck, you may as well go ahead. Do a decent enough job and you might just get me in the mood to wreck that prissy little pussy of yours, who knows...”</i>");
 		output("\n\n<i>“");
 		// Hard/Nice:
 		if(pc.isAss() || pc.isNice()) output("Do please be quiet.");
@@ -1693,9 +1717,9 @@ public function seraBitchTrainingRide():void
 		output("\n\n<i>“So what you’re saying is, you’ve never even done rope work before,”</i> she jeers. When you sit on the bed next to her, pushing your [pc.chest] into her side, she sits up and allows you to cuff her hands behind her back, but keeps up her constant diatribe. <i>“Do you think throwing some chains on me are going to suddenly make me pleased about being a slave, you " + (pc.isBimbo() ? "stupid bimbo" : pc.mf("sick creep", "psycho bitch")) + "? Couldn’t you have just bought a dildo like anyone else? Or can you not get wet unless you’re making someone’s life a misery?...”</i> She doesn’t stop until you’ve shifted around back to the front and slapped her lightly across the face. Outrage chokes her long enough for you to get a few words in.");
 		output("\n\n<i>“This is how things are going to be, pet,”</i> you breathe. You trail a finger up the big, straining cock she’s done such a nice job of getting erect, pushing her slowly backwards onto the sheets as you do. You continue talking as you");
 		if(!pc.isNude()) output(" dispose of your [pc.gear] and");
-		output(" push your [pc.vagina " + vIdx + "] against it, sliding your pussy slowly up and down, rubbing the heat and hardness of the demon dick over [pc.eachClit] and your inner lips rhythmically, teasing her with it at the same time as pushing wetness and arousal into your own sex. <i>“I am going to fuck you rotten plenty of times, you don’t have to worry about that. But toys don’t get to cum without permission. So you keep it nice and bottled up for our milking sessions, ok?”</i> You gently circle her bulging crown with a pinkie. <i>“Then... maybe then, if you’re good and ask politely... I’ll give you release.”</i>");
+		output(" push your [pc.vagina " + vIdx + "] against it, sliding slowly up and down, rubbing the heat and hardness of the demon dick over [pc.eachClit] and your inner lips rhythmically, teasing her at the same time as pushing wetness and arousal into your own sex. <i>“I am going to fuck you rotten plenty of times, you don’t have to worry about that. But toys don’t get to cum without permission. So you keep it nice and bottled up for our milking sessions, ok?”</i> You gently circle her bulging crown with a pinkie. <i>“Then... maybe then, if you’re good and ask politely... I’ll give you release.”</i>");
 		output("\n\n<i>“Shove it up your ass,”</i> snarls Sera throatily, yellow eyes flicking between your teasing finger and your face. <i>“I get off when I want, where I want. If you use me, I’m gonna cream-pie the fuck out of you. Least you fucking deserve.”</i> With your other hand, you lazily lift the collar control; you always keep it close by when you’re dealing with your demon slave. You play with the big, red button at its center. The bound succubus beneath you tenses up, muscles in her proud face clenching as she glares at the device.");
-		output("\n\n<i>“Then you’ll get punished,”</i> you say simply. You lever yourself up so you are balanced above her, the bulb of her cockhead pushing open the lips of your [pc.vagina " + vIdx + "]. <i>“And you won’t enjoy it anywhere </i>near<i> as much. Remember...”</i> You sink downwards, closing your eyes as you finally envelope that thick, pent-up cock in your wet pussy, the thick bulb of it spreading you wide.");
+		output("\n\n<i>“Then you’ll get punished,”</i> you say simply. You prop yourself up so you are balanced above her, the bulb of her cockhead pushing open the lips of your [pc.vagina " + vIdx + "]. <i>“And you won’t enjoy it anywhere </i>near<i> as much. Remember...”</i> You sink downwards, closing your eyes as you finally envelop that fat, pent-up cock in your wet pussy, the thick bulb of it spreading you wide.");
 		output("\n\nYou go slowly at first, enjoying the sensation of Sera’s hard, veiny flesh pressing against your slick walls, rotating your [pc.hips] to bend it back and forth.");
 		if(tinyVag) output(" A foot-long fuck-pole is far too much for your tight pussy, really - but you are determined. With each rock of your thighs you work yourself a little looser, able to swallow just a little bit more of your slave’s big dick. The sensation is intense, clenching up your muscles and shivering through your skin, but with each thrust it becomes easier, your sex " + (!pc.isSquirter(vIdx) ? "oozing" : "slavering") + " with deep excitement at being packed out and stretched like this.");
 		else output(" Your well-used twat is easily able to glove Sera’s foot-long fuck-pole, which seems to take her by surprise. She grunts as you encompass her almost down to the base easily - cooing with enjoyment at once again filling that wonderful, ravenous hole of yours up with stern cock - before beginning to jounce your [pc.hips] on top of her briskly.");
@@ -1708,7 +1732,7 @@ public function seraBitchTrainingRide():void
 		if(!tinyVag) output(" slap your [pc.butt] down on her [sera.skinColor] thighs again and again, kneading her cock in your cavernous cunt ruthlessly, screwing yourself to orgasm");
 		else output(" you work the top half of her cock ruthlessly hard, beads of [pc.femcum] rolling down it, screwing yourself upwards to orgasm");
 		output(", it’s in your mind that she is not used to being denied, that you need to treat her carefully to form some control over her.");
-		output("\n\n<i>Only the one then,</i> you think to yourself deliriously as your [pc.nipples] " + (!pc.hasCuntNipples() ? "harden up" : "dribble [pc.femcum]") + " and you clamp your hands down on Sera’s trembling shoulders. <i>Just the one...</i>");
+		output("\n\n<i>Only the one then,</i> you think to yourself deliriously as your [pc.nipples] " + (pc.hasErectNipples() ? "harden up" : "dribble [pc.femcum]") + " and you clamp your hands down on Sera’s trembling shoulders. <i>Just the one...</i>");
 		// Low/Medium Arousal:
 		if(chars["SERA"].lust() < 66)
 		{
@@ -1744,9 +1768,9 @@ public function seraBitchTrainingRide():void
 	else if(obedience <= 40)
 	{
 		output("You take the handcuffs out of your metal suitcase and dangle them teasingly in front of Sera. She rolls her eyes but - after insolently staring at you for as long as she thinks she can get away with - she assumes the position, sitting up and putting her hands behind her back.");
-		output("\n\nAfter you’ve securely fastened and tightened her wrists together, you take off your [pc.gear] and gently push into her from the front, her hard nipples and piercings pressing against your [pc.chest], making her lie back on the sheets. You exhale softly as you slide your [pc.vagina " + vIdx + "] slowly up and down her semi-erect cock, rubbing the heat and hardness of the demon dick over [pc.eachClit] and your inner lips rhythmically, teasing her with it at the same time as pushing wetness and arousal into your own sex. She may be watching you do all this with a face full of thunder, but she cannot deny her own hyper-sexed nature; it requires the minimum of teasing on your part to make her foot-long cock stand up on end, ready and eager to please.");
+		output("\n\nAfter you’ve securely fastened and tightened her wrists together, you take off your [pc.gear] and gently push into her from the front, her hard nipples and piercings pressing against your [pc.chest], making her lie back on the sheets. You exhale softly as you slide your [pc.vagina " + vIdx + "] slowly up and down her semi-erect cock, rubbing the heat and hardness of the demon dick over [pc.eachClit] and your inner lips rhythmically, teasing her at the same time as pushing wetness and arousal into your own sex. She may be watching you do all this with a face full of thunder, but she cannot deny her own hyper-sexed nature; it requires the minimum of teasing on your part to make her foot-long cock stand up on end, ready and eager to please.");
 		output("\n\n<i>“Remember pet...”</i> you breath, circling her bulging crown with a pinkie. <i>“No cumming.”</i>");
-		output("\n\n<i>“Get off and then fuck off, " + pc.mf("creep", "bitch") + ",”</i> is her terse response. You smile at her winningly as you sink downwards, closing your eyes as you envelope that thick, pent-up cock in your wet pussy, the thick bulb of it spreading you wide.");
+		output("\n\n<i>“Get off and then fuck off, " + pc.mf("creep", "bitch") + ",”</i> is her terse response. You smile at her winningly as you sink downwards, closing your eyes as you envelop that fat, pent-up cock in your wet pussy, the thick bulb of it spreading you wide.");
 		
 		pc.cuntChange(vIdx, chars["SERA"].cockVolume(0));
 		
@@ -1758,7 +1782,7 @@ public function seraBitchTrainingRide():void
 		if(!tinyVag) output(" slap your [pc.butt] down on her [sera.skinColor] thighs again and again, kneading her cock in your cavernous cunt ruthlessly, screwing yourself to orgasm");
 		else output(" you work the top half of her cock ruthlessly hard, beads of [pc.femcum] rolling down it, using it to screw yourself to orgasm");
 		output(", it’s in your mind that she is not used to being denied, that you need to treat her carefully to form some control over her.");
-		output("\n\n<i>Only the one then,</i> you think to yourself deliriously as your [pc.nipples] " + (!pc.hasCuntNipples() ? "harden up" : "dribble [pc.femcum]") + " and you clamp your hands down on Sera’s trembling shoulders. <i>Just the one...</i>");
+		output("\n\n<i>Only the one then,</i> you think to yourself deliriously as your [pc.nipples] " + (pc.hasErectNipples() ? "harden up" : "dribble [pc.femcum]") + " and you clamp your hands down on Sera’s trembling shoulders. <i>Just the one...</i>");
 		// Low/Medium Arousal:
 		if(chars["SERA"].lust() < 66)
 		{
@@ -1946,7 +1970,7 @@ public function seraBitchTrainingButtfuck():void
 	if(flags["SERA_BITCHENING_BUTTFUCK"] == undefined || obedience <= 40)
 	{
 		output("You rummage around in the steel briefcase of your Sentient Acquisitions “starter kit”. Ah: perfect. You grin at Sera as you withdraw the bottle of lube, knowing for all that she’s flopped on her bunk with an air of boredom she is watching your every move closely.");
-		output("\n\n<i>“Going to assume that means you want to put it up my butt,”</i> she sighs. Her lip curls. <i>“Seems like the thing to do, since you’ve fucked me in the ass every other way there is.”</i> She shifts over and watches dispassionately as you divest yourself of your [pc.gear] before pooling clear, clinging oil into your hands and curling them around your [pc.oneCock], slathering the slickness around it at the same time as drawing warmth and pressure into your groin, quickly making it sternly erect.");
+		output("\n\n<i>“Going to assume that means you want to put it up my butt,”</i> she sighs. Her lip curls. <i>“Seems like the thing to do, since you’ve fucked me in the ass every other way there is.”</i> She shifts over and watches dispassionately as you divest yourself of your [pc.gear] before pooling clear, clinging oil into your hands and curling them around [pc.oneCock], slathering the slickness around it at the same time as drawing warmth and pressure into your groin, quickly making it sternly erect.");
 		output("\n\n<i>“On all fours, pet.”</i> After insolently staring you in the face for a while longer Sera obliges. The view from the back is certainly a lot better than the expression currently souring the one from the front; the cute pink of her asshole peeks out between the generous, round hills of her buttocks, above the neat lips of her pussy");
 		if(chars["SERA"].hasCock()) output(" and the dangling fruit of her cock and balls");
 		output(". Gently you touch her rose, penetrating inwards with your oily fingers. She is delightfully tight, clinging to your digits instinctively before slowly relaxing as you probe deeper.");
@@ -1983,7 +2007,7 @@ public function seraBitchTrainingButtfuck():void
 		else if(chars["SERA"].lust() < 66) output("\n\n<i>“Don’t...”</i> grunts Sera, muffled by the sheets she’s got her teeth buried in. Emboldened, you cusp her big, pert breasts, gently tweaking and stroking her nipples until they are hard and protuberant as cherries, all the while using those flawless hills as leverage to pound into the tight clenching tunnel of her ass.");
 		// High arousal:
 		else output("\n\nTeeth buried into the sheets, Sera offers no resistance as your hands travel upwards; a surreptitious check below the steady piston of your cock reveals her distended pussy is gleaming wet with arousal. Grinning, you cusp her big, pert breasts, gently tweaking and stroking her nipples until they are hard and protuberant as cherries, all the while using those flawless hills as leverage to pound into the tight clenching tunnel of her ass. As your heat rises you think you hear a few muffled “whuff”s and “huh”s from the other end of the bed; they don’t sound much like discomfort.");
-		output("\n\nYou spear your way in deep as your [pc.oneCock] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
+		output("\n\nYou spear your way in deep as your [pc.cockNoun " + cIdx + "] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
 		if(pc.balls > 0) output(" and [pc.balls]");
 		output(".");
 		if(pc.cumQ() >= 2000) output(" You go on and on, working out every last drop from your bountiful cock, until [pc.cum] is spurting around your girth and the succubus’s belly is rotund, her guts packed with your warmth.");
@@ -2038,7 +2062,7 @@ public function seraBitchTrainingButtfuck():void
 		{
 			output("\n\nSera barely seems to notice your exertions; she remains statuesque, arms folded, waiting with silent, glacial patience for you to finish. The most you drag out of her is an irritated hiss when you squeeze her boob maybe a little too hard.");
 			output("\n\nUltimately the lust fogging your own senses becomes too heavy for you to keep sight of your goal of making her feel real pleasure from this; you clutch her hot, soft form and lose yourself in the succulent rhythm, your " + (pc.balls > 0 ? "[pc.ballsNoun]" : "hips") + " clapping a merry rhythm on the succubus’s bouncing ass with each returning thrust into that delightfully tight hole.");
-			output("\n\nYou spear your way in deep as your [pc.oneCock] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
+			output("\n\nYou spear your way in deep as your [pc.cockNoun " + cIdx + "] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
 			if(pc.balls > 0) output(" and [pc.balls]");
 			output(".");
 			if(pc.cumQ() >= 2000) output(" You go on and on, working out every last drop from your bountiful cock, until [pc.cum] is spurting around your girth and the succubus’s belly is rotund, her guts packed with your warmth.");
@@ -2063,7 +2087,7 @@ public function seraBitchTrainingButtfuck():void
 			output(". The succubus bites into the duvet, trying to disguise the exhalations you’re drawing out of her perhaps, but there’s really no questioning what tone they’re in now; femcum steadily dribbles down your mired hand, and when you reach forward to cusp her big, pert breast for leverage, the nipple you find is as hard and protuberant as a cherry, and tweaking it makes a throaty groan vibrate through the sheets.");
 			output("\n\nYou keep her there, fingering her whilst thrusting firmly into her tight, oiled behind for as long as you can resist - trying fiercely to connect pure pleasure with the feeling of your cock opening and using her back passage - before finally ceding control to your own raging lust. You clutch her hot, soft form and lose yourself in the succulent rhythm, your " + (pc.balls > 0 ? "[pc.ballsNoun]" : "hips") + " clapping a merry rhythm on the succubus’s bouncing ass with each returning thrust into that delightfully tight hole.");
 			if(pc.hasKnot(cIdx)) output(" With one final, hard push, you spread her ring with your [pc.knot " + cIdx + "]. After one breathless moment where you’re not sure it will fit, you’re in - well and truly embedded into your bottom bitch. Sera keens and swears repeatedly as you pump into her, knot pulsing with fierce arousal from the flesh stretched tightly around it.");
-			output("\n\nYou spear your way in deep as your [pc.oneCock] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
+			output("\n\nYou spear your way in deep as your [pc.cockNoun " + cIdx + "] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
 			if(pc.balls > 0) output(" and [pc.balls]");
 			output(".");
 			if(pc.cumQ() >= 2000) output(" You go on and on, working out every last drop from your bountiful cock, until [pc.cum] is spurting around your girth and the succubus’s belly is rotund, her guts packed with your warmth.");
@@ -2090,7 +2114,7 @@ public function seraBitchTrainingButtfuck():void
 			// 41-60:
 			if(obedience <= 60)
 			{
-				output("\n\nYou keep her there on that plateau for as long as you are able before finally ceding control to your own raging lust. You clutch her hot, soft form and spear your way in deep as your [pc.oneCock] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
+				output("\n\nYou keep her there on that plateau for as long as you are able before finally ceding control to your own raging lust. You clutch her hot, soft form and spear your way in deep as your [pc.cockNoun " + cIdx + "] bulges up and then releases. A sigh of deepest satisfaction leaves your [pc.lips] as you pump your load into Sera’s upturned butt, which jiggles with each returning thrust of your clenching [pc.hips]");
 				if(pc.balls > 0) output(" and [pc.balls]");
 				output(".");
 				if(pc.cumQ() >= 2000) output(" You go on and on, working out every last drop from your bountiful cock, until [pc.cum] is spurting around your girth and the succubus’s belly is rotund, her guts packed with your warmth.");
@@ -2356,6 +2380,8 @@ public function seraBitchTrainingPunishSpank(fromMenu:Boolean = false):void
 	}
 	
 	processTime(21);
+	pc.lust(15);
+	chars["SERA"].lust(5);
 	chars["SERA"].removeStatusEffect("Sera Masturbated");
 	IncrementFlag("SERA_BITCHENING_PUNISH_SPANK");
 	
@@ -2484,6 +2510,9 @@ public function seraBitchTrainingPunishCumRation(fromMenu:Boolean = false):void
 		if(pc.cLength(cIdx) >= 11.5) output(" once you realize she has neither the will nor the aptitude to engulf any more than about a third of your huge length");
 		output(", pull out, and give her a light cock-slap across the cheeks.");
 		output("\n\n<i>“All this time demanding blowjobs off anyone who came close, and you never learnt to do it properly yourself?”</i> you chide. <i>“For someone who fancies themselves a succubus, it’s nowhere near good enough.”</i>");
+		
+		pc.lust(9001);
+		
 		if(!seraMasturbated)
 		{
 			output("\n\n<i>“Let the buyer fucking beware then,”</i> she replies sullenly. <i>“I have to give you oral. Doesn’t mean I have to do a good job.”</i>");
@@ -2544,6 +2573,9 @@ public function seraBitchTrainingPunishCumRation(fromMenu:Boolean = false):void
 		output("\n\n<i>“You and I both know it’s not even a punishment anymore,”</i> you say, probing, <i>“it’s a reward.”</i>");
 		output("\n\n<i>“What I know,”</i> she snaps, <i>“is that if you don’t play fair I don’t play at all.”</i>");
 		output("\n\nOh well. You wait unmoving, and eventually, with as much surly reluctance as she can muster, the demoness saunters over, flops down in front of you and takes hold of your [pc.cock " + cIdx + "].");
+		
+		pc.lust(9001);
+		
 		// Same as 41-60
 		if(!seraMasturbated)
 		{
@@ -2623,6 +2655,7 @@ public function seraBitchTrainingPunishCumRation(fromMenu:Boolean = false):void
 	
 	pc.orgasm();
 	
+	chars["SERA"].lust(5);
 	chars["SERA"].removeStatusEffect("Sera Masturbated");
 	IncrementFlag("SERA_BITCHENING_PUNISH_RATION");
 	
@@ -3466,7 +3499,7 @@ public function seraBitcheningSexTitfuck():void
 		output("\n\nYour libido, bloated further by the shift of her fingers along your thick shaft, urge you to ram yourself between the teasing bitch’s pillows and go nuts... but to make this as good as it could possibly be, you really need some lubrication. And you know exactly how you’re going to get it.");
 		output("\n\n<i>“Keep doing that,”</i> you growl. <i>“That’s it...”</i> you sigh as Sera moves her grip up and down your [pc.cock " + cIdx + "], pleasure thrumming through it, more and more intense with each shift of her hand.");
 		output("\n\n<i>“Thought you were going to fuck my tits?”</i> she says, luminescent eyes narrowing. <i>“You gotten so lazy you can’t even be bothered to crank your own meat?”</i>");
-		output("\n\n<i>“Language,”</i> you reply brusquely, rearing your dick out of her hand in order to land her a good cock-slap across the cheeks. You slap the [pc.cockHead] back down onto her solar plexus. <i>“Grip down here and then bring it up...”</i> She does as you ask, squeezing your");
+		output("\n\n<i>“Language,”</i> you reply brusquely, rearing your dick out of her hand in order to land her a good cock-slap across the cheeks. You slap the [pc.cockHead " + cIdx + "] back down onto her solar plexus. <i>“Grip down here and then bring it up...”</i> She does as you ask, squeezing your");
 		if(pc.balls > 0) output(" [pc.balls]");
 		else if(pc.hasKnot(cIdx)) output(" [pc.knot]");
 		else output(" base");
@@ -3493,25 +3526,25 @@ public function seraBitcheningSexTitfuck():void
 	}
 	output("\n\nUp and down go Sera’s boobs, plumping right around your erect prick, a well-oiled sleeve of smooth flesh which caresses every bulging, hot inch. For long, rich moments you simply stand and let her do the work, working her arms assiduously to rub ever greater amounts of tightly-packed urge into you. For all her feigned duplicity, there’s color in those " + (pc.isLactating() ? "[pc.milkNoun]" : "[pc.cumNoun]") + " spattered [sera.skinColor] cheeks");
 	if(chars["SERA"].hasCock()) output(", her own sizable dick is at half-mast");
-	output(" and her fingers are constantly wandering across her large, erect nipples. You sigh and close your eyes, murmuring her on as she ups the pace, mashing slickened softness into your cock-flesh stringently with brisk flicks of her wrists, burying your [pc.cockHead] in pillowy warmth as she pushes it upwards.");
+	output(" and her fingers are constantly wandering across her large, erect nipples. You sigh and close your eyes, murmuring her on as she ups the pace, mashing slickened softness into your cock-flesh stringently with brisk flicks of her wrists, burying your [pc.cockHead " + cIdx + "] in pillowy warmth as she pushes it upwards.");
 	output("\n\n<i>“You like that?”</i> she husks, a certain wildness creeping into her tone. <i>“You like having me on my knees in front of you, debasing me like this?”</i> Her spaded tail flicks this way and that. <i>“You like using me as your cocksleeve, not giving the slightest f- ?”</i>");
 	// Big dick:
 	if(pc.cLength(cIdx) >= 11.5)
 	{
-		output("\n\nSera’s open mouth, with the usual stream of bitchy aggro pouring out of it, has been a tempting target for some time, and you can’t ignore it any longer. You growl as you dig your fingers into her breasts whilst simultaneously thrusting upwards, your missile of a dick easily long enough to reach past her big, cushiony tits and spring your [pc.cockHead] right between her moist lips, immediately silencing her.");
+		output("\n\nSera’s open mouth, with the usual stream of bitchy aggro pouring out of it, has been a tempting target for some time, and you can’t ignore it any longer. You growl as you dig your fingers into her breasts whilst simultaneously thrusting upwards, your missile of a dick easily long enough to reach past her big, cushiony tits and spring your [pc.cockHead " + cIdx + "] right between her moist lips, immediately silencing her.");
 		output("\n\nHer eyes widen, and for a few blessed moments she’s frozen; enough time for you to take control of proceedings, roughly mashing the wonderful softness of her tits around the base of your shaft whilst thrusting the beading end past her lips and teeth, opening her willful gob up and pushing into the wet hotness within.");
 		output("\n\n<i>“Got such a sweet mouth on you,”</i> you growl, intense lust pulsing behind your brow as you get the angle just right, gliding through her");
 		if(pc.cumQ() >= 2000) output(" [pc.cumNoun]");
 		else if(pc.isLactating()) output(" [pc.milkNoun]");
 		else output(" oil");
 		output("-slicked cleavage to spear all of your cock-end right past her lips. <i>“Shame the amount of trash that comes out of it.”</i>");
-		output("\n\n<i>“Only so you give it to me like you can,”</i> she hisses after you recede outwards with a saliva-flecked ‘pop’, hot breath billowing over your [pc.cockHead]. Clawed hands press over your own, and she slathers your sensitive ends in hot, shifting demon tongue.");
+		output("\n\n<i>“Only so you give it to me like you can,”</i> she hisses after you recede outwards with a saliva-flecked ‘pop’, hot breath billowing over your [pc.cockHead " + cIdx + "]. Clawed hands press over your own, and she slathers your sensitive ends in hot, shifting demon tongue.");
 		output("\n\nGive it to her good you do, tit-flesh bulging between your fingers as you pump aggressively between her [sera.skinColor] mounds, rubbing her boobs up and down your shaft as you do, like the most perfectly shaped ona-hole in the galaxy, ordering her to hollow her cheeks around the protuberant tip. She does with a shudder and a muffled whimper, tongue slicking up the underside as you ram it deep into her mouth.");
 	}
 	// If else:
 	else
 	{
-		output("\n\nReaching down and seizing Sera’s boobs yourself, tweaking her protuberant nipples hard before sinking your fingers deep into the soft flesh, transforms her bile into a juicy, surprised squeal. You hold her steady as you jackhammer your [pc.hips] into her breasts, waves of motion spreading across the topside each time your [pc.cockHead] gophers into view between them. Obscene, oily ‘pat-pat-pat’s fills the room, accompanied by your throaty groans and Sera’s heavy breathing. It’s like the most shapely ona-hole in the galaxy.");
+		output("\n\nReaching down and seizing Sera’s boobs yourself, tweaking her protuberant nipples hard before sinking your fingers deep into the soft flesh, transforms her bile into a juicy, surprised squeal. You hold her steady as you jackhammer your [pc.hips] into her breasts, waves of motion spreading across the topside each time your [pc.cockHead " + cIdx + "] gophers into view between them. Obscene, oily ‘pat-pat-pat’s fills the room, accompanied by your throaty groans and Sera’s heavy breathing. It’s like the most shapely ona-hole in the galaxy.");
 	}
 	output("\n\nYou glory in the shifting sensations of soft, squishy boob");
 	if(pc.cLength(cIdx) >= 11.5) output(" and hot, wet mouth");
@@ -3862,6 +3895,7 @@ public function seraBitcheningPunishSpank():void
 	
 	processTime(21);
 	
+	pc.lust(35);
 	chars["SERA"].lust(35);
 	
 	IncrementFlag("SERA_BITCHENING_PUNISH_SPANK");
@@ -3894,7 +3928,10 @@ public function seraBitcheningPunishCumRation():void
 	if(pc.balls > 0) output(" whilst the other gently caresses your [pc.balls]");
 	output(", sensuously bathing your sex in pleasure, her opened, luscious lips undulating over it.");
 	if(chars["SERA"].hasCock()) output(" Her own cock, you notice, is erect itself, keening upwards for the oral pleasure happening above that it will never experience.");
-	output("\n\nShe loves the taste of your dick, and just watching her is enjoyable enough, but that being the case makes this hardly a punishment. Her status has to be reaffirmed. After a few more moments of simmering in that wonderful, wet pleasure on your [pc.cockHead], you tighten your grip on her hair and withdraw from her mouth. She blinks out of her reverie, slightly surprised.");
+	
+	pc.lust(9001);
+	
+	output("\n\nShe loves the taste of your dick, and just watching her is enjoyable enough, but that being the case makes this hardly a punishment. Her status has to be reaffirmed. After a few more moments of simmering in that wonderful, wet pleasure on your [pc.cockHead " + cIdx + "], you tighten your grip on her hair and withdraw from her mouth. She blinks out of her reverie, slightly surprised.");
 	output("\n\nYou brush your cock against her lips slowly, tantalizing her with the heavy smell of your pre, and then pull away as she rears her neck, attempting to engulf it in your mouth. Her nipples are as erect as tiny spikes.");
 	output("\n\n<i>“Beg for it,”</i> you order. <i>“Beg for me to nut down your throat, like the well-broken-in cumslut you are. Or you get nothing.”</i> Nowadays, it’s only the tiniest hesitation on Sera’s part that allows you to sigh heavily and turn");
 	if(!pc.isCrotchExposed() && pc.hasLowerGarment()) output(", making as if to pull your [pc.lowerUndergarment] back up");
@@ -3912,7 +3949,7 @@ public function seraBitcheningPunishCumRation():void
 	output("\n\n<i>“Gonna give your bitch what she needs?”</i> she husks, toothily leering up at you, fingers circling her nipples. <i>“Got the guts to take charge, big [pc.boy]?”</i> She gives your bulging head a long, luscious lick, sending pleasure tingling all the way up your spine. <i>“Seems like you talk a lot about being on top, but I’m the one doing all the w-”</i> You push your [pc.hips] forward at the same time as you pull her head forward, forcefully introducing " + (pc.cLength(cIdx) >= 11.5 ? "most" : "all") + " of your [pc.cock " + cIdx + "] to " + (pc.cLength(cIdx) < 11.5 ? "the back of her throat" : "her gullet") + ". She gags once and then gets a masterful handle on the reflex, her throat clenching wetly around your " + (pc.cLength(cIdx) < 11.5 ? "sensitive bell-end" : "length") + ", practically begging you to use it. Which, once you’ve pulled out once and sunk back into it again to ascertain the demoness can indeed take it, is exactly what you do.");
 	output("\n\nObscene, sloppy, slurping noises fill the room, your [pc.hips] / [pc.balls] slapping against her pretty chin, down which a steady stream of saliva and pre-cum runs,");
 	if(pc.cLength(cIdx) >= 11.5) output(" her neck bulging up with each sweet pump");
-	output(". As you thrust and clench up your [pc.legOrLegs] to pile-drive your musky, saliva-lubed dick into that deep, hidden slut tunnel you consider how much abuse, vitriol and sneering has poured from it over the years. The “gack!” and “schlop”s you’re drawing from it now are infinitely more pleasant, at least to your ears. You draw your [pc.cock " + cIdx + "] outwards slowly so that your [pc.cockHead] touches the inside of her lips, allowing her to recover momentarily; she slides her tongue along the sternly bulging underside and “mmm”s deeply, impatient with horny, whorish hunger, trying to drive you on. Wonderful.");
+	output(". As you thrust and clench up your [pc.legOrLegs] to pile-drive your musky, saliva-lubed dick into that deep, hidden slut tunnel you consider how much abuse, vitriol and sneering has poured from it over the years. The “gack!” and “schlop”s you’re drawing from it now are infinitely more pleasant, at least to your ears. You draw your [pc.cock " + cIdx + "] outwards slowly so that your [pc.cockHead " + cIdx + "] touches the inside of her lips, allowing her to recover momentarily; she slides her tongue along the sternly bulging underside and “mmm”s deeply, impatient with horny, whorish hunger, trying to drive you on. Wonderful.");
 	output("\n\nYou hold her up and penetrate her tight silky " + (pc.cLength(cIdx) < 11.5 ? "mouth" : "throat") + " right up to the quick with half a dozen more intense, deliberate thrusts, with each one stating unequivocally what its primary function is: polishing your cock from head to base to a worshipful shine. When the need tightening [pc.eachCock] is finally far too much you pull out. With immense effort you keep your hands steady, grab the bowl and with a single slide of your hand and throaty gasp, finally unload. What feels like gallons of pressurized [pc.cum] surges up your duct and fountains noisily into the bowl, a clenching, dizzying orgasm which goes on and on.");
 	if(pc.cumQ() >= 5000)
 	{
@@ -4356,7 +4393,7 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 			output(". [pc.EachCock] springs out readily, hot and semi-erect. <i>“So now you will do what you do best.”</i>");
 			output("\n\n<i>“Yes [pc.master].”</i> No back-chat, no pouting, no smirking; the Sera that would do that has retreated far away, replaced by one that is a vessel of submissiveness, one that happily accepts the need to serve and be punished. She kneels and");
 			if(!hasCuffs)output(" uses her hands to stroke your [pc.cock " + cIdx + "] straining erect before enveloping the bulging head in her mouth");
-			else output(", with only her mouth available to her, licks the underside of your [pc.cock " + cIdx + "], stroking you straining erect with her lips and tongue. It’s a pleasant sight - particularly when you wag your cock around, making her awkwardly bob her head to try and catch it - but eventually you let her envelope the bulging head in her mouth");
+			else output(", with only her mouth available to her, licks the underside of your [pc.cock " + cIdx + "], stroking you straining erect with her lips and tongue. It’s a pleasant sight - particularly when you wag your cock around, making her awkwardly bob her head to try and catch it - but eventually you let her envelop the bulging head in her mouth");
 			output(".");
 			output("\n\nYou voice your enjoyment with deep exhalations and groans as her head bobs, pushing that spry sleeve of wet silk further and further down your shaft, making it feel like it’s filling with hot iron. You jerk the leash upwards to make sure she gets");
 			if(pc.cLength(cIdx) >= 11.5) output(" as far down your massive dick as she can");
