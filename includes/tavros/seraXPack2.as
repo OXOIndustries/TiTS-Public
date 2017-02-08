@@ -492,15 +492,28 @@ public function mods4UChrysalisBonus():void
 		addButton(1, "Saendra", mods4UChrysalisSaendra);
 	}
 	
-	// All items inc. “top shelf” items displayed at standard price
-	shopkeep = chars["CHRYSALISDRONE"];
-	
-	addButton(0, "Buy", buyItem);
+	addButton(0, "Buy", mods4UChrysalisBuy);
 	//Only displayed if PC had a discount previously
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) addButton(5, "Discount?", mods4UChrysalisDiscount);
 	addButton(14, "Back", mainGameMenu);
 	
 	return;
+}
+public function mods4UChrysalisBuy():void
+{
+	// All items inc. “top shelf” items displayed at standard price
+	shopkeep = chars["CHRYSALISDRONE"];
+	
+	if(flags["ZODEE_GALOQUEST"] != undefined)
+	{
+		if(flags["PURCHASED_SERAS_GALO"] == undefined)
+		{
+			if(!chars["CHRYSALISDRONE"].hasItem(new GaloMax())) chars["CHRYSALISDRONE"].inventory.push(new GaloMax());
+		}
+		else chars["CHRYSALISDRONE"].destroyItem(new GaloMax());
+	}
+	
+	buyItem();
 }
 public function mods4UChrysalisDiscount():void
 {
