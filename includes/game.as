@@ -1857,6 +1857,16 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
 	
+	// Pippa's house
+	if (flags["PIPPA_RECRUITED"] == 1)
+	{
+		rooms["PIPPA HOUSE"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
+	}
+	
 	/* VESPERIA / CANADIA STATION */
 	if(flags["KALLY_FAP_2_KIRO"] != undefined)
 	{
@@ -2016,6 +2026,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
 
 		if (!MailManager.isEntryUnlocked("del_moved") && delilahSubmissiveness() >= 5 && rand(10) == 0 && getPlanetName() != "Tarkus") { goMailGet("del_moved"); }
+
+		// Pippa Nuru massage email
+		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();
 
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();

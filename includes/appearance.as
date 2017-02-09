@@ -280,6 +280,12 @@ public function appearance(forTarget:Creature):void
 			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK)) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface giving you a tough, hydrodynamic look.");
 			else output2(" Even without scales, the surface is smooth and hairless, perfect for underwater exploration.");
 		}
+		else if(target.faceType == GLOBAL.TYPE_SWINE) {
+			//appearance
+			output2("Your face is mostly human in shape and structure, with " + target.skin(true,true,true));
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" under your " + target.skinFurScales(true,true,false,true));
+			output2("but it's adorned with a flat, pig-like nose.");
+		}
 		// Special face additions
 		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
 		//M/F stuff!
@@ -576,6 +582,10 @@ public function appearance(forTarget:Creature):void
 				//pc is bald
 				output2(" A pair of triple-parted, sail-like ears protrude from the sides of your " + headNoun + ". The topmost sail points straight up while the other more smaller ones curve down.");
 			}
+			else if (target.earType == GLOBAL.TYPE_SWINE)
+			{
+				output2(" A pair of pointed, floppy pig ears protrude from your " + headNoun + ".");
+			}
 			if(target.hasAntennae())
 			{
 				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
@@ -668,6 +678,7 @@ public function appearance(forTarget:Creature):void
 				output2(" feather-tipped ears.");
 			}
 			else if(target.earType == GLOBAL.TYPE_SHARK) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of triple-parted, sail-like ears. The topmost sail points straight up while the other more smaller ones curve down.");
+			else if(target.earType == GLOBAL.TYPE_SWINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of pointed, floppy pig ears.");
 			if(target.hasAntennae())
 			{
 				if(target.earType == GLOBAL.TYPE_LAPINE)
@@ -1668,6 +1679,7 @@ public function appearance(forTarget:Creature):void
 			else output2("giving you a dangerous air.");
 			output2(" Halfway across it grows a smaller dorsal fin.");
 		}
+		else if(target.tailType == GLOBAL.TYPE_SWINE) output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you're happy.");
 		//Tail cunts
 		if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
 		{
@@ -3086,6 +3098,17 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	{
 		output2( "The aquatic phallus is tapered but still quite tubular in appearance. It glistens like you’ve lubed it up not too long ago and has two pelvic fins framing its base.");
 	}
+	// pig dick
+	else if (target.cocks[x].cType == GLOBAL.TYPE_SWINE) {
+		output2(" The end twists in a corkscrew pattern, ");
+		
+		if (target.cocks[x].cLength() >= 18 && target.cocks[x].cThicknessRatio() <= 0.4) output2("and it is long and thin, like");
+		else if (target.cocks[x].cLength() < 18 && target.cocks[x].cThicknessRatio() > 0.4) output2("but its length and width ratio is unlike that of");
+		else if (target.cocks[x].cLength() < 18) output2("but it's not lengthy like");
+		else output2("but it's wider than");
+		
+		output2(" a pig's.");
+	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
@@ -3288,6 +3311,13 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		if(!eachOne) output2(" The exterior lips are puffy and framed by fin-like flaps, while the interior of your vaginal canal is filled with tiny cilia that massage and pull any invaders deeper in.");
 		else output2("\nEach vagina’s exterior lips are puffy and framed by fin-like flaps, while their interiors are filled with tiny cilia that massage and pull any invaders deeper in.");
 	}	
+	else if(target.vaginas[x].type == GLOBAL.TYPE_SWINE) {
+		if(!eachOne) output2(" The");
+		else output2("\nEach vagina’s");
+		
+		output2(" exterior lips are typically featureless, except for when you're aroused and they swell outward.");
+	}
+	
 	//Nubby
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.vaginas[x].type != GLOBAL.TYPE_SIREN) {
 		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions.");

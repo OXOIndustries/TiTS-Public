@@ -5152,13 +5152,35 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 			}
 			// Irestead
-			if(flags["MET_ASTRA"] != undefined)
+			if(flags["MET_ASTRA"] != undefined || flags["PIPPA_AFFECTION"] != undefined)
 			{
 				output2("\n<b><u>Irestead</u></b>");
 				if(flags["MET_ASTRA"] != undefined)
 				{
 					output2("\n<b>* Astra:</b> Met her");
 					if(flags["SHADE_OVI_ASTRA_RUN_IN"] != undefined) output2("\n<b>* Astra, Times Seen Shade Laying Eggs:</b> " + flags["SHADE_OVI_ASTRA_RUN_IN"]);
+				}
+				if (flags["PIPPA_AFFECTION"] != undefined)
+				{
+					output2("\n<b>* Pippa:</b> Met her");
+					
+					if (recruitedPippa()) 
+					{
+						output2(", Crew member ");
+						
+						if (pippaOnShip()) output2("(Onboard Ship)");
+						else output2("(Left on Uveto)");
+					}
+					else if (pippaRecruitTurnedDown()) output(", Turned down request to join crew");
+					
+					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + "%");
+					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + "%");
+					
+					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
+					if (pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
+					if (pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
+					if (pippaSpecialMassagesGiven(0) > 0) output2("\n<b>* Pippa, Nuru Massages Given to You:</b> " + pippaSpecialMassagesGiven(0));
+					if (pippaSexed(0) > 0) output2("\n<b>* Pippa, Times Sexed:</b> " + pippaSexed(0));
 				}
 				variousCount++;
 			}

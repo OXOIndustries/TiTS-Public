@@ -2165,4 +2165,13 @@ public function pcRepeatFertilityPriestessLoss():void
 	{
 		pcDunkedByFertilityPriestess(true);
 	}
+}}
+
+public function southernResidentialBonus():Boolean
+{
+	addUvetoCold(true);
+	// Pippa's house buzzer and/or description
+	approachingPippasHouse(0);
+
+	return false;
 }

@@ -5,6 +5,7 @@
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModules.GameTextModule;
 	import classes.UIComponents.MainButton;
+	import classes.UIComponents.SideBarComponents.CompressedLocationHeader;
 	import fl.transitions.Tween;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -350,6 +351,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
+		include "../includes/uveto/pippa.as"
 		
 		include "../includes/chargendata.as";
 		
@@ -1314,6 +1316,10 @@
 		public function get kazra():Kazra
 		{
 			return chars["KAZRA"];
+		}
+		public function get pippa():Pippa
+		{
+			return chars["PIPPA"];
 		}
 		
 		private var _dbgtestvar:int = 0;

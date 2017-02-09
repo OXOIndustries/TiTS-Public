@@ -206,6 +206,8 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
+	
+	MailManager.addMailEntry("pippa_nuru", pippaNuruEmail, "New Service", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
 }
 
 public function cuzName():String
@@ -366,6 +368,18 @@ public function harnessDeliveryMessageFromEmmy():String
 	ret += "\n\nEmmy";
 
 	ret += "\n\nP.S. I swear my dick got an inch longer when I called myself a slut.";
+	return ret;
+}
+
+public function pippaNuruEmail():String
+{
+	var ret:String = "Hey " + pippaCallsSteele() + ",";
+	
+	ret += "\n\nYou've been a good customer, and a good friend, so I'd like to open up a new service of mine to you.  Ever heard of a Nuru massage?  Well, the short of it is, we'll both get naked and nice and oiled up, and I'll massage every last bit of you, using my whole body.  Sound good?  If it does, I hope you'll stop by soon.";
+	
+	ret += "\n\nYour favorite masseuse,";
+	ret += "\nPippa";
+	
 	return ret;
 }
 
