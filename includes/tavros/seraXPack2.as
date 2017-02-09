@@ -117,7 +117,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 		// Sera taken:
 		if(flags["SERA_ACQUIRED_DATE"] != undefined) output(" With our problem case gone, we are simply waiting for the trade from the frontier to start trickling in. Come back in a month’s time or so, we’ll have many fresh and exotic pieces of property to show you.");
 		// Sera still on:
-		else if(!seraRecruited() && (pc.statusEffectv1("Sera Credit Debt") > 9000 || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90))) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
+		else if(!seraRecruited()) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
 		output("”</i>");
 	}
 	else
@@ -131,7 +131,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 	var btnSlot:int = 0;
 	var acqList:Array = [];
 	acqList.push(["Mostly?", sentientAcquisitionsAskMostly]);
-	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited() && (pc.statusEffectv1("Sera Credit Debt") > 9000 || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90))) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
+	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited()) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
 	
 	// [Horned girl] [Mostly?] [Leave]
 	clearMenu();
@@ -180,16 +180,22 @@ public function sentientAcquisitionsAskHornedGirl(btnSlot:int = 0):void
 	author("Nonesuch");
 	showTeronAndAttica();
 	
+	var inDebt:Boolean = (pc.statusEffectv1("Sera Credit Debt") > 9000 || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90));
+	
 	output("<i>“Horned girl?”</i>");
 	output("\n\n<i>“Yes. Amongst many other things.”</i> Teron plucks a tablet screen off the counter and taps it a few times. <i>“Bought quite a number of expensive mods this human did, and then a shop on this self same station on top of it. ‘The Dark Chrysalis.’ I don’t think she looked at the fine print of her rent agreement closely, if at all. These succulent young rue collars, they never think it’s going to happen to them. Until it does.”</i>");
-	output("\n\n<i>“She is heavily in debt, but we’re not minded to chase it yet – we’ve done the due background check on her and by all accounts she would make for a </i>terrible<i> indentured servant. And who knows, maybe her shop really will enable her to pay it down.”</i> His immaculate sneer tells you exactly how likely he thinks that is. <i>“Because she’s missed her last couple of monthly installments though, there is a buy-out clause available if you’re seriously interested in owning her.”</i>");
+	if(!inDebt) output("\n\nHe shrugs.");
+	output("\n\n<i>“She is heavily in debt, but we’re not minded to chase it yet – we’ve done the due background check on her and by all accounts she would make for a </i>terrible<i> indentured servant. And who knows, maybe her shop really will enable her to pay it down.”</i> His immaculate sneer tells you exactly how likely he thinks that is.");
+	if(!inDebt) output(" <i>“And she is currently paid up. Maybe if she’d bought a bunch of stuff over the counter recently, maxed her credit out, we’d start getting more serious with her.”</i>");
+	else output(" <i>“Because she’s missed her last couple of monthly installments though, there is a buy-out clause available if you’re seriously interested in owning her.”</i>");
 	
 	processTime(1);
 	
 	// [Back] [Buy Out]
 	clearMenu();
 	// Thinking 15k smackers
-	if(pc.credits >= 15000) addButton(0, "Buy Out", sentientAcquisitionsBuyOutSera, undefined, "Buy Out", "Buy out Sera’s contract.\n\nCosts 15,000 credits.");
+	if(!inDebt) addDisabledButton(0, "Buy Out", "Buy Out", "Perhaps if you pushed a certain someone further into debt somehow, this might become possible?");
+	else if(pc.credits >= 15000) addButton(0, "Buy Out", sentientAcquisitionsBuyOutSera, undefined, "Buy Out", "Buy out Sera’s contract.\n\nCosts 15,000 credits.");
 	else addDisabledButton(0, "Buy Out", "Buy Out", "You don’t have the funds to contemplate this.");
 	addButton(14, "Back", sentientAcquisitionsAsk, true);
 	
