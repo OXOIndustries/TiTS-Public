@@ -550,6 +550,16 @@ public function nurseryBrigetsApptFunc():Boolean
 	return false;
 }
 
+public function nurserySpareApptBonus():Boolean
+{
+	var btnSlot:int = 0;
+	
+	// For followers or grown kids and stuff.
+	seraOnTavrosBonus(btnSlot++);
+
+	return false;
+}
+
 public function nurseryC6Func():Boolean
 {
 	vendingMachineButton(2);

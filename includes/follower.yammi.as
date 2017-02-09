@@ -281,8 +281,9 @@ public function yesRemoveYammiFromShip():void
 	output(". <i>“Don’t get any funny ideas just because I’m not around. You need to eat if you want to win this thing.”</i> She gives you a kiss on the cheek on her way out.");
 	
 	output("\n\n(<b>Yammi ");
-	if(pexigaIsCrew()) output("and [pexiga.name] are no longer on your crew. You can find them again on New Texas.</b>)");
-	else output("is no longer on your crew. You can find her again on New Texas.</b>)");
+	if(pexigaIsCrew()) output("and [pexiga.name] are no longer on your crew. You can find them again on New Texas.");
+	else output("is no longer on your crew. You can find her again on New Texas.");
+	output("</b>)");
 	processTime(5);
 	flags["YAMMI_IS_CREW"] = 0;
 	clearMenu();
@@ -312,8 +313,12 @@ public function yesGetYammiBack():void
 {
 	clearOutput();
 	showYammi();
-	output("You tell Yammi to grab her things and get back on the ship. She's out the door before you finish.\n\n(<b>Yammi is back on your crew.</b>)");
-	if(pexigaRecruited()) output("\n(<b>And the Pexiga probably came with her!</b>)");
+	output("You tell Yammi to grab her things and get back on the ship. She’s out the door before you finish.");
+	output("\n\n(<b>Yammi ");
+	if(pexigaRecruited()) output(" and [pexiga.name] have");
+	else output(" has");
+	output(" joined your crew!");
+	output("</b>)");
 	flags["YAMMI_IS_CREW"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -322,7 +327,7 @@ public function noGettingYammiBackToday():void
 {
 	clearOutput();
 	showYammi();
-	output("Yammi tries not to let her disappointment show when you inform her that you won't be taking her back onboard yet.");
+	output("Yammi tries not to let her disappointment show when you inform her that you won’t be taking her back onboard yet.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -1014,11 +1014,12 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYG6"] = new RoomClass(this);
 	rooms["NURSERYG6"].roomName = "\nNURSERY";
-	rooms["NURSERYG6"].description = "A corridor stretches from east to west, connecting the upper floors of the nursery back to the break room and stairs. North is a room bearing your name on it, underscored with ‘Personal Apartment’. Your home away from home when on maternity leave, if need be. Opposite your door is another executive suite marked simply ‘Headmistress Briget’.";
+	rooms["NURSERYG6"].description = "A corridor stretches from east to west, connecting the upper floors of the nursery back to the break room and stairs. North is a room bearing your name on it, underscored with ‘Personal Apartment’. Your home away from home when on maternity leave, if need be. Opposite your door is another executive suite marked simply ‘Headmistress Briget’. To the east is a section primarily used for temporary housing.";
 	rooms["NURSERYG6"].runOnEnter = undefined;
 	rooms["NURSERYG6"].northExit = "NURSERYG4";
 	rooms["NURSERYG6"].southExit = "NURSERYG8";
 	rooms["NURSERYG6"].westExit = "NURSERYE6";
+	rooms["NURSERYG6"].eastExit = "NURSERYI6";
 	rooms["NURSERYG6"].planet = "TAVROS STATION";
 	rooms["NURSERYG6"].system = "SYSTEM: KALAS";
 	rooms["NURSERYG6"].moveMinutes = 1;
@@ -1028,7 +1029,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
 
 	rooms["NURSERYG4"] = new RoomClass(this);
-	rooms["NURSERYG4"].roomName = "NURSERY:\nYOUR APPT.";
+	rooms["NURSERYG4"].roomName = "NURSERY:\nYOUR APT.";
 	rooms["NURSERYG4"].description = "The private suite you’ve been assigned in the nursery is... well, it looks like your room growing up. So much so that you’re half sure Dad just boxed your things up and mailed them out here. Familiar posters, devices, and even the bedspread all remind you of home.\n\nOn top of the bedroom suite, your apartment comes equipped with a kitchen, living room... everything you need to live here more than comfortably for extended periods of time, really.";
 	rooms["NURSERYG4"].runOnEnter = nurseryPlayerApptFunc;
 	rooms["NURSERYG4"].southExit = "NURSERYG6";
@@ -1040,7 +1041,7 @@ public function initTavrosRooms():void
 	rooms["NURSERYG4"].addFlag(GLOBAL.BED);
 
 	rooms["NURSERYG8"] = new RoomClass(this);
-	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGET’S APPT.";
+	rooms["NURSERYG8"].roomName = "NURSERY:\nBRIGET’S APT.";
 	rooms["NURSERYG8"].description = "The apartment granted to your nurse-maid gynoid is surprisingly spartan, given her age and humanism. Maybe she just doesn’t spend much time here? There’s a queen-sized bed, immaculately made, in one room, and a spotlessly clean kitchen that opens into a dining room with a pair of chairs around a mahogany table -- the most expensive-looking thing around.";
 	rooms["NURSERYG8"].runOnEnter = nurseryBrigetsApptFunc;
 	rooms["NURSERYG8"].northExit = "NURSERYG6";
@@ -1051,4 +1052,29 @@ public function initTavrosRooms():void
 	rooms["NURSERYG8"].addFlag(GLOBAL.PUBLIC);
 	rooms["NURSERYG8"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["NURSERYG8"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+
+	rooms["NURSERYI6"] = new RoomClass(this);
+	rooms["NURSERYI6"].roomName = "NURSERY:\nTEMP. HOUSING";
+	rooms["NURSERYI6"].description = "A couple of spare apartments are situated here, used intentionally as transitional shelter for grown children planning to move out or as living space for guests.";
+	rooms["NURSERYI6"].runOnEnter = nurserySpareApptBonus;
+	rooms["NURSERYI6"].westExit = "NURSERYG6";
+	rooms["NURSERYI6"].planet = "TAVROS STATION";
+	rooms["NURSERYI6"].system = "SYSTEM: KALAS";
+	rooms["NURSERYI6"].moveMinutes = 1;
+	rooms["NURSERYI6"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYI6"].addFlag(GLOBAL.PUBLIC);
+	rooms["NURSERYI6"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["NURSERYI6"].addFlag(GLOBAL.FAPPING_ILLEGAL);
+
+	rooms["NURSERYSERA"] = new RoomClass(this);
+	rooms["NURSERYSERA"].roomName = "NURSERY:\nSERA’S APT.";
+	rooms["NURSERYSERA"].description = "";
+	rooms["NURSERYSERA"].runOnEnter = undefined;
+	rooms["NURSERYSERA"].southExit = "NURSERYI6";
+	rooms["NURSERYSERA"].planet = "TAVROS STATION";
+	rooms["NURSERYSERA"].system = "SYSTEM: KALAS";
+	rooms["NURSERYSERA"].moveMinutes = 1;
+	rooms["NURSERYSERA"].addFlag(GLOBAL.INDOOR);
+	rooms["NURSERYSERA"].addFlag(GLOBAL.PRIVATE);
+	rooms["NURSERYSERA"].addFlag(GLOBAL.NPC);
 }
