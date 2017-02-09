@@ -3245,8 +3245,8 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	}
 	//Kitty flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_FELINE) {
-		if(!eachOne) output2(" The exterior lips are vestigial and featureless, making your entrace quite modest");
-		else output2("\nEach vagina’s exterior lips are vestigial and featureless, making your entraces quite modest");
+		if(!eachOne) output2(" The exterior lips are vestigial and featureless, making your entrance quite modest");
+		else output2("\nEach vagina’s exterior lips are vestigial and featureless, making your entrances quite modest");
 		if (target.hasFur() || target.hasFeathers()) output2(" and barely visible under your " + ((target.hasFeathers() && target.hasPartFur("leg")) ? "fur" : target.skinFurScales(false,false,false,true)));
 		output2(".");
 	}

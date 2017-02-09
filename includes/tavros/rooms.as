@@ -736,7 +736,7 @@ public function initTavrosRooms():void
 	
 	rooms["RESIDENTIAL DECK ZHENIYA"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK ZHENIYA"].roomName = "ZHENIYA’S\nAPARTMENT";
-	rooms["RESIDENTIAL DECK ZHENIYA"].description = "The inside of Zheniya’s apartment is cozy and warm. Silk and bead curtains hang from the walls and doorways, and the lights have been tuned down to a low, sensual red glow throughout. The heat is above station standard, mimicking the musky humidity of her native planet’s jungles. A few incense candles are burning on shelves and tables, though the scent is nowhere near as overwhelming as you remember from Zheniya’s last abode.\n\nZheniya sits nearby, nude as the day you met her. In her own home, she still prefers the openness of bare flesh, allowed her ever-present honied smell to suffuse the air around her.";
+	rooms["RESIDENTIAL DECK ZHENIYA"].description = "The inside of Zheniya’s apartment is cozy and warm. Silk and bead curtains hang from the walls and doorways, and the lights have been tuned down to a low, sensual red glow throughout. The heat is above station standard, mimicking the musky humidity of her native planet’s jungles. A few incense candles are burning on shelves and tables, though the scent is nowhere near as overwhelming as you remember from Zheniya’s last abode.";
 	rooms["RESIDENTIAL DECK ZHENIYA"].eastExit = "RESIDENTIAL DECK 16";
 	rooms["RESIDENTIAL DECK ZHENIYA"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK ZHENIYA"].system = "SYSTEM: KALAS";
