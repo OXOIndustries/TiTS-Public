@@ -284,8 +284,7 @@
 			"Water Queen",
 			"Bothrioc",
 			"Milodan",
-			"Worg"
-			"Milodan",
+			"Worg",
 			"Swine"
 		];
 		
@@ -312,7 +311,7 @@
 			TYPE_KANGAROO,
 			TYPE_GABILANI,
 			TYPE_FROG,
-			TYPE_WORG
+			TYPE_WORG,
 			TYPE_SWINE,
 		];
 		

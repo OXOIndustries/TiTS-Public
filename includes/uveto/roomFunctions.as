@@ -2165,7 +2165,7 @@ public function pcRepeatFertilityPriestessLoss():void
 	{
 		pcDunkedByFertilityPriestess(true);
 	}
-}}
+}
 
 public function southernResidentialBonus():Boolean
 {

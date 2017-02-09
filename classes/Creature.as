@@ -12553,8 +12553,10 @@
 				else if (type == GLOBAL.TYPE_SWINE)
 				{
 					if (!simple)
-						desc += RandomInCollection(["pig pussy","swine slit","animalistic pussy","pig cunt","sow pussy","hog hole","hog honeypot", "ridge-lined animal pussy", "corkscrewed pig vagina","swine vagina"]);
-					}					else
+					{
+						desc += RandomInCollection(["pig pussy", "swine slit", "animalistic pussy", "pig cunt", "sow pussy", "hog hole", "hog honeypot", "ridge-lined animal pussy", "corkscrewed pig vagina", "swine vagina"]);
+					}
+					else
 					{
 						desc += RandomInCollection(["pig-pussy","swine-pussy","sow-pussy","animal-pussy","swine-slit","sow-slit","pig-cunt"]);
 					}
@@ -12570,17 +12572,6 @@
 					}
 					desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit","twat", "gash", "cunny", "honeypot", "snatch"]);
 				}
-			}
-			else
-			{
-				if (!simple)
-				{
-					if (type == GLOBAL.TYPE_HUMAN)
-						desc += RandomInCollection(["human ", "human ", "terran ", "terran ", "homo sapien "]);
-					else
-						desc += RandomInCollection(["alien ", "alien ", "exotic ", "exotic ", "inhuman "]);
-				}
-				desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit","twat", "gash", "cunny", "honeypot", "snatch"]);
 			}
 			return desc;
 		}
