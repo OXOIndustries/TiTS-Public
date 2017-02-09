@@ -179,6 +179,7 @@
 				pc.vaginas[x].wetness(1);
 				changes++;
 			}
+			/*
 			//Vaginal looseness+
 			choices = new Array();
 			for(x = 0; x < pc.vaginaTotal(); x++)
@@ -197,6 +198,7 @@
 				pc.lust(10+rand(4));
 				changes++;
 			}
+			*/
 			//Breasts up to DD-cup
 			//**Same as Zil TF, I guess?
 			if(pc.hasVagina() && changes < changeLimit && pc.biggestTitSize() < 4 && rand(3) == 0)
