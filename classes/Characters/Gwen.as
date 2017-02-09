@@ -14,7 +14,7 @@
 		//constructor
 		public function Gwen()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 11;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
