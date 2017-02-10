@@ -306,7 +306,7 @@ public function pippaEatFood(food:String):String
 			break;
 		case GIVE_ZIL_HONEY:
 			pc.destroyItem(new ZilHoney(), 1);
-			response = "Pippa downs the vile of honey in the blink of an eye. She looks more energetic.";
+			response = "Pippa downs the vial of honey in the blink of an eye. She looks more energetic.";
 			break;
 	}
 	
