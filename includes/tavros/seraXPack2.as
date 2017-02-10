@@ -505,7 +505,6 @@ public function mods4UChrysalisBonus():void
 	addButton(0, "Buy", mods4UChrysalisBuy);
 	//Only displayed if PC had a discount previously
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) addButton(5, "Discount?", mods4UChrysalisDiscount);
-	addButton(14, "Back", mainGameMenu);
 	
 	return;
 }
@@ -3275,7 +3274,7 @@ public function seraBitcheningStore(response:String = "buy"):void
 	}
 	
 	shopkeep = chars["SERA"];
-	shopkeepBackFunctor = approachServantSera;
+	shopkeepBackFunctor = (seraAtTavros() ? approachServantSeraOnTavros : approachServantSera);
 	
 	switch(response)
 	{
@@ -3286,7 +3285,7 @@ public function seraBitcheningStore(response:String = "buy"):void
 			clearOutput();
 			output("It’s just a prank, bro!");
 			clearMenu();
-			addButton(0, "Next", approachServantSera);
+			addButton(0, "Next", shopkeepBackFunctor);
 			break;
 	}
 }
@@ -3352,11 +3351,8 @@ public function seraBitcheningSexMenu():void
 	if(pc.hasCock()) addButton(btnSlot++, "Titfuck", seraBitcheningSexTitfuck, undefined, "Titfuck", "Fuck Sera’s chest cleavage.");
 	else addDisabledButton(btnSlot++, "Titfuck", "Titfuck", "You need a penis to try this!");
 	
-	if(flags["SERA_VIRGINITY_TAKEN"] != undefined)
-	{
-		if(pc.cockTotal() >= 2) addButton(btnSlot++, "Double P.", seraBitcheningSexDoublePenetration, undefined, "Double Penetration", "Fuck both of Sera’s holes.");
-		else addDisabledButton(btnSlot++, "Double P.", "Double Penetration", "You need at least two penises to try this!");
-	}
+	if(pc.cockTotal() >= 2) addButton(btnSlot++, "Double P.", seraBitcheningSexDoublePenetration, undefined, "Double Penetration", "Fuck both of Sera’s holes.");
+	else addDisabledButton(btnSlot++, "Double P.", "Double Penetration", "You need at least two penises to try this!");
 	
 	addButton(14, "Back", approachServantSera);
 	

@@ -283,7 +283,7 @@ public function bodyShotsWithDel():void
 	else output("running her fingers through your [pc.hair]");
 	output(" and squeezing her slender legs around your shoulders. Her ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("drooling equine dick");
-	else output("trappy little prick");
+	else output("girly little prick");
 	output(" throbs under her skirt, squirting all over her thighs.");
 
 	output("\n\n<i>“W-why am I getting off on this so much?”</i> she giggles, crossing her ankles behind your back, pulling your [pc.face] into her liquored-up belly. <i>“Whatever! Just don’t stop ‘till this bottle’s empty.”</i>");

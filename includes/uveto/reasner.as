@@ -607,7 +607,7 @@ public function encounterMisterTrentReasner():void
 	output("\n\nHe wears a suit-like uniform that looks good on him but clashes with his roguish charm. You imagine he’d look more natural in a leather jacket and jeans. Three gold stripes decorate his shoulder boards, compared to " + flags["BEA_TITLE"] + "’s four.");
 	output("\n\n<i>“Please,”</i> " + flags["BEA_TITLE"] + " responds. You nod.");
 	output("\n\n<i>“I Should probably introduce myself,”</i> he says to you and offers his hand; only now do you notice a simple gold ring on his finger.");
-	output("\n\n<i>“Sweetie,”</i> [bea.tile] politely says, <i>“I’d like you to meet my husband...”</i>");
+	output("\n\n<i>“Sweetie,”</i> " + flags["BEA_TITLE"] + " politely says, <i>“I’d like you to meet my husband...”</i>");
 	output("\n\n<i>“Traven Reasner,”</i> you shake his hand and get a strong grip and a reassuring pat on the shoulder, <i>“glad to meet you, " + pc.mf("son","miss") + "! The missus had some nice things to say about a splendid young [pc.manWoman] she met here.”</i>");
 
 	if(flags["BEA_RELATIONSHIP"] == 2) output("\n\nYou don’t know what to say. You weren’t expecting to ever meet him, especially since you’re, well, sleeping with his wife.");

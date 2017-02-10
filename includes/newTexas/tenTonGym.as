@@ -1795,7 +1795,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				
 				pc.cockChange();
 				
-				output("\n\nYou clench down hard and force yourself not to come. The twin sensations of Victoria’s cock up your ass and your own in Betsy’s are almost too much to bear. But you don’t want this to send so quickly, not when you’re just getting started.");
+				output("\n\nYou clench down hard and force yourself not to come. The twin sensations of Victoria’s cock up your ass and your own in Betsy’s are almost too much to bear. But you don’t want this to end so quickly, not when you’re just getting started.");
 				output("\n\nBetsy leans her back against your [pc.chest], and you reach up and take hold of her plump tits, giving them a good squeeze as her ass bounces against your crotch. Victoria’s hands move to the sides of your [pc.hips], and she picks up the pace, her thrusts coming faster and harder. You can’t help but thrust harder into Betsy thanks to that, and she starts to gasp again as her ass squeezes your cock hard, clenching around your base.");
 				output("\n\nVictoria’s hands dig into your hips as she pounds herself into your [pc.asshole] again and again, her foot-long dong throbbing inside you. The sound of her ass slapping against the tile wall echoes through the showers, and as her breathing grows faster, you feel it against the back of your neck. Her strong thighs rub against your [pc.thighs], smooth and warm.");
 				output("\n\nYou squeeze Betsy’s big pink nipples, making her squeal, and her ass tightens even more around your [pc.cockNoun " + x + "]. She gasps, <i>“Harder!”</i>, and you obey, thrusting your [pc.hips] against her bouncy ass as hard as you can. Victoria’s cock slides just a little out of your ass, and she tightens her grip on you and pounds it back in, making you moan.");
@@ -1811,6 +1811,8 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\nVictoria chuckles. <i>“You up for another round sometime, [pc.name]?”</i>");
 				output("\n\nYou laugh, and tell the girls you’d definitely be up for this another time. Though it seems like all three of you will need a little time to recover.");
 			}
+			
+			pc.loadInAss(ppVictoria);
 			break;
 	}
 	

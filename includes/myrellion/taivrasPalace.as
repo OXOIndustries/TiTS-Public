@@ -2712,7 +2712,7 @@ public function taivraRepeatScenes():void
 	//Greeting Taivra
 	output("You approach Taivra, stepping up onto the dias of her throne and between the tangle of limbs surrounding her. The dozen betas writhing around her moan softly, some reaching out to brush your [pc.legOrLegs] or thrusting their bare chests out at you, trying to entice you to join them. Taivra tsks her tongue at the rowdy bunch, and the mass of tentacle cocks thrusting into their ovipositors move a little bit faster, surrounding you in the wet, sultry sounds of sex.");
 
-	output("\n\nTurning your attention back to the queen. you find her relaxed on her throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]. Anything I can do for you, my mate?”</i>");
+	output("\n\nTurning your attention back to the queen, you find her relaxed on her throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]. Anything I can do for you, my mate?”</i>");
 	//Respect 41-70: [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up from her throne to brush a hand across your cheek. <i>“Is there something you desire, my mate?”</i> //Respect 71+: <i>“Welcome back, my love,”</i> she purrs, beckoning you closer. When you slip up beside her, Taivra reaches up from her throne to cup your cheek and pull you down into a passionate kiss. <i>“Care to sit with me a while, or was there something you desired?”</i>}");
 	
 	if(rand(10) == 0) taivraMidConvoEvents();
@@ -2843,7 +2843,7 @@ public function queenTaivrasNewThrone():void
 	showTaivra();
 	author("Pancor");
 	
-	output("Turning your attention back to the queen. you find her relaxed on her restored throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up to pull you closer, where you can see she is currently enjoying the features of her new throne. <i>“I will admit, while I was reluctant at first, this proved to be a most excellent idea. Let me know if there is </i>anything<i> I can do to show my thanks.”</i>");
+	output("Turning your attention back to the queen, you find her relaxed on her restored throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up to pull you closer, where you can see she is currently enjoying the features of her new throne. <i>“I will admit, while I was reluctant at first, this proved to be a most excellent idea. Let me know if there is </i>anything<i> I can do to show my thanks.”</i>");
 	
 	processTime(4);
 	pc.lust(5);

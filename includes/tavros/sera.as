@@ -289,7 +289,12 @@ public function seraDebtCheck():Boolean
 		
 		processTime(2);
 		clearMenu();
-		addButton(0, "Nevermind", seraMenu);
+		if(seraRecruited())
+		{
+			if(seraAtTavros()) addButton(0, "Nevermind", approachServantSeraOnTavros);
+			else addButton(0, "Nevermind", approachServantSera);
+		}
+		else addButton(0, "Nevermind", seraMenu);
 		addButton(1, "Buy", buyItem);
 		return true;
 	}
