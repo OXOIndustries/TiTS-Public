@@ -375,7 +375,7 @@ public function pippaNuruEmail():String
 {
 	var ret:String = "Hey " + pippaCallsSteele() + ",";
 	
-	ret += "\n\nYou've been a good customer, and a good friend, so I'd like to open up a new service of mine to you.  Ever heard of a Nuru massage?  Well, the short of it is, we'll both get naked and nice and oiled up, and I'll massage every last bit of you, using my whole body.  Sound good?  If it does, I hope you'll stop by soon.";
+	ret += "\n\nYou’ve been a good customer, and a good friend, so I’d like to open up a new service of mine to you. Ever heard of a Nuru massage? Well, the short of it is, we’ll both get naked and nice and oiled up, and I’ll massage every last bit of you, using my whole body. Sound good? If it does, I hope you’ll stop by soon.";
 	
 	ret += "\n\nYour favorite masseuse,";
 	ret += "\nPippa";

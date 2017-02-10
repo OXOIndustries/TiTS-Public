@@ -737,7 +737,7 @@ public function uvetoBarBonus():Boolean
 }
 
 //CUSTOM OFFBEATR SCENE!
-//An extremely-sized hyperfur male fox/horse hybrid. His cock would be very long and he would have a harem of helpers/handlers who would serve him, yiff him, and help him walk. Walking and yiffing are a team effort. Sexually he's open but prefers females. You can tie it into the story any way you like - Fields on this survey are limited, so ask if you need clarification. The only thing to point out is that when walking, his harem would have a harness system strapped to their hips. A pair of girls every few feet of his length would hoist him and walk with him as if they were all one.
+//An extremely-sized hyperfur male fox/horse hybrid. His cock would be very long and he would have a harem of helpers/handlers who would serve him, yiff him, and help him walk. Walking and yiffing are a team effort. Sexually he’s open but prefers females. You can tie it into the story any way you like - Fields on this survey are limited, so ask if you need clarification. The only thing to point out is that when walking, his harem would have a harness system strapped to their hips. A pair of girls every few feet of his length would hoist him and walk with him as if they were all one.
 //Xenofoxx
 public function tankKannonBiopic():void
 {
@@ -808,7 +808,7 @@ public function watchTankBlowFirstLoadEpilogue():void
 
 //STEPH IRSON!
 //[Watch Screen]
-//It looks like the TV is currently running the latest episode of <i>Steph Irson: Galactic Huntress</i> if you'd care to watch. 
+//It looks like the TV is currently running the latest episode of <i>Steph Irson: Galactic Huntress</i> if you’d care to watch. 
 public function watchUvetoStephIrson():void
 {
 	clearOutput();

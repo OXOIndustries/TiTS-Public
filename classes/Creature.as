@@ -9092,7 +9092,7 @@
 			//Negative is code for see if any can.
 			else {
 				for (var x: int = 0; x < cocks.length; x++) {
-					if (cocks[x].cLength() >=  tallness / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness / 3) && genitalLocation() <= 1)
+					if (cocks[x].cLength() >= tallness / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness / 3) && genitalLocation() <= 1)
 						return true;
 				}
 				return false;
@@ -9996,7 +9996,7 @@
 		public function canineRace():String
 		{
 			if (demonScore() >= 3) return "hellhound-morph";
-			else if (huskarScore() >= 3)  return "husky-morph";
+			else if (huskarScore() >= 3) return "husky-morph";
 			if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) return "bitch-morph";
 			if(faceType == GLOBAL.TYPE_WORG) return "worg-morph";
 			if(kGAMECLASS.silly) return "doge-morph";
@@ -10004,7 +10004,7 @@
 		}
 		public function felineRace():String
 		{
-			if (dragonScore() >= 4 && hasScales())  return "dragonne";
+			if (dragonScore() >= 4 && hasScales()) return "dragonne";
 			else if (isTaur() && isHerm()) return "chakat";
 			else if (hasTail(GLOBAL.TYPE_FELINE) && tailCount > 1) return "nekomata";
 			return "feline-morph";
@@ -10437,7 +10437,7 @@
 			//If the character has fur of non-foxy color
 			// commented, requires Lucid Dreams mod parts to work
 			//if (skinType == GLOBAL.SKIN_TYPE_FUR && !InCollection(furColor, kGAMECLASS.basicKitsuneFur, kGAMECLASS.elderKitsuneColors, kGAMECLASS.corruptKitsuneColors)) counter--;
-			if (skinType > GLOBAL.SKIN_TYPE_FUR) counter -= 2;  // Not skin or fur
+			if (skinType > GLOBAL.SKIN_TYPE_FUR) counter -= 2; // Not skin or fur
 			if (!InCollection(legType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_VULPINE)) counter--;
 			if (!InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_VULPINE)) counter--;
 			if (earType != GLOBAL.TYPE_VULPINE) counter--;
@@ -13510,7 +13510,7 @@
 						case GLOBAL.TYPE_SWINE:
 							desc += RandomInCollection(["swine-cock","swine-schlong","pig-cock","pig-prick","hog-dick","cock","boar-dick",mf("sow-seeder","sow-schlong")]);
 							break;
-						//Basic dicks names:  "cock",
+						//Basic dicks names: "cock",
 						case GLOBAL.TYPE_HUMAN:
 						//Nothing special for these two.
 						case GLOBAL.TYPE_HRAD:
@@ -13633,7 +13633,7 @@
 						case GLOBAL.TYPE_SWINE:
 							desc += RandomInCollection(["swine cock","swine schlong","pig prick","corkscrew-shaped pig cock","twisted swine dick","animalistic dick","twisted prick","animalistic shaft"]);
 							break;
-						//Basic dicks names:  "cock",
+						//Basic dicks names: "cock",
 						case GLOBAL.TYPE_HUMAN:
 							desc += RandomInCollection(["terran cock","human cock","human dick","terran dick","human member","terran member","terran phallus","human prick","terran tool","human shaft"]);
 							break;
@@ -17187,7 +17187,7 @@
 		 * Kui-tan "Cum Cascade" function.
 		 * Takes ingested cum and adds 5x to balls.
 		 * @param	amount	amount of cum digested in mL
-		 * @param   fluid  fluid type of cum digested (defaults to cum)
+		 * @param	fluid type of cum digested (defaults to cum)
 		 */
 		public function cumCascade(amount:Number, fluid:Number = GLOBAL.FLUID_TYPE_CUM): void 
 		{

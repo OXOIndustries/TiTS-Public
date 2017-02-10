@@ -291,7 +291,7 @@ public function seraDebtCheck():Boolean
 		clearMenu();
 		if(seraRecruited())
 		{
-			if(seraAtTavros()) addButton(0, "Nevermind", approachServantSeraOnTavros);
+			if(flags["SERA_CREWMEMBER"] == 0) addButton(0, "Nevermind", approachServantSeraOnTavros);
 			else addButton(0, "Nevermind", approachServantSera);
 		}
 		else addButton(0, "Nevermind", seraMenu);

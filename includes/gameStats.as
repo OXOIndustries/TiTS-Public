@@ -395,7 +395,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.ballSizeRaw > 0 && pc.perkv1("'Nuki Nuts") > 0) output2(" " + formatFloat(pc.ballFullness + ((pc.perkv1("'Nuki Nuts")/pc.ballSizeRaw) * 100), 1) + " %");
 			else output2(" " + formatFloat(pc.ballFullness, 1) + " %");
 			output2("\n<b>* Cum, Current Internal:</b> " + pc.currentCum() + " mLs");
-			output2("\n<b>* Cum, Probable Ejaculation:</b>  " + Math.round(pc.cumQ()) + " mLs");
+			output2("\n<b>* Cum, Probable Ejaculation:</b> " + Math.round(pc.cumQ()) + " mLs");
 			output2("\n<b>* Cum, Max:</b> " + pc.maxCum() + " mLs");
 			output2("\n<b>* Refractory Rate:</b> " + Math.round(pc.refractoryRate*1000)/10 + " %");
 			if(pc.virility() <= 0) output2("\n<b>* Virility:</b> Infertile");
@@ -468,7 +468,7 @@ public function statisticsScreen(showID:String = "All"):void
 			else output2(" Taken");
 			// Girlcum Stats
 			output2("\n<b>* Girlcum, Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
-			output2("\n<b>* Girlcum, Probable Ejaculation:</b>  " + pc.girlCumQ() + " mLs");
+			output2("\n<b>* Girlcum, Probable Ejaculation:</b> " + pc.girlCumQ() + " mLs");
 			// Fertility
 			if(pc.fertility() <= 0) output2("\n<b>* Fertility:</b> Infertile");
 			else
@@ -4004,7 +4004,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Mhen’gan Resources</u></b>");
 				if(flags["FOUND_MANGO"] != undefined) output2("\n<b>* Mhen’gan Mango, Times Found:</b> " + flags["FOUND_MANGO"]);
-				if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined) output2("\n<b>* Oxonium Deposit:</b>  Found");
+				if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined) output2("\n<b>* Oxonium Deposit:</b> Found");
 				if(flags["UTHRA HARVEST DAY"] != undefined) output2("\n<b>* Uthra Sap, Days Since Last Harvest:</b> " + (days - flags["UTHRA HARVEST DAY"]));
 				
 				variousCount++;
@@ -5164,19 +5164,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				if (flags["PIPPA_AFFECTION"] != undefined)
 				{
 					output2("\n<b>* Pippa:</b> Met her");
-					
 					if (recruitedPippa()) 
 					{
-						output2(", Crew member ");
-						
-						if (pippaOnShip()) output2("(Onboard Ship)");
-						else output2("(Left on Uveto)");
+						output2(", Crew member");
+						if (pippaOnShip()) output2(" (Onboard Ship)");
+						else output2(" (Left on Uveto)");
 					}
 					else if (pippaRecruitTurnedDown()) output(", Turned down request to join crew");
-					
-					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + "%");
-					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + "%");
-					
+					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + " %");
+					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + " %");
 					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
 					if (pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
 					if (pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
@@ -5318,7 +5314,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["9999"] != undefined)
 			{
 				output2("\n<b><u>Uvetan Resources</u></b>");
-				if(flags["9999"] != undefined) output2("\n<b>* Oxonium Deposit:</b>  Found");
+				if(flags["9999"] != undefined) output2("\n<b>* Oxonium Deposit:</b> Found");
 				
 				variousCount++;
 			}

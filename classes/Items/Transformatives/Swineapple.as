@@ -31,7 +31,7 @@ package classes.Items.Transformatives
 			
 			this.description = "a swineapple fruit";
 			
-			this.tooltip = "A transformative in the form of an artificial fruit.  The so-called swineapple is meant to give the user pig-like features, but also has the potential to make the user larger and softer.  It looks similar to a terran apple, but the skin is pink and fuzzy.";
+			this.tooltip = "A transformative in the form of an artificial fruit. The so-called swineapple is meant to give the user pig-like features, but also has the potential to make the user larger and softer. It looks similar to a terran apple, but the skin is pink and fuzzy.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -66,14 +66,14 @@ package classes.Items.Transformatives
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Usage text:
-				kGAMECLASS.output("You take a big bite out of the swineapple. It mostly tastes and feels like a terran apple, but the flavor has earthy undertones.  Somehow you end up feeling hungrier.");
+				kGAMECLASS.output("You take a big bite out of the swineapple. It mostly tastes and feels like a terran apple, but the flavor has earthy undertones. Somehow you end up feeling hungrier.");
 				
 				//{ Make face human if it's not human or swine
 				if (changes < changeLimit && !InCollection(pc.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_SWINE) && rand(4) == 0)
 				{
 					if (pc.faceTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
-						kGAMECLASS.output("\n\nYou feel your face beginning to itch and crawl.  You throw your hands up to your face and can feel that it's changing shape.  You scramble for a reflective surface just in time to find an <b>utterly human face staring back at you.</b>");
+						kGAMECLASS.output("\n\nYou feel your face beginning to itch and crawl. You throw your hands up to your face and can feel that it’s changing shape. You scramble for a reflective surface just in time to find an <b>utterly human face staring back at you.</b>");
 						
 						pc.clearFaceFlags();
 						pc.faceType = GLOBAL.TYPE_HUMAN;
@@ -88,7 +88,7 @@ package classes.Items.Transformatives
 				{
 					if (pc.faceTypeUnlocked(GLOBAL.TYPE_SWINE))
 					{
-						kGAMECLASS.output("\n\nYou feel your face beginning to itch and crawl.  You throw your hands to your face and notice your nose feels...flat?  You scramble for a reflective surface just in time to see a <b>flat, pig-like nose on your otherwise human face.</b>");
+						kGAMECLASS.output("\n\nYou feel your face beginning to itch and crawl. You throw your hands to your face and notice your nose feels...flat? You scramble for a reflective surface just in time to see a <b>flat, pig-like nose on your otherwise human face.</b>");
 						
 						pc.faceType = GLOBAL.TYPE_SWINE;
 						changes++;
@@ -114,7 +114,7 @@ package classes.Items.Transformatives
 				{
 					if (pc.cockFlagsUnlocked(x, [GLOBAL.FLAG_SHEATHED]))
 					{
-						kGAMECLASS.output("\n\nYour [pc.cock " + x + "] feels as if it's shrinking and tearing apart at it's based, but you realized that it's simply become <b>sheathed.</b>");
+						kGAMECLASS.output("\n\nYour [pc.cock " + x + "] feels as if it’s shrinking and tearing apart at it’s based, but you realized that it’s simply become <b>sheathed.</b>");
 						
 						pc.cocks[x].addFlag(GLOBAL.FLAG_SHEATHED);
 						
@@ -170,7 +170,7 @@ package classes.Items.Transformatives
 							pc.cocks[x].cThicknessRatio(-0.1);
 						}
 						
-						kGAMECLASS.output(".  <b>You have a pig penis!</b>");
+						kGAMECLASS.output(". <b>You have a pig penis!</b>");
 						
 						pc.lust(20 + rand(20));
 						
@@ -222,10 +222,10 @@ package classes.Items.Transformatives
 				{
 					if (pc.cockThicknessUnlocked(x, pc.cocks[x].cThicknessRatio() - 0.1))
 					{
-						kGAMECLASS.output("\n\nYou feel your [pc.cock " + x + "]'s tightening. Alarmed, you ");
+						kGAMECLASS.output("\n\nYou feel your [pc.cock " + x + "]’s tightening. Alarmed, you ");
 						if(!pc.isCrotchGarbed()) kGAMECLASS.output("strip");
 						else kGAMECLASS.output("spread your [pc.legOrLegs]");
-						kGAMECLASS.output(" and grab your cock.  It shrinks away from your grasp, thinner than before!");
+						kGAMECLASS.output(" and grab your cock. It shrinks away from your grasp, thinner than before!");
 						changes++;
 						
 						pc.cocks[x].cThicknessRatio(-0.1);
@@ -248,7 +248,7 @@ package classes.Items.Transformatives
 				{
 					if (pc.vaginaTypeUnlocked(x, GLOBAL.TYPE_SWINE))
 					{
-						kGAMECLASS.output("\n\nYou feel your pussy getting tight and wet.  The outer lips swell out dramatically with your rising lust.  You stick a finger inside and feel corkscrew-patterned ridges forming along your vaginal walls.  <b>Looks like you've got a pig pussy!</b>");
+						kGAMECLASS.output("\n\nYou feel your pussy getting tight and wet. The outer lips swell out dramatically with your rising lust. You stick a finger inside and feel corkscrew-patterned ridges forming along your vaginal walls. <b>Looks like you’ve got a pig pussy!</b>");
 						
 						pc.lust(20 + rand(20));
 						
@@ -268,16 +268,16 @@ package classes.Items.Transformatives
 				{
 					if (target.legTypeUnlocked(GLOBAL.TYPE_SWINE))
 					{
-						kGAMECLASS.output("\n\nYour legs feel hot and begin to change before your eyes.  ");
+						kGAMECLASS.output("\n\nYour legs feel hot and begin to change before your eyes. ");
 						
-						if (pc.hasLegFlag(GLOBAL.FLAG_FURRED)) kGAMECLASS.output("Your [pc.skinFurScales] falls out in large tufts, leaving you with smooth skin.  ");
-						else if (pc.hasLegFlag(GLOBAL.FLAG_SCALED)) kGAMECLASS.output("Your [pc.skinFurScales] fall off, sprinkling to the floor, leaving you with smooth skin.  ");
+						if (pc.hasLegFlag(GLOBAL.FLAG_FURRED)) kGAMECLASS.output("Your [pc.skinFurScales] falls out in large tufts, leaving you with smooth skin. ");
+						else if (pc.hasLegFlag(GLOBAL.FLAG_SCALED)) kGAMECLASS.output("Your [pc.skinFurScales] fall off, sprinkling to the floor, leaving you with smooth skin. ");
 						
-						if (!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) kGAMECLASS.output("Their form shifts until you're left standing on digitigrade legs.  ");
+						if (!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) kGAMECLASS.output("Their form shifts until you’re left standing on digitigrade legs. ");
 						
-						if (!pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) kGAMECLASS.output("Your feet and toes are swallowed up by newly formed cloven hooves.  ");
+						if (!pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) kGAMECLASS.output("Your feet and toes are swallowed up by newly formed cloven hooves. ");
 						
-						kGAMECLASS.output("<b>You've got pig legs!</b>");
+						kGAMECLASS.output("<b>You’ve got pig legs!</b>");
 						
 						pc.legType = GLOBAL.TYPE_SWINE;
 						pc.clearLegFlags();
@@ -296,12 +296,12 @@ package classes.Items.Transformatives
 					{
 						if(pc.legCount < 2)
 						{
-							kGAMECLASS.output("\n\nYour [pc.leg] wobbles then folds, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you're helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into two leg-like shapes. The digitigrade legs are covered only in skin, and capped with cloven hooves.  <b>You've got pig legs!</b>");
+							kGAMECLASS.output("\n\nYour [pc.leg] wobbles then folds, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you’re helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into two leg-like shapes. The digitigrade legs are covered only in skin, and capped with cloven hooves. <b>You’ve got pig legs!</b>");
 						}
 						//More than biped
 						else
 						{
-							kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. The digitigrade legs are covered only in skin, and capped with cloven hooves.  <b>You've got pig legs!</b>");
+							kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. The digitigrade legs are covered only in skin, and capped with cloven hooves. <b>You’ve got pig legs!</b>");
 						}
 						pc.legCount = 2;
 						pc.genitalSpot = 0;
@@ -323,13 +323,13 @@ package classes.Items.Transformatives
 						//If PC had a tail before:
 						if(pc.tailCount == 1) kGAMECLASS.output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as it twists into a short, curly shape. It starts twirling as the change completes, <b>leaving you with pig-like tail.</b>");
 						//Multitails
-						else if(pc.tailCount == 2) kGAMECLASS.output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They're merging together into a single, narrow entity. The flesh crawls eerily as it assume its new shape. The result is a <b>short, curly pig tail..</b>");
+						else if(pc.tailCount == 2) kGAMECLASS.output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They’re merging together into a single, narrow entity. The flesh crawls eerily as it assume its new shape. The result is a <b>short, curly pig tail..</b>");
 						//no tail
 						else
 						{
 							kGAMECLASS.output("\n\nOuch! A knot of discomfort forms just above your [pc.butt] as if it had suffered a nasty sting or bite, but no such injury occured. You twist for a look at it");
 							if(pc.isCrotchGarbed()) kGAMECLASS.output(", peeling back your [pc.underGarments]");
-							kGAMECLASS.output(". There's a raised, irritated lump there, and it's getting bigger. Wiggling slightly, it extends as new bones form within it, gently twirling as it lengthens. You're growing a tail! It grows out in a corkscrew pattern, stopping at a fairly short length; <b>you've obviously gained a pig's tail.</b>");
+							kGAMECLASS.output(". There’s a raised, irritated lump there, and it’s getting bigger. Wiggling slightly, it extends as new bones form within it, gently twirling as it lengthens. You’re growing a tail! It grows out in a corkscrew pattern, stopping at a fairly short length; <b>you’ve obviously gained a pig’s tail.</b>");
 						}
 						pc.tailCount = 1;
 						pc.tailType = GLOBAL.TYPE_SWINE;
@@ -346,7 +346,7 @@ package classes.Items.Transformatives
 				{
 					if (pc.earTypeUnlocked(GLOBAL.TYPE_SWINE))
 					{
-						kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph as they reshape into a pair of lazy points, flopping down over your head. <b>You now have a pig's ears!</b>");
+						kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph as they reshape into a pair of lazy points, flopping down over your head. <b>You now have a pig’s ears!</b>");
 						pc.earType = GLOBAL.TYPE_SWINE;
 						changes++;
 					}
@@ -373,7 +373,7 @@ package classes.Items.Transformatives
 				{
 					pc.bellyRatingRaw += 2 + rand(2);
 					
-					kGAMECLASS.output("\n\nYou feel your stomach rumbling and begin to feel queasy.  Did you just eat a spoiled swineapple?  The rumbling dies and as quickly as it came on, the sickness is quickly replaced with a feeling of growth.  You're left with a larger stomach.");
+					kGAMECLASS.output("\n\nYou feel your stomach rumbling and begin to feel queasy. Did you just eat a spoiled swineapple? The rumbling dies and as quickly as it came on, the sickness is quickly replaced with a feeling of growth. You’re left with a larger stomach.");
 					changes++;
 				}
 				//}
@@ -387,7 +387,7 @@ package classes.Items.Transformatives
 						
 						if (!pc.isNude()) kGAMECLASS.output(" and tear away all of your clothing and gear");
 						
-						kGAMECLASS.output(".  The itch falls away along with everything except for the skin itself, <b>leaving you with plain, normal skin.<b>");
+						kGAMECLASS.output(". The itch falls away along with everything except for the skin itself, <b>leaving you with plain, normal skin.<b>");
 						
 						pc.clearSkinFlags();
 						pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
@@ -404,7 +404,7 @@ package classes.Items.Transformatives
 					
 					if (pc.skinToneUnlocked(newSkinTone))
 					{
-						kGAMECLASS.output("\n\nYour skin seems to shimmer briefly and changes colors.  You now have " + newSkinTone + " colored skin.");
+						kGAMECLASS.output("\n\nYour skin seems to shimmer briefly and changes colors. You now have " + newSkinTone + " colored skin.");
 						
 						pc.skinTone = newSkinTone;
 						changes++;
@@ -427,11 +427,11 @@ package classes.Items.Transformatives
 							
 							if (pc.nippleColorUnlocked(newNippleColor))
 							{
-								kGAMECLASS.output("  Your nipples change to a matching " + newNippleColor + " color.");
+								kGAMECLASS.output(" Your nipples change to a matching " + newNippleColor + " color.");
 								
 								pc.nippleColor = newNippleColor;
 							}
-							else kGAMECLASS.output("  " + pc.nippleColorLockedMessage());
+							else kGAMECLASS.output(" " + pc.nippleColorLockedMessage());
 						}
 					}
 					else kGAMECLASS.output("\n\n" + pc.skinToneLockedMessage());

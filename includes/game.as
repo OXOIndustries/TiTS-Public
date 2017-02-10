@@ -120,7 +120,7 @@ public function showLocationName():void
 public function disableExploreEvents():Boolean
 {
 	// Stellar Tether Duration
-	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"]  == undefined) return true;
+	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"] == undefined) return true;
 	// Stellar Tether (Bomb Timer)
 	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
 	// Deck 13 Duration
@@ -2590,14 +2590,17 @@ public function processHoneyPotMods(deltaT:uint, doOut:Boolean, totalDays:uint):
 
 public function processExhibUpdates(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
-	if (   !(pc.armor is EmptySlot)
-		&& !(   pc.lowerUndergarment is EmptySlot
-		     || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) 
-			 || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) 
-			 || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
-		&& !(   pc.upperUndergarment is EmptySlot
-		     || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
-			 || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+	if
+	(	!(pc.armor is EmptySlot)
+	&&	!(	pc.lowerUndergarment is EmptySlot
+		||	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) 
+		||	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) 
+		||	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)
+		)
+	&& !(	pc.upperUndergarment is EmptySlot
+		||	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+		||	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)
+		)
 	)
 	{
 		if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed()) { /*noop*/ }

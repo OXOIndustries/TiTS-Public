@@ -3274,7 +3274,7 @@ public function seraBitcheningStore(response:String = "buy"):void
 	}
 	
 	shopkeep = chars["SERA"];
-	shopkeepBackFunctor = (seraAtTavros() ? approachServantSeraOnTavros : approachServantSera);
+	shopkeepBackFunctor = (flags["SERA_CREWMEMBER"] == 0 ? approachServantSeraOnTavros : approachServantSera);
 	
 	switch(response)
 	{
