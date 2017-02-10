@@ -13671,9 +13671,9 @@
 			if(cLength <= 5) bonus = 25;
 			if(cLength <= 4) bonus += 10;
 
-			if(cLength >= 7) bonus = 25;
-			if(cLength >= 14) bonus += 3;
-			if(cLength >= 18) bonus += 3;
+			if(cLength >= 7) bonus = 15;
+			if(cLength >= 14) bonus += 6;
+			if(cLength >= 18) bonus += 6;
 			if(cLength >= 30) bonus += 3;
 			if(cLength >= 50) bonus += 3;
 			if(cLength >= 100) bonus += 3;
@@ -13693,12 +13693,12 @@
 				else if (cLength <= 5) descript += RandomInCollection(["short","small","petite"]);
 				//This one should pretty much never proc
 				else if (cLength < 7) descript += RandomInCollection(["fair-sized","nice"]);
-				else if (cLength < 11) descript += RandomInCollection([(cock.cType == GLOBAL.TYPE_EQUINE) ? "pony-sized" : "long","lengthy","cucumber-sized"]);
-				else if (cLength < 14) descript += RandomInCollection(["huge","foot-long",(cock.cType == GLOBAL.TYPE_CANINE) ? "mastiff-sized" : "pornstar-sized","impressive"]);
+				else if (cLength < 11) descript += RandomInCollection([(cock.cType == GLOBAL.TYPE_EQUINE) ? "pony-sized" : "long","lengthy","long","lengthy","wrench-length","cucumber-sized","large"]);
+				else if (cLength < 14) descript += RandomInCollection(["huge","foot-long",(cock.cType == GLOBAL.TYPE_CANINE) ? "mastiff-sized" : "pornstar-sized","impressive","beefy"]);
 				else if (cLength < 18) descript += RandomInCollection(["massive","knee-length","forearm-length","imposing","seam-straining","pant-bulging"]);
-				else if (cLength < 30) descript += RandomInCollection(["enormous","enormous","giant","giant",(cock.cType == GLOBAL.TYPE_EQUINE) ? "clydesdale-sized" : "arm-sized","seam-shredding","pant-ripping"])
-				else if (cLength < 50) descript += RandomInCollection(["towering","monstrous","prodigious","ultrapornstar-sized","hyper-sized","unnaturally large"])
-				else if (cLength < 100) descript += RandomInCollection(["person-sized","ridiculously massive","extremely prodigious","overly imposing","room-dominating","body-dominating","colossal","monumental","immense"]);
+				else if (cLength < 30) descript += RandomInCollection(["enormous","enormous","giant","giant",(cock.cType == GLOBAL.TYPE_EQUINE) ? "clydesdale-sized" : "arm-sized","seam-shredding",(femininity > 60) ? "panty-destroying" : "pant-ripping","hulking"]);
+				else if (cLength < 50) descript += RandomInCollection(["towering","monstrous","prodigious","ultrapornstar-sized","hyper-sized","unnaturally large","unwieldy"]);
+				else if (cLength < 100) descript += RandomInCollection(["person-sized","ridiculously massive","extremely prodigious","overly imposing","room-dominating","body-dominating","colossal","monumental","immense","ponderous","unwieldy"]);
 				else if (cLength < 150) descript += RandomInCollection(["car-sized","vehicle-length","movement-impairing","monumentally long","couch-length","impossibly long"]);
 				else if (cLength < 270) descript += RandomInCollection(["room-sized","hall-length","exquisitely over-sized","bus-length","ship-length","impossibly lengthy","tremendously long"]);
 				else descript += RandomInCollection(["bus-sized","ship-sized","universe-shaming","house-crushing","mansion-filling","distractingly distended","gorgeously gigantic"]);
