@@ -6066,7 +6066,7 @@
 					{
 						case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "equine", "horse-like"]; break;
 						case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "bovine", "cow-like"]; break;
-						case GLOBAL.TYPE_CANINE: adjectives = ["canine", "canine", "dog-like", "paw-footed"]; break;
+						case GLOBAL.TYPE_CANINE: adjectives = ["canine", "canine", "dog-like"]; break;
 						case GLOBAL.TYPE_FELINE: adjectives = ["feline", "feline", "cat-like", "graceful"]; break;
 						case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "vulpine", "fox-like", "foxy"]; break;
 						case GLOBAL.TYPE_BEE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
@@ -6077,7 +6077,7 @@
 						case GLOBAL.TYPE_DRACONIC: adjectives = ["draconic", "draconic", "dragon-like", "reptilian"]; break;
 						case GLOBAL.TYPE_GRYVAIN: adjectives = ["draconic", "dragon-like", "dragon-like"]; break;
 						case GLOBAL.TYPE_LIZAN: adjectives = ["lizan", "lizan", "reptile-like", "reptilian"]; break;
-						case GLOBAL.TYPE_DEMONIC: adjectives = ["demonic", "demon-like", "demon-like", "claw-footed"]; break;
+						case GLOBAL.TYPE_DEMONIC: adjectives = ["demonic", "demon-like", "demon-like"]; break;
 						case GLOBAL.TYPE_SUCCUBUS: adjectives = ["sensual", "alluring", "seductive", "sexy"]; break;
 						case GLOBAL.TYPE_GOOEY: adjectives = ["gooey", "semi-solid", "gelatinous", "jiggly"]; break;
 						case GLOBAL.TYPE_KANGAROO: adjectives = ["kangaroo-like", "kangaroo-like", "powerful", "‘roo"]; break;
@@ -6090,7 +6090,7 @@
 						case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-armored", "chitinous"]; break;
 						case GLOBAL.TYPE_FROG: adjectives = ["frog", "amphibious", "frog-like", "powerful"]; break;
 						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
-						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic","claw-footed"]; break;
+						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic"]; break;
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 					}
 				}
