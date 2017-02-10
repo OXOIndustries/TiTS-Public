@@ -192,7 +192,7 @@ public function appearance(forTarget:Creature):void
 			//Fur/Feather:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) 
 			{
-				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You've got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skinFurScales(true,true,true,true) + " underneath your ");
+				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You’ve got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skinFurScales(true,true,true,true) + " underneath your ");
 				if(target.hasFur()) output2("furry");
 				else output2("feathered");
 				output2(" visage.");
@@ -284,7 +284,7 @@ public function appearance(forTarget:Creature):void
 			//appearance
 			output2("Your face is mostly human in shape and structure, with " + target.skin(true,true,true));
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" under your " + target.skinFurScales(true,true,false,true));
-			output2("but it's adorned with a flat, pig-like nose.");
+			output2("but it’s adorned with a flat, pig-like nose.");
 		}
 		// Special face additions
 		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
@@ -1679,7 +1679,7 @@ public function appearance(forTarget:Creature):void
 			else output2("giving you a dangerous air.");
 			output2(" Halfway across it grows a smaller dorsal fin.");
 		}
-		else if(target.tailType == GLOBAL.TYPE_SWINE) output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you're happy.");
+		else if(target.tailType == GLOBAL.TYPE_SWINE) output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you’re happy.");
 		//Tail cunts
 		if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
 		{
@@ -3101,13 +3101,11 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	// pig dick
 	else if (target.cocks[x].cType == GLOBAL.TYPE_SWINE) {
 		output2(" The end twists in a corkscrew pattern, ");
-		
 		if (target.cocks[x].cLength() >= 18 && target.cocks[x].cThicknessRatio() <= 0.4) output2("and it is long and thin, like");
 		else if (target.cocks[x].cLength() < 18 && target.cocks[x].cThicknessRatio() > 0.4) output2("but its length and width ratio is unlike that of");
-		else if (target.cocks[x].cLength() < 18) output2("but it's not lengthy like");
-		else output2("but it's wider than");
-		
-		output2(" a pig's.");
+		else if (target.cocks[x].cLength() < 18) output2("but it’s not lengthy like");
+		else output2("but it’s wider than");
+		output2(" a pig’s.");
 	}
 	//Nubby or Ribbed
 	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
@@ -3314,8 +3312,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	else if(target.vaginas[x].type == GLOBAL.TYPE_SWINE) {
 		if(!eachOne) output2(" The");
 		else output2("\nEach vagina’s");
-		
-		output2(" exterior lips are typically featureless, except for when you're aroused and they swell outward.");
+		output2(" exterior lips are typically featureless, except for when you’re aroused and they swell outward.");
 	}
 	
 	//Nubby
