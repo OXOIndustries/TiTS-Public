@@ -4103,8 +4103,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_DEL"] != undefined)
 				{
 					output2("\n<b>* Delilah:</b> Met her");
+					if(MailManager.isEntryViewed("del_moved")) output2(" (Moved to Canadia Station)");
 					if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) output2(", Took her anal virginity");
-					//if(delilahSubmissiveness() > 0) output2("\n<b>* Delilah, Submissiveness Level:</b> " + delilahSubmissiveness());
+					if(delilahSubmissiveness() > 0) output2("\n<b>* Delilah, Submissiveness Level:</b> " + delilahSubmissiveness());
 					if(flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"] > 0) output2("\n<b>* Delilah, Times Sexed:</b> " + flags["TIMES_HAD_SEX_WITH_DELILAH_IN_SOME_WAY"]);
 					if(flags["TIMES_ATE_DELILAH_OUT"] > 0) output2("\n<b>* Delilah, Times Sat on Her Face:</b> " + flags["TIMES_ATE_DELILAH_OUT"]);
 					if(flags["DEL_TAIL_TRAINED"] != undefined) output2("\n<b>* Delilah, Times She Fucked Your Tail Cunt:</b> " + flags["DEL_TAIL_TRAINED"]);
@@ -5346,12 +5347,19 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Kui Country Bar and Lodge
-			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined)
+			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined)
 			{
 				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
 				// Gloryholes
 				if(flags["GLORYHOLE_MOUNTER"] > 0) output2("\n<b>* Gloryholes, Times Used:</b> " + flags["GLORYHOLE_MOUNTER"]);
 				if(flags["GLORYHOLE_SERVER"] > 0) output2("\n<b>* Gloryholes, Times Worked:</b> " + flags["GLORYHOLE_SERVER"]);
+				// DCLilah
+				if(flags["MET_DEL_SHEMALE"] != undefined)
+				{
+					output2("\n<b>* Delilah:</b> Met her");
+					output2("\n<b>* Delilah, Sexual Organs:</b> " + listCharGenitals("DELILAH"));
+					//if(flags["DEL_FACESAT"] > 0) output2("\n<b>* Delilah, Times She Ate You Out:</b> " + flags["DEL_FACESAT"]);
+				}
 				// Kally
 				if(flags["MET_KALLY"] != undefined)
 				{

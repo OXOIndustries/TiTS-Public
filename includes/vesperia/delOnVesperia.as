@@ -13,12 +13,12 @@ public function showDel(nude:Boolean = false):void
 	if(!MailManager.isEntryUnlocked("del_moved"))
 	{
 		showName("\nDEL");
-		showBust("DEL" + bust_Append);
+		showBust("DELILAH" + bust_Append);
 	}
 	else
 	{
 		showName("\nDELILAH");
-		showBust("DELILAH" + bust_Append);
+		showBust("DELILAH_SHEMALE" + bust_Append);
 	}
 }
 //Content Pack Intro
@@ -60,6 +60,9 @@ public function delCanadiaMeeting():void
 {
 	clearOutput();
 	showDel();
+	
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined && chars["DELILAH"].analVirgin) chars["DELILAH"].analVirgin = false;
+	
 	if(flags["MET_DEL_SHEMALE"] == undefined)
 	{
 		output("That couldn’t be Del, could it? She’s about the right height, same hair and chocolatey skin, same outfit... but you definitely don’t remember the crossdressing slave being so bouncy. Literally and figuratively: this girl’s packing some serious meat in her trunk, jiggling with every step, and her maid’s blouse is buttoned down enough to show off some serious cleavage. This girl’s gotta be packing D-cups at the very least, practically spilling out of her shirt.");
@@ -132,7 +135,7 @@ public function delVesperiaMenu():void
 	addButton(0,"Drinks",drinkFromDel,undefined,"Drinks","Get a drink from the slutty waitress.");
 	addButton(1,"Talk",talkToDel,undefined,"Talk","Sit and chat with Del.");
 	if(pc.lust() >= 33) addButton(2,"Sex",sexWithKallysDel,undefined,"Sex","Take Del to pound town.");
-	else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for that.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -185,10 +188,11 @@ public function delDrinkMenu():void
 		else addDisabledButton(5,"*Kui Creamer","Kui Creamer","That marking is suspicious. You should the bartender about it.");
 	}
 	else addDisabledButton(5,"*Kui Creamer","Kui Creamer","You cannot afford this.\n\nPrice: 22 Credits");
-	if(pc.credits >= 100)
+	if(pc.credits >= 100 && hours < 18)
 	{
 		addButton(6,"Body Shots",bodyShotsWithDel,undefined,"Body Shots","Yeah, you see something you want alright.")
 	}
+	else if(hours >= 18) addDisabledButton(6,"Body Shots","Body Shots","It’s too busy to do this right now.");
 	else addDisabledButton(6,"Body Shots","Body Shots","You cannot afford this.\n\nPrice: 100 Credits.");
 	addButton(14,"Back",delBacksies);
 }
@@ -299,7 +303,7 @@ public function bodyShotsWithDel():void
 	if(pc.hasCock()) output("\n\nOh yeah. You’re coming for that ass next.");
 
 	processTime(25);
-	pc.lust(5);
+	pc.lust(33);
 	pc.imbibeAlcohol(42);
 	addLoveyDoveWithAlcohol();
 	pc.credits -= 100;
@@ -409,8 +413,8 @@ public function sexWithKallysDel():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(chars["DELILAH"].analCapacity()) >= 0) addButton(0,"Buttfuck Her",fuckDelsAss,undefined,"Buttfuck Her","Fuck her ass.");
-		else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You're too big to fuck her ass.");
+		if(pc.cockThatFits(chars["DELILAH"].analCapacity() + 200) >= 0) addButton(0,"Buttfuck Her",fuckDelsAss,undefined,"Buttfuck Her","Fuck her ass.");
+		else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You’re too big to fuck her ass.");
 	}
 	else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You need a penis");
 	if(pc.hasVagina()) addButton(1,"Face Sittng",sitOnDelsFaceAtKallys,undefined,"Face Sitting","Sit on Del’s Face.");
@@ -423,20 +427,22 @@ public function fuckDelsAss():void
 {
 	clearOutput();
 	showDel(true);
+	currentLocation = "CANADA7";
+	generateMap();
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“How about you let me play with this new ass of yours?”</i> you say, grinning lustfully at the curvy bimbo-body pressed up against you. <i>“For old time’s sake.”</i>");
-	output("\n\n<i>“How ‘bout just for ‘I’m horny as hell’s’ sake?”</i> she giggles,grinding against you in excitement at the prospect of another taste of your bitch-breaking cock. At your word, she obediently slips out of your lap and spins around to present her hindquarters to you, getting more than a few cat-calls from her customers as she makes ready for her upcoming ordeal. Her chocolate-hued cheeks flush as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command. ");
+	output("\n\n<i>“How ‘bout just for ‘I’m horny as hell’s’ sake?”</i> she giggles, grinding against you in excitement at the prospect of another taste of your bitch-breaking cock. At your word, she obediently slips out of your lap and back to the baths, spinning around to present her hindquarters to you, getting more than a few cat-calls from her customers as she makes ready for her upcoming ordeal. Her chocolate-hued cheeks flush as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command. ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("Her massive equine endowment throbs half-hard between her legs, dangling out from under her skirt.");
 	else output("Del moans breathlessly, rubbing at her tiny prick through her skirt, eeking out some pleasure for herself while you enjoy the show.");
 
 	output("\n\nYou reach forward and under her skirt, groping her ass with both hands. Using your thumbs, you spread her chubby cheeks, revealing the dark little cock-hole nestled between them. Her dick throbs under your inspection, drooling a little streak of white onto the hem of her skirt. Cute. You snake one of your thumbs into her crack, gently pressing it against her well-used hole - just enough to make her gasp and get nice and hard, but not enough to actually spread her open. Not that it would take much, considering how much cock this trap-slut’s seen since you first met.");
 	output("\n\n<i>“You’re gonna want to get me ready,”</i> you suggest, giving her a playful slap that sets her bubbly cheeks jiggling.");
 	output("\n\nDel spins on her high heels and grins. <i>“Yes, " + pc.mf("sir","ma’am") + "!”</i>");
-	output("\n\nShe eagerly drops to her knees, already oh so eager for a taste of your cock. She opens wide, ready to recieve your package. You step forward, tossing your equipment onto the bar and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore’s face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock.");
-	output("\n\n<i>“My favorite snack! Mmm, I love the taste of your cock...”</i> she purrs, nuzzling the shaft of your [pc.cock] affectionately as her tongue lavishes it with affection. <i>“The first... and the best...”</i> she adds happily, planting a kiss on the tip. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut.");
+	output("\n\nShe eagerly drops to her knees, already oh so eager for a taste of your cock. She opens wide, ready to recieve your package. You step forward, tossing your equipment onto a bench and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore’s face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock.");
+	output("\n\n<i>“My favorite snack! Mmm, I love the taste of your cock...”</i> she purrs, nuzzling the shaft of your [pc.cock] affectionately as her tongue lavishes it with affection. <i>“The first... and the best...”</i> she adds happily, planting a kiss on the tip. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip a rail to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut.");
 	output("\n\n<i>“Juuust like that,”</i> you moan through clenched teeth, trying to control yourself. Your fingers snake through the whore’s blonde-dyed hair, coaxing her on as she licks and kisses at the underside of your member, slowly but surely working herself up to taking it wholesale. ");
-	if(pc.balls > 1) output("But first, she lets a hand wander free up one of your [pc.legs], caressing the tender flesh slowly as she works up to your base, hands cupping your swinging sack, rolling your nads between her dainty little fingers. The slutty, dusky whore grins up at you, her mouth trailing kisses down your girthy length until she can lap at your [pc. balls], lavishing your hefty nuts with the tip of her eager tongue before opening wide and swallowing them up, suckling on your gonads like a pair of teats. You groan and shudder, trying not to cum as your sexy shemale slut sucks on your sack like the pro she’s turned out to be.");
+	if(pc.balls > 1) output("But first, she lets a hand wander free up one of your [pc.legs], caressing the tender flesh slowly as she works up to your base, hands cupping your swinging sack, rolling your nads between her dainty little fingers. The slutty, dusky whore grins up at you, her mouth trailing kisses down your girthy length until she can lap at your [pc.balls], lavishing your hefty nuts with the tip of her eager tongue before opening wide and swallowing them up, suckling on your gonads like a pair of teats. You groan and shudder, trying not to cum as your sexy shemale slut sucks on your sack like the pro she’s turned out to be.");
 
 	output("\n\nFinally, the cock-craving whore makes her way back up to the crown of your cock, slowly opening her lips to welcome in your manhood and ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("spreading her knees to giver her hands access to her throbbing equine hardon. She’s well and truly used to everyone in the bar oggling her horsecock, just like they do to her mistress, so she shows no shame in wrapping both hands around her member and stroking it from flare to medial ring.");
@@ -447,15 +453,15 @@ public function fuckDelsAss():void
 
 	output("\n\n<i>“Good little slut,”</i> you coo, stroking her bleach-blonde hair. <i>“You’ve gotten so good at this. I bet Kally just loves you.”</i>");
 
-	output("\n\nShe murmurs a response, muffled by the thick cock in her mouth into an unintelligible babble that sends trickles of pre-slick drool down her chin. You chuckle and pat her on the head, reassuring her as to what a good little cocksucker she is as you gently guide her back from your prick until just the crown is spearing her lips. You give her a little push, pressing her back against the hard front of the bar as you shift forward, getting ready to get a right proper cock-shining. With her head against the solid wood, there’s nowhere for her to recoil as you slam your hips forward, thrusting your prick into her mouth");
+	output("\n\nShe murmurs a response, muffled by the thick cock in her mouth into an unintelligible babble that sends trickles of pre-slick drool down her chin. You chuckle and pat her on the head, reassuring her as to what a good little cocksucker she is as you gently guide her back from your prick until just the crown is spearing her lips. You give her a little push, pressing her back against the hard front of the bench as you shift forward, getting ready to get a right proper cock-shining. With her head against the solid wood, there’s nowhere for her to recoil as you slam your hips forward, thrusting your prick into her mouth");
 	if(pc.balls > 1)
 	{
 		if(pc.cocks[x].cLength() >= 12) output(" until her throat is bulging with your massive meat, so much crammed down her that she looks ready to burst");
-		else output(" until your [pc. balls] slap her chin");
+		else output(" until your [pc.balls] slap her chin");
 	}
 	output(". The trap-slut gags and cries out as she’s suddenly and violently face-fucked, but the growing crowd around the two of you cheers as you fill her mouth with cock.");
 
-	output("\n\nThe trappy bartender’s got little to do but sit and take it, slumping against the bar as you hold her head steady, using and abusing her mouth as your own personal warm, wet cocksleeve. Your thrusts soon have the poor lady-boy drooling freely, spittle rolling down her chin and onto the ");
+	output("\n\nThe trappy bartender’s got little to do but sit and take it, slumping against the bench as you hold her head steady, using and abusing her mouth as your own personal warm, wet cocksleeve. Your thrusts soon have the poor lady-boy drooling freely, spittle rolling down her chin and onto the ");
 	if(!chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("tiny tent");
 	else output("massive, throbbing shaft");
 	output(" of her cock, which she’s now feverishly working, abandoning any masquerade of restraint under the punishing beat of your oral assault. You grin down at the dickgirl whore as she jacks off, too horny to stop herself.");
@@ -466,7 +472,7 @@ public function fuckDelsAss():void
 
 	output("\n\nDel doesn’t hesitate, planting a tongue-filled parting kiss on the crown of your cock. She wraps her lips around the head one last time, making sure to slather it with her tongue. By the time she’s through, a thick sheen of spit’s glazed across your tender flesh, bridges of it still connecting you to the dusky slave-girl.");
 
-	output("\n\nWith your cock nice and lubed up thanks to Delilah’s succulent little mouth, you grab the slender girly-boy by the shoulder and heft her up onto the bar, letting her ample ass press hotly onto the polished wood. She gives you a questioning look... until your hands slip up her slender legs, hooking through the hem of her skirt and gently pulling it off, leaving her bare to the world. Or at least, the growing circle of interested spectators, many of whom are pitching tents ");
+	output("\n\nWith your cock nice and lubed up thanks to Delilah’s succulent little mouth, you grab the slender girly-boy by the shoulder and heft her up onto the bench, letting her ample ass press hotly onto the polished wood. She gives you a questioning look... until your hands slip up her slender legs, hooking through the hem of her skirt and gently pulling it off, leaving her bare to the world. Or at least, the growing circle of interested spectators, many of whom are pitching tents ");
 	if(!chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("by the time the bartender’s tiny little cock pops free,");
 	else output("much like Del’s own horsecock, which is");
 	output(" left to hang flag-pole like as you push her down and spread her legs to give yourself a clear shot to the real prize on offer. You hoist her legs over your shoulders and step up to the plate, your [pc.cock " + x + "] dropping into the crevasse between her thigh and groin before dragging down to the gently-parted crack of her succulent little ass.");
@@ -487,23 +493,27 @@ public function delGetsButtplowedAtKallysPart2(x:int):void
 	if(pc.cocks[x].cLength() >= 13) output("her stomach is bulging from the massive, throbbing prick buried in her, stretching her asshole until she’s apt to break in half");
 	else if(pc.balls > 1) output("your [pc.balls] slap against her cheeks, your shaft fully buried");
 	else output("your hips press into hers, your shaft fully buried");
-	output(". She cries out, fingers digging into the edge of the bar as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");
+	output(". She cries out, fingers digging into the edge of the bench as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");
 
+	stretchDelilahsButt();
 	pc.cockChange();
 
 	output("\n\nBut that’s the last kindness you’re going to show this wanton whore’s little pucker. You draw yourself only half-way out before slamming back home, thrusting back with all the force your [pc.hips] can muster, sending shockwaves through the flesh of the lusty slut’s bubble butt. Her prick jumps in response to your next thrust, hopping straight up and twitching visibly as a bead of creamy white beads at its tip. You consider giving her a little tug to help her along, but then... that’d defeat the purpose! This slut’s supposed to be a little anal whore, so by God that’s what she’ll be. You reaffirm your grip on her broad hips and start pounding with a vengeance, faster and harder until Del’s whining and moaning with every push, crying her pleasure aloud with utter abandon. You can barely reconcile the bashful little trap you met back on Tarkus with this moaning, giggling whore, spilling cum all over her own belly as you pound her ass.");
 	output("\n\nBetween the sloppy blowjob she gave you and now the tight, wringing grip of the shemale’s cock-draining boypussy, you don’t know how long you’re going to hold out. Her ass feels like a vice, so tight around your [pc.cock " + x + "] that it’s nearly painful, yet with every thrust you can feel the twitch and spasm of her muscles as her little sphincter tries to push you out or draw you in, you’re never sure. Either way, it’s making a tight, wet, squirming hole for you to fuck, ushering you inexorably towards your now-inevitable orgasm.");
 	output("\n\nYou feel your cock swelling inside her, cum rushing through your [pc.cock " + x + "] towards the waiting receptacle of the trap-whore’s wanton hole. She seems to sense the oncoming climax, and responds with a shrill yelp of pleasure, her own cock twitching madly, so close yet so far from orgasm. She reaches up and grabs your shoulders, clutching tightly at you as you flood her bowels with cum. Shockwaves of pleasure tear through your body as [pc.cumColor] ropes let loose from your [pc.cock], smearing the trap’s rectal walls with your sticky seed. Your [pc.hips] piston away, thrusting you as deep into her ass as you can go before you’ve finished, making sure to bust your nut straight into her spasming colon, giving it a taste of cum before you’re finally finished.");
-	output("\n\nYou shudder with an absolute contentment, panting heavily as your cock starts to deflate in Delilah’s well-fucked ass. Before you can get comfortable, though, the sultry slut gives you a gentle push back, popping your prick free of her gaping asshole amidst a backwash of spent seed. Grinning hungrily, Del slips down off the bar and onto her knees, wrapping both her hands around your half-soft cock.");
-	output("\n\n<i>“Don’t wanna waste any of the good stuff,”</i> she grins, flicking her tongue around the glaze of [pc.cum] still clinging to your [pc.cockHead " + x + "]. You shiver and grab the bar, trying to keep steady footing as the cum-hungry dickkgirl spit-shines your rod, bobbing her head up and down your length until she’s cleaned off every last drop of your [pc.cum]. Once your dick is glistening-clean, Del gets down on all fours and starts wiping the spent spunk off the floor, her clothes, and her own cock... really just the entire, messy splatter-zone you two have left. She happily slurps up every drop, no matter where it’s been or who it’s from. More than one of the gathered onlookers adds to the mess, too - busting their own loads over Del’s back, her face, or just onto the floor for her to clean up - and she’s never looked happier.");
-	output("\n\nIt doesn’t take long before somebody’s hoisted her back onto the bar and thrust into her still-open asshole, using your cum as lube to ream her hard. You give Del a little wink and step back, collecting your gear and leaving her to satisfy her owner’s horny patrons.");
+	output("\n\nYou shudder with an absolute contentment, panting heavily as your cock starts to deflate in Delilah’s well-fucked ass. Before you can get comfortable, though, the sultry slut gives you a gentle push back, popping your prick free of her gaping asshole amidst a backwash of spent seed. Grinning hungrily, Del slips down off the bench and onto her knees, wrapping both her hands around your half-soft cock.");
+	output("\n\n<i>“Don’t wanna waste any of the good stuff,”</i> she grins, flicking her tongue around the glaze of [pc.cum] still clinging to your [pc.cockHead " + x + "]. You shiver and grab the bench, trying to keep steady footing as the cum-hungry dickkgirl spit-shines your rod, bobbing her head up and down your length until she’s cleaned off every last drop of your [pc.cum]. Once your dick is glistening-clean, Del gets down on all fours and starts wiping the spent spunk off the floor, her clothes, and her own cock... really just the entire, messy splatter-zone you two have left. She happily slurps up every drop, no matter where it’s been or who it’s from. More than one of the gathered onlookers adds to the mess, too - busting their own loads over Del’s back, her face, or just onto the floor for her to clean up - and she’s never looked happier.");
+	output("\n\nIt doesn’t take long before somebody’s hoisted her back onto the bench and thrust into her still-open asshole, using your cum as lube to ream her hard. You give Del a little wink and step back, collecting your gear and leaving her to satisfy her owner’s horny patrons.");
 	processTime(20);
 	pc.orgasm();
+	
+	timesDelilahSexed(1);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
-//Sit on Del's Face
+//Sit on Del’s Face
 //Now works for [pc.vagOrAss " + x + "]. PC still needs a gender tho.
 
 public function sitOnDelsFaceAtKallys():void
@@ -511,17 +521,20 @@ public function sitOnDelsFaceAtKallys():void
 	clearOutput();
 	showDel(true);
 	author("Savin");
+	currentLocation = "CANADA7";
+	generateMap();
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 
 	output("You grin lustily at the feminized beauty pressed up against you, letting your hands wander down her back and over her jiggly behind. As nice as her ass is, your eyes fix on another prize: her full, pink-hued lips, glistening in the sultry light of the rustic lodge.");
 	output("\n\n<i>“Why don’t you get up on the bar for me, cutey?”</i>");
-	output("\n\nThe bartender babe blushes, practically melting into your arms, all but begging to be shown her proper place underneath you once again. She obediently clambers up onto the bar, getting more than a few cat-calls from her customers as she makes ready for her upcoming ordeal, cheeks flushed bright red as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command and trying not to ");
+	output("\n\nThe bartender babe blushes, practically melting into your arms, all but begging to be shown her proper place underneath you once again. <i>“Miss Kally said I had to stop doing that in the common area, but the baths are okay... This way.”</i>");
+	output("\n\nYou follow behind, slapping her on the ass to speed her on her way. Neither of you pays much attention to the doorway as you pass through it, only each other and a nearby bench that’s just the right height. She obediently clambers up onto it, getting more than a few cat-calls from lounging bathers as she makes ready for her upcoming ordeal, cheeks flushed bright red as she slips her hands up under her skirt... and slips her panties right down. Tossing the pink silk aside, she chews her lips, awaiting your command and trying not to ");
 	//hosscawk;
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("draw too much attention to the pillar of meat starting to get hard between her legs.");
 	else output("give away the fact that her little knee-skirt is tenting something awful.");
 
-	output("\n\nYou step forward, tossing your equipment onto the bar and hopping up behind the effeminate bartender, giving her a little push onto her back. She gives a little gasp as she flops down, legs spreading reflexively, giving you easy access to the tight, dark hole between them. But that’s just an added bonus. You’re much more interested in her cute little mouth...");
+	output("\n\nYou step forward, tossing your equipment on a bench and hopping up behind the effeminate bartender, giving her a little push onto her back. She gives a little gasp as she flops down, legs spreading reflexively, giving you easy access to the tight, dark hole between them. But that’s just an added bonus. You’re much more interested in her cute little mouth...");
 
 	output("\n\nYou crawl up her svelte, buxom body, slowly pulling up her skirt to leave her groin and hips bare. The ");
 	if(!chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("tiny little cock");
@@ -529,7 +542,7 @@ public function sitOnDelsFaceAtKallys():void
 	output(" she’s packing ends up pointing skyward like a flagpole, and its owner squirms and moans as you leave her prick exposed to the bar crowd, now slowly gathering around you. Looks like you’ve got an audience!");
 	if(pc.exhibitionism() >= 66) output(" Hot.");
 	else output(" Oh well... you’ll just have to try and perform regardless!");
-	output(" You plant your [pc.knees] on the trap’s shoulders, pinning her down to the bar for a moment as you ditch the last of your gear, making a bit of a show if it for your new fans - especially as you get down towards your groin. You can already feel the heat welling up inside you, eagerly awaiting a taste of the submissive little slut’s tongue");
+	output(" You plant your [pc.knees] on the trap’s shoulders, pinning her down to the bench for a moment as you ditch the last of your gear, making a bit of a show if it for your new fans - especially as you get down towards your groin. You can already feel the heat welling up inside you, eagerly awaiting a taste of the submissive little slut’s tongue");
 	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output(", and as the last bits of your equipment fall aside, it’s a sweet relief to let it kiss the cool air.");
 
 	output("\n\nThat’s not the only thing that’s going to be kissing it, either. You let a pair of fingers slink down to your ");
@@ -539,7 +552,7 @@ public function sitOnDelsFaceAtKallys():void
 	output("\n\nDel blushes, licking her lips. <i>“I love the taste of ");
 	if(x >= 0) output("your pussy juices");
 	else output("another slut’s ass");
-	output(", [pc.Master],”</i> she coos, eyes transfixed by your slit”</i>}. Slowly, her tongue slips out from her dark lips, one long slurp across your [pc.vagOrAss " + x + "]. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut. Maybe in her previous life, she might have been pretty popular with the ladies...");
+	output(", [pc.Master],”</i> she coos, eyes transfixed by your slit”</i>}. Slowly, her tongue slips out from her dark lips, one long slurp across your [pc.vagOrAss " + x + "]. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bench to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut. Maybe in her previous life, she might have been pretty popular with the ladies...");
 	if(x < 0) output(" Or maybe the jocks at her school just used her to tongue-clean them enough that she got good at it. Would explain a lot.");
 	output("\n\nYou let yourself give a little moan as the trap-slut goes down on you, tongue delving deep ");
 	if(pc.hasVagina()) output("between your folds");
@@ -551,7 +564,7 @@ public function sitOnDelsFaceAtKallys():void
 	else output("ass-licker");
 	output(" you’ve made!");
 
-	output("\n\nNice and slow, your subby slut starts to do as you commanded, tongue working out a great big <i>“A”</i> inside your [pc.vagOrAss " + x + "]. You glance over your shoulder, to the rigid stiffy poking out from beneath the hem of Deliliah’s skirt. Something in your memory jogs a thought about positive reinforcement, and you reach under the bar to pick up the feather duster hanging on a nail. Nice. You reach behind your [pc.hips], teasing along her flat stomach until you feel the soft feathers brushing the silky skirt... and then something nice and hard.");
+	output("\n\nNice and slow, your subby slut starts to do as you commanded, tongue working out a great big <i>“A”</i> inside your [pc.vagOrAss " + x + "]. You glance over your shoulder, to the rigid stiffy poking out from beneath the hem of Deliliah’s skirt. Something in your memory jogs a thought about positive reinforcement, and you reach under the bench to pick up the feather duster hanging on a nail. Nice. You reach behind your [pc.hips], teasing along her flat stomach until you feel the soft feathers brushing the silky skirt... and then something nice and hard.");
 
 	output("\n\nDelilah reacts instantly, legs twitching and tongue freezing as you brush her ");
 	if(!chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("little cock");
@@ -579,9 +592,12 @@ public function sitOnDelsFaceAtKallys():void
 	output(" as the other dusts off her glans, wiping away the accumulated pre-seed on its tip. The two of you soon come to something of a rhythm: for every curve of the flowing ausar script, another squeeze of the sack or a flick of the featherduster. Your pace picks up as she gets closer and closer to the edge, hips twitching up as you squeeze and massage her balls, steadily milking out what promises to be a nice, big load from the trappy fuck-slut.");
 	output("\n\nWhen she cums, it’s everything you were hoping it would be. With a cry and a buck of her hips, the cock in your hand erupts into a geyser of spooge, drenching the duster and your fingers in a nice, thick layer of creamy spunk. She gives a final gasp and slumps back, having finally achieved a sweet release. You swing your [pc.hips] back around, looking down on her blissed-out face, cum-dumped featherduster still in hand.");
 	output("\n\n<i>“You got me dirty,”</i> you chide, putting a spunky fingertip to her lips. She opens wide for you. <i>“You gotta clean up after yourself, little girl.”</i>");
-	output("\n\n<i>“Delicious,”</i> she grins, tongue lapping up her salty seed like a good little whore. You make sure your hands are spotless before swinging off the bar, hiking her legs off the edge to put her ass in the air for the next customer. She gives a sharp cry of pleasure as she’s quickly speared on a dick, leaving you to get your gear and catch your breath.");
+	output("\n\n<i>“Delicious,”</i> she grins, tongue lapping up her salty seed like a good little whore. You make sure your hands are spotless before swinging off the bench, hiking her legs off the edge to put her ass in the air for the next customer. She gives a sharp cry of pleasure as she’s quickly speared on a glistening dick, leaving you to get your gear and catch your breath.");
 	processTime(45);
 	pc.orgasm();
+	
+	timesDelilahSexed(1);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -609,7 +625,7 @@ public function sitOnDelsFaceAtKallys():void
 
 	output("\n\nThat’s not the only thing that’s going to be kissing it, either. You let a pair of fingers slink down to your [pc.vagina], spreading the lips of your labia wide just shy of the trap’s chin, almost close enough to let your excitement drool down into her lips.");
 	//if 1-4:
-	if(flags["DEL_FACESAT"] == undefined ||  flags["DEL_FACESAT"] < 5) output(" <i>“Wait... you... you really want me to... to...”</i> she sputters indignantly, trying to hide the little tentpole between her slender legs");
+	if(flags["DEL_FACESAT"] == undefined || flags["DEL_FACESAT"] < 5) output(" <i>“Wait... you... you really want me to... to...”</i> she sputters indignantly, trying to hide the little tentpole between her slender legs");
 	else output(" She blushes, licking her lips. <i>“I love the taste of your pussy juices, mistress,”</i> she coos, eyes transfixed by your slit”</i>");
 	output(". Slowly, her tongue slips out from her dark lips, one long slurp across your [pc.cunt]. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut. Maybe in her previous life, she might have been pretty popular with the ladies...");
 	output("\n\nYou let yourself give a little moan as the trap-slut goes down on you, tongue delving deep between your folds. <i>“That’s it, girl... Now, why don’t we have you do the alphabet?”</i>");
@@ -654,7 +670,7 @@ public function sitOnDelsFaceAtKallys():void
 		output("\n\n<i>“You got me dirty,”</i> you chide, putting a spunky fingertip to her lips. She opens wide for you. <i>“You gotta clean up after yourself, little girl.”</i>");
 		output("\n\n<i>“Delicious,”</i> she grins, tongue lapping up her salty seed like a good little whore. You make sure your hands are spotless before swinging off the bar, hiking her legs off the edge to put her ass in the air for the next customer. She gives a sharp cry of pleasure as she’s quickly speared on a dick, leaving you to get your gear and catch your breath.");
 	}
-	IncrementFlag("DEL_FACESAT")
+	IncrementFlag("DEL_FACESAT");
 	processTime(45);
 	pc.orgasm();
 	clearMenu();

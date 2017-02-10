@@ -1456,6 +1456,9 @@ public function variableRoomUpdateCheck():void
 	/* TAVROS STATION */
 	
 	//Merchant Deck
+	// Acquisitions
+	if(flags["SERA_ACQUIRED_DATE"] != undefined && (GetGameTimestamp() - flags["SERA_ACQUIRED_DATE"] <= 180)) rooms["ACQUISITIONS"].removeFlag(GLOBAL.NPC);
+	else rooms["ACQUISITIONS"].addFlag(GLOBAL.NPC);
 	// Sera's Shop
 	if(darkChrysalisIsOpen()) rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
 	else rooms["DARK CHRYSALIS"].removeFlag(GLOBAL.COMMERCE);
@@ -1957,6 +1960,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		updateBothriocAddiction(totalDays);
 		processOmegaFever();
 		seraBitcheningStoreInventory(totalDays);
+		seraOnTavrosObedience(totalDays);
 	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now

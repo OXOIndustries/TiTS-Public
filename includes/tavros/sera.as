@@ -42,7 +42,11 @@ public function seraBustDisplay(nude:Boolean = false):String
 	{
 		if(chars["SERA"].skinTone == "bright pink") sBust += "_PINK";
 		if(!chars["SERA"].hasCock()) sBust += "_VAG";
-		if(seraAtNursery()) sBust += "_MOM";
+		if(seraAtTavros())
+		{
+			sBust += "_MOM";
+			nude = false;
+		}
 	}
 	if(nude) sBust += "_NUDE";
 	

@@ -117,7 +117,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 		// Sera taken:
 		if(flags["SERA_ACQUIRED_DATE"] != undefined) output(" With our problem case gone, we are simply waiting for the trade from the frontier to start trickling in. Come back in a month’s time or so, we’ll have many fresh and exotic pieces of property to show you.");
 		// Sera still on:
-		else if(!seraRecruited() && (pc.statusEffectv1("Sera Credit Debt") > 9000 || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90))) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
+		else if(!seraRecruited()) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
 		output("”</i>");
 	}
 	else
@@ -131,7 +131,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 	var btnSlot:int = 0;
 	var acqList:Array = [];
 	acqList.push(["Mostly?", sentientAcquisitionsAskMostly]);
-	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited() && (pc.statusEffectv1("Sera Credit Debt") > 9000 || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90))) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
+	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited()) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
 	
 	// [Horned girl] [Mostly?] [Leave]
 	clearMenu();
@@ -180,16 +180,22 @@ public function sentientAcquisitionsAskHornedGirl(btnSlot:int = 0):void
 	author("Nonesuch");
 	showTeronAndAttica();
 	
+	var inDebt:Boolean = (pc.statusEffectv1("Sera Credit Debt") > 9000 || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90));
+	
 	output("<i>“Horned girl?”</i>");
 	output("\n\n<i>“Yes. Amongst many other things.”</i> Teron plucks a tablet screen off the counter and taps it a few times. <i>“Bought quite a number of expensive mods this human did, and then a shop on this self same station on top of it. ‘The Dark Chrysalis.’ I don’t think she looked at the fine print of her rent agreement closely, if at all. These succulent young rue collars, they never think it’s going to happen to them. Until it does.”</i>");
-	output("\n\n<i>“She is heavily in debt, but we’re not minded to chase it yet – we’ve done the due background check on her and by all accounts she would make for a </i>terrible<i> indentured servant. And who knows, maybe her shop really will enable her to pay it down.”</i> His immaculate sneer tells you exactly how likely he thinks that is. <i>“Because she’s missed her last couple of monthly installments though, there is a buy-out clause available if you’re seriously interested in owning her.”</i>");
+	if(!inDebt) output("\n\nHe shrugs.");
+	output("\n\n<i>“She is heavily in debt, but we’re not minded to chase it yet – we’ve done the due background check on her and by all accounts she would make for a </i>terrible<i> indentured servant. And who knows, maybe her shop really will enable her to pay it down.”</i> His immaculate sneer tells you exactly how likely he thinks that is.");
+	if(!inDebt) output(" <i>“And she is currently paid up. Maybe if she’d bought a bunch of stuff over the counter recently, maxed her credit out, we’d start getting more serious with her.”</i>");
+	else output(" <i>“Because she’s missed her last couple of monthly installments though, there is a buy-out clause available if you’re seriously interested in owning her.”</i>");
 	
 	processTime(1);
 	
 	// [Back] [Buy Out]
 	clearMenu();
 	// Thinking 15k smackers
-	if(pc.credits >= 15000) addButton(0, "Buy Out", sentientAcquisitionsBuyOutSera, undefined, "Buy Out", "Buy out Sera’s contract.\n\nCosts 15,000 credits.");
+	if(!inDebt) addDisabledButton(0, "Buy Out", "Buy Out", "Perhaps if you pushed a certain someone further into debt somehow, this might become possible?");
+	else if(pc.credits >= 15000) addButton(0, "Buy Out", sentientAcquisitionsBuyOutSera, undefined, "Buy Out", "Buy out Sera’s contract.\n\nCosts 15,000 credits.");
 	else addDisabledButton(0, "Buy Out", "Buy Out", "You don’t have the funds to contemplate this.");
 	addButton(14, "Back", sentientAcquisitionsAsk, true);
 	
@@ -218,6 +224,10 @@ public function sentientAcquisitionsBuyOutSera():void
 }
 public function sentientAcquisitionsBuyOutSeraNo():void
 {
+	chars["SERA"].removeStatusEffect("Dedicked");
+	chars["SERA"].removeStatusEffect("Hymenified");
+	chars["SERA"].removeStatusEffect("Tickled Pink");
+	
 	clearOutput();
 	author("Nonesuch");
 	showTeronAndAttica();
@@ -344,7 +354,7 @@ public function seraIsRepoed():void
 	
 	clearOutput();
 	author("Nonesuch");
-	showBust("SERA", "TERON", "ATTICA");
+	showBust(seraBustDisplay(), "TERON", "ATTICA");
 	showName("\nREPO!");
 	
 	output("There is some sort of commotion going on inside the Dark Chrysalis. You think you know what might be causing it. Grinning, you enter – and instinctively duck as a small marble satyr leaves simultaneously, at head height and considerable velocity.");
@@ -492,15 +502,28 @@ public function mods4UChrysalisBonus():void
 		addButton(1, "Saendra", mods4UChrysalisSaendra);
 	}
 	
-	// All items inc. “top shelf” items displayed at standard price
-	shopkeep = chars["CHRYSALISDRONE"];
-	
-	addButton(0, "Buy", buyItem);
+	addButton(0, "Buy", mods4UChrysalisBuy);
 	//Only displayed if PC had a discount previously
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) addButton(5, "Discount?", mods4UChrysalisDiscount);
 	addButton(14, "Back", mainGameMenu);
 	
 	return;
+}
+public function mods4UChrysalisBuy():void
+{
+	// All items inc. “top shelf” items displayed at standard price
+	shopkeep = chars["CHRYSALISDRONE"];
+	
+	if(flags["ZODEE_GALOQUEST"] != undefined)
+	{
+		if(flags["PURCHASED_SERAS_GALO"] == undefined)
+		{
+			if(!chars["CHRYSALISDRONE"].hasItem(new GaloMax())) chars["CHRYSALISDRONE"].inventory.push(new GaloMax());
+		}
+		else chars["CHRYSALISDRONE"].destroyItem(new GaloMax());
+	}
+	
+	buyItem();
 }
 public function mods4UChrysalisDiscount():void
 {
@@ -683,6 +706,8 @@ public function approachServantSera(introText:Boolean = false):void
 		else addDisabledButton(3, "Buttfuck", "Buttfuck", "You need a penis to try this!");
 		
 		addButton(4, "Punish", seraBitchTrainingPunish, true, "Punish", "Punish Sera for being a bad slave.");
+		
+		addButton(13, "Boot", evictServantSera, undefined, "Evict Sera", "Boot her off the ship, put her up at your Nursery. This will probably adversely affect her training.");
 	}
 	else
 	{
@@ -776,6 +801,8 @@ public function approachServantSera(introText:Boolean = false):void
 		else addDisabledButton(4, "Punish", "Punish", "She’s not done anything to deserve one. But she will. Eventually.");
 		
 		addButton(5, "Sex", seraBitcheningSexMenu, undefined, "Sex", "Approach your slave for some sex.");
+		
+		addButton(13, "Boot", evictServantSera, undefined, "Evict Sera", "Boot her off the ship, put her up at the Nursery.");
 	}
 	
 	addButton(14, "Leave", crew);
@@ -4486,6 +4513,181 @@ public function seraBitcheningPunishWalkiesEnd():void
 	
 	mainGameMenu();
 	
+	return;
+}
+
+
+// [Boot]
+public function evictServantSera():void
+{
+	clearOutput();
+	showSera();
+	author("Nonesuch");
+	
+	// Untrained
+	if(flags["SERA_OBEDIENCE_MIN"] <= 0)
+	{
+		output("Narrowed reptilian eyes watch as you fiddle around with the silver remote. It takes a while to comprehend what you’re trying to do, but once you’ve worked out how to enter the location of the Tavros nursery it makes a series of encouraging beeps.");
+		output("\n\n<i>“" + ((flags["SERA_SERVANT_INTRO"] == undefined || flags["SERA_SERVANT_INTRO"] < 3) ? "Fuck" : "F- flip are you doing?") + "”</i> growls Sera, waiting tensely.");
+		output("\n\n<i>“Moving you off the ship,”</i> you explain. <i>“You will go to Tavros, take the lift up to the Nursery and stay there. Don’t try anything else - your collar is programmed to give you shocks every thirty seconds if you do.”</i>");
+		output("\n\n<i>“You’re giving up, you mean,”</i> leers the succubus, visibly relaxing. She props her face up in her hands and adopts a sugary coo. <i>“Gotten tired of playing " + pc.mf("Billy Big Balls", "Tammy Tin Tits") + " already? All gotten a bit too much for diddums? It’s ok - I don’t mind being a thrown toy, if it gets me out of YOUR pram.”</i>");
+		output("\n\n<i>“I will come back for you later,”</i> you say as evenly as you can, <i>“and your training will resume then.”</i> Sera laughs sardonically, rolling away on the bed from you. She’s singing a filthy song about a fanfir and Fenchurch Spaceport at the top of her lungs as she leaves.");
+		
+		processTime(7);
+		// -5 Ob every day she spends off the ship
+	}
+	// Trained
+	else
+	{
+		output("<i>“I’m moving you off the ship,”</i> you tell her, clicking instructions into the silver remote. <i>“Go to Tavros, take the lift up to the Nursery and stay there. I don’t need to tell you not to try anything else, do I?”</i>");
+		output("\n\nSera visibly deflates.");
+		// !Merchant Sera:
+		if(flags["SERA_MERCHANT"] == undefined)
+		{
+			output("\n\n<i>“You’ll come and fetch me soon, though?”</i> she pleads. She licks her bottom lip and toys with her nipples, gazing at you sultrily. <i>“You wouldn’t leave your favorite slave alone for very long, would you? I mean - imagine what she might get up to in a </i>Nursery<i>.”</i>");
+			output("\n\nYou stroke her chin, enjoying tormenting her by not saying a word.");
+		}
+		// Merchant Sera:
+		else
+		{
+			output("\n\n<i>“Oh. Well - I guess I can continue to run the business from there. May even be easier.”</i> She packs her stuff up and heads to the door, stopping only to give you a farewell kiss, which swiftly turns into a lascivious frenching. <i>“Come and get me once you’re ready to get nasty again,”</i> she husks in your ear.");
+		}
+		
+		processTime(6);
+	}
+	
+	output("\n\n(<b>Sera is no longer on your crew. You can find her again in Tavros Station.</b>)");
+	flags["SERA_CREWMEMBER"] = 0;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+	
+	return;
+}
+public function seraOnTavrosObedience(totalDays:int):void
+{
+	// -5 Ob every day she spends off the ship
+	if(flags["SERA_CREWMEMBER"] == 0 && flags["SERA_OBEDIENCE_MIN"] <= 0) seraObedience(-(5 * totalDays));
+	
+	return;
+}
+
+// Put her room on second floor of Nursery
+public function seraOnTavrosBonus(btnSlot:int = 0):String
+{
+	if(flags["SERA_CREWMEMBER"] != 0) return "";
+	
+	var bonusText:String = "";
+	
+	bonusText += "\n\nA door with a digital sign is marked ‘Sera’s Apartment’.";
+	if(seraAtNursery())
+	{
+		bonusText += " The door is ajar and the room is unoccupied. Sera must be in another location in the nursery.";
+		addDisabledButton(btnSlot, "Sera", "Sera", "Perhaps she is somewhere else in the nursery....");
+	}
+	else
+	{
+		if(flags["SERA_OBEDIENCE_MIN"] <= 0) bonusText += " Maybe you are in the mood to retrieve and train the demoness some more?";
+		else
+		{
+			bonusText += " Perhaps you should pay your recruit a little visit";
+			if(flags["SERA_MERCHANT"] != undefined) bonusText += " and maybe take a peek at her inventory";
+			bonusText += "?";
+		}
+		addButton(btnSlot, "Sera", approachServantSeraOnTavros, true, "Sera", "Pay Sera a visit.");
+	}
+	
+	return bonusText;
+}
+// At her room
+public function approachServantSeraOnTavros(introText:Boolean = false):void
+{
+	generateMapForLocation("NURSERYSERA");
+	
+	clearOutput();
+	showSera();
+	author("Nonesuch");
+	clearMenu();
+	
+	// Untrained
+	if(flags["SERA_OBEDIENCE_MIN"] <= 0)
+	{
+		output("Sera rolls her eyes at you as you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
+		output("\n\n<i>“Welcome, great and honorable [pc.master] that enslaved me only to then abandon me in this pastel-shaded booze-less hellhole,”</i> she yawns. <i>“You here to fuck me? I almost welcome it, it’s that boring around here.”</i>");
+		
+		processTime(1);
+	}
+	// Trained
+	else
+	{
+		// !Merchant Sera:
+		if(flags["SERA_MERCHANT"] == undefined)
+		{
+			output("<i>“You’ve come to pick me up, haven’t you?”</i> says Sera the second you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ". <i>“C’mon. Let’s blow this popsicle stand. Please? [pc.master]?”</i>");
+			
+			// [Recruit] [Leave]
+		}
+		// Merchant Sera:
+		else
+		{
+			output("<i>“I told you not to - oh. Hey, [pc.master].”</i>");
+			output("\n\nSera blinks up from her holopad at you as you enter her room. It’s horrifically untidy, stacks and slews of packaged gene-mods and promotional material everywhere you look. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
+			
+			// [Recruit] [Buy] [Leave]
+			addButton(1, "Buy", seraBitcheningStore, "buy");
+			addButton(2, "Sell", seraBitcheningStore, "sell");
+		}
+		
+		processTime(1);
+	}
+	
+	addButton(0, "Recruit", seraOnTavrosRecruit, undefined, "Recruit", "Put her back on board your ship.");
+	addButton(14, "Leave", mainGameMenu);
+	
+	return;
+}
+public function seraOnTavrosRecruit():void
+{
+	clearOutput();
+	showSera();
+	author("Nonesuch");
+	
+	// Untrained
+	if(flags["SERA_OBEDIENCE_MIN"] <= 0)
+	{
+		output("<i>“C’mon,”</i> you say, clicking the remote. <i>“You’re coming back on board.”</i>");
+		output("\n\nSera taps her holopad. A small display of neon fireworks go off around her deadpan scowl, the trailing lights combining into the words I AM SO EXCITED!! above her head. She then flounces out of the room without a word.");
+		output("\n\nDamn, she really <i>was</i> bored.");
+		
+		processTime(2);
+	}
+	// Trained
+	else
+	{
+		// !Merchant Sera:
+		if(flags["SERA_MERCHANT"] == undefined)
+		{
+			output("<i>“Yes!”</i>");
+			output("\n\nSera is out the door and halfway to the lift by the time you’re partway through telling her to come back aboard. Hopefully not because she wants a head-start on whatever prank she’s probably been working on the whole time she was here.");
+		}
+		// Merchant Sera:
+		else
+		{
+			output("<i>“Thank God.”</i> She snaps closed her holopad and begins to pack her stuff up. <i>“I’ll be back on board by the time you want to leave [pc.master],”</i> she says, pulling several large suitcases out from under her bed.");
+			output("\n\n<i>“The staff here are such a bunch of dullards,”</i> she complains, clicking away. <i>“");
+			if(ChildManager.numChildrenAtNursery() < 3) output("They’ve got exactly nothing to do and they still bitch about fetching my orders up.");
+			else output("As if looking after a few brats is so hard that fetching my orders up is a massive ask.");
+			output(" You come to bust me out of this popsicle stand? Or do you want to look at what’s on offer this week?”</i>");
+		}
+		
+		processTime(2);
+	}
+	
+	output("\n\n(<b>Sera has joined your crew!</b>)");
+	flags["SERA_CREWMEMBER"] = 1;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 	return;
 }
 

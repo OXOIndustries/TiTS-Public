@@ -411,6 +411,11 @@ public function buyItemGo(arg:ItemSlotClass):void {
 			flags["PURCHASED_SERAS_GALO"] = 1;
 			chars["SERA"].destroyItem(new GaloMax());
 		}
+		else if(shopkeep is ChrysalisDrone) 
+		{
+			flags["PURCHASED_SERAS_GALO"] = 1;
+			chars["CHRYSALISDRONE"].destroyItem(new GaloMax());
+		}
 	}
 	// Siegwulfe Special
 	if(arg is SiegwulfeItem)

@@ -113,6 +113,21 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/darnock.png", mimeType = "image/png")]
 		public var Bust_DARNOCK:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/del.png", mimeType = "image/png")]
+		public var Bust_DELILAH:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/del_nude.png", mimeType = "image/png")]
+		public var Bust_DELILAH_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/del_shemale.png", mimeType = "image/png")]
+		public var Bust_DELILAH_SHEMALE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/del_shemale_nude.png", mimeType = "image/png")]
+		public var Bust_DELILAH_SHEMALE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/del_shemale_horse.png", mimeType = "image/png")]
+		public var Bust_DELILAH_SHEMALE_HORSE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/del_shemale_horse_nude.png", mimeType = "image/png")]
+		public var Bust_DELILAH_SHEMALE_HORSE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/del_boy.png", mimeType = "image/png")]
+		public var Bust_DELILAH_BOY:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/dollmaker.png", mimeType = "image/png")]
 		public var Bust_DOLLMAKER:Class;
 
