@@ -189,9 +189,12 @@ package classes.Items.Transformatives
 				
 				//Dick size+ (Max: 24 inches)
 				choices = new Array();
+				var dickMax:Number = 20;
+				if(pc.hasPerk("Hung")) dickMax += 8;
+				if(pc.hasPerk("Mini")) dickMax -= 8;
 				for(x = 0; x < pc.cockTotal(); x++)
 				{
-					if(pc.cocks[x].cLength() < 24 && pc.cocks[x].cType == GLOBAL.TYPE_SWINE) choices[choices.length] = x;
+					if(pc.cocks[x].cLength() < dickMax && pc.cocks[x].cType == GLOBAL.TYPE_SWINE) choices[choices.length] = x;
 				}
 				//Set x to a random dick from choices
 				if(choices.length > 0) x = choices[rand(choices.length)];
@@ -212,7 +215,7 @@ package classes.Items.Transformatives
 				choices = new Array();
 				for(x = 0; x < pc.cockTotal(); x++)
 				{
-					if(pc.cocks[x].cThicknessRatio() > 0.3 && pc.cocks[x].cType == GLOBAL.TYPE_SWINE) choices[choices.length] = x;
+					if(pc.cocks[x].cThicknessRatio() > 0.6 && pc.cocks[x].cType == GLOBAL.TYPE_SWINE) choices[choices.length] = x;
 				}
 				//Set x to a random dick from choices
 				if(choices.length > 0) x = choices[rand(choices.length)];

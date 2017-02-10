@@ -6064,8 +6064,8 @@
 				{
 					switch (legType)
 					{
-						case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "equine", "horse-like", "hoof-capped"]; break;
-						case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "bovine", "cow-like", "hoof-capped"]; break;
+						case GLOBAL.TYPE_EQUINE: adjectives = ["equine", "equine", "horse-like"]; break;
+						case GLOBAL.TYPE_BOVINE: adjectives = ["bovine", "bovine", "cow-like"]; break;
 						case GLOBAL.TYPE_CANINE: adjectives = ["canine", "canine", "dog-like", "paw-footed"]; break;
 						case GLOBAL.TYPE_FELINE: adjectives = ["feline", "feline", "cat-like", "graceful"]; break;
 						case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "vulpine", "fox-like", "foxy"]; break;
@@ -6091,7 +6091,7 @@
 						case GLOBAL.TYPE_FROG: adjectives = ["frog", "amphibious", "frog-like", "powerful"]; break;
 						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic","claw-footed"]; break;
-						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like", "hoof-capped"]; break;
+						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 					}
 				}
 				//ADJECTIVE!
