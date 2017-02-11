@@ -417,7 +417,7 @@ public function sexWithKallysDel():void
 		else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You’re too big to fuck her ass.");
 	}
 	else addDisabledButton(0,"Buttfuck Her","Buttfuck Her","You need a penis");
-	if(pc.hasVagina()) addButton(1,"Face Sittng",sitOnDelsFaceAtKallys,undefined,"Face Sitting","Sit on Del’s Face.");
+	if(pc.hasVagina()) addButton(1,"Face Sitting",sitOnDelsFaceAtKallys,undefined,"Face Sitting","Sit on Del’s Face.");
 	else addDisabledButton(1,"Face Sitting","Face Sitting","You need a vagina to really enjoy this.");
 	addButton(14,"Back",delCanadiaMeeting);
 }
