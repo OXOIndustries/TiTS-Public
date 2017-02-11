@@ -318,7 +318,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a painful pinch right on the tip of your tailbone and instinctively reach for it, finding a small bump that wasn’t there earlier. ");
 							if(!pc.isAssExposed()) output("You pull down your [pc.lowerGarments] to take a better look at it. ");
-							output("The bump grows larger, slowly and painfully extending your spine with new flesh and bone into a long, naked tail. The growth pains are quickly replaced by an intense itch all around your new tail as new fine hairs sprout from your [pc.skinColor]. They become thicker, covering it in a beautiful coat of fur. You enthusiastically wiggle <b>your [pc.furColor] canine tail back and forth.</b>");
+							output("The bump grows larger, slowly and painfully extending your spine with new flesh and bone into a long, naked tail. The growth pains are quickly replaced by an intense itch all around your new tail as new fine hairs sprout from your [pc.skinColor] [pc.skinNoun]. They become thicker, covering it in a beautiful coat of fur. You enthusiastically wiggle <b>your [pc.furColor] canine tail back and forth.</b>");
 							pc.tailCount = 1;
 							pc.tailType = GLOBAL.TYPE_CANINE;
 							pc.clearTailFlags();
@@ -362,11 +362,15 @@ package classes.Items.Transformatives
 						//Arm not Furred:
 						if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) 
 						{
-							output(" The stiffness and pain are quickly replaced by an itch that covers the entirety of your arms as your ");
-							if(pc.hasArmFlag(GLOBAL.FLAG_SCALED)) output("scales fall ");
-							else if(pc.hasArmFlag(GLOBAL.FLAG_FEATHERED)) output("feathers fall ");
-							else output("chitin falls ");
-							output(" off, and you");
+							output(" The stiffness and pain are quickly replaced by an itch that covers the entirety of your arms as you");
+							if(pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS))
+							{
+								output("r");
+								if(pc.hasArmFlag(GLOBAL.FLAG_SCALED)) output(" scales fall");
+								else if(pc.hasArmFlag(GLOBAL.FLAG_FEATHERED)) output(" feathers fall");
+								else output(" chitin falls");
+								output(" off, and you");
+							}
 							output(" notice fine hair growing into a thick coat of beautiful [pc.furColor] fur.");
 						}
 						else output(" The stiffness and pain are replaced by an itch that covers the entirety of your arms, but it disappears just as quickly as it comes.");
@@ -492,7 +496,7 @@ package classes.Items.Transformatives
 					{
 						if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output("\n\nThe surface of your goo body feels strange and tingly. Looking at it, you see that it’s slowly shifting into skin, losing its translucence and becoming much more solid. The transformation continues until you are left with only [pc.skinColor] skin. The tingling sensation turns into an itch as new hair sprouts all over your body, completely covering it in a coat of beautiful fur. <b>You’ve grown [pc.furColor] fur!</b>");
 						//Scales/Feathers skin:
-						else if(pc.skinType != GLOBAL.SKIN_TYPE_FUR) 
+						else if(InCollection(pc.skinType, [GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS])) 
 						{
 							output("\n\nA sudden itch spreads throughout your body. A powerful urge to scratch yourself wells up within you. Doing anything other than caving into it never crosses your mind. You scratch and scratch all over until you spot a single [pc.furColor] ");
 							if(pc.hasScales()) output("scale");

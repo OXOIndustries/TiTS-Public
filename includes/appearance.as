@@ -273,7 +273,7 @@ public function appearance(forTarget:Creature):void
 		else if(target.faceType == GLOBAL.TYPE_SHARK)
 		{
 			output2("Your face is shark-like in shape, with a snout and an upper jaw that pushes past your lower one, and at the very tip, there are two nasal holes.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" The glistening surface is slick to the touch, as if you just lubed up not to long ago.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" The glistening surface is slick to the touch, as if you just lubed up not too long ago.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The surface is covered in fine scales.");
 			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" The surface is covered with " + target.skinFurScales(true,true,false,true) + " , making you look like a rather odd hybrid.");
 			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) && silly) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface, making you look like Boaty McBoatface.");
@@ -284,7 +284,7 @@ public function appearance(forTarget:Creature):void
 			//appearance
 			output2("Your face is mostly human in shape and structure, with " + target.skin(true,true,true));
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" under your " + target.skinFurScales(true,true,false,true));
-			output2("but it’s adorned with a flat, pig-like nose.");
+			output2(" but it’s adorned with a flat, pig-like nose.");
 		}
 		// Special face additions
 		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");

@@ -11494,8 +11494,8 @@
 		public function nippleDescript(rowNum:Number = 0, asPlural:Boolean = false, forceLactation:Boolean = false):String 
 		{
 			//DEBUG SHIT!
-			if (rowNum > (breastRows.length - 1)) return "<B>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
-			if (rowNum < 0) return "<B>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
+			if (rowNum > (breastRows.length - 1)) return "<b>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
+			if (rowNum < 0) return "<b>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
 			var descripted: Number = 0;
 			var description: String = "";
 			var rando: Number = 0;
@@ -12456,9 +12456,9 @@
 				else if (type == GLOBAL.TYPE_AVIAN)
 				{
 					if (!simple)
-					desc += RandomInCollection(["avian pussy", "bird pussy", "bird vagina", "avian vagina", "avian honeypot", "birdy cunny", "avian cunt", "bird slit", "avian slit", "bird cunt", "birdy quim"]);
+						desc += RandomInCollection(["avian pussy", "bird pussy", "bird vagina", "avian vagina", "avian honeypot", "birdy cunny", "avian cunt", "bird slit", "avian slit", "bird cunt", "birdy quim"]);
 					else
-					desc += RandomInCollection(["bird-pussy", "bird-pussy", "avian-pussy", "bird-cunt", "bird-quim", "avian-twat", "bird-gina", "bird-vagina", "box"]);
+						desc += RandomInCollection(["bird-pussy", "bird-pussy", "avian-pussy", "bird-cunt", "bird-quim", "avian-twat", "bird-gina", "bird-vagina", "box"]);
 				}
 				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
 				{
@@ -12547,19 +12547,16 @@
 				else if (type == GLOBAL.TYPE_SHARK)
 				{
 					if(!simple)
-						desc+= RandomInCollection(["wriggling pussy", "cilia-wringed vagina", "shark-like honeypot", "cilla-filled honeypot", "cilla-filled vagina", "shark-like vagina", "tentacle filled gash", "cilla-lined cunt", "tentacled vagina", "tentacled pussy", "tentacled twat", "cilia-filled gash", "tentacled quim", "piscine snatch", "piscine twat","aquatic twat","fishy pussy"]);
-					else desc+= RandomInCollection(["shark-cunt", "shark-twat", "shark-gash", "shark-pussy", "tentacle-pussy", "tentacle-gash", "shark-pussy","pussy","pussy"]);
+						desc += RandomInCollection(["wriggling pussy", "cilia-wringed vagina", "shark-like honeypot", "cilla-filled honeypot", "cilla-filled vagina", "shark-like vagina", "tentacle filled gash", "cilla-lined cunt", "tentacled vagina", "tentacled pussy", "tentacled twat", "cilia-filled gash", "tentacled quim", "piscine snatch", "piscine twat","aquatic twat","fishy pussy"]);
+					else
+						desc += RandomInCollection(["shark-cunt", "shark-twat", "shark-gash", "shark-pussy", "tentacle-pussy", "tentacle-gash", "shark-pussy","pussy","pussy"]);
 				}
 				else if (type == GLOBAL.TYPE_SWINE)
 				{
 					if (!simple)
-					{
 						desc += RandomInCollection(["pig pussy", "swine slit", "animalistic pussy", "pig cunt", "sow pussy", "hog hole", "hog honeypot", "ridge-lined animal pussy", "corkscrewed pig vagina", "swine vagina"]);
-					}
 					else
-					{
 						desc += RandomInCollection(["pig-pussy","swine-pussy","sow-pussy","animal-pussy","swine-slit","sow-slit","pig-cunt"]);
-					}
 				}
 				else
 				{
@@ -12579,8 +12576,8 @@
 		//Vaginas + Descript
 		public function vaginaDescript(vaginaNum: Number = 0, forceAdjectives: Boolean = false, adjectives: Boolean = true, appearanceScreen: Boolean = false): String {
 			//ERROR CHECKING:
-			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
-			if (vaginaNum < 0) return "<B>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			if (vaginaNum > (vaginas.length - 1)) return "<b>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			if (vaginaNum < 0) return "<b>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
 			if (vaginas.length < 0) return "VAGINA ERROR";
 
 			//Appearance screen goes straight to a special subsection of vaginaNoun2
@@ -12786,8 +12783,8 @@
 		}
 		/* OLD VAGINA DESC - LEFT FOR REFERENCE
 		public function vaginaDescript(vaginaNum: Number = 0, forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
-			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
-			if (vaginaNum < 0) return "<B>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			if (vaginaNum > (vaginas.length - 1)) return "<b>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			if (vaginaNum < 0) return "<b>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
 			//If no vaginas back the fuck out
 			if (vaginas.length < 0) return "VAGINA ERROR";
 
