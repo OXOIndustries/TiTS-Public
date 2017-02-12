@@ -419,6 +419,9 @@ public function footjobFromFemzil():void {
 	author("Savin");
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
+	
+	var x:int = rand(pc.totalCocks());
+	
 	output("You toss your [pc.gear] aside");
 	if(pc.hasStatusEffect("Genital Slit")) output(", letting your [pc.cocks] grow out from between your slit");
 	else if(pc.legCount > 1) output(", letting your [pc.cocks] hang free between your [pc.legs]");
