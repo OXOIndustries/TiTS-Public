@@ -12406,7 +12406,7 @@
 				if(type == GLOBAL.TYPE_BEE || girlCumType == GLOBAL.FLUID_TYPE_HONEY) plainPussies.push("honeypot");
 				desc += RandomInCollection(plainPussies);
 			}
-			else if(special != "default")
+			else if(special != "default" || simple)
 			{
 				//If tail mounted, give tail specials.
 				if(special == "tail" && rand(2) == 0)
@@ -12567,7 +12567,7 @@
 						else
 							desc += RandomInCollection(["alien ", "alien ", "exotic ", "exotic ", "inhuman "]);
 					}
-					desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit","twat", "gash", "cunny", "honeypot", "snatch"]);
+					desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 				}
 			}
 			return desc;
