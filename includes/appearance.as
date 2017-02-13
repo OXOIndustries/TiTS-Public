@@ -276,9 +276,9 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" The glistening surface is slick to the touch, as if you just lubed up not too long ago.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The surface is covered in fine scales.");
 			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" The surface is covered with " + target.skinFurScales(true,true,false,true) + " , making you look like a rather odd hybrid.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) && silly) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface, making you look like Boaty McBoatface.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK)) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface giving you a tough, hydrodynamic look.");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK)) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface, " + (silly ? "making you look like Boaty McBoatface" : "giving you a tough, hydrodynamic look") + ".");
 			else output2(" Even without scales, the surface is smooth and hairless, perfect for underwater exploration.");
+			output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly menacing appearance.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_SWINE) {
 			//appearance
