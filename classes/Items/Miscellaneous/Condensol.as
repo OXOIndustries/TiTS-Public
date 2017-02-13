@@ -83,7 +83,7 @@
 				{
 					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn’t do anything if you don’t have a cock.");
 				}
-				else if(pc.shortestCockLength() <= 4)
+				else if(!pc.hasStatusEffect("Condensol-A") && !pc.hasStatusEffect("Condensol-B") && pc.shortestCockLength() <= 4)
 				{
 					if (pc.cocks.length == 1 && !pc.removeCockUnlocked(0, 1))
 					{
