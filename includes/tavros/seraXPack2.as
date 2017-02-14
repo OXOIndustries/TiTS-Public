@@ -117,7 +117,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 		// Sera taken:
 		if(flags["SERA_ACQUIRED_DATE"] != undefined) output(" With our problem case gone, we are simply waiting for the trade from the frontier to start trickling in. Come back in a month’s time or so, we’ll have many fresh and exotic pieces of property to show you.");
 		// Sera still on:
-		else if(!seraRecruited()) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
+		else if(!seraRecruited() && (flags["SERA_PARTY_INVITE"] == undefined || flags["SERA_PARTY_INVITE"] <= 3)) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
 		output("”</i>");
 	}
 	else
