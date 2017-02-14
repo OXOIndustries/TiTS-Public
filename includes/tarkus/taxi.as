@@ -309,7 +309,7 @@ public function nessaFuckTimeLetsGo():void
 	output(". Nipples like ripe cherries squish down, and lips as warm and soft as fire-roasted marshmallows meet yours for a saucy kiss. Her tongue dances in slow circles around yours, her exotic, almost spicy saliva making your whole mouth tingle.");
 
 	output("\n\nNessa wraps her arms around your neck and lifts her hips, transitioning from a slow grind-fuck to a faster, sweatier bang. Ringlets of her auburn hair cascade around you, making the rest of the world disappear while she kisses you. Sometimes she nips at your neck or licks your ears. Other times she stops smooching long enough to whisper something like, <i>“Not yet... don’t cum yet.”</i> Her asscheeks quiver in your palms, and when she picks up the pace, she stops kissing you entirely, closing her eyes and purring as hard as she can.");
-	output("\n\nSquelching and vibrating around you, Nessa’s quim does everything it can to drag you to the bring of orgasm. Even when she’s not squeezing down on you, you can still feel her clit buzzing on your cunt-soaked rod like a vibrator set on low.");
+	output("\n\nSquelching and vibrating around you, Nessa’s quim does everything it can to drag you to the brink of orgasm. Even when she’s not squeezing down on you, you can still feel her clit buzzing on your cunt-soaked rod like a vibrator set on low.");
 	if(pc.balls > 0)
 	{
 		output(" Your [pc.balls] ache");
