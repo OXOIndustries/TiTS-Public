@@ -101,7 +101,7 @@ public function talkToEdan():void
 		else output("in your bones.");
 		output("\n\n<i>“Hey there, kid.”</i>");
 		output("\n\nIt takes half a second for you to figure out that the rumbling came from the leithan, rather than some kind of seismological event.");
-		output("\n\n<i>“Hey there,”</i> you say, then indicate the amount of food heaped on his plate. “You hungry?”");
+		output("\n\n<i>“Hey there,”</i> you say, then indicate the amount of food heaped on his plate. <i>“You hungry?”</i>");
 		output("\n\n<i>“Always am,”</i> he grins. <i>“Edan. You?”</i>");
 		output("\n\n<i>“[pc.name] Steele,”</i> you reply.");
 		output("\n\n<i>“Steele...”</i> Edan muses. <i>“Is that with an E? Like the mining company?”</i>");
@@ -404,7 +404,7 @@ public function edanSex():void
 	else
 	{
 		output("Edan gives you a wave as you approach.");
-		output("\n\n<i> “Heya, [pc.name]. I’ve got some time, you wanna hang out back at my place today? I’ve got some crappy movies we can watch.”</i>");
+		output("\n\n<i>“Heya, [pc.name]. I’ve got some time, you wanna hang out back at my place today? I’ve got some crappy movies we can watch.”</i>");
 		output("\n\n<i>“Sounds like fun,”</i> you nod. <i>“Especially if it’s anything like last time.”</i>");
 		output("\n\nHe grins. <i>“Thought you might say that.”</i>");
 		output("He puts his arm around you casually, pulling you close as the two of you walk to his ship.");

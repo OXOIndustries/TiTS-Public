@@ -77,6 +77,7 @@
 				{
 					kGAMECLASS.output("It is probably not a good idea to take this without a penis first...");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
+					return false;
 				}
 				
 				kGAMECLASS.output("You take the medipen out of its packaging and press it to your arm. It releases its payload into your veins with a small hiss. Woof! Hot liquid arousal sinks into your [pc.groin], settling itself heavily in " + (target.balls > 0 ? "your [pc.balls]" : "[pc.eachCock]") + ". An instant spring of masculine urge unfurls its leaves in your mind, flickering giddy light over your every thought. Somebody nearby with a tight and willing hole definitely needs to find out about you.");

@@ -103,7 +103,7 @@ public function approachSemithPlayingChess():void
 		output("\n\n<i>“Ah! Here for a game of chess? I do hope so. There’s a real lack of challengers on this station.”</i> He offers you his hand.");
 		
 		if(pc.tallness > 77) output(" The fact he has to climb onto the bench to do this does not seem to harm his air of self-possession. His hand");
-		else output("It");
+		else output(" It");
 		
 		output(" feels hot and strangely smooth in your grip; aside from his head the alien’s skin is hairless and quite smooth. <i>“The name’s Semith, pleased to meet you. And you might be...?”</i>");
 		output("\n\nYou tell him.");
@@ -232,7 +232,7 @@ public function semithTalksAboutVulkrimi():void
 	output("\n\n<i>“What’s with the tail?”</i> you ask, biding for time. Maybe if you sacrifice your knight you can draw out his queen, wherever it is...");
 	output("\n\n<i>“The secret to our continued existence, that’s what!”</i> Semith exclaims, his tail flexing inwards in surprise at the question. <i>“We are an all male race, [pc.name]; our women died out many centuries ago. In order to reproduce we use our stings to, ah, imbue wombs in others...”</i> The blunt tip of his scorpion-like appendage jerks inwards and outwards suggestively. <i>“... before doing the deed as you might normally expect. I had my sting removed when I moved into business, though. I got the distinct impression it made other people uncomfortable - not really the kind of thing someone wants to see bobbing over the head of your stockbroker. I had it gene-modded to something more... traditionally enjoyable.”</i> Your eyes are unavoidably drawn to the wide, horizontal slit on the club-like end to his tail. It doesn’t look like a vagina; more like a housing for something...");
 	output("\n\n<i>“And your people weren’t tempted to gene mod some of themselves back into females?”</i> you query. You decide to shift your knight into a paradoxical state instead.");
-	output("\n\n<i>“We can no longer produce pure strain vulkrimi that way,”</i> he sighs, sliding a bishop six spaces forward on the other side of the board. <i>“And our culture has changed to accommodate how we are now. Being both male and bearing children is expected amongst us [pc.name], however difficult that might be for you to contemplate; please don’t imagine we are there to be improved. As far as gene-modding is concerned,”</i> he goes on in a lighter tone, <i>“that’s one of the reasons why the U.G.C. were still eager to uplift us, despite us being such a disreputable bunch of scoundrels. The likes of Xenogen were </i>desperate<i> to study our degradable womb-instilling properties. Thank goodness for corporate greed!”</i>");
+	output("\n\n<i>“We can no longer produce pure strain vulkrimi that way,”</i> he sighs, sliding a bishop six spaces forward on the other side of the board. <i>“And our culture has changed to accommodate how we are now. Being both male and bearing children is expected amongst us, [pc.name], however difficult that might be for you to contemplate; please don’t imagine we are there to be improved. As far as gene-modding is concerned,”</i> he goes on in a lighter tone, <i>“that’s one of the reasons why the U.G.C. were still eager to uplift us, despite us being such a disreputable bunch of scoundrels. The likes of Xenogen were </i>desperate<i> to study our degradable womb-instilling properties. Thank goodness for corporate greed!”</i>");
 	
 	processTime(20 + rand(10));
 	

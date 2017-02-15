@@ -645,7 +645,8 @@ public function doSiegwulfeSex(response:String = "none"):void
 			output(" You reach down and give her rump an appreciative spank, and sure enough, [wulfe.name] moans in answer, clenching harder around your [pc.cockNoun " + i + "].");
 			output("\n\nWith a grip like hers, it isn’t long before you can feel a tension rising in your loins, milked out by the wulfe-bot’s gripping quim. As if sensing the impending flood, [wulfe.name]’s pussy squirts and clenches down around you, bathing your dick in a wash of lube and simulated girl-cum, all to welcome in the first spurts of your much-awaited [pc.cumNoun]. She gets what she wants, alright: your [pc.cockNoun " + i + "] swells");
 			if(pc.balls > 0) output(" and your [pc.balls] slap weightily against her ass, churning with cum for a final moment before releasing " + (pc.cocks.length == 1 ? "its" : "their") + " load");
-			else output(" for a final moment before you feel your [pc.balls] churning, pumping your load towards its destination.");
+			else output(" for a final moment before you feel your [pc.balls] churning, pumping your load towards its destination");
+			output(".");
 			output("\n\nYou tighten your grip on [wulfe.name]’s hips and slam yourself in as far as she’ll take you before that first spurt of jizz comes raining out, pumping into the siegwulfe’s deepest depths. She gasps, then moans, then murmurs sweet, wordless nothings as you fill her with [pc.cum], violently emptying your [pc.balls] into her welcoming sex. When you’re finished,");
 			if(pc.hasKnot(i)) output(" your [pc.knot " + i + "] is firmly lodged into her black sex, trapping what feels like a sloshing mess of your spunk and her juices, intermingling against your meaty plug");
 			else output(" your [pc.cock " + i + "] slides free of her dark sex in a waterfall of mixed cum and feminine juices that splatters her thighs and the ground behind her, leaving a musky mess to mark the spot of your mating");

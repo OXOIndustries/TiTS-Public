@@ -1018,7 +1018,7 @@ public function kq2EngineerPCVictory():void
 	{
 		output(" <b>You find a keycard on her person</b>. No doubt this’ll get you into the research facility!");
 		pc.createKeyItem("Key Card - R&D Security Pass");
-		output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.\n\n");
+		output("\n\n(<b>Gained Key Item: Key Card - R&D Security Pass</b>.)\n\n");
 	}
 
 	flags["KQ2_DEFEATED_ENGINEER"] = 1;
@@ -1088,7 +1088,7 @@ public function kq2GibEngyDirtyMag():void
 	pc.removeKeyItem("Hentai Magazine");
 	output("\n\n<b>Removed Key Item: Hentai Magazine</b>.");
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n(<b>Gained Key Item: Key Card - R&D Security Pass</b>.)");
 
 	processTime(2);
 
@@ -1114,7 +1114,7 @@ public function kq2GibEngyCash():void
 	output(", and quickly make your way out of the security office.");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n(<b>Gained Key Item: Key Card - R&D Security Pass</b>.)");
 
 	processTime(2);
 
@@ -1206,7 +1206,7 @@ public function kq2GibEngyDankHoles():void
 	output("\n\n<i>“I guess you’re a lover, not a fighter, huh?”</i> she chuckles.");
 
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n(<b>Gained Key Item: Key Card - R&D Security Pass</b>.)");
 
 	processTime(15+rand(5));
 

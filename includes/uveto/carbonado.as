@@ -99,7 +99,7 @@ public function uvetoCarbonadoRepeat():void
 	}
 	else
 	{
-		output("Hey there [pc.name]! Can I help you find anything today?”</i> Gwen asks, flipping the electronic catalog of wares in your direction.");
+		output("<i>“Hey there [pc.name]! Can I help you find anything today?”</i> Gwen asks, flipping the electronic catalog of wares in your direction.");
 		uvetoCarbonadoMenu();
 	}
 }
@@ -191,7 +191,7 @@ public function uvetoCarbonadoFirstTime():void
 	if (pc.humanScore() <= 2) output(" You don’t look human, but there must be some in your genes.");
 	output("”</i> she says, attempting to push the determined saleswoman away from the counter. Her efforts are impeded by the latter’s batting arms.");
 
-	output("\n\n<i>“It’s okay Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, "+pc.mf("sir", "mam") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
+	output("\n\n<i>“It’s okay Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, "+pc.mf("sir", "ma’am") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
 
 	clearMenu();
 	addButton(0, "Talk", uvetoCarbonadoIntroTalk);
@@ -530,7 +530,7 @@ public function uvetoCarbonadoTalkEimearRelationship():void
 	
 	output("\n\n<i>“Sorry. Thinking about it makes me remember how nervous I used to be. Before I met her I had no plans to take over this shop. I just wanted to get a job somewhere where no one would notice, and play videogames with the rest of my free-time. I suppose I still play a lot of games, but this is far from low-key living, and I couldn’t be happier about it,”</i> she smiles endearingly as she continues.");
 	
-	output("\n\n<i>“I asked Gwen to move in with me after we graduated, and even after all that time I was still a little worried that she would say no. She just stared at me and asked what I had thought was going to happen. We live pretty close to the elevator on the surface, so It’s super convenient,”</i> she finishes, looking at you expectantly.");
+	output("\n\n<i>“I asked Gwen to move in with me after we graduated, and even after all that time I was still a little worried that she would say no. She just stared at me and asked what I had thought was going to happen. We live pretty close to the elevator on the surface, so it’s super convenient,”</i> she finishes, looking at you expectantly.");
 	
 	output("\n\n<i>“Was there anything else you wanted?”</i>");
 
@@ -663,7 +663,7 @@ public function cfsGoHangoutTimeII():void
 
 	output("\n\nGwen leans over, cupping a hand to your ear. <i>“That’s Ironwall, he’s a supervillain with the ability to create barriers. His armor enhances latent psionic powers to increase their str-oww”</i> she yelps as Eimear jabs her in the side to shut her up.");
 
-	output("\n\n<i>“Let [pc.himHer] watch”</i>, she whispers.");
+	output("\n\n<i>“Let [pc.himHer] watch,”</i> she whispers.");
 
 	output("\n\nWhen you look back to the show, the focus has changed to what must be the interior of the smaller ship. A man in a rather phallic looking suit of armor sits at the controls, with warning sirens blaring and outside explosions rocking the cockpit. His suit is navy blue, with gauntlets that flare out like metallic horsecocks. Phosphorescent green shades shield his eyes, leaving only a wide grin visible.");
 
@@ -679,7 +679,7 @@ public function cfsGoHangoutTimeII():void
 	
 	output("\n\nThe scene switches to a ship’s interior. Robotic soldiers mill about, carrying out various cleaning duties. Suddenly an immense explosion rocks the wall, with the Flare leaping out of the flames, flanked by a sumo-sized man carrying a massive hammer and a robotic centauress wielding a plasma rifle.");
 
-	output("\n\n<i>“This is not an effective strategy!”</i> shouts the centaur, a nameplate labeling her ‘Taurina, master tactician.’. She blasts away some approaching droids, but doesn’t notice a larger one approaching behind her. Before it can attack, it is smashed to pieces by the hammer from before.");
+	output("\n\n<i>“This is not an effective strategy!”</i> shouts the centaur, a nameplate labeling her ‘Taurina, master tactician.’ She blasts away some approaching droids, but doesn’t notice a larger one approaching behind her. Before it can attack, it is smashed to pieces by the hammer from before.");
 
 	output("\n\n<i>“How many times have I told you to watch your back. Master technician, bah!”</i> the heavyset titan shouts, hefting his weapon. Ironclad bars label him as ‘Ivan Orgoth, The Shaft of Strength.’");
 
@@ -689,7 +689,7 @@ public function cfsGoHangoutTimeII():void
 
 	output("\n\n<i>“Damn right you would. Don’t ever let me hear about you going on a mission without me, you’d somehow wind up killing yourself before you got there,”</i> she laments, reaching the end door before they begin to follow. When the group reaches the end of the corridor, Flare presses a button to open the door, only to reveal a wall of armed murderbots, weapons trained on the surprised heroes.");
 
-	output("\n\n<i>“We have you surrounded, don’t move”</i> barks one of the droids, pointing menacingly at the unorthodox ensemble of fighters.");
+	output("\n\n<i>“We have you surrounded, don’t move,”</i> barks one of the droids, pointing menacingly at the unorthodox ensemble of fighters.");
 
 	output("\n\n<i>“You villains will never stop the motion of justice! You’ve given me enough time to prepare one of my special attacks! Expel, bursting white explosion!”</i> shouts the Flare, punching the air towards the corridor. A pulse of glowing white energy bursts from his gauntlet, washing over the battalion of bots and penetrating their armor. When the light dies down all that’s left is a scrap-heap.");
 
@@ -1031,7 +1031,7 @@ public function cfsGoMassageEimear():void
 	else if (pc.isNice()) output("! You’re very good at this");
 	else if (pc.isMisc()) output("! Maybe we can get more acquainted some time");
 	else output(",");
-	output(" you say, giving Eimear a warm smile. She returns it in kind, opening the door for you on your way back to the shop proper.");
+	output("”</i> you say, giving Eimear a warm smile. She returns it in kind, opening the door for you on your way back to the shop proper.");
 
 	output("\n\n<i>“Any time. Be sure to hang out around the store a little bit before heading out if you’re going down planet side. Hypothermia sucks, and it’s cold even with the belts,”</i> she warns, looking genuinely concerned as she follows you out.");
 

@@ -117,7 +117,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 		// Sera taken:
 		if(flags["SERA_ACQUIRED_DATE"] != undefined) output(" With our problem case gone, we are simply waiting for the trade from the frontier to start trickling in. Come back in a month’s time or so, we’ll have many fresh and exotic pieces of property to show you.");
 		// Sera still on:
-		else if(!seraRecruited()) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
+		else if(!seraRecruited() && (flags["SERA_PARTY_INVITE"] == undefined || flags["SERA_PARTY_INVITE"] <= 3)) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
 		output("”</i>");
 	}
 	else
@@ -131,7 +131,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 	var btnSlot:int = 0;
 	var acqList:Array = [];
 	acqList.push(["Mostly?", sentientAcquisitionsAskMostly]);
-	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited()) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
+	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited() && (flags["SERA_PARTY_INVITE"] == undefined || flags["SERA_PARTY_INVITE"] <= 3)) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
 	
 	// [Horned girl] [Mostly?] [Leave]
 	clearMenu();
@@ -180,7 +180,7 @@ public function sentientAcquisitionsAskHornedGirl(btnSlot:int = 0):void
 	author("Nonesuch");
 	showTeronAndAttica();
 	
-	var inDebt:Boolean = (pc.statusEffectv1("Sera Credit Debt") > 9000 || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90));
+	var inDebt:Boolean = (((flags["SERA_PARTY_INVITE"] == undefined || flags["SERA_PARTY_INVITE"] <= 3) && pc.statusEffectv1("Sera Credit Debt") > 9000) || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90));
 	
 	output("<i>“Horned girl?”</i>");
 	output("\n\n<i>“Yes. Amongst many other things.”</i> Teron plucks a tablet screen off the counter and taps it a few times. <i>“Bought quite a number of expensive mods this human did, and then a shop on this self same station on top of it. ‘The Dark Chrysalis.’ I don’t think she looked at the fine print of her rent agreement closely, if at all. These succulent young rue collars, they never think it’s going to happen to them. Until it does.”</i>");

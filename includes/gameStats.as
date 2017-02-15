@@ -5444,7 +5444,17 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_ERRA"] != undefined)
 		{
 			output2("\n<b>* Erra:</b> Met her");
+			if(flags["ERRA_RELATIONSHIP_TALK"] != undefined)
+			{
+				output2("\n<b>* Erra, Relationship:</b>");
+				if(flags["ERRA_LOVERS"] != undefined) output2(" Lovers");
+				else if(flags["ERRA_HEARTBROKEN"] != undefined) output2(" Rejected, You’ve broken her heart");
+				else output2(" Non-romantic");
+			}
+			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Cuddled:</b> " + flags["ERRA_SEXED"]);
 			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Sexed:</b> " + flags["ERRA_SEXED"]);
+			if(flags["ERRA_PETTED"] > 0) output2("\n<b>* Erra, Times Petted:</b> " + flags["ERRA_PETTED"]);
+			if(flags["ERRA_WALKIES"] > 0) output2("\n<b>* Erra, Times Walked:</b> " + flags["ERRA_WALKIES"]);
 			roamCount++;
 		}
 		// Kaede

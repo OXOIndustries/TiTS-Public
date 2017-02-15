@@ -334,7 +334,7 @@ public function kq2RadioTowerElevator():void
 			output("”</i>");
 			
 			pc.createKeyItem("Hentai Magazine");
-			output("\n\n<b>New Key Item: Hentai Magazine</b>.");
+			output("\n\n(<b>Gained Key Item: Hentai Magazine</b>.)");
 
 			output("\n\n<i>“Alright. I’m on overwatch, [pc.name]. Anything gets near you, and you’ll hear about it. Good luck.”</i>");
 				
@@ -769,7 +769,7 @@ public function kq2rfTakeKeycard():void
 
 	output("\n\nYou pick up the keycard. Score! This should get you into the research facility, no problem.");
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n(<b>Gained Key Item: Key Card - R&D Security Pass</b>.)");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

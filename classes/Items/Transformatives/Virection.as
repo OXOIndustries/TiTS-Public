@@ -245,9 +245,9 @@ package classes.Items.Transformatives {
 			//not sure if this is ever important, but... make this new cock virginal again
 			target.cocks[1].virgin = true;
 			
-			output("\n\nStrange ripples begin to crawl up your [pc.cock], slowly stimulating its flaccid length into full mast. As your arousal grows, so does your lightheadedness. Feeling faint, you try to sit down but end up falling on your ass instead, your. Gently, you rub your sore bum, only stopping when you realize you’re already stroking your rock-hard member with the other hand.");
-			output("\n\nYou follow suit by wrapping your other hand around its growing girth and resume stroking. The prickly ripples feel amazing, specially when pressed against the shaft by your firm grip. Your [pc.cockHead] grows hotter as the ripples intensify there. Pre-cum begins to copiously stream down from its slits... its two slits?");
-			output("\n\nBut before you can pay any mind to your swollen [pc.cockHead], the waves of lust climbing through your shaft grow stronger. Your hands can barely contain its newfound girth, already twice its original size. A tiny gap forms between the cumslits, before splitting into two cockheads on top of an extremely engorged shaft. The undulations slow down as the gap grows wider, then your sole cock divides into two. With one on each hand, you languidly pump them up and down until you orgasm, coating your hands in [pc.cum]. You wipe your fingers clean, finishing <b>just as they fully separate into two identical [pc.cocks]!</b>");
+			output("\n\nStrange ripples begin to crawl up your [pc.cock], slowly stimulating its flaccid length into full mast. As your arousal grows, so does your lightheadedness. Feeling faint, you try to sit down but end up falling on your ass instead. Gently, you rub your sore bum, only stopping when you realize you’re already stroking your rock-hard member with the other hand.");
+			output("\n\nYou follow suit by wrapping your other hand around its growing girth and resume stroking. The prickly ripples feel amazing, especially when pressed against the shaft by your firm grip. Your [pc.cockHead] grows hotter as the ripples intensify there. Pre-cum begins to copiously stream down from its slits... its two slits?");
+			output("\n\nBut before you can pay any mind to your swollen [pc.cockHead], the waves of lust climbing through your shaft grow stronger. Your hands can barely contain its newfound girth, already twice its original size. A tiny gap forms between the cumslits, before splitting into two cockheads on top of an extremely engorged shaft. The undulations slow down as the gap grows wider, then your sole cock divides into two. With one in each hand, you languidly pump them up and down until you orgasm, coating your hands in [pc.cum]. You wipe your fingers clean, finishing <b>just as they fully separate into two identical [pc.cocks]!</b>");
 			
 			target.orgasm();
 		}
@@ -370,8 +370,10 @@ package classes.Items.Transformatives {
 			else if(target.cocks[randomCockIndex].cLength() >= 10 && target.cocks[randomCockIndex].cLength() < 20) output(" larger-than-average [pc.cockNounSimple " + randomCockIndex + "] and comparing it to your forearm");
 			else output(" chin-hitting [pc.cock " + randomCockIndex + "] across your chest");
 			
-			output(", you confirm <b>that your surprisingly ejaculate-free cock has grown " + num2Text(increase) + " inch");
-			if (increase > 1) output("es")
+			output(", you confirm <b>that your");
+			//output(" surprisingly ejaculate-free");
+			output(" cock has grown " + num2Text(increase) + " inch");
+			if (increase > 1) output("es");
 			output(" in length!</b> ");
 			
 			target.orgasm();

@@ -383,7 +383,7 @@
 					{
 						output("\n\nYour [pc.vagina " + ii + "] tingles as it begins to shift on the inside. Curious, you run your hands over your ");
 						if(pc.vaginas[ii].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.vaginas[ii].hasFlag(GLOBAL.FLAG_PUMPED)) output("puffy ");
-						output("lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a grey shark vagina!</b>");
+						output("lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a gray shark vagina!</b>");
 						pc.shiftVagina(ii,GLOBAL.TYPE_SHARK);
 						pc.lust(20);
 						pc.libido(2);
