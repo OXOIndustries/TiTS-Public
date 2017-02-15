@@ -702,7 +702,7 @@ public function iceQueenBeatZaaltKill():void
 	flags["ICEQUEEN COMPLETE"] = 1;
 
 	pc.createKeyItem("Uveto A.I. Cores", 0, 0, 0, 0, "A.I. Cores recovered from Captain Zaalt Kandar, destined to be delivered to Uveto.");
-	output("\n\n<b>New Key Item: Uveto A.I. Cores</b>.\n\n");
+	output("\n\n(<b>Gained Key Item: Uveto A.I. Cores</b>.)\n\n");
 	CombatManager.genericVictory();
 }
 
@@ -728,7 +728,7 @@ public function iceQueenBeatZaaltWOOPWOOPITSDASOUNDOFDASPACEPOLICE():void
 	flags["ICEQUEEN COMPLETE"] = 2;
 
 	pc.createKeyItem("Uveto A.I. Cores", 0, 0, 0, 0, "A.I. Cores recovered from Captain Zaalt Kandar, destined to be delivered to Uveto.");
-	output("\n\n<b>New Key Item: Uveto A.I. Cores</b>.\n\n");
+	output("\n\n(<b>Gained Key Item: Uveto A.I. Cores</b>.)\n\n");
 	CombatManager.genericVictory();
 }
 
@@ -1105,7 +1105,7 @@ public function iceQueenKaraShowsUpInterruptNo():void
 	processTime(5);
 	
 	pc.createKeyItem("Broken Psi Amp", 0, 0, 0, 0, "A broken Psionic Amplifier, removed from Captain Zaalt Kandar’s skull. After it went <i>slightly</i> batshit.");
-	output("\n\n<b>New Key Item: Broken Psi Amp</b>.\n\n");
+	output("\n\n(<b>Gained Key Item: Broken Psi Amp</b>.)\n\n");
 
 	processTime(30 + rand(15));
 
