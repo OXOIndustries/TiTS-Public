@@ -1947,7 +1947,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 		output(" They watch on with wide open eyes and mouths as you begin touching your bare body before the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 	}
 	//PCWearingArmor that doesn't fully expose them
-	if(pc.hasArmor() && !pc.isCrotchExposedByArmor() && !pc.isChestExposedByArmor() && !pc.isAssExposedByArmor())
+	else if(pc.hasArmor() && !pc.isCrotchExposedByArmor() && !pc.isChestExposedByArmor() && !pc.isAssExposedByArmor())
 	{
 		output("\n\nBefore their eyes, you begin slowly stripping off your [pc.armor]. They watch on with wide open eyes and mouths as you peel it off your [pc.skinFurScales], exposing your bare body to the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 		//GotUpperUndergarment:
@@ -1957,10 +1957,19 @@ public function goddamnitJimTAndYourExhibitionism():void
 	//Else - not wearing armor that covers shit but SOMETHING is
 	else
 	{
-		output("\n\nBefore their gaze, you begin touching yourself. Of course, they’re already <i>looking</i>, what with you traipsing around in nothing but your ");
-		if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output("[pc.upperUndergarment]");
-		if((pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) && (pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment())) output(" and ");
-		if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
+		output("\n\nBefore their gaze, you begin touching yourself. Of course, they’re already <i>looking</i>");
+		if(pc.hasArmor() || (pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) || (pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()))
+		{
+			output(", what with you traipsing around in ");
+			if(pc.hasArmor()) output("your exposing outfit");
+			else
+			{
+				output("nothing but your ");
+				if(pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) output("[pc.upperUndergarment]");
+				if((pc.hasUpperGarment() && !pc.isChestExposedByUpperUndergarment()) && (pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment())) output(" and ");
+				if(pc.hasLowerGarment() && !pc.isCrotchExposedByLowerUndergarment() && !pc.isAssExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
+			}
+		}
 		output(". The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
 		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("obvious lust");
 		else output("a mixture of scandal and lust");
