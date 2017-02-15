@@ -2092,6 +2092,7 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) jackOffWithLadyPantiesYouSicko("Briha");
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) jackOffWithLadyPantiesYouSicko("Lys");
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]);
+		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) jackOffWithLadyPantiesYouSicko("Erra");
 	}	
 	//More than one pair? Build a menu.
 	else
@@ -2100,14 +2101,44 @@ public function futaBabePantyfapsRouter():void
 		output("You’ve collected " + pantyFapCount() + " of 10 possible pairs of ladies’ underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
+		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
+		{
+			addButton(button,"Aina’s",jackOffWithLadyPantiesYouSicko,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
+		{
+			addButton(button,flags["BEA_TITLE"]+"’s",jackOffWithLadyPantiesYouSicko,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
+		{
+			addButton(button,"Briha’s",jackOffWithLadyPantiesYouSicko,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
+		{
+			addButton(button,embry.short + "’s",jackOffWithLadyPantiesYouSicko,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained."))
 		{
 			addButton(button,"Emmy’s",futaBabePantyfaps,"Emmy","Emmy’s Panties","Use Emmy’s cum-stained, purple panties for a quick wank.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch."))
+		{
+			addButton(button,"Erra's",jackOffWithLadyPantiesYouSicko,"Erra","Erra","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro’s",futaBabePantyfaps,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick wank.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
+		{
+			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
@@ -2124,35 +2155,10 @@ public function futaBabePantyfapsRouter():void
 		{
 			addButton(button,"Syri’s",futaBabePantyfaps,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
 			button++;
-		}
-		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
-		{
-			addButton(button,embry.short + "’s",jackOffWithLadyPantiesYouSicko,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
-			button++;
-		}
+		}	
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
 			addButton(button,"Xanthe’s",jackOffWithLadyPantiesYouSicko,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
-			button++;
-		}
-		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
-		{
-			addButton(button,"Aina’s",jackOffWithLadyPantiesYouSicko,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
-			button++;
-		}
-		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
-		{
-			addButton(button,"Briha’s",jackOffWithLadyPantiesYouSicko,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
-			button++;
-		}
-		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
-		{
-			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
-			button++;
-		}
-		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
-		{
-			addButton(button,flags["BEA_TITLE"]+"’s",jackOffWithLadyPantiesYouSicko,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
 			button++;
 		}
 		addButton(14,"Back",masturbateMenu);
@@ -2174,6 +2180,7 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) pureLadyWaifuPussyRubFap("Briha");
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) pureLadyWaifuPussyRubFap("Lys");
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]);
+		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) pureLadyWaifuPussyRubFap("Erra");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2182,14 +2189,44 @@ public function futaBabePantySchlicksRouter():void
 		output("You’ve collected " + pantyFapCount() + " of " + pantyFapCount(true) + " possible pairs of ladies’ underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
+		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
+		{
+			addButton(button,"Aina’s",pureLadyWaifuPussyRubFap,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
+		{
+			addButton(button,flags["BEA_TITLE"]+"’s",pureLadyWaifuPussyRubFap,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
+		{
+			addButton(button,"Briha’s",pureLadyWaifuPussyRubFap,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
+		{
+			addButton(button,embry.short + "’s",pureLadyWaifuPussyRubFap,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) 
 		{
 			addButton(button,"Emmy’s",futaPantiesFapInPussy,"Emmy","Emmy’s Panties","Use Emmy’s purple, cummy panties for a quick jill-off session.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) 
+		{
+			addButton(button,"Erra's",pureLadyWaifuPussyRubFap,"Erra","Erra's Panties","Use Erra's purple, paw-printed panties for a little self-pleasure.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
 		{
 			addButton(button,"Kiro’s",futaPantiesFapInPussy,"Kiro","Kiro’s Panties","Use Kiro’s lacy, crotchless panties for a quick jill-off session.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
+		{
+			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
@@ -2207,36 +2244,11 @@ public function futaBabePantySchlicksRouter():void
 			addButton(button,"Syri’s",futaPantiesFapInPussy,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
 			button++;
 		}
-		if(pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) 
-		{
-			addButton(button,embry.short + "’s",pureLadyWaifuPussyRubFap,"[embry.name]",embry.short + "’s Panties","Use [embry.name]’s pink, heart-covered panties for a little self-pleasure.");
-			button++;
-		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
 			addButton(button,"Xanthe’s",pureLadyWaifuPussyRubFap,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
 			button++;
-		}
-		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
-		{
-			addButton(button,"Aina’s",pureLadyWaifuPussyRubFap,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
-			button++;
-		}
-		if(pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) 
-		{
-			addButton(button,"Briha’s",pureLadyWaifuPussyRubFap,"Briha","Briha’s Panties","Use Briha’s nylon, camo-print panties for a little self-pleasure.");
-			button++;
-		}
-		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
-		{
-			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
-			button++;
-		}
-		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
-		{
-			addButton(button,flags["BEA_TITLE"]+"’s",pureLadyWaifuPussyRubFap,flags["BEA_TITLE"],flags["BEA_TITLE"]+"’s Panties","Use " + flags["BEA_TITLE"] + "’s silky black panties for a little self-pleasure.");
-			button++;
-		}
+		}		
 		addButton(14,"Back",masturbateMenu);
 	}
 }
@@ -2254,6 +2266,7 @@ public function pantyFapCount(total:Boolean = false):Number
 	if(total || pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) count++;
 	if(total || pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) count++;
 	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) count++;
+	if(total || pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) count++;
 	return count;
 }
 
@@ -2274,6 +2287,7 @@ public function getPantyColor(waifu:String = ""):String
 		case "Lys": pantyColor = "black"; break;
 		case "Mrs. Reasner":
 		case "Beatrice": pantyColor = "black"; break;
+		case "Erra": pantyColor = "purple"; break;
 	}
 	return pantyColor;
 }
@@ -2286,7 +2300,8 @@ public function getPantyTexture(waifu:String = ""):String
 	{
 		case "Kiro": pantyTexture = "lace"; break;
 		case "Penny": pantyTexture = "cotton"; break;
-		case "Syri": pantyTexture = "silky cotton"; break;
+		case "Syri": 
+		case "Erra": pantyTexture = "silky cotton"; break;
 		case "Saendra": pantyTexture = "taut nylon"; break;
 		case "Emmy": pantyTexture = "silky nylon"; break;
 		case "[embry.name]": pantyTexture = "soft cotton"; break;

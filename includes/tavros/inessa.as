@@ -92,6 +92,7 @@ public function inessaMenu():void
 	if((flags["INESSA_EXP"] != 1 && flags["INESSA_EXP"] >= 2) || flags["KQ2_MYRELLION_STATE"] > 0) { /* Nada */ }
 	else if(flags["INESSA_EXP"] == 1) addButton(4,"Silk",giveInessaSilk,undefined,"Silk","Give Inessa the sheet of silk from Xanthe.");
 	else addDisabledButton(4,"Silk","Silk",("You must have got the silk sheet from " + (flags["MET_XANTHE"] != undefined ? "Xanthe on Myrellion" : "someone...") + "."));
+	if(erraLover() && !erraCollared() && !pc.hasKeyItem("Ausar Collar - A custom collar for Erra.")) addButton(5,"Collars",errasCollarPurchaseScene,undefined,"Collars","Inspect the display of collars lining the wall.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

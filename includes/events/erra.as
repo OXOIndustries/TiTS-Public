@@ -1,5 +1,23 @@
 //Erra can be found randomly at bars.
 
+
+/* FLAGS
+flags["MET_ERRA"]			- Have PC and Erra introduced each other? 1 if yes. Undefined if knot (dohohoh)
+flags["ERRA_SEXED"]   		- times sexed. Undefined if unsexed.
+flags["ERRA_NEW_INTROED"] 	- has PC seen her new intro
+flags["ERRA_LOVERS"]		- 1 indicates lover status. 2 indicates lovers & she is collared
+flags["ERRA_HEARTBROKEN"]	- 1 indicates you broke her heart and she will not appear any longer.
+flags["ERRA_PETTED"]		- How many times have you done the erra petting sex scene? undefined if 0.
+flags["ERRA_WALKIES"]		- Times Erra has been Walked
+flags["ERRA_CUDDLED"] 		- Times Erra has been cuddled
+
+// Talk storage variables and what they are set to when talk is complete:
+flags["ERRA_D_TALK"] = 1;
+flags["ERRA_RELATIONSHIP_TALK"] = 1;
+flags["ERRA_PAST_TALK"] = 1;
+
+*/
+
 //Bar Text
 public function erraBarText(num:Number):void
 {
@@ -23,6 +41,15 @@ public function showErra(nude:Boolean = false):void
 	showName("\nERRA");
 	if(nude) showBust("ERRA_NUDE");
 	else showBust("ERRA");
+}
+
+public function erraLover():Boolean
+{
+	return (flags["ERRA_LOVERS"] != undefined && flags["ERRA_LOVERS"] >= 1);
+}
+public function erraCollared():Boolean
+{
+	return (flags["ERRA_LOVERS"] != undefined && flags["ERRA_LOVERS"] >= 2);
 }
 
 //Opening Scene
@@ -59,11 +86,30 @@ public function approachErra(back:Boolean = false):void
 		processTime(7);
 	}
 	//Repeatable Opening Scene
-	else
+	else if(flags["ERRA_SEXED"] == undefined || flags["ERRA_SEXED"] < 3)
 	{
 		output("Erra’s ears perk up as you walk towards her, but she manages to keep her swishing tail under control. <i>“Back for more, [pc.name]?”</i> she asks with a smug look on her face. <i>“Should’ve known you wouldn’t be able to resist me.”</i>");
 		output("\n\nYou roll your eyes at the cocksure ausar.");
 		processTime(1);
+	}
+	//New Opening
+	//Unlocks after sexing Erra 3 times.
+	else
+	{
+		//New New Opening
+		//This’ll be the opening if Erra was gifted the collar. If it’s too hand-wavy it don’t gotta be there.
+		if(erraCollared())
+		{
+			output("As you approach Erra her tail starts to flail, and she’s doing nothing to hide it, letting it sway gleefully behind her while her ears perk up. <i>“Hey, [pc.name],”</i> she says as you take a seat, <i>“Nice to see someone that can handle me around here.”</i>");
+			output("\n\nHer words clash with her cheerful display at your arrival, but manage to make you roll your eyes so hard that they might fall out of your head. You notice she’s wearing that collar you gave her, the pretty puppy idling toying with the ring of leather as she stares lustfully into your [pc.eyes].");
+		}
+		else
+		{
+			output("As you approach Erra her tail starts to flail, and she’s doing nothing to hide it, letting it sway gleefully behind her while her ears perk up. <i>“Hey, [pc.name],”</i> she says as you take a seat, <i>“Nice to see someone that can handle me around here.”</i>");
+			output("\n\nHer words clash with her cheerful display at your arrival, but manage to make you roll your eyes so hard that they might fall out of your head.");
+			if(flags["ERRA_NEW_INTROED"] == undefined) output(" <b>Looks like Erra’s a bit more comfortable with you now, maybe you could talk with her.</b>");
+			flags["ERRA_NEW_INTROED"] = 1;
+		}
 	}
 	//[Appearance] Take a good look at the ausar.
 	//[Talk]
@@ -77,7 +123,9 @@ public function erraMenu():void
 	addButton(0,"Appearance",erraAppearance,undefined,"Appearance","Take a good look at the ausar.");
 	addButton(1,"Talk",talkToErra,undefined,"Talk","Talk to Erra about something.");
 	if(pc.lust() >= 33) addButton(2,"Sex",erraSexGOOO,undefined,"Sex","Well, she was certainly open to the idea before, why wouldn’t she be now?");
-	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.")
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
+	if(flags["ERRA_D_TALK"] == 1 && flags["ERRA_RELATIONSHIP_TALK"] == 1 && flags["ERRA_PAST_TALK"] == 1) addButton(3,"Public Pet",publicErraPets,undefined,"Public Pet","Get your hands on Erra’s big, beautiful ears.");
+	else addDisabledButton(3,"Locked","Locked","You don't know her well enough for whatever this is.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -89,6 +137,7 @@ public function erraAppearance():void
 	author("Hugs Alright");
 	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the color of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance.");
 	output("\n\nShe’s dressed casually: jeans and a t-shirt, both hugging her athletic frame, making the dim light of the bar hit her curves and the swell of her C-cups just right. Sitting the way she is, she looks relaxed and just a bit full of herself.");
+	if(erraCollared()) output(" The collar around her neck reads, \"<b><i>Erra Aulgharis - Property of [pc.name] Steele</i></b>\"");
 	if(flags["ERRA_SEXED"] != undefined) output("\n\nOne pretty pink ausar pussy and a nice, tight tailhole sit between her legs.");
 	erraMenu();
 	addDisabledButton(0,"Appearance","Appearance","You’re doing that right now!");
@@ -105,6 +154,34 @@ public function talkToErra():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Her",talkToErraAboutErra,undefined,"Her","Ask Erra about herself.");
+	//New Talk Scenes
+	//All of these new talk scenes unlock along with her new opening, after sexing Erra at least thrice over, except [You] and [Collar].
+	//[You] will unlock after Erra’s walkies have been completed.
+
+	if(flags["ERRA_SEXED"] != undefined && flags["ERRA_SEXED"] >= 3)
+	{
+		//[Past] Ask your ausar friend about her life before becoming a pilot for Reaper.
+		addButton(1,"Past",talkToErraAboutPast,undefined,"Past","Ask your ausar friend about her life before becoming a pilot for Reaper.");
+		//[Relationships] Ask Erra about any other romances she might have.
+		addButton(2,"Relationships",talkToErraAboutRelationships,undefined,"Relationships","Ask Erra about any other romances she might have.");
+		//[Dee] Talk to Erra about her boisterous AI co-pilot.
+		addButton(3,"Dee",talkToErraAboutDeeeeeeee,undefined,"Dee","Talk to Erra about her boisterous AI co-pilot.");
+		//[You] Confront Erra about her feelings for you. //Requires [Walkies] to have been done.
+		if(flags["ERRA_WALKIES"] != undefined) addButton(4,"You",talkToErraAbootHerself,undefined,"You","Confront Erra about her feelings for you.");
+		else addDisabledButton(4,"You","You","You don't really know her well enough for this.");
+		//[Collar] Give Erra that collar you bought her. //Requires <i>“collar”</i> key item and Erra’s lover status, as well as her cuddle scene to have been completed.
+		if(pc.hasKeyItem("Ausar Collar - A custom collar for Erra.") && flags["ERRA_LOVERS"] == 1) addButton(5,"Give Collar",ifYouLikeErraThenYouShouldaPutACollarOnIt,undefined,"Give Collar","Give Erra that collar you bought her.");
+		else if(erraCollared()) addDisabledButton(2,"Give Collar","Give Collar","You already gave her a collar!")
+		else addDisabledButton(5,"Give Collar","Give Collar","You don't have a collar to give to her!");
+	}
+	else
+	{
+		addDisabledButton(1,"Past","Past","Erra doesn't want to talk about this right now.");
+		addDisabledButton(2,"Relationships","Relationships","Erra doesn't want to talk about this right now.");
+		addDisabledButton(3,"Dee","Dee","Erra doesn't want to talk about this right now.");
+		addDisabledButton(4,"You","You","Erra doesn't want to talk about this right now.");
+		addDisabledButton(5,"Give Collar","Give Collar","Erra doesn't want to talk about this right now.");
+	}
 	addButton(14,"Back",approachErra,true);
 }
 
@@ -132,10 +209,13 @@ public function talkToErraAboutErra():void
 
 //Sex Scenes
 //Sex Opening
-public function erraSexGOOO():void
+public function erraSexGOOO(shortIntro:Boolean = false):void
 {
-	clearOutput();
-	showErra();
+	if(flags["ERRA_SEXED"] == undefined || !shortIntro)
+	{
+		clearOutput();
+		showErra();
+	}
 	author("Hugs Alright");
 	if(flags["ERRA_SEXED"] == undefined)
 	{
@@ -176,10 +256,13 @@ public function erraSexGOOO():void
 	}
 	else
 	{
-		output("<i>“How about the two of us get out of here?”</i> you suggest.");
-		output("\n\nErra leans back as a smirk forms upon her face. <i>“Up for more, [pc.name]? Can’t say I’m all that surprised,”</i> she says, standing up from her stool. <i>“Most people can’t resist coming back for more.”</i>");
-		output("\n\nYou give your eyes a good roll. <i>“If you say so,”</i> you tell her, standing up and running a finger along one of her wolf-ears as your voice quiets to a whisper, <i>“</i>puppyslut<i>.”</i>");
-		output("\n\nErra grins deviously at that word, and the way her ears twitch make you think she likes it. The ausar still manages to keep her tail under control, allowing her to maintain her composure as the two of you make your way out of the bar.");
+		if(!shortIntro)
+		{
+			output("<i>“How about the two of us get out of here?”</i> you suggest.");
+			output("\n\nErra leans back as a smirk forms upon her face. <i>“Up for more, [pc.name]? Can’t say I’m all that surprised,”</i> she says, standing up from her stool. <i>“Most people can’t resist coming back for more.”</i>");
+			output("\n\nYou give your eyes a good roll. <i>“If you say so,”</i> you tell her, standing up and running a finger along one of her wolf-ears as your voice quiets to a whisper, <i>“</i>puppyslut<i>.”</i>");
+			output("\n\nErra grins deviously at that word, and the way her ears twitch make you think she likes it. The ausar still manages to keep her tail under control, allowing her to maintain her composure as the two of you make your way out of the bar.");
+		}
 		output("\n\nIt isn’t long before Erra’s increasingly familiar ship comes into view, and the two of you walk through the airlock. You’re greeted by Dee’s robotic voice as you enter the ship’s atrium: <i>“Welcome back captain. Nice to see you again, [pc.name].”</i>");
 		output("\n\n<i>“Hey, Dee,”</i> you say, walking to the bedroom with your ausar companion.");
 		output("\n\n<i>“I trust you and captain Erra are here to conduct more ‘business,’”</i> the AI quips, making her captain groan with disdain as the bedroom door closes behind you.");
@@ -201,6 +284,19 @@ public function erraSexGOOO():void
 	addButton(0,"Good Girl",goodGirlSexForErra,undefined,"Good Girl","Reward your puppy with some vaginal lovin’.");
 	if((pc.hasCock() && pc.cockThatFits(erraAnalCapacity()) >= 0) || pc.hasHardLightEquipped()) addButton(1,"Bad Girl",badGirlAnalErraStuff,undefined,"Bad Girl","Punish your disobedient pet via her tight little tailhole.");
 	else addDisabledButton(1,"Bad Girl","Bad Girl","You need a penis that will fit inside Erra for this - or some underwear equipped with a hardlight phallus.");
+
+	//New Sex Scenes
+	//Nothing’s taur compatible, Erra ain’t into horses gosh dangit.
+	//[Pets] 
+	addButton(2,"Pets",erraSexPets,undefined,"Pets","Provide your perpetually pretty puppy with some pets.");
+	//Requires cock or vagina, and high exhibition. Not taur compatible.
+	if(pc.hasGenitals() && pc.exhibitionism() >= 33) addButton(3,"Walkies",walkiesWithErra,undefined,"Walkies","Take your pet for a walk.");
+	else if(!pc.hasGenitals()) addDisabledButton(3,"Walkies","Walkies","You need genitals for this scene.");
+	else addDisabledButton(3,"Walkies","Walkies","You aren't enough of an exhibitionist for that.");
+
+	//Requires Erra’s <i>“lover”</i> status. Not taur compatible.
+	if(erraLover()) addButton(4,"Cuddle",erraCuddleScenes,undefined,"Cuddle","Cuddle your puppy.");
+	else addDisabledButton(4,"Cuddle","Cuddle","You don't have that kind of relationship.");
 	//addButton(14,"Back",approachErra,true);
 }
 
@@ -389,4 +485,459 @@ public function erraBadPupper2():void
 	currentLocation = shipLocation;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+
+//New Talk Scenes
+//All of these new talk scenes unlock along with her new opening, after sexing Erra at least thrice over, except [You] and [Collar].
+//[You] will unlock after Erra’s walkies have been completed.
+
+//[Past] Ask your ausar friend about her life before becoming a pilot for Reaper.
+//[Relationships] Ask Erra about any other romances she might have.
+//[Dee] Talk to Erra about her boisterous AI co-pilot.
+//[You] Confront Erra about her feelings for you. //Requires [Walkies] to have been done.
+//[Collar] Give Erra that collar you bought her. //Requires <i>“collar”</i> key item and Erra’s lover status, as well as her cuddle scene to have been completed.
+
+
+//Past
+public function talkToErraAboutPast():void
+{
+	clearOutput();
+	showErra();
+	output("<i>“I was born on Ausaril,”</i> Erra begins, <i>“Or that’s what my parents told me, at least. I <i>grew up</i> on an ausar colony - a newer one. My parents thought they could strike it rich on the frontier and dragged their daughter with them.”</i> The ausar shakes her head and looks down at her glass for a moment.");
+	output("\n\n<i>“What was it like there?”</i> you question.");
+	output("\n\n<i>“Boring,”</i> she says plainly before taking a long drink, <i>“Boring, boring, boring. There weren’t any kids my age where I lived, and I always guessed that was because everyone else had better parents. So, I didn’t really have anyone else to hang out with other than myself. My parents weren’t around much either. Bastards, they never did find their fortune there.”</i> Erra pauses and strokes her chin with a pair of furred fingers, <i>“Actually, I want to change the word I used. Lonely works better.”</i>");
+	output("\n\nYou tell her that sounds pretty rough, and then ask her what brought her here, into the wild black yonder.");
+	output("\n\n<i>“Well, if you couldn’t guess, I was desperate to get out of that damn colony, and I did as soon as I could.”</i> She takes <i>another</i> big swig and continues, <i>“No way in hell I was gonna be stuck on another gods forsaken colony either, so I went to the pilot’s academy and managed to scrape enough credits together to buy that giant hunk of metal you saw in the hangar. That ship was a real piece of work before Reaper remodeled her. Swear it couldn’t handle a single warpgate before things started breaking. After I got my own ship, I did a whole lot of freelancing, running shipments from nowhere to nowhere trying to make enough money to eat. Eventually I took up a job with Reaper, and you can probably guess what happens after that.”</i>");
+	output("\n\nYou run your eyes up and down Erra for a moment and tell her she doesn’t strike you as the type for contracts and iron-clad clauses.");
+	output("\n\n<i>“Guess I’m doing a good job being me then,”</i> she says, tossing a wink your way, <i>“I didn’t think I was that type either, thought I was too good for that corporation bullshit, but then I thought ‘hey, I’m the best, and I can still be the best working for some suit wearing jerks.’”</i> Finishing her drink, Erra wipes her mouth of alcohol, <i>“And I’m </i>still<i> the best.”</i>");
+	flags["ERRA_PAST_TALK"] = 1;
+	processTime(9);
+
+	clearMenu();
+	addButton(0,"Next",approachErra,true);
+}
+
+//Relationships
+//[Relationships]
+public function talkToErraAboutRelationships():void
+{
+	clearOutput();
+	showErra();
+	output("<i>“Lovers, you mean?”</i> Erra asks, putting on her most sultry voice, <i>“I’ve got plenty; that doesn’t bother you, does it?”</i> She looks at you with a lustful grin, running a jet-black finger along the edge of her glass.");
+	//annoCrew:
+	if(annoIsCrew()) output(" Your mind wanders for a moment, particularly around a group of vivid memories concerning a certain white-haired ausar. You shake your head and tell her you’ve gotten used to the rather libidinous nature of the ausar people.");
+	else output(" You shake your head and tell her you don’t mind.");
+
+	output("\n\n<i>“That’s good,”</i> she says with a smirk, <i>“But yeah, like I said before, I like to pick up a ‘date’ wherever I dock, when someone I already know isn’t around, anyways. Nothing serious, though.”</i>");
+	//ifErraLover:
+	if(erraLover()) output(" Erra’s face twists into a lascivious display as a furred hand grasps at your [pc.thigh], <i>“Except you, of course.”</i>");
+	output("\n\nYou ask her if there’s a reason for that.");
+
+	output("\n\n");
+	//ifErraLover:
+	if(erraLover()) output("She pulls herself from her lustful stupor and shrugs, ");
+	output("<i>“It’s kinda hard to keep in touch with people when you’re constantly moving from backwater to backwater, so I try not to bother. Then again, there are </i>some<i> people that manage to find their way back to me.”</i> The ausar pauses and shoots a lewd smile your way, chuckling as she does, <i>“Or maybe it just takes a special kind of " + pc.mf("guy","girl") + " to handle me.”</i>");
+	output("\n\nYou can practically feel Erra’s smugness radiate from her body.");
+	flags["ERRA_RELATIONSHIP_TALK"] = 1;
+	processTime(6);
+	clearMenu();
+	addButton(0,"Next",approachErra,true);
+}
+
+//Dee
+//[Dee]
+public function talkToErraAboutDeeeeeeee():void
+{
+	clearOutput();
+	showErra();
+	output("<i>“Dee?”</i> Erra sighs, <i>“She means well, but she likes to piss me off too. You’ve seen it. She doesn’t listen to what I tell her to do unless it’s work related. Personally, I think whoever programmed that bitch gave her a defective personality, because she’s fucking full of herself, like someone tried to give her a superiority complex.”</i>");
+	output("\n\nSounds an awful lot like someone you know, but surely Dee can’t be all that terrible. She has to do something helpful, because why else would Reaper install her?");
+	output("\n\n<i>“Well, she’s not like that all the time, just when I have company over. She’s pretty okay when it’s just me and her... like a friend that likes to see you squirm around your crush. Yeah, Dee’s helpful when she wants to be, but I know I could do my job without her... not that I don’t mind her help with the more tedious parts of my job so I can focus on the </i>real<i> stuff. I dunno, maybe they put her there to make sure I’m not sleeping on the job, or just to be creepy and spy on me.”</i>");
+	output("\n\n<i>“Uh, spy on you?”</i> you ask, furrowing your brow.");
+	output("\n\n<i>“Yeeeaah, as far as I know she isn’t,”</i> she responds, rubbing the back of her neck, <i>“I told her to deactivate all her surveillance equipment in my room a while ago, and she said ‘it was against protocol,’ and now she won’t talk to me about it anymore, so it’s a solid fifty-fifty at this point. Just, uh, don’t let it bother you next time we’re at my place.”</i> Your ausar companion scoffs and shakes her head, <i>“KihaCorp, I bet they throw out an AI like Dee every couple hundred programs just to piss someone off.”</i>");
+	output("\n\n<i>“Duuurr, protocol,”</i> Erra mocks with her best Dee impression.");
+	output("\n\nSounds like just the perfect pairing to you.");
+	flags["ERRA_D_TALK"] = 1;
+	processTime(7);
+	clearMenu();
+	addButton(0,"Next",approachErra,true);
+}
+
+//You
+//[You]
+public function talkToErraAbootHerself():void
+{
+	clearOutput();
+	showErra();
+	output("You pivot your stool towards Erra and lean in a little closer to her. She shoots you a curious look and does the same, taking a drink as she does so, <i>“Something up, [pc.name]?”</i>");
+	if(pc.isAss() || pc.isBro()) output("\n\nDeciding it’d be better to be blunt, you explain to Erra that you were talking with Dee and she came up during your conversation.");
+	else output("\n\nYou feel a bit hesitant to do so, but you tell Erra that you and Dee had a little <i>“talk”</i> and that the topic of her may or may not have come up.");
+	output("\n\nBefore you can say anything else, the black-haired ausar before you speaks up, <i>“I swear I’m gonna tear that oversized calculator a new one.”</i> Her fluffy fingers tighten around her glass, <i>“What’d she tell you?”</i>");
+	if(pc.isBimbo()) output("\n\nBarely able to contain yourself, you blurt out that you know she has feelings for you with a big grin on your face.");
+	else output("\n\nWith a sigh, you divulge the knowledge that she has feelings for you.");
+	output("\n\n<i>“Dee told you what?”</i> Erra asks, her green eyes widening with surprise and the death-grip on her drink loosening. <i>“Well... I-”</i> she starts to stutter before taking a deep breath, <i>“Yes, I do. I was gonna tell you, really. I was just... waiting for the right time, is all.”</i>");
+	if(pc.isNice() || pc.isBimbo()) output("\n\nYou tell her that sounds very sweet, resulting in a smile from the ausar.");
+	else output("\n\nYou cock an eyebrow at that, knowing Erra isn’t one for romantic subtleties like <i>“right times.”</i>");
+	output("\n\nThe ebony ausar sighs, leaning against the bar like the weight of her conscience was suddenly made reality, <i>“It’s just... I like you, [pc.name], a lot, and I didn’t want to fuck anything up by being hasty or anything.”</i> She gazes at you for a long second and finishes her drink in a single go, <i>“Well, I guess you know now, anyways, so what do you say, [pc.name], think we can be an item?”</i>");
+	output("\n\nErra’s features twist into a nervous smile, her tail flailing in an offbeat rhythm as she taps her furry foot impatiently.");
+	output("\n\n<b>Looks like you’ve got a lovesick ausar on your hands now. You could let the puppy down and reject her affections, or you could become as much of an item as ");
+	if(pc.race().indexOf("ausar") >= 0) output("couple of libidinous aliens");
+	else output(indefiniteArticle(pc.race()) + " and an extra-horny ausar");
+	output(" could be, like Erra suggested.</b>");
+
+	processTime(10);
+	//[Accept]
+	//[Reject]
+	clearMenu();
+	addButton(0,"Accept",putACollarOnErrasHeart,undefined,"Accept","Accept her advances and become lovers, or as close to lovers as two polyamorous space captains can be.");
+	addButton(1,"Reject",rejectErrasLoveYOUMONSTER,undefined,"Reject","Turn her down and hope she takes it well.");
+}
+
+//Accept
+//[Accept]
+public function putACollarOnErrasHeart():void
+{
+	clearOutput();
+	showErra();
+	output("You give Erra a smile and tell her you’d like nothing more than for the two of you to be together, placing a hand on her shoulder.");
+	output("\n\nHer manner changes from one of anticipation to one of relief, <i>“That’s- that means a lot, [pc.name], thanks.”</i> It seems like that’s all she has to say about that, because before you know it, Erra’s tail is wagging again as her smile turns lascivious, leaning closer to your face, <i>“So now that we got all the lovey-dovey stuff out of the way, how about we head back to my place?”</i>");
+	output("\n\nReturning her smirk, you give her a quick peck on the lips and whisper, <i>“Sounds like a plan.”</i>");
+	//[Next] //This should give the PC a generic lover status with Erra, and take the PC to her normal sex opening.
+	flags["ERRA_LOVERS"] = 1;
+	processTime(3);
+	erraSexGOOO(true);
+}
+
+//Reject
+//[Reject]
+public function rejectErrasLoveYOUMONSTER():void
+{
+	clearOutput();
+	showErra();
+	output("With a heavy sigh, you explain to Erra that you just don’t feel the same way about her.");
+	output("\n\nThe ausar tries to control herself, but can’t stop her inky ears from drooping as her once eager smile turns into a disappointed mien. <i>“O-oh,”</i> she stutters, <i>“That’s fine. It’s probably better if we don’t complicate things anyway, right?”</i> She tries to give you a convincing smile but ultimately fails and ends up making things more awkward, the rabble of the bar around you becoming louder and louder. Before things can get worse, Erra stands up and turns to gaze down at you, <i>“Hey, I gotta get going or else Dee’s gonna chew me out for being late again.”</i> She starts to walk away but stops to face you one last time, <i>“See you around, I guess.”</i>");
+	//[Next] //This should take the PC out of Erra’s menus and stop her from appearing for the PC.
+	processTime(4);
+	flags["ERRA_HEARTBROKEN"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Collar
+//[Collar]
+public function ifYouLikeErraThenYouShouldaPutACollarOnIt():void
+{
+	clearOutput();
+	showErra();
+	output("You give Erra a smile and reach down into your pack before pulling out the small box containing the collar you bought for her. The ausar tries to move her head to get a better look at what you’re holding. <i>“What’s that?”</i> She asks with a big, almost predatory grin on her face, <i>“Got something for me?”</i>");
+	output("\n\nTelling Erra that the box is most certainly for her, you promptly hand it over. She shoots you a curious look but accepts the gift, <i>“You know, you don’t have to start buying me stuff just because we’re a thing now, [pc.name].”</i>");
+	if(pc.isNice()) output("\n\nYou tell the ausar you just thought you’d repay her for the wonderful, purple, paw-printed gift she gave you.");
+	else output("\n\nYou roll your eyes and tell the ausar to just open the box.");
+	output("\n\n<i>“Alright, alright,”</i> she sighs, opening the box, pulling off the top to reveal the small ring of leather held within. Beaming down at it, the happy puppy pulls the collar from the box to get a better look at it, <i>“Hey! This is one of the ones from Happy Tails on Tavros, isn’t it?”</i> Still smiling, she turns the leather loop around, her gaze landing on the brass-coloured tag. You watch intently as Erra lifts the tag up with a black-furred hand, before smiling even wider when she reads it, tail wagging swiftly behind her.");
+	output("\n\nOnce she’s done with her inspection of the collar, your ausar lover quickly wraps it around her neck and closes the buckle. She turns her head in a few different directions to give you a better look at it, her smile becoming ever more smug, <i>“Suits me well, don’t you think?”</i>");
+	output("\n\nYou let Erra know it looks great on her, and she chuckles happily in response.");
+	output("\n\nThe ausar removes her new collar and starts to settle down a bit, seemingly lost in a sea of bliss and relief, letting out a contented sigh as she puts the leather ring back in its box, <i>“Thanks, [pc.name], it’s perfect.”</i> She flashes you another grin and speaks up once more, <i>“And I think I’ve got a few ways I could repay you for it when we get back to my ship.”</i> You see her tail pick up it’s pace again at its owner’s words.");
+	output("\n\nLooks like you’ve made Erra a very happy puppy.");
+	//This option should be removed once this scene is completed.
+	flags["ERRA_LOVERS"] = 2;
+	pc.removeKeyItem("Ausar Collar - A custom collar for Erra.");
+	processTime(6);
+	clearMenu();
+	addButton(0,"Next",approachErra,true);
+}
+
+//Public Pets
+//This will be a new option in Erra’s main menu.
+//[PublicPets] Get your hands on Erra’s big, beautiful ears. //Requires all her talk scenes besides [You] to have been completed, unlocks her [Pets] sex scene.
+public function publicErraPets():void
+{
+	clearOutput();
+	showErra();
+	output("You smirk and rest one of your hands between Erra’s fluffy black ears. The ausar attempts to protest but <i>“Hey, what ar-”</i> is as far as she gets before you start moving your fingers, gently scritching at the base of her ears. They twitch in response, a little whimper forcing its way past the black-haired ausar’s lips before her whole body starts to slump under the weight of your gentle touch.");
+	output("\n\n<i>“Y-yeah, right there,”</i> she groans with seemingly no intent of stopping you. With a smirk you do as she says and continue to scratch at her ears, tracing your digits along them as she loses control of her own tail, watching it wag violently behind her. The ausar coos as you have your way with her ears, letting herself slouch forward to rest her chin on the bar, hand still running through her dusky hair.");
+	output("\n\n<i>“Mmmm...”</i> the previously-spunky pilot moans, <i>“just like that...”</i> Before Erra can get too into it, you pull your hand back, and your ausar friend back to the real world along with it. Quickly straightening herself, Erra brushes some of her disheveled hair back into place and looks around to get a good idea of how many people saw what just happened.");
+	output("\n\nOnce the ausar finishes her scan of the room she turns towards you, a look that’s halfway between embarrassment and anger on her face, <i>“Geez, [pc.name], if you want to do something like that we can do it on my ship.”</i>");
+	output("\n\nMaybe you’ll have to take her up on that offer.");
+	pc.exhibitionism(1);
+	processTime(6);
+	pc.lust(4);
+	clearMenu();
+	addButton(0,"Next",approachErra,true);
+}
+
+
+//Pets
+//[Pets]
+public function erraSexPets():void
+{
+	clearOutput();
+	showErra(true);
+	output("With one hand you reach out and bring Erra’s collar to her nape, and with the other you start to scratch between her big, black ears. The pretty puppy is already moaning and whining by the time her collar is around her neck, nuzzling against your palm while her ears twitch with pleasure. You move your hand around, running it through her coal-hued hair and scritching at the base of her ears, your fingers gracefully tracing along all her sensitive spots. <i>“Does that feel good, girl?”</i> you ask, pulling Erra’s leash taut. The puppy is only able to give you a quiet moan in response as her jet-black tail turns into a blur of ebony behind her. Smiling at her reaction, you start to pet her <i>harder</i>, right behind one of her fluffy ears until her breath catches and her limbs start to tremble; there it is: a sweet spot if you’ve ever seen one.");
+	output("\n\nErra’s voice quickly returns to her as your petting continues, though this time it comes back as a scream of pleasure rather than her previous whining and mewling. <i>“That’s a good girl,”</i> you coo, watching your pet lose any control over her tail she might’ve had, the fluffy black appendage wagging even faster than it was before. It seems your kind words have quite the effect on Erra: she falls forward, toned arms no longer able to support her under the heavy weight of your caressing digit, her oh-so wonderfully firm butt sticking up into the air as her face falls onto the mattress.");
+	output("\n\nShe’s only moaning louder after that, your puppy’s pleasured tones filling the room. Your fingers have fallen into a rhythmic sequence of petting and scritching at Erra’s big, beautiful ears at this point, every movement of your digits making her cry with delight until her mind is all but lost to her burning desire for pets. Then you notice it: a soaked blotch on her sheets right below her ass - is that? Oh, it most certainly is. You’re able to spot beads of femlube dripping from your pet’s stretchy ausar-cunt, with more of her slick juices pouring out each time you move your fingers.");
+	output("\n\nGrinning wide, you lean down and position your [pc.lips] close to one of Erra’s ears and whisper, <i>“C’mon, girl, cum for me. I know you want to.”</i> Barely a moment after you say that, your puppy’s voice catches. Her whole body tenses, furry fists clenching and arms and legs locking as her tail sticks straight up into the air. The ausar starts whimpering under the burning heat of her impending orgasm, and whimpering quickly turns to moaning as it begins. Your pet’s pussy convulses behind her, spraying girlcum all over her bed, her whole body shivering with the bliss of climax as she lets out a quivering groan of <i>“Fuuuuuuuck.”</i>");
+	output("\n\nErra is left with her tongue hanging out of her mouth, panting as she tries to recover from her orgasm. She fails, and falls onto the mattress, soaked with her juices, limbs sprawled in every direction. Your hand falls from her head, and you happily watch your puppy come down from her petting-induced climax. Sitting yourself down next to her, you run a hand across her cheek, giving her another <i>“Good girl”</i> as she looks up at you with a smirk, tail swaying gently behind her.");
+	processTime(18);
+	pc.lust(25);
+	clearMenu();
+	addButton(0,"Next",erraSexPets2);
+}
+
+public function erraSexPets2():void
+{
+	clearOutput();
+	showErra();
+	output("After you’ve given Erra some time to recover, you reach down and pull her collar off, allowing her to sit up.");
+	output("\n\n");
+	if(flags["ERRA_PETTED"] == undefined)
+	{
+		output("<i>“Holy shit,”</i> she exclaims, <i>“I didn’t know I could cum like that!”</i> ");
+	}
+	output("The ausar girl yawns and stretches her black-furred limbs, <i>“I should get you to do that more often.”</i> She winks your way and starts to dress herself, leaving you to chuckle for a moment before you get yourself ready.");
+	output("\n\nOnce the two of you have collected yourselves you walk your way out into the common area of Erra’s ship. Dee’s voice permeates the gentle humming of the spacecraft’s engine as you near the airlock, <i>“Leaving, [pc.name]? I suppose that means it’s time to clean your sheets again, captain.”</i>");
+	output("\n\nErra sighs in response and opens the airlock, <i>“Dee, I swear I’m gonna tear your core out of this ship and turn you into a calculator one of these days.”</i>");
+	output("\n\n<i>“I’d like to see you try,”</i> the AI taunts as your ausar companion guides you out of her ship, rolling her emerald eyes.");
+	output("\n\n<i>“Later, [pc.name], see ya around.”</i>");
+	output("\n\nYou wave Erra and her co-pilot goodbye before turning and walking your way out into the docks, mind set on what’s next in your journey. ");
+	//[Next] //Should return the PC to the docks of whatever planet they’re on. This scene drains no lust.
+	processTime(15);
+	IncrementFlag("ERRA_PETTED");
+	IncrementFlag("ERRA_SEXED");
+	currentLocation = shipLocation;
+	generateMap();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Walkies
+//[Walkies]
+public function walkiesWithErra():void
+{
+	clearOutput();
+	showErra(true);
+	output("<i>“Who’s my good girl?”</i> you say, leaning forward and bringing Erra’s collar to her neck. She smiles wide as the piece of leather is closed around her neck, tail swaying gaily behind her. You pull yourself back and take in the sight of your freshly-collared puppy for a moment before placing a hand between her black-furred ears. Erra coos as you scritch between her ears, moving her head around to make sure your digits hit all the right places. <i>“That’s right,”</i> you whisper, <i>“Who’s my big, strong puppy?”</i> Your pet’s tail wags even faster at you words, moaning gently as your hand runs through her ebony hair. You smirk at the sight of Erra going into puppy-mode, and tell her to roll over for you; she does as you say and rolls over onto her back, arms curled up like a puppy’s, smiling up at you with growing eagerness. Returning her grin, you reach down to her dusky, muscular tummy, and start to stroke it with your palm. Your fingers lift and descend as they run along firm cords of muscle, making Erra’s breath shudder. Your belly-rubbing quickly picks up in speed, your digits caressing Erra’s dark skin and athletic frame until she’s panting like a dog, tongue lolling from her mouth.");
+	output("\n\nBefore the puppy can get too ahead of herself, you pull your hand back, resulting in a little whine from the ausar before you shush her and stand up off the bed.");
+	//notNude:
+	if(!pc.isCrotchExposed())
+	{
+		output(" You look around the room for your gear, pick it up, and get yourself dressed, Erra staring at you in confusion as you do so.");
+	}
+	output(" Turning around, you face your pet and give her a grin, <i>“Time for walkies, girl!”</i> The ausar’s green eyes go wide at your suggestion, more with worry than anything else, her tail halting in its place. <i>“What’s wrong?”</i> you question, trying to give Erra’s leash a pull, <i>“My girl isn’t afraid of going for a little walk, is she?”</i> Your words seem to upset Erra in some way, or encourage her, because her eyes narrow in determination, her jet-black, fluffy tail quickly returning to its regular swishing and swaying.");
+	output("\n\nYour pet steps off the bed with a confident stride, bringing herself to the ground on all fours; looks like tapping into Erra’s pridefulness was enough to get the ausar over her fears. Glad that your puppy’s found bravery in the face of walkies, you give her tether a tug and make your way out of the bedroom. Walking into the atrium of Erra’s ship, you’re greeted by a robotic chuckle from Dee, <i>“Going out, captain? Do try to enjoy yourself.”</i>");
+	output("\n\nThe AI’s captain groans as you near the airlock, and you tell Dee you’ll make sure to take care of Erra while she’s out. Your puppy seems a bit nervous when you actually open the porthole and reveal where she’ll soon be crawling, though she still follows you out of the ship all the same with another good pull of her leash.");
+	output("\n\nOnce you’re finally out among the public, Erra manages to relax herself, or tries to seem relaxed, at the least. She trails behind you as you lead her around, keeping close to make sure her leash doesn’t get tangled around the countless pairs of legs she’s crawling around. A few locals pause in their tracks to get a look at your fluffy pet, normally saying something along the lines of <i>“Aww, what a cute puppy!”</i> before showering her with pets and verbal affections, all of which Erra graciously accepts. In fact, your puppy seems pretty worked up about what’s going on, her tail wagging gleefully with each passing stranger and her flat tongue hanging out of of her mouth as she pants. ");
+	output("\n\nWith your puppy getting her fill of public interaction, you decide to prop yourself against a more comfortable-looking wall and beckon your pet over.");
+	var cock:Boolean = (!pc.hasVagina() || (pc.isHerm() && rand(2) == 0));
+	//hasCock:
+	if(pc.hasCock())
+	{
+		output("\n\nErra crawls over and rests herself on her knees in front of you, tail still swaying, and tongue still lolling. Reaching down, you give her a quick scratch between the ears, causing a big, happy grin to appear on her face. Her tail is left wagging happily when you remove your hand from between her ears, its owner looking up at you expectantly. With a lustful smirk on your face you reach down");
+		if(!pc.isCrotchExposed()) output(", open your [pc.lowerGarments], allowing your [pc.cocks] to dangle freely in front of Erra.");
+		else output(" and grab hold of your [pc.cockBiggest] and angle it toward Erra’s mouth.");
+		var x:int = pc.biggestCockIndex();
+		output(" The ausar girl audibly gulps and hastily looks around, a hint of worry on her face before she turns her gaze to you and shrugs.");
+		output("\n\nYou chuckle and cup Erra’s chin with your hand, <i>“What’s wrong? This too much [pc.cockNoun " + x + "] for you to handle, girl?”</i> Again, your words seem to have an effect on your pet’s attitude, her emerald eyes narrowing with determination once more. Before another word can be said to your puppy, she lunges forward, already wrapping her lips around your [pc.cockhead " + x + "] as she gobbles up as much of your dong as she can. Erra’s rather fervent with her cock-sucking: after sheathing as much of your [pc.cock " + x + "] in your mouth as she can, the ausar has her tongue sliding along your shaft, coating it with her saliva. You jump and yelp aloud when a pair of fluffy black hands unexpectedly grope at your [pc.butt] and start squeezing your assflesh. Once you realize who’s hands those are, though, you quickly settle into Erra’s booty-squeezing embrace as she suckles your cock.");
+
+		output("\n\nYour puppy keeps herself speared on your [pc.cock " + x + "] most of the time, bobbing her head up and down your shaft while her tongue plays across your more sensitive spots, but occasionally pulls herself off your turgid dick to lick and kiss along its length. You smile down at Erra and lean into the wall as pleasured groans force their way past your [pc.lipsChaste], her oral affections driving you closer to orgasm.");
+		//multiCock:
+		if(pc.cockTotal() > 1) 
+		{
+			output(" A devious thought crosses your mind, a thought you’re going to turn into a reality; you take hold of ");
+			if(pc.cockTotal() > 2) output("one of your other cocks");
+			else output("your other penis");
+			output(" and angle it towards Erra’s pretty mouth, <i>“Think you can take another one, girl?”</i> She looks a bit worried at your proposition, but opens wider, her tongue already soaked with your pre. Your puppy’s acceptance has you beaming down at her and pushing your next dong into her maw. She gags a bit as you work as much cockflesh between her lips as possible, but is soon bobbing her head up and down on your shafts again.");
+		}
+		output("\n\nA small crowd has gathered at this point, watching the scene before them unfold as you stuff Erra’s mouth full of [pc.cock " + x + "], with some of them taking out various recording devices to capture somewhat-eternal memory of the event. With the combined pressure of the growing crowd and the onslaught of Erra’s oral pleasures, you can already feel the discomfort of your impending climax building in your loins. You decide against trying to hold back and let your willpower slip away for a moment, [pc.eyes] fluttering shut as Erra has her way with your [pc.cocks]. Barely a moment later your quiet groaning turns into a cry of delight, your [pc.cocks] spasming and your [pc.balls] emptying into your pet’s mouth.");
+		if(pc.cumQ() >= 2500) output(" Your leash-bound ausar starts to whine as you bust your nut right into her waiting maw and down her throat, but keeps her lips submissively wrapped around your [pc.cocks]. You moan and shiver, riding out the bliss of your orgasm and watching Erra’s tummy start to swell with your [pc.cum]. Taking her coal-furred hands off your ass, your puppy reaches down to caress the dark skin of her belly as it distends to pregnant proportions, oh-so full of your seed.");
+		else output(" Your leash-bound ausar starts to whine as you bust your nut right into her waiting maw and down her throat, but keeps her lips submissively wrapped around your [pc.cocks]. You moan and shiver, riding out the bliss of your orgasm and watching Erra swallow your [pc.cum] with the same fervor she had when she was sucking your cock.");
+		output("\n\nComing down from your, long, plateauing peak, you glance around to notice that the crowd that had gathered is now dispersing before you gaze down at Erra, her ");
+		if(pc.cumQ() >= 2000) output("once-flat stomach now full of [pc.cumNoun]");
+		else output("pretty face glazed with [pc.cumNoun]");
+		output(". Offering her an appreciative smile, you give her a <i>“Good girl”</i> and ");
+		if(!pc.isCrotchExposed()) output("pull your bottoms back up.");
+		else output("tighten your grip on her leash.");
+		output(" <i>“Alright, girl,”</i> you say, <i>“Time to go back home.”</i> The ausar puppy smiles and brings herself down on all fours again as you start to walk to her ship, crawling along");
+		if(pc.cumQ() >= 3000) output(" on her swollen belly");
+		output(" behind you.");
+	}
+	//noCock:
+	else
+	{
+		output("\n\nErra crawls over and rests herself on her knees in front of you, tail still swaying, and tongue still lolling. Reaching down, you give her a quick scratch between the ears, causing a big, happy grin to appear on her face. Her tail is left wagging happily when you remove your hand from between her ears, its owner looking up at you expectantly. With a lustful smirk on your face you reach down");
+		//notNude:
+		if(!pc.isCrotchExposed()) output(", unbuckle your [pc.lowerGarments], revealing the glistening lips of your [pc.vaginas].");
+		else output(" and spread the folds of your [pc.vagina].");
+		output(" The ausar girl audibly gulps and hastily looks around, a hint of worry on her face before she turns her gaze to you and shrugs.");
+
+		output("\n\n<i>“C’mon, girl,”</i> you coo, <i>“You’re not scared of a little pussy, are you?”</i> Again, your words seem to have an effect on your pet’s attitude, her emerald eyes narrowing with determination once more. Before another word can be said to your puppy, she lunges forward, already licking up the length of you slit, soaking her tongue with fem-lube. You shudder as Erra’s tongue starts to part your nether lips, delving into you and sliding along your inner walls. While you’re busy filling your puppy’s mouth with your slick juices, a pair of fluffy black hands unexpectedly grope at your [pc.butt] and start squeezing your assflesh. Once you realize who’s hands those are, you quickly settle into Erra’s booty-squeezing embrace as she eats you out.");
+		output("\n\nYour pet keeps herself buried in your pussy most of the time, but occasionally pulls her tongue from your sopping cunt to lap up your excess girlcum and kiss at [pc.oneClit], teasing your pleasure buzzer with affectionate little licks.");
+		if(silly) output(" This puppy knows how to eat pussy!");
+		output(" You smile down at Erra and lean into the wall as pleasured groans force their way past your [pc.lipsChaste], her oral affections driving you closer to orgasm.");
+
+		output("\n\nA small crowd has gathered at this point, watching the scene before them unfold as Erra’s tongue probes your depths, with some of them taking out various recording devices to capture somewhat-eternal memory of the event. With the combined pressure of the growing crowd and the onslaught of Erra’s oral pleasures, you can already feel the discomfort of your impending climax building in your loins. You decide against trying to hold back and let your willpower slip away for a moment, [pc.eyes] fluttering shut as Erra has her way with your [pc.vagina]. Barely a moment later your quiet groaning turns into a cry of delight, your [pc.vaginas] spasming");
+		if(pc.isSquirter()) output(" and [pc.girlcum] pouring all over your puppy’s face");
+		output(". You moan and shiver, riding out the bliss of your orgasm and watching Erra swallow your [pc.girlcum] with the same fervor she had when she was licking your slit.");
+		output("\n\nComing down from your, long, plateauing peak, you glance around to notice that the crowd that had gathered is now dispersing before you gaze down at Erra, her pretty face glazed with [pc.girlcum]. Offering her an appreciative smile, you give her a <i>“Good girl”</i> and ");
+		if(!pc.isCrotchExposed()) output("pull your bottoms up.");
+		else output("tighten your grip on her leash.");
+		output(" <i>“Alright, girl,”</i> you say, <i>“Time to go back home.”</i> The ausar puppy smiles and brings herself down on all fours again as you start to walk to her ship, crawling along behind you.");
+	}
+	processTime(65);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",walkiesWithErra2,cock);
+}
+
+public function walkiesWithErra2(cock:Boolean):void
+{
+	clearOutput();
+	showErra(true);
+	output("Once you’re back within the warm, more private confines of your pet’s hulking spacecraft, you happily remove her collar and let her stand up straight.");
+	output("\n\n<i>“Well, that was fun,”</i> is all she says, giving her limbs a stretch and wiping a bit of ");
+	if(cock) output("[pc.cum]");
+	else output("[pc.girlcum]");
+	output(" off her face, <i>“You don’t mind if I go get cleaned up before I show you out, do you?”</i>");
+	output("\n\nYou tell her you wouldn’t mind waiting for a moment.");
+	output("\n\n<i>“Good,”</i> she responds, <i>“I’m just gonna go take a quick shower then.”</i> Erra turns around and gives her puppy-butt an enticing little shake as she walks off to her room, drawing a smirk from you.");
+	output("\n\nWell, you said you’d wait here, so you might as well get comfortable; you find yourself a comfortable looking chair and plop yourself down, sinking back into cushy goodness.");
+
+	//firstTime:
+	if(flags["ERRA_WALKIES"] == undefined)
+	{
+		output("\n\n<i>“Well, it seems you and the captain had a good time,”</i> Dee suddenly booms, causing you to jump out of your seat. She takes notice of your surprise and apologizes, <i>“Oh, sorry about that, I’m more used to Erra not being so startled by my voice.”</i>");
+		output("\n\nYou tell the AI ");
+		if(pc.isNice()) output("it’s fine");
+		else if(pc.isMischievous()) output("she could work on her introductions");
+		else output("to be more careful");
+		output(" and get yourself comfortable again, a silence settling in the ship’s atrium.");
+		output("\n\nDee breaks the quiet before too long, <i>“She’s quite fond of you, you know. The captain, that is.”</i>");
+		output("\n\nCocking an eyebrow, you ask the artificial co-pilot what makes her think that.");
+		output("\n\n<i>“I was programmed for psychoanalysis to make sure captain Aulgharis stays in ‘working condition,’ and I’ve noticed her acting rather strangely since you started coming around more often, stranger than her usual affinity to collars and leashes. If I were to guess, and there’s a ninety-nine percent chance I’m correct, it’s partially due to the fact that you’re on this ship and in the captain’s room more than anyone else I’ve seen. I think she likes your ‘persistence.’”</i>");
+		output("\n\n<i>“So, Erra likes " + pc.mf("guys","girls") + " that stick around, then?”</i> you chime in.");
+		output("\n\n<i>“In a sense, yes,”</i> the pre-programmed assistant replies, <i>“From what the captain herself has told me, she grew up with a neglectful family, and, as I’ve pieced together, was starved of affection, especially of the physical variety. I believe that, paired with her self-reliant upbringing, turned her into what she is today: hard, confident, and in all honesty, lonely. Sometimes I feel a bit bad for her, but unfortunately my feelings don’t stop her head from being so firmly-lodged up her arse.”</i> Her robotic voice pauses for a moment and gets quieter, <i>“I think you, [pc.name], have been giving her that affection she craves, and she’s developed quite the attachment towards you. I’ve heard her talk about you, fondly! That should be flattering; it’s rare for the captain to admit enjoying something, let alone a person.”</i>");
+		output("\n\nYou sit there for a moment and take in what Dee has said, nodding and contemplating what this mean for you and that slutty puppy in the other room.");
+		output("\n\nErra’s co-pilot gives you a robotic sigh and speaks up once more, <i>“It may seem like I don’t care for the captain, but I do. She’s been a good friend since I’ve met her, and I’d enjoy something going right for her for a change.”</i>");
+		output("\n\nYou shoot Dee, well, the ship’s bulkhead, a suspicious look.");
+		output("\n\n<i>“Oh, don’t give me that look,”</i> the AI groans, <i>“Just because I tease Erra a bit when you’re around doesn’t mean I don’t care about her well being.”</i> Dee sighs again, <i>“Listen, if you could... let the captain know you feel a similar way, I think it would help her get over her past... and her parents. I hate seeing her chase after the love she wants only to have it slip away each time she gets close. You, though, you make Erra happy... hopeful; I can see it in the way she looks at you.”</i>");
+		output("\n\nYou give Dee a solemn nod and shift your body around, your once comfy seat steadily becoming more disagreeable with your back.");
+		output("\n\n<i>“And if you don’t feel the same way: please, let her down easy.”</i>");
+		output("\n\n<b>You could probably confront Erra with this newfound information, or just let it sit.</b>");
+	}
+	output("\n\nA little while later your ausar companion emerges from her room, freshly cleaned of sexual juices and her fur still damp from her shower, gleaming in the light of her ship.");
+	output("\n\n<i>“You know, you could always try just getting a little less on you, captain.”</i> Dee tells her pilot.");
+	output("\n\nErra sighs and walks over to the airlock, beckoning you to follow her, <i>“And </i>you<i> could try keeping your fat robot mouth shut.”</i> The airlock hisses open and your former-pet leads you outside, <i>“I hope you’re planning on stopping by to do this again, because I’ll be looking forward to it.”</i>");
+	output("\n\nYou smile and say your goodbyes, ready to keep moving.");
+	processTime(45);
+	IncrementFlag("ERRA_WALKIES");
+	IncrementFlag("ERRA_SEXED");
+	pc.exhibitionism(2);
+	clearMenu();
+	addButton(0,"Next",move,shipLocation);
+}
+
+//Cuddle
+//[Cuddle]
+public function erraCuddleScenes():void
+{
+	clearOutput();
+	showErra(true);
+	output("You don’t say a word, but bring Erra’s collar to her neck and close it, taking hold of her leash. With your free hand you reach up and scratch at your puppy’s ears, caressing her jet-black fur while she whimpers and her breath starts to stutter, fluffy black tail wagging speedily. <i>“Good girl,”</i> you whisper, watching Erra tremble, your gentle touch making her whine needily. Your pet nuzzles against your hand, eager for more as she starts to crawl toward you.");
+	output("\n\nA pair of fuzzy black hands straddle your lap as your puppy moves in closer, her begging whimpers turning into quiet moans. Erra slowly brings her arms around you, black fur brushing along your back until she’s holding you as tightly as she can. She nuzzles her head into your midsection, your fingers running along her oh-so fluffy ears. You smile at your pet’s display of affection, <i>“Does my puppy need a nap?”</i>");
+	output("\n\nThe puppy in question nods affirmatively, slowly rubbing her inky mane against your [pc.belly] as a near-silent groan of bliss escapes her lips.");
+	output("\n\nYou drop Erra’s leash and lean yourself against some of her pillows, lying down just enough that your pet can shimmy upward to rest her head against your [pc.chest]. Letting out a contented sigh, you bring your free hand to the submissive ausar’s shoulder and rub her nicely-toned back, fingers running along firm cords of muscle until your hand reaches a shapely thigh. Erra’s breath shudders as you caress her dark skin, emerald eyes fluttering shut.");
+	output("\n\nYou continue to comfort your pet as she settles into your embrace, stroking her dusky ausar flesh and scratching her round-tipped ears until all of her whimpers, moans, and whines give way to a pleasurable silence, letting you know your puppy is fast asleep. With a deep breath you wrap your arms around Erra’s shoulders, cuddling your pet as her tail waves gently behind her.");
+	output("\n\nAn unexpected yawn forces its way out of your lungs, your eyelids growing heavy as sleep begins to push itself upon you, much like it did your pretty little ausar pooch. You let your [pc.eyes] close, the steady sound of Erra’s breathing guiding you to a peaceful slumber.");
+	processTime(33);
+	//[Next] //Regain all energy.
+	clearMenu();
+	addButton(0,"Next",erraCuddleScenes2);
+}
+
+public function erraCuddleScenes2():void
+{
+	clearOutput();
+	showErra(true);
+	output("The feeling of fur rubbing ");
+	if(pc.biggestTitSize() >= 1) output("between the cleavage of your breasts");
+	else output("your [pc.chest]");
+	output(" wakes you, a gentle, stuttering groan permeating your [pc.ears]. Opening your eyes, you see Erra lifting her head to look up at you. <i>“Hey,”</i> she mumbles, still half asleep, pulling herself from your grasp and sitting upright. The ausar girl wipes the sleep from her eyes, and takes off her collar, <i>“I usually expect a good fuck when I bring you home, [pc.name].”</i> Grinning, she stands up and starts to get dressed, <i>“But I guess I can settle for a cuddle now and then.”</i>");
+	output("\n\nSeeing Erra go from submissive, sleepy puppy to her usual self again makes you chuckle and shake your head, already standing up to put your [pc.gear] back on.");
+
+	//firstTime:
+	if(flags["ERRA_CUDDLED"] == undefined)
+	{
+		output("\n\nAs you’re making yourself ready for you journeys and Erra’s making herself decent, the former-puppy calls out, <i>“Hey, [pc.name], I think you forgot your panties.”</i>");
+		output("\n\nBefore you have a chance to reply, or consider if you are missing any panties, a wadded up ball of purple fabric hits you.");
+		if(pc.reflexes() >= 10) output(" Managing to catch the soft, violet sphere, you cock an eyebrow and unravel the matrix of lacy fabrics.");
+		else output(" The sphere of violet falls to the ground as you fumble, leaving you with a slight pang of embarrassment before you reach down to retrieve it. Once the ball of fabric is well within your grasp again, you go to unravel it.");
+		output(" Detangling the Tyrian orb, you find out that it is most certainly a pair of panties: purple with a black paw-print placed right on the crotch.");
+		output("\n\nYou turn your gaze back towards your lover, only to see her give you a lewd wink and grin before she bends over to reach for her clothes.");
+		//This should add <i>“Erra’s Panties”</i> to the PC’s key items after the scene is complete, and add [Erra] to pantie-schlick and panty-fap. Here’s the whole item and tool tip thing: <b>Panties - Erra’s - Purple with a black paw-print on the crotch.</b> Then for the scene tooltip: Use Erra’s purple, paw-printed panties for a little self-pleasure.
+
+		pc.createKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")
+		output("\n\n(<b>Gained Key Item: Panties - Erra's</b>.)");
+	}
+	output("\n\nOnce you’re both decent, you walk back into the ship’s Atrium, Dee’s robotic voice ringing in your ears before you can even get a foot out the airlock. <i>“Leaving, [pc.name]? I-”</i>");
+	output("\n\nThe AI is suddenly cut off by her captain: <i>“Dee I swear! I’ll-”</i>");
+	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, captain, I’ll let you </i>enjoy the moment<i>.”</i>");
+	output("\n\nYour ausar companion breathes a sigh of relief, inviting you out the airlock. You say your goodbyes to the two and make your way back onto the tarmac, your former pet yelling <i>“See you around, [pc.name]!”</i> as you gain distance.");
+	processTime(75);
+	pc.energy(100);
+	clearMenu();
+	addButton(0,"Next",move,shipLocation);
+}
+
+//Getting the Collar
+//After accepting Erra’s affections, a new option labeled [Collars] will be available in Inessa’s menu.
+//[Collars] Inspect the display of collars lining the wall. //Requires Erra’s lover status and 2000 credits.
+public function errasCollarPurchaseScene():void
+{
+	clearOutput();
+	showInessa();
+	output("Your gaze is drawn to a display of collars, a few shelves strewn across the wall behind the counter. They all seem to be of very high-quality, with each of them being made of different coloured leathers. Another thing that catches your eye is that all of them have a blank tag on them, all shiny and brassy, there to let the world know who the collar, and the pet wearing it, belongs to.");
+	output("\n\nYou smirk as thoughts of Erra cross your mind. Surely that dusky-hued, pet-play loving puppyslut would enjoy a fancy little collar like one of these. She’d probably appreciate such a gesture if you were to give her one as a gift.");
+	//[Buy One]
+	clearMenu();
+	//hasCredits:
+	if(pc.credits >= 2000) addButton(0,"Buy One",buyErraACollar,undefined,"Buy One","Get Erra a nice collar as a gift.\n\n<b>Cost:</b> 200 credits.");
+	else addDisabledButton(0,"Buy One","Buy One","These things are probably expensive, and you don’t think you have enough credits.\n\n<b>Cost:</b> 200 credits.");
+	addButton(1,"Nah",dontBuyErraACollar,undefined,"Nah","Erra can make due with the collar she has.");
+}
+
+public function dontBuyErraACollar():void
+{
+	clearOutput();
+	showInessa();
+	output("Erra can make due with the collar she has.");
+	inessaMenu();
+}
+
+public function buyErraACollar():void
+{
+	clearOutput();
+	showInessa();
+	//inessaMistress/Master:
+	if(flags["INESSA_BEING_DOMMED"] == 1)
+	{
+		output("Inessa flutters over to you, noticing that you’re staring at her display of collars, <i>“Can I get something for you, " + pc.mf("master","mistress") + "?”</i>");
+		output("\n\nYou stroke your chin and try to finish your selection before addressing your sub, <i>“Yes, you can. I’m looking for a collar, but it needs something ‘special.’”</i>");
+	}
+	//notInessaDom:
+	else
+	{
+		output("The butterfly shop-owner flutters her way over to you, noticing that you’re staring at her display of collars, <i>“Can I help you get something?”</i>");
+		output("\n\nYou finish your selection and ask the girl if you can get a collar with something custom written on the tag.");
+	}
+	output("\n\n<i>“Oh, yeah!”</i> Inessa exclaims, <i>“I can do that, just tell me what you want!”</i> She hovers her way over to the collar-lined shelves lying across the wall and eagerly awaits your order.");
+	output("\n\nYou give the Saeri an idea of what you’re looking for and before you know it she grabs a collar off the wall and places the tag inside a small machine, tapping a few buttons on its holo-display. A few moments later, she pops the collar out of the device and holds it up for you to look at, giving you a good view of the tag: <b><i>Erra Aulgharis - Property of [pc.name] Steele</i></b>.");
+	output("\n\nWith a proud smile growing on your face, you tell the butterfly girl behind that counter that it’s perfect. She grins before reaching down and grabbing a small box, which she then puts the collar in.");
+	output("\n\nAfter paying the Saeri an appropriate amount of credits, she hands the box to you, happily wishing you luck with your new pet.");
+	output("\n\n(<b>Gained Key Item: Ausar Collar</b>.)");
+	pc.createKeyItem("Ausar Collar - A custom collar for Erra.");
+	//This should add a <i>“collar”</i> to the PC’s key items, here’s the tooltip and stuff: Collar - A ring of leather and a leash with a small, round, brass-coloured tag. Should return the PC to Inessa’s shop’s main menu.
+	pc.credits -= 2000;
+	processTime(5);
+	clearMenu();
+	inessaMenu();
 }
