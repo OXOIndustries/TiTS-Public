@@ -1943,6 +1943,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	varmintDisappearChance(deltaT, doOut);
 	processEmmyEvents(deltaT, doOut, totalDays);
 	processZheniyaEvents(deltaT, doOut, totalDays);
+	processHLPantyShit();
 	
 	// Per-day events
 	if (totalDays >= 1)

@@ -48,8 +48,18 @@ public function miAmoreBonusShit():Boolean
 	//[Upper Body] [Lower Body] [Cocksocks] [Aliss] [Leave]
 	addButton(0,"Upper Body",upperBodyAlice,undefined,"Upper Body","See what tops Aliss has for sale.");
 	addButton(1,"Lower Body",lowerBodyAlice,undefined,"Lower Body","See what bottoms Aliss has for sale.");
-	//9999 addButton(2,"Cocksocks",cocksocksAlice,undefined,"Cocksocks","See what Aliss's \"Handmade Cocksocks\" are all about.");
+	//addButton(2,"Cocksocks",cocksocksAlice,undefined,"Cocksocks","See what Aliss's \"Handmade Cocksocks\" are all about.");
 	addButton(5,"Aliss",alissDiscussionsInsteadOfPanties,undefined,"Aliss","Visit with the shopkeeper herself.");
+	if(flags["ALISS_FIXED_HL"] == -1)
+	{
+		if(pc.hasHardLightEquipped()) addButton(2,"Repair HL",alissRepairTalk,undefined,"Repair HL","Show Aliss the malfunctioning mod on your hardlight and see if she can fix it.");
+		else addDisabledButton(2,"Repair HL","Repair HL","You aren't wearing a broken hardlight projector!");
+	}
+	else if(flags["ALISS_FIXED_HL"] == 1)
+	{
+		if(pc.hasHardLightEquipped()) addButton(2,"Break HL",alissBreakItTalk,undefined,"Break HL","Ask Aliss to make your underwear malfunction again.");
+		else addDisabledButton(2,"Break HL","Break HL","You aren't wearing a hardlight projector!");
+	}
 	return false;
 }
 
@@ -1635,4 +1645,390 @@ public function exhibitionismTalkWithAliss():void
 	processTime(3);
 	clearMenu();
 	addButton(14,"Back",talkToAliss);
+}
+
+//sensory feedback malfunction (reviewedready for review)
+//after the hardlight upgrade kit has been installed, the upgraded hardlight may begin to malfunction with very low odds while worn
+//malfunction quietly sets a flag and/or replaces the underwear item with a malfunctioning version; triggers a lust-raising event at random intervals as long as the malfunctioning hardlight is worn (having separate items allows malfunction status to be tracked for each pair of panties)
+//PC can fix the malfunction by returning the broken hardlight to Aliss, who will also copy the upgrade tech during the repair (unlocks upgrade kit or simply upgraded panties in Aliss's shop)
+//getting the first fix may or may not prevent the malfunction from re-occurring, may reduce odds, or may allow PC to fix them on his own (designer's choice)
+
+//lust events
+public function lustOvahTimeEvent():void
+{
+	clearOutput();
+	showName("\nMALFUNCTION!");
+	author("Zeikfried");
+	//first, increase lust
+	pc.lust(40);
+	output("A strange feeling brings your movements up short... something is tickling the ");
+	if(pc.hasVagina()) output("tip of your [pc.clit]");
+	else if(pc.hasCock()) output("[pc.cockHeadSimple] of your [pc.cockNounSimple]");
+	else output("ring of your [pc.asshole]");
+	output(". A warmth spreads through your crotch, far away and irregular, like your groin is falling asleep just as you slip into a bath.");
+	if(pc.isCrotchExposedByArmor()) output(" You look down, trying to find any cause,");
+	//(clothed, is airtight or horse)
+	else if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_AIRTIGHT) || pc.isTaur()) output(" You shift uncomfortably in your [pc.armor], trying to break the contact and stop the rubbing,");
+	//(clothed, not airtight & not taur)
+	else output(" You reach into your [pc.lowerGarment], trying to find whatever’s rubbing against it,");
+	output(" but the tingle persists, growing more intense until it feels like a fingertip pressing on your sex. Your body reacts to the phantom touch, pumping blood to the site... what is happening to you?");
+
+	output("\n\nThe tingle spreads to encompass your whole pelvis, until it feels like ");
+	if(pc.hasCock())
+	{
+		output("your [pc.cocksLight] ");
+		if(pc.cockTotal() == 1) output("is");
+		else output("are");
+		output(" being sucked into a rough-skinned, yielding pussy");
+	}
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina() || !pc.hasGenitals()) output("your [pc.vagOrAss] is penetrated by crinkly-feeling, ephemeral prick");
+	output(", all tingling with tiny shocks like a sleeping limb in reverse. Your [pc.knees] wobble violently as your nerves shift gear from idle to mid-coitus; your ");
+	if(pc.hasCock())
+	{
+		output("cock");
+		if(pc.cockTotal() == 1) output(" swells and becomes");
+		else output("s swell and become");
+		output(" erect rapidly");
+	}
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina() || !pc.hasGenitals())
+	{
+		output("your ");
+		if(pc.hasVagina()) output("pussy");
+		else output("ass");
+		output(" throbs with lust");
+	}
+	if(pc.hasVagina()) output(", drooling lubrication into your [pc.lowerUndergarment] and ");
+	else output(", ");
+	output("throbbing in the numb fuzz of static-electric caresses. As the sensation reaches its peak, you finally place the feeling... it’s almost like a decentralized version of the sensory feedback from your hardlight underwear. <b>Somehow, it’s activated itself without the projector!</b>");
+
+	//if PC’s lust does not reach max from the event damage, do this output chain
+	if(pc.lust() < pc.lustMax())
+	{
+		output("\n\nYour [pc.hips] begin to tremble and then to pump, unbidden, trying to take pleasure from the strange slutty phantom that has possessed your body, but the fuzz remains constant, no matter your twitching, twerking, and jerking. Your arousal simmers, your body begins to heat up, but like a teakettle, you have no way to relieve your frustration short of whining.");
+
+		//if in public, very small exhib increase and insert this
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.hasGenitals())
+		{
+			output("\n\nNor does your strange affliction escape notice; passers-by are beginning to stop and stare at the strange [pc.race] with [pc.hisHer] [pc.knees] pinched together, groaning and sweating. Most look away in embarrassment and keep moving, but a few continue to watch. You make eye contact with one");
+			if(rand(2) == 0) output(" girl, and she stares back for several seconds; color rises in her cheeks as your lewd sounds turn from mumbles to moans. She blushes, and looks away... then smiles shyly and glances back again, out of the corner of her eye. ");
+			else 
+			{
+				output(" young man, whose eyes drift greedily ");
+				if(pc.biggestTitSize() >= 1) output("to your chest and then ");
+				output("your sex. Your eyes trace the same path on him, and you clearly see his own erection bulging in his pants. ");
+			}
+			output("Your face burns... deep down, ");
+			if(pc.exhibitionism() < 50) output("could it be you’re enjoying their attention, just a bit?");
+			else output("you’re drinking up the attention, exulting in the eyes of your increasingly aroused audience.");
+			//end public
+			pc.exhibitionism(1);
+		}
+		output("\n\nJust as abruptly as it began, the tingle switches off and leaves you with nothing but ");
+		if(pc.hasCock()) 
+		{
+			if(pc.cockTotal() == 1) output("a ");
+			output("massive hardon");
+			if(pc.cockTotal() > 1) output("s");
+		}
+		if(pc.isHerm()) output(" and ");
+		if(pc.hasVagina())
+		{
+			if(pc.totalVaginas() == 1) output("a ");
+			output("gushing puss");
+			if(pc.totalVaginas() == 1) output("y");
+			else output("ies");
+		}
+		if(!pc.hasGenitals()) output("a twitching asshole");
+		output(" and a lot of questions. <b>Your underwear is malfunctioning. If you don’t want any more abrupt episodes like this, you should take it off or return to the store and get it fixed.</b>");
+		//end of low-lust ver.
+		processTime(5);
+	}
+	//if PC’s lust reaches maximum from the event damage, do pc orgasm and this output chain instead
+	else
+	{
+		output("\n\nThe sudden stimulation is too much for you - it pushes you over the edge. Your [pc.knees] buckle under you, and you throw out your hands barely in time to stop yourself from hitting the dirt face-first.");
+		pc.orgasm();
+		//if in public and not wearing airtight, do a moderate exhib increase and this fork
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && !pc.hasAirtightSuit())
+		{	
+			output("\n\nYour sudden collapse draws the attention of some bystanders, who crowd around to see if you’re okay. What they see tells them that you are anything but. Most who see your ");
+			if(pc.exhibitionism() < 50) output("ashamed blush");
+			else output("wanton, gaping smile");
+			output(" and shaking hips recoil in embarrassment and scurry off quickly, but as your orgasm draws closer, a few closet perverts in each wave remain, forming a fence of bodies to take in your show.");
+
+			//pick a boy or girl onlooker at random
+			//girl
+			if(rand(2) == 0)
+			{
+				output("\n\nAs you pan the faces of your watchers, helpless, your eye catches on the face of a young lady, smallish of frame, wearing a short skirt and radiating interest. The girl’s eyes lock with yours; held by your gaze, she doesn’t look away. Your face must show your impending climax clearly, because her cheeks flush with embarrassment. Allured by something, she sidles closer and squats next to you, right up beside your head, so close that the people on the other side of you can no longer see her feet.");
+				output("\n\nThough she has apparently no problem reading your emotions, hers are a mystery. Surreptitiously, she casts her eyes around, then hooks a finger into the hem of her skirt. Blushing even deeper, she spreads her knees and hikes her skirt just a few inches, until you can see underneath. The smooth flesh tones of her thigh continue into the shadow between her legs, but instead of a strip of fabric, what peers out is a dark, glistening slit. She’s not wearing any panties!");
+				output("\n\nYour eyes widen and your pupils dilate, and when you look again at her face in surprise, your little exhibitionist’s unreadable expression finally breaks - her eyes flutter and she flashes an embarrassed, proud smile.");
+				output("\n\nThe lewd little lady, quite pleased with how you’re reacting to her private viewing, smiles wider and her eyes migrate to your crotch. Slowly, she reaches out to you, extending slender fingers toward ");
+				if(pc.hasCock()) output("the bulge of your [pc.cockBiggest]");
+				else if(pc.hasVagina()) output("the nub of your [pc.clit]");
+				else output("your flat, featureless groin");
+				output(". You tremble, and she stops just short. Your climax is so urgent that your vision begins to sharpen. Her chest falls with a released breath... her pussy glints as a drop of moisture wets her labia... her fingers flinch, then extend again. Her eyes lock to yours, reading your expression; your need brings a twinkle to her eye, and she presses her palm into you. You can no longer hold back. At the same moment as her hand begins to cup your ");
+				if(pc.hasCock()) output("[pc.cockHeadNoun]");
+				else if(pc.hasVagina()) output("[pc.vagina]");
+				else output("crotch");
+				output(", you orgasm.");
+
+				output("\n\nThe girl starts as you spasm, and pulls away, but to your focused eyes it’s as if she’s moving in slow motion. You react without thinking, grabbing her arm and pulling her back in until you once again feel the curve of her palm against your sex. Her shy smile disappears, then reappears with understanding.");
+				if(pc.hasCock()) 
+				{
+					output(" Your [pc.cocks] spurt");
+					if(pc.cockTotal() == 1) output("s");
+					output(", spilling [pc.cum] into your underwear; your shy admirer curls her fingers in close, until she can almost assuredly feel the strokes of semen distending your urethra and hitting the fabric beneath her demure hand.");
+					//(PC has no lower outer garment)
+					if(!pc.isCrotchExposedByArmor()) 
+					{
+						if(pc.cumQ() < 25) output(" Drops");
+						else output(" Streams");
+						output(" of [pc.cumGem]s squish through the sopping material, spilling over her hot skin, running between her fingers and down her wrist.");
+					}
+				}
+				//(vag, no cock)
+				else if(pc.hasVagina())
+				{
+					output(" Your [pc.vaginas] ");
+					if(pc.isSquirter()) 
+					{
+						if(pc.totalVaginas() == 1) output("gushes");
+						else output("gush");
+						output(" with");
+					}
+					else
+					{
+						if(pc.totalVaginas() == 1) output("drools");
+						else output("drool");
+					}
+					output(" [pc.girlCum]");
+					if(pc.isCrotchExposedByArmor()) output(", turning the cloth beneath her hot hand translucent, [pc.girlCumVisc], and slick");
+					output(". Her fingers curl inward, parting your labia just a bit to tease your vagina with the fabric, and her naked pussy trickles with lubrication sympathetically.");
+				}
+				else
+				{
+					output(" Your [pc.asshole] twitches and clenches; the girl cups her fingers over your crotch, trying to find the genesis of your orgasm, and finally brushes a fingertip against your pucker. With a knowing expression, she slides her hand forward until she’s pressing your sweat-stained");
+					if(pc.ass.wetness() > 0) output(", lubricated");
+					output(" undies into the ring playfully.");
+				}
+				output(" You hold her there for a long minute, cumming into her hand as she becomes more and more excited by your shamelessness - her blush begins to fade, or more accurately it decreases by contrast as the rest of her body flushes.");
+
+				output("\n\nJust as she begins to rub her thighs together in lust, your orgasm winds down, and you release your death-grip on her arm. She almost looks disappointed. The girl pulls back and, unable to help herself, casts a furtive glance around before slipping up her skirt to give her pussy a quick rub");
+				//(cock or vag and no lower outer armor)
+				if(pc.hasGenitals() && pc.isCrotchExposedByArmor()) 
+				{
+					output(" with her ");
+					if(pc.hasCock()) output("[pc.cumNoun]");
+					else if(pc.hasVagina()) output("[pc.girlCumNoun]");
+					output("-smeared hand");
+				}
+				output(". She shivers, then masters herself and tugs her skirt back over her knees. With one sly wink, the young woman stands up and disappears through the fence of onlookers, which parts to let her pass with something like reverence. And thus your anonymous benefactor is gone, leaving you there in the middle of the dwindling crowd to recover. <b>Your hardlight underwear is malfunctioning. You need to have it fixed or stop wearing it, or this will keep happening.</b>");
+				//end of hi-lust, public, girl ver.
+				pc.orgasm();
+			}
+			//boy
+			{
+				output("\n\nPanning the crowd of observers, immobilized by your lust, your eye lights on a young man and woman standing together. The girl, a frilly-skirted, flat-chested little slip, looks away bashfully, but the young man returns your gaze with prurient, almost knowing, interest. He cracks a smile as he takes in your condition - ");
+				if(pc.hasCock()) output("your bulging [pc.cocksLight]");
+				else if(pc.hasVagina()) output("your pussy-slickened [pc.thighs]");
+				else output("your sweating face");
+				output(" and twitching hips.");
+
+				output("\n\nThe lad’s face glints with mischief as he comprehends; he taps a finger to his lips in mock thought. With his other hand, he reaches down and tugs his pants tight, pushing his hips forward and giving you a clear view of his bulge. If there were any blood not rushing to your face before, you’re sure it’s all there now as you watch the mischief-maker unbutton his pants and expose his erection - which is quite pronounced thanks to your display. The girl next to him also notices and blushes, but instead of moving away, she simply turns her head until he can’t see her face and giggles silently. They must be together.");
+				output("\n\nYour momentary lapse doesn’t escape his notice. He leans toward the girl you’re distracted by and very deliberately slides his hand under her skirt, pushing it up to expose her ass, which he squeezes plafully and then begins to caress. The girl’s blush turns furious, and her hands drop to the front of her skirt, pinning it down against his incorrigible rubbing as best she can and looking around nervously to see if any of the other onlookers have noticed yet.");
+				output("\n\nSatisfied that he has recaptured your attention, the young man with one hand on his cock and one on his girlfriend’s ass beams a terrific smile, and then steps behind her such that you can only see his grinning head and shoulders over hers. The girl’s face takes on a defeated expression, as if she knows what’s coming; indeed, you can make out something shifting in her clothes. His hands appear under her frilly hemline, lowering something fabric which you belatedly realize are panties. The girl leans forward a bit, biting her bottom lip and closing her eyes, and you can see by the way his hips are moving that he’s rubbing his cock through her asscheeks, which he occasionally reaches down and pinches, looking into your eyes the entire time.");
+				output("\n\nWithin a minute, the miscreant stops teasing his girl’s ass; he holds steady for a few seconds, lingering on your reaction, and then pushes forward. The girl’s face tightens - he just slipped inside, and judging from the angle of her body, <i>not</i> into the front door. Your ");
+				if(pc.hasCock()) output("[pc.cocksLight]");
+				else output("[pc.vagOrAss]");
+				output(" throb");
+				if(pc.cockTotal() == 1) output("s");
+				output(" with envy, watching the slip of a girl take his impressive cock, and your orgasm draws closer under the dull throb of your malfunctioning feedback system.");
+
+				output("\n\nYour showman gets into the fuck quickly, as excited by your distress as you are from his exhibition. A few murmurs ring the crowd, now, and by them you know that you’re no longer the only focus of attention. The girl hears as well. Her eyebrows knit in frustration but just as quickly she relaxes again, unable and apparently unwilling to end the spectacle. A hand appears under her arm; her lover slides into her top, groping her flat chest and tweaking her nipple as he uses the leverage to pull her asshole onto his cock even harder. A breath catches in her throat, and her hand clasps over his.");
+
+				output("\n\nDespite having the attention of at least half of the crowd by now, the young man’s eyes never break with yours. He studies you keenly, watching the quivering wreck that is your near-climax body. Almost hypnotized, you stare back, watching him and his girl until your hips are shaking in unison with ");
+				if(pc.hasCock()) output("his");
+				else output("hers");
+				output(". Your sex burns with lust to see them, aching for release, and he can see it in your eyes. His other, idle hand appears from behind the girl, pointing at the front of her skirt and drawing your attention down to it; eyes closed and oblivious, she never notices. When you look down, he grabs the frilly hem and flips it up suddenly, exposing her... instead of a pussy, a small, erect penis greets you! It’s no more than four inches and even though fully hard, the red crown barely peeks out from the foreskin. Pert balls cling tightly to the shaft and the whole package is tied with a decorative ribbon of pink lace. A thick line of pre-cum is dangling from the phimosis penis, pushed out by the prostate stimulation its owner is receiving. The ‘girl’ gasps and her eyes flutter open as the breeze hits her cock; the gaze of the crowd brings her blush back and she shuts her eyes tightly again in embarrassment... but her cockhead peeks out a little further from her foreskin, and drools a little more.");
+
+				output("\n\nThe spectacle is too much; you cum. ");
+
+				if(pc.hasCock()) 
+				{
+					output("[pc.Cum] ");
+					if(pc.cumQ() < 5) output("trickles");
+					else if(pc.cumQ() < 200) output("spurts");
+					else output("floods");
+					output(" from you, soaking your [pc.lowerUndergarment]");
+					if(pc.isCrotchExposedByArmor()) output(" and beading through the fabric for anyone to see");
+					output(". ");
+				}
+				else if(pc.hasVagina())
+				{
+					output("[pc.GirlCum] soaks your [pc.lowerUndergarment], darkening it with [pc.girlCumVisc] juice");
+					//(no outer lower)
+					if(pc.isCrotchExposedByArmor()) output(" and creating a wet spot for anyone to see");
+					output(". ");
+				}
+				else output(" Your asshole twitches and shakes in lonely frustration, neatly stimulated by your malfunctioning projector but missing the wet, pre-squirting prick that the trap across from you is enjoying.");
+
+				output("\n\nWatching you climax seems to excite your tormentor to his own limit, and he buries his cock in the ass of his companion. Her face twitches as his hot load hits her insides, and a moment later, her cock lances out its own modest spurt of jizz. The string flies through the air and ");
+				if(pc.libido() < 50) output("lands less than an inch from your crotch");
+				else output("would have landed an inch away, but you thrust out your hand and catch the femboy’s load. She looks aroused and embarrassed, casting her eyes to the side");
+				output(". With the spectacle winding down, the crowd fencing you in begins to disperse, leaving you three cum-spattered exhibitionists to recover yourselves in full view of the greater public.");
+				if(pc.exhibitionism() < 50) output(" You do so as quickly as you can, but still catch a fair number of scandalized looks");
+				else output(" You take your time, soaking up the scandalized looks");
+				output(" - of course, not as many as the young man with his cock pushed so deep into his ‘girl’friend’s cum-soaked prostate that her prick leaks a line of sperm down to the ground. <b>If you don’t want to be caught out like this again, you should find someone to fix your malfunctioning hardlight - or go commando.</b>");
+				//end of hi-lust, public, boy ver.
+				processTime(15);
+				pc.orgasm();
+			}
+			pc.exhibitionism(2);
+		}
+		//if not in public /or/ if wearing airtight
+		if(!rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) || pc.hasAirtightSuit())
+		{
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+			{
+				output("\n\nThough your sudden collapse draws some attention, your [pc.armor] covers your lewd display. A few people stop and lean down to check on you, but their eyes show only concern - not one recognizes your jerks and shakes as the public indecency they are. ");
+				//(end public blurb after paragraph break)
+			}
+			else output("\n\n");
+			output(" All by your lonesome, you fill your [pc.lowerUndergarment] with ");
+			if(pc.hasCock()) 
+			{
+				output("[pc.cum]. ");
+				if(pc.cumQ() < 5) output("Sad little squirts droop from your trembling member, barely enough to wet the fabric but all that your body can muster.");
+				else if(pc.cumQ() < 1000)
+				{
+					output("Spurts of spunk fly from your cock");
+					if(pc.cockTotal() > 1) output("s");
+					output(", turning your lower half into a warm, [pc.cumVisc] mess.");
+				}
+				//(mega cum)
+				else
+				{
+					output("Your monster load distends your urethra");
+					if(pc.cockTotal() > 1) output("s");
+					output(" to escape, turning your underpants into a mere suggestion as it washes your lower half in [pc.cumColor].");
+					if(pc.hasAirtightSuit()) 
+					{
+						output(" With nowhere to go in your airtight armor, the spunk builds up and up, flooding your suit until you");
+						if(!(pc.upperUndergarment is EmptySlot)) output("r [pc.upperUndergarment] is as soaked as your bottoms and you");
+						output(" could stick out your tongue and taste a [pc.cumFlavor] sample.");
+					}
+				}
+			}
+			//(vag, no cock)
+			else if(pc.hasVagina())
+			{
+				output("[pc.girlCum]. Your pussy twitches and squeezes, expecting by the shape of the stimulation to find something hard, but comes down on nothing.");
+				if(!pc.isSquirter()) output(" With no real cock to stop your feminine juices, you turn the seat of your underwear to a slippery, clingy mess.");
+				else output(" With no real cock in the way, your pussy-juice soaks your [pc.lowerUndergarment] until it can’t hold any more, then begins to run down your [pc.thigh].");
+			}
+			else
+			{
+				output("sweat as your [pc.asshole] tensions and releases rapidly in climax. Without any actual tool to stroke, your pucker simply gulps air, trying to lock down on the phantom stimulation.");
+				//(anal wet)
+				if(pc.ass.wetness() > 0) output(" Lubrication flows from your ever-ready ass, wicking into your [pc.lowerUndergarment].");
+			}
+			output("\n\nYou cum out aftershocks for a few minutes more - at some point in the haze, the feedback from your hardlight shuts off, leaving you thankfully able to recover. <b>Unless you want this to happen again, you should get your hardlight underwear fixed or wear something else.</b>");
+			//end of hi-lust non-public ver.
+			processTime(15);
+			pc.orgasm();
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function processHLPantyShit():void
+{
+	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded())
+	{
+		//Set timer and check for breakage.
+		if(flags["ALISS_FIXED_HL"] == undefined)
+		{
+			
+			if(flags["HL_BREAK_COUNTER"] == undefined) flags["HL_BREAK_COUNTER"] = GetGameTimestamp();
+			else if(flags["HL_BREAK_COUNTER"] + 28800 < GetGameTimestamp()) flags["ALISS_FIXED_HL"] = -1;
+		}
+		//Broken!
+		else if(flags["ALISS_FIXED_HL"] == -1)
+		{
+			if(rand(25) == 0) eventQueue.push(lustOvahTimeEvent);
+		}
+	}
+}
+
+//repair talk (bonus Aliss sex scene abandoned for now as lust event came in over budget)
+//Aliss
+//shove a button in her menu somewhere
+//tooltip: Show Aliss the malfunctioning mod on your hardlight and see if she can fix it.
+//tooltip disabled, not wearing or carrying a broken hardlight: You don’t have a broken hardlight projector anywhere on your person!
+
+public function alissBreakItTalk():void
+{
+	clearOutput();
+	showAliss();
+	output("You motion Aliss closer.");
+	output("\n\n<i>“Yeah?”</i> she asks, leaning in conspiratorially.");
+	output("\n\n<i>“Could you make my hardlight malfunction again? Like before?”</i> You try hard not to blush. <i>“It was... fun.”</i>");
+	output("\n\nAliss’s eyerows rise with interest. <i>“Really?”</i> She takes the underwear from you when you offer it, a sly smile on her reptilian face. <i>“It'll be my... our pleasure.”</i> She winks and disappears into a back room.\n\nWhen she reappears, she's smiling mischievously, panties in hand. <i>“I should probably charge for this, but it's just too much fun.”</i>");
+	output("\n\nThe ovir hands over your underwear.");
+	flags["ALISS_FIXED_HL"] = -1;
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function alissRepairTalk():void
+{
+	clearOutput();
+	showAliss();
+	author("Zeikfried");
+	output("You motion Aliss closer.");
+	output("\n\n<i>“Yeah?”</i> she asks, leaning in conspiratorially.");
+	if(pc.isBimbo()) output("\n\n<i>“Um, can you do repairs on a broken projector? It’s a little </i>too<i> fun,”</i> you whisper.");
+	else if(pc.isBro()) output("<i>“I fucked my hardlight up,”</i> you say frankly.");
+	else output("<i>“My hardlight projector is malfunctioning,”</i> you whisper.");
+
+	output("\n\nAliss’s eyerows rise with interest. <i>“How so?”</i>");
+	output("\n\nYou give her a description of your ‘problem’, which, despite your best efforts to downplay the spectacle, makes her burst out in tinkly laughter.");
+	output("\n\n<i>“We can take a look. Do you have them with you?”</i> she finally answers, after giggling her fill.");
+
+	output("\n\nYou produce the hardlight mods from your pack; Aliss takes them and disappears into a back room.");
+	
+	//if first time, pass ~90 minutes
+	processTime(90);
+	clearMenu();
+	addButton(0,"Next",alissRepairPart2);
+}
+
+public function alissRepairPart2():void
+{
+	clearOutput();
+	showAliss();
+	output("For 90 minutes, you wait. Finally, Aliss reappears.");
+	output("\n\n<i>“Well?”</i> you ask.");
+	output("\n\n<i>“It’s the aftermarket mod you added, of course. We repaired the problem, so it should be good to go.”</i>");
+	//(else if Fen decides that the malfunction can reoccur), but there’s no way to completely prevent it from breaking again without removing the upgrade.”</i>");
+
+	if(flags["ALISS_FIXED_HL_COUNT"] == undefined)
+	{
+		output("\n\n<i>“So what took so long?”</i> you reply.");
+		output("\n\nAliss shrugs. <i>“Ah, that... we were copying the design. I think we might be able to make something like it here - buyer beware, of course.”</i> The ovir looks down at your crotch, then winks at you and hands over your underwear.");
+	}
+	//(else repeat)
+	else output("\n\nThe ovir hands over your underwear.");
+	IncrementFlag("ALISS_FIXED_HL_COUNT");
+	flags["ALISS_FIXED_HL"] = 1;
+	//if first time repair, either directly unlock the upgraded version of each hardlight panties or add the upgrade kit in Aliss’s shop
+	//tooltip: Take your repaired [pc.lowerUndergarment] and leave.
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
