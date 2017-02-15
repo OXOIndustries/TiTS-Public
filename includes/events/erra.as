@@ -125,7 +125,7 @@ public function erraMenu():void
 	if(pc.lust() >= 33) addButton(2,"Sex",erraSexGOOO,undefined,"Sex","Well, she was certainly open to the idea before, why wouldn’t she be now?");
 	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
 	if(flags["ERRA_D_TALK"] == 1 && flags["ERRA_RELATIONSHIP_TALK"] == 1 && flags["ERRA_PAST_TALK"] == 1) addButton(3,"Public Pet",publicErraPets,undefined,"Public Pet","Get your hands on Erra’s big, beautiful ears.");
-	else addDisabledButton(3,"Locked","Locked","You don't know her well enough for whatever this is.");
+	else addDisabledButton(3,"Locked","Locked","You don’t know her well enough for whatever this is.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -168,19 +168,19 @@ public function talkToErra():void
 		addButton(3,"Dee",talkToErraAboutDeeeeeeee,undefined,"Dee","Talk to Erra about her boisterous AI co-pilot.");
 		//[You] Confront Erra about her feelings for you. //Requires [Walkies] to have been done.
 		if(flags["ERRA_WALKIES"] != undefined) addButton(4,"You",talkToErraAbootHerself,undefined,"You","Confront Erra about her feelings for you.");
-		else addDisabledButton(4,"You","You","You don't really know her well enough for this.");
+		else addDisabledButton(4,"You","You","You don’t really know her well enough for this.");
 		//[Collar] Give Erra that collar you bought her. //Requires <i>“collar”</i> key item and Erra’s lover status, as well as her cuddle scene to have been completed.
 		if(pc.hasKeyItem("Ausar Collar - A custom collar for Erra.") && flags["ERRA_LOVERS"] == 1) addButton(5,"Give Collar",ifYouLikeErraThenYouShouldaPutACollarOnIt,undefined,"Give Collar","Give Erra that collar you bought her.");
 		else if(erraCollared()) addDisabledButton(2,"Give Collar","Give Collar","You already gave her a collar!")
-		else addDisabledButton(5,"Give Collar","Give Collar","You don't have a collar to give to her!");
+		else addDisabledButton(5,"Give Collar","Give Collar","You don’t have a collar to give to her!");
 	}
 	else
 	{
-		addDisabledButton(1,"Past","Past","Erra doesn't want to talk about this right now.");
-		addDisabledButton(2,"Relationships","Relationships","Erra doesn't want to talk about this right now.");
-		addDisabledButton(3,"Dee","Dee","Erra doesn't want to talk about this right now.");
-		addDisabledButton(4,"You","You","Erra doesn't want to talk about this right now.");
-		addDisabledButton(5,"Give Collar","Give Collar","Erra doesn't want to talk about this right now.");
+		addDisabledButton(1,"Past","Past","Erra doesn’t want to talk about this right now.");
+		addDisabledButton(2,"Relationships","Relationships","Erra doesn’t want to talk about this right now.");
+		addDisabledButton(3,"Dee","Dee","Erra doesn’t want to talk about this right now.");
+		addDisabledButton(4,"You","You","Erra doesn’t want to talk about this right now.");
+		addDisabledButton(5,"Give Collar","Give Collar","Erra doesn’t want to talk about this right now.");
 	}
 	addButton(14,"Back",approachErra,true);
 }
@@ -292,11 +292,11 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 	//Requires cock or vagina, and high exhibition. Not taur compatible.
 	if(pc.hasGenitals() && pc.exhibitionism() >= 33) addButton(3,"Walkies",walkiesWithErra,undefined,"Walkies","Take your pet for a walk.");
 	else if(!pc.hasGenitals()) addDisabledButton(3,"Walkies","Walkies","You need genitals for this scene.");
-	else addDisabledButton(3,"Walkies","Walkies","You aren't enough of an exhibitionist for that.");
+	else addDisabledButton(3,"Walkies","Walkies","You aren’t enough of an exhibitionist for that.");
 
 	//Requires Erra’s <i>“lover”</i> status. Not taur compatible.
 	if(erraLover()) addButton(4,"Cuddle",erraCuddleScenes,undefined,"Cuddle","Cuddle your puppy.");
-	else addDisabledButton(4,"Cuddle","Cuddle","You don't have that kind of relationship.");
+	else addDisabledButton(4,"Cuddle","Cuddle","You don’t have that kind of relationship.");
 	//addButton(14,"Back",approachErra,true);
 }
 
@@ -876,7 +876,7 @@ public function erraCuddleScenes2():void
 		//This should add <i>“Erra’s Panties”</i> to the PC’s key items after the scene is complete, and add [Erra] to pantie-schlick and panty-fap. Here’s the whole item and tool tip thing: <b>Panties - Erra’s - Purple with a black paw-print on the crotch.</b> Then for the scene tooltip: Use Erra’s purple, paw-printed panties for a little self-pleasure.
 
 		pc.createKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")
-		output("\n\n(<b>Gained Key Item: Panties - Erra's</b>.)");
+		output("\n\n(<b>Gained Key Item: Panties - Erra’s</b>.)");
 	}
 	output("\n\nOnce you’re both decent, you walk back into the ship’s Atrium, Dee’s robotic voice ringing in your ears before you can even get a foot out the airlock. <i>“Leaving, [pc.name]? I-”</i>");
 	output("\n\nThe AI is suddenly cut off by her captain: <i>“Dee I swear! I’ll-”</i>");
@@ -884,6 +884,7 @@ public function erraCuddleScenes2():void
 	output("\n\nYour ausar companion breathes a sigh of relief, inviting you out the airlock. You say your goodbyes to the two and make your way back onto the tarmac, your former pet yelling <i>“See you around, [pc.name]!”</i> as you gain distance.");
 	processTime(75);
 	pc.energy(100);
+	IncrementFlag("ERRA_CUDDLED");
 	clearMenu();
 	addButton(0,"Next",move,shipLocation);
 }
