@@ -188,10 +188,7 @@ package classes.Characters
 			
 			// Futafication
 			if(hasCock())
-			{
-				// 9999 - Special artist exceptions!
-				if(kGAMECLASS.gameOptions.configuredBustPreferences["SAENDRA"] != "ADJATHA") return str;
-				
+			{				
 				str += "_FUTA";
 			}
 			

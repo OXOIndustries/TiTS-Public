@@ -447,6 +447,12 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/saendra.png", mimeType = "image/png")]
 		public var Bust_SAENDRA:Class;
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(12, 4, 55, 63);
+		public function get Bust_SAENDRA_FUTA():Class { return Bust_SAENDRA; }
+		public var Bounds_SAENDRA_FUTA:Rectangle = new Rectangle(12, 4, 55, 63);
+		public function get Bust_SAENDRA_NUDE():Class { return Bust_SAENDRA; }
+		public var Bounds_SAENDRA_NUDE:Rectangle = new Rectangle(12, 4, 55, 63);
+		public function get Bust_SAENDRA_FUTA_NUDE():Class { return Bust_SAENDRA; }
+		public var Bounds_SAENDRA_FUTA_NUDE:Rectangle = new Rectangle(12, 4, 55, 63);
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_old.png", mimeType = "image/png")]
 		public var Bust_SHADE_COMBAT:Class;
