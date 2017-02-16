@@ -71,7 +71,7 @@ public function investigateSlashShelly():void
 		if(pc.hasCock() && pc.lust() >= 33)
 		{
 			if(pc.cockThatFits(shellyCapacity()) >= 0) addButton(2,"Sex",sexWithShelly);
-			else addDisabledButton(2,"Sex","Sex","You're too big to fit inside Shelly.");
+			else addDisabledButton(2,"Sex","Sex","You’re too big to fit inside Shelly.");
 		}
 		else addDisabledButton(2,"Sex","Sex","Sex with Shelly requires both a phallus and lust to be at or above 33.");
 		
