@@ -255,6 +255,10 @@ public function stayWithSellesy():void {
 		addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"SixtyNine","Sixtynine with the bartender. You've both got pussies and tongues - why not use them?");
 	}
 	else addDisabledButton(2,"Tribadism","Tribadism","You'll need a vagina for this.");
+	
+	//button name (probably): Strap-on Play
+	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded()) addButton(3,"Strap-on Play",sellesyHardlightScene,undefined,"Strap-on Play","Let Sellesy play with your adjustable hardlight.");
+	else addDisabledButton(3,"Strap-on Play","Strap-on Play","You need to wear hardlight-enabled underwear with an upgrade kit installed for this.");
 }
 
 //[TITJOB - For Males/Herms any size cock]
@@ -806,3 +810,173 @@ public function ladyType69WithSellesy():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Sellesy's new somethin'
+//button name (probably): Strap-on Play
+//requires upgrade kit
+//cock references use smallest cock that fits Sellesy, unless none do
+//tooltip: Let Sellesy play with your adjustable hardlight.
+//tooltip disabled, no hardlight equipped or missing upgrade: You need to wear hardlight-enabled underwear with an upgrade kit installed for this.
+public function sellesyHardlightScene():void
+{
+	clearOutput();
+	showSellesy(true);
+	author("Zeikfried");
+	output("Sellesy’s imperturbability is almost damaged when you tell her what you want to do. <i>“You brought me back here to play with toys");
+	if(flags["SELLESY_HL"] != undefined) output(" again");
+	output("?”</i> she asks, incredulous. <i>“");
+	if(flags["SELLESY_HL"] == undefined) output("Forget it. I’m thirsty and there’s nothing in it for me. When I want to play with toys, I do it in my off-hours.”</i>");
+	else output("Remind me again why I should waste my time? I have real clients waiting out there.”</i>");
+
+	output("\n\nWow... usually you would expect flirting from her, or at least a bit of wordplay. Her bluntness must be a symptom - it seems like you’ve really put her out. Your tipsy thoughts hum in circles in your head, trying to catch the words that can explain why she should be interested. Eventually, you just give up and reach for the controls of your hardlight, planning to show her instead.");
+	output("\n\nAt your touch, the glowing projection appears, erect and phallic and with an almost-inaudible hum. Sellesy’s frown merely deepens, and she says nothing. You slide your thumb to the length control and extend the cock with a drunk’s finesse, sizing it up until it reaches across the room, halfway to the waitress; her eyebrow flicks upward for a second. Oblivious and inattentive, you touch the girth panel next, swelling the toy through its range until it’s sized for a queen leithan, thicker and more defined than Sellesy’s graceful neck. Dumbly, you peer over the erect, monstrous rod that looks like it would tip you forward were it not completely weightless, and wait for a reaction.");
+
+	//if PC is male or herm
+	if(pc.hasCock())
+	{
+		output("\n\nSellesy folds her arms over her chest, yet her expression softens... a mixed signal? She asks: <i>“And");
+		if(flags["SELLESY_HL"] != undefined) output(", once again,");
+		output(" why do I want to use a toy, no matter how fantastical, when I can play with you instead?”</i>");
+
+		output("\n\nDrunk as you are, you still recognize the thrust of her question. <i>“");
+		if(pc.isBimbo()) output("Um... because it totally lets me, like, feel you just like I was inside you?”</i> you question back, sounding more defensive than intended.");
+		else if(pc.isBro()) output("’Cuz it totally transfers the feeling of your cunt right to my junk,”</i> you answer, flatly.");
+		else if(pc.isNice()) output("It actually has a feedback system that lets me feel you as if we were making love,”</i> you answer earnestly.");
+		else if(pc.isMischievous()) output("I’m just the kind of perv who gets off from this, I guess,”</i> you answer, coyly.");
+		else output("Because I want to. Also, it transfers the feedback to me. But mostly because I want to,”</i> you answer.");
+	}
+	//unsexed/females rejoin here
+	output("\n\nThe waitress blinks in surprise, and her body language opens up again; her hands fold behind her as she leans toward you and she finally cracks a grin...or at least a smirk. <i>“Well,”</i> she says, taking a step, <i>“that’s not so bad, then. I suppose it won’t hurt to play for a bit.”</i> She gestures to the bed, and you sit down heavily. Your massive holo-cock flips up and bumps you ");
+	if(!pc.isTaur()) output("on the nose");
+	else output("on the chest");
+	output(", and you work the controls again with your fumbling, drunken hands, sizing it down way too far until it’s a comically-tiny micropenis, no more than a few inches long.");
+
+	output("\n\nSellesy smiles at that, and slips her thumbs into her waistband. Bringing her legs together, she drops her pants and panties, leaning over so far in the process that you can see down her shirt. Now nude from the waist down, she steps out of the discarded panties and gracefully slides onto the bed, taking position atop you. With relish, she tickles the tip of your tiny surrogate dick by colliding her mons into it, grinning all the while you shiver from the feedback. You reach for the hem of her shirt and lift it, but before you can raise it over her breasts, she catches your hand and pulls it back down with a tut. The incorrigible tease pushes you over onto your back, and with an ‘oops’ face, slips your false phallus into her cunt.");
+	output("\n\n<i>“You’re so small,”</i> the alien pretends to mock. <i>“I can barely feel it.”</i> You ");
+	//(not mean)
+	if(!pc.isAss()) output("blush");
+	else output("furrow your brow");
+	output(" at that, and Sellesy laughs. She raises her arms and knits her hands behind her head; her shirted breasts jut forward as she arches her back and raises herself up on your toy just a bit, and you feel her elongated clits slide free from her body, creeping over your crotch like slippery, muscular worms.");
+	output("\n\nSellesy leans until her chest almost touches yours; ");
+	if(!pc.isTaur()) output("she grabs your hands and places them on her hips, and ");
+	output("her heavily-lidded eyes exude a desire for control. <i>“Relax,”</i> she says. <i>“I’ll take it from here.”</i> Sitting up again, she begins to gyrate on you, pressing the dinky dildo into the sides of her pussy. An electric arc of pleasure shoots up your back.");
+	output("\n\nYou relax into Sellesy’s will, and as she pivots her hips you feel a soft touch on your side; her clitoris, peeking between two toned legs, gropes for the girth control. She locates it and presses down; the alien’s oily lubrication soaks through where she drags her slick clit along the panel, sizing up your pencil-dick to a short, fat plug. Your expanding hardlight comes into contact with the outline of Sellesy’s pussy, and your [pc.leg] twitches involuntarily from the feedback... but she doesn’t stop gyrating her hips, and she doesn’t stop staring down at you from under her heavy eyelids.");
+	output("\n\nThe woman tunes you as thick as she can accommodate, and releases the control. Her clitors disappears again, into the space between your pelvises, but you continue to feel where it touched: the wet fabric clings to your skin. Another clit squirts through the gap on the opposite side, and finds the length control.");
+	output("\n\nYour back tenses");
+	//(not taur)
+	if(!pc.isTaur()) output(" and your fingers dig in");
+	output(" as you feel the holo-cock erect inside Sellesy’s hot pussy, pushing the thick crown over her ridges and folds. Sellesy continues to leer at you, unselfconsciously enjoying the power she has. The dildo jerks to a stop as it bumps into a wall of warm flesh; the alien woman shudders and the pressure on the control panel lessens. After a moment of thought, Sellesy rises up partway and extends it another inch or two. You’re dimly curious why she would make the toy longer than she could take, but you get your answer: fingers of smooth, oily muscle wrap around the base as her clitorises find it, constricting your proxy penis in a lubricated love-sleeve outside the very entrance of her pussy.");
+	output("\n\nSo situated, she lowers herself again to make sure the tip still reaches her deepest place; a sigh escapes as it glides through her sensitive clits. Satisfied, she begins to pump in earnest, pushing off of you with her elegant legs and then relaxing to fall on your faux-cock again. She throws her head back, whipping her long hair hard enough to almost brush your [pc.legs] and pushing out her chest");
+	if(!pc.isTaur()) output("... you’re enticed by her sweaty, writhing body, wishing to reach up and caress her breasts, but her hands continue to hold yours to her hips, insistent that you help her impale herself on the downstroke");
+	output(".");
+
+	//if pc has cock
+	if(pc.hasCock())
+	{
+		output("\n\nSellesy shifts her weight and leans back, bending your hardlight away; a clitoris unwinds from the dildo and creeps free, squirming between your sticky pelvises and her sweat-sheened thighs, oily and willful. The red tongue walks along your body like an octopus, wrinkling your [pc.lowerUndergarment], and then curls over your [pc.cock], stroking it through the fabric. You look up at Sellesy, who’s still throwing her head back as she rises and falls - her eye catches yours, and twinkles mischievously.");
+		output("\n\nThe flexible organ finds your [pc.cockHeadNoun] and pinches it softly, pulling it away from your body and then releasing it to smack against your [pc.legFurScales] again; it dabbles in the stream of precum seeping through the cloth, smearing and spreading it until it mingles with Sellesy’s natural lubrication and your underwear become translucent at the spot. <i>“I wonder...”</i> Sellesy muses, <i>“... how quickly I can make you finish?”</i> The woman’s ominous tone draws you to her face, which is grinning ghoulishly.");
+		output("\n\n");
+		if(pc.smallestCockVolume() <= 9999) 
+		{
+			output("No sooner do you take your eye off her crotch than Sellesy’s hips pivot and her remaining clits lurch out for you. One tugs the band of your [pc.lowerUndergarment] away from your waist, and the others dive in, fastening around your [pc.cocks]. Retracting, they drag your [pc.cockNounSimple " + pc.smallestCockIndex() + "] free.");
+		}
+		else output("No sooner are you distracted by her mischievous eye than her equally-troublesome clits dart out from between your bodies, gathering up your [pc.lowerUndergarment] with soft, oily pinches. With a sharp tug, they pull the waistband down over your enormous bulge, exposing your huge [pc.cockNounSimple].");
+		output("\n\nOne of the alien’s clits returns to your photo-cock, reforming the tight ring that buffers her pussy, but the others wrap around your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(", bending the shaft");
+		if(pc.cockTotal() > 1) output("s");
+		output(" and aiming you toward the smooth skin of her thighs as each clit forms a ring of wet muscle. Positioned like this, they pull and massage your crown");
+		if(pc.cockTotal() > 1) output("s");
+		output(" every time Sellesy rises up. She resumes riding, jerking and fondling while her pussy hilts the dildo and, as always, leering down at you with those amused, expectant eyes.");
+
+		output("\n\nThe tingles at the base of your spine grow completely out of hand under this new abuse, and your orgasm is upon you before your drunken mind can mount a resistance. ");
+		if(pc.balls > 1) output("Your [pc.balls] tighten as your body prepares to spill its seed, and Sellesy must feel them bumping against her, ");
+		else output("Your face pinches as your body prepares to cum, and Sellesy must interpret your expression correctly, ");
+		output("because her clits slide down and squeeze your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(" at the base");
+		if(pc.cockTotal() > 1) output("s");
+		output(" like velvety vises. Push as your body might, only a whisper escapes; you look wide-eyed at the alien for an explanation.");
+
+		if(pc.smallestCockVolume() <= 9999) 
+		{
+			output("\n\nInstead, she slowly rises up. At the summit, as high as her knees can push her, the third clit wrapped around your dildo flicks it free of her pussy, dragging the crown over her labia and pulling it out of position with a trailer of glistening moisture. Sellesy inches forward, pulling your straining cock");
+			if(pc.cockTotal() > 1) output("s");
+			output(" into position in its place, then she sinks down again, capturing your [pc.cockNounSimple " + pc.smallestCockIndex() + "]");
+			if(pc.cockTotal() > 1) output(" while the second is trapped between her thighs");
+			output(". Finally, ready to indulge her hunger, she releases her grip. [pc.Cum] spurts from your too-long-repressed ejaculation, ");
+			if(pc.cumQ() < 10) output("sprinkling [pc.cumGem]s on Sellesy’s pink insides.");
+			else if(pc.cumQ() < 1000) output("draping Sellesy’s thirsty cunt with strings of [pc.cumColor].");
+			else {
+				output("flooding Sellesy’s quim with a torrent of seed that bulges her toned stomach until it washes back out and ");
+				if(pc.cockTotal() == 1) output("soaks the sheets and pools in the depression caused by your weight");
+				else output("joins the puddle your other prick is making as it paints her belly");
+				output(", until you’re nothing but a raft keeping Sellesy afloat on a lake of [pc.cumNoun].");
+			}
+			if(pc.cockTotal() > 1 && pc.cumQ() < 1000) 
+			{
+				output(" Your other prick ");
+				if(pc.cumQ() < 10) output("sprinkles");
+				else output("squirts");
+				output(" its offering onto her smooth, sweat-soaked stomach, pinned outside by her clit.");
+			}
+			output("\n\nSellesy’s cunt twitches out a mild orgasm as you dump your seed - enough to make her leg shake, but not enough to wipe away her smug, knowing smile. Her calves fold against your body, precluding the possibility of early escape. She’s clearly intent on drinking her fill. Behind the trifornifilia, her clit toys idly with your captive holo-dick, stroking it up and down, forcing aftershocks from your real cock");
+			if(pc.cockTotal() > 1) output("s");
+			output(". ");
+			if(pc.PQ() < 40) output("For ten minutes");
+			else output("Until your strength recovers enough to move her");
+			output(", she drinks from you{, dipping into the puddle on the bed with her clits when you go dry");
+			output(".");
+		}
+		//if cockSmallest is too big for sellesy
+		else
+		{
+			output("\n\nInstead, she hooks her shirt and slowly pulls over her head, finally revealing her gorgeous breasts. With a jaunty fingertip, she pulls your [pc.cockNounSimple] toward her while she leans forward, tucking it into her cleavage.");
+			output("\n\n<i>“Much cleaner this way,”</i> she says idly. Before you can parse, she rises up, dragging your dick through her tits, and captures the [pc.cockHeadNoun] with her mouth; her clit unwinds, and your load boils forth. ");
+			//(small/med cum)
+			if(pc.cumQ() < 1000)
+			{
+				if(pc.cumQ() < 10) output("Sprinkles");
+				else output("Strings");
+				output(" of [pc.cumNoun] wet Sellesy’s tongue, and she smiles around your shaft.");
+			}
+			else output(" So much escapes that Sellesy’s cheeks bulge; unable to swallow fast enough and unable to maintain her seal, she spills [pc.cumNoun] down her chin and onto her breasts.");
+			output(" The alien releases you when your cock begins to soften, and the last dribble escapes down her chin; she wipes the cum off her face");
+			if(pc.cumQ() >= 1000) output(" and chest");
+			output(" and licks her fingers, then resumes her usual grin.");
+		}
+		//merge and end cock branches
+	}
+	//if pc has only vag
+	else if(pc.hasVagina())
+	{
+		output("\n\nSellesy shifts and leans forward, pushing off the dildo slightly; two of her clits unwind and snake their way free, out the back. They find your [pc.vaginas] and begin to rub, teasing out droplets of lubrication that mingle with the alien’s own and turn the fabric sticky-wet. Your [pc.thighs] twitch, trying to close down on the rosy tentacles, and Sellesy’s smile deepens.");
+		output("\n\n<i>“I wonder how quickly you can climax,”</i> she muses. Her tone is less than innocent... in fact, it’s downright diabolical. One of the clitorises hooks under the hem and pries the sticky cloth away from your pussy; the other uses the access to touch you intimately, exploring your own clitoris and labia. As you quiver under this new siege, Sellesy resumes gyrating her hips on your thick photonic prong, testing just how the feedback translates her pussy’s convulsions to yours.");
+		output("\n\nInterlaced with the trifornifilia, you can’t stop her curious clit from moving beyond fondling and sliding into your pussy, nor would you want to - the hot, writhing tentacle curls and licks at your nerves. Within a few minutes, the internal and external siege brings your pliant, drunken mind to climax; Sellesy must be watching you closely, because she leans forward and");
+		if(!pc.isTaur()) output("pins you to the bed with her hands on your shoulders, ");
+		output("unwinds all her clits from the dildo, snaking them into your underwear and cupping against your [pc.vaginas]. Pinned to the bed, you writhe out your climax against the waitress, ");
+		if(pc.PQ() < 50) output("who easily holds you down");
+		else output("who has a demanding job to keep your powerful frame from bucking her off");
+		output(". ");
+		//(low girlcum)
+		if(!pc.isSquirter()) output("Trickles of [pc.girlCum] are squeezed from your [pc.vaginas], only to be routed back in by Sellesy’s wall of pliable, smooth muscle.");
+		else output("Gushes of [pc.girlCum] squirt from you, and it’s all Sellesy can do to cup the flow inside with her clits; their oily surface grows more and more [pc.cumVisc] and soon, the trellis begins to leak onto the bed.");
+
+		output("\n\nShe holds you there until your orgasm fades, then lets up your shoulders and leans back again. Reaching a hand down, she cuts off the projector, leaving a sudden void both in her pussy and in your nerves. That space is quickly filled by the new sensation of her clit dipping into your [pc.vaginas], lapping up [pc.girlCumNoun] and transferring it to her own quim. She drinks of you until your juices taper off, then lets you go.");
+	}
+	//if unsexed
+	else
+	{
+		output("\n\nSellesy rides you hard, testing the limits of your toy’s ability to transfer sensation to your sexless crotch. For five minutes she grinds, but her smile flags as you take stroke after stroke without cumming. She leans back. <i>“You’re a regular rock,”</i> the woman sighs. <i>“You’re also greatly exceeding my interest in this. Let’s wrap it up.”</i>");
+		output("\n\nBefore you can ask a question, you feel one of her clits unwind from the projection. It snakes into your underwear and begins to hunt; within seconds, it’s found your [pc.asshole] and is tickling your ring. You jerk, and Sellesy’s smile returns. She pivots her hips again, resuming the torture of your dildo, and the smooth clitoris invades your ass with an oily push and starts to thrust. Using expert flicks at your anal nerves, Sellesy brings you to orgasm; your asshole tries to squeeze, but her tapered tentacle easily eludes you as the alien laughs, leaving you to shake out your orgasm as she stirs your holo-cock for extra amusement.");
+	}
+	//common ending
+	output("\n\n<i>“I suppose that was alright,”</i> Sellesy says. <i>“It was a diversion, at least.”</i> She climbs off of you and redresses, then heads for the door... but not before casting one last glance and smirk back. <i>“Toy");
+	if(InCollection(pc.race(),["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("poodle");
+	else output("-boy");
+	output(",”</i> she says, and slips out of the room.");
+	IncrementFlag("SELLESY_HL");
+	processTime(35);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
