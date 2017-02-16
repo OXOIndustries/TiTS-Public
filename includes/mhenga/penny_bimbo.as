@@ -52,7 +52,7 @@ public function bimboPennyMenu():void
 	addButton(0,"Talk",bimboPennyTalk);
 	if(pc.lust() >= 33) addButton(1,"Sex",bimboPennySex);
 	else addDisabledButton(1,"Sex","Sex","You are not quite in the mood for this at the moment.");
-	if(pc.hasItem(new IQBGone())) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger's lab.");
+	if(pc.hasItem(new IQBGone())) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -110,7 +110,7 @@ public function bimboPennySexMenu():void
 	clearMenu();
 	//[Fuck her][Get fucked by her][Get oral][Cum bath][Play with Flahne]
 	if(pc.hasCock() && pc.cockThatFits(penny.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckBimboPenny,undefined,"Fuck Her","Use your cock to fuck the happy little bimbo.");
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit in her, even after her enhancements.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You’re too big to fit in her, even after her enhancements.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis to fuck her.");
 
 	addButton(1,"Get Fucked",getFuckedByBimboPenny,undefined,"Get Fucked","Take advantage of bimbo Penny’s rather sizeable tool.");
@@ -415,13 +415,14 @@ public function playWithFlahne():void
 	output("\n\nShe takes the entire length with little more than a blissful shudder, the smile wide on her face as Penny fills her utterly. Penny also seems to be enjoying herself, her giggle dying off into a low growl as she starts rocking her hips powerfully back forth, making Flahne gasp at the intense pleasure. Taking that as your cue you lean in, wrapping Flahne up in another passionate kiss even as Penny pistons into her from below.");
 	output("\n\nYou can feel Penny’s movements through Flahne’s body, and pretty soon you can even feel the growing, urgent pulse as Penny once again starts to fill her goopy body up with cum. You hold Flahne tight, riding with her over every bump and thrust of the climax she’s surfing, but all the while savoring the sweet but salty taste clinging to every drop of her body. And then, suddenly, there’s some tipping point, Flahne’s whole body tenses up, and then there’s just - release.");
 	output("\n\nYou don’t know if it’s because Flahne’s saliva has been so soaked with cum, or even if somehow her body is fluid enough to allow Penny to simply shoot her load straight up through her if she’s already so full, but whatever the reason you suddenly find your own mouth flooding with thick, creamy cum. Flahne’s tongue is sliding thickly between your lips, almost the same texture and definitely the same taste, swiping slickly around inside you as the stream of cum pours down your throat. It tastes amazing, but more than that, it feels so wonderfully perverted; the fact that this sweet little goo girl has been fucked so hard - by the girl that <i>you</i> turned into an eager, big-cocked bimbo - that now it’s like she’s almost made of cum, and absolutely loving every second of it. You made Penny the perfect cumslut, and then you made her so potent that she converted someone else into a dripping monument to sex without even realizing it. And now, as the three of you hold each other tight, you’re all able to let go and enjoy what that truly means, Penny’s over-productive balls pumping an endless stream of cum straight into Flahne’s eager pussy, while in turn a flood of her freshly-sweetened cum floods into your mouth.");
-	output("\n\nIt’s you that breaks contact first. Penny and Flahne both seem completely willing to keep going, but before long your pesky need to breathe forces you to pull away. Flahne still seems lost in bliss as you part, thick strands of cum still connecting the two of you until you stand back up fully, but Penny has by now recovered herself enough that she’s watching your contended expression with a happy grin of her own - even though she’s still fucking Flahne steadily all the while.");
+	output("\n\nIt’s you that breaks contact first. Penny and Flahne both seem completely willing to keep going, but before long your pesky need to breathe forces you to pull away. Flahne still seems lost in bliss as you part, thick strands of cum still connecting the two of you until you stand back up fully, but Penny has by now recovered herself enough that she’s watching your contented expression with a happy grin of her own - even though she’s still fucking Flahne steadily all the while.");
 	output("\n\n<i>“Wow [pc.name],”</i> she says eventually, <i>“you have like, the </i>best<i> ideas.”</i>");
 	output("\n\nYou smile in response as you stand back up and put yourself back together, leaving Flahne to sink slowly back down beneath the table as Penny settles back down to her earlier position.");
 	output("\n\nWinking as you turn and leave, you say simply, <i>“Have fun!”</i>");
 
 	processTime(25);
 	penny.orgasm();
+	pc.loadInMouth(penny);
 	pc.lust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

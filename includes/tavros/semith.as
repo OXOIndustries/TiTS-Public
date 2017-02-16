@@ -705,7 +705,7 @@ public function semithSexDoggieStyle():void {
 	if(pc.vaginas.length == 1) output(" muff");
 	else output(" pussies");
 	
-	output(" gently but firmly, rekindling your lust until you are " + pc.mf("groan", "moan") + " your wordless approval. Only then does the vulkrim step up the pace, spearing into your hole");
+	output(" gently but firmly, rekindling your lust until you are " + pc.mf("groan", "moan") + "ing your wordless approval. Only then does the vulkrim step up the pace, spearing into your hole");
 	if(tailSexed) output("s");
 	
 	output(" ardently");

@@ -882,16 +882,16 @@ public function cowgirlMissReasner():void
 	output("\n\nIn your orgasmic bliss, you both forget just how hard you two are holding onto each other; " + flags["BEA_TITLE"] + "’s polished fingernails dig into the [pc.skinFurScales] of your back");
 	if(pc.wingCount > 1 || (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)))
 	{
-		output(", and your ");
-		if(pc.wingCount > 1) output("[pc.wings]");
-		if(pc.wingCount > 1 && (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG))) output(" and ");
-		if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("[pc.tails]");
+		output(", and your");
+		if(pc.wingCount > 1) output(" [pc.wings]");
+		if(pc.wingCount > 1 && (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG))) output(" and");
+		if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" [pc.tails]");
 		var plural:Boolean = (pc.wingCount > 1 || (pc.tailCount > 1 && pc.hasTailFlag(GLOBAL.FLAG_LONG)));
-		if(plural) output("are");
-		else output("is");
+		if(plural) output(" are");
+		else output(" is");
 		output(" tightly wrapped around her");
 	}
-	output(". It takes a conscious effort to relax your muscles enough to separate. " + flags["BEA_TITLE"] + ", still on your [pc.cock " + x + "], flushed and sweaty, with thoroughly mussed hair, looks radient after such a strong orgasm");
+	output(". It takes a conscious effort to relax your muscles enough to separate. " + flags["BEA_TITLE"] + ", still on your [pc.cock " + x + "], flushed and sweaty, with thoroughly mussed hair, looks radiant after such a strong orgasm");
 	if(pc.cumQ() >= 4000) output(" and with a tummy so stuffed with [pc.cumVisc] [pc.cumNoun] that she looks positively pregnant");
 	output(".");
 	output("\n\nShe cradles her ");

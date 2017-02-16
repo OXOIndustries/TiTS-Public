@@ -1505,8 +1505,8 @@ public function treatmentHourProcs(totalHours:int):void
 		if(startHours < 26 && treatedHours >= 26)
 		{
 			AddLogEvent("You", "passive", (26 - startHours) * 60);
-			if(pc.legCount != 1) ExtendLogEvent("rub your thighs together");
-			else ExtendLogEvent("wiggle uncomfortably");
+			if(pc.legCount != 1) ExtendLogEvent(" rub your thighs together");
+			else ExtendLogEvent(" wiggle uncomfortably");
 			ExtendLogEvent(". There’s this growing feeling of emptiness ");
 			if(pc.legCount != 1) ExtendLogEvent("between them");
 			else ExtendLogEvent("inside you");
@@ -1950,7 +1950,7 @@ public function treatmentHourProcs(totalHours:int):void
 			}
 			
 			//125 hours:
-			//Massive dick growth leading to autofellatio. PC marvels at how it’s just as good as sex, maybe better. (Chance of <i>“Autofellatio Queen perk unlock. Chance of Autococknosis perk unlock)
+			//Massive dick growth leading to autofellatio. PC marvels at how it’s just as good as sex, maybe better. (Chance of Autofellatio Queen perk unlock. Chance of Autococknosis perk unlock)
 			if(startHours < 125 && treatedHours >= 125 && pc.hasCock() && pc.genitalLocation() <= 1)
 			{
 				var dickBiggered:Boolean = false;
@@ -1997,7 +1997,12 @@ public function treatmentHourProcs(totalHours:int):void
 				ExtendLogEvent(ParseText("\n\n[pc.Cum] splashes onto the back of your tongue and down your greedily drinking throat. You can feel it splashing into your stomach, the extra thick squirts flooding your neck in the brief moment before you completely devour them. Your eyes roll back, but you keep sucking and drinking on autopilot, like the Treatment has grown a part of your brain that can guide your body while you’re busy too busy cumming and quivering to think. It’s a good thing too, because you’re swallowing a lot of jizz. There’s enough to give your belly a little pudge and then some more, tingling on your tongue and delighting you with bliss-blasting mental fireworks."));
 				pc.loadInMouth(pc);
 				ExtendLogEvent(ParseText("\n\nThe [pc.cockHead " + x + "] escapes your [pc.lips] at some point, painting them in a lovely layer of [pc.cumColor]"));
-				if(pc.cumQ() >= 10000) ExtendLogEvent(ParseText(", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet."));
+				if(pc.cumQ() >= 10000)
+				{
+					ExtendLogEvent(ParseText(", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet."));
+					applyCumSoaked(pc);
+					applyCumSoaked(pc);
+				}
 				else ExtendLogEvent(". More jizz dribbles out, the last dregs of your orgasm, so you take your time licking them from the pulsing length, greedily devouring every drop.");
 				if(pc.cockTotal() > 1)
 				{
@@ -2025,7 +2030,7 @@ public function treatmentHourProcs(totalHours:int):void
 			{
 				AddLogEvent(ParseText("Ooh, your [pc.balls] feel so warm they’re practically glowing! You dance in place, feeling them wobbling back and forth"), "passive", (130 - startHours) * 60);
 				if(pc.legCount > 1) ExtendLogEvent(ParseText(" between your [pc.thighs]"));
-				ExtendLogEvent(ParseText(", so big and full of [pc.cum] that squish and slosh from the motions. It feels so good that you soon forget your dance and flop down"));
+				ExtendLogEvent(ParseText(", so big and full of [pc.cum] that they squish and slosh from the motions. It feels so good that you soon forget your dance and flop down"));
 				if(pc.legCount > 1) ExtendLogEvent(ParseText(", [pc.legs] spread as wide as possible to make room for your swelling nutsack"));
 				ExtendLogEvent(ParseText(". Your [pc.cocks] join"));
 				if(pc.cockTotal() == 1) ExtendLogEvent("s");

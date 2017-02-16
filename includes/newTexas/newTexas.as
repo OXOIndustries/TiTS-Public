@@ -752,6 +752,10 @@ public function worshipZeBullCawk():void
 	output(".");
 	processTime(15);
 	pc.lust(20+rand(10));
+	var ppOgram:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppOgram.createPerk("Fixed CumQ", 2000, 0, 0, 0);
+	pc.loadInMouth(ppOgram);
+	pc.loadInMouth(ppOgram);
 	IncrementFlag("FUCKED_TEXAN_CUSTOMS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -835,6 +839,9 @@ public function useDaMilkarMenu():void
 	addButton(1, "w/o Carrie", useTheMilkerWithoutCarrieYaSkag, undefined, "w/o Carrie", "Tell Carrie you can get yourself situated.");
 	if(!pc.hasPheromones()) addDisabledButton(2, "Blowjob", "Blowjob", "Only pheromone-emitting males can ask Carrie for a blowjob.");
 	else addButton(2, "Blowjob", carrieBlowjobIntro,undefined, "Blowjob", "Why have the harsh embrace of a machine when there’s a perfectly developed cow-girl close at hand?");
+	if(pc.hasCockTail() && pc.hasCock() && pc.hasParasiteTail() && !pc.hasStatusEffect("NT_TAILCOCK_MILK_CD") && StatTracking.getStat("milkers/prostate milker uses") > 3) addButton(3,"Parasite Drop",carrieCockTailSneakyDeaky,undefined,"Parasite Drop","Convince Carrie that she can trust you to be alone with the machine -- then dump a load of parasites in the stud stock with your tail.");
+	else if(!pc.hasTailCock() || !pc.hasParasiteTail() || !pc.hasCock()) addDisabledButton(3,"Parasite Drop","Parasite Drop","You need both a cock (to decoy) and a parasitic tail-cock to do this.");
+	else addDisabledButton(3,"Parasite Drop","Parasite Drop","Carrie's not supposed to take off and leave someone alone with the milker. If you want to drop a load of parasites into the stud stock without being caught, you should get more uses in so she trusts you.");
 	addButton(14, "Leave", mainGameMenu);
 }
 
@@ -1289,6 +1296,7 @@ public function specialOrdersForTreatedGals():void
 	pc.modThickness(1);
 	IncrementFlag("HERMAN_SPECIAL_ORDER");
 	var ppHerman:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppHerman.createPerk("Fixed CumQ", 2000, 0, 0, 0);
 	pc.loadInMouth(ppHerman);
 	pc.loadInMouth(ppHerman);
 	pc.loadInMouth(ppHerman);
@@ -2910,3 +2918,190 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 	}
 }
 
+//trick Carrie into leaving and deposit a dose of parasitic seed for distribution
+//daydream about creating a random cockvine foothold scenario while you do
+	//meeting certain milestones on other planets unlocks new fantasies
+//adds mean point(s) to personality score
+//limit once per day; only available after noon
+//requires both a cock @ crotch and a cockvine-type tail-cock (exclude non-cockvine types if added)
+//requires PC has unlocked the cockvine entry in codex
+//requires PC has used milker several times to indicate his prowess -- may require new flag?
+	//at coder discretion, access may also require that the PC has seen Carrie's shower scene
+	//at coder discretion, breaking the machine may reset the 'prowess' flag or put it into the negative
+//button goes in same milker menu as the 'Use w/Carrie' and 'Use w/oCarrie' buttons
+//button name: Parasite Deposit
+//tooltip: Convince Carrie that she can trust you to be alone with the machine -- then dump a load of parasites in the stud stock with your tail.
+//tooltip disabled, missing genitals: You need both a cock (to decoy) and a parasitic tail-cock to do this.
+//tooltip disabled, not enough previous uses: Carrie's not supposed to take off and leave someone alone with the milker. If you want to drop a load of parasites into the stud stock without being caught, you should get more uses in so she trusts you.
+
+//note motes:
+//-Carrie usually stays during, even if PC asks her not to be involved
+//-Carrie starts and stops the machine via a button on the wall
+//-there's an 'occupied' sign on the door that Carrie turns on when in-session
+
+public function carrieCockTailSneakyDeaky():void
+{
+	clearOutput();
+	author("Zeikfried");
+	pc.addHard(1);
+	showName("MILKER\nMISCHIEF");
+	if(pc.isBro()) output("<i>“Ya look tired,”</i> you say.");
+	else if(pc.isBimbo() || pc.isNice()) 
+	{
+		output("<i>“You look tired, ");
+		if(pc.isBimbo()) output("hon’");
+		else output("Carrie");
+		output(",”</i> you say. <i>“Have you had a break recently?”</i>");
+	}
+	else output("<i>“You’re looking worn out, Carrie. Have they been working you hard?”</i> you ask.");
+
+	output("\n\nCarrie smiles patiently. <i>“I could use a gap and stretch for sure,”</i> she answers. <i>“I been cooped up in here a while.”</i>");
+	if(pc.isBro()) output("\n\n<i>“’How about starting me and taking off?”</i>");
+	else
+	{
+		output("\n\n<i>“So");
+		if(pc.isBimbo()) output(", like,");
+		output(" why don’t you get me started and then you can step out?”</i>");
+	}
+	output(" you ask, trying to sound earnest and well-intentioned.");
+	output("\n\n<i>“Haha, nah.”</i> She sighs. <i>“I wish I could, but I’m supposed to stay with the machine when someone’s using it.”</i>");
+	output("\n\n<i>“Well, </i>I<i> know that,”</i> you reply. ");
+	if(pc.isBro()) output("<i>“But I know where the off switch is, too.”</i>");
+	else if(pc.isBimbo()) output("<i>“But, like, you’ve seen me use it enough that you know I can handle it, right?”</i>");
+	else output("<i>“You say it all the time. But </i>you<i> know I’ve used the machine enough to know how it works by now, and how to cut it off if there’s trouble. So it’s not like there’s a real danger.”</i>");
+	output("\n\nThe cowgirl hems and haws for a minute, but her face starts to soften. <i>“Well... I suppose I could lock the door so no one can see or come in. Would you be okay with that?”</i>");
+	output("\n\nYou pretend to consider, then nod.");
+	if(pc.isBro()) output(" <i>“Sure.”</i>");
+
+	output("\n\nCarrie smiles bashfully. <i>“Okay. I’m counting on you,”</i> she says. She gestures at you, and you quickly ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("strip and ");
+	output("insert your cock");
+	if(pc.cockTotal() > 1) output("s");
+	output(", already erect, into the receiver. Carrie doesn’t let your arousal pass without comment. <i>“Been lookin’ forward to this, have you?”</i>");
+
+	output("\n\nWithout waiting for an answer, she engages the milker. The imposing mechanical arm swings into position behind you, bringing the absurd dildo affectionately called ‘Mr. Floppycock’ right up to your [pc.asshole].");
+	//(low ass wet)
+	if(pc.ass.wetness() < 1) output(" Thoughtfully, Carrie pauses the action to apply a bit of lubrication to the massive prong before she shoves it into you.");
+	else output(" Carrie watches carefully, ready to pause and apply lubrication, but you take the dildo without a peep; the stunned cowgirl’s finger hovers over the control dumbly as the toy hilts in your welcoming asshole.");
+	//{anal stretch check here}
+	pc.buttChange(Math.round(pc.analCapacity()/2),true,true,false);
+	output(" As soon as you look comfortable with the penetration, she turns on the strokes.");
+
+	output("\n\n<i>“Um, you’re set up, so... have fun and be safe, I guess!”</i> Carrie cheers, as the robotic arm ramps up. <i>“I’ll be back in fifteen minutes to turn you off.”</i> The cowgirl switches the room’s sign to ‘Occupied’ and then, glancing back nervously, slips out. A ‘click’ sounds from the door - she’s just locked it. Perfect.");
+
+	output("\n\nYou push through the machine-induced fog of pleasure, reaching out to your tail, extending the perverted parasite and forcing it inside one of the ports before you abandon yourself to the soft, synthetic pussy and smooth strokes. Strange desires trickle into your thoughts unbidden - images of your parasitic seed impregnating faces and places you know - and you relax and allow yourself to daydream while the machine extracts your tainted load.");
+
+	//pick a fantasy randomly from the following list
+	//New Texas fallback if PC does not qualify for other scenes
+	//Tavros Station fallback if PC does not qualify for other scenes
+	var fantasies:Array = [2,3];
+	var x:int = 0;
+	var cumTotal:Number = pc.cumQ();
+	//Mhen’gan fantasy requires PC knows about Penny’s crush on Flahne and both are still on Mhen’ga (not followers)
+	if(flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined && !pennyIsCrew()) fantasies.push(0);
+	//Myrelli fantasy requires PC has toured the Gildenmere thollum
+	if(flags["THOLLUM_TOURED"] != undefined) fantasies.push(1);
+	
+	//store the fantasy chosen in memory until the entire scene ends
+	x = rand(fantasies.length);
+	fantasyOutput(fantasies,x);
+	//Remove used fantasy
+	fantasies.splice(x,1);
+
+	//after first fantasy ends, resume here
+	output("\n\nYour fantasy makes you cum, hard. [pc.EachCock]");
+	if(pc.cumQ() < 10) output(" sprinkles a few drops");
+	else if(pc.cumQ() < 200) output(" spurts a few ropes");
+	else output(" sprays a flood");
+	output(" of [pc.cum] into the collector; alongside ");
+	if(pc.cockTotal() == 1) output("it");
+	else output("them");
+	output(", your tail jerks and unloads, dumping a stream of parasites. The flexible toy in your ass continues pounding at your pucker, stroking your prostate and keeping you hard; after a few minutes of non-restful rest, the strokes begin to stir your lusts again. New, arousing images begin to swim through your thoughts, syncretizing into more fantasies.");
+	pc.orgasm();
+	cumTotal += pc.cumQ();
+	//pick and output another, different fantasy from the list above (i.e. excluding the first fantasy chosen in this session)
+	//store this fantasy in memory until scene ends as well
+	var y:int = rand(fantasies.length);
+	fantasyOutput(fantasies,y);
+	//Remove used fantasy
+	fantasies.splice(y,1);
+
+	//after 2nd fantasy ends
+	output("\n\nAgain the machine and your perverted imagination bring you to climax, and again a double load of seed spills from you. You dump stroke after stroke of [pc.cum]; your [pc.tailCock] works overtime and spurts a load of parasites almost as large as the first, ");
+	if(pc.cumQ() < 20) output("much more resilient than your spent [pc.balls]");
+	else output("though it’s still nowhere near the volume produced by your [pc.balls]");
+	output(". As the joy recedes, more quickly this time, you suspect that your alone time is almost up.");
+
+	output("\n\nThe machine continues to pound; it’s a struggle to pull your tail free and force the parasite back into concealment. You’re at the robot arm’s mercy for a couple minutes more, drawn part-way toward another orgasm, until a click from the door interrupts your troubled, sore bliss.");
+
+	output("\n\n<i>“Hey,”</i> Carrie says, slipping into the stall again. <i>“Ready to stop?”</i>");
+	output("\n\nYou agree, and Carrie turns the machine off. The floppy synthetic withdraws, freeing you to extract your chafed cock and collapse gratefully on the receiver.");
+	output("\n\n<i>“Wow,”</i> Carrie remarks, looking at the machine’s display. <i>“You came ");
+	if(pc.cumQ() < 1000) output("a lot");
+	else output("a little");
+	output(" more than usual. I’m almost jealous of the machine....”</i>");
+
+	if(x == 2 || y == 2)
+	{
+		output("\n\n<i>“I was thinking about you,”</i> you flirt, brazenly.");
+		output("\n\nThe cowgirl’s fair skin blushes red. <i>“Oh yeah? Maybe next time I’ll stick around and you can tell me what’s on your mind.”</i>");
+	}
+	else output(" She brings up the disposal option and looks at you hopefully. <i>“You thinkin’ to destroy this load, or are you gonna let me make some lucky girls very, very happy?”</i>");
+	output("\n\nYou smile and nod. Carrie will never find out the reason you’re eager for her to distribute your sperm... at least, probably not.");
+	processTime(20);
+	IncrementFlag("NT_TAILCOCK_MILKINGS");
+	pc.orgasm();
+	pc.lust(10);
+	//end
+	//do two pc orgasms, place pc wherever he goes after male milking
+	//add some lust since Carrie wasn't there to shut off the machine right after orgasm
+	//set the timer/flag that limits scene to once per day
+	pc.createStatusEffect("NT_TAILCOCK_MILK_CD", 0, 0, 0, 0, true, "", "", false, 24*60);
+	StatTracking.track("milkers/prostate milker uses");
+	StatTracking.track("milkers/cum milked", cumTotal);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function fantasyOutput(fantasies:Array,x:int):void
+{
+	//Mhen’gan fantasy requires PC knows about Penny’s crush on Flahne and both are still on Mhen’ga (not followers)
+	if(fantasies[x] == 0)
+	{
+		output("\n\nYou imagine your parasitic offspring arriving on Mhen’ga, carried perhaps by single immigrants who bought New Texas kits, yearning to start a family. Impossible to contain, the seedlings escape the primitive settlement and establish a population in the lush jungle. From there, they prey on natives and inexperienced rushers alike until the UGC, inundated with demands, orders their local enforcers to make a token effort at control.");
+		output("\n\nYou fantasize about Penny, reading the directive and sighing as she picks up her weapon, and fast forward to the poor girl surrounded by cockvines, defeated and penetrated, infested by a seedling that takes root in her gorgeous, plush tail; you picture her watching initially with horror and then with arousal as the thick, drooling phallus emerges from her brush for the first time and makes a beeline for her gaping pussy, to fill Penny with pleasure and parasites alike. The proud ");
+		if(penny.hasCock()) output("herm");
+		else output("woman");
+		output(" would insist on keeping her infestation secret, of course, embarrassed but unwilling to give up the pleasure.");
+
+		output("\n\nOf course, a secret is no fun unless shared... Penny wouldn’t be able to endure it if she couldn’t use her new cock with Flahne, fucking whenever she can get time off, dumping load after load into the the slutty rahn. And most of the seed would be digested harmlessly, yes, but... you imagine a few hardy mutations among the billions and billions of Penny’s spores managing to take root after months of lovemaking, growing like bacteria in agar, combining with the gooey woman. You picture her translucent body discolored by verdant growth deep inside that slowly forces out the orange, blossoming and spreading until her goopy locks turn leafy and green. And then, one day, a cute female rusher blunders into the office while cockvine-Flahne is playing with herself, and the shameless rahn coaxes the blithe girl into a one-night stand. As the two climax together, Flahne’s ovipositor unloads the first of a new generation of hybrids into her lover....");
+	}
+	//Myrelli fantasy requires PC has toured the Gildenmere thollum
+	else if(fantasies[x] == 1)
+	{
+		output("\n\nYou imagine your seed piggybacking all the way to Myrellion itself, undoing at a stroke the governments’ efforts to keep cockvines out of the cities as pregnant off-worlders unleash seedlings in the streets and hospitals. You imagine the citizens so infested that the ruling myr give up on containment and try to control the damage by restricting the vines like a recreational drug. A counter-culture springs up among the myr youth; cultish sex parties where the infested introduce their parasites to curious myr girls just recently graduated from under their teachers’ thumbs.");
+		output("\n\nMost of the graduates are nervous and stiff, still as statues as they experience their first penetration, but a few impatient and adventuresome girls have clearly been sneaking out on their own. Their body language is relaxed and welcoming and they shift in time with their partners, enjoying the sex. You imagine one slutty young lady in particular that’s so bloated with ‘impregnations’ that her abdomen is almost perfectly round, swollen with incubating parasites until it strains at her chitin. She lies on her back, too cumbersome to be taken from behind, gazing affectionately up at her lover. On her chest, two tiny, flat breasts are growing in beneath the larger first pair - her body, confused by the sheer number of false pregnancies, is developing into a queen’s. The lewd girl rubs her puffy nipples with all four hands and drools nectar between her fingers, giggling as her lover tenses up and drops another load into her gaped pussy.");
+		output("\n\nNext to the false queen is a nervous virgin myr, on hands and knees. Though her own lover is curled over her abdomen,working her tight pussy with a veiny vine prick, the virgin’s eyes are firmly fixed on the parasite queen. You imagine her watching with honest admiration and envy as the horny queen locks her legs around her mate, demanding another fuck even as the seed of the first spills from her overstuffed cunt. As she watches the queen’s lover haltingly begin to move again, the virgin girl’s hips shift in time, giving vent to her secret perversions. Before long, her partner bends over her back and twitches; the ex-virgin’s eyes shut tight and she bites her lip in anxious pleasure as the parasite ejaculate hits her cervix....");
+	}
+	//New Texas fallback if PC does not qualify for other scenes
+	else if(fantasies[x] == 2)
+	{
+		output("\n\nYour mind wanders to a fantasy of your spawn overtaking New Texas, distributed to a brood of eager wannabe mothers, ‘birthing’ in such numbers that wildlife control officers can’t stay on top of the rooting vines. With nearly everyone on New Texas sporting a cow-tail, the immature specimens have no shortage of hiding places either; a low-level struggle develops as common sense and government try to maintain control over treated brains high on the rushes of pleasure that vines provide. You picture an uprising of treated and tainted sex addicts wresting control from the ranch managers, content to indulge their parasites and genitals rather than work all day. The dominant business model shifts from agriculture to exotic sex tourism, and the fields grow over with cockvines to the point that a new industry actually springs up to figure out what to <i>do</i> with all this cockvine sperm....");
+		output("\n\nYou imagine yourself returning to New Texas after a year and taking in the changes. A new health food store-<i>cum</i>-sex club is the center attraction; ‘healthy’ cockvine salads and veggie-sperm-seasoned drinks are advertised prominently. Rowdy tourists of both sexes catcall and solicit the cowgirls standing outside, who no longer even bother to hide their throbbing vine-cocks; they accept propositions with very little negotiation. Several couples are making love in the open, exerting the barest effort to stay out of the walkways. You see treated whores with both male and female tourists, taking cock or fucking pussy with their parasites. New medical tents have been set up outside the spaceport, for visitors who don’t want to carry their cockvine pregnancies off-world, but many of the departing women walk right by - after all, it takes a very specific type of pervert to choose <i>this</i> brochure when planning a sexcapade. Strangely, most of the native males are missing... until you look over to the fields. The men are ‘working’ among orderly rows of cockvine plants; each one is naked from the waist down and stroking a cock and balls swollen too big to fit even a queen leithan. When one stops next to a cockvine, he slips his tail-cock inside his ass, stimulating his prostate until he blows a huge, nourishing load over the plant’s roots. Behind the tailless males, a woman or herm follows, doing the same job with moans of pleasure. Several new faces are among the workers... tourists who enjoyed themselves so much they took treatment and stayed.");
+		output("\n\nThe blur of activity dies down near the old barn. All of the milking stalls but Carrie’s are empty - her door is closed but ajar, and you can hear a loud moan building within that dies back as you get close. You find the cowgirl nude, bent over her male milker with her ass high, taking the huge dildo in her vagina and shaking out an orgasm. You hit the cutoff, and the dildo pulls out, covered in a thick sheen of pussy juice. Her eyes take a while to focus; you wonder just how long she’s been using the machine.");
+		output("\n\nWhen she finally engages with reality, Carrie bashfully grins and explains that nobody uses the male milkers anymore since all the men are in the fields. She’s been putting off taking a parasite and is trying to keep the traditional business running, but it’s such rough going that, well... Carrie pulls halfway away from the machine and you see the shaft of a red, chafed cock jutting from her crotch. Looks like she’s been supplementing the deposits herself, with the help of ");
+		if(CodexManager.entryUnlocked("Throbb")) output("illegal Throbb injections");
+		else output("some drug");
+		output(". She offers you a session for old times’ sake, but her swollen, gaped pussy stirs an urge of another kind. As Carrie tries to push off of the machine with her limp arms, you step in and hold her down. The cowgirl understands quickly when your [pc.cockHeadNoun] rubs against her puffy labia - she nods and her eyes begin to glaze over again. You slip inside, but even your [pc.cockBiggest] can’t fill her after a year with ‘Mr. Floppycock’... your tail easily slips inside too, double-teaming her. If Carrie notices that you’ve put in one of the parasites she’s been trying to avoid, she says nothing. You ride her hard, mashing her breasts against the milker receiver, and feel the oversexed nu-herm cum under you. As she dumps yet another load into the tank, you deposit your own in her pussy... along with a squirt from the grand-daddy parasite that started the whole mess.");
+	}
+	//Tavros Station fallback if PC does not qualify for other scenes
+	else if(fantasies[x] == 3)
+	{
+		output("\n\nYour mind wanders to your last time on Tavros station... to all the well-to-do women, artificially young and beautiful, vacationing in the high-class residential sections for a taste of the spacer’s life and studiously avoiding the opportunity to mingle with actual explorers. One spoiled young Venus walks from your vault of memory, with gorgeous blue eyes and straight brown hair, slim and elegant in her million-credit sundress. You’re sure you must’ve caught a brief glimpse of her on the streets; a woman like that sniffs at bars and would never look twice at a lowly rusher. A child of high finance; a trust fund baby, killing time by breaking hearts and playing at adventure until daddy dies and leaves her a company to run.");
+		output("\n\nYou imagine your spoiled princess ordering an insemination kit from New Texas, fooling herself that she’s doing it to continue the family name but really just wanting a baby to entertain her. When your parasite spawn pops out several months earlier than a child, it takes her by surprise in her nice bed. Before she can do anything, it attaches. Pull and pull as she might, her new tail won’t come off - and when the nerve connection establishes, her pulling takes on a different urgency. Her first cumshot is truly world-changing; daddy’s girl spends a week inside, blowing off dates and phone calls and just masturbating until her hands chafe, flooding her brain with the parasite’s hormones and fantasies.");
+		output("\n\nIn your daydream, jerking off can only satisfy for so long; soon your convert goes on the prowl. Where she used to avoid the low dives full of spacers, now she seeks them out. In a cute, slutty halter top and hip-hugger pants, green vine curling excitably over her ass, she chats up planet rushers at the bar, charming them with her boughten beauty and selecting only those women and herms headed off-station before the parasitic pregnancies will show. ");
+		if(pc.hasVagina()) output("You imagine catching her eye in one such bar. She gives you the flirty smile of a shyster spotting a mark and saunters over to your table, making small talk and ensuring you see the string of her skimpy thong rising above her pant waist. When you tell her that you’ll be blasting soon, she leans in and breathlessly offers a night of pleasure before you go. She takes you to a room rented under a fake name and there shows you her gorgeous body. Your tainted princess expects surprise when her tail blooms to reveal the throbbing phallus attached to her lovely female form, and you play along, letting her romance you and convince you to lie back and allow her to do all the work. As she idly strokes your neglected [pc.cockNounSimple] and it spurts over her teardrop breasts, her first load of many hits your cervix....");
+		else output("Giving out a fake name, she brings her mark to a rented room. She becomes a very talented liar, passing off the throbbing cock in her tail as an exotic body mod. As the poor rusher girl reclines and shudders in orgasm, your tainted princess deposits a load of your parasitic grandchildren in the girl’s pussy... the first load of many.");
+	}
+	//end of fantasy list
+}

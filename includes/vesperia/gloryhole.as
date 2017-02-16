@@ -124,11 +124,11 @@ public function stickDickThroughGloryhole(arg:int):void
 			output("”</i> The voice is so sultry that it’s almost a purr. <i>“I can’t wait to play with it!”</i>");
 			output("\n\nA hand wraps around you near the base. It squeezes gently, so gently that you nearly miss the not-so-gentle pricks of sharp claws. <i>“Hold still.”</i> Another claw traces along the underside, menacing your nerves with a hint of danger.");
 			output("\n\nYour heart hammers in your chest, yet somehow, you keep your [pc.cockNoun " + arg + "] still.");
-			output("\n\n<i>“Ohh, you’re good at this.”</i> A wet, warm tongue caresses the [pc.cockHeadNoun " + arg + "]. <i>“And tasty!”</i> Soft lips surround you. Her mouth is so hot! It glides over more and more of your member, and as you adjust to the rapturous embrace, you become aware of the subtle details. Her tongue, dragging on your most sensitive places. Her hand, so supple as it gently twists. The mystery woman has clearly never had to do anything harder than tugging on a prick, but she does that so, so well.");
+			output("\n\n<i>“Ohh, you’re good at this.”</i> A wet, warm tongue caresses the [pc.cockHead " + arg + "]. <i>“And tasty!”</i> Soft lips surround you. Her mouth is so hot! It glides over more and more of your member, and as you adjust to the rapturous embrace, you become aware of the subtle details. Her tongue, dragging on your most sensitive places. Her hand, so supple as it gently twists. The mystery woman has clearly never had to do anything harder than tugging on a prick, but she does that so, so well.");
 			output("\n\nBlood surges into your dick. It leaps upward, bumping you into the anonymous woman’s sharp teeth. Her claws prick the underside as she tightens her grip.");
 			output("\n\n<i>“Can’t control yourself?”</i> Your rod feels naked and cold without her mouth around it. She pumps up and down");
 			if(pc.cLength(arg) >= 12) output(", using both hands to wrangle your plus-sized totempole");
-			output(", greasing the whole of its length in slick saliva. <i>“I guess if you had self-control, you wouldn’t have thrust your dick into a hole for a stranger to play with.”</i> Her tongue drags around the rim of your [pc.cockHeadNoun " + arg + "]. Predictably, you twitch once more, jutting upward by virtue of your own incredibly rigidity.");
+			output(", greasing the whole of its length in slick saliva. <i>“I guess if you had self-control, you wouldn’t have thrust your dick into a hole for a stranger to play with.”</i> Her tongue drags around the rim of your [pc.cockHead " + arg + "]. Predictably, you twitch once more, jutting upward by virtue of your own incredible rigidity.");
 			output("\n\nThe voice laughs, then sucks your [pc.cock " + arg + "] in");
 			if(pc.cLength(arg) <= 5) output(", devouring most of the undersized length");
 			else output(", though only the first few inches");
@@ -139,7 +139,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			output("\n\nWet-sounding smacks fill the air when she bobs her head back and forth.");
 			if(pc.isGoo() && pc.balls > 1) output(" Her second hand drifts down to your [pc.sack], to cradle your balls. Fingertips casually caress the swollen orbs, almost worshipful in their attentions.");
 			output("\n\nA moan slips free. Belatedly, you identify it as your own.");
-			output("\n\nWIth a wet ‘pop,’ the casual cock-sucker lets you slide out. Her hands are far from idle. They pick up where the mouth left off, stroking and tugging.");
+			output("\n\nWith a wet ‘pop,’ the casual cock-sucker lets you slide out. Her hands are far from idle. They pick up where the mouth left off, stroking and tugging.");
 			if(pc.cLength(arg) >= 3) output(" They can’t fully encircle your big dick, but why should they? Feeling her small hands trying to please your every part is half of the enjoyment.");
 			output(" She gasps, voice garbled by a mouthful of spit and pre, <i>“Ohh, you liked that, did you?”</i> The mystery mouth-slut slaps your [pc.cockNoun " + arg + "] into her cheek once, twice... thrice. <i>“I like it when they make noise.”</i> She nuzzles your cock, stroking the other side. <i>“Are you ready to cum");
 			if(pc.cocks[arg].cType == GLOBAL.TYPE_FELINE) output(", little kitten?");
@@ -155,7 +155,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			else output(" It goes deeper and deeper. She gobbles down as much dick as she can, but even the most professional of tool-tamers would struggle with a prick like yours. Unsatisfied by this, she wraps both hands around the exposed length and jackhammers them back and forth.");
 			output(" A gentle suction makes itself known beneath the waves of heat and undulating tongue-pressure.");
 			output("\n\nYour voice hitches in the back of the throat, and you pound your palm weakly against the wall, [pc.legs] shaking. You’re so close! That telltale pressure is welling up inside you. The littlest addition would send you tumbling ov-");
-			output("\n\n<i>VIBRATION.</i> The anonymous dick-sucker’s throat vibrates, all the way from her deepest recesses to tightly-sealed lips. Alongside it, you hear barely hear the sound of a quiet purr.");
+			output("\n\n<i>VIBRATION.</i> The anonymous dick-sucker’s throat vibrates, all the way from her deepest recesses to tightly-sealed lips. Alongside it, you barely hear the sound of a quiet purr.");
 			output("\n\nOh fuck! You moan loudly - maybe loud enough for it to be heard in the bar.");
 			output("\n\nElsewhere in the bathroom, someone chuckles.");
 			output("\n\nYou’ve tipped over the precipice now. Even if she stopped and pulled off, you’d hose a load into the mystery gal’s face. You’d fucking paint her. But she isn’t pulling off. Her purr is getting louder, and with it, the vibrations intensify. Your [pc.cock " + arg + "] surges against her dancing tongue. Her purr reaches a fevered pitch.");
@@ -172,7 +172,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			//1L to 10L
 			else if(pc.cumQ() < 10000)
 			{
-				output("\n\nThe first tremendous squirt pumps so much seed into tart’s stuffed maw that you lose all contact with her cheeks. You can feel your own [pc.cumNoun] churning around as you pump more in, and the vibrations through it, but her cheeks must be bulging with your load.");
+				output("\n\nThe first tremendous squirt pumps so much seed into the tart’s stuffed maw that you lose all contact with her cheeks. You can feel your own [pc.cumNoun] churning around as you pump more in, and the vibrations through it, but her cheeks must be bulging with your load.");
 				if(pc.balls > 1 && pc.isGoo()) output(" Wetness trickles down your [pc.sack] once you completely overload her, but the image of a hapless girl with a waterfall of [pc.cumGem] fluid spilling from her lips only makes you nut harder.");
 				else output(" Muted, bubbling gurgles reach your ears, and with it, the mental image of a hapless girl spilling a waterfall of [pc.cumGem] fluid down her chin.");
 				output(" She gulps loudly, but barely puts a dent in your load. The purring stops, and her suck-hungry mouth lets go. [pc.CumNoun] arcs through the air, slapping wetly into the stall’s walls and, you imagine, her face. To her credit, she strokes you the whole way through.");
@@ -337,7 +337,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			else output("Did you bring me more cum than last time? You can’t cum unless you did, okay?");
 			output("”</i>");
 			output("\n\nInarticulately grunting, you flex your [pc.cock " + arg + "] in her hands. Hopefully, she’ll understand.");
-			output("\n\n<i>“Great!”</i> Her voice is husky with want. She sounds like you imagine a girl would sound after edging herself two or three hours. Then she’s on you once more. Those lips, cherry-hot with lust, frame a tunnel of pure delight that bathes you in sloppy, wiggling pleasure.");
+			output("\n\n<i>“Great!”</i> Her voice is husky with want. She sounds like what you imagine a girl would sound after edging herself two or three hours. Then she’s on you once more. Those lips, cherry-hot with lust, frame a tunnel of pure delight that bathes you in sloppy, wiggling pleasure.");
 			if(pc.cLength(arg) >= 8)
 			{
 				output(" Her hands continue to stroke, pumping faster and faster, squeezing your urethra as if she could milk the orgasm out of your body with simple pressure alone.");
@@ -822,7 +822,7 @@ public function blowAThrobUser(user:int):void
 	output(", making her wiggle adorably. <i>“Such a naughty girl, distracting me while I’m trying to work.”</i> After a second to catch your breath, you dive back down and resume sucking, your attention one hundred percent focused on making the modest tool cream all over your tongue.");
 	output("\n\n<i>“Oh, awesome.”</i>");
 	output("\n\nDoes this girl ever shut up?");
-	output("\n\nYou eyes nearly go cross trying to look at the base of the ");
+	output("\n\nYour eyes nearly go cross trying to look at the base of the ");
 	if(user == 0) output("vivid alien shaft");
 	else if(user == 1) output("lavender length");
 	else if(user == 2) output("inky length");
@@ -833,7 +833,7 @@ public function blowAThrobUser(user:int):void
 	output("\n\nThrough the upper edge of the hole, you catch a brief glance of a blue fluid being pumped into the dick. A second later, it’s taken away.");
 	output("\n\n");
 	if(CodexManager.entryUnlocked("Throbb") || flags["PENNY_THROBB_USES"] != undefined) output("Recognizing the throbb for what it is, you keep sucking, waiting to see how it’ll affect the clueless alien.");
-	else output("Dismissing her usage of an obvious performance enhancing drug, you go back to suck, figuring she’ll probably blow any second.");
+	else output("Dismissing her usage of an obvious performance enhancing drug, you go back to sucking, figuring she’ll probably blow any second.");
 	output(" It’s eerily quiet in the stall. The girl isn’t saying anything, or even moaning anymore. All you can hear are the wet sounds you make when you slap your [pc.lips] against her crotch.");
 	output("\n\n<i>“Fuck!”</i> the dick-girl angrily cries. <i>“That bitch must have ripped me off.”</i> She even goes a little soft in your mouth.");
 	output("\n\nCompassionately, you slide your tongue into action, hoping to make her forget her wasted credits. She throbs back to full hardness. Her next heartbeat, her dick does it again. It’s warmer, maybe even heavier than a few seconds ago.");

@@ -1194,6 +1194,8 @@ public function sx1TalkPirates():void
 
 public function zilCallgirlAvailable():Boolean
 {
+	if (zilCallgirlAtNursery()) return false;
+	
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == undefined || flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 0) return true;
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 1 && GetGameTimestamp() - flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] > 1440) return true;
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 2) return false;
@@ -1650,7 +1652,7 @@ public function zilCallgirlStopWhoring(fromPregnancyTalk:Boolean = false):void
 		}
 
 		output("You let out a soft groan as she drapes her arms sensually over your shoulders and slips her tongue into your mouth,");
-		if (pc.hasCock()) output(" grinding herself harder into your lap and skillfully manipulating your, cock between the warm, plush globes of her ass.");
+		if (pc.hasCock()) output(" grinding herself harder into your lap and skillfully manipulating your cock between the warm, plush globes of her ass.");
 		else
 		{
 			output(" pressing her soft, pliant ass against your thighs, the heat of her sweltering pussy apparent");

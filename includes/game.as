@@ -1495,9 +1495,10 @@ public function variableRoomUpdateCheck():void
 		if (hours >= 8 && hours <= 16) rooms["RESIDENTIAL DECK ZHENIYA"].removeFlag(GLOBAL.NPC);
 		else rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.NPC);
 	}
-	else if(flags["SAENDRA_XPACK1_STATUS"] >= 8 && zilCallgirlAvailable())
+	else if(flags["SAENDRA_XPACK1_STATUS"] >= 8)
 	{
-		rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.OBJECTIVE);
+		if(zilCallgirlAvailable()) rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.OBJECTIVE);
+		else rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	//Nursery
 	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
@@ -1943,6 +1944,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	varmintDisappearChance(deltaT, doOut);
 	processEmmyEvents(deltaT, doOut, totalDays);
 	processZheniyaEvents(deltaT, doOut, totalDays);
+	processHLPantyShit();
 	
 	// Per-day events
 	if (totalDays >= 1)

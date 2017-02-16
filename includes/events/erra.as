@@ -145,7 +145,7 @@ public function erraAppearance():void
 	author("Hugs Alright");
 	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the color of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance.");
 	output("\n\nShe’s dressed casually: jeans and a t-shirt, both hugging her athletic frame, making the dim light of the bar hit her curves and the swell of her C-cups just right. Sitting the way she is, she looks relaxed and just a bit full of herself.");
-	if(erraCollared()) output(" The collar around her neck reads, \"<b><i>Erra Aulgharis - Property of [pc.name] Steele</i></b>\"");
+	if(erraCollared()) output(" The collar around her neck reads, “<b><i>Erra Aulgharis - Property of [pc.name] Steele</i></b>”");
 	if(flags["ERRA_SEXED"] != undefined) output("\n\nOne pretty pink ausar pussy and a nice, tight tailhole sit between her legs.");
 	erraMenu();
 	addDisabledButton(0,"Appearance","Appearance","You’re doing that right now!");
@@ -175,9 +175,12 @@ public function talkToErra():void
 		//[Dee] Talk to Erra about her boisterous AI co-pilot.
 		addButton(3,"Dee",talkToErraAboutDeeeeeeee,undefined,"Dee","Talk to Erra about her boisterous AI co-pilot.");
 		//[You] Confront Erra about her feelings for you. //Requires [Walkies] to have been done.
-		if(flags["ERRA_WALKIES"] != undefined) addButton(4,"You",talkToErraAbootHerself,undefined,"You","Confront Erra about her feelings for you.");
-		else addDisabledButton(4,"You","You","You don’t really know her well enough for this.");
-		//[Collar] Give Erra that collar you bought her. //Requires <i>“collar”</i> key item and Erra’s lover status, as well as her cuddle scene to have been completed.
+		if(flags["ERRA_LOVERS"] == undefined && flags["ERRA_HEARTBROKEN"] == undefined)
+		{
+			if(flags["ERRA_WALKIES"] != undefined) addButton(4,"You",talkToErraAbootHerself,undefined,"You","Confront Erra about her feelings for you.");
+			else addDisabledButton(4,"You","You","You don’t really know her well enough for this.");
+		}
+		//[Collar] Give Erra that collar you bought her. //Requires “collar” key item and Erra’s lover status, as well as her cuddle scene to have been completed.
 		if(pc.hasKeyItem("Ausar Collar - A custom collar for Erra.") && flags["ERRA_LOVERS"] == 1) addButton(5,"Give Collar",ifYouLikeErraThenYouShouldaPutACollarOnIt,undefined,"Give Collar","Give Erra that collar you bought her.");
 		else if(erraCollared()) addDisabledButton(2,"Give Collar","Give Collar","You already gave her a collar!")
 		else addDisabledButton(5,"Give Collar","Give Collar","You don’t have a collar to give to her!");
@@ -640,7 +643,7 @@ public function ifYouLikeErraThenYouShouldaPutACollarOnIt():void
 	output("\n\nTelling Erra that the box is most certainly for her, you promptly hand it over. She shoots you a curious look but accepts the gift, <i>“You know, you don’t have to start buying me stuff just because we’re a thing now, [pc.name].”</i>");
 	if(pc.isNice()) output("\n\nYou tell the ausar you just thought you’d repay her for the wonderful, purple, paw-printed gift she gave you.");
 	else output("\n\nYou roll your eyes and tell the ausar to just open the box.");
-	output("\n\n<i>“Alright, alright,”</i> she sighs, opening the box, pulling off the top to reveal the small ring of leather held within. Beaming down at it, the happy puppy pulls the collar from the box to get a better look at it, <i>“Hey! This is one of the ones from Happy Tails on Tavros, isn’t it?”</i> Still smiling, she turns the leather loop around, her gaze landing on the brass-coloured tag. You watch intently as Erra lifts the tag up with a black-furred hand, before smiling even wider when she reads it, tail wagging swiftly behind her.");
+	output("\n\n<i>“Alright, alright,”</i> she sighs, opening the box, pulling off the top to reveal the small ring of leather held within. Beaming down at it, the happy puppy pulls the collar from the box to get a better look at it, <i>“Hey! This is one of the ones from Happy Tails on Tavros, isn’t it?”</i> Still smiling, she turns the leather loop around, her gaze landing on the brass-colored tag. You watch intently as Erra lifts the tag up with a black-furred hand, before smiling even wider when she reads it, tail wagging swiftly behind her.");
 	output("\n\nOnce she’s done with her inspection of the collar, your ausar lover quickly wraps it around her neck and closes the buckle. She turns her head in a few different directions to give you a better look at it, her smile becoming ever more smug, <i>“Suits me well, don’t you think?”</i>");
 	output("\n\nYou let Erra know it looks great on her, and she chuckles happily in response.");
 	output("\n\nThe ausar removes her new collar and starts to settle down a bit, seemingly lost in a sea of bliss and relief, letting out a contented sigh as she puts the leather ring back in its box, <i>“Thanks, [pc.name], it’s perfect.”</i> She flashes you another grin and speaks up once more, <i>“And I think I’ve got a few ways I could repay you for it when we get back to my ship.”</i> You see her tail pick up it’s pace again at its owner’s words.");
@@ -910,13 +913,13 @@ public function errasCollarPurchaseScene():void
 	clearOutput();
 	showInessa();
 	author("Hugs Alright");
-	output("Your gaze is drawn to a display of collars, a few shelves strewn across the wall behind the counter. They all seem to be of very high-quality, with each of them being made of different coloured leathers. Another thing that catches your eye is that all of them have a blank tag on them, all shiny and brassy, there to let the world know who the collar, and the pet wearing it, belongs to.");
+	output("Your gaze is drawn to a display of collars, a few shelves strewn across the wall behind the counter. They all seem to be of very high-quality, with each of them being made of different colored leathers. Another thing that catches your eye is that all of them have a blank tag on them, all shiny and brassy, there to let the world know who the collar, and the pet wearing it, belongs to.");
 	output("\n\nYou smirk as thoughts of Erra cross your mind. Surely that dusky-hued, pet-play loving puppyslut would enjoy a fancy little collar like one of these. She’d probably appreciate such a gesture if you were to give her one as a gift.");
 	//[Buy One]
 	clearMenu();
 	//hasCredits:
-	if(pc.credits >= 2000) addButton(0,"Buy One",buyErraACollar,undefined,"Buy One","Get Erra a nice collar as a gift.\n\n<b>Cost:</b> 200 credits.");
-	else addDisabledButton(0,"Buy One","Buy One","These things are probably expensive, and you don’t think you have enough credits.\n\n<b>Cost:</b> 200 credits.");
+	if(pc.credits >= 2000) addButton(0,"Buy One",buyErraACollar,undefined,"Buy One","Get Erra a nice collar as a gift.\n\n<b>Cost:</b> 2000 credits.");
+	else addDisabledButton(0,"Buy One","Buy One","These things are probably expensive, and you don’t think you have enough credits.\n\n<b>Cost:</b> 2000 credits.");
 	addButton(1,"Nah",dontBuyErraACollar,undefined,"Nah","Erra can make due with the collar she has.");
 }
 
@@ -952,7 +955,7 @@ public function buyErraACollar():void
 	output("\n\nAfter paying the Saeri an appropriate amount of credits, she hands the box to you, happily wishing you luck with your new pet.");
 	output("\n\n(<b>Gained Key Item: Ausar Collar</b>.)");
 	pc.createKeyItem("Ausar Collar - A custom collar for Erra.");
-	//This should add a <i>“collar”</i> to the PC’s key items, here’s the tooltip and stuff: Collar - A ring of leather and a leash with a small, round, brass-coloured tag. Should return the PC to Inessa’s shop’s main menu.
+	//This should add a “collar” to the PC’s key items, here’s the tooltip and stuff: Collar - A ring of leather and a leash with a small, round, brass-colored tag. Should return the PC to Inessa’s shop’s main menu.
 	pc.credits -= 2000;
 	processTime(5);
 	clearMenu();

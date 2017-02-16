@@ -875,7 +875,7 @@ public function disarmDelsTrap():void
 	//slut fork - if Del sexed >= 5 AND using fit cock
 	else if(delSexed >= 5 && x >= 0 && x != 100)
 	{
-		output("\n\nThe confused young man’s asshole envelops you like a mouth... saliva and all. Penetration is eased by a thick glob of hot, slippery liquid, almost certainly left behind by a recent ‘customer’; it begins to spread out as you push through it. Del shivers when your [pc.cockHeadNoun " + x + "] displaces the cum, squashing it up the walls of her rectum. Well-trained and a consummate slut, she clenches tight and instinctively tries to retain it; the net effect is that the alien semen spreads all around your cock, turning Del’s hole into a heated, lubricated fuck-sleeve.");
+		output("\n\nThe confused young man’s asshole envelops you like a mouth... saliva and all. Penetration is eased by a thick glob of hot, slippery liquid, almost certainly left behind by a recent ‘customer’; it begins to spread out as you push through it. Del shivers when your [pc.cockHead " + x + "] displaces the cum, squashing it up the walls of her rectum. Well-trained and a consummate slut, she clenches tight and instinctively tries to retain it; the net effect is that the alien semen spreads all around your cock, turning Del’s hole into a heated, lubricated fuck-sleeve.");
 
 		//(has cock mimbrane)
 		if(pc.hasStatusEffect("Mimbrane Cock")) output("\n\nThe trap boy shifts and squirms uncomfortably, irritating you until you realize why: your greedy mimbrane is literally drinking up the warm cushion of cum inside her ass. Skin touches skin, and Del jumps a little. <i>“Aww... give it back,”</i> she whines. You pump your hips and shake her feminine frame a bit, planning to do so in due time.");

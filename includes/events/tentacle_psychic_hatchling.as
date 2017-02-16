@@ -10,6 +10,8 @@
 
 public function findStrangeEgg():void 
 {
+	showBust("");
+	
 	output("\n\nOh hey, there’s a strange looking egg on the ground! Do you take it?");
 	output("\n\n");
 	clearMenu();
@@ -21,6 +23,7 @@ public function fuckingEggHatchOhFuck(destination:String):void
 {
 	clearOutput();
 	showName("\nTENTACLES!");
+	
 	var x:int = pc.findEmptyPregnancySlot(0);
 	if(x == 3) x = -1;
 	output("Midway through your a mid-journey nap, you wake, feeling very, very wrong. Something wet and sinuous has pressed itself to the top of your head");
@@ -144,6 +147,7 @@ public function postPychicTentacleImpreg(args:Array):void
 	clearOutput();
 	var destination:String = args[0];
 	var x:int = args[1];
+	
 	showName("\nTENTACLES!");
 	output("The creature fucks you for hours, but you never seem to tire. Your body never grows sore, just looser, more willing to accept the gift of additional tentacles than ever before. At first, you’re shocked by it pulling the main bulb of its body up against your gaping [pc.vagOrAss " + x + "], but then <i>you remember your duty</i> and grab the edges, holding yourself wide-open.");
 	output("\n\nCompressing its body, the strange little alien somehow slides right inside your body, gliding across raw nerves, then stroking them again when it pulls in the dozens of tentacles hanging out of you. Your [pc.belly] bulges rounder by the second, heavy with it’s alien cargo.");
@@ -158,6 +162,21 @@ public function postPychicTentacleImpreg(args:Array):void
 	output(" <i>You feel content</i>, riding high on a wave of accomplishment that seems too intense to be entirely real.");
 	output("\n\nThen you pass out, slapping down in the muck like a light was switched off.");
 	processTime(360+rand(40));
+	
+	var ppTentacles:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppTentacles.createPerk("Fixed CumQ", 2000, 0, 0, 0);
+	if(pc.hasVagina())
+	{
+		for(var y:int = 0; y < pc.totalVaginas(); y++)
+		{
+			pc.loadInCunt(ppTentacles, y);
+		}
+	}
+	else
+	{
+		pc.loadInAss(ppTentacles);
+	}
+	
 	clearMenu();
 	addButton(0,"Next",postPsychicTentacleImpreg2,args);
 }
@@ -167,16 +186,18 @@ public function postPsychicTentacleImpreg2(args:Array):void
 	var destination:String = args[0];
 	var x:int = args[1];
 	clearOutput();
+	showLocationName();
 	output("When you wake, the creature is still lodged inside you, <i>but that’s fine</i>. You’ll <i>birth it out somewhere nice later.</i> Until then, you should <i>have plenty of sex, and eat lots of food.</i> Now, where ");
 	if(!celiseIsCrew()) output("did you put that mop?");
 	else output("is Celise when you have a mess that needs cleaning up?");
-	
 
-	var ppCarryTraining:PregnancyPlaceholder = new PregnancyPlaceholder();
-	ppCarryTraining.impregnationType = "PsychicTentacles";
+	var ppTentacles:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppTentacles.impregnationType = "PsychicTentacles";
+	ppTentacles.createPerk("Fixed CumQ", 1000, 0, 0, 0);
+	
 	//Actually put the impregnationshit in.
-	if(x >= 0) pc.loadInCunt(ppCarryTraining, x);
-	else pc.loadInAss(ppCarryTraining);
+	if(x >= 0) pc.loadInCunt(ppTentacles, x);
+	else pc.loadInAss(ppTentacles);
 
 	processTime(1);
 	clearMenu();
