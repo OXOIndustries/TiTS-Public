@@ -147,7 +147,7 @@ public function approachKallyFirstTime():void
 	output(". Business at the moment is slow enough to lend you plenty of personal space - and the barkeep’s personal attention.");
 	output("\n\n<i>“Welcome to the Kui Country Lodge and Bar. I’m Kally. Something to drink, " + pc.mf("Mister","Miss") + "...?”</i>");
 	output("\n\n<i>“[pc.name],”</i> you answer. <i>“What’s good?”</i>");
-	output("\n\nKally’s enormous, poofy tail wags nimbly, narrowly avoiding toppling a tower of glassware behind her when she turns to gesture as taps and bottles. <i>“House specials are Nutty Nookies, Kui Creamers, Vesperian Vapors, and Royal Red." + (pc.isSmashed() ? ".. Oof, you don't look too peachy, maybe you should sober up first?" : " What’ll it be?") + "”</i>");
+	output("\n\nKally’s enormous, poofy tail wags nimbly, narrowly avoiding toppling a tower of glassware behind her when she turns to gesture as taps and bottles. <i>“House specials are Nutty Nookies, Kui Creamers, Vesperian Vapors, and Royal Red." + (pc.isSmashed() ? ".. Oof, you don’t look too peachy, maybe you should sober up first?" : " What’ll it be?") + "”</i>");
 	flags["MET_KALLY"] = 1;
 	kallyBarMenu();
 }
@@ -500,7 +500,8 @@ public function whoseMilkIsAdoraholKally():void
 	processTime(2);
 	//[Gross -Permanently disable those drinks] [Just You?]
 	clearMenu();
-	addButton(0,"Gross",grossStuffKally,undefined,"Gross","Tell her you think it’s gross.");
+	if(pc.isBimbo()) addDisabledButton(0,"Gross","Gross","That sounds too yummy to be considered gross to you!");
+	else addButton(0,"Gross",grossStuffKally,undefined,"Gross","Tell her you think it’s gross.");
 	addButton(1,"Just You?",justKallyMakesEverything,undefined,"Just You?","So she makes it herself?");
 }
 
@@ -563,13 +564,15 @@ public function kallyDrinkMenu():void
 	clearMenu();
 	if(pc.credits >= 6) 
 	{
-		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(0,"*Doe-Eyed D",kallyDrinkPurchase,"Doe-Eyed Draught","Doe-Eyed Draught","Doe-Eyed Draught is a local microbrew produced in-house and flavored with our special additive. The warm amber beer bears a slight, hoppy flavor with a hint of almond. Sure to have you looking doe-eyed after a few drinks! 14% alcohol equivalency by volume.\n\nPrice: 6 Credits");
-		else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","That marking is suspicious. You should ask about it.");
+		if(flags["KALLYS_SECRET_INGREDIENT"] == -1) addDisabledButton(0,"*Doe-Eyed D","Doe-Eyed Draught","You are not interested in this drink.");
+		else if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(0,"*Doe-Eyed D",kallyDrinkPurchase,"Doe-Eyed Draught","Doe-Eyed Draught","Doe-Eyed Draught is a local microbrew produced in-house and flavored with our special additive. The warm amber beer bears a slight, hoppy flavor with a hint of almond. Sure to have you looking doe-eyed after a few drinks! 14% alcohol equivalency by volume.\n\nPrice: 6 Credits");
+		else addDisabledButton(0,"*Doe-Eyed D","Doe-Eyed Draught","That marking is suspicious. You should ask about it.");
 	}
 	else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","You can’t afford that.\n\nPrice: 6 Credits");
 	if(pc.credits >= 7) 
 	{
-		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(1,"*N. Nookie",kallyDrinkPurchase,"Nutty Nookie","Nutty Nookie","A rich, nutty beer with a flavor that’s best described as chocolatey. Nutty Nookie’s aren’t for the faint of heart, as they contain 13% alcohol equivalency by volume and a generous helping of our secret ingredient to lend it a thicker, warmer afterglow.\n\nPrice: 7 Credits");
+		if(flags["KALLYS_SECRET_INGREDIENT"] == -1) addDisabledButton(1,"*N. Nookie","Nutty Nookie","You are not interested in this drink.");
+		else if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(1,"*N. Nookie",kallyDrinkPurchase,"Nutty Nookie","Nutty Nookie","A rich, nutty beer with a flavor that’s best described as chocolatey. Nutty Nookie’s aren’t for the faint of heart, as they contain 13% alcohol equivalency by volume and a generous helping of our secret ingredient to lend it a thicker, warmer afterglow.\n\nPrice: 7 Credits");
 		else addDisabledButton(1,"*N. Nookie","Nutty Nookie","That marking is suspicious. You should ask about it.");
 	}
 	else addDisabledButton(1,"*N. Nookie","Nutty Nookie","You can’t afford that.\n\nPrice: 7 Credits");
@@ -590,7 +593,8 @@ public function kallyDrinkMenu():void
 	else addDisabledButton(4,"P. Pilsner","Pneumatic Pilsner","You cannot afford this.\n\nPrice: 20 Credits");
 	if(pc.credits >= 22) 
 	{
-		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(5,"*Kui Creamer",kallyDrinkPurchase,"Kui Creamer","Kui Creamer","Incredibly creamy with a mild sweetness that goes just right with a cold night by a warm fire. Kui Creamers are taken as a pair of shots. 21% alcohol equivalency by volume, with a concentration of our secret ingredient that’ll leave your heart fluttering.\n\nPrice: 22 Credits");
+		if(flags["KALLYS_SECRET_INGREDIENT"] == -1) addDisabledButton(5,"*Kui Creamer","Kui Creamer","You are not interested in this drink.");
+		else if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(5,"*Kui Creamer",kallyDrinkPurchase,"Kui Creamer","Kui Creamer","Incredibly creamy with a mild sweetness that goes just right with a cold night by a warm fire. Kui Creamers are taken as a pair of shots. 21% alcohol equivalency by volume, with a concentration of our secret ingredient that’ll leave your heart fluttering.\n\nPrice: 22 Credits");
 		else addDisabledButton(5,"*Kui Creamer","Kui Creamer","That marking is suspicious. You should ask about it.");
 	}
 	else addDisabledButton(5,"*Kui Creamer","Kui Creamer","You cannot afford this.\n\nPrice: 22 Credits");
@@ -1088,7 +1092,10 @@ public function kiroKallyCanadiaBarBonus():void
 		output("\n\nYou ask, <i>“Then how’d you get the invite?”</i>");
 		output("\n\nKiro glances at you, then pulls you to a recessed area alongside the door, away from the station’s other residents. <i>“She found </i>me<i>, or at least one of my extranet accounts. Not that I put a lot of effort into hiding my presence there, but it still came as a shock. And if she found me online, then she’s doubtless found all the articles about my exploits. That means that she’s either accepting of my profession, or this is the most elaborate sting operation we’re likely to bumble into in our short lifetimes.”</i> Her inky lips split in a manic grin. <i>“Let’s just do this.”</i>");
 		output("\n\nKiro straightens up, squares her shoulders, and charges into the bar before you can possibly talk her out of it, nearly slamming the door double on its hinge.");
-		output("\n\nWell, you didn’t come all this way to sit this out. You follow after, hand on your [pc.weapon].");
+		output("\n\nWell, you didn’t come all this way to sit this out. You follow after");
+		if(pc.hasEquippedWeapon()) output(", hand on your [pc.weaponStat]");
+		else output(" with caution");
+		output(".");
 		flags["KIRO_MET_KALLY"] = 3;
 	}
 }
@@ -1098,7 +1105,7 @@ public function kiroKallyBarMeetOverride():void
 {
 	clearOutput();
 	showKallyAndKiro();
-	output("By the time you step into the Kui Country Bar and Lodge, Kiro and another kui-tan - obviously the aforementioned Kally - have seen each other. The former relaxes almost instantly, while the latter drops a mug of foamy beer from nerveless fingers. It’s plain as day that they’re sisters. Both share the features you would expect from kui-tan, but there’s more to it than that. They have the same wide hips and large busts, and their faces are similar enough that one could probably pass for the other with a bit of colorizing makeup. The only real is difference Kally’s plusher, slightly chubbier build and mildly darker fur. Likely she’s been sampling her own drinks and kitchen wares alike.");
+	output("By the time you step into the Kui Country Bar and Lodge, Kiro and another kui-tan - obviously the aforementioned Kally - have seen each other. The former relaxes almost instantly, while the latter drops a mug of foamy beer from nerveless fingers. It’s plain as day that they’re sisters. Both share the features you would expect from kui-tan, but there’s more to it than that. They have the same wide hips and large busts, and their faces are similar enough that one could probably pass for the other with a bit of colorizing makeup. The only real difference is Kally’s plusher, slightly chubbier build and mildly darker fur. Likely she’s been sampling her own drinks and kitchen wares alike.");
 	output("\n\n<i>“Kally!”</i> the slutty pirate calls, years of distance and worry forgotten.");
 	output("\n\nThe other kui-tan smiles and walks out from behind the bar in a daze, clearly surprised to see her sister after all these years. <i>“Kiro...”</i> Kally looks her sister up and down, equal parts shocked and pleased to see her sibling. <i>“I sent the invitation so long ago. I had almost given up all hope that you would come.”</i> She glances your way, then back to her sister. <i>“Or that you’d bring such a " + pc.mf("handsome","lovely") + " [pc.boyGirl]friend with you.”</i>");
 	output("\n\n[pc.BoyGirl]friend? That’s new. Your eyes dart toward Kiro’s, meeting her halfway. She seems as surprised as you, and... nervous? She must be blushing under all that fur. The fuzzy pirate hastily turns back to her sibling, clearing her throat. <i>“Uh, yeah. Sorry about that. Things have been hectic.”</i> She rubs the back of her neck, clearly uncomfortable.");
@@ -1242,7 +1249,7 @@ public function helpAKiroOut():void
 	output("\n\nKally cocks an eyebrow even higher. <i>“So you’re saying you didn’t force yourself on a bunch of foolish, young virgins? Really?”</i>");
 	output("\n\nSnorting, the freebooting tanuki answers, <i>“No. Though, though I will admit that I did take them back, one at a time, and let them know that I’d fuck them if they wanted. Even let them pretend that I raped them, if it would keep them out of trouble with their church.”</i> Her tail twitches excitedly beside you. Kiro’s so lost in her story that she’s entirely forgotten her attempts to conceal her sexual escapades from her sibling. <i>“Those girls can </i>fuck<i>. Most of them went for anal - something about it not counting - and hot damn did they get loud. I’ve never made anyone shriek with pleasure so easily or so often. Well, aside from [pc.name], maybe.”</i>");
 	output("\n\nKally smiles warmly. <i>“You know, I worried that you might have actually done it, like the stories said.”</i>");
-	output("\n\n<i>“Nope! I even made off with some new extranet contacts after before I left. I guess you could say I left a positive impression. Got pervy holos in the mail for weeks. Last I heard, one of them even got some augmentations herself and get into the holocam-girl business. I guess she figured there was more to life than denying yourself the little joys and decided to sample as many of them as she cold. She’s more famous than me now, I hear.”</i> Kiro leans back, expression slowly sobering as she realizes just how much her enthusiasm for storytelling has given away.");
+	output("\n\n<i>“Nope! I even made off with some new extranet contacts after I left. I guess you could say I left a positive impression. Got pervy holos in the mail for weeks. Last I heard, one of them even got some augmentations herself and got into the holocam-girl business. I guess she figured there was more to life than denying yourself the little joys and decided to sample as many of them as she could. She’s more famous than me now, I hear.”</i> Kiro leans back, expression slowly sobering as she realizes just how much her enthusiasm for storytelling has given away.");
 	output("\n\nGrinning, Kally raises her cup in a toast, <i>“To the sexually repressed, and getting over their misplaced mores!”</i> She looks like she’s talking about herself as much as the nuns. <i>“May their future fucks make up for their wasted youths!”</i>");
 	processTime(5);
 	kallyKiroIntroMergeAfterBoastOrNot();
@@ -1423,7 +1430,7 @@ public function pushKiroToWannaFuckHerSis():void
 	output(", <i>“and tits bigger than a galotian whore’s!”</i> You cup your hands around your ");
 	if(pc.biggestTitSize() >= 7) output("own mammoth endowments. <i>“We both know you like ‘em chesty. Why else would I be here?”</i> You bounce your tits in your palms, almost as enthralled by your quivering breastflesh as the momentarily hypnotized tanuki.");
 	else if(pc.biggestTitSize() >= 1) output("breasts which, though less visually bombastic make up for it in pert shapeliness. <i>“We both know you can’t keep your eyes off a nice pair of boobs. I’ve seen what happens to your dick when you look at mine.”</i>");
-	else output("chest, pretending to wrap your palms around an enormous pair of knockers. <i>“We both know how much you like big-boobed sluts. How many times have I seen you chasing after one in the bar? How many times as that totem pole between your thighs gained a few levels from the mere sight of a three-breasted clubslut?”</i>");
+	else output("chest, pretending to wrap your palms around an enormous pair of knockers. <i>“We both know how much you like big-boobed sluts. How many times have I seen you chasing after one in the bar? How many times has that totem pole between your thighs gained a few levels from the mere sight of a three-breasted clubslut?”</i>");
 	output("\n\nThe more you go on, the more Kiro’s composure fades. By the time you finish your little tirade, her eyes are shining brightly, and more importantly, a cylindrical distention has climbed up her dress to rest between her boobs. She starts to protest until you reach your [pc.foot] out beneath the table, gently rubbing a pair of balls that feel much bigger than they looked on the walk in.");
 	output("\n\n<i>“Admit it, your sister grew up to be a hottie.”</i> ");
 	if(pc.hasToes()) output("You curl your toes, rubbing in a small circle.");
@@ -1491,7 +1498,7 @@ public function askAbootOtherKiroSisters():void
 	else output("’Got any other siblings?");
 	output("”</i>");
 	output("\n\nKiro smirks knowingly. <i>“");
-	if(kiroTrust() > 90) output("Wouldn’t you like to know? It sure would be a shame if I didn’t tell you ‘cause of that stunt you pulled earlier, wouldn’t it, huh?”</i> Kiro takes a slow sip of her drink, eyeballing you over the rim of her glass. <i>“You’ll just have to settle for knowing the two coolest kui-tan on this side of the core.”</i>");
+	if(kiroTrust() < 90) output("Wouldn’t you like to know? It sure would be a shame if I didn’t tell you ‘cause of that stunt you pulled earlier, wouldn’t it, huh?”</i> Kiro takes a slow sip of her drink, eyeballing you over the rim of her glass. <i>“You’ll just have to settle for knowing the two coolest kui-tan on this side of the core.”</i>");
 	else
 	{
 		output("What’s the matter? Knowing the two coolest kui-tan on this side of the core not enough for you?”</i>");
@@ -1548,7 +1555,7 @@ public function kiroWrapUpFunction():void
 {
 	clearOutput();
 	showKiro();
-	output("Draining the last dregs of her drink, Kiro lets out a chest-jiggling belch. <i>“Go figure Ice Queen Kally would stock the coldest, best beer.”</i> She slides out of the booth and up onto her heels in one fluid, graceful movement, her erection apparently withdrawn back into her sheath, out of the way. <i>“I’m gonna get get another and make sure none of these creeps give her a hard time. Thanks");
+	output("Draining the last dregs of her drink, Kiro lets out a chest-jiggling belch. <i>“Go figure Ice Queen Kally would stock the coldest, best beer.”</i> She slides out of the booth and up onto her heels in one fluid, graceful movement, her erection apparently withdrawn back into her sheath, out of the way. <i>“I’m gonna get another and make sure none of these creeps give her a hard time. Thanks");
 	if(kiroTrust() < 100) output(", I guess");
 	output(". I won’t forget ");
 	if(kiroTrust() >= 90) output("this, hero.");
@@ -2690,7 +2697,7 @@ public function openKallysDoor():void
 	else
 	{
 		//Have passcard
-		output("You pull out the passcard and swipe it passed the sensor. Bingo! A green light flashes alongside the quiet hum of the magnetic lock decoupling. Now to perform your best peeping Tom impression.");
+		output("You pull out the passcard and swipe it past the sensor. Bingo! A green light flashes alongside the quiet hum of the magnetic lock decoupling. Now to perform your best peeping Tom impression.");
 		clearMenu();
 		addButton(0,"Next",actuallyPeeptime);
 		return;
@@ -3027,7 +3034,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 		output("<i>“Hey,”</i> you husk, laying a hand on each sister’s enormous tentpole, <i>“Do you think you could, like, put them both in at the same time?”</i> Your fingers flutter teasingly, slipping and sliding across the sides of the broad, pulsating veins. <i>“One in each hole...”</i>");
 	}
 	//Merge
-	output("\n\n<i>“Dibs on [pc.hisHer] pussy,”</i> Kally calls with alarming suddenness. <i>“Can’t you ruin it with that monster-cock of yours.”</i>");
+	output("\n\n<i>“Dibs on [pc.hisHer] pussy,”</i> Kally calls with alarming suddenness. <i>“Can’t let you ruin it with that monster-cock of yours.”</i>");
 	output("\n\nKiro slaps her sister’s ass, hard. <i>“I didn’t hear any complaints from you.”</i> She pivots to grab hold of your [pc.butts] and spread them wide open. <i>“Besides, I wanted to play with this ");
 	if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output("puffy cock-holster");
 	else if(pc.ass.looseness() >= 4) output("gaped-out slut-hole");
@@ -3077,7 +3084,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	output("\n\nKiro stops Kally by wrapping her tail around the back of you and pinning her inside.");
 	output("\n\nThe chubby bartender groans and whines, <i>“Hey, don’t cock-block me...”</i>");
 	output("\n\n<i>“Just because you wasted your teen years making yourself as pent-up as possible doesn’t mean you need to hump every hole like a horny teenager.”</i> Kiro grabs her sister by the hips, using her to pull herself into position behind you. <i>“Let me get in there before you start humping away like some stupid ausar slutpuppy in heat.”</i>");
-	output("\n\nYou feel Kally’s dick throb inside you with degrading thing her sister says, especially when she mentions slutpuppies in heat, but you don’t have a chance to comment on it. Kiro’s member, much larger than the one dick-deep in your [pc.vagina " + x + "] has announced its presence to your [pc.asshole] with a sloppy, pre-laden kiss.");
+	output("\n\nYou feel Kally’s dick throb inside you with each degrading thing her sister says, especially when she mentions slutpuppies in heat, but you don’t have a chance to comment on it. Kiro’s member, much larger than the one dick-deep in your [pc.vagina " + x + "] has announced its presence to your [pc.asshole] with a sloppy, pre-laden kiss.");
 	if(flags["BUTTSLUTINATOR"] != undefined) output(" You’re so glad you got to spend time in the buttsluttinator, giving yourself the kind of ass that needs a dick like that inside of it. You clench just thinking about it.");
 	else if(pc.ass.looseness() >= 4 || pc.analCapacity() >= 800) output(" You’re utterly grateful to have such a wonderfully capacious, well-trained anus.");
 	else if(pc.analCapacity() >= 200) output(" You’re almost concerned about fitting it inside. You just aren’t as well-trained back there as you could be, but you’ll make it fit.");
@@ -3108,10 +3115,10 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	else if(pc.tallness >= kally.tallness - 6) output("forward");
 	else output("down");
 	output(" to kiss you, at first gently, but increasingly frenetically as the seconds pass. She stuffs her tongue past your [pc.lipsChaste] hungrily, forcing you to return the feverish french before she starts slobbering her way down your throat.");
-	output("\n\nAny coordination falls apart the moment Kiro bottoms out inside you, replaced with your own raw passion, amplified by the feeling of being taken in two sensitive holes simultaneously, pinned between two hyper-sexed kui-tan who may as well be in a permanent state of rut. The restraining tail uncurls from the cushy bartender, allowing her to begin fucking you in earnest. She doesn’t waste a second. Still kissing you, her thighs jackhammer back and forth, thrusting into you so hard that her crotch audible claps into yours, followed a quarter second later by her jiggly butt-cheeks wobbling together with thunderous force.");
+	output("\n\nAny coordination falls apart the moment Kiro bottoms out inside you, replaced with your own raw passion, amplified by the feeling of being taken in two sensitive holes simultaneously, pinned between two hyper-sexed kui-tan who may as well be in a permanent state of rut. The restraining tail uncurls from the cushy bartender, allowing her to begin fucking you in earnest. She doesn’t waste a second. Still kissing you, her thighs jackhammer back and forth, thrusting into you so hard that her crotch audibly claps into yours, followed a quarter second later by her jiggly butt-cheeks wobbling together with thunderous force.");
 	output("\n\n<i>“It’s like your milker, and we’re frotting, and I’m gonna stuff [pc.name] full, and you’re right there,”</i> Kally babbles, thrusting in so hard that her sheath bunches up against your [pc.clits] and juices splatter out in a cock-shaped arc. <i>“Come on Kiro! Start thrusting! I wanna grind on youuuuuu~!”</i> She goes right back to planting kisses all over your face and licking your jaw, heedless of her own animalistic affections.");
 	output("\n\nDeep inside you, you feel her starting to flare, just a little bit.");
-	output("\n\nKiro chuckles and draws herself halfway out, sure to keep it angle to press against her incestuous sister through the lining of your anus. Then, she slams herself back in, aided by her own sensuous leakings. She baths every wrinkle and bend in your back door in wet-hot kui-tan cream, all before she orgasms; a girl as productive as her can leave you feeling creampied after a few dozen thrusts, to say nothing of what happens when she finally does go off.");
+	output("\n\nKiro chuckles and draws herself halfway out, sure to keep it angled to press against her incestuous sister through the lining of your anus. Then, she slams herself back in, aided by her own sensuous leakings. She bathes every wrinkle and bend in your back door in wet-hot kui-tan cream, all before she orgasms; a girl as productive as her can leave you feeling creampied after a few dozen thrusts, to say nothing of what happens when she finally does go off.");
 	processTime(20);
 	pc.lust(80);
 	clearMenu();
@@ -3131,7 +3138,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	output("\n\n<i>“Yeah...”</i> Both dicks slip in at the same time, hard. The fat flares alternate pulsating, thickening together. <i>“Yes!");
 	if(!pc.isBimbo()) output(" Definitely yes! Don’t stop!”</i>");
 	else output(" Def... uhh - Yes! More! Fuck my mouth too, Kally!”</i>");
-	output("\n\nTheir paws switch grip to holding onto each others asses, and the lusty tanuki-women instinctively fall into a perfectly synchronised rhythm. Not even a decade light-years apart can erase the sisters’ shared history, the deep an intimate knowledge of one another that can only come from years of cohabitation. It becomes impossible to pick apart the individual sensations. You’re only aware of hot, hard lengths thrusting into you, folds flattened by obscenely swollen dickheads. Juices dribble and squirt, sloshing around in your deepest recesses. Sweaty, pre-drenched nutsacks slip and slide against one another");
+	output("\n\nTheir paws switch grip to holding onto each others asses, and the lusty tanuki-women instinctively fall into a perfectly synchronised rhythm. Not even a decade light-years apart can erase the sisters’ shared history, the deep and intimate knowledge of one another that can only come from years of cohabitation. It becomes impossible to pick apart the individual sensations. You’re only aware of hot, hard lengths thrusting into you, folds flattened by obscenely swollen dickheads. Juices dribble and squirt, sloshing around in your deepest recesses. Sweaty, pre-drenched nutsacks slip and slide against one another");
 	if(pc.balls > 0 && pc.ballDiameter() >= 6) output(" and your own");
 	output(". And all over, you feel the silky-soft fur sliding over your [pc.skinFurScales], the press of two warm, lusty forms turning you into a Steele-sandwich.");
 	output("\n\nKiro shudders once, nearly falling of sync. <i>“Y-you gonna cum soon, Kally?”</i> A thick spurt of juice ");
@@ -3142,10 +3149,10 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	if(pc.isBimbo()) output(", which is fine, because you’re so blissed out that the only thing your brain seems capable of thinking about is the shape of cocks, and where you could fit more of them. Your fingers twitch, and you briefly wish the girls had extra horse-cocks for you stroke, to coat your fingers with their rich, buttery lust.");
 	else output(", which is probably for the best, considering the state you’re in. It’s hard to summon up much more than gleeful cries of ‘yes’ and ‘so good’!");
 	output("\n\n<i>“Let’s do it, sis!”</i> Kiro calls. So much pre shoots off in your asshole that you’d think it was cum, were it anyone else. <i>“Three!”</i> They thrust hard enough to bounce you in the air, catching you on the squelching slide down their doubled-up dicks. <i>“Two!”</i> Kally whimpers and flares, her thrusts faltering. Kiro pushes hard enough to nearly topple the three of you over, but the quivering bartender catches up at the last second. <i>“One!”</i> Their rhythm breaks apart as they near their peaks. Instead of big, confident strokes, they bottom out and make tiny, shuddering, micro-thrusts, determined to keep as much of you wrapped around their turgid poles as possible.");
-	output("\n\n<i>“Cuuuuuum!”</i> Kiro moans, giving in to her own command the moment it leaves her mouth. Your [pc.vagina " + x + "] and [pc.asshole] stretch the moment the lusty raccoon-girls’ urethras distend with seed, pushing you beyond any hope of restraint. You throw your head back and give in, fluttering around the delicious, animalistic members, your pleasure climbing higher and higher and higher. The moment that heavenly wetness explodes inside you - from both sides - every muscle in your body goes taught, your nerves overloaded. It’s like despite the rough fucking, despite the galloons of seed spreading inside you, you feel like you can perceive every single sperm wriggling against your walls, complimenting you on a job well done.");
+	output("\n\n<i>“Cuuuuuum!”</i> Kiro moans, giving in to her own command the moment it leaves her mouth. Your [pc.vagina " + x + "] and [pc.asshole] stretch the moment the lusty raccoon-girls’ urethras distend with seed, pushing you beyond any hope of restraint. You throw your head back and give in, fluttering around the delicious, animalistic members, your pleasure climbing higher and higher and higher. The moment that heavenly wetness explodes inside you - from both sides - every muscle in your body goes taut, your nerves overloaded. It’s like despite the rough fucking, despite the gallons of seed spreading inside you, you feel like you can perceive every single sperm wriggling against your walls, complimenting you on a job well done.");
 	output("\n\nAnd there’s so much cum! It never seems to stop. Not when it’s slopping out between your legs, drenching Kiro and Kally from the waist down. Not when your gut audibly churns with cream filling, distending your belly as it floods up into your stomach. The alabaster delight pours in in an endless river, sliding up your channel");
-	if(!pc.isPregnant(x)) output(" and into your womb. You feel it settle inside your uterus, the heavy, liquid pleasure rolling around as it transforms you into a vessel for spunk. And through it all, you can feel her flare, so swollen, so completely overtaken by orgasm, that it has expanded to the point it forms a clear outline on your expanded middle.");
-	else output(" all the way to your blocked-off womb. You feel strain mightily, then vent back out, the rushing fluids only serving to coax Kally to cum that much harder, her flare wide enough to make an imprint on the surface of your fluid-filled midsection.");
+	if(!pc.isPregnant(x)) output(" and into your womb. You feel it settle inside your uterus, the heavy, liquid pleasure rolling around as it transforms you into a vessel for spunk. And through it all, you can feel her flare, so swollen, so completely overtaken by orgasm, that it has expanded to the point that it forms a clear outline on your expanded middle.");
+	else output(" all the way to your blocked-off womb. You feel it strain you mightily, then vent back out, the rushing fluids only serving to coax Kally to cum that much harder, her flare wide enough to make an imprint on the surface of your fluid-filled midsection.");
 	output("\n\nThe sisters climax for so long (and so messily) that you reach two more pussy-shattering climaxes by the time they finish. And even then, just feeling that hot, kui-tan goo sliding out of you is enough to make you whimper and quiver all over again.");
 	//{Loads in holes, go!}
 	processTime(25);
@@ -3163,7 +3170,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 {
 	clearOutput();
 	showKallyAndKiro();
-	output("After an indeterminate amount of time, you awake in Kiro’s bed, the sisters on either side of. They’re both cuddling in, rubbing their hands of the jizz-inflated dome of your belly, sometimes reaching across to fondle the other’s length.");
+	output("After an indeterminate amount of time, you awake in Kiro’s bed, the sisters on either side of you. They’re both cuddling in, rubbing their hands over the jizz-inflated dome of your belly, sometimes reaching across to fondle the other’s length.");
 	output("\n\n<i>“How was that?”</i> Kally asks, looking very relieved.");
 	output("\n\nKiro retorts, <i>“Mind-blowing, I’m sure.”</i> She nips your [pc.ear] and springs up out of a very messy-looking bed.");
 	output("\n\nYou open your mouth only to release a massive, cum-flavored belch. Sheepishly, you decide a nod will work better.");

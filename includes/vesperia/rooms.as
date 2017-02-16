@@ -54,7 +54,7 @@ public function initVesperiaRoom():void
 
 	rooms["CANADA4"] = new RoomClass(this);
 	rooms["CANADA4"].roomName = "ACCESS\nCORRIDOR BETA";
-	rooms["CANADA4"].description = "Hanging across the access corridor is a wooden sign, laser carved to lend it a charred, rustic air. It’s shaped to resemble a raccoon’s tail - or a kui-tan’s, the lettering striped with bands of alternating lighter and darker brown. It proudly proclaims the establishment to be the “Kui Country Bar and Lodge.” A thick door of reddish wood, probably a Vesperian variety replaces the station’s standard portals, illuminated by a recessed indicator that glows, “OPEN.”";
+	rooms["CANADA4"].description = "Hanging across the access corridor is a wooden sign, laser carved to lend it a charred, rustic air. It’s shaped to resemble a raccoon’s tail - or a kui-tan’s, the lettering striped with bands of alternating lighter and darker brown. It proudly proclaims the establishment to be the “Kui Country Bar and Lodge.” A thick door of reddish wood, probably a Vesperian variety, replaces the station’s standard portals, illuminated by a recessed indicator that glows, “OPEN.”";
 	rooms["CANADA4"].planet = "CANADIA STATION";
 	rooms["CANADA4"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA4"].eastExit = "CANADA3";
@@ -95,7 +95,7 @@ public function initVesperiaRoom():void
 
 	rooms["CANADA7"] = new RoomClass(this);
 	rooms["CANADA7"].roomName = "BATHING\nAREA";
-	rooms["CANADA7"].description = "Dazzling light forces you to blink the minute you step into the bathing area. The ceiling is has a single, enormous light amongst baby blue tiles, designed to mimic the appearance of a sun, and meticulously sculpted bushes and flowers ring the wall, lending a breezy, outdoorsy feeling to the whole affair. Different pools of all shapes and sizes interrupt the grassy floor, some bubbling with effervescent warmth and others chilly, many housing patrons who have decided to take their drinks somewhere quieter and relax.";
+	rooms["CANADA7"].description = "Dazzling light forces you to blink the minute you step into the bathing area. The ceiling has a single, enormous light amongst baby blue tiles, designed to mimic the appearance of a sun, and meticulously sculpted bushes and flowers ring the wall, lending a breezy, outdoorsy feeling to the whole affair. Different pools of all shapes and sizes interrupt the grassy floor, some bubbling with effervescent warmth and others chilly, many housing patrons who have decided to take their drinks somewhere quieter and relax.";
 	rooms["CANADA7"].planet = "CANADIA STATION";
 	rooms["CANADA7"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA7"].northExit = "CANADA5";

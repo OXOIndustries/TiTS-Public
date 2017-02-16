@@ -108,7 +108,7 @@ public function kaedesFriendoTalkOnCanadia():void
 	showKaede();
 	author("Savin");
 	output("<i>“So who’s this friend of yours at the university?”</i> you ask. <i>“Another lover?”</i>");
-	output("\n\nKaede’s huffs and crosses her arms. <i>“Hey now, I don’t </i>actually<i> bang </i>everyone<i> I meet you know. You just, uh, have a real talent for meeting the people I do, that’s all. Anyway, Ethan’s a teacher down at the university. Anno put me in touch with him a while ago, and he’s doing some work for me on the side.”</i>");
+	output("\n\nKaede huffs and crosses her arms. <i>“Hey now, I don’t </i>actually<i> bang </i>everyone<i> I meet you know. You just, uh, have a real talent for meeting the people I do, that’s all. Anyway, Ethan’s a teacher down at the university. Anno put me in touch with him a while ago, and he’s doing some work for me on the side.”</i>");
 	output("\n\n<i>“Work? Like what?”</i>");
 	output("\n\n<i>“He works in artificial intelligence, see, so I asked him to take a look at </i>Talon<i>’s onboard intelligence. We, uh, I’ve been having some... uh, problems... with it. So I’m waiting around while he pokes around in my ship’s brainmeats down on the surface.”</i>");
 	if(pc.isBro()) output("\n\n<i>“Sounds boring,”</i> you yawn.");
@@ -172,7 +172,7 @@ public function finishUpKaedeCanadaDate():void
 	clearOutput();
 	showKaede();
 	author("Savin");
-	output("<i>“So,”</i> you prompt, finish your drink and leaning against the bar.");
+	output("<i>“So,”</i> you prompt, finishing your drink and leaning against the bar.");
 	output("\n\nKaede follows your lead, topping off that scotch of hers and turning on her seat, resting her elbows back on the bar and looking the lodge over with a smile. <i>“So... this is the part where you say we should get out of here, right? Maybe ");
 	if(annoIsCrew()) output("hook up with Anno and ");
 	output("rent one of those rooms in back...?”</i>");
@@ -230,12 +230,12 @@ public function statusUpdateKaede():void
 	showKaede();
 	author("Savin");
 	output("<i>“How’s it going?”</i> you ask, running a hand through Kaede’s hair.");
-	output("\n\nShe yawns. <i>“Borning. Looks like I’m gonna be here for ");
-	if(flags["KAEDE_CS_COUNTDOWN"] + 60 * 24 * 13 <= GetGameTimestamp()) output("the rest of the day, then I’m outta here");
+	output("\n\nShe yawns. <i>“Boring. Looks like I’m gonna be here for ");
+	if((flags["KAEDE_CS_COUNTDOWN"] + (60 * 24 * 13)) <= GetGameTimestamp()) output("the rest of the day, then I’m outta here");
 	else 
 	{
 		output("another " + num2Text(14 - Math.floor(((GetGameTimestamp() - flags["KAEDE_CS_COUNTDOWN"]) / 24 / 60))) + " days");
-		output("\n\nCOuntdown: " + flags["KAEDE_CS_COUNTDOWN"] + "\n\nTimestamp - Countdown: " + (GetGameTimestamp() - flags["KAEDE_CS_COUNTDOWN"]));
+		//output("\n\nCcuntdown: " + flags["KAEDE_CS_COUNTDOWN"] + "\n\nTimestamp - Countdown: " + (GetGameTimestamp() - flags["KAEDE_CS_COUNTDOWN"]));
 	}
 	output(". But hey, it’s nice getting a chance to take a little vacation. Finally relaxing after... God, years now of working the trade routes non-stop. Getting to kick my feet up for once is nice, you know.”</i>");
 	output("\n\nYou can imagine. Shame you can’t take the same luxuries.");

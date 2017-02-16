@@ -212,7 +212,7 @@ public function kiroTalkInKallysBar():void
 	clearOutput();
 	showKiro();
 	//Not BF
-	if(flags["KIRO_BF_TALK"] == 1)
+	if(flags["KIRO_BF_TALK"] == undefined)
 	{
 		if(pc.isBimbo()) output("<i>“So like, wanna talk?”</i>");
 		else if(pc.isBro()) output("You grunt, <i>“Let’s talk.”</i> The irony is not lost on you, taciturn though you may be.");
@@ -275,8 +275,11 @@ public function kiroRepeatedBFTalk():void
 		output("Kiro sighs heavily. She takes a drink of her beer to buy time, then sighs again. <i>“I don’t know, [pc.name]. Before I met you, I don’t know if there’s anyone else I would have even considered it with... but now, with Kally.”</i> Her voice hitches. <i>“I don’t know if I can do that to her. She’s my sister... and she loves me... and I think I kinda love her too.”</i> The kui-tan gives you a sad look. <i>“And the best and worst part is that you gave that to me. I never would’ve discovered all this if not for you.”</i>");
 		output("\n\nNow it’s your turn to sigh.");
 		output("\n\n<i>“But fuck it.”</i> A furry palm lands on your shoulder. <i>“There’s more than enough of me to go around, right?”</i> Kiro pulls you close, and whispers in your ear, <i>“Kally knows I’m going to be fucking my way through the galaxy. She won’t mind if the wonderful [pc.boyGirl] that brought us together is my [pc.boyGirl]friend too, right?”</i> She abruptly straightens, struck by a sudden idea. <i>“Maybe she’s into that. You saw how she talked about my sexual misadventures. What if that’s like her thing, seducing the galaxy’s biggest slut and trying to be her top bitch?”</i>");
-		output("\n\n<i>“That isn’t{, uh, yeah... maybe!/ entirely improbable.}”</i>");
-		output("\n\nKiro pulls you close and plants an aggressive kiss on your [pc.lipsChaste], her tongue snaking in to explode. She pops off after a solid thirty seconds of tonsel-hockey, smiling like she’s just pulled off the universe’s biggest heist. <i>“Yeah, you’re my fucking [pc.boyGirl]friend, one of two. Speaking of which, we should have some more fun with Kally sometime - see if we can get her as sweet on you as I am.”</i>");
+		output("\n\n<i>“That isn’t");
+		if(pc.isBimbo()) output(", uh, yeah... maybe!");
+		else output(" entirely improbable.");
+		output("”</i>");
+		output("\n\nKiro pulls you close and plants an aggressive kiss on your [pc.lipsChaste], her tongue snaking in to explore. She pops off after a solid thirty seconds of tonsil-hockey, smiling like she’s just pulled off the universe’s biggest heist. <i>“Yeah, you’re my fucking [pc.boyGirl]friend, one of two. Speaking of which, we should have some more fun with Kally sometime - see if we can get her as sweet on you as I am.”</i>");
 		output("\n\nThat sounds like a great idea.");
 		flags["KIRO_BF_TALK"] = 1;
 	}
@@ -397,7 +400,7 @@ public function noYouCantTakeKirosRoughFux():void
 	output("\n\nKally looks your way, and upon seeing you chatting with her sister, her tail wags.");
 
 	//No sister 3SumFun
-	if(kiroKallyThreesomeUnlockPoints() < 3) output("\n\nKiro rubs the back of her neck nervously, obviously uncomfortable with the idea of her sister catching her about to claim a booty call. <i>“Or we could sit here in talk some more, I guess.”</i> To her credit, the distention in her dress recedes slightly. <i>“Your call either way.”</i>");
+	if(kiroKallyThreesomeUnlockPoints() < 3) output("\n\nKiro rubs the back of her neck nervously, obviously uncomfortable with the idea of her sister catching her about to claim a booty call. <i>“Or we could sit here and talk some more, I guess.”</i> To her credit, the distention in her dress recedes slightly. <i>“Your call either way.”</i>");
 	//3SumReadyButUnused
 	else if(kiroKallyThreesomes() < 1) output("\n\nThe bulge in Kiro’s dress gets just the slightest bit bigger, but she looks down, staring into her drink, uncomfortable with her own thoughts. It would seem the brash young ‘nuki is unsure of just how to handle her own urges.”</i> One more push ought to be all it takes to bring them together...");
 	//3SumFun
@@ -493,7 +496,7 @@ public function askKiroAboutKallysBar():void
 	output("\n\n");
 	if(timesGloryholesUsed() + timesGloryholesWorked() > 0) output("You know those gloryholes all too well - too well to hide your knowing smile.");
 	else output("The cocky pirate’s good humor is infectious. You’re smiling right alongside her, even though you’ve yet to try the gloryholes.");
-	output("\n\n<i>“And out back,”</i> Kiro points over her shoulder, <i>“is an terran-style bath area, complete with meticulously groomed plants and pools of water to lounge in. I’m halfway tempted to go back there and see if I can find someone to show me what an underwater blowjob feels like. No time like the present for crossing things off the old bucket list, eh?”</i>");
+	output("\n\n<i>“And out back,”</i> Kiro points over her shoulder, <i>“is a terran-style bath area, complete with meticulously groomed plants and pools of water to lounge in. I’m halfway tempted to go back there and see if I can find someone to show me what an underwater blowjob feels like. No time like the present for crossing things off the old bucket list, eh?”</i>");
 	output("\n\nYou widen your eyes at that one.");
 	output("\n\n<i>“Hey, don’t knock it till you’ve tried it. Unless it’s really fucking gross. That’s my motto. One of them, anyway.”</i>");
 	//Bimbo
@@ -3591,7 +3594,7 @@ public function kiroIncestReactionGood():void
 {
 	clearOutput();
 	showKiro();
-	output("<i>“I’m happy for you,”</i> you answer. <i>“Truly. And proud of my skills as a matchmaker. Not just anyone would have the skills to hook two highly-bangable tanuki’s.”</i> You pat yourself on the chest proudly, then loop your arm over Kiro’s shoulders, squeezing her affectionately. <i>“You can keep fucking the tits off you sister so long as I can");
+	output("<i>“I’m happy for you,”</i> you answer. <i>“Truly. And proud of my skills as a matchmaker. Not just anyone would have the skills to hook up two highly-bangable tanuki’s.”</i> You pat yourself on the chest proudly, then loop your arm over Kiro’s shoulders, squeezing her affectionately. <i>“You can keep fucking the tits off your sister so long as I can");
 	if(pc.isBimbo()) output(", like,");
 	output(" tag in from time to time.”</i>");
 	output("\n\nThrowing her head back and cackling, the raccoon-woman slaps the countertop. <i>“I knew there was a reason I liked you... besides the " + pc.mf("handsome appearance","beautiful face") + ".”</i> Reaching over under the bar, she gives your crotch a familiar squeeze. <i>“Play your cards right, and that could be sooner rather than later.");

@@ -4018,7 +4018,7 @@ public function emmyHardLightProstateFillerUp():void
 	//PC has cock
 	if(pc.hasCock())
 	{
-		output("\n\nA warm, wet touch finds your [pc.cockHeadNoun], and you peer around her voluminous balls to see what she’s doing. Emmy is completely lost in the sex, and has leaned in and glommed onto your own [pc.cock] with her mouth, winding up a sloppy blowjob as pre runs down her neck and into the rug of her hair that’s spread out over the floor.");
+		output("\n\nA warm, wet touch finds your [pc.cockHead], and you peer around her voluminous balls to see what she’s doing. Emmy is completely lost in the sex, and has leaned in and glommed onto your own [pc.cock] with her mouth, winding up a sloppy blowjob as pre runs down her neck and into the rug of her hair that’s spread out over the floor.");
 		output("\n\nHer efforts might be a bit distracted by your anal affection, but the herm’s long tongue still wraps you up in wet, enthusiastic dog-kisses and the sheer heat of the breath coming from her body makes you feel like you’ve hilted in pussy and it’s moving around you, spiral-striping your dick like a barber pole, winding and unwinding you in flesh.");
 	}
 	if(!pc.hasCock() && !pc.isTaur())
