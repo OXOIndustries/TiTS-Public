@@ -41,7 +41,22 @@ public function drLashOfficeBonus():Boolean
 		else output("looks up at the lights and scowls. <i>“I should buy some Tesla coils...”</i>");
 		addButton(0,"Dr.Lash",walkUpToDocLashAgain,false);
 	}
+	addButton(8,"Masturbate",drLashMasturbationInterruption);
 	return false;
+}
+
+public function drLashMasturbationInterruption():void
+{
+	clearOutput();
+	showDrLash();
+	output("You make to begin masturbating, much to Doctor Lash’s consternation.");
+
+	output("\n\n<i>“What are you doi-oh. It was too much to hope you would suppress your baser instincts in my presence. You poor, poor creature. If you are going to make a mess of my lab, we should endeavor to ensure that it will be the last time.”</i> He draws a number of weapons from inside his coat.");
+
+	output("\n\nUh oh.");
+	clearMenu();
+	configDocLashFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //First Time Meeting Funtimes!
