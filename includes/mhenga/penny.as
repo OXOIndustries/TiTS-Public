@@ -66,6 +66,10 @@ public function showPennyName():void
 	if(flags["MET_PENNY"] == undefined) showName("POLICE\nWOMAN");
 	else showName("\nPENNY");
 }
+
+public function pennyRecruited():Boolean { return false; }
+public function pennyIsCrew():Boolean { return false; }
+
 public function pennyBustDisplay(nude:Boolean = false):String
 {
 	// 9999 - Special artist exceptions!
