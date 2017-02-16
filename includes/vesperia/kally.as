@@ -903,7 +903,7 @@ public function kallyTalksAboutKiro():void
 	//Else
 	else output("\n\nYou quip, <i>“Kiro always struck me as more of roulette player.”</i>");
 	//Merge
-	output("\n\n<i>“Besides, [pc.name], she’s my sister.”</i> Kally flips the tiny glass into the air and deposits it neatly onto a stack of its peers. <i>“Even if she had done something monstrous, I’d have to be the one to try and turn her around.”</i> She shakes her head ruefully. <i>“Not sure how I’d pull that one off, though. That girl is as thick-headed as Ausaran Bull-Beatle. Now,”</i> she cocks her head, <i>“" + (pc.isSmashed() ? "sober up and maybe we can chat some more, okay?" : "can I get you another drink?") + "”</i>");
+	output("\n\n<i>“Besides, [pc.name], she’s my sister.”</i> Kally flips the tiny glass into the air and deposits it neatly onto a stack of its peers. <i>“Even if she had done something monstrous, I’d have to be the one to try and turn her around.”</i> She shakes her head ruefully. <i>“Not sure how I’d pull that one off, though. That girl is as thick-headed as an Ausari Bull-Beetle. Now,”</i> she cocks her head, <i>“" + (pc.isSmashed() ? "sober up and maybe we can chat some more, okay?" : "can I get you another drink?") + "”</i>");
 	kallyBarMenu();
 }
 
