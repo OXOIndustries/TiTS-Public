@@ -752,6 +752,10 @@ public function worshipZeBullCawk():void
 	output(".");
 	processTime(15);
 	pc.lust(20+rand(10));
+	var ppOgram:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppOgram.createPerk("Fixed CumQ", 2000, 0, 0, 0);
+	pc.loadInMouth(ppOgram);
+	pc.loadInMouth(ppOgram);
 	IncrementFlag("FUCKED_TEXAN_CUSTOMS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1289,6 +1293,7 @@ public function specialOrdersForTreatedGals():void
 	pc.modThickness(1);
 	IncrementFlag("HERMAN_SPECIAL_ORDER");
 	var ppHerman:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppHerman.createPerk("Fixed CumQ", 2000, 0, 0, 0);
 	pc.loadInMouth(ppHerman);
 	pc.loadInMouth(ppHerman);
 	pc.loadInMouth(ppHerman);

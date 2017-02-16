@@ -1672,6 +1672,7 @@ public function dominantlyTakeItInThebUttFromReahaLel():void
 	output(", only feeling the intense emptiness it leaves behind as Reaha wriggles out of the strapon; when the toy pulls out of her, a floodgate of fem-slime opens, drenching her thighs in musky slime. She gives a heavy sigh, rubbing her sore teats as you let your face fall back into the valley of her cleavage, using her heavy tits as pillows as you recover from your sexual marathon.");
 	processTime(35);
 	pc.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

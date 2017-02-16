@@ -51,7 +51,7 @@ public function irelliaHallBonusShit():Boolean
 		addButton(0,"QueenScalla",irelliaQuestApproachRouter);
 	}
 	//After turn-in, there aint shit.
-	else output("\n\nYou're permitted to enter Irellia's private chambers, to the east.");
+	else output("\n\nYou’re permitted to enter Irellia’s private chambers, to the east.");
 	return false;
 }
 
@@ -83,7 +83,7 @@ public function letTheBombsGoOffApproach():void
 	showIrellia();
 	showName("GOLD\nQUEENS");
 	showBust("IRELLIA","SCALLA","MARSAIL");
-	output("The queens give you icy glares and little else until you decide to leave. Maybe you should've called in...");
+	output("The queens give you icy glares and little else until you decide to leave. Maybe you should’ve called in...");
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -100,7 +100,7 @@ public function approachAfterMeetingButQuestNotTaken():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Help",volunteerAsAntPI,true);
-	addButton(1,"Don'tHelp",beALittleBitchInFrontOfAntQueens);
+	addButton(1,"Don’tHelp",beALittleBitchInFrontOfAntQueens);
 }
 
 //Approach Repeat - Quest Taken, Uncomplete
@@ -247,7 +247,7 @@ public function introduceYourselfToIrelliaOnly():void
 	showBust("IRELLIA","SCALLA","MARSAIL");
 	//Introduce yourself and explain that you came to seek audience with Irellia, not the other two.
 	//Bimbo
-	if(pc.isBimbo()) output("<i>“Uhm... I'm [pc.name] Steele and just wanted to meet with Irellia, I think, but you two are super cute too!”</i> You bat your eyelashes and continue, <i>“Your jewelry is amazing, and I wish I had silks like those to wear. The boys wouldn’t be able to look away!”</i>\n\nMarsail crosses her lower arms across one pair of breasts. A scowl is painted so deeply into her face it might as well be etched. <i>“We do not have time for useless fluff.”</i>");
+	if(pc.isBimbo()) output("<i>“Uhm... I’m [pc.name] Steele and just wanted to meet with Irellia, I think, but you two are super cute too!”</i> You bat your eyelashes and continue, <i>“Your jewelry is amazing, and I wish I had silks like those to wear. The boys wouldn’t be able to look away!”</i>\n\nMarsail crosses her lower arms across one pair of breasts. A scowl is painted so deeply into her face it might as well be etched. <i>“We do not have time for useless fluff.”</i>");
 	//Nice
 	else if(pc.isNice()) output("<i>“Pardon my intrusion. I merely wanted an audience with Irellia, not to interrupt your fair conference.”</i> You bow deferentially.\n\nMarsail counters, <i>“And you can’t even take instruction. You were to name yourself, little thing, remember?”</i>\n\nYou apologize once more, ever the diplomat. <i>“Sorry. My name is [pc.name] Steele. Forgiveness, your grace.”</i>\n\nThe bejeweled queen scowls. <i>“You shall not have my forgiveness, pity, or even attention any longer. Begone.”</i>");
 	//Mischievous/Hard
@@ -303,7 +303,7 @@ public function meetingIrelliaPt2(tried2Leave:Boolean = false):void
 	//[Help] [Don’tHelp]
 	clearMenu();
 	addButton(0,"Help",volunteerAsAntPI);
-	addButton(1,"Don'tHelp",beALittleBitchInFrontOfAntQueens);
+	addButton(1,"Don’tHelp",beALittleBitchInFrontOfAntQueens);
 }
 
 //Don’t Help
@@ -396,7 +396,7 @@ public function unificationRallyEvent():void
 	clearMenu();
 	//[Call In] [Don’t]
 	addButton(0,"Call In",callInAReportOnAntTerrorists);
-	addButton(1,"Don't",dontCallInReportsOnAntTerrorists);
+	addButton(1,"Don’t",dontCallInReportsOnAntTerrorists);
 }
 
 //Call In Rebels

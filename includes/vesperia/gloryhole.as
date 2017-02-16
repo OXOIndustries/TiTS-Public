@@ -337,7 +337,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			else output("Did you bring me more cum than last time? You can’t cum unless you did, okay?");
 			output("”</i>");
 			output("\n\nInarticulately grunting, you flex your [pc.cock " + arg + "] in her hands. Hopefully, she’ll understand.");
-			output("\n\n<i>“Great!”</i> Her voice is husky with want. She sounds like you imagine a girl would sound after edging herself two or three hours. Then she’s on you once more. Those lips, cherry-hot with lust, frame a tunnel of pure delight that bathes you in sloppy, wiggling pleasure.");
+			output("\n\n<i>“Great!”</i> Her voice is husky with want. She sounds like what you imagine a girl would sound after edging herself two or three hours. Then she’s on you once more. Those lips, cherry-hot with lust, frame a tunnel of pure delight that bathes you in sloppy, wiggling pleasure.");
 			if(pc.cLength(arg) >= 8)
 			{
 				output(" Her hands continue to stroke, pumping faster and faster, squeezing your urethra as if she could milk the orgasm out of your body with simple pressure alone.");
@@ -822,7 +822,7 @@ public function blowAThrobUser(user:int):void
 	output(", making her wiggle adorably. <i>“Such a naughty girl, distracting me while I’m trying to work.”</i> After a second to catch your breath, you dive back down and resume sucking, your attention one hundred percent focused on making the modest tool cream all over your tongue.");
 	output("\n\n<i>“Oh, awesome.”</i>");
 	output("\n\nDoes this girl ever shut up?");
-	output("\n\nYou eyes nearly go cross trying to look at the base of the ");
+	output("\n\nYour eyes nearly go cross trying to look at the base of the ");
 	if(user == 0) output("vivid alien shaft");
 	else if(user == 1) output("lavender length");
 	else if(user == 2) output("inky length");
@@ -833,7 +833,7 @@ public function blowAThrobUser(user:int):void
 	output("\n\nThrough the upper edge of the hole, you catch a brief glance of a blue fluid being pumped into the dick. A second later, it’s taken away.");
 	output("\n\n");
 	if(CodexManager.entryUnlocked("Throbb") || flags["PENNY_THROBB_USES"] != undefined) output("Recognizing the throbb for what it is, you keep sucking, waiting to see how it’ll affect the clueless alien.");
-	else output("Dismissing her usage of an obvious performance enhancing drug, you go back to suck, figuring she’ll probably blow any second.");
+	else output("Dismissing her usage of an obvious performance enhancing drug, you go back to sucking, figuring she’ll probably blow any second.");
 	output(" It’s eerily quiet in the stall. The girl isn’t saying anything, or even moaning anymore. All you can hear are the wet sounds you make when you slap your [pc.lips] against her crotch.");
 	output("\n\n<i>“Fuck!”</i> the dick-girl angrily cries. <i>“That bitch must have ripped me off.”</i> She even goes a little soft in your mouth.");
 	output("\n\nCompassionately, you slide your tongue into action, hoping to make her forget her wasted credits. She throbs back to full hardness. Her next heartbeat, her dick does it again. It’s warmer, maybe even heavier than a few seconds ago.");

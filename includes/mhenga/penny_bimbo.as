@@ -52,7 +52,7 @@ public function bimboPennyMenu():void
 	addButton(0,"Talk",bimboPennyTalk);
 	if(pc.lust() >= 33) addButton(1,"Sex",bimboPennySex);
 	else addDisabledButton(1,"Sex","Sex","You are not quite in the mood for this at the moment.");
-	if(pc.hasItem(new IQBGone())) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger's lab.");
+	if(pc.hasItem(new IQBGone())) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -110,7 +110,7 @@ public function bimboPennySexMenu():void
 	clearMenu();
 	//[Fuck her][Get fucked by her][Get oral][Cum bath][Play with Flahne]
 	if(pc.hasCock() && pc.cockThatFits(penny.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckBimboPenny,undefined,"Fuck Her","Use your cock to fuck the happy little bimbo.");
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You're too big to fit in her, even after her enhancements.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You’re too big to fit in her, even after her enhancements.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis to fuck her.");
 
 	addButton(1,"Get Fucked",getFuckedByBimboPenny,undefined,"Get Fucked","Take advantage of bimbo Penny’s rather sizeable tool.");
@@ -422,6 +422,7 @@ public function playWithFlahne():void
 
 	processTime(25);
 	penny.orgasm();
+	pc.loadInMouth(penny);
 	pc.lust(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -50,6 +50,7 @@ public function getBigTPregContainer():PregnancyPlaceholder
 	ppBigT.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	ppBigT.balls = 2;
 	ppBigT.ballSizeRaw = 12;
+	ppBigT.createPerk("Fixed CumQ", 4000, 0, 0, 0);
 	return ppBigT;
 }
 

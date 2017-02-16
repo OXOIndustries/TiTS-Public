@@ -364,7 +364,7 @@ public function getARoomWithKaede():void
 	author("Savin");
 	output("<i>“How about we get outta here?”</i> you suggest, reaching down and giving Kaede’s booty an affectionate squeeze.");
 	output("\n\nKaede’s tail swishes as your hand gropes its way across her backside. <i>“I was hoping you’d say that. I’ve got a room here while I’m staying... how about we head on back?”</i>");
-	output("\n\nSounds good. Kaede drops a credit chit to cover her tab and grabs your hand, leading you towards the lodge’s guest wing. It’s a short walk to Kaede’s door, each step punctuated by a rising chorus of little gasps and moans, drawn out by wandering hands and gending bodies.. She swipes an access card over the lock and ushers you inside, hurriedly working her belt off and locking the door at the same time. The room’s simply furnished but cozy, with a queen-sized bed and a desk covered in Vesperian-themed knick-knacks taking up most of the space. A canvas bag full of clothes is the only evidence of Kaede’s residence.");
+	output("\n\nSounds good. Kaede drops a credit chit to cover her tab and grabs your hand, leading you towards the lodge’s guest wing. It’s a short walk to Kaede’s door, each step punctuated by a rising chorus of little gasps and moans, drawn out by wandering hands and bending bodies. She swipes an access card over the lock and ushers you inside, hurriedly working her belt off and locking the door at the same time. The room’s simply furnished but cozy, with a queen-sized bed and a desk covered in Vesperian-themed knick-knacks taking up most of the space. A canvas bag full of clothes is the only evidence of Kaede’s residence.");
 	output("\n\nYou grab the cute half-ausar by the hips and give her a rough push, throwing her face-up onto the bed. She yelps in surprise, turning into a giggle as you stalk up after her, straddling her hips and pulling her out of her leather jacket.");
 	processTime(5);
 	pc.lust(5);
@@ -475,7 +475,7 @@ public function cumInsideKaedesBootyButt(x:int):void
 	else output("orgasm");
 	output(" that’s been building up deep in");
 	if(pc.balls > 0) output(" your [pc.balls]");
-	else output(" side");
+	else output("side");
 	output(". Kaede’s breath catches and her cock jumps to attention, standing straight up with all new arousal as [pc.cumNoun] floods into her hungry hole.");
 	if(x >= 0 && pc.cumQ() >= 5000) output(" You watch with giddy glee as her stomach bulges from the sheer inhuman size of your load, swelling with seed until the coochless pup looks positively pregnant.");
 	else if(x >= 0) output(" You lean in and kiss her fiercely, moaning into her mouth as your [pc.cock] fills her bowels with [pc.cum].");
@@ -760,7 +760,7 @@ public function kaedePopsIntoZeGloryHole():void
 	output("\n\nYou do, of course - slathering her dick with your tongue, working the base with your hands, worshipping her growing bitch-breaker - but you can’t shake a feeling of familiarity. Her voice, that outfit, this cute lil’ dick...");
 	output("\n\n<i>“Gayd?”</i> you mumble around your mouthful of dick.");
 	output("\n\n<i>“Huh?”</i> the girl says. Eh, no need to ruin a good beej by surprising Kaede. You just keep sucking her pretty pole, bobbing your head up and down until your outburst is forgotten, and she’s back to moaning banging her hips against the wall. The way she’s going, you barely need to do anything - not that that stops you from sating your cocklust as vigorously as you can, enjoying the taste of dickmeat and, pretty soon, a salty cream that she starts drooling onto your [pc.tongue].");
-	output("\n\nOooh, now <i>that</i>’s the stuff. You wrap your fingers around the now-turgid bulb of Kaede’s knot, squeezing it as you slurp on her shaft, milking up all that yummy cum until, with a whining yelp and a thrust that makes the entire stall shudder, Kaede busts a thick, creamy nut right down your throat. Your slip your [pc.lipsChaste] down straight to the knot, swallowing down every drop of the shemale’s salty seed. Only when she’s spent her balls’ load in its entirety do you pull back, wiping your lips and breaking the lingering bridges of saliva still connecting your to Kaede’s softening puppy-cock.");
+	output("\n\nOooh, now <i>that</i>’s the stuff. You wrap your fingers around the now-turgid bulb of Kaede’s knot, squeezing it as you slurp on her shaft, milking up all that yummy cum until, with a whining yelp and a thrust that makes the entire stall shudder, Kaede busts a thick, creamy nut right down your throat. Your slip your [pc.lipsChaste] down straight to the knot, swallowing down every drop of the shemale’s salty seed. Only when she’s spent her balls’ load in its entirety do you pull back, wiping your lips and breaking the lingering bridges of saliva still connecting you to Kaede’s softening puppy-cock.");
 	output("\n\n<i>“Whew! That was... that was a surprise. Thanks!”</i> Kaede murmurs, tearing off some tissue and cleaning herself off. <i>“So, uh, d-do I pay you or something...?”</i>");
 	output("\n\nYou chuckle. <i>“Nah, that one’s on me, Kaede.”</i>");
 	output("\n\n<i>“[pc.name]?”</i> Kaede yelps, crouching down and sticking her eye into the gloryhole. <i>“W-what are you... really!?”</i>");

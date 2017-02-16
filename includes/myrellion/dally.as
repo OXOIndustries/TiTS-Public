@@ -155,7 +155,7 @@ public function dallyApproach():void
 		flags["MET_DALLY"] = 1;
 		//[Nectar?] [Dance] [Leave]
 		clearMenu();
-		addButton(0,"Nectar?",askDallyAboutNectarCauseYerADip,undefined,"Nectar?","Ask Dally about that nectar he mentioned earlier. He doesn't have a serving tray...");
+		addButton(0,"Nectar?",askDallyAboutNectarCauseYerADip,undefined,"Nectar?","Ask Dally about that nectar he mentioned earlier. He doesn’t have a serving tray...");
 		addButton(1,"Dance",askDallyForADanceYaDunce,undefined,"Dance","Get a Dally to give you a personal dance. You wanna see behind that loincloth!");
 		addButton(14,"Leave",leaveDally,true);
 	}
@@ -177,12 +177,12 @@ public function dallyMenu():void
 {
 	clearMenu();
 	//[Nectar(?)] [Dance] [Leave]
-	if(flags["DALLY_NECTAR_SPIEL"] == undefined) addButton(0,"Nectar?",askDallyAboutNectarCauseYerADip,undefined,"Nectar?","Ask Dally about that nectar he mentioned earlier. He doesn't have a serving tray...");
-	else addButton(0,"Nectar",nectarSuckFromDallyProper,undefined,"Nectar","Get some Nectar directly from his tap. It's a totally normal thing for myr to do - why can't you?");
+	if(flags["DALLY_NECTAR_SPIEL"] == undefined) addButton(0,"Nectar?",askDallyAboutNectarCauseYerADip,undefined,"Nectar?","Ask Dally about that nectar he mentioned earlier. He doesn’t have a serving tray...");
+	else addButton(0,"Nectar",nectarSuckFromDallyProper,undefined,"Nectar","Get some Nectar directly from his tap. It’s a totally normal thing for myr to do - why can’t you?");
 	addButton(1,"Dance",askDallyForADanceYaDunce,undefined,"Dance","Get a Dally to give you a personal dance. You wanna see behind that loincloth!");
 	addButton(2,"Talk",talkToDally,undefined,"Talk","Try to talk to Dally over the din of the blaring music.");
 	if(flags["DALLY_FAVOR_OFFERED"] == 1) addButton(3,"Favor",getAFavorFromDally);
-	else addDisabledButton(3,"Favor","Favor","But Dally doesn't owe you any favors!");
+	else addDisabledButton(3,"Favor","Favor","But Dally doesn’t owe you any favors!");
 
 	if (flags["FAZIAN_QUEST_STATE"] == FAZIAN_QUEST_STARTED && flags["FAZIAN_QUEST_DALLY"] == undefined)
 	{
@@ -293,7 +293,7 @@ public function askDallyForADanceYaDunce():void
 		//[Touch] [No Touch]
 		clearMenu();
 		addButton(0,"Touch",dallyDanceWithTheBadTouchYouAndMeBabyArentNothinButMammalsNoWaitInsects,undefined,"Touch","Get a hands-on dance. It might be a little messy.");
-		addButton(1,"No Touch",danceNoTouchDally,undefined,"No Touch","Don't touch him while he dances.");
+		addButton(1,"No Touch",danceNoTouchDally,undefined,"No Touch","Don’t touch him while he dances.");
 	}
 }
 
@@ -312,12 +312,12 @@ public function talkMilkAnAntGuy():void
 	if(pc.hasParasiteTail()) output(" parasitic");
 	else output("n alien");
 	output(" cum-drinker.");
-	output("\n\nDally slumps to the ground, tipping onto his back, murmuring, <i>“Stones...”</i> His hips futilely twitch upward, trying to wring some useless show of male authority from the rather one-sided copulation, but all it does is make it easier for your [pc.cuntTail] to slurp its way down another two inches of his rapidly-rising dick. Its own weight kept it dangling downwards before, but under your instinctive stimulation, Dally's member has no choice but to rise to the occasion, full and throbbing.");
+	output("\n\nDally slumps to the ground, tipping onto his back, murmuring, <i>“Stones...”</i> His hips futilely twitch upward, trying to wring some useless show of male authority from the rather one-sided copulation, but all it does is make it easier for your [pc.cuntTail] to slurp its way down another two inches of his rapidly-rising dick. Its own weight kept it dangling downwards before, but under your instinctive stimulation, Dally’s member has no choice but to rise to the occasion, full and throbbing.");
 	output("\n\nThe harder (and larger) he gets, the more your tail has to stimulate. The hollow");
 	if(pc.hasParasiteTail()) output(" parasite");
 	else output(" tail");
 	output(" undulates around its prey, slowly inching down to devour more and more. If you didn’t know better, you’d think it attached to you backwards and that the snake half was trying to eat him starting with his cock.");
-	output("\n\nOf course, there’s no way such a thing should feel so good - sex isn't normally like this! With its needs tended to, your bestial partner is all to happy to pass-through every delicious sensation... and a warm, satisfied glow that could rival post-coital bliss for enjoyability. It’s like being wrapped up in a warm fuzzy blanket with a mug of hot chocolate while simultaneously pounding the ever-loving fuck out of the worlds biggest, veiniest prick. You shiver and your seat and placidly lean forward to watch, your concern smothered away by enjoyment.");
+	output("\n\nOf course, there’s no way such a thing should feel so good - sex isn’t normally like this! With its needs tended to, your bestial partner is all to happy to pass-through every delicious sensation... and a warm, satisfied glow that could rival post-coital bliss for enjoyability. It’s like being wrapped up in a warm fuzzy blanket with a mug of hot chocolate while simultaneously pounding the ever-loving fuck out of the worlds biggest, veiniest prick. You shiver and your seat and placidly lean forward to watch, your concern smothered away by enjoyment.");
 	output("\n\nDally is writhing now, alternately moaning and murmuring <i>“Yes”</i> again and again. His hands curl into fists, rise up, and then open to slap palm-down against the stage whenever your tail touches something particularly sensitive. His eyes flick over to you, but they’re empty save for lust and desire. Still watching you, he grabs hold of the snake-like tail on his overstimulated dick and plunges it the rest of the way down, burying over fifteen inches of prime myr meat into your endlessly hungry passage.");
 	output("\n\nIt must be your turn to moan like a whore, because you can’t hold your vocalizations inside. They rise up like licentious spirits, hanging around you until everyone in a ten foot radius knows just how horny and well-fucked your feeling, if you don’t show it in a way they understand.");
 	output("\n\n<i>“F-fuck, I got this,”</i> Dally pants, pulling you most of the way off.");
@@ -559,11 +559,11 @@ public function dallyTipMenu():void
 	clearMenu();
 	addButton(0,"No Tip",payDally,0);
 	if(pc.credits >= 100) addButton(1,"100 Creds",payDally,100);
-	else addDisabledButton(1,"100 Creds","100 Creds","You don't have that much.");
+	else addDisabledButton(1,"100 Creds","100 Creds","You don’t have that much.");
 	if(pc.credits >= 250) addButton(2,"250 Creds",payDally,250);
-	else addDisabledButton(2,"250 Creds","250 Creds","You don't have that much.");
+	else addDisabledButton(2,"250 Creds","250 Creds","You don’t have that much.");
 	if(pc.credits >= 999) addButton(3,"999 Creds",payDally,999);
-	else addDisabledButton(3,"999 Creds","999 Creds","You don't have that much.");
+	else addDisabledButton(3,"999 Creds","999 Creds","You don’t have that much.");
 }
 
 public function payDally(amount:int = 0):void
@@ -579,7 +579,7 @@ public function payDally(amount:int = 0):void
 	}
 	else
 	{
-		output("You transfer " + amount + " credits to Dally's digital tip jar. Of course, the establishment probably takes a healthy cut, but that can't be helped, right?");
+		output("You transfer " + amount + " credits to Dally’s digital tip jar. Of course, the establishment probably takes a healthy cut, but that can’t be helped, right?");
 		pc.credits -= amount;
 		if(flags["DALLY_TIPS"] == undefined) flags["DALLY_TIPS"] = 0;
 		flags["DALLY_TIPS"] += amount;
@@ -669,11 +669,11 @@ public function talkToDally():void
 		clearMenu();
 		addButton(0,"No Tip",payDally4Talk,0);
 		if(pc.credits >= 100) addButton(1,"100 Creds",payDally4Talk,100);
-		else addDisabledButton(1,"100 Creds","100 Creds","You don't have that much.");
+		else addDisabledButton(1,"100 Creds","100 Creds","You don’t have that much.");
 		if(pc.credits >= 250) addButton(2,"250 Creds",payDally4Talk,250);
-		else addDisabledButton(2,"250 Creds","250 Creds","You don't have that much.");
+		else addDisabledButton(2,"250 Creds","250 Creds","You don’t have that much.");
 		if(pc.credits >= 999) addButton(3,"999 Creds",payDally4Talk,999);
-		else addDisabledButton(3,"999 Creds","999 Creds","You don't have that much.");
+		else addDisabledButton(3,"999 Creds","999 Creds","You don’t have that much.");
 		addButton(0,"Leave",leaveDally);
 	}
 	//Already tipped
