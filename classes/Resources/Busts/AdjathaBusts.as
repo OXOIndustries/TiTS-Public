@@ -64,6 +64,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/bess.png", mimeType = "image/png")]
 		public var Bust_BESS:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/betsy_victoria.png", mimeType = "image/png")]
+		public var Bust_BETSY_VICTORIA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget.png", mimeType = "image/png")]
 		public var Bust_BRIGET:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget_nude.png", mimeType = "image/png")]
