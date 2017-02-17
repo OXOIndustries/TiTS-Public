@@ -76,7 +76,7 @@ public function returnToShipAfterRecruitingAnno():Boolean
 	{
 		flags["ANNO_CREWMEMBER"] = 1;
 	}
-			
+	
 	if (flags["ANNO_CREWMEMBER"] == 1 && flags["ANNO_CREWMEMBER_INITIALSCENE"] == undefined)
 	{
 		clearOutput();
