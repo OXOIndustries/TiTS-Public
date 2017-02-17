@@ -63,6 +63,13 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/bess.png", mimeType = "image/png")]
 		public var Bust_BESS:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/betsy_victoria.png", mimeType = "image/png")]
+		public var Bust_BETSY_AND_VICTORIA:Class;
+		//[Embed(source = "../../../assets/images/npcs/adjatha/betsy.png", mimeType = "image/png")]
+		//public var Bust_BETSY:Class;
+		//[Embed(source = "../../../assets/images/npcs/adjatha/victoria.png", mimeType = "image/png")]
+		//public var Bust_VICTORIA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget.png", mimeType = "image/png")]
 		public var Bust_BRIGET:Class;
@@ -525,6 +532,13 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bess.png", mimeType = "image/png")]
 			public var Full_BESS:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/betsy_victoria.png", mimeType = "image/png")]
+			public var Full_BETSY_AND_VICTORIA:Class;
+			//[Embed(source = "../../../assets/images/npcs/adjatha/hr/betsy.png", mimeType = "image/png")]
+			//public var Full_BETSY:Class;
+			//[Embed(source = "../../../assets/images/npcs/adjatha/hr/victoria.png", mimeType = "image/png")]
+			//public var Full_VICTORIA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget.png", mimeType = "image/png")]
 			public var Full_BRIGET:Class;

@@ -1406,7 +1406,7 @@ public function showerWithBetsyAndVictoriaApproach():void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("BETSY &\nVICTORIA");
-	showBust("BETSY", "VICTORIA");
+	showBust("BETSY_AND_VICTORIA");
 	
 	if(flags["MET_SHOWER_GIRLS"] == undefined)
 	{
@@ -1448,7 +1448,7 @@ public function showerWithBetsyAndVictoriaSelect():void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("BETSY &\nVICTORIA");
-	showBust("BETSY", "VICTORIA");
+	showBust("BETSY_AND_VICTORIA");
 	
 	if(flags["SHOWER_SANDWICH"] == undefined)
 	{
@@ -1480,7 +1480,7 @@ public function showerWithBetsyAndVictoriaTease():void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("BETSY &\nVICTORIA");
-	showBust("BETSY", "VICTORIA");
+	showBust("BETSY_AND_VICTORIA");
 	
 	output("You give the two cowgirls a teasing smile, and tell them you just felt like showing off a little. It’s a flattering offer, but you’re not actually looking for sex right now.");
 	output("\n\n<i>“Tease,”</i> Betsy says, and sticks her tongue out at you.");
@@ -1501,7 +1501,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("BETSY &\nVICTORIA");
-	showBust("BETSY", "VICTORIA");
+	showBust("BETSY_AND_VICTORIA");
 	
 	var x:int = -1;
 	
