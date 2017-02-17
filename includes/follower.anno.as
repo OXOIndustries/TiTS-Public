@@ -76,7 +76,7 @@ public function returnToShipAfterRecruitingAnno():Boolean
 	{
 		flags["ANNO_CREWMEMBER"] = 1;
 	}
-			
+	
 	if (flags["ANNO_CREWMEMBER"] == 1 && flags["ANNO_CREWMEMBER_INITIALSCENE"] == undefined)
 	{
 		clearOutput();
@@ -1056,7 +1056,7 @@ public function annoFollowerSexMenu():void
 	else addDisabledButton(9, "Tailfuck", "Tailfuck", "You need an appropriately-sized penis and a parasitic tailcock for this.");
 
 	if(pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(anno.vaginalCapacity(0)) >= 0)) addButton(10,"PetPlay",annoPupperPlay,undefined,"PetPlay","See if Anno’s willing to spend some time on the business end of a leash.");
-	else if(pc.hasCock() && pc.smallestCockVolume() > anno.vaginalCapacity(0)) addDisabledButton(10,"PetPlay","PetPlay","You're too big to fit inside her when you do this.");
+	else if(pc.hasCock() && pc.smallestCockVolume() > anno.vaginalCapacity(0)) addDisabledButton(10,"PetPlay","PetPlay","You’re too big to fit inside her when you do this.");
 	else addDisabledButton(10,"PetPlay","PetPlay","You need a penis that fits inside her in order to do this.");
 
 	addButton(14, "Back", annoFollowerMenu);

@@ -841,7 +841,7 @@ public function useDaMilkarMenu():void
 	else addButton(2, "Blowjob", carrieBlowjobIntro,undefined, "Blowjob", "Why have the harsh embrace of a machine when there’s a perfectly developed cow-girl close at hand?");
 	if(pc.hasCockTail() && pc.hasCock() && pc.hasParasiteTail() && !pc.hasStatusEffect("NT_TAILCOCK_MILK_CD") && StatTracking.getStat("milkers/prostate milker uses") > 3) addButton(3,"Parasite Drop",carrieCockTailSneakyDeaky,undefined,"Parasite Drop","Convince Carrie that she can trust you to be alone with the machine -- then dump a load of parasites in the stud stock with your tail.");
 	else if(!pc.hasTailCock() || !pc.hasParasiteTail() || !pc.hasCock()) addDisabledButton(3,"Parasite Drop","Parasite Drop","You need both a cock (to decoy) and a parasitic tail-cock to do this.");
-	else addDisabledButton(3,"Parasite Drop","Parasite Drop","Carrie's not supposed to take off and leave someone alone with the milker. If you want to drop a load of parasites into the stud stock without being caught, you should get more uses in so she trusts you.");
+	else addDisabledButton(3,"Parasite Drop","Parasite Drop","Carrie’s not supposed to take off and leave someone alone with the milker. If you want to drop a load of parasites into the stud stock without being caught, you should get more uses in so she trusts you.");
 	addButton(14, "Leave", mainGameMenu);
 }
 

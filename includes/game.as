@@ -2592,22 +2592,20 @@ public function processHoneyPotMods(deltaT:uint, doOut:Boolean, totalDays:uint):
 
 public function processExhibUpdates(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
-	if
-	(	!(pc.armor is EmptySlot)
-	&&	!(	pc.lowerUndergarment is EmptySlot
-		||	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) 
-		||	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) 
-		||	pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)
-		)
-	&& !(	pc.upperUndergarment is EmptySlot
-		||	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
-		||	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)
-		)
-	)
-	{
-		if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed()) { /*noop*/ }
-		else pc.exhibitionism(-0.5 * totalDays);
-	}
+	var exhibitionismPoints:Number = 0;
+	if(pc.isCrotchExposed()) exhibitionismPoints++;
+	if(pc.isAssExposed()) exhibitionismPoints++;
+	if(pc.isChestExposed() && pc.biggestTitSize() >= 1) exhibitionismPoints++;
+	if(pc.isNude()) exhibitionismPoints++;
+
+	var currExhib:Number = pc.exhibitionism();
+
+	//All covered up? Reduce over time!
+	if(exhibitionismPoints == 0) pc.exhibitionism(-0.5 * totalDays);
+	else if(exhibitionismPoints >=4 && currExhib < 50) pc.exhibitionism(2);
+	else if(exhibitionismPoints >=3 && currExhib < 40) pc.exhibitionism(1);
+	else if(exhibitionismPoints >= 2 && currExhib < 33) pc.exhibitionism(1);
+	else if(currExhib < 20) pc.exhibitionism(1);
 }
 
 public function processNewTexasEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void

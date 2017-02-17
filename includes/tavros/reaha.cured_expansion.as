@@ -437,6 +437,7 @@ public function goAwayYouMilkyMilkSlut():void
 		//Set Reaha to Booted status.
 		processTime(10);
 		flags["REAHA_BOOTED"] = 1;
+		if (flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -454,6 +455,7 @@ public function leaveNowYouLowConfidenceCuredCowSlut():void
 	processTime(4);
 	//Reaha leaves crew. Flag as <i>“Booted.”</i>
 	flags["REAHA_BOOTED"] = 1;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

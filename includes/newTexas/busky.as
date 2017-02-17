@@ -1369,12 +1369,13 @@ public function buskySexMotivationFollowUp():void {
 	output("\n\n<i>“I want you to wear it during.”</i> He leads you under a showerhead and turns it on, hot water pouring down your face washing off the residue from a few minutes prior. You press your ass against Busky’s raging, throbbing length, putting your hands on the wall for support.");
 	output("\n\n<i>“You really want my cock don’t you? Well, you’ll get it,”</i> Busky teases as he slid his long pink spotted horsecock against your [pc.vagOrAss], smearing pre-cum all over your dilating hole.");
 	//do penetration checks
+	var isTight:Boolean = ((pc.hasVagina() && pc.looseness() <= 2) || pc.ass.looseness() <= 2);
 	if (pc.hasVagina()) pc.cuntChange(0, chars["BUSKY"].cockVolume(0), true, true, false);
 	else pc.buttChange(chars["BUSKY"].cockVolume(0), true, true, false);
 	
 	output(" You become numb with anticipation as you anticipate Busky fucking you raw. You lose your footing, almost falling, but Busky catches you. You look up at him, holding you tightly, staring at you with greedy eyes. The bull gently rests you facedown on the floor, your ass his for the taking. Busky begins to prod your [pc.vagOrAss] with his cock, finally forcing the flare in.");
 	
-	if((pc.hasVagina() && pc.looseness()<=2) || pc.ass.looseness()<=2) output(" After your hole finishes adapting to his girth, he slowly pulls it out.");
+	if(isTight) output(" After your hole finishes adapting to his girth, he slowly pulls it out.");
 	output(" Losing your patience, you start");
 	if (pc.isBro()) output(" demanding him to ram his length so far into you you’d have trouble walking for the next two weeks");
 	else if (pc.isBimbo()) output(" begging for his cock, asking him to ram it so far inside you you’ll be coughing up his cum for a week");
@@ -1383,8 +1384,8 @@ public function buskySexMotivationFollowUp():void {
 	
 	output("\n\n<i>“You want it that bad, eh? Well I’ll give it to you, but I wanna see your face when you cum,”</i> Busky says as you flip over, onto your back. You close your eyes as you lift your legs into the air waiting for his cock, as you feel being lifted up by a pair of strong masculine arms. Busky’s now holding you up by your [pc.ass], your [pc.vagOrAss] hovering just over his cock. You look into his eyes and beg one last time <i>“Please.”</i>");
 	
-	output("\n\nBusky then rams his cock into you, his medial ring providing some resistance, before your anus accepts it and the ring pops in. He wastes no time as he begins to pump himself in and out of you so fast your [pc.vagOrAss]");
-	if((pc.hasVagina()&&pc.looseness()<=2) || pc.ass.looseness()<=2) output(" can barely adjust, still extremely tight");
+	output("\n\nBusky then rams his cock into you, his medial ring providing some resistance, before your " + (pc.hasVagina() ? "cunt" : "anus") + " accepts it and the ring pops in. He wastes no time as he begins to pump himself in and out of you so fast your [pc.vagOrAss]");
+	if(isTight) output(" can barely adjust, still extremely tight");
 	else output(" starts clenching in response");
 	output(". With every thrust you feel him going harder and harder, his flare grinding");
 	if (pc.hasCock()) output(" against your prostate, forcing a stream of pre to dribble out of your cock");

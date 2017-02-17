@@ -3052,7 +3052,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Sellesy
 				if(flags["SEEN_SELLESY"] != undefined)
 				{
-					if(flags["MET_SELLESY"] != undefined) output2("\n<b>* Sellesy:</b> Met her");
+					if(flags["MET_SELLESY"] != undefined)
+					{
+						output2("\n<b>* Sellesy:</b> Met her");
+						if(flags["SELLESY_HL"] != undefined) output2("\n<b>* Sellesy, Times Fucked Her With Hardlight Strap-On:</b> " + flags["SELLESY_HL"]);
+					}
 					else output2("\n<b>* Three-Breasted Waitress:</b> Seen her");
 				}
 				// Shelly
@@ -3533,6 +3537,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Milker, Prostate, Times Used:</b> " + StatTracking.getStat("milkers/prostate milker uses"));
 					output2("\n<b>* Milker, Prostate, Cum Milked:</b> " + StatTracking.getStat("milkers/cum milked") + " mL");
+					if(flags["NT_TAILCOCK_MILKINGS"] != undefined) output2("\n<b>* Milker, Prostate, Times Used with Parasitic Tail-Cock:</b> " + flags["NT_TAILCOCK_MILKINGS"]);
 				}
 				// Brynn
 				if(flags["BRYNN_AUTOENTER"] != undefined)
@@ -4164,6 +4169,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2("\n<b>* Anno, Times Used Her Vibrator:</b> " + flags["ANNO_TRIBERATOR_USED"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
+					if(flags["ANNO_PETPLAYED"] != undefined) output2("\n<b>* Anno, Times Walked:</b> " + flags["ANNO_PETPLAYED"]);
 				}
 				variousCount++;
 			}
