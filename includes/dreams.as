@@ -317,6 +317,7 @@ public function reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsFor
 {
 	clearOutput();
 	showReaha(true);
+	author("Shadefalcon");
 	showName("THE\nBARN");
 	//Nerds
 	output("It’s a long walk to the barn, but early as it is the sun has barely peeked over the horizon before you reach the red building where you keep your cowgirls. As you open its large doors, you’re greeted with welcoming moos from the cows sitting on the hay beds within their stalls. They must be brimful with milk, if those needy eyes are any indication. Not a [pc.manWoman] to keep your job or beloved farm animals waiting, you set to work, taking out one buxom cow at a time for milking. It’s a routine you’re so familiar with, yet one you never seem to grow tired of. One by one you escort a girl out, leading her by a leash or a gentle tug on her arm, whatever she prefers, and place her in front of a bucket while you sit on a small three legged wooden stool. Looking her in the eyes reassuringly, you knead her swollen tits with your warm [pc.hands] until milk starts leaking out by itself. Then you twist and pinch at her nipples, squeezing out her delicious cream, filling the metal container to the brim.");
@@ -338,6 +339,7 @@ public function reahaDreamPart2():void
 {
 	clearOutput();
 	showReaha(true);
+	author("Shadefalcon");
 	showName("PRIZED\nCOW");
 	output("Normally, you’d be content just looking at the flying white arcs and the relieved expression on her adorable face, but this time you’re all too well aware of her quivering body and the slight stream of fem-spunk dripping down along your crotch. It took every ounce of your willpower to control your urges when she just sat on you, but feeling her naked skin on yours, and hearing her groans of pleasure, there’s nothing that can stop your mast");
 	if(pc.cockTotal() > 1) output("s");
@@ -428,6 +430,7 @@ public function reahaDreamPart3():void
 {
 	clearOutput();
 	showReaha(true);
+	author("Shadefalcon");
 	//50 % chance of occurring instead of sleeping Reaha:
 	if(rand(2) == 0)
 	{
