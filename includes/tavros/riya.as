@@ -655,8 +655,6 @@ public function riyaVagigooVagitiems():void
 		output("\n\n As the two of you ascend, Riya lazily gropes your [pc.ass], unlocking your cuffs one-handed. <i>“Fuck, it’s been too long since I’ve done that. Thanks, Steele.”</i> she says, her hand withdrawing your ass only to deliver a resounding <i>smack</i>, the officer blowing you a kiss as the elevator opens and the two of you begin to part ways. <i>“Catch you later, slut! Try not to trip and land on a cock, now!”</i>");
 		processTime(35);
 		pc.orgasm();
-		var pp:PregnancyPlaceholder = getRiyaPregContainer();
-		pc.loadInCunt(pp,0);
 	}
 	//PC is not virgin
 	else
@@ -692,9 +690,9 @@ public function riyaVagigooVagitiems():void
 		output("\n\n<i>“See you some other time, Steele!”</i>");
 		processTime(40);
 		pc.orgasm();
-		var pp:PregnancyPlaceholder = getRiyaPregContainer();
-		pc.loadInCunt(pp,0);
 	}
+	var pp:PregnancyPlaceholder = getRiyaPregContainer();
+	pc.loadInCunt(pp,0);
 	IncrementFlag("RIYA_CUNTPOUNDED_YOU");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
