@@ -3360,6 +3360,10 @@
 			if(accessory is Allure) return true;
 			return false;	
 		}
+		public function canDeepthroat():Boolean
+		{
+			return (isBimbo() || isTreated());
+		}
 		public function skinIsSoaked():Boolean
 		{
 			if(this is PlayerCharacter && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) return true;
@@ -3955,7 +3959,10 @@
 				bonuses += level;
 				if(perkv1("Dumb4Cum") > 24) bonuses -= (perkv1("Dumb4Cum") - 24);
 			}
-			return ((level * 5) + bonuses);
+
+			var amount:Number = ((level * 5) + bonuses);
+			if(amount < Creature.STAT_CLAMP_VALUE) amount = Creature.STAT_CLAMP_VALUE;
+			return amount;
 		}
 		public function willpowerMax(): Number {
 			var bonuses:int = 0;
