@@ -641,7 +641,6 @@ public function yesBoneShellyWivHardlight():void
 	//pc orgasm, pass time, get an egg, go wherever PC goes after Shelly sex
 	//disable Shelly’s ‘Assist’ and ‘Sex’ function for 24hrs
 	
-
 	processTime(45);
 	pc.orgasm();
 	pc.createStatusEffect("Shelly Assist Cooldown", 0, 0, 0, 0, true, "", "", false, 24*60);
