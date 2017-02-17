@@ -45,11 +45,18 @@ public function reahaAddictionTherapyAvailable():Boolean
 	return true;
 }
 
-public function reahaHeader():void
+public function reahaHeader(nude:Boolean = false):void
 {
 	showName("\nREAHA");
 	author("Savin");
-	showBust("REAHA");
+	var nudeBonus:String = "";
+	if(nude) nudeBonus = "_NUDE";
+	showBust("REAHA"+nudeBonus);
+}
+
+public function showReaha(nude:Boolean = false):void
+{
+	reahaHeader(nude);
 }
 
 public function reahaMoosAboutNewTexas():Boolean
