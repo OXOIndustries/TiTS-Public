@@ -553,7 +553,9 @@ public function riyaVagigooVagitiems():void
 	clearOutput();
 	showRiya(true);
 	author("Franks");
-	var race:String = pc.race();
+	var race:String = pc.raceShort();
+	var isDogMorph:Boolean = (InCollection(race,["ausar","huskar","milodan","dog","doge","canine","husky","hellhound","bitch","worg"]));
+	var isCatMorph:Boolean = (InCollection(race,["kaithrit","cat","feline","lion"]));
 	output("Riya smirks, reaching around the back of your head, pulling you in, and setting her teeth against your neck, making you squeal as she sinks them into your [pc.skinFurScales]. She pulls back after leaving an indent in your throat, gazing into your eyes hungrily. <i>“Alright, Steele. You want some of this? You got it.”</i> she says, using her grip on your neck to spin you about and herd you quickly into the elevator, where she grabs your wrists and deftly cuffs them behind your back.");
 	output("\n\nShe spins you around, meeting your eyes as her right hand ");
 	if(!pc.isCrotchExposed()) output("slips into your [pc.lowerGarment]");
@@ -563,7 +565,7 @@ public function riyaVagigooVagitiems():void
 	output(", spreading the lips of your [pc.cunt] apart as she starts to tease you with surprising gentleness. Hell, she knows what she’s doing too! Your thighs quiver, legs shaking slightly as she explores your insides with her hand while her thumb stays outside to caress your clit. She pushes you back up against the elevator wall, your [pc.vagina] leaking fluid all over her digits as she plays with your naughty bits, a smug smile playing across her sharp features as she watches your face redden and listens to your breathing get heavier.");
 	output("\n\n<i>“It’s always such a joy watching my bottoms squirm. The facial expressions, the panting, the whining... Putty in my hands.”</i> she says idly, eyes still boring sensually into yours.");
 	//PC is ausar/huskar/dogmorph with tail:
-	if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"]) && pc.tailCount > 0) 
+	if(isDogMorph && pc.tailCount > 0) 
 	{
 		output(" <i>“The tail wagging, in your case. You mutts are adorable as far as aliens go, you know that?”</i> she says, scratching behind your ears vigorously. <i>“Who’s a good puppy? Is it you? </i>Is it yoooou?<i>”</i> you open your mouth to protest this demeaning treatment, but all that comes out is a happy whine as she switches to massaging that spot behind your ears you can never quite get to, snickering loudly as she does. <i>“Putty in my hands.”</i>");
 		if(silly) output(" She crows as one of your legs thumps against the deck uncontrollably.");
@@ -597,9 +599,9 @@ public function riyaVagigooVagitiems():void
 		if(pc.tallness < 73) output("up");
 		else output("down");
 		output(" to take one of her juicy nipples into your mouth, but she shakes her head lazily, smiling. <i>“Not what I want, Steele.”</i> she drawls, left hand scratching your scalp. <i>“I want you to prove you want this.”</i> she continues, leaning in to whisper into your ear. ");
-		if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"]) && pc.tailCount > 0) output("<i>“Bark. And wag your tail, and beg like a good doggie. And then you can tell me how bad you want to be brought to heel.”</i>");
+		if(isDogMorph && pc.tailCount > 0) output("<i>“Bark. And wag your tail, and beg like a good doggie. And then you can tell me how bad you want to be brought to heel.”</i>");
 		// PC is Kaithrit:
-		else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("<i>“Meow for me. And purr. Then I want to hear what a nice pussy you are, and how bad you want me to pop your pussy, </i>pussy<i>.”</i>");
+		else if(isCatMorph) output("<i>“Meow for me. And purr. Then I want to hear what a nice pussy you are, and how bad you want me to pop your pussy, </i>pussy<i>.”</i>");
 		else if(race == "human") output("<i>“Beg. Tell me how honored you are that I’m your first, and how bad you want me to bust a nice, virile nut up your cunt.”</i>");
 		else output("<i>“Beg. Tell me how lucky you are that a human wants to pop your cherry, and that you hope I’m kind enough to fuck you again after this.”</i>");
 
@@ -610,8 +612,8 @@ public function riyaVagigooVagitiems():void
 
 		output("\n\n And so, just as the head of her magnificent brown beast of a cock is starting to leave your body, ");
 		//PC is ausar/huskar/dogmorph:
-		if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"] && pc.tailCount > 0)) output("you bark. Quietly and shamefully at first, but when Riya stops pulling out and stares at you expectantly you bark again, just the tiniest bit louder. She leers at you. <i>“I can’t hear you, slutpuppy. </b>Bark.<b>”</i> she orders, her cock shifting just a tiny bit further into your body, taunting you. You bark again, louder, and again, and again, your [pc.tails] shifting side to side rapidly, thumping against one of the legs of her desk as your yipping increases in volume - you wouldn’t be surprised if her fellow officers can hear the commotion outside. Is it just you, or is Riya getting harder inside you...? <i>“Good dog. Now beg.”</i> she continues, shifting forward so that her cock is touching your hymen again, so tantalizingly close... and you beg. You’ve already come this far, why stop now? You beg Riya to pop your cherry, to train you to be a loyal and obedient doggie, among other things.");
-		else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("you meow. At first it’s a quiet, pitiful sound, but when Riya stops pulling out and leers at you, an expectant look in her eyes, you do it again, louder and clearer. She pushes in a bit more, then stops again and looks at you. <i>“Well?”</i> she asks, that infuriatingly smug grin of hers crawling across her features. But still, you purr as ordered, telling Riya what a good kitty you are and how badly you want - how badly you <i>need</i> her to take you, to make you hers, among other things.");
+		if(isDogMorph) output("you bark. Quietly and shamefully at first, but when Riya stops pulling out and stares at you expectantly you bark again, just the tiniest bit louder. She leers at you. <i>“I can’t hear you, slutpuppy. </b>Bark.<b>”</i> she orders, her cock shifting just a tiny bit further into your body, taunting you. You bark again, louder, and again, and again, your [pc.tails] shifting side to side rapidly, thumping against one of the legs of her desk as your yipping increases in volume - you wouldn’t be surprised if her fellow officers can hear the commotion outside. Is it just you, or is Riya getting harder inside you...? <i>“Good dog. Now beg.”</i> she continues, shifting forward so that her cock is touching your hymen again, so tantalizingly close... and you beg. You’ve already come this far, why stop now? You beg Riya to pop your cherry, to train you to be a loyal and obedient doggie, among other things.");
+		else if(isCatMorph) output("you meow. At first it’s a quiet, pitiful sound, but when Riya stops pulling out and leers at you, an expectant look in her eyes, you do it again, louder and clearer. She pushes in a bit more, then stops again and looks at you. <i>“Well?”</i> she asks, that infuriatingly smug grin of hers crawling across her features. But still, you purr as ordered, telling Riya what a good kitty you are and how badly you want - how badly you <i>need</i> her to take you, to make you hers, among other things.");
 		// PC is human:
 		else if(race == "human") output("you beg. At first you’re quiet and hesitant, almost whispering as you ask her to take you, but when she shifts her hips forward a few centimeters and grins expectantly at you, pinching your left nipple between her thumb and index finger. Her ministrations draw a squeal from your [pc.lips] and you increase the volume, face flushing, telling her in no uncertain terms that you <i>need</i> her inside you, filling you with hot, hard cock and thick, creamy white seed...");
 		else output("you beg. Hesitantly and shamefully at first, but increasing in volume as she pushes just a tiny bit deeper into your [pc.vagina], bumping the head of her prick into your hymen again, promising to fill you if you’ll just ask like you mean it, like you really want it - which you do, howling now how badly you need her inside you, pounding you, pumping her steaming nut up into your womb.");
@@ -623,8 +625,8 @@ public function riyaVagigooVagitiems():void
 		pc.cuntChange(0,400);
 
 		output("\n\nShe guides your head to her chest then - <i>now</i> she wants you to suckle her, it seems. You do, of course, wrapping your [pc.lips] around a dark, pebbly nipple and dragging your [pc.tongue] over it, drawing a soft moan from the shemale above you. ");
-		if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"] && pc.tailCount > 0)) output("<i>“Good dog,”</i> she coos, petting the top of your head and scratching between your ears.");
-		else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("<i>“Good kitty,”</i> she coos, petting the top of your head and scratching between your ears.");
+		if(isDogMorph) output("<i>“Good dog,”</i> she coos, petting the top of your head and scratching between your ears.");
+		else if(isCatMorph) output("<i>“Good kitty,”</i> she coos, petting the top of your head and scratching between your ears.");
 		else output("<i>“Good girl,”</i> she coos, petting the top of your head.");
 		output(" She starts picking up the pace then, her hips slapping off yours with the kind of easy, powerful grace that can only come from hours and hours of practice. You purse your lips, suckling gently at her breast, doing your best to pleasure Riya as she pounds you into the carpet, every thrust of her hips sending shockwaves through your form - she’s not being quite so gentle as she was when she initially took your virginity, not at all. Her nipple pops out of your mouth despite your best efforts and you lean your head back into the carpet, wrapping your legs around Riya’s hips, looking up to see her shapely brown tits bouncing in time with her thrusting.");
 		output("\n\nYou’re close now - every long, powerful stroke Riya delivers to your [pc.vagina] sends lightning coursing through your form, ");
@@ -672,9 +674,9 @@ public function riyaVagigooVagitiems():void
 		output("\n\nShe’s got to be at least halfway in, and with no concern for your enjoyment, she just keeps feeding you dick - at least she took the time to lube you up beforehand. She’s already setting a rhythm though, grunting animalistically as her right hand comes down on the other side of your head, her torso resting heavily on your back, pinning you to the carpet. ");
 		if(race == "human") output("<i>“You like this, bitch? Pinned and bred, the way you were meant to be.”</i>");
 		// PC is ausar/huskar/dogmorph:
-		else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("<i>“Having fun, slutpuppy? Hell, maybe I’ll give you a litter of half-human pups, improve your bloodline!”</i>");
+		else if(isDogMorph) output("<i>“Having fun, slutpuppy? Hell, maybe I’ll give you a litter of half-human pups, improve your bloodline!”</i>");
 		// PC is kaithrit: 
-		else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("<i>“Enjoying yourself, pussy? I’d bet my next paycheck this is better than those nu-males on your homeworld. Shit, maybe I’ll even give you some half-human kittens to improve your genes!”</i>");
+		else if(isCatMorph) output("<i>“Enjoying yourself, pussy? I’d bet my next paycheck this is better than those nu-males on your homeworld. Shit, maybe I’ll even give you some half-human kittens to improve your genes!”</i>");
 		else output("<i>“Like how human cock feels? Hell, I might even give you a kid to improve your genetics if you behave.”</i>");
 
 		output("\n\nShe takes her hands off the rug then, instead looping her left arm around your throat, forcing your head back and painfully constricting your windpipe while her right hand pushes your hips down, leaving you prone on your belly, gasping for air as Riya’s hips hammer into your ass, her cock driving in to the hilt on every thrust. Her office is full of the sounds of the savage mating you’re receiving, the caramel shemale above you fucking you without any apparent care for your comfort or desires. Still, though... it feels <i>right</i>, somehow - being here, Riya’s weight pinning you down, her hips fucking you into the floor like the bottom bitch you are. Your mouth hangs open, working soundlessly as Riya plunders your insides, her beautiful prick spreading your sex around it, reforming your innards into a perfect mold of her dick. ");
@@ -704,14 +706,16 @@ public function riyaFellatioScene():void
 	clearOutput();
 	showRiya(true);
 	author("Franks");
-	var race:String = pc.race();
+	var race:String = pc.raceShort();
+	var isDogMorph:Boolean = (InCollection(race,["ausar","huskar","milodan","dog","doge","canine","husky","hellhound","bitch","worg"]));
+	var isCatMorph:Boolean = (InCollection(race,["kaithrit","cat","feline","lion"]));
 	output("Riya grins, gripping your chin between her thumb and index finger and pulling you in for a kiss. Of course, Riya being Riya, it’s less a kiss and more an invasion of your mouth, her tongue finding yours and attempting to wrestle it into submission. She breaks the kiss, teeth catching your bottom lip and pulling it back a bit and releasing it, letting the soft flesh snap back into place. After that, she hooks her thumb into your mouth, yanking you along by the cheek towards the nearest public restroom. She nudges the door open with her foot, peeking inside to make sure it’s empty before kicking it all the way open and pulling you inside, herding you into an open stall and closing the door, sliding the bolt shut. ");
 	if(pc.exhibitionism() < 33) output("A bathroom stall? Won’t people hear you?");
 	else output("A bathroom stall? The thought of someone hearing you getting it in a public restroom sends a small shiver through your body.");
 
 	if(race == "human") output("<i>“Get on your knees and beg for this dick, Steele. Like you mean it.”</i>");
-	else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("\n\n<i>“Get on your knees and beg for your bone. I want to hear you whine like a good mutt.”</i>");
-	else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("\n\n<i>“Get on your knees and purr for me like a good kitty. I’ll have some fresh, warm milk for you soon.”</i>");
+	else if(isDogMorph) output("\n\n<i>“Get on your knees and beg for your bone. I want to hear you whine like a good mutt.”</i>");
+	else if(isCatMorph) output("\n\n<i>“Get on your knees and purr for me like a good kitty. I’ll have some fresh, warm milk for you soon.”</i>");
 	else output("\n\n<i>“Get down there and beg for human cock, alien. Might be I’m feeling generous.”</i>");
 
 	if(pc.exhibitionism() < 33) output("\n\nYou obey, dropping down and begging meekly for the domineering dickgirl to use you, to fill your mouth with hard cock.");
@@ -722,9 +726,9 @@ public function riyaFellatioScene():void
 	// PC is human: 
 	if(race == "human") output("is the cockshock setting in? I know it’s scary being up close and personal with something as big as my dick. I don’t give a shit, don’t get me wrong. But I know.”</i>");
 	//PC is ausar/huskar/dogmorph: 
-	else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("is puppy’s widdle feewings hurt? Is she gonna tuck her widdle tail between her legs and cry?”</i>");
+	else if(isDogMorph) output("is puppy’s widdle feewings hurt? Is she gonna tuck her widdle tail between her legs and cry?”</i>");
 	// PC is kaithrit: 
-	else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("is kitty scaaared? I guess that’s why they call you <i>pussy</i>cats.”</i>");
+	else if(isCatMorph) output("is kitty scaaared? I guess that’s why they call you <i>pussy</i>cats.”</i>");
 	else output("is the little alien bitch nervous? In over her head? Is this too much cock for you, you dumb little slut?”</i>");
 
 	output("\n\nShe sends her cock swinging into your face again - and again, and again, the rod of mocha flesh getting harder and harder with every impact until it actually starts to hurt a bit, rather than sting. Once she’s at half-mast, Riya pumps her hand up and down her shaft a few times until the veiny thing is almost fully erect, pulsing visibly in front of your face. She wastes no time inching her hips forward and bumping her pre-leaking tip into your [pc.lips], the powerful, salty taste assaulting your mouth. <i>“Well, Steele? It ain’t gonna blow itself.”</i> she says as she pushes forward another inch, your nostrils the next to come under attack. Her smell permeates your olfactory senses, strong and intoxicating, your mouth seeming to open of it’s own accord to welcome this exemplary specimen in.");
@@ -736,18 +740,18 @@ public function riyaFellatioScene():void
 	output("\n\nReleasing you, she smirks over the side of her tablet. <i>“Ready to do your job now, ");
 	if(race == "human") output("Steele?");
 	//PC is ausar/huskar/dogmorph:
-	else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("muttslut?");
+	else if(isDogMorph) output("muttslut?");
 	// PC is kaithrit: 
-	else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("kitten?");
+	else if(isCatMorph) output("kitten?");
 	else output("xeno?");
 	output("”</i> she asks, cuffing you across the cheek lightly before returning to her tablet. Is she filming this? No... the camera light isn’t blinking, and her thumbs are moving too fast. She’s clearly typing - at least until she looks over the side of her device again, eyes glinting with irritation. <i>“I’m trying to get some reports done here, Steele. Are you gonna blow me, or am I gonna have to put this thing away and facefuck you? You do seem like you’d like my balls slapping your chin.”</i> she says, pushing her hips forward until her prick is poking the back of your mouth again. Taking the hint, you begin to move your head up and down her shaft, your tongue wrapping around the head, sliding over her cumslit. Riya groans approvingly, beginning to type again. <i>“Bet you can’t make me nut before I finish this.”</i> she says, her trademark shit eating grin visible over the top of her tablet. Is that a challenge?");
 	output("\n\nApparently so, and it is <i>on</i>. You start to work harder on her schlong, right hand coming up to cradle her balls, the cum-swollen brown orbs weighty in your hand, filling and overflowing your palm easily. She throbs approvingly at this treatment, a drop of salty-sweet pre leaking onto your tongue. Encouraged, you push your head down further onto her shaft, her tip pressing into the back of your mouth again before you stop. <i>“Can’t take it all, Steele?”</i> Riya taunts, fingers tapping quickly against her screen. You squint up at her, tongue lapping along the sides of her shaft, her breath catching despite her best efforts to remain smug. Gathering yourself, you begin to push forward, steadily feeding a third of her beefy member down your gullet - and feel a hand on the back of your head, pushing you inexorably further down as Riya forces your jaws apart.");
 	output("\n\nShe seems to have given up typing for now, instead holding her device idle in her left hand, breathing hard as her fingers rub into your scalp. <i>“Such a good ");
 	if(race == "human") output("girl");
 	//PC is ausar/huskar/dogmorph:
-	else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("mutt!");
+	else if(isDogMorph) output("mutt!");
 	// PC is kaithrit:
-	else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("kitty!");
+	else if(isCatMorph) output("kitty!");
 	// PC is other:
 	else output("xeno!");
 	output("”</i> she coos, patting the top of your head. <i>“Keep it up, slut! You might actually win our little bet at this rate.");
@@ -758,9 +762,9 @@ public function riyaFellatioScene():void
 	output("\n\nBy now your lungs have passed burning and begun to scream for air, your hands coming up of their own accord to bat at Riya’s powerful thighs. Your vision is beginning to dim, arms hitting with all the strength of a kitten until you can’t take it any more, limbs going limply to your sides as your eyes flutter shut. You find yourself coughing and gasping frantically for air a few seconds (you think) later, the dusky futa gripping you firmly under one armpit, keeping you from falling to the floor. <i>“Too much for you, ");
 	if(race == "human") output("Steele? Guess you’ve been spending too much time with those pindick xenos.”</i>");
 	//PC is ausar/huskar/dogmorph:
-	else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("mutt? I thought dogs loved swallowing bones. Are you... having a ruff day?”</i>");
+	else if(isDogMorph) output("mutt? I thought dogs loved swallowing bones. Are you... having a ruff day?”</i>");
 	// PC is Kaithrit: 
-	else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("puss? I thought cats loved milk. You’re sure not showing it.”</i>");
+	else if(isCatMorph) output("puss? I thought cats loved milk. You’re sure not showing it.”</i>");
 	// PC is other: 
 	else output("alien? Guess they don’t grow em’ this big on... whatever ball of dirt you’re from.”</i>");
 	output(" she says, grinning lopsidedly down at you. You try to marshal a witty reply, but all that comes out is loud sputtering and hacking, your recently cock-clogged esophagus unable to articulate properly. <i>“Anyways, back to work. Since you can’t take the heat I’m packing, why don’t you start on my nuts instead?”</i>");
@@ -768,9 +772,9 @@ public function riyaFellatioScene():void
 	output("\n\nShe slowly releases your shoulder as she says this, allowing you to support yourself, one hand coming up to wipe away some of the drool on your chin. Her hand meanwhile drifts up to your head again, pinching one of your [pc.ears] and tugging you forward with it, smushing your face into those heavy, churning balls. The smell of them fills your nostrils as Riya releases your ear and grips the back of your head again, rubbing your mouth against her sack lazily. <i>“Don’t be shy, ");
 	if(race == "human") output("Steele!");
 	//PC is ausar/huskar/dogmorph:
-	else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("mutt!");
+	else if(isDogMorph) output("mutt!");
 	// PC is kaithrit:
-	else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("sex kitten!");
+	else if(isCatMorph) output("sex kitten!");
 	// PC is other: 
 	else output("xeno!");
 	output("”</i> she says, shifting her hips to drag her balls across your face, your vision suddenly obscured by the cum-swollen orbs. Your mouth opens, tongue venturing out to glide over her skin, her member twitching happily in response. You can just barely see a fat bead of pre at the tip of her shaft; between that and her increasingly heavy breathing, you suspect she’s getting close. She’s taken up her report again too, fingers flying across her tablet’s screen as if to make up for lost time.");
@@ -796,9 +800,9 @@ public function riyaFellatioScene():void
 	// PC is human:
 	if(race == "Steele") output("Steele."); 
 	//PC is ausar/huskar/dogmorph: 
-	else if(InCollection(race,["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("muttslut.");
+	else if(isDogMorph) output("muttslut.");
 	// PC is kaithrit: 
-	else if(InCollection(race,["kaithrit","half-kaithrit","cat","cat-morph","feline-morph","feline","lion-morph","lion"])) output("pussy.");
+	else if(isCatMorph) output("pussy.");
 	// PC is other: 
 	else output("xeno.");
 	output(" You’ll need all the air you can get pretty soon.”</i>");
@@ -824,11 +828,11 @@ public function riyaFellatioScene():void
 	{
 		output(" Here, have a treat, sweetmeat.”</i> she purrs, licking her lips and reaching down into her crumpled pants, withdrawing a small baggie filled with... Terran Treats? Does she seriously just have a bag of Terran Treats on her person at all times? That’s... well. Knowing Riya, maybe it’s not <i>that</i> unexpected. She takes one out and presses it into your hand. <i>“There you go, ");
 		//PC is ausar/huskar/dogmorph: 
-		output("mutt!");
+		if(isDogMorph) output("mutt!");
 		// PC is kaithrit:
-		output("puss!");
+		else if(isCatMorph) output("puss!");
 		// PC is other: 
-		output("xeno!");
+		else output("xeno!");
 		output(" Take it any time you feel like improving yourself.");
 	}
 	output("”</i>");
@@ -841,11 +845,14 @@ public function riyaFellatioScene():void
 	pc.loadInMouth(pp);
 	IncrementFlag("RIYA_GOT_BLOWN");
 	//{If PC is nonhuman, PC receives one Terran Treat}
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 	if(race != "human" && !pc.hasStatusEffect("Riya Treat CD"))
 	{
 		pc.createStatusEffect("Riya Treat CD", 0, 0, 0, 0, true, "", "", false, 7*24*60);
 		quickLoot(new TerranTreats());
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 	}
 }
