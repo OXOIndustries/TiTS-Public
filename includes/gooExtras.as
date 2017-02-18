@@ -1414,7 +1414,7 @@ public function gooChestCustomizer():void
 	if(gooBiomass() >= 100) addGhostButton(10,"LengthenNips",lengthenGooNips,undefined,"Lengthen Nipples","Lengthen the tips of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
 	else addDisabledGhostButton(10,"LengthenNips","Lengthen Nipples","You don’t have enough biomass to lengthen your nipples.\n\n<b>100 mLs Biomass</b>");
 	if(pc.nippleLengthRatio >= 1) addGhostButton(11,"Shorten Nips",shortenGooNips,undefined,"Shorten Nipples","Shorten the tips of your [pc.nipplesNoun].\n\n<b>75 mLs Biomass Gain</b>");
-	else addDisabledGhostButton(11,"Shorten Nips","Shorten Nipples","You cannot make your [pc.nipplesNoun] and shorter.\n\n<b>75 mLs Biomass Gain</b>");
+	else addDisabledGhostButton(11,"Shorten Nips","Shorten Nipples","You cannot make your [pc.nipplesNoun] any shorter.\n\n<b>75 mLs Biomass Gain</b>");
 	addGhostButton(4,"Nip Type",nippleTypeGooMenu,undefined,"Nip Type","Change what type of nipples you will have.");
 	if(pc.hasDickNipples()) 
 	{
@@ -1428,7 +1428,7 @@ public function gooChestCustomizer():void
 public function dickNippleGooCustomizer():void
 {
 	clearOutput2();
-	output2("What type of dick-nipples would you like to have?")
+	output2("What type of dick-nipples would you like to have?");
 	boobStuff(pc);
 	showBiomass();
 	clearGhostMenu();
@@ -1459,7 +1459,6 @@ public function dickNippleGooCustomizer():void
 	}
 	
 	addGhostButton(14,"Back",gooChestCustomizer);
-	
 }
 
 
@@ -1471,7 +1470,10 @@ public function actuallyCustomizeGooDickNipples(arg:int = 0):void
 	//Dogdick
 	//Catdick
 	//EVERYTHING ELSE
+	output2("You concentrate and your [pc.dickNipples] emerge from their nipple-sheaths, erect and proud. Focusing again, they each begin to quake, then shift, and morph into the new shape you’ve committed to memory. Once complete, you observe your phallic nipples with satisfaction.");
+	output2(" <b>You now have " + (GLOBAL.TYPE_NAMES[arg]).toLowerCase() + " dick-nipples!</b>");
 	pc.dickNippleType = arg;
+	gooBiomass(-1 * (pc.totalNipples() * 25));
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooChestCustomizer);
 }
