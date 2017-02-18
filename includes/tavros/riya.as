@@ -101,18 +101,16 @@ public function riyaMenu():void
 //(ausar:’mutt’ leithan/centaur:’mule’ kathrit:’alley cat’ else:’creep’)
 public function riyaNickname():String
 {
-	var race:String = pc.race();
-	switch (race)
-	{
-		case "ausar":
-		case "half-ausar":
-			return "mutt";
-		case "kaithrit":
-		case "half-kaithrit":
-			return "alley cat";
-	}
-	if(pc.isTaur()) return "mule";
-	return "creep";
+	var sName:String = "creep";
+	var race:String = pc.raceShort();
+	var isDogMorph:Boolean = (InCollection(race,["ausar","huskar","milodan","dog","doge","canine","husky","hellhound","bitch","worg"]));
+	var isCatMorph:Boolean = (InCollection(race,["kaithrit","cat","feline","lion"]));
+	
+	if(isDogMorph) sName = "mutt";
+	else if(isCatMorph) sName = "alley cat";
+	if(pc.isTaur()) sName = "mule";
+	
+	return sName;
 }
 
 
@@ -599,7 +597,7 @@ public function riyaVagigooVagitiems():void
 		if(pc.tallness < 73) output("up");
 		else output("down");
 		output(" to take one of her juicy nipples into your mouth, but she shakes her head lazily, smiling. <i>“Not what I want, Steele.”</i> she drawls, left hand scratching your scalp. <i>“I want you to prove you want this.”</i> she continues, leaning in to whisper into your ear. ");
-		if(isDogMorph && pc.tailCount > 0) output("<i>“Bark. And wag your tail, and beg like a good doggie. And then you can tell me how bad you want to be brought to heel.”</i>");
+		if(isDogMorph) output("<i>“Bark. And" + (pc.tailCount > 0 ? " wag your tail, and" : "") + " beg like a good doggie. And then you can tell me how bad you want to be brought to heel.”</i>");
 		// PC is Kaithrit:
 		else if(isCatMorph) output("<i>“Meow for me. And purr. Then I want to hear what a nice pussy you are, and how bad you want me to pop your pussy, </i>pussy<i>.”</i>");
 		else if(race == "human") output("<i>“Beg. Tell me how honored you are that I’m your first, and how bad you want me to bust a nice, virile nut up your cunt.”</i>");
