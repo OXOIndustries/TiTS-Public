@@ -2818,7 +2818,7 @@ public function seranigansEvent(sEvent:String = "none"):void
 			rooms[shipLocation].removeFlag(GLOBAL.SHIPHANGAR);
 			generateMap();
 			
-			output("Mind on the alien sights and sounds you’ve recently experienced, you meander back to your... you start. Where is your ship? You wave your hands in a juddering panic at the gaping hole where it once stood, as if that will magic it back into existence. You race around the docking area, futilely attempting to locate it, speaking to every official you can collar. Nobody noted anything unusual - it seems <b>someone</b> on your crew got departure clearance and then cleared off with it.");
+			output("Mind on the alien sights and sounds you’ve recently experienced, you meander back to your... you stare. Where is your ship? You wave your hands in a juddering panic at the gaping hole where it once stood, as if that will magic it back into existence. You race around the docking area, futilely attempting to locate it, speaking to every official you can collar. Nobody noted anything unusual - it seems <b>someone</b> on your crew got departure clearance and then cleared off with it.");
 			output("\n\nThere’s nothing you can do but to wait and desperately hope they come back...");
 			
 			processTime(15);
@@ -2909,13 +2909,13 @@ public function seranigansEvent(sEvent:String = "none"):void
 				case "skin": output("Was your [pc.skinNoun]"); break;
 			}
 			output(" always " + tfList[0][1] + "...?");
-			output("\n\nWith a panicked shout you leap out of the shower, grab a tower and roughly rub at the affected body part. Too late - the dye isn’t coming out, indeed is merrily spreading right across your " + tfList[0][0] + " in response to your attempts to scour it.");
+			output("\n\nWith a panicked shout you leap out of the shower, grab a towel and roughly rub at the affected body part. Too late - the dye isn’t coming out, indeed is merrily spreading right across your " + tfList[0][0] + " in response to your attempts to scour it.");
 			if(tfList.length > 1 && rand(10) < 3)
 			{
 				output(" Even worse, the water also hit your " + tfList[1][0]);
 				if(tfList.length > 2 && rand(10) < 3)
 				{
-					output(" and your " + tfList[2][0] + " - they’re a fetching " + tfList[1][1] + " and " + tfList[2][1] + " respectively now.");
+					output(" and your " + tfList[2][0] + " - they’re a fetching " + tfList[1][1] + " and " + tfList[2][1] + ", respectively, now.");
 					switch(tfList[2][0])
 					{
 						case "hair": pc.hairColor = tfList[2][1]; break;
@@ -2923,7 +2923,13 @@ public function seranigansEvent(sEvent:String = "none"):void
 						case "skin": pc.skinTone = tfList[2][1]; break;
 					}
 				}
-				else output(" it’s a fetching " + tfList[1][1] + " now.");
+				else
+				{
+					output(" -");
+					if(tfList[1][0] == "lips") output(" they’re");
+					else output(" it’s");
+					output(" a fetching " + tfList[1][1] + " now.");
+				}
 				switch(tfList[1][0])
 				{
 					case "hair": pc.hairColor = tfList[1][1]; break;
