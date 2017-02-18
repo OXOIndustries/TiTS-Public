@@ -2602,8 +2602,8 @@ public function processExhibUpdates(deltaT:uint, doOut:Boolean, totalDays:uint):
 
 	//All covered up? Reduce over time!
 	if(exhibitionismPoints == 0) pc.exhibitionism(-0.5 * totalDays);
-	else if(exhibitionismPoints >=4 && currExhib < 50) pc.exhibitionism(2);
-	else if(exhibitionismPoints >=3 && currExhib < 40) pc.exhibitionism(1);
+	else if(exhibitionismPoints >= 4 && currExhib < 50) pc.exhibitionism(2);
+	else if(exhibitionismPoints >= 3 && currExhib < 40) pc.exhibitionism(1);
 	else if(exhibitionismPoints >= 2 && currExhib < 33) pc.exhibitionism(1);
 	else if(currExhib < 20) pc.exhibitionism(1);
 }
