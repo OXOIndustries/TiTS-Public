@@ -985,7 +985,7 @@ public function gooBodyCustomizer():void
 		else addDisabledGhostButton(9,"Revert All","Revert All","You don’t have enough biomass for that.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(9,"Revert All","Revert All","You’ll need to have more than one body part that is able to revert in order to try this!");
-	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
+	if((pc.skinType == GLOBAL.SKIN_TYPE_GOO || pc.hasSkinFlag(GLOBAL.FLAG_GOOEY)) && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
 	else addDisabledGhostButton(10,"Match Color","Match Colors","You’ll need to have gooey skin and gooey hair in order to try this!");
 	
 	addGhostButton(14,"Back",gooShiftMenu);
@@ -1122,7 +1122,8 @@ public function adjustGooBody(arg:Array):void
 			if(pc.hipRatingRaw <= limitMin && pc.hipRating() > limitMin) output2("\n\nYou realize that this is the smallest your hips can get. If you want them any smaller, you’ll have to remove whatever it is that is currently affecting their size.");
 		}
 		output2("\n\n");
-		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your hips.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your hips.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
 		if(pc.hipRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your hips can’t get any smaller than they are now!");
 		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your hips by one size.");
 	}
@@ -1153,7 +1154,8 @@ public function adjustGooBody(arg:Array):void
 			if(pc.buttRatingRaw <= limitMin && pc.buttRating() > limitMin) output2("\n\nYou realize that this is the smallest your butt can get. If you want it any smaller, you’ll have to remove whatever it is that is currently affecting its size.");
 		}
 		output2("\n\n");
-		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your butt.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your butt.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
 		if(pc.buttRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your butt can’t get any smaller than it is now!");
 		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your butt by one size.");
 	}
