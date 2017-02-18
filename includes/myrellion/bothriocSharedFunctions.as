@@ -49,7 +49,7 @@ public function updateBothriocAddiction(totalDays:uint):void
 	}
 }
 
-// timepoint  > 0 == addlogevent
+// timepoint > 0 == addlogevent
 
 public function bothriocEggnancyEffects(pregSlot:int, timePoint:uint):void
 {
@@ -531,9 +531,12 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 			if (numFertile == 1) output(" it");
 			else output(" them");
 			output(" here, concealed in the caves that are their natural habitat. ");
-			if (numFertile == 1) output("It");
-			else output("They");
-			output(" are obviously beyond the stage where they need to be looked after, and bothrioc strike you as being reasonably self-sufficient creatures");
+			if (numFertile == 1) output("It is");
+			else output("They are");
+			output(" obviously beyond the stage where");
+			if (numFertile == 1) output(" it needs");
+			else output(" they need");
+			output(" to be looked after, and bothrioc strike you as being reasonably self-sufficient creatures");
 			if (flags["ARAKEI_TALKED_BOTHRIOC"] != undefined) output(" - at least before they get deep into egg-sluttery");
 			output(". Or you could summon the drone, take");
 			if (numFertile > 1) output(" them");
@@ -553,7 +556,10 @@ public function bothriocEggsLeave(numFertile:int):void
 
 	output("You pick the egg");
 	if (numFertile > 1) output("s");
-	output(" up and carefully conceal them in a cleft under a boulder. You already did your bit, you tell yourself firmly");
+	output(" up and carefully conceal");
+	if (numFertile == 1) output(" it");
+	else output(" them");
+	output(" in a cleft under a boulder. You already did your bit, you tell yourself firmly");
 	if (bothriocAddiction() <= 30) output(" - certainly more than you ever signed up for. Pesky rape spiders");
 	output(". You spend a little more time gathering yourself and then set off into the gloom again, firmly putting your former progeny out of mind.");
 

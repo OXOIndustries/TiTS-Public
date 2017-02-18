@@ -3572,7 +3572,7 @@ public function emmyHyperFucksIntro():void
 		output(" and try to come up with a response, but all that comes out is a happy sigh. Her hands feel so good!");
 		output("\n\n<i>“I bet I could wedge at least some of the tip inside me, then tend to the rest of it with my soft little footpaws. They’re bigger than my hands and feel just as good, I promise. Sliding up and down, making you brew up a sticky load to deposit in my cunt - isn’t that what you wanted? To finally cum inside my pussy, maybe give me a little glaze? Or did you just think that cumming in my cunt would somehow make me your property? Silly [pc.boyGirl], I’m already all yours.”</i> Emmy is still teasing you");
 		if(pc.isCrotchGarbed()) output(", peeling off your [pc.lowerGarments] as she goes");
-		output(", sometimes tickling your [pc.cockSkin " + x + "] by tracing her blunted claws over the veins.");
+		output(", sometimes tickling your [pc.cockNoun " + x + "] by tracing her blunted claws over the veins.");
 		output("\n\nYou nod. It does sound nice.");
 		output("\n\nEmmy’s just getting started, however. Her other hand gropes your [pc.butt], squeezing your cheeks roughly. <i>“Or we could forget all about putting a load inside me, and put one in you. Wouldn’t that be hot? You with your ass in the air, that big, flopping obscenity dragging on the floor, squeezing out ropes of jizz everytime I press down on your poor, neglected prostate? I wonder if you’ve got a swollen, yummy, cummy one, or a little, hard-to-hit bundle of nerves.”</i> Her fingertip circles your rosebud. <i>“What’ll it be, babe? Do you wanna get milked into my oozy, dripping pussy, or waste it on the floor?”</i>");
 	}

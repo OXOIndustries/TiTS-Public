@@ -751,7 +751,7 @@ public function riyaFellatioScene():void
 	// PC is other:
 	else output("xeno!");
 	output("”</i> she coos, patting the top of your head. <i>“Keep it up, slut! You might actually win our little bet at this rate.");
-	if(race != "human"); output(" I’ve got something just for you after this.");
+	if(race != "human") output(" I’ve got something just for you after this.");
 	output("”</i>");
 
 	output("\n\nShe keeps pushing you down, your throat constricting powerfully around her girth as your body vainly tries to force the insertion out, only adding to her pleasure. Your eyes begin to water, chest burning as your lungs run low on oxygen, drool leaking liberally down your chin - and onto Riya’s heavy brown nuts as the swinging orbs slap into your face. Your [pc.lips] are stretched thin around her base and you can <i>feel</i> your throat bulging obscenely, distending to accommodate the fat meat buried in it. Looking up at Riya, it becomes apparent that she doesn’t seem very interested in moving for the moment, eyes fluttering shut. She spends a few long moments simply luxuriating in the feeling of your neck wringing her cock, wrapped in sweltering tightness. As usual, she seems completely unconcerned with your pleasure or lack thereof, rolling her hips back and slamming herself home, driving her schlong back down your gullet.");
