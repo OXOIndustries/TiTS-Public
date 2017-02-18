@@ -1281,7 +1281,7 @@ public function buttFuckReahaSlooot():void
 	//[Go Rough] [Go Gentle]
 	addButton(0,"Go Rough",goddamnSavinsAsslust,x,"Go Rough","Tie Reaha up and pound her asshole.");
 	//[Go Gentle]
-	addButton(1,"Go Gentle",goGentleIntoThatDarkNightReaha,x,"Go Rough","Take it easy while you make love to Reaha’s bum.");
+	addButton(1,"Go Gentle",goGentleIntoThatDarkNightReaha,x,"Go Gentle","Take it easy while you make love to Reaha’s bum.");
 }
 
 //[Go Rough]
