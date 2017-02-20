@@ -12,6 +12,7 @@
 	import classes.Items.Miscellaneous.Tittyblossom;
 	import classes.Items.Transformatives.DendroGro;
 	import classes.Items.Transformatives.ManUp;
+	import classes.Items.Transformatives.Tentacool;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -67,6 +68,7 @@
 			this.inventory.push(new DendroGro());
 			this.inventory.push(new Rainbotox());
 			this.inventory.push(new Chocolac());
+			this.inventory.push(new Tentacool());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;

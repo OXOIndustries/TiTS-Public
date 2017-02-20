@@ -350,6 +350,7 @@
 			TYPE_GOOEY,
 			TYPE_BEE,
 			TYPE_FROG,
+			TYPE_TENTACLE
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -409,6 +410,7 @@
 			TYPE_DEMONIC,
 			TYPE_NYREA,
 			TYPE_FLOWER,
+			TYPE_TENTACLE
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -453,7 +455,8 @@
 			TYPE_MYR,
 			TYPE_FROG,
 			TYPE_NYREA,
-			TYPE_GRYVAIN
+			TYPE_GRYVAIN,
+			TYPE_TENTACLE
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -513,6 +516,7 @@
 			TYPE_DOVE,
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
+			TYPE_TENTACLE
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -549,7 +553,8 @@
 			TYPE_OVIR,
 			TYPE_MYR,
 			TYPE_FROG,
-			TYPE_GRYVAIN
+			TYPE_GRYVAIN,
+			TYPE_TENTACLE
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -603,6 +608,7 @@
 			TYPE_FELINE,
 			TYPE_VULPINE,
 			TYPE_FLOWER,
+			TYPE_TENTACLE
 		];
 		
 		//SKINTYPES
