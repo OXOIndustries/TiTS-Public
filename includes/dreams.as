@@ -440,24 +440,24 @@ public function reahaDreamPart3():void
 	{
 		output("You abruptly wake up, eyes opening wide in pure shock. <i>“Reaha was talking? How is that possible? She’s just a cow!”</i> Thoughts like these keep swirling inside your head while you fondle the pair of lactating tits in front of you. Feeling a bit thirsty, you’re about to get some delicious milk straight from the tap, when you’re suddenly interrupted with a questioning low voice; <i>“Ummmmm, [pc.name]?”</i>");
 		output("\n\nReluctantly, you move away from the inviting bosom and look up, only to find yourself eye to eye with a flustered Reaha, her face flushed with rosy red color. You drowsily gaze back at her puzzled expression for a while, still kneading her breasts, until you’re struck by a realisation. Gradually, it dawns upon you that the whole farmer life setting was just a dream, and that Reaha, obviously, is as much a talking person as you are. After letting go of her mammaries, you look away from her for a bit, your face colored with the same red hue..");
-		if(pc.isNice()) output("\n\n<i>“I’m sorry, how ");
-		else output("\n\n<i>“How ");
-		output("long have I been doing that?”</i> you eventually utter, slightly embarrassed.");
+		output("\n\n<i>“" + (pc.isNice() ? "I’m sorry, h" : "H") + "ow long have I been doing that?”</i> you eventually utter, slightly embarrassed.");
 		output("\n\n<i>“You’ve been going at it for quite some time now, to be honest,”</i> she responds, her tone less insecure now.");
 		output("\n\nNot entirely sure what to do or say, you’re surprised by Reaha raising a hand towards your cheek, gently moving your head until your eyes meet once again. Reaha smiles at you with a reassuring, yet playful grin, <i>“I didn’t tell you to stop.”</i> Hearing this, your expression lightens up considerably and you quickly lower your head back into her welcoming pillows.");
 		output("\n\nAs you start to massage her chest once again, Reaha ");
 		if(pc.hasHair()) output("ruffles with your [pc.hair]");
 		else output("gently pets your scalp");
 		output(" and whispers sweet words of encouragement. <i>“Shhh!”</i> you hush, putting a finger on her lips, <i>“cows don’t speak.”</i> This makes her giggle a bit and she playfully moos back at you. Smiling at that, you take in one of her lactating jugs and dig in, sucking at it like a hungry child.");
+		
+		output(" [reaha.Milk] flows into your mouth, a true delight to your senses, and Reaha’s too, if her exhilarated moans are any indication.");
+		output("\n\nAt the rate Reaha’s [reaha.milk] rushes out of her, your cheeks can’t help but swell like balloons with the overflowing fluid, forcing you to swallow the delicious treat at a steady pace.");
+		output("\n\nWith each chug you feel more awake and energetic, and when you’ve drained her first boob, you don’t hesitate to move on to the second, where you nibble at the bud, earning you an even greater flood of her rich bounty. Reaha visibly shudders with delight, mooing happily as you keep emptying her [reaha.breasts]. It’s not long before lust begins to blossom, and the moment you’ve quenched your thirst, a different, more carnal desire needs to be sated. Unable to contain yourselves any longer you practically pounce at each other, almost wrestling to be the first one on top.");
+		output("\n\nAfter fooling around for a while you disentangle from a sated, sleepy Reaha. The poor girl probably didn’t get too much sleep with you groping her for so long, but now Reaha grins from ear to ear as she falls into slumber.");
+		if(pc.isNice()) output("\n\nYou place a soft kiss on her forehead and whisper <i>“good girl”</i> before you leave the room.");
+		else if(pc.isMischievous()) output("\n\nYou gently rub at her [reaha.butt] and whisper <i>“good pet”</i> before you leave the room.");
+		else output("\n\nYou smack at her [reaha.butt], causing her to wake up with a yelp before you say <i>“good job”</i> and leave the room.");
+		
+		pc.milkInMouth(reaha);
 	}
-	output(" [Reaha.milk] flows into your mouth, a true delight to your senses, and Reaha’s too, if her exhilarated moans are any indication.");
-	output("\n\nAt the rate Reaha’s [reaha.milk] rushes out of her, your cheeks can’t help but swell like balloons with the overflowing fluid, forcing you to swallow the delicious treat at a steady pace.");
-	output("\n\nWith each chug you feel more awake and energetic, and when you’ve drained her first boob, you don’t hesitate to move on to the second, where you nibble at the bud, earning you an even greater flood of her rich bounty. Reaha visibly shudders with delight, mooing happily as you keep emptying her [reaha.breasts]. It’s not long before lust begins to blossom, and the moment you’ve quenched your thirst, a different, more carnal desire needs to be sated. Unable to contain yourselves any longer you practically pounce at each other, almost wrestling to be the first one on top.");
-	output("\n\nAfter fooling around for a while you disentangle from a sated, sleepy Reaha. The poor girl probably didn’t get too much sleep with you groping her for so long, but now Reaha grins from ear to ear as she falls into slumber.");
-	if(pc.isNice()) output("\n\nYou place a soft kiss on her forehead and whisper <i>“good girl”</i> before you leave the room.");
-	else if(pc.isMischievous()) output("\n\nYou gently rub at her [reaha.butt] and whisper <i>“good pet”</i> before you leave the room.");
-	else output("\n\nYou smack at her [reaha.butt], causing her to wake up with a yelp before you say <i>“good job”</i> and leave the room.");
-	pc.milkInMouth(reaha);
 	pc.lust(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
