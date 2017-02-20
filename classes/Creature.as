@@ -4896,6 +4896,9 @@
 				case GLOBAL.TYPE_FROG:
 					types.push("frog", "whip-like", "thick");
 					break;
+				case GLOBAL.TYPE_TENTACLE:
+					types.push("writhing", "tentacle");
+					break;
 			}
 			
 			//Show type 50% of the time
@@ -6000,6 +6003,7 @@
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 				if (armType == GLOBAL.TYPE_SHARK) adjective.push("webbed","slick");
+				if (armType == GLOBAL.TYPE_TENTACLE) adjective.push("tentacled", "tentacle-fingered");
 			}
 			// Build
 			if (rand(2) == 0 && adjective.length > 0) output += RandomInCollection(adjective);
@@ -6063,6 +6067,7 @@
 			if (legType == GLOBAL.TYPE_SNAKE) return RandomInCollection(["snake tail", "snake tail", "snake tail", "snake tail", "flexible tail", "flexible tail", "coiled bottom half", "coiled bottom half", "tail", "prehensile tail"]);
 			else if(legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return RandomInCollection(["goo tail", "goo tail", "gel tail", "gel tail", "flexible tail", "flexible tail", "coiled bottom half", "coiled bottom half", "tail", "prehensile tail"]);
 			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return RandomInCollection(["mound of goo", "gelatinous mound", "gooey base", "semi-solid mass"]);
+			else if (legType == GLOBAL.TYPE_TENTACLE && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return RandomInCollection("writhing mound of tentacles", "tentacle base", "mass of tentacles");
 			//NORMAL CASES.
 			else
 			{
@@ -6099,6 +6104,7 @@
 						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic"]; break;
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
+						case GLOBAL.TYPE_TENTACLE: adjectives = ["tentacle-toed", "tentacled", "tentacle imitation", "tentacle formed"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -6128,7 +6134,7 @@
 		public function legNoun():String
 		{
 			if (legType == GLOBAL.TYPE_SNAKE || (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE))) return "coil";
-			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "mound";
+			if ((legType == GLOBAL.TYPE_GOOEY || legType == GLOBAL.TYPE_TENTACLE) && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "mound";
 			return "leg";
 		}
 		public function legsNoun():String
@@ -6222,6 +6228,7 @@
 			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tips";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed feet";
 			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["footclaws", "webbed feet"]);
+			else if (legType == GLOBAL.TYPE_TENTACLE && rand(2) == 0) output += "tentacle feet";
 			else output += "feet";
 			return output;
 		}
@@ -6241,6 +6248,8 @@
 			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tip";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed foot";
 			else if (legType == GLOBAL.TYPE_SHARK && rand(2) == 0) output += RandomInCollection(["footclaw","webbed foot"]);
+			else if (legType == GLOBAL.TYPE_TENTACLE && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) output += "writhing lower body";
+			else if (legType == GLOBAL.TYPE_TENTACLE && rand(2) == 0) output += "tentacle foot";
 			else output += "foot";
 			return output;
 		}
@@ -9951,6 +9960,7 @@
 			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
 			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
+			if (tentacleScore() >= 15) race = tentacleRace();
 			// Amalgamations
 			if (race == "human" && humanScore() < 4) race = "alien hybrid";
 			
@@ -10704,6 +10714,43 @@
 			
 			return counter;
 		}
+		
+		// partially a counter for number of tentacles (doesn't fully count number of tentacles that would theoretically be in hair, arms, and legs)
+		public function tentacleScore():int
+		{
+			var counter:int = 0;
+			var i:int = 0;
+			
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) counter += 2;
+			if (tongueType == GLOBAL.TYPE_TENTACLE) counter++;
+			if (hasTentacleNipples())
+			{
+				for (i = 0; i < breastRows.length; i++)
+				{
+					if (breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) counter += breastRows[i].breasts * nipplesPerBreast;
+				}
+			}
+			if (hasCock(GLOBAL.TYPE_TENTACLE))
+			{
+				for (i = 0; i < cocks.length; i++)
+				{
+					if (cocks[i].cType == GLOBAL.TYPE_TENTACLE) counter++;
+				}
+			}
+			if (tailType == GLOBAL.TYPE_TENTACLE) counter += tailCount;
+			if (wingType == GLOBAL.TYPE_TENTACLE) counter += wingCount;
+			if (armType == GLOBAL.TYPE_TENTACLE) counter += 4;
+			if (legType == GLOBAL.TYPE_TENTACLE) counter += 4;
+			
+			return counter; // current max just using Tentacool should be 86 I think, but it could be higher using other items or save editing
+		}
+		
+		public function tentacleRace():String
+		{
+			if (tentacleScore() >= 25 || (armType == GLOBAL.TYPE_TENTACLE && legType == GLOBAL.TYPE_TENTACLE)) return "tentacle monster";
+			else return "tentacle-morph";
+		}
+		
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			var desc: String = "";
 			if ((adjectives && rand(3) == 0) || forceAdjectives) {
@@ -11507,7 +11554,7 @@
 			var description: String = "";
 			var rando: Number = 0;
 			//Size descriptors 25% chance
-			if (rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES) {
+			if (rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_TENTACLED) {
 				//TINAHHHH
 				if (nippleLength(rowNum) < .25) {
 					rando = rand(4);
@@ -11628,6 +11675,14 @@
 					if (rando == 0) description += "inverted";
 					descripted++;
 				}
+				//Tentacled
+				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) {
+					if (descripted > 0) description += ", ";
+					rando = rand(2);
+					if (rando == 0) description += "tentacle-concealing";
+					else if (rando == 1) description += "tendril-hiding";
+					descripted++;
+				}
 				//Just lactating!
 				else if (isLactating() && milkFullness > 50) {
 					if (descripted > 0) description += ", ";
@@ -11733,6 +11788,11 @@
 				if(rando > 2) description += RandomInCollection(["lip-like nipple","kissable nipple","misplaced mouth","fuckable nipple"]);
 				else description += RandomInCollection(["lipple","lipple","titty-lip","boob-mouth","lip-nipple"]);
 			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) {
+				if (descripted > 0) description += ", ";
+				
+				description += RandomInCollection("writhing tentacle", "tentacle nipple", "tendril teat", "wiggling tendril", "long, tentacle nipple");
+			}
 			//Normals
 			else {
 				rando = rand(5);
@@ -11781,6 +11841,10 @@
 			{
 				description += RandomInCollection("tipless ", "flat ", "puffy ", "pebbly ");
 				description += RandomInCollection("nipple", "nip");
+			}
+			else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED)
+			{
+				description += RandomInCollection("writhing tentacle", "tentacle nipple", "tendril teat", "wiggling tendril", "long, tentacle nipple");
 			}
 			//Normals
 			else {
@@ -13439,6 +13503,8 @@
 							desc += RandomInCollection(["demon-dick","demon-cock","demon-prick","monster-member","monster-dick","corrupted-cock","dick","perverted-prick","nub-shaft","designer-dick"]);
 							break
 						case GLOBAL.TYPE_TENTACLE:
+							desc += RandomInCollection(["tentacle-cock", "cock-tendril", "tentacle-prick", "tentacle-phallus", "dick-tentacle", "dick-tendril", "tentacle-tool"]);
+							break;
 						case GLOBAL.TYPE_COCKVINE:
 						case GLOBAL.TYPE_VENUSPITCHER:
 							//adjectives.push("twisting","wriggling","sinuous","squirming","writhing","smooth","undulating","slithering","vine-like");
@@ -18041,6 +18107,14 @@
 						else desc = capitalA + short + " is covered in warm, protective oil!";
 						desc += "\nFreeze Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						setStatusTooltip("Oil Warmed", desc);
+						break;
+						
+					case "Tentacool":
+						if (requiresRemoval)
+						{
+							Tentacool.tentacoolTF(this, thisStatus); 
+				}
+				
 						break;
 				}
 				

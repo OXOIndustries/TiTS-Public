@@ -109,7 +109,8 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck", dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush", gushCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment", treatmentCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentacool", tentacoolCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
@@ -3370,4 +3371,17 @@ public function stormguardCodex():void
 	outputCodex("\n\nThe Stormguard of Uveto in particular are a hardy faction, having established themselves before the full corporate takeover of the world. Ever since the Camarilla and other corporate interests have taken control of the planet, the Stormguard temple there has fought tooth and nail within the legal system, exploiting religious protection acts to prevent their eviction from the frosty world. Lucky for them, they’ve created a symbiotic relationship with the ausar colony on Uveto, acting as scouts, guides, and beast-hunters for the otherwise pacifistic inhabitants.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Stormguard");
+}
+
+public function tentacoolCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Tentacool"));
+	outputCodex("The drug commonly known as “Tentacool” has origins in research into restoring limb usage to those that have lost it.  The researchers were successful in restoring limb usage with a simple pill.  However, they quickly realized they'd gone beyond their original goal and could even give control to and enhance usage of parts besides the limbs, including tails and penises.");
+	outputCodex("\n\nResearch continued along these lines until the drug came to a state much like its current state.  The researchers, truthfully, didn't understand how the drug they had developed worked, only that it did work.  Subjects, with a simple pill, could turn all manner of body parts into highly dexterous, prehensile tentacles, and even grow new tentacles.  With extra dosages, subjects could go well beyond the original research entirely, discarding their limbs in favor of tentacle bunches.");
+	outputCodex("\n\nThe research was nearly considered complete when one subject seemed to snap, rampaging around the lab and groping at everything he could get his tentacles on.  While fixated on one of the female researchers, he was subdued and restrained.  Looking into what had gone wrong, the researchers came to discover exactly what their drug did.  While use of the drug was safe up to a point, the ultimate result of continued use was a complete decentralization of the nervous system.  A subject's nervous system would eventually be distributed among their many tentacles, leading to a complete loss of their sense of self and leaving them a mindless, instinct-driven monster.");
+	outputCodex("\n\nThe researchers naturally didn't want their time and hard work to go to waste, and pleaded for the continued development of the drug.  They argued that limited use and a strong will could mitigate the negative effects of the drug, even if they couldn't get rid of the effects entirely.  Despite their pleading, the research was quickly locked away and the existing drugs were seemingly destroyed.  Nonetheless, the drug found its way into the galaxy.  It is unknown if one or more rogue scientists stole some of the drug before its destruction or if they later replicated their research.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Tentacool");
 }

@@ -721,6 +721,7 @@ public function appearance(forTarget:Creature):void
 			else output2(" Your mouth contains a stretchy frog-like tongue.");
 		}
 		else if(target.tongueType == GLOBAL.TYPE_CANINE) output2(" Your mouth contains a flat tongue that constantly drips with slobber.");
+		else if (target.tongueType == GLOBAL.TYPE_TENTACLE) output2("  Your mouth contains a long, prehensile tentacle-like tongue.");
 		else if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth contains a lengthy tongue.");
 		else output2(" Your mouth contains " + indefiniteArticle(target.tongueDescript()) + ".");
 		if(target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) output2(" Because it constantly produces a steady stream of wet lube, the inside of your mouth stays well lubricated.");
@@ -1190,6 +1191,10 @@ public function appearance(forTarget:Creature):void
 				else output2(target.scaleColor + " scaled arms there are small, piscine fins.");
 			}
 			output2(" Your fingers are tipped with sharp black claws and are connected by webbing, perfect for giving you extra momentum while swimming.");
+		}
+		else if (target.armType == GLOBAL.TYPE_TENTACLE)
+		{
+			output2("  Your arms are actually bunches of tentacles, formed together into arm-like shapes.  They end in long, wiggly tentacle fingers.");
 		}
 		if (target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
@@ -1680,6 +1685,11 @@ public function appearance(forTarget:Creature):void
 			output2(" Halfway across it grows a smaller dorsal fin.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_SWINE) output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you’re happy.");
+		else if (target.tailType == GLOBAL.TYPE_TENTACLE)
+		{
+			if(target.tailCount == 1) output2(" A long, writhing, tentacle-like tail flows after you, bobbing and undulating with the slightest movement of your hips.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long, writing, tentacle tails flow after you, all similar in appearance. Studying one of them, you find that you have excellent control over their movements."); 
+		}
 		//Tail cunts
 		if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
 		{
@@ -1969,6 +1979,11 @@ public function appearance(forTarget:Creature):void
 				output2(" legs come with webbing and small fins to better propel you through water.");
 			}
 		}
+		else if (target.legType == GLOBAL.TYPE_TENTACLE)
+		{
+			if (target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) output2("  Your lower body is an ever-shifting mass of writhing tentacles.  The strong, prehensile tentacles can easily and quickly carry you along.");
+			else output2("  Your lower body consists of two imitation legs formed by your dexterous, prehensile tentacles.  Your tentacle legs work just as well as real legs.");
+		}
 		//Catch all
 		else
 		{
@@ -2179,6 +2194,7 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(" intelligent enough for some rudimentary communication....");
 		}
+		if(target.legType == GLOBAL.TYPE_TENTACLE) addGhostButton(btnIndex++, "Tentacle Legs", selectTentacleLegsPref, undefined, "Chose the form of your lower tentacles.");
 	}
 	
 	setTarget(null);
@@ -3340,4 +3356,45 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	}
 	
 	if (forTarget != null) setTarget(null);
+}
+
+public function selectTentacleLegsPref():void
+{
+	clearOutput2();
+	output2("Your lower tentacles are currently set to ");
+	
+	clearGhostMenu();
+	
+	addGhostButton(0, "Normal", setTentacleLegsPref, undefined, "Normal Form", "Support yourself on a writing mass of tentacles.");
+	addGhostButton(1, "Legs", setTentacleLegsPref, undefined, "Legs Form", "Form your tentacles into two legs.");
+	
+	if (!pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
+	{
+		output2("<b>Legs</b>.");
+		output2("\n\nYour lower tentacles are wound up together, acting as a facsimile of two normal legs.");
+		addDisabledGhostButton(1, "Legs", "Legs Form", "Your tentacles are already formed into legs.");
+	}
+	else
+	{
+		output2("<b>Normal</b>.");
+		output2("\n\nYour lower tentacles are an ever-shifting, writhing mass.");
+		addDisabledGhostButton(0, "Normal", "Normal Form", "Your lower tentacles are already a shapeless mass of tentacles.");
+	}
+	
+	addGhostButton(14, "Back", backToAppearance, pc);
+}
+public function setTentacleLegsPref():void
+{
+	if (pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
+	{
+		pc.removeLegFlag(GLOBAL.FLAG_AMORPHOUS);
+		pc.legCount = 2;
+	}
+	else
+	{
+		pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
+		pc.legCount = 1;
+	}
+	
+	selectTentacleLegsPref();
 }
