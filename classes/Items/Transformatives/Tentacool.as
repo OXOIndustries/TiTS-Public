@@ -182,7 +182,7 @@ package classes.Items.Transformatives
 				if(select == 1)
 				{
 					if (target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES)) {
-						msg += ParseText("\n\nYou feel an intense itch in your scalp, and run your hands through your [pc.hair] just in time to feel it turning into a writhing mass of tentacles.");
+						msg += ParseText("\n\nYou feel an intense itch in your scalp, and run your hands through your [pc.hair] just in time to feel it <b>turning into a writhing mass of tentacles</b>.");
 						
 						if (target.hairLength < 20) {
 							msg += " The tentacles also lengthen, seeking further reach.";
@@ -223,7 +223,7 @@ package classes.Items.Transformatives
 				{
 					if (target.nippleTypeLockedMessage())
 					{
-						msg += "\n\nThe tingling in your skin intensifies on your nipples. You feel them...spill out? Your nipples extend, growing out. <b> Your nipples have become writhing tentacles.</b> They contract back into your breasts for now.";
+						msg += "\n\nThe tingling in your skin intensifies on your nipples. You feel them... spill out? Your nipples extend, growing into long, prehensile appendages. <b>Your nipples have become writhing tentacles.</b> They contract back into your breasts for now.";
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -547,8 +547,7 @@ package classes.Items.Transformatives
 					{
 						if (target.legCountUnlocked(2))
 						{
-							msg += "\n\nAn intense pain shoots through your [pc.legOrLegs] as if " + (target.legCount == 1 ? "it’s" : "they’re") + " tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had " + (target.legCount == 1 ? "a [pc.legNoun]" : "[pc.legsNoun]") + ", you now have a writhing bundle of tentacles. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.";
-							msg += "";
+							msg += "\n\nAn intense pain shoots through your [pc.legOrLegs] as if " + (target.legCount == 1 ? "it’s" : "they’re") + " tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had " + (target.legCount == 1 ? "a [pc.legNoun]" : "[pc.legsNoun]") + ", <b>you now have a writhing bundle of tentacles</b>. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.";
 							
 							target.legCount = 2;
 							target.legType = GLOBAL.TYPE_TENTACLE;
