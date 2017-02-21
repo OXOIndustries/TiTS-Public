@@ -3388,12 +3388,14 @@ public function setTentacleLegsPref():void
 {
 	if(pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
 	{
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		pc.removeLegFlag(GLOBAL.FLAG_AMORPHOUS);
 		pc.legCount = 2;
 		pc.genitalSpot = 0;
 	}
 	else
 	{
+		pc.removeLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
 		pc.legCount = 1;
 		pc.genitalSpot = 1;

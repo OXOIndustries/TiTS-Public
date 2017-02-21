@@ -426,22 +426,37 @@ package classes.Items.Transformatives
 				// #12 change wing type to tentacle (or add two wings)
 				else if (select == 12)
 				{
-					msg += "\n\n";
-					
 					if (target.wingType != GLOBAL.TYPE_TENTACLE)
 					{
-						if (target.wingCount == 0)
+						if(target.wingTypeUnlocked(GLOBAL.TYPE_TENTACLE))
 						{
-							msg += "The area around your shoulder blades begins to itch. The itching intensifies until it feels like a sharp prickling sensation on your back. <b>Two withing, prehensile tentacles burst forth from beneath the skin on your back.</b>";
+							msg += "\n\n";
+							if (target.wingCount == 0)
+							{
+								msg += "The area around your shoulder blades begins to itch. The itching intensifies until it feels like a sharp prickling sensation on your back. <b>Two writhing, prehensile tentacles burst forth from beneath the skin on your back.</b>";
+							}
+							else
+							{
+								msg += "Your [pc.wings] begin";
+								if(target.wingCount == 1) msg += "s";
+								msg += " to itch. The itching is quickly replaced by a strained sensation. You feel your [pc.wingsNoun]";
+								if(target.wingCount == 1) msg += " split into two seperate appendages, each warping and changing into new shapes. You";
+								else msg += " changing and";
+								msg += " realize you’ve gained even greater control of them. You’re able to bring one within your field of vision. <b>It seems your [pc.wingsNoun] have been replaced with writhing, prehensile tentacles.</b>";
+							}
+							target.wingType = GLOBAL.TYPE_TENTACLE;
+							if(target.wingCount < 2) target.wingCount = 2;
+							changed = true;
 						}
-						else msg += "Your wings begin to itch. The itching is quickly replaced by a strained sensation. You feel your wings changing and realize you’ve gained even greater control of them. You’re able to bring one within your field of vision. <b>It seems your wings have been replaced with writhing, prehensile tentacles.</b>";
-						
-						target.wingType = GLOBAL.TYPE_TENTACLE;
+						else msg += "\n\n" + target.wingTypeLockedMessage();
 					}
-					else msg += "The tingling on your back intensifies into a sharp prickling sensation. Your back tentacles twitch uncontrollably. <b>Two more tentacles burst forth from your back, and the prickling and twitching calms down.</b>";
-					
-					target.wingCount += 2;
-					changed = true;
+					else
+					{
+						msg += "\n\nThe tingling on your back intensifies into a sharp prickling sensation. Your back tentacles twitch uncontrollably. <b>Two more tentacles burst forth from your back, and the prickling and twitching calms down.</b>";
+						
+						target.wingCount += 2;
+						changed = true;
+					}
 				}
 				// #13 give tentacle arms - Fen note - I disabled this.
 				else if (select == 13)
@@ -532,7 +547,8 @@ package classes.Items.Transformatives
 					{
 						if (target.legCountUnlocked(2))
 						{
-							msg += "\n\nAn intense pain shoots through your legs as if they’re tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had legs, you now have a writhing bundle of tentacles. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.";
+							msg += "\n\nAn intense pain shoots through your [pc.legOrLegs] as if " + (target.legCount == 1 ? "it’s" : "they’re") + " tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had " + (target.legCount == 1 ? "a [pc.legNoun]" : "[pc.legsNoun]") + ", you now have a writhing bundle of tentacles. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.";
+							msg += "";
 							
 							target.legCount = 2;
 							target.legType = GLOBAL.TYPE_TENTACLE;
