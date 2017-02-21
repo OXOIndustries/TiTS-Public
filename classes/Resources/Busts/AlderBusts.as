@@ -10,7 +10,7 @@ package classes.Resources.Busts
 		public function get PREVIEW():Class { return Bust_KAEDE; }
 		public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/alder/hr/sig.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/alder/HR/sig.png", mimeType = "image/png")]
 		public var SigEmbed:Class;
 
 		[Embed(source = "../../../assets/images/npcs/alder/kaede.png", mimeType = "image/png")]
@@ -18,7 +18,7 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/alder/hr/kaede.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/alder/HR/kaede.png", mimeType = "image/png")]
 			public var Full_KAEDE:Class;
 		}
 	}
