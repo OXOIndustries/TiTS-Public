@@ -102,7 +102,7 @@ public function renameSiegwulfe(fromInv:Boolean = false):void
 	output("<i>“O-oh... you don’t like my name, [pc.master]?”</i> she asks, reaching for her collar. <i>“Here, feel free to change it.”</i>");
 	
 	clearMenu();
-	addButton(0, "Next", nameSiegwulfeCheck, fromInv);
+	addButton(0, "Next", nameSiegwulfe, fromInv);
 	addButton(14, "Back", approachSiegwulfe, [false, fromInv]);
 }
 public function nameSiegwulfe(fromInv:Boolean = false):void

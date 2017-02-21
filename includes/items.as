@@ -630,7 +630,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 // Special seller/item handling
 public function sellItemBonus(arg:ItemSlotClass, price:Number = 0):void
 {
-	if(shopkeep is Sera)
+	if((shopkeep is Sera) && seraInDebt())
 	{
 		pc.createStatusEffect("Sera Credit Debt", 0, 0, 0, 0, true, "", "", false, (7 * 24 * 60));
 		pc.addStatusValue("Sera Credit Debt", 1, price);

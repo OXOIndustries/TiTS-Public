@@ -77,7 +77,7 @@ package classes.Items.Transformatives
 					}
 					else
 					{
-						target.createStatusEffect("Tentacool", 1, 0, 0, 0, false, "Pill", "Your skin tingles from the Tentacool pill", false, 30, 0xB793C4); // Transformations take place after time runs out
+						target.createStatusEffect("Tentacool", 1, 0, 0, 0, false, "Pill", "Your skin tingles from the Tentacool pill.", false, 30, 0xB793C4); // Transformations take place after time runs out
 					}
 				}
 			}
@@ -182,7 +182,7 @@ package classes.Items.Transformatives
 				if(select == 1)
 				{
 					if (target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES)) {
-						msg += ParseText("\n\nYou feel an intense itch in your scalp, and run your hands through your [pc.hair] just in time to feel it turning into a writhing mass of tentacles.");
+						msg += ParseText("\n\nYou feel an intense itch in your scalp, and run your hands through your [pc.hair] just in time to feel it <b>turning into a writhing mass of tentacles</b>.");
 						
 						if (target.hairLength < 20) {
 							msg += " The tentacles also lengthen, seeking further reach.";
@@ -202,10 +202,10 @@ package classes.Items.Transformatives
 					if (target.tongueTypeUnlocked(GLOBAL.TYPE_TENTACLE)) {
 						msg += "\n\nThe tingling in your skin spreads to your mouth.";
 						
-						if (target.hasTongueFlag(GLOBAL.FLAG_LONG)) msg += " Your tongue spills out of your mouth, growing in length.";
-						if (target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) msg += " You feel your tongue growing wetter. You run your hand along it and it’s slippery.";
+						if (!target.hasTongueFlag(GLOBAL.FLAG_LONG)) msg += " Your tongue spills out of your mouth, growing in length.";
+						if (!target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) msg += " You feel your tongue growing wetter. You run your hand along it and it’s slippery.";
 						
-						msg += " <b>Your tongue has become a long, slick tentacle</b>, but you're able to retract it into your mouth.";
+						msg += " <b>Your tongue has become a long, slick tentacle</b>, but you’re able to retract it into your mouth.";
 						
 						target.clearTongueFlags();
 						
@@ -223,7 +223,7 @@ package classes.Items.Transformatives
 				{
 					if (target.nippleTypeLockedMessage())
 					{
-						msg += "\n\nThe tingling in your skin intensifies on your nipples. You feel them...spill out? Your nipples extend, growing out. <b> Your nipples have become writhing tentacles.</b> They contract back into your breasts for now.";
+						msg += "\n\nThe tingling in your skin intensifies on your nipples. You feel them... spill out? Your nipples extend, growing into long, prehensile appendages. <b>Your nipples have become writhing tentacles.</b> They contract back into your breasts for now.";
 						
 						for(i = 0; i < target.breastRows.length; i++)
 						{
@@ -311,7 +311,7 @@ package classes.Items.Transformatives
 					var newSkinTone:String = RandomInCollection(skinColors);
 					if (target.skinToneUnlocked(newSkinTone))
 					{
-						msg += "\n\nEvery surface of your body shimmers, rapidly switching colors, before quickly settling down. <b>You're " + newSkinTone + " all over.</b>";
+						msg += "\n\nEvery surface of your body shimmers, rapidly switching colors, before quickly settling down. <b>You’re " + newSkinTone + " all over.</b>";
 						
 						target.skinTone = newSkinTone;
 						target.hairColor = newSkinTone;
@@ -426,22 +426,37 @@ package classes.Items.Transformatives
 				// #12 change wing type to tentacle (or add two wings)
 				else if (select == 12)
 				{
-					msg += "\n\n";
-					
 					if (target.wingType != GLOBAL.TYPE_TENTACLE)
 					{
-						if (target.wingCount == 0)
+						if(target.wingTypeUnlocked(GLOBAL.TYPE_TENTACLE))
 						{
-							msg += "The area around your shoulder blades begins to itch. The itching intensifies until it feels like a sharp prickling sensation on your back. <b>Two withing, prehensile tentacles burst forth from beneath the skin on your back.</b>";
+							msg += "\n\n";
+							if (target.wingCount == 0)
+							{
+								msg += "The area around your shoulder blades begins to itch. The itching intensifies until it feels like a sharp prickling sensation on your back. <b>Two writhing, prehensile tentacles burst forth from beneath the skin on your back.</b>";
+							}
+							else
+							{
+								msg += "Your [pc.wings] begin";
+								if(target.wingCount == 1) msg += "s";
+								msg += " to itch. The itching is quickly replaced by a strained sensation. You feel your [pc.wingsNoun]";
+								if(target.wingCount == 1) msg += " split into two seperate appendages, each warping and changing into new shapes. You";
+								else msg += " changing and";
+								msg += " realize you’ve gained even greater control of them. You’re able to bring one within your field of vision. <b>It seems your [pc.wingsNoun] have been replaced with writhing, prehensile tentacles.</b>";
+							}
+							target.wingType = GLOBAL.TYPE_TENTACLE;
+							if(target.wingCount < 2) target.wingCount = 2;
+							changed = true;
 						}
-						else msg += "Your wings begin to itch. The itching is quickly replaced by a strained sensation. You feel your wings changing and realize you've gained even greater control of them. You're able to bring one within your field of vision. <b>It seems your wings have been replaced with writhing, prehensile tentacles.</b>";
-						
-						target.wingType = GLOBAL.TYPE_TENTACLE;
+						else msg += "\n\n" + target.wingTypeLockedMessage();
 					}
-					else msg += "The tingling on your back intensifies into a sharp prickling sensation. Your back tentacles twitch uncontrollably. <b>Two more tentacles burst forth from your back, and the prickling and twitching calms down.</b>";
-					
-					target.wingCount += 2;
-					changed = true;
+					else
+					{
+						msg += "\n\nThe tingling on your back intensifies into a sharp prickling sensation. Your back tentacles twitch uncontrollably. <b>Two more tentacles burst forth from your back, and the prickling and twitching calms down.</b>";
+						
+						target.wingCount += 2;
+						changed = true;
+					}
 				}
 				// #13 give tentacle arms - Fen note - I disabled this.
 				else if (select == 13)
@@ -496,7 +511,7 @@ package classes.Items.Transformatives
 						
 						if (newTailCount == 1)
 						{
-							msg += "<b>a tail growing in</b>. You realize you have great control over the tail and bring it around front to discover it's a " + (cockOrPussy == 0 ? "cock" : "pussy") + "-tipped tentacle.";
+							msg += "<b>a tail growing in</b>. You realize you have great control over the tail and bring it around front to discover it’s a " + (cockOrPussy == 0 ? "cock" : "pussy") + "-tipped tentacle.";
 						
 							target.clearTailFlags();
 							target.tailType = GLOBAL.TYPE_TENTACLE;
@@ -532,7 +547,7 @@ package classes.Items.Transformatives
 					{
 						if (target.legCountUnlocked(2))
 						{
-							msg += "\n\nAn intense pain shoots through your legs as if they’re tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had legs, you now have a writhing bundle of tentacles. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.";
+							msg += "\n\nAn intense pain shoots through your [pc.legOrLegs] as if " + (target.legCount == 1 ? "it’s" : "they’re") + " tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had " + (target.legCount == 1 ? "a [pc.legNoun]" : "[pc.legsNoun]") + ", <b>you now have a writhing bundle of tentacles</b>. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.";
 							
 							target.legCount = 2;
 							target.legType = GLOBAL.TYPE_TENTACLE;
@@ -588,9 +603,18 @@ package classes.Items.Transformatives
 			output("\n\nYou calmly and carefully pace, waiting for the feelings to recede. Maybe the Tentacool you just took was a bad dose. You stop pacing and take a deep breath, thinking back to what you know about the drug. A moment of clarity allows you to pinpoint the source of the unraveling sensation: your mind. What you feel falling apart this time is your very sense of self.");
 			
 			output("\n\n");
-			if (!target.hasArmFlag(GLOBAL.FLAG_AMORPHOUS))
+			if (target.armType != GLOBAL.TYPE_TENTACLE || !target.hasArmFlag(GLOBAL.FLAG_AMORPHOUS))
 			{
-				output("In the next moment, your make-shift arms fall apart, no longer bound into normal arm shapes. ");
+				output("In the next moment, your");
+				if (target.armType != GLOBAL.TYPE_TENTACLE)
+				{
+					output(" arms warp and change, each bursting into an amorphous bundle of tentacle-like appendages that sprout from each shoulder");
+					target.armType = GLOBAL.TYPE_TENTACLE;
+					target.clearArmFlags();
+					target.addArmFlag(GLOBAL.FLAG_SMOOTH);
+				}
+				else output(" make-shift arms fall apart, no longer bound into normal arm shapes");
+				output(". ");
 				target.addArmFlag(GLOBAL.FLAG_AMORPHOUS);
 			}
 			if (!target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))

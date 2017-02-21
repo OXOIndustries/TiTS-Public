@@ -2,6 +2,12 @@
 //Store Description
 public function darkChrysalisStorefront():void
 {
+	if(pc.statusEffectv1("Dark Chrysalis Closed") != 0)
+	{
+		output("\n\nThe Dark Chrysalis is closed with a lit “Come Back Later” sign. You suspect its proprietor is preoccupied.");
+		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+		return;
+	}
 	if(!seraRecruited() && seraAtNursery())
 	{
 		output("\n\nNo lights are on in the Dark Chrysalis - not even its pornographic “Come Back Later” sign. Perhaps Sera is out somewhere.");
@@ -259,6 +265,12 @@ public function seraMenu(toLeave:Boolean = false):void
 }
 
 //Sell Routing
+public function seraInDebt():Boolean
+{
+	if(flags["SERA_PARTY_INVITE"] != undefined && flags["SERA_PARTY_INVITE"] >= 4) return false;
+	if(flags["SERA_REPAID_LOAN"] != undefined) return false;
+	return true;
+}
 public function seraDebtCheck():Boolean
 {
 	if(pc.statusEffectv1("Sera Credit Debt") > 9000)

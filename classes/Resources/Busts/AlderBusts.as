@@ -18,7 +18,7 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/alder/hr/kaede.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/alder/HR/kaede.png", mimeType = "image/png")]
 			public var Full_KAEDE:Class;
 		}
 	}

@@ -175,7 +175,7 @@ public function redlightNEBonus():void
 	// SUGGESTED: North eastern bend of red light district.
 	output("\n\n");
 	if(flags["ENTERED_ACQUISITIONS"] == undefined) output("To the east is a rather stark, backlit white shop front, strikingly severe amongst the pulsing purples and reds which are the norm in this lurid end of Tavros. “Sentient Acquisitions” is written in a modish black font above the door.");
-	else if(flags["SERA_ACQUIRED_DATE"] != undefined && (GetGameTimestamp() - flags["SERA_ACQUIRED_DATE"] <= 180))
+	else if(!sentientAcquisitionsIsOpen())
 	{
 		output("To the east is Sentient Acquisitions. Its white windows are dull, a prim black ‘Closed’ sign displayed above the door. Presumably its proprietors are elsewhere.");
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;

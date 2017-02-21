@@ -45,6 +45,11 @@ public function showTeronAndAttica():void
 	
 	return;
 }
+public function sentientAcquisitionsIsOpen():Boolean
+{
+	if(pc.hasStatusEffect("Sentient Acquisitions Closed")) return false;
+	return true;
+}
 public function sentientAcquisitionsBonus():Boolean
 {
 	clearOutput();
@@ -117,7 +122,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 		// Sera taken:
 		if(flags["SERA_ACQUIRED_DATE"] != undefined) output(" With our problem case gone, we are simply waiting for the trade from the frontier to start trickling in. Come back in a month’s time or so, we’ll have many fresh and exotic pieces of property to show you.");
 		// Sera still on:
-		else if(!seraRecruited() && (flags["SERA_PARTY_INVITE"] == undefined || flags["SERA_PARTY_INVITE"] <= 3)) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
+		else if(!seraRecruited() && seraInDebt()) output(" All we have on our books currently is this horned girl, and that’s a dubious case at best.");
 		output("”</i>");
 	}
 	else
@@ -131,7 +136,7 @@ public function sentientAcquisitionsAsk(fromBack:Boolean = false):void
 	var btnSlot:int = 0;
 	var acqList:Array = [];
 	acqList.push(["Mostly?", sentientAcquisitionsAskMostly]);
-	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited() && (flags["SERA_PARTY_INVITE"] == undefined || flags["SERA_PARTY_INVITE"] <= 3)) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
+	if(flags["SERA_ACQUIRED_DATE"] == undefined && !seraRecruited() && seraInDebt()) acqList.push(["Horned Girl", sentientAcquisitionsAskHornedGirl]);
 	
 	// [Horned girl] [Mostly?] [Leave]
 	clearMenu();
@@ -180,7 +185,7 @@ public function sentientAcquisitionsAskHornedGirl(btnSlot:int = 0):void
 	author("Nonesuch");
 	showTeronAndAttica();
 	
-	var inDebt:Boolean = (((flags["SERA_PARTY_INVITE"] == undefined || flags["SERA_PARTY_INVITE"] <= 3) && pc.statusEffectv1("Sera Credit Debt") > 9000) || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90));
+	var inDebt:Boolean = ((seraInDebt() && pc.statusEffectv1("Sera Credit Debt") > 9000) || (flags["SERA_PARTY_INVITE"] == 3 && seraInfluence() <= 90));
 	
 	output("<i>“Horned girl?”</i>");
 	output("\n\n<i>“Yes. Amongst many other things.”</i> Teron plucks a tablet screen off the counter and taps it a few times. <i>“Bought quite a number of expensive mods this human did, and then a shop on this self same station on top of it. ‘The Dark Chrysalis.’ I don’t think she looked at the fine print of her rent agreement closely, if at all. These succulent young rue collars, they never think it’s going to happen to them. Until it does.”</i>");
@@ -312,6 +317,7 @@ public function sentientAcquisitionsBuyOutSeraYesNext():void
 	processTime(5);
 	
 	pc.credits -= 15000;
+	pc.createStatusEffect("Sentient Acquisitions Closed", 0, 0, 0, 0, true, "", "", false, 180);
 	flags["SERA_ACQUIRED_DATE"] = GetGameTimestamp();
 	IncrementFlag("ACQUISITIONS_SLAVE_PURCHASES");
 	
@@ -348,7 +354,7 @@ public function seraIsRepoed():void
 	// Reset Sera conditions!
 	chars["SERA"].lust(0, true);
 	chars["SERA"].minutesSinceCum = 0;
-	if(flags["SERA_NO_SEX"] != undefined) flags["SERA_NO_SEX"] = undefined;
+	if(flags["SERA_NO_SEX"] != undefined) flags.splice(flags.indexOf("SERA_NO_SEX"), 1);
 	pc.removeStatusEffect("Dark Chrysalis Closed");
 	pc.removeStatusEffect("Sera Credit Debt");
 	
@@ -581,8 +587,175 @@ public function seraOnShipBonus(btnSlot:int = 0):String
 	return bonusText;
 }
 
+// Sera Salary hotfix
+public function seraSalaryCheck():Boolean
+{
+	if(flags["SERA_SALARY_RESOLVED"] != undefined || seraInDebt() || shipLocation != "TAVROS HANGAR") return false;
+	
+	clearOutput();
+	showBust("");
+	showName("INCOMING\nMESSAGE...");
+	author("Jacques00");
+	
+	output("Before you open the door to Sera’s room, your codex gives you an urgent beep. It looks like you have a new private holo-message... addressed from Sentient Acquisitions. Curious, you press the “Confirm” button to open the missive. A few quiet seconds pass for connection to decrypt and the video becomes visible to you. The projected image is that of the two tarratch shopkeepers, Teron and Attica, arms crossed and formal.");
+	output("\n\nTeron starts off with a slow nod. <i>“Hello, dear customer. I hope all is well and you are enjoying your purchase... However, there is an important matter in which we require resolving at the utmost haste.”</i>");
+	output("\n\nAttica follows, <i>“Our records currently show that the rue collar, originally filed as one ‘Sera Landon’, is in a questionable financial state.”</i>");
+	output("\n\n<i>“Yes, upon purchase, the rue collar was of legal indentured servant status, but due to a glitch in the bookkeeping, it appears that she has already paid off her debts in full, and her contract has since been null and void, prior to your date of purchase. Given the conditions, this mix up has provided an issue with the legality of your purchase--especially with the regulations set in place by the U.G.C., you see.”</i> Teron takes a pause for you to reflect on the details, then continues. <i>“While errors in record libraries are something that is expected, if we honor the timestamps, we will have to refund your purchase, revert the rue collar’s physical and mental alterations, return her properties and possessions, and redact her registration to you. Because this falls under a gray area of the client contract, we have decided that we will put the choice in the rue collar’s owner’s hands--meaning you.”</i>");
+	output("\n\n<i>“Note that this shifts related legal responsibilities to you as the client.”</i>");
+	output("\n\n<i>“Correct. If you decide to keep her indentured to you, we will simply update our records as having never received the payments on our end, which would leave any monetary discrepancies between you and her debt handlers. This will undoubtedly drop her reputation in the merchant circles as well.”</i>");
+	output("\n\n<i>“We have provided an instant-action form to make your choice as quick and painless as possible. Choose wisely, dear customer,”</i> Attica gestures. Below the video is a form with two options and a signature confirmation box.");
+	output("\n\nIt looks like you have a choice to make: Do you want Sera to go back to being your dominant mistress? Or do you want this matter under wraps and keep Sera as your subserviant slave?");
+	
+	processTime(5);
+	
+	clearMenu();
+	addButton(0, "Mistress", seraSalaryCheckOption, "mistress", "Revert To Mistress", "Revert Sera back to being your dominant Mistress.");
+	addButton(1, "Slave", seraSalaryCheckOption, "slave", "Keep As Slave", "Keep Sera as your submissive slave.");
+	//addButton(4, "No Change", seraSalaryCheckOption, "nothing", "No Change", "Do not change anything about Sera.\n\n<i>(This may cause inconsistencies with some of her content.)</i>");
+	
+	return true;
+}
+public function seraSalaryCheckOption(response:String = "none"):void
+{
+	clearOutput();
+	author("Jacques00");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "mistress":
+			showSera();
+			showName("YES, MY\nMISTRESS...");
+			
+			output("Of course, you can’t say no to your Mistress. It should always be a yes -- “Yes, Mistress”. Mistress Sera, how you’ve missed that title. Having sampled her as a slave was not all it was cracked up to be, so this is probably for the best, you reflect. Choosing to get a refund for her contract and signing your name, you confirm your choice.");
+			output("\n\n<i>“Excellent, you find value in the letter of the law... or pehaps you just prefer being the bottom is better for the relationship?”</i> Teron jests. <i>“We will be over shortly to make the proper changes and it will be as if the transaction never took place. See you soon, friend.”</i> The hologram blinks out.");
+			output("\n\nWith the decision made, all you have to do is wait...");
+			
+			processTime(3);
+			
+			addButton(0, "Next", seraSalaryCheckOption, "mistress next");
+			break;
+		case "mistress next":
+			showSera();
+			showName("YES, MY\nMISTRESS...");
+			
+			output("Not soon after, the two tarratch arrive at your " + (seraIsCrew() ? "ship" : "nursery apartments") + " and you invite them in.");
+			output("\n\n<i>“Let’s get this over with quickly, shall we?”</i> Teron suggests, <i>“Where is the rue collar located?”</i>");
+			output("\n\nYou lead the two aliens to the front of Sera’s room and knock on her door.");
+			output("\n\n<i>“The fu--! Uh, I mean, yes, [pc.master]?”</i> Sera answers begrudgingly.");
+			output("\n\nYou respond with, <i>“Mistress Sera, we have visitors I’d like you to meet.”</i>");
+			output("\n\n<i>“‘Mistress’ Sera? W-what are you on about?”</i> Sera seems confused. A loud rustle can be heard as she rushes to the door. With a woosh, the door opens and you are met face-to-face with the bright-eyed demoness. <i>“What did you call me?”</i>");
+			output("\n\nYou say nothing and sidestep out of the way. In your place, the two tarratch step forward. Attica’s feathers retract, shift, and vibrate into a familiar fan-like shape.");
+			output("\n\n<i>“Oh, SHIT.”</i> Sera’s expression changes from confusion to panic. <i>“FUCK. FUCK. FUCK. Not again! Get the hell away fr--!”</i> With Sera’s guard down, Attica’s hypnotizing ability hits her with great effect and she instantly becomes subject to the tarratch’s beck and call. Attica removes the thin, silver collar from the demoness’ neck and gracefully returns it to you.");
+			output("\n\n<i>“Come, rue collar. Let us fix you,”</i> Teron commands. Like a hapless puppy, Sera follows. As the three are led out " + (seraIsCrew() ? "the airlock" : "to the elevator") + ", Teron turns to you. <i>“Not to worry, her belongings are being shipped back to ‘The Dark Chrysalis’ as we speak. Things will be as they once were, more or less.”</i> Glancing at the now-unworn collar in your hand, he adds, <i>“You can keep the starter kit by the way--think of it as a consolation gift; for the trouble. Perhaps you can find it useful in the future.”</i>");
+			output("\n\n<i>“As for the refund, dear customer...”</i> Attica politely mentions while tapping a handheld data slate. Your codex gives a few positive beeps, letting you know that <b>you have been refunded 15,000 credits.</b> <i>“Apologies for any inconvenience this may have caused.”</i>");
+			output("\n\n<i>“Give us a few hours to get her fully situated,”</i> Teron says, before parting ways. <i>“Thank you for your cooperation in fixing this error. I hope we do business again in the future... unless you are interested in signing a contract for yourself?”</i> he smiles. <i>“Farewell, friend.”</i>");
+			output("\n\n(<b>Sera is no longer a part of your crew. You can find her again at The Dark Chrysalis.</b>)");
+			
+			processTime(32);
+			
+			currentLocation = (seraIsCrew() ? shipLocation : "NURSERYE14");
+			
+			// Revert Sera!
+			if(!chars["SERA"].hasCock()) chars["SERA"].createCock();
+			chars["SERA"].cocks[0].cLengthRaw = 12.5;
+			chars["SERA"].balls = 2;
+			chars["SERA"].ballSizeRaw = 2;
+			chars["SERA"].ballFullness = 100;
+			chars["SERA"].vaginas[0].hymen = false;
+			chars["SERA"].skinTone = "light purple";
+			chars["SERA"].nippleColor = "cerulean";
+			// Revert Sera inventory!
+			chars["SERA"].inventory = [];
+			chars["SERA"].inventory.push(new TerranTreats());
+			chars["SERA"].inventory.push(new Estrobloom());
+			chars["SERA"].inventory.push(new Tittyblossom());
+			chars["SERA"].inventory.push(new Pussybloom());
+			chars["SERA"].inventory.push(new Pussyblossom());
+			chars["SERA"].inventory.push(new ManUp());
+			chars["SERA"].inventory.push(new Condensol());
+			chars["SERA"].inventory.push(new DendroGro());
+			chars["SERA"].inventory.push(new Rainbotox());
+			chars["SERA"].inventory.push(new Chocolac());
+			chars["SERA"].sellMarkup = 1.2;
+			chars["SERA"].buyMarkdown = 0.8;
+			// Reset Sera conditions!
+			chars["SERA"].lust(0, true);
+			chars["SERA"].minutesSinceCum = 9000;
+			if(flags["SERA_NO_SEX"] != undefined) flags.splice(flags.indexOf("SERA_NO_SEX"), 1);
+			pc.removeStatusEffect("Sera Credit Debt");
+			// Reset Sera flags
+			if(flags["SERA_ACQUIRED_DATE"] != undefined) flags.splice(flags.indexOf("SERA_ACQUIRED_DATE"), 1);
+			if(flags["SERA_OBEDIENCE"] != undefined) flags.splice(flags.indexOf("SERA_OBEDIENCE"), 1);
+			if(flags["SERA_OBEDIENCE_MIN"] != undefined) flags.splice(flags.indexOf("SERA_OBEDIENCE_MIN"), 1);
+			if(flags["SERA_OBEDIENCE_MAX"] != undefined) flags.splice(flags.indexOf("SERA_OBEDIENCE_MAX"), 1);
+			if(flags["SERA_MERCHANT"] != undefined) flags.splice(flags.indexOf("SERA_MERCHANT"), 1);
+			if(flags["SERA_BUSINESS_SETUP"] != undefined) flags.splice(flags.indexOf("SERA_BUSINESS_SETUP"), 1);
+			if(flags["SERA_REPAID_LOAN"] != undefined) flags.splice(flags.indexOf("SERA_REPAID_LOAN"), 1);
+			if(flags["SERA_CREWMEMBER"] != undefined) flags.splice(flags.indexOf("SERA_CREWMEMBER"), 1);
+			
+			if(flags["ACQUISITIONS_SLAVE_PURCHASES"] != undefined)
+			{
+				flags["ACQUISITIONS_SLAVE_PURCHASES"]--;
+				if(flags["ACQUISITIONS_SLAVE_PURCHASES"] <= 0) flags.splice(flags.indexOf("ACQUISITIONS_SLAVE_PURCHASES"), 1);
+			}
+			
+			if(!pc.hasKeyItem("Acquisitions Starter Kit"))
+			{
+				pc.createKeyItem("Acquisitions Starter Kit", 0, 0, 0, 0, "A collar-and-remote bundle from Sentient Acquisitions.");
+			}
+			
+			pc.credits += 15000;
+			flags["SERA_SALARY_RESOLVED"] = 1;
+			
+			pc.createStatusEffect("Dark Chrysalis Closed", 1, 0, 0, 0, true, "", "", false, 180);
+			pc.createStatusEffect("Sentient Acquisitions Closed", 0, 0, 0, 0, true, "", "", false, 180);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "slave":
+			showName("STAY, MY\nSLAVE...");
+			
+			output("Now that you think about it, you rather like Sera as a submissive... She should have a taste of her own medicine anyway--for humility’s sake, of course. Choosing to keep her contract active and signing your name, you confirm your choice.");
+			output("\n\n<i>“Ah, a true [pc.master] this one is. You definitely value dominance over some petty government regulations, I see.”</i> Teron grins. <i>“Very well, I will make the necessary changes to our records and spread the word of her subservience around. Your rue collar’s future is now set soley in your hands.”</i>");
+			output("\n\n<i>“No further action is needed here. Thank you for your cooperation.”</i> Attica adds.");
+			output("\n\n<i>“It was a pleasure doing business with you and I hope we continue to do more in the future. Stay well, friend.”</i> Teron concludes. The hologram blinks out.");
+			output("\n\nYou exhale a breath of accomplishment, then proceed to meet Sera.");
+			output("\n\n(<b>Sera will continue to be your slave.</b>)");
+			
+			processTime(3);
+			
+			// Reset Sera flags
+			flags["SERA_PARTY_INVITE"] = 3;
+			if(flags["SERA_INFULENCE"] > 190) flags["SERA_INFULENCE"] = 190;
+			if(flags["SERA_SALARY_PAID"] != undefined) flags.splice(flags.indexOf("SERA_SALARY_PAID"), 1);
+			
+			flags["SERA_SALARY_RESOLVED"] = -1;
+			
+			addButton(0, "Next", approachServantSera);
+			break;
+		case "nothing":
+			showName("IGNORE\nMESSAGE");
+			
+			output("You decide to cut the connection and ignore the message entirely. Nothing can be that urgent, right?");
+			
+			flags["SERA_SALARY_RESOLVED"] = 0;
+			
+			addButton(0, "Next", approachServantSera);
+			break;
+		default:
+			output("Nothing to see here!");
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
 public function approachServantSera(introText:Boolean = false):void
 {
+	// Sera Salary hotfix check
+	if(seraSalaryCheck()) return;
+	
 	var obedience:Number = seraObedience();
 	
 	clearOutput();
@@ -4588,7 +4761,7 @@ public function seraOnTavrosBonus(btnSlot:int = 0):String
 	if(seraAtNursery())
 	{
 		bonusText += " The door is ajar and the room is unoccupied. Sera must be in another location in the nursery.";
-		addDisabledButton(btnSlot, "Sera", "Sera", "Perhaps she is somewhere else in the nursery....");
+		addDisabledButton(btnSlot, "Sera", "Sera", "Perhaps she is somewhere else in the nursery...");
 	}
 	else
 	{
@@ -4607,6 +4780,9 @@ public function seraOnTavrosBonus(btnSlot:int = 0):String
 // At her room
 public function approachServantSeraOnTavros(introText:Boolean = false):void
 {
+	// Sera Salary hotfix check
+	if(seraSalaryCheck()) return;
+	
 	generateMapForLocation("NURSERYSERA");
 	
 	clearOutput();
