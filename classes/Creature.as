@@ -4897,7 +4897,7 @@
 					types.push("frog", "whip-like", "thick");
 					break;
 				case GLOBAL.TYPE_TENTACLE:
-					types.push("writhing", "tentacle");
+					types.push("writhing", "tentacle-like");
 					break;
 			}
 			
@@ -10739,8 +10739,8 @@
 			}
 			if (tailType == GLOBAL.TYPE_TENTACLE) counter += tailCount;
 			if (wingType == GLOBAL.TYPE_TENTACLE) counter += wingCount;
-			if (armType == GLOBAL.TYPE_TENTACLE) counter += 4;
-			if (legType == GLOBAL.TYPE_TENTACLE) counter += 4;
+			//if (armType == GLOBAL.TYPE_TENTACLE) counter += 4;
+			if (legType == GLOBAL.TYPE_TENTACLE) counter += 8;
 			
 			return counter; // current max just using Tentacool should be 86 I think, but it could be higher using other items or save editing
 		}
@@ -18113,8 +18113,7 @@
 						if (requiresRemoval)
 						{
 							Tentacool.tentacoolTF(this, thisStatus); 
-				}
-				
+						}				
 						break;
 				}
 				
