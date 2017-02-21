@@ -205,7 +205,7 @@ package classes.Items.Transformatives
 						if (target.hasTongueFlag(GLOBAL.FLAG_LONG)) msg += " Your tongue spills out of your mouth, growing in length.";
 						if (target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) msg += " You feel your tongue growing wetter. You run your hand along it and it’s slippery.";
 						
-						msg += " <b>Your tongue has become a long, slick tentacle</b>, but you're able to retract it into your mouth.";
+						msg += " <b>Your tongue has become a long, slick tentacle</b>, but you’re able to retract it into your mouth.";
 						
 						target.clearTongueFlags();
 						
@@ -311,7 +311,7 @@ package classes.Items.Transformatives
 					var newSkinTone:String = RandomInCollection(skinColors);
 					if (target.skinToneUnlocked(newSkinTone))
 					{
-						msg += "\n\nEvery surface of your body shimmers, rapidly switching colors, before quickly settling down. <b>You're " + newSkinTone + " all over.</b>";
+						msg += "\n\nEvery surface of your body shimmers, rapidly switching colors, before quickly settling down. <b>You’re " + newSkinTone + " all over.</b>";
 						
 						target.skinTone = newSkinTone;
 						target.hairColor = newSkinTone;
@@ -434,7 +434,7 @@ package classes.Items.Transformatives
 						{
 							msg += "The area around your shoulder blades begins to itch. The itching intensifies until it feels like a sharp prickling sensation on your back. <b>Two withing, prehensile tentacles burst forth from beneath the skin on your back.</b>";
 						}
-						else msg += "Your wings begin to itch. The itching is quickly replaced by a strained sensation. You feel your wings changing and realize you've gained even greater control of them. You're able to bring one within your field of vision. <b>It seems your wings have been replaced with writhing, prehensile tentacles.</b>";
+						else msg += "Your wings begin to itch. The itching is quickly replaced by a strained sensation. You feel your wings changing and realize you’ve gained even greater control of them. You’re able to bring one within your field of vision. <b>It seems your wings have been replaced with writhing, prehensile tentacles.</b>";
 						
 						target.wingType = GLOBAL.TYPE_TENTACLE;
 					}
@@ -496,7 +496,7 @@ package classes.Items.Transformatives
 						
 						if (newTailCount == 1)
 						{
-							msg += "<b>a tail growing in</b>. You realize you have great control over the tail and bring it around front to discover it's a " + (cockOrPussy == 0 ? "cock" : "pussy") + "-tipped tentacle.";
+							msg += "<b>a tail growing in</b>. You realize you have great control over the tail and bring it around front to discover it’s a " + (cockOrPussy == 0 ? "cock" : "pussy") + "-tipped tentacle.";
 						
 							target.clearTailFlags();
 							target.tailType = GLOBAL.TYPE_TENTACLE;
@@ -588,9 +588,18 @@ package classes.Items.Transformatives
 			output("\n\nYou calmly and carefully pace, waiting for the feelings to recede. Maybe the Tentacool you just took was a bad dose. You stop pacing and take a deep breath, thinking back to what you know about the drug. A moment of clarity allows you to pinpoint the source of the unraveling sensation: your mind. What you feel falling apart this time is your very sense of self.");
 			
 			output("\n\n");
-			if (!target.hasArmFlag(GLOBAL.FLAG_AMORPHOUS))
+			if (target.armType != GLOBAL.TYPE_TENTACLE || !target.hasArmFlag(GLOBAL.FLAG_AMORPHOUS))
 			{
-				output("In the next moment, your make-shift arms fall apart, no longer bound into normal arm shapes. ");
+				output("In the next moment, your");
+				if (target.armType != GLOBAL.TYPE_TENTACLE)
+				{
+					output(" arms warp and change, each bursting into an amorphous bundle of tentacle-like appendages that sprout from each shoulder");
+					target.armType = GLOBAL.TYPE_TENTACLE;
+					target.clearArmFlags();
+					target.addArmFlag(GLOBAL.FLAG_SMOOTH);
+				}
+				else output(" make-shift arms fall apart, no longer bound into normal arm shapes");
+				output(". ");
 				target.addArmFlag(GLOBAL.FLAG_AMORPHOUS);
 			}
 			if (!target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
