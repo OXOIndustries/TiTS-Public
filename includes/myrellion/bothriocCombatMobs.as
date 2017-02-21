@@ -318,7 +318,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		output(" loudly and put on a show for the victorious warrior and their long, thick, um... spear. You can immediately feel the heightened arousal in your ass, as the first spurts of slime shoot deep into your guts. The bothrioc is now actively running their many hands over you, delighting in exploring your body as much as thrusting into your hot clench.");
 		
 		output("\n\nA lustful groan and a sudden stoppage indicate all you need to know: The ovipositor has docked in your [pc.ass]. The bothrioc almost helplessly rests atop you, transfixed with bliss, as you feel the first egg pop through your sphincter almost effortlessly");
-		if (pc.hasCock()) output(", squeezing your prostate thoroughly as it passes”</i>");
+		if (pc.hasCock()) output(", squeezing your prostate thoroughly as it passes");
 		output(". You shatter into orgasm instantly, shaking as your entire body ripples with waves of bliss,");
 		if (pc.hasCock()) output(" forced to spurt your [pc.cumColor] load submissively against the ground");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");

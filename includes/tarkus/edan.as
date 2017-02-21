@@ -619,6 +619,7 @@ public function edanSexThird():void
 	}
 	else
 	{
+		output(" standing next to you, and after placing one hand on your lower stomach ");
 		if (pc.hasLowerGarment()) output("pulls down your [pc.lowerUndergarment], exposing your [pc.biggestVagina] to the air. He plunges a giant finger into you with no warning, already soaked from your earlier exertions. You jolt upwards in surprise and need, your legs jerking in the air until Edan softly strokes your still-pudgy tummy and pushes you back down.");
 		else output("slowly strokes downwards until his fingers are resting on your exposed [pc.biggestVagina]. He plunges a giant finger into you with no warning, already soaked from your earlier exertions. You jolt upwards in surprise and need, your legs jerking in the air until Edan softly strokes your still-pudgy tummy and pushes you back down.");
 		output("\n\n<i>“Relax, Steele,”</i> He says while rubbing your [pc.skinFurScales], <i>“Just lie back and take it in.”</i>");
@@ -1090,8 +1091,8 @@ public function edanSexSixth():void
 	output(". Whenever his swollen head kisses the entrance to your womb you can’t help but shiver in a miniature orgasm, his cockslit perfectly aligned with your opening and depositing splurts of hot, wet precum every time he hilts himself in you.");
 	output("\n\n<i>“I’m gonna cum pretty soon, [pc.name],”</i> pants Edan, <i>“so I hope you’re fucking ready for this!”</i>");
 	output("\n\nIn the seconds that follow, you realize that your definition of rough and Edan’s definition of rough may have differed. He doesn’t give you time to think about it - he draws back and <i>rams</i> himself into your stretched-wide cunt, the slap of flesh on flesh so loud in the enclosed office you think for a second that Anna might wake up.");
-	if (pc.isTaur()) output("You can feel him pushing against you, tightly pressing your [pc.chest] up against the desk and sending backspray down your wobbling legs.");
-	else output("You can feel your feet start to leave the ground, only the tips of your toes still even in contact with the floor.");
+	if (pc.isTaur()) output(" You can feel him pushing against you, tightly pressing your [pc.chest] up against the desk and sending backspray down your wobbling legs.");
+	else output(" You can feel your feet start to leave the ground, only the tips of your toes still even in contact with the floor.");
 	output("\n\nEdan’s grip on your hips is almost painfully tight, but you don’t complain. You’re <i>reveling</i> in his treatment of you, like you’re a fucking toy to be stretched and filled up with cum. The only noises coming out of your mouth are ragged, bestial grunts every time you feel him plunge into you. He grunts through clenched teeth, his breath coming in pants as you feel the telltale thickening of his cock deep inside you.");
 	output("\n\n<i>“Cum in me,”</i> you gasp, the pheromones still wrapped around your brain. <i>“Give me-”</i>");
 	output("\n\nWhatever you were going to say is cut off as Edan hisses loudly through his gritted teeth. You feel a knot travelling through you, then blissful warmth, over and over. His cum floods into you with so much force you can actually hear it lewdly splattering inside, ");

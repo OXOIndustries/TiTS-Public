@@ -1329,7 +1329,7 @@ public function kiroBFGFConvo():void
 	//Nice/Misch
 	else if(pc.isNice() || pc.isMischievous()) output("<i>“So, I guess I’m you’re [pc.boyGirl]friend now,”</i> you offer, smiling warmly at Kiro.");
 	//Hard
-	output("<i>“I’m going to hold you to that whole [pc.boyGirl]friend thing,”</i> you offer confidently.");
+	else output("<i>“I’m going to hold you to that whole [pc.boyGirl]friend thing,”</i> you offer confidently.");
 	//High trust:
 	if(kiroTrust() >= 90)
 	{
