@@ -77,7 +77,7 @@ package classes.Items.Transformatives
 					}
 					else
 					{
-						target.createStatusEffect("Tentacool", 1, 0, 0, 0, false, "Pill", "Your skin tingles from the Tentacool pill", false, 30, 0xB793C4); // Transformations take place after time runs out
+						target.createStatusEffect("Tentacool", 1, 0, 0, 0, false, "Pill", "Your skin tingles from the Tentacool pill.", false, 30, 0xB793C4); // Transformations take place after time runs out
 					}
 				}
 			}
@@ -202,8 +202,8 @@ package classes.Items.Transformatives
 					if (target.tongueTypeUnlocked(GLOBAL.TYPE_TENTACLE)) {
 						msg += "\n\nThe tingling in your skin spreads to your mouth.";
 						
-						if (target.hasTongueFlag(GLOBAL.FLAG_LONG)) msg += " Your tongue spills out of your mouth, growing in length.";
-						if (target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) msg += " You feel your tongue growing wetter. You run your hand along it and it’s slippery.";
+						if (!target.hasTongueFlag(GLOBAL.FLAG_LONG)) msg += " Your tongue spills out of your mouth, growing in length.";
+						if (!target.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) msg += " You feel your tongue growing wetter. You run your hand along it and it’s slippery.";
 						
 						msg += " <b>Your tongue has become a long, slick tentacle</b>, but you’re able to retract it into your mouth.";
 						
