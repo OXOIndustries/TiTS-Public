@@ -985,7 +985,7 @@ public function gooBodyCustomizer():void
 		else addDisabledGhostButton(9,"Revert All","Revert All","You don’t have enough biomass for that.\n\n<b>" + (20 * nonGooPart) + " mLs Biomass</b>");
 	}
 	else addDisabledGhostButton(9,"Revert All","Revert All","You’ll need to have more than one body part that is able to revert in order to try this!");
-	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
+	if((pc.skinType == GLOBAL.SKIN_TYPE_GOO || pc.hasSkinFlag(GLOBAL.FLAG_GOOEY)) && pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(10,"Match Color",revertGooBodyColor,"menu","Match Colors","Force the color of your body or hair to match one another.");
 	else addDisabledGhostButton(10,"Match Color","Match Colors","You’ll need to have gooey skin and gooey hair in order to try this!");
 	
 	addGhostButton(14,"Back",gooShiftMenu);
@@ -1122,7 +1122,8 @@ public function adjustGooBody(arg:Array):void
 			if(pc.hipRatingRaw <= limitMin && pc.hipRating() > limitMin) output2("\n\nYou realize that this is the smallest your hips can get. If you want them any smaller, you’ll have to remove whatever it is that is currently affecting their size.");
 		}
 		output2("\n\n");
-		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your hips.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your hips.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
 		if(pc.hipRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your hips can’t get any smaller than they are now!");
 		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your hips by one size.");
 	}
@@ -1153,7 +1154,8 @@ public function adjustGooBody(arg:Array):void
 			if(pc.buttRatingRaw <= limitMin && pc.buttRating() > limitMin) output2("\n\nYou realize that this is the smallest your butt can get. If you want it any smaller, you’ll have to remove whatever it is that is currently affecting its size.");
 		}
 		output2("\n\n");
-		addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your butt.\n\n<b>" + cost + " mLs Biomass</b>");
+		if(gooBiomass() >= cost) addGhostButton(0,"Increase",adjustGooBody,[part,"increase"],"Increase","Add a size to your butt.\n\n<b>" + cost + " mLs Biomass</b>");
+		else addDisabledGhostButton(0,"Increase","Increase","You don’t have enough biomass for that.\n\n<b>" + cost + " mLs Biomass</b>");
 		if(pc.buttRatingRaw <= limitMin) addDisabledGhostButton(1,"Decrease","Decrease","It looks like your butt can’t get any smaller than it is now!");
 		else addGhostButton(1,"Decrease",adjustGooBody,[part,"decrease"],"Decrease","Reduce your butt by one size.");
 	}
@@ -1412,7 +1414,7 @@ public function gooChestCustomizer():void
 	if(gooBiomass() >= 100) addGhostButton(10,"LengthenNips",lengthenGooNips,undefined,"Lengthen Nipples","Lengthen the tips of your [pc.nipples].\n\n<b>100 mLs Biomass</b>");
 	else addDisabledGhostButton(10,"LengthenNips","Lengthen Nipples","You don’t have enough biomass to lengthen your nipples.\n\n<b>100 mLs Biomass</b>");
 	if(pc.nippleLengthRatio >= 1) addGhostButton(11,"Shorten Nips",shortenGooNips,undefined,"Shorten Nipples","Shorten the tips of your [pc.nipplesNoun].\n\n<b>75 mLs Biomass Gain</b>");
-	else addDisabledGhostButton(11,"Shorten Nips","Shorten Nipples","You cannot make your [pc.nipplesNoun] and shorter.\n\n<b>75 mLs Biomass Gain</b>");
+	else addDisabledGhostButton(11,"Shorten Nips","Shorten Nipples","You cannot make your [pc.nipplesNoun] any shorter.\n\n<b>75 mLs Biomass Gain</b>");
 	addGhostButton(4,"Nip Type",nippleTypeGooMenu,undefined,"Nip Type","Change what type of nipples you will have.");
 	if(pc.hasDickNipples()) 
 	{
@@ -1426,7 +1428,7 @@ public function gooChestCustomizer():void
 public function dickNippleGooCustomizer():void
 {
 	clearOutput2();
-	output2("What type of dick-nipples would you like to have?")
+	output2("What type of dick-nipples would you like to have?");
 	boobStuff(pc);
 	showBiomass();
 	clearGhostMenu();
@@ -1457,7 +1459,6 @@ public function dickNippleGooCustomizer():void
 	}
 	
 	addGhostButton(14,"Back",gooChestCustomizer);
-	
 }
 
 
@@ -1469,7 +1470,10 @@ public function actuallyCustomizeGooDickNipples(arg:int = 0):void
 	//Dogdick
 	//Catdick
 	//EVERYTHING ELSE
+	output2("You concentrate and your [pc.dickNipples] emerge from their nipple-sheaths, erect and proud. Focusing again, they each begin to quake, then shift, and morph into the new shape you’ve committed to memory. Once complete, you observe your phallic nipples with satisfaction.");
+	output2(" <b>You now have " + (GLOBAL.TYPE_NAMES[arg]).toLowerCase() + " dick-nipples!</b>");
 	pc.dickNippleType = arg;
+	gooBiomass(-1 * (pc.totalNipples() * 25));
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooChestCustomizer);
 }

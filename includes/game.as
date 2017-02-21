@@ -1435,7 +1435,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
-	if(pc.hasItem(new Hoverboard())) {
+	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) {
 		moveMinutes -= 1;
 		if(moveMinutes < 1) moveMinutes = 1;
 	}
@@ -2602,8 +2602,8 @@ public function processExhibUpdates(deltaT:uint, doOut:Boolean, totalDays:uint):
 
 	//All covered up? Reduce over time!
 	if(exhibitionismPoints == 0) pc.exhibitionism(-0.5 * totalDays);
-	else if(exhibitionismPoints >=4 && currExhib < 50) pc.exhibitionism(2);
-	else if(exhibitionismPoints >=3 && currExhib < 40) pc.exhibitionism(1);
+	else if(exhibitionismPoints >= 4 && currExhib < 50) pc.exhibitionism(2);
+	else if(exhibitionismPoints >= 3 && currExhib < 40) pc.exhibitionism(1);
 	else if(exhibitionismPoints >= 2 && currExhib < 33) pc.exhibitionism(1);
 	else if(currExhib < 20) pc.exhibitionism(1);
 }

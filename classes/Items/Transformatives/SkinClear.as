@@ -499,6 +499,7 @@ package classes.Items.Transformatives
 					target.createStatusEffect("Gel Body");
 					target.addStatusValue("Gel Body", 1, 1);
 					kGAMECLASS.revertGooBody();
+					kGAMECLASS.flags["GOO_BIOMASS"] = 9000000;
 					
 					var gooTone:String = "transparent";
 					target.skinTone = gooTone;

@@ -1028,7 +1028,7 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 	if (pc.isTaur()) output(" push your [pc.ass] down even harder");
 	else if (pc.isNaga()) output(" grip your coils");
 	else if (pc.isGoo()) output(" grip your viscous mass");
-	else output(" [pc.hips] around it");
+	else output(" grip your [pc.hips] around it");
 	output(", squeezing the warm, black chitin");
 	if (pc.isTaur()) output(" against the ground");
 	output(" at the same time as tightening up nicely around your pet dick; this draws a low wail out of the lithe spider-being, and a flush of wonderful, slathering of oil into your "+holeTag+". A substantial amount, then.");

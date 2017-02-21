@@ -109,7 +109,8 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck", dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush", gushCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment", treatmentCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentacool", tentacoolCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
@@ -2773,6 +2774,18 @@ public function treatmentCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("The Treatment");
 }
+public function tentacoolCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Tentacool"));
+	outputCodex("The drug commonly known as “Tentacool” has origins in research into restoring limb usage to those that have lost it. The researchers were successful in restoring limb usage with a simple pill. However, they quickly realized they’d gone beyond their original goal and could even give control to and enhance usage of parts besides the limbs, including tails and penises.");
+	outputCodex("\n\nResearch continued along these lines until the drug came to a state much like its current state. The researchers, truthfully, didn’t understand how the drug they had developed worked, only that it did work. Subjects, with a simple pill, could turn all manner of body parts into highly dexterous, prehensile tentacles, and even grow new tentacles. With extra dosages, subjects could go well beyond the original research entirely, discarding their limbs in favor of tentacle bunches.");
+	outputCodex("\n\nThe research was nearly considered complete when one subject seemed to snap, rampaging around the lab and groping at everything he could get his tentacles on. While fixated on one of the female researchers, he was subdued and restrained. Looking into what had gone wrong, the researchers came to discover exactly what their drug did. While use of the drug was safe up to a point, the ultimate result of continued use was a complete decentralization of the nervous system. A subject’s nervous system would eventually be distributed among their many tentacles, leading to a complete loss of their sense of self and leaving them a mindless, instinct-driven monster.");
+	outputCodex("\n\nThe researchers naturally didn’t want their time and hard work to go to waste, and pleaded for the continued development of the drug. They argued that limited use and a strong will could mitigate the negative effects of the drug, even if they couldn’t get rid of the effects entirely. Despite their pleading, the research was quickly locked away and the existing drugs were seemingly destroyed. Nonetheless, the drug found its way into the galaxy. It is unknown if one or more rogue scientists stole some of the drug before its destruction or if they later replicated their research.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Tentacool");
+}
 
 
 /* Legal Items */
@@ -2854,7 +2867,6 @@ public function sumaCreamCodex():void
 	outputCodex("\n");
 	CodexManager.viewedEntry("Suma Cream");
 }
-
 public function clearYuCodex():void
 {
 	clearOutputCodex();
@@ -2867,8 +2879,6 @@ public function clearYuCodex():void
 	outputCodex("\n");
 	CodexManager.viewedEntry("ClearYu");
 }
-
-//CODEX Description
 public function bubbBuddyCodex():void
 {
 	clearOutputCodex();
@@ -3231,7 +3241,6 @@ public function rhenWorldCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("RhenWorld");
 }
-
 public function snuggleCodex():void
 {
 	clearOutputCodex();
@@ -3245,7 +3254,6 @@ public function snuggleCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Snugglé");
 }
-
 public function steeleTechCodex():void
 {
 	clearOutputCodex();
@@ -3259,7 +3267,6 @@ public function steeleTechCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Steele Tech");
 }
-
 public function xenogenCodex():void
 {
 	clearOutputCodex();
@@ -3288,7 +3295,6 @@ public function blackVoidCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Black Void");
 }
-
 public function jointAusarFederationCodex():void
 {
 	clearOutputCodex();
@@ -3304,7 +3310,6 @@ public function jointAusarFederationCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("J.A.F.");
 }
-
 public function scarletFederationCodex():void
 {
 	clearOutputCodex();
@@ -3319,7 +3324,6 @@ public function scarletFederationCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Scarlet Federation");
 }
-
 public function terranSpaceCoalitionCodex():void
 {
 	clearOutputCodex();
@@ -3335,7 +3339,6 @@ public function terranSpaceCoalitionCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("T.S.C.");
 }
-
 public function unitedGalacticConfederacyCodex():void
 {
 	clearOutputCodex();
