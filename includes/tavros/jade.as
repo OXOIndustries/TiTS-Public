@@ -60,8 +60,10 @@ public function showJade(nude:Boolean = false):void
 }
 public function showJadeBust(nude:Boolean = false):void 
 {
-	if(!nude) showBust("JADE");
-	else showBust("JADE_NUDE");
+	var nipBonus:String = "";
+	if(chars["JADE"].hasTentacleNipples()) nipBonus = "_NIPS";
+	if(!nude) showBust("JADE"+nipBonus);
+	else showBust("JADE" + nipBonus + "_NUDE");
 }
 
 //NORMAL JADE
@@ -891,7 +893,7 @@ public function jadeUsesNippleMod():void {
 public function helpJadeWithHerNewNipples():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
-	showJade();
+	showJade(true);
 	output("You try to grab the tentacles encircling her mounds, but all that you accomplish is getting them to wrap around your wrists instead and tug your hands towards Jade’s breasts. They don’t feel too strong; you bet you could pry them off with some insistence if you wanted, but that could hurt Jade. Well, since you seem to have gotten roped in on this, might as well as make the best of the situation and help Jade get her rocks off in the process.");
 	output("\n\nFollowing the lead of the relentless tugs on your wrist, you let Jade’s tentacle-nips guide your hands to caress her breasts. More and more of her prehensile nipples wrap around your arms, the panda-girl long since reduced to a moaning pile of fuck. The only thing she can do is moan, groan, and cream herself as you continue to molest her.");
 	output("\n\nA fleshy tip strokes your [pc.lips] and you look down to see that one of Jade’s nips seem to have made their way around your arm and up to your face. Having no reason to deny it, you open your mouth and let it crawl inside. This is... quite a weird way to lick someone’s nipples, but you suppose there are weirder ways to do it.");
@@ -906,7 +908,7 @@ public function helpJadeWithHerNewNipples():void {
 public function watchJadesNewNipplesMolestHer():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
-	showJade();
+	showJade(true);
 	output("Why bother when she seems to be enjoying it so much....");
 	output("\n\nAs Jade opens her mouth in yet another moan, her nipples uncoil from around her boobs and spring back into action, evidently not sated yet. One squirms through the air and plunges boldly into her open mouth, plugging it up and muffling her voice as it forcefeeds itself into her. The other creeps down her belly, almost invisible against the black parts of her fur, and heads for her skirt, worming its way underneath. The lewd bulge it spreads downward through the green fabric, leaving no doubt as its progress, and a muffled cry manages to escape her mouth as it penetrates her. Within seconds of it doing so, she arches her back, her whole body quaking mightily in a second, heavy orgasm, drenching her skirt once more with her female cream.");
 	output("\n\nJade seems to be stuck in nirvana.The sensitive nipples are rubbing all over her body and granting her unimaginable pleasure, reducing her to nothing more than a pile of moans, groans and cries of pleasure. The ever expanding puddle underneath her a testament to the amazing pleasure she’s been bound to. Frankly, the sight is quite hot. You feel yourself getting aroused as you watch her cum again and again....");
@@ -921,7 +923,7 @@ public function watchJadesNewNipplesMolestHer():void {
 public function jadesNippleTFEpilogue(helped:Boolean = false):void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
-	showJade();
+	showJade(true);
 	output("Jade’s nipples seem to have finally calmed down. They slowly retract back into her boobs. Once they are reduced to the little nubs you originally saw, they crawl inside her breast flesh, giving her inverted nipples.");
 	output("\n\nWell, that was unexpected. You ask the panting, nearly passed-out panda if she’s alright.");
 
@@ -957,7 +959,7 @@ public function jadesNippleTFEpilogue(helped:Boolean = false):void {
 public function suckJadesTentacleNipplesYouWeirdo():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
-	showJade();
+	showJade(true);
 	output("Jade grins a knowing grin at your suggestion. <i>“Of course, [pc.name]; go ahead,”</i> she tells you, thrusting her ample bosom towards you and beckoning you with a crooked finger.");
 	output("\n\nYou follow after her, and as soon as the door is closed you bring your hands to her breasts. Still as sensitive as ever.");
 	output("\n\n<i>“Mmm, you haven’t lost your touch,”</i> Jade moans in glee, eyes closing as she savors the feeling.");
