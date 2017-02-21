@@ -111,6 +111,9 @@
 		public var Bust_JADE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Jade_Nude.png", mimeType = "image/png")]
 		public var Bust_JADE_NUDE:Class;
+		//Gats doesn't have all the variations. Don't wanna break nothin, so standing in!
+		public function get Bust_JADE_NIPS():Class { return Bust_JADE; }
+		public function get Bust_JADE_NIPS_NUDE():Class { return Bust_JADE_NUDE; }
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Kaithrit_Scout.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;

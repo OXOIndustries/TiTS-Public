@@ -4897,7 +4897,7 @@
 					types.push("frog", "whip-like", "thick");
 					break;
 				case GLOBAL.TYPE_TENTACLE:
-					types.push("writhing", "tentacle");
+					types.push("writhing", "tentacle-like");
 					break;
 			}
 			
@@ -18111,8 +18111,7 @@
 						if (requiresRemoval)
 						{
 							Tentacool.tentacoolTF(this, thisStatus); 
-				}
-				
+						}				
 						break;
 				}
 				

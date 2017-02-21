@@ -3374,4 +3374,3 @@ public function stormguardCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Stormguard");
 }
-

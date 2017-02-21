@@ -224,6 +224,15 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/jade.png", mimeType = "image/png")]
+		public var Bust_JADE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jade_nude.png", mimeType = "image/png")]
+		public var Bust_JADE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jade_nips.png", mimeType = "image/png")]
+		public var Bust_JADE_NIPS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jade_nips_nude.png", mimeType = "image/png")]
+		public var Bust_JADE_NIPS_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/kally.png", mimeType = "image/png")]
 		public var Bust_KALLY:Class;
@@ -671,6 +680,15 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
 			public var Full_JOYCO_VENDING_MACHINE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade.png", mimeType = "image/png")]
+			public var Full_JADE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade_nude.png", mimeType = "image/png")]
+			public var Full_JADE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade_nips.png", mimeType = "image/png")]
+			public var Full_JADE_NIPS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade_nips_nude.png", mimeType = "image/png")]
+			public var Full_JADE_NIPS_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally.png", mimeType = "image/png")]
 			public var Full_KALLY:Class;
