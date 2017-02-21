@@ -9960,8 +9960,8 @@
 			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
 			if (legType == GLOBAL.TYPE_MLP) race = mlpRace();
-			if (tentacleScore() >= 15) race = tentacleRace();
 			// Amalgamations
+			if (tentacleScore() >= 15) race = tentacleRace();
 			if (race == "human" && humanScore() < 4) race = "alien hybrid";
 			
 			return race;
@@ -10065,11 +10065,16 @@
 			if(tallness < 60) return "pygmy shark-morph";
 			return "shark-morph";
 		}
+		public function tentacleRace():String
+		{
+			if (tentacleScore() >= 25 || (armType == GLOBAL.TYPE_TENTACLE && legType == GLOBAL.TYPE_TENTACLE)) return "tentacle monster";
+			else return "tentacle-morph";
+		}
 		public function taurRace(race:String = ""):String
 		{
 			if (race.indexOf("leithan") != -1 || race.indexOf("chakat") != -1 || race.indexOf("taur") != -1) return race;
 			if (race.indexOf("-morph") != -1) race = race.replace("-morph", "");
-			return race + "-taur";
+			return (race + (race.indexOf("-") != -1 ? " " : "-") + "taur");
 		}
 		public function mlpRace():String
 		{
@@ -10562,6 +10567,21 @@
 			//if (vaginaTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			return counter;
 		}
+		public function pigScore():int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_SWINE) counter++;
+			if (faceType == GLOBAL.TYPE_SWINE) counter++;
+			if (legType == GLOBAL.TYPE_SWINE) counter++;
+			if (cockTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
+			if (vaginaTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
+			if (tailType == GLOBAL.TYPE_SWINE) counter++;
+			if (thickness >= 80) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
+			if (hasSheath()) counter++;
+			
+			return counter;
+		}
 		public function plantScore(): int
 		{
 			var counter: int = 0;
@@ -10620,6 +10640,35 @@
 			if (counter > 4 && hasVaginaType(GLOBAL.TYPE_SIREN)) counter++;
 			if (skinType != GLOBAL.SKIN_TYPE_SCALES) counter--;
 			return counter;
+		}
+		public function tentacleScore():int
+		{
+			// partially a counter for number of tentacles (doesn't fully count number of tentacles that would theoretically be in hair, arms, and legs)
+			var counter:int = 0;
+			var i:int = 0;
+			
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) counter += 2;
+			if (tongueType == GLOBAL.TYPE_TENTACLE) counter++;
+			if (hasTentacleNipples())
+			{
+				for (i = 0; i < breastRows.length; i++)
+				{
+					if (breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) counter += breastRows[i].breasts * nipplesPerBreast;
+				}
+			}
+			if (hasCock(GLOBAL.TYPE_TENTACLE))
+			{
+				for (i = 0; i < cocks.length; i++)
+				{
+					if (cocks[i].cType == GLOBAL.TYPE_TENTACLE) counter++;
+				}
+			}
+			if (tailType == GLOBAL.TYPE_TENTACLE) counter += tailCount;
+			if (wingType == GLOBAL.TYPE_TENTACLE) counter += wingCount;
+			if (armType == GLOBAL.TYPE_TENTACLE) counter += 4;
+			if (legType == GLOBAL.TYPE_TENTACLE) counter += 4;
+			
+			return counter; // current max just using Tentacool should be 86 I think, but it could be higher using other items or save editing
 		}
 		public function vanaeScore(): int
 		{
@@ -10698,57 +10747,6 @@
 		{
 			if(cyborgScore() >= numParts) return true;
 			return false;
-		}
-		public function pigScore():int
-		{
-			var counter:int = 0;
-			if (earType == GLOBAL.TYPE_SWINE) counter++;
-			if (faceType == GLOBAL.TYPE_SWINE) counter++;
-			if (legType == GLOBAL.TYPE_SWINE) counter++;
-			if (cockTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
-			if (vaginaTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
-			if (tailType == GLOBAL.TYPE_SWINE) counter++;
-			if (thickness >= 80) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
-			if (hasSheath()) counter++;
-			
-			return counter;
-		}
-		
-		// partially a counter for number of tentacles (doesn't fully count number of tentacles that would theoretically be in hair, arms, and legs)
-		public function tentacleScore():int
-		{
-			var counter:int = 0;
-			var i:int = 0;
-			
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) counter += 2;
-			if (tongueType == GLOBAL.TYPE_TENTACLE) counter++;
-			if (hasTentacleNipples())
-			{
-				for (i = 0; i < breastRows.length; i++)
-				{
-					if (breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) counter += breastRows[i].breasts * nipplesPerBreast;
-				}
-			}
-			if (hasCock(GLOBAL.TYPE_TENTACLE))
-			{
-				for (i = 0; i < cocks.length; i++)
-				{
-					if (cocks[i].cType == GLOBAL.TYPE_TENTACLE) counter++;
-				}
-			}
-			if (tailType == GLOBAL.TYPE_TENTACLE) counter += tailCount;
-			if (wingType == GLOBAL.TYPE_TENTACLE) counter += wingCount;
-			if (armType == GLOBAL.TYPE_TENTACLE) counter += 4;
-			if (legType == GLOBAL.TYPE_TENTACLE) counter += 4;
-			
-			return counter; // current max just using Tentacool should be 86 I think, but it could be higher using other items or save editing
-		}
-		
-		public function tentacleRace():String
-		{
-			if (tentacleScore() >= 25 || (armType == GLOBAL.TYPE_TENTACLE && legType == GLOBAL.TYPE_TENTACLE)) return "tentacle monster";
-			else return "tentacle-morph";
 		}
 		
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
