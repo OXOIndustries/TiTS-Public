@@ -1457,8 +1457,8 @@ public function variableRoomUpdateCheck():void
 	
 	//Merchant Deck
 	// Acquisitions
-	if(flags["SERA_ACQUIRED_DATE"] != undefined && (GetGameTimestamp() - flags["SERA_ACQUIRED_DATE"] <= 180)) rooms["ACQUISITIONS"].removeFlag(GLOBAL.NPC);
-	else rooms["ACQUISITIONS"].addFlag(GLOBAL.NPC);
+	if(sentientAcquisitionsIsOpen()) rooms["ACQUISITIONS"].addFlag(GLOBAL.NPC);
+	else rooms["ACQUISITIONS"].removeFlag(GLOBAL.NPC);
 	// Sera's Shop
 	if(darkChrysalisIsOpen()) rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
 	else rooms["DARK CHRYSALIS"].removeFlag(GLOBAL.COMMERCE);
