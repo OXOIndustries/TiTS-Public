@@ -10748,57 +10748,6 @@
 			if(cyborgScore() >= numParts) return true;
 			return false;
 		}
-		public function pigScore():int
-		{
-			var counter:int = 0;
-			if (earType == GLOBAL.TYPE_SWINE) counter++;
-			if (faceType == GLOBAL.TYPE_SWINE) counter++;
-			if (legType == GLOBAL.TYPE_SWINE) counter++;
-			if (cockTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
-			if (vaginaTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
-			if (tailType == GLOBAL.TYPE_SWINE) counter++;
-			if (thickness >= 80) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
-			if (hasSheath()) counter++;
-			
-			return counter;
-		}
-		
-		// partially a counter for number of tentacles (doesn't fully count number of tentacles that would theoretically be in hair, arms, and legs)
-		public function tentacleScore():int
-		{
-			var counter:int = 0;
-			var i:int = 0;
-			
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) counter += 2;
-			if (tongueType == GLOBAL.TYPE_TENTACLE) counter++;
-			if (hasTentacleNipples())
-			{
-				for (i = 0; i < breastRows.length; i++)
-				{
-					if (breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) counter += breastRows[i].breasts * nipplesPerBreast;
-				}
-			}
-			if (hasCock(GLOBAL.TYPE_TENTACLE))
-			{
-				for (i = 0; i < cocks.length; i++)
-				{
-					if (cocks[i].cType == GLOBAL.TYPE_TENTACLE) counter++;
-				}
-			}
-			if (tailType == GLOBAL.TYPE_TENTACLE) counter += tailCount;
-			if (wingType == GLOBAL.TYPE_TENTACLE) counter += wingCount;
-			//if (armType == GLOBAL.TYPE_TENTACLE) counter += 4;
-			if (legType == GLOBAL.TYPE_TENTACLE) counter += 8;
-			
-			return counter; // current max just using Tentacool should be 86 I think, but it could be higher using other items or save editing
-		}
-		
-		public function tentacleRace():String
-		{
-			if (tentacleScore() >= 25 || (armType == GLOBAL.TYPE_TENTACLE && legType == GLOBAL.TYPE_TENTACLE)) return "tentacle monster";
-			else return "tentacle-morph";
-		}
 		
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			var desc: String = "";
