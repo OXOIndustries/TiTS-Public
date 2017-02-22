@@ -875,6 +875,7 @@ public function seraInchStealing(response:String = ""):void
 			{
 				//Cock removed, clit increase by 1, libido increase by 1
 				pc.removeCock(cockIndex, 1);
+				pc.balls = 0;
 				pc.clitLength += 1;
 				if(pc.hasPerk("Hung")) pc.clitLength += 1;
 				pc.slowStatGain("libido", 1);
