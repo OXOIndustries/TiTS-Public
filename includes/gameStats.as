@@ -5352,7 +5352,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Kui Country Bar and Lodge
-			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined)
+			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined || flags["MET_SYLVIE"] != undefined)
 			{
 				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
 				// Gloryholes
@@ -5394,6 +5394,25 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
 					if(flags["KIRO_KALLY_THREESOMES"] > 0) output2("\n<b>* Kally, Times Sexed in Threesome with Kiro:</b> " + flags["KIRO_KALLY_THREESOMES"]);
+				}
+				// Sylvie
+				if(flags["MET_SYLVIE"] != undefined)
+				{
+					output2("\n<b>* Sylvie:</b> Met her");
+					if(sylvieInBar()) output2(", Active (At bar)");
+					else output2(", <i>Whereabo" + (silly ? "o" : "u") + "ts unknown</i>");
+					if(sylvieInBar())
+					{
+						output2("\n<b>* Sylvie, Intoxication Status:</b>");
+						switch(sylvieDrunkLevel())
+						{
+							case 0: output2(" Sober"); break;
+							case 1: output2(" Buzzed"); break;
+							case 2: output2(" Drunk"); break;
+							case 3: output2(" Smashed"); break;
+						}
+					}
+					if(flags["SEXED_SYLVIE"] > 0) output2("\n<b>* Sylvie, Times Sexed:</b> " + flags["SEXED_SYLVIE"]);
 				}
 				variousCount++;
 			}

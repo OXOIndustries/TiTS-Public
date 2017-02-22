@@ -319,7 +319,7 @@ public function repeatSylvieApproaches():void
 //Room BonusText
 public function sylvieRoomBonuses(slot:int):void
 {
-	if(hours >= 16 || hours < 3)
+	if(sylvieInBar())
 	{
 		//Sober
 		if(sylvieDrunkLevel() == 0)
@@ -347,8 +347,8 @@ public function sylvieRoomBonuses(slot:int):void
 		var bName:String = "Sylvie";
 		if(flags["MET_SYLVIE"] == undefined) bName = "Moose-girl";
 		var drunkBonus:String = "";
-		if(sylvieDrunkLevel() == 1) drunkBonus += " She's pretty tipsy, and in her current state is more than happy to hand out hugs to all who ask for them.";
-		else if(sylvieDrunkLevel() == 2) drunkBonus += " She's three sheets to the wind, kissing and cuddling anyone who shows the slightest bit of passing interest.";
+		if(sylvieDrunkLevel() == 1) drunkBonus += " She’s pretty tipsy, and in her current state is more than happy to hand out hugs to all who ask for them.";
+		else if(sylvieDrunkLevel() == 2) drunkBonus += " She’s three sheets to the wind, kissing and cuddling anyone who shows the slightest bit of passing interest.";
 		addButton(slot,bName,approachSylvie,undefined,bName,"Approach the friendly moose-girl police officer." + drunkBonus);
 	}
 }
@@ -361,32 +361,50 @@ public function sylvieMenu():void
 	{
 		//[BuyHerBeers] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 6) addButton(0,"BuyHerBeer",buyBeersForMooseSloot,undefined,"Buy Her Beers","Buy the pretty girl a Doe-Eyed Draft. Only six credits!");
+<<<<<<< HEAD
 		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can't afford the six credits it would cost for a Doe-Eyed Draft.");
 		//[BuyHerShots] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally's nicest shots - Kui-Tan Creamers. Only 22 credits!");
 		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can't afford the 22 credits it would cost for some Kui-Tan Creamers.");
+=======
+		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can’t afford the six credits it would cost for a Doe-Eyed Draft.");
+		//[BuyHerShots] - Grays out if Kally is on break for any reason!
+		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally’s nicest shots - Kui-Tan Creamers. Only 22 credits!");
+		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can’t afford the 22 credits it would cost for some Kui-Tan Creamers.");
+>>>>>>> origin/master
 		//[Chill] - Just hang out a bit
-		addButton(2,"Chill",chillWithSylvie,undefined,"Chill","You don't need to buy Sylvie drinks to woo the moose-girl.");
+		addButton(2,"Chill",chillWithSylvie,undefined,"Chill","You don’t need to buy Sylvie drinks to woo the moose-girl.");
 	}
 	//Buzzed
 	else if(sylvieDrunkLevel() == 1)
 	{
 		//[BuyHerBeers] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 6) addButton(0,"BuyHerBeer",buyBeersForMooseSloot,undefined,"Buy Her Beers","Buy the pretty girl a Doe-Eyed Draft. Only six credits!");
+<<<<<<< HEAD
 		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can't afford the six credits it would cost for a Doe-Eyed Draft.");
 		//[BuyHerShots] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally's nicest shots - Kui-Tan Creamers. Only 22 credits!");
 		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can't afford the 22 credits it would cost for some Kui-Tan Creamers.");
+=======
+		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can’t afford the six credits it would cost for a Doe-Eyed Draft.");
+		//[BuyHerShots] - Grays out if Kally is on break for any reason!
+		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally’s nicest shots - Kui-Tan Creamers. Only 22 credits!");
+		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can’t afford the 22 credits it would cost for some Kui-Tan Creamers.");
+>>>>>>> origin/master
 		//[Hug]
 		//Have a semi-random hug with light petting.
-		addButton(2,"Hug",hugSylvie,undefined,"Hug","Just because she's nine feet tall doesn't mean you can't while away the hours wrapped in her arms.");
+		addButton(2,"Hug",hugSylvie,undefined,"Hug","Just because she’s nine feet tall doesn’t mean you can’t while away the hours wrapped in her arms.");
 	}
 	//Drunk - After first sexytimes, can get forcy funtimes rarely.
 	else
 	{
 		//[Get Sexy]
+<<<<<<< HEAD
 		if(pc.lust() >= 33) addButton(0,"Get Sexy",sylvieSexyTimeIntro,undefined,"Get Sexy","Now that she's finally loosened up for a bit of fun, party with Sylvie!");
 		else addDisabledButton(0,"Get Sexy","Get Sexy","You aren't turned on enough for that.");
+=======
+		addDisabledButton(0,"Get Sexy","Get Sexy","Despite what she says, you have a hunch that her sex scenes aren’t in the game just yet. Give Fenoxo another day! What’s already here is well over 1000 lines of coding >.>");
+>>>>>>> origin/master
 		//[Hug]
 		//Semi-random hug with heavy petting. Guarantees forcy funtimes on next drunk approach that day.
 		addButton(2,"Hug",hugSylvie,undefined,"Hug","Being drunk is no obstacle when it comes to snuggling.");
@@ -604,6 +622,9 @@ public function chillWithSylvie():void
 	else if(flags["SYLVIE_CHILLED"] == 1) output("\n\nSylvie produces another drink from her dwindling pitcher, but she sips it slow this time. <i>“Works for me. But you’ll have to lead off since you didn’t pay the booze toll.”</i>");
 	//2+
 	else output("\n\nSylvie regards you curiously. <i>“You know, I’m starting to think you don’t really know how this whole bar thing works. Lucky for you, you’ve got plenty of rimworld escapades to regale me with.”</i> She produces a beer and takes a slow sip on it. <i>“And I’ve still got a few more beers. We can make this work.”</i>");
+	
+	IncrementFlag("SYLVIE_CHILLED");
+	
 	//PC story bit.
 	var select:Number = rand(3);
 	var options:Array = [];
@@ -1340,7 +1361,6 @@ public function hugSylvie():void
 	}
 	else sylvieMenu();
 }
-
 
 //Sexes
 //Standard sexytime lead-in.

@@ -4019,9 +4019,9 @@ public function dumb4CumReset():void
 		ExtendLogEvent(ParseText("\n\nYou estimate that you’ve gotten the “<b>Dumb4Cum</b>” Treatment modification, a variant that allows you periods of extreme clearheadedness and boosted intellect in the 24 hours after drinking cum at the expense of reduced intelligence during periods of withdrawl."));
 		pc.removeStatusEffect("Dumb4CumNotice");
 	}
-	else
+	else if(pc.perkv1("Dumb4Cum") != 0)
 	{
-		AddLogEvent(ParseText("With the warm feeling of reproductive juices in your body, you find you’re able to think clearly once more."), "passive")
+		AddLogEvent(ParseText("With the warm feeling of reproductive juices in your body, you find you’re able to think clearly once more."), "passive");
 	}
 	pc.setPerkValue("Dumb4Cum",1,0);
 	// Regain lost intellience
