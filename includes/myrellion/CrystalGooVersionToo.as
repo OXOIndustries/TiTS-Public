@@ -5,6 +5,7 @@ import classes.Items.Transformatives.GooBallPink;
 import classes.Items.Transformatives.GooBallPurple;
 import classes.Items.Transformatives.GooBallRed;
 import classes.Items.Transformatives.GooBallYellow;
+
 public function encounterCrystalGooV2():void 
 {
 	if (rand(2) == 0) crystalGooEncounterType1();
@@ -1195,7 +1196,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		else if (pc.isMischievous()) output("<i>“Want to test your accuracy? I have a small target in mind,”</i> you hint.");
 		else output("<i>“Think you can create a little blunt rod without fucking it up?”</i> you ask brusquely.");
 		
-		output("\n\n‘Yeah, any time,”</i> the alien answers, settling into a proud pose as soon as your gaze lands on her. <i>“Why?”</i>");
+		output("\n\n<i>“Yeah, any time,”</i> the alien answers, settling into a proud pose as soon as your gaze lands on her. <i>“Why?”</i>");
 		
 		output("\n\n");
 		if (pc.hasPerk("Easy") || pc.libido() >= (pc.libidoMax() * 0.66))
@@ -1215,8 +1216,6 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		output(" It seems to send the message; she giggles with a faint, bubbly sound and reaches out to pull you closer.");
 		
 		output("\n\n<i>“You’re such a pervert,”</i> she teases.");
-
-		output("\n\n");
 	}
 	else
 	{
@@ -1231,11 +1230,14 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		else output(" blush.");
 	}
 
+	var cockIdx:int = -1;
+	var megaDong:Boolean = false;
+	
 	//shared body sharts here
 	if (pc.hasCock())
 	{
-		var cockIdx:int = pc.biggestCockIndex();
-		var megaDong:Boolean = false
+		cockIdx = pc.biggestCockIndex();
+		
 		if (pc.cocks[cockIdx].cLength() >= 48 && pc.cocks[cockIdx].thickness() >= 12)
 		{
 			megaDong = true;
@@ -1373,6 +1375,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 		if (pc.hasCock() && pc.cumQ() > 1000) output(" drunkenly laughing as you groan and flop.");
 		else output(" practicing her inspiring poses and occasionally picking large mushrooms.");
 		output(" When you can finally sit up again, she says a shy farewell. <i>“See you later... pervert.”</i>");
+		output("\n\n");
 
 		// 9999
 		//if biggest cock is > 12 width and 48 length add Composite Club to drop table @ 15-25% chance

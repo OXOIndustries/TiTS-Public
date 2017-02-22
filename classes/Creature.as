@@ -2338,6 +2338,16 @@
 				case "accurateCockName":
 					buffer = accurateCockName(arg2);
 					break;
+				case "tailGenital":
+				case "genitalTail":
+				case "genitail":
+					buffer = tailGenitalDescript();
+					break;
+				case "tailGenitals":
+				case "genitalTails":
+				case "genitails":
+					buffer = tailGenitalsDescript();
+					break;
 				case "tailCockColor":
 				case "tailCuntColor":
 				case "tailGenitalColor":
@@ -14959,6 +14969,18 @@
 		public function tailGenitalColorDesc(arg:int = 0):String
 		{
 			return tailGenitalColor;
+		}
+		public function tailGenitalDescript(): String
+		{
+			if (hasTailCock()) return tailCockDescript();
+			if (hasTailCunt()) return tailVaginaDescript();
+			return "ERROR: TAIL GENITAL DESCRIPT CALLED WITH NO TAIL GENITALS PRESENT.";
+		}
+		public function tailGenitalsDescript(): String
+		{
+			if (hasTailCock()) return tailCocksDescript();
+			if (hasTailCunt()) return tailVaginasDescript();
+			return "ERROR: TAIL GENITAL DESCRIPT CALLED WITH NO TAIL GENITALS PRESENT.";
 		}
 		public function hasHardLightEquipped():Boolean
 		{

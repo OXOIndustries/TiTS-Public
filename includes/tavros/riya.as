@@ -575,8 +575,9 @@ public function riyaVagigooVagitiems():void
 	output("\n\nA moment passes, during which you hear the soft noises of Riya’s uniform and underwear hitting the carpet followed by the sound of a bottle opening, and then you jerk in surprise as you feel something <i>cold</i> being pushed into your [pc.vagina] - lube, it must be.");
 	//If PC is not virgin and has looseness rating of 3 or above:
 	if(!pc.vaginalVirgin && pc.vaginas[0].looseness() >= 3) output(" <i>“There you go, slut. Not that you really need it. You must be Naughty Wyvern’s favorite customer - or Beth’s favorite earner.”</i>");
+	
 	//If PC is vaginal virgin(By which I mean complete virgin, not just intact hymen)
-	else if(pc.vaginalVirgin)
+	if(pc.vaginalVirgin)
 	{
 		output("\n\nRiya’s fingers probe deeper into your [pc.cunt], spreading your folds around her fingers as she works more lube into you - that is, until her fingers hit the barrier of your hymen. She grunts in surprise, releasing your head and rolling you over onto your back. <i>“You didn’t tell me you were a virgin, Steele.”</i> she says, an entirely different kind of lust in her eyes now. <i>“You should have. I would’ve set up something nice for you. I’ve got something of a soft spot for first timers.”</i>");
 		//PC is nonhuman:
