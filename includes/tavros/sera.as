@@ -301,11 +301,7 @@ public function seraDebtCheck():Boolean
 		
 		processTime(2);
 		clearMenu();
-		if(seraRecruited())
-		{
-			if(flags["SERA_CREWMEMBER"] == 0) addButton(0, "Nevermind", approachServantSeraOnTavros);
-			else addButton(0, "Nevermind", approachServantSera);
-		}
+		if(seraRecruited()) addButton(0, "Nevermind", approachServantSera);
 		else addButton(0, "Nevermind", seraMenu);
 		addButton(1, "Buy", buyItem);
 		return true;

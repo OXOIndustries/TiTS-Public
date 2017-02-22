@@ -354,7 +354,7 @@ public function seraIsRepoed():void
 	// Reset Sera conditions!
 	chars["SERA"].lust(0, true);
 	chars["SERA"].minutesSinceCum = 0;
-	if(flags["SERA_NO_SEX"] != undefined) flags.splice(flags.indexOf("SERA_NO_SEX"), 1);
+	if(flags["SERA_NO_SEX"] != undefined) flags["SERA_NO_SEX"] = undefined;
 	pc.removeStatusEffect("Dark Chrysalis Closed");
 	pc.removeStatusEffect("Sera Credit Debt");
 	
@@ -624,7 +624,6 @@ public function seraSalaryCheckOption(response:String = "none"):void
 	switch(response)
 	{
 		case "mistress":
-			showSera();
 			showName("YES, MY\nMISTRESS...");
 			
 			output("Of course, you can’t say no to your Mistress. It should always be a yes -- “Yes, Mistress”. Mistress Sera, how you’ve missed that title. Having sampled her as a slave was not all it was cracked up to be, so this is probably for the best, you reflect. Choosing to get a refund for her contract and signing your name, you confirm your choice.");
@@ -636,7 +635,7 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			addButton(0, "Next", seraSalaryCheckOption, "mistress next");
 			break;
 		case "mistress next":
-			showSera();
+			showBust(seraBustDisplay(), "TERON", "ATTICA");
 			showName("YES, MY\nMISTRESS...");
 			
 			output("Not soon after, the two tarratch arrive at your " + (seraIsCrew() ? "ship" : "nursery apartments") + " and you invite them in.");
@@ -682,22 +681,22 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			// Reset Sera conditions!
 			chars["SERA"].lust(0, true);
 			chars["SERA"].minutesSinceCum = 9000;
-			if(flags["SERA_NO_SEX"] != undefined) flags.splice(flags.indexOf("SERA_NO_SEX"), 1);
+			if(flags["SERA_NO_SEX"] != undefined) flags["SERA_NO_SEX"] = undefined;
 			pc.removeStatusEffect("Sera Credit Debt");
 			// Reset Sera flags
-			if(flags["SERA_ACQUIRED_DATE"] != undefined) flags.splice(flags.indexOf("SERA_ACQUIRED_DATE"), 1);
-			if(flags["SERA_OBEDIENCE"] != undefined) flags.splice(flags.indexOf("SERA_OBEDIENCE"), 1);
-			if(flags["SERA_OBEDIENCE_MIN"] != undefined) flags.splice(flags.indexOf("SERA_OBEDIENCE_MIN"), 1);
-			if(flags["SERA_OBEDIENCE_MAX"] != undefined) flags.splice(flags.indexOf("SERA_OBEDIENCE_MAX"), 1);
-			if(flags["SERA_MERCHANT"] != undefined) flags.splice(flags.indexOf("SERA_MERCHANT"), 1);
-			if(flags["SERA_BUSINESS_SETUP"] != undefined) flags.splice(flags.indexOf("SERA_BUSINESS_SETUP"), 1);
-			if(flags["SERA_REPAID_LOAN"] != undefined) flags.splice(flags.indexOf("SERA_REPAID_LOAN"), 1);
-			if(flags["SERA_CREWMEMBER"] != undefined) flags.splice(flags.indexOf("SERA_CREWMEMBER"), 1);
+			if(flags["SERA_ACQUIRED_DATE"] != undefined) flags["SERA_ACQUIRED_DATE"] = undefined;
+			if(flags["SERA_OBEDIENCE"] != undefined) flags["SERA_OBEDIENCE"] = undefined;
+			if(flags["SERA_OBEDIENCE_MIN"] != undefined) flags["SERA_OBEDIENCE_MIN"] = undefined;
+			if(flags["SERA_OBEDIENCE_MAX"] != undefined) flags["SERA_OBEDIENCE_MAX"] = undefined;
+			if(flags["SERA_MERCHANT"] != undefined) flags["SERA_MERCHANT"] = undefined;
+			if(flags["SERA_BUSINESS_SETUP"] != undefined) flags["SERA_BUSINESS_SETUP"] = undefined;
+			if(flags["SERA_REPAID_LOAN"] != undefined) flags["SERA_REPAID_LOAN"] = undefined;
+			if(flags["SERA_CREWMEMBER"] != undefined) flags["SERA_CREWMEMBER"] = undefined;
 			
 			if(flags["ACQUISITIONS_SLAVE_PURCHASES"] != undefined)
 			{
 				flags["ACQUISITIONS_SLAVE_PURCHASES"]--;
-				if(flags["ACQUISITIONS_SLAVE_PURCHASES"] <= 0) flags.splice(flags.indexOf("ACQUISITIONS_SLAVE_PURCHASES"), 1);
+				if(flags["ACQUISITIONS_SLAVE_PURCHASES"] <= 0) flags["ACQUISITIONS_SLAVE_PURCHASES"] = undefined;
 			}
 			
 			if(!pc.hasKeyItem("Acquisitions Starter Kit"))
@@ -728,11 +727,11 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			// Reset Sera flags
 			flags["SERA_PARTY_INVITE"] = 3;
 			if(flags["SERA_INFULENCE"] > 190) flags["SERA_INFULENCE"] = 190;
-			if(flags["SERA_SALARY_PAID"] != undefined) flags.splice(flags.indexOf("SERA_SALARY_PAID"), 1);
+			if(flags["SERA_SALARY_PAID"] != undefined) flags["SERA_SALARY_PAID"] = undefined;
 			
 			flags["SERA_SALARY_RESOLVED"] = -1;
 			
-			addButton(0, "Next", approachServantSera);
+			addButton(0, "Next", approachServantSera, true);
 			break;
 		case "nothing":
 			showName("IGNORE\nMESSAGE");
@@ -741,7 +740,7 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			
 			flags["SERA_SALARY_RESOLVED"] = 0;
 			
-			addButton(0, "Next", approachServantSera);
+			addButton(0, "Next", approachServantSera, true);
 			break;
 		default:
 			output("Nothing to see here!");
@@ -755,6 +754,13 @@ public function approachServantSera(introText:Boolean = false):void
 {
 	// Sera Salary hotfix check
 	if(seraSalaryCheck()) return;
+	
+	// Sera actually on Tavros instead
+	if(flags["SERA_CREWMEMBER"] == 0)
+	{
+		approachServantSeraOnTavros(introText);
+		return;
+	}
 	
 	var obedience:Number = seraObedience();
 	
@@ -3453,7 +3459,7 @@ public function seraBitcheningStore(response:String = "buy"):void
 	}
 	
 	shopkeep = chars["SERA"];
-	shopkeepBackFunctor = (flags["SERA_CREWMEMBER"] == 0 ? approachServantSeraOnTavros : approachServantSera);
+	shopkeepBackFunctor = approachServantSera;
 	
 	switch(response)
 	{
