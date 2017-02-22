@@ -8083,6 +8083,7 @@
 			}
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
+			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
 			
 			return puffScore;
 		}
