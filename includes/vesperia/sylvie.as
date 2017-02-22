@@ -361,17 +361,10 @@ public function sylvieMenu():void
 	{
 		//[BuyHerBeers] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 6) addButton(0,"BuyHerBeer",buyBeersForMooseSloot,undefined,"Buy Her Beers","Buy the pretty girl a Doe-Eyed Draft. Only six credits!");
-<<<<<<< HEAD
 		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can't afford the six credits it would cost for a Doe-Eyed Draft.");
 		//[BuyHerShots] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally's nicest shots - Kui-Tan Creamers. Only 22 credits!");
 		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can't afford the 22 credits it would cost for some Kui-Tan Creamers.");
-=======
-		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can’t afford the six credits it would cost for a Doe-Eyed Draft.");
-		//[BuyHerShots] - Grays out if Kally is on break for any reason!
-		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally’s nicest shots - Kui-Tan Creamers. Only 22 credits!");
-		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can’t afford the 22 credits it would cost for some Kui-Tan Creamers.");
->>>>>>> origin/master
 		//[Chill] - Just hang out a bit
 		addButton(2,"Chill",chillWithSylvie,undefined,"Chill","You don’t need to buy Sylvie drinks to woo the moose-girl.");
 	}
@@ -380,17 +373,10 @@ public function sylvieMenu():void
 	{
 		//[BuyHerBeers] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 6) addButton(0,"BuyHerBeer",buyBeersForMooseSloot,undefined,"Buy Her Beers","Buy the pretty girl a Doe-Eyed Draft. Only six credits!");
-<<<<<<< HEAD
 		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can't afford the six credits it would cost for a Doe-Eyed Draft.");
 		//[BuyHerShots] - Grays out if Kally is on break for any reason!
 		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally's nicest shots - Kui-Tan Creamers. Only 22 credits!");
 		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can't afford the 22 credits it would cost for some Kui-Tan Creamers.");
-=======
-		else addDisabledButton(0,"BuyHerBeer","Buy Her Beer","You can’t afford the six credits it would cost for a Doe-Eyed Draft.");
-		//[BuyHerShots] - Grays out if Kally is on break for any reason!
-		if(pc.credits >= 22) addButton(1,"BuyHerShots",shotsShotsShotsForSylvie,undefined,"Buy Her Shots","Buy the pretty girl some of Kally’s nicest shots - Kui-Tan Creamers. Only 22 credits!");
-		else addDisabledButton(1,"BuyHerShots","Buy Her Shots","You can’t afford the 22 credits it would cost for some Kui-Tan Creamers.");
->>>>>>> origin/master
 		//[Hug]
 		//Have a semi-random hug with light petting.
 		addButton(2,"Hug",hugSylvie,undefined,"Hug","Just because she’s nine feet tall doesn’t mean you can’t while away the hours wrapped in her arms.");
@@ -399,12 +385,8 @@ public function sylvieMenu():void
 	else
 	{
 		//[Get Sexy]
-<<<<<<< HEAD
 		if(pc.lust() >= 33) addButton(0,"Get Sexy",sylvieSexyTimeIntro,undefined,"Get Sexy","Now that she's finally loosened up for a bit of fun, party with Sylvie!");
 		else addDisabledButton(0,"Get Sexy","Get Sexy","You aren't turned on enough for that.");
-=======
-		addDisabledButton(0,"Get Sexy","Get Sexy","Despite what she says, you have a hunch that her sex scenes aren’t in the game just yet. Give Fenoxo another day! What’s already here is well over 1000 lines of coding >.>");
->>>>>>> origin/master
 		//[Hug]
 		//Semi-random hug with heavy petting. Guarantees forcy funtimes on next drunk approach that day.
 		addButton(2,"Hug",hugSylvie,undefined,"Hug","Being drunk is no obstacle when it comes to snuggling.");
