@@ -131,7 +131,8 @@ public function kallyBonusRoomTexts():Boolean
 	}
 	if(MailManager.isEntryUnlocked("del_moved")) delBonus(1);
 	roamingBarEncounter(2);
-	if(kaedeBlurb4KuiCountryBarAndGrilllll(3)) return true;
+	sylvieRoomBonuses(3);
+	if(kaedeBlurb4KuiCountryBarAndGrilllll(4)) return true;
 	return false;
 }
 
