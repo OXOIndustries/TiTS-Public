@@ -1327,6 +1327,7 @@ public function hugSylvie():void
 	output("\n\nYour whole body is sweating by the time you separate. Sylvie is flushed and smiling, and you imagine you must be in a similar state. Regardless, the giantess of a ‘taur decides to cool herself off by chugging an entire beer before your eyes. A belch bursts heedlessly from her mouth the second you separate. Her eyes are a little glassier, a bit drunker, perhaps, but her smile is bright enough to dazzle the grumpiest curmudgeon. <i>“");
 	processTime(15);
 	pc.lust(33);
+	sweatyDebuff(2);
 	sylvieDrunkBump(1);
 	if(sylvieDrunkLevel() >= 2) 
 	{
@@ -1762,6 +1763,8 @@ public function hipBustingSnuSnu3(cumBathed:Boolean):void
 	output("\n\n<i>“I can’t believe I did that... and it didn’t kill you.”</i>");
 	output("\n\nExamining your tenderized thighs, neither can you.");
 	pc.HP(-10);
+	soreDebuff(3);
+	sweatyDebuff(2);
 	processTime(10);
 	sexedSylvie(1);
 	pc.createStatusEffect("SYLVIE WORKING");
