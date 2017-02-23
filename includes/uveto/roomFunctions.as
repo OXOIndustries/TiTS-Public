@@ -609,6 +609,7 @@ public function uvetoFallToColdDamage():void
 		//output("[PH] Jerynn Rescue");
 		
 		IncrementFlag("UVETO_JERYNN_RESCUES");
+		flags["UVETO_JERYNN_RESCUE_LAST"] = days;
 		
 		//rescuer = "Jerynn";
 		processTime(1440);
@@ -722,7 +723,7 @@ public function uvetoBarBonus():Boolean
 	meetingShadeAtUvetoBar(2);
 
 	var jeromePresent:Boolean = jeromeAtBar(3);
-	// jerynnAtBar(jeromePresent);
+	var jerynnPresent:Boolean = jerynnAtBar(jeromePresent ? 3 : 4);
 	
 	// Natalie Irson
 	natalieFreezerAddendum(4);

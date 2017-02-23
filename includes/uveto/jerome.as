@@ -1,5 +1,6 @@
 import classes.Characters.Jerome;
 import classes.Characters.PlayerCharacter;
+
 public function jeromeAtBar(btnIdx:int):Boolean
 {
 	if (flags["JEROME_APPROACHED"] != undefined && flags["JEROME_APPROACHED"] == days) return false;

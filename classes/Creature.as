@@ -18284,6 +18284,22 @@
 				removeStatusEffect("Adorahol");
 			}
 		}
+	
+		/**
+		 * This is something I tangentially discussed with Nonesuch. This is basically a "catch all" means of figuring out if the player would take an almost exclusively submissive path when offered choices.
+		 * It's not intended to be a "special" event or single perk, but instead a collection of potential sources that should be treated in this manner.
+		 * Rather than "documenting" it officially, we keep it on the down-low until we have a few things that could potentially feed into it.
+		 * @return
+		 */
+		public function isSubby():Boolean
+		{
+			return hasPerk("Peace of Mind");
+		}
+		
+		public function hasPlumpAsshole():Boolean
+		{
+			return ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED);
+		}
 	}
 }
 
