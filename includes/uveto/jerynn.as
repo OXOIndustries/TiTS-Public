@@ -12,12 +12,25 @@ public function metJerynn():Boolean
 
 public function jerynnIsMistress():Boolean
 {
+	// 9999
 	return false;
 }
 
 public function jerynnPetstuffLevel():int
 {
 	return (flags["JERYNN_PETSTUFF_LEVEL"] == undefined ? 0 : flags["JERYNN_PETSTUFF_LEVEL"]);
+}
+
+public function isWearingJerynnsCollar():Boolean
+{
+	// 99999
+	return false;
+}
+
+public function isWearingJerynnsHarness():Boolean
+{
+	// 9999
+	return false;
 }
 
 public function jerynnPetstuffMax():int
@@ -316,7 +329,7 @@ public function jerynnAllow():void
 	clearOutput();
 	showJerynn(true);
 
-	if (jerynnPetstuffLevel() > 0 && (rand(jerynnPetstuffMax()) <= jerynnPetstuffLevel())) jerynnAllowPetstuff();
+	if (isWearingJerynnsCollar() && jerynnPetstuffLevel() > 0 && (rand(jerynnPetstuffMax()) <= jerynnPetstuffLevel())) jerynnAllowPetstuff();
 	else
 	{
 		var opts:Array = [jerynnAllowFucked];
@@ -670,5 +683,104 @@ public function jerynnAllowRidden():void
 
 public function jerynnAllowPetstuff():void
 {
-	
+	clearOutput();
+	showJerynn(true);
+
+	output("The little tag hanging from the collar wrapped tightly around your neck jangles faintly as Jerynn clips a leash - <i>your</i> leash - securely alongside it. A wordless tug and she takes off, leading you out of the bar amidst a sea of lustful stares and half-whispered lewd comments.");
+
+	output("\n\nShe drags you out into the frigid cold and towards a nearby apartment block, soon bundling you into an elevator once inside. Away from the prying eyes of the public, her hands are all over you, grasping and groping");
+	if (pc.buttRating() >= 10 || pc.hipRating() >= 10 || pc.biggestTitSize() >= 6 || pc.thickness >= 50) output(" every plush curve they can find");
+	else output(" every inch of your body");
+	output(". Her amazonian arms pull you close, smothering you");
+	if (pc.tallness >= 96) output(" against");
+	else output(" into");
+	output(" her breasts... putting your [pc.ear] just within nibbling distance.");
+
+	output("\n\n<i>“Now be a good </i>pet<i> for me, you want a </i>treat<i> don’t you?,”</i> she salaciously whispers into your ear, another nibble on the sensitive");
+	if (pc.hasScales()) output(" scales");
+	else output(" skin");
+	output(" for good measure.");
+
+	output("\n\nWhen the elevator door opens you sink down to your hands and knees without a second thought, following behind the amused taur; a <i>good</i> pet indeed. Your position gives you a perfect view between her legs whilst she leads you to the privacy of her apartment, her hefty balls swaying to and fro almost hypnotically with each sauntering step she takes. They jounce and jostle, left to right and back... you swear you can almost <i>hear</i> them burbling, cooking up a huge, thick load of cum fit to drown a person- fit to drown a <i>pet</i>, you correct yourself.");
+
+	output("\n\nYou bump into them without realising, planting a lazy open-mouthed kiss right on");
+	if (jerynnIsMistress()) output(" Mistress’s");
+	else output(" Jerynn’s");
+	output(" left nut in the process. You’re already inside her apartment, the trip down the corridor and through the door having blown straight by your dick-dazed consciousness.");
+
+	output("\n\n<i>“Ooh, somebody’s </i>eager<i> aren’t they! I think I know what treat my pet really wants!”</i> she chuckles.");
+
+	output("\n\n[pc.BarkMeow]!");
+
+	output("\n\n<i>“Let’s get you </i>dressed<i> then,”</i> she starts,");
+	if (isWearingJerynnsHarness()) output(" relinquishing you of all of your gear with the exception of your harness");
+	else if (!pc.isNude()) output(" relinquishing you of all of your gear. A quick fish through the pockets of her smart coat, hanging just by the door, rewards her with a familiar harness, soon slipped around your limbs");
+	else output(" a quick fish through the pockets of her smart coat, hanging just by the door, rewards her with a familiar harness, soon slipped around your limbs");
+	output(". The magnetic clasps hum to life and you carefully bend your elbows and knees double, allowing the paired locks to snap together.");
+
+	output("\n\nProperly dressed, Mistress leads you over to the recessed sofa in the center of her lounge. She props herself up in a corner, leaving her tauric underbelly and juicy balls laid bare before you... just hanging there, the plump orbs each almost as big as your head. They jump a little every now and then, their owner straining as the weight of their load pulls uncomfortably at their scaley connection to her body.");
+
+	output("\n\nA sharp tug on your leash is all the prompting you need, diving [pc.face]-first into her crotch. Your [pc.lips] plant themselves reverentially all over the scaly surface of the prodigus nuts, paying homage to their virility and power. The sheer weight of them throbs heavily against your [pc.tongue] when you open your mouth, softly sucking on their exterior; they’re far too large to fit into your mouth so you have to make do by lapping across their surface, slowly spit shining every last scale.");
+
+	output("\n\nYour careful ministrations soon have the spade-like tip of");
+	if (jerynnIsMistress()) output(" Mistress’s");
+	else output(" Jerynn’s");
+	output(" cock peeking from her sheath and it proves too tempting a target to leave alone. Your");
+	if (pc.lipRating() >= 4) output(" plush cock-pillows live up to their name as you close your mouth");
+	else output(" lips close around");
+	output(" her draconic dickhead in a tight seal, your cheeks hollowing as you suck softly on her flesh. A soft moan is the only response you get,");
+	if (jerynnIsMistress()) output(" Mistress");
+	else output(" Jerynn");
+	output(" paying you little attention; she’s busy watching something on her wall-sized screen, trusting her pet to continue serving her bestial cock without input.");
+
+	output("\n\nAnd serving you do, inch after inch of cock emerging from the taurs sheath to be greeted by your warm, suckling maw. You alternate between slurping on the head and kissing along its length, lapping at the ridges running along the underside and ensuring not one millimeter of it goes unattended.");
+
+	output("\n\nA tug at your leash finally grabs your attention, lost in your little world between the taurs legs.");
+
+	output("\n\n<i>“I said </i>up<i> pet. It’s time for your treat,”</i>");
+	if (jerynnIsMistress()) output(" Mistress");
+	else output(" Jerynn");
+	output(" orders, patting the floor around the edge of her sofa-pit. You clamber up with a little helping hand from her on the way, more orders to <i>lay down</i> and <i>roll over</i> soon following. She has you lying on your back with your head over the edge of the pit in short order, the reason becoming clear as the taur gets her legs underneath herself and steps over you with her forelegs; leaving her massive cock with a straight shot at your throat.");
+
+	output("\n\nHer cockhead jounces in the air before you, a little thrust of her hind legs thrusting it forward enough to glance off of your cheek to leave a wet, cummy smear down the side of your [pc.face]. She tries again, this time bouncing off your inverted chin and dribbling a trail of pre right over your [pc.lips]. The third attempt is much more restrained, and with a bit of a stretch you just about manage to capture the taurs glans in your mouth, soon sealing your lips around the throbbing cock to ensure it stays right where");
+	if (jerynnIsMistress()) output(" Mistress");
+	else output(" Jerynn");
+	output(" wants it.");
+
+	output("\n\nA little step here and a careful thrust there and her cock slowly works its way deeper into your mouth, the angled tip soon demanding entrance to your throat. With your neck straight there’s no stopping the inevitable, steeling yourself to swallow along with the next inch of cock that");
+	if (jerynnIsMistress()) output(" Mistress");
+	else output(" Jerynn");
+	output(" force feeds you, easing its passage into your neck and beyond. She coos with a mix of appreciation and pleasure as you swallow her cock down, your throat milking her turgid flesh in an effort to pull it deeper.");
+
+	output("\n\nHer balls slap into your face lightly, still sticky with saliva from your earlier attention to them. It takes a second before the realization sets in that you’ve managed to take it all, a curious thrill of pleasure throbbing in your loins at the achievement... not that you have long to bask in glory before the taur reverses course, gently liberating a handful of inches from your grasping maw. Those same inches return in short order, faster than their first entry into your gullet, her balls patting into your face a little harder.");
+
+	output("\n\nGradually she works up a rhythm, rutting savagely into your face after your throat fully concedes to being claimed by the taurs pillar of cock. Spittle liberally drools down your face from the thrusting, turning your visage into a sloppy, well-fucked mess. A fresh coat oozes from your maw whenever");
+	if (jerynnIsMistress()) output(" Mistress");
+	else output(" Jerynn");
+	output(" pulls back, a slightly louder <i>slap</i> when her balls bounce into your face. Her thrusts get a little shorter as her knot begins to inflate, your mouth simply proving too tight a hole to permit the bulbous mass entry.");
+
+	output("\n\n<i>“Here. It. Cooooomes,”</i> she growls, her hips juddering forward one last time as her knot grinds into your [pc.lips]. You can <i>feel</i> her cum thundering down her cock, heavy wads of it being pumped directly into your stomach. The balls resting against your face twitch in tandem with the throbs of her cock, more and more spunk being deposited deep inside your [pc.belly].");
+
+	output("\n\nBy the time she starts to pull her cock from your throat you feel <i>fat</i>, so much taur-cum resting in your gut you feel fit to explode. Her balls aren’t quite done though, smaller blobs of spunk still oozing from her draconic cock as the head clears your neck to leave one final mouthful of spicy taur jizz for you to savor. You struggle to swallow it down between gasping breaths and raspy coughs, content to just lie there limply after your ordeal.");
+
+	output("\n\nStrong, scaly hands peel you from the floor and a pair of arms wrap underneath your back.");
+	if (jerynnIsMistress()) output(" Mistress");
+	else output(" Jerynn");
+	output(" gingerly carries you somewhere, and with your eyes glued shut with a copious mask of saliva, you’re not sure where to. At least until the sound of water splashing on the floor gives you a clue. Warm water soon has your face clean enough to risk opening your eyes, the taur putting you down on your stumpy limbs to clean you up properly. At some point the clasps on the harness come undone, and she helps to work feeling back into your limbs. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favour, helping to wash all of her hard to reach places.");
+
+	output("\n\nEventually though she turns the steamy water off and directs you out of her shower. Your gear is piled up by the apartment door. Busy as you are with placing all of your equipment in its proper place on your frame, she sneakily grabs you and smothers your mouth with a domineering kiss.");
+
+	output("\n\n<i>“You did very well, </i>pet<i>. You know where I am when you want another belly full,”</i> she teases after breaking the kiss, a hand patting your [pc.belly]. She unhooks the leash that you had all but forgotten about, but leaves the collar prominently wrapped around your neck. You’re soon bundled out of the door and already anticipating the next opportunity to [pc.barkMeow] for Jerynn.");
+
+	processTime(30 + rand(10));
+	pc.orgasm();
+
+	pc.loadInMouth(jerynn);
+
+	currentLocation = "UVI N30";
+
+	IncrementFlag("JERYNN_FUCKED");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

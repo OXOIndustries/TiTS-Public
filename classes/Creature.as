@@ -2393,6 +2393,12 @@
 				case "combatHerHers":
 					buffer = getCombatPronoun("pp");
 					break;
+				case "barkMeow":
+					buffer = catDog("meow", "bark", true);
+					break;
+				case "meowBark":
+					buffer = catDog("meow", "bark", false);
+					break;
 					
 				default:
 					// error production is now done up-stream in the parser
@@ -18299,6 +18305,14 @@
 		public function hasPlumpAsshole():Boolean
 		{
 			return ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED);
+		}
+		
+		public function catDog(c:String, d:String, prefDog:Boolean = true):String
+		{
+			var r:String = race();
+			if (r.indexOf("kaithrit") != -1) return c;
+			if (r.indexOf("ausar") != -1) return d;
+			return prefDog ? d : c;
 		}
 	}
 }
