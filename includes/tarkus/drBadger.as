@@ -66,6 +66,7 @@ public function drBadgerBuyMenu():void
 	{
 		chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
 		chars["DRBADGER"].inventory.push(new Throbb());
+		CodexManager.unlockEntry("Throbb");
 	}
 	if(canBuySiegwulfe(true))
 	{

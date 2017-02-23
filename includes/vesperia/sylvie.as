@@ -791,7 +791,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		if(sylvieDrunkLevel() == 0) output("By my estimates, a story that good deserves a drink.");
 		else output("Mmm, these beers are really getting to me. Wanna buy me shots? I bet I can come up with an even better story.");
 		output("”</i>");
-		
+		CodexManager.unlockEntry("Throbb");
 		sylvieMenu();
 	}
 	//Pirates try to rob a jewelry store, get blinded by their own weapons when they refract through precious gemstones and blind them
@@ -1357,12 +1357,14 @@ public function sylvieSexyTimeIntro():void
 			output("The moment you speak, Sylvie is drunkenly shaking her head.");
 			output(" <i>“Nope! You don’t have any genitals silly. Not yet anyway.”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I have a little Throbb from a recent bust, if you’d like to get suited up for a little fun.”</i>\n\n");
 			quickLoot(new Throbb());
+			CodexManager.unlockEntry("Throbb");
 			flags["SYLVIE_THROBB_GIFT"] = 1;
 		}
 		else
 		{
 			output("The moment you speak, Sylvie is drunkenly shaking her head.");
 			output(" <i>“Nope! You still don’t have any genitals silly. Did you lose the Throbb I gave you?”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I don’t have any more on me, but that mouse over there might. She deals, but I haven’t busted her because she’s such a good informant. Just be careful, okay? Don’t go crazy with that stuff or I’ll only get to see you in the slammer.”</i> She pouts as if it would be the worst thing in the world.");
+			CodexManager.unlockEntry("Throbb");
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 		}
@@ -1371,8 +1373,9 @@ public function sylvieSexyTimeIntro():void
 	if(pc.biggestCockVolume() < 50 && !pc.hasVagina() && !pc.hasPerk("Myr Venom"))
 	{
 		output("The moment you speak, Sylvie is drunkenly shaking her head.");
-		output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
+		output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some Throbb.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
 		output("\n\nSylvie nods as if that was the easiest task in the world.");
+		CodexManager.unlockEntry("Throbb");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return;
