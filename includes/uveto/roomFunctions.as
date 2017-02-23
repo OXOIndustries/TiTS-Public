@@ -580,7 +580,7 @@ public function uvetoFallToColdDamage():void
 		rescuer = "Luna";
 		processTime(360);
 	}
-	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.FROZENTUNDRA))
+	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
 		author("Gedan");
 
@@ -603,16 +603,9 @@ public function uvetoFallToColdDamage():void
 		rescuer = "Jerome";
 		processTime(840);
 	}
-	else
+	else if (InRoomWithFlag(GLOBAL.FROZENTUNDRA))
 	{
-		//author("Gedan");
-		//output("[PH] Jerynn Rescue");
-		
-		IncrementFlag("UVETO_JERYNN_RESCUES");
-		flags["UVETO_JERYNN_RESCUE_LAST"] = days;
-		
-		//rescuer = "Jerynn";
-		processTime(1440);
+		if (jerynnRescuesYourFrozenAss()) return;
 	}
 
 	//[Next] // Awaken in the medical center

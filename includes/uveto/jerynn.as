@@ -784,3 +784,475 @@ public function jerynnAllowPetstuff():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+
+public function jerynnRescuesYourFrozenAss():void
+{
+	author("Gedan");
+
+	if (flags["JERYNN_FUCKED"] == undefined || pc.isTaur())
+	{
+		output("A loud crinkling noise draws you back from the brink, a regular rustle akin to a metronome tapping on the side of your near-unconsciousness. You feel yourself shift in time with the noise, your limbs flopping helplessly around to the tune.");
+		
+		output("\n\nIt’s a struggle to peel open your eyes, the endless freezing winds having battered any exposed [pc.skinFurScales] so completely your [pc.face] is covered in outcroppings of icicles hanging from your features. You have to work your face a little, stretching and tugging against the icy buildup, as sensation slowly creeps back in - bringing with it the deep, throbbing pain of penetrating cold having set into the core of your body - before you can open them.");
+		
+		output("\n\nYou’re looking down at the floor, slumped over something. Dangling, helplessly, on top of whatever it is as it moves. Streaks of a different shade of blue clash with the color of the surrounding ice as the distinct shape of a person comes into focus. A person with a large, taur-like body that you happened to be bundled over the top of as they take difficult, lumbering steps, fighting against the ice and snow.");
+		
+		output("\n\nYou suck down an icy cold breath of air before trying to attract your rescuers attention, only to be rewarded with a lightning bolt of pain as your lungs complain - as more warmth seeps back into your body, the less numb everything feels... and the more pain seeps through.");
+		
+		output("\n\nYou let your eyes drift closed, falling back into fitful slumber amidst the frozen tundra....");
+		return false;
+
+		IncrementFlag("UVETO_JERYNN_RESCUES");
+		flags["UVETO_JERYNN_RESCUE_LAST"] = days;
+		
+		rescuer = "Jerynn";
+		processTime(1440);
+	}
+	else
+	{
+		output("You can barely make out somebody shouting... something off in the distance. It’s a strain to make out what, exactly, it is, but it’s clearly <i>words</i>.");
+
+		output("\n\nAgain and again, the noise comes, every time the source closer than the last... until finally, they come into stark relief against the howling winds of the tundra.");
+
+		output("\n\n<i>“Hey.”</i>");
+		
+		output("\n\nSuddenly they’re right on top of you! Inches away almost.");
+		
+		output("\n\n<i>“Hey, wake the fuck up, friend.”</i>");
+		
+		output("\n\nYou try to respond, but you can barely manage to breathe let alone produce an intelligible noise. The bitter cold has even robbed you of the ability to flop your limbs about... but the twitches and signs of awareness are there.");
+		
+		output("\n\n<i>“That’s it, no freezing to death in the snow today, thanks. I didn’t drag myself halfway across this fucking moon to drag a fucking popsicle back to town.”</i>");
+		
+		output("\n\nA crinkly thermal blanket quickly gets wrapped around your body, pain lancing through your muscles as you’re manhandled into position before you settle into the welcoming respite from the biting winds.");
+
+		processTime(180 + rand(60));
+
+		clearMenu();
+		addButton(0, "Next", jerynnUnderslungOffer);
+
+		return true;
+	}
+}
+
+public function jerynnUnderslungOffer():void
+{
+	clearOutput();
+	showJerynn();
+
+	output("You bolt awake, still wrapped up tightly in the blanket, throbbing pain still robbing the sense of touch from your extremities.");
+
+	output("\n\n<i>“Awake then, finally.”</i>");
+	
+	output("\n\nChancing a look around, you carefully rustle the blanket away from your face. Jerynn is perched on her haunches beside you, tending to a small campfire. She’s sat between you and the entrance to a cave that she’s managed to drag you into, and even between the blanket, the fire and her mass blocking the exterior wind, the cold is still absolutely <i>crushing</i>.");
+	
+	output("\n\n<i>“Your gear is fucking soaked, you need to get out of it before you freeze to death, friend,”</i> she states, matter of factly.");
+
+	if (!pc.isSubby() && !jerynnIsMistress() && (jerynnPetstuffLevel() < jerynnPetstuffMax()))
+	{
+		output("\n\nYou can feel it, the wetness, wrapped all around you like a straightjacket, slowly strangling the life out of you even in the minor bastion of safety you find yourself within.");
+		
+		output("\n\n<i>“I don’t have spares with me, though, so you’ll only have the blanket whilst I drag you back to Irestead.”</i> She turns to you, giving the fire a meaningful poke to flare up a flame.");
+		
+		output("\n\n<i>“We can either chance it with just the blanket, or...”</i> She stares at you, a glimmer of the hunger you’ve seen in her eyes before making a resurgence. <i>“You can share my coat.”</i>");
+
+		processTime(10);
+
+		clearMenu();
+		addButton(0, "Share", jerynnUnderslungShare);
+		addButton(1, "Chance", jerynnUnderslungChanceIt);
+	}
+	else
+	{
+		output("\n\nYou can feel it, the wetness, wrapped all around you like a straightjacket, slowly strangling the life out of you even in the minor bastion of safety you find yourself within.");
+
+		output("\n\n<i>“Get that shit off, you’re gonna share my coat. And pay your tab.”</i> She stares at you, a deep hunger in her eyes as she looks over your sorry, half-frozen body.");
+
+		if (flags["JERYNN_UNDERSLUNG_RIDES"] != undefined)
+		{
+			output("\n\nYou can barely wait for the chance to wrap yourself around her cock again, and the thought of a");
+			if (!pc.hasVagina()) output(" belly");
+			else output(" womb");
+			output(" full of hot dragonic spunk swilling around and heating you from the inside sounds simply <i>divine</i>.");
+		}
+
+		processTime(10);
+
+		clearMenu();
+		addButton(0, "Next", jerynnUnderslungShare);
+	}
+}
+
+public function jerynnUnderslungChanceIt():void
+{
+	clearOutput();
+	showJerynn();
+
+	output("It takes a couple of attempts but you finally manage to croak out a refusal to her offer.");
+	
+	output("\n\n<i>“Your funeral,”</i> she drops, completely deadpan. You suppose it will be, if worst comes to worst.");
+	
+	output("\n\nYou shimmy out of your half-ruined gear within the blankets, kicking the sodden equipment out of the bottom of it as you go. Just as soon as she’s satisfied that you’ve managed to extract your pained limbs from every last scrap of ice-laden clothing, Jerynn bundles it all up and stuffs it into one of her packs.");
+	
+	output("\n\nShe quickly hikes you over her tauric half’s back, painfully shifting you around with a couple of hops and wiggles to get you centered, before doing her best to secure you in place.");
+	
+	output("\n\nJust as soon as she’s satisfied that you’re secure and everything is where it should be, Jerynn sets off back into the freezing winds with you flopping around like a dead fish on her back in the process.");
+	
+	output("\n\nThe winds set into you quickly and you find it a struggle to keep your eyes open. Even inside the blanket, you can feel the bitter cold forming icicles on your face again, robbing what little sense of touch you had managed to regain in short order.");
+	
+	output("\n\nWith little to really protect you from the cold, it’s only minutes before you’re out again, surrendering to the frozen tundra. At least your frozen body won’t be left out here under");
+	// 9999
+	output(" a crystal clear sky");
+	// an angry, vengeful sky");
+	output(" you muse morbidly....");
+
+	processTime(1200 + rand(240));
+
+	IncrementFlag("UVETO_JERYNN_RESCUES");
+	flags["UVETO_JERYNN_RESCUE_LAST"] = days;
+
+	clearMenu();
+	if (pc.isBiped())
+	{
+		addButton(0, "Next", hanaFiresideRecovery);
+	}
+	else
+	{
+		addButton(0, "Next", uvetoAwakenInMedCenter, "Jerynn");
+	}
+}
+
+public function jerynnUnderslungShare():void
+{
+	clearOutput();
+	showJerynn();
+
+	output("<i>“Good choice, friend,”</i> she half-laughs");
+	if (jerynnPetstuffLevel() == 0) output(", perhaps not expecting you to agree to the offer");
+	if (jerynnPetstuffLevel() < jerynnPetstuffMax()) output(" quite so easily");
+	output(".");
+
+	output("\n\n<i>“Come on, get all that soaked shit off.”</i> She rummages around in one of the packs flanking her body, quickly extracting a curious arrangement of straps.");
+	if (!isWearingJerynnsHarness())
+	{
+		output("\n\n<i>“You’ll need this on instead. Make sure you stay nice and </i>secure<i>.”</i> You simply look at her, confused as to what the contraption is supposed to achieve.");
+
+		output("\n\nWith a huff she throws the things at you, leaving you to handle the nitty gritty yourself. Given the circumstance, your need for survival pushes you to accept that they’re a requisite for staying safe and getting out of here.");
+
+		output("\n\nA few minutes of effort under the blanket is all it takes to peel all of your gear off, and a couple of kicks of your half-numb legs pushes them out of the blanket and free of your body. You’re going to need to see what you’re doing for the straps though, and you <i>really</i> don’t want to take your time with them given the conditions. Mentally, you build yourself up, taking a couple of deep breaths before forcefully throwing the blanket open, the cold nipping at your [pc.skinFurScales] all too quickly.");
+
+		if (jerynnPetstuffLevel() == 0)
+		{
+			output("\n\nSpinning the harness around, you rapidly try and understand just how the fuck it’s supposed to be worn. It forms two big loops, obviously intended to wrap fully around the body of the wearer. Each corner of it then has another pair of smaller loops, and a magnetic clasp to hold them together.");
+
+			output("\n\nYou look over at Jerynn for guidance and a few quick hand motions clarify how things are supposed to work. You drop the thing to the floor and step into the big loops, pulling the whole thing up so one of the large binds is wrapped around your hips and the other");
+			if (pc.biggestTitSize() > 1)
+			{
+				output(" just below your");
+				if (pc.breastRows.length > 1) output(" top row of breasts");
+				else output(" [pc.breasts]");
+			}
+			else output(" around your chest");
+			output(", the thicker strap connecting the two aligned with your back. You cinch the two bands tight before starting on the smaller binds; each pair has another connecting strap, similar to the one now held tight to your spine. The first goes around the upper part of a limb, the second the lower part.");
+		}
+		else
+		{
+			output("\n\nSpinning the harness around, you untangle the large loops from the mess of other straps and");
+			if (pc.isBiped()) output(" step");
+			else output(" slide");
+			output(" your body between them, pulling the first loop up to your hips and the second to");
+			if (pc.biggestTitSize() > 1)
+			{
+				output(" just below your");
+				if (pc.breastRows.length > 1) output(" top row of breasts");
+				else output(" [pc.breasts]");
+			}
+			output(" and cinch them both tight. The smaller bands slip onto your limbs shortly after.");
+		}
+
+		output("\n\nBiceps, forearms, thighs, calves. You pull each to a comfortable tightness, leaving the whole contraption held tight to your [pc.skinFurScales]. Simple really.");
+
+		output("\n\nAs soon as you’re done, Jerynn pushes you back on top of the blanket. She manhandles your joints and bends your elbows");
+		if (pc.hasKnees()) output(" and knees");
+		output(" closed. The magnetic clasps on each pair of binds come together to hold your limbs doubled over and leaving you on all fours with little means to do much of anything but wait for what comes next.");
+	}
+	else
+	{
+		output("\n\nA few minutes of effort under the blanket is all it takes to peel all of your gear off, and a couple of kicks of your half-numb legs pushes it all out of the blanket and free of your body. You wriggle out of the thermal blanket and into the freezing environment of the cavern. The little status lights on the tiny magnetic clasps are lit, and when you bend your arm double they snap together. The other three click closed just as easily, leaving you on elbows and knees for");
+		if (jerynnIsMistress()) output(" Mistress");
+		output(" Jerynn to take over.");
+	}
+
+	if (!isWearingJerynnsCollar())
+	{
+		output("\n\nA scaled hand wraps around your naked neck, a tut coming from the drago-taur as she rubs at your [pc.skinFurScales] possessively.");
+
+		output("\n\n<i>“You’re not wearing your collar, pet,”</i> she chastises.");
+
+		output("\n\nShe rummages through your gear whilst packing it away, eventually coming across the collar in the process. It quickly finds its way around your neck, cinched tight.");
+	}
+
+	output("\n\nThe drago-taur fingers a control on the cuff of her smart jacket and the zipper holding it closed sweeps down its length, opening the entire portion covering her lower body up in a matter of seconds. With more care than you thought her powerful frame capable of, she steps over and around you, her forelegs coming to rest on either side of your head and the main bulk of her body so close above you that you can feel the heat radiating from it already. Her knees bend slowly, the pleasant heat building against your back until you feel the glassy-smooth scales of her underbelly smother against your [pc.skinFurScales].");
+
+	output("\n\nJerynn straights her legs out again, and this time your body follows with her. Your weight is taken by the straps entirely, the half you’re wearing magnetically coupling with what must be another part of the whole that she was already sporting under the layers of thermal insulation. A shiver rips through her frame as you settle in against her, stealing her body heat and repaying it with the chill burrowed into your flesh.");
+
+	if (flags["JERYNN_PETSTUFF_MORE_TIMES"] == undefined || flags["JERYNN_PETSTUFF_MORE_TIMES"] <= 2)
+	{
+		output("\n\nA part of you wonders just why she’d have this gear - and already be wearing her half of it - but not have an extra set of dry clothing to spare, but the thought seems to fall away, unimportant in the face of a solid source of dry, soothing warmth.");
+		if (jerynnPetstuffLevel() > 0 && (pc.isBimbo() || pc.libido() >= pc.libidoMax() * 0.75 || pc.lust() >= pc.lustMax() * 0.75)) output(" And the knowledge that her heavy balls are soon going to be nestled against your groin.");
+	}
+
+	output("\n\n<i>“Come on, I’m getting cold. Get your knees and elbows into the legs of my coat,”</i> she demands, and at this point you’re only too happy to comply. The prospect of even <i> more</i> warmth is just too promising to pass up!");
+
+	output("\n\nProperly and finally positioned, Jerynn hits the control of her smart coat again and the zip mirrors its prior motion. Thick wool closes in around your underside as the coat closes up around the both of you, working its way all the way along your body before finally wrapping the garment around your [pc.face], sealing you into darkness.");
+
+	output("\n\n<i>“Just... a little... THERE,”</i> Jerynn says somewhat muffled by the layers of clothing, shifting around and hopping herself up on her rear legs. The motion causes you to settle into the coat properly to leave your head nestled safely between her forelegs and your [pc.ass] tucked just in front of her hindlegs.");
+
+	output("\n\nShe takes a tentative step to steady herself with the additional weight of a passenger before she sets off proper, leaving you to doze off in a serenely soothing bubble of safety.");
+
+	processTime(15+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", jerynnUnderslungShareII);
+}
+
+public function jerynnUnderslungShareII():void
+{
+	clearOutput();
+	showJerynn();
+
+	var vIdx:int = pc.gapestVaginaIndex();
+
+	output("You’re not sure how long you were asleep for, but something bouncing against your");
+	if (!pc.hasVagina()) output(" [pc.ass]");
+	else output(" [pc.pussy "+vIdx+"]");
+	output(" drags you back to the land of the living. Every step your tauric-taxi takes comes with another jounce against your");
+	if (pc.hasCock()) output(" unmentionables");
+	else if (!pc.hasVagina()) output(" ass");
+	else output(" pussy");
+	output(", as a distinctly masculine-tinged musk seeps into your nose to tickle at the back of your throat.");
+
+	output("\n\nJerynn’s movements have caused you to settle further back on her frame, your spine curved to follow the contour of her underbelly exactly leaving your [pc.butt] angled slightly upward. Each step she takes swings you around just enough to feel the tender warmth of her cock-holster depart from the crook of your rear... only to bounce back into it, and the heavy balls dangling below, as her rear end catches back up.");
+
+	output("\n\nThe radiant heat from the tip of it offers a tantalizing touch, especially when you rock back-and-forth just right for");
+	if (pc.vaginas.length > 1 || pc.clitCount() > 1) output(" one of");
+	output(" your still icy-cold");
+	if (!pc.hasVagina()) output(" [pc.asshole]");
+	else if (pc.clitCount() >= 1)
+	{
+		output(" [pc.clit]");
+		if (pc.clitCount() > 1) output("s");
+	}
+	else output(" [pc.pussy "+vIdx+"]");
+	output(" to smother it. You arch your spine, seeking out the pleasant heat on your most tender areas. With the right combination of straining your arms and twisting your back, you settle yourself into just the right spot- almost every step hitting the mark.");
+
+	output("\n\nIt only takes another half-dozen swings or so before you feel the sheath starting to poke <i>into</i> you rather than just pillowing against your body. You had");
+	if (jerynnPetstuffLevel() == 0) output("n’t");
+	output(" considered the effect of your chilly [pc.skinFurScales] on Jerynn");
+	if (jerynnPetstuffLevel() > 0 && pc.isSubby()) output(", delighted that you’ve had the same effect on her.");
+	else output(" but it’s too late. Not like you can do anything about it either, trussed up under her body like you are.");
+
+	output("\n\nHer steps suddenly come to a halt, jouncing you around harder than you’ve become accustomed to. Your weight shifts backward as she bends her rear legs, positioning your");
+	if (!pc.hasVagina()) output(" [pc.asshole]");
+	else output(" [pc.vagina "+vIdx+"]");
+	output(" for a near perfect seal against her scaly sheath. The now constant exchange of heat into your slightly flushed flesh mirrors a teasing cold on Jerynn’s end. A cold touch serves as impromptu foreplay as the slow encroachment of a firm, pointed tip working its way into your body solidifies the reality of your current position. A living, breathing, portable onahole.");
+
+	output("\n\nA few inches sink into you, almost unbearably slowly, the steep angle of the tip quickly shrinking into a manageable thickness along the length following behind. It isn’t long before the first of many powerful humps up into you arrives, launching you up and off the hot flesh an inch or so before you settle back into place against the sheath, slightly more of the length disappearing into your");
+	if (!pc.hasVagina()) output(" ass");
+	else output(" pussy");
+	output(" in the process.");
+
+	output("\n\nJerynn’s angular cock just keeps going, on and on, deeper and deeper into your core, bringing a heat deep into the center of your body. The draconic taur’s powerful heartbeat pulses through it,");
+	if ((!pc.hasVagina() && pc.ass.looseness() < 5) || (pc.hasVagina() && pc.gapestVaginaLooseness() < 5)) output(" forcing your body to accept an increasingly large pillar of cockflesh");
+	else output(" a flush of fresh warmth coursing along the pillar of cockflesh");
+	output(", heating you from the inside out. There’s no telling really just how much dick is inside you, or even how much more there is to go; it’s all you can do to moan inside your warm, wooly prison, unsure even to yourself if it’s the additional heat staving off the cold that you’re enjoying so much, or the simple fact that you’re slowly, inescapably becoming a living cocksock.");
+	if (pc.hasVagina())
+	{
+		pc.cuntChange(vIdx, jerynn.biggestCockVolume(), false);
+	}
+	else
+	{
+		pc.buttChange(jerynn.biggestCockVolume(), false);
+	}
+
+	output("\n\n<i>“");
+	if ((!pc.hasVagina() && pc.ass.looseness() < 5) || (pc.hasVagina() && pc.gapestVaginaLooseness() < 5)) output("Tight but deep");
+	else output("Perfect fit");
+	output(", just how I like it,”</i> she hisses, the sound of her voice partially muffled through the coat. Your ride grunts and raises her rear back up from the floor, once again beginning to make progress through the icy tundra. Every step bouncing you around, fucking your");
+	if (!pc.hasVagina()) output(" [pc.ass]");
+	else output(" [pc.vagina "+vIdx+"]");
+	output(" in the process....");
+
+	processTime(20+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", jerynnUnderslungShareIII);
+}
+
+public function jerynnUnderslungShareIII():void
+{
+	clearOutput();
+	showJerynn();
+
+	output("Without the ability to see outside of the coat, all you have to focus on is the seemingly never ending quantity of cock burrowing into you. It feels like it’s wormed its way all the way");
+	if (!pc.hasVagina()) output(" up to your stomach");
+	else output(" into your womb");
+	output(", allowing the taur to slowly drip hot precum deep into you. The cold still settled into your bones seems to recede on two fronts because of it; between the coat and Jerynn’s body heat, your outer body already feels so much more <i>alive</i>, but the expanding volume of trapped cock-milk works on you from the inside out.");
+
+	output("\n\nEven with how restricted the ‘thrusts’ are, you’re gradually building up to what promises to be a pleasant orgasm thanks to her cock slowly thickening inside you. Molding you around it, forcing your body to conform to its exacting demands. Additional girth grants it extra purchase against your");
+	if (!pc.hasVagina()) output(" [pc.asshole]");
+	else output(" [pc.vagina "+vIdx+"]");
+	output(", the mass it needs to grind into every bundle of sensitive nerves it can find.");
+	if (pc.hasCock()) output(" Your [pc.cock] likewise rubs into the soft interior of the coat, trapped between your body and the garment, frotting itself between the tickly touch of the wool and your [pc.skinFurScales].");
+
+	output("\n\nYou space out again, content to simply focus on the constant, deep reaming that you’re receiving. Happy to spend a little while offering your saviour some much needed release in exchange for her safeguarding your existence.");
+	if (!pc.isSubby() && jerynnPetstuffLevel() < jerynnPetstuffMax() / 2)
+	{
+		output(" Accepting of the fact you’re slowly being turned into a mockery of a hot water bottle as the thick mast of cock delivers a constant drizzle of pre-spunk into your");
+		if (!pc.hasVagina()) output(" guts");
+		else output(" womb");
+		output(".");
+	}
+	else
+	{
+		output(" Excited by the prospect of your");
+		if (!pc.hasVagina()) output(" guts");
+		else output(" womb");
+		output(" being basted with searing hot dragon spunk, of being turned into little more than a cum-filled hot water bottle.");
+	}
+
+	output("\n\nEventually your backwards-motion becomes more restricted, the full length of Jerynn’s cock no longer capable of sliding so effortlessly into your");
+	if (!pc.hasVagina()) output(" ass");
+	else output(" pussy");
+	output(". A handful more steps reveals the reason why; a rapidly burgeoning bulb of flesh at the base of her cock, grown too large to slip back inside of you, instead lightly ");
+	if (!pc.hasVagina()) output("pounding against the fleshy donut of your asshole");
+	else if (pc.clitCount(vIdx) > 1) output(" grinding into each and every one of the clits surrounding your cock-stuffed cunt");
+	else if (pc.clitCount(vIdx) == 1) output(" grinding into the clit of your cock-stuffed cunt");
+	else output(" pounding against the lips of your cock-stuffed cunt")
+	output(". Each wet slap it makes against your [pc.skinFurScales] leaves a larger, firmer impression than the last as it continues to grow.");
+
+	output("\n\nYour world moves upright again as the taxi-taur sits back on her haunches. The angle leaves you sat precariously against the ever fattening knot. With all of your weight resting against the bulb, your flesh slowly stretches wider, gradually allowing the cock-lock to worm its way deeper into your body. Your progress is slow, evidently too slow for Jerynn, her hand coming to rest atop your head through the coat, an extra little push hastening your acceptance of her knot. It’s only a few seconds with the help of the extra force before you jerk down, your cock-crammed");
+	if (!pc.hasVagina()) output(" ass");
+	else output(" cunt");
+	output(" swallowing the bulb.");
+
+	if (jerynnPetstuffLevel() == 0)
+	{
+		output("\n\n<i>“Yesssss, finally,”</i> Jerynn hisses. <i>“You’re the first");
+		if (!pc.isSubby()) output(" passenger");
+		else output(" cock cozy");
+		output(" that’s ever been able to take the whole thing,");
+		if (!pc.isSubby()) output(" friend");
+		else output("slut");
+		output(". Congratulations.”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“Yesssss,”</i> Jerynn hisses. <i>“You’re just the perfect fucking size for a");
+		if (!pc.isSubby() && jerynnPetstuffLevel() < jerynnPetstuffMax()) output(" passenger, friend");
+		else output(" cock cozy, pet");
+		output(". Congratulations.”</i>");
+	}
+
+	output("\n\nA swell of pride wells up in your chest and you squeeze down around her knot involuntarily. Her hips jerk upward, shifting you around, but you’re locked firmly in place now, no longer sawing back and forth on her dick. You can better feel the heat oozing out of it though, especially at the tip, where it continues to deposit a slowly enlarging bubble of pre-spunk right into your");
+	if (!pc.hasVagina()) output(" guts");
+	else output(" womb");
+	output(".");
+
+	output("\n\nShe stands and takes off again, the knot wedged into your hole dragging you around with the motions of her body now. It’s still getting larger, and the jerky movement tweaks your insides in just the right way to make you clamp down around it. Her stride becomes commensurately uneven as her steps feed into your clenches around her knot, your body automatically milking her shaft thanks her knot grinding into your");
+	if (pc.hasVagina()) output(" g-spot.");
+	else if (pc.hasCock()) output(" prostate.");
+	else output(" hole.");
+
+	output("\n\nIt isn’t much longer before you feel the body pressed to your back begin to shudder, her cock perceptibly thickening as her massive, heavy balls pull tight to your [pc.legs]. A far hotter jet of liquid warmth spews into you, and another... and another. The undulations of her orgasm being delivered directly to your core swells her knot in pulses, smashing it against your most sensitive places and eking an orgasm out of you, too.");
+	if (pc.hasCock())
+	{
+		output(" Her knot grinding into your prostate firmly sets your cock off, too,");
+		if (pc.cumQ() <= 500) output(" weak");
+		else output(" thick");
+		output(" ropes of your [pc.cumColor] cum");
+		if (pc.cumQ() <= 500) output(" oozing");
+		else output(" splattering");
+		output(" against the coat.");
+	}
+
+	output("\n\nAll you can do is hang there impaled on her cock as her stride resumes, your belly slightly swollen with the weight of her cum. Her dick never manages to fully soften, staying safely wrapped up in your");
+	if (!pc.hasVagina()) output(" guts");
+	else output(" pussy");
+	output("; the feedback loop of her knot hitting all the right places has your tunnel milking her like a pro, in turn keeping her knot inflated enough to remain tied in your");
+	if (!pc.hasVagina()) output(" [pc.asshole].");
+	else output(" [pc.vagina "+vIdx+"].");
+
+	processTime(40+rand(20));
+	pc.orgasm();
+	pc.lust(pc.lustMax() * 0.4);
+
+	clearMenu();
+	addButton(0, "Next", jerynnUnderslungShareIV)
+}
+
+public function jerynnUnderslungShareIV():void
+{
+	clearOutput();
+	showJerynn();
+
+	output("You lose track of how many loads Jerynn has pumped into you; for all you know, you’ve been hanging under her for weeks, slowly bloated with more and more spunk. At some point her tireless balls pumped your [pc.belly] full enough for you to rub against the inside of her coat");
+	if (pc.hasCock()) output(", trapping your [pc.cocks] between your [pc.skinFurScales] and the soft wool");
+	output(".");
+
+	output("\n\nA growing din builds in the background, just barely audible between the muffling of Jerynn’s coat and the snow crunching under her feet.");
+
+	output("\n\n<i>“Almost back,");
+	if (!pc.isSubby() && jerynnPetstuffLevel() < jerynnPetstuffMax() / 2) output(" friend");
+	else output(" cock-socket");
+	output(",”</i> she announces to you.");
+
+	output("\n\nThe din grows louder as you approach civilization, other snowy footsteps growing louder and louder as the taur makes her way through the gates of Irestead and onto the main street.");
+
+	processTime(240+rand(60));
+	pc.lust(10);
+
+	if (jerynnPetstuffLevel() == 0)
+	{
+		// straight to her place
+	}
+	else if (flags["JERYNN_PETSTUFF_MORE_TIMES"] != undefined && flags["JERYNN_PETSTUFF_MORE_TIMES"] < 10)
+	{
+		output("\n\n<i>“A good trip, but I don’t think you’ve paid off your ticket just yet, friend,”</i> she says, coming to a stop.");
+
+		if (!pc.isSubby())
+		{
+			output("\n\n<i>“What do you think?”</i>");
+
+			// [Lemme Out] // Goes to Her Place
+			// [More Pls] // Go through the variants as described
+		}
+		else
+		{
+			// More Pls
+		}
+	}
+	else
+	{
+		output("\n\n<i>“You know, I’m not so sure I want to let you off, friend,”</i> she muses. You clamp down around her, half in fear and half in wonder.");
+
+		output("\n\n<i>“You make a pretty good cock socket. Not perfect though,”</i> something rubs the coat, your cum-filled gut held fast against the interior of it and passing the sensations directly through to you. <i>“I can think of a few... improvements. What do you think, cumdump?”</i>");
+
+		//[Lemme out] // go to prior to bad-end
+		//[More pls] // Bad end
+	}
+}
+
+/*
+// More Please order:
+Long walk around Irestead before back to her place.
+Goes to the bar to get a drink before going back to her place.
+Long walk, then the bar, then back to her place.
+Long walk shopping variant, back to her place, variant of her place where she collars you and has you eat cum from a doggy bowl.
+Bar, teases jerome, back to her place, cumbowl, clean her cock.
+Bar, teases jerome, back to her place, cumbowl, clean her cock, spend the night.
+Bar, teases jerome, brings him back, lets Jerome fuck her.
+
+// Refusing bad end
+Switches between fucking jerome and full version of petplay.
+*/
