@@ -2881,7 +2881,7 @@
 			return true;
 		}
 		public function orgasm(): void
-		{			
+		{
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
@@ -3534,7 +3534,7 @@
 			return Math.round(arg * multi);
 		}
 		//HP
-		public function HP(arg: Number = 0): Number {			
+		public function HP(arg: Number = 0): Number {
 			HPRaw += arg;
 			if (HPRaw > HPMax()) HPRaw = HPMax();
 			return HPRaw;
@@ -6348,7 +6348,7 @@
 					pregDescripts[pregDescripts.length] = "pregnant";
 				}
 				if(belly >= 50)
-				{	
+				{
 					pregDescripts[pregDescripts.length] = "gravid";
 				}
 			}
@@ -13100,7 +13100,7 @@
 		}
 		public function matchedVaginas():Boolean {
 			for(var x:int = 0; x < totalVaginas(); x++)
-			{	
+			{
 				//After the first cooch, see if they match against the previous.
 				if(x > 0)
 				{
@@ -15379,7 +15379,7 @@
 			return descript;
 		}
 		public function breastNoun(rowNum:int = 99):String
-		{	
+		{
 			var noun:String = "";
 			if(rowNum == 99) rowNum = 0;
 			//Nouns!
@@ -17495,6 +17495,8 @@
 		// of when the event actually takes place.
 		public function processTime(deltaT:uint, doOut:Boolean):void
 		{
+			minutesSinceCum += deltaT;
+			
 			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
@@ -18158,7 +18160,7 @@
 			removeStatusEffect("Omega Oil");
 		}
 		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
-		{		
+		{
 			var thisStatus:StorageClass = getStatusEffect("Alcohol");
 			
 			if (thisStatus == null) return;

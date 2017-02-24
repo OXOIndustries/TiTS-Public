@@ -629,6 +629,7 @@ public function statisticsScreen(showID:String = "All"):void
 		// Sexuality
 		output2("\n<b><u>Sexuality</u></b>");
 		output2("\n<b>* Orgasms, Total:</b> " + StatTracking.getStat("sex/player/orgasms"));
+		if(pc.timesCum > 0) output2("\n<b>* Orgasms, Time Since Last Orgasm:</b> " + prettifyMinutes(pc.minutesSinceCum));
 		if(pc.sexualPreferences._sexPrefs.length > 0)
 		{
 			for(i = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++)
