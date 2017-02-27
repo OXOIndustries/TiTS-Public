@@ -1787,13 +1787,16 @@
 				case "cocksLight":
 					buffer = cocksDescriptLight();
 					break;
+				case "cocksSimple":
 				case "cocksNoun":
 				case "cocksNounSimple":
 					buffer = simpleCocksNoun();
 					break;
+				case "cockComplex":
 				case "cockNounComplex":
 					buffer = cockNounComplex(arg2);
 					break;
+				case "cockSimple":
 				case "cockNounSimple":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
@@ -2053,9 +2056,13 @@
 				case "cunt":
 					buffer = vaginaDescript(arg2);
 					break;
+				case "vaginaSimple":
+				case "pussySimple":
+				case "cuntSimple":
 				case "vaginaNounSimple":
 				case "vaginaNoun":
 				case "pussyNoun":
+				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
 				case "vaginas":

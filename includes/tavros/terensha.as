@@ -303,7 +303,7 @@ public function rideTerenshaBunbunbunbuuuuuuuuuuuuuuuuuuuuuuasdasdadajsdlajdklaj
 
 	output("\n\nBetween the satiny touch of her chest and the throbbing heat of her erection inside you, Ren’s got you nice and worked up without even needing to move. No more of that! You lace your arms around her neck, giving yourself just enough leverage to start rising on her impaling girth. You both moan");
 	if(pc.exhibitionism() < 33) output(", though you try to suppress your voice for fear of too much attention");
-	output(", and her veiny cock sends shivers of bliss up your spiny as it grinds wetly against your inner walls.");
+	output(", and her veiny cock sends shivers of bliss up your spine as it grinds wetly against your inner walls.");
 
 	var looseness:int = 0;
 	if(pc.hasVagina()) looseness = pc.vaginas[0].looseness();
@@ -699,7 +699,7 @@ public function tailPegStuffTimes():void
 
 	var x:int = rand(pc.totalVaginas());
 	if(!pc.hasVagina()) x = -1;
-	output("\n\nRen gives your [pc.butt] a firm slap, just hard enough to make your stumble and grab the edge of the bed, unintentionally presenting your [pc.asshole]. <i>“Guess that answers that,”</i> she murmurs, squeezing one of your cheeks. You crawl forward, nestling your head in the pillows and keeping your ass in the air, wiggling it enticingly for the well-endowed dragon-babe. One look over your shoulder shows her hard as a rock, idly stroking her thick prick and walking around to the cleft in her heart-shaped bed. She crawls in after you, planting herself on your knees behind you and grabbing your [pc.butt] in both hands.");
+	output("\n\nRen gives your [pc.butt] a firm slap, just hard enough to make you stumble and grab the edge of the bed, unintentionally presenting your [pc.asshole]. <i>“Guess that answers that,”</i> she murmurs, squeezing one of your cheeks. You crawl forward, nestling your head in the pillows and keeping your ass in the air, wiggling it enticingly for the well-endowed dragon-babe. One look over your shoulder shows her hard as a rock, idly stroking her thick prick and walking around to the cleft in her heart-shaped bed. She crawls in after you, planting herself on your knees behind you and grabbing your [pc.butt] in both hands.");
 	output("\n\nShe thrusts her hips, letting the pendulous weight of her masculinity flip itself up and catch between your spread cheeks. You shudder at the feeling of latex-wrapped heat settling so close to your [pc.vagOrAss " + x + "] that you can practically feel Ren’s heartbeat.");
 	output("\n\n<i>“You’ve got a nice ass, cow[pc.boyGirl],”</i> she purrs, squeezing hard enough to make you gasp. <i>“So, want it nice and gentle... or do you wanna go ahead and bite the pillow?”</i>");
 	output("\n\nActually, you want her to use that tail of hers.");
