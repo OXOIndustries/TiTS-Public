@@ -16,7 +16,7 @@ public function metJerynn():Boolean
 
 public function jerynnIsMistress():Boolean
 {
-	return flags["JERYNN_IS_MISTRESS"] != undefined;
+	return isWearingJerynnsCollar() || (flags["JERYNN_RESPONSE_LIKED"] != undefined && flags["JERYNN_RESPONSE_LIKED"] <= 1);
 }
 
 public function jerynnPetstuffLevel(inc:Boolean = false):int
@@ -1238,7 +1238,22 @@ public function jerynnUnderslungShareIV():void
 	output("\n\nThe din grows louder as you approach civilization, other snowy footsteps growing louder and louder as the taur makes her way through the gates of Irestead and onto the main street.");
 
 	processTime(240+rand(60));
+	pc.orgasm();
+	
 	pc.lust(10);
+	if (pc.hasVagina())
+	{
+		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
+		pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
+		pc.maxOutCumflation("vagina " + pc.gapestVaginaIndex(), jerynn);
+	}
+	else
+	{
+		pc.buttChange(jerynn.biggestCockVolume());
+		pc.loadInAss(jerynn);
+		pc.maxOutCumflation("ass", jerynn);
+	}
+	
 
 	if (jerynnPetstuffLevel() == 0)
 	{
@@ -1354,6 +1369,8 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	if (jerynnPetstuffLevel() < 4)
 	{
 		output("\n\nAfter what feels like miles of dragon-dick has been removed from your interior, Jerynn rolls you over onto your back, cold tiles supporting your weight. Looking up you can clearly make out a collection of shower heads around you, and soon, they’re busy spraying glorious, soothing, steamy water all over. With your gut slowly draining and the hot water washing away all the sticky, sweaty horribleness caked over your body, Jerynn moves around you, undoing the final parts of the harness. Your knees and elbows finally free you just flop against the floor, exhausted but immensely satisfied, content to simply lie there and soak in the heat of the shower.");
+		
+		processTime(15);
 
 		clearMenu();
 		addButton(0, "Next", jerynnPetstuffCleanup);
@@ -1379,7 +1396,9 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 		else output("We’ll have to work on that, but not now.");
 		output(" First we need to get you fed, you must be <i>famished</i>.”</i> She tugs on the leash again, dragging you further from the mirror.");
 
-		output("\n\nThe source of the clatter soon becomes evident; a "+pc.catDog("kitty", "doggy") +" bowl lies on the floor amid a veritable sea of cum, filled to the brim with as much as it can hold. You look up at her and she only nods toward the bowl... and then the thirst hits you. Who knows how long you’ve been incommunicado as she carried you back to Irestead, how long without proper food or drink. You dive face-first into it, sucking the thick spunk through your lips like a "+pc.mf("man", "woman") +" discovering an oasis after weeks in the desert.");
+		output("\n\nThe source of the clatter soon becomes evident; a " + pc.catDog("kitty", "doggy") +" bowl lies on the floor amid a veritable sea of cum, filled to the brim with as much as it can hold. You look up at her and she only nods toward the bowl... and then the thirst hits you. Who knows how long you’ve been incommunicado as she carried you back to Irestead, how long without proper food or drink. You dive face-first into it, sucking the thick spunk through your lips like a " + pc.mf("man", "woman") +" discovering an oasis after weeks in the desert.");
+		
+		pc.loadInMouth(jerynn);
 
 		output("\n\nIt’s thick and cloying, musky. A spice to it that hides the usually salty tang. The taur watches over you closely, occasionally directing you to eat more ‘pet-like’. By the time the bowl is nearly empty, you’re lapping at it like a "+ pc.catDog("cat", "dog") +", scooping big blobs of it up with your [pc.tongue] and pulling it back into your mouth.");
 
@@ -1389,6 +1408,8 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 
 			output("\n\nShe fires up the shower heads and they’re soon spraying glorious, soothing, steamy water all over. You’re content to simply kneel there and allow the heat to diffuse into you, finally properly excising the cold from your bones as the sweaty horribleness caked over your body is washed away. She moves around you, undoing the harness from your arms and legs, but leaves the collar in place.");
 
+			processTime(20);
+			
 			clearMenu();
 			addButton(0, "Next", jerynnPetstuffCleanup);
 		}
@@ -1415,6 +1436,8 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 			output("\n\n<i>“Time for your treat!”</i>");
 			
 			output("\n\nTreat? Oh boy, treat!");
+			
+			processTime(30);
 
 			clearMenu();
 			addButton(0, "Next", jerynnPetstuffHerPlacePostShopping)
@@ -1433,6 +1456,8 @@ public function jerynnPetstuffHerPlacePostShopping():void
 	
 	output("\n\n<i>“Ngh, don’t spill a droooop,”</i> Jerynn moans aloud above you. You had no intention of it! Not that she gives you much choice in the matter; her tail strains taut, in turn tugging the leash just a little harder, and the arrow-like head of her cock slides into your throat just in time for the first pulse of spunk to hurtle its way down the dick between your [pc.lips].");
 	
+	pc.loadInMouth(jerynn);
+	
 	output("\n\nHeat suffuses your neck as her thick load gets pumped straight down it, oozing down and gathering in your belly. Pulse after pulse fresh from the source weighing heavily in your rapidly filling [pc.belly]; a fitting reward for Mistress Jerynn’s slutty little pet.");
 	
 	output("\n\nYour lungs burn with the need for breath as her orgasm wanes, the leash finally allowing you enough slack to pull the dragon-dick from your throat and suck down a chest full of air. The taur’s cock leaves you one final gift before slipping free of your pursed lips, a lazy glazing of fresh cum spreading over your [pc.tongue] to enjoy the unique, spicy tang one last time.");
@@ -1444,7 +1469,7 @@ public function jerynnPetstuffHerPlacePostShopping():void
 	{
 		output(" She moves around you, undoing the harness from your arms and legs, but leaves the collar in place.");
 		
-		if (hasJerynnsCollar())
+		if (!hasJerynnsCollar())
 		{
 			pc.createKeyItem("Jerynn’s Collar", 1, 0, 0, 0, "A thick leather band, designed to cinch tightly yet comfortably around your neck.");
 		}
@@ -1459,6 +1484,8 @@ public function jerynnPetstuffHerPlacePostShopping():void
 		clearMenu();
 		addButton(0, "Next", jerynnPetstuffSleepingOver);
 	}
+	
+	processTime(15 + rand(10));
 }
 
 public function jerynnPetstuffCleanup():void
@@ -1505,6 +1532,7 @@ public function jerynnPetstuffCleanup():void
 	else output(" and you make your way back to the icy cold streets of Irestead, still sore but glad to be safe.");
 
 	jerynnPetstuffLevel(true);
+	processTime(15 + rand(15));
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1529,6 +1557,8 @@ public function jerynnPetstuffSleepingOver():void
 
 	output("\n\n<i>“What do you think? You like being a pet? You can speak normally,”</i> she says.");
 
+	processTime(15);
+	
 	clearMenu();
 	addButton(0, "Enjoy", jerynnPetstuffLikeIt, 0);
 	addButton(1, "Okay", jerynnPetstuffLikeIt, 1);
@@ -1604,6 +1634,8 @@ public function jerynnPetstuffLikeIt(response:int):void
 
 	output("\n\n<i>“I’m interested to see your point of view on these kinds of adaptations, pet. What do you think would be most appropriate?”</i>");
 
+	processTime(15);
+	
 	clearMenu();
 	addButton(0, "Bitchsuit", jerynnPetstuffLimbStuff, [responses, 0]);
 	addButton(1, "Cybernetics", jerynnPetstuffLimbStuff, [responses, 1]);
@@ -1653,6 +1685,8 @@ public function jerynnPetstuffLimbStuff(compOpts:Array):void
 	
 	output("\n\n<i>“Similar theme, pet. Interesting to see what you can make of each,”</i> she asks.");
 
+	processTime(15);
+	
 	//[Skin][Fur][Scales][Owner]
 	clearMenu();
 	addButton(0, "Skin", jerynnPetstuffSkin, [responses, 0]);
@@ -1710,6 +1744,8 @@ public function jerynnPetstuffSkin(compOpts:Array):void
 	
 	output("\n\nThe final window is just another thread from the petplay forum you spotted earlier, extolling the idea that it’s best <i>not</i> to force a prospective pet into losing their voice, and instead placing emphasis on it being the only choice they have to make on a regular basis. Knowing that they <i>could</i> speak, but that they don’t... unless allowed.");
 
+	processTime(15);
+	
 	//[Collar][Mods][Choice][Owner]
 	clearMenu();
 	addButton(0, "Collar", jerynnPetstuffVoice, [responses, 0]);
@@ -1755,6 +1791,8 @@ public function jerynnPetstuffVoice(compOpts:Array):void
 	
 	output("\n\nYou hadn’t noticed but your body does feel exhausted, and the belly full of food weighs you down so heavily. You’re curled up under Mistress’s underbelly before you’ve even had chance to think, her thick tail lazily curling all around you. The show makes for fantastic white noise as you half-doze off, suddenly jolting awake from time to time and only being aware of the missing time thanks to the story being completely incoherent as you skip ten or fifteen minutes at a time.");
 
+	processTime(15);
+	
 	//[Next] // Wake up
 	clearMenu();
 	addButton(0, "Next", jerynnPetstuffWakeUp, responses);
@@ -1796,7 +1834,8 @@ public function jerynnPetstuffWakeUp(responses:Object):void
 		
 		output("\n\nSuiting back up under the watchful eyes of the taur, you have plenty to think on....");
 		
-		IncrementFlag("JERYNN_PETSTUFF_LEVEL");
+		jerynnPetstuffLevel(true);
+		processTime(10 + rand(10));
 
 		//[Next]
 		clearMenu();
@@ -1885,6 +1924,17 @@ public function jerynnPetstuffWakeUp(responses:Object):void
 		if (!pc.hasVagina()) output(" ass.");
 		else output(" pussy.");
 		
+		if (pc.hasVagina())
+		{
+			pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
+			pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
+		}
+		else
+		{
+			pc.buttChange(jerynn.biggestCockVolume());
+			pc.loadInAss(jerynn);
+		}
+		
 		output("\n\nYou build up into a good rhythm and slowly work yourself toward the hilt between moans, progress slowing considerably the closer you get to your target. Mistress Jerynn offers you no help on the way, leaving the job of coring");
 		if (!pc.hasVagina()) output(" your body almost to your stomach");
 		else output(" your womb");
@@ -1907,6 +1957,8 @@ public function jerynnPetstuffWakeUp(responses:Object):void
 
 		output("\n\nThe enormity of the request hits you in an instant, your body falling still just as soon as understanding of the request meanders through your lust-addled brain.");
 
+		processTime(20 + rand(10));
+		
 		clearMenu();
 		addButton(0, "Stay", jerynnPetstuffOptIn, undefined, "Stay", "Something tells you this might be the last decision you get to make...");
 		addButton(1, "No", jerynnPetstuffNoOptIn)
@@ -1944,6 +1996,8 @@ public function jerynnPetstuffOptIn():void
 	output("\n\nTime becomes irrelevant in the cocoon of the woolen coat, the taur soon making her way out of the apartment and back onto the streets of Uveto. You simply lose yourself to the impromptu fucking motion, no longer caring much of the possibility that you might be discovered, simply content to fuck, to be used as little more than a living onahole.");
 	
 	output("\n\nLight returns to your world all too soon, already at the destination Mistress Jerynn had set off to reach; the medical station already here on Uveto! The fritzy-droid confirms that it has the capability to carry out at least a portion of the ordered work. Uncaring for your comfort and already being treated exactly as prescribed by the contract, it jabs you with a hypospray right on the shoulder as it holds idle conversation with the taur. Seconds later you’re out for the count....");
+	
+	processTime(30 + rand(15));
 
 	clearMenu();
 	addButton(0, "Next", jerynnPetstuffBadEndII);
@@ -1968,6 +2022,17 @@ public function jerynnPetstuffNoOptIn():void
 	else output(" womb");
 	output(" as she dumps another load into you. The weight building, bloating you up slightly is the final touch needed to throw you off the precipice of your own orgasm, your body clenching around her cock to milk it dry.");
 	
+	if (pc.hasVagina())
+	{
+		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
+		pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
+	}
+	else
+	{
+		pc.buttChange(jerynn.biggestCockVolume());
+		pc.loadInAss(jerynn);
+	}
+	
 	output("\n\nWhen your sense returns, you’re upside down and still under the taur, her tail cradling you to keep you in position- to keep your cum-filled");
 	if (!pc.hasVagina()) output(" ass");
 	else output(" pussy");
@@ -1981,8 +2046,11 @@ public function jerynnPetstuffNoOptIn():void
 	
 	output("\n\n<i>“Remember, <i>pet</i>,”</i> she says after breaking the kiss, her confident smirk once again present. She unhooks the leash that you had all but forgotten about, but leaves the collar prominently wrapped around your neck. She bundles you out of the door already anticipating the next opportunity to [pc.barkMeow] for Jerynn.");
 
-	IncrementFlag("JERYNN_PETSTUFF_LEVEL");
-
+	jerynnPetstuffLevel(true);
+	
+	processTime(15 + rand(8));
+	pc.orgasm();
+	
 	//[Next] // Back outside
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2044,6 +2112,8 @@ public function jerynnPetstuffLongWalk():void
 			addButton(0, "Next", jerynnPetstuffHerPlace);
 		}
 	}
+	
+	processTime(20 + rand(8));
 }
 
 public function jerynnPetstuffBar():void
@@ -2143,11 +2213,15 @@ public function jerynnPetstuffBar():void
 		output("\n\nHeavy silence sits between the pair whilst she gulps down the last of her drink loudly. A pair of glasses slam down on the counter as she stands back up, joined by another tell-tale creak from the neighbouring stool.");
 
 		//[Next] // Go to A Night With Jerome
+		processTime(30 + rand(10));
+		
 		clearMenu();
 		addButton(0, "Next", jerynnPetstuffNightWithJerome);
 		return;
 	}
 
+	processTime(30 + rand(10));
+	
 	clearMenu();
 	addButton(0, "Next", jerynnPetstuffHerPlace);
 }
@@ -2206,6 +2280,17 @@ public function jerynnPetstuffNightWithJerome():void
 		else output(" asshole");
 	}
 	output(" with its girth quickly sends you over the edge, convulsing around her draconic cock in orgasm, milking another load from her prodigious balls in the process. She moans deeply above you... and then starts to throw her own weight back against the bears thrusting hips, wet slaps of ass-meeting-hips playing in your [pc.ears].");
+	
+	if (pc.hasVagina())
+	{
+		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
+		pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
+	}
+	else
+	{
+		pc.buttChange(jerynn.biggestCockVolume());
+		pc.loadInAss(jerynn);
+	}
 
 	output("\n\nA growing groan behind signals the impending summit of the polar bears pleasure, one, two, three more thrusts before he slams into");
 	if (jerynnIsMistress()) output(" Mistress");
@@ -2218,6 +2303,8 @@ public function jerynnPetstuffNightWithJerome():void
 	output(" takes a careful step forward. More stutter-steps follow as she turns around, and the bears furry legs re-enter your vision. The two of them get back to tongue-tennis as a half-hard, cum-slicked cock dangles just before your mouth....");
 
 	output("\n\nWith some stretching and straining you manage to get your mouth close enough that, with a little luck, some leverage from your tongue, and no small amount of sucking, it bats wetly into your [pc.lips]. Careful work lets you slip the head back into your mouth, your [pc.tongue] swirling around the ridges and bumps to slurp it clean.");
+	
+	pc.loadInMouth(jerome);
 
 	output("\n\nA surprised grunt into the makeout session above prompts a little investigation from the pair, a chuckle from the taur soon following.");
 
@@ -2225,6 +2312,8 @@ public function jerynnPetstuffNightWithJerome():void
 	if (jerynnIsMistress()) output(" Mistress");
 	else output(" Jerynn");
 	output(" says. The bear can only groan as you continue to clean his cock.");
+	
+	processTime(30 + rand(15));
 
 	clearMenu();
 	addButton(0, "Next", jerynnPetstuffNightWithJeromeII);
@@ -2275,7 +2364,10 @@ public function jerynnPetstuffNightWithJeromeII():void
 	else if (jerynnPetstuffLevel() <= 5) output(" safe if a little confused.");
 	else output(" and you make your way back to the icy cold streets of Irestead, still sore but glad to be safe.");
 
-	IncrementFlag("JERYNN_PETSTUFF_LEVEL");
+	jerynnPetstuffLevel(true);
+	
+	pc.orgasm();
+	processTime(180 + rand(60));
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2544,6 +2636,6 @@ public function jerynnPetstuffBadEndIV():void
 	output("\n\nYour ass is high in the air before she’s even finished the word, the wedged tip of her cock nudging its way into your pussy not long behind it.");
 	
 	output("\n\nA long trip indeed.");
-
+	
 	badEnd("GAME OVER?");
 }
