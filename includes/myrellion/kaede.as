@@ -144,7 +144,7 @@ public function kaedeMyrellionBarTalkMenu():void
 {
 	clearMenu();
 	addButton(0, "Her Job", kaedeMyrellionTalkJob, undefined, "Her Job", "Ask Kaede about her space-trucker job.");
-	addButton(1, "RhenWorld", kaedeMyrellionTalkRenWorld, undefined, "RhenWorld", "Ask Kaede about this RhenWorld contract she's got.");
+	addButton(1, "RhenWorld", kaedeMyrellionTalkRenWorld, undefined, "RhenWorld", "Ask Kaede about this RhenWorld contract she’s got.");
 	addButton(2, "Herself", kaedeMyrellionTalkHerself, undefined, "Herself", "Ask Kaede a little about, well, Kaede.");
 	addButton(3, "Finish", kaedeMyrellionTalkFinish, undefined, "Finish", "Finish your drink.")
 }
@@ -387,8 +387,8 @@ public function kaedeMyrellionBarFlirt():void
 		processTime(20 + rand(10));
 		
 		clearMenu();
-		addButton(0, "It's Fine", kaedeMyrellionBarTheDIsFine, undefined, "It's Fine", "Tell Kaede you're fine with her and her dick.");
-		addButton(1, "Nevermind", kaedeMyrellionBarNoDPls, undefined, "Nevermind Then", "Thanks for the heads up. You're not really into the D.")
+		addButton(0, "It’s Fine", kaedeMyrellionBarTheDIsFine, undefined, "It’s Fine", "Tell Kaede you’re fine with her and her dick.");
+		addButton(1, "Nevermind", kaedeMyrellionBarNoDPls, undefined, "Nevermind Then", "Thanks for the heads up. You’re not really into the D.")
 	}
 }
 
@@ -464,7 +464,7 @@ public function kaedeMyrellionSexIntroII():void
 	
 	output("\n\n<i>“Thanks for waiting. I thought I’d go ahead and get changed,”</i> Kaede says with a little smile. Her bare feet make a little patter across the metallic deck as she approaches you, nice and slow with a seductive sashay of her hips. You watch appreciatively as the svelte girl approaches, giving your eyes time to wander all across the body on display for you: from her long, slender legs to her small pouch of a sack hiding behind a proud canine shaft, and up to the handful of tit she’s sporting, each tipped with a stiff little nipple poking into the silky material of her bra.");
 	
-	output("\n\nHer tail swishes slowly behind her, curling around one of her legs as she sets her glasses and bottle down, and slips into your lap. You lean back into the couch, your hands reaching up to caress Kaede’s hips, pulling her close. The feeling of hot, stiff girl-cock coming to rest on your belly sends a shiver through you -- one that pales in comparison to the next as Kaede's hand reaches down to caress your own crotch, her small lips brushing against your [pc.lips]. Your eyes flutter closed, and you return the kiss, suckling on the halfbreed's lower lip and squeezing your fingers into her tight ass.");
+	output("\n\nHer tail swishes slowly behind her, curling around one of her legs as she sets her glasses and bottle down, and slips into your lap. You lean back into the couch, your hands reaching up to caress Kaede’s hips, pulling her close. The feeling of hot, stiff girl-cock coming to rest on your belly sends a shiver through you -- one that pales in comparison to the next as Kaede’s hand reaches down to caress your own crotch, her small lips brushing against your [pc.lips]. Your eyes flutter closed, and you return the kiss, suckling on the halfbreed’s lower lip and squeezing your fingers into her tight ass.");
 	
 	output("\n\n<i>“I guess the drinks can come later,”</i> she purrs, breaking the kiss just long enough to speak.");
 	
@@ -476,8 +476,8 @@ public function kaedeMyrellionSexIntroII():void
 	processTime(15 + rand(5));
 	
 	clearMenu();
-	if (pc.hasCock() && pc.smallestCockVolume() <= 250) addButton(0, "Fuck Ass", kaedeMyrellionFuckAss, undefined, "Fuck Her Ass", "The way you're sitting now, it'd be so easy to just slide your cock right into the randy shemale's tight little hole...");
-	else addDisabledButton(0, "Fuck Ass", "Fuck Her Ass", "It'd be so easy to just slide your cock right into the randy shemale's tight little hole... if you had one that could squeeze up in there.");
+	if (pc.hasCock() && pc.smallestCockVolume() <= 250) addButton(0, "Fuck Ass", kaedeMyrellionFuckAss, undefined, "Fuck Her Ass", "The way you’re sitting now, it’d be so easy to just slide your cock right into the randy shemale’s tight little hole...");
+	else addDisabledButton(0, "Fuck Ass", "Fuck Her Ass", "It’d be so easy to just slide your cock right into the randy shemale’s tight little hole... if you had one that could squeeze up in there.");
 	addButton(1, "Suck&Ride", kaedeMyrellionSucknRide, undefined, "Suck & Ride", "Give that delicious red doggy-cock the attention it deserves before you go for a wild ride.");
 }
 
@@ -549,8 +549,8 @@ public function kaedeMyrellionFuckAss():void
 	processTime(20+rand(15));
 
 	clearMenu();
-	addButton(0, "Facial", kaedeMyrellionFuckAssFacial, undefined, "Facial", "Pull your cock out of Kaede's ass and cum all over her face!");
-	addButton(1, "Creampie", kaedeMyrellionFuckAssCreampie, undefined, "Creampie", "Bust your nut inside Kaede's tight little ass.");
+	addButton(0, "Facial", kaedeMyrellionFuckAssFacial, undefined, "Facial", "Pull your cock out of Kaede’s ass and cum all over her face!");
+	addButton(1, "Creampie", kaedeMyrellionFuckAssCreampie, undefined, "Creampie", "Bust your nut inside Kaede’s tight little ass.");
 }
 
 public function kaedeMyrellionFuckAssFacial():void
@@ -617,17 +617,17 @@ public function kaedeMyrellionFuckAssCombine(cumInside:Boolean = false):void
 	{
 		flags["KAEDE_ENCOUNTERSEX_UVETO_OVERRIDE"] = undefined;
 		
-		output("\n\nBy the time you finish your glass, Kaede's cheeks are flushed, and you can see one of her hands has made its way to the [pc.cumNoun]-stains on her alabaster flesh, idly playing with the mess you made. <i>“Something tells me I can't go to my meeting like this,”</i> she chuckles, licking a strand of spunk off one of her claw-like nails. You both laugh again, and Kaede rolls her head back with a sigh.");
+		output("\n\nBy the time you finish your glass, Kaede’s cheeks are flushed, and you can see one of her hands has made its way to the [pc.cumNoun]-stains on her alabaster flesh, idly playing with the mess you made. <i>“Something tells me I can’t go to my meeting like this,”</i> she chuckles, licking a strand of spunk off one of her claw-like nails. You both laugh again, and Kaede rolls her head back with a sigh.");
 
-		output("\n\n<i>“I better go get cleaned up. I don't think Ashi's sister would appreciate me swaggering in smelling like my lover's cum. Then again... nah! Need a shower.”</i>");
+		output("\n\n<i>“I better go get cleaned up. I don’t think Ashi’s sister would appreciate me swaggering in smelling like my lover’s cum. Then again... nah! Need a shower.”</i>");
 
 		processTime(20+rand(10));
 		pc.orgasm();
 		
 		//[Shower With] [Say Goodbye]
 		clearMenu();
-		addButton(0, "ShowerWith", uvetoKaedeShowerWith, true, "Shower With Her", "You've gotten sweaty and sticky after that close encounter, too. Suggest that you and Kaede shower up together.");
-		addButton(1, "SayGoodbye", uvetoKaedeGoodbye, undefined, "Say Goodbye", "That's enough of that. Say goobye to Kaede, and get back to business.");
+		addButton(0, "ShowerWith", uvetoKaedeShowerWith, true, "Shower With Her", "You’ve gotten sweaty and sticky after that close encounter, too. Suggest that you and Kaede shower up together.");
+		addButton(1, "SayGoodbye", uvetoKaedeGoodbye, undefined, "Say Goodbye", "That’s enough of that. Say goobye to Kaede, and get back to business.");
 	}
 }
 
@@ -757,17 +757,17 @@ public function kaedeMyrellionSucknRide():void
 	{
 		flags["KAEDE_ENCOUNTERSEX_UVETO_OVERRIDE"] = undefined;
 		
-		output("\n\nBy the time you finish your glass, Kaede's cheeks are flushed, and you can see one of her hands has made its way to the [pc.cumNoun]-stains on her alabaster flesh, idly playing with the mess you made. <i>“Something tells me I can't go to my meeting like this,”</i> she chuckles, licking a strand of spunk off one of her claw-like nails. You both laugh again, and Kaede rolls her head back with a sigh.");
+		output("\n\nBy the time you finish your glass, Kaede’s cheeks are flushed, and you can see one of her hands has made its way to the [pc.cumNoun]-stains on her alabaster flesh, idly playing with the mess you made. <i>“Something tells me I can’t go to my meeting like this,”</i> she chuckles, licking a strand of spunk off one of her claw-like nails. You both laugh again, and Kaede rolls her head back with a sigh.");
 
-		output("\n\n<i>“I better go get cleaned up. I don't think Ashi's sister would appreciate me swaggering in smelling like my lover's cum. Then again... nah! Need a shower.”</i>");
+		output("\n\n<i>“I better go get cleaned up. I don’t think Ashi’s sister would appreciate me swaggering in smelling like my lover’s cum. Then again... nah! Need a shower.”</i>");
 
 		processTime(45+rand(15));
 		pc.orgasm();
 		
 		//[Shower With] [Say Goodbye]
 		clearMenu();
-		addButton(0, "ShowerWith", uvetoKaedeShowerWith, false, "Shower With Her", "You've gotten sweaty and sticky after that close encounter, too. Suggest that you and Kaede shower up together.");
-		addButton(1, "SayGoodbye", uvetoKaedeGoodbye, undefined, "Say Goodbye", "That's enough of that. Say goobye to Kaede, and get back to business.");
+		addButton(0, "ShowerWith", uvetoKaedeShowerWith, false, "Shower With Her", "You’ve gotten sweaty and sticky after that close encounter, too. Suggest that you and Kaede shower up together.");
+		addButton(1, "SayGoodbye", uvetoKaedeGoodbye, undefined, "Say Goodbye", "That’s enough of that. Say goobye to Kaede, and get back to business.");
 	}
 }
 
@@ -897,7 +897,7 @@ public function postBusinessPleasureKaedeVisit():void
 	clearMenu();
 	addButton(0,"Go With Her",hangOutWithKaede,undefined,"Go With Her","You’d be happy to go with her and hear Kaede’s story.");
 	if(pc.hasGenitals()) addButton(1,"Meet Cass",meetCassWithKaede,undefined,"Meet Cass","Actually, you’d rather meet back up with her baby momma. Cass was giving you some pretty obvious signals, and if poor Kaede can’t sate the kitty-cow’s needs, well...");
-	else addDisabledButton(1,"Meet Cass","Meet Cass","Cass won't want to hang out with someone who can't have a little sexy fun.");
+	else addDisabledButton(1,"Meet Cass","Meet Cass","Cass won’t want to hang out with someone who can’t have a little sexy fun.");
 	addButton(14,"Leave",leaveKaedeCassThreeSome,undefined,"Leave","You’ve got places to be and things to do. Leave Kaede to her own devices.");
 }
 
@@ -1105,8 +1105,8 @@ public function inviteKaedeToCassFuck():void
 	IncrementFlag("KAEDE_FUCKED");
 	//[Kaede’s Ass] [Cass’s Cunt]
 	clearMenu();
-	addButton(0,"Kaede's Ass",cumInKaedesAssDuringCassThreesome,undefined,"Kaede's Ass","Bust your nut in Kaede’s asshole. Cass wasn’t kidding: this little ginger sweetheart’s got the kind of ass you can only dream about!");
-	addButton(1,"Cass's Cunt",cumInCassesCuntDuringKaedeThreesome,undefined,"Cass's Cunt","No way you’re passing up a second chance at that cum-hungry hole. Who knows, maybe even after all those orgasms out of her lover, you’ll still be the one to pack Cass with another kid?");
+	addButton(0,"Kaede’s Ass",cumInKaedesAssDuringCassThreesome,undefined,"Kaede’s Ass","Bust your nut in Kaede’s asshole. Cass wasn’t kidding: this little ginger sweetheart’s got the kind of ass you can only dream about!");
+	addButton(1,"Cass’s Cunt",cumInCassesCuntDuringKaedeThreesome,undefined,"Cass’s Cunt","No way you’re passing up a second chance at that cum-hungry hole. Who knows, maybe even after all those orgasms out of her lover, you’ll still be the one to pack Cass with another kid?");
 }
 
 //[Kaede’s Ass]
@@ -1164,7 +1164,7 @@ public function joinInCleaningUpCassKaedePostScene():void
 	showKaedeAndCass(true, true);
 	output("Deciding that you can’t leave a job unfinished, you slink down to your [pc.knees] on the floor, leaning over the arm-rest to get your mouth right on level with Cass’s cooch.");
 	output("\n\n<i>“W-what-”</i> Kaede starts, right until you give her a deep, long kiss... and scoop out a little of the cum she’s ready to swallow on your [pc.tongue], claiming a share of your mixed load for yourself. She murmurs a soft <i>“Oh. Ohhhh,”</i> and lets her eyes flit closed, enjoying the kiss while it lasts. When you break it, you give her a playful wink and lean in to Cass’s cum-slathered puss, dragging your [pc.tongue] between her thick labia and scooping up even more of Kaede’s cum.");
-	output("\n\nSuch a gentle" + pc.mf("","wo") + "man!”</i> Cass, now apparently much more clear-headed, giggles. <i>“You’ve definitely got a keeper here, baby.”</i>");
+	output("\n\n<i>“Such a gentle" + pc.mf("","wo") + "man!”</i> Cass, now apparently much more clear-headed, giggles. <i>“You’ve definitely got a keeper here, baby.”</i>");
 	output("\n\nKaede’s eyes widen, and she blushes an even darker shade of crimson. <i>“I don’t... I mean.. we...”</i>");
 	output("\n\n<i>“Shush,”</i> you command, giving her another kiss before going back to work. She joins you after a moment, letting her tongue play around with yours until Cass arches her back and cries out a warning, just a little too late for the two of you to avoid a shower of fem-cum... and probably a good bit of your own cum, too, as your dual oral skills bring Cass to orgasm again. Laughing, you lick the mess off Kaede’s face, letting it turn into a final kiss before you rise.");
 	processTime(3);
