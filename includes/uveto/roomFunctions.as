@@ -393,11 +393,13 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 				else output(" -- and being naked, you’ve got next to no defense against the chill");
 				output(". You feel like you might collapse if you don’t take shelter soon!");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
+				output("\n\n");
 			}
 			else
 			{
 				output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you’re going to freeze!</b>");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
+				output("\n\n");
 			}
 		}
 		else
@@ -411,6 +413,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 
 			output("\n\nBlackness takes you.");
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
+			output("\n\n");
 			
 			generateMapForLocation("GAME OVER");
 			
@@ -580,7 +583,7 @@ public function uvetoFallToColdDamage():void
 		rescuer = "Luna";
 		processTime(360);
 	}
-	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.FROZENTUNDRA))
+	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
 		author("Gedan");
 
@@ -603,15 +606,9 @@ public function uvetoFallToColdDamage():void
 		rescuer = "Jerome";
 		processTime(840);
 	}
-	else
+	else if (InRoomWithFlag(GLOBAL.FROZENTUNDRA))
 	{
-		//author("Gedan");
-		//output("[PH] Jerynn Rescue");
-		
-		IncrementFlag("UVETO_JERYNN_RESCUES");
-		
-		//rescuer = "Jerynn";
-		processTime(1440);
+		if (jerynnRescuesYourFrozenAss()) return;
 	}
 
 	//[Next] // Awaken in the medical center
@@ -722,7 +719,7 @@ public function uvetoBarBonus():Boolean
 	meetingShadeAtUvetoBar(2);
 
 	var jeromePresent:Boolean = jeromeAtBar(3);
-	// jerynnAtBar(jeromePresent);
+	var jerynnPresent:Boolean = jerynnAtBar(jeromePresent ? 4 : 3);
 	
 	// Natalie Irson
 	natalieFreezerAddendum(4);

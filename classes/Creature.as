@@ -2400,6 +2400,12 @@
 				case "combatHerHers":
 					buffer = getCombatPronoun("pp");
 					break;
+				case "barkMeow":
+					buffer = catDog("meow", "bark", true);
+					break;
+				case "meowBark":
+					buffer = catDog("meow", "bark", false);
+					break;
 					
 				default:
 					// error production is now done up-stream in the parser
@@ -6681,6 +6687,15 @@
 		}
 		public function hasKeyItem(keyName: String): Boolean {
 			return hasStorageName(keyItems, keyName);
+		}
+		public function getKeyItem(keyName:String):StorageClass
+		{
+			var r:Array = keyItems.filter(function(elem:StorageClass, i:int, a:Array):Boolean {
+				return (elem as StorageClass).storageName == keyName;
+			});
+			
+			if (r.length > 0) return r[0];
+			return null;
 		}
 		//General function.
 		public function hasStorageName(array:Array, storageName: String): Boolean {
@@ -18293,6 +18308,30 @@
 				//Remove the companion status from Kally's brews~!
 				removeStatusEffect("Adorahol");
 			}
+		}
+	
+		/**
+		 * This is something I tangentially discussed with Nonesuch. This is basically a "catch all" means of figuring out if the player would take an almost exclusively submissive path when offered choices.
+		 * It's not intended to be a "special" event or single perk, but instead a collection of potential sources that should be treated in this manner.
+		 * Rather than "documenting" it officially, we keep it on the down-low until we have a few things that could potentially feed into it.
+		 * @return
+		 */
+		public function isSubby():Boolean
+		{
+			return hasPerk("Peace of Mind");
+		}
+		
+		public function hasPlumpAsshole():Boolean
+		{
+			return ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED);
+		}
+		
+		public function catDog(c:String, d:String, prefDog:Boolean = true):String
+		{
+			var r:String = race();
+			if (r.indexOf("kaithrit") != -1) return c;
+			if (r.indexOf("ausar") != -1) return d;
+			return prefDog ? d : c;
 		}
 	}
 }
