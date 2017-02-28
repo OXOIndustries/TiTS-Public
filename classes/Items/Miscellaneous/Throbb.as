@@ -6,6 +6,7 @@
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
+	import classes.GameData.CodexManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
 	
@@ -58,6 +59,17 @@
 		{
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
+				
+				// Just in case it didn't get unlocked before.
+				CodexManager.unlockEntry("Throbb");
+				// Never read codex entry on it.
+				if(!CodexManager.entryViewed("Throbb"))
+				{
+					kGAMECLASS.output("You are reminded that Throbb is an illegal and potentially dangerous drug. Perhaps you should read up on it before injecting it into yourself.");
+					if(!kGAMECLASS.infiniteItems()) quantity++;
+					return false;
+				}
+				
 				//Multiple wangs: 
 				if(target.cockTotal() > 1) 
 				{
@@ -283,7 +295,7 @@
 			var pc:Creature = kGAMECLASS.chars["PC"];
 			
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spil out of your distended [pc.cockHeadBiggest]. Even though you aren’t orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze ");
+			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spill out of your distended [pc.cockHeadBiggest]. Even though you aren’t orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze ");
 			if(kGAMECLASS.pc.balls > 1) kGAMECLASS.output("one ");
 			kGAMECLASS.output("ball. The tightness against the sloshing orb is enough to make your length bloat and lurch, throwing a thick rope at least three meters into the air before it splatters down across your face.");
 			kGAMECLASS.output("\n\nThe sensation of ejaculation is too irresistible not to indulge. You run your hands up and down your drooling shaft to coax out another lurid deluge, letting loose a low moan when your member immediately and voluminously responds with spontaneous orgasm, pumping out a glob of [pc.cumNoun] bigger than your head. A second follows before the first hits the ground. Your fourth shot is weaker; it mostly resembles one of those fountains that shoots laminar stream of water up to cascade back over itself. The feeling of being slicked in your own steaming hot [pc.cumNoun] mid-orgasm nearly makes you pass out from raw pleasure.");
@@ -297,8 +309,16 @@
 			pc.removeAll();
 			for(var i:int = 0; i < 12; i++)
 			{
+				pc.ballEfficiency += 3 + rand(6);
+				pc.cumMultiplierRaw += 2 + rand(3);
+				pc.cumQualityRaw += 0.25;
+				pc.refractoryRate++;
+				if(pc.ballFullness < 100) pc.ballFullness = 100;
+				
 				pc.orgasm();
 				if(rand(6) == 0) pc.orgasm();
+				
+				kGAMECLASS.applyCumSoaked(pc);
 			}
 			
 			kGAMECLASS.clearMenu();

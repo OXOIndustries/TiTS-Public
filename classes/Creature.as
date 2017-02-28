@@ -1787,13 +1787,16 @@
 				case "cocksLight":
 					buffer = cocksDescriptLight();
 					break;
+				case "cocksSimple":
 				case "cocksNoun":
 				case "cocksNounSimple":
 					buffer = simpleCocksNoun();
 					break;
+				case "cockComplex":
 				case "cockNounComplex":
 					buffer = cockNounComplex(arg2);
 					break;
+				case "cockSimple":
 				case "cockNounSimple":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
@@ -2053,9 +2056,13 @@
 				case "cunt":
 					buffer = vaginaDescript(arg2);
 					break;
+				case "vaginaSimple":
+				case "pussySimple":
+				case "cuntSimple":
 				case "vaginaNounSimple":
 				case "vaginaNoun":
 				case "pussyNoun":
+				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
 				case "vaginas":
@@ -2887,7 +2894,7 @@
 			return true;
 		}
 		public function orgasm(): void
-		{			
+		{
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
@@ -3540,7 +3547,7 @@
 			return Math.round(arg * multi);
 		}
 		//HP
-		public function HP(arg: Number = 0): Number {			
+		public function HP(arg: Number = 0): Number {
 			HPRaw += arg;
 			if (HPRaw > HPMax()) HPRaw = HPMax();
 			return HPRaw;
@@ -6354,7 +6361,7 @@
 					pregDescripts[pregDescripts.length] = "pregnant";
 				}
 				if(belly >= 50)
-				{	
+				{
 					pregDescripts[pregDescripts.length] = "gravid";
 				}
 			}
@@ -8089,6 +8096,7 @@
 			}
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
+			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
 			
 			return puffScore;
 		}
@@ -13105,7 +13113,7 @@
 		}
 		public function matchedVaginas():Boolean {
 			for(var x:int = 0; x < totalVaginas(); x++)
-			{	
+			{
 				//After the first cooch, see if they match against the previous.
 				if(x > 0)
 				{
@@ -15384,7 +15392,7 @@
 			return descript;
 		}
 		public function breastNoun(rowNum:int = 99):String
-		{	
+		{
 			var noun:String = "";
 			if(rowNum == 99) rowNum = 0;
 			//Nouns!
@@ -17500,6 +17508,8 @@
 		// of when the event actually takes place.
 		public function processTime(deltaT:uint, doOut:Boolean):void
 		{
+			minutesSinceCum += deltaT;
+			
 			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
@@ -18163,7 +18173,7 @@
 			removeStatusEffect("Omega Oil");
 		}
 		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
-		{		
+		{
 			var thisStatus:StorageClass = getStatusEffect("Alcohol");
 			
 			if (thisStatus == null) return;

@@ -218,7 +218,7 @@
 			// Considering we don't even have any item flags atm, I'm going to ignore it for the time being.
 			// -- Nope, here it is!
 			// Special item flags!
-			if (this.itemFlags.length > 0)
+			if (itemFlags.length > 0 || hardLightEquipped)
 			{
 				var fList:String = "";
 				

@@ -107,8 +107,9 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Religions", "Stormguard", stormguardCodex);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck", dumbfuckCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush", gushCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Throbb", throbbCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Dumbfuck", dumbfuckCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Gush", gushCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentacool", tentacoolCodexEntry);
 	
@@ -2626,6 +2627,46 @@ public function hyraxxiCodexEntry():void
 
 
 /* Illegal Items */
+public function throbbCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("TANK_KANNON");
+	outputCodex(header("Throbb, AKA Liquid Priaprism"));
+	outputCodex("<i>“Some people grew dicks and balls so big they couldn’t move. Can you believe that?”</i> -Officer Penny Inoue, UGC Peacekeepers\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Throbb did not begin its life as an oft-scorned drug for degenerates and deplorables. The original hope was for an affordable pharmaceutical solution to replace missing genitalia or help those with fertility problems. Xenogen’s scientists succeeded a little too well. Yes, it could grow a penis on almost anyone. Yes, it boosted sperm/spore/genetic-information-paste density to levels that could easily impregnate most mates, but it did so much more than that.");
+	outputCodex("\n\nGrowing or expanding genitalia produced a powerful, psychologically addictive euphoria akin to the feeling of an adolescent discovering his or her first love. What’s more, it also unbalanced the user’s endocrine system in much the same manner as puberty, resulting in a large but otherwise harmless increase in libido. Initial test subjects frequently requested additional doses, citing that “they weren’t big enough yet” or “they could be so much more virile.”");
+	outputCodex("\n\nThe study was shut down, but the problems did not end there. Many who had partaken in the study eventually turned to sex work or wound up arrested for sexual assault.");
+	outputCodex("\n\nAs a result, the scientists were ordered to reformulate the drug in order to minimize the side effects. Any success in suppressing the high or associated nymphomania brought with it a massive reduction in the efficacy of its desired effects. Xenogen had a drug that would push its users into deviancy or a drug that took dozens of doses and achieved essentially the same effect.");
+	outputCodex("\n\nOne year later, the Throbb project was shuttered. Xenogen shares dropped 18.5% in trading due to the news but recovered later in the week thanks to the successful launch of Rainbowtox.");
+	outputCodex("\n\nThrobb’s synthesis was leaked to the extranet, and now most back-alley chemists can whip up a batch in a few days. Most newer model fabricators and molecule assemblers prevent its manufacture at a firmware level, citing UGC “Deleterious Drugs” statute, section 7, paragraph 4. Hacks to circumvent these restrictions are commonplace and easily attainable.\n\n");
+	outputCodex(blockHeader("Method of Application"));
+	outputCodex("Throbb requires injection into the area to be affected. Injecting it into non-reproductive areas may result in unwanted growths or bizarre sensitivity.\n\n");
+	outputCodex(blockHeader("Legality"));
+	outputCodex("The UGC prohibits chemical manufacturing equipment from being sold with the capability to manufacture Throbb, though the chemical itself is not illegal at the Confederation level. 97% of all UGC planets have outlawed the substance in one way or another. Many of the remaining 3% make a brisk trade on sexual tourism, often taxing Throbb heavily to subsidize medical and psychological treatment for addicts.\n\n");
+	outputCodex(blockHeader("Known Effects"));
+	outputCodex("\t* Sudden phallus growth.");
+	outputCodex("\n\t* Abrupt phallus expansion.");
+	outputCodex("\n\t* Testicle growth.");
+	outputCodex("\n\t* Increased virility.\n\n");
+	outputCodex(blockHeader("Known Side Effects"));
+	outputCodex("\t* Dramatic increase to libido.");
+	outputCodex("\n\t* Brief sexual euphoria.");
+	outputCodex("\n\t* Spontaneous orgasm.");
+	outputCodex("\n\t* Permanently reduced inhibitions.");
+	outputCodex("\n\t* Increased genital sensitivity.");
+	outputCodex("\n\t* Enlarged pleasure centers of the brain.\n\n");
+	outputCodex(blockHeader("Known Users"));
+	outputCodex("\t* Aileh Atru, porn star");
+	outputCodex("\n\t* Juan Gartex, sex worker");
+	outputCodex("\n\t* Kawthon Kandy, ultraporn star");
+	outputCodex("\n\t* Rod Chrysler, former Vesperian Prime Minister turned porn star");
+	outputCodex("\n\t* Tank Kannon, ultraporn star\n\n");
+	outputCodex(blockHeader("WARNINGS"));
+	outputCodex("Throbb is almost assuredly illegal. Do not use it. Should you come across any, turn it over to your local UGC Peacekeepers or planetary security forces. If you are on a planet where it is legal, avoid it all costs. It could ruin your life. (Attached is a short, anti-drug video clip. In it, a kaithrit is holding up a hotdog. She says, <i>“This is your dick. And this-”</i> Then she pivots and smacks face-first into the side of a tubular ship, rusted out with age. Rubbing her nose, she adds, <i>“...is your dick on Throbb. It isn’t going anywhere, and certainly not in me. Any questions?”</i>)");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Throbb");
+}
 
 public function dumbfuckCodexEntry():void
 {

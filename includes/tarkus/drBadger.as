@@ -14,6 +14,9 @@ public function bimbotoriumHallBonus():Boolean
 	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
 	{
 		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shack has been all but mummified in flickering holographic police tape.");
+		
+		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		
 		drBadgerShackPexigaQuestGo();
 	}
 	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
@@ -66,6 +69,7 @@ public function drBadgerBuyMenu():void
 	{
 		chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
 		chars["DRBADGER"].inventory.push(new Throbb());
+		CodexManager.unlockEntry("Throbb");
 	}
 	if(canBuySiegwulfe(true))
 	{
