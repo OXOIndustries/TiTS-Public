@@ -1627,7 +1627,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\n<i>“Okay!”</i> Betsy gives you and Victoria both a grin, then squeezes your hard cocks one last time. <i>“Looks like you’re both ready to go, so...”</i>");
 				output("\n\n<i>“So get on the floor, [pc.name],”</i> Victoria says, smirking at you. <i>“I’ll show you how me and Betsy do this.”</i>");
 				output("\n\nNo surprise they know exactly what they’re doing here. Betsy giggles as you lie down on the shower floor, and she lowers herself too, straddling your [pc.thighs] as you make yourself as comfortable as you can on the wet tile. The view’s a little odd at first, with the busty cowgirl above you but with your own [pc.cockNoun " + x + "] sticking up between you and her. Then Victoria steps over and spreads her legs to either side of you, holds up her horse dong so you can see the tight, tan pussy lips beneath it.");
-				output("\n\n<i>“Bring it on down, Vicky!”</i> Betsy says, and gives your cock a few more strokes. <i>“[pc.heShe]’s all ready for you!”</i>");
+				output("\n\n<i>“Bring it on down, Vicky!”</i> Betsy says, and gives your cock a few more strokes. <i>“[pc.HeShe]’s all ready for you!”</i>");
 				output("\n\nThe muscles in Victoria’s thighs stand out as she squats, slowly lowering herself until your [pc.cockHead " + x + "] meets her wet twat. Betsy’s hand, still on your dick, guides it home as Victoria slides all the way down, taking you into her until her thighs rest on either side of your [pc.hips]. The fit cowgirl’s cock slaps against your [pc.belly], the flat head pointing right at your face.");
 				
 				pc.cockChange();
