@@ -23,6 +23,7 @@ public function jerynnPetstuffLevel(inc:Boolean = false):int
 {
 	if (inc)
 	{
+		trace("Increasing Petstuff Level!");
 		if (flags["JERYNN_PETSTUFF_LEVEL"] == undefined) flags["JERYNN_PETSTUFF_LEVEL"] = 1;
 		else flags["JERYNN_PETSTUFF_LEVEL"]++;
 
@@ -589,6 +590,9 @@ public function jerynnAllowFucked():void
 
 	currentLocation = "UVI N30";
 
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	
 	IncrementFlag("JERYNN_FUCKED");
 
 	clearMenu();
@@ -702,6 +706,8 @@ public function jerynnAllowRidden():void
 	pc.orgasm();
 
 	currentLocation = "UVI N30";
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
 
 	IncrementFlag("JERYNN_FUCKED");
 
@@ -806,6 +812,8 @@ public function jerynnAllowPetstuff():void
 	pc.loadInMouth(jerynn);
 
 	currentLocation = "UVI N30";
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
 
 	IncrementFlag("JERYNN_FUCKED");
 
@@ -1011,7 +1019,7 @@ public function jerynnUnderslungShare():void
 		output(" Jerynn to take over.");
 	}
 
-	if (!isWearingJerynnsCollar())
+	if (!isWearingJerynnsCollar() && hasJerynnsCollar())
 	{
 		output("\n\nA scaled hand wraps around your naked neck, a tut coming from the drago-taur as she rubs at your [pc.skinFurScales] possessively.");
 
@@ -1024,7 +1032,7 @@ public function jerynnUnderslungShare():void
 
 	output("\n\nJerynn straights her legs out again, and this time your body follows with her. Your weight is taken by the straps entirely, the half you’re wearing magnetically coupling with what must be another part of the whole that she was already sporting under the layers of thermal insulation. A shiver rips through her frame as you settle in against her, stealing her body heat and repaying it with the chill burrowed into your flesh.");
 
-	if (flags["JERYNN_PETSTUFF_MORE_TIMES"] == undefined || flags["JERYNN_PETSTUFF_MORE_TIMES"] <= 2)
+	if (jerynnPetstuffLevel() <= 2)
 	{
 		output("\n\nA part of you wonders just why she’d have this gear - and already be wearing her half of it - but not have an extra set of dry clothing to spare, but the thought seems to fall away, unimportant in the face of a solid source of dry, soothing warmth.");
 		if (jerynnPetstuffLevel() > 0 && (pc.isBimbo() || pc.libido() >= pc.libidoMax() * 0.75 || pc.lust() >= pc.lustMax() * 0.75)) output(" And the knowledge that her heavy balls are soon going to be nestled against your groin.");
@@ -1096,11 +1104,11 @@ public function jerynnUnderslungShareII():void
 	output(", heating you from the inside out. There’s no telling really just how much dick is inside you, or even how much more there is to go; it’s all you can do to moan inside your warm, wooly prison, unsure even to yourself if it’s the additional heat staving off the cold that you’re enjoying so much, or the simple fact that you’re slowly, inescapably becoming a living cocksock.");
 	if (pc.hasVagina())
 	{
-		pc.cuntChange(vIdx, jerynn.biggestCockVolume(), false);
+		pc.cuntChange(vIdx, jerynn.biggestCockVolume());
 	}
 	else
 	{
-		pc.buttChange(jerynn.biggestCockVolume(), false);
+		pc.buttChange(jerynn.biggestCockVolume());
 	}
 
 	output("\n\n<i>“");
@@ -1243,13 +1251,13 @@ public function jerynnUnderslungShareIV():void
 	pc.lust(10);
 	if (pc.hasVagina())
 	{
-		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
+		pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume(), false);
 		pc.loadInCunt(jerynn, pc.gapestVaginaIndex());
 		pc.maxOutCumflation("vagina " + pc.gapestVaginaIndex(), jerynn);
 	}
 	else
 	{
-		pc.buttChange(jerynn.biggestCockVolume());
+		pc.buttChange(jerynn.biggestCockVolume(), false);
 		pc.loadInAss(jerynn);
 		pc.maxOutCumflation("ass", jerynn);
 	}
@@ -1373,7 +1381,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 		processTime(15);
 
 		clearMenu();
-		addButton(0, "Next", jerynnPetstuffCleanup);
+		addButton(0, "Next", jerynnPetstuffCleanup, isLemmeOut);
 	}
 	else
 	{
@@ -1488,7 +1496,7 @@ public function jerynnPetstuffHerPlacePostShopping():void
 	processTime(15 + rand(10));
 }
 
-public function jerynnPetstuffCleanup():void
+public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 {
 	clearOutput();
 	showJerynn(true);
@@ -1531,9 +1539,13 @@ public function jerynnPetstuffCleanup():void
 	else if (jerynnPetstuffLevel() <= 5) output(" safe if a little confused.");
 	else output(" and you make your way back to the icy cold streets of Irestead, still sore but glad to be safe.");
 
-	jerynnPetstuffLevel(true);
+	if (!isLemmeOut) jerynnPetstuffLevel(true);
 	processTime(15 + rand(15));
 
+	currentLocation = "UVI N30";
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1837,6 +1849,10 @@ public function jerynnPetstuffWakeUp(responses:Object):void
 		jerynnPetstuffLevel(true);
 		processTime(10 + rand(10));
 
+		currentLocation = "UVI N30";
+		pc.HP(pc.HPMax());
+		pc.energy(pc.energyMax());
+	
 		//[Next]
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
@@ -2052,6 +2068,10 @@ public function jerynnPetstuffNoOptIn():void
 	pc.orgasm();
 	
 	//[Next] // Back outside
+	currentLocation = "UVI N30";
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -2369,6 +2389,10 @@ public function jerynnPetstuffNightWithJeromeII():void
 	pc.orgasm();
 	processTime(180 + rand(60));
 
+	pc.HP(pc.HPMax());
+	pc.energy(pc.energyMax());
+	currentLocation = "UVI N30";
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
