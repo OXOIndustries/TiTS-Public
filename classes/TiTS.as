@@ -338,6 +338,7 @@
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
+		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
@@ -458,7 +459,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.26";
+			version = "0.7.27";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1322,12 +1323,9 @@
 		{
 			return chars["PIPPA"];
 		}
-		
-		private var _dbgtestvar:int = 0;
-		public function dbgshieldparsertag():String
+		public function get jerynn():Jerynn
 		{
-			_dbgtestvar++;
-			return "This tag has been parsed " + _dbgtestvar + " time" + (_dbgtestvar == 1 ? "" : "s") +".";
+			return chars["JERYNN"];
 		}
 	}
 }

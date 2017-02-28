@@ -1787,13 +1787,16 @@
 				case "cocksLight":
 					buffer = cocksDescriptLight();
 					break;
+				case "cocksSimple":
 				case "cocksNoun":
 				case "cocksNounSimple":
 					buffer = simpleCocksNoun();
 					break;
+				case "cockComplex":
 				case "cockNounComplex":
 					buffer = cockNounComplex(arg2);
 					break;
+				case "cockSimple":
 				case "cockNounSimple":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
@@ -2053,9 +2056,13 @@
 				case "cunt":
 					buffer = vaginaDescript(arg2);
 					break;
+				case "vaginaSimple":
+				case "pussySimple":
+				case "cuntSimple":
 				case "vaginaNounSimple":
 				case "vaginaNoun":
 				case "pussyNoun":
+				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
 				case "vaginas":
@@ -2392,6 +2399,12 @@
 					break;
 				case "combatHerHers":
 					buffer = getCombatPronoun("pp");
+					break;
+				case "barkMeow":
+					buffer = catDog("meow", "bark", true);
+					break;
+				case "meowBark":
+					buffer = catDog("meow", "bark", false);
 					break;
 					
 				default:
@@ -2881,7 +2894,7 @@
 			return true;
 		}
 		public function orgasm(): void
-		{			
+		{
 			// NaN production was down to maxCum
 			// if the player didn't have a cock, maxCum returns 0.
 			// anything / 0 = NaN
@@ -3534,7 +3547,7 @@
 			return Math.round(arg * multi);
 		}
 		//HP
-		public function HP(arg: Number = 0): Number {			
+		public function HP(arg: Number = 0): Number {
 			HPRaw += arg;
 			if (HPRaw > HPMax()) HPRaw = HPMax();
 			return HPRaw;
@@ -6348,7 +6361,7 @@
 					pregDescripts[pregDescripts.length] = "pregnant";
 				}
 				if(belly >= 50)
-				{	
+				{
 					pregDescripts[pregDescripts.length] = "gravid";
 				}
 			}
@@ -6674,6 +6687,15 @@
 		}
 		public function hasKeyItem(keyName: String): Boolean {
 			return hasStorageName(keyItems, keyName);
+		}
+		public function getKeyItem(keyName:String):StorageClass
+		{
+			var r:Array = keyItems.filter(function(elem:StorageClass, i:int, a:Array):Boolean {
+				return (elem as StorageClass).storageName == keyName;
+			});
+			
+			if (r.length > 0) return r[0];
+			return null;
 		}
 		//General function.
 		public function hasStorageName(array:Array, storageName: String): Boolean {
@@ -13100,7 +13122,7 @@
 		}
 		public function matchedVaginas():Boolean {
 			for(var x:int = 0; x < totalVaginas(); x++)
-			{	
+			{
 				//After the first cooch, see if they match against the previous.
 				if(x > 0)
 				{
@@ -15379,7 +15401,7 @@
 			return descript;
 		}
 		public function breastNoun(rowNum:int = 99):String
-		{	
+		{
 			var noun:String = "";
 			if(rowNum == 99) rowNum = 0;
 			//Nouns!
@@ -17495,6 +17517,8 @@
 		// of when the event actually takes place.
 		public function processTime(deltaT:uint, doOut:Boolean):void
 		{
+			minutesSinceCum += deltaT;
+			
 			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
@@ -18158,7 +18182,7 @@
 			removeStatusEffect("Omega Oil");
 		}
 		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
-		{		
+		{
 			var thisStatus:StorageClass = getStatusEffect("Alcohol");
 			
 			if (thisStatus == null) return;
@@ -18284,6 +18308,30 @@
 				//Remove the companion status from Kally's brews~!
 				removeStatusEffect("Adorahol");
 			}
+		}
+	
+		/**
+		 * This is something I tangentially discussed with Nonesuch. This is basically a "catch all" means of figuring out if the player would take an almost exclusively submissive path when offered choices.
+		 * It's not intended to be a "special" event or single perk, but instead a collection of potential sources that should be treated in this manner.
+		 * Rather than "documenting" it officially, we keep it on the down-low until we have a few things that could potentially feed into it.
+		 * @return
+		 */
+		public function isSubby():Boolean
+		{
+			return hasPerk("Peace of Mind");
+		}
+		
+		public function hasPlumpAsshole():Boolean
+		{
+			return ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED);
+		}
+		
+		public function catDog(c:String, d:String, prefDog:Boolean = true):String
+		{
+			var r:String = race();
+			if (r.indexOf("kaithrit") != -1) return c;
+			if (r.indexOf("ausar") != -1) return d;
+			return prefDog ? d : c;
 		}
 	}
 }

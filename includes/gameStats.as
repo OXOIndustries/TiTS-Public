@@ -629,6 +629,7 @@ public function statisticsScreen(showID:String = "All"):void
 		// Sexuality
 		output2("\n<b><u>Sexuality</u></b>");
 		output2("\n<b>* Orgasms, Total:</b> " + StatTracking.getStat("sex/player/orgasms"));
+		if(pc.timesCum > 0) output2("\n<b>* Orgasms, Time Since Last Orgasm:</b> " + prettifyMinutes(pc.minutesSinceCum));
 		if(pc.sexualPreferences._sexPrefs.length > 0)
 		{
 			for(i = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++)
@@ -5413,6 +5414,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 					}
 					if(flags["SEXED_SYLVIE"] > 0) output2("\n<b>* Sylvie, Times Sexed:</b> " + flags["SEXED_SYLVIE"]);
+					if(flags["SYLVIE_CUFFNFUCK"] != undefined) output2("\n<b>* Sylvie, Times You Were Cuffed and Fucked by Her:</b> " + flags["SYLVIE_CUFFNFUCK"]);
+					if(flags["SYLVIE_TAURMOUNT"] != undefined) output2("\n<b>* Sylvie, Times You Mounted Her:</b> " + flags["SYLVIE_TAURMOUNT"]);
 				}
 				variousCount++;
 			}

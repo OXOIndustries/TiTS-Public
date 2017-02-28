@@ -1083,8 +1083,6 @@ public function pexigaNamingSetup4BimboBadgerwerk():void
 
 public function drBadgerShackPexigaQuestGo():void
 {
-	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
-	
 	if(flags["DR_BADGER_TURNED_IN"] != undefined && flags["PEXIGA_TALKED"] != undefined && flags["PEXIGA_TREATMENT"] != 1)
 	{
 		if(flags["LASH_BOMB"] != undefined || flags["DEL_DISTRACT"] != undefined)

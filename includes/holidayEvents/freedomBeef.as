@@ -641,6 +641,7 @@ public function freedomBeefSnuSnu(beefType:uint):void
 	pc.HP(-(pc.HPMax() * 0.8));
 	if (pc.HP() < 1) pc.HP(1);
 	soreDebuff(3);
+	sweatyDebuff(1);
 
 	IncrementFlag("FUCKED_FREEDOM_BEEF");
 	IncrementFlag("FUCKED_FREEDOM_BEEF_SNUSNU");

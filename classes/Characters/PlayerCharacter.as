@@ -404,7 +404,8 @@ package classes.Characters
 				{
 					nyreaEggStuff(totalDays);
 				}
-
+				
+				updateExhibitionism(totalDays);
 				myrVenomUpdate(totalDays);
 			}
 			
@@ -413,6 +414,24 @@ package classes.Characters
 			updateGooState(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
+		}
+		
+		private function updateExhibitionism(totalDays:uint):void
+		{
+			var exhibitionismPoints:Number = 0;
+			if(isCrotchExposed()) exhibitionismPoints++;
+			if(isAssExposed()) exhibitionismPoints++;
+			if(isChestExposed() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isNude()) exhibitionismPoints++;
+
+			var currExhib:Number = exhibitionism();
+
+			//All covered up? Reduce over time!
+			if(exhibitionismPoints == 0) exhibitionism(-0.5 * totalDays);
+			else if(exhibitionismPoints >= 4 && currExhib < 50) exhibitionism(2);
+			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
+			else if(exhibitionismPoints >= 2 && currExhib < 33) exhibitionism(1);
+			else if(currExhib < 20) exhibitionism(1);
 		}
 		
 		private function myrVenomUpdate(totalDays:uint):void

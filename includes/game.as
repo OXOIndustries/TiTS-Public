@@ -285,45 +285,47 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	else
 	{
-		if (rooms[currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		if (rooms[currentLocation].northExit)
 		{
-			addButton(6, "North", move, rooms[currentLocation].northExit);
+			if(!isNavDisabled(NAV_NORTH_DISABLE)) addButton(6, "North", move, rooms[currentLocation].northExit);
+			else addDisabledButton(6, "North", "North", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE))
+		if (rooms[currentLocation].eastExit)
 		{
-			addButton(12, "East", move, rooms[currentLocation].eastExit);
+			if(!isNavDisabled(NAV_EAST_DISABLE)) addButton(12, "East", move, rooms[currentLocation].eastExit);
+			else addDisabledButton(12, "East", "East", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE))
+		if (rooms[currentLocation].southExit)
 		{
-			addButton(11,"South", move, rooms[currentLocation].southExit);
+			if(!isNavDisabled(NAV_SOUTH_DISABLE)) addButton(11,"South", move, rooms[currentLocation].southExit);
+			else addDisabledButton(11, "South", "South", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE))
+		if (rooms[currentLocation].westExit)
 		{
-			addButton(10, "West", move, rooms[currentLocation].westExit);
+			if(!isNavDisabled(NAV_WEST_DISABLE)) addButton(10, "West", move, rooms[currentLocation].westExit);
+			else addDisabledButton(10, "West", "West", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE)) 
+		if (rooms[currentLocation].inExit) 
 		{
-			addButton(5, rooms[currentLocation].inText, move, rooms[currentLocation].inExit);
+			if(!isNavDisabled(NAV_IN_DISABLE)) addButton(5, rooms[currentLocation].inText, move, rooms[currentLocation].inExit);
+			else addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE))
+		if (rooms[currentLocation].outExit)
 		{
-			addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
+			if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
+			else addDisabledButton(7, rooms[currentLocation].outText, rooms[currentLocation].outText, "You are unable to go in this direction.");
 		}
 	}
+	
 	if (currentLocation == "SHIP INTERIOR")
 	{
-		if (rooms[currentLocation].outExit && isNavDisabled(NAV_OUT_DISABLE)) 
-		{
-			addDisabledButton(7,rooms[currentLocation].outText,rooms[currentLocation].outText,"You can’t exit your ship here!");
-		}
+		if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, "Exit Ship", move, rooms[currentLocation].outExit);
+		else addDisabledButton(7, "Exit Ship", rooms[currentLocation].outText, "You can’t exit your ship here!");
 	}
 	if (currentLocation == shipLocation)
 	{
-		if (isNavDisabled(NAV_IN_DISABLE))
-		{
-			addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can’t enter your ship here!");
-		}
-		else addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
 	
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
@@ -1658,12 +1660,12 @@ public function variableRoomUpdateCheck():void
 	if(flags["DR_BADGER_TURNED_IN"] != undefined)
 	{
 		rooms["304"].removeFlag(GLOBAL.NPC);
-		rooms["209"].northExit = "";
+		//rooms["209"].northExit = "";
 	}
 	else
 	{
 		rooms["304"].addFlag(GLOBAL.NPC);
-		rooms["209"].northExit = "304";
+		//rooms["209"].northExit = "304";
 	}
 	// Arbetz Open:
 	if (arbetzActiveHours())
@@ -1951,7 +1953,6 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	{
 		processHolidayoweenEvents(deltaT, doOut, totalDays);
 		processHoneyPotMods(deltaT, doOut, totalDays);
-		processExhibUpdates(deltaT, doOut, totalDays);
 		processNewTexasEvents(deltaT, doOut, totalDays);
 		processOryxxEvents(deltaT, doOut, totalDays);
 		processVenusPitcherEvents(deltaT, doOut, totalDays);
@@ -2588,24 +2589,6 @@ public function processHoneyPotMods(deltaT:uint, doOut:Boolean, totalDays:uint):
 		var numProcs:int = Math.floor(((days % 3) + totalDays) / 3);
 		if (numProcs > 0) honeyPotBump(false, numProcs);
 	}
-}
-
-public function processExhibUpdates(deltaT:uint, doOut:Boolean, totalDays:uint):void
-{
-	var exhibitionismPoints:Number = 0;
-	if(pc.isCrotchExposed()) exhibitionismPoints++;
-	if(pc.isAssExposed()) exhibitionismPoints++;
-	if(pc.isChestExposed() && pc.biggestTitSize() >= 1) exhibitionismPoints++;
-	if(pc.isNude()) exhibitionismPoints++;
-
-	var currExhib:Number = pc.exhibitionism();
-
-	//All covered up? Reduce over time!
-	if(exhibitionismPoints == 0) pc.exhibitionism(-0.5 * totalDays);
-	else if(exhibitionismPoints >= 4 && currExhib < 50) pc.exhibitionism(2);
-	else if(exhibitionismPoints >= 3 && currExhib < 40) pc.exhibitionism(1);
-	else if(exhibitionismPoints >= 2 && currExhib < 33) pc.exhibitionism(1);
-	else if(currExhib < 20) pc.exhibitionism(1);
 }
 
 public function processNewTexasEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void

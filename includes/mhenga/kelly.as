@@ -144,12 +144,13 @@ public function kellysOfficeMenu():void {
 	showKelly();
 	author("Quiet Browser & LD");
 	
+	kellysStoreSetup();
 	shopkeep = chars["KELLY"];
 	
 	addButton(0,"Appearance",kellyAppearance);
 	addButton(1,"Talk",talkToKellyInOffice);
 	if(chars["KELLY"].inventory.length == 0) addDisabledButton(2,"Buy","Buy","Kelly does not currently have anything to sell you.");
-	else addButton(2,"Buy",kellysBuyMenu,undefined,"Buy","Buy some of Xenogen Biotech’s wares.");
+	else addButton(2,"Buy",buyItem,undefined,"Buy","Buy some of Xenogen Biotech’s wares.");
 	addButton(3,"Sell",sellItem,undefined,"Sell","Sell Kelly some of your excess mods.");
 	// SkySap
 	if(flags["KELLY_MET"] != undefined && flags["SEEN_SYNTHSAP_AD"] != undefined)
@@ -159,36 +160,32 @@ public function kellysOfficeMenu():void {
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
-public function kellysBuyMenu():void
+public function kellysStoreSetup():void
 {
+	chars["KELLY"].keeperSell = "<i>“Xenogen isn’t usually in the business of buying mods to sell, but we’ll offer fair compensation,”</i> Kelly explains.\n";
+	chars["KELLY"].keeperBuy = "<i>“Oh, you’d like to purchase some of our basic modification programs? Why, certainly,”</i> Kelly chimes merrily.\n";
+	chars["KELLY"].keeperGreeting = "Kelly asks, <i>“Is there anything else I can do for you?”</i>\n";
+	
+	chars["KELLY"].inventory = [];
+	
 	//Update her sold items for old saves:
 	if(flags["ASSISTED_SHELLY_WITH_LAYING"] != undefined)
 	{
-		if(!chars["KELLY"].hasItem(new Ovilium())) chars["KELLY"].inventory.push(new Ovilium());
+		chars["KELLY"].inventory.push(new Ovilium());
 	}
-	else chars["KELLY"].destroyItem(new Ovilium(), 1);
 	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
 	{
-		if(!chars["KELLY"].hasItem(new HoneySeed())) chars["KELLY"].inventory.push(new HoneySeed());
+		chars["KELLY"].inventory.push(new HoneySeed());
 	}
-	else chars["KELLY"].destroyItem(new HoneySeed(), 1);
 	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined)
 	{
-		if(!chars["KELLY"].hasItem(new Honeydew())) chars["KELLY"].inventory.push(new Honeydew());
-		if(!chars["KELLY"].hasItem(new Honeypot())) chars["KELLY"].inventory.push(new Honeypot());
-	}
-	else
-	{
-		chars["KELLY"].destroyItem(new Honeydew(), 1);
-		chars["KELLY"].destroyItem(new Honeypot(), 1);
+		chars["KELLY"].inventory.push(new Honeydew());
+		chars["KELLY"].inventory.push(new Honeypot());
 	}
 	if(flags["SYNTHSAP_UNLOCKED"] != undefined)
 	{
-		if(!chars["KELLY"].hasItem(new SynthSap())) chars["KELLY"].inventory.push(new SynthSap());
+		chars["KELLY"].inventory.push(new SynthSap());
 	}
-	else chars["KELLY"].destroyItem(new SynthSap(), 1);
-	
-	buyItem();
 }
 
 //[=No=]

@@ -1861,6 +1861,7 @@ public function stayAGirlYouBitch():void {
 	output("\n\nGrowling, Penny says, <i>“Rrrr, I think you’re right, but fuck, it’d be fun to try.”</i> She looks meaningfully down at one of her desk drawers and continues. <i>“Well, maybe you’ll change your mind later on. I’ll just hold on to the Throbb for now, unless maybe you want to buy some of it to help me recoup the cost.”</i> Her ears perk up a bit. <i>“Just ask me later, I can probably give you the hookup for something like 300 creds a pop. Remember, don’t overdo it with this stuff unless you want to wind up a mindless fuckbeast or an immobilized, orgasm-addicted dick-stroker.”</i>");
 	output("\n\nThe fox-girl giggles, <i>“If you do decide to do that, let me know! I want to watch.”</i> She swivels her chair back. <i>“Right now, I have work to do. You know the drill.”</i>");
 	flags["PENNY_THROBB_PURCHASE_UNLOCKED"] = 1;
+	CodexManager.unlockEntry("Throbb");
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -1869,6 +1870,7 @@ public function stayAGirlYouBitch():void {
 public function buySomeThrobbFrompenny():void {
 	clearOutput();
 	showPenny();
+	CodexManager.unlockEntry("Throbb");
 	output("Penny gives you a saucy smile as she reaches into her desk to retrieve a little injector needle. <i>“It goes straight into </i>");
 	if(pc.hasCock()) output("<i>your dick</i>");
 	else output("<i>your crotch</i>");
