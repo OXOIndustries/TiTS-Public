@@ -1,3 +1,7 @@
+import classes.Characters.PlayerCharacter;
+import classes.Items.Apparel.MagneticHarness;
+import classes.Items.Miscellaneous.EmptySlot;
+import classes.StorageClass;
 public function showJerynn(isNude:Boolean = false):void
 {
 	author("Gedan");
@@ -27,26 +31,33 @@ public function jerynnPetstuffLevel(inc:Boolean = false):int
 	return (flags["JERYNN_PETSTUFF_LEVEL"] == undefined ? 0 : flags["JERYNN_PETSTUFF_LEVEL"]);
 }
 
+public function hasJerynnsCollar():Boolean
+{
+	return ((pc as PlayerCharacter).hasKeyItem("Jerynn’s Collar"));
+}
+
 public function isWearingJerynnsCollar():Boolean
 {
-	// 99999
-	return false;
+	var item:StorageClass = (pc as PlayerCharacter).getKeyItem("Jerynn’s Collar");
+	
+	if (item == null) return false;
+	if (item.value1 == 0) return false;
+	return true;
 }
 
 public function hasJerynnsHarness():Boolean
 {
-	return false;
+	return ((pc as PlayerCharacter).hasItemByType(MagneticHarness));
 }
 
 public function isWearingJerynnsHarness():Boolean
 {
-	// 9999
-	return false;
+	return ((pc as PlayerCharacter).armor is MagneticHarness);
 }
 
 public function jerynnPetstuffMax():int
 {
-	return 10;
+	return 8;
 }
 
 public function jerynnAtBar(btnIdx:int):Boolean
@@ -351,7 +362,7 @@ public function jerynnAllow():void
 		if (pc.thickness >= 75 || pc.buttRating() >= 12 || pc.hipRating() >= 12 || pc.biggestTitSize() >= 6) output(" every plush curve they can find.");
 		else output(" every inch of your body.");
 		
-		if (jerynnPetstuffLevel() > 0)
+		if (jerynnPetstuffLevel() > 0 && isWearingJerynnsCollar())
 		{
 			opts.push( { v: jerynnAllowPetstuff, w: 10 * jerynnPetstuffLevel() } );
 		}
@@ -1432,6 +1443,11 @@ public function jerynnPetstuffHerPlacePostShopping():void
 	if (jerynnPetstuffLevel() != 6)
 	{
 		output(" She moves around you, undoing the harness from your arms and legs, but leaves the collar in place.");
+		
+		if (hasJerynnsCollar())
+		{
+			pc.createKeyItem("Jerynn’s Collar", 1, 0, 0, 0, "A thick leather band, designed to cinch tightly yet comfortably around your neck.");
+		}
 
 		clearMenu();
 		addButton(0, "Next", jerynnPetstuffCleanup);
@@ -1462,6 +1478,10 @@ public function jerynnPetstuffCleanup():void
 		output("\n\nShe points you to her packs and you make with retrieving all of your gear. Tucked under your stuff is a little parcel intended for you, PET simply written across the top of it. Inside is a modified version of the harness you’ve become intimately familiar with whilst under the taur; each of the magnetic clasps has a tiny status light hidden on the corner, all of them dim. You slip it on automatically and you realise it’s sized perfectly for you, your suspicions about the clasps confirmed when you bend your arm double but the tell-tale smack of the clasps locking together is absent.");
 
 		output("\n\nThe rest of your gear slips happily over top of it, hiding most of the straps from view.");
+		
+		// We're gonna forcibly change the players equipped item- if the players inventory is full, they should get an opportunity
+		// to decide what they're gonna do from there.
+		equipItem(new MagneticHarness());
 	}
 	else
 	{

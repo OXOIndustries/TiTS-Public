@@ -6688,6 +6688,15 @@
 		public function hasKeyItem(keyName: String): Boolean {
 			return hasStorageName(keyItems, keyName);
 		}
+		public function getKeyItem(keyName:String):StorageClass
+		{
+			var r:Array = keyItems.filter(function(elem:StorageClass, i:int, a:Array):Boolean {
+				return (elem as StorageClass).storageName == keyName;
+			});
+			
+			if (r.length > 0) return r[0];
+			return null;
+		}
 		//General function.
 		public function hasStorageName(array:Array, storageName: String): Boolean {
 			var counter: Number = array.length;
