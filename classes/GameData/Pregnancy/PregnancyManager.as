@@ -49,7 +49,7 @@
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
 		private static var _pregHandlers:Array;
-		private static var _debugTrace:Boolean = true;
+		private static var _debugTrace:Boolean = false;
 		
 		// System data functions
 		public static function insertNewHandler(pHandler:BasePregnancyHandler):void

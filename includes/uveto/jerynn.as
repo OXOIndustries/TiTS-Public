@@ -29,7 +29,9 @@ public function jerynnPetstuffLevel(inc:Boolean = false):int
 
 		if (flags["JERYNN_PETSTUFF_LEVEL"] > jerynnPetstuffMax()) flags["JERYNN_PETSTUFF_LEVEL"] = jerynnPetstuffMax();
 	}
-	return (flags["JERYNN_PETSTUFF_LEVEL"] == undefined ? 0 : flags["JERYNN_PETSTUFF_LEVEL"]);
+	var val:int = (flags["JERYNN_PETSTUFF_LEVEL"] == undefined ? 0 : flags["JERYNN_PETSTUFF_LEVEL"]);
+	trace("Petstuff Level:", val);
+	return val;
 }
 
 public function hasJerynnsCollar():Boolean
@@ -1185,7 +1187,7 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	else
 	{
 		output("\n\n<i>“Yesssss,”</i> Jerynn hisses. <i>“You’re just the perfect fucking size for a");
-		if (!pc.isSubby() && jerynnPetstuffLevel() < jerynnPetstuffMax()) output(" passenger, friend");
+		if (!pc.isSubby() || !jerynnIsMistress()) output(" passenger, friend");
 		else output(" cock cozy, pet");
 		output(". Congratulations.”</i>");
 	}
@@ -1317,6 +1319,8 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	clearOutput();
 	showJerynn();
 
+	trace("Her Place");
+	
 	if (jerynnPetstuffLevel() == 0)
 	{
 		output("She’s");
@@ -1455,6 +1459,8 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 
 public function jerynnPetstuffHerPlacePostShopping():void
 {
+	trace("Her place, post shopping");
+	
 	clearOutput();
 	showJerynn(true);
 
@@ -1498,6 +1504,8 @@ public function jerynnPetstuffHerPlacePostShopping():void
 
 public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 {
+	trace("Cleanup");
+	
 	clearOutput();
 	showJerynn(true);
 
@@ -1539,7 +1547,7 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 	else if (jerynnPetstuffLevel() <= 5) output(" safe if a little confused.");
 	else output(" and you make your way back to the icy cold streets of Irestead, still sore but glad to be safe.");
 
-	if (!isLemmeOut) jerynnPetstuffLevel(true);
+	if (!isLemmeOut || jerynnPetstuffLevel() == 0) jerynnPetstuffLevel(true);
 	processTime(15 + rand(15));
 
 	currentLocation = "UVI N30";
@@ -1552,6 +1560,8 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 
 public function jerynnPetstuffSleepingOver():void
 {
+	trace("Sleepover");
+	
 	clearOutput();
 	showJerynn(true);
 
@@ -1812,6 +1822,8 @@ public function jerynnPetstuffVoice(compOpts:Array):void
 
 public function jerynnPetstuffWakeUp(responses:Object):void
 {
+	trace("Wake up");
+	
 	clearOutput();
 	showJerynn(true);
 
@@ -2078,6 +2090,8 @@ public function jerynnPetstuffNoOptIn():void
 
 public function jerynnPetstuffLongWalk():void
 {
+	trace("Long Walk");
+	
 	clearOutput();
 	showJerynn();
 
@@ -2138,6 +2152,8 @@ public function jerynnPetstuffLongWalk():void
 
 public function jerynnPetstuffBar():void
 {
+	trace("Bar");
+	
 	clearOutput();
 	showJerynn();
 
@@ -2248,6 +2264,8 @@ public function jerynnPetstuffBar():void
 
 public function jerynnPetstuffNightWithJerome():void
 {
+	trace("Night with jerome");
+	
 	clearOutput();
 	showJerynn(true);
 
