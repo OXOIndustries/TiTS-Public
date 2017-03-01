@@ -201,7 +201,7 @@ public function buskyTalkNavigation(activeTopic:Function = undefined):void {
 	
 	if(activeTopic == buskyTalksAboutTenTonGym) addDisabledButton(3, "TenTonGym", "Ten Ton Gym", "You just spoke about that.");
 	if(flags["BUSKY_TALKED_ABOUT_TREATMENT"]) addButton(3, "TenTonGym", buskyTalksAboutTenTonGym, undefined, "Ten Ton Gym", "Ask about the gym next door.");
-	else addDisabledButton(3, "TenTonGym", "Ten Ton Gym", "Maybe you should ask him about the Gym first.");
+	else addDisabledButton(3, "TenTonGym", "Ten Ton Gym", "Maybe you should ask him about the Treatment first.");
 	
 	if(activeTopic == buskyTalksAboutModeling) addDisabledButton(4, "Model", "Model", "You just spoke about that.");
 	if(flags["BUSKY_TALKED_ABOUT_STRAPS"]) addButton(4, "Model", buskyTalksAboutModeling, undefined, "Model", "Request the bull to model an article of clothing for you.");
@@ -269,6 +269,7 @@ public function buskyTalksAboutTreatment():void {
 
 	output("\n\n<i>“A Faux-Cow is a male who took The Treatment, but lost muscle mass, and masculine traits. They also tend to be much more submissive, however they’re still male. Hence the ‘Faux’. And since I was so, er, close with the football team, and I had the same build the old quarterback had, I was the best choice for a replacement.");
 	if(pc.femininity <= 40) output(" It also helped me relieve them after practice. Poor boys were always so pent up, I had to take care of them in the showers just to wash it all away.");
+	output("”</i>");
 	
 	output("\n\n<i>“Nowadays if I’m not here in the shop I’m at the gym, bulking up");
 	if(pc.femininity <= 40) output(", taking nostalgic showers if you know what I mean,");
@@ -495,11 +496,11 @@ public function buskySexChestWorship(modelingItem:*):void {
 	output("Leaning back in your chair, you admire the performance Busky’s providing, flaunting his chiseled body for your pleasure. Flexing his arms, running his fingers along his perfectly defined pecs giving them a hard squeeze, your own personal exotic dancer. He slips one hand down to his crotch, giving his groin a decent shake as he plays with a nipple. You let out a small round of applause, clearly wanting more.");
 	
 	output("\n\nBusky just smiles and says, <i>“I think I’m going to make myself more comfortable,”</i> as he proceeds to strip off his top. With even the slightest movement, you can almost see his muscle fibers at work, dancing under his skin as he tosses away the");
-	if (modelingItem == null) output(" undershirt");
 	if (modelingItem is CornyTShirt) output(" T-shirt");
-	if (modelingItem is CowPrintedShirt) output(" cow printed shirt");
-	if (modelingItem is FishnetTop) output(" fishnet top");
-	if (modelingItem is Harness) output(" black, leather harness");
+	else if (modelingItem is CowPrintedShirt) output(" cow printed shirt");
+	else if (modelingItem is FishnetTop) output(" fishnet top");
+	else if (modelingItem is Harness) output(" black, leather harness");
+	else output(" undershirt");
 	output(" that he was wearing. Even though he has his jock on, you can clearly see the outline of his New Texan package. His conditioning is obscene, the peak of human perfection. It takes you a few seconds to realize that you haven’t taken a breath since he tore off his top. You slowly regain your breath through pants, reflecting your growing arousal.");
 	
 	output("\n\nThe ripped bull has what looks to be a waist that is no bigger than 25”</i>. Not only that, his six-pack is extremely defined, his abdominal muscles forming deep ridges in his stomach. The hulking bull seems to enjoy having an audience, his blood clearly rushing south.");
@@ -1186,10 +1187,12 @@ public function buskyModelsClothingItem(item:*):void {
 	
 		output("\n\nThe cloth of the fabric seemed to flow smoothly, just barely tight enough around the waist, and then baggy and loose everywhere else. The boxers themselves are white, with images of bronze horseshoes scattered around.");
 		
-		output("\n\n<i>“Anyway, they’re really comfy, especially if your boys need to breathe,”</i> he says he readjusts his quartet of grapefruit sized balls. <i>“Oh, and the ultra-elastic is extremely durable.");
-		if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1){
-			output(" <i>“Oh and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.”</i>");
+		output("\n\n<i>“Anyway, they’re really comfy, especially if your boys need to breathe,”</i> he says he readjusts his quartet of grapefruit sized balls.");
+		if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1) {
+			output(" Oh, and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.");
 		}
+		else output(" Oh, and the ultra-elastic is extremely durable.");
+		output("”</i>");
 		
 		output("\n\nYou look the boxers over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");	
 		
@@ -1197,7 +1200,7 @@ public function buskyModelsClothingItem(item:*):void {
 		flags["BUSKY_MODELLED_HORSESHOEBOXERS"] = true;
 		
 		if(pc.isTaur() || !pc.hasCockOrStrapOrClit()) addDisabledButton(1, "Tease&Denial", "Tease ‘n’ Denial", "Requires a cock, a large enough clit or a strapon. You can’t be a Taur either.");
-		else addButton(1, "Tease&Denial", buskySexTeaseAndDenial, item, "Tease ‘n’ Denial", "Go for a round of teasing, including anilingus, nipple play, and asshole prodding.");
+		else addButton(1, "Tease&Denial", buskySexTeaseAndDenial, item, "Tease ‘n’ Denial", "Go for a round of teasing, including analingus, nipple play, and asshole prodding.");
 		
 		//show only when sexed Busky - uncomment when prePocket mechanic added
 		//if(flags["BUSKY_SEXED_COUNT"] > 0) addButton(1, "PrePocket", buskytalksAboutPrePocket, item, "PrePocket", "Ask Busky about adding a PrePocket.");
@@ -1228,11 +1231,14 @@ public function buskyModelsClothingItem(item:*):void {
 	} else if(item is MaleTights) {
 		output("<i>“Sorry, er, not much space in these things,”</i> he says as he picks at the pants, trying to redirect pressure elsewhere. Embarrassed, he turns around. giving you a clear view of his muscular, perfectly toned ass, as he tries to tuck away his massive member.");
 		output("\n\nBusky throws his arms up in frustration as he turns around. <i>“I give up. I don’t even know why I have these in stock. Anyway, stare as much as you’d like, you wanted me to model it anyway. They’re not too different from your standard briefs. Just longer and better for the winters, but we don’t get those in New Texas anyway. The ultra-elastic is extremely durable.");
-		if (!flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1){
-			output(" <i>“And they can some with a little enhancement I’ve invented. I call it Pre Pocket. I can go into the details if you want, or you can just buy the tights as is.”</i>");
+		/*
+		if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] != true && flags["BUSKY_SEXED_COUNT"] >= 1){
+			output(" And they can some with a little enhancement I’ve invented. I call it Pre Pocket. I can go into the details if you want, or you can just buy the tights as is.");
 		} else if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1){
-			output(" <i>“Oh and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.”</i>");
+			output(" Oh, and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.");
 		}
+		*/
+		output("”</i>");
 		output("\n\nYou look the tights over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");
 		
 		if (flags["BUSKY_MODELLED_MALETIGHTS"] == undefined) buskyAdjustAffection(0.5);
@@ -1246,11 +1252,14 @@ public function buskyModelsClothingItem(item:*):void {
 		output("<i>“As you can see, I’m already wearing one,”</i> Busky states as he turns 360°, giving you a nice view of his ass and crotch. Busky’s junk stayed put, barely moving as he tried wiggling his massive slab of cockmeat.");
 		output("\n\n<i>“These babies provide simply the best in support, especially when you’re working out, in the gym or in bed. Generally us bulls have to worry about our balls flopping everywhere when we’re trying to look our best, but these things make that a trivial matter. They’re actually a popular choice for bulls to wear outside of the gym. Personally, I’m either wearing a jockstrap or nude.”</i>");
 		if (pc.femininity <= 40) output("\n\nBusky pauses for a moment. <i>“Or, when I have somebody over. I have such a large stock, I can satisfy many kinks.”</i> He emphasizes the <i>“stock”</i>. You can’t tell if he’s hitting on you, or just bragging about his quartet of grapefruit size balls.");
-		if (!flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1){
-			output("\n\n<i>“And they can some with a little enhancement I’ve invented. I call it Pre Pocket. I can go into the details if you want, or you can just buy the jockstrap as is.”</i>");
+		/*
+		if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] != true && flags["BUSKY_SEXED_COUNT"] >= 1){
+			output(" And they can some with a little enhancement I’ve invented. I call it Pre Pocket. I can go into the details if you want, or you can just buy the jockstrap as is.");
 		} else if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1){
-			output("\n\n<i>“Oh and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.”</i>");
+			output(" Oh, and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.");
 		}
+		*/
+		output("”</i>");
 		
 		output("\n\nYou look the jockstrap over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");
 		
@@ -1263,17 +1272,21 @@ public function buskyModelsClothingItem(item:*):void {
 	//model cow print shirts	
 	} else if(item is CowPrintedShorts) {
 		output("<i>“Cow print, eh? I’ll be quick,”</i> Busky ducks into the changing room, quickly changing from his jockstrap. In under a minute he emerges out of the room adjusting the waistband of the shorts.");
-		output("\n\n<i>“They’re pretty damn comfy,”</i> the bull smirks as he grabs his crotch through the baggy fabric. Tons of space");
-		if (pc.femininity <= 40) output(" for an under the cloth handjob.”</i>");
-		else output(" too.”</i>");
+		output("\n\n<i>“They’re pretty damn comfy,”</i> the bull smirks as he grabs his crotch through the baggy fabric. <i>“Tons of space");
+		if (pc.femininity <= 40) output(" for an under the cloth handjob.");
+		else output(", too.");
+		output("”</i>");
 		output(" The cloth of the fabric seems to flow smoothly, just barely tight enough around the waist, and then baggy and loose everywhere else. The shorts themselves are white, with a couple patches of black scattered around, emulating a cow’s hide.");
 		
 		output("\n\n<i>“Anyway, they’re really roomy, great if your boys need to breathe,”</i> he says as he readjusts his quartet of grapefruit sized balls. <i>“Oh, and the ultra-elastic is extremely durable.");
-		if (!flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1){
-			output(" <i>“And they can some with a little enhancement I’ve invented. I call it Pre Pocket. I can go into the details if you want, or you can just buy the tights as is.”</i>");
+		/*
+		if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] != true && flags["BUSKY_SEXED_COUNT"] >= 1){
+			output(" And they can some with a little enhancement I’ve invented. I call it Pre Pocket. I can go into the details if you want, or you can just buy the tights as is.");
 		} else if (flags["BUSKY_TALKED_ABOUT_PREPOCKET"] == true && flags["BUSKY_SEXED_COUNT"] >= 1){
-			output(" <i>“Oh and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.”</i>");
+			output(" Oh, and don’t forget about Pre Pocket, that’s always an option. If you need a refresher, just ask.");
 		}
+		*/
+		output("”</i>");
 		
 		if (flags["BUSKY_MODELLED_COWPRINTEDSHORTS"] == undefined) buskyAdjustAffection(0.5);
 		flags["BUSKY_MODELLED_COWPRINTEDSHORTS"] = true;
