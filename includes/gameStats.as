@@ -5888,9 +5888,9 @@ public function displayEncounterLog(showID:String = "All"):void
 	output2("\n\n");
 }
 
-private function listCharGenitals(charName:String = ""):String
+public function listCharGenitals(charName:String = ""):String
 {
-	if(charName == "" || chars[charName] == null) return "<i>Data unknown.</i>";
+	if(charName == "" || chars[charName] == null) return "<i>Data unknown</i>";
 	
 	var txt:String = "";
 	
