@@ -1281,7 +1281,7 @@ public function jerynnUnderslungShareIV():void
 		}
 		else
 		{
-			addDisabledButton(0, "Lemme Out", "Lemme Out", "You can't bring yourself to refuse her offer...");
+			addDisabledButton(0, "Lemme Out", "Lemme Out", "You can’t bring yourself to refuse her offer...");
 		}
 		
 		var tarF:Function;
@@ -1298,7 +1298,7 @@ public function jerynnUnderslungShareIV():void
 			default: case 7: tarF = jerynnPetstuffBar; break;
 		}
 
-		addButton(1, "More Pls", tarF, undefined, "More Please", silly ? "Mr Bones wild ride never ends...." : "The ride doesn't have to end....");
+		addButton(1, "More Pls", tarF, undefined, "More Please", silly ? "Mr Bones wild ride never ends...." : "The ride doesn’t have to end....");
 	}
 	else
 	{
