@@ -576,6 +576,8 @@ public function uvetoFallToColdDamage():void
 		{
 			output(" You gotta stop wandering around outside town, [pc.name]!”</i> Luna chides.");
 		}
+		
+		if (!(flags["UVETO_LUNA_RESCUES"] is Number)) flags["UVETO_LUNA_RESCUES"] = undefined;
 		IncrementFlag("UVETO_LUNA_RESCUES");
 		
 		output("\n\nYou groan a hazy acknowledgement, but already you can feel your eyes growing heavy once more. It isn’t long before the gentle rocking of the Peacekeeper’s truck and the soothing warmth of the heater put you back to sleep...");
@@ -601,6 +603,7 @@ public function uvetoFallToColdDamage():void
 		
 		output("\n\nYou let your eyes drift closed, falling back into fitful slumber amidst the frozen tundra....");
 		
+		if (!(flags["UVETO_JEROME_RESCUES"] is Number)) flags["UVETO_JEROME_RESCUES"] = undefined;
 		IncrementFlag("UVETO_JEROME_RESCUES");
 
 		rescuer = "Jerome";
@@ -608,7 +611,11 @@ public function uvetoFallToColdDamage():void
 	}
 	else if (InRoomWithFlag(GLOBAL.FROZENTUNDRA))
 	{
+		if (!(flags["UVETO_JERYNN_RESCUES"] is Number)) flags["UVETO_JERYNN_RESCUES"] = undefined;
+		
 		if (jerynnRescuesYourFrozenAss()) return;
+		
+		rescuer = "Jerynn";
 	}
 
 	//[Next] // Awaken in the medical center
@@ -652,7 +659,7 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	
 	output("\n\n<i>“You really must be more careful [pc.name].");
 	output(" If a storm were to have broken out");
-	//If the storm had been any worse}
+	//output(" If the storm had been any worse");
 	output(" then "+ rescuer +" may not have been lucky enough to find you in time.”</i>");
 	
 	output("\n\nThe V-Ko almost sounds like it’s trying to admonish a child with the way it’s talking to you -");

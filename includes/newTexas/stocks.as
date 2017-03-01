@@ -121,7 +121,7 @@ public function useMiscreantManor2():void
 		else output("to sell some overpriced crap to these yokels.");
 		output("”</i>");
 		output("\n\nThe ecstatic raccoon-woman hitches up the edge of her dress, revealing her sheath a split-second before big, fat cock starts oozing out of it. The rich musk of her maleness fills the air as she shifts her hips forward to press the swelling tip of her dick against your cheek. Its fat, blunted tip bulges wider and harder with every beat of Kiro’s thumping heart, laying down a ribbon of pre across your face by the time it finishes growing.");
-		output("\n\n<i>“This... this is going in your cunt. You know that right?”</i> She grabs it in both hands, as if it’s two large to wrangle with just one, and drums it playfully against your lips. <i>“And lucky me, I get first dibs. Every bull and blowhard that wanders out here is going to have to settle for sloppy seconds... or thirds...”</i> Kiro pivots on her heel and prowls around you");
+		output("\n\n<i>“This... this is going in your cunt. You know that right?”</i> She grabs it in both hands, as if it’s too large to wrangle with just one, and drums it playfully against your lips. <i>“And lucky me, I get first dibs. Every bull and blowhard that wanders out here is going to have to settle for sloppy seconds... or thirds...”</i> Kiro pivots on her heel and prowls around you");
 		if(!pc.isCrotchExposed()) output(", working you out of your [pc.lowerGarments] as she goes");
 		output(". <i>“All this ass...”</i> She flops her dick on your back and pulls your cheeks apart, letting her dick bubble pre-cum into your crack. <i>“...and you’re just hanging it out on her on display.”</i>");
 		output("\n\nThe ecstatic kui-tan kneads your butt a little longer, letting her dick slide down... and down... until the pudgy equine cock-tip is lined up with your ");
@@ -150,13 +150,13 @@ public function useMiscreantManor2():void
 		output("\n\n<i>“This is going in your pussy, rich-bitch, and everyone that fucks you after is going to know it from the way you gape.”</i> ");
 		if(flags["MET_ZEPHYR"] == undefined) output("Zephyr");
 		else output("the dick-toting bitch");
-		output(" slaps your cheek playfully as she prowls around you, skirting the wood posts to get in position. <i>“");
-		if(!pc.isCrotchExposed()) output("Clothing? You’re even stupider than you look.”</i> A hand strong enough to break you in half rips your [pc.lowerGarments] clean off you.");
-		else output("No clothes?”</i> Maybe you’re smarter than you look.”</i> A hand strong enough to break you in half slaps your ass, nearly bowling you over.");
-		output("\n\nThen her cock is inside you. Not just part of the way either. She thrusted in with one powerful thrust, splitting you open and nestling her bone in all the way to the root. You can feel the thickness of her knot spreading your folds wide, promising to split you in half when she finally orgasms. Thigh muscles flex against your [pc.legs], and she pulls it back, giving you a moment’s respite before she pounds inside hard enough to squeeze the breath from your lungs.");
+		output(" slaps your cheek playfully as she prowls around you, skirting the wood posts to get in position.");
+		if(!pc.isCrotchExposed()) output(" <i>“Clothing? You’re even stupider than you look.”</i> A hand strong enough to break you in half rips your [pc.lowerGarments] clean off you.");
+		else output(" <i>“No clothes? Maybe you’re smarter than you look.”</i> A hand strong enough to break you in half slaps your ass, nearly bowling you over.");
+		output("\n\nThen her cock is inside you. Not just part of the way either. She thrusted in with one powerful thrust, splitting you open and nestling her bone in all the way to the root. You can feel the thickness of her knot spreading your folds wide, promising to split you in half when she finally orgasms. Thigh muscles flex against your [pc.legOrLegs], and she pulls it back, giving you a moment’s respite before she pounds inside hard enough to squeeze the breath from your lungs.");
 		pc.cuntChange(x,600);
 		output("\n\nYou cry out, not in pleasure, not in pain, but something between. Zephyr doesn’t let that stop her, however. She pounds in and out with quick, firm strokes hard enough to make your rubber restraints flex and twist. Hard enough to make you whimper at your own helpless arousal. Despite the brutal pussy plowing, on some level your body is getting off on it, juicing at the prospect of more hard fucking");
-		if(pc.vaginas[x].wetness() >= 3) output(", puddling arousal on the wood between your legs");
+		if(pc.vaginas[x].wetness() >= 3 && pc.legCount > 1) output(", puddling arousal on the wood between your [pc.legs]");
 		output(".");
 		output("\n\nWhen a figure approaches in the distance, you can’t stop yourself from continuing to cry out. You can’t even suppress the whorish lilt of your voice. All you can do is hope that the newcomer will fuck you every bit as well as ");
 		if(flags["MET_ZEPHYR"] != undefined) output("Zephyr");
@@ -444,7 +444,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output("\n\nAnd that’s just the beginning. Kiro’s heavy balls jiggle against your [pc.thighs] as they begin to contract, forcing greater volumes of virile frosting into a body that was never designed to expand quite so quickly outside of pregnancy. Your [pc.belly] feels tighter and tighter as it swells");
 		if(!pc.hasFur() && !pc.hasFeathers() && !pc.hasChitin() && !pc.hasScales()) output(", the [pc.skin] turning glossy and stretched");
 		output(" in the span of a few seconds. Still, Kiro keeps climaxing and slapping your ass, letting the pressure build so high that her massive flare is finally forced to give way.");
-		output("\n\nStreamers of jism fountain back against the tanuki-like alien, bathing her balls in her own ridiculous sexuality. The cum is everywhere. It sloughs down your [pc.legs] and splatters noisily against the wooden planks. It sounds almost like there’s a farmer there, dumping out bucketfuls of milk. You shudder, shamed at being used so publicly and simultaneously aroused by the idea of bathing your eggs in so much hyper-potent sperm.");
+		output("\n\nStreamers of jism fountain back against the tanuki-like alien, bathing her balls in her own ridiculous sexuality. The cum is everywhere. It sloughs down your [pc.legOrLegs] and splatters noisily against the wooden planks. It sounds almost like there’s a farmer there, dumping out bucketfuls of milk. You shudder, shamed at being used so publicly and simultaneously aroused by the idea of bathing your eggs in so much hyper-potent sperm.");
 		output("\n\nKiro gasps when her prodigious flow finally slows. <i>“Just what we both needed, I think.”</i> She pats your reddening ass with a grin and pulls out, releasing a second tide of warm white, allowing your straining middle to partially deflate.");
 		output("\n\nPart of you misses the feeling already.");
 		pc.loadInCunt(chars["KIRO"], x);
@@ -624,7 +624,7 @@ public function stocksMouthgasms(args:Array):void
 		output("\n\nYou aren’t sure how, but you can smell that the farmer fucking your mouth is about to orgasm.");
 		if(pc.isTreated()) output(" Must be a Treated instinct, you surmise. Your intuitive understanding of all things sexual is always a pleasant surprise to you, like you’ve got extra-sense... extra-sweet per... extra-sweet pillows. Yeah, your cock-pillows are just about to make this guy cream.");
 		else output(" There’s just something about the rich aroma of his pubes that reaches into your nose and tweaks your [pc.clits], begging you to start ovulating. New Texans truly are the masters of inaudible communication.");
-		output(" Pucking up, you drag your bleary eyes open and try to meet the <i>man’s</i> gaze.");
+		output(" Puckering up, you drag your bleary eyes open and try to meet the <i>man’s</i> gaze.");
 		output("\n\nHis eyes nearly cross from the smoky look you just flashed, and his cock seems to double in girth in an instant, transitioning from mere phallic firmness into diamond-hard fuck-tool. <i>“Hold onto yer horse!”</i> the yokel grunts, half-chuckling, <i>“’Cause he’s about to cum!”</i>");
 		output("\n\nThrusting deep, the farmer plows so far into your mouth that you can’t even taste the spunk he’s jetting out. You’re forced to feel it in the way his urethra bulges on your tongue and in the warm, healthy gurgles coming from your stomach. He cums and cums, but as the orgasm drags on, he pulls back, finally allowing you savor the salty ambrosia. He’s even courteous enough pop his still-spurting dick out of your insatiable lips and paint a thick layer of bull-boy bliss across your features, showing everyone exactly how good of a cock-sucker you are.");
 		output("\n\nStars, these hicks know how to live! Just when you’re sure that another drop of jism couldn’t possibly fit on your face, he slaps his cock back onto your tongue, letting you gratefully swallow the last few pulses of your reward.");
