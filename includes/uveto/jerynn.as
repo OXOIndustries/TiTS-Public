@@ -24,8 +24,8 @@ public function jerynnPetstuffLevel(inc:Boolean = false):int
 	if (inc)
 	{
 		trace("Increasing Petstuff Level!");
-		if (flags["JERYNN_PETSTUFF_LEVEL"] == undefined) flags["JERYNN_PETSTUFF_LEVEL"] = 1;
-		else flags["JERYNN_PETSTUFF_LEVEL"]++;
+		if (flags["JERYNN_PETSTUFF_LEVEL"] == undefined) flags["JERYNN_PETSTUFF_LEVEL"] = 0;
+		flags["JERYNN_PETSTUFF_LEVEL"]++;
 
 		if (flags["JERYNN_PETSTUFF_LEVEL"] > jerynnPetstuffMax()) flags["JERYNN_PETSTUFF_LEVEL"] = jerynnPetstuffMax();
 	}
@@ -55,7 +55,7 @@ public function hasJerynnsHarness():Boolean
 
 public function isWearingJerynnsHarness():Boolean
 {
-	return ((pc as PlayerCharacter).armor is MagneticHarness);
+	return ((pc as PlayerCharacter).upperUndergarment is MagneticHarness);
 }
 
 public function jerynnPetstuffMax():int
@@ -970,10 +970,13 @@ public function jerynnUnderslungShare():void
 	if (jerynnPetstuffLevel() < jerynnPetstuffMax()) output(" quite so easily");
 	output(".");
 
-	output("\n\n<i>“Come on, get all that soaked shit off.”</i> She rummages around in one of the packs flanking her body, quickly extracting a curious arrangement of straps.");
+	output("\n\n<i>“Come on, get all that soaked shit off.”</i>");
 	if (!isWearingJerynnsHarness())
 	{
-		output("\n\n<i>“You’ll need this on instead. Make sure you stay nice and </i>secure<i>.”</i> You simply look at her, confused as to what the contraption is supposed to achieve.");
+		output(" She rummages around in one of the packs flanking her body, quickly extracting a curious arrangement of straps.");
+		
+		output("\n\n<i>“You’ll need this on instead. Make sure you stay nice and </i>secure<i>.”</i>");
+		if (jerynnPetstuffLevel() == 0) output(" You simply look at her, confused as to what the contraption is supposed to achieve.");
 
 		output("\n\nWith a huff she throws the things at you, leaving you to handle the nitty gritty yourself. Given the circumstance, your need for survival pushes you to accept that they’re a requisite for staying safe and getting out of here.");
 
@@ -1187,7 +1190,7 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 	else
 	{
 		output("\n\n<i>“Yesssss,”</i> Jerynn hisses. <i>“You’re just the perfect fucking size for a");
-		if (!pc.isSubby() || !jerynnIsMistress()) output(" passenger, friend");
+		if (!pc.isSubby() && !jerynnIsMistress()) output(" passenger, friend");
 		else output(" cock cozy, pet");
 		output(". Congratulations.”</i>");
 	}
@@ -1381,7 +1384,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	else output(" pussy");
 	output(", a gush of still hot spunk jetting out of you after it. Inch after inch of half-rigid cock follows the knot, leaving an odd hollow in its wake, more jizz oozing from your well-fucked passage.");
 
-	if (jerynnPetstuffLevel() < 4)
+	if (jerynnPetstuffLevel() < 4 || isLemmeOut)
 	{
 		output("\n\nAfter what feels like miles of dragon-dick has been removed from your interior, Jerynn rolls you over onto your back, cold tiles supporting your weight. Looking up you can clearly make out a collection of shower heads around you, and soon, they’re busy spraying glorious, soothing, steamy water all over. With your gut slowly draining and the hot water washing away all the sticky, sweaty horribleness caked over your body, Jerynn moves around you, undoing the final parts of the harness. Your knees and elbows finally free you just flop against the floor, exhausted but immensely satisfied, content to simply lie there and soak in the heat of the shower.");
 		
@@ -1392,7 +1395,14 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 	}
 	else
 	{
-		output("\n\nA flash of darkness passes over your vision before something tightens around your neck. You look to the mirror and spot a long rope of chain still clutched in the taurs hand, leading down towards your head. You crane your neck and see a thick collar of the same style as the harness still restraining your arms and legs cinched tight around it.");
+		if (!isWearingJerynnsCollar())
+		{
+			output("\n\nA flash of darkness passes over your vision before something tightens around your neck. You look to the mirror and spot a long rope of chain still clutched in the taurs hand, leading down towards your head. You crane your neck and see a thick collar of the same style as the harness still restraining your arms and legs cinched tight around it.");
+		}
+		else
+		{
+			output("\n\nA flash of darkness passes over your vision before the sound of something snapping closed accompanies an increased weight around your neck. You look to the mirror and spot a long rope of chain still clutched in the taurs hand, leanding down towards your head. You crane your neck and see the end of the chain is latched securly to the thick collar around your neck.");
+		}
 		if (jerynnPetstuffLevel() == 4) output(" Now there’s a little silver disc hanging from the front of it, stamped simply with three letters; P-E-T.");
 
 		output("\n\n<i>“Now, you’re going to be a good "+ pc.catDog("kitty", "puppy") +" for Mistress Jerynn now, aren’t you? The least you can do for her rescuing you from the nasty cold is to indulge her, right?”</i>");
@@ -1417,7 +1427,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 
 		output("\n\nIt’s thick and cloying, musky. A spice to it that hides the usually salty tang. The taur watches over you closely, occasionally directing you to eat more ‘pet-like’. By the time the bowl is nearly empty, you’re lapping at it like a "+ pc.catDog("cat", "dog") +", scooping big blobs of it up with your [pc.tongue] and pulling it back into your mouth.");
 
-		if (jerynnPetstuffLevel() != 4)
+		if (jerynnPetstuffLevel() == 4 || isLemmeOut)
 		{
 			output("\n\n<i>“Good [pc.boy]! Now, let’s get cleaned up so you can have a rest, I’m sure you’re tired as fuck.”</i>");
 
@@ -1426,7 +1436,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 			processTime(20);
 			
 			clearMenu();
-			addButton(0, "Next", jerynnPetstuffCleanup);
+			addButton(0, "Next", jerynnPetstuffCleanup, isLemmeOut);
 		}
 		else
 		{
@@ -1482,17 +1492,13 @@ public function jerynnPetstuffHerPlacePostShopping():void
 	output("\n\n<i>“Good [pc.boy]! Now, let’s get cleaned up so you can have a rest, I’m sure you’re tired as fuck.”</i>");
 	
 	output("\n\nShe fires up the shower heads and they’re soon spraying glorious, soothing, steamy water all over. You’re content to simply kneel there and allow the heat to diffuse into you, finally properly excising the cold from your bones as the sweaty horribleness caked over your body is washed away.");
-	if (jerynnPetstuffLevel() != 6)
+	if (!hasJerynnsCollar())
 	{
 		output(" She moves around you, undoing the harness from your arms and legs, but leaves the collar in place.");
-		
-		if (!hasJerynnsCollar())
-		{
-			pc.createKeyItem("Jerynn’s Collar", 1, 0, 0, 0, "A thick leather band, designed to cinch tightly yet comfortably around your neck.");
-		}
+		pc.createKeyItem("Jerynn’s Collar", 1, 0, 0, 0, "A thick leather band, designed to cinch tightly yet comfortably around your neck.");
 
 		clearMenu();
-		addButton(0, "Next", jerynnPetstuffCleanup);
+		addButton(0, "Next", jerynnPetstuffCleanup, false);
 	}
 	else
 	{
@@ -1522,12 +1528,9 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 	if (jerynnPetstuffLevel() == 4)
 	{
 		output("\n\nShe points you to her packs and you make with retrieving all of your gear. Tucked under your stuff is a little parcel intended for you, PET simply written across the top of it. Inside is a modified version of the harness you’ve become intimately familiar with whilst under the taur; each of the magnetic clasps has a tiny status light hidden on the corner, all of them dim. You slip it on automatically and you realise it’s sized perfectly for you, your suspicions about the clasps confirmed when you bend your arm double but the tell-tale smack of the clasps locking together is absent.");
-
-		output("\n\nThe rest of your gear slips happily over top of it, hiding most of the straps from view.");
 		
-		// We're gonna forcibly change the players equipped item- if the players inventory is full, they should get an opportunity
-		// to decide what they're gonna do from there.
-		equipItem(new MagneticHarness());
+		output("\n\nYou slip the garment back off for later and don the rest of your gear. ");
+		quickLoot(new MagneticHarness());
 	}
 	else
 	{
@@ -1573,7 +1576,20 @@ public function jerynnPetstuffSleepingOver():void
 	output("\n\nJerynn props her upper body up in one of the corners, easily tall enough to lean on the outside edge of it. She pats the mattress in front of her and you take that as an order, struggling to get your limbs under you on the soft surface; you make it, with something of a struggle that the taur finds hilarious, laughing to herself at your misfortune.");
 
 	output("\n\n<i>“Good [pc.boy],”</i> she praises, and you beam in response. Even [pc.barkMeow].");
-
+	
+	if (flags["JERYNN_PETSTUFF_OPTIN_OFFERED"] != undefined)
+	{
+		output("\n\n<i>“No more talkin’, I’m tired, you’re tired, long day. Come on,”</i> she suggests, a hand rubbing against her flank as an invitation.");
+		
+		output("\n\nYou hadn’t noticed but your body does feel exhausted. You’re curled up under Mistress’s underbelly before you’ve even had chance to think, her thick tail lazily curling all around you.");
+		
+		clearMenu();
+		addButton(0, "Next", jerynnPetstuffWakeUp, null);
+		return;
+	}
+	
+	flags["JERYNN_PETSTUFF_OPTIN_OFFERED"] = 1;
+	
 	output("\n\nThe leash comes unclipped from your collar and left on the high-ground, out of your reach. She leans a bit further and a dataslate returns in her grasp, a few seconds of idle taps against it and a large screen bursts into life, almost entirely filling the wall facing her. Various shows are indexed down the side, but the main view is full of galnet browsers; she’s flipping through them and pulls out one for a food delivery service here in Irestead. The others, though, really capture your attention. A few pharmaceutical companies, all of them specialising in transformatives... some clothing outlets, mostly specialising in garments fit for the tauricly-abled.... One window really catches your eye though; a forum dedicated to pet-play fetishism. Not surprising, really.");
 
 	output("\n\nWhat does draw your attention though are the few child windows connected to it; things Mistress is obviously keeping a close eye on. There’s one specifically about training tips. Another focuses on physical modifications and equipment. The one at the top of the list really stands out though, discussing the legalities of owning a sapient pet.");
@@ -1842,10 +1858,13 @@ public function jerynnPetstuffWakeUp(responses:Object):void
 	
 	output("\n\n<i>“Good pet, very good,”</i> Mistress Jerynn chuckles, obviously pleased with your performance.");
 
-	flags["JERYNN_RESPONSE_LIKED"] = responses.liked;
-	flags["JERYNN_RESPONSE_LIMBS"] = responses.limbs;
-	flags["JERYNN_RESPONSE_SKIN"] = responses.skin;
-	flags["JERYNN_RESPONSE_VOICE"] = responses.voice;
+	if (responses != null)
+	{
+		flags["JERYNN_RESPONSE_LIKED"] = responses.liked;
+		flags["JERYNN_RESPONSE_LIMBS"] = responses.limbs;
+		flags["JERYNN_RESPONSE_SKIN"] = responses.skin;
+		flags["JERYNN_RESPONSE_VOICE"] = responses.voice;
+	}
 
 	var isOptIn:Boolean = (responses.liked != 2 && (responses.limbs != 0 || responses.skin >= 2 || responses.voice == 0 || responses.voice == 3));
 
@@ -2043,7 +2062,7 @@ public function jerynnPetstuffNoOptIn():void
 	
 	output("\n\nHer tail unclasps its hold on the harness and slithers up your back to carefully wrap around your neck. She uses the grip to manhandle your body into doing as she pleases, pulling you forward to free a few inches of her cock before reversing course, stuffing it back into you with abandon.");
 	
-	output("\n\n<i>“Then keep last night in mind, </i>pet<i>,”</i> she says between ragged breaths, nearing her tipping point. <i>“Sooner or later- hnnf- I’m going to have to take - fuck - take matters into my own hands for - hnng - <i>your<i> benefit, if not my own,”</i> she continues between grit fangs. <b>A stern tone underlines the true meaning of her words; a threat that, if she has to keep saving you as she is, then eventually she’s going to make sure you can’t put yourself in danger any longer.</b>");
+	output("\n\n<i>“Then keep last night in mind, </i>pet<i>,”</i> she says between ragged breaths, nearing her tipping point. <i>“Sooner or later- hnnf- I’m going to have to take - fuck - take matters into my own hands for - hnng - </i>your<i> benefit, if not my own,”</i> she continues between grit fangs. <b>A stern tone underlines the true meaning of her words; a threat that, if she has to keep saving you as she is, then eventually she’s going to make sure you can’t put yourself in danger any longer.</b>");
 	
 	output("\n\nThe taur’s pace redoubles, your");
 	if (!pc.hasVagina()) output(" [pc.ass]");
@@ -2164,7 +2183,7 @@ public function jerynnPetstuffBar():void
 
 	output("\n\nJerynn takes a few more steps before she sits back on on her rear legs, and what you think is her tail wraps under you and coils all over the bulge you’ve formed in her coat possessively. She sits, quietly, the background titters of people talking continue unabated, her tail lightly rubbing at you through the thick padding keeping you hidden from their eyes.");
 
-	if (jerynnPetstuffLevel() == 5)
+	if (jerynnPetstuffLevel() < 5)
 	{
 		output("\n\n<i>“Mead,”</i> you hear from above you. Is she- are you in the Freezer? Is she sitting down for a <i>drink</i>?");
 		
@@ -2188,9 +2207,10 @@ public function jerynnPetstuffBar():void
 		
 		output("\n\nShe stays sat for a couple more seconds, glugging the last of her drink loudly before making a move to stand back up and set off from the bar.");
 	}
-	else if (jerynnPetstuffLevel() == 6)
+	else if (jerynnPetstuffLevel() < 7 || (jerynnPetstuffLevel() == 8 && (flags["JERYNN_PETSTUFF_FLIPFLOP"] == 0 || flags["JERYNN_PETSTUFF_FLIPFLOP"] == undefined)))
 	{
-		IncrementFlag("JERYNN_BAR_TIMES");
+		if (jerynnPetstuffLevel() == 8) flags["JERYNN_PETSTUFF_FLIPFLOP"] = 1;
+		
 		output("\n\n<i>“Mead,”</i> you hear from above you. Back in the Freezer.");
 		
 		output("\n\nYou sit there, perched full of her knob, as quietly as you can. She’ll be done when she’s done, you reason, so you’ll just have to wait until she’s good and ready to move on. A good pet knows their place, after all.");
@@ -2227,6 +2247,8 @@ public function jerynnPetstuffBar():void
 	}
 	else
 	{
+		if (jerynnPetstuffLevel() == 8) flags["JERYNN_PETSTUFF_FLIPFLOP"] = 0;
+		
 		output("\n\n<i>“Mead,”</i> you hear from above you. Back in the Freezer.");
 		
 		output("\n\nYou sit there, perched full of her knob, as quietly as you can. She’ll be done when she’s done, you reason, so you’ll just have to wait until she’s good and ready to move on. A good pet knows their place, after all.");

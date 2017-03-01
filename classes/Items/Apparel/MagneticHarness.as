@@ -15,7 +15,7 @@
 
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.CLOTHING;
+			this.type = GLOBAL.UPPER_UNDERGARMENT;
 			
 			//Used on inventory buttons
 			this.shortName = "M.Harness";
