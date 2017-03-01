@@ -836,13 +836,13 @@ public function jerynnRescuesYourFrozenAss():Boolean
 		output("\n\nYou suck down an icy cold breath of air before trying to attract your rescuers attention, only to be rewarded with a lightning bolt of pain as your lungs complain - as more warmth seeps back into your body, the less numb everything feels... and the more pain seeps through.");
 		
 		output("\n\nYou let your eyes drift closed, falling back into fitful slumber amidst the frozen tundra....");
-		return false;
-
+		
 		IncrementFlag("UVETO_JERYNN_RESCUES");
 		flags["UVETO_JERYNN_RESCUE_LAST"] = days;
 		
-		rescuer = "Jerynn";
 		processTime(1440);
+		
+		return false;
 	}
 	else
 	{
@@ -939,7 +939,7 @@ public function jerynnUnderslungChanceIt():void
 	output("\n\nWith little to really protect you from the cold, it’s only minutes before you’re out again, surrendering to the frozen tundra. At least your frozen body won’t be left out here under");
 	// 9999
 	output(" a crystal clear sky");
-	// an angry, vengeful sky");
+	//output(" an angry, vengeful sky");
 	output(" you muse morbidly....");
 
 	processTime(1200 + rand(240));
@@ -1247,6 +1247,9 @@ public function jerynnUnderslungShareIV():void
 
 	processTime(240+rand(60));
 	pc.orgasm();
+
+	IncrementFlag("UVETO_JERYNN_RESCUES");
+	flags["UVETO_JERYNN_RESCUE_LAST"] = days;
 	
 	pc.lust(10);
 	if (pc.hasVagina())
