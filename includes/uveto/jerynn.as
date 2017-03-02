@@ -1584,7 +1584,7 @@ public function jerynnPetstuffSleepingOver():void
 		output("\n\nYou hadn’t noticed but your body does feel exhausted. You’re curled up under Mistress’s underbelly before you’ve even had chance to think, her thick tail lazily curling all around you.");
 		
 		clearMenu();
-		addButton(0, "Next", jerynnPetstuffWakeUp, null);
+		addButton(0, "Next", jerynnPetstuffWakeUp);
 		return;
 	}
 	
@@ -1839,7 +1839,7 @@ public function jerynnPetstuffVoice(compOpts:Array):void
 	addButton(0, "Next", jerynnPetstuffWakeUp, responses);
 }
 
-public function jerynnPetstuffWakeUp(responses:Object):void
+public function jerynnPetstuffWakeUp(responses:Object = null):void
 {
 	trace("Wake up");
 	
@@ -1858,16 +1858,18 @@ public function jerynnPetstuffWakeUp(responses:Object):void
 	
 	output("\n\n<i>“Good pet, very good,”</i> Mistress Jerynn chuckles, obviously pleased with your performance.");
 
+	var isOptIn:Boolean = false;
+	
 	if (responses != null)
 	{
 		flags["JERYNN_RESPONSE_LIKED"] = responses.liked;
 		flags["JERYNN_RESPONSE_LIMBS"] = responses.limbs;
 		flags["JERYNN_RESPONSE_SKIN"] = responses.skin;
 		flags["JERYNN_RESPONSE_VOICE"] = responses.voice;
+
+		isOptIn = (responses.liked != 2 && (responses.limbs != 0 || responses.skin >= 2 || responses.voice == 0 || responses.voice == 3));
 	}
-
-	var isOptIn:Boolean = (responses.liked != 2 && (responses.limbs != 0 || responses.skin >= 2 || responses.voice == 0 || responses.voice == 3));
-
+	
 	if (!isOptIn)
 	{
 		output("\n\n<i>“Let’s get you cleaned up then, can’t be lazing about here all day with you,”</i> she says.");
