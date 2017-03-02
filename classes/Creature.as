@@ -3312,7 +3312,7 @@
 		public function genderTextOverride():String
 		{
 			var autoSex:String = "";
-			var race:String = race();
+			var race:String = raceShort();
 			
 			// Goo races
 			if
@@ -18323,15 +18323,15 @@
 		
 		public function hasPlumpAsshole():Boolean
 		{
-			return ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED);
+			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED));
 		}
 		
 		public function catDog(c:String, d:String, prefDog:Boolean = true):String
 		{
-			var r:String = race();
-			if (r.indexOf("kaithrit") != -1) return c;
-			if (r.indexOf("ausar") != -1) return d;
-			return prefDog ? d : c;
+			var r:String = raceShort();
+			if (r.indexOf("kaithrit") != -1 || r.indexOf("feline") != -1) return c;
+			if (r.indexOf("ausar") != -1 || r.indexOf("canine") != -1) return d;
+			return (prefDog ? d : c);
 		}
 	}
 }

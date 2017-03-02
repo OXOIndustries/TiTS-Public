@@ -556,7 +556,7 @@ public function pippaRejectSex(itemGiven:String = ""):void
 	clearMenu();
 	showPippa();
 	pippaAffection( -5);
-	pippaDominance(-1)
+	pippaDominance(-1);
 	
 	output("Pippa’s look of lust quickly turns to annoyance. <i>“Seriously? You’re treated and you’re turning down sex?”</i>");
 	
@@ -1245,7 +1245,7 @@ public function pippaHotDog():void
 	pippaAffection(2);
 	processTime(20);
 	pc.orgasm();
-	pippaDominance(-2)
+	pippaDominance(-2);
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1383,7 +1383,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 	processTime(25);
 	pc.orgasm();
 	applyPussyDrenched(pc);
-	pippaDominance(1)
+	pippaDominance(1);
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1457,7 +1457,7 @@ public function pippaGetSatOn():void
 	pippaAffection(2);
 	processTime(5);
 	pc.lust(15);
-	pippaDominance(1)
+	pippaDominance(1);
 }
 
 // Focus on pleasing Pippa while she sits on your face
@@ -1540,7 +1540,7 @@ public function pippaGetSatOnFocus():void
 	pc.girlCumInMouth(pippa);
 	if (silly) output(pc.modThickness(10, true));
 	processTime(10);
-	pippaDominance(1)
+	pippaDominance(1);
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1648,7 +1648,7 @@ public function pippaGetSatOnMasturbate():void
 	pc.girlCumInMouth(pippa);
 	if (silly) output(pc.modThickness(10, true));
 	processTime(10);
-	pippaDominance(2)
+	pippaDominance(2);
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1747,7 +1747,7 @@ public function pippaFeedMilkTakeControl():void
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
 	processTime(15);
-	pippaDominance( -1);
+	pippaDominance(-1);
 	if (pc.hasVagina()) applyPussyDrenched(pc);
 	if (pc.hasCock()) applyCumSoaked(pc);
 	

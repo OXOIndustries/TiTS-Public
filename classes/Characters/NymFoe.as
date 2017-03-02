@@ -341,7 +341,7 @@
 			//First Time
 			if(!hasStatusEffect("Gloved")) 
 			{
-				output("<i>“You seem anxious. Don’t worry, a lot of people are afraid of going to the doctor.”</i> The bimbo bot steeples her hands and nods encouragingly to you. <i>“Let me assure you, this will be completely - bzt! - mostly - bzt! - partially painless!.”</i> She produces a bottle filled with a clear liquid and upends it into one of her gloved hands, the soft, cottony fabric drinking it in eagerly.");
+				output("<i>“You seem anxious. Don’t worry, a lot of people are afraid of going to the doctor.”</i> The bimbo bot steeples her hands and nods encouragingly to you. <i>“Let me assure you, this will be completely - bzt! - mostly - bzt! - partially painless!”</i> She produces a bottle filled with a clear liquid and upends it into one of her gloved hands, the soft, cottony fabric drinking it in eagerly.");
 				output("\n\n<i>“This should help relax you relax,”</i> she adds, advancing with her palm towards your face.");
 				createStatusEffect("Gloved");
 			}
