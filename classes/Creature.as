@@ -8849,7 +8849,7 @@
 				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 			}
 			
-			ballFullness += (cumDelta * minutes);
+			ballFullness += ballFullnessBonus + (cumDelta * minutes);
 			
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
