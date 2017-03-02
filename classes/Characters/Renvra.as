@@ -190,8 +190,24 @@
 		//Gotta reset 'dem balls!'
 		override public function orgasm(): void {
 			super.orgasm();
-			this.cumQualityRaw = 1;
+			cumUnloaded();
+		}
+		
+		override public function processTime(deltaT:uint, doOut:Boolean):void
+		{
+			super.processTime(deltaT, doOut);
 			
+			// Reset after a week of no orgasm.
+			if (minutesSinceCum >= (1440 * 7))
+			{
+				cumUnloaded();
+			}
+		}
+		
+		private function cumUnloaded():void
+		{
+			cumQualityRaw = 1;
+			minutesSinceCum = 0;
 		}
 		
 		override public function onLeaveBuyMenu():void

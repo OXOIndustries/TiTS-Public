@@ -472,7 +472,7 @@ public function fazianAnataePer():void
 
 	output("\n\nFazian ducks his head and doesn’t immediately respond.");
 
-	output("\n\n<i>“I... guess that isn’t coming through as a direct translation,”</i> he says. You realize he thinks he’s embarrassed himself. He shuffles in his trouser pocket, brings out a miniature codex and flicks through it for a few moments. <i>“Komm-rahd”</i>? It’s telling me that’s a very archaic expression though.”</i> He takes a long pull on his straw before going on, still looking rather uncomfortable.");
+	output("\n\n<i>“I... guess that isn’t coming through as a direct translation,”</i> he says. You realize he thinks he’s embarrassed himself. He shuffles in his trouser pocket, brings out a miniature codex and flicks through it for a few moments. <i>“‘Komm-rahd’? It’s telling me that’s a very archaic expression though.”</i> He takes a long pull on his straw before going on, still looking rather uncomfortable.");
 
 	output("\n\n<i>“The anatae have an empire, right? The largest number of colonies in the known galaxy. But we don’t have a leader on top of it all. It’s all owned by us, the people. So... Per. We are all emperors. That’s the idea, anyway.”</i>");
 
@@ -524,7 +524,7 @@ public function fazianDancingTeachMe():void
 	}
 	else
 	{
-		output("\n\n<i>“You... ? Sure, I guess,”</i> shrugs Fazian. He nods with increasing enthusiasm for the idea as he mulls it over. <i>“It’ll be fun! Come and see me after the evening performances. I don’t know how good a teacher I am, but I’m sure it wouldn’t take long to show you one or two things.”</i> He finishes his glass of wine with a long pull. <i>“Not doing anything right now, if you want to go backstage.”</i>");
+		output("\n\n<i>“You...? Sure, I guess,”</i> shrugs Fazian. He nods with increasing enthusiasm for the idea as he mulls it over. <i>“It’ll be fun! Come and see me after the evening performances. I don’t know how good a teacher I am, but I’m sure it wouldn’t take long to show you one or two things.”</i> He finishes his glass of wine with a long pull. <i>“Not doing anything right now, if you want to go backstage.”</i>");
 
 		//Add "Dance" to Fazian's main menu
 		flags["FAZIAN_DANCE_UNLOCKED"] = 1;
@@ -893,7 +893,7 @@ public function fazianQuestOpening():void
 	
 	output("\n\n<i>“He not around?”</i>");
 	
-	output("\n\n<i>“He hasn’t shown up to the club for the last two nights running,”</i> she says, unease etched on her pretty, pointed face. <i>“I thought maybe he was poorly last night... but now, nobody seems to know what’s happened to him. The port authorities won’t tell me anything, except that he’s not on his ship. If he were a myr I could ask the royal guard about it, but...”</i> She looks helpless.");
+	output("\n\n<i>“He hasn’t shown up to the club for the last two nights running,”</i> she says, unease etched on her pretty, pointed face. <i>“I thought maybe he was feeling poorly last night... but now, nobody seems to know what’s happened to him. The port authorities won’t tell me anything, except that he’s not on his ship. If he were a myr I could ask the royal guard about it, but...”</i> She looks helpless.");
 
 	processTime(5);
 	
@@ -1332,7 +1332,7 @@ public function fazianQuestJuroAnatae():void
 
 	output("\n\nYou turn and begin to head eastwards towards your ship.");
 	
-	output("\n\n<i>“Wait!”</i> cries Juro after you’ve gotten ten feet. <i>“Wait. Alright. You can look at the spaceport’s security footage. Just... don’t tell anyone, okay?”</i> He gets up, heads into a back room, and comes back ten minutes later with a small, gray box. <i>“And make it worthwhile, okay Steele?”</i> he parts gruffly.");
+	output("\n\n<i>“Wait!”</i> cries Juro after you’ve gotten ten feet. <i>“Wait. Alright. You can look at the spaceport’s security footage. Just... don’t tell anyone, okay?”</i> He gets up, heads into a back room, and comes back ten minutes later with a small, gray box. <i>“And make it worthwhile, okay, Steele?”</i> he parts gruffly.");
 	
 	output("\n\nYou settle yourself down in a quiet corner and fiddle around with the holographic projector, flicking moving images of the spaceport, captured by a flotilla of U.G.C. microbots, into the air around you. As you had guessed, Juro was being an ass; it doesn’t take five minutes to get the AI inside to provide you with the most recent footage of Fazian.");
 	
@@ -2158,7 +2158,7 @@ public function fazianQuestEhstraffeLoss():void
 		
 		output("\n\n<i>“I - we didn’t want to. But given what happened... yes. You’re right.”</i>");
 		
-		output("\n\n<i>“Come,”</i> directs the tarratch brusquely. You are led stumbling past the stage and a knocked out Fazian into a dully lit back area, populated by naked gold myr. They all look happily stoned, honey-swollen boobs gently bobbing. Tarratch slavers weave between them, their eerie, hypnotic ruffs fluttering and buzzing, bending over each so that they can fasten... something clicks into place around your neck. You touch the cold circle metal... and then squeal as fresh arousal suddenly buzzes into you");
+		output("\n\n<i>“Come,”</i> directs the tarratch brusquely. You are led stumbling past the stage and a knocked out Fazian into a dully lit back area, populated by naked gold myr. They all look happily stoned, honey-swollen boobs gently bobbing. Tarratch slavers weave between them, their eerie, hypnotic ruffs fluttering and buzzing, bending over each so that they can fasten... something clicks into place around your neck. You touch the cold circle of metal... and then squeal as fresh arousal suddenly buzzes into you");
 		if (pc.hasVagina()) output(", [pc.eachVagina] seizing up and gushing [pc.femcum] down your [pc.hips]");
 		else if (pc.hasCock()) output(", [pc.eachCock] bulging up, building towards an unstoppable orgasm... and then agonizingly climbing down again, leaving you even more helplessly aroused than before");
 		output(".");

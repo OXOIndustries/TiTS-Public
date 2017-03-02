@@ -629,6 +629,8 @@ public function statisticsScreen(showID:String = "All"):void
 		// Sexuality
 		output2("\n<b><u>Sexuality</u></b>");
 		output2("\n<b>* Orgasms, Total:</b> " + StatTracking.getStat("sex/player/orgasms"));
+		if(pc.timesCum > 0) output2("\n<b>* Orgasms, Time Since Last Orgasm:</b> " + prettifyMinutes(pc.minutesSinceCum));
+		//if(pc.isSubby()) output2("\n<b>* Preferences, Power Role:</b> Submissive");
 		if(pc.sexualPreferences._sexPrefs.length > 0)
 		{
 			for(i = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++)
@@ -3996,7 +3998,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Elder Venus Pitcher, Times Encountered:</b> " + flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"]);
 					if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output2("\n<b>* Elder Venus Pitcher, Times Hypnotized By:</b> " + flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]);
-					if(venusSubmission() > 0) output2("\n<b>* Elder Venus Pitcher, Submission:</b> " + formatFloat(venusSubmission(), 1) + " %");
+					if(venusSubmission() > 0) output2("\n<b>* Elder Venus Pitcher, Dominance:</b> " + formatFloat(venusSubmission(), 1) + " %");
 				}
 				if(flags["TIMES_MET_FEMZIL"] != undefined) output2("\n<b>* Female Zil, Times Encountered:</b> " + flags["TIMES_MET_FEMZIL"]);
 				if(flags["ENCOUNTERED_ZIL"] != undefined)
@@ -4596,7 +4598,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["GENE_BELLYRUBS_ENABLED"] != undefined) output2(", Rubbed his belly");
 				if(flags["GENE_SUBMISSION_LEVEL"] != undefined)
 				{
-					output2("\n<b>* Gene, Submission Level:</b> ");
+					output2("\n<b>* Gene, Dominance Level:</b> ");
 					if(flags["GENE_SUBMISSION_LEVEL"] == -1) output2("Refused his advances completely");
 					else output2(flags["GENE_SUBMISSION_LEVEL"] + "/10");
 				}
@@ -5053,7 +5055,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_WETRAXXEL_BRAWLER"] != undefined)
 				{
 					output2("\n<b>* Wetraxxel, Times Encountered:</b> " + flags["MET_WETRAXXEL_BRAWLER"]);
-					if(flags["WETRAXXEL_SUBMISSION"] != undefined)output2("\n<b>* Wetraxxel, Submission Level:</b> " + flags["WETRAXXEL_SUBMISSION"] + "/10");
+					if(flags["WETRAXXEL_SUBMISSION"] != undefined)output2("\n<b>* Wetraxxel, Dominance Level:</b> " + flags["WETRAXXEL_SUBMISSION"] + "/10");
 				}
 				variousCount++;
 			}
@@ -5202,7 +5204,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
@@ -5216,6 +5218,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Jerome:</b> Met him");
 					if(flags["FUCKED_JEROME"] != undefined) output2("\n<b>* Jerome, Times Sexed:</b> " + flags["FUCKED_JEROME"]);
+				}
+				// Jerbooty
+				if(flags["MET_JERYNN"] != undefined)
+				{
+					output2("\n<b>* Jerynn:</b> Met her");
+					if(jerynnIsMistress()) output2(", Mistress");
+					if(jerynnPetstuffLevel() > 0) output2("\n<b>* Jerynn, Dominance Level:</b> " + jerynnPetstuffLevel() + "/" + jerynnPetstuffMax());
+					if(flags["JERYNN_FUCKED"] != undefined) output2("\n<b>* Jerynn, Times Sexed:</b> " + flags["JERYNN_FUCKED"]);
 				}
 				// Natalie Irson
 				if(flags["NATALIE_MET"] != undefined)
@@ -5878,9 +5888,9 @@ public function displayEncounterLog(showID:String = "All"):void
 	output2("\n\n");
 }
 
-private function listCharGenitals(charName:String = ""):String
+public function listCharGenitals(charName:String = ""):String
 {
-	if(charName == "" || chars[charName] == null) return "<i>Data unknown.</i>";
+	if(charName == "" || chars[charName] == null) return "<i>Data unknown</i>";
 	
 	var txt:String = "";
 	

@@ -670,16 +670,20 @@ public function delSlutTraining2():void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pp.milkMultiplier = 100;
 	pp.milkFullness = 100;
+	pp.createPerk("Fixed CumQ", 5000, 0, 0, 0);
 	for(var i:int = 0; i < 10; i++)
 	{
-		pc.loadInAss(pp);
-		pc.loadInAss(pp);
-		if(rand(2) == 0) pc.loadInAss(pp);
+		if(rand(5) == 0) pc.milkInMouth(pp);
+		if(rand(4) == 0) pc.girlCumInMouth(pp);
+		pc.loadInMouth(pp);
+		pc.loadInMouth(pp);
 		pc.loadInMouth(pp);
 		pc.loadInMouth(pp);
 		if(rand(2) == 0) pc.loadInMouth(pp);
-		if(rand(4) == 0) pc.girlCumInMouth(pp);
-		if(rand(5) == 0) pc.milkInMouth(pp);
+		if(rand(2) == 0) pc.loadInMouth(pp);
+		pc.loadInAss(pp);
+		pc.loadInAss(pp);
+		if(rand(2) == 0) pc.loadInAss(pp);
 	}
 	pc.exhibitionism(2);
 	clearMenu();

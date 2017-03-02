@@ -516,6 +516,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_PYRITE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
 		public var Bust_LOGO_REAPER:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/sits.png", mimeType = "image/png")]
+		public var Bust_LOGO_SITS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/snuggle.png", mimeType = "image/png")]
 		public var Bust_LOGO_SNUGGLE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/steele_tech.png", mimeType = "image/png")]
@@ -551,6 +553,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_PYRITE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/reaper.png", mimeType = "image/png", compression = true)]
 			public var Full_LOGO_REAPER:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/sits.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_SITS:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png", compression = true)]
 			public var Full_LOGO_SNUGGLE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/steele_tech.png", mimeType = "image/png", compression = true)]

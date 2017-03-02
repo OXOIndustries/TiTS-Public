@@ -911,7 +911,7 @@ public function loseToAntGrillDeserts():void
 			else output("strap-on");
 			output(", grinning triumphantly.");
 			//THE BELOW CONTENT WAS CUT. I DON'T CARE FOR IT. -F
-			//(corresponding vibrator used flag at 1).. until a thought occurs to her. <i>“Did you use this?”</i> /(vibro used flag at 2).. until she smells it, and her grin turns to a puzzled frown. <i>“Smells like [pc.cumNoun]... just what did you do with my Private?”</i> }");
+			//(corresponding vibrator used flag at 1).. until a thought occurs to her. <i>“Did you use this?”</i> /(vibro used flag at 2).. until she smells it, and her grin turns to a puzzled frown. <i>“Smells like [pc.cumNoun]... just what did you do with my Private?”</i> }
 			//output("\n\n{(nice)"Exactly as you think. Sorry!”</i> you admit. /(else)You answer with a coy smile. }
 			output(" She stows it, then ");
 		}
@@ -2473,7 +2473,7 @@ public function stealDildoScene(gold:Boolean):void
 		else output("\n\n<i>“Damn right,”</i> you assure her.");
 		//(post-combat only)
 		if(combatWin) output(" <i>“Them’s the rules around here.”</i>");
-		else output("\n\n<i>“... Fine. Only because I kinda like you.”</i>}");
+		else output("\n\n<i>“... Fine. Only because I kinda like you.”</i>");
 	}
 	//repeat, PC already has this myr’s dildo
 	else
@@ -2537,7 +2537,7 @@ public function stealDildoScene(gold:Boolean):void
 			output("Play with your ");
 			if(pc.isBimbo()) output("titties");
 			else output("breasts");
-			if(!pc.isBro()) output(", but nothing else please");
+			if(!pc.isBro()) output(", but nothing else, please");
 			output(",”</i> you instruct her.");
 		}
 		else
@@ -2594,7 +2594,8 @@ public function stealDildoScene(gold:Boolean):void
 	else
 	{
 		if(!hasGoldDildo()) output("\n\nYou snag the toy before she can withdraw it, and ");
-		else output("Leering, you }tell her to undress. ");
+		else output("\n\nLeering, you ");
+		output("tell her to undress. ");
 		if(knows) output("Lys");
 		else output("The gold");
 		output(" hesitates, focusing all four hands on each button, one at a time. You elect to put her at ease by enjoying her slow strip as much as you can - it’s not like her gorgeous globes are hard to look at. The more you stare, the more confident she becomes, until she’s holding her shirt wide open and jiggling like an erotic dancer for you.");
@@ -3143,7 +3144,7 @@ public function didloDPWivStolenDildo(target:String = "vag"):void
 	else if(target == "ass") pc.buttChange(pp.cockVolume(0)); // 75
 	
 	output("\n\nYou masturbate to a froth with the first dildo, working yourself into such a fugue that your lust-addled mind craves more penetration. Extended plunges with the first toy dredge up lubrication from deep in your core, until you’re satisfied that you’re wet enough to take the smaller one as well. With care but very little ceremony, you slip it in alongside its larger sibling.");
-	//{second vaginal/anal/whatever stretch check (for double pen; both heads together are probably ~5in wide)}");
+	//{second vaginal/anal/whatever stretch check (for double pen; both heads together are probably ~5in wide)}
 	
 	pp.cocks[0].cThicknessRatioRaw = 1.5;
 	

@@ -393,11 +393,13 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 				else output(" -- and being naked, you’ve got next to no defense against the chill");
 				output(". You feel like you might collapse if you don’t take shelter soon!");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
+				output("\n\n");
 			}
 			else
 			{
 				output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you’re going to freeze!</b>");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
+				output("\n\n");
 			}
 		}
 		else
@@ -411,6 +413,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 
 			output("\n\nBlackness takes you.");
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
+			output("\n\n");
 			
 			generateMapForLocation("GAME OVER");
 			
@@ -573,6 +576,8 @@ public function uvetoFallToColdDamage():void
 		{
 			output(" You gotta stop wandering around outside town, [pc.name]!”</i> Luna chides.");
 		}
+		
+		if (!(flags["UVETO_LUNA_RESCUES"] is Number)) flags["UVETO_LUNA_RESCUES"] = undefined;
 		IncrementFlag("UVETO_LUNA_RESCUES");
 		
 		output("\n\nYou groan a hazy acknowledgement, but already you can feel your eyes growing heavy once more. It isn’t long before the gentle rocking of the Peacekeeper’s truck and the soothing warmth of the heater put you back to sleep...");
@@ -580,7 +585,7 @@ public function uvetoFallToColdDamage():void
 		rescuer = "Luna";
 		processTime(360);
 	}
-	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA) || InRoomWithFlag(GLOBAL.FROZENTUNDRA))
+	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
 		author("Gedan");
 
@@ -598,20 +603,19 @@ public function uvetoFallToColdDamage():void
 		
 		output("\n\nYou let your eyes drift closed, falling back into fitful slumber amidst the frozen tundra....");
 		
+		if (!(flags["UVETO_JEROME_RESCUES"] is Number)) flags["UVETO_JEROME_RESCUES"] = undefined;
 		IncrementFlag("UVETO_JEROME_RESCUES");
 
 		rescuer = "Jerome";
 		processTime(840);
 	}
-	else
+	else if (InRoomWithFlag(GLOBAL.FROZENTUNDRA))
 	{
-		//author("Gedan");
-		//output("[PH] Jerynn Rescue");
+		if (!(flags["UVETO_JERYNN_RESCUES"] is Number)) flags["UVETO_JERYNN_RESCUES"] = undefined;
 		
-		IncrementFlag("UVETO_JERYNN_RESCUES");
+		if (jerynnRescuesYourFrozenAss()) return;
 		
-		//rescuer = "Jerynn";
-		processTime(1440);
+		rescuer = "Jerynn";
 	}
 
 	//[Next] // Awaken in the medical center
@@ -655,7 +659,7 @@ public function uvetoAwakenInMedCenter(rescuer:String):void
 	
 	output("\n\n<i>“You really must be more careful [pc.name].");
 	output(" If a storm were to have broken out");
-	//If the storm had been any worse}
+	//output(" If the storm had been any worse");
 	output(" then "+ rescuer +" may not have been lucky enough to find you in time.”</i>");
 	
 	output("\n\nThe V-Ko almost sounds like it’s trying to admonish a child with the way it’s talking to you -");
@@ -722,7 +726,7 @@ public function uvetoBarBonus():Boolean
 	meetingShadeAtUvetoBar(2);
 
 	var jeromePresent:Boolean = jeromeAtBar(3);
-	// jerynnAtBar(jeromePresent);
+	var jerynnPresent:Boolean = jerynnAtBar(jeromePresent ? 4 : 3);
 	
 	// Natalie Irson
 	natalieFreezerAddendum(4);

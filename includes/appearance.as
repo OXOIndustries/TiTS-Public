@@ -1,5 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
+import classes.StorageClass;
 public function pcAppearance(e:MouseEvent = null):void 
 {
 	if(pc.short.length == 0) return;
@@ -2195,10 +2196,91 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(" intelligent enough for some rudimentary communication....");
 		}
-		if(target.legType == GLOBAL.TYPE_TENTACLE) addGhostButton(btnIndex++, "Tentacle Legs", selectTentacleLegsPref, undefined, "Choose the form of your lower tentacles.");
+		if (target.legType == GLOBAL.TYPE_TENTACLE) addGhostButton(btnIndex++, "Tentacle Legs", selectTentacleLegsPref, undefined, "Choose the form of your lower tentacles.");
+		
+		var collarCount:int = hasCollars();
+		if (collarCount > 0)
+		{
+			addGhostButton(btnIndex++, collarCount == 1 ? "Collar" : "Collars", manageWornCollar, undefined, "Manage which, if any, collar you’re wearing.");
+		}
 	}
 	
 	setTarget(null);
+}
+
+private var COLLAR_LIST:Array = [
+	"Jerynn’s"
+]
+
+public function hasCollars():Number
+{
+	var c:int = 0;
+	for (var i:int = 0; i < COLLAR_LIST.length; i++)
+	{
+		if (pc.hasKeyItem(COLLAR_LIST[i] + " Collar")) c++;
+	}
+	return c;
+}
+
+public function hasWornCollar():Boolean
+{
+	return getWornCollar() != null;
+}
+
+public function getWornCollar():StorageClass
+{
+	for (var i:int = 0; i < COLLAR_LIST.length; i++)
+	{
+		var itm:StorageClass = pc.getKeyItem(COLLAR_LIST[i] + " Collar");
+		if (itm != null && itm.value1 == 1) return itm;
+	}
+	return null;
+}
+
+public function manageWornCollar():void
+{
+	clearOutput2();
+	var wornCollar:StorageClass = getWornCollar();
+	if (wornCollar != null)
+	{
+		output2("You are currently wearing " + wornCollar.storageName + ".");
+	}
+	else
+	{
+		output2("You are not currently wearing a collar.");
+	}
+	
+	clearGhostMenu();
+	var btnIdx:int = 0;
+	for (var i:int = 0; i < COLLAR_LIST.length; i++)
+	{
+		var itm:StorageClass = pc.getKeyItem(COLLAR_LIST[i] + " Collar");
+		if (itm != null)
+		{
+			addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollar, COLLAR_LIST[i]);
+		}
+	}
+	
+	addGhostButton(14, "Back", backToAppearance, pc);
+}
+
+public function toggleCollar(newCollar:String):void
+{
+	var itm:StorageClass = pc.getKeyItem(newCollar + " Collar");
+	
+	// If this collar is already on, just remove it
+	if (itm.value1 == 1)
+	{
+		itm.value1 = 0;
+	}
+	// Otherwise determine if we currently have a collar, unequip it, and then equip the new one
+	else
+	{	
+		var wornCollar:StorageClass = getWornCollar();
+		if (wornCollar != null) wornCollar.value1 = 0;
+		itm.value1 = 1;
+	}
+	manageWornCollar();
 }
 
 public function boobStuff(forTarget:Creature = null):void
