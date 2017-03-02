@@ -1605,6 +1605,9 @@
 				case "lowerGarmentOuter":
 					buffer = lowerGarmentOuterDescript();
 					break;
+				case "crotchCover":
+					buffer = crotchCover();
+					break;
 				case "skinNoun":
 					buffer = skinNoun(true);
 					break;
@@ -8721,12 +8724,13 @@
 			quantity = Math.round(quantity / 10) * 10;
 			if (quantity < 2) quantity = 2;
 			//Super high refractory raises minimum.
-			if (refractoryRate >= 3 && quantity < 15) quantity = 15;
-			if (refractoryRate >= 5 && quantity < 30) quantity = 30;
-			if (refractoryRate >= 8 && quantity < 50) quantity = 50;
-			if (refractoryRate >= 10 && quantity < 100) quantity = 100;
-			if (refractoryRate >= 15 && quantity < 251) quantity = 251;
-			if (refractoryRate >= 20 && quantity < 1000) quantity = 1000;
+			if (refractoryRate >= 3 && quantity < 5) quantity = 15;
+			else if (refractoryRate >= 5 && quantity < 8) quantity = 30;
+			else if (refractoryRate >= 8 && quantity < 10) quantity = 50;
+			else if (refractoryRate >= 10 && quantity < 15) quantity = 100;
+			else if (refractoryRate >= 15 && quantity < 20) quantity = 251;
+			else if (refractoryRate >= 20 && quantity < 30) quantity = 1000;
+			else if (refractoryRate >= 30) quantity = 1500;
 			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
 			//You can't cum more than you can possibly have!
@@ -13261,6 +13265,12 @@
 		public function lowerGarmentDescript(): String {
 			if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
+			return "nothing";
+		}
+		public function crotchCover(): String
+		{
+			if(!pc.isCrotchExposedByArmor()) return armor.longName;
+			else if(!pc.isCrotchExposedByLowerUndergarment()) return lowerUndergarment.longName;
 			return "nothing";
 		}
 		public function lowerGarmentOuterDescript(): String {
