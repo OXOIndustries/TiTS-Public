@@ -1184,7 +1184,7 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 		else output(" cock cozy");
 		output(" that’s ever been able to take the whole thing,");
 		if (!pc.isSubby()) output(" friend");
-		else output("slut");
+		else output(" slut");
 		output(". Congratulations.”</i>");
 	}
 	else
@@ -2050,7 +2050,7 @@ public function jerynnPetstuffOptIn():void
 	processTime(30 + rand(15));
 
 	clearMenu();
-	addButton(0, "Next", jerynnPetstuffBadEndII);
+	addButton(0, "Next", jerynnPetstuffBadEndII, true);
 }
 
 public function jerynnPetstuffNoOptIn():void
@@ -2153,7 +2153,7 @@ public function jerynnPetstuffLongWalk():void
 		output("\n\nJerynn grunts her assent and sets back off, leaving the shop with another jingle.");
 
 		clearMenu();
-		addButton(0, "Next", jerynnPetstuffHerPlacePostShopping)
+		addButton(0, "Next", jerynnPetstuffHerPlace)
 	}
 	else
 	{
@@ -2464,7 +2464,7 @@ public function jerynnPetstuffBadEnd():void
 	output("\n\nLight returns to your world all too soon, already at the destination Jerynn had set off to reach; the medical station already here on Uveto. The fritzy-droid confirms that it has the capability to carry out at least a portion of the ordered work. Uncaring for your comfort it jabs you with a hypospray right on the shoulder as it holds idle conversation with the taur. Seconds later you’re out for the count....");
 
 	clearMenu();
-	addButton(0, "Next", jerynnPetstuffBadEndII);
+	addButton(0, "Next", jerynnPetstuffBadEndII, false);
 }
 
 public function jerynnPetstuffBadEndII(isOptIn:Boolean):void
