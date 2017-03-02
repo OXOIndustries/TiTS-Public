@@ -1901,18 +1901,18 @@ public function goddamnitJimTAndYourExhibitionism():void
 			output(" Throbbing with need,");
 			if(pc.hasCock()) 
 			{
-				output(" your [pc.cocks] ");
-				if(pc.cockTotal() == 1) output("is pitching a tent");
-				else output("are pitching tents");
-				if(pc.hasVagina()) output(", and ");
+				output(" your [pc.cocks]");
+				if(pc.cockTotal() == 1) output(" is pitching a tent");
+				else output(" are pitching tents");
+				if(pc.hasVagina()) output(", and");
 				else output(" in");
 			}
 			//GotPussies:
 			if(pc.hasVagina()) 
 			{
-				output(" your [pc.pussies] ");
-				if(pc.totalVaginas() == 1) output("is");
-				else output("are");
+				output(" your [pc.pussies]");
+				if(pc.totalVaginas() == 1) output(" is");
+				else output(" are");
 				output(" rubbing wetly against");
 			}
 			output(" the all-too constricting fabric.");
@@ -1935,14 +1935,17 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
 	else output("onlookers");
 	output(" peer at you curiously, wondering what’s the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
-
+	
+	//NewTexas/Myrellion/Tarkus: 
+	var lustPlanet:Boolean = InCollection(rooms[currentLocation].planet, ["PLANET: NEW TEXAS", "PLANET: MYRELLION", "PLANET: TARKUS"]);
+	
 	//Else // PC is nude:
 	if(pc.isNude() || (pc.isCrotchExposed() && pc.isAssExposed() && pc.isChestExposed()))
 	{
 		output("\n\nYou’re already butt-naked, ");
 		if(pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" or close enough to it, wearing nothing but clothing designed to expose your baser attributes. ");
 		else output("of course, wearing nothing but your [pc.skinFurScales]. ");
-		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("Even here, such blatant nudity is met with lusty looks.");
+		if(lustPlanet) output("Even here, such blatant nudity is met with lusty looks.");
 		else output("The shocked and scandalized looks on their faces gives you a thrill - what you are doing is really, obviously <i>naughty</i>.");
 		output(" They watch on with wide open eyes and mouths as you begin touching your bare body before the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 	}
@@ -1971,7 +1974,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 			}
 		}
 		output(". The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
-		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("obvious lust");
+		if(lustPlanet) output("obvious lust");
 		else output("a mixture of scandal and lust");
 		output(". You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 	}
@@ -1989,7 +1992,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	if(pc.biggestTitSize() < 1) output("it");
 	else output("them");
 	output(" and your [pc.nipples]. You grin and slide your hands down and along your [pc.belly]. Their ");
-	if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("longing looks");
+	if(lustPlanet) output("longing looks");
 	else output("scandalized and stirred-up stares");
 	output(" follow.");
 	if(!pc.isTaur()) output(" You reach to your loins, drawing their attention <i>there</i>.");
@@ -2001,8 +2004,6 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else if(pc.hasCock()) output("\n\nGrabbing [pc.oneCock], you stroke it before their eyes.");
 	else if(pc.hasVagina()) output("\n\nYou begin to stroke [pc.oneVagina] before their eyes.");
 	else output("\n\nReaching behind you, you begin to finger your [pc.ass] before their eyes.");
-	//NewTexas/Myrellion/Tarkus: 
-	var lustPlanet:Boolean = (rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS");
 	if(lustPlanet) output(" A number of them lick their lips.");
 	else output(" There are a few loud gasps and <i>lots</i> of whispering.");
 	output(" You can feel all of them staring at your ");

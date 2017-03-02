@@ -8789,6 +8789,7 @@
 		public function cumProduced(minutes: Number, doOut:Boolean = true):void {
 			var cumDelta:Number = 0;
 			var subDelta:Number = 0;
+			var cumCascade:Boolean = (balls > 0 && hasPerk("'Nuki Nuts") && hasStatusEffect("Cum Cascade"));
 			//trace("MINUTES OF CUM CHARGING: " + minutes + " FULLNESS: " + ballFullness);
 			if(isNaN(ballFullness)) 
 			{
@@ -8816,16 +8817,33 @@
 				//Half cumDelta for the remaining minutes
 				cumDelta /= 2;
 			}
+			
+			var ballFullnessBonus:Number = 0;
+			
+			if(cumCascade)
+			{
+				ballFullnessBonus += (statusEffectv2("Cum Cascade") / maxCum() * 500);
+				cumDelta *= 5;
+			}
+			
 			//Just hit full balls!
-			if(balls > 0 && (ballFullness + (cumDelta * minutes)) >= 100 && ballFullness < 100 && this is PlayerCharacter)
+			if(balls > 0 && (ballFullness + ballFullnessBonus + (cumDelta * minutes)) >= 100 && ballFullness < 100 && this is PlayerCharacter)
 			{
 				trace("BLUE BALLS FOR: " + short);
 				//Hit max cum - standard message
 				var m:String = ParseText("You’re feeling a little... excitable, a little randy even. It won’t take much to excite you so long as your [pc.balls] " + (balls == 1? "is" : "are") + " this full.");
-				if(hasPerk("'Nuki Nuts") && balls >= 1)
+				if(hasPerk("'Nuki Nuts"))
 				{
-					if(balls == 1) m += " Of course, your kui-tan physiology will let your sack swell with additional seed. It’s already started to swell. Just make sure to empty it before it gets too big!";
-					else m += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They’ve already started to swell. Just make sure to empty them before they get too big!";
+					if(balls == 1)
+					{
+						if(cumCascade) m = ParseText("Your [pc.ballsNoun] has filled so much from your cum cascade that it’s started to swell. It won’t take much to excite you so long as your [pc.balls] is this full.");
+						else m += " Of course, your kui-tan physiology will let your sack swell with additional seed. It’s already started to swell. Just make sure to empty it before it gets too big!";
+					}
+					else
+					{
+						if(cumCascade) m = ParseText("Your [pc.ballsNoun] have filled so much from your cum cascade that they’ve started to swell. It won’t take much to excite you so long as your [pc.balls] are this full.");
+						else m += " Of course, your kui-tan physiology will let your balls balloon with additional seed. They’ve already started to swell. Just make sure to empty them before they get too big!";
+					}
 				}
 				AddLogEvent(m, "words", minutes);
 				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
@@ -17118,6 +17136,7 @@
 			//If has vaginally-filled status effect!
 			if(z >= 0)
 			{
+				amountVented = 0;
 				if(cumDrain)
 				{
 					//Figure out how much cum is vented over time.
@@ -17179,6 +17198,7 @@
 			//If has anally-filled status effect!
 			if(a >= 0)
 			{
+				amountVented = 0;
 				if(cumDrain)
 				{
 					//Figure out how much cum is vented over time.
@@ -17239,45 +17259,67 @@
 			//If has orally-filled status effect!
 			if(o >= 0)
 			{
+				amountVented = 0;
+				
+				// Conservation of spunk
+				var oralSources:Array = [];
+				if(hairType == GLOBAL.HAIR_TYPE_GOO) oralSources.push("Goo Hair");
+				if(hasPerk("Honeypot")) oralSources.push("Honeypot");
+				if(hasPerk("'Nuki Nuts") && InCollection(statusEffects[o].value3, GLOBAL.VALID_CUM_TYPES)) oralSources.push("'Nuki Nuts");
+				
+				if(oralSources.length <= 0) oralSources.push("default");
+				
 				if(cumDrain)
 				{
 					//Figure out how much cum is vented over time.
 					//Should vent 1/2 the current amount over 30 minutes
 					//+a small amount based off the maximum amount full you've been for this proc. 
 					amountVented = statusEffects[o].value1 / 8 / 2 + statusEffects[o].value2 / 48;
+					var oralVented:Number = amountVented * oralSources.length;
 					//Mult times minutes passed
-					amountVented *= timePassed/60;
+					oralVented *= timePassed/60;
 					//Apply to actual status
-					statusEffects[o].value1 -= amountVented;
-					amountStored -= amountVented;
+					statusEffects[o].value1 -= oralVented;
+					amountStored -= oralVented;
 				}
 				//Special notices!
-				if(this is PlayerCharacter)
+				if(this is PlayerCharacter && amountVented > 0)
 				{
-					if(notice == "")
+					for(var i:int = 0; i < oralSources.length; i++)
 					{
-						//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
-						//9999 apply cum-drenched flag as appropriate?
-					}
-					if(hairType == GLOBAL.HAIR_TYPE_GOO) addBiomass(amountVented);
-					if(hasPerk("Honeypot"))
-					{
-						if(amountVented > 0) kGAMECLASS.honeyPotBump();
-						if(amountVented >= 500) kGAMECLASS.honeyPotBump();
-						if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
-						if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
-					}
-					if(hasPerk("'Nuki Nuts") && InCollection(statusEffects[o].value3, GLOBAL.VALID_CUM_TYPES)) //Implementing Kui-Tan Cum Cascade from Codex
-					{
-						//Calculate amount metabolized over time
-						var cumTransfer:Number = (statusEffects[o].value2) / 10; //Metabolize entire (initial) load over 10 minutes.
-						cumTransfer *= timePassed;
-						cumTransfer += amountVented;
-						if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
-						statusEffects[o].value1 -= cumTransfer;
-						cumCascade(cumTransfer, statusEffects[o].value3);
-						trace("Cum Metabolized: " + cumTransfer + " mLs");
-						//cumProduced(timePassed);
+						switch(oralSources[i])
+						{
+							default:
+								if(notice == "")
+								{
+									//If Jacques00 or Geddy wants to write stuff for this, feel free, but I'm fine with it being more laid back.
+									//9999 apply cum-drenched flag as appropriate?
+								}
+								break;
+							case "Goo Hair":
+								addBiomass(amountVented);
+								break;
+							case "Honeypot":
+								if(amountVented > 0) kGAMECLASS.honeyPotBump();
+								if(amountVented >= 500) kGAMECLASS.honeyPotBump();
+								if(amountVented >= 1000) kGAMECLASS.honeyPotBump();
+								if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
+								break;
+							case "'Nuki Nuts":
+								/*
+								//Calculate amount metabolized over time
+								var cumTransfer:Number = (statusEffects[o].value2) / 10; //Metabolize entire (initial) load over 10 minutes.
+								cumTransfer *= timePassed;
+								cumTransfer += amountVented;
+								if (cumTransfer > statusEffects[o].value1) cumTransfer = statusEffects[o].value1;
+								statusEffects[o].value1 -= cumTransfer;
+								cumCascade(cumTransfer, statusEffects[o].value3);
+								trace("Cum Metabolized: " + cumTransfer + " mLs");
+								//cumProduced(timePassed);
+								*/
+								cumCascade(amountVented, statusEffects[o].value3, timePassed);
+								break;
+						}
 					}
 				}
 				if(statusEffects[o].value1 <= 0) removals.push("Orally-Filled");
@@ -17306,8 +17348,9 @@
 		 * @param	amount	amount of cum digested in mL
 		 * @param	fluid type of cum digested (defaults to cum)
 		 */
-		public function cumCascade(amount:Number, fluid:Number = GLOBAL.FLUID_TYPE_CUM): void 
+		public function cumCascade(amount:Number, fluid:Number = GLOBAL.FLUID_TYPE_CUM, timePassed:Number = 0): void 
 		{
+			/*
 			var percent:Number = (amount / maxCum()) * 500; //Take percentage of maximum cum, and multiply 5x.
 			trace("Percent Increase: " + percent + " %");
 			if (percent > 10) {
@@ -17343,6 +17386,34 @@
 				trace("Ball size change: " + deltaBallSize);
 			}
 			else ballFullness += percent;
+			*/
+			
+			// Give Cum Cascade effect
+			if (!hasStatusEffect("Cum Cascade"))
+			{
+				if (this is PlayerCharacter)
+				{
+					AddLogEvent(ParseText(" You hear a faint gurgling from your stomach and [pc.balls] as you feel " + (balls == 1 ? "it" : "them") + " " + (ballFullness >= 100 ? "swelling with more and more [pc.cumNoun]" : "getting fuller and fuller with [pc.cumNoun]") + " each passing second. With your kui-tan physiology, all that " + fluidNoun(fluid) + " you ingested must have spiked your own [pc.cumNoun] production!"), "passive");
+				}
+				lust(20);
+				createStatusEffect("Cum Cascade", 0, 0, fluid, 0, true, "Icon_Sperm_Hearts", "Side effect of ‘Nuki Nuts.", false, 0, 0xB793C4);
+			}
+			
+			// Tracking
+			addStatusValue("Cum Cascade", 1, amount);
+			if (amount > statusEffectv1("Cum Cascade")) setStatusValue("Cum Cascade", 3, fluid);
+			
+			var cumTransfer:Number = Math.round(amount / 10);
+			cumTransfer *= timePassed;
+			if (cumTransfer > amount) cumTransfer = amount;
+			
+			addStatusValue("Cum Cascade", 1, (-1 * cumTransfer));
+			addStatusValue("Cum Cascade", 2, cumTransfer);
+		}
+		public function cumCascadeUpdate():void
+		{
+			if(hasPerk("'Nuki Nuts") && balls > 0 && hasStatusEffect("Orally-Filled") && InCollection(statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES)) return;
+			removeStatusEffect("Cum Cascade");
 		}
 		
 		// Tiredness Conditions
@@ -17700,8 +17771,9 @@
 			
 			if ((fluidSimulate || this is PlayerCharacter) && flags["NURSERY_MATERNITY_WAIT_ACTIVE"] == undefined)
 			{
-				if (hasPerk("'Nuki Nuts") || ballFullness < 100) cumProduced(deltaT, doOut);
 				cumFlationSimulate(deltaT, doOut);
+				if (hasPerk("'Nuki Nuts") || ballFullness < 100) cumProduced(deltaT, doOut);
+				cumCascadeUpdate();
 			}
 		}
 		
