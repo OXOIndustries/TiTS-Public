@@ -91,5 +91,7 @@ package classes.Ships
 		protected var _storageTypeWeapons:int;
 		public function get StorageTypeWeapons():int { return _storageTypeWeapons; }
 		public function set StorageTypeWeapons(v:int):void { _storageTypeWeapons = v; }
+		
+		protected var _internalMap:ShipMap;
 	}
 }
