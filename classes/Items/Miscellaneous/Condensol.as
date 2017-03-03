@@ -57,16 +57,16 @@
 		{
 			//Effects
 			//When used as directed the first time:
-			//Applies status Condensol-A with a timer of four hours.  The status reduces the size of all of the PC’s cocks to half of their original value.  When the status timer expires, the PC’s cock size is multiplied by 2 to restore it to its original value, assuming the PC’s cock hasn’t been adjusted while under the influence.
+			//Applies status Condensol-A with a timer of four hours. The status reduces the size of all of the PC’s cocks to half of their original value. When the status timer expires, the PC’s cock size is multiplied by 2 to restore it to its original value, assuming the PC’s cock hasn’t been adjusted while under the influence.
 
 			//When used as directed the second time:
-			//Ends status Condensol-A and applies status Condensol-B with a timer of four hours.  The status reduces the size of all of the PC’s cocks to a quarter of their original value.  When the status timer expires, the PC’s cock size is multiplied by 4 to restore it to its original value, assuming the PC’s cock hasn’t been adjusted while under the influence.
+			//Ends status Condensol-A and applies status Condensol-B with a timer of four hours. The status reduces the size of all of the PC’s cocks to a quarter of their original value. When the status timer expires, the PC’s cock size is multiplied by 4 to restore it to its original value, assuming the PC’s cock hasn’t been adjusted while under the influence.
 
 			//Overdose:
 			//Ends status Condensol-A or Condensol-B, then reduces the size of all of the PC’s cocks by a random value between 1 and 4 inches.
 
 			//Use with a cock of four inches or less:
-			//Ends status Condensol-A or Condensol-B, then removes any sufficiently small cock and returns all others to their original sizes.  If the PC no longer has any cocks after this but would still have balls, remove balls.
+			//Ends status Condensol-A or Condensol-B, then removes any sufficiently small cock and returns all others to their original sizes. If the PC no longer has any cocks after this but would still have balls, remove balls.
 
 			//Use without a cock:
 			//Randomly select between reducing breast size by 1-3 cups, reducing height by 3-6 inches to a minimum of 40 inches, reducing clit size to a minimum of 0.1 inches, reducing nipple size to some appropriate minimum, reducing vaginal looseness by 1, reducing ass looseness by 1, or a dud result.
@@ -78,12 +78,12 @@
 			kGAMECLASS.clearOutput();
 			if(target == kGAMECLASS.pc)
 			{
-				///When using without a cock:
+				//When using without a cock:
 				if(!pc.hasCock())
 				{
-					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn't do anything if you don't have a cock.");
+					kGAMECLASS.output("Yeah, you don’t have a dick, but directions are for chumps. You swallow one of the dick-shrinking pills and shudder as its payload swims throughout your body, confused by the absence of its usual target. Finally the tingling fades as the Condensol expires. Apparently it doesn’t do anything if you don’t have a cock.");
 				}
-				else if(pc.shortestCockLength() <= 4)
+				else if(!pc.hasStatusEffect("Condensol-A") && !pc.hasStatusEffect("Condensol-B") && pc.shortestCockLength() <= 4)
 				{
 					if (pc.cocks.length == 1 && !pc.removeCockUnlocked(0, 1))
 					{

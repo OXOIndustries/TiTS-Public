@@ -31,7 +31,7 @@
 			this.description = "the JoyCo Magic-Milker 7";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "<i>\"For expectant mammalian mothers or personal use. Please consult an expert in your species' physiology before inducing lactation.\"</i>\n\nThe JoyCo Magic Milker 7 looks like little more than an apple-sized sphere with an activation stud and two tiny, clear cups hanging off of metallic tubes. It seems that in order to use it, one simply needs to hold it near exposed nipples and press the button. The machine will do the rest, even reshaping the cups to accommodate multiple nipples or revealing more in the case of particularly boobilicious users.";
+			this.tooltip = "<i>“For expectant mammalian mothers or personal use. Please consult an expert in your species’ physiology before inducing lactation.”</i>\n\nThe JoyCo Magic Milker 7 looks like little more than an apple-sized sphere with an activation stud and two tiny, clear cups hanging off of metallic tubes. It seems that in order to use it, one simply needs to hold it near exposed nipples and press the button. The machine will do the rest, even reshaping the cups to accommodate multiple nipples or revealing more in the case of particularly boobilicious users.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

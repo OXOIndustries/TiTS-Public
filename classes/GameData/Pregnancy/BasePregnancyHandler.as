@@ -74,7 +74,7 @@ package classes.GameData.Pregnancy
 		
 		public function BasePregnancyHandler() 
 		{
-			_debugTrace = true;
+			_debugTrace = false;
 			
 			_handlesType = "";
 			_basePregnancyIncubationTime = -1;

@@ -11,10 +11,9 @@
 		//constructor
 		public function Kelly()
 		{
-			//this.inventory.push(new Pandaneen());
-			this.keeperSell = "<i>\"Xenogen isn't usually in the business of buying mods to sell, but we'll offer fair compensation,\"</i> Kelly explains.\n";
-			this.keeperBuy = "<i>\"<i>Oh, you'd like to purchase some of our basic modification programs? Why, certainly,\"</i> Kelly chimes merrily.\n";
-			this.keeperGreeting = "Kelly asks, <i>\"Is there anything else I can do for you?\"</i>\n";
+			this.keeperSell = "<i>“Xenogen isn’t usually in the business of buying mods to sell, but we’ll offer fair compensation,”</i> Kelly explains.\n";
+			this.keeperBuy = "<i>“Oh, you’d like to purchase some of our basic modification programs? Why, certainly,”</i> Kelly chimes merrily.\n";
+			this.keeperGreeting = "Kelly asks, <i>“Is there anything else I can do for you?”</i>\n";
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;

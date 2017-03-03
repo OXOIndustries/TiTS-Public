@@ -581,11 +581,7 @@ public function adultCockvinePCLoses():void
 		else output(" pussies");
 	}
 	output(".");
-	if (pc.cumflationEnabled())
-	{
-		output(" Your womb quickly swells out, heavy warmth packing into you until you look six months pregnant.");
-		// 9999
-	}
+	if (pc.hasVagina()) output(" Your womb quickly swells out, heavy warmth packing into you until you look six months pregnant.");
 
 	output("\n\nYou blank out for a bit, unable to process anything but having seed reamed into you from every direction for a long time; a wet, clenching, throbbing daze which goes on for who knows how long. When your consciousness pieces itself back together you find yourself being slowly lifted upwards, cool air touching your limp, sweat and cum slicked body. Stars dance across your vision as, with a surprising amount of gentleness, the cockvine rolls you onto the ground outside its nest. You suppose the thing <i>has</i> to treat a potentially fertilized mate with a certain amount of propriety.");
 	if (!pc.isNude()) output(" You find yourself woozily grateful that, despite treating them with extreme impoliteness, the cockvine has not actually ripped any of your clothes off. The task of going back in after them would have been unthinkable.");

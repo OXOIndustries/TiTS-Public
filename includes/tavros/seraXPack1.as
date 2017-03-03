@@ -66,7 +66,7 @@ public function seraSexXXXTFModsAsk():void
 	author("Nonesuch");
 	showSera();
 	
-	output("<i>“Do you have anything that’s a bit more... ”</i> You want to say “interesting”. <i>“... exotic?”</i>");
+	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“... exotic?”</i>");
 	
 	// PC has submitted
 	if(flags["SERA_TRIPLE_X_RATED"] >= 4)
@@ -76,7 +76,7 @@ public function seraSexXXXTFModsAsk():void
 		output("\n\n<i>“Hmm. I think you’ll have to earn a look at them, pet. Be obedient, get on your");
 		if(pc.hasKnees()) output(" knees");
 		else output(" kneel");
-		output(" down and open that pretty mouth of yours enough times, and who knows how I’ll reward you... ”</i> she finishes on a tuneful, teasing note. You struggle not to roll your eyes.");
+		output(" down and open that pretty mouth of yours enough times, and who knows how I’ll reward you...”</i> she finishes on a tuneful, teasing note. You struggle not to roll your eyes.");
 		processTime(2);
 	}
 	// PC has not submitted 
@@ -254,9 +254,9 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 				addButton(0, "Yes Shrink", letSeraFuckYouXXXpac, "yes shrink", "Accept", "Allow Sera to shrink your [pc.cock " + cockIndex + "].");
 				addButton(1, "Got It", letSeraFuckYouXXXpac, "don't show me", "Refuse", "Tell her you’ve got this covered.");
 				addButton(2, "Nevermind", seraInchStealing, "nevermind", "Nevermind", "Actually, you’d rather not at this time....");
-				if(flags["SERA_TRIPLE_X_RATED"] >= 4) addDisabledButton(3, "Don't Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
-				else if(pc.WQ() >= 50) addButton(3, "Don't Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
-				else addDisabledButton(3, "Don't Care", "Not Interested", "You really don’t have the willpower to tell her off....");
+				if(flags["SERA_TRIPLE_X_RATED"] >= 4) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
+				else if(pc.WQ() >= 50) addButton(3, "Don’t Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
+				else addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the willpower to tell her off....");
 				return;
 			}
 		}
@@ -306,9 +306,9 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 		if(flags["SERA_TRIPLE_X_RATED"] < 0)
 		{
 			addButton(0, "Interested", letSeraFuckYouXXXpac, "interested", "Interested", "Tell her you are still interested.");
-			if(flags["SERA_TRIPLE_X_RATED"] >= 4) addDisabledButton(3, "Don't Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
-			else if(pc.WQ() >= 50) addButton(1, "Don't Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
-			else addDisabledButton(1, "Don't Care", "Not Interested", "You really don’t have the willpower to tell her off....");
+			if(flags["SERA_TRIPLE_X_RATED"] >= 4) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
+			else if(pc.WQ() >= 50) addButton(1, "Don’t Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
+			else addDisabledButton(1, "Don’t Care", "Not Interested", "You really don’t have the willpower to tell her off....");
 		}
 		else if(flags["SERA_TRIPLE_X_RATED"] == 3)
 		{
@@ -542,7 +542,7 @@ public function seraInchStealingIntro(response:String = ""):void
 		// 11.5-7 inches:
 		else if(biggestLength <= 11.5 && biggestLength >= 7) output("\n\nShe looks at you slyly, drifting her hand down to brush it. <i>“You know that’s an alright size, right? I don’t mind what you do with your prick, as long as it’s not bigger than mine.”</i> You close your eyes and say you want it be smaller. You might be imagining it, but you think Sera’s breath comes quicker to your words.");
 		
-		output("\n\n<i>“Ok then, pet,”</i> she breathes. <i>“Let’s make it happen.”</i>")
+		output("\n\n<i>“Okay then, pet,”</i> she breathes. <i>“Let’s make it happen.”</i>")
 		processTime(3);
 		
 		// Mod size check!
@@ -875,6 +875,7 @@ public function seraInchStealing(response:String = ""):void
 			{
 				//Cock removed, clit increase by 1, libido increase by 1
 				pc.removeCock(cockIndex, 1);
+				pc.balls = 0;
 				pc.clitLength += 1;
 				if(pc.hasPerk("Hung")) pc.clitLength += 1;
 				pc.slowStatGain("libido", 1);
@@ -1478,7 +1479,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			output(" Sera waves a claw lazily.");
 			output("\n\n<i>“[pc.name], meet Jardi. She is a go’rahn and a bitch. Jardi, meet [pc.name]. [pc.He] is a [pc.race] and also a bitch.”</i> She bites her lower lip as she considers the two of you, before getting up. <i>“I’m going to make some adjustments in the back. You two have a chat. You’re going to be working together very closely soon.”</i>");
 			output("\n\nJardi looks across at you shyly as the succubus strides out of the room. Feeling you should take the initiative, you ask the pretty gel-girl how she got to know Sera.");
-			output("\n\n<i>“I work on the flight deck. I didn’t come in here for anything specifically, I just like exploring the station, meeting new people. But when I came in here... uh... ”</i> She twiddles her fingers, her cheeks turning a lovely rose color. <i>“I don’t know how much you know about the rahn, but we’re a very open and casual people when it comes to sex. Very... consensual? When I encountered something as forceful as that, I kind of... You know how they tell you when you meet a new people to wear a breathing mask, because they might be carrying stuff your immune system has no resistance to?”</i>");
+			output("\n\n<i>“I work on the flight deck. I didn’t come in here for anything specifically, I just like exploring the station, meeting new people. But when I came in here... uh...”</i> She twiddles her fingers, her cheeks turning a lovely rose color. <i>“I don’t know how much you know about the rahn, but we’re a very open and casual people when it comes to sex. Very... consensual? When I encountered something as forceful as that, I kind of... You know how they tell you when you meet a new people to wear a breathing mask, because they might be carrying stuff your immune system has no resistance to?”</i>");
 			output("\n\nYou tell her you understand. She looks at you with her big, brown eyes.");
 			output("\n\n<i>“Are all human relationships like this?”</i> You only have time to laugh before Sera’s voice comes floating out of the door behind the counter.");
 			output("\n\n<i>“You two. Down the corridor and on your right. Now.”</i> You proffer your hand companionably to Jardi, who takes it with a grateful smile. Together you head on through and into the gloom of the room on your right.");
@@ -1570,7 +1571,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			if(response == "balls")
 			{
 				output("You slowly crawl forward, the sight of Sera’s ample thighs and behind taking up everything as she slowly buries every inch into Jardi’s plump cunt. The rahn makes a sing song gasp when her mistress’s hips touch her behind, seeping fluid from her stuffed tunnel freely. You wrap your hands around the purple, pliant warmth of the succubus’s waist and when she withdraws you envelope one of her bulging testicles in your mouth. Equal parts mistress musk and salt saturates your [pc.tongue], sending arousal wiring down to your [pc.groin].");
-				output("\n\n<i>“Oh, that’s good,”</i> Sera whispers. <i>“Use your tongue. Yes!”</i> She practically sings it when you gently compress your cheeks around the sensitive orb in your mouth. <i>“You should feel what this filthy [pc.boy]-slut is doing, Jardi,”</i> groans the demon. <i>“[pc.He]’s going to make me cum a fucking ocean into you. Now the other one,”</i> she orders, with a stern flourish. You are too under the influence of the room and her but to do anything other; you shift your [pc.lips] across her dipping and rising scrotum to suck at her other ball, gently lapping at it as her round ass rises and recedes, buried in the white mound ahead of you.");
+				output("\n\n<i>“Oh, that’s good,”</i> Sera whispers. <i>“Use your tongue. Yes!”</i> She practically sings it when you gently compress your cheeks around the sensitive orb in your mouth. <i>“You should feel what this filthy [pc.boy]-slut is doing, Jardi,”</i> groans the demon. <i>“[pc.He]’s going to make me cum a fucking ocean into you. Now the other one,”</i> she orders, with a stern flourish. You are too under the influence of the room and her to do anything other; you shift your [pc.lips] across her dipping and rising scrotum to suck at her other ball, gently lapping at it as her round ass rises and recedes, buried in the white mound ahead of you.");
 				output("\n\nShe pumps into Jardi slowly at first, letting you get used to her recede and extent, before picking up the pace, bumping back into you brusquely, making you move your neck in order to continue shifting your lips worshipfully over her cum factories. With every inward thrust they seem to tighten, thicken, as they prepare their load. There is a breathy, muffled moan as the succubus thrusts harder, driven on by your ministrations.");
 				output("\n\nSomething warm and blunt drifts down your lower back, questing into the crack of your [pc.butt].");
 				if(!pc.hasVagina())
@@ -1762,7 +1763,7 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			if(response == "balls")
 			{
 				output("You slowly crawl forward, the sight of Sera’s ample thighs and behind taking up everything as she slowly buries every inch into Jardi’s plump cunt. The rahn makes a sing song gasp when her mistress’s hips touch her behind, seeping fluid from her stuffed tunnel freely. You wrap your hands around the purple, pliant warmth of the succubus’s waist and when she withdraws you envelope one of her bulging testicles in your mouth. Equal parts mistress musk and salt saturates your [pc.tongue], sending arousal wiring down to your [pc.groin].");
-				output("\n\n<i>“Oh, that’s good,”</i> Sera whispers. <i>“Use your tongue. Yes!”</i> She practically sings it when you gently compress your cheeks around the sensitive orb in your mouth. <i>“You should feel what this filthy [pc.boy]-slut is doing, Jardi,”</i> groans the demon. <i>“[pc.He]’s going to make me cum a fucking ocean into you. Now the other one,”</i> she orders with a stern flourish. You are too under the influence of the room and her but to do anything other; you shift your [pc.lips] across her dipping and rising scrotum to suck at her other ball, gently lapping at it as her round ass rises and recedes, buried in the white mound ahead of you.");
+				output("\n\n<i>“Oh, that’s good,”</i> Sera whispers. <i>“Use your tongue. Yes!”</i> She practically sings it when you gently compress your cheeks around the sensitive orb in your mouth. <i>“You should feel what this filthy [pc.boy]-slut is doing, Jardi,”</i> groans the demon. <i>“[pc.He]’s going to make me cum a fucking ocean into you. Now the other one,”</i> she orders with a stern flourish. You are too under the influence of the room and her to do anything other; you shift your [pc.lips] across her dipping and rising scrotum to suck at her other ball, gently lapping at it as her round ass rises and recedes, buried in the white mound ahead of you.");
 				output("\n\nShe pumps into Jardi slowly at first, letting you get used to the extent of her movements, before picking up the pace, bumping back into you brusquely, making you move your neck in order to continue moving your lips over her cum factories. With every inward thrust they seem to tighten and thicken as they prepare their load. There is a breathy, muffled moan as the succubus thrusts harder, driven on by your ministrations.");
 				output("\n\nSomething warm and blunt drifts down your lower back, questing into the crack of your [pc.butt].");
 				if(!pc.hasVagina())
@@ -1916,7 +1917,7 @@ public function seraSexXXXGetRidden(arg:Array):void
 				else output(" [pc.anus]");
 				output(". Sera laughs to herself softly.");
 				output("\n\n<i>“Oh, bitch. So naive. Come sit here.”</i> Confused, you do as she directs, shuffling into the chair so your back is pressed into its two front legs. Your mistress presses her hot palm against your forehead, pushing it back so it is lying on the seat. It is only then, as she brings the double dildo over, the plastic harness slithering onto your face, that you understand.");
-				output("\n\n<i>“Oh do be quiet pet,”</i> Sera sighs exasperatedly as your gasp is muffled by a vast amount of thick, bumpy latex. <i>“This is all for your own good and I’m going to be giving you important instructions, so try and keep your cries for mercy to a minimum for once, ok?”</i> The dildo almost completely fills your mouth, touching the front of your throat. You can breathe... just. Air hisses through your nose as Sera buckles your head securely to the seat of the chair, leaving the other half of the strap-on pointing at the ceiling. You stare up at it as Sera clacks away, swaying her hips. The only light in the room now is the flickering candles and the intermittent blare of blue light from the window, but you can make out the logo inscribed on the upper half: VAPUWARE. You reach out and touch it, tracing the words as your tongue moves around the smooth synthetic flesh in your mouth.");
+				output("\n\n<i>“Oh do be quiet pet,”</i> Sera sighs exasperatedly as your gasp is muffled by a vast amount of thick, bumpy latex. <i>“This is all for your own good and I’m going to be giving you important instructions, so try and keep your cries for mercy to a minimum for once, okay?”</i> The dildo almost completely fills your mouth, touching the front of your throat. You can breathe... just. Air hisses through your nose as Sera buckles your head securely to the seat of the chair, leaving the other half of the strap-on pointing at the ceiling. You stare up at it as Sera clacks away, swaying her hips. The only light in the room now is the flickering candles and the intermittent blare of blue light from the window, but you can make out the logo inscribed on the upper half: VAPUWARE. You reach out and touch it, tracing the words as your tongue moves around the smooth synthetic flesh in your mouth.");
 				output("\n\nA pulpy tail spade slaps into the back of your hand. Sera stands over you, smiling cruelly, her curvy form lit by the syncopated stun of cold neon behind her. There are blunt, indistinct objects in her hands.");
 				output("\n\n<i>“Put them behind the chair legs.”</i> Slowly, you do as she asks, curling your fingers around the back of them.");
 				// >12” inches stolen:
@@ -2222,7 +2223,7 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 			output("<i>“Someone bought a whole load of Clippex,”</i> she grunts. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Grows your tits and particularly your nipples out, does crazy things with them if you keep taking it. Turns them into cunts, then mouths...</i> “ You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
 			output("<i>“...pretty specialist transformation, expensive. Lucky to find someone willing to... ungh... buy so much.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
-			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] one strains helplessly against your abdomen as she rides over your prostate again and again.");
+			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] strains helplessly against your abdomen as she rides over your prostate again and again.");
 			else
 			{
 				output(" Your [pc.anus]");
@@ -2235,9 +2236,9 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		else if(TFItem == "Semen’s Friend")
 		{
 			output("<i>“This guy bought a whole packet of Semen’s Friends,”</i> she says thickly. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Increases the size of your balls, makes them more productive but does all sorts of other crazy stuff with your cum, too. Can turn it black. Can make it look and taste like chocolate.”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
-			output("<i>“I regretted ordering it almost as soon as I clicked “Ok”. Who wants four testicles? Well... someone, obviously. So – goddamn – glad to have shifted it.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
+			output("<i>“I regretted ordering it almost as soon as I clicked “OK”. Who wants four testicles? Well... someone, obviously. So – goddamn – glad to have shifted it.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
-			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] one strains helplessly against your abdomen as she rides over your prostate again and again.");
+			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] strains helplessly against your abdomen as she rides over your prostate again and again.");
 			else
 			{
 				output(" Your [pc.anus]");
@@ -2248,10 +2249,10 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		// Lucifier
 		else
 		{
-			output("<i>“I managed to sell almost my entire stock of Lucifier,”</i> she grunts. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Wondered what I used to make me look like this? Does almost everything – the skin, the horns, the eyes... ”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
+			output("<i>“I managed to sell almost my entire stock of Lucifier,”</i> she grunts. She saws into you, keeping her grip tight around your wrists, filling more and more of your tunnel with her alarmingly thick cock, bending it into your sensitive spots to make you tense up around her with involuntary pleasure. <i>“Wondered what I used to make me look like this? Does almost everything – the skin, the horns, the eyes...”</i> You are not capable of responding. Your hands grip the air and you suck skies of air into your mouth as she finds your limit and begins to thrust into you vigorously, her balls slapping into your [pc.hips], her length rubbing and stretching your tunnel acutely.");
 			output("<i>“...it’s popular on human colonies. Out here though – well, you try explaining to an alien its cultural significance. And frontier explorers steer clear of it because it... ungh... does things to your libido. Big things.”</i> She stops talking for a while, concentrating on rutting you hard enough to make the counter shake, her thighs beating a soft percussion against your [pc.butt].");
 			if(vagIndex >= 0) output(" Your stuffed [pc.vagina " + vagIndex + "] seeps juices around her cock deliriously.");
-			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] one strains helplessly against your abdomen as she rides over your prostate again and again.");
+			else if(cockIndex >= 0) output(" Your [pc.cock " + cockIndex + "] strains helplessly against your abdomen as she rides over your prostate again and again.");
 			else
 			{
 				output(" Your [pc.anus]");
@@ -2368,7 +2369,7 @@ public function seraSexXXXTitfuckLuckyDipGetItem(TFItem:String = ""):void
 		}
 		flags["SERA_UNLOCK_LUCIFIER"] = 1;
 	}
-	if(discount) output(" I’m going to give it to you at a discount but you can’t tell anyone else about it, ok?");
+	if(discount) output(" I’m going to give it to you at a discount but you can’t tell anyone else about it, okay?");
 	output("”</i> As she speaks she’s flicking her claws over her touch screen. You grin quietly to yourself as you get up to find a towel.");
 	if(discount) output("\n\n<b>You have gained a coupon for " + TFItem + "!</b>");
 	
@@ -2425,8 +2426,8 @@ public function seraSexXXXTitfuckLuckyDipPerform(TFItem:String = ""):void
 	}
 	
 	output(" lands on the counter above you. You didn’t even see where it came from.");
-	if(discount) output(" <i>“I can give you more at a discount,”</i> Sera purrs, flicking a big toe at the locker near your head. You shuffle over and open it to find a pile of clean towels. <i>“But that one’s your only freebie, ok? Unless... well... hmm.”</i>");
-	else output(" Sera purrs and flicks a big toe at the locker near your head. You shuffle over and open it to find a pile of clean towels. <i>“That one’s your only freebie, ok? Unless... well... hmm.”</i>");
+	if(discount) output(" <i>“I can give you more at a discount,”</i> Sera purrs, flicking a big toe at the locker near your head. You shuffle over and open it to find a pile of clean towels. <i>“But that one’s your only freebie, okay? Unless... well... hmm.”</i>");
+	else output(" Sera purrs and flicks a big toe at the locker near your head. You shuffle over and open it to find a pile of clean towels. <i>“That one’s your only freebie, okay? Unless... well... hmm.”</i>");
 	output("\n\n<b>You have gained one " + TFItem + "!</b>");
 	if(discount) output("\n\n<b>You have also gained a coupon for your next purchase of " + TFItem + "!</b>");
 	output("\n\n");

@@ -41,7 +41,22 @@ public function drLashOfficeBonus():Boolean
 		else output("looks up at the lights and scowls. <i>“I should buy some Tesla coils...”</i>");
 		addButton(0,"Dr.Lash",walkUpToDocLashAgain,false);
 	}
+	addButton(8,"Masturbate",drLashMasturbationInterruption);
 	return false;
+}
+
+public function drLashMasturbationInterruption():void
+{
+	clearOutput();
+	showDrLash();
+	output("You make to begin masturbating, much to Doctor Lash’s consternation.");
+
+	output("\n\n<i>“What are you doi-oh. It was too much to hope you would suppress your baser instincts in my presence. You poor, poor creature. If you are going to make a mess of my lab, we should endeavor to ensure that it will be the last time.”</i> He draws a number of weapons from inside his coat.");
+
+	output("\n\nUh oh.");
+	clearMenu();
+	configDocLashFight();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 //First Time Meeting Funtimes!
@@ -197,9 +212,9 @@ public function walkUpToDocLashAgain(back:Boolean = true):void
 	}
 	//Main lash menu
 	clearMenu();
-	addButton(0,"Services",genitalRemovalShit,undefined,"Services","Access Dr. Lash's services.");
+	addButton(0,"Services",genitalRemovalShit,undefined,"Services","Access Dr. Lash’s services.");
 	addButton(1,"Talk",talkToDocLash);
-	if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) addButton(2,"Raygun?",raygunStuff,undefined,"Ask About Doctor Badger's Raygun","Talk to Doctor Lash about the raygun Dr. Badger gave you for Penny, and see if he can help you change it to work on her instead");
+	if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) addButton(2,"Raygun?",raygunStuff,undefined,"Ask About Doctor Badger’s Raygun","Talk to Doctor Lash about the raygun Dr. Badger gave you for Penny, and see if he can help you change it to work on her instead");
 	shopkeep = chars["DRLASH"];
 	addButton(5,"Buy",buyItem,undefined,"Buy","Ask Dr. Lash if he has any items to sell.");
 	if(peacekeeperTalkAvailable()) addButton(6,"Peacekeepers",drLashPeacekeeprTalk);
@@ -219,7 +234,7 @@ public function genitalRemovalShit():void
 	//Bimbos refuse to remove cunt and bros refuse to remove dicks!
 	output("\n\nPure Purge - 1,000 credits. Removes all evidence of troublesome mating organs.");
 	output("\nPriaprism Purge - 5,000 credits. Removes all masculinity endowments, big and small.");
-	output("\nPhallus Pruning - 10,000 credits. Removes a single phallus of the doctor's choice.");
+	output("\nPhallus Pruning - 10,000 credits. Removes a single phallus of the doctor’s choice.");
 	output("\nNeutering - 4,000 credits. Removes external gonads and testicular tissue.");
 	output("\nBirth-Proofing - 5,000 credits. Converts all vaginas and associated wombs to less libidinous tissues.");
 	output("\nVagina Replacement - 10,000 credits. Replaces a single vagina with safe, non-sexualized tissue.");
@@ -229,52 +244,52 @@ public function genitalRemovalShit():void
 	clearMenu();
 	if(pc.hasGenitals())
 	{
-		if(pc.hasStatusEffect("GaloMax")) addDisabledButton(0,"Pure Purge","Pure Purge","You probably shouldn't do this while under the effects of GaloMax.");
-		else if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don't want to get rid of your pussy!");
-		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You're not losing your junk.");
+		if(pc.hasStatusEffect("GaloMax")) addDisabledButton(0,"Pure Purge","Pure Purge","You probably shouldn’t do this while under the effects of GaloMax.");
+		else if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don’t want to get rid of your pussy!");
+		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You’re not losing your junk.");
 		else if(pc.hasWombPregnancy()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
-		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don't have any genitals!");
+		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don’t have any genitals!");
 		else if(pc.credits >= 1000) addButton(0,"Pure Purge",lashTreatment,"pure purge","Pure Purge","1,000 credits. Removes all evidence of troublesome mating organs.");
 		else addDisabledButton(0,"Pure Purge","Pure Purge","You cannot afford this treatment.");
 	}
-	else addDisabledButton(0,"Pure Purge","Pure Purge","You don't have genitals to remove.");
-	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(1,"Priaprism P.","Priaprism Purge","You probably shouldn't do this while under the effects of GaloMax.");
-	else if(pc.hasCock() && pc.isBro()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","No way! You're not losing your junk.");
-	else if(!pc.hasCock()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","You don't have a phallus to remove.");
+	else addDisabledButton(0,"Pure Purge","Pure Purge","You don’t have genitals to remove.");
+	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(1,"Priaprism P.","Priaprism Purge","You probably shouldn’t do this while under the effects of GaloMax.");
+	else if(pc.hasCock() && pc.isBro()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","No way! You’re not losing your junk.");
+	else if(!pc.hasCock()) addDisabledButton(1,"Priaprism P.","Priaprism Purge","You don’t have a phallus to remove.");
 	else if(pc.credits >= 5000) addButton(1,"Priaprism P.",lashTreatment,"priaprism purge","Priaprism Purge","5,000 credits. Removes all masculinity endowments, big and small.");
 	else addDisabledButton(1,"Priaprism P.","Priaprism Purge","You do not have the credits for this treatment.");
 
-	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(2,"Phallus P.","Phallus Purge","You probably shouldn't do this while under the effects of GaloMax.");
-	else if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Purge","No way! You're not losing your junk.");
-	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Purge","You don't have a penis to lose.");
+	if(pc.hasCock() && pc.hasStatusEffect("GaloMax")) addDisabledButton(2,"Phallus P.","Phallus Purge","You probably shouldn’t do this while under the effects of GaloMax.");
+	else if(pc.hasCock() && pc.isBro()) addDisabledButton(2,"Phallus P.","Phallus Purge","No way! You’re not losing your junk.");
+	else if(!pc.hasCock()) addDisabledButton(2,"Phallus P.","Phallus Purge","You don’t have a penis to lose.");
 	else if(pc.credits >= 10000) addButton(2,"Phallus P.",lashTreatment,"phallus pruning","Phallus Pruning","10,000 credits. Removes a single phallus of the doctor’s choice.");
 	else addDisabledButton(2,"Phallus P.","Phallus Purge","You cannot afford this treatment.");
 
-	if(pc.balls > 0 && pc.hasStatusEffect("GaloMax")) addDisabledButton(3,"Neutering","Neutering","You probably shouldn't do this while under the effects of GaloMax.");
-	else if(pc.balls > 0 && pc.isBro()) addDisabledButton(3,"Neutering","Neutering","No way! You're not getting rid of your junk!");
-	else if(pc.balls == 0) addDisabledButton(3,"Neutering","Neutering","You don't have any balls to lose.");
+	if(pc.balls > 0 && pc.hasStatusEffect("GaloMax")) addDisabledButton(3,"Neutering","Neutering","You probably shouldn’t do this while under the effects of GaloMax.");
+	else if(pc.balls > 0 && pc.isBro()) addDisabledButton(3,"Neutering","Neutering","No way! You’re not getting rid of your junk!");
+	else if(pc.balls == 0) addDisabledButton(3,"Neutering","Neutering","You don’t have any balls to lose.");
 	else if(pc.credits >= 4000) addButton(3,"Neutering",lashTreatment,"neutering","Neutering","4,000 credits. Removes external gonads and testicular tissue.");
 	else addDisabledButton(3,"Neutering","Neutering","You cannot afford this treatment.");
 
 	if(pc.hasVagina() && pc.hasStatusEffect("GaloMax"))
 	{
-		addDisabledButton(4,"Birth-P.","Birth-Proofing","You probably shouldn't do this while under the effects of GaloMax.");
-		addDisabledButton(5,"Vagina R.","Vagina Removal","You probably shouldn't do this while under the effects of GaloMax.");
+		addDisabledButton(4,"Birth-P.","Birth-Proofing","You probably shouldn’t do this while under the effects of GaloMax.");
+		addDisabledButton(5,"Vagina R.","Vagina Removal","You probably shouldn’t do this while under the effects of GaloMax.");
 	}
 	else if(pc.hasVagina() && pc.isBimbo())
 	{
-		addDisabledButton(4,"Birth-P.","Birth-Proofing","Noooo! You don't wanna lose your lady parts!");
-		addDisabledButton(5,"Vagina R.","Vagina Removal","Noooo! You don't wanna lose your lady parts!");
+		addDisabledButton(4,"Birth-P.","Birth-Proofing","Noooo! You don’t wanna lose your lady parts!");
+		addDisabledButton(5,"Vagina R.","Vagina Removal","Noooo! You don’t wanna lose your lady parts!");
 	}
 	else if(pc.hasVagina() && pc.hasWombPregnancy())
 	{
-		addDisabledButton(4,"Birth-P.","Birth-Proofing","Dr. Lash won't perform this treatment until you're no longer pregnant.");
-		addDisabledButton(5,"Vagina R.","Vagina Removal","Dr. Lash won't perform this treatment until you're no longer pregnant.");
+		addDisabledButton(4,"Birth-P.","Birth-Proofing","Dr. Lash won’t perform this treatment until you’re no longer pregnant.");
+		addDisabledButton(5,"Vagina R.","Vagina Removal","Dr. Lash won’t perform this treatment until you’re no longer pregnant.");
 	}
 	else if(!pc.hasVagina())
 	{
-		addDisabledButton(4,"Birth-P.","Birth-Proofing","You don't have a vagina to lose!");
-		addDisabledButton(5,"Vagina R.","Vagina Removal","You don't have a vagina to lose!");
+		addDisabledButton(4,"Birth-P.","Birth-Proofing","You don’t have a vagina to lose!");
+		addDisabledButton(5,"Vagina R.","Vagina Removal","You don’t have a vagina to lose!");
 	}
 	else
 	{
@@ -285,10 +300,10 @@ public function genitalRemovalShit():void
 	}
 	if((pc.biggestTitSize() >= 1 || pc.bRows()))
 	{
-		if(pc.credits >= 7500) addButton(6,"'Rack' R.",lashTreatment,"rack removal","Rack Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
-		else addDisabledButton(6,"'Rack' R.","'Rack' Removal","You cannot afford this treatment.");
+		if(pc.credits >= 7500) addButton(6,"‘Rack’ R.",lashTreatment,"rack removal","‘Rack’ Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
+		else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You cannot afford this treatment.");
 	}
-	else addDisabledButton(6,"'Rack' R.","'Rack' Removal","You need a rack to remove in order to get this operation.");
+	else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You need a rack to remove in order to get this operation.");
 	addButton(14,"Back",walkUpToDocLashAgain);
 }
 
@@ -502,10 +517,10 @@ public function talkToDocLash():void
 	output("\n\nDoctor Lash lets out a long-suffering sigh. <i>“Very well, so long as you do not impinge too greatly upon my time.”</i>");
 	processTime(1);
 	clearMenu();
-	addButton(0,"The UGC",askDocLashAboutTheUGC,undefined,"The UGC","Ask him about the UGC. Surely he's got some thoughts about them.");
+	addButton(0,"The UGC",askDocLashAboutTheUGC,undefined,"The UGC","Ask him about the UGC. Surely he’s got some thoughts about them.");
 	addButton(1,"Why?",whyDrLashDoesShit,undefined,"Why?","Why is he out here doing this weird stuff?");
-	addButton(2,"Flirt",flirtWithDrLash,undefined,"Flirt","Maybe he's cooled off a bit. He's gotta have a butthole he can still have fun with, right?");
-	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drLashTalkAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga's situation.");
+	addButton(2,"Flirt",flirtWithDrLash,undefined,"Flirt","Maybe he’s cooled off a bit. He’s gotta have a butthole he can still have fun with, right?");
+	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drLashTalkAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	addButton(14,"Back",walkUpToDocLashAgain);
 }
 
@@ -534,7 +549,7 @@ public function whyDrLashDoesShit():void
 	output("<i>“Why do this? Why focus on the removal of sexual urges, desires, and organs?”</i>");
 	output("\n\nDoctor Lash rubs his chin thoughtfully. <i>“That... is a surprisingly astute question, [pc.name]. ‘Why’ is the great question, after all. It is perhaps the root question, the one that fascinates even the youngest of the younglings. Why indeed.”</i> He leans against the cold metal of a table and thinks. <i>“The answer may be more simple than you think. Often the most complicated issues spring forth from the most simple of drives.”</i>");
 	output("\n\nYou look at him, still awaiting an answer.");
-	output("\n\nHe meets your gaze with his mechanical, crimson eyes and smiles in a way that sends shivers down your spine. <i>“Simple experimentation. I worked for a company that delighted in all things sexual. You might have heard of them - Tamani Corp. They make a significant profit with the volume of business they’re dealing, all based on the back of reproduction-driven perversions. I decided the best way to deepen my understanding of the relevant tissues was to experiment on my own, starting with a thorough, microsurgeon-assisted deconstruction.”</i>");
+	output("\n\nHe meets your gaze with his mechanical, crimson eyes and smiles in a way that sends shivers down your spine. <i>“Simple experimentation. I worked for a company that delighted in all things sexual. You might have heard of them - TamaniCorp. They make a significant profit with the volume of business they’re dealing, all based on the back of reproduction-driven perversions. I decided the best way to deepen my understanding of the relevant tissues was to experiment on my own, starting with a thorough, microsurgeon-assisted deconstruction.”</i>");
 	output("\n\nLooking intently at your reaction, Doctor Lash asks, <i>“Do you know what I found?”</i>");
 	output("\n\nYou answer with a brief, negative shake of your head.");
 	output("\n\n<i>“I found clarity. I found peace.”</i> He straightens the folds of his labcoat and straightens his posture. <i>“I found solace from the pernicious, throbbing desires of my loins. I could focus on my work without my body’s base needs constantly threatening to derail my train of thought. I knew immediately that I could never go back to the way I was. There was no point in it. If anything, others had to join me. As you can imagine, I self-terminated my employment not long after.”</i>");
@@ -555,7 +570,7 @@ public function flirtWithDrLash():void
 	output("\n\nThe six-armed alien scowls and withdraws a half-dozen glowing plasma weapons from his sleeves. <i>“I had hoped you would rise against such impulses. Desist, or I will ensure that you are incapable of ever distracting me again.”</i>");
 	processTime(1);
 	clearMenu();
-	addButton(0,"Keep Flirtin'",keepFlirtingWithLash);
+	addButton(0,"Keep Flirtin’",keepFlirtingWithLash);
 	addButton(1,"Nevermind",walkUpToDocLashAgain);
 }
 
@@ -587,7 +602,7 @@ public function winVsDoctorLash():void
 {
 	showDrLash();
 	showName("\nVICTORY!");
-	output("Somehow, you defeated Doctor Lash. That's not something that's supposed to be able to be done yet, but you did it anyway. Good on you.\n\nSeeing as how the game isn't set up to handle this contingency, Dr. Lash will act like he's never met you.\n\n");
+	output("Somehow, you defeated Doctor Lash. That’s not something that’s supposed to be able to be done yet, but you did it anyway. Good on you.\n\nSeeing as how the game isn’t set up to handle this contingency, Dr. Lash will act like he’s never met you.\n\n");
 	CombatManager.genericVictory();
 }
 

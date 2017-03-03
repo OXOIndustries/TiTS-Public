@@ -350,6 +350,9 @@ public function celiseKiroFunSekritShit():void
 	showKiro();
 	author("Gardeford");
 	//(Only accessible if Kiro is medium balls or more and high trust. Giga celise in ship. find her in bar.(will do alternate intro if follower is implemented))
+	
+	currentLocation = shipLocation;
+	generateMap();
 
 	//first time
 	if(flags["KIRO_CELISE_3SOME"] == undefined)
@@ -358,7 +361,7 @@ public function celiseKiroFunSekritShit():void
 		if(pc.isNice()) output("smile happily");
 		else output("grin devilishly");
 		output(", telling Kiro that you’ve found the perfect person to vent her desires into, and that person is waiting for her on your ship.");
-		output("\n\n<i>“Who is it? ‘Perfect’ sounds a little too good to be true,”</i> Kiro says with an incredulous tone. <i>“The last time someone offered me something perfect I nearly wound up in a cell!”</i>");
+		output("\n\n<i>“Who is it? ‘Perfect’ sounds a little too good to be true,”</i> Kiro says with an incredulous tone. <i>“The last time someone offered me something perfect, I nearly wound up in a cell!”</i>");
 		//[tell] [dont tell]
 		clearMenu();
 		addButton(1,"Don’t Tell",dontTellKiroShit,undefined,"Don’t Tell","Don’t give away the surprise.");
@@ -378,7 +381,19 @@ public function dontTellKiroShit():void
 	showKiro();
 	author("Gardeford");
 	output("You laugh. <i>“That would ruin the surprise, silly. Come see for yourself.”</i>");
-	//9999 Untrusting Kiro wouldn't do this. Do a variant where she refuses.
+	// Untrusting Kiro wouldn't do this. Do a variant where she refuses.
+	if(kiroTrust() < 80)
+	{
+		output("\n\nThe kui-tan looks at you with a serious gaze. <i>“Listen, I’m serious! For all I know, there could be a trap behind that airlock and I’m not sure I can trust you enough to settle for any surprises. Sorry, angel, but I’ll have to pass on your offer.”</i> And with that, she turns around and hurries away.");
+		output("\n\nYou guess she’s really on her guard. Perhaps you should strengthen her trust in you before attempting to try this again.");
+		processTime(5);
+		flags["KIRO_CELISE_3SOME_REJECT"] = 1;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	if(flags["KIRO_CELISE_3SOME_REJECT"] != undefined) flags["KIRO_CELISE_3SOME_REJECT"] = undefined;
+	
 	celiseXKiroFirstTimeIntroEpilogue();
 }
 public function tellKiroShit():void
@@ -394,12 +409,16 @@ public function celiseXKiroFirstTimeIntroEpilogue():void
 {
 	output(" She still gives you a wary look, but then rolls her eyes and shrugs. <i>“What have I got to lose? If you were going to fuck me over, you’d have done it by now.”</i>");
 	output("\n\nYou lead her through the ship until you reach the engine room that Celise stays in. The emerald goo-girl brightens at seeing you, and raises a brow when she sees your companion.");
+	
 	properKiroSceneTimeLetsGo();
 }
 
 //merge
 public function properKiroSceneTimeLetsGo():void
 {
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	
 	showName("KIRO\nAND CELISE");
 	showBust("KIRO","CELISE");
 	author("Gardeford");
@@ -438,6 +457,9 @@ public function properKiroSceneTimeLetsGo():void
 	//Lets keep count, whynot?
 	if(flags["KIRO_CELISE_3SOME"] == undefined) flags["KIRO_CELISE_3SOME"] = 0;
 	flags["KIRO_CELISE_3SOME"]++;
+	
+	currentLocation = shipLocation;
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

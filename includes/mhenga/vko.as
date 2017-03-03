@@ -95,6 +95,9 @@ public function approachVKo(showShit:Boolean = true):void {
 	if(pc.HP() < pc.HPMax()) addButton(3,"Heal",getHealedByVKo);
 	else addDisabledButton(3,"Heal");
 	addButton(4,"CustomInput",customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss);
+
+	if(pc.hasItem(new DamagedVIChip())) addButton(5,"Give VI Chip",nurseDroidChipTurnIn,"VKO","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
+
 	addButton(14,"Back",mainGameMenu);
 }
 

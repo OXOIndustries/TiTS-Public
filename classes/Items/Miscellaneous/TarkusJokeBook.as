@@ -60,7 +60,7 @@
 			if (target is PlayerCharacter) 
 			{
 				clearOutput();
-				output("How did you do this? You're breaking the game, fool! -Fenoxo");
+				output("How did you do this? You’re breaking the game, fool! -Fenoxo");
 			}
 			//Not player!
 			else

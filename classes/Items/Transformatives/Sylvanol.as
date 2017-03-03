@@ -25,14 +25,14 @@
 			//Used on inventory buttons
 			this.shortName = "Sylvanol";
 			//Regular name
-			this.longName = "medipen labeled \"Sylvanol\"";
+			this.longName = "medipen labeled “Sylvanol”";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a medipen labeled \"Sylvanol\"";
+			this.description = "a medipen labeled “Sylvanol”";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This is a light gray medipen with an unusual teardrop-like shape. Very popular among fans of fantasy fiction, it’s a targeted transformative which causes the user’s ears to become pointed like those of a fantasy elf.  Repeated doses will cause the ears to lengthen outward. Users with particularly long ears often experience them becoming an erogenous zone. Unlike most medipens, there is an adjustable dial which, when spun, causes the surface of the medipen to cycle between several different color schemes. The labeling notes that each of these flavors will adjust the type of fantasy creature that the Sylvanol will transform you towards. A small pamphlet included with the medipen details the various settings.";
+			this.tooltip = "This is a light gray medipen with an unusual teardrop-like shape. Very popular among fans of fantasy fiction, it’s a targeted transformative which causes the user’s ears to become pointed like those of a fantasy elf. Repeated doses will cause the ears to lengthen outward. Users with particularly long ears often experience them becoming an erogenous zone. Unlike most medipens, there is an adjustable dial which, when spun, causes the surface of the medipen to cycle between several different color schemes. The labeling notes that each of these flavors will adjust the type of fantasy creature that the Sylvanol will transform you towards. A small pamphlet included with the medipen details the various settings.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -127,7 +127,7 @@
 		{
 			var pc:Creature = args[0];
 			var color:String = args[1];
-			output("\n\nA liquid feeling flows down your hair from the roots as if someone had poured a bucket of water over your head.  You’re able to catch the trail end of the transformation that goes with this sensation, the last vestiges of " + pc.hairColor + " disappearing from your hair in favor of a new lovely " + color + " shade.");
+			output("\n\nA liquid feeling flows down your hair from the roots as if someone had poured a bucket of water over your head. You’re able to catch the trail end of the transformation that goes with this sensation, the last vestiges of " + pc.hairColor + " disappearing from your hair in favor of a new lovely " + color + " shade.");
 			pc.hairColor = color;
 		}
 		public function sylvanolSkinTF(args:Array):void
@@ -274,8 +274,8 @@
 			Change eye color to red, ruby, crimson, indigo, violet, or silver.
 			Low:
 			Change skin color to gray and nipple color to silver. Also change color of any human cocks to gray and any human vaginas to silver.
-			Change skin color to pale violet and nipple color to indigo.  Also change color of any human cocks to pale violet and any human vaginas to indigo.
-			Change skin color to pale and nipple color to pink.  Also change color of any human cocks to pale and any human vaginas to pink.
+			Change skin color to pale violet and nipple color to indigo. Also change color of any human cocks to pale violet and any human vaginas to indigo.
+			Change skin color to pale and nipple color to pink. Also change color of any human cocks to pale and any human vaginas to pink.
 			Gain glittering black, glowing red, glowing violet, or luminous silver vanae markings.*/
 	
 			kGAMECLASS.clearOutput();
@@ -349,7 +349,7 @@
 			//Gain glittering black, glowing red, glowing violet, or luminous silver vanae markings.
 			var vanaeColors:Array = ["glittering black", "glowing red", "glowing violet","luminous silver"];
 			tarColor = RandomInCollection(vanaeColors);
-			if(!pc.hasStatusEffect("Vanae Markings")) 
+			if(!pc.hasAccentMarkings()) 
 			{
 				lowEvents.push(sylvanolVanaeMarkings);
 				lowEventsArgs.push([pc,tarColor]);
@@ -398,7 +398,7 @@
 			Change eye color to blue, sapphire, green, emerald, silver, or gold.
 			Low:
 			Change skin color to pale blue and nipple color to indigo. Also change color of any human cocks to blue and any human vaginas to indigo.
-			Change skin color to white and nipple color to blue.  Also change color of any human cocks to white and any human vaginas to blue.
+			Change skin color to white and nipple color to blue. Also change color of any human cocks to white and any human vaginas to blue.
 			Gain luminous blue, luminous green, luminous pink, luminous silver or glowing gold vanae markings.*/
 
 			//Consumption Text
@@ -470,7 +470,7 @@
 			//Gain vanae-style markings:
 			var vanaeColors:Array = ["luminous blue", "luminous green", "luminous pink","luminous silver","glowing gold"];
 			tarColor = RandomInCollection(vanaeColors);
-			if(!pc.hasStatusEffect("Vanae Markings")) 
+			if(!pc.hasAccentMarkings()) 
 			{
 				lowEvents.push(sylvanolVanaeMarkings);
 				lowEventsArgs.push([pc,tarColor]);

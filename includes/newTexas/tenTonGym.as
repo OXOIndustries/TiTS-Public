@@ -394,13 +394,14 @@ public function takeAShowerSloot():void
 	if(pc.hasStatusEffect("Sweaty")) output(", stripping away the sweat from your workout");
 	output(". After that, you scrub your [pc.face] and wash behind your [pc.ears], giving yourself a thorough cleaning.");
 
-	if(pc.exhibitionism() < 50) 
+	pc.shower();
+	processTime(10);
+	
+	if(pc.exhibitionism() < 33 || pc.lust() < 33)
 	{
 		output("\n\nThe hot water washes away your sweat and soreness, and it’s a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end, and you soon head out and towel yourself off, then get dressed again.");
 		output("\n\nYou needed that.");
 		//{Remove all [Sweaty]}{Time: 10 minutes}
-		pc.removeStatusEffect("Sweaty");
-		processTime(10);
 	}
 	else
 	{
@@ -409,26 +410,24 @@ public function takeAShowerSloot():void
 		output("\n\nYou let out a moan, not too loud but enough to be heard among the sounds of rushing water and splashing footsteps. Surely someone’s watching by now.");
 		output("\n\nSliding your foam-covered hands back up, you tweak your [pc.nipples], making yourself gasp. You turn it into a loud exhale, then spin to face the shower, stretching your arms out behind yourself and tilting your head back to let the water wash your [pc.chest] clean.");
 		output("\n\nAfter holding the pose for a good long moment, you get another palmful of body wash, rub it onto both hands, then smack your [pc.ass] hard on both cheeks. You stroke your hands up your sides, then rub your shoulders for a moment, tilting your head back and forth, swaying your [pc.hips] all the while.");
-		// If the PC has no cock, they will get the <i>“no one interested”</i> scene. If the PC has a cock, there’s a 50/50 chance for the sandwich scene.
-		if(9999 == 9999)
+		// If the PC has no cock, they will get the “no one interested” scene. If the PC has a cock, they’ll get the appropriate pre-Betsy and Victoria scene.
+		if(!pc.hasCock() || pc.hasStatusEffect("Betsy and Victoria CD"))
 		{
 			output("\n\nDespite the show you’ve just put on, it seems like nobody wants to play right now. You consider handling yourself right then, but really, what’s the point? If a room full of naked New Texans doesn’t want to get dirty with you, then you might as well get cleaned up and find someone who does.");
 			//[Done] Go to Locker Room and Showers {Remove all [Sweaty]} {Time: 10 minutes} [+40 Lust] [+1% Exhibitionism]}
-			pc.shower();
-			processTime(10);
 			pc.lust(30+rand(10));
 			pc.exhibitionism(1);
 		}
 		else
 		{
-			output("\n\nYour show seems to have attracted some attention. As you turn around to wash your [pc.ass] and put your [pc.chest] back on full display, two cowgirls walk up to you, each with a hand on the other’s rear.");
-			//[Next] Go to Betsy and Victoria}
-			pc.shower();
-			processTime(10);
-			pc.lust(30+rand(10));
-			pc.exhibitionism(1);
+			showBust("BETSY_VICTORIA");
+			// PC has a cock AND hasn’t met B&V:
+			if(flags["MET_SHOWER_GIRLS"] == undefined) output("\n\nYour show seems to have attracted some attention. As you turn around to wash your [pc.ass] and put your [pc.chest] back on full display, two cowgirls walk up to you, each with a hand on the other’s rear.");
+			// PC has a cock AND has met B&V:
+			else output("\n\nLooks like your show attracted some familiar attention. As you turn around to wash your [pc.ass] and put your [pc.chest] back on full display, Betsy and Victoria walk up to you. If both girls’ hard nipples and Victoria’s lengthening horsecock are any sign, they’re happy to see you.");
+			//[Next] Go to Betsy and Victoria
 			clearMenu();
-			//9999 addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
+			addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
 			return;
 		}
 	}
@@ -454,7 +453,7 @@ public function talkToQuenton():void
 	}
 	else
 	{
-		if(flags["SEXED_QUENTON"] != undefined) output("<i>“Office is always open, if you’re up for some personal trainin’.</i>");
+		if(flags["SEXED_QUENTON"] != undefined) output("<i>“Office is always open, if you’re up for some personal trainin’.”</i>");
 		else output("<i>“Good to see you again, [pc.name]. What can I do for you today?”</i>");
 		processTime(1);
 	}
@@ -478,7 +477,7 @@ public function purchaseTempGymMembership():void
 	clearOutput();
 	showQuenton();
 	author("Slab Bulkhead");
-	output("Quenton gives you a nod. <i>“Just here for a quick look or a quick lift? I gotcha.<i>”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“That’ll be 500, friend.”</i>");
+	output("Quenton gives you a nod. <i>“Just here for a quick look or a quick lift? I gotcha.”</i> He taps a few buttons on his computer, then holds out a hand to you. <i>“That’ll be 500, friend.”</i>");
 	processTime(1);
 	clearMenu();
 	//[Purchase Day]{Set global flag GYM_MEMBER_DAY to true}{Deduct 50 credits} Go to Purchased Day
@@ -776,7 +775,7 @@ public function quentonTrainingCatch(response:String = ""):void
 			output("\n\n<i>“That’s the stuff,”</i> Quenton grunts, and brings a hand down to smack one cheek of your [pc.ass]. You let out a gasp, and Quenton laughs, then spanks your other cheek.");
 			output("\n\nThe buff bull’s thrusts pick up their pace, and the sound of your bodies slapping together fills the office. He drops his hands back to your [pc.hips], then runs them up your sides, urging you to tilt your torso up higher. You do so, pushing hard back against his hips, until you’re standing halfway up.");
 			output("\n\nQuenton reaches out and takes hold of your [pc.chest], squeezing tight as he pumps deeper into your [pc.vagina " + x + "]. He’s watching the mirror as you fuck, his gaze tracing over both of you the entire time. You tilt your head back and moan as his horsecock pounds away, his balls slapping against your [pc.thighs].");
-			output("\n\n<i>“</i>Damn<i>, you look good,”</i> Quenton grunts, sweat from his chest beading onto your bare back. <i>“Got to be . . . one of the best . . . bodies in my gym,”</i> he pants.");
+			output("\n\n<i>“</i>Damn<i>, you look good,”</i> Quenton grunts, sweat from his chest beading onto your bare back. <i>“Got to be... one of the best... bodies in my gym,”</i> he pants.");
 			output("\n\nYou reach back and get a grip on the back of Quenton’s neck, urging him on, telling him to go harder, and deliberately putting yourself on better display. His hips redouble their efforts, slapping into your [pc.ass] with a new fury, sweat from both of you leaping off in all directions.");
 			// If PC has penis:
 			if(pc.hasCock()) output(" [pc.EachCock] flops in rhythm with your fucking, bouncing up and down at full mast.");
@@ -809,7 +808,7 @@ public function quentonTrainingCatch(response:String = ""):void
 			output("\n\n<i>“That’s the stuff,”</i> Quenton grunts, and brings a hand down to smack one cheek of your [pc.ass]. You let out a gasp, and Quenton laughs, then spanks your other cheek.");
 			output("\n\nThe buff bull’s thrusts pick up their pace, and the sound of your bodies slapping together fills the office. He drops his hands back to your [pc.hips], then runs them up your sides, urging you to tilt your torso up higher. You do so, pushing hard back against his hips, until you’re standing halfway up.");
 			output("\n\nQuenton reaches out and takes hold of your [pc.chest], squeezing tight as he pumps deeper into your [pc.asshole]. He’s watching the mirror as you fuck, his gaze tracing over both of you the entire time. You tilt your head back and moan as his horsecock pounds away, his balls slapping against your [pc.thighs].");
-			output("\n\n<i>“</i>Damn<i>, you look good,”</i> Quenton grunts, sweat from his chest beading onto your bare back. <i>“Got to be . . . one of the best . . . bodies in my gym,”</i> he pants.");
+			output("\n\n<i>“</i>Damn<i>, you look good,”</i> Quenton grunts, sweat from his chest beading onto your bare back. <i>“Got to be... one of the best... bodies in my gym,”</i> he pants.");
 			output("\n\nYou reach back and get a grip on the back of Quenton’s neck, urging him on, telling him to go harder, and deliberately putting yourself on better display. His hips redouble their efforts, slapping into your [pc.ass] with a new fury, sweat from both of you leaping off in all directions.");
 			// If PC has penis:
 			if(pc.hasCock()) output(" [pc.EachCock] flops in rhythm with your fucking, bouncing up and down at full mast.");
@@ -907,7 +906,7 @@ public function simoneWorkoutGo(response:String = ""):void
 		case "compete":
 			output("You tell Simone you’ll take her on, and lie down on the other chest press machine. You set the stack to four weights, as per her instructions, then take hold of the bar. She says, <i>“Ready? Go!”</i> and you start lifting.");
 			output("\n\nYou push your way through your first set, then add more weight and start your second, lifting slow and steady. Simone matches your pace, clearly handling this without a problem. It doesn’t start to get difficult until you add the sixth weight, but you keep going.");
-			output("\n\nBy the time you get to the ninth weight, you and Simone have both slowed down a little, but she shows no signs of stopping. You take a deep breath and move up to the tenth weight. One . . . two . . . three . . . four . . . five. There’s an aching in your chest now, but you force yourself to keep lifting.");
+			output("\n\nBy the time you get to the ninth weight, you and Simone have both slowed down a little, but she shows no signs of stopping. You take a deep breath and move up to the tenth weight. One... two... three... four... five. There’s an aching in your chest now, but you force yourself to keep lifting.");
 			
 			// If the PC has a Sexiness bonus of 7 or higher, or muscle tone over 70% of maximum, Simone will lose on purpose. If PC chooses [Compete], they win. If PC chooses [Fake Loss], they still lose.
 			// If Simone does not lose on purpose, take the PC’s Physique stat plus a random number from 1 to 10. If that number is over 20, the PC wins. If that number is under 20, Simone wins.
@@ -1402,20 +1401,19 @@ public function lolaPoolSex(response:String = ""):void
 	}
 }
 
-/*
 // Betsy and Victoria
 public function showerWithBetsyAndVictoriaApproach():void
 {
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("BETSY &\nVICTORIA");
-	showBust("BETSY", "VICTORIA");
+	showBust("BETSY_AND_VICTORIA");
 	
 	if(flags["MET_SHOWER_GIRLS"] == undefined)
 	{
-		output("One of the girls is a tanned blue-eyed blonde with a figure so much the New Texas ideal she could have stepped off of a travel brochure, her huge tits almost impossibly perky with nipples staring straight at you. Her hair’s pulled back in low pigtails dangling past her shoulders.");
-		output("\n\nThe other has black hair with bangs trimmed straight above her eyebrows, and stands taller and a little less curvy, but with quite a bit more tone, clearly no stranger to the gym. She’s also packing eight inches of horsecock, an uncommon sight on the local girls.");
-		output("\n\n<i>“Hi there, cutie,”</i> the blonde says, then giggles as she looks you over. <i>“I’m Betsy. This–”</i> She pauses to squeeze her partner’s ass, prompting the other girl to spank her, hand smacking hard across Betsy’s jiggling flesh. <i>“–is Victoria.”</i>");
+		output("One of the girls is a tanned blue-eyed blonde with a figure so much the New Texas ideal she could have stepped off of a travel brochure, her huge tits almost impossibly perky with pink nipples pointing straight at you. Her hair’s pulled back in low pigtails dangling past her shoulders.");
+		output("\n\nThe other has long black hair with bangs trimmed straight above her eyebrows, and stands taller and a little less curvy, but with quite a bit more tone, clearly no stranger to the gym. She’s also packing eight inches of half-sheathed horsecock, an uncommon sight on the local girls.");
+		output("\n\n<i>“Hello there, cutie,”</i> the blonde says, then giggles as she looks you over. <i>“I’m Betsy. This–”</i> She pauses to squeeze her partner’s ass, prompting the other girl to spank her, hand smacking hard across Betsy’s jiggling flesh. <i>“–is Victoria.”</i>");
 		output("\n\n<i>“Hi,”</i> Victoria says, and gives you an appraising look. Her eyes are heavy-lidded, but she looks like she likes what she sees.");
 		output("\n\nYou introduce yourself, and ask if the two come here often.");
 		output("\n\n<i>“Most every time we’re here,”</i> Victoria says. <i>“It’s a good place to find new friends to play with.”</i>");
@@ -1423,117 +1421,416 @@ public function showerWithBetsyAndVictoriaApproach():void
 		output("\n\n<i>“Oh, that’s a funny story. We used to use a strapon, but I kept breaking them. I, um, get a little rough sometimes.”</i>");
 		output("\n\nYou stare at Betsy for a moment, and hope she’s talking about low-tech strapons. If the girl has a habit of breaking hardlights, you might be in for a rough time.");
 		output("\n\n<i>“And,”</i> Victoria says, <i>“I always wondered what it felt like to have a cock. So I thought I’d give it a try.”</i> She strokes a hand down her length, joined by Betsy’s hand a moment later. <i>“I wouldn’t give up this thing for the world.”</i>");
+		output("\n\n<i>“Sooooo,”</i> Betsy says, twirling a lock of blonde hair around one finger, <i>“you want to play with us? You can pick who gets to be in the middle.”</i>");
 		
 		flags["MET_SHOWER_GIRLS"] = 1;
 	}
 	else
 	{
-		output("\n\nThe tanned, blue-eyed blonde Betsy and the tall, raven-haired herm Victoria approach you again, both as perky and proud as ever.");
+		output("<i>“Why hello there again, cutie,”</i> Betsy says, stepping forward to press her large chest against your [pc.chest]. She slips to your right, wrapping her boobs around your arm, as Victoria moves in from your left. <i>“Showing off like that, you wouldn’t be looking to see us again, would you?”</i>");
+		output("\n\n<i>“Not that we’d blame you,”</i> Victoria says. She slides up against you, her dong rubbing up against your [pc.thigh], its slowly increasing length reminding you that Victoria is more a grower than a shower. <i>“And we’re always glad to see you again.”</i>");
+		output("\n\nBetsy giggles. <i>“Especially if you keep bringing this around,”</i> she says, reaching down and wrapping one hand around the base of your [pc.cock]. Victoria’s hand joins her a moment later, stroking down along your shaft. <i>“");
+		if(flags["SHOWER_SANDWICH"] == undefined) output("So, you up for a sex sandwich, [pc.name]? Like I mentioned before, you can choose who’s in the middle.");
+		else output("So, you up for another sandwich, [pc.name]? You can choose who’s in the middle again.");
+		output("”</i>");
 	}
-	output("\n\n<i>“</i>Sooooo,<i>”</i> Betsy says, twirling a lock of blonde hair around one finger, <i>“you want to play with us? You can pick who gets to be in the middle.”</i>");
 	
 	processTime(1);
 	
-	// [Oh Yeah] Go to Sandwich Selection [+40 Lust] {Remove all [Sweaty]} {Time: 10 minutes}
+	// [Oh Yeah] Go to Sandwich Selection {Remove all [Sweaty]} {Time: 20 minutes}
 	// [Just Teasing] Go to Sandwich Denial [+40 Lust] {Remove all [Sweaty]} {Time: 10 minutes}
 	clearMenu();
-	addButton(0, "Oh Yeah", showerWithBetsyAndVictoriaSelect, "yes");
-	addButton(1, "Just Teasing", showerWithBetsyAndVictoriaSelect, "denial");
+	addButton(0, "Oh Yeah", showerWithBetsyAndVictoriaSelect);
+	addButton(1, "Just Teasing", showerWithBetsyAndVictoriaTease);
 }
 // Sandwich Selection
-public function showerWithBetsyAndVictoriaSelect(response:String = ""):void
+public function showerWithBetsyAndVictoriaSelect():void
 {
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("BETSY &\nVICTORIA");
-	showBust("BETSY", "VICTORIA");
+	showBust("BETSY_AND_VICTORIA");
+	
+	if(flags["SHOWER_SANDWICH"] == undefined)
+	{
+		output("<i>“Ooh, good,”</i> Betsy says. <i>“I thought you looked like fun.”</i> She presses her wet body against you, her boobs slipping against your [pc.chest], while Victoria slides up against your other hip, and rubs her dong against your thigh.");
+		output("\n\n<i>“Your choice, [pc.name],”</i> Victoria says.");
+		if(pc.hasVagina()) output(" <i>“But so you know, if you want to be in the middle, I’m going right up your ass.”</i> She smirks.");
+		output(" <i>“So, who gets to be the meat in this sandwich?”</i>");
+	}
+	else
+	{
+		output("<i>“Oh, goody,”</i> Betsy says, her voice dropping a little as she gives you a lustful look. She gives your [pc.ass] a squeeze, and adds, <i>“I was hoping you’d say yes.”</i>");
+		output("\n\n<i>“Your choice, [pc.name],”</i> Victoria says.");
+		if(pc.hasVagina()) output(" <i>“But remember, if you want the middle, I’m going right up your ass.”</i> She smirks.");
+		output(" <i>“So, what’s it going to be this time?”</i>");
+	}
+	processTime(1);
+	
+	// [Betsy] Go to Betsy Sandwich
+	// [Victoria] Go to Victoria Sandwich
+	// [You] Go to You Sandwich
 	clearMenu();
+	addButton(0, "Betsy", showerWithBetsyAndVictoriaScene, "betsy", "Betsy Sandwich", "Have Betsy sandwiched in between you and Victoria.");
+	addButton(1, "Victoria", showerWithBetsyAndVictoriaScene, "victoria", "Victoria Sandwich", "Have Victoria sandwiched in between you and Betsy.");
+	addButton(2, "You", showerWithBetsyAndVictoriaScene, "you", (pc.short + " Sandwich"), "You will be sandwiched in between Betsy and Victoria.");
+}
+// Sandwich Denial
+public function showerWithBetsyAndVictoriaTease():void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("BETSY &\nVICTORIA");
+	showBust("BETSY_AND_VICTORIA");
+	
+	output("You give the two cowgirls a teasing smile, and tell them you just felt like showing off a little. It’s a flattering offer, but you’re not actually looking for sex right now.");
+	output("\n\n<i>“Tease,”</i> Betsy says, and sticks her tongue out at you.");
+	output("\n\nVictoria gives her a swat on her butt, and points over to another part of the showers. <i>“What about her?”</i> she asks Betsy.");
+	output("\n\n<i>“Ooh, I like,”</i> Betsy says. The two lovers wander off toward their new potential partner.");
+	
+	processTime(10);
+	pc.lust(30+rand(20));
+	pc.exhibitionism(1);
+	pc.shower();
+	
+	// [Done] Go to Locker Room and Showers [+1% Exhibitionism]
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function showerWithBetsyAndVictoriaScene(response:String = ""):void
+{
+	clearOutput();
+	author("Slab Bulkhead");
+	showName("BETSY &\nVICTORIA");
+	showBust("BETSY_AND_VICTORIA");
+	
+	var x:int = -1;
+	
+	// Create Betsy
+	var ppBetsy:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppBetsy.ass.wetnessRaw = 5;
+	ppBetsy.elasticity = 1.5;
+	
+	// Create Victoria
+	var ppVictoria:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppVictoria.hasCock()) ppVictoria.createCock();
+	ppVictoria.shiftCock(0, GLOBAL.TYPE_EQUINE);
+	ppVictoria.cocks[0].cLengthRaw = 12;
+	ppBetsy.ass.wetnessRaw = 3;
+	ppBetsy.elasticity = 1.15;
 	
 	switch(response)
 	{
-		case "yes":
-			output("<i>“Ooh, good,”</i> Betsy says. <i>“I thought you looked like fun.”</i> She presses her wet body against you, her boobs slipping against your [pc.chest], while Victoria slides up against your other hip, and rubs her dong against your thigh.");
-			output("\n\n<i>“So, your choice, [pc.name],”</i> Victoria says. <i>“Who gets to be in the middle?”</i>");
-			
-			processTime(1);
-			
-			// [Betsy] Go to Betsy Sandwich
-			// [Victoria] Go to Victoria Sandwich
-			// [You] Go to You Sandwich
-			addButton(0, "Betsy", showerWithBetsyAndVictoriaSelect, "betsy", "Betsy", "Betsy Sandwich");
-			addButton(1, "Victoria", showerWithBetsyAndVictoriaSelect, "victoria", "Victoria", "Victoria Sandwich");
-			addButton(2, "You", showerWithBetsyAndVictoriaSelect, "you", "You", "[pc.name] Sandwich");
-			break;
 		// Betsy Sandwich
 		case "betsy":
-			// [Not yet written] You and Victoria double-penetrate Betsy in between you two.
+			x = rand(pc.cocks.length);
 			
-			// 9999
-			
-			processTime(10);
-			pc.lust(30+rand(10));
-			pc.exhibitionism(2);
-			pc.removeStatusEffect("Sweaty");
-			
-			IncrementFlag("SHOWER_SANDWICH");
-			
-			// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
-			addButton(0, "Next", mainGameMenu);
+			// One of the following two scenes will appear, chosen randomly.
+			if(rand(2) == 0)
+			{
+				output("You tell the girls you want Betsy to be in the middle. The blonde cowgirl giggles again, her eyes bright as she looks between you and Victoria – more specifically, at your and Victoria’s cocks. Betsy reaches down and starts to stroke both of you, her soft grip made slippery by water from the shower.");
+				output("\n\n<i>“Hmm, who do I want where...”</i> She keeps stroking, and Victoria makes a low, approving sound at Betsy’s touch. Victoria’s horsecock is swelling and stretching out of its sheath, adding inches as her arousal grows, and your own [pc.cockNoun " + x + "] isn’t far behind. Betsy looks back and forth at the two dongs, then runs her tongue over her upper lip.");
+				output("\n\nFinally, Betsy gives your half-erect [pc.cockNoun " + x + "] a squeeze. <i>“Lie down,”</i> she says, smiling at you. <i>“I want to go for a ride.”</i> She squeezes the base of Victoria’s cock in turn, and says, <i>“Looks like my ass is yours!”</i>");
+				output("\n\n<i>“Well, I knew that,”</i> Victoria says with a quick laugh. <i>“Better lube me up plenty, babe.”</i>");
+				output("\n\nBetsy presses gently on your shoulder, urging you down to the slick tile floor, not that you needed much encouragement. She straddles your [pc.hips], then lifts herself a little and presses her pink pussy against your [pc.sheath]. She’s already plenty wet, and she slides her lips back and forth along your length, preparing you to push inside her.");
+				output("\n\nYou reach up and cup the cowgirl’s big tits in both hands, running your fingers across the sides of her fleshy mounds and brushing them against her stiff nipples. Betsy smiles as she moans, and leans forward, pressing her boobs against your palms. The two of you keep that up for a moment, teasing each other as your [pc.cock " + x + "] grows fully stiff, until Victoria steps over and stands above you both, facing Betsy.");
+				output("\n\n<i>“So,”</i> Victoria says, sounding a little smug, <i>“about that lube?”</i>");
+				output("\n\nBetsy leans forward and stays there, and her movement slows, sliding her pussy back and forth over your dick just a little as she moans again. Her voice is stifled, barely audible over the sound of the showers and the onlookers, but the slurping sounds make it clear she’s got Victoria’s cock in her mouth. Betsy’s hands slide up Victoria’s legs and grab hold of her tight, firm ass, pulling the herm cowgirl closer and deeper.");
+				output("\n\nFrom where you lay, Victoria’s spread legs frame Betsy’s heaving boobs, and the two of them move together as Betsy slathers spit all along Victoria’s horsecock. It’s not a bad view.");
+				output("\n\nVictoria lets out a satisfied sigh as Betsy pulls back with one last long slurp. She steps behind her girlfriend, a foot of fully firm dong sticking up from between her legs, then looks down at the two of you and grins. <i>“Better get her going, [pc.name],”</i> Victoria says. <i>“Don’t make me wait to get in on this.”</i>");
+				output("\n\nBetsy giggles, then licks her lips and looks down at you. <i>“Hold still for just a second,”</i> she says, then leans forward and raises her curvy hips. Your [pc.cock " + x + "], nice and slick from her juices and no longer held down, leaps to attention, the head slapping against her pussy. Betsy laughs, then slides your dick up into her with a single stroke.");
+				
+				pc.cockChange();
+				
+				output("\n\nYou let out a grunt as smooth, squeezing flesh surrounds your cock, and Betsy’s hips slap against your [pc.hips] as she hits home, her boobs jiggling as she lands. A blissful expression spreads across her face, and she moans, <i>“Ooh. . .”</i> before leaning forward and planting her hands on the floor above your shoulders.");
+				output("\n\n<i>“Hold on tight, cutie,”</i> Betsy says. <i>“You’re in for a ri–ide. . .”</i>");
+				output("\n\nWithout another word, Betsy rises up a few inches on your cock and slams herself down again, and again, and again, her thick thighs flexing with every motion. You start thrusting back, and she cries out with every push, shoving herself down harder each time. Her big tits bounce up and down on her chest in rhythm, and you take hold of them both, squeezing them as you push your [pc.cock " + x + "] harder into her clenching cunt.");
+				output("\n\nIf this is how Betsy likes to ride, you’re starting to see how she could have a problem with breaking strap-ons.");
+				output("\n\nBetsy spreads her legs wider, slamming down harder on your cock with every motion, and leans forward, shoving her tits into your face. <i>“Come on in, Vicky!”</i> she gasps out, and holds her hips still for just a moment. <i>“I’m all ready for yo– </i>OOH!<i>”</i>");
+				output("\n\nVictoria plants her legs to either side of Betsy’s hips and mounts her girlfriend. There’s a strange kind of pressure on your [pc.cockNoun " + x + "], buried deep inside Betsy as it is, as Victoria slides her horsecock up Betsy’s ass. The pressure slowly builds, and you guess it’s slow going into Betsy’s ass, as her eyes are squeezed shut tight and she hasn’t started hammering her hips against yours again.");
+				output("\n\nAfter a moment, you see Victoria’s hands on Betsy’s wide hips, and the thrusting starts again, though it feels like Victoria’s the one doing it. Betsy’s too busy gasping, her voice high and her breaths short, to do much else.");
+				output("\n\nWell, you can help with that. You match your thrusting pace with Victoria, both of you slowly picking up speed. Betsy’s pussy clenches tight around your [pc.cockNoun " + x + "], and she pulls in a deep breath, then pushes herself up, pulling her tits out of your face and letting loose with a cry that echoes throughout the shower room.");
+				output("\n\n<i>“F–faster,”</i> Betsy gasps, and you’re happy to oblige. Her boobs shake as you and Victoria both thrust faster, throwing off drops of water from the showers. Betsy’s tongue lolls out of her mouth as she tilts her head back, utterly lost in the double-fucking.");
+				output("\n\nYou lean to one side and look up at Victoria. She’s riding high with her cock buried up Betsy’s round ass, chest thrust out and nipples hard, her abs flexing with every rapid thrust. She catches you looking and grins, then takes a firmer grip on Betsy’s hips and hammers home harder, making her girlfriend squeal above you.");
+				output("\n\nYou tweak Betsy’s nipples some more, giving her boobs a good stroke and squeeze. She can’t be too far off, not with the noise she’s been making and with you and Victoria both buried in her. Sure enough, she arches her back and screams as orgasm hits her, her pussy giving your [pc.cock " + x + "] one last hard squeeze before she sags forward against you, burying your face in her tits again.");
+				output("\n\nIt’s about enough to drive you over the edge, and judging by the sound of her quick gasps, Victoria’s not far off either. You give Betsy’s pussy a few more quick thrusts as you feel your orgasm building, and a moment later, Victoria’s thrusting stops all at once as she moans loudly, then pumps rapid thrusts into Betsy’s ass as she comes.");
+				output("\n\nThe motion sets you off, and you slam your hips against Betsy’s as [pc.cum] shoots through your [pc.cockNoun " + x + "], pouring into the busty cowgirl.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" Your hips twitch again and again as your [pc.cum] keeps spouting out, and Betsy’s flat belly bulges out as she tries to contain your load.");
+				output("\n\nBetsy lets out a faint moan as Victoria pulls out of her ass, then rolls over onto the tile, sliding your dick out of her as well.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" A gush of your [pc.cum] spills out from between her lips, trailing down her thick thighs and across the tile floor.");
+				output(" Victoria collapses to the floor next to her, white dripping from her horsecock, a dizzy look on her face.");
+				output("\n\n<i>“We don’t do anal all that much,”</i> Victoria says, then leans against the shower wall, still trying to catch her breath. <i>“I love it, but she says it’s better when it’s not something we do every day.”</i>");
+				output("\n\nBetsy giggles, looking flushed red with a silly grin on her face. <i>“And every time we do, I get a li–itle bit closer to saying we can do it all the time,”</i> she says. <i>“Especially with friends.”</i>");
+				output("\n\nVictoria just smirks. <i>“Nice work down there, [pc.name],”</i> she says to you. <i>“Not everyone can handle being under Betsy like that.”</i>");
+				output("\n\n<i>“But you can handle it again next time, right?”</i> Betsy asks. <i>“When we do this again?”</i>");
+				output("\n\nYou smile at her, and say that you’d definitely be up for another round next time.");
+			}
+			else
+			{
+				output("You tell the girls you want Betsy to be in the middle. The blonde cowgirl’s eyes light up, a grin spreading across her pretty face.");
+				output("\n\n<i>“I want a stand-up sandwich,”</i> Betsy says, then gives a very mischievous giggle. <i>“You up for that, Vicky?”</i>");
+				output("\n\n<i>“Always,”</i> Victoria says, then gives you a sideways glance. <i>“You want me in front or back?”</i>");
+				output("\n\nBetsy looks back and forth between your [pc.cock " + x + "] and Victoria’s horse-dong, then says, <i>“You get front. Our friend here can have my ass.”</i>");
+				output("\n\nVictoria looks at you and smirks, then steps back until she’s against the shower wall. She takes her horsecock in both hands, and starts stroking it. <i>“Better give [pc.himHer] plenty of lube, babe,”</i> she says. Her cock swells rapidly between her hands, longer than it looked a moment ago.");
+				output("\n\nWithout another word, Betsy steps close to you and takes your [pc.cockNoun " + x + "] in one hand, gently stroking along the underside, and slowly steps backward. She gives your dick a gentle tug, and you let her lead you along as she moves back toward the shower wall, a few feet in front of Victoria. There, she pulls you closer and gets on her knees, and gives you a kiss on your [pc.cockHead " + x + "].");
+				output("\n\nThe kiss turns into a short lick, then a long lick, then a <i>“mmm”</i> as Betsy slides your [pc.cock " + x + "] between her soft lips. Her tongue slips back and forth along your shaft as she slowly works your length deeper into her mouth, bobbing her head forward and back as your [pc.cockNoun " + x + "] grows harder. You reach down and cup both of her large boobs in your hands, stroking their plump softness and making her smile around your dick.");
+				output("\n\nBehind Betsy, Victoria’s horsecock has swollen to a full foot long. She strokes it with one hand as she watches Betsy blow you, her other hand rubbing at her perky tits. <i>“She’s good, isn’t she,”</i> Victoria asks, her eyes half-closed as she grins at you.");
+				output("\n\nBefore you can form an answer, Betsy pushes herself all the way forward, deep-throating you. The sudden sensation of having your [pc.cockNoun " + x + "] completely engulfed makes you gasp, and you feel it harden even further. Betsy pulls back slowly, her tongue working to cover every inch of your stiffness in her spit, making sure you’re well-lubed. You run your thumbs across her nipples, and she moans around your [pc.cockHead " + x + "], then looks up and gives you a wink before sliding your dong down her throat again.");
+				output("\n\nAfter a few more rounds of that, Betsy pulls away, leaving you with a raging spit-slicked boner. <i>“Looks like you’re all set for me, cutie,”</i> she says, then stands and turns to Victoria. <i>“You ready, Vicky – ooh, that’s a yes!”</i>");
+				output("\n\n<i>“All set for you, babe,”</i> Victoria says, and gives her erect shaft a light slap. <i>“How’s [pc.heShe] taste?”</i>");
+				output("\n\n<i>“Like this.”</i> Betsy presses herself against Victoria, trapping the other woman’s horsecock between them, and gives her girlfriend a deep kiss. Victoria’s hands drop to Betsy’s ass and squeeze, pulling the two of them even closer. They break it off after a moment, and Betsy lifts one leg up and rests it on Victoria’s hip. <i>“Okay, let’s go!”</i>");
+				output("\n\nVictoria squats as Betsy pulls back just enough to align her wet pussy lips with the flat head of Victoria’s cock. With a heave and a thrust, Victoria lifts Betsy up and pulls the blonde down onto her dong, then stands up, her arms hooked under Betsy’s knees, her hands clutching Betsy’s shapely ass. Betsy lets out a high-pitched cry as Victoria’s cock slides into her, and wraps her arms around Victoria’s shoulders, squishing their boobs together as she leans forward.");
+				output("\n\nOnce you’re sure that the girls have their balance, then step forward and press your [pc.chest] against Betsy’s back. The head of your [pc.cock " + x + "] prods against her pink asshole, and she looks back over her shoulder.");
+				output("\n\n<i>“Don’t worry, cutie, didn’t... </i>aah<i>... forget about you,”</i> she breathes, already gasping. <i>“It’s just... doing it standing goes so deep, so fast... always gets me surprised!”</i>");
+				output("\n\n<i>“Which is why she likes it so much,”</i> Victoria says, grinning at you. The muscles in her arms and thighs are standing out from how she’s holding Betsy, and while she looks like she can support her girlfriend’s weight, she probably wouldn’t mind some help.");
+				output("\n\nVictoria confirms this a moment later, as she pulls Betsy’s squeezable cheeks apart and says, <i>“She’s all ready for you, [pc.name]. Slide on in!”</i>");
+				output("\n\nYou press your [pc.cockNoun " + x + "] to Betsy’s asshole and pop the head in, and she lets out a squeak, tensing tight around your [pc.cockHead " + x + "]. You hold back for few seconds as her breathing quickens, then slowly slide your shaft in.");
+				
+				pc.cockChange();
+				
+				output("\n\nIt’s quite the squeeze, and you feel every one of Victoria’s slow thrusts pushing back against you. You time your own thrusts to oppose hers, and Betsy lets out a cry with every one, her head lolling back against your shoulder, her breath coming in gasps. Her rear passage clenches around your [pc.cockNoun " + x + "] every time Victoria thrusts, then relaxes to let you push in farther, as the three of you find the rhythm you need.");
+				// If PC has large cock:
+				if(pc.cockVolume(x) >= ppBetsy.analCapacity()) output("\n\n<i>“Oh, fu–uck,”</i> Betsy gasps. <i>“That didn’t – </i>ooh!<i> – feel so big in my mouth...”</i>");
+				output("\n\nOnce you’re hilted in Betsy’s ass, you start thrusting faster, harder, hammering your [pc.crotch] at the cowgirl’s jiggly rear. Victoria picks up on your motion and pumps faster herself, a wet squelching sound rising over the sound of the showers and the onlookers as she pounds her horsecock into her girlfriend, giving Betsy as much as she can take.");
+				output("\n\nBetsy’s breath comes faster and faster, and soon you and Victoria are thrusting at the same time, filling both of her holes just like she wanted. Her gasps become higher and higher pitched, and she tenses against your [pc.chest] and moans again, her ass clenching hard around your cock.");
+				output("\n\nYou feel your orgasm building, and fight it down. Amazing as Betsy’s ass might be, there’s no way you’re going to come first here. You can hold out until–");
+				output("\n\nBetsy’s moans rise into a scream, and her whole body shakes as she comes, her voice wavering in time with you and Victoria’s frantic thrusting. She sags forward against Victoria, and you take that as a cue to push in more, squishing Betsy between you and Victoria as the dark-haired cowgirl meets your gaze.");
+				output("\n\nThat might be a dare you see in Victoria’s eyes. Does she want to see if she can outlast you? You’re close, but she’s breathing hard too, and you might be able to–");
+				output("\n\nBetsy lets out a low giggle, and her ass clenches tight around you, making your breath catch. From Victoria’s sudden cry, it sounds like Betsy put the squeeze on her too. The two of you thrust a few more times, until you can’t hold back anymore and neither can she.");
+				output("\n\nYou and Victoria come at the same time, two last hard thrusts into Betsy followed by gasping as orgasms rip through you both. Your [pc.cock " + x + "] twitches in Betsy’s ass as [pc.cum] shoots through it, your [pc.hips] still slamming into Betsy’s cheeks as you try to make the orgasm last as long as possible.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" The sheer amount of [pc.cum] pouring out of you is too much for her ass to handle, and it washes out around your dick, a fountain of [pc.cumColor] spilling out of her and splattering across the floor.");
+				output(" Victoria lets out a long, whining moan, her eyes squeezed shut as her horsecock empties itself into her girlfriend’s pussy, her hands clenched tight on Betsy’s thick thighs.");
+				output("\n\nAfter a moment of heavy breathing from everyone, you and Victoria slowly pull out and make sure Betsy gets down without falling down. The three of you collapse against the tiled wall with Betsy in the middle");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(", your [pc.cum] still dripping out of her ass");
+				output(", everyone shaky and tired and in need of another shower.");
+				output("\n\nBetsy recovers first, and moans, <i>“Ooh, I needed that.”</i> She giggles. <i>“Even if I’ll be walking bow-legged for a few days. Totally worth it.”</i>");
+				output("\n\n<i>“Damn right,”</i> Victoria says, still breathing hard. <i>“Feel like I worked out twice today.”</i>");
+				output("\n\n<i>“Best workout ever,”</i> Betsy says with a giggle. She reaches out to you and Victoria both and rubs at both of your sticky cocks, then licks her lips. <i>“We’ll do this again sometime, right?”</i>");
+				output("\n\nThat, you agree, sounds like a really good idea.");
+			}
 			break;
 		// Victoria Sandwich
 		case "victoria":
-			// [Not yet written] You fuck Victoria, while she fucks Betsy.
+			x = rand(pc.cocks.length);
 			
-			// 9999
-			
-			processTime(10);
-			pc.lust(30+rand(10));
-			pc.exhibitionism(2);
-			pc.removeStatusEffect("Sweaty");
-			
-			IncrementFlag("SHOWER_SANDWICH");
-			
-			// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
-			addButton(0, "Next", mainGameMenu);
+			// One of the following two scenes will appear, chosen randomly.
+			if(rand(2) == 0)
+			{
+				output("You tell the girls you want Victoria to be in the middle. Victoria grins, then looks at Betsy and says, <i>“Hear that, babe? Looks like we both get to go for a ride.”</i>");
+				output("\n\nBetsy bites her lower lip as she grins, then starts stroking your [pc.cock " + x + "] and Victoria’s horsecock at the same time. <i>“Ooh, you know that’s one of my favorites,”</i> Betsy says. <i>“You going forward or reverse this time?”</i>");
+				output("\n\nIt looks like Victoria’s thinking it over, though she might just be enjoying the feel of Betsy’s hand on her dong. Both of you are swelling up as Betsy’s fingers work their way from your bases to your heads, her strokes growing a little faster every time. Victoria cups one of Betsy’s fat tits in her hand, and you reach out and do the same, running your thumb over her pink nipple. Betsy makes a quick gasp, but keeps up her handiwork.");
+				output("\n\n<i>“Forward,”</i> Victoria says after a long moment. <i>“It’s more fun that way, and I want to see everything.”</i>");
+				output("\n\n<i>“Okay!”</i> Betsy gives you and Victoria both a grin, then squeezes your hard cocks one last time. <i>“Looks like you’re both ready to go, so...”</i>");
+				output("\n\n<i>“So get on the floor, [pc.name],”</i> Victoria says, smirking at you. <i>“I’ll show you how me and Betsy do this.”</i>");
+				output("\n\nNo surprise they know exactly what they’re doing here. Betsy giggles as you lie down on the shower floor, and she lowers herself too, straddling your [pc.thighs] as you make yourself as comfortable as you can on the wet tile. The view’s a little odd at first, with the busty cowgirl above you but with your own [pc.cockNoun " + x + "] sticking up between you and her. Then Victoria steps over and spreads her legs to either side of you, holds up her horse dong so you can see the tight, tan pussy lips beneath it.");
+				output("\n\n<i>“Bring it on down, Vicky!”</i> Betsy says, and gives your cock a few more strokes. <i>“[pc.HeShe]’s all ready for you!”</i>");
+				output("\n\nThe muscles in Victoria’s thighs stand out as she squats, slowly lowering herself until your [pc.cockHead " + x + "] meets her wet twat. Betsy’s hand, still on your dick, guides it home as Victoria slides all the way down, taking you into her until her thighs rest on either side of your [pc.hips]. The fit cowgirl’s cock slaps against your [pc.belly], the flat head pointing right at your face.");
+				
+				pc.cockChange();
+				
+				output("\n\nVictoria lets out a low sigh and starts to rock her hips back and forth, her movements slow as she gets used to having you up inside her. After a moment, she starts moving her hips in a circle, and grins down at you, her pussy squeezing around your [pc.cockNoun " + x + "]. <i>“Aah,”</i> she moans, and shivers just a little. <i>“Been a while.”</i>");
+				output("\n\nBehind her, Betsy giggles. <i>“Vicky doesn’t take as much cock anymore, not since she grew her own,”</i> she says. Her hands slide around and cup her girlfriend’s perky tits, tweaking her nipples and making Victoria jump, prompting a quick squeeze from her pussy around your cock. <i>“But I know she still li–ikes it!”</i>");
+				output("\n\n<i>“Kind of a lot,”</i> Victoria says. Her rocking hips work their way into a rhythm, more forward and back now as you start to thrust along with her. She leans back against her girlfriend’s plump boobs, and asks, <i>“You gonna hop on, babe? I know I’m in the middle here, but I know you’re not where you love to be.”</i>");
+				output("\n\nBetsy gives Victoria’s breasts one more quick squeeze, then stands up and moves in front of her, standing over you just like Victoria did a moment ago. You have just enough time to appreciate the view before she also squats down, her round ass heading for her girlfriend’s crotch. Victoria takes hold of the base of her horsecock and aims it up, pointing the flat head right at Betsy’s wet pussy.");
+				output("\n\n<i>“Ooooh...”</i> Betsy moans as Victoria’s dong slides into her with ease, her lips spreading as she takes her lover up to the hilt. Her legs slide into place in front of Victoria’s, and her boobs press against your [pc.chest], the fleshy globes spilling forward into your face.");
+				output("\n\nVictoria starts thrusting into her girlfriend, and you take hold of the toned cowgirl’s hips and pick up the pace, your [pc.cock " + x + "] trapped between her tight lips. Both girls find the rhythm quickly, and suddenly it’s like you’re fucking both of them at the same time, every one of your motions passing from Victoria into Betsy through the cowgirl’s own cock.");
+				output("\n\nVictoria lets out a cry, and for a second you think she’s finished already, not that you could blame her. Fucking and being fucked at the same time would be enough to drive most anyone to the edge quickly. But no, she keeps going, and a moment later you hear a wet thwack as she slaps Betsy’s curvy butt. <i>“Nice try, babe,”</i> Victoria says with a laugh, <i>“but you can’t squeeze one out of me that quick.”</i>");
+				output("\n\nBetsy only giggles again. <i>“Just teasing,”</i> she gasps, then arches her back, pulling her tits off of your [pc.chest] and planting her hands on the floor to either side of you. She shoves her hips and ass back against Victoria, her boobs bouncing with every thrust.");
+				output("\n\nVictoria reaches around and grabs Betsy’s plump tits, her tan hands against the other cowgirl’s paler skin, then thrusts faster, her cunt sliding up and down your [pc.cockNoun " + x + "]. The sound of flesh slapping against flesh echoes throughout the shower, water from the spouts spattering against your coupling bodies. You reach around to grab Victoria’s firm ass, take hold and thrust harder, doing all you can to keep up with her rapid motion.");
+				output("\n\nAs Betsy starts to gasp with every breath, Victoria lets go of her tits and reaches up to grab both of the blonde’s pigtails, pulling her back and making her moan. With Betsy’s boobs jutting forth like that, you can’t refuse the invitation, so you reach up and take them in your hands, giving the plump mounds a good squeeze.");
+				output("\n\n<i>“Do her nipples, [pc.name]”</i> Victoria says, though it comes out as more of a groan as Betsy pushes even harder back against her. <i>“Make her – aah!”</i>");
+				output("\n\nBetsy must have given her another good squeeze, if the look of focused bliss on Victoria’s face is any sign. And she passes that squeeze right on to you, her pussy wrenching tighter around your [pc.cock " + x + "], holding you in her as the two cowgirls fuck on top of you. There’s no telling how much longer you’ll be able to last, though it looks like both the girls are getting close too.");
+				output("\n\nThe girls’ thrusting reaches a frenetic pace, their thighs slapping together to either side of your hips, Betsy’s boobs bouncing in your hands as her lover pounds her from behind. Victoria’s ass slams against your [pc.crotch], fluid from her tight twat trickling down between your legs. Betsy’s moans reach a higher pitch, her eyes squeezed shut, her nipples hard as rocks under your fingers.");
+				output("\n\nHold on just a little longer, you tell yourself, just a little–");
+				output("\n\n<i>“Fuck!”</i> Victoria shouts, rearing back as her pussy clenches hard around your [pc.cockNoun " + x + "] one last time, her whole body shaking. Her hips slam against Betsy’s ass as she thrusts wildly through her orgasm, and it’s enough to set Betsy off as well. The curvy cowgirl lets out a long, shuddering moan, suddenly throwing herself downward as she comes, her tits slamming against your [pc.chest].");
+				output("\n\nVictoria’s final squeezes take you over the edge as well, and you push yourself as hard as you can into her, [pc.cum] shooting through you and up into her pussy.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" Your [pc.cockNoun " + x + "] spurts into her again and again, and you feel your [pc.cum] squirting out of her and splattering across her thighs and yours.");
+				output(" She thrusts along with you as you come, riding out your orgasm like an aftershock of her own, breathing hard the whole way.");
+				output("\n\nWith Betsy slumped and gasping atop you and Victoria’s hips still twitching, it’s a moment before any of you can pull yourselves apart. Betsy separates first, sliding her boobs out of your face and pulling herself free of her girlfriend’s cock. She rolls halfway over, cum dripping out of her pussy, a delirious look on her face. <i>“Oo–oh,”</i> she moans, and it sounds like you’re not going to get much more out of her.");
+				output("\n\nVictoria slowly stands, her legs shaky,");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" her thighs coated with your [pc.cum],");
+				output(" her cock trailing down and dripping white across your [pc.belly]. She sits down next to you and Betsy, laughing a little as she tries to catch her breath. <i>“That one... always takes it out of me,”</i> she breathes.");
+				output("\n\n");
+				// If PC has low/average physique and/or tone:
+				if(pc.PQ() <= 66 || pc.tone < 66) output("You can see why. If that had lasted much longer, you’re not sure if you could have walked away from it. You manage to sit up against the shower wall, and just rest there for a moment. ");
+				// If PC has high physique and/or tone:
+				else output("Victoria’s not kidding. Even with the time you’ve spent getting stronger and staying in shape, you feel like you’ve had one hell of a workout. You sit up against the shower wall, your body definitely in need of a rest. ");
+				output("Betsy might be the one with the habit of breaking strap-ons, but it wouldn’t surprise you if Victoria had done the same at least once.");
+				output("\n\n<i>“Can we do that again?”</i> Betsy asks with a giggle. <i>“I mean, not... not right now. But some other time? Sometime soon?”</i>");
+				output("\n\n<i>“I’m good for it if you are, [pc.name],”</i> Victoria says. The smirk is back on her face, tired but somehow triumphant.");
+				output("\n\nYou tell the girls you’ll definitely be up for another round sometime.");
+			}
+			else
+			{
+				output("You tell the girls you want Victoria to be in the middle. Before Victoria can say anything, Betsy gets a wicked smile on her face, and kneels in front of you and her girlfriend.");
+				output("\n\n<i>“Sounds good!”</i> Betsy says. <i>“Let’s get you both going.”</i> She starts stroking your cock and Victoria’s at the same time, her hands giving your [pc.cock " + x + "] soft squeezes as you and Victoria both start to swell. She leans forward and plants a kiss on Victoria’s flat cock-head, then on your [pc.cockHead " + x + "], then back to Victoria’s, then back to you, using more and more tongue each time until you and Victoria are both fully hard.");
+				output("\n\nOnce Victoria’s cock is swollen to a full foot long, Betsy takes it between her lips and slides about halfway down the shaft, her eyes closing as she makes a <i>“mmm...”</i> sound. Her head bobs up and down, and Victoria moans, one hand resting on the back of her girlfriend’s head. Betsy pulls away after a few more bobs, and she turns to give you the same treatment, her skilled tongue slipping back and forth along your shaft as she takes your dong into her mouth.");
+				output("\n\nBetsy slurps and licks at your [pc.cock " + x + "] more than she did at Victoria’s, and presses herself down farther, doing her best to deep-throat you. When she pulls away, you’re slick and wet nearly to the base, and you watch as she slips Victoria’s horsecock between her plump, bouncy boobs.");
+				output("\n\nVictoria bites her lip and moans again as Betsy’s tits wrap around her dong, and she strokes the sides of her girlfriend’s boobs as Betsy licks and sucks at her cock’s head. After a few good sucks, Victoria tweaks Betsy’s swollen pink nipples, making her squeak. When Betsy pulls away, Victoria looks disappointed, but keeps stroking her shaft, watching as Betsy returns to your cock.");
+				output("\n\nBetsy opens up and fully deep-throats you this time, sliding your [pc.cockNoun " + x + "] all the way into her mouth, her tongue swirling along your shaft all the way down. She slurps at your dick again, eyes closed in lust and concentration, then finally pulls all the way off, her cheeks flushed red. Instead of returning to Victoria, she hefts up her tits and squishes your slippery cock between them, gives you a few good pumps.");
+				output("\n\n<i>“Feels like you’re all ready for her,”</i> Betsy says, then turns to face Victoria’s crotch again. But instead of resuming her titfuck, she grabs both of Victoria’s firm asscheeks and spreads them wide, revealing the cowgirl’s small, dark asshole. Betsy smiles up at you. <i>“All yours, cutie!”</i>");
+				output("\n\n<i>“Oh, babe, you’re too good to me,”</i> Victoria says, then looks over her shoulder at you and grins. <i>“C’mon, [pc.name]. Shove it in so Betsy can suck me dry.”</i>");
+				output("\n\nNo reason to refuse an invitation like that. You line up your [pc.cockHead " + x + "] with Victoria’s rear entry and slowly start to push in. Victoria’s breath catches, and her firm ass clenches, but she relaxes after a moment. The tight, hot tunnel of her ass slowly opens up as you slide your [pc.cock " + x + "] all the way in, until your [pc.hips] press against her tanned skin.");
+				
+				pc.cockChange();
+				
+				output("\n\nVictoria tenses, and let out a quivering moan.");
+				// If PC has large cock:
+				if(pc.cockVolume(x) >= ppVictoria.analCapacity()) output(" Her voice catches, and she gasps out, <i>“That’s – aah! I didn’t realize you were that big, [pc.name]...”</i>");
+				output(" And then, Betsy slides Victoria’s horsecock between her fat tits, and starts to suck on her head again.");
+				output("\n\nYou start with gentle thrusts, making sure you don’t shake Victoria’s cock out of where Betsy has it. Then again, you see as you look down, Betsy has Victoria’s dong firmly trapped between her boobs, and her lips wrapped around the flat head, so it doesn’t look like that dick is going anywhere.");
+				output("\n\nVictoria cries out again, her hips shaking, the dual treatment clearly more than she can take for long. You slide your hands along her sides, stroking over her tight abs up to her firm, pert boobs, and stroke your fingers over her dark nipples.");
+				output("\n\n<i>“Fuck, fuck – aaaaah!”</i> Victoria’s hips thrust and buck, shoving back against you as she comes. Betsy makes slurping noises as she swallows her girlfriend’s semen, riding out the orgasmic thrusts, her lips still squeezed around Victoria’s cock. Victoria sags against you for just a second, then starts thrusting her hips back against yours, like she’s trying to take even more of your cock up her ass.");
+				output("\n\n<i>“Tasty girl,”</i> Betsy says with a giggle. <i>“You good for another round?”</i>");
+				output("\n\n<i>“You know it,”</i> Victoria says. She reaches back and squeezes your [pc.ass], then spanks you hard on one cheek. <i>“Maybe two, if our friend here can last.”</i>");
+				output("\n\nThat sounds like a challenge. You squeeze Victoria’s nipples with both hands, and she yelps, then pushes back against your [pc.cock " + x + "] with a laugh. There’s no telling what having the Treatment and adding a cock did to Victoria’s system, but she clearly can keep it hard if she wants. She starts moaning again as you keep pounding away, harder this time, her cock sliding between Betsy’s tits faster now.");
+				output("\n\nBetsy’s boobs bounce against Victoria’s crotch as she sucks on the first three or four inches of Victoria’s cock, her eyes half-closed, her hard pink nipples sticking up and waving with every bounce. There’s a blissful look on her face as she works away at Victoria’s head, clearly enjoying herself.");
+				output("\n\nBut not nearly as much as Victoria. Her nipples are hard as rocks between your fingers, and she moans as you squeeze them, her breath coming in short gasps. She still has one hand on your [pc.ass], and she clenches it again, squeezing one cheek as she starts to tremble.");
+				output("\n\nBetsy wraps her arms around her tits, hiding most of Victoria’s cock between the plush pillows, and squeezes hard. You give Victoria’s boobs a squeeze as well, and slam hard into her, feel her asshole clench around your [pc.cockNoun " + x + "]. One, two, three more thrusts, and Victoria yells out her orgasm, her whole body pressing back against yours as Betsy sucks her cum down again.");
+				output("\n\nEven when Victoria stops gasping, Betsy doesn’t let up, and you don’t either. Victoria’s breathing hard now, still on her feet but barely, and her asshole relaxes a little around your cock. But she doesn’t say to stop, so you pick up the pace again, rolling her dark nipples between your fingers as you pound away.");
+				output("\n\n<i>“One... one more,”</i> Victoria breathes, her abs and thighs flexing as she manages to keep her feet. <i>“That’s all I’ve got left.”</i>");
+				output("\n\n<i>“Aww, I knew you had it in you, Vicky,”</i> Betsy says, then gives Victoria’s cockhead another long lick, prompting a moan from the herm cowgirl. <i>“Go ahead and let it out!”</i>");
+				output("\n\nAnd now you have to make sure you don’t do the same before Victoria’s done. Her ass is squeezing your cock hard again, still tight despite the extended pounding, and she’s hot and sweaty against you. She drops her other hand to your [pc.ass] as well, squeezes both your cheeks, and says in a husky voice, <i>“Come on, [pc.name]. Give it to me...”</i>");
+				output("\n\nYou’re getting close, but you know you can hold out, and tell Victoria that she’ll finish before you do. She starts to laugh, but it turns into another gasp as you thrust harder, and she leans her head back, her breaths quick.");
+				output("\n\nBetsy bounces her tits up and down the length of Victoria’s shaft, with only her girlfriend’s cockhead in her mouth, the rest of it surrounded by rapidly-sliding boobs.");
+				output("\n\nVictoria moans again, louder than before. She’s close. You pump still harder, your [pc.hips] slapping against her firm, toned ass. Betsy’s mouth is open, her tongue circling around Victoria’s flat cockhead, driving her lover ever closer to orgasm. And then–");
+				output("\n\n<i>“Aaa – aaaah!”</i>");
+				output("\n\nVictoria’s entire body clenches as the last orgasm hits her, her ass squeezing around your cock, pulling you over the edge. Your [pc.cock " + x + "] twitches and fires streams of [pc.cum] up her ass as your hips thrust even faster, the two of you riding out the simultaneous orgasm, gasping and moaning.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" The sheer amount of [pc.cum] you shoot out fills Victoria’s ass and splatters out back at you in jets, leaving your [pc.crotch] and her ass covered in [pc.cumColor].");
+				output(" It takes a moment for both of you to slow down, and her ass keeps squeezing even as you feel yourself start to go soft, making it feel like you might be stuck in her for a moment.");
+				output("\n\nYou look and see that Betsy’s tits are now covered in Victoria’s white cum. The blissed-out look on her face, though, suggests she did that on purpose. She hefts up one of her boobs and licks a glob of semen off, then stands up and presses herself against Victoria, kissing her and getting them both dirty enough to need another shower.");
+				output("\n\nYou slowly pull yourself out of Victoria while she’s distracted, and lean up against the shower wall, tired and sweaty.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" More of your [pc.cum] gushes out of Victoria’s ass, trailing down her thighs and pooling down toward a floor drain.");
+				output(" When the two lovers separate, Victoria gives you a sheepish look, kind of out of place between the sweat on her forehead and her own cum smeared across her chest.");
+				output("\n\n<i>“That’s what Betsy calls draining me dry,”</i> Victoria says, still breathing hard while Betsy gives you a very pleased smile. <i>“It’s sort of her special thing.”</i>");
+				output("\n\n<i>“And I lo–ove doing it,”</i> Betsy says, then giggles. She gently pokes Victoria in one sticky boob. <i>“You know you owe me a good long ride when you recover, right?”</i>");
+				output("\n\nVictoria laughs. <i>“Of course, babe,”</i> she says, then lets out all her breath at once. <i>“Just give me... an hour, maybe?”</i>");
+				output("\n\nThe three of you shower off together, and the girlfriends head off, but not before saying they hope to see you here again.");
+			}
 			break;
 		// You Sandwich
 		case "you":
-			// [Not yet written] Victoria fucks you, while you fuck Betsy.
+			x = rand(pc.cocks.length);
 			
-			// 9999
+			// One of the following two scenes will appear, chosen randomly.
+			if(rand(2) == 0)
+			{
+				output("You tell the girls you want to be in the middle. Victoria looks at Betsy and asks, <i>“Want to put the squeeze on [pc.himHer], babe?”</i>");
+				output("\n\n<i>“Ooh, sounds good,”</i> Betsy says. She looks back and forth between you and Victoria, then kneels in front of the two of you. <i>“Stand close so I can get you both ready, okay?”</i>");
+				output("\n\nYou’re not quite sure what she has in mind, but it’s not like you’re going to say no. You and Victoria move closer to each other, and she reaches over to rest a hand on your [pc.ass]. You do the same, giving her firm butt a squeeze. Betsy starts to stroke your [pc.cockNoun " + x + "] and Victoria’s horsecock at the same time, her fingers tracing along the undersides of both dicks as she looks between the two of them and licks her lips.");
+				output("\n\nOnce you’re mostly hard, Betsy slides your cock between her plump tits and grabs your free hand, placing it on the side of one of her boobs. She leans over and wraps her lips around the flat head of Victoria’s cock, then starts gently bobbing her head up and down, her eyes slipping closed as she sucks on her girlfriend.");
+				output("\n\nNot a bad way to start things. You let go of Victoria’s ass and hold onto Betsy’s breasts with both hands, squeezing them tighter around your [pc.cockNoun " + x + "]. Next to you, Victoria leans in closer, aiming for a better angle as she tries to get more of her dong into Betsy’s mouth. You thrust gently as your dick grows harder, trying not to disturb Betsy’s blowjob as she slowly bobs her head down farther onto her girlfriend’s cock.");
+				output("\n\n<i>“Come on, babe, you can do more than that,”</i> Victoria says with a laugh. <i>“I’m going up [pc.hisHer] ass, remember? Better make sure I’m plenty lubed.”</i> She winks at you.");
+				output("\n\nBetsy raises her head from Victoria’s cock. <i>“I’ll give you–”</i> She bobs her head down again, giving her girlfriend’s shaft a long slurp. <i>“–all the lube–”</i> She bobs again, and and starts to stroke your [pc.cockHead " + x + "] where it sticks up from between her tits. <i>“–when you’re both ready, okay?”</i>");
+				output("\n\nVictoria laughs again, her hands at work on the base of her dick. She’s grown to a full foot long, and after having your dick squished between Betsy’s boobs, you’re not far from being fully stiff yourself. After a moment, Betsy pulls away from her girlfriend and lavishes your cock head with a few long licks, then gives your tip a kiss.");
+				output("\n\n<i>“Looks like you’re all set, cutie,”</i> she says, and releases your [pc.cockNoun " + x + "] from between her tits. <i>“Now give me just a second...”</i>");
+				output("\n\nBetsy turns and deep-throats Victoria all at once, making the fit cowgirl’s breath hitch. She pulls back from Victoria’s cock slowly, and you see her tongue lashing back and forth around Victoria’s shaft. When Betsy finishes, Victoria’s horsecock is slick with spit, hard and ready to go.");
+				output("\n\nVictoria catches you looking at her prick and smirks at you again. It’s clear she’s looking forward to this.");
+				output("\n\n<i>“And now...”</i> Betsy rises from her knees and takes hold of your cock. She leads you with it to the shower wall, then lets go and leans back against the tile, pressing her round ass against the wall and raising one leg to expose her pink pussy lips. <i>“Your turn!”</i> she says, holding out her arms in invitation.");
+				output("\n\nYou step forward, aim your [pc.cock " + x + "] at Betsy’s waiting twat, and slide on in. She’s wet and warm and slick, and she takes you all in one thrust, her eyes opening wide as you hilt yourself in her. Her fat boobs press against your [pc.chest] as you slide home, and she wraps her arms around your shoulders, gasping into your [pc.ear]. You moan as her pussy gives your length a good, hard squeeze, and start to thrust, squishing her against the shower wall.");
+				
+				pc.cockChange();
+				
+				output("\n\n<i>“H–hold me up,”</i> Betsy says, and hooks her right leg over your hip. <i>“It’s... aah... better like this...”</i>");
+				output("\n\nYou take hold of the cowgirl’s jiggly ass, get a good grip, and lift her up as she wraps her left leg around your waist. She giggles, and you squeeze her rear harder as you pick up your pace a little.");
+				output("\n\nAfter a few more thrusts, Betsy reaches down and takes hold of your [pc.ass] in both hands, then opens her legs from where they were wrapped around you. <i>“Come and get [pc.himHer], Vicky!”</i>");
+				output("\n\nSomething hot and slick prods against your [pc.asshole], and you freeze in your thrusting as Victoria’s flat horsecock head pushes into you. Behind you, Victoria lets out a low moan, and keeps pushing, her foot-long dong sliding all the way up your ass.");
+				
+				pc.buttChange(ppVictoria.cockVolume(0));
+				
+				output("\n\nUnable to help yourself, you cry out as Victoria’s hips press against your [pc.ass], the feeling of penetrating and being penetrated nearly enough to drive you over the edge. You shove forward harder into Betsy, making her gasp again, and Victoria steps forward too, making sure her cock stays fully buried in you.");
+				output("\n\nThen, once the two cowgirls have you held tight between them, they start to thrust at the same time, grinding themselves against you. Betsy’s tits squish hard against your [pc.chest], her nipples pressing into your [pc.skinFurScales]. Victoria’s firm boobs press into your back as well, her nipples likewise hard against you.");
+				output("\n\nAfter a few more thrusts, Betsy’s legs swing down to wrap around you and Victoria both, pulling you all even closer together. Victoria leans forward and puts her toned arms around you and Betsy, her hands on her girlfriend’s shoulders, fully trapping you between the two of them. Betsy does the same, only serving to press her chest more firmly against your own.");
+				output("\n\nYou understand, now, what she meant by putting the squeeze on you.");
+				output("\n\nBound up in the cowgirl sandwich, you don’t have much room to thrust, but you shake your [pc.hips] as much as you can. The constant friction around your cock and up your ass is mind-blowing, and you’re soon breathing hard, doing all you can to keep up with the constant motion.");
+				output("\n\nBetsy gasps as you and Victoria both pound her into the wall, her cunt clenching around your [pc.cock " + x + "] with every breath. Her tits are squished up against you so much that they reach her chin, and her ass is slapping against the tile, the sound echoing through the showers.");
+				output("\n\nBehind you, Victoria’s chest and taut abs smack against your back every time she thrusts into you, her dong twitching as it fills your [pc.asshole]. She’s breathing hard, but keeping her pace steady, though you hear her breath hitch occasionally, making it sound like she’s trying not to come too soon.");
+				output("\n\nYou know there’s no way you’re going to outlast them, though. No matter how you try to fight it, you can feel your orgasm building, and it’s only a matter of time before the double-fuck becomes too much for you to bear. You’re the only one getting it from both ends, but – wait, you can fix that.");
+				output("\n\nIt takes a second to focus, but you shift your grip on Betsy’s round ass, and slide your fingers further until you feel – there. Her tight little asshole is right at the edge of your grip. You press her harder against the wall, making sure she doesn’t fall, then move your hand farther in and slide a finger up Betsy’s ass.");
+				output("\n\nBetsy cries out, her eyes opening wide. Her pussy clenches around your cock, even harder than before, and her legs tighten around you and Victoria. That’s a good sign. You slip a second finger up her ass, all you can manage and still hold her up, and–");
+				output("\n\nBetsy cries out as she comes, her whole body shaking, her asshole squeezing your fingers as her cunt wrenches tight around your [pc.cockNoun " + x + "]. Victoria chooses that moment to thrust harder into you than before, pounding into your asshole and driving you over the edge.");
+				output("\n\nYou moan loudly as the orgasm hits, your [pc.asshole] twitching around Victoria’s horsecock and your [pc.cock " + x + "] firing off stream after stream of [pc.cum] into Betsy’s pussy.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" You feel the cowgirl’s belly start to swell as your [pc.cum] fills her up, but with her squeezing you so tight, she’s got no room to grow. Your [pc.cum] spurts back out at you, spraying forth from her pussy, covering her tits and your [pc.chest].");
+				output(" Before you can even think to catch a breath, Victoria finishes too, moaning into your ear as her cum streams up your ass, her thrusts faster and faster against your [pc.ass] as she orgasms.");
+				output("\n\nThe three of you stay in place for a few long moments, everyone breathing hard, the falling water a welcome relief from the heat you made by being pressed so tight against each other. Then, as you and Victoria both start to go soft, you separate, slowly helping Betsy down.");
+				output("\n\nThe two cowgirls lean against the wall to either side of you. Cum drips down all of you, from Betsy’s legs");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" and glazed boobs and your [pc.chest]");
+				output(" and the tip of Victoria’s dick, and all three of you slide down to the floor together. Victoria leans forward and looks at you and Betsy.");
+				output("\n\n<i>“Nothing like a good squeeze,”</i> Victoria says, laughing and sounding out of breath. <i>“Knew you’d be a good one for it, [pc.name].”</i>");
+				output("\n\n<i>“And you’ll be up for it again, right?”</i> Betsy asks, her eyes bright as she looks at you. <i>“Right?”</i>");
+				output("\n\nYou manage a laugh, and tell the girls you’d definitely be up for getting the squeeze again.");
+			}
+			else
+			{
+				output("You tell the girls you want to be in the middle. Betsy looks from you to Victoria and back, then giggles, rubbing her hands together.");
+				output("\n\n<i>“Okay,”</i> she says, <i>“both of you up against the wall, I’ll get you lubed up. Because if she’s gonna have your ass,”</i> she continues, looking at you, <i>“then you can have mine.”</i> She pauses. <i>“I wish I’d brought a dildo or something, so Vicky could have her ass done too...”</i>");
+				output("\n\n<i>“Next time, babe,”</i> Victoria says, then puts an arm around your shoulders and pulls you back against the shower wall, until your [pc.ass] hits the wet tile. She drops a hand to your [pc.cockNoun " + x + "] and starts stroking, then gestures for you to do the same.");
+				output("\n\nYou reach over and wrap your hand around the base of Victoria’s horsecock, then give it a nice squeeze all the way up to the flat tip. Her dong swells at your touch, growing warmer and fatter, adding another few inches to its length as Victoria grows hard. She gives a soft murmur at your touch, and matches her strokes to yours, making your own member swell to match hers. At her skilled touch, it’s not long before you’re hard and ready to go.");
+				output("\n\nBetsy kneels before the two of you, and licks her lips at the two cocks pointing at her. <i>“Never get tired of this,”</i> she says, her voice low, then starts stroking you and Victoria both. Her touch is lighter than Victoria’s, and the sensation of two different hands on your [pc.cock " + x + "] makes you shudder. Betsy leans in and runs her tongue over Victoria’s flat cockhead, then slips over and licks across your [pc.cockHead " + x + "]. Victoria gives your base a squeeze as Betsy licks, and you return the favor when it’s your turn, adding to the dual sensations for both of you.");
+				output("\n\nAfter a few good licks each, Betsy starts going down deeper on both you and Victoria in turn, slathering your dicks with spit, making sure to get you both plenty lubed up. She deep-throats Victoria’s foot-long dong, then pulls herself off it with a gasp, and turns to your [pc.cockNoun " + x + "] with a smile.");
+				output("\n\nBetsy slips your head past her lips, then moves down your shaft, her skilled tongue working back and forth all the way down your length, until she kisses your base. She pulls away again, then gently strokes you and Victoria both.");
+				output("\n\n<i>“Nice and wet, feels like you’re good,”</i> she says, then grins up at you and Victoria, her eyes bright. <i>“You ready?”</i>");
+				output("\n\n<i>“Damn ready,”</i> Victoria says, giving her hard dick a light slap. <i>“Slide on down, [pc.name].”</i>");
+				output("\n\nYou step over and present your [pc.ass] to Victoria. She plants one hand on your [pc.hip] and, a moment later, you feel her flat cockhead pressing against your ass, gently seeking entry. You shift to align it with your [pc.asshole], and slowly press back against it.");
+				
+				pc.buttChange(ppVictoria.cockVolume(0));
+				
+				output("\n\nVictoria lets out a low grunt as her horsedong’s head slips into your asshole, and you gasp at the penetration. She takes hold of your other hip and slowly guides you down onto her, her cock sliding into you inch by inch, hot and stiff and utterly filling your rear entry. Your breath hitches somewhere around eight inches in, and Victoria eases you toward her, holding on as you take a step back and take all of her up your ass.");
+				output("\n\nYour [pc.ass] bumps against Victoria’s hips, and she shifts her hands to take hold of your own hips from the front, gently thrusting herself against you. She presses her chest against your back, her firm tits rubbing against your [pc.skinFurScales]. The feeling of her cock buried up your ass makes you cry out, and she laughs quietly behind you.");
+				output("\n\n<i>“Better hop on soon, babe,”</i> Victoria says to the waiting Betsy. <i>“Don’t want [pc.himHer] to blow before you get a chance!”</i>");
+				output("\n\n<i>“I don’t know,”</i> Betsy says, still kneeling in front of you and Victoria. <i>“That might be kind of fun, but...”</i> She watches your [pc.cock " + x + "] bob up and down with Victoria’s thrusts, then shakes her head. <i>“Nope!”</i>");
+				output("\n\nBetsy stands and turns and presses her jiggly ass against your dong, taking its slick length between her cheeks and giving it a little squeeze. Then, she hoists her butt up and spreads her cheeks wide, and starts to lean back.");
+				output("\n\nYou only have a second to align your [pc.cockHead " + x + "] with her asshole before Betsy pops it into her. You and her both gasp, and she turns it into a moan as she slides down your shaft, her tight passage squeezing you hard the whole way, until her ass bounces against your hips, your [pc.cockNoun " + x + "] fully buried up in her.");
+				// If PC has large cock:
+				if(pc.cockVolume(x) >= ppBetsy.analCapacity()) output(" Betsy breathes hard as she settles against you, her asshole stretching around your member. She gasps, <i>“So... much... cock...”</i>");
+				
+				pc.cockChange();
+				
+				output("\n\nYou clench down hard and force yourself not to come. The twin sensations of Victoria’s cock up your ass and your own in Betsy’s are almost too much to bear. But you don’t want this to end so quickly, not when you’re just getting started.");
+				output("\n\nBetsy leans her back against your [pc.chest], and you reach up and take hold of her plump tits, giving them a good squeeze as her ass bounces against your crotch. Victoria’s hands move to the sides of your [pc.hips], and she picks up the pace, her thrusts coming faster and harder. You can’t help but thrust harder into Betsy thanks to that, and she starts to gasp again as her ass squeezes your cock hard, clenching around your base.");
+				output("\n\nVictoria’s hands dig into your hips as she pounds herself into your [pc.asshole] again and again, her foot-long dong throbbing inside you. The sound of her ass slapping against the tile wall echoes through the showers, and as her breathing grows faster, you feel it against the back of your neck. Her strong thighs rub against your [pc.thighs], smooth and warm.");
+				output("\n\nYou squeeze Betsy’s big pink nipples, making her squeal, and her ass tightens even more around your [pc.cockNoun " + x + "]. She gasps, <i>“Harder!”</i>, and you obey, thrusting your [pc.hips] against her bouncy ass as hard as you can. Victoria’s cock slides just a little out of your ass, and she tightens her grip on you and pounds it back in, making you moan.");
+				output("\n\nYour moan turns into rapid gasps as the two cowgirls shove themselves against you in synch, Betsy trying to force even more of your [pc.cock " + x + "] up her ass as Victoria makes sure her horsecock never gets more than an inch out of your [pc.asshole]. It feels like they’re both getting close to orgasm, but it’s more than you can take, and the last few dual thrusts push you over the edge.");
+				output("\n\nYou throw your head back and shout as orgasm hits you, your asshole squeezing hard around Victoria’s cock, your [pc.cum] geysering out to fill Betsy’s ass, your [pc.cockNoun " + x + "] spasming in her tight confines.");
+				// If PC makes lots of cum:
+				if(pc.cumQ() >= 2000) output(" Your dick fires again and again, and your [pc.cum] soon splatters out from Betsy’s asshole, [pc.cumColor] streams spilling forth as you give her more than she can take.");
+				output(" But your hip-thrusting never stops, and Betsy moans out her own orgasm a moment later, her whole body shaking, her nipples hard in your grip.");
+				output("\n\nIt only takes Victoria a few more thrusts as well. She digs her fingers into your [pc.hips] and cries out as her cock explodes up your ass. The rush of her cum sends a shiver through you, and your asshole’s death grip around her dong finally relaxes. Betsy’s ass does the same a moment later, setting you free.");
+				output("\n\nThe three of you pull apart, hot and sweaty and dripping cum everywhere, and collapse against the shower wall. It takes some time before any of you can catch your breath, and Victoria gives you a heavy-lidded look.");
+				output("\n\n<i>“Sorry if I... went a little rough on you back there,”</i> she says, her pert chest heaving. <i>“We don’t do anal all that often, so I get really into it when we do.”</i>");
+				output("\n\n<i>“But she’s re–eally good at it,”</i> Betsy says. She looks dazed, and her nipples are bright red from your squeezing. Not that she seems to mind. <i>“So are you, cutie. We do this again, you can have my ass anytime.”</i>");
+				output("\n\nVictoria chuckles. <i>“You up for another round sometime, [pc.name]?”</i>");
+				output("\n\nYou laugh, and tell the girls you’d definitely be up for this another time. Though it seems like all three of you will need a little time to recover.");
+			}
 			
-			processTime(10);
-			pc.lust(30+rand(10));
-			pc.exhibitionism(2);
-			pc.removeStatusEffect("Sweaty");
-			
-			IncrementFlag("SHOWER_SANDWICH");
-			
-			// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
-			addButton(0, "Next", mainGameMenu);
-			break;
-		// Sandwich Denial
-		case "denial":
-			output("You give the two cowgirls a teasing smile, and tell them you just felt like showing off a little. It’s a flattering offer, but you’re not actually looking for sex right now.");
-			output("\n\n<i>“Tease,”</i> Betsy says, and sticks her tongue out at you.");
-			output("\n\nVictoria gives her a swat on her butt, and points over to another part of the showers. <i>“What about her?”</i> she asks Betsy.");
-			output("\n\n<i>“Ooh, I like,”</i> Betsy says. The two lovers wander off toward their new potential partner.");
-			
-			processTime(10);
-			pc.lust(30+rand(10));
-			pc.exhibitionism(1);
-			pc.removeStatusEffect("Sweaty");
-			
-			// [Done] Go to Locker Room and Showers [+1% Exhibitionism]
-			addButton(0, "Next", mainGameMenu);
-			break;
-		// Failsafe
-		default:
-			addButton(0, "Next", mainGameMenu);
+			pc.loadInAss(ppVictoria);
 			break;
 	}
+	
+	processTime(20 + rand(11));
+	pc.orgasm();
+	pc.exhibitionism(2);
+	pc.shower();
+	
+	IncrementFlag("SHOWER_SANDWICH");
+	
+	// Maybe a cooldown of 3 hours?
+	pc.createStatusEffect("Betsy and Victoria CD", 0, 0, 0, 0, true, "", "", false, 180);
+	
+	// [Done] Go to Locker Room and Showers [+2% Exhibitionism]
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
-*/
 
 //New Mechanics
 //Sore
@@ -1672,7 +1969,7 @@ public function liftVoyeurism():void
 	output(" goes about her own business, working her body and yoga pants to their limits, her ass extending backwards every time she does a rep. You watch for a few minutes, the rhythmic up and down motion of her ass drawing out a ");
 	if(pc.isTreated()) output("particular primal urge");
 	else output("certain perverted interest");
-	output(". She works out for quite a while, around half an hour of non stop squatting. Sadly though, all good things must come to an end, and she puts the bar back on the rack and takes a moment’s rest, she leans on the bar, so exhausted even her tail droops lamely. She reaches for a water bottle and douses her face with ice cold water before taking a moment to fix her hair, the a decent amount of hair strands sticking out of her black ponytail.");
+	output(". She works out for quite a while, around half an hour of non stop squatting. Sadly though, all good things must come to an end, and she puts the bar back on the rack and takes a moment’s rest, she leans on the bar, so exhausted even her tail droops lamely. She reaches for a water bottle and douses her face with ice cold water before taking a moment to fix her hair, a decent amount of hair strands sticking out of her black ponytail.");
 
 	output("\n\nFrom the corner of your eye you notice ");
 	if(watchedNico) output("Nico, shirtless and heading toward the showers");
@@ -1681,8 +1978,8 @@ public function liftVoyeurism():void
 	if(watchedLee) output("Lee’s");
 	else output("the cow’s");
 	output(" massive rear. His mouth shifts to a faint smile as he walks by, his path gravitating a bit towards her as he gets close enough to smack her ass, which bounces in response to the force of his hand.");
-	if(watchedNico) output("Nico");
-	else output("The bull");
+	if(watchedNico) output(" Nico");
+	else output(" The bull");
 	output(" continues on his merry way, failing to notice that the cow hasn’t quite ignored his gesture. It’s only after her hand grasps his wrist that he turns around.");
 	output("\n\n<i>“Hey there,”</i> ");
 	if(watchedLee) output("Lee");
@@ -1692,7 +1989,7 @@ public function liftVoyeurism():void
 	output("\n\n");
 	if(watchedNico) output("Nico");
 	else output("The bull");
-	output(" feigns ignorance, putting on a smirk as pulls down her yoga pants. <i>“Whaddya mean?”</i>");
+	output(" feigns ignorance, putting on a smirk as he pulls down her yoga pants. <i>“Whaddya mean?”</i>");
 
 	output("\n\n<i>“Oh c’mon. One day you’re gonna leave a cow all wet and lonely, aching for a big strong bull,”</i> by this point her pants are around her ankles and she’s blushing profusely, the pheromones radiating off of ");
 	if(watchedNico) output("Nico");
@@ -1717,7 +2014,7 @@ public function liftVoyeurism():void
 	else output("\n\nThe bull tries");
 	output(" and fails to stifle a laugh. <i>“Hah, finally you get to the fun part. Two words would have done it for me. ‘Eat me’”</i> And while he would have most likely gone on teasing her, his words were quickly muffled by her sopping wet cunny as she finally forces herself onto him.");
 
-	output("\n\nAs if by instinct, his tongue immediately starts assaulting her vagina, his intensity quickly going from gently teasing her clit to flat out tongue fucking her. Her mouth silently hangs open, screaming out moans of pleasure that no one will hear. Her grip around the his horns tightens as she gets more and more into it, her eyes shut tight from the sheer pleasure of his tongue. And judging by how he pays no attention to her cunt liquor drooling down his mouth, chin, and chest, instead tonguefucking her pussy like it’s the last thing he’ll ever eat. Whatever he doesn’t lap up takes the form of a <i>“milk mustache”</i> which he’ll wear with pride for the few moments before inevitably he goes to wipe or lick it off. But for now, none of that matters, his entire world has condensed into the sight and taste of the woman before him, accompanied by the audio of her now audible moans.");
+	output("\n\nAs if by instinct, his tongue immediately starts assaulting her vagina, his intensity quickly going from gently teasing her clit to flat out tongue fucking her. Her mouth silently hangs open, screaming out moans of pleasure that no one will hear. Her grip around the his horns tightens as she gets more and more into it, her eyes shut tight from the sheer pleasure of his tongue. He pays no attention to her cunt liquor drooling down his mouth, chin, and chest -- instead, he is tonguefucking her pussy like it’s the last thing he’ll ever eat. Whatever he doesn’t lap up takes the form of a <i>“milk mustache”</i> which he’ll wear with pride for the few moments before inevitably he goes to wipe or lick it off. But for now, none of that matters, his entire world has condensed into the sight and taste of the woman before him, accompanied by the audio of her now audible moans.");
 	if(pc.isTreated()) 
 	{
 		output("\n\nYou take a moment to look around and as you’ve expected, you can see most if not all spectators are profusely pleasuring themselves to the lewd acts on display before them. Not one to ignore your own impulses, you");

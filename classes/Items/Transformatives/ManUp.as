@@ -35,7 +35,7 @@
 			this.description = "an injector labeled ‘ManUp’";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "ManUp is a cocktail of chemicals, hormones and nanomachines engineered by JoyCo guaranteed to \"make a man out of you\". This product, like the feminizing transformatives, is banned in some planets for the same reasons. JoyCo has managed to circumvent these bans with clever lobbying and a patched variant that doesn't transform feminine genders.\n\nThe injector is filled with a transparent blue fluid. The box guarantees its user <b>facial masculinization with every use</b>, among other side effects such as: reduction in hip, lip, breast and butt size, increases in muscle tone, and growth of facial hair. In some cases, consumers who do not possess male anatomy may grow a penis or a pair of balls.";
+			this.tooltip = "ManUp is a cocktail of chemicals, hormones and nanomachines engineered by JoyCo guaranteed to “make a man out of you”. This product, like the feminizing transformatives, is banned in some planets for the same reasons. JoyCo has managed to circumvent these bans with clever lobbying and a patched variant that doesn’t transform feminine genders.\n\nThe injector is filled with a transparent blue fluid. The box guarantees its user <b>facial masculinization with every use</b>, among other side effects such as: reduction in hip, lip, breast and butt size, increases in muscle tone, and growth of facial hair. In some cases, consumers who do not possess male anatomy may grow a penis or a pair of balls.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -67,29 +67,29 @@
 				// Masculinity at max:
 				if(target.femininity <= target.femininityMin())
 				{
-					kGAMECLASS.output("\n\nThe telltale warmth of ManUp surges through your [pc.face] before disappearing just as quickly. Disappointingly, it seems like you can't get any more manly.");
-					if(!target.hasCock()) kGAMECLASS.output(" You'd have to get a cock, if you want to get even more manly.");
-					else if(target.hasVagina()) kGAMECLASS.output(" You'd have to get rid of your [pc.vaginas], if you want to get even more manly.");
-					else kGAMECLASS.output(" Not like you need to anyway. You're as perfect as you can be!");
+					kGAMECLASS.output("\n\nThe telltale warmth of ManUp surges through your [pc.face] before disappearing just as quickly. Disappointingly, it seems like you can’t get any more manly.");
+					if(!target.hasCock()) kGAMECLASS.output(" You’d have to get a cock, if you want to get even more manly.");
+					else if(target.hasVagina()) kGAMECLASS.output(" You’d have to get rid of your [pc.vaginas], if you want to get even more manly.");
+					else kGAMECLASS.output(" Not like you need to anyway. You’re as perfect as you can be!");
 				}
 				// Fem mod -17/-20 points:
 				else if(rand(3) == 0)
 				{
-					kGAMECLASS.output("\n\nYour whole [pc.face] suddenly whirs into motion as the nanomachines begin their work. It even glows as bones are tweaked, flesh shifts and nerves are remapped into a new form. Everything about you is more rugged and angular. Out of nowhere, you burp loudly and an adam's apple quickly forms on your neck.");
+					kGAMECLASS.output("\n\nYour whole [pc.face] suddenly whirs into motion as the nanomachines begin their work. It even glows as bones are tweaked, flesh shifts and nerves are remapped into a new form. Everything about you is more rugged and angular. Out of nowhere, you burp loudly and an adam’s apple quickly forms on your neck.");
 					x -= (17+rand(4));
 					target.modFem(x);
 				}
 				// Fem mod -13/-16 points:
 				else if(rand(3) == 0)
 				{
-					kGAMECLASS.output("\n\nSuddenly, your [pc.face] warms up as ManUp does its job. Bringing your fingers to your cheeks, you can actually feel the bones reshaping just below your fingertips. You explore the rest of your transforming face, passing your fingers across your longer forehead, squarer jaw and stronger nose. You're pretty sure you are more handsome than before.");
+					kGAMECLASS.output("\n\nSuddenly, your [pc.face] warms up as ManUp does its job. Bringing your fingers to your cheeks, you can actually feel the bones reshaping just below your fingertips. You explore the rest of your transforming face, passing your fingers across your longer forehead, squarer jaw and stronger nose. You’re pretty sure you are more handsome than before.");
 					x -= (13+rand(4));
 					target.modFem(x);
 				}
 				// Fem mod -9/-12 points:
 				else if(rand(3) == 0)
 				{
-					kGAMECLASS.output("\n\nThe tingle starts right at the tip of your nose and quickly spreads outwards, warming your [pc.face] as it flows along. You're sure this strange, yet warm feeling is ManUp masculinizing your [pc.lips], cheeks and jaw. You can't help but feel a little bit hardened by the experience.");
+					kGAMECLASS.output("\n\nThe tingle starts right at the tip of your nose and quickly spreads outwards, warming your [pc.face] as it flows along. You’re sure this strange, yet warm feeling is ManUp masculinizing your [pc.lips], cheeks and jaw. You can’t help but feel a little bit hardened by the experience.");
 					x -= (9+rand(4));
 					target.modFem(x);
 				}
@@ -110,27 +110,27 @@
 				// Announce when passing a threshold:
 				if(y > 10 && target.femininity <= 10)
 				{
-					kGAMECLASS.output(" <b>As you stare into your holocam, you see your reflection and can't help but smile. With its chiseled features, your [pc.face] is a paragon of masculinity. Even your neck has an eye-catching adam's apple. ");
+					kGAMECLASS.output(" <b>As you stare into your holocam, you see your reflection and can’t help but smile. With its chiseled features, your [pc.face] is a paragon of masculinity. Even your neck has an eye-catching adam’s apple. ");
 					if(kGAMECLASS.silly) kGAMECLASS.output("Total sploosh!");
-					else kGAMECLASS.output("You're so hot you make all the panties wet.");
+					else kGAMECLASS.output("You’re so hot you make all the panties wet.");
 					kGAMECLASS.output("</b>");
 				}
-				else if(y > 20 && target.femininity <= 20) kGAMECLASS.output(" <b>Checking yourself with your codex, you can't help but admire your masculine features. Your chiseled visage is ruggedly handsome!</b>");
-				else if(y > 28 && target.femininity <= 28) kGAMECLASS.output(" <b>If there were any doubts before, there aren't any now. Your chiseled jaw and defined cheekbones show you're definitely getting manlier.</b>");
+				else if(y > 20 && target.femininity <= 20) kGAMECLASS.output(" <b>Checking yourself with your codex, you can’t help but admire your masculine features. Your chiseled visage is ruggedly handsome!</b>");
+				else if(y > 28 && target.femininity <= 28) kGAMECLASS.output(" <b>If there were any doubts before, there aren’t any now. Your chiseled jaw and defined cheekbones show you’re definitely getting manlier.</b>");
 				// 35
 				else if(y > 35 && target.femininity <= 35) kGAMECLASS.output(" <b>Your forehead is broader and both your chin and your brow are a lot more prominent than before. Not only do you look more masculine, you also look significantly tougher than before.</b>");
 				// 45
 				else if(y > 45 && target.femininity <= 45) kGAMECLASS.output(" <b>You can barely notice just a few hints of masculinity in your ambiguously androgynous face.</b>");
 				// 55
-				else if(y >= 55 && target.femininity < 55) kGAMECLASS.output(" <b>No matter how hard you look there isn't a single hint of femininity left on your face and you're pretty sure nobody could figure out your gender from it alone.</b>");
+				else if(y >= 55 && target.femininity < 55) kGAMECLASS.output(" <b>No matter how hard you look there isn’t a single hint of femininity left on your face and you’re pretty sure nobody could figure out your gender from it alone.</b>");
 				// 65
 				else if(y >= 65 && target.femininity < 65) kGAMECLASS.output(" <b>At this point you can still see some traces of femininity left in your thin eyebrows and high cheekbones.</b>");
 				// 72
-				else if(y >= 72 && target.femininity < 72) kGAMECLASS.output(" <b>While examining your face through your codex's holocam, you realize that you're definitely getting less feminine. Your face is longer and your nose is bigger, but there's still a long way to go for you to be considered manly in any way.</b>");
+				else if(y >= 72 && target.femininity < 72) kGAMECLASS.output(" <b>While examining your face through your codex’s holocam, you realize that you’re definitely getting less feminine. Your face is longer and your nose is bigger, but there’s still a long way to go for you to be considered manly in any way.</b>");
 				// 80
-				else if(y >= 80 && target.femininity < 80) kGAMECLASS.output(" <b>After checking yourself out in your codex's holocam, you confirm that both your chin and your brow are more prominent and your forehead is slightly broader.</b>");
+				else if(y >= 80 && target.femininity < 80) kGAMECLASS.output(" <b>After checking yourself out in your codex’s holocam, you confirm that both your chin and your brow are more prominent and your forehead is slightly broader.</b>");
 				// 90
-				else if(y >= 90 && target.femininity < 90) kGAMECLASS.output(" <b>Your [pc.face] is still jaw-droppingly gorgeous but you can also see that it's less feminine than before.</b>");
+				else if(y >= 90 && target.femininity < 90) kGAMECLASS.output(" <b>Your [pc.face] is still jaw-droppingly gorgeous but you can also see that it’s less feminine than before.</b>");
 				
 				// First Cock
 				// Effect: Lack cock - Increases cock by 1, 4 inch long, 1 inch thick cock. Penis type decided by race.
@@ -232,14 +232,14 @@
 					if(target.hasPerk("Mini")) target.cocks[0].cLengthRaw -= 1;
 					if(target.hasPerk("Hung")) target.cocks[0].cLengthRaw += 3+rand(4);
 					
-					kGAMECLASS.output(" bulges with flesh, stretching the skin around it to uncomfortable limits. Once it's " + num2Text(target.cocks[0].cLengthRaw) + " inches long it stops growing. Instead, the tip of the limp tube of flesh suddenly twists into a new form, shaping itself into a cockhead. You can’t stop yourself from");
+					kGAMECLASS.output(" bulges with flesh, stretching the skin around it to uncomfortable limits. Once it’s " + num2Text(target.cocks[0].cLengthRaw) + " inches long it stops growing. Instead, the tip of the limp tube of flesh suddenly twists into a new form, shaping itself into a cockhead. You can’t stop yourself from");
 					if(target.isCrotchGarbed()) kGAMECLASS.output(" pulling down your [pc.lowerUndergarment] and admire");
 					else kGAMECLASS.output(" admiring");
 					kGAMECLASS.output(" your new phallus.");
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output("\n\nIt’s tiny and flaccid, hardly worth any admiration, but y");
 					else kGAMECLASS.output("\n\nY");
-					kGAMECLASS.output("ou can't resist grabbing it in your hands. It feels amazing. The transformative heat passes through it as you begin to stroke your new fuckstick. Slowly but steadily, it gradually fills with blood, growing engorged and erect. You release a small gasp of surprise at your new cock's first boner, increasing the pace of your stroking.");
-					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can't seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstacy, you find out that not only is the cockhole missing, there isn't a urethra either. You don't feel any different inside, so you're probably missing a prostate too.");
+					kGAMECLASS.output("ou can’t resist grabbing it in your hands. It feels amazing. The transformative heat passes through it as you begin to stroke your new fuckstick. Slowly but steadily, it gradually fills with blood, growing engorged and erect. You release a small gasp of surprise at your new cock’s first boner, increasing the pace of your stroking.");
+					kGAMECLASS.output("\n\nAfter a while you begin to grow frustrated. No matter how much you keep beating you just can’t seem to orgasm. As you tease its head with your finger, trying desperately to trigger your release to ecstacy, you find out that not only is the cockhole missing, there isn’t a urethra either. You don’t feel any different inside, so you’re probably missing a prostate too.");
 					kGAMECLASS.output("\n\nJust as you finish that thought, the heat moves deeper into your body, right next to your rectum. You can feel it bloating, transforming the area of flesh into a productive spunk-factory. You can feel a pending orgasm as a cum-vein forms along your");
 					if(target.cocks[0].cLengthRaw <= 4) kGAMECLASS.output(" tiny");
 					else kGAMECLASS.output(" turgid");
@@ -255,12 +255,13 @@
 					switch(target.cocks[0].cType)
 					{
 						case GLOBAL.TYPE_EQUINE:
-							kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and flares like a horse");
+							kGAMECLASS.output("Your [pc.cockColor] cock has a medial ring and flares like a horse’s");
 							break;
 						case GLOBAL.TYPE_CANINE:
 							kGAMECLASS.output("Your [pc.cockColor], veiny cock has a tapered head and a knot");
-							if(pcRace.indexOf("ausar") != -1) kGAMECLASS.output(" like an ausar");
-							else kGAMECLASS.output(" like a canine");
+							if(pcRace.indexOf("ausar") != -1) kGAMECLASS.output(" like an ausar’s");
+							else if (InCollection(pcRace, "vulpine-morph", "vulpine-taur", "kitsune", "kitsune-morph", "kitsune-taur")) kGAMECLASS.output(" a fox’s");
+							else kGAMECLASS.output(" like a canine’s");
 							break;
 						case GLOBAL.TYPE_FELINE:
 							kGAMECLASS.output("Your [pc.cockColor] cock is very much like a spike and is covered in soft barbs");
@@ -387,7 +388,7 @@
 				// Effect: Lipmod more than 1 - Decrease by 1
 				else if(select == 3)
 				{
-					kGAMECLASS.output("\n\nThe heat begins to concentrate on your [pc.lips], telling you that the nanomachines are starting to do something else there. Slowly but surely, the warmth begins to weaken. You press your finger against them and feel them contract, losing a bit of their plushness. As the transformation grows cold, you slide your [pc.tongue] through them, confirming that is not only the size that changed, but also their sensitivity. Looking at yourself through your codex's holocam you can see that they are thinner and, some could even say, tougher. You are definitely manlier than you were before. <b>Your lips have gotten a little smaller.</b>");
+					kGAMECLASS.output("\n\nThe heat begins to concentrate on your [pc.lips], telling you that the nanomachines are starting to do something else there. Slowly but surely, the warmth begins to weaken. You press your finger against them and feel them contract, losing a bit of their plushness. As the transformation grows cold, you slide your [pc.tongue] through them, confirming that is not only the size that changed, but also their sensitivity. Looking at yourself through your codex’s holocam you can see that they are thinner and, some could even say, tougher. You are definitely manlier than you were before. <b>Your lips have gotten a little smaller.</b>");
 					
 					// Change the stuff, but I dunno about the sensitivity though...
 					target.lipMod--;
@@ -430,7 +431,7 @@
 					// For just half-inch.
 					else if(target.beardLength < 0.5)
 					{
-						kGAMECLASS.output("\n\nWithout touching it, you can feel your [pc.beard] physically grow on your face. Reflexively, you brush your hand across it and can confirm that <b>it's now a half-inch long beard.</b>");
+						kGAMECLASS.output("\n\nWithout touching it, you can feel your [pc.beard] physically grow on your face. Reflexively, you brush your hand across it and can confirm that <b>it’s now a half-inch long beard.</b>");
 						target.beardLength = 0.5;
 					}
 					// For whole numbers.
@@ -443,14 +444,14 @@
 					else
 					{
 						x = 1 + rand(2);
-						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. <b>You can confirm that it's slightly longer than it was before, gaining about " + kGAMECLASS.num2Text(x) + " inches of beard.</b>");
+						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. <b>You can confirm that it’s slightly longer than it was before, gaining about " + kGAMECLASS.num2Text(x) + " inches of beard.</b>");
 						target.beardLength += x;
 					}
 					if (target.beardStyle != 0 && target.beardStyleUnlocked(0))
 					{
 						if(target.beardLength >= 1)
 						{
-							kGAMECLASS.output(" It seems the growth was not as neat as it should be... You'll have to get it ");
+							kGAMECLASS.output(" It seems the growth was not as neat as it should be... You’ll have to get it ");
 							if (target.beardStyle != 0) kGAMECLASS.output("re-");
 							kGAMECLASS.output("styled somewhere if you want it to look a certain way...");
 						}
@@ -468,7 +469,7 @@
 					kGAMECLASS.output(" and examine it, carefully avoiding your [pc.nipples]. No need to get");
 					if(target.lust() < 10) kGAMECLASS.output(" horny.");
 					else kGAMECLASS.output(" hornier.");
-					kGAMECLASS.output(" It dawns on you what's happening when you feel its mass slowly receding into your body");
+					kGAMECLASS.output(" It dawns on you what’s happening when you feel its mass slowly receding into your body");
 					if(target.totalBreasts() > 1)
 					{
 						kGAMECLASS.output(" and you can see its sister");
@@ -509,7 +510,7 @@
 				}
 				else if(select == 9)
 				{
-					kGAMECLASS.output("\n\nAfter a while you realize that you aren't get anything more out of this dose. ManUp must be running out of ways to make you manlier.");
+					kGAMECLASS.output("\n\nAfter a while you realize that you aren’t get anything more out of this dose. ManUp must be running out of ways to make you manlier.");
 				}
 			}
 			else {

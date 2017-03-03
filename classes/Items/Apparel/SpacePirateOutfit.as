@@ -27,7 +27,7 @@ package classes.Items.Apparel
 			
 			this.description = "a space pirate outfit made mostly of leather";
 			
-			this.tooltip = "This is a space pirate outfit consisting of a lot of tight black leather. There's also a lot of tough looking patches with badass insignias. Great for any rebel with or without a cause.  This outfit possesses a defensive layer of nanofibers.";
+			this.tooltip = "This is a space pirate outfit consisting of a lot of tight black leather. There’s also a lot of tough looking patches with badass insignias. Great for any rebel with or without a cause.  This outfit possesses a defensive layer of nanofibers.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

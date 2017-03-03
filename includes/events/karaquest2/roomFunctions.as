@@ -334,7 +334,7 @@ public function kq2RadioTowerElevator():void
 			output("”</i>");
 			
 			pc.createKeyItem("Hentai Magazine");
-			output("\n\n<b>New Key Item: Hentai Magazine</b>.");
+			output("\n\n(<b>Gained Key Item: Hentai Magazine</b>.)");
 
 			output("\n\n<i>“Alright. I’m on overwatch, [pc.name]. Anything gets near you, and you’ll hear about it. Good luck.”</i>");
 				
@@ -769,7 +769,7 @@ public function kq2rfTakeKeycard():void
 
 	output("\n\nYou pick up the keycard. Score! This should get you into the research facility, no problem.");
 	pc.createKeyItem("Key Card - R&D Security Pass");
-	output("\n\n<b>New Key Item: Key Card - R&D Security Pass</b>.");
+	output("\n\n(<b>Gained Key Item: Key Card - R&D Security Pass</b>.)");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -798,7 +798,7 @@ public function kq2rfBreakRoom():Boolean
 {
 	output("The staff room beyond the welcome desk is a small, cozy affair with a card table, a fridge, and a big, fat vending machine advertising JoyCo potion-brand energy drinks.");
 
-	addButton(0, "V.Machine", vendingMachineMenu, undefined, "Vending Machine", "See what these energy drinks are all about.");
+	addButton(0, "V.Machine", buyAPowahPotionMenu, undefined, "Vending Machine", "See what these energy drinks are all about.");
 	return false;
 }
 

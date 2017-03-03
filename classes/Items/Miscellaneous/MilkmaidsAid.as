@@ -25,15 +25,15 @@
 			this.shortName = "Milk. Aid";
 			
 			//Regular name
-			this.longName = "Milkmaid's Aid";
+			this.longName = "Milkmaid’s Aid";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a dose of Milkmaid's Aid";
+			this.description = "a dose of Milkmaid’s Aid";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This bottle contains milk-white pills, and the label shows several New Texan girls reclining against what look like industrial-strength milkers, their nudity tastefully hidden by foreground objects. The listed effects include a massive one-time surge in lactation: perfect for <i>“stocking up”</i> before a long, happy session in the milk barn.";
+			this.tooltip = "This bottle contains milk-white pills, and the label shows several New Texan girls reclining against what look like industrial-strength milkers, their nudity tastefully hidden by foreground objects. The listed effects include a massive one-time surge in lactation: perfect for “stocking up” before a long, happy session in the milk barn.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

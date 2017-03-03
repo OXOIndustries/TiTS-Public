@@ -28,7 +28,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a pouch of naleen nip";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This small pouch has a few dried leaves inside. The codex indicates that they're locally referred to on Mhen'ga as naleen nip. When chewed by the aliens of the same name, they supposedly introduce a state of mild euphoria. The feline snake-women love them. You're fairly certain the foreign plant matter <b>will</b> transform you if you chew on it.";
+			this.tooltip = "This small pouch has a few dried leaves inside. The codex indicates that they’re locally referred to on Mhen’ga as naleen nip. When chewed by the aliens of the same name, they supposedly introduce a state of mild euphoria. The feline snake-women love them. You’re fairly certain the foreign plant matter <b>will</b> transform you if you chew on it.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -59,7 +59,7 @@
 			if(rand(3) == 0) changeLimit++;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
-				kGAMECLASS.output("Grabbing the leaves and rolling them together, you pop the half-formed ball into your mouth and start chewing. They have a relatively mild spiciness to them that doesn't quite compare to any pepper you've ever tried, just enough to make your [pc.tongue] tingle a little bit. The longer you chew, the more the leaves dissolve, and the more you salivate, forcing you to swallow some of the mixture. You don't really get much of a buzz; the euphoric effect must only work on ");
+				kGAMECLASS.output("Grabbing the leaves and rolling them together, you pop the half-formed ball into your mouth and start chewing. They have a relatively mild spiciness to them that doesn’t quite compare to any pepper you’ve ever tried, just enough to make your [pc.tongue] tingle a little bit. The longer you chew, the more the leaves dissolve, and the more you salivate, forcing you to swallow some of the mixture. You don’t really get much of a buzz; the euphoric effect must only work on ");
 				if(target.race() == "naleen") kGAMECLASS.output("full-blooded ");
 				kGAMECLASS.output("naleen.");
 				kGAMECLASS.processTime(3);
@@ -92,7 +92,7 @@
 						//Multileg!
 						else kGAMECLASS.output("\n\nYour [pc.legs] abruptly go weak, dropping you flat on your [pc.butt], and just in time by the looks of things. Your lower limbs have knotted together into one fused mass of writhing flesh");
 						//Both:
-						kGAMECLASS.output(", though all you feel is a slightly achy throb and the occasional twinge of a new bone forming. Over time, the singular extremity becomes longer and longer, tapered down to a pointed tip. It tingles when tiny, iridescent plates emerge to cover it. <b>You're growing a tail that's just like a naleen's!</b> The growing scales even ");
+						kGAMECLASS.output(", though all you feel is a slightly achy throb and the occasional twinge of a new bone forming. Over time, the singular extremity becomes longer and longer, tapered down to a pointed tip. It tingles when tiny, iridescent plates emerge to cover it. <b>You’re growing a tail that’s just like a naleen’s!</b> The growing scales even ");
 						if(target.hasHair()) kGAMECLASS.output("match your [pc.hair]");
 						else kGAMECLASS.output("match the hair you used to have");
 						kGAMECLASS.output(".");
@@ -120,7 +120,7 @@
 				if (changes < changeLimit && ((target.tallness < 72 && rand(3) == 0) || (target.tallness < 72 && rand(10) == 0))) {
 					if (target.tallnessUnlocked(77))
 					{
-						kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn't quite right. You... are you taller? You check the codex's scanners and confirm that you've grown ");
+						kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn’t quite right. You... are you taller? You check the codex’s scanners and confirm that you’ve grown ");
 						x = 1 + rand(5);
 						if(x == 1) kGAMECLASS.output("an inch.");
 						else kGAMECLASS.output(kGAMECLASS.num2Text(x) + " inches.");
@@ -154,7 +154,7 @@
 					{
 						kGAMECLASS.output("\n\nHairs erupt from the [pc.skinFurScales] of your right bicep, then your left.");
 						if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.skinType == GLOBAL.SKIN_TYPE_CHITIN) {
-							kGAMECLASS.output(" They're emerging with such speed and rapidly that they pry away the ");
+							kGAMECLASS.output(" They’re emerging with such speed and rapidly that they pry away the ");
 							if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) kGAMECLASS.output("scales");
 							else kGAMECLASS.output("chitin");
 							kGAMECLASS.output(" to expose your [pc.skin] even as they grow in overtop of it.");
@@ -180,7 +180,7 @@
 				if (target.faceType == GLOBAL.TYPE_NALEEN_FACE && target.earType != GLOBAL.TYPE_FELINE && changes < changeLimit && rand(3) == 0) {
 					if (target.earTypeUnlocked(GLOBAL.TYPE_FELINE))
 					{
-						kGAMECLASS.output("\n\nAll sound vanishes in an instant. You clap your hands to your [pc.ears], wondering if you've gone deaf, but they come up against nothing! Your ears have vanished! Just as you start considering learning a form of sign language or finding a back alley geneticist, the sounds you were hearing before come back with an oddly directional twist. You feel around the sides and top of your head to quickly find your new ears. They're triangular and perched atop your head, swiveling this way and that to help you easily identify the source of any noise. <b>You've grown cat-like naleen ears!</b>");
+						kGAMECLASS.output("\n\nAll sound vanishes in an instant. You clap your hands to your [pc.ears], wondering if you’ve gone deaf, but they come up against nothing! Your ears have vanished! Just as you start considering learning a form of sign language or finding a back alley geneticist, the sounds you were hearing before come back with an oddly directional twist. You feel around the sides and top of your head to quickly find your new ears. They’re triangular and perched atop your head, swiveling this way and that to help you easily identify the source of any noise. <b>You’ve grown cat-like naleen ears!</b>");
 						target.earType = GLOBAL.TYPE_FELINE;
 						changes++;
 					}
@@ -204,7 +204,7 @@
 						//Add SMOOTH face tag!
 						target.clearFaceFlags();
 						target.addFaceFlag(GLOBAL.FLAG_SMOOTH);
-						kGAMECLASS.output("\n\nThen, your canines elongate into sharp, retractable fangs. They don't feel hollow to you, so perhaps they don't quite work like a proper naleen's. Still, <b>your face looks almost exactly like a naleen's now.</b>");
+						kGAMECLASS.output("\n\nThen, your canines elongate into sharp, retractable fangs. They don’t feel hollow to you, so perhaps they don’t quite work like a proper naleen’s. Still, <b>your face looks almost exactly like a naleen’s now.</b>");
 						target.faceType = GLOBAL.TYPE_NALEEN_FACE;
 						changes++;
 					}
@@ -222,7 +222,7 @@
 							else if(rand(2) == 0) target.eyeColor = "blue";
 							else target.eyeColor = "gold";
 						}
-						kGAMECLASS.output("\n\nEverything is suddenly too bright then too dark. You rapidly blink your bleary eyes closed to try to keep from crying at the massive fluctuations in luminance. Finally, your vision stabilizes, and you can see just fine again, though the shadows seem a touch less oppressive than before. A quick check using your codex's camera identifies the source of your enhanced vision: <b>you have vertically-slit, " + target.eyeColor + " eyes, like a cat, a snake, or more specifically, a naleen.</b>");
+						kGAMECLASS.output("\n\nEverything is suddenly too bright then too dark. You rapidly blink your bleary eyes closed to try to keep from crying at the massive fluctuations in luminance. Finally, your vision stabilizes, and you can see just fine again, though the shadows seem a touch less oppressive than before. A quick check using your codex’s camera identifies the source of your enhanced vision: <b>you have vertically-slit, " + target.eyeColor + " eyes, like a cat, a snake, or more specifically, a naleen.</b>");
 						//Green, blue, gold - set before above mention!
 						target.eyeType = GLOBAL.TYPE_NAGA;
 						changes++;
@@ -260,7 +260,7 @@
 				else kGAMECLASS.output("It");
 				kGAMECLASS.output(" is near-instantly engorged and wanting");
 				if(target.vaginas[x].clits > 0) kGAMECLASS.output(", your [pc.clits] hard and easy to spot");
-				kGAMECLASS.output(". You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It's getting longer vertically while the vulva, even aroused, become less noticeable.");
+				kGAMECLASS.output(". You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It’s getting longer vertically while the vulva, even aroused, become less noticeable.");
 				if(target.vaginas[x].clits <= 0) kGAMECLASS.output(" A sensitive nub grows from the top, forming a pulsing, needy clit.");
 				else if(target.vaginas[x].clits > 1) {
 					if(target.vaginas[x].clits == 2) kGAMECLASS.output(" A clit vanishes");
@@ -273,7 +273,7 @@
 				if(target.totalVaginas() == 2) kGAMECLASS.output(" Your other entrance soon follows after the first, reshaping to match.");
 				else if(target.totalVaginas() > 2) kGAMECLASS.output(" Your other entrances soon follow after the first, reshaping to match.");
 				if((target.hasCock() && target.hasStatusEffect("Genital Slit")) || target.vaginaTotal(GLOBAL.TYPE_NAGA)) kGAMECLASS.output(" With more than one slit in your groin, you hope any future partners can find their target.");
-				kGAMECLASS.output("<b> You have a vagina that looks just like a naleen's");
+				kGAMECLASS.output("<b> You have a vagina that looks just like a naleen’s");
 				if(target.skinType != GLOBAL.SKIN_TYPE_SCALES && target.legType != GLOBAL.TYPE_NAGA) kGAMECLASS.output(", minus the scales around it");
 				kGAMECLASS.output(".</b>");
 				//Loop through and set 'em all, baby!
@@ -296,7 +296,7 @@
 				kGAMECLASS.output("\n\nYour lengthy snake-body undulates nervously underneath you when a slight cramp works through you, right around ");
 				if(target.vaginaTotal() > 1) kGAMECLASS.output("one of your wombs");
 				else kGAMECLASS.output("your womb");
-				kGAMECLASS.output(". It fades after five or ten seconds of discomfort, but you just have to figure out what changed inside you! You pry yourself open and guide your fingers inside, finding that you can fit a little bit more inside than ever before. If you contort around and hold your lips apart, you can even tell that you've gotten a good bit deeper. <b>You can handle slightly bigger insertions without worry.</b>");
+				kGAMECLASS.output(". It fades after five or ten seconds of discomfort, but you just have to figure out what changed inside you! You pry yourself open and guide your fingers inside, finding that you can fit a little bit more inside than ever before. If you contort around and hold your lips apart, you can even tell that you’ve gotten a good bit deeper. <b>You can handle slightly bigger insertions without worry.</b>");
 				target.vaginas[x].bonusCapacity += 25;
 				if(target.vaginas[x].bonusCapacity > 100) target.vaginas[x].bonusCapacity = 100;
 				target.lust(3);
@@ -306,27 +306,27 @@
 			if(target.breastRows[0].breastRatingRaw < 5 && target.breastRatingUnlocked(0, 5) && rand(3) == 0 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nOhhh, your [pc.fullChest] feels warm! You reach up to idly rub at the affected area, but your fingers make contact sooner than you anticipated. ");
 				if(target.breastRows[0].breastRating() < 1) {
-					kGAMECLASS.output("There's a small, budding breast there, and it's growing bigger! <b>You palm your swelling chest as it grows into a B-cup bosom.</b> You guess there must be some good reason why naleen are so top-heavy.");
+					kGAMECLASS.output("There’s a small, budding breast there, and it’s growing bigger! <b>You palm your swelling chest as it grows into a B-cup bosom.</b> You guess there must be some good reason why naleen are so top-heavy.");
 					target.breastRows[0].breastRatingRaw += 2;
 				}
 				else {
-					kGAMECLASS.output("There's an extra heft to your breasts as you contact them, and you realize that your fingers can sink just a little deeper into the pliant flesh than before. They feel extra weighty in your hands, jiggling a bit as you estimate their size. <b>They must have grown to ");
+					kGAMECLASS.output("There’s an extra heft to your breasts as you contact them, and you realize that your fingers can sink just a little deeper into the pliant flesh than before. They feel extra weighty in your hands, jiggling a bit as you estimate their size. <b>They must have grown to ");
 					target.breastRows[0].breastRatingRaw += 2 + rand(3);
-					kGAMECLASS.output(target.breastCup(0) + "s.</b> Now you're looking more like a naleen!");
+					kGAMECLASS.output(target.breastCup(0) + "s.</b> Now you’re looking more like a naleen!");
 				}
 				changes++;
 			}
 			//rarely grow upup to F (rare version requires naleen tail and cunt)
 			if(target.breastRows[0].breastRatingRaw < 11 && target.breastRatingUnlocked(0, 11) && rand(6) == 0 && changes < changeLimit && target.isNaga() && target.hasVagina(GLOBAL.TYPE_NAGA)) {
-				kGAMECLASS.output("\n\nOhhh, your [pc.fullChest] feels warm! You reach up to idly rub at the affected area, but your fingers make contact sooner than you anticipated. They're way bigger than before and still going! Maybe letting yourself change this much has made your breasts more receptive to the naleen mutations. ");
+				kGAMECLASS.output("\n\nOhhh, your [pc.fullChest] feels warm! You reach up to idly rub at the affected area, but your fingers make contact sooner than you anticipated. They’re way bigger than before and still going! Maybe letting yourself change this much has made your breasts more receptive to the naleen mutations. ");
 				target.breastRows[0].breastRatingRaw += 3 + rand(3);
-				kGAMECLASS.output("Whatever the case, <b>you're left with two, big pillowy " + target.breastCup(0) + "s.</b>");
+				kGAMECLASS.output("Whatever the case, <b>you’re left with two, big pillowy " + target.breastCup(0) + "s.</b>");
 				changes++;
 			}
 			//Widen hips to 12
 			if (target.hipRatingRaw < 12 && target.hipRatingUnlocked(12) && changes < changeLimit && rand(3) == 0) {
 				target.hipRatingRaw += 1 + rand(3);
-				kGAMECLASS.output("\n\nThere's a little bit of extra shake whenever you shift position. A glance down to your waist reveals that your gait has widened with your [pc.hips]. You aren't sure why a race that doesn't have legs would have such wide hips anyway, but they do look nice on you.");
+				kGAMECLASS.output("\n\nThere’s a little bit of extra shake whenever you shift position. A glance down to your waist reveals that your gait has widened with your [pc.hips]. You aren’t sure why a race that doesn’t have legs would have such wide hips anyway, but they do look nice on you.");
 				changes++;
 			}
 			else if (!target.hipRatingUnlocked(12))
@@ -341,7 +341,7 @@
 				else if (x == 2) kGAMECLASS.output("two inches");
 				else if (x == 3) kGAMECLASS.output("three inches");
 				else kGAMECLASS.output("four inches");
-				kGAMECLASS.output(" of new length. Well, that's nothing you can't get changed at a salon, at least.");
+				kGAMECLASS.output(" of new length. Well, that’s nothing you can’t get changed at a salon, at least.");
 				target.hairLength += x;
 				changes++;
 			}
@@ -364,7 +364,7 @@
 					kGAMECLASS.output("\n\nA sudden, hot throb in your slit is the only you get before you feel the start of ");
 					if (changes > 1) kGAMECLASS.output("another ");
 					else kGAMECLASS.output("a ");
-					kGAMECLASS.output("change. It feels like your [pc.cock] is getting thicker inside you, fattening up so nicely that you wonder just how much dick you can bear, even soft and unaroused. That question is answered by the momentary pain of something separating inside you. You can feel your dick being rubbed from above and below at the same time, both places feeling as phallic as the source of your sensation. It's then that <b>you pull open your slit to reveal a newly grown pair of naleen dicks where once there was one.</b>");
+					kGAMECLASS.output("change. It feels like your [pc.cock] is getting thicker inside you, fattening up so nicely that you wonder just how much dick you can bear, even soft and unaroused. That question is answered by the momentary pain of something separating inside you. You can feel your dick being rubbed from above and below at the same time, both places feeling as phallic as the source of your sensation. It’s then that <b>you pull open your slit to reveal a newly grown pair of naleen dicks where once there was one.</b>");
 					target.createCock();
 					target.cocks[1].cLengthRaw = target.cocks[0].cLengthRaw;
 					target.cocks[1].cThicknessRatioRaw = target.cocks[0].cThicknessRatioRaw;
@@ -398,7 +398,7 @@
 						kGAMECLASS.output(", the one that holds your masculine endowment");
 					}
 					if(target.cockTotal() > 1) kGAMECLASS.output("s");
-					kGAMECLASS.output(", you feel a sudden shifting. [pc.oneCock] is half hard and tingling all over, but it won't come out. The feeling is pleasurable but at the same time disconcerting, like the interior of your sheath is fellating you while your length reshapes to accommodate it better. You lower yourself down to the ground before the exotic pleasure strips the strength from your [pc.legOrLegs], just in time to feel your [pc.cock " + x+ "] start spasming in ecstasy, dragging a moan from your throat as it suddenly rams its way up and out of your slit.");
+					kGAMECLASS.output(", you feel a sudden shifting. [pc.oneCock] is half hard and tingling all over, but it won’t come out. The feeling is pleasurable but at the same time disconcerting, like the interior of your sheath is fellating you while your length reshapes to accommodate it better. You lower yourself down to the ground before the exotic pleasure strips the strength from your [pc.legOrLegs], just in time to feel your [pc.cock " + x+ "] start spasming in ecstasy, dragging a moan from your throat as it suddenly rams its way up and out of your slit.");
 					if(target.cumQ() < 5) kGAMECLASS.output("\n\nDribbles of [pc.cum] leak from your twitching length, the only seed your body is able to eject in your spasms of pleasure.");
 					else kGAMECLASS.output("\n\nArcs of [pc.cum] fly from you twitching length out in front of you, launched in thick, wet volleys.");
 					kGAMECLASS.output(" Your [pc.hips] wildly hump the air against an invisible lover as the abrupt bliss works its way through you. Hanging out of your [pc.lips], your [pc.tongue] drools down your chin in satisfaction. The surprise climax ends, leaving you panting and regarding the source of it all.");
@@ -428,8 +428,8 @@
 					if(target.armor.shortName != "") kGAMECLASS.output("[pc.armor.longName]");
 					kGAMECLASS.output(" to free yourself from the constricting pressure.");
 				}
-				if(target.cockTotal() == 1) kGAMECLASS.output(" It's");
-				else kGAMECLASS.output(" They're");
+				if(target.cockTotal() == 1) kGAMECLASS.output(" It’s");
+				else kGAMECLASS.output(" They’re");
 				kGAMECLASS.output(" pulsating and achingly hard, already drooling a steady trickle of pre-cum along ");
 				if(target.cockTotal() == 1) kGAMECLASS.output("its underside");
 				else kGAMECLASS.output("their undersides");
@@ -438,19 +438,19 @@
 				if(target.hasASheath()) kGAMECLASS.output("folding into your sheath at first, then taking it along with your dick, ");
 				kGAMECLASS.output("disappearing further into your middle with each passing moment. In a fit of desperation, you grab hold");
 				if(target.cockTotal() > 1) kGAMECLASS.output(" of one");
-				kGAMECLASS.output(" and tug, trying to keep your [pc.cocks] from going away, but you're too slick with pre! The length slides right through your grip and up inside you. With barely half of ");
+				kGAMECLASS.output(" and tug, trying to keep your [pc.cocks] from going away, but you’re too slick with pre! The length slides right through your grip and up inside you. With barely half of ");
 				if(target.cockTotal() == 1) kGAMECLASS.output("its length remaining");
 				else kGAMECLASS.output("their lengths remaining");
-				kGAMECLASS.output(" exposed, you're forced to watch ");
+				kGAMECLASS.output(" exposed, you’re forced to watch ");
 				if(target.cockTotal() == 1) kGAMECLASS.output("it");
 				else kGAMECLASS.output("them");
 				kGAMECLASS.output(" completely recede, leaving only a single slit in its place.");
 				kGAMECLASS.output("\n\nThe arousal fades as quickly as it came, leaving you there to consider your new genital slit. A quick, probing fingertip finds that your [pc.cocks] ");
-				if(target.cockTotal() == 1) kGAMECLASS.output("hasn't");
-				else kGAMECLASS.output("haven't");
+				if(target.cockTotal() == 1) kGAMECLASS.output("hasn’t");
+				else kGAMECLASS.output("haven’t");
 				kGAMECLASS.output(" vanished - ");
-				if(target.cockTotal() > 1) kGAMECLASS.output("they're");
-				else kGAMECLASS.output("it's");
+				if(target.cockTotal() > 1) kGAMECLASS.output("they’re");
+				else kGAMECLASS.output("it’s");
 				kGAMECLASS.output(" just hiding inside the warm, wet channel. Oh... it feels kind of nice, and [pc.eachCock] starts to emerge. You stop before you wind up masturbating with <b>the new, snake-like slit that holds your [pc.cocks] when unaroused.</b>");
 				target.lust(5)
 				changes++;
@@ -461,10 +461,10 @@
 			if(target.shortestCockLength() < 10 && target.cockLengthUnlocked(target.shortestCockIndex(), 10) && changes < changeLimit && rand(3) == 0) {
 				//Slit vers
 				if(target.hasStatusEffect("Genital Slit")) {
-					kGAMECLASS.output("\n\nA slight twitch from your [pc.cock " + x+ "] inside your slit pulls your attention southward, but it ends almost as soon as it starts. Just when you're about to move on, it happens again, this time more strongly. The [pc.cockHead " + x+ "] slips through the lips of your entrance, emerging briefly before it subsides a second later. Once more, the process repeats, this time reaching out perhaps a");
+					kGAMECLASS.output("\n\nA slight twitch from your [pc.cock " + x+ "] inside your slit pulls your attention southward, but it ends almost as soon as it starts. Just when you’re about to move on, it happens again, this time more strongly. The [pc.cockHead " + x+ "] slips through the lips of your entrance, emerging briefly before it subsides a second later. Once more, the process repeats, this time reaching out perhaps a");
 					if(target.hasPerk("Hung")) kGAMECLASS.output(" couple inches");
 					else kGAMECLASS.output("n inch");
-					kGAMECLASS.output(" before withdrawing. You reach a hand inside to check on it and discover that it's grown bigger - big enough to be a full");
+					kGAMECLASS.output(" before withdrawing. You reach a hand inside to check on it and discover that it’s grown bigger - big enough to be a full");
 					if(target.hasPerk("Hung")) kGAMECLASS.output(" two inches");
 					else kGAMECLASS.output(" inch");
 					kGAMECLASS.output(" longer when hard.");
@@ -477,28 +477,28 @@
 					kGAMECLASS.output(" It stops as soon as it starts, but a few moments later, your penis shudders once more, looking a little bigger than before. The odd, expanding sensation returns one last time, making you big enough to be a full");
 					if(target.hasPerk("Hung")) kGAMECLASS.output(" two inches");
 					else kGAMECLASS.output(" inch");
-					kGAMECLASS.output(" bigger when hard. Perhaps being more like a planet's apex predator isn't such a bad idea.");
+					kGAMECLASS.output(" bigger when hard. Perhaps being more like a planet’s apex predator isn’t such a bad idea.");
 				}
 				target.cocks[x].cLengthRaw += 1;
 				if(target.hasPerk("Hung")) target.cocks[x].cLengthRaw += 1;
-				kGAMECLASS.output(" You're thicker to match, too.");
+				kGAMECLASS.output(" You’re thicker to match, too.");
 				changes++;
 			}
 			//10" to 16" growth - slitted naleen cocks only
 			else if(target.hasStatusEffect("Genital Slit") && target.shortestCockLength() < 16 && target.cockLengthUnlocked(target.shortestCockIndex(), 16) && changes < changeLimit && rand(6) == 0) {
 				x = target.shortestCockIndex();
-				kGAMECLASS.output("\n\nYour nicely-filled, interior cock-sheath shifts pleasantly around your [pc.cock " + x + "] as you chew, and you can't help but feel a shiver of excitement run through you at that. Your length engorges noticeably but doesn't emerge, stretching out your interior with its expanding length and width. You shudder, whining softly under your breath as the growth continues. Then, it stops, leaving you feeling a tad warm and a little sore, with a newly expanded [pc.cock " + x + "] snugly packed inside you.");
+				kGAMECLASS.output("\n\nYour nicely-filled, interior cock-sheath shifts pleasantly around your [pc.cock " + x + "] as you chew, and you can’t help but feel a shiver of excitement run through you at that. Your length engorges noticeably but doesn’t emerge, stretching out your interior with its expanding length and width. You shudder, whining softly under your breath as the growth continues. Then, it stops, leaving you feeling a tad warm and a little sore, with a newly expanded [pc.cock " + x + "] snugly packed inside you.");
 				target.cocks[x].cLengthRaw += 1 + rand(3);
 				if(target.hasPerk("Hung")) target.cocks[x].cLengthRaw += 1 + rand(3);
-				kGAMECLASS.output(" You're thicker to match, too.");
+				kGAMECLASS.output(" You’re thicker to match, too.");
 				changes++;
 			}
 			//Reduce breasts to flat if uncunted.
 			if(!target.hasVagina() && target.biggestTitSize() >= 1 && target.breastRatingUnlocked(target.biggestTitRow(), 0) && changes < changeLimit && rand(2) == 0) {
-				kGAMECLASS.output("\n\nAs you're waiting ");
+				kGAMECLASS.output("\n\nAs you’re waiting ");
 				if(changes > 0) kGAMECLASS.output("for the changes to finish");
 				else kGAMECLASS.output("for any mutations to manifest");
-				kGAMECLASS.output(", your [pc.fullChest] tightens. There's no warning, no slow heat or mounting change, just the sudden and abrupt loss of a cup size");
+				kGAMECLASS.output(", your [pc.fullChest] tightens. There’s no warning, no slow heat or mounting change, just the sudden and abrupt loss of a cup size");
 				if(target.bRows() > 1) {
 					y = 0;
 					for(x = 0; x < target.bRows(); x++) {

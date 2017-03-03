@@ -28,7 +28,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a jar of ChocoLac";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This creamy brown jar's label depicts a pastoral field of darkly colored bovines on one side; on the other, the bovines are more humanoid in shape: buxom human girls toting massive mammaries and buckets of what could only be chocolate milk. One of them is smiling invitingly at you, a speech bubble informing you that this one-use cream is sure to turn your own natural lactation into a delicious, thick chocolate milk.";
+			this.tooltip = "This creamy brown jar’s label depicts a pastoral field of darkly colored bovines on one side; on the other, the bovines are more humanoid in shape: buxom human girls toting massive mammaries and buckets of what could only be chocolate milk. One of them is smiling invitingly at you, a speech bubble informing you that this one-use cream is sure to turn your own natural lactation into a delicious, thick chocolate milk.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -64,7 +64,7 @@
 				//Usage text:
 				//Using Honeydew
 				//{Effect: If the PC is lactating, it changes the lactation type to Honey. If the PC is not currently lactating but has a large bust (F+ cup?), then there is a chance that a honey lactation will be induced. Side effects! >:3 }
-				kGAMECLASS.output("You pull the bottle of ChocoLac cream out of your pack, staring at the dark, chocolatey label and the cavalcade of busty girls on display, all arranged just right to keep them work-safe. Clever positioning, indeed. You slowly shrug out of your [pc.gear], leaving your [pc.chest] bare, your [pc.nipples] already stiffening at the thought of your new lactic bounty. With a grin of anticipation, you twist the cap off of the bottle and scoop a bit of the nanomachine-laced cream out onto your fingers. It feels almost like ice cream, cool and creamy to the touch, practically rolling into a ball as you scoop it out of the jar. You shudder slightly as you bring the cold cream to your bare [pc.chest], smearing it across your [pc.skin]. God damn, that's cold. You struggle to spread the cream across your breasts, but eventually manage to smear the whole jar across your chest, leaving you looking mud-covered.");
+				kGAMECLASS.output("You pull the bottle of ChocoLac cream out of your pack, staring at the dark, chocolatey label and the cavalcade of busty girls on display, all arranged just right to keep them work-safe. Clever positioning, indeed. You slowly shrug out of your [pc.gear], leaving your [pc.chest] bare, your [pc.nipples] already stiffening at the thought of your new lactic bounty. With a grin of anticipation, you twist the cap off of the bottle and scoop a bit of the nanomachine-laced cream out onto your fingers. It feels almost like ice cream, cool and creamy to the touch, practically rolling into a ball as you scoop it out of the jar. You shudder slightly as you bring the cold cream to your bare [pc.chest], smearing it across your [pc.skin]. God damn, that’s cold. You struggle to spread the cream across your breasts, but eventually manage to smear the whole jar across your chest, leaving you looking mud-covered.");
 				//Milk TF (Already Lactating)
 				if(target.canLactate() && target.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
 				{
@@ -82,7 +82,7 @@
 						if(target.hasCock()) kGAMECLASS.output("sudden turgidness of your [pc.cocks].");
 						else kGAMECLASS.output("the flush of wetness down your thighs as [pc.eachVagina] drools its excitement.");
 					}
-					kGAMECLASS.output("\n\nSlowly, the feeling of fullness drains from your [pc.chest], leaving you panting and gasping for breath, barely cognizant enough to realize how sodden you've made yourself. So much chocolate milk! You shudder in delight at the sight of your new productivity, and can't possibly stop yourself from licking a few drops off your hands. Delicious! <b>It looks like you now lactate a sweet chocolate milk!</b>");
+					kGAMECLASS.output("\n\nSlowly, the feeling of fullness drains from your [pc.chest], leaving you panting and gasping for breath, barely cognizant enough to realize how sodden you’ve made yourself. So much chocolate milk! You shudder in delight at the sight of your new productivity, and can’t possibly stop yourself from licking a few drops off your hands. Delicious! <b>It looks like you now lactate a sweet chocolate milk!</b>");
 					//{+ MilkVol}
 					if(target.milkStorageMultiplier < 3) target.milkStorageMultiplier += .5;
 					target.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
@@ -92,7 +92,7 @@
 				//Milk TF (Not Lactating)
 				else if(target.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && !target.canLactate() && target.biggestTitSize() >= 4 && rand(2) == 0)
 				{
-					kGAMECLASS.output("\n\nYou quickly feel nanomachines activating, their tell-tale tingle reaching through your skin and entering your bloodstream. A gasp escapes your lips as your [pc.chest] suddenly becomes much more sensitive, able to feel every gust of air passing by. Slowly, a tightness begins to form in your chest, and you can <i>feel</i> your [pc.chest] expanding, your breasts swelling as they're suddenly kicked into overdrive. You nearly double over as the pressure mounts in your chest, your hormones going wild as they're suddenly urged to produce.");
+					kGAMECLASS.output("\n\nYou quickly feel nanomachines activating, their tell-tale tingle reaching through your skin and entering your bloodstream. A gasp escapes your lips as your [pc.chest] suddenly becomes much more sensitive, able to feel every gust of air passing by. Slowly, a tightness begins to form in your chest, and you can <i>feel</i> your [pc.chest] expanding, your breasts swelling as they’re suddenly kicked into overdrive. You nearly double over as the pressure mounts in your chest, your hormones going wild as they’re suddenly urged to produce.");
 					if(target.milkStorageMultiplier < 3) target.milkStorageMultiplier += .5;
 					//target.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 					target.milkMultiplier = 70;

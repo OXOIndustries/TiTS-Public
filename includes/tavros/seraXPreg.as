@@ -53,22 +53,6 @@ public function pcSeraPregDays():int
 	return minutesToDays(pregTime);
 }
 
-// Boost Sera's raunchiness.
-public function seraLustGain(minPassed:int = 60):void
-{
-	chars["SERA"].lust(2 * minPassed);
-	if(chars["SERA"].ballFullness < 100) chars["SERA"].ballFullness += (1.5 * minPassed);
-	if(chars["SERA"].ballFullness > 100) chars["SERA"].ballFullness = 100;
-	chars["SERA"].minutesSinceCum += minPassed;
-}
-public function serasBodyIsReady():void
-{
-	chars["SERA"].lust(9000);
-	chars["SERA"].ballFullness = 100;
-	chars["SERA"].cumQualityRaw = 1;
-	//chars["SERA"].minutesSinceCum = 9000;
-}
-
 // Party Check
 public function seraPartySuccess():Boolean
 {
@@ -309,7 +293,7 @@ public function seraBreedingApproach():Boolean
 		
 		output("<i>“Hello slut,”</i> Sera coos when you enter the Dark Chrysalis, rising off her stool to walk out around her counter, shop facade remote swinging off a finger.");
 		output("\n\n<i>“Are you off... are things different, Mistress?”</i> you ask.");
-		output("\n\n<i>“Have I binned my current dose of Sterilex? Yes,”</i> she replies, taking you into her arms and squeezing your [pc.ass] intently, soft breasts pressing into your " + (pc.tallness <= 71 ? "[pc.face]" : "[pc.chest]") + ". <i>“But you should know by now that your owner doesn’t do things by half measures. I went by Tamani Corp yesterday evening, and in-between turning their kitty whore inside out I picked up... something.”</i> The hot bludgeon of her dick is digging into your [pc.belly], and her face looks red, as if she had spent the last hour doing circuits around Tavros. <i>“And now I’m ready to breed,”</i> she growls. <i>“Not fuck, breed, do you understand? My balls feel like charged batteries right now, and they’re telling me there’s a difference - and how important that difference is now you’ve walked that ass in here.”</i> Still clinching you with one hand, she raises the shop remote with the other. <i>“So you aren’t doing anything for the next few hours, are you?”</i>");
+		output("\n\n<i>“Have I binned my current dose of Sterilex? Yes,”</i> she replies, taking you into her arms and squeezing your [pc.ass] intently, soft breasts pressing into your " + (pc.tallness <= 71 ? "[pc.face]" : "[pc.chest]") + ". <i>“But you should know by now that your owner doesn’t do things by half measures. I went by TamaniCorp yesterday evening, and in-between turning their kitty whore inside out I picked up... something.”</i> The hot bludgeon of her dick is digging into your [pc.belly], and her face looks red, as if she had spent the last hour doing circuits around Tavros. <i>“And now I’m ready to breed,”</i> she growls. <i>“Not fuck, breed, do you understand? My balls feel like charged batteries right now, and they’re telling me there’s a difference - and how important that difference is now you’ve walked that ass in here.”</i> Still clinching you with one hand, she raises the shop remote with the other. <i>“So you aren’t doing anything for the next few hours, are you?”</i>");
 		
 		processTime(1);
 		
@@ -633,7 +617,7 @@ public function seraSpawnPregnancyEnds():void
 	// {vag hymen/stretch check here}
 	pc.cuntChange(pregSlot, 3000);
 	
-	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It’s a " + (babym  ? "boy" : "girl") + "! A fuzz of hazel hair coats " + (babym ? "his" : "her") + " pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
+	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It’s a " + (babym ? "boy" : "girl") + "! A fuzz of hazel hair coats " + (babym ? "his" : "her") + " pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
 	
 	if(numChildren > 1)
 	{
@@ -711,7 +695,7 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 	{
 		msg = "<i>“C’mere,”</i> Sera demands as soon as you walk in. <i>“I want feels.”</i> She sits you down on her stool before stroking your swollen belly. On cue, her offspring gives a kick, making you coo.";
 		msg += "\n\n<i>“Whoa,”</i> breathes the demon-morph, her expression soft and unguarded for a moment. She reasserts her authoritativeness with a stern pat on your taunt, rounded skin.";
-		msg += "\n\n<i>“No more sex now until you drop it, ok slut? As fun as it is screwing an overripe piece of fruit, we can’t do it like we do when you’re like this.”</i> She grins at you toothily. <i>“So you keep all that hormonal-ness locked up until then. If you’re REALLY good, I might just knock you up the spout again. Won’t that be nice?”</i>";
+		msg += "\n\n<i>“No more sex now until you drop it, okay slut? As fun as it is screwing an overripe piece of fruit, we can’t do it like we do when you’re like this.”</i> She grins at you toothily. <i>“So you keep all that hormonal-ness locked up until then. If you’re REALLY good, I might just knock you up the spout again. Won’t that be nice?”</i>";
 		msgList.push(msg);
 	}
 	// Plays after >180 days
@@ -762,7 +746,7 @@ public function displaySeraBabies():void
 {
 	var babies:Array = listSeraBabies();
 	
-	output("<u><b>Sera's Offspring</b></u>");
+	output("<u><b>Sera’s Offspring</b></u>");
 	if(StatTracking.getStat("pregnancy/sera kids") > 0) output("\n<b>* Sera’s Children, Total:</b> " + StatTracking.getStat("pregnancy/sera kids"));
 	if(babies.length > 0)
 	{
@@ -817,7 +801,7 @@ public function seraHasKidInNursery(unnamed:Boolean = false):Boolean
 }
 public function seraNurseryVisitCheck(totalAttempts:int = 1):void
 {
-	if(totalAttempts < 1 || currentLocation == "DARK CHRYSALIS") return;
+	if(totalAttempts < 1 || (!seraRecruited() && currentLocation == "DARK CHRYSALIS")) return;
 	
 	var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * 1000);
 	
@@ -1150,7 +1134,7 @@ public function seraNurseryActions(arg:Array):void
 				output("You spend a few more minutes interacting with " + babyName + " and then head back out to the corridor. You’re always wary of... you are startled out of your thoughts by something that sounds like a pig that’s been made to run too fast.");
 				output("\n\n<i>“Onedammit son of a bitch,”</i> sniffs Sera, furiously wiping away her tears and then blowing her nose. <i>“That stupid bundle of fucking joy... I was always warned this would happen. Eventually, the sub breaks YOU.”</i>");
 				output("\n\nYou give her a hug, and after a moment, she squeezes you back tightly. You go back to the cafeteria arm in arm.");
-				output("\n\n<i>“None of my other sluts find out about this, ok?”</i> she says, settling herself down again. <i>“This place is a...”</i>");
+				output("\n\n<i>“None of my other sluts find out about this, okay?”</i> she says, settling herself down again. <i>“This place is a...”</i>");
 				output("\n\n<i>“Safe spot,”</i> you suggest.");
 				output("\n\n<i>“Yeah. Where I can let all my emotions go and shit, so I can be a callous bitch the rest of the time. Understood?”</i>");
 				output("\n\nYou lean over and plant a kiss on her forehead. You receive a glower and two navy cheeks in response.");

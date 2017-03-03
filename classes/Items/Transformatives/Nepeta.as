@@ -159,7 +159,7 @@ package classes.Items.Transformatives
 
 			if (changes == 0)
 			{
-				output("\n\nAs tasty as the sweet little treats are, you were expecting a little more considering the cost -- after all, if you'd just wanted a snack to satisfy your sweet tooth, you wouldn't have been eating a much more expensive nanomachine-doped product.");
+				output("\n\nAs tasty as the sweet little treats are, you were expecting a little more considering the cost -- after all, if you’d just wanted a snack to satisfy your sweet tooth, you wouldn’t have been eating a much more expensive nanomachine-doped product.");
 			}
 			
 			return false;
@@ -170,8 +170,8 @@ package classes.Items.Transformatives
 			//Gain feline ears.
 			output("Your [pc.ears] start to burn, forcing you to stop and rub at them.");
 			// 9999
-			// " {if not top-placed ears: As you run your fingers across them, your ears begin to quiver and... move... altering their place on your head until they're perched near the top of your head.}");
-			output(" They begin to change shape, growing pointed and sprouting a thin layer of fuzz. Before long, you realize <b>you've grown a pair of feline ears!</b> Meow!");
+			// " {if not top-placed ears: As you run your fingers across them, your ears begin to quiver and... move... altering their place on your head until they’re perched near the top of your head.}");
+			output(" They begin to change shape, growing pointed and sprouting a thin layer of fuzz. Before long, you realize <b>you’ve grown a pair of feline ears!</b> Meow!");
 			target.earType = GLOBAL.TYPE_FELINE;
 		}
 		
@@ -187,9 +187,9 @@ package classes.Items.Transformatives
 		{
 			//Gain normal human skin, full body. Lose fur/scales/whatever.
 			output("An itch begins to spread across your body, making you pause and start to rub and scratch yourself all over.");
-			if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" Your body's furry covering starts to fall off, giving way to the growing spread of [pc.skinColor] skin underneath.");
+			if (target.skinType == GLOBAL.SKIN_TYPE_FUR) output(" Your body’s furry covering starts to fall off, giving way to the growing spread of [pc.skinColor] skin underneath.");
 			else if (target.skinType == GLOBAL.SKIN_TYPE_SCALES) output(" Your abrasive, scaley covering starts to fall away, making way for spreading blotches of [pc.skinColor] skin beneath.");
-			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the kaithrit you're striving to become! Before long, your body is covered with solid flesh!");
+			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the kaithrit you’re striving to become! Before long, your body is covered with solid flesh!");
 			output(" <b>You have normal, humanoid skin now!</b>");
 
 			target.skinType = GLOBAL.SKIN_TYPE_SKIN;
@@ -199,7 +199,7 @@ package classes.Items.Transformatives
 		{
 			output("You feel a mounting pressure on your backside, culminating in what feels like a knot forming just over your [pc.butt]. You give a yelp as the knot bursts, and suddenly flesh is spilling out behind you, forming into a slender tendril. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
 				if (target.hairLength > 0) output(" that matches the color of your [pc.hair]");
-				output(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you've definitely got a cat's tail now.</b>");
+				output(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you’ve definitely got a cat’s tail now.</b>");
 
 			target.tailCount = 1;
 			target.tailType = GLOBAL.TYPE_FELINE;
@@ -255,8 +255,8 @@ package classes.Items.Transformatives
 			if (target.tailCount == 1) output(" it moves");
 			else output(" they move");
 			output(" with prehensile grace.");
-			if (target.tailCount == 1) output(" <b>Your tail's just like a cat's now!</b>");
-			else output(" <b>Your tails are just like a cat's now!</b>");
+			if (target.tailCount == 1) output(" <b>Your tail’s just like a cat’s now!</b>");
+			else output(" <b>Your tails are just like a cat’s now!</b>");
 
 			target.tailType = GLOBAL.TYPE_FELINE;
 			target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
@@ -269,7 +269,7 @@ package classes.Items.Transformatives
 			else output(" look over your shoulder");
 			output(" before the knot erupts into a rapidly-growing tendril of flesh and muscle. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
 			if (target.hairLength > 0) output(" that matches the color of your [pc.hair]");
-			output(". You give it a little flex, and find that it curls playfully around your existing kitty-tail: <b>you've got two cat-tails now!</b>");
+			output(". You give it a little flex, and find that it curls playfully around your existing kitty-tail: <b>you’ve got two cat-tails now!</b>");
 
 			target.tailCount = 2;
 		}
@@ -306,8 +306,8 @@ package classes.Items.Transformatives
 			output("You feel your [pc.face] start to strain, becoming");
 			if (target.faceType == GLOBAL.TYPE_GOOEY || target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" harder and firmer, taking on a more defined shape");
 			else output(" softer and more malleable");
-			output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You're soon left with a solidifying visage:");
-			if (target.isMasculine()) output(" you've got a manly jaw and sharp features,");
+			output(". You run a hand along your mutating features, and find that your face is taking on an altogether more human shape. You’re soon left with a solidifying visage:");
+			if (target.isMasculine()) output(" you’ve got a manly jaw and sharp features,");
 			else output(" you have a cute little nose and delicate features,");
 			output(" <b>an altogether human face</b>.");
 
@@ -344,13 +344,13 @@ package classes.Items.Transformatives
 			}
 			else if (target.breastRows[0].breastRatingRaw < 3)
 			{
-				output("You feel a bit of a straining in your [pc.boobs] -- you quickly realize they're growing again! You enjoy the sensation, cupping your burgeoning bosom as it fills out with growing weight. They're sensitive to the touch, sending shockwaves of pleasure through you. Especially your [pc.nipples], which you take a great deal of pleasure in teasing and pinching. Eventually, once your tits have nicely filled out into bouncy little handfuls,");
+				output("You feel a bit of a straining in your [pc.boobs] -- you quickly realize they’re growing again! You enjoy the sensation, cupping your burgeoning bosom as it fills out with growing weight. They’re sensitive to the touch, sending shockwaves of pleasure through you. Especially your [pc.nipples], which you take a great deal of pleasure in teasing and pinching. Eventually, once your tits have nicely filled out into bouncy little handfuls,");
 
 				var bGain:Number = 7 - target.breastRows[0].breastRatingRaw;
 				bGain = 1 + rand(bGain / 2);
 				target.breastRows[0].breastRatingRaw += bGain;
 
-				output(" <b>you reckon you're up to "+indefiniteArticle(target.breastCup(0))+"!</b> You readjust your gear to conform to your new, more buxom physique.");
+				output(" <b>you reckon you’re up to "+indefiniteArticle(target.breastCup(0))+"!</b> You readjust your gear to conform to your new, more buxom physique.");
 			}
 			else
 			{
@@ -358,14 +358,14 @@ package classes.Items.Transformatives
 				bGain = 1 + rand(bGain / 2);
 				target.breastRows[0].breastRatingRaw += bGain;
 
-				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You're really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>.");
+				output("Your boobs quake with pleasure, starting to expand at the behest of the Nepeta. You’re really becoming the busty cat-babe you always wanted to be now! Smiling to yourself, you play with your growing bust as it fills out more and more, <b>eventually pumping up to a hefty, pillowy "+target.breastCup(0)+"!</b>.");
 			}
 		}
 		
 		private function nipTF(target:Creature):void
 		{
 			//Normal human nips.
-			output("You feel your [pc.nipples] start to change, shifting in size and shape ever so slightly. You push your [pc.gear] out of the way to get a look, just in time to see your teats transitioning into what look like <b>perfectly normal, pink human nipples.</b> You give them a tease, and find that they're delightfully sensitive to the touch. It's all you can do to stop yourself from just breaking down and playing with them....\n\nMaybe later.");
+			output("You feel your [pc.nipples] start to change, shifting in size and shape ever so slightly. You push your [pc.gear] out of the way to get a look, just in time to see your teats transitioning into what look like <b>perfectly normal, pink human nipples.</b> You give them a tease, and find that they’re delightfully sensitive to the touch. It’s all you can do to stop yourself from just breaking down and playing with them....\n\nMaybe later.");
 
 			for (var bi:int = 0; bi < target.breastRows.length; bi++)
 			{
@@ -378,7 +378,7 @@ package classes.Items.Transformatives
 		{
 			var isShrink:Boolean = false;
 
-			//Males shrink to 6' 2” or grow to 5'.
+			//Males shrink to 6' 2" or grow to 5'.
 			if (target.hasCock() && !target.hasVagina())
 			{
 				if (target.tallness < 60)
@@ -406,11 +406,11 @@ package classes.Items.Transformatives
 
 			if (!isShrink)
 			{
-				output("You feel your center of gravity seem to shift, making you stumble around. Your limbs and torso stretch out, growing and growing to the beat of the Nepeta pounding through your veins. You feel taller, faster, stronger after the drug's done its work. A quick glance at your Codex's monitor program tells you that <b>you're "+target.shortHeight()+" now!</b>");
+				output("You feel your center of gravity seem to shift, making you stumble around. Your limbs and torso stretch out, growing and growing to the beat of the Nepeta pounding through your veins. You feel taller, faster, stronger after the drug’s done its work. A quick glance at your Codex’s monitor program tells you that <b>you’re "+target.shortHeight()+" now!</b>");
 			}
 			else
 			{
-				output("Your entire world starts to spin and swim, and you find yourself slipping closer to the ground. At first you think you're falling, but then you realize your [pc.legs] are firmly planted on the ground. You're shrinking! After a moment, you catch your balance and try and adjust to your reduced height. A quick glance at your Codex's monitor program tells you that <b>you're "+target.shortHeight()+" now!</b> While you're going to miss your impressive vantage over the rest of the world, at least you're more kaithrit now!");
+				output("Your entire world starts to spin and swim, and you find yourself slipping closer to the ground. At first you think you’re falling, but then you realize your [pc.legs] are firmly planted on the ground. You’re shrinking! After a moment, you catch your balance and try and adjust to your reduced height. A quick glance at your Codex’s monitor program tells you that <b>you’re "+target.shortHeight()+" now!</b> While you’re going to miss your impressive vantage over the rest of the world, at least you’re more kaithrit now!");
 			}
 		}
 		
@@ -418,7 +418,7 @@ package classes.Items.Transformatives
 		{
 			//Rarest reaction. Reduce cocksize. 2-4 inches per.
 			
-			output("You feel a strange, contracting sensation in your [pc.cocks]. While not altogether unpleasant, you're not sure you could really call it pleasure either. You reach a hand down to inspect your member");
+			output("You feel a strange, contracting sensation in your [pc.cocks]. While not altogether unpleasant, you’re not sure you could really call it pleasure either. You reach a hand down to inspect your member");
 			if (target.cocks.length > 1) output("s");
 			
 			for (var ci:int = 0; ci < target.cocks.length; ci++)
@@ -455,7 +455,7 @@ package classes.Items.Transformatives
 			else output(" they seem")
 			output(" smaller than before. Moaning softly, you gently massage your diminishing length");
 			if (target.cocks.length > 1) output("s");
-			output(" as the Nepeta treat does its work, making you more and more like the small, feminine males of the kaithrit race. When all's said and done, <b>you figure you've lost a good few inches -- your cock");
+			output(" as the Nepeta treat does its work, making you more and more like the small, feminine males of the kaithrit race. When all’s said and done, <b>you figure you’ve lost a good few inches -- your cock");
 			if (target.cocks.length == 1) output(" is");
 			else output("s are");
 			output(" definitely smaller than you used to be.</b>");
@@ -494,7 +494,7 @@ package classes.Items.Transformatives
 			//Gain human-like arms, kitty claws!
 			if(target.armType == GLOBAL.TYPE_FELINE && target.hasArmFlag(GLOBAL.FLAG_FURRED))
 			{
-			    output("The " + target.furColor + " fur sheds from your arms, leaving behind smooth, bare skin. You flex your claws in response, but they do not change. Though your arms have retained their feline form, <b>you have lost all the fur from your arms!</b>");
+				output("The " + target.furColor + " fur sheds from your arms, leaving behind smooth, bare skin. You flex your claws in response, but they do not change. Though your arms have retained their feline form, <b>you have lost all the fur from your arms!</b>");
 			}
 			else
 			{

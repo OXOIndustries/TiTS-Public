@@ -28,7 +28,7 @@
 			this.description = "a pair of boxers";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A set of plain men's underwear made of chameleon silk and ultralastic. Overall they're quite comfy, though relatively ordinary.";
+			this.tooltip = "A set of plain men’s underwear made of chameleon silk and ultralastic. Overall they’re quite comfy, though relatively ordinary.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

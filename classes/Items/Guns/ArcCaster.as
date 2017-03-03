@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "an arc caster";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A big, bulky hand cannon charged with a JoyCo hovercar battery, the Arc Caster projects a stream of electricity that can burn through shields, armor, and flesh with equal ease. A skilled user can cause the caster's stream to arc between multiple targets, making it a favored weapon for crowd control situations.";
+			this.tooltip = "A big, bulky hand cannon charged with a JoyCo hovercar battery, the Arc Caster projects a stream of electricity that can burn through shields, armor, and flesh with equal ease. A skilled user can cause the caster’s stream to arc between multiple targets, making it a favored weapon for crowd control situations.";
 			this.attackVerb = "shock";
 			attackNoun = "electric arc"
 			

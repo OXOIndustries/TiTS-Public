@@ -57,6 +57,17 @@ public function moveInToDaShip(destination:String):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function phoenixRecRoomUpdate():void
+{
+	if(flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
+	{
+		rooms["PHOENIX RECROOM"].addFlag(GLOBAL.LIFTDOWN);
+	}
+	else
+	{
+		rooms["PHOENIX RECROOM"].removeFlag(GLOBAL.LIFTDOWN);
+	}
+}
 public function phoenixRecRoom():void
 {
 	clearOutput();
@@ -104,7 +115,7 @@ public function phoenixRecRoom():void
 		{
 			addButton(12, "East", phoenixRecRoomEastBlocked);
 		}
-	}	
+	}
 }
 
 public function phoenixRecRoomEastBlocked():void

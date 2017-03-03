@@ -324,7 +324,7 @@
 								pc.orgasm();
 							}
 							
-							kGAMECLASS.output("\n\nYou get light-headed from the volume of your rolling climax, wringing each thrilling [pc.cumGem] from your [pc.groin] with dazed delight. Only when your [pc.cocks] seem");
+							kGAMECLASS.output("\n\nYou get light-headed from the volume of your rolling climax, wringing each thrilling [pc.cumGem] load from your [pc.groin] with dazed delight. Only when your [pc.cocks] seem");
 							if(pc.cockTotal() == 1) kGAMECLASS.output("s");
 							kGAMECLASS.output(" to finally come up empty, do you take stock of yourself. Head still swimming, you glance about, idly noticing the dripping [pc.cum] pooling on the [pc.skinFurScales] of your lower body. You turn your attention to the Suma Creamed sack below your [pc.cocksLight] and faintly raise an eyebrow in amazement. The orgasm-activated growth of the black cream seems to have inflated your balls to colossal levels. Your [pc.balls] throb with the bloated mass of their swollen enlargement.");
 							if(!pc.hasPerk("'Nuki Nuts")) kGAMECLASS.output(" And unlike kui-tan testes, these don’t shrink back down.");

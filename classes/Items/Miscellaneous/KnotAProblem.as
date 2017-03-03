@@ -81,7 +81,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				author("Savin");
-				kGAMECLASS.output("You pop the small, spherical red pill from the plastic container and into your palm. It's barely smaller than your little finger's nail, and has a slick, almost wet texture against your [pc.skinFurScales]. After a moment's consideration, you plant the pill on your tongue and swallow it down. It goes down easily enough, leaving a meaty taste lingering in your mouth that has you salivating. Surprisingly delicious!\n\nYou're left waiting for a few long, anxious minutes before ");
+				kGAMECLASS.output("You pop the small, spherical red pill from the plastic container and into your palm. It’s barely smaller than your little finger’s nail, and has a slick, almost wet texture against your [pc.skinFurScales]. After a moment’s consideration, you plant the pill on your tongue and swallow it down. It goes down easily enough, leaving a meaty taste lingering in your mouth that has you salivating. Surprisingly delicious!\n\nYou’re left waiting for a few long, anxious minutes before ");
 
 				//if PC has no dicks, but has a clit
 				if(target.totalClits() > 0 && target.hasVagina() && x < 0)
@@ -94,7 +94,7 @@
 					//Possible secondary effect:
 					if(rand(3) == 0 && target.driestVaginalWetness() < 5)
 					{
-						kGAMECLASS.output("\n\nAs you masturbate, you feel the wetness of your cunt only increasing. You feel like a bucket's been unloaded from inside you, and it isn't stopping! <b>You're permanently wetter, now, and more able to easily take large insertions like knots.</b>");
+						kGAMECLASS.output("\n\nAs you masturbate, you feel the wetness of your cunt only increasing. You feel like a bucket’s been unloaded from inside you, and it isn’t stopping! <b>You’re permanently wetter, now, and more able to easily take large insertions like knots.</b>");
 						for(i; i < target.totalVaginas(); i++)
 						{
 							if(target.vaginas[0].wetnessRaw < 5) target.vaginas[0].wetnessRaw++;
@@ -117,7 +117,7 @@
 					if(target.isCrotchGarbed()) kGAMECLASS.output("pushing aside your [pc.lowerGarment] and ");
 					kGAMECLASS.output("grabbing the turgid length of your shaft. You start at the over-sensitive swell of your ");
 					if(!target.hasKnot(x)) kGAMECLASS.output("new ");
-					kGAMECLASS.output("[pc.knot " + x + "], fingers exploring the modified girth of the meaty bitch-breaker. It responds to your touch, throbbing with new and irresistible need, your newborn flesh aching for sensation. You give it eagerly, starting to stroke your meat - gently at first, but quickly picking up to a quick pace, hand moving quickly across your length and lavishing your knot with attention. You're immediately greeted with almost overwhelming waves of pleasure, threatening to barrel you to the ground. Damn, you're sensitive now! You can practically feel the cum rushing through your vein, swelling your knot even further; the faster you move, the more intense the sensation, until you can't take it anymore.");
+					kGAMECLASS.output("[pc.knot " + x + "], fingers exploring the modified girth of the meaty bitch-breaker. It responds to your touch, throbbing with new and irresistible need, your newborn flesh aching for sensation. You give it eagerly, starting to stroke your meat - gently at first, but quickly picking up to a quick pace, hand moving quickly across your length and lavishing your knot with attention. You’re immediately greeted with almost overwhelming waves of pleasure, threatening to barrel you to the ground. Damn, you’re sensitive now! You can practically feel the cum rushing through your vein, swelling your knot even further; the faster you move, the more intense the sensation, until you can’t take it anymore.");
 					kGAMECLASS.output("\n\nWith a grunt, you let loose the first load of jizz with your newly modded cock, slumping back and breathing hard as your growing member spasms and throbs, ");
 					target.lust(500);
 					if(target.cumQ() > 8) kGAMECLASS.output("[pc.cumColor] seed shooting from it and across the ground.");
@@ -144,7 +144,7 @@
 				}
 				else
 				{
-					kGAMECLASS.output("you sigh, finally accepting that the pill isn't having any effect on you. Maybe you need a dick for Knot a Problem to work.");
+					kGAMECLASS.output("you sigh, finally accepting that the pill isn’t having any effect on you. Maybe you need a dick for Knot a Problem to work.");
 				}
 			}
 			//Not player!

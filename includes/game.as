@@ -52,7 +52,6 @@ public function processEventBuffer():Boolean
 		
 		
 		output("<b>" + possessive(pc.short) + " log:</b>");
-		showLocationName();
 		
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
@@ -121,7 +120,7 @@ public function showLocationName():void
 public function disableExploreEvents():Boolean
 {
 	// Stellar Tether Duration
-	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"]  == undefined) return true;
+	if (flags["FOUGHT_TAM"] != undefined && flags["STELLAR_TETHER_CLOSED"] == undefined) return true;
 	// Stellar Tether (Bomb Timer)
 	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
 	// Deck 13 Duration
@@ -134,7 +133,8 @@ public function disableExploreEvents():Boolean
 	return false;
 }
 
-public function mainGameMenu(minutesMoved:Number = 0):void {
+public function mainGameMenu(minutesMoved:Number = 0):void
+{
 	flags["COMBAT MENU SEEN"] = undefined;
 	
 	if (flags["PC_UPBRINGING"] == undefined)
@@ -150,6 +150,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	{
 		flags["CELISE_BEDSTUFF_HAPPENED"] = undefined;
 	}
+	
+	variableRoomUpdateCheck();
+	generateMap();
+	showLocationName();
 	
 	//Display shit that happened during time passage.
 	if (processEventBuffer()) return;
@@ -181,14 +185,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();
 	
-	variableRoomUpdateCheck();
-	
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
-	showLocationName();
 	
 	// Time passing effects
 	if(passiveTimeEffects(minutesMoved)) return;
@@ -197,12 +198,16 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	if (!disableExploreEvents())
 	{
 		if (tryEncounterFreedomBeef()) return;
+		if (currentLocation == shipLocation)
+		{
+			if(seranigansTrigger("hijacked")) return;
+		}
 	}
 	
-	if(inCombat()) 
-		output("<b>You’re still in combat, you ninny!</b>\n\n");
+	if(inCombat())
+		output("\n\n<b>You’re still in combat, you ninny!</b>");
 	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
-		output("<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>\n\n");
+		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
 	//Standard buttons:
 	clearMenu(false);
 	clearBust();
@@ -280,45 +285,47 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	}
 	else
 	{
-		if (rooms[currentLocation].northExit && !isNavDisabled(NAV_NORTH_DISABLE))
+		if (rooms[currentLocation].northExit)
 		{
-			addButton(6, "North", move, rooms[currentLocation].northExit);
+			if(!isNavDisabled(NAV_NORTH_DISABLE)) addButton(6, "North", move, rooms[currentLocation].northExit);
+			else addDisabledButton(6, "North", "North", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].eastExit && !isNavDisabled(NAV_EAST_DISABLE))
+		if (rooms[currentLocation].eastExit)
 		{
-			addButton(12, "East", move, rooms[currentLocation].eastExit);
+			if(!isNavDisabled(NAV_EAST_DISABLE)) addButton(12, "East", move, rooms[currentLocation].eastExit);
+			else addDisabledButton(12, "East", "East", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].southExit && !isNavDisabled(NAV_SOUTH_DISABLE))
+		if (rooms[currentLocation].southExit)
 		{
-			addButton(11,"South", move, rooms[currentLocation].southExit);
+			if(!isNavDisabled(NAV_SOUTH_DISABLE)) addButton(11,"South", move, rooms[currentLocation].southExit);
+			else addDisabledButton(11, "South", "South", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].westExit && !isNavDisabled(NAV_WEST_DISABLE))
+		if (rooms[currentLocation].westExit)
 		{
-			addButton(10, "West", move, rooms[currentLocation].westExit);
+			if(!isNavDisabled(NAV_WEST_DISABLE)) addButton(10, "West", move, rooms[currentLocation].westExit);
+			else addDisabledButton(10, "West", "West", "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].inExit && !isNavDisabled(NAV_IN_DISABLE)) 
+		if (rooms[currentLocation].inExit) 
 		{
-			addButton(5, rooms[currentLocation].inText, move, rooms[currentLocation].inExit);
+			if(!isNavDisabled(NAV_IN_DISABLE)) addButton(5, rooms[currentLocation].inText, move, rooms[currentLocation].inExit);
+			else addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You are unable to go in this direction.");
 		}
-		if (rooms[currentLocation].outExit && !isNavDisabled(NAV_OUT_DISABLE))
+		if (rooms[currentLocation].outExit)
 		{
-			addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
+			if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, rooms[currentLocation].outText, move, rooms[currentLocation].outExit);
+			else addDisabledButton(7, rooms[currentLocation].outText, rooms[currentLocation].outText, "You are unable to go in this direction.");
 		}
 	}
+	
 	if (currentLocation == "SHIP INTERIOR")
 	{
-		if (rooms[currentLocation].outExit && isNavDisabled(NAV_OUT_DISABLE)) 
-		{
-			addDisabledButton(7,rooms[currentLocation].outText,rooms[currentLocation].outText,"You can’t exit your ship here!");
-		}
+		if(!isNavDisabled(NAV_OUT_DISABLE)) addButton(7, "Exit Ship", move, rooms[currentLocation].outExit);
+		else addDisabledButton(7, "Exit Ship", rooms[currentLocation].outText, "You can’t exit your ship here!");
 	}
 	if (currentLocation == shipLocation)
 	{
-		if (isNavDisabled(NAV_IN_DISABLE))
-		{
-			addDisabledButton(5, rooms[currentLocation].inText, rooms[currentLocation].inText, "You can’t enter your ship here!");
-		}
-		else addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
+		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
 	
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
@@ -329,7 +336,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void {
 	
 	// Show the minimap too!
 	userInterface.showMinimap();
-	generateMap();
 	userInterface.perkDisplayButton.Activate();
 }
 
@@ -548,6 +554,7 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	if (flags["RECRUITED_CELISE"] > 0) counter++;
 	if (reahaRecruited()) counter++;
 	if (!annoNotRecruited()) counter++;
+	if (seraRecruited()) counter++;
 	if (bessIsFollower()) counter++;
 	if (yammiIsCrew()) counter++;
 	if (gooArmorIsCrew()) counter++;
@@ -627,6 +634,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
 		}
 		//output("\n\n{PC has Freed Reaha and Anno, add to Anno’s random selection: }");
+	}
+	if (seraIsCrew())
+	{
+		other++;
+		if (!counter)
+		{
+			crewMessages += seraOnShipBonus((count + other) - 1);
+		}
 	}
 	if (bessIsCrew())
 	{
@@ -1293,7 +1308,10 @@ public function showerMenu():void {
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function showerOptions(option:int = 0):void {
+public function showerOptions(option:int = 0):void
+{
+	if(seranigansTrigger("shower")) return;
+	
 	clearOutput();
 	clearMenu();
 	var showerSex:int = 0;
@@ -1381,7 +1399,8 @@ public function sneakBackYouNudist():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function move(arg:String, goToMainMenu:Boolean = true):void {
+public function move(arg:String, goToMainMenu:Boolean = true):void
+{
 	//Prevent movement for nudists into nude-restricted zones.
 	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
@@ -1418,9 +1437,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void {
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
-	if(pc.hasItem(new Hoverboard())) {
-		moveMinutes -= 1;
-		if(moveMinutes < 1) moveMinutes = 1;
+	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)))
+	{
+		if(moveMinutes > 1) moveMinutes -= 1;
 	}
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
@@ -1439,6 +1458,9 @@ public function variableRoomUpdateCheck():void
 	/* TAVROS STATION */
 	
 	//Merchant Deck
+	// Acquisitions
+	if(sentientAcquisitionsIsOpen()) rooms["ACQUISITIONS"].addFlag(GLOBAL.NPC);
+	else rooms["ACQUISITIONS"].removeFlag(GLOBAL.NPC);
 	// Sera's Shop
 	if(darkChrysalisIsOpen()) rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
 	else rooms["DARK CHRYSALIS"].removeFlag(GLOBAL.COMMERCE);
@@ -1471,8 +1493,14 @@ public function variableRoomUpdateCheck():void
 	//Zheniya's schedule
 	if (zilCallgirlAtNursery())
 	{
+		rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
 		if (hours >= 8 && hours <= 16) rooms["RESIDENTIAL DECK ZHENIYA"].removeFlag(GLOBAL.NPC);
 		else rooms["RESIDENTIAL DECK ZHENIYA"].addFlag(GLOBAL.NPC);
+	}
+	else if(flags["SAENDRA_XPACK1_STATUS"] >= 8)
+	{
+		if(zilCallgirlAvailable()) rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.OBJECTIVE);
+		else rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	//Nursery
 	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
@@ -1632,12 +1660,12 @@ public function variableRoomUpdateCheck():void
 	if(flags["DR_BADGER_TURNED_IN"] != undefined)
 	{
 		rooms["304"].removeFlag(GLOBAL.NPC);
-		rooms["209"].northExit = "";
+		//rooms["209"].northExit = "";
 	}
 	else
 	{
 		rooms["304"].addFlag(GLOBAL.NPC);
-		rooms["209"].northExit = "304";
+		//rooms["209"].northExit = "304";
 	}
 	// Arbetz Open:
 	if (arbetzActiveHours())
@@ -1835,6 +1863,16 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
 	
+	// Pippa's house
+	if (flags["PIPPA_RECRUITED"] == 1)
+	{
+		rooms["PIPPA HOUSE"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
+	}
+	
 	/* VESPERIA / CANADIA STATION */
 	if(flags["KALLY_FAP_2_KIRO"] != undefined)
 	{
@@ -1847,6 +1885,8 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Phoenix's Rec Room
+	phoenixRecRoomUpdate();
 	// Kashima
 	if(flags["KI_ESCAPE_UNCURED"] != undefined)
 	{
@@ -1906,13 +1946,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	varmintDisappearChance(deltaT, doOut);
 	processEmmyEvents(deltaT, doOut, totalDays);
 	processZheniyaEvents(deltaT, doOut, totalDays);
+	processHLPantyShit();
 	
 	// Per-day events
 	if (totalDays >= 1)
 	{
 		processHolidayoweenEvents(deltaT, doOut, totalDays);
 		processHoneyPotMods(deltaT, doOut, totalDays);
-		processExhibUpdates(deltaT, doOut, totalDays);
 		processNewTexasEvents(deltaT, doOut, totalDays);
 		processOryxxEvents(deltaT, doOut, totalDays);
 		processVenusPitcherEvents(deltaT, doOut, totalDays);
@@ -1921,6 +1961,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
 		updateBothriocAddiction(totalDays);
+		processOmegaFever();
+		seraBitcheningStoreInventory(totalDays);
+		seraOnTavrosObedience(totalDays);
 	}
 	
 	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
@@ -1987,7 +2030,12 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		trySendStephMail();
 		
 		//Jade muff-ins
-		if(!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
+		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
+
+		if (!MailManager.isEntryUnlocked("del_moved") && delilahSubmissiveness() >= 5 && rand(10) == 0 && getPlanetName() != "Tarkus") { goMailGet("del_moved"); }
+
+		// Pippa Nuru massage email
+		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();
 
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
@@ -2044,6 +2092,14 @@ public function processLeithaCharmTime(deltaT:uint, doOut:Boolean):void
 	if (pc.hasStatusEffect("Leitha Charm"))
 	{
 		pc.addStatusValue("Leitha Charm", 1, deltaT * 20);
+	}
+}
+
+public function processOmegaFever():void
+{
+	if (pc.hasPerk("Omega Fever"))
+	{
+		(new OmegaOil()).checkOmegaFever();
 	}
 }
 
@@ -2347,6 +2403,7 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean):void
 		}
 		
 		seraNurseryVisitCheck(totalAttempts);
+		seranigansCheck(totalAttempts);
 	}
 }
 
@@ -2534,23 +2591,6 @@ public function processHoneyPotMods(deltaT:uint, doOut:Boolean, totalDays:uint):
 	}
 }
 
-public function processExhibUpdates(deltaT:uint, doOut:Boolean, totalDays:uint):void
-{
-	if (   !(pc.armor is EmptySlot)
-		&& !(   pc.lowerUndergarment is EmptySlot
-		     || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) 
-			 || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) 
-			 || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
-		&& !(   pc.upperUndergarment is EmptySlot
-		     || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
-			 || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
-	)
-	{
-		if(pc.isChestExposed() && pc.isCrotchExposed() && pc.isAssExposed()) { /*noop*/ }
-		else pc.exhibitionism(-0.5 * totalDays);
-	}
-}
-
 public function processNewTexasEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	// New Texas cockmilker repair cooldown.
@@ -2578,7 +2618,7 @@ public function processVenusPitcherEvents(deltaT:uint, doOut:Boolean, totalDays:
 {
 	if(currentLocation != "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
 	if(currentLocation != "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
-	if (currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
+	if(currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
 	
 	venusSubmission( -(totalDays));
 }

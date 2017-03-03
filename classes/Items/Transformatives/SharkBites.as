@@ -11,6 +11,7 @@
 	import classes.StringUtil;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
+	import classes.Engine.Utility.indefiniteArticle;
 	
 	public class SharkBites extends ItemSlotClass
 	{
@@ -74,7 +75,8 @@
 				if(rand(2) == 0) changeLimit++;
 
 				output("You bite the pack of jerky bits open and pour them into your mouth. They have a strong fishy taste that ");
-				if(pc.sharkScore() < 3) output("shark score low: makes your face scrunch up in displeasure");
+				// shark score low: 
+				if(pc.sharkScore() < 3) output("makes your face scrunch up in displeasure");
 				else output("makes you give a low growl in predatory pleasure");
 				output(". You chew the bits up before swallowing them whole and waiting for them to take effect. Almost immediately, a warm, tingling sensation spreads out over your whole body.");
 
@@ -95,11 +97,11 @@
 				{
 					if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SCALES))
 					{
-						output("\n\nYour skin breaks out in goosebumps as a shiver works its way through your body before it passes. Strange, you feel...calm all of a sudden. ");
+						output("\n\nYour skin breaks out in goosebumps as a shiver works its way through your body before it passes. Strange, you feel... calm all of a sudden. ");
 						if(!(pc.armor is EmptySlot)) output("Moving some parts of your [pc.armor] out the way");
 						else output("Looking down at your bare stomach");
 						temp = RandomInCollection(["silver","blue","gray","brown","copper","bronze","white","black"]);
-						output(", you notice a " + temp + ", scaly patch forming. It quickly spreads out over your body, <b>covering your body in a coat of " + temp + " scales!</b> As you admire your newly enhanced surface, you notice that some parts of your body are more shiny than usual. Curious, you run your hands along your scales, feeling the moisture now present on your body. It's almost like you've just lubed up!");
+						output(", you notice a " + temp + ", scaly patch forming. It quickly spreads out over your body, <b>covering your body in a coat of " + temp + " scales!</b> As you admire your newly enhanced surface, you notice that some parts of your body are more shiny than usual. Curious, you run your hands along your scales, feeling the moisture now present on your body. It’s almost like you’ve just lubed up!");
 						//Scale skintype + Lubricated flag
 						pc.clearSkinFlags();
 						pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
@@ -111,7 +113,7 @@
 					else output("\n\n" + pc.skinTypeLockedMessage());
 					changes++;
 				}
-				if(!pc.hasStatusEffect("Vanae Markings"))
+				if(!pc.hasAccentMarkings())
 				{
 					//Gain Stripes perk.
 					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(50) == 0 && changes < changeLimit)
@@ -123,7 +125,7 @@
 						pc.createStatusEffect("Shark Markings",1,0,0,0);
 						changes++;
 					}
-					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings")  && rand(50) == 0 && changes < changeLimit)
+					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(50) == 0 && changes < changeLimit)
 					{
 						pc.skinAccent = RandomInCollection(["black","brown","white"]);
 						if(pc.skinAccent == pc.skinTone) pc.skinAccent = "orange";
@@ -133,11 +135,11 @@
 						pc.createStatusEffect("Shark Markings",2,0,0,0);
 						changes++;
 					}
-					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings")  && rand(50) == 0 && changes < changeLimit)
+					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(50) == 0 && changes < changeLimit)
 					{
 						pc.skinAccent = RandomInCollection(["beige","white"]);
 						if(pc.skinAccent == pc.skinTone) pc.skinAccent = "neon green";
-						output("\n\nYou idly look down at your [pc.chest] and notice that a large off color blotch forming over your chest, belly and inner thighs. <b>It seems you have " + target.skinAccent + " blotch on your frontal body now!</b>");
+						output("\n\nYou idly look down at your [pc.chest] and notice a large off-color patch forming over your chest, belly and inner thighs. <b>It seems you have " + indefiniteArticle(target.skinAccent) + " blotch on your frontal body now!</b>");
 						//Chance to occur at 2%
 						//Pc gains "Frontal Blotch" perk.
 						pc.createStatusEffect("Shark Markings",3,0,0,0);
@@ -162,7 +164,7 @@
 					{
 						output("\n\nYour body seems to contract");
 						if(!(pc.armor is EmptySlot)) output(" as your [pc.armor] feels looser all over");
-						output(". Seems you're slowly becoming thinner, increasing your hydrodynamic capabilities.");
+						output(". It appears you’re slowly becoming thinner, increasing your hydrodynamic capabilities.");
 						pc.modThickness(-5);
 					}
 					else output("\n\n" + pc.thicknessLockedMessage());
@@ -184,12 +186,11 @@
 					changes++;
 				}
 				//Remove Horn(s)
-				if((pc.horns > 0 || pc.hornType != GLOBAL.TYPE_HUMAN) && rand(5) == 0 && changes < changeLimit)
+				if(pc.hasHorns() && rand(5) == 0 && changes < changeLimit)
 				{
 					if(pc.hornsUnlocked(0)) {
 						output("\n\nYou feel your [pc.horns] grow stiff and brittle before they crumble away into dust. <b>You are now hornless.</b>");
-						pc.horns = 0;
-						pc.hornType = GLOBAL.TYPE_HUMAN;
+						pc.removeHorns();
 					}
 					else output("\n\n" + pc.hornsLockedMessage());
 					changes++;
@@ -199,10 +200,10 @@
 				{
 					if(pc.faceTypeUnlocked(GLOBAL.TYPE_SHARK))
 					{
-						output("\n\nYou wince as you feel a prick on your tongue. How the fuck did you cut your tongue on your teeth? Better yet, why does the coppery taste of your blood taste...good?");
+						output("\n\nYou wince as you feel a prick on your tongue. How the fuck did you cut your tongue on your teeth? Better yet, why does the coppery taste of your blood taste... good?");
 						output("\n\nBefore you can answer these questions, your face is overcome with pain, your bones rearranging themselves");
 						if(pc.faceType != GLOBAL.TYPE_HUMAN) output(" and your jaw elongating");
-						output(". You even feel <i>more</i> teeth start to break through, causing your new jaw to widen to accommodate them. By the time it ends, your face is pretty numb. Wondering what the hell happened to you, you pull your codex up, discovering that <b>your face as changed to emulate that of a shark!</b> Your tongue seems to adapt to having less room to maneuver on it's own rather quickly.");
+						output(". You even feel <i>more</i> teeth start to break through, causing your new jaw to widen to accommodate them. By the time it ends, your face is pretty numb. Wondering what the hell happened to you, you pull your codex up, discovering that <b>your face as changed to emulate that of a shark!</b> Your tongue seems to adapt to having less room to maneuver on it’s own rather quickly.");
 						pc.clearFaceFlags();
 						pc.faceType = GLOBAL.TYPE_SHARK;
 						pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
@@ -220,7 +221,7 @@
 				{
 					if(pc.earTypeUnlocked(GLOBAL.TYPE_SHARK))
 					{
-						output("\n\nHow odd...your ears feel oddly numb. You press your hands against the side of your face, noticing that your ear holes are still there but your ear lobes are missing. Suddenly, you feel a pressure against your hands and you move them away, as skin and cartilage bursts forth. They look kind of like three tiny sails were taken off a ship and used to make <b>your new shark ears</b>!");
+						output("\n\nHow odd... your ears feel oddly numb. You press your hands against the side of your face, noticing that your ear holes are still there but your ear lobes are missing. Suddenly, you feel a pressure against your hands and you move them away, as skin and cartilage bursts forth. They look kind of like three tiny sails were taken off a ship and used to make <b>your new shark ears</b>!");
 						pc.earType = GLOBAL.TYPE_SHARK;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
@@ -231,7 +232,7 @@
 				{
 					if(pc.eyeTypeUnlocked(GLOBAL.TYPE_SHARK))
 					{
-						output("\n\nA blurry flash fills your vision before disappearing just as quickly as it came. Blinking-wait...did your eyelids come from the side instead of the top and bottom? You pull up your Codex assessing <b>your new shark-like eyes</b>! The pupils are slit like a feline or lizard and the sclera are much shinier than you remember. Getting used to your eyelids coming from the sides is gonna take some time, but your vision has drastically improved, especially when it comes reacting to fast moving objects.");
+						output("\n\nA blurry flash fills your vision before disappearing just as quickly as it came. Blinking-wait... did your eyelids come from the side instead of the top and bottom? You pull up your Codex assessing <b>your new shark-like eyes</b>! The pupils are slit like a feline or lizard and the sclera are much shinier than you remember. Getting used to your eyelids coming from the sides is gonna take some time, but your vision has drastically improved, especially when it comes reacting to fast moving objects.");
 						pc.eyeType = GLOBAL.TYPE_SHARK;
 						//Small reflex gain of +2
 						pc.reflexes(2);
@@ -251,8 +252,7 @@
 						else output("Y");
 						output("ou feel a slit open up on your back. In short order, new flesh and bone sprouts from the slit, shaping itself into a dorsal fin reminiscent of a shark. <b>Seems you have a shark fin on your back now</b>!");
 						if(!(pc.armor is EmptySlot)) output(" You make some adjustments to your [pc.armor] in order to make your new fin feel comfortable.");
-						pc.wingType = GLOBAL.TYPE_SHARK;
-						pc.wingCount = 1;
+						pc.shiftWings(GLOBAL.TYPE_SHARK, 1);
 					}
 					else output("\n\n" + pc.wingTypeLockedMessage());
 					changes++;
@@ -278,6 +278,7 @@
 						if(pc.isTaur()) output("trot");
 						else output("slither");
 						output(" around, you feel a great warmth in your lower body. You look down only for that warmth to turn into searing pain. You barely stop yourself from screaming bloody murder as you black out for a brief second before the most soothing feeling runs through your body. It almost feel like the afterglow of sex in some respects. You wipe some tears from your eyes as you look down, noticing that <b>your body now has a human configuration, with two human legs!</b> You hope that this was mentioned in the potential side effects of consuming Shark Bites...");
+						pc.genitalSpot = 0;
 						pc.legType = GLOBAL.TYPE_HUMAN;
 						pc.legCount = 2;
 						pc.clearLegFlags();
@@ -292,7 +293,7 @@
 				{
 					if(pc.legTypeUnlocked(GLOBAL.TYPE_SHARK))
 					{
-						output("\n\nYou stumble over yourself as you feel the bones in your [pc.legs] shift and grow. You steady yourself as feeling slowly returns to your legs. Overall, it looks like your legs haven't changed that much. They certainly look more muscular than you remember, much better for running...or swimming for that matter. You see that two tiny fins have grown near your ankles, and while your feet look relatively normal, the toes are webbed and tipped with black claws. Looks like <b>you have legs and feet fitting for an aquatic humanoid now!</b>");
+						output("\n\nYou stumble over yourself as you feel the bones in your [pc.legs] shift and grow. You steady yourself as feeling slowly returns to your legs. Overall, it looks like your legs haven’t changed that much. They certainly look more muscular than you remember, much better for running... or swimming for that matter. You see that two tiny fins have grown near your ankles, and while your feet look relatively normal, the toes are webbed and tipped with black claws. Looks like <b>you have legs and feet fitting for an aquatic humanoid now!</b>");
 						pc.legType = GLOBAL.TYPE_SHARK;
 						pc.clearLegFlags();
 						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
@@ -355,14 +356,14 @@
 					if(pc.ballsUnlocked(0))
 					{
 						output("\n\nYour [pc.balls] involuntarily tighten");
-						if(pc.balls > 1) output("s");
+						if(pc.balls == 1) output("s");
 						output(" as a pleasant feeling suffuses through ");
 						if(pc.balls == 1) output("it");
 						else output("them");
 						output(". You sigh as you feel ");
 						if(pc.balls == 1) output("its");
 						else output("their");
-						output(" presence slowly retreat into your skin before disappearing completely. How odd...you don't even feel that torn up about it. <b>You have no testicles now.</b>");
+						output(" presence slowly retreat into your skin before disappearing completely. How odd... you don’t even feel that torn up about it. <b>You have no testicles now.</b>");
 						pc.balls = 0;
 						pc.ballSizeRaw = 3.5;
 					}
@@ -373,7 +374,7 @@
 				if(pc.totalVaginas(GLOBAL.TYPE_SHARK) < pc.totalVaginas() && rand(3) == 0 && changes < changeLimit)
 				{
 					var cuntPix:Array = new Array();
-					for(var ii:int = 0; ii < pc.totalCocks(); ii++)
+					for(var ii:int = 0; ii < pc.totalVaginas(); ii++)
 					{
 						if(pc.vaginas[ii].type != GLOBAL.TYPE_SHARK) cuntPix.push(ii);
 					}
@@ -382,7 +383,7 @@
 					{
 						output("\n\nYour [pc.vagina " + ii + "] tingles as it begins to shift on the inside. Curious, you run your hands over your ");
 						if(pc.vaginas[ii].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.vaginas[ii].hasFlag(GLOBAL.FLAG_PUMPED)) output("puffy ");
-						output("lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a grey shark vagina!</b>");
+						output("lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a gray shark vagina!</b>");
 						pc.shiftVagina(ii,GLOBAL.TYPE_SHARK);
 						pc.lust(20);
 						pc.libido(2);
@@ -431,7 +432,7 @@
 				if(changes == 0)
 				{
 					output("\n\nThat tingling goes on for awhile, but nothing seems to come of it. You guess it was a dud.");
-					if(pc.sharkScore() >= 5) output(" Maybe you're as shark like as you are going to get?");
+					if(pc.sharkScore() >= 5) output(" Maybe you’re as shark like as you are going to get?");
 				}
 				return false;
 			}			

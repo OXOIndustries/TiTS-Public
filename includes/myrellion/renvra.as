@@ -942,22 +942,27 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		output(", reaching down while you can and collecting the squalling newborn and bringing it to your breast. It cries out, thrashing its tiny, chitinous arms around until you bring its mouth to your [pc.nipple].");
 
 		output("\n\nYou sigh in relief as your first young suckles. Your belly is noticeably shrunken");
-		if (pData.pregnancyQuantity == 1) output(". You’re left to recover from your... surprisingly pleasurable ordeal. You suppose if Renvra’s seed is filled with aphrodisiacs, it’s not entirely beyond the pale that your birthing fluids would be too. Weird, but it kept things from being painful, to say the least.");
+		if (pData.pregnancyQuantity == 1)
+		{
+			output(". You’re left to recover from your... surprisingly pleasurable ordeal. You suppose if Renvra’s seed is filled with aphrodisiacs, it’s not entirely beyond the pale that your birthing fluids would be too. Weird, but it kept things from being painful, to say the least.");
+			
+			output("\n\nAfter spending a good long while making sure your child is wrapped up and well-fed from your breast, you set it aside for a moment and pull out your Codex. You flip over to your comms and call in a pickup for the infant -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the newborn, and hands you a receipt before cart your offspring back home.");
+		}
 		else
 		{
-			output(", but it’s not empty yet, and you soon feel another shift in your swollen gut. The second of your young begins its descent, refusing to let you recover after the first. Your sex spasms and quivers as the next child follows its "+ (rand(10) == 0 ? "brother" : "sister ") +", and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
+			output(", but it’s not empty yet, and you soon feel another shift in your swollen gut. The second of your young begins its descent, refusing to let you recover after the first. Your sex spasms and quivers as the next child follows its "+ (rand(10) == 0 ? "brother" : "sister") +", and you grunt and push it out, letting the soon-to-be born nyrea join its sibling.");
 
 			if (pData.pregnancyQuantity > 2)
 			{
 				output("\n\nAnother follows suit");
 				if (pData.pregnancyQuantity > 3) output(", and another");
 				output(". Before long you’ve got your arms completely full of crying, suckling nyrean babies. You thought these were supposed to come in eggs! Gah!");
-			} 
+			}
+			
+			output("\n\nAfter spending a good long while making sure each of your children is wrapped up and well-fed from your breast, you set them aside for a moment and pull out your Codex. You flip over to your comms and call in a pickup for the infants -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the newborns, and hands you a receipt before carting them back home.");
 		}
-
-		output("\n\nAfter spending a good long while making sure each of your children is wrapped up and well-fed from your breast, you set them aside for a moment and pull out your Codex. You flip over to your comms and call in a pickup for the eggs -- thank God that Dad left you that nursery back on Tavros. A drone arrives a few minutes later, collects the newborns, and hands you a receipt before carting them back home.");
-
-		output("\n\n<b>" + pData.pregnancyQuantity + " nyrea-myr-human hybrids will soon be waiting for you back at the nursery.</b> You’re going to have to find a name for whatever race you’ve");
+		
+		output("\n\n<b>" + num2Text(pData.pregnancyQuantity) + " nyrea-myr-human hybrid" + (pData.pregnancyQuantity == 1 ? "" : "s") + " will soon be waiting for you back at the nursery.</b> You’re going to have to find a name for whatever race you’ve");
 		if (StatTracking.getStat("pregnancy/renvra kids") == 0) output(" just created");
 		else output(" just added to");
 		output("!");

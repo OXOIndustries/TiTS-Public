@@ -12,6 +12,7 @@
 	import classes.Items.Transformatives.Furball;
 	import classes.Items.Transformatives.OvirAce;
 	import classes.Items.Transformatives.OvirPositive;
+	import classes.Items.Transformatives.CaninePoppers;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	

@@ -276,7 +276,7 @@ public function loseToDane():void {
 	output("\n\nDane ");
 	if(pc.hasHair()) output("grabs your [pc.hair], yanking your head back");
 	else output("grabs the back of your neck, squeezing painfully hard");
-	output(", and says, <i>“Loosen up slut. There’s a lot more cock to go.”</i> He pushes you partway off and pulls back down, matching his words with potent, cock-burying thrusts. This time, ");
+	output(", and says, <i>“Loosen up, slut. There’s a lot more cock to go.”</i> He pushes you partway off and pulls back down, matching his words with potent, cock-burying thrusts. This time, ");
 	if(pc.analCapacity() * .8 > enemy.cockVolume(0)) output("your capacitive anus allows him inside, letting the knot pop right on in.");
 	else if(pc.analCapacity() * 1.2 > enemy.cockVolume(0)) output("your anus stretches enough to let him inside, tingling from how taut it has been pulled.");
 	else output("your anus stretches painfully open, pulled far beyond its normal capacity to allow him entrance.");
@@ -284,7 +284,7 @@ public function loseToDane():void {
 	if(pc.balls > 0) output("r own");
 	output(".");
 	if(pc.hasCock()) output(" Meanwhile, your prostate shoots tingles of bliss into your [pc.cocks], forcing you to drool out thick strands of pre-cum.");
-	output(" The alien grunts and slaps your ass. Even taking a hand to do that, he’s still holding you vise-tight. It’s like his arms all over your body, everywhere at once, forcing you to submit to his anus-ravaging whims.");
+	output(" The alien grunts and slaps your ass. Even taking a hand to do that, he’s still holding you vise-tight. It’s like his arms are all over your body, everywhere at once, forcing you to submit to his anus-ravaging whims.");
 	if(pc.hasVagina()) output(" [pc.EachVagina] trickles lubricant at the thought. You manage to reach down to try and plug the leak with your fingers. It doesn’t work. You just get wetter.");
 	//Buttchange
 	pc.buttChange(enemy.cockVolume(0),true,true,false);

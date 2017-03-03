@@ -161,7 +161,7 @@
 				{
 					if(target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_CUM))
 					{
-						kGAMECLASS.output("\n\nYou feel a sudden clenching in your gut and a dampness down south. Investigating, you find your [pc.cocks] dribbling your [pc.cum], though the odd ejaculation is looking more and more like normal terran spunk by the second. After what feels like a minute of bizarre, pleasureless ejaculation, the flow stops. <b>It looks like you've got normal, terran cum now.</b>");
+						kGAMECLASS.output("\n\nYou feel a sudden clenching in your gut and a dampness down south. Investigating, you find your [pc.cocks] dribbling your [pc.cum], though the odd ejaculation is looking more and more like normal terran spunk by the second. After what feels like a minute of bizarre, pleasureless ejaculation, the flow stops. <b>It looks like you’ve got normal, terran cum now.</b>");
 						pc.cumType = GLOBAL.FLUID_TYPE_CUM;
 						changes++;
 					}
@@ -181,9 +181,15 @@
 				}
 				
 				// Remove Markings
-				if (pc.hasStatusEffect("Vanae Markings") && changes < changeLimit && rand(6) == 0)
+				if (pc.hasAccentMarkings() && changes < changeLimit && rand(6) == 0)
 				{
-					kGAMECLASS.output("\n\nYou feel your [pc.skinNoun] tingle and notice the " + pc.skinAccent + " swirls decorating your form starting to dissolve and fade. It doesn't take long until your");
+					kGAMECLASS.output("\n\nYou feel your [pc.skinNoun] tingle and notice the " + pc.skinAccent);
+					if (pc.hasStatusEffect("Vanae Markings")) kGAMECLASS.output(" swirls");
+					else if (pc.statusEffectv1("Shark Markings") == 1) kGAMECLASS.output(" stripes");
+					else if (pc.statusEffectv1("Shark Markings") == 2) kGAMECLASS.output(" spots");
+					else if (pc.statusEffectv1("Shark Markings") == 3) kGAMECLASS.output(" blotch");
+					else kGAMECLASS.output(" marks");
+					kGAMECLASS.output(" decorating your form starting to dissolve and fade. It doesn’t take long until your");
 					
 					var ss:String = pc.skinFurScales();
 					
@@ -191,7 +197,7 @@
 					else kGAMECLASS.output(" " + ss + " is");
 					
 					kGAMECLASS.output(" bare of the intricate designs. <b>You have lost your body markings!</b>");
-					pc.removeStatusEffect("Vanae Markings");
+					pc.clearAccentMarkings();
 					changes++;
 				}
 
@@ -312,7 +318,7 @@
 					else kGAMECLASS.output("\n\n" + target.armTypeLockedMessage());
 				}
 				//Change leg-type to bipedal human
-				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit &&  rand(3) == 0 && pc.armType == GLOBAL.TYPE_HUMAN)
+				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit && rand(3) == 0 && pc.armType == GLOBAL.TYPE_HUMAN)
 				{
 					if (target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{

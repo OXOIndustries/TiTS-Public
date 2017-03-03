@@ -33,7 +33,7 @@
 			this.description = "a pheromonal jungle lure";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This lure is made from concentrated pheromones of Mhen'gan creatures. While wearing it, they will be encountered with greater frequency than normal.";
+			this.tooltip = "This lure is made from concentrated pheromones of Mhen’gan creatures. While wearing it, they will be encountered with greater frequency than normal.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

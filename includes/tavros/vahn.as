@@ -67,7 +67,7 @@ public function VahnTheMechanic():void
 	addButton(0,"Appearance",appearanceForVahn);
 	addButton(1,"Talk",talkToVahn,undefined,"Talk","Talk to the guy.");
 	if(pc.lust() >= 33) addButton(2,"Sex",vahnSexMenu,undefined,"Sex","See if this guy is up for a roll in the hay.");
-	else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for sex.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for sex.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -167,7 +167,7 @@ public function vahnSexMenu():void
 	if(pc.hasCock()) 
 	{
 		if(pc.cockThatFits(550) >= 0) addButton(1,"GiveAnal",giveVahnAnal,undefined,"Give Anal","Give the ausar mechanic a little rump loving.");
-		else addDisabledButton(1,"GiveAnal","Give Anal","You're too big for Vahn.");
+		else addDisabledButton(1,"GiveAnal","Give Anal","You’re too big for Vahn.");
 	}
 	else addDisabledButton(1,"GiveAnal","GiveAnal","You need a dick in order to give him some anal.");
 	if(pc.hasVagina())
@@ -708,7 +708,9 @@ public function vahnDomsYourButt():void
 	
 	output("\n\n<i>“How about we give you that bone you so desperately want then?”</i> Vahn growls dominantly into your [pc.ear].");
 	
-	output("\n\nVahn shoves you firmly onto the bed, grasping your [pc.hips] in his hands to raise your [pc.ass] to a more appreciable position. He delicately wraps his fingers around your [pc.lowerUndergarment] before tugging them down to rest between your ankles. He doesn’t waste time in getting you all lubed up. His tongue slurps wetly on your [pc.ass] as he prepares you for what’s to come.");
+	output("\n\nVahn shoves you firmly onto the bed, grasping your [pc.hips] in his hands to raise your [pc.ass] to a more appreciable position.");
+	if(!(pc.lowerUndergarment is EmptySlot)) output(" He delicately wraps his fingers around your [pc.lowerUndergarment] before tugging them down " + ((pc.legCount > 1 && pc.hasFeet()) ? "to rest between your ankles" : "and out of the way") + ".");
+	output(" He doesn’t waste time in getting you all lubed up. His tongue slurps wetly on your [pc.ass] as he prepares you for what’s to come.");
 	
 	output("\n\nSince you’re all properly lubed up and practically <i>begging</i> to get that knot tied inside you; Vahn begins to press his impressive nine inch canine cock against your [pc.ass]. The initial entry is a bit of a touch and go even with his saliva coating your entrance. Though, with a bit of effort he quickly begins to get into a rhythm of gently pounding into your ass which incites delicious moans from you.");
 	

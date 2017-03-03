@@ -1505,8 +1505,8 @@ public function treatmentHourProcs(totalHours:int):void
 		if(startHours < 26 && treatedHours >= 26)
 		{
 			AddLogEvent("You", "passive", (26 - startHours) * 60);
-			if(pc.legCount != 1) ExtendLogEvent("rub your thighs together");
-			else ExtendLogEvent("wiggle uncomfortably");
+			if(pc.legCount != 1) ExtendLogEvent(" rub your thighs together");
+			else ExtendLogEvent(" wiggle uncomfortably");
 			ExtendLogEvent(". There’s this growing feeling of emptiness ");
 			if(pc.legCount != 1) ExtendLogEvent("between them");
 			else ExtendLogEvent("inside you");
@@ -1856,7 +1856,8 @@ public function treatmentHourProcs(totalHours:int):void
 					pc.cocks[x].cLengthRaw += 2 + rand(2);
 				}
 				pc.ballSizeRaw += 5+rand(5);
-				pc.refractoryRate += 35;
+				if(pc.refractoryRate < 30) pc.refractoryRate = 30;
+				else pc.refractoryRate += 5;
 				pc.boostCum(25);
 			}
 			
@@ -1950,7 +1951,7 @@ public function treatmentHourProcs(totalHours:int):void
 			}
 			
 			//125 hours:
-			//Massive dick growth leading to autofellatio. PC marvels at how it’s just as good as sex, maybe better. (Chance of <i>“Autofellatio Queen perk unlock. Chance of Autococknosis perk unlock)
+			//Massive dick growth leading to autofellatio. PC marvels at how it’s just as good as sex, maybe better. (Chance of Autofellatio Queen perk unlock. Chance of Autococknosis perk unlock)
 			if(startHours < 125 && treatedHours >= 125 && pc.hasCock() && pc.genitalLocation() <= 1)
 			{
 				var dickBiggered:Boolean = false;
@@ -1997,7 +1998,12 @@ public function treatmentHourProcs(totalHours:int):void
 				ExtendLogEvent(ParseText("\n\n[pc.Cum] splashes onto the back of your tongue and down your greedily drinking throat. You can feel it splashing into your stomach, the extra thick squirts flooding your neck in the brief moment before you completely devour them. Your eyes roll back, but you keep sucking and drinking on autopilot, like the Treatment has grown a part of your brain that can guide your body while you’re busy too busy cumming and quivering to think. It’s a good thing too, because you’re swallowing a lot of jizz. There’s enough to give your belly a little pudge and then some more, tingling on your tongue and delighting you with bliss-blasting mental fireworks."));
 				pc.loadInMouth(pc);
 				ExtendLogEvent(ParseText("\n\nThe [pc.cockHead " + x + "] escapes your [pc.lips] at some point, painting them in a lovely layer of [pc.cumColor]"));
-				if(pc.cumQ() >= 10000) ExtendLogEvent(ParseText(", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet."));
+				if(pc.cumQ() >= 10000)
+				{
+					ExtendLogEvent(ParseText(", then keeps squirting, hosing extra spunk across your [pc.hair], shoulders, and back. It slaps wetly against you, getting a shower by standing under a firehose full of goo. There’s just so much cum! Your straining middle could never contain it all, much as you might want to, so you make do by rubbing the excess over your [pc.chest] and [pc.cocks] both, sometimes even catching some in your mouth so that you can spit it onto a spot that hasn’t been glazed yet."));
+					applyCumSoaked(pc);
+					applyCumSoaked(pc);
+				}
 				else ExtendLogEvent(". More jizz dribbles out, the last dregs of your orgasm, so you take your time licking them from the pulsing length, greedily devouring every drop.");
 				if(pc.cockTotal() > 1)
 				{
@@ -2025,7 +2031,7 @@ public function treatmentHourProcs(totalHours:int):void
 			{
 				AddLogEvent(ParseText("Ooh, your [pc.balls] feel so warm they’re practically glowing! You dance in place, feeling them wobbling back and forth"), "passive", (130 - startHours) * 60);
 				if(pc.legCount > 1) ExtendLogEvent(ParseText(" between your [pc.thighs]"));
-				ExtendLogEvent(ParseText(", so big and full of [pc.cum] that squish and slosh from the motions. It feels so good that you soon forget your dance and flop down"));
+				ExtendLogEvent(ParseText(", so big and full of [pc.cum] that they squish and slosh from the motions. It feels so good that you soon forget your dance and flop down"));
 				if(pc.legCount > 1) ExtendLogEvent(ParseText(", [pc.legs] spread as wide as possible to make room for your swelling nutsack"));
 				ExtendLogEvent(ParseText(". Your [pc.cocks] join"));
 				if(pc.cockTotal() == 1) ExtendLogEvent("s");
@@ -3645,19 +3651,19 @@ public function treatmentHourProcs(totalHours:int):void
 						pc.refractoryRate = 10;
 					}
 					//RefractoryRate to 25
-					else if(pc.refractoryRate < 25)
+					else if(pc.refractoryRate < 20)
 					{
 						AddLogEvent("Wincing, you realize that you feel... fuller than you should. Like your body has gone into overtime, producing sperm in record quantities. This could come in handy....", "passive", (refGainStarts[firstRefGain + i] - startHours) * 60);
-						pc.refractoryRate = 25;
+						pc.refractoryRate = 20;
 					}
 					//RefractoryRate to 50! & minimum cumQ of 15
-					else if(pc.refractoryRate < 50)
+					else if(pc.refractoryRate < 30)
 					{
 						AddLogEvent("There’s no doubt about it. Your " + pc.ballsDescript() + " ", "passive", (refGainStarts[firstRefGain + i] - startHours) * 60);
 						if(pc.balls <= 1) ExtendLogEvent("is");
 						else ExtendLogEvent("are");
 						ExtendLogEvent(" filling up far faster than before, flooding with more and more unspent virility by the second. You could probably fuck a line of fifty girls and still not go dry by the last orgasm, not that you mind. At least the ubiquitous milking stalls and offers of blowjobs on New Texas make sense now. It could get quite uncomfortable without a regular release.");
-						pc.refractoryRate = 50;
+						pc.refractoryRate = 30;
 					}
 				}
 			}
@@ -4014,9 +4020,9 @@ public function dumb4CumReset():void
 		ExtendLogEvent(ParseText("\n\nYou estimate that you’ve gotten the “<b>Dumb4Cum</b>” Treatment modification, a variant that allows you periods of extreme clearheadedness and boosted intellect in the 24 hours after drinking cum at the expense of reduced intelligence during periods of withdrawl."));
 		pc.removeStatusEffect("Dumb4CumNotice");
 	}
-	else
+	else if(pc.perkv1("Dumb4Cum") != 0)
 	{
-		AddLogEvent(ParseText("With the warm feeling of reproductive juices in your body, you find you’re able to think clearly once more."), "passive")
+		AddLogEvent(ParseText("With the warm feeling of reproductive juices in your body, you find you’re able to think clearly once more."), "passive");
 	}
 	pc.setPerkValue("Dumb4Cum",1,0);
 	// Regain lost intellience

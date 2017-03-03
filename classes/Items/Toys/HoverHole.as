@@ -31,7 +31,7 @@ package classes.Items.Toys
 			this.description = "a hovering, life-like pocket pussy";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This levitating, transparent pocket-pussy is designed to float and autonomously milk a cock for every last drop of pent-up cum. Not only is it realistically designed, it's pre-heated and auto-lubing.";
+			this.tooltip = "This levitating, transparent pocket-pussy is designed to float and autonomously milk a cock for every last drop of pent-up cum. Not only is it realistically designed, it’s pre-heated and auto-lubing.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

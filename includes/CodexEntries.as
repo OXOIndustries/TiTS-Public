@@ -70,7 +70,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
 
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Enessa", enessaCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Essyras", essyraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Korgonne", korgonneCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Lurelings", lurelingsCodexEntry);
@@ -107,9 +107,11 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Religions", "Stormguard", stormguardCodex);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Dumbfuck", dumbfuckCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","Gush", gushCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items","The Treatment", treatmentCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Throbb", throbbCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Dumbfuck", dumbfuckCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Gush", gushCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentacool", tentacoolCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
@@ -346,7 +348,7 @@ public function kuitanCodexEntry():void
 	outputCodex("\n<b>Eyes:</b> Kui-tan have two forward facing eyes situated in their face, in the same manner as humans. Eye color tends towards shades of brown and orange, though gold eyes are possible, if rare.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Appearance"));
-	outputCodex("The kui-tan are a humanoid species native to the moon of Florus, which orbits the planet \\\[REDACTED\\\], who visually call to mind the mythical ‘tanuki’ of Japanese lore. Their bodies are typical of most intelligent humanoids - two legs, a torso, two arms, and a single head atop the torso. Kui-tan faces are strikingly similar to galactic norms, except that nose and jaws grow together and extend into a short but expressive muzzle, containing prominent canines but altogether omnivorous teeth. A single pair of ears, just pointy enough at the top to be oval-shaped rather than circular, sit atop the head with limited mobility.");
+	outputCodex("The kui-tan are a humanoid species native to the Arcysus's single moon of Jitafore, which orbits the planet Arcysus, who visually call to mind the mythical ‘tanuki’ of Japanese lore. Their bodies are typical of most intelligent humanoids - two legs, a torso, two arms, and a single head atop the torso. Kui-tan faces are strikingly similar to galactic norms, except that nose and jaws grow together and extend into a short but expressive muzzle, containing prominent canines but altogether omnivorous teeth. A single pair of ears, just pointy enough at the top to be oval-shaped rather than circular, sit atop the head with limited mobility.");
 	outputCodex("\n\nThough they have five-fingered hands at the ends of their human-like arms, their plantigrade legs end in paw-like, four-toed feet. A single tail sprouts from every kui-tan’s rear, starting at a narrow base and swelling out immensely the closer one comes to the tip. These tails can be almost as long as a kui-tan is tall and as thick around as one’s waist. However, the bulk of a kui-tan’s tail is actually very dense, firmly packed fur, making it surprisingly light despite its bulky shape.");
 	outputCodex("\n\nKui-tan grow thick, dense fur that often makes them looking quite pudgy if left ungroomed. Most kui-tan do their best to keep it cut short and form-hugging, both to keep cool and for appearances’ sake. Their fur colors are generally browns with patches of black around the eyes, on the tips of the ears, in rings around the length of the tail, and in the shape of black socks over their feet and thighs. This fur grays in old age. It is not unheard of for kui-tan to dye themselves to suit personal preferences and tastes.");
 	outputCodex("\n\nAll kui-tan bear tapered penises thanks to their lack of a female sex. The tips have vaguely heart-shaped crowns formed by two rounded bulges on the underside of the glans at a tip at the tip. During kui-tan mating, the unique shape stimulates the cervix to dilate, allowing the father direct access to a fertile womb. A trio of knots, spaced along the length, swells upon orgasm, locking the lucky father in place. The erect length of a typical kui-tan falls somewhere between six and ten inches and not more than two inches in width, though reports of kui-tan with outsized genitals from mods are common; the race seems to have strong reactions to such items.");
@@ -995,7 +997,7 @@ public function sionachCodexEntry():void
 	outputCodex("\n\nOnce fertilized, the eggs grow to their full size and are ready to be delivered within four weeks, and will hatch within another eight to nine days of being laid. Infant sionach are highly dependant on their mothers, and actually nurse for an average of four years, but sometimes as long as six years, as part of their development. In a natural population control method, hormones produced by breastfeeding prohibit entering heat; only after her last clutch has been weaned can a sionach bear more clutches.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
-	outputCodex("The sionach exist as part of a small, independent collaboration of races centered on their solar system. The sionach themselves evolved on the planet Arcysus, while a race known as the kui-tan are quite literally their galactic neighbors; the kui-tan homeworld, Florus, is actually the largest moon of Arcysus. The third race in their coalition is a cultural offshoot of the kaithrit species, who settled in their system with the permission of the now-spacefaring sionach and kui-tan.");
+	outputCodex("The sionach exist as part of a small, independent collaboration of races centered on their solar system. The sionach themselves evolved on the planet Arcysus, while a race known as the kui-tan are quite literally their galactic neighbors; the kui-tan homeworld, Jitafore, is actually the largest moon of Arcysus. The third race in their coalition is a cultural offshoot of the kaithrit species, who settled in their system with the permission of the now-spacefaring sionach and kui-tan.");
 	outputCodex("\n\nThe sionach are a relatively recent contact for the U.G.C. made in the last planet rush, and are still making a place for themselves, counting themselves more as nominal allies than as actual, full-fledged members. It is possible that, with time, they may unite officially or even become a full part of the U.G.C., but for now they have not expressed interest in that, and they are too small an independent power for most authorities to worry about forcing them to ally or join. As a result, this race is not widely known throughout space just yet, though the continuing presence of sionach ships has grown over recent years.");
 	outputCodex("\n\nAll evidence suggests that the sionach cultural evolution was fairly standard for humanoids, with the most unusual aspect being their early contact with other sapient life from beyond their planet. As is widely documented in their own planet’s histories, it was shortly after the sionach developed powerful radio receivers that they accidentally made contact with the kui-tan, who had reached a similar stage of development on their own world.");
 	outputCodex("\n\nIt is something of a friendly argument between the two species about who holds the more important role in their mutual histories; the sionach, for inventing the radio transmitters that allowed them to greet their lunar neighbors, or the kui-tan, for inventing the first reliable space-vessels that made physical contact between their species possible.");
@@ -1853,7 +1855,7 @@ public function sydianCodexEntry():void
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Sexual Dimorphism"));
-	outputCodex("Male sydians are taller and burlier than females, with larger, stockier tails. Male antennae tend to be smaller, growing no longer than 1\'4\". The chitinous plating is more prominent on the male, covering all of his body except the eyes and mouth. Flexible plates protect the male genitals, and open slightly during copulation. Females bear chitin only on the arms, legs, tail, and back, including the back and sides of the head up to the sites of the antennae. Large areas of the female sydian’s front torso are exposed, including the throat, breasts, stomach, and groin. Females conceal and protect these places with a layered patina of metal oxides mixed with clay and body oils; these solidified body paints are usually styled, decorated, and accented to resemble male plating. High-ranking females exhibit more abstract and colorful patterns to symbolize their rank. Female sydians have a much higher concentration of enzyme-producing cells in the armor they do possess. The head hair and downy fuzz found on the antenna and tail grows longer on the female. ");
+	outputCodex("Male sydians are taller and burlier than females, with larger, stockier tails. Male antennae tend to be smaller, growing no longer than 1\' 4\". The chitinous plating is more prominent on the male, covering all of his body except the eyes and mouth. Flexible plates protect the male genitals, and open slightly during copulation. Females bear chitin only on the arms, legs, tail, and back, including the back and sides of the head up to the sites of the antennae. Large areas of the female sydian’s front torso are exposed, including the throat, breasts, stomach, and groin. Females conceal and protect these places with a layered patina of metal oxides mixed with clay and body oils; these solidified body paints are usually styled, decorated, and accented to resemble male plating. High-ranking females exhibit more abstract and colorful patterns to symbolize their rank. Female sydians have a much higher concentration of enzyme-producing cells in the armor they do possess. The head hair and downy fuzz found on the antenna and tail grows longer on the female. ");
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Reproduction"));
@@ -2208,6 +2210,8 @@ public function crystalGooCodexEntry():void
 public function bothriocCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Bothrioc"));
 	outputCodex("<b>Name (Singular & Plural):</b> Bothrioc");
 	outputCodex("\n<b>Sexes:</b> Monogendered, generally regarded as feminine. A subtype comprising less than 5% of the population are known as the “quadommes” due to their tendency to keep a large harem of submissives and their unique physical characteristics.");
@@ -2255,49 +2259,57 @@ public function bothriocCodexEntry():void
 
 /* Uveto */
 
-public function enessaCodexEntry():void
+public function essyraCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("ENESSA"); // 9999
-
-	outputCodex(header("ENESSA"));
-	outputCodex("<b>Name:</b> Enessa (Singular), Enessae (Plural)");
-	outputCodex("\n<b>Genders:</b> Hermaphrodites");
+	showBust("9999");
+	
+	outputCodex(header("Essyras"));
+	outputCodex("<b>Name:</b> Essyra (Singular), Essyras (Plural)");
+	outputCodex("\n<b>Genders:</b> Female and Hermaphrodites");
 	outputCodex("\n<b>Height:</b> 6\' 6\" to 7\' 0\"");
 	outputCodex("\n<b>Hair:</b> Snow-white, pink, or light blue");
 	outputCodex("\n<b>Eyes:</b> Pink, human in shape and size");
-	outputCodex("\n<b>Ears:</b> Enessae have large, fox-like ears");
-	outputCodex("\n<b>Tails:</b> Enessae have thick, furry tails in the same number as their penile tendrils (between six and ten). These tails are bushy and fox-like, typically the same color as their head hair.");
+	outputCodex("\n<b>Ears:</b> Essyras have large, vulpine ears");
+	outputCodex("\n<b>Tails:</b> Essyras have several thick, furry tails: usually between six and nine, and in the case of hermaphrodites, always in the same number as their penile tendrils.");
 	outputCodex("\n\n");
 
-
 	outputCodex(blockHeader("Combat"));
-	outputCodex("Enessae are consummate huntresses, combining a natural stealth and agility with amazonian strength. Most prefer to fight with a bow or throwing spear, giving them sure strikes from ambush before finishing their prey in close combat with daggers or axes. Enessae prefer armor made of treated hides and leather, usually from local predators they’ve slain and in snowy colors to maintain their natural camouflage.");
+	outputCodex("Essyras are consummate huntresses, combining a natural stealth and agility with amazonian strength. Most prefer to fight with a bow or throwing spear, giving them sure strikes from ambush before finishing their prey in close combat with daggers or axes. Essyras prefer armor made of treated hides and leather, usually from local predators they’ve slain and in snowy colors to maintain their natural camouflage. Centuries after their homeworld was colonized by the ausar, many essyra have adapted to use salvaged arms and armor from spacers to supplement their traditional hunting styles.");
 	outputCodex("\n\n");
 
 	outputCodex(blockHeader("Environs"));
-	outputCodex("Natives of the snowy world of Uveto, enessae are well-adjusted to cold weather and snow. Their natural adaptation includes snow-white skin and cold-colored hair, effectively making them albino (complete with pink eyes), and intense body heat compounded by a tremendous ability to store body fats for warmth, much like the colonial ausar have adapted. These body fats are usually stored in the belly, buttocks, and breasts, giving a well-fed Enessa an extremely curvy appearance. This chubby body type should not be underestimated, however, as enessae are also considerably stronger than the average human, owing to their size and natural musculature -- an important attribute, owing to their primitive style of hunting.");
+	outputCodex("Natives of the snowy world of Uveto, essyras are well-adjusted to cold weather and snow. Their natural adaptation includes snow-white skin and cold-colored hair, effectively making them what other species might consider albinos (complete with pink eyes and susceptibility to skin disorder), and have intense body heat which is compounded by a tremendous ability to store body fats for warmth, much like the colonial ausar have adapted. These body fats are usually stored in the belly, buttox, and breasts, giving a well-fed essyra an extremely curvaceous appearance. This chubby body-type should not be underestimated, however, as essyras are also considerably stronger than the average human, owing to their size and natural musculature.");
 	outputCodex("\n\n");
 
-	outputCodex(blockHeader("Reproduction"));
-	outputCodex("Enessae are a race entirely composed of hermaphrodites, meaning they have only one sex. Each Enessa has a fairly basic vagina, functionally similar to that of a human’s with a small clitoris and black lips. Their female organs are surrounded by a writhing mass of thin tentacles that fill the role of penises. Most Enessae have between 6 and 10 penile tendrils, each between 6 and 10 inches in length with a series of three bulbous knots near the base that inflate during intercourse, growing turgid during and after orgasm to bind mates together. Enessae typically have one ‘dominant’ penis that is longer and thicker than the others, growing up to 16 inches in length. These tentacles are prehensile, and each has its own internal testes. This allows each tendril to have its own refractory period -- meaning a particularly amorous Enessa can keep a sexual encounter going for hours, right up until exhaustion takes hold.");
-	outputCodex("\n\nEnessae pregnancy is fundamentally mammalian, with penetrative sex resulting in pregnancies that last six months. Once young are born, they grow quickly to adulthood over the course of one year. They are helpless for only a few days. This quick rise to adulthood is offset by the very short lifespan of enessae, who rarely live more than 10 years.");
-	outputCodex("\n\nWhen two enessae engage in intercourse, impregnation of both partners is seen as highly undesirable and to be avoided, as the sire is expected to take care of her lover while she is with child. When pairs of enessae become mated, it is usually for life, and one of the pair will assume the ongoing role of mother and caregiver, and one the father and provider. In instances where enessae mate with offworlders or natives of other races, they have shown strong tendencies towards impregnating their partner rather than carrying children themselves.");
-	outputCodex("\n\nCulture & Society: Enessae are solitary creatures, usually living alone or with a single mate and their children. Enessae typically live in large, easily moved tents made of bone, leather, and hide from large animals. They are prone to staying in the same abodes for extended periods of time, sometimes several years, so long as good hunting maintains.");
-	outputCodex("\n\nWhile first contact explorers initially feared interaction with enessae huntresses during early exploration of Uveto, the enessae were eventually discovered to be surprisingly friendly towards off-worlders, and instances of violence were remarkably low. Indeed, several huntresses volunteered to act as guides and hunters for early exploration teams, and were instrumental in early mappings of the surface before the modern sensory relays were installed. Enessae DNA was even used in the early variants of the “huskar” gene mod that has allowed colonists to comfortably inhabit Uveto - a fact that many huntresses relish, treating the colonists as their “children.”");
-	outputCodex("\n\nThis friendship has maintained quite well since then. Enessae freely come and go from Irestead and other settlements, and many take ausar colonists as mates. Despite many, many generations of the short-lived race having passed since first contact, enessae today still treat the huskar as their responsibility, and there are many instances of them intervening to rescue an endangered colonist from a predator or natural hazard.");
+	outputCodex(blockHeader("Sexuality & Reproduction"));
+	outputCodex("The essyra are a race entirely composed of feminine individuals, broken into both a female and hermaphrodite sex. They appear to share a single social gender between them, as is common for species with feminine hermaphrodites. All members of the species have a galactic-standard vagina in the usual place for bipeds, completely with black lips and a sensitive clitoris.");
+	outputCodex("\n\nHermaphrodite essyra have a number of penile tendrils that surround their feminine sex, in the same number as the individual’s tails (usually between six and nine) between 6 and 10 inches in length. Each tentacle has a series of three bulbous knots near the base that inflate during intercourse, growing turgid during and after orgasm to bind mates together. Essyra typically have one “dominant” penis that is longer and thicker than the others, growing up to 16 inches in length.");
+	outputCodex("\n\nThese tentacles are prehensile, and each has its own internal testes located inside the base-most knot. This allows each tendril to have its own refractory period -- meaning a particularly amorous essyra can keep a sexual encounter going for hours, effectively indefinitely until exhaustion takes hold.");
+	outputCodex("\n\nEssyra reproduction is fundamentally mammalian, with penetrative sex resulting in pregnancies that last six months. Once young are born, they grow quickly to adulthood over the course of one year. They are helpless for only a few days. This quick rise to adulthood is offset by the very short lifespan of essyras, who rarely live more than 10 years. When two essyran hermaphrodites engage in intercourse, impregnation of both partners is seen as highly undesirable, as the sire is expected to take care of her lover while she is with child.");
+	outputCodex("\n\nWhen pairs of essyras become mated, it is usually for life, and one of the pair will assume the ongoing role of mother and caregiver, and one the father and provider. In instances where essyra mate with offworlders or natives of other races, they have shown strong tendencies towards impregnating their partner or restricting themselves to non reproductive sex. Single motherhood appears to carry an extreme social stigma among the species.");
+	outputCodex("\n\n");
+	
+	outputCodex(blockHeader("Culture & Society"));
+	outputCodex("Essyras are solitary creatures, usually living alone or with a single mate and their children. Essyra typically live in large, easily moved tents made of bone, leather, and hide from large animals. They are prone to staying in the same abodes for extended periods of time, sometimes several years, so long as good hunting maintains, only occasionally shifting their home’s location with the changing ice floes and snow accumulation.");
+	outputCodex("\n\nWhile explorers initially feared interaction with essyra huntresses during early exploration based on their fearsome reputation among other native species, the essyra were eventually discovered to be surprisingly friendly towards off-worlders, and instances of violence were remarkably low. Indeed, several huntresses volunteered to act as guides and hunters for the initial exploration teams, and were instrumental in early mappings of the surface before the modern sensor relays were installed. Essyra DNA was even used in the early variants of the “huskar” gene mod that has allowed colonists to comfortably inhabit Uveto -- a fact that many huntresses relish, treating the colonists as their “children.”");
+	outputCodex("\n\nThis friendship has maintained quite well since then. Essyras freely come and go from Irestead and other settlements, and many take ausar colonists as mates. Despite many, many generations of the short-lived race having passed since first contact, essyras today still treat the huskar as their “responsibility,” and there have been countless instances of them intervening to rescue an endangered colonist from a predator or natural hazard.");
 	outputCodex("\n\n");
 
-	outputCodex(blockHeader("Lureling Enessae"));
-	outputCodex("Of special note is the relationship between the enessae and another species native to Uveto: the so-called ‘lurelings’, powerfully psionic creatures that live beneath the ice. Though research on the matter is thus far limited, it appears that enessae are very susceptible to psionics. It appears that lurelings prey on young enessae, psychically dominating them -- usually for life. The dominated enessa will follow her master above the ice, acting like a lure for adventurers and feeding back sensual pleasures to their master once they’ve secured a mate.");
-
-	outputCodex("Lureling-bound enessae have existed since before First Contact, and appear to have diverged from their free-willed kin on a biological level. Different combinations of sexes, including pure female and male enessae, one apparently selectively bred for their appearance or other physical traits that help them attain mates for their master’s pleasure.");
+	outputCodex(blockHeader("Lureling Essyras"));
+	outputCodex("Of special note is the relationship between the essyra and another species native to Uveto: the so-called “lurelings,” powerfully psionic creatures that live beneath the ice. Though research on the matter is thus far limited, it appears that essyras are very susceptible to psionics, much moreso than other Uvetan races, and have developed no natural talent themselves. Lurelings prey on young essyras, taking advantage of their low mental defenses to psychically dominate them -- usually for life.");
+	outputCodex("\n\nThe dominated essyra will follow her master above the ice, acting like a sexual lure for adventurers and feeding back sensual pleasures to their master once they’ve secured a mate. The purpose of these actions is poorly understood, as no reliable contact has ever been established with the lurelings, but by all accounts they appear to engage in both the domination and luring for pleasure, rather than any biological imperative.");
+	outputCodex("\n\nUnsurprisingly, essyra kill lurelings on sight. Other races treat lure-essyra with a mix of difference and amusement, as encountering them usually means easy sex, and the lure usually carries deep-sea treasure or bounties of fish taken by her master to trade in villages.");
+	outputCodex("\n\nLureling-bound essyras have existed since before First Contact, and appear to have diverged from their free-willed kin on a biological level. Different combinations of sexes, including pure female and male essyras, are apparently selectively bred for their appearance or other physical traits that help them attain mates for their master’s pleasure.");
 	outputCodex("\n\n");
-	CodexManager.viewedEntry("Enessa");
+
+	CodexManager.viewedEntry("Essyras");
 }
 public function frostwyrmCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("FROSTWYRM");
+	
 	outputCodex(header("Frostwyrm"));
 	outputCodex("<b>Name:</b> Unknown (Colloquially: Frostwyrm)");
 	outputCodex("\n<b>Genders:</b> Unknown. Assumed Male and Female.");
@@ -2344,6 +2356,8 @@ public function frostwyrmCodexEntry():void
 public function korgonneCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("KORGONNE_FEMALE");
+	
 	outputCodex(header("Korgonne"));
 	outputCodex("<i>Honest little furballs as tough as they are short.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Korgonne");
@@ -2394,6 +2408,8 @@ public function korgonneCodexEntry():void
 public function lurelingsCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Lureling"));
 	outputCodex("<b>Genders:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> 8\' 0\" to 8\' 8\" at the shoulders. Roughly 9\' from tip to tail.");
@@ -2446,6 +2462,9 @@ public function lurelingsCodexEntry():void
 public function milodanCodexEntry():void
 {
 	clearOutputCodex();
+	var randBust:Array = ["MILODANMALE","MILODANFEM","MILODAN_PRIESTESS"];
+	showBust(randBust[rand(randBust.length)]);
+	
 	outputCodex(header("Milodan"));
 	outputCodex("<b>Name:</b> Milodan");
 	outputCodex("\n<b>Genders:</b> Males and Females, Rare Hermaphrodites");
@@ -2487,6 +2506,8 @@ public function milodanCodexEntry():void
 public function divraniCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Divrani"));
 	outputCodex("<b>Name:</b> Divrani (singular and plural)");
 	outputCodex("\n<b>Genders:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
@@ -2550,6 +2571,8 @@ public function divraniCodexEntry():void
 public function hyraxxiCodexEntry():void
 {
 	clearOutputCodex();
+	showBust("9999");
+	
 	outputCodex(header("Hyraxxi"));
 	outputCodex("<b>Name:</b> Hyraxx (Singular), Hyraxxi (Plural, Adjectival)");
 	outputCodex("\n<b>Genders:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");
@@ -2604,6 +2627,46 @@ public function hyraxxiCodexEntry():void
 
 
 /* Illegal Items */
+public function throbbCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("TANK_KANNON");
+	outputCodex(header("Throbb, AKA Liquid Priaprism"));
+	outputCodex("<i>“Some people grew dicks and balls so big they couldn’t move. Can you believe that?”</i> -Officer Penny Inoue, UGC Peacekeepers\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Throbb did not begin its life as an oft-scorned drug for degenerates and deplorables. The original hope was for an affordable pharmaceutical solution to replace missing genitalia or help those with fertility problems. Xenogen’s scientists succeeded a little too well. Yes, it could grow a penis on almost anyone. Yes, it boosted sperm/spore/genetic-information-paste density to levels that could easily impregnate most mates, but it did so much more than that.");
+	outputCodex("\n\nGrowing or expanding genitalia produced a powerful, psychologically addictive euphoria akin to the feeling of an adolescent discovering his or her first love. What’s more, it also unbalanced the user’s endocrine system in much the same manner as puberty, resulting in a large but otherwise harmless increase in libido. Initial test subjects frequently requested additional doses, citing that “they weren’t big enough yet” or “they could be so much more virile.”");
+	outputCodex("\n\nThe study was shut down, but the problems did not end there. Many who had partaken in the study eventually turned to sex work or wound up arrested for sexual assault.");
+	outputCodex("\n\nAs a result, the scientists were ordered to reformulate the drug in order to minimize the side effects. Any success in suppressing the high or associated nymphomania brought with it a massive reduction in the efficacy of its desired effects. Xenogen had a drug that would push its users into deviancy or a drug that took dozens of doses and achieved essentially the same effect.");
+	outputCodex("\n\nOne year later, the Throbb project was shuttered. Xenogen shares dropped 18.5% in trading due to the news but recovered later in the week thanks to the successful launch of Rainbowtox.");
+	outputCodex("\n\nThrobb’s synthesis was leaked to the extranet, and now most back-alley chemists can whip up a batch in a few days. Most newer model fabricators and molecule assemblers prevent its manufacture at a firmware level, citing UGC “Deleterious Drugs” statute, section 7, paragraph 4. Hacks to circumvent these restrictions are commonplace and easily attainable.\n\n");
+	outputCodex(blockHeader("Method of Application"));
+	outputCodex("Throbb requires injection into the area to be affected. Injecting it into non-reproductive areas may result in unwanted growths or bizarre sensitivity.\n\n");
+	outputCodex(blockHeader("Legality"));
+	outputCodex("The UGC prohibits chemical manufacturing equipment from being sold with the capability to manufacture Throbb, though the chemical itself is not illegal at the Confederation level. 97% of all UGC planets have outlawed the substance in one way or another. Many of the remaining 3% make a brisk trade on sexual tourism, often taxing Throbb heavily to subsidize medical and psychological treatment for addicts.\n\n");
+	outputCodex(blockHeader("Known Effects"));
+	outputCodex("\t* Sudden phallus growth.");
+	outputCodex("\n\t* Abrupt phallus expansion.");
+	outputCodex("\n\t* Testicle growth.");
+	outputCodex("\n\t* Increased virility.\n\n");
+	outputCodex(blockHeader("Known Side Effects"));
+	outputCodex("\t* Dramatic increase to libido.");
+	outputCodex("\n\t* Brief sexual euphoria.");
+	outputCodex("\n\t* Spontaneous orgasm.");
+	outputCodex("\n\t* Permanently reduced inhibitions.");
+	outputCodex("\n\t* Increased genital sensitivity.");
+	outputCodex("\n\t* Enlarged pleasure centers of the brain.\n\n");
+	outputCodex(blockHeader("Known Users"));
+	outputCodex("\t* Aileh Atru, porn star");
+	outputCodex("\n\t* Juan Gartex, sex worker");
+	outputCodex("\n\t* Kawthon Kandy, ultraporn star");
+	outputCodex("\n\t* Rod Chrysler, former Vesperian Prime Minister turned porn star");
+	outputCodex("\n\t* Tank Kannon, ultraporn star\n\n");
+	outputCodex(blockHeader("WARNINGS"));
+	outputCodex("Throbb is almost assuredly illegal. Do not use it. Should you come across any, turn it over to your local UGC Peacekeepers or planetary security forces. If you are on a planet where it is legal, avoid it all costs. It could ruin your life. (Attached is a short, anti-drug video clip. In it, a kaithrit is holding up a hotdog. She says, <i>“This is your dick. And this-”</i> Then she pivots and smacks face-first into the side of a tubular ship, rusted out with age. Rubbing her nose, she adds, <i>“...is your dick on Throbb. It isn’t going anywhere, and certainly not in me. Any questions?”</i>)");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Throbb");
+}
 
 public function dumbfuckCodexEntry():void
 {
@@ -2752,6 +2815,18 @@ public function treatmentCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("The Treatment");
 }
+public function tentacoolCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Tentacool"));
+	outputCodex("The drug commonly known as “Tentacool” has origins in research into restoring limb usage to those that have lost it. The researchers were successful in restoring limb usage with a simple pill. However, they quickly realized they’d gone beyond their original goal and could even give control to and enhance usage of parts besides the limbs, including tails and penises.");
+	outputCodex("\n\nResearch continued along these lines until the drug came to a state much like its current state. The researchers, truthfully, didn’t understand how the drug they had developed worked, only that it did work. Subjects, with a simple pill, could turn all manner of body parts into highly dexterous, prehensile tentacles, and even grow new tentacles. With extra dosages, subjects could go well beyond the original research entirely, discarding their limbs in favor of tentacle bunches.");
+	outputCodex("\n\nThe research was nearly considered complete when one subject seemed to snap, rampaging around the lab and groping at everything he could get his tentacles on. While fixated on one of the female researchers, he was subdued and restrained. Looking into what had gone wrong, the researchers came to discover exactly what their drug did. While use of the drug was safe up to a point, the ultimate result of continued use was a complete decentralization of the nervous system. A subject’s nervous system would eventually be distributed among their many tentacles, leading to a complete loss of their sense of self and leaving them a mindless, instinct-driven monster.");
+	outputCodex("\n\nThe researchers naturally didn’t want their time and hard work to go to waste, and pleaded for the continued development of the drug. They argued that limited use and a strong will could mitigate the negative effects of the drug, even if they couldn’t get rid of the effects entirely. Despite their pleading, the research was quickly locked away and the existing drugs were seemingly destroyed. Nonetheless, the drug found its way into the galaxy. It is unknown if one or more rogue scientists stole some of the drug before its destruction or if they later replicated their research.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Tentacool");
+}
 
 
 /* Legal Items */
@@ -2760,7 +2835,10 @@ public function synthSheathCodex():void
 {
 	clearOutputCodex();
 	showBust("9999");
-	outputCodex(header("Item: Xenogen Biotech SynthSheath"));
+	outputCodex(header("SynthSheath"));
+	outputCodex("<b>Manufactured By:</b> Xenogen Biotech");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
 	outputCodex("The XenoGen Biotech SynthSheath was a prototypical effort in their genital modification program. The device consists of a depopulated cellular matrix which functions by microsyringes on the lip and inside the shaft injecting a potent cocktail of specialized microsurgeons, equine genetic material, and a powerful cell division stimulant. In the case of a male or hermaphroditic subject, the sheath takes the cells of the existing genitals, treats them with their new genetic makeup and migrates them to their place in the cellular matrix of the sheath.");
 	outputCodex("\n\nFemale subjects attaching this device have their blood cells used to populate their new penis and testicles. The microsurgeons also insert a prostate near the device; genetic manipulation of the subject’s brain chemistry links the device to the subjects nervous, circulatory, and immune systems to prevent phantom limb disorder and tissue rejection.");
 	outputCodex("\n\n");
@@ -2771,7 +2849,10 @@ public function bionaholeCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("BionaHoles"));
-	outputCodex("<i>For thousands of years, sapients have concealed their dicks in boxes. Now, with the TamaniCorp Bionahole, the reverse is just as possible.</i>\n\n");
+	outputCodex("<b>Manufactured By:</b> TamaniCorp");
+	outputCodex("\n<i>For thousands of years, sapients have concealed their dicks in boxes. Now, with the TamaniCorp Bionahole, the reverse is just as possible.</i>");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
 	outputCodex("Perhaps the most controversial of TamaniCorp’s wide range of products, the BionaHole came about after a failed venture into all-natural artificial wombs. Though the main project went grossly over budget due to the insistence of the company CEO personally sampling a huge number of paid male test candidates, the scientists working on the artificial wombs managed to salvage some of the tech behind it and turn it into a high-end sex toy: the BionaHole.");
 	outputCodex("\n\nAt its core, the BionaHole is a cloned vagina - complete with lips, clitoris, and channel... and the ability to become excited when played with - suspended in a thick black tube laden with life-support tech to keep the sex organ alive, wet, and warm. The vaginal passage is designed with greatly increased sensitivity compared to its natural base, and will actually achieve orgasm through vigorous use. All BionaHoles are equipped with self-cleaning abilities and the capacity for minor self-repair thanks to a healthy dose of microsurgeons. So long as the owner regularly changes out the proprietary nutrient packs and keeps the flask charged (either through a small solar battery or a conventional electrical port), the cloned pussy can remain healthy and enjoyable for decades.");
 	outputCodex("\n\nBionaHoles reached their peak popularity shortly after launch with their modelled line, featuring cloned vaginas of recognizable sex symbols; like the galaxy’s number one hyperporn actress Nivas Oxonef to TamaniCorp’s own lascivious CEO. Since the product line’s introduction, several additional models have come out, modelled after mouths, anuses, and several exotic alien sexual organs.");
@@ -2786,6 +2867,7 @@ public function gravCuffsCodex():void
 	outputCodex(header("Grav Cuffs"));
 	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
 	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
 	outputCodex("Grav-cuffs are the latest in space age bondage gear designed by Humphard Inc. The cuffs are packed full of features; nearly as many as some mainstream androids.");
 	outputCodex("\n\nThe most notable quality of the cuffs is that they are mass adjustable. Once attached, one can make the cuffs (and the cuffed individual) weigh as much or as little as they want. They are also uni-directional, so they can be used to attach the cuffed person to a roof, wall, or other surface with little effort.");
 	outputCodex("\n\nPremium cuffs come with several special features, such as a magni lock feature for fastening different cuffs together, voice activation, and a vocal locking system.");
@@ -2800,8 +2882,8 @@ public function holodomCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Holodom"));
-	outputCodex("<b>Description:</b> Hard light holographic condom, or “holodom.”");
-	outputCodex("\n<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("<b>Manufactured By:</b> Humphard Inc.");
+	outputCodex("\n<b>Description:</b> Hard light holographic condom, or “holodom.”");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("Holodoms were one of Humphard’s first adult products and largely considered their “first big break” in the industry. The unassuming metal ring is a one-use hardlight shield designed to be worn around the penis. Activated by a small touch sensor, it is comfortable to wear and small enough that its presence is barely felt by both parties.");
@@ -2817,7 +2899,7 @@ public function sumaCreamCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Suma Cream"));
-	outputCodex("\n<b>Manufactured By:</b> J’ejune Pharmaceuticals");
+	outputCodex("<b>Manufactured By:</b> J’ejune Pharmaceuticals");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("J’ejune Pharmaceuticals are not known for their originality, though they’re quite adept at making the best of a bad situation. The “Suma Cream” line of beauty products is no different. Originally intended as a facial cream to bring out plump, rosy cheeks, it was discovered that the plumping agent in the salve had almost no effect on female test subjects, but produced testicular swelling in hermaphrodites and males. When the balm was actually applied directly to the balls, the effect was even more pronounced.");
@@ -2826,28 +2908,25 @@ public function sumaCreamCodex():void
 	outputCodex("\n");
 	CodexManager.viewedEntry("Suma Cream");
 }
-
 public function clearYuCodex():void
 {
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("ClearYu"));
-	outputCodex("\n<b>Manufactured By:</b> Xenogen Biotech");
+	outputCodex("<b>Manufactured By:</b> Xenogen Biotech");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("Never one to completely abandon a product line, when Xenogen discontinued work on Dumbfuck for its unexpected mind-altering side effects, they transferred much of the research to another department, who came up with ClearYu. The candied lollipop vastly increases one’s hand-eye coordination, physical reflexes, and bodily responsiveness by hindering the higher brain functions that would normally obstruct these instincts. It’s found surprising popularity among mercenaries and adventure seekers who don’t mind losing a few points of IQ for a more steady gun hand.");
 	outputCodex("\n");
 	CodexManager.viewedEntry("ClearYu");
 }
-
-//CODEX Description
 public function bubbBuddyCodex():void
 {
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Bubble Buddy"))
 	outputCodex("<b>Manufactured By:</b> TamaniCorp");
-	outputCodex("\n<i>“Hi. I’m Tamani, founder and CEO of Tamani Corp. I spend all day thinking about YOUR cum. Let me assure you, the Bubble Buddy will keep that baby batter fresh and potent until the heat death of the universe!”</i>");
+	outputCodex("\n<i>“Hi. I’m Tamani, founder and CEO of TamaniCorp. I spend all day thinking about YOUR cum. Let me assure you, the Bubble Buddy will keep that baby batter fresh and potent until the heat death of the universe!”</i>");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("TamaniCorp stands by the saying <i>“There’s no testing like public testing!”</i> Their wide variety of fertility and virility enhancing products undergo extensive trials and it’s not always easy to get a diverse array of subjects into their corporate offices. For that matter, it’s not easy to get their employees out to the testing facilities, considering how many tend to be pregnant at any given time. The Bubble Buddy was an invention of necessity. They chiefly needed a device that could store semen samples safely, maintaining their heat and potency in a sustained, self-sealing container.");
@@ -2859,7 +2938,7 @@ public function rubberMadeCodex():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Rubber-Made"));
-	outputCodex("\n<b>Manufactured By:</b> J’ejune Pharmaceuticals");
+	outputCodex("<b>Manufactured By:</b> J’ejune Pharmaceuticals");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
 	outputCodex("Rubber-Made was originally intended as a body hair removal paste by the overworked and undersupervised folks at J’ejune Pharmaceuticals. They were somewhat taken aback when their product responded vigorously to high levels of moisture, such as is typically found on the inside of one’s mouth. The specific incident that lead to this discovery is not recorded, but the company’s reputation for lax testing protocols may be responsible.");
@@ -3203,7 +3282,6 @@ public function rhenWorldCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("RhenWorld");
 }
-
 public function snuggleCodex():void
 {
 	clearOutputCodex();
@@ -3217,7 +3295,6 @@ public function snuggleCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Snugglé");
 }
-
 public function steeleTechCodex():void
 {
 	clearOutputCodex();
@@ -3231,7 +3308,6 @@ public function steeleTechCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Steele Tech");
 }
-
 public function xenogenCodex():void
 {
 	clearOutputCodex();
@@ -3260,7 +3336,6 @@ public function blackVoidCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Black Void");
 }
-
 public function jointAusarFederationCodex():void
 {
 	clearOutputCodex();
@@ -3276,7 +3351,6 @@ public function jointAusarFederationCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("J.A.F.");
 }
-
 public function scarletFederationCodex():void
 {
 	clearOutputCodex();
@@ -3291,7 +3365,6 @@ public function scarletFederationCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Scarlet Federation");
 }
-
 public function terranSpaceCoalitionCodex():void
 {
 	clearOutputCodex();
@@ -3307,7 +3380,6 @@ public function terranSpaceCoalitionCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("T.S.C.");
 }
-
 public function unitedGalacticConfederacyCodex():void
 {
 	clearOutputCodex();

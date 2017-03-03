@@ -272,7 +272,7 @@
 					else if(target.lipModUnlocked(target.lipMod + sizeDiff)) sizeChanged = true;
 					break;
 				case "lipple":
-					sizeDiff = ((sizeDiff / 100) * 10);
+					sizeDiff = Math.round(sizeDiff / 5);
 					if(sizeType == "decrease") sizeDiff *= -1;
 					if(target.nippleWidthRatio + sizeDiff < 0.1) sizeDiff = 0;
 					else if(target.nippleWidthRatioUnlocked(target.nippleWidthRatio + sizeDiff)) sizeChanged = true;

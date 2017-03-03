@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a skull-patterned bra";
 			
-			this.tooltip = "These are the perfect bra for when you want to make a statement, but at the same time, you're not wearing a top. Made of black fabric and littered with white skulls.";
+			this.tooltip = "These are the perfect bra for when you want to make a statement, but at the same time, you’re not wearing a top. Made of black fabric and littered with white skulls.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

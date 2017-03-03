@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "a flare gun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A simple, old-school flare gun. While not intended to be used as a weapon so much as to either illuminate Myrellion caverns or signal distant allies, you're bloody-minded enough to find a way. The rate of fire is slow, but the projectile is massive and has a tendency to bury itself in the target and burn. ";
+			this.tooltip = "A simple, old-school flare gun. While not intended to be used as a weapon so much as to either illuminate Myrellion caverns or signal distant allies, you’re bloody-minded enough to find a way. The rate of fire is slow, but the projectile is massive and has a tendency to bury itself in the target and burn. ";
 			this.attackVerb = "shoot";
 			attackNoun = "flare";
 			

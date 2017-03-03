@@ -49,9 +49,9 @@ public function anonsBarWaitressAddendum(slot:int = 0):void {
 	else {
 		output("\n\nThe three breasted waitress");
 		if(flags["MET_SELLESY"] != undefined) output(", Sellesy,");
-		output(" is here again, though she hasn't yet caught sight of you. You could flag her down if you wanted.");
+		output(" is here again, though she hasn’t yet caught sight of you. You could flag her down if you wanted.");
 	}
-	if(flags["MET_SELLESY"] == undefined) addButton(0,"Waitress",anonsBarWaitressApproach,undefined,"Waitress","See if you can't get the volutpuous trilateral's attention.");
+	if(flags["MET_SELLESY"] == undefined) addButton(0,"Waitress",anonsBarWaitressApproach,undefined,"Waitress","See if you can’t get the volutpuous trilateral’s attention.");
 	else addButton(slot,"Sellesy",anonsBarWaitressApproach,undefined,"Sellesy","Get some bar service.");
 }
 
@@ -84,7 +84,7 @@ public function anonsBarWaitressApproach():void {
 
 		output("\n\nYou find her standing too close to you for a ‘professional distance,’ with an imperceptible sheen of sweat coating her voluptuous curves that causes her pale red skin to practically glow in the dim lighting. Her skintight white shirt reveals a hint of the red flesh beneath, and a mixed hue of colored stains across her top. It’s hard to keep a uniform clean in a busy bar, though you wonder if those stains are from more than just spilled drinks....");
 
-		output("\n\n<i>\"Go ahead and stare all you want sweetie, but can I get you anything to drink while you do?</i>\"  she asks with a knowing grin that shakes you from your stupor. \"<i>My name is Sellesy, and I'll be taking care of you all night...</i>\" she continues, adding a sultry tone to the end, which you could easily have missed, hard as it is to look up from the incredible bust sitting directly in the center of your vision. \"<i>We have quite a few delicious drinks 'on tap' tonight!</i>\"  she notes, seemingly not minding your fascination, and giggles away to herself, amused by her own joke.");
+		output("\n\n<i>“Go ahead and stare all you want sweetie, but can I get you anything to drink while you do?”</i>  she asks with a knowing grin that shakes you from your stupor. <i>“My name is Sellesy, and I’ll be taking care of you all night...”</i> she continues, adding a sultry tone to the end, which you could easily have missed, hard as it is to look up from the incredible bust sitting directly in the center of your vision. <i>“We have quite a few delicious drinks ‘on tap’ tonight!”</i>  she notes, seemingly not minding your fascination, and giggles away to herself, amused by her own joke.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
 		clearMenu();
 		addButton(0,"OrderDrink",firstDrinkFromSellesy);
@@ -113,28 +113,28 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 	{
 		clearOutput();
 		showSellesy();
-		output("\"<i>Okay! I'll be right back sweetie, and do feel free to stare... looking is free after all,</i>\" she adds with a suggestive wink. Perhaps that means there's more than just drinks on the menu here....");
+		output("<i>“Okay! I’ll be right back sweetie, and do feel free to stare... looking is free after all,”</i> she adds with a suggestive wink. Perhaps that means there’s more than just drinks on the menu here....");
 		output("\n\nFollowing her with your gaze as you watch her leave on her way to the bar, you notice the swell of her two outer massive breasts from behind, jiggling with each step. It is an almost hypnotic view even from this angle. She is comparatively adept at moving on all three legs. Her supple butt-cheeks are round and show exaggeratedly from beneath the excessively short skirt she wears, and with amusement you realize that she must have three bountiful, bouncing buttocks.");
-		output("\n\nYou laugh inwardly at your lame rhyme, but the heavy incense in the air makes it difficult to think clearly. Besides, from what you've seen, and from the nature of this bar, you doubt you’ll have to spend much time thinking. You shake yourself back to awareness once more, realizing that the beautiful women and heady aromas can cause you to easily slip into a daze.");
-		output("\n\nAs her moving body keeps you from dozing off, something catches your attention. Your waitress and a few others are behind the bar, fixing drinks, and yet the bar lacks bottles, or glasses for that matter. Most bars you've been to usually rack them up on the shelves. In fact, now that you look around, you realize that nobody in the bar holds a glass... and instead, those who are drinking seem to be sitting very close to the waitresses indeed.");
+		output("\n\nYou laugh inwardly at your lame rhyme, but the heavy incense in the air makes it difficult to think clearly. Besides, from what you’ve seen, and from the nature of this bar, you doubt you’ll have to spend much time thinking. You shake yourself back to awareness once more, realizing that the beautiful women and heady aromas can cause you to easily slip into a daze.");
+		output("\n\nAs her moving body keeps you from dozing off, something catches your attention. Your waitress and a few others are behind the bar, fixing drinks, and yet the bar lacks bottles, or glasses for that matter. Most bars you’ve been to usually rack them up on the shelves. In fact, now that you look around, you realize that nobody in the bar holds a glass... and instead, those who are drinking seem to be sitting very close to the waitresses indeed.");
 	}
 	output("\n\nA soft, plush, yet firm touch presses against your cheek, bringing your attention to your front. You try to slide back in your chair, but the solid plastic holds you firm now. Sellesy’s massive bust is inches from your face, and her arms hug you into her yielding softness. She presses her hands into your shoulders and pushes you against the back of the chair as she slips her forward two legs delicately around your thighs. Gripping you, she locks her legs together and pins you to the chair.");
 	output("\n\nFrom up close, her breasts appear, if anything, larger than before. They seem swollen even, almost as if she went to the bar just to have them....");
 	output("\n\nNow, creamy stains spread across her shirt. The way the three very prominent nipples begin to tent out her now steadily soaking shirt, shows you just how these girls serve their drinks. Soon, the white material grows steadily transparent, until all the decency of her covered breasts disappears.");
-	output("\n\n\"<i>Well, honey, do be brave,</i>\"  she says in a low, sultry voice. Using her arms, now freed from needing to hold you down, Sellesy lifts the top past her neck.");
+	output("\n\n<i>“Well, honey, do be brave,”</i>  she says in a low, sultry voice. Using her arms, now freed from needing to hold you down, Sellesy lifts the top past her neck.");
 	output("\n\nEach breast is of a size even more incredible than you dared imagine, and at the center of each three-inch wide, drink-filled, puffy areola, engorges a dark blood-red nipple large enough to jut out at least an inch from the breast. They resemble three dark red thumbs more than nipples. The skin on the swell of her breast has a slick-wet healthy sheen. Perhaps that sweat is from working at the bar... or something else.");
-	output("\n\nShe grins as her hand snakes its way to your neck and begins to gently spread the fingers in a relaxing way. She delicately strokes, caresses, and works the back of your head, as the other begins to work on relaxing your shoulders. It's impossible to feel any tension as the massage causes your eyelids to droop, and your body to sink ever so slightly into the inescapable chair.");
-	output("\n\nShe leans in close, resting her chin gently on your shoulder. \"<i>Drink up, sweetie...</i>\"");
+	output("\n\nShe grins as her hand snakes its way to your neck and begins to gently spread the fingers in a relaxing way. She delicately strokes, caresses, and works the back of your head, as the other begins to work on relaxing your shoulders. It’s impossible to feel any tension as the massage causes your eyelids to droop, and your body to sink ever so slightly into the inescapable chair.");
+	output("\n\nShe leans in close, resting her chin gently on your shoulder. <i>“Drink up, sweetie...”</i>");
 	output("\n\nShe sits back and lifts her titanic middle breast, and begins to tickle and tease the very prominent nipple back and forth across your lips. Reluctant from her forcing you into such a sexual situation, and yet unable to deny the overwhelming eroticism of her touch, your body responds to your primal instincts, and you feel your pursed lips involuntarily loosen, and begin to press and probe, seeking out her milk.");
 	output("\n\nAs soon as her nipples loosen enough, a small spurt of milk manages to worm its way inside your mouth. Her hands grasp you roughly and pull you into her bountiful middle breast face-first. The breast-flesh smothers you instantly. You try to inhale through your nose in shock, but a wall of soft, yet unrelenting womanly skin prevents this. Unable to breathe, your body widens its mouth for air, and only then do you realize you have fallen for the same trick she uses on all her customers.");
 	output("\n\nA thick, one-inch nipple forces its way into your mouth. A deluge of sweet, cottony drink begins to pool into your throat. Still unwilling to give up so easily, you squirm and struggle between her hugging arms and crushing bosom, but find yourself unable to do more than jiggle her titanic tits, much to her amusement.");
 	output("\n\nYou are helpless to do anything but swallow the quickly growing mouthful of overly sweet, yet unmistakably alcohol-laced drink, unless you want to drown in a sea of tit-flesh. Immediately, you are overcome by a sense of heightened sensitivity to touch and smell, as the cottony substance tingles all the way down to your stomach, and you feel your mind fogging over.");
-	output("\n\n\"<i>Aaaahhh...</i>\"  she sighs in utter satisfaction as her massive, swollen breasts are just beginning to relieve the pressure of so much additional volume. You feel her hands return to their relaxing, gentle stroking as her breasts roll back just enough to let you breathe. \"<i>That's it... gooooood" + pc.mfn(" boy"," girl","") + "...</i>\"");
+	output("\n\n<i>“Aaaahhh...”</i>  she sighs in utter satisfaction as her massive, swollen breasts are just beginning to relieve the pressure of so much additional volume. You feel her hands return to their relaxing, gentle stroking as her breasts roll back just enough to let you breathe. <i>“That’s it... gooooood" + pc.mfn(" boy"," girl","") + "...”</i>");
 
 	output("\n\nYour suffocation on her immense bosom subsides quickly and your lungs refill. Her long, thick nipple causes rather embarrassing wet sucking and slurping noises as it gently slips in and out of your lips. Her hands and fingers play magic across your shoulders, along your neck, even along your ears. She looks to be quite enjoying herself too, judging from the way her crotch gyrates its way gently against yours in rhythm with your suckling, and the gentle mouth fondling her hardened nipple. Even the soft, grained feeling of her elongated nipple against your lips is eliciting almost unknown pleasures from within you, and inevitably, you slip back into that delightfully relaxing daze of before.");
 
-	output("\n\nYou are now happily suckling away at her massive tit, echoing the actions of the patrons scattered throughout the bar. You manage to look through lidded eyes at the closest patron to you, lying back on a bed-like chair, as her waitress lowers one massive breast over her face, and sighs in relief as her free hands roam the helpless girl's body, much to the girl's obvious delight. As you watch, she curls into an almost infantile pose, before a swell of Sellesy's breast looms in and blocks your view.");
-	output("\n\nLooking up you see her staring down at you, all three eyes positively alight with glee. \"<i>How's that sweetie? Taste good?</i>\"  she asks rather girlishly, apparently already certain of the answer, \"<i>I get lots of compliments on my drink mixing. I always make something my customers swear they could just drink forever...</i>\"  she utters softly, shuddering slightly from your unbidden gentle nibbling on her nipple.");
+	output("\n\nYou are now happily suckling away at her massive tit, echoing the actions of the patrons scattered throughout the bar. You manage to look through lidded eyes at the closest patron to you, lying back on a bed-like chair, as her waitress lowers one massive breast over her face, and sighs in relief as her free hands roam the helpless girl’s body, much to the girl’s obvious delight. As you watch, she curls into an almost infantile pose, before a swell of Sellesy’s breast looms in and blocks your view.");
+	output("\n\nLooking up you see her staring down at you, all three eyes positively alight with glee. <i>“How’s that sweetie? Taste good?”</i>  she asks rather girlishly, apparently already certain of the answer, <i>“I get lots of compliments on my drink mixing. I always make something my customers swear they could just drink forever...”</i>  she utters softly, shuddering slightly from your unbidden gentle nibbling on her nipple.");
 	
 	var ppSellesy:PregnancyPlaceholder = new PregnancyPlaceholder();
 	ppSellesy.breastRows[0].breastRatingRaw = 10;
@@ -154,7 +154,7 @@ public function firstDrinkFromSellesy(first:Boolean = true):void {
 }
 
 public function genderlessEpilogueForSellesy():void {
-	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured \"thank you.\"");
+	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured “thank you.”");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -175,7 +175,7 @@ public function firstTimeWithSellesyForCocks():void {
 	else output("[pc.EachCock], already hardened by the experience thus far, responds naturally.");
 	output(" A wet, slick feeling is growing at your stomach, as your pre-cum is rhythmically squeezed from your cock, one drip at a time. You give her ample area to grind against.");
 
-	output("\n\nThe intense heat, damp around your crotch, tells you she's close. You exhale in shock as her legs clamp even tighter around you, and her pussy begins to frantically rub against your hardened length, trapped between your stomach and her hungry core. The orgasm within you builds steadily, and as this incredibly sensual moment peaks, you cum uncontrollably, trapped in the vice-grip of three orgasmically-clenched thighs.");
+	output("\n\nThe intense heat, damp around your crotch, tells you she’s close. You exhale in shock as her legs clamp even tighter around you, and her pussy begins to frantically rub against your hardened length, trapped between your stomach and her hungry core. The orgasm within you builds steadily, and as this incredibly sensual moment peaks, you cum uncontrollably, trapped in the vice-grip of three orgasmically-clenched thighs.");
 	output("\n\nShe cries out breathlessly, throwing her arms around your back and holding you close as her entire body seizes up and you feel your own climax shiver through your trapped body. As her pussy clenches and drips hungrily against your cock in the throes of orgasmic bliss, you can only imagine what it would be like to be inside her.");
 	processTime(5+rand(5));
 	pc.orgasm();
@@ -187,7 +187,7 @@ public function firstTimeWithSellesyForVagoos():void {
 	clearOutput();
 	showSellesy();
 	author("Mr. Writer");
-	output("The gyration of her hips increases in intensity. A series of delicate little moans escape her, making her bite her lip in ecstasy. Your own pussy, hot and moist, feels her simmering wet heat as she grinds against your crotch. You can tell she's close, but can only exhale in shock as her legs clamp even tighter around you, and her pussy begins to frantically rub against your moistening slit. Your own orgasm builds steadily, this incredibly sensual friction driving you towards the edge until you cum uncontrollably, trapping you in the vice-grip of three orgasmically-clenched thighs.");
+	output("The gyration of her hips increases in intensity. A series of delicate little moans escape her, making her bite her lip in ecstasy. Your own pussy, hot and moist, feels her simmering wet heat as she grinds against your crotch. You can tell she’s close, but can only exhale in shock as her legs clamp even tighter around you, and her pussy begins to frantically rub against your moistening slit. Your own orgasm builds steadily, this incredibly sensual friction driving you towards the edge until you cum uncontrollably, trapping you in the vice-grip of three orgasmically-clenched thighs.");
 	output("\n\nShe cries out breathlessly, throwing her arms around your back and squeezes you close as her entire body seizes up, and you feel your own climax shiver through your trapped body, her pussy clenching hungrily against yours. With your scant clothing separating the two, it feels wonderfully erotic.");
 	processTime(5+rand(5));
 	pc.orgasm();
@@ -214,13 +214,13 @@ public function sellesyPostDrinkEpilogue():void {
 	author("Mr. Writer");
 	processTime(15+rand(10));
 	output("You awaken a short while later, held in her tender arms as she holds you close to her bountiful bosom in the chair, which has grown to accommodate you both. Your stomach feels a little bloated, no doubt from draining her colossal tit, and yet now that you look to her remaining, untouched pair, they seem positively swollen!");
-	output("\n\n\"<i>I hope you enjoyed your drink,</i>\"  she whispers in your ear, her lips pressing against it as though she's kissing your mind itself. \"<i>I hope you'll come back soon, but of course... there's no need to run off just yet, is there? After all, you've still got two more ‘drinks’ left...</i>\" she adds with an amused chuckle.");
+	output("\n\n<i>“I hope you enjoyed your drink,”</i>  she whispers in your ear, her lips pressing against it as though she’s kissing your mind itself. <i>“I hope you’ll come back soon, but of course... there’s no need to run off just yet, is there? After all, you’ve still got two more ‘drinks’ left...”</i> she adds with an amused chuckle.");
 	output("\n\nA drip of sweat crests her head-spinning cleavage, but she seems undaunted by the prospect of another round. In fact you think it must be almost uncomfortable to have her tits so full. So very... very full....");
 	output("\n\nThe thought of nursing from her again makes your stomach groan with hunger, and it’s impossible for you to ignore how your indeterminably long time with her has left you feeling. You feel extremely warm and oh so relaxed in her arms, overall refreshed and yet... content.");
 	output("\n\nWould it really be so bad to stay here with her a while longer?");
 	//[Options: Leave, go upstairs to her "private room"]
 	clearMenu();
-	addButton(0,"Stay With",stayWithSellesy,undefined,"Stay With","You doubt you'll be able to stick around without things getting a little sexual...");
+	addButton(0,"Stay With",stayWithSellesy,undefined,"Stay With","You doubt you’ll be able to stick around without things getting a little sexual...");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -229,8 +229,8 @@ public function stayWithSellesy():void {
 	showSellesy();
 	author("Mr. Writer");
 	output("Sellesy leads you up to her lavish, if modestly sized apartment above the bar, and she sits back contentedly on her large bed. She obviously earns enough to live very comfortably.");
-	output("\n\n\"<i>Hmmm... I guess you've got a bit of energy you want to put to use huh? Not to worry... I'll help you burn that off,</i>\"  she quips with a smirk.");
-	output("\n\n<i>\"What did the " + pc.mfn("strapping lad","delicious looking girl","gorgeous creature") + " standing before me have in mind?\"</i>");
+	output("\n\n<i>“Hmmm... I guess you’ve got a bit of energy you want to put to use huh? Not to worry... I’ll help you burn that off,”</i>  she quips with a smirk.");
+	output("\n\n<i>“What did the " + pc.mfn("strapping lad","delicious looking girl","gorgeous creature") + " standing before me have in mind?”</i>");
 
 	//[Options: Titjob (males/herms), Blowjob (males/herms), Vaginal (male/herms), Scissoring with clitentacle penetration (herms/females), 69 (males/herms/females)
 	//[TITJOB - For Males/Herms any size cock]
@@ -241,20 +241,24 @@ public function stayWithSellesy():void {
 		//[TRIPLE FOOTJOB - For Males/Herms with BIG dicks, too big for her maximum of 24" length, 3"wide.] 
 		if(pc.biggestCockLength() >= 24) addButton(1,"Tri-Footjob",tripleFootjob);
 		else addDisabledButton(1,"Tri-Footjob");
-		addDisabledButton(3,"Sixtynine","Sixtynine","You'll need a vagina to see this scene.")
+		addDisabledButton(3,"Sixtynine","Sixtynine","You’ll need a vagina to see this scene.")
 	}
 	else {
 		addDisabledButton(0,"Titjob");
 		addDisabledButton(1,"Tri-Footjob");
-		addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"SixtyNine","Sixtynine with the bartender. At least you'll get to eat her pussy, right?");
+		addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"SixtyNine","Sixtynine with the bartender. At least you’ll get to eat her pussy, right?");
 	}
 	if(pc.hasVagina())
 	{
 		if(pc.wettestVaginalWetness() > 2) addButton(2,"Tribadism",sellesyTribadismIsBadYoByZ,undefined,"Tribadism","Have a little girly fun between two wet, consenting adults.");
-		else addDisabledButton(2,"Tribadism","Tribadism","You aren't wet enough for tribadism with Sellesy. You'll need a vagina that lubricates a little harder first.");
-		addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"SixtyNine","Sixtynine with the bartender. You've both got pussies and tongues - why not use them?");
+		else addDisabledButton(2,"Tribadism","Tribadism","You aren’t wet enough for tribadism with Sellesy. You’ll need a vagina that lubricates a little harder first.");
+		addButton(3,"SixtyNine",ladyType69WithSellesy,undefined,"SixtyNine","Sixtynine with the bartender. You’ve both got pussies and tongues - why not use them?");
 	}
-	else addDisabledButton(2,"Tribadism","Tribadism","You'll need a vagina for this.");
+	else addDisabledButton(2,"Tribadism","Tribadism","You’ll need a vagina for this.");
+	
+	//button name (probably): Strap-on Play
+	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded()) addButton(3,"Strap-On Play",sellesyHardlightScene,undefined,"Strap-On Play","Let Sellesy play with your adjustable hardlight.");
+	else addDisabledButton(3,"Strap-On Play","Strap-On Play","You need to wear hardlight-enabled underwear with an upgrade kit installed for this.");
 }
 
 //[TITJOB - For Males/Herms any size cock]
@@ -266,28 +270,28 @@ public function titJobFromSellesy():void {
 	output("Pulling you gently onto the bed, once in the embrace of her arms, you feel the rather snake-like sensation of her three legs beginning to embrace you once more. One leg worms its way ");
 	if(pc.legCount == 1) output("around your [pc.leg]");
 	else output("between your [pc.legs]");
-	output(", its reverse position on her anatomy allowing her foot to gently massage your cock momentarily on it's way past. Her other two legs contract around your midsection, her calves crossed across your lower back, as she slides you up along her stomach.");
-	output("\n\nThe tits that still boggle your mind even now lay perky as ever, standing in a row like soldiers on parade. As she slides you forward, with her free hands, she begins to massage her nipples. Once fully erect, you swear they're practically throbbing as blood flows through them, and a steady trickle of her cream begins to drip every which way down them, funneling into the canals of either cleavage. So flush are they against each other, so tightly pressed together by their sheer perkiness, that small pools of creamy liquid have formed where breast meets chest.");
-	output("\n\nWith a finger, she dips into one of them, and sucks longingly. As her tongue swirls around it, obviously enjoying her own taste as much as you do, you feel your cock hardening against her abdomen in response to the lascivious display. She begins to dip her fingers deeper and deeper into her cleavage, licking away at the excess cream each time, and you realize she's lubricating her tits with her own lactation.");
+	output(", its reverse position on her anatomy allowing her foot to gently massage your cock momentarily on it’s way past. Her other two legs contract around your midsection, her calves crossed across your lower back, as she slides you up along her stomach.");
+	output("\n\nThe tits that still boggle your mind even now lay perky as ever, standing in a row like soldiers on parade. As she slides you forward, with her free hands, she begins to massage her nipples. Once fully erect, you swear they’re practically throbbing as blood flows through them, and a steady trickle of her cream begins to drip every which way down them, funneling into the canals of either cleavage. So flush are they against each other, so tightly pressed together by their sheer perkiness, that small pools of creamy liquid have formed where breast meets chest.");
+	output("\n\nWith a finger, she dips into one of them, and sucks longingly. As her tongue swirls around it, obviously enjoying her own taste as much as you do, you feel your cock hardening against her abdomen in response to the lascivious display. She begins to dip her fingers deeper and deeper into her cleavage, licking away at the excess cream each time, and you realize she’s lubricating her tits with her own lactation.");
 	output("\n\nAs this dawns on you, you feel those powerful legs squeeze a little, and slide you further up her body, slightly aided by the now milky-slickness the constant dribbling of her tits has provided. She cranes her neck to see over her own bust, and guides you to her left cleavage. The feeling of your [pc.cockHead " + x + "] against the soft globes of her under-boob is something you promise yourself you will never forget. A slightly warm trickle passes ");
 	if(pc.balls > 0) output("under your [pc.balls]");
 	else output("across your taint");
 	output(", and you panickedly wonder if just the thought of those tits around your [pc.cock " + x + "] might have caused you a little too much excitement. However, you see her with some noticeable effort pulling her tits apart, creating just enough relief to allow her cream to drip through the insane chasm that is her cleavage.");
-	output("\n\nLoosening just enough to allow the slick substance to lubricate between her tits, and drip along your cock in the process, with one last tug of her legs, you feel your [pc.cock " + x + "] slide home. Truly, there's no better way to put it, as you truly feel at home here more than anywhere else, ever before.");
+	output("\n\nLoosening just enough to allow the slick substance to lubricate between her tits, and drip along your cock in the process, with one last tug of her legs, you feel your [pc.cock " + x + "] slide home. Truly, there’s no better way to put it, as you truly feel at home here more than anywhere else, ever before.");
 	//[If their cock is more than 24" Long]
 	if(pc.cocks[x].cLength() >= 24)
 	{
-		output("\n\nAs you feel your entire length slide through the soft, warm cocoon, you feel the tip of your cock poke out into an almost cool pool of liquid. You can't see past her tits anymore, barely able to see her face above them, but you know you must have bottomed out, and poked through to the other side of her impossible cleavage.");
-		output("\n\n<i>\"Oooh... something for me to play with up here!\"</i>  she remarks excitedly, and you feel a warm, wet, slippery thing begin to lick and caress across your [pc.cockHead " + x + "].");
+		output("\n\nAs you feel your entire length slide through the soft, warm cocoon, you feel the tip of your cock poke out into an almost cool pool of liquid. You can’t see past her tits anymore, barely able to see her face above them, but you know you must have bottomed out, and poked through to the other side of her impossible cleavage.");
+		output("\n\n<i>“Oooh... something for me to play with up here!”</i>  she remarks excitedly, and you feel a warm, wet, slippery thing begin to lick and caress across your [pc.cockHead " + x + "].");
 		output("\n\nShe giggles and groans delightedly as she gets to lick and suck on your cream-flavoured cockhead whenever it pokes through.");
 	}
-	output("\n\nShe begins to slowly clench and relax her legs. Just that effort alone is enough to push your [pc.cock " + x + "] in and out of its new found home, causing you to gasp in sheer delight. When she starts pushing your ass in with her third foot, however, it truly makes your mind spin. Closing your eyes, it's hard for you to conjecture at what's going on, but your thoughts decides that all that matters is how perfect the softest, warmest, slipperiest pillows are while you're fucking them. Your pleasure-slackened jaw grins ever so slightly as you realize that's not too far from the truth, and your body begins to naturally start fucking the delightful pillows.");
+	output("\n\nShe begins to slowly clench and relax her legs. Just that effort alone is enough to push your [pc.cock " + x + "] in and out of its new found home, causing you to gasp in sheer delight. When she starts pushing your ass in with her third foot, however, it truly makes your mind spin. Closing your eyes, it’s hard for you to conjecture at what’s going on, but your thoughts decides that all that matters is how perfect the softest, warmest, slipperiest pillows are while you’re fucking them. Your pleasure-slackened jaw grins ever so slightly as you realize that’s not too far from the truth, and your body begins to naturally start fucking the delightful pillows.");
 	output("\n\nHer foot, previously using your ass as leverage, now leaves you to rut, captive between her legs. Instead, you feel her toes begin to tickle against your ass cheeks. An arm reaches out from the side of her tits, followed by another from the opposite side. Immediately, you feel her tits begin to squish together, and your breath catches in your throat. As her hands grasp your cheeks, you feel her tits press together tighter and tighter, and small rivers of cream stream from her nipples as her swollen tits collide. Leaving you breathless, she pulls you in for a kiss. Your chin rests against the swell of her middle bosom, as she stretches her head over to kiss you. Her hard, prominent nipples poke into your chest, and leave wet spots wherever you rest.");
 
 	output("\n\nMeanwhile, a single toe worms its way between your ass-cheeks and suddenly tickles against your [pc.asshole]. Eliciting a gasp from you, you try to break from the kiss in shock, but she merely wraps her arms around your shoulders and pulls you back in harder. With one deft plunge, her toe pushes into your ass and stretches ever so gently at your sphincter.");
-	output("\n\nHer toe begins to wiggle back in forth, resulting in a very odd sensation. As you are manipulated so as to keep fucking her tits, however, it's hard to ignore how quickly that odd sensation is becoming a pleasurable one.");
+	output("\n\nHer toe begins to wiggle back in forth, resulting in a very odd sensation. As you are manipulated so as to keep fucking her tits, however, it’s hard to ignore how quickly that odd sensation is becoming a pleasurable one.");
 	output("\n\nFor some time, you lay there, trapped between her arms, legs, tongue, lips, tits, and mischievous toes. At last, however, she removes her toe, and your sphincter clenches in what you find hard to deny as longing. Pulling back slightly, you stare mildly questioningly, before you feel her arms at work, and feel an almost alien sensation of something solid against your cock, having spent the last who knows how long knowing only the sheer softness of her breasts.");
-	output("\n\nOnly when you feel a temporary breath of cool air against your [pc.cock " + x + "] do you realize she's simply swapping you to her other cleavage. The subtle difference between one pair of tits and the other is one that only a true connoisseur could appreciate, and you want to spend as much time as you can becoming one.");
+	output("\n\nOnly when you feel a temporary breath of cool air against your [pc.cock " + x + "] do you realize she’s simply swapping you to her other cleavage. The subtle difference between one pair of tits and the other is one that only a true connoisseur could appreciate, and you want to spend as much time as you can becoming one.");
 	output("\n\nWhat seems like hours later, you are still locked in her cushiony, leggy embrace. Perhaps it has been hours, or maybe only minutes. Time almost has no meaning as long as your cock is between those tits. Her toe, now back inside you, feels so natural in your ass now that it leaves a warm, tingling sensation throughout your lower body with every little twitch.");
 	output("\n\nHowever, nothing can last forever, and as they say all good things come to an end. With a noticable and audible change in tempo, you feel her start to truly vigorously pump your entire body against her, with all the pleasure in the universe centred on your cock as far as you’re concerned. Inevitably, you can’t hold out long against this kind of treatment, and with a searing warmth your [pc.cockHead " + x + "] tingles, twitches, and spurts a thick rope of [pc.cum] between her bosoms.");
 	output("\n\nShe pulls you in tight, holding you against her oh-so tight, and pressing her tits into your [pc.fullChest] so tightly that the feeling of her long, hard nippled digging into you is almost painful. With a shuddering gasp, you feel her excited breath in your ear as she empathetically drips a load of cream down your chest.");
@@ -320,13 +324,13 @@ public function tripleFootjob():void {
 	showSellesy(true);
 	author("Mr. Writer");
 	output("Dropping your [pc.gear], you can see she is immediately astounded by what she sees. She paws closer from her position on the bed, and reaches out almost in awe. As she gently massages [pc.oneCock], and measures it against her forearm, her eyes widen ever so slightly in realization.");
-	output("\n\n<i>\"I didn't realize you were so big... sorry honey, I just don't think it'll fit. Even our kind have limits,\"</i>  she says rather softly, sounding genuinely disappointed.");
+	output("\n\n<i>“I didn’t realize you were so big... sorry honey, I just don’t think it’ll fit. Even our kind have limits,”</i>  she says rather softly, sounding genuinely disappointed.");
 	output("\n\nSuddenly, her eyes light up, and she motions towards her bed. Wondering just what she has in mind, you follow her curling finger as she lowers herself down to her sheets.");
 	output("\n\nShe wraps two of her legs around your center, placing her feet on opposite buttcheeks and pulling you, and your dick, well within her reach.");
 
-	output("\n\nWith your thighs flush against the edge of her bed, she stretches out, prostrating herself in front of you. Still unsure of what to expect, she delicately brings her feet to bare. Resting her three, soft, rather flat soles against and around your considerable length, it's now quite obvious what she has in mind, as she presses your [pc.cockHead " + x + "] against her now open, three-cornered pussy.");
+	output("\n\nWith your thighs flush against the edge of her bed, she stretches out, prostrating herself in front of you. Still unsure of what to expect, she delicately brings her feet to bare. Resting her three, soft, rather flat soles against and around your considerable length, it’s now quite obvious what she has in mind, as she presses your [pc.cockHead " + x + "] against her now open, three-cornered pussy.");
 
-	output("\n\nWith rather deft ease, she begins to massage your cock at a relaxed pace, not breaking rhythm even as your cock hardens and begins to push you away from her slightly. You have to admit, this does feel amazing. Watching her lay back and looking so relaxed, \"hands-free\" as it were, and the feeling of her three rather large yet soft feet all over your [pc.cockBiggest] has a charm in and of itself. Usually you would think a foot job might take a little more effort to get you off but with all three of her feet working in tandem, you find yourself very swiftly approaching your limit.");
+	output("\n\nWith rather deft ease, she begins to massage your cock at a relaxed pace, not breaking rhythm even as your cock hardens and begins to push you away from her slightly. You have to admit, this does feel amazing. Watching her lay back and looking so relaxed, “hands-free” as it were, and the feeling of her three rather large yet soft feet all over your [pc.cockBiggest] has a charm in and of itself. Usually you would think a foot job might take a little more effort to get you off but with all three of her feet working in tandem, you find yourself very swiftly approaching your limit.");
 
 	output("\n\nShe reaches down between her front most legs with one arm and vigorously plays with her exposed clit. With each moan, you feel her pussy clench against your cockhead like a hungry mouth. The image sticks in your mind and swiftly drives you closer and closer to what you can already tell will be a ");
 	if(pc.balls > 0) output("ball-churning ");
@@ -571,7 +575,7 @@ public function sellesyTribadismIsBadYoByZ():void
 	output(". The tentacle dithering around your entrance suddenly swells to fill you, and you wonder what she’s done. The answer comes in the next moment, when you feel the tip brush at your cervix gently: she’s thrust it all the way in, up to the base.");
 
 	//Human PC or Gspot?
-	output("\n\n</i>\"<i>Aha-ha...”</i> she gasps. The tentacle curls inside you, obviously searching for something rather than thrashing randomly. <i>“I’ve only done this a few times, but as I recall, there’s something special here somewhere...”</i> Sellesy’s clitoris flexes forward, dragging along the front of your vagina, and your back locks up as your mind whites out with pleasure. Your lover smiles, unobserved by you, as you twitch in response to her presses. <i>“Here we go,”</i> she mumbles");
+	output("\n\n”</i><i>Aha-ha...”</i> she gasps. The tentacle curls inside you, obviously searching for something rather than thrashing randomly. <i>“I’ve only done this a few times, but as I recall, there’s something special here somewhere...”</i> Sellesy’s clitoris flexes forward, dragging along the front of your vagina, and your back locks up as your mind whites out with pleasure. Your lover smiles, unobserved by you, as you twitch in response to her presses. <i>“Here we go,”</i> she mumbles");
 	if(pc.analCapacity() >= 100) 
 	{
 		output(", and you feel your asshole being invaded again. The sensation of being penetrated in both holes only serves to intensify the blank in your head");
@@ -584,8 +588,8 @@ public function sellesyTribadismIsBadYoByZ():void
 		else output("fill");
 		output(" with blood again,");
 		//(tightass)
-		if(pc.analCapacity() < 100) output("dribbling the slightest bit of pre-cum, not yet ready for another round.");
-		else output("already squirting into the air from prostate stimulation. It’s enough to be mistaken for a full orgasm, and Sellesy watches wistfully.");
+		if(pc.analCapacity() < 100) output(" dribbling the slightest bit of pre-cum, not yet ready for another round.");
+		else output(" already squirting into the air from prostate stimulation. It’s enough to be mistaken for a full orgasm, and Sellesy watches wistfully.");
 	}
 	output("\n\n<i>“");
 	if(pc.libido() < 50) output("S-stop");
@@ -737,7 +741,7 @@ public function ladyType69WithSellesy():void
 				output(" A squirt of [pc.girlCum] erupts from you and hits the tired woman directly in the face. Sellesy sputters and coughs as you drench her in your love.");
 				output("\n\n<i>“Ugh,”</i> she gripes. <i>“If you could do that, why did we go through all this?”</i>");
 			}
-			else output("</i>\"<i>I sincerely hope you had a nice time,”</i> she says, theatrically. <i>“Could you get off of me?”</i>");
+			else output("”</i><i>I sincerely hope you had a nice time,”</i> she says, theatrically. <i>“Could you get off of me?”</i>");
 			output("\n\nIn response, you trace a line along one of the woman’s exhausted clitorises, laying loose and limp, and watch her as she shivers with overstimulation. Laughing, you sit up and then lay beside her, kissing her on the neck. Sellesy consents to remain with you as you drift off into a nap, though you have no illusions that you’ll wake up in the same company.");
 		}
 		//(clit<12in)"
@@ -806,3 +810,173 @@ public function ladyType69WithSellesy():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Sellesy's new somethin'
+//button name (probably): Strap-on Play
+//requires upgrade kit
+//cock references use smallest cock that fits Sellesy, unless none do
+//tooltip: Let Sellesy play with your adjustable hardlight.
+//tooltip disabled, no hardlight equipped or missing upgrade: You need to wear hardlight-enabled underwear with an upgrade kit installed for this.
+public function sellesyHardlightScene():void
+{
+	clearOutput();
+	showSellesy(true);
+	author("Zeikfried");
+	output("Sellesy’s imperturbability is almost damaged when you tell her what you want to do. <i>“You brought me back here to play with toys");
+	if(flags["SELLESY_HL"] != undefined) output(" again");
+	output("?”</i> she asks, incredulous. <i>“");
+	if(flags["SELLESY_HL"] == undefined) output("Forget it. I’m thirsty and there’s nothing in it for me. When I want to play with toys, I do it in my off-hours.”</i>");
+	else output("Remind me again why I should waste my time? I have real clients waiting out there.”</i>");
+
+	output("\n\nWow... usually you would expect flirting from her, or at least a bit of wordplay. Her bluntness must be a symptom - it seems like you’ve really put her out. Your tipsy thoughts hum in circles in your head, trying to catch the words that can explain why she should be interested. Eventually, you just give up and reach for the controls of your hardlight, planning to show her instead.");
+	output("\n\nAt your touch, the glowing projection appears, erect and phallic and with an almost-inaudible hum. Sellesy’s frown merely deepens, and she says nothing. You slide your thumb to the length control and extend the cock with a drunk’s finesse, sizing it up until it reaches across the room, halfway to the waitress; her eyebrow flicks upward for a second. Oblivious and inattentive, you touch the girth panel next, swelling the toy through its range until it’s sized for a queen leithan, thicker and more defined than Sellesy’s graceful neck. Dumbly, you peer over the erect, monstrous rod that looks like it would tip you forward were it not completely weightless, and wait for a reaction.");
+
+	//if PC is male or herm
+	if(pc.hasCock())
+	{
+		output("\n\nSellesy folds her arms over her chest, yet her expression softens... a mixed signal? She asks: <i>“And");
+		if(flags["SELLESY_HL"] != undefined) output(", once again,");
+		output(" why do I want to use a toy, no matter how fantastical, when I can play with you instead?”</i>");
+
+		output("\n\nDrunk as you are, you still recognize the thrust of her question. <i>“");
+		if(pc.isBimbo()) output("Um... because it totally lets me, like, feel you just like I was inside you?”</i> you question back, sounding more defensive than intended.");
+		else if(pc.isBro()) output("’Cuz it totally transfers the feeling of your cunt right to my junk,”</i> you answer, flatly.");
+		else if(pc.isNice()) output("It actually has a feedback system that lets me feel you as if we were making love,”</i> you answer earnestly.");
+		else if(pc.isMischievous()) output("I’m just the kind of perv who gets off from this, I guess,”</i> you answer, coyly.");
+		else output("Because I want to. Also, it transfers the feedback to me. But mostly because I want to,”</i> you answer.");
+	}
+	//unsexed/females rejoin here
+	output("\n\nThe waitress blinks in surprise, and her body language opens up again; her hands fold behind her as she leans toward you and she finally cracks a grin...or at least a smirk. <i>“Well,”</i> she says, taking a step, <i>“that’s not so bad, then. I suppose it won’t hurt to play for a bit.”</i> She gestures to the bed, and you sit down heavily. Your massive holo-cock flips up and bumps you ");
+	if(!pc.isTaur()) output("on the nose");
+	else output("on the chest");
+	output(", and you work the controls again with your fumbling, drunken hands, sizing it down way too far until it’s a comically-tiny micropenis, no more than a few inches long.");
+
+	output("\n\nSellesy smiles at that, and slips her thumbs into her waistband. Bringing her legs together, she drops her pants and panties, leaning over so far in the process that you can see down her shirt. Now nude from the waist down, she steps out of the discarded panties and gracefully slides onto the bed, taking position atop you. With relish, she tickles the tip of your tiny surrogate dick by colliding her mons into it, grinning all the while you shiver from the feedback. You reach for the hem of her shirt and lift it, but before you can raise it over her breasts, she catches your hand and pulls it back down with a tut. The incorrigible tease pushes you over onto your back, and with an ‘oops’ face, slips your false phallus into her cunt.");
+	output("\n\n<i>“You’re so small,”</i> the alien pretends to mock. <i>“I can barely feel it.”</i> You ");
+	//(not mean)
+	if(!pc.isAss()) output("blush");
+	else output("furrow your brow");
+	output(" at that, and Sellesy laughs. She raises her arms and knits her hands behind her head; her shirted breasts jut forward as she arches her back and raises herself up on your toy just a bit, and you feel her elongated clits slide free from her body, creeping over your crotch like slippery, muscular worms.");
+	output("\n\nSellesy leans until her chest almost touches yours; ");
+	if(!pc.isTaur()) output("she grabs your hands and places them on her hips, and ");
+	output("her heavily-lidded eyes exude a desire for control. <i>“Relax,”</i> she says. <i>“I’ll take it from here.”</i> Sitting up again, she begins to gyrate on you, pressing the dinky dildo into the sides of her pussy. An electric arc of pleasure shoots up your back.");
+	output("\n\nYou relax into Sellesy’s will, and as she pivots her hips you feel a soft touch on your side; her clitoris, peeking between two toned legs, gropes for the girth control. She locates it and presses down; the alien’s oily lubrication soaks through where she drags her slick clit along the panel, sizing up your pencil-dick to a short, fat plug. Your expanding hardlight comes into contact with the outline of Sellesy’s pussy, and your [pc.leg] twitches involuntarily from the feedback... but she doesn’t stop gyrating her hips, and she doesn’t stop staring down at you from under her heavy eyelids.");
+	output("\n\nThe woman tunes you as thick as she can accommodate, and releases the control. Her clitors disappears again, into the space between your pelvises, but you continue to feel where it touched: the wet fabric clings to your skin. Another clit squirts through the gap on the opposite side, and finds the length control.");
+	output("\n\nYour back tenses");
+	//(not taur)
+	if(!pc.isTaur()) output(" and your fingers dig in");
+	output(" as you feel the holo-cock erect inside Sellesy’s hot pussy, pushing the thick crown over her ridges and folds. Sellesy continues to leer at you, unselfconsciously enjoying the power she has. The dildo jerks to a stop as it bumps into a wall of warm flesh; the alien woman shudders and the pressure on the control panel lessens. After a moment of thought, Sellesy rises up partway and extends it another inch or two. You’re dimly curious why she would make the toy longer than she could take, but you get your answer: fingers of smooth, oily muscle wrap around the base as her clitorises find it, constricting your proxy penis in a lubricated love-sleeve outside the very entrance of her pussy.");
+	output("\n\nSo situated, she lowers herself again to make sure the tip still reaches her deepest place; a sigh escapes as it glides through her sensitive clits. Satisfied, she begins to pump in earnest, pushing off of you with her elegant legs and then relaxing to fall on your faux-cock again. She throws her head back, whipping her long hair hard enough to almost brush your [pc.legs] and pushing out her chest");
+	if(!pc.isTaur()) output("... you’re enticed by her sweaty, writhing body, wishing to reach up and caress her breasts, but her hands continue to hold yours to her hips, insistent that you help her impale herself on the downstroke");
+	output(".");
+
+	//if pc has cock
+	if(pc.hasCock())
+	{
+		output("\n\nSellesy shifts her weight and leans back, bending your hardlight away; a clitoris unwinds from the dildo and creeps free, squirming between your sticky pelvises and her sweat-sheened thighs, oily and willful. The red tongue walks along your body like an octopus, wrinkling your [pc.lowerUndergarment], and then curls over your [pc.cock], stroking it through the fabric. You look up at Sellesy, who’s still throwing her head back as she rises and falls - her eye catches yours, and twinkles mischievously.");
+		output("\n\nThe flexible organ finds your [pc.cockHeadNoun] and pinches it softly, pulling it away from your body and then releasing it to smack against your [pc.legFurScales] again; it dabbles in the stream of precum seeping through the cloth, smearing and spreading it until it mingles with Sellesy’s natural lubrication and your underwear become translucent at the spot. <i>“I wonder...”</i> Sellesy muses, <i>“... how quickly I can make you finish?”</i> The woman’s ominous tone draws you to her face, which is grinning ghoulishly.");
+		output("\n\n");
+		if(pc.smallestCockVolume() <= 9999) 
+		{
+			output("No sooner do you take your eye off her crotch than Sellesy’s hips pivot and her remaining clits lurch out for you. One tugs the band of your [pc.lowerUndergarment] away from your waist, and the others dive in, fastening around your [pc.cocks]. Retracting, they drag your [pc.cockNounSimple " + pc.smallestCockIndex() + "] free.");
+		}
+		else output("No sooner are you distracted by her mischievous eye than her equally-troublesome clits dart out from between your bodies, gathering up your [pc.lowerUndergarment] with soft, oily pinches. With a sharp tug, they pull the waistband down over your enormous bulge, exposing your huge [pc.cockNounSimple].");
+		output("\n\nOne of the alien’s clits returns to your photo-cock, reforming the tight ring that buffers her pussy, but the others wrap around your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(", bending the shaft");
+		if(pc.cockTotal() > 1) output("s");
+		output(" and aiming you toward the smooth skin of her thighs as each clit forms a ring of wet muscle. Positioned like this, they pull and massage your crown");
+		if(pc.cockTotal() > 1) output("s");
+		output(" every time Sellesy rises up. She resumes riding, jerking and fondling while her pussy hilts the dildo and, as always, leering down at you with those amused, expectant eyes.");
+
+		output("\n\nThe tingles at the base of your spine grow completely out of hand under this new abuse, and your orgasm is upon you before your drunken mind can mount a resistance. ");
+		if(pc.balls > 1) output("Your [pc.balls] tighten as your body prepares to spill its seed, and Sellesy must feel them bumping against her, ");
+		else output("Your face pinches as your body prepares to cum, and Sellesy must interpret your expression correctly, ");
+		output("because her clits slide down and squeeze your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(" at the base");
+		if(pc.cockTotal() > 1) output("s");
+		output(" like velvety vises. Push as your body might, only a whisper escapes; you look wide-eyed at the alien for an explanation.");
+
+		if(pc.smallestCockVolume() <= 9999) 
+		{
+			output("\n\nInstead, she slowly rises up. At the summit, as high as her knees can push her, the third clit wrapped around your dildo flicks it free of her pussy, dragging the crown over her labia and pulling it out of position with a trailer of glistening moisture. Sellesy inches forward, pulling your straining cock");
+			if(pc.cockTotal() > 1) output("s");
+			output(" into position in its place, then she sinks down again, capturing your [pc.cockNounSimple " + pc.smallestCockIndex() + "]");
+			if(pc.cockTotal() > 1) output(" while the second is trapped between her thighs");
+			output(". Finally, ready to indulge her hunger, she releases her grip. [pc.Cum] spurts from your too-long-repressed ejaculation, ");
+			if(pc.cumQ() < 10) output("sprinkling [pc.cumGem]s on Sellesy’s pink insides.");
+			else if(pc.cumQ() < 1000) output("draping Sellesy’s thirsty cunt with strings of [pc.cumColor].");
+			else {
+				output("flooding Sellesy’s quim with a torrent of seed that bulges her toned stomach until it washes back out and ");
+				if(pc.cockTotal() == 1) output("soaks the sheets and pools in the depression caused by your weight");
+				else output("joins the puddle your other prick is making as it paints her belly");
+				output(", until you’re nothing but a raft keeping Sellesy afloat on a lake of [pc.cumNoun].");
+			}
+			if(pc.cockTotal() > 1 && pc.cumQ() < 1000) 
+			{
+				output(" Your other prick ");
+				if(pc.cumQ() < 10) output("sprinkles");
+				else output("squirts");
+				output(" its offering onto her smooth, sweat-soaked stomach, pinned outside by her clit.");
+			}
+			output("\n\nSellesy’s cunt twitches out a mild orgasm as you dump your seed - enough to make her leg shake, but not enough to wipe away her smug, knowing smile. Her calves fold against your body, precluding the possibility of early escape. She’s clearly intent on drinking her fill. Behind the trifornifilia, her clit toys idly with your captive holo-dick, stroking it up and down, forcing aftershocks from your real cock");
+			if(pc.cockTotal() > 1) output("s");
+			output(". ");
+			if(pc.PQ() < 40) output("For ten minutes");
+			else output("Until your strength recovers enough to move her");
+			output(", she drinks from you{, dipping into the puddle on the bed with her clits when you go dry");
+			output(".");
+		}
+		//if cockSmallest is too big for sellesy
+		else
+		{
+			output("\n\nInstead, she hooks her shirt and slowly pulls over her head, finally revealing her gorgeous breasts. With a jaunty fingertip, she pulls your [pc.cockNounSimple] toward her while she leans forward, tucking it into her cleavage.");
+			output("\n\n<i>“Much cleaner this way,”</i> she says idly. Before you can parse, she rises up, dragging your dick through her tits, and captures the [pc.cockHeadNoun] with her mouth; her clit unwinds, and your load boils forth. ");
+			//(small/med cum)
+			if(pc.cumQ() < 1000)
+			{
+				if(pc.cumQ() < 10) output("Sprinkles");
+				else output("Strings");
+				output(" of [pc.cumNoun] wet Sellesy’s tongue, and she smiles around your shaft.");
+			}
+			else output(" So much escapes that Sellesy’s cheeks bulge; unable to swallow fast enough and unable to maintain her seal, she spills [pc.cumNoun] down her chin and onto her breasts.");
+			output(" The alien releases you when your cock begins to soften, and the last dribble escapes down her chin; she wipes the cum off her face");
+			if(pc.cumQ() >= 1000) output(" and chest");
+			output(" and licks her fingers, then resumes her usual grin.");
+		}
+		//merge and end cock branches
+	}
+	//if pc has only vag
+	else if(pc.hasVagina())
+	{
+		output("\n\nSellesy shifts and leans forward, pushing off the dildo slightly; two of her clits unwind and snake their way free, out the back. They find your [pc.vaginas] and begin to rub, teasing out droplets of lubrication that mingle with the alien’s own and turn the fabric sticky-wet. Your [pc.thighs] twitch, trying to close down on the rosy tentacles, and Sellesy’s smile deepens.");
+		output("\n\n<i>“I wonder how quickly you can climax,”</i> she muses. Her tone is less than innocent... in fact, it’s downright diabolical. One of the clitorises hooks under the hem and pries the sticky cloth away from your pussy; the other uses the access to touch you intimately, exploring your own clitoris and labia. As you quiver under this new siege, Sellesy resumes gyrating her hips on your thick photonic prong, testing just how the feedback translates her pussy’s convulsions to yours.");
+		output("\n\nInterlaced with the trifornifilia, you can’t stop her curious clit from moving beyond fondling and sliding into your pussy, nor would you want to - the hot, writhing tentacle curls and licks at your nerves. Within a few minutes, the internal and external siege brings your pliant, drunken mind to climax; Sellesy must be watching you closely, because she leans forward and");
+		if(!pc.isTaur()) output("pins you to the bed with her hands on your shoulders, ");
+		output("unwinds all her clits from the dildo, snaking them into your underwear and cupping against your [pc.vaginas]. Pinned to the bed, you writhe out your climax against the waitress, ");
+		if(pc.PQ() < 50) output("who easily holds you down");
+		else output("who has a demanding job to keep your powerful frame from bucking her off");
+		output(". ");
+		//(low girlcum)
+		if(!pc.isSquirter()) output("Trickles of [pc.girlCum] are squeezed from your [pc.vaginas], only to be routed back in by Sellesy’s wall of pliable, smooth muscle.");
+		else output("Gushes of [pc.girlCum] squirt from you, and it’s all Sellesy can do to cup the flow inside with her clits; their oily surface grows more and more [pc.cumVisc] and soon, the trellis begins to leak onto the bed.");
+
+		output("\n\nShe holds you there until your orgasm fades, then lets up your shoulders and leans back again. Reaching a hand down, she cuts off the projector, leaving a sudden void both in her pussy and in your nerves. That space is quickly filled by the new sensation of her clit dipping into your [pc.vaginas], lapping up [pc.girlCumNoun] and transferring it to her own quim. She drinks of you until your juices taper off, then lets you go.");
+	}
+	//if unsexed
+	else
+	{
+		output("\n\nSellesy rides you hard, testing the limits of your toy’s ability to transfer sensation to your sexless crotch. For five minutes she grinds, but her smile flags as you take stroke after stroke without cumming. She leans back. <i>“You’re a regular rock,”</i> the woman sighs. <i>“You’re also greatly exceeding my interest in this. Let’s wrap it up.”</i>");
+		output("\n\nBefore you can ask a question, you feel one of her clits unwind from the projection. It snakes into your underwear and begins to hunt; within seconds, it’s found your [pc.asshole] and is tickling your ring. You jerk, and Sellesy’s smile returns. She pivots her hips again, resuming the torture of your dildo, and the smooth clitoris invades your ass with an oily push and starts to thrust. Using expert flicks at your anal nerves, Sellesy brings you to orgasm; your asshole tries to squeeze, but her tapered tentacle easily eludes you as the alien laughs, leaving you to shake out your orgasm as she stirs your holo-cock for extra amusement.");
+	}
+	//common ending
+	output("\n\n<i>“I suppose that was alright,”</i> Sellesy says. <i>“It was a diversion, at least.”</i> She climbs off of you and redresses, then heads for the door... but not before casting one last glance and smirk back. <i>“Toy");
+	if(InCollection(pc.race(),["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("poodle");
+	else output("-boy");
+	output(",”</i> she says, and slips out of the room.");
+	IncrementFlag("SELLESY_HL");
+	processTime(35);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

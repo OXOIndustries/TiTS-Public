@@ -28,7 +28,7 @@
 			this.description = "a set of stockings and panties";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This set consists of a pair of lacy panties along with silky stockings. As they're made of chameleon silk, at a moment's notice the stockings can switch to opaque, sheer or fishnet styles.";
+			this.tooltip = "This set consists of a pair of lacy panties along with silky stockings. As they’re made of chameleon silk, at a moment’s notice the stockings can switch to opaque, sheer or fishnet styles.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

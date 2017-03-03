@@ -42,14 +42,14 @@ public function yammisBadDay():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("You head over to Iced Teats, hoping for a quick snack to fill in a little time. As you approach, a small gang of unruly-looking young bulls storm out. Several look disgruntled, the rest are laughing. You wait until they’re gone, then head inside. Immediately you catch the sound of Yammi sniffling, trying not to cry. She’s standing behind her cash register and is covered in ice cream! They must have thrown half a dozen bowls at her.");
-	output("\n\n<i>“I’m sorry. We’re closed for the moment, I have to..... Oh! It’s you, hello.”</i> She chokes back a sob. <i>“Sorry, you kind of caught me at a bad time.”</i>");
+	output("\n\n<i>“I’m sorry. We’re closed for the moment, I have to... Oh! It’s you, hello.”</i> She chokes back a sob. <i>“Sorry, you kind of caught me at a bad time.”</i>");
 	output("\n\nYou can see that. You ask what happened, flipping the sign on the door around to ‘Momentary Delay.’ You note you saw the gaggle of troublemakers.");
-	output("\n\n<i>“Yeah, those guys are always a problem. They demand free stuff because they eat half their bowl and then decide they don’t like that flavor; they scream and yell at me all the time....... they’re just really unpleasant people.”</i> She finally picks up a cloth and wipes her face off. <i>“Those are the kind of people that make me want to buy out my contract. Immediately. If it weren’t for that kind of jerk, I’d probably be happy working here!”</i>");
+	output("\n\n<i>“Yeah, those guys are always a problem. They demand free stuff because they eat half their bowl and then decide they don’t like that flavor; they scream and yell at me all the time... they’re just really unpleasant people.”</i> She finally picks up a cloth and wipes her face off. <i>“Those are the kind of people that make me want to buy out my contract. Immediately. If it weren’t for that kind of jerk, I’d probably be happy working here!”</i>");
 	output("\n\nYou ask if they’re really common");
 	if(pc.isNice()) output(", as you pick up a cloth to help her wipe the counter");
 	output(". She nods.");
 	output("\n\n<i>“There’s quite a few. Mostly young hotshots who know I can’t do anything so they get away with acting like jerks, but there’s a lot of people who just think they should be accommodated no matter how stupid their gripe is or whose fault it is.”</i> She chuckles a little. <i>“This one Deditonian woman we get in here is always trying to get her ice cream free because it’s too cold. Really! Ice Cream, from the Iced Teats company, is too cold? I can’t imagine why it isn’t warmer, you know? And she’ll sit here and look down her nose at me for half an hour sometimes and inform me that it’s my job to please the customer and blah blah blah.”</i>");
-	output("\n\nYou ask her what she does? She smiles and hugs herself.");
+	output("\n\nYou ask her what she does. She smiles and hugs herself.");
 	output("\n\n<i>“I put up with it, of course. What else can I do? With her I usually just listen until her ice cream starts to melt, then point out it’s warmed up for her. She usually gets insulted and tells my boss, so I get hit with a small fine. Again.”</i>");
 	output("\n\nYou offer to stick around and help clean up, but she shakes her head.");
 	output("\n\n<i>“Thank you, I appreciate it, but I’ll get it. I could use a little time without customers to clear my head. I think I might just have a good cry and then open up again after I change.”</i>");
@@ -107,7 +107,7 @@ public function payForYammisSlutitude():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("You tell her to grab her bag and lock up. Holding up a credit chit full of credits, you tell her that you’re willing to cover that contract of hers.");
-	output("\n\n<i>“I appreciate the sentiment, but...... wait, really?!”</i> She looks stunned when you nod. Speechless, she jumps the counter and hugs you tightly, then looks around at the shop. <i>“Okay um.... just give me a moment! Help yourself to some ice cream, I have a couple things to shut down and a bag to grab and I’ll be right back!”</i>");
+	output("\n\n<i>“I appreciate the sentiment, but... wait, really?!”</i> She looks stunned when you nod. Speechless, she jumps the counter and hugs you tightly, then looks around at the shop. <i>“Okay um... just give me a moment! Help yourself to some ice cream, I have a couple things to shut down and a bag to grab and I’ll be right back!”</i>");
 	output("\n\nYou idly sample some flavors while she’s gone, and you suspect the girls in the machines know she’s leaving. Most look happy, some look a bit sad, many give you thankful looks. Only a few are upset, but you chalk that up to jealousy. Finally, Yammi comes back to the front, locking the back door behind her.");
 	output("\n\n<i>“My ex-owners are really angry. I don’t care though!”</i> She laughs, then hugs your arm. <i>“Okay! Where to, Boss? Your ship has a kitchen, right? Galley? Whatever it’s called? I can cook; I promise you won’t regret this!”</i>");
 	output("\n\nYou inquire if she isn’t perhaps interested in her freedom instead of latching onto you so quickly. She kisses you on the cheek.");
@@ -164,8 +164,14 @@ public function saliresIcedTeats():void
 	clearOutput();
 	yammiShopDisplay();
 	output("You head into the Iced Teats shop, looking to enjoy something cool and delicious. When you enter, a blue skinned woman with black hair smiles at you, her light blue vest barely holding her bulging D-cup breasts in place. She greets you with the familiar <i>“Welcome to Iced Teats! My name is Salire, what can I get for you today?”</i> She has the eager happiness of someone new to their job and looking to make a good impression.");
+	if(yammiRecruited() && !yammiIsCrew())
+	{
+		output("\n\nYammi is hanging around, eating some iced cream and talking shop with Salire. When she sees you, her eyes light up hopefully.");
+		addButton(1,"Yammi",yammiReRecruitApproach);
+	}
 	addButton(0,"Salire", salireApproach, undefined, "Salire", "Order a frozen treat from Salire.");
 }
+
 public function salireApproach():void
 {
 	clearOutput();
@@ -246,7 +252,84 @@ public function yammiFollowerMenu():void
 	//[Flirt]
 	//Repeat entrance to sex scenes. Replaces previous <i>“Flirt”</i> scenes.
 	if(flags["SEXED_YAMMI"] != undefined) addButton(3,"Flirt",flirtWithYammiBruh,undefined,"Flirt","See if your favorite chef is up for a little fun...");
+	addButton(13,"Evict",askYammiToLeave,undefined,"Evict","Potentially kick Yammi off your ship for the time being.");
 	addButton(14, "Back", crew);
+}
+
+public function askYammiToLeave():void
+{
+	clearOutput();
+	showYammi();
+	output("<i>“Hey Yammi, do you have somewhere to stay if I need to free up your bunk on the ship for a while?”</i>");
+	output("\n\nYammi cocks her head to the side, looking at you sidelong. <i>“What’s the matter Boss? You don’t like my cooking?”</i>");
+	output("\n\n<i>“It’s not that,”</i> you explain, <i>“I’m just thinking of doing some reorganizing on the ship.”</i>");
+	output("\n\n<i>“Oh.”</i> Yammi taps her chin. <i>“I think I could hang around on New Texas, if you want. Between Iced Teats and the the grill in Big T’s place, there’s bound to be some place that’ll let me pick up some extra scratch doing food prep. Those big bulls have huge appetites, especially after they spend all afternoon plowing some ditzy cow.”</i> She looks around. <i>“You need me to make tracks now, Boss?”</i>");
+	output("\n\nAre you sure you want to get rid of Yammi?");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Yes",yesRemoveYammiFromShip);
+	addButton(1,"No",noDontRemoveYammiYaCunt);
+}
+
+public function yesRemoveYammiFromShip():void
+{
+	clearOutput();
+	showYammi();
+	output("You nod.");
+	output("\n\nYammi gathers her things in short order");
+	if(pexigaIsCrew()) output(", along with [pexiga.name]");
+	output(". <i>“Don’t get any funny ideas just because I’m not around. You need to eat if you want to win this thing.”</i> She gives you a kiss on the cheek on her way out.");
+	
+	output("\n\n(<b>Yammi ");
+	if(pexigaIsCrew()) output("and [pexiga.name] are no longer on your crew. You can find them again on New Texas.");
+	else output("is no longer on your crew. You can find her again on New Texas.");
+	output("</b>)");
+	processTime(5);
+	flags["YAMMI_IS_CREW"] = 0;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function noDontRemoveYammiYaCunt():void
+{
+	clearOutput();
+	showYammi();
+	output("<i>“Nah, but I might need to later.”</i>");
+	output("\n\n<i>“You’re the boss, Boss.”</i>");
+	yammiFollowerMenu();
+}
+public function yammiReRecruitApproach():void
+{
+	clearOutput();
+	showYammi();
+	output("<i>“Hey, Boss. Ready to stop eating slop and get a real meal?”</i> Yammi smiles, excited to get back out amongst the stars.");
+	output("\n\nDo you want to add Yammi back to your crew?");
+	clearMenu();
+	addButton(0,"Yes",yesGetYammiBack);
+	addButton(1,"No",noGettingYammiBackToday);
+}
+
+public function yesGetYammiBack():void
+{
+	clearOutput();
+	showYammi();
+	output("You tell Yammi to grab her things and get back on the ship. She’s out the door before you finish.");
+	output("\n\n(<b>Yammi ");
+	if(pexigaRecruited()) output(" and [pexiga.name] have");
+	else output(" has");
+	output(" joined your crew!");
+	output("</b>)");
+	flags["YAMMI_IS_CREW"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function noGettingYammiBackToday():void
+{
+	clearOutput();
+	showYammi();
+	output("Yammi tries not to let her disappointment show when you inform her that you won’t be taking her back onboard yet.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function yammiTalkRouter():void
@@ -275,7 +358,7 @@ public function yammiTalkScene():void
 		output("You grab a seat and tell her you’d like to have a few words with her about herself. She nods and continues working.");
 		output("\n\n<i>“Of course, Boss! Ask me anything!”</i> she agrees.");
 		output("\n\nNaturally you start with her. Specifically, you ask what she can tell you about her kind.");
-		output("\n\n<i>“Oh, right! I never filled you in about us. Keep in mind I was raised apart from my kin, but I did a lot of research. I’m a sparadat. We’re from a hot world with all sorts of shallow-water stretches and rocky terrain. I think I mentioned we’re amphibians?”</i> She glances over to you, and you nod for her to continue. <i>“My race have live births like most humanoids. We also have a highly developed sense of smell and taste; I think that’s why I became such a fussy cook!”</i> she laughs.");
+		output("\n\n<i>“Oh, right! I never filled you in about us. Keep in mind I was raised apart from my kin, but I did a lot of research. I’m a sparadat. We’re from a hot world with all sorts of shallow-water stretches and rocky terrain. I think I mentioned we’re amphibians?”</i> She glances over to you, and you nod for her to continue. <i>“Those of my race have live births like most humanoids. We also have a highly developed sense of smell and taste; I think that’s why I became such a fussy cook!”</i> she laughs.");
 		output("\n\nMakes sense. She pauses to get a few things moved around in their pans, then starts cutting up some vegetables.");
 		output("\n\n<i>“So, we live for a long while, but nobody’s sure how long. Our world doesn’t have enough on it to really catch most people’s interest, no major wealth, just us. So we’ve kind of slipped through the cracks of the galaxy, and I think most sparadat are pretty good with that. Still, someone had use for a couple of us, or I wouldn’t be out here. I just hope my ancestors were adventurous, not captured specimens!”</i>");
 		output("\n\nYou decide to switch topics before she thinks too hard on that, and ask about how her people fare on their world.");
@@ -297,7 +380,7 @@ public function yammiTalkScene():void
 		output("\n\n<i>“Oh, you wouldn’t believe the things I did! Cooking and chemistry are related, you know, and I used to find all sorts of ways to blow things up or stain things. I only got caught once in a while though. Lucky me! They weren’t above locking us in little boxes to force us to think about how terrible we were, if they felt we needed a time out.”</i>");
 		output("\n\nYou assure her that she’s safe from that kind of treatment around here. She smiles to you and finishes mixing whatever she’s been making.");
 		output("\n\n<i>“Thanks, Boss! Here, taste this, see what you think?”</i>");
-		output("\n\nShe feeds you a spoonful of what appears to be red scrambled eggs. The taste isn’t bad...... for a second. Then, your stomach heaves and you grab the trash can. Alarmed, she holds your head up and waits for you to finish clearing out your lunch. When you can, you ask her what that was.");
+		output("\n\nShe feeds you a spoonful of what appears to be red scrambled eggs. The taste isn’t bad... for a second. Then, your stomach heaves and you grab the trash can. Alarmed, she holds your head up and waits for you to finish clearing out your lunch. When you can, you ask her what that was.");
 		output("\n\n<i>“That was the last time I listen to an article saying something very, very healthy is ‘a little bit unappealing to some,’ Boss. I’m so sorry!”</i> She hugs you gently, then helps you upright. <i>“Tell you what, you go sit down a minute, and I’ll get you something to settle your stomach!”</i>");
 		output("\n\nYou catch your breath, then with a chuckle you note <i>“If you don’t want me asking about your school days, just say so!”</i>");
 		output("\n\n<i>“Har-Dee-Har-Har, Boss.”</i> She shakes her head and points, sending you from her kitchen.");
@@ -373,9 +456,9 @@ public function offerToHelpYammi():void
 		output(". So you just wait patiently until she gets tired of the building awkwardness: her natural chatty nature gets the better of her, as you expected.");
 		output("\n\n<i>“Okay, look, I have a few ‘live’ specimens aboard to feed. Like the Tulpa on the menu, they’re absolutely terrible if you store them!”</i> She admits. <i>“I also cook a lot and preserve it for ingredients later, like herbs and things. Some of it I stash to trade every time we land somewhere interesting so I can get new spices and ingredients and recipes without costing you cash.”</i>");
 		output("\n\nYou roll your eyes and ask about these ‘live specimens’. As captain and owner of this ship, you feel you should know about anything like that aboard. You pick up the latest thing to chop up while you remind her that she has certain obligations to keep you on the up and up.");
-		output("\n\n<i>“Alright, true, I just..... Um, Boss?”</i> She raises a finger just as you raise your knife.");
-		output("\n\nFoolishly you tell her to continue, since you won’t be distracted. Unfortunately, the object you picked up happens to be a gups.... a slippery, tough veggie that your knife slides sideways on and puts a slim but nasty gash in your palm. Worse, the veggie juices on your hand include some major irritant, and you can’t help but stand there with what must be a comical look of pain on your face, hand held high and all of your willpower going into not clenching it into a fist!");
-		output("\n\n<i>“Ummm....... look, I’ll explain after you get that all cleaned up.”</i> She winces at your hiss of pain. <i>“Here, let me see?”</i>");
+		output("\n\n<i>“Alright, true, I just... Um, Boss?”</i> She raises a finger just as you raise your knife.");
+		output("\n\nFoolishly you tell her to continue, since you won’t be distracted. Unfortunately, the object you picked up happens to be a gups... a slippery, tough veggie that your knife slides sideways on and puts a slim but nasty gash in your palm. Worse, the veggie juices on your hand include some major irritant, and you can’t help but stand there with what must be a comical look of pain on your face, hand held high and all of your willpower going into not clenching it into a fist!");
+		output("\n\n<i>“Ummm... look, I’ll explain after you get that all cleaned up.”</i> She winces at your hiss of pain. <i>“Here, let me see?”</i>");
 		output("\n\nShe cleans your cut and puts some salve on it which causes it to stop hurting almost immediately. A quick dab of sealant and you’re pretty well good as new. You decide to leave the question for now, since you feel pretty foolish. Where’s a pirate attack or oncoming asteroid when you need a quick exit!?");
 		output("\n\n<i>“Look, don’t worry about it. I’ll show you next time, nothing dangerous. Meanwhile, you go relax and I’ll whip you up a nice snack! You grab a can of suds or a bottle of good stuff,”</i> Yammi offers.");
 		output("\n\nYou decide that sounds fair enough. Yammi’s not stupid, you know she wouldn’t bring anything deliberately dangerous aboard. Still, you remind yourself to check back in about that as you head to get a seat and see what she whips up.");

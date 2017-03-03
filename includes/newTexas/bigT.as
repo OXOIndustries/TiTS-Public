@@ -14,9 +14,9 @@ He remembers the Alamo.*/
 //Room Description
 public function bigTOfficeBonusBullshit():Boolean
 {
-	output("The office of the planetary governor, Big T., is a warm, spacious office with plenty of seats and couches and several bookshelves, looking more like an aristocrat's study than a government office. The room is dominated by a huge, oaken desk facing the door, a semi-circle of wood alight with monitors, holo-displays, and other readouts, all angled towards a huge, comfy-looking chair.");
+	output("The office of the planetary governor, Big T., is a warm, spacious office with plenty of seats and couches and several bookshelves, looking more like an aristocrat’s study than a government office. The room is dominated by a huge, oaken desk facing the door, a semi-circle of wood alight with monitors, holo-displays, and other readouts, all angled towards a huge, comfy-looking chair.");
 	//if T isn't dead/broken:
-	if(1 == 1) output("The towering bull-like governor is sitting at his desk, busily talking and typing, managing the world's affairs all from his desk.");
+	if(9999 == 9999) output("The towering bull-like governor is sitting at his desk, busily talking and typing, managing the world’s affairs all from his desk.");
 	showBust("BIGT");
 	author("Savin");
 	if(flags["MET_ZEPHYR"] == undefined)
@@ -50,6 +50,7 @@ public function getBigTPregContainer():PregnancyPlaceholder
 	ppBigT.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	ppBigT.balls = 2;
 	ppBigT.ballSizeRaw = 12;
+	ppBigT.createPerk("Fixed CumQ", 4000, 0, 0, 0);
 	return ppBigT;
 }
 
@@ -57,7 +58,7 @@ public function TsDoorIsLocked():void
 {
 	clearOutput();
 	showZephyrDeets();
-	output("You pull on the door, but all it does is rattle, locked.\n\nThe secretary just laughs to herself, making her implausibly large bust wobble. <i>“You'll need to talk to me if you want to get in there, but why don't you save us both the time and just leave?”</i>\n\nRude.");
+	output("You pull on the door, but all it does is rattle, locked.\n\nThe secretary just laughs to herself, making her implausibly large bust wobble. <i>“You’ll need to talk to me if you want to get in there, but why don’t you save us both the time and just leave?”</i>\n\nRude.");
 
 	currentLocation = "529";
 	var map:* = mapper.generateMap(currentLocation);
@@ -75,13 +76,13 @@ public function introToBigTSeeMeAfterClass():void
 	showBigT();
 	flags["MET_BIG_T"] = 1;
 	//{Something something transition from secretary here}
-	output("You step through the door into Governor Tee's office. The inside is nothing like any government office you've seen before, looking more like a hunting lodge's lobby than the soulless, bleak affairs you're familiar with from the core worlds. The room's dominated by a huge oaken desk facing the door, a semi-circle of solid hardwood inlaid with enough holo-displays to light up the room. The screens show flickering glimpses of milk production, food exports, and the comings and goings of ships from all over the planet's many towns. Hunting trophies line the room, culminating in a massive stuffed creature behind the desk, looking something like a six-legged polar bear with a unicorn's horn jamming out from its head.");
-	output("\n\nPacing in front of the desk is a huge, barrel-chested bull man. He's better dressed than you might have expected, clad in slacks and a white button-up shirt, just low enough to show a forest of dark, curly chest hair over taut muscles. The only Texan thing about him is the wide-brimmed white Stetson hat he's wearing, pierced by a pair of huge steer horns growing from his brow, and the over-sized six-gun slung low on his hip. For a man of his size, though, it looks like a popgun: New Texas's governor stands a formidable ten feet in height, at the least, and taller with his horns and cowboy hat added in. He's a wrecking ball of a man, massive and muscular, all crammed into business casual wear that looks ready to burst if he takes a deep breath.");
-	output("\n\nSeeing you walk in, the governor points to a headset buried in one of his bovine ears and says, <i>“Sorry, hoss, visitors a'comin'. We'll settle up later. Yeah. Ya'll take care, now.”</i>");
+	output("You step through the door into Governor Tee’s office. The inside is nothing like any government office you’ve seen before, looking more like a hunting lodge’s lobby than the soulless, bleak affairs you’re familiar with from the core worlds. The room’s dominated by a huge oaken desk facing the door, a semi-circle of solid hardwood inlaid with enough holo-displays to light up the room. The screens show flickering glimpses of milk production, food exports, and the comings and goings of ships from all over the planet’s many towns. Hunting trophies line the room, culminating in a massive stuffed creature behind the desk, looking something like a six-legged polar bear with a unicorn’s horn jamming out from its head.");
+	output("\n\nPacing in front of the desk is a huge, barrel-chested bull man. He’s better dressed than you might have expected, clad in slacks and a white button-up shirt, just low enough to show a forest of dark, curly chest hair over taut muscles. The only Texan thing about him is the wide-brimmed white Stetson hat he’s wearing, pierced by a pair of huge steer horns growing from his brow, and the over-sized six-gun slung low on his hip. For a man of his size, though, it looks like a popgun: New Texas’s governor stands a formidable ten feet in height, at the least, and taller with his horns and cowboy hat added in. He’s a wrecking ball of a man, massive and muscular, all crammed into business casual wear that looks ready to burst if he takes a deep breath.");
+	output("\n\nSeeing you walk in, the governor points to a headset buried in one of his bovine ears and says, <i>“Sorry, hoss, visitors a‘comin’. We’ll settle up later. Yeah. Ya’ll take care, now.”</i>");
 	//if PC = male:
-	output(pc.mf("He clicks off the headset and thrusts his hand out beneath a big, toothy grin. <i>“Well howdy! Welcome to New Texas, partner!”</i>","Over your shoulder and through the door, the governor shouts, <i>“Zephyr! You didn't say our guest was a beautiful woman!”</i>\n\n<i>“You say that like anything </i>else<i> walks through your damn door!”</i> comes the answer from the lobby. Tee guffaws, waving her off and extends a hand to you."));
-	output("\n\nYou shake Big T.'s hand and introduce yourself. His grip's vice-like, crushing down on you as he pumps your arm eagerly. <i>“Outstanding! Welcome to New Texas, " + pc.mf("Mr.","Ms.") + " Steele. I'm Governor Benjamin Tiberious Tee. Though most folks 'round here just call me Big T.”</i>");
-	output("\n\nHe ushers you into a big, plush seat and plops down behind his desk, kicking his feet up and pulling a huge, blue cigar from a drawer. <i>“Enjoyin' your stay on New Texas so far, " + pc.mf("Mr.","Ms.") + " Steele? Lemme know if there's anything you need -- or if you've got questions! Most governor's have secretaries for that sorta thing, but mine's a little ornery for it, dontcha think?”</i>");
+	output(pc.mf("He clicks off the headset and thrusts his hand out beneath a big, toothy grin. <i>“Well howdy! Welcome to New Texas, partner!”</i>","Over your shoulder and through the door, the governor shouts, <i>“Zephyr! You didn’t say our guest was a beautiful woman!”</i>\n\n<i>“You say that like anything </i>else<i> walks through your damn door!”</i> comes the answer from the lobby. Tee guffaws, waving her off and extends a hand to you."));
+	output("\n\nYou shake Big T.’s hand and introduce yourself. His grip’s vice-like, crushing down on you as he pumps your arm eagerly. <i>“Outstanding! Welcome to New Texas, " + pc.mf("Mr.","Ms.") + " Steele. I’m Governor Benjamin Tiberious Tee. Though most folks ‘round here just call me Big T.”</i>");
+	output("\n\nHe ushers you into a big, plush seat and plops down behind his desk, kicking his feet up and pulling a huge, blue cigar from a drawer. <i>“Enjoyin’ your stay on New Texas so far, " + pc.mf("Mr.","Ms.") + " Steele? Lemme know if there’s anything you need -- or if you’ve got questions! Most governor’s have secretaries for that sorta thing, but mine’s a little ornery for it, dontcha think?”</i>");
 	output("\n\n<i>“I can hear you!”</i> Zephyr snorts from outside.");
 	//if Silly:
 	if(silly) output("\n\n<i>“Hrm. Gotta invest in some soundproofing one of these days,”</i> Tee grunts, scratching his beard.");
@@ -94,7 +95,7 @@ public function bigTMenu():void
 	clearMenu();
 	addButton(0,"Talk",talkToBigT,talkToBigT);
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBigTMenu,undefined,"Sex","Try for some sexy times with the planetary Governor.");
-	else addDisabledButton(1,"Sex","Sex","You aren't aroused enough to try seducing Big T right now.");
+	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough to try seducing Big T right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -138,14 +139,14 @@ public function talkWithBigTAboutNudeTexas():void
 {
 	clearOutput();
 	showBigT();
-	output("<i>“So, tell me about your planet, Governor Tee,”</i> you prompt. The governor's all too happy to oblige.");
+	output("<i>“So, tell me about your planet, Governor Tee,”</i> you prompt. The governor’s all too happy to oblige.");
 	output("\n\n<i>“Well this here a paradise world if ever there was one,”</i> Big T. says proudly, leaning back in his chair and puffing his cigar. <i>“Beautiful, friendly people. Verdant fields and open sky. Peaceful and happy.”</i>");
-	output("\n\nThere's a long pause after that. Long enough to make you think he's not going to say any more.");
+	output("\n\nThere’s a long pause after that. Long enough to make you think he’s not going to say any more.");
 	if(pc.isMischievous()) output("\n\n<i>“Is that it? Is that your whole sell?”</i> you ask, laughing.");
 	else output("\n\n<i>“Anything else to it?”</i> you finally ask.");
-	output("\n\nTee guffaws and slaps his knee. <i>“That not enough for you, Steele? What else can ya want from a home, huh? Sure, it ain't the most exciting place in the galaxy. Just ask Ogram down at Customs. He's always complaining about not having pirates and kidnappers to shoot. Or at least he does when that Amma of his isn't keeping him busy. Ha! That's the real beauty of our little world, isn't it? There's always something to distract you from your woes. Never a bad day on New Texas - and if it is, just pop down to the milk barn until it ain't one!”</i>");
+	output("\n\nTee guffaws and slaps his knee. <i>“That not enough for you, Steele? What else can ya want from a home, huh? Sure, it ain’t the most exciting place in the galaxy. Just ask Ogram down at Customs. He’s always complaining about not having pirates and kidnappers to shoot. Or at least he does when that Amma of his isn’t keeping him busy. Ha! That’s the real beauty of our little world, isn’t it? There’s always something to distract you from your woes. Never a bad day on New Texas - and if it is, just pop down to the milk barn until it ain’t one!”</i>");
 
-	output("\n\nTee laughs and shakes his head. <i>“Life ain't all sex and milk, but there's enough of it on tap to keep anybody happy, thanks to the Treatment. That's what makes New Texas run, " + pc.mf("son","girl") + "! Or at least, run as smooth as it does for as long as it has. All the way back to the old colony days up 'till now!”</i>");
+	output("\n\nTee laughs and shakes his head. <i>“Life ain’t all sex and milk, but there’s enough of it on tap to keep anybody happy, thanks to the Treatment. That’s what makes New Texas run, " + pc.mf("son","girl") + "! Or at least, run as smooth as it does for as long as it has. All the way back to the old colony days up ‘til now!”</i>");
 	processTime(2);
 	talkToBigT(talkWithBigTAboutNudeTexas);
 }
@@ -157,17 +158,17 @@ public function theTreatmentFromBigTsPerspective():void
 	clearOutput();
 	showBigT();
 	//if Treated female: 
-	if(pc.isBimbo() && pc.isTreated()) output("<i>“So could you, like, tell me more about what I'm in for, all Treated and stuff?”</i> you ask, fluttering your lashes at the governor.");
+	if(pc.isBimbo() && pc.isTreated()) output("<i>“So could you, like, tell me more about what I’m in for, all Treated and stuff?”</i> you ask, fluttering your lashes at the governor.");
 	//if Treated male:
-	else if(pc.isTreated() && pc.isBro()) output("<i>“So, what'd I sign on for with this whole Treatment thing, exactly?”</i>");
-	else output("<i>“So, tell me more about this Treatment I've been hearing about.”</i>");
+	else if(pc.isTreated() && pc.isBro()) output("<i>“So, what’d I sign on for with this whole Treatment thing, exactly?”</i>");
+	else output("<i>“So, tell me more about this Treatment I’ve been hearing about.”</i>");
 
-	output("\n\nBig T. takes a long moment to think about that, puffing on his cigar and blowing clouds that smell more like cinammon than poison. <i>“Well, I reckon you could hear plenty from darn near anybody here on New Texas. Shoot, that cute little blonde down in Customs, Amma, can't wait to gab anybody's ear off who'll listen about it. But heck, you're here and asking, so I guess I can give you the whole spiel, too!”</i>");
+	output("\n\nBig T. takes a long moment to think about that, puffing on his cigar and blowing clouds that smell more like cinammon than poison. <i>“Well, I reckon you could hear plenty from darn near anybody here on New Texas. Shoot, that cute little blonde down in Customs, Amma, can’t wait to gab anybody’s ear off who’ll listen about it. But heck, you’re here and asking, so I guess I can give you the whole spiel, too!”</i>");
 
-	output("\n\nHe chuckles to himself and leans back in his chair in a way that makes his shirt and pants strain around his massive physique - and draws your eyes to the unmistakable bulge in the governor's britches. <i>“Treatment's been around just as long as New Texas has been, just about. Original colonists slow-boated here, way 'fore the whole Warp Gate shenanigans came around. Just a bunch of people crammed into a ship, a deck of cryo pods, and as much seeds and supplies as they could squeeze in - all blastin' off into the great unknown. Lucky them, they ended up here on a garden world instead of sucked into a black hole or something! When our ancestors landed, they needed something to kickstart the population. And that's the Treatment in a nutshell!”</i>");
-	output("\n\n<i>“Started out as a fertility drug all the colonists took way back when. Weren't as powerful then, but it let us spread out 'round the planet in a hurry. Over time, we've modified the Treatment to do all sorts of things. Makes everybody better in more ways than just baby making. " + pc.mf("Women","You women") + " get more libidinous, start lactating, put on curves in all the right places to make fellers drool. " + pc.mf("Us guys","Men like me") + " get bigger, burlier, hornier.”</i>");
+	output("\n\nHe chuckles to himself and leans back in his chair in a way that makes his shirt and pants strain around his massive physique - and draws your eyes to the unmistakable bulge in the governor’s britches. <i>“Treatment’s been around just as long as New Texas has been, just about. Original colonists slow-boated here, way ‘fore the whole Warp Gate shenanigans came around. Just a bunch of people crammed into a ship, a deck of cryo pods, and as much seeds and supplies as they could squeeze in - all blastin’ off into the great unknown. Lucky them, they ended up here on a garden world instead of sucked into a black hole or something! When our ancestors landed, they needed something to kickstart the population. And that’s the Treatment in a nutshell!”</i>");
+	output("\n\n<i>“Started out as a fertility drug all the colonists took way back when. Weren’t as powerful then, but it let us spread out ‘round the planet in a hurry. Over time, we’ve modified the Treatment to do all sorts of things. Makes everybody better in more ways than just baby making. " + pc.mf("Women","You women") + " get more libidinous, start lactating, put on curves in all the right places to make fellers drool. " + pc.mf("Us guys","Men like me") + " get bigger, burlier, hornier.”</i>");
 	output("\n\nTee laughs, pointing at the huge horns growing from the sides of his head when he notices where your gaze has wandered.");
-	output("\n\n<i>“At least that's what usually happens. Backfires sometimes, makes fellas girly and pretty little ladies into big, angry, muscle-bound-”</i>");
+	output("\n\n<i>“At least that’s what usually happens. Backfires sometimes, makes fellas girly and pretty little ladies into big, angry, muscle-bound-”</i>");
 	output("\n\n<i>“Sure you wanna finish that sentence, Tee?”</i> Zephyr shouts from the lobby.");
 
 	output("\n\nTee grumbles something and adjusts his tie. <i>“");
@@ -176,16 +177,16 @@ public function theTreatmentFromBigTsPerspective():void
 	//PC is mooazon: 
 	else if(pc.isTreated() && pc.hasVagina() && !pc.isBimbo()) output("Just like, uh, just like you, missy!");
 	// if PC is Treated: 
-	else if(pc.isTreated()) output("Don't </i>usually<i> happen, though. You turned out alright!");
+	else if(pc.isTreated()) output("Don’t </i>usually<i> happen, though. You turned out alright!");
 	// if PC is unTreated:
-	else output("That's all pretty rare, though, and even then, most folk turn out to like what the Treatment does to 'em. Ask that blonde boy out by the fields what he thinks of bulls these days! Hah!");
+	else output("That’s all pretty rare, though, and even then, most folk turn out to like what the Treatment does to ‘em. Ask that blonde boy out by the fields what he thinks of bulls these days! Hah!");
 	output("”</i>");
 
 	//if PC has met Cameron: 
 	if(flags["MET_CAMERON"] != undefined) output("\n\n...What?");
-	else output("\n\nTee guffaws at a joke you don't quite get and taps some ash out from his cigar.");
+	else output("\n\nTee guffaws at a joke you don’t quite get and taps some ash out from his cigar.");
 
-	output("\n\n<i>“Anyhoo, long and the short is that the Treatment's what makes sure New Texas the paradise it is. We're the biggest tourist spot there is for the galaxy's elite, and have the highest happiness ratings among the people of any system in the Confederacy! Makes good ol' New Texas just about as perfect as it gets!”</i>");
+	output("\n\n<i>“Anyhoo, long and the short is that the Treatment’s what makes sure New Texas the paradise it is. We’re the biggest tourist spot there is for the galaxy’s elite, and have the highest happiness ratings among the people of any system in the Confederacy! Makes good ol’ New Texas just about as perfect as it gets!”</i>");
 	flags["TALKED_ABOUT_TREATMENT_WITH_BIG_T"] = 1;
 	processTime(2);
 	talkToBigT(theTreatmentFromBigTsPerspective);
@@ -199,12 +200,12 @@ public function oldColonyBigTTalk():void
 	clearOutput();
 	showBigT();
 	output("<i>“What was New Texas like, back in the day? You mentioned the Treatment used to be something pretty different.”</i>");
-	output("\n\n<i>“Sure,”</i> Tee laughs, <i>“Every place changes, right? Even New Texas's grown over the years since my great great etcetera grandpappy landed us all here generations ago. Used to be some native, non-sapient species here, and the place was a little less grassy for starters. Mostly dry, dusty plains, far as the eye could see. Course, we didn't come with much in the way of fancy terraformin' machines, no " + pc.mf("sir","ma'am") + ". Settled this world the old fashioned way, with guns and grit and a whole lot of hard work.”</i>");
-	output("\n\nTee gets a proud, faraway look as he speaks. <i>“Back when men were men and women were women. 'Fore all this pre-fab colony nonsense, when you fought and bled for your stake of land! Even with the old Treatment doin' its thing, it was a long time 'fore we managed to settle the whole planet. Generations! Folk were living out of the original colony boat for decades, till we cleared out the biggest of the super-varmints. Practically a war, that was, the way my grandpappy told it. Huge bastards with claws and fangs thicker'n my arm, came raidin' at night to steal supplies, the bunch of scav-wolves. Even the little ones still around are a pain in the ass. Ask my girl Gianna sometime why she can't leave the property, she'll tell you what they still get up to.”</i>");
+	output("\n\n<i>“Sure,”</i> Tee laughs, <i>“Every place changes, right? Even New Texas’s grown over the years since my great great etcetera grandpappy landed us all here generations ago. Used to be some native, non-sapient species here, and the place was a little less grassy for starters. Mostly dry, dusty plains, far as the eye could see. Course, we didn’t come with much in the way of fancy terraformin’ machines, no " + pc.mf("sir","ma’am") + ". Settled this world the old fashioned way, with guns and grit and a whole lot of hard work.”</i>");
+	output("\n\nTee gets a proud, faraway look as he speaks. <i>“Back when men were men and women were women. ‘Fore all this pre-fab colony nonsense, when you fought and bled for your stake of land! Even with the old Treatment doin’ its thing, it was a long time ‘fore we managed to settle the whole planet. Generations! Folk were living out of the original colony boat for decades, ‘til we cleared out the biggest of the super-varmints. Practically a war, that was, the way my grandpappy told it. Huge bastards with claws and fangs thicker‘n my arm, came raidin’ at night to steal supplies, the bunch of scav-wolves. Even the little ones still around are a pain in the ass. Ask my girl Gianna sometime why she can’t leave the property, she’ll tell you what they still get up to.”</i>");
 	output("\n\n<i>“You lived out of the colony ship?”</i> you ask, cocking an eyebrow. Most colony ships back then would have been stripped down for scrap to make houses and other structures.");
-	output("\n\n<i>“Sure,”</i> Tee shrugs, punching one of the buttons on his holoscreen. An image of a massive, sleek starship flickers to life. <i>“Managed to actually land the damn thing... right 'round here, actually. Most colony ships just sorta crash, fall onto a good planet then wake the crew up outta cryo. Texas ship did it the other way around, see, and my great great etcetera grandpappy managed to land the big bastard. Perfect touchdown, not a scratch on 'er. Considerin' the creepy crawlies living here already, colonists figured it'd be better to stay aboard for the first while, till they could push the varms back a ways.”</i>");
-	output("\n\n<i>“So what happened to the ship, then?”</i> you ask. You haven't seen any gigantic colony ships sitting around.");
-	output("\n\nTee laughs, <i>“Great big sinkhole opened up a ways back, swallowed the old girl. Between you and me, the ranch house here's built right on top of 'er. Generator's still powering the whole ranch!”</i>");
+	output("\n\n<i>“Sure,”</i> Tee shrugs, punching one of the buttons on his holoscreen. An image of a massive, sleek starship flickers to life. <i>“Managed to actually land the damn thing... right ‘round here, actually. Most colony ships just sorta crash, fall onto a good planet then wake the crew up outta cryo. Texas ship did it the other way around, see, and my great great etcetera grandpappy managed to land the big bastard. Perfect touchdown, not a scratch on ‘er. Considerin’ the creepy crawlies living here already, colonists figured it’d be better to stay aboard for the first while, ‘til they could push the varms back a ways.”</i>");
+	output("\n\n<i>“So what happened to the ship, then?”</i> you ask. You haven’t seen any gigantic colony ships sitting around.");
+	output("\n\nTee laughs, <i>“Great big sinkhole opened up a ways back, swallowed the old girl. Between you and me, the ranch house here’s built right on top of ‘er. Generator’s still powering the whole ranch!”</i>");
 	processTime(2);
 	flags["TALKED_ABOUT_COLONY_WITH_BIG_T"] = 1;
 	talkToBigT(oldColonyBigTTalk);
@@ -218,35 +219,35 @@ public function bigTFamiryTalk():void
 	clearOutput();
 	showBigT();
 	output("<i>“You talk a lot about your ancestors. Original colonists, right?”</i>");
-	output("\n\n<i>“That's right,”</i> Tee beams proudly. <i>“Can trace my line all the way back to Captain Tiberia Tee, Commanding. First lady captain of a whole colony ship, she was. Husband was the helmsman, landed us here without a scratch on the old girl's hull.”</i>");
-	output("\n\nThat's a surprise. The New Texas expedition was led by a woman?");
-	output("\n\nTee laughs at the question. <i>“Sure, why not? Ain't nothing a man can do a woman can't!”</i>");
-	output("\n\n<i>“Yeah, but, </i>the Treatment<i>...”</i> you say, casting a glance out the governor's window to the ranch full of busty, air-headed sluts with little more than dick on their minds.");
-	output("\n\nIt takes a moment for your implication to sink in. When it does, Tee guffaws and slaps his leg. <i>“What, it was Tiberia's idea to begin with! She's the one that had us all taking the Treatment from the get-go. Gotta work hard to populate a new planet, she said. Course we don't </i>need<i> it anymore, but everyone just plain wants to! Her makin' everyone get Treated is what shaped New Texas into the paradise it is, sure as hell.”</i>");
-	output("\n\n<i>“Anyway,”</i> you say, figuring you can cut him off before another Treatment tirade. <i>“So, the captain's descendants get to be governor, is that it?”</i>");
-	output("\n\n<i>“Naw, we've got elections and all that,”</i> Tee answers, a bit flatly. <i>“Not a dictatorship or a kingdom, no, nothing like that. We're a right proper democracy, elections every two years. We Tees get elected plenty, but not </i>all<i> the time. Most folk think we've done right by 'em, and are more'n happy to have more of the same.");
-	if(pc.isTreated()) output(" Heck, aren't you? All nice and Treated - you wouldn't give that for anything, would ya?");
+	output("\n\n<i>“That’s right,”</i> Tee beams proudly. <i>“Can trace my line all the way back to Captain Tiberia Tee, Commanding. First lady captain of a whole colony ship, she was. Husband was the helmsman, landed us here without a scratch on the old girl’s hull.”</i>");
+	output("\n\nThat’s a surprise. The New Texas expedition was led by a woman?");
+	output("\n\nTee laughs at the question. <i>“Sure, why not? Ain’t nothing a man can do a woman can’t!”</i>");
+	output("\n\n<i>“Yeah, but, </i>the Treatment<i>...”</i> you say, casting a glance out the governor’s window to the ranch full of busty, air-headed sluts with little more than dick on their minds.");
+	output("\n\nIt takes a moment for your implication to sink in. When it does, Tee guffaws and slaps his leg. <i>“What, it was Tiberia’s idea to begin with! She’s the one that had us all taking the Treatment from the get-go. Gotta work hard to populate a new planet, she said. Course we don’t </i>need<i> it anymore, but everyone just plain wants to! Her makin’ everyone get Treated is what shaped New Texas into the paradise it is, sure as hell.”</i>");
+	output("\n\n<i>“Anyway,”</i> you say, figuring you can cut him off before another Treatment tirade. <i>“So, the captain’s descendants get to be governor, is that it?”</i>");
+	output("\n\n<i>“Naw, we’ve got elections and all that,”</i> Tee answers, a bit flatly. <i>“Not a dictatorship or a kingdom, no, nothing like that. We’re a right proper democracy, elections every two years. We Tees get elected plenty, but not </i>all<i> the time. Most folk think we’ve done right by ‘em, and are more‘n happy to have more of the same.");
+	if(pc.isTreated()) output(" Heck, aren’t you? All nice and Treated - you wouldn’t give that for anything, would ya?");
 	output("”</i>");
 
 	//if PC is Misch:
 	if(pc.isMischievous()) output("\n\nSounds like the Tees have themselves a mighty nice set-up here....");
-	else output("\n\nYou're not entirely convinced that's how Democracy usually works out.");
+	else output("\n\nYou’re not entirely convinced that’s how Democracy usually works out.");
 
-	output("\n\n<i>“So, who's up next to inherit the Tee throne?”</i> you ask, only half joking.");
-	output("\n\nIf the Governor picks up on the joke, he doesn't acknowledge it. <i>“Well, I don't have any proper kids. Well, I </i>probably<i> have loads of 'em, but none I know about. 'Who's your daddy?' is a pretty hard question to answer 'round here sometimes! Ha! Only kid I've legally got is my girl Gianna. You've met her, ain't ya?”</i>");
+	output("\n\n<i>“So, who’s up next to inherit the Tee throne?”</i> you ask, only half joking.");
+	output("\n\nIf the Governor picks up on the joke, he doesn’t acknowledge it. <i>“Well, I don’t have any proper kids. Well, I </i>probably<i> have loads of ‘em, but none I know about. ‘Who’s your daddy?’ is a pretty hard question to answer ‘round here sometimes! Ha! Only kid I’ve legally got is my girl Gianna. You’ve met her, ain’t ya?”</i>");
 
 	output("\n\nYou ");
 	if(flags["MET_GIANNA"] == undefined) output("shake your head");
 	else output("nod an affirmative");
-	output(". Tee smiles proudly, blowing a big ring of smoke as he says, <i>“She's a good girl. Met her by running her over with my truck! Heck of a way to meet your daughter, don't ya reckon? Well, not my daughter then. Adopted her later, when her owner forgot about her. What kind of fella does that, has a great girl like that and just leaves her? I don't even know.”</i>");
+	output(". Tee smiles proudly, blowing a big ring of smoke as he says, <i>“She’s a good girl. Met her by running her over with my truck! Heck of a way to meet your daughter, don’t ya reckon? Well, not my daughter then. Adopted her later, when her owner forgot about her. What kind of fella does that, has a great girl like that and just leaves her? I don’t even know.”</i>");
 
 	//If PC hasn't met Gigi: 
 	if(flags["MET_GIANNA"] == undefined)
 	{
 		output("\n\n<i>“Owner?”</i> you ask.");
-		output("\n\n<i>“Hmm? Ah, right. Gianna's an android! Companion droid, real expensive model. Smart as a whip and damn pleasant to be around. Nicest girl I've ever met, even if she don't smell like a woman. Owner got Treated, moved in, but plumb forgot about his girl, just left her to rot on the ship. Damn shame.”</i>");
+		output("\n\n<i>“Hmm? Ah, right. Gianna’s an android! Companion droid, real expensive model. Smart as a whip and damn pleasant to be around. Nicest girl I’ve ever met, even if she don’t smell like a woman. Owner got Treated, moved in, but plumb forgot about his girl, just left her to rot on the ship. Damn shame.”</i>");
 		output("\n\n<i>“So you adopted an android?”</i>");
-		output("\n\n<i>“Darn tootin'!”</i> Tee laughs. <i>“Best decision I ever made. Got her citizenship and everything. Had to pull a couple strings, maybe change a law, but hey. Made her happy, and that's what matters.”</i>");
+		output("\n\n<i>“Darn tootin’!”</i> Tee laughs. <i>“Best decision I ever made. Got her citizenship and everything. Had to pull a couple strings, maybe change a law, but hey. Made her happy, and that’s what matters.”</i>");
 	}
 	processTime(3);
 	talkToBigT(bigTFamiryTalk);
@@ -261,23 +262,23 @@ public function sexWithBigTMenu():void
 	clearOutput();
 	showBigT();
 	author("JimThermic");
-	output("You gaze at the masculine breadth of Big T's chest, and your cheeks warm up. Now you're a little closer, you can smell his powerful, intoxicating scent. It's the smell of a genuine New Texan bull - generations of alphas culminating into one glorious male specimen.");
+	output("You gaze at the masculine breadth of Big T’s chest, and your cheeks warm up. Now that you’re a little closer, you can smell his powerful, intoxicating scent. It’s the smell of a genuine New Texan bull - generations of alphas culminating into one glorious male specimen.");
 	output("\n\nWhen Tee flexes his arms, the tugging of his tight shirt across those muscular pecs makes your loins ache. What would it be like to trail your fingers across those hard, chiseled muscles, you wonder-?");
-	output("\n\nYou're suddenly aware that he's staring at you, and you freeze like a doe in the headlights. While you're standing there paralyzed, the ten foot bull man gets up and strides across the room to you. You let out a surprised noise as his muscular arms wrap around your waist, pulling you roughly against him.");
+	output("\n\nYou’re suddenly aware that he’s staring at you, and you freeze like a doe in the headlights. While you’re standing there paralyzed, the ten foot bull man gets up and strides across the room to you. You let out a surprised noise as his muscular arms wrap around your waist, pulling you roughly against him.");
 	output("\n\nWhen you look up, his riveting blue eyes are staring down at you. <i>“");
-	if(!pc.isTreated()) output("I'm not so good at telling with the non-treated " + pc.mf("boys","girls") + ", but even I can tell you're as riled up as a filly in heat.");
-	else output("You, " + pc.mf("boy","darlin'") + ", look as riled up as a filly in heat.");
-	output("”</i> His deep, rough voice thunders down from above. <i>“I think there's something we can do about that, don't you--?”</i>");
+	if(!pc.isTreated()) output("I’m not so good at telling with the non-treated " + pc.mf("boys","girls") + ", but even I can tell you’re as riled up as a filly in heat.");
+	else output("You, " + pc.mf("boy","darlin’") + ", look as riled up as a filly in heat.");
+	output("”</i> His deep, rough voice thunders down from above. <i>“I think there’s something we can do about that, don’t you--?”</i>");
 
 	output("\n\nAs if punctuating his statement, a large, powerful hand trails down your back and ");
 	if(!pc.isTaur()) output("squeezes your [pc.ass]. Almost by instinct, you push it into his grasp, shivering with delight as he teases your rump.");
 	else output("rests at the small of your back.");
 	output(" The look in his eyes speaks volumes - he clearly has plans for you.");
 
-	output("\n\nTee then brazenly pushes his hips forward, and you feel an obvious stiffening against your [pc.skinFurScalesNoun]. You look down and let out a sharp gasp - they seriously weren't joking when they called him 'Big T'. It looks like he's got a fire hose stashed down those slacks!");
-	output("\n\n<i>“How about it, " + pc.mf("boy","darlin'") + " -- want to be mated by a real bull?”</i>");
+	output("\n\nTee then brazenly pushes his hips forward, and you feel an obvious stiffening against your [pc.skinFurScalesNoun]. You look down and let out a sharp gasp - they seriously weren’t joking when they called him ‘Big T’. It looks like he’s got a fire hose stashed down those slacks!");
+	output("\n\n<i>“How about it, " + pc.mf("boy","darlin’") + " -- want to be mated by a real bull?”</i>");
 	//treated:
-	if(pc.isTreated()) output("\n\nYou're giddy with delight!");
+	if(pc.isTreated()) output("\n\nYou’re giddy with delight!");
 	else output("\n\nYour head is spinning, and you find yourself seriously entertaining the idea.");
 	output(" You, [pc.name] Steele, servicing the biggest bull on New Texas? And it looks like his cock is proportional to his body size....");
 
@@ -289,18 +290,18 @@ public function sexWithBigTMenu():void
 	// PitchT.Tooltip: Suggest turning things around on the bullish alpha male.
 	addButton(0,"Desk BJ",bigTHasABigDDeskBlowjob,undefined,"Desk BJ","Blow Tee from under his desk just like all the other cowgirl sluts!");
 	if(pc.cuntThatFits(400) >= 0 || pc.analCapacity() >= 400) addButton(1,"DrunkenCowgirl",drunkenCowgirlBoy,undefined,"DrunkenCowgirl","Knock back a few drinks with Tee, then take him for a ride....");
-	else addDisabledButton(1,"DrunkenCowgirl","DrunkenCowgirl","You can't possibly handle such a big dick. You'll need to do something to loosen up first.");
+	else addDisabledButton(1,"DrunkenCowgirl","DrunkenCowgirl","You can’t possibly handle such a big dick. You’ll need to do something to loosen up first.");
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(500) >= 0) addButton(2,"Pitch T",pitchTOverATable,undefined,"Pitch T","Suggest turning things around on the bullish alpha male.");
-		else addDisabledButton(2,"Pitch T","Pitch T","Big T is a big guy, but you're a little too big to fuck him without injuring him.");
+		else addDisabledButton(2,"Pitch T","Pitch T","Big T is a big guy, but you’re a little too big to fuck him without injuring him.");
 	}
 	else addDisabledButton(2,"Pitch T","Pitch T","You need a dick to bend Big T over his desk.");
 	addButton(3,"Get Ridden",getRiddenByBigT,undefined,"On New Texas, the bull rides you!");
 	addButton(14,"Back",bigTMenu);
 	//Not Written Yet:
 	// Get Ridden: Get bent over and screwed by a politician. At least New Texas is up-front about it.
-	// BullOrgy.tooltip: Tee holds a conference with a bunch of bulls, and you're jam-packed in the middle!
+	// BullOrgy.tooltip: Tee holds a conference with a bunch of bulls, and you’re jam-packed in the middle!
 	// Staff3Way.tooltop: Tee calls in Zephyr to fuck you from both sides.
 }
 
@@ -333,7 +334,7 @@ public function bigTHasABigDDeskBlowjob():void
 	output("\n\nYour tongue darts into every groove of his twitching stallion head, bathing it in your warm saliva. Sliding your hands up, you wrap them around his sizable sheathe. He’s so big your fingers strain to meet! Not letting anything rush you, not even your own desire, you stroke his impressive horse cock with long, lusty strokes, lightly wringing it with your digits.");
 	output("\n\nTee lets out a deep, rumbling groan and arches his hips into your eager hands and mouth. You blow air gently on his glistening tip and watch him shiver with delight from the mixed sensations. You’re rewarded as a thick bead of pre drools out of his sizable urethra, and you lean forward to greedily lap it up. Drool runs down your cheeks as you slide your [pc.tongue] inside of his cock hole, delving for every drop of his delicious bull sperm.");
 	output("\n\nWhen you pull back, you’re delighted to see a thin string of his glistening spunk stretching from the tip of his flat tipped stallion to your tongue. You pull back and back until it breaks and spills down your chin and chest, feeling a giddy rush of delight. You dive back for more, sucking and nursing his tip, all the while wringing his base for more of his heady cream. Every drop is heaven in liquid form, and you want more--!");
-	output("\n\nSpurred forward by lusty need, you try to slide your [pc.lips] around his massive cock head, feeling your jaws strain with the effort. The second Tee’s dick touches your tongue, you’re utterly swept up in his incredibly strong taste, and another dollop of pre erases all other thoughts. You close your eyes, utterly content to suck his mighty flat-tipped stallion, sucking and trembling as his hot sperm slides down your throat.");
+	output("\n\nSpurred forward by lusty need, you try to slide your [pc.lips] around his massive cock head, feeling your jaw strain with the effort. The second Tee’s dick touches your tongue, you’re utterly swept up in his incredibly strong taste, and another dollop of pre erases all other thoughts. You close your eyes, utterly content to suck his mighty flat-tipped stallion, sucking and trembling as his hot sperm slides down your throat.");
 
 	output("\n\nSuddenly, you feel his powerful hands reach around behind your head. You offer no resistance as the burly bull encourages you to take his girthy member inch by inch. You moan and tremble with delight as his big, strong member fills out your narrow throat, claiming it as his and stretching to fit his incredible shape. Your [pc.thighs] deliciously quiver - you’re not sure how much hotter you can get until you’re liberally creaming ");
 	if((pc.hasCock() || pc.hasVagina()) && pc.lowerUndergarment.shortName != "") output(" in your [pc.lowerUndergarment]!");
@@ -424,12 +425,12 @@ public function drunkenCowgirlBoy():void
 
 	output("<i>“");
 	if(!pc.isTreated()) output("Whoa there, cowboy. How about we knock back a few drinks and see where things go from there?");
-	else output("Mmmm, I'd totally love that. Drinks first?");
+	else output("Mmmm, I’d totally love that. Drinks first?");
 	output("”</i> You ");
 	//untreated:
 	if(!pc.isTreated() && !pc.isBimbo()) output("wink");
 	else output("giggle");
-	output(", gesturing towards the bottle of fine reserve New TX whiskey on his shelf. You can't play <i>that</i> easy to get - not without a little foreplay!");
+	output(", gesturing towards the bottle of fine reserve New TX whiskey on his shelf. You can’t play <i>that</i> easy to get - not without a little foreplay!");
 	output("\n\nThe broad-brimmed texan bull raises an eyebrow and lets out a throaty chuckle. <i>“Like the fine stuff, eh " + pc.mf("boy","darlin’") + "? Why not!”</i> He pulls out two crystal clear whiskey glasses and pours a good wallop of the amber fluid into each. <i>“Hope you like ‘em neat, ‘cause I don’t serve them any other way - it’d be disrespectful to the liquor.”</i>");
 	output("\n\nSitting down and leaning back into his massive, comfy looking chair, Big T shoots you a charming grin. You grab your own glass and sit up on his desk rather seductively, knocking back your glass.");
 	output("\n\nAs soon as you’re done, he tops it up, and soon you’re going shot for shot.");
@@ -437,7 +438,7 @@ public function drunkenCowgirlBoy():void
 	output("\n\nTee seems to notice your stare, and brazenly unzips his pants. You gasp as the bull displays his prodigious prick, his flat-tipped glans flaring cheekily before your eyes. Talk about rearing your head!");
 	output("\n\n<i>“Still fancy a ride, " + pc.mf("handsome", "cowgirl") + "?”</i> the muscular man offers once more. One of his hands wrap around his fleshy length, stroking it slowly. It steadily rises, like an impressive monument of manhood sticking out of his business slacks.");
 
-	output("\n\nWithout a moment’s hesitation, you begin stripping off your [pc.gear]. You can feel Tee’s eyes hungrily swallowing up the sight of your naked [pc.skinFurScalesNoun], and enjoying the sight of your bare [pc.chestNoun]. Once you’re completely in the buff, Tee takes off his cowboy hat. Somehow being allowed to wear it feels special, and you flush with delight.");
+	output("\n\nWithout a moment’s hesitation, you begin stripping off your [pc.gear]. You can feel Tee’s eyes hungrily swallowing up the sight of your naked [pc.skinFurScalesNoun], and enjoying the sight of your bare [pc.chestNoun]. Once you’re completely in the buff, Tee takes off his cowboy hat and places it on your head. Somehow being allowed to wear it feels special, and you flush with delight.");
 
 	output("\n\nNow properly attired for bull riding, you climb into the burly man’s lap and wrap your arms around his wide, muscular neck. With no small amount of trepidation -- and excitement -- you graze the tip of his equine head ");
 	if(x >= 0) output("between your [pc.thighs] and");
@@ -566,7 +567,7 @@ public function pitchTOverATable():void
 
 	output("\n\nLetting your digits descend, you firmly grab his posterior in both hands. His hard asscheeks are built for thrusting and squeezing - he’s truly a perfect stallion of a man. Tee trembles as you squeeze and tease his well developed rump, clearly getting off on your forceful grip. Between his thick thighs, you can see the bull’s gigantic flat-tip horsecock beating against the desk - someone’s raring to go!");
 	output("\n\n<i>“Oh, you’re really getting into this. I wouldn’t think you were the sort, governor,”</i> you cheekily tease. At the same time, you slip one of your fingers between his buttocks. His pucker is so large compared to your finger that it’s a cinch to slip it inside. Once you realize how easy it is, you slip in two more fingers.");
-	output("\n\nTee groans with pleasure as you wiggle your digits around inside of his massive ass. <i>“Ain’t got no problems with pleasure, darlin’. I reckon we bulls wouldn’t such sensitive butts if we ain’t supposed to poke around in ‘em!”</i>");
+	output("\n\nTee groans with pleasure as you wiggle your digits around inside of his massive ass. <i>“Ain’t got no problems with pleasure, darlin’. I reckon we bulls wouldn’t have such sensitive butts if we ain’t supposed to poke around in ‘em!”</i>");
 	output("\n\nYou reach down between Tee’s thighs and tease his hefty sack with your fingers. At the same time you massage and milk his prostate. The low, rugged noise of pleasure and his clenching anus tells you you’re definitely hitting the right spot. What a large sweet zone this big man has!");
 	output("\n\n<i>“Your fingers are great, darlin’, but how’s about you try something a little deeper?”</i> The bare-assed bull leans over his desk, presenting himself to you. Seeing the powerful male governor offer himself to you wearing nothing but a cowboy hat gets your blood flowing, especially to your [pc.cocks]! You grab his hips and grind yourself between those massive asscheeks. A single clench of his cheeks makes you groan out loud. He has amazing control of his glutes and sure knows how to use them!");
 	output("\n\n<i>“Fuck my ass, " + pc.mf("boy","girl") + ", I want to feel you inside of me!”</i> Tee gruffly coaxes you, all the while clenching your [pc.cock " + x + "] hard between his muscular buttocks and grinding back against you. Each backwards push strokes off your straining hard shaft");
@@ -682,7 +683,7 @@ public function getRiddenByBigWheee(target:int = -1):void
 
 	output("\n\nWhen he stops, you let out a dizzy moan, utterly high off the endorphins from your thorough spanking. There’s something <i>hard</i> and <i>thick</i> sliding between your [pc.skinTone] buttocks, and you’re fairly sure you know what it is. Your sensitive rump throbs against his stallion cock and thrums against his turgid length.");
 
-	output("\n\n<i>“If you want it, darlin’, you’re best ask,”</i> Tee teases you. His hands are firm on your naked [pc.thighs]. You’re caught between the desk and his <i>very</i> hard place. You feel dominated like a mating mare, primed and put in position by a powerful alpha male. A deep, yearning urge to be bred sweeps over you and the last of your self-restraint crumbles. Needily grinding your [pc.ass] against his erection, you beg for him to fuck ");
+	output("\n\n<i>“If you want it, darlin’, you’d best ask,”</i> Tee teases you. His hands are firm on your naked [pc.thighs]. You’re caught between the desk and his <i>very</i> hard place. You feel dominated like a mating mare, primed and put in position by a powerful alpha male. A deep, yearning urge to be bred sweeps over you and the last of your self-restraint crumbles. Needily grinding your [pc.ass] against his erection, you beg for him to fuck ");
 	if(target >= 0) output("your pussy");
 	else output("it long and hard");
 	output(", desperate for his cock inside of you.");
@@ -710,7 +711,7 @@ public function getRiddenByBigWheee(target:int = -1):void
 		output(", [pc.lowerUndergarment] down at your [pc.feet],");
 	}
 	output(" as you are heartily fucked from behind by your lusty bull lover. Every flare of his flat head teases your clenching inner walls and sends explosions of hot pleasure through your loins. You’re on a rollercoaster of pleasure and you hold on for dear life as you’re taken for a ride!");
-	output("\n\nFrom behind you, you can hear his bellowing moans and the feel slapping of his hips against your [pc.ass]. Your [pc.nipples] rub and caress the desk below");
+	output("\n\nFrom behind you, you can hear his bellowing moans and feel the slapping of his hips against your [pc.ass]. Your [pc.nipples] rub and caress the desk below");
 	if(pc.isLactating()) output(" and you excitedly smear it with your dribbling [pc.milkNoun]");
 	else output(", sending rivulets of pleasure coursing through your [pc.breasts]");
 	output(". Tee’s turgid length slides in and out of your ");

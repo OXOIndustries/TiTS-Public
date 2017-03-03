@@ -83,7 +83,7 @@
 					if(pc.tone > 75)
 					{
 						if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("\n\nYou aren’t sure if it’s how thick your fur is getting, but your muscles are getting a little less noticeable.");
-						else kGAMECLASS.output("\n\nYour muscles are a little less noticeable. These cookies aren't doing you any favors.");
+						else kGAMECLASS.output("\n\nYour muscles are a little less noticeable. These cookies aren’t doing you any favors.");
 						pc.tone = 75;
 					}
 					//50+ to 50
@@ -384,7 +384,7 @@
 					kGAMECLASS.output("\n\nThe flow refuses to ebb or slow for what feels like hours, but it must have only been minutes. When it does finally come to an end, you’re left panting and [pc.cumNoun]-stained, and <b>your balls are even bigger.</b> Maybe you had best lay off the tanuki treats for a while");
 					if(pc.isCrotchGarbed()) kGAMECLASS.output("... and get a change of bottoms");
 					kGAMECLASS.output(".");
-					kGAMECLASS.output("\n\n(<b>Perk Gained: 'Nuki Nuts</b> - Your gonads can now swell up with excess semen, allowing for excessively large orgasms. Beware of immobilization!)");
+					kGAMECLASS.output("\n\n(<b>Perk Gained: ‘Nuki Nuts</b> - Your gonads can now swell up with excess semen, allowing for excessively large orgasms. Beware of immobilization!)");
 					pc.createPerk("'Nuki Nuts",0,0,0,0,"Allows gonads to swell with excess seed.");
 					pc.ballSizeRaw += 1.5;
 					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1.5;
@@ -536,12 +536,12 @@
 					kGAMECLASS.output("\n\nYour [pc.legOrLegs] go weak, suddenly warm and nerveless. At the same time, the space");
 					if(pc.legCount > 1) kGAMECLASS.output(" between them");
 					else kGAMECLASS.output(" above");
-					kGAMECLASS.output(" flushes hot and gooey. Your inky netherlips blush purple and seem to plump up in your mind, overloading you with tactile sensation, telling you that they're ready for huge loads of kui-tan cum and your fingers all at the same. Whimpering, you reach down to feel the sodden furnace");
+					kGAMECLASS.output(" flushes hot and gooey. Your inky netherlips blush purple and seem to plump up in your mind, overloading you with tactile sensation, telling you that they’re ready for huge loads of kui-tan cum and your fingers all at the same. Whimpering, you reach down to feel the sodden furnace");
 					if(pc.totalVaginas() > 1) kGAMECLASS.output("s");
 					kGAMECLASS.output(", marveling at the reshaping contours of your flower");
 					if(pc.totalVaginas() > 1) kGAMECLASS.output("s");
 					kGAMECLASS.output(" even as your fingers plunge inside.");
-					kGAMECLASS.output("\n\nBliss blasts away any concerns about your rising libido or the sudden, vivid hallucinations of cum. Even when you imagine bathing in it, scooping thick handfuls into your gash, smearing coats of the thick stuff across your heart-shaped mons, your only reaction is to smile beatifically and idly finger yourself. You do eventually stop, and once you finally free your fingers from their ink-black prison, you can truly appreciate the shape you've been given. <b>You think you can enjoy having such ");
+					kGAMECLASS.output("\n\nBliss blasts away any concerns about your rising libido or the sudden, vivid hallucinations of cum. Even when you imagine bathing in it, scooping thick handfuls into your gash, smearing coats of the thick stuff across your heart-shaped mons, your only reaction is to smile beatifically and idly finger yourself. You do eventually stop, and once you finally free your fingers from their ink-black prison, you can truly appreciate the shape you’ve been given. <b>You think you can enjoy having such ");
 					if(pc.totalVaginas() == 1) kGAMECLASS.output("a cute, kui-tan pussy.</b>");
 					else kGAMECLASS.output("cute kui-tan pussies");
 					pc.libido(4);

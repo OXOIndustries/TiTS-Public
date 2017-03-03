@@ -240,7 +240,7 @@ package classes.GameData.Pregnancy.Handlers
 				switch (tLevel)
 				{
 					case 1:
-						return "The first visible signs of pregnancy have pregnancy have appeared. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you're not getting horribly sick in the mornings anymore!"
+						return "The first visible signs of pregnancy have pregnancy have appeared. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you’re not getting horribly sick in the mornings anymore!"
 						break;
 						
 					case 2:
@@ -248,11 +248,11 @@ package classes.GameData.Pregnancy.Handlers
 						break;
 						
 					case 3:
-						return "You find your hands wandering to your belly more and more -- as much to support the growing weight you're bearing as to caress the home of your unborn children.\n\nYou're so heavily showing now that you can't go much of anywhere without people staring. It won't be long now... maybe just a few weeks more!"
+						return "You find your hands wandering to your belly more and more -- as much to support the growing weight you’re bearing as to caress the home of your unborn children.\n\nYou’re so heavily showing now that you can’t go much of anywhere without people staring. It won’t be long now... maybe just a few weeks more!"
 						break;
 						
 					case 4:
-						return "You note that your swollen belly is shifting awkwardly, and you're starting to feel very... wet. Your motherly instincts tell you that you'll be giving birth very, very soon.";
+						return "You note that your swollen belly is shifting awkwardly, and you’re starting to feel very... wet. Your motherly instincts tell you that you’ll be giving birth very, very soon.";
 						break;
 						
 					default:

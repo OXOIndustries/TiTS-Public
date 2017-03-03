@@ -14,6 +14,9 @@ public function bimbotoriumHallBonus():Boolean
 	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
 	{
 		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shack has been all but mummified in flickering holographic police tape.");
+		
+		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+		
 		drBadgerShackPexigaQuestGo();
 	}
 	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
@@ -55,28 +58,30 @@ public function drBadgerMenu():void
 }
 public function drBadgerBuyMenu():void
 {
+	chars["DRBADGER"].inventory = new Array();
+	chars["DRBADGER"].inventory.push(new Dumbfuck());
+	chars["DRBADGER"].inventory.push(new Gush());
+	chars["DRBADGER"].inventory.push(new SlutRay());
+	chars["DRBADGER"].inventory.push(new Tentacool());
+
 	// Shop unlocks
 	if(flags["BADGER_QUEST"] >= 3)
 	{
-		if(!chars["DRBADGER"].hasItemByType(SlutRayAdvanced)) chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
-		if(!chars["DRBADGER"].hasItemByType(Throbb)) chars["DRBADGER"].inventory.push(new Throbb());
-	}
-	else
-	{
-		chars["DRBADGER"].destroyItem(new SlutRayAdvanced());
-		chars["DRBADGER"].destroyItem(new Throbb());
+		chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
+		chars["DRBADGER"].inventory.push(new Throbb());
+		CodexManager.unlockEntry("Throbb");
 	}
 	if(canBuySiegwulfe(true))
 	{
-		if(!chars["DRBADGER"].hasItemByType(SiegwulfeItem)) chars["DRBADGER"].inventory.push(new SiegwulfeItem());
+		chars["DRBADGER"].inventory.push(new SiegwulfeItem());
 	}
-	else chars["DRBADGER"].destroyItem(new SiegwulfeItem());
 	
 	shopkeep = chars["DRBADGER"];
 	
 	//Unlock dumbfuck codex
 	CodexManager.unlockEntry("Dumbfuck");
 	CodexManager.unlockEntry("Gush");
+	CodexManager.unlockEntry("Tentacool");
 	
 	buyItem();
 }
@@ -105,19 +110,20 @@ public function drBadgerBonusShit():Boolean
 	}
 	else
 	{
-		if(flags["BADGER_QUEST"] == -3) 
+		if(flags["BADGER_QUEST"] == -3)
 		{
 			bimboBadgerShopStuff();
 			return false;
 		}
 		//Room desc
-		output("The inside of the “good” doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard. She’s every bit the mad scientist you’d expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
+		output("The inside of the “good” doctor’s shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don’t even want to hazard. She’s every bit the mad scientist you’d expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.");
 		//If the player visits Dr. Badger’s after starting the quest but leaving before getting their pexiga, the bimbotorium is empty:
 		if(flags["PEXIGA_TREATMENT"] == 0)
 		{
 			if(flags["NYM-FOE"] == undefined)
 			{
-				output("Dr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?\n\n");
+				output("\n\nDr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?");
+				
 				//[Get Pexiga][Just Leave]
 				addButton(0,"Bring Pexiga",bringBadgerPexibork);
 			}
@@ -667,7 +673,7 @@ public function removeDatCuntTail():void
 	output("\n\nWith those words, she yanks the tube tight, right below your ass. Your tail squirms autonomously as the blood is sealed in, but there’s little pain or numbness... yet. The badger turns her attention to a slate on a nearby counter and punches up a holo-diagram of a cunt snake’s circulatory system. She studies it, then smiles at you and picks up the umbral syringe. In the dim lab, the deep indigo light emanating from the drug darkens one side of her white grin, giving the doctor a lopsided, maniacal look.");
 	output("\n\n<i>“Here we go!”</i> she says, pinning your tail with a strong hand to stop its squirming. You can feel the pressure as she plunges in the needle and forces the contents into the snake’s vein - its nerves are still working and linked to your own spine. A dull heat spreads as chemicals diffuse, warming your parasite several degrees.");
 	output("\n\nYour tail begins to writhe in the straps, flexing and arching, trying to break free. Pressure grows at the bindings, becoming painful; it’s swelling badly, bulging along its length when you look. ");
-	//(leg/tail area is  scales)
+	//(leg/tail area is scales)
 	if(pc.hasScales()) output("Scales slough away as it chafes, revealing ");
 	else if(pc.hasChitin()) output("Chitin begins to disconnect from it, allowing the snake to squirm right out of its shell and expose ");
 	//(fur/feathers){Fur/Feathers}
@@ -930,7 +936,7 @@ public function removeDatCuntTail():void
 		changes++;
 	}
 	//resume scene
-	output("\n\nYour perverted physician doesn’t even notice the slackening tourniquet as she abandons herself to the vinegar strokes, too hard and horny to stop fucking your tailpussy and do her job. Her pumps come faster and harder, smearing the lusty snake against the table with each dick-bending thrust; your vision clouds and your temples pound from your thundering pulse, drug-fucked and fuck-drugged. Dr. Badger’s strokes become so shallow that you can feel her balls tightening up to deliver a fertile batch of bimbo, and the next new sensation is a flood of hot viscous liquid hitting your tail-cunt’s cervix, splatting against the snake womb and puddling at the bottom of the gaped pussy. Your orgasm pulls closer as the bimbo badger dumps stripe after stripe of cum in you, but each wet impact seems to get softer and softer... as if the badger’s cock were shrinking away somehow, but when you look at her, she’s still slamming her hips into the abused cunt, pinching out jizz.");
+	output("\n\nYour perverted physician doesn’t even notice the slackening tourniquet as she abandons herself to the vigorous strokes, too hard and horny to stop fucking your tailpussy and do her job. Her pumps come faster and harder, smearing the lusty snake against the table with each dick-bending thrust; your vision clouds and your temples pound from your thundering pulse, drug-fucked and fuck-drugged. Dr. Badger’s strokes become so shallow that you can feel her balls tightening up to deliver a fertile batch of bimbo baby batter, and the next new sensation is a flood of hot viscous liquid hitting your tail-cunt’s cervix, splatting against the snake womb and puddling at the bottom of the gaped pussy. Your orgasm pulls closer as the bimbo badger dumps stripe after stripe of cum in you, but each wet impact seems to get softer and softer... as if the badger’s cock were shrinking away somehow, but when you look at her, she’s still slamming her hips into the abused cunt, pinching out jizz.");
 	output("\n\n<i>“No... no...”</i> you pant, trying to hold onto orgasm as the link to your parasite fades. Dr. Badger doesn’t seem to care; she finishes impregnating, hunched over your tail with badger balls slapping the table, but the nerve connection degrades - within seconds, you feel your tail shift and separate from your body with sharp pinches on your ass, like teeth. You’re left in a void of sensation, hyperventilating and a whisker away from climax but unable to break your restraints. You twist and strain until your vision goes pink, seeing the bitch badger lengthen her stroke again but not comprehending the second round she’s working up to.");
 	pc.lust(100);
 	output("\n\nWithin moments, your brain checks out and you slip into a merciful blackout, or perhaps a fugue...");

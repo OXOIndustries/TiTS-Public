@@ -824,6 +824,7 @@ public function sellOfBessDatWhore():void
 	pc.credits += 10000;
 	flags["SOLD_BESS"] = 1;
 	flags["BESS_LOCATION"] = BESS_DISABLED;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	processTime(2040);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -844,6 +845,7 @@ public function handBessOverToAuthorities():void
 	flags["BESS_GIVEN_TO_UGC"] = 1;
 	flags["BESS_DISABLED"] = 1;
 	flags["BESS_LOCATION"] = BESS_DISABLED;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	processTime(2040);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -884,6 +886,7 @@ public function dumpTheBessBot():void
 	flags["BESS_DISABLED"] = 1;
 	flags["BESS_DUMPED_INTO_SPAAAAAAACE"] = 1;
 	flags["BESS_LOCATION"] = BESS_DISABLED;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -902,6 +905,7 @@ public function waitAtTavrosBess():void
 	processTime(2040);
 	currentLocation = shipLocation;
 	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -5751,6 +5755,7 @@ public function talkToBessBreakUp():void
 	bessHeader();
 
 	flags["BESS_LOCATION"] = BESS_DISABLED;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 
 	output("You tell [bess.name] that you no longer love [bess.himHer] and that it’s over between you.");
 	if (pc.isNice()) output(" You try to word it as gently as possible, but there’s just no good way to deliver it.");
@@ -5775,6 +5780,7 @@ public function talkToBessConfirmDismiss():void
 	bessHeader();
 	
 	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	
 	output("<i>“Alright, "+ bessPCName() +"! I’ll wait for you back on Tavros if you need me,”</i> [bess.name] obediently replies. [bess.HeShe] doesn’t seem that upset by you kicking [bess.himHer] off the ship.");
 	
@@ -8777,6 +8783,7 @@ public function bessEvent19RejectionTooLate():void
 	processTime(15+rand(5));
 
 	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -9233,6 +9240,7 @@ public function bessEvent21BreakUp():void
 	processTime(12 * (58 + rand(4)));
 	flags["BESS_JUST_A_FRIEND"] = 1; // 9999 ??
 	flags["BESS_LOCATION"] = BESS_AT_TAVROS;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -9533,6 +9541,7 @@ public function bessEvent25Spinoff():void
 	output("\n\n(<b>[bess.name] is no longer part of your crew.</b>)");
 
 	flags["BESS_LOCATION"] = BESS_DISABLED;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	processTime(10+rand(3));
 
 	clearMenu();
@@ -9656,6 +9665,7 @@ public function bessEvent28DontGoAfter():void
 	output("\n\n(<b>[bess.name] is no longer your follower!</b>)");
 
 	flags["BESS_LOCATION"] = BESS_DISABLED;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -10648,6 +10658,7 @@ public function bessAtTavrosNope():void
 	output("\n\n(<b>[bess.name] is no longer part of your crew.</b>)");
 	
 	flags["BESS_LOCATION"] = BESS_DISABLED;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

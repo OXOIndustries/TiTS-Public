@@ -119,7 +119,7 @@ public function actuallyStartKashimaJobII():void
 
 	output("Thanks to your company credentials, you’re able to remotely open the ship’s docking bay, allowing your shuttle to zip inside and set down. The craft shudders heavily as the landing struts meet the deck of the <i>Kashima</i>’s bay, and the engine cuts out with a distant whine. The Nova mercs stand up and grab their gear: mostly repair tools and other tech, though being a private military force, everyone’s armed with at least a handgun. A couple of them even have laser carbines, looking like the actual security goons of the group. They’re the ones who pull open the shuttle door with a hiss, leading the way out into the bay.");
 	
-	output("\n\nAnd then there’s the expedition’s commander. You’re treated to the sight of a towering leithan woman, with shiny black plates and dark grey skin shrouded by heavy orange-and-white heavy armor. Her six long, strong legs click heavily on the shuttle’s deck as she paces forward, and her reptilian tail sweeps around, whacking laggardly crewmen on the ass to get them in gear. She cuts an imposing figure, thick-set and muscular, with black hair pulled into a long ponytail that goes all the way down her back and a stern, hard chin bearing a scar that runs along her jaw.");
+	output("\n\nAnd then there’s the expedition’s commander. You’re treated to the sight of a towering leithan woman, with shiny black plates and dark gray skin shrouded by heavy orange-and-white heavy armor. Her six long, strong legs click heavily on the shuttle’s deck as she paces forward, and her reptilian tail sweeps around, whacking laggardly crewmen on the ass to get them in gear. She cuts an imposing figure, thick-set and muscular, with black hair pulled into a long ponytail that goes all the way down her back and a stern, hard chin bearing a scar that runs along her jaw.");
 	
 	output("\n\n<i>“Alright, Steele,”</i> she grunts at you, hefting up a heavy machinegun from a rack on the side of the shuttle. <i>“Just stay behind me and");
 	if (pc.hasRangedWeapon()) output(" try not to shoot anybody");
@@ -265,7 +265,7 @@ public function lustyBugpony():void
 	output("\n\nFinally she stops, planting all six legs on the deck and turning to face you, hands on her hips.");
 	if (flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
 	{
-		output("<i>“Again?”</i> she huffs, looking you up and down. Slowly, she starts unbuckling the breastplate of her armor, using her tail to lift the hind plates. Her grey skin darkens as she does so, and as her bodysuit comes aside, you’re assaulted with a familiar, overwhelming feminine musk. <i>“The first time was... fuck, whatever. As long as it gets your head back in the game.”</i>");
+		output("<i>“Again?”</i> she huffs, looking you up and down. Slowly, she starts unbuckling the breastplate of her armor, using her tail to lift the hind plates. Her gray skin darkens as she does so, and as her bodysuit comes aside, you’re assaulted with a familiar, overwhelming feminine musk. <i>“The first time was... fuck, whatever. As long as it gets your head back in the game.”</i>");
 
 		output("\n\n<i>“You enjoyed it,”</i> you smirk, glancing at her ample rear. The Chief huffs, coiling her tail around herself and fidgeting with her armor straps. No matter how she may try and deny it, though, the flush in her cheeks is clear for you to see. <i>“Don’t worry. I did too.”</i>");
 	}
@@ -273,7 +273,7 @@ public function lustyBugpony():void
 	{
 		output("\n\n<i>“What’s your problem?”</i> she snaps, scowling");
 		if (pc.tallness < 72) output(" down");
-		output(" at you. After a moment, she glances away, and you suddenly notice that her grey skin has become very dark, flushed not unlike your own.");
+		output(" at you. After a moment, she glances away, and you suddenly notice that her gray skin has become very dark, flushed not unlike your own.");
 
 		output("\n\n<i>“You feel it too, don’t you?”</i> the Chief asks, quietly. <i>“Whatever those creatures were spouting. Those... people. My body hasn’t felt right since the elevator. I feel like I’m burning up inside. It’s hard to focus.”</i>");
 
@@ -286,7 +286,7 @@ public function lustyBugpony():void
 
 	output("\n\n<i>“Wait-”</i> she starts to say, cut off by you planting your lips on hers and flicking your fingers across the straps of her armor, disengaging them. The Chief goes completely rigid for the span of a heartbeat, eyes wide with shock and tail sticking straight out behind her. Then she softens, moans, lets your lips play across her own. The armor plates holding back her tremendous bust clatters to the floor, letting the Chief’s breasts spill out and into your hands.");
 
-	output("\n\nThey’re everything you imagined they would be, dark grey orbs the size of watermelons and as soft as silk, completely swallowing your fingers and rubbing their saucer-sized black teats against your palms. The Chief moans, more of a whimper than anything, and her arms grab weakly at your [pc.hips]. All illusions of tough, no-nonsense amazon warrior melt away in your arms. She’s practically swooning, chest heaving as you grope and squeeze her titanic tits.");
+	output("\n\nThey’re everything you imagined they would be, dark gray orbs the size of watermelons and as soft as silk, completely swallowing your fingers and rubbing their saucer-sized black teats against your palms. The Chief moans, more of a whimper than anything, and her arms grab weakly at your [pc.hips]. All illusions of tough, no-nonsense amazon warrior melt away in your arms. She’s practically swooning, chest heaving as you grope and squeeze her titanic tits.");
 
 	output("\n\n<i>“Okay, okay,”</i> she breathes, coming up for air. <i>“I need it too.");
 	if (pc.hasCock())
@@ -434,7 +434,7 @@ public function lustyBugponyCocked():void
 
 	if (!pc.isTaur())
 	{
-		output("You do just as the towering amazon directs, beating feet behind her. The Chief takes a clearly uncomfortable step forward, bracing her hands against one of the bulkheads and curling her tail up over her back. The tip prods at a small buckle on her flank, and with a metallic clatter, her heavy armor falls away to expose a vast expanse of black chitin and dark grey flesh, intermixed with glowing patches wherever the two meet. From where you’re standing, you’re suddenly assaulted by a musky cloud of pent-up feminine desire billowing into your face. You blink, and find yourself staring down the gulf between a pair of slick, thick black lips. Her sex is almost pear-shaped, narrowing around the hood of a broad, black clitoris, and drawing your eyes upwards to a sinfully dark, silky-soft looking donut ring above it.");
+		output("You do just as the towering amazon directs, beating feet behind her. The Chief takes a clearly uncomfortable step forward, bracing her hands against one of the bulkheads and curling her tail up over her back. The tip prods at a small buckle on her flank, and with a metallic clatter, her heavy armor falls away to expose a vast expanse of black chitin and dark gray flesh, intermixed with glowing patches wherever the two meet. From where you’re standing, you’re suddenly assaulted by a musky cloud of pent-up feminine desire billowing into your face. You blink, and find yourself staring down the gulf between a pair of slick, thick black lips. Her sex is almost pear-shaped, narrowing around the hood of a broad, black clitoris, and drawing your eyes upwards to a sinfully dark, silky-soft looking donut ring above it.");
 		
 		output("\n\nDrawn forward by your mounting desires and the intoxicatingly alien appearance of the leithan’s sex, you grasp at her broad flanks and pull your face in close enough to run your tongue experimentally around one of her dark pussy-lips. The taste is otherworldly, rich and earthy and so wet that your [pc.tongue] comes away bridged by a thick rope of slime. The Chief moans throatily, and her six legs buckle underneath her.");
 		if (pc.tallness < 96) output(" She slinks down onto her knees to give you better access to her titanic rump, putting it right about on crotch level with you.");
@@ -600,7 +600,7 @@ public function lustyBugponyCocked():void
 		if (pc.balls > 0) output(" and your [pc.balls] are bouncing on her rump");
 		output(". Her tail curls around one of your [pc.legs], pulling you as close against herself as she can as juices pour like a waterfall around your shaft. Damn, but she was ready for this!");
 
-		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushing the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking grey flesh.");
+		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushing the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking gray flesh.");
 
 		output("\n\nThe sight of her body bouncing against the wall, feeling her breasts flow like dough through your fingers and her velvety pussy squeeze you so tightly... it all combines to drive you absolutely wild with lust. It isn’t long before you feel the rush of need building in your loins, the insatiable desire for release - the absolute biological imperative to spill your seed into the Chief’s eager womb.");
 
@@ -655,7 +655,7 @@ public function lustyBugPonyCockedNotTaurII():void
 
 	output("\n\nYou manage a ragged groan, gradually realizing that at some point in the proceedings the Chief’s cantered back and slammed you against a bulkhead, crushing you between her massive body and the unyielding steel. Every bone in your body starts feeling sore a moment later, like you’ve been running track for ten hours straight.");
 
-	output("\n\nEither not noticing, or not acknowledging, your condition, the Chief unfurls her tail and steps forward, leaving you to support yourself for the first time in what might have been several minutes. You almost collapse, only keeping upright by grabbing two big handfuls of leithan rump. She gasps, glancing over her shoulder with a noticeable dark-grey flush on her cheeks. You glance down, and see that your unintended grope has somehow massages a nice, thick, [pc.cumColor] trickle to come out of her black donut, dripping viscously to the floor.");
+	output("\n\nEither not noticing, or not acknowledging, your condition, the Chief unfurls her tail and steps forward, leaving you to support yourself for the first time in what might have been several minutes. You almost collapse, only keeping upright by grabbing two big handfuls of leithan rump. She gasps, glancing over her shoulder with a noticeable dark-gray flush on her cheeks. You glance down, and see that your unintended grope has somehow massages a nice, thick, [pc.cumColor] trickle to come out of her black donut, dripping viscously to the floor.");
 
 	if(flags["FUCKED_CHIEF_NEYKKAR"] == undefined)
 	{
@@ -700,7 +700,7 @@ public function kiHendersonVictory():void
 	// used the cure to end the fight
 	if (enemy.hasStatusEffect("Parasite Cure") && enemy.statusEffectv1("Parasite Cure") == 5)
 	{
-		output("You turn to her with a smile, saying that you and that doctor made a cure. Everything’s going to be alright now... assuming you can get that miniature tentacle out of her. As if on cue, she grunts and kicks up her middle two legs around her swollen belly, clutching it tight as the grey flesh and chitin plates bulge. Whatever’s taken root in there is still plenty active!");
+		output("You turn to her with a smile, saying that you and that doctor made a cure. Everything’s going to be alright now... assuming you can get that miniature tentacle out of her. As if on cue, she grunts and kicks up her middle two legs around her swollen belly, clutching it tight as the gray flesh and chitin plates bulge. Whatever’s taken root in there is still plenty active!");
 
 		output("\n\nWhile Chief Neykkar is holding her belly, you’ve got a moment to think. You might be able to get the parasite out of her in the MedBay");
 		if (flags["KI_VANDERBILTS_SECRET"] != undefined) output(", assuming Elenora hasn’t succumbed to her own medicine, anyway. You don’t really know how to use all that medical tech yourself");
@@ -751,7 +751,7 @@ public function kiHendersonVictory():void
 		else output(" lowering her weapon");
 		output(". <i>“You... you did it! What did you do?”</i>");
 
-		output("\n\nYou turn to her with a smile, saying that you and that doctor made a cure. Everything’s going to be alright now... assuming you can get that miniature tentacle out of her. As if on cue, she grunts and kicks up her middle two legs around her swollen belly, clutching it tight as the grey flesh and chitin plates bulge. Whatever’s taken root in there is still plenty active!");
+		output("\n\nYou turn to her with a smile, saying that you and that doctor made a cure. Everything’s going to be alright now... assuming you can get that miniature tentacle out of her. As if on cue, she grunts and kicks up her middle two legs around her swollen belly, clutching it tight as the gray flesh and chitin plates bulge. Whatever’s taken root in there is still plenty active!");
 
 		output("\n\nWhile Chief Neykkar is holding her belly, you’ve got a moment to think. You might be able to get the parasite out of her in the MedBay");
 		if (flags["KI_VANDERBILTS_SECRET"] != undefined) output(", assuming Elenora hasn’t succumbed to her own medicine, anyway. You don’t really know how to use all that medical tech yourself");

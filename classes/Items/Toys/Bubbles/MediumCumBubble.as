@@ -84,7 +84,7 @@ package classes.Items.Toys.Bubbles
 					npcUsed(target, usingCreature);*/
 					throw new Error("How is someone other than the PC throwing a cum bubble? THIS SHIT BE BROKED!");
 				}
-				else throw new Error("Don't know how we got here. Exception for debugging.");
+				else throw new Error("Don’t know how we got here. Exception for debugging.");
 				return false;
 			}
 			else

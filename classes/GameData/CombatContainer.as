@@ -384,6 +384,60 @@ package classes.GameData
 		{
 			if (target.isDefeated()) return;
 			
+			var ew:StorageClass = target.getStatusEffect("Empowering Word");
+			if (ew != null)
+			{
+				ew.value1--;
+				if (ew.value1 < 0)
+				{
+					// Only do output if not stunned and v3 is not 1
+					// v3 stops multiple outputs from happening on different creatures in the same round but still allows the effect to be removed
+					if (!target.hasStatusEffect("Stunned") && ew.value3 != 1)
+					{
+						var numMales:int = 0;
+						for (var i:int = 0; i < _hostiles.length; i++)
+						{
+							var tC:Creature = _hostiles[i] as Creature;
+							if (tC is MilodanMaleGroup && !tC.isDefeated())
+							{
+								numMales++;
+								var ewT:StorageClass = tC.getStatusEffect("Empowering Word");
+								if (ewT != null) ewT.value3 = 1;
+							}
+						}
+						
+						output("\n\n<b>The male" + (numMales == 1 ? " shakes his head" : "s shake their heads") + " as if coming out of a daze, blinking and looking around. The glow’s gone now, thank goodness.</b>");
+					}
+					
+					target.removeStatusByRef(ew);
+				}
+			}
+			
+			
+			var le:StorageClass = target.getStatusEffect("Leech Empowerment");
+			
+			if (le != null)
+			{
+				le.value1--;
+				if (le.value1 < 0)
+				{
+					target.removeStatusByRef(le);
+				}
+			}
+			
+			var pl:StorageClass = target.getStatusEffect("Psychic Leech");
+			
+			if (pl != null)
+			{
+				pl.value1--;
+				if (pl.value1 < 0)
+				{
+					output("\n\nYou feel a surge of regained strength -- <b>the witch’s leeching power has worn off!</b>");
+					
+					target.removeStatusByRef(pl);
+				}
+			}
+			
 			if (target.hasStatusEffect("Pushed"))
 			{
 				target.setStatusValue("Pushed", 2, 0);
@@ -1124,7 +1178,7 @@ package classes.GameData
 			
 			if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 			{
-				if (pc.hasStatusEffect("Stunned")) output("\n<b>You’re still stunned!</b>");
+				if (pc.hasStatusEffect("Stunned")) output("\n\n<b>You’re still stunned!</b>");
 				addButton(0, "Recover", doStunRecover, pc);
 				return;
 			}
@@ -1133,22 +1187,22 @@ package classes.GameData
 			{
 				if (pc.hasStatusEffect("Naleen Coiled"))
 				{
-					output("\n<b>You are wrapped up in coils!</b>");
+					output("\n\n<b>You are wrapped up in coils!</b>");
 				}
 				else if (pc.hasStatusEffect("Mimbrane Smother"))
 				{
-					output("\n<b>You are being smothered by a Mimbrane!</b>");
+					output("\n\n<b>You are being smothered by a Mimbrane!</b>");
 				}
 				else
 				{
-					output("\n<b>You are grappled and unable to fight normally!</b>");
+					output("\n\n<b>You are grappled and unable to fight normally!</b>");
 				}
 				
 				addButton(0, "Struggle", doStruggleRecover, pc);
 				
 				if (pc.hasPerk("Static Burst") && (!hasEnemyOfClass(NyreaAlpha) && !hasEnemyOfClass(NyreaBeta)))
 				{
-					if(!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
+					if(!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","Static Burst","You need shields available to overload in order for static burst to function.");
 					else if(pc.energy() >= 5) addButton(3,"StaticBurst", doStaticBurst);
 					else addDisabledButton(3,"StaticBurst");
 				}
@@ -1219,9 +1273,9 @@ package classes.GameData
 			{
 				if (pc.hasPerk("Static Burst"))
 				{
-					if (!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","StaticBurst","You need shields available to overload in order for static burst to function.");
-					else if (pc.energy() >= 5) addButton(3, "Static Burst", doStaticBurst);
-					else addDisabledButton(3, "Static Burst");
+					if (!pc.hasShields() || pc.shields() <= 0) addDisabledButton(3,"StaticBurst","Static Burst","You need shields available to overload in order for static burst to function.");
+					else if (pc.energy() >= 5) addButton(3, "StaticBurst", doStaticBurst);
+					else addDisabledButton(3, "StaticBurst");
 				}
 				
 				addButton(14, "Struggle", kGAMECLASS.adultCockvineStruggleOverride, undefined, "Struggle", "Struggle free of the Cockvines crushing grip.");
@@ -1379,7 +1433,7 @@ package classes.GameData
 				output("<b>");
 				if(pc.hasStatusEffect("Flushed")) output("The warmth in your lower body");
 				else output("The Fuck Fever");
-				output(" won’t let you get away from a potential dicking !</b>");
+				output(" won’t let you get away from a potential dicking!</b>");
 				processCombat();
 			}
 			else if (kGAMECLASS.debug)
@@ -1532,6 +1586,11 @@ package classes.GameData
 				pc.removeStatusEffect("Naleen Coiled");
 				output("\nThe naleen’s tail spasms as you easily slip out of its coils.");
 			}
+			if (pc.hasStatusEffect("Mimbrane Smother"))
+			{
+				pc.removeStatusEffect("Mimbrane Smother");
+				output("\nYou manage to force your fingers under the edge of the Mimbrane smothering you, and easily pluck it off from your face.");
+			}
 			if(pc.hasStatusEffect("Grappled"))
 			{
 				pc.removeStatusEffect("Grappled");
@@ -1551,18 +1610,38 @@ package classes.GameData
 		
 		private function doStunRecover(target:Creature):void
 		{
-			if (target.hasStatusEffect("Stunned"))
+			var stunEffect:StorageClass = target.getStatusEffect("Stunned");
+			
+			if (stunEffect != null)
 			{
 				if (target is PlayerCharacter) clearOutput();
 				
-				target.addStatusValue("Stunned", 1, -1);
+				stunEffect.value1--;
 				
-				if (target.statusEffectv1("Stunned") <= 0)
+				if (stunEffect.value1 <= 0)
 				{
-					target.removeStatusEffect("Stunned");
-					if (target is PlayerCharacter) output("You manage to recover your wits and adopt a fighting stance!");
-					else if (!target.isPlural) output(StringUtil.capitalize(target.getCombatName(), false) + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
-					else output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
+					target.removeStatusByRef(stunEffect); // removed from the creature
+					// but we still hold a ref to it for further processing!
+					if (target is PlayerCharacter)
+					{
+						if (stunEffect.value2 == 1)
+						{
+							output("You shake yourself off, blinking rapidly. Whatever mental influence had crept into your brain seems to have flushed out, leaving your mind a bit foggy, but ready to fight regardless.");
+						}
+						else
+						{
+							output("You manage to recover your wits and adopt a fighting stance!");
+						}
+					}
+					else if (!target.isPlural)
+					{
+						output(StringUtil.capitalize(target.getCombatName(), false) + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
+					}
+					else
+					{
+						output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
+					}
+					
 				}
 				else
 				{
@@ -3790,6 +3869,12 @@ package classes.GameData
 			showCombatUI(); // force an update
 		}
 		
+		public function removeHostileCreature(remC:Creature):void
+		{
+			_hostiles.splice(_hostiles.indexOf(remC), 1);
+			showCombatUI();
+		}
+		
 		private function makeCharacterUnique(target:Creature, asGroup:String):void
 		{
 			var appends:Array = ["A", "B", "C", "D", "E"];
@@ -4000,11 +4085,27 @@ package classes.GameData
 			
 			if (target.HP() <= 0)
 			{
-				output("\n\n<b>You’ve knocked the resistance out of " + target.getCombatName() + ".</b>");
+				var dvh:String = target.downedViaHP();
+				if (dvh != null)
+				{
+					if (dvh.length > 0) output("\n\n" + dvh);
+				}
+				else
+				{
+					output("\n\n<b>You’ve knocked the resistance out of " + target.getCombatName() + ".</b>");
+				}
 			}
 			else if (target.lust() >= target.lustMax())
 			{
-				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				var dvl:String = target.downedViaLust();
+				if (dvl != null)
+				{
+					if (dvl.length > 0) output("\n\n" + dvl);
+				}
+				else
+				{
+					output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
+				}
 			}
 			else
 			{				
@@ -4048,7 +4149,7 @@ package classes.GameData
 						target.getCombatDescriptionExtension();
 						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
 						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
-						if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
+						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
 						else showMonsterArousalFlavor(target);
 					}
 				}
@@ -4524,6 +4625,15 @@ package classes.GameData
 				if (_hostiles[i] is classT) return true;
 			}
 			return false;
+		}
+		
+		public function getEnemyOfClass(classT:Class):Creature
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles[i] is classT) return _hostiles[i];
+			}
+			return null;
 		}
 
 		public function hasDickedEnemy():Boolean

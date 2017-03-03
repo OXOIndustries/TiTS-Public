@@ -142,7 +142,7 @@
 			else output(" butt");
 			output(".");
 
-			output("\n\nA hint of arousal starts to burn under your skin as you finger yourself, and your body starts to change ever so slightly to accommodate bigger and thicker insertions. By the time you're done, you feel considerably more... open... than before. Your");
+			output("\n\nA hint of arousal starts to burn under your skin as you finger yourself, and your body starts to change ever so slightly to accommodate bigger and thicker insertions. By the time you’re done, you feel considerably more... open... than before. Your");
 			if (holeIdx != 3) output(" [pc.cunt " + holeIdx + "]");
 			else output(" [pc.asshole]");
 			output(" is positively agape now, open and inviting for the next time you get your hands on a big, thick cock.");

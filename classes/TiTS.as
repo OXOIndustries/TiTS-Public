@@ -1,9 +1,11 @@
 ﻿package classes
 {
-
 	import classes.GameData.Perks;
 	import classes.TiTS_Settings;
+	import classes.UIComponents.ContentModule;
+	import classes.UIComponents.ContentModules.GameTextModule;
 	import classes.UIComponents.MainButton;
+	import classes.UIComponents.SideBarComponents.CompressedLocationHeader;
 	import fl.transitions.Tween;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -146,15 +148,17 @@
 		include "../includes/travelEvents.fallOfThePhoenix.as";
 		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/travelEvents.kiro.as";
+		include "../includes/vendingMachine.as";
 		
 		// Misc Events
 		include "../includes/events/atha_lets_fapper.as";
-		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
-		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/erra.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/steph_on_demand.as";
+		include "../includes/events/tentacle_psychic_hatchling.as";
 
 		//Tavros Station
 		include "../includes/tavros/aina.as";
@@ -179,6 +183,7 @@
 		include "../includes/tavros/semith.as";
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
+		include "../includes/tavros/seraXPack2.as";
 		include "../includes/tavros/seraXPreg.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
@@ -187,11 +192,13 @@
 		include "../includes/tavros/vahn.as";
 
 		//Vesperia/Canadia Station
+		include "../includes/vesperia/delOnVesperia.as";
 		include "../includes/vesperia/gloryhole.as";
+		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
-		include "../includes/vesperia/vendingMachine.as";
+		include "../includes/vesperia/sylvie.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -331,6 +338,7 @@
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
+		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
@@ -338,12 +346,14 @@
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
-		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uveto
+		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
+		include "../includes/uveto/pippa.as"
 		
 		include "../includes/chargendata.as";
 		
@@ -449,7 +459,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.10";
+			version = "0.7.28";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -497,6 +507,7 @@
 			initializeMyrellionRooms();
 			kquest2InitRooms();
 			initUvetoRooms();
+			initUvetoRoomsII();
 			kiInitRooms();
 			initVesperiaRoom();
 			
@@ -1300,35 +1311,22 @@
 		{
 			return chars["GWEN"];
 		}
-		
-		private var _dbgtestvar:int = 0;
-		public function dbgshieldparsertag():String
+		public function get bea():Bea
 		{
-			_dbgtestvar++;
-			return "This tag has been parsed " + _dbgtestvar + " time" + (_dbgtestvar == 1 ? "" : "s") +".";
+			return chars["BEA"];
 		}
-		
-		/*
-		// Embed(source = "../Silence.swf")
-		public var Silence:Class;
-		
-		public function YouThinkThisIsAGame():void
+		public function get kazra():Kazra
 		{
-			var s = new this.Silence();
-			s.addEventListener(Event.COMPLETE, GameGo);
+			return chars["KAZRA"];
 		}
-		
-		public function GameGo(e:Event):void
+		public function get pippa():Pippa
 		{
-			trace("loaded");
-			var b:Sprite = new Sprite();
-			b.graphics.beginFill(0x636363);
-			b.graphics.drawRect(0, 0, 1200, 800);
-			b.graphics.endFill();
-			stage.addChild(b);
-			stage.addChild(e.target.getChildAt(0).content);
+			return chars["PIPPA"];
 		}
-		*/
+		public function get jerynn():Jerynn
+		{
+			return chars["JERYNN"];
+		}
 	}
 }
 

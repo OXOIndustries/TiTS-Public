@@ -27,7 +27,7 @@ package classes.Items.Melee
 			
 			this.description = "a bothrioc rapier";
 			
-			this.tooltip = "A bothrioc rapier.";
+			this.tooltip = "A rapier with a simplistic hilt and a long, fairly straight, blade. The guard has what looks to be a botrioc message written along its surface, barely legible and hard to make out.";
 			this.attackVerb = "slash";
 			attackNoun = "slash";
 			

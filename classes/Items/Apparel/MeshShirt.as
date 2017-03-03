@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a mesh shirt";
 			
-			this.tooltip = "This mesh shirt covers very little of the upper body. It instead gives it a sexy tint and brazenly exposes the wearer's chest and nipples, regardless of gender.";
+			this.tooltip = "This mesh shirt covers very little of the upper body. It instead gives it a sexy tint and brazenly exposes the wearer’s chest and nipples, regardless of gender.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

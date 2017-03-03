@@ -31,7 +31,7 @@
 			this.description = "a hovering cargobot";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This hovering cargobot is as custom made as they come. Its frame appears to have been \"donated\" from a busted service-droid, the legs replaced miniaturized plasma motor that allows it to hover. Its shoulders have two bins welded to them, and the arms are long gone. It appears that its only purpose is to carry items for you. (+2 inventory slots while equipped in your accessory slot).";
+			this.tooltip = "This hovering cargobot is as custom made as they come. Its frame appears to have been “donated” from a busted service-droid, the legs replaced miniaturized plasma motor that allows it to hover. Its shoulders have two bins welded to them, and the arms are long gone. It appears that its only purpose is to carry items for you. (+2 inventory slots while equipped in your accessory slot).";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

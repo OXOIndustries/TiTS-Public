@@ -29,7 +29,7 @@
 			this.description = "a shibari top";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A complicated set of rope-like straps and bands. When worn, the bra clings tight to the wearer's body like a set of bondage ropes, while still being comfortable and not inhibiting movement.";
+			this.tooltip = "A complicated set of rope-like straps and bands. When worn, the bra clings tight to the wearer’s body like a set of bondage ropes, while still being comfortable and not inhibiting movement.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

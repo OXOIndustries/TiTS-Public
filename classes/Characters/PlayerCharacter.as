@@ -5,6 +5,7 @@ package classes.Characters
 	import classes.Engine.Interfaces.GetGameTimestamp;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
+	import classes.Items.Transformatives.OmegaOil;
 	import classes.RoomClass;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
@@ -83,11 +84,18 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			// Buttslut heal
 			if(hasPerk("Buttslut"))
 			{
 				HP(level);
 				if(cumFrom != null) HP(Math.round(cumFrom.cumQ()/1000));
 			}
+			// Anal Heat dampen
+			if(hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"))
+			{
+				(new OmegaOil()).reduceOmegaEffect();
+			}
+			// Cumflation
 			if (cumFrom != null)
 			{
 				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
@@ -298,6 +306,11 @@ package classes.Characters
 			return;
 		}
 		
+		override public function HPMax():Number
+		{
+			return (kGAMECLASS.debug ? super.HPMax() + 2500 : super.HPMax());
+		}
+		
 		public function UpgradeVersion1(d:Object):void
 		{
 			var res:Array = d.resistances;
@@ -391,7 +404,8 @@ package classes.Characters
 				{
 					nyreaEggStuff(totalDays);
 				}
-
+				
+				updateExhibitionism(totalDays);
 				myrVenomUpdate(totalDays);
 			}
 			
@@ -400,6 +414,24 @@ package classes.Characters
 			updateGooState(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
+		}
+		
+		private function updateExhibitionism(totalDays:uint):void
+		{
+			var exhibitionismPoints:Number = 0;
+			if(isCrotchExposed()) exhibitionismPoints++;
+			if(isAssExposed()) exhibitionismPoints++;
+			if(isChestExposed() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isNude()) exhibitionismPoints++;
+
+			var currExhib:Number = exhibitionism();
+
+			//All covered up? Reduce over time!
+			if(exhibitionismPoints == 0) exhibitionism(-0.5 * totalDays);
+			else if(exhibitionismPoints >= 4 && currExhib < 50) exhibitionism(2);
+			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
+			else if(exhibitionismPoints >= 2 && currExhib < 33) exhibitionism(1);
+			else if(currExhib < 20) exhibitionism(1);
 		}
 		
 		private function myrVenomUpdate(totalDays:uint):void
@@ -479,7 +511,7 @@ package classes.Characters
 			{
 				if (unflaggedVagNum == vaginas.length)
 				{
-					m = "You're getting incredibly wet";
+					m = "You’re getting incredibly wet";
 					if(legCount > 1) m += " between the [pc.legs]";
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";

@@ -28,7 +28,7 @@ package classes.Items.Miscellaneous
 			
 			this.description = "a prototype photon-harmonic accessory";
 			
-			this.tooltip = "This is a prototype device, designed to modify the harmonic characteristics of photons. Photon-harmonic. It's not a placeholder at all.";
+			this.tooltip = "This is a prototype device, designed to modify the harmonic characteristics of photons. Photon-harmonic. It’s not a placeholder at all.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -28,7 +28,7 @@
 			this.description = "a pair of white boxers with horseshoes printed on it";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A pair of white boxers with horseshoes printed around it. The fabric is quite soft and comfortable. In the front of the boxers there is a pouch that emphasizes the wearer's bulge.";
+			this.tooltip = "A pair of white boxers with horseshoes printed around it. The fabric is quite soft and comfortable. In the front of the boxers there is a pouch that emphasizes the wearer’s bulge.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

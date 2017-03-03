@@ -151,8 +151,8 @@
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 0;
-			this.ballFullness = 1;
+			this.ballSizeRaw = 20;
+			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 10;
 			//Scales from 0 (never produce more) to infinity.

@@ -31,7 +31,7 @@
 			this.description = "a pink hoverboard";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Hoverboards fell out of style in the core centuries before you were born, but they're still making them for those who need a speedy way to navigate crowded or caustic areas. This particular one is a faded pink marred by hard wear and gleaming new components from the mechanic who fixed it. It appears to have originally been stamped with the logo of a girl's toy line, but time has stripped away any legibility from the characters.";
+			this.tooltip = "Hoverboards fell out of style in the core centuries before you were born, but they’re still making them for those who need a speedy way to navigate crowded or caustic areas. This particular one is a faded pink marred by hard wear and gleaming new components from the mechanic who fixed it. It appears to have originally been stamped with the logo of a girl’s toy line, but time has stripped away any legibility from the characters.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

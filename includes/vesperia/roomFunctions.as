@@ -2,7 +2,7 @@ import classes.RoomClass;
 
 public function canadiaUnlocked():Boolean
 {
-	return (MailManager.isEntryViewed("kirodatemeet"));
+	return (MailManager.isEntryViewed("kirodatemeet") || flags["CANADA_UNLOCKED"] == 1 || MailManager.isEntryUnlocked("del_moved"));
 }
 
 public function flyToCanadia():void
@@ -42,8 +42,7 @@ public function outsideCanadiaBarBonus():Boolean
 
 public function bathAreaBonus():Boolean
 {
-	vendingMachineString();
+	vendingMachineButton(0, "Vesperian");
 	kallyDoorBonus();
-	addButton(0,"V.Machine",approachVesperianVendingMachine);
 	return false;
 }

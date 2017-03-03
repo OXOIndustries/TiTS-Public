@@ -3,7 +3,6 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Apparel.ComfortableClothes;
-	import classes.Items.Guns.*
 	import classes.Items.Melee.Fists;
 
 	public class Delilah extends Creature
@@ -13,7 +12,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Delilah";
 			this.originalRace = "human";
@@ -51,16 +50,13 @@
 			this.tone = 30;
 			this.hairColor = "blond";
 			this.scaleColor = "black";
-			//this.scaleColor = titsPtr.chars["PC"].scaleColor;
 			this.furColor = "blond";
-			//this.furColor = titsPtr.chars["PC"].furColor;
 			this.hairLength = 9;
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "chocolate";
-			//this.skinTone = titsPtr.chars["PC"].skinTone;
 			this.skinFlags = new Array();
 			this.faceType = 0;
 			this.faceFlags = new Array();
@@ -151,6 +147,11 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
+			
+			cockVirgin = false;
+			vaginalVirgin = true;
+			analVirgin = true;
+			
 			this.version = _latestVersion;
 			this._isLoading = false;
 			this.createStatusEffect("Uniball",0,0,0,0,true,"","",false,0);

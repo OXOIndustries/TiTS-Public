@@ -1005,7 +1005,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	if(service == "mouth")
 	{
 		showBrothelLady(true);
-		output("\n\nYou also meet your obligations to the staff as you go about your business. Seems like working here results in people getting very het up; there really is quite the demand for you to come into a deserted storeroom and ");
+		output("\n\nYou also meet your obligations to the staff as you go about your business. Seems like working here results in people getting very hot and bothered; there really is quite the demand for you to come into a deserted storeroom and ");
 		if(pc.hasLegs() && pc.hasKnees()) output("get on your knees");
 		else output("squat down");
 		output(" for the bartenders and dancers, both male and female. You finish off your shift behind the front desk.");
@@ -1020,7 +1020,7 @@ public function brothelTurnTrixLicensedWhore(service:String = "none"):void
 	if(service == "vagina")
 	{
 		showBrothelLady(true);
-		output("\n\nYou also meet your obligations to the staff as you go about your business. Seems like working here results in people getting very het up; there really is quite the demand for you to come into a deserted storeroom and ");
+		output("\n\nYou also meet your obligations to the staff as you go about your business. Seems like working here results in people getting very hot and bothered; there really is quite the demand for you to come into a deserted storeroom and ");
 		if(pc.hasLegs() && pc.hasKnees()) output("get on your knees");
 		else output("squat down");
 		output(" for the bartenders and dancers, both male and female. You finish off your shift behind the front desk.");

@@ -27,7 +27,7 @@ package classes.Items.Melee
 			
 			this.description = "a two-handed combat spear";
 			
-			this.tooltip = "A two-handed spear carried by the nyrean huntresses roaming the surface of Myrellion.\n\nThe length of the shaft is wrapped in tight bindings- the same material the Nyrean hunting nets are made of- from tip to tail, obscuring the underlying structure, but making for superior grip. The business end is tipped with a wide, finely honed metal blade, the edges razor sharp.";
+			this.tooltip = "A two-handed spear carried by the nyrean huntresses roaming the surface of Myrellion.\n\nThe length of the shaft is wrapped in tight bindings - the same material the Nyrean hunting nets are made of - from tip to tail, obscuring the underlying structure, but making for superior grip. The business end is tipped with a wide, finely honed metal blade, the edges razor sharp.";
 			this.attackVerb = "stab";
 			attackNoun = "stab";
 			

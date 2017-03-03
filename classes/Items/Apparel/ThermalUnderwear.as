@@ -28,7 +28,7 @@
 			this.description = "a set of thermal undergarments";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "While they're certainly nothing to look at, these specially-designed underpants are made to regulate temperature, keeping your nethers safe from extremes of cold and heat.";
+			this.tooltip = "While they’re certainly nothing to look at, these specially-designed underpants are made to regulate temperature, keeping your nethers safe from extremes of cold and heat.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

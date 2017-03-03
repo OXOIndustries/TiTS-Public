@@ -28,7 +28,7 @@
 			this.description = "a small cock pasty";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This small disc is used to stretch over one’s cock and balls, fully covering the wearer's crotch. The material of the disc imitates the wearer’s fur/skin/scale color, making the wearer look like a very bulgy male doll.";
+			this.tooltip = "This small disc is used to stretch over one’s cock and balls, fully covering the wearer’s crotch. The material of the disc imitates the wearer’s fur/skin/scale color, making the wearer look like a very bulgy male doll.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

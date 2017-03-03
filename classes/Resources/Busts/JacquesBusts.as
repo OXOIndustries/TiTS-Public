@@ -94,6 +94,11 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/kirlarwe.png", mimeType = "image/png")]
 		public var Bust_KIRLARWE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/jacques00/kaede.png", mimeType = "image/png")]
+		public var Bust_KAEDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/kaede_nude.png", mimeType = "image/png")]
+		public var Bust_KAEDE_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/liliana.png", mimeType = "image/png")]
 		public var Bust_LILIANA:Class;
@@ -122,11 +127,11 @@ package classes.Resources.Busts
 		public var Bust_MATRON_OSERRE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/mountme.png", mimeType = "image/png")]
-		public var Bust_MOUNTME:Class;
+		public var Bust_SYLVIE:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/mountme_bra.png", mimeType = "image/png")]
-		public var Bust_MOUNTME_BRA:Class;
+		public var Bust_SYLVIE_BRA:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/mountme_nude.png", mimeType = "image/png")]
-		public var Bust_MOUNTME_NUDE:Class;
+		public var Bust_SYLVIE_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/myr_gold_pilot.png", mimeType = "image/png")]
 		public var Bust_MYR_GOLD_PILOT:Class;
@@ -202,8 +207,25 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/ramis_nude.png", mimeType = "image/png")]
 		public var Bust_RAMIS_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/saendra.png", mimeType = "image/png")]
+		public var Bust_SAENDRA:Class;
+		public var Bounds_SAENDRA:Rectangle = new Rectangle(60, 0, 60, 60);
+		public function get Bust_SAENDRA_FUTA():Class { return Bust_SAENDRA; }
+		public var Bounds_SAENDRA_FUTA:Rectangle = new Rectangle(60, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/jacques00/saendra_nude.png", mimeType = "image/png")]
+		public var Bust_SAENDRA_NUDE:Class;
+		public var Bounds_SAENDRA_NUDE:Rectangle = new Rectangle(60, 0, 60, 60);
+		[Embed(source = "../../../assets/images/npcs/jacques00/saendra_futa_nude.png", mimeType = "image/png")]
+		public var Bust_SAENDRA_FUTA_NUDE:Class;
+		public var Bounds_SAENDRA_FUTA_NUDE:Rectangle = new Rectangle(60, 0, 60, 60);
+
 		[Embed(source = "../../../assets/images/npcs/jacques00/scalla.png", mimeType = "image/png")]
 		public var Bust_SCALLA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/jacques00/shekka.png", mimeType = "image/png")]
+		public var Bust_SHEKKA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/shekka_nude.png", mimeType = "image/png")]
+		public var Bust_SHEKKA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/siegwulfe.png", mimeType = "image/png")]
 		public var Bust_SIEGWULFE:Class;
@@ -318,6 +340,11 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kirlarwe.png", mimeType = "image/png", compression = true)]
 			public var Full_KIRLARWE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kaede.png", mimeType = "image/png")]
+			public var Full_KAEDE:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kaede_nude.png", mimeType = "image/png")]
+			public var Full_KAEDE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana.png", mimeType = "image/png", compression = true)]
 			public var Full_LILIANA:Class;
@@ -346,11 +373,11 @@ package classes.Resources.Busts
 			public var Full_MATRON_OSERRE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme.png", mimeType = "image/png", compression = true)]
-			public var Full_MOUNTME:Class;
+			public var Full_SYLVIE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme_bra.png", mimeType = "image/png", compression = true)]
-			public var Full_MOUNTME_BRA:Class;
+			public var Full_SYLVIE_BRA:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme_nude.png", mimeType = "image/png", compression = true)]
-			public var Full_MOUNTME_NUDE:Class;
+			public var Full_SYLVIE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_pilot.png", mimeType = "image/png", compression = true)]
 			public var Full_MYR_GOLD_PILOT:Class;
@@ -424,9 +451,22 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/ramis_nude.png", mimeType = "image/png", compression = true)]
 			public var Full_RAMIS_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra.png", mimeType = "image/png", compression = true)]
+			public var Full_SAENDRA:Class;
+			public var Full_SAENDRA_FUTA:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra_nude.png", mimeType = "image/png", compression = true)]
+			public var Full_SAENDRA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra_futa_nude.png", mimeType = "image/png", compression = true)]
+			public var Full_SAENDRA_FUTA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/scalla.png", mimeType = "image/png", compression = true)]
 			public var Full_SCALLA:Class;
-			
+
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/shekka.png", mimeType = "image/png")]
+			public var Full_SHEKKA:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/shekka_nude.png", mimeType = "image/png")]
+			public var Full_SHEKKA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe.png", mimeType = "image/png", compression = true)]
 			public var Full_SIEGWULFE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_nude.png", mimeType = "image/png", compression = true)]
@@ -476,6 +516,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_PYRITE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
 		public var Bust_LOGO_REAPER:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/sits.png", mimeType = "image/png")]
+		public var Bust_LOGO_SITS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/snuggle.png", mimeType = "image/png")]
 		public var Bust_LOGO_SNUGGLE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/steele_tech.png", mimeType = "image/png")]
@@ -511,6 +553,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_PYRITE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/reaper.png", mimeType = "image/png", compression = true)]
 			public var Full_LOGO_REAPER:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/sits.png", mimeType = "image/png", compression = true)]
+			public var Full_LOGO_SITS:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png", compression = true)]
 			public var Full_LOGO_SNUGGLE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/steele_tech.png", mimeType = "image/png", compression = true)]

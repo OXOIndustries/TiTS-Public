@@ -8,6 +8,9 @@ package classes.Characters
 	import classes.Items.Guns.BothriocRifle;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.BothriocRapier;
+	import classes.Items.Miscellaneous.Picardine;
+	import classes.Items.Miscellaneous.Kirkite;
+	import classes.Items.Miscellaneous.Satyrite;
 	import classes.StorageClass;
 	import classes.VaginaClass;
 	import classes.kGAMECLASS;
@@ -38,7 +41,7 @@ package classes.Characters
 			a = "the ";
 			capitalA = "The ";
 			//this.long = "";
-			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
+			this.customBlock = "The bothrioc’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
 			
@@ -189,6 +192,10 @@ package classes.Characters
 			createStatusEffect("Force It Gender");
 			sexualPreferences.setRandomPrefs(2 + rand(3));
 			
+			inventory = [];
+			if(rand(5) == 0) inventory.push(RandomInCollection(meleeWeapon, rangedWeapon, armor));
+			else if (rand(40) == 0) inventory.push(RandomInCollection(new Kirkite(), new Satyrite(), new Picardine()));
+			
 			this._isLoading = false;
 		}
 		
@@ -221,8 +228,8 @@ package classes.Characters
 			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			enemyAttacks.push( { v: rapierThrust, w: 10 } );
-			enemyAttacks.push( { v: gunshot, w: 10 } );
+			if(!hasStatusEffect("Disarmed")) enemyAttacks.push( { v: rapierThrust, w: 10 } );
+			if(!hasStatusEffect("Disarmed")) enemyAttacks.push( { v: gunshot, w: 10 } );
 			enemyAttacks.push( { v: tease, w: 10 } );
 			
 			if (_preppedBolo == false) enemyAttacks.push( { v: prepBolo, w: 10 } );
@@ -249,11 +256,24 @@ package classes.Characters
 		
 		private function grappleFollowup(target:Creature):void
 		{
+			if (target.hasAirtightSuit())
+			{
+				if (_grappleRound == 0)
+				{
+					output("The bothrioc gently lays down flat against you and attempts to give you a kiss on the cheek as their ovipositor extends out of their abdomen. You can feel the tip of the ovipositor trail against the crotch of your suit. Unfortunately for them, your airtight attire prevents the intrusion, rendering the move useless...");
+				}
+				else
+				{
+					output("The bothrioc’s oil has seeped around your groin and leaks to the floor. Meanwhile, the bothrioc continues to mold their lithe body against yours, one pair of hands massaging your [pc.chest] whilst the other caresses your shielded face. Their thin, glossy lips try to desperately press against your own though you’re sure to be safe while your suit is sealed.");
+				}
+				_grappleRound++;
+				return;
+			}
+			
 			if (_grappleRound == 0)
 			{
-				_grappleRound++;
 				output("The bothrioc gently lays down flat against you and gives you a kiss on the cheek as their ovipositor extends out of their abdomen. You can feel the warm, wet tip of the ovipositor, questing its way");
-				if (!target.isCrotchGarbed()) output(" through your [pc.lowerGarments]");
+				if (!target.isCrotchExposed()) output(" through your [pc.lowerGarments]");
 				else output(" into your crotch");
 				if (target.hasCock() || target.hasVagina()) output(",");
 				if (target.hasCock()) output(" stroking against your [pc.cock]");
@@ -266,6 +286,7 @@ package classes.Characters
 				output("The bothrioc’s warm oil has seeped into your [pc.skinFurScales] around your groin. It seems to radiate heat through you, making you feel helplessly aroused, a sensation enhanced by your tight binds. Meanwhile, the bothrioc continues to mold their lithe body against yours, one pair of hands massaging your [pc.chest] whilst the other caresses your face. Their thin, hard lips are glossy and incredibly smooth when they press against yours. While alien, it feels remarkable.");
 			}
 			
+			_grappleRound++;
 			applyDamage(new TypeCollection( { tease: 2, drug: 3 } ), this, target, "minimal");
 		}
 		

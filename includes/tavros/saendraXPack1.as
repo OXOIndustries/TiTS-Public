@@ -1194,6 +1194,8 @@ public function sx1TalkPirates():void
 
 public function zilCallgirlAvailable():Boolean
 {
+	if (zilCallgirlAtNursery()) return false;
+	
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == undefined || flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 0) return true;
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 1 && GetGameTimestamp() - flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] > 1440) return true;
 	if (flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 2) return false;
@@ -1650,7 +1652,7 @@ public function zilCallgirlStopWhoring(fromPregnancyTalk:Boolean = false):void
 		}
 
 		output("You let out a soft groan as she drapes her arms sensually over your shoulders and slips her tongue into your mouth,");
-		if (pc.hasCock()) output(" grinding herself harder into your lap and skillfully manipulating your, cock between the warm, plush globes of her ass.");
+		if (pc.hasCock()) output(" grinding herself harder into your lap and skillfully manipulating your cock between the warm, plush globes of her ass.");
 		else
 		{
 			output(" pressing her soft, pliant ass against your thighs, the heat of her sweltering pussy apparent");
@@ -1783,7 +1785,8 @@ public function zilCallgirlStopWhoreNursery():void
 	output("An idea strikes you, and you smile up at Zheniya. <i>“How about I offer you a job?”</i>");
 
 	output("\n\nShe cranes her head to the side, pursing her lips. You continue, explaining that you own the nursery, after all, and Briget is more than happy to accept your recommendations for new staff. You’re sure she could make herself useful there, even if it’s just cleaning or cooking");
-	if (ChildManager.mobileInAgeRangeYears(14, -1)) output(" or maybe even teaching spear-fighting to your offspring. Physical education’s kind of lacking up there anyway.");
+	if (ChildManager.mobileInAgeRangeYears(14, -1)) output(" or maybe even teaching spear-fighting to your offspring. Physical education’s kind of lacking up there anyway");
+	output(".");
 	
 	output("\n\nZheniya listens attentively through your proposal, murmuring softly to herself as you finish. <i>“You’re a master of compromise, aren’t you?”</i> she laughs after a moment’s thought. <i>“Among zil, raising children was always a communal effort. The whole village would work together for it. If I can help with your other children, and you with mine... well, that just feels like home.”</i>");
 	
@@ -2089,9 +2092,24 @@ public function zilCallGirlSuckleHoney(doClear:Boolean = true):void
 		clearOutput();
 		generateMapForLocation("CALLGIRL ROOM");
 		showZilCallGirl();
+		
+		//Has gotten honey in last 6 hours:
+		if (flags["ZHENIYA_LAST_HONEY_TIMESTAMP"] != undefined && flags["ZHENIYA_LAST_HONEY_TIMESTAMP"] + (6 * 60) > GetGameTimestamp())
+		{
+			output("You stroke a hand up from the buzzing beauty’s waist, along her chitinous corset and "+zilCallGirlBellyFragment()+", and let your fingers sink into the sinfully soft flesh of her meaty chest. She gasps quietly, letting the stiffening of the black nipple rubbing against your palm communicate her approval of the gesture.");
+			output("\n\n<i>“Mmm, that feels lovely, sugar,”</i> she adds, nuzzling into your neck. <i>“But you’ve milked me dry already. Why don’t we try something a little less draining, hmm?”</i>");
+			output("\n\nThe call girl gives you a little wink and takes your hand, moving it down onto her plump behind instead.");
+			
+			processTime(2);
+			addDisabledButton(2, "Get Honey");
+			
+			return;
+		}
 	}
 
 	author("Savin");
+	
+	var isMommy:Boolean = (flags["ZIL_CALLGIRL_NAME_KNOWN"] != undefined);
 	
 	output("You grin up at the golden-skinned beauty, squeezing her full, swollen breast. She’s so full of sweet nectar in there that groping her feels like you’re sinking your fingers into a full water balloon");
 	// if preg:
@@ -2106,9 +2124,9 @@ public function zilCallGirlSuckleHoney(doClear:Boolean = true):void
 	if (zilCallGirlPregnant()) output(", coming in great waves that you struggle to keep up with -- her body is making so much more than a normal woman, now, that you barely have to do anything to get a mouthful of sweet honey");
 	output(".");
 	
-	output("\n\n<i>“Drink as much as you want,”</i> the call girl purrs, spreading her arms back around the headboard and thrusting her chest out -- and into your face. You grab her other breast, squeezing hard enough to make a nice squirt of amber spurt around your fingers. Even more finds its way into your mouth, bloating your cheeks with every passing second. You can’t swallow fast enough to keep up! As much as you’re able to gulp down, it isn’t enough to keep her from making a mess of your chin, slathering you in honey; more drools down her chest, splattering onto the bedsheets. After a while, the waspy girl starts moaning in time to your gasping suckles, biting her own black lip to keep from crying out -- she’s more sensitive than she lets on!");
-	output("\n\nSmirking to yourself, you crawl a little higher up her body, caressing her tits with both hands and shifting your mouth from one golden peak to the other, savaging her black teats. Finally you manage to wrest a shrill, pleasured cry from the whore’s lips; she arches her back and screams, bucking her hips and pressing you tight into her chest as she cums just from you sucking and squeezing!");
-	output("\n\nYou sigh and pull yourself off of her, letting the excess honey dribble down your chin as you lean back, as full as you can stand to be of her sweet, sweet nectar. The waspy whore smiles, eyes drooping heavily as her body continues to quake and quiver from the orgasm. <i>“My, you... you have a talented mouth,”</i> she murmurs, tracing her finger through some of the spilled honey surrounding her and bringing it to her mouth. She cleans the golden digit with relish, sucking up every drop with seductive moans.");
+	output("\n\n<i>“Drink as much as you want,”</i> " + (isMommy ? "Zheniya" : "the call girl") + " purrs, spreading her arms back around the headboard and thrusting her chest out -- and into your face. You grab her other breast, squeezing hard enough to make a nice squirt of amber spurt around your fingers. Even more finds its way into your mouth, bloating your cheeks with every passing second. You can’t swallow fast enough to keep up! As much as you’re able to gulp down, it isn’t enough to keep her from making a mess of your chin, slathering you in honey; more drools down her chest, splattering onto the bedsheets. After a while, the waspy girl starts moaning in time to your gasping suckles, biting her own black lip to keep from crying out -- she’s more sensitive than she lets on!");
+	output("\n\nSmirking to yourself, you crawl a little higher up her body, caressing her tits with both hands and shifting your mouth from one golden peak to the other, savaging her black teats. Finally you manage to wrest a shrill, pleasured cry from the " + (isMommy ? "mother" : "whore") + "’s lips; she arches her back and screams, bucking her hips and pressing you tight into her chest as she cums just from you sucking and squeezing!");
+	output("\n\nYou sigh and pull yourself off of her, letting the excess honey dribble down your chin as you lean back, as full as you can stand to be of her sweet, sweet nectar. The waspy " + (isMommy ? "mother" : "whore") + " smiles, eyes drooping heavily as her body continues to quake and quiver from the orgasm. <i>“My, you... you have a talented mouth,”</i> she murmurs, tracing her finger through some of the spilled honey surrounding her and bringing it to her mouth. She cleans the golden digit with relish, sucking up every drop with seductive moans.");
 	output("\n\nSatisfied with your sweet meal, you roll off the bed and start to collect your gear. By the time you have, the well-sucked call girl’s cleaned up most of her mess, scooping the spilled honey into some bottles from her nightstand. Something tells you this happens to her pretty regularly.");
 	
 	pc.lust(25);
@@ -2116,6 +2134,8 @@ public function zilCallGirlSuckleHoney(doClear:Boolean = true):void
 	pc.energy(25);
 	zilCallGirlSexed(true);
 	processTime(25);
+	
+	flags["ZHENIYA_LAST_HONEY_TIMESTAMP"] = GetGameTimestamp();
 	
 	// PC gets 3 vials of Zil Honey. (Continuity: Only if they know what a zil is though!)
 	if(CodexManager.entryViewed("Zil"))
@@ -2217,8 +2237,13 @@ public function resDeck16Func():Boolean
 
 public function zheniyasApartmentFunc():Boolean
 {
+	author("Savin");
+	
 	if (hours >= 8 && hours <= 16)
 	{
+		clearOutput();
+		showZilCallGirl();
+		
 		output("Zheniya brushes up against you and delivers a tantalizing peck on your cheek. <i>“Later, sugar. Some of us have work to do!”</i>");
 		output("\n\nShe shuffles you out of her appartment, locking the door behind before vanishing off with a spring in her step toward the station elevator.");
 		currentLocation = "RESIDENTIAL DECK 16";
@@ -2231,6 +2256,7 @@ public function zheniyasApartmentFunc():Boolean
 	}
 	else
 	{
+		output("\n\nZheniya sits nearby, nude as the day you met her. In her own home, she still prefers the openness of bare flesh, allowing her ever-present honied smell to suffuse the air around her.");
 		addButton(0, "Zheniya", zheniyaInAppt);
 		return false;
 	}
@@ -2240,6 +2266,7 @@ public function zheniyaInAppt():void
 {
 	clearOutput();
 	showZilCallGirl();
+	author("Savin");
 
 	if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1 && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == 1)
 	{
@@ -2260,8 +2287,7 @@ public function zheniyaInAppt():void
 	}
 	else
 	{
-
-		output("You walk over to Zheniya and slip an arm around her supple waist, pulling your lover into warm embrace. She purrs a wordless murmur of affection, tracing kisses up your neck. Her "+zilCallGirlBellyFragment()+" presses against you, and her heavy, honey-filled breasts quake with her every husky breath.");
+		output("You walk over to Zheniya and slip an arm around her supple waist, pulling your lover into a warm embrace. She purrs a wordless murmur of affection, tracing kisses up your neck. Her "+zilCallGirlBellyFragment()+" presses against you, and her heavy, honey-filled breasts quake with her every husky breath.");
 
 		output("\n\n<i>“Hello, sweet thing,”</i> she breathes into your [pc.ear], running her chitinous digits down your back. So close to your zil lover, now, your senses are assailed by her sensual scent: honey and perfume and bare female sex: an alluring vapor that has you");
 		if (pc.hasCock()) output(" half-hard");
@@ -2286,6 +2312,7 @@ public function zheniyaApptSex():void
 {
 	clearOutput();
 	showZilCallGirl();
+	author("Savin");
 
 	output("You "+ pc.mf("swagger", "sashay") +" into your waspy lover’s arms, pulling her against you and into a deep, long kiss. She all but melts in your arms, moaning sweetly; it’s effortless to start walking her back towards the bedroom");
 	if (!pc.isNude()) output(", shedding your [pc.gear] as you go");
@@ -2311,6 +2338,7 @@ public function zheniyaApptBack():void
 {
 	clearOutput();
 	showZilCallGirl();
+	author("Savin");
 
 	output("You spend a few moments in quiet conversation with the motherly zil-girl, holding her close while you catch up. But, eventually, your attentions drift to other matters, and Zheniya slips from your arms with a parting kiss.");
 
@@ -2325,18 +2353,19 @@ public function zheniyaApptGetHoney():void
 {
 	clearOutput();
 	showZilCallGirl();
+	author("Savin");
 
-	output("You stroke a hand up from the buzzing beauty’s waist, up her chitinous corset and "+zilCallGirlBellyFragment()+", and let your fingers sink into the sinfully soft flesh of her meaty chest. She gasps quietly, letting the stiffening of the black nipple rubbing against your palm communicate her approval of the gesture.");
+	output("You stroke a hand up from the buzzing beauty’s waist, along her chitinous corset and "+zilCallGirlBellyFragment()+", and let your fingers sink into the sinfully soft flesh of her meaty chest. She gasps quietly, letting the stiffening of the black nipple rubbing against your palm communicate her approval of the gesture.");
 
 	//Has gotten honey in last 6 hours:
-	if (flags["ZHENIYA_LAST_HONEY_TIMESTAMP"] + (6 * 60) > GetGameTimestamp())
+	if (flags["ZHENIYA_LAST_HONEY_TIMESTAMP"] != undefined && flags["ZHENIYA_LAST_HONEY_TIMESTAMP"] + (6 * 60) > GetGameTimestamp())
 	{
 		output("\n\n<i>“Mmm, that feels lovely, sugar,”</i> she adds, nuzzling into your neck. <i>“But you’ve milked me dry already. Why don’t we try something a little less draining, hmm?”</i>");
 
 		output("\n\nZheniya gives you a little wink and takes your hand, moving it down onto her plump behind instead.");
 
 		processTime(2);
-		addDisabledButton(1, "Get Honey");
+		addDisabledButton(2, "Get Honey");
 	}
 	else
 	{
@@ -2444,6 +2473,7 @@ public function zilCallgirlPregnantAgain():void
 {
 	clearOutput();
 	showZilCallGirl();
+	author("Savin");
 
 	flags["ZIL_CALLGIRL_PREGNANT_TOLD"] = 2;
 
@@ -2474,7 +2504,7 @@ public function zilCallgirlPregnantAgain():void
 	{
 		clearMenu();
 		addButton(0, "Sex", zheniyaApptSex, undefined, "Sex", "Fuck your zil lover.");
-		addButton(1, "Get Honey", zheniyaApptGetHoney, undefined, "Get Honey", "Ask Zheniya for a little of her sweet, sweet honey to go.");
+		addButton(2, "Get Honey", zheniyaApptGetHoney, undefined, "Get Honey", "Ask Zheniya for a little of her sweet, sweet honey to go.");
 		addButton(14, "Back", zheniyaApptBack);
 	}
 	else

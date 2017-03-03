@@ -1,13 +1,5 @@
 import flash.events.MouseEvent;
 import flash.ui.Mouse;
-	
-//Table of Contents
-//0. PARSER
-//1: TEXT FUNCTIONS
-//2. DISPLAY STUFF
-//3. UTILITY FUNCTIONS
-//4. MOVEMENTS
-
 
 public function doParse(script:String, markdown:Boolean = false):String 
 {

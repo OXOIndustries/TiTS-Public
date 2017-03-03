@@ -45,11 +45,18 @@ public function reahaAddictionTherapyAvailable():Boolean
 	return true;
 }
 
-public function reahaHeader():void
+public function reahaHeader(nude:Boolean = false):void
 {
 	showName("\nREAHA");
 	author("Savin");
-	showBust("REAHA");
+	var nudeBonus:String = "";
+	if(nude) nudeBonus = "_NUDE";
+	showBust("REAHA"+nudeBonus);
+}
+
+public function showReaha(nude:Boolean = false):void
+{
+	reahaHeader(nude);
 }
 
 public function reahaMoosAboutNewTexas():Boolean
@@ -1232,6 +1239,7 @@ public function reahaBreastMilkIceCreamShare():void
 
 public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 {
+	if (flags["REAHA_ADDICTION_CURED"] != undefined) return false; // Reaha cured.
 	if (!reahaIsCrew()) return false;
 	if (!InShipInterior()) return false; // Only care about processTime calls onboard the ship
 	if (!reahaFree()) return false; // Free only

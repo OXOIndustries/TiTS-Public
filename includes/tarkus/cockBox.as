@@ -323,6 +323,7 @@ public function dickBoxTF(args:Array):void
 	testChar.shiftCock(0,args[1]);
 	//Cause ausar and kaithrit are too cool for sheaths.
 	if(InCollection(args[1], GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE)) testChar.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
+	if(args[1] == GLOBAL.TYPE_FELINE) testChar.cocks[0].delFlag(GLOBAL.FLAG_TAPERED);
 	if(testChar.hasKnot(0) && !pc.hasKnot(args[0]))
 	{
 		output(" Your [pc.cock " + args[0] + "] feels like one giant, swelling bulb, probably the beginnings of a knot.");

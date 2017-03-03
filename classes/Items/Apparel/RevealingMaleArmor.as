@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a revealing set of masculine plate armor";
 			
-			this.tooltip = "This set of fantasy style armor seems to leave a lot of areas exposed. While it completely covers one's arms and legs in fanciful fetish armor, it barely covers anywhere else. You recognize it is the hero's outfit from the 'Randy Crusade' series.\n\nThere's a set of chains that drape over the chest and connect to a solitary fearsome looking shoulder guard. Other than that there's no upper body covering or armor.\n\nFurther down the loins are 'protected' by an incredibly tight pair of black shiny shorts with a zip in front. Given the ample amount of armor for the limbs, it seems rather pointedly exposed. What an obvious weak spot!";
+			this.tooltip = "This set of fantasy style armor seems to leave a lot of areas exposed. While it completely covers one’s arms and legs in fanciful fetish armor, it barely covers anywhere else. You recognize it is the hero’s outfit from the ‘Randy Crusade’ series.\n\nThere’s a set of chains that drape over the chest and connect to a solitary fearsome looking shoulder guard. Other than that there’s no upper body covering or armor.\n\nFurther down the loins are ‘protected’ by an incredibly tight pair of black shiny shorts with a zip in front. Given the ample amount of armor for the limbs, it seems rather pointedly exposed. What an obvious weak spot!";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

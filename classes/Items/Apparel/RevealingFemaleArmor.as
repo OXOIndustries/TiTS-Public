@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a revealing set of feminine plate armor";
 			
-			this.tooltip = "This set of fantasy style armor seems to leave a lot of areas exposed. While it completely covers one's arms and legs in fanciful fetish armor, it barely covers anywhere else. You recognize it is the heroine's outfit from the 'Perky Paladin' series.\n\nThe chest piece - if it can be called that - resembles a metallic bra that pushes the breasts up and together, resulting in impressive cleavage. Sheer, see-through fabric hangs down from the bra and flares out in a rather stylish 'negligee' fashion.\n\nFurther down the nethers are protected only by a snug pair of armored underwear that barely covers the buttocks. Even more sheer fabric hangs from both the front and rear in an incredibly ornamental fashion, yet it fails to hide or protect anything at all.";
+			this.tooltip = "This set of fantasy style armor seems to leave a lot of areas exposed. While it completely covers one’s arms and legs in fanciful fetish armor, it barely covers anywhere else. You recognize it is the heroine’s outfit from the ‘Perky Paladin’ series.\n\nThe chest piece - if it can be called that - resembles a metallic bra that pushes the breasts up and together, resulting in impressive cleavage. Sheer, see-through fabric hangs down from the bra and flares out in a rather stylish ‘negligee’ fashion.\n\nFurther down the nethers are protected only by a snug pair of armored underwear that barely covers the buttocks. Even more sheer fabric hangs from both the front and rear in an incredibly ornamental fashion, yet it fails to hide or protect anything at all.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

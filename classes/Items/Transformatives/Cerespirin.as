@@ -254,7 +254,7 @@ package classes.Items.Transformatives
 								target.removeHorns();
 							}
 							msg += ParseText("\n\nYou grunt as two new something-or-others sprout into existence above your brow; harder and more definitive than your [pc.hair]. Horns? You touch the thin spikes pushing their way out of your [pc.skin] prospectively. It isn’t keratin, exactly... more bark-like.");
-							msg += "\n\nThe grey-brown growths stop when they get to about six inches in length, thicker where they emerge from your brow and branching out into several smaller ends. They do that because they are what they are: branches, hardy, austere tree antlers, growing out from your head. You stroke them thoughtfully before continuing with what you were doing.";
+							msg += "\n\nThe gray-brown growths stop when they get to about six inches in length, thicker where they emerge from your brow and branching out into several smaller ends. They do that because they are what they are: branches, hardy, austere tree antlers, growing out from your head. You stroke them thoughtfully before continuing with what you were doing.";
 							
 							target.hornType = GLOBAL.TYPE_DRYAD;
 							target.horns = 6 + (rand(7) * 2);
@@ -488,7 +488,7 @@ package classes.Items.Transformatives
 					//kGAMECLASS.processTime(115 + rand(11));
 					
 					// Reflexes hard limit set to 40%
-					// Add "Resin" combat ability.  40 energy cost. Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive on PC, 1-3 passive lust gain on enemy for four turns. Effect does not stack.
+					// Add "Resin" combat ability. 40 energy cost. Adds +10% Electric, -10% Burning, +10% Kinetic, +10% Corrosive on PC, 1-3 passive lust gain on enemy for four turns. Effect does not stack.
 					
 					// Perk: "Resin"
 					// v1: Max Reflexes multiplier

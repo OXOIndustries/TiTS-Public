@@ -920,7 +920,7 @@ public function pryIntoYarastasSchedule():void
 	processTime(19);
 	flags["YARASTA_SCHEDULE_TALK"] = 1;
 	clearMenu();
-	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you’ll try that when you're more in the mood.");
+	if(pc.lust() < 33) addDisabledButton(0,"Flirt","Flirt","Maybe you’ll try that when you’re more in the mood.");
 	else if(!pc.hasGenitals() && !pc.hasTailCock() && !pc.hasHardLightEquipped() && !pc.hasDickNipples()) addDisabledButton(0,"The prefect wouldn’t be interested in your lack of sexual endowments.");
 	else addButton(0,"Flirt",yarastaSexApproach,undefined,"Flirt","Ask Yarasta if she’d like to have some adult fun.");
 
@@ -1166,9 +1166,9 @@ public function yarastasFriendGiala():void
 	}
 	else cockEmTooltip = "Stick a cock in each hole the girls offer.";
 	//ACTUAL COCK 'EM BUTTONS
-	if(x == -3 && pc.hasCock()) addDisabledButton(0,"Cock 'Em","Cock 'Em","You’d never fit inside the poor girls!");
-	else if(x == -3) addDisabledButton(0,"Cock 'Em","Cock 'Em","You’re completely lacking in the appropriate equipment.");
-	else addButton(0,"Cock 'Em",cockTheseScholarlyAntSluts,undefined,"Cock 'Em",cockEmTooltip);
+	if(x == -3 && pc.hasCock()) addDisabledButton(0,"Cock ‘Em","Cock ‘Em","You’d never fit inside the poor girls!");
+	else if(x == -3) addDisabledButton(0,"Cock ‘Em","Cock ‘Em","You’re completely lacking in the appropriate equipment.");
+	else addButton(0,"Cock ‘Em",cockTheseScholarlyAntSluts,undefined,"Cock ‘Em",cockEmTooltip);
 
 	//Lesbo 3-Way
 	//for PCs with vag (primary) or tailvag (if no vag) or asshole (if no vag or tail)

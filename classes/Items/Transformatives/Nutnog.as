@@ -29,7 +29,7 @@ package classes.Items.Transformatives {
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a pint of mod known as Nutnog";
-			tooltip = "A small picture on the side of the glass, just below the name, shows a bull and a cow, both wearing the same attire: Santa hats and fuzzy Santa coats, neither of which do much to hide their bodies. With a mug in one hand and the bull's cock in the other, the cow-girl seems to be milking his throbbing length for what looks like to be eggnog.";
+			tooltip = "A small picture on the side of the glass, just below the name, shows a bull and a cow, both wearing the same attire: Santa hats and fuzzy Santa coats, neither of which do much to hide their bodies. With a mug in one hand and the bull’s cock in the other, the cow-girl seems to be milking his throbbing length for what looks like to be eggnog.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -53,14 +53,14 @@ package classes.Items.Transformatives {
 					if (target.cumTypeUnlocked(GLOBAL.FLUID_TYPE_EGGNOG)) {
 						target.cumType = GLOBAL.FLUID_TYPE_EGGNOG;
 						output("\n\nBiting your tongue, you suppress a groan as your prostate swells and pulses from the mod. You try to resist, but your primal instinct overtakes your willpower. Your hands fly to your crotch and begin to pump your [pc.cocks]. As soon as your hands come in contact with your burning loins, you shudder from the sensitivity. Your breathing gets shallower, and the edge of your vision begins to darken. In a wave of pleasure, you let yourself collapse onto the floor with your rump up in the air, one hand stroking your [pc.biggestCock], your other in a fist, slamming the ground. Eventually the floodgates open, and your cock ejects ropes of [pc.cumColor] splendor until the floor beneath you is covered in your noggy cum.");
-						output("\n\nWhen you come to your senses, the haze of your orgasm has faded to a pleasant glow, though you're still breathing quite hard from the effort. The floor beneath you is coated in a thick sheen of your fragrant jizz. You sample the fragrant seed, intrigued by its jolly, holiday scent. <b>Your ejaculate tastes just like eggnog!</b>");
+						output("\n\nWhen you come to your senses, the haze of your orgasm has faded to a pleasant glow, though you’re still breathing quite hard from the effort. The floor beneath you is coated in a thick sheen of your fragrant jizz. You sample the fragrant seed, intrigued by its jolly, holiday scent. <b>Your ejaculate tastes just like eggnog!</b>");
 						kGAMECLASS.processTime(10);
 						target.orgasm();
 					} else output("\n\n" + target.cumTypeLockedMessage());
 				//just a nice drink	
 				} else {
 					output("\n\nThe warmth lasts for a second before dissipating.");
-					if(!target.hasCock()) output(" You should probably have a penis if you're expecting anything else other than a tasty drink.");
+					if(!target.hasCock()) output(" You should probably have a penis if you’re expecting anything else other than a tasty drink.");
 					else if(target.cumType == GLOBAL.FLUID_TYPE_EGGNOG) output(" You already have eggnog flavored cum, so nothing else happens.");
 				}
 			//not the player	

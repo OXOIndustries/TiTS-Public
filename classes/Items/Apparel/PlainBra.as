@@ -29,7 +29,7 @@
 			this.description = "a plain bra";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This bra, while incredibly elastic, is also incredibly plain. It'll accomodate almost any cup size, but it won't win you any points for style.";
+			this.tooltip = "This bra, while incredibly elastic, is also incredibly plain. It’ll accomodate almost any cup size, but it won’t win you any points for style.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

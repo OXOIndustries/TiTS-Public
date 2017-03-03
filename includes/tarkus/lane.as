@@ -499,7 +499,7 @@ public function visitLaneAfterDetoxing():void
 
 	laneHeader();
 
-	if (pc.WQ() >= 75)
+	if (pc.WQ() >= 75 || flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined)
 	{
 		if (pc.isNice())
 		{

@@ -24,7 +24,7 @@ package classes.Items.Armor.Unique
 			
 			description = "a slinky black omnisuit";
 			
-			tooltip = "This shining metal collar is the container for a prototype omnisuit - a high tech garment that flows out to cover one's body in a shining black covering - genitalia and all. The resulting suit provides a modest amount of physical protection - and enhanced sensations for the bedroom.";
+			tooltip = "This shining metal collar is the container for a prototype omnisuit - a high tech garment that flows out to cover one’s body in a shining black covering - genitalia and all. The resulting suit provides a modest amount of physical protection - and enhanced sensations for the bedroom.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

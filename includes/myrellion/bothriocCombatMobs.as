@@ -81,7 +81,7 @@ public function encounterPidemmeBothrioc():void
 
 			if (pc.reflexes() + rand(30) + 1 > 30)
 			{
-				output("\n\nStill, you have enough about you to sidestep the bolos hurled at you, grab your [pc.meleeWeapon] and stab it upwards, parrying their rapier strike with a judder. You stagger backwards, taking in your assailant as they circle you.");
+				output("\n\nStill, you have enough wits about you to sidestep the bolos hurled at you, grab your [pc.meleeWeapon] and stab it upwards, parrying their rapier strike with a judder. You stagger backwards, taking in your assailant as they circle you.");
 				output("\n\n<i>“Clever prey,”</i> croons the bothrioc, sword tense in their burnished hand, plump abdomen swaying behind them. <i>“Or should I say - fast prey. Clever prey wouldn’t prance into my territory when I have so many eggs that need bearing!”</i>");
 
 				fightBothriocPidemme(false);
@@ -258,7 +258,7 @@ public function bothriocPidemmePCVictory():void
 
 	if (enemy.HP() <= 0)
 	{
-		output("The pale creature falls a knee before you, her (his?) chest heaving with the effort of sucking down air in the face of the onslaught you have wrought on them. Her head hangs low, averting her gaze from falling on the more dominant member of the exchange...");
+		output("The pale creature falls to a knee before you, her (his?) chest heaving with the effort of sucking down air in the face of the onslaught you have wrought on them. Her head hangs low, averting her gaze from falling on the more dominant member of the exchange...");
 	}
 	else
 	{
@@ -318,7 +318,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		output(" loudly and put on a show for the victorious warrior and their long, thick, um... spear. You can immediately feel the heightened arousal in your ass, as the first spurts of slime shoot deep into your guts. The bothrioc is now actively running their many hands over you, delighting in exploring your body as much as thrusting into your hot clench.");
 		
 		output("\n\nA lustful groan and a sudden stoppage indicate all you need to know: The ovipositor has docked in your [pc.ass]. The bothrioc almost helplessly rests atop you, transfixed with bliss, as you feel the first egg pop through your sphincter almost effortlessly");
-		if (pc.hasCock()) output(", squeezing your prostate thoroughly as it passes”</i>");
+		if (pc.hasCock()) output(", squeezing your prostate thoroughly as it passes");
 		output(". You shatter into orgasm instantly, shaking as your entire body ripples with waves of bliss,");
 		if (pc.hasCock()) output(" forced to spurt your [pc.cumColor] load submissively against the ground");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
@@ -437,7 +437,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		output("\n\nEnthused, they use their lower pair of arms to massage your [pc.chest] in slow, languid motions, all the while their upper pair hold you firmly in place.");
 		if (pc.canLactate()) output(" Playing with your swollen [pc.nipples] for a few moments, the bothrioc is able to tease out a few droplets of [pc.milk], which they bring to their mouth to taste. Following on the heels of a hum of approval, you find yourself being outright milked by the bothrioc, first one teat and then the next in sequence. Every so often one hand comes up bearing some of your [pc.milk] for the thirsty spider’s drink.");
 		
-		output("\n\nThe alien’s thorough plundering of your ass resumes with aplomb. In your more relaxed state, you no longer find it impossible to breathe correctly; each short thrust of the alien cock still drives the wind from you, but now you can synchronize with it, and with each deep inhalation a tingling euphoria grows, a perverse physical delight at being prised apart and used like this. A moment later, the sheer chitin of the bothrioc’s abdomen shell bumps against your [pc.anus]. The thick tube buried in your ass will go no further, and the bothrioc astride you shudders. Then you feel it.");
+		output("\n\nThe alien’s thorough plundering of your ass resumes with aplomb. In your more relaxed state, you no longer find it impossible to breathe correctly; each short thrust of the alien cock still drives the wind from you, but now you can synchronize with it, and with each deep inhalation a tingling euphoria grows, a perverse physical delight at being prized apart and used like this. A moment later, the sheer chitin of the bothrioc’s abdomen shell bumps against your [pc.anus]. The thick tube buried in your ass will go no further, and the bothrioc astride you shudders. Then you feel it.");
 
 		output("\n\nPressing against the ring of your sphincter, larger still than the largest section of the ovipositor, must be the egg. After a moment of intense resistance, forcing sweat onto your brow and a harsh gasp from your lips, it pops inside graciously. The feeling of that massive object rolling into your gut causes you to clamp down sympathetically. The bothrioc’s ragged breathing is suddenly torn apart by a low and guttural moan, no doubt from the suddenly crushing vice of your anus.");
 
@@ -1028,7 +1028,7 @@ public function bothriocPidemmeVagRide(isAnal:Boolean = false):void
 	if (pc.isTaur()) output(" push your [pc.ass] down even harder");
 	else if (pc.isNaga()) output(" grip your coils");
 	else if (pc.isGoo()) output(" grip your viscous mass");
-	else output(" [pc.hips] around it");
+	else output(" grip your [pc.hips] around it");
 	output(", squeezing the warm, black chitin");
 	if (pc.isTaur()) output(" against the ground");
 	output(" at the same time as tightening up nicely around your pet dick; this draws a low wail out of the lithe spider-being, and a flush of wonderful, slathering of oil into your "+holeTag+". A substantial amount, then.");

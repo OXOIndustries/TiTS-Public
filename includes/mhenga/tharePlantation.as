@@ -483,7 +483,7 @@ public function thareAbleResponse(response:String = "none"):void
 			output("\n\n<i>“Before Mr. Darnock came, I was a zil amongst other zil. Happy but ignorant,”</i> replies Able in his calm, measured voice. <i>“I lived amongst the trees and within the moment, prey to the serpent-lions and evil sirens of the deep forest. Now, I have a name and a profession that I enjoy. I have gained perspective my fellows cannot. My sir is right - the coming of people with great knowledge from the stars means we must cast aside our ignorance and connect with them, learn from them. Otherwise we risk annihilation.”</i> ");
 			output("\n\n<i>“And so far,”</i> he goes on in a harder tone, <i>“only Mr. Darnock’s company has reached out to us. Not the people of the place you call Esbeth, who imprison us or drive us away with their giant white stings; not those who call themselves the Zen jinn, who covet the sirens’ dark secrets and kill any that stand in their way; and not the terrible black wings, who stalk this land now, spiriting our folk away.”</i>");
 			output("\n\n<i>“So why haven’t more zil taken him up on his offer?”</i> you say, looking over the tub’s rim at him.");
-			output("\n\n<i>“Um. I’m not </i>typical<i> of zil. I don’t think Mr. Darnock understands this,”</i> the slim zil says, shuffling his carapace-covered feet. <i>“For most zil, contests of physicality and sexuality are thrilling, and practically demanded when encountering a stranger. The struggles reveal the strengths and weaknesses of each party. Only after the struggle and resulting sexual relief do they consider trade or diplomacy. For an outsider, it would be even harder. Naleen and Vanae are poor conversationalists; why should your people be any different? That's why the others you see in the vault will lead off with an assault. I never liked that, because I preferred submitting straight away. It just feels so much better, you know? So I was happy to take orders from sir. My brothers and sisters though... for them it was a non-starter, because Mr. Darnock refused to act as expected.”</i>");
+			output("\n\n<i>“Um. I’m not </i>typical<i> of zil. I don’t think Mr. Darnock understands this,”</i> the slim zil says, shuffling his carapace-covered feet. <i>“For most zil, contests of physicality and sexuality are thrilling, and practically demanded when encountering a stranger. The struggles reveal the strengths and weaknesses of each party. Only after the struggle and resulting sexual relief do they consider trade or diplomacy. For an outsider, it would be even harder. Naleen and Vanae are poor conversationalists; why should your people be any different? That’s why the others you see in the vault will lead off with an assault. I never liked that, because I preferred submitting straight away. It just feels so much better, you know? So I was happy to take orders from sir. My brothers and sisters though... for them it was a non-starter, because Mr. Darnock refused to act as expected.”</i>");
 			
 			processTime(3);
 			
@@ -816,7 +816,7 @@ public function thareSexResponse(response:String = "none"):void
 			// If else, PC girlcum high:
 			else if(wetSelect == 3)
 			{
-				output("\n\n<i>“Whugh!”</i> he splutters, head jerking back a bit. He looks up to you solemnly, the bottom half of his face absolutely dripping with [pc.girlCumColor] fluid. <i>“S-sorry about that ma’am, but you are... you seem quite... voluble.”</i>");
+				output("\n\n<i>“Whugh!”</i> he splutters, head jerking back a bit. He looks up to you solemnly, the bottom half of his face absolutely dripping with [pc.girlCumColor] fluid. <i>“S-sorry about that " + pc.mf("sir", "ma’am") + ", but you are... you seem quite... voluble.”</i>");
 				output("\n\n<i>“I mark my territory,”</i> you reply breezily. <i>“And frisky little boys of mine often get thirsty. Get back to it.”</i>");
 				output("\n\nThe zil servant tries to remain as proper as possible, but you can tell by the fierce orange blush on his china-bone cheeks, a series of rapid blinks and a tightening of his grip around your thighs that he rather likes this explanation.");
 			}
@@ -854,7 +854,7 @@ public function thareSexResponse(response:String = "none"):void
 			// High femcum output:
 			if(pc.girlCumQ() >= 2000) output(" There really is no end to your juices when you’re this aroused, and you’re happy to soak not just Able’s face but also his waist and flat tummy in [pc.femCum].");
 			output("\n\nYou come down slowly, [pc.skin] prickling. You open your [pc.eyes] to notice that Able is gazing up at you pleadingly. It takes a moment for you to drink in the fact that, despite what must be an intense desire to do so, he hasn’t orgasmed.");
-			output("\n\n<i>“I-if you don’t want me to--”</i> he whispers. <i>“Ma’am...”</i>");
+			output("\n\n<i>“I-if you don’t want me to--”</i> he whispers. <i>“" + pc.mf("Sir", "Ma’am") + "...”</i>");
 			
 			processTime(20 + rand(11));
 			
@@ -994,7 +994,7 @@ public function thareSexResponse(response:String = "none"):void
 			if(pc.hasLegs()) output(" so your [pc.feet] are dangling in the air");
 			output(" and then fucks you as hard as his slim frame will allow, ramming his hard, hot five inches into your honeypot again and again. Your [pc.vagina " + x + "] quivers and then clenches up in orgasm, pulses of gratification seizing up your muscles made all the more intense by the way Able continues to mold his tight, perky body into yours and drives into your sex, forcing gasps and squeals of delight past your [pc.lips]. This is definitely the best way to screw a pet boy, it dreamily occurs to you - dick him hard first, show him exactly how it’s done, before letting him go to town on you, your cum still leaking out of his asshole.");
 			output("\n\nIt’s only when you’ve writhed out the last of your orgasm that you realize that Able himself hasn’t cum, despite the intense heat and desire clear to see on his face. He holds your [pc.thighs] and looks at you with solemn black eyes, still mired deep in your throbbing [pc.vagina " + x + "].");
-			output("\n\n<i>“I-if you don’t want me to--”</i> he whispers. <i>“Ma’am...”</i>");
+			output("\n\n<i>“I-if you don’t want me to--”</i> he whispers. <i>“" + pc.mf("Sir", "Ma’am") + "...”</i>");
 			
 			processTime(20 + rand(11));
 			
@@ -1030,7 +1030,7 @@ public function thareSexResponse(response:String = "none"):void
 			output(" you have to laugh. For deigning to let him cum his");
 			if(fromBoth) output(" little");
 			output(" brains out, you’ve elevated yourself to an even higher status in his mind than you were before.");
-			output("\n\n<i>“Queen,”</i> he breathes.");
+			output("\n\n<i>“" + pc.mf("Master", "Queen") + ",”</i> he breathes.");
 			output("\n\n<i>“Yes, quite,”</i> you snicker, rolling off of him and finally enjoying the post-coital haze and the sweet warmth rolling out of your slackened pussy. <i>“Glad you enjoyed yourself, my little drone.”</i>");
 			output("\n\nHe absolutely insists on changing the sheets, so it’s into the smell of fresh linen rather than horny bee sugar you eventually sink yourself into a few minutes later. Able gives you a shy smile as he turns off the lights and departs. You are asleep within moments.");
 			
@@ -1055,7 +1055,7 @@ public function thareSexResponse(response:String = "none"):void
 			if(!fromBoth) output(" rising off of him and pooling onto the overstuffed mattress leisurely. <i>“Don’t want servants getting lazy and spoiled with too many orgasms");
 			else output(" disengaging from him and rolling on to one side on the overstuffed mattress with leisured ease. <i>“Don’t want you getting lazy and spoiled");
 			output(", do we?”</i>");
-			output("\n\n<i>“O-of course not, ma’am,”</i> Able replies. The stare he gives down to his desperately erect penis is sad, but when he turns his gaze back to you the expression on his heart-shaped face is one of awed intoxication. <i>“I must remain ready for your service at a moment’s notice.”</i>");
+			output("\n\n<i>“O-of course not, " + pc.mf("sir", "ma’am") + ",”</i> Able replies. The stare he gives down to his desperately erect penis is sad, but when he turns his gaze back to you the expression on his heart-shaped face is one of awed intoxication. <i>“I must remain ready for your service at a moment’s notice.”</i>");
 			output("\n\n<i>“Which means no jerking off in your quarters,”</i> you warn coolly.");
 			output("\n\n<i>“I wouldn’t dream of it, mistress...”</i> he moans, closing his eyes, practically tasting your delicious cruelty.");
 			output("\n\nHe absolutely insists on changing the sheets, so it’s into the smell of fresh linen rather than horny bee sugar you eventually sink yourself into a few minutes later. Able gives you a shy smile as he turns off the lights and departs. You are asleep within moments.");

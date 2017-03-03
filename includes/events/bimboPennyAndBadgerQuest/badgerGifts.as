@@ -362,7 +362,7 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		output("\n\n<i>“Fffuuuuck!”</i> Penny gasps, her cock slipping out of her lips as her whole body seemingly locks up. A veritable fountain of cum erupts from her, and it’s all she can do to keep her panting mouth open to let herself taste as much of it as possible as it falls back onto her face. Her hips jerk forwards a few more times, each unthinking thrust accompanied by another spurt of jizz, painting a slowly descending line down her chin to her breasts. All the while you simply look on, innocently observing her reaction as you pose the question.");
 		output("\n\nIt takes some time, but eventually Penny regains the power of speech. She’s still a cum-spattered mess, but she manages to pause long enough between long licks at her matted fur to get the words out, at least. <i>“Ffuck [pc.name], you sure know how to pitch something to a girl, don’t you?”</i> She hefts her cock in one hand and raises an eyebrow at you. <i>“Case in point, hm?”</i>");
 		output("\n\nYou laugh. Still, the question remains, and eventually Penny returns to it.");
-		output("\n\n<i>“I can’t say I’m not tempted. And if there’s one thing I’ve learned it’s that there really isn’t much police work that <i>can’t</i> be solved on this planet by just fucking it, so it’s not like I’d be abandoning my post.”</i> She pauses for a moment as she licks her fingers, savoring the taste of her cum. <i>“Or, well, you said Dr. Badger said that that gun only works on me at the moment. Maybe I could check around in my contacts, see if I could find someone smart enough to change it, make it so that it’d work on </i>her<i> instead. Or fuck, maybe we should just be sensible and report her. Maybe libido is high enough as it is.”</i>");
+		output("\n\n<i>“I can’t say I’m not tempted. And if there’s one thing I’ve learned it’s that there really isn’t much police work that <i>can’t</i> be solved on this planet by just fucking it, so it’s not like I’d be abandoning my post.”</i> She pauses for a moment as she licks her fingers, savoring the taste of her cum. <i>“Or, well, you said Dr. Badger said that that gun only works on me at the moment. Maybe I could check around in my contacts, see if I could find someone smart enough to change it, make it so that it’d work on </i>her<i> instead. Or fuck, maybe we should just be sensible and report her. Maybe her libido is high enough as it is.”</i>");
 		output("\n\nEver so slowly, her head starts to dip back down, her cock pushing back up through her tits. Even for her this is a lot, so she must be <i>really</i> turned on - you doubt you’ll get much more in the way of reasoned discussion out of her. It looks like she’s left it up to you.");
 		pc.lust(8);
 	}
@@ -1405,7 +1405,7 @@ public function postBadgerBimboSexSceneShit(orgasmDenialed:Boolean = false):void
 	output("\n\n<i>“Well hey!”</i> she giggles. <i>“I wondered where you’d gotten to!”</i>");
 	output("\n\n<i>“Hey there...”</i> you answer cautiously. You’re a little worried about her trying to go all mad scientist on you again, given how she was when you first met, so just to check there won’t be any problems you ask, <i>“So, how are you feeling?”</i>");
 	output("\n\nShe thumps her hands down flat against the table in front of her as she eagerly replies. <i>“Oh. Man. Wow [pc.name], this is like, </i>amazing<i>. I mean, I always knew it was good, but like, finally just letting go and going all the way myself? </i>Super<i> fun.”</i>");
-	output("\n\nLooks like you don’t have to worry about her trying to fight you or anything, she’s clearly far too happy with how she is now to even the slightest bit mad.");
+	output("\n\nLooks like you don’t have to worry about her trying to fight you or anything, she’s clearly far too happy with how she is now to even be the slightest bit mad.");
 	output("\n\nBefore you can say anything though, she adds quickly, <i>“Oh! That’s right!”</i> Looking around for a few moments, she eventually manages to find a tablet. After giving it a few careful taps - her tongue stuck out the side of her mouth as she concentrates - she looks up at you again. <i>“I promised to pay you for zapping someone and you did, so, there you go!”</i>");
 	output("\n\nYour codex beeps, and looking down you see an incoming funds transfer. <b>She just sent you 3,000 credits. Nice!</b>");
 	pc.credits += 3000;
@@ -1432,7 +1432,7 @@ public function bimboBadgerShopStuff():void
 		{
 			output("\n\nDr. Badger is nowhere to be seen. Maybe she’s working on that pexiga treatment? Should you see what she’s come up with or leave it be?");
 			//[Get Pexiga][Just Leave]
-			addButton(0,"Bring Pexiga",getPexiga);
+			addButton(0,"Bring Pexiga",bringBadgerPexibork);
 		}
 		else
 		{
@@ -1499,7 +1499,7 @@ public function approachDoctorBimboBadger():void
 	addButton(0,"Talk",talkToDoctorBadger,undefined,"Talk","Try to have a conversation with your newly minted bimbo.");
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
-	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

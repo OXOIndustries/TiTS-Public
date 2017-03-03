@@ -97,7 +97,7 @@ public function lieveBunkerFunc():Boolean
 	}
 	else
 	{
-		output("\n\nLieve's here, idly watching the approach through the viewslit. Her harem lounges around behind her, looking bored and horny but unwilling to disturb their mistress at present.");
+		output("\n\nLieve’s here, idly watching the approach through the viewslit. Her harem lounges around behind her, looking bored and horny but unwilling to disturb their mistress at present.");
 		
 		addButton(0, "Lieve", lieveRepeatEncounter);
 	}
@@ -219,13 +219,13 @@ public function lieveMenu():void
 	// [Talk] [Sex] [Tour Town](1 time, fem PCs only) [Appearance]
 	// [Trench Wives] [Try Venom // Kiss Her]
 	clearMenu();
-	addButton(0, "Talk", lieveTalkMenu, undefined, "Talk", "Lieve's offering, so ask her a few questions.");
-	addButton(1, "Sex", lieveSexEntry, undefined, "Sex", "See if Lieve's got some steam to blow off. Even if not, looks like her harem girls are desperate for it.");
+	addButton(0, "Talk", lieveTalkMenu, undefined, "Talk", "Lieve’s offering, so ask her a few questions.");
+	addButton(1, "Sex", lieveSexEntry, undefined, "Sex", "See if Lieve’s got some steam to blow off. Even if not, looks like her harem girls are desperate for it.");
 	addButton(2, "TrenchWives", lieveTalkToTrenchWives, undefined, "Talk To Trench Wives", "Ask Lieve if you can talk to her little harem for a bit.");
 
 	if (!lieveVenomUsed())
 	{
-		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (flags["HAS_BEEN_MYR_VENOMED"] == undefined ? "You've heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You've only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
+		if (pc.mf("m", "f") == "f") addButton(3, "TryVenom", lieveVenomToggle, undefined, "Try Venom", (flags["HAS_BEEN_MYR_VENOMED"] == undefined ? "You’ve heard amazing things about red myr venom. How about Lieve give you a taste of hers?" : "You’ve only dabbled with red myr venom. How about Lieve give you a taste of hers?"));
 		else addDisabledButton(3, "TryVenom", "Try Venom", "Lieve is only really interested in feminine partners...");
 	}
 	else
@@ -237,14 +237,14 @@ public function lieveMenu():void
 	if (pc.isFeminine() && flags["LIEVE_TOWNTOUR"] == undefined && (pc.hasCock() || pc.hasVagina())) addButton(4, "Tour Town", lieveTourTheTown);
 	else
 	{
-		if (flags["LIEVE_TOWNTOUR"] != undefined) addDisabledButton(4, "Tour Town", "Tour the Town", "Lieve's already shown you around the town.");
-		else addDisabledButton(4, "Tour Town", "Tour the Town", "Lieve probably isn't all too interested in spending so much time with a dudely-dude.")
+		if (flags["LIEVE_TOWNTOUR"] != undefined) addDisabledButton(4, "Tour Town", "Tour the Town", "Lieve’s already shown you around the town.");
+		else addDisabledButton(4, "Tour Town", "Tour the Town", "Lieve probably isn’t all too interested in spending so much time with a dudely-dude.")
 	}
 
 	if (hasFuckedLieve()) addButton(5, "Appearance", lieveAppearance);
 	else addDisabledButton(5, "Appearance");
 	
-	if (lieveVenomEnabled()) addButton(10, "StopVenom", lieveDisableVenom, undefined, "Stop Venom", "Lieve assumes you are ok with her using her venom on you. You can ask her to stop using it so freely.");
+	if (lieveVenomEnabled()) addButton(10, "StopVenom", lieveDisableVenom, undefined, "Stop Venom", "Lieve assumes you are okay with her using her venom on you. You can ask her to stop using it so freely.");
 
 	addButton(14, "Leave", mainGameMenu);
 }
@@ -254,13 +254,13 @@ public function lieveDisableVenom():void
 	clearOutput();
 	lieveHeader();
 
-	if (flags["VENOM_ADDICTION"]  != undefined && flags["VENOM_ADDICTION"] >= 2)
+	if (flags["VENOM_ADDICTION"] != undefined && flags["VENOM_ADDICTION"] >= 2)
 	{
 	output("You ask Lieve to go easy on the venom - your consumption has been getting out of hand.");
 	}
 	else
 	{
-	output("You ask Lieve to stop using her venom on you - you'd rather stay away from the stuff.");
+	output("You ask Lieve to stop using her venom on you - you’d rather stay away from the stuff.");
 	}
 
 	output("\n\nShe shrugs. <i>“Sure.”</i>");
@@ -325,8 +325,8 @@ public function lieveTrenchWivesMenu():void
 	addButton(0, "Sierva", lieveTalkToSierva);
 	addButton(1, "Mayren", lieveTalkToMayren);
 	if(flags["SIERVA_LATEGOODBYE_RESPONSE"] != LIEVE_LATEGOODBYE_COMPLETE && flags["LEARNED_IAYAS_FATE"] == 1) addButton(2,"Iaya",tellSiervaTheBadNews,undefined,"Iaya","Tell Sierva the bad news.");
-	else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) addDisabledButton(2,"Iaya","Iaya","You've already broken the news to Sierva.");
-	else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES) addDisabledButton(2,"Iaya","Iaya","You don't know about Iaya's fate.");
+	else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_COMPLETE) addDisabledButton(2,"Iaya","Iaya","You’ve already broken the news to Sierva.");
+	else if(flags["SIERVA_LATEGOODBYE_RESPONSE"] == LIEVE_LATEGOODBYE_YES) addDisabledButton(2,"Iaya","Iaya","You don’t know about Iaya’s fate.");
 	addButton(14, "Back", lieveMenu);
 }
 
@@ -419,7 +419,7 @@ public function lieveTalkToMayren():void
 public function lieveTalkMenu():void
 {
 	clearMenu();
-	addButton(0, "NoMyrsLand", lieveTalkNoMansLand, undefined, "No Myr's Land", "Ask for details about the stretch of territory outside Kressia: No Myr's Land.");
+	addButton(0, "NoMyrsLand", lieveTalkNoMansLand, undefined, "No Myr’s Land", "Ask for details about the stretch of territory outside Kressia: No Myr’s Land.");
 	
 	if (flags["LIEVE_TALK_NOMANSLAND"] != undefined) addButton(1, "FungalMyr", lieveTalkFungalMyr, undefined, "Fungal Myr", "Try and get more information about the fungus-infected myr.");
 	else addDisabledButton(1, "FungalMyr");
@@ -435,12 +435,12 @@ public function lieveTalkMenu():void
 	if (flags["LIEVE_TALK_PRISONERS"] != undefined) addButton(5, "Myr Fertility", lieveTalkMyrFertility, undefined, "Myr Fertility", "Ask Lieve for more details about the state of Myr fertility.");
 	else addDisabledButton(5, "Myr Fertility");
 
-	addButton(6, "Trench Wives", lieveTalkTrenchWives, undefined, "Trench Wives", "Ask about Lieve's harem, and Trench Wives in general.");
+	addButton(6, "Trench Wives", lieveTalkTrenchWives, undefined, "Trench Wives", "Ask about Lieve’s harem, and Trench Wives in general.");
 
-	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation's military.");
+	addButton(7, "Fed.Army", lieveTalkFedArmy, undefined, "Federation Army", "Have Lieve tell you a little about the Scarlet Federation’s military.");
 	
 	//if has talked to Jim's Warmedic ant about "Her Past"
-	if (flags["LIEVE_TALK_THEWAR"] != undefined && (flags["ANZHELA_HERPAST_TALK"] != undefined || CodexManager.hasViewedEntry("Red Myr"))) addButton(8, "Citizenship", lieveTalkCitizenship, undefined, "Citizenship", "Ask Lieve about Federal Citizenship. From what you understand, it's very different from how the Confederate government handles things.");
+	if (flags["LIEVE_TALK_THEWAR"] != undefined && (flags["ANZHELA_HERPAST_TALK"] != undefined || CodexManager.hasViewedEntry("Red Myr"))) addButton(8, "Citizenship", lieveTalkCitizenship, undefined, "Citizenship", "Ask Lieve about Federal Citizenship. From what you understand, it’s very different from how the Confederate government handles things.");
 	else addDisabledButton(8, "Citizenship");
 
 	if (flags["NEVRIE_QUEST"] == 1 && flags["LIEVE_BLOOD_SAMPLE"] == undefined && !pc.hasKeyItem("Red Myr Blood"))
@@ -448,7 +448,7 @@ public function lieveTalkMenu():void
 		addButton(9, "BloodSample", lieveBloodSample, undefined, "Blood Sample", "Ask Lieve if you could get a sample of her blood for Nevrie.");
 	}
 
-	addButton(10, "Probe", lieveTalkProbe, undefined, "Steele Tech Probe", "Lieve's a scout, right? Maybe she knows something about where your dad's probe ended up.");
+	addButton(10, "Probe", lieveTalkProbe, undefined, "Steele Tech Probe", "Lieve’s a scout, right? Maybe she knows something about where your dad’s probe ended up.");
 	
 	addButton(14, "Back", lieveMenu);
 }
@@ -897,7 +897,7 @@ public function lieveVenomToggle():void
 
 	output("Taking a step closer to Lieve, you ask what she thinks about using her venom on other people.");
 	
-	output("\n\n<i>“Well,”</i> she says, crossing her arms, <i>“Most of us reds like to think that’s pretty intimate. Two lovers becoming addicted to each other - literally - and completely reliant on each other.  Not to mention the overwhelming pleasure, even in a casual encounter. It’s not like you build up an immunity to our venom, you understand. It’s not like most drugs... just the opposite.”</i>");
+	output("\n\n<i>“Well,”</i> she says, crossing her arms, <i>“Most of us reds like to think that’s pretty intimate. Two lovers becoming addicted to each other - literally - and completely reliant on each other. Not to mention the overwhelming pleasure, even in a casual encounter. It’s not like you build up an immunity to our venom, you understand. It’s not like most drugs... just the opposite.”</i>");
 	
 	output("\n\nAs she’s speaking, Lieve curls her lips open and licks one of her canines, revealing a little bridge of pink-tinted saliva coating her teeth, ready to set your body on fire. <i>“The more venom you get, the more it affects you. After a few years, just a few drops can turn you into an orgasming wreck on the floor, completely insensate.”</i>");
 	
@@ -963,7 +963,7 @@ public function lieveSexEntry():void
 
 	if (!hasFuckedLieve())
 	{
-		output("Lieve and her girls seem quite friendly, and the display of bare bosoms and the sexy, hungry looks of her harem has you burning up under the collar. After a moment's hesitation, you take a step forward and ask if she's up for it.");
+		output("Lieve and her girls seem quite friendly, and the display of bare bosoms and the sexy, hungry looks of her harem has you burning up under the collar. After a moment’s hesitation, you take a step forward and ask if she’s up for it.");
 
 		if (pc.isMasculine()) output("\n\nAfter a moment’s thought, Lieve flashes you a slight smile and says, <i>“I think we can do that. Go on, girls, I know you’ve been wanting to sink your teeth into him since you saw him.”</i>");
 		else output("\n\n<i>“I thought you’d never ask,”</i> Lieve answers with a big grin. <i>“Just toss your gear aside and relax, [pc.name]. My girls and I will take good care of you...”</i>");
@@ -1002,7 +1002,7 @@ public function lieveSexMenu(tempVenomEnabled:Boolean = false):void
 	if (pc.isMasculine()) addButton(1, "Lieve Solo", lieveSoloTurnsDownDudes, undefined, "Lieve Solo", "Get Lieve by herself for some fun. No harem, just the two of you...");
 	else addButton(1, "Lieve Solo", lieveSoloFucktime, tempVenomEnabled, "Lieve Solo", "Get Lieve by herself for some fun. No harem, just the two of you...");
 
-	if (pc.isFeminine() && (lieveVenomEnabled() || tempVenomEnabled)) addButton(2, "Bodyworship", lieveBodyWorship, undefined, "Worship Lieve’s Body", "Let Lieve hop you up on a nice, heavy dose of her lusty venom and then lavish the red myr's chiseled body with your " + pc.tongueDescript() + ".");
+	if (pc.isFeminine() && (lieveVenomEnabled() || tempVenomEnabled)) addButton(2, "Bodyworship", lieveBodyWorship, undefined, "Worship Lieve’s Body", "Let Lieve hop you up on a nice, heavy dose of her lusty venom and then lavish the red myr’s chiseled body with your " + pc.tongueDescript() + ".");
 }
 
 public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
@@ -1100,7 +1100,7 @@ public function lieveFuckHarem(tempVenomEnabled:Boolean = false):void
 		
 		clearMenu();
 		addButton(0, "Venom Fuck", lieveVenomFuck, tempVenomEnabled, "Venom Fuck", "Tell Lieve you want her to use every tool at her disposal.");
-		addButton(1, "No Venom", lieveNoVenomFuck, undefined, "No Venom", "You'd rather not have your body flooded with myr venom.");
+		addButton(1, "No Venom", lieveNoVenomFuck, undefined, "No Venom", "You’d rather not have your body flooded with myr venom.");
 		return;
 	}
 	else
@@ -1349,7 +1349,7 @@ public function lieveFuckHaremDickVersion(tempVenomEnabled:Boolean = false):void
 
 		clearMenu();
 		addButton(0, "Venom Fuck", lieveFuckHaremDickVersionVenom, tempVenomEnabled, "Venom Fuck", "Tell Lieve you want her to use every tool at her disposal.");
-		addButton(1, "No Venom", lieveFuckHaremDickVersionNoVenom, undefined, "No Venom", "You'd rather not have your body flooded with myr venom.");
+		addButton(1, "No Venom", lieveFuckHaremDickVersionNoVenom, undefined, "No Venom", "You’d rather not have your body flooded with myr venom.");
 	}
 	else
 	{
@@ -1976,7 +1976,7 @@ public function lieveTourTheTownII():void
 
 	clearMenu();
 	addButton(0, "Bath House", lieveTourBathhouse, undefined, "Base House", "Accompany Lieve to the Bath House.");
-	addButton(1, "No, Thanks", lieveNoTYBathhouse, undefined, "No, Thanks", "You're not up for a trip to a bath house right now.");
+	addButton(1, "No, Thanks", lieveNoTYBathhouse, undefined, "No, Thanks", "You’re not up for a trip to a bath house right now.");
 }
 
 public function lieveNoTYBathhouse():void
@@ -2108,8 +2108,8 @@ public function lieveTourBathhouseII(newLine:Boolean = true):void
 	processTime(15 + rand(5));
 	
 	clearMenu();
-	addButton(0, "Scrub Her", lieveTourBathhouseIIScrubHer, undefined, "Scrub Her", "Scrub Lieve's back, but just with soap and water.");
-	addButton(1, "Lick Her", lieveTourBathhouseIILickHer, undefined, "Lick Her", "You'll get Lieve clean alright, starting with that tight little slit between her legs.");
+	addButton(0, "Scrub Her", lieveTourBathhouseIIScrubHer, undefined, "Scrub Her", "Scrub Lieve’s back, but just with soap and water.");
+	addButton(1, "Lick Her", lieveTourBathhouseIILickHer, undefined, "Lick Her", "You’ll get Lieve clean alright, starting with that tight little slit between her legs.");
 }
 
 public function lieveTourBathhouseIIScrubHer():void
@@ -2287,7 +2287,7 @@ public function postWineCellarShitForLieve():void
 	
 	clearMenu();
 	addButton(0, "Sure", lieveTourSureFollow, undefined, "Sure", "Follow her in.");
-	addButton(1, "Later", lieveTourMaybeLater, undefined, "Later", "Tell Lieve you've got places to be.");
+	addButton(1, "Later", lieveTourMaybeLater, undefined, "Later", "Tell Lieve you’ve got places to be.");
 }
 
 public function lieveTourSureFollow():void
@@ -2387,8 +2387,8 @@ public function lieveTheLateGoodbye():void
 	clearMenu();
 	addButton(0, "Lieve?", lieveLateGoodbyeAskLieve, undefined, "Lieve?", "What does Lieve think about this? Has Sierva told her mistress?");
 	addButton(1, "Friend?", lieveLateGoodbyeFriend, undefined, "Friend", "Ask Sierva about this ‘friend’ of hers.");
-	addButton(2, "Alright", lieveLateGoodbyeAlright, undefined, "Alright", "Promise Sierva you'll deliver the letter.");
-	addButton(3, "No", lieveLateGoodbyeNo, undefined, "No", "Tell Sierva you won't help her.");
+	addButton(2, "Alright", lieveLateGoodbyeAlright, undefined, "Alright", "Promise Sierva you’ll deliver the letter.");
+	addButton(3, "No", lieveLateGoodbyeNo, undefined, "No", "Tell Sierva you won’t help her.");
 }
 
 public function lieveLateGoodbyeAskLieve():void

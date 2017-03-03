@@ -437,6 +437,7 @@ public function goAwayYouMilkyMilkSlut():void
 		//Set Reaha to Booted status.
 		processTime(10);
 		flags["REAHA_BOOTED"] = 1;
+		if (flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -454,6 +455,7 @@ public function leaveNowYouLowConfidenceCuredCowSlut():void
 	processTime(4);
 	//Reaha leaves crew. Flag as <i>“Booted.”</i>
 	flags["REAHA_BOOTED"] = 1;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1279,7 +1281,7 @@ public function buttFuckReahaSlooot():void
 	//[Go Rough] [Go Gentle]
 	addButton(0,"Go Rough",goddamnSavinsAsslust,x,"Go Rough","Tie Reaha up and pound her asshole.");
 	//[Go Gentle]
-	addButton(1,"Go Gentle",goGentleIntoThatDarkNightReaha,x,"Go Rough","Take it easy while you make love to Reaha’s bum.");
+	addButton(1,"Go Gentle",goGentleIntoThatDarkNightReaha,x,"Go Gentle","Take it easy while you make love to Reaha’s bum.");
 }
 
 //[Go Rough]
@@ -1672,6 +1674,7 @@ public function dominantlyTakeItInThebUttFromReahaLel():void
 	output(", only feeling the intense emptiness it leaves behind as Reaha wriggles out of the strapon; when the toy pulls out of her, a floodgate of fem-slime opens, drenching her thighs in musky slime. She gives a heavy sigh, rubbing her sore teats as you let your face fall back into the valley of her cleavage, using her heavy tits as pillows as you recover from your sexual marathon.");
 	processTime(35);
 	pc.orgasm();
+	pc.milkInMouth(chars["REAHA"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1765,7 +1768,7 @@ public function sleepWithCuredReaha():void
 {
 	clearOutput();
 	reahaHeader();
-	output("As you’re getting ready for bed, you hear the pneumatic hiss of your quarters’ door hiss. Reaha steps in, buck naked, an arm wrapped under her heavy breasts for support.");
+	output("As you’re getting ready for bed, you hear the pneumatic hiss of your quarters’ door opening. Reaha steps in, buck naked, an arm wrapped under her heavy breasts for support.");
 	output("\n\n<i>“Hey, [pc.name],”</i> she says, padding over with a suggestive swish in her hips. She slips in under the covers, shivering a little as the sheets caress her breasts and butt, her body still obviously over-sensitive.");
 	output("\n\nNow with a soft, warm companion to join you, you eagerly hop into bed and wrap your arms around Reaha, nesting your head into that magnificent bosom of hers. You’re pretty sure Reaha’s gene mods were tailor-made to make her into the best pillows in the galaxy, and you can’t help but smile as you nestle into her ample cleavage.");
 	output("\n\nWith your cow-girl pillow, it doesn’t take you long to fall asleep...");

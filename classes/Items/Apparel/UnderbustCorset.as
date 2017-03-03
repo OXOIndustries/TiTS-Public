@@ -29,7 +29,7 @@
 			this.description = "an underbust corset";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "An updated classic, this corset has been brought into the future with chameleon silk, ultralastic and nanosteel fibers. It shows off the wearer's assets while maintaining a svelte, sleek figure.";
+			this.tooltip = "An updated classic, this corset has been brought into the future with chameleon silk, ultralastic and nanosteel fibers. It shows off the wearer’s assets while maintaining a svelte, sleek figure.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

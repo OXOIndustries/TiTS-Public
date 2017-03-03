@@ -198,7 +198,7 @@ public function getMilkedByYancyYaSloot():void
 		// [Get Fucked] [Blowjob] [Titfuck]
 		clearMenu();
 		addButton(0,"Get Fucked",untreatedMilkedAndFucked,undefined,"Get Fucked","Do what comes naturally....");
-		addButton(1,"Give B.J.",untreatedGirlsSuckYancyOffAndShit,undefined,"Give Blowjob","Give Yancy a blowjob while you're milked....");
+		addButton(1,"Give B.J.",untreatedGirlsSuckYancyOffAndShit,undefined,"Give Blowjob","Give Yancy a blowjob while you’re milked....");
 		if(pc.canTitFuck()) addButton(2,"Titfuck",untreatedTittyFucksForYancy,undefined,"Titfuck","Put those big jugs to work properly....");
 		else addDisabledButton(2,"Titfuck","Titfuck","You need a large enough rack to do this.");
 		if(pc.hasCock() && pc.cockThatFits(600) >= 0) 
@@ -207,7 +207,7 @@ public function getMilkedByYancyYaSloot():void
 			//Tooltip (Repeat): 
 			else addButton(3,"Pitch Anal",yancyGiantParagraphButtfucksByAnalmancyIncorporated,undefined,"Pitch Anal","Fuck Yancy’s ass to the beat of the milkers draining your tits.");
 		}
-		else addDisabledButton(3,"Pitch Anal","Pitch Anal","You need a dick that will fit Yancy's butt to do him there.");
+		else addDisabledButton(3,"Pitch Anal","Pitch Anal","You need a dick that will fit Yancy’s butt to do him there.");
 	}
 	//Treated
 	else
@@ -275,14 +275,14 @@ public function getMilkedByYancyYaSloot():void
 		//[Fucked] [Blowjob]
 		clearMenu();
 		addButton(0,"Get Fucked",treatedPCsGetCuntFilledAndMilkedPtI,undefined,"Get Fucked","Do what comes naturally....");
-		addButton(1,"Give B.J.",treatedBlowjoerbsAndMilking,undefined,"Give Blowjob","Give Yancy a blowjob while you're milked....");
+		addButton(1,"Give B.J.",treatedBlowjoerbsAndMilking,undefined,"Give Blowjob","Give Yancy a blowjob while you’re milked....");
 		if(pc.hasCock() && pc.cockThatFits(600) >= 0) 
 		{
 			if(flags["YANCY_BUTTFUCKED_BY_PC"] == undefined) addButton(3,"Pitch Anal",yancyGiantParagraphButtfucksByAnalmancyIncorporated,undefined,"Pitch Anal","You can’t deny that you’d like to see the bull’s cock bouncing while you fucked Yancy’s ass to the beat of the milkers. Ask him if he feels the same way... you never know!");
 			//Tooltip (Repeat): 
 			else addButton(3,"Pitch Anal",yancyGiantParagraphButtfucksByAnalmancyIncorporated,undefined,"Pitch Anal","Fuck Yancy’s ass to the beat of the milkers draining your tits.");
 		}
-		else addDisabledButton(3,"Pitch Anal","Pitch Anal","You need a dick that will fit Yancy's butt to do him there.");
+		else addDisabledButton(3,"Pitch Anal","Pitch Anal","You need a dick that will fit Yancy’s butt to do him there.");
 	}
 }
 
@@ -623,7 +623,7 @@ public function untreatedMilkedAndFucked():void
 		else output("just how it’ll feel to");
 		output(" take something that thick in your [pc.asshole].");
 	}
-	output("\n\nYancy smiles at that. <i>“If you really want it that way, " + pc.mf("Miss","Sir") + ". You’re the customer.”</i>");
+	output("\n\nYancy smiles at that. <i>“If you really want it that way, " + pc.mf("Sir","Miss") + ". You’re the customer.”</i>");
 	output("\n\nThe powerfully built bull suddenly strips off his shorts. His fleshy horse cock swells before your very eyes. Not only is he incredibly girthy, but his pink sheath is covered in delicious little nubs.");
 	output("\n\nYou lick your lips just looking at his flaring horse head. You imagine your [pc.lips] slowly wrapping around it and savoring his salty taste. If you weren’t already ");
 	if(pc.hasVagina()) output("glistening wet");
@@ -631,15 +631,15 @@ public function untreatedMilkedAndFucked():void
 	else output("worked up");
 	output(" you certainly are now. You don’t have long to ogle it.");
 
-	output("\n\nYancy twists you in his arms, and you let out a surprised gasp. <i>\"W-what are you doing--?\"</i> you nervously ask, at the same time a little thrilled by the rough treatment.");
+	output("\n\nYancy twists you in his arms, and you let out a surprised gasp. <i>“W-what are you doing--?”</i> you nervously ask, at the same time a little thrilled by the rough treatment.");
 
-	output("\n\n<i>\"Treating you exactly like a cow. That’s what you asked for, right?\"</i> His rough voice echoes your request, and your cheeks furiously flush. Right. You DID ask for that, but hearing it repeated out loud is more than a bit embarrassing.");
+	output("\n\n<i>“Treating you exactly like a cow. That’s what you asked for, right?”</i> His rough voice echoes your request, and your cheeks furiously flush. Right. You DID ask for that, but hearing it repeated out loud is more than a bit embarrassing.");
 
 	output("\n\nYancy doesn’t seem bashful in the least. His calloused hands trail up your naked [pc.skinFurScales] and tease your [pc.skinFurScalesNoun]. He forcefully grabs your waist. His impressive horse cock rubs pointedly between your bare buttocks and you shiver with delight.");
 
 	output("\n\nIs this how the cows feel every day? You’re totally entranced by his stiffening cock pressed flush against you. Spending every day with that magnificent piece of man meat buried inside of your [pc.ass] - maybe being a Treated " + pc.mf("boy","girl") + " isn’t so bad?");
 
-	output("\n\n<i>\"Get on the milking table, ");
+	output("\n\n<i>“Get on the milking table, ");
 	if(pc.legCount == 2) output("on all fours");
 	else output("ass in the air");
 	output(",”</i> the strapping bull commands you. His powerful hands guide you up onto the knee-high table. You’re acutely aware of his firm digits on your [pc.hips] as they expertly guide you into position.");
@@ -660,12 +660,12 @@ public function untreatedMilkedAndFucked():void
 
 	output("\n\nYou wait with bated breath for what comes next. The strapping stud really <i>is</i> treating you like just another cow. You can feel his large hands sliding up from your hips and up your sides. They rise up underneath your [pc.breasts] and give them a firm squeeze. It feels so good-!");
 	output("\n\nYou arch your back and let out an involuntary throaty moan. Your [pc.nipples] are painfully erect between his strong fingers. He pinches them, and you tremble with delight. You want more than for him to play with your [pc.breasts].");
-	output("\n\n<i>\"");
+	output("\n\n<i>“");
 	if(pc.biggestTitSize() < 10) output("Such cute little udders. We don’t see many this size around these parts.");
 	else if(pc.biggestTitSize() < 25) output("You’ve got nice, well-rounded udders. Good milking stock.");
 	else if(pc.biggestTitSize() < 45) output("Such large udders! We’ll get a few batches out of you.");
 	else output("You’ve got some massive udders! Are you sure you’re not a runaway cow?");
-	output("\"</i> He sizes up your [pc.breasts] with his hands, squeezing them like a farm animal’s. You flush with embarrassment, and you think about objecting. You part your [pc.lips] and let out a needy little whine instead.");
+	output("”</i> He sizes up your [pc.breasts] with his hands, squeezing them like a farm animal’s. You flush with embarrassment, and you think about objecting. You part your [pc.lips] and let out a needy little whine instead.");
 
 	output("\n\nHe leans in to squeeze and knead your breasts, and you can <i>feel</i> his fully erect love-rod pressing between your bare buttocks. It’s so hard and thick! You clench your cheeks and wiggle your [pc.ass] against his fleshy equine staff. You’re desperate to be milked and mated by the girthy bull-!");
 
@@ -679,7 +679,7 @@ public function untreatedMilkedAndFucked():void
 	else output("liberally squirt");
 	output(" into the transparent cylinders. Watching your [pc.breasts] being milked by the machine and the [pc.milkColor] spoils traveling up the see-through tubes makes you a little giddy. Just like a herd animal, you’re offering up your [pc.milkFlavor] broth to be drunk, without complaint!");
 
-	output("\n\n<i>\"Let’s see if we can stir a bit more [pc.milkNoun] out of you, cow.\"</i> You feel the beefy bull’s firm hands on your [pc.hips], guiding you back against his incredible girth. His gigantic balls caress your [pc.thighs] and they tremble in delight. Is he finally going to fill your [pc.vagOrAss]?");
+	output("\n\n<i>“Let’s see if we can stir a bit more [pc.milkNoun] out of you, cow.”</i> You feel the beefy bull’s firm hands on your [pc.hips], guiding you back against his incredible girth. His gigantic balls caress your [pc.thighs] and they tremble in delight. Is he finally going to fill your [pc.vagOrAss]?");
 
 	output("\n\nSuddenly he’s pressing his flared equine tip against your [pc.vagOrAsshole], rubbing it back and forth against your ");
 	if(pc.hasVagina()) output("sopping wet slit");
@@ -729,7 +729,7 @@ public function untreatedMilkedAndFucked():void
 	else output("ass");
 	output(", and you let out a startled gasp. Surely the muscular bull can’t still be raring to go?");
 
-	output("\n\n<i>\"... Who said I was done yet? Cow sluts get fucked for a half hour at the very least.\"</i> You moan as you feel Yancy’s flat-tipped horse-member flexing and flaring inside of you, stirring up the slick spunk plugging up your hole. <i>\"After all, don’t you want the real experience?\"</i>");
+	output("\n\n<i>“... Who said I was done yet? Cow sluts get fucked for a half hour at the very least.”</i> You moan as you feel Yancy’s flat-tipped horse-member flexing and flaring inside of you, stirring up the slick spunk plugging up your hole. <i>“After all, don’t you want the real experience?”</i>");
 	output("\n\nYour eyes roll back at the blissful sensation and you instinctively press your [pc.hips] against his. Your mind is out to lunch, and your animal instincts take over - and all you want is to be mated and milked by this virile bull. And the bull is more than happy to oblige.");
 	//Pass 35 minutes.
 	processTime(35);
@@ -769,27 +769,27 @@ public function untreatedMilkedAndFuckedII():void
 	showName("\nYANCY");
 	output("Your whole body is buzzing with pleasure and your mind is completely blank. A thin sheen of sweat covers your [pc.skinFurScales] as you fight for breath. You are dimly aware of hot, thick globs of cum pouring down your white streaked [pc.thighs], and the milking caps being removed. Your [pc.breasts] feel drained dry.");
 	output("\n\nReaching between your legs, you tentatively touch your quivering [pc.vagOrAss]. It’s already been well spread by his length and your probing digits slip easily inside. You’re totally packed with his slick and fertile seed! Right now you could die a happy " + pc.mf("man","woman") + ".");
-	output("\n\nThere’s a surprisingly tender kiss on the [pc.skinFurScales] of your back, and you’re aware your lower back is being caressed. <i>\"Thank you, my dear. Not only did you provide ");
+	output("\n\nThere’s a surprisingly tender kiss on the [pc.skinFurScales] of your back, and you’re aware your lower back is being caressed. <i>“Thank you, my dear. Not only did you provide ");
 	var milked:Number = pc.lactationQ();
 	if(milked < 500) output("a bit");
 	else if(milked < 2000) output("a lot");
 	else output("gallons");
-	output(" of [pc.milkNoun], I also really enjoyed fucking you. Most fun I’ve had in ages.\"</i>");
+	output(" of [pc.milkNoun], I also really enjoyed fucking you. Most fun I’ve had in ages.”</i>");
 	output("\n\nIs that a bashful tone to his voice? You turn around, though your [pc.legOrLegs]");
 	if(pc.legCount == 1) output(" is");
 	else output(" are");
 	output(" no help - ");
-	if(pc.legCount == 1) output(" it's");
+	if(pc.legCount == 1) output(" it’s");
 	else output(" they’re");
 	output(" pretty much jelly after the thorough fucking he gave you. You notice he’s downing ");
 	if(flags["YANCY_EXPLAINED_HIS_PILLS"] != undefined) output("those familiar pills");
 	else 
 	{
 		output("some pills, and you quirk an eyebrow.");
-		output("\n\nYancy gives you a knowing grin. <i>\"... Oh, these? I’ve got to take pills to keep from knocking my clients up. ");
+		output("\n\nYancy gives you a knowing grin. <i>“... Oh, these? I’ve got to take pills to keep from knocking my clients up. ");
 		if(pc.hasVagina()) output("That’s a real shame, too. I’d love to see you ready to bear my young.");
 		else output("Not that we need it for this, but it’s just habit, you know?");
-		output("\"</i> There’s a slight flush to his cheeks, despite being naked and his magnificent tool covered in his and your love juice. <i>\"Come back anytime, y’hear?\"</i>");
+		output("”</i> There’s a slight flush to his cheeks, despite being naked and his magnificent tool covered in his and your love juice. <i>“Come back anytime, y’hear?”</i>");
 	}
 	
 	processTime(2);
@@ -813,9 +813,9 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 	showName("\nYANCY");
 	showBust("YANCY");
 	output("Your hand rubs against his impressive bulge, and he flexes it within his tight shorts. Wow! You feel it pressing back against you, and an electric shiver runs up your spine. His pheromone-laced musk is making it hard to think.");
-	output("\n\n<i>\"On your knees.\"</i> The powerfully built bull orders you. You’re surprised to find yourself kneeling on the hay before him. D-did you just do that without thinking? He presses his impressive bulge against your cheek and rubs it against your [pc.face]. <i>\"... Now inhale.\"</i>");
+	output("\n\n<i>“On your knees.”</i> The powerfully built bull orders you. You’re surprised to find yourself kneeling on the hay before him. D-did you just do that without thinking? He presses his impressive bulge against your cheek and rubs it against your [pc.face]. <i>“... Now inhale.”</i>");
 	output("\n\nYou do as he asks without thinking, breathing in his magnificent, heady scent. Your mouth is salivating and your eyes are fluttering back in their sockets. You let out a low, primal moan, losing yourself in the smells and sensations of his intoxicating loins.");
-	output("\n\n<i>\"... " + pc.mf("Good boy","Good girl") + ". I know a natural cock-sucker when I see one.\"</i> Yancy gruffly tells you. You blush furiously, all the while rubbing your cheek against his hot firmness. You’re butt naked from head to");
+	output("\n\n<i>“... " + pc.mf("Good boy","Good girl") + ". I know a natural cock-sucker when I see one.”</i> Yancy gruffly tells you. You blush furiously, all the while rubbing your cheek against his hot firmness. You’re butt naked from head to");
 	if(pc.legType == GLOBAL.TYPE_HUMAN) output(" toe");
 	else output(" [pc.foot]");
 	output(" and kneeling before a virile bull, What’s wrong with you?");
@@ -830,9 +830,9 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 
 	output("\n\nYou take in the sight of his flaring stallion with bated breath. It’s so thick and long! Not only that, his pink length is covered in delicious little nubs. When he pushes his pheromone-laced crotch into your face once more, you positively melt with pleasure. It smelled so good covered up, but it was nothing compared to this!");
 
-	output("\n\n<i>\"Suck it.\"</i> Yancy orders you. You tremble with delight - it’s like he’s answered your prayers! You greedily wrap your [pc.lips] around his flat-tipped horse-member, desperate to bring relief to your virile bull. Your jaws creak as you barely manage to take his awe-inspiring tip into your hungry mouth. As his fleshy tip rubs against your tongue, you swoon with delight. Have you ever tasted anything so exquisite?");
+	output("\n\n<i>“Suck it.”</i> Yancy orders you. You tremble with delight - it’s like he’s answered your prayers! You greedily wrap your [pc.lips] around his flat-tipped horse-member, desperate to bring relief to your virile bull. Your jaws creak as you barely manage to take his awe-inspiring tip into your hungry mouth. As his fleshy tip rubs against your tongue, you swoon with delight. Have you ever tasted anything so exquisite?");
 	output("\n\nA thick dollop of pre-cum drools out from his tip and coats your tongue, rewarding your efforts. You swoon in the knowledge that the stocky bull is enjoying himself. Your tongue hungrily lashes at his sizable urethra and sensuously dips inside his slickened hole. Drool runs down your cheeks as you desperately seek out every drop of his delectable sperm.");
-	output("\n\n<i>\"What did I tell you? A natural cock-sucker.\"</i> Yancy groans and brings his powerful hands behind your head. With a single, mighty thrust he buries his fleshy horse-column down your throat, and you let out a muffled moan. For some reason your gag-reflex doesn’t even kick in as his flared tip spreads and caresses the deepest recesses of your throat. Your head is spinning from his potent musk - maybe what he what he says true, and you were born to suck cock?");
+	output("\n\n<i>“What did I tell you? A natural cock-sucker.”</i> Yancy groans and brings his powerful hands behind your head. With a single, mighty thrust he buries his fleshy horse-column down your throat, and you let out a muffled moan. For some reason your gag-reflex doesn’t even kick in as his flared tip spreads and caresses the deepest recesses of your throat. Your head is spinning from his potent musk - maybe what he what he says true, and you were born to suck cock?");
 	output("\n\nAnother thick, creamy dollop of his glorious spunk dribbles down your throat, and the last of your resolve crumbles. You happily plunge forward and bury your nose hard against his base, eager to please the exquisite male bull. Every dribble of his hot seed down your throat sets your senses aflame and warms your belly, your [pc.thighs] quivering with the knowledge he’s filling it with his awe-inspiring spunk. It feels so <i>right</i>, and you wonder why you would ever want anything other than this?");
 	output("\n\nYancy lets out a deep, guttural groan and grinds his powerful hips against your face. You flush with satisfaction and pride, your [pc.thighs] trembling. He’s enjoying it! You gurgle noisily and moan as he animalistically fucks your narrow throat. In that moment [pc.name] Steele is gone, and all that is left is Yancy’s cock-sucking cow slut, using your mouth as his rightful prize.");
 	output("\n\nSuddenly you hear him let out a sharp cry and bury his glorious flat-tipped cock in the deepest recesses of your throat. The bull fires spastic ropes of thick, gooey sperm in your gullet. You thoroughly cream yourself with Yancy’s incredible length buried down your neck, your [pc.thighs] spastically shaking as he fills your stomach with his creamy seed.");
@@ -843,9 +843,9 @@ public function untreatedGirlsSuckYancyOffAndShit():void
 
 	output("\n\nNot wanting a single drop of his wonderful spooge to go to waste, you diligently lick off his cum-splattered equine cock. Just when you think you’re done, his flat head flares and delivers another gooey gush of his succulent seed for you to lick off. You moan like a total cum slut, savoring his heavenly taste washing over your tongue.");
 
-	output("\n\n<i>\"That was - wow.\”</i></i> Yancy coughs. You lie back, utterly spent, and your [pc.breasts] feeling well and truly emptied. The virile bull removes the cups for you, and you tremble at the feeling of his strong fingers caressing your well-pumped udders. Your head finally begins to clear a little, and you furiously blush.");
+	output("\n\n<i>“That was - wow.\”</i></i> Yancy coughs. You lie back, utterly spent, and your [pc.breasts] feeling well and truly emptied. The virile bull removes the cups for you, and you tremble at the feeling of his strong fingers caressing your well-pumped udders. Your head finally begins to clear a little, and you furiously blush.");
 
-	output("\n\n<i>\"Anytime you want to do that again - anytime at all - come see me.\"</i> Yancy winks and slips on his shorts. You feel a pang of regret seeing the fabric cover up his well-licked man meat. Perhaps next time he’ll fuck your [pc.vagOrAss] with it, you fantasize, feeling a little giddy at the thought...");
+	output("\n\n<i>“Anytime you want to do that again - anytime at all - come see me.”</i> Yancy winks and slips on his shorts. You feel a pang of regret seeing the fabric cover up his well-licked man meat. Perhaps next time he’ll fuck your [pc.vagOrAss] with it, you fantasize, feeling a little giddy at the thought...");
 
 	processTime(30);
 	
@@ -873,7 +873,7 @@ public function untreatedTittyFucksForYancy():void
 	showBust("YANCY");
 	author("JimThermic");
 	output("His masculine odor fills your nostrils and it smells so intensely erotic. You slide your arms around Yancy and sensuously rub your lactating breasts against his broad, manly chest. You can see his cheeks flushing with delight, and you feel a rush of pride at this. He’s definitely into you!");
-	output("\n\n<i>\"... How about instead of you milking my tits, I milk you with them--?\"</i> You naughtily suggest, deliberately dragging your [pc.nipples] across his deliciously waxed chest. You can feel his sizable bulge twitching at your sensation, and he lets out a throaty groan. Just one more push, and you’ll have your way.");
+	output("\n\n<i>“... How about instead of you milking my tits, I milk you with them--?”</i> You naughtily suggest, deliberately dragging your [pc.nipples] across his deliciously waxed chest. You can feel his sizable bulge twitching at your sensation, and he lets out a throaty groan. Just one more push, and you’ll have your way.");
 	output("\n\nYou sinfully slide your fingers down his mighty abdomen, trailing the tips between his contours. Finally, you slide it underneath his shorts, until you’re firmly grabbing his prodigious equine length. Boy, is he thick! You marvel at the sheer girth of the bull boy; you’re barely able to strain your digits around him.");
 	output("\n\nLooking at the impressive fleshy pillar jutting up from between his thighs, you realize there’s nothing ‘boyish’ about him. You drool over the sight of his impressive manhood, from his flat equine tip to his heavy, fist-sized balls dangling between his legs. Just <i>looking</i> at it makes your [pc.thighs] tremble!");
 	output("\n\nNot one to back down from such a <i>considerable</i> challenge, you ");
@@ -893,7 +893,7 @@ public function untreatedTittyFucksForYancy():void
 
 	output("\n\nAfterwards, you sigh happily and run your fingers across your [pc.skinFurScales]. You utterly reek of sex, not to mention Yancy’s distinctive bull scent. He provided so much that you look like you’ve been in an orgy with several bulls, instead of a single one, and this thought makes you shiver with delight.");
 	output("\n\nYou don’t seem to be alone in the thought as Yancy looks you over. His impressive girth twitches and becomes erect once more simply looking at you.");
-	output("\n\n<i>\"... You look so hot like that - I just can’t help myself!\"</i> He rumbles, picking you up and placing you on the milking bench. You shiver with delight as he shoves his newly erect cock fiercely inside your [pc.vagOrAss], ravaging you with animalistic lust. Utterly dazed and shivery from before, you go with the flow, moaning as his impressive girth fills up your needy hole. Talk about waving a red flag in front of a bull!");
+	output("\n\n<i>“... You look so hot like that - I just can’t help myself!”</i> He rumbles, picking you up and placing you on the milking bench. You shiver with delight as he shoves his newly erect cock fiercely inside your [pc.vagOrAss], ravaging you with animalistic lust. Utterly dazed and shivery from before, you go with the flow, moaning as his impressive girth fills up your needy hole. Talk about waving a red flag in front of a bull!");
 	if(pc.hasVagina()) pc.cuntChange(0,400);
 	else pc.buttChange(400);
 	// Time pass
@@ -984,7 +984,7 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 	output(". It takes him a moment to turn a stream of stammers into a coherent, <i>“Uh, I guess,”</i> as his eyes wander down to your crotch. You beam at the bull and slip down onto your [pc.knees] in front of him, letting your hands play across the growing bulge. Might as well make sure he enjoys this as much as you’re going to, right? His zipper takes a little care and work to pull down, but the reward is immediate as Yancy’s thick rod spills out into your waiting grasp. It’s not as long as ");
 	if(flags["YANCY_SEXED"] == undefined) output("you might have imagined");
 	else output("the other bulls around New Texas");
-	output(", but your attendant more than makes up for it with thickness: at a glance, he’s as wide around as a cow-girl's arm, with a flare surrounded by rings of feline-like nubs.");
+	output(", but your attendant more than makes up for it with thickness: at a glance, he’s as wide around as a cow-girl’s arm, with a flare surrounded by rings of feline-like nubs.");
 	//if PC has a cunt, Untreated:
 	if(pc.hasVagina() && !pc.isTreated()) output(" Oooh, maybe it’s not too late to switch places. You suppress a shiver at the thought of those little nubs teasing every inch of your drooling pussy.");
 	else if(pc.hasVagina()) output(" You squeal in delight as the half-hard prick plops into your hand, the meaty flare smacking you right in the cheek. Instinctively, you reach out and lick it, shivering at the taste of him, so musky and sweaty and delicious. You’re strongly tempted to just flop back and let the bull fuck you a few times to get warmed up first! He looks so pent up, you can’t bear to see him go without release.");
@@ -994,7 +994,7 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 
 	output("\n\n<i>“Ah, that’s not so bad...”</i> Yancy groans, planting one of his big, strong hands on the top of your head. He sighs contentedly, bucking his hips into your welcoming lips and letting you taste every inch of that big slab of meat. Just got to make him relax a little more, and he’ll be all yours....");
 
-	output("\n\nAs you're suckling on his rod, though, the big bull remembers his job, and grabs the milker cups back up. You ");
+	output("\n\nAs you’re suckling on his rod, though, the big bull remembers his job, and grabs the milker cups back up. You ");
 	if(pc.hasKnees()) output("awkwardly lean back on your [pc.knees]");
 	else if(pc.isNaga()) output("languidly lean back on your serpentine lower body");
 	else output("awkwardly lean back");
@@ -1068,7 +1068,7 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 
 public function milkResultDisplay():void
 {
-	output("\n\nA holodisplay on the wall proudly broadcasts this session's productivity: <b> ");
+	output("\n\nA holodisplay on the wall proudly broadcasts this session’s productivity: <b> ");
 	var milkAmount:Number = pc.lactationQ(99);
 	if(milkAmount < 1000 && pc.hasStatusEffect("Temporary Treatment")) milkAmount += 1500 + rand(500);
 

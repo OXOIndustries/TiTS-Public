@@ -3502,7 +3502,12 @@ public function annoxKaedeFuckThem(inShop:Boolean = true):void
 	if (anno.armor is AnnosCatsuit) output(" pulling down her zipper");
 	else output(" pulling off her shirt");
 	output(" and slipping down to her knees beside Kaede. With both ausars in position, there’s a moment of squabbling for position before Kaede finally lunges forward and wraps her lips around your prick. Your breath catches as the eager halfbreed’s lips and tongue caress your [pc.cockHead "+ selCock +"], bathing the first inches of your [pc.cock "+ selCock +"] in pleasure. ");
-	
+
+	annoxKaedeFuckThemFromKaedeBeej(selCock);
+}
+
+public function annoxKaedeFuckThemFromKaedeBeej(selCock:int):void
+{
 	output("\n\n<i>“Good girl,”</i> Anno coos, stroking Kaede’s hair as the redhaired halfbreed goes down on your rod. For her part, Anno slips around beside you, putting her nose right up to your dick and taking in a long, full-chested whiff. ");
 	
 	output("\n\n<i>“Mmmm. Oh, that’s what I live for,”</i> Anno moans as she revels in your masculine musk. Her tongue lolls out on instinct, wrapping around your shaft just ahead of Kaede’s plunging lips, wetting the path for her cockhungry lover. You rest your hands between two pairs of perky wolf-ears, guiding your lovers onward towards your base, watching Kaede’s throat bulge as she");
@@ -3691,23 +3696,27 @@ public function annoxKaedeService(inShop:Boolean = true):void
 		if (pc.hasVagina()) output(" dripping wet");
 	}
 	else output(" flushed with arousal");
-	output(" by the time the last of Anno’s outfit hits the floor. With a wiggle of her tail, Anno beckons you over and together you slink down to the deck, putting you both on-level with the mounting bulge of doggycock straining against Kaede’s jeans. ");
-	
+	output(" by the time the last of Anno’s outfit hits the floor. With a wiggle of her tail, Anno beckons you over and together you slink down to the deck, putting you both on-level with the mounting bulge of doggycock straining against Kaede’s jeans.");
+	continueServicingKaedeWithAnno();
+}
+
+public function continueServicingKaedeWithAnno():void
+{
 	output("\n\nAnno leans in and, grinning from ear to ear, takes the tab of Kaede’s zipper in between her teeth. Gingerly, she pulls it down around her lover’s cock, letting the eight-inch red dogshaft spill free right onto her nose. Before the snowy ausar can, you gobble that slab of red cockmeat up, wrapping your [pc.lips] around Kaede’s cock. The halfbreed gives a high, girlish moan as you suck all eight inches down; you gag a bit on it as the pointed crown batters against the back of your throat, refusing to bend down into the waiting channel of your throat. It’s a struggle to tame the rock-hard rod, but your attempts have a visible effect on its owner anyway: she shivers and gasps as your mouth works her cock. One of Kaede’s hands strokes your [pc.hair], gently pushing you down on her shaft, trying to cram more and more of her prick into you. ");
 	
-	output("\n\n<i>“Ease up there, you two,”</i> Anno teases, nuzzling in beside you. <i>“I might get jealous...”</i> ");
+	output("\n\n<i>“Ease up there, you two,”</i> Anno teases, nuzzling in beside you. <i>“I might get jealous...”</i>");
 	
-	output("\n\nRather than acting on her ‘jealousy’ though, Anno takes the high road of leaning down and lapping her tongue along the base of her girlfriend’s shaft, drawing herself down to the tight sack of ballsflesh beneath it. Kaede shivers at the sudden wet, hot touch, her cock throbbing hard in your mouth - and depositing a heady little spurt of pre across the back of your throat. You suck it down greedily, your [pc.tongue] slurping at the tip of Kaede’s cock to get at the leftovers, sure to get every drop of musky ausar cum you can. ");
+	output("\n\nRather than acting on her ‘jealousy’ though, Anno takes the high road of leaning down and lapping her tongue along the base of her girlfriend’s shaft, drawing herself down to the tight sack of ballsflesh beneath it. Kaede shivers at the sudden wet, hot touch, her cock throbbing hard in your mouth - and depositing a heady little spurt of pre across the back of your throat. You suck it down greedily, your [pc.tongue] slurping at the tip of Kaede’s cock to get at the leftovers, sure to get every drop of musky ausar cum you can.");
 	
-	output("\n\nAnd you get plenty, thanks to Anno. Giving you a sultry little wink, the snowy-haired ausar slips a hand between Kaede’s thighs, completely unnoticed by the red-head thanks to the oral attention being lavished on her cock and balls. From your place locked onto Kaede’s dick, you’re granted a first-row seat to watch a single digit pop forward from Anno’s hand, one lone finger separating from the others as her hand snakes up and around her lover’s thigh. It doesn’t take a genius to guess where that’s going, so you brace for the inevitable, making sure your mouth is nice and wide, lips locked around the knot of Kaede’s cock. The effect of Anno’s mischievous play is instantaneous and overwhelming: Anno’s finger vanishes between Kaede’s cheeks, and the halfbreed immediately lets out a shrill cry of terror as she’s penetrated. One smooth, forceful motion and Anno’s finger is fully buried up her lover’s ass; Kaede’s cock jumps in your mouth, her hips thrusting it so deep you’re afraid it’s going to come out the back of your throat. ");
+	output("\n\nAnd you get plenty, thanks to Anno. Giving you a sultry little wink, the snowy-haired ausar slips a hand between Kaede’s thighs, completely unnoticed by the red-head thanks to the oral attention being lavished on her cock and balls. From your place locked onto Kaede’s dick, you’re granted a first-row seat to watch a single digit pop forward from Anno’s hand, one lone finger separating from the others as her hand snakes up and around her lover’s thigh. It doesn’t take a genius to guess where that’s going, so you brace for the inevitable, making sure your mouth is nice and wide, lips locked around the knot of Kaede’s cock. The effect of Anno’s mischievous play is instantaneous and overwhelming: Anno’s finger vanishes between Kaede’s cheeks, and the halfbreed immediately lets out a shrill cry of terror as she’s penetrated. One smooth, forceful motion and Anno’s finger is fully buried up her lover’s ass; Kaede’s cock jumps in your mouth, her hips thrusting it so deep you’re afraid it’s going to come out the back of your throat.");
 	
 	output("\n\nKaede’s voice comes out as a high, girlish whine as Anno finger-fucks her, probing deep into her lover’s tight little ass. The halfbreed bites her lip, the only way she can manage to contain her moans of pleasure and muted pain as she’s violated. Anno gleefully invites you to join her, crooking a free finger at you from between Kaede’s legs. You do so, taking a hand through the other side of the redhead’s crotch and slipping a single digit up between her clenched cheeks.");
 	
-	output("\n\n<i>“N-no more,”</i> Kaede whines, struggling against your and Anno’s oral holds on her; your digit moves onward all the while, until your fingertip brushes against the rim of Kaede’s hole, already agape and squirming around Anno’s white-furred finger. <i>“I-I can’t... can’t hold...”</i> Kaede squeals as you start to push forward, meeting fierce resistance before finally pushing into the tight, warm passage of the half-ausar’s asshole. ");
+	output("\n\n<i>“N-no more,”</i> Kaede whines, struggling against your and Anno’s oral holds on her; your digit moves onward all the while, until your fingertip brushes against the rim of Kaede’s hole, already agape and squirming around Anno’s white-furred finger. <i>“I-I can’t... can’t hold...”</i> Kaede squeals as you start to push forward, meeting fierce resistance before finally pushing into the tight, warm passage of the half-ausar’s asshole.");
 	
-	output("\n\nBetween the two fingers digging into her behind, Kaede’s hold on her lust melts like ice on a summer’s day. The movements of her prick between your [pc.lips] become more frantic, desperate, as her slender hips pound into your face. You brace yourself for her orgasm, and are greeted moments later by a flood of ausar cum. Hot, sticky spunk rushes through the throbbing shaft of Kaede’s cock and splatters across the back of your throat, drooling down your eager gullet. Kaede’s hands wrap around your head, holding you steady as she fills you with her seed. Thrust after thrust until you feel positively engorged with boiling cum. ");
+	output("\n\nBetween the two fingers digging into her behind, Kaede’s hold on her lust melts like ice on a summer’s day. The movements of her prick between your [pc.lips] become more frantic, desperate, as her slender hips pound into your face. You brace yourself for her orgasm, and are greeted moments later by a flood of ausar cum. Hot, sticky spunk rushes through the throbbing shaft of Kaede’s cock and splatters across the back of your throat, drooling down your eager gullet. Kaede’s hands wrap around your head, holding you steady as she fills you with her seed. Thrust after thrust until you feel positively engorged with boiling cum.");
 	
-	output("\n\nWith a gasp, you slump off of the halfbreed’s cock, unable to take anymore. A few final spurts of cum follow you, smearing across your face and [pc.chest] as Kaede’s orgasm winds down. Good God, she was pent up! Your finger withdraws from her ass when you retreat, followed swiftly by Anno’s. The white-maned ausar takes your place on her lover’s cock, lapping up the last of Kaede’s discharge from the tip of her pointed red pecker. ");
+	output("\n\nWith a gasp, you slump off of the halfbreed’s cock, unable to take anymore. A few final spurts of cum follow you, smearing across your face and [pc.chest] as Kaede’s orgasm winds down. Good God, she was pent up! Your finger withdraws from her ass when you retreat, followed swiftly by Anno’s. The white-maned ausar takes your place on her lover’s cock, lapping up the last of Kaede’s discharge from the tip of her pointed red pecker.");
 	
 	output("\n\nKaede’s knees all but give out under her, and she stumbles back onto the edge of the bed. Anno gives her a little push back, and crawls in after her, trailing kisses up the shemale’s sweat-sheened body. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legOrLegs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
 
@@ -3762,7 +3771,11 @@ public function annoxKaedeWatch(inShop:Boolean = true):void
 	output("\n\nYou");
 	if (pc.isBiped()) output(" find a chair and");
 	output(" have a seat, leaning back to enjoy the show. And what a show it is. Kaede is nervous and shy at first, but Anno soon breaks her out of it, sensually stripping off her lover’s jacket and shirt before moving on to her bra, each motion slow and exaggerated, making sure to tease and tantalize you both with the sight of Kaede’s tits. Finally, she lets her lover’s boobs bounce free. Kaede gasps, raising an arm to cover herself before Anno stops her and redirects that arm to her own hip. With this done, she slips behind her lover, looking at you over Kaede’s shoulder.");
-	
+	watchThemKaedeAndAnnoContinuationSplice();
+}
+
+public function watchThemKaedeAndAnnoContinuationSplice():void
+{
 	output("\n\n<i>“Like what you see, boss?”</i> Anno drawls with a grin, cupping one of Kaede’s big, perky tits. <i>“I know I sure do.”</i>");
 	
 	output("\n\nKaede’s blush darkens as Anno puts her out on display, squeezing her boobs together and pinching at her nipples, making sure to emphasize how nice and hard they’re getting. Just like something else... your eyes are drawn down to the almost painfully swollen bulge in Kaede’s pants, her cock trapped in the denim and unable to break free with her hands gripping tight on Anno’s hips.");

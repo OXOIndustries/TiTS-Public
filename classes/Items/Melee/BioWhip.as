@@ -28,7 +28,7 @@ package classes.Items.Melee
 			this.description = "a single-tailed bio whip";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This single-tailed bio whip is designed mainly from braided leather, but its tip is actually organic, based off the biology of a skorian's tail and coated in a translucent aphrodisiac. When a subject is struck by the whip, the potent drug is directly delivered, causing both pleasure and pain to surge through their skin. There is a disclaimer label stating prolonged whipping may cause an individual to confuse pain with pleasure.";
+			this.tooltip = "This single-tailed bio whip is designed mainly from braided leather, but its tip is actually organic, based off the biology of a skorian’s tail and coated in a translucent aphrodisiac. When a subject is struck by the whip, the potent drug is directly delivered, causing both pleasure and pain to surge through their skin. There is a disclaimer label stating prolonged whipping may cause an individual to confuse pain with pleasure.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

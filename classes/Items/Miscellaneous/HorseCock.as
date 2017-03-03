@@ -34,7 +34,7 @@
 			this.description = "an equine phallus complete with balls";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This oddly-detached penis has been crafted to look like a perfect representation of equine virility. It's dotted with veins that look real enough to pump blood, to say nothing of the swaying balls that dangle from its base. The back end is flat; perhaps it's meant to slot into a harness as a strap-on. Then again, there is a slit hidden on that smooth edge. Is it some kind of perverted masturbation sleeve?";
+			this.tooltip = "This oddly-detached penis has been crafted to look like a perfect representation of equine virility. It’s dotted with veins that look real enough to pump blood, to say nothing of the swaying balls that dangle from its base. The back end is flat; perhaps it’s meant to slot into a harness as a strap-on. Then again, there is a slit hidden on that smooth edge. Is it some kind of perverted masturbation sleeve?";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -98,7 +98,7 @@
  					//If only 1 non horsecock
  					if(eligableHorseTFDicks(pc) == 0)
  					{
- 						kGAMECLASS.output("You don't have any suitable place to stick this - you're already packing some fine horsemeat.");
+ 						kGAMECLASS.output("You don’t have any suitable place to stick this - you’re already packing some fine horsemeat.");
  						if(!kGAMECLASS.infiniteItems()) quantity++;
  					}
  					else if(eligableHorseTFDicks(pc) == 1) HorseCockHorseCockConversion(eligableHorseDick(pc));
@@ -109,7 +109,7 @@
  						for(var x:int = 0;x < pc.cockTotal();x++)
  						{
  							if(pc.cocks[x].cType != GLOBAL.TYPE_EQUINE) kGAMECLASS.addButton(x,uppercase(pc.numTwoText(x+1)),HorseCockHorseCockConversion,x);
- 							else kGAMECLASS.addDisabledButton(x,uppercase(pc.numTwoText(x+1)),uppercase(pc.numTwoText(x+1)),"It'd look silly to put a horse-cock on a horse-cock.");
+ 							else kGAMECLASS.addDisabledButton(x,uppercase(pc.numTwoText(x+1)),uppercase(pc.numTwoText(x+1)),"It’d look silly to put a horse-cock on a horse-cock.");
  						}
  						return true;
  					}
@@ -129,7 +129,7 @@
 			var pc:Creature = kGAMECLASS.pc;
 			if(target < 0)
 			{
-				kGAMECLASS.output("OI, A FUKKIN' ERROR HAPPENED. SOMEHOW THE GAME IS TRYING TO TRANSFORM A DICK THAT DOESN'T EXIST. PLEASE BUG REPORT THIS THROUGH THE BUG REPORTS LINKS ON FENOXO.COM IN THE SIDEBAR.");
+				kGAMECLASS.output("OI, A FUKKIN’ ERROR HAPPENED. SOMEHOW THE GAME IS TRYING TO TRANSFORM A DICK THAT DOESN’T EXIST. PLEASE BUG REPORT THIS THROUGH THE BUG REPORTS LINKS ON FENOXO.COM IN THE SIDEBAR.");
 				kGAMECLASS.clearMenu();
 				kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 				return;
@@ -137,7 +137,7 @@
 			//<You GigantoDong>
 			if(pc.cocks[target].cLength() > 18)
 			{
-				kGAMECLASS.output("Your [pc.cock " + target + "] lies draped over your thigh as you look at the far smaller sheath in your hand. There’s no way in heaven this could fit on your massive dong, but you ruefully lose yourself in a daydream of having a horse-cock this large. The ones you saw on ultraporn stars on the extranet always looked so... bestial and masculine. It’s hard not to appreciate the qualities.\n\nAbsentmindedly, you tug on the opening of the tube and find it stretches far farther than you would have first thought. You don’t know why, but you can't seem to stop yourself from taking the head of your [pc.cock " + target + "] and gently stuff it in the stretchy end of the sheath. The rubbery tube distends massively as your enormous cock invades its depths, stretching wide and long to hang heavily from your crotch.");
+				kGAMECLASS.output("Your [pc.cock " + target + "] lies draped over your thigh as you look at the far smaller sheath in your hand. There’s no way in heaven this could fit on your massive dong, but you ruefully lose yourself in a daydream of having a horse-cock this large. The ones you saw on ultraporn stars on the extranet always looked so... bestial and masculine. It’s hard not to appreciate the qualities.\n\nAbsentmindedly, you tug on the opening of the tube and find it stretches far farther than you would have first thought. You don’t know why, but you can’t seem to stop yourself from taking the head of your [pc.cock " + target + "] and gently stuff it in the stretchy end of the sheath. The rubbery tube distends massively as your enormous cock invades its depths, stretching wide and long to hang heavily from your crotch.");
 				if(pc.hasKnot(target)) kGAMECLASS.output(" Your thick knot stretches the poor abused toy even further, a visible lump remains in the depths of the sheath.");
 				//{if Balls}
 				if(pc.balls > 0)
@@ -160,7 +160,7 @@
 						if(pc.balls == 1) kGAMECLASS.output("nut");
 						else kGAMECLASS.output("nuts");
 						kGAMECLASS.output(". You yank and pull, then pull some more, and finally your [pc.balls] roll into the rubbery skin of the sheath to hang heavily from your groin.");
-						if(pc.balls > 2) kGAMECLASS.output(" You aren't sure how you fit so many in space built for two.");
+						if(pc.balls > 2) kGAMECLASS.output(" You aren’t sure how you fit so many in space built for two.");
 					}
 				}
 				pc.balls = 2;
@@ -209,7 +209,7 @@
 						if(pc.balls == 1) kGAMECLASS.output("nut");
 						else kGAMECLASS.output("nuts");
 						kGAMECLASS.output(". You yank and pull, then pull some more, and finally your [pc.balls] roll into the rubbery skin of the sheath to hang heavily from your groin.");
-						if(pc.balls > 2) kGAMECLASS.output(" You aren't sure how you fit so many in space built for two.");
+						if(pc.balls > 2) kGAMECLASS.output(" You aren’t sure how you fit so many in space built for two.");
 					}
 				}
 				pc.balls = 2;

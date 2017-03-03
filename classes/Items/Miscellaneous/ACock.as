@@ -32,7 +32,7 @@
 			this.description = "a KihaCorp-branded synth-phallus modelled after a terran’s";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "KihaCorp’s popular companion droid line has numerous accessories and addons available for purchase across the galaxy. Some of the most popular are the hot-swappable genitals they’re equipped with, in particular variant phalli and vaginas.\n\nThis one is average-sized, designed to be the spitting image of a handsome terran's. It includes its own silicone reservoir and pumps to minimize impact on the android’s body shape during erections.";
+			this.tooltip = "KihaCorp’s popular companion droid line has numerous accessories and addons available for purchase across the galaxy. Some of the most popular are the hot-swappable genitals they’re equipped with, in particular variant phalli and vaginas.\n\nThis one is average-sized, designed to be the spitting image of a handsome terran’s. It includes its own silicone reservoir and pumps to minimize impact on the android’s body shape during erections.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

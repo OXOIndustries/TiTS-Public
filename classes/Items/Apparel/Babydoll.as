@@ -29,7 +29,7 @@
 			this.description = "a babydoll top";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This cute, silky garment is so thin as to be practically translucent. Made of chameleon silk and ultralastic, it barely covers the wearer's torso, let alone anything below the waist.";
+			this.tooltip = "This cute, silky garment is so thin as to be practically translucent. Made of chameleon silk and ultralastic, it barely covers the wearer’s torso, let alone anything below the waist.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

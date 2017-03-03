@@ -33,7 +33,7 @@
 			this.description = "a vial of female zil honey";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This vial is filled with the honey created by a female zil's orgasm. It smells ludicrously sweet and delicious. A cursory examination indicates that shouldn't cause any kinds of mutation.";
+			this.tooltip = "This vial is filled with the honey created by a female zil’s orgasm. It smells ludicrously sweet and delicious. A cursory examination indicates that shouldn’t cause any kinds of mutation.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

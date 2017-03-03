@@ -35,6 +35,7 @@ public function roamingBarEncounter(button:int = 0):void
 	||	!InCollection(currentLocation, ["ANON'S BAR AND BOARD", "BURT'S MAIN HALL"])
 	)
 	&&	annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
+	if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
 	//Pick available NPC, run setup func
 	if(NPCs.length > 0)
 	{
@@ -185,9 +186,9 @@ public function kiroMenu():void
 
 		//Incest 3sums
 		if(kiroKallyThreesomesAvailable()) addButton(4,"Sister3Some",kiroKallyThreesomesApproach,undefined,"Sister Threesome","See if you can get the sisters together for a threesome.");
-		else if(kiroKallyThreesomes() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","You ought to do some talking with them before trying to rush them into any more incestual fun.");
-		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally haven’t made the kind of breakthrough that would let you just walk up and ask this.");
-		else addDisabledButton(4,"Sister3Some","Sister3Some","Kiro and Kally don’t really like each other that way...");
+		else if(kiroKallyThreesomes() > 0) addDisabledButton(4,"Sister3Some","Sister Threesome","You ought to do some talking with them before trying to rush them into any more incestual fun.");
+		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister Threesome","Kiro and Kally haven’t made the kind of breakthrough that would let you just walk up and ask this.");
+		else addDisabledButton(4,"Sister3Some","Sister Threesome","Kiro and Kally don’t really like each other that way...");
 		addButton(14,"Leave",mainGameMenu);
 		return;
 	}
@@ -211,7 +212,7 @@ public function kiroTalkInKallysBar():void
 	clearOutput();
 	showKiro();
 	//Not BF
-	if(flags["KIRO_BF_TALK"] == 1)
+	if(flags["KIRO_BF_TALK"] == undefined)
 	{
 		if(pc.isBimbo()) output("<i>“So like, wanna talk?”</i>");
 		else if(pc.isBro()) output("You grunt, <i>“Let’s talk.”</i> The irony is not lost on you, taciturn though you may be.");
@@ -274,8 +275,11 @@ public function kiroRepeatedBFTalk():void
 		output("Kiro sighs heavily. She takes a drink of her beer to buy time, then sighs again. <i>“I don’t know, [pc.name]. Before I met you, I don’t know if there’s anyone else I would have even considered it with... but now, with Kally.”</i> Her voice hitches. <i>“I don’t know if I can do that to her. She’s my sister... and she loves me... and I think I kinda love her too.”</i> The kui-tan gives you a sad look. <i>“And the best and worst part is that you gave that to me. I never would’ve discovered all this if not for you.”</i>");
 		output("\n\nNow it’s your turn to sigh.");
 		output("\n\n<i>“But fuck it.”</i> A furry palm lands on your shoulder. <i>“There’s more than enough of me to go around, right?”</i> Kiro pulls you close, and whispers in your ear, <i>“Kally knows I’m going to be fucking my way through the galaxy. She won’t mind if the wonderful [pc.boyGirl] that brought us together is my [pc.boyGirl]friend too, right?”</i> She abruptly straightens, struck by a sudden idea. <i>“Maybe she’s into that. You saw how she talked about my sexual misadventures. What if that’s like her thing, seducing the galaxy’s biggest slut and trying to be her top bitch?”</i>");
-		output("\n\n<i>“That isn’t{, uh, yeah... maybe!/ entirely improbable.}”</i>");
-		output("\n\nKiro pulls you close and plants an aggressive kiss on your [pc.lipsChaste], her tongue snaking in to explode. She pops off after a solid thirty seconds of tonsel-hockey, smiling like she’s just pulled off the universe’s biggest heist. <i>“Yeah, you’re my fucking [pc.boyGirl]friend, one of two. Speaking of which, we should have some more fun with Kally sometime - see if we can get her as sweet on you as I am.”</i>");
+		output("\n\n<i>“That isn’t");
+		if(pc.isBimbo()) output(", uh, yeah... maybe!");
+		else output(" entirely improbable.");
+		output("”</i>");
+		output("\n\nKiro pulls you close and plants an aggressive kiss on your [pc.lipsChaste], her tongue snaking in to explore. She pops off after a solid thirty seconds of tonsil-hockey, smiling like she’s just pulled off the universe’s biggest heist. <i>“Yeah, you’re my fucking [pc.boyGirl]friend, one of two. Speaking of which, we should have some more fun with Kally sometime - see if we can get her as sweet on you as I am.”</i>");
 		output("\n\nThat sounds like a great idea.");
 		flags["KIRO_BF_TALK"] = 1;
 	}
@@ -396,7 +400,7 @@ public function noYouCantTakeKirosRoughFux():void
 	output("\n\nKally looks your way, and upon seeing you chatting with her sister, her tail wags.");
 
 	//No sister 3SumFun
-	if(kiroKallyThreesomeUnlockPoints() < 3) output("\n\nKiro rubs the back of her neck nervously, obviously uncomfortable with the idea of her sister catching her about to claim a booty call. <i>“Or we could sit here in talk some more, I guess.”</i> To her credit, the distention in her dress recedes slightly. <i>“Your call either way.”</i>");
+	if(kiroKallyThreesomeUnlockPoints() < 3) output("\n\nKiro rubs the back of her neck nervously, obviously uncomfortable with the idea of her sister catching her about to claim a booty call. <i>“Or we could sit here and talk some more, I guess.”</i> To her credit, the distention in her dress recedes slightly. <i>“Your call either way.”</i>");
 	//3SumReadyButUnused
 	else if(kiroKallyThreesomes() < 1) output("\n\nThe bulge in Kiro’s dress gets just the slightest bit bigger, but she looks down, staring into her drink, uncomfortable with her own thoughts. It would seem the brash young ‘nuki is unsure of just how to handle her own urges.”</i> One more push ought to be all it takes to bring them together...");
 	//3SumFun
@@ -426,6 +430,7 @@ public function youCanButtfuckMeYouSkank():void
 	//[Next]
 	processTime(2);
 	kiroTrust(25);
+	flags["BF_STORAGE"] = currentLocation;
 	clearMenu();
 	addButton(0,"Next",roughButtfuckFromKiroGo,false);
 }
@@ -491,7 +496,7 @@ public function askKiroAboutKallysBar():void
 	output("\n\n");
 	if(timesGloryholesUsed() + timesGloryholesWorked() > 0) output("You know those gloryholes all too well - too well to hide your knowing smile.");
 	else output("The cocky pirate’s good humor is infectious. You’re smiling right alongside her, even though you’ve yet to try the gloryholes.");
-	output("\n\n<i>“And out back,”</i> Kiro points over her shoulder, <i>“is an terran-style bath area, complete with meticulously groomed plants and pools of water to lounge in. I’m halfway tempted to go back there and see if I can find someone to show me what an underwater blowjob feels like. No time like the present for crossing things off the old bucket list, eh?”</i>");
+	output("\n\n<i>“And out back,”</i> Kiro points over her shoulder, <i>“is a terran-style bath area, complete with meticulously groomed plants and pools of water to lounge in. I’m halfway tempted to go back there and see if I can find someone to show me what an underwater blowjob feels like. No time like the present for crossing things off the old bucket list, eh?”</i>");
 	output("\n\nYou widen your eyes at that one.");
 	output("\n\n<i>“Hey, don’t knock it till you’ve tried it. Unless it’s really fucking gross. That’s my motto. One of them, anyway.”</i>");
 	//Bimbo
@@ -606,7 +611,7 @@ public function kiroIntroductoryScene(drank:Boolean = false):void
 	output("\n\n<i>“Pshh, that was just an industrial accident. You know that if I can swell up that big and make so much.... Well, you know I could last, normally. I mean, look at what I’m packing!”</i> Kiro spreads her legs and pats her none-too-subtle package. It visibly twitches in response, and you swear it’s a little bigger than before she touched it. <i>“When I get as big as I was, a good cum wipes me out pretty hard, but I don’t let myself get anywhere near that. Instead, I have lots and lots of little orgasms. It helps that my little orgasms are bigger than three ausars’ put together.”</i> She knocks back a swig with a confident smile.");
 	output("\n\n<i>“I got sidetracked again, huh?”</i> the striped she-pirate admits. <i>“So, like I was saying, I’m a force of nature and not just in bed. I’m a pirate. Some might call me a thief, aye, but I follow a code. I come in like a gale force wind, swooping down on those too rich to miss a few things or those who deserve a good pillaging, and I’m gone before the dust can settle.”</i>");
 	output("\n\nYou ask, <i>“How can you judge who deserves it?”</i> The unspoken knowledge that no one is a perfect judge of character comes to mind.");
-	output("\n\nKiro twirls a lock of curly hair around a finger, unbothered in the slightest. <i>“In this universe? There’s billions of terrible people out there and at least a few million </i>monsters<i>. There are psychopaths who would gas entire planets just to rip the ore out from under the crust. Slavers capture helpless girls under the UGC’s nose, calling it ‘indentured servitude’.”</i> Her look is plainly sardonic as she glances furtively your way. <i>“My ship belonged to one of those assholes.”</i> Immeasurably proud of that fact, Kiro’s easy smile returns. <i>“Some slavering asshole’s ship is now my pleasure yacht, and all the little modifications, hidden weapons, and smuggling compartments just make it that much easier to take from his ilk.”</i>");
+	output("\n\nKiro twirls a lock of curly hair around a finger, unbothered in the slightest. <i>“In this universe? There’s billions of terrible people out there and at least a few million </i>monsters<i>. There are psychopaths who would gas entire planets just to rip the ore out from under the crust. Slavers capture helpless girls under the UGC’s nose, calling it ‘indentured servitude’.”</i> Her look is plainly sardonic as she glances furtively your way. <i>“My ship belonged to one of those assholes.”</i> Immeasurably proud of that fact, Kiro’s easy smile returns. <i>“Some slaving asshole’s ship is now my pleasure yacht, and all the little modifications, hidden weapons, and smuggling compartments just make it that much easier to take from his ilk.”</i>");
 	output("\n\nYou cannot help but grace her with a returning smile at that. Something about an");
 	if(pc.isAss()) output("other");
 	output(" asshole getting royally screwed by this puffed-up pirate is more than a little heartwarming.");
@@ -890,6 +895,9 @@ public function drinkingContestGo(cheated:Boolean = false):void{
 //Girls and Unsexed Turned Into a Drunken Cocksleeve
 public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("The <i>“snap-hiss”</i> of a ship door sealing behind you shatters the drunken, groping stupor you slipped into, and you rouse yourself from your prison of breasts. Kiro had been dragging you along, your face pulled down into her sizeable chest, letting you drunkenly motorboat her on the way to her quarters. The closer you got, the slower the two of you were forced to travel, but you were in no condition to mind - not until now, anyway.");
@@ -940,6 +948,9 @@ public function lostTheDrinkingContestWithKiroAndTurnedIntoCocksleeve():void
 //Unisex Loser Handjob
 public function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("Hissing pneumatics fill your ears with the sharp sound of an airtight door sealing behind you. Pulling your face out from between Kiro’s pillowy tits, you let your drunkenly wavering attention sway across the metal deck plates and up the wood-paneled walls. The realization that this is <i>her</i> ship and not your own takes its sweet time swimming through your booze-saturated consciousness. Remembering that you lost over being a cocksleeve for a day... That takes a little longer - about the same amount of time it takes Kiro to push you");
@@ -1031,6 +1042,9 @@ public function lostDrankinContestToKiroz():void
 //Drunken Kiro Blowjobs - Slobbery Jaw-Filling Goodness
 public function wonKirosContestLikeAChampAndGotBlown():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("<i>“Now,</i>” you say, leaning against the wood-paneled interior of her ship, <i>“I believe I was promised a hermaphrodite fuck-pet in exchange for winning our little wager....</i>”");
@@ -1098,6 +1112,9 @@ public function wonKirosContestLikeAChampAndGotBlown():void
 //Drunken Kiro Twat Oral
 public function youWinAContestAndKiroSlobbersYerPussy():void
 {
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
+	
 	clearOutput();
 	showKiro(true);
 	output("<i>“Now,</i>” you say, leaning against the wood-paneled interior of her ship, <i>“I believe I was promised a hermaphrodite fuck-pet in exchange for winning our little wager....</i>”");
@@ -1487,15 +1504,13 @@ public function letsFuckKiro():void
 		else output(", rubbing down the bare, sensitive flesh");
 		output(" as you pull your kit off, tossing your [pc.gear] aside. When the airlock’s done processing you, the two of you tumble into the hallway, barely making it to Kiro’s cabin before her great big cock spills out of her undergarments as she tears them off, letting her massive horsemeat swing free. With a push, you’re thrown down onto her bed, surrounded by dirty mags and condom packs. Looming over you, Kiro idly strokes her cock, already fucking you with her eyes as you roll over, facing her and her huge endowment.");
 		
-		generateMapForLocation("KIROS SHIP QUARTERS");
-		
 		//[OPTIONS BITCH]
 		kiroSexMenu();
 	}
 	//Big Ball Kiro Sex Menu
 	else
 	{
-		output("At your first murmur of assent, Kiro’s body slides into yours, moulding around it as she encircles you in a tight, groping hug. Her hands rove across your [pc.chest] and [pc.butt], squeezing both with eager gropes. She grinds her crotch against your [pc.thigh], dragging her turgid length up and down your ");
+		output("At your first murmur of assent, Kiro’s body slides into yours, molding around it as she encircles you in a tight, groping hug. Her hands rove across your [pc.chest] and [pc.butt], squeezing both with eager gropes. She grinds her crotch against your [pc.thigh], dragging her turgid length up and down your ");
 		if(pc.isCrotchGarbed()) output("[pc.lowerGarments]");
 		else output("[pc.skinFurScales]");
 		output(" with quick little humps, her balls so big and heavy that they feel like a pair of seam-ripping cantaloupes that have been trapped in the hermaphrodite’s poor, disintegrating panties. She reaches ");
@@ -1524,6 +1539,11 @@ public function letsFuckKiro():void
 		output("\n\nHer weighty balls throb as she considers her action, growing heavier by the second. They look almost as big as soccer balls now. <b>If you speak up, you can likely goad her into taking you a certain way...</b>");
 		kiroBallsSexMenu();
 	}
+	
+	if(kiroRoughButtfucks() > 0) flags["BF_STORAGE"] = currentLocation;
+	//generateMapForLocation("KIROS SHIP QUARTERS");
+	currentLocation = "KIROS SHIP QUARTERS";
+	generateMap();
 }
 
 public function kiroBallsSexMenu():void
@@ -2215,7 +2235,9 @@ public function repeatFillingKirosCuntEpilogue():void
 //Milker Doubletime, By Savin
 public function kiroMilkerDoubleTimeBySavin():void
 {
-	generateMapForLocation("KIROS SPUNK CHAMBER");
+	//generateMapForLocation("KIROS SPUNK CHAMBER");
+	currentLocation = "KIROS SPUNK CHAMBER";
+	generateMap();
 	
 	clearOutput();
 	showKiro(true);
@@ -2232,7 +2254,7 @@ public function kiroMilkerDoubleTimeBySavin():void
 	output(". You go back to work, but with a grin she slaps your hand away, taking the sucker from you.");
 	output("\n\n<i>“Hey, what gives?”</i> you growl, but the sultry look in the tanuki’s eyes says it all. She gives you a little push back against the steel cum-silo as she drops to her knees, taking your [pc.cockBiggest] in one hand, stroking it with her oh-so-soft, furry fingers. You stifle a low moan, eyes rolling back as the sexy vixen slowly strokes you off, thumb rolling around your [pc.cockHeadBiggest] as her mouth inches sinfully close, hot breath boiling across your sensitive flesh. Her tongue slips out, lapping across the engorged slit of your throbbing dick, her voice rising to a sexy purr as she tastes you, lips thrumming as they slip around your hard shaft, taking your cock into the warm, silky-wet sheath of her mouth. You lean back against the steel wall of the gigantic milker, basking in the sultry heat of Kiro’s mouth as she sucks you off. Your fingers go to her long, cinnamon hair, gently guiding the tanuki’s lips down your shaft. She grins up around your [pc.cockBiggest] with eyes full of lust, easily taking inch after inch of your prick. As she fellates you, though, you can see her hands deftly unfurling the straps and suckers on the milking tube, getting you nice and ready.");
 	output("\n\nShe carries on longer than you’d have expected, and minutes pass by with your lust building, hips bucking gently against Kiro’s dark lips as she sucks and sucks. With eyes rolled back in pleasure, you barely notice the split second of transition as your [pc.cockBiggest] pops from Kiro’s mouth and into the tight, suckling embrace of the cock milker. That feels... nice... You let slip a groan of pleasure as the milker’s pressure builds, tugging on your spit-slick shaft with mind-numbing insistence, its force unrelenting. Your [pc.knees] practically buckle under the milker’s suction, forcing you to grab hold of the great big silo to steady yourself. Between pneumatic sucks, you watch as Kiro clambers over to her own berth, easily sliding her own sucker on; the face she makes when it activates is priceless, pure ecstasy that nearly barrels her over.\n\nShe catches herself on a pair of iron bars nearby, unable to stifle a lewd groan as the milker goes to work on her massive erection; her over-sized prick immediately responds by twitching and jumping to attention, still for the slightest moment before it erupts in a massive load of cum, whitewashing the transparent sucker with a flood of seed. Kiro throws her head back with a roar of sexual release, grabbing her big, soft tits and squeezing them as hard as she can. You slump back, [pc.knees] suddenly weak as you see your friend blast a massive load so easily; a moment later, you feel your prick twitching, cum rushing up your length. You grab the nearest bar and cry out, teeth gritting as you cum, painting the plastic [pc.cumColor] as the milker drains your [pc.cockBiggest] - and not for the last time.");
-	output("\n\nYou stumble back as orgasm rocks your body, cock spasming as it’s utterly drained of seed faster than you can blink, [pc.balls] withering as cum pours from your [pc.cockBiggest]. Across from you, Kiro yelps and moans, squeezing her dark nipples as her cock’s seemingly unending flood of sperm continues, backing up the throbbing veins of the milker until she’s finally given a moment to relax, slumping against the wall of the silo. You glance up, watching through transparent tubes as her cum and yours is sucked up by the powerful current, dumped into the great big silo that’s already half-full of the leftovers from Kiro’s morning wood. When you look back, you nearly scream as your vision is flooded with horny tanuki stalking up on you, barely able to make a waddle with the milker working her enormous horsecock. She grabs your shoulders, pushing you down to your [pc.knees] with your mouth hovering just over one of her black nipples.");
+	output("\n\nYou stumble back as an orgasm rocks your body, cock spasming as it’s utterly drained of seed faster than you can blink, [pc.balls] withering as cum pours from your [pc.cockBiggest]. Across from you, Kiro yelps and moans, squeezing her dark nipples as her cock’s seemingly unending flood of sperm continues, backing up the throbbing veins of the milker until she’s finally given a moment to relax, slumping against the wall of the silo. You glance up, watching through transparent tubes as her cum and yours is sucked up by the powerful current, dumped into the great big silo that’s already half-full of the leftovers from Kiro’s morning wood. When you look back, you nearly scream as your vision is flooded with horny tanuki stalking up on you, barely able to make a waddle with the milker working her enormous horsecock. She grabs your shoulders, pushing you down to your [pc.knees] with your mouth hovering just over one of her black nipples.");
 	output("\n\nYou don’t have the chance to protest, as the milker suddenly turns it up a notch. You yell out, mouth locked in a ring of pleasure; Kiro takes that as submission and rams her tit in. You reflexively suckle, sucking on her puffy teat until you force a gasp of pleasure out of your tanuki lover. She groans, fingers slipping through your [pc.hair] to guide you further onto her breast as she bucks her pump-laden hips against the air, trying to get some modicum of friction from the merciless suckers. You groan and bare it, trying hard not to cum again as the milker works your [pc.cockBiggest] with rhythmically pulsing bursts of pressure that’s sure to have you cumming again. While you still have your faculties in control, though, you flash the pleasure-wracked tanuki a sly grin and slip a hand beneath her swollen, swinging sack to the slim, cum-slick slit of her sex.");
 	output("\n\nShe stifles a gasp as you slip a finger into the tight channel of her cunt. Her muscles squeeze reflexively, clamping hard around your probing digit as another two of your fingers slip further back to the puckered hole of her ass. Kiro can’t help but cry out as you push into her asshole, spreading the much looser hole wide until you can feel the pulsing orb of her engorged cum-vein. She throws her head back and cums again at the slightest touch, her huge cock spasming as white-hot spunk floods the miker yet again, adding to your own orgasm that follows moments later. You cry out around the tit in your mouth, voice muffled by a mouthful of brown fur as your [pc.cockBiggest] lets loose another explosive orgasm, squirting seed right into the sucking vortex of the milker’s tube.");
 	output("\n\nKiro flops back and cums again seconds after the first time, screaming as her muscles crush down on your delving digits as her prostate bulges, balls visibly deflating while she cums and cums, humping desperately against your hand and the pulsing milker. A moment later, you feel the pressure welling in your own prick and with a gasp and moan, flop overtop your lover, crying aloud into her soft bosom as your hips buck into hers, squirting and squirting your next load into the seemingly infinite vortex of the milker’s silo. Your hand works harder, pushing deep into Kiro’s bowels and cunt, as your orgasm and hers nearly sync, cum splashing into the veins of the towering milker overtop you both. Your other arm wraps around her waist, holding your tanuki lover close, her massive cock pinned between your bodies as you feel as if every last drop of semen is sucked from your [pc.balls].");
@@ -2702,7 +2724,7 @@ public function inviteAFriendForKiroPlays():void
 	{
 		if(!celiseIsCrew()) addDisabledButton(nFriends,"Celise","Celise","Celise isn’t aboard your ship for this to work.");
 		else if(flags["GIGACELISE"] == undefined) addDisabledButton(nFriends,"Celise","Celise","Celise should probably be in her giga-goo form for this.");
-		else if(kiroTrust() < 80) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn’t trust you enough to try this.");
+		else if(flags["KIRO_CELISE_3SOME_REJECT"] != undefined && kiroTrust() < 80) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn’t trust you enough to try this.");
 		else if(kiro.ballDiameter() <= 7) addDisabledButton(nFriends,"Celise","Celise","Kiro doesn’t look bloated enough. You should probably wait until she’s really backed up before trying this.");
 		else addButton(nFriends,"Celise",celiseKiroFunSekritShit,undefined,"Celise","Invite Kiro to meet with Celise.");
 		nFriends++;
@@ -2712,7 +2734,7 @@ public function inviteAFriendForKiroPlays():void
 	{
 		if(flags["SAEN MET AT THE BAR"] != undefined)
 		{
-			if(rooms[currentLocation].planet != "TAVROS STATION") addDisabledButton(nFriends,"Saendra","Saendra","Saendra isn’t anywhere near this location. You’d have to catch Kiro on Tavros Station to have Saendra within easy reach.");
+			if(rooms[shipLocation].planet != "TAVROS STATION") addDisabledButton(nFriends,"Saendra","Saendra","Saendra isn’t anywhere near this location. You’d have to catch Kiro on Tavros Station to have Saendra within easy reach.");
 			else if(pc.hasCock()) addButton(nFriends,"Saendra",inviteSaenForKiroFilling,undefined,"Saendra","Invite Saendra over for a ball-draining good time.");
 			else addDisabledButton(nFriends,"Saendra","Saendra","This scene requires a penis to participate in.");
 		}
@@ -2770,6 +2792,7 @@ public function inviteSaenForKiroFilling():void
 	kiro.orgasm();
 	saendra.orgasm();
 	processTime(55);
+	sleepHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2942,14 +2965,21 @@ public function tribDemLips():void
 	if(pc.legCount > 1) output(", splitting your [pc.legs] to either side of the upraised one so that your [pc.vaginas] will line up");
 	else output(", wrapping your [pc.leg] around her torso so that your [pc.vaginas] will line up");
 	output(" with the kui-tan’s own super-sized entrance, the superheated pussies just inches apart and getting closer with every passing second. There’s so much sexjuice simmering in your soon-to-be-paired twats that the air practically fogs with it, saturated with what could only be the scent of two bitches locked firmly in the throes of sexual heat. Kiro’s length twitches and stiffens up once more as she wallows in it, vulnerable even to the scent of her own snatch.");
-	output("\n\nKiro is whimpering with barely-contained need by this point. Her want is painted as clearly across her face as the ivory mask of spunk she’s spurted onto herself. The libidinous slut is trembling like a leaf in the wind, helpless before you, pleading with quiet whimpers and lewd looks. You reward her for her honesty by giving her exactly what she wants - [pc.oneVagina] pressed tightly against hers. Her pump-swollen lips dwarf your own to such a degree that you briefly imagine them bathing your entire crotch in their enhanced mass. Grinding back against you, Kiro moans helplessly as she’s tormented by her box’s extreme oversensitivity. Her slick, rubbery twat slides back and forth over you, and you return the favor by slowly undulating your hips");
+	output("\n\nKiro is whimpering with barely-contained need by this point. Her want is painted as clearly across her face as the ivory mask of spunk she’s spurted onto herself. The libidinous slut is trembling like a leaf in the wind, helpless before you, pleading with quiet whimpers and lewd looks. You reward her for her honesty by giving her exactly what she wants - [pc.oneVagina] pressed tightly against hers. Her pump-swollen lips");
+	
+	var puffScore:Number = pc.puffiestVaginalPuffiness();
+	
+	if(puffScore < 2) output(" dwarf your own to such a degree that you briefly imagine them bathing your entire crotch in their enhanced mass");
+	else if(puffScore < 5) output(" match your very own that you briefly imagine the both of you “kissing” and bathing each other in your enhanced masses");
+	else output(", though large, are dwarfed against your own to such a degree that you briefly imagine her bathing her entire crotch in your enhanced mass");
+	output(". Grinding back against you, Kiro moans helplessly as she’s tormented by her box’s extreme oversensitivity. Her slick, rubbery twat slides back and forth over you, and you return the favor by slowly undulating your hips");
 	if(pc.hasClit()) output(", making your [pc.clits] catch on one side of her pussy and then the other");
 	output(".");
 	output("\n\n<i>“F-f-f-fuck! It’s so good!”</i> the pirate bubbles. Her arms fly to her wobbling breasts and grab hold of her dusky nipples, tugging the rigid buds, pinching and pulling in excited spasms. <i>“They feel so good, [pc.name]!”</i> She rolls one of her nipples between her fingertips. <i>“When the fuck did being girly start feeling so goddamn great?”</i> You feel a gush of girlhoney splatter against your netherlips, and with a skillful twist of your [pc.hips], you rub the fresh lubrication against her convulsing entrance, making her quiver in uncontrolled orgasm.");
 	output("\n\nMashing her tits down around her length, Kiro pulls hard enough on her ebony nipples to distort her tits into teardrops while her cock erupts between them, adding a fresh coat of sticky bliss to her body as her orgasm claims her. The tanuki titfucks her wildly spasming member, dragging her well-rounded breasts up and down her length with rough tugs on her sore teats. Her pussy gushes against yours, so puffy and wet that you feel like you’re grinding against some kind of pillowy sextoy.");
 	output("\n\nYou grab the lust-drunk pirate by her hips and push yourself down harder");
 	if(pc.hasClit()) output(", trying to get more friction on your [pc.clits]");
-	output(". Judging by the spasms of tremendous pleasure that seem to be transforming your [pc.legs] into a puddle of jello, you’ve succeeded. You gasp loud enough to briefly drown out Kiro’s own frenzied, lust-filled howls. Her balls are bouncing against you as they pump out thick waves of kui-tan cream, and you do your best to guide your own pleasant spasms into bouncing into them with each body-soaking convulsion.");
+	output(". Judging by the spasms of tremendous pleasure that seem to be transforming your [pc.legOrLegs] into a puddle of jello, you’ve succeeded. You gasp loud enough to briefly drown out Kiro’s own frenzied, lust-filled howls. Her balls are bouncing against you as they pump out thick waves of kui-tan cream, and you do your best to guide your own pleasant spasms into bouncing into them with each body-soaking convulsion.");
 	output("\n\nThe air fills with twinned calls of pleasure. Kiro has by far the messiest climax, but your calls of bliss are by far the louder.");
 	if(pc.isSquirter()) output(" Gushes of [pc.girlCum] spray out,");
 	else output(" Trickles of [pc.girlCum] leak out,");
@@ -3474,6 +3504,7 @@ public function kiroFuckOrgyFuntimes7():void
 	pc.removeStatusEffect("RefractBoost");
 	pc.shower();
 	processTime(600+rand(50));
+	sleepHeal();
 	//50L in every hole
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
@@ -3563,7 +3594,7 @@ public function kiroIncestReactionGood():void
 {
 	clearOutput();
 	showKiro();
-	output("<i>“I’m happy for you,”</i> you answer. <i>“Truly. And proud of my skills as a matchmaker. Not just anyone would have the skills to hook two highly-bangable tanuki’s.”</i> You pat yourself on the chest proudly, then loop your arm over Kiro’s shoulders, squeezing her affectionately. <i>“You can keep fucking the tits off you sister so long as I can");
+	output("<i>“I’m happy for you,”</i> you answer. <i>“Truly. And proud of my skills as a matchmaker. Not just anyone would have the skills to hook up two highly-bangable tanuki’s.”</i> You pat yourself on the chest proudly, then loop your arm over Kiro’s shoulders, squeezing her affectionately. <i>“You can keep fucking the tits off your sister so long as I can");
 	if(pc.isBimbo()) output(", like,");
 	output(" tag in from time to time.”</i>");
 	output("\n\nThrowing her head back and cackling, the raccoon-woman slaps the countertop. <i>“I knew there was a reason I liked you... besides the " + pc.mf("handsome appearance","beautiful face") + ".”</i> Reaching over under the bar, she gives your crotch a familiar squeeze. <i>“Play your cards right, and that could be sooner rather than later.");
@@ -3580,10 +3611,11 @@ public function kiroIncestReactionGood():void
 
 public function kiroKallyThreesomesApproach():void
 {
-	clearOutput();
-	showKallyAndKiro();
 	currentLocation = "KIROS SHIP QUARTERS";
 	generateMap();
+	
+	clearOutput();
+	showKallyAndKiro();
 	//Threesomes Intro
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Know what would be tons of fun?”</i> you ask, so bubbly you’re almost effervescent. <i>“Your sister.”</i>");
@@ -3662,10 +3694,11 @@ public function kiroKallyDoubleMilkingThreesome():void
 
 public function kiroKallyDoubleMilkingThreesome2():void
 {
-	clearOutput();
-	showKallyAndKiro(true);
 	currentLocation = "KIROS SPUNK CHAMBER";
 	generateMap();
+	
+	clearOutput();
+	showKallyAndKiro(true);
 	output("The milker is much as you remember it: an industrial pump buried behind an array of thumping holographic projections, each more pornographic than the last. Transparent hoses dangle from the central, cum-pumping core, each tipped with molded sleeves. Some resemble vaginas, others are simple textured sleeves designed to stimulate in unearthly ways as they suck. Behind are what can only be described as spunk silos, recently emptied to make room for fresh debauchery.");
 	//First Time
 	if(flags["SISTER_MILK_ACT"] == undefined)

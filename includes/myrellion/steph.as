@@ -89,7 +89,7 @@ public function signMuhTittiesSteph():void
 	
 	output("\n\n<i>“There ya go, mate,”</i> she says, handing it to you.");
 	
-	output("\n\n<b>(New Key Item: Signed Steph Irson Photo!)</b>");
+	output("\n\n(<b>Gained Key Item: Signed Steph Irson Photo!</b>)");
 
 	pc.createKeyItem("Signed Steph Irson Photo", 0, 0, 0, 0, "A signed photograph of Steph Irson... given to you by Steph Irson.");
 

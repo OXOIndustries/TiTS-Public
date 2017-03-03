@@ -128,7 +128,7 @@ public function milodanPlayOptions(button:Number):Number
 		addDisabledButton(button,"Milodan","Milodan","You don’t have any kits young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
 		button++;
 	}
-	else output("Dafuq is dis shit");
+	//else output("\n\nDafuq is dis shit?");
 	return button;
 }
 public function playWithMilodan(choice:Number = -1):void
@@ -338,7 +338,7 @@ public function nurseryZilCallgirlRandomEvents():Boolean
 
 		var numZilCInfants:Genders = ChildManager.gendersOfUniqueTypeInRange(ZilCallgirlUniqueChild, 0, 12);
 
-		options.push("You catch a glimpse of Zheniya, wearing a slinkier version of the Steele Tech uniform top paired with a frilled skirt that leaves her waspy abdomen and long legs bare. She’s quietly working away at scrubbing down the walls"+ (flags["ANNO_MISSION_OFFER"] == 3 ? " with a small, silvery-grey goo that covers her arm like a glove": "") + ". Seeing you watching, she gives her rump a little wiggle for you, working with a sultry spring in her step.");
+		options.push("You catch a glimpse of Zheniya, wearing a slinkier version of the Steele Tech uniform top paired with a frilled skirt that leaves her waspy abdomen and long legs bare. She’s quietly working away at scrubbing down the walls"+ (flags["ANNO_MISSION_OFFER"] == 3 ? " with a small, silvery-gray goo that covers her arm like a glove": "") + ". Seeing you watching, she gives her rump a little wiggle for you, working with a sultry spring in her step.");
 
 		// At least one infant
 		if (numZilCInfants.total >= 1)
@@ -511,7 +511,7 @@ private const NURSERY_STAIRS_NAMES:Array = [
 
 public function nurseryStairsShared(activeFloor:int):void
 {
-	output("A gunmetal-grey stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ NURSERY_STAIRS_NAMES[activeFloor - 1] +" floor.");
+	output("A gunmetal-gray stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ NURSERY_STAIRS_NAMES[activeFloor - 1] +" floor.");
 }
 
 public function nurseryStairs1F():Boolean
@@ -546,6 +546,16 @@ public function nurseryBrigetsApptFunc():Boolean
 		// 9999
 		addDisabledButton(0, "Briget");
 	}
+
+	return false;
+}
+
+public function nurserySpareApptBonus():Boolean
+{
+	var btnSlot:int = 0;
+	
+	// For followers or grown kids and stuff.
+	seraOnTavrosBonus(btnSlot++);
 
 	return false;
 }
@@ -1195,7 +1205,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
 		
-		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : parentName) + "</b></u>");
+		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
 		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
 		if(babies.length > 0)
 		{
@@ -1943,7 +1953,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 	showName("WATER\nPRINCESSES");
 	author("Savin");
 
-	output("Several more heads of tentacled hair peek up from the water’s edge a few moments later, and soon you’re overwhelmed with chattering voices - a chorus of <i>“Hi!”</i> <i>“Welcome home!”</i> <i>“We missed you so much!”</i> and more. Half a dozen pairs of hands grab at you, pulling you into hugs kisses every which way. Your not-so-little girls giggle and cry out with joy, pulling you in so many directions at once that you’re momentarily afraid they’ll forget their own strength... but no, they’re as gentle as angels once you start squirming, setting you back down on the sandbar and folding their legs under themselves, coming down to your level.");
+	output("Several more heads of tentacled hair peek up from the water’s edge a few moments later, and soon you’re overwhelmed with chattering voices - a chorus of <i>“Hi!”</i> <i>“Welcome home!”</i> <i>“We missed you so much!”</i> and more. Half a dozen pairs of hands grab at you, pulling you into hugs and kisses every which way. Your not-so-little girls giggle and cry out with joy, pulling you in so many directions at once that you’re momentarily afraid they’ll forget their own strength... but no, they’re as gentle as angels once you start squirming, setting you back down on the sandbar and folding their legs under themselves, coming down to your level.");
 
 	output("\n\nBefore long, your princesses have coaxed you into sharing your adventurous tales with them. Their curiosity is boundless, you soon discover: wanderlust and starry-eyed wonder fills them with every word, and they’re on the edge of their crabby seats as you recount some of your more dangerous exploits and less steamy encounters.");
 	
@@ -1969,7 +1979,7 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 	{
 		default:
 		case "physique":
-			output("\n\n<i>“But some of us are gonna be big, tough warriors instead!”</i> one of the tallest princesses boasts, flexing her impressive muscles. Several of her sisters ooh and ahh, scuttling over to grope at her biceps or poke at her chiseled abs. Definitely takes after you, that one.");
+			output("\n\n<i>“But some of us are gonna be big, tough warriors instead!”</i> one of the tallest princesses boasts, flexing her impressive muscles. Several of her sisters ooh and ahh, scuttling over to grope at her biceps or poke at her chiseled abs. " + (pc.affinity == "physique" ? "Definitely takes after you" : "Such determination") + ", that one.");
 			break;
 
 		case "reflexes":

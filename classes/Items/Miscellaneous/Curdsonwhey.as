@@ -93,11 +93,11 @@
 			}
 			else if (kGAMECLASS.flags["BOTHRIOC_ADDICTION"] > 0)
 			{
-				AddLogEvent(ParseText("You roll your [pc.tongue], trying to get rid of the bitter aftertaste in your mouth. You feel slightly more cogent and aware of the world around you; however it's not a particularly nice sensation. Cynicism and jadedness steals over you about your current set of goals."), "passive", deltaShift);
+				AddLogEvent(ParseText("You roll your [pc.tongue], trying to get rid of the bitter aftertaste in your mouth. You feel slightly more cogent and aware of the world around you; however it’s not a particularly nice sensation. Cynicism and jadedness steals over you about your current set of goals."), "passive", deltaShift);
 			}
 			else
 			{
-				AddLogEvent("You spit, futilely attempting to rid yourself of the bitter taste in your mouth. Holy hell is this a rotten universe you've ended up in! At least you're very clear about that and not deluding yourself about the intrinsic awfulness of everything, unlike some people you can think of.", "passive", deltaShift);
+				AddLogEvent("You spit, futilely attempting to rid yourself of the bitter taste in your mouth. Holy hell is this a rotten universe you’ve ended up in! At least you’re very clear about that and not deluding yourself about the intrinsic awfulness of everything, unlike some people you can think of.", "passive", deltaShift);
 			}
 		}
 	}

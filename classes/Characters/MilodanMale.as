@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
+	import classes.StorageClass;
 	//import classes.Items.Guns.*
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -202,7 +203,17 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "MILODANMALE";
+			var str:String = "MILODANMALE";
+			
+			// 9999 - Special artist exceptions!
+			if(kGAMECLASS.gameOptions.configuredBustPreferences["MILODANMALE"] != "SHOU") return str;
+			
+			switch(this.meleeWeapon.longName)
+			{
+				case "heavy club": str += "_CLUB"; break;
+				case "axe": str += "_AXE"; break;
+			}
+			return str;
 		}
 		override public function physiqueMax(): Number {
 			return 75;
@@ -254,7 +265,7 @@
 					this.meleeWeapon.attackVerb = "claw";
 					this.meleeWeapon.attackNoun = "claw";
 					break;
-				}
+			}
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -283,11 +294,17 @@
 			var selected:* = attackChoices[rand(attackChoices.length)];
 			selected(target);
 		}
-
+		
 		//Attacks
 		public function milodanAttack(target:Creature):void
 		{
 			var d:TypeCollection = this.meleeDamage();
+			
+			if (hasStatusEffect("Empowering Word"))
+			{
+				d.multiply(statusEffectv2("Empowering Word"));
+			}
+			
 			//Club swing
 			if(this.meleeWeapon.longName == "heavy club")
 			{
@@ -368,6 +385,7 @@
 				}
 			}
 		}
+		
 		//Spinning backfist
 		public function spinningBackfistAttack(target:Creature):void
 		{
@@ -389,6 +407,12 @@
 				this.meleeWeapon.baseDamage.kinetic.damageValue = 0;
 				var d:TypeCollection = this.meleeDamage();
 				this.meleeWeapon.baseDamage.kinetic.damageValue = oldVal;
+				
+				if (hasStatusEffect("Empowering Word"))
+				{
+					d.multiply(statusEffectv2("Empowering Word"));
+				}
+				
 				damageRand(d, 15);
 				applyDamage(d, this, target, "melee");
 				//Stun chance

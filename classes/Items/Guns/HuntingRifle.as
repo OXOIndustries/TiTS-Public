@@ -30,7 +30,7 @@
 			this.description = "a hunting rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A high-quality bolt action hunting rifle made on Myrellion, completely unlike the mass-produced firearms you usually find in the Core. This gun's a work of art: silver and gold engraving line the action, with the head of some horned beast forming the head of the bolt. Packs a lot of punch, and it's surprisingly quick to fire.";
+			this.tooltip = "A high-quality bolt action hunting rifle made on Myrellion, completely unlike the mass-produced firearms you usually find in the Core. This gun’s a work of art: silver and gold engraving line the action, with the head of some horned beast forming the head of the bolt. Packs a lot of punch, and it’s surprisingly quick to fire.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot";
 			

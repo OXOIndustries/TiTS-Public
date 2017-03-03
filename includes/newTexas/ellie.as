@@ -33,7 +33,7 @@ public function publicUseCount(addVal:int = 0):int
 public function ellieApproachButtonSetup():void
 {
 	if(flags["MET_ELLIE"] != undefined) addButton(0,"Ellie",ellieMenu,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
-	else addButton(0,"Shopkeep",meetingEllie,undefined,"Shopkeep","Approach the shopkeeper and see what she's selling.");
+	else addButton(0,"Shopkeep",meetingEllie,undefined,"Shopkeep","Approach the shopkeeper and see what she’s selling.");
 	vendingMachineButton(1);
 }
 
@@ -88,8 +88,8 @@ public function meetingEllie():void
 	clearMenu();
 	//[Yes] [Meh] [Don’t Like Girls]
 	addButton(0,"Yes",yesEllieLetsHaveSexAsSoonAsWeMeet,undefined,"Yes","Tell her that you appreciate her rack in all its magnificence.");
-	addButton(1,"Meh",mehYourTiTSDontScareMeOffworlder,undefined,"Meh","Play it cool for now. There's no reason she needs to see what an effect she's having on you.");
-	addButton(2,"Don'tLike",iDontLikeGirlsYaBitch,undefined,"Don't Like Girls","Inform Ellie that you don't really care for her girls or girls in general.");
+	addButton(1,"Meh",mehYourTiTSDontScareMeOffworlder,undefined,"Meh","Play it cool for now. There’s no reason she needs to see what an effect she’s having on you.");
+	addButton(2,"Don’tLike",iDontLikeGirlsYaBitch,undefined,"Don’t Like Girls","Inform Ellie that you don’t really care for her girls or girls in general.");
 }
 
 //Yes
@@ -169,7 +169,7 @@ public function ellieMenu(display:Boolean = true):void
 	addButton(2,"Talk",talkToEllieYaFuckingSkank);
 	addButton(3,"Suckle",suckleDatCowtaurTeat,undefined,"Suckle","Why not? You are thirsty.");
 	if(pc.lust() >= 33) addButton(4,"Sex",ellieSexScene);
-	else addDisabledButton(4,"Sex","Sex","Somehow, you're still not turned on enough for sex.");
+	else addDisabledButton(4,"Sex","Sex","Somehow, you’re still not turned on enough for sex.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -292,7 +292,7 @@ public function talkToEllieYaFuckingSkank():void
 	output("You ask Ellie if she has a few minutes to just talk.");
 	output("\n\nShe purses her lips. <i>“Do I have time? Sure, I guess... but wouldn’t you rather do something more fun?”</i> Looking you up and down, she adds, <i>“I could think of a few things.”</i>");
 	output("\n\n");
-	if(pc.libido() < 70 || pc.lust() < 70) output("You’re sorely tempted to take the eager taur up on that offer, but for the moment, no. She pouts, but nods. <i>“Fine, I guess I’m not doing anything too important... but I’m warning you, the first bull to walk through with a hardon might sweep me away, if you aren’t careful!”</i> With that, Ellie sits herself down on her reptilian hind end and looks at you expectantly.");
+	if(pc.libido() < 70 || pc.lust() < 70) output("You’re sorely tempted to take the eager taur up on that offer, but for the moment, no. She pouts, but nods. <i>“Fine, I guess I’m not doing anything too important... but I’m warning you, the first bull to walk through with a hard-on might sweep me away, if you aren’t careful!”</i> With that, Ellie sits herself down on her reptilian hind end and looks at you expectantly.");
 	else
 	{
 		output("<i>“Yeah, so can I,”</i> you say, eyeing those beautiful breasts of hers, undressing her with your mind even as the sexy taur gets ready to do it for real.");
@@ -310,7 +310,7 @@ public function buildEllieTalkMenu():void
 	author("Savin");
 	showBust("ELLIE");
 	showName("\nELLIE");
-	addButton(0,"Her Race",talkToEllieAboutHerRace,undefined,"Her Race","See if she wouldn't mind talking about her race a little bit.");
+	addButton(0,"Her Race",talkToEllieAboutHerRace,undefined,"Her Race","See if she wouldn’t mind talking about her race a little bit.");
 	if(flags["ELLIE_PHEROMONE_TALK_UNLOCKED"] != undefined) addButton(1,"Pheromones",talkToEllieAboutPheromones,undefined,"Pheromones","Ask her about the cloud of pheromones following her around everywhere.");
 	else addDisabledButton(1,"Locked","Locked","You might need to talk to her about her race before this unlocks.");
 	addButton(2,"Treatment",talkToEllieAboutTreatment,undefined,"The Treatment","Ask her about the Treatment thing that everyone here is on about.");
@@ -385,13 +385,13 @@ public function talkToEllieAboutPheromones():void
 	clearMenu();
 	if(pc.lust() >= pc.lustMax())
 	{
-		addButton(0,"Yes",ellieSexScene,undefined,"Yes","You're too horny to turn an offer like this down!");
-		addDisabledButton(1,"No","No","You're too horny to turn this down!");
+		addButton(0,"Yes",ellieSexScene,undefined,"Yes","You’re too horny to turn an offer like this down!");
+		addDisabledButton(1,"No","No","You’re too horny to turn this down!");
 	}
 	else
 	{
 		if(pc.lust() >= 33) addButton(0,"Yes",ellieSexScene,undefined,"Yes","Take the taur-girl for a roll in the proverbial hay.");
-		else addDisabledButton(0,"Yes","Yes","Somehow, despite the pervasive musk, you aren't aroused enough for sex.");
+		else addDisabledButton(0,"Yes","Yes","Somehow, despite the pervasive musk, you aren’t aroused enough for sex.");
 		addButton(1,"No",ellieMenu,undefined,"Turn her down for now.");
 	}
 }
@@ -442,7 +442,7 @@ public function talkToEllieAboutTreatment():void
 	else
 	{
 		output(" Hard to say what the Treatment would do to you, hun. Anyone who’s not bi- bina... uh, who isn’t just a straight up girl or boy tends to get kind of zany effects from the Treatment. You might get the boy-effects, or the girl effects, or some of both, or something totally different. Can’t tell until you try it. But I know one thing for sure, no matter what you do: once you’re Treated, sex feels AMAZING. Like, ten times as good, easy. Just a little touch or a rub on your tender bits can make you nearly cum, and a good hard fucking... oh, you’ll never want to think about anything else again!");
-		if(pc.longestCockLength() > 12) output(" And your dick’s going to get HUGE. Like, waaaay bigger than before.”</i> Her eyes flutter. <i>“Nothing better than a huge, Treated dick pounding my pussy... promise me you’ll let me be your first test run when you get treated, okay? I love being first in line to sample all the brand new, massive beast-cocks. Perks of being the sho-keep!");
+		if(pc.longestCockLength() > 12) output(" And your dick’s going to get HUGE. Like, waaaay bigger than before.”</i> Her eyes flutter. <i>“Nothing better than a huge, Treated dick pounding my pussy... promise me you’ll let me be your first test run when you get treated, okay? I love being first in line to sample all the brand new, massive beast-cocks. Perks of being the shop-keep!");
 		output("”</i>");
 	}
 	output("\n\nAfter a moment, Ellie adds, <i>“I guess I ought to mention that the Treatment’s permanent. Like, totally permanent. I think the Treatment’s the best thing that ever happened to me - and so does just about everyone who takes it. But, you know, you better be absolutely sure about it before you take it.");
@@ -485,7 +485,7 @@ public function talkToEllieAboutNewTexas():void
 	nephAffection(5);
 	//Suckle or back option?
 	clearMenu();
-	addButton(0,"Suckle Her",suckleDatCowtaurTeat,undefined,"Suckle Her","She's offering - you might as well make use of it.");
+	addButton(0,"Suckle Her",suckleDatCowtaurTeat,undefined,"Suckle Her","She’s offering - you might as well make use of it.");
 	addButton(14,"Back",ellieMenu);
 }
 
@@ -498,7 +498,7 @@ public function suckleDatCowtaurTeat():void
 	showName("\nELLIE");
 	//Insta-maxes Lust. Raises Minimum Lust to 33 for 24 hours.
 	if(pc.hasStatusEffect("Ellie's Milk")) pc.setStatusMinutes("Ellie's Milk",1440);
-	else pc.createStatusEffect("Ellie's Milk",0,0,0,0, false, "LustUp", "Ellie's milk is keeping your body more aroused than normal. You'll have to wait for it to wear off before your body goes back to normal.", false, 1440);
+	else pc.createStatusEffect("Ellie's Milk",0,0,0,0, false, "LustUp", "Ellie’s milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
 	output("You ask Ellie if she wouldn’t mind sharing some of her milk with you. By the looks of things, she’s got plenty to spare.");
 	output("\n\n<i>“I certainly do!”</i> Ellie says proudly, cupping one of her hefty tits. ");
 	if(flags["SUCKED_ELLIES_TITS"] == undefined) 
@@ -508,7 +508,7 @@ public function suckleDatCowtaurTeat():void
 		flags["SUCKED_ELLIES_TITS"] = 1;
 	}
 	if(pc.isTaur()) output("<i>“Just take a seat, hun, and lean over the counter here...”</i> Ellie says, gently guiding your shoulders until you’re nearly touching her over the thin counter - or more accurately, your face is nearly buried in her milky cleavage.");
-	else output("<i>“Let’s just get you to take a seat. Trust me, you want to be sitting down for this!”</i> she adds, pulling you up onto counter, facing her - or more accurately, her ample rack.");
+	else output("<i>“Let’s just get you to take a seat. Trust me, you want to be sitting down for this!”</i> she adds, pulling you up onto the counter, facing her - or more accurately, her ample rack.");
 	output(" <i>“Perfect!”</i>");
 
 	output("\n\nYou can’t help but notice the rather... public setting as Ellie steps back and admires you. Several bulls loom in a bit closer as the busty centaurin pulls a little strap in her sheer, latexy bra-front. The cups peel away, letting a little trickle of excess milk drool down onto the floor and into a drain behind the counter. Ellie blushes as her lactic bounty dribbles down her front, but quickly turns back to you and chews her lip, her forelegs carrying her a step closer until one of her saucer-sized teats is brushing against your cheek. Your eyes catch sight of more than a few boners popping in the little crowd in the store behind you as Ellie’s bosom is bared for you.");
@@ -536,9 +536,9 @@ public function suckleDatCowtaurTeat():void
 	if(pc.genitalLocation() >= 2 && pc.tallness >= ((2 * chars["ELLIE"].tallness) / 3))
 	{
 		if(pc.hasCock() && pc.cocks[0].cLength() >= (pc.tallness / 2)) addButton(0,"Yes-HJ",getAHandyFromEllie,undefined,"Yes-HJ","Get a handjob while you drink.");
-		else if(pc.hasCock()) addDisabledButton(0,"Yes-HJ","Yes-HJ","Ellie can't seem to reach your [pc.cock] in this position.");
+		else if(pc.hasCock()) addDisabledButton(0,"Yes-HJ","Yes-HJ","Ellie can’t seem to reach your [pc.cock] in this position.");
 		else addDisabledButton(0,"Yes-HJ","Yes-HJ","You need a penis to get a handjob.");
-		addDisabledButton(1,"Yes-Finger","Yes-Finger","Ellie can't seem to reach around you in this position.");
+		addDisabledButton(1,"Yes-Finger","Yes-Finger","Ellie can’t seem to reach around you in this position.");
 	}
 	else
 	{
@@ -546,7 +546,7 @@ public function suckleDatCowtaurTeat():void
 		else addDisabledButton(0,"Yes-HJ","Yes-HJ","You need a penis to get a handjob.");
 		addButton(1,"Yes-Finger",getFingerByEllieDuringMilkDrinking,undefined,"Yes-Finger","Get fingered while you drink.");
 	}
-	if(pc.isTaur()) addButton(2,"PublicUse",publicUseForBullsByCentaurians,undefined,"PublicUse","Put yourself up for public use while you're drinking. You're horny enough to fuck just about anyone anyway.");
+	if(pc.isTaur()) addButton(2,"PublicUse",publicUseForBullsByCentaurians,undefined,"PublicUse","Put yourself up for public use while you’re drinking. You’re horny enough to fuck just about anyone anyway.");
 	else addDisabledButton(2,"PublicUse","PublicUse","You need to be a taur to offer up your hindquarters for public use.");
 	addButton(3,"No",turnDownDatLustReliefFroMElliebuns);
 }
@@ -606,7 +606,7 @@ public function getAHandyFromEllie():void
 		output("\n\n<i>“Want to share?”</i> Ellie adds with a lusty wink, offering her cum-slathered hand to you. Your mind refuses to think on the matter, and simply acts: your [pc.tongue] slips from Ellie’s teat to her plated hand and drags across it from palm to the tip of her thumb, savoring the taste of your own hot seed. Your mouth locks around Ellie’s thumb, sucking gently on it, cleaning up every last drop of spunk from it.");
 		output("\n\n<i>“Good, isn’t it?”</i> she teases, slowly drawing her hand back to lap up the last few drops herself, clearly relishing your taste.");
 	}
-	output("\n\nEven as Ellie cleans her hand off, though, you’re left with a suddenly sinking sensation as you realize that you’re [pc.cock] isn’t getting any softer. Her twin-pupiled eyes wander back down to it as she licks the very last of your first load from her hand, and she gives you a knowing wink. <i>“I said a whole day, didn’t I? Don’t worry, hun, I’ll take such good care of you...”</i>");
+	output("\n\nEven as Ellie cleans her hand off, though, you’re left with a suddenly sinking sensation as you realize that your [pc.cock] isn’t getting any softer. Her twin-pupiled eyes wander back down to it as she licks the very last of your first load from her hand, and she gives you a knowing wink. <i>“I said a whole day, didn’t I? Don’t worry, hun, I’ll take such good care of you...”</i>");
 	output("\n\nYou moan as Ellie’s freshly-cleaned hand slips back down and wraps around your [pc.cock] again, and that same almost-overwhelming pleasure rocks your body instantly. She starts to slowly, tenderly move her slick hand across your turgid length, languidly taking her time in getting you off a second time. Thanks to that, you manage to last a whole minute before busting your nut again, soaking Ellie’s hand in your orgasmic fluids a second time. She giggles and repeats the same tactic, happily lick up every drop");
 	if(pc.mf("","chick") == "chick") output(" that she doesn’t share with you, at least. And you’re more than happy to take it");
 	output(".");
@@ -685,7 +685,7 @@ public function publicUseForBullsByCentaurians():void
 	{
 		author("Wsan");
 		output("<i>“Ooh, again? Did you want me to get Big T down here?”</i>");
-		addButton(0, "No", publicUseOopsNo, undefined, "No", "You're not ready for that just yet.");
+		addButton(0, "No", publicUseOopsNo, undefined, "No", "You’re not ready for that just yet.");
 		addButton(1, "Yes", publicUseEnding, undefined, "Yes", "Become a permanent fixture of New Texas. Your adventuring days are over!");
 	}
 	else
@@ -801,8 +801,8 @@ public function publicUseForBullsByCentaurians():void
 			
 			processTime(1);
 			
-			addButton(0, "Nah", ellieTaurBadEndNo, undefined, "Nah", "You don't wanna stay on New Texas.");
-			addButton(1, "Sure", ellieTaurBadEndYes, undefined, "Sure", "You'd looove to become an NT citizen. So much fucking!");
+			addButton(0, "Nah", ellieTaurBadEndNo, undefined, "Nah", "You don’t wanna stay on New Texas.");
+			addButton(1, "Sure", ellieTaurBadEndYes, undefined, "Sure", "You’d looove to become an NT citizen. So much fucking!");
 			return;
 		}
 		
@@ -969,8 +969,8 @@ public function publicUseOopsNo():void
 		output("\n\n<i>“Y’know, [pc.name]... you ever thought about doing this more often? You always look so insat-.. unsat.. happy when the boys are running a train on you! Big T told me to tell you, uh...”</i> She strains, trying to remember what it was she had to tell you.");
 		output("\n\n<i>“Oh yeah! He said that you could get your own stall next to the shop after he checks out the situation down here. Something about you becoming a permanent resident of New Texas.”</i> She leans down and whispers faux-conspiratorially. <i>“I think he just wants to fuck you again.”</i>");
 		
-		addButton(0, "Nah", ellieTaurBadEndNo, undefined, "Nah", "You don't wanna stay on New Texas.");
-		addButton(1, "Sure", ellieTaurBadEndYes, undefined, "Sure", "You'd looove to become an NT citizen. So much fucking!");
+		addButton(0, "Nah", ellieTaurBadEndNo, undefined, "Nah", "You don’t wanna stay on New Texas.");
+		addButton(1, "Sure", ellieTaurBadEndYes, undefined, "Sure", "You’d looove to become an NT citizen. So much fucking!");
 		return;
 	}
 	
@@ -1197,7 +1197,7 @@ public function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustT
 	if(pc.tallness < 76) output("grabbing a smallish box to stand on and ");
 	output("aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your [pc.crotch] and thighs, and especially over the diamond-stiff length of your [pc.cockBiggest]. Ellie’s pheromones had you hot and ready to fuck the moment you walked into her shop; finally you can act on your primal urges to breed that leithan cunt until it’s dripping with your seed.");
 	output("\n\nYou grab your hefty cock and bring the full weight of it down on Ellie’s butt, slowly dragging your monstrous shaft down her bestial thigh. She makes a throaty, whinnying sound of delight as you start to line yourself up with her sex. <i>“Mmmm, I can </i>feel<i> that, lover...”</i> Ellie coos, cupping one of her oversized udders and pinching the nipple until it squirts. <i>“");
-	if(pc.biggestCockLength() <= 23) output("That’s a nice, thick cock... you’re hung just like the bulls here. I hope you’ve got their stamina, cuz you’re gonna be pounding me till I scream!”</i>");
+	if(pc.biggestCockLength() <= 23) output("That’s a nice, thick cock... you’re hung just like the bulls here. I hope you’ve got their stamina, cuz you’re gonna be pounding me ‘til I scream!”</i>");
 	else output("That delicious hunk of meat belongs on a leithan, or maybe a real centaur... not that I’m complaining! Easier on my back this way, you know. Either way, my poor little pussy’s just drooling in anticipation... come on, lover, go ahead and slide it in!”</i>");
 
 	output("\n\nTaking a breath to steady yourself, you angle your rod towards Ellie’s gaping cunt and start to push forward. Ellie’s pussylips part like a veil of silks for you, making way for your [pc.cockBiggest] to plunge into her sultry depths. She’s hotter than a human, boiling hot no matter how cold her blood may run! Her muscles move gingerly around you as you penetrate her, the slick slabs of flesh in her pussy almost kissing you, sucking your rod further and further in until you’re totally buried inside your leithan lover. Even as hugely endowed as you are, she takes you without resistance, though her legs claw at the ground and her whole body shifts with the forward motion of your dick, moving with you until Ellie’s chest is mashed against the wall, breasts squishing on cold concrete. She shivers at the sensation -- both of the cold on her huge nipples and the gargantuan cock spreading her pussy wide.");
@@ -1338,8 +1338,8 @@ public function getTailPeggedByTaurBitches():void
 	{
 		output("<i>“Well, since you don’t have a big, throbbing bulldick to stick in me, I guess I’ll just have to return the favor the old-fashioned way, won’t I?”</i> Ellie says, licking her lips as she regards your nude form. <i>“Come on over, honey. I think I know just how to say thank you for that wonderful bit of pussy-eating...”</i>");
 	}
-	else if(pc.hasVagina()) output("<i>“Well, since you’ve got a nice, wet pussy over there, we can forget about your [pc.cocks] for a minute and work that needy gash, can't we? I don't </i>need<i> a cock for that either. I can make you feel better than one,”</i> Ellie says, licking her lips as she regards your nude form. <i>“Come on over, honey. I think I know just how to say thank you for that wonderful bit of pussy-eating...”</i>");
-	else output("<i>“Well, since you don't have any proper genitals, I guess I'll have to pay your dirty little o-ring back for that wonderful bit of pussy-eating, won't I?”</i> Ellie asks, licking her lips as she regards your nude form. <i>“Come on over, honey, and relax. This'll only take a few minutes...”</i>");
+	else if(pc.hasVagina()) output("<i>“Well, since you’ve got a nice, wet pussy over there, we can forget about your [pc.cocks] for a minute and work that needy gash, can’t we? I don’t </i>need<i> a cock for that either. I can make you feel better than one,”</i> Ellie says, licking her lips as she regards your nude form. <i>“Come on over, honey. I think I know just how to say thank you for that wonderful bit of pussy-eating...”</i>");
+	else output("<i>“Well, since you don’t have any proper genitals, I guess I’ll have to pay your dirty little o-ring back for that wonderful bit of pussy-eating, won’t I?”</i> Ellie asks, licking her lips as she regards your nude form. <i>“Come on over, honey, and relax. This’ll only take a few minutes...”</i>");
 	output("\n\nShe beckons you over with a come-hither crook of a finger, still happily pounding away at her gaping cunt with the thick, supple length of her tail. When you make your way over to your tauric lover, she gives you a lascivious smile and pats the bolted iron bar on the wall. <i>“Grab this, sweet thing, and spread ‘em wide!”</i>");
 	output("\n\nIf you weren’t so desperately horny, you might have asked why. As it is, though, you eagerly do as Ellie commands, grasping the cold metal bar and shifting your weight onto it. You wiggle your [pc.legs] apart, and quickly feel Ellie’s hands playing down your back");
 	if(pc.biggestTitSize() >= 1) output(", stopping only to reach around and give your [pc.chest] an affectionate squeeze, eliciting a little gasp of pleasure from you");

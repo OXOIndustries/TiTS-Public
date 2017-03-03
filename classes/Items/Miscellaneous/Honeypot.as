@@ -28,7 +28,7 @@
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a vaginal insertable labeled 'Honeypot'";
+			this.description = "a vaginal insertable labeled ‘Honeypot’";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A brand new Xenogen product released thanks to your... contributions, Honeypot is a localized transformation that affects vaginal secretions, rewriting the body to produce a sweet, thick honey. The first release of the new product comes in a handy, single-use <b>insertable</b> form.";
 			
@@ -72,10 +72,10 @@
 					if(target.isCrotchGarbed()) kGAMECLASS.output(" before carefully peeling away your [pc.lowerGarments] to easily access your [pc.vaginas]");
 					else kGAMECLASS.output(" before inspecting your crotch.");
 					kGAMECLASS.output(".");
-					if(!target.vaginalVirgin) kGAMECLASS.output(" It can't possibly compare to anything you've taken before.");
-					else kGAMECLASS.output(" It can't be that bad. You hope so, anyway. You've haven't ever forced much inside there before.");
+					if(!target.vaginalVirgin) kGAMECLASS.output(" It can’t possibly compare to anything you’ve taken before.");
+					else kGAMECLASS.output(" It can’t be that bad. You hope so, anyway. You’ve haven’t ever forced much inside there before.");
 					kGAMECLASS.output("\n\n");
-					if(target.totalVaginas() > 1) kGAMECLASS.output("Your fingers slowly move the ovoid transformative across your multitude of lips before finally settling on a lucky pair. It isn't supposed to matter which entrance takes it. ");
+					if(target.totalVaginas() > 1) kGAMECLASS.output("Your fingers slowly move the ovoid transformative across your multitude of lips before finally settling on a lucky pair. It isn’t supposed to matter which entrance takes it. ");
 					kGAMECLASS.output("You push it in. ");
 					if(target.vaginas[0].looseness() >= 4) kGAMECLASS.output("It is hardly noticeable in your gaping caverns, the gentle fizzing sensation fading away as fast as it starts. ");
 					else if(target.vaginas[0].looseness() >= 2) kGAMECLASS.output("The pill is slowly fading away inside your explored snatch. ");

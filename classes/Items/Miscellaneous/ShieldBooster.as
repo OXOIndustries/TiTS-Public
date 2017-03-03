@@ -65,7 +65,7 @@
 				{
 					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output((inCombat() ? StringUtil.capitalize(targetCreature.getCombatName(), false) : (targetCreature.capitalA + targetCreature.short)) + " can't use a shield booster without a shield generator!");
+					kGAMECLASS.output((inCombat() ? StringUtil.capitalize(targetCreature.getCombatName(), false) : (targetCreature.capitalA + targetCreature.short)) + " can’t use a shield booster without a shield generator!");
 				}
 				return false;
 			}
@@ -75,7 +75,7 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("You probably shouldn't use a shield booster while having full shields... You might overload something.");
+					kGAMECLASS.output("You probably shouldn’t use a shield booster while having full shields... You might overload something.");
 				}
 				else
 				{
@@ -118,7 +118,7 @@
 				}
 				else
 				{
-					throw new Error("Don't know how we got here. Exception for debugging.");
+					throw new Error("Don’t know how we got here. Exception for debugging.");
 				}
 			}			
 			return false;

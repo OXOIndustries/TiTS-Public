@@ -569,7 +569,7 @@ public function genesModsTalkOtherAliens():void
 	{
 		output("\n\n<i>“I have no idea who you’re talking about,”</i> you say. Gene stares at you as if you’d just denied existence of the sun.");
 		
-		output("\n\n<i>“Xanthe,”</i> he says, drawing out the syllables. <i>“That is her name - although undoubtedly an alias in reference to something as surely as mine is, she of all people will know the power of names. She is a siel, a wondrous and utterly infuriating folk I was happily unaware of until she arrived here not a month ago.”</i> He shakes his head mournfully at your ignorance, revelling in his own misery. <i>“Go find her shop, here in this very city. Approach and talk to her, bask in her presence. Then, perhaps, you shall understand a small part of my pain.”</i>");
+		output("\n\n<i>“Xanthe,”</i> he says, drawing out the syllables. <i>“That is her name - although undoubtedly an alias in reference to something as surely as mine is, she of all people will know the power of names. She is a siel, a wondrous and utterly infuriating folk I was happily unaware of until she arrived here not a month ago.”</i> He shakes his head mournfully at your ignorance, reveling in his own misery. <i>“Go find her shop, here in this very city. Approach and talk to her, bask in her presence. Then, perhaps, you shall understand a small part of my pain.”</i>");
 	}
 	processTime(5);
 	geneSubmissionLevel(1);
@@ -993,7 +993,7 @@ public function genesModsFrot():void
 	}
 	else
 	{
-		output("\n\n<i>“Ok then,”</i> he says, sounding lightly amused. <i>“Are you going anywhere with that? Or is standing masturbating on my shop floor the long and short of it.”</i>");
+		output("\n\n<i>“Okay then,”</i> he says, sounding lightly amused. <i>“Are you going anywhere with that? Or is standing masturbating on my shop floor the long and short of it.”</i>");
 	}
 
 	output("\n\nIn response you grease up your other hand with saliva, boldly step behind his desk, duck underneath a wing and lay it on the red, bulging, spearheaded club that is the bigger of his two dicks. The shallow lines of muscle now surrounding you initially tense up, then relax as you briskly begin to jerk him, moving your grasp up and down the ribbed underbelly of his cock until it is arching upwards, an orange bead beginning to form on his inch-big cum-slit. Still grasping your own [pc.cockBiggest] you tug, working both wrists until the handfuls of trapped cock are hot and practically bursting with hardness underneath your touch. Hot now with exertion and tightening arousal, you press your prick into his, and wrap both hands around the bundle of hard, saliva-slicked masculine lust. Gently, you begin to rub, the ribbed underside of Gene’s massive endowment sending pulses of pleasure slivering down your own.");

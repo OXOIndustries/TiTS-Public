@@ -72,7 +72,7 @@ public function activateSiegwulfe(fromInv:Boolean = false):void
 	output("\n\nSitting on its haunches inside is what looks like a robotic centaur, save for the lower body being a chrome canine form rather than equine. A long, sinuous tentacle is coiled around one of its clawed legs, mounted from where the droid’s tail should be. Where the canine’s head would be, you instead are greeted by a flared pair of synth-skin hips, leading up to a humanoid figure that’s pleasantly feminine and reassuringly tough-looking. A " + (chars["WULFE"].isBimbo() ? "soft, smooth belly, shapely arms, enormous breasts - each capped by an engorged black nipple -" : "flat, chiseled belly, toned arms, small breasts restrained by a black sports bra,") + " and a face half-shielded by an opaque visor all round out the wolf-droid’s top half.");
 	output("\n\nSeeing that the droid is inactive, you glance around its -- her? -- frame until you notice that the tendril-tail has a power jack on its tip, tucked away between three smaller ones that branch out from the end. You uncoil the cord from the droid’s leg and walk it over to a nearby port in the wall. It only takes a few moments after you plug the tail-jack in before the droid wakes with a muted, feminine gasp, turning her head side to side.");
 	output("\n\nThe siegwulfe takes a moment to orient herself before her towering ausar-like ears clue her in to your presence. She rises to her feet and turns your way with a sensuous, predatory grace. Razor-sharp claws click on the deck, and her arms fold under her chest, drawing your attention to a pair of hardlight cuffs on her wrists -- where her combat blades come from, if you remember the promotional picture right.");
-	output("\n\n" + (chars["WULFE"].isBimbo() ? "<i>“Like, hi there!,”</i> the gynoid-hound squeaks, her voice all bubbly and playful" : "<i>“Hello,”</i> the gynoid-hound says, voice a husky, sultry purr") + ". The visor on her helmet slides up, revealing a pleasantly soft female face, with " + (chars["WULFE"].isBimbo() ? "bloated" : "slender") + " black lips and dark red eyes. She might be billed on the box as a killer, but from the waist up she " + (chars["WULFE"].isBimbo() ? "undeniably looks" : "looks a lot more") + " like a high-class companion droid. <i>“Are you my new [pc.master]? It would be my " + (chars["WULFE"].isBimbo() ? "pleasure" : "honor... and pleasure...") + " to serve as your loyal " + (chars["WULFE"].isBimbo() ? "comp... compan... playmate! And body... bodygu... booty call!" : "companion and bodyguard.") + "”</i>");
+	output("\n\n" + (chars["WULFE"].isBimbo() ? "<i>“Like, hi there!”</i> the gynoid-hound squeaks, her voice all bubbly and playful" : "<i>“Hello,”</i> the gynoid-hound says, voice a husky, sultry purr") + ". The visor on her helmet slides up, revealing a pleasantly soft female face, with " + (chars["WULFE"].isBimbo() ? "bloated" : "slender") + " black lips and dark red eyes. She might be billed on the box as a killer, but from the waist up she " + (chars["WULFE"].isBimbo() ? "undeniably looks" : "looks a lot more") + " like a high-class companion droid. <i>“Are you my new [pc.master]? It would be my " + (chars["WULFE"].isBimbo() ? "pleasure" : "honor... and pleasure...") + " to serve as your loyal " + (chars["WULFE"].isBimbo() ? "comp... compan... playmate! And body... bodygu... booty call!" : "companion and bodyguard.") + "”</i>");
 	output("\n\n");
 	if(pc.isBro() || pc.isAss()) output("<i>“I bet it would,”</i> you grin, reaching over an tweaking one of her " + (chars["WULFE"].isBimbo() ? "plump nipple, getting a surprise squirt of [wulfe.milk] in return" : "stiff little nipples through the black bra she came with") + ". The siegwulfe canters forward a step, biting on a lip.");
 	else if(pc.isBimbo()) output("<i>“Like, totally!”</i> you cheer, bouncing on the spot. <i>“We’re gonna have soooo much fun!”</i>");
@@ -102,7 +102,7 @@ public function renameSiegwulfe(fromInv:Boolean = false):void
 	output("<i>“O-oh... you don’t like my name, [pc.master]?”</i> she asks, reaching for her collar. <i>“Here, feel free to change it.”</i>");
 	
 	clearMenu();
-	addButton(0, "Next", nameSiegwulfeCheck, fromInv);
+	addButton(0, "Next", nameSiegwulfe, fromInv);
 	addButton(14, "Back", approachSiegwulfe, [false, fromInv]);
 }
 public function nameSiegwulfe(fromInv:Boolean = false):void
@@ -350,7 +350,7 @@ public function doSiegwulfeAction(arg:Array):void
 			else if(pc.tallness <= chars["WULFE"].tallness) output(" reach over");
 			else output(" lean down");
 			output(" and plant a hand on top of [wulfe.name]’s crash helmet and give it an affectionate pat. She blinks in surprise, then " + (chars["WULFE"].isBimbo() ? "giddily bounces in place, nuzzling against your hand and jiggling those enormous jugs of hers. <i>“Yay! [pc.Master] loves me!”</i> she giggles, pawing one of her hindlegs into the ground. <i>“Maybe [pc.heShe]’ll, like, give me a bone, too! Hehe!”</i>" : "gives you a demure smile, wagging her slender tail. <i>“You’re too kind, [pc.master],”</i> the husky-voiced gynoid breathes, gently nuzzling her head into your palm."));
-			output("\n\nYou take that as encouragement, running your hand down her armored scalp and into the lush, dark hair spilling down her back. For a kill-bot, [wulfe.name] makes a real show of moaning and pressing her cheek into your shoulder, whispering <i>“" + (chars["WULFE"].isBimbo() ? "Oh, you’ve got talented hands!" : "Oh... that feels lovely, [pc.master]. Please don’t stop...") + "”</i>");
+			output("\n\nYou take that as encouragement, running your hand down her armored scalp and into the lush, " + (!chars["WULFE"].isBimbo() ? "dark" : "blonde") + " hair spilling down her back. For a kill-bot, [wulfe.name] makes a real show of moaning and pressing her cheek into your shoulder, whispering <i>“" + (chars["WULFE"].isBimbo() ? "Oh, you’ve got talented hands!" : "Oh... that feels lovely, [pc.master]. Please don’t stop...") + "”</i>");
 			output("\n\nAll things must come to an end, though. Eventually, your hand reaches the small of the gynoid’s back, where synthflesh transitions to armored steel entirely. Pulling the droid close, you nevertheless reach to her hind end and rub at the shiny chrome just over her mighty metallic rump. She chuckles indulgently, curling her utility-tail up and wrapping it around your wrist. She can’t feel anything on her armored half, you’re pretty sure, but she seems to enjoy the closeness and affection in the act, if nothing else.");
 			output("\n\nWhen you’ve finished, [wulfe.name] murmurs softly and wiggles her hind-end excitedly, taking a few springing steps around you. <i>“Thank you, [pc.master]! " + (chars["WULFE"].isBimbo() ? "So, like, what’s next!" : "Is there anything I can do for </i>you<i>?") + "”</i>");
 			
@@ -364,7 +364,7 @@ public function doSiegwulfeAction(arg:Array):void
 			break;
 		// Fuck Siegwulfe
 		case "fuck":
-			output("Stepping a little close to [wulfe.name], you run a hand along the smooth, pale synthflesh of her arm. She glances up at you with big doe-eyes and her black lips widen into a demure, submissive smile. " + (chars["WULFE"].isBimbo() ? "<i>“[pc.Master]? See something you like?”</i> she giggles, cupping her inflated chest and pinching a nipple." : "<i>“Would you like me to serve you, [pc.master]?”</i> [wulfe.name] offers simply, hooking a thumb in the band of her sports bra and starting to pull.") + " <i>“Just tell me what you want...”</i>");
+			output("Stepping a little close to [wulfe.name], you run a hand along the smooth, " + (!chars["WULFE"].isBimbo() ? "pale" : "tanned") + " synthflesh of her arm. She glances up at you with big doe-eyes and her black lips widen into a demure, submissive smile. " + (chars["WULFE"].isBimbo() ? "<i>“[pc.Master]? See something you like?”</i> she giggles, cupping her inflated chest and pinching a nipple." : "<i>“Would you like me to serve you, [pc.master]?”</i> [wulfe.name] offers simply, hooking a thumb in the band of her sports bra and starting to pull.") + " <i>“Just tell me what you want...”</i>");
 			
 			processTime(1);
 			
@@ -373,7 +373,7 @@ public function doSiegwulfeAction(arg:Array):void
 			{
 				// [Get Oral] [Fuck Her]
 				addButton(0, "Get Oral", doSiegwulfeSex, "get oral", "Get Oral", "Have the sensual siegwulfe drone use her mouth to get you off.");
-				addButton(1, "Fuck Her", doSiegwulfeSex, "fuck her", "Fuck Her", ("Get around behind the " + (chars["WULFE"].isBimbo() ? "fat-bottomed" : "robotic hound-girl" + " and see what’s sitting between her hind legs...")));
+				addButton(1, "Fuck Her", doSiegwulfeSex, "fuck her", "Fuck Her", ("Get around behind the " + (chars["WULFE"].isBimbo() ? "fat-bottomed" : "robotic hound-girl") + " and see what’s sitting between her hind legs..."));
 			}
 			else addButton(0, "Next", doSiegwulfeSex, "get oral");
 			break;
@@ -645,7 +645,8 @@ public function doSiegwulfeSex(response:String = "none"):void
 			output(" You reach down and give her rump an appreciative spank, and sure enough, [wulfe.name] moans in answer, clenching harder around your [pc.cockNoun " + i + "].");
 			output("\n\nWith a grip like hers, it isn’t long before you can feel a tension rising in your loins, milked out by the wulfe-bot’s gripping quim. As if sensing the impending flood, [wulfe.name]’s pussy squirts and clenches down around you, bathing your dick in a wash of lube and simulated girl-cum, all to welcome in the first spurts of your much-awaited [pc.cumNoun]. She gets what she wants, alright: your [pc.cockNoun " + i + "] swells");
 			if(pc.balls > 0) output(" and your [pc.balls] slap weightily against her ass, churning with cum for a final moment before releasing " + (pc.cocks.length == 1 ? "its" : "their") + " load");
-			else output(" for a final moment before you feel your [pc.balls] churning, pumping your load towards its destination.");
+			else output(" for a final moment before you feel your [pc.balls] churning, pumping your load towards its destination");
+			output(".");
 			output("\n\nYou tighten your grip on [wulfe.name]’s hips and slam yourself in as far as she’ll take you before that first spurt of jizz comes raining out, pumping into the siegwulfe’s deepest depths. She gasps, then moans, then murmurs sweet, wordless nothings as you fill her with [pc.cum], violently emptying your [pc.balls] into her welcoming sex. When you’re finished,");
 			if(pc.hasKnot(i)) output(" your [pc.knot " + i + "] is firmly lodged into her black sex, trapping what feels like a sloshing mess of your spunk and her juices, intermingling against your meaty plug");
 			else output(" your [pc.cock " + i + "] slides free of her dark sex in a waterfall of mixed cum and feminine juices that splatters her thighs and the ground behind her, leaving a musky mess to mark the spot of your mating");

@@ -29,7 +29,7 @@
 			this.description = "a mirrored jumpsuit";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This mirrored jumpsuit is branded as a \"Refrax 4 Tacsuit.\" You can see where it gets the name - the entire suit is massively reflective. When wearing it, you'd look a walking puddle of liquid chrome. It's tight enough not to leave much to the imagination but tough enough to provide a modicum of protection."
+			this.tooltip = "This mirrored jumpsuit is branded as a “Refrax 4 Tacsuit.” You can see where it gets the name - the entire suit is massively reflective. When wearing it, you’d look a walking puddle of liquid chrome. It’s tight enough not to leave much to the imagination but tough enough to provide a modicum of protection."
 
 			//An alright upgrade. Stronk against kinetic, slashing and thermal, practically worthless against piercing.
 		

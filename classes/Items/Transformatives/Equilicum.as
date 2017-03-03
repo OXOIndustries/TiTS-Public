@@ -51,7 +51,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "a needle full of Equilibricum";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A needle full of an almost milky blue fluid. The reservoir seems to hold almost 250 mL in it. On the side, there is an illustration of a scale with a jar of cum on one side and a bull's testicles on the other. The back features a warning that using this mod when there a significant difference in ball size and cum volume may result in the growth of extra testicles.";
+			this.tooltip = "A needle full of an almost milky blue fluid. The reservoir seems to hold almost 250 mL in it. On the side, there is an illustration of a scale with a jar of cum on one side and a bull’s testicles on the other. The back features a warning that using this mod when there a significant difference in ball size and cum volume may result in the growth of extra testicles.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -97,9 +97,9 @@ package classes.Items.Transformatives
 			{
 				output("With much anticipation, you carefully inject the small needle straight into ");
 				if(target.balls > 1) output("one of ");
-				output("your [pc.balls], knowing the needle is coated in an anesthetic that would prevent any pain. You watch the vial slowly empty, the cyan fluid flowing into your [pc.balls]. You almost chuckle at the thought of having \"blue balls\". Once the needle is empty, you toss the empty vial to the side and casually rub your [pc.sack], waiting for the drug to kick in.");
+				output("your [pc.balls], knowing the needle is coated in an anesthetic that would prevent any pain. You watch the vial slowly empty, the cyan fluid flowing into your [pc.balls]. You almost chuckle at the thought of having “blue balls”. Once the needle is empty, you toss the empty vial to the side and casually rub your [pc.sack], waiting for the drug to kick in.");
 			}
-			else output("You examine the vial of milky blue liquid as you consider how to inject it. Shrugging your shoulders, decide to inject it into your prostate. Going for the safest route, you aim the needle at your perineum. As soon as the needle is all the way in, the blue liquid drains from the vial, and you can feel your prostate swelling with the fluid. Once the vial is empty, you pull it out and toss it to the side. You quickly rub your perineum, trying the soothe the odd sensation in your body as you await the drug's full effects.");
+			else output("You examine the vial of milky blue liquid as you consider how to inject it. Shrugging your shoulders, decide to inject it into your prostate. Going for the safest route, you aim the needle at your perineum. As soon as the needle is all the way in, the blue liquid drains from the vial, and you can feel your prostate swelling with the fluid. Once the vial is empty, you pull it out and toss it to the side. You quickly rub your perineum, trying the soothe the odd sensation in your body as you await the drug’s full effects.");
 			output("\n\n");
 			
 			if(target.balls > 0) 
@@ -259,7 +259,7 @@ package classes.Items.Transformatives
 			//last but not least, grow 2 more balls if difference between new and old ball diameter
 			// reached 10 inches or more, or cum quantity was increased by 20 liters or more
 			var ballsGrown:Boolean = false;
-			if (ballDiameterModifier > 10 || maxCumModifierInLiters > 20) {
+			if (ballDiameterModifier >= 10 || maxCumModifierInLiters >= 20) {
 				if (target.balls == 0) ballsGrown = true;
 				target.balls += 2;
 			}
@@ -272,13 +272,13 @@ package classes.Items.Transformatives
 				if(ballDiameterModifier > 0) output(" grow");
 				//ball size decreased, but ball efficancy increased
 				else output(" shrink");
-				output(" in your body, an odd feeling to say the least, and if you hadn't known the effects of the mod you would have just taken, you probably would be panicking right now. It isn't uncomfortable; it's just weird feeling an internal organ become");
+				output(" in your body, an odd feeling to say the least, and if you hadn’t known the effects of the mod you would have just taken, you probably would be panicking right now. It isn’t uncomfortable; it’s just weird feeling an internal organ become");
 				if(ballDiameterModifier > 0) output(" bigger");
 				else output(" denser");
-				output(". However, once the transformations comes to a close and you feel like you've stopped");
+				output(". However, once the transformations comes to a close and you feel like you’ve stopped");
 				if(ballDiameterModifier > 0) output(" growing");
 				else output(" shrinking");
-				output(", you start to imagine your next sexual encounter, and how it'll feel with your newfound ");
+				output(", you start to imagine your next sexual encounter, and how it’ll feel with your newfound ");
 				if(ballDiameterModifier > 0) output(" capability");
 				else output(" efficiency");
 				output(". Your grin stretches from ear to ear as your body churns up a load in anticipation.");
@@ -287,11 +287,11 @@ package classes.Items.Transformatives
 				//if person was internal balled and now gains his first external balls
 				if (ballsGrown) {
 					output("After your powerful orgasm, you look down at your crotch, wondering when the effects of the mod will happen.");
-					output("Thankfully you don't have to wait any longer, you look down and watch in a mixture of perversion and awe. At first a small patch of your skin seems to become shriveled, then for a short while, nothing. You consider the mod to be a dud but quickly realize you are <i>very</i> wrong. <b>Your new nuts rapidly grow into your freshly developed scrotum</b>, stretching it to hold the lovely new orbs.");
+					output("Thankfully you don’t have to wait any longer, you look down and watch in a mixture of perversion and awe. At first a small patch of your skin seems to become shriveled, then for a short while, nothing. You consider the mod to be a dud but quickly realize you are <i>very</i> wrong. <b>Your new nuts rapidly grow into your freshly developed scrotum</b>, stretching it to hold the lovely new orbs.");
 					output("They lightly bounce as they come to a rest. You test out how they feel by fondling them as you imagine willing");
 					if (target.isTreated()) output(" cows");
 					else output(" whores");
-					output(" at your feet, worshiping and licking your bulbous, cum-filled orbs. You can barely wait until you're able to put those babies to use, having them slap against the ass of");
+					output(" at your feet, worshiping and licking your bulbous, cum-filled orbs. You can barely wait until you’re able to put those babies to use, having them slap against the ass of");
 					if (target.isTreated()) output(" the nearest cow");
 					else output(" your next partner");
 					output(".");
@@ -316,7 +316,7 @@ package classes.Items.Transformatives
 						output(" with power, shrinking as ");
 						if(target.balls == 1) output("it becomes");
 						else output("they become");
-						output(" more compact and dense. Although you lost a bit of size, you can't help but smile as you realize your [pc.balls] will release a much bigger payload than before.");
+						output(" more compact and dense. Although you lost a bit of size, you can’t help but smile as you realize your [pc.balls] will release a much bigger payload than before.");
 					}
 					
 					output(" You idly fondle ");
@@ -331,7 +331,7 @@ package classes.Items.Transformatives
 						else output(" whores");
 						output(" at your feet, worshipping and licking your ball");
 						if(target.balls > 1) output("s");
-						output(". You can barely wait until you're slapping your [pc.balls] against the ass of");
+						output(". You can barely wait until you’re slapping your [pc.balls] against the ass of");
 						if (target.isTreated()) output(" the nearest cow");
 						else output(" your next partner");
 					//efficency increased
