@@ -390,8 +390,8 @@
 			// Genitalia:
 			if(target.hasGenitals())
 			{
-				var hasCock:Boolean = (target.hasVagina());
-				var hasVagina:Boolean = (target.hasCock());
+				var hasCock:Boolean = (target.hasCock());
+				var hasVagina:Boolean = (target.hasVagina());
 				var totalGenitals:int = (target.totalGenitals());
 				
 				output("\n\nAlthough ignored due to your nipple-related attentions, your");

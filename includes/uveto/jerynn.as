@@ -509,7 +509,8 @@ public function jerynnAllowFucked():void
 	output(". Her next thrust is faster still, enough momentum for her heavy balls to");
 	if (pc.balls > 0)
 	{
-		if (!pc.hasStatusEffect("Uniball")) output(" slap wetly against your");
+		output(" slap wetly against your");
+		if (!pc.hasStatusEffect("Uniball")) output(" [pc.sack]");
 		else output(" little trap pouch");
 	}
 	else
