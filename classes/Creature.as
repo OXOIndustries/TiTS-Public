@@ -13309,8 +13309,8 @@
 		}
 		public function crotchCover(): String
 		{
-			if(!pc.isCrotchExposedByArmor()) return armor.longName;
-			else if(!pc.isCrotchExposedByLowerUndergarment()) return lowerUndergarment.longName;
+			if(!isCrotchExposedByArmor()) return armor.longName;
+			else if(!isCrotchExposedByLowerUndergarment()) return lowerUndergarment.longName;
 			return "nothing";
 		}
 		public function lowerGarmentOuterDescript(): String {
