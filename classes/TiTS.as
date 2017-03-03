@@ -466,7 +466,6 @@
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
-			import classes.ShipClass;
 
 			chars = new Object();
 			

@@ -1,8 +1,9 @@
 package classes.DataManager.Serialization 
 {
+	import classes.Ships.IOwned;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
-	import CoC2.Engine.Creature;
+	import classes.Ships.IOwner;
 	/**
 	 * This time, the serialization system should be generally portable into any other game (within reason).
 	 * There are a few important considerations to keep in mind regarding what the serializer will actually
@@ -15,7 +16,7 @@ package classes.DataManager.Serialization
 	 * 
 	 * @author Gedan
 	 */
-	public class UnversionedSaveable implements ISaveable
+	public class UnversionedSaveableV2 implements ISaveable
 	{
 		public function GetSaveObject():Object
 		{
@@ -25,6 +26,9 @@ package classes.DataManager.Serialization
 
 			// Store the classpath for this object
 			saveObject.classInstance = classType.name;
+			
+			// If the object has no properties to save, just return the object as-is
+			if (classType.traits.variables == null || classType.traits.variables.length == 0) return saveObject;
 			
 			// For each property
 			for (var propIndex:uint = 0; propIndex < classType.traits.variables.length; propIndex++)
@@ -136,24 +140,27 @@ package classes.DataManager.Serialization
 		{
 			var tClass:Class = (getDefinitionByName(classInstance) as Class);
 			var tClassDesc:Object = SerializationUtility.GetClassDescription(tClass);
+			var newInstance:ISaveable = new tClass();
 			
-			if (RequiresCreateWithOwner(tClassDesc))
-			{
-				var tThis:Creature = null;
-				if (this is Creature) tThis = this as Creature;
-				else if (this is IBodyPart) tThis = (this as IBodyPart).Owner;
-				
-				return new tClass(tThis);
+			if (this is IOwner && ChildIsIOwned(tClassDesc))
+			{	
+				newInstance.Owner = (this as IOwner);
 			}
 			
 			return new tClass();
 		}
 		
-		private function RequiresCreateWithOwner(tClassDesc:Object):Boolean
+		private var _iOwnedInterfaceClassName:String = null;
+		private function ChildIsIOwned(tClassDesc:Object):Boolean
 		{
-			var cons:Array = tClassDesc.traits.constructor;
-			var res:Boolean = (cons != null && cons.length == 1 && cons[0].type == getQualifiedClassName(Creature));
-			return res;
+			var interfaces:Array = tClassDesc.traits.interfaces;
+			
+			if (_iOwnedInterfaceClassName == null)
+			{
+				_iOwnedInterfaceClassName = getQualifiedClassName(IOwned);
+			}
+			
+			return (interfaces != null && interfaces.length > 0 && interfaces.indexOf(_iOwnedInterfaceClassName) != -1)
 		}
 		
 		public function makeCopy():*

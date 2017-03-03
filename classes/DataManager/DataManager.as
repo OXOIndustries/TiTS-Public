@@ -6,7 +6,6 @@
 	import classes.Items.Miscellaneous.TestHPBooster;
 	import classes.Items.Protection.DBGShield;
 	import classes.kGAMECLASS;
-	import classes.ShipClass;
 	import flash.display.Shader;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
