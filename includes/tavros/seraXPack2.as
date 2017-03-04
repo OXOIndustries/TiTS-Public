@@ -777,7 +777,7 @@ public function approachServantSera(introText:Boolean = false):void
 			// Jerked Off Blurb
 			// Plays if Sera exceeds max arousal when PC not there
 			// If she goes an hour after reaching 50 with the player out of the room she disobeys and gets off herself. -8 Obedience
-			if(obedience >= 0 && obedience <= 80 && chars["SERA"].minutesSinceCum >= 60)
+			if(obedience >= 0 && obedience <= 80 && chars["SERA"].lust() >= 100 && chars["SERA"].minutesSinceCum >= 180)
 			{
 				output("Sera is lounging on her bunk with a big smirk on her face,");
 				if(chars["SERA"].hasCock()) output(" her cock limp on the sheets,");
