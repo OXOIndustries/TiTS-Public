@@ -1874,11 +1874,13 @@ public function variableRoomUpdateCheck():void
 	}
 	
 	/* VESPERIA / CANADIA STATION */
+	/*
 	if(flags["KALLY_FAP_2_KIRO"] != undefined)
 	{
 		rooms["CANADA7"].eastExit = "CANADA8";
 	}
 	else rooms["CANADA7"].eastExit = "";
+	*/
 
 
 	/* MISC */

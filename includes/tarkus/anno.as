@@ -3720,10 +3720,7 @@ public function continueServicingKaedeWithAnno():void
 	
 	output("\n\nKaede’s knees all but give out under her, and she stumbles back onto the edge of the bed. Anno gives her a little push back, and crawls in after her, trailing kisses up the shemale’s sweat-sheened body. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legOrLegs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
 
-	var ppKaede:PregnancyPlaceholder = new PregnancyPlaceholder();
-	ppKaede.balls = 2;
-	ppKaede.ballFullness = 100;
-	ppKaede.ballSizeRaw = 8;
+	var ppKaede:PregnancyPlaceholder = getKaedePregContainer();
 
 	pc.loadInMouth(ppKaede);
 

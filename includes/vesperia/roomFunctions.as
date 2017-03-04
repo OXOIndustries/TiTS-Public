@@ -43,6 +43,10 @@ public function outsideCanadiaBarBonus():Boolean
 public function bathAreaBonus():Boolean
 {
 	vendingMachineButton(0, "Vesperian");
+	
+	output("\n\nThe elaborately decorated rooms to the west seem to be for visitors looking to stay a while.");
+	
 	kallyDoorBonus();
+	
 	return false;
 }

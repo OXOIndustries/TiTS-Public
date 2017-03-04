@@ -575,7 +575,7 @@ public function tellKiroTellingKallyAboutPicardineIsShitty():void
 {
 	clearOutput();
 	showKiro();
-	output("<i>“Shitty,”</i> you agree, feeling bad for pushing the matter. Who would want to know that their whole business was built on the a pirate’s stolen goods? It would undermine Kally’s confidence in herself at best at demolish it at worst.");
+	output("<i>“Shitty,”</i> you agree, feeling bad for pushing the matter. Who would want to know that their whole business was built on a pirate’s stolen goods? It would undermine Kally’s confidence in herself at best, and demolish it at worst.");
 	output("\n\nKiro nods, sipping her drink. <i>“I thought so.”</i>");
 	processTime(2);
 	flags["KIRO_KALLY_PICARDINE_QUEST"] = -1;
@@ -3632,7 +3632,7 @@ public function kiroKallyThreesomesApproach():void
 	if(pc.tallness > kiro.tallness+12) output("[pc.thigh]");
 	else if(pc.tallness > kiro.tallness-12) output("[pc.hip]");
 	else output("[pc.chest]");
-	output(". You through the primary airlock and into Canadia Station’s enclosed hangar. Kiro’s familiar, leaf-shaped craft is parked next to your own, almost as close to it as the grinning raccoon-woman is to you.");
+	output(". You head through the primary airlock and into Canadia Station’s enclosed hangar. Kiro’s familiar, leaf-shaped craft is parked next to your own, almost as close to it as the grinning raccoon-woman is to you.");
 	output("\n\nNo sooner do you step into the oddly-shaped craft than Kally barrels in after, tugging at the laces of her top. She pants for breath, as she frees her tits, eyes darting between the two of you. <i>“Ahhh... you didn’t start without me... good.”</i> She sucks in a huge lungful of air. <i>“It’s goddamn hard to breathe in that fucker of an outfit. I almost passed out trying to catch up with you.”</i>");
 	output("\n\nKiro is under Kally’s arm in a second, tugging the plusher sister’s corset off before it can do any more damage. The leathery garment is thrown against a wall hard, then forgotten entirely as the two lock lips, smashing their barely-clothed forms into a sea of silk-furred tits, wiggling hips, and passionately moaning mouths. They wrap their tails around each other in fluffy double helix as the kiss intensifies, then finally break away with their tongues lolling in their pupils dilated by excitement. The twin sisters turn to face you, their dicks hard and jutting accusingly.");
 	output("\n\n<i>“So we’re double-teaming Kally, right?”</i> Kiro asks with a wink your way.");
