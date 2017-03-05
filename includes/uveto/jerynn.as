@@ -104,7 +104,7 @@ public function approachJerynn():void
 		
 		output("\n\nAs she closes in on you though, her chest takes center stage. The bodice cups under a pair of huge breasts, each easily as large as her head, and the flimsy little garment does little to arrest the impressive jiggling of her jugs as she closes the final few feet on her path directly towards you.");
 		
-		output("\n\n<i>“Something the matter, </i>friend</i>,”</i> she states matter of factly.");
+		output("\n\n<i>“Something the matter, </i>friend<i>?”</i> she states matter of factly.");
 
 		if (flags["UVETO_JERYNN_RESCUES"] != undefined)
 		{
@@ -129,7 +129,7 @@ public function approachJerynn():void
 				output("\n\n<i>“Not at all, I just can’t shake the feeling I’ve seen you before,”</i> you reply.");
 			}
 
-			output("\n\n<i>“Is that so? Hah, well, maybe if I spun you upside down you’d recognise me.”</i>");
+			output("\n\n<i>“Is that so? Hah, well, maybe if I spun you upside down you’d recognize me.”</i>");
 			
 			output("\n\nConfusion furrows your brow, drawing a deep and hearty laugh from the draconic-taur.");
 			
@@ -384,7 +384,7 @@ public function jerynnAllowFucked():void
 		
 		if (pc.isCrotchExposed()) output("Scaly d");
 		else output("D");
-		output("igits close around your");
+		output("igits close around");
 		if (pc.isCrotchExposed()) output(" your exposed cock");
 		else output(" the bulge in your [pc.lowerGarment]");
 		output(", greedily");
@@ -536,7 +536,7 @@ public function jerynnAllowFucked():void
 	output("\n\nThe constantly increasing pace of the taurs savage fucking skips a beat when a bulb at the base of her cock begins to inflate. If only for a moment at least, a little extra force squeezing the taurs rapidly engorging knot into you. Your grip on her forelegs proves fruitful when she tries to pull back out though, your");
 	if (!pc.hasVagina()) output(" ass");
 	else output(" pussy");
-	output(" trying in vain to hold on to Jerynn’s knot. It slips free with a lewd <i>’pop’</i> with a little struggle on both your parts... only to slam back into your [pc.vagOrAss] even harder with her next thrust.");
+	output(" trying in vain to hold on to Jerynn’s knot. It slips free with a lewd <i>‘pop’</i> with a little struggle on both your parts... only to slam back into your [pc.vagOrAss] even harder with her next thrust.");
 
 	output("\n\nYour close, oh so close. Torn between Jerynn literally breaking you before she orgasms and her burgeoning knot grinding your");
 	if (pc.hasCock()) output(" prostate");
@@ -570,7 +570,7 @@ public function jerynnAllowFucked():void
 	if (pc.balls > 0) output(", over your balls,");
 	output(" and puddling between your knees. The angle leaves enough out of frame to hide your identity from a casual viewer");
 	if (pc.exhibitionism() >= 60) output(", sadly,");
-	output(" but anybody who knew you would likely recognise you immediately....");
+	output(" but anybody who knew you would likely recognize you immediately....");
 
 	output("\n\n<i>“I’m sure you can see yourself out whilst I clean myself up, </i>friend<i>,”</i> she says with an underlying hint of an order before peeling herself out of her comfortable corner and heading to her bathroom.");
 
@@ -659,7 +659,7 @@ public function jerynnAllowRidden():void
 	output(" pull away, inch after inch of your cock wetly sliding out of her cunt. All those inches return to her heated depths, with interest, as her ass crashes back into your body at speed forcing an ‘oomph’ of surprise from you. And again, she pulls away slowly and then forces herself back against you at speed; make no mistake, there is fucking happening but Jerynn is most definitely the one doing it. You’re just along for the ride, the supplier of the fuckpole she’s chosen to sate her lusts with.");
 
 	output("\n\nAt some point you find your [pc.hands] holding on to her ass for dear life, your fingers sinking into the meaty flesh of her flanks. It doesn’t slow her down, not one bit. If anything she seems emboldened by it, taking some perverse pleasure from riding your cock so hard you feel as though your [pc.hips] might give out at any moment.");
-	if (pc.hasKnot(cIdx)) output(" The only thing that does seem to give her pause is your [pc.knot "+cIdx+"], and even then only for long enough for a full-body shiver to interrupt conscious control of her legs. It’s extra girth resists entering the taurs pussy before her puffy lips swallow it whole, slipping free with a lewd <i>’pop’</i> when she pulls away from you again.");
+	if (pc.hasKnot(cIdx)) output(" The only thing that does seem to give her pause is your [pc.knot "+cIdx+"], and even then only for long enough for a full-body shiver to interrupt conscious control of her legs. It’s extra girth resists entering the taurs pussy before her puffy lips swallow it whole, slipping free with a lewd <i>‘pop’</i> when she pulls away from you again.");
 
 	output("\n\nYour close, oh so close. Torn between Jerynn literally breaking you before she orgasms and your intense need to blow your load, one final crash is all it takes to set you off like a nuclear warhead. Cum barrels up your [pc.cock "+cIdx+"] and into the draconic taur, the first splash of your liquid heat thundering into her cunt setting off Jerynn too.");
 	if (pc.cumQ() >= 1000) output(" More pulses jet into her cunt as her body works to milk every drop it can from you");
@@ -803,7 +803,7 @@ public function jerynnAllowPetstuff():void
 	output("\n\nStrong, scaly hands peel you from the floor and a pair of arms wrap underneath your back.");
 	if (jerynnIsMistress()) output(" Mistress");
 	else output(" Jerynn");
-	output(" gingerly carries you somewhere, and with your eyes glued shut with a copious mask of saliva, you’re not sure where to. At least until the sound of water splashing on the floor gives you a clue. Warm water soon has your face clean enough to risk opening your eyes, the taur putting you down on your stumpy limbs to clean you up properly. At some point the clasps on the harness come undone, and she helps to work feeling back into your limbs. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favour, helping to wash all of her hard to reach places.");
+	output(" gingerly carries you somewhere, and with your eyes glued shut with a copious mask of saliva, you’re not sure where to. At least until the sound of water splashing on the floor gives you a clue. Warm water soon has your face clean enough to risk opening your eyes, the taur putting you down on your stumpy limbs to clean you up properly. At some point the clasps on the harness come undone, and she helps to work feeling back into your limbs. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favor, helping to wash all of her hard to reach places.");
 
 	output("\n\nEventually though she turns the steamy water off and directs you out of her shower. Your gear is piled up by the apartment door. Busy as you are with placing all of your equipment in its proper place on your frame, she sneakily grabs you and smothers your mouth with a domineering kiss.");
 
@@ -1044,7 +1044,7 @@ public function jerynnUnderslungShare():void
 		if (jerynnPetstuffLevel() > 0 && (pc.isBimbo() || pc.libido() >= pc.libidoMax() * 0.75 || pc.lust() >= pc.lustMax() * 0.75)) output(" And the knowledge that her heavy balls are soon going to be nestled against your groin.");
 	}
 
-	output("\n\n<i>“Come on, I’m getting cold. Get your knees and elbows into the legs of my coat,”</i> she demands, and at this point you’re only too happy to comply. The prospect of even <i> more</i> warmth is just too promising to pass up!");
+	output("\n\n<i>“Come on, I’m getting cold. Get your knees and elbows into the legs of my coat,”</i> she demands, and at this point you’re only too happy to comply. The prospect of even <i>more</i> warmth is just too promising to pass up!");
 
 	output("\n\nProperly and finally positioned, Jerynn hits the control of her smart coat again and the zip mirrors its prior motion. Thick wool closes in around your underside as the coat closes up around the both of you, working its way all the way along your body before finally wrapping the garment around your [pc.face], sealing you into darkness.");
 
@@ -1420,7 +1420,7 @@ public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 		output("\n\n<i>“");
 		if (jerynnPetstuffLevel() == 4) output("Better, but it still needs some work. Not now though.");
 		else output("We’ll have to work on that, but not now.");
-		output(" First we need to get you fed, you must be <i>famished</i>.”</i> She tugs on the leash again, dragging you further from the mirror.");
+		output(" First we need to get you fed, you must be </i>famished<i>.”</i> She tugs on the leash again, dragging you further from the mirror.");
 
 		output("\n\nThe source of the clatter soon becomes evident; a " + pc.catDog("kitty", "doggy") +" bowl lies on the floor amid a veritable sea of cum, filled to the brim with as much as it can hold. You look up at her and she only nods toward the bowl... and then the thirst hits you. Who knows how long you’ve been incommunicado as she carried you back to Irestead, how long without proper food or drink. You dive face-first into it, sucking the thick spunk through your lips like a " + pc.mf("man", "woman") +" discovering an oasis after weeks in the desert.");
 		
@@ -1522,13 +1522,13 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 	output("Jerynn,");
 	if (!pc.isSubby() && jerynnPetstuffLevel() < jerynnPetstuffMax()) output(" to her credit");
 	else output(" looking after her toy you suppose");
-	output(", cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favour, helping to wash all of her hard to reach places.");
+	output(", cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favor, helping to wash all of her hard to reach places.");
 
 	output("\n\nEventually though she turns the steamy water off and directs you out of her shower.");
 
 	if (jerynnPetstuffLevel() == 4)
 	{
-		output("\n\nShe points you to her packs and you make with retrieving all of your gear. Tucked under your stuff is a little parcel intended for you, PET simply written across the top of it. Inside is a modified version of the harness you’ve become intimately familiar with whilst under the taur; each of the magnetic clasps has a tiny status light hidden on the corner, all of them dim. You slip it on automatically and you realise it’s sized perfectly for you, your suspicions about the clasps confirmed when you bend your arm double but the tell-tale smack of the clasps locking together is absent.");
+		output("\n\nShe points you to her packs and you make with retrieving all of your gear. Tucked under your stuff is a little parcel intended for you, PET simply written across the top of it. Inside is a modified version of the harness you’ve become intimately familiar with whilst under the taur; each of the magnetic clasps has a tiny status light hidden on the corner, all of them dim. You slip it on automatically and you realize it’s sized perfectly for you, your suspicions about the clasps confirmed when you bend your arm double but the tell-tale smack of the clasps locking together is absent.");
 		
 		output("\n\nYou slip the garment back off for later and don the rest of your gear. ");
 		quickLoot(new MagneticHarness());
@@ -1544,8 +1544,8 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 	output(", a sinuous tongue making its way past your lips in a domineering kiss.");
 
 	output("\n\n<i>“You’re welcome, </i>");
-	if (jerynnPetstuffLevel() < jerynnPetstuffMax() / 2) output(" friend");
-	else output(" pet");
+	if (jerynnPetstuffLevel() < jerynnPetstuffMax() / 2) output("friend");
+	else output("pet");
 	output("<i>,”</i> she says after breaking the kiss, her confident smirk once again present. She");
 	if (!isWearingJerynnsCollar()) output(" finally slips the collar that you had all but forgotten about off and");
 	else output(" unhooks the leash that you had all but forgotten about, but leaves the collar prominently wrapped around your neck. She");
@@ -1631,7 +1631,7 @@ public function jerynnPetstuffLikeIt(response:int):void
 	}
 	else if (response == 1)
 	{
-		output("<i>“It’s a fun change of pace,”</i> you reply. <i>“Putting the desires of others in front of my own, the desires of <i>you</i>.”</i>");
+		output("<i>“It’s a fun change of pace,”</i> you reply. <i>“Putting the desires of others in front of my own, the desires of </i>you<i>.”</i>");
 		
 		output("\n\n<i>“Your desires, </i>Mistress<i>.”</i>");
 		
@@ -1648,7 +1648,7 @@ public function jerynnPetstuffLikeIt(response:int):void
 	{
 		output("<i>“Not particularly,”</i> you reply. <i>“I just like a good fuck, but I have my own life to live. Your desires align with mine from time to time, so why not indulge a little?”</i>");
 		
-		output("\n\n<i>“Your desires, <i>Mistress</i>.”</i>");
+		output("\n\n<i>“Your desires, </i>Mistress<i>.”</i>");
 		
 		output("\n\n<i>“Yeah, your desires Mistress.”</i> you correct. <i>“It’s nice being able to hang it all up for a while and take a break, but I have my own worries, my own commitments to live up to.”</i>");
 		
@@ -1696,7 +1696,7 @@ public function jerynnPetstuffLimbStuff(compOpts:Array):void
 
 	if (response == 0)
 	{
-		output("<i>“The harness would be the better of the two, I think,”</i> you answer after a moment’s consideration. <i>“at least that way, no matter what, they would always have the ability to rely on themselves, Mistress, no matter what happened.”</i>");
+		output("<i>“The harness would be the better of the two, I think,”</i> you answer after a moment’s consideration. <i>“At least that way, no matter what, they would always have the ability to rely on themselves, Mistress, no matter what happened.”</i>");
 	}
 	else if (response == 1)
 	{
@@ -1717,7 +1717,7 @@ public function jerynnPetstuffLimbStuff(compOpts:Array):void
 	
 	output("\n\nShe goes back to tapping away at the tablet again as she continues. <i>“The cybernetics though, now that’s where the fun is. Limbs that actually work like the pet needs ‘em to work and none of the health issues. The part I like the most though is it’s a one way trip; can’t easily graft flesh and blood back to implants. Gotta stick to wetware for the rest of your days after that.”</i>");
 	
-	output("\n\nThe two windows slide back to their minimised state, replaced with only a single view this time. A grid of marketing images for a variety of transformative products, each spinning around independently and highlighting various features. Three of them are surrounded by a colorful border, probably indicating that they’ve been viewed in the past.");
+	output("\n\nThe two windows slide back to their minimized state, replaced with only a single view this time. A grid of marketing images for a variety of transformative products, each spinning around independently and highlighting various features. Three of them are surrounded by a colorful border, probably indicating that they’ve been viewed in the past.");
 	
 	output("\n\nThe first is skin, pretty much. The model flips through some options like pigmentation, thicknesses and such, but pretty much just plain old human skin.");
 
@@ -1747,7 +1747,7 @@ public function jerynnPetstuffSkin(compOpts:Array):void
 
 	responses.skin = response;
 
-	output("It takes a while but you finally settle on an argument for a favourite.");
+	output("It takes a while but you finally settle on an argument for a favorite.");
 
 	if (response == 0)
 	{
@@ -1772,7 +1772,7 @@ public function jerynnPetstuffSkin(compOpts:Array):void
 	
 	output("\n\n<i>“Scales though, scales are pretty tough. Take it from me. And the modders are real up on their stuff when it comes to getting exactly what you want.”</i>");
 	
-	output("\n\nThe model definitely seemed to agree with the sentiment; far more colour options and combinations. Mixed-color designs would probably be a lot easier to get right too compared to fur.");
+	output("\n\nThe model definitely seemed to agree with the sentiment; far more color options and combinations. Mixed-color designs would probably be a lot easier to get right too compared to fur.");
 	
 	output("\n\nShe goes back to the tablet again, but before the screen can change again a chime from the apartment door interrupts. <i>“Don’t go anywhere, pet,”</i> she chuckles to herself, rolling to her feet and walking off to answer. The mattress is soon weighed down by her frame again, an <i>exceedingly</i> large bag in one hand, the bowl you’d so dutifully cleaned earlier in the other. Delicious, rich wafts of odor escape the bag and your stomach rumbles angrily, the thirst from earlier returned as hunger with just as pressing a need to sate it.");
 	
@@ -1780,7 +1780,7 @@ public function jerynnPetstuffSkin(compOpts:Array):void
 	
 	output("\n\n<i>“So,”</i> she starts between bites, <i>“what do you think of a pet that can’t physically talk anymore?”</i> She quickly sucks a few bits of sauce off a finger, just enough to poke at the tablet without covering it in food in the process. Three windows pop up on the screen, three different options.");
 	
-	output("\n\nThe first is a company that produces high-tech communication devices. They seem to specialise in sub-vocal equipment, the kind of stuff that doesn’t actually needs you to make a noise to transmit speech, relying on a series of sensors around the neck- almost like a collar. One of the items states that it actually suppresses vocalizations entirely in the process, allowing speech to be sent without making a sound louder than an exhaled breath in the process. The only noises it wouldn’t suppress are noises it doesn’t <i>detect</i> as speech.");
+	output("\n\nThe first is a company that produces high-tech communication devices. They seem to specialize in sub-vocal equipment, the kind of stuff that doesn’t actually needs you to make a noise to transmit speech, relying on a series of sensors around the neck- almost like a collar. One of the items states that it actually suppresses vocalizations entirely in the process, allowing speech to be sent without making a sound louder than an exhaled breath in the process. The only noises it wouldn’t suppress are noises it doesn’t <i>detect</i> as speech.");
 	
 	output("\n\nOne seems much more extreme, another transformative company. The page is mostly full of enhancements for singers and the like, offering larger potential ranges, higher notes, that kind of thing. Some offer to allow a consumer to emulate various fantastical beasts- at a cost, though. Generally removing the ability for normal speech in the process.");
 	
@@ -2091,13 +2091,13 @@ public function jerynnPetstuffNoOptIn():void
 	else output(" pussy");
 	output(" plugged with cock as she drags you to the bathroom. With some care she lowers you to the floor, her cock sliding out of you and followed by a lewd burp of spunk when the angled tip finally slips free.");
 	
-	output("\n\nYou lie there to drain out some, soothing heat of the shower soon making itself known across your [pc.skinFurScale]. Jerynn, looking after her toy you suppose, cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs once she peels the harness off of you. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favour, helping to wash all of her hard to reach places.");
+	output("\n\nYou lie there to drain out some, soothing heat of the shower soon making itself known across your [pc.skinFurScale]. Jerynn, looking after her toy you suppose, cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs once she peels the harness off of you. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favor, helping to wash all of her hard to reach places.");
 	
 	output("\n\nEventually though she turns the steamy water off and directs you out of her shower. She points you to her packs and you make with retrieving all of your gear, suiting back up and getting ready to return to your travels.");
 	
 	output("\n\nBefore you leave, you make to thank her properly for saving you. You don’t even manage to utter the first syllable though, as she grabs the dangling chain of the leash and pulls you into her body, a sinuous tongue making its way past your lips in a domineering kiss.");
 	
-	output("\n\n<i>“Remember, <i>pet</i>,”</i> she says after breaking the kiss, her confident smirk once again present. She unhooks the leash that you had all but forgotten about, but leaves the collar prominently wrapped around your neck. She bundles you out of the door already anticipating the next opportunity to [pc.barkMeow] for Jerynn.");
+	output("\n\n<i>“Remember, </i>pet<i>,”</i> she says after breaking the kiss, her confident smirk once again present. She unhooks the leash that you had all but forgotten about, but leaves the collar prominently wrapped around your neck. She bundles you out of the door already anticipating the next opportunity to [pc.barkMeow] for Jerynn.");
 
 	jerynnPetstuffLevel(true);
 	
@@ -2232,7 +2232,7 @@ public function jerynnPetstuffBar():void
 		
 		output("\n\nShe stands again, but only moves a few steps. Something presses into your side as she does so.");
 		
-		output("\n\n<i>“It’s been a while since we last blew off a little steam, hasn’t it <i>Jerbear</i>?”</i>");
+		output("\n\n<i>“It’s been a while since we last blew off a little steam, hasn’t it </i>Jerbear<i>?”</i>");
 		
 		output("\n\nYou’re pretty sure you can hear the guy gulp.");
 		
@@ -2264,7 +2264,7 @@ public function jerynnPetstuffBar():void
 		
 		output("\n\nShe stands again, but only moves a few steps. Something presses into your side as she does so.");
 		
-		output("\n\n<i>“It’s been awhile since we last blew off a little steam, hasn’t it <i>Jerbear</i>?”</i>");
+		output("\n\n<i>“It’s been awhile since we last blew off a little steam, hasn’t it </i>Jerbear<i>?”</i>");
 		
 		output("\n\nYou’re pretty sure you can hear the guy gulp.");
 		
@@ -2312,7 +2312,7 @@ public function jerynnPetstuffNightWithJerome():void
 	
 	output("\n\nSeconds later, Jerynn is stepping down into the sofa-pit that lies central to her lounge, a pair of corded, white-furred legs appearing in your line of sight in the process. With the bear being sat on the edge of the pit, and you hanging under the taur, your head is oh so perfectly positioned to get an eye full of the guys half-hard cock as it grows turgid, throbbing thicker and larger with each passing second.");
 	
-	output("\n\n<i>“Go on <i>pet</i>, get him ready,”</i>");
+	output("\n\n<i>“Go on </i>pet<i>, get him ready,”</i>");
 	if (jerynnIsMistress()) output(" Mistress");
 	else output(" Jerynn");
 	output(" orders. A fuzzy, white hand encroaches your vision, wrapping digits around the fat lump of cock just below you. With the slightest of twitches, the dick wobbles upright and pats you on the");
@@ -2323,7 +2323,7 @@ public function jerynnPetstuffNightWithJerome():void
 	output("\n\nHe <i>likes</i> that if the deep groan is anything to go by; at least up until it gets choked off, between a much more feminine moan and bouts of intense tongue action between");
 	if (jerynnIsMistress()) output(" Mistress");
 	else output(" Jerynn");
-	output(" and the bear. You busy yourself with the thick cockmeat stuffed in your mouth, suckling deeply on the bear’s flesh, savouring your reward of intermittent spurts of pre for your efforts.");
+	output(" and the bear. You busy yourself with the thick cockmeat stuffed in your mouth, suckling deeply on the bear’s flesh, savoring your reward of intermittent spurts of pre for your efforts.");
 	
 	output("\n\nYou’re almost disappointed when Jerynn pulls away and the");
 	if (silly) output(" lolicocksicle");
@@ -2413,15 +2413,15 @@ public function jerynnPetstuffNightWithJeromeII():void
 	output("\n\nJerynn,");
 	if (!jerynnIsMistress()) output(" to her credit");
 	else output(" looking after her toy you suppose");
-	output(", cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favour, helping to wash all of her hard to reach places.");
+	output(", cleans you up, slowly and methodically, scrubbing you down and helping to work feeling back into your limbs. When you finally regain <i>some</i> control of your still jelly-like arms, you return the favor, helping to wash all of her hard to reach places.");
 	
 	output("\n\nEventually though she turns the steamy water off and directs you out of her shower. She points you to her packs and you make with retrieving all of your gear, suiting back up and getting ready to return to your travels.");
 	
 	output("\n\nShe grabs you before you have a chance to leave, a sinuous tongue making its way past your lips in a domineering kiss.");
 	
 	output("\n\n<i>“You’re welcome, </i>");
-	if (jerynnPetstuffLevel() < jerynnPetstuffMax() / 2) output(" friend");
-	else output(" pet");
+	if (jerynnPetstuffLevel() < jerynnPetstuffMax() / 2) output("friend");
+	else output("pet");
 	output("<i>,”</i> she says after breaking the kiss, her confident smirk once again present. She");
 	if (!isWearingJerynnsCollar()) output(" finally slips the collar that you had all but forgotten about off and");
 	else output(" unhooks the leash that you had all but forgotten about, but leaves the collar prominently wrapped around your neck. She");
@@ -2648,7 +2648,7 @@ public function jerynnPetstuffBadEndIII(isOptIn:Boolean):void
 	
 	output("\n\nIn her place, all you have for company is a carefully curated playlist of videos left running from the moment she leaves to the second she returns. Training material of a fashion. They start simple, just little tips for how to move around better as a kept pet, effective means of emulating little gestures to emote as a " + pc.catDog("kitten", "puppy") +" would to its owner, how to behave when out in public on a leash.... Every list you watch through ends with an impromptu check-up when your owner returns, the contents of the next list changing to suit what she believes you need better command of.");
 	
-	output("\n\nIt isn’t long before you’ve graduated from the basics and the lists become more sexual in nature. Just interspersed with one or two of Mistress’s favourite videos at first, a little nugget to stew on in between the otherwise steady stream of higher brow viewing. That quickly falls by the wayside though, an almost constant bombardment of petgirls being railed by their owners six ways from Sunday soon following. What few videos you could consider as ‘learning material’ between them focusing more on the proper way to beg for cock than for treats.");
+	output("\n\nIt isn’t long before you’ve graduated from the basics and the lists become more sexual in nature. Just interspersed with one or two of Mistress’s favorite videos at first, a little nugget to stew on in between the otherwise steady stream of higher brow viewing. That quickly falls by the wayside though, an almost constant bombardment of petgirls being railed by their owners six ways from Sunday soon following. What few videos you could consider as ‘learning material’ between them focusing more on the proper way to beg for cock than for treats.");
 	
 	output("\n\nOf course, with little ability to tend to yourself, the uninterrupted stream of pornography has your");
 	if (pc.hasVagina()) output(" needy");
@@ -2692,7 +2692,7 @@ public function jerynnPetstuffBadEndIV():void
 	
 	output("\n\nHer pet. On <i>her</i> ship. Chasing <i>her</i> legacy.");
 	
-	output("\n\nYou can’t accept the proposition soon enough, "+ pc.catDog("meowing", "barking") +" in delight at the opportunity that the last few months of hard work and training have obviously been leading up to. The contract is signed, or at least signed as best you can given your state, soon enough. With one final crushingly tight squeeze, Mistress puts you back down on the bed and then heads off back to <i>her</i>bridge.");
+	output("\n\nYou can’t accept the proposition soon enough, "+ pc.catDog("meowing", "barking") +" in delight at the opportunity that the last few months of hard work and training have obviously been leading up to. The contract is signed, or at least signed as best you can given your state, soon enough. With one final crushingly tight squeeze, Mistress puts you back down on the bed and then heads off back to <i>her</i> bridge.");
 	
 	output("\n\nYou follow after her, scuttling your");
 	if (flags["JERYNN_RESPONSE_LIMBS"] != 0) output(" metal");
