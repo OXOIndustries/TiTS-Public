@@ -608,7 +608,7 @@ public function chillWithSylvie():void
 	IncrementFlag("SYLVIE_CHILLED");
 	
 	//PC story bit.
-	var select:Number = rand(3);
+	var select:Number = 1 + rand(3);
 	var options:Array = [];
 	var subSelect:Number = 0;
 	//1 - Space
@@ -686,7 +686,7 @@ public function chillWithSylvie():void
 	//Space
 	else if(select == 2) output("\n\nSylvie shakes her head. <i>“I know I’m living in a space station, but I think I’m kind of glad I don’t have to go out there...”</i> she gestures wildly, <i>“...on the fringe. You never know what you’re going to run into. Here, things are so much more predictable. Well, most of the time...”</i> She pauses for dramatic effect.");
 	//Tech
-	else output("\n\n<i>“I have to say, at times like this, I’m glad to be a Vesperian girl. Between ethics boards, safety committees, and the amazing scientists planet-side, we get the best of both worlds: incredible technology and it doesn’t turn us all into mutant freaks... or something worse.”</i> Sylvie nods smugly. <i>“But just because we’re safer than at the core doesn’t mean I haven’t seen some crazy shit...”</i> She pauses for dramatic effect.");
+	else if(select == 3) output("\n\n<i>“I have to say, at times like this, I’m glad to be a Vesperian girl. Between ethics boards, safety committees, and the amazing scientists planet-side, we get the best of both worlds: incredible technology and it doesn’t turn us all into mutant freaks... or something worse.”</i> Sylvie nods smugly. <i>“But just because we’re safer than at the core doesn’t mean I haven’t seen some crazy shit...”</i> She pauses for dramatic effect.");
 	clearMenu();
 	addButton(0,"Next",moosyStoriesGo,1);
 }
@@ -715,18 +715,15 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\nYou shake your head, curious.");
 		output("\n\n<i>“We didn’t have to clean up any of it ourselves.”</i> Sylvie giggles to herself, content in her secret for a moment. <i>“Once word got out, just about every kaithrit on the station found their way down to the accident site. The milk came back clear from contaminants, so we let ‘em go at it. An hour later there wasn’t a drop left to be found anywhere, though I swear that corridor still smells like a dairy.”</i> She shakes her head and laughs. <i>“So much for avoiding stereotypes, eh?”</i>");
 		output("\n\nLaughing along with her, you can’t shake the image of twenty or thirty kaithrit, crawling all over a hallway in search of more creamy milk.");
-		if(InCollection(pc.race(),["kaithrit","half-kaithrit","cat-morph","tiger-morph","panther-morph","tiger","panther","cheetah-morph","cheetah","feline-morph","feline"]) || pc.felineScore() >= 3) output(" Not that you can blame them. You’d likely do the same, given the chance.");
+		if(InCollection(pc.raceShort(),["kaithrit","cat","tiger","panther","cheetah","feline"]) || pc.felineScore() >= 3) output(" Not that you can blame them. You’d likely do the same, given the chance.");
 		output("\n\nSylvie drinks a little bit more, eyes twinkling. <i>“");
 		processTime(13);
 		pc.lust(5);
 		// apply booze
 		sylvieDrunkBump(drunklevelChange);
 		if(sylvieDrunkLevel() == 0) output("So about another drink?");
-		else
-		{
-			output("Mmm, you’re really " + pc.mf("handsome","pretty") + ", you know that? A story like that deserves a hug...");
-			output("”</i>");
-		}
+		else output("Mmm, you’re really " + pc.mf("handsome","pretty") + ", you know that? A story like that deserves a hug...");
+		output("”</i>");
 	
 		sylvieMenu();
 	}
@@ -868,7 +865,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		processTime(16);
 		pc.lust(8);
 		sylvieDrunkBump(drunklevelChange);
-		if(sylvieDrunkLevel() >= 1) output("\n\nSylvie smiles warmly at you. <i>“Thanks so much for putting up with that depressing-ass story. Why couldn’t all spacers be like you? " + pc.mf("Handsome","Beautiful") + ", attentive listeners...”</i>;");
+		if(sylvieDrunkLevel() >= 1) output("\n\nSylvie smiles warmly at you. <i>“Thanks so much for putting up with that depressing-ass story. Why couldn’t all spacers be like you? " + pc.mf("Handsome","Beautiful") + ", attentive listeners...”</i>");
 		sylvieMenu();
 	}
 	//Some ausar scientists wanted to set up a research lab to investigate potential teleportation technologies, but Vesperian law shot them down. Turns out disassembling someone molecule by molecule and digitally reprinting them light years away counts as murder here.
@@ -1075,7 +1072,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		}
 		else if(pc.hasVagina() && !pc.isCrotchExposed()) output("Discretely adjusting your sticky underthings");
 		else output("Discretely adjusting yourself");
-		if(!pc.isBimbo() && pc.exhibitionism() <= 50) output(", you try not to let on just how her story is turning you on.");
+		if(!pc.isBimbo() || pc.exhibitionism() <= 50) output(", you try not to let on just how her story is turning you on.");
 		else output(", you try not to distract her too much. You want to hear every sordid detail. Then maybe you can like, give her a story of your own.");
 		output(" <i>“How much did you cum?”</i>");
 		output("\n\n<i>“I don’t know!”</i> Sylvie admits. <i>“I sort of lost count after a while. It sort of gets tough to tell after you have seven or eight in rapid succession. There’s basically nothing left to do but orgasm and babble nonsense. I can’t even accurately remember how good it felt. I just know that thinking about it too hard makes my knees wobble and my cleft twinge. One thing I do remember is what it felt like to wake up in a mattress soaked in my own sexjuice. Ugh. Amazing how much you love the smell during sex and just how badly you want to wash it off afterward. Talk about a shower of shame.”</i>");
@@ -2174,7 +2171,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 
 	output("\n\nWith each loving stroke of your [pc.tongue] over its smooth walls, Sylvie’s cunt swells up more and more, until it’s like a giant, purple donut your mouth is mashed into. An escalating series of breathy sighs and groans emanates from above, hooves rapping sharply against the floorboards as you tongue your moosetaur top to ever greater heights of pleasure.");
 	output("\n\n<i>“‘S right, right there, you dirty lil [pc.boy],”</i> she huffs. You can’t see, but you take it by the sound of shifting tunic fabric she’s toying with her massive breasts as you eat her out. ");
-	if(pc.biggestTitSize() >= 1) output("I mean, that’s what <i>you</i> would be doing in her position. ");
+	if(pc.biggestTitSize() >= 1) output("Well, that’s what <i>you</i> would be doing in her position. ");
 	output("She pulls her soft, puffy sex back from your questing tongue a bit - trails of saliva and intoxicating pussy juice follow it - and rears herself up so that her distended clit is practically butting you in the nose. <i>“Now there - yes!”</i> she cries out as you obey, sucking at the protuberant little nub and then flicking at it insistently with the tip of your tongue.");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) 
 	{
@@ -2222,10 +2219,10 @@ public function cuffnFuckSylviePartDues():void
 	else if(pc.hasVagina(GLOBAL.TYPE_FLOWER)) output("\n\n<i>“Ooh hey,”</i> she coos, confusion coloring her tones as she gazes at your dewy orchid twat in full flourish. <i>“You got some sort of plant growing down here, didja know? You should prob’ly get that checked out.”</i> You exhale slowly as she wonderingly traces the sensitive innards of one of your [pc.vaginaColor] fronds with her warm, wet tongue. <i>“Real pretty, though.”</i>");
 	else output("\n\n<i>“Cute vajazzle for a cute lil sub,”</i> she proclaims, looking up at you with thirsty vixenish lust writ large on her face. <i>“Certainly looks tasty.”</i>");
 	output("\n\nSylvie lurches forward, roughly thrusting her tongue deep into the wet, sensitive suck of your hole, eagerly stroking your innards to send spasms of sensation whiplashing up your body. Hands cuffed and thrust up against the wall by the moosetaur’s cruiser-like mass, you are helpless to do anything but let her ravish you with her long, wriggling appendage; obscene smacking and slurping fills the room, joined shortly by your own groans and wails as it begins to feel like [pc.eachVagina] is melting with pleasure. She never stops looking upwards, laughingly drinking in your helpless reactions to her questing tongue like a crisp pint of lager.");
-	output("\n\nYou clench your [pc.thighs] up tight around her neck as you o like a rocket, ");
+	output("\n\nYou clench your [pc.thighs] up tight around her neck as you blow like a rocket, ");
 	if(!pc.isSquirter()) output("a generous dribble of [pc.girlCum] forced out of your flexing cunt");
 	else output("a huge gush of [pc.girlCum] forced out of your over-juiced cunt");
-	output(" by the warm, strong movements of the mountie’s mouth. Your orgasm only seems to gee her on; with a lusty, hungry hum she redoubles her grip around your hips, opens her mouth up and penetrates you even deeper with her questing tongue, determinedly lapping down every last drop your simmering fuck pocket");
+	output(" by the warm, strong movements of the mountie’s mouth. Your orgasm only seems to goad her on; with a lusty, hungry hum she redoubles her grip around your hips, opens her mouth up and penetrates you even deeper with her questing tongue, determinedly lapping down every last drop your simmering fuck pocket");
 	if(pc.totalVaginas() > 1) output("s produce");
 	else output(" produces");
 	output(", extending the ecstatic quakes even further.");

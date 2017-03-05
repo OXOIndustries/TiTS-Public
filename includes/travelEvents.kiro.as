@@ -3677,7 +3677,7 @@ public function kiroKallyDoubleMilkingThreesome():void
 		}
 		output(". <i>“It must be so hard having so much cum all the time! Let me help.”</i> You rub your cheek against Kiro’s back, quietly sliding your dick against her pucker. <i>“Pleeeeeaaaase.");
 	}
-	else output("How about a little competition. You two plug into Kiro’s milkers, and I’ll see which one of you I can squeeze the most out of.”</i> You place your hands on the sister’s fuzzy asscheeks and give them a meaningful squeeze, your thumbs pressing inward to their sensitive rosebuds. <i>“Come on, let’s go.");
+	else output("How about a little competition. You two plug into Kiro’s milkers, and I’ll see which one of you I can squeeze the most out of.”</i> You place your hands on the sisters’ fuzzy asscheeks and give them a meaningful squeeze, your thumbs pressing inward to their sensitive rosebuds. <i>“Come on, let’s go.");
 	output("”</i> You gently push them in the direction of the milking room.");
 	output("\n\nKiro pulls off her constricting dress, revealing that she’s already glazed the space between her breasts in her slimy excitement, her dick so fully engorged that it presses her tits out to either side, forcing them to bow to the hardness of its ridged, blunted head. Sighing with relief, she takes the hint and starts walking, coyly teasing her sister, <i>“You don’t stand a chance, Ice Queen. My spunk is gonna drown that boozy swill you call jizz, assuming our greedy little angel here can keep up with me.”</i>");
 	output("\n\nRolling her eyes, the so-called <i>“Ice Queen”</i> shoulders her way up to braggart of a sister. <i>“That remains to be seen, but I prefer quality over quantity anyway. What good is dumping out a swimming pool of seed if nobody does anything with it?”</i> Taking Kiro’s hand, Kally presses it to her own sack. <i>“I could sell this, still warm from the tap, and people would still line up for it.”</i> Her dick is hard enough to lift her skirt out of the way, allowing you to see everything, including the trickle of pre-cum winding its way through her heavily engorged crotch.");
@@ -3753,7 +3753,7 @@ public function kiroKallyDoubleMilkingThreesome2():void
 		output("\n\nKally’s dick climbs higher the second she steps inside, pulsing upward alongside a holographic throbb addict’s mammoth dong. <i>“Still got my favorite pussy, Kiro?”</i>");
 		output("\n\nKiro tosses her sister the tube bearing the mold of her own vagina. <i>“I’ll always have your favorite pussy, you fuckable little mynx.”</i>");
 		output("\n\n<i>“You know what I mean.”</i> Kally rolls her eyes, then reaches over to grab another tube, seemingly at random. She hands it to her bombastic sibling. <i>“Since you picked mine, you can use this one. ");
-		if(rand(7) == 0) output("It looks almost perverted enough to belong to one your usual sluts.");
+		if(rand(7) == 0) output("It looks almost perverted enough to belong to one of your usual sluts.");
 		else if(rand(6) == 0 && pc.hasVagina()) output("It looks sort of like [pc.name]’s.");
 		else if(rand(5) == 0) output("It looks like you’ve already ruined it with that monster you call a cock.");
 		else if(rand(4) == 0) output("It’s basically just a horse-cunt. You really do like that weird shit, huh?");
@@ -3896,11 +3896,11 @@ public function kiroKallyDoubleMilkingThreesome4(x:int):void
 	output("\n\nIf you weren’t holding her up off the floor, she’d have fallen flat on her face. Instead she dangles like a ragdoll in your arms, panting.");
 	output("\n\nKiro smiles at her fucked-out sister. <i>“");
 	if(flags["SISTER_MILK_ACT"] == undefined) output("Only the one tank, I’m afraid.”</i> She giggles. <i>“You’re going to have to try harder than that if you want to match me. That or take some of the supplements I’ve got in the mess. They’ll have that shriveled sack of yours so bloated with seed that we might have to make this a daily activity.");
-	else if(flags["SISTER_MILK_ACT"] == 1) output("You filled up three tanks, and your balls are already refilling!”</i> She gestures down at Kally, and sure enough, Kally’s nuts are plumping back up to the usual size. <i>“If you keep competing with me, you’re going to end up flooding your restaurant one of these days.");
-	else if(flags["SISTER_MILK_ACT"] == 2) output("Hot damn, sis. You filled four fucking tanks this time! Those supplements are working a little too well.");
-	else if(flags["SISTER_MILK_ACT"] == 3) output("You hit five tanks. I’m honestly not sure if I’ll meet that today, but I’m sure as hell gonna try.");
-	else if(flags["SISTER_MILK_ACT"] == 4) output("Two tanks is more than I expected, but I know you can do better. After all, you’re my sister.");
-	else output("One and a half tankfuls,”</i> she proudly announces. <i>“I knew you could do better!");
+	else if(flags["SISTER_MILK_ACT"] == 1) output("One and a half tankfuls,”</i> she proudly announces. <i>“I knew you could do better!");
+	else if(flags["SISTER_MILK_ACT"] == 2) output("Two tanks is more than I expected, but I know you can do better. After all, you’re my sister.");
+	else if(flags["SISTER_MILK_ACT"] == 3) output("You filled up three tanks, and your balls are already refilling!”</i> She gestures down at Kally, and sure enough, Kally’s nuts are plumping back up to the usual size. <i>“If you keep competing with me, you’re going to end up flooding your restaurant one of these days.");
+	else if(flags["SISTER_MILK_ACT"] == 4) output("Hot damn, sis. You filled four fucking tanks this time! Those supplements are working a little too well.");
+	else output("You hit five tanks. I’m honestly not sure if I’ll meet that today, but I’m sure as hell gonna try.");
 	output("”</i>");
 
 	output("\n\n<i>“’Kay...”</i> is Kally’s monosyllabic answer.");
@@ -3909,7 +3909,7 @@ public function kiroKallyDoubleMilkingThreesome4(x:int):void
 	output("\n\nThe image of a big-bellied Kally stumbling around, blushing and dripping a trail of [pc.cumColor] sperm in her bar is enough to send you over the edge.");
 	if(pc.cumQ() < 50) output(" You spurt a much less impressive load into her sluttily stretched asshole, making sure every drop is deep enough to surface later as a surprise.");
 	else if(pc.cumQ() < 500) output(" You spurt a thick load deep into her sluttily stretched asshole, making sure the spunk-enema is deep enough to stay in there a good long while. You may not have given her a pregnant-looking middle, but you’ve certainly filled her with enough cream to make a half-dozen jelly-impregnated doughnuts jealous.");
-	else if(pc.cumQ() < 10000) output(" You flood her rectum with [pc.cumNoun]. There’s enough fluid filling to make her anus feel like your own private seed reservoir - and to give her a hint of an inflated paunch. The moment she stands up straight, strings of it will dribble out, assuming even tries. Maybe you should have Kiro look into buying her a buttplug.");
+	else if(pc.cumQ() < 10000) output(" You flood her rectum with [pc.cumNoun]. There’s enough fluid filling to make her anus feel like your own private seed reservoir - and to give her a hint of an inflated paunch. The moment she stands up straight, strings of it will dribble out, assuming she even tries. Maybe you should have Kiro look into buying her a buttplug.");
 	else output(" You release a torrential outflow of jism - enough for the first burst to leave her belly thicker and sloshing. Your body seems intent on making your fantasy a reality, pumping gout after gout of [pc.cumGem] into her deepest recesses, so much so that rivers of it flood out from around you, soaking her luscious asscrack. Still, enough remains inside Kally to give her that <i>“just pregnant for seven or eight or nine months”</i> look that you desired. You rut against her bottom for a few minutes longer, cascading [pc.cum] everywhere, absolutely drenching the poor herm from the waist down.");
 	output("\n\nKiro is sitting down groaning by the time you finish up, her eyes half closed. She’s started to leak a steadier flow into her device.");
 	//No new PG: Knot
@@ -3942,7 +3942,7 @@ public function kiroKallyDoubleMilkingThreesome5(x:int):void
 	output("\n\nThe fuck-hungry raccoon-woman groans approvingly and wraps her tail around your waist, trying to press you still deeper into herself - ");
 	if(pc.cockVolume(x) <= kiro.analCapacity()) output("even though you’re already hilt deep!");
 	else output("even though you’ve taken her as deeply as you can. A clear outline of your [pc.cockHead " + x + "] is visible through her dick-strained gut!");
-	output(" <i>“Yesss! You love my ass, doncha, [pc.name]?”</i> Kiro squeezes down, sending ripples of pleasure up and down the length of your shaft. At least, she starts too, but the moment she inadvertently compresses her prostate against your [pc.cock " + x + "], she arches her back and has a proper cum, squirting torrents of seed deep into her milker’s insatiable hoses.");
+	output(" <i>“Yesss! You love my ass, doncha, [pc.name]?”</i> Kiro squeezes down, sending ripples of pleasure up and down the length of your shaft. At least, she starts to, but the moment she inadvertently compresses her prostate against your [pc.cock " + x + "], she arches her back and has a proper cum, squirting torrents of seed deep into her milker’s insatiable hoses.");
 	output("\n\nBelow, the curvy bartender stirs to the sounds of her sister’s distress, opening her eyes to the sight of Kiro spraying quarts of seed, inches away from her face. <i>“...Kiro?”</i> She cranes her head to the side to see you pounding away at the oversexed herm’s ass. <i>“Ohhh... right. Fuck her hard, rush-[pc.boyGirl].”</i>");
 	output("\n\nKiro’s arms wobble, and she drops lower, smushing the mechanically stimulating tubes between two fluffy racks worth of warm boob. <i>“Y-yeah! Fuck me hard. Harder than Kally ever could!”</i> She licks her sister’s cheek and flaunts her best shit-eating grin.");
 	//First time
@@ -3982,7 +3982,7 @@ public function kiroKallyDoubleMilkingThreesome5(x:int):void
 		output("\n\n<i>“We’ll upgrade it,”</i> Kiro coos. <i>“And I’ll make sure you’re thoroughly milked before work, every day I’m in town.”</i>");
 	}
 	//Merge
-	output("\n\nYou give Kiro’s hips a firm yank, authoritatively seating yourself in her ask and stifling any further attempts at conversation. Instead, Kiro resumes slobbering over her sister, who rapidly draws her into a tongue-twisting kiss. You avail yourself of the kui-tan’s undefended asshole, fucking her just as hard as she asked you to, measuring your success in the raw volume of tanuki spooge splashing into Kiro’s designated tanks. The two sisters lace their fingers together and cry out in joy as you rail the better-endowed dick-girl.");
+	output("\n\nYou give Kiro’s hips a firm yank, authoritatively seating yourself in her ass and stifling any further attempts at conversation. Instead, Kiro resumes slobbering over her sister, who rapidly draws her into a tongue-twisting kiss. You avail yourself of the kui-tan’s undefended asshole, fucking her just as hard as she asked you to, measuring your success in the raw volume of tanuki spooge splashing into Kiro’s designated tanks. The two sisters lace their fingers together and cry out in joy as you rail the better-endowed dick-girl.");
 	output("\n\nYou aren’t sure if your smile is from how nice it feels to hand out the reaming of a lifetime or from the sweet display of love going on just inches away from your throbbing dick.");
 	if(pc.isBro() || pc.isAss()) output(" It’s probably just your dick, to be brutally honest.");
 	processTime(25);
@@ -4001,7 +4001,7 @@ public function kiroKallyDoubleMilkingThreesome6(x:int):void
 	if(pc.cumQ() < 100) output("Your contribution to the passionate flood is meager by comparison, but it’s more than enough to leave you breathless and panting.");
 	else if(pc.cumQ() < 1000) output("Your contribution to the passionate flood is more than copious enough to leave Kiro’s guts feeling slick and juicy, squelching along with your every movement.");
 	else if(pc.cumQ() < 4000) output("Your contribution to the passionate flood may not match Kiro’s, but it’s more than enough to flood the herm’s rectum, pushing back the walls of her gut until you feel like you’re dipping your dick in a tank full of warm lube.");
-	else if(pc.cumQ() < 10000) output("Your contribution to the passionate flood just as significant as the kui-tans’. You can see it in the bulging of Kiro’s belly, the way each jet splashing off her prostate causes her own flow to thicken.");
+	else if(pc.cumQ() < 10000) output("Your contribution to the passionate flood is just as significant as the kui-tans’. You can see it in the bulging of Kiro’s belly, the way each jet splashing off her prostate causes her own flow to thicken.");
 	else output("Your contribution to the passionate flood is every bit as voluminous as the kui-tans’. You can see it in the rising curvature of her belly and feel it in the backsplashes of [pc.cumVisc] cum leaking out around your [pc.knot " + x + "].");
 	if(pc.cumQ() >= 50000)
 	{
@@ -4084,7 +4084,7 @@ public function kiroKallyDoubleMilkingThreesome7(x:int):void
 		output("\n\n<i>“I know.”</i> The thicker kui-tan squeezes Kiro’s ass. <i>“You’ll always be the cummier sister I think.”</i> She leans in and whispers, <i>“Until you pack it all inside me. Then it counts as mine.”</i>");
 		output("\n\n<i>“Then you’ll count as mine.”</i>");
 		output("\n\nKally laughs. <i>“I do already, but just cause that big, stupid dick of yours is in love with me.”</i>");
-		output("\n\n<i>“Touché”</i>");
+		output("\n\n<i>“Touché.”</i>");
 	}
 	//Merge
 	if(pc.RQ() < 75) output("\n\nYou elbow in for a quick drink but swiftly get yanked into a double-tanuki hug.");
