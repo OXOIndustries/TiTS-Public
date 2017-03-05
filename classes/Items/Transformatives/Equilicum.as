@@ -149,29 +149,7 @@ package classes.Items.Transformatives
 					kGAMECLASS.gooDickFap();
 				//if not goo fap, do panty fap	
 				} else {
-					//get panty options
-					var options:Array = new Array();
-					if(target.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) options.push("Emmy");
-					if(target.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) options.push("Kiro");
-					if(target.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) options.push("Penny");
-					if(target.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) options.push("Saendra");
-					if(target.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) options.push("Syri");
-					if(target.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) options.push("Embry");
-					if(target.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) options.push("Xanthe");
-					if(target.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) options.push("Aina");
-					if(target.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) options.push("Briha");
-					if(target.hasKeyItem("Panties - Lys's - Sheer black panties.")) options.push("Lys");
-					//select random index from the above
-					random = rand(options.length);
-						
-					//select fap function based on character name
-					if(options[random] == "Kiro" || options[random] == "Penny" || options[random] == "Saendra" || options[random] == "Syri" || options[random] == "Emmy") {
-						kGAMECLASS.futaBabePantyfaps(options[random]);
-					} else if (options[random] == "Embry") {
-						kGAMECLASS.futaBabePantyfaps(options["[embry.name]"]);
-					} else {
-						kGAMECLASS.jackOffWithLadyPantiesYouSicko(options[random]);
-					}
+					kGAMECLASS.pantyFapRandom(1);
 				} //end goo/panty fap try
 				
 			//try cock fap

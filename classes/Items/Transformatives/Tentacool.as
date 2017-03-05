@@ -265,8 +265,8 @@ package classes.Items.Transformatives
 						
 						msg += " The strain releases and ";
 						
-						if (numCocksChanged > 1) msg += "your cocks change form. <b>You now have a writing bunch of tentacles for cocks.</b>";
-						else msg += "your cock changes form. <b>You now have a writing tentacle for a cock.</b>";
+						if (numCocksChanged > 1) msg += "your cocks change form. <b>You now have a writhing bunch of tentacles for cocks.</b>";
+						else msg += "your cock changes form. <b>You now have a writhing tentacle for a cock.</b>";
 					}
 				}
 				// #5 Turn tail(s) into tentacle tail(s) with random cock or pussy tail
@@ -339,11 +339,11 @@ package classes.Items.Transformatives
 						
 						if (InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_BARK))
 						{
-							msg += "you being to shed your " + GLOBAL.SKIN_TYPE_NAMES[target.skinType] + ". <b>Underneath is normal skin.</b>";
+							msg += "you begin to shed your " + GLOBAL.SKIN_TYPE_NAMES[target.skinType].toLowerCase() + ". <b>Underneath is normal skin.</b>";
 						}
 						else
 						{
-							msg += "your " + GLOBAL.SKIN_TYPE_NAMES[target.skinType] + " skin shimmers and changes forms, <b>leaving you with normal skin.</b>";
+							msg += "your " + GLOBAL.SKIN_TYPE_NAMES[target.skinType].toLowerCase() + " skin shimmers and changes forms, <b>leaving you with normal skin.</b>";
 						}
 						
 						target.skinType = GLOBAL.SKIN_TYPE_SKIN;
