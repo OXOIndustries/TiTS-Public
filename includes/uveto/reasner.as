@@ -1029,24 +1029,22 @@ public function reachAroooooooooogalaBeatrice():void
 		output(", spreading copious amounts of your pre along the shaft. Nearly every muscle in your body goes slack as her lubed palms stroke and tease your whole length, occasionally slipping a hand down");
 		if(pc.balls > 0 && pc.ballDiameter() < 4)
 		{
-			output(" to massage your [pc.balls] like ");
-			//has 1 ball or balls 3-4”</i> across: 
-			if(pc.balls == 1 || pc.ballDiameter() < 3) output("a");
-			// has 2 balls both <3”</i> across :
-			if(pc.balls == 2 && pc.ballDiameter() < 3) output("a pair of");
-			output(" ben wa ball");
-			if(!(pc.balls == 1 || pc.ballDiameter() < 3)) output("s");
+			output(" to massage your [pc.balls] like");
+			// has 1 ball or balls 3-4" across: 
+			if(pc.balls == 1 || pc.ballDiameter() >= 3) output(" a Ben Wa ball");
+			// has 2 balls both <3" across :
+			else if(pc.balls == 2 && pc.ballDiameter() < 3) output(" a pair of Ben Wa balls");
 			output(", applying just enough pressure to straddle the line between pleasure and pain");
 		}
-		// PC has no (or >4”</i> across) balls:
+		// PC has no (or >4" across) balls:
 		else if(pc.balls == 0 || pc.ballDiameter() >= 4)
 		{
-			//balls >4”</i> across:
+			//balls >4" across:
 			if(pc.balls > 0 && pc.ballDiameter() >= 4) output(" and around your [pc.balls]");
 			output(" to slide her long fingers into your [pc.asshole], curling them inward to stimulate your prostate");
 		}
 		output(". ");
-		//PC balls <4”</i> across: 
+		//PC balls <4" across: 
 		if(pc.ballDiameter() < 4 && pc.balls > 0) 
 		{
 			output("She thoroughly kneads your cum churning [pc.sack], squeezing it harder almost until you can’t take it then relaxes her grip. It’s a good pain, though; her skillful technique only serves to stoke the fire within your loins. " + flags["BEA_TITLE"] + " certainly knows how to handle ");
