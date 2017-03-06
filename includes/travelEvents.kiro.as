@@ -43,6 +43,10 @@ public function roamingBarEncounter(button:int = 0):void
 	}
 }
 
+public function kiroSexed():Boolean
+{
+	return (flags["KIRO_FUCKED_DURING_RESCUE"] != undefined || flags["KIRO_DEEPTHROATED_YOU"] != undefined || flags["KIRO_BALLJOBBED_YOU"] != undefined || flags["KIRO_X_SAEN_HAPPENED"] != undefined || flags["PUMPED_KIRO_PUSSY"] != undefined || flags["KIRO_ORGIED"] != undefined || flags["KIRO_CELISE_3SOME"] != undefined || flags["KIRO_KALLY_THREESOMES"] > 0 || flags["SISTER_MILK_ACT"] != undefined);
+}
 public function kiroTrust(arg:Number = 0):Number
 {
 	//Initialize. Should only be called AFTER her rescue, to prevent any weirdness with the stolen weapon shit

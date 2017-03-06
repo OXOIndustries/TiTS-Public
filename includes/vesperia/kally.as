@@ -1320,7 +1320,7 @@ public function kiroBFGFConvo():void
 	//Bimbo
 	if(pc.isBimbo()) 
 	{
-		output("<i>“So like, I’m you’re [pc.boyGirl]friend, or something? We can still fuck other people, right?”</i> You ");
+		output("<i>“So like, I’m your [pc.boyGirl]friend, or something? We can still fuck other people, right?”</i> You ");
 		if(pc.hasHair()) output("twirl your hair");
 		else output("suck on a finger");
 		output(", trying to mull over the social implications.");
@@ -1328,7 +1328,7 @@ public function kiroBFGFConvo():void
 	//Bro
 	else if(pc.isBro()) output("<i>“So, I’m your [pc.boyGirl]friend now, huh?”</i> you ask, looking Kiro dead in the eye.");
 	//Nice/Misch
-	else if(pc.isNice() || pc.isMischievous()) output("<i>“So, I guess I’m you’re [pc.boyGirl]friend now,”</i> you offer, smiling warmly at Kiro.");
+	else if(pc.isNice() || pc.isMischievous()) output("<i>“So, I guess I’m your [pc.boyGirl]friend now,”</i> you offer, smiling warmly at Kiro.");
 	//Hard
 	else output("<i>“I’m going to hold you to that whole [pc.boyGirl]friend thing,”</i> you offer confidently.");
 	//High trust:

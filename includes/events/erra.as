@@ -109,7 +109,7 @@ public function approachErra(back:Boolean = false):void
 		if(erraCollared())
 		{
 			output("As you approach Erra her tail starts to flail, and she’s doing nothing to hide it, letting it sway gleefully behind her while her ears perk up. <i>“Hey, [pc.name],”</i> she says as you take a seat, <i>“Nice to see someone that can handle me around here.”</i>");
-			output("\n\nHer words clash with her cheerful display at your arrival, but manage to make you roll your eyes so hard that they might fall out of your head. You notice she’s wearing that collar you gave her, the pretty puppy idling toying with the ring of leather as she stares lustfully into your [pc.eyes].");
+			output("\n\nHer words clash with her cheerful display at your arrival, but manage to make you roll your eyes so hard that they might fall out of your head. You notice she’s wearing that collar you gave her, the pretty puppy idly toying with the ring of leather as she stares lustfully into your [pc.eyes].");
 		}
 		else
 		{
