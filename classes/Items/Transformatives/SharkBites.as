@@ -34,7 +34,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a sealed baggie of Shark Bites jerky";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This is a simple white pack containing three brown colored jerky-esque bits. The bottom half of the pack has a stylized depiction of some <i>very</i> scantily clad shark-morphs worshipping the jerky bits as if they were some great deity. Certainly an odd bit of marketing, if you do say so yourself. The pack promises that the consumer will gain the glorious body of a shark in humanoid form. A long, tiny print list of possible side effects is on the back, lost in all the shark worship that covers the pack. You guess the creators must of had a real shark fetish...";
+			this.tooltip = "This is a simple white pack containing three brown colored jerky-esque bits. The bottom half of the pack has a stylized depiction of some <i>very</i> scantily clad shark-morphs worshipping the jerky bits as if they were some great deity. Certainly an odd bit of marketing, if you do say so yourself. The pack promises that the consumer will gain the glorious body of a shark in humanoid form. A long, tiny print list of possible side effects is on the back, lost in all the shark worship that covers the pack. You guess the creators must have had a real shark fetish...";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
