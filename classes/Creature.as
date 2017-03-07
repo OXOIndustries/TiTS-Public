@@ -8757,7 +8757,7 @@
 			else if (refractoryRate >= 10 && quantity < 15) quantity = 100;
 			else if (refractoryRate >= 15 && quantity < 20) quantity = 251;
 			else if (refractoryRate >= 20 && quantity < 30) quantity = 1000;
-			else if (refractoryRate >= 30) quantity = 1500;
+			else if (refractoryRate >= 30 && quantity < 1500) quantity = 1500;
 			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
 			//You can't cum more than you can possibly have!
