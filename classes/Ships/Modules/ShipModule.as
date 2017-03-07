@@ -20,7 +20,7 @@ package classes.Ships.Modules
 		public function get OwningShip():SpaceShip { return ParentLocation.Owner as SpaceShip; }
 		public function get ParentLocation():ShipMap { return Owner as ShipMap; }
 		
-		private var _room:ShipRoom;
+		protected var _room:ShipRoom;
 		public function get Room():ShipRoom { return _room; }
 		
 		public function ShipModule() 

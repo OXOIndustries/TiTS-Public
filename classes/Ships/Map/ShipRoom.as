@@ -20,6 +20,14 @@ package classes.Ships.Map
 		public function get ParentLocation():ShipMap { return Owner as ShipMap; }
 		
 		public static const FLAG_ROOT:uint = 0;
+		public static const FLAG_AIRLOCK:uint = 1;
+		public static const FLAG_COCKPIT:uint = 2;
+		public static const FLAG_CAPTAINSQUARTERS:uint = 3;
+		public static const FLAG_STORAGE:uint = 4;
+		public static const FLAG_STORAGE_ARMORY:uint = 5;
+		public static const FLAG_MEDBAY:uint = 6;
+		public static const FLAG_CREWQUARTERS:uint = 7;
+		public static const FLAG_CARGOHOLD:uint = 8;
 		
 		private var _index:String;
 		public function get Index():String { return _index; }
