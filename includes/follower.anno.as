@@ -1055,9 +1055,13 @@ public function annoFollowerSexMenu():void
 	if (pc.cockThatFits(anno.analCapacity()) != -1 && pc.hasTailCock() && pc.hasParasiteTail()) addButton(9, "Tailfuck", annoFollowerTailcockSex, undefined, "Tailfuck", "Pitch Anno a little tail-cock loving.");
 	else addDisabledButton(9, "Tailfuck", "Tailfuck", "You need an appropriately-sized penis and a parasitic tailcock for this.");
 
-	if(pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(anno.vaginalCapacity(0)) >= 0)) addButton(10,"PetPlay",annoPupperPlay,undefined,"PetPlay","See if Anno’s willing to spend some time on the business end of a leash.");
-	else if(pc.hasCock() && pc.smallestCockVolume() > anno.vaginalCapacity(0)) addDisabledButton(10,"PetPlay","PetPlay","You’re too big to fit inside her when you do this.");
-	else addDisabledButton(10,"PetPlay","PetPlay","You need a penis that fits inside her in order to do this.");
+	if(pc.hasVagina() || (pc.hasCock() && pc.cockThatFits(anno.vaginalCapacity(0)) >= 0))
+	{
+		if(!leavePlanetOK()) addDisabledButton(10,"PetPlay","Pet Play","You are unable to fly to Tavros Station to try this.");
+		else addButton(10,"PetPlay",annoPupperPlay,undefined,"Pet Play","See if Anno’s willing to spend some time on the business end of a leash.");
+	}
+	else if(pc.hasCock() && pc.smallestCockVolume() > anno.vaginalCapacity(0)) addDisabledButton(10,"PetPlay","Pet Play","You’re too big to fit inside her when you do this.");
+	else addDisabledButton(10,"PetPlay","Pet Play","You need a penis that fits inside her in order to do this.");
 
 	addButton(14, "Back", annoFollowerMenu);
 }
@@ -1276,7 +1280,7 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	
 	output("\n\nFaster this time, you thrust back into Anno’s still-gaping pussy. She gives a sharp moan as your [pc.hips] slap into her, leaving her ass bouncing with the impact and your [pc.cock " + selCock + "] buried back into that wonderful hole of hers, surrounded by spasming muscles as she recovers from the potent thrust. Again and again you thrust into her, working yourself up to a steady rhythm of pussy-pounding, occasionally punctuating your peaks with a sharp slap on Anno’s jiggling butt or reaching up to cup one of her bouncing breasts, squeezing her stiff nips until she’s screaming for more. ");
 	
-	output("\n\nThanks to your recent orgasm and the minutes of pussy-eating that preceded your penetration, you’re soon greeted by the howling cries of Anno’s impending climax. You grin, slapping her cheeks and burying yourself deep inside your lover as she screams her pleasure, echoing in through the room; her pussy clenches down hard, milking your [pc.cock " + selCock + "] for all it’s worth as she cums and cums, going crazy around your thrusting cock. ");
+	output("\n\nThanks to your recent orgasm and the minutes of pussy-eating that preceded your penetration, you’re soon greeted by the howling cries of Anno’s impending climax. You grin, slapping her cheeks and burying yourself deep inside your lover as she screams her pleasure, echoing in through the room; her pussy clenches down hard, milking your [pc.cock " + selCock + "] for all it’s worth as she cums and cums, going crazy around your thrusting cock.");
 	
 	if (pc.hasKnot(selCock))
 	{
@@ -3887,8 +3891,11 @@ public function annoPupperPlay():void
 	output("\n\nWithout too much thought you reach your free hand down between Anno’s thighs. The ausar takes notice, her tail wagging expectantly as your hand nears her drooling sex. She whimpers as you make contact with her [anno.vagina], the naughty digit working its way along the edge of her nether lips until her mewls become soft little moans. Rather unfortunately for Anno, you pull your hand back, a single finger glistening with fem-lube as your puppy whines with woe. <i>“Can’t give you a treat yet, girl,”</i> you tell her, <i>“Not until you’ve had your exercise.”</i> You reach a hand down and give her [anno.hair] a little tussle, returning a smile to her face.");
 
 	output("\n\nGrabbing Anno’s leash, you give it a little pull and stand up straight again. The ausar takes the initiative and makes her way to the ground on all fours, like a well trained pet. You grin at her silent eagerness.");
+	
+	var onTavros:Boolean = (getPlanetName() == "Tavros Station");
+	
 	//notOnTavros:
-	if(getPlanetName() != "Tavros Station") 
+	if(!onTavros)
 	{
 		output("\n\n<i>“I know just the place where I can take you for a walk,”</i> you announce, walking towards your ship’s cockpit, puppy in tow. You take a seat in your captain’s chair and punch some coordinates into your holo-console before your ship takes off towards your perfect walkies location. In the meantime, you decide that it’d be a good idea to spoil your new pet a little, lavishing affection on all her canid parts as she nuzzles against you, crawling around on all fours like a good girl. Once you finally dock at your destination, you pick yourself up and give Anno’s tether a tug, leading her to the airlock. With a devious grin you open the hatch of your ship, giving the two of you a good look at your mystery destination: Tavros.");
 		//firstTime:
@@ -3900,21 +3907,29 @@ public function annoPupperPlay():void
 		//firstTime:
 		if(flags["ANNO_PETPLAYED"] == undefined) output(" Anno seems a little hesitant, though, most likely due to the fact she’s going to be paraded about naked on one of the galaxy’s most heavily populated space stations.");
 	}
-	if(flags["ANNO_PETPLAYED"] == undefined) 
+	if(flags["ANNO_PETPLAYED"] == undefined)
 	{
 		output("\n\nIt takes a good pull of her leash, but Anno finally follows you out of your ship");
-		if(getPlanetName() == "Tavros Station") output(", and into the crowded corridors of Tavros");
+		if(onTavros) output(", and into the crowded corridors of Tavros");
 		output(".");
 	}
-	else 
+	else
 	{
 		output("\n\nAnno isn’t nearly as tentative this time and follows you out");
-		if(getPlanetName() == "Tavros Station") output(" into the crowded corridors of Tavros");
+		if(onTavros) output(" into the crowded corridors of Tavros");
 		output(".");
 	}
 	output(" You don’t doubt that a naked ausar babe will draw some attention here, and she most certainly does: plenty of people comment on your pet - mostly on her choice of wardrobe - others stop to give her a little pet or two. A few braver specimens grope Anno outright, usually resulting in an unsettlingly-canine yelp from the grope-e. She doesn’t seem too upset by any of it, though; in fact, she seems to be getting wetter, her ausar snatch leaking beads of girlcum onto the floor as she crawls along it. Damn, she’s really getting off on this, isn’t she? Her tail’s definitely happy with what’s going on, standing straight up in the air where it wiggles gleefully, treating everyone you walk by to a nice view of [anno.butt].");
-	output("\n\nThings are getting to the point where Anno’s panting like she’s in heat, and for all you know, she might be. Maybe you should walk her back to you ship before things get out of hand.");
+	output("\n\nThings are getting to the point where Anno’s panting like she’s in heat, and for all you know, she might be. Maybe you should walk her back to your ship before things get out of hand.");
 	
+	if(!onTavros) 
+	{
+		shipLocation = "TAVROS HANGAR";
+		currentLocation = "SHIP INTERIOR";
+		showLocationName();
+		generateMap();
+		processTime(600 + rand(30));
+	}
 	processTime(15);
 	pc.lust(10);
 	clearMenu();
@@ -3925,9 +3940,10 @@ public function annoWalkiesPartDuesEx():void
 {
 	clearOutput();
 	showAnno(true);
-	output("Your puppy’s been loyal to the leash so far, and she is on the way back too, although she ends up stopping a few times to receive more pets from passersby; a good tug of her leash is enough to make her heel again. Barring any further petting pit-stops, you successfully lead Anno back to you ship, breathing a happy sigh of relief as the airlock closes behind you. Your ausar companion, on the other hand, is still squirming with impatience, tail wagging uncontrollably and batting against your legs. You reach an appreciative hand down and give Anno a pat between her [anno.ears] and tell her <i>“I think it’s time for your treat, girl.”</i> In response to your words, your pet’s tail begins to move at a pace you estimate to be somewhere near the speed of light as she grins up at you, nothing but yearning in her big, blue puppy-dog eyes.");
+	author("HugsAlright");
+	output("Your puppy’s been loyal to the leash so far, and she is on the way back too, although she ends up stopping a few times to receive more pets from passersby; a good tug of her leash is enough to make her heel again. Barring any further petting pit-stops, you successfully lead Anno back to your ship, breathing a happy sigh of relief as the airlock closes behind you. Your ausar companion, on the other hand, is still squirming with impatience, tail wagging uncontrollably and batting against your legs. You reach an appreciative hand down and give Anno a pat between her [anno.ears] and tell her, <i>“I think it’s time for your treat, girl.”</i> In response to your words, your pet’s tail begins to move at a pace you estimate to be somewhere near the speed of light as she grins up at you, nothing but yearning in her big, blue puppy-dog eyes.");
 	output("\n\nKeeping a tight grip on Anno’s leash, you walk over to a nearby chair and sit yourself down. Before you can say or do anything else, your ausar pet is already on top of you. Her fuzzy arms wrap around your waist, nuzzling her head into your midsection as she tries to climb her way onto your lap, clamoring for a good fucking, and you have no intention to not give her one.");
-	if(!pc.isCrotchExposed()) output(" Though you still need to get ready. With a steady hand you give Anno a soft push off you, issuing her an order of <i>“Down, girl.”</i> She whines softly, but brings herself back down to rest on her knees, lip quivering comically with disappointment, fluffy ears drooping in an amusing display of puppy-like sorrow. You roll your eyes, stand up, and tell her <i>“Just wait a second, girl,”</i> as you start to strip yourself of your [pc.lowerGarments] in front of her, making her frown turn to a lusty smile.");
+	if(!pc.isCrotchExposed()) output(" Though you still need to get ready. With a steady hand you give Anno a soft push off you, issuing her an order of <i>“Down, girl.”</i> She whines softly, but brings herself back down to rest on her knees, lip quivering comically with disappointment, fluffy ears drooping in an amusing display of puppy-like sorrow. You roll your eyes, stand up, and tell her, <i>“Just wait a second, girl,”</i> as you start to strip yourself of your [pc.lowerGarments] in front of her, making her frown turn to a lusty smile.");
 
 	//Cock takes priority to vagina.
 	if(pc.hasCock())
@@ -3948,7 +3964,7 @@ public function annoWalkiesPartDuesEx():void
 		output("\n\n<i>“How’s that feel, girl?”</i> you ask, continuing to push your way into her. Anno can only moan in response as your ");
 		if(pc.hasKnot(x)) output("[pc.knot " + x + "] reaches her velvety folds");
 		else output("[pc.cock " + x + "] bottoms out inside her");
-		output(". You smile at her pleasured noises and pull yourself out again, leaving the pretty puppy whimpering and moaning until your glans meet the lips of her sex. You don’t keep your [pc.cock " + x + "] there for long, though, and push your [pc.hips] forward, sending you cock right back into Anno. She cries out in delight as she’s filled with your schlong again, panting heavily.");
+		output(". You smile at her pleasured noises and pull yourself out again, leaving the pretty puppy whimpering and moaning until your glans meet the lips of her sex. You don’t keep your [pc.cock " + x + "] there for long, though, and push your [pc.hips] forward, sending your cock right back into Anno. She cries out in delight as she’s filled with your schlong again, panting heavily.");
 		output("\n\nYour pet seems pretty close to the edge, not all that surprising considering her earlier escapades. No time to waste, then: you start to roll your hips and quicken your pace, sliding your [pc.cock " + x + "] in and out of Anno’s [anno.vagina], letting her screams of pleasure push you onwards. Despite the ease with which your [pc.cockNoun " + x + "] was able to enter it, Anno’s pussy is still hugging your dong tightly and lovingly, making you groan in bliss, wonders of the ausar anatomy and all that. Not too long after you’ve begun, Anno’s already about to finish, her body tensing up in your grasp as her moaning turns to babbling. [anno.Vagina] spasms around your cock; its wild motions make you feel like your [pc.cock " + x + "] is being milked, bringing you closer to your own orgasm. Before you can get ahead of yourself, you push Anno forward and pull out of her quim as it sprays girlcum all over the bed. You hastily pump your pole, keeping a firm grip on your puppyslut’s butt until you feel your climax build, letting loose a grunt that trails off into a moan while you finish all over Anno’s back and paint her [anno.butt] [pc.cumColor].");
 		output("\n\nAs your orgasm ebbs, your cum-covered ausar manages to look back at you, giving you a smile only a pleased puppy can make, her [anno.chest] heaving. You reach forward and give the pooch a quick pet between the ears and another <i>“Good girl.”</i> With a slap on the ass, you tell Anno the two of you should probably get cleaned up before you go anywhere else.");
 	}

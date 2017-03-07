@@ -1061,7 +1061,7 @@ public function shipMenu():Boolean {
 
 public function flyMenu():void {
 	clearOutput();
-	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500")
+	if(!leavePlanetOK())
 	{
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined)
 		{
@@ -1268,6 +1268,11 @@ public function leaveShipOK():Boolean
 		currentLocation = "SHIP INTERIOR";
 		return false;
 	}
+	return true;
+}
+public function leavePlanetOK():Boolean
+{
+	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	return true;
 }
 

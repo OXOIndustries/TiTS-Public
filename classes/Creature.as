@@ -2032,8 +2032,13 @@
 				case "ass":
 					buffer = buttDescript();
 					break;
+				case "buttcheek":
+				case "asscheek":
+					buffer = buttDescript(false, true);
+					break;
 				case "buttsDescript":
 				case "buttcheeks":
+				case "asscheeks":
 				case "butts":
 				case "asses":
 					buffer = buttDescript(true);
@@ -11280,7 +11285,7 @@
 		public function hipsDescript(): String {
 			return hipDescript(true);
 		}
-		public function buttDescript(asPlural:Boolean = false):String 
+		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
 			var desc: String = "";
 			var rando: Number = 0;
@@ -11576,7 +11581,8 @@
 			rando = rand(21);
 			if(!asPlural)
 			{
-				if (rando <= 4) desc += "butt";
+				if(onlyCheek) desc += RandomInCollection(["butt", "ass"]) + "cheek";
+				else if (rando <= 4) desc += "butt";
 				else if (rando <= 9) desc += "ass";
 				else if (rando <= 11) desc += "backside";
 				else if (rando == 12) {

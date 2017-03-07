@@ -402,7 +402,7 @@ public function uvetoCarbonadoHelpGwen():void
 		else if (pc.isMisc()) output(" I don’t need one for this");
 		else output(" If you insist");
 		output(",”</i> you reply with a");
-		if (pc.isNice() || pc.isBimbo()) output(" grin");
+		if (pc.isNice() || !pc.isBimbo()) output(" grin");
 		else output(" frown");
 		output(", hooking a finger under the hem of her blouse and slowly inching it up over her waist. She coos as you brush the soft skin of her stomach, caressing your way to her panty line. A quick snap unhooks the button on her pants, popping them open to reveal a sexy pair of black lace panties.");
 		
@@ -425,7 +425,7 @@ public function uvetoCarbonadoHelpGwen():void
 		
 		output("\n\n<i>“Thanks Steele. Sorry, I think I said Emi’s name in there somewhere but that should just be an indicator of how good you were doing,”</i> she simultaneously thanks and apologizes to you. You follow her out of the back room and into the main sales floor.");
 		
-		output("\n\n<i>“Now then, is there anything shopping wise i can help you with?”</i> she asks as you exit the counter space.");
+		output("\n\n<i>“Now then, is there anything shopping wise I can help you with?”</i> she asks as you exit the counter space.");
 	}
 
 	processTime(10+rand(3));
@@ -495,7 +495,7 @@ public function uvetoCarbonadoTalkShop():void
 
 	flags["CFS_TALKED_SHOP"] = 1;
 
-	output("<i>“So how did you guys manage to get a storefront on the landing station? That can’t be a simple process,”</i> you ask the dusky masseuse, glancinging around at a store that looks beyond the average starter’s price range.");
+	output("<i>“So how did you guys manage to get a storefront on the landing station? That can’t be a simple process,”</i> you ask the dusky masseuse, glancing around at a store that looks beyond the average starter’s price range.");
 	
 	output("\n\nThe half-bruchandus grins slyly. <i>“You’d think, wouldn’t you. It’s actually an ultra simple process when the building space runs in your family. Somewhere way back on my dad’s side someone got ahold of the rights to own a store here. Before I got here it was a training center and shop for wrestling paraphernalia. Some of the stormguard are really into GWF matches, enough that business kept the store open till my dad could take over. Dad was more into the wrestling than the store owning though, regrettably, so the store fell into a bit of disrepair,”</i> she says with a hint of disappointment.");
 	
@@ -806,7 +806,7 @@ public function cfsGoSleepover():void
 	{
 		var cockIdx:int = pc.biggestCockIndex();
 
-		output("\n\nHer dusky fingers close around your [pc.cock "+ cockIdx +"], gently stroking its length and running her thumb over the [pc.cockHead "+ cockIdx +"]. As she probes your [pc.cockNoun "+ cockIdx +"], her cerulean tongue rolls over her lips, leaving them with a glistening sheen. Her gaze shifts you meet yours, saying more with a look than she could articulate in words. Not needing any instruction, you reposition yourself between her legs, letting her rub the tip of your [pc.cock "+ cockIdx +"] against her mons. She lets out a distressed moan at her inability to do more.");
+		output("\n\nHer dusky fingers close around your [pc.cock "+ cockIdx +"], gently stroking its length and running her thumb over the [pc.cockHead "+ cockIdx +"]. As she probes your [pc.cockNoun "+ cockIdx +"], her cerulean tongue rolls over her lips, leaving them with a glistening sheen. Her gaze shifts to meet yours, saying more with a look than she could articulate in words. Not needing any instruction, you reposition yourself between her legs, letting her rub the tip of your [pc.cock "+ cockIdx +"] against her mons. She lets out a distressed moan at her inability to do more.");
 		
 		output("\n\n<i>“I won’t know what you want if you can’t tell me,”</i> you tease, wresting control of your dick and taking over the rubbing process. The Puazi stares perplexed for a moment, reaction delayed by an increasing biological urge. All the words try to escape her mouth in a jumble of noise that sounds more like a cry of pleasure, and her hands wave desperately in an attempt to offer a better explanation.");
 		
@@ -819,9 +819,9 @@ public function cfsGoSleepover():void
 		
 		output("\n\n<i>“Goood... Yummy wombstabber... Fillup... upupup...,”</i> she babbles, holding you as tightly as she can manage.");
 		if (pc.isTaur() || pc.tallness >= 96) output(" You reach down and plug two fingers into her mouth. In her drunken lust she kisses them like a mouth, Swirling her tongue around to wet them down to the knuckle. She looks up to meet your eyes with a blurry stare, smiling and she sucks on your digits. Hot breaths from her nose feel cool against the nuclear heat of her saliva.");
-		else output(" You lean down running your fingers through her short hair and pulling her into a kiss. Her long tongue flits instinctively into your mouth, pushing around until it finds your own. It’s thinner tip sloshes around, circling your tongue in one direction and then the other to reach every spot possible. Hot breaths from her nose wash over your face, Still managing to cool the nuclear heat of your sloppily locked lips.");
+		else output(" You lean down, running your fingers through her short hair and pulling her into a kiss. Her long tongue flits instinctively into your mouth, pushing around until it finds your own. It’s thinner tip sloshes around, circling your tongue in one direction and then the other to reach every spot possible. Hot breaths from her nose wash over your face, still managing to cool the nuclear heat of your sloppily locked lips.");
 		
-		output("\n\nYou pull away from her mouth with a pop, still connected by a line of strings that break and drop to her chest. A similar web of juices splatters between your hips, steadily increased by the alien beauties seemingly unending stream of mini orgasms. With every thrust her grip on both your body and her consciousness slips, spiraling slowly towards blazing euphoria. You steady one bouncing breast with a tight grip, extracting a delighted yelp with a tug on its dusky nipple.");
+		output("\n\nYou pull away from her mouth with a pop, still connected by a line of strings that break and drop to her chest. A similar web of juices splatters between your hips, steadily increased by the alien beauty’s seemingly unending stream of mini orgasms. With every thrust her grip on both your body and her consciousness slips, spiraling slowly towards blazing euphoria. You steady one bouncing breast with a tight grip, extracting a delighted yelp with a tug on its dusky nipple.");
 		
 		output("\n\n<i>“Cumming! Inside, okay... C-can’t pregnant! Inside, good!”</i> she shouts out amidst her frenzy of delightful feelings. You can feel your own lusts building, and let yourself lose control, mindlessly bucking into her as your climax builds. It feels as if all the heat in your body is focused through [pc.eachCock], pumped into");
 		if (pc.cocks.length > 1) output(" and onto");
@@ -1091,7 +1091,7 @@ public function cfsGoLewdMassage():void
 
 	var doMale:Boolean = !pc.hasVagina() || (pc.hasCock() && rand(2) == 0);
 
-	if (pc.hasCock())
+	if (doMale)
 	{
 		var cIdx:int = pc.biggestCockIndex();
 

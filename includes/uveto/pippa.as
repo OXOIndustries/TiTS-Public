@@ -1935,7 +1935,7 @@ public function pippaTalkHer():void
 	output("You decide to ask Pippa about herself. ");
 	
 	if (pc.isBimbo() || pc.isBro()) output("<i>“So, like, why are you a piggy?”</i>");
-	else ("<i>“So, why a pig?”</i>");
+	else output("<i>“So, why a pig?”</i>");
 	
 	output("\n\nShe narrows her eyes at you, ");
 	

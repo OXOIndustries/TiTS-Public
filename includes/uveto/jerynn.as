@@ -73,7 +73,7 @@ public function jerynnAtBar(btnIdx:int):Boolean
 		else output(" It could only be Jerynn and a quick glance around confirms it;");
 		output(" she’s stood directly under one of the bar’s dingy little lights, the illumination only serving to better illustrate her imperious stature... and from this angle, an ass that looks like it could crush granite.");
 
-		addButton(btnIdx, metJerynn() ? "Jerynn" : "Woman", approachJerynn, undefined, "Steal a few more glances at " + (metJerynn() ? "Jerynn." : "the woman."));
+		addButton(btnIdx, (metJerynn() ? "Jerynn" : "Tauress"), approachJerynn, undefined, (metJerynn() ? "Jerynn" : "Taur Woman"), "Steal a few more glances at " + (metJerynn() ? "Jerynn." : "the taur-like woman."));
 		return true;
 	}
 	return false;
@@ -538,7 +538,7 @@ public function jerynnAllowFucked():void
 	else output(" pussy");
 	output(" trying in vain to hold on to Jerynn’s knot. It slips free with a lewd <i>‘pop’</i> with a little struggle on both your parts... only to slam back into your [pc.vagOrAss] even harder with her next thrust.");
 
-	output("\n\nYour close, oh so close. Torn between Jerynn literally breaking you before she orgasms and her burgeoning knot grinding your");
+	output("\n\nYou’re close, oh so close. Torn between Jerynn literally breaking you before she orgasms and her burgeoning knot grinding your");
 	if (pc.hasCock()) output(" prostate");
 	else if (pc.hasClit()) output(" clit");
 	else if (pc.hasVagina()) output(" g-spot");
@@ -661,20 +661,31 @@ public function jerynnAllowRidden():void
 	output("\n\nAt some point you find your [pc.hands] holding on to her ass for dear life, your fingers sinking into the meaty flesh of her flanks. It doesn’t slow her down, not one bit. If anything she seems emboldened by it, taking some perverse pleasure from riding your cock so hard you feel as though your [pc.hips] might give out at any moment.");
 	if (pc.hasKnot(cIdx)) output(" The only thing that does seem to give her pause is your [pc.knot "+cIdx+"], and even then only for long enough for a full-body shiver to interrupt conscious control of her legs. It’s extra girth resists entering the taurs pussy before her puffy lips swallow it whole, slipping free with a lewd <i>‘pop’</i> when she pulls away from you again.");
 
-	output("\n\nYour close, oh so close. Torn between Jerynn literally breaking you before she orgasms and your intense need to blow your load, one final crash is all it takes to set you off like a nuclear warhead. Cum barrels up your [pc.cock "+cIdx+"] and into the draconic taur, the first splash of your liquid heat thundering into her cunt setting off Jerynn too.");
-	if (pc.cumQ() >= 1000) output(" More pulses jet into her cunt as her body works to milk every drop it can from you");
-	if (pc.cumQ() >= 5000) output(", her belly gurgling as you pump more and more spunk deep into her.");
-	if (pc.cumQ() >= 10000) output(" She wiggles her ass firmly against your body whilst your twinned orgasms rage on");
-	if (pc.cumQ() >= 25000) output(" her belly bloating hugely under the sheer mass you’re filling her with");
-	if (pc.cumQ() >= 100000) output(" until she almost scrapes the floor.");
-	if (pc.cumQ() >= 125000)
+	output("\n\nYou’re close, oh so close. Torn between Jerynn literally breaking you before she orgasms and your intense need to blow your load, one final crash is all it takes to set you off like a nuclear warhead. Cum barrels up your [pc.cock "+cIdx+"] and into the draconic taur, the first splash of your liquid heat thundering into her cunt setting off Jerynn too.");
+	
+	var cumQ:Number = pc.cumQ();
+	
+	if (cumQ >= 1000)
+	{
+		output(" More pulses jet into her cunt as her body works to milk every drop it can from you");
+		if (cumQ >= 5000) output(", her belly gurgling as you pump more and more spunk deep into her");
+		output(".");
+	}
+	if (cumQ >= 10000)
+	{
+		output(" She wiggles her ass firmly against your body whilst your twinned orgasms rage on");
+		if (cumQ >= 25000) output(" her belly bloating hugely under the sheer mass you’re filling her with");
+		if (cumQ >= 100000) output(" until she almost scrapes the floor")
+		output(".");
+	}
+	if (cumQ >= 125000)
 	{
 		output(" But your [pc.balls] still");
 		if (pc.balls > 1) output(" aren’t");
 		else output(" isn’t")
 		output(" done, forcing yet more [pc.cum] into her desperate cunt until her underbelly pillows out against the mattress and her flanks fill out to either side.");
 	}
-	if (pc.cumQ() >= 250000)
+	if (cumQ >= 250000)
 	{
 		output(" Only when you’ve somehow managed to pump so much spunk into her that she’s three times as wide as normal does her body finally say it’s had enough, the remainder of your shared eternity-long orgasm spurting out of the tight seal of her plump pussy around your [pc.cock "+cIdx+"].");
 
@@ -687,9 +698,9 @@ public function jerynnAllowRidden():void
 	if (pc.biggestCockLength() >= 24) output(" your cock slowly sliding free over the course of a few stuttering steps");
 	else output(" your cock sliding free with a pop");
 	output(". Jerynn");
-	if (pc.cumQ() >= 10000) output(" carefully");
+	if (cumQ >= 10000) output(" carefully");
 	output(" makes her way towards her bathroom");
-	if (pc.cumQ() >= 25000) output(" after a minor struggle stepping out of her sofa-pit thanks to the freely roiling mass of jizz bloating her belly");
+	if (cumQ >= 25000) output(" after a minor struggle stepping out of her sofa-pit thanks to the freely roiling mass of jizz bloating her belly");
 	output(".");
 
 	output("\n\n<i>“I’m sure you can see yourself out whilst I clean myself up, </i>friend<i>,”</i> she says with an underlying hint of an order.");

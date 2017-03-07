@@ -125,13 +125,13 @@ public function beatriceBonusButts(button:int):Boolean
 	{
 		output("\n\nAt one of the smaller tables, you spot an attractive looking woman in a uniform. She seems to be by herself, glancing through her Codex and drinking amber colored liquor from a snifter. Looking up, the lovely lady meets your gaze with warm, chocolate-colored eyes and shoots you an inviting smile.");
 		//[Woman]
-		addButton(button,"Woman",approachBeatrice);
+		addButton(button,"Woman",approachBeatrice,undefined,"Woman","Visit the friendly lady in uniform.");
 	}
 	//Repeat
 	else
 	{
 		output("\n\n" + flags["BEA_TITLE"] + " is here again, sipping her amber colored drink and enjoying the warm fire. She gives you a friendly smile.");
-		addButton(button,flags["BEA_TITLE"],approachBeatrice);
+		addButton(button,flags["BEA_TITLE"],approachBeatrice,undefined,flags["BEA_TITLE"],"Head to her table.");
 	}
 	//addButton(button+1,"Savicite",quickLoot,new Savicite());
 	return false;
@@ -216,7 +216,7 @@ public function setBeatriceName(arg:String):void
 	flags["BEA_TITLE"] = arg;
 	output("<i>“[pc.name] Steele,”</i> you introduce yourself.");
 	if(pc.isNice()) output(" <i>“Nice to meet you, " + flags["BEA_TITLE"] + ".”</i>");
-	else if(pc.isMischievous()) output(" <i>“A pleasure to meet such a beauty.”</i>}");
+	else if(pc.isMischievous()) output(" <i>“A pleasure to meet such a beauty.”</i>");
 
 	output("\n\n");
 	//{if chose Mrs. Reasner:
@@ -1149,6 +1149,7 @@ public function beatriceLeavesYOUFORANOTHERMANOHSHIT():void
 	addButton(0,"A Kiss",kissForARewardBeatrice, undefined, "A Kiss", "Ask her for a kiss.");
 	addButton(1,"Your Panties",getDatMilfsPANTIESYOOOO, undefined, "Her Panties", "Ask her for her panties.");
 	addButton(2,"Credits",beatriceCredsReward, undefined, "Credits", "Ask her for monetary compensation.");
+	addButton(14,"Nothing",beatriceNoReward, undefined, "Nothing", "Refuse any rewards.");
 }
 
 //[Kiss]:
@@ -1256,10 +1257,28 @@ public function beatriceCredsReward():void
 	beatriceLeaves2();
 }
 
+//[Nothing]:
+public function beatriceNoReward():void
+{
+	clearOutput();
+	showBeatrice();
+	author("Jacques00");
+	pc.addHard(6);
+	output("Taking the neutral route, you tell her that you’re not interested in compensation at all.");
+	output("\n\n<i>“Ah, I see,”</i> she says with disappointed look, <i>“All good deeds must be rewarded, but if that is how you feel...”</i>");
+	output("\n\nYou assure her to not take it personally and that you " + (pc.isNice() ? "are just happy you could help" : "don’t require anything she has to offer at all") + ".");
+	output("\n\nWithout warning, she leans in and pulls you toward her for a deep, maternal hug which sends a warm, comforting feeling up your spine. She holds the hug for a good few seconds before letting go.");
+	output("\n\nThe kui-tan officer gives a light smile of approval.");
+	
+	pc.lust(5);
+	
+	beatriceLeaves2();
+}
+
 public function beatriceLeaves2():void
 {
 	output("\n\n<i>“That’s only a small token of my appreciation.”</i> She and her officer stand up and you join them. <i>“I wish we could spend more time together, but I’m afraid we’ve been delayed too long already.”</i>");
-	output("\n\nYou sympathise with her. ");
+	output("\n\nYou sympathize with her. ");
 	if(pc.isNice()) output("You feel like you have a special connection, it’s");
 	else output("It’s");
 	output(" a shame you have to part ways.");
