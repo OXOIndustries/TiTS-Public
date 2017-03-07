@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Transformatives.OmegaOil;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
@@ -427,7 +428,11 @@ package classes.Characters
 			var currExhib:Number = exhibitionism();
 
 			//All covered up? Reduce over time!
-			if(exhibitionismPoints == 0) exhibitionism(-0.5 * totalDays);
+			if(exhibitionismPoints == 0) 
+			{
+				//Skipping out on underwear will keep it from dropping, but won't raise it.
+				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) exhibitionism(-0.5 * totalDays);
+			}
 			else if(exhibitionismPoints >= 4 && currExhib < 50) exhibitionism(2);
 			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
 			else if(exhibitionismPoints >= 2 && currExhib < 33) exhibitionism(1);
