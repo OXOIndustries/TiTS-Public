@@ -1,6 +1,7 @@
 package classes.Ships 
 {
 	import classes.DataManager.Serialization.VersionedSaveableV2;
+	import classes.Ships.Map.ShipMap;
 	/**
 	 * ...
 	 * @author Gedan
@@ -19,7 +20,24 @@ package classes.Ships
 			Capacitor = CapacitorMax;
 			
 			Targeting = Thrust = Agility = Systems = Aim = 10;
+			
+			_inventory = [];
+			_internalMap = new InternalMapClass();
 		}
+		
+		[Serialize]
+		public var _name:String;
+		public function get Name():String { return _name; }
+		public function set Name(v:String):void { _name = v; }
+		
+		protected var _manufacturer:String;
+		public function get Manufacturer():String { return _manufacturer; }
+		
+		protected var _model:String;
+		public function get Model():String { return _model; }
+		
+		protected var _baseValue:int;
+		public function get BaseValue():int { return _baseValue; }
 		
 		[Serialize]
 		public var _hull:Number;
@@ -76,6 +94,10 @@ package classes.Ships
 		public function get Power():Number { return _power; }
 		public function set Power(v:Number):void { _power = v; }
 		
+		[Serialize]
+		public var _inventory:Array;
+		public function get Inventory():Array { return _inventory; }
+		
 		protected var _storageTypeGeneral:int;
 		public function get StorageTypeGeneral():int { return _storageTypeGeneral; }
 		public function set StorageTypeGeneral(v:int):void { _storageTypeGeneral = v; }
@@ -92,6 +114,10 @@ package classes.Ships
 		public function get StorageTypeWeapons():int { return _storageTypeWeapons; }
 		public function set StorageTypeWeapons(v:int):void { _storageTypeWeapons = v; }
 		
+		protected var _internalMapClass:Class;
+		public function get InternalMapClass():Class { return _internalMapClass; }
+		
 		protected var _internalMap:ShipMap;
+		public function get InternalMap():ShipMap { return _internalMap; }
 	}
 }
