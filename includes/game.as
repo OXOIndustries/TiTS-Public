@@ -232,7 +232,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
 	{
-		addButton(9, "Rest", rest);
+		addButton(9, "Rest", restMenu);
 	}
 	else 
 	{
@@ -716,6 +716,44 @@ public function passiveTimeEffects(minPass:int = 0):Boolean
 	return false;
 }
 
+public function restMenu():void
+{
+	clearOutput();
+	output("Do you wait for some minutes or take a rest for a few hours?");
+	
+	clearMenu();
+	
+	addButton(0, "Wait 5 min", wait, 5, "Wait 5 Minutes", "Wait for 5 minutes.");
+	addButton(1, "Wait 10 min", wait, 10, "Wait 10 Minutes", "Wait for 10 minutes.");
+	addButton(2, "Wait 30 min", wait, 30, "Wait 30 Minutes", "Wait for 30 minutes.");
+	
+	addButton(5, "Wait 1 hr", wait, 60, "Wait 1 Hour", "Wait for 1 hour.");
+	addButton(6, "Wait 2 hr", wait, 120, "Wait 2 Hours", "Wait for 2 hours.");
+	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
+	
+	addButton(9, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
+	
+	addButton(14, "Back", mainGameMenu);
+}
+public function wait(minPass:int = 0):void
+{
+	clearOutput();
+	
+	var hrPass:int = Math.floor(minPass/60);
+	
+	output("You decide to " + (minPass < 30 ? "stand" : "mosey") + " around and wait for");
+	if(hrPass <= 0) output(" " + num2Text(minPass) + " minutes");
+	else if(hrPass == 1) output(" one hour");
+	else output(" " + num2Text(hrPass) + " hours");
+	output(". While doing this doesn’t keep you rested, it manages to pass the time.");
+	
+	processTime(minPass);
+	
+	if(passiveTimeEffects(minPass)) return;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 public function rest(deltaT:int = -1):void {
 	var minPass:int;
 	//Turn encounters back on.
