@@ -5120,7 +5120,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_CFS_GWEN"] != undefined) output2("\n<b>* Gwen:</b> Met her");
 				if(flags["FUCKED_GWEN"] != undefined) output2(", Sexed her");
 				if(flags["MET_CFS_EIMEAR"] != undefined) output2("\n<b>* Eimear:</b> Met her");
-				if(flags["HUNGOUT_CFS"] != undefined) output2("\n<b>* Gwen and Eimear:</b> Hung out with them");
+				if(flags["HUNGOUT_CFS"] != undefined)
+				{
+					output2("\n<b>* Gwen and Eimear:</b> Hung out with them");
+					if(flags["HUNGOUT_CFS"] > 1) output2(" " + num2Text(flags["HUNGOUT_CFS"]) + " times");
+				}
 				variousCount++;
 			}
 			// Nerrasa

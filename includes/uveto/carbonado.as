@@ -2,7 +2,7 @@ public function outsideCarbonado():Boolean
 {
 	output(" Finally, to the west, is a combination clothing-store-come-spa. The window rather cheerily offers a cozy experience for potential patrons to warm themselves within after having experienced the bitter chill of the moons surface.");
 
-	if (hours >= 21 || hours < 8)
+	if (!carbonadoActiveHours())
 	{
 		output(".. were the shop actually open right now.");
 		setNavDisabled(NAV_WEST_DISABLE);
@@ -11,15 +11,19 @@ public function outsideCarbonado():Boolean
 	return false;
 }
 
+public function carbonadoActiveHours():Boolean
+{
+	return (hours >= 8 && hours < 21);
+}
 public function uvetoCarbonadoStore():Boolean
 {
-	if (hours >= 20 && hours < 21 && flags["CFS_HANGOUT_EVENT_PENDING"] != undefined)
+	if (hours >= 20 && hours < 21 && flags["CFS_HANGOUT_EVENT_PENDING"] == 1)
 	{
 		cfsGoHangoutTime();
 		return true;
 	}
 
-	if (hours >= 21 || hours < 8)
+	if (!carbonadoActiveHours())
 	{
 		output("\n\nEimear shuffles you and all of the other hangers-on out of the shop so that they can close for the night.");
 		currentLocation = "UVS B9";
@@ -108,13 +112,15 @@ public function uvetoCarbonadoMenu():void
 {
 	clearMenu();
 
-	addButton(0, "Shop", cfsGoBuyMenu);
+	if (carbonadoActiveHours()) addButton(0, "Shop", cfsGoBuyMenu);
+	else addDisabledButton(0, "Shop", "Shop", "You can’t do this outside business hours.");
 	addButton(1, "Talk", uvetoCarbonadoTalk, undefined, "Talk", "Ask the mismatched couple some questions.");
-	addButton(3, "Massage", cfsGoMassage);
+	if (carbonadoActiveHours()) addButton(3, "Massage", cfsGoMassage);
+	else addDisabledButton(3, "Massage", "Massage", "You can’t do this outside business hours.");
 
 	if (flags["HUNGOUT_CFS"] != undefined && (hours >= 20 || hours <= 4))
 	{
-		if (flags["CFS_HANGOUT_EVENT_PENDING"] == 1) addButton(2, "Hangout", cfsGoHangoutTime);
+		if (hours >= 20 && hours < 21 && flags["CFS_HANGOUT_EVENT_PENDING"] == 1) addButton(2, "Hangout", cfsGoHangoutTime);
 
 		if (pc.hasCock() || pc.hasVagina())
 		{
@@ -556,8 +562,9 @@ public function uvetoCarbonadoTalkGwenRelationship():void
 	output("\n\n<i>“You didn’t hear this from me, but she might have bumped into one of my friends before a party, and that friend might have offered her something to help her open up. No drugs or anything, just booze. I was hoping it would make her a bit more chatty, but I think she took a bit more than a first timer should. Nothing dangerous, but she doesn’t remember that night, don’t you honey,”</i> she catches Eimear’s eye, still talking to you, but mimicking lovey dovey talk at the unaware beauty across the storefront. She waves and smiles, unable to hear the conversation.");
 	
 	output("\n\n<i>“Turns out I really underestimated how strong she was. The thought of getting into her pants had crossed my mind, but not until after she’d sobered up and I’d gotten her back to the dorms. She wanted into mine the moment she got there, and barely had enough decency left to not strip me on the dance floor. She just hefted me over her shoulder and carried me out of the ballroom in one arm, straight back to her dorm. She had one of the fancy single rooms, complete with soundproofed walls. She tossed me onto her bed and tried taking off my shirt, but ended up just ripping it right up the middle,”</i> She makes a tracing gesture at");
-	if (flags["FUCKED_GWEN"] != undefined) output(" the shape on her chest");
-	else output(" the heart shape on her chest.");
+	if (flags["FUCKED_GWEN"] == undefined) output(" the shape on her chest");
+	else output(" the heart shape on her chest");
+	output(".");
 	
 	output("\n\n<i>“Then she got engrossed with the pattern on my chest, just couldn’t stop giggling. She kept alternating between tracing it with her fingers and kneading my boobs. The oil she secretes keeps her skin super smooth, so it felt <b>really</b> good. It was a big quandary for me, cause I really wanted to be on top, but I also didn’t want to get crushed, so I just let her do her thing. About ten minutes into this she tries to take her top off, and manages to get it stuck on her head. Those tits are bigger than my head when they are contained, so without a bra on she just wrapped my head in a warm bastille of boob.”</i> You can see a blush coat her orange cheeks, spreading to the edge of her darker coloration.");
 	
@@ -620,8 +627,6 @@ public function cfsGoHangoutTime():void
 
 	if (flags["CFS_HANGOUT_EVENT_PENDING"] == 1)
 	{
-		flags["HUNGOUT_CFS"] = 1;
-
 		output("You see the shopkeeper couple exiting their store and walk up to greet them. Gwen waves as she sees you, totally encased in fluffy winter gear.");
 		
 		output("\n\n<i>“Steele! Glad you could make it. Our place is just down the elevator,”</i> she relates,");
@@ -643,13 +648,13 @@ public function cfsGoHangoutTime():void
 		output(" Eimear quickly finds what she is looking for, slotting the holotape into a nearby player and joining you on the couch. Gwen butts in moments later, squishing herself between the two of you with a large bucket of popcorn.");
 		
 		output("\n\n<i>“Alright! First episode, go!”</i> she says, prompting the device to begin playing.");
-
+		
 		processTime(15+rand(5));
 		clearMenu();
 		addButton(0, "Next", cfsGoHangoutTimeII);
 	}
 
-	flags["CFS_HANGOUT_EVENT_PENDING"] = undefined;
+	//flags["CFS_HANGOUT_EVENT_PENDING"] = undefined;
 }
 
 public function cfsGoHangoutTimeII():void
@@ -772,6 +777,9 @@ public function cfsGoHangoutTimeIII(resp:uint = 0):void
 	//return to bottom of elevator
 	processTime(15+rand(3));
 	currentLocation = "UVI F34";
+	
+	flags["CFS_HANGOUT_EVENT_PENDING"] = 2;
+	IncrementFlag("HUNGOUT_CFS");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -879,6 +887,9 @@ public function cfsGoSleepover():void
 
 	//dump outside house at 7 am
 	currentLocation = "UVI F34";
+	
+	IncrementFlag("HUNGOUT_CFS");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -900,19 +911,19 @@ public function cfsGoVidja():void
 	
 	output("\n\n<i>“It’s really easy to get into. The button pads read inputs from the electrical signals in your brain. You might feel a little shock when the game starts, but after that you should be able to just think about what you want the character to do and have it happen. I haven’t done anything with the current tournament, so it should match you against someone about on your skill level,”</i> she explains, moving your fingers into the correct positioning as she speaks.");
 	
-	output("\n\nYou look back to the screen. Now that the intro video has ended, the games menu seems much more streamlined than the mess from before. A selection of options covers the screen in an easily identifiable arrangement. There’s a label for tournaments, free play, local co-op, and challenges, along with an arrow leading to <i>“roll new heroes!”</i>. You hit tournaments, and are immediately met with a totally blank <i>“Select your character”</i> screen.");
+	output("\n\nYou look back to the screen. Now that the intro video has ended, the games menu seems much more streamlined than the mess from before. A selection of options covers the screen in an easily identifiable arrangement. There’s a label for tournaments, free play, local co-op, and challenges, along with an arrow leading to <i>“roll new heroes!”</i>. You hit tournaments, and are immediately met with a totally blank “Select your character” screen.");
 	
 	output("\n\n<i>“Oh shit, I forgot you don’t actually know anyone. Uhh, pick Matoossa! He’s pretty easy for beginners,”</i> Eimear blurts as a countdown starts at the top of the screen. As the name she mentioned enters your thoughts, a character appears on screen. He, at least you think its a he, wears an outfit like a cybernetic ninja, covering his body up to the neck. Cheek length white hair billows around his head as if intense wind is blowing, and in place of eyes he has what seem to be swirling graphite smears. His mouth is sewn shut, tightly locked in place by thin jade chains. He carries a sword that discharges varying levels of electricity through its sheath, glowing a dull white color.");
 
 	output("\n\nWhen you confirm your choice, he slashes through the <i>“Locked in”</i> alert that appears, dashing off screen. The next screen gives each fighter an intro sequence. Your character drops from the sky, slashing through a nearby cinderblock so quickly that a white flash is all that’s visible of the sword. He then proceeds to stare menacingly at the opposite end of the arena.");
 	
-	output("\n\n<i>“Is that supposed to be scary? I won’t bow to some child’s nightmare,”</i> comes your opponent characters voice, a high but masculine tone. Eimear frowns and scoots up upon hearing it. The character himself is a tall, lanky man wielding two futuristic sawed off shotguns. He wears a fancy jacket and khaki pants, with jewel encrusted rings of various colors on his fingers. He has spiky blonde hair and aviator sunglasses with a target symbol embossed on the left lens. A digitized billboard in the back declares him to be <i>“Hollyhock”</i>");
+	output("\n\n<i>“Is that supposed to be scary? I won’t bow to some child’s nightmare,”</i> comes your opponent characters voice, a high but masculine tone. Eimear frowns and scoots up upon hearing it. The character himself is a tall, lanky man wielding two futuristic sawed off shotguns. He wears a fancy jacket and khaki pants, with jewel encrusted rings of various colors on his fingers. He has spiky blonde hair and aviator sunglasses with a target symbol embossed on the left lens. A digitized billboard in the back declares him to be “Hollyhock”.");
 	
 	output("\n\n<i>“Shit. He’s the reward character for arena tournament one. You can’t even get him anymore,”</i> Your alien companion warns, her lion-like tail flitting worriedly. A countdown begins on the screen, and you prepare yourself as best you can. The best you can do doesn’t count for much in the end. As soon as the countdown reaches zero, your opponent bursts forward and catches you with a point blank blast from one of the shotguns. Instead of bullets, it produces a fist like burst of energy. Your character is sent flying, and before you can react he has you in a corner, smashing repeatedly to keep you locked in the air.");
 	
 	output("\n\nYou’re dead in under a minute, and you see a message pop up in the bottom corner. <i>“<b>BlastMaster has sent you a communication: Get rekt scrub</b>!”</i> Eimear grunts an expletive, taking the controller from you and dropping down next to you on the couch.");
 	
-	output("\n\n<i>“This guy wants to be a fucking smartass, I’ll show him who’s a damn scrub,”</i> she growls fiercely, maneuvering back to the character select menu. The screen flits about quickly before settling on a humanoid alligator in a trench-coat and bowler hat. Bubbling green and purple liquids leak from the cracks in his scales and drip from his mouth. The label at the top proclaims his title, or name you aren’t sure which, as <i>“The Infestigator”</i>.");
+	output("\n\n<i>“This guy wants to be a fucking smartass, I’ll show him who’s a damn scrub,”</i> she growls fiercely, maneuvering back to the character select menu. The screen flits about quickly before settling on a humanoid alligator in a trench-coat and bowler hat. Bubbling green and purple liquids leak from the cracks in his scales and drip from his mouth. The label at the top proclaims his title, or name you aren’t sure which, as “The Infestigator”.");
 	
 	output("\n\nThe second match countdown begins once she chooses her selection, with the gator inspector crawling in from the side of the screen. The moment the number reaches zero your former opponent attempts the same swift combo that got you locked into a corner. Out of the corner of your eye you see Eimear take a quick breath and tighten her grip on the controller. The alligator detective on-screen explodes in a shower of toxic fumes, damaging the shotgun wielding fighter even as he continues his dash.");
 	
@@ -965,6 +976,9 @@ public function cfsGoVidjaII():void
 	//return to main city.
 	processTime(3+rand(3));
 	currentLocation = "UVI F34";
+	
+	IncrementFlag("HUNGOUT_CFS");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1150,6 +1164,8 @@ public function cfsGoLewdMassage():void
 	pc.orgasm();
 
 	currentLocation = "UVI F34";
+	
+	IncrementFlag("HUNGOUT_CFS");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

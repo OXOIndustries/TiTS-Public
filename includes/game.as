@@ -1867,7 +1867,9 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
-	
+	// Carbonado
+	if(carbonadoActiveHours()) rooms["UVS A9"].addFlag(GLOBAL.COMMERCE);
+	else rooms["UVS A9"].removeFlag(GLOBAL.COMMERCE);
 	// Pippa's house
 	if (flags["PIPPA_RECRUITED"] == 1)
 	{
