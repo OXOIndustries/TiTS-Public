@@ -431,7 +431,8 @@ package classes.Characters
 			if(exhibitionismPoints == 0) 
 			{
 				//Skipping out on underwear will keep it from dropping, but won't raise it.
-				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) exhibitionism(-0.5 * totalDays);
+				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
+				else exhibitionism(-0.5 * totalDays);
 			}
 			else if(exhibitionismPoints >= 4 && currExhib < 50) exhibitionism(2);
 			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
