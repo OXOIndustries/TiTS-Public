@@ -885,7 +885,7 @@ package classes.GameData
 					dmg = new TypeCollection( { tease: 20 } );
 					damageResult = applyDamage(dmg, kGAMECLASS.chars["WULFE"], target, "suppress");
 					output("\n");
-					output(CombatContainer.teaseReactions(damageResult.lustDamage, target));
+					output(teaseReactions(damageResult.lustDamage, target));
 				}
 				else
 				{
@@ -1763,7 +1763,7 @@ package classes.GameData
 					damage = new TypeCollection( { tease: 33 } );
 					damageResult = applyDamage(damage, attacker, target, "suppress");
 					output("\n");
-					output(CombatContainer.teaseReactions(damageResult.lustDamage, target));
+					output(teaseReactions(damageResult.lustDamage, target));
 				}
 				
 				outputDamage(damageResult);

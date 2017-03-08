@@ -28,7 +28,7 @@ package classes.GameData
 		
 		public static function newGroundCombat():void
 		{
-			combatContainer = new CombatContainer();
+			combatContainer = new GroundCombatContainer();
 			victoryCondition(ENTIRE_PARTY_DEFEATED);
 			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.pc);
 		}
@@ -122,35 +122,11 @@ package classes.GameData
 			combatContainer.lossScene(func);
 		}
 		
-		public static function entryScene(func:Function):void
-		{
-			combatContainer.entryFunction = func;
-		}
-		
 		public static function beginCombat():void
 		{
 			combatContainer.beginCombat();
 		}
-	
-		public static function resetCombat():void
-		{
-			clearOutput();
-			var exec:Function = combatContainer.entryFunction;
-			combatContainer.doCombatCleanup();
-			combatContainer = null;
 			
-			// better solution would be to serialize characters when set using setFriendlyChars() and keep them- would reset all details (f.ex non-combat status durations etc)
-			for (var i:int = 0; i < _friendlyCharacters.length; i++)
-			{
-				var char:Creature = _friendlyCharacters[i];
-				char.HP(char.HPMax());
-				char.shieldsRaw = char.shieldsMax();
-				char.clearCombatStatuses();
-			}
-			
-			exec();
-		}
-		
 		public static function genericVictory():void
 		{
 			combatContainer.genericVictory();
