@@ -1301,9 +1301,9 @@ public function cuntTailFapScene():void {
 	if(pc.cumQ() >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
 	if(pc.cumQ() >= 1000) output(".");
 	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
+	processTime(20+rand(10));
 	pc.loadInCuntTail(pc);
 	pc.orgasm();
-	processTime(20+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
