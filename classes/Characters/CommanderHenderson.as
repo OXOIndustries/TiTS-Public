@@ -470,7 +470,7 @@ package classes.Characters
 			var f:ChiefNeykkar = new ChiefNeykkar();
 			f.hendersonConfig();
 			
-			CombatManager.addFriendlyCreature(f);
+			CombatManager.addFriendlyActor(f);
 		}
 		
 		public function attemptCure():void

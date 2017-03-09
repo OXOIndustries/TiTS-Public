@@ -3,6 +3,8 @@ package classes.GameData
 	import classes.kGAMECLASS;
 	import classes.Creature;
 	import flash.utils.Dictionary;
+	import flash.utils.getQualifiedClassName;
+	import flash.utils.getDefinitionByName;
 	
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Utility.*;
@@ -25,6 +27,33 @@ package classes.GameData
 	 */
 	public class GroundCombatContainer extends CombatContainer
 	{
+		public function GroundCombatContainer() 
+		{
+			_roundCounter = 1;
+			
+			genericVictory = function():void {
+				StatTracking.track("combat/wins");
+				getCombatPrizes();
+				doCombatCleanup();
+			}
+			
+			genericLoss = function():void {
+				StatTracking.track("combat/losses");
+				clearMenu();
+				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
+				{
+					addButton(0, "Next", helpBadPCsOut);
+				}
+				else if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 5)
+				{
+					addButton(0, "Next", helpReallyBadPCsOut);
+				}
+				else if (pc.level == 1 && (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(Naleen) || hasEnemyOfClass(HuntressVanae) || hasEnemyOfClass(MaidenVanae))) addButton(0, "Next", helpDumbPCsOut);
+				else addButton(0, "Next", postCombatReturnToMenu);
+				doCombatCleanup();
+			}
+		}
+		
 		//{ region State
 		private var _initForRound:int = -1;
 		private var _roundCounter:int = 0;
@@ -413,6 +442,169 @@ package classes.GameData
 			}
 			
 			return false;
+		}
+		
+		override public function showCombatUI(setAsInit:Boolean = false):void
+		{
+			if (setAsInit)
+			{
+				userInterface().resetNPCStats();
+				if (_friendlies.length > 1) userInterface().resetPCStats();
+			}
+			
+			userInterface().showPlayerParty(_friendlies, false);
+			userInterface().showHostileParty(_hostiles, false);
+		}
+		
+		//} endregion
+		
+		//{ region Setup
+		
+		override public function setPlayerGroup(... args):void
+		{
+			if (args.length > 1)
+			{
+				_friendlies = args;
+			}
+			else if (args.length == 1)
+			{
+				if (args[0] is Array)
+				{
+					_friendlies = args[0];
+				}
+				else if (args[0] is Creature)
+				{
+					_friendlies = [args[0]];
+				}
+			}
+			
+			for (var i:int = 0; i < _friendlies.length; i++)
+			{
+				prepFriendlyForCombat(_friendlies[i]);
+				makeCharacterUnique(_friendlies[i], FRIENDLY_GROUP);
+			}
+		}
+		
+		override public function addFriendlyActor(newActor:*):void
+		{
+			if (!(newActor is Creature)) throw new Error("Attempted to add a non-creature object as a friendly actor.");
+			
+			prepFriendlyForCombat(newActor);
+			_friendlies.push(newActor);
+			makeCharacterUnique(newActor, FRIENDLY_GROUP);
+			showCombatUI();
+		}
+		
+		private function prepFriendlyForCombat(target:Creature):void
+		{
+			target.droneTarget = null;
+			target.alreadyDefeated = false;
+			if (!(target is PlayerCharacter))
+			{
+				// TODO: Realistically, characters that join the player in combat should be subject to the same passage of time rules... but that's another story
+				target.HPRaw = target.HPMax();
+				target.shieldsRaw = target.shieldsMax();
+				target.lustRaw = 0;
+			}
+		}
+		
+		override public function setEnemyGroup(... args):void
+		{
+			if (args.length > 1)
+			{
+				_hostiles = args;
+			}
+			else if (args.length == 1)
+			{
+				if (args[0] is Array)
+				{
+					_hostiles = args[0];
+				}
+				else if (args[0] is Creature)
+				{
+					_hostiles = [args[0]];
+				}
+			}
+			
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				prepHostileForCombat(_hostiles[i]);
+				makeCharacterUnique(_hostiles[i], HOSTILE_GROUP);
+			}
+		}
+		
+		override public function addHostileActor(newActor:*):void
+		{
+			if (!(newActor is Creature)) throw new Error("Attempted to add a non-creature hostile actor.");
+			
+			prepHostileForCombat(newActor);
+			_hostiles.push(newActor);
+			makeCharacterUnique(newActor, HOSTILE_GROUP);
+			showCombatUI(); // force an update
+		}
+		
+		override public function removeHostileActor(actorReference:*):void
+		{
+			if (!(actorReference is Creature)) throw new Error("Attempted to remove a non-creature hostile actor.");
+			
+			_hostiles.splice(_hostiles.indexOf(actorReference), 1);
+			showCombatUI();
+		}
+		
+		private function prepHostileForCombat(target:Creature):void
+		{
+			target.droneTarget = null;
+		}
+		
+		private function makeCharacterUnique(target:Creature, asGroup:String):void
+		{
+			var appends:Array = ["A", "B", "C", "D", "E"];
+			
+			var thisIndex:int = 0;
+			var hasSameType:Boolean = false;
+			var tType:Class = Class(getDefinitionByName(getQualifiedClassName(target)));
+			var collection:Array = (asGroup == HOSTILE_GROUP ? _hostiles : _friendlies);
+			
+			var currIndex:int = 0;
+			
+			// Loop over all the current creatures
+			for (var i:int = 0; i < collection.length; i++)
+			{
+				var currTarget:Creature = collection[i] as Creature;
+				
+				// Looking for creatures of the same type as the one we're adding
+				if (currTarget is tType && currTarget != target)
+				{
+					// Fuck it, just force set these every time through :V
+					/*
+					// Check if it has a unique character appended
+					var lastChar:String = currTarget.uniqueName.charAt(currTarget.uniqueName.length - 1);
+					
+					// If it doesn't, append the one relative to the currentTargets position in the array
+					if (!InCollection(lastChar, appends))
+					{
+					*/
+						currTarget.uniqueName = currTarget.short + " " + appends[currIndex];
+						currTarget.buttonText = currTarget.btnTargetText + " " + appends[currIndex];
+					/*
+					}
+					*/
+					hasSameType = true;
+					currIndex++;
+				}
+			}
+			
+			// We ain't fiddled the one we're adding, so it'll be unique so just treat it as such
+			if (!hasSameType)
+			{
+				target.uniqueName = target.short;
+				target.buttonText = target.btnTargetText;
+			}
+			else
+			{
+				target.uniqueName = target.short + " " + appends[currIndex];
+				target.buttonText = target.btnTargetText + " " + appends[currIndex];
+			}
 		}
 		
 		//} endregion
@@ -1558,6 +1750,30 @@ package classes.GameData
 			}
 			
 			output("\n\n");
+		}
+		
+		override public function doCombatCleanup():void
+		{
+			kGAMECLASS.setEnemy(null);
+			kGAMECLASS.setAttacker(null);
+			kGAMECLASS.setTarget(null);
+			
+			doCleanup(_friendlies);
+		}
+		
+		private function doCleanup(group:Array):void
+		{
+			for (var i:int = 0; i < group.length; i++)
+			{
+				doCleanupFor(group[i]);
+			}
+		}
+		
+		private function doCleanupFor(target:Creature):void
+		{
+			// Remove all combat effects
+			target.clearCombatStatuses();
+			target.alreadyDefeated = false;
 		}
 		
 		//} endregion 
@@ -4007,33 +4223,6 @@ package classes.GameData
 		
 		//} endregion
 		
-		public function GroundCombatContainer() 
-		{
-			_roundCounter = 1;
-			
-			genericVictory = function():void {
-				StatTracking.track("combat/wins");
-				getCombatPrizes();
-				doCombatCleanup();
-			}
-			
-			genericLoss = function():void {
-				StatTracking.track("combat/losses");
-				clearMenu();
-				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
-				{
-					addButton(0, "Next", helpBadPCsOut);
-				}
-				else if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 5)
-				{
-					addButton(0, "Next", helpReallyBadPCsOut);
-				}
-				else if (pc.level == 1 && (hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(Naleen) || hasEnemyOfClass(HuntressVanae) || hasEnemyOfClass(MaidenVanae))) addButton(0, "Next", helpDumbPCsOut);
-				else addButton(0, "Next", postCombatReturnToMenu);
-				doCombatCleanup();
-			}
-		}
-		
 		//{ region Boost bad players
 		
 		private function helpBadPCsOut():void
@@ -4081,6 +4270,55 @@ package classes.GameData
 		
 		//} endregion
 		
+		//{ region Involved actor states
+		
+		override public function hasFriendlyOfClass(classT:Class):Boolean
+		{
+			for (var i:int = 0; i < _friendlies.length; i++)
+			{
+				if (_friendlies[i] is classT) return true;
+			}
+			return false;
+		}
+		
+		override public function enemiesAlive():int
+		{
+			var num:int = 0;
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (!_hostiles[i].isDefeated()) num++;
+			}
+			return num;
+		}
+		
+		override public function hasEnemyOfClass(classT:Class):Boolean
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles[i] is classT) return true;
+			}
+			return false;
+		}
+		
+		override public function getEnemyOfClass(classT:Class):*
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles[i] is classT) return _hostiles[i];
+			}
+			return null;
+		}
+		
+		private function hasDickedEnemy():Boolean
+		{
+			for (var i:int = 0; i < _hostiles.length; i++)
+			{
+				if (_hostiles[i].hasCock()) return true;
+			}
+			return false;
+		}
+		
+		//} endregion
 	}
 
 }

@@ -433,7 +433,7 @@
 				var tC:Creature = alliedCreatures[i] as Creature;
 				if (tC is MilodanMaleGroup)
 				{
-					CombatManager.removeHostileCreature(tC);
+					CombatManager.removeHostileActor(tC);
 					i--;
 				}
 			}

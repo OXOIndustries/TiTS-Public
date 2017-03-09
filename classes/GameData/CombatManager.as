@@ -61,13 +61,15 @@ package classes.GameData
 			combatContainer.setPlayerGroup(param);
 			_friendlyCharacters = param;
 		}
+		
 		public static function getFriendlyCharacters():Array
 		{
 			return _friendlyCharacters;
 		}
-		public static function addFriendlyCreature(newC:Creature):void
+		
+		public static function addFriendlyActor(newC:*):void
 		{
-			combatContainer.addFriendlyCreature(newC);
+			combatContainer.addFriendlyActor(newC);
 		}
 		
 		private static var _hostileCharacters:Array;
@@ -86,13 +88,15 @@ package classes.GameData
 		{
 			return _hostileCharacters;
 		}
-		public static function addHostileCreature(newC:Creature):void
+		
+		public static function addHostileActor(newC:*):void
 		{
-			combatContainer.addHostileCreature(newC);
+			combatContainer.addHostileActor(newC);
 		}
-		public static function removeHostileCreature(remC:Creature):void
+		
+		public static function removeHostileActor(remC:*):void
 		{
-			combatContainer.removeHostileCreature(remC);
+			combatContainer.removeHostileActor(remC);
 		}
 		
 		public static const SPECIFIC_TARGET_DEFEATED:String = "target_defeat";
