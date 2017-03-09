@@ -5404,6 +5404,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
 					if(flags["KIRO_KALLY_THREESOMES"] > 0) output2("\n<b>* Kally, Times Sexed in Threesome with Kiro:</b> " + flags["KIRO_KALLY_THREESOMES"]);
+					if(flags["SISTER_MILK_ACT"] != undefined) output2("\n<b>* Kally, Times Cock-Milked with Kiro:</b> " + flags["SISTER_MILK_ACT"]);
 				}
 				// Sylvie
 				if(flags["MET_SYLVIE"] != undefined)
@@ -5547,7 +5548,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("contests/kiro drinkoff losses") + StatTracking.getStat("contests/kiro drinkoff wins") > 0) output2("\n<b>* Kiro, Drinking Contest, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/kiro drinkoff wins") + "/" + StatTracking.getStat("contests/kiro drinkoff losses") + ", of " + (StatTracking.getStat("contests/kiro drinkoff losses") + StatTracking.getStat("contests/kiro drinkoff wins")) + " games");
 			}
 			output2("\n<b>* Kiro, Testicle Size:</b> " + prettifyLength(chars["KIRO"].ballDiameter()) + " across, " + prettifyLength(chars["KIRO"].ballSize()) + " around, each");
-			if(flags["KIRO_FUCKED_DURING_RESCUE"] != undefined || flags["KIRO_DEEPTHROATED_YOU"] != undefined || flags["KIRO_BALLJOBBED_YOU"] != undefined || flags["KIRO_X_SAEN_HAPPENED"] != undefined || flags["PUMPED_KIRO_PUSSY"] != undefined || flags["KIRO_ORGIED"] != undefined)
+			if(kiroSexed())
 			{
 				output2("\n<b>* Kiro, Sexual Organs:</b> " + listCharGenitals("KIRO"));
 				output2("\n<b>* Kiro, Sexual History:</b> Sexed her");

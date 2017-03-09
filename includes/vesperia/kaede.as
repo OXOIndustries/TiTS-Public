@@ -409,17 +409,17 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	//clothed: 
 	if(!pc.isCrotchExposed()) output("pulls your [pc.lowerGarment] out of the way and ");
 	//cock:
-	if(pc.hasCock()) output("wraps a hand around your [pc.cock " + x + "], stroking your hardening length.");
+	if(x >= 0) output("wraps a hand around your [pc.cock " + x + "], stroking your hardening length.");
 	//hardlight:
 	else output("finds her way to the activation button hidden in your [pc.lowerUndergarment]. Your hardlight cock springs to life in a rush of sensation, forming a solid, glowing shaft of luminescent artificial cockflesh right into her hand.");
 	output(" Kaede glances between the bottle and her hand around your [pc.cockOrStrapon " + x + "], smiling lasiviously up at you.");
 
 	output("\n\n<i>“Just work it in for me,”</i> you tell her, tweaking one of her pink nipples. The bottle pops open with a flick of your thumb, and you start pouring a line of lube from your base to your crown, covering Kaede’s fingers as you go. As commanded, she starts stroking as soon as you’ve given her something to work with, using her hand to smear the cool liquid around in a nice, even glaze. All you need to do is sit back and enjoy the handjob, pouring on extra lube or groping Kaede’s cock and tits as you please.");
 	output("\n\nBefore long she’s a mess, her belly slathered in run-off lube and her dick leaking a salty white from all the teasing, hard as a rock despite the lack of dedicated attention. <i>“Nice and ready,”</i> Kaede says, leaning up to plant a kiss on your ");
-	if(pc.hasCock()) output("[pc.cockHead " + x + "]");
+	if(x >= 0) output("[pc.cockHead " + x + "]");
 	else output("hardlight crown");
 	output(". Her tongue runs across your slit");
-	if(pc.hasCock() && pc.cocks[x].cLength() >= 12) output(", probing into your gargantuan vein and");
+	if(x >= 0 && pc.cocks[x].cLength() >= 12) output(", probing into your gargantuan vein and");
 	output(" lapping up the first sweet beads of pre she’s worked out of you already.");
 
 	output("\n\nAs nice as that is, you’ve got something other than Kaede’s mouth in mind. You grab her just under her breasts and heave your lover over, rolling her face-down on the bed with her tight little ass flush against the underside of your prick. She gives a little gasp of surprise, but her bright orange tail immediately curls up her back and out of the way, silently inviting you to do as you please with her defenseless backside.");
@@ -431,7 +431,9 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	else if(pc.isTaur() || pc.isNaga()) output("bestial lower body");
 	else output("backside");
 	output(". Her whole body feels like it’s going wild, muscles spasming in a vain attempt to adjust to your thick manhood stretching out her ass. Your [pc.hips] roll forward, pushing more and more dickmeat into her until you’re sitting flush against her tight little rump, squeezing her hips between your [pc.legs] and letting your throbbing erection settle in her bowels. Your hands play across her butt, kneading the halfbreed’s supple, pale flesh between your fingers. Slowly, she starts to relax, finally getting used to your unyielding hardness stretching out her tailhole.");
-	if(pc.hasCock()) pc.cockChange();
+	
+	if(x >= 0) pc.cockChange();
+	
 	output("\n\n<i>“Okay. Okay...”</i> Kaede breathes between soft little moans. <i>“Startin’ to feel good back there. I think... I think it’s okay to move now.”</i>");
 	output("\n\nYou didn’t know you were waiting on her permission, but now that you have it... Giving Kaede’s cheek an affectionate squeeze, you start to rock your hips back - a little more quickly than with your entrance - and Kaede starts moaning for you, oh so sweetly. No sense giving her time to recover now: you keep your [pc.hips] moving, sawing your shaft back out and in again, picking up speed with every thrust.");
 	output("\n\nThe heavy, wet sounds of flesh slapping against flesh echo through the room, accompanied by Kaede’s whimpering grunts of pleasure and the creaking of the bedframe under you. Your hands plant themselves on Kaede’s shoulderblades, pushing the cock-hungry halfbreed into the sheets, letting your hammering crotch do the same to her ass. Kaede sinks into the bed, tail flicking against your [pc.face], her body completely at your mercy.");
@@ -449,15 +451,15 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 	output("\n\nGrinning, you grab Kaede just under those perky tits of hers and flip her over. There’s a moment of intense tightness around your [pc.cockOrHardlight " + x + "], accompanied by a poof of ginger fur in your face and a yelp of surprise from the cum-drained puppy-slut. Her legs curl around your [pc.butt] and her cock flops half-hard on her flat belly, trembling with the rapid rise-and-fall of her breath.");
 
 	output("\n\nThat’s more like it! You grab her tits for leverage and hammer your dick home as hard and fast as you can, letting the tight embrace of her tailhole wring out your inevitable climax.");
-	if(pc.hasCock()) output(" Between your final thrusts, your mind races to make a choice.");
+	if(x >= 0) output(" Between your final thrusts, your mind races to make a choice.");
 
 	processTime(25);
 	pc.lust(200);
 	clearMenu();
-	if(pc.hasCock())
+	if(x >= 0)
 	{
-		addButton(0,"Cum Inside",cumInsideKaedesBootyButt,x,"Cum Inside","");
-		addButton(1,"Facialize Her",facializeKaedeAfterBootyButting,x,"Facializer","");
+		addButton(0,"Cum Inside",cumInsideKaedesBootyButt,x,"Cum Inside","Cum in her butt.");
+		addButton(1,"Facialize Her",facializeKaedeAfterBootyButting,x,"Facializer","Cum on her face.");
 	}
 	//else: Go right to Cum Inside
 	else addButton(0,"Next",cumInsideKaedesBootyButt,x);
@@ -502,7 +504,7 @@ public function facializeKaedeAfterBootyButting(x:int):void
 	showKaede(true);
 	author("Savin");
 	output("She might be begging for it inside, but you wanna see your lover covered with your seed. You keep your hips moving, thrusting into her hungry fuckhole until that familiar, swelling pressure of impending climax is all-consuming in your mind, threatening to overwhelm you. Only then do you push Kaede down into the bed and buck your hips back, drawing your [pc.cock " + x + "] out from her ass and angling it across the flat plane of her belly and towards those big blue eyes, wide with surprise.");
-	output("\n\n<i>“Wha...?”</i> Kaede starts, just in time for the first pent-up shot of [pc.cum] to shoot across her face. Steamy spooge splatters all over her chin and lips, followed by a second shot that gives her a glistening necklace of pearly white. The rest of your orgasm washes across her tits and belly, smearing over the pale flesh into a glistening [pc.cumGemColor] glaze. She whines and flicks a finger through the thick slop of jizz spreading over her chest, spreading it out like hot webbing.");
+	output("\n\n<i>“Wha...?”</i> Kaede starts, just in time for the first pent-up shot of [pc.cum] to shoot across her face. Steamy spooge splatters all over her chin and lips, followed by a second shot that gives her a glistening necklace of pearly white. The rest of your orgasm washes across her tits and belly, smearing over the pale flesh into a glistening [pc.cumGem] glaze. She whines and flicks a finger through the thick slop of jizz spreading over her chest, spreading it out like hot webbing.");
 	output("\n\n<i>“You’re the worst,”</i> she smirks, licking her fingers clean. Kaede giggles, flicking her tail at the underside of your [pc.cock " + x + "] until the tickles milk out the last drops of your orgasm to drool across her legs and crotch. <i>“But I guess getting covered is just as good as getting filled... even if I’m gonna need a shower, now. Lemme go get cleaned up.”</i>");
 	output("\n\nKaede leans up, plants a quick kiss on your cheek, and squirms out from under you. She saunters off towards the bathroom, leaving you with a few free minutes to catch your breath and gather your gear before heading on out.");
 
@@ -520,7 +522,10 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 	clearOutput();
 	showKaede(true);
 	author("Savin");
+	
+	var ppKaede:PregnancyPlaceholder = getKaedePregContainer();
 	if(x == 0) x = rand(pc.totalVaginas());
+	
 	output("A hungry grin spreads across your lips when you feel something thick and hot pressing against your [pc.butt], tenting Kaede’s blue jeans and rubbing against your thigh. Slowly, you lean down over Kaede, stretching out so that your [pc.belly] presses against her taut stomach, and your chin comes to rest just past her perky little tits.");
 	output("\n\n<i>“You’re so " + pc.mf("handsome","beautiful") + ",”</i> she murmurs, sitting up on her elbows and staring at you with those big, blue eyes of hers. You can’t help but " + pc.mf("chuckle","giggle") + ", leaning in and planting a kiss on those rosy lips of hers. Your tongue slithers out, slipping through the bridge of your kiss to entwine with her own; all a distraction while one of your hands traces down her tummy and straight down her pants.");
 	output("\n\nThat sure gets her attention! Kaede gasps, squirming as your fingers tickle the tip of her pecker before wrapping around it, helping the throbbing shaft find its way out of her pants. Something hot and slimey drools onto a finger, just before you free Kaede’s trouser snake from its confines. It bobbles and wobbles, coming to a standstill sticking straight up at your [pc.butt] with your hand wrapped around the girthy bulge at its base.");
@@ -541,6 +546,11 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 		else output("the cheeks of your [pc.butt]");
 		output(" and rocking your hips for her. That just elicits a moan from your lover, and her hands zip down to grip at your [pc.hips].");
 	}
+	
+	output(" ");
+	if(x >= 0) pc.cuntChange(x, ppKaede.cockVolume(0));
+	else pc.buttChange(ppKaede.cockVolume(0));
+	
 	output("\n\n<i>“You tease!”</i> Kaede whimpers, squirming under you. <i>“J-just take it already, would ya?”</i>");
 	//Misch/Bimbo:
 	if(pc.isMischievous() || pc.isBimbo()) output("\n\n<i>“Say please,”</i>");
@@ -562,7 +572,7 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 	if(x >= 0) output("pussy’s");
 	else output("anal");
 	output(" muscles for her, turning into a long moan. Her back arches off the bedsheets, and you feel that familiar wetness of pre bubbling up inside you, almost ready to burst. You smirk and cup Kaede’s tits, whispering sweet nothings about how she’s such a good, pretty girl... and that she should let it all out and cum for you. All the while, you start to move your hips, rocking back and forth on her throbbing, cum-swollen knot, working to milk that sweet puppy-spunk out.");
-	output("\n\nYour urging is all she needs. Kaede gasps, going rigid in your hands, and her dick thrusts as deep into you as her little hips can push it. Her knot makes one might pulse, balls churning with all that pent-up cream, before steamy, sticky cum splatters all inside your ");
+	output("\n\nYour urging is all she needs. Kaede gasps, going rigid in your hands, and her dick thrusts as deep into you as her little hips can push it. Her knot makes one mighty pulse, balls churning with all that pent-up cream, before steamy, sticky cum splatters all inside your ");
 	if(x >= 0) output("pussy");
 	else output("bowels");
 	output(". Now it’s your turn to moan, putting a hand on your [pc.belly] as you’re pumped full of the puppy’s seed.");
@@ -589,6 +599,8 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	if(x >= 0) pc.loadInCunt(ppKaede, x);
+	else pc.loadInAss(ppKaede);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

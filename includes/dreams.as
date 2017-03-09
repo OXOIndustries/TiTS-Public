@@ -27,10 +27,14 @@ public function dreamChances():Boolean
 		{
 			dreams.push(angelDreamGo);
 		}
-		//Anno shotgun weddings
-		if(annoIsCrew() && flags["MET_SYRI"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO" && pc.hasCock()) dreams.push(shotgunWeddingDream);
-		//Reaha dreams
-		if(reahaIsCrew() && pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") dreams.push(reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion);
+		// On board ship-related dreams
+		if(currentLocation == "SHIP INTERIOR")
+		{
+			//Anno shotgun weddings
+			if(annoIsCrew() && flags["MET_SYRI"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO" && pc.hasCock()) dreams.push(shotgunWeddingDream);
+			//Reaha dreams
+			if(reahaIsCrew() && pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") dreams.push(reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion);
+		}
 	}
 	if(dreams.length > 0) 
 	{

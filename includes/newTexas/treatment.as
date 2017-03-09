@@ -1856,7 +1856,8 @@ public function treatmentHourProcs(totalHours:int):void
 					pc.cocks[x].cLengthRaw += 2 + rand(2);
 				}
 				pc.ballSizeRaw += 5+rand(5);
-				pc.refractoryRate += 35;
+				if(pc.refractoryRate < 30) pc.refractoryRate = 30;
+				else pc.refractoryRate += 5;
 				pc.boostCum(25);
 			}
 			
@@ -3650,19 +3651,19 @@ public function treatmentHourProcs(totalHours:int):void
 						pc.refractoryRate = 10;
 					}
 					//RefractoryRate to 25
-					else if(pc.refractoryRate < 25)
+					else if(pc.refractoryRate < 20)
 					{
 						AddLogEvent("Wincing, you realize that you feel... fuller than you should. Like your body has gone into overtime, producing sperm in record quantities. This could come in handy....", "passive", (refGainStarts[firstRefGain + i] - startHours) * 60);
-						pc.refractoryRate = 25;
+						pc.refractoryRate = 20;
 					}
 					//RefractoryRate to 50! & minimum cumQ of 15
-					else if(pc.refractoryRate < 50)
+					else if(pc.refractoryRate < 30)
 					{
 						AddLogEvent("There’s no doubt about it. Your " + pc.ballsDescript() + " ", "passive", (refGainStarts[firstRefGain + i] - startHours) * 60);
 						if(pc.balls <= 1) ExtendLogEvent("is");
 						else ExtendLogEvent("are");
 						ExtendLogEvent(" filling up far faster than before, flooding with more and more unspent virility by the second. You could probably fuck a line of fifty girls and still not go dry by the last orgasm, not that you mind. At least the ubiquitous milking stalls and offers of blowjobs on New Texas make sense now. It could get quite uncomfortable without a regular release.");
-						pc.refractoryRate = 50;
+						pc.refractoryRate = 30;
 					}
 				}
 			}

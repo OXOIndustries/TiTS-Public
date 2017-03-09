@@ -14,6 +14,19 @@ public function showKaede(nude:Boolean = false):void
 	else showBust("KAEDE_NUDE");
 }
 
+public function getKaedePregContainer():PregnancyPlaceholder
+{
+	var ppKaede:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppKaede.hasCock()) ppKaede.createCock();
+	ppKaede.shiftCock(0, GLOBAL.TYPE_FELINE);
+	ppKaede.cocks[0].delFlag(GLOBAL.FLAG_SHEATHED);
+	ppKaede.balls = 2;
+	ppKaede.ballFullness = 100;
+	ppKaede.ballSizeRaw = 8;
+	
+	return ppKaede;
+}
+
 public function hasMetKaede():Boolean
 {
 	if (flags["ANNOxKAEDE_INTRODUCED"] != undefined) return true;
@@ -680,17 +693,18 @@ public function kaedeMyrellionSucknRide():void
 	}
 	output(" A moan escapes your lips, voice warbling as you feel the stiff, pointed shaft of Kaede’s prick spear your hole.");
 	
+	var ppKaede:PregnancyPlaceholder = getKaedePregContainer();
 	var holeTightness:Number;
 
 	if (pc.hasVagina())
 	{
 		holeTightness = pc.vaginas[0].looseness();
-		pc.cuntChange(0, 50, true, true, false);
+		pc.cuntChange(0, ppKaede.cockVolume(0), true, true, false);
 	}
 	else
 	{
 		holeTightness = pc.ass.looseness();
-		pc.buttChange(50, true, true, false);
+		pc.buttChange(ppKaede.cockVolume(0), true, true, false);
 	}
 
 	output("\n\n");
@@ -720,6 +734,9 @@ public function kaedeMyrellionSucknRide():void
 	output(" walls sends shivers all through you, and your moans redouble into your lover’s lips. Your [pc.chest] presses against her breasts, and your arms wrap around Kaede to pull her tight against you. Both your hips grind against each other, ramming her knot deeper into your straining hole.");
 	
 	output("\n\nSeveral minutes of pleasurable moans and sighs follow as you and Kaede bask in the afterglow. Your hips gently rock, enjoying the fullness of the knot stretching you and grinding against your tender walls. Slowly but surely, the tie holding you together starts to deflate, releasing you from Kaede’s grasp.");
+	
+	if(pc.hasVagina()) pc.loadInCunt(ppKaede, 0);
+	else pc.loadInAss(ppKaede);
 	
 	output("\n\nWhen you’re sure you can slip it out of you, you rise up on your [pc.knees] and ease Kaede’s cock on out. It pops wetly from your [pc.vagOrAss], leaving a trickling trail of cum down your thigh.");
 	
