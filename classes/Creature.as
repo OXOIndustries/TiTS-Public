@@ -17501,10 +17501,13 @@
 			addStatusValue("Cum Cascade", 1, (-1 * cumTransfer));
 			addStatusValue("Cum Cascade", 2, cumTransfer);
 		}
-		public function cumCascadeUpdate():void
+		public function cumStatusUpdate():void
 		{
-			if(hasPerk("'Nuki Nuts") && balls > 0 && hasStatusEffect("Orally-Filled") && InCollection(statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES)) return;
-			removeStatusEffect("Cum Cascade");
+			// Blueballs
+			if(balls <= 0) removeStatusEffect("Blue Balls");
+			
+			// Cum Cascade
+			if(balls <= 0 || !hasPerk("'Nuki Nuts") || !hasStatusEffect("Orally-Filled") || !InCollection(statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES)) removeStatusEffect("Cum Cascade");
 		}
 		
 		// Tiredness Conditions
@@ -17864,7 +17867,7 @@
 			{
 				cumFlationSimulate(deltaT, doOut);
 				if (hasPerk("'Nuki Nuts") || ballFullness < 100) cumProduced(deltaT, doOut);
-				cumCascadeUpdate();
+				cumStatusUpdate();
 			}
 		}
 		
