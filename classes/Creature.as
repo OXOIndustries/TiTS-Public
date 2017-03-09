@@ -18242,7 +18242,7 @@
 						setStatusTooltip("Oil Warmed", desc);
 						break;
 						
-					case "Tentacool":
+					case "Tentatool":
 						if (requiresRemoval)
 						{
 							Tentacool.tentacoolTF(this, thisStatus); 

@@ -13,7 +13,7 @@ public function configureCodex():void
 	// Other types of entries -- these are categorised under separate headings
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Arty", testPersonEntryA);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Buttsunder", testEventEntryA);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Some/Complex/Path/To", "Tentacool", testLocationEntryA);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Some/Complex/Path/To", "Tentatool", testLocationEntryA);
 	
 	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too -- "Organic" etc might be a better long-term solution, but there'll be a lot
 	// of categories that likely won't be very full for a LONG time going down that route
@@ -111,7 +111,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Dumbfuck", dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Gush", gushCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentacool", tentacoolCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentatool", tentacoolCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
@@ -2819,13 +2819,13 @@ public function tentacoolCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("9999");
-	outputCodex(header("Tentacool"));
+	outputCodex(header("Tentatool"));
 	outputCodex("The drug commonly known as “Tentacool” has origins in research into restoring limb usage to those that have lost it. The researchers were successful in restoring limb usage with a simple pill. However, they quickly realized they’d gone beyond their original goal and could even give control to and enhance usage of parts besides the limbs, including tails and penises.");
 	outputCodex("\n\nResearch continued along these lines until the drug came to a state much like its current state. The researchers, truthfully, didn’t understand how the drug they had developed worked, only that it did work. Subjects, with a simple pill, could turn all manner of body parts into highly dexterous, prehensile tentacles, and even grow new tentacles. With extra dosages, subjects could go well beyond the original research entirely, discarding their limbs in favor of tentacle bunches.");
 	outputCodex("\n\nThe research was nearly considered complete when one subject seemed to snap, rampaging around the lab and groping at everything he could get his tentacles on. While fixated on one of the female researchers, he was subdued and restrained. Looking into what had gone wrong, the researchers came to discover exactly what their drug did. While use of the drug was safe up to a point, the ultimate result of continued use was a complete decentralization of the nervous system. A subject’s nervous system would eventually be distributed among their many tentacles, leading to a complete loss of their sense of self and leaving them a mindless, instinct-driven monster.");
 	outputCodex("\n\nThe researchers naturally didn’t want their time and hard work to go to waste, and pleaded for the continued development of the drug. They argued that limited use and a strong will could mitigate the negative effects of the drug, even if they couldn’t get rid of the effects entirely. Despite their pleading, the research was quickly locked away and the existing drugs were seemingly destroyed. Nonetheless, the drug found its way into the galaxy. It is unknown if one or more rogue scientists stole some of the drug before its destruction or if they later replicated their research.");
 	outputCodex("\n\n");
-	CodexManager.viewedEntry("Tentacool");
+	CodexManager.viewedEntry("Tentatool");
 }
 
 
