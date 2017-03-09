@@ -951,10 +951,6 @@
 			{
 				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
 			}
-			else
-			{
-				throw new Error("Output called whilst the currently active module was not the PrimaryOutput display!");
-			}
 		}
 		
 		public function clearOutput():void
@@ -982,10 +978,6 @@
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
 			{
 				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
-			}
-			else
-			{
-				throw new Error("Output2 called whilst the currently active module was not the SecondaryOutput display!");
 			}
 		}
 		

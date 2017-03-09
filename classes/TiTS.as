@@ -544,6 +544,7 @@
 		private function finishInit(e:Event):void
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			addEventListener(Event.ENTER_FRAME, updateBuffers);
 			this.configureCodex();
 			this.configureMails();
 			this.userInterface.showMainMenu();

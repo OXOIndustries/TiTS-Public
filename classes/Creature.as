@@ -1,50 +1,34 @@
 ﻿package classes {
-	import classes.Characters.PlayerCharacter;
-	import classes.Characters.PregnancyPlaceholder;
-	import classes.Characters.Emmy;
+	import classes.Characters.*
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.*;
-	import classes.Items.Armor.GooArmor;
-	import classes.Items.Armor.InsulatedCoat;
+	import classes.Items.Armor.*
 	import classes.Items.Armor.Unique.Omnisuit;
-	import classes.Items.Guns.MyrBow;
-	import classes.Items.Melee.Fists;
-	import classes.Items.Melee.Rock;
+	import classes.Items.Guns.*;
+	import classes.Items.Melee.*
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Transformatives.*;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
 	import classes.ItemSlotClass;
-	import classes.DataManager.Serialization.ISaveable;
-	import classes.DataManager.Serialization.VersionedSaveable;
+	import classes.DataManager.Serialization.*
 	import flash.utils.describeType;
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
-	import classes.Engine.Utility.num2Text;
-	import classes.Engine.Utility.num2Ordinal;
+	import classes.Engine.Utility.*
 	import flash.utils.ByteArray;
 	import classes.GLOBAL;
 	import classes.GameData.Pregnancy.PregnancyManager;
-	import classes.Util.RandomInCollection;
-	import classes.Util.InCollection;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	import classes.Engine.Utility.plural;
-	import classes.Engine.Utility.possessive;
-	import classes.Engine.Combat.DamageTypes.DamageType;
-	import classes.Engine.Utility.weightedRand;
-	import classes.Engine.Interfaces.ParseText;
-	import classes.Engine.Utility.indefiniteArticle;
-	import classes.Engine.Utility.stripRace;
+	import classes.Util.*
+	import classes.Engine.Combat.DamageTypes.*
 	import classes.GameData.CodexManager;
-	import classes.Engine.Interfaces.AddLogEvent;
-	import classes.Engine.Interfaces.ExtendLogEvent;
-	import classes.Engine.Utility.MathUtil;
+	import classes.Engine.Interfaces.*
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -16187,11 +16171,6 @@
 				return true;
 			}
 			return false;
-		}
-		
-		protected function output(msg:String):void
-		{
-			kGAMECLASS.output(msg);
 		}
 		
 		public function holeChange(hole:int, volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 

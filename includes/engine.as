@@ -20,27 +20,49 @@ public function blockHeader(words:String, newLine:Boolean = true):String
 }
 
 //1: TEXT FUNCTIONS
+private var _bufferChanged:Boolean = false;
+private var _buffer2Changed:Boolean = false;
+
+private function updateBuffers(e:Event = null):void
+{
+	if (_bufferChanged)
+	{
+		_bufferChanged = false;
+		userInterface.output();
+	}
+	if (_buffer2Changed)
+	{
+		_buffer2Changed = false;
+		userInterface.output2();
+	}
+}
+
 public function output(words:String, markdown:Boolean = false, parse:Boolean = true):void 
 {
 	if (parse) this.userInterface.outputBuffer += doParse(words, markdown);
 	else this.userInterface.outputBuffer += words;
-	this.userInterface.output();
+	
+	_bufferChanged = true;
+	//this.userInterface.output();
 }
 
 public function clearOutput():void 
 {
 	if (this.userInterface.imgString != null && this.userInterface.imgString.length > 0) this.userInterface.imgString = "";
 	this.userInterface.clearOutput();
+	_bufferChanged = true;
 }
 
 public function output2(words:String, markdown:Boolean = false):void
 {
 	this.userInterface.outputBuffer2 += doParse(words, markdown);
-	this.userInterface.output2();
+	_buffer2Changed = true;
+	//this.userInterface.output2();
 }
 
 public function clearOutput2():void
 {
+	_buffer2Changed = true;
 	this.userInterface.clearOutput2();
 }
 

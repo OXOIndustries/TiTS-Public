@@ -13,6 +13,8 @@ package classes.Items.Miscellaneous
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Interfaces.*;
 	
 	public class Treatment extends ItemSlotClass
 	{
@@ -218,14 +220,7 @@ package classes.Items.Miscellaneous
 			}
 			return false;
 		}
-		protected function rand(max:Number):Number
-		{
-			return int(Math.random()*max);
-		}
-		protected function output(arg:String):void
-		{
-			kGAMECLASS.output(arg);
-		}
+
 		private function hasSheathedNonHorsecocks(target:Creature):Boolean
 		{
 			if(target.cockTotal() == 0) return false;
