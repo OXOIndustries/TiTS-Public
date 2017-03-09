@@ -25,6 +25,8 @@ package classes.Ships
 			_internalMap = new InternalMapClass();
 		}
 		
+		//{ region Display & other info
+		
 		[Serialize]
 		public var _name:String;
 		public function get Name():String { return _name; }
@@ -38,6 +40,10 @@ package classes.Ships
 		
 		protected var _baseValue:int;
 		public function get BaseValue():int { return _baseValue; }
+		
+		//} endregion
+		
+		//{ region Basic stats
 		
 		[Serialize]
 		public var _hull:Number;
@@ -94,6 +100,10 @@ package classes.Ships
 		public function get Power():Number { return _power; }
 		public function set Power(v:Number):void { _power = v; }
 		
+		//} endregion
+		
+		//{ region Inventory management
+		
 		[Serialize]
 		public var _inventory:Array;
 		public function get Inventory():Array { return _inventory; }
@@ -117,7 +127,14 @@ package classes.Ships
 		protected var _internalMapClass:Class;
 		public function get InternalMapClass():Class { return _internalMapClass; }
 		
+		//} endregion
+		
 		protected var _internalMap:ShipMap;
 		public function get InternalMap():ShipMap { return _internalMap; }
+		
+		/* These are the customised modules that the player may have fitted to the ship */
+		[Serialize]
+		public var _fittedModules:Array;
+		public function get FittedModules():Array { return _fittedModules; }
 	}
 }

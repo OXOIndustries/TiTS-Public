@@ -13,6 +13,11 @@ package classes.Ships.Modules
 	 */
 	public class ShipModule extends UnversionedSaveableV2 implements IOwned
 	{
+		public function ShipModule(owner:IOwner) 
+		{
+			_owner = owner;
+		}
+		
 		private var _owner:IOwner;
 		public function get Owner():IOwner { return _owner; }
 		public function set Owner(v:IOwner):void { _owner = v; }
@@ -23,10 +28,8 @@ package classes.Ships.Modules
 		protected var _room:ShipRoom;
 		public function get Room():ShipRoom { return _room; }
 		
-		public function ShipModule() 
-		{
-
-		}
+		protected var _powerConsumption:Number;
+		public function get PowerConsumption():Number { return _powerConsumption; }
 		
 	}
 
