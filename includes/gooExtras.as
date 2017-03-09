@@ -242,6 +242,11 @@ public function galoMaxTFProc():void
 			if(pc.isTaur()) output("hindlegs");
 			else output("[pc.legOrLegs]");
 			output(". You whimper and writhe, unable to keep your hands from pressing down on the sweet, moist heat, unable to stop from shuddering when your fingertips squeeze into a fold of flesh as pleasurable as it is slippery.");
+			
+			pc.createVagina();
+			pc.vaginas[pc.vaginas.length-1].addFlag(GLOBAL.FLAG_GOOEY);
+			pc.vaginas[pc.vaginas.length-1].vaginaColor = gooColor();
+			
 			output("\n\n<b>You have a pussy! A hot one that’s apparently sprung a leak if the sopping squeeze around your fingertips is any indication.</b> You pry your dancing fingers away before they decide to wring an orgasm from your new-budding clit, and gasp at the fluid coating your fingers.");
 			if(pc.fluidColorSimple(pc.girlCumType) != pc.hairColor) output(" It’s [pc.hairColor]! <b>Your sexual secretions have turned [pc.hairColor] and have an extremely slimy consistency.</b>");
 			else output(" <b>Your sexual secretions are more slime-like than ever before, and the color is richer somehow, a slippery counterpart to your hair.</b>");
@@ -545,34 +550,36 @@ public function galoMaxTFProc():void
 	addButton(0,"Next",mainGameMenu);
 }
 //Hotfix for reverting goo-dosed bodies
-public function doseEffectRevert():Number
+public function doseEffectRevert(part:String = "all"):Number
 {
 	if(flags["GALOMAX_DOSES"] == undefined) return -1;
 	
 	var changeCount:Number = 0;
 	
-	if(flags["GALOMAX_DOSES"] >= 1 && pc.hairType != GLOBAL.HAIR_TYPE_GOO)
+	if((part == "hair" || part == "all") && flags["GALOMAX_DOSES"] >= 1 && pc.hairType != GLOBAL.HAIR_TYPE_GOO)
 	{
+		if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) pc.hairStyle = "tentacle";
+		else pc.hairStyle = "null";
 		pc.hairType = GLOBAL.HAIR_TYPE_GOO;
 		changeCount++;
 	}
-	if(flags["GALOMAX_DOSES"] >= 2 && !pc.hasStatusEffect("Goo Vent"))
+	if((part == "vent" || part == "all") && flags["GALOMAX_DOSES"] >= 2 && !pc.hasStatusEffect("Goo Vent"))
 	{
 		pc.createStatusEffect("Goo Vent");
 		changeCount++;
 	}
-	if(flags["GALOMAX_DOSES"] >= 3 && !pc.hasStatusEffect("Goo Crotch"))
+	if((part == "crotch" || part == "all") && flags["GALOMAX_DOSES"] >= 3 && !pc.hasStatusEffect("Goo Crotch"))
 	{
 		pc.createStatusEffect("Goo Crotch");
 		changeCount++;
 	}
-	if(flags["GALOMAX_DOSES"] >= 4 && !pc.hasStatusEffect("Gel Body"))
+	if((part == "body" || part == "all") && flags["GALOMAX_DOSES"] >= 4 && !pc.hasStatusEffect("Gel Body"))
 	{
 		revertGooBody();
 		pc.createStatusEffect("Gel Body");
 		changeCount++;
 	}
-	if(flags["GALOMAX_DOSES"] >= 5 && pc.statusEffectv1("Gel Body") != 1)
+	if((part == "body" || part == "all") && flags["GALOMAX_DOSES"] >= 5 && pc.statusEffectv1("Gel Body") != 1)
 	{
 		pc.addStatusValue("Gel Body",1,1);
 		revertGooBody();
@@ -580,6 +587,44 @@ public function doseEffectRevert():Number
 	}
 	
 	return changeCount;
+}
+public function doseEffectRevertFix(part:String = "all"):void
+{
+	clearOutput2();
+	switch(part)
+	{
+		case "all":
+			output2("Your entire body tingles as parts of you shift and warp. Suddenly, <b>you are back to your normal goo self</b>, more or less.");
+			break;
+		case "hair":
+			output2("Your [pc.hair] tingles, then it begins to shift and morph. Not too soon after, <b>it has reverted itself back to its normally gooey self</b>.");
+			break;
+		case "vent":
+			output2("Your crotch tingles as you feel a bubbling in the region. Suddenly,");
+			if(!pc.hasGenitals()) output2(" a great pressure spikes, urging for release--but then it quickly subsides. Hm... <b>something changed, leaving you feeling more normal than before.</b>");
+			else
+			{
+				if(pc.hasCock()) output2(" [pc.cum]");
+				if(pc.hasCock() && pc.hasVagina()) output2(" and");
+				if(pc.hasVagina()) output2(" [pc.girlCum]");
+				output2(" starts to seep out of your loins... <b>It seems you have regained your ability to vent yourself!</b>");
+			}
+			break;
+		case "crotch":
+			output2("A tingling feeling hits your [pc.crotch]. You can sense the internal masses ebb and flow, kneading to your will. It looks like <b>you have regained the ability to reshape your genitals now</b>");
+			if(!pc.hasGenitals()) output2("--assuming you had any, that is..");
+			output2(".");
+			break;
+		case "body":
+			output2("Your body shudders, then tingles for a moment, shifting and warping. As quickly as it begane, you suddenly find yourself back in your morphable gooey self.");
+			break;
+		default:
+			output2("Nothing happens!");
+			break;
+	}
+	doseEffectRevert(part);
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooShiftMenu);
 }
 //Goo Body transformations
 public function revertGooBody(part:String = "all", consumeBiomass:Boolean = false):void
@@ -693,15 +738,35 @@ public function gooShiftMenu():void
 	output2(" goo creature, you can resize the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
 	showBiomass();
 	clearGhostMenu();
-	if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
+	if(flags["GALOMAX_DOSES"] >= 1)
+	{
+		if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
+		else addGhostButton(0,"Fix Hair",doseEffectRevertFix,"hair");
+	}
 	else addDisabledGhostButton(0, "Hair");
-	if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
+	if(flags["GALOMAX_DOSES"] >= 3)
+	{
+		if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
+		else addGhostButton(1,"Fix Crotch",doseEffectRevertFix,"crotch");
+	}
 	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unlock this option.");
-	if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
-	else addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
-	if(pc.hasStatusEffect("Gel Body")) addGhostButton(3,"Body",gooBodyCustomizer);
-	else addDisabledGhostButton(3,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
-	if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
+	if(flags["GALOMAX_DOSES"] >= 4)
+	{
+		if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
+		else addGhostButton(2,"Fix Chest",doseEffectRevertFix,"body");
+		if(pc.hasStatusEffect("Gel Body")) addGhostButton(3,"Body",gooBodyCustomizer);
+		else addGhostButton(3,"Fix Body",doseEffectRevertFix,"body");
+	}
+	else
+	{
+		addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
+		addDisabledGhostButton(3,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
+	}
+	if(flags["GALOMAX_DOSES"] >= 2)
+	{
+		if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
+		else addGhostButton(4,"Fix Vent",doseEffectRevertFix,"vent");
+	}
 	else addDisabledGhostButton(4,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
 	addGhostButton(14, "Back", backToAppearance, pc);
 }
@@ -922,11 +987,20 @@ public function gooBodyCustomizer():void
 	clearGhostMenu();
 	
 	// General body shape:
-	if(pc.statusEffectv1("Gel Body") >= 1)
+	if(flags["GALOMAX_DOSES"] >= 5)
 	{
-		addGhostButton(0,"Height",adjustGooBody,["height","menu"],"Height","Make adjustments to your height.");
-		addGhostButton(1,"Thickness",adjustGooBody,["thickness","menu"],"Thickness","Make adjustments to your thickness.");
-		addGhostButton(2,"Tone",adjustGooBody,["tone","menu"],"Tone","Make adjustments to your tone.");
+		if(pc.statusEffectv1("Gel Body") >= 1)
+		{
+			addGhostButton(0,"Height",adjustGooBody,["height","menu"],"Height","Make adjustments to your height.");
+			addGhostButton(1,"Thickness",adjustGooBody,["thickness","menu"],"Thickness","Make adjustments to your thickness.");
+			addGhostButton(2,"Tone",adjustGooBody,["tone","menu"],"Tone","Make adjustments to your tone.");
+		}
+		else
+		{
+			addGhostButton(0,"Fix Height",doseEffectRevertFix,"body");
+			addGhostButton(1,"Fix Thick",doseEffectRevertFix,"body");
+			addGhostButton(2,"Fix Tone",doseEffectRevertFix,"body");
+		}
 	}
 	else
 	{
