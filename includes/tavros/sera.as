@@ -269,6 +269,7 @@ public function seraInDebt():Boolean
 {
 	if(flags["SERA_PARTY_INVITE"] != undefined && flags["SERA_PARTY_INVITE"] >= 4) return false;
 	if(flags["SERA_REPAID_LOAN"] != undefined) return false;
+	if(flags["SERA_BUSINESS_SETUP"] != undefined && (days - flags["SERA_BUSINESS_SETUP"] >= 365)) return false;
 	return true;
 }
 public function seraDebtCheck():Boolean
@@ -1099,7 +1100,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>“Alright, meat, I’ll go easy on you this time. But next time...”</i>");
 			//End first-time variant
 		}
-		//{Start here If PC is a cockslut OR PC is an Ausar-type:}
+		//Start here If PC is a cockslut OR PC is an Ausar-type:
 		output("\n\n<i>“Woof!”</i> you answer, wagging ");
 		if(pc.tailCount > 0) output("your [pc.tails]");
 		else output("your [pc.butt] like a tail");
