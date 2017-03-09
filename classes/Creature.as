@@ -2363,6 +2363,35 @@
 				case "genitails":
 					buffer = tailGenitalsDescript();
 					break;
+				case "oneTailGenital":
+				case "oneGenitalTail":
+				case "oneGenitail":
+					buffer = oneTailGenitalDescript();
+					break;
+				case "oneTailCock":
+				case "oneCockTail":
+					buffer = oneTailGenitalDescript("cock");
+					break;
+				case "oneTailVagina":
+				case "oneTailCunt":
+				case "oneCuntTail":
+				case "oneTailgina":
+					buffer = oneTailGenitalDescript("cunt");
+					break;
+				case "eachTailGenital":
+				case "eachGenitalTail":
+					buffer = eachTailGenitalDescript();
+					break;
+				case "eachTailCock":
+				case "eachCockTail":
+					buffer = eachTailGenitalDescript("cock");
+					break;
+				case "eachTailVagina":
+				case "eachTailCunt":
+				case "eachCuntTail":
+				case "eachTailgina":
+					buffer = eachTailGenitalDescript("cunt");
+					break;
 				case "tailCockColor":
 				case "tailCuntColor":
 				case "tailGenitalColor":
@@ -15038,6 +15067,52 @@
 			if (hasTailCock()) return tailCocksDescript();
 			if (hasTailCunt()) return tailVaginasDescript();
 			return "ERROR: TAIL GENITAL DESCRIPT CALLED WITH NO TAIL GENITALS PRESENT.";
+		}
+		public function oneTailGenitalDescript(genOverride:String = "any"):String
+		{
+			var tailDesc:String = "ERROR: No tail genitals!";
+			
+			if (tailCount <= 0) return tailDesc;
+			
+			switch(genOverride)
+			{
+				case "cock":
+					tailDesc = (hasTailCock() ? tailCockDescript() : "ERROR: No tail cock!");
+					break;
+				case "cunt":
+					tailDesc = (hasTailCunt() ? tailVaginaDescript() : "ERROR: No tail vagina!");
+					break;
+				default:
+					if(hasTailCock()) tailDesc = tailCockDescript();
+					else if(hasTailCunt()) tailDesc = tailVaginaDescript();
+					break;
+			}
+			
+			if (tailCount == 1) return "your " + tailDesc;
+			return "one of your " + plural(tailDesc);
+		}
+		public function eachTailGenitalDescript(genOverride:String = "any"):String
+		{
+			var tailDesc:String = "ERROR: No tail genitals!";
+			
+			if (tailCount <= 0) return tailDesc;
+			
+			switch(genOverride)
+			{
+				case "cock":
+					tailDesc = (hasTailCock() ? tailCockDescript() : "ERROR: No tail cock!");
+					break;
+				case "cunt":
+					tailDesc = (hasTailCunt() ? tailVaginaDescript() : "ERROR: No tail vagina!");
+					break;
+				default:
+					if(hasTailCock()) tailDesc = tailCockDescript();
+					else if(hasTailCunt()) tailDesc = tailVaginaDescript();
+					break;
+			}
+			
+			if (tailCount == 1) return "your " + tailDesc;
+			return "each of your " + plural(tailDesc);
 		}
 		public function hasHardLightEquipped():Boolean
 		{
