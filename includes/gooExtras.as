@@ -738,19 +738,19 @@ public function gooShiftMenu():void
 	output2(" goo creature, you can resize the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
 	showBiomass();
 	clearGhostMenu();
-	if(flags["GALOMAX_DOSES"] >= 1)
+	if(flags["GALOMAX_DOSES"] > 1 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 1))
 	{
 		if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
 		else addGhostButton(0,"Fix Hair",doseEffectRevertFix,"hair");
 	}
 	else addDisabledGhostButton(0, "Hair");
-	if(flags["GALOMAX_DOSES"] >= 3)
+	if(flags["GALOMAX_DOSES"] > 3 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 3))
 	{
 		if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
 		else addGhostButton(1,"Fix Crotch",doseEffectRevertFix,"crotch");
 	}
 	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unlock this option.");
-	if(flags["GALOMAX_DOSES"] >= 4)
+	if(flags["GALOMAX_DOSES"] > 4 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 4))
 	{
 		if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
 		else addGhostButton(2,"Fix Chest",doseEffectRevertFix,"body");
@@ -762,7 +762,7 @@ public function gooShiftMenu():void
 		addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 		addDisabledGhostButton(3,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	}
-	if(flags["GALOMAX_DOSES"] >= 2)
+	if(flags["GALOMAX_DOSES"] > 2 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 2))
 	{
 		if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
 		else addGhostButton(4,"Fix Vent",doseEffectRevertFix,"vent");
@@ -987,7 +987,7 @@ public function gooBodyCustomizer():void
 	clearGhostMenu();
 	
 	// General body shape:
-	if(flags["GALOMAX_DOSES"] >= 5)
+	if(flags["GALOMAX_DOSES"] > 5 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 5))
 	{
 		if(pc.statusEffectv1("Gel Body") >= 1)
 		{
