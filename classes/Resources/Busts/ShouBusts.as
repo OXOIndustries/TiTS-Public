@@ -423,6 +423,13 @@
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa.png", mimeType = "image/png")]
+		public var Bust_PIPPA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa_oiled.png", mimeType = "image/png")]
+		public var Bust_PIPPA_OILED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa_nude.png", mimeType = "image/png")]
+		public var Bust_PIPPA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/praetorian.png", mimeType = "image/png")]
 		public var Bust_PRAETORIAN:Class;
@@ -945,6 +952,13 @@
 			
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ogram.png", mimeType = "image/png")]
 			public var Full_OGRAM:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa.png", mimeType = "image/png")]
+			public var Full_PIPPA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa_oiled.png", mimeType = "image/png")]
+			public var Full_PIPPA_OILED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa_nude.png", mimeType = "image/png")]
+			public var Full_PIPPA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/praetorian.png", mimeType = "image/png")]
 			public var Full_PRAETORIAN:Class;
