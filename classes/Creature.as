@@ -3939,6 +3939,7 @@
 			if (hasStatusEffect("Adorahol")) currLib += (5 * statusEffectv1("Adorahol"));
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
+			currLib += statusEffectv3("Heat");
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
 			if (currLib > libidoMax())
@@ -3978,6 +3979,7 @@
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
+			bonus += statusEffectv2("Heat");
 			bonus += statusEffectv1("Omega Oil");
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
@@ -6702,6 +6704,11 @@
 				}
 			}
 		}
+		public function clearPaintedPenisEffect():void
+		{
+			libidoMod -= statusEffectv4("Painted Penis");
+			removeStatusEffect("Painted Penis");
+		}
 		//CHECKING IF HAS A SPECIFIC STORAGE ITEM
 		//Status
 		public function hasStatusEffect(statusName: String): Boolean {
@@ -8204,6 +8211,22 @@
 				}
 			}
 			return index;
+		}
+		public function inHeat():Boolean
+		{
+			return hasStatusEffect("Heat");
+		}
+		public function inRut():Boolean
+		{
+			return hasStatusEffect("Rut");
+		}
+		public function clearHeat():void
+		{
+			removeStatusEffect("Heat");
+		}
+		public function clearRut():void
+		{
+			removeStatusEffect("Rut");
 		}
 		public function analCapacity(): Number {
 			var capacity:Number = 20;
@@ -9880,6 +9903,7 @@
 		
 		//Remove cock
 		public function removeCock(arraySpot:int, totalRemoved:int = 1): void {
+			if(hasStatusEffect("Painted Penis") && arraySpot == statusEffectv1("Painted Penis")) clearPaintedPenisEffect();
 			removeJunk(cocks, arraySpot, totalRemoved);
 			if(!hasCock())
 			{
@@ -10553,6 +10577,18 @@
 			if (!InCollection(faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_VULPINE)) counter--;
 			if (earType != GLOBAL.TYPE_VULPINE) counter--;
 			if (!hasTail(GLOBAL.TYPE_VULPINE)) counter--;
+			return counter;
+		}
+		public function laquineScore():int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_LAPINE || GLOBAL.TYPE_QUAD_LAPINE) counter++;
+			if (legType == GLOBAL.TYPE_LAPINE) counter++;
+			if (faceType == GLOBAL.TYPE_LAPINE) counter++;
+			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
+			if (armType == GLOBAL.TYPE_LAPINE) counter++;
+			if (counter > 0 && hasFur()) counter++;
+			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVagina(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
 			return counter;
 		}
 		public function myrScore(): int
@@ -15856,7 +15892,7 @@
 		{
 			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
 			
-			return fertilityRaw + fertilityMod;
+			return fertilityRaw + fertilityMod + statusEffectv1("Heat");
 		}
 		
 		public var pregnancyIncubationBonusMotherRaw:Number = 1;
@@ -17940,6 +17976,28 @@
 				
 				switch (thisStatus.storageName)
 				{
+					case "Laquine Ears":
+						if (startEffectLength >= 1140 && thisStatus.minutesLeft < 1140)
+						{
+							new LaquineEars().laquineEarProcDetemmienator(this);
+						}
+						if (startEffectLength >= 840 && thisStatus.minutesLeft < 840)
+						{
+							new LaquineEars().laquineEarProcDetemmienator(this);
+						}
+						if (startEffectLength >= 540 && thisStatus.minutesLeft < 540)
+						{
+							new LaquineEars().laquineEarProcDetemmienator(this);
+						}
+						if (startEffectLength >= 240 && thisStatus.minutesLeft < 240)
+						{
+							new LaquineEars().laquineEarProcDetemmienator(this);
+						}
+						if(requiresRemoval)
+						{
+							new LaquineEars().laquineEarsFinale(this);
+						}
+						break;
 					case "Curdsonwhey": 
 						
 						if (startEffectLength >= 180 && thisStatus.minutesLeft < 180)
@@ -17964,6 +18022,13 @@
 							AddLogEvent("You swallow, and nod with approval as the bitterness of the Curdsonwhey at the back of your throat finally washes away.", "passive", maxEffectLength);
 						}
 						
+						break;
+					case "Painted Penis":
+						if(requiresRemoval)
+						{
+							AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.","passive");
+							libidoMod += statusEffectv4("Painted Penis");
+						}
 						break;
 					case "IQBGoneTimer":
 						if(requiresRemoval)

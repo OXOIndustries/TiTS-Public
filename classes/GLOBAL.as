@@ -211,6 +211,7 @@
 		public static const TYPE_MILODAN:int								= 70;
 		public static const TYPE_WORG:int									= 71;
 		public static const TYPE_SWINE:int									= 72;
+		public static const TYPE_QUAD_LAPINE:int 							= 73;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -285,7 +286,8 @@
 			"Bothrioc",
 			"Milodan",
 			"Worg",
-			"Swine"
+			"Swine",
+			"Quad Lapine"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -395,7 +397,8 @@
 			TYPE_GABILANI,
 			TYPE_FROG,
 			TYPE_GRYVAIN,
-			TYPE_SWINE
+			TYPE_SWINE,
+			TYPE_QUAD_LAPINE
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
