@@ -298,8 +298,12 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/juro_nude.png", mimeType = "image/png")]
 		public var Bust_JURO_NUDE:Class;
 
+		//[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede_old.png", mimeType = "image/png")]
+		//public var Bust_KAEDE_OLD:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede.png", mimeType = "image/png")]
 		public var Bust_KAEDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede_nude.png", mimeType = "image/png")]
+		public var Bust_KAEDE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara.png", mimeType = "image/png")]
 		public var Bust_KARA:Class;
@@ -837,8 +841,12 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/juro_nude.png", mimeType = "image/png")]
 			public var Full_JURO_NUDE:Class;
 
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede_old.png", mimeType = "image/png")]
+			//public var Full_KAEDE_OLD:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede.png", mimeType = "image/png")]
 			public var Full_KAEDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede_nude.png", mimeType = "image/png")]
+			public var Full_KAEDE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kara.png", mimeType = "image/png")]
 			public var Full_KARA:Class;
