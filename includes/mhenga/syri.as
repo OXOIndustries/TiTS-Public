@@ -17,9 +17,6 @@ public function showSyri(nude:Boolean = false):void
 }
 public function syriBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["SYRI"] != "GATS") return "SYRI";
-	
 	var sBust:String = "SYRI";
 	if(nude) sBust += "_NUDE";
 	return sBust;

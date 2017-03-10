@@ -14,6 +14,7 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/bng/nevrie.png", mimeType = "image/png")]
 		public var Bust_NEVRIE:Class;
+		public function get Bust_NEVRIE_NUDE():Class { return Bust_NEVRIE; }
 		
 		[Embed(source = "../../../assets/images/npcs/bng/nuka_a.png", mimeType = "image/png")]
 		public var Bust_NUKA_A:Class;

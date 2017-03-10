@@ -34,9 +34,6 @@ public function showVKo(nude:Boolean = false):void
 }
 public function vKoBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["VKO"] != "GATS") return "VKO";
-	
 	var sBust:String = "VKO";
 	if(nude) sBust += "_NUDE";
 	return sBust;

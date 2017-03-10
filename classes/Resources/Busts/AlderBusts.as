@@ -21,6 +21,7 @@ package classes.Resources.Busts
 		{
 			[Embed(source = "../../../assets/images/npcs/alder/HR/kaede.png", mimeType = "image/png")]
 			public var Full_KAEDE:Class;
+			public function get Full_KAEDE_NUDE():Class { return Full_KAEDE; }
 		}
 	}
 

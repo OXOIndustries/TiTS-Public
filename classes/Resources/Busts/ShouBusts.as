@@ -374,13 +374,13 @@
 		public var Bounds_MILODANMALE:Rectangle = new Rectangle(30, 0, 65, 62);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_club.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_CLUB:Class;
-		public var Bounds_MILODANMALE_CLUB:Rectangle = new Rectangle(30, 0, 65, 62);
+		public function get Bounds_MILODANMALE_CLUB():Rectangle { return Bounds_MILODANMALE; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_axe.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_AXE:Class;
-		public var Bounds_MILODANMALE_AXE:Rectangle = new Rectangle(30, 0, 65, 62);
+		public function get Bounds_MILODANMALE_AXE():Rectangle { return Bounds_MILODANMALE; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_nude.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_NUDE:Class;
-		public var Bounds_MILODANMALE_NUDE:Rectangle = new Rectangle(30, 0, 65, 62);
+		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
@@ -459,11 +459,11 @@
 		public var Bust_SAENDRA:Class;
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(17, 12, 66, 62);
 		public function get Bust_SAENDRA_FUTA():Class { return Bust_SAENDRA; }
-		public var Bounds_SAENDRA_FUTA:Rectangle = new Rectangle(17, 12, 66, 62);
+		public function get Bounds_SAENDRA_FUTA():Rectangle { return Bounds_SAENDRA; }
 		public function get Bust_SAENDRA_NUDE():Class { return Bust_SAENDRA; }
-		public var Bounds_SAENDRA_NUDE:Rectangle = new Rectangle(17, 12, 66, 62);
+		public function get Bounds_SAENDRA_NUDE():Rectangle { return Bounds_SAENDRA; }
 		public function get Bust_SAENDRA_FUTA_NUDE():Class { return Bust_SAENDRA; }
-		public var Bounds_SAENDRA_FUTA_NUDE:Rectangle = new Rectangle(17, 12, 66, 62);
+		public function get Bounds_SAENDRA_FUTA_NUDE():Rectangle { return Bounds_SAENDRA; }
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_old.png", mimeType = "image/png")]
 		public var Bust_SHADE_COMBAT:Class;
@@ -540,6 +540,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi.png", mimeType = "image/png")]
 		public var Bust_YAMMI:Class;
+		public function get Bust_YAMMI_APRON():Class { return Bust_YAMMI; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi_nude.png", mimeType = "image/png")]
 		public var Bust_YAMMI_NUDE:Class;
 
@@ -990,6 +991,9 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
+			public function get Full_SAENDRA_FUTA():Class { return Full_SAENDRA; }
+			public function get Full_SAENDRA_NUDE():Class { return Full_SAENDRA; }
+			public function get Full_SAENDRA_FUTA_NUDE():Class { return Full_SAENDRA; }
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_old.png", mimeType = "image/png")]
 			public var Full_SHADE_COMBAT:Class;
@@ -1062,6 +1066,7 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi.png", mimeType = "image/png")]
 			public var Full_YAMMI:Class;
+			public function get Full_YAMMI_APRON():Class { return Full_YAMMI; }
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi_nude.png", mimeType = "image/png")]
 			public var Full_YAMMI_NUDE:Class;
 
