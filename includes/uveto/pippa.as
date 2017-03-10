@@ -92,8 +92,12 @@ public function showPippa(naked:Boolean = false, oiled:Boolean = false):void
 	}
 	
 	// if naked false, show normal, clothed bust
+	if(!naked && !oiled) showBust("PIPPA");
 	// else if naked true and oiled false, show normal, naked bust
+	else if(naked && !oiled) showBust("PIPPA_NUDE");
 	// else if oiled true, show oiled, naked bust
+	else if(naked && oiled) showBust("PIPPA_NUDE");
+	else showBust("PIPPA_OILED");
 	
 	author("Ascent");
 }
@@ -720,7 +724,7 @@ public function pippaHappyEnding(type:String = "hands"):void
 {
 	clearOutput();
 	clearMenu();
-	showPippa();
+	showPippa(false, true);
 	
 	var genitalType:int;
 	var penisIndex:int;
