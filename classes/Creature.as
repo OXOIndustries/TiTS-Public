@@ -1051,6 +1051,7 @@
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
 			if(isCumCow() && hasStatusEffect("The Treatment")) return false;
+			if(hasStatusEffect("Painted Penis") && statusEffectv1("Painted Penis") == cockIndex) return false;
 			return true;
 		}
 		public function cockLengthLockedMessage():String
@@ -1061,6 +1062,7 @@
 		public function cockThicknessUnlocked(cockIndex:int, newCockThickness:Number):Boolean
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(hasStatusEffect("Painted Penis") && statusEffectv1("Painted Penis") == cockIndex) return false;
 			return true;
 		}
 		public function cockThicknessLockedMessage():String
@@ -1071,6 +1073,7 @@
 		public function cockTypeUnlocked(cockIndex:int, newCockType:Number):Boolean
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(hasStatusEffect("Painted Penis") && statusEffectv1("Painted Penis") == cockIndex) return false;
 			return true;
 		}
 		public function cockTypeLockedMessage():String
@@ -1081,6 +1084,7 @@
 		public function knotMultiplierUnlocked(cockIndex:int, newKnotMulti:Number):Boolean
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(hasStatusEffect("Painted Penis") && statusEffectv1("Painted Penis") == cockIndex) return false;
 			return true;
 		}
 		public function knotMultiplierLockedMessage():String
@@ -1091,6 +1095,7 @@
 		public function flaccidMultiplierUnlocked(cockIndex:int, newFlaccidMulti:Number):Boolean
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(hasStatusEffect("Painted Penis") && statusEffectv1("Painted Penis") == cockIndex) return false;
 			return true;
 		}
 		public function flaccidMultiplierLockedMessage():String
@@ -1101,6 +1106,7 @@
 		public function cockFlagsUnlocked(cockIndex:int, newFlags:*):Boolean
 		{
 			if(hasStatusEffect("Goo Crotch")) return false;
+			if(hasStatusEffect("Painted Penis") && statusEffectv1("Painted Penis") == cockIndex) return false;
 			return true;
 		}
 		public function cockFlagsLockedMessage():String
