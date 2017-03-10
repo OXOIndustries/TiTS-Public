@@ -29,7 +29,7 @@
 			this.description = "an insulated coat";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Stitched leather hides harvested from aquatic mammals in the aquatic core and dyed to blend in with the icy tundra of Uveto VII. It’s been sewn to consist of several cushioning layers that provide excellent protection against the cold but only moderate protection from everything else. It does have a wide number of pockets, so that’s a plus!";
+			this.tooltip = "Stitched leather hides harvested from aquatic mammals in the aquatic core and dyed to blend in with the icy tundra of Uveto VII. It’s been sewn to consist of several cushioning layers that provide excellent protection against the cold but only moderate protection from everything else. It does have a wide number of pockets, so that’s a plus! (+1 inventory slot while equipped).";
 
 			//An alright upgrade. Stronk against kinetic, slashing and thermal, practically worthless against piercing.
 		

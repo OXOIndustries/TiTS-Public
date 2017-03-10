@@ -1190,37 +1190,52 @@ public function GlacialRiftM44():Boolean
 		output("\n\nYou slowly make your way around the bend in the icy tunnel, following the natural curves of the frigid glacier’s heart until you find yourself stepping into a small, almost perfectly circular chamber at the tunnel’s end. The indistinct voices you heard before echoing throughout the place solidify into those of three figures standing here, chanting and swaying before a solid block of ice, maybe four feet high and perfectly smooth on the top.");
 
 		output("\n\nThe figures are");
-		if (CodexManager.entryUnlocked("Milodan")) output(" milodans");
-		else if (flags["ICEQUEEN COMPLETE"] != undefined) output(" the same race as Zaalt");
+		if (CodexManager.entryUnlocked("Milodan")) output(" milodans:");
+		else if (flags["ICEQUEEN COMPLETE"] != undefined) output(" the same race as Zaalt:");
 		output(" tall, white-furred feline humanoids standing naked despite the intense chill. Two are men -- bigger, broad-shouldered, and muscular -- and the other a woman with broad hips and a shock of ice blue hair, cut into a mohawk that runs down to her shoulders. She’s carrying a staff that looks like something out of a fantasy holo, black as obsidian and tipped with a green savicite stone surrounded by a metal halo. With every refrain of their chant, she cracks the butt of the staff against the cavern floor, and the stone within the halo glows for a moment, as if with some inner light.");
 
 		output("\n\nThankfully, they’re looking away from you when you enter, giving you that moment to get your bearings. They haven’t noticed you for the moment, too absorbed by their strange ritual...");
 		
 		clearMenu();
-		addButton(0, "Watch", GRM44Watch, undefined, "Watch", "No sense endangering yourself. Let’s see what they’re up to down here.");
-		addButton(1, "Interrupt", GRM44Interrupt, undefined, "Interrupt", "Though you doubt they’ll appreciate the interruption, you’ve got your eye on that idol of theirs... if that’s actually pure savicite, it could be worth a fortune.");
-		addButton(14, "Leave", function():void {
-			currentLocation = "UVGR O44";
+		addButton(0, "Next", function():void {
 			clearOutput();
-	
+			
 			if (!CodexManager.entryUnlocked("Milodan"))
 			{
-				output("From inside your pack, you hear your Codex beeping. Apparently, these creatures are called milodans: a native race that has partially resisted upliftment, causing problems for the locals. Considering where you are and what they’re doing, it doesn’t take much of a leap to figure these are some of those malcontents.");
+				output("From inside your pack, you hear your Codex beeping. You hush it as best you can and take a look once it’s quieted down. Apparently, these creatures are called milodans: a native race that has partially resisted upliftment, causing problems for the locals. Considering where you are and what they’re doing, it doesn’t take much of a leap to figure these are some of those malcontents.");
 				output("\n\n");
 				CodexManager.unlockEntry("Milodan");
 			}
-			
-			output("Despite how tempting a sight the milodan are putting on, you think it wise not to get involved. For now...");
+	
+			output("For the first time, you notice something on the altar: a shaft of green stone, just like the stone on her staff, about a foot long and as thick as your fist. It’s thicker at the base, and tapers to a slender point at the tip.");
+			if (flags["UVETO_HUSKAR_FOURSOME"] != undefined)
+			{
+				output(" Wait, isn’t that the same sort of idol that the huskar twins back on the station found...?");
+			}
+			output("\n\nShould you stay and watch this strange ritual, interrupt it, or ignore it altogether?");
 			
 			clearMenu();
-			addButton(0, "Next", mainGameMenu);
-		}, undefined, "Leave", "No point getting involved...");
+			addButton(0, "Watch", GRM44Watch, undefined, "Watch", "No sense endangering yourself. Let’s see what they’re up to down here.");
+			addButton(1, "Interrupt", GRM44Interrupt, undefined, "Interrupt", "Though you doubt they’ll appreciate the interruption, you’ve got your eye on that idol of theirs... if that’s actually pure savicite, it could be worth a fortune.");
+			addButton(14, "Leave", function():void {
+				currentLocation = "UVGR O44";
+				clearOutput();
+				
+				output("Despite how tempting a sight the milodan are putting on, you think it wise not to get involved. For now...");
+				
+				flags["UVGR_SAVICITE_IDOL"] = undefined;
+				
+				clearMenu();
+				addButton(0, "Next", mainGameMenu);
+			}, undefined, "Leave", "No point getting involved...");
+		});
 		
 		return true;
 	}
-	if (flags["UVGR_SAVICITE_IDOL"] != undefined && flags["UVGR_SAVICITE_IDOL"] != 1)
+	if (flags["UVGR_SAVICITE_IDOL"] != undefined)
 	{
-		output(" or the idol they had with them.");
+		output(" There’s no sign of the milodan that you saw here before...");
+		if(flags["UVGR_SAVICITE_IDOL"] != 1) output(" or the idol they had with them.");
 	}
 	return false;
 }
@@ -1230,13 +1245,6 @@ public function GRM44Interrupt():void
 	clearOutput();
 	author("Savin");
 	showBust("MILODAN_PRIESTESS", bustDisplayMilodanMale(), bustDisplayMilodanMale());
-	
-	if (!CodexManager.entryUnlocked("Milodan"))
-	{
-		output("From inside your pack, you hear your Codex beeping. Apparently, these creatures are called milodans: a native race that has partially resisted upliftment, causing problems for the locals. Considering where you are and what they’re doing, it doesn’t take much of a leap to figure these are some of those malcontents.");
-		output("\n\n");
-		CodexManager.unlockEntry("Milodan");
-	}
 
 	output("You step out of the shadows and whistle, drawing your [pc.weapon] as you do so. The sharp sound ricochets off the icy walls, mixing with the milodans’ chant until it’s cut off. The trio turn around to face you, scowling, and the woman cracks the butt of her staff down on the ice.");
 	
@@ -1257,26 +1265,16 @@ public function GRM44Watch():void
 	pc.lust(25);
 	
 	output("You hide yourself as best you can in the shadows of the tunnel entrance, content to observe the natives’ ritual from afar.");
-	if (!CodexManager.entryUnlocked("Milodan"))
-	{
-		output(" From inside your pack, you hear your Codex beeping. You hush it as best you can and take a look once it’s quieted down. Apparently, these creatures are called milodans: a native race that has partially resisted upliftment, causing problems for the locals. Considering where you are and what they’re doing, it doesn’t take much of a leap to figure these are some of those malcontents.");
-		CodexManager.unlockEntry("Milodan");
-	}
 	
 	output("\n\nThe three cat-folk continue chanting for a minute or so more, too fast and echoing too much for your microbes to get a translation. Suddenly, seemingly without climax, the chant ends and the cave goes silent. The two men look at the woman standing between them, grin, and grab her by the backs of her legs and shoulders, hefting her into the air. She gasps but doesn’t struggle, instead putting her hands on the men’s shoulders for support as they maneuver her over the altar.");
 	
-	output("\n\nFor the first time, you notice something on the altar: a shaft of green stone, just like the stone on her staff, about a foot long and as thick as your fist. It’s thicker at the base, and tapers to a slender point at the tip.");
-	if (flags["UVETO_HUSKAR_FOURSOME"] != undefined)
-	{
-		output(" Wait, isn’t that the same sort of idol that the huskar twins back on the station found...?");
-	}
-	output(" The men lift their female counterpart up, only to spear her down on the thick green icon atop the ice brick.");
+	output("\n\n... And over the stone. The men lift their female counterpart up, only to spear her down on the thick green icon atop the ice brick.");
 	
 	output("\n\nThe cat-woman yelps, a sharp cry of pleasure that bounces off the walls until she’s slid all the way down the rocky rod, completely filling her asshole. Panting from the carnal descent, she glances up at her two males and grins, spreading her legs wide and bracing her heels on the altar’s corners.");
 	
 	output("\n\nOne of the males immediately steps up, grabbing the woman’s hips and thrusting himself into the sodden slit between her legs. His mate throws her head back and howls in pleasure, digging her claws into the flat plane of the ice beneath her. From where you’re at, you can only catch glimpses of the long, black feline member pumping in and out of her pussy, but that of the other milodan is fully in view: he stands beside the coupling pair, and the female reaches out to grab his dark manhood, stroking it off while she’s pumped full of the other man’s dick.");
 	
-	output("\n\nThe sounds of the three cat-folks’ coupling echo throughout the strange chamber, a mix of grunts, growls, howls, and the heavy beats of flesh and fur slapping against each other. It isn’t all that long before the first male grunts and lunges forward, digging his teeth into the woman’s shoulder and his claws into her flanks, harsh enough to draw blood. She gasps, locking her legs behind his ass and pulling him closer, forcing him to the hilt inside her. A second later and he staggers back, a slimey bridge of steaming white goo connecting the crown of his tapered prick to the female’s slit.");
+	output("\n\nThe sounds of the three cat-folks’ coupling echo throughout the strange chamber, a mix of grunts, growls, howls, and the heavy beats of flesh and fur slapping against each other. It isn’t all that long before the first male grunts and lunges forward, digging his teeth into the woman’s shoulder and his claws into her flanks, harsh enough to draw blood. She gasps, locking her legs behind his ass and pulling him closer, forcing him to the hilt inside her. A second later and he staggers back, a slimy bridge of steaming white goo connecting the crown of his tapered prick to the female’s slit.");
 	
 	output("\n\nThe second male shoves the first aside and takes his place. thrusting himself into the cat-woman’s cum-stuffed quim. She just smiles and strokes his cheek, inviting him inside herself with easy, lustful desire.");
 	
@@ -1288,11 +1286,11 @@ public function GRM44Watch():void
 	
 	output("\n\n<i>“I can feel the Lost Ones blessing my body already,”</i> the woman purrs, putting a hand on her belly and the other on her staff.");
 	
-	output("\n\nThe men bow to her and then left her up, freeing her from the anchor of savicite in her ass. She moans, drooling seed from her black lips. Once they set her down, she slips down to her knees and plants a kiss on the crown of each man’s penis, licking them clean of any excess. Once done, the three turn towards the tunnel’s exit... and your hiding place.");
+	output("\n\nThe men bow to her and then heft her up, freeing her from the anchor of savicite in her ass. She moans, drooling seed from her black lips. Once they set her down, she slips down to her knees and plants a kiss on the crown of each man’s penis, licking them clean of any excess. Once done, the three turn towards the tunnel’s exit... and your hiding place.");
 	
 	output("\n\nYou scramble back, looking for some hollow or side-passage to hide yourself in, and find none. Oh, shit.");
 	
-	output("\n\nThe trio round the first corner of the tunnel, and all but smack into you, sending all four of you reeling backwards in surprise and alarm. The men recover and start to growl, bearing their tusk-like fangs and claws, stepping protectively between you and their mate. Before they can lunge for your throat, though, the female puts a hand on each sabertooth’s shoulder and pushes them apart, eyeing you with a mix of interest and disgust.");
+	output("\n\nThe trio round the first corner of the tunnel, and all but smack into you, sending all four of you reeling backwards in surprise and alarm. The men recover and start to growl, baring their tusk-like fangs and claws, stepping protectively between you and their mate. Before they can lunge for your throat, though, the female puts a hand on each sabertooth’s shoulder and pushes them apart, eyeing you with a mix of interest and disgust.");
 	
 	output("\n\n<i>“What have we here?”</i> she wonders aloud, planting the butt of her staff in the ice beside her. <i>“A dirty little voyeur?”</i>");
 
@@ -1370,7 +1368,7 @@ public function GRM44Fight():void
 			s += "\n\nStanding defensively between you and the female";
 			if (!m1.isDefeated() && !m2.isDefeated())
 			{
-				s += " are a pair of male milodans, bearing their claws at you.";
+				s += " are a pair of male milodans, baring their claws at you.";
 			}
 			else
 			{
@@ -1430,9 +1428,9 @@ public function fertilityPriestessGetLicked():void
 	else output(" the tip of your [pc.tail]");
 	output(". She grunts, thrashing her tail and scouring the ice with her claws... but all her wiggling just makes her huge, heavy breasts bounce and jiggle in the most alluring ways.");
 
-	output("\n\nSome submissive instinct in her kicks in as you approach, though, and her legs spread apart, revealing the black slit of her pussy for you inspection. You brush your fingers through the gulf between her lips as you go, straddling her flanks and planting your [pc.butt] on her chest. All you need to do is point down at your [pc.vagOrAss] to get your desires across. The milodan snickers and plants her hands on your [pc.hips], licking her chops like a hungry animal.");
+	output("\n\nSome submissive instinct in her kicks in as you approach, though, and her legs spread apart, revealing the black slit of her pussy for your inspection. You brush your fingers through the gulf between her lips as you go, straddling her flanks and planting your [pc.butt] on her chest. All you need to do is point down at your [pc.vagOrAss] to get your desires across. The milodan snickers and plants her hands on your [pc.hips], licking her chops like a hungry animal.");
 
-	output("\n\n<i>“We of the fertility cult have plenty of experience with this,”</i> she boasts, flick her tongue along your thigh. It’s soft but just a little rough around the tip, making you shiver when it passes over your [pc.skinFurScales]. That’s the stuff! You grin down and run a hand appreciatively through the priestess’s shock of icy hair, guiding her little muzzle towards your crotch.");
+	output("\n\n<i>“We of the fertility cult have plenty of experience with this,”</i> she boasts, flicking her tongue along your thigh. It’s soft but just a little rough around the tip, making you shiver when it passes over your [pc.skinFurScales]. That’s the stuff! You grin down and run a hand appreciatively through the priestess’s shock of icy hair, guiding her little muzzle towards your crotch.");
 	if (!pc.isNude() && pc.hasVagina()) output(" She peels aside your gear, staring hungrily at the bared slit of your sex.");
 	else if (!pc.isNude() && !pc.hasVagina())
 	{
@@ -1441,10 +1439,10 @@ public function fertilityPriestessGetLicked():void
 
 		output("\n\nYou just grin and point below your shaft. It’s not your dick you’re interested in getting wet today.");
 
-		output("\n\nThe priestess’s lips curl up, but you roughly push her snout into your goin and rub your [pc.asshole] against her little pink nose.");
+		output("\n\nThe priestess’s lips curl up, but you roughly push her snout into your groin and rub your [pc.asshole] against her little pink nose.");
 	}
 
-	output("\n\nYou guide her right where you want her to go, and sure enough, you soon feel a wet, probing muscle pressing against your [pc.vagOrAss]. Relaxing yourself, you let her tongue slip inside you, flicking across your inner walls. It’s just the right combination of rough, wet, and soft to make you shiver and gasp with pleasure. Your fingers clutches at the priestess’s hair, driving her deeper and deeper until she has to struggle to come up for breath.");
+	output("\n\nYou guide her right where you want her to go, and sure enough, you soon feel a wet, probing muscle pressing against your [pc.vagOrAss]. Relaxing yourself, you let her tongue slip inside you, flicking across your inner walls. It’s just the right combination of rough, wet, and soft to make you shiver and gasp with pleasure. Your fingers clutch at the priestess’s hair, driving her deeper and deeper until she has to struggle to come up for breath.");
 
 	output("\n\nYour " + (pc.legCount == 1 ? "[pc.leg] clenches around her shoulder" : "[pc.legs] clench around her shoulders") + ", making sure she doesn’t stray too far from her task, leaving your hands free to wander. They find right where to go: the priestess’s quivering jugs, jiggling with every labored breath beneath your [pc.butt]. Your fingers close around the black peaks of her teats, tweaking and tugging on them until a muffled moan emanates from your backside.");
 
@@ -1465,7 +1463,7 @@ public function fertilityPriestessGetLicked():void
 	output("\n\nHer hands grope blindly at your [pc.hips], claws gently raking your [pc.skin]. Beneath you, her huge jugs shift and quake with her quickening breath, a full-body response to your thrusting into her twat that grows more pronounced the deeper your");
 	if (!pc.hasTailCock()) output(" fingers go");
 	else output(" cock-tail goes");
-	output(". You can hear her tail swishing against the ice, feel her tongue thrashing amidst moans and gasps. Now that’s the stuff!");
+	output(". You can hear her tail swishing against the ice, feel her tongue thrashing amidst moans and gasps. Now that’s more like it!");
 
 	output("\n\nYou reward her efforts with soft moans, rocking your [pc.hips] against her mouth and stroking her hair. <i>“Good girl,”</i> you murmur, already feeling that familiar height of pleasure starting to mount inside you. She’s finding every sweet spot with unerring accuracy, swirling her tongue around inside your [pc.vagOrAss] to the same beat that you pleasure the sabertooth’s pussy. You’ve got a good lead on her, though, in the steady race to climax. With a gasping cry, you throw your head back and push the priestess’s little muzzle as deep into your [pc.vagOrAss] as you can, riding it to orgasm.");
 
@@ -1474,7 +1472,7 @@ public function fertilityPriestessGetLicked():void
 	if (pc.hasCock()) output(" Your untouched dick, only half-hard in the cold, bubbles with a frothy [pc.cumColor] spurt of pre before erupting into the priestess’s hair.");
 	if (pc.hasTailCock()) output(" Your [pc.tailCock] throbs inside the fluffy slut’s tight little fuckhole, bulging with seed before pumping her womb with its load.");
 
-	output("\n\nThe cat-woman finally frees herself from your [pc.vagOrAss] as your orgasm subsides, coming up for gasping breaths. <i>“Ah! I’m a mess!”</i> she snarls, bearing her fangs... right up until you reach down and boop her on the nose, telling her she");
+	output("\n\nThe cat-woman finally frees herself from your [pc.vagOrAss] as your orgasm subsides, coming up for gasping breaths. <i>“Ah! I’m a mess!”</i> she snarls, baring her fangs... right up until you reach down and boop her on the nose, telling her she");
 	if (pc.isBimbo() || pc.isMisc()) output(" is a good girl");
 	else output(" did good");
 	output(". You pull out of her pussy at the same time, making her gasp and squirm until you’re well out of reach, gathering your gear and leaving the woman to her lonely orgasm.");
@@ -1494,7 +1492,7 @@ public function fertilityPriestessFuckHer():void
 	showBust("MILODAN_PRIESTESS");
 	author("Savin");
 
-	output("You stride over to the defeated tigress and give her a rough, playful push down onto her back. She hisses as her fur graces the frigid ice, but she’s clearly used to the Uvetan cold: the only sign she feels it is in the two big, black nipples jutting up from her snowy fur. Or maybe she’s just turned on by losing, you wonder aloud. The prideful priestess snarls, baring her fangs at you... but one of her hands instinctively goes to the dark slit between her legs, and another gropes at one of her weighty breasts, pinching around the bone piercing through her teat. As you approach, your pull aside your gear and");
+	output("You stride over to the defeated tigress and give her a rough, playful push down onto her back. She hisses as her fur graces the frigid ice, but she’s clearly used to the Uvetan cold: the only sign she feels it is in the two big, black nipples jutting up from her snowy fur. Or maybe she’s just turned on by losing, you wonder aloud. The prideful priestess snarls, baring her fangs at you... but one of her hands instinctively goes to the dark slit between her legs, and another gropes at one of her weighty breasts, pinching around the bone piercing through her teat. As you approach, you pull aside your gear and");
 	if (!pc.hasCock()) output(" activate your hardlight cock. The translucent rod springs to life in a rush of sensation, shaping itself into the familiar shape of your nerve-linked toy.");
 	else output(" wrap your fingers around the [pc.knot] of your steadily-stiffening cock, letting the priestess’s alluring body stoke the fires of your lust.");
 
@@ -1506,7 +1504,7 @@ public function fertilityPriestessFuckHer():void
 		
 		output("\n\nThe priestess licks her lips, eyeing your glimmering rod hungrily. Something tells you that there won’t be any resistance from her now...");
 	}
-	else output("\n\n<i>“Ah, I see what you want,”</i> the priestess purrs. A pair of her fingers spread her lower lips apart, revealing a glistening pink sheath that mists in the chill, beckoning your naked manhood to come rest within her depths. <i>“Perhaps the spirits are kind, after all. Let’s see what you off-worlders call fucking!”</i>");
+	else output("\n\n<i>“Ah, I see what you want,”</i> the priestess purrs. A pair of her fingers spread her lower lips apart, revealing a glistening onyx sheath that mists in the chill, beckoning your naked manhood to come rest within her depths. <i>“Perhaps the spirits are kind, after all. Let’s see what you off-worlders call fucking!”</i>");
 
 	output("\n\nYou slip down over the milodan woman, running your hands through the thin veneer of fur coating her luscious breasts. A purr hums in the back of her throat, and her legs spread around your [pc.hips], wrapping her satin-soft paws around your backside and guiding you in. Your [pc.cockOrStrapon] brushes through the cleft of her sex, and the priestess moans into your ear.");
 
@@ -1519,9 +1517,9 @@ public function fertilityPriestessFuckHer():void
 	
 	if (pc.hasCock()) pc.cockChange();
 	
-	output(" The pervasive cold of Uveto seems to melt away in an instant, replaced by a respendant warmth radiating from your throbbing dickmeat as you slide into the welcoming embrace of the sabertooth slut’s pussy. Her back arches off the ice and her mammoth tits press against your [pc.chest], ticking your [pc.nipples] with her velvety fur.");
+	output(" The pervasive cold of Uveto seems to melt away in an instant, replaced by a resplendent warmth radiating from your throbbing dickmeat as you slide into the welcoming embrace of the sabertooth slut’s pussy. Her back arches off the ice and her mammoth tits press against your [pc.chest], tickling your [pc.nipples] with her velvety fur.");
 
-	output("\n\nYour hands naturally find their way from her chest to her cheeks, pulling her into a fierce kiss - as much to share the warmth of her breath as anything. Regardless of your motives, her fluffy tail swishes across the ice, and her quim clenches wonderfully around your prick. That’s the stuff! The priestess thrusts her tongue into your mouth, scouring your [pc.tongue] with the rough tip. Your hips start to move, and her clawed paws wrap around your back, digging into your [pc.skinFurScales]. The sudden rush of pain subsides into a heady mix of pleasure and warmth, wrapped in the cum-hungry alien’s embrace.");
+	output("\n\nYour hands naturally find their way from her chest to her cheeks, pulling her into a fierce kiss - as much to share the warmth of her breath as anything. Regardless of your motives, her fluffy tail swishes across the ice, and her quim clenches wonderfully around your prick. She’s a beast! The priestess thrusts her tongue into your mouth, scouring your [pc.tongue] with the rough tip. Your hips start to move, and her clawed paws wrap around your back, digging into your [pc.skinFurScales]. The sudden rush of pain subsides into a heady mix of pleasure and warmth, wrapped in the cum-hungry alien’s embrace.");
 
 	output("\n\n<i>“So gentle for an offworlder,”</i> she murmurs, breaking the kiss and licking at your cheek. <i>“How boring.”</i>");
 
@@ -1729,7 +1727,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		var priestess:MilodanFertilityPriestess = tEnemy is MilodanFertilityPriestess ? tEnemy as MilodanFertilityPriestess : null;
 		if (priestess != null && priestess.malesRan)
 		{
-			output("\n\nThe woman <i>tsk</i>s her tongue, glancing around the barren chamber. Her male companions are nowhere to be seen. At least you managed that small victory before succumbing to her. Growling, the milodan woman grabs you throws you onto the altar, face-up and [pc.legOrLegs] flailing over the edge.");
+			output("\n\nThe woman <i>tsk</i>s her tongue, glancing around the barren chamber. Her male companions are nowhere to be seen. At least you managed that small victory before succumbing to her. Growling, the milodan woman grabs and throws you onto the altar, face-up and [pc.legOrLegs] flailing over the edge.");
 		}
 		else
 		{
@@ -1972,7 +1970,7 @@ public function GRM44Flirt():void
 	output("\n\n<i>“Is that right?”</i> the female milodan coos, brushing her snowy fingers across your chin.");
 	if (pc.hasCock()) output(" <i>“You should have joined in, then. All seed is welcome, even that of an alien, in restoring the Lost Ones. Perhaps next time.”</i>");
 	
-	output("\n\nShe smiles and slips past you, followed by her mates. They march out of the cavern, back the way you first came from. One of them, you note, has the green stone curled up in his tail, carrying it off with them.");
+	output("\n\nShe smiles and slips past you, followed by her mates. They march out of the cavern, back the way you first came from. One of them, you note, has the green stone curled up in his fist, carrying it off with them.");
 
 	processTime(3);
 	clearMenu();
@@ -1989,7 +1987,7 @@ public function GRM44Apologize():void
 	
 	output("\n\nShe smiles and puts a hand on her hip. <i>“You’re lucky our rituals are not some closely guarded secret... nor is my modesty. Be careful next time, off-worlder... or I might make you join in!”</i>");
 	
-	output("\n\nThe woman gives your cheek something between a pat and a slap, and beckons her menfolk to follow her out. hey march out of the cavern, back the way you first came from. One of them, you note, has the green stone curled up in his tail, carrying it off with them.");
+	output("\n\nThe woman gives your cheek something between a pat and a slap, and beckons her menfolk to follow her out. They march out of the cavern, back the way you first came from. One of them, you note, has the green stone curled up in his fist, carrying it off with them.");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -2035,7 +2033,7 @@ public function soloFertilityPriestessFight():void
 	showBust("MILODAN_PRIESTESS");
 	//showName("MILODAN\nPRIESTESS");
 	
-	output("\n\nAs you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they’re wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, bearing her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
+	output("\n\nAs you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they’re wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, baring her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
 
 	output("\n\n<i>“I thought it might be you!”</i> she snarls, twirling her staff until its gemstone head is levelled at your [pc.chest]. <i>“My sister");
 	if (flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined && flags["FERTILITY_PRIESTESSES_FOUGHT"] > 1) output("s have");
@@ -2136,7 +2134,7 @@ public function pcRepeatFertilityPriestessLoss():void
 
 		output("\n\nYou’re... mostly sure she’s teasing, but the threat is enough to convince you to obey. That, and the way she sways her hips seductively, winking her hole at you with enough control to tell you that she’s had plenty of experience. Reluctant as you might be, you reach your [pc.tongue] out and flick the tip across the pink tailhole hovering over your face. The taste comes in a rush of bitterness, earthy and just a bit salty with the sweat of your battle. The priestess’s tail thumps hard against your [pc.belly], and you’re fairly sure you hear a little gasp escape her lips before she stifles it.");
 
-		output("\n\n<i>“Keep going!”</i> she orders, reaching down and pinching one of your [pc.nipples] when you pause to savor her pleasured sounds. Dammit. You reach up and dig your hands into her furry flanks, getting yourself some leverage on those massive thighs. The priestess just laughs and pushes her ass further on your face, giving you no choice but to get back to work. Your tongue runs through the valley of her ass’s ample cleavage, working until the slender stretch of furless ass-flesh glistens with a sheen of saliva. Between long licks, you circle him pink hole with your [pc.tongue], teasing the rim and and putting just the barest hint of pressure on her ass, threatening to penetrate.");
+		output("\n\n<i>“Keep going!”</i> she orders, reaching down and pinching one of your [pc.nipples] when you pause to savor her pleasured sounds. Dammit. You reach up and dig your hands into her furry flanks, getting yourself some leverage on those massive thighs. The priestess just laughs and pushes her ass further on your face, giving you no choice but to get back to work. Your tongue runs through the valley of her ass’s ample cleavage, working until the slender stretch of furless ass-flesh glistens with a sheen of saliva. Between long licks, you circle her pink hole with your [pc.tongue], teasing the rim and and putting just the barest hint of pressure on her ass, threatening to penetrate.");
 
 		output("\n\nRather than squirm, or recoil, or whatever you might have expected, the sultry priestess relaxes her muscles, and you find your tongue slipping an inch into the squeezing confines of her asshole. That draws a long, lurid moan out of her at last, along with a rapid-fire series of clenches that completely trap your tongue inside her. Her muscles pull your [pc.tongue] out from between your [pc.lips], refusing to let go as if you’d licked a lamppost in winter.");
 
