@@ -22,6 +22,7 @@ public function investigateTheCockBox():void
 	clearOutput();
 	author("Fenoxo");
 	showName("STRANGE\nBOX");
+	showBust("");
 	output("You climb through the wasted machines and rust-scaled heaps to get a closer look, even going so far as to brush away the grit and grime that covers it. Lettering in luminescent paint declares it to be a TamaniCorp Dong Designer. What a find! These things are incredibly expensive, even in the core. You’ve seen them in less savory holos - they get installed in elite nightclubs or exclusive spas, particularly along the human/ausar border worlds where the two races mix.");
 	output("\n\nBedding an ausar lady? Punch a few buttons on a Dong Designer, stick your dick inside, and you’ll be knotting her in no time. Need something to properly scratch a kaithrit’s itch? Satisfaction is a button press away. About the only thing they can’t do is make you bigger - or smaller. And once you’ve had your fun, a return to normalcy is just a touch away.");
 	output("\n\nBut how the hell did one of these wind up out here, thrown away in a galactic trash heap? The caustic atmosphere hasn’t had time to corrode the metal, and the safety cover on the phallus input port should have kept the planet’s grime from mucking it up. It <i>looks</i> in good condition. The gauges all read good, save for power. All you’ve got to do is lug it back to the ship and plug it in.");
@@ -61,6 +62,7 @@ public function useInstalledDickBox():void
 	clearOutput();
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
+	showBust("");
 	output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs. The scrolling lettering indicates that you need to insert your penis into the pink-rimmed opening to begin. A nearby lever allows you to adjust the height for comfort.");
 
 	//1 dick
@@ -387,6 +389,7 @@ public function dickBoxTF(args:Array):void
 		output("\n\nOnce your body finishes attempting to impregnate the device, you slip your [pc.cumNoun]-soaked prick free. It looks exactly as promised minus the licentious paint job you’ve accidentally given it. Nothing a quick shower and a little time with a mop and bucket won’t fix...");
 		if(flags["DONG_DESIGNER_FLOODED"] != undefined) output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility.");
 		//Shower!
+		applyCumSoaked(pc);
 		pc.shower();
 		IncrementFlag("DONG_DESIGNER_BACKWASHED");
 	}
@@ -398,7 +401,11 @@ public function dickBoxTF(args:Array):void
 		output("\n\nWhen you come down, you note the machine has a red hologram of a big-breasted kui-tan above it along with a warning not to use the device until it has been cleaned by a custodian. Fuck the machine - you’re going to need a shower.");
 		if(celiseIsCrew()) output(" Celise can handle this mess.");
 		else output(" You can take care of this mess after.");
+		applyCumSoaked(pc);
+		applyCumSoaked(pc);
+		pc.loadInMouth(pc);
 		pc.shower();
+		IncrementFlag("DONG_DESIGNER_FLOODED");
 	}
 	IncrementFlag("USED_DONG_DESIGNER");
 	processTime(5);
@@ -422,6 +429,7 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	clearOutput();
 	author("Fenoxo");
 	showName("\nUH OH!");
+	showBust("TAMANI");
 	output("The moment you");
 	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a chosen color");
 	else output(" finalize your selection");
@@ -438,8 +446,19 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	output("\n\nThe punky elf-girl returns. This time she’s far enough away from the holocam for you make out two corset-straining breasts. She knows it too, judging by the way she’s leaning forward to give you a look straight into the beckoning canyon of cleavage. <i>“We apologize for this small error, and I assure you that technicians will be dispatched to ensure this unit functions as exactly as well as your own...”</i> Sparkling violet eyes glance downward toward your crotch. While a glowing message declares, <i>“UNIT OUT OF WARRANTY. PLEASE REPLACE.”</i>");
 	output("\n\nYou grunt and try not to cum to the sight of the jiggling sexpot they’ve programmed into the machine. You’d love to have eye-candy like this when your salvaged cock box is actually working properly...");
 	output("\n\nThe slut’s image flickers, and her syrupy voice coos, <i>“We’ll have both of those dicks modded back to normal in no time, unless you’re two brave boys who decided to go into the machine together.”</i> She giggles. <i>“If that’s the case, you guys might wind up with identical cocks, but that’s nothing a solo trip to one of our Hora Series Dong Designers won’t fix!”</i> Tugging at the top left of her latex corset, the tart pops a glossy, purple nipple into view. It engorges before your eyes. <i>“Thank you for your patience, " + pc.mf("stud","hot stuff") + ". As the chief customer relations officer, advertising model, test subject, CEO, and owner of TamaniCorp, I assure you that I want nothing more than for you to have a happy, safe, and fuck-filled day.”</i> She flicks her nipple and squeaks.");
-	output("\n\nBoth dicks? The machine releases a noisy squelch, and your stomach flutters in confusion. There’s so much more sensation than before, so many tingles and sizzles of red-hot bliss coursing into you. You can feel it twisting and tugging, pulling you every which way, like you’ve got two ghostly hands jacking you off in a pool of liquid chocolate. Is it... is it actually giving you two dicks? Blinking your eyes closed to focus on your sense of touch, you try to keep the pleasure center of your brain from shorting out. There’s definitely two sources of bliss burning hot inside the device, and they’re gaining definition by the second. You can almost feel the [pc.cockHead " + args[0] + "] flexing with desire, demanding to fire twin ropes of [pc.cum] into the malfunctioning machine’s internals.");
-	output("\n\nThe hologram flickers. When it comes back, the top-heavy spokesmodel-slash-owner is completely topless. Her other nipple is pierced with a ring of amethyst hardlight, and she’s openly rubbing both of them with her manicured fingernails, pulling and squeezing them encouragingly, making her valley-like cleavage shift with every jiggle of her mountainous melons. <i>“If you’re seeing me here, about to cum for you, then we’re almost done fixing our mistake! Thanks for being such a w-wonderful... " + pc.mf("handsome","sexy") + "... customer, and feel free to cum whenever the need takes you.”</i>");
+	output("\n\nBoth dicks? The machine releases a noisy squelch, and your stomach flutters in confusion. There’s so much more sensation than before, so many tingles and sizzles of red-hot bliss coursing into you. You can feel it twisting and tugging, pulling you every which way, like you’ve got two ghostly hands jacking you off in a pool of liquid chocolate. Is it... is it actually giving you two dicks? Blinking your eyes closed to focus on your sense of touch, you try to keep the pleasure center of your brain from shorting out. There’s definitely two sources of bliss burning hot inside the device, and they’re gaining definition by the second. You can almost feel the [pc.cockHead " + args[0] + "] flexing with desire, demanding to fire twin ropes of [pc.cum] into the malfunctioning machine’s internals....");
+	
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",cockBoxDickDoublingHijinxII, args);
+}
+public function cockBoxDickDoublingHijinxII(args:Array):void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName("\nUH OH!");
+	showBust("TAMANI_NUDE");
+	output("The hologram flickers. When it comes back, the top-heavy spokesmodel-slash-owner is completely topless. Her other nipple is pierced with a ring of amethyst hardlight, and she’s openly rubbing both of them with her manicured fingernails, pulling and squeezing them encouragingly, making her valley-like cleavage shift with every jiggle of her mountainous melons. <i>“If you’re seeing me here, about to cum for you, then we’re almost done fixing our mistake! Thanks for being such a w-wonderful... " + pc.mf("handsome","sexy") + "... customer, and feel free to cum whenever the need takes you.”</i>");
 	output("\n\nHer words couldn’t come at a better time. Your obviously doubled dongs are getting harder by the second, almost impossibly so. [pc.Cum] slowly bubbles up inside you, pumped toward inevitable release by violent clenches of your abdominal muscles.");
 	if(pc.balls > 0) output(" Even your [pc.sack] feels pulled tight.");
 	if(pc.cockTotal() == 2) output(" Your other dick - the one not in the machine - unashamedly weeps strands of pre-cum down the side of the box.");
@@ -449,8 +468,13 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	if(pc.cumQ() >= 1000) 
 	{
 		output(" When you come to, you discover thick streams of [pc.cum] have broken through the seal around your newly doubled dicks and puddled on the floor.");
-		if(pc.cumQ() >= 5000) output(" Although, puddle is hardly a fitting word for the lake you’ve created.");
+		if(pc.cumQ() >= 5000)
+		{
+			output(" Although, puddle is hardly a fitting word for the lake you’ve created.");
+			applyCumSoaked(pc);
+		}
 		if(celiseIsCrew()) output(" Celise will certainly be pleased.");
+		applyCumSoaked(pc);
 	}
 	output("\n\n<i>“Thanks again for using Tamani-brand products in your INVALID FACILITY TYPE!”</i> The purple-haired harlot winks and blows a kiss down at you from above. <i>“Cum back soon!”</i> She flickers out of existence with a saucy, satisfied smile.");
 	output("\n\nIt’s hard to be mad at her after getting off like that, even when you pull out and find that <b>the dick you put into the machine has divided its mass into two smaller penises.</b> You could probably find someone on Novahome to help you get rid of the extra if you wanted.");
@@ -473,8 +497,10 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	}
 	
 	pc.cocks.splice(args[0],0,cloneDick);
-	processTime(7);
+	processTime(2);
 	pc.orgasm();
+	pc.orgasm();
+	IncrementFlag("USED_DONG_DESIGNER");
 	IncrementFlag("DONG_DESIGNER_MALFUNCTIONED");
 	clearMenu();
 	addButton(0,"Next",useInstalledDickBox);
