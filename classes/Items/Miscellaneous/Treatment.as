@@ -23,7 +23,7 @@ package classes.Items.Miscellaneous
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
+			this.type = GLOBAL.DRUG;
 			
 			//Used on inventory buttons
 			this.shortName = "Treatment";

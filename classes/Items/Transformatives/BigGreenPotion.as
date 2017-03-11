@@ -23,7 +23,7 @@
 			_latestVersion = 1;
 			quantity = 1;
 			stackSize = 5;
-			type = GLOBAL.POTION;
+			type = GLOBAL.PILL;
 			
 			shortName = "BGreenPot";
 			longName = "Big Green potion";

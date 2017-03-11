@@ -18,7 +18,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			shortName = "N.Butter";
 			longName = "‘Nuki Nutbutter";
 			

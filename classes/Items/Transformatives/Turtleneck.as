@@ -22,7 +22,7 @@ package classes.Items.Transformatives
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			shortName = "T.Neck";
 			longName = "jar of Turtleneck cream";
 			

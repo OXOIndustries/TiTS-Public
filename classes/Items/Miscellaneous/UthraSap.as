@@ -19,7 +19,7 @@ package classes.Items.Miscellaneous
 			this._latestVersion = 1;
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.FOOD;
+			this.type = GLOBAL.POTION;
 			
 			this.shortName = "UthraSap";
 			this.longName = "bottled uthra sap";

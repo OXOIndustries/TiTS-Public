@@ -40,7 +40,7 @@ package classes.Items.Transformatives
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.DRUG;
+			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
 			this.shortName = "Equilicum";
 			//Regular name
