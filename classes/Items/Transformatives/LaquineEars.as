@@ -350,6 +350,7 @@ package classes.Items.Transformatives
 						if(pc.cumQ() >= 200) textBuff += "leaky ";
 						textBuff += "urethra, then accents it with tiny purple flowers. Another few seconds has her filling in the heart, leaving the barest slit for you to cum through. <i>“Lovely, but it’s still missing something...”</i>";
 						textBuff += "\n\nThe cock-painter snaps her fingers in sudden inspiration. <i>“A little guy like this needs some volumizing and texture to truly meet his full potential.”</i> She reaches behind her and grabs another device, still holding the line tool in her right hand. Then she lays into your shaft, spinning an even thicker line out from your [pc.sheathOrKnot " + x + "], slowly curling its way up your length. At the same time, she ambidextrously adds details in between the ridges - red lipstick prints, pretty stars, and even a bit of text at the root that says, “fuck me.”";
+						kGAMECLASS.flags["COCK_PAINTED_DESIGN"] = 1;
 					}
 					//Hyper no new PG
 					else if(pc.cocks[x].cLength() >= 36)
@@ -359,6 +360,7 @@ package classes.Items.Transformatives
 						textBuff += "\n\n<i>“Any artist with an airbrush could pull off this look, but it takes a master to transform the rainbow pattern into a fractal masterpiece.”</i> She swaps her bulk sprayer for a smaller detail tool and goes to work. <i>“Every blending between colors is an opportunity to lay out a new pattern, mathematical in precision but with the sort of beauty you’d find in nature.”</i> Her hands gently caress you as she works, the short bursts of sprayed colors tickling already hyper-sensitized neves. When you look down, your eyes nearly cross from the hyper-detailed rainbow that fills your view.";
 						textBuff += "\n\nStill working, the artist chides, <i>“Hold still, I’m not done yet.”</i> She swaps back to her bigger sprayer and selects something that looks like clear coat. <i>“Just have to put a few more touches on it.”</i> She lacquers your cock from [pc.sheathOrKnot " + x + "] to tip, giving it a glossy shine that would draw the eye even without the hypnotic rainbow scrawled across your length. <i>“Annnnd, here we go.”</i> The gun flashes blindingly bright, and when you look back at your dick, it’s <i>twinkling</i>. A sea of glittery lights sparkle in and out of existence all over, completing the dazzling look.";
 						textBuff += "\n\nThe perverse painter pulls her lining tool out and draws a few enormous kiss-marks on different parts of your [pc.cock " + x + "]. <i>“The appearance of popularity ought to get the girls even more worked up.”</i> She kisses her own work then, blushing. <i>“But you’re already popular with me.”</i> Right where she kissed, she sculpts a big pair of green lips out of the thick pigments. Atop them, she writes out in big looping letters, “Galaxy’s Best Dick.”";
+						kGAMECLASS.flags["COCK_PAINTED_DESIGN"] = 2;
 					}
 					//Horsecock no new PG
 					else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED))
@@ -368,6 +370,7 @@ package classes.Items.Transformatives
 						textBuff += "\n\n<i>“We need a lead for the handler, of course.”</i> She pushes your dick up and connects another band of yellow-brown color to the faux harness, slowly working it down the underside of your dick along the urethra. She makes sure that this band is the thickest one yet, but she’s quick to cross the medial ring, making your “lead” truly look like more than mere penis-paint. Another ring is created just outside your sheath, every bit as thick as the lead, which is then “bolted” to it with a flash of golden color.";
 						if(pc.hasSheath(x)) textBuff += " When you go soft, you’re sure to feel the raised art rubbing on the sensitive interior of your sheath.";
 						textBuff += "\n\nYour cock throbs mightily, but this perverted princess of pigment is far from done. She swaps the line tool for a smaller one, for fine details, then proceeds to lay in lines alongside the bands. They don’t look like much at first, but after a minute, you realize they make you look like your glossy-black horse-dick is bulging against the bands, like there’s so much swelling up inside the harness that it’s trying to split its way out. A circular ornament near the baseband completes the look, bearing a line of embossed text that reads, “Free Stud Services.”";
+						kGAMECLASS.flags["COCK_PAINTED_DESIGN"] = 3;
 					}
 					//Dogcock no new PG
 					else if(InCollection(pc.cocks[x].cType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_MILODAN]) && pc.hasKnot(x))
@@ -377,6 +380,7 @@ package classes.Items.Transformatives
 						textBuff += "\n\nThrough it all, your arousal has only climbed, enlarging your knot alongside it.";
 						textBuff += "\n\n<i>“Oh my, that’s a real wrecking ball you’ve got there. Let’s make it look the part, shall we?”</i> She artfully spins her “gun” on a finger, showing off a little before bringing it down against your thickening canine anatomy. This time, she doesn’t make small lines, instead choosing to fill the entire area with metallic black. By the time she finishes, your [pc.cock " + x + "] is twitching and dripping in eagerness, but she is far from finished.";
 						textBuff += "\n\nThe penis-painter changes out her liner for a detail gun and goes right back to work, texturing your bulbous knot to better resemble the construction equipment to which she compared it. She even goes through the trouble to paint a small, glittering chain from your urethral slit down underside to connect to the “ball” itself. As a final touch, in bright orange, she paints, “Bitch Wrecker” on top of your knot.";
+						kGAMECLASS.flags["COCK_PAINTED_DESIGN"] = 4;
 					}
 					//normal no new PG
 					else
@@ -385,6 +389,7 @@ package classes.Items.Transformatives
 						textBuff += "\n\n<i>“Now to dress this guy up.”</i> She pulls a smaller device from her back and spins the dial to select a glossy-looking red, then clicks it to add a purple gradient into the mix. She starts near your [pc.sheathOrKnot " + x + "]. This time it isn’t just a light coat of body paint but a thicker slurry that builds up as she sprays it, allowing her to create jutting purple-to-red spikes, rounded at the tips to rub on sensitive nerves. She lays them out all over your shaft, bigger at the base and smaller and more purple at the tip, with a gentler, almost innocuous curvature. <i>“Mmm, now that looks like a wonderful member, but it still lacks a certain pizazz.”</i>";
 						textBuff += "\n\nThe cock-painter snaps her fingers in sudden inspiration. <i>“A big guy like this needs a crown worthy of a king, something to get the ladies.”</i> She looks up at you, then shrugs and adds, <i>“Or boys, whichever. They need to know that you have a vessel fit for royal vaginas.”</i> She toggles the color over to orange and lays out a crown over your tip, lighter textured than the nubs but with enough of a ridge for your partner to feel it.";
 						textBuff += "\n\n<i>“Good... but it needs more.”</i> She swaps the color to a gem-like ruby and embeds extra adornments to the golden crest. In no time at all, your member looks positively regal from the top - and positively fuck-hungry below. Your alien artist isn’t done yet, however. She grabs a different device from her bag and proceeds to put extra detail work in-between the jutting cockstuds. In some places, she highlights the bulge of your veins, in others she adds faux black bands that appear to be cinched down about your girth. Finally, she scrawls, “Sex God” on your [pc.knot " + x + "].";
+						kGAMECLASS.flags["COCK_PAINTED_DESIGN"] = 0;
 					}
 					//Merge
 					textBuff += "\n\nWith her work complete, the artist pulls out her phone and snaps a quick holo, being sure to scan you from every single side{, ignoring the pre-cum pouring out of your prettied-up penis}. <i>“Thanks";

@@ -1172,6 +1172,7 @@ package classes.Items.Transformatives
 		/**
 		 * It is "a bit" more complex than using dove wings - tails are nor a seamless veil, and being snugly wrapped would look suspicious. So you'll likely need a lot of them.
 		 */
+		 /*
 		public static function canUseTailsOrFurAsClothes(target:Creature):Boolean
 		{
 			var bitsNeedCover:int = 0;
@@ -1230,5 +1231,6 @@ package classes.Items.Transformatives
 			
 			return bitsNeedCover <= target.tailCount; // actually, could also use most another types of wings as well...
 		}
+		*/
 	}
 }
