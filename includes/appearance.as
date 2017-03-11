@@ -86,7 +86,7 @@ public function appearance(forTarget:Creature):void
 			if(target.isAssExposed()) output2(" ass");
 			output2(" to the world.");
 		}
-		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed() && !Foxfire.canUseTailsOrFurAsClothes(target))
+		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed() && !target.canUseTailsOrFurAsClothes())
 		{
 			if(target.exhibitionism() >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");
@@ -2745,16 +2745,8 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(target.balls == 1) sTesticleDesc = target.ballDescript(true,true);
 		
 		// Scrotum type
-		var ballsackType:int = 0;
-		var ballsackColor:String = "";
-		if(target.hasStatusEffect("Special Scrotum"))
-		{
-			ballsackType = target.statusEffectv1("Special Scrotum");
-			ballsackColor = target.getStatusTooltip("Special Scrotum");
-		}
-		else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)) ballsackType = GLOBAL.FLAG_FURRED;
-		else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || (target.legType == GLOBAL.TYPE_GRYVAIN && target.hasLegFlag(GLOBAL.FLAG_SCALED))) ballsackType = GLOBAL.FLAG_SCALED;
-		else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) ballsackType = GLOBAL.FLAG_GOOEY;
+		var ballsackType:int = target.scrotumType();
+		var ballsackColor:String = target.scrotumColor();
 		
 		var sBallsackDesc:String = "";
 		switch(ballsackType)
@@ -3290,21 +3282,6 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		output2(" The head is also covered by stretchy foreskin, ensuring that it is kept protected and sensitive.");
 	}
 	
-	//Painted wieners
-	if(target.hasStatusEffect("Painted Penis") && target.statusEffectv1("Painted Penis") == x)
-	{
-		output2(" Like some kind of perverse canvas, it’s painted");
-		if(target.cocks[x].cLength() < 8) output2(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length and text that reads, “fuck me” at the root.");
-		else if(target.cocks[x].cLength() >= 36) output2(" in an iridescent purple with a glittery rainbow of fractal patterns all along its length that twinkle in the light. Layered on top its glossy surface is a big pair of green lips and text that reads, “Galaxy’s Best Dick” in big looping letters.");
-		else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && target.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output2(" in an ultra-shiny black, adorned with a faux horse harness across its length. A circular ornament near the harness’ baseband bears a line of embossed text that reads, “Free Stud Services.”");
-		else if(InCollection(target.cocks[x].cType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_MILODAN]) && target.hasKnot(x)) output2(" a glowing neon orange, striped with black lines like a construction hazard sign. The knot is colored to resemble a massive wrecking ball, chained to the urethra, and decorated with the text that reads, “Bitch Wrecker” in bright orange.");
-		else output2(" in a rich, regal-looking blue with jutting purple-to-red rounded-tipped spikes along the shaft, topped with a golden crown at the tip, and text that reads, “Sex God” on your " + target.knotDescript(x) + ".");
-	}
-	//Candy colored cocks
-	else if(target.cocks[x].cockColor == "red and white") {
-		output2(" Like a candy cane, it’s striped red and white.");
-	}
-	
 	//KNOT STUFF
 	if(target.hasKnot(x))
 	{
@@ -3330,6 +3307,22 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		}
 	}
 	else trace("NO KNOT");
+	
+	//Painted wieners
+	if(target.hasStatusEffect("Painted Penis") && target.statusEffectv1("Painted Penis") == x)
+	{
+		output2(" Like some kind of perverse canvas, " + (target.cockTotal() == 1 ? "your" : "the") + " cock is painted");
+		if(target.cocks[x].cLength() < 8) output2(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length and text that reads, “fuck me” at the root.");
+		else if(target.cocks[x].cLength() >= 36) output2(" in an iridescent purple with a glittery rainbow of fractal patterns all along its length that twinkle in the light. Layered on top its glossy surface is a big pair of green lips and text that reads, “Galaxy’s Best Dick” in big looping letters.");
+		else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && target.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output2(" in an ultra-shiny black, adorned with a faux horse harness across its length. A circular ornament near the harness’ baseband bears a line of embossed text that reads, “Free Stud Services.”");
+		else if(InCollection(target.cocks[x].cType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_MILODAN]) && target.hasKnot(x)) output2(" a glowing neon orange, striped with black lines like a construction hazard sign. The knot is colored to resemble a massive wrecking ball, chained to the urethra, and decorated with the text that reads, “Bitch Wrecker” in bright orange.");
+		else output2(" in a rich, regal-looking blue with jutting purple-to-red rounded-tipped spikes along the shaft, topped with a golden crown at the tip, and text that reads, “Sex God” on your " + target.knotDescript(x) + ".");
+	}
+	//Candy colored cocks
+	else if(target.cocks[x].cockColor == "red and white") {
+		output2(" Like a candy cane, " + (target.cockTotal() == 1 ? "your" : "the") + " cock is striped red and white.");
+	}
+	
 	// Mimbranes
 	if(x == 0 && target.hasStatusEffect("Mimbrane Cock") && target.statusEffectv3("Mimbrane Cock") > 3)
 	{

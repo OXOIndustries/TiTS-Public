@@ -1196,6 +1196,37 @@
 			balls = 0;
 		}
 		
+		public function scrotumType(): int
+		{
+			var ballsackType:int = 0;
+			
+			if(hasStatusEffect("Special Scrotum")) ballsackType = statusEffectv1("Special Scrotum");
+			else if(InCollection(skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)) ballsackType = GLOBAL.FLAG_FURRED;
+			else if(skinType == GLOBAL.SKIN_TYPE_SCALES || (legType == GLOBAL.TYPE_GRYVAIN && hasLegFlag(GLOBAL.FLAG_SCALED))) ballsackType = GLOBAL.FLAG_SCALED;
+			else if(skinType == GLOBAL.SKIN_TYPE_GOO) ballsackType = GLOBAL.FLAG_GOOEY;
+			
+			return ballsackType;
+		}
+		public function scrotumColor(): String
+		{
+			var ballsackColor:String = "";
+			
+			if(hasStatusEffect("Special Scrotum")) ballsackColor = getStatusTooltip("Special Scrotum");
+			else
+			{
+				var ballsackType:int = scrotumType();
+				switch(ballsackType)
+				{
+					case GLOBAL.FLAG_FURRED: ballsackColor = furColor; break;
+					case GLOBAL.FLAG_SCALED: ballsackColor = scaleColor; break;
+					case GLOBAL.FLAG_GOOEY: ballsackColor = skinTone; break;
+					default: ballsackColor = skinTone; break;
+				}
+			}
+			
+			return ballsackColor;
+		}
+		
 		// @FENCUMFIX - Switch these two blocks around if you want to easily stick a breakpoint on what this value is getting set to
 		public var ballFullness: Number = 50;
 		
@@ -3107,7 +3138,7 @@
 			// Omnisuit
 			if(part != "wings" && armor is Omnisuit) return true;
 			// See if your body can cover itself
-			if(part != "wings" && Foxfire.canUseTailsOrFurAsClothes(this)) return true;
+			if(part != "wings" && canUseTailsOrFurAsClothes()) return true;
 			// Normal genital location
 			if(!checkGenitals || genitalLocation() <= 1)
 			{
@@ -3126,6 +3157,111 @@
 			
 			return false;
 		}
+		public function canUseTailsOrFurAsClothes():Boolean
+		{
+			var coverage:int = 0;
+			var bitsNeedCover:int = 0;
+			var hasFurOrFeathers:Boolean = (hasFur() || hasFeathers());
+			var isFluffy:Boolean = hasFurOrFeathers && hasSkinFlag(GLOBAL.FLAG_FLUFFY);
+			
+			if (isChestExposed())
+			{
+				var titSize:int = 0;
+				for (var i:int = 0; i < breastRows.length; i++) 
+				{
+					titSize = breastRows[i].breastRating();
+					if (titSize >= 100 || breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) return false; // Can't hide hyper-sized tits!
+					if
+					(	titSize > (isFluffy ? (i < 2 ? 2 : 1) : 0) // fluffy fur can disguise B-cups on chest (due to that fluffy fur ball in description) and A-cups on belly
+					//|| 	breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES // lipples? they should look quite obscene, but this is not checked in main function
+					//|| 	InCollection(breastRows[i].nippleType, GLOBAL.NIPPLE_TYPE_NORMAL, GLOBAL.NIPPLE_TYPE_DICK, GLOBAL.NIPPLE_TYPE_TENTACLED) && nippleLength(biggestTitRow()) >= 1 // even with flats, too long nipples are quite obscene, but this is not checked in main function
+					) bitsNeedCover++;
+				}
+				// Wings or long hair can cover tits.
+				if
+				(	(wingType == GLOBAL.TYPE_DOVE && wingCount >= 4)
+				||	(hasJointedWings() && statusEffectv1("Wing Position") == 1)
+				||	(hairLength >= tallness/4 && !InCollection(hairStyle, ["ponytail", "mohawk", "afro"]))
+				) bitsNeedCover = 0;
+			}
+			
+			// Tails + Fur
+			coverage = tailCount;
+			
+			// Alternate anatomy
+			if (genitalLocation() > 1 && bitsNeedCover > 0)
+			{
+				return false; // you can't cover your breasts with your tails if you are taur, but you can go for the classic tauric scheme with wearing clothes only on humanoid part
+				// actually, should also check if you are taur with genitals on humanoid location, but I doubt that this arrangement is actually supported or will be ever
+			}
+			
+			if (isCrotchExposed())
+			{
+				if(hasCock() && !hasStatusEffect("Genital Slit")) // consider genital slit effectively covering your male bits
+				{
+					var hasSheathed:Boolean = false;
+					var currLength:int = 0;
+					var totalLength:int = 0;
+					for (var j:int = 0; j < cocks.length; j++) 
+					{
+						currLength = cLength(j, true);
+						if (hasSheath(j) && lust() < 66) hasSheathed = true; // consider sheath working if you are not desperately aroused
+						else
+						{
+							if ((currLength >= 50 || currLength/tallness >= 0.75)) return false; // you can't hide leithan-grade boner!
+							totalLength += currLength;
+						}
+					}
+					if (genitalLocation() > 1) bitsNeedCover = 1;
+					else if (hasSheathed || isFluffy) bitsNeedCover++; // Sheathes are modest enough to be covered with one tail all, or even just be covered by a long fur
+					else bitsNeedCover += Math.ceil(totalLength / 18); // consider that you'll need one tail for every 18 inches of cock
+				}
+				
+				if (balls > 0) // Genital Slit effect on balls is ambiguous, so I'm not counting it
+				{
+					if (scrotumType() == GLOBAL.FLAG_FURRED && ballSize() <= (hasStatusEffect("Uniball") ? 1 : 0.75)) { }
+					else if (scrotumType() == GLOBAL.FLAG_FURRED && isFluffy && ballSize() <= (hasStatusEffect("Uniball") ? 1.5 : 1)) { }
+					else
+					{
+						if (genitalLocation() > 1) bitsNeedCover = 1;
+						else bitsNeedCover += Math.ceil(ballDiameter() * (hasStatusEffect("Uniball") ? 0.75 : 1) * Math.sqrt(balls) / 6);
+					}
+				}
+				
+				if (hasVagina())
+				{
+					if
+					(	!(vaginaTotal(GLOBAL.TYPE_FELINE) + vaginaTotal(GLOBAL.TYPE_AVIAN) == vaginaTotal() && hasFurOrFeathers) // Feline ones are modest enough to be hidden just by fur from casual glance
+					||	(puffiestVaginalPuffiness() >= 2 && !hasFurOrFeathers)
+					) {
+						if (genitalLocation() > 1) bitsNeedCover = 1;
+						else bitsNeedCover++; // I guess 1 tail would be enough for all of them, unless we have something really freaky
+					}
+				}
+			}
+			
+			if (isAssExposed())
+			{
+				if(ass.hasFlag(GLOBAL.FLAG_PUMPED) || (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !isFluffy) || !hasFurOrFeathers)
+				{
+					if (bitsNeedCover > 1 && genitalLocation() > 1) bitsNeedCover = 1;
+					else bitsNeedCover++; // you always need at least 1 tail to cover your ass, unless you have fluffy fur
+				}
+			}
+			
+			if (bitsNeedCover <= 0) return true;
+			
+			if (hasTail())
+			{
+				if
+				(	(hasTailFlag(GLOBAL.FLAG_LONG) || hasTailFlag(GLOBAL.FLAG_PREHENSILE))
+				&&	(hasTailFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FLUFFY) || hasTailFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_THICK) || hasTailFlag(GLOBAL.FLAG_AMORPHOUS) || hasTailFlag(GLOBAL.FLAG_GOOEY))
+				) return (bitsNeedCover <= coverage);
+			} // you need long, furred tails to do this
+			
+			return false;
+		}
+		
 		public function isCrotchGarbed(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			else if(armor is EmptySlot && lowerUndergarment is EmptySlot) return false;
