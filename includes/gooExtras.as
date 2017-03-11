@@ -1121,15 +1121,16 @@ public function adjustGooBody(arg:Array):void
 			if(desc == "increase")
 			{
 				output2("You concentrate, allowing your body and limbs fill with gooey biomass...");
-				pc.modThickness(1);
+				output2(pc.modThickness(1));
 				gooBiomass(-1 * cost);
 			}
 			else if(desc == "decrease")
 			{
 				output2("You relax, letting the biomass flow back into your reserves...");
-				pc.modThickness(-1);
+				output2(pc.modThickness(-1));
 				gooBiomass(cost * 0.75);
 			}
+			output2("\n<b>Your thickness level is now " + pc.thickness + ".</b>");
 		}
 		output2("\n\n");
 		if(pc.thickness >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any thicker than you are now!");
@@ -1149,19 +1150,16 @@ public function adjustGooBody(arg:Array):void
 			if(desc == "increase")
 			{
 				output2("You concentrate, trying your best to tighten your body...");
-				if(pc.toneUnlocked(pc.tone + 1))
-				{
-					pc.modTone(1);
-					gooBiomass(-1 * cost);
-				}
-				else output2("\n\n<b>" + pc.toneLockedMessage() + "</b>");
+				output2(pc.modTone(1));
+				gooBiomass(-1 * cost);
 			}
 			else if(desc == "decrease")
 			{
 				output2("You relax, letting your body become more fluid...");
-				pc.modTone(-1);
+				output2(pc.modTone(-1));
 				gooBiomass(cost * 0.75);
 			}
+			output2("\n<b>Your tone level is now " + pc.tone + ".</b>");
 		}
 		output2("\n\n");
 		if(pc.tone >= limitMax) addDisabledGhostButton(0,"Increase","Increase","It looks like you can’t get any more solid than you are now!");
@@ -1268,7 +1266,7 @@ public function revertGooBodyPart(part:String = "all"):void
 		if(pc.skinType != GLOBAL.SKIN_TYPE_GOO && pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" and");
 		if(pc.hairType != GLOBAL.HAIR_TYPE_GOO) output2(" [pc.hair]");
 	}
-	else if(part == "legs partial" || part == "legs" || part == "mound") output2(" your [pc.legOrlegs]");
+	else if(part == "legs partial" || part == "legs" || part == "mound") output2(" your [pc.legOrLegs]");
 	else if(part == "arms") output2(" your [pc.arms]");
 	else if(part == "tail") output2(" [pc.eachTail]");
 	else output2(" a bag of dicks");
@@ -1686,7 +1684,7 @@ public function widenGooNipples():void
 	else pc.nippleWidthRatio += 0.25;
 	gooBiomass(-100);
 	clearGhostMenu();
-	addGhostButton(14,"Back",gooChestCustomizer);
+	addGhostButton(0,"Next",gooChestCustomizer);
 }
 //Actually narrow 'dem puppies
 public function narrowGooNips():void
@@ -1701,7 +1699,7 @@ public function narrowGooNips():void
 	else pc.nippleWidthRatio -= 0.25;
 	gooBiomass(+75);
 	clearGhostMenu();
-	addGhostButton(14,"Back",gooChestCustomizer);
+	addGhostButton(0,"Next",gooChestCustomizer);
 }
 
 public function lengthenGooNips():void
@@ -1716,7 +1714,7 @@ public function lengthenGooNips():void
 	else pc.nippleLengthRatio += 0.25;
 	gooBiomass(-100);
 	clearGhostMenu();
-	addGhostButton(14,"Back",gooChestCustomizer);
+	addGhostButton(0,"Next",gooChestCustomizer);
 }
 
 public function shortenGooNips():void
@@ -1729,7 +1727,7 @@ public function shortenGooNips():void
 	else pc.nippleLengthRatio -= 0.25;
 	gooBiomass(75);
 	clearGhostMenu();
-	addGhostButton(14,"Back",gooChestCustomizer);
+	addGhostButton(0,"Next",gooChestCustomizer);
 }
 
 //300 biomass
@@ -1988,8 +1986,11 @@ public function gooCockRootMenu():void
 	clearGhostMenu();
 	if(gooBiomass() >= 500) 
 	{
-		if(!pc.createCockUnlocked(pc.cockTotal() + 1)) addDisabledGhostButton(0,"Grow One","Grow One","Something is preventing you from growing a penis.");
-		else if(pc.cockTotal() < 10) addGhostButton(0,"Grow One",growANewGooCock,undefined,"Grow One","Grow a new, gooey penis.\n\n<b>500 mLs Biomass</b>");
+		if(pc.cockTotal() < 10)
+		{
+			if(!pc.createCockUnlocked(pc.cockTotal() + 1)) addDisabledGhostButton(0,"Grow One","Grow One","Something is preventing you from growing a penis.");
+			else addGhostButton(0,"Grow One",growANewGooCock,undefined,"Grow One","Grow a new, gooey penis.\n\n<b>500 mLs Biomass</b>");
+		}
 		else addDisabledGhostButton(0,"Grow One","Grow One","There’s no room for any more penises!");
 	}
 	else addDisabledGhostButton(0,"Grow One","Grow One","You don’t have enough biomass for that.\n\n<b>500 mLs Biomass</b>");
@@ -1997,7 +1998,7 @@ public function gooCockRootMenu():void
 	if(pc.hasCock()) 
 	{
 		if(gooBiomass() >= 100 && pc.cockTotal() == 1 && pc.cocks[0].hasFlag(GLOBAL.FLAG_GOOEY)) addGhostButton(1,"Reshape",reshapeACaaaawk,undefined,"Reshape","Change the shape of your penis.\n\n<b>100 mLs Biomass</b>");
-		else if(gooBiomass() >= 100) addGhostButton(1,"Reshape",reshapeACaaaawk,undefined,"Reshape","Change the shape of a penis.\n\n<b>100 mLs Biomass</b>");
+		else if(gooBiomass() >= 100) addGhostButton(1,"Reshape 1",reshapeACaaaawk,undefined,"Reshape One Cock","Change the shape of a penis.\n\n<b>100 mLs Biomass</b>");
 		else addDisabledGhostButton(1,"Reshape","Reshape","You lack sufficient biomass to reshape your penis.\n\n<b>100 mLs Biomass</b>");
 		if(pc.cockTotal() == 1 && pc.cocks[0].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
@@ -2009,8 +2010,7 @@ public function gooCockRootMenu():void
 		}
 		else
 		{
-			
-			addGhostButton(2,"Lengthen",lengthenGooCock,undefined,"Lengthen","Put some biomass to work making an endowment of your choice longer.");
+			addGhostButton(2,"Lengthen 1",lengthenGooCock,undefined,"Lengthen One Cock","Put some biomass to work making an endowment of your choice longer.");
 			addGhostButton(3,"Shorten 1",shortenADick,undefined,"Shorten One Cock","Shorten a penis and reclaim some of its biomass.");
 			addGhostButton(5,"Remove 1",removeGooCockRoot,undefined,"Remove One Cock","Remove one of your penises, returning it to plain goo.");
 		}
@@ -2056,7 +2056,7 @@ public function gooBallsMenu():void
 	if(pc.balls == 1 && (pc.hasStatusEffect("Mimbrane Balls") || 9999 == 0)) addGhostButton(1,"Remove",removeATesticle,undefined,"Remove","Something is preventing you from removing your only testicle.");
 	else if(pc.balls == 1) addGhostButton(1,"Remove",removeATesticle,undefined,"Remove","Remove your testicle.");
 	else if(pc.balls > 0) addGhostButton(1,"Remove 1",removeATesticle,undefined,"Remove One","Remove a testicle.");
-	else addDisabledGhostButton(1,"Remove 1","Remove One","You have no testicles to remove.");
+	else addDisabledGhostButton(1,"Remove","Remove","You have no testicles to remove.");
 	if(pc.balls > 0)
 	{
 		if(gooBiomass() >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
@@ -2068,8 +2068,11 @@ public function gooBallsMenu():void
 		else if(gooBiomass() >= 100) addGhostButton(5,"Tighten Sack",tautSackToggle,undefined,"Tighten Sack","Tighten up your nutsack into a nice, smooth bulge.\n\n<b>100 mLs Biomass</b>");
 		else addDisabledGhostButton(5,"Tighten Sack","Tighten Sack","You don’t have enough biomass to tighten your sack into a nice, smooth bulge.");
 		
-		if(pc.statusEffectv1("Special Scrotum") != GLOBAL.FLAG_GOOEY) addGhostButton(6,"Convert Sack",gooSpecialSack,"convert","Convert Sack","Convert your nutsack into goo.");
-		else if(pc.hasStatusEffect("Special Scrotum")) addGhostButton(6,"Revert Sack",gooSpecialSack,"revert","Revert Sack","Remove your nutsack’s special properties.");
+		if(pc.hasStatusEffect("Special Scrotum"))
+		{
+			if(pc.statusEffectv1("Special Scrotum") != GLOBAL.FLAG_GOOEY) addGhostButton(6,"Convert Sack",gooSpecialSack,"convert","Convert Sack","Convert your nutsack into goo.");
+			else addGhostButton(6,"Revert Sack",gooSpecialSack,"revert","Revert Sack","Remove your nutsack’s special properties.");
+		}
 	}
 	else 
 	{
@@ -2558,6 +2561,7 @@ public function lengthenGooCock():void
 		}
 	}
 	showBiomass();
+	addGhostButton(14,"Back",gooCockRootMenu);
 }
 
 public function lengthenSelectedGooCock(arg:int = 0):void
@@ -2612,6 +2616,7 @@ public function shortenADick():void
 		}
 	}
 	showBiomass();
+	addGhostButton(14,"Back",gooCockRootMenu);
 }
 public function shortenSelectedCock(arg:int = 0):void
 {
@@ -2679,8 +2684,11 @@ public function vaginaGooRootMenu():void
 	clearGhostMenu();
 	if(gooBiomass() >= 500)
 	{
-		if(!pc.createVaginaUnlocked(pc.totalVaginas() + 1)) addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","Something is preventing you from growing a vagina.");
-		else if(pc.totalVaginas() < 3) addGhostButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
+		if(pc.totalVaginas() < 3)
+		{
+			if(!pc.createVaginaUnlocked(pc.totalVaginas() + 1)) addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","Something is preventing you from growing a vagina.");
+			else addGhostButton(0,"Grow Vagina",growAGoogina,undefined,"Grow Vagina","Grow a new vagina.\n\n<b>500 mLs Biomass</b>");
+		}
 		else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","There’s no room for any more vaginas!");
 	}
 	else addDisabledGhostButton(0,"Grow Vagina","Grow Vagina","You don’t have enough biomass for that!\n\n<b>500 mLs Biomass</b>");
@@ -2709,7 +2717,8 @@ public function vaginaGooRootMenu():void
 		{
 			if(!pc.vaginas[x].hymen) hymenCost += 50;
 		}
-		if(hymenCost <= gooBiomass()) addGhostButton(4,"Regn.Hymen",hymenRestorationForGoos,undefined,"Regenerate Hymens","Restore any and all hymens.\n\n<b>" + hymenCost + " mLs Biomass</b>");
+		if(hymenCost <= 0) addDisabledGhostButton(4,"Regn.Hymen","Regenerate Hymens","You don’t have any hymens that need restoration.");
+		else if(hymenCost <= gooBiomass()) addGhostButton(4,"Regn.Hymen",hymenRestorationForGoos,undefined,"Regenerate Hymens","Restore any and all hymens.\n\n<b>" + hymenCost + " mLs Biomass</b>");
 		else addDisabledGhostButton(4,"Regn.Hymen","Regenerate Hymens","You do not have enough biomass for this.\n\n<b>" + hymenCost + " mLs Biomass</b>");
 	}
 	
@@ -2866,8 +2875,8 @@ public function addClitGooMenu():void
 			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn’t made of goo and cannot be morphed that way.");
 		}
 	}
-	addGhostButton(14,"Back",gooCrotchCustomizer);
 	showBiomass();
+	addGhostButton(14,"Back",vaginaGooRootMenu);
 }
 
 public function addGooClitNau(arg:int = 0):void
@@ -2941,8 +2950,8 @@ public function shiftACuntYaCunt():void
 			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","This vagina isn’t made of goo and cannot be morphed.");
 		}
 	}
-	addGhostButton(14,"Back",vaginaGooRootMenu);
 	showBiomass();
+	addGhostButton(14,"Back",vaginaGooRootMenu);
 }
 public function pickNewCuntType(arg:int = 0):void
 {
