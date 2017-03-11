@@ -3312,11 +3312,14 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	if(target.hasStatusEffect("Painted Penis") && target.statusEffectv1("Painted Penis") == x)
 	{
 		output2(" Like some kind of perverse canvas, " + (target.cockTotal() == 1 ? "your" : "the") + " cock is painted");
-		if(target.cocks[x].cLength() < 8) output2(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length and text that reads, “fuck me” at the root.");
-		else if(target.cocks[x].cLength() >= 36) output2(" in an iridescent purple with a glittery rainbow of fractal patterns all along its length that twinkle in the light. Layered on top its glossy surface is a big pair of green lips and text that reads, “Galaxy’s Best Dick” in big looping letters.");
-		else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && target.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output2(" in an ultra-shiny black, adorned with a faux horse harness across its length. A circular ornament near the harness’ baseband bears a line of embossed text that reads, “Free Stud Services.”");
-		else if(InCollection(target.cocks[x].cType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_MILODAN]) && target.hasKnot(x)) output2(" a glowing neon orange, striped with black lines like a construction hazard sign. The knot is colored to resemble a massive wrecking ball, chained to the urethra, and decorated with the text that reads, “Bitch Wrecker” in bright orange.");
-		else output2(" in a rich, regal-looking blue with jutting purple-to-red rounded-tipped spikes along the shaft, topped with a golden crown at the tip, and text that reads, “Sex God” on your " + target.knotDescript(x) + ".");
+		switch(flags["COCK_PAINTED_DESIGN"])
+		{
+			case 1: output2(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length and text that reads, “fuck me” at the root."); break;
+			case 2: output2(" in an iridescent purple with a glittery rainbow of fractal patterns all along its length that twinkle in the light. Layered on top its glossy surface is a big pair of green lips and text that reads, “Galaxy’s Best Dick” in big looping letters."); break;
+			case 3: output2(" in an ultra-shiny black, adorned with a design emulating a faux horse harness across its length. A circular ornament near the harness’ baseband bears a line of embossed text that reads, “Free Stud Services.”"); break;
+			case 4: output2(" a glowing neon orange, striped with black lines like a construction hazard sign. The knot is colored to resemble a massive metallic wrecking ball, chained to the urethra, and decorated with the text that reads, “Bitch Wrecker” in bright orange."); break;
+			default: output2(" in a rich, regal-looking blue with jutting purple-to-red rounded-tipped spikes along the shaft, topped with a golden crown at the tip, and text that reads, “Sex God” on your " + target.knotDescript(x) + "."); break;
+		}
 	}
 	//Candy colored cocks
 	else if(target.cocks[x].cockColor == "red and white") {

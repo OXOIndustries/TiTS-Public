@@ -123,7 +123,7 @@ public function cockBoxUse(x:int):void
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	//Repeats are for cool kids
-	if(flags["USED_DONG_DESIGNER"] == undefined)
+	if(flags["USED_DONG_DESIGNER"] != undefined)
 	{
 		output("Gently adjusting your [pc.hips], you’re careful to properly line [pc.oneCock] up with the slot, not wanting to injure yourself before another ");
 		//Ever “FAILED”:
@@ -388,7 +388,7 @@ public function dickBoxTF(args:Array):void
 		if(flags["DONG_DESIGNER_FLOODED"] != undefined) output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility.");
 		//Shower!
 		pc.shower();
-		flags["DONG_DESIGNER_BACKWASHED"] = 1;
+		IncrementFlag("DONG_DESIGNER_BACKWASHED");
 	}
 	//Backblasted out
 	else
@@ -399,9 +399,8 @@ public function dickBoxTF(args:Array):void
 		if(celiseIsCrew()) output(" Celise can handle this mess.");
 		else output(" You can take care of this mess after.");
 		pc.shower();
-		flags["DONG_DESIGNER_FLOODED"] = 1;
 	}
-	flags["USED_DONG_DESIGNER"] = 1;
+	IncrementFlag("USED_DONG_DESIGNER");
 	processTime(5);
 	pc.shiftCock(args[0],args[1]);
 	//Coloration
@@ -476,7 +475,7 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	pc.cocks.splice(args[0],0,cloneDick);
 	processTime(7);
 	pc.orgasm();
-	flags["DONG_DESIGNER_MALFUNCTIONED"] = 1;
+	IncrementFlag("DONG_DESIGNER_MALFUNCTIONED");
 	clearMenu();
 	addButton(0,"Next",useInstalledDickBox);
 }
