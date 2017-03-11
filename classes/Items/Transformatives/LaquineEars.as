@@ -623,9 +623,9 @@ package classes.Items.Transformatives
 		}
 		public function lassLaquineAcceptable(pc:Creature,x:int):Boolean
 		{
-			return (pc.earType == GLOBAL.TYPE_LAPINE && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
+			return (pc.earType == GLOBAL.TYPE_LAPINE && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.cocks[x].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
 		}
-		public function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false):String
+		public function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false):void
 		{
 			var textBuff:String = "";
 			if(masturbate)
@@ -668,7 +668,7 @@ package classes.Items.Transformatives
 				textBuff = ParseText(textBuff);
 				pc.lust(10);
 				if(!masturbate) AddLogEvent(textBuff,"passive");
-				return textBuff;
+				else output(ParseText(textBuff));
 			}
 			//Normal
 			if(pc.cocks[x].cLength < 16)
@@ -688,7 +688,7 @@ package classes.Items.Transformatives
 				textBuff = ParseText(textBuff);
 				pc.lust(100);
 				if(!masturbate) AddLogEvent(textBuff,"passive");
-				return ParseText(textBuff);
+				else output(ParseText(textBuff));
 			}
 			//2hueg. No new PG.
 			else
@@ -765,7 +765,7 @@ package classes.Items.Transformatives
 				}
 				else textBuff += "\n\nWhen you stumble back, spent, you realize that her lips have snapped shut, trapping every ounce of your perverted payload in her womb for maximum impregnation.";
 				textBuff += "\n\n<i>“Th-thank you.”</i> The blissfully smiling laquine rolls on her back and sprawls, giggling almost drunkenly. <i>“";
-				if(lassLaquineAcceptable(pc,x)) textBuff += "You’re my perfect Alpha, and I can’t wait to have even more babies.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“Could you... could you call for me more often? I need you... as often as you can.";
+				if(lassLaquineAcceptable(pc,x) && kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 1) textBuff += "You’re my perfect Alpha, and I can’t wait to have even more babies.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“Could you... could you call for me more often? I need you... as often as you can.";
 				else if(lassLaquineAcceptable(pc,x)) textBuff += "You’re such a perfect Alpha... Anytime you want me, just close your eyes and think of me.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“I’ll always be there for your cum. Always.”</i>";
 				else textBuff += "I’m don’t know if that’ll actually take.”</i> She smiles sadly, rubbing her swollen pussy. <i>“But it scratched my itch for now... Keep wearing those ears, and maybe we can see more of each other.";
 				textBuff += "”</i> She blows you a kiss, then fades away into nothingness.";
@@ -792,11 +792,11 @@ package classes.Items.Transformatives
 					textBuff += " <b>Your rut has faded.</b>";
 				}
 				if(!masturbate) AddLogEvent(textBuff,"passive");
+				else output(ParseText(textBuff));
 				pc.orgasm();
-				return textBuff;
 			}
 		}
-		public function bunnyguyFapScene(pc:Creature,fap:Boolean = false):String
+		public function bunnyguyFapScene(pc:Creature,fap:Boolean = false):void
 		{
 			var x:int = 0;
 			var textBuff:String = "";
@@ -806,6 +806,7 @@ package classes.Items.Transformatives
 				if(pc.vaginas[x].type == GLOBAL.TYPE_EQUINE) cunts.push(x);
 			}
 			if(cunts.length > 0) x = cunts[rand(cunts.length)];
+			else x = 0;
 			if(fap)
 			{
 				clearOutput();
@@ -842,7 +843,7 @@ package classes.Items.Transformatives
 			if(!pc.isCrotchExposed()) textBuff += " as he yanks down your [pc.crotchCover]";
 			textBuff += ". His cock twitches in eagerness, and the hung rabbit stops resisting, choosing to guide his passions rather than let them break him. He pulls you tight, planting kisses from the nape of your neck up to your [pc.ear], whispering that he will ";
 			if(pc.inHeat()) textBuff += "give you every drop of seed in his body so that you may mother the next generation of his libidinous race.";
-			else if(pc.vaginas[x].type == GLOBAL.TYPE_EQUINE) textBuff += "fill you like none other, teaching you what it means to fuck with a real male instead of some lesser species.";
+			else if(pc.hasVagina(GLOBAL.TYPE_EQUINE)) textBuff += "fill you like none other, teaching you what it means to fuck with a real male instead of some lesser species.";
 			else textBuff += "be gentle to you, his delicate flower";
 			textBuff += ". Meanwhile, his body swivels the rest of the way behind you, threading his burning-hot length between your [pc.thighs]. The medial ring brushes against [pc.oneClit], slick and warm, making you whimper.";
 
@@ -937,10 +938,10 @@ package classes.Items.Transformatives
 				pc.clearHeat();
 				pc.lust(100);
 				textBuff = ParseText(textBuff);
-				pc.orgasm();
 				IncrementFlag("LAQUINE_GENT_BONED");
 				if(!fap) AddLogEvent(textBuff,"passive");
-				return textBuff;
+				else output(textBuff);
+				pc.orgasm();
 			}
 			else
 			{
@@ -973,7 +974,7 @@ package classes.Items.Transformatives
 				IncrementFlag("LAQUINE_FADEAWAY");
 				IncrementFlag("LAQUINE_GENT_BONED");
 				if(!fap) AddLogEvent(textBuff,"passive");
-				return textBuff;
+				else output(textBuff);
 			}
 		}
 		public function laquineEarsFinale(pc:Creature):void

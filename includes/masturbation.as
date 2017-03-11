@@ -294,6 +294,26 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && new LaquineEars().lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "F.Laquine";
+		fap.ttHeader = "Female Laquine Hallucination";
+		fap.ttBody = "Attempt to summon the hallucinatory laquine you met while using a pair of Laquine Ears.";
+		fap.func = laquineEarsFemaleWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
+	if (pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE) && flags["LAQUINE_LASS_TRYSTS"] != undefined)
+	{
+		fap = new FapCommandContainer();
+		fap.text = "M.Laquine";
+		fap.ttHeader = "Male Laquine Hallucination";
+		fap.ttBody = "Attempt to summon the hallucinatory laquine you met while using a pair of Laquine Ears.";
+		fap.func = laquineEarsMaleWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
 	//PANTY FAPS!
 	if(pc.hasCock()) 
 	{
@@ -3981,5 +4001,11 @@ public function adjustableHolofap():void
 	IncrementFlag("HL_STRAPON_FAP_ADJUSTABLE");
 }
 
-
-
+public function laquineEarsMaleWrapper():void
+{
+	new LaquineEars().bunnyguyFapScene(pc,true);
+}
+public function laquineEarsFemaleWrapper():void
+{
+	new LaquineEars().bunnyGirlFapScene(pc,true);
+}
