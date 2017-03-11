@@ -2755,13 +2755,13 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your fuzzy " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.";
 				else if(target.cockTotal() == 0) sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
 				else sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in plush, " + (ballsackColor != "" ? ballsackColor : target.furColor) + " fluff, makes it absolutely squeezable!";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in plush, " + (ballsackColor != "" ? ballsackColor : target.furColor) + " fluff makes it absolutely squeezable!";
 				break;
 			case GLOBAL.FLAG_SCALED:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your scaly " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.";
 				else if(target.cockTotal() == 0) sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
 				else sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in sleek, " + (ballsackColor != "" ? ballsackColor : target.scaleColor) + " scales, makes it smooth to the touch.";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in sleek, " + (ballsackColor != "" ? ballsackColor : target.scaleColor) + " scales makes it smooth to the touch.";
 				break;
 			case GLOBAL.FLAG_GOOEY:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping ooze and holding " + sTesticleDesc + " snugly against you.";
@@ -3314,11 +3314,11 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		output2(" Like some kind of perverse canvas, " + (target.cockTotal() == 1 ? "your" : "the") + " cock is painted");
 		switch(flags["COCK_PAINTED_DESIGN"])
 		{
-			case 1: output2(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length and text that reads, “fuck me” at the root."); break;
-			case 2: output2(" in an iridescent purple with a glittery rainbow of fractal patterns all along its length that twinkle in the light. Layered on top its glossy surface is a big pair of green lips and text that reads, “Galaxy’s Best Dick” in big looping letters."); break;
-			case 3: output2(" in an ultra-shiny black, adorned with a design emulating a faux horse harness across its length. A circular ornament near the harness’ baseband bears a line of embossed text that reads, “Free Stud Services.”"); break;
-			case 4: output2(" a glowing neon orange, striped with black lines like a construction hazard sign. The knot is colored to resemble a massive metallic wrecking ball, chained to the urethra, and decorated with the text that reads, “Bitch Wrecker” in bright orange."); break;
-			default: output2(" in a rich, regal-looking blue with jutting purple-to-red rounded-tipped spikes along the shaft, topped with a golden crown at the tip, and text that reads, “Sex God” on your " + target.knotDescript(x) + "."); break;
+			case 1: output2(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length. Lines travel across its form, leading to text that reads, “fuck me” at the root."); break;
+			case 2: output2(" in an iridescent, glittery rainbow of fractal patterns all along its length that twinkles in the light. Layered on top its glossy surface is a pattern of kiss marks dominated by a larger pair of plump green lips and text that reads, “Galaxy’s Best Dick” in big looping letters."); break;
+			case 3: output2(" in an ultra-shiny black, adorned with a textured design emulating a faux horse harness across its length. A circular ornament near the harness’ baseband bears a line of embossed text that reads, “Free Stud Services” to show how much of a stallion you are."); break;
+			case 4: output2(" in a glowing neon orange, striped with black lines to emulate a construction hazard sign. The knot is colored to resemble a massive metallic wrecking ball, chained to the urethra, and decorated with the text that reads, “Bitch Wrecker” in bright orange."); break;
+			default: output2(" in a rich, regal-looking blue with jutting purple-to-red rounded-tipped spikes along the shaft and topped with a gem-decorated golden crown at the tip. There is text that reads, “Sex God” on its " + target.knotDescript(x) + ", showcasing its majesty."); break;
 		}
 	}
 	//Candy colored cocks

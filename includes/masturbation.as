@@ -304,7 +304,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ignoreRandomSelection = false;
 		faps.push(fap);
 	}
-	if (pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE) && flags["LAQUINE_LASS_TRYSTS"] != undefined)
+	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "M.Laquine";

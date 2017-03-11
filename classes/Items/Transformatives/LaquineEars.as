@@ -187,7 +187,7 @@ package classes.Items.Transformatives
 			var select:Number = 0;
 			if(choices.length > 0) select = choices[rand(choices.length)];
 
-			textBuff += "SELECT: " + select + "\n";
+			if(kGAMECLASS.debug) textBuff += "SELECT: " + select + "\n";
 			//(Penis) Awkward, persistent boner. Large exhibitionism gains.
 			//Hypercommon if criteria met to account for otherwise low chance.
 			if(select == 0)
@@ -262,8 +262,12 @@ package classes.Items.Transformatives
 				}
 				//Merge
 				//Randomly choose one.
+				var exhibEvents:Array = [0,1,2];
+				if(!pc.hasStatusEffect("Painted Penis")) exhibEvents.push(3);
+				var exhib:int = exhibEvents[rand(exhibEvents.length)];
+				
 				//General ogle
-				if(rand(4) == 0)
+				if(exhib == 0)
 				{
 					textBuff += "\n\nMen and women both ogle you as the walk by, whispering softly to each other. Some of them, you note, become aroused as well. More than one pair of pants tents, and at least one girl could cut diamonds with her nipples after staring a little too long to be completely casual.";
 					if(pc.exhibitionism() < 33) textBuff += " You try your best to escape the crowds and hide with little success.";
@@ -274,7 +278,7 @@ package classes.Items.Transformatives
 					textBuff += " (and collected hundreds of holos of the bunny-eared " + pc.mf("heir","heiress") + " and [pc.hisHer] troublesome groin), the crowd finally thins.";
 				}
 				//Female Flashers
-				else if(rand(3) == 0)
+				else if(exhib == 1)
 				{
 					textBuff += "\n\nPlenty of people stop to score a peek at the slutty [pc.race] waving [pc.hisHer] [pc.cocks] for all to see, but there’s a small group of women who stand out from the crowd, mostly due to the size of their chests. They all have tits too large to be entirely natural, and yet they shamelessly display them anyway, wearing tops with plunging necklines, cleavage-displaying holes, or glossy, transparent fabrics.";
 					textBuff += "\n\nIn your present state, you cannot stop your eyes from looking, nor your [pc.cockBiggest] from throbbing approvingly";
@@ -282,14 +286,13 @@ package classes.Items.Transformatives
 					else if(pc.cumQ() > 2000) textBuff += " and drooling a fat stream of [pc.cumVisc] pre-cum";
 					else if(pc.cumQ() > 200) textBuff += " and drooling a steady trickle of [pc.cumVisc] pre-cum";
 					else if(pc.cumQ() > 20) textBuff += " and beading a bubble of [pc.cumVisc] pre-cum at its tip";
-
 					textBuff += ".\n\n<i>“Omigod, look at [pc.himHer]!”</i> one chirps, covering her mouth and looking to her friend. Both of their nipples are visible erect.";
-					textBuff += "\n\nThe second pouts, <i>“Yeahhh, [pc.heShe]’s hot, but [pc.heShe] looks sooo lonely.”</i> Chewing her lip, she turns to the others and asks, <i>“We should pay him back somehow, right ladies?”</i>";
+					textBuff += "\n\nThe second pouts, <i>“Yeahhh, [pc.heShe]’s hot, but [pc.heShe] looks sooo lonely.”</i> Chewing her lip, she turns to the others and asks, <i>“We should pay [pc.himHer] back somehow, right ladies?”</i>";
 					textBuff += "\n\n<i>“Ooooh!”</i>";
 					textBuff += "\n\n<i>“That sounds fun~”</i>";
 					textBuff += "\n\n<i>“I guess, if you guys want to.”</i>";
 					textBuff += "\n\n<i>“Don’t pretend you don’t want to, slut!”</i>";
-					textBuff += "\n\nThey continue on like that, stepping closer. Soon, the group of big-boobed beauties has you completely surrounded. The first speaker peels her way out of lycra clubwear, revealing a pair of creamy blue boobies. They shine in the light, a product of inhumanly smooth skin. The others follow their leader’s example in short order. One after another, bouncing breasts spill into the immediate area around your head. They press close, tit to tit, nipples inches from your face. One of the girls has the audacity to touch [pc.oneCock], giggling when it jumps in her hand.";
+					textBuff += "\n\nThey continue on like that, stepping closer. Soon, the group of big-boobed beauties has you completely surrounded. The first speaker peels her way out of her lycra clubwear, revealing a pair of creamy blue boobies. They shine in the light, a product of inhumanly smooth skin. The others follow their leader’s example in short order. One after another, bouncing breasts spill into the immediate area around your head. They press close, tit to tit, nipples inches from your face. One of the girls has the audacity to touch [pc.oneCock], giggling when it jumps in her hand.";
 					textBuff += "\n\nYou groan, overwhelmed by the sinful sexuality of it all.";
 					textBuff += "\n\nThe girls titter giddily at your reaction and smush closer, smothering your face in breasts and running hands ";
 					if(pc.hasHair()) textBuff += "through your [pc.hair]";
@@ -300,11 +303,11 @@ package classes.Items.Transformatives
 					else textBuff += "them";
 					textBuff += ", but the leader pulls back before things can get any worse, stuffing her tits back into a top that seems far too small to contain such marvellous melons. <i>“That was fun, but we’re gonna miss our party if we play any longer. Did you enjoy?”</i> Her compatriots likewise pack their boobs away.";
 					textBuff += "\n\n<i>“Bu... buh...”</i> You struggle for words, overheated and oxygen starved, vision swimming.";
-					textBuff += "\n\nThe whole crowd giggles and turns away, asses swaying, tails flicking, panties moistening. One muses, <i>“It’s too bad [pc.heShe] doesn’t speak English or whatever. I kind of wanted his number.”</i>";
+					textBuff += "\n\nThe whole crowd giggles and turns away, asses swaying, tails flicking, panties moistening. One muses, <i>“It’s too bad [pc.heShe] doesn’t speak English or whatever. I kind of wanted [pc.hisHer] number.”</i>";
 					textBuff += "\n\nThe blue-skinned beauty shrugs. <i>“Yeah, I bet [pc.heShe] would’ve loved this party.”</i> They vanish around a corner.";
 				}
 				//Drippy trap fapper
-				else if(rand(2) == 0 || pc.hasStatusEffect("Painted Penis"))
+				else if(exhib == 2)
 				{
 					textBuff += "\n\nAmong the curious crowd is one small kui-tan individual, androgynous in the face with wide, curvy hips but lacking in even the most modest amount of chest. It’s the short-cropped hair and obvious bulge in his skirt that identifies his gender - male, despite the other trappings of femininity. He steps forward shyly, waiting for a reaction from you that never comes.";
 					textBuff += "\n\nYou’re too busy eyefucking the femmy tanuki-boy, wondering if he’s going to sit on your [pc.cockBiggest], to do much else. The pressure in your loins is too distracting!";
@@ -326,20 +329,18 @@ package classes.Items.Transformatives
 					textBuff += "\n\nIt’s nearly enough to make you cum yourself, but then he’s finished, kissing you on the cheek and staggering away, staining the front of his hastily donned skirt with still-dripping white. With his disappearance, the erotic moment seems to fade.";
 				}
 				//Cockpainting - reqs no cockpainting status.
-				else
+				else if(exhib == 3)
 				{
 					textBuff += "\n\nFor a time, you’re merely ogled, but then a face appears among the crowd, brazenly walking up to you with a heavy-looking handbag. She’s a typical example of her race, totally unremarkable in most respects. <i>“I simply must paint you.”</i> Even her voice is forgettable. <i>“Do you consent?”</i>";
 					textBuff += "\n\nThat at least sounds like something that might give you an excuse for being exposed, so you eagerly nod.";
 					textBuff += "\n\n<i>“Okay then. Hold still.”</i> The alien artist kneels down and opens her bag, but instead of producing some kind of portable easel, she pulls out a tubular spraygun, spins the dial on the back, and kneels ";
 					if(pc.legCount > 1) textBuff += "between your [pc.legs]";
-					else textBuff += "in front of your [pc.legs]";
+					else textBuff += "in front of your [pc.leg]";
 					textBuff += ". <i>“A proper base coat is essential.”</i> She pulls the trigger, and you feel a cool tingle as ";
-			
 					if(pc.cocks[x].cockColor != "pink" && pc.cocks[x].cockColor != "neon pink") textBuff += "neon-pink";
 					else textBuff += "matte black";
 					textBuff += " pigment spreads across your [pc.cock " + x + "]. She nods to herself, then gently lifts your blissfully engorged length to coat the underside. Your face blushes brighter the more she colors your cock. By the end of your tip-to-base basecoat, onlookers have gathered to watch the creation of art.";
 					textBuff += "\n\n<i>“How lovely.”</i> Little miss Pic-a-cock-asso rubs you to make sure the paint has dried, then nods to herself while you try not to moan.";
-
 					//small no new PG
 					if(pc.cocks[x].cLength() < 8)
 					{
@@ -392,7 +393,9 @@ package classes.Items.Transformatives
 						kGAMECLASS.flags["COCK_PAINTED_DESIGN"] = 0;
 					}
 					//Merge
-					textBuff += "\n\nWith her work complete, the artist pulls out her phone and snaps a quick holo, being sure to scan you from every single side{, ignoring the pre-cum pouring out of your prettied-up penis}. <i>“Thanks";
+					textBuff += "\n\nWith her work complete, the artist pulls out her phone and snaps a quick holo, being sure to scan you from every single side";
+					if(pc.cumQ() >= 200) textBuff += ", ignoring the pre-cum pouring out of your prettied-up penis";
+					textBuff += ". <i>“Thanks";
 					if(kGAMECLASS.flags["COCK_PAINTED_EXHIB_EVENT"] != undefined) textBuff += " again";
 					textBuff += ". You";
 					if(kGAMECLASS.flags["COCK_PAINTED_EXHIB_EVENT"] != undefined) textBuff += "’re always a wonderful subject";
@@ -411,8 +414,8 @@ package classes.Items.Transformatives
 					pc.libidoMod += 5;
 				}
 				//Merge
-				textBuff += "\n\nIt’s at that moment that you feel your blood pressure stabilize and your [pc.cocks] softening by the slightest amount. Your flush gradually - very gradually fades, and while you are still horny, you are confident that in a short amount of time, ";
-				if(pc.isCrotchExposed()) textBuff += "you’ll be back to normal";
+				textBuff += "\n\nIt’s at that moment that you feel your blood pressure stabilize and your [pc.cocks] softening by the slightest amount. Your flush gradually - very gradually - fades, and while you are still horny, you are confident that in a short amount of time, you’ll be ";
+				if(pc.isCrotchExposed()) textBuff += "back to normal";
 				else textBuff += "able to tuck yourself away. Whew";
 				textBuff += ".";
 				pc.exhibitionism(2);
@@ -527,7 +530,9 @@ package classes.Items.Transformatives
 				textBuff += "A fantasy bursts upon you, unbidden. What if you got pregnant? ";
 				if(getPlanetName().toLowerCase() == "tavros station") textBuff += "Y";
 				else textBuff += "Back at Tavros, y";
-				textBuff += "ou have that whole nursery deck. Getting knocked up could be an advantage for you rather than a hindrance. Your [pc.belly] would swell up with young, all round and sexy, your [pc.nipples] dripping milk at the slightest provocation for your lovers and young alike. Your eyelashes flutter as you imagine yourself like that, [pc.legs] spreads and [pc.vaginas] dripping, so horny from your body’s altered hormones that you can outfuck even the most libidinous aliens.";
+				textBuff += "ou have that whole nursery deck. Getting knocked up could be an advantage for you rather than a hindrance. Your [pc.belly] would swell up with young, all round and sexy, your [pc.nipples] dripping milk at the slightest provocation for your lovers and young alike. Your eyelashes flutter as you imagine yourself like that,";
+				if(pc.legCount > 1) textBuff += " [pc.legs] spread and";
+				textBuff += " [pc.vaginas] dripping, so horny from your body’s altered hormones that you can outfuck even the most libidinous aliens.";
 				//legs
 				if(pc.legCount > 1) textBuff += "\n\nThen you realize that your [pc.legs] are sort of spread, all but begging passersby to breed you.";
 				//No legs
@@ -540,7 +545,7 @@ package classes.Items.Transformatives
 					else textBuff += "lifts and wiggles";
 					textBuff += ", an implicit advertisement of your desire to be taken and bred.";
 				}
-				textBuff += " Why are you like this? Why can’t you stop? You’ll do your best to stand normally, but the moment you stop thinking about, you slip back into that submissive, needy pose. You feel flushed, hot, and a little dizzy, like you’re going to fall down in front of the first man you see, ass in the air, pussy on display. <b>Are you in heat? Is this what heat feels like?</b> There’s definitely an empty feeling in your womb, one that you instinctively understand that only a child could fix. Maybe you should go get knocked up - just get pounded by boy after boy until you get to be a mommy.";
+				textBuff += " Why are you like this? Why can’t you stop? You’ll do your best to stand normally, but the moment you stop thinking about it, you slip back into that submissive, needy pose. You feel flushed, hot, and a little dizzy, like you’re going to fall down in front of the first man you see, ass in the air, pussy on display. <b>Are you in heat? Is this what heat feels like?</b> There’s definitely an empty feeling in your womb, one that you instinctively understand that only a child could fix. Maybe you should go get knocked up - just get pounded by boy after boy until you get to be a mommy.";
 				textBuff = ParseText(textBuff);
 				//Yay, heat!
 				//v1 - fertility boon
@@ -732,7 +737,7 @@ package classes.Items.Transformatives
 				textBuff += ".”</i> Spatters of pussy-juice fall on your [pc.feet]. <i>“Please cum! I need to be pregnant!”</i> She arches her back, whole body quivering. Even her pussy is fluttering with ecstatic tremors, trying to tug the virile milk out of your [pc.cockBiggest]. <i>“Give me your cum!”</i>";
 				textBuff += "\n\nSomehow, you endure for the moment, still slapping your hips into hers with passionate, confident strokes. <i>“Tell me what you are!”</i>";
 				textBuff += "\n\n<i>“";
-				if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 1) textBuff += "I’m... I’m just a needy, dumb bunny that needs knocked up more than anything else in the galaxy!";
+				if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 1) textBuff += "I’m... I’m just a needy, dumb bunny that needs to be knocked up more than anything else in the galaxy!";
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 2) textBuff += "I’m a horny, slutty cum-receptacle whose body won’t go stop going into heat!";
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 3) textBuff += "I’m your personal incubator, just an empty vessel with no value beyond incubating your young at every opportunity!";
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 4) textBuff += "Your personal bunny preg-slut! My pussy is so broken in from your dick that nothing else will ever be as good. My womb aches for your cum and your cum alone, because it’s my purpose to accept as many of your loads as you’ll give me!";
@@ -753,8 +758,9 @@ package classes.Items.Transformatives
 				//High cumQ
 				if(pc.cumQ() >= 5000)
 				{
-					textBuff += "\n\nHer belly balloons with the sheer weight of your copious seed. She isn’t even pregnant yet, but she’s starting to look the part. Rubbing her swollen belly, she quietly cums, making little squeaks each time her needy, dripping snatch gets off on the feeling of your spunk-distended dick.{ You flood her well passed the point of looking six months pregnant, a fact that spreads sheer delight across her sweating features. Looking back, she stammers, <i>“Th-thank you. I’ll make you so many... so many babies.”</i>";
-					if(pc.cumQ() >= 40000) 
+					textBuff += "\n\nHer belly balloons with the sheer weight of your copious seed. She isn’t even pregnant yet, but she’s starting to look the part. Rubbing her swollen belly, she quietly cums, making little squeaks each time her needy, dripping snatch gets off on the feeling of your spunk-distended dick.";
+					if(pc.cumQ() >= 15000) textBuff += " You flood her well passed the point of looking six months pregnant, a fact that spreads sheer delight across her sweating features. Looking back, she stammers, <i>“Th-thank you. I’ll make you so many... so many babies.”</i>";
+					if(pc.cumQ() >= 40000)
 					{
 						textBuff += " That seems likely given that you’re still cumming, swelling her tummy into a gravid dome. The fattened rabbit-slut is puffing up so big that her pregnant middle actually lifts her off the ground, her arms and legs windmilling uselessly.";
 						if(pc.cumQ() >= 50000)
@@ -772,7 +778,7 @@ package classes.Items.Transformatives
 				textBuff += "\n\n<i>“Th-thank you.”</i> The blissfully smiling laquine rolls on her back and sprawls, giggling almost drunkenly. <i>“";
 				if(lassLaquineAcceptable(pc,x) && kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 1) textBuff += "You’re my perfect Alpha, and I can’t wait to have even more babies.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“Could you... could you call for me more often? I need you... as often as you can.";
 				else if(lassLaquineAcceptable(pc,x)) textBuff += "You’re such a perfect Alpha... Anytime you want me, just close your eyes and think of me.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“I’ll always be there for your cum. Always.”</i>";
-				else textBuff += "I’m don’t know if that’ll actually take.”</i> She smiles sadly, rubbing her swollen pussy. <i>“But it scratched my itch for now... Keep wearing those ears, and maybe we can see more of each other.";
+				else textBuff += "I don’t know if that’ll actually take.”</i> She smiles sadly, rubbing her swollen pussy. <i>“But it scratched my itch for now... Keep wearing those ears, and maybe we can see more of each other.";
 				textBuff += "”</i> She blows you a kiss, then fades away into nothingness.";
 
 				//Repeat
@@ -799,6 +805,7 @@ package classes.Items.Transformatives
 				if(!masturbate) AddLogEvent(textBuff,"passive");
 				else output(ParseText(textBuff));
 				pc.orgasm();
+				kGAMECLASS.applyCumSoaked(pc);
 			}
 		}
 		public function bunnyguyFapScene(pc:Creature,fap:Boolean = false):void
@@ -823,7 +830,7 @@ package classes.Items.Transformatives
 
 			if(pc.inHeat()) textBuff += "\n\nLaquine lass... and breeding? It’s suddenly too warm and too hot. Thoughts of breeding make it difficult to focus on words, but you qualify as a laquine lass, don’t you? You’ve got this hot... aching... empty vagina that would feel so much better with a baby in it.";
 			else if(kGAMECLASS.flags["LAQUINE_GENT_BONED"] != undefined) textBuff += "\n\nYes, he’s definitely singing of you. You hum along with the familiar tune. It sparks a certain, familiar excitement within you after the last encounter...";
-			textBuff += "\n\nThe source of the enchanting song appears in front of you, naked save for a dashing, crimson cape which he wears over his right shoulder. He himself is a laquine, gray-furred and grinning. A mop of unruly salt and pepper hangs over the left side of his handsome face. Beneath, twinkling, sky-blue eyes regard you with confident interest. Placing a hand on his sturdy, bunny-like leg, he bows with an elaborate flourish of his other arm. <i>“Smashing to meet such a lovely and beautiful flower on one’s journeys.”</i>";
+			textBuff += "\n\nThe source of the enchanting song appears in front of you, naked -- save for a dashing, crimson cape which he wears over his right shoulder. He himself is a laquine, gray-furred and grinning. A mop of unruly salt and pepper hangs over the left side of his handsome face. Beneath, twinkling, sky-blue eyes regard you with confident interest. Placing a hand on his sturdy, bunny-like leg, he bows with an elaborate flourish of his other arm. <i>“Smashing to meet such a lovely and beautiful flower on one’s journeys.”</i>";
 			textBuff += "\n\nHe steps closer before you can respond, taking your hand in his. He plants a chaste kiss on your wrist, then tugs you into a close embrace, his arm strong around your back, the muscle so hard it may as well be made of corded iron strands. His fur is coarse but neatly combed, recently cleaned with a soap that reminds you faintly of freshly chopped wood. <i>“";
 			if(kGAMECLASS.flags["LAQUINE_GENT_BONED"] == undefined) textBuff += "My lady, I must present my deepest apologies, for I have not been entirely truthful with you.";
 			else textBuff += "My lady, your presence is as a glass of cool water to a bunny like me.";
@@ -831,24 +838,24 @@ package classes.Items.Transformatives
 			if(kGAMECLASS.flags["LAQUINE_GENT_BONED"] == undefined)
 			{
 				textBuff += "You see, I am taken by the worst sort of rapacious rut";
-				if(pc.laquineScore() < 5) textBuff += ", and while you are so long from the laquine lover I need, I must have you all the same";
+				if(pc.laquineScore() < 5) textBuff += ", and while you are so long from the laquine lover I need, I must have you all the same.";
 				else textBuff += ", and you are the most delectable specimen of laquine femininity I could envision. I must have you.";
 			}
-			else textBuff += "For I am taken with rapacious need once more. The only cure for my malady lies betwixt your heavenly legs, dear madam. I can contain myself no longer. For this, I beg your sincerest apologies.";
+			else textBuff += "For I am taken with rapacious need once more. The only cure for my malady lies betwixt your heavenly " + (pc.hasLegs() ? "legs" : "thighs") + ", dear madam. I can contain myself no longer. For this, I beg your sincerest apologies.";
 			textBuff += "”</i>";
 
 			textBuff += "\n\nYou rock back in surprise, staring down to see the emerging length of his glossy, black shaft. It’s a thick, bestial thing, entirely at odds with the lithe male who seems too wiry to carry such a heavy endowment. From the blunt head to the medial ring, it’s already slathered in whitish, musky goo, and it begins to drizzle more the moment it reaches full size, rocking against your thigh with each passionate beat of its owner’s heart. He wasn’t lying. Your mere presence was enough to take him to full, raging tumescence.";
 			textBuff += "\n\nYou can’t peel your eyes away from it. ";
 			if(kGAMECLASS.flags["LAQUINE_GENT_BONED"] == undefined) textBuff += "It would fit <i>perfectly</i> inside you. You’re sure of it.";
 			else textBuff += "You did this to him.";
-			textBuff += " He’s rocking against your [pc.leg], fluffy hands balled into tight, shaking fists. It’s all he can do not to jump you this very moment. Pre-cum bubbles up out of him hard enough to shoot an inch into the air before washing back down to collect in the folds of his tightly-stretched sheath. With great effort of will, you pull your eyes up to his cerulean ones, noting the struggle in his eyes, the way his inner animal tears at the cage of his sophisticated demeanor, one by one shredding the bars of his better nature to make way for a cunt-destroying breeding.";
+			textBuff += " He’s rocking against your [pc.leg], fluffy hands balled into tight, shaking fists. It’s all he can do not to jump you this very moment. Pre-cum bubbles up out of him, hard enough to shoot an inch into the air before washing back down to collect in the folds of his tightly-stretched sheath. With great effort of will, you pull your eyes up to his cerulean ones, noting the struggle in his eyes, the way his inner animal tears at the cage of his sophisticated demeanor, one by one shredding the bars of his better nature to make way for a cunt-destroying breeding.";
 			if(pc.inHeat()) textBuff += " A shiver travels up your spine at the thought, and for a moment, you aren’t sure if you want to take him to ease his burden or make him wait, if only to make him fuck you all the harder.";
 
 			textBuff += "\n\n<i>“Have mercy,”</i> the laquine intones, his grip firming, <i>“For I must sire you a litter.”</i> His cheek twitches";
 			if(!pc.isCrotchExposed()) textBuff += " as he yanks down your [pc.crotchCover]";
 			textBuff += ". His cock twitches in eagerness, and the hung rabbit stops resisting, choosing to guide his passions rather than let them break him. He pulls you tight, planting kisses from the nape of your neck up to your [pc.ear], whispering that he will ";
-			if(pc.inHeat()) textBuff += "give you every drop of seed in his body so that you may mother the next generation of his libidinous race.";
-			else if(pc.hasVagina(GLOBAL.TYPE_EQUINE)) textBuff += "fill you like none other, teaching you what it means to fuck with a real male instead of some lesser species.";
+			if(pc.inHeat()) textBuff += "give you every drop of seed in his body so that you may mother the next generation of his libidinous race";
+			else if(pc.hasVagina(GLOBAL.TYPE_EQUINE)) textBuff += "fill you like none other, teaching you what it means to fuck with a real male instead of some lesser species";
 			else textBuff += "be gentle to you, his delicate flower";
 			textBuff += ". Meanwhile, his body swivels the rest of the way behind you, threading his burning-hot length between your [pc.thighs]. The medial ring brushes against [pc.oneClit], slick and warm, making you whimper.";
 
@@ -893,7 +900,7 @@ package classes.Items.Transformatives
 				else textBuff += ", the pleasure overwhelms you. This is what you needed - a warm, tumescent member, bubbling with virility lodged deep inside you, not some useless plastic penis. You swear you can almost feel his wiggling swimmers as you have your first orgasm, sliding into your womb in search of the dozens of eggs that must be there, lying in wait. It’s so good, so earth-shatteringly delightful that for a moment, you can only fantasize about how good his orgasm will feel, and good it will feel to know you’re going to birth dozens of his offspring.";
 				if(pc.vaginalVirgin) textBuff += " Wasn’t losing your virginity supposed to hurt?";
 
-				textBuff += "\n\nYour dashing, cunt-pleasing champion begins to fuck you hard the moment you adjust to his enormous member. He drills into you with such force that your [pc.legs] are lifted clear off the ground with his smallest thrusts, bouncing you so high that it almost looks like you’re hopping in place - only your legs are flailing limply while his powerful limbs carry your weight. [pc.GirlCum] spurts out at the impacts that launch you, cascading in salacious sheets to splatter on the ground. His pre-cum shoots out in thick wads, voluminous enough to drown a normal man’s orgasm, and he hasn’t even cum yet. It’s coming soon, though! The veins all along his length are thickening perceptibly. His flare is swelling.";
+				textBuff += "\n\nYour dashing, cunt-pleasing champion begins to fuck you hard the moment you adjust to his enormous member. He drills into you with such force that your " + (pc.legCount == 1 ? "[pc.leg] is" : "[pc.legs] are") + " lifted clear off the ground with his smallest thrusts, bouncing you so high that it almost looks like you’re hopping in place - only your " + (pc.hasLegs() ? "legs are" : "lower body is") + " flailing limply while his powerful limbs carry your weight. [pc.GirlCum] spurts out at the impacts that launch you, cascading in salacious sheets to splatter on the ground. His pre-cum shoots out in thick wads, voluminous enough to drown a normal man’s orgasm, and he hasn’t even cum yet. It’s coming soon, though! The veins all along his length are thickening perceptibly. His flare is swelling.";
 				textBuff += "\n\n<i>“P-please!”</i> the male laquine stutters, holding onto a modicum of politeness, <i>“Tell me that you want it... Tell me that in your heart of hearts, you want my children, dozens of them!”</i> Somehow, he expands still further without cumming, pressing on nerves that drive you wild.";
 				textBuff += "\n\n<i>“Yes!”</i> you wantonly cry, shaking your hips and squeezing your [pc.vagina " + x + "] down on him, coaxing him to unload with your body’s every movement. <i>“Give it to me! Give me that cum!”</i> His next thrust drives you past the point of sensibility. <i>“Gimme allofit! Fuck me pregnant! Knock up my pussy!”</i>";
 				if(pc.hasCock()) 
@@ -956,7 +963,7 @@ package classes.Items.Transformatives
 				if(!pc.inHeat() && pc.vaginas[x].type != GLOBAL.TYPE_EQUINE) textBuff += " or ";
 				if(pc.vaginas[x].type != GLOBAL.TYPE_EQUINE) textBuff += "have a proper, laquine pussy, all plush and leaking...";
 				textBuff += "”</i> Pulling your arms back, he forces you to arch your back, aligning you at the perfect angle for insertion. <i>“Then I could really let you have it.”</i>";
-				textBuff += "\n\nHis hips inch upward, at first compressing your vulva, then forcing you to spread, wider by wider, but suddenly, the firm grip of his hands slackens.";
+				textBuff += "\n\nHis hips inch upward, at first compressing your vulva, then forcing you to spread, wider and wider, but suddenly, the firm grip of his hands slackens.";
 				textBuff += "\n\n<i>“Nooo, I was so close!”</i> your fluffy suitor curses even as his body fades into translucency. <i>“I need to breed so badly!”</i> He drops to his knees, everything below his hips already vanishing into nothing. <i>“Those ears... keep using them... maybe next time...”</i> His searching eyes fade to nothing.";
 				//first time
 				if(kGAMECLASS.flags["LAQUINE_FADEAWAY"] == undefined && kGAMECLASS.flags["LAQUINE_GENT_BONED"] == undefined) 
@@ -964,7 +971,7 @@ package classes.Items.Transformatives
 					textBuff += "\n\nWhat the FUCK? Was all that just a hallucination?";
 					if(!pc.isCrotchExposed()) textBuff += " Looking down, you realize that you’re still wearing your [pc.crotchCover], and n";
 					else textBuff += "N";
-					textBuff += "o evidence of the rabbit remains, save for the moistness between your legs. When they said laquines fucked like bunnies, they must have meant it!";
+					textBuff += "o evidence of the rabbit remains, save for the moistness between your " + (pc.hasLegs() ? "legs" : "thighs") + ". When they said laquines fucked like bunnies, they must have meant it!";
 				}
 				//Repeats
 				else
