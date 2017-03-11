@@ -1,4 +1,9 @@
 import classes.Creature;
+import classes.ItemSlotClass;
+import classes.Items.Apparel.Boyshorts;
+import classes.Items.Apparel.PlainPanties;
+import classes.Items.Apparel.Stockings;
+import classes.Items.Apparel.Thong;
 import classes.Items.Miscellaneous.BBQToGo;
 import classes.Items.Miscellaneous.Kalocrunch;
 import classes.Items.Miscellaneous.LargeEgg;
@@ -31,6 +36,9 @@ PIPPA_SEXED - Tracks how many times Steele has had sex with Pippa
 PIPPA_ASS_FUCKED - Tracks whether or not Steele has fucked Pippa in the ass
 	undefined/0 - Steele has not fucked Pippa in the ass
 	1 - Steele has fucked Pippa in the ass
+PIPPA_FUCKED_BY - Trackes whether or not Steele has been fucked by Pippa
+	undefiend/0 - Steele has not been fucked by Pippa
+	1 - Steele has been fucked by Pippa
 PIPPA_DOMINANCE - Tracks Pippa's dominance
 	undefined/0 - Steele has not had sex with Pippa
 PIPPA_TALKED_HER - Check if Steele has talked to Pippa about herself
@@ -57,6 +65,7 @@ PIPPA_NURU_TIMER - Timer for Pippa's email about Nuru massage
 PIPPA_FLIRTED - Check if Steele has flirted with Pippa successfully
 	undefined/0 - Have not
 	1 - Have
+PIPPA_TALKED_COCK - Check if Steele has asked Pippa about cock
 */
 	
 public function metPippa():Boolean
@@ -436,7 +445,7 @@ public function meetPippa(itemGiven:String = ""):void
 			output("<i>“You know, I actually do have food on me, if you’d like some.”</i>");
 		}
 		
-		output("\n\nShe responds excitedly, <i>“Really? That’s so nice, thank you!”</i> " + pippaEatFood(itemGiven) + " <i>“That was delicious. Now then, where were we?”</i>");
+		output("\n\nShe responds excitedly, <i>“Really? That’s so nice, thank you!”</i>  " + pippaEatFood(itemGiven) + " <i>“That was delicious. Now then, where were we?”</i>");
 		
 		pippaAffection(1); // Small boost to normal food affection for initial meeting
 	}
@@ -536,14 +545,23 @@ public function pippaSexMenu(func:Function):void
 		addDisabledButton(3, "Get Sat On", "Get Sat On", "Pippa will sit on your face and get herself off. (Must not be a taur, have a muzzled face, or have a beak.)");
 	}
 	
-	// PC straddles Pippa's lap while she drinks their milk
-	if (pc.milkQ() >= 1000 && pc.isLactating() && !pc.isTaur())
+	if (pippa.hasHardLightStrapOn())
 	{
-		addButton(4, "Feed Milk", pippaFeedMilk, undefined, "Feed Milk", "Feed Pippa with your tits.");
+		addButton(4, "Get Fucked", pippaGetFucked, undefined, "Get Fucked", "Pippa will fuck you with her hardlight strapon.");
 	}
 	else
 	{
-		addDisabledButton(4, "Feed Milk", "Feed Milk", "You’ll need to be a heavily lactating non-taur to give Pippa a personal feeding.");
+		addDisabledButton(4, "Get Fucked", "Get Fucked", "Pippa's not currently equipped to fuck you.");
+	}
+	
+	// PC straddles Pippa's lap while she drinks their milk
+	if (pc.milkQ() >= 1000 && pc.isLactating() && !pc.isTaur())
+	{
+		addButton(5, "Feed Milk", pippaFeedMilk, undefined, "Feed Milk", "Feed Pippa with your tits.");
+	}
+	else
+	{
+		addDisabledButton(5, "Feed Milk", "Feed Milk", "You’ll need to be a heavily lactating non-taur to give Pippa a personal feeding.");
 	}
 	
 	addButton(14, "Back", func, NEVERMIND);
@@ -1008,7 +1026,7 @@ public function pippaHouseBonus(arg:String = ""):void
 	removeUvetoCold();
 	author("Ascent");
 
-	output("You stand in Pippa’s house, a welcome reprieve from the cold. There’s nothing too remarkable about the pig girl’s house except for her massage table, visible in another room. At the moment, she is " + RandomInCollection("eating", "eating", "massaging her hands", "lounging around", "doing yoga", "exercising her fingers") + ".");
+	output("You stand in Pippa’s house, a welcome reprieve from the cold. There’s nothing too remarkable about the pig girl’s house except for her massage table, visible in another room. At the moment, she is " + RandomInCollection("eating", "eating", "massaging her hands", "reading", "doing yoga", "exercising her fingers", "cleaning") + ".");
 	
 	addButton(0, "Pippa", pippaMainMenu);
 }
@@ -1512,7 +1530,7 @@ public function pippaGetSatOnFocus():void
 	}
 	else
 	{
-		output("She softly speaks, <i>“I’d like to reward you for doing such a good job, but...”</i> You don’t have a cock or a pussy of any sort, or even a sexy set of tits. No matter; you’re here to please her today. You continue to");
+		output("She softly speaks, <i>“I’d like to reward you for doing such a good job, but....”</i> You don’t have a cock or a pussy of any sort, or even a sexy set of tits. No matter; you’re here to please her today. You continue to");
 	}
 	
 	output(" gently play with her nipples, and alternate between licking her clit and making out with her nether lips.");
@@ -1836,7 +1854,131 @@ public function pippaFeedMilkHerControl():void
 	if (pc.hasCock()) applyCumSoaked(pc);
 	
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function pippaGetFucked():void
+{
+	clearOutput();
+	clearMenu();
+	showPippa(true);
 	
+	if (flags["PIPPA_FUCKED_BY"] == 1) output("You ask Pippa to fuck you.  She nods.  <i>“Just a sec.”</i>  She goes to retrieve her strapon.  When she comes back, she's stripped of her yoga pants and tanktop and now wearing her [pippa.lowerUndergarment] and a salacious smile.");
+	else output("Pippa beams.  <i>“I've been looking forward to trying this thing out.”</i>  Strapon already on hand, she quickly strips off her yoga pants and tanktop, and pulls on the [pippa.lowerUndergarment] you bought her.");
+	
+	output("  She activates the underwear and her [pippa.hardlightCock] flops out into existence");
+	
+	if (flags["PIPPA_FUCKED_BY"] != 1) output(", a surprised, but pleased gasp escaping her lips in response to the new sensation.  She ignores you briefly, gently running her hands along her new holo-cock, gaining a new appreciation for technology.  She lets off and brings her attention back to you");
+	
+	output(".  <i>“How about, first things first, you get me ready?”</i>  You comply, kneeling before her.  To start, you gently wrap your hand around her shaft and plant a few soft kisses along its length.  With it semi-erect, you slightly firm up your grip and massage her to full erection.  As you do, Pippa's breathing grows heavier, and she gently runs her hands " + (pc.hasHair() ? "through" : "along") + " your [pc.hairDescript].  With her [pippa.hardlightCockNoun] completely erect, you kiss the head, before slipping it into your mouth.  You run your [pc.tongue] and [pc.lips] all around its entire length, getting it nice, wet, and ready.  Pippa continues to massage your head as you do, but you can feel her grip tensing up ever so slightly.");
+	
+	output("\n\nPippa bites her lower lip, and looks down at you, staring into your eyes, her grip tightening more.  <i>“Your mouth is so warm and wet.  Are you drooling over this fake cock?”</i>  Even if you wanted to answer, you couldn't; now with a firm grip on your head, she pushes you into her [pippa.hardlightCock].  After " + (pc.canDeepthroat() ? "bottoming out her [pippa.hardlightCockNoun] in your mouth" : "pushing you as far down as possible onto her [pippa.hardlightCockNoun]") + " she holds your head in place and pulls out before thrusting back in.  She quickly works up a rhythm, fucking your mouth, heavily breathing and grunting.  All you can do is keep your balance and be sure to breathe through your nose.  Soon, she thrusts as far into your mouth as possible, and doubles over, wrapping her arms around your head.  You feel shudders running through her body.");
+	
+	output("\n\nFinally, she stands up and lets go of your head, letting her [pippa.hardlightCockNoun] out, and allowing you to breath in a nice, big breath of air.  <i>“That was quite some warm up, " + pippaCallsSteele() + ".”</i>  Her [pippa.hardlightCock] is still hard.  Well, when you said you wanted to be fucked, you didn't mean your mouth anyway.  She circles around behind you.  She bends over and grabs your ass, lifing you up");
+	
+	if (pc.isTaur()) output(" such that you're kneeling in the front, but your [pc.ass] is up in the air, level with Pippa's waist.");
+	else output(", and then pushing you down into a bent over position.");
+	
+	var vagOrAss:int;
+	
+	if (pc.hasVagina())
+	{
+		vagOrAss = rand(2) - 1;
+		
+		output("  <i>“Now then....”</i>  You feel the head of her [pippa.hardlightCock] brushing along your crotch, between your [pc.assholeNoun] and [pc.vaginasNoun], teasing you.  <i>“Which hole do I want to take?”</i>");
+	}
+	else
+	{
+		vagOrAss = -1;
+		
+		output("  <i>“Now then....”</i>  You feel the head of her [pippa.hardlightCock] brushing and circling around your [pc.assholeNoun], teasing you.  <i>“Your asshole looks so lovely and inviting.”</i>");
+	}
+	
+	if (vagOrAss == 0) vagOrAss == rand(pc.vaginas.length);
+	
+	output("\n\nThe tip of her [pippa.hardlightCockNoun] comes to rest on your [pc.vagOrAss " + vagOrAss + "] and she slowly pushes in, " + (vagOrAss == -1 ? "spreading your " + RandomInCollection("ring", "rim", "hole") : "parting your " + RandomInCollection("folds", "lips")) + " and burying her length inside of you. ");
+	
+	pc.holeChange(vagOrAss, 10);
+	
+	output("  For a short bit, she doesn't move her hips, leaving her [pippa.hardlightCock] buried in you.  Her hands, however, she moves, rubbing them along your [pc.hips], gently massaging and squeezing them.  The massaging and the sensation of your filled hole arouses you");
+	
+	if (pc.hasGenitals())
+	{
+		output(", leaving your");
+		
+		if (pc.hasCock()) output(" [pc.cocksNoun] hard");
+		if (pc.isHerm()) output(" and your");
+		if (pc.hasVagina()) output(" [pc.pussies] wet");
+	}
+	
+	output(".  You impatiently wiggle your hips, grinding into Pippa.  She delivers a sharp smack to your ass.  <i>“I just wanted to enjoy the feeling of your [pc.vagOrAssNoun " + vagOrAss + "] wrapped around me a bit.");
+	
+	if (flags["PIPPA_FUCKED_BY"] != 1) output("  It's my first time feeling this, after all.");
+	
+	output("”</i>");
+	
+	output("\n\n");
+	
+	if (pc.isBimbo() || pc.isBro()) output("<i>“But I really need to get fucked now!”</i>");
+	else if (pc.isAss()) output("<i>“That's great, but hurry up and get on with it.”</i>");
+	else if (pc.isMischievous()) output("<i>“I'm sure the feeling's wonderful, but I can only take so much teasing.”</i>");
+	else output("<i>“I think you'll like the feeling even more once you start moving.”</i>");
+	
+	output("\n\nShe says nothing more, but gently rubs your ass in the same spot she'd just spanked it and begins moving, slowly at first.  She draws her smooth hardlight cock out until the tip is just barely held inside you, then pushes back in.  She builds up her rhythm, thrusting in rougher and faster than she pulls out.  As she does, she rubs, and massages your [pc.hips], frequently interjecting with a sharp spank to your ass.  You can feel the building pleasure steal some of the dexterity from her fingers, her hands tensing and twitching ever so slightly as she massages you.  She draws her hands away from you, and you prepare yourself for a spank that doesn't come.");
+	
+	if (pc.hasGenitals())
+	{
+		output("\n\nInstead, you feel her hand");
+		
+		if (pc.hasCock() || (pc.hasVagina() && vagOrAss == -1))
+		{
+			output(" reach " + (pc.genitalLocation() == 0 ? "around" : "down") + " and ");
+			
+			if (pc.hasCock())
+			{
+				output("grab your [pc.cock].  Pippa strokes your shaft with the same rhythm of her thrusts, a rough and uncomposed handjob, different from what you'd normally expect from her.  Despite the rough motions, her hands are soft and she's applying just enough pressure.  She strokes down as she thrusts into you, fingers playing up and down your shaft as they go down to meet her hips at your body, before separating again.");
+			}
+			else
+			{
+				output("begin to rub your [pc.pussy].  Pippa only briefly teases her fingers along the outside, but with it already wet and ready, she quickly slips her fingers inside.  She swirls her fingers around a bit, exploring and spreading you from within, before quickly moving on to finger fucking you.  She pushes in and out alternately with the thrusting of her hips, pushing fingers in as her hips pull out and vice versa.");
+			}
+		}
+		else
+		{
+			output("s spreading your [pc.buttcheeks].  Pippa keeps one hand spreading your ass open, and begins rubbing the ring of your asshole with a finger on her other hand.  It feels as though she's wet her fingers with her mouth, rubbing her spit into your [pc.asshole].  You feel your asshole spreading as she pushes one finger in, and then spreading further as a second finger joins in.  She hooks her fingers into your ass, pushing in with her fingers when she pulls her [pippa.hardlightCock] out and vice versa.");
+		}
+		
+		output("  You begin to feel a familiar pressure rising in your loins, but the motion of her fingers becomes more and more frantic and off kilter, eventually losing the rhythm of her thrusting hips.");
+		
+		output("\n\nPippa removes her fingers from you entirely and");
+	}
+	else output("\n\nInstead, Pippa");
+	
+	output(" leans over you, wrapping her hands around your body.  The thrusting of her hips picks up, becoming faster and wilder.  She's like an animal in heat at this point, her heavy breathing and moaning descending into grunting and squealing.  Now only her hips move, thrusting roughly into you as though she's preparing to spill seed as deep into your " + (vagOrAss == -1 ? "bowels" : "womb") + "  as possible.  As you're fucked like a sow at the mercy of a boar, pressure" + (pc.hasGenitals() ? " again " : " ") + "builds in your loins.  Before long, her wild thrusting pushes you over the edge, ");
+	
+	if (pc.hasGenitals()) {
+		if (pc.hasCock()) output("your [pc.cocks] shooting [pc.cum] onto the floor");
+		if (pc.isHerm()) output(" and ");
+		if (pc.hasVagina()) output("your [pc.pussies] spraying [pc.girlcum] onto " + (vagOrAss == -1 ? "the floor" : "her [pippa.hardlightCockNoun]"));
+		
+		output(".");
+	}
+	else output("shudders and twitches running through your body.");
+	
+	output("  Your [pc.vagOrAssNoun " + vagOrAss + "] clenches around Pippa's holo-cock and you pull her over the edge with you.  She thrusts as far into you as she can go and tightens her grip on you, her noises coming to a halt.  There's no feeling of cum shooting into you, but with your bodies pressed together so tightly, you feel her every spasm.");
+	
+	output("\n\nPippa's movements die down, slowly but surely, and you hear her release her breath.  She says nothing at first, still holding onto you, and regaining her breath.  She finally stands up, pushing herself off of you.  Her [pippa.hardlightCock] rapidly disappears from inside of you, as she switches it off.  ");
+	
+	if (flags["PIPPA_FUCKED_BY"] == 1) output("<i>“I don't know that I'll ever get tired of this thing.  I never thought I'd enjoy being the one doing the fucking so much.”</i>");
+	else output("<i>“This thing's incredible.  I should've gotten one for myself a long time ago.  Thank you, " + pippaCallsSteele() + "”</i>");
+	
+	output("  She sighs and runs a hand through her hair.  It's disheveled, matching her sheen of sweat and flushed skin.  <i>“I should really get myself cleaned up.  Please come on by next time you want to get fucked.”</i>  She gives you a wink and heads for the shower.");
+	
+	pc.orgasm();
+	processTime(15);
+	pippaDominance(2);
+	flags["PIPPA_FUCKED_BY"] = 1;
+	
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function pippaAppearance():void
@@ -1898,25 +2040,38 @@ public function pippaTalkMenu(from:Function = undefined):void
 	if (from != pippaTalkYou) addButton(1, "You", pippaTalkYou, undefined, "You", "Talk to Pippa about yourself.");
 	else addDisabledButton(1, "You", "You", "You just talked to her about that.");
 	
-	if (flags["MET_CFS"] == undefined) addDisabledButton(2, "Carbonado", "Carbonado", "You’ll have to have visited Carbonado to talk to her about this.");
+	if (flags["MET_CFS"] == undefined) addDisabledButton(2, "Carbonado", "Carbonado", "You’ll have to have visited Carbonado to talk to her about it.");
 	else if (from == pippaTalkCarbonado) addDisabledButton(2, "Carbonado", "Carbonado", "You just talked to her about that.");
 	else addButton(2, "Carbonado", pippaTalkCarbonado, undefined, "Carbonado", "Talk to Pippa about Carbonado.");
 	
-	if (flags["PIPPA_TALKED_HER"] != 1 || flags["PIPPA_TALKED_CARBONADO"] != 1 || flags["PIPPA_TALKED_YOU"] != 1 || pippaAffection(0) < PIPPA_AFFECTION_MASSAGE) addDisabledButton(3, "Money", "Money", "Maybe you should get to know Pippa better before questioning her finances.");
-	else if (from == pippaTalkMoney) addDisabledButton(3, "Money", "Money", "You just talked to her about that.");
-	else addButton(3, "Money", pippaTalkMoney, undefined, "Money", "Talk to Pippa about money.");
+	if (flags["PIPPA_FLIRTED"] != 1) addDisabledButton(3, "Cock", "Cock", "You should be intimate with Pippa before you talk to her about this.");
+	else if (from == pippaTalkHardlight) addDisabledButton(3, "Hardlight", "Hardlight", "You just talked to her about that.");
+	else
+	{
+		if (flags["PIPPA_TALKED_COCK"] != 1) addButton(3, "Cock", pippaTalkCock, undefined, "Cock", "Ask Pippa about getting a cock.");
+		else if (!pippa.hasHardLightStrapOn())
+		{
+			if (pc.hasHardLightStrapOn()) addButton(3, "Hardlight", pippaGiveHardlight, undefined, "Hardlight", "Give Pippa a pair of hardlight underwear.");
+			else addDisabledButton(3, "Hardlight", "Hardlight", "You don't have any hardlight underwear to give to Pippa.");
+		}
+		else addButton(3, "Hardlight", pippaTalkHardlight, undefined, "Hardlight", "Ask Pippa about her hardlight underwear.");
+	}
+	
+	if (flags["PIPPA_TALKED_HER"] != 1 || flags["PIPPA_TALKED_CARBONADO"] != 1 || flags["PIPPA_TALKED_YOU"] != 1 || pippaAffection(0) < PIPPA_AFFECTION_MASSAGE) addDisabledButton(4, "Money", "Money", "Maybe you should get closer to Pippa better before questioning her finances.");
+	else if (from == pippaTalkMoney) addDisabledButton(4, "Money", "Money", "You just talked to her about that.");
+	else addButton(4, "Money", pippaTalkMoney, undefined, "Money", "Talk to Pippa about money.");
 	
 	// Talk to her about Yammi (if you have recruited Yammi and talked to her about herself)
-	if (!yammiRecruited()) addDisabledButton(4, "Locked", "Locked", "You’ll need to recruit a certain crew member to talk to her about this.");
-	else if (flags["PIPPA_TALKED_HER"] != 1 || !yammiIsCrew()) addDisabledButton(4, "Yammi", "Yammi", "You’ll need to talk to her about herself and have Yammi as a crew member.");
-	else if (from == pippaTalkYammi) addDisabledButton(4, "Yammi", "Yammi", "You just talked to her about that.");
-	else addButton(4, "Yammi", pippaTalkYammi, undefined, "Yammi", "Talk to Pippa about Yammi.");
+	if (!yammiRecruited()) addDisabledButton(5, "Locked", "Locked", "You’ll need to recruit a certain crew member to talk to her about this.");
+	else if (flags["PIPPA_TALKED_HER"] != 1 || !yammiIsCrew()) addDisabledButton(5, "Yammi", "Yammi", "You’ll need to talk to her about herself and have Yammi as a crew member.");
+	else if (from == pippaTalkYammi) addDisabledButton(5, "Yammi", "Yammi", "You just talked to her about that.");
+	else addButton(5, "Yammi", pippaTalkYammi, undefined, "Yammi", "Talk to Pippa about Yammi.");
 	
 	// Talk to her about Reaha (if Reaha is a treated crew member and you've talked to her about herself)
-	/*if (!reahaRecruited()) addDisabledButton(3, "Locked", "Locked", "You’ll need to recruit a certain crew member to talk to her about this.");
-	else if (flags["PIPPA_TALKED_HER"] != 1 || !reahaIsCrew() || !reaha.isTreated()) addDisabledButton(3, "Reaha", "Reaha", "You’ll need to talk to her about herself and have Reaha onboard and treated.");
-	else if (from == pippaTalkReaha) addDisabledButton(3, "Reaha", "Reaha", "You just talked to her about that.");
-	else addButton(3, "Reaha", pippaTalkReaha, undefined, "Reaha", "Talk to Pippa about Reaha."); // Disabled till Reaha can be Treated */
+	/*if (!reahaRecruited()) addDisabledButton(6, "Locked", "Locked", "You’ll need to recruit a certain crew member to talk to her about this.");
+	else if (flags["PIPPA_TALKED_HER"] != 1 || !reahaIsCrew() || !reaha.isTreated()) addDisabledButton(6, "Reaha", "Reaha", "You’ll need to talk to her about herself and have Reaha onboard and treated.");
+	else if (from == pippaTalkReaha) addDisabledButton(6, "Reaha", "Reaha", "You just talked to her about that.");
+	else addButton(6, "Reaha", pippaTalkReaha, undefined, "Reaha", "Talk to Pippa about Reaha."); // Disabled till Reaha can be Treated */
 	
 	addButton(14, "Back", pippaMainMenu);
 }
@@ -1945,7 +2100,7 @@ public function pippaTalkHer():void
 	if (pc.isBimbo() || pc.isBro()) output("<i>“Why aren’t you with the other farm animals?”</i>");
 	else output("<i>“Why Uveto?”</i>");
 	
-	output("\n\nAt this question, she smiles and answers, <i>“No particular reason. That you caught me here is just coincidence. My plan is to move around from place to place every now and then, seeing new things, eating new foods. I actually lived in New Texas previously, and I hadn’t planned to move on, but...”</i> She trails off before continuing, <i>“Well, I liked New Texas, and I like sex as much as the next girl, but it got old. It was so hard to even have a real conversation with someone. And so, I found myself here.”</i>");
+	output("\n\nAt this question, she smiles and answers, <i>“No particular reason. That you caught me here is just coincidence. My plan is to move around from place to place every now and then, seeing new things, eating new foods. I actually lived in New Texas previously, and I hadn’t planned to move on, but....”</i> She trails off before continuing, <i>“Well, I liked New Texas, and I like sex as much as the next girl, but it got old. It was so hard to even have a real conversation with someone. And so, I found myself here.”</i>");
 	
 	output("\n\nIt sounds a bit like she regrets leaving New Texas. <i>“Do you miss New Texas?”</i>");
 	
@@ -1996,7 +2151,7 @@ public function pippaTalkYou():void
 	
 	output("\n\n<i>“");
 	if (pc.isBimbo()) output("I get to take over Daddy’s company! I hope so, anyway.");
-	else if (pc.isBro()) output("I get to take Pop’s company...I hope.");
+	else if (pc.isBro()) output("I get to take over Pop’s company...I hope.");
 	else output("Victor Steele, the founder of Steele Tech, is my father. I’m going to succeed him. Or at least, that’s the plan.");
 	output("”</i>");
 	
@@ -2042,6 +2197,104 @@ public function pippaTalkCarbonado():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkCarbonado);
 }
 
+public function pippaTalkCock():void
+{
+	clearOutput();
+	clearMenu();
+	showPippa();
+	
+	if (pc.isBimbo() || pc.isBro())
+	{
+		output("<i>“You should totally get a cock");
+		
+		if (pc.isFeminine() && pc.hasCock()) output(", like me");
+		
+		output("!”</i>");
+	}
+	else
+	{
+		output("<i>“Have you ever considered getting yourself a cock?”</i>");
+		
+		if (pc.hasCock() && !pc.genitalLocation() <= 1) output("  You lightly brush your hand across your crotch.  <i>“Having one is pretty nice.”</i>");
+	}
+	
+	output("\n\nPippa smiles.  <i>“I'd be lying if I said I never considered it.  That said, if I wanted a cock, I'd have one right now.  I'm happy with how I am, but....”</i>  She closes the distance between you and leans in, bringing her lips close to your ear.  <i>“Why the interest in me having a cock?  You want me to fuck you?”</i>  You blush, but say nothing.  She backs off and giggles.  <i>“I'll tell you what.  I'm not going to get a cock, but you bring me some hardlight underwear, and I'll happily ");
+	
+	if (pc.isTaur()) output("mount you");
+	else output( "bend you over");
+	
+	output(".”</i>");
+	
+	flags["PIPPA_TALKED_COCK"] = 1;
+	
+	processTime(2);
+	
+	addButton(0, "Next", pippaTalkMenu, pippaTalkCock);
+}
+
+public function pippaTalkHardlight():void
+{
+	clearOutput();
+	clearMenu();
+	showPippa();
+	
+	if (flags["PIPPA_FUCKED_BY"] >= 1) output("<i>“These things are really something.  I should've gotten myself a pair a long time ago.  Thanks, " + pippaCallsSteele() + ".”</i>  She leans in and kisses you on the cheek.");
+	else output("Pippa looks at you with a bit of annoyance.  <i>“Maybe you should let me give these things a try before you go chatting me up about them.”</i>");
+	
+	processTime(1);
+	
+	addButton(0, "Next", pippaTalkMenu, pippaTalkHardlight);
+}
+
+public function pippaGiveHardlight():void
+{
+	clearOutput();
+	clearMenu();
+	showPippa();
+	
+	var buttonCount:int = 0;
+	var inventoryHardlights:Array = new Array();
+	
+	for (var i:int = 0; i < pc.inventory.length; i++)
+	{
+		if (pc.inventory[i].hardLightEquipped)
+		{
+			addButton(buttonCount, pc.inventory[i].shortName, pippaGiveHardlightII, pc.inventory[i], pc.inventory[i].shortName, pc.inventory[i].tooltip);
+			buttonCount++;
+			inventoryHardlights.push(pc.inventory[i]);
+		}
+	}
+	
+	if (inventoryHardlights.length > 0) output("Which pair of hardlight equipped underwear do you want to give to Pippa?");
+	else if (pc.hasHardLightEquipped()) output("You don't have any hardlight equipped underwear in your inventory.  You'll have to take off the ones you're wearing to give them to Pippa.");
+	else output("You don't have any hardlight equipped underwear to give to Pippa."); // Don't think it should be possible to get to this else, but it's here just in case
+	
+	addButton(14, "Back", pippaTalkMenu);
+}
+
+public function pippaGiveHardlightII(undies:ItemSlotClass):void
+{
+	clearOutput();
+	clearMenu();
+	showPippa();
+	
+	pc.destroyItem(undies, 1);
+	pippa.lowerUndergarment = undies;
+	
+	output("You give Pippa the " + undies.longName + ".  She holds them up and examines them.  <i>“");
+	
+	if (undies is PlainPanties) output("Plain and simple.  They should do just fine.");
+	else if (undies is Thong) output("I'm not a fan of thongs, honestly, but I'll only need to wear them sometimes I guess.");
+	else if (undies is Boyshorts) output("These look comfy.");
+	else if (undies is Stockings) output("Sexy, if not really my style.");
+	else output("They don't really look much different from normal underwear.");
+	
+	output("  So, you going to let me try them?”</i>");
+	
+	addButton(0, "Get Fucked", pippaGetFucked, undefined, "Get Fucked", "Pippa will fuck you with her hardlight strapon.");
+	addButton(14, "Back", pippaTalkMenu);
+}
+
 public function pippaTalkMoney():void
 {
 	clearOutput();
@@ -2051,7 +2304,7 @@ public function pippaTalkMoney():void
 	if (pc.isBimbo() || pc.isBro()) output("<i>“So you fly all over the place and can’t give massages. How do you have money?”</i>");
 	else output("<i>“So you’ve a planet hopping lifestyle, and you’ve mentioned your lack of customers multiple times. Yet, you don’t seem too concerned with your financial situation.”</i>");
 	
-	output("\n\nPippa looks around like she doesn’t really want to talk about it. Maybe you shouldn’t have asked; money can be a sensitive topic. Finally, she sighs before speaking, <i>“Well, here’s the thing. She was no Victor Steele, but I had a grandmother who managed to make quite a bit of money during the last Planet Rush. I never met her, unfortunately, but she was very generous with her money.”</i>");
+	output("\n\nPippa looks around like she doesn’t really want to talk about it. Maybe you shouldn’t have asked; money can be a sensitive topic. Finally, she sighs before speaking, <i>“Well, here’s the thing. She was no Victor Steele, but I had a grandmother who managed to make quite a bit of money during the last Planet Rush. I never met her, unfortunately, but she was very generous with her money.”  She hardens her expression slightly and continues, “And to be clear, I've gotten plenty of customers on planets besides this one.”</i>");
 	
 	output("\n\nYou’re surprised to hear that. You wouldn’t guess she was a rich girl, but it does explain a lot. <i>“Is this grandmother anybody I’d recognize?”</i>");
 	

@@ -2068,6 +2068,10 @@
 				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
+				case "vaginasSimple":
+				case "vaginasNoun":
+					buffer = simpleVaginasNoun();
+					break;
 				case "vaginas":
 				case "pussies":
 				case "cunts":
@@ -2093,6 +2097,10 @@
 				case "vagOrAsshole":
 				case "pussyOrAsshole":
 					buffer = vagOrAss(arg2);
+					break;
+				case "vagOrAssNoun":
+				case "vagOrAssSimple":
+					buffer = vagOrAssNoun(arg2);
 					break;
 				case "clit":
 				case "clitoris":
@@ -12403,6 +12411,11 @@
 			if (hasVagina() && arg >= 0) return vaginaDescript(arg);
 			return assholeDescript();
 		}
+		public function vagOrAssNoun(arg:int = 0):String
+		{
+			if (hasVagina() && arg >= 0) return vaginaNounDescript(arg);
+			return assholeDescript(true);
+		}
 		//Vaginas + Descript
 		public function oneTailVaginaDescript():String
 		{
@@ -12494,6 +12507,21 @@
 		{
 			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
 			return vaginaNoun2(vaginas[vaginaNum]);
+		}
+		public function simpleVaginasNoun():String {
+			var output:String = "";
+			
+			if (vaginas.length < 1) return "<b>ERROR: NO PUSSIES DETECTED for simpleVaginasNoun()</b>";
+			if (matchedVaginas()) output += vaginaNoun2(vaginas[0], true);
+			else output += randomSimpleVaginaNoun();
+			
+			if (vaginas.length > 1) output = plural(output);
+			
+			return output;
+		}
+		public function randomSimpleVaginaNoun():String
+		{
+			return RandomInCollection("pussy","pussy","pussy","pussy","pussy","vagina","vagina","vagina","cunt","cunt","slit");
 		}
 		public function vaginaNoun2(vag:VaginaClass, simple:Boolean = false, special:String = ""):String
 		{
