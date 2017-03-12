@@ -348,20 +348,12 @@ public function lashTreatment(treatment:String):void
 	addButton(0,"Next",lashTreatment2,treatment);
 }
 
-public function lashTreatment2(treatment:String):void
+public function purgeParasites(pType:String = "all"):Boolean
 {
-	clearOutput();
-	showDrLash();
-	output("You come to feeling groggy and sore, like you ran a short footrace after taking a tumble down two flights of stairs. White laboratory walls gradually resolve into focus while you acquaint yourself with your surroundings and allow your mind to to slog its way out of the drug-induced stupor.");
-	output("\n\nYou’re naked on a bench in the center of the lab, completely uncovered and unprotected. Anyone could’ve walked in and seen you while you were unconscious!");
-	output(" Part of you thrills at the realization, but your body doesn’t react quite as you’d expect.");
-	output(" Gasping, you take in your changed form. <b>");
-
 	var parasites:Boolean = false;
-
-	if(pc.hasParasiteTail() || attachedMimbranes() > 0)
+	
+	if(pType == "tail" || pType == "all")
 	{
-		parasites = true;
 		// Do the removal shit
 		if (pc.hasParasiteTail())
 		{
@@ -374,12 +366,32 @@ public function lashTreatment2(treatment:String):void
 			
 			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
 			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+			
+			parasites = true;
 		}
+	}
+	if(pType == "mimbranes" || pType == "all")
+	{
 		if (attachedMimbranes() > 0)
 		{
 			removeMimbranes();
+			
+			parasites = true;
 		}
 	}
+	
+	return parasites;
+}
+public function lashTreatment2(treatment:String):void
+{
+	clearOutput();
+	showDrLash();
+	output("You come to feeling groggy and sore, like you ran a short footrace after taking a tumble down two flights of stairs. White laboratory walls gradually resolve into focus while you acquaint yourself with your surroundings and allow your mind to to slog its way out of the drug-induced stupor.");
+	output("\n\nYou’re naked on a bench in the center of the lab, completely uncovered and unprotected. Anyone could’ve walked in and seen you while you were unconscious!");
+	output(" Part of you thrills at the realization, but your body doesn’t react quite as you’d expect.");
+	output(" Gasping, you take in your changed form. <b>");
+
+	var parasites:Boolean = purgeParasites();
 	
 	if(treatment == "rack removal")
 	{

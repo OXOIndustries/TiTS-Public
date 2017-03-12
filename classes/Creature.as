@@ -3549,6 +3549,10 @@
 		{
 			return (isTreated() && hasStatusEffect("Cum-Cow"));	
 		}
+		public function isFauxCow():Boolean
+		{
+			return (isTreated() && 9999 == 0);
+		}
 		public function hasPheromones():Boolean
 		{
 			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent")) return true;
