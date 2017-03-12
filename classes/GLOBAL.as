@@ -713,6 +713,7 @@
 		public static const FLUID_TYPE_FRUIT_GIRLCUM:int						= 26;
 		public static const FLUID_TYPE_EGGNOG:int								= 27;
 		public static const FLUID_TYPE_PEPPERMINT:int							= 28;
+		public static const FLUID_TYPE_SUGAR:int								= 29;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -744,6 +745,7 @@
 			"Fruit Girl Cum",
 			"Eggnog",
 			"Peppermint Cum",
+			"Sugar Glaze",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -776,6 +778,7 @@
 			"F.GCum",
 			"Eggnog",
 			"Mint.C",
+			"Sugar",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -797,6 +800,7 @@
 			FLUID_TYPE_FRUIT_CUM,
 			FLUID_TYPE_EGGNOG,
 			FLUID_TYPE_PEPPERMINT,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
@@ -810,6 +814,7 @@
 			FLUID_TYPE_NYREA_GIRLCUM,
 			FLUID_TYPE_HRAD_CUM,
 			FLUID_TYPE_FRUIT_GIRLCUM,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -826,6 +831,7 @@
 			FLUID_TYPE_CUM,
 			FLUID_TYPE_GIRLCUM,
 			FLUID_TYPE_BLUEBERRY_YOGURT,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		// HAIRTYPES

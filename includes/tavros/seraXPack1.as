@@ -38,24 +38,9 @@ public function seraSexXXXTFModsCheck():Boolean
 {
 	var numUnlocked:int = 0;
 	
-	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined)
-	{
-		if(!chars["SERA"].hasItemByType(Clippex)) chars["SERA"].inventory.push(new Clippex());
-		numUnlocked++;
-	}
-	else chars["SERA"].destroyItem(new Clippex());
-	if(flags["SERA_UNLOCK_SEMENS"] != undefined)
-	{
-		if(!chars["SERA"].hasItemByType(SemensFriend)) chars["SERA"].inventory.push(new SemensFriend());
-		numUnlocked++;
-	}
-	else chars["SERA"].destroyItem(new SemensFriend());
-	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined)
-	{
-		if(!chars["SERA"].hasItemByType(Lucifier)) chars["SERA"].inventory.push(new Lucifier());
-		numUnlocked++;
-	}
-	else chars["SERA"].destroyItem(new Lucifier());
+	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined) numUnlocked++;
+	if(flags["SERA_UNLOCK_SEMENS"] != undefined) numUnlocked++;
+	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined) numUnlocked++;
 	
 	if(numUnlocked >= 3) return true;
 	return false;

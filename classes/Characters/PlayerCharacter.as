@@ -258,6 +258,7 @@ package classes.Characters
 				case GLOBAL.FLUID_TYPE_NECTAR:
 				case GLOBAL.FLUID_TYPE_MILKSAP:
 				case GLOBAL.FLUID_TYPE_CUMSAP:
+				case GLOBAL.FLUID_TYPE_SUGAR:
 					energy(20 * fxMult);
 					break;
 			}

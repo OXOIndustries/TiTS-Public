@@ -14950,6 +14950,8 @@
 				collection = ["sweet","sweet","savory","rich","rich", "rich","delicious", "delicious","creamy","creamy"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["minty","minty","minty","fresh","fresh", "sweet","minty-sweet", "minty-sweet"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["sweet","sweet","sweet","sugary","sugary","saccharine"];
 			}
 			
 			else collection = ["bland"];
@@ -14999,6 +15001,8 @@
 				collection = ["thick","smooth","smooth", "creamy", "creamy", "viscous"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["sticky","sticky","sticky", "gooey", "gooey", "molasses-like"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["gooey","sticky","syrupy"];
 			}
 			
 			else collection = ["fluid"];
@@ -15057,6 +15061,8 @@
 				collection = ["creamy yellow", "creamy yellow", "light yellow","muddy golden", "cream colored", "cream colored"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["white", "opaque white", "ivory", "ivory", "alabaster", "alabaster"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["white", "white", "semi-clear", "ivory", "alabaster", "pure white"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];
@@ -15109,7 +15115,7 @@
 		}
 		public function fluidColorSimple(arg: int):String
 		{
-			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_PEPPERMINT)) return "white";
+			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_PEPPERMINT, GLOBAL.FLUID_TYPE_SUGAR)) return "white";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG)) return "yellow";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) return "brown";
@@ -15179,6 +15185,8 @@
 				collection = ["eggnog"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["peppermint", "minty cum"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["glaze", "frosting", "icing"];
 			}
 			
 			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];
