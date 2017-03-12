@@ -896,13 +896,13 @@ public function brothelWhored(setMinutes:int = 360, service:String = "none"):voi
 	IncrementFlag("BETHS_TIMES_WHORED");
 	
 	// Unlock message:
-	if(
-		(flags["BETHS_TIMES_WHORED_HANDS"] >= 2 && flags["BETHS_TIMES_WHORED_MOUTH"] == undefined) || 
-		(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2 && flags["BETHS_TIMES_WHORED_VAGINA"] == undefined) || 
-		(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2 && flags["BETHS_TIMES_WHORED_ALL"] == undefined) || 
-		(flags["BETHS_TIMES_WHORED_ALL"] >= 2 && flags["BETHS_TIMES_WHORED_ROOMS"] == undefined)
-		)
-	{
+	if
+	(	(flags["BETHS_TIMES_WHORED_HANDS"] >= 2 && flags["BETHS_TIMES_WHORED_MOUTH"] == undefined)
+	||	(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2 && flags["BETHS_TIMES_WHORED_VAGINA"] == undefined && pc.hasVagina())
+	||	(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2 && flags["BETHS_TIMES_WHORED_ALL"] == undefined && pc.hasVagina())
+	||	(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2 && flags["BETHS_TIMES_WHORED_ALL"] == undefined && pc.hasCock())
+	||	(flags["BETHS_TIMES_WHORED_ALL"] >= 2 && flags["BETHS_TIMES_WHORED_ROOMS"] == undefined)
+	) {
 		output("\n\n<b>There’s potential to earn more this way - but you’re going to have to offer a little more");
 		if(flags["BETHS_TIMES_WHORED_ALL"] >= 2 && flags["BETHS_CONTRACT_WHORE"] == undefined) output(". Maybe you should think about signing up for a license");
 		output("...</b>");
@@ -2128,6 +2128,8 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				if(pc.thickness > 40) pc.thickness = 39;
 				minPass += 2;
 			}
+			if(msg != "") output("\n\n" + msg);
+			msg = "";
 			// If 1 < penis reduce to 1 penis
 			// If penis > 5 inches reduce to 5 inches
 			if(pc.hasCock() && pc.biggestCockLength() > 5)
@@ -2244,7 +2246,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			applyPussyDrenched(pc);
 			
 			// [pb]
-			addButton(0, "Next", brothelTrappifyAnswer, (pc.libido() < 66 ? "trained" : "libido"));
+			addButton(0, "Next", brothelTrappifyAnswer, ((pc.libido() < 66 || pc.WQ() >= 50) ? "trained" : "libido"));
 			break;
 		// If libido < 66
 		case "trained":
@@ -2289,8 +2291,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			processTime(2);
 			
 			// [Sign Contract] [Leave]
-			addButton(0, "Sign", brothelTrappifyAnswer, "sign", "Sign Contract", "Sign the new contract.");
-			addButton(14, "Leave", brothelTrappifyAnswer, "leave");
+			addButton(0, "Next", move, rooms[currentLocation].westExit);
 			break;
 		// [Sign Contract]
 		case "sign":
