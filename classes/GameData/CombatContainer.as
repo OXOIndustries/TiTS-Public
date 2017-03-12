@@ -1410,6 +1410,13 @@ package classes.GameData
 		private function runAway():void
 		{
 			clearOutput();
+			if (pc.inHeat() && hasDickedEnemy())
+			{
+				//Attempt to flee vs enemy with cock.
+				output("You can’t flee, not when there’s a challenge to defeat. Especially not when said challenge has a penis. The mere thought of giving up enrages you!");
+				processCombat();
+				return;
+			}
 			output("You attempt to flee from your opponent");
 			if (hasEnemyOfClass(QueenOfTheDeep))
 			{

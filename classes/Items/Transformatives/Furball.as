@@ -44,7 +44,7 @@
 			
 			clearOutput();
 			kGAMECLASS.showName("\nFURBALL");
-			author("WorldOfDrakan");
+			author("Anonymous Drake");
 			
 			if(target is PlayerCharacter)
 			{
