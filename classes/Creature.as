@@ -4076,6 +4076,7 @@
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
 			currLib += statusEffectv3("Heat");
+			currLib += statusEffectv1("Lagonic Rut");
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
 			if (currLib > libidoMax())
@@ -4116,6 +4117,7 @@
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 			bonus += statusEffectv2("Heat");
+			bonus += statusEffectv2("Lagonic Rut");
 			bonus += statusEffectv1("Omega Oil");
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
@@ -7542,6 +7544,10 @@
 			if (breasts == 0) return 0;
 			return Math.floor(nipples / breasts);
 		}
+		public function isErect():Boolean
+		{
+			return (lust() >= 66);
+		}
 		public function hasASheath(): Boolean {
 			for (var x: int = 0; x < cocks.length; x++) {
 				if (cocks[x].hasFlag(GLOBAL.FLAG_SHEATHED)) return true;
@@ -8354,15 +8360,20 @@
 		}
 		public function inRut():Boolean
 		{
-			return hasStatusEffect("Rut");
+			return (hasStatusEffect("Rut") || hasStatusEffect("Lagonic Rut"));
 		}
 		public function clearHeat():void
 		{
 			removeStatusEffect("Heat");
+			removeStatusEffect("Lagonic Rut");
 		}
 		public function clearRut():void
 		{
 			removeStatusEffect("Rut");
+		}
+		public function extendHeat(arg:Number):void
+		{
+			if(hasStatusEffect("Heat")) addStatusMinutes("Heat",arg);
 		}
 		public function analCapacity(): Number {
 			var capacity:Number = 20;
@@ -8924,6 +8935,18 @@
 			return multi;
 		}
 		
+		public var girlCumMultiplierRaw:Number = 1;
+		public var girlCumMultiplierMod:Number = 0;
+		public function girlCumMultiplier(arg:Number = 0):Number
+		{
+			if(arg != 0) girlCumMultiplierRaw += arg;
+			var multi:Number = girlCumMultiplierRaw + girlCumMultiplierMod;
+			var bonus:Number = 0;
+			multi += bonus;
+			if (multi < 0) return 0;
+			return multi;
+		}
+
 		//Calculate cum return
 		public function cumQ(): Number {
 			if (hasPerk("Fixed CumQ")) return perkv1("Fixed CumQ");
@@ -8948,6 +8971,7 @@
 			else if (refractoryRate >= 30 && quantity < 1500) quantity = 1500;
 			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
+			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
@@ -8973,6 +8997,9 @@
 			//Figure on 3x a cumshot value?
 			if (balls == 0) quantity = Math.round(ballSize() * 2 * 2 * ballEfficiency);
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
+
+			//Overriiiide for stuff
+			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
 			return quantity;
 		}
 		public function currentCum(): Number {
@@ -9085,7 +9112,7 @@
 			var quantity: Number = 0;
 			// lust - 50% = normal output. 0 = 75%. 100 = +125% output.
 			var lustCoefficient: Number = ((lust() / 2) + 75) / 100;
-			var girlCumMultiplier: Number = 0;
+			var tempGirlCumMultiplier: Number = girlCumMultiplier();
 			var girlCumAmount: Number = 0;
 			var squirterBonus: Number = 0;
 			// For targetting a specific vagina, otherwise it's all inclusive.
@@ -9093,23 +9120,23 @@
 			{
 				for (arg = 0; arg < vaginas.length; arg++)
 				{
-					girlCumMultiplier += vaginas[arg].wetness();
+					tempGirlCumMultiplier += vaginas[arg].wetness();
 					if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness();
 					girlCumAmount++;
 				}
 			}
 			else
 			{
-				girlCumMultiplier += vaginas[arg].wetness();
+				tempGirlCumMultiplier += vaginas[arg].wetness();
 				if (isSquirter(arg)) squirterBonus += vaginas[arg].wetness();
 				girlCumAmount++;
 			}
 			// Scale values.
-			girlCumMultiplier *= 1; // 1x per vagina's wetness level
+			tempGirlCumMultiplier *= 1; // 1x per vagina's wetness level
 			girlCumAmount *= 5; // 5 ml produced per vagina
 			squirterBonus *= 10; // extra 10 mL produced per extra squirter bonus
 			// Estimate initial quantity.
-			quantity = girlCumMultiplier * lustCoefficient * (girlCumAmount + squirterBonus);
+			quantity = tempGirlCumMultiplier * lustCoefficient * (girlCumAmount + squirterBonus);
 			// Heat means wetter orgasms.
 			quantity += statusEffectv1("Heat");
 			//GOO VENT BONUS!
@@ -9124,6 +9151,15 @@
 			// Default minimum of 1mL
 			if (quantity < 1) quantity = 1;
 			return quantity;
+		}
+		public function boostGirlCum(arg:Number):void
+		{
+			while(arg > 0)
+			{
+				if(girlCumMultiplier() < 10) girlCumMultiplier(2);
+				else if(girlCumMultiplier() < 50) girlCumMultiplier(1);
+				arg -= 2;
+			}
 		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
@@ -15988,6 +16024,7 @@
 			var bonus:Number = 0;
 			if(hasPerk("Virile")) bonus += perkv1("Virile");
 			if(hasStatusEffect("Priapin")) bonus += statusEffectv1("Priapin");
+			bonus += statusEffectv4("Lagonic Rut");
 			return (cumQualityRaw + cumQualityMod + bonus);
 		}
 		
@@ -16024,8 +16061,12 @@
 		
 		public var fertilityRaw:Number = 1;
 		public var fertilityMod:Number = 0;
-		public function fertility():Number
+		public function fertility(arg:Number = 0):Number
 		{
+			if(arg != 0)
+			{
+				fertilityRaw += arg;
+			}
 			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
 			
 			return fertilityRaw + fertilityMod + statusEffectv1("Heat");
@@ -18133,6 +18174,13 @@
 						{
 							new LaquineEars().laquineEarsFinale(this);
 						}
+						break;
+					case "Heat":
+						if(requiresRemoval) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
+						break;
+					case "Rut":
+					case "Lagonic Rut":
+						if(requiresRemoval) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
 						break;
 					case "Curdsonwhey": 
 						
