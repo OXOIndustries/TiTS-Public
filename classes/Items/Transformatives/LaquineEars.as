@@ -424,7 +424,7 @@ package classes.Items.Transformatives
 				textBuff += "\n\nWait a second. You shake your head, trying to clear your senses. <b>Are you going into rut?</b> Is that what this is? A quick search on your Codex confirms it for sure: one of the side effects of Laquine Ears is <b>an extra-potent form of rut colloquially known as “Lagonic Rut,”</b> named after an infamous wife-stealing laquine of old folk tales. You don’t get far through his exploits before you get bored of the details and focus on all the fertile girls he impregnated. The numbers before you stop seeming like a warning and more like a challenge.";
 				textBuff += "\n\nHow many kids can you sire?";
 
-				pc.createStatusEffect("Lagonic Rut",5,25,2000,5,false,"LustUp","Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+5 Libido\n+25 Minimum Lust\n+2000mLs Minimum Cum\n+5 Virility",false,28800,0xB793C4);
+				pc.createStatusEffect("Lagonic Rut",5,25,2000,5,false,"LustUp","Your body is driven for aggressive breeding, increasing your libido and virility, as well as boosting your minimum cum output.\n\n+5 Libido\n+25 Minimum Lust\n+2000mLs Minimum Cum\n+500% Virility",false,28800,0xB793C4);
 				/*Rut effects
 				//v1 - libido increase.
 				//v2 - min lust
