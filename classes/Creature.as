@@ -3164,7 +3164,7 @@
 				for (var i:int = 0; i < breastRows.length; i++) 
 				{
 					titSize = breastRows[i].breastRating();
-					if (titSize >= 100 || breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) return false; // Can't hide hyper-sized tits!
+					if (titSize >= 100 && breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) return false; // Can't hide hyper-sized tits!
 					if
 					(	titSize > (isFluffy ? (i < 2 ? 2 : 1) : 0) // fluffy fur can disguise B-cups on chest (due to that fluffy fur ball in description) and A-cups on belly
 					//|| 	breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES // lipples? they should look quite obscene, but this is not checked in main function
@@ -3206,8 +3206,7 @@
 							totalLength += currLength;
 						}
 					}
-					if (genitalLocation() > 1) bitsNeedCover = 1;
-					else if (hasSheathed || isFluffy) bitsNeedCover++; // Sheathes are modest enough to be covered with one tail all, or even just be covered by a long fur
+					if (hasSheathed || isFluffy) bitsNeedCover++; // Sheathes are modest enough to be covered with one tail all, or even just be covered by a long fur
 					else bitsNeedCover += Math.ceil(totalLength / 18); // consider that you'll need one tail for every 18 inches of cock
 				}
 				
@@ -3217,8 +3216,7 @@
 					else if (scrotumType() == GLOBAL.FLAG_FURRED && isFluffy && ballSize() <= (hasStatusEffect("Uniball") ? 1.5 : 1)) { }
 					else
 					{
-						if (genitalLocation() > 1) bitsNeedCover = 1;
-						else bitsNeedCover += Math.ceil(ballDiameter() * (hasStatusEffect("Uniball") ? 0.75 : 1) * Math.sqrt(balls) / 6);
+						bitsNeedCover += Math.ceil(ballDiameter() * (hasStatusEffect("Uniball") ? 0.75 : 1) * Math.sqrt(balls) / 6);
 					}
 				}
 				
@@ -3227,9 +3225,9 @@
 					if
 					(	!(vaginaTotal(GLOBAL.TYPE_FELINE) + vaginaTotal(GLOBAL.TYPE_AVIAN) == vaginaTotal() && hasFurOrFeathers) // Feline ones are modest enough to be hidden just by fur from casual glance
 					||	(puffiestVaginalPuffiness() >= 2 && !hasFurOrFeathers)
+					||	(puffiestVaginalPuffiness() >= 4 && !isFluffy)
 					) {
-						if (genitalLocation() > 1) bitsNeedCover = 1;
-						else bitsNeedCover++; // I guess 1 tail would be enough for all of them, unless we have something really freaky
+						bitsNeedCover++; // I guess 1 tail would be enough for all of them, unless we have something really freaky
 					}
 				}
 			}
@@ -3238,11 +3236,14 @@
 			{
 				if(ass.hasFlag(GLOBAL.FLAG_PUMPED) || (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !isFluffy) || !hasFurOrFeathers)
 				{
-					if (bitsNeedCover > 1 && genitalLocation() > 1) bitsNeedCover = 1;
-					else bitsNeedCover++; // you always need at least 1 tail to cover your ass, unless you have fluffy fur
+					bitsNeedCover++; // you always need at least 1 tail to cover your ass, unless you have fluffy fur
 				}
 			}
 			
+			// Exceptions for taurs/driders (as long as one eligible tail exists, it can "cover" non-hyper-sized bits)
+			if (bitsNeedCover > 1 && genitalLocation() > 1) bitsNeedCover = 1;
+			
+			// No bits to cover?
 			if (bitsNeedCover <= 0) return true;
 			
 			if (hasTail())
@@ -8369,11 +8370,11 @@
 		public function clearHeat():void
 		{
 			removeStatusEffect("Heat");
-			removeStatusEffect("Lagonic Rut");
 		}
 		public function clearRut():void
 		{
 			removeStatusEffect("Rut");
+			removeStatusEffect("Lagonic Rut");
 		}
 		public function extendHeat(arg:Number):void
 		{
