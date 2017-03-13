@@ -1010,7 +1010,7 @@ package classes.Items.Transformatives
 			//(Vagicite) Awkward, random wetness with obvious pheromonal smell. Exhibition gains!
 			if(pc.hasVagina()) choices.push(6);
 			//(Vag && noheat && !preggos) Heat status for 1 week or till preggers. Temporary fertileboost.
-			if(!pc.inHeat() && !pc.isPregnant() && pc.hasVagina() && pc.fertility() > 0) choices.push(7);
+			if(!pc.inHeat() && !pc.isFullyWombPregnant() && pc.hasVagina() && pc.fertility() > 0) choices.push(7);
 			//BonusCapacity Gainz.
 			var cunts:Array = [];
 			for(x = 0; x < pc.totalVaginas(); x++)

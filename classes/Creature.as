@@ -16191,6 +16191,14 @@
 			
 			return false;
 		}
+		public function isFullyWombPregnant():Boolean
+		{
+			return (totalWombPregnancies() >= totalVaginas());
+		}
+		public function isFullyPregnant():Boolean
+		{
+			return (isFullyWombPregnant() && hasAnalPregnancy());
+		}
 		public function hasPregnancy():Boolean { return isPregnant(); }
 		public function hasWombPregnancy():Boolean
 		{
