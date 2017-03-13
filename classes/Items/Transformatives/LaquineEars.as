@@ -1606,7 +1606,7 @@ package classes.Items.Transformatives
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 2) textBuff += "I’m a horny, slutty cum-receptacle whose body won’t go stop going into heat!";
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 3) textBuff += "I’m your personal incubator, just an empty vessel with no value beyond incubating your young at every opportunity!";
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 4) textBuff += "Your personal bunny preg-slut! My pussy is so broken in from your dick that nothing else will ever be as good. My womb aches for your cum and your cum alone, because it’s my purpose to accept as many of your loads as you’ll give me!";
-				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 5)
+				else
 				{
 					if(kGAMECLASS.silly) textBuff += "I’m motherhood incarnate, a vessel who exists for you to dump as many loads into as you wish. That’s why I got your name tattooed on the inside of my womb and why my pussy soaks itself at the sight of you. I’m your pet cum-slut, always just around the corner, always hungry for more. I can’t seem think past my next fuck with you, my next opportunity to give you another litter, like I’ve taken so much of your cum that even my brain is gummed up with it.";
 					else textBuff += "I’m your bunny-birthing fuckslut, just a broken-in hole of a woman who lives for her meetings with you. My body is so addicted to your cock that my pussy soaks itself at the sight of you. My ovaries don’t even work right. They won’t stop releasing eggs anymore, and you’ve taught me to love it.";

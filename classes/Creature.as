@@ -16523,6 +16523,10 @@
 				output(msg);
 				return true;
 			}
+			if (this is PlayerCharacter)
+			{
+				if(inRut()) removeRut(true);
+			}
 			return false;
 		}
 		
