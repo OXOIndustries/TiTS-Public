@@ -877,7 +877,7 @@ package classes.Items.Transformatives
 					//Femmyarms!
 					else
 					{
-						if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " in no time. Then y";
+						if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " coat in no time. Then y";
 						else textBuff += "Y";
 						textBuff += "our digits narrow slightly before your eyes. Your fingers shorten as well, becoming daintier and less suited to manual labor. You can still grip a gun easily enough, but you can’t help but wonder how they’ll look during sex. Anything you grab with your tiny paws is going to look huge. To complete <b>your new, feminine paws</b>, pink pads emerge from your palm and fingertips.";
 					}
