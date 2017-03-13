@@ -157,7 +157,7 @@ package classes.Items.Transformatives
 			if(pc.armType != GLOBAL.TYPE_LAPINE) choices.push(17);
 			if(pc.eyeType != GLOBAL.TYPE_HUMAN) choices.push(18);
 			if((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_LAPINE) choices.push(19);
-			if(pc.faceType != GLOBAL.TYPE_LAPINE && !pc.hasFur()) choices.push(20);
+			if(pc.faceType != GLOBAL.TYPE_LAPINE && pc.hasFur()) choices.push(20);
 	
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
