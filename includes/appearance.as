@@ -1225,6 +1225,25 @@ public function appearance(forTarget:Creature):void
 		{
 			output2(" Your arms are actually bunches of tentacles, formed together into arm-like shapes. They end in long, wiggly tentacle fingers.");
 		}
+		else if(target.armType == GLOBAL.TYPE_LAPINE)
+		{
+			output2(" You have");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY))
+			{
+				if(target.hasArmFlag(GLOBAL.FLAG_THICK)) output2(" large,");
+				output2(" gooey arms");
+			}
+			else
+			{
+				output2(" arms covered in");
+				if(target.hasArmFlag(GLOBAL.FLAG_THICK)) output2(" thick");
+				output2(" " + target.furColor + " fur");
+				if(!target.hasFur()) output2(" up to the elbows");
+			}
+			if(target.hasArmFlag(GLOBAL.FLAG_THICK)) output2(" which have broad, powerful paws");
+			else output2(" which have dainty, pawed hands");
+			output2(" that end with padded fingers.");
+		}
 		if(target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
 			var bothHands:Boolean = false;
