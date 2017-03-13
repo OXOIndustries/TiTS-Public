@@ -820,6 +820,7 @@ package classes.Items.Transformatives
 					pc.tailType = GLOBAL.TYPE_LAPINE;
 					pc.clearTailFlags();
 					pc.addTailFlag(GLOBAL.FLAG_FURRED);
+					pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					AddLogEvent(ParseText(textBuff),"passive");
 				}
 				else if(!pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE)) AddLogEvent(ParseText(pc.tailTypeLockedMessage()),"passive");
