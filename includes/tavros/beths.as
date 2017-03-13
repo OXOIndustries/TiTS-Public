@@ -906,11 +906,7 @@ public function brothelWhorePayment(baseAmount:Number = 0, service:String = "non
 public function brothelWhored(setMinutes:int = 360, service:String = "none"):void
 {
 	// Time adjustments for experienced whores.
-	if(flags["BETHS_TIMES_WHORED"] >= 10) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 20) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 30) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 40) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 50) setMinutes -= 60;
+	if(flags["BETHS_TIMES_WHORED"] != undefined) setMinutes -= (60 * Math.floor(flags["BETHS_TIMES_WHORED"]/10));
 	if(setMinutes < 15) setMinutes = 15;
 	
 	// 9999: Implementation for stats?
