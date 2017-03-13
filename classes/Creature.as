@@ -3164,7 +3164,7 @@
 				for (var i:int = 0; i < breastRows.length; i++) 
 				{
 					titSize = breastRows[i].breastRating();
-					if (titSize >= 100 || breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) return false; // Can't hide hyper-sized tits!
+					if (titSize >= 100 && breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) return false; // Can't hide hyper-sized tits!
 					if
 					(	titSize > (isFluffy ? (i < 2 ? 2 : 1) : 0) // fluffy fur can disguise B-cups on chest (due to that fluffy fur ball in description) and A-cups on belly
 					//|| 	breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES // lipples? they should look quite obscene, but this is not checked in main function
@@ -3206,8 +3206,7 @@
 							totalLength += currLength;
 						}
 					}
-					if (genitalLocation() > 1) bitsNeedCover = 1;
-					else if (hasSheathed || isFluffy) bitsNeedCover++; // Sheathes are modest enough to be covered with one tail all, or even just be covered by a long fur
+					if (hasSheathed || isFluffy) bitsNeedCover++; // Sheathes are modest enough to be covered with one tail all, or even just be covered by a long fur
 					else bitsNeedCover += Math.ceil(totalLength / 18); // consider that you'll need one tail for every 18 inches of cock
 				}
 				
@@ -3217,8 +3216,7 @@
 					else if (scrotumType() == GLOBAL.FLAG_FURRED && isFluffy && ballSize() <= (hasStatusEffect("Uniball") ? 1.5 : 1)) { }
 					else
 					{
-						if (genitalLocation() > 1) bitsNeedCover = 1;
-						else bitsNeedCover += Math.ceil(ballDiameter() * (hasStatusEffect("Uniball") ? 0.75 : 1) * Math.sqrt(balls) / 6);
+						bitsNeedCover += Math.ceil(ballDiameter() * (hasStatusEffect("Uniball") ? 0.75 : 1) * Math.sqrt(balls) / 6);
 					}
 				}
 				
@@ -3227,9 +3225,9 @@
 					if
 					(	!(vaginaTotal(GLOBAL.TYPE_FELINE) + vaginaTotal(GLOBAL.TYPE_AVIAN) == vaginaTotal() && hasFurOrFeathers) // Feline ones are modest enough to be hidden just by fur from casual glance
 					||	(puffiestVaginalPuffiness() >= 2 && !hasFurOrFeathers)
+					||	(puffiestVaginalPuffiness() >= 4 && !isFluffy)
 					) {
-						if (genitalLocation() > 1) bitsNeedCover = 1;
-						else bitsNeedCover++; // I guess 1 tail would be enough for all of them, unless we have something really freaky
+						bitsNeedCover++; // I guess 1 tail would be enough for all of them, unless we have something really freaky
 					}
 				}
 			}
@@ -3238,11 +3236,14 @@
 			{
 				if(ass.hasFlag(GLOBAL.FLAG_PUMPED) || (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !isFluffy) || !hasFurOrFeathers)
 				{
-					if (bitsNeedCover > 1 && genitalLocation() > 1) bitsNeedCover = 1;
-					else bitsNeedCover++; // you always need at least 1 tail to cover your ass, unless you have fluffy fur
+					bitsNeedCover++; // you always need at least 1 tail to cover your ass, unless you have fluffy fur
 				}
 			}
 			
+			// Exceptions for taurs/driders (as long as one eligible tail exists, it can "cover" non-hyper-sized bits)
+			if (bitsNeedCover > 1 && genitalLocation() > 1) bitsNeedCover = 1;
+			
+			// No bits to cover?
 			if (bitsNeedCover <= 0) return true;
 			
 			if (hasTail())
@@ -3448,37 +3449,37 @@
 		}
 		public function isMan():Boolean
 		{
-			if(isMale() && mfn("m", "f", "n") == "m") return true;
+			if(isMale() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
 		public function isWoman():Boolean
 		{
-			if(isFemale() && mfn("m", "f", "n") == "f") return true;
+			if(isFemale() && mfn("m", "f", "n", true) == "f") return true;
 			return false;
 		}
 		public function isFemboy():Boolean
 		{
-			if(isMale() && mfn("m", "f", "n") != "m" && biggestTitSize() < 3) return true;
+			if(isMale() && mfn("m", "f", "n", true) != "m" && biggestTitSize() < 3) return true;
 			return false;
 		}
 		public function isShemale():Boolean
 		{
-			if(isMale() && mfn("m", "f", "n") != "m" && biggestTitSize() >= 3) return true;
+			if(isMale() && mfn("m", "f", "n", true) != "m" && biggestTitSize() >= 3) return true;
 			return false;
 		}
 		public function isCuntboy():Boolean
 		{
-			if(isFemale() && mfn("m", "f", "n") == "m") return true;
+			if(isFemale() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
 		public function isFemHerm():Boolean
 		{
-			if(isHerm() && mfn("m", "f", "n") != "m") return true;
+			if(isHerm() && mfn("m", "f", "n", true) != "m") return true;
 			return false;
 		}
 		public function isManHerm():Boolean
 		{
-			if(isHerm() && mfn("m", "f", "n") == "m") return true;
+			if(isHerm() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
 		// For special case alien sex/gender override text in combat!
@@ -3548,6 +3549,10 @@
 		public function isCumCow():Boolean
 		{
 			return (isTreated() && hasStatusEffect("Cum-Cow"));	
+		}
+		public function isFauxCow():Boolean
+		{
+			return (isTreated() && 9999 == 0);
 		}
 		public function hasPheromones():Boolean
 		{
@@ -8365,11 +8370,11 @@
 		public function clearHeat():void
 		{
 			removeStatusEffect("Heat");
-			removeStatusEffect("Lagonic Rut");
 		}
 		public function clearRut():void
 		{
 			removeStatusEffect("Rut");
+			removeStatusEffect("Lagonic Rut");
 		}
 		public function extendHeat(arg:Number):void
 		{
@@ -9773,10 +9778,7 @@
 		public function hasVirginCock(): Boolean {
 			return (cocks.length > 0 && cockVirgin);
 		}
-		public function mfn(male: String, female: String, neuter: String): String {
-			
-			if (hasStatusEffect("Force Fem Gender")) return female;
-			if (hasStatusEffect("Force Male Gender")) return male;
+		public function genderWeight(): Number {
 			
 			//1/2 facial
 			var weighting: Number = femininity;
@@ -9801,9 +9803,19 @@
 			if (lipRating() > 1) weighting += lipRating() * 3;
 			if (hasBeard() && !(beardStyle == 11 && hasFaceFlag(GLOBAL.FLAG_MUZZLED))) weighting -= 100; // lynx sideburns are not exactly a beard and have no m/f weight
 			//trace("Femininity Rating = " + weighting);
+			
+			return weighting;
+		}
+		public function mfn(male: String, female: String, neuter: String, ignorePref:Boolean = false): String {
+			
+			if (!ignorePref && hasStatusEffect("Force Fem Gender")) return female;
+			if (!ignorePref && hasStatusEffect("Force Male Gender")) return male;
+			
+			var weighting: Number = genderWeight();
+			
 			//Neuters first!
 			if (neuter != "") {
-				if (weighting >= 45 && weighting <= 55 || hasStatusEffect("Force It Gender")) return neuter;
+				if (weighting >= 45 && weighting <= 55 || (!ignorePref && hasStatusEffect("Force It Gender"))) return neuter;
 				else if (weighting < 45) return male;
 				return female;
 			} else {
@@ -9811,8 +9823,8 @@
 				return female;
 			}
 		}
-		public function mf(male: String, female: String): String {
-			return mfn(male, female, "");
+		public function mf(male: String, female: String, ignorePref:Boolean = false): String {
+			return mfn(male, female, "", ignorePref);
 		}
 		public function rawmfn(male: String, female: String, neuter: String): String {
 			
@@ -14945,6 +14957,8 @@
 				collection = ["sweet","sweet","savory","rich","rich", "rich","delicious", "delicious","creamy","creamy"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["minty","minty","minty","fresh","fresh", "sweet","minty-sweet", "minty-sweet"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["sweet","sweet","sweet","sugary","sugary","saccharine"];
 			}
 			
 			else collection = ["bland"];
@@ -14994,6 +15008,8 @@
 				collection = ["thick","smooth","smooth", "creamy", "creamy", "viscous"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["sticky","sticky","sticky", "gooey", "gooey", "molasses-like"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["gooey","sticky","syrupy"];
 			}
 			
 			else collection = ["fluid"];
@@ -15052,6 +15068,8 @@
 				collection = ["creamy yellow", "creamy yellow", "light yellow","muddy golden", "cream colored", "cream colored"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["white", "opaque white", "ivory", "ivory", "alabaster", "alabaster"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["white", "white", "semi-clear", "ivory", "alabaster", "pure white"];
 			}
 			
 			else collection = ["ERROR, INVALID FLUID TYPE."];
@@ -15104,7 +15122,7 @@
 		}
 		public function fluidColorSimple(arg: int):String
 		{
-			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_PEPPERMINT)) return "white";
+			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_PEPPERMINT, GLOBAL.FLUID_TYPE_SUGAR)) return "white";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG)) return "yellow";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
 			else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) return "brown";
@@ -15174,6 +15192,8 @@
 				collection = ["eggnog"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
 				collection = ["peppermint", "minty cum"];
+			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
+				collection = ["glaze", "frosting", "icing"];
 			}
 			
 			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];

@@ -166,9 +166,9 @@ public function jadeStoreSetup():void
 	chars["JADE"].inventory.push(new Swineapple());
 	//Nice, neat inventory complete :3
 	
-	itemScreen = mainGameMenu;
-	lootScreen = mainGameMenu;
-	useItemFunction = mainGameMenu;
+	//itemScreen = mainGameMenu;
+	//lootScreen = mainGameMenu;
+	//useItemFunction = mainGameMenu;
 }
 public function getAmberSeed():void 
 {

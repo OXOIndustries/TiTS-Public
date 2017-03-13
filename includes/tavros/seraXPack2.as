@@ -517,6 +517,7 @@ public function mods4UChrysalisBonus():void
 public function mods4UChrysalisBuy():void
 {
 	// All items inc. “top shelf” items displayed at standard price
+	chars["CHRYSALISDRONE"].inventory = chrysalisInventory();
 	shopkeep = chars["CHRYSALISDRONE"];
 	
 	if(flags["ZODEE_GALOQUEST"] != undefined)
@@ -683,17 +684,7 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			chars["SERA"].skinTone = "light purple";
 			chars["SERA"].nippleColor = "cerulean";
 			// Revert Sera inventory!
-			chars["SERA"].inventory = [];
-			chars["SERA"].inventory.push(new TerranTreats());
-			chars["SERA"].inventory.push(new Estrobloom());
-			chars["SERA"].inventory.push(new Tittyblossom());
-			chars["SERA"].inventory.push(new Pussybloom());
-			chars["SERA"].inventory.push(new Pussyblossom());
-			chars["SERA"].inventory.push(new ManUp());
-			chars["SERA"].inventory.push(new Condensol());
-			chars["SERA"].inventory.push(new DendroGro());
-			chars["SERA"].inventory.push(new Rainbotox());
-			chars["SERA"].inventory.push(new Chocolac());
+			chars["SERA"].inventory = chrysalisInventory();
 			chars["SERA"].sellMarkup = 1.2;
 			chars["SERA"].buyMarkdown = 0.8;
 			// Reset Sera conditions!

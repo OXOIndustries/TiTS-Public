@@ -118,7 +118,7 @@ package classes.Items.Transformatives
 			var textBuff:String = "";
 			var choices:Array = [];
 			if(pc.totalCocks() > pc.totalCocks(GLOBAL.TYPE_EQUINE) && pc.hasCock()) choices.push(1);
-			//(Horsecock) Gains (Mini: 1/2-4/Hung:5-6)  inches. (15"mini/20”</i> norm/26”</i> hung)
+			//(Horsecock) Gains (Mini: 1/2-4/Hung:5-6) inches. (15" mini/20" norm/26" hung)
 			var cMax:Number = 20;
 			if(pc.hasPerk("Mini")) cMax = 15;
 			else if(pc.hasPerk("Hung")) cMax = 26;
@@ -177,7 +177,7 @@ package classes.Items.Transformatives
 				if(!pc.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) textBuff += " The tip shudders then inflates outward, every trembling shift of phallic flesh bringing with it a pulse of hellish pleasure, flattening as you gain a tremendously thick, blunt head.";
 				if(!pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) textBuff += " Next a wave of ecstatic delight congeals around the rim of your chubby crown, causing more blood to flow to whole new places. Your prickhead is getting thicker and thicker, until it flares wider than the shaft below.";
 				//KnotBGone:
-				if(pc.hasKnot(x)) textBuff +=  " It’s so hot and tight that you almost miss the sight of your [pc.knot " + x + "] vanishing into the veiny girth of an increasingly equine-appearing member.";
+				if(pc.hasKnot(x)) textBuff += " It’s so hot and tight that you almost miss the sight of your [pc.knot " + x + "] vanishing into the veiny girth of an increasingly equine-appearing member.";
 				if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) textBuff += " Your foreskin is peeled back by the excessive tumescence, sliding down the shaft until it gathers around the very base. Over time, it darkens to a dusky black that clings tight to your shaft, revealing that <b>you’ve grown a brand new sheath from your foreskin.</b>";
 				else textBuff += " The skin around the base pulls tight, gathering together around your shifting cock until the folds have piled up into a lewd-looking bunch of skin. The texture and color shifts to a glossy, supple black, revealing that <b>you’ve grown a brand new sheath.</b>";
 				textBuff += "\n\nYou thrust your [pc.hips] in the empty air as the transformation continues, new urges radiating up your spine and into your brain, filling your mind with images of bent-over bunnies, their tails twitching as their lush slits drool in excitement. High pitched voices squeak in delirious desire as you stroke yourself. Ribbons of pre-cum spill out with ease, slicking your strokes as you hump your hand, imagining yourself fucking a bunny-girl so hard that you can see your flaring cock-tip through her silk-furred belly.";
@@ -196,7 +196,7 @@ package classes.Items.Transformatives
 				AddLogEvent(textBuff,"passive");
 				return;
 			}
-			//(Horsecock) Gains (Mini: 1/2-4/Hung:5-6)  inches. (15"mini/20”</i> norm/26”</i> hung)
+			//(Horsecock) Gains (Mini: 1/2-4/Hung:5-6) inches. (15" mini/20" norm/26" hung)
 			else if(select == 2)
 			{
 				choices = [];
@@ -210,7 +210,7 @@ package classes.Items.Transformatives
 				if(choices.length > 0) x = choices[rand(choices.length)];
 				var growth:Number = 1 + rand(5);
 				if(pc.hasPerk("Mini")) growth = 1;
-				else if(pc.hasPerk("Hung")) growth  += 2;
+				else if(pc.hasPerk("Hung")) growth += 2;
 				if(growth > 6) growth = 6;
 				//Smol growth (1) (mini)
 				if(growth == 1)
@@ -218,7 +218,7 @@ package classes.Items.Transformatives
 					textBuff += "Your crotch feels bizarrely warm as blood collects in your [pc.cock " + x + "]. You don’t really get any harder, but there’s enough new-grown flesh there to grant you an extra inch at full size. You’re honestly surprised to see such growth. Your whole life, your body seems to have been fighting to give you a small dick. At least the Laquine Ears seem capable of punching through your inborn affinity.";
 					textBuff = ParseText(textBuff);
 				}
-				//2”</i>
+				//2"
 				else if(growth == 2)
 				{
 					textBuff += "Mmm, warm lust bubbles through your loins, but particularly your [pc.cock " + x + "]. ";
@@ -236,7 +236,7 @@ package classes.Items.Transformatives
 					pc.lust(15);
 
 				}
-				//3”</i>
+				//3"
 				else if(growth == 3)
 				{
 					textBuff += "Your [pc.cock " + x + "] leaps to the fore of your mind";
@@ -246,7 +246,7 @@ package classes.Items.Transformatives
 					textBuff = ParseText(textBuff);
 					pc.lust(34);
 				}
-				//4”</i>
+				//4"
 				else if(growth == 4)
 				{
 					textBuff += "Pleasure assails you from nowhere as your [pc.cock " + x + "] balloons. The veins fill, then bloat, then expand some more, transforming into highways full of nutrients to feed your burgeoning cockmeat. In between, fresh flesh fills the gaps while the whole of the shaft lengthens, pushing your fattened, flaring head further from your body. One inch... then two... then three... You feel like it’s never going to stop. Rhythmic bliss scours through your mind, filling you with delirious, sensuous need. With a final pulse, ";
@@ -254,17 +254,17 @@ package classes.Items.Transformatives
 					textBuff += "your [pc.cock " + x + "] shoots a wave of pre-cum hard enough to splatter something ten feet away, the transformation complete. You’re four inches longer and horny as hell!";
 					pc.lust(60);
 				}
-				//5”</i>
+				//5"
 				else if(growth == 5)
 				{
 					textBuff += "You double over, not in agony but in bliss, as dick abruptly begins to spill out of your sheath";
 					if(!pc.isErect()) textBuff += ", first your normal length as you attain hardness, then hot new flesh";
-					else  textBuff += ", flexing powerfully with new flesh";
+					else textBuff += ", flexing powerfully with new flesh";
 					textBuff + ". The newborn dickskin is glossy, unmarred by a single touch, and it smells powerfully of your cock, secreting more pheromones than the rest of your member put together. Clear pre-jizz dribbles from your flaring head as it stretches away from your body, hotter and harder, longer and more pleasurable than ever before.";
 					textBuff += "\n\nInch after inch emerges, a seemingly unending tide of new dick that leaves you gasping and panting, watching your [pc.cock " + x + "] transform into a perfect example of bloated hypersexuality. Your [pc.hips] shudder, humping another two inches worth of dick into the open air. Your head swims, and your drizzling laquine length hoses a bucket’s worth of pre onto the floor as it finishes growing, trembling in orgiastic delight. How ever will you satiate such an incredible boner?";
 					pc.lust(80);
 				}
-				//6”</i>
+				//6"
 				else
 				{
 					textBuff += "Growing dizzy, you stumble to the ground. It feels like you’re anemic, like there’s no blood going to your head, and you understand why a moment later. Your [pc.cock " + x + "] is jutting up out of your groin like an impossible pillar, bigger than it’s ever been, and it’s getting bigger with every passing second. Watching more dick spill out of your sheath is mesmerizing and highly erotic. The more your member grows, the hornier you get, until you’re panting and whining at the sheer sexual thrill of getting bigger. You can vaguely smell the pheromones pouring off it mixed with the sweet scent of pre-cum.";
@@ -297,15 +297,15 @@ package classes.Items.Transformatives
 
 				AddLogEvent(ParseText(textBuff),"passive");
 			}
-			//(Balls and Penor) BallRating gain of 1. Max 5”</i> diameter. (Higher if bulgy?)
+			//(Balls and Penor) BallRating gain of 1. Max 5" diameter. (Higher if bulgy?)
 			else if(select == 4)
 			{
-				//1-2 diameter (to <i>“large”</i> size.)
+				//1-2 diameter (to “large” size.)
 				if(pc.ballDiameter() < 2)
 				{
 					textBuff += "You gasp as your movements cause your [pc.sack] to squeeze tightly against your body - surprisingly tightly. Reaching down to handle it, <b>you discover that your testes have enlarged to the size of eggs.</b>";
 				}
-				//2-3 diameter (to <i>“baseball”</i>)
+				//2-3 diameter (to “baseball”)
 				else if(pc.ballDiameter() < 3)
 				{
 					textBuff += "You take a quick break from your activities when your [pc.sack] grows warm and tight, then hotter and even more constricting.";
@@ -316,7 +316,7 @@ package classes.Items.Transformatives
 					if(pc.balls > 2) textBuff += ", and so on";
 					textBuff += ". Then the pattern repeats, jostling your nuts about as they swell. They finally settle down a minute later, an inch bigger - roughly the size of baseballs.";
 				}
-				//3-4 diameter (to <i>“apple”</i>)
+				//3-4 diameter (to “apple”)
 				else if(pc.ballDiameter() < 4)
 				{
 					textBuff += "You’re quite certain [pc.balls] are expanding. They feel heavier, for one, slapping against the side of your [pc.leg] as you move. For another, you find yourself suddenly and unexpectedly aroused, but your [pc.cocks] ";
@@ -432,10 +432,10 @@ package classes.Items.Transformatives
 			else if(select == 7)
 			{
 				textBuff += "You idly grunt and scratch your [pc.chest] as you feel unseasonably warm. You’re sort of horny too, not like you need to get off right now, but like you’re ready for sex at any moment, like you could knock up the first girl to cross your path, then nail her sister while the first is still recovering. You might have to fight off a jealous boyfriend in between, but that’s a small price to pay to sow your seed. Your nostrils flare in between idle twitches of your nose. Yeah, definitely feel like you need to assert your dominance. Once " + pc.mf("other males","the troublesome males") + " are out of your way, you’ll be free to fuck with impunity.";
-				textBuff += "\n\nWait a second. You shake your head, trying to clear your senses. <b>Are you going into rut?</b> Is that what this is? A quick search on your Codex confirms it for sure: one of the side effects of Laquine Ears is <b>an extra-potent form of rut colloquially known as <i>“Lagonic Rut,”</i></b> named after an infamous wife-stealing laquine of old folk tales. You don’t get far through his exploits before you get bored of the details and focus on all the fertile girls he impregnated. The numbers before you stop seeming like a warning and more like a challenge.";
+				textBuff += "\n\nWait a second. You shake your head, trying to clear your senses. <b>Are you going into rut?</b> Is that what this is? A quick search on your Codex confirms it for sure: one of the side effects of Laquine Ears is <b>an extra-potent form of rut colloquially known as “Lagonic Rut,”</b> named after an infamous wife-stealing laquine of old folk tales. You don’t get far through his exploits before you get bored of the details and focus on all the fertile girls he impregnated. The numbers before you stop seeming like a warning and more like a challenge.";
 				textBuff += "\n\nHow many kids can you sire?";
 
-				pc.createStatusEffect("Lagonic Rut",5,25,2000,5,false,"LustUp","Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+5 Libido\n+25 Minimum Lust\n+2000mLs Minimum Cum\n+5 Virility",false,28800,0xB793C4);
+				pc.createStatusEffect("Lagonic Rut",5,25,2000,5,false,"LustUp","Your body is driven for aggressive breeding, increasing your libido and virility, as well as boosting your minimum cum output.\n\n+5 Libido\n+25 Minimum Lust\n+2000mLs Minimum Cum\n+500% Virility",false,28800,0xB793C4);
 				/*Rut effects
 				//v1 - libido increase.
 				//v2 - min lust
@@ -467,7 +467,7 @@ package classes.Items.Transformatives
 						textBuff += "You are feeling a little more damp ";
 						if(pc.legCount > 1) textBuff += "between the [pc.thighs]";
 						else textBuff += "down below";
-						textBuff +=  " than you normally would, and you definitely aren’t turned on right now. Could it be that <b>your [pc.vaginaNoun " + x + "] is just wetter than it used to be</b>?";
+						textBuff += " than you normally would, and you definitely aren’t turned on right now. Could it be that <b>your [pc.vaginaNoun " + x + "] is just wetter than it used to be</b>?";
 					}
 					pc.vaginas[x].wetness(1);
 					textBuff = ParseText(textBuff);
@@ -501,7 +501,7 @@ package classes.Items.Transformatives
 					//Unaroused
 					else 
 					{
-						textBuff += "Unprovoked, a sense of serious dampness spreads beneath your [pc.hips]. You aren’t feeling particularly turned on, but you moisten all the same. Is this how laquines feel? Are they always <b>passively wet and ready for action</b>? Do their panties get so slick when they’re turned on that their ripe, alien cameltoes are on full display?  You have a feeling you’re going to find out."
+						textBuff += "Unprovoked, a sense of serious dampness spreads beneath your [pc.hips]. You aren’t feeling particularly turned on, but you moisten all the same. Is this how laquines feel? Are they always <b>passively wet and ready for action</b>? Do their panties get so slick when they’re turned on that their ripe, alien cameltoes are on full display? You have a feeling you’re going to find out."
 						pc.vaginas[x].wetness(1);
 					}
 					textBuff = ParseText(textBuff);
@@ -522,7 +522,7 @@ package classes.Items.Transformatives
 						if(pc.driestVaginalWetness() < 4) textBuff += " Just one more hole to go, and you’ll be able to erupt around a bunnycock no matter where it slides into you.";
 						else textBuff += " Now you can erupt around a thick bunnycock no matter where it slides into you.";
 					}
-					else if(pc.lust()  < 66)
+					else if(pc.lust() < 66)
 					{
 						//Unaroused
 						textBuff += "Whenever you move, you can feel your netherlips sliding against one another on a curtain of slickness. You aren’t even aroused, and your [pc.vaginaNoun " + x + "] is wet and ready for sex. You could dip a finger in right now and it would come back coated in a glossy sheen. If you aren’t careful, a trickle of lubrication will run down your inner thigh. To aliens with keen noses, you must smell like quite the horny bitch, even now. Sex like this will be effortless. There’s no chance of a penis rubbing you sore ever again, and <b>you’re pretty sure you’re going to squirt when you orgasm now too.</b>";
@@ -619,7 +619,7 @@ package classes.Items.Transformatives
 				else if(pc.pregnancyIncubationBonusMotherRaw < 4)
 				{
 					textBuff += "Your uter";
-					if(pc.totalVaginas() == 1) textBuff +=  "us feels";
+					if(pc.totalVaginas() == 1) textBuff += "us feels";
 					else textBuff += "i feel";
 					textBuff += " more... active somehow, more able to nourish and support unborn offspring. The fertile feeling leaves you instinctively aware that <b>your pregnancies are going to come to term very quickly.</b> Your body is gearing up for breeding, every bit of feminine anatomy ready to help you put out enough young to repopulate the laquine race.";
 					pc.pregnancyIncubationBonusMotherRaw = 4;
@@ -636,7 +636,7 @@ package classes.Items.Transformatives
 				else
 				{
 					textBuff += "A rumble comes from within your [pc.belly], but it isn’t your stomach or even your intestines. It’s your womb";
-					if(pc.totalVaginas() > 1) textBuff +=  "s";
+					if(pc.totalVaginas() > 1) textBuff += "s";
 					textBuff += "... well, mostly your womb";
 					if(pc.totalVaginas() > 1) textBuff += "s";
 					textBuff += " but also your fallopian tubes and ovaries. Those organs are expanding as your body devotes more resources to their development and care. Warm tingles spread through every inch of them as your reproductive system slips into overdrive, preparing new connections for a thicker umbilical cord in order to feed your hyper-fast incubations, rewriting organs to produce growth-stimulating amniotic fluid.";
@@ -1316,7 +1316,7 @@ package classes.Items.Transformatives
 				
 				pc.breastRows[pc.biggestTitRow()].breastRatingRaw -= (1 + rand(4));
 				
-				textBuff +=  ParseText(" [pc.breastCupSize " + pc.biggestTitRow() + "]</b>. If you want huge tits, it might be best to get them back after you finish up with the Laquine Ears. After all, how would you hop about with eighty pound boobs hanging off your chest?");
+				textBuff += ParseText(" [pc.breastCupSize " + pc.biggestTitRow() + "]</b>. If you want huge tits, it might be best to get them back after you finish up with the Laquine Ears. After all, how would you hop about with eighty pound boobs hanging off your chest?");
 			}
 			//Craving for grass + slowstatgain(1) aim to AQ50.
 			if(select == 10)
