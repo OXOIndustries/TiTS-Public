@@ -150,14 +150,14 @@ package classes.Items.Transformatives
 			//10x preggo speed
 			if(pc.pregnancyIncubationBonusMotherRaw < 10 && pc.hasVagina()) choices.push(11);
 			if(pc.hasVagina()) choices.push(12);
-			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) choices.push(13);
-			if(pc.tailCount == 0) choices.push(14);
-			if(pc.hasScales() || pc.hasChitin()) choices.push(15);
-			if(pc.hasFeathers()) choices.push(16);
-			if(pc.armType != GLOBAL.TYPE_LAPINE) choices.push(17);
-			if(pc.eyeType != GLOBAL.TYPE_HUMAN) choices.push(18);
-			if((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_LAPINE) choices.push(19);
-			if(pc.faceType != GLOBAL.TYPE_LAPINE && !pc.hasFur()) choices.push(20);
+			if(pc.tailCountUnlocked(0) && pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) choices.push(13);
+			if(pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.tailCount == 0) choices.push(14);
+			if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && (pc.hasScales() || pc.hasChitin())) choices.push(15);
+			if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && pc.hasFeathers()) choices.push(16);
+			if(pc.armTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.armType != GLOBAL.TYPE_LAPINE) choices.push(17);
+			if(pc.eyeTypeUnlocked(GLOBAL.TYPE_HUMAN) && pc.eyeType != GLOBAL.TYPE_HUMAN) choices.push(18);
+			if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR) && (pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_LAPINE) choices.push(19);
+			if(pc.faceTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.faceType != GLOBAL.TYPE_LAPINE && !pc.hasFur()) choices.push(20);
 	
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
@@ -759,7 +759,7 @@ package classes.Items.Transformatives
 				if(pc.hasChitin()) textBuff += " Cracks spiderweb through it, spreading outward across your body.";
 				else textBuff += " The smallest ones are the first to fall, dropping off before their larger brethren.";
 				textBuff += " You brush the hardened detritus from your body to reveal the smooth, perfect skin below. And then the itching starts. Now that your skin has tasted freedom, it wants ";
-				if(pc.hasChitin()) textBuff +=  "this onerous covering";
+				if(pc.hasChitin()) textBuff += "this onerous covering";
 				else textBuff += "these onerous coverings";
 				textBuff += " removed. You scratch like a wild man, watching your [pc.skinFurScales] pile up around your feet until at last, you feel relief. <b>You have bare skin!</b>";
 				AddLogEvent(ParseText(textBuff),"passive");
@@ -780,7 +780,7 @@ package classes.Items.Transformatives
 			else if(select == 17)
 			{
 				//Masculinez:
-				if(pc.mf("m","") ==  "m")
+				if(pc.mf("m","") == "m")
 				{
 					//Already have floof arms
 					if(pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "The fur on your arms thickens, then thickens some more. At the same time, your hands broaden. The joints take on new muscle and padding. You could probably strike a wall with your palm at full force without any pain. The bigger fingers would be perfect for grabbing cute laquine lasses with round laquine asses. <b>You have big, powerful paws.</b>";
@@ -790,14 +790,14 @@ package classes.Items.Transformatives
 				//Femmyarms!
 				else
 				{
-					if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " in no time. Then";
+					if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " in no time. Then y";
 					else textBuff += "Y";
 					textBuff += "our digits narrow slightly before your eyes. Your fingers shorten as well, becoming daintier and less suited to manual labor. You can still grip a gun easily enough, but you can’t help but wonder how they’ll look during sex. Anything you grab with your tiny paws is going to look huge. To complete <b>your new, feminine paws</b>, pink pads emerge from your palm and fingertips.";
 				}
 				pc.clearArmFlags();
 				pc.armType = GLOBAL.TYPE_LAPINE;
 				pc.addArmFlag(GLOBAL.FLAG_FURRED);
-				if(pc.mf("m","") ==  "m") pc.addArmFlag(GLOBAL.FLAG_THICK);
+				if(pc.mf("m","") == "m") pc.addArmFlag(GLOBAL.FLAG_THICK);
 				pc.addArmFlag(GLOBAL.FLAG_PAWS);
 				AddLogEvent(ParseText(textBuff),"passive");
 				return;
@@ -1334,7 +1334,7 @@ package classes.Items.Transformatives
 			{
 				textBuff += "The Laquine Ears don’t seem to be doing a damned thing. Damnit!";
 			}
-			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up.  Minor Laquine Proc, select: " + select + " and choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, select: " + select + " and choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive");
 			return;
 		}
@@ -1735,7 +1735,7 @@ package classes.Items.Transformatives
 		public function laquineEarsFinale(pc:Creature):void
 		{
 			var textBuff:String = "";
-			if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE)
+			if(pc.earTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE)
 			{
 				textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
 				
