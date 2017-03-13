@@ -8367,14 +8367,24 @@
 		{
 			return (hasStatusEffect("Rut") || hasStatusEffect("Lagonic Rut"));
 		}
-		public function clearHeat():void
+		public function removeHeat(eventLog:Boolean = false):void
+		{
+			clearHeat(eventLog);
+		}
+		public function clearHeat(eventLog:Boolean = false):void
 		{
 			removeStatusEffect("Heat");
+			if(eventLog) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
 		}
-		public function clearRut():void
+		public function removeRut(eventLog:Boolean):void
+		{
+			clearRut(eventLog);
+		}
+		public function clearRut(eventLog:Boolean):void
 		{
 			removeStatusEffect("Rut");
 			removeStatusEffect("Lagonic Rut");
+			if(eventLog) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
 		}
 		public function extendHeat(arg:Number):void
 		{

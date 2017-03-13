@@ -117,7 +117,12 @@ package classes.Items.Transformatives
 			var i:int = 0;
 			var textBuff:String = "";
 			var choices:Array = [];
-			if(pc.totalCocks() > pc.totalCocks(GLOBAL.TYPE_EQUINE) && pc.hasCock()) choices.push(1);
+			if(pc.totalCocks() > pc.totalCocks(GLOBAL.TYPE_EQUINE) && pc.hasCock()) 
+			{
+				choices.push(1);
+				choices.push(1);
+				choices.push(1);
+			}
 			//(Horsecock) Gains (Mini: 1/2-4/Hung:5-6) inches. (15" mini/20" norm/26" hung)
 			var cMax:Number = 20;
 			if(pc.hasPerk("Mini")) cMax = 15;
@@ -150,14 +155,54 @@ package classes.Items.Transformatives
 			//10x preggo speed
 			if(pc.pregnancyIncubationBonusMotherRaw < 10 && pc.hasVagina()) choices.push(11);
 			if(pc.hasVagina()) choices.push(12);
-			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) choices.push(13);
-			if(pc.tailCount == 0) choices.push(14);
-			if(pc.hasScales() || pc.hasChitin()) choices.push(15);
-			if(pc.hasFeathers()) choices.push(16);
-			if(pc.armType != GLOBAL.TYPE_LAPINE) choices.push(17);
-			if(pc.eyeType != GLOBAL.TYPE_HUMAN) choices.push(18);
-			if((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_LAPINE) choices.push(19);
-			if(pc.faceType != GLOBAL.TYPE_LAPINE && pc.hasFur()) choices.push(20);
+			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) 
+			{
+				choices.push(13);
+				choices.push(13);
+				choices.push(13);
+			}
+			if(pc.tailCount == 0) 
+			{
+				choices.push(14);
+				choices.push(14);
+				choices.push(14);
+			}
+			if(pc.hasScales() || pc.hasChitin()) 
+			{
+				choices.push(15);
+				choices.push(15);
+				choices.push(15);
+			}
+			if(pc.hasFeathers()) 
+			{
+				choices.push(16);
+				choices.push(16);
+				choices.push(16);
+			}
+			if(pc.armType != GLOBAL.TYPE_LAPINE) 
+			{
+				choices.push(17);
+				choices.push(17);
+				choices.push(17);
+			}
+			if(pc.eyeType != GLOBAL.TYPE_HUMAN)
+			{
+				choices.push(18);
+				choices.push(18);
+				choices.push(18);
+			}
+			if((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_LAPINE) 
+			{
+				choices.push(19);
+				choices.push(19);
+				choices.push(19);
+			}
+			if(pc.faceType != GLOBAL.TYPE_LAPINE && pc.hasFur()) 
+			{
+				choices.push(20);
+				choices.push(20);
+				choices.push(20);
+			}
 	
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
@@ -171,29 +216,34 @@ package classes.Items.Transformatives
 					if(pc.cocks[i].cType != GLOBAL.TYPE_EQUINE) choices.push(i);
 				}
 				x = choices[rand(choices.length)];
-				textBuff += "Out of nowhere you get the biggest, bulgiest boner.";
-				if(!pc.isCrotchExposed()) textBuff += " It threatens to rip right through your [pc.crotchCover]. You let it out before it does any damage.";
-				textBuff += " It’s so swollen, the flesh ballooning beyond what you thought was your maximum size, and it’s still getting bigger, straining against its normal shape.";
-				if(!pc.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) textBuff += " The tip shudders then inflates outward, every trembling shift of phallic flesh bringing with it a pulse of hellish pleasure, flattening as you gain a tremendously thick, blunt head.";
-				if(!pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) textBuff += " Next a wave of ecstatic delight congeals around the rim of your chubby crown, causing more blood to flow to whole new places. Your prickhead is getting thicker and thicker, until it flares wider than the shaft below.";
-				//KnotBGone:
-				if(pc.hasKnot(x)) textBuff += " It’s so hot and tight that you almost miss the sight of your [pc.knot " + x + "] vanishing into the veiny girth of an increasingly equine-appearing member.";
-				if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) textBuff += " Your foreskin is peeled back by the excessive tumescence, sliding down the shaft until it gathers around the very base. Over time, it darkens to a dusky black that clings tight to your shaft, revealing that <b>you’ve grown a brand new sheath from your foreskin.</b>";
-				else textBuff += " The skin around the base pulls tight, gathering together around your shifting cock until the folds have piled up into a lewd-looking bunch of skin. The texture and color shifts to a glossy, supple black, revealing that <b>you’ve grown a brand new sheath.</b>";
-				textBuff += "\n\nYou thrust your [pc.hips] in the empty air as the transformation continues, new urges radiating up your spine and into your brain, filling your mind with images of bent-over bunnies, their tails twitching as their lush slits drool in excitement. High pitched voices squeak in delirious desire as you stroke yourself. Ribbons of pre-cum spill out with ease, slicking your strokes as you hump your hand, imagining yourself fucking a bunny-girl so hard that you can see your flaring cock-tip through her silk-furred belly.";
-				textBuff += "\n\nWhen you climax, what feels like gallons upon gallons of musky horse-cream spurt from <b>your new horse-cock</b>. You aren’t sure what your cum counts as this point. Is it lapine? Equine? Or still some semblance of Terran? All you know is that <b>your dick got ";
-				if(pc.cocks[x].cLength() < 14) textBuff += "so much ";
-				textBuff += "bigger when it changed species.</b> The raw, bestial weight hangs heavy on your mind and your body, even as it retreats into its snug sheath. You have the feeling these new urges aren’t going to go away... that you’re going to be fantasizing about bunny buns for some time to come.";
-				//Horseween.
-				//slowStatGain +20 libido.
-				pc.slowStatGain("libido",20);
-				textBuff = ParseText(textBuff);
-				pc.shiftCock(x,GLOBAL.TYPE_EQUINE);
-				if(pc.cocks[x].cLength() < 14) pc.cocks[x].cLength(3+rand(3));
-				if(pc.hasPerk("Hung")) pc.cocks[x].cLength(2);
-				if(pc.hasPerk("Mini")) pc.cocks[x].cLength(-2);
-				pc.orgasm();
-				AddLogEvent(textBuff,"passive");
+
+				if(pc.cockTypeUnlocked(x,GLOBAL.TYPE_EQUINE))
+				{
+					textBuff += "Out of nowhere you get the biggest, bulgiest boner.";
+					if(!pc.isCrotchExposed()) textBuff += " It threatens to rip right through your [pc.crotchCover]. You let it out before it does any damage.";
+					textBuff += " It’s so swollen, the flesh ballooning beyond what you thought was your maximum size, and it’s still getting bigger, straining against its normal shape.";
+					if(!pc.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) textBuff += " The tip shudders then inflates outward, every trembling shift of phallic flesh bringing with it a pulse of hellish pleasure, flattening as you gain a tremendously thick, blunt head.";
+					if(!pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) textBuff += " Next a wave of ecstatic delight congeals around the rim of your chubby crown, causing more blood to flow to whole new places. Your prickhead is getting thicker and thicker, until it flares wider than the shaft below.";
+					//KnotBGone:
+					if(pc.hasKnot(x)) textBuff += " It’s so hot and tight that you almost miss the sight of your [pc.knot " + x + "] vanishing into the veiny girth of an increasingly equine-appearing member.";
+					if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) textBuff += " Your foreskin is peeled back by the excessive tumescence, sliding down the shaft until it gathers around the very base. Over time, it darkens to a dusky black that clings tight to your shaft, revealing that <b>you’ve grown a brand new sheath from your foreskin.</b>";
+					else textBuff += " The skin around the base pulls tight, gathering together around your shifting cock until the folds have piled up into a lewd-looking bunch of skin. The texture and color shifts to a glossy, supple black, revealing that <b>you’ve grown a brand new sheath.</b>";
+					textBuff += "\n\nYou thrust your [pc.hips] in the empty air as the transformation continues, new urges radiating up your spine and into your brain, filling your mind with images of bent-over bunnies, their tails twitching as their lush slits drool in excitement. High pitched voices squeak in delirious desire as you stroke yourself. Ribbons of pre-cum spill out with ease, slicking your strokes as you hump your hand, imagining yourself fucking a bunny-girl so hard that you can see your flaring cock-tip through her silk-furred belly.";
+					textBuff += "\n\nWhen you climax, what feels like gallons upon gallons of musky horse-cream spurt from <b>your new horse-cock</b>. You aren’t sure what your cum counts as this point. Is it lapine? Equine? Or still some semblance of Terran? All you know is that <b>your dick got ";
+					if(pc.cocks[x].cLength() < 14) textBuff += "so much ";
+					textBuff += "bigger when it changed species.</b> The raw, bestial weight hangs heavy on your mind and your body, even as it retreats into its snug sheath. You have the feeling these new urges aren’t going to go away... that you’re going to be fantasizing about bunny buns for some time to come.";
+					//Horseween.
+					//slowStatGain +20 libido.
+					pc.slowStatGain("libido",20);
+					textBuff = ParseText(textBuff);
+					pc.shiftCock(x,GLOBAL.TYPE_EQUINE);
+					if(pc.cocks[x].cLength() < 14) pc.cocks[x].cLength(3+rand(3));
+					if(pc.hasPerk("Hung")) pc.cocks[x].cLength(2);
+					if(pc.hasPerk("Mini")) pc.cocks[x].cLength(-2);
+					pc.orgasm();
+					AddLogEvent(textBuff,"passive");
+				}
+				else AddLogEvent(ParseText(pc.cockTypeLockedMessage()),"passive");
 				return;
 			}
 			//(Horsecock) Gains (Mini: 1/2-4/Hung:5-6) inches. (15" mini/20" norm/26" hung)
@@ -212,141 +262,154 @@ package classes.Items.Transformatives
 				if(pc.hasPerk("Mini")) growth = 1;
 				else if(pc.hasPerk("Hung")) growth += 2;
 				if(growth > 6) growth = 6;
-				//Smol growth (1) (mini)
-				if(growth == 1)
+				if(pc.cockLengthUnlocked(x,pc.cocks[x].cLength() + growth))
 				{
-					textBuff += "Your crotch feels bizarrely warm as blood collects in your [pc.cock " + x + "]. You don’t really get any harder, but there’s enough new-grown flesh there to grant you an extra inch at full size. You’re honestly surprised to see such growth. Your whole life, your body seems to have been fighting to give you a small dick. At least the Laquine Ears seem capable of punching through your inborn affinity.";
-					textBuff = ParseText(textBuff);
-				}
-				//2"
-				else if(growth == 2)
-				{
-					textBuff += "Mmm, warm lust bubbles through your loins, but particularly your [pc.cock " + x + "]. ";
-					if(pc.lust() >= 75) textBuff += "Since it’s already hard, you can immediately tell that it’s growing larger, expanding by an eighth of an inch every heartbeat, the blossoming cock-flesh increasing in raw sensation the bigger it gets.";
+					//Smol growth (1) (mini)
+					if(growth == 1)
+					{
+						textBuff += "Your crotch feels bizarrely warm as blood collects in your [pc.cock " + x + "]. You don’t really get any harder, but there’s enough new-grown flesh there to grant you an extra inch at full size. You’re honestly surprised to see such growth. Your whole life, your body seems to have been fighting to give you a small dick. At least the Laquine Ears seem capable of punching through your inborn affinity.";
+						textBuff = ParseText(textBuff);
+					}
+					//2"
+					else if(growth == 2)
+					{
+						textBuff += "Mmm, warm lust bubbles through your loins, but particularly your [pc.cock " + x + "]. ";
+						if(pc.lust() >= 75) textBuff += "Since it’s already hard, you can immediately tell that it’s growing larger, expanding by an eighth of an inch every heartbeat, the blossoming cock-flesh increasing in raw sensation the bigger it gets.";
+						else
+						{
+							textBuff += "It launches ";
+							if(pc.hasSheath(x)) textBuff += "out of its sheath";
+							else textBuff += "to full size";
+							textBuff += " in an instant, rock hard and throbbing, getting bigger with every beat of your heart. An eighth of an inch at a time, it expands with each heartbeat, the fresh cock-flesh raw and sensitive, red-hot and potent.";
+						}
+						textBuff = ParseText(textBuff);
+						textBuff += " You look on in stunned excitement, getting bigger and harder. When your [pc.cockNoun " + x + "] finally stops its excited pulsing, you have two more inches of throbbing equine fuckmeat.";
+						//+lust
+						pc.lust(15);
+
+					}
+					//3"
+					else if(growth == 3)
+					{
+						textBuff += "Your [pc.cock " + x + "] leaps to the fore of your mind";
+						if(pc.lust() >= 75) textBuff += " as it begins to swell, the already rigid boner expanding";
+						else textBuff += " as it unexpectedly surges to full size and beyond";
+						textBuff += ", so hot and hard that pre-cum squeezes out in thick streams. The musky member wobbles deliciously under its own weight, bowing down to gravity’s increasing effects as it expands. The girth swells apace with the length as it expands, every inch of bunny-horse-meat tingling hotly, promising you the best orgasm of your life if you just reach down and stroke it. Then it stops. You’re three inches longer than you were a minute ago.";
+						textBuff = ParseText(textBuff);
+						pc.lust(34);
+					}
+					//4"
+					else if(growth == 4)
+					{
+						textBuff += "Pleasure assails you from nowhere as your [pc.cock " + x + "] balloons. The veins fill, then bloat, then expand some more, transforming into highways full of nutrients to feed your burgeoning cockmeat. In between, fresh flesh fills the gaps while the whole of the shaft lengthens, pushing your fattened, flaring head further from your body. One inch... then two... then three... You feel like it’s never going to stop. Rhythmic bliss scours through your mind, filling you with delirious, sensuous need. With a final pulse, ";
+						textBuff = ParseText(textBuff);
+						textBuff += "your [pc.cock " + x + "] shoots a wave of pre-cum hard enough to splatter something ten feet away, the transformation complete. You’re four inches longer and horny as hell!";
+						pc.lust(60);
+					}
+					//5"
+					else if(growth == 5)
+					{
+						textBuff += "You double over, not in agony but in bliss, as dick abruptly begins to spill out of your sheath";
+						if(!pc.isErect()) textBuff += ", first your normal length as you attain hardness, then hot new flesh";
+						else textBuff += ", flexing powerfully with new flesh";
+						textBuff + ". The newborn dickskin is glossy, unmarred by a single touch, and it smells powerfully of your cock, secreting more pheromones than the rest of your member put together. Clear pre-jizz dribbles from your flaring head as it stretches away from your body, hotter and harder, longer and more pleasurable than ever before.";
+						textBuff += "\n\nInch after inch emerges, a seemingly unending tide of new dick that leaves you gasping and panting, watching your [pc.cock " + x + "] transform into a perfect example of bloated hypersexuality. Your [pc.hips] shudder, humping another two inches worth of dick into the open air. Your head swims, and your drizzling laquine length hoses a bucket’s worth of pre onto the floor as it finishes growing, trembling in orgiastic delight. How ever will you satiate such an incredible boner?";
+						pc.lust(80);
+					}
+					//6"
 					else
 					{
-						textBuff += "It launches ";
-						if(pc.hasSheath(x)) textBuff += "out of its sheath";
-						else textBuff += "to full size";
-						textBuff += " in an instant, rock hard and throbbing, getting bigger with every beat of your heart. An eighth of an inch at a time, it expands with each heartbeat, the fresh cock-flesh raw and sensitive, red-hot and potent.";
+						textBuff += "Growing dizzy, you stumble to the ground. It feels like you’re anemic, like there’s no blood going to your head, and you understand why a moment later. Your [pc.cock " + x + "] is jutting up out of your groin like an impossible pillar, bigger than it’s ever been, and it’s getting bigger with every passing second. Watching more dick spill out of your sheath is mesmerizing and highly erotic. The more your member grows, the hornier you get, until you’re panting and whining at the sheer sexual thrill of getting bigger. You can vaguely smell the pheromones pouring off it mixed with the sweet scent of pre-cum.";
+						textBuff += "\n\nBubbles of pre-jizz pour out, one after another another, thicker and creamier the more your flare swells. Your [pc.cock " + x + "] is tight and overfilled. Your muscles are tense and screaming. Your mouth is actually screaming, crying out in joy as your penis finishes gaining a half a foot of new length and erupts, spraying thick coats of sticky seed over everything in front of you. The moment it stops, it slaps hard into your ";
+						if(pc.bellyRating() < 16 && pc.cocks[x].cLength() >= 18) textBuff += "[pc.chest]";
+						else textBuff += "[pc.belly]";
+						textBuff += ", trickling seed across your [pc.skinFurScales]. You wrap your arms around it in euphoric love. The sudden pressure is enough to bring you right back to the precipice, but somehow you hold back, content with the knowledge that you’re going to be a truly big-dicked laquine.";
+						textBuff = ParseText(textBuff);
+						pc.orgasm();
 					}
+					laquineDickSizeAlert(pc.cocks[x].cLength(),pc.cocks[x].cLength() + growth);
+					pc.cocks[x].cLength(growth);
 					textBuff = ParseText(textBuff);
-					textBuff += " You look on in stunned excitement, getting bigger and harder. When your [pc.cockNoun " + x + "] finally stops its excited pulsing, you have two more inches of throbbing equine fuckmeat.";
-					//+lust
-					pc.lust(15);
-
+					AddLogEvent(textBuff, "passive");
 				}
-				//3"
-				else if(growth == 3)
-				{
-					textBuff += "Your [pc.cock " + x + "] leaps to the fore of your mind";
-					if(pc.lust() >= 75) textBuff += " as it begins to swell, the already rigid boner expanding";
-					else textBuff += " as it unexpectedly surges to full size and beyond";
-					textBuff += ", so hot and hard that pre-cum squeezes out in thick streams. The musky member wobbles deliciously under its own weight, bowing down to gravity’s increasing effects as it expands. The girth swells apace with the length as it expands, every inch of bunny-horse-meat tingling hotly, promising you the best orgasm of your life if you just reach down and stroke it. Then it stops. You’re three inches longer than you were a minute ago.";
-					textBuff = ParseText(textBuff);
-					pc.lust(34);
-				}
-				//4"
-				else if(growth == 4)
-				{
-					textBuff += "Pleasure assails you from nowhere as your [pc.cock " + x + "] balloons. The veins fill, then bloat, then expand some more, transforming into highways full of nutrients to feed your burgeoning cockmeat. In between, fresh flesh fills the gaps while the whole of the shaft lengthens, pushing your fattened, flaring head further from your body. One inch... then two... then three... You feel like it’s never going to stop. Rhythmic bliss scours through your mind, filling you with delirious, sensuous need. With a final pulse, ";
-					textBuff = ParseText(textBuff);
-					textBuff += "your [pc.cock " + x + "] shoots a wave of pre-cum hard enough to splatter something ten feet away, the transformation complete. You’re four inches longer and horny as hell!";
-					pc.lust(60);
-				}
-				//5"
-				else if(growth == 5)
-				{
-					textBuff += "You double over, not in agony but in bliss, as dick abruptly begins to spill out of your sheath";
-					if(!pc.isErect()) textBuff += ", first your normal length as you attain hardness, then hot new flesh";
-					else textBuff += ", flexing powerfully with new flesh";
-					textBuff + ". The newborn dickskin is glossy, unmarred by a single touch, and it smells powerfully of your cock, secreting more pheromones than the rest of your member put together. Clear pre-jizz dribbles from your flaring head as it stretches away from your body, hotter and harder, longer and more pleasurable than ever before.";
-					textBuff += "\n\nInch after inch emerges, a seemingly unending tide of new dick that leaves you gasping and panting, watching your [pc.cock " + x + "] transform into a perfect example of bloated hypersexuality. Your [pc.hips] shudder, humping another two inches worth of dick into the open air. Your head swims, and your drizzling laquine length hoses a bucket’s worth of pre onto the floor as it finishes growing, trembling in orgiastic delight. How ever will you satiate such an incredible boner?";
-					pc.lust(80);
-				}
-				//6"
-				else
-				{
-					textBuff += "Growing dizzy, you stumble to the ground. It feels like you’re anemic, like there’s no blood going to your head, and you understand why a moment later. Your [pc.cock " + x + "] is jutting up out of your groin like an impossible pillar, bigger than it’s ever been, and it’s getting bigger with every passing second. Watching more dick spill out of your sheath is mesmerizing and highly erotic. The more your member grows, the hornier you get, until you’re panting and whining at the sheer sexual thrill of getting bigger. You can vaguely smell the pheromones pouring off it mixed with the sweet scent of pre-cum.";
-					textBuff += "\n\nBubbles of pre-jizz pour out, one after another another, thicker and creamier the more your flare swells. Your [pc.cock " + x + "] is tight and overfilled. Your muscles are tense and screaming. Your mouth is actually screaming, crying out in joy as your penis finishes gaining a half a foot of new length and erupts, spraying thick coats of sticky seed over everything in front of you. The moment it stops, it slaps hard into your ";
-					if(pc.bellyRating() < 16 && pc.cocks[x].cLength() >= 18) textBuff += "[pc.chest]";
-					else textBuff += "[pc.belly]";
-					textBuff += ", trickling seed across your [pc.skinFurScales]. You wrap your arms around it in euphoric love. The sudden pressure is enough to bring you right back to the precipice, but somehow you hold back, content with the knowledge that you’re going to be a truly big-dicked laquine.";
-					textBuff = ParseText(textBuff);
-					pc.orgasm();
-				}
-				laquineDickSizeAlert(pc.cocks[x].cLength(),pc.cocks[x].cLength() + growth);
-				pc.cocks[x].cLength(growth);
-				textBuff = ParseText(textBuff);
-				AddLogEvent(textBuff, "passive");
+				else AddLogEvent(ParseText(pc.cockLengthLockedMessage()),"passive");
 				return;
 			}
 			//(Penor and No Cunt) Grow Balls
 			else if(select == 3)
 			{
-				textBuff += "Nausea reaches out of your gut and slaps you upside the head. You groan and double over, feeling your innards twisting. Your [pc.belly] gurgles like you’d eaten week old ausari snazzlers. Then your muscles tighten... and tighten again. They twist until they’re doubling you over with agonizing pressure. Then, a ‘pop’ of sudden release. It doesn’t hurt quite so bad, and you feel like you might not puke after all. You straighten, only to feel something else inside you pop free.";
-				textBuff += "The pain is gone, but its cause is not. <b>";
-				if(pc.legCount > 1) textBuff += "Between your [pc.legs]";
-				else textBuff += "Dangling below your waist";
-				textBuff += " is a new-grown sack containing two testes,</b> further displaying your maleness for all to see.";
-				if(!pc.isCrotchExposed()) textBuff += ".. when you aren’t dressed.";
-				//+1 libido
-				pc.libido(2);
-				pc.balls = 2;
-				pc.ballSizeRaw = 3.4;
+				if(pc.ballsUnlocked(2))
+				{
+					textBuff += "Nausea reaches out of your gut and slaps you upside the head. You groan and double over, feeling your innards twisting. Your [pc.belly] gurgles like you’d eaten week old ausari snazzlers. Then your muscles tighten... and tighten again. They twist until they’re doubling you over with agonizing pressure. Then, a ‘pop’ of sudden release. It doesn’t hurt quite so bad, and you feel like you might not puke after all. You straighten, only to feel something else inside you pop free.";
+					textBuff += "The pain is gone, but its cause is not. <b>";
+					if(pc.legCount > 1) textBuff += "Between your [pc.legs]";
+					else textBuff += "Dangling below your waist";
+					textBuff += " is a new-grown sack containing two testes,</b> further displaying your maleness for all to see.";
+					if(!pc.isCrotchExposed()) textBuff += ".. when you aren’t dressed.";
+					//+1 libido
+					pc.libido(2);
+					pc.balls = 2;
+					pc.ballSizeRaw = 3.4;
 
-				AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive");
+				}
+				else AddLogEvent(ParseText(pc.ballsLockedMessage()),"passive");
+				return;
 			}
 			//(Balls and Penor) BallRating gain of 1. Max 5" diameter. (Higher if bulgy?)
 			else if(select == 4)
 			{
-				//1-2 diameter (to “large” size.)
-				if(pc.ballDiameter() < 2)
+				if(pc.ballSizeUnlocked(16))
 				{
-					textBuff += "You gasp as your movements cause your [pc.sack] to squeeze tightly against your body - surprisingly tightly. Reaching down to handle it, <b>you discover that your testes have enlarged to the size of eggs.</b>";
+					//1-2 diameter (to “large” size.)
+					if(pc.ballDiameter() < 2)
+					{
+						textBuff += "You gasp as your movements cause your [pc.sack] to squeeze tightly against your body - surprisingly tightly. Reaching down to handle it, <b>you discover that your testes have enlarged to the size of eggs.</b>";
+					}
+					//2-3 diameter (to “baseball”)
+					else if(pc.ballDiameter() < 3)
+					{
+						textBuff += "You take a quick break from your activities when your [pc.sack] grows warm and tight, then hotter and even more constricting.";
+						if(!pc.isCrotchExposed()) textBuff += " Peeling your [pc.crotchCover] out of the way";
+						else if(pc.isTaur()) textBuff += " Twisting back and down against your side,";
+						else textBuff += " Bending over to the limits of your flexibility";
+						textBuff += " allows you a much better view of what’s going on. <b>Your balls are expanding,</b> unsubtly plumping, first one, then the other";
+						if(pc.balls > 2) textBuff += ", and so on";
+						textBuff += ". Then the pattern repeats, jostling your nuts about as they swell. They finally settle down a minute later, an inch bigger - roughly the size of baseballs.";
+					}
+					//3-4 diameter (to “apple”)
+					else if(pc.ballDiameter() < 4)
+					{
+						textBuff += "You’re quite certain [pc.balls] are expanding. They feel heavier, for one, slapping against the side of your [pc.leg] as you move. For another, you find yourself suddenly and unexpectedly aroused, but your [pc.cocks] ";
+						if(pc.cockTotal() == 1) textBuff += "is";
+						else textBuff += "are";
+						textBuff += " only half-hard at best. Your [pc.sack] churns, and [pc.cum] dribbles from your [pc.cockHeads]. There’s no room inside your body for all the sperm being manufactured all of a sudden. It spills out in gooey ropes, splattering on the ground. Yet soon enough the flow thins to a trickle, redirecting to fill your [pc.balls], inflating them to the size of apples. Only then does the pressure ease off and the arousal recede, <b>leaving you with bigger, more productive balls.</b>";
+						pc.lust(15);
+					}
+					//4-5 diameter (to grapefruit)
+					else if(pc.ballDiameter() < 5)
+					{
+						textBuff += "Gentle, lapping warmth enfolds your [pc.sack]. It’s like sitting in the universe’s gentlest, most perfectly temperature-calibrated hot-tub. A sigh slips out of you as you luxuriate in the sensation. It’s too pleasant too ignore. ";
+						if(pc.isCrotchExposed()) textBuff += "Before your eyes";
+						else textBuff += "Beneath your [pc.crotchCover]";
+						textBuff += ", your [pc.balls] expand. It’s a subtle growth, like an angel is reaching down from the heavens to pour <i>more</i> into each of your testes. They engorge with new flesh and new seed, and that pleasant warmth becomes a sensuous tingle. <b>Your nuts are easily the size of grapefruits.</b>";
+						textBuff += "\n\nYou moan and massage your newly-swollen nutsack, dribbling pre so thick that it’s the same [pc.cumColor] as your [pc.cumNoun]. Is this how all laquines are? Big balled bunnies that just love having their nuts rubbed? Stars, you could probably cum from this alone with enough time and effort, but you’re a busy [pc.manWoman]. You begrudgingly pull your hand free to return focus to your current task.";
+						//+15 lust
+						pc.lust(15);
+					}
+					//(perks) 5-7 diameter. (to cantaloupe)
+					else
+					{
+						textBuff += "A sharp pinch in your [pc.sack] disturbs you from your previous activity, forcing you to pay attention to the changes that are rippling through your [pc.balls]. Now that you’re looking, it’s clear that this is no subtle change. Your testicles are packing on weight worse than a galotian at a bukkake party. The pinch you felt was the sudden addition of a half-pound of new weight to your reproductive tissues.";
+						textBuff += "\n\nThere’s no pain any longer, however. Whatever the Laquine Ears are doing to make your nuts grow so rapidly is also reinforcing the connective tissues of your sack and dilating your internal cum-tubes to handle the additional sperm they’ll be producing. You heft one in your hand, feeling it pulse, delighting in the warm throb of your body becoming bigger and better with each passing second. It’s exquisite, and yet... are laquines supposed to be this big? Are their balls supposed to be so luxuriously soft, so swollen that they spill out over the sides of your hand?";
+						textBuff += "\n\nYou’ve always been quite bulgy, but this is a pleasing new development. Your churning, expanding, ballooning cum factories have got to be the heaviest un-augmented nuts in the sector. You’d have to turn to Throbb or Suma Cream to find anyone who could rival you for raw, majestic endowment. <b>Your canteloupe-sized balls</b> lurch and gurgle one last time before they settle into your hand. Excess seed dribbles from your [pc.cocks] as you give them a happy squeeze and consider how carefully you’ll need to walk to avoid pressing too firmly on the virile spunk-tanks.";
+						pc.lust(20);
+					}
+					textBuff = ParseText(textBuff);
+					laquineBallSizeUp(pc);
+					AddLogEvent(ParseText(textBuff));
 				}
-				//2-3 diameter (to “baseball”)
-				else if(pc.ballDiameter() < 3)
-				{
-					textBuff += "You take a quick break from your activities when your [pc.sack] grows warm and tight, then hotter and even more constricting.";
-					if(!pc.isCrotchExposed()) textBuff += " Peeling your [pc.crotchCover] out of the way";
-					else if(pc.isTaur()) textBuff += " Twisting back and down against your side,";
-					else textBuff += " Bending over to the limits of your flexibility";
-					textBuff += " allows you a much better view of what’s going on. <b>Your balls are expanding,</b> unsubtly plumping, first one, then the other";
-					if(pc.balls > 2) textBuff += ", and so on";
-					textBuff += ". Then the pattern repeats, jostling your nuts about as they swell. They finally settle down a minute later, an inch bigger - roughly the size of baseballs.";
-				}
-				//3-4 diameter (to “apple”)
-				else if(pc.ballDiameter() < 4)
-				{
-					textBuff += "You’re quite certain [pc.balls] are expanding. They feel heavier, for one, slapping against the side of your [pc.leg] as you move. For another, you find yourself suddenly and unexpectedly aroused, but your [pc.cocks] ";
-					if(pc.cockTotal() == 1) textBuff += "is";
-					else textBuff += "are";
-					textBuff += " only half-hard at best. Your [pc.sack] churns, and [pc.cum] dribbles from your [pc.cockHeads]. There’s no room inside your body for all the sperm being manufactured all of a sudden. It spills out in gooey ropes, splattering on the ground. Yet soon enough the flow thins to a trickle, redirecting to fill your [pc.balls], inflating them to the size of apples. Only then does the pressure ease off and the arousal recede, <b>leaving you with bigger, more productive balls.</b>";
-					pc.lust(15);
-				}
-				//4-5 diameter (to grapefruit)
-				else if(pc.ballDiameter() < 5)
-				{
-					textBuff += "Gentle, lapping warmth enfolds your [pc.sack]. It’s like sitting in the universe’s gentlest, most perfectly temperature-calibrated hot-tub. A sigh slips out of you as you luxuriate in the sensation. It’s too pleasant too ignore. ";
-					if(pc.isCrotchExposed()) textBuff += "Before your eyes";
-					else textBuff += "Beneath your [pc.crotchCover]";
-					textBuff += ", your [pc.balls] expand. It’s a subtle growth, like an angel is reaching down from the heavens to pour <i>more</i> into each of your testes. They engorge with new flesh and new seed, and that pleasant warmth becomes a sensuous tingle. <b>Your nuts are easily the size of grapefruits.</b>";
-					textBuff += "\n\nYou moan and massage your newly-swollen nutsack, dribbling pre so thick that it’s the same [pc.cumColor] as your [pc.cumNoun]. Is this how all laquines are? Big balled bunnies that just love having their nuts rubbed? Stars, you could probably cum from this alone with enough time and effort, but you’re a busy [pc.manWoman]. You begrudgingly pull your hand free to return focus to your current task.";
-					//+15 lust
-					pc.lust(15);
-				}
-				//(perks) 5-7 diameter. (to cantaloupe)
-				else
-				{
-					textBuff += "A sharp pinch in your [pc.sack] disturbs you from your previous activity, forcing you to pay attention to the changes that are rippling through your [pc.balls]. Now that you’re looking, it’s clear that this is no subtle change. Your testicles are packing on weight worse than a galotian at a bukkake party. The pinch you felt was the sudden addition of a half-pound of new weight to your reproductive tissues.";
-					textBuff += "\n\nThere’s no pain any longer, however. Whatever the Laquine Ears are doing to make your nuts grow so rapidly is also reinforcing the connective tissues of your sack and dilating your internal cum-tubes to handle the additional sperm they’ll be producing. You heft one in your hand, feeling it pulse, delighting in the warm throb of your body becoming bigger and better with each passing second. It’s exquisite, and yet... are laquines supposed to be this big? Are their balls supposed to be so luxuriously soft, so swollen that they spill out over the sides of your hand?";
-					textBuff += "\n\nYou’ve always been quite bulgy, but this is a pleasing new development. Your churning, expanding, ballooning cum factories have got to be the heaviest un-augmented nuts in the sector. You’d have to turn to Throbb or Suma Cream to find anyone who could rival you for raw, majestic endowment. <b>Your canteloupe-sized balls</b> lurch and gurgle one last time before they settle into your hand. Excess seed dribbles from your [pc.cocks] as you give them a happy squeeze and consider how carefully you’ll need to walk to avoid pressing too firmly on the virile spunk-tanks.";
-					pc.lust(20);
-				}
-				textBuff = ParseText(textBuff);
-				laquineBallSizeUp(pc);
-				AddLogEvent(ParseText(textBuff));
+				else AddLogEvent(ParseText(pc.ballSizeLockedMessage()),"passive");
 				return;
 			}
 			//(Penor) Like a Rabbit - Increase Refractory to approx 4x human.
@@ -733,117 +796,150 @@ package classes.Items.Transformatives
 			//Nonbun tails fall off.
 			else if(select == 13)
 			{
-				textBuff += "Your balance shifts so suddenly that you nearly pitch forward onto your face. Luckily you windmill your arms just right and catch your balance, but not before you hear something ‘thump’ on the ground behind you. Turning back, you see your [pc.tails], desiccated and dead. That makes sense, you suppose. <b>The bottom of your tailbone has returned to its normal human-like state, leaving you bereft of posterior adornments.</b>";
-				AddLogEvent(ParseText(textBuff),"passive");
-				pc.removeTails();
+				if(pc.tailCountUnlocked(0))
+				{
+					textBuff += "Your balance shifts so suddenly that you nearly pitch forward onto your face. Luckily you windmill your arms just right and catch your balance, but not before you hear something ‘thump’ on the ground behind you. Turning back, you see your [pc.tails], desiccated and dead. That makes sense, you suppose. <b>The bottom of your tailbone has returned to its normal human-like state, leaving you bereft of posterior adornments.</b>";
+					AddLogEvent(ParseText(textBuff),"passive");
+					pc.removeTails();
+				}
+				else AddLogEvent(ParseText(pc.tailCountLockedMessage()),"passive");
 				return;
 			}
 			//Grow bunbunpoof.			
 			else if(select == 14)
 			{
-				textBuff += "A slowly growing knot just above your [pc.butt] audibly strains, then pops, bringing you relief and concern in equal measure. You spin around, expecting something disgusting, but instead you discover that <b>you’ve grown a small bunny tail, complete with rapidly thickening fur.</b> The little puffball twitches as it acclimates to its new environment. How cute!";
-				pc.tailCount = 1;
-				pc.tailType = GLOBAL.TYPE_LAPINE;
-				pc.clearTailFlags();
-				pc.addTailFlag(GLOBAL.FLAG_FURRED);
-				AddLogEvent(ParseText(textBuff),"passive");
+				if(pc.tailCountUnlocked(1) && pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE))
+				{
+					textBuff += "A slowly growing knot just above your [pc.butt] audibly strains, then pops, bringing you relief and concern in equal measure. You spin around, expecting something disgusting, but instead you discover that <b>you’ve grown a small bunny tail, complete with rapidly thickening fur.</b> The little puffball twitches as it acclimates to its new environment. How cute!";
+					pc.tailCount = 1;
+					pc.tailType = GLOBAL.TYPE_LAPINE;
+					pc.clearTailFlags();
+					pc.addTailFlag(GLOBAL.FLAG_FURRED);
+					AddLogEvent(ParseText(textBuff),"passive");
+				}
+				else if(!pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE)) AddLogEvent(ParseText(pc.tailTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.tailCountLockedMessage()),"passive");
 				return;
 			}
 			//Scales/Chitin flake off to skin
 			else if(select == 15)
 			{
-				textBuff += "Your [pc.skinFurScales] ";
-				if(pc.hasChitin()) textBuff += "is";
-				else textBuff += "are";
-				textBuff += " falling off.";
-				if(pc.hasChitin()) textBuff += " Cracks spiderweb through it, spreading outward across your body.";
-				else textBuff += " The smallest ones are the first to fall, dropping off before their larger brethren.";
-				textBuff += " You brush the hardened detritus from your body to reveal the smooth, perfect skin below. And then the itching starts. Now that your skin has tasted freedom, it wants ";
-				if(pc.hasChitin()) textBuff += "this onerous covering";
-				else textBuff += "these onerous coverings";
-				textBuff += " removed. You scratch like a wild man, watching your [pc.skinFurScales] pile up around your feet until at last, you feel relief. <b>You have bare skin!</b>";
-				AddLogEvent(ParseText(textBuff),"passive");
-				pc.clearSkinFlags();
-				pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+				if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
+				{
+					textBuff += "Your [pc.skinFurScales] ";
+					if(pc.hasChitin()) textBuff += "is";
+					else textBuff += "are";
+					textBuff += " falling off.";
+					if(pc.hasChitin()) textBuff += " Cracks spiderweb through it, spreading outward across your body.";
+					else textBuff += " The smallest ones are the first to fall, dropping off before their larger brethren.";
+					textBuff += " You brush the hardened detritus from your body to reveal the smooth, perfect skin below. And then the itching starts. Now that your skin has tasted freedom, it wants ";
+					if(pc.hasChitin()) textBuff += "this onerous covering";
+					else textBuff += "these onerous coverings";
+					textBuff += " removed. You scratch like a wild man, watching your [pc.skinFurScales] pile up around your feet until at last, you feel relief. <b>You have bare skin!</b>";
+					AddLogEvent(ParseText(textBuff),"passive");
+					pc.clearSkinFlags();
+					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+				}
+				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive");
 				return;
 			}
 			//Feathers fall off to skin
 			else if(select == 16)
 			{
-				textBuff += "You’re molting! All over your body, your feathers are falling off! They collect around you in piles of soft plumage. As you dimly scratch a few stragglers from your shoulders, you wonder if they’d be any good in a pillow. Isn’t that how they used to make the things before Synthfluff was designed? <b>Your feathers are gone, leaving you with bare skin.</b>";
-				AddLogEvent(ParseText(textBuff),"passive");
-				pc.clearSkinFlags();
-				pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+				if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
+				{
+					textBuff += "You’re molting! All over your body, your feathers are falling off! They collect around you in piles of soft plumage. As you dimly scratch a few stragglers from your shoulders, you wonder if they’d be any good in a pillow. Isn’t that how they used to make the things before Synthfluff was designed? <b>Your feathers are gone, leaving you with bare skin.</b>";
+					AddLogEvent(ParseText(textBuff),"passive");
+					pc.clearSkinFlags();
+					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+				}
+				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive");
 				return;
 			}
 			//Big floofy armpaws for males, cutey paws for ladies
 			else if(select == 17)
 			{
-				//Masculinez:
-				if(pc.mf("m","") == "m")
+				if(pc.armTypeUnlocked(GLOBAL.TYPE_LAPINE))
 				{
-					//Already have floof arms
-					if(pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "The fur on your arms thickens, then thickens some more. At the same time, your hands broaden. The joints take on new muscle and padding. You could probably strike a wall with your palm at full force without any pain. The bigger fingers would be perfect for grabbing cute laquine lasses with round laquine asses. <b>You have big, powerful paws.</b>";
-					//No floof arms
-					else textBuff += "Fur erupts out of your hands. It’s thick and " + pc.furColor + ". It grows denser by the minute, sending runners out along the veins in your arms to colonize with more fur. Your new coat spreads the whole way out to your elbows before you can truly comprehend what’s happening, and once there, it contents itself with filling in every spare inch of skin. Soft paw pads emerge on your fingers and palms while you’re distracted. Then your hands themselves grow bigger, <b>widening into powerful, masculine paws</b> that would be perfect for wrapping around a cute laquine heiny.";
+					//Masculinez:
+					if(pc.mf("m","") == "m")
+					{
+						//Already have floof arms
+						if(pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "The fur on your arms thickens, then thickens some more. At the same time, your hands broaden. The joints take on new muscle and padding. You could probably strike a wall with your palm at full force without any pain. The bigger fingers would be perfect for grabbing cute laquine lasses with round laquine asses. <b>You have big, powerful paws.</b>";
+						//No floof arms
+						else textBuff += "Fur erupts out of your hands. It’s thick and " + pc.furColor + ". It grows denser by the minute, sending runners out along the veins in your arms to colonize with more fur. Your new coat spreads the whole way out to your elbows before you can truly comprehend what’s happening, and once there, it contents itself with filling in every spare inch of skin. Soft paw pads emerge on your fingers and palms while you’re distracted. Then your hands themselves grow bigger, <b>widening into powerful, masculine paws</b> that would be perfect for wrapping around a cute laquine heiny.";
+					}
+					//Femmyarms!
+					else
+					{
+						if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " in no time. Then y";
+						else textBuff += "Y";
+						textBuff += "our digits narrow slightly before your eyes. Your fingers shorten as well, becoming daintier and less suited to manual labor. You can still grip a gun easily enough, but you can’t help but wonder how they’ll look during sex. Anything you grab with your tiny paws is going to look huge. To complete <b>your new, feminine paws</b>, pink pads emerge from your palm and fingertips.";
+					}
+					pc.clearArmFlags();
+					pc.armType = GLOBAL.TYPE_LAPINE;
+					pc.addArmFlag(GLOBAL.FLAG_FURRED);
+					if(pc.mf("m","") == "m") pc.addArmFlag(GLOBAL.FLAG_THICK);
+					pc.addArmFlag(GLOBAL.FLAG_PAWS);
+					AddLogEvent(ParseText(textBuff),"passive");
 				}
-				//Femmyarms!
-				else
-				{
-					if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " in no time. Then y";
-					else textBuff += "Y";
-					textBuff += "our digits narrow slightly before your eyes. Your fingers shorten as well, becoming daintier and less suited to manual labor. You can still grip a gun easily enough, but you can’t help but wonder how they’ll look during sex. Anything you grab with your tiny paws is going to look huge. To complete <b>your new, feminine paws</b>, pink pads emerge from your palm and fingertips.";
-				}
-				pc.clearArmFlags();
-				pc.armType = GLOBAL.TYPE_LAPINE;
-				pc.addArmFlag(GLOBAL.FLAG_FURRED);
-				if(pc.mf("m","") == "m") pc.addArmFlag(GLOBAL.FLAG_THICK);
-				pc.addArmFlag(GLOBAL.FLAG_PAWS);
-				AddLogEvent(ParseText(textBuff),"passive");
+				else AddLogEvent(ParseText(pc.armTypeLockedMessage()),"passive");
 				return;
 			}
 			//Revert to normal eyes
 			else if(select == 18)
 			{
-				textBuff += "Everything goes blurry for a minute. You’re left wiping your eyes and wondering if you need to run to the doctor before everything snaps back into clear, vivid focus. You pull up your Codex’s front-facing camera to check yourself over and discover <b>your eyes have returned to normal!</b>";
-				pc.eyeType = GLOBAL.TYPE_HUMAN;
-				AddLogEvent(ParseText(textBuff),"passive");
+				if(pc.eyeTypeUnlocked(GLOBAL.TYPE_HUMAN))
+				{
+					textBuff += "Everything goes blurry for a minute. You’re left wiping your eyes and wondering if you need to run to the doctor before everything snaps back into clear, vivid focus. You pull up your Codex’s front-facing camera to check yourself over and discover <b>your eyes have returned to normal!</b>";
+					pc.eyeType = GLOBAL.TYPE_HUMAN;
+					AddLogEvent(ParseText(textBuff),"passive");
+				}
+				else AddLogEvent(ParseText(pc.eyeTypeLockedMessage()));
 				return;
 			}
 			//(Plain Skin && tail + ears) Bunfur sprouts
 			else if(select == 19)
 			{
-				textBuff += "Laquine-like fur steals a march on you, sprouting in thin wisps and tufts too small to notice. When you do discover your growing pelt, it responds by redoubling its growth, thickening into a lustrous coat of silky fur. You run your hands down it in awe. The smooth fibers slide between your fingers, and you admire the way the light shines off the new-grown coat. It grows almost everywhere, <b>giving you a layer of fur thick enough for any laquine to be proud of.</b>";
-				pc.clearSkinFlags();
-				pc.skinType = GLOBAL.SKIN_TYPE_FUR;
-				pc.addSkinFlag(GLOBAL.FLAG_FURRED);
-				AddLogEvent(ParseText(textBuff),"passive");
+				if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
+				{
+					textBuff += "Laquine-like fur steals a march on you, sprouting in thin wisps and tufts too small to notice. When you do discover your growing pelt, it responds by redoubling its growth, thickening into a lustrous coat of silky fur. You run your hands down it in awe. The smooth fibers slide between your fingers, and you admire the way the light shines off the new-grown coat. It grows almost everywhere, <b>giving you a layer of fur thick enough for any laquine to be proud of.</b>";
+					pc.clearSkinFlags();
+					pc.skinType = GLOBAL.SKIN_TYPE_FUR;
+					pc.addSkinFlag(GLOBAL.FLAG_FURRED);
+					AddLogEvent(ParseText(textBuff),"passive");
+				}
+				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive");
 				return;
 			}
 			//(Bodyfur) Bunnyface!
 			else if(select == 20)
 			{
-				//Long muzzle
-				if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && pc.hasFaceFlag(GLOBAL.FLAG_LONG))
+				if(pc.faceTypeUnlocked(GLOBAL.TYPE_LAPINE))
 				{
-					textBuff += "Your mouth pinches in uncomfortably. You clap a hand to your [pc.lipsChaste], but it does nothing to assuage the increasing tightness. Nor does it slow the effects of these troublesome ears one bit. You can feel your longer muzzle retracting into your face bit by aching bit. Extra teeth vanish into your gums, making way for your diminishing maw. Your front teeth bite your tongue once by accident, but that’s hardly a concern. The pinching feeling grows and grows, tighter and tighter with every quarter inch that fades from your muzzle.";
-					textBuff += "\n\nWhen your nose is almost short enough to vanish from view, the pain finally stops, and a set of rabbit-like whiskers erupt from either side. <b>You have a lapine-style face, just like a laquine!</b>";
+					//Long muzzle
+					if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && pc.hasFaceFlag(GLOBAL.FLAG_LONG))
+					{
+						textBuff += "Your mouth pinches in uncomfortably. You clap a hand to your [pc.lipsChaste], but it does nothing to assuage the increasing tightness. Nor does it slow the effects of these troublesome ears one bit. You can feel your longer muzzle retracting into your face bit by aching bit. Extra teeth vanish into your gums, making way for your diminishing maw. Your front teeth bite your tongue once by accident, but that’s hardly a concern. The pinching feeling grows and grows, tighter and tighter with every quarter inch that fades from your muzzle.";
+						textBuff += "\n\nWhen your nose is almost short enough to vanish from view, the pain finally stops, and a set of rabbit-like whiskers erupt from either side. <b>You have a lapine-style face, just like a laquine!</b>";
+					}
+					//Short muzzle
+					else if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+					{
+						textBuff += "Your jaw locks, muscles straining and rigid. Something is happening to your muzzle! You clap a hand to your moderately extended jawline and feel it flexing under your touch. The bones are shifting slightly as they adopt a new form. Whiskers burst out of either side of a nose that seems entirely too twitchy to be trusted. Your teeth ache briefly until your top incisors lengthen slightly. There’s no doubting it; <b>you have a lapine-like face, just like a laquine.</b>";
+					}
+					//No muzzle
+					else
+					{
+						textBuff += "Your jaw locks, muscles straining and rigid. Something is coming. You clap your fingers to your face only to discover your jawline extending, the bones twisting like clay under a sculptor’s touch. Your toothy maw is dragged forward. A pinch above your incisors makes you wince before they drop down to give you the slightest hint of buck teeth. Whiskers sprout from between your fingers, and your damned nose won’t stop twitching. You give up on stopping the change and sit back, pulling out your Codex to examine <b>your new, laquine-like muzzle.</b>";
+					}
+					pc.clearFaceFlags();
+					pc.faceType = GLOBAL.TYPE_LAPINE;
+					pc.addFaceFlag(GLOBAL.FLAG_FURRED);
+					pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+					AddLogEvent(ParseText(textBuff),"passive");
 				}
-				//Short muzzle
-				else if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
-				{
-					textBuff += "Your jaw locks, muscles straining and rigid. Something is happening to your muzzle! You clap a hand to your moderately extended jawline and feel it flexing under your touch. The bones are shifting slightly as they adopt a new form. Whiskers burst out of either side of a nose that seems entirely too twitchy to be trusted. Your teeth ache briefly until your top incisors lengthen slightly. There’s no doubting it; <b>you have a lapine-like face, just like a laquine.</b>";
-				}
-				//No muzzle
-				else
-				{
-					textBuff += "Your jaw locks, muscles straining and rigid. Something is coming. You clap your fingers to your face only to discover your jawline extending, the bones twisting like clay under a sculptor’s touch. Your toothy maw is dragged forward. A pinch above your incisors makes you wince before they drop down to give you the slightest hint of buck teeth. Whiskers sprout from between your fingers, and your damned nose won’t stop twitching. You give up on stopping the change and sit back, pulling out your Codex to examine <b>your new, laquine-like muzzle.</b>";
-				}
-				pc.clearFaceFlags();
-				pc.faceType = GLOBAL.TYPE_LAPINE;
-				pc.addFaceFlag(GLOBAL.FLAG_FURRED);
-				pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
-				AddLogEvent(ParseText(textBuff),"passive");
+				else AddLogEvent(ParseText(pc.faceTypeLockedMessage()),"passive");
 				return;
 			}
 			AddLogEvent("<b>Fenoxo fucked up. Select state: " + select + " and Choices state: " + choices.length,"passive");
@@ -1542,7 +1638,7 @@ package classes.Items.Transformatives
 				textBuff = ParseText(textBuff);
 				if(pc.inRut())
 				{
-					pc.clearRut();
+					pc.clearRut(false);
 					textBuff += " <b>Your rut has faded.</b>";
 				}
 				if(!masturbate) AddLogEvent(textBuff,"passive");
@@ -1735,16 +1831,20 @@ package classes.Items.Transformatives
 		public function laquineEarsFinale(pc:Creature):void
 		{
 			var textBuff:String = "";
-			if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE)
+			if(pc.earTypeUnlocked(GLOBAL.TYPE_LAPINE))
 			{
-				textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
-				
-				pc.earType = GLOBAL.TYPE_LAPINE;
+				if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE)
+				{
+					textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
+					
+					pc.earType = GLOBAL.TYPE_LAPINE;
+				}
+				else
+				{
+					textBuff += "The redundant Laquine Ears fall off your head, the securing band crumbling away. The ears themselves crackle softly as their color fades to ash gray, then they break apart into ear-shaped piles of dust. <b>Your Laquine Ears have run out of juice. Time to re-up!</b>";
+				}
 			}
-			else
-			{
-				textBuff += "The redundant Laquine Ears fall off your head, the securing band crumbling away. The ears themselves crackle softly as their color fades to ash gray, then they break apart into ear-shaped piles of dust. <b>Your Laquine Ears have run out of juice. Time to re-up!</b>";
-			}
+			else textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You'll need to put on another set if you want to undergo more bunny-horse transformations.<b> You doubt it's possible for you to get the ears too. Shucks.";
 			AddLogEvent(ParseText(textBuff),"passive");
 		}
 	}
