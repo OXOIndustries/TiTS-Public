@@ -803,7 +803,8 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		else output("Y");
 		output("ou read it carefully. There doesn’t seem to any nasty surprises. You provide your John Hancock at the bottom.");
 		if(silly) output(" Jenny Handcock? Maybe that can be your alias here.");
-		output(" <b>You are now a licensed whore at Beth’s Busty Broad.</b>");
+		if(flags["BETHS_CONTRACT_WHORE"] == undefined) output(" <b>You are now a licensed whore at Beth’s Busty Broad.</b>");
+		else output(" <b>You have renewed your whoring license at Beth’s Busty Broad.</b>");
 		output("\n\n<i>“Great!”</i> says the mistress, taking back the contract.");
 		if(flags["KAT_MET"] == undefined)
 		{
@@ -1643,7 +1644,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output("\n\nYou and a galotian puddle into a large jacuzzi together. You both coo as the bubble-streams are turned on, sending vibrations juddering through you, making you lose some of your surface tension. The ovir leads a laughing ausar couple in, a lean guy and his chubby girlfriend.");
 				output("\n\nThe two of them have fun on the bed first, taking turns with the ovir’s thick, brightly-colored cock, leaving you and the galotian to gasp and giggle together over the copious amount of sex toys that have been laid out on the side. Finally, the other three splash into you, drunk with lust. The guy bends your [pc.ass] over and firmly knots himself into your [pc.vagina " + x + "], the heavy thrust of his hips sending waves of your goo slapping against the sides.");
 				pc.cuntChange(x, pp.cockVolume(0));
-				output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
+				output(" The hard girth of his dick combined with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
 				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
 				processTime(60);
 				pc.loadInCunt(pp, x);
@@ -2013,7 +2014,7 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			else output(" we can't just accept </i>any<i> harlot to work here, you know.");
 			// Of course she'll tease you about it.
 			if(pc.isMan() && pc.isBro()) output(" You’re just a disgusting brute of a man. How do you think we’ll make any business off whoring you? You may be horny enough to, but you’re better off being the audience here than being the slut.");
-			else if(pc.isMan()) output(" You’ve become a fully grown man. Sorry, big boy, but we aren’t looking to hire any more male whores here. You might have better luck asking for a job that invovles lifting heavy equipment, maybe?");
+			else if(pc.isMan()) output(" You’ve become a fully grown man. Sorry, big boy, but we aren’t looking to hire any more male whores here. You might have better luck asking for a job that involves lifting heavy equipment, maybe?");
 			else if(pc.isFemHerm()) output(" Ah, a futanari is it? Big tits, hard cocks and hungry cunts. So many possibilities! That is why sexes like you are better off as a rare commodity. You’ll be treated more like a precious resource if our lines aren’t already stuffed with lady dicks as it is. Supply and demand, am I right?");
 			else if(pc.isHerm()) output(" You herms always think with your genitals don’t you? Well, given all the wonderful choices when it comes to fucking, I’m sure you even confuse yourself sometimes. There </i>are<i> mods out there that’ll help you pick one if you ever want to whore here though.");
 			else if(flags["BETHS_CONTRACT_WHORE"] == 0 && pc.isShemale()) output(" You’ve grown some tits, big deal - we have plenty of shemales working the line already. What else do you think you can contribute? Trust me, your booty is worth a lot more creds when you were a sissy boy.");
@@ -2111,10 +2112,12 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				flags["KAT_MET"] = 1;
 			}
 			output("”</i>");
+			if(flags["BETHS_CONTRACT_WHORE"] == undefined) output("\n\n<b>You are now a licensed whore at Beth’s Busty Broad.</b>");
+			else output("\n\n<b>You have renewed your whoring license at Beth’s Busty Broad.</b>");
 			
 			flags["BETHS_ASKED_TO_WHORE"] = 0;
 			flags["BETHS_CONTRACT_WHORE"] = 0;
-			if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
+			//if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
 			
 			processTime(2);
 			
@@ -2134,6 +2137,8 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			var minPass:int = 0;
 			var msg:String = "";
 			var parasites:Boolean = purgeParasites();
+			
+			//output("\n\nINITIAL GENDER WEIGHT SCORE: " + pc.genderWeight() + " (" + pc.mfn("Masculine", "Feminine", "Androgynous", true) + ")");
 			
 			// If vagina remove vagina
 			if(pc.hasVagina())
@@ -2265,6 +2270,34 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			}
 			if(msg != "") output("\n\n" + msg);
 			msg = "";
+			
+			// If not fem enough, boost femininity and/or hips until femmed!
+			if(pc.genderWeight() < 45)
+			{
+				var oldHips:Number = pc.hipRatingRaw;
+				var oldFace:Number = pc.femininity;
+				msg += ParseText("Seemingly at random, as if you didn’t look girly enough, you feel a slight boost to your feminine features. They gradually exaggerate further , making you appear more lady-like as");
+				var weightLimit:Number = 45;
+				while(pc.genderWeight() < weightLimit)
+				{
+					if(rand(2) == 0) pc.femininity += 1;
+					else pc.hipRatingRaw += 1;
+				}
+				if(pc.femininity != oldFace) msg += " your shoulders become narrow";
+				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
+				if(pc.hipRatingRaw != oldHips) msg += " your [pc.hips] widen";
+				msg += ". This leaves you with";
+				if(pc.hipRatingRaw != oldHips) msg += " " + pc.hipsDescript();
+				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
+				if(pc.femininity != oldFace) msg += " a face that has " + pc.faceDesc();
+				msg += ". ";
+				minPass += 1;
+			}
+			if(msg != "") output("\n\n" + msg);
+			msg = "";
+			
+			//output("\n\nFINAL GENDER WEIGHT SCORE: " + pc.genderWeight() + " (" + pc.mfn("Masculine", "Feminine", "Androgynous", true) + ")");
+			
 			output("\n\n<i>“There,”</i> coos Kat, after the gene mods are finally done with you. <i>“Wasn’t so bad, was it? That look suits you down to the ground, you know. Yes... I think our clientele is going to be <i>very</i> interested in you.”</i>");
 			output("\n\nShe lays a hand on your shoulder and you twitch slightly. You feel tender in a decentralized kind of way, a hot lustiness shivering beneath your skin. You feel like you could get erect very easily - in fact you are now, your [pc.cocks] tenting diminutively but eagerly at the intent of the brothel mistress’s words.");
 			output("\n\n<i>“Yes,”</i> she goes on, smirking thinly down at it. <i>“The mods do also cause a certain bump to your, uh, vim. So you’re bright and bushy-tailed about your new role. We’ve got other ways of increasing it, if you like... but we can talk about that later.”</i>");
@@ -2290,8 +2323,8 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			output("\n\nThe constant buzz of horniness the mods gave you never dissipates, and you usually greet your customers with thong-clad [pc.butt] arched and a smouldering gaze over your shoulder. You love the rough, impulsive couplings you can get this way, often spraying [pc.cum] onto the sheets with a girly moan before they’re halfway done with you. More often though, males who’ve paid the premium want the fantasy they always envisaged with a gorgeous trap. They want to watch you spend minutes worshipping their cocks with honey, oil, long drags of the tongue, expert curls of the tongue, thirsty hollows of the cheeks; they want to jack themselves up on Priapin so they can bend you over on the bed and spend hours filling out your tight, elastic back passage with said cocks, pounding your sensitive bitch boi buzzer over and over; they sometimes even want you to penetrate them with your cute, unintimidating dick, live out things they never would elsewhere.");
 			output("\n\nYou get a few female clients, too. Women who don’t trust regular boy toys to be gentle or solicitous enough. Women with boyfriends that won’t countenance a threeway with a hunk, but will with a sissy. Kaithrit females’ tastes run naturally towards girly boys, and they are not gentle, or easy to satiate. You wind up nursing a bruised torso after particularly long and rough rides with some curt, muscular lioness twice your size a few times.");
 			
-			if(flags["BETHS_TIMES_WHORED_HANDS"] == undefined) flags["BETHS_TIMES_WHORED_HANDS"] = 0;
-			if(flags["BETHS_TIMES_WHORED_MOUTH"] == undefined) flags["BETHS_TIMES_WHORED_MOUTH"] = 0;
+			//if(flags["BETHS_TIMES_WHORED_HANDS"] == undefined) flags["BETHS_TIMES_WHORED_HANDS"] = 0;
+			//if(flags["BETHS_TIMES_WHORED_MOUTH"] == undefined) flags["BETHS_TIMES_WHORED_MOUTH"] = 0;
 			
 			for(i = 0; i < 12; i++)
 			{
@@ -2299,13 +2332,13 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				if(rand(2) == 0) pc.loadInAss(pp);
 				if(rand(2) == 0) pc.girlCumInMouth(pp);
 				if(rand(2) == 0) pc.orgasm();
-				pc.credits += 2 + rand(12);
+				//pc.credits += 2 + rand(12);
 				
 				processTime((120 * 5) + rand(240));
-				n = 1 + rand(5);
-				flags["BETHS_TIMES_WHORED"] += n;
-				if(rand(2) == 0) flags["BETHS_TIMES_WHORED_HANDS"] += n;
-				else flags["BETHS_TIMES_WHORED_MOUTH"] += n;
+				//n = 1 + rand(5);
+				//flags["BETHS_TIMES_WHORED"] += n;
+				//if(rand(2) == 0) flags["BETHS_TIMES_WHORED_HANDS"] += n;
+				//else flags["BETHS_TIMES_WHORED_MOUTH"] += n;
 			}
 			applyCumSoaked(pc);
 			applyPussyDrenched(pc);
@@ -2328,15 +2361,15 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				if(rand(2) == 0) pc.loadInAss(pp);
 				if(rand(2) == 0) pc.girlCumInMouth(pp);
 				if(rand(2) == 0) pc.orgasm();
-				pc.credits += 2 + rand(12);
+				//pc.credits += 2 + rand(12);
 				
 				processTime((1680) + rand(120));
-				n = 1 + rand(5);
-				flags["BETHS_TIMES_WHORED"] += n;
-				if(rand(2) == 0) flags["BETHS_TIMES_WHORED_HANDS"] += n;
-				else flags["BETHS_TIMES_WHORED_MOUTH"] += n;
+				//n = 1 + rand(5);
+				//flags["BETHS_TIMES_WHORED"] += n;
+				//if(rand(2) == 0) flags["BETHS_TIMES_WHORED_HANDS"] += n;
+				//else flags["BETHS_TIMES_WHORED_MOUTH"] += n;
 			}
-			pc.credits += 200;
+			//pc.credits += 200;
 			pc.orgasm();
 			pc.willpower(2);
 			
@@ -2674,7 +2707,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 			// Massive capacity:
 			pp.cocks[0].cLengthRaw = 36;
 			pp.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
-			if(!InCollection(2, scenesIndex) && pc.vaginalCapacity(x) >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			if(!InCollection(2, scenesIndex) && pc.analCapacity() >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nA particularly huge alien is delighted to discover your loose asshole is capable of taking his 3 foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high.");
 				pc.buttChange(pp.cockVolume(0));
@@ -2740,7 +2773,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 			if(!InCollection(6, scenesIndex) && InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM]) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
 				output("\n\nOnce word gets around about the sweet, horny deliciousness of your [pc.cum] you become a favourite amongst the more libertine clientele, particularly those who are in the middle of a serious fuck session and are in need of some blood sugar. You cobble together a fluorescent sign reading ‘Need a jolt? Give me a jerk!’ and have one of the other whores tape it to your back. Rough handjobs into cocktail glasses, thirsty, drunken sucks...");
-				if(pc.cumQ() < 2000) output(" You can’t produce enough for everyone, and your [pc.cocks] and [pc.balls] are soon aching with effort.");
+				if(pc.cumQ() < 2000 && pc.refractoryRate < 30) output(" You can’t produce enough for everyone, and your [pc.cocks] and [pc.balls] are soon aching with effort.");
 				else output(" Fortunately you’re a regular [pc.cum] fountain, and as long as you pace the gleeful locks of your muscles and flexes of your [pc.cocks], you’ve got enough for every greedy one.");
 				processTime(10);
 				scenesLimit--;
@@ -2971,7 +3004,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 				output("\n\nYou and a galotian puddle into a large jacuzzi together. You both coo as the bubble-streams are turned on, sending vibrations juddering through you, making you lose some of your surface tension. The ovir leads a laughing ausar couple in, a lean guy and his chubby girlfriend.");
 				output("\n\nThe two of them have fun on the bed first, taking turns with the ovir’s thick, brightly-colored cock, leaving you and the galotian to gasp and giggle together over the copious amount of sex toys that have been laid out on the side. Finally, the other three splash into you, drunk with lust. The guy bends your [pc.ass] over and firmly knots himself into your [pc.anus], the heavy thrust of his hips sending waves of your [pc.skinColor] goo slapping against the sides.");
 				pc.buttChange(pp.cockVolume(0));
-				output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
+				output(" The hard girth of his dick combined with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
 				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
 				processTime(60);
 				pc.loadInAss(pp);
