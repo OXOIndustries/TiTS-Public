@@ -803,7 +803,10 @@ package classes.Items.Transformatives
 			{
 				if(pc.tailCountUnlocked(0))
 				{
-					textBuff += "Your balance shifts so suddenly that you nearly pitch forward onto your face. Luckily you windmill your arms just right and catch your balance, but not before you hear something ‘thump’ on the ground behind you. Turning back, you see your [pc.tails], desiccated and dead. That makes sense, you suppose. <b>The bottom of your tailbone has returned to its normal human-like state, leaving you bereft of posterior adornments.</b>";
+					textBuff += "Your balance shifts so suddenly that you nearly pitch forward onto your face. Luckily you windmill your arms just right and catch your balance, but not before you hear something ‘thump’ on the ground behind you. Turning back, you see your [pc.tails], desiccated and dead. That makes sense, you suppose. <b>The bottom of your tailbone has";
+					if(pc.originalRace = "human") textBuff += " returned to its normal human-like state";
+					else textBuff += " become strangely naked and bare";
+					textBuff += ", leaving you bereft of posterior adornments.</b>";
 					AddLogEvent(ParseText(textBuff),"passive");
 					pc.removeTails();
 				}
