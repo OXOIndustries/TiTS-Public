@@ -3449,37 +3449,37 @@
 		}
 		public function isMan():Boolean
 		{
-			if(isMale() && mfn("m", "f", "n") == "m") return true;
+			if(isMale() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
 		public function isWoman():Boolean
 		{
-			if(isFemale() && mfn("m", "f", "n") == "f") return true;
+			if(isFemale() && mfn("m", "f", "n", true) == "f") return true;
 			return false;
 		}
 		public function isFemboy():Boolean
 		{
-			if(isMale() && mfn("m", "f", "n") != "m" && biggestTitSize() < 3) return true;
+			if(isMale() && mfn("m", "f", "n", true) != "m" && biggestTitSize() < 3) return true;
 			return false;
 		}
 		public function isShemale():Boolean
 		{
-			if(isMale() && mfn("m", "f", "n") != "m" && biggestTitSize() >= 3) return true;
+			if(isMale() && mfn("m", "f", "n", true) != "m" && biggestTitSize() >= 3) return true;
 			return false;
 		}
 		public function isCuntboy():Boolean
 		{
-			if(isFemale() && mfn("m", "f", "n") == "m") return true;
+			if(isFemale() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
 		public function isFemHerm():Boolean
 		{
-			if(isHerm() && mfn("m", "f", "n") != "m") return true;
+			if(isHerm() && mfn("m", "f", "n", true) != "m") return true;
 			return false;
 		}
 		public function isManHerm():Boolean
 		{
-			if(isHerm() && mfn("m", "f", "n") == "m") return true;
+			if(isHerm() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
 		// For special case alien sex/gender override text in combat!
@@ -9778,10 +9778,7 @@
 		public function hasVirginCock(): Boolean {
 			return (cocks.length > 0 && cockVirgin);
 		}
-		public function mfn(male: String, female: String, neuter: String): String {
-			
-			if (hasStatusEffect("Force Fem Gender")) return female;
-			if (hasStatusEffect("Force Male Gender")) return male;
+		public function genderWeight(): Number {
 			
 			//1/2 facial
 			var weighting: Number = femininity;
@@ -9806,9 +9803,19 @@
 			if (lipRating() > 1) weighting += lipRating() * 3;
 			if (hasBeard() && !(beardStyle == 11 && hasFaceFlag(GLOBAL.FLAG_MUZZLED))) weighting -= 100; // lynx sideburns are not exactly a beard and have no m/f weight
 			//trace("Femininity Rating = " + weighting);
+			
+			return weighting;
+		}
+		public function mfn(male: String, female: String, neuter: String, ignorePref:Boolean = false): String {
+			
+			if (!ignorePref && hasStatusEffect("Force Fem Gender")) return female;
+			if (!ignorePref && hasStatusEffect("Force Male Gender")) return male;
+			
+			var weighting: Number = genderWeight();
+			
 			//Neuters first!
 			if (neuter != "") {
-				if (weighting >= 45 && weighting <= 55 || hasStatusEffect("Force It Gender")) return neuter;
+				if (weighting >= 45 && weighting <= 55 || (!ignorePref && hasStatusEffect("Force It Gender"))) return neuter;
 				else if (weighting < 45) return male;
 				return female;
 			} else {
@@ -9816,8 +9823,8 @@
 				return female;
 			}
 		}
-		public function mf(male: String, female: String): String {
-			return mfn(male, female, "");
+		public function mf(male: String, female: String, ignorePref:Boolean = false): String {
+			return mfn(male, female, "", ignorePref);
 		}
 		public function rawmfn(male: String, female: String, neuter: String): String {
 			
