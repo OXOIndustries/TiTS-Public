@@ -150,14 +150,14 @@ package classes.Items.Transformatives
 			//10x preggo speed
 			if(pc.pregnancyIncubationBonusMotherRaw < 10 && pc.hasVagina()) choices.push(11);
 			if(pc.hasVagina()) choices.push(12);
-			if(pc.tailCountUnlocked(0) && pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) choices.push(13);
-			if(pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.tailCount == 0) choices.push(14);
-			if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && (pc.hasScales() || pc.hasChitin())) choices.push(15);
-			if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && pc.hasFeathers()) choices.push(16);
-			if(pc.armTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.armType != GLOBAL.TYPE_LAPINE) choices.push(17);
-			if(pc.eyeTypeUnlocked(GLOBAL.TYPE_HUMAN) && pc.eyeType != GLOBAL.TYPE_HUMAN) choices.push(18);
-			if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR) && (pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_LAPINE) choices.push(19);
-			if(pc.faceTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.faceType != GLOBAL.TYPE_LAPINE && !pc.hasFur()) choices.push(20);
+			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) choices.push(13);
+			if(pc.tailCount == 0) choices.push(14);
+			if(pc.hasScales() || pc.hasChitin()) choices.push(15);
+			if(pc.hasFeathers()) choices.push(16);
+			if(pc.armType != GLOBAL.TYPE_LAPINE) choices.push(17);
+			if(pc.eyeType != GLOBAL.TYPE_HUMAN) choices.push(18);
+			if((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_LAPINE) choices.push(19);
+			if(pc.faceType != GLOBAL.TYPE_LAPINE && !pc.hasFur()) choices.push(20);
 	
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
@@ -1735,7 +1735,7 @@ package classes.Items.Transformatives
 		public function laquineEarsFinale(pc:Creature):void
 		{
 			var textBuff:String = "";
-			if(pc.earTypeUnlocked(GLOBAL.TYPE_LAPINE) && pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE)
+			if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE)
 			{
 				textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
 				
