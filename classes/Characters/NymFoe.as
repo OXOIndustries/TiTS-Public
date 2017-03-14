@@ -300,7 +300,7 @@
 			//Hit
 			else
 			{
-				output("\n\nThe spike finds its way through your defenses and you feel a pinch of penetration. The flexible steel bulges and distorts as the nursedroid pumps her payload through it and into your body. The pressure of the silicone sliding inside your body makes you feel woozy and a little sick. You jerk away, pulling free of the needle, but not quite fast enough. Your [pc.skinFurScales] shifts as the inflating goo slides around your body, looking for a spot to settle in. You’re going to have to win quickly or these implants are going to be permanent!");
+				output("\n\nThe spike finds its way through your defenses and you feel a pinch of penetration. The flexible steel bulges and distorts as the nursedroid pumps her payload through it, and into your body. The pressure of the silicone sliding inside your body makes you feel woozy and a little sick. You jerk away, pulling free of the needle, but not quite fast enough. Your [pc.skinFurScales] shifts as the inflating goo slides around your body, looking for a spot to settle in. You’re going to have to win quickly or these implants are going to be permanent!");
 				//{deals 15-25 Drug hp damage}
 				var damage:TypeCollection = new TypeCollection( { drug: 15+rand(11) } );
 				applyDamage(damageRand(damage, 15), this, target);

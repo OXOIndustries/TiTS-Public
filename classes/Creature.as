@@ -2132,7 +2132,11 @@
 					break;
 				case "clit":
 				case "clitoris":
-					buffer = clitDescript();
+					buffer = clitDescript(arg2);
+					break;
+				case "clitNoun":
+				case "clitorisNoun":
+					buffer = clitDescript(arg2, true);
 					break;
 				case "eachClit":
 					buffer = eachClit();
@@ -12583,14 +12587,14 @@
 			if (totalClits() > 1) return plural(clitDescript());
 			return clitDescript();
 		}
-		public function clitDescript(pussy: Number = -1): String {
+		public function clitDescript(pussy: Number = -1, nounOnly:Boolean = false): String {
 			if (vaginas.length <= 0) return ("ERROR: CLITDESCRIPT WITH NO VAGINA");
 			
 			var descript: String = "";
 			var randt: Number = rand(10);
 			var descripted: Number = 0;
 			//Length Adjective - 50% chance
-			if (rand(3) == 0) {
+			if (!nounOnly && rand(3) == 0) {
 				//small clits!
 				if (clitLength <= .4) {
 					if (randt < 3) descript += "tiny";
@@ -12630,7 +12634,7 @@
 				}
 			}
 			//Descriptive descriptions - 50% chance of being called
-			if (rand(3) == 0 && descripted < 2) {
+			if (!nounOnly && rand(3) == 0 && descripted < 2) {
 				//Elizabeth descriptors
 				if (skinType == GLOBAL.SKIN_TYPE_FUR && hasVaginaType(GLOBAL.TYPE_VULPINE) && rand(3) <= 1) {
 					if (descripted > 0) descript += ", ";
@@ -12657,7 +12661,7 @@
 					descripted++;
 				}
 			}
-			if (pussy >= 0 && vaginas[pussy].clitPierced > 0 && descripted < 2 && rand(3) < 2) {
+			if (!nounOnly && pussy >= 0 && vaginas[pussy].clitPierced > 0 && descripted < 2 && rand(3) < 2) {
 				if (descripted > 0) descript += ", ";
 				descript += "pierced";
 				descripted++;
