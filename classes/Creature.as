@@ -10230,6 +10230,8 @@
 			if (deerScore() >= 4) race = "deer-morph";
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
+			if (pigScore() >= 4) race = "pig-morph";
+			if (bunnyScore() >= 4) race = "bunny-morph";
 			if (ausarScore() >= 4)
 			{
 				if (huskarScore() < 3) race = "ausar";
@@ -10257,7 +10259,7 @@
 			if (nyreaScore() >= 5) race = "nyrea";
 			if (sharkScore() >= 5) race = sharkRace();
 			if (plantScore() >= 5) race = plantRace();
-			if (pigScore() >= 4) race = "pig-morph";
+			if (laquineScore() >= 5) race = "laquine";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
 			if (race == "human" && hradScore() >= 4) race = "hrad";
@@ -10568,6 +10570,17 @@
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			return counter;
 		}
+		public function bunnyScore():int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_LAPINE) counter++;
+			if (legType == GLOBAL.TYPE_LAPINE) counter++;
+			if (faceType == GLOBAL.TYPE_LAPINE) counter++;
+			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
+			if (armType == GLOBAL.TYPE_LAPINE) counter++;
+			if (counter > 0 && hasFur()) counter++;
+			return counter;
+		}
 		public function canineScore(): int {
 			var counter: int = 0;
 			if (InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE)) counter++;
@@ -10785,7 +10798,7 @@
 			var counter:int = 0;
 			if (earType == GLOBAL.TYPE_LAPINE || GLOBAL.TYPE_QUAD_LAPINE) counter++;
 			if (legType == GLOBAL.TYPE_LAPINE) counter++;
-			if (faceType == GLOBAL.TYPE_LAPINE) counter++;
+			if (faceType == GLOBAL.TYPE_LAPINE && hasFaceFlag(GLOBAL.FLAG_MUZZLED)) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
 			if (counter > 0 && hasFur()) counter++;
@@ -16185,6 +16198,14 @@
 			
 			return false;
 		}
+		public function isFullyWombPregnant():Boolean
+		{
+			return (totalWombPregnancies() >= totalVaginas());
+		}
+		public function isFullyPregnant():Boolean
+		{
+			return (isFullyWombPregnant() && hasAnalPregnancy());
+		}
 		public function hasPregnancy():Boolean { return isPregnant(); }
 		public function hasWombPregnancy():Boolean
 		{
@@ -16516,6 +16537,10 @@
 				if (spacingsB) msg += " ";
 				output(msg);
 				return true;
+			}
+			if (this is PlayerCharacter)
+			{
+				if(inRut()) removeRut(true);
 			}
 			return false;
 		}

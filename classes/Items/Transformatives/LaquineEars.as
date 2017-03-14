@@ -197,11 +197,16 @@ package classes.Items.Transformatives
 				choices.push(19);
 				choices.push(19);
 			}
-			if(pc.faceType != GLOBAL.TYPE_LAPINE && pc.hasFur()) 
+			if((pc.faceType != GLOBAL.TYPE_LAPINE || !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) && pc.hasFur()) 
 			{
 				choices.push(20);
 				choices.push(20);
 				choices.push(20);
+			}
+			if(pc.faceType == GLOBAL.TYPE_HUMAN && !pc.hasFur()) 
+			{
+				choices.push(21);
+				choices.push(21);
 			}
 	
 			var select:int = 0;
@@ -798,7 +803,10 @@ package classes.Items.Transformatives
 			{
 				if(pc.tailCountUnlocked(0))
 				{
-					textBuff += "Your balance shifts so suddenly that you nearly pitch forward onto your face. Luckily you windmill your arms just right and catch your balance, but not before you hear something ‘thump’ on the ground behind you. Turning back, you see your [pc.tails], desiccated and dead. That makes sense, you suppose. <b>The bottom of your tailbone has returned to its normal human-like state, leaving you bereft of posterior adornments.</b>";
+					textBuff += "Your balance shifts so suddenly that you nearly pitch forward onto your face. Luckily you windmill your arms just right and catch your balance, but not before you hear something ‘thump’ on the ground behind you. Turning back, you see your [pc.tails], desiccated and dead. That makes sense, you suppose. <b>The bottom of your tailbone has";
+					if(pc.originalRace == "human") textBuff += " returned to its normal human-like state";
+					else textBuff += " become strangely naked and bare";
+					textBuff += ", leaving you bereft of posterior adornments.</b>";
 					AddLogEvent(ParseText(textBuff),"passive");
 					pc.removeTails();
 				}
@@ -815,6 +823,7 @@ package classes.Items.Transformatives
 					pc.tailType = GLOBAL.TYPE_LAPINE;
 					pc.clearTailFlags();
 					pc.addTailFlag(GLOBAL.FLAG_FURRED);
+					pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					AddLogEvent(ParseText(textBuff),"passive");
 				}
 				else if(!pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE)) AddLogEvent(ParseText(pc.tailTypeLockedMessage()),"passive");
@@ -872,7 +881,7 @@ package classes.Items.Transformatives
 					//Femmyarms!
 					else
 					{
-						if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " in no time. Then y";
+						if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED)) textBuff += "Fur erupts all over your arms, from the tips of your fingers all the way back to your elbow. It thickens into a " + pc.furColor + " coat in no time. Then y";
 						else textBuff += "Y";
 						textBuff += "our digits narrow slightly before your eyes. Your fingers shorten as well, becoming daintier and less suited to manual labor. You can still grip a gun easily enough, but you can’t help but wonder how they’ll look during sex. Anything you grab with your tiny paws is going to look huge. To complete <b>your new, feminine paws</b>, pink pads emerge from your palm and fingertips.";
 					}
@@ -917,8 +926,13 @@ package classes.Items.Transformatives
 			{
 				if(pc.faceTypeUnlocked(GLOBAL.TYPE_LAPINE))
 				{
+					//Half-bunny face
+					if(pc.faceType == GLOBAL.TYPE_LAPINE)
+					{
+						textBuff += "Your jaw locks and you reflexively clasp your hands to your face. You can tell your face is about to change. Suddenly, whiskers sprout from between your fingers. Gritting your teeth, you feel your buck-toothed maw being dragged forward bit by bit. When it stops, you experimentally bite the air a few times. Surprised at the sudden change, you pull out your Codex for a peek. <b>You now have a laquine-like muzzle.</b>";
+					}
 					//Long muzzle
-					if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && pc.hasFaceFlag(GLOBAL.FLAG_LONG))
+					else if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && pc.hasFaceFlag(GLOBAL.FLAG_LONG))
 					{
 						textBuff += "Your mouth pinches in uncomfortably. You clap a hand to your [pc.lipsChaste], but it does nothing to assuage the increasing tightness. Nor does it slow the effects of these troublesome ears one bit. You can feel your longer muzzle retracting into your face bit by aching bit. Extra teeth vanish into your gums, making way for your diminishing maw. Your front teeth bite your tongue once by accident, but that’s hardly a concern. The pinching feeling grows and grows, tighter and tighter with every quarter inch that fades from your muzzle.";
 						textBuff += "\n\nWhen your nose is almost short enough to vanish from view, the pain finally stops, and a set of rabbit-like whiskers erupt from either side. <b>You have a lapine-style face, just like a laquine!</b>";
@@ -942,7 +956,22 @@ package classes.Items.Transformatives
 				else AddLogEvent(ParseText(pc.faceTypeLockedMessage()),"passive");
 				return;
 			}
-			AddLogEvent("<b>Fenoxo fucked up. Select state: " + select + " and Choices state: " + choices.length,"passive");
+			//(Nofur) Half-Bunnyface!
+			else if(select == 21)
+			{
+				if(pc.faceTypeUnlocked(GLOBAL.TYPE_LAPINE))
+				{
+					textBuff += "Your facial muscles are strained and rigid. Something is coming. You clap your fingers to your face only to discover your visage shifting and twisting like clay under a sculptor’s touch. A pinch above your incisors makes you wince before they drop down to give you the slightest hint of buck teeth. If that wasn’t unsettling enough, your damned nose won’t stop twitching. You give up on stopping the change and sit back, pulling out your Codex to examine yourself. <b>You now have a bunny-like face.</b>";
+					
+					pc.clearFaceFlags();
+					pc.faceType = GLOBAL.TYPE_LAPINE;
+					pc.addFaceFlag(GLOBAL.FLAG_SMOOTH);
+					AddLogEvent(ParseText(textBuff),"passive");
+				}
+				else AddLogEvent(ParseText(pc.faceTypeLockedMessage()),"passive");
+				return;
+			}
+			AddLogEvent("<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length,"passive");
 			return;
 		}
 		public function laquineEarsMinorTFsGO(pc:Creature):void
@@ -984,7 +1013,7 @@ package classes.Items.Transformatives
 			//(Vagicite) Awkward, random wetness with obvious pheromonal smell. Exhibition gains!
 			if(pc.hasVagina()) choices.push(6);
 			//(Vag && noheat && !preggos) Heat status for 1 week or till preggers. Temporary fertileboost.
-			if(!pc.inHeat() && !pc.isPregnant() && pc.hasVagina() && pc.fertility() > 0) choices.push(7);
+			if(!pc.inHeat() && !pc.isFullyWombPregnant() && pc.hasVagina() && pc.fertility() > 0) choices.push(7);
 			//BonusCapacity Gainz.
 			var cunts:Array = [];
 			for(x = 0; x < pc.totalVaginas(); x++)
@@ -1397,7 +1426,7 @@ package classes.Items.Transformatives
 				textBuff += "A palpable sensation of emptiness overwhelms you, though not everywhere. It centers ";
 				if(pc.legCount > 1) textBuff += "between your [pc.legs]";
 				else textBuff += "below the waist";
-				textBuff += " in your [pc.vagina " + x + "]. You try to ignore it, but it only grows stronger the longer you wait. Fuck it! You cast your eyes around, making sure that nobody is paying you any mind, then stuff your fingers deep into your [pc.vagina " + x + "], finding that they slip in with far more ease than they ought to. <b>Though you are no looser, you can take larger insertions with ease, allowing you to take bigger dicks before you start to stretch.<b>";
+				textBuff += " in your [pc.vagina " + x + "]. You try to ignore it, but it only grows stronger the longer you wait. Fuck it! You cast your eyes around, making sure that nobody is paying you any mind, then stuff your fingers deep into your [pc.vagina " + x + "], finding that they slip in with far more ease than they ought to. <b>Though you are no looser, you can take larger insertions with ease, allowing you to take bigger dicks before you start to stretch.</b>";
 				textBuff += "\n\nThe urge fades, but not before you have a dizzy grin plastered on your face.";
 				textBuff = ParseText(textBuff);
 				pc.lust(10);
@@ -1410,7 +1439,9 @@ package classes.Items.Transformatives
 				if(pc.bRows() == 1) textBuff += "you now fit";
 				else textBuff += "your biggest tits have shrunk down to";
 				
-				pc.breastRows[pc.biggestTitRow()].breastRatingRaw -= (1 + rand(4));
+				x = pc.biggestTitRow();
+				pc.breastRows[x].breastRatingRaw -= (1 + rand(4));
+				if(pc.breastRows[x].breastRatingRaw < 0) pc.breastRows[x].breastRatingRaw = 0;
 				
 				textBuff += ParseText(" [pc.breastCupSize " + pc.biggestTitRow() + "]</b>. If you want huge tits, it might be best to get them back after you finish up with the Laquine Ears. After all, how would you hop about with eighty pound boobs hanging off your chest?");
 			}
@@ -1580,7 +1611,7 @@ package classes.Items.Transformatives
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 2) textBuff += "I’m a horny, slutty cum-receptacle whose body won’t go stop going into heat!";
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 3) textBuff += "I’m your personal incubator, just an empty vessel with no value beyond incubating your young at every opportunity!";
 				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 4) textBuff += "Your personal bunny preg-slut! My pussy is so broken in from your dick that nothing else will ever be as good. My womb aches for your cum and your cum alone, because it’s my purpose to accept as many of your loads as you’ll give me!";
-				else if(kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 5)
+				else
 				{
 					if(kGAMECLASS.silly) textBuff += "I’m motherhood incarnate, a vessel who exists for you to dump as many loads into as you wish. That’s why I got your name tattooed on the inside of my womb and why my pussy soaks itself at the sight of you. I’m your pet cum-slut, always just around the corner, always hungry for more. I can’t seem think past my next fuck with you, my next opportunity to give you another litter, like I’ve taken so much of your cum that even my brain is gummed up with it.";
 					else textBuff += "I’m your bunny-birthing fuckslut, just a broken-in hole of a woman who lives for her meetings with you. My body is so addicted to your cock that my pussy soaks itself at the sight of you. My ovaries don’t even work right. They won’t stop releasing eggs anymore, and you’ve taught me to love it.";
@@ -1844,7 +1875,7 @@ package classes.Items.Transformatives
 					textBuff += "The redundant Laquine Ears fall off your head, the securing band crumbling away. The ears themselves crackle softly as their color fades to ash gray, then they break apart into ear-shaped piles of dust. <b>Your Laquine Ears have run out of juice. Time to re-up!</b>";
 				}
 			}
-			else textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You'll need to put on another set if you want to undergo more bunny-horse transformations.<b> You doubt it's possible for you to get the ears too. Shucks.";
+			else textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You'll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it's possible for you to get the ears too. Shucks.";
 			AddLogEvent(ParseText(textBuff),"passive");
 		}
 	}
