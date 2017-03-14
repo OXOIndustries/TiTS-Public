@@ -2229,6 +2229,7 @@ public function knockUpRedBitchChance():void
 			else if(flags["RED_MYR_BIRTHS"] == 1) flags["BRIHA_SPAWN_2_DEETS"] = [pc.hairColor,pc.eyeColor];
 			//Set incubation timer
 			flags["BRIHA_INCUBATION_TIMER"] = 0;
+			pc.clearRut();
 			trace("RED MYR KNOCKED UP!");			
 		}
 	}

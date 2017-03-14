@@ -5920,7 +5920,9 @@
 			switch (tailType)
 			{
 				case GLOBAL.TYPE_LAPINE:
-					adjectives = ["twitching", "rabbit-like", "lapine"];
+					adjectives = ["twitching", "rabbit-like", "lapine","soft","bunny","fluffy","soft"];
+					//Adds variety but still keeps "tail" as most common.
+					nouns.push("poof","puffball","puff","tail","tail","tail");
 					break;
 				case GLOBAL.TYPE_EQUINE:
 					adjectives = ["equine", "horse-like"];
@@ -6176,7 +6178,7 @@
 			if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 			if (hasArmFlag(GLOBAL.FLAG_SPIKED)) adjective.push("spiked", "spiky", "prickly");
 			if (hasArmFlag(GLOBAL.FLAG_STICKY)) adjective.push("sticky");
-			
+			if (armType == GLOBAL.TYPE_LAPINE && hasArmFlag(GLOBAL.FLAG_THICK)) adjective.push("big");
 			// Build
 			if ((forceAdjective || rand(2) == 0) && adjective.length > 0) output += RandomInCollection(adjective);
 			// Noun
@@ -6204,17 +6206,22 @@
 				if (hasPaddedHands()) adjective.push("padded");
 				if (armType == GLOBAL.TYPE_FROG) adjective.push("webbed", "sticky");
 				if (InCollection(armType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_PANDA) || hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("bestial");
-				if (hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("paw-like");
+				if (hasArmFlag(GLOBAL.FLAG_PAWS)) adjective.push("animalistic");
 				if (hasArmFlag(GLOBAL.FLAG_GOOEY)) adjective.push("slimy", "slick", "gooey");
 				else if (InCollection(armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_LEITHAN)) adjective.push("chitinous");
 				if (armType == GLOBAL.TYPE_SHARK) adjective.push("webbed","slick");
 				if (armType == GLOBAL.TYPE_TENTACLE) adjective.push("tentacled", "tentacle-fingered");
+				if (armType == GLOBAL.TYPE_LAPINE && hasArmFlag(GLOBAL.FLAG_THICK)) adjective.push("big","rabbit-like","broad","furry");
+				else if(armType == GLOBAL.TYPE_LAPINE) adjective.push("padded","delicate","furry","bunny","rabbit-like");
 			}
 			// Build
 			if (rand(2) == 0 && adjective.length > 0) output += RandomInCollection(adjective);
 			//Noun
 			if (output != "") output += " ";
-			output += "hand";
+
+			var nouns:Array = ["hand"];
+			if(hasArmFlag(GLOBAL.FLAG_PAWS)) nouns.push("paw");
+			output += RandomInCollection(nouns);
 			return output;
 		}
 		public function fingers(): String {
@@ -8367,20 +8374,20 @@
 		{
 			return (hasStatusEffect("Rut") || hasStatusEffect("Lagonic Rut"));
 		}
-		public function removeHeat(eventLog:Boolean = false):void
+		public function removeHeat(eventLog:Boolean = true):void
 		{
 			clearHeat(eventLog);
 		}
-		public function clearHeat(eventLog:Boolean = false):void
+		public function clearHeat(eventLog:Boolean = true):void
 		{
 			removeStatusEffect("Heat");
 			if(eventLog) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
 		}
-		public function removeRut(eventLog:Boolean):void
+		public function removeRut(eventLog:Boolean = true):void
 		{
 			clearRut(eventLog);
 		}
-		public function clearRut(eventLog:Boolean):void
+		public function clearRut(eventLog:Boolean = true):void
 		{
 			removeStatusEffect("Rut");
 			removeStatusEffect("Lagonic Rut");

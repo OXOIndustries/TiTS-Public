@@ -3101,6 +3101,7 @@ public function dockingBonerIntensifies():void
 	output("\n\nYou sigh and lean forward, catching your breath as the last twitching drops of cum drool out of your [pc.cock " + x + "]. Underneath you, Taivra flops back, all the energy suddenly gone out of her; her hands caress her full belly and breasts, enjoying the feeling of her body in the afterglow. Slowly, you pull yourself out of her, letting loose a small flood of mixed fluids onto her belly and your thighs before you flop down beside her.");
 	//Fertilize those eggs for a day.
 	taivraFertilize();
+	pc.clearRut();
 	processTime(19);
 	pc.orgasm();
 	//[Next]
@@ -3585,6 +3586,7 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			// Reset Taivra's preg timer.
 			flags["TAIVRA_FERTILE"] = 0;
 			IncrementFlag("FUCKED_TAIVRAS_BETA");
+			pc.clearHeat();
 			processTime(30 + rand(21));
 			pc.orgasm();
 			

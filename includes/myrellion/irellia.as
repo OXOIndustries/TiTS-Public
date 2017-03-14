@@ -549,6 +549,7 @@ public function tailFuck():void
 	}
 	processTime(33);
 	pc.exhibitionism(1);
+	pc.clearRut();
 	pc.orgasm();
 	clearMenu();
 	pc.shower();
@@ -714,6 +715,7 @@ public function cumInsideIrellia(x:int):void
 	}
 	output("\n\nThe servile ants force you into the shower. They won’t take no for an answer, and you don’t really have the energy to protest after that. So what other choice do you have? You lather up and enjoy these primitives’ luxuries, coming out feeling at least a little rested.");
 	output("\n\nIrellia is awake once more, and her egg basket has been replaced with a fresh one. She’s beaming and gently rubbing her abdomen with one of her hands. The others give you a tired but friendly wave, the kind of wave you might have gotten from a girl in the hallways of your school after fucking her bareback in her parent’s house the night before. You grin and wave back.");
+	pc.clearHeat();
 	processTime(9);
 	pc.exhibitionism(1);
 	irelliaSexBreak(3);

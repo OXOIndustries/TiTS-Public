@@ -1158,6 +1158,21 @@ public function appearance(forTarget:Creature):void
 			else output2(" A coat of " + target.furColor + " fur covers your arms below the shoulders, and your fingers are tipped with dark brown pads. ");
 			output2("They’re softer and more supple than the finest leather.");
 		}
+		else if(target.armType == GLOBAL.TYPE_LAPINE)
+		{
+			if(target.hasArmFlag(GLOBAL.FLAG_THICK)) 
+			{
+				if(pc.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your thick, gooey arms ");
+				else output2(" Your thick, fur-covered arms ");
+				output2("end with broad forearms and big fingers. In contrast, delicate pads line the underside.");
+			}
+			else
+			{
+				if(pc.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms ");
+				else output2(" Your furry arms ");
+				output2("end with small, delicate paws. Each finger has a soft pad on the underside as well. You couldn't ask for a less threatening pair of mits.");
+			}
+		}
 		else if(target.armType == GLOBAL.TYPE_BADGER) 
 		{
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms are tipped with clawed fingers.");
@@ -1511,10 +1526,20 @@ public function appearance(forTarget:Creature):void
 			output2(" A tapered tail hangs down from just above your " + target.buttDescript() + ". It sways back and forth, assisting you with keeping your balance.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_LAPINE) {
-			output2(" A short,");
-			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
-			else output2(" soft");
-			output2(" bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don’t think about it.");
+			if(pc.tailCount == 1)
+			{
+				output2(" A short,");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
+				else output2(" soft");
+				output2(" bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you're distracted.");
+			}
+			else
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " short,");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
+				else output2(" soft");
+				output2(" bunny tails sprout just above your " + target.buttDescript() + ", twitching constantly whenever your attention is elsewhere. Or whenever they want, really. It's hard to control that many rebellious little poofs.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_AVIAN) {
 			output2(" A tail of");
