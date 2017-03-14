@@ -3009,7 +3009,7 @@ public function stolenDildoFap():void
 		if(pc.hasCuntTail()) addButton(3,"DP Tail",didloDPWivStolenDildo,"tail","DP Tail","Unlatch the dildo and stuff both ends inside your cunt tail. May end in accidental stretching.");
 		else addDisabledButton(3,"DP Tail","DP Tail","There’s nowhere in your tail to put them!");
 
-		if(pc.hasFuckableNipples()) addButton(4,"DP Nipple",didloDPWivStolenDildo,"tail","DP Nipple","Unlatch the dildo and stuff both ends inside your nipple.");
+		if(pc.hasFuckableNipples()) addButton(4,"DP Nipple",didloDPWivStolenDildo,"nip","DP Nipple","Unlatch the dildo and stuff both ends inside your nipple.");
 		else addDisabledButton(4,"DP Nipple","DP Nipple","There’s nowhere in your nipples to put them!");
 	}
 	addButton(14,"Back",masturbateMenu);

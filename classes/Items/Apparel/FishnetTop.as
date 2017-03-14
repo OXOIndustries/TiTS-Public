@@ -21,7 +21,7 @@
 			this.shortName = "NetTop";
 			
 			//Regular name
-			this.longName = "fishnet Top";
+			this.longName = "fishnet top";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
