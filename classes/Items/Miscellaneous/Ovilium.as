@@ -16,7 +16,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			
 			shortName = "Ovilium";
 			longName = "bottle of Ovilium";

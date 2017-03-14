@@ -89,9 +89,6 @@ public function showKara(asNude:Boolean = false):void
 }
 public function karaBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["KARA"] != "SHOU") return "KARA";
-	
 	var sBust:String = "KARA";
 	if(nude) sBust += "_NUDE";
 	return sBust;

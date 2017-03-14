@@ -522,7 +522,7 @@ public function buskySexChestWorship(modelingItem:*):void {
 	output("\n\nYou stay like that for a few more minutes, playing with the musclebound bull’s strapped body. Eventually, Busky pushes you off of himself, a playful smile on his lips.");
 	
 	output("\n\n<i>“Okay, that’s enough for now. I’ve got to...”</i> he pauses, not out of confusion, but out of a relaxed and lustful bliss, fishing for the words out of a swamp of ecstasy, <i>“get back to work.");
-	if(pc.femininity <= 40 && !pc.hasBreasts()) output(" Unless... you want to have a more, <b>thorough-out</b> tour of my body. How about it?");
+	if(pc.femininity <= 40 && !pc.hasBreasts()) output(" Unless... you want to have a more, <b>thorough</b> tour of my body. How about it?");
 	output("”</i>");
 	
 	processTime(25 + rand(10));

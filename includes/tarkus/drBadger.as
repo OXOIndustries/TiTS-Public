@@ -81,7 +81,7 @@ public function drBadgerBuyMenu():void
 	//Unlock dumbfuck codex
 	CodexManager.unlockEntry("Dumbfuck");
 	CodexManager.unlockEntry("Gush");
-	CodexManager.unlockEntry("Tentacool");
+	CodexManager.unlockEntry("Tentatool");
 	
 	buyItem();
 }

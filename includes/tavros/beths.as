@@ -106,7 +106,7 @@ public function brothelMainMenu():void {
 	else addDisabledButton(0,"Cow-slut Sex","Cow-slut Sex","You already bought that slut.");
 	if(hours >= 6 && hours < 10) addDisabledButton(1,"Contract","Contract","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity."); 
 	else if(flags["REAHA_BOUGHT"] == undefined) addButton(1,"Contract",buyYourselfACowslut);
-	else addDisabledButton(1,"Contract","Contract","You already bought that slut.");
+	else addDisabledButton(1,"Contract","Cow-slut Contract","You already bought that slut.");
 	if(flags["HOWS_BUSINESS_BITCH"] == undefined) 
 	{
 		if(hours >= 6 && hours < 10) addDisabledButton(2,"How’s Business","How’s Business","The brothel mistress is napping in the office right now. You could wake her, but it would just get you a burst of profanity.");
@@ -146,7 +146,8 @@ public function brothelMainMenu():void {
 	// Feminine female wearing something sexiness > 2 only for now.
 	// "Jaded" status, prevents whoring plus minor stat penalties for 6 hours. Prevents players spamming it for essentially free money. Yeah they can just wait, but that won't make it any different from the milker.
 	if(hours >= 6 && hours < 10) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "The brothel mistress is currently sleeping. You don’t think it’ll be a good idea to wake her right now.");
-	else if(!pc.hasVagina()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to have a vagina in order to try this.");
+	else if(pc.isSexless()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to have genitals in order to try this.");
+	else if(!pc.isFemboy() && !pc.isWoman()) addButton(5, "Turn Tricks", brothelTurnTrixLadyNonFem, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");
 	else if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) <= 2) addDisabledButton(5,"Turn Tricks","Turn Tricks","You need sexier clothing in order to try this.");
 	else if(pc.hasStatusEffect("Jaded")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too wiped from last time to contemplate that right now.");
 	else if(pc.isWornOut()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too sore to think about doing that right now.");
@@ -627,7 +628,22 @@ public function brothelTurnTrixLady():void
 	// If PC is licensed
 	if(flags["BETHS_CONTRACT_WHORE"] != undefined)
 	{
-		output("<i>“Hey [pc.name],”</i> Kat smiles thinly when you sashay up. <i>“You going on shift?”</i>");
+		output("<i>“Hey [pc.name],”</i> Kat smiles thinly when you sashay up.");
+		if(flags["BETHS_ASKED_TO_WHORE"] == 0 && !pc.isFemboy())
+		{
+			output(" Her face scrunches as she rounds the desk to observe you closer. <i>“You’ve brought out your inner woman. Good job, I’m impressed.”</i>");
+			output("\n\nYou press your [pc.lipsChaste] together and smile... She’s probably right.");
+			output("\n\n<i>“Hey, just keep shaking your money maker and I won’t judge... to harshly anyway,”</i> she adds, then caresses your [pc.thigh] softly to warm you up.");
+			flags["BETHS_ASKED_TO_WHORE"] = 2;
+		}
+		else if(flags["BETHS_ASKED_TO_WHORE"] == 2 && pc.isFemboy())
+		{
+			output(" She rounds the desk to observe you for a little longer. <i>“Wow, you’ve made a change I see. I’m liking the new sissy boy look!”</i>");
+			output("\n\nYou timidly blush a smile.");
+			output("\n\n<i>“Hey, whatever makes bank, I won’t judge... to harshly anyway,”</i> she adds, then gives your [pc.butt] a light spank.");
+			flags["BETHS_ASKED_TO_WHORE"] = 0;
+		}
+		output(" <i>“You going on shift?”</i>");
 		//[Yep] [No]
 		addButton(0, "Yep", brothelTurnTrixLicensedMenu);
 		addButton(1, "No", brothelTurnTrixAnswer, 3);
@@ -639,17 +655,48 @@ public function brothelTurnTrixLady():void
 		// First
 		if(flags["BETHS_ASKED_TO_WHORE"] == undefined)
 		{
-			flags["BETHS_ASKED_TO_WHORE"] = 1;
-			output("Plenty of guys of every shape and size in here, plenty of them looking for some company and tension release away from the frenetic business of the Rush. And you’re already earning a number of lingering stares...");
-			output("\n\n<i>“Hey,”</i> you say, approaching the sternly dressed mistress behind the front desk. <i>“Is it alright if I, y’know, earn some money?”</i>");
-			output("\n\nShe gives you an appraising look.");
-			output("\n\n<i>“Can’t offer you the same rate as the girls who work here,”</i> she replies. <i>“Sure you can appreciate why. 50/50 split with the house, unless you license up.”</i>");
+			// If femboy
+			if(pc.isFemboy())
+			{
+				output("Plenty of guys of every shape and size in here, plenty of them looking for some company and tension release away from the frenetic business of the Rush. A friendly and open-minded person could make easy cash here, surely.");
+				output("\n\n<i>“Hey,”</i> you say, approaching the sternly dressed mistress behind the front desk. <i>“Is it alright if I, y’know, earn some money?”</i>");
+				output("\n\nShe gives you a long, appraising look.");
+				output("\n\n<i>“Sure. I could use a couple more femboys about the place, as it happens,”</i> she replies. <i>“Can’t offer you the same rate as the girls who work here, though. 50/50 split with the house, unless you license up.”</i>");
+				flags["BETHS_ASKED_TO_WHORE"] = 0;
+				// segue into existing license talks
+			}
+			else
+			{
+				output("Plenty of guys of every shape and size in here, plenty of them looking for some company and tension release away from the frenetic business of the Rush. And you’re already earning a number of lingering stares...");
+				output("\n\n<i>“Hey,”</i> you say, approaching the sternly dressed mistress behind the front desk. <i>“Is it alright if I, y’know, earn some money?”</i>");
+				output("\n\nShe gives you an appraising look.");
+				output("\n\n<i>“Can’t offer you the same rate as the girls who work here,”</i> she replies. <i>“Sure you can appreciate why. 50/50 split with the house, unless you license up.”</i>");
+				flags["BETHS_ASKED_TO_WHORE"] = 1;
+			}
 		}
 		else
 		{
-			output("<i>“Hey,”</i> you say, approaching the brothel mistress behind the front desk. <i>“Is it alright if I, y’know, earn some money?”</i>");
-			output("\n\nShe gives you an appraising look.");
-			output("\n\n<i>“You know the rules,”</i> she replies. <i>“50/50 split with the house, unless you license up.”</i>");
+			switch(flags["BETHS_ASKED_TO_WHORE"])
+			{
+				// Repeat if PC tripped masculine line and is now either femboy or female
+				case -1:
+					output("<i>“... It’s you again, isn’t it? The guy who was asking about turning tricks here? You’re, uh... different, these days,”</i> says the dark-haired mistress, peering at you closely. She wiggles her eyebrows at you sardonically. <i>“If you actually were interested in getting in touch with your feminine side, why didn’t you take us up on the special offer? Never mind - I can definitely let you work now, if you still want to. Can’t offer you the same rate as the contracted girls, though. 50/50 split with the house, unless you license up.”</i>");
+					flags["BETHS_ASKED_TO_WHORE"] = (pc.isFemboy() ? 0 : 2);
+					break;
+				// Repeat if PC tripped fem-herm/shemale line and is now either femboy or female
+				case -2:
+					output("<i>“Looking a bit more along the lines of hospitality we like to offer at Beth’s, babycakes,”</i> leers the dark-haired mistress, looking you up and down. <i>“Good [pc.boy]! I can definitely let you work now, if you still want to. Can’t offer you the same rate as the contracted girls, though. 50/50 split with the house, unless you license up.”</i>");
+					flags["BETHS_ASKED_TO_WHORE"] = (pc.isFemboy() ? 0 : 2);
+					break;
+				// Normal
+				default:
+					output("<i>“Hey,”</i> you say, approaching the brothel mistress behind the front desk. <i>“Is it alright if I, y’know, earn some money?”</i>");
+					output("\n\nShe gives you an appraising look.");
+					output("\n\n<i>“You know the rules,”</i> she replies. <i>“50/50 split with the house, unless you license up.”</i>");
+					if(flags["BETHS_ASKED_TO_WHORE"] == 0 || flags["BETHS_ASKED_TO_WHORE"] == 2) flags["BETHS_ASKED_TO_WHORE"] = (pc.isFemboy() ? 0 : 2);
+					break;
+			}
+			// segue into existing license talks. Don’t have her block the PC getting a license straight away - this has been obstructive enough
 		}
 		
 		// [Agree] [License?] [Nah]
@@ -662,7 +709,24 @@ public function brothelTurnTrixLady():void
 	else
 	{
 		output("<i>“Hey,”</i> you say to the mistress. <i>“Gonna earn, if that’s alright.”</i>");
+		if(flags["BETHS_ASKED_TO_WHORE"] == 0 && !pc.isFemboy())
+		{
+			output("\n\n<i>“Uh, you’re really playing the crowd, aren’t ya?”</i> she answers.");
+			output("\n\nYou have no idea what she is talking about.");
+			output("\n\n<i>“Oh, come on, I’m not blind you know--first you sign on as a boy, now you’re a girl.”</i>");
+			output("\n\nShrugging off her response, you repeat your request, <i>“So... I can work, right?”</i>");
+			flags["BETHS_ASKED_TO_WHORE"] = 2;
+		}
+		else if(flags["BETHS_ASKED_TO_WHORE"] == 2 && pc.isFemboy())
+		{
+			output("\n\n<i>“Hah! Are you fucking with me? Did ya trade your tits for a tallywacker?”</i> she comments.");
+			output("\n\nOh, you did change your sex since last time.");
+			output("\n\n<i>“The many faces of Steele: Whoring out more than just [pc.her] genitals, but [pc.her] image as well!”</i>");
+			output("\n\nYou furrow your brow at her remark but continue, <i>“I can still work, right?”</i>");
+			flags["BETHS_ASKED_TO_WHORE"] = 0;
+		}
 		output("\n\n<i>“Fine by me,”</i> she replies, considering you sidelong. <i>“License offer’s always on the table, if you ever start getting tired of losing half.”</i>");
+		
 		// [Freelance] [License?]
 		addButton(0, "Freelance", brothelTurnTrixFreelanceMenu);
 		addButton(1, "License?", brothelTurnTrixAnswer, 2, "License?", "Ask about the license.");
@@ -697,7 +761,11 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 		output("\n\n<i>“You’ve got to hit a certain number of johns on a shift. Not worth our while otherwise. You gotta look presentable, obviously. You got to agree to at least suck. Don’t have to do anything more if you don’t want. And, most importantly...”</i> she looks up and catches your eye with a dry smirk. <i>“You’ve got to see to the staff from time to time, pro bono. Pretty frustrating, watching the dancers do their thing when you’re stuck behind the bar.”</i> She taps the signature box at the bottom. <i>“Agree to all that and you get an 80/20 cut, the use of the rooms, and a promise that if there’s trouble, someone will be along to break the guy’s face in two.”</i>");
 		processTime(2);
 		// [Sign] [No]
-		if(flags["BETHS_TIMES_WHORED_MOUTH"] != undefined || (flags["TIMES_BUTT_TEASED"] >= 1 && flags["TIMES_CHEST_TEASED"] >= 1 && flags["TIMES_CROTCH_TEASED"] >= 1 && flags["TIMES_HIPS_TEASED"] >= 1)) addButton(0, "Sign", brothelTurnTrixContract, 1);
+		if
+		(	(flags["BETHS_TIMES_WHORED_MOUTH"] != undefined)
+		||	(flags["TIMES_BUTT_TEASED"] >= 1 && flags["TIMES_CHEST_TEASED"] >= 1 && flags["TIMES_CROTCH_TEASED"] >= 1 && flags["TIMES_HIPS_TEASED"] >= 1)
+		||	(flags["BETHS_ASKED_TO_WHORE"] == 0 || flags["BETHS_ASKED_TO_WHORE"] == 2)
+		) addButton(0, "Sign", brothelTurnTrixContract, 1);
 		else addButton(0, "Sign", brothelTurnTrixContract, 4);
 		addButton(1, "No", brothelTurnTrixContract, 0);
 	}
@@ -717,7 +785,7 @@ public function brothelTurnTrixAnswer(choice:int = 0):void
 	{
 		output("<i>“Suit yourself,”</i> she shrugs. <i>“Doubt you’ll find fairer rates for freelancers anywhere else on this station.”</i>");
 		processTime(1);
-		addButton(0, "Next", brothelMainMenu);
+		brothelMainMenu();
 	}
 }
 
@@ -735,11 +803,16 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		else output("Y");
 		output("ou read it carefully. There doesn’t seem to any nasty surprises. You provide your John Hancock at the bottom.");
 		if(silly) output(" Jenny Handcock? Maybe that can be your alias here.");
-		output(" <b>You are now a licensed whore at Beth’s Busty Broad.</b>");
-		output("\n\n<i>“Great!”</i> says the mistress, taking back the contract. <i>“I’m Kat, by the way. Try not to piss me off and you’ll do fine here. You going on shift straight away?”</i>");
+		if(flags["BETHS_CONTRACT_WHORE"] == undefined) output(" <b>You are now a licensed whore at Beth’s Busty Broad.</b>");
+		else output(" <b>You have renewed your whoring license at Beth’s Busty Broad.</b>");
+		output("\n\n<i>“Great!”</i> says the mistress, taking back the contract.");
+		if(flags["KAT_MET"] == undefined)
+		{
+			output(" <i>“I’m Kat, by the way. Try not to piss me off and you’ll do fine here. You going on shift straight away?”</i>");
+			flags["KAT_MET"] = 1;
+		}
 		
-		flags["KAT_MET"] = 1;
-		flags["BETHS_CONTRACT_WHORE"] = 1;
+		flags["BETHS_CONTRACT_WHORE"] = (pc.isFemboy() ? 0 : 1);
 		if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
 		processTime(10);
 		// [Yes] [Later]
@@ -753,7 +826,7 @@ public function brothelTurnTrixContract(choice:int = 0):void
 		output("<i>“Later, maybe,”</i> you grin, stepping back.");
 		processTime(1);
 		// Go to Beth’s main menu
-		addButton(0, "Next", brothelMainMenu);
+		brothelMainMenu();
 	}
 	// Wait
 	else if(choice == 4)
@@ -834,11 +907,7 @@ public function brothelWhorePayment(baseAmount:Number = 0, service:String = "non
 public function brothelWhored(setMinutes:int = 360, service:String = "none"):void
 {
 	// Time adjustments for experienced whores.
-	if(flags["BETHS_TIMES_WHORED"] >= 10) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 20) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 30) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 40) setMinutes -= 60;
-	if(flags["BETHS_TIMES_WHORED"] >= 50) setMinutes -= 60;
+	if(flags["BETHS_TIMES_WHORED"] != undefined) setMinutes -= (60 * Math.floor(flags["BETHS_TIMES_WHORED"]/10));
 	if(setMinutes < 15) setMinutes = 15;
 	
 	// 9999: Implementation for stats?
@@ -856,13 +925,13 @@ public function brothelWhored(setMinutes:int = 360, service:String = "none"):voi
 	IncrementFlag("BETHS_TIMES_WHORED");
 	
 	// Unlock message:
-	if(
-		(flags["BETHS_TIMES_WHORED_HANDS"] >= 2 && flags["BETHS_TIMES_WHORED_MOUTH"] == undefined) || 
-		(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2 && flags["BETHS_TIMES_WHORED_VAGINA"] == undefined) || 
-		(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2 && flags["BETHS_TIMES_WHORED_ALL"] == undefined) || 
-		(flags["BETHS_TIMES_WHORED_ALL"] >= 2 && flags["BETHS_TIMES_WHORED_ROOMS"] == undefined)
-		)
-	{
+	if
+	(	(flags["BETHS_TIMES_WHORED_HANDS"] >= 2 && flags["BETHS_TIMES_WHORED_MOUTH"] == undefined)
+	||	(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2 && flags["BETHS_TIMES_WHORED_VAGINA"] == undefined && pc.hasVagina())
+	||	(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2 && flags["BETHS_TIMES_WHORED_ALL"] == undefined && pc.hasVagina())
+	||	(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2 && flags["BETHS_TIMES_WHORED_ALL"] == undefined && pc.hasCock())
+	||	(flags["BETHS_TIMES_WHORED_ALL"] >= 2 && flags["BETHS_TIMES_WHORED_ROOMS"] == undefined)
+	) {
 		output("\n\n<b>There’s potential to earn more this way - but you’re going to have to offer a little more");
 		if(flags["BETHS_TIMES_WHORED_ALL"] >= 2 && flags["BETHS_CONTRACT_WHORE"] == undefined) output(". Maybe you should think about signing up for a license");
 		output("...</b>");
@@ -880,11 +949,22 @@ public function brothelTurnTrixFreelanceMenu():void
 	output("\n\nHow much are you putting on offer?");
 	
 	clearMenu();
+	
 	// [Hands] [Mouth] [Vag] [Everything]
-	addButton(0, "Hands", brothelTurnTrixFreelanceWhore, "hands", "Hands", "Just your warm company and grip.");
-	if(flags["BETHS_TIMES_WHORED_HANDS"] >= 2) addButton(1, "Mouth", brothelTurnTrixFreelanceWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
-	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(2, "Vag", brothelTurnTrixFreelanceWhore, "vagina", "Vagina", "Almost the whole package.");
-	if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(3, "Everything", brothelTurnTrixFreelanceWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
+	if(pc.hasVagina())
+	{
+		addButton(0, "Hands", brothelTurnTrixFreelanceWhore, "hands", "Hands", "Just your warm company and grip.");
+		if(flags["BETHS_TIMES_WHORED_HANDS"] >= 2) addButton(1, "Mouth", brothelTurnTrixFreelanceWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
+		if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(2, "Vag", brothelTurnTrixFreelanceWhore, "vagina", "Vagina", "Almost the whole package.");
+		if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(3, "Everything", brothelTurnTrixFreelanceWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
+	}
+	// [Hands] [Mouth] [Everything]
+	else
+	{
+		addButton(0, "Hands", brothelTurnTrixFreelanceWhoreTrap, "hands", "Hands", "Just your warm company and grip.");
+		if(flags["BETHS_TIMES_WHORED_HANDS"] >= 2) addButton(1, "Mouth", brothelTurnTrixFreelanceWhoreTrap, "mouth", "Mouth", "Handjobs and blowjobs.");
+		if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(2, "Everything", brothelTurnTrixFreelanceWhoreTrap, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
+	}
 }
 
 public function brothelTurnTrixFreelanceWhore(service:String = "none"):void
@@ -974,7 +1054,7 @@ public function brothelTurnTrixLicensedMenu(showFull:Boolean = true):void
 	{
 		showBrothelLady();
 		author("Nonesuch");
-		output("<i>“Atta girl,”</i> Kat says. <i>“Pretty busy in here today - we need all the hands we can get. And mouths.”</i>");
+		output("<i>“Atta " + (pc.hasVagina() ? "girl" : "boi") + ",”</i> Kat says. <i>“Pretty busy in here today - we need all the hands we can get. And mouths.”</i>");
 		output("\n\nYou consider the smoky, dimly lit room full of assorted engineers, smugglers, mercenaries, travelers, mafiosi and gamblers. Mostly male, mostly human or ausar, mostly looking for the good time you could provide.");
 		output("\n\n");
 	}
@@ -983,11 +1063,22 @@ public function brothelTurnTrixLicensedMenu(showFull:Boolean = true):void
 	output("How much are you putting on offer?");
 	
 	clearMenu();
+	
 	// [Mouth] [Vag] [Everything] [Rooms]
-	addButton(0, "Mouth", brothelTurnTrixLicensedWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
-	if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(1, "Vag", brothelTurnTrixLicensedWhore, "vagina", "Vagina", "Almost the whole package.");
-	if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(2, "Everything", brothelTurnTrixLicensedWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
-	if(flags["BETHS_TIMES_WHORED_ALL"] >= 2) addButton(3, "Rooms", brothelTurnTrixLicensedWhore, "rooms", "Rooms", "See if you can’t get in on the action of the downstairs rooms.");
+	if(pc.hasVagina())
+	{
+		addButton(0, "Mouth", brothelTurnTrixLicensedWhore, "mouth", "Mouth", "Handjobs and blowjobs.");
+		if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(1, "Vag", brothelTurnTrixLicensedWhore, "vagina", "Vagina", "Almost the whole package.");
+		if(flags["BETHS_TIMES_WHORED_VAGINA"] >= 2) addButton(2, "Everything", brothelTurnTrixLicensedWhore, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
+		if(flags["BETHS_TIMES_WHORED_ALL"] >= 2) addButton(3, "Rooms", brothelTurnTrixLicensedWhore, "rooms", "Rooms", "See if you can’t get in on the action of the downstairs rooms.");
+	}
+	// [Mouth] [Everything] [Rooms]
+	else
+	{
+		addButton(0, "Mouth", brothelTurnTrixLicensedWhoreTrap, "mouth", "Mouth", "Handjobs and blowjobs.");
+		if(flags["BETHS_TIMES_WHORED_MOUTH"] >= 2) addButton(1, "Everything", brothelTurnTrixLicensedWhoreTrap, "all", "Everything", "Why be fussy? Whatever the client wants, within reason.");
+		if(flags["BETHS_TIMES_WHORED_ALL"] >= 2) addButton(2, "Rooms", brothelTurnTrixLicensedWhoreTrap, "rooms", "Rooms", "See if you can’t get in on the action in the downstairs rooms.");
+	}
 }
 
 public function brothelTurnTrixLicensedWhore(service:String = "none"):void
@@ -1451,7 +1542,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			{
 				output("\n\nA bookish woman dressed in a lab-coat asks, with fluttering nervousness, if she can borrow you and another girl for a time. You and the female ausar lounge on the bed together and accept the tablets she gives you.");
 				output("\n\n<i>“Nothing to worry about, nothing to worry about,”</i> she insists, sitting down on the far side of the room with her clipboard. <i>“Definitely not toxic. It just, um, it just needs to be tested in a non-lab environment. Tell me how you feel.”</i>");
-				output("\n\nNothing happens for twenty minutes. Then you feel slightly ill. Then you are seized by such an overwhelming Sapphic lust that it is impossible to do anything but violently fuck the ausar, who makes it quite clear she feels the same way. You desperately clinch your [pc.hip] around hers, your [pc.chest] mashed into hers, scissoring frenetically to orgasms which only seem to make the need to reach another more urgent. The only time when you aren’t fastened to her small, hard nipples is when you are passionately twining your [pc.tongue] with hers. There is only her heaving breasts, and her wonderful wet slit, and her reddened, beautiful face, and oh there is nothing but the joy of being joined with her heaving female curves, which makes you want to love her more and more and...");
+				output("\n\nNothing happens for twenty minutes. Then you feel slightly ill. Not soon after, you are seized by such an overwhelming Sapphic lust that it is impossible to do anything but violently fuck the ausar, who makes it quite clear she feels the same way. You desperately clinch your [pc.hip] around hers, your [pc.chest] mashed into hers, scissoring frenetically to orgasms which only seem to make the need to reach another more urgent. The only time when you aren’t fastened to her small, hard nipples is when you are passionately twining your [pc.tongue] with hers. There is only her heaving breasts, and her wonderful wet slit, and her reddened, beautiful face, and oh there is nothing but the joy of being joined with her heaving female curves, which makes you want to love her more and more and...");
 				output("\n\n<i>“Alright, that’s enough,”</i> snaps Kat, striding through the door. <i>“You’ve been in here for three hours. Tie up your “research”, sicko.”</i>");
 				output("\n\n<i>“Yes! Yes, of course,”</i> says the woman, hurrying across and applying a white pad to each of your brows. Slowly, the burning urge fades. You look at each other, dazed and embarrassed.");
 				output("\n\n<i>“Just. Um. I think it needs more testing. Definitely more testing.”</i> the researcher says, heading to the door, almost as red-faced as the ausar is.");
@@ -1553,7 +1644,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output("\n\nYou and a galotian puddle into a large jacuzzi together. You both coo as the bubble-streams are turned on, sending vibrations juddering through you, making you lose some of your surface tension. The ovir leads a laughing ausar couple in, a lean guy and his chubby girlfriend.");
 				output("\n\nThe two of them have fun on the bed first, taking turns with the ovir’s thick, brightly-colored cock, leaving you and the galotian to gasp and giggle together over the copious amount of sex toys that have been laid out on the side. Finally, the other three splash into you, drunk with lust. The guy bends your [pc.ass] over and firmly knots himself into your [pc.vagina " + x + "], the heavy thrust of his hips sending waves of your goo slapping against the sides.");
 				pc.cuntChange(x, pp.cockVolume(0));
-				output(" The hard girth of his dick combine with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
+				output(" The hard girth of his dick combined with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
 				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
 				processTime(60);
 				pc.loadInCunt(pp, x);
@@ -1606,12 +1697,21 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 	clearOutput();
 	author("Nonesuch");
 	
+	var i:int = 0;
+	var x:int = 0;
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!pp.hasCock()) pp.createCock();
+	if (!pp.hasVagina()) pp.createVagina();
+	
 	if(response == "ask")
 	{
 		showBrothelLady();
 		showName("CONTRACT\nOFFER");
 		
-		output("<i>“Hey [pc.name]. Got a minute before you go on shift?”</i> Kat shuffles around under her desk. <i>“I keep saying I want to offer you a better contract, don’t I? I managed to have a word with Beth, and I’ve got you exactly that.”</i> She pushes the electronic form over to you. <i>“Same basic terms - 80/20 - but we want to give you some mod work, free up front, and your own room. It’ll push what you bring in way up, make you one of our star attractions.”</i>");
+		output("<i>“Hey [pc.name]. Got a minute before you go on shift?”</i> Kat shuffles around under her desk. <i>“I keep saying I want to offer you a better contract, don’t I? I managed to have a word with Beth, and I’ve got you exactly that.”</i> She pushes the electronic form over to you. <i>“");
+		if(pc.isFemboy()) output("Same 80/20 split, but you’ll own your own room. Just need some advertising revenue off you. Everything you earn after that’ll be yours.");
+		else output("Same basic terms - 80/20 - but we want to give you some mod work, free up front, and your own room. It’ll push what you bring in way up, make you one of our star attractions.");
+		output("”</i>");
 		output("\n\nYou look at the form, with the signature box at the bottom blinking. <b>It seems to have significantly more small print than the first one...</b>");
 		
 		processTime(2);
@@ -1638,11 +1738,24 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 	else if(response == "sign")
 	{
 		showBrothelLady();
+		showName("SIGNED\nCONTRACT");
+		
+		output("<i>“You won’t regret this, [pc.name],”</i> the brothel mistress smiles, as she watches you sign the dotted line. <i>“");
+		if(pc.isFemboy()) output("Alright - if you look in room 3, you’ll find some body paint and vibe beads. I need some advertisements done by eight...");
+		else output("Come on into the back - I can’t wait to see how these mods Beth has got lined up turn out.");
+		output("”</i>");
+		
+		processTime(3);
+		clearMenu();
+		addButton(0, "Next", bethsPermaContractBadEnd, (pc.isFemboy() ? "sign trap" : "sign next"));
+		return;
+	}
+	else if(response == "sign next")
+	{
+		showBrothelLady();
 		showName("PROPERTY\nOF BETH’S");
 		
-		output("<i>“You won’t regret this, [pc.name],”</i> the brothel mistress smiles, as she watches you sign the dotted line. <i>“Come on into the back - I can’t wait to see how these mods Beth has got lined up turn out.”</i>");
-		output("\n\n.....");
-		output("\n\nA few hours later you lie on a bed and admire yourself in a full length mirror, exhilarated and slightly overwhelmed at what the three med-pens have done to you.");
+		output("A few hours later you lie on a bed and admire yourself in a full length mirror, exhilarated and slightly overwhelmed at what the three med-pens have done to you.");
 		if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN && !InCollection(pc.skinTone, ["green", "lime green", "emerald", "viridescent"])) output(" Your skin is now a hairless, faintly luminescent lime-green, and your sweat - which is oilier and seems to form more readily - has a wonderful citrus scent");
 		else output(" As well as being hairless and faintly luminescent, the oily sweat which now readily forms on your skin has a wonderful citrus scent");
 		output(". Your new tentacle pussy waves at you with its chubby pink tentacles, each of the ganglions on the inside almost as sensitive as a clit. Experimentally, you stick two fingers in your mouth, past your [pc.lips], beyond your");
@@ -1652,14 +1765,15 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		output("\n\nYou shiver with the erotic implications of these transformations, and sigh as you shift over and consider the other novelty of your new form.");
 		output("\n\n<i>“Aww, don’t worry,”</i> leers Kat, looking with you in the mirror at the “Property of Beth’s” tattoo on your [pc.ass]. <i>“We’ll get that off you eventually.”</i>");
 		
-		pc.createStatusEffect("Temporary Nudity Cheat");
+		pc.removeAll();
+		
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 		pc.addSkinFlag(GLOBAL.FLAG_LUBRICATED);
 		pc.skinTone = "luminescent lime green";
 		if (!pc.hasVagina()) pc.createVagina();
-		for(var i:int = 0; i < pc.vaginas.length; i++)
+		for(i = 0; i < pc.vaginas.length; i++)
 		{
 			pc.shiftVagina(i, GLOBAL.TYPE_SIREN);
 			pc.vaginas[i].vaginaColor = "pink";
@@ -1677,14 +1791,44 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		addButton(0, "Next", bethsPermaContractBadEnd, "end");
 		return;
 	}
+	else if(response == "sign trap")
+	{
+		showBrothelLady();
+		showName("PROPERTY\nOF BETH’S");
+		
+		output("It’s an exhausting, humiliating and relentlessly orgasmic experience working here full time, and you enjoy your position as a prized rent boi more and more. You lose sense of time, and when Kat suggests pleasure patches you readily accept - it just makes sense to intensify your ecstasy so your [pc.nipples] and [pc.cocks] are hardly ever not erect, subsume yourself entirely into the slutty undertow, care only about how you’re going to make your clients as happy as you. The fact that the cost of them keeps bumping up the amount of time you have to stay here to finish your contract becomes less and less important. What matters is how a john groans when you move your hand along his lovely cock <i>just</i> so, and how pure his cum tastes sliding down your [pc.tongue].");
+		
+		pc.removeAll();
+		
+		for(i = 0; i < 12; i++)
+		{
+			if(rand(2) == 0) pc.loadInMouth(pp);
+			if(rand(2) == 0) pc.loadInAss(pp);
+			if(rand(2) == 0) pc.girlCumInMouth(pp);
+			if(rand(2) == 0) pc.orgasm();
+			pc.credits += 2 + rand(12);
+			
+			processTime((1680) + rand(120));
+		}
+		pc.credits += 200;
+		pc.orgasm();
+		pc.libido(pc.libidoMax(), true);
+		pc.willpower(0, true);
+		
+		processTime(rand(1440));
+		
+		clearMenu();
+		addButton(0, "Next", brothelTrappifyAnswer, "bad end");
+		return;
+	}
 	else if(response == "end")
 	{
 		currentLocation = "GAME OVER";
 		generateMap();
 		showLocationName();
 		
-		clearBust();
-		showName("FOREVER\n24");
+		showBust("");
+		showName("\nFOREVER 24");
 		
 		output("She’s right, although not in the way you imagine. The terms of your new contract stipulate that you have to pay for the mods - and they are some of the most expensive on the market - at a catastrophic interest rate. Factor in the rent on your room and you really don’t get to see much of your 80%, no matter how many hot, creamy loads you suck down, or how lascivious the displays you put on with the other whores, or how many times you take it in your dripping holes.");
 		output("\n\nFortunately Kat eradicates any lingering misgivings you have by introducing you to the wonder of pleasure patches. Just one makes the prospect of fucking four kui-tan at the same time live on cam in your room not daunting, but a burning necessity. Of course the patches are highly addictive, and come out of your salary too.");
@@ -1695,41 +1839,1302 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		output("\n\n<i>“Yes, sir.”</i>");
 		output("\n\nYou get up, tweak your [pc.nipples] so that the lime liqueur in your full boobs is beading naturally, and then sashay through the dusky, drug-smoked and music-throbbing room. One of the many rutting, drinking or dancing revellers here will quickly find a use for you... which you’ll be orgasmically good at. You have found your true calling, and it has nothing to do with being a boring old CEO.");
 		
-		days += 392;
-		processTime(rand(36));
+		//days += 392;
+		//processTime(rand(36));
+		processTime(20160 + (1440 * 365) + rand(2880));
 		pc.credits = 0;
 		pc.short = "24";
-				
+		
 		// NOOOO
 		// Looping this much when the player has basically zero chance to actually see most of this fall out is insane-
 		// it comes close to hitting the script execution limit in debug builds at least.
 		// It'd be 2000% better to just directly modify the properties that the player can actually /see/ the fall out
 		// of- basically, just the appearance screen once the gameover hits.
 		
-		/*
-		var i:int = 0;
-		var x:int = 0;
-		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-		if (!pp.hasCock()) pp.createCock();
-		for(i = 0; i < 300; i++)
+		for(i = 0; i < 12; i++)
 		{
-			pc.loadInMouth(pp);
+			if(rand(2) == 0) pc.loadInMouth(pp);
 			pc.buttChange(pp.cockVolume(0), false);
-			pc.loadInAss(pp);
+			if(rand(2) == 0) pc.loadInAss(pp);
 			if(rand(2) == 0)
 			{
 				x = rand(pc.totalVaginas());
 				pc.cuntChange(x, pp.cockVolume(0), false);
 				pc.loadInCunt(pp, x);
 			}
+			if(rand(2) == 0) pc.orgasm();
+			
+			processTime((1680) + rand(120));
 		}
-		for(i = 0; i < 9001; i++)
-		{
-			pc.orgasm();
-		}
-		*/
 		
+		pc.libido(pc.libidoMax(), true);
+		pc.willpower(0, true);
+		pc.orgasm();
+		pc.lust(70);
 	}
 	
 	badEnd("GAME OVER.");
 }
+
+
+// Part 2: Trap Support
+// Remove restriction on non-female PCs using the [Turn Tricks] option, Kat responses to them below. Now they at least get a reason
+// Kat offers a similar trapping treatment used upon Del if you’re male. I’m sure nothing bad will happen if you agree to it
+public function brothelTurnTrixLadyNonFem():void
+{
+	// Sex-Gender check!
+	// Pure females resume as normal.
+	if(pc.isFemale() || (debug && pc.hasVagina()))
+	{
+		brothelTurnTrixLady();
+		return;
+	}
+	// Non-trappy dick wielders get a warning...
+	if
+	(	(flags["BETHS_ASKED_TO_WHORE"] == 0 || flags["BETHS_ASKED_TO_WHORE"] == 1 || flags["BETHS_ASKED_TO_WHORE"] == 2)
+	||	(flags["BETHS_ASKED_TO_WHORE"] == -1 && (pc.isShemale() || pc.isFemHerm()))
+	||	(flags["BETHS_ASKED_TO_WHORE"] == -2 && !pc.isShemale() && !pc.isFemHerm())
+	) {
+		// If not a contracted worker or never whored before, flag silently resets!
+		if(flags["BETHS_CONTRACT_WHORE"] == undefined && flags["BETHS_TIMES_WHORED"] == undefined)
+		{
+			flags["BETHS_ASKED_TO_WHORE"] = undefined;
+		}
+		else
+		{
+			brothelTrappifyVerify();
+			return;
+		}
+	}
+	
+	clearOutput();
+	showBrothelLady();
+	author("Nonesuch");
+	processTime(1);
+	clearMenu();
+	
+	// Intros
+	if(flags["BETHS_ASKED_TO_WHORE"] == undefined)
+	{
+		output("Plenty of guys of every shape and size in here, plenty of them looking for some company and tension release away from the frenetic business of the Rush. A friendly and open-minded person could make easy cash here, surely.");
+		output("\n\n<i>“Hey,”</i> you say, approaching the sternly dressed mistress behind the front desk. <i>“Is it alright if I, y’know, earn some money?”</i>");
+		output("\n\nShe gives you a long, appraising look.");
+		
+		// If feminine herm / shemale
+		if(pc.isShemale() || pc.isFemHerm())
+		{
+			output("\n\n<i>“Without wishing to pry: you pack, don’t you?”</i> she says, leaning over the desk to peer down towards your [pc.groin]. <i>“Yeeees. We limit the number of dick-girls who work here, you know; Terensha, Vaande and the ovir hit the quota. Some of our customers do like a bit of pork with their chicken, but most find it off-putting. Also, no offense, but futa are usually </i>terrible<i> with the rest of the stock. Think they can stick their pricks anywhere. Worse than guys for it.”</i>");
+			output("\n\n<i>“Stereotyping aside,”</i> you say, <i>“is there anything you can offer me?”</i>");
+			output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. That something that’d interest you?”</i> She gives you a thin smirk. <i>“");
+			if(pc.isFemHerm()) output("You’d lose your puss and boobs, and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
+			else output("You’d lose your boobs and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
+			output("”</i>");
+			
+			flags["BETHS_ASKED_TO_WHORE"] = -2;
+		}
+		// Masculine
+		else
+		{
+			output("\n\n<i>“I admire your moxie and all, Bluto,”</i> she replies, <i>“but we have a few man-whores on tap already, and we don’t need all that many of them.”</i> She gestures over to one side of a stage, where a couple of well-built, well-shaven and well-bow-tied ausar and human males loiter.");
+			output("\n\n<i>“Is there anything you are looking for?”</i> you ask.");
+			output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses, and focuses on you properly for the first time. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. That something that’d interest you?”</i> She gives you a thin smirk. <i>“I think you’d make a really cute trap, you know.”</i>");
+			
+			flags["BETHS_ASKED_TO_WHORE"] = -1;
+		}
+	}
+	else
+	{
+		switch(flags["BETHS_ASKED_TO_WHORE"])
+		{
+			// Repeat masculine
+			case -1:
+				output("<i>“You stopped looking like the first greasy, mouth-breathing PMC grunt who rolls in here on the Friday shift?”</i> says the brothel mistress, looking up. <i>“Oh. So why are we having this conversation again? You rethinking the offer?”</i>");
+				output("\n\n<i>“Tell me it again,”</i> you say.");
+				output("\n\n<i>“I need girly boys,”</i> she replies crisply. <i>“Beth’s will use a course of premium gene-mods to make you into one. You pay off the cost by staying and working here for a while. I get an on-tap trap; you walk away with an expensive beauty treatment and the ability to work here in future. Everyone’s a winner. You in?”</i> ");
+				break;
+			// Repeat fem-herm/shemale
+			case -2:
+				output("<i>“You still got something in your trousers that you can’t keep there?”</i> asks the brothel mistress, looking up. <i>“Yes? Why are we having this conversation, then? Are you rethinking the offer?”</i>");
+				output("\n\n<i>“Tell me it again,”</i> you say.");
+				output("\n\n<i>“I need girly boys,”</i> she replies crisply. <i>“Beth’s will use a course of premium gene-mods to make you into one. You pay off the cost by staying and working here for a while. I get an on-tap trap; you walk away with an expensive beauty treatment and the ability to work here in future. Everyone’s a winner. You in?”</i>");
+				break;
+		}
+	}
+	// [Ok] [Nope]
+	addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+	addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
+}
+
+public function brothelTrappifyVerify(response:String = "intro"):void
+{
+	clearOutput();
+	showBrothelLady();
+	author("Jacques00");
+	
+	clearMenu();
+	switch(response)
+	{
+		case "intro":
+			output("A glance in a nearby mirror reminds you that your sexual anatomy and gendered appearance has changed drastically since the last time you turned tricks. While consistency may not be a big deal to you, it sure is to the business");
+			if(flags["BETHS_CONTRACT_WHORE"] != undefined) output(" (at least, according to the agreement you had signed anyway)");
+			output(". If you ask the mistress now, she is bound to pick up on it and may refuse to let you whore");
+			if(flags["BETHS_CONTRACT_WHORE"] != undefined) output(" -- or worse, invalidate your present contract with Beth’s");
+			output(".");
+			output("\n\nAre you sure you want to continue?");
+			
+			clearMenu();
+			addButton(0, "Proceed", brothelTrappifyVerify, "proceed", "Continue Anyway...", "Damn the consequences!");
+			addButton(14, "Nevermind", brothelTrappifyVerify, "nevermind", "Nevermind...", "Maybe you should change before returning.");
+			break;
+		case "nevermind":
+			output("You decide it might be best to avoid the complication entirely. Besides, you can probably return when you are the proper sex and gender and she will be none the wiser...");
+			
+			brothelMainMenu();
+			break;
+		case "proceed":
+			output("You shrug your shoulders and");
+			if(flags["BETHS_CONTRACT_WHORE"] != undefined) output(" sashay up to the front desk.");
+			else output(" approach her anyway. <i>“Hey, is it alright if I--”</i>");
+			output("\n\n<i>“[pc.name]. Babycakes. You’re kidding me, right?”</i> " + (flags["KAT_MET"] == undefined ? "the brothel mistress" : "Kat") + " stops you before you get ahead of yourself.");
+			output("\n\nYou respond with a");
+			if(pc.isBimbo()) output("n airheaded ‘o’ face");
+			else if(pc.isNice()) output("n innocent look of confusion");
+			else if(pc.isMischievous()) output(" tilted eyebrow and a snarky smile");
+			else if(pc.isAss()) output("n equally stern face");
+			else output(" raised eyebrow");
+			output(".");
+			output("\n\nThe woman is not amused. <i>“Look, if you want to continue doing business here, you’re going to have stick to our </i>current<i> market. I don’t want to get the shaft because some dumb whore decided to go above and beyond the employed genitalia quota.”</i> She taps her data slate a few times to pull up a convenient bullet list. <i>“You know our terms of service --");
+			if(flags["BETHS_CONTRACT_WHORE"] != undefined)
+			{
+				output(" we even have it highlighted in the contract you signed, remember? Let’s see here... Your license says you signed on as a");
+				if(flags["BETHS_CONTRACT_WHORE"] == 0) output(" </i>submissive<i> fem boy");
+				else output(" </i>beautiful<i> woman");
+				output(", but now look at you.");
+			}
+			else output(" we can't just accept </i>any<i> harlot to work here, you know.");
+			// Of course she'll tease you about it.
+			if(pc.isMan() && pc.isBro()) output(" You’re just a disgusting brute of a man. How do you think we’ll make any business off whoring you? You may be horny enough to, but you’re better off being the audience here than being the slut.");
+			else if(pc.isMan()) output(" You’ve become a fully grown man. Sorry, big boy, but we aren’t looking to hire any more male whores here. You might have better luck asking for a job that involves lifting heavy equipment, maybe?");
+			else if(pc.isFemHerm()) output(" Ah, a futanari is it? Big tits, hard cocks and hungry cunts. So many possibilities! That is why sexes like you are better off as a rare commodity. You’ll be treated more like a precious resource if our lines aren’t already stuffed with lady dicks as it is. Supply and demand, am I right?");
+			else if(pc.isHerm()) output(" You herms always think with your genitals don’t you? Well, given all the wonderful choices when it comes to fucking, I’m sure you even confuse yourself sometimes. There </i>are<i> mods out there that’ll help you pick one if you ever want to whore here though.");
+			else if(flags["BETHS_CONTRACT_WHORE"] == 0 && pc.isShemale()) output(" You’ve grown some tits, big deal - we have plenty of shemales working the line already. What else do you think you can contribute? Trust me, your booty is worth a lot more creds when you were a sissy boy.");
+			else if(pc.isShemale()) output(" You might look like a woman but you don’t fool me. Go ahead, whore it up - just not here. We have plenty of lady dicks already. How about shrinking those tits and carrying yourself a little more sissy-like? That’ll draw in the crowds.");
+			else output(" Well, you’re just something else entirely. How do you think we’ll make any business off whoring you? I’m honestly looking for constructive reasons here.");
+			output("”</i>");
+			output("\n\nYou get the point. You’ll have to make a change to yourself if you want to ever work here again.");
+			output("\n\n<i>“Atta, [pc.girl]. We are currently employing <b>women</b> and <b>girly boys</b>,”</i> the mistress advises you. <i>“There’s a special offer from Beth’s if you are interested in the latter,”</i> she adds with a grin.");
+			
+			processTime(2);
+			
+			if(flags["BETHS_ASKED_TO_WHORE"] == -1 || flags["BETHS_ASKED_TO_WHORE"] == -2) addButton(0, "Girly Boy?", brothelTrappifyVerify, "girly", "Girly Boy?", "What’s that offer about?");
+			else addButton(0, "Details?", brothelTrappifyVerify, "girly", "Women and Girly Boys?", "Find out more of what she’s looking for.");
+			if(flags["BETHS_CONTRACT_WHORE"] != undefined) addButton(1, "License?", brothelTrappifyVerify, "license", "License?", "What about your license?");
+			addButton(14, "Back", brothelMainMenu);
+			break;
+		case "girly":
+			output("You ask about");
+			if(flags["BETHS_ASKED_TO_WHORE"] == -1 || flags["BETHS_ASKED_TO_WHORE"] == -2) output(" the special offer.");
+			else output(" what she’s looking for.");
+			
+			if(flags["BETHS_ASKED_TO_WHORE"] == -1 || flags["BETHS_ASKED_TO_WHORE"] == -2)
+			{
+				output("\n\n<i>“Well, I need girly boys,”</i> " + (flags["KAT_MET"] == undefined ? "the brothel mistress" : "Kat") + " replies crisply. <i>“Beth’s will use a course of premium gene-mods to make you into one. You pay off the cost by staying and working here for a while. I get an on-tap trap; you walk away with an expensive beauty treatment and the ability to work here in future. Everyone’s a winner. You in?”</i>");
+			}
+			else if(pc.isShemale() || pc.isFemHerm())
+			{
+				output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. That something that’d interest you?”</i> She gives you a thin smirk. <i>“");
+				if(pc.isFemHerm()) output("You’d lose your puss and boobs, and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
+				else output("You’d lose your boobs and it might slim your bits down a bit but it otherwise wouldn’t be a huge change, right?");
+				output("”</i>");
+			}
+			else
+			{
+				output("\n\n<i>“I can always use more females,”</i> the mistress says, examining her nails. <i>“Cheery girls with nothing too unusual in their pants, they never go out of fashion. I also need girly boys. Flat-chested, pouty buttsluts - they’re hard to source and harder to hold onto. In fact, we...”</i> she pauses, and focuses on you properly for the first time. <i>“... we - that is to say Beth’s - offer a course of gene-mods upfront, top shelf stuff, to any prospective employee who doesn’t mind becoming one. You’d have to stay here until you worked off the cost and interest, of course, but it’s pretty comfortable, and it probably wouldn’t take you more than a few weeks. That something that’d interest you?”</i> She gives you a thin smirk. <i>“I think you’d make a really cute trap, you know.”</i>");
+			}
+			
+			if(pc.isShemale() || pc.isFemHerm()) flags["BETHS_ASKED_TO_WHORE"] = -2;
+			else flags["BETHS_ASKED_TO_WHORE"] = -1;
+			
+			processTime(1);
+			
+			addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+			addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
+			break;
+		case "license":
+			output("You ask about the condition of your license contract.");
+			output("\n\n" + (flags["KAT_MET"] == undefined ? "The brothel mistress" : "Kat") + " chuckles, <i>“Don’t " + pc.mf("be too concerned", "worry your pretty little head") + " about it. Your configuration might be a slight inconvenience, yes, but if it does become a major problem, we can pull some strings on our end to make sure your license lasts... indefinitely.”</i> Even with a face of constant bordem, her punctuated grin seems unsettling. <i>“Just make sure to change yourself into a proper whore if you want to get back to work.”</i>");
+			output("\n\nYou nod understandingly.");
+			output("\n\n<i>“Besides, special modification is always on the table if you are looking for a change...”</i>");
+			
+			processTime(1);
+			
+			if(flags["BETHS_ASKED_TO_WHORE"] == -1 || flags["BETHS_ASKED_TO_WHORE"] == -2) addButton(0, "Girly Boy?", brothelTrappifyVerify, "girly", "Girly Boy?", "What’s that offer about?");
+			else addButton(0, "Details?", brothelTrappifyVerify, "girly", "Women and Girly Boys?", "Find out more of what she’s looking for.");
+			addDisabledButton(1, "License?");
+			addButton(14, "Back", brothelMainMenu);
+			break;
+	}
+}
+
+public function brothelTrappifyAnswer(response:String = "none"):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	var i:int = 0;
+	var n:int = 0;
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if (!pp.hasCock()) pp.createCock();
+	if (!pp.hasVagina()) pp.createVagina();
+	
+	clearMenu();
+	switch(response)
+	{
+		// Nope
+		case "nope":
+			showBrothelLady();
+			output("<i>“I’d sooner not become your debt-sissy, thanks,”</i> you reply.");
+			output("\n\n<i>“Shame,”</i> the mistress sighs. <i>“Because you aren’t going to whore here otherwise. Feel free to pay our staff to");
+			if(flags["BETHS_ASKED_TO_WHORE"] == -1) output(" spend time in your hairy, ogre-like presence, though. They are trained not to wince.");
+			else output(" put up with you, though. Servicing over-sexed, entitled " + (pc.isFemHerm() ? "herms" : "shemales") + " is their forte.");
+			output("”</i>");
+			
+			brothelMainMenu();
+			break;
+		// Ok
+		case "okay":
+			showBrothelLady();
+			
+			output("<i>“Excellent!”</i> " + (flags["KAT_MET"] == undefined ? "The brothel mistress" : "Kat") + " slides a hard light form across the desk to you. <i>“Just sign here... and here... and put your thumbprint there.");
+			if(flags["KAT_MET"] == undefined)
+			{
+				output(" I’m Kat, by the way. Try not to piss me off and you’ll do fine here. I’ll show you your room.");
+				flags["KAT_MET"] = 1;
+			}
+			output("”</i>");
+			if(flags["BETHS_CONTRACT_WHORE"] == undefined) output("\n\n<b>You are now a licensed whore at Beth’s Busty Broad.</b>");
+			else output("\n\n<b>You have renewed your whoring license at Beth’s Busty Broad.</b>");
+			
+			flags["BETHS_ASKED_TO_WHORE"] = 0;
+			flags["BETHS_CONTRACT_WHORE"] = 0;
+			//if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
+			
+			processTime(2);
+			
+			addButton(0, "Next", brothelTrappifyAnswer, "trapification");
+			break;
+		case "trapification":
+			showBrothelLady();
+			showName("BETH’S TRAP\nTREATMENT");
+			
+			output("There are a considerable number of sealed, wall-mounted compartments in the lilac-and-powder-blue themed boudoir you’re led into. Kat shows you how, when you get close to them, their contents and how much accessing them costs is displayed in a tasteful holo-display at eye level. Alcohol, Priapin, Bubble Buddies, vibes, extra lube, a flatscreen loaded with vast quantities of porn, a liquid chocolate dispenser, slithery black BDSM gear... whilst you’re attempting to familiarize yourself with it all, the pinch-lipped proprietor steps out, returning after a few minutes with three med-pens.");
+			output("\n\nYou lounge on the bed, naked");
+			if(pc.hasLowerGarment()) output(" except for your [pc.lowerUndergarment]");
+			output(" and gazing into the large mirror, after you’ve unloaded each of the cool-feeling serums into your arm. Nothing happens for the first five minutes, except for a vague warmth spreading across your [pc.skin]. Once the changes do come, however, they come thick and fast.");
+			
+			// Beth’s Trap Treatment
+			// Effects
+			var minPass:int = 0;
+			var msg:String = "";
+			var parasites:Boolean = purgeParasites();
+			
+			//output("\n\nINITIAL GENDER WEIGHT SCORE: " + pc.genderWeight() + " (" + pc.mfn("Masculine", "Feminine", "Androgynous", true) + ")");
+			
+			// If vagina remove vagina
+			if(pc.hasVagina())
+			{
+				msg += ParseText("[pc.EachVagina] " + (pc.totalVaginas() == 1 ? "feels like it is" : "feel like they are") + " puckering up, turning in on " + (pc.totalVaginas() == 1 ? "itself" : "themselves") + "... until at last " + (pc.totalVaginas() == 1 ? "it disappears" : "they disappear") + " entirely, leaving nothing but a prim, blank perineum between your [pc.anus] and [pc.eachCock] and a feeling of greater density inside. ");
+				pc.removeVaginas();
+				minPass += 2;
+			}
+			// If beard remove beard
+			if(pc.hasBeard())
+			{
+				msg += ParseText("The appearance of [pc.beardColor] fluff floating down to the sheets has you momentarily worried - but thankfully it’s not your hair falling out, just your beard. It tickles as it parts company from your chin, leaving your face as smooth as a girl’s. ");
+				pc.removeBeard();
+				minPass += 1;
+			}
+			// If chest > A cup reduce to A cup
+			if(pc.biggestTitSize() > 1)
+			{
+				msg += ParseText("Intense pressure clamps around your [pc.chest], the soft flesh there feeling like it is being pushed inwards. You massage your boobs and take deep breaths, urging the sensation to pass. Which it does, but not before your proud bust has been winnowed down to a winsome, timid pair of A cups; bare, sensitive handfuls. ");
+				pc.milkFullness = 0;
+				for(i = 0; i < pc.bRows(); i++)
+				{
+					pc.breastRows[i].breastRatingRaw = 1;
+					pc.breastRows[i].breastRatingHoneypotMod = 0;
+				}
+				minPass += 2;
+			}
+			// If height > 5'5" reduce to 5'5"
+			if(pc.tallness > 66)
+			{
+				msg += ParseText("Over long minutes your spine compresses in on itself. It’s not painful exactly, but it certainly is alarming, particularly when your limbs follow suit, shrinking themselves in with the sensation of deep heat. By the time it departs you are more diminutive than you were. Cuter. Distinctly less intimidating. ");
+				pc.tallness = 66;
+				minPass += 4;
+			}
+			if(msg != "") output("\n\n" + msg);
+			msg = "";
+			// If femininity < 10 increase to 11
+			if(pc.femininity < 56)
+			{
+				msg += ParseText("The change you were most anticipating (dreading?) takes the longest amount of time, and so gradual is it that each time you glance back to your reflection you find yourself explaining away whatever changes you think you see. Your eyelashes were always naturally long. The light in here accentuates the fullness of your lips. Could your nose ever have been described as manly, really? And perhaps your clothes made your jaw-line seem squarer than it really was. You smile at the pretty, coquettish vision in the mirror, minutes later; really, this is just what you looked liked all along. ");
+				pc.femininity = 56;
+				minPass += 6;
+			}
+			// If hair < 2 increase to 2
+			if(pc.hairLength < 2)
+			{
+				msg += ParseText("Your scalp tickles as your [pc.hair] grows out a bit, curling past your ears, becoming fuller and glossier as it does. ");
+				pc.hairLength = 2;
+				minPass += 1;
+			}
+			// If tone > 40 reduce to 39
+			// If thickness > 40 reduce to 39
+			if(pc.tone > 40 || pc.thickness > 40)
+			{
+				msg += ParseText("Your gut rumbles uneasily as your flesh shifts around your frame. Some groups of muscles feel like they come undone, before nibbling little mouths take the excess away. Even in the midst of this turmoil, you can sense what the gene mods are doing - making you both slimmer and softer. ");
+				if(pc.tone > 40) pc.tone = 39;
+				if(pc.thickness > 40) pc.thickness = 39;
+				minPass += 2;
+			}
+			if(msg != "") output("\n\n" + msg);
+			msg = "";
+			// If 1 < penis reduce to 1 penis
+			// If penis > 5 inches reduce to 5 inches
+			if(pc.hasCock() && pc.biggestCockLength() > 5)
+			{
+				msg += ParseText("[pc.EachCock] clench" + (pc.cockTotal() == 1 ? "es" : "") + " up as the mods get to merciless work on " + (pc.cockTotal() == 1 ? "it" : "them") + ".");
+				if(pc.cockTotal() == 2) msg += ParseText(" Your [pc.cock 1] becomes incredibly sensitive as the bulging meat shrinks down and down, pulsing away intensely like a clit until it finally disappears entirely.");
+				else if(pc.cockTotal() > 2) msg += ParseText(" Your secondary dicks become incredibly sensitive, their bulging meat shrinking down and down, pulsing away intensely like multiple clitorises until they finally disappear entirely. It’s unbearably pleasurable and you can’t help but writhe on the sheets to it.");
+				if(pc.cocks[0].cLengthRaw > 5)
+				{
+					msg += ParseText(" Slowly but surely, your [pc.cock 0] shrinks down, with every passing second becoming less of an intimidating monster and more of a cute little toy. As the nerve endings crowd together it becomes more sensitive, and by the time the transformation is done with you you are hot and erect - not that that looks particularly impressive anymore. ");
+					pc.cocks[0].cLengthRaw = 5;
+				}
+				if(pc.cocks.length > 1)
+				{
+					while (pc.cocks.length > 1)
+					{
+						pc.removeCock((pc.cocks.length - 1), 1);
+					}
+				}
+				if(pc.cocks[0].cLengthRaw < 1) pc.cocks[0].cLengthRaw = 1;
+				minPass += 4;
+			}
+			// If balls > 2, decrease to 2
+			// If balls > 3 inches, decrease to 3 inches
+			// Give Uniball status if not present
+			if(pc.balls >= 2 && (pc.ballSizeRaw > 3 || !pc.hasStatusEffect("Uniball")))
+			{
+				msg += ParseText("You wince and inhale as, without any warning and with an almost audible ‘thwick’, your [pc.balls] suck themselves into your body. After an eye-watering minute or so they slowly recede out into the open again, but now ");
+				if(pc.balls != 2)
+				{
+					msg += ParseText("you only have two, ");
+					pc.balls = 2;
+				}
+				if(pc.ballSizeRaw > 3)
+				{
+					msg += ParseText("they are small and very dense feeling, ");
+					pc.ballSizeRaw = 3;
+				}
+				if(pc.balls != 2 || pc.ballSizeRaw > 3) msg += ParseText("and ");
+				msg += ParseText("they sit pressed tightly together in a pouch against your groin, barely swinging at all when you move. ");
+				pc.createStatusEffect("Uniball", 0, 0, 0, 0, true, "", "", false, 0);
+				minPass += 2;
+			}
+			if(msg != "") output("\n\n" + msg);
+			msg = "";
+			// If butt < 6 increase to 6
+			if(pc.buttRatingRaw < 6)
+			{
+				msg += ParseText("Some of the flesh displaced by the dizzying, unsettling transformations has to go somewhere, and you suppose it’s inevitable where it does head. Your [pc.butt] swells with soft growth as the changes continue. You turn over and look at it in the mirror after a couple of minutes, and even you find it difficult to not want to reach down and give the plump, supple tush you are now sporting a good squeeze. ");
+				pc.buttRatingRaw = 6;
+				minPass += 2;
+			}
+			// Asshole gains elasticity 3
+			if(pc.elasticity < 3)
+			{
+				msg += ParseText("It’s tempting to suppose the way your [pc.anus] keeps clenching up has to do with the butterflies in your gut, but it’s eventually impossible to ignore the fact that it itself is changing. The exploration of two tentative, exploring fingers tells you that it hasn’t become looser, exactly, but... you gasp slightly as you pull it wide open and then release, at which point it immediately puckers back in, as if your sphincter were a particularly thick, tight and flexible band of elastic. Perfect for someone who might reasonably expect to be taking thick, hard cock up the ass a lot. ");
+				pc.elasticity = 3;
+				minPass += 2;
+			}
+			// If lips < 4 increase to 4
+			// Change lip color to sparkly pink
+			if(pc.lipMod < 4 || pc.lipColor != "sparkly pink")
+			{
+				msg += ParseText("Your lips tingle as they " + (pc.lipMod < 4 ? "swell" : "deflate") + " a bit; not out to obscene, bimbo-like proportions, but enough to make your smile look like a sultry invitation. You realize, with a slight lurch of the heart as you gaze in the mirror, that the tingling is visual. Your pert little cupid’s bow is now a glittery, sparkling pink color. ");
+				pc.lipMod = 4;
+				pc.lipColor = "sparkly pink";
+				minPass += 1;
+			}
+			if(msg != "") output("\n\n" + msg);
+			msg = "";
+			
+			// If not fem enough, boost femininity and/or hips until femmed!
+			if(pc.genderWeight() < 45)
+			{
+				var oldHips:Number = pc.hipRatingRaw;
+				var oldFace:Number = pc.femininity;
+				msg += ParseText("Seemingly at random, as if you didn’t look girly enough, you feel a slight boost to your feminine features. They gradually exaggerate further , making you appear more lady-like as");
+				var weightLimit:Number = 45;
+				while(pc.genderWeight() < weightLimit)
+				{
+					if(rand(2) == 0) pc.femininity += 1;
+					else pc.hipRatingRaw += 1;
+				}
+				if(pc.femininity != oldFace) msg += " your shoulders become narrow";
+				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
+				if(pc.hipRatingRaw != oldHips) msg += " your [pc.hips] widen";
+				msg += ". This leaves you with";
+				if(pc.hipRatingRaw != oldHips) msg += " " + pc.hipsDescript();
+				if(pc.hipRatingRaw != oldHips && pc.femininity != oldFace) msg += " and";
+				if(pc.femininity != oldFace) msg += " a face that has " + pc.faceDesc();
+				msg += ". ";
+				minPass += 1;
+			}
+			if(msg != "") output("\n\n" + msg);
+			msg = "";
+			
+			//output("\n\nFINAL GENDER WEIGHT SCORE: " + pc.genderWeight() + " (" + pc.mfn("Masculine", "Feminine", "Androgynous", true) + ")");
+			
+			output("\n\n<i>“There,”</i> coos Kat, after the gene mods are finally done with you. <i>“Wasn’t so bad, was it? That look suits you down to the ground, you know. Yes... I think our clientele is going to be <i>very</i> interested in you.”</i>");
+			output("\n\nShe lays a hand on your shoulder and you twitch slightly. You feel tender in a decentralized kind of way, a hot lustiness shivering beneath your skin. You feel like you could get erect very easily - in fact you are now, your [pc.cocks] tenting diminutively but eagerly at the intent of the brothel mistress’s words.");
+			output("\n\n<i>“Yes,”</i> she goes on, smirking thinly down at it. <i>“The mods do also cause a certain bump to your, uh, vim. So you’re bright and bushy-tailed about your new role. We’ve got other ways of increasing it, if you like... but we can talk about that later.”</i>");
+			output("\n\nKat rises, opens a cabinet on the wall and matter-of-factly begins to fasten a ten inch, knobbly strap-on around her waist. <i>“For now: me and you are going to do some training and orientation before your first night on the floor. Open wide.”</i>");
+			
+			// Increase libido by 40
+			pc.libido(40);
+			
+			processTime(10 + minPass);
+			
+			// [pb]
+			addButton(0, "Next", brothelTrappifyAnswer, "trap");
+			break;
+		case "trap":
+			showBrothelLady(true);
+			showName("BETH’S TRAP\nTRAINING");
+			
+			//Lust maxed out
+			pc.lust(pc.lustMax(), true);
+			
+			output("The days go by; first in a crawl, then in something of a blur. There is no real day or night on Tavros - ships arrive from the core and return from the frontier every hour, there’s always a steady flow of people hankering for some expert, anonymous release - but Beth’s manage things so there’s crescendos of activity and lulls, so that its working girls and boys get rest and their talents are turned to different things.");
+			output("\n\nSometimes you work the floor, trailing your hand up clients’ arms, winking at them friendlily from the bar, getting onto your [pc.knees] and sliding your pink, sparkly lips down thick, musky cock, clambering onto laps and writhing out slow dances to the music’s pulses, rubbing your [pc.butt] up and down growing erections. Sometimes you participate in the live feeds that a couple of the rooms are set up for; donning tight latex and sliding around in an oiled vat with half a dozen giggly, booby hos for the amusement of watchers light years away, or even with some lucky (and rich) client for advertisements. More often though, Kat has you in your room. You’re a relatively rare treat, and sold as such.");
+			output("\n\nThe constant buzz of horniness the mods gave you never dissipates, and you usually greet your customers with thong-clad [pc.butt] arched and a smouldering gaze over your shoulder. You love the rough, impulsive couplings you can get this way, often spraying [pc.cum] onto the sheets with a girly moan before they’re halfway done with you. More often though, males who’ve paid the premium want the fantasy they always envisaged with a gorgeous trap. They want to watch you spend minutes worshipping their cocks with honey, oil, long drags of the tongue, expert curls of the tongue, thirsty hollows of the cheeks; they want to jack themselves up on Priapin so they can bend you over on the bed and spend hours filling out your tight, elastic back passage with said cocks, pounding your sensitive bitch boi buzzer over and over; they sometimes even want you to penetrate them with your cute, unintimidating dick, live out things they never would elsewhere.");
+			output("\n\nYou get a few female clients, too. Women who don’t trust regular boy toys to be gentle or solicitous enough. Women with boyfriends that won’t countenance a threeway with a hunk, but will with a sissy. Kaithrit females’ tastes run naturally towards girly boys, and they are not gentle, or easy to satiate. You wind up nursing a bruised torso after particularly long and rough rides with some curt, muscular lioness twice your size a few times.");
+			
+			//if(flags["BETHS_TIMES_WHORED_HANDS"] == undefined) flags["BETHS_TIMES_WHORED_HANDS"] = 0;
+			//if(flags["BETHS_TIMES_WHORED_MOUTH"] == undefined) flags["BETHS_TIMES_WHORED_MOUTH"] = 0;
+			
+			for(i = 0; i < 12; i++)
+			{
+				if(rand(2) == 0) pc.loadInMouth(pp);
+				if(rand(2) == 0) pc.loadInAss(pp);
+				if(rand(2) == 0) pc.girlCumInMouth(pp);
+				if(rand(2) == 0) pc.orgasm();
+				//pc.credits += 2 + rand(12);
+				
+				processTime((120 * 5) + rand(240));
+				//n = 1 + rand(5);
+				//flags["BETHS_TIMES_WHORED"] += n;
+				//if(rand(2) == 0) flags["BETHS_TIMES_WHORED_HANDS"] += n;
+				//else flags["BETHS_TIMES_WHORED_MOUTH"] += n;
+			}
+			applyCumSoaked(pc);
+			applyPussyDrenched(pc);
+			
+			// [pb]
+			addButton(0, "Next", brothelTrappifyAnswer, ((pc.libido() < 66 || pc.WQ() >= 50) ? "trained" : "libido"));
+			break;
+		// If libido < 66
+		case "trained":
+			showBrothelLady();
+			showName("CONTRACT\nOFFER");
+			
+			output("It’s an exhausting, humiliating and relentlessly orgasmic three weeks. More than a few times you feel like you’ve gotten completely lost in the life of a dedicated fuck boi - you lose all sensation of time and your only thoughts are whether your next client is going to want to use your slutty mouth or your tight butt - but you always manage to tear yourself back to how much of your temporary contract you’ve served, and how much money there is still to pay off. You turn down Kat’s offer of pleasure patches, as tempting as they are, and finally she comes to discharge you after a vigorous hour-long session with an alpha dzaan.");
+			output("\n\n<i>“Gotta say, I’m gonna miss having your candy ass about the place,”</i> she sighs. You give her a baleful look as you continue douching the heavy, warm load of gloopy cum that was just blown up your [pc.ass]. <i>“No, it’s true! You did the work without any bitching, and you paid your contract and interest up before I was expecting. You can go now, come back and work a shift whenever you like. Or...”</i> She examines her nails. <i>“You could sign a new contract. Longer one, this time, and just to earn. You are good at this, you know.”</i>");
+			
+			// Time forward 504 hours, lust drained, Willpower +2
+			for(i = 0; i < 12; i++)
+			{
+				if(rand(2) == 0) pc.loadInMouth(pp);
+				if(rand(2) == 0) pc.loadInAss(pp);
+				if(rand(2) == 0) pc.girlCumInMouth(pp);
+				if(rand(2) == 0) pc.orgasm();
+				//pc.credits += 2 + rand(12);
+				
+				processTime((1680) + rand(120));
+				//n = 1 + rand(5);
+				//flags["BETHS_TIMES_WHORED"] += n;
+				//if(rand(2) == 0) flags["BETHS_TIMES_WHORED_HANDS"] += n;
+				//else flags["BETHS_TIMES_WHORED_MOUTH"] += n;
+			}
+			//pc.credits += 200;
+			pc.orgasm();
+			pc.willpower(2);
+			
+			// [Sign Contract] [Leave]
+			addButton(0, "Sign", brothelTrappifyAnswer, "sign", "Sign Contract", "Sign the new contract.");
+			addButton(14, "Leave", brothelTrappifyAnswer, "leave");
+			break;
+		// [Leave]
+		case "leave":
+			showBrothelLady();
+			showName("REFUSED\nCONTRACT");
+			
+			output("<i>“I’m out of here,”</i> you say, pulling your [pc.gear] out from underneath the bed. Kat shrugs.");
+			output("\n\n<i>“Suit yourself, sweet lips. Hope you enjoy your new life as a full-time sissy, at any rate.”</i>");
+			output("\n\nYou say your goodbyes to Vaande and the other working girls, and fifteen minutes later you’re standing outside Beth’s for what seems like the first time in years. One... you hope your ship is still in dock. And how far ahead might your cousin be by now? You sure as hell hope [rival.he] isn’t a fan of porno streams.");
+			
+			processTime(2);
+			
+			// [Sign Contract] [Leave]
+			addButton(0, "Next", move, rooms[currentLocation].westExit);
+			break;
+		// [Sign Contract]
+		case "sign":
+			showBrothelLady();
+			showName("SIGNED\nCONTRACT");
+			
+			output("Well... it was fun, wasn’t it? And there’s no denying you’ve taken to the role of service sissy like a galotian to liquid protein.");
+			output("\n\n<i>“You won’t regret this, [pc.name]. Beth is going to be so pleased,”</i> Kat leers, as she watches you scribble your signature on the holo form. <i>“Alright - today I want some new advertisements done. The body paint and vibe beads are in room 3. Then...”</i>");
+			output("\n\nWithin days you have fully lost yourself in the heave, dazzle and slutty release of being a rent boi. When Kat suggests the pleasure patches again you readily accept - it just makes sense to intensify your ecstasy so your [pc.nipples] and [pc.cock] are hardly ever not erect, subsume entirely into the slutty undertow, care only about how you’re going to make your clients as happy as you. The fact that the cost of them keeps bumping up the amount of time you have to stay here to finish your contract becomes less and less important. What matters is how a john groans when you move your hand along his lovely cock <i>just</i> so, and how pure his cum tastes sliding down your [pc.tongue].");
+			
+			// Libido to 100, Willpower to 0
+			pc.libido(pc.libidoMax(), true);
+			pc.willpower(0, true);
+			processTime((1440 * 3) + rand(1440));
+			
+			addButton(0, "Next", brothelTrappifyAnswer, "bad end");
+			break;
+		// If libido > 65
+		case "libido":
+			showBust("");
+			showName("PLEASURE\nPOSSESSED");
+			
+			output("It’s an exhausting, humiliating and relentlessly orgasmic experience, and you find yourself enjoying being a prized rent boi more and more. You lose sense of time, and when Kat suggests the pleasure patches again you readily accept - it just makes sense to intensify your ecstasy so your [pc.nipples] and [pc.cocks] are hardly ever not erect, subsume entirely into the slutty undertow, care only about how you’re going to make your clients as happy as you. The fact that the cost of them keeps bumping up the amount of time you have to stay here to finish your contract becomes less and less important. What matters is how a john groans when you move your hand along his lovely cock <i>just</i> so, and how pure his cum tastes sliding down your [pc.tongue].");
+			
+			pc.removeAll();
+			
+			for(i = 0; i < 12; i++)
+			{
+				if(rand(2) == 0) pc.loadInMouth(pp);
+				if(rand(2) == 0) pc.loadInAss(pp);
+				if(rand(2) == 0) pc.girlCumInMouth(pp);
+				if(rand(2) == 0) pc.orgasm();
+				pc.credits += 2 + rand(12);
+				
+				processTime((1680) + rand(120));
+			}
+			pc.credits += 200;
+			pc.orgasm();
+			
+			// Libido to 100, Willpower to 0
+			pc.libido(pc.libidoMax(), true);
+			pc.willpower(0, true);
+			processTime(rand(1440));
+			
+			addButton(0, "Next", brothelTrappifyAnswer, "bad end");
+			break;
+		// Game Over
+		case "bad end":
+			currentLocation = "GAME OVER";
+			generateMap();
+			showLocationName();
+			
+			showBust("");
+			showName("GRADE-A\nBITCH BOI");
+			
+			output("After many months of this, your contract is bought out (at a very tidy profit for Beth) by a thraggen shemale Dreadlord. She doesn’t want you for her own sprawling network of flesh pits, you quickly discover; she installs you with the rest of her exclusive slaves on board her retreat, orbiting a gas giant far away from the prying eyes of the U.G.C., where she has her own gene mod and augment clinic on site. She’s enjoying a typical retreat session, about a year later.");
+			output("\n\n<i>“Unn... fuck! Oooooohhh,”</i> the seven foot green goddess sighs at last, relaxing back on her throne of cushions, slowly withdrawing her leaking, bulbous prick. <i>“I tell you - there is nothing like holstering your dick in some grade-A bitch boi after a hard week’s raiding.”</i>");
+			output("\n\n<i>“It’s good to have you back, mistress,”</i> you say, smiling over your shoulder at her and arching your back, allowing the generous flow of cum to ooze out of your gaped asshole down your thigh stocking the way you know she likes. Your own [pc.cock] is leaking and straining hard against your belly - unsurprising, given you just spent the last hour or so getting your prostate mercilessly battered by twelve inches of thick, studded, oily shemale meat - but, of course, you didn’t cum yourself. The golden cock-ring tight around the base made sure of that.");
+			output("\n\nOther scantily-clad servants sidle up to the cushion throne, bearing trays heaped with home comforts and nibbles.");
+			output("\n\n<i>“The vid-conference will be in an hour and a half, Mistress,”</i> says a kaithrit as she applies moist, scented towels to the thraggen’s sweat-dappled breasts and brow. <i>“Do you want to review the interrogation reports now?”</i>");
+			output("\n\n<i>“Naw, not enough time.”</i> She reaches over and gives the kaithrit’s ample backside a squeeze. <i>“Juice me a glass of syrup, clean my cock and then we’ll go to makeup.”</i>");
+			output("\n\nOn your hands and [pc.knees], you shiver in anticipation as the kaithrit places a goblet " + ((pc.hasLegs() && pc.isBiped()) ? "between your [pc.knees]" : "below you") + ", clicks off your cock-ring and then roughly masturbates you, warm hand tightly jerking your [pc.cock] until you are forced to a tingling orgasm, a week’s worth of heavy, golden fluid flexing " + (pc.balls >= 2 ? "out of your tight, densely-packed boi-balls" : "out of your sensitive toy dick") + " and into the deep cup of the goblet. You ball the sheets in your hands, gasp and tense your slender muscles again and again until the bowl is completely filled.");
+			output("\n\nMistress conveys the sweet, ambrosia-like fluid to her lips, smiling with tender, tusked satisfaction as you and the other slave crawl across and bend your mouths to your own treat - her thick, greasy, cum-leaking dick.");
+			output("\n\n<i>“Pay plenty of attention to the balls, dears,”</i> she murmurs, hand gripping your [pc.hair]. <i>“There’s an informant in the cells, and I want them to be gleaming when they’re slapping against his nose later.”</i>");
+			output("\n\nYou’ve found your true calling in life - and it’s far more shiver-inducingly fulfilling than being some dumb CEO.");
+			
+			processTime(20160 + (1440 * 365) + rand(2880));
+			
+			pp.createPerk("Fixed CumQ", 2000, 0, 0, 0);
+			
+			pc.loadInAss(pp);
+			pc.loadInAss(pp);
+			pc.loadInMouth(pp);
+			
+			pc.credits = 0;
+			pc.orgasm();
+			
+			badEnd("GAME OVER.");
+			break;
+	}
+}
+
+// Payment calculation
+public function brothelWhorePaymentTrap(baseAmount:Number = 0, service:String = "none"):Number
+{
+	// Trap Whoring Formulas
+	// Femboys operate from a slightly higher base pay-out than females, to offset the fact they don’t have as many modifiers/one of their modifiers doesn’t exist yet.
+	
+	var returnAmount:Number = 0;
+	
+	// PC is ass 4-7: +25% of base
+	if(pc.buttRating() >= 4 && pc.buttRating() <= 7)
+		returnAmount += baseAmount * 0.25;
+	// PC is dick < 7 inches: + 25% of base
+	if(pc.biggestCockLength() < 7)
+		returnAmount += baseAmount * 0.25;
+	// PC is lips 2-5: + 25% of base
+	if(pc.lipRating() >= 2 && pc.lipRating() <= 5)
+		returnAmount += baseAmount * 0.25;
+	// PC is fauxcow: + 25% of base
+	if(pc.isFauxCow())
+		returnAmount += baseAmount * 0.25;
+	// PC’s butthole is not gaped: + 25% of base
+	if(pc.ass.looseness() <= 4)
+		returnAmount += baseAmount * 0.25;
+	// PC’s clothing is sexiness 5+: + 25% of base
+	if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) >= 5)
+		returnAmount += baseAmount * 0.25;
+	// PC has 30 or more tease points across the board: + 25% of base
+	if(flags["TIMES_BUTT_TEASED"] >= 30 && flags["TIMES_CHEST_TEASED"] >= 30 && flags["TIMES_CROTCH_TEASED"] >= 30 && flags["TIMES_HIPS_TEASED"] >= 30)
+		returnAmount += baseAmount * 0.25;
+	// PC has maxed tease points across the board: + 25% of base
+	if(flags["TIMES_BUTT_TEASED"] >= 100 && flags["TIMES_CHEST_TEASED"] >= 100 && flags["TIMES_CROTCH_TEASED"] >= 100 && flags["TIMES_HIPS_TEASED"] >= 100)
+		returnAmount += baseAmount * 0.25;
+	// Proficiency Bonus
+	if(flags["BETHS_TIMES_WHORED"] != undefined)
+		returnAmount += (flags["BETHS_TIMES_WHORED"] * 2);
+	
+	returnAmount = (returnAmount + baseAmount);
+	
+	// If Licensed, - 0.2 of total off total
+	if(flags["BETHS_CONTRACT_WHORE"] != undefined) returnAmount = Math.floor(returnAmount * 0.8);
+	// If Freelance, /2 total
+	else returnAmount = Math.floor(returnAmount * 0.5);
+	
+	if(InCollection(service, ["all", "rooms"]))
+	{
+		if(returnAmount / baseAmount >= 0.75) IncrementFlag("BETHS_TIMES_GOOD_YIELD");
+	}
+	
+	return returnAmount;
+}
+
+public function brothelTurnTrixFreelanceWhoreTrap(service:String = "none"):void
+{
+	clearOutput();
+	showBrothelLady();
+	author("Nonesuch");
+	var totalEarnings:Number = 0;
+	var baseEarnings:Number = 0;
+	
+	baseEarnings = brothelTurnTrixWhoringTrap(service);
+	
+	// Hands
+	if(service == "hands")
+	{
+		output("\n\nAfter about two hours of work your wrists and smile begin to ache and you call it a day. You take your earnings up to the counter and reluctantly split it with the mistress.");
+	}
+	// Mouth
+	else if(service == "mouth")
+	{
+		output("\n\nEventually your wrists begin to ache and your ");
+		if(pc.hasLegs() && pc.hasKnees()) output("knees begin to hurt");
+		else output("[pc.lowerBody] begins to feel sore");
+		output(". Wiping your mouth, you take your earnings up to the counter and reluctantly split it with the mistress.");
+	}
+	// Everything
+	else if(service == "all")
+	{
+		output("\n\nAfter a few hours, reproductive fluid of every description, flavor and color is dripping thickly out of both of your holes, and you are feeling sore and thoroughly used. You take your earnings up to the counter and reluctantly split it with the mistress.");
+	}
+	
+	totalEarnings = brothelWhorePaymentTrap(baseEarnings, service);
+	// Low yield:
+	if(totalEarnings <= 0)
+	{
+		output("\n\nAfter the couple hours of work, you turn up empty handed.");
+		output("\n\nSighing heavily, the mistress scolds you. <i>“Why did I hire you again?”</i>");
+		output("\n\nBefore you can utter a response she cuts you off, slamming her hand on the table. Her once bored, emotionless face changes into a slight scowl as she stares at you dead in the eyes.");
+		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those are you?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out.”</i>");
+	}
+	else if(totalEarnings / baseEarnings < 0.75)
+	{
+		if(service != "all")
+		{
+			output("\n\nIt seems a pretty pathetic amount you’ve earned for what feels like a pretty hard couple of hours of honest work.");
+			output("\n\n<i>“You want my advice?”</i> she says, pocketing the handful of credit chits. <i>“");
+			// PC dick > 7:
+			if(pc.biggestCockLength() > 7) output("Shrink your dick down. Last thing guys want coming here is to be emasculated by a sissy. ");
+			// PC lips = small:
+			else if(pc.lipRating() < 6) output("Collagen. Even if you don’t use them, folks with dicks will always fall for pouty lips. ");
+			// PC butt = 4 or less:
+			else if(pc.buttRating() < 5) output("Look into putting some junk into that trunk. Skinny hoes never earn as much as big booty pros. ");
+			// PC boobs and/or butt too big:
+			else if(pc.buttRating() > 8) output("Slim your fat ass down a little. You’re kinda big, for the average punter’s tastes anyway. ");
+			output("Don’t be so picky about what you do. And get yourself licensed. You know it makes sense.”</i> She strides off towards the back office.");
+		}
+		else
+		{
+			output("\n\nIt seems a pretty pathetic amount for what feels like a considerable amount of hard, honest work.");
+			output("\n\n<i>“Get yourself licensed is my advice,”</i> the mistress says, pocketing the handful of credit chits. <i>“Seems a real shame to lose half, seeing some of the things you did for it.”</i>");
+		}
+	}
+	
+	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
+	pc.credits += totalEarnings;
+	
+	// PC = Jaded for next 6 hours
+	brothelWhored((6 * 60), service);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Whoring main text
+public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	var baseEarnings:Number = 0;
+	
+	//Declare once! Fuck warnings.
+	var scenesIndex:Array = [];
+	var scenesLimit:int = 3;
+	var scenesTotal:int = 5;
+	if (!pp.hasCock()) pp.createCock();
+	if (!pp.hasVagina()) pp.createVagina();
+	
+	// Hands
+	if(service == "hands")
+	{
+		output("You sashay through the room, letting your hand trail along muscular arms, displaying the telling flatness of your [pc.chest] to seated gamblers, offering your friendliest smile to anyone who looks at you, coming across at the faintest sign of interest.");
+		output("\n\nYou soon find takers. Many of the men here are actually just pleased to hear a friendly female voice in their ear; deep space miners or mercenaries coming back from one ugly incident or another. They tip you healthily just to sit with them and laugh at their stupid jokes. Others want a little more.");
+		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back");
+		if(!pc.hasBreasts()) output(", letting the pleasing smoothness of your [pc.chest] press into their chests as you work");
+		output(". The hubbub casually goes on around you, or the coo and slurp of the other whores working the rest of the john’s party provides a fitting soundtrack, as you rub and jerk, coil and squeeze until his body tenses up, he groans and releases spumes of cum, riding his orgasm out with the loving help of your hand, and finally gazes at you in gratified bliss. Such a simple thing which brings such pleasure. Napkins are free, and you quickly learn to take a supply with you everywhere.");
+		
+		// + 2 hours
+		processTime(120);
+		// + Lust
+		pc.lust(5);
+		pc.exhibitionism(1);
+		// Base hands pay-out: 70 credits
+		baseEarnings += 70;
+	}
+	// Mouth
+	else if(service == "mouth")
+	{
+		output("You sashay through the room, letting your hand trail along muscular arms, displaying the telling flatness of your [pc.chest] into seated gamblers, offering your friendliest smile and most lascivious lick of the [pc.lips] to anyone who looks at you, coming across at the faintest sign of interest.");
+		output("\n\nYou soon find takers. Many of the men here are actually just pleased to hear a friendly female voice in their ear; deep space miners or mercenaries coming back from one ugly incident or another. They tip you healthily just to sit with them and laugh at their stupid jokes. Others want a little more.");
+		output("\n\nYour warm hand slides its way past belts and buckles, it undoes zips, it clicks buttons which release armored compartments; you become pretty adept at the art of one-handed undressing. You grip hot dick after dick - mostly big and girthy; penis enhancers are widely available, after all - and gently, rhythmically bring them to full mast, knead and coil hot meat until the guy’s eyes are closed and leant back");
+		if(!pc.hasBreasts()) output(", letting the pleasing smoothness of your [pc.chest] press into their chests as you work");
+		output(". You keep the movement of your hand slow and murmur in their ear that you will do more, if they’re willing to pay a little extra... the dick does all the thinking in these situations and more often than not, it’s exactly what they do. You give them a big, lusty smile, sink beneath the table and finish them off with a nice, deep suck.");
+		output("\n\nSome of the clients are more to the point; they pay you and point at their crotch, often without even breaking conversation with whoever they’re with. Their thighs tensing up around your gently bobbing head and their balls doing likewise against your chin, a groaning exhalation as they fountain hot cum down your throat and maybe a <i>“thanks doll”</i> after you’ve licked their bulging, oozing cock clean is the most you get from such guys.");
+		output("\n\nA popular combo is to get a blowjob whilst watching a dance. You find yourself " + ((pc.isBiped() && pc.hasKnees()) ? "on your knees" : "knelt down") + ", a hand pressed against the back of your head, hard meat filling your mouth, the sound of feet thumping and sliding around and around above you, more often than not.");
+		
+		pc.loadInMouth(pp);
+		pc.loadInMouth(pp);
+		pc.loadInMouth(pp);
+		// Fauxcow:
+		if(pc.isFauxCow())
+		{
+			output("You almost forget to take payments, sometimes. The deep, asshole-clenching ecstasy of cock touching the back of your throat, the wonderful tingle of fresh cum on your taste buds, and the sheer joy of getting down in front of so many males and making the world a more pleasurable place to be seems like payment enough. Ironically you get showered with credit chits thanks to the obvious enthusiasm with which you blow. You accept it almost embarrassedly. What are you even going to do with all this money?");
+			pc.loadInMouth(pp);
+			pc.loadInMouth(pp);
+			pc.loadInMouth(pp);
+		}
+		
+		// + 2 hours
+		processTime(120);
+		// + Lust
+		pc.lust(10);
+		pc.exhibitionism(1);
+		// Base mouth pay-out: 100 credits
+		baseEarnings += 100;
+	}
+	// Everything
+	else if(service == "all")
+	{
+		var anusChanged:Boolean = false;
+		
+		output("<i>“Whatever you want, baby,”</i> you find yourself saying a lot over the next few hours. It never stops giving you a slight thrill. <i>“If you pay, I will do whatever you want.”</i>");
+		output("\n\nThe order of the day is mostly blowjobs, however. Most johns simply aren’t that imaginative, or aren’t in the mood to stretch themselves, at least not here. And because you’re operating solo, you can’t get in on the multiple offers with other prostitutes, which is mostly what the big spenders want. So you find yourself ");
+		if(pc.hasLegs() && pc.hasKnees()) output("on your knees");
+		else output("knelt");
+		output(" beneath a table, [pc.lips] travelling up and down big, juicy dick for most of the next few hours, hollowing your cheeks up and sucking down one thick load of cum after another, credit chits");
+		if(pc.hasUpperGarment() && !pc.hasArmor()) output(" rammed into your [pc.upperUndergarment]");
+		else if(pc.hasLowerGarment() && !pc.hasArmor()) output(" rammed into your [pc.lowerUndergarment]");
+		else output(" clutched in one hand");
+		output(".");
+		
+		pc.loadInMouth(pp);
+		pc.loadInMouth(pp);
+		pc.loadInMouth(pp);
+		
+		output("\n\nStill, there’s a few special requests.");
+		
+		//Scene takes form of 3 of these that the PC meets the requirements for, randomized and joined together.
+		scenesIndex = [];
+		scenesLimit = 3;
+		scenesTotal = 5;
+		if(pc.hasTailCunt() && pc.tailType == GLOBAL.TYPE_CUNTSNAKE) scenesTotal++;
+		if(InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM])) scenesTotal++;
+		if(pc.hasBreasts() && pc.hasFuckableNipples()) scenesTotal++;
+		if(pc.isNaga()) scenesTotal++;
+		if(pc.isTaur()) scenesTotal++;
+		
+		while(scenesLimit > 0)
+		{
+			if (!pp.hasCock()) pp.createCock();
+			// Cunt-tail:
+			if(!InCollection(1, scenesIndex) && pc.hasTailCunt() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nYour");
+				if(pc.hasParasiteTail()) output(" parasitic tail");
+				else output(" [pc.tail]");
+				output(", spreading itself eagerly in the presence of so much male musk, attracts some attention, and a few clients happily pay a bit extra for you to fasten it wetly on their cocks and pump them absolutely silly with it, pleasure and the sensation of cum being siphoned hungrily away tingling up to you.");
+				processTime(10);
+				pc.loadInCuntTail(pp);
+				pc.loadInCuntTail(pp);
+				pc.loadInCuntTail(pp);
+				pc.exhibitionism(1);
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 1;
+			}
+			// Massive capacity:
+			pp.cocks[0].cLengthRaw = 36;
+			pp.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
+			if(!InCollection(2, scenesIndex) && pc.analCapacity() >= pp.cockVolume(0) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA particularly huge alien is delighted to discover your loose asshole is capable of taking his 3 foot long blunt breeding prong, and you spend an eye-crossing ten minutes riding him to a womb-swelling high.");
+				pc.buttChange(pp.cockVolume(0));
+				output(" You have to waddle to the bathroom and release a full gallon of purple cum from your [pc.asshole] afterwards.");
+				processTime(10);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.orgasm();
+				anusChanged = true;
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 2;
+			}
+			pp.removeCocks();
+			pp.createCock();
+			// Any: Ausar Male
+			if(!InCollection(3, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_CANINE);
+				output("\n\nIn one corner booth a burly ausar turns you around and gives you a hard ass-fucking, pounding your [pc.anus] with his hot knotted cock with relentless pumps of his thick hips whilst you grit your teeth, being used like the whore you are.");
+				pc.buttChange(pp.cockVolume(0));
+				output(" He dismisses you with a grunt and a slap on the [pc.ass], leaving you to hobble away with doggie semen leaking down your [pc.hip].");
+				processTime(10);
+				pc.loadInAss(pp);
+				pc.orgasm();
+				anusChanged = true;
+				pp.removeCocks();
+				pp.createCock();
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 3;
+			}
+			// Any: Human Businesswoman
+			pp.vaginas[0].wetnessRaw = 5;
+			pp.vaginas[0].addFlag(GLOBAL.FLAG_PUMPED);
+			if(!InCollection(4, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA big-bottomed, older human businesswoman makes a beeline for you as soon as she’s mentally ticked off your [pc.chest] and [pc.groin]. She no longer has the time or patience on her trips to source pretty boys in bars, she says. In a respectably dark and low-key booth you tongue her plump pussy to huffing orgasm twice, before getting sat down and briskly ridden.");
+				pc.cockChange();
+				output(" You get a motherly kiss and generous ‘pocket money’ for licking her cunt quite clean of [pc.cum] afterwards.");
+				processTime(10);
+				pc.girlCumInMouth(pp);
+				pc.girlCumInMouth(pp);
+				pc.girlCumInMouth(pp);
+				pc.orgasm();
+				pc.orgasm();
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 4;
+			}
+			pp.removeVaginas();
+			pp.createVagina();
+			// Any: Dzaan Druggies
+			if(!InCollection(5, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skin] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
+				processTime(10);
+				pc.exhibitionism(1);
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 5;
+			}
+			// Fruit/Honey/Chocolate Cum:
+			if(!InCollection(6, scenesIndex) && InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM]) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nOnce word gets around about the sweet, horny deliciousness of your [pc.cum] you become a favourite amongst the more libertine clientele, particularly those who are in the middle of a serious fuck session and are in need of some blood sugar. You cobble together a fluorescent sign reading ‘Need a jolt? Give me a jerk!’ and have one of the other whores tape it to your back. Rough handjobs into cocktail glasses, thirsty, drunken sucks...");
+				if(pc.cumQ() < 2000 && pc.refractoryRate < 30) output(" You can’t produce enough for everyone, and your [pc.cocks] and [pc.balls] are soon aching with effort.");
+				else output(" Fortunately you’re a regular [pc.cum] fountain, and as long as you pace the gleeful locks of your muscles and flexes of your [pc.cocks], you’ve got enough for every greedy one.");
+				processTime(10);
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 6;
+			}
+			// Cunt/mouth nipples:
+			if(!InCollection(7, scenesIndex) && pc.hasBreasts() && pc.hasFuckableNipples() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				var boobs:int = pc.totalBreasts();
+				output("\n\nYour [pc.nipples] generate interest, particularly when you start to finger them and wink at those watching. You kneel in front of a drunken fuu’rahn and let her grip your shoulders and excitedly thrust her well-extended blue ovipositor into the sensitive, [pc.milkNoun]-leaking innards of your boob, her cheering friends having paid for the treatment. She enjoys sliding herself between your slick, puffy ");
+				if(pc.hasLipples()) output("lipples");
+				else if(pc.hasCuntNipples()) output("cunt nipples");
+				else output("nipples");
+				output(" so much that, after resting for a few seconds, she stuffs your other breast");
+				if(boobs > 2) output("s");
+				output(" full of rahn eggs too.");
+				processTime(10);
+				for(var b:int = 0; b < boobs; b++)
+				{
+					pc.loadInNipples(pp);
+				}
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 7;
+			}
+			// Any: Daynar Male
+			if(!InCollection(8, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_DAYNAR);
+				pp.cocks[0].cLengthRaw = 8;
+				output("\n\nThe big spenders - gangsters and businessmen out celebrating particularly lucrative weeks, for the most part - pay very well to have multiple girls tending to them. A suited, broad-shouldered daynar sits back, watching the ovir on stage slowly twist and gyrate around her pole, his neck stretched so the kaithrit girl sat behind can massage his tender neck-membranes, whilst you bounce on his lap, squeezing and bending his eight inch lizard cock in your [pc.ass], stroking and teasing your [pc.chest] at his throaty request.");
+				pc.buttChange(pp.cockVolume(0));
+				output(" Beneath the jounce of your bare [pc.ass] you can feel the hair of the human girl sucking his balls. The expression on the daynar’s long face tells you that this is just Tuesday to him - but a pretty good Tuesday, nonetheless.");
+				processTime(10);
+				anusChanged = true;
+				pp.removeCocks();
+				pp.createCock();
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 8;
+			}
+			// Naga
+			if(!InCollection(9, scenesIndex) && pc.isNaga() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA credit chit is trailed up your scales. A genetically modified something-or-other asks, in a high, breathy voice, if you will dance with the vanae on-stage. You curl yourself around and around the pink-tentacled blind girl, tightening and loosening around her flat abdomen and plush boobs, giving her the odd teasing lick and fondle. She plays along but her primal fear of you is palpable. The customer enjoys it immensely, clapping four hands excitedly and ordering a supplementary blowjob from a waitress. You finish it off by holding her tight and frenching the vanae, feeling her mouth quiver around you. Everyone gets tipped well - but you rather suspect your partner would trade hers for not having to go anywhere near you again.");
+				processTime(10);
+				pc.exhibitionism(1);
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 9;
+			}
+			// Centaur:
+			if(!InCollection(10, scenesIndex) && pc.isTaur() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_NAGA);
+				pp.cocks[0].cLengthRaw = 36;
+				pp.createCock();
+				pp.shiftCock(1, GLOBAL.TYPE_NAGA);
+				pp.cocks[1].cLengthRaw = pp.cocks[0].cLengthRaw;
+				pp.ballSizeRaw = 5;
+				output("\n\nA leithan has resigned himself to a night of blowjobs - before he spots you. He clutches your [pc.chest] as tightly as you clutch the pole, his undercarriage rubbing frenetically over your [pc.lowerBody], bug pony cock deep in your [pc.ass].");
+				pc.buttChange(pp.cockVolume(1));
+				output(" The sex is hot and rough, the tip is generous - although you have to get somebody else to hand it to you, since he leaves it wedged in your cum-filled [pc.anus].");
+				processTime(10);
+				pc.loadInAss(pp);
+				pc.orgasm();
+				pc.orgasm();
+				anusChanged = true;
+				pp.removeCocks();
+				pp.createCock();
+				pp.ballSizeRaw = 0;
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 10;
+			}
+		}
+		
+		// gape on anus up
+		if(!anusChanged) pc.buttChange(100);
+		
+		pc.loadInAss(pp);
+		pc.loadInAss(pp);
+		pc.loadInAss(pp);
+		// lust reset
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.exhibitionism(1);
+		
+		// + 2 hours
+		processTime(90);
+		// Base everything pay-out: 150 credits
+		baseEarnings += 150;
+	}
+	// Rooms Specials
+	else if(service == "rooms")
+	{
+		output("You head across and chat with some of the other floozies hanging around near the curtained-off section of the brothel. There’s quite a few requests for room specials, it turns out, and the other whores are happy for fresh meat to help out and take a cut.");
+		
+		//Scene takes form of 2 of these that the PC meets the requirements for, randomized.
+		scenesIndex = [];
+		scenesLimit = 2;
+		scenesTotal = 5;
+		if(pc.isFauxCow()) scenesTotal++;
+		if(pc.biggestCockLength() < 7) scenesTotal++;
+		if(pc.isGoo()) scenesTotal++;
+		
+		while(scenesLimit > 0)
+		{
+			if (!pp.hasCock()) pp.createCock();
+			// Any: Human Male Masochist
+			if(!InCollection(1, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA big, gruff human tough, tattoos festooned down both arms, wants some one-on-one... and very discrete... treatment. He barks and groans, blindfolded and hands tied to the ceiling by magnetic hard-points, as you apply the lash to his muscular back and ass, casually telling him what a bad boy he’s been. Honestly, given the amount of unsolicited fondles and pinches to the [pc.ass] you’ve received whilst you’ve been here from guys who look exactly like this, it’s a pretty satisfying hour.");
+				pc.lust(10);
+				processTime(60);
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 1;
+			}
+			// Any: Female Scientist's Sexperiment
+			if(!InCollection(2, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\nA bookish woman dressed in a lab-coat asks, with fluttering nervousness, if she can borrow you and another girl for a time. You and the female ausar lounge on the bed together and accept the tablets she gives you.");
+				output("\n\n<i>“Nothing to worry about, nothing to worry about,”</i> she insists, sitting down on the far side of the room with her clipboard. <i>“Definitely not toxic. It just, um, it just needs to be tested in a non-lab environment. Tell me how you feel.”</i>");
+				output("\n\nNothing happens for twenty minutes. Then you feel slightly ill. Not soon after, you are seized by such an overwhelming Sapphic lust that it is impossible to do anything but violently fuck the ausar, who makes it quite clear she feels the same way. You desperately clinch your [pc.hip] around hers, your [pc.chest] mashed into hers, rutting frenetically to orgasms which only seem to make the need to reach another more urgent. The only time when you aren’t fastened to her small, hard nipples is when you are passionately twining your [pc.tongue] with hers. There is only her heaving breasts, and her wonderful wet slit, and her reddened, beautiful face, and oh there is nothing but the joy of being joined with her heaving female curves, which makes you want to love her more and more and...");
+				output("\n\n<i>“Alright, that’s enough,”</i> snaps Kat, striding through the door. <i>“You’ve been in here for three hours. Tie up your “research”, sicko.”</i>");
+				output("\n\n<i>“Yes! Yes, of course,”</i> says the woman, hurrying across and applying a white pad to each of your brows. Slowly, the burning urge fades. You look at each other, dazed and embarrassed.");
+				output("\n\n<i>“Just. Um. I think it needs more testing. Definitely more testing,”</i> the researcher says, heading to the door, almost as red-faced as the ausar is.");
+				output("\n\n<i>“See you next week,”</i> snarks Kat.");
+				processTime(30);
+				pc.lust(9000);
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 2;
+			}
+			// Fauxcow: Samarin
+			if(!InCollection(3, scenesIndex) && pc.isFauxCow() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_FELINE);
+				pp.cocks[0].cLengthRaw = 12;
+				output("\n\n<i>“Hey,”</i> says a samarin, the travel weariness seeming to melt off him when his eyes fasten upon your face. <i>“You’re Treated, aren’t you? Oh One. Oh no. I can’t afford this... How much for [pc.him], a room, and a supply of Priapin for two hours?”</i>");
+				output("\n\nHe hurries you into a room and proceeds to fuck you absolutely stupid, using your [pc.ass] and your [pc.lips] in quick succession, mainlining Priapin the moment he orgasms to instantly regain his big, cat-like erection so he can keep thrusting its hardness into your eager, sensitive holes. When he tenses up and begins to groan and flex into you again, nothing emerges from his dilated cum-slit, despite your encouraging squeezes; every last drop he has to offer has disappeared into your slick, clinging pussy and your hungry throat.");
+				pc.buttChange(pp.cockVolume(0));
+				output("\n\n<i>“I’m overdrawn. I don’t even care,”</i> he sighs, lying back on the bed at long last, your fingers trailing down his chest. <i>“One night with a fauxcow is worth months of heartache with the bank.”</i>");
+				processTime(120);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInMouth(pp);
+				pc.loadInMouth(pp);
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 3;
+			}
+			// Any: Cundarian General
+			if(!InCollection(4, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.cocks[0].cLengthRaw = 18;
+				pp.cocks[0].addFlag(GLOBAL.FLAG_FLARED);
+				pp.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
+				output("\n\n<i>“Do I look like I can be satiated with your petty streetwalkers?!”</i> booms the cundarian, slamming a fist the size of a football into his armored chest. <i>“You are looking at the destroyer of three trade convoys in the last month. I require, I demand only the finest onnagre money can - yes!”</i> Kat dispassionately hands him the leather leashes which lead to the collars of you and the blushing ausar puppy boi. <i>“You may live! For this week at least!”</i>");
+				output("\n\nIt’s a two femboy job just to get his armor off. Once you do, you bathe his sweaty, tank-like form in the room’s spacious hot tub, admire his scars as you then slather every inch of his hard, pebbly skin with coating oil, before getting to work on his eighteen inch dick. He lies back on the bed, rumbling his profound approval as you run your tongues and lips up and down the ridged monster, until he grips both of your heads over the sensitive head and cums like a geyser, pasting you and the ausar’s pretty faces with swiftly-drying foam-cum. He then proceeds to bend you both over, keeping tight grip of your leashes as he alternates gaping your assholes with gasp-inducing, sheet-clenching force.");
+				output("\n\n<i>“Onnagre are the truly discerning warlord’s delight,”</i> he rumbles a while later, resting with his muscle-bound arms wrapped around you both, hand fondly imbedded in your [pc.ass]. <i>“Once I have made my fortune, I shall come back and claim you two! I’ve just... uh... just got to stop wasting it all in whorehouses.”</i>");
+				processTime(60);
+				pc.loadInMouth(pp);
+				pc.loadInMouth(pp);
+				applyCumSoaked(pc);
+				applyCumSoaked(pc);
+				pp.removeCocks();
+				pp.createCock();
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 4;
+			}
+			// Any: Kui-Tan Herm
+			if(!InCollection(5, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_KUITAN);
+				pp.cocks[0].cLengthRaw = 12;
+				pp.ballSizeRaw = 18;
+				output("\n\nA female kui-tan, a colony raider going off her brands and scarred, cybernetic eye, orders the premium deluxe.");
+				output("\n\nShe sits back on the king-sized bed, bottle of prosecco in hand, watching you grope, lick and kiss the doh’rahn at the other end, two other whores worshipping her giant erection whilst a final one buries beneath it all, attacking her pussy with her genetically enhanced long tongue. Behind you, a whole wall of vid screens silently blares out several terabytes of porn. Whenever the urge takes her, she grabs one of you and fucks you hard doggie style, leaving the rest of you to form an orgy for her delectation.");
+				pc.buttChange(pp.cockVolume(0));
+				output("\n\nShe’s got enough cum backed up to keep this up for a good two hours. When finally every pussy and asshole in the room except hers is stuffed and leaking kui-tan cream, she gets up and tosses a single credit chit onto the bed without a word. She only looks mildly disappointed that you don’t all fight over it.");
+				processTime(120);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.orgasm();
+				pc.orgasm();
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				pp.ballSizeRaw = 0;
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 5;
+			}
+			// Cock < 7:
+			if(!InCollection(6, scenesIndex) && pc.biggestCockLength() < 7 && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				output("\n\n<i>“I like anal,”</i> says the hard-faced, tortoiseshell kaithrit bluntly as soon as you’ve closed the door behind you. <i>“With nice, home boi dicks like yours. But my crew can’t know - some of ‘em are dzaan, they’ll think I’m some kind of bitch.”</i>");
+				output("\n\nAs she talks she brusquely rips off her scruffy pirate garb and climbs onto the bed. <i>“So what you’re getting paid for is discretion. You’re gonna pound both of my holes until these sheets are soaked with our sweat. If anyone finds out, I’m gonna find you, and then you ain’t gonna be pretty no more.”</i> She gazes at you slit-eyed over the rise of her muscular ass, twin tails raised, pink starfish and long, brown pussy lips on display. <i>“Questions?”</i>");
+				pc.cockChange();
+				pc.orgasm();
+				processTime(60);
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 6;
+			}
+			// Any: Kui-tan bachelor
+			if(!InCollection(7, scenesIndex) && pc.isGoo() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_KUITAN);
+				pp.cocks[0].cLengthRaw = 10;
+				pp.balls = 2;
+				pp.ballSizeRaw = 60;
+				output("\n\nThe best man asks for you specifically. Perhaps you’re the most exotic thing this stag party of braying humans, sniggering kui-tan and furtive gryvain can imagine; perhaps you’re just the most exotic thing they can buy. You emerge on the stage in an explosion of holographic petals, dressed in latex short shorts, silky sleeves and very little else to a crescendo of hoots and wolf whistles, and after a lot of oh-you-guys-es and I-don’t-really-wannas, you pull the glassily smiling kui-tan groom into a room.");
+				pc.exhibitionism(1);
+				output("\n\nIt doesn’t take much gentle prodding in there to discover he’s a virgin - a particularly horrible travesty amongst his people - and is deeply afraid of both you and his bride-to-be. You show him a few things; where to put his hands, when to take charge and when to hold back, how to loosen your butthole for a randy young kui-tan female, how not to cum even when he’s eight inches deep and his balls feel like watermelons. The raccoon-like creature thanks you from the bottom of his heart, and leaves looking profoundly relieved. Later, you hear him smilingly hinting about the sensual wonders he partook of inside your chamber to a delighted audience.");
+				pc.buttChange(pp.cockVolume(0));
+				pc.loadInAss(pp);
+				processTime(120);
+				pp.removeCocks();
+				pp.createCock();
+				pp.ballSizeRaw = 0;
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 7;
+			}
+			// Goo:
+			if(!InCollection(7, scenesIndex) && pc.isGoo() && scenesLimit > 0 && rand(scenesTotal) == 0)
+			{
+				pp.shiftCock(0, GLOBAL.TYPE_CANINE);
+				output("\n\n<i>“Hmm,”</i> says an ovir pro, eyeing your slimy, ectoplasmic bottom half thoughtfully. <i>“That looks... useful.”</i>");
+				output("\n\nYou and a galotian puddle into a large jacuzzi together. You both coo as the bubble-streams are turned on, sending vibrations juddering through you, making you lose some of your surface tension. The ovir leads a laughing ausar couple in, a lean guy and his chubby girlfriend.");
+				output("\n\nThe two of them have fun on the bed first, taking turns with the ovir’s thick, brightly-colored cock, leaving you and the galotian to gasp and giggle together over the copious amount of sex toys that have been laid out on the side. Finally, the other three splash into you, drunk with lust. The guy bends your [pc.ass] over and firmly knots himself into your [pc.anus], the heavy thrust of his hips sending waves of your [pc.skinColor] goo slapping against the sides.");
+				pc.buttChange(pp.cockVolume(0));
+				output(" The hard girth of his dick combined with the vibrations drives you to clenching orgasm after orgasm; it requires no acting on your part to squeal with simple-minded joy until you are hoarse. You and the galotian’s gooey flesh travel up and down the three writhing bodies, worshipping them, your reward the salt on their skins and the copious amount of slut-feed they spurt into you.");
+				output("\n\n<i>“He always persuades me to come to this sleaze-hole for our anniversaries,”</i> sighs the girl later, leaning over the side as you massage her shoulders, layered on top of her generous hams, tracing the lips of her pussy with gooey tendrils. <i>“I always regret caving in at the time. Never while I’m here.”</i>");
+				processTime(60);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInAss(pp);
+				pc.loadInMouth(pp);
+				pc.loadInMouth(pp);
+				pc.girlCumInMouth(pp);
+				pc.girlCumInMouth(pp);
+				pc.orgasm();
+				pc.orgasm();
+				pc.orgasm();
+				pp.removeCocks();
+				pp.createCock();
+				scenesLimit--;
+				scenesIndex[scenesIndex.length] = 8;
+			}
+		}
+		
+		// + hours
+		processTime(60);
+		// Base room specials pay-out: 170 credits
+		baseEarnings += 170;
+	}
+	// Nothing
+	else
+	{
+		output("You sashay through the room, letting your hand trail along muscular arms, displaying the telling flatness of your [pc.chest] to seated gamblers, offering your friendliest smile to anyone who looks at you, coming across at the faintest sign of interest.");
+		output("\n\nNo matter how seductive you try to be, no takers accept your presence. You try to vary your approach, from a passive boi toy to a more aggressive leg humper, but your potential targets are either too entralled by other performances or flat-out uninterested as they dismissively brush you away.");
+		output("\n\nEventually you head back up to the counter to meet the mistress....");
+		// + Lust
+		pc.lust(10);
+	}
+	
+	// Randomized bonus pay buffs
+	for(var i:int = 0; i < 5; i++)
+	{
+		if(rand(2) == 0) baseEarnings += rand(41);
+	}
+	
+	return baseEarnings;
+}
+
+public function brothelTurnTrixLicensedWhoreTrap(service:String = "none"):void
+{
+	clearOutput();
+	showBrothelLady();
+	author("Nonesuch");
+	var ppKat:PregnancyPlaceholder = getKatPregContainer();
+	var totalEarnings:Number = 0;
+	var baseEarnings:Number = 0;
+	
+	baseEarnings = brothelTurnTrixWhoringTrap(service);
+	
+	// Mouth
+	if(service == "mouth")
+	{
+		showBrothelLady(true);
+		output("\n\nYou also meet your obligations to the staff as you go about your business. Seems like working here results in people getting very het up; there really is quite the demand for you to come into a deserted storeroom and ");
+		if(pc.hasLegs() && pc.hasKnees()) output("get on your knees");
+		else output("squat down");
+		output(" for the bartenders and dancers, both male and female. You finish off your shift behind the front desk.");
+		output("\n\n<i>“Ungh! Nice,”</i> Kat grunts, clutching the wood hard and grinding her landing-stripped pussy into your face. A small trickle of femcum makes its way down your chin. <i>“Nothing like a well-trained tongue at the end of a long ");
+		if(hours < 15) output("morning");
+		else output("evening");
+		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
+	}
+	
+	// Everything
+	else if(service == "all")
+	{
+		output("\n\nAfter a few hours, reproductive fluid of every description, flavor and color is dripping thickly out of every single one of your holes, and you are feeling sore and thoroughly used. You take your earnings to the front desk.");
+		output("\n\n<i>“I’ll, uh, pass on putting you anywhere near my genitals, if it’s all the same to you,”</i> Kat says, picking out her 20% cut.");
+	}
+	// Rooms Specials
+	else if(service == "rooms")
+	{
+		showBrothelLady(true);
+		output("\n\nAfter a frazzling few hours, you finish your shift under the front desk.");
+		output("\n\n<i>“Ungh! Nice,”</i> Kat grunts, clutching the wood hard and grinding her landing-stripped pussy into your face. A small trickle of femcum makes its way down your chin. <i>“Nothing like a well-trained tongue at the end of a long ");
+		if(hours < 15) output("morning");
+		else output("evening");
+		output(".”</i> You get up wiping your mouth, and wait for her to zip herself back up before splitting the earnings with her.");
+		pc.girlCumInMouth(ppKat);
+		pc.lust(10);
+	}
+	
+	totalEarnings = brothelWhorePaymentTrap(baseEarnings, service);
+	// Low yield:
+	if(totalEarnings <= 0)
+	{
+		output("\n\nAfter the couple hours of work, you turn up empty handed.");
+		output("\n\nSighing heavily, the mistress interrogates you. <i>“What. Are you serious?”</i>");
+		output("\n\nBefore you can utter a response she cuts you off, slamming her hand on the table. Her once bored, emotionless face changes into a slight scowl as she stares at you dead in the eyes.");
+		output("\n\n<i>“This place is a whorehouse, do you understand? Whore. House. Only two kinds of people come in here to do business and they are: the clients... and the <b>WHORES</b>. Which one of those did you sign up for again?”</i> Turning her head down towards the desk, she takes a moment for a mental breather until her expression relaxes. She then continues, <i>“Listen, if you’re not going to whore yourself properly on the floor, then don’t bother wasting my time. Please see yourself out.”</i>");
+	}
+	else if(totalEarnings / baseEarnings < 0.75)
+	{
+		if(service != "all")
+		{
+			output("\n\nIt seems a pretty pathetic amount you’ve earned for what feels like a pretty hard couple of hours of honest work.");
+			output("\n\n<i>“You want my advice?”</i> the mistress says, pocketing the handful of credit chits. <i>“");
+			// PC dick > 7:
+			if(pc.biggestCockLength() > 7) output("Shrink your dick down. Last thing guys want coming here is to be emasculated by a sissy. ");
+			// PC lips = small:
+			else if(pc.lipRating() < 6) output("Collagen. Even if you don’t use them, folks with dicks will always fall for pouty lips. ");
+			// PC butt = 4 or less:
+			else if(pc.buttRating() < 5) output("Look into putting some junk into that trunk. Skinny hoes never earn as much as big booty pros. ");
+			// PC boobs and/or butt too big:
+			else if(pc.buttRating() > 8) output("Slim your fat ass down a little. You’re kinda big, for the average punter’s tastes anyway. ");
+			output(" And don’t be so picky about what you do.”</i> She strides off towards the back office.");
+		}
+	}
+	else
+	{
+		if(service != "all") output("<i>“You’re a good little earner,”</i> she smirks, a small amount of color in her pale cheeks, raising an eyebrow at what you’ve brought in. <i>“Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
+		else output("<i>“You’re a good little earner,”</i> she goes on, raising an eyebrow at what you’ve brought in. <i>“Admirable lack of standards, too. Going to have to look into setting you up with a more permanent type of contract, one of these days.”</i>");
+	}
+	
+	if(totalEarnings > 0) output("\n\nYou have been paid " + totalEarnings + " credits for your efforts.");
+	pc.credits += totalEarnings;
+	
+	// PC = Jaded for next 6 hours
+	brothelWhored((6 * 60), service);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+

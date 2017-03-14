@@ -31,18 +31,11 @@ public function showFlahne(nude:Boolean = false):void
 }
 public function flahneBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["FLAHNE"], ["ADJATHA", "GATS", "GATSOLD"])) return "FLAHNE";
-	
 	var str:String = "FLAHNE";
 	
 	if(nude)
 	{
-		if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0)
-		{
-			// 9999 - Special artist exceptions!
-			if(kGAMECLASS.gameOptions.configuredBustPreferences["FLAHNE"] == "ADJATHA") str += "_OVI";
-		}
+		if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) str += "_OVI";
 		str += "_NUDE";
 	}
 	return str;

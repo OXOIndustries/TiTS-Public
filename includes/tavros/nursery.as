@@ -11,9 +11,6 @@ public function showBriget(nude:Boolean = false):void
 }
 public function brigetBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["BRIGET"] != "ADJATHA") return "BRIGET";
-	
 	var str:String = "BRIGET";
 	
 	if(brigetIsBusty()) str += "_TITS";

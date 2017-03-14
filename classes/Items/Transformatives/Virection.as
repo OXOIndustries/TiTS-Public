@@ -24,7 +24,7 @@ package classes.Items.Transformatives {
 			this._latestVersion = 1;
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.DRUG;
+			this.type = GLOBAL.PILL;
 			
 			this.shortName = "Virection";
 			this.longName = "Virection pill";

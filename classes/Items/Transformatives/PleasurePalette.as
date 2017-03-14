@@ -21,7 +21,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.POTION;
+			type = GLOBAL.PILL;
 			shortName = "P. Pal";
 			longName = "Pleasure Palette Permapaint";
 			
@@ -390,8 +390,8 @@
 			// Genitalia:
 			if(target.hasGenitals())
 			{
-				var hasCock:Boolean = (target.hasVagina());
-				var hasVagina:Boolean = (target.hasCock());
+				var hasCock:Boolean = (target.hasCock());
+				var hasVagina:Boolean = (target.hasVagina());
 				var totalGenitals:int = (target.totalGenitals());
 				
 				output("\n\nAlthough ignored due to your nipple-related attentions, your");

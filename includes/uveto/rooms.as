@@ -1752,7 +1752,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR E38"] = new RoomClass(this);
 	rooms["UVGR E38"].roomName = "GLACIAL\nWASTELAND";
-	rooms["UVGR E38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn’t far, given the weather. The path you’re on curves from north to east here, bending around a snowman sculpted in the shame of a particularly rotund huskar. Some’s stuck a rock carved into the shape of a canid dick into the snowman’s mouth, and it looks like someone’s mashed their face in between the effigy’s prodigious, plump tits.";
+	rooms["UVGR E38"].description = "You stand at the heart of the glacier, far east of Irestead. Ice and snow stretch out as far as the eye can see -- which isn’t far, given the weather. The path you’re on curves from north to east here, bending around a snowman sculpted in the shape of a particularly rotund huskar. Someone’s stuck a rock carved into the shape of a canid dick into the snowman’s mouth, and it looks like someone’s mashed their face in between the effigy’s prodigious, plump tits.";
 	rooms["UVGR E38"].planet = "PLANET: UVETO VII";
 	rooms["UVGR E38"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR E38"].northExit = "UVGR E36";
@@ -2588,7 +2588,7 @@ public function initUvetoRoomsII():void
 
 	rooms["UVGR M44"] = new RoomClass(this);
 	rooms["UVGR M44"].roomName = "HIDDEN\nSHRINE";
-	rooms["UVGR M44"].description = "The ice here has been shaped into a mostly rounded, smooth chamber. At its center lies an altar, decorated with tribal fetishes and scarred by claw marks all over. There’s no sign of the milodan that you saw here before...";
+	rooms["UVGR M44"].description = "The ice here has been shaped into a mostly rounded, smooth chamber. At its center lies an altar, decorated with tribal fetishes and scarred by claw marks all over.";
 	rooms["UVGR M44"].planet = "PLANET: UVETO VII";
 	rooms["UVGR M44"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR M44"].eastExit = "UVGR O44";

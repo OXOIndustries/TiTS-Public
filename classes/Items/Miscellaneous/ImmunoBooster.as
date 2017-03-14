@@ -23,7 +23,7 @@ package classes.Items.Miscellaneous
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.DRUG;
+			this.type = GLOBAL.POTION;
 			
 			//Used on inventory buttons
 			this.shortName = "ImmBoost";

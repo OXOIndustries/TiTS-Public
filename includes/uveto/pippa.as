@@ -92,8 +92,12 @@ public function showPippa(naked:Boolean = false, oiled:Boolean = false):void
 	}
 	
 	// if naked false, show normal, clothed bust
+	if(!naked && !oiled) showBust("PIPPA");
 	// else if naked true and oiled false, show normal, naked bust
+	else if(naked && !oiled) showBust("PIPPA_NUDE");
 	// else if oiled true, show oiled, naked bust
+	else if(naked && oiled) showBust("PIPPA_NUDE");
+	else showBust("PIPPA_OILED");
 	
 	author("Ascent");
 }
@@ -720,7 +724,7 @@ public function pippaHappyEnding(type:String = "hands"):void
 {
 	clearOutput();
 	clearMenu();
-	showPippa();
+	showPippa(false, true);
 	
 	var genitalType:int;
 	var penisIndex:int;
@@ -751,17 +755,20 @@ public function pippaHappyEnding(type:String = "hands"):void
 		
 		if (genitalType == 0)
 		{
-			output("slowly rubs oil all over your [pc.cock " + penisIndex + "] before gently wrapping her hand around it and gently stroking up and down. ");
+			output("slowly rubs oil all over your [pc.cock " + penisIndex + "] before gently wrapping her hand around it and gently stroking up and down.");
 			
-			if (pc.hasVagina() && !pc.isTaur()) output("With her other hand, she rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you.");
+			if (pc.hasVagina() && !pc.isTaur()) output(" With her other hand, she rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you.");
 		}
 		else
 		{
-			output("slowly rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you. With her other hand, she ");
+			output("slowly rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you.");
 			
-			if (pc.isTaur()) output("reaches under you and ");
-			
-			output("strokes your cock, rubbing oil into it at the same time.");
+			if (pc.hasCock())
+			{
+				output(" With her other hand, she ");
+				if (pc.isTaur()) output("reaches under you and ");
+				output("strokes your [pc.cockNoun " + penisIndex + "], rubbing oil into it at the same time.");
+			}
 		}
 	}
 	else if (type == "mouth")
@@ -784,13 +791,15 @@ public function pippaHappyEnding(type:String = "hands"):void
 			if (pc.cocks[penisIndex].volume() <= 11) output("the whole thing");
 			else output("as much as possible");
 			
-			output(" in her mouth. While her lips stroke up and down your shaft, her tongue swirls around licking at and massaging every square inch it can reach. ");
+			output(" in her mouth. While her lips stroke up and down your shaft, her tongue swirls around licking at and massaging every square inch it can reach.");
 			
-			if (pc.hasVagina() && !pc.isTaur()) output("Though her mouth is wrapped around your [pc.cockNoun " + penisIndex + "], her hands are free, and she uses one to gently rub and fuck your free [pc.pussyNoun " + vaginaIndex + "].");
+			if (pc.hasVagina() && !pc.isTaur()) output(" Though her mouth is wrapped around your [pc.cockNoun " + penisIndex + "], her hands are free, and she uses one to gently rub and fuck your free [pc.pussyNoun " + vaginaIndex + "].");
 		}
 		else
 		{
-			output("[pc.pussy " + vaginaIndex + "] before devouring it entirely. She sucks and licks all around, inside and out, getting at every square inch she can reach. If you didn’t know better, you’d think she was trying to literally eat your pussy. While she tends to your [pc.pussyNoun " + vaginaIndex + "] with her mouth, she uses her free hand to gently stroke your [pc.cockNoun " + penisIndex + "].");
+			output("[pc.pussy " + vaginaIndex + "] before devouring it entirely. She sucks and licks all around, inside and out, getting at every square inch she can reach. If you didn’t know better, you’d think she was trying to literally eat your pussy.");
+			
+			if (pc.hasCock() && !pc.isTaur()) output(" While she tends to your [pc.pussyNoun " + vaginaIndex + "] with her mouth, she uses her free hand to gently stroke your [pc.cockNoun " + penisIndex + "].");
 		}
 	}
 	else if (type == "tits")
@@ -1930,7 +1939,7 @@ public function pippaTalkHer():void
 	output("You decide to ask Pippa about herself. ");
 	
 	if (pc.isBimbo() || pc.isBro()) output("<i>“So, like, why are you a piggy?”</i>");
-	else ("<i>“So, why a pig?”</i>");
+	else output("<i>“So, why a pig?”</i>");
 	
 	output("\n\nShe narrows her eyes at you, ");
 	

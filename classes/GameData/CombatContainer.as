@@ -1410,6 +1410,13 @@ package classes.GameData
 		private function runAway():void
 		{
 			clearOutput();
+			if (pc.inHeat() && hasDickedEnemy())
+			{
+				//Attempt to flee vs enemy with cock.
+				output("You can’t flee, not when there’s a challenge to defeat. Especially not when said challenge has a penis. The mere thought of giving up enrages you!");
+				processCombat();
+				return;
+			}
 			output("You attempt to flee from your opponent");
 			if (hasEnemyOfClass(QueenOfTheDeep))
 			{
@@ -3311,12 +3318,13 @@ package classes.GameData
 			}
 			else
 			{
-				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2;
+				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
 				if (teaseType == "SQUIRT") damage += 5;
 				if (attacker.hasPheromones()) damage += 1 + rand(4);
 				damage *= (rand(31) + 85) / 100;
 				
-				if (damage > 15 + attacker.level * 2) damage = 15 + attacker.level * 2;
+				var cap:Number = 15 + attacker.level * 2 +  attacker.statusEffectv3("Painted Penis");
+				if (damage > cap) damage = cap;
 				damage *= factor;
 				
 				//Tease % resistance.
@@ -3336,8 +3344,9 @@ package classes.GameData
 				//Tease armor - only used vs weapon-type attacks at present.
 				//damage -= target.lustDef();
 
+				cap = 30 + attacker.statusEffectv3("Painted Penis");
 				//Damage cap
-				if (damage > 30) damage = 30;
+				if (damage > cap) damage = cap;
 				//Damage min
 				if (damage < 0) damage = 0;
 				

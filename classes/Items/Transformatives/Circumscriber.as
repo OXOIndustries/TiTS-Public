@@ -22,7 +22,7 @@ package classes.Items.Transformatives
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			shortName = "Circumser";
 			longName = "jar of Circumscriber cream";
 			

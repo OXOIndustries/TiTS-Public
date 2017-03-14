@@ -294,6 +294,26 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && new LaquineEars().lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "F.Laquine";
+		fap.ttHeader = "Female Laquine Hallucination";
+		fap.ttBody = "Attempt to summon the hallucinatory laquine you met while using a pair of Laquine Ears.";
+		fap.func = laquineEarsFemaleWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
+	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "M.Laquine";
+		fap.ttHeader = "Male Laquine Hallucination";
+		fap.ttBody = "Attempt to summon the hallucinatory laquine you met while using a pair of Laquine Ears.";
+		fap.func = laquineEarsMaleWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
 	//PANTY FAPS!
 	if(pc.hasCock()) 
 	{
@@ -307,7 +327,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			fap.func = futaBabePantyfapsRouter;
 			fap.ignoreRandomSelection = false;
 			faps.push(fap);
-		}		
+		}
 	}
 	//PANTY SCHLICK!
 	if(pc.hasVagina())
@@ -1301,9 +1321,9 @@ public function cuntTailFapScene():void {
 	if(pc.cumQ() >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
 	if(pc.cumQ() >= 1000) output(".");
 	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
+	processTime(20+rand(10));
 	pc.loadInCuntTail(pc);
 	pc.orgasm();
-	processTime(20+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1901,18 +1921,18 @@ public function goddamnitJimTAndYourExhibitionism():void
 			output(" Throbbing with need,");
 			if(pc.hasCock()) 
 			{
-				output(" your [pc.cocks] ");
-				if(pc.cockTotal() == 1) output("is pitching a tent");
-				else output("are pitching tents");
-				if(pc.hasVagina()) output(", and ");
+				output(" your [pc.cocks]");
+				if(pc.cockTotal() == 1) output(" is pitching a tent");
+				else output(" are pitching tents");
+				if(pc.hasVagina()) output(", and");
 				else output(" in");
 			}
 			//GotPussies:
 			if(pc.hasVagina()) 
 			{
-				output(" your [pc.pussies] ");
-				if(pc.totalVaginas() == 1) output("is");
-				else output("are");
+				output(" your [pc.pussies]");
+				if(pc.totalVaginas() == 1) output(" is");
+				else output(" are");
 				output(" rubbing wetly against");
 			}
 			output(" the all-too constricting fabric.");
@@ -1935,14 +1955,17 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else if(rooms[currentLocation].planet == "PLANET: MYRELLION") output("myr");
 	else output("onlookers");
 	output(" peer at you curiously, wondering what’s the matter. The longer they look, the fiercer the forbidden flame burns between your loins. You yearn to stroke it, <i>expose</i> it, display it in front of everyone....");
-
+	
+	//NewTexas/Myrellion/Tarkus: 
+	var lustPlanet:Boolean = InCollection(rooms[currentLocation].planet, ["PLANET: NEW TEXAS", "PLANET: MYRELLION", "PLANET: TARKUS"]);
+	
 	//Else // PC is nude:
 	if(pc.isNude() || (pc.isCrotchExposed() && pc.isAssExposed() && pc.isChestExposed()))
 	{
 		output("\n\nYou’re already butt-naked, ");
 		if(pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" or close enough to it, wearing nothing but clothing designed to expose your baser attributes. ");
 		else output("of course, wearing nothing but your [pc.skinFurScales]. ");
-		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("Even here, such blatant nudity is met with lusty looks.");
+		if(lustPlanet) output("Even here, such blatant nudity is met with lusty looks.");
 		else output("The shocked and scandalized looks on their faces gives you a thrill - what you are doing is really, obviously <i>naughty</i>.");
 		output(" They watch on with wide open eyes and mouths as you begin touching your bare body before the gaping onlookers. You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 	}
@@ -1971,7 +1994,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 			}
 		}
 		output(". The gaping onlookers look upon your exposed [pc.skinFurScales] with ");
-		if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("obvious lust");
+		if(lustPlanet) output("obvious lust");
 		else output("a mixture of scandal and lust");
 		output(". You can feel their looks lingering on and roaming around your body, causing you to shiver with delight.");
 	}
@@ -1989,7 +2012,7 @@ public function goddamnitJimTAndYourExhibitionism():void
 	if(pc.biggestTitSize() < 1) output("it");
 	else output("them");
 	output(" and your [pc.nipples]. You grin and slide your hands down and along your [pc.belly]. Their ");
-	if(rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS") output("longing looks");
+	if(lustPlanet) output("longing looks");
 	else output("scandalized and stirred-up stares");
 	output(" follow.");
 	if(!pc.isTaur()) output(" You reach to your loins, drawing their attention <i>there</i>.");
@@ -2001,8 +2024,6 @@ public function goddamnitJimTAndYourExhibitionism():void
 	else if(pc.hasCock()) output("\n\nGrabbing [pc.oneCock], you stroke it before their eyes.");
 	else if(pc.hasVagina()) output("\n\nYou begin to stroke [pc.oneVagina] before their eyes.");
 	else output("\n\nReaching behind you, you begin to finger your [pc.ass] before their eyes.");
-	//NewTexas/Myrellion/Tarkus: 
-	var lustPlanet:Boolean = (rooms[currentLocation].planet == "PLANET: NEW TEXAS" || rooms[currentLocation].planet == "PLANET: MYRELLION" || rooms[currentLocation].planet == "PLANET: TARKUS");
 	if(lustPlanet) output(" A number of them lick their lips.");
 	else output(" There are a few loud gasps and <i>lots</i> of whispering.");
 	output(" You can feel all of them staring at your ");
@@ -2093,12 +2114,12 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) jackOffWithLadyPantiesYouSicko("Lys");
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) jackOffWithLadyPantiesYouSicko("Erra");
-	}	
+	}
 	//More than one pair? Build a menu.
 	else
 	{
 		clearOutput();
-		output("You’ve collected " + pantyFapCount() + " of 10 possible pairs of ladies’ underwear. Which will you use?");
+		output("You’ve collected " + pantyFapCount() + " of " + pantyFapCount(true) + " possible pairs of ladies’ underwear. Which will you use?");
 		clearMenu();
 		var button:int = 0;
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
@@ -2155,12 +2176,13 @@ public function futaBabePantyfapsRouter():void
 		{
 			addButton(button,"Syri’s",futaBabePantyfaps,"Syri","Syri’s Panties","Use Syri’s sky-blue, silky bloomers for a little self-pleasure.");
 			button++;
-		}	
+		}
 		if(pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) 
 		{
 			addButton(button,"Xanthe’s",jackOffWithLadyPantiesYouSicko,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
 			button++;
 		}
+		addButton(13,"Random",pantyFapRandom,1,"Random Panties","Select a random pair of panties to fap to.");
 		addButton(14,"Back",masturbateMenu);
 	}
 }
@@ -2248,26 +2270,107 @@ public function futaBabePantySchlicksRouter():void
 		{
 			addButton(button,"Xanthe’s",pureLadyWaifuPussyRubFap,"Xanthe","Xanthe’s Panties","Use Xanthe’s lacy black panties for a little self-pleasure.");
 			button++;
-		}		
+		}
+		addButton(13,"Random",pantyFapRandom,0,"Random Panties","Select a random pair of panties to schlick to.");
 		addButton(14,"Back",masturbateMenu);
 	}
 }
+public function pantyCollectionList(total:Boolean = false):Array
+{
+	var panties:Array = [];
+	if(total || pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) panties.push("Kiro");
+	if(total || pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) panties.push("Penny");
+	if(total || pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) panties.push("Syri");
+	if(total || pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) panties.push("Saendra");
+	if(total || pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) panties.push("Emmy");
+	if(total || pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) panties.push("[embry.name]");
+	if(total || pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) panties.push("Xanthe");
+	if(total || pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) panties.push("Aina");
+	if(total || pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) panties.push("Briha");
+	if(total || pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) panties.push("Lys");
+	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) panties.push(flags["BEA_TITLE"]);
+	if(total || pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) panties.push("Erra");
+	return panties;
+}
 public function pantyFapCount(total:Boolean = false):Number
 {
-	var count:int = 0;
-	if(total || pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) count++;
-	if(total || pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) count++;
-	if(total || pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.")) count++;
-	if(total || pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink.")) count++;
-	if(total || pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.")) count++;
-	if(total || pc.hasKeyItem("Panties - Embry's - Plain, girly pink panties with little hearts.")) count++;
-	if(total || pc.hasKeyItem("Panties - Xanthe's - Lacy, black siel-silk panties.")) count++;
-	if(total || pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) count++;
-	if(total || pc.hasKeyItem("Panties - Briha's - Nylon, camo-print T-back panties.")) count++;
-	if(total || pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) count++;
-	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) count++;
-	if(total || pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) count++;
-	return count;
+	return pantyCollectionList(total).length;
+}
+
+// Random pany fap select. Can override genital select and/or waifu
+public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
+{
+	var pantyList:Array = pantyCollectionList();
+	if(pantyList.length <= 0)
+	{
+		clearOutput();
+		showName("NO\nPANTIES!");
+		
+		output("You don’t seem to have any panties to fap to!");
+		
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	
+	if(waifu == "") waifu = pantyList[rand(pantyList.length)];
+	
+	if(!pc.hasCock() && !pc.hasVagina())
+	{
+		clearOutput();
+		showName("NO\nGENITALS!");
+		
+		output("You don’t seem to have any genitals to fap with!");
+		
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	if(genitalSelect < 0)
+	{
+		if(pc.isHerm()) genitalSelect = rand(2);
+		else if(pc.hasCock()) genitalSelect = 1;
+		else if(pc.hasVagina()) genitalSelect = 0;
+	}
+	
+	if(genitalSelect == 1)
+	{
+		switch(waifu)
+		{
+			case "Kiro": futaBabePantyfaps("Kiro"); break;
+			case "Penny": futaBabePantyfaps("Penny"); break;
+			case "Syri": futaBabePantyfaps("Syri"); break;
+			case "Saendra": futaBabePantyfaps("Saendra"); break;
+			case "Emmy": futaBabePantyfaps("Emmy"); break;
+			case "[embry.name]": jackOffWithLadyPantiesYouSicko("[embry.name]"); break;
+			case "Xanthe": jackOffWithLadyPantiesYouSicko("Xanthe"); break;
+			case "Aina": jackOffWithLadyPantiesYouSicko("Aina"); break;
+			case "Briha": jackOffWithLadyPantiesYouSicko("Briha"); break;
+			case "Lys": jackOffWithLadyPantiesYouSicko("Lys"); break;
+			case "Mrs. Reasner":
+			case "Beatrice": jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]); break;
+			case "Erra": jackOffWithLadyPantiesYouSicko("Erra"); break;
+		}
+	}
+	else
+	{
+		switch(waifu)
+		{
+			case "Kiro": futaPantiesFapInPussy("Kiro"); break;
+			case "Penny": futaPantiesFapInPussy("Penny"); break;
+			case "Syri": futaPantiesFapInPussy("Syri"); break;
+			case "Saendra": futaPantiesFapInPussy("Saendra"); break;
+			case "Emmy": futaPantiesFapInPussy("Emmy"); break;
+			case "[embry.name]": pureLadyWaifuPussyRubFap("[embry.name]"); break;
+			case "Xanthe": pureLadyWaifuPussyRubFap("Xanthe"); break;
+			case "Aina": pureLadyWaifuPussyRubFap("Aina"); break;
+			case "Briha": pureLadyWaifuPussyRubFap("Briha"); break;
+			case "Lys": pureLadyWaifuPussyRubFap("Lys"); break;
+			case "Mrs. Reasner":
+			case "Beatrice": pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]); break;
+			case "Erra": pureLadyWaifuPussyRubFap("Erra"); break;
+		}
+	}
 }
 
 public function getPantyColor(waifu:String = ""):String
@@ -3898,5 +4001,11 @@ public function adjustableHolofap():void
 	IncrementFlag("HL_STRAPON_FAP_ADJUSTABLE");
 }
 
-
-
+public function laquineEarsMaleWrapper():void
+{
+	new LaquineEars().bunnyguyFapScene(pc,true);
+}
+public function laquineEarsFemaleWrapper():void
+{
+	new LaquineEars().bunnyGirlFapScene(pc,true);
+}

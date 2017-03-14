@@ -211,6 +211,7 @@
 		public static const TYPE_MILODAN:int								= 70;
 		public static const TYPE_WORG:int									= 71;
 		public static const TYPE_SWINE:int									= 72;
+		public static const TYPE_QUAD_LAPINE:int 							= 73;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -285,7 +286,8 @@
 			"Bothrioc",
 			"Milodan",
 			"Worg",
-			"Swine"
+			"Swine",
+			"Quad Lapine"
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -395,7 +397,8 @@
 			TYPE_GABILANI,
 			TYPE_FROG,
 			TYPE_GRYVAIN,
-			TYPE_SWINE
+			TYPE_SWINE,
+			TYPE_QUAD_LAPINE
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -710,6 +713,7 @@
 		public static const FLUID_TYPE_FRUIT_GIRLCUM:int						= 26;
 		public static const FLUID_TYPE_EGGNOG:int								= 27;
 		public static const FLUID_TYPE_PEPPERMINT:int							= 28;
+		public static const FLUID_TYPE_SUGAR:int								= 29;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -741,6 +745,7 @@
 			"Fruit Girl Cum",
 			"Eggnog",
 			"Peppermint Cum",
+			"Sugar Glaze",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -773,6 +778,7 @@
 			"F.GCum",
 			"Eggnog",
 			"Mint.C",
+			"Sugar",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -794,6 +800,7 @@
 			FLUID_TYPE_FRUIT_CUM,
 			FLUID_TYPE_EGGNOG,
 			FLUID_TYPE_PEPPERMINT,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
@@ -807,6 +814,7 @@
 			FLUID_TYPE_NYREA_GIRLCUM,
 			FLUID_TYPE_HRAD_CUM,
 			FLUID_TYPE_FRUIT_GIRLCUM,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -823,6 +831,7 @@
 			FLUID_TYPE_CUM,
 			FLUID_TYPE_GIRLCUM,
 			FLUID_TYPE_BLUEBERRY_YOGURT,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		// HAIRTYPES
@@ -991,9 +1000,9 @@
 		public static const TIMES_CELISE_IN_BALLS:int                  = 2;
 
 		//ITEM TYPES
-		public static const PILL:int                                   = 0;
-		public static const FOOD:int                                   = 1;
-		public static const POTION:int                                 = 2;
+		public static const PILL:int                                   = 0; // Used for medicinal/misc and mostly legal drugs.
+		public static const FOOD:int                                   = 1; // Used for consumable food items.
+		public static const POTION:int                                 = 2; // Used for drinks/recovery items.
 		public static const MELEE_WEAPON:int                           = 3;
 		public static const RANGED_WEAPON:int                          = 4;
 		public static const ARMOR:int                                  = 5;
@@ -1001,13 +1010,13 @@
 		public static const UPPER_UNDERGARMENT:int                     = 7;
 		public static const LOWER_UNDERGARMENT:int                     = 8;
 		public static const ACCESSORY:int                              = 9;
-		public static const DRUG:int                                   = 10;
+		public static const DRUG:int                                   = 10; // Used for illegal or detrimental drugs/consumables.
 		public static const CLOTHING:int                               = 11;
-		public static const ALL:int                                    = 12; //Used for pawn shops!
-		public static const GADGET:int 								   = 13;
+		public static const ALL:int                                    = 12; // Used for pawn shops!
+		public static const GADGET:int 								   = 13; // Used for devices/appliances.
 		public static const EXPLOSIVECONSUMABLE:int					   = 14;
 		public static const QUEST_ITEM:int							   = 15; // Used for quest-related items.
-		public static const GEM:int 								   = 16;
+		public static const GEM:int 								   = 16; // Used for very valuable items.
 		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices.
 		
 		public static const ITEM_TYPE_NAMES:Array = [

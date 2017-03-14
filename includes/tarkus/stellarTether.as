@@ -118,9 +118,6 @@ public function askAUGCTroopAboutStellarTetherMission():void {
 
 public function tamWolfBustDisplay(mode:int = 1):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["TAMWOLF"] == "GATS") return "TAMWOLF";
-	
 	var bustName:String = "TAMWOLF";
 	
 	if(mode == 0) bustName += "_DAMAGED";
@@ -664,9 +661,6 @@ public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 
 public function kaskaBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["KASKA"] != "GATS") return "KASKA";
-	
 	var sBust:String = "KASKA";
 	if(nude) sBust += "_NUDE";
 	return sBust;

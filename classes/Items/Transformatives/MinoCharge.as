@@ -710,9 +710,9 @@ package classes.Items.Transformatives
 			}
 			
 			//High chance for increased refractoryRate
-			if (target.hasCock() && target.refractoryRate < 50 && rand(4) > 0 && changes < tChanges)
+			if (target.hasCock() && target.refractoryRate < 30 && rand(4) > 0 && changes < tChanges)
 			{
-				target.refractoryRate += 10;
+				target.refractoryRate += 5;
 				changes++;
 				
 				output("\n\nYou can feel your [pc.balls] revving up, getting faster and faster at producing fresh [pc.cumNoun] to replace your spent loads so that you’re always ready to fuck the next cow-girl in line as soon as you’re done pulling the last one off your dick.");

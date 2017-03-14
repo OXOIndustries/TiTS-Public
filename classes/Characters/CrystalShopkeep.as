@@ -2,7 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.*;
+	import classes.Items.Miscellaneous.FungalExtract;
 	import classes.Items.Combat.CrystalShard;
 	import classes.Items.Transformatives.GooBallRed;
 	import classes.Items.Transformatives.GooBallOrange;

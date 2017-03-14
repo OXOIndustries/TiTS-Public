@@ -439,10 +439,9 @@
 				//Hair
 				if(pc.hasHair() && pc.hairType != GLOBAL.HAIR_TYPE_REGULAR && changes < changeLimit && rand(4) == 0)
 				{
-					kGAMECLASS.output("\n\n");
 					if(pc.hairTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR))
 					{
-						kGAMECLASS.output("Your scalp itches, the [pc.hair] covering it falling away as a mass of new filaments sprouts in their place. <b>You have hair!</b>");
+						kGAMECLASS.output("\n\nYour scalp itches, the [pc.hair] covering it falling away as a mass of new filaments sprouts in their place. <b>You have hair!</b>");
 						changes++;
 						pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 					}
@@ -452,10 +451,9 @@
 				//Beard
 				if(pc.hasBeard() && pc.beardType != GLOBAL.HAIR_TYPE_REGULAR && changes < changeLimit && rand(4) == 0)
 				{
-					kGAMECLASS.output("\n\n");
 					if(pc.beardTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR))
 					{
-						kGAMECLASS.output("Your face itches and you go to scratch your [pc.beard]. In its place, however, you find that it is instead covered in course, yet normal-feeling, hair. <b>You now have regular facial hair!</b>");
+						kGAMECLASS.output("\n\nYour face itches and you go to scratch your [pc.beard]. In its place, however, you find that it is instead covered in course, yet normal-feeling, hair. <b>You now have regular facial hair!</b>");
 						changes++;
 						pc.beardType = GLOBAL.HAIR_TYPE_REGULAR;
 					}

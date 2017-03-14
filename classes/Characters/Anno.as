@@ -30,7 +30,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 8;
+			this._latestVersion = 9;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -194,6 +194,7 @@
 			this.vaginas[0].wetnessRaw = 6;
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 20;
+			this.vaginas[0].hymen = false;
 			vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 			
 			isUniqueInFight = true;
@@ -256,6 +257,10 @@
 			delete d.resistances;
 			delete d.lustVuln;
 			delete d.bonusLustVuln;
+		}
+		public function UpgradeVersion8(dataObject:Object):void
+		{
+			dataObject.vaginas[0].hymen = false;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

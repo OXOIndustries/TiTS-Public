@@ -17,9 +17,6 @@ public function bustDisplayMilodanMale(nude:Boolean = false):String
 {
 	var sBust:String = "MILODANMALE";
 	
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["MILODANMALE"] != "SHOU") return sBust;
-	
 	if(nude) sBust += "_NUDE";
 	
 	return sBust;

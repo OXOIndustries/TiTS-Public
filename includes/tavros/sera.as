@@ -193,18 +193,9 @@ public function approachSera():void
 
 public function seraMenu(toLeave:Boolean = false):void
 {
+	seraStoreSetup();
+	
 	clearMenu();
-	shopkeep = chars["SERA"];
-	if(flags["ZODEE_GALOQUEST"] != undefined)
-	{
-		if(flags["PURCHASED_SERAS_GALO"] == undefined)
-		{
-			if(!chars["SERA"].hasItem(new GaloMax())) chars["SERA"].inventory.push(new GaloMax());
-		}
-		else chars["SERA"].destroyItem(new GaloMax());
-	}
-	chars["SERA"].keeperBuy = "While you’re accessing the shopping terminal, Sera produces a file and goes to work on her nails to keep them honed to a razor-like sharpness. You suppose there’s not much for her to do while she waits on you to make a purchase.\n";
-
 	addButton(0,"Appearance",seraAppearance);
 	addButton(1,"Buy",buyItem);
 	addButton(2,"Sell",seraSellCheck);
@@ -264,11 +255,58 @@ public function seraMenu(toLeave:Boolean = false):void
 	else addButton(14,"Back",mainGameMenu);
 }
 
+public function chrysalisInventory():Array
+{
+	var inventory:Array = [];
+	
+	inventory.push(new TerranTreats());
+	inventory.push(new Estrobloom());
+	inventory.push(new Tittyblossom());
+	inventory.push(new Pussybloom());
+	inventory.push(new Pussyblossom());
+	inventory.push(new ManUp());
+	inventory.push(new Condensol());
+	inventory.push(new DendroGro());
+	inventory.push(new Rainbotox());
+	inventory.push(new Chocolac());
+	inventory.push(new SweetTreat());
+	
+	return inventory;
+}
+public function seraStoreSetup():void 
+{
+	chars["SERA"].keeperBuy = "While you’re accessing the shopping terminal, Sera produces a file and goes to work on her nails to keep them honed to a razor-like sharpness. You suppose there’s not much for her to do while she waits on you to make a purchase.\n";
+	
+	chars["SERA"].inventory = chrysalisInventory();
+	
+	// Galo
+	if(flags["ZODEE_GALOQUEST"] != undefined && flags["PURCHASED_SERAS_GALO"] == undefined)
+	{
+		chars["SERA"].inventory.push(new GaloMax());
+	}
+	// XXX-Rated
+	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined)
+	{
+		chars["SERA"].inventory.push(new Clippex());
+	}
+	if(flags["SERA_UNLOCK_SEMENS"] != undefined)
+	{
+		chars["SERA"].inventory.push(new SemensFriend());
+	}
+	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined)
+	{
+		chars["SERA"].inventory.push(new Lucifier());
+	}
+	
+	shopkeep = chars["SERA"];
+}
+
 //Sell Routing
 public function seraInDebt():Boolean
 {
 	if(flags["SERA_PARTY_INVITE"] != undefined && flags["SERA_PARTY_INVITE"] >= 4) return false;
 	if(flags["SERA_REPAID_LOAN"] != undefined) return false;
+	if(flags["SERA_BUSINESS_SETUP"] != undefined && (days - flags["SERA_BUSINESS_SETUP"] >= 365)) return false;
 	return true;
 }
 public function seraDebtCheck():Boolean
@@ -1099,7 +1137,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>“Alright, meat, I’ll go easy on you this time. But next time...”</i>");
 			//End first-time variant
 		}
-		//{Start here If PC is a cockslut OR PC is an Ausar-type:}
+		//Start here If PC is a cockslut OR PC is an Ausar-type:
 		output("\n\n<i>“Woof!”</i> you answer, wagging ");
 		if(pc.tailCount > 0) output("your [pc.tails]");
 		else output("your [pc.butt] like a tail");

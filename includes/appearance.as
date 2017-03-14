@@ -86,7 +86,7 @@ public function appearance(forTarget:Creature):void
 			if(target.isAssExposed()) output2(" ass");
 			output2(" to the world.");
 		}
-		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed() && !Foxfire.canUseTailsOrFurAsClothes(target))
+		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed() && !target.canUseTailsOrFurAsClothes())
 		{
 			if(target.exhibitionism() >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");
@@ -102,7 +102,7 @@ public function appearance(forTarget:Creature):void
 
 		//Face
 		output2("\n\n");
-		if(InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LAPINE)) {
+		if(InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LAPINE) && !target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) {
 			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2("Your face is human in shape and structure, with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("Under your " + target.skinFurScales(true,true,false,true) + " you have a human-shaped head with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face is fairly human in shape, but is covered in " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
@@ -119,6 +119,15 @@ public function appearance(forTarget:Creature):void
 				else if(target.statusEffectv3("Mimbrane Face") >= 8 && target.statusEffectv3("Mimbrane Face") < 13) output2(" Your lips look deliciously pillowy.");
 				else if(target.statusEffectv3("Mimbrane Face") >= 13) output2(" Your lips appear lusciously large and undeniably kissable.");
 			}
+		}
+		else if(target.faceType == GLOBAL.TYPE_LAPINE && target.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+		{
+			output2("You have a short-muzzled face");
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2(" with " + target.skin(true,true,true) + ".");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES)) output2(" covered in " + target.skinFurScales(true,true,false,true) + ".");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK)) output2(" framed with " + target.skinFurScales(true,true,false,true) + ".");
+			else output2(".");
+			output2(" The constant twitches of your nose and the length of your incisors gives your visage an obvious bunny-like cuteness.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_HUMANMASKED) {
 			//appearance for skinheads
@@ -431,6 +440,7 @@ public function appearance(forTarget:Creature):void
 		}
 		
 		var nonFurrySkin:Boolean = InCollection(target.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
+		var isFloppyEars:Boolean = (InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE) && (target.RQ() < 50 || target.AQ() < 50));
 		
 		//Hair
 		//if bald
@@ -479,9 +489,16 @@ public function appearance(forTarget:Creature):void
 				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" hidden");
 				output2(" on the sides of your " + headNoun + " serve as your ears.");
 			}
-			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN)
+			else if(InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_LEITHAN))
 			{
-				output2(" A pair of floppy rabbit ears stick up from the top of your " + headNoun + ", flopping around as you [target.walk].");
+				if(target.earType == GLOBAL.TYPE_QUAD_LAPINE) output2(" Two pairs of");
+				else output2(" A pair of");
+				if(isFloppyEars) output2(" floppy");
+				else output2(" alert");
+				output2(" rabbit ears stick up from the top of your " + headNoun + ",");
+				if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
+				else output2(" swaying and darting");
+				output2(" as you [target.walk].");
 			}
 			else if(target.earType == GLOBAL.TYPE_KANGAROO)
 			{
@@ -617,7 +634,17 @@ public function appearance(forTarget:Creature):void
 				output2(" which act as auricles are quite noticeable.");
 			}
 			else if(target.earType == GLOBAL.TYPE_LIZAN) output2(" The " + target.hairDescript(true,true) + " atop your head makes it nigh-impossible to notice the two small rounded openings that are your ears.");
-			else if(target.earType == GLOBAL.TYPE_LAPINE || target.earType == GLOBAL.TYPE_LEITHAN) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you [target.walk].");
+			else if(InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_LEITHAN))
+			{
+				if(target.earType == GLOBAL.TYPE_QUAD_LAPINE) output2(" Two pairs of");
+				else output2(" A pair of");
+				if(isFloppyEars) output2(" floppy");
+				else output2(" alert");
+				output2(" rabbit ears stick up out of your " + target.hairDescript(true,true) + ",");
+				if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
+				else output2(" swaying and darting");
+				output2(" as you [target.walk].");
+			}
 			else if(target.earType == GLOBAL.TYPE_KANGAROO)
 			{
 				output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long");
@@ -683,7 +710,7 @@ public function appearance(forTarget:Creature):void
 			else if(target.earType == GLOBAL.TYPE_SWINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of pointed, floppy pig ears.");
 			if(target.hasAntennae())
 			{
-				if(target.earType == GLOBAL.TYPE_LAPINE)
+				if(InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE))
 				{
 					if(target.antennae == 1) output2(" A limp [target.antenna] also grows");
 					else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " limp [target.antennae] also grow");
@@ -1131,6 +1158,21 @@ public function appearance(forTarget:Creature):void
 			else output2(" A coat of " + target.furColor + " fur covers your arms below the shoulders, and your fingers are tipped with dark brown pads. ");
 			output2("They’re softer and more supple than the finest leather.");
 		}
+		else if(target.armType == GLOBAL.TYPE_LAPINE)
+		{
+			if(target.hasArmFlag(GLOBAL.FLAG_THICK)) 
+			{
+				if(pc.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your thick, gooey arms ");
+				else output2(" Your thick, fur-covered arms ");
+				output2("end with broad forearms and big fingers. In contrast, delicate pads line the underside.");
+			}
+			else
+			{
+				if(pc.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms ");
+				else output2(" Your furry arms ");
+				output2("end with small, delicate paws. Each finger has a soft pad on the underside as well. You couldn't ask for a less threatening pair of mits.");
+			}
+		}
 		else if(target.armType == GLOBAL.TYPE_BADGER) 
 		{
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms are tipped with clawed fingers.");
@@ -1484,10 +1526,20 @@ public function appearance(forTarget:Creature):void
 			output2(" A tapered tail hangs down from just above your " + target.buttDescript() + ". It sways back and forth, assisting you with keeping your balance.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_LAPINE) {
-			output2(" A short,");
-			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
-			else output2(" soft");
-			output2(" bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don’t think about it.");
+			if(pc.tailCount == 1)
+			{
+				output2(" A short,");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
+				else output2(" soft");
+				output2(" bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you're distracted.");
+			}
+			else
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " short,");
+				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
+				else output2(" soft");
+				output2(" bunny tails sprout just above your " + target.buttDescript() + ", twitching constantly whenever your attention is elsewhere. Or whenever they want, really. It's hard to control that many rebellious little poofs.");
+			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_AVIAN) {
 			output2(" A tail of");
@@ -2718,16 +2770,8 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(target.balls == 1) sTesticleDesc = target.ballDescript(true,true);
 		
 		// Scrotum type
-		var ballsackType:int = 0;
-		var ballsackColor:String = "";
-		if(target.hasStatusEffect("Special Scrotum"))
-		{
-			ballsackType = target.statusEffectv1("Special Scrotum");
-			ballsackColor = target.getStatusTooltip("Special Scrotum");
-		}
-		else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)) ballsackType = GLOBAL.FLAG_FURRED;
-		else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || (target.legType == GLOBAL.TYPE_GRYVAIN && target.hasLegFlag(GLOBAL.FLAG_SCALED))) ballsackType = GLOBAL.FLAG_SCALED;
-		else if(target.skinType == GLOBAL.SKIN_TYPE_GOO) ballsackType = GLOBAL.FLAG_GOOEY;
+		var ballsackType:int = target.scrotumType();
+		var ballsackColor:String = target.scrotumColor();
 		
 		var sBallsackDesc:String = "";
 		switch(ballsackType)
@@ -2736,13 +2780,13 @@ public function crotchStuff(forTarget:Creature = null):void
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your fuzzy " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.";
 				else if(target.cockTotal() == 0) sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
 				else sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in plush, " + (ballsackColor != "" ? ballsackColor : target.furColor) + " fluff, makes it absolutely squeezable!";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in plush, " + (ballsackColor != "" ? ballsackColor : target.furColor) + " fluff makes it absolutely squeezable!";
 				break;
 			case GLOBAL.FLAG_SCALED:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your scaly " + target.sackDescript(true,true) + " hugs your " + sTesticleDesc + " tightly against your body.";
 				else if(target.cockTotal() == 0) sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
 				else sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under your " + target.multiCockDescript() + ".";
-				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in sleek, " + (ballsackColor != "" ? ballsackColor : target.scaleColor) + " scales, makes it smooth to the touch.";
+				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in sleek, " + (ballsackColor != "" ? ballsackColor : target.scaleColor) + " scales makes it smooth to the touch.";
 				break;
 			case GLOBAL.FLAG_GOOEY:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping ooze and holding " + sTesticleDesc + " snugly against you.";
@@ -3263,11 +3307,6 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		output2(" The head is also covered by stretchy foreskin, ensuring that it is kept protected and sensitive.");
 	}
 	
-	//Candy colored cocks
-	if(target.cocks[x].cockColor == "red and white") {
-		output2(" Like a candy cane, it’s striped red and white.");
-	}
-	
 	//KNOT STUFF
 	if(target.hasKnot(x))
 	{
@@ -3293,6 +3332,25 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		}
 	}
 	else trace("NO KNOT");
+	
+	//Painted wieners
+	if(target.hasStatusEffect("Painted Penis") && target.statusEffectv1("Painted Penis") == x)
+	{
+		output2(" Like some kind of perverse canvas, " + (target.cockTotal() == 1 ? "your" : "the") + " cock is painted");
+		switch(flags["COCK_PAINTED_DESIGN"])
+		{
+			case 1: output2(" in a glossy, bright pink with a pattern of red lipstick prints and pretty stars along its length. Lines travel across its form, leading to text that reads, “fuck me” at the root."); break;
+			case 2: output2(" in an iridescent, glittery rainbow of fractal patterns all along its length that twinkles in the light. Layered on top its glossy surface is a pattern of kiss marks dominated by a larger pair of plump green lips and text that reads, “Galaxy’s Best Dick” in big looping letters."); break;
+			case 3: output2(" in an ultra-shiny black, adorned with a textured design emulating a faux horse harness across its length. A circular ornament near the harness’ baseband bears a line of embossed text that reads, “Free Stud Services” to show how much of a stallion you are."); break;
+			case 4: output2(" in a glowing neon orange, striped with black lines to emulate a construction hazard sign. The knot is colored to resemble a massive metallic wrecking ball, chained to the urethra, and decorated with the text that reads, “Bitch Wrecker” in bright orange."); break;
+			default: output2(" in a rich, regal-looking blue with jutting purple-to-red rounded-tipped spikes along the shaft and topped with a gem-decorated golden crown at the tip. There is text that reads, “Sex God” on its " + target.knotDescript(x) + ", showcasing its majesty."); break;
+		}
+	}
+	//Candy colored cocks
+	else if(target.cocks[x].cockColor == "red and white") {
+		output2(" Like a candy cane, " + (target.cockTotal() == 1 ? "your" : "the") + " cock is striped red and white.");
+	}
+	
 	// Mimbranes
 	if(x == 0 && target.hasStatusEffect("Mimbrane Cock") && target.statusEffectv3("Mimbrane Cock") > 3)
 	{

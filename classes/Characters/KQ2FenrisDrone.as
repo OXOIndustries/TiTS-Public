@@ -169,9 +169,6 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			// 9999 - Special artist exceptions!
-			if(kGAMECLASS.gameOptions.configuredBustPreferences["FENRISDRONEIV"] == "GATS") return "FENRISDRONEIV";
-			
 			var bustName:String = "FENRISDRONEIV";
 			
 			if(skinTone == "black") bustName += "_NIGHT";

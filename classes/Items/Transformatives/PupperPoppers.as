@@ -414,20 +414,19 @@ package classes.Items.Transformatives
 							if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 							{
 								output(", your [pc.leg] painfully shifting into a digitigrade leg");
-								if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output(" and ");
+								if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output(" and");
 							}
 							//Leg not Paws:
 							if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS))
 							{
-								if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(", your [pc.leg] ");
-								output("slowly gaining an adorable padded paw, tipped with claws.");
+								if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(", your [pc.leg]");
+								output(" slowly gaining an adorable padded paw, tipped with claws");
 							}
 							//Leg is Digitigrade and Paws:
 							if(pc.hasLegFlag(GLOBAL.FLAG_PAWS) && pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(", the muscles readjusting into a more canine shape");
 							output(".");
 							if(!pc.hasLegFlag(GLOBAL.FLAG_FURRED)) output(" The discomfort is replaced by an itch as hairs starts to grow. Soon your leg is completely covered in a beautiful coat of [pc.furColor] fur.");
-							output(" Seconds later, a seam forms in the middle, and your leg splits into two. ");
-							output(" When it’s all over, you stand up on <b>your single canine leg.</b>");
+							output(" Seconds later, a seam forms in the middle, and your leg splits into two. When it’s all over, you stand up on <b>your new canine legs.</b>");
 							pc.legCount = 2;
 							pc.genitalSpot = 0;
 						}
