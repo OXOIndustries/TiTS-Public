@@ -208,6 +208,7 @@ public function configureMails():void
 	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("pippa_nuru", pippaNuruEmail, "New Service", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("pippa_crew", pippaCrewEmail, "Request", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
 }
 
 public function cuzName():String
@@ -378,6 +379,18 @@ public function pippaNuruEmail():String
 	ret += "\n\nYou’ve been a good customer, and a good friend, so I’d like to open up a new service of mine to you. Ever heard of a Nuru massage? Well, the short of it is, we’ll both get naked and nice and oiled up, and I’ll massage every last bit of you, using my whole body. Sound good? If it does, I hope you’ll stop by soon.";
 	
 	ret += "\n\nYour favorite masseuse,";
+	ret += "\nPippa";
+	
+	return ret;
+}
+
+public function pippaCrewEmail():String
+{
+	var ret:String = "Hi " + pc.short + ",";
+	
+	ret += "\n\nI've been thinking recently, and I'd like to talk to you about something.  Or more like, I have a request for you.  Please stop by when you get a chance.";
+	
+	ret += "\n\nSee you soon,";
 	ret += "\nPippa";
 	
 	return ret;
