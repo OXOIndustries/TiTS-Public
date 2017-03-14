@@ -804,7 +804,7 @@ package classes.Items.Transformatives
 				if(pc.tailCountUnlocked(0))
 				{
 					textBuff += "Your balance shifts so suddenly that you nearly pitch forward onto your face. Luckily you windmill your arms just right and catch your balance, but not before you hear something ‘thump’ on the ground behind you. Turning back, you see your [pc.tails], desiccated and dead. That makes sense, you suppose. <b>The bottom of your tailbone has";
-					if(pc.originalRace = "human") textBuff += " returned to its normal human-like state";
+					if(pc.originalRace == "human") textBuff += " returned to its normal human-like state";
 					else textBuff += " become strangely naked and bare";
 					textBuff += ", leaving you bereft of posterior adornments.</b>";
 					AddLogEvent(ParseText(textBuff),"passive");
@@ -1439,7 +1439,9 @@ package classes.Items.Transformatives
 				if(pc.bRows() == 1) textBuff += "you now fit";
 				else textBuff += "your biggest tits have shrunk down to";
 				
-				pc.breastRows[pc.biggestTitRow()].breastRatingRaw -= (1 + rand(4));
+				x = pc.biggestTitRow();
+				pc.breastRows[x].breastRatingRaw -= (1 + rand(4));
+				if(pc.breastRows[x].breastRatingRaw < 0) pc.breastRows[x].breastRatingRaw = 0;
 				
 				textBuff += ParseText(" [pc.breastCupSize " + pc.biggestTitRow() + "]</b>. If you want huge tits, it might be best to get them back after you finish up with the Laquine Ears. After all, how would you hop about with eighty pound boobs hanging off your chest?");
 			}
