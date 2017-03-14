@@ -1221,7 +1221,7 @@ public function knockUpRaskChance():void
 			flags["RASKVEL_EGG_COUNT"] = 3 + bonusEggs;
 			//Five days till eggpop!
 			flags["RASKVEL_PREG_TIMER"] = 5;
-			pc.clearHeat(true);
+			pc.clearRut();
 		}
 	}
 }

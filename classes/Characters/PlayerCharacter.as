@@ -410,7 +410,7 @@ package classes.Characters
 				updateExhibitionism(totalDays);
 				myrVenomUpdate(totalDays);
 			}
-			if(isFullyWombPregnant() && inHeat()) removeHeat(true);
+			if(isFullyWombPregnant()) clearHeat();
 			
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);

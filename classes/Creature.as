@@ -8380,6 +8380,7 @@
 		}
 		public function clearHeat(eventLog:Boolean = true):void
 		{
+			if(!inHeat()) return;
 			removeStatusEffect("Heat");
 			if(eventLog) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
 		}
@@ -8389,6 +8390,7 @@
 		}
 		public function clearRut(eventLog:Boolean = true):void
 		{
+			if(!inRut()) return;
 			removeStatusEffect("Rut");
 			removeStatusEffect("Lagonic Rut");
 			if(eventLog) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
@@ -16537,10 +16539,6 @@
 				if (spacingsB) msg += " ";
 				output(msg);
 				return true;
-			}
-			if (this is PlayerCharacter)
-			{
-				if(inRut()) removeRut(true);
 			}
 			return false;
 		}

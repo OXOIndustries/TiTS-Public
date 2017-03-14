@@ -3586,7 +3586,7 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			// Reset Taivra's preg timer.
 			flags["TAIVRA_FERTILE"] = 0;
 			IncrementFlag("FUCKED_TAIVRAS_BETA");
-			pc.clearHeat();
+			pc.clearRut();
 			processTime(30 + rand(21));
 			pc.orgasm();
 			
