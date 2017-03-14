@@ -9298,12 +9298,12 @@
 		}
 		public function removeTails():void
 		{
+			tailType = GLOBAL.TYPE_HUMAN;
 			tailCount = 0;
-			tailType = 0;
+			clearTailFlags();
 			tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 			tailGenitalArg = 0;
 			tailGenitalColor = "";
-			clearTailFlags();
 			if(this is PlayerCharacter)
 			{
 				flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;

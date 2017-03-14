@@ -354,19 +354,9 @@ public function purgeParasites(pType:String = "all"):Boolean
 	
 	if(pType == "tail" || pType == "all")
 	{
-		// Do the removal shit
 		if (pc.hasParasiteTail())
 		{
-			pc.tailType = GLOBAL.TYPE_HUMAN;
-			pc.tailCount = 0;
-			pc.tailFlags = [];
-			pc.tailGenital = 0;
-			pc.tailGenitalArg = 0;
-			pc.tailGenitalColor = "";
-			
-			flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-			flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-			
+			pc.removeTails();
 			parasites = true;
 		}
 	}
@@ -375,7 +365,6 @@ public function purgeParasites(pType:String = "all"):Boolean
 		if (attachedMimbranes() > 0)
 		{
 			removeMimbranes();
-			
 			parasites = true;
 		}
 	}
