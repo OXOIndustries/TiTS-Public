@@ -10,21 +10,14 @@ package classes.Ships.Map
 	 */
 	public class ModularShipRoom extends ShipRoom
 	{
-		[Serialize]
 		public var _fittedModule:ShipModule;
 		public function get FittedModule():ShipModule
 		{
 			return _fittedModule;
 		}
-		
-		override public function LoadSaveObject(saveObject:Object):void
+		public function set FittedModule(v:ShipModule):void
 		{
-			super.LoadSaveObject(saveObject);
-			
-			if (FittedModule != null)
-			{
-				FittedModule.Owner = this.Owner;
-			}
+			_fittedModule = v;
 		}
 		
 		override public function get Name():String

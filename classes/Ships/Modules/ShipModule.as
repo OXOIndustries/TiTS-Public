@@ -1,5 +1,6 @@
 package classes.Ships.Modules 
 {
+	import classes.Creature;
 	import classes.DataManager.Serialization.UnversionedSaveableV2;
 	import classes.Ships.IOwned;
 	import classes.Ships.IOwner;
@@ -13,7 +14,7 @@ package classes.Ships.Modules
 	 */
 	public class ShipModule extends UnversionedSaveableV2 implements IOwned
 	{
-		public function ShipModule(owner:IOwner) 
+		public function ShipModule(owner:IOwner = null) 
 		{
 			_owner = owner;
 			_name = "Unnamed Module";
@@ -44,6 +45,24 @@ package classes.Ships.Modules
 		protected var _baseValue:int;
 		public function get BaseValue():int { return _baseValue; }
 		
+		[Serialize]
+		public var _roomIndexReplacement:String;
+		public function get RoomIndexReplacement():String { return _roomIndexReplacement; }
+		public function set RoomIndexReplacement(v:String):void { _roomIndexReplacement = v; }
+		
+		[Serialize]
+		public var _assignedCrewMember:String;
+		public function get AssignedCrewMember():String { return _assignedCrewMember; }
+		public function set AssignedCrewMember(v:String):void { _assignedCrewMember = v; }
+		
+		protected var _hookedRoom:ModularShipRoom;
+		public function get HookedRoom():ModularShipRoom { return _hookedRoom; }
+		public function set HookedRoom(v:ModularShipRoom):void { _hookedRoom = v; }
+		
+		protected var _hookedCrew:Creature;
+		public function get HookedCrew():Creature { return _hookedCrew; }
+		public function set HookedCrew(v:Creature):void { _hookedCrew = v; }
+		
 		protected var _room:ShipRoom;
 		public function get Room():ShipRoom { return _room; }
 		
@@ -53,6 +72,8 @@ package classes.Ships.Modules
 		protected var _grantedAbilites:Array;
 		public function get GrantedAbilities():Array { return _grantedAbilites; }
 		
+		protected var _canBeStaffed:Boolean;
+		public function get CanBeStaffed():Boolean { return _canBeStaffed; }
 	}
 
 }

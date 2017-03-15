@@ -8,7 +8,7 @@ package classes.Ships.Map
 	 * ...
 	 * @author Gedan
 	 */
-	public class ShipMap implements IOwned, IOwner, ISaveable
+	public class ShipMap implements IOwned, IOwner
 	{
 		private var _owner:IOwner;
 		public function get Owner():IOwner { return _owner; }
@@ -19,44 +19,7 @@ package classes.Ships.Map
 		
 		public var RoomDefinitions:Object;
 		
-		// We're doing this because we don't want to save the entire RoomDefinitions structure always.
-		override public function GetSaveObject():Object
-		{
-			var saveObject:Object = super.GetSaveObject();
-			
-			for (var key:String in RoomDefinitions)
-			{
-				var tRoom:ShipRoom = RoomDefinitions[key];
-				if (tRoom is ModularShipRoom)
-				{
-					if (saveObject["rooms"] == undefined) saveObject["rooms"] = { };
-					
-					saveObject["rooms"][tRoom.Index] = tRoom.GetSaveObject();
-				}
-			}
-			return saveObject;
-		}
-		
-		override public function get LoadSaveObject(saveObject:Object):void
-		{
-			if (saveObject["rooms"] != undefined)
-			{
-				var rooms:Object = saveObject["rooms"];
-				for (var key:String in rooms)
-				{
-					var tRoom:Object = rooms[key];
-					if (RoomDefinitions[key] != undefined)
-					{
-						RoomDefinitions[key].LoadSaveObject(tRoom);
-					}
-				}
-			}
-			delete saveObject["rooms"];
-			
-			super.LoadSaveObject(saveObject);
-		}
-		
-		private var Rooms:Array;
+		public var Rooms:Array;
 		private var CoordinateStride:Vector3D;
 		
 		public var Index:String;

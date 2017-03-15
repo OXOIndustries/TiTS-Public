@@ -11,6 +11,7 @@
 	import classes.Items.Melee.*
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Transformatives.*;
+	import classes.Ships.Modules.ShipModule;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -73,7 +74,8 @@
 				"_skipRound",
 				"OnTakeDamageOutput",
 				"isUniqueInFight",
-				"_long"
+				"_long",
+				"assignedModule"
 			);
 			
 			cocks = new Array();
@@ -18394,6 +18396,8 @@
 			if (r.indexOf("ausar") != -1 || r.indexOf("canine") != -1) return d;
 			return (prefDog ? d : c);
 		}
+		
+		public var assignedModule:ShipModule;
 	}
 }
 

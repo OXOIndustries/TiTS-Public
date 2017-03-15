@@ -1,11 +1,17 @@
 package classes.Ships 
 {
+	import classes.Creature;
 	import classes.DataManager.Serialization.VersionedSaveableV2;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.ShipCombat.DamageTypes.*;
-	import classes.Ships.Map.ShipMap;
+	import classes.Ships.Map.*;
 	import classes.Ships.Modules.*;
 	import classes.Ships.Modules.UpgradeModules.*;
+	import classes.kGAMECLASS;
+	
+	//TODO: Weapon assignments
+	//TODO: Console assignments
+	//TODO: Support console position assignments middlemanning the bonuses from the flat OwningCreature
 	
 	/**
 	 * ...
@@ -13,6 +19,14 @@ package classes.Ships
 	 */
 	public class SpaceShip extends VersionedSaveableV2 implements IOwner
 	{
+		private var _owner:IOwner;
+		public function get Owner():IOwner { return _owner; }
+		public function set Owner(owner:IOwner):void { _owner = v; }
+	
+		// Owner is essentially the pilot, so we'll have a nicer accessor in addition to the base IOwned 
+		// interface even though we don't implement IOwned directly (because it has serialization implications)
+		public function get OwningCharacter():Creature { return (_owner == null ? return null : _owner as Creature); }
+		
 		public function SpaceShip() 
 		{
 			HullMaxBase = 100;
@@ -78,7 +92,14 @@ package classes.Ships
 				m += payload.hullMultiplier;
 			}
 			
-			return h * multi;
+			// TODO: @Fenoxo: Sign off on potential hull bonus
+			// I don't really know what the intended value ranges are for any of this, so its hard to ass-pull a good solution yet
+			if (OwningCharacter != null)
+			{
+				h += OwningCharacter.willpower();
+			}
+			
+			return h * m;
 		}
 		
 		public function get HullPercent():Number { return Hull / HullMax; }
@@ -221,6 +242,13 @@ package classes.Ships
 				m += payload.targetingMultiplier;
 			}
 			
+			// 20% of pilots aim or will (whichever is highest)
+			if (OwningCharacter != null)
+			{
+				var maxStat:Number = Math.max(OwningCharacter.willpower(), OwningCharacter.aim());
+				t += maxStat * 0.2;
+			}
+			
 			return t * m;
 		}
 		
@@ -235,6 +263,13 @@ package classes.Ships
 			{
 				t += payload.thrust;
 				m += payload.thrustMultiplier;
+			}
+			
+			// 20% of pilots phys or will (whichever is highest)
+			if (OwningCharacter != null)
+			{
+				var maxStat:Number = Math.max(OwningCharacter.physique(), OwningCharacter.willpower());
+				t += (maxStat * 0.2);
 			}
 
 			return t * m;
@@ -252,6 +287,11 @@ package classes.Ships
 				a += payload.agility;
 				m += payload.agilityMultiplier;
 			}
+			
+			if (OwningCharacter != null)
+			{
+				a += (OwningCharacter.reflexes() * 0.2);
+			}
 
 			return a * m;
 		}
@@ -268,6 +308,11 @@ package classes.Ships
 				s += payload.systems;
 				m += payload.systemsMultiplier;
 			}
+			
+			if (OwningCharacter != null)
+			{
+				s += (OwningCharacter.intelligence() * 0.2);
+			}
 
 			return s * m;
 		}
@@ -283,6 +328,11 @@ package classes.Ships
 			{
 				a += payload.aim;
 				m += payload.aimMultiplier;
+			}
+			
+			if (OwningCharacter != null)
+			{
+				a += OwningCharacter.aim();
 			}
 
 			return a * m;
@@ -469,9 +519,6 @@ package classes.Ships
 			return inv;
 		}
 		
-		protected var _internalMapClass:Class;
-		public function get InternalMapClass():Class { return _internalMapClass; }
-		
 		//} endregion
 		
 		protected var _internalMap:ShipMap;
@@ -481,19 +528,24 @@ package classes.Ships
 		
 		/* These are modules that all ships must have, and what implements the basics of all of the various ship mechanics */
 		/* Initially (at least), these will not be user-customisable, but may be in the future. */
-		protected var _lightdriveModule:LightdriveModule;
+		[Serialize]
+		public var _lightdriveModule:LightdriveModule;
 		public function get Lightdrive():LightdriveModule { return _lightdriveModule; }
 		
-		protected var _engineModule:EngineModule;
+		[Serialize]
+		public var _engineModule:EngineModule;
 		public function get Engine():EngineModule { return _engineModule; }
 		
-		protected var _shieldModule:ShieldModule;
+		[Serialize]
+		public var _shieldModule:ShieldModule;
 		public function get ShieldGenerator():ShieldModule { return _shieldModule; }
 		
-		protected var _reactorModule:ReactorModule;
+		[Serialize]
+		public var _reactorModule:ReactorModule;
 		public function get Reactor():ReactorModule { return _reactorModule; }
 		
-		protected var _capacitorModule:CapacitorModule;
+		[Serialize]
+		public var _capacitorModule:CapacitorModule;
 		public function get CapacitorBattery():CapacitorModule { return _capacitorModule; }
 		
 		/* These are the customised modules that the player may have fitted to the ship */
@@ -518,6 +570,81 @@ package classes.Ships
 			return _fittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
 				return e is OffensiveModule;
 			});
+		}
+		public function GetWeaponModules():Array
+		{
+			return _fittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
+				return e is WeaponModule;
+			});
+		}
+		
+		public function EquipModule(newModule:ShipModule, targetRoom:ModularShipRoom = null):void
+		{
+			// Ensure the target room is present within this ship object if it is not null
+			if (targetRoom != null)
+			{
+				if (_internalMap == null)
+				{
+					throw new Error("A room was specified, but the ship has no internal map structure available.");
+					return;
+				}
+				if (_internalMap.Rooms.indexOf(targetRoom) == -1)
+				{
+					throw new Error("A room was specified, but it is not contained in the target ships internal map.");
+					return;
+				}
+				
+				newModule.RoomIndexReplacement = targetRoom.Index;
+				newModule.HookedRoom = targetRoom;
+				targetRoom.FittedModule = newModule;
+			}
+				
+			// If the module isn't already fitted to this ship, do the needful to do so
+			if (_fittedModules.indexOf(newModule) == -1)
+			{
+				_fittedModules.push(newModule);
+				newModule.Owner = this;
+			}
+		}
+		public function UnequipModule(oldModule:ShipModule):void
+		{
+			if (_fittedModules.indexOf(oldModule) != -1)
+			{
+				_fittedModules.splice(_fittedModules.indexOf(oldModule), 1);
+			}
+			
+			if (oldModule.Owner != null)
+			{
+				oldModule.Owner = null;
+			}
+			
+			if (oldModule.HookedRoom != null)
+			{
+				oldModule.RoomIndexReplacement = null;
+				oldModule.HookedRoom.FittedModule = null;
+				oldModule.HookedRoom = null;
+			}
+		}
+		
+		public function AssignCrewToModule(crew:Creature, module:ShipModule):void
+		{
+			UnassignCrewFromModule(crew);
+			
+			if (module != null)
+			{
+				crew.assignedModule = module;
+				module.AssignedCrewMember = crew.Index;
+				module.HookedCrew = crew;
+			}
+		}
+		public function UnassignCrewFromModule(crew:Creature):void
+		{
+			if (crew.assignedModule != null)
+			{
+				crew.assignedModule.AssignedCrewMember = null;
+				crew.assignedModule.HookedCrew = null;
+				crew.assignedModule = null;
+			}
 		}
 		
 		//} endregion
@@ -860,6 +987,54 @@ package classes.Ships
 			}
 
 			return res;
+		}
+		
+		//} endregion
+		
+		//{ region Serialization hooks
+		
+		override public function LoadSaveObject(o:Object):void
+		{
+			super.LoadSaveObject(o);
+			
+			HydrateModules();
+		}
+		
+		// Weird naming, but this is what I'm using to indicate we need to "fill up" properties after 
+		// deserialization. ie we get basis from the serialization system, and then have to use
+		// thsoe basics to "inflate" the full range of properties.
+		private function HydrateModules():void
+		{
+			// Ensure the lookup properties in the map container & modules point to the correct objects
+			for (var i:int = 0; i < _fittedModules.length; i++)
+			{
+				var m:ShipModule = _fittedModules[i] as ShipModule;
+
+				HydrateModuleRoom(m);
+				HydrateModuleCrew(m);
+			}
+			
+			HydrateModuleCrew(Lightdrive);
+			HydrateModuleCrew(Engine);
+			HydrateModuleCrew(ShieldGenerator);
+			HydrateModuleCrew(Reactor);
+			HydrateModuleCrew(Capacitor);
+		}
+		private function HydrateModuleRoom(m:CapacitorModule):void
+		{
+			if (m.RoomIndexReplacement != null && m.RoomIndexReplacement.length > 0)
+			{
+				var room:ModularShipRoom = _internalMap.RoomDefinitions[m.RoomIndexReplacement];
+				EquipModule(m, room);
+			}
+		}
+		private function HydrateModuleCrew(m:ShipModule):void
+		{
+			if (m.AssignedCrewMember != null && m.AssignedCrewMember.length > 0)
+			{
+				var crew:Creature = kGAMECLASS.chars[m.AssignedCrewMember];
+				m.HookedCrew = crew;
+			}
 		}
 		
 		//} endregion

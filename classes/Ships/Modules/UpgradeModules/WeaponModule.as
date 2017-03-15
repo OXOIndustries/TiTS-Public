@@ -1,4 +1,4 @@
-package classes.Ships.Modules 
+package classes.Ships.Modules.UpgradeModules 
 {
 	import classes.Ships.IOwner;
 	/**

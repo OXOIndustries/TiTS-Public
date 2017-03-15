@@ -10,7 +10,7 @@ package classes.Ships.Map
 	 * ...
 	 * @author Gedan
 	 */
-	public class ShipRoom extends UnversionedSaveableV2 implements IOwned
+	public class ShipRoom implements IOwned
 	{
 		private var _owner:IOwner;
 		public function get Owner():IOwner { return _owner; }
