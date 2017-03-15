@@ -1879,14 +1879,31 @@ package classes.Items.Transformatives
 					textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
 					
 					pc.earType = GLOBAL.TYPE_LAPINE;
+					pc.earLength = 6 + rand(7);
 				}
 				else
 				{
 					textBuff += "The redundant Laquine Ears fall off your head, the securing band crumbling away. The ears themselves crackle softly as their color fades to ash gray, then they break apart into ear-shaped piles of dust. <b>Your Laquine Ears have run out of juice. Time to re-up!</b>";
 				}
 			}
-			else textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You'll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it's possible for you to get the ears too. Shucks.";
+			else
+			{
+				textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You’ll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it’s possible for you to get the ears too. Shucks.";
+			}
 			AddLogEvent(ParseText(textBuff),"passive");
+		}
+		// Persistent status effect Hotfix
+		public function laquineEarsRemove(pc:Creature):void
+		{
+			clearOutput();
+			kGAMECLASS.showName("LAQUINE\nEARS");
+			
+			output("By the moment you touch them, the Laquine Ears crackle, rapidly lose their color and drop off the securing headband, which in turn, also disintigrates and falls from your head. <b>You have removed the laquine ears.</b>");
+			pc.removeStatusEffect("Laquine Ears");
+			
+			clearMenu();
+			addButton(0, "Next", kGAMECLASS.mainGameMenu);
 		}
 	}
 }
+
