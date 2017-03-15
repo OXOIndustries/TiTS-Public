@@ -256,10 +256,10 @@ public function givePippaFoodMenu(func:Function):void
 			foodList.push(pc.inventory[i].shortName);
 			btnSlot++;
 		}
-		if (foodList.length > 14 && (i + 1) == foodList.length)
+		if (foodList.length > 14 && (i + 1) == pc.inventory.length)
 		{
 			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-			addButton(btnSlot, "Back", mainGameMenu);
+			addButton(btnSlot, "Back", func, [NEVERMIND]);
 		}
 	}
 	
