@@ -2527,7 +2527,7 @@
 		}
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
-			if(inventory.length == 0) return false;
+			if(arg == null || inventory.length == 0) return false;
 			var foundAmount:int = 0;
 			for(var x:int = 0; x < inventory.length; x++)
 			{
@@ -2538,7 +2538,7 @@
 		}
 		public function hasItemByName(arg:String, amount:int = 1):Boolean
 		{
-			if (inventory.length == 0) return false;
+			if (arg == null || inventory.length == 0) return false;
 			
 			var foundAmount:int = 0;
 			for(var x:int = 0; x < inventory.length; x++)
@@ -2550,6 +2550,8 @@
 		}
 		public function hasItemByType(ref:Class, amount:int = 1):Boolean
 		{
+			if (ref == null || inventory.length == 0) return false;
+			
 			var amt:int = 0;
 			
 			for (var i:uint = 0; i < inventory.length; i++)
@@ -2559,9 +2561,22 @@
 			if (amt >= amount) return true;
 			return false;
 		}
+		public function hasItemType(arg:int, amount:int = 1):Boolean
+		{
+			if (inventory.length == 0) return false;
+			
+			var amt:int = 0;
+			
+			for (var i:uint = 0; i < inventory.length; i++)
+			{
+				if (inventory[i].type == arg) amt += inventory[i].quantity;
+			}
+			if (amt >= amount) return true;
+			return false;
+		}
 		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
-			if (inventory.length == 0 || amount == 0) return;
+			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			
@@ -2596,7 +2611,7 @@
 		
 		public function destroyItemByReference(arg:ItemSlotClass):void
 		{
-			if (inventory.length == 0) return;
+			if (arg == null || inventory.length == 0) return;
 			
 			arg.quantity--;
 			
@@ -2608,7 +2623,7 @@
 		
 		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
-			if (inventory.length == 0 || amount == 0) return;
+			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			
@@ -2642,7 +2657,7 @@
 		}
 		public function destroyItemByType(type:Class, amount:int = 1):void
 		{
-			if (inventory.length == 0 || amount == 0) return;
+			if (type == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			

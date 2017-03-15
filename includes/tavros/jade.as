@@ -134,24 +134,18 @@ public function jadeStoreSetup():void
 	chars["JADE"].inventory.push(new AusarTreats());
 	if(pc.level >= 2)
 	{
-		if(!chars["JADE"].hasItemByType(AmberSeed)) chars["JADE"].inventory.push(new AmberSeed());
+		chars["JADE"].inventory.push(new AmberSeed());
 	}
-	else chars["JADE"].destroyItem(new AmberSeed());
 	if(pc.level >= 3)
 	{
-		if(!chars["JADE"].hasItemByType(Catnip)) chars["JADE"].inventory.push(new Catnip());
+		chars["JADE"].inventory.push(new Catnip());
 	}
-	else chars["JADE"].destroyItem(new Catnip());
-
 	chars["JADE"].inventory.push(new CaninePoppers());
-	
 	chars["JADE"].inventory.push(new DracoGuard());
-
 	if(pc.level >= 4)
 	{
-		if(!chars["JADE"].hasItemByType(Foxfire)) chars["JADE"].inventory.push(new Foxfire());
+		chars["JADE"].inventory.push(new Foxfire());
 	}
-	else chars["JADE"].destroyItem(new Foxfire());
 	chars["JADE"].inventory.push(new Furball());
 	chars["JADE"].inventory.push(new HorsePill());
 	chars["JADE"].inventory.push(new KnotAProblem());
