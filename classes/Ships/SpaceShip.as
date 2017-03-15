@@ -316,7 +316,26 @@ package classes.Ships
 		protected var _shieldHardness:Number;
 		public function get ShieldHardness():Number
 		{
-			var s:Number = 
+			var s:Number = ShieldGenerator.ShieldHardness;
+			var m:Number = 1.0;
+
+			var dm:Array = GetDefensiveModules();
+			for (var i:int = 0; i < dm.length; i++)
+			{
+				var dmm:DefensiveModule = dm[i] as DefensiveModule;
+
+				s += dmm.BonusShieldHardness;
+				m += dmm.BonusShieldHardnessMultiplier;
+			}
+
+			var payload:Object = GetCombinedStatusPayloads("Bonus Shield");
+			if (payload != null)
+			{
+				s += payload.shieldHardness;
+				m += payload.shieldHardnessMultiplier;
+			}
+
+			return s * m;
 		}
 		
 		protected var _power:Number;
@@ -367,7 +386,6 @@ package classes.Ships
 		
 		protected var _storageTypeGeneral:int;
 		public function get StorageTypeGeneral():int { return _storageTypeGeneral; }
-		public function set StorageTypeGeneral(v:int):void { _storageTypeGeneral = v; }
 		public function StorageTypeGeneralTotalSlots():int 
 		{ 
 			var slots:int = _storageTypeGeneral;
@@ -384,7 +402,6 @@ package classes.Ships
 		
 		protected var _storageTypeConsumable:int;
 		public function get StorageTypeConsumable():int { return _storageTypeConsumable; }
-		public function set StorageTypeConsumable(v:int):void { _storageTypeConsumable = v; }
 		public function StorageTypeConsumableTotalSlots():int
 		{ 
 			var slots:int = _storageTypeConsumable; 
@@ -401,7 +418,6 @@ package classes.Ships
 		
 		protected var _storageTypeArmor:int;
 		public function get StorageTypeArmor():int { return _storageTypeArmor; }
-		public function set StorageTypeArmor(v:int):void { _storageTypeArmor = v; }
 		public function StorageTypeArmorTotalSlots():int
 		{ 
 			var slots:int = _storageTypeArmor;
@@ -418,7 +434,6 @@ package classes.Ships
 		
 		protected var _storageTypeWeapons:int;
 		public function get StorageTypeWeapons():int { return _storageTypeWeapons; }
-		public function set StorageTypeWeapons(v:int):void { _storageTypeWeapons = v; }
 		public function StorageTypeWeaponsTotalSlots():int
 		{ 
 			var slots:int = _storageTypeWeapons;
@@ -526,6 +541,17 @@ package classes.Ships
 			});
 		}
 		
+		public function AddBonusHullResistances(inEm:Number, inKin:Number, inExp:Number, inTherm:Number, inAll:Number):void
+		{
+			AddTemporaryModifier("Bonus Hull Resistance", {
+				allRes: inAll,
+				em: inEm,
+				kin: inKin,
+				exp: inExp,
+				therm: inTherm
+			});
+		}
+		
 		public function AddBonusShieldEffect(inShield:Number, inShieldMulti:Number, inRechargeRound:Number, inRechargeMinute:Number, inRechargeMulti:Number):void
 		{
 			AddTemporaryModifier("Bonus Shield", { 
@@ -534,6 +560,17 @@ package classes.Ships
 				shieldRechargePerRound: inRechargeRound,
 				shieldRechargeMultiplier: inRechargeMulti,
 				shieldRechargePerMinute: inRechargeMinute
+			});
+		}
+		
+		public function AddBonusShieldResistances(inEm:Number, inKin:Number, inExp:Number, inTherm:Number, inAll:Number):void
+		{
+			AddTemporaryModifier("Bonus Shield Resistance", {
+				allRes:inAll,
+				em: inEm,
+				kin: inKin,
+				exp: inExp,
+				therm: inTherm
 			});
 		}
 		
@@ -781,26 +818,18 @@ package classes.Ships
 				var dmm:DefensiveModule = dm[i] as DefensiveModule;
 				res.CombineResistances(dmm.BonusHullResistances);
 			}
-			
-			if (HasStatusEffect("Hull Resistance Bonus"))
+
+			var payload:Object = GetCombinedStatusPayloads("Bonus Hull Resistance");
+			if (payload != null)
 			{
-				var se:StatusEffectPayload = StatusEffects["Hull Resistance Bonus"];
 				var bonusR:ShipTypeCollection = new ShipTypeCollection();
-				
-				if (se.Payload.AllRes != undefined)
-				{
-					bonusR.em.DamageValue += se.Payload.AllRes;
-					bonusR.kin.DamageValue += se.Payload.AllRes;
-					bonusR.therm.DamageValue += se.Payload.AllRes;
-					bonusR.exp.DamageValue += se.Payload.AllRes;
-				}
-				
-				if (se.Payload.em != undefined) bonusR.em.DamageValue += se.Payload.em;
-				if (se.Payload.kin != undefined) bonusR.kin.DamageValue += se.Payload.kin;
-				if (se.Payload.therm != undefined) bonusR.therm.DamageValue += se.Payload.therm;
-				if (se.Payload.exp != undefined) bonusR.exp.DamageValue += se.Payload.exp;
-				
-				res.combineResistances(bonusR);
+
+				bonusR.em.DamageValue += (payload.allRes + payload.em);
+				bonusR.kin.DamageValue += (payload.allRes + payload.kin);
+				bonusR.exp.DamageValue += (payload.allRes + payload.exp);
+				bonusR.therm.DamageValue += (payload.allRes + payload.therm);
+
+				res.CombineResistances(bonusR);
 			}
 			
 			return res;
@@ -817,26 +846,20 @@ package classes.Ships
 				res.CombineResistances(dmm.BonusShieldResistances);
 			}
 			
-			if (HasStatusEffect("Shield Resistance Bonus"))
+			var payload:Object = GetCombinedStatusPayloads("Bonus Shield Resistance");
+			if (payload != null)
 			{
-				var se:StatusEffectPayload = StatusEffects["Shield Resistance Bonus"];
 				var bonusR:ShipTypeCollection = new ShipTypeCollection();
-				
-				if (se.Payload.AllRes != undefined)
-				{
-					bonusR.em.DamageValue += se.Payload.AllRes;
-					bonusR.kin.DamageValue += se.Payload.AllRes;
-					bonusR.therm.DamageValue += se.Payload.AllRes;
-					bonusR.exp.DamageValue += se.Payload.AllRes;
-				}
-				
-				if (se.Payload.em != undefined) bonusR.em.DamageValue += se.Payload.em;
-				if (se.Payload.kin != undefined) bonusR.kin.DamageValue += se.Payload.kin;
-				if (se.Payload.therm != undefined) bonusR.therm.DamageValue += se.Payload.therm;
-				if (se.Payload.exp != undefined) bonusR.exp.DamageValue += se.Payload.exp;
-				
-				res.combineResistances(bonusR);
+
+				bonusR.em.DamageValue += (payload.allRes + payload.em);
+				bonusR.kin.DamageValue += (payload.allRes + payload.kin);
+				bonusR.exp.DamageValue += (payload.allRes + payload.exp);
+				bonusR.therm.DamageValue += (payload.allRes + payload.therm);
+
+				res.CombineResistances(bonusR);
 			}
+
+			return res;
 		}
 		
 		//} endregion
