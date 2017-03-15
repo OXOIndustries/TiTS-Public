@@ -14,6 +14,7 @@ package classes.Items.Transformatives
 	import classes.Engine.Utility.indefiniteArticle;
 	import classes.Engine.Utility.getPlanetName;
 	import classes.Engine.Utility.IncrementFlag;
+	import classes.Engine.Utility.rand;
 	
 	
 	public class LaquineEars extends ItemSlotClass
@@ -57,13 +58,6 @@ package classes.Items.Transformatives
 			this.version = this._latestVersion;
 		}
 		
-		protected function rand(max: Number): Number {
- 			return int(Math.random() * max);
- 		}
- 		public function hasSharkScales():Boolean
- 		{
- 			return (kGAMECLASS.pc.skinType == GLOBAL.SKIN_TYPE_SCALES && kGAMECLASS.pc.hasSkinFlag(GLOBAL.FLAG_LUBRICATED));
- 		}
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
