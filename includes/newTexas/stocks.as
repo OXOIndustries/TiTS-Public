@@ -219,7 +219,7 @@ public function useMiscreantManor2():void
 		output("\n\nYou twist against the rubber, but you can’t escape her fingers no matter how you writhe, nor the excitement she teases from your netherlips. In no time at all, she has your [pc.hips] twitching back against her, aching for her to slip another finger inside. She pushes her cock in instead, giving you a nice warm, cat-dick to tease your cunny. It’s still twitching, smacking into your g-spot, abusing your passage. Despite its small size, it soon has you mewling every bit as eagerly as its owner.");
 		pc.cuntChange(x,5);
 		output("\n\nYour perverse vocalizations soon lure another figure. That, or they heard the unsubtle ’smack-smack-smack’ of a happy couple fucking... or they smelled the scent of a ");
-		if(pc.hasStatusEffect("Heat") || pc.isBimbo() || pc.race() == "ausar" || pc.race() == "half-ausar") output("bitch in heat");
+		if(pc.inHeat() || pc.isBimbo() || pc.race() == "ausar" || pc.race() == "half-ausar") output("bitch in heat");
 		else output("woman in need");
 		output(". Whatever the case, they jog faster once you start openly moaning from the sudden appearance of the cat-girl’s fingers on [pc.oneClit].");
 	}

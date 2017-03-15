@@ -399,7 +399,7 @@ public function sylvieMenu():void
 	}
 	//[COMPLETE] Rutted PCs Munch Sylvie out like their life depends on it.
 	//Overrides normal sex menu. Add to normal Sylvie menu
-	if(pc.hasStatusEffect("Rut") && pc.hasCock() && pc.cockThatFits(sylvieCuntSize()) >= 0)
+	if(pc.inRut() && pc.hasCock() && pc.cockThatFits(sylvieCuntSize()) >= 0)
 	{
 		output("\n\nYour nose twitches as you catch a faint hint of Sylvie’s feminine odor. It burns a line straight down your nose and all the way into your crotch, suffusing your [pc.cocks] with thoughts of how wet her pussy would get with you inside of it, how lewd it would look after you knocked her up, claimed her as your own personal breeding sow. You barely hold yourself back from jumping the big, fuckable taur-girl, suppressing your rutting body’s desires at great personal effort... for now.");
 		addButton(0,"Rut Sex",ruttedSylvieBangBusPheromoneHotPotato,undefined,"Rut Sex","You can’t think of any kind of sex other than following your body’s breeding instincts at this point.");
@@ -2547,7 +2547,7 @@ public function sylvieRutFunPart4():void
 	if(sylvieDrunkLevel() >= 2) output(", then messily kisses you. She staggers up on stumbly legs shortly after, heedless of the dripping trail she leaves behind her");
 	output(". You could stay in and clean up or step out, delighting in the thick layer of sexual fluids coating you from head to toe.");
 
-	pc.removeStatusEffect("Rut");
+	pc.clearRut(false);
 	sexedSylvie(1);
 	processTime(5);
 	clearMenu();

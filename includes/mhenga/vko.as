@@ -522,10 +522,10 @@ public function stressReliefGo():void
 	output("\n\nThose wonderfully tight, vacuum-sealing lips pop off of your spent shaft, briefly curving into a smile. V-Ko blows you a kiss, and coos, <i>\"It was my pleasure to help ensure your good health, [pc.name]. Please return should you ever feel the need to publicly release.\"</i> The nursedroid stands, straightens, and her eyes flash white, losing the pink-tinged hue they held during her oral service. <i>\"Do you require medical assistance, [pc.name]?\"</i>");
 	//Titflated or buttflated
 	if(pc.cumQ() > 500) output("\n\nShe presses a hose from a socket in the wall against her [pc.cum]-swollen tit and sighs, deflating back to her normal proportions in short order. You wonder what she does with all that spooge....");
-	if(pc.hasStatusEffect("Rut"))
+	if(pc.inRut())
 	{
 		output("\n\n<b>Somehow, the nursedroid has eased your overwhelming desire to breed.</b>");
-		pc.setStatusMinutes("Rut",1);
+		pc.clearRut(false);;
 	}
 	//Orgasm, pass 7 minutes
 	processTime(7);
@@ -615,10 +615,10 @@ public function VKoStressReliefForLadyginas():void
 	output(".");
 
 	output("\n\nAs awareness returns to you, you see V-Ko's smiling face looking back at you. Her eyes lose their pinkish glow, but she purrs, <i>\"Be sure and see me if breeding stress ever overwhelms you.\"</i>");
-	if(pc.hasStatusEffect("Heat"))
+	if(pc.inHeat())
 	{
 		output("\n\n<b>V-Ko has helped you overcome your heat. You feel so much more calm now.</b>");
-		pc.setStatusMinutes("Heat",1);
+		pc.clearHeat(false);
 	}
 	output("\n\nShe stands, leaving you sitting on the ground. You don't even know how you got down there, and V-Ko doesn't show any sign of telling you. She's back to offering her normal services again.");
 	pc.orgasm();
