@@ -42,6 +42,9 @@ package classes.Items.Armor
 			this.critBonus = 0;
 			this.evasion = 5;
 			this.fortification = 0;
+			
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
 
 			this.version = _latestVersion;
 		}

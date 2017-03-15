@@ -525,7 +525,7 @@ public function stressReliefGo():void
 	if(pc.inRut())
 	{
 		output("\n\n<b>Somehow, the nursedroid has eased your overwhelming desire to breed.</b>");
-		pc.clearRut(false);;
+		pc.clearRut(false);
 	}
 	//Orgasm, pass 7 minutes
 	processTime(7);

@@ -5,6 +5,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.kGAMECLASS;
+	import classes.Creature;
 	
 	public class HoneypotBra extends ItemSlotClass
 	{
@@ -42,7 +43,7 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 4;
+			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
@@ -62,5 +63,30 @@
 			super.sexiness = v;
 		}
 		*/
+		
+		public function toggleSexiness(toggleOn:Boolean = false):void
+		{
+			hasRandomProperties = true;
+			if(toggleOn)
+			{
+				sexiness = 4;
+				addFlag(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			}
+			else
+			{
+				sexiness = 0;
+				deleteFlag(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			}
+		}
+		
+		override public function onEquip(targetCreature:Creature):void
+		{
+			toggleSexiness(targetCreature.hasStatusEffect("Bra Transparency"));
+		}
+		
+		override public function onRemove(targetCreature:Creature):void
+		{
+			toggleSexiness(false);
+		}
 	}
 }
