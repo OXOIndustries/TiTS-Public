@@ -1677,6 +1677,11 @@ package classes.Items.Transformatives
 				pc.orgasm();
 				kGAMECLASS.applyCumSoaked(pc);
 			}
+			if(masturbate)
+			{
+				clearMenu();
+				addButton(0, "Next", kGAMECLASS.mainGameMenu);
+			}
 		}
 		public function bunnyguyFapScene(pc:Creature,fap:Boolean = false):void
 		{
@@ -1857,6 +1862,11 @@ package classes.Items.Transformatives
 				IncrementFlag("LAQUINE_GENT_BONED");
 				if(!fap) AddLogEvent(textBuff,"passive");
 				else output(textBuff);
+			}
+			if(fap)
+			{
+				clearMenu();
+				addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
 		public function laquineEarsFinale(pc:Creature):void
