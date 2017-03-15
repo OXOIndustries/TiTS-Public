@@ -16,8 +16,8 @@ package classes.Ships.Library
 			_model = "FSP5";
 			_baseValue = 150000;
 			
-			HullMax = 3500;
-			Hull = HullMax;
+			HullMaxBase = 3500;
+			BaseHull = HullMaxBase;
 			
 			ShieldsMax = 10000;
 			Shields = ShieldsMax;

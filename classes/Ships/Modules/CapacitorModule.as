@@ -10,10 +10,15 @@ package classes.Ships.Modules
 		public function CapacitorModule(owner:IOwner) 
 		{
 			super(owner);
+			
+			_powerStorage = 500;
 		}
 		
-		private var _powerStorage:int = 500;
-		public function get PowerStorage():int { return 500; }
+		protected var _powerStorage:int;
+		public function get PowerStorage():int { return _powerStorage; }
+		
+		protected var _rechargeRate:Number;
+		public function get RechargeRate():Number { return _rechargeRate; }
 	}
 
 }

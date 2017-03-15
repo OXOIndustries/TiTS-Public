@@ -27,7 +27,7 @@ package classes.Engine.ShipCombat.DamageTypes
 			"Electromagnetic",
 			"Kinetic",
 			"Explosive",
-			"Thermal"
+			"Thermal",
 			"Unresistable"
 		];
 		

@@ -10,13 +10,21 @@ package classes.Ships.Modules
 		public function EngineModule(owner:IOwner) 
 		{
 			super(owner);
+			
+			_agilityMultiplier = 1.0;
 		}
 		
-		private var _agilityMultiplier:Number = 1.0;
-		private var _maneuveringSpeed:Number = 5.0;
+		protected var _agilityBonus:Number;
+		protected var _agilityMultiplier:Number;
 		
+		protected var _thrustBonus:Number;
+		protected var _thrustMultiplier:Number;
+		
+		public function get AgilityBonus():Number { return _agilityBonus; }
 		public function get AgilityMultiplier():Number { return _agilityMultiplier; }
-		public function get ManeuveringSpeed():Number { return _maneuveringSpeed; }
+		
+		public function get ThrustBonus():Number { return _thrustBonus; }
+		public function get ThrustMultiplier():Number { return _thrustMultiplier; }
 	}
 
 }

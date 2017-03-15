@@ -201,7 +201,83 @@ package classes.Engine.ShipCombat.DamageTypes
 		
 		public function ApplyResistances(resistances:ShipTypeCollection):void
 		{
+			if (resistances.HasFlag(ShipDamageFlag.EASY))
+			{
+				Multiply(0.5);
+			}
 			
+			if (_flagCollection.length > 0)
+			{
+				for (var i:uint = 0; i < _flagCollection.length; i++)
+				{
+					if (resistances.CanTrigger(_flagCollection[i].Flag))
+					{
+						var df:DamageFlagTrigger = resistances.GetTrigger(_flagCollection[i].Flag).GetTriggerValues();
+						
+						switch(df.Operation)
+						{
+							case ShipDamageFlag.OP_MUL:
+								Multiply(df.Value);
+								break;
+							case ShipDamageFlag.OP_ADD:
+								Add(df.Value);
+								break;
+							default:
+								break;
+						}
+					}
+				}
+			}
+			
+			for (i = 0; i < _typeCollection.length; i++)
+			{
+				if (_typeCollection[i].DamageValue > 0)
+				{
+					if (resistances.GetType(i).Damagevalue > 0)
+					{
+						_typeCollection[i].DamageValue *= ((100.0 - resistances.GetType(i).DamageValue) / 100.0);
+					}
+					else
+					{
+						_typeCollection[i].DamageValue *= ((100.0 + Math.abs(resistances.GetType(i).DamageValue)) / 100.0);
+					}
+				}
+			}
+		}
+		
+		public function CombineResistances(resistances:ShipTypeCollection):void
+		{
+			Add(resistances);
+			
+			for (var i:uint = 0; i < _typeCollection.length; i++)
+			{
+				if (_typeCollection[i].DamageValue > 100) _typeCollection[i].DamageValue = 100;
+			}
+		}
+		
+		public function GetTotal():Number
+		{
+			var total:Number = 0;
+			for (var i:uint = 0; i < _typeCollection.length; i++)
+			{
+				total += _typeCollection[i].DamageValue;
+			}
+			return total;
+		}
+		
+		public function MakeCopy():ShipTypeCollection
+		{
+			var tc:ShipTypeCollection = new ShipTypeCollection();
+			
+			for (var i:uint = 0; i < _typeCollection.length; i++)
+			{
+				tc._typeCollection[i].DamageValue = _typeCollection[i].DamageValue;
+			}
+			
+			for (i = 0; i < _flagCollection.length; i++)
+			{
+				tc._flagCollection.push(_flagCollection[i].MakeCopy());
+			}
 		}
 	}
 

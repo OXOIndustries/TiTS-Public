@@ -14,6 +14,10 @@ package classes.Engine.ShipCombat.DamageTypes
 		public static const SHIELDBREAKER:uint = 1;
 		public static const ARMORPENETRATING:uint = 2;
 		public static const CAPNEUT:uint = 3;
+		public static const EASY:uint = 4;
+		public static const TYPE_SHIELD:uint = 5;
+		public static const TYPE_ARMOR:uint = 6;
+		public static const TYPE_HULL:uint = 7;
 		
 		public static const FlagNames:Array = [];
 		
