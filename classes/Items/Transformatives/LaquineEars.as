@@ -1923,6 +1923,7 @@ package classes.Items.Transformatives
 				{
 					textBuff += "<b>Your laquine ears expire</b>, but they do not crumble away as you might expect. Instead, they grow heavier, not with a payload of microsurgeons but with warm, pulsating flesh. There’s no ignoring it. The second pair of ears have grown onto you, and you can feel the new rabbit ears brushing back and forth against the old. <b>You have four bunny ears.</b> They look kind of nice, if you don’t mind appearing like you’ve suffered an obvious mutation.";
 					pc.earType = GLOBAL.TYPE_QUAD_LAPINE;
+					if(pc.earLength < 6) pc.earLength = 6 + rand(7);
 				}
 				else
 				{
