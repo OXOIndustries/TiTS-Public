@@ -1383,7 +1383,7 @@ public function rideSyriInYerCoochYaWinner():void
 	{
 		output("\n\n<i>“What do you have here?”</i> Syri asks. <i>“This little pussy is sopping wet. ");
 		//(if PC is in heat)
-		if(pc.hasStatusEffect("Heat")) output("So wet. I’ll bet you’re in heat aren’t you, little pussy? I know the signs");
+		if(pc.inHeat()) output("So wet. I’ll bet you’re in heat aren’t you, little pussy? I know the signs");
 		//(else) 
 		output("You might as well be in heat with all this girlcum");
 

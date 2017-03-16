@@ -440,11 +440,11 @@ public function appearance(forTarget:Creature):void
 		}
 		
 		var nonFurrySkin:Boolean = InCollection(target.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
-		var isFloppyEars:Boolean = (InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE) && (target.RQ() < 50 || target.AQ() < 50));
+		var isFloppyEars:Boolean = (InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE) && (target.RQ() < 50 || target.AQ() < 50 || target.earLength >= target.tallness/2));
 		
 		//Hair
 		//if bald
-		if(target.hairLength == 0) {
+		if(!target.hasHair()) {
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output2(" You have no hair, only a" + (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) ? "" : " thin") + " layer of " + target.skinNoun(false,true) + " where your hair should be.");
 			else output2(" You have no hair, showing only shiny " + target.skinFurScales() + " where your hair should be.");
 			
@@ -496,7 +496,9 @@ public function appearance(forTarget:Creature):void
 				if(isFloppyEars) output2(" floppy");
 				else output2(" alert");
 				output2(" rabbit ears stick up from the top of your " + headNoun + ",");
-				if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
+				if(target.earLength > target.tallness) output2(" dragging on the floor");
+				if(target.earLength > target.tallness/2) output2(" swaying about");
+				else if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
 				else output2(" swaying and darting");
 				output2(" as you [target.walk].");
 			}
@@ -605,13 +607,6 @@ public function appearance(forTarget:Creature):void
 			{
 				output2(" A pair of pointed, floppy pig ears protrude from your " + headNoun + ".");
 			}
-			if(target.hasAntennae())
-			{
-				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
-				else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " floppy [target.antennae] also grow");
-				else output2(" Floppy [target.antennae] also appear");
-				output2(" on your head, bouncing and swaying in the breeze.");
-			}
 		}
 		//not bald
 		else {
@@ -641,7 +636,9 @@ public function appearance(forTarget:Creature):void
 				if(isFloppyEars) output2(" floppy");
 				else output2(" alert");
 				output2(" rabbit ears stick up out of your " + target.hairDescript(true,true) + ",");
-				if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
+				if(target.earLength > target.tallness) output2(" dragging on the floor");
+				if(target.earLength > target.tallness/2) output2(" swaying about");
+				else if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
 				else output2(" swaying and darting");
 				output2(" as you [target.walk].");
 			}
@@ -708,7 +705,36 @@ public function appearance(forTarget:Creature):void
 			}
 			else if(target.earType == GLOBAL.TYPE_SHARK) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of triple-parted, sail-like ears. The topmost sail points straight up while the other more smaller ones curve down.");
 			else if(target.earType == GLOBAL.TYPE_SWINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of pointed, floppy pig ears.");
-			if(target.hasAntennae())
+		}
+		// Additional ear stuffs
+		if(target.earType == GLOBAL.TYPE_LEITHAN)
+		{
+			output2(" In addition,");
+			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long");
+			output2(" pointed elfin ears jut out below them, giving you exceptional hearing.");
+		}
+		if(target.hasStatusEffect("Laquine Ears"))
+		{
+			if(InCollection(target.earType, [GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_LEITHAN]))
+			{
+				output2(" The headband-mounted bunny ears you are wearing make you look like you have");
+				if(target.earType == GLOBAL.TYPE_QUAD_LAPINE) output2(" six");
+				else output2(" four");
+				output2(" rabbit ears total.");
+			}
+			else output2(" You are wearing a headband mounted with a pair of perky faux rabbit ears that bounce around as you [target.walk].");
+		}
+		// Antennae
+		if(target.hasAntennae())
+		{
+			if(!target.hasHair())
+			{
+				if(target.antennae == 1) output2(" A floppy [target.antenna] also appears");
+				else if(rand(2) == 0) output2(" " + StringUtil.capitalize(num2Text(target.antennae)) + " floppy [target.antennae] also grow");
+				else output2(" Floppy [target.antennae] also appear");
+				output2(" on your head, bouncing and swaying in the breeze.");
+			}
+			else
 			{
 				if(InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE))
 				{
@@ -725,12 +751,6 @@ public function appearance(forTarget:Creature):void
 					output2(" from just behind your hairline, bouncing and swaying in the breeze.");
 				}
 			}
-		}
-		if(target.earType == GLOBAL.TYPE_LEITHAN)
-		{
-			output2(" In addition,");
-			if(target.earLength > 1) output2(" " + num2Text(target.earLength) + "-inch long");
-			output2(" pointed elfin ears jut out below them, giving you exceptional hearing.");
 		}
 		//Tongue
 		if(target.tongueType == GLOBAL.TYPE_SNAKE) output2(" A snake-like [target.tongueNoun] occasionally flits between your lips, tasting the air.");
@@ -2248,13 +2268,15 @@ public function appearance(forTarget:Creature):void
 			}
 			output2(" intelligent enough for some rudimentary communication....");
 		}
-		if (target.legType == GLOBAL.TYPE_TENTACLE) addGhostButton(btnIndex++, "Tentacle Legs", selectTentacleLegsPref, undefined, "Choose the form of your lower tentacles.");
+		if (target.legType == GLOBAL.TYPE_TENTACLE) addGhostButton(btnIndex++, "Tentacle Legs", selectTentacleLegsPref, undefined, "Tentacle Legs", "Choose the form of your lower tentacles.");
 		
+		// Worn Objects
 		var collarCount:int = hasCollars();
 		if (collarCount > 0)
 		{
-			addGhostButton(btnIndex++, collarCount == 1 ? "Collar" : "Collars", manageWornCollar, undefined, "Manage which, if any, collar you’re wearing.");
+			addGhostButton(btnIndex++, (collarCount == 1 ? "Collar" : "Collars"), manageWornCollar, undefined, (collarCount == 1 ? "Collar" : "Collars"), "Manage which, if any, collar you’re wearing.");
 		}
+		if (target.hasStatusEffect("Laquine Ears") && target.getStatusMinutes("Laquine Ears") <= 5) addGhostButton(btnIndex++, "Laquine Ears", new LaquineEars().laquineEarsRemove, target, "Remove Laquine Ears", "The Laquine Ears have probably been used up by now, should you remove them?");
 	}
 	
 	setTarget(null);

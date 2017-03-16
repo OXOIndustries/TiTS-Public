@@ -393,13 +393,13 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 				else output(" -- and being naked, you’ve got next to no defense against the chill");
 				output(". You feel like you might collapse if you don’t take shelter soon!");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
-				output("\n\n");
+				//output("\n\n");
 			}
 			else
 			{
 				output("\n\nThe cold on Uveto is absolutely piercing out here, with no walls or fluffy ausar to block the howling winds and free-flying shards of ice tearing across the rolling plains of ice and alien obsidian. You clutch your arms around yourself, trying to shield your body from the frigid cold, but to no avail. Shivering madly, you glance around in desperation: <b>you need to find shelter fast, or you’re going to freeze!</b>");
 				if (damageResult.totalDamage > 0) outputDamage(damageResult);
-				output("\n\n");
+				//output("\n\n");
 			}
 		}
 		else
@@ -413,7 +413,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 
 			output("\n\nBlackness takes you.");
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
-			output("\n\n");
+			//output("\n\n");
 			
 			generateMapForLocation("GAME OVER");
 			

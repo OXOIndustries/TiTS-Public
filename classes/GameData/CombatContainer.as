@@ -3323,7 +3323,7 @@ package classes.GameData
 				if (attacker.hasPheromones()) damage += 1 + rand(4);
 				damage *= (rand(31) + 85) / 100;
 				
-				var cap:Number = 15 + attacker.level * 2 +  attacker.statusEffectv3("Painted Penis");
+				var cap:Number = 15 + attacker.level * 2 + attacker.statusEffectv3("Painted Penis");
 				if (damage > cap) damage = cap;
 				damage *= factor;
 				
@@ -3519,47 +3519,41 @@ package classes.GameData
 			}
 			
 			output("You try to get a feel for " + possessive(target.getCombatName()) + " likes and dislikes!");
-			if(target.isLustImmune) output("\nYou don’t think sexuality can win this fight!");
 			var buffer:String = "";
+			var prefs:int = 0;
 			var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
 			if(pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
-			for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
-				buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
-				//If has a preference set, talk about it!
-				if(target.sexualPreferences.getPref(i) != 0) {
-					output("\n");
-					//If succeeds at sense check!
-					if(PCBonus + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
-					{
-						if(target.sexualPreferences.getPref(i) == GLOBAL.REALLY_LIKES_SEXPREF)
+			if(target.isLustImmune) output("\nYou don’t think sexuality can win this fight!");
+			else
+			{
+				for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
+					buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
+					//If has a preference set, talk about it!
+					if(target.sexualPreferences.getPref(i) != 0) {
+						output("\n");
+						//If succeeds at sense check!
+						if(PCBonus + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
 						{
-							output(buffer + ": Really likes!");
+							switch(target.sexualPreferences.getPref(i))
+							{
+								case GLOBAL.REALLY_LIKES_SEXPREF: output(buffer + ": Really likes!"); break;
+								case GLOBAL.KINDA_LIKES_SEXPREF: output(buffer + ": Kinda likes!"); break;
+								case GLOBAL.KINDA_DISLIKES_SEXPREF: output(buffer + ": Dislikes!"); break;
+								case GLOBAL.REALLY_DISLIKES_SEXPREF: output(buffer + ": Dislikes a lot!"); break;
+								default: output(buffer + ": ERROR"); break;
+							}
 						}
-						else if(target.sexualPreferences.getPref(i) == GLOBAL.KINDA_LIKES_SEXPREF)
-						{
-							output(buffer + ": Kinda likes!");
-						}
-						else if(target.sexualPreferences.getPref(i) == GLOBAL.KINDA_DISLIKES_SEXPREF)
-						{
-							output(buffer + ": Dislikes!");
-						}
-						else if(target.sexualPreferences.getPref(i) == GLOBAL.REALLY_DISLIKES_SEXPREF)
-						{
-							output(buffer + ": Dislikes a lot!");
-						}
+						//if fails!
 						else 
 						{
-							output(buffer + ": ERROR");
+							output(buffer + ": You aren’t sure.");
 						}
-					}
-					//if fails!
-					else 
-					{
-						output(buffer + ": You aren’t sure.")
+						prefs++;
 					}
 				}
 			}
-			if(target is HandSoBot) output("\n\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
+			if(target is HandSoBot) output("\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
+			else if(!target.isLustImmune && prefs <= 0) output("\nIt seems " + target.getCombatPronoun("pa") + " sexual preferences do not sway strongly in one way or another...");
 		}
 		
 		private function checkForLoss(atEndOfRound:Boolean = false):Boolean

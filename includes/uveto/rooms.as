@@ -1740,7 +1740,7 @@ public function initUvetoRooms():void
 
 	rooms["UVGR E36"] = new RoomClass(this);
 	rooms["UVGR E36"].roomName = "CRASHED\nDRONE";
-	rooms["UVGR E36"].description = "The path here is marred by debris half-frozen into the ice itself, and so covered with snow that you trip over it with nearly every other step. You can just barely make out the casing of a drone off to the west, marked with the symbol of Akkadi. ";
+	rooms["UVGR E36"].description = "The path here is marred by debris half-frozen into the ice itself, and so covered with snow that you trip over it with nearly every other step. You can just barely make out the casing of a drone off to the west, marked with the symbol of Akkadi.";
 	rooms["UVGR E36"].planet = "PLANET: UVETO VII";
 	rooms["UVGR E36"].system = "SYSTEM: SIRETTA";
 	rooms["UVGR E36"].northExit = "UVGR E34";

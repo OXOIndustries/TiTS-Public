@@ -2132,7 +2132,11 @@
 					break;
 				case "clit":
 				case "clitoris":
-					buffer = clitDescript();
+					buffer = clitDescript(arg2);
+					break;
+				case "clitNoun":
+				case "clitorisNoun":
+					buffer = clitDescript(arg2, true);
 					break;
 				case "eachClit":
 					buffer = eachClit();
@@ -2523,7 +2527,7 @@
 		}
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
-			if(inventory.length == 0) return false;
+			if(arg == null || inventory.length == 0) return false;
 			var foundAmount:int = 0;
 			for(var x:int = 0; x < inventory.length; x++)
 			{
@@ -2534,7 +2538,7 @@
 		}
 		public function hasItemByName(arg:String, amount:int = 1):Boolean
 		{
-			if (inventory.length == 0) return false;
+			if (arg == null || inventory.length == 0) return false;
 			
 			var foundAmount:int = 0;
 			for(var x:int = 0; x < inventory.length; x++)
@@ -2546,6 +2550,8 @@
 		}
 		public function hasItemByType(ref:Class, amount:int = 1):Boolean
 		{
+			if (ref == null || inventory.length == 0) return false;
+			
 			var amt:int = 0;
 			
 			for (var i:uint = 0; i < inventory.length; i++)
@@ -2555,9 +2561,22 @@
 			if (amt >= amount) return true;
 			return false;
 		}
+		public function hasItemType(arg:int, amount:int = 1):Boolean
+		{
+			if (inventory.length == 0) return false;
+			
+			var amt:int = 0;
+			
+			for (var i:uint = 0; i < inventory.length; i++)
+			{
+				if (inventory[i].type == arg) amt += inventory[i].quantity;
+			}
+			if (amt >= amount) return true;
+			return false;
+		}
 		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
-			if (inventory.length == 0 || amount == 0) return;
+			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			
@@ -2592,7 +2611,7 @@
 		
 		public function destroyItemByReference(arg:ItemSlotClass):void
 		{
-			if (inventory.length == 0) return;
+			if (arg == null || inventory.length == 0) return;
 			
 			arg.quantity--;
 			
@@ -2604,7 +2623,7 @@
 		
 		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
-			if (inventory.length == 0 || amount == 0) return;
+			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			
@@ -2638,7 +2657,7 @@
 		}
 		public function destroyItemByType(type:Class, amount:int = 1):void
 		{
-			if (inventory.length == 0 || amount == 0) return;
+			if (type == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			
@@ -3158,7 +3177,7 @@
 			var hasFurOrFeathers:Boolean = (hasFur() || hasFeathers());
 			var isFluffy:Boolean = hasFurOrFeathers && hasSkinFlag(GLOBAL.FLAG_FLUFFY);
 			
-			if (isChestExposed())
+			if (isChestVisible())
 			{
 				var titSize:int = 0;
 				for (var i:int = 0; i < breastRows.length; i++) 
@@ -3189,7 +3208,7 @@
 				// actually, should also check if you are taur with genitals on humanoid location, but I doubt that this arrangement is actually supported or will be ever
 			}
 			
-			if (isCrotchExposed())
+			if (isCrotchVisible())
 			{
 				if(hasCock() && !hasStatusEffect("Genital Slit")) // consider genital slit effectively covering your male bits
 				{
@@ -3232,7 +3251,7 @@
 				}
 			}
 			
-			if (isAssExposed())
+			if (isAssVisible())
 			{
 				if(ass.hasFlag(GLOBAL.FLAG_PUMPED) || (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !isFluffy) || !hasFurOrFeathers)
 				{
@@ -3262,19 +3281,23 @@
 			else if(armor is EmptySlot && lowerUndergarment is EmptySlot) return false;
 			return true;
 		}
-		
 		public function isChestCovered(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			else if(armor is EmptySlot && upperUndergarment is EmptySlot) return false;
 			return true;
 		}
+		public function isChestGarbed(): Boolean {
+			return isChestCovered();
+		}
+		
 		//Used to see if boobs are hanging out instead of isChestGarbed/Covered.
 		public function isChestExposed(): Boolean
 		{
 			return (isChestExposedByArmor() && isChestExposedByUpperUndergarment());
 		}
 		//Used to see if wing-wang-doodles and hatchet-wounds are accessible. Should probably replace most isCrotchGarbed() calls.
-		public function isCrotchExposed(): Boolean {
+		public function isCrotchExposed(): Boolean
+		{
 			return (isCrotchExposedByArmor() && isCrotchExposedByLowerUndergarment());	
 		}
 		//Badonkadonk check
@@ -3282,6 +3305,7 @@
 		{
 			return (isAssExposedByArmor() && isAssExposedByLowerUndergarment());
 		}
+		
 		public function isAssExposedByArmor():Boolean
 		{
 			return (armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
@@ -3306,8 +3330,30 @@
 		{
 			return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));		
 		}
-		public function isChestGarbed(): Boolean {
-			return isChestCovered();
+		
+		public function isChestVisible(): Boolean
+		{
+			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+			{
+				return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
+			}
+			return isChestExposed();
+		}
+		public function isCrotchVisible(): Boolean
+		{
+			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN))
+			{
+				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
+			}
+			return isCrotchExposed();	
+		}
+		public function isAssVisible():Boolean
+		{
+			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+			{
+				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
+			}
+			return isAssExposed();
 		}
 		
 		public function hasArmor():Boolean
@@ -4508,7 +4554,7 @@
 			var temp: int = 0;
 			temp += meleeWeapon.sexiness;
 			temp += rangedWeapon.sexiness;
-			temp += armor.sexiness + upperUndergarment.sexiness + lowerUndergarment.sexiness + accessory.sexiness + shield.sexiness;
+			temp += outfitSexiness() + itemSexiness(accessory) + itemSexiness(shield);
 			// she grants a bonus to Sexiness equal to the same
 			if (accessory is SiegwulfeItem)
 			{
@@ -4535,6 +4581,41 @@
 			//-10 is as bad as it gets
 			if(temp < -10) temp = -10;
 			return temp;
+		}
+		public function outfitSexiness(): Number
+		{
+			return (itemSexiness(armor) + itemSexiness(upperUndergarment) + itemSexiness(lowerUndergarment));
+		}
+		public function itemSexiness(item:*): Number
+		{
+			if((item is EmptySlot) || item == null) return 0;
+			
+			var bonus: int = item.sexiness;
+			
+			// Transparent sexiness adjustments
+			if(item.sexiness > 0 && item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
+			{
+				var tmod:int = 1;
+				switch(item.type)
+				{
+					case GLOBAL.ARMOR:
+					case GLOBAL.CLOTHING:
+						if(!isChestVisible()) tmod++;
+						if(!isCrotchVisible()) tmod++;
+						if(!isAssVisible()) tmod++;
+						break;
+					case GLOBAL.UPPER_UNDERGARMENT:
+						if(!isChestVisible()) tmod++;
+						break;
+					case GLOBAL.LOWER_UNDERGARMENT:
+						if(!isCrotchVisible()) tmod++;
+						if(!isAssVisible()) tmod++;
+						break;
+				}
+				bonus /= tmod;
+			}
+			
+			return bonus;
 		}
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;
@@ -4835,7 +4916,7 @@
 		public function hasLongEars(): Boolean
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
-			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
+			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -4876,6 +4957,7 @@
 					adjectives = ["reptilian", "small", "circular"];
 					break;
 				case GLOBAL.TYPE_LAPINE:
+					if(earLength >= tallness/2) adjectives.push("droopy");
 					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
@@ -12583,14 +12665,14 @@
 			if (totalClits() > 1) return plural(clitDescript());
 			return clitDescript();
 		}
-		public function clitDescript(pussy: Number = -1): String {
+		public function clitDescript(pussy: Number = -1, nounOnly:Boolean = false): String {
 			if (vaginas.length <= 0) return ("ERROR: CLITDESCRIPT WITH NO VAGINA");
 			
 			var descript: String = "";
 			var randt: Number = rand(10);
 			var descripted: Number = 0;
 			//Length Adjective - 50% chance
-			if (rand(3) == 0) {
+			if (!nounOnly && rand(3) == 0) {
 				//small clits!
 				if (clitLength <= .4) {
 					if (randt < 3) descript += "tiny";
@@ -12630,7 +12712,7 @@
 				}
 			}
 			//Descriptive descriptions - 50% chance of being called
-			if (rand(3) == 0 && descripted < 2) {
+			if (!nounOnly && rand(3) == 0 && descripted < 2) {
 				//Elizabeth descriptors
 				if (skinType == GLOBAL.SKIN_TYPE_FUR && hasVaginaType(GLOBAL.TYPE_VULPINE) && rand(3) <= 1) {
 					if (descripted > 0) descript += ", ";
@@ -12657,7 +12739,7 @@
 					descripted++;
 				}
 			}
-			if (pussy >= 0 && vaginas[pussy].clitPierced > 0 && descripted < 2 && rand(3) < 2) {
+			if (!nounOnly && pussy >= 0 && vaginas[pussy].clitPierced > 0 && descripted < 2 && rand(3) < 2) {
 				if (descripted > 0) descript += ", ";
 				descript += "pierced";
 				descripted++;
@@ -18181,7 +18263,11 @@
 			var deferredEvents:Array = null;
 			var stringBuffer:String = "";
 			
-			for (var i:int = 0; i < statusEffects.length; i++)
+			var i:int = 0;
+			var y:int = 0;
+			var z:int = 0;
+			
+			for (i = 0; i < statusEffects.length; i++)
 			{
 				var thisStatus:StorageClass = statusEffects[i];
 				
@@ -18216,23 +18302,23 @@
 					case "Laquine Ears":
 						if (startEffectLength >= 1140 && thisStatus.minutesLeft < 1140)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 1140);
 						}
 						if (startEffectLength >= 840 && thisStatus.minutesLeft < 840)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 840);
 						}
 						if (startEffectLength >= 540 && thisStatus.minutesLeft < 540)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 540);
 						}
 						if (startEffectLength >= 240 && thisStatus.minutesLeft < 240)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 240);
 						}
 						if(requiresRemoval)
 						{
-							new LaquineEars().laquineEarsFinale(this);
+							new LaquineEars().laquineEarsFinale(this, startEffectLength, 0);
 						}
 						break;
 					case "Heat":
@@ -18330,7 +18416,7 @@
 						}
 						else if (requiresRemoval)
 						{
-							for(var y:int = 0; y < cockTotal(); y++)
+							for(y = 0; y < cockTotal(); y++)
 							{
 								cocks[y].cLengthRaw *= 2;
 							}
@@ -18345,7 +18431,7 @@
 						}
 						else if (requiresRemoval)
 						{
-							for(var z:int = 0; z < cockTotal(); z++)
+							for(z = 0; z < cockTotal(); z++)
 							{
 								cocks[z].cLengthRaw *= 4;
 							}

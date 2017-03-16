@@ -422,9 +422,9 @@ package classes.Characters
 		private function updateExhibitionism(totalDays:uint):void
 		{
 			var exhibitionismPoints:Number = 0;
-			if(isCrotchExposed()) exhibitionismPoints++;
-			if(isAssExposed()) exhibitionismPoints++;
-			if(isChestExposed() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isChestVisible() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isCrotchVisible() && (hasGenitals() || balls > 0)) exhibitionismPoints++;
+			if(isAssVisible()) exhibitionismPoints++;
 			if(isNude()) exhibitionismPoints++;
 
 			var currExhib:Number = exhibitionism();
