@@ -448,7 +448,7 @@ public function steeleBiomedGangbang():void
 		
 		output("\n\nYou nod, reluctantly letting go of the wolf’s ears to turn and properly face the giant of a minotauress. She’s huge in every way: eight feet tall, biceps almost as thick as your head, and extravagant curves when it comes to bust and hips alike that manage not to look exaggerated thanks to how thick and buff she is. The thick black nubs sitting proudly upon her furry breasts are leaking trickles of creamy milk, prompting you to go in for a drink. The primal moo it elicits from the minotauress is every bit as delicious as the milk itself, one of those meaty arms slipping around your back to hold you in place.");
 		output("\n\n<i>“New Texan?”</i> you ask between gulps, prompting the minotauress to smirk.");
-		output("\n\n<i>“Not even close, boss. What, you think those bimbos are the only cowgirls out there? Naw, I just like being big and beefy. And-”</i> She’s briefly cut off by giving a long, exultant moo as you give her teat a particularly firm suck. <i>“Oh yeah...having udders is just the </i>best<i>.”</i>");
+		output("\n\n<i>“Not even close, boss. What, you think those bimbos are the only cowgirls out there? Naw, I just like being big and beefy. And-”</i> She’s briefly cut off by giving a long, exultant moo as you give her teat a particularly firm suck. <i>“Oh yeah... having udders is just the </i>best<i>.”</i>");
 	}
 	
 	else
@@ -470,7 +470,7 @@ public function steeleBiomedGangbang():void
 		
 		output("\n\n<i>“Alright, then, why don’t you wash that jizz down?”</i>");
 		output("\n\nYou quickly accept the invitation, wrapping your lips around one of those fat black teats and setting to gulping down that delicious cowgirl milk. Cynthia lets out a lusty moo, her hands roaming along your body to start stripping you of your gear.");
-		output("\n\n<i>“Thaaaat’s it, [pc.name]...oh yeah, suck my udders just like that.”</i>");
+		output("\n\n<i>“Thaaaat’s it, [pc.name]... oh yeah, suck my udders just like that.”</i>");
 	}
 
 	processTime(10);
@@ -540,7 +540,7 @@ public function steeleBiomedGangbangIII():void
 	author("COUCH");
 	
 	output("Hours pass before you rouse from your sexual stupor. You’ve fucked practically everyone in the room, most of them at least twice and some far more than that. " + (pc.hasVagina() ? "Both of your holes feel" : "Your ass feels") + " thoroughly used and your belly looks thick and pregnant, your stomach having long since given up on complaining about all the cum you’ve taken in your greedy lust. The desk under you is soaked and there’s still a multicolored river of a dozen different types of semen bubbling forth from between your legs.");
-	output("\n\n<i>“Oof…”</i> you hear Cynthia groan from underneath you, her own belly somewhat less bloated than yours but still noticeably swollen with cum. <i>“Nothing like a good gangbang, huh boss?”</i>");
+	output("\n\n<i>“Oof...”</i> you hear Cynthia groan from underneath you, her own belly somewhat less bloated than yours but still noticeably swollen with cum. <i>“Nothing like a good gangbang, huh boss?”</i>");
 	output("\n\n<i>“" + (flags["BIOMED_GANGBANGED"] == undefined ? "You all can call me [pc.name]" : "I told you, call me [pc.name]") + ",”</i> you reply a little dreamily, still basking in the afterglow. Cynthia chuckles at this, managing to find the strength after a bit to ease the both of you to your feet.");
 	output("\n\n<i>“Well then, [pc.name], let’s get you cleaned up before Lessau comes out here. He doesn’t mind if we fuck, but he’ll get pissed if we leave the place dirty afterwards.”</i> She takes a brief look around the room; most of her coworkers are cuddling with one another or have returned to their consoles as if they hadn’t just partaken in a massive orgy. <i>“The rest of you, this place had better be as neat as it was when [pc.name] came in here by the time I get back.”</i>");
 	output("\n\n<i>“Yes ma’am,”</i> Walt replies, setting the rest of the team to work as you’re escorted to take a shower with the beefy minotauress. Cynthia lets out one last moo when she squeezes the overflowing cum out of her womb, a high-pressure torrent of spunk spraying from her cunt and into the shower drain while she leans heavily against the wall. You opt to take it slower, having plenty of time to let yourself drain while you clean up all the cum, milk, and feminine juices that you’ve been doused with all over. It takes long enough that by the time you’re done you almost feel like going for another grab of those cowtits, but Cynthia folds an arm over her chest just when you’re about to try.");

@@ -180,7 +180,7 @@ package classes.Items.Transformatives
 						//PC is garbed:
 						if(!pc.isCrotchExposed()) output("into your [pc.lowerGarment]");
 						else if(pc.legCount > 1) output("between your [pc.legs]");
-						else output("");
+						else output("between your [pc.thighs]");
 						output(" and find them completely drenched with the copious amount of fluids that drip from your vagina. Your lips are swelling obscenely around your fingers, puffing up deliciously as you grow more aroused. Then, all at once, your arousal dies off as the transformation ends just as abruptly as it started, leaving you needy, denied a well deserved orgasm, with wet and now much muskier fingers. <b>You now have a canine vagina that swells during arousal!</b>");
 						pc.libido(2);
 						pc.shiftVagina(x,GLOBAL.TYPE_CANINE);

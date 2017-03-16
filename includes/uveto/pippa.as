@@ -323,7 +323,7 @@ public function approachingPippasHouse(btnSlot:int = 1):void
 	{
 		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 
-		output("\n\nTo the west is Pippa’s house, now unoccupied. The sign advertising her massage services is still up, but has been unprofessionaly scrawled over with a large <i>“X”</i>.")
+		output("\n\nTo the west is Pippa’s house, now unoccupied. The sign advertising her massage services is still up, but has been unprofessionaly scrawled over with a large “X”.")
 	}
 	else
 	{
