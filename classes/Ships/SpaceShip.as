@@ -4,6 +4,7 @@ package classes.Ships
 	import classes.DataManager.Serialization.VersionedSaveableV2;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.ShipCombat.DamageTypes.*;
+	import classes.Resources.StatusIcons;
 	import classes.Ships.Map.*;
 	import classes.Ships.Map.Library.TestMapInterior;
 	import classes.Ships.Modules.*;
@@ -16,7 +17,9 @@ package classes.Ships
 	
 	//TODO: Weapon assignments
 	//TODO: Console assignments
+	//TODO: Skill rank value added to any rolls to avoid being hacked.
 	//TODO: Support console position assignments middlemanning the bonuses from the flat OwningCreature
+	//TODO: Staffing Engine module provides bonuses to evasion/speed
 	
 	/**
 	 * ...
@@ -312,7 +315,7 @@ package classes.Ships
 		}
 		
 		protected var _targeting:Number;
-		public function get Targeting():Number
+		public function Targeting(flatBonus:Number = 0):Number
 		{
 			var t:Number = _targeting;
 			var m:Number = 1.0;
@@ -339,9 +342,11 @@ package classes.Ships
 				t += (maxStat * 0.2);
 			}
 			
+			t += flatBonus;
+			
 			return t * m;
 		}
-		public function TargetingStaffed(crewMember:Creature):Number
+		public function TargetingStaffed(crewMember:Creature, flatBonus:Number = 0):Number
 		{
 			var t:Number = _targeting;
 			var m:Number = 1.0;
@@ -366,6 +371,8 @@ package classes.Ships
 				var maxStat:Number = Math.max(crewMember.willpower(), crewMember.aim());
 				t += (maxStat * 0.2);
 			}
+			
+			t += flatBonus;
 			
 			return t * m;
 		}
@@ -895,6 +902,19 @@ package classes.Ships
 			});
 		}
 		
+		public function AddCloakEffect(duration:int, durationType:String, cloakStrength:Number = 1):void
+		{
+			var se:StatusEffectPayload = new StatusEffectPayload("Cloaked", {
+				strength: cloakStrength
+			}, duration, durationType, StatusIcons.Icon_Blind, true, false);
+			
+			AddStatusEffect(se);
+		}
+		public function RemoveCloakEffect():void
+		{
+			RemoveStatusEffect("Cloaked");
+		}
+		
 		protected function AddTemporaryModifier(mName:String, payload:Object):void
 		{
 			if (TemporaryEffects[mName] == undefined)
@@ -968,9 +988,9 @@ package classes.Ships
 				{
 					se.OnRemove(se, this);
 				}
+				
+				delete targetObject[n];
 			}
-			
-			delete targetObject[n];
 		}
 		public function RemoveStatusEffect(n:String):void
 		{
@@ -1124,6 +1144,16 @@ package classes.Ships
 			return Hull <= 0;
 		}
 		
+		public function IsShielded():Boolean
+		{
+			return Shields > 0;
+		}
+		
+		public function IsCloaked():Boolean
+		{
+			return StatusEffects["Cloaked"] !== undefined;
+		}
+		
 		protected var _hullResistances:ShipTypeCollection;
 		public function get HullResistances():ShipTypeCollection
 		{
@@ -1184,6 +1214,93 @@ package classes.Ships
 			return res;
 		}
 		
+		public function OnRoundStart():void
+		{
+			OnRoundStartEffectEvents();
+			CrewMechanicShieldingRepair();
+			CrewSystemsEffects();
+		}
+		
+		private function CrewSystemsEffects():void
+		{
+			if (Reactor.HookedCrew != null)
+			{
+				// Attempt to decloak any cloaked enemy ships
+				var perk:StorageClass = Reactor.HookedCrew.getPerkEffect("Crew Skill - Systems");
+				if (perk != null && perk.value1 > 0)
+				{
+					var decloakChance:Number = perk.value1 * 10;
+					if (decloakChance > 0)
+					{
+						var enemyShips:Array = CombatManager.getHostileActors();
+						for (var i:int = 0; i < enemyShips.length; i++)
+						{
+							var tShip:SpaceShip = enemyShips[i] as SpaceShip;
+							if (tShip.IsCloaked() && rand(100) <= decloakChance)
+							{
+								tShip.RemoveCloakEffect();
+								// TODO: Cloak remove notification
+							}
+						}
+					}
+				}
+				
+				// TODO: Clearing "hacking" statuses- the doc doesn't mention these outside of a few minor references
+			}
+		}
+		
+		private function CrewMechanicShieldingRepair():void
+		{
+			var doFix:int = 0;
+			var chanceToFixModule:Number = 0;
+			
+			if (ShieldGenerator.HookedCrew != null)
+			{
+				var perk:StorageClass = ShieldGenerator.HookedCrew.getPerkEffect("Crew Skill - Shielding");
+				if (perk != null)
+				{
+					chanceToFixModule = perk.value1 > 0 ? perk.value1 * 10 : 0;
+					if (chanceToFixModule > 0 && rand(100) <= chanceToFixModule)
+					{
+						doFix = 1;
+					}
+				}
+			}
+			if (doFix == 0 && HullArmoring.HookedCrew != null)
+			{
+				perk = HullArmoring.HookedCrew.getPerkEffect("Crew Skills - Mechanic");
+				if (perk != null)
+				{
+					chanceToFixModule = perk.value1 > 0 ? perk.value1 * 10 : 0;
+					if (chanceToFixModule > 0 && rand(100) <= chanceToFixModule)
+					{
+						doFix = 2;
+					}
+				}
+			}
+			
+			if (doFix > 0)
+			{
+				var fm:Array = FittedModules;
+				for (var i:int = 0; i < fm.length; i++)
+				{
+					var fmm:ShipModule = fm[i] as ShipModule;
+					if (fmm.DisabledForRounds > 0)
+					{
+						fmm.DisabledForRounds = 0;
+						//TODO: Notification that an offline module was fixed
+						// doFix == 1 => shielding, == 2 => mechanic
+					}
+				}
+			}
+		}
+		
+		public function OnRoundEnd():void
+		{
+			ClearTemporaryEffects();
+			OnRoundEndEffectEvents();
+		}
+		
 		//} endregion
 		
 		//{ region Serialization hooks
@@ -1231,77 +1348,6 @@ package classes.Ships
 				var crew:Creature = kGAMECLASS.chars[m.AssignedCrewMember];
 				m.HookedCrew = crew;
 			}
-		}
-		
-		public function OnRoundStart():void
-		{
-			OnRoundStartEffectEvents();
-			CrewMechanicShieldingRepair();
-			CrewSystemsEffects();
-		}
-		
-		private function CrewSystemsEffects():void
-		{
-			if (Reactor.HookedCrew != null)
-			{
-				var perk:StorageClass = Reactor.HookedCrew.getPerkEffect("Crew Skill - Systems");
-				if (perk != null && perk.value1 > 0)
-				{
-					//var enemyShips:Array = CombatManager.
-				}
-			}
-		}
-		
-		private function CrewMechanicShieldingRepair():void
-		{
-			var doFix:int = 0;
-			var chanceToFixModule:Number = 0;
-			
-			if (ShieldGenerator.HookedCrew != null)
-			{
-				var perk:StorageClass = ShieldGenerator.HookedCrew.getPerkEffect("Crew Skill - Shielding");
-				if (perk != null)
-				{
-					chanceToFixModule = perk.value1 > 0 ? perk.value1 * 10 : 0;
-					if (chanceToFixModule > 0 && rand(100) >= chanceToFixModule)
-					{
-						doFix = 1;
-					}
-				}
-			}
-			if (doFix == 0 && HullArmoring.HookedCrew != null)
-			{
-				perk = HullArmoring.HookedCrew.getPerkEffect("Crew Skills - Mechanic");
-				if (perk != null)
-				{
-					chanceToFixModule = perk.value1 > 0 ? perk.value1 * 10 : 0;
-					if (chanceToFixModule > 0 && rand(100) >= chanceToFixModule)
-					{
-						doFix = 2;
-					}
-				}
-			}
-			
-			if (doFix > 0)
-			{
-				var fm:Array = FittedModules;
-				for (var i:int = 0; i < fm.length; i++)
-				{
-					var fmm:ShipModule = fm[i] as ShipModule;
-					if (fmm.DisabledForRounds > 0)
-					{
-						fmm.DisabledForRounds = 0;
-						//TODO: Notification that an offline module was fixed
-						// doFix == 1 => shielding, == 2 => mechanic
-					}
-				}
-			}
-		}
-		
-		public function OnRoundEnd():void
-		{
-			ClearTemporaryEffects();
-			OnRoundEndEffectEvents();
 		}
 		
 		//} endregion
