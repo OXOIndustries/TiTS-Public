@@ -35,8 +35,8 @@ public function encounterDasGooGray():void
 	
 	CodexManager.unlockEntry("Gray Goos");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new GrayGoo());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new GrayGoo());
 	CombatManager.victoryScene(pcDefeatsGrayGooInTheNameOfLove);
 	CombatManager.lossScene(loseToGrayGooRouter);
 	CombatManager.displayLocation("GRAY GOO");
@@ -57,7 +57,7 @@ public function dontDoAnythingFromHardenAttack():void
 	
 	// TODO Peep a better way to handle this
 	// GetHostileOfType? Index override? By unique-name?
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)
@@ -91,7 +91,7 @@ public function quickieAfterGooHarden():void
 	}
 	pc.orgasm();
 	
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)

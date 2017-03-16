@@ -149,8 +149,8 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 				// TODO: Show target selection interface
 				// Invoke menu, early return, call back to self
 				var targets:Array = [];
-				if(item.targetsSelf == true) targets = CombatManager.getFriendlyCharacters();
-				else targets = CombatManager.getHostileCharacters();
+				if(item.targetsSelf == true) targets = CombatManager.getFriendlyActors();
+				else targets = CombatManager.getHostileActors();
 				
 				if (targets.length == 1) targetCreature = targets[0];
 				else if (CombatManager.enemiesAlive() == 1)

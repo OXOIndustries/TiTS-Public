@@ -175,8 +175,8 @@ public function noIDontWantFunRaskGang():void
 public function configRaskGangFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new RaskvelMale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new RaskvelMale());
 	CombatManager.victoryScene(victoryVsRaskGang);
 	CombatManager.lossScene(lossVsRaskGang);
 	CombatManager.displayLocation("RASKVEL (M)");

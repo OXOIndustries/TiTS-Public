@@ -377,7 +377,7 @@ package classes.Characters
 		override public function getCombatDescriptionExtension():void
 		{
 			var numDronesAlive:int = 0;
-			var hostiles:Array = CombatManager.getHostileCharacters();
+			var hostiles:Array = CombatManager.getHostileActors();
 			
 			for (var i:int = 0; i < hostiles.length; i++)
 			{

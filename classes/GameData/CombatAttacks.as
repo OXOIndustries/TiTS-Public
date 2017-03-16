@@ -738,7 +738,7 @@ package classes.GameData
 			
 			if (attacker.hasPerk("Cleave"))
 			{
-				var others:Array = CombatManager.getCreaturesGroup(target);
+				var others:Array = CombatManager.getActorsGroup(target);
 				
 				for (i = 0; i < others.length; i++)
 				{

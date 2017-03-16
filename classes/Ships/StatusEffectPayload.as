@@ -18,7 +18,8 @@ package classes.Ships
 		
 		public var OnRemoveFuncLookup:String;
 		public var OnCreateFuncLookup:String;
-		public var OnNewRoundFuncLookup:String;
+		public var OnRoundStartFuncLookup:String;
+		public var OnRoundEndFuncLookup:String;
 		
 		public var CombatOnly:Boolean = false;
 		public var DurationMode:String = DURATION_PERM;
@@ -52,12 +53,17 @@ package classes.Ships
 			FuncLookup(OnCreateFuncLookup);
 		}
 		
-		public function get OnNewRound():Function
+		public function get OnRoundStart():Function
 		{
-			FuncLookup(OnNewRound);
+			FuncLookup(OnRoundStartFuncLookup);
 		}
 		
-		public function StatusEffectPayload(seName:String, sePayload:Object, seDuration:int = -1, seDurationType:String = DURATION_PERM, seIconClass:Class = null, removeAfterCombat:Boolean = false, hideFromDisplay:Boolean = false, seOnRemove:String = "", seOnCreate:String = "", seOnNewRound:String = "") 
+		public function get OnRoundEnd():Function
+		{
+			FuncLookup(OnRoundEndFuncLookup);
+		}
+		
+		public function StatusEffectPayload(seName:String, sePayload:Object, seDuration:int = -1, seDurationType:String = DURATION_PERM, seIconClass:Class = null, removeAfterCombat:Boolean = false, hideFromDisplay:Boolean = false, seOnRemove:String = null, seOnCreate:String = null, seOnRoundStart:String = null, seOnRoundEnd:String = null) 
 		{
 			Name = seName;
 			Payload = sePayload;
@@ -68,6 +74,8 @@ package classes.Ships
 			Hidden = hideFromDisplay;
 			OnRemoveFuncLookup = seOnRemove;
 			OnCreateFuncLookup = seOnCreate;
+			OnRoundStartFuncLookup = seOnRoundStart;
+			OnRoundEndFuncLookup = seOnRoundEnd;
 		}
 		
 	}

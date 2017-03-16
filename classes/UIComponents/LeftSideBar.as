@@ -132,7 +132,7 @@ package classes.UIComponents
 			
 			if (inCombat())
 			{
-				var multi:Boolean = CombatManager.getHostileCharacters().length > 1;
+				var multi:Boolean = CombatManager.getHostileActors().length > 1;
 				
 				_enemyEncounterBlock.visible = !multi;
 				_enemyPartyBlock.visible = multi;

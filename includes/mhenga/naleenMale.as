@@ -32,8 +32,8 @@ public function naleenMaleEncounter():void
 	}
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new NaleenMale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new NaleenMale());
 	CombatManager.victoryScene(defeatAMaleNaleen);
 	CombatManager.lossScene(loseToDudeleenRouter);
 	CombatManager.displayLocation("NALEEN MALE");

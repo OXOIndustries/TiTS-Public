@@ -82,8 +82,8 @@ public function kq2FightBlackVoidGruntsOutside():void
 	for (var i:int = 0; i < num; i++) h.push(new KQ2BlackVoidGrunt());
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryScene(kq2MooksVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
@@ -106,8 +106,8 @@ public function kq2FightBlackVoidGrunts():void
 	for (var i:int = 0; i < num; i++) h.push(new KQ2BlackVoidGrunt());
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryScene(kq2MooksVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
@@ -146,8 +146,8 @@ public function kq2FightSecDrones():void
 	for (var i:int = 0; i < num; i++) h.push(new KQ2SecurityDroid());
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryScene(kq2DroneVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("SEC. DRONES");
@@ -527,8 +527,8 @@ public function kq2rfKaraOverride():void
 	output("\n\nYou nod and turn to face the open courtyard. Now that you’re stuck in one place, you can see several black-armored Void soldiers rushing towards you. You ready your [pc.rangedWeapon] and take cover next to the door. This is going to be rough...");
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc]);
-	CombatManager.setHostileCharacters([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
+	CombatManager.setFriendlyActors([pc]);
+	CombatManager.setHostileActors([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
 	CombatManager.displayLocation("VOID GRUNTS");
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 5);
 	CombatManager.victoryScene(kq2KaraHotwiresSumDoors);
@@ -1020,8 +1020,8 @@ public function kq2rfLabElevator():Boolean
 		if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
 
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(f);
-		CombatManager.setHostileCharacters([new KQ2Juggernaut()]);
+		CombatManager.setFriendlyActors(f);
+		CombatManager.setHostileActors([new KQ2Juggernaut()]);
 		CombatManager.displayLocation("JUGGERNAUT");
 		CombatManager.victoryScene(kq2JuggernautPCVictory);
 		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);

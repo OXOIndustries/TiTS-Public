@@ -304,7 +304,7 @@ package classes.Characters
 		private function numFenrisDronesAlive():int
 		{
 			var numAlive:int = 0;
-			var hostiles:Array = CombatManager.getHostileCharacters();
+			var hostiles:Array = CombatManager.getHostileActors();
 			
 			for (var i:int = 0; i < hostiles.length; i++)
 			{

@@ -10,6 +10,7 @@ package classes.Ships
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import classes.kGAMECLASS;
 	import classes.StorageClass;
+	import classes.GameData.CombatManager;
 	
 	//TODO: Weapon assignments
 	//TODO: Console assignments
@@ -667,6 +668,10 @@ package classes.Ships
 		public var _capacitorModule:CapacitorModule;
 		public function get CapacitorBattery():CapacitorModule { return _capacitorModule; }
 		
+		[Serialize]
+		public var _gunneryModule:GunneryModule;
+		public function get Gunnery():GunneryModule { return _gunneryModule; }
+		
 		/* These are the customised modules that the player may have fitted to the ship */
 		[Serialize]
 		public var _fittedModules:Array;
@@ -677,7 +682,7 @@ package classes.Ships
 			{
 				_cachedFittedModules = [];
 				_cachedFittedModules.concat(_fittedModules);
-				_cachedFittedModules.concat(Lightdrive, Engine, ShieldGenerator, HullArmoring, Reactor, CapacitorBattery);
+				_cachedFittedModules.concat(Lightdrive, Engine, ShieldGenerator, HullArmoring, Reactor, CapacitorBattery, Gunnery);
 			}
 			return _cachedFittedModules;
 		}
@@ -1016,6 +1021,21 @@ package classes.Ships
 			RemoveTemporaryEffects(keys);
 		}
 		
+		public function ClearTemporaryEffects():void
+		{
+			var keys:Array = [];
+			for (var prop:String in TemporaryEffects)
+			{
+				var se:StatusEffectPayload = TemporaryEffects[prop];
+				if (se.CombatOnly == true)
+				{
+					keys.push(prop);
+				}
+			}
+			
+			RemoveTemporaryEffects(keys);
+		}
+		
 		public function GetCombinedStatusPayloads(n:String):Object
 		{
 			var t:Object = null;
@@ -1058,6 +1078,40 @@ package classes.Ships
 			return t;
 		}
 		
+		private function OnRoundStartEffectEvents():void
+		{
+			for (var key:String in StatusEffects)
+			{
+				var se:StatusEffectPayload = StatusEffects[n];
+				if (se.OnRoundStart != null)
+				{
+					se.OnRoundStart(se, this);
+				}
+			}
+		}
+		
+		private function OnRoundEndEffectEvents():void
+		{
+			var rem:Array = [];
+			
+			for (var key:String in StatusEffects)
+			{
+				var se:StatusEffectPayload = StatusEffects[n];
+				if (se.OnRoundEnd != null)
+				{
+					se.OnRoundEnd(se, this);
+					if (se.DurationMode == StatusEffectPayload.DURATION_ROUNDS && se.Duration == 0)
+					{
+						rem.push(key);
+					}
+				}
+			}
+			
+			if (rem.length > 0)
+			{
+				RemoveStatusEffects(rem);
+			}
+		}
 		//} endregion
 		
 		//{ region Combat
@@ -1073,6 +1127,7 @@ package classes.Ships
 			var dm:Array = GetDefensiveModules();
 			
 			var res:ShipTypeCollection = _hullResistances.MakeCopy();
+			res.CombineResistances(HullArmoring.Resistances);
 			
 			for (var i:int = 0; i < dm.length; i++)
 			{
@@ -1153,6 +1208,7 @@ package classes.Ships
 			HydrateModuleCrew(ShieldGenerator);
 			HydrateModuleCrew(Reactor);
 			HydrateModuleCrew(Capacitor);
+			HydrateModuleCrew(Gunnery);
 		}
 		private function HydrateModuleRoom(m:CapacitorModule):void
 		{
@@ -1172,6 +1228,25 @@ package classes.Ships
 		}
 		
 		public function OnRoundStart():void
+		{
+			OnRoundStartEffectEvents();
+			CrewMechanicShieldingRepair();
+			CrewSystemsEffects();
+		}
+		
+		private function CrewSystemsEffects():void
+		{
+			if (Reactor.HookedCrew != null)
+			{
+				var perk:StorageClass = Reactor.HookedCrew.getPerkEffect("Crew Skill - Systems");
+				if (perk != null && perk.value1 > 0)
+				{
+					var enemyShips:Array = CombatManager.
+				}
+			}
+		}
+		
+		private function CrewMechanicShieldingRepair():void
 		{
 			var doFix:int = 0;
 			var chanceToFixModule:Number = 0;
@@ -1219,7 +1294,8 @@ package classes.Ships
 		
 		public function OnRoundEnd():void
 		{
-			
+			ClearTemporaryEffects();
+			OnRoundEndEffectEvents();
 		}
 		
 		//} endregion

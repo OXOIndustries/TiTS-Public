@@ -131,8 +131,8 @@ public function taivrasPalaceSquareBonus():Boolean
 public function configurePraetorianFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new NyreanPraetorians());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new NyreanPraetorians());
 	CombatManager.victoryScene(spankDaShitOuttaPraetorians);
 	CombatManager.lossScene(loseToPraetorianNyreaGangbangu);
 	CombatManager.displayLocation("NYREA GUARDS");
@@ -738,8 +738,8 @@ public function stepBackFromGloryHoles():void
 public function configureGoocubatorFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(goocubator);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(goocubator);
 	CombatManager.victoryScene(pcBeatsGoo);
 	CombatManager.lossScene(loseToRoyalIncuGoo);
 	CombatManager.displayLocation("GOO");
@@ -1252,8 +1252,8 @@ public function startFightingQueenButt(plat190:Boolean = false):void
 public function configureQueensguardFight():void
 {	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Queensguard());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Queensguard());
 	CombatManager.victoryScene(spankedQueensguardsAss);
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEENSGUARD");
@@ -1645,7 +1645,7 @@ public function spankedQueensguardsAss(daneEndedIt:Boolean = false):void
 {
 	if (daneEndedIt)
 	{
-		setEnemy(CombatManager.getHostileCharacters()[0]);
+		setEnemy(CombatManager.getHostileActors()[0]);
 	}
 	clearOutput();
 	author("Savin");
@@ -1679,8 +1679,8 @@ public function spankedQueensguardsAss(daneEndedIt:Boolean = false):void
 	}
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Taivra());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Taivra());
 	CombatManager.victoryScene(whupTaivrasAss);
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEEN TAIVRA");
@@ -3703,8 +3703,8 @@ public function resistPrincessYouSloot():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Princess());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Princess());
 	CombatManager.victoryScene(beatUpPrincessYeSlut);
 	CombatManager.lossScene(loseToPrincessYeGit);
 	CombatManager.displayLocation("PRINCESS");

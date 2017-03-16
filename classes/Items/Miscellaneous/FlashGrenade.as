@@ -91,7 +91,7 @@ package classes.Items.Miscellaneous
 		
 		public function throwGrenade(targetCreature:Creature, attacker:Creature):void
 		{
-			var hGroup:Array = CombatManager.getHostileCharacters();
+			var hGroup:Array = CombatManager.getHostileActors();
 			var aTarget:Creature = CombatAttacks.GetBestPotentialTarget(hGroup);
 			if(aTarget == null)
 			{

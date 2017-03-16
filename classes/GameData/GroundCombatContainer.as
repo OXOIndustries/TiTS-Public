@@ -1597,7 +1597,7 @@ package classes.GameData
 			
 			if (CombatManager.hasEnemyOfClass(Ehstraffe))
 			{
-				var e:Array = CombatManager.getHostileCharacters();
+				var e:Array = CombatManager.getHostileActors();
 				
 				for (var i:int = 0; i < e.length; i++)
 				{

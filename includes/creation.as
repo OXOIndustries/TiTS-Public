@@ -1617,8 +1617,8 @@ public function openDoorToTutorialCombat():void {
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(celise);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(celise);
 	// These are configured by default, but can be overriden after a call to newGroundCombat^
 	// CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	// CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);

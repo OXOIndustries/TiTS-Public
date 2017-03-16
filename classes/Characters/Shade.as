@@ -264,7 +264,7 @@
 		
 		public function updateDesc():void
 		{
-			var hostiles:Array = CombatManager.getHostileCharacters();
+			var hostiles:Array = CombatManager.getHostileActors();
 			
 			if (hostiles.indexOf(this) == -1)
 			{

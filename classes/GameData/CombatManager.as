@@ -1,6 +1,7 @@
 package classes.GameData 
 {
 	import classes.Creature;
+	import classes.Ships.SpaceShip;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Interfaces.*;
@@ -49,8 +50,8 @@ package classes.GameData
 			combatContainer.encounterTextGenerator = tFunc;
 		}
 		
-		private static var _friendlyCharacters:Array;
-		public static function setFriendlyCharacters(... args):void
+		private static var _friendlyActors:Array;
+		public static function setFriendlyActors(... args):void
 		{
 			if (args.length == 0) throw new Error("Invalid arguments");
 			var param:Array;
@@ -59,12 +60,12 @@ package classes.GameData
 			else param = args;
 			
 			combatContainer.setPlayerGroup(param);
-			_friendlyCharacters = param;
+			_friendlyActors = param;
 		}
 		
-		public static function getFriendlyCharacters():Array
+		public static function getFriendlyActors():Array
 		{
-			return _friendlyCharacters;
+			return _friendlyActors;
 		}
 		
 		public static function addFriendlyActor(newC:*):void
@@ -72,8 +73,8 @@ package classes.GameData
 			combatContainer.addFriendlyActor(newC);
 		}
 		
-		private static var _hostileCharacters:Array;
-		public static function setHostileCharacters(... args):void
+		private static var _hostileActors:Array;
+		public static function setHostileActors(... args):void
 		{
 			if (args.length == 0) throw new Error("Invalid arguments");
 			
@@ -82,11 +83,11 @@ package classes.GameData
 			else param = args;
 			
 			combatContainer.setEnemyGroup(param);
-			_hostileCharacters = param;
+			_hostileActors = param;
 		}
-		public static function getHostileCharacters():Array
+		public static function getHostileActors():Array
 		{
-			return _hostileCharacters;
+			return _hostileActors;
 		}
 		
 		public static function addHostileActor(newC:*):void
@@ -195,15 +196,19 @@ package classes.GameData
 			if (combatContainer) return combatContainer.roundCounter;
 			return -1;
 		}
-		public static function getCreaturesGroup(c:Creature):Array
+		public static function getActorsGroup(c:*):Array
 		{
-			if (_hostileCharacters.indexOf(c) == -1) return _friendlyCharacters;
-			return _hostileCharacters;
+			if (!(c is Creature) && !(c is SpaceShip)) throw new Error("getActorsGroup called with an invalid object.");
+			
+			if (_hostileActors.indexOf(c) == -1) return _friendlyActors;
+			return _hostileActors;
 		}
-		public static function getCreaturesOpposition(c:Creature):Array
+		public static function getActorsOpposition(c:*):Array
 		{
-			if (_hostileCharacters.indexOf(c) != -1) return _friendlyCharacters;
-			return _hostileCharacters;
+			if (!(c is Creature) && !(c is SpaceShip)) throw new Error("getActorsOpposition called with an invalid object.");
+			
+			if (_hostileActors.indexOf(c) != -1) return _friendlyActors;
+			return _hostileActors;
 		}
 		public static function continueCombat():void
 		{
@@ -211,8 +216,8 @@ package classes.GameData
 		}
 		public static function multipleEnemies():Boolean
 		{
-			if (_hostileCharacters.length > 1) return true;
-			if ((_hostileCharacters[0] as Creature).isPlural) return true;
+			if (_hostileActors.length > 1) return true;
+			if (combatContainer is GroundCombatContainer && (_hostileActors[0] as Creature).isPlural) return true;
 			return false;
 		}
 		public static function hasEnemyOfClass(t:Class):Boolean
@@ -220,7 +225,7 @@ package classes.GameData
 			if (combatContainer) return combatContainer.hasEnemyOfClass(t);
 			return false;
 		}
-		public static function getEnemyOfClass(t:Class):Creature
+		public static function getEnemyOfClass(t:Class):*
 		{
 			if (combatContainer) return combatContainer.getEnemyOfClass(t);
 			return null;

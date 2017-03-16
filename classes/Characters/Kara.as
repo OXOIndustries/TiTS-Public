@@ -289,7 +289,7 @@
 			// if (CombatManager.combatEncounter() == CombatEncounters.KaraVsShadeFight)
 			if (flags["KQ2_QUEST_BEGIN"] == undefined)
 			{
-				var hostiles:Array = CombatManager.getHostileCharacters();
+				var hostiles:Array = CombatManager.getHostileActors();
 				
 				if (hostiles.indexOf(this) == -1)
 				{

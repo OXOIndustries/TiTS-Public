@@ -317,7 +317,7 @@
 				if (rand(3) <= chance)
 				{
 					// Slip a cooldown on the hostile
-					var hostiles:Array = CombatManager.getHostileCharacters();
+					var hostiles:Array = CombatManager.getHostileActors();
 					var gPrime:GrayPrime = hostiles[0];
 					gPrime.createStatusEffect("Grapple Cooldown", 3);
 					

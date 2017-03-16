@@ -140,8 +140,8 @@ public function configFemZilFight(consensual:Boolean = false ):void
 	
 	CodexManager.unlockEntry("Zil");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tZil);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tZil);
 	CombatManager.victoryScene(defeatHostileZil);
 	CombatManager.lossScene(girlZilLossRouter);
 	CombatManager.displayLocation("FEMALE ZIL");

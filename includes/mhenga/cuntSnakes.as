@@ -46,8 +46,8 @@ public function encounterCuntSnakeOnJungleLand():void {
 	CodexManager.unlockEntry("Cunt Snakes");
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CuntSnake());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CuntSnake());
 	CombatManager.victoryScene(defeatACuntSnake);
 	CombatManager.lossScene(loseToCuntSnake);
 	CombatManager.displayLocation("CUNT SNAKE");
