@@ -152,7 +152,7 @@ package classes.Items.Transformatives
 			if(pc.fertility() < 5 && pc.hasVagina() && pc.isSquirter()) choices.push(10);
 			//10x preggo speed
 			if(pc.pregnancyIncubationBonusMotherRaw < 10 && pc.hasVagina()) choices.push(11);
-			if(pc.hasVagina()) choices.push(12);
+			if(!pc.isFullyWombPregnant() && pc.hasVagina()) choices.push(12);
 			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) 
 			{
 				choices.push(13);
@@ -1931,7 +1931,7 @@ package classes.Items.Transformatives
 			}
 			else 
 			{
-				textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You'll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it's possible for you to get the ears too. Shucks.";
+				textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You’ll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it’s possible for you to get the ears too. Shucks.";
 			}
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 		}
