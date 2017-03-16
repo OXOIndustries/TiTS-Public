@@ -28,7 +28,7 @@
 			
 			this.description = "a furry bra";
 			
-			this.tooltip = "A furry bra made of of fake animal hide. It gives a very tribal \"cave girl\" look when worn. Good for showing off your primal side.";
+			this.tooltip = "A furry bra made up of fake animal hide. It gives a very tribal “cave girl” look when worn. Good for showing off your primal side.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

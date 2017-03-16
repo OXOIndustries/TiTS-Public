@@ -44,8 +44,8 @@ public function crystalGooFenBurps():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(gooKnight);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(gooKnight);
 	CombatManager.victoryScene(beatUpCrystalGoo);
 	CombatManager.lossScene(gooKnightLossRouter);
 	CombatManager.displayLocation("GOO KNIGHT");

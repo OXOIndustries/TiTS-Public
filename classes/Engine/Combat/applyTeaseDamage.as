@@ -115,13 +115,12 @@ package classes.Engine.Combat
 		}
 		else
 		{
-			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2;
+			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
 			if (teaseType == "SQUIRT") damage += 5;
 			if (attacker.hasPheromones()) damage += 1 + rand(4);
 			damage *= (rand(31) + 85) / 100;
 			
-			if (damage > 15 + attacker.level * 2) damage = 15 + attacker.level * 2;
-			damage *= factor;
+			damage = (Math.min(damage, 15 + attacker.level * 2 +  attacker.statusEffectv3("Painted Penis")) * factor);
 			
 			//Tease % resistance.
 			if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
@@ -141,7 +140,9 @@ package classes.Engine.Combat
 			//damage -= target.lustDef();
 
 			//Damage cap
-			if (damage > 30) damage = 30;
+			var cap:Number = 30 + attacker.statusEffectv3("Painted Penis");
+			
+			if (damage > cap) damage = cap;
 			//Damage min
 			if (damage < 0) damage = 0;
 			

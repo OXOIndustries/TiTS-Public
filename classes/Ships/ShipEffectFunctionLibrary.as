@@ -15,7 +15,7 @@ package classes.Ships
 		{
 			trace("ExampleOnCreate called for", se.Name, "on", ship.Name);
 		}
-		public static function ExampleOnRemove(se:StatusEffectPayload, ship:SpaceShip):ArgumentErrorvoid
+		public static function ExampleOnRemove(se:StatusEffectPayload, ship:SpaceShip):void
 		{
 			trace("ExampleOnRemove called for", se.Name, "on", ship.Name);
 		}

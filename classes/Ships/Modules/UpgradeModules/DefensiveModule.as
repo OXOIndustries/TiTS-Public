@@ -15,13 +15,14 @@ package classes.Ships.Modules.UpgradeModules
 			super(owner);
 			
 			_bonusHull = 0;
-			_bonusHullMultiplier = 0;
+			_bonusHullMultiplier = 0.0;
 			_bonusHullResistances = null;
+			_bonusHullRechargePerRound = 0;
+			_bonusHullRechargePerMinute = 0;
+			_bonusHullRechargeMultiplier = 0;
+			_bonusArmor = 0;
+			_bonusArmorMultiplier = 0.0;
 			
-			_hullCanRegenInCombat = false;
-			_hullCanRegenOutOfCombat = false;
-			_hullRegenRateInCombat = 0;
-			_hullRegenRateOutOfCombat = 0;
 			
 			_bonusShields = 0;
 			_bonusShieldsMultiplier = 0;
@@ -29,6 +30,8 @@ package classes.Ships.Modules.UpgradeModules
 			_bonusShieldRechargePerRound = 0;
 			_bonusShieldRechargePerMinute = 0;
 			_bonusShieldRechargeMultiplier = 0;
+			_bonusShieldHardness = 0;
+			_bonusShieldHardnessMultiplier = 0.0;
 		}
 		
 		protected var _bonusHull:Number;
@@ -51,7 +54,7 @@ package classes.Ships.Modules.UpgradeModules
 		
 		public function get BonusHull():Number { return _bonusHull; }
 		public function get BonusHullMultiplier():Number { return _bonusHullMultiplier; }
-		public function get BonusHullResistances():Number { return _bonusHullResistances; }
+		public function get BonusHullResistances():ShipTypeCollection { return _bonusHullResistances; }
 		public function get BonusHullRechargePerMinute():Number { return _bonusHullRechargePerMinute; }
 		public function get BonusHullRechargePerRound():Number { return _bonusHullRechargePerRound; }
 		public function get BonusHullRechargeMultiplier():Number { return _bonusHullRechargeMultiplier; }

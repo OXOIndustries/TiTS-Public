@@ -17,9 +17,6 @@ public function bustDisplayMilodanMale(nude:Boolean = false):String
 {
 	var sBust:String = "MILODANMALE";
 	
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["MILODANMALE"] != "SHOU") return sBust;
-	
 	if(nude) sBust += "_NUDE";
 	
 	return sBust;
@@ -29,8 +26,8 @@ public function milodanCombatPrep():Creature
 {
 	var milodan:Creature = new MilodanMale();
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(milodan);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(milodan);
 	CombatManager.victoryScene(winVsMilodanMale);
 	CombatManager.lossScene(lossSceneToMaleMilodan);
 	CombatManager.displayLocation("MILODAN");

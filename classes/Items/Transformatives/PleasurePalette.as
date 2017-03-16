@@ -21,7 +21,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.POTION;
+			type = GLOBAL.PILL;
 			shortName = "P. Pal";
 			longName = "Pleasure Palette Permapaint";
 			

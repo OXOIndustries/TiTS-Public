@@ -15,6 +15,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/aliss.png", mimeType = "image/png")]
 		public var Bust_ALISS:Class;
+		public function get Bust_ALISS_NUDE():Class { return Bust_ALISS; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/anno.png", mimeType = "image/png")]
 		public var Bust_ANNO:Class;
@@ -52,11 +53,16 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
+		public function get Bust_FLAHNE_NUDE():Class { return Bust_FLAHNE; }
+		public function get Bust_FLAHNE_OVI_NUDE():Class { return Bust_FLAHNE; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Rival_Jack.png", mimeType = "image/png")]
 		public var Bust_JACK:Class;
+		public function get Bust_JACK_NUDE():Class { return Bust_JACK; }
+		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Rival_Jill.png", mimeType = "image/png")]
 		public var Bust_JILL:Class;
+		public function get Bust_JILL_NUDE():Class { return Bust_JILL; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
@@ -76,6 +82,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/milodanmale.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE:Class;
 		public var Bounds_MILODANMALE:Rectangle = new Rectangle(20, 1, 62, 62);
+		public function get Bust_MILODANMALE_CLUB():Class { return Bust_MILODANMALE; }
+		public function get Bounds_MILODANMALE_CLUB():Rectangle { return Bounds_MILODANMALE; }
+		public function get Bust_MILODANMALE_AXE():Class { return Bust_MILODANMALE; }
+		public function get Bounds_MILODANMALE_AXE():Rectangle { return Bounds_MILODANMALE; }
+		public function get Bust_MILODANMALE_NUDE():Class { return Bust_MILODANMALE; }
+		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
@@ -97,9 +109,11 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/sellesy.png", mimeType = "image/png")]
 		public var Bust_SELLESY:Class;
+		public function get Bust_SELLESY_NUDE():Class { return Bust_SELLESY; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
+		public function get Bust_SYRI_NUDE():Class { return Bust_SYRI; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Vanae_Huntress.png", mimeType = "image/png")]
 		public var Bust_VANAE_HUNTRESS:Class;
@@ -114,6 +128,7 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/V-Ko.png", mimeType = "image/png")]
 		public var Bust_VKO:Class;
+		public function get Bust_VKO_NUDE():Class { return Bust_VKO; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
@@ -125,6 +140,7 @@ package classes.Resources.Busts
 		{
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/aliss.png", mimeType = "image/png")]
 			public var Full_ALISS:Class;
+			public function get Full_ALISS_NUDE():Class { return Full_ALISS; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/anno.png", mimeType = "image/png")]
 			public var Bust_ANNO:Class;
@@ -161,11 +177,16 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Flahne.png", mimeType = "image/png")]
 			public var Full_FLAHNE:Class;
+			public function get Full_FLAHNE_NUDE():Class { return Full_FLAHNE; }
+			public function get Full_FLAHNE_OVI_NUDE():Class { return Full_FLAHNE; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Rival_Jack.png", mimeType = "image/png")]
 			public var Full_JACK:Class;
+			public function get Full_JACK_NUDE():Class { return Full_JACK; }
+			
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Rival_Jill.png", mimeType = "image/png")]
 			public var Full_JILL:Class;
+			public function get Full_JILL_NUDE():Class { return Full_JILL; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
@@ -184,6 +205,9 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/milodanmale.png", mimeType = "image/png")]
 			public var Full_MILODANMALE:Class;
+			public function get Full_MILODANMALE_CLUB():Class { return Full_MILODANMALE; }
+			public function get Full_MILODANMALE_AXE():Class { return Full_MILODANMALE; }
+			public function get Full_MILODANMALE_NUDE():Class { return Full_MILODANMALE; }
 			
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Machina.png", mimeType = "image/png")]
 			public var Full_MACHINA:Class;
@@ -205,9 +229,11 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/sellesy.png", mimeType = "image/png")]
 			public var Full_SELLESY:Class;
+			public function get Full_SELLESY_NUDE():Class { return Full_SELLESY; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Syri.png", mimeType = "image/png")]
 			public var Full_SYRI:Class;
+			public function get Full_SYRI_NUDE():Class { return Full_SYRI; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Vanae_Huntress.png", mimeType = "image/png")]
 			public var Full_VANAE_HUNTRESS:Class;
@@ -222,6 +248,7 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/V-Ko.png", mimeType = "image/png")]
 			public var Full_VKO:Class;
+			public function get Full_VKO_NUDE():Class { return Full_VKO; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Zil_Female.png", mimeType = "image/png")]
 			public var Full_ZILFEMALE:Class;

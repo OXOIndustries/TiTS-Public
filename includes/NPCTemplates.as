@@ -144,4 +144,15 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 	{
 		chars[index] = new classT();
 	}
+	
+	if (charDict == null)
+	{
+		charDict = new Dictionary();
+	}
+		
+	// Always potentially keep the most recent iteration of a character object in the dict
+	charDict[chars[index]] = index;
 }
+
+import flash.utils.Dictionary;
+public var charDict:Dictionary

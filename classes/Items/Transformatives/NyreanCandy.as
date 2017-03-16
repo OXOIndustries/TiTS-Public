@@ -19,7 +19,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.FOOD;
 			shortName = "N.Candy";
 			longName = "nyrean rock candy";
 			

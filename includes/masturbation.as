@@ -294,6 +294,26 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && new LaquineEars().lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "F.Laquine";
+		fap.ttHeader = "Female Laquine Hallucination";
+		fap.ttBody = "Attempt to summon the hallucinatory laquine you met while using a pair of Laquine Ears.";
+		fap.func = laquineEarsFemaleWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
+	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "M.Laquine";
+		fap.ttHeader = "Male Laquine Hallucination";
+		fap.ttBody = "Attempt to summon the hallucinatory laquine you met while using a pair of Laquine Ears.";
+		fap.func = laquineEarsMaleWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
 	//PANTY FAPS!
 	if(pc.hasCock()) 
 	{
@@ -1301,9 +1321,9 @@ public function cuntTailFapScene():void {
 	if(pc.cumQ() >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
 	if(pc.cumQ() >= 1000) output(".");
 	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
+	processTime(20+rand(10));
 	pc.loadInCuntTail(pc);
 	pc.orgasm();
-	processTime(20+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3981,5 +4001,11 @@ public function adjustableHolofap():void
 	IncrementFlag("HL_STRAPON_FAP_ADJUSTABLE");
 }
 
-
-
+public function laquineEarsMaleWrapper():void
+{
+	new LaquineEars().bunnyguyFapScene(pc,true);
+}
+public function laquineEarsFemaleWrapper():void
+{
+	new LaquineEars().bunnyGirlFapScene(pc,true);
+}

@@ -1,5 +1,6 @@
 package classes.DataManager.Serialization 
 {
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -10,15 +11,15 @@ package classes.DataManager.Serialization
 		protected function set Version(v:uint):void { _Version = v; }
 		protected function get Version():uint { return _Version; }
 		
-		override public function GetSaveObject():Object
+		override public function getSaveObject():Object
 		{
 			// Get the standard unversioned data and then smash the Version property into it
-			var o:Object = super.GetSaveObject();
+			var o:Object = super.getSaveObject();
 			o.CurrentVersion = Version;
 			return o;
 		}
 		
-		override public function LoadSaveObject(saveObject:Object):void
+		override public function loadSaveObject(saveObject:Object):void
 		{
 			// Strip out the CurrentVersion property of an incoming save object
 			var CurrentVersion:uint = saveObject.CurrentVersion;
@@ -28,7 +29,7 @@ package classes.DataManager.Serialization
 			if (CurrentVersion == Version)
 			{
 				// Versions match, just expand as normal
-				super.LoadSaveObject(saveObject);
+				super.loadSaveObject(saveObject);
 				return;
 			}
 			if (CurrentVersion > Version)
@@ -53,7 +54,7 @@ package classes.DataManager.Serialization
 			}
 			
 			// Now continue with regular loading, as our save object will have all of the upgraded data required
-			super.LoadSaveObject(saveObject);
+			super.loadSaveObject(saveObject);
 		}
 	}
 

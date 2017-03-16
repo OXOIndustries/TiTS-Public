@@ -12,7 +12,14 @@ package classes.Ships.Modules
 		{
 			super(owner);
 			
-			_agilityMultiplier = 1.0;
+			_hullBonus = 0;
+			_hullMultiplier = 0.0;
+			_rechargeRatePerRound = 0;
+			_rechargeRatePerMinute = 0;
+			_rechargeRateMultiplier = 0.0;
+			_armor = 0;
+			_armorMultiplier = 0.0;
+			_resistances = null;
 		}
 		
 		protected var _hullBonus:Number;

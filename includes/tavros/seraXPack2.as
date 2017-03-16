@@ -517,6 +517,7 @@ public function mods4UChrysalisBonus():void
 public function mods4UChrysalisBuy():void
 {
 	// All items inc. “top shelf” items displayed at standard price
+	chars["CHRYSALISDRONE"].inventory = chrysalisInventory();
 	shopkeep = chars["CHRYSALISDRONE"];
 	
 	if(flags["ZODEE_GALOQUEST"] != undefined)
@@ -590,6 +591,9 @@ public function seraOnShipBonus(btnSlot:int = 0):String
 // Sera Salary hotfix
 public function seraSalaryCheck():Boolean
 {
+	// Already completed merchant arc (no more debt!)
+	if(flags["SERA_REPAID_LOAN"] != undefined || (flags["SERA_BUSINESS_SETUP"] != undefined && (days - flags["SERA_BUSINESS_SETUP"] >= 365))) return false;
+	// Other checks
 	if(flags["SERA_SALARY_RESOLVED"] != undefined || seraInDebt() || shipLocation != "TAVROS HANGAR") return false;
 	
 	clearOutput();
@@ -647,7 +651,9 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			output("\n\nYou say nothing and sidestep out of the way. In your place, the two tarratch step forward. Attica’s feathers retract, shift, and vibrate into a familiar fan-like shape.");
 			output("\n\n<i>“Oh, SHIT.”</i> Sera’s expression changes from confusion to panic. <i>“FUCK. FUCK. FUCK. Not again! Get the hell away fr--!”</i> With Sera’s guard down, Attica’s hypnotizing ability hits her with great effect and she instantly becomes subject to the tarratch’s beck and call. Attica removes the thin, silver collar from the demoness’ neck and gracefully returns it to you.");
 			output("\n\n<i>“Come, rue collar. Let us fix you,”</i> Teron commands. Like a hapless puppy, Sera follows. As the three are led out " + (seraIsCrew() ? "the airlock" : "to the elevator") + ", Teron turns to you. <i>“Not to worry, her belongings are being shipped back to ‘The Dark Chrysalis’ as we speak. Things will be as they once were, more or less.”</i> Glancing at the now-unworn collar in your hand, he adds, <i>“You can keep the starter kit by the way--think of it as a consolation gift; for the trouble. Perhaps you can find it useful in the future.”</i>");
-			output("\n\n<i>“As for the refund, dear customer...”</i> Attica politely mentions while tapping a handheld data slate. Your codex gives a few positive beeps, letting you know that <b>you have been refunded 15,000 credits.</b> <i>“Apologies for any inconvenience this may have caused.”</i>");
+			output("\n\n<i>“As for the refund, dear customer...”</i> Attica politely mentions while tapping a handheld data slate. Your codex gives a few positive beeps, letting you know that <b>you have been refunded 15,000 credits");
+			if(flags["SERA_BUSINESS_SETUP"] != undefined && flags["SERA_REPAID_LOAN"] == undefined && !pc.hasStatusEffect("Sera Debt Repaid")) output(" along with an additional 15,000 credits reimbursed for the loan you gave her");
+			output(".</b> <i>“Apologies for any inconvenience this may have caused.”</i>");
 			output("\n\n<i>“Give us a few hours to get her fully situated,”</i> Teron says, before parting ways. <i>“Thank you for your cooperation in fixing this error. I hope we do business again in the future... unless you are interested in signing a contract for yourself?”</i> he smiles. <i>“Farewell, friend.”</i>");
 			output("\n\n(<b>Sera is no longer a part of your crew. You can find her again at The Dark Chrysalis.</b>)");
 			
@@ -655,6 +661,19 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			
 			currentLocation = (seraIsCrew() ? shipLocation : "NURSERYE14");
 			
+			// Reset Sera flags
+			if(flags["SERA_ACQUIRED_DATE"] != undefined) flags["SERA_ACQUIRED_DATE"] = undefined;
+			if(flags["SERA_OBEDIENCE"] != undefined) flags["SERA_OBEDIENCE"] = undefined;
+			if(flags["SERA_OBEDIENCE_MIN"] != undefined) flags["SERA_OBEDIENCE_MIN"] = undefined;
+			if(flags["SERA_OBEDIENCE_MAX"] != undefined) flags["SERA_OBEDIENCE_MAX"] = undefined;
+			if(flags["SERA_MERCHANT"] != undefined) flags["SERA_MERCHANT"] = undefined;
+			if(flags["SERA_BUSINESS_SETUP"] != undefined)
+			{
+				if(flags["SERA_REPAID_LOAN"] == undefined && !pc.hasStatusEffect("Sera Debt Repaid")) pc.credits += 15000;
+				flags["SERA_BUSINESS_SETUP"] = undefined;
+			}
+			if(flags["SERA_REPAID_LOAN"] != undefined) flags["SERA_REPAID_LOAN"] = undefined;
+			if(flags["SERA_CREWMEMBER"] != undefined) flags["SERA_CREWMEMBER"] = undefined;
 			// Revert Sera!
 			if(!chars["SERA"].hasCock()) chars["SERA"].createCock();
 			chars["SERA"].cocks[0].cLengthRaw = 12.5;
@@ -665,17 +684,7 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			chars["SERA"].skinTone = "light purple";
 			chars["SERA"].nippleColor = "cerulean";
 			// Revert Sera inventory!
-			chars["SERA"].inventory = [];
-			chars["SERA"].inventory.push(new TerranTreats());
-			chars["SERA"].inventory.push(new Estrobloom());
-			chars["SERA"].inventory.push(new Tittyblossom());
-			chars["SERA"].inventory.push(new Pussybloom());
-			chars["SERA"].inventory.push(new Pussyblossom());
-			chars["SERA"].inventory.push(new ManUp());
-			chars["SERA"].inventory.push(new Condensol());
-			chars["SERA"].inventory.push(new DendroGro());
-			chars["SERA"].inventory.push(new Rainbotox());
-			chars["SERA"].inventory.push(new Chocolac());
+			chars["SERA"].inventory = chrysalisInventory();
 			chars["SERA"].sellMarkup = 1.2;
 			chars["SERA"].buyMarkdown = 0.8;
 			// Reset Sera conditions!
@@ -683,15 +692,10 @@ public function seraSalaryCheckOption(response:String = "none"):void
 			chars["SERA"].minutesSinceCum = 9000;
 			if(flags["SERA_NO_SEX"] != undefined) flags["SERA_NO_SEX"] = undefined;
 			pc.removeStatusEffect("Sera Credit Debt");
-			// Reset Sera flags
-			if(flags["SERA_ACQUIRED_DATE"] != undefined) flags["SERA_ACQUIRED_DATE"] = undefined;
-			if(flags["SERA_OBEDIENCE"] != undefined) flags["SERA_OBEDIENCE"] = undefined;
-			if(flags["SERA_OBEDIENCE_MIN"] != undefined) flags["SERA_OBEDIENCE_MIN"] = undefined;
-			if(flags["SERA_OBEDIENCE_MAX"] != undefined) flags["SERA_OBEDIENCE_MAX"] = undefined;
-			if(flags["SERA_MERCHANT"] != undefined) flags["SERA_MERCHANT"] = undefined;
-			if(flags["SERA_BUSINESS_SETUP"] != undefined) flags["SERA_BUSINESS_SETUP"] = undefined;
-			if(flags["SERA_REPAID_LOAN"] != undefined) flags["SERA_REPAID_LOAN"] = undefined;
-			if(flags["SERA_CREWMEMBER"] != undefined) flags["SERA_CREWMEMBER"] = undefined;
+			pc.removeStatusEffect("Sera Debt Repaid");
+			pc.removeStatusEffect("Seranigans Punishment");
+			pc.removeStatusEffect("Seranigans");
+			pc.removeStatusEffect("Seranigans Event");
 			
 			if(flags["ACQUISITIONS_SLAVE_PURCHASES"] != undefined)
 			{

@@ -18,7 +18,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			shortName = "Furball";
 			longName = "Furball candy";
 			
@@ -44,7 +44,7 @@
 			
 			clearOutput();
 			kGAMECLASS.showName("\nFURBALL");
-			author("WorldOfDrakan");
+			author("Anonymous Drake");
 			
 			if(target is PlayerCharacter)
 			{

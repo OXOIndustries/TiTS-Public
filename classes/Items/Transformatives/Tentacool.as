@@ -29,12 +29,12 @@ package classes.Items.Transformatives
 			quantity = 1;
 			stackSize = 10;
 			type = GLOBAL.PILL;
-			shortName = "Tentacool";
-			longName = "Tentacool pill";
+			shortName = "Tentatool";
+			longName = "Tentatool pill";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a Tentacool pill";
+			description = "a Tentatool pill";
 			tooltip = "A large, transparent pill, swirling with a luminous, green liquid. A banned drug, it has potential side effects you’ll want to read about if you haven’t already.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
@@ -54,14 +54,14 @@ package classes.Items.Transformatives
 			{
 				author("Ascent");
 				
-				CodexManager.unlockEntry("Tentacool");
+				CodexManager.unlockEntry("Tentatool");
 				//Never read codex entry on it.
-				if(!CodexManager.entryViewed("Tentacool"))
+				if(!CodexManager.entryViewed("Tentatool"))
 				{
-					kGAMECLASS.output("Seeing as Tentacool’s a banned drug, it’d probably be a good idea to read up on it before ingesting it.");
+					kGAMECLASS.output("Seeing as Tentatool’s a banned drug, it’d probably be a good idea to read up on it before ingesting it.");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
-				else if (triggerBadEnd(target) && target.hasStatusEffect("Tentacool"))
+				else if (triggerBadEnd(target) && target.hasStatusEffect("Tentatool"))
 				{
 					tentacleBadEnd(target);
 					return true;
@@ -71,13 +71,13 @@ package classes.Items.Transformatives
 					kGAMECLASS.output("You pop the pill into your mouth and swallow it down in one gulp. Immediately you feel a tingling sensation on your skin, but nothing else happens. Your skin is definitely more sensitive, but you’ll have to wait for further effects.");
 					
 					// If already taken one, up dosage value
-					if(target.hasStatusEffect("Tentacool"))
+					if(target.hasStatusEffect("Tentatool"))
 					{
-						target.addStatusValue("Tentacool", 1, 1);
+						target.addStatusValue("Tentatool", 1, 1);
 					}
 					else
 					{
-						target.createStatusEffect("Tentacool", 1, 0, 0, 0, false, "Pill", "Your skin tingles from the Tentacool pill.", false, 30, 0xB793C4); // Transformations take place after time runs out
+						target.createStatusEffect("Tentatool", 1, 0, 0, 0, false, "Pill", "Your skin tingles from the Tentatool pill.", false, 30, 0xB793C4); // Transformations take place after time runs out
 					}
 				}
 			}
@@ -167,7 +167,7 @@ package classes.Items.Transformatives
 			}
 			
 			// TF texts
-			msg += "<b>The Tentacool pill has an effect....</b>";
+			msg += "<b>The Tentatool pill has an effect....</b>";
 			var changed:Boolean = false;
 			
 			while(totalTFs > 0)
@@ -280,7 +280,7 @@ package classes.Items.Transformatives
 						
 						if (!target.hasTailFlag(GLOBAL.FLAG_LONG)) msg += " and growing";
 						
-						msg += ". You bring " + (oneTail ? "your tail" : "one of your tails") + " around to the front of your body and examine it. <b>Your " + (oneTail ? "tail has become a" : "tails have become") + (cockOrPussy == 0 ? " cock" : " pussy") + "-tipped " + (oneTail ? "tentacle" : "tentacles" + "!</b>");
+						msg += ". You bring " + (oneTail ? "your tail" : "one of your tails") + " around to the front of your body and examine it. <b>Your " + (oneTail ? "tail has become a" : "tails have become") + (cockOrPussy == 0 ? " cock" : " pussy") + "-tipped " + (oneTail ? "tentacle" : "tentacles") + "!</b>";
 						
 						target.clearTailFlags();
 						target.tailType = GLOBAL.TYPE_TENTACLE;
@@ -570,10 +570,10 @@ package classes.Items.Transformatives
 			
 			msg += "\n\n";
 			
-			if (target.tentacleScore() >= target.willpower() && rand(2) == 0) msg += "As the effects of the Tentacool wind down, you feel a bit dizzy and spaced-out. You quickly snap out of it and clear your head. ";
+			if (target.tentacleScore() >= target.willpower() && rand(2) == 0) msg += "As the effects of the Tentatool wind down, you feel a bit dizzy and spaced-out. You quickly snap out of it and clear your head. ";
 			
 			// Effect over:
-			msg += "Finally your skin stops tingling and any remaining tension dissipates. It seems the effects of the Tentacool have worn off."
+			msg += "Finally your skin stops tingling and any remaining tension dissipates. It seems the effects of the Tentatool have worn off."
 			
 			AddLogEvent(msg, "passive");
 			
@@ -600,7 +600,7 @@ package classes.Items.Transformatives
 			
 			output("You feel a familiar unraveling sensation, but are unable to pinpoint the source. You move to find a reflective surface, and stumble to the " + (kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.INDOOR) ? "floor" : "ground") + ", suddenly dizzy. You manage to right yourself and locate a reflective surface. As far as you can tell, nothing is changing. Nonetheless, neither the unraveling feeling nor the dizziness goes away.");
 			
-			output("\n\nYou calmly and carefully pace, waiting for the feelings to recede. Maybe the Tentacool you just took was a bad dose. You stop pacing and take a deep breath, thinking back to what you know about the drug. A moment of clarity allows you to pinpoint the source of the unraveling sensation: your mind. What you feel falling apart this time is your very sense of self.");
+			output("\n\nYou calmly and carefully pace, waiting for the feelings to recede. Maybe the Tentatool you just took was a bad dose. You stop pacing and take a deep breath, thinking back to what you know about the drug. A moment of clarity allows you to pinpoint the source of the unraveling sensation: your mind. What you feel falling apart this time is your very sense of self.");
 			
 			output("\n\n");
 			if (target.armType != GLOBAL.TYPE_TENTACLE || !target.hasArmFlag(GLOBAL.FLAG_AMORPHOUS))

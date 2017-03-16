@@ -38,7 +38,7 @@ package classes.Ships.Map
 		public function set Name(v:String):void { _name = v; }
 		
 		private var _shortName:String;
-		public function get Shortname():String { return _shortName; }
+		public function get ShortName():String { return _shortName; }
 		public function set ShortName(v:String):void { _shortName = v; }
 		
 		private var _entryFunction:Function;
@@ -50,10 +50,10 @@ package classes.Ships.Map
 		public function set MoveTime(v:Number):void { _moveTime = v; }
 		
 		private var _flags:Array;
-		protected function get Flags():Array { return _flags; }
+		public function get Flags():Array { return _flags; }
 		
 		private var _variableFlags:Array;
-		protected function get VariableFlags():Array { return _variableFlags; }
+		public function get VariableFlags():Array { return _variableFlags; }
 		
 		private var _northExit:String;
 		public function get NorthExit():String { return _northExit; }
@@ -73,19 +73,19 @@ package classes.Ships.Map
 		
 		private var _eastExit:String;
 		public function get EastExit():String { return _eastExit; }
-		public function get EastExit(v:String):void { _eastExit = v; }
+		public function set EastExit(v:String):void { _eastExit = v; }
 
 		private var _eastCondition:Function;
 		public function get EastCondition():Function { return _eastCondition; }
-		public function get EastCondition(v:Function):void { _eastCondition = v; }
+		public function set EastCondition(v:Function):void { _eastCondition = v; }
 
 		private var _eastName:String;
 		public function get EastName():String { return _eastName; }
-		public function get EastName(v:String):void { _eastName = v; }
+		public function set EastName(v:String):void { _eastName = v; }
 
 		private var _eastRoom:ShipRoom;
 		public function get EastRoom():ShipRoom { return _eastRoom; }
-		public function get EastRoom(v:ShipRoom):void { _eastRoom = v; }
+		public function set EastRoom(v:ShipRoom):void { _eastRoom = v; }
 		
 		private var _southExit:String;
 		public function get SouthExit():String { return _southExit; }
@@ -105,11 +105,11 @@ package classes.Ships.Map
 		
 		private var _westExit:String;
 		public function get WestExit():String { return _westExit; }
-		public function set WestExit(v:String):void { _westEx = v; }
+		public function set WestExit(v:String):void { _westExit = v; }
 
 		private var _westCondition:Function;
-		public function get WestCondition(): { return _westCondition; }
-		public function set WestCondition(v:):void { _westCondition = v; }
+		public function get WestCondition():Function { return _westCondition; }
+		public function set WestCondition(v:Function):void { _westCondition = v; }
 
 		private var _westName:String;
 		public function get WestName():String { return _westName; }
@@ -165,7 +165,7 @@ package classes.Ships.Map
 		{
 			return false;
 		}
-		public function HasFlag(tFlag:uint):void
+		public function HasFlag(tFlag:uint):Boolean
 		{
 			if (Flags.indexOf(tFlag) != -1) return true;
 			if (VariableFlags.length > 0)
@@ -198,10 +198,10 @@ package classes.Ships.Map
 		{
 			Owner = owner;
 			
-			Flags = [];
-			VariableFlags = [];
-			ActiveCharacters = [];
-			EnemyEncounterContainers = [];
+			_flags = [];
+			_variableFlags = [];
+			_activeCharacters = [];
+			_enemyEncounterContainers = [];
 		}
 		
 	}

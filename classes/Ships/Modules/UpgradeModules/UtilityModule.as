@@ -26,14 +26,14 @@ package classes.Ships.Modules.UpgradeModules
 		protected var _bonusInventoryTypeArmorSlots:int;
 		protected var _bonusInventoryTypeWeaponsSlots:int;
 		
+		protected var _bonusCrewSlots:int;
+		
 		public function get BonusGeneralInventorySlots():int { return _bonusInventoryTypeGeneralSlots; }
 		public function get BonusConsumableInventorySlots():int { return _bonusInventoryTypeConsumableSlots; }
 		public function get BonusArmorInventorySlots():int { return _bonusInventoryTypeArmorSlots; }
 		public function get BonusWeaponInventorySlots():int { return _bonusInventoryTypeWeaponsSlots; }
 		
-		protected var _bonusCrewSlots:int;
-		
-		public function get BonusCrewSlots():int;
+		public function get BonusCrewSlots():int { return _bonusCrewSlots; }
 	}
 
 }

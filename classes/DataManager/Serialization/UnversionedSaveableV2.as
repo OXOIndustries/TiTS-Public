@@ -18,7 +18,7 @@ package classes.DataManager.Serialization
 	 */
 	public class UnversionedSaveableV2 implements ISaveable
 	{
-		public function GetSaveObject():Object
+		public function getSaveObject():Object
 		{
 			var classType:Object = SerializationUtility.GetClassDescription(this);
 			
@@ -97,7 +97,7 @@ package classes.DataManager.Serialization
 			return saveObject;
 		}
 		
-		public function LoadSaveObject(saveObject:Object):void
+		public function loadSaveObject(saveObject:Object):void
 		{
 			for (var key:String in saveObject)
 			{
@@ -119,7 +119,7 @@ package classes.DataManager.Serialization
 							for (var i:uint = 0; i < saveObject[key].length; i++)
 							{
 								var tItem:ISaveable = CreateSubInstance(saveObject[key][i].classInstance);
-								tItem.LoadSaveObject(saveObject[key][i]);
+								tItem.loadSaveObject(saveObject[key][i]);
 								this[key].push(tItem);
 							}
 						}
@@ -144,7 +144,7 @@ package classes.DataManager.Serialization
 			
 			if (this is IOwner && ChildIsIOwned(tClassDesc))
 			{	
-				newInstance.Owner = (this as IOwner);
+				(newInstance as IOwned).Owner = (this as IOwner);
 			}
 			
 			return new tClass();
@@ -167,7 +167,7 @@ package classes.DataManager.Serialization
 		{
 			var classT:Class = (getDefinitionByName(getQualifiedClassName(this)) as Class);
 			var cObj:ISaveable = new classT();
-			cObj.LoadSaveObject(this.GetSaveObject());
+			cObj.loadSaveObject(this.getSaveObject());
 			return cObj;
 		}
 	}

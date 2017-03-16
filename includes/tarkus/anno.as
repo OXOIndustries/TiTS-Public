@@ -37,9 +37,6 @@ public function showAnno(nude:Boolean = false):void
 }
 public function annoBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["ANNO"], ["CHESHIRE", "GATS"])) return "ANNO";
-	
 	// Catsuit Anno
 	var sBust:String = "ANNO";
 	

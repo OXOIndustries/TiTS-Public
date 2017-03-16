@@ -11,6 +11,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/alex.png", mimeType = "image/png")]
 		public var Bust_ALEX:Class;
+		public function get Bust_ALEX_NUDE():Class { return Bust_ALEX; }
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/amara.png", mimeType = "image/png")]
 		public var Bust_AMARA:Class;
@@ -61,6 +62,7 @@ package classes.Resources.Busts
 		{
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/alex.png", mimeType = "image/png")]
 			public var Full_ALEX:Class;
+			public function get Full_ALEX_NUDE():Class { return Full_ALEX; }
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/amara.png", mimeType = "image/png")]
 			public var Full_AMARA:Class;

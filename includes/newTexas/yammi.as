@@ -20,15 +20,10 @@ public function showYammi(nude:Boolean = false):void
 }
 public function yammiBustDisplay(nude:Boolean = false):String
 {
-	var hasFollower:Boolean = false;
-	
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["YAMMI"] == "ADJATHA" && kGAMECLASS.gameOptions.configuredBustPreferences["YAMMI_NUDE"] == "ADJATHA") hasFollower = true;
-	
 	var str:String = "YAMMI";
 	
 	if(nude) str += "_NUDE";
-	else if(yammiIsCrew() && hasFollower) str += "_APRON";
+	else if(yammiIsCrew()) str += "_APRON";
 	
 	return str;
 }

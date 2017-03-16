@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Transformatives.OmegaOil;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
@@ -257,6 +258,7 @@ package classes.Characters
 				case GLOBAL.FLUID_TYPE_NECTAR:
 				case GLOBAL.FLUID_TYPE_MILKSAP:
 				case GLOBAL.FLUID_TYPE_CUMSAP:
+				case GLOBAL.FLUID_TYPE_SUGAR:
 					energy(20 * fxMult);
 					break;
 			}
@@ -408,6 +410,7 @@ package classes.Characters
 				updateExhibitionism(totalDays);
 				myrVenomUpdate(totalDays);
 			}
+			if(isFullyWombPregnant()) clearHeat();
 			
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
@@ -419,15 +422,20 @@ package classes.Characters
 		private function updateExhibitionism(totalDays:uint):void
 		{
 			var exhibitionismPoints:Number = 0;
-			if(isCrotchExposed()) exhibitionismPoints++;
-			if(isAssExposed()) exhibitionismPoints++;
-			if(isChestExposed() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isChestVisible() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isCrotchVisible() && (hasGenitals() || balls > 0)) exhibitionismPoints++;
+			if(isAssVisible()) exhibitionismPoints++;
 			if(isNude()) exhibitionismPoints++;
 
 			var currExhib:Number = exhibitionism();
 
 			//All covered up? Reduce over time!
-			if(exhibitionismPoints == 0) exhibitionism(-0.5 * totalDays);
+			if(exhibitionismPoints == 0) 
+			{
+				//Skipping out on underwear will keep it from dropping, but won't raise it.
+				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
+				else exhibitionism(-0.5 * totalDays);
+			}
 			else if(exhibitionismPoints >= 4 && currExhib < 50) exhibitionism(2);
 			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
 			else if(exhibitionismPoints >= 2 && currExhib < 33) exhibitionism(1);

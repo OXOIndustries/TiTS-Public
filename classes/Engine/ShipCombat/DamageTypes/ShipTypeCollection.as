@@ -166,11 +166,11 @@ package classes.Engine.ShipCombat.DamageTypes
 				if (aTC.GetFlags().length > 0)
 				{
 					var aF:Vector.<ShipDamageFlag> = aTC.GetFlags();
-					for (i = 0; i < aF.length; f++)
+					for (i = 0; i < aF.length; i++)
 					{
-						if (!HasFlag(aF[f].Flag))
+						if (!HasFlag(aF[i].Flag))
 						{
-							AddDamageFlag(aF[f].MakeCopy());
+							AddDamageFlag(aF[i].MakeCopy());
 						}
 					}
 				}
@@ -212,7 +212,7 @@ package classes.Engine.ShipCombat.DamageTypes
 				{
 					if (resistances.CanTrigger(_flagCollection[i].Flag))
 					{
-						var df:DamageFlagTrigger = resistances.GetTrigger(_flagCollection[i].Flag).GetTriggerValues();
+						var df:DamageFlagTrigger = resistances.GetTrigger(_flagCollection[i].Flag).GetTriggerValues(_flagCollection[i].Flag);
 						
 						switch(df.Operation)
 						{
@@ -233,7 +233,7 @@ package classes.Engine.ShipCombat.DamageTypes
 			{
 				if (_typeCollection[i].DamageValue > 0)
 				{
-					if (resistances.GetType(i).Damagevalue > 0)
+					if (resistances.GetType(i).DamageValue > 0)
 					{
 						_typeCollection[i].DamageValue *= ((100.0 - resistances.GetType(i).DamageValue) / 100.0);
 					}
@@ -278,6 +278,8 @@ package classes.Engine.ShipCombat.DamageTypes
 			{
 				tc._flagCollection.push(_flagCollection[i].MakeCopy());
 			}
+			
+			return tc;
 		}
 	}
 

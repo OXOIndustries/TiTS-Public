@@ -124,8 +124,8 @@ public function adultCockvineEncounter():void
 		clearMenu();
 		
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new Cockvine());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new Cockvine());
 		CombatManager.victoryScene(adultCockvinePCVictory);
 		CombatManager.lossScene(cockvineLossRouter);
 		CombatManager.displayLocation("COCKVINE");

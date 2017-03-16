@@ -888,10 +888,19 @@ public function unequipMenu(inCombat:Boolean = false):void
 	addButton(14, "Back", inventory);
 }
 
-public function keyItemDisplay():void
+public function keyItemDisplay(filter:String = ""):void
 {
 	clearOutput();
+	clearMenu();
+	
 	var x:int = 0;
+	var btn:int = 0;
+	var desc:Boolean = (flags["KEY_ITEM_DESC_OFF"] ? false : true);
+	var hasDesc:Boolean = false;
+	var hasHolodisk:Boolean = false;
+	var hasCoupon:Boolean = false;
+	var hasPanty:Boolean = false;
+	var hasCollar:Boolean = false;
 	
 	output("<b><u>Key Items:</u></b>\n");
 	if(pc.keyItems.length > 0) 
@@ -900,20 +909,50 @@ public function keyItemDisplay():void
 		{
 			var pItem:StorageClass = pc.keyItems[x];
 			
-			if (pItem.tooltip != null && pItem.tooltip.length > 0)
+			if(filter == "" || pItem.storageName.indexOf(filter) != -1)
 			{
-				output(pItem.storageName + " - " + pItem.tooltip + "\n");
+				output(pItem.storageName + ((desc && pItem.tooltip.length > 0) ? (" - " + pItem.tooltip) : "") + "\n");
+				if(pItem.tooltip.length > 0) hasDesc = true;
 			}
-			else
-			{
-				output(pItem.storageName + "\n");
-			}
+			if(pItem.storageName.indexOf("Holodisk: ") != -1) hasHolodisk = true;
+			if(pItem.storageName.indexOf("Coupon - ") != -1) hasCoupon = true;
+			if(pItem.storageName.indexOf("Panties - ") != -1) hasPanty = true;
+			if(pItem.storageName.indexOf(" Collar") != -1) hasCollar = true;
 		}
 		output("\n");
+		
+		if(hasHolodisk || hasCoupon || hasPanty || hasCollar)
+		{
+			if(filter == "") addDisabledButton(btn++, "All");
+			else addButton(btn++, "All", keyItemDisplay, "", "Filter: All", "View all Key Items.");
+			
+			if(hasHolodisk) {
+				if(filter == "Holodisk: ") addDisabledButton(btn++, "Holodisk");
+				else addButton(btn++, "Holodisk", keyItemDisplay, "Holodisk: ", "Filter: Holodisks", "View all holodisk items.");
+			}
+			if(hasCoupon) {
+				if(filter == "Coupon - ") addDisabledButton(btn++, "Coupon");
+				else addButton(btn++, "Coupon", keyItemDisplay, "Coupon - ", "Filter: Coupons", "View all coupon items.");
+			}
+			if(hasPanty) {
+				if(filter == "Panties - ") addDisabledButton(btn++, "Panty");
+				else addButton(btn++, "Panty", keyItemDisplay, "Panties - ", "Filter: Panties", "View all panty items.");
+			}
+			if(hasCollar) {
+				if(filter == " Collar") addDisabledButton(btn++, "Collar");
+				else addButton(btn++, "Collar", keyItemDisplay, " Collar", "Filter: Collars", "View all collar items.");
+			}
+		}
+		if(hasDesc) addButton(13, ("Desc: " + (desc ? "On" : "Off")), keyItemDisplayToggleDesc, filter, "Descriptions", ("Toggle descriptions " + (desc ? "off" : "on") + "."));
 	}
 	else output("<i>None</i>\n\n");
-	clearMenu();
+	
 	addButton(14,"Back",inventory);
+}
+public function keyItemDisplayToggleDesc(filter:String = ""):void
+{
+	flags["KEY_ITEM_DESC_OFF"] = (flags["KEY_ITEM_DESC_OFF"] ? undefined : true);
+	keyItemDisplay(filter);
 }
 public function equipmentDisplay():void
 {

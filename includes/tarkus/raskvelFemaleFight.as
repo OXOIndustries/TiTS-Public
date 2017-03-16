@@ -10,9 +10,6 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 public function raskvelFemaleBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["RASKVEL_FEMALE"] != "GATS") return "RASKVEL_FEMALE";
-	
 	var sBust:String = "RASKVEL_FEMALE";
 	if(nude) sBust += "_NUDE";
 	return sBust;
@@ -60,8 +57,8 @@ public function fightFemRask(tEnemy:Creature):void
 {
 	CodexManager.unlockEntry("Raskvel");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(victoryVsRaskvel);
 	CombatManager.lossScene(defeatRoutingForFemRasks);
 	CombatManager.displayLocation("RASKVEL (F)");
@@ -1224,6 +1221,7 @@ public function knockUpRaskChance():void
 			flags["RASKVEL_EGG_COUNT"] = 3 + bonusEggs;
 			//Five days till eggpop!
 			flags["RASKVEL_PREG_TIMER"] = 5;
+			pc.clearRut();
 		}
 	}
 }

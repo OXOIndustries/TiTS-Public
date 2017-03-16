@@ -7,8 +7,8 @@ package classes.Ships
 	 */
 	public interface IOwned 
 	{
-		public function get Owner():IOwner;
-		public function set Owner(v:IOwner):void;
+		function get Owner():IOwner;
+		function set Owner(v:IOwner):void;
 	}
 	
 }

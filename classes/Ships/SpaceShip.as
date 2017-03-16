@@ -5,12 +5,14 @@ package classes.Ships
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.ShipCombat.DamageTypes.*;
 	import classes.Ships.Map.*;
+	import classes.Ships.Map.Library.TestMapInterior;
 	import classes.Ships.Modules.*;
 	import classes.Ships.Modules.UpgradeModules.*;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import classes.kGAMECLASS;
 	import classes.StorageClass;
 	import classes.GameData.CombatManager;
+	import classes.Engine.Utility.*;
 	
 	//TODO: Weapon assignments
 	//TODO: Console assignments
@@ -24,27 +26,28 @@ package classes.Ships
 	{
 		private var _owner:IOwner;
 		public function get Owner():IOwner { return _owner; }
-		public function set Owner(owner:IOwner):void { _owner = v; }
+		public function set Owner(owner:IOwner):void { _owner = owner; }
 	
 		// Owner is essentially the pilot, so we'll have a nicer accessor in addition to the base IOwned 
 		// interface even though we don't implement IOwned directly (because it has serialization implications)
-		public function get OwningCharacter():Creature { return (_owner == null ? return null : _owner as Creature); }
+		public function get OwningCharacter():Creature { return (_owner == null ? null : _owner as Creature); }
 		
 		public function SpaceShip() 
 		{
-			HullMaxBase = 100;
-			Hull = HullMaxBase;
+			_hullMaxBase = 100;
+			Hull = HullMax;
 			
-			ShieldsMax = 100;
+			_shieldsMaxBase = 100;
 			Shields = ShieldsMax;
 			
-			CapacitorMax = 100;
+			_capacitorMaxBase = 100;
 			Capacitor = CapacitorMax;
 			
-			Targeting = Thrust = Agility = Systems = Aim = 10;
+			_targeting = _thrust = _aim = _agility = _systems = 10;
+			
+			_internalMap = new TestMapInterior(this);
 			
 			_inventory = [];
-			_internalMap = new InternalMapClass();
 			
 			_hullResistances = new ShipTypeCollection( { em: 50, kin: 20, exp: 10, therm: 40 }, ShipDamageFlag.TYPE_HULL);
 		}
@@ -520,7 +523,7 @@ package classes.Ships
 			tPC += ShieldGenerator.PowerConsumption;
 			tPC += HullArmoring.PowerConsumption;
 			tPC += Reactor.PowerConsumption;
-			tPC += Capacitor.PowerConsumption;
+			tPC += CapacitorBattery.PowerConsumption;
 			
 			return tPC;
 		}
@@ -788,7 +791,7 @@ package classes.Ships
 		//{ region Status Effects
 		
 		[Serialize]
-		public var _statusEffect:Object;
+		public var _statusEffects:Object;
 		public function get StatusEffects():Object { return _statusEffects; }
 		
 		// Temporary effects are things that are only intended to last a single round or such.
@@ -982,14 +985,14 @@ package classes.Ships
 		{
 			for (var i:int = 0; i < a.length; i++)
 			{
-				RemoveEffect(a, StatusEffects);
+				RemoveEffect(a[i], StatusEffects);
 			}
 		}
 		public function RemoveTemporaryEffects(a:Array):void
 		{
 			for (var i:int = 0; i < a.length; i++)
 			{
-				RemoveEffect(a, TemporaryEffects);
+				RemoveEffect(a[i], TemporaryEffects);
 			}
 		}
 		
@@ -1082,7 +1085,7 @@ package classes.Ships
 		{
 			for (var key:String in StatusEffects)
 			{
-				var se:StatusEffectPayload = StatusEffects[n];
+				var se:StatusEffectPayload = StatusEffects[key];
 				if (se.OnRoundStart != null)
 				{
 					se.OnRoundStart(se, this);
@@ -1096,7 +1099,7 @@ package classes.Ships
 			
 			for (var key:String in StatusEffects)
 			{
-				var se:StatusEffectPayload = StatusEffects[n];
+				var se:StatusEffectPayload = StatusEffects[key];
 				if (se.OnRoundEnd != null)
 				{
 					se.OnRoundEnd(se, this);
@@ -1127,12 +1130,12 @@ package classes.Ships
 			var dm:Array = GetDefensiveModules();
 			
 			var res:ShipTypeCollection = _hullResistances.MakeCopy();
-			res.CombineResistances(HullArmoring.Resistances);
+			if (HullArmoring.Resistances != null) res.CombineResistances(HullArmoring.Resistances);
 			
 			for (var i:int = 0; i < dm.length; i++)
 			{
 				var dmm:DefensiveModule = dm[i] as DefensiveModule;
-				res.CombineResistances(dmm.BonusHullResistances);
+				if (dmm.BonusHullResistances != null) res.CombineResistances(dmm.BonusHullResistances);
 			}
 
 			var payload:Object = GetCombinedStatusPayloads("Bonus Hull Resistance");
@@ -1151,15 +1154,18 @@ package classes.Ships
 			return res;
 		}
 		
+		protected var _shieldResistances:ShipTypeCollection;
 		public function get ShieldResistances():ShipTypeCollection
 		{
 			var dm:Array = GetDefensiveModules();
-			var res:ShipTypeCollection = ShieldGenerator.Resistances.MakeCopy();
+			
+			var res:ShipTypeCollection = _shieldResistances.MakeCopy();
+			if (ShieldGenerator.Resistances != null) res.CombineResistances(ShieldGenerator.Resistances);
 			
 			for (var i:int = 0; i < dm.length; i++)
 			{
 				var dmm:DefensiveModule = dm[i] as DefensiveModule;
-				res.CombineResistances(dmm.BonusShieldResistances);
+				if (dmm.BonusShieldResistances != null) res.CombineResistances(dmm.BonusShieldResistances);
 			}
 			
 			var payload:Object = GetCombinedStatusPayloads("Bonus Shield Resistance");
@@ -1182,9 +1188,9 @@ package classes.Ships
 		
 		//{ region Serialization hooks
 		
-		override public function LoadSaveObject(o:Object):void
+		override public function loadSaveObject(o:Object):void
 		{
-			super.LoadSaveObject(o);
+			super.loadSaveObject(o);
 			
 			HydrateModules();
 		}
@@ -1207,10 +1213,10 @@ package classes.Ships
 			HydrateModuleCrew(Engine);
 			HydrateModuleCrew(ShieldGenerator);
 			HydrateModuleCrew(Reactor);
-			HydrateModuleCrew(Capacitor);
+			HydrateModuleCrew(CapacitorBattery);
 			HydrateModuleCrew(Gunnery);
 		}
-		private function HydrateModuleRoom(m:CapacitorModule):void
+		private function HydrateModuleRoom(m:ShipModule):void
 		{
 			if (m.RoomIndexReplacement != null && m.RoomIndexReplacement.length > 0)
 			{
@@ -1241,7 +1247,7 @@ package classes.Ships
 				var perk:StorageClass = Reactor.HookedCrew.getPerkEffect("Crew Skill - Systems");
 				if (perk != null && perk.value1 > 0)
 				{
-					var enemyShips:Array = CombatManager.
+					//var enemyShips:Array = CombatManager.
 				}
 			}
 		}

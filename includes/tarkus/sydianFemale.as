@@ -52,8 +52,8 @@ public function encounterFemaleSydian():void
 	
 	CodexManager.unlockEntry("Sydians");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(sydianFemalePCVictory);
 	CombatManager.lossScene(sydianFemalePCLoss);
 	CombatManager.displayLocation("SYDIAN (F)");

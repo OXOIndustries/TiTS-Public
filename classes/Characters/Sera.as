@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	/*
 	import classes.Items.Miscellaneous.Chocolac;
 	import classes.Items.Miscellaneous.Condensol;
 	import classes.Items.Miscellaneous.Estrobloom;
@@ -12,6 +13,7 @@
 	import classes.Items.Miscellaneous.Tittyblossom;
 	import classes.Items.Transformatives.DendroGro;
 	import classes.Items.Transformatives.ManUp;
+	*/
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -56,17 +58,6 @@
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
-
-			this.inventory.push(new TerranTreats());
-			this.inventory.push(new Estrobloom());
-			this.inventory.push(new Tittyblossom());
-			this.inventory.push(new Pussybloom());
-			this.inventory.push(new Pussyblossom());
-			this.inventory.push(new ManUp());
-			this.inventory.push(new Condensol());
-			this.inventory.push(new DendroGro());
-			this.inventory.push(new Rainbotox());
-			this.inventory.push(new Chocolac());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
@@ -197,9 +188,10 @@
 		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
-			dataObject.inventory = UpdateInventory();
+			//dataObject.inventory = UpdateInventory();
 		}
 		
+		/*
 		private function UpdateInventory():Array
 		{
 			// Renew/Reorganize inventory
@@ -218,6 +210,7 @@
 			
 			return newInventory;
 		}
+		*/
 		
 		override public function onLeaveBuyMenu():void
 		{

@@ -46,7 +46,7 @@ package classes.Ships.Map
 		
 		private function GetRoomIndex(src:ShipRoom):uint
 		{
-			return GetCoordinateIndx(src.MapPosition);
+			return GetCoordinateIndex(src.MapPosition);
 		}
 		private function GetCoordinateIndex(tPoint:Vector3D):uint
 		{

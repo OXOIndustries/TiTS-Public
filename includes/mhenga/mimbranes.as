@@ -2878,8 +2878,8 @@ public function encounterMimbrane():void
 	
 	CodexManager.unlockEntry("Mimbranes");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Mimbrane());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Mimbrane());
 	CombatManager.victoryScene(defeatMimbrane);
 	CombatManager.lossScene(beatUpByAFuckinDishcloth);
 	CombatManager.displayLocation("MIMBRANE");

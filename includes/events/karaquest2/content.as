@@ -996,8 +996,8 @@ public function kq2FightEngineer(numDrones:int):void
 	}
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.displayLocation("ENGINEER");
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
 	CombatManager.victoryScene(kq2EngineerPCVictory);
@@ -1011,7 +1011,7 @@ public function kq2EngineerPCVictory():void
 	showKQ2Engineer();
 
 	output("The lapinara and her drone");
-	if (CombatManager.getHostileCharacters().length > 2) output("s");
+	if (CombatManager.getHostileActors().length > 2) output("s");
 	output(" collapse, utterly defeated.");
 	
 	if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
@@ -1260,8 +1260,8 @@ public function kq2EncounterKhan():void
 	var tKhan:KQ2Khan = new KQ2Khan();
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, kara]);
-	CombatManager.setHostileCharacters([tKhan, new KQ2SecurityDroid(), new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
+	CombatManager.setFriendlyActors([pc, kara]);
+	CombatManager.setHostileActors([tKhan, new KQ2SecurityDroid(), new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tKhan);
 	CombatManager.victoryScene(kq2KhanPCVictory);
 	CombatManager.lossScene(kq2KhanPCDefeat);
@@ -1772,8 +1772,8 @@ public function kq2EncounterShade():void
 		var tShade:Shade = new Shade();
 
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters([pc, kara]);
-		CombatManager.setHostileCharacters([tShade, new KQ2FenrisDrone(), new KQ2FenrisDrone(), new KQ2FenrisDrone()]);
+		CombatManager.setFriendlyActors([pc, kara]);
+		CombatManager.setHostileActors([tShade, new KQ2FenrisDrone(), new KQ2FenrisDrone(), new KQ2FenrisDrone()]);
 		CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tShade);
 		CombatManager.victoryScene(kq2ShadePCVictory);
 		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
@@ -1856,7 +1856,7 @@ public function kq2ShadePCVictoryKaraHard():void
 
 	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach");
 
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	var numDronesAlive:int = 0;
 
 	for (var i:int = 0; i < hostiles.length; i++)
@@ -1892,7 +1892,7 @@ public function kq2ShadePCVictoryKaraNotHard():void
 
 	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach");
 
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	var numDronesAlive:int = 0;
 
 	for (var i:int = 0; i < hostiles.length; i++)
@@ -2079,7 +2079,7 @@ public function kq2JuggernautPCVictoryII(takeWeapon:Boolean):void
 	output("You");
 	if (takeWeapon)
 	{
-		var tEnemy:Creature = CombatManager.getHostileCharacters()[0];
+		var tEnemy:Creature = CombatManager.getHostileActors()[0];
 		tEnemy.inventory.push(new AegisLightMG());
 
 		output(" stow the weapon");
@@ -2280,8 +2280,8 @@ public function kq2FightAmara():void
 	var h:Array = [new KQ2Amara(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()];
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, kara]);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors([pc, kara]);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
 	CombatManager.displayLocation("AMARA");
 	CombatManager.victoryScene(kq2AmaraPCVictory);

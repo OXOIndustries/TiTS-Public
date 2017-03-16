@@ -1,6 +1,7 @@
 package classes.Ships.Modules.UpgradeModules 
 {
 	import classes.Ships.IOwner;
+	import classes.Ships.Modules.ShipModule;
 	/**
 	 * ...
 	 * @author Gedan

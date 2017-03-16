@@ -45,22 +45,22 @@ package classes.Ships
 		
 		public function get OnRemove():Function
 		{
-			FuncLookup(OnRemoveFuncLookup);
+			return FuncLookup(OnRemoveFuncLookup);
 		}
 		
 		public function get OnCreate():Function
 		{
-			FuncLookup(OnCreateFuncLookup);
+			return FuncLookup(OnCreateFuncLookup);
 		}
 		
 		public function get OnRoundStart():Function
 		{
-			FuncLookup(OnRoundStartFuncLookup);
+			return FuncLookup(OnRoundStartFuncLookup);
 		}
 		
 		public function get OnRoundEnd():Function
 		{
-			FuncLookup(OnRoundEndFuncLookup);
+			return FuncLookup(OnRoundEndFuncLookup);
 		}
 		
 		public function StatusEffectPayload(seName:String, sePayload:Object, seDuration:int = -1, seDurationType:String = DURATION_PERM, seIconClass:Class = null, removeAfterCombat:Boolean = false, hideFromDisplay:Boolean = false, seOnRemove:String = null, seOnCreate:String = null, seOnRoundStart:String = null, seOnRoundEnd:String = null) 

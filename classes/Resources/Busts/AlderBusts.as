@@ -15,11 +15,13 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/alder/kaede.png", mimeType = "image/png")]
 		public var Bust_KAEDE:Class;
+		public function get Bust_KAEDE_NUDE():Class { return Bust_KAEDE; }
 
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/alder/HR/kaede.png", mimeType = "image/png")]
 			public var Full_KAEDE:Class;
+			public function get Full_KAEDE_NUDE():Class { return Full_KAEDE; }
 		}
 	}
 

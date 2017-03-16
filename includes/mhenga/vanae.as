@@ -150,8 +150,8 @@ public function encounterVanae(isHuntress:Boolean):void
 public function configMaidenFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new MaidenVanae());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new MaidenVanae());
 	CombatManager.victoryScene(vanaePCVictory);
 	CombatManager.lossScene(vanaeMaidenPCDefeat);
 	CombatManager.displayLocation("MAIDEN");
@@ -160,8 +160,8 @@ public function configMaidenFight():void
 public function configHuntressFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new HuntressVanae());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new HuntressVanae());
 	CombatManager.victoryScene(vanaePCVictory);
 	CombatManager.lossScene(vanaeHuntressPCDefeat);
 	CombatManager.displayLocation("HUNTRESS");

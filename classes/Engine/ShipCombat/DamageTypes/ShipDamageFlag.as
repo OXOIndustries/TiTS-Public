@@ -75,7 +75,7 @@ package classes.Engine.ShipCombat.DamageTypes
 		{
 			for (var i:uint = 0; i < _triggers.length; i++)
 			{
-				if (_triggers[i].triggerOn == trigger) return true;
+				if (_triggers[i].On == trigger) return true;
 			}
 			return false;
 		}
@@ -84,7 +84,7 @@ package classes.Engine.ShipCombat.DamageTypes
 		{
 			for (var i:uint = 0; i < _triggers.length; i++)
 			{
-				if (_triggers[i].triggerOn == trigger) return i;
+				if (_triggers[i].On == trigger) return i;
 			}
 			return uint.MAX_VALUE;
 		}

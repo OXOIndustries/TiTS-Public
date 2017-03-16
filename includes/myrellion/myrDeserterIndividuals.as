@@ -75,12 +75,7 @@ public function showDeserter(gold:Boolean = false,nude:Boolean = false):void
 	{
 		if(flags["KNOW_RED_MYR_NAME"] == undefined) showName("RED MYR\nDESERTER");
 		else showName("\nBRIHA");
-		// 9999 - Special artist exceptions!
-		if(kGAMECLASS.gameOptions.configuredBustPreferences["BRIHA"] != "ADJATHA")
-		{
-			showBust("BRIHA");
-		}
-		else if(flags["BRIHA_INCUBATION_TIMER"] != undefined)
+		if(flags["BRIHA_INCUBATION_TIMER"] != undefined)
 		{
 			if(nude) showBust("BRIHA_PREGNANT_NUDE");
 			else showBust("BRIHA_PREGNANT");
@@ -2234,6 +2229,7 @@ public function knockUpRedBitchChance():void
 			else if(flags["RED_MYR_BIRTHS"] == 1) flags["BRIHA_SPAWN_2_DEETS"] = [pc.hairColor,pc.eyeColor];
 			//Set incubation timer
 			flags["BRIHA_INCUBATION_TIMER"] = 0;
+			pc.clearRut();
 			trace("RED MYR KNOCKED UP!");			
 		}
 	}
@@ -3013,7 +3009,7 @@ public function stolenDildoFap():void
 		if(pc.hasCuntTail()) addButton(3,"DP Tail",didloDPWivStolenDildo,"tail","DP Tail","Unlatch the dildo and stuff both ends inside your cunt tail. May end in accidental stretching.");
 		else addDisabledButton(3,"DP Tail","DP Tail","There’s nowhere in your tail to put them!");
 
-		if(pc.hasFuckableNipples()) addButton(4,"DP Nipple",didloDPWivStolenDildo,"tail","DP Nipple","Unlatch the dildo and stuff both ends inside your nipple.");
+		if(pc.hasFuckableNipples()) addButton(4,"DP Nipple",didloDPWivStolenDildo,"nip","DP Nipple","Unlatch the dildo and stuff both ends inside your nipple.");
 		else addDisabledButton(4,"DP Nipple","DP Nipple","There’s nowhere in your nipples to put them!");
 	}
 	addButton(14,"Back",masturbateMenu);

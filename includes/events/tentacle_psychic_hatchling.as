@@ -22,6 +22,7 @@ public function findStrangeEgg():void
 public function fuckingEggHatchOhFuck(destination:String):void 
 {
 	clearOutput();
+	showBust("TENTACLE_EGG");
 	showName("\nTENTACLES!");
 	
 	var x:int = pc.findEmptyPregnancySlot(0);
@@ -148,6 +149,7 @@ public function postPychicTentacleImpreg(args:Array):void
 	var destination:String = args[0];
 	var x:int = args[1];
 	
+	showBust("TENTACLE_EGG");
 	showName("\nTENTACLES!");
 	output("The creature fucks you for hours, but you never seem to tire. Your body never grows sore, just looser, more willing to accept the gift of additional tentacles than ever before. At first, you’re shocked by it pulling the main bulb of its body up against your gaping [pc.vagOrAss " + x + "], but then <i>you remember your duty</i> and grab the edges, holding yourself wide-open.");
 	output("\n\nCompressing its body, the strange little alien somehow slides right inside your body, gliding across raw nerves, then stroking them again when it pulls in the dozens of tentacles hanging out of you. Your [pc.belly] bulges rounder by the second, heavy with it’s alien cargo.");
@@ -186,6 +188,7 @@ public function postPsychicTentacleImpreg2(args:Array):void
 	var destination:String = args[0];
 	var x:int = args[1];
 	clearOutput();
+	showBust("");
 	showLocationName();
 	output("When you wake, the creature is still lodged inside you, <i>but that’s fine</i>. You’ll <i>birth it out somewhere nice later.</i> Until then, you should <i>have plenty of sex, and eat lots of food.</i> Now, where ");
 	if(!celiseIsCrew()) output("did you put that mop?");
@@ -207,6 +210,8 @@ public function postPsychicTentacleImpreg2(args:Array):void
 public function PsychicTentacleBirthing(pregSlot:int):void
 {
 	clearOutput();
+	showBust("");
+	showName("TENTACLE\nBIRTH!");
 	var pData:PregnancyData = pc.pregnancyData[pregSlot] as PregnancyData;
 	var x:int = pregSlot;
 	if(pregSlot == 3) x = -1;

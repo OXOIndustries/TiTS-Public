@@ -924,8 +924,8 @@ public function kiApproachingEscapeShuttle():Boolean
 		h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(h);
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(h);
 		CombatManager.displayLocation("INFECTED CREW");
 		CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 		CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);

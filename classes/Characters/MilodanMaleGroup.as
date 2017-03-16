@@ -205,9 +205,6 @@
 		{
 			var str:String = "MILODANMALE";
 			
-			// 9999 - Special artist exceptions!
-			if(kGAMECLASS.gameOptions.configuredBustPreferences["MILODANMALE"] != "SHOU") return str;
-			
 			switch(this.meleeWeapon.longName)
 			{
 				case "heavy club": str += "_CLUB"; break;

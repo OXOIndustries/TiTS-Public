@@ -638,11 +638,14 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.sexualPreferences.getPref(i) != 0)
 				{
 					output2("\n<b>* Preferences, " + StringUtil.toDisplayCase(GLOBAL.SEXPREF_DESCRIPTORS[i]) + ":</b>");
-					if(pc.sexualPreferences.getPref(i) >= GLOBAL.REALLY_LIKES_SEXPREF - 0.33335) output2(" Really likes!");
-					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_LIKES_SEXPREF - 0.29165) output2(" Kinda likes!");
-					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_DISLIKES_SEXPREF - 0.125) output2(" Dislikes!");
-					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.REALLY_DISLIKES_SEXPREF - 0.5) output2(" Dislikes a lot!");
-					else output2(" <i>Unknown</i>");
+					switch(pc.sexualPreferences.getPref(i))
+					{
+						case GLOBAL.REALLY_LIKES_SEXPREF: output2(" Really likes!"); break;
+						case GLOBAL.KINDA_LIKES_SEXPREF: output2(" Kinda likes!"); break;
+						case GLOBAL.KINDA_DISLIKES_SEXPREF: output2(" Dislikes!"); break;
+						case GLOBAL.REALLY_DISLIKES_SEXPREF: output2(" Dislikes a lot!"); break;
+						default: output2(" <i>Unknown</i>"); break;
+					}
 				}
 			}
 		}
@@ -5120,7 +5123,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_CFS_GWEN"] != undefined) output2("\n<b>* Gwen:</b> Met her");
 				if(flags["FUCKED_GWEN"] != undefined) output2(", Sexed her");
 				if(flags["MET_CFS_EIMEAR"] != undefined) output2("\n<b>* Eimear:</b> Met her");
-				if(flags["HUNGOUT_CFS"] != undefined) output2("\n<b>* Gwen and Eimear:</b> Hung out with them");
+				if(flags["HUNGOUT_CFS"] != undefined)
+				{
+					output2("\n<b>* Gwen and Eimear:</b> Hung out with them");
+					if(flags["HUNGOUT_CFS"] > 1) output2(" " + num2Text(flags["HUNGOUT_CFS"]) + " times");
+				}
 				variousCount++;
 			}
 			// Nerrasa

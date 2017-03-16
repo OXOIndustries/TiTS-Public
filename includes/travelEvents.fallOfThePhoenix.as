@@ -423,8 +423,8 @@ public function startPhoenixPirateFight():void
 	saendra.long = "Saendra lithely snakes out of cover from time to time, taking potshots at anything and everything she can sight quickly enough before ducking back to safety.";
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters	([pc, saendra]);
-	CombatManager.setHostileCharacters	([new PhoenixPirates(), new PhoenixPirates(), new PhoenixPirates()]);
+	CombatManager.setFriendlyActors	([pc, saendra]);
+	CombatManager.setHostileActors	([new PhoenixPirates(), new PhoenixPirates(), new PhoenixPirates()]);
 	CombatManager.victoryScene(victoryOverPhoenixPirates);
 	CombatManager.lossScene(loseToPhoenixPirates);
 	CombatManager.displayLocation("VOID GANG");
