@@ -34,14 +34,11 @@ package classes.Ships.Modules.UpgradeModules
 		protected var _bonusHull:Number;
 		protected var _bonusHullMultiplier:Number;
 		protected var _bonusHullResistances:ShipTypeCollection;
-		
+		protected var _bonusHullRechargePerRound:Number;
+		protected var _bonusHullRechargePerMinute:Number;
+		protected var _bonusHullRechargeMultiplier:Number;
 		protected var _bonusArmor:Number;
 		protected var _bonusArmorMultiplier:Number;
-		
-		protected var _hullCanRegenInCombat:Boolean; 
-		protected var _hullCanRegenOutOfCombat:Boolean;
-		protected var _hullRegenRateInCombat:Number;
-		protected var _hullRegenRateOutOfCombat:Number;
 		
 		protected var _bonusShields:Number;
 		protected var _bonusShieldsMultiplier:Number;
@@ -55,15 +52,12 @@ package classes.Ships.Modules.UpgradeModules
 		public function get BonusHull():Number { return _bonusHull; }
 		public function get BonusHullMultiplier():Number { return _bonusHullMultiplier; }
 		public function get BonusHullResistances():Number { return _bonusHullResistances; }
-		
+		public function get BonusHullRechargePerMinute():Number { return _bonusHullRechargePerMinute; }
+		public function get BonusHullRechargePerRound():Number { return _bonusHullRechargePerRound; }
+		public function get BonusHullRechargeMultiplier():Number { return _bonusHullRechargeMultiplier; }
 		public function get BonusArmor():Number { return _bonusArmor; }
 		public function get BonusArmorMultiplier():Number { return _bonusArmorMultiplier; }
-		
-		public function get HullCanRegenInCombat():Boolean { return _hullCanRegenInCombat; }
-		public function get HullCanRegenOutOfCombat():Boolean { return _hullCanRegenOutOfCombat; }
-		public function get HullRegenRateInCombat():Number { return _hullRegenRateInCombat; }
-		public function get HullRegenRateOutOfCombat():Number { return _hullRegenRateOutOfCombat; }
-		
+
 		public function get BonusShields():Number { return _bonusShields; }
 		public function get BonusShieldsMultiplier():Number { return _bonusShieldsMultiplier; }
 		public function get BonusShieldResistances():ShipTypeCollection { return _bonusShieldResistances; }

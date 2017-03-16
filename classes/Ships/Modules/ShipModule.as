@@ -74,6 +74,10 @@ package classes.Ships.Modules
 		
 		protected var _canBeStaffed:Boolean;
 		public function get CanBeStaffed():Boolean { return _canBeStaffed; }
+		
+		protected var _disabledForRounds:int;
+		public function get DisabledForRounds():int { return _disabledForRounds; }
+		public function set DisabledForRounds(v:int):void { _disabledForRounds = v; }
 	}
 
 }

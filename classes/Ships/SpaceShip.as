@@ -7,7 +7,9 @@ package classes.Ships
 	import classes.Ships.Map.*;
 	import classes.Ships.Modules.*;
 	import classes.Ships.Modules.UpgradeModules.*;
+	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import classes.kGAMECLASS;
+	import classes.StorageClass;
 	
 	//TODO: Weapon assignments
 	//TODO: Console assignments
@@ -92,6 +94,9 @@ package classes.Ships
 				m += payload.hullMultiplier;
 			}
 			
+			h += HullArmoring.HullBonus;
+			m += HullArmoring.HullMultiplier;
+			
 			// TODO: @Fenoxo: Sign off on potential hull bonus
 			// I don't really know what the intended value ranges are for any of this, so its hard to ass-pull a good solution yet
 			if (OwningCharacter != null)
@@ -103,6 +108,69 @@ package classes.Ships
 		}
 		
 		public function get HullPercent():Number { return Hull / HullMax; }
+		
+		public function get HullRechargePerRound():Number
+		{
+			var r:Number = HullArmoring.RechargeRatePerRound;
+			var m:Number = 1.0 + HullArmoring.RechargeRateMultiplier;
+			
+			var dm:Array = GetDefensiveModules();
+			for (var i:int = 0; i < dm.length; i++)
+			{
+				var dmm:DefensiveModule = dm[i] as DefensiveModule;
+				r += dmm.BonusHullRechargePerMinute;
+				m += dmm.BonusHullRechargeMultiplier;
+			}
+			
+			var payload:Object = GetCombinedStatusPayloads("Bonus Shield");
+			if (payload != null)
+			{
+				r += payload.hullRechargePerRound;
+				m += payload.hullRechargeMultiplier;
+			}
+			
+			if (ShieldGenerator.HookedCrew != null)
+			{
+				var perk:StorageClass = HullArmoring.HookedCrew.getPerkEffect("Crew Skill - Mechanic");
+				if (perk != null)
+				{
+					r += (HullMax * (perk.value1 * 0.015));
+				}
+			}
+			
+			return r * m;
+		}
+		public function get HullRechargePerMinute():Number
+		{
+			var r:Number = HullArmoring.RechargeRatePerMinute;
+			var m:Number = 1.0 + HullArmoring.RechargeRateMultiplier;
+			
+			var dm:Array = GetDefensiveModules();
+			for (var i:int = 0; i < dm.length; i++)
+			{
+				var dmm:DefensiveModule = dm[i] as DefensiveModule;
+				r += dmm.BonusHullRechargePerMinute;
+				m += dmm.BonusHullRechargeMultiplier;
+			}
+			
+			var payload:Object = GetCombinedStatusPayloads("Bonus Shield");
+			if (payload != null)
+			{
+				r += payload.hullRechargePerMinute;
+				m += payload.hullRechargeMultiplier;
+			}
+			
+			if (ShieldGenerator.HookedCrew != null)
+			{
+				var perk:StorageClass = ShieldGenerator.HookedCrew.getPerkEffect("Crew Skill - Mechanic");
+				if (perk != null)
+				{
+					r += (HullMax * (perk.value1 * 0.015));
+				}
+			}
+			
+			return r * m;
+		}
 		
 		[Serialize]
 		public var _shields:Number;
@@ -158,6 +226,15 @@ package classes.Ships
 				m += payload.shieldRechargeMultiplier;
 			}
 			
+			if (ShieldGenerator.HookedCrew != null)
+			{
+				var perk:StorageClass = ShieldGenerator.HookedCrew.getPerkEffect("Crew Skill - Shielding");
+				if (perk != null)
+				{
+					r += (ShieldsMax * (perk.value1 * 0.015));
+				}
+			}
+			
 			return r * m;
 		}
 		public function get ShieldRechargePerMinute():Number
@@ -178,6 +255,15 @@ package classes.Ships
 			{
 				r += payload.shieldRechargePerMinute;
 				m += payload.shieldRechargeMultiplier;
+			}
+			
+			if (ShieldGenerator.HookedCrew != null)
+			{
+				var perk:StorageClass = ShieldGenerator.HookedCrew.getPerkEffect("Crew Skill - Shielding");
+				if (perk != null)
+				{
+					r += (ShieldsMax * (perk.value1 * 0.015));
+				}
 			}
 			
 			return r * m;
@@ -246,7 +332,35 @@ package classes.Ships
 			if (OwningCharacter != null)
 			{
 				var maxStat:Number = Math.max(OwningCharacter.willpower(), OwningCharacter.aim());
-				t += maxStat * 0.2;
+				t += (maxStat * 0.2);
+			}
+			
+			return t * m;
+		}
+		public function TargetingStaffed(crewMember:Creature):Number
+		{
+			var t:Number = _targeting;
+			var m:Number = 1.0;
+			
+			var om:Array = GetOffensiveModules();
+			for (var i:int = 0; i < om.length; i++)
+			{
+				var omm:OffensiveModule = om[i] as OffensiveModule;
+				t += omm.BonusTargeting;
+				m += omm.BonusTargetingMultiplier;
+			}
+			
+			var payload:Object = GetCombinedStatusPayloads("Bonus Targeting");
+			if (payload != null)
+			{
+				t += payload.targeting;
+				m += payload.targetingMultiplier;
+			}
+			
+			if (crewMember != null)
+			{
+				var maxStat:Number = Math.max(crewMember.willpower(), crewMember.aim());
+				t += (maxStat * 0.2);
 			}
 			
 			return t * m;
@@ -403,6 +517,7 @@ package classes.Ships
 			tPC += Lightdrive.PowerConsumption;
 			tPC += Engine.PowerConsumption;
 			tPC += ShieldGenerator.PowerConsumption;
+			tPC += HullArmoring.PowerConsumption;
 			tPC += Reactor.PowerConsumption;
 			tPC += Capacitor.PowerConsumption;
 			
@@ -541,6 +656,10 @@ package classes.Ships
 		public function get ShieldGenerator():ShieldModule { return _shieldModule; }
 		
 		[Serialize]
+		public var _hullArmoringModule:HullArmoringModule;
+		public function get HullArmoring():HullArmoringModule { return _hullArmoringModule; }
+		
+		[Serialize]
 		public var _reactorModule:ReactorModule;
 		public function get Reactor():ReactorModule { return _reactorModule; }
 		
@@ -551,29 +670,39 @@ package classes.Ships
 		/* These are the customised modules that the player may have fitted to the ship */
 		[Serialize]
 		public var _fittedModules:Array;
-		public function get FittedModules():Array { return _fittedModules; }
+		protected var _cachedFittedModules:Array;
+		public function get FittedModules():Array
+		{ 
+			if (_cachedFittedModules == null)
+			{
+				_cachedFittedModules = [];
+				_cachedFittedModules.concat(_fittedModules);
+				_cachedFittedModules.concat(Lightdrive, Engine, ShieldGenerator, HullArmoring, Reactor, CapacitorBattery);
+			}
+			return _cachedFittedModules;
+		}
 		
 		public function GetUtilityModules():Array
 		{
-			return _fittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
+			return FittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
 				return e is UtilityModule;
 			});
 		}
 		public function GetDefensiveModules():Array
 		{
-			return _fittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
+			return FittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
 				return e is DefensiveModule;
 			});
 		}
 		public function GetOffensiveModules():Array
 		{
-			return _fittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
+			return FittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
 				return e is OffensiveModule;
 			});
 		}
 		public function GetWeaponModules():Array
 		{
-			return _fittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
+			return FittedModules.filter(function(e:ShipModule, i:int, a:Array):Boolean {
 				return e is WeaponModule;
 			});
 		}
@@ -603,6 +732,7 @@ package classes.Ships
 			if (_fittedModules.indexOf(newModule) == -1)
 			{
 				_fittedModules.push(newModule);
+				_cachedFittedModules = null;
 				newModule.Owner = this;
 			}
 		}
@@ -611,6 +741,7 @@ package classes.Ships
 			if (_fittedModules.indexOf(oldModule) != -1)
 			{
 				_fittedModules.splice(_fittedModules.indexOf(oldModule), 1);
+				_cachedFittedModules = null;
 			}
 			
 			if (oldModule.Owner != null)
@@ -660,11 +791,14 @@ package classes.Ships
 		protected var _temporaryEffects:Object;
 		public function get TemporaryEffects():Object { return _temporaryEffects; }
 		
-		public function AddBonusHullEffect(inHull:Number, inHullMulti:Number):void
+		public function AddBonusHullEffect(inHull:Number, inHullMulti:Number, inRechargeRound:Number, inRechargeMinute:Number, inRechargeMulti:Number):void
 		{
 			AddTemporaryModifier("Bonus Hull", { 
 				hull: inHull, 
-				hullMultiplier: inHullMulti 
+				hullMultiplier: inHullMulti,
+				hullRechargePerRound: inRechargeRound,
+				hullRechargePerMinute: inRechargeMinute,
+				hullRechargeMultiplier: inRechargeMulti
 			});
 		}
 		
@@ -1035,6 +1169,57 @@ package classes.Ships
 				var crew:Creature = kGAMECLASS.chars[m.AssignedCrewMember];
 				m.HookedCrew = crew;
 			}
+		}
+		
+		public function OnRoundStart():void
+		{
+			var doFix:int = 0;
+			var chanceToFixModule:Number = 0;
+			
+			if (ShieldGenerator.HookedCrew != null)
+			{
+				var perk:StorageClass = ShieldGenerator.HookedCrew.getPerkEffect("Crew Skill - Shielding");
+				if (perk != null)
+				{
+					chanceToFixModule = perk.value1 > 0 ? perk.value1 * 10 : 0;
+					if (chanceToFixModule > 0 && rand(100) >= chanceToFixModule)
+					{
+						doFix = 1;
+					}
+				}
+			}
+			if (doFix == 0 && HullArmoring.HookedCrew != null)
+			{
+				perk = HullArmoring.HookedCrew.getPerkEffect("Crew Skills - Mechanic");
+				if (perk != null)
+				{
+					chanceToFixModule = perk.value1 > 0 ? perk.value1 * 10 : 0;
+					if (chanceToFixModule > 0 && rand(100) >= chanceToFixModule)
+					{
+						doFix = 2;
+					}
+				}
+			}
+			
+			if (doFix > 0)
+			{
+				var fm:Array = FittedModules;
+				for (var i:int = 0; i < fm.length; i++)
+				{
+					var fmm:ShipModule = fm[i] as ShipModule;
+					if (fmm.DisabledForRounds > 0)
+					{
+						fmm.DisabledForRounds = 0;
+						//TODO: Notification that an offline module was fixed
+						// doFix == 1 => shielding, == 2 => mechanic
+					}
+				}
+			}
+		}
+		
+		public function OnRoundEnd():void
+		{
+			
 		}
 		
 		//} endregion
