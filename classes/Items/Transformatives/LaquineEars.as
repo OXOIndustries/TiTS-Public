@@ -94,10 +94,14 @@ package classes.Items.Transformatives
 			else kGAMECLASS.output(target.capitalA + target.short + " puts on the ears for a bit, then tosses them in the garbage.");
 			return false;
 		}
-		public function laquineEarProcDetemmienator(pc:Creature):void
+		public function laquineEarProcDetemmienator(pc:Creature, initDuration:uint, targetDelta:uint):void
 		{
-			if(rand(10) < 6) laquineEarsMinorTFsGO(pc);
-			else laquineEarsModerateTFsGo(pc);
+			// Calculate the time offset
+			var deltaShift:uint = initDuration - targetDelta;
+
+			//Rejiggering so big part TFs happen more at first, then fantasies more later :3
+			if(rand(10) < 2 + pc.laquineScore()) laquineEarsMinorTFsGO(pc,deltaShift);
+			else laquineEarsModerateTFsGo(pc,deltaShift);
 			/*
 			if(!pc.hasGenitals()) laquineEarsEmergencyGenitalAssignment(pc);
 			if(rand(10) < 7) laquineEarsMinorTFsGO(pc);
@@ -105,7 +109,7 @@ package classes.Items.Transformatives
 			//Placeholder for major procs once I write them!
 			else laquineEarsModerateTFsGo(pc);*/
 		}
-		public function laquineEarsModerateTFsGo(pc:Creature):void
+		public function laquineEarsModerateTFsGo(pc:Creature,deltaShift):void
 		{
 			var x:int = 0;
 			var i:int = 0;
@@ -202,6 +206,13 @@ package classes.Items.Transformatives
 				choices.push(21);
 				choices.push(21);
 			}
+			if(pc.hasVagina())
+			{
+				for(i = 0; i < pc.totalVaginas(); i++)
+				{
+					if(pc.vaginas[i].type != GLOBAL.TYPE_EQUINE) choices.push(22);
+				}
+			}
 	
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
@@ -240,9 +251,9 @@ package classes.Items.Transformatives
 					if(pc.hasPerk("Hung")) pc.cocks[x].cLength(2);
 					if(pc.hasPerk("Mini")) pc.cocks[x].cLength(-2);
 					pc.orgasm();
-					AddLogEvent(textBuff,"passive");
+					AddLogEvent(textBuff,"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.cockTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.cockTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//(Horsecock) Gains (Mini: 1/2-4/Hung:5-6) inches. (15" mini/20" norm/26" hung)
@@ -329,9 +340,9 @@ package classes.Items.Transformatives
 					laquineDickSizeAlert(pc.cocks[x].cLength(),pc.cocks[x].cLength() + growth);
 					pc.cocks[x].cLength(growth);
 					textBuff = ParseText(textBuff);
-					AddLogEvent(textBuff, "passive");
+					AddLogEvent(textBuff, "passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.cockLengthLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.cockLengthLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//(Penor and No Cunt) Grow Balls
@@ -350,9 +361,9 @@ package classes.Items.Transformatives
 					pc.balls = 2;
 					pc.ballSizeRaw = 3.4;
 
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.ballsLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.ballsLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//(Balls and Penor) BallRating gain of 1. Max 5" diameter. (Higher if bulgy?)
@@ -406,9 +417,9 @@ package classes.Items.Transformatives
 					}
 					textBuff = ParseText(textBuff);
 					laquineBallSizeUp(pc);
-					AddLogEvent(ParseText(textBuff));
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.ballSizeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.ballSizeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//(Penor) Like a Rabbit - Increase Refractory to approx 4x human.
@@ -420,7 +431,7 @@ package classes.Items.Transformatives
 				pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 				pc.ballFullness = 100;
 				pc.refractoryRate = 4;
-				AddLogEvent(ParseText(textBuff),"passive");
+				AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				return;
 			}
 			//(Penor & balls dun growin’) Get hard if not, and dribble pre. (+cum volume, target of 10L cumshot. Higher if bulgy?)
@@ -487,7 +498,7 @@ package classes.Items.Transformatives
 						pc.boostCum(10);
 					}
 				}
-				AddLogEvent(ParseText(textBuff),"passive");
+				AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				return;
 			}
 			//(Penor) Lagonic Rut (Not sure if this reference is that awesome)
@@ -503,7 +514,7 @@ package classes.Items.Transformatives
 				//v2 - min lust
 				//v3 - minimum cum increase.
 				//v4 - virility increase*/
-				AddLogEvent(ParseText(textBuff),"passive");
+				AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				return;
 			}
 			//(Vagoo) Wetter Cunt up to 4.
@@ -598,7 +609,7 @@ package classes.Items.Transformatives
 					}
 					textBuff = ParseText(textBuff);
 				}
-				AddLogEvent(ParseText(textBuff),"passive");
+				AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				return;
 			}
 			//(Vagoo) Increase squirtability
@@ -609,7 +620,7 @@ package classes.Items.Transformatives
 				else textBuff += " down your [pc.legs]";
 				textBuff += ", hosing out of you in thick sprays. It’s like someone reached up inside you and squeezed down on some hidden gland full of girl-lube, wringing every ounce of fuckjuice from your body. Is that what grew? <b>Are your squirting orgasms getting even wetter?</b>";
 				pc.boostGirlCum(4);
-				AddLogEvent(ParseText(textBuff),"passive");
+				AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				return;
 			}
 			//(Vagoo) Increase fertility
@@ -663,7 +674,7 @@ package classes.Items.Transformatives
 				}
 				pc.fertility(1);
 				pc.slowStatGain("libido",1);
-				AddLogEvent(ParseText(textBuff));
+				AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				return;
 			}
 			//(Vagoo) Increase preggo speed multiplier to x10.
@@ -705,7 +716,7 @@ package classes.Items.Transformatives
 					textBuff += "\n\n<b>Your reproductive system has been hijacked to produce babies at ten times the normal rate, though you think your advanced immune system has kept the Laquine Ears from converting your eggs into pure-bred horse-bunnies.</b>";
 					pc.pregnancyIncubationBonusMotherRaw = 10;
 				}
-				AddLogEvent(ParseText(textBuff));
+				AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				return;
 			}
 			//(Vagoo) Heat Extension (as minor) OR DEEP HEAT
@@ -789,7 +800,7 @@ package classes.Items.Transformatives
 					pc.extendHeat(14*24*60);
 					textBuff = ParseText(textBuff);
 				}
-				AddLogEvent(textBuff,"passive");
+				AddLogEvent(textBuff,"passive",deltaShift);
 				return;
 			}
 			//Nonbun tails fall off.
@@ -801,10 +812,10 @@ package classes.Items.Transformatives
 					if(pc.originalRace == "human") textBuff += " returned to its normal human-like state";
 					else textBuff += " become strangely naked and bare";
 					textBuff += ", leaving you bereft of posterior adornments.</b>";
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 					pc.removeTails();
 				}
-				else AddLogEvent(ParseText(pc.tailCountLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.tailCountLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//Grow bunbunpoof.			
@@ -818,10 +829,10 @@ package classes.Items.Transformatives
 					pc.clearTailFlags();
 					pc.addTailFlag(GLOBAL.FLAG_FURRED);
 					pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else if(!pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE)) AddLogEvent(ParseText(pc.tailTypeLockedMessage()),"passive");
-				else AddLogEvent(ParseText(pc.tailCountLockedMessage()),"passive");
+				else if(!pc.tailTypeUnlocked(GLOBAL.TYPE_LAPINE)) AddLogEvent(ParseText(pc.tailTypeLockedMessage()),"passive",deltaShift);
+				else AddLogEvent(ParseText(pc.tailCountLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//Scales/Chitin flake off to skin
@@ -839,11 +850,11 @@ package classes.Items.Transformatives
 					if(pc.hasChitin()) textBuff += "this onerous covering";
 					else textBuff += "these onerous coverings";
 					textBuff += " removed. You scratch like a wild man, watching your [pc.skinFurScales] pile up around your feet until at last, you feel relief. <b>You have bare skin!</b>";
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 					pc.clearSkinFlags();
 					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 				}
-				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//Feathers fall off to skin
@@ -852,11 +863,11 @@ package classes.Items.Transformatives
 				if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 				{
 					textBuff += "You’re molting! All over your body, your feathers are falling off! They collect around you in piles of soft plumage. As you dimly scratch a few stragglers from your shoulders, you wonder if they’d be any good in a pillow. Isn’t that how they used to make the things before Synthfluff was designed? <b>Your feathers are gone, leaving you with bare skin.</b>";
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 					pc.clearSkinFlags();
 					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 				}
-				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//Big floofy armpaws for males, cutey paws for ladies
@@ -884,9 +895,9 @@ package classes.Items.Transformatives
 					pc.addArmFlag(GLOBAL.FLAG_FURRED);
 					if(pc.mf("m","") == "m") pc.addArmFlag(GLOBAL.FLAG_THICK);
 					pc.addArmFlag(GLOBAL.FLAG_PAWS);
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.armTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.armTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//Revert to normal eyes
@@ -896,9 +907,9 @@ package classes.Items.Transformatives
 				{
 					textBuff += "Everything goes blurry for a minute. You’re left wiping your eyes and wondering if you need to run to the doctor before everything snaps back into clear, vivid focus. You pull up your Codex’s front-facing camera to check yourself over and discover <b>your eyes have returned to normal!</b>";
 					pc.eyeType = GLOBAL.TYPE_HUMAN;
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.eyeTypeLockedMessage()));
+				else AddLogEvent(ParseText(pc.eyeTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//(Plain Skin && tail + ears) Bunfur sprouts
@@ -910,9 +921,9 @@ package classes.Items.Transformatives
 					pc.clearSkinFlags();
 					pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 					pc.addSkinFlag(GLOBAL.FLAG_FURRED);
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.skinTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//(Bodyfur) Bunnyface!
@@ -945,9 +956,9 @@ package classes.Items.Transformatives
 					pc.faceType = GLOBAL.TYPE_LAPINE;
 					pc.addFaceFlag(GLOBAL.FLAG_FURRED);
 					pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.faceTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.faceTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
 			//(Nofur) Half-Bunnyface!
@@ -960,15 +971,46 @@ package classes.Items.Transformatives
 					pc.clearFaceFlags();
 					pc.faceType = GLOBAL.TYPE_LAPINE;
 					pc.addFaceFlag(GLOBAL.FLAG_SMOOTH);
-					AddLogEvent(ParseText(textBuff),"passive");
+					AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 				}
-				else AddLogEvent(ParseText(pc.faceTypeLockedMessage()),"passive");
+				else AddLogEvent(ParseText(pc.faceTypeLockedMessage()),"passive",deltaShift);
 				return;
 			}
-			AddLogEvent("<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length,"passive");
+			else if(select == 22)
+			{
+				choices = [];
+				for(i = 0; i < pc.totalVaginas(); i++)
+				{
+					choices.push(i);
+				}
+				if(choices.length == 0) AddLogEvent("<b>Boy howdy did an error ever happen. Tried to TF vagina to equine, but no adequate pussies found.</b>","passive",deltaShift);
+				else
+				{
+					x = choices[rand(choices.length)];
+					if(pc.vaginaTypeUnlocked(x,GLOBAL.TYPE_EQUINE))
+					{
+						textBuff += "A twinge ";
+						if(pc.legCount > 1) textBuff += "between your [pc.legs]";
+						else textBuff += "below the waist";
+						textBuff += " swiftly yanks your attention to your [pc.vagina " + x + "]. Prickly tingles tickle their way across it, then inside, swiftly giving way to a insistent heat and unforgiving pressure. You feel like the exterior of your feminine genitalia is being massaged. Every inch of surface area experiences the same undulating kneading. At the same time, your increasingly engorged cunt is pushing back, taking up more and more space. With a whimper of aroused agony, ";
+						if(!pc.isCrotchExposed()) textBuff += "you tear open your [pc.crotchCover]";
+						else textBuff += "stare down";
+						textBuff += " and discover that your [pc.vaginaNoun " + x + "] has changed shape!";
+						textBuff += "\n\nIn its place, <b>you’ve developed an equine vagina, complete with lips so large and plush that they look to have been recently pumped.</b>";
+						pc.lust(10);
+						pc.slowStatGain("libido",5);
+						AddLogEvent(ParseText(textBuff),"passive",deltaShift);
+						pc.shiftVagina(x,GLOBAL.TYPE_EQUINE);
+						pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
+					}
+					else AddLogEvent(ParseText(pc.vaginaTypeLockedMessage()),"passive",deltaShift);
+				}
+				return;
+			}
+			AddLogEvent("<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length,"passive",deltaShift);
 			return;
 		}
-		public function laquineEarsMinorTFsGO(pc:Creature):void
+		public function laquineEarsMinorTFsGO(pc:Creature, deltaShift):void
 		{
 			var x:int = pc.biggestCockIndex();
 			var textBuff:String = "";
@@ -1333,13 +1375,13 @@ package classes.Items.Transformatives
 			//(Penorhaver) Bunnygirl Hallucinations +10 lust
 			if(select == 4)
 			{
-				bunnyGirlFapScene(pc);
+				bunnyGirlFapScene(pc,deltaShift);
 				return;
 			}
 			//(cuntwielder, nonpreg in one cunny) Bunnyhorse fantasies +10 lust
 			if(select == 5)
 			{
-				bunnyguyFapScene(pc);
+				bunnyguyFapScene(pc,deltaShift);
 				return;
 			}
 			//(Vagicite) Awkward, random wetness with obvious pheromonal smell. Exhibition gains!
@@ -1456,7 +1498,7 @@ package classes.Items.Transformatives
 				textBuff += "The Laquine Ears don’t seem to be doing a damned thing. Damnit!";
 			}
 			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, select: " + select + " and choices state: " + choices.length;
-			AddLogEvent(ParseText(textBuff),"passive");
+			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
 		
@@ -1499,7 +1541,7 @@ package classes.Items.Transformatives
 		{
 			return (pc.earType == GLOBAL.TYPE_LAPINE && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.cocks[x].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
 		}
-		public function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false):void
+		public function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false,deltaShift:Number = 0):void
 		{
 			var textBuff:String = "";
 			if(masturbate)
@@ -1541,7 +1583,7 @@ package classes.Items.Transformatives
 				textBuff += "\n\nYou reach for her, but she’s already hopping away. The further she gets, the less visible her form becomes until she vanishes entirely, like she never existed at all. Did you just hallucinate that? Even if the bunny wasn’t real, the leftover arousal is.";
 				textBuff = ParseText(textBuff);
 				pc.lust(10);
-				if(!masturbate) AddLogEvent(textBuff,"passive");
+				if(!masturbate) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(ParseText(textBuff));
 			}
 			//Normal
@@ -1561,7 +1603,7 @@ package classes.Items.Transformatives
 				if(!pc.isCrotchExposed()) textBuff += " You’ll be walking bow-legged for a moment until it goes down.";
 				textBuff = ParseText(textBuff);
 				pc.lust(100);
-				if(!masturbate) AddLogEvent(textBuff,"passive");
+				if(!masturbate) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(ParseText(textBuff));
 			}
 			//2hueg. No new PG.
@@ -1666,7 +1708,7 @@ package classes.Items.Transformatives
 					pc.clearRut(false);
 					textBuff += " <b>Your rut has faded.</b>";
 				}
-				if(!masturbate) AddLogEvent(textBuff,"passive");
+				if(!masturbate) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(ParseText(textBuff));
 				pc.orgasm();
 				kGAMECLASS.applyCumSoaked(pc);
@@ -1677,7 +1719,7 @@ package classes.Items.Transformatives
 				addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
-		public function bunnyguyFapScene(pc:Creature,fap:Boolean = false):void
+		public function bunnyguyFapScene(pc:Creature,fap:Boolean = false,deltaShift:Number = 0):void
 		{
 			var x:int = 0;
 			var textBuff:String = "";
@@ -1743,7 +1785,7 @@ package classes.Items.Transformatives
 			//Merge
 			
 			//Marecunt & heat fuck-end
-			if(pc.vaginas[x].type == GLOBAL.TYPE_EQUINE && pc.inHeat())
+			if(pc.vaginas[x].type == GLOBAL.TYPE_EQUINE || pc.inHeat())
 			{
 				textBuff += "\n\nRocking his hips, the energetic bunny-man lets out a cute little growl, sawing himself against your [pc.vaginas] until he’s as wet with your own excitement as his oozing pre-cum. <i>“Yes,”</i> he groans, <i>“";
 				if(pc.laquineScore() >= 5)
@@ -1820,7 +1862,7 @@ package classes.Items.Transformatives
 				pc.lust(100);
 				textBuff = ParseText(textBuff);
 				IncrementFlag("LAQUINE_GENT_BONED");
-				if(!fap) AddLogEvent(textBuff,"passive");
+				if(!fap) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(textBuff);
 				pc.orgasm();
 			}
@@ -1854,7 +1896,7 @@ package classes.Items.Transformatives
 				pc.lust(20);
 				IncrementFlag("LAQUINE_FADEAWAY");
 				IncrementFlag("LAQUINE_GENT_BONED");
-				if(!fap) AddLogEvent(textBuff,"passive");
+				if(!fap) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(textBuff);
 			}
 			if(fap)
@@ -1863,8 +1905,10 @@ package classes.Items.Transformatives
 				addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
-		public function laquineEarsFinale(pc:Creature):void
+		public function laquineEarsFinale(pc:Creature, initDuration:uint, targetDelta:uint):void
 		{
+			// Calculate the time offset
+			var deltaShift:uint = initDuration - targetDelta;
 			var textBuff:String = "";
 			if(pc.earTypeUnlocked(GLOBAL.TYPE_LAPINE))
 			{
@@ -1875,16 +1919,21 @@ package classes.Items.Transformatives
 					pc.earType = GLOBAL.TYPE_LAPINE;
 					pc.earLength = 6 + rand(7);
 				}
+				else if(pc.earType != GLOBAL.TYPE_QUAD_LAPINE && kGAMECLASS.flags["LAQUINE_EAR_USES"] > 7 && rand(3) == 0)
+				{
+					textBuff += "<b>Your laquine ears expire</b>, but they do not crumble away as you might expect. Instead, they grow heavier, not with a payload of microsurgeons but with warm, pulsating flesh. There’s no ignoring it. The second pair of ears have grown onto you, and you can feel the new rabbit ears brushing back and forth against the old. <b>You have four bunny ears.</b> They look kind of nice, if you don’t mind appearing like you’ve suffered an obvious mutation.";
+					pc.earType = GLOBAL.TYPE_QUAD_LAPINE;
+				}
 				else
 				{
 					textBuff += "The redundant Laquine Ears fall off your head, the securing band crumbling away. The ears themselves crackle softly as their color fades to ash gray, then they break apart into ear-shaped piles of dust. <b>Your Laquine Ears have run out of juice. Time to re-up!</b>";
 				}
 			}
-			else
+			else 
 			{
-				textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You’ll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it’s possible for you to get the ears too. Shucks.";
+				textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You'll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it's possible for you to get the ears too. Shucks.";
 			}
-			AddLogEvent(ParseText(textBuff),"passive");
+			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 		}
 		// Persistent status effect Hotfix
 		public function laquineEarsRemove(pc:Creature):void

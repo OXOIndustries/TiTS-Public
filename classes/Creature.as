@@ -18302,23 +18302,23 @@
 					case "Laquine Ears":
 						if (startEffectLength >= 1140 && thisStatus.minutesLeft < 1140)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 1140);
 						}
 						if (startEffectLength >= 840 && thisStatus.minutesLeft < 840)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 840);
 						}
 						if (startEffectLength >= 540 && thisStatus.minutesLeft < 540)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 540);
 						}
 						if (startEffectLength >= 240 && thisStatus.minutesLeft < 240)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this);
+							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 240);
 						}
 						if(requiresRemoval)
 						{
-							new LaquineEars().laquineEarsFinale(this);
+							new LaquineEars().laquineEarsFinale(this, startEffectLength, 0);
 						}
 						break;
 					case "Heat":
