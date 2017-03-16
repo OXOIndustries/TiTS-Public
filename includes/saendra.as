@@ -1712,7 +1712,7 @@ public function saendraTailcockFuck():void
 	saenHeader(true);
 	author("Archangel");
 	
-	output("<i>“Well...”</i> You say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock");
+	output("<i>“Well...”</i> you say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock");
 	if(pc.tailCount > 1) output("s");
 	output(" over your head like a scorpion’s stinger, until " + (pc.tailCount == 1 ? "it’s" : "they’re") + " hanging over her face. ");
 
@@ -1734,7 +1734,7 @@ public function saendraTailcockFuck():void
 	output("\n\nSaen looks up at you, rubbing her chin with her hand, as if wondering what to do with you.");
 	if(pc.balls > 0) output(" You feel a ticklish feeling under your [pc.balls] and look down to see the tips of Saendra’s tails swishing back and forth against your [pc.sack]. You look back up at her to see a grin on her face.");
 
-	output("\n\n<i>“I got an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock], sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
+	output("\n\n<i>“I have an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock], sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
 
 	output("\n\n<i>“Actually, I got a better one,”</i> you say, flexing the muscles of your [pc.tailCock] and pushing past the confines of her tail to lodge the upper section of your [pc.tailCock] right between her hefty tits. <i>“Why not both?”</i> you add, rapidly wiggling your tailcock back and forth, motorboating her breasts and giving yourself both an impromptu titfuck and a great show of jiggling titflesh.");
 
