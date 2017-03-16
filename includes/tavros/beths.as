@@ -148,7 +148,7 @@ public function brothelMainMenu():void {
 	if(hours >= 6 && hours < 10) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "The brothel mistress is currently sleeping. You don’t think it’ll be a good idea to wake her right now.");
 	else if(pc.isSexless()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You need to have genitals in order to try this.");
 	else if(!pc.isFemboy() && !pc.isWoman()) addButton(5, "Turn Tricks", brothelTurnTrixLadyNonFem, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");
-	else if(!pc.isFemboy() && ((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) <= 2)) addDisabledButton(5,"Turn Tricks","Turn Tricks","You need sexier clothing in order to try this.");
+	else if(!pc.isFemboy() && pc.outfitSexiness() <= 2) addDisabledButton(5,"Turn Tricks","Turn Tricks","You need sexier clothing in order to try this.");
 	else if(pc.hasStatusEffect("Jaded")) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too wiped from last time to contemplate that right now.");
 	else if(pc.isWornOut()) addDisabledButton(5, "Turn Tricks", "Turn Tricks", "You’re too sore to think about doing that right now.");
 	else addButton(5, "Turn Tricks", brothelTurnTrixLady, undefined, "Turn Tricks", "See if you can’t earn some money in the most time-honored of fashions.");
@@ -876,7 +876,7 @@ public function brothelWhorePayment(baseAmount:Number = 0, service:String = "non
 	if(pc.gapestVaginaLooseness() <= 4)
 		returnAmount += baseAmount * 0.25;
 	// PC’s clothing is sexiness 5+: + 25% of base
-	if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) >= 5)
+	if(pc.outfitSexiness() >= 5)
 		returnAmount += baseAmount * 0.25;
 	// PC has 30 or more tease points across the board: + 25% of base
 	if(flags["TIMES_BUTT_TEASED"] >= 30 && flags["TIMES_CHEST_TEASED"] >= 30 && flags["TIMES_CROTCH_TEASED"] >= 30 && flags["TIMES_HIPS_TEASED"] >= 30)
@@ -2527,7 +2527,7 @@ public function brothelWhorePaymentTrap(baseAmount:Number = 0, service:String = 
 	if(pc.ass.looseness() <= 4)
 		returnAmount += baseAmount * 0.25;
 	// PC’s clothing is sexiness 5+: + 25% of base
-	if((pc.armor.sexiness + pc.upperUndergarment.sexiness + pc.lowerUndergarment.sexiness) >= 5)
+	if(pc.outfitSexiness() >= 5)
 		returnAmount += baseAmount * 0.25;
 	// PC has 30 or more tease points across the board: + 25% of base
 	if(flags["TIMES_BUTT_TEASED"] >= 30 && flags["TIMES_CHEST_TEASED"] >= 30 && flags["TIMES_CROTCH_TEASED"] >= 30 && flags["TIMES_HIPS_TEASED"] >= 30)

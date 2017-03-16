@@ -43,6 +43,9 @@ package classes.Items.Apparel
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			
 			this.version = this._latestVersion;
 		}
 	}

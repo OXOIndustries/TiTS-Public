@@ -1080,6 +1080,7 @@
 		public static const ITEM_FLAG_COMBAT_DRONE:int					= 15; // For combat drones
 		public static const ITEM_FLAG_INTERNAL_POWER:int				= 16; // For drones that do not require shields in order to function.
 		public static const ITEM_FLAG_UNDROPPABLE:int					= 17; // For items that cannot be dropped.
+		public static const ITEM_FLAG_TRANSPARENT:int					= 18; // Used specifically for clothing/armor that is see-through.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1100,6 +1101,7 @@
 			"Combat Drone",
 			"Self-Powered",
 			"Undroppable",
+			"Transparent",
 		];
 		
 		/**

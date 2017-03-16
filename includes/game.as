@@ -1448,8 +1448,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
 		var nudistPrevention:Boolean = false;
-		if((!pc.isChestGarbed() || pc.isChestExposed()) && pc.biggestTitSize() > 1) nudistPrevention = true;
-		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
+		if((!pc.isChestGarbed() || pc.isChestVisible()) && pc.biggestTitSize() > 1) nudistPrevention = true;
+		if(!pc.isCrotchGarbed() || ((pc.hasGenitals() || pc.balls > 0) && pc.isCrotchVisible()) || pc.isAssVisible()) nudistPrevention = true;
 		if(pc.canCoverSelf(true)) nudistPrevention = false;
 		if(nudistPrevention)
 		{
