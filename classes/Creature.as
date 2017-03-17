@@ -3012,7 +3012,7 @@
 						removeStatusEffect("Blue Balls");
 					}
 					//'Nuki Ball Reduction
-					if(perkv1("'Nuki Nuts") > 0 && balls >= 1)
+					if(perkv1("'Nuki Nuts") > 0 && balls > 0)
 					{
 						AddLogEvent("Your", "passive");
 						if(balls == 1) ExtendLogEvent(" testicle is back to its");
@@ -9081,7 +9081,7 @@
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
-			if(hasPerk("'Nuki Nuts") && balls >= 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
+			if(hasPerk("'Nuki Nuts") && balls > 0 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{
@@ -9184,7 +9184,7 @@
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
-				if(hasPerk("'Nuki Nuts") && balls >= 1)
+				if(hasPerk("'Nuki Nuts") && balls > 0)
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = (ballFullness/100) - 1;
