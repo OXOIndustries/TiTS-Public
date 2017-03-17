@@ -138,6 +138,7 @@
 		include "../includes/events/seraSexParty.as";
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
+		include "../includes/events/plantationQuest/plantationQuestMain.as";
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";

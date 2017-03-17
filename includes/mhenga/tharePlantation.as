@@ -1,62 +1,4 @@
-﻿
-/* Thare Plantation */
-
-public function plantationApproachBonus():Boolean
-{
-	author("Nonesuch");
-	
-	var msg:String = "";
-	
-	if(hours >= 6 && hours < 19) msg += "The bright sun of Ara Ara";
-	else msg += "The ghostly light of Mhen’ga’s moons";
-	msg += " becomes less and less filtered as you follow the sawdust trail eastwards, the jungle thinning out until it stops, suddenly, at the edge of a huge field. Row upon row of carefully tended and manicured plants of many different type and size meet your eye, each of them cordoned off from one another by white fencing and wire. Close to the edge of the acres of cleared forest there are defense turrets, similar to the ones guarding Esbeth. The ones nearest haven’t attempted to warn or fire at you.";
-	msg += "\n\n";
-	if(hours >= 6 && hours < 19) msg += "There’s activity, here and there in the sea of clean green, but it’s too far away to make out.";
-	else msg +="The fields look deserted, which is probably not surprising given the time of day.";
-	msg += " Rising above the fields to the south-east though a big, white building can be seen, approached by the same wide track you are on. Behind you, to the west, the alien wilderness encroaches, a complete contrast to this pristine, slightly unnerving farmland.";
-	msg += "";
-	
-	output(msg);
-	
-	flags["NAV_DISABLED"] = undefined;
-	
-	return jungleEncounterChances();
-}
-
-public function plantationFieldsBonus():Boolean
-{
-	author("Nonesuch");
-	
-	var msg:String = "";
-	var fullTime:int = ((hours * 60) + minutes);
-	
-	msg += "Fresh air, blessed next to the mugginess of the jungle, washes over your [pc.skin] in the open expanse of the plantation’s fields.";
-	// Time is 08:00-18:30:
-	if(fullTime >= (8 * 60) && fullTime <= ((18 * 60) + 30)) msg += " There are humanoid workers out there amongst the regimented crops, clad in khaki coveralls, as well as agri-bots that look like walking climbing frames, but they all ignore you.";
-	// Time is 18:31-07:59:
-	else msg += " The fields are deserted; the only sounds are the night insects and the distant, slightly terrifying strains of the Mhen’gan jungle.";
-	msg += "\n\n";
-	msg += "To the east are some low lying buildings which presumably function as dormitories. To the south, behind a tall wall, gate and manicured lawn, lies a multi-tiered white manor house. Its neo-classical design and spotless frontage, nestled within this tropical paradise, speaks only of immense opulence. On the wall next to the gate is a speaker and a brass sign which reads “THARE PLANTATION. A Snugglé enterprise”.";
-	
-	if(!CodexManager.entryUnlocked("Snugglé"))
-	{
-		msg += "\n\nYour Codex beeps with relevant information on the corporation.";
-		CodexManager.unlockEntry("Snugglé");
-	}
-	
-	output(msg);
-	
-	if(flags["THARE_MANOR_ENTERED"] == undefined) addButton(0, "Speaker", tharePlantationManorApproach, "speaker");
-	else
-	{
-		if(pc.hasStatusEffect("Thare Manor Visit") > 0) addDisabledButton(0, "Enter", "Enter", "You have already met Professor Darnock for a meal already. Perhaps you can revisit him later?");
-		else addButton(0, "Enter", tharePlantationManorApproach, "enter");
-	}
-	
-	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
-	
-	return false;
-}
+﻿/* Thare Plantation */
 
 public function tharePlantationManor():Boolean
 {
@@ -278,7 +220,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\n<i>“Rather less encouraging factors.”</i>");
 			
 			processTime(4);
-			
+			IncrementFlag("PLANTATION_PLANTATION_TALK");
 			addDisabledButton(2, "Plantation");
 			break;
 		case "zil":
@@ -295,7 +237,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\n<i>“I would like to chase more rigorous tactics with them, but alas, the current planetary administration has chosen to shackle us with suffocating rule and regulation. Make no mistake though, my young friend,”</i> the professor growls, determination steeling his pale blue eyes, <i>“it is a situation that will change. The zil and their fellows will be brought into the present millennium. Whether it be mercifully through the kind light of the One God, or brutally by uncaring market forces, that is their own choice to make.”</i>");
 			
 			processTime(4);
-			
+			IncrementFlag("PLANTATION_ZIL_TALK");
 			pc.lust(2 + rand (2));
 			
 			// Unlocks <i>“Workers”</i> option
@@ -313,7 +255,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\n<i>“They didn’t get a choice, dear [pc.name],”</i> says Darnock, considering the distant workers with a fond, paternal smile. <i>“And they must understand their posting not as an imposition, but a grand opportunity: to prove they are capable of obedience and a hard, honest day’s work to future employers. Snugglé works closely with the U.G.C. legal system to secure laborers for out-of-the-way installations like this, where locals cannot be sourced for whatever reason. It’s a win-win for all concerned: the burden on our over-taxed prisons is eased, Snugglé gets access to near-free labor, and the prisoners themselves receive valuable experience and a commendation on their CV for when they are released.”</i>");
 			output("\n\nThe professor gets up and strolls over to the terrace, water glass in hand.");
 			output("\n\n<i>“The security concerns are trifling - we barely need the turrets you saw coming in, at least not where the workforce are concerned. The jungle is several times more effective than any wall or fence in deterring prospective runaways. And, of course - what is the next best audience for proselytizing, after native savages? Fertile soil for the One, " + pc.mf("Master", "Miss") + " Steele. Fertile soil!”</i>");
-			
+			IncrementFlag("PLANTATION_WORKERS_TALK");
 			processTime(3);
 			
 			addDisabledButton(4, "Workers");
@@ -342,6 +284,7 @@ public function thareManorResponse(response:String = "none"):void
 			
 			processTime(2);
 			pc.createStatusEffect("Thare Manor Visit", 0, 0, 0, 0, true, "", "", false, 30);
+			IncrementFlag("PLANTATION_MEALS");
 			
 			// Move PC to Thare Plantation square
 			thareManorMenu(true);
@@ -355,7 +298,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\nDo zil <i>ever</i> stop thinking about sex?");
 			
 			processTime(2);
-			
+			IncrementFlag("PLANTATION_MEALS");
 			// + Lust
 			pc.lust(10 + rand (11));
 			

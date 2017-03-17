@@ -1631,7 +1631,15 @@ package classes.GameData
 					// but we still hold a ref to it for further processing!
 					if (target is PlayerCharacter)
 					{
-						if (stunEffect.value2 == 1)
+						//For Kane shit
+						if(target.hasStatusEffect("Kane's Honey"))
+						{
+							//PC lust < 70:
+							if(target.lust() < 70) output("You shove the zil off you and grasp your [pc.weapon] firmly once again.");
+							else output("You manage to break away from the zil, grasping your [pc.weapon] and taking deep breaths, trying to control the arousal running fierce in your veins.");
+							target.removeStatusEffect("Kane's Honey");
+						}
+						else if (stunEffect.value2 == 1)
 						{
 							output("You shake yourself off, blinking rapidly. Whatever mental influence had crept into your brain seems to have flushed out, leaving your mind a bit foggy, but ready to fight regardless.");
 						}
@@ -1648,7 +1656,6 @@ package classes.GameData
 					{
 						output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
 					}
-					
 				}
 				else
 				{

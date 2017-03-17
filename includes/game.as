@@ -2084,6 +2084,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		// Pippa Nuru massage email
 		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();
 
+		//Plantation Quest Offer
+		//Key string - "plantation_quest_start"
+		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined)
+		{
+			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
+			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
+		}
+
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
