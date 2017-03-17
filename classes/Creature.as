@@ -11,6 +11,7 @@
 	import classes.Items.Melee.*
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Transformatives.*;
+	import classes.Ships.IOwner;
 	import classes.Ships.Modules.ShipModule;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
@@ -42,7 +43,7 @@
 	 * Note to self: mx.utils has some describeType caching which may be a thing to look at. It also has some handy-dandy features
 	 * for checking class properties (isDynamic etc, mx.utils.ObjectUtil)
 	 */
-	public class Creature extends VersionedSaveable {
+	public class Creature extends VersionedSaveable implements IOwner {
 		/**
 		 * NeverSerialize is a seperate flag that can be applied on a creature-by-creature basis. Any creature with the
 		 * NeverSerialize flag set will be omitted from the save/load process. There are probably many Creatures that will

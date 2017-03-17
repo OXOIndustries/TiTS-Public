@@ -34,6 +34,13 @@ package classes.GameData
 			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.pc);
 		}
 		
+		public static function newSpaceCombat():void
+		{
+			combatContainer = new SpaceCombatContainer();
+			victoryCondition(ENTIRE_PARTY_DEFEATED);
+			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.ships.activePlayerShip);
+		}
+		
 		public static function displayLocation(r:String, p:String = null, s:String = null):void
 		{
 			combatContainer.roomString = r;

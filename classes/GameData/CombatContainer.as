@@ -7,6 +7,7 @@ package classes.GameData
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
 	import classes.ItemSlotClass;
+	import classes.Ships.SpaceShip;
 	import classes.StorageClass;
 	import classes.Engine.Interfaces.*;
 	import classes.Characters.*;
@@ -40,6 +41,7 @@ package classes.GameData
 		public static const HOSTILE_GROUP:String = "hostile_group";
 		
 		protected function get pc():PlayerCharacter { return kGAMECLASS.pc; }
+		protected function get pcShip():SpaceShip { return kGAMECLASS.ships.activePlayerShip; }
 		protected function get flags():Dictionary { return kGAMECLASS.flags; }
 
 		public var victoryCondition:String = CombatManager.ENTIRE_PARTY_DEFEATED;

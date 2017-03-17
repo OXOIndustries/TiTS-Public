@@ -560,6 +560,12 @@ package classes.Ships
 		public var _inventory:Array;
 		public function get Inventory():Array { return _inventory; }
 		
+		// Used during ship swaps
+		public function TransferInventory(inInv:Array):void
+		{
+			_inventory = inInv;
+		}
+		
 		protected var _storageTypeGeneral:int;
 		public function get StorageTypeGeneral():int { return _storageTypeGeneral; }
 		public function StorageTypeGeneralTotalSlots():int 
@@ -695,6 +701,10 @@ package classes.Ships
 				_cachedFittedModules.concat(Lightdrive, Engine, ShieldGenerator, HullArmoring, Reactor, CapacitorBattery, Gunnery);
 			}
 			return _cachedFittedModules;
+		}
+		public function get OnlyExtensionFittedModules():Array
+		{
+			return _fittedModules; 
 		}
 		
 		public function GetUtilityModules():Array
