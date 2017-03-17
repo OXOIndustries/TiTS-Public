@@ -579,7 +579,7 @@ package classes.Characters
 		private function buttslutBootyGrowth(totalDays:int):void
 		{
 			var bootyMin:Number = 18;
-	
+			
 			// If butt is max size or is currently filled, no need to grow.
 			if (buttRatingRaw >= bootyMin || statusEffectv1("Anally-Filled") > 0) return;
 			
@@ -600,7 +600,7 @@ package classes.Characters
 				else if (addBooty > 2) m += " a few sizes";
 				else if (addBooty > 1) m += " a another size or two";
 				else m += " some mass";
-				m += ParseText("... It seems your bubbly booty refuses to be any smaller" + (buttRatingRaw < 10 ? " than that." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
+				m += ParseText("... It seems your bubbly booty is desperate for attention, begging for something to fill it" + (buttRatingRaw < 10 ? "." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
 				
 				buttRatingRaw += addBooty;
 				

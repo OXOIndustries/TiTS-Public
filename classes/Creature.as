@@ -1014,7 +1014,7 @@
 		
 		public function buttRatingUnlocked(newButtRating:Number):Boolean
 		{
-			if(hasPerk("Buttslut") && newButtRating < buttRatingRaw) return false;
+			//if(hasPerk("Buttslut") && newButtRating < buttRatingRaw) return false;
 			return true;
 		}
 		public function buttRatingLockedMessage():String
@@ -11652,7 +11652,7 @@
 		{
 			var desc: String = "";
 			var rando: Number = 0;
-			var buttslut: Boolean = hasPerk("Buttslut");
+			var buttslut: Boolean = (hasPerk("Buttslut") || hasPerk("Bubble Butt"));
 			if (buttRating() <= 1) {
 				if (tone >= 60 && !buttslut) desc += "incredibly tight, perky ";
 				else {
