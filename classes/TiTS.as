@@ -1,6 +1,8 @@
 ﻿package classes
 {
 	import classes.GameData.Perks;
+	import classes.GameData.ShipManager;
+	import classes.Ships.SpaceShip;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModules.GameTextModule;
@@ -358,6 +360,7 @@
 		include "../includes/chargendata.as";
 		
 		public var chars:Object;
+		public var ships:ShipManager;
 
 		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
 		public var days:int;
@@ -468,6 +471,7 @@
 			import classes.ItemSlotClass;
 
 			chars = new Object();
+			ships = new ShipManager();
 			
 			//What inventory screen is up?
 			shopkeep = undefined;
@@ -1086,6 +1090,18 @@
 		private var _enemy:Creature = null;
 		public function get enemy():Creature { return _enemy; }
 		public function setEnemy(v:Creature):void { _enemy = v; }
+		
+		private var _targetShip:SpaceShip = null;
+		public function get TargetShip():SpaceShip { return _targetShip; }
+		public function SetTargetShip(v:SpaceShip):void { _targetShip = v; }
+		
+		private var _attackerShip:SpaceShip = null;
+		public function get AttackerShip():SpaceShip { return _attackerShip; }
+		public function SetAttackerShip(v:SpaceShip):void { _attackerShip = v; }
+		
+		private var _enemyShip:SpaceShip = null;
+		public function get EnemyShip():SpaceShip { return _enemyShip; }
+		public function SetEnemyShip(v:SpaceShip):void { _enemyShip = v; }
 		
 		public function get celise():Celise
 		{
