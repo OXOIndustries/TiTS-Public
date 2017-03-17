@@ -38,7 +38,7 @@ package classes.GameData
 		{
 			combatContainer = new SpaceCombatContainer();
 			victoryCondition(ENTIRE_PARTY_DEFEATED);
-			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.ships.activePlayerShip);
+			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.shipDb.ActivePlayerShip);
 		}
 		
 		public static function displayLocation(r:String, p:String = null, s:String = null):void

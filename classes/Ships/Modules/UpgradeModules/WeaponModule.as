@@ -59,7 +59,7 @@ package classes.Ships.Modules.UpgradeModules
 				var se:StorageClass = OwningShip.Gunnery.HookedCrew.getPerkEffect("Crew Skill - Gunnery");
 				if (se != null)
 				{
-					return OwningShip.TargetingStaffed(flatBonus + (OwningShip.Gunnery.HookedCrew, 3 * se.value1));
+					return OwningShip.TargetingStaffed(HookedCrew, flatBonus + (OwningShip.Gunnery.HookedCrew, 3 * se.value1));
 				}
 			}
 			// Fallback to pilot accuracy bonuses

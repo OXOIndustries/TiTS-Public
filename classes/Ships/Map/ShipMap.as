@@ -59,7 +59,10 @@ package classes.Ships.Map
 			
 			if (room.ParentLocation != null) trace("Room already exists in another parent container.");
 			
-			if (room.HasFlag(ShipRoom.FLAG_ROOT)) RootRoom = room;
+			if (room.HasFlag(ShipRoom.FLAG_ROOT))
+			{
+				RootRoom = room;
+			}
 			
 			RoomDefinitions[room.Index] = room;
 			room.Owner = this.Owner;

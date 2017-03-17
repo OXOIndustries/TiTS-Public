@@ -1,5 +1,6 @@
 ﻿package classes.DataManager 
 {
+	import classes.GameData.ShipManager;
 	import classes.Items.Apparel.TSTArmor;
 	import classes.Items.Miscellaneous.PHAccess;
 	import classes.Items.Miscellaneous.TestGrenade;
@@ -1137,6 +1138,9 @@
 			
 			// Children
 			dataFile.children = cloneObject(ChildManager.getSaveObject());
+			
+			// Ship management stuff
+			dataFile.ships = cloneObject(kGAMECLASS.shipDb.getSaveObject());
 		}
 		
 		/**
@@ -1372,6 +1376,15 @@
 			else
 			{
 				ChildManager.resetChildren();
+			}
+			
+			if (obj.ships != undefined)
+			{
+				kGAMECLASS.shipDb.loadSaveObject(cloneObject(obj.ships));
+			}
+			else
+			{
+				kGAMECLASS.shipDb.NewGame();
 			}
 			
 			//Update room placement:

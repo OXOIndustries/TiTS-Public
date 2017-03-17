@@ -37,6 +37,17 @@ package classes.Ships
 		
 		public function SpaceShip() 
 		{
+			_temporaryEffects = { };
+			_statusEffects = { };
+			
+			_lightdriveModule = new LightdriveModule(this);
+			_engineModule = new EngineModule(this);
+			_shieldModule = new ShieldModule(this);
+			_hullArmoringModule = new HullArmoringModule(this);
+			_reactorModule = new ReactorModule(this);
+			_capacitorModule = new CapacitorModule(this);
+			_gunneryModule = new GunneryModule(this);
+			
 			_hullMaxBase = 100;
 			Hull = HullMax;
 			
@@ -50,7 +61,13 @@ package classes.Ships
 			
 			_internalMap = new TestMapInterior(this);
 			
+			_storageTypeGeneral = 10;
+			_storageTypeConsumable = 20;
+			_storageTypeArmor = 10;
+			_storageTypeWeapons = 20;
+			
 			_inventory = [];
+			_fittedModules = [];
 			
 			_hullResistances = new ShipTypeCollection( { em: 50, kin: 20, exp: 10, therm: 40 }, ShipDamageFlag.TYPE_HULL);
 		}

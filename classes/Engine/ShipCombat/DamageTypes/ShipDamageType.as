@@ -35,7 +35,7 @@ package classes.Engine.ShipCombat.DamageTypes
 			em: ShipDamageType.EM, 
 			kin: ShipDamageType.KIN,
 			exp: ShipDamageType.EXP,
-			thrm: ShipDamageType.THRM,
+			therm: ShipDamageType.THRM,
 			unres: ShipDamageType.UNRES
 		};
 		

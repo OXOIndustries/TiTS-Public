@@ -77,6 +77,7 @@ public function startCharacterCreation(e:Event = null):void
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
 	userInterface.resetPCStats();
+	shipDb.NewGame();
 	hours = 0;
 	minutes = 0;
 	days = 0;

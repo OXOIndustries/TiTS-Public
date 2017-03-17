@@ -178,9 +178,9 @@ package classes.Ships.Map
 			}
 			return false;
 		}
-		public function AddFlag(... Flags):void
+		public function AddFlag(... inFlags):void
 		{
-			Flags = Flags.concat(Flags);
+			_flags = _flags.concat(inFlags);
 		}
 		public function AddVariableFlag(tFlag:uint, tFlagName:String):void
 		{

@@ -360,7 +360,7 @@
 		include "../includes/chargendata.as";
 		
 		public var chars:Object;
-		public var ships:ShipManager;
+		public var shipDb:ShipManager;
 
 		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
 		public var days:int;
@@ -471,7 +471,6 @@
 			import classes.ItemSlotClass;
 
 			chars = new Object();
-			ships = new ShipManager();
 			
 			//What inventory screen is up?
 			shopkeep = undefined;
@@ -517,6 +516,7 @@
 			mapper = new Mapper(this.rooms)
 
 			this.chars["PC"] = new PlayerCharacter();
+			shipDb = new ShipManager(); // Gotta do this after at least the PC object exists
 			_perkDB = new Perks();
 			
 			inputManager = new InputManager(stage, false);

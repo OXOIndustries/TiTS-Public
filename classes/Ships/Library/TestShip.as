@@ -1,5 +1,6 @@
 package classes.Ships.Library 
 {
+	import classes.Ships.Modules.*;
 	import classes.Ships.SpaceShip;
 	import classes.Ships.Map.Library.TestMapInterior;
 	/**
@@ -16,28 +17,35 @@ package classes.Ships.Library
 			_model = "FSP5";
 			_baseValue = 150000;
 			
-			HullMaxBase = 3500;
-			BaseHull = HullMaxBase;
+			_hullMaxBase = 3500;
+			Hull = HullMax;
 			
-			ShieldsMax = 10000;
+			_shieldsMaxBase = 10000;
 			Shields = ShieldsMax;
 			
-			CapacitorMax = 150;
+			_capacitorMaxBase = 1000;
 			Capacitor = CapacitorMax;
 			
-			Targeting = 50;
-			Thrust = 50;
-			Agility = 50;
-			Systems = 50;
-			Aim = 50;
-			Armor = 50;
-			Power = 500;
+			_targeting = _thrust = _aim = _agility = _systems = 50;
 			
-			StorageTypeGeneral = 10;
-			StorageTypeConsumable = 20;
-			StorageTypeArmor = 10;
-			StorageTypeWeapons = 20;
-			_internalMapClass = TestMapInterior;
+			_internalMap = new TestMapInterior(this);
+			
+			_storageTypeGeneral = 10;
+			_storageTypeConsumable = 20;
+			_storageTypeArmor = 10;
+			_storageTypeWeapons = 20;
+			
+			_inventory = [];
+			
+			_lightdriveModule = new LightdriveModule(this);
+			_engineModule = new EngineModule(this);
+			_shieldModule = new ShieldModule(this);
+			_hullArmoringModule = new HullArmoringModule(this);
+			_reactorModule = new ReactorModule(this);
+			_capacitorModule = new CapacitorModule(this);
+			_gunneryModule = new GunneryModule(this);
+			
+			_fittedModules = [];
 		}
 		
 	}

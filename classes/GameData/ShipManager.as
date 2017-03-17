@@ -18,15 +18,22 @@ package classes.GameData
 	{
 		public function ShipManager() 
 		{
-			
+			NewGame();
 		}
 		
 		public function NewGame():void
 		{
 			// TODO: Change this to the Casstech (when I actually code the Casstech (aka when things actually work))
 			_activePlayerShip = new TestShip();
-			_ownedShipTypes = [];
-			_availableShipTypes = [];
+			_activePlayerShip.Owner = kGAMECLASS.pc;
+			
+			_ownedShips = [];
+			_availableShips = [];
+			_lockedShips = [];
+			
+			_lockedModules = [];
+			_licensedModules = [];
+			_ownedModules = [];
 		}
 		
 		public function SetActiveShipType(ownedShipClass:Class):void
@@ -37,8 +44,8 @@ package classes.GameData
 			var currentShipId:String = getQualifiedClassName(ActivePlayerShip);
 			currentShipId = currentShipId.substr(currentShipId.indexOf("::"));
 			
-			_ownedShipTypes.splice(_ownedShipTypes.indexOf(storedShipId), 1);
-			_ownedShipTypes.push(currentShipId);
+			_ownedShips.splice(_ownedShips.indexOf(storedShipId), 1);
+			_ownedShips.push(currentShipId);
 
 			var newShip:SpaceShip = new ownedShipClass();
 			newShip.Owner = kGAMECLASS.pc;
@@ -164,21 +171,21 @@ package classes.GameData
 			
 			so.lockedModules = [];
 			
-			for (i = 0; i < _lockedModules; i++)
+			for (i = 0; i < _lockedModules.length; i++)
 			{
 				so.lockedModules.push(getQualifiedClassName(_lockedModules[i]));
 			}
 			
 			so.licensedModules = [];
 			
-			for (i = 0; i < _licensedModules; i++)
+			for (i = 0; i < _licensedModules.length; i++)
 			{
 				so.licensedModules.push(getQualifiedClassName(_licensedModules[i]));
 			}
 			
 			so.ownedModules = [];
 			
-			for (i = 0; i < _ownedModules; i++)
+			for (i = 0; i < _ownedModules.length; i++)
 			{
 				so.ownedModules.push( {
 					module: getQualifiedClassName(_ownedModules[i].Module),
@@ -191,7 +198,7 @@ package classes.GameData
 		
 		override public function loadSaveObject(o:Object):void
 		{
-			_ownedShips = [];
+			NewGame();
 			
 			for (var i:int = 0; i < o.ownedShips.length; i++)
 			{
@@ -200,16 +207,12 @@ package classes.GameData
 			
 			delete o.ownedShips;
 			
-			_availableShips = [];
-			
 			for (i = 0; i < o.availableShips.length; i++)
 			{
 				_availableShips.push(new (getDefinitionByName(o.availableShips[i]) as Class));
 			}
 			
 			delete o.availableShips;
-			
-			_lockedShips = [];
 			
 			for (i = 0; i < o.lockedShips.length; i++)
 			{
@@ -218,8 +221,6 @@ package classes.GameData
 			
 			delete o.lockedShips;
 			
-			_lockedModules = [];
-			
 			for (i = 0; i < o.lockedModules.length; i++)
 			{
 				_lockedModules.push(new (getDefinitionByName(o.lockedModules[i]) as Class));
@@ -227,16 +228,12 @@ package classes.GameData
 			
 			delete o.lockedModules;
 			
-			_licensedModules = [];
-			
 			for (i = 0; i < o.licensedModules.length; i++)
 			{
 				_licensedModules.push(new (getDefinitionByName(o.licensedModules[i]) as Class));
 			}
 			
 			delete o.licensedModules;
-			
-			_ownedModules = [];
 			
 			for (i = 0; i < o.ownedModules.length; i++)
 			{
