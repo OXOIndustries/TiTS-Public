@@ -2,6 +2,7 @@
 import classes.Items.Toys.Bubbles.LargeCumBubble;
 import classes.Items.Toys.Bubbles.MediumCumBubble;
 import classes.Items.Toys.Bubbles.SmallCumBubble;
+import classes.ItemSlotClass;
 
 /* Item utility functions. Put here since fuck figuring out how to inheritance*/
 //Use Options
@@ -198,6 +199,9 @@ public function outOfCombatBubbleBuddyUse(item:ItemSlotClass):Boolean
 	addButton(0,"Ditch It",ditchDatCumBall,item);
 	addButton(1,"Pop It",popDatBubbleButtBubb,item);
 	addButton(2,"Put Away",putItAway,item);
+	if(pc.hasPerk("Dumb4Cum")) addButton(3,"Drink It",drinkSomeBubbleBud,item,"Drink It","Gosh, cum is tasty. Maybe you could like, drink some?");
+	else if(pc.hasPerk("'Nuki Nuts") && pc.hasCock() && pc.balls > 1) addButton(3,"Drink It",drinkSomeBubbleBud,item,"Drink It","Your ‘nuki nuts could use a little booster. Bottoms up!");
+	else addDisabledButton(3,"Drink It","Drink It","You have no reason to start drinking cum.");
 	return true;
 }
 //[Ditch It]
@@ -301,6 +305,136 @@ public function putItAway(item:ItemSlotClass):void
 	clearMenu();
 	addButton(0,"Next",useItemFunction);
 }
+
+//[Drink It]
+//Your ‘nuki nuts could use a little booster. Bottoms up!
+public function drinkSomeBubbleBud(item:ItemSlotClass):void
+
+{
+	clearOutput();
+	author("SomeKindofWizard");
+	showName("BOTTOMS\nUP!");
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+
+	if(pc.hasPerk("Dumb4Cum"))
+	{
+		author("Fenoxo Fenbutt");
+		output("You heft the perfectly preserved bubble of seed ");
+		if(item is SmallCumBubble) output("between your fingers");
+		else if(item is MediumCumBubble) output("in your hands");
+		else if(item is LargeCumBubble) output("in both hands");
+		else output("in your arms");
+		output(". There's spooge inside. Probably still warm");
+		if(pc.isBimbo()) output(" or something.");
+		else output(" thanks to the advanced containment systems.");
+		output(" Your mouth waters at the thought of it. It'd be so easy ");
+		if(pc.isBimbo()) output("to like, pop a hole in it and drink up all the yummy goo.");
+		else output("to puncture it and get at the delicious goo.");
+		output(" How can anyone resist the liquid bounty within?");
+
+		output("\n\nWith your concerns taking a backseat to cum-thirstiness, you ");
+		if(pc.isBimbo()) output("giddily bite a hole in the bubble, giggling around a mouthful of spermy treasure as it pours into your mouth.");
+		else output("carefully bite a hole in the bubble, trying not to let it show just how much you love the taste of the spermy treasure as it pours into your mouth.");
+		if(item is SmallCumBubble) 
+		{
+			output(" If only there was more! You swish the small load over every inch of your mouth to savor the flavor as long as you can. Your breath is going to smell like jizz, but that's a small price to pay for having the taste of residual spunk lingering on your tongue.");
+			pp.createPerk("Fixed CumQ",300,0,0,0);
+		}
+		else if(item is MediumCumBubble) 
+		{
+			output(" Oh yessss.... This is exactly what you need. Your throat bobs as you gulp down the rich ejaculate. There's enough that you don't have to slow yourself down to savor the flavor. There's more than enough for you to pour into your mouth with every swallow. You let your cheeks bulge, filling every nook and cranny with heavenly spunk. It's like having liters of ambrosia at your disposal, and you consume every last drop.");
+			pp.createPerk("Fixed CumQ",4000,0,0,0);
+		}
+		else if(item is LargeCumBubble) 
+		{
+			output(" Mmmm.... This is absolute heaven. You can scarcely keep up with the flow. The bubble is so taut with stored jizz that rushes out in a constant, strong flow. Your cheeks bulge. Spunk leaks from the corners of your mouth, but you resolve to scoop it up later. ");
+			if(!pc.isBimbo()) output("Waste not, want not.");
+			else output("No point in letting any tasty cummies get away!");
+			output(" The longer you drink, the less severe the flow becomes. Now you can manage how fast the spooge squirts out by adjusting how hard you squeeze the deflating pouch. Of course you wring it dry as fast as possible. Cum is meant to spurt out in passionate eruptions, not leisurely sipped. When you've finished, a huge blob of seed is dribbling down your chin. You push it up into your lips with a mischievous smile, your urges momentarily sated.");
+			pp.createPerk("Fixed CumQ",10000,0,0,0);
+		}
+		else
+		{
+			output(" Stars, you can barely keep up! Jizz cascades over your cheeks and chin. It spills down your [pc.chest] no matter how you chug, and that's just perfect. You delight in your self-induced bukkake, content to drown in as much spunk as you can cram into your maw while bathing in the excess. The rest of the universe fades away beneath the spermy tide. There's just you and the endless, orgasmic taste of drinking cum.\n\nEventually, you run out of sperm-filled goo to drink, but not until your whole front is painted in cream. You must look like a complete and total slut. The assessment wouldn't be entirely wrong, you suppose, mid-way through scooping a handful of leftovers into your mouth, sucking the residual flavor from your fingers. Mmmmm...");
+			pp.createPerk("Fixed CumQ",40000,0,0,0);
+		}
+		pc.loadInMouth(pp);
+	}
+	//{Small Bubble}
+	else if(item is SmallCumBubble) 
+	{
+		output("You heft the warm bubble between your hands, feeling the contents slosh a little. It’s hard not to be a little disappointed in yourself! It’s obvious that a little boost is in order, and thanks to the genetic gift of your ‘nuki nuts even a small amount will be more than adequate.");
+		output("\n\nNot enough to turn your testes into swollen cum-tankers, but certainly enough to stuff up an eager slut, or paint yourself and others ivory. Just the thought sends a thrum of pleasure right down to your [pc.cocks]. Time to get started.");
+		output("\n\nThe first test is figuring out how best to drink from it without wasting the precious reserves. You give the surface a testing poke, feeling it wobble. Placing the bubble to your lips, you nibble at the edges, " + pc.mf("chuckling","giggling") + " to yourself at the ridiculousness of it all. Still, the insistent throbbing of your [pc.cocks], and the need to fill your [pc.balls] until they churn with potent seed is very persuasive.");
+		output("\n\nYou nibble at the thin boundary between your [pc.lips] and their liquid prize; it still takes a little work, but finally something gives. Your flavorsome [pc.cumNoun] graces the tip of your tongue, and you open wide, all but stuffing the bubble into your mouth. You swallow it down with a wicked smile, spitting out the then-empty membrane afterwards, smacking your [pc.lips] together contentedly.");
+		output("\n\nIt doesn’t take long for tingles of pleasure to rush their way to your nethers, heralding future growth in a way that gets you hot under the collar.");
+		pc.lust(10);
+		//{increase libido by 2, lust by 10, trigger low-level nuki...growth (Whatever it’s called)}
+		//Fen note: Nope. No libido gain.
+		processTime(6);
+		pp.createPerk("Fixed CumQ",300,0,0,0);
+		pc.loadInMouth(pp);
+	}
+	//{Medium Bubble}
+	else if(item is MediumCumBubble)
+	{
+		output("With a wicked smirk, you squeeze and play with the tension of the cum-bubble. It’s not bad, sure. But you know full well that with this [pc.cumNoun] sloshing around in your stomach instead of this bubble? You could produce something <i>far</i> more impressive thanks to your unique biology. The thought’s enough to get you excited; you could make one of these beauties <i>burst</i>.");
+		output("\n\n...It just takes a little kick-starting. Your [pc.cocks] grow hard with the thought, and when your muscles clench, your [pc.balls] lift up a little. That’s right, these babies could ");
+		if(pc.ballFullness >= 100) output("still find some room to grow");
+		else output("definitely use filling up");
+		output(". You squeeze the surface again, watching the bubble stretch beneath your [pc.fingers].");
+
+		output("\n\nThe challenge is drinking from a bubble without making a mess. Not that it’s necessarily a <i>bad</i> thing to make a big [pc.cumNoun]-y mess, but it’s not going to do anything for your ‘nuki nuts if it’s slathered over your [pc.chest] instead of in your stomach. The warmth of the bubble is rather enticing once you’ve placed your lips up against it, teasing the idea of that [pc.cumtype] being a hair’s breadth away.");
+
+		output("\n\nYou hum against it, feeling the vibrations tremble through. through the bubble’s membrane. After that it’s just a gentle nibble. Even with that, the pressure of the bubble has your [pc.cumNoun] spurting past your mouth! Yo hurriedly suck and swallow, pressing as much of the bubble up against your lips as you can get away with. The heady scent of [pc.cumNoun] fills your nose, and your prostate already feels like it’s seething with more, getting ready to dump its contents into your balls.");
+		output("\n\nYou sigh and pat your [pc.belly], feeling smug as your body begins its work.");
+		//{increase libido by 2, lust by 10, trigger medium-level nuki...growth (Whatever it’s called)}
+		pc.lust(10);
+		processTime(6);
+		pp.createPerk("Fixed CumQ",4000,0,0,0);
+		pc.loadInMouth(pp);
+	}
+	//{Large Bubble}
+	else if(item is LargeCumBubble)
+	{
+		output("Now this... this is a bubble! It’s full of exactly what you’ll need in order to fill your [pc.balls] up until each ball is capable of putting this thing to shame. All the better to turn a willing lover into a [pc.cumNoun]-coated statue. You settle down into a chair and give it a squeeze, feeling the warm contents all but slosh around. Just the thought of getting so full puts a tickle in your pickle, and sets you on edge.");
+		output("\n\nIts liquid weight settles into your lap, and you give the bubble a testing poke, " + pc.mf("chuckling","giggling") + " at how membrane giggles, setting a tremble through your cum. Drinking from it seems like it’ll be a rather intense task... and promises to be a messy one, no matter how much [pc.cumNoun] you manage to ingest. You grasp the bubble at the top, lifting it until gravity makes a little empty space. You sink your finger in as hard as it’ll go, hoping the whole thing doesn’t just explode and coat you.");
+		output("\n\nThankfully, the moment the membrane pops, it doesn’t take out the entirety of the bubble. Spooge begins to flow freely from the new opening like a tap, and you direct the opening to your mouth as quickly as possible. [pc.CumNoun] trails down your chin, and your cheeks fill with the first mouthful in record time. It trickles down your [pc.chest], ");
+		if(pc.biggestTitSize() < 1) output("glazing your pecs");
+		else output("making a sticky mess between your tits");
+		output(" with potent seed.");
+		output("\n\nAfter what feels like a straight minute, you manage to find a rythm of swallowing, until your stomach feels packed with cum. Already the weight of your own [pc.balls] seems to have doubled, and your cock is fiercely erect as the heady aroma and overindulgent state of your body sends hormones into overdrive.");
+		output("\n\nStifling a burp, you let the empty bubble sag to the ground, wiping some of the cum from your chest with a grin. You give your soft orbs a squeeze, feeling them grow thicker by the moment. Look out universe.");
+		//{increase libido by 3, lust by 10-15, trigger large-level nuki...growth (Whatever it’s called)}
+		pc.lust(10);
+		processTime(6);
+		pp.createPerk("Fixed CumQ",10000,0,0,0);
+		pc.loadInMouth(pp);
+	}
+	//{Huge Bubble}
+	else
+	{
+		output("It’s hard to say if what you’re considering is genius or madness... the sheer weight of this bubble drags down against your hands, threatening to break whenever you walk with it.");
+		output("\n\nYou fall into a chair as opposed to sit in it, the sheer warmth of so much liquid weight reaching deep into your core. Your [pc.cocks] press");
+		if(pc.cockTotal() == 1) output("es");
+		output(" upwards insistently, and you’re more than a little proud of what you’ve made. This must be what having a child is like... when, you know, you aren’t the scion of the Steele family with a specially-structured daycare.");
+		output("\n\nStill. It’s quite an achievement. But really? Drinking this might just be the end of you. It’s far, far too much just to drink. You’ll just have to ensure you don’t consume <i>all</i> of it. It’s hard to imagine how you’ll even start drinking from it without just making a titanic mess of yourself.");
+		output("\n\nNot that it’s necessarily a bad thing, but flooding the room isn’t going to do anything for your expansive [pc.balls]. You bury your face into the warm ocean of [pc.cumNoun], laughing at how absurd it is.");
+		output("\n\nTime to get to business. You open your [pc.mouth] wide, with a soft <i>“Aaah~”</i>, before biting down as hard as you can. The bubble doesn’t so much burst as it does unleash itself into your mouth and all over your face. Gulping it down is an immediate challenge, forcing you to nearly choke on [pc.cumNoun]. It doesn’t take long for your stomach to fill, and it takes even less time to gather an all-new spunky coating.");
+		applyCumSoaked(pc);
+		output("\n\nYour body is overwhelmed in little to no time, and it’s a bit of a struggle to keep so much [pc.cumNoun] down.");
+		pc.lust(10);
+		processTime(6);
+		pp.createPerk("Fixed CumQ",40000,0,0,0);
+		pc.loadInMouth(pp);
+	}
+	itemConsume(item);
+	clearMenu();
+	addButton(0,"Next",useItemFunction);
+}
+
+
 
 //Email Notification
 //{This is added to the random spam emails that the player receives during the course of their adventure}
