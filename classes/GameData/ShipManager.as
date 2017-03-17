@@ -87,6 +87,10 @@ package classes.GameData
 		public var _activePlayerShip:SpaceShip;
 		public function get ActivePlayerShip():SpaceShip { return _activePlayerShip; }
 		
+		[Serialize]
+		public var _boardedShip:SpaceShip;
+		public function get BoardedShip():SpaceShip { return _boardedShip; }
+		
 		private var _ownedShips:Array;
 		private var _availableShips:Array;
 		private var _lockedShips:Array;
