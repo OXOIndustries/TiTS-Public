@@ -588,7 +588,7 @@ public function missionaryPositionWithKane():void
 	else pc.loadInCunt(enemy,x);
 	pc.orgasm();
 	pc.orgasm();
-	output("\n");
+	output("\n\n");
 	CombatManager.genericVictory();
 }
 
@@ -631,7 +631,8 @@ public function frotWithKaneYaBugger():void
 	else output("You’ve managed to cover him from his mop of hair down to his shiny boots in your glory by the time your blood has finally cooled.");
 	output("\n\nYou rest for a moment, scissoring with your defeated opponent, before fully taking in the fact that you’re lying next to a massive, natural wash basin. You disentangle yourself from Kane - still lying there with his eyes closed, wiry chest heaving - and head into the cool waters.");
 	output("\n\nThere’s a thrum of wings whilst you’re still enjoying a skin-tingling clean. You turn and watch Kane slowly ascend.");
-	output("\n\n<i>“Enjoy the waters while you can - they will be your undoing,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>\n\n");
+	output("\n\n<i>“Enjoy the waters while you can - they will be your undoing,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
+	output("\n\n");
 	processTime(15);
 	pc.orgasm();
 	CombatManager.genericVictory();
@@ -720,7 +721,8 @@ public function loseToKane():void
 	output("\n\nYou’re a quivering mess by the time he’s done, the moss around you sticky with the juices you’ve sprayed deliriously in response to getting fucked into the ground whilst under the effects of the zil’s incredibly potent sugar. Your [pc.eyes] roll and you groan woozily as Kane slides his hands forward, grips your [pc.chest] tightly and fills your [pc.vagOrAss] with warm, oozing honey seed, each clap of his thighs against your [pc.ass] accompanied by a harsh hum of purest gratification, wings flickering frenetically. ");
 	output("\n\n<i>“There,”</i> the tall zil grunts at last, releasing his grip and slowly pulling his cock out of your [pc.vagOrAss], dragging it along your tenderized walls and opening. A slow cascade of orange cum follows him out, drooling down your [pc.thighs]. <i>“Carry that back to your land-stealing masters’ feet, let them know exactly what we think of them and their weakling servants. You’re a poor warrior, but you will be an excellent message. And, when this is done perhaps: a respectable " + pc.mf("husband","wife") + ". For now though... push off.”</i>");
 	output("\n\nWith a throbbing buzz he returns to his seat in the trees, and watches balefully whilst, after a few moments of collecting yourself, you dazedly collect your scattered supplies and carefully descend back down besides the river, attempting to ignore the syrup oozing steadily down your [pc.legs] from your tender [pc.vagOrAss].");
-	output("\n\nTime to rethink your approach, possibly.\n\n");
+	output("\n\nTime to rethink your approach, possibly.");
+	output("\n\n");
 	processTime(30);
 	pc.orgasm();
 	currentLocation = rooms[currentLocation].southExit;
