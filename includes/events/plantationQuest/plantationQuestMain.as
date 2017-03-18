@@ -309,7 +309,7 @@ public function talkToAbleAboutValue():void
 	clearOutput();
 	showAble();
 	output("<i>“And what do the zil value?”</i> you persist.");
-	output("\n\n<i>“ ...sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
+	output("\n\n<i>“... sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
 	processTime(1);
 	flags["PQUEST_ABLE_VALUE_TALK"] = 1;
 	//[Customs] [Leave]
@@ -471,7 +471,7 @@ output("\n\n");
 //PC uses melee attack/special
 public function kaneMeleeReaction():void
 {
-	output("\n\nKane buzzes in pain, the impact of your blow forcing his hand to the ground. His overcast face flicks up, his tar-like eyes focussing with fierce intent on your [pc.meleeWeapon]...");
+	output("\n\nKane buzzes in pain, the impact of your blow forcing his hand to the ground. His overcast face flicks up, his tar-like eyes focusing with fierce intent on your [pc.meleeWeapon]...");
 }
 
 //PC uses melee attack next round
@@ -480,8 +480,6 @@ public function kaneMeleeInterrupt():void
 {
 	output("You swing your weapon - and the zil darts forward in a whining flash, seizing your outstretched wrist, pulling you forward and smashing his armor-plated elbow into your chin. You can’t help but cry out in pain as you stagger away, clutching your jaw. Feels like the bastard dislocated it!");
 	output("\n\n<i>“What the word-wolf says about you is true - slavery to your machines has made you star-people soft and predictable,”</i> calls the harsh, buzzing voice tauntingly. <i>“Against a true warrior, you have no answer!”</i>");
-
-
 }
 
 //PC uses ranged attack/special
@@ -494,7 +492,9 @@ public function kaneRangedReaction():void
 public function kaneRangedInterrupt():void
 {
 	//Plays instead of hit/damage calculation. PC does no damage, takes heavy kinetic HP damage plus stun. Bypasses shield. Keeps happening if PC continues spamming it
-	output("You raise your weapon - but before you can fire it the zil flings himself forward, taking advantage of your lack of guard to smash both of his fists into your face, practically horizontal as he hits you. You gasp in shock and pain as you stagger away, hands to your face. Your nose, your beautiful nose!");
+	output("You raise your weapon - but before you can fire it the zil flings himself forward, taking advantage of your lack of guard to smash both of his fists into your face, practically horizontal as he hits you. You gasp in shock and pain as you stagger away,");
+	if(pc.hasAirtightSuit()) output(" the impact to your head disorienting you momentarily. Ouch!");
+	else output(" hands to your face. Your nose, your beautiful nose!");
 	output("\n\n<i>“You rely on your metal blowpipes, and all you know is how to witlessly pull the trigger,”</i> calls the harsh, buzzing voice tauntingly. <i>“Once your victims know how to get past them, you are as nothing against true warriors. So says the word-wolf, and his words ring true!”</i>");
 }
 

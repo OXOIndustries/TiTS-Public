@@ -1902,17 +1902,22 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					if(flags["PLANTATION_QUEST"] == 0)
 					{
-						output2(" Talked to Darnok,");
+						output2(" Talked to Darnock,");
 						if(flags["PQUEST_ABLE_TALK_DISABLE"] == 1) output2(" Didn’t talk to Able,");
 						else if(flags["PQUEST_ABLE_TALK_DISABLE"] == 2) output2(" Talked to Able,");
 						output2(" Find Lah,");
 					}
-					else output2(" Talk to Darnok,");
+					else output2(" Talk to Darnock,");
 					output2(" <i>In progress...</i>");
 				}
+				if(flags["PQUEST_LAH_CHAT"] != undefined) output2("\n<b>* Clues, About R.K. Lah:</b> <i>Not a killer, but mentally unstable. Arsonist. Influenced a zil tribe...</i>");
+				if(flags["PQUEST_WHERE_CHAT"] != undefined) output2("\n<b>* Clues, Lah’s Location:</b> <i>Highlands to the north, on a large waterfall...</i>");
+				if(flags["PQUEST_ABLE_CUSTOMS_TALK"] != undefined) output2("\n<b>* Clues, Zil Customs:</b> <i>Challenge Lah to a fair fight and give something zil value to earn chieftain’s trust...</i>");
+				if(flags["PQUEST_ABLE_VALUE_TALK"] != undefined) output2("\n<b>* Clues, What Zil Value:</b> <i>Sex, winning belongings fairly, and something Lah is offereing them...</i>");
 				if(flags["PQUEST_WATERFALLED"] == undefined)
 				{
 					output2("\n<b>* Kane:</b> Met him");
+					if(flags["KANE_DEFEATED"] != undefined) output2(", Defeated");
 				}
 				if(9999 == 0)
 				{
