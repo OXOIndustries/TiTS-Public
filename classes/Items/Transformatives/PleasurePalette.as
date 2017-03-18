@@ -51,7 +51,7 @@
 			else
 			{
 				clearOutput();
-				output(target.capitalA + target.short + " uses the the permapaint to no effect.");
+				output(target.capitalA + target.short + " uses the permapaint to no effect.");
 			}
 			return false;
 		}
