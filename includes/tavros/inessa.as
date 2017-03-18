@@ -2016,7 +2016,10 @@ public function inessaWalksOnTheWildSide():void
 		output("\n\n<i>“I - I noticed that when you first came in [pc.name] - I mean, [pc.master],”</i> your butterfly sub twitters, apprehension quickening her tone. There’s a flush to her dark blue cheeks as she takes in the utterly obscene appendage. <i>“What - ? Is it a mod? Or were you born - ?”</i>");
 		output("\n\n<i>“It’s a tail dick, dear,”</i> you assure her calmly. You flagrantly eye the bare-chested saeri, hot arousal veining down your " + (pc.hasParasiteTailCock() ? "parasitic " : "tail-" ) + "cock as your gaze slides over her petite tits and pretty lips; your rightful property, to do with as you wish. <i>“Every so often I have a need to shove it into a deserving slut’s cock-hole. Nice and deep.”</i>");
 		output("\n\nInessa doesn’t know what to say to this; mouth slightly ajar, she seems paralysed by the gentle wave and wag of your [pc.tail], drawing ever closer to her, its head moist now with musky pre. You land it on her skin just south of her breasts, relishing the supple coolness of her skin as you lead it upwards, rearing it so its head dabs at her tiny, pointy nipples. It" + (pc.hasParasiteTailCock() ? " takes all of your willpower to keep the impulses of the parasite under control - it desperately wants to arrow in on the soft, warm hole it can sense above it - but it" : "" ) + "’s so much fun to fondle the sensitive little sub like this, drink in her tenderly open lips, little stutters and squeaks escaping them as you brush over her tender, navy nubs, inundating the swollen cock-head in pleasure all the while.");
-		output("\n\nWith her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows. As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
+		output("\n\n");
+		if(flags["INESSA_BELTED"] != 2) output("With her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows.");
+		else output("Even with her genitals exposed, the saeri’s tits act as if they are her only major erogenous zone available to her, and it shows.");
+		output(" As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
 		//PC does not have grav-cuffs: 
 		if(!pc.hasItem(new GravCuffs()))
 		{
@@ -2029,7 +2032,7 @@ public function inessaWalksOnTheWildSide():void
 			output("\n\nNot breaking your gaze away from her solemn, puppy-dog eyes, you pull out your pair of grav cuffs.");
 			output("\n\n<i>“O-oh...”</i> flutters Inessa, an apprehensive thrill gusting through her voice. <i>“I think I recognise those.”</i>");
 		}
-		//{merge}
+		//merge
 		output("\n\n<i>“Kneel here,”</i> you order, pointing at a spot right next to the counter. Inessa dutifully does as she’s told, a delighted shudder visibly running through her as she kneels in front of you. <i>“Hands behind your back.”</i> You bend down and snap her wrists together. You rise in front of her, stroking your [pc.cockTail], allowing her to see for a moment how pleased it makes you to see her knelt and helpless like this in front of you... before slowly move away, behind the counter. Your tentacle dick remains, curling and slathering with hot anticipation at her chest and neck.");
 		output("\n\n<i>“Um...”</i> the saeri quavers, starry eyes fixed on the snake-like appendage. <i>“I don’t mean to speak out of turn [pc.master], but... I do kinda have a store to run.”</i>");
 		output("\n\n<i>“That’s the whole point, bitch. Didn’t you know?”</i> you reply with mocking surprise. You rear your " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " up and press it against her cute, soft lips. <i>“Your [pc.master] will look after your shop whilst you concentrate on what you’re good at - polishing ");
@@ -2043,7 +2046,10 @@ public function inessaWalksOnTheWildSide():void
 	{
 		output("\n\n<i>“O-oh.”</i> Color blooms in Inessa’s cheeks. <i>“Are you saying that - ?”</i>");
 		output("\n\nHer words end in a breathy, shaky sigh as you land it on her skin just south of her breasts, relishing the supple coolness of her skin as you lead it upwards, rearing it so its head dabs at her tiny, pointy nipples. It" + (pc.hasParasiteTailCock() ? " takes all of your willpower to keep the impulses of the parasite under control - it desperately wants to arrow in on the soft, warm hole it can sense above it - but it" : "" ) + "’s so much fun to fondle the sensitive little sub like this, drink in her tenderly open lips, little stutters and squeaks escaping them as you brush over her tender, navy nubs, inundating the swollen cock-head in pleasure all the while. Arousal is soon throbbing through you, unstoppably powering your feral impulses on.");
-		output("\n\nWith her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows. As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
+		output("\n\n");
+		if(flags["INESSA_BELTED"] != 2) output("With her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows.");
+		else output("Even with her genitals exposed, the saeri’s tits act as if they are her only major erogenous zone available to her, and it shows.");
+		output(" As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
 		output("\n\n<i>“I shouldn’t have to tell you what to do.”</i>");
 		//PC has grav cuffs: 
 		if(pc.hasItem(new GravCuffs()))
@@ -2057,7 +2063,7 @@ public function inessaWalksOnTheWildSide():void
 			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");
 		}
 	}
-	//{merge}
+	//merge
 	output("\n\nSloppy, muffled sounds fill the shop as your lithe tail dick energetically explores Inessa’s mouth. The sensation is not great at first - her teeth keep rubbing over the bulging meat of your shaft, and without hands to help her she struggles to properly get hold of the over-excited tentacle. You clamp down on the impulse to impatiently throat-fuck her, though - she’s young and inexperienced. Leaning on the counter and concentrating on the door, you husk instructions and sigh your approval when she gets it right, until she is hollowing her cheeks fulsomely around your [pc.cockTail], providing a wonderful, wet suck for you to thrust your throbbing tail into with succulent strokes. You reward her quick learning by pulling out and smearing the pre-oozing tip over her cute lips and nose; she pants for breath and coos with submissive delight, licking at the slit of her new best friend. Heavy and full with fervent arousal now, you rear it back and shove it into her fuck-hole, delighted that she immediately tightens her walls back around your shaft...");
 	output("\n\nWa-<b>TSSSHHHH!</b> It takes all of your self-discipline not to freeze as the shop door opens, and to smoothly continue undulating your [pc.cockTail] into Inessa’s face. Her eyes go wide though, and she spasms slightly in her bonds.");
 	output("\n\n<i>“I’m sorry,”</i> says the business-suited platinum blond human male, stood stock-still in the doorway, <i>“is this a bad time?”</i>");
