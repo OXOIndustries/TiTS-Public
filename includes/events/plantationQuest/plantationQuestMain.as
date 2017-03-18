@@ -480,7 +480,7 @@ public function kaneMeleeInterrupt():void
 }
 
 //PC uses ranged attack/special
-public function rangedReaction():void
+public function kaneRangedReaction():void
 {
 	output("\n\nKane barks in shock and anger as your shot hits the target. Gusting back on his wings, he focuses his tar-like eyes with fierce intent on your [pc.rangedWeapon]...");
 }
@@ -496,7 +496,6 @@ public function kaneRangedInterrupt():void
 //PC wins
 public function kaneDefeated():void
 {
-	clearOutput();
 	showKane();
 	flags["KANE_DEFEATED"] = 1;
 	showName("VICTORY:\nKANE");
@@ -505,7 +504,10 @@ public function kaneDefeated():void
 	output("\n\nYou eye the lean, fit zil that you have subdued and consider your options.\n\n");
 	//[Frot] [Missionary] [Let Him Go]
 	clearMenu();
-	//9999
+	if(pc.hasCock()) addButton(0,"Frot",frotWithKaneYaBugger,undefined,"Frot","What better use to put a glossy honey-soaked dick to, after all.");
+	else addDisabledButton(0,"Frot","Frot","You need a penis for this.");
+	if(pc.hasVagina()) addButton(1,"Missionary",missionaryPositionWithKane,undefined,"Missionary","I don’t wanna leave the jungle, oh no no no...");
+	else addDisabledButton(1,"Missionary","Missionary","You need a vagina for this.");
 	addButton(2,"Let Him Go",letKaneGo);
 }
 
@@ -522,76 +524,113 @@ public function letKaneGo():void
 }
 
 
-/*output("\n\nMissionary");
+//Missionary
+//Tooltip: I don’t wanna leave the jungle, oh no no no...
+//Requires vagina
+public function missionaryPositionWithKane():void
+{
+	clearOutput();
+	showKane();
+	var x:int = rand(pc.totalVaginas());
+	output("So much energy and boyish vigour, wasted upon angrily batting into you like a wasp against a window. With the wonderful sugary pheromones singing in your veins, sinking roots of hot arousal into your [pc.groin], you know exactly how the zil’s aggression should really be channelled.");
+	output("\n\nKane watches you from the ground, still scowling, as you ");
+	if(!pc.isCrotchExposed()) output("slide out of your [pc.gear], calmly displaying");
+	else output("calmly display");
+	output(" your bare [pc.chest] to him before placing your [pc.butt] down on a tuffet of soft moss.");
+	output("\n\n<i>“What are you doing?”</i>");
+	if(!pc.isBimbo()) output("\n\n<i>“Collecting my rightful reward,”</i> you reply archly, splaying your [pc.thighs] and exposing [pc.eachVagina] to the warm, moist air. <i>“You’ve got way too much anger going on and I need a fuck. So get over here, and we’ll solve both issues.”</i>");
+	else output("\n\n<i>“Fighting time is over, so now it’s bouncy time!”</i> you say brightly, splaying your [pc.thighs] and exposing [pc.eachVagina] to the warm, moist air. <i>“C’mon fly boy - you aren’t always buzzing around being angry, are you?”</i>");
 
-Tooltip: I don’t wanna leave the jungle, oh no no no...
+	output("\n\nHis black eyes focused on your twat, the zil warrior attempts to form contemptuous words once, twice - then sighing in exasperated defeat, he rises and strides over to you, retracting his groin and chest plate as he comes. The smell of horn-honey intensifies as his stiff, six inch foreskinned prick springs into view, and you breath it in gladly, the heavy sweetness radiating arousal down to your crotch, your [pc.vagina " + x + "] moistening and spreading readily. You stroke him mockingly on the cheek when he takes you into his smooth, hard arms, his bare chest and muscular legs rubbing over your [pc.chest] and [pc.thighs].");
+	output("\n\n<i>“Don’t... patronize me, land-stealer,”</i> he grunts through gritted teeth. You coo as he pushes his bulbous head beyond the labia of your [pc.vagina " + x + "], opening you up. <i>“I do this because... honor dictates it.”</i>");
+	output("\n\n<i>“And you aren’t interested in sexing me at all, are you,”</i> you smirk at him. You gasp as he responds by fiercely thrusting home, swelling your wet walls outwards with most of his cock. ");
+	if(pc.vaginas[x].looseness() < 4) output("He’s thicker as well as bigger than most zil, too - perfect.");
+	else output("A modestly sized species like the zil can’t help but be a little lost in your gaping, well-used cunt - but the way he angled downwards and dug it in. <i>That</i> was nice.");
+	output(" <i>“Ooh, I think I almost felt your honor there. Keep going, cute stuff - I want to learn aaaaall about it!”</i>");
 
-output("\n\n//Requires vagina");
+	pc.cuntChange(x,10);
 
-output("\n\nSo much energy and boyish vigour, wasted upon angrily batting into you like a wasp against a window. With the wonderful sugary pheromones singing in your veins, sinking roots of hot arousal into your [pc.groin], you know exactly how the zil’s aggression should really be channelled.");
+	output("\n\nYour teasing has the effect you’re looking for. Kane grips you tightly and pumps his athletic frame into you with all his anger and resentment, his harsh, growling breath washing over your face, driving pleasure into you with each returning clap of his hard thighs against your own. The bulging tip of his black bee dick and his thick foreskin drag over your walls, only intensifying the sensuous, honey-soaked delight of it.");
 
-output("\n\nKane watches you from the ground, still scowling, as you {slide out of your [pc.gear], calmly displaying} / {calmly display} your bare [pc.chest] to him before placing your [pc.ass] down on a tuffet of soft moss.");
+	output("\n\nYou gasp and crow and giggle your delight to it, your [pc.girlCum] ");
+	if(pc.vaginas[x].wetness() < 3) output("dripping");
+	else output("drooling");
+	output(" freely down your [pc.legs], knowing your vocal enjoyment of it only intensifies how hard the zil sticks it to you. You reach around and clutch his tight bum as a shimmering orgasm blots out all thought, happy to lie back and let your boy toy do all the work, his nice shiny bludgeon of a cock rubbing and pushing into your [pc.vagina " + x + "] in a way that makes you cry out in delight");
+	if(pc.canMilkSquirt()) output(", your engorged nipples jetting [pc.milk] into his scowling face as the ecstatic clenches reach up to your [pc.chest]");
+	output(".");
+	var y:int = -1;
+	if(pc.totalVaginas() > 1) 
+	{
+		for(var i:int = 0; i < pc.totalVaginas(); i++)
+		{
+			if(i != x) y = i;
+		}
+		output("\n\n<i>“Good,”</i> you coo when you come down, cheeks aglow. You swivel your hips, allowing his firm erection to fall out of your [pc.vagina " + x + "] and position it at the mouth of [pc.vagina " + y + "]. <i>“Now - do it again.”</i>");
+		output("\n\n<i>“Fuck you, you weird alien!”</i> snaps Kane - and then does exactly that, spearing his [pc.girlCumNoun]-smeared maleness into your other hole and going back to fiercely plumbing away, holding onto you like a drowning man to a lifesaver. He can’t help it; simultaneously furious with and enraptured by your sprawling sex, he is incapable of doing anything but hump away, pushing and stroking more and more sensuous delight into your [pc.vagina " + y + "]. When another orgasm lights up your senses, you make sure to tighten your [pc.hips] around his tight, jackhammering waist this time; you are rewarded by a harsh, buzzing groan and sweet, viscous warmth pulsating into your womb. You squeeze his compact, wiry from into your [pc.chest] and rut into him back, riding the gorgeous, sugary pulses, both of you setting aside your ulterior purposes to fuck each other silly.");
+	}
+	else 
+	{
+		output("\n\n<i>“Wouldn’t it have been nicer if we’d skipped all the roughhousing and got to this bit straight away?”</i> you ask coyly, fingering his antennae.");
+		output("\n\n<i>“We are fighting for our land, you - slattern!”</i> he cries, outraged. His hips pump into your drooling hole of their own accord, shivers of delightful sensation reaching into your heat. <i>“We lived just fine until you - I can’t believe you’d - oh, fuck you! Fuck you! Fuck you!”</i> he enunciates it with a fierce thrust of his hips");
+		if(pc.legCount > 1) output(", pulling your [pc.legs] up in his ropey arms so he can go at you even harder");
+		output(".");
+		output("\n\n<i>“Yes! That’s it! Fuck me! Oh, you’re so sweet when you’re all worked up!”</i> you laugh delightedly, clutching up big handfuls of moss. He can’t help it; simultaneously furious with and enraptured by your sex, he is incapable of doing anything but hump away, pushing and stroking more and more sensuous delight into your [pc.vagina " + x + "]. When another orgasm lights up your senses, you make sure to tighten your [pc.hips] around his tight, jackhammering waist this time; you are rewarded by a harsh, buzzing groan and sweet, viscous warmth pulsating into your womb. You squeeze his compact, wiry from into your [pc.chest] and rut into him back, riding the gorgeous, sugary pulses, both of you setting aside your ulterior purposes to fuck each other silly.  ");
+	}
+	output("\n\nYou rest for a moment, glued together by a gratuitous load of honey seed, the afterglow opening up your senses. You run your fingers through Kane’s brown mop half-mockingly, half-comfortingly, and that rouses him. He parts from you without a word, his dangling cock trailing golden cum from your snatch and staggers to his feet. After one or two false starts he manages to thrum his wings into action and rises into the air. You close your [pc.hips] and, leaning on your side, watch him go.");
+	output("\n\n<i>“There’s no way you’re getting up the waters,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
+	processTime(20);
+	if(pc.totalVaginas() > 1) pc.loadInCunt(enemy,y);
+	else pc.loadInCunt(enemy,x);
+	pc.orgasm();
+	pc.orgasm();
+	output("\n");
+	CombatManager.genericVictory();
+}
 
-output("\n\n<i>“What are you doing?”</i>");
+//Frot
+//Tooltip: What better use to put a glossy honey-soaked dick to, after all.
+public function frotWithKaneYaBugger():void
+{
+	clearOutput();
+	showKane();
+	output("<i>“Pants down, fly boy,”</i> you growl, the sugary pheromones singing in your veins, hot arousal rooting into your [pc.groin]. <i>“Let’s see the goods.”</i>");
+	output("\n\nKneeling on his side, Kane sullenly does as you ask, retracting his chest and groin plate so that his stiff, six inch fore-skinned prick springs into the open air. The smell of horny honey intensifies and you breath it in gladly; the arousal inside you swells from nagging to uncontainable and you have your [pc.gear] off before you’ve even thought about it, [pc.eachCock] throbbing with need and pointing at the warrior zil accusingly, all of your attention on his gently oozing cock.");
+	output("\n\nYou lower yourself down onto the mossy ground and take hold of his firm, compact frame, allowing your [pc.chest] to brush over his small, black nipples, firmly pressing the hot meat of your [pc.cock] against the shiny, latex-like protrusion of his own. He turns his head away with a flick of brown hair, an expression of disdain writ large on his overcast features.");
+	output("\n\n<i>“As if you weren’t going to do similar if </i>you<i> had won,”</i> you scoff. You thrust your hips, pleasure sharply jagging down your erection as it rubs over the zil’s glossiness, making your partner shiver in response.");
+	output("\n\n<i>“I allow this because honor dictates it,”</i> he snaps. <i>“Gloat if you must");
+	if(pc.cocks[0].cLength() < 5.5) output(", although I wouldn’t if it were me who were hung like a child.");
+	else if(pc.cocks[0].cLength() < 7) output(". It won’t change the fact the touch of a land-stealer puppet fills me with revulsion.");
+	else output(". It won’t change the fact your grotesquely-sized beast-penis fills me with revulsion.");
+	output("”</i>");
 
-output("\n\nNon-bimbo: <i>“Collecting my rightful reward,”</i> you reply archly, splaying your [pc.thighs] and exposing [pc.eachVagina] to the warm, moist air. <i>“You’ve got way too much anger going on and I need a fuck. So get over here, and we’ll solve both issues.”</i>");
+	output("\n\nOh yeah? You wrap your ");
+	if(pc.isNaga()) output("coils");
+	else if(pc.isGoo()) output("goo");
+	else output("[pc.thighs]");
+	output(" around his hard thighs and steadily thrust into him, rubbing your cock up and down his thick bee dick, sending a continuous stream of pleasure coursing into your groin. The zil’s cock is perfect for this - wonderfully smooth, hard and flexible, effortlessly sliding across the sensitive underside of your own prick, occasionally flapping to one side to caress the other side. Kane emits a tight gasp between gritted teeth, and a small bubble of golden syrup rises up from its tip, sourcing a small stream of dribbling pre. The touch and intense scent of his pre just makes it all the better, oiling your length as you spread it up and down yourself with loving pumps of your [pc.hips], the lubrication allowing you to go at him with increasing fervor.");
+	output("\n\n<i>“Thought you weren’t into this, cute stuff?”</i> you murmur in Kane’s ear, teasingly gripping his tight ass.");
+	output("\n\n<i>“Fuck- you!”</i> he hisses back, face burning orange. <i>“Fuck you! Fuck you!”</i> He enunciates each expletive with a fierce thrust of his hips, muscles clenching up beneath your hand. You laugh with delight, the little black rocket of his dick now grinding back into yours, smearing the thick warm honey between you. You let yourself be carried away on a saccharine tide of sensuality, bumping and rubbing back against the infuriated hornet until your [pc.cock] is dense and singing with pleasure, sugar and salt turning out to be a delightful combination.");
+	if(pc.cocks[0].cLength() >= 14) output(" Your lumpen member is big enough that it can stretch up to rub against his flat, athletic chest, your sensitive [pc.cockHead] sliding over its smooth plateaus. You teasingly dab the moist, pre-slicked head against his thin lips, make him bark angrily and intensify his own oozing thrusts.");
+	else if(pc.cocks[0].cLength() < 5.5) output(" It’s quite pleasant to force the bigger guy to do all the work with the teasing touch of your cute little twig. It’s so delightfully sensitive that having that thick, honey-slicked cock thrusting against your own makes you tingle all over, pleasure shimmering through you.");
 
-output("\n\nBimbo: <i>“Fighting time is over, so now it’s bouncy time!”</i> you say brightly, splaying your [pc.thighs] and exposing [pc.eachVagina] to the warm, moist air. <i>“C’mon fly boy - you aren’t always buzzing around being angry, are you?”</i>");
-
-output("\n\n{merge}");
-
-output("\n\nHis black eyes focused on your twat, the zil warrior attempts to form contemptuous words once, twice - then sighing in exasperated defeat, he rises and strides over to you, retracting his groin and chest plate as he comes. The smell of horn-honey intensifies as his stiff, six inch foreskinned prick springs into view, and you breath it in gladly, the heavy sweetness radiating arousal down to your crotch, your [pc.vagina] moistening and spreading readily. You stroke him mockingly on the cheek when he takes you into his smooth, hard arms, his bare chest and muscular legs rubbing over your [pc.chest] and [pc.thighs].");
-
-output("\n\n<i>“Don’t... patronize me, land-stealer,”</i> he grunts through gritted teeth. You coo as he pushes his bulbous head beyond the labia of your [pc.vagina], opening you up. <i>“I do this because... honor dictates it.”</i>");
-
-output("\n\n<i>“And you aren’t interested in sexing me at all, are you,”</i> you smirk at him. You gasp as he responds by fiercely thrusting home, swelling your wet walls outwards with most of his cock. {He’s thicker as well as bigger than most zil, too - perfect.} {A modestly sized species like the zil can’t help but be a little lost in your gaping, well-used cunt - but the way he angled downwards and dug it in. <i>That</i> was nice.} <i>“Ooh, I think I almost felt your honor there. Keep going, cute stuff - I want to learn aaaaall about it!”</i>");
-
-output("\n\nYour teasing has the effect you’re looking for. Kane grips you tightly and pumps his athletic frame into you with all his anger and resentment, his harsh, growling breath washing over your face, driving pleasure into you with each returning clap of his hard thighs against your own. The bulging tip of his black bee dick and his thick foreskin drag over your walls, only intensifying the sensuous, honey-soaked delight of it.");
-
-output("\n\nYou gasp and crow and giggle your delight to it, your [pc.femcum] {dripping} {drooling} freely down your [pc.legs], knowing your vocal enjoyment of it only intensifies how hard the zil sticks it to you. You reach around and clutch his tight bum as a shimmering orgasm blots out all thought, happy to lie back and let your boy toy do all the work, his nice shiny bludgeon of a cock rubbing and pushing into your [pc.vagina] in a way that makes you cry out in delight{, your engorged nipples jetting [pc.milk] into his scowling face as the ecstatic clenches reach up to your [pc.boobs].");
-
-output("\n\n> 1 Vagina: <i>“Good,”</i> you coo when you come down, cheeks aglow. You swivel your hips, allowing his firm erection to fall out of your [pc.vagina0] and position it at the mouth of [pc.vagina1]. <i>“Now - do it again.”</i>");
-
-output("\n\n<i>“Fuck you, you weird alien!”</i> snaps Kane - and then does exactly that, spearing his [pc.femcum]-smeared maleness into your other hole and going back to fiercely plumbing away, holding onto you like a drowning man to a lifesaver. He can’t help it; simultaneously furious with and enraptured by your sprawling sex, he is incapable of doing anything but hump away, pushing and stroking more and more sensuous delight into your [pc.vagina1]. When another orgasm lights up your senses, you make sure to tighten your [pc.hips] around his tight, jackhammering waist this time; you are rewarded by a harsh, buzzing groan and sweet, viscous warmth pulsating into your womb. You squeeze his compact, wiry from into your [pc.chest] and rut into him back, riding the gorgeous, sugary pulses, both of you setting aside your ulterior purposes to fuck each other silly.  ");
-
-output("\n\n1 Vagina: <i>“Wouldn’t it have been nicer if we’d skipped all the roughhousing and got to this bit straight away?”</i> you ask coyly, fingering his antennae.");
-
-output("\n\n<i>“We are fighting for our land, you - slattern!”</i> he cries, outraged. His hips pump into your drooling hole of their own accord, shivers of delightful sensation reaching into your heat. <i>“We lived just fine until you - I can’t believe you’d - oh, fuck you! Fuck you! Fuck you!”</i> he enunciates it with a fierce thrust of his hips{, pulling your [pc.legs] up in his ropey arms so he can go at you even harder}.");
-
-output("\n\n<i>“Yes! That’s it! Fuck me! Oh, you’re so sweet when you’re all worked up!”</i> you laugh delightedly, clutching up big handfuls of moss. He can’t help it; simultaneously furious with and enraptured by your sex, he is incapable of doing anything but hump away, pushing and stroking more and more sensuous delight into your [pc.vagina1]. When another orgasm lights up your senses, you make sure to tighten your [pc.hips] around his tight, jackhammering waist this time; you are rewarded by a harsh, buzzing groan and sweet, viscous warmth pulsating into your womb. You squeeze his compact, wiry from into your [pc.chest] and rut into him back, riding the gorgeous, sugary pulses, both of you setting aside your ulterior purposes to fuck each other silly.  ");
-
-output("\n\n{merge}");
-
-output("\n\nYou rest for a moment, glued together by a gratuitous load of honey seed, the afterglow opening up your senses. You run your fingers through Kane’s brown mop half-mockingly, half-comfortingly, and that rouses him. He parts from you without a word, his dangling cock trailing golden cum from your snatch and staggers to his feet. After one or two false starts he manages to thrum his wings into action and rises into the air. You close your [pc.hips] and, leaning on your side, watch him go.");
-
-output("\n\n<i>“There’s no way you’re getting up the waters,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
-
-output("\n\nFrot");
-
-output("\n\nTooltip: What better use to put a glossy honey-soaked dick to, after all.");
-
-output("\n\n<i>“Pants down, fly boy,”</i> you growl, the sugary pheromones singing in your veins, hot arousal rooting into your [pc.groin]. <i>“Let’s see the goods.”</i>");
-
-output("\n\nKneeling on his side, Kane sullenly does as you ask, retracting his chest and groin plate so that his stiff, six inch fore-skinned prick springs into the open air. The smell of horny honey intensifies and you breath it in gladly; the arousal inside you swells from nagging to uncontainable and you have your [pc.gear] off before you’ve even thought about it, [pc.eachCock] throbbing with need and pointing at the warrior zil accusingly, all of your attention on his gently oozing cock.");
-output("\n\nYou lower yourself down onto the mossy ground and take hold of his firm, compact frame, allowing your [pc.chest] to brush over his small, black nipples, firmly pressing the hot meat of your [pc.cock] against the shiny, latex-like protrusion of his own. He turns his head away with a flick of brown hair, an expression of disdain writ large on his overcast features.");
-
-output("\n\n<i>“As if you weren’t going to do similar if </i>you<i> had won,”</i> you scoff. You thrust your hips, pleasure sharply jagging down your erection as it rubs over the zil’s glossiness, making your partner shiver in response.");
-
-output("\n\n<i>“I allow this because honor dictates it,”</i> he snaps. <i>“Gloat if you must{Dick 5.5-7 inches: - it won’t change the fact the touch of a land-stealer puppet fills me with revulsion.} {Dick > 7 inches: - it won’t change the fact your grotesquely-sized beast-penis fills me with revulsion.} {Dick < 5.5 inches: - although I wouldn’t if it were me who were hung like a child.}”</i> ");
-
-output("\n\nOh yeah? You wrap your {[pc.thighs] / snake coils / flanks of goo} around his hard thighs and steadily thrust into him, rubbing your cock up and down his thick bee dick, sending a continuous stream of pleasure coursing into your groin. The zil’s cock is perfect for this - wonderfully smooth, hard and flexible, effortlessly sliding across the sensitive underside of your own prick, occasionally flapping to one side to caress the other side. Kane emits a tight gasp between gritted teeth, and a small bubble of golden syrup rises up from its tip, sourcing a small stream of dribbling pre. The touch and intense scent of his pre just makes it all the better, oiling your length as you spread it up and down yourself with loving pumps of your [pc.hips], the lubrication allowing you to go at him with increasing fervor.");
-
-output("\n\n<i>“Thought you weren’t into this, cute stuff?”</i> you murmur in Kane’s ear, teasingly gripping his tight ass.");
-
-output("\n\n<i>“Fuck- you!”</i> he hisses back, face burning orange. <i>“Fuck you! Fuck you!”</i> He enunciates each expletive with a fierce thrust of his hips, muscles clenching up beneath your hand. You laugh with delight, the little black rocket of his dick now grinding back into yours, smearing the thick warm honey between you. You let yourself be carried away on a saccharine tide of sensuality, bumping and rubbing back against the infuriated hornet until your [pc.cock] is dense and singing with pleasure, sugar and salt turning out to be a delightful combination. {Your lumpen member is big enough that it can stretch up to rub against his flat, athletic chest, your sensitive [pc.cockHead] sliding over its smooth plateaus. You teasingly dab the moist, pre-slicked head against his thin lips, make him bark angrily and intensify his own oozing thrusts.} {It’s quite pleasant to force the bigger guy to do all the work with the teasing touch of your cute little twig. It’s so delightfully sensitive that having that thick, honey-slicked cock thrusting against your own makes you tingle all over, pleasure shimmering through you.}");
-
-output("\n\nOrgasm takes a firm grip of your groin{, your [pc.balls] tightening up with a heavy load}, and you don’t wrestle away from it. You groan gratuitously as your [pc.cock] swells up and forces a {spurt} / {huge gout} of [pc.cum] into the air, spattering on Kane’s {chest} / {face}. He pouts and barks his displeasure, but he’s too wrapped up in the intense pleasure you’ve pressured on him to do anything but jack-hammer his narrow hips up to his own high, syrupy gold melding with your [pc.cumColor] [pc.cumVisc]. You keep a close grip on his tight, heaving frame, thrusting against his pulsing dick, the pheromone-thick goo enveloping your cock only intensifying your release and deep need to pump out every last drop of your cum. {Both you and him are pretty damn sticky by the time your blood has finally cooled.} / {You’ve managed to cover him from his mop of hair down to his shiny boots in your glory by the time your blood has finally cooled.}");
-output("\n\nYou rest for a moment, scissoring with your defeated opponent, before fully taking in the fact that you’re lying next to a massive, natural wash basin. You disentangle yourself from Kane - still lying there with his eyes closed, wiry chest heaving - and head into the cool waters.");
-
-output("\n\nThere’s a thrum of wings whilst you’re still enjoying a [pc.skin]-tingling clean. You turn and watch Kane slowly ascend.");
-
-output("\n\n<i>“Enjoy the waters while you can - they will be your undoing,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
-*/
+	output("\n\nOrgasm takes a firm grip of your groin");
+	if(pc.balls > 0) output(", your [pc.balls] tightening up with a heavy load");
+	output(", and you don’t wrestle away from it. You groan gratuitously as your [pc.cock] swells up and forces a ");
+	if(pc.cumQ() < 40) output("spurt");
+	else output("huge gout");
+	output(" of [pc.cum] into the air, spattering on Kane’s ");
+	if(pc.cocks[0].cLength() < 12) output("chest");
+	else output("face");
+	output(". He pouts and barks his displeasure, but he’s too wrapped up in the intense pleasure you’ve pressured on him to do anything but jack-hammer his narrow hips up to his own high, syrupy gold melding with your [pc.cumColor] [pc.cumNoun]. You keep a close grip on his tight, heaving frame, thrusting against his pulsing dick, the pheromone-thick goo enveloping your cock only intensifying your release and deep need to pump out every last drop of your cum. ");
+	if(pc.cumQ() < 100) output("Both you and him are pretty damn sticky by the time your blood has finally cooled.");
+	else output("You’ve managed to cover him from his mop of hair down to his shiny boots in your glory by the time your blood has finally cooled.");
+	output("\n\nYou rest for a moment, scissoring with your defeated opponent, before fully taking in the fact that you’re lying next to a massive, natural wash basin. You disentangle yourself from Kane - still lying there with his eyes closed, wiry chest heaving - and head into the cool waters.");
+	output("\n\nThere’s a thrum of wings whilst you’re still enjoying a skin-tingling clean. You turn and watch Kane slowly ascend.");
+	output("\n\n<i>“Enjoy the waters while you can - they will be your undoing,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>\n\n");
+	processTime(15);
+	pc.orgasm();
+	CombatManager.genericVictory();
+}
 
 //PC Loses
 public function loseToKane():void
@@ -653,8 +692,8 @@ public function loseToKane():void
 	else output("filling your ass-pussy and beating rudely against your buried prostate beautifully");
 	output(".");
 
-	if(!pc.hasVagina()) pc.buttChange(6);
-	else pc.cuntChange(0,6);
+	if(!pc.hasVagina()) pc.buttChange(10);
+	else pc.cuntChange(0,10);
 
 	output("\n\nYou cum after barely a minute of his relentless pounding, honey seeming to pump through your veins as ");
 	if(pc.hasVagina()) 

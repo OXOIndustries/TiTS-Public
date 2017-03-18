@@ -210,6 +210,11 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			
 			if (target == null) return;
+			if (hasStatusEffect("KANE_AI_SKIP")) 
+			{
+				removeStatusEffect("KANE_AI_SKIP");
+				return;
+			}
 			//CD timer for Honey Shot:
 			if(this.statusEffectv1("HS CD") > 0 && this.energy() >= 50) this.addStatusValue("HS CD",1,-1);
 			if(this.statusEffectv1("Roofied") > 0) this.addStatusValue("Roofied",1,-1);
