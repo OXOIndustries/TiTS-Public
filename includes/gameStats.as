@@ -1889,6 +1889,42 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			// Plantation Quest
+			if(MailManager.isEntryViewed("plantation_quest_start"))
+			{
+				output2("\n<b><u>Plantation Quest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(plantationQuestComplete())
+				{
+					output2(" Completed");
+				}
+				else
+				{
+					if(flags["PLANTATION_QUEST"] == 0)
+					{
+						output2(" Talked to Darnok,");
+						if(flags["PQUEST_ABLE_TALK_DISABLE"] == 1) output2(" Didn’t talk to Able,");
+						else if(flags["PQUEST_ABLE_TALK_DISABLE"] == 2) output2(" Talked to Able,");
+						output2(" Find Lah,");
+					}
+					else output2(" Talk to Darnok,");
+					output2(" <i>In progress...</i>");
+				}
+				if(flags["PQUEST_WATERFALLED"] == undefined)
+				{
+					output2("\n<b>* Kane:</b> Met him");
+				}
+				if(9999 == 0)
+				{
+					output2("\n<b>* Snake Pit:</b> Encountered");
+				}
+				if(9999 == 0)
+				{
+					output2("\n<b>* R.K. Lah:</b> Met him");
+				}
+				
+				sideCount++;
+			}
 			// Zil Capture
 			if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined)
 			{

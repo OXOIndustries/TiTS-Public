@@ -31,7 +31,7 @@ package classes.Characters
 			this.originalRace = "zil";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Although not heavily built by any means, the 5’11”</i> zil is more muscular than most of his brethren, compact muscle rounding the shiny black carapace on his limbs and chest, his ass long and athletic. He carries it well, moving around you with an easy, assured athleticism married to sudden, insectile jerkiness, changing position with a flicker of his giant, opaque wings, latex-like boots clacking as they land. His shoulder length dark brown hair is shaggy, hanging over his long, brooding face, a long, thin scar across one eye. Floppy antennae and scowling, pupil-less black eyes never stop tracking your movements.\n\nHe is armed with a smooth, football-sized rock securely tied to a five foot long fibrous rope. He swings it around him with trained precision, an ominous, whirring blur near his fist. The cloying, sweet smell of him is heavy on the air, constantly distracting you, trailing your thoughts away to energetic, honey-soaked sex. You’d hate to think what a large, aggressive zil like this would be like in the smothering confines of the lower jungle.";
+			this.long = "Although not heavily built by any means, the 5\' 11\" zil is more muscular than most of his brethren, compact muscle rounding the shiny black carapace on his limbs and chest, his ass long and athletic. He carries it well, moving around you with an easy, assured athleticism married to sudden, insectile jerkiness, changing position with a flicker of his giant, opaque wings, latex-like boots clacking as they land. His shoulder length dark brown hair is shaggy, hanging over his long, brooding face, a long, thin scar across one eye. Floppy antennae and scowling, pupil-less black eyes never stop tracking your movements.\n\nHe is armed with a smooth, football-sized rock securely tied to a five foot long fibrous rope. He swings it around him with trained precision, an ominous, whirring blur near his fist. The cloying, sweet smell of him is heavy on the air, constantly distracting you, trailing your thoughts away to energetic, honey-soaked sex. You’d hate to think what a large, aggressive zil like this would be like in the smothering confines of the lower jungle.";
 			this.customDodge = "Kane zips out of the way with a swift contortion of his agile frame.";
 			this.customBlock = "The zil’s chitinous armor deflects your attack.";
 			this.isPlural = false;
@@ -228,8 +228,8 @@ package classes.Characters
 			}
 			//Bee Wit U
 			//Only uses if PC is stunned. Heavy pheromone lust damage
-			else if(target.hasStatusEffect("Stunned")) beeWitU(target);
-			else if (this.hasStatusEffect("Disarmed")) kaneDoubleSlap(target);
+			else if(target.hasStatusEffect("Stunned") && !target.hasAirtightSuit()) beeWitU(target);
+			else if(this.hasStatusEffect("Disarmed")) kaneDoubleSlap(target);
 			else
 			{
 				//Wind
@@ -277,7 +277,7 @@ package classes.Characters
 			//First
 			if(!target.hasStatusEffect("Kane's Honey"))
 			{
-				output("In your private floaty world of stunned pain you can only watch as several copies of Kane stride towards you. He pulls you into his smooth, hard arms and roughly explores you with his strong hands; clutching your [pc.ass], breathing in your scent with sensuous, inquisitive intent, moulding his fingers into your [pc.chest]... the deep, heavy smell of his honey is everywhere, inundating your senses and coursing steady heat down to your groin.");
+				output("In your private floaty world of stunned pain you can only watch as several copies of Kane stride towards you. He pulls you into his smooth, hard arms and roughly explores you with his strong hands; clutching your [pc.ass], breathing in your scent with sensuous, inquisitive intent, molding his fingers into your [pc.chest]... the deep, heavy smell of his honey is everywhere, inundating your senses and coursing steady heat down to your groin.");
 				output("\n\n<i>“I can smell your desires, pawn,”</i> he murmurs. <i>“I shall see to them, once you have accepted the folly of coming here to take the word-wolf away. The message you will take back to the land-stealers shall be one of harshness and fairness.”</i>");
 				target.createStatusEffect("Kane's Honey",0,0,0,0,false,"Icon_Charmed","Kane is bombarding you with delicious pheromones!",true,0,0xFF0000);
 				applyDamage(new TypeCollection( { tease: 15+rand(4) } ), this, target, "minimal");
@@ -310,8 +310,20 @@ package classes.Characters
 			}
 			else
 			{
-				output("Kane’s face has almost turned purple - then he opens his eyes and bellows out in relief, his groin plate slipping down, his six inch cock thrusting out and jetting a huge, fragrant geyser of golden jizz directly at you! ");
+				output("Kane’s face has almost turned purple - then he opens his eyes and bellows out in relief, his groin plate slipping down, his six-inch cock thrusting out and jetting a huge");
+				if(!target.hasAirtightSuit()) output(", fragrant");
+				output(" geyser of golden jizz directly at you! ");
 				if(rangedCombatMiss(this, target)) output("You manage to duck to one side.");
+				else if(target.hasAirtightSuit())
+				{
+					output("It splatters right across your [pc.upperGarmentOuter] and over your helmet. You instinctively wipe the sticky gloop off you in disgust");
+					if(target.hasBlindImmunity()) output(" - fortunately for you, it as little to no effect on your vision.");
+					else
+					{
+						output(" - unfortunately, it leaves a smear that obscures your vision. <b>You are now blind!</b>");
+						target.createStatusEffect("Blinded",2,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+					}
+				}
 				else
 				{
 					output("It splatters right across your ");

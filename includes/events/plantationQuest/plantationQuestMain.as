@@ -18,7 +18,7 @@ Bosses: Kane, Snake Pit, R.K. Lah
 
 Commissioner wants two specific scenes with Quinn: If PC has overclocked libido (in every hole fuck?) and Quinn on top using pheromones.
 
-Choices to unlock <i>“good”</i> option: PC must leave amber alone, PC must challenge Lah to a fight, PC has to offer protection, sex and names. PC can get all of these hints by talking to Able before leaving.
+Choices to unlock “good” option: PC must leave amber alone, PC must challenge Lah to a fight, PC has to offer protection, sex and names. PC can get all of these hints by talking to Able before leaving.
 
 Zil base is high up cliff above waterfall. It’s difficult to reach on foot. (They attack en masse if the PC tries to be a smart-arse and uses wings/jetpack.) After PC has completed quest in way which doesn’t drive them off, they can access the village without doing the gauntlet.
 
@@ -110,7 +110,7 @@ public function tharePlantationFieldsBonusRedux():Boolean
 		//Time is 08:00-18:30
 		if(hours >= 8 && hours < 18 || (hours == 18 && minutes <= 30)) output("Drones hover over the pristine green fields like lazy flies in summer, presumably watching over the workers, dotted here and there; sweat-soaked backs bent to the lash of the ceaseless sun. Was the insistent hum of these robots here before? You don’t think so. This extra security detail is a new development.");
 		else output("The fields are deserted; the only sounds are the night insects and the distant, slightly terrifying strains of the Mhen’gan jungle.");
-		output("\n\nTo the east are some low lying buildings which presumably function as dormitories. To the south, behind a tall wall, gate and manicured lawn, lies a multi-tiered white manor house. Its neo-classical design and spotless frontage, nestled within this tropical paradise, speaks only of immense opulence. On the wall next to the gate is a speaker and a brass sign which reads <i>“THARE PLANTATION. A Snugglé enterprise.”</i>");
+		output("\n\nTo the east are some low lying buildings which presumably function as dormitories. To the south, behind a tall wall, gate and manicured lawn, lies a multi-tiered white manor house. Its neo-classical design and spotless frontage, nestled within this tropical paradise, speaks only of immense opulence. On the wall next to the gate is a speaker and a brass sign which reads “THARE PLANTATION. A Snugglé enterprise.”");
 		//[Enter]
 		if(!plantationQuestComplete()) 
 		{
@@ -217,11 +217,10 @@ public function askWhereLahIs():void
 	clearOutput();
 	showDarnock();
 	flags["PQUEST_WHERE_CHAT"] = 1;
-	output("<i>“Do you have any idea where Lah is holed up?”</i> you ask. Darnock silently brings up the map of");
-	output("\n\nthe nearby jungle again. A large area to the north is circled.");
+	output("<i>“Do you have any idea where Lah is holed up?”</i> you ask. Darnock silently brings up the map of the nearby jungle again. A large area to the north is circled.");
 	output("\n\n<i>“The zil have attempted to disguise their paths of approach, but satellite surveillance shows that they have almost certainly made camp on the highlands to the north. There seems to be a zil settlement there, at the head of a large waterfall. You will find our ausar friend there, I am sure of it.”</i>");
 	output("\n\n<i>“If you know where they are...”</i> you say slowly.");
-	output("\n\n<i>“...why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilised. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
+	output("\n\n<i>“... why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilized. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
 	processTime(3);
 	pquestIntroChatMenu();
 }
@@ -355,7 +354,7 @@ public function babblingBrookBonusUnlockShit():Boolean
 {
 	if(flags["PLANTATION_QUEST"] == undefined) 
 	{
-		output("\n\n<b>There's no reason to go traipsing off to the north... for now</b>. Maybe something will come up later?");
+		output("\n\n<b>There’s no reason to go traipsing off to the north... for now</b>. Maybe something will come up later?");
 		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 	}
 	else 
@@ -364,6 +363,12 @@ public function babblingBrookBonusUnlockShit():Boolean
 		flags["NAV_DISABLED"] = undefined;
 	}
 	return jungleEncounterChances();
+}
+
+public function upperBrookBonus():Boolean
+{
+	output("Your " + (pc.legCount == 1 ? "[pc.leg] sinks" : "[pc.legs] sink") + " deep into the mounds of faintly luminescent blue moss which bloom in the steep, boggy grounds that surround the chattering, gurgling stream. Intricate floral life flourishes along its banks, the passage of water allowing smaller ferns and flowers space and light that the massive ironwoods all around otherwise deny them. Down to the south the brook continues, intersected by the main path. Further up to the north, beyond the dank, slippery rocks, you can hear a distant roar of water.");
+	return false;
 }
 
 public function waterfallPoolBonusSchtuff():Boolean
@@ -473,7 +478,7 @@ public function kaneMeleeReaction():void
 //Plays instead of hit/damage calculation. PC does no damage, takes heavy kinetic HP damage plus stun. Bypasses shield. Keeps happening if PC continues spamming it
 public function kaneMeleeInterrupt():void
 {
-	output("You swing your weapon - and the zil darts forward in a whining flash, seizing your outstretched wrist, pulling you forward and smashing his armor-plated elbow into your chin.  You can’t help but cry out in pain as you stagger away, clutching your jaw. Feels like the bastard dislocated it!");
+	output("You swing your weapon - and the zil darts forward in a whining flash, seizing your outstretched wrist, pulling you forward and smashing his armor-plated elbow into your chin. You can’t help but cry out in pain as you stagger away, clutching your jaw. Feels like the bastard dislocated it!");
 	output("\n\n<i>“What the word-wolf says about you is true - slavery to your machines has made you star-people soft and predictable,”</i> calls the harsh, buzzing voice tauntingly. <i>“Against a true warrior, you have no answer!”</i>");
 
 
@@ -574,7 +579,7 @@ public function missionaryPositionWithKane():void
 		output("\n\n<i>“We are fighting for our land, you - slattern!”</i> he cries, outraged. His hips pump into your drooling hole of their own accord, shivers of delightful sensation reaching into your heat. <i>“We lived just fine until you - I can’t believe you’d - oh, fuck you! Fuck you! Fuck you!”</i> he enunciates it with a fierce thrust of his hips");
 		if(pc.legCount > 1) output(", pulling your [pc.legs] up in his ropey arms so he can go at you even harder");
 		output(".");
-		output("\n\n<i>“Yes! That’s it! Fuck me! Oh, you’re so sweet when you’re all worked up!”</i> you laugh delightedly, clutching up big handfuls of moss. He can’t help it; simultaneously furious with and enraptured by your sex, he is incapable of doing anything but hump away, pushing and stroking more and more sensuous delight into your [pc.vagina " + x + "]. When another orgasm lights up your senses, you make sure to tighten your [pc.hips] around his tight, jackhammering waist this time; you are rewarded by a harsh, buzzing groan and sweet, viscous warmth pulsating into your womb. You squeeze his compact, wiry from into your [pc.chest] and rut into him back, riding the gorgeous, sugary pulses, both of you setting aside your ulterior purposes to fuck each other silly.  ");
+		output("\n\n<i>“Yes! That’s it! Fuck me! Oh, you’re so sweet when you’re all worked up!”</i> you laugh delightedly, clutching up big handfuls of moss. He can’t help it; simultaneously furious with and enraptured by your sex, he is incapable of doing anything but hump away, pushing and stroking more and more sensuous delight into your [pc.vagina " + x + "]. When another orgasm lights up your senses, you make sure to tighten your [pc.hips] around his tight, jackhammering waist this time; you are rewarded by a harsh, buzzing groan and sweet, viscous warmth pulsating into your womb. You squeeze his compact, wiry from into your [pc.chest] and rut into him back, riding the gorgeous, sugary pulses, both of you setting aside your ulterior purposes to fuck each other silly.");
 	}
 	output("\n\nYou rest for a moment, glued together by a gratuitous load of honey seed, the afterglow opening up your senses. You run your fingers through Kane’s brown mop half-mockingly, half-comfortingly, and that rouses him. He parts from you without a word, his dangling cock trailing golden cum from your snatch and staggers to his feet. After one or two false starts he manages to thrum his wings into action and rises into the air. You close your [pc.hips] and, leaning on your side, watch him go.");
 	output("\n\n<i>“There’s no way you’re getting up the waters,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
@@ -641,7 +646,7 @@ public function loseToKane():void
 	if(pc.HP() <= 1) output("The strength departs your [pc.legs] and you collapse, hands sinking into soft moss. You shake your head urgently and throw your [pc.weapon] down when you hear the deadly whirr of the stone approaching. <i>Anything</i> but getting hit by that again.");
 	else output("Your head swims. Everything seems to drip with honey, you can practically taste and feel it on your [pc.lips] and [pc.tongue], and oh Void the thought of being touched and roughly used when you’re in this state... you barely notice your [pc.weapon] tumbling out of your hand. It’s no longer of any importance.");
 	output("\n\nKane walks across to you slowly, only letting his weapon softly thump down into the moss when it’s completely obvious you aren’t bluffing; when he’s almost on top of you, and the smell of him is billowing thickly over your senses.");
-	output("\n\n<i>“That’s it?”</i> he growls in your face. <i>“I was not expecting the land-stealers to send a warrior so  weak and dissolute.”</i> His black eyes flicker down, over your [pc.chest] and [pc.legs]. <i>“Still. You’re good for two things.”</i>");
+	output("\n\n<i>“That’s it?”</i> he growls in your face. <i>“I was not expecting the land-stealers to send a warrior so weak and dissolute.”</i> His black eyes flicker down, over your [pc.chest] and [pc.legs]. <i>“Still. You’re good for two things.”</i>");
 
 	output("\n\nHis glossy black hands are strong and sure as they ");
 	//If upper garment:
@@ -668,9 +673,9 @@ public function loseToKane():void
 
 	output("\n\nWhy are his pheromones <i>this</i> powerful? You don’t care. It’s easier to let go and not struggle against any more unpleasantness. It’s easier to reach out, grasp that hard, tar-black cock and spread your [pc.lips] over it, forcing the folds of his foreskin back with intent pulls of your mouth and groaning with joy at the strong, aromatic sugar that your questing tongue finds underneath, sending more and more heat sinking down into your [pc.groin].");
 
-	output("\n\n<i>“Nice,”</i> grunts Kane, ");
-	if(pc.hasHair()) output("sinking his fingers into your [pc.hair]");
-	else output("  wrapping his fingers around your scalp");
+	output("\n\n<i>“Nice,”</i> grunts Kane,");
+	if(pc.hasHair()) output(" sinking his fingers into your [pc.hair]");
+	else output(" wrapping his fingers around your scalp");
 	output(" and slowly flexing the wiry black iron of his hips into you, wings flickering with pleasure. <i>“No mewling or need for instruction - just right on with it. A natural, obedient cocksucker, as I sensed.”</i>");
 
 	output("\n\nThe all-encompassing saccharine fuzz drives you to open wide and take him right down to the base, kneading at his hot, truncheon-like length with outward drags of your cheeks, trying to milk the honey out of him, intent on completely washing your senses away in sweet bliss. Despite the leisured groans this draws out of the warrior zil, though, he firmly pushes you off after a short while.");
@@ -733,7 +738,7 @@ output("\n\nWATERFALL POOL");
 
 output("\n\nFOOT OF THE CLIFF");
 
-output("\n\nFirst: You sigh, gazing up at the looming red cliff face in front of you, so high it’s impossible to ascertain where it levels out. Well... it’s not going to climb itself. {Climbing Kit: At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.}  ");
+output("\n\nFirst: You sigh, gazing up at the looming red cliff face in front of you, so high it’s impossible to ascertain where it levels out. Well... it’s not going to climb itself. {Climbing Kit: At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.}");
 
 output("\n\nTo the immediate west of the foaming waterfall pool the land rises, tufts of scrub growing out of natural steps at the foot of the red rock cliff. If you carefully climb outwards upon them from the waterfall pool, you can work your way around onto the cliff face proper.");
 
@@ -769,7 +774,7 @@ output("\n\nYou have a single, short moment to feel adrenaline-soaked relief, to
 
 output("\n\n<i>“What was that?”</i> coos a woozy voice, somewhere below the shifting warmth.");
 
-<i>“Fresh meat,”</i> hisses a female voice in your ear. You turn your head, gaze into lust-clouded feline eyes. The naleen smiles at you at the same time as she, and many others, coil their strong tails around your [pc.legs]. <i>“Provided to us by our zil landlords. So sweet, how they think of us. <i>“ Her fluffy breasts press into your [pc.chest] as she moulds her lips against yours...
+<i>“Fresh meat,”</i> hisses a female voice in your ear. You turn your head, gaze into lust-clouded feline eyes. The naleen smiles at you at the same time as she, and many others, coil their strong tails around your [pc.legs]. <i>“Provided to us by our zil landlords. So sweet, how they think of us. <i>“ Her fluffy breasts press into your [pc.chest] as she molds her lips against yours...
 
 output("\n\n//Lust up");
 
@@ -835,7 +840,7 @@ output("\n\nYou bring your [pc.weapon] up to bear, preparing to give your insect
 
 output("\n\nFell from 3 squares up from Waterfall Pool or more: SMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
 
-output("\n\nFell from 2 squares up from WP or less: SPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan.  You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
+output("\n\nFell from 2 squares up from WP or less: SPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
 
 output("\n\n//Take 75% HP damage. If 2 < squares move down 2 squares, If less move to WP square");
 
@@ -894,7 +899,7 @@ output("\n\nSpear Buffet");
 
 output("\n\n//Kinetic. Does double damage vs. shields. If unshielded, drains PC energy by 5 and swaps them to ungripped.");
 
-output("\n\nThe Hornet winds her spear upward, takes a deep breath, and then swings the flat at you with a wild howl! {It blats off your shield. Oof - looks like it felt that.}  {You manage to shuffle desperately to one side, evading it.} {Your shield gives in with an audible gasp of air, and the blow slaps into you.} {It thuds windingly into your side.} {Your hand is forced off the rock with the heavy momentum of the blow. After a few horrible moments, you manage to regain your balance.}");
+output("\n\nThe Hornet winds her spear upward, takes a deep breath, and then swings the flat at you with a wild howl! {It blats off your shield. Oof - looks like it felt that.} {You manage to shuffle desperately to one side, evading it.} {Your shield gives in with an audible gasp of air, and the blow slaps into you.} {It thuds windingly into your side.} {Your hand is forced off the rock with the heavy momentum of the blow. After a few horrible moments, you manage to regain your balance.}");
 
 output("\n\nPC Wins");
 
@@ -1015,7 +1020,7 @@ output("\n\nFinish effect: With a tired huff, the male zil’s allows his guard 
 
 output("\n\nPC Wins");
 
-output("\n\n{Spear and shield splinter and clatter their long way down the cliff. {The zil warrior sags on his wings, too thrashed to do anything but hold himself in the air.}  {Face orange, the zil warrior claws at his groin plate, all thoughts departed except the need you’ve instilled in his nethers.}");
+output("\n\n{Spear and shield splinter and clatter their long way down the cliff. {The zil warrior sags on his wings, too thrashed to do anything but hold himself in the air.} {Face orange, the zil warrior claws at his groin plate, all thoughts departed except the need you’ve instilled in his nethers.}");
 
 output("\n\n<i>“You’ll tire eventually, land-stealer!”</i> he grits angrily as he sinks an erratic and jerky path downwards, eventually disappearing beneath the treetops. You allow yourself a sigh of relief.");
 
@@ -1037,7 +1042,7 @@ output("\n\nIt’s easy to agree to these terms. So easy that you’d worry abou
 
 output("\n\nThe more intently you bob your head and tongue the zil’s shaft the more of his sweet pre he leaks, and the denser your own fug of lust becomes - it’s a deeply gratifying feedback loop which you quickly get lost in, all other thoughts drowned out by the need to keep milking him for more of that wonderful, oozing sugar. {Each drop you wick away with your [pc.tongue] {sends a shiver of sensation through [pc.eachVagina], becoming wetter and hotter until it feels like you have a leaking honey-pot of your very own between your [pc.thighs].} / {sends a fresh surge of lust up [pc.eachCock], throbbing harder and harder until it feels like you have your very own dripping, pheromone-laden sting between your [pc.thighs].}}");
 
-output("\n\n<i>“That’s it... <i>“ groans the warrior, hand gripping your [pc.hair], the woad spirals and stripes on his face a mask of ecstasy as you bend your head down to sheath every inch of him, his tight balls bumping against your chin, before pulling at his rock-hard shaft ardently. <i>“Keep doing that... that!”</i>");
+output("\n\n<i>“That’s it...”</i> groans the warrior, hand gripping your [pc.hair], the woad spirals and stripes on his face a mask of ecstasy as you bend your head down to sheath every inch of him, his tight balls bumping against your chin, before pulling at his rock-hard shaft ardently. <i>“Keep doing that... that!”</i>");
 
 output("\n\nHe arches his back and thrusts his lithe, armored hips into your face, squirting a thick load of honey down your throat. You swallow and coo around him, everything drowned out by a summer of sweet, pheromonal bliss opening up in your mind and groin. You keep kneading his pulsing cock with close pulls of your mouth, rubbing his underside with sharp drags of your [pc.tongue], focused on drawing every last drop of liquid gold you possibly can out of him. A croak and a polite but firm push to the head eventually informs you to stop. You look up at your zil subjugator, slightly dazed, deep in the summery bliss of a heavy dose of honey.");
 
@@ -1130,7 +1135,7 @@ output("\n\nLeathery coils and furry breasts sag beneath your [pc.legs], too bea
 
 output("\n\n<i>“Oh, let [pc.him] go, Ophia,”</i> snaps a thoroughly fed-up voice at the bottom of the pile. <i>“[pc.he]’s completely killing the vibe.”</i>");
 
-output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a  white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 
 output("\n\nYou will have to start the climb again - but that seems a small price to pay, weighed against not dying and not getting gang-raped by serpents.");
 
@@ -1138,7 +1143,7 @@ output("\n\nPC wins via Lust");
 
 output("\n\nThe naleen thrash, shiver and moan with delight, utterly lost in a group paroxysm of lust. They grasp, bite and thrust into each other in a frenzy, tails snapping and flailing, and though you feel like you’re in the middle of a scale-and-fur earthquake, they no longer have any interest in anything besides themselves. You manage to claw your way to one side, and tracing the side of the pit whilst naga bump and grind into you uncaringly, you manage to find an open space to haul yourself into and tumble down.");
 
-output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a  white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 
 output("\n\nYou will have to start the climb again - but that seems a fairly small price to pay, weighed against not dying and not getting gang-raped by serpents.");
 
@@ -1168,7 +1173,7 @@ output("\n\n//+2:30 Hours, Lust reset, pussy soaked, load in everywhere");
 
 output("\n\nEventually the naleen have mercy on you. Or maybe they get bored of you, or the orgy finishes of its own accord. Whatever the case, you slowly come to your aching senses lying naked and alone, in some black cavern below the distant roar of the waterfall. The same one, or did they chuck you out of their <i>“nest”</i>? Concepts of time and place have deserted you - you just know how much your [pc.groin] and [pc.anus] ache, and how much warm naga cum is currently leaking out of you. Your fingers finding the smooth, comforting edges of your codex on the ground centers you a little.");
 
-output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit greyer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a  white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit greyer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 
 output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.");
 
@@ -1180,7 +1185,7 @@ output("\n\nSquare Blurbs");
 
 output("\n\nZil Village Outskirts");
 
-output("\n\nYou are up the banks of the river, safely north from the head of the waterfall. There’s a fresh breeze up here quite unlike the oppressive humidity in the jungle below, carrying the scent of something like lavender, oozing honey and the more homely smell of wax. The zil build their homes out of the stuff, as you can clearly see; vaguely tepee-shaped, pale yellow dwellings built around the cedar-like trees and the swift river, as well as wooden platforms and rope bridges in the bows, crossing the water at various points. {Quest unresolved: You approached this literal nest of wasps as carefully as you could -  however the few zil you see hang off you, watching your approach from doorways and trees with surly, wary black eyes.");
+output("\n\nYou are up the banks of the river, safely north from the head of the waterfall. There’s a fresh breeze up here quite unlike the oppressive humidity in the jungle below, carrying the scent of something like lavender, oozing honey and the more homely smell of wax. The zil build their homes out of the stuff, as you can clearly see; vaguely tepee-shaped, pale yellow dwellings built around the cedar-like trees and the swift river, as well as wooden platforms and rope bridges in the bows, crossing the water at various points. {Quest unresolved: You approached this literal nest of wasps as carefully as you could - however the few zil you see hang off you, watching your approach from doorways and trees with surly, wary black eyes.");
 
 output("\n\nYou recognize the male on the nearest platform by his size and scar. Kane gazes down at you, boot dangling, po-faced. Possibly you’re imagining it, but you think you detect the slightest hint of grudging admiration underneath that overhang of hair.");
 
@@ -1242,7 +1247,7 @@ output("\n\n<i>“KILL [pc.him]!”</i> cries the chieftain, fury finally breaki
 
 output("\n\n{Amber not stolen: <i>“[pc.He] speaks falsehoods, put in [pc.his] head by the land-stealers!”</i> says Lah with loud certainty. He again points damningly at you. <i>“I am your word-wolf, and I speak truths! [pc.He] is nothing but a weak, mendacious liar, hoping to steal your truth-speaker away without even a fair fight!”</i>");
 
-output("\n\n<i>“He is the word-wolf, and what he says is true,”</i> repeats Quinn. She gestures with a sigh. <i>“Kill  [pc.him].”</i>");
+output("\n\n<i>“He is the word-wolf, and what he says is true,”</i> repeats Quinn. She gestures with a sigh. <i>“Kill [pc.him].”</i>");
 
 output("\n\nThe angry buzz grows into a throbbing snarl that presses upon you from every side, and the entire throng of warrior zil descends on you, torches and flint-blades flashing.}");
 
@@ -1274,7 +1279,7 @@ output("\n\n[Talk] [Appearance] [Leave]");
 
 output("\n\nLeave");
 
-output("\n\n<i>“I should, uh... <i>“");
+output("\n\n<i>“I should, uh...”</i>");
 
 output("\n\n<i>“As you wish.”</i> Quinn gestures in the direction of the waterfall. {No wings: <i>“Call at the bottom, and a ladder will be provided.} {Wings: <i>“I can see you have no need for ladders. My people will not molest you when you fly up here, since you have vanquished the cliffs.}”</i> She takes you in from tip to tail with those heavy-lidded, appraising pits of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 
@@ -1385,7 +1390,7 @@ output("\n\nWolf’s Tooth");
 
 output("\n\n//Standard kinetic penetrating attack. 20% chance to cause 5 bleed for 3 turns if unshielded");
 
-output("\n\nLah prowls around you, arm up and grey eyes flashing, thrusting his spear viciously at your side where he anticipates you won’t expect it.  {His blow is blunted by your shield.} {His blow breaks through your shield and thunks into you.} {His blow thunks into your bare side.} {You manage to sidestep the attack.} {Causes bleed: Horribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet].}");
+output("\n\nLah prowls around you, arm up and grey eyes flashing, thrusting his spear viciously at your side where he anticipates you won’t expect it. {His blow is blunted by your shield.} {His blow breaks through your shield and thunks into you.} {His blow thunks into your bare side.} {You manage to sidestep the attack.} {Causes bleed: Horribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet].}");
 
 output("\n\nContinuing effect: Blood continues to drip freely from the puncture wound he’s given you. You feel drained and light-headed...");
 
@@ -1588,9 +1593,9 @@ output("\n\nA humming cheer goes up as you are dragged forwards by many chitinou
 
 output("\n\n<i>“We have defeated the land-stealer’s champion!”</i> you hear Kane harshly exult over the triumphant tumult. <i>“We can defeat ANY that stand before us!”</i>");
 
-output("\n\nRK Lah doesn’t look triumphant. He takes in your slumped, defeated form and the cheering, dancing crowd with twitchy apprehension. He looks like a dog who’s realised that somewhere out there, a rolled-up newspaper has his name on it.");
+output("\n\nRK Lah doesn’t look triumphant. He takes in your slumped, defeated form and the cheering, dancing crowd with twitchy apprehension. He looks like a dog who’s realized that somewhere out there, a rolled-up newspaper has his name on it.");
 
-output("\n\n<i>“You - you could let him go,”</i> he says to Quinn. <i>“Lesson learned. Let [pc.him] carry back the message of your strength- <i>“");
+output("\n\n<i>“You - you could let him go,”</i> he says to Quinn. <i>“Lesson learned. Let [pc.him] carry back the message of your strength--”</i>");
 
 output("\n\n<i>“No,”</i> she cuts him off magisterially. <i>“The far shists sent a message to us today - one of ignorance, contempt and blind violence. We shall indeed send them a response, but it shall be in kind. It shall display exactly what we think of theirs and them.”</i>");
 
@@ -1616,7 +1621,7 @@ output("\n\n{merge}");
 
 output("\n\nRK Lah is knelt in the sand, jaw sagged, pale eyes gazing out over the scene of {devastation} / {total abandon} you have wrought.");
 
-output("\n\n<i>“I can’t - <i>“ he stutters. <i>“You - how could - <i>“");
+output("\n\n<i>“I can’t --”</i> he stutters. <i>“You - how could --”</i>");
 
 output("\n\nYou shut him up with a sharp blow to the temple. There’s plenty of twine lying around to bind his wrists with.");
 
@@ -1667,7 +1672,7 @@ output("\n\nDiplomacy");
 output("\n\nTooltip: There’s got to be a third way, here. Maybe they could seek a pact with the people of");
 output("\n\nEsbeth, see if they can’t block Snugglé’s plans?");
 
-output("\n\n<i>“Alright, look,”</i> you say, as levelly as you can. <i>“I get that what Snugglé is doing is bad. But Lah’s plan is only going to result in more misery for you. Either they’ll send mercs after you, </i>real<i> ones this time, or your whole species is going to be declared savage and dangerous. You’ll get killed in droves. Nobody will protect you from slavers... <i>“");
+output("\n\n<i>“Alright, look,”</i> you say, as levelly as you can. <i>“I get that what Snugglé is doing is bad. But Lah’s plan is only going to result in more misery for you. Either they’ll send mercs after you, </i>real<i> ones this time, or your whole species is going to be declared savage and dangerous. You’ll get killed in droves. Nobody will protect you from slavers...”</i>");
 
 output("\n\n<i>“What are you proposing?”</i> returns Quinn, the tone of strained patience echoed back at you.");
 
@@ -1697,7 +1702,7 @@ output("\n\n <i>“Is this true?”</i> The female zil has turned a face of pure
 
 output("\n\n<i>“I- it was a mistake,”</i> he mutters. <i>“I don’t even like - I hate monarchies! But once you’d gotten hold of it, I couldn’t - and it made everything so much... easier... because all your tribe listened to you!”</i>");
 
-output("\n\n<i>“But if that isn’t true,”</i> Quinn says, face now clouded with pale doubt, <i>“then that means... <i>“");
+output("\n\n<i>“But if that isn’t true,”</i> Quinn says, face now clouded with pale doubt, <i>“then that means...”</i>");
 
 output("\n\n<i>“No!”</i> says Lah quickly. <i>“You know everything else I’ve told you is true! You have seen things I have said made flesh! That land-stealer pawn standing right there is just one - one example!”</i>");
 
@@ -1737,7 +1742,7 @@ output("\n\n<i>“You need to come to some sort of compromise with star-people,�
 
 output("\n\n<i>“Are you saying that we cannot drive off whoever we choose?”</i> Quinn raises a gleaming black eyebrow at you.");
 
-output("\n\n<i>“...Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech- <i>“");
+output("\n\n<i>“... Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech--”</i>");
 
 output("\n\n<i>“What I know,”</i> the female zil interrupts with an irritated slap on her throne, <i>“is that the land-stealers hide and quiver in their palace from our attacks. That these Esbeth people of yours barely dare set foot outside their homes for fear of us. We are zil! We fight fearlessly and relentlessly, guided now by the star knowledge of the word-wolf! You seek to threaten us, alien, as if we weren’t warriors. Do not do so again.”</i>");
 
@@ -1763,7 +1768,7 @@ output("\n\nTooltip: What if you promised her a platform to unite all of the zil
 
 output("\n\n<i>“You could be a great leader of zil,”</i> you say. <i>“Many of your people under your wise leadership. But as long as you are in control of a single tribe, with the same weapons and tools as any of the rest, that can never be. The star-people landing near to you is a great opportunity - to trade honey for the means to unite all of the zil under your leadership.”</i>");
 
-output("\n\n<i>“And then, once you’ve ground them under your heel,”</i> groans Lah in doom-laden tones, <i>“you can make the other tribes build you a great, white palace. And you can put them to work in the gardens. And then you can be attacked by- <i>“");
+output("\n\n<i>“And then, once you’ve ground them under your heel,”</i> groans Lah in doom-laden tones, <i>“you can make the other tribes build you a great, white palace. And you can put them to work in the gardens. And then you can be attacked by--”</i>");
 
 output("\n\n<i>“Interesting thought,”</i> says Quinn, motioning for him to be quiet. <i>“So tell me - do you star-people know the language of the zil who live in the fungal swamps, far to the east?”</i>");
 
@@ -1824,7 +1829,7 @@ output("\n\nA gesture from Quinn signals the end of your entreatment.");
 
 output("\n\n<i>“I have listened to the land-stealer champion,”</i> she says, projecting her clear, sonorous voice so all present can hear it. <i>“Having considered... I believe there is merit to what [pc.he] says. [pc.he] has presented unexpected words that have the ring of truth to them, widening my understanding. We shall relent, and seek alliance with the star-people of Esbeth.”</i>");
 
-output("\n\n<i>“No!”</i> howls Lah, over the murmurings of the crowd. <i>“You don’t understand, the attacks have to continue! You’ve only got a limited opportunity before- <i>“");
+output("\n\n<i>“No!”</i> howls Lah, over the murmurings of the crowd. <i>“You don’t understand, the attacks have to continue! You’ve only got a limited opportunity before--”</i>");
 
 output("\n\n<i>“I </i>understand<i> that you lied to me,”</i> Quinn interrupts sharply, <i>“in order to ‘make things easier’. I think that’s the greatest truth you have spoken recently.”</i> She waves dismissively. <i>“Take him away if you wish, champion. I have no further use for him.”</i>");
 
@@ -1836,7 +1841,7 @@ output("\n\nLet Him Go");
 
 output("\n\nTooltip: Relent and let the doggie go.");
 
-output("\n\nLooking at the former prophet slumped in the dirt, you realise you don’t really have the stomach to drag him back to the Plantation.");
+output("\n\nLooking at the former prophet slumped in the dirt, you realize you don’t really have the stomach to drag him back to the Plantation.");
 
 output("\n\n<i>“Go on, get out of here,”</i> you say gruffly, catching Lah’s eye. <i>“I’m not taking you back to Darnock.”</i>");
 
@@ -1870,7 +1875,7 @@ output("\n\n[Talk] [Appearance] [Leave]");
 
 output("\n\nLeave");
 
-output("\n\n<i>“I should, uh... <i>“");
+output("\n\n<i>“I should, uh...”</i>");
 
 output("\n\n<i>“As you wish.”</i> Quinn sighs. She gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. {No wings: Call at the bottom, and a ladder will be provided.} {Wings: I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.}”</i> She takes you in from tip to tail with those heavy-lidded, appraising rings of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 
@@ -1899,7 +1904,7 @@ output("\n\nActing now on pure, bestial instinct, you {impatiently divest yourse
 
 output("\n\n<i>“You know how to lick, don’t you slut?”</i> you growl, splaying [pc.eachVagina] in front of her mouth. <i>“Don’t make me wait.”</i>");
 
-output("\n\n<i>“I don’t- <i>“ splutters Quinn. You feel a vindictive surge of arousal at the hesitancy in her voice. <i>“I mean, not for- <i>“");
+output("\n\n<i>“I don’t--”</i> splutters Quinn. You feel a vindictive surge of arousal at the hesitancy in her voice. <i>“I mean, not for--”</i>");
 
 output("\n\n<i>“Better learn quick.”</i> You sit down firmly, wet pussy meeting her quivering lips.");
 
@@ -1913,7 +1918,7 @@ output("\n\n<i>“Yes,”</i> mutters Quinn. <i>“I understand you well... far 
 
 output("\n\nYour authority imprinted upon her as emphatically as your [pc.butt] is on her face, she reaches into you deeply, making you sigh with sheer delight and reach for your own [pc.nipples], {tweaking} / {fingering} them to intensify the melting pleasure overtaking you. Opening your eyes blissfully you take in Lah, who’s recovered enough to be watching the scene in front of him with an expression of enthralled horror.");
 
-output("\n\n<i>“You never got to sample this sugar, did you mutt?”</i> you ask tauntingly, relishing the high excitement in your own tones. You emphasize your words by thrusting yourself into Quinn’s open mouth at the same time as jabbing your fingers between her legs, coating your fingers in warm honey to her twitches and moans, tongue still curling and coiling at your spread twat. <i>“Mmm... <i>“ you sigh theatrically, as you pass your finger tips over your [pc.tongue]. <i>“Too bad. These zil honeys make for good fucks once you’ve shown them a bit of discipline... <i>“");
+output("\n\n<i>“You never got to sample this sugar, did you mutt?”</i> you ask tauntingly, relishing the high excitement in your own tones. You emphasize your words by thrusting yourself into Quinn’s open mouth at the same time as jabbing your fingers between her legs, coating your fingers in warm honey to her twitches and moans, tongue still curling and coiling at your spread twat. <i>“Mmm...”</i> you sigh theatrically, as you pass your finger tips over your [pc.tongue]. <i>“Too bad. These zil honeys make for good fucks once you’ve shown them a bit of discipline...”</i>");
 
 output("\n\nThe slack-jawed ausar doesn’t respond - either in a trance, or not recovered from being knocked for six. No matter. It’s enough that he watches as you grip Quinn’s hair, demand that she switch attention to your [pc.clit] and arch your neck to the ecstasy of being licked and flicked to a shaking orgasm. Your clitoris pulses like a strobe-light under the attentions of the wet, sucking tube-tip and your [pc.vagina] seizes up in sympathy, overcome by the fuck-honey singing in your veins and slathered on your taste buds. You reward the hitherto chieftain by clamping your [pc.thighs] around her pretty face and smearing generous amounts of [pc.femcum] all across her face {at the same time as gripping your [pc.nipples] and spurting [pc.milk] down her slim front, your [pc.boobs] caught up in the flexing ecstasy.}");
 
@@ -1945,7 +1950,7 @@ output("\n\n<i>“I do this for my people - far shist brute!”</i> she snaps, h
 
 output("\n\n<i>“Uh huh.”</i> You casually swat one of her buttocks, admiring the hand-mark you leave, and laugh as she tightens up around your [pc.cockHead], fresh honey oozes around you and onto the ground. <i>“Totally not because none of your subjects dare give it you the way you love it.”</i> Looking up from her you take in Lah, who’s recovered enough to be watching the scene in front of him with an expression of enthralled horror.");
 
-output("\n\n<i>“Isn’t that right, mutt?”</i> you ask tauntingly, relishing the gloating excitement in your own tones. <i>“You never did get to sample this sugar, did you?”</i> You emphasize your words by thrusting yourself into Quinn’s opened twat roughly, spattering syrup on your naked thighs, hand gripped around her spiky hair. The slack-jawed ausar doesn’t reply - either in a trance, or not recovered from being knocked for six. <i>“Too bad,”</i> you groan theatrically to his non-response, closing your [pc.eyes] as orgasm overwhelms you, ecstasy tightening up your muscles. <i>“These zil honeys make for good fucks once they’re shown a bit of discipline... <i>“");
+output("\n\n<i>“Isn’t that right, mutt?”</i> you ask tauntingly, relishing the gloating excitement in your own tones. <i>“You never did get to sample this sugar, did you?”</i> You emphasize your words by thrusting yourself into Quinn’s opened twat roughly, spattering syrup on your naked thighs, hand gripped around her spiky hair. The slack-jawed ausar doesn’t reply - either in a trance, or not recovered from being knocked for six. <i>“Too bad,”</i> you groan theatrically to his non-response, closing your [pc.eyes] as orgasm overwhelms you, ecstasy tightening up your muscles. <i>“These zil honeys make for good fucks once they’re shown a bit of discipline...”</i>");
 
 output("\n\nYour [pc.cock] bulges deep in the gooey, quivering heaven of the zil’s cunt and then releases brilliantly, packing it out with [pc.cum] via heavy, juicy flexes, making you hold and pump into her hard, intent on elongating every whiplash of joy as much as possible. Her gasps and shudders only intensify your gratification, and you tighten her grip, letting her feel your strength and surety, a vice around her softness that spreads and claims her again and again. {Your [pc.cumVisc] seed is soon spurting back around your girth, and you pull out your over-burdened cock and slap it between her buttocks, cannoning [pc.cum] up her back and into her blonde-and-brown hair. She cries out in disgust and anger, but you blot that out by flipping her over and giving her face and petite breasts a heavy creaming from your throbbing, fecund bitch-breaker too.}");
 
@@ -2071,7 +2076,7 @@ output("\n\n<i>“They came out of the goddamn walls!”</i> he howls at you. <i
 
 output("\n\nIf burntplantation=1, < 24 hours");
 
-output("\n\nParts of the plantation continue to smoulder, but it does at least look like there isn’t going to be an all-out forest fire anymore. The only signs of movement are a few drones, bobbing hopelessly over the fields, performing logistic checks and preparing repair routines for an administration that has abandoned them. The zil have departed, taking their wounded with them, and you can’t see a single orange jumpsuit in sight. Fled into the jungle? Hunkered down in the dorms? Taken prisoner? Impossible to say.");
+output("\n\nParts of the plantation continue to smolder, but it does at least look like there isn’t going to be an all-out forest fire anymore. The only signs of movement are a few drones, bobbing hopelessly over the fields, performing logistic checks and preparing repair routines for an administration that has abandoned them. The zil have departed, taking their wounded with them, and you can’t see a single orange jumpsuit in sight. Fled into the jungle? Hunkered down in the dorms? Taken prisoner? Impossible to say.");
 
 output("\n\nIt’s not a place to hang around.");
 
@@ -2113,7 +2118,7 @@ output("\n\n//Set burntplantation to 1, +10k experience points or whatever’s s
 
 output("\n\nIf burntplantation=1, < 24 hours");
 
-output("\n\nBeyond the brass gates, the gutted manor house continues to smoulder fitfully. The fire has mostly run its course now the roof has fallen in, but flames continue to lap at the base and the heat and acrid smoke is overpowering. There must have been a lot of old fashioned wood and plant material inside, for a building mostly made of synthetic marble and ceramic to go up so enthusiastically. Or perhaps a dedicated arsonist like Lah knows a trick or two.");
+output("\n\nBeyond the brass gates, the gutted manor house continues to smolder fitfully. The fire has mostly run its course now the roof has fallen in, but flames continue to lap at the base and the heat and acrid smoke is overpowering. There must have been a lot of old fashioned wood and plant material inside, for a building mostly made of synthetic marble and ceramic to go up so enthusiastically. Or perhaps a dedicated arsonist like Lah knows a trick or two.");
 
 output("\n\nThe building was thankfully set away from any trees, so it doesn’t look like the fire isn’t going to spread. The lawn, drive and garden remain surreally flawless.");
 
@@ -2177,7 +2182,7 @@ output("\n\n<i>“Oh no,”</i> says Lah, shaking his head furiously. <i>“No n
 
 output("\n\nThe ausar sits down, rubbing his hands rhythmically, eyes slightly glassy.");
 
-output("\n\n<i>“My expectation is that they will step off. There’s plenty of other planets out there that can be terraformed and exploited after all, no need to waste money on one that’s stood up to them and destroyed their property. Property, right? It’s the most important thing - the key to really hitting capitalist pigs where it hurts. After that - <i>“ Lah smiles. <i>“ - I’ve got friends out there. Friends who will be very interested to hear about an independent paradise like this. Once we’ve got dozens  of like-minded souls here - that’s when we can really start making things happen. We can build something different. Something of mutual benefit, to natives and outsiders in need alike.”</i>");
+output("\n\n<i>“My expectation is that they will step off. There’s plenty of other planets out there that can be terraformed and exploited after all, no need to waste money on one that’s stood up to them and destroyed their property. Property, right? It’s the most important thing - the key to really hitting capitalist pigs where it hurts. After that --”</i> Lah smiles. <i>“-- I’ve got friends out there. Friends who will be very interested to hear about an independent paradise like this. Once we’ve got dozens of like-minded souls here - that’s when we can really start making things happen. We can build something different. Something of mutual benefit, to natives and outsiders in need alike.”</i>");
 
 output("\n\nPC Takes Lah Back");
 
@@ -2327,7 +2332,7 @@ output("\n\n<i>“My goodness.”</i> Artie’s smirk melts off his face when yo
 
 output("\n\n{Kind: <i>“As a result of an unfortunate disagreement.} / {MIsc: <i>“It fell off the back of a spaceship.} / {Hard: <i>“Never you mind.} What can you give me for it?”</i>");
 
-output("\n\n<i>“I- wouldn’t like to- <i>“ the bald human splutters. He seems entranced by it; he stretches his hand out and, when you don’t pull it away, carefully strokes it, tracing one of the long, lithe figures with two fingers. <i>“This belongs in a museum. A chance to meditate upon it first though... what a privilege... ”</i> He looks up at you. <i>“Mine is a humble operation {Master / Miss} Steele, you may have noticed. But a finder’s fee seems appropriate - how does 5000 credits sound?”</i>");
+output("\n\n<i>“I- wouldn’t like to--”</i> the bald human splutters. He seems entranced by it; he stretches his hand out and, when you don’t pull it away, carefully strokes it, tracing one of the long, lithe figures with two fingers. <i>“This belongs in a museum. A chance to meditate upon it first though... what a privilege...”</i> He looks up at you. <i>“Mine is a humble operation {Master / Miss} Steele, you may have noticed. But a finder’s fee seems appropriate - how does 5000 credits sound?”</i>");
 
 output("\n\n[Yes] [No]");
 
@@ -2374,13 +2379,13 @@ output("\n\n[Zil]");
 
 output("\n\n<i>“So you’re doing business with the zil now?”</i> you ask.");
 
-output("\n\n<i>“Yeah! This gaggle of ‘em came in from the jungle, wouldn’t leave until they got to talk to Penny and the wobbly U.G.C. gal,”</i> Burt explains, leaning on the bar. <i>“This tribe of ‘em decided they want to trade with us, all of a sudden, and I for one am not saying no to ‘em. What they want is really simple stuff - basic medicine, fabrics, building material - and what they’re selling, well, you can’t get it anywhere else in the galaxy.”</i> He kisses his fingers effusively. <i>“These are golden days, [pc.name]. Golden. Now I’ve got a surplus to work with, I can really start to think about all the things that might be done with that honey, cuz you know it’s amazing stuff. Not just mead, but perfume... therapeutic massages... aphrodisiac... once I send it off to a lab and know all of its properties... <i>“");
+output("\n\n<i>“Yeah! This gaggle of ‘em came in from the jungle, wouldn’t leave until they got to talk to Penny and the wobbly U.G.C. gal,”</i> Burt explains, leaning on the bar. <i>“This tribe of ‘em decided they want to trade with us, all of a sudden, and I for one am not saying no to ‘em. What they want is really simple stuff - basic medicine, fabrics, building material - and what they’re selling, well, you can’t get it anywhere else in the galaxy.”</i> He kisses his fingers effusively. <i>“These are golden days, [pc.name]. Golden. Now I’ve got a surplus to work with, I can really start to think about all the things that might be done with that honey, cuz you know it’s amazing stuff. Not just mead, but perfume... therapeutic massages... aphrodisiac... once I send it off to a lab and know all of its properties...”</i>");
 
 output("\n\n<i>“But they want more than clothes, don’t they?”</i> you interrupt.");
 
-output("\n\n<i>“Oh yeah,”</i> Burt says, sobering. <i>“They reckon those Snugglé folks took their land when they built their big ass farm, way out there. They want them gone, they’ve made that pretty damn clear.”</i> He sighs, knitting his fingers. <i>“Not gonna lie, that’s a tough ask. Snugglé aren’t some two bit operation you can send a few letters to your system delegate about and expect they’ll pack up tomorrow. And plenty of people are going to </i>want<i>  ‘em here, because they mean jobs and security. It’s a tough ask [pc.name], no question about that.");
+output("\n\n<i>“Oh yeah,”</i> Burt says, sobering. <i>“They reckon those Snugglé folks took their land when they built their big ass farm, way out there. They want them gone, they’ve made that pretty damn clear.”</i> He sighs, knitting his fingers. <i>“Not gonna lie, that’s a tough ask. Snugglé aren’t some two bit operation you can send a few letters to your system delegate about and expect they’ll pack up tomorrow. And plenty of people are going to </i>want<i> ‘em here, because they mean jobs and security. It’s a tough ask [pc.name], no question about that.”</i>");
 
-output("\n\n<i>“But... <i>“ he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil bee girls ‘n boys, if there’s a chance!”</i>");
+output("\n\n<i>“But...”</i> he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil bee girls ‘n boys, if there’s a chance!”</i>");
 
 output("\n\nFlahne");
 
@@ -2402,7 +2407,7 @@ output("\n\n<i>“Maybe,”</i> sighs Flahne, expression turning significantly g
 
 output("\n\nShe sucks on her current lollipop morosely.");
 
-output("\n\n<i>“I’ve committed myself to looking at ways of getting Snugglé to pack up and go elsewhere, because I love those snugglebugs so much and want to do right by them, but... <i>“ she sighs heavily. <i>“Sometimes I think I’m not cut out for making these kinds of big decisions.”</i>");
+output("\n\n<i>“I’ve committed myself to looking at ways of getting Snugglé to pack up and go elsewhere, because I love those snugglebugs so much and want to do right by them, but...”</i> she sighs heavily. <i>“Sometimes I think I’m not cut out for making these kinds of big decisions.”</i>");
 
 
 output("\n\nPart 5: Quinn Talks and Sex");
@@ -2477,7 +2482,7 @@ output("\n\n<i>“I’m going to fuck you senseless in all three holes.”</i>")
 
 output("\n\nThe words just tumble out of you. They aren’t even remotely appropriate, but here, in this warm, secluded space, with the saccharine pheromones pouring off her wasp factory and submerging your senses in honeyed need, the sight of her lithe, athletic body sprawled on the furs in front of you, they just... happen. [pc.eachCock], throbbing {urgently / and straining urgently against your [pc.lowerUndergarment]} {have / has} bypassed your brain entirely. The zil chieftain laughs with delighted condescension, knee waggling up and down. Oh Void, the way she arches her eyebrow... you {step} / {slither} towards the bed reactively.");
 
-output("\n\n<i>“All </i>three<i> of my holes, you say?”</i> she wonders. <i>“But I only have... oh. Like the males sometimes do with each other, you mean?”</i> She touches her petite rump; the yellow flesh trembles ever so slightly underneath thin, gleaming fingertips. <i>“Well, I don’t know... <i>“ She props herself up and drinks you in as you impatiently tear off your [pc.gear]. Her heavy-lidded eyes rest on your [pc.cock], so hotly erect you feel like you could walk through the waterfall and pierce the cliff-side with it. <i>“...I think a warrior would have to prove [pc.him]self VERY spirited if I was going to allow that... <i>“");
+output("\n\n<i>“All </i>three<i> of my holes, you say?”</i> she wonders. <i>“But I only have... oh. Like the males sometimes do with each other, you mean?”</i> She touches her petite rump; the yellow flesh trembles ever so slightly underneath thin, gleaming fingertips. <i>“Well, I don’t know...”</i> She props herself up and drinks you in as you impatiently tear off your [pc.gear]. Her heavy-lidded eyes rest on your [pc.cock], so hotly erect you feel like you could walk through the waterfall and pierce the cliff-side with it. <i>“...I think a warrior would have to prove [pc.him]self VERY spirited if I was going to allow that...”</i>");
 
 output("\n\nThat’s enough. Pulse thudding in your temple, you tumble onto the bed, grip her beneath the knees and winch her legs up, rubbing your [pc.cockHead] over her exposed mound, smearing it in oozing syrup until it catches beneath her lips. Smooth, chitinous legs tighten around your shoulders as you open her hole around you, her breath catching as you sink more and more of your [pc.cock] into a warm, gooey sleeve of bliss.");
 
@@ -2493,7 +2498,7 @@ output("\n\nDespite the dense, overwhelming heat packing every inch of your dick
 
 output("\n\n[pb]");
 
-output("\n\n<i>“My word,”</i> husks Quinn, when she catches sight of it. Her striped hair is tussled, her face soft,  open and orange-cheeked. <i>“It still stands to attention after that?”</i> She trails her fingers across {her swollen belly} / {her unfurled, cum-drooling snatch.} <i>“What </i>energetic<i> creatures you star-people are.”</i> She folds her legs to one side and gazes at you coquettishly; you move forward on the bed, and exhale slowly as she wraps her hand around the base of your throbbing, honey-slathered dick.");
+output("\n\n<i>“My word,”</i> husks Quinn, when she catches sight of it. Her striped hair is tussled, her face soft, open and orange-cheeked. <i>“It still stands to attention after that?”</i> She trails her fingers across {her swollen belly} / {her unfurled, cum-drooling snatch.} <i>“What </i>energetic<i> creatures you star-people are.”</i> She folds her legs to one side and gazes at you coquettishly; you move forward on the bed, and exhale slowly as she wraps her hand around the base of your throbbing, honey-slathered dick.");
 
 output("\n\n<i>“Yes,”</i> she breathes, slowly moving her hand up and down your thick meat, smooth pressure all the way along your frenum, <i>“We must reach out, encourage many more of yours to come to our lands. I could stand to have many warriors like you at my side...”</i> Her slick, yellow tongue lolls out of her mouth, craning out like a hummingbird’s beak to dab at your [pc.cockHead]; you move forward again, reactively presenting your musky, honeyed cock to her face. She gazes up at you winsomely as she rolls more of her insectile mouth-tube out, wrapping it around your length before drawing that brilliant, tight, wet coil back into her maw, touching its sucking, open end to your cum-slit to sample you.");
 
@@ -2521,17 +2526,17 @@ You One-damned have not - it only takes the slightest amount of lazy stroking an
 
 output("\n\nThe fact your [pc.cock] is absolutely slathered in saliva and honey helps. You take her into your arms, mold your [pc.chest] against her petite breasts and tongue her lasciviously, tasting your own seed on her breath, as you slide your [pc.cock] slowly down the line of her opened pussy, oiling it again in [pc.cum] and her syrup for good measure. You get the eager little rise of her tummy and thigh against your flank that you were hoping for - and you pull back and gently flip her over, pressing her into the warm furs as you expose her behind, its small, round prettiness counterpoised by the striking alienness of the insect abdomen with its lethal four inch sting dangling above it.");
 
-output("\n\n<i>“Star-people have such strange desires,”</i> Quinn murmurs, gazing over her shoulder at you, eyes glinting in the candlelight. <i>“I suppose it makes sense, if they are all like you and don’t go soft after spending themzzz- <i>“ she trails off into a crooning buzz, somewhere between discomfort and passion, as you inexorably open her cheeks and press your [pc.cockHead] against the small, black wrinkle of her asshole.");
+output("\n\n<i>“Star-people have such strange desires,”</i> Quinn murmurs, gazing over her shoulder at you, eyes glinting in the candlelight. <i>“I suppose it makes sense, if they are all like you and don’t go soft after spending themzzz--”</i> she trails off into a crooning buzz, somewhere between discomfort and passion, as you inexorably open her cheeks and press your [pc.cockHead] against the small, black wrinkle of her asshole.");
 
 output("\n\nThat the zil is a novice to this is obvious - she grips handfuls of furs, her hole clenching up with every honey-slicked rock-hard centimeter taken - so the going is slow. But that’s fine, necessary even, because your [pc.cock] is throbbing hot and tender from the red raw fucking it’s already dished out, and is certainly not in the mood for anything different. And void, is she <i>tight</i>. You inhale when your [pc.cockHead] is all the way inside; it’s like being caught in a hoover.");
 
-output("\n\n<i>“Death, shit and disease,”</i> a shuddering Quinn curses, with surprising eloquence. <i>“I have made males go at each other for my amusement, and sometimes they are like sword and shield! How do they manage it... <i>“ You let your hands roam over her body, fondling her breasts, curling your fingers into her gooey pussy, carrying your cum-oozing fingers up to her mouth, coaxing the relaxed, sex-drunk side out of her, all the while sinking more and more of your rock-hard length into her back passage with the faintest of pushes and pulls. There’s exactly zero need for impatience here. Your wildest lust satiated, you have all the time in the world to enjoy the perfect ecstasy of this incredibly haughty ass gloving you like a warm, clenching hand.");
+output("\n\n<i>“Death, shit and disease,”</i> a shuddering Quinn curses, with surprising eloquence. <i>“I have made males go at each other for my amusement, and sometimes they are like sword and shield! How do they manage it...”</i> You let your hands roam over her body, fondling her breasts, curling your fingers into her gooey pussy, carrying your cum-oozing fingers up to her mouth, coaxing the relaxed, sex-drunk side out of her, all the while sinking more and more of your rock-hard length into her back passage with the faintest of pushes and pulls. There’s exactly zero need for impatience here. Your wildest lust satiated, you have all the time in the world to enjoy the perfect ecstasy of this incredibly haughty ass gloving you like a warm, clenching hand.");
 
 output("\n\nThe zil does at last relax as you finally fit {all} / {most} of your cock into her - not all the way, not enough to lose that sweat-inducing tightness - but enough that when you slowly move your [pc.hips] up and down, dragging your length up and down her syrup-and-cum slathered walls, the little catches of her breath are not of pain.");
 
-output("\n\n<i>“I see,”</i> she buzzes quietly, arching her back to present her dainty butt cheeks better. <i>“I see how this could be - <i>“ You massage her breasts with both hands again, making orange bead at her teats at the same time as you drive firmly into that wonderfully narrow crease, and this earns a pleased hum, a delightful wriggle around you.");
+output("\n\n<i>“I see,”</i> she buzzes quietly, arching her back to present her dainty butt cheeks better. <i>“I see how this could be --”</i> You massage her breasts with both hands again, making orange bead at her teats at the same time as you drive firmly into that wonderfully narrow crease, and this earns a pleased hum, a delightful wriggle around you.");
 
-output("\n\nIt feels like the seed is practically being suctioned out of you in there, and after a minute or so of gentle but profoundly satisfying thrusting, you stop denying it. You wrap one arm around Quinn’s round abdomen, the other two playing with the warm, sucking tip of her tongue as you hilt your [pc.cock] in a warm, clenching hole you’ve made your own, allow it to bulge up and then gush [pc.cum] deep inside her.  {Low/mid output: You’re practically tapped out at this point, but you still keep pumping into the zil until you’re sure every last drop you’ve got to give has disappeared inside her. When at length you draw yourself out, her walls pulling at you all the way, her anus closes up like the cutest, blackest airlock in the galaxy.}");
+output("\n\nIt feels like the seed is practically being suctioned out of you in there, and after a minute or so of gentle but profoundly satisfying thrusting, you stop denying it. You wrap one arm around Quinn’s round abdomen, the other two playing with the warm, sucking tip of her tongue as you hilt your [pc.cock] in a warm, clenching hole you’ve made your own, allow it to bulge up and then gush [pc.cum] deep inside her. {Low/mid output: You’re practically tapped out at this point, but you still keep pumping into the zil until you’re sure every last drop you’ve got to give has disappeared inside her. When at length you draw yourself out, her walls pulling at you all the way, her anus closes up like the cutest, blackest airlock in the galaxy.}");
 
 output("\n\n{High output: <i>“How can you still have so much?!”</i> she cries out in laughing exasperation as, with grunting relish you release every last [pc.cumVisc] drop you’ve got to give, packing her intestines out with it, bumping against the multiple loads you’ve already swollen her with. The zil isn’t a big girl and it’s soon spurting richly around your girth, so densely packed it can even get out around as tight a seal as your dick and her ass. Exasperated the tone might have been, but you hear a distinct, glutted <i>“mmm”</i> when you are finally done, and are slowly drawing yourself out.}");
 
@@ -2549,9 +2554,9 @@ output("\n\n//Requires vag");
 
 output("\n\n{If cuntboy / maleherm: Quinn’s sultry expression lengthens into one of surprise when you {flick off your [pc.lowerUndergarment] and} expose your [pc.groin].");
 
-output("\n\n<i>“Oh! You are a man, but you have - <i>“ she coughs a laugh into her hand. <i>“Star-people are so </i>interesting<i>, aren’t you?”</i>}");
+output("\n\n<i>“Oh! You are a man, but you have --”</i> she coughs a laugh into her hand. <i>“Star-people are so </i>interesting<i>, aren’t you?”</i>}");
 
-output("\n\nYou clamber onto the big, round heap of furs{, sinuously removing your [pc.gear] as you come,} eyes full of her lithe, forest-fairy body. The roiling, intoxicating smell of oozing, horny honey is overwhelming, and you don’t fight what it directs you to do. One hand sliding softly up her bare, yellow hip, you dip your head between her legs and drag your [pc.tongue] along the neat line of her pussy,  coating it with sugar. Arousal blooms like a firework inside your gut as you funnel her honey down your throat, heat flushing down to your groin, and you bend your tongue between her flaps, intensely eager for more. Quinn hums her approval, slim hips moving either side of your [pc.hips]. [pc.eachVagina] {is / are} getting very, very wet.");
+output("\n\nYou clamber onto the big, round heap of furs{, sinuously removing your [pc.gear] as you come,} eyes full of her lithe, forest-fairy body. The roiling, intoxicating smell of oozing, horny honey is overwhelming, and you don’t fight what it directs you to do. One hand sliding softly up her bare, yellow hip, you dip your head between her legs and drag your [pc.tongue] along the neat line of her pussy, coating it with sugar. Arousal blooms like a firework inside your gut as you funnel her honey down your throat, heat flushing down to your groin, and you bend your tongue between her flaps, intensely eager for more. Quinn hums her approval, slim hips moving either side of your [pc.hips]. [pc.eachVagina] {is / are} getting very, very wet.");
 
 output("\n\n<i>“So how do star-women do with each other?”</i> she murmurs; long, glossy fingers curl around your chin, making you look up to her molten brass eyes. <i>“Is it just like this? This is how my maidens love one another usually, I know, but I thought perhaps for other beings - who don’t have the sweetness - ?”</i>");
 
@@ -2577,13 +2582,13 @@ output("\n\n<i>“One of my kin tried this with me when we were young,”</i> sh
 
 output("\n\nIf large clit: <i>“Did your friend have one of these, though?”</i> you grin, parting her lips with your [pc.clit]. It’s bulging well out of its hood, drunk on the smell and taste of honey, and it pulses pure pleasure when it slithers back and forth across her moist hole and inner folds.");
 
-output("\n\n<i>“No... she didn’t. Ooh... <i>“ she trails off into a breathless hum, her thigh tensing up beneath your hand, when you touch something nubby and tough at the top of her opening. Grinning, you rub back and forth against that with gentle pushes of your [pc.hips].");
+output("\n\n<i>“No... she didn’t. Ooh...”</i> she trails off into a breathless hum, her thigh tensing up beneath your hand, when you touch something nubby and tough at the top of her opening. Grinning, you rub back and forth against that with gentle pushes of your [pc.hips].");
 
-output("\n\nIf 1 < clit: <i>“But you see, if you’re like me and have more than one... <i>“ you trail off in a sensuous sigh as her lips bump across first one clit, and then when you slide back down her line {the other} {another}, twin buzzes of pleasure shivering through you. Quinn gazes at you with a wondering curiosity as you move against her out of pure sensual instinct, driven by the over-sensitized nubs of your pussy.");
+output("\n\nIf 1 < clit: <i>“But you see, if you’re like me and have more than one...”</i> you trail off in a sensuous sigh as her lips bump across first one clit, and then when you slide back down her line {the other} {another}, twin buzzes of pleasure shivering through you. Quinn gazes at you with a wondering curiosity as you move against her out of pure sensual instinct, driven by the over-sensitized nubs of your pussy.");
 
 output("\n\n<i>“More star people magic,”</i> she mutters. <i>“I must look into... ooh.”</i> she trails off into a breathless hum, her thigh tensing up beneath your hand, when you push over something nubby and tough at the top of her opening. Grinning, you rub back and forth against that with gentle pushes of your [pc.hips].");
 
-output("\n\nOtherwise: <i>“Experience, Quinn,”</i> you grin. <i>“Just relax... <i>“ You sensuously move against her, sliding the line of your pussy down hers, exploring the smooth textures of an alien sex. She looks more curious than overwhelmed with lust - until you push over something nubby and tough at the top of her opening, which makes her thigh tense up beneath your hand and forces a breathless hum past her lips. Grin widening, you rub back and forth against that with gentle pushes of your [pc.hips].");
+output("\n\nOtherwise: <i>“Experience, Quinn,”</i> you grin. <i>“Just relax...”</i> You sensuously move against her, sliding the line of your pussy down hers, exploring the smooth textures of an alien sex. She looks more curious than overwhelmed with lust - until you push over something nubby and tough at the top of her opening, which makes her thigh tense up beneath your hand and forces a breathless hum past her lips. Grin widening, you rub back and forth against that with gentle pushes of your [pc.hips].");
 
 output("\n\n{merge}");
 
@@ -2593,7 +2598,7 @@ output("\n\n<i>“More like that!”</i> she gasps, petite boobs jouncing, arm w
 
 output("\n\nYou come down slowly, laying her back on the creaking wicker basket-bed, kissing and fondling the dainty but delightfully well-formed curves of her body, hips still firmly intertwined.");
 
-output("\n\nIf fruit femcum: <i>“Do you mind if I... ?”</i> she murmurs. Her tongue flicks out, touching your chin. <i>“It’s just that - usually after sex, I have some fruit brought to me. And you’re so... <i>“");
+output("\n\nIf fruit femcum: <i>“Do you mind if I... ?”</i> she murmurs. Her tongue flicks out, touching your chin. <i>“It’s just that - usually after sex, I have some fruit brought to me. And you’re so...”</i>");
 output("\n\nWithout another word you rise up, opening your [pc.thighs] above her head. You clutch the skull headboard and murmur, then groan with pleasure as thin hands clutch at your [pc.butt] and a thirsty tube-tongue travels over your soaked [pc.vagina], lapping at your fruity spent juices, reaching deep inside you to suck away every last drop.");
 
 output("\n\n<i>“Yes,”</i> she murmurs, smacking her lips with the deepest satisfaction when you finally drop back down beside her. <i>“You will come by often. Provide for your Quinn.”</i>");
@@ -2624,13 +2629,13 @@ output("\n\n{merge}");
 
 output("\n\nHer cool thigh slides down your [pc.hip] as she climbs on top of you, boobs and abdomen jouncing slightly as she leads the oozing warmth of her honey-cunt up the underside of your [pc.cock]. She still has her hand around the base of it, clutching it tightly, lining it up with assured movements like a prized, personal tool - which you suppose it is. Your mind is drowned in the deep, sweet smell of zil, leaving nothing but an open, sugary eagerness, a sunny will to do exactly as your sexy, assertive queen demands.");
 
-output("\n\n<i>“That’s it,”</i> she sighs, other hand pressing down on your shoulder as she spreads her slick lips over your [pc.cockHead]. <i>“Just lie back and let me do as I will... <i>“ You can’t help but groan and twitch as she slowly sits herself down. The silken feel of her narrow tunnel advancing down your rock-hard prick, drooling honey over {the [pc.knot]} {and} {your [pc.balls] / {base} is so good you can feel the sweetness of Nirvana on your [pc.furSkinScales] and tongue. Instinctively you reach out and clasp her hourglass waist as she {gloves you whole, easily taking every inch of your eager boy dick / takes as much of you as she can in her tight tunnel, the rest of your dick soaked in syrup}; she strokes your hands fondly, before gently but firmly taking them off, leading them back and planting them on the thick, wide femurs of the bone trophy behind you.");
+output("\n\n<i>“That’s it,”</i> she sighs, other hand pressing down on your shoulder as she spreads her slick lips over your [pc.cockHead]. <i>“Just lie back and let me do as I will...”</i> You can’t help but groan and twitch as she slowly sits herself down. The silken feel of her narrow tunnel advancing down your rock-hard prick, drooling honey over {the [pc.knot]} {and} {your [pc.balls] / {base} is so good you can feel the sweetness of Nirvana on your [pc.furSkinScales] and tongue. Instinctively you reach out and clasp her hourglass waist as she {gloves you whole, easily taking every inch of your eager boy dick / takes as much of you as she can in her tight tunnel, the rest of your dick soaked in syrup}; she strokes your hands fondly, before gently but firmly taking them off, leading them back and planting them on the thick, wide femurs of the bone trophy behind you.");
 
 output("\n\n<i>“Keep them there,”</i> Quinn murmurs. The pheromone fug seems to intensify, blood reaching up to your [pc.skin], and another wordless sound of pained joy escapes your [pc.lips] as she begins to move her hips, stirring you within her oozing, limber warmth. She may as well have tied your hands to her grisly headboard; the thought of disobeying has no chance of trespassing the eager, summery yellowness of your mind. All your attention is upon how wonderful it feels when she finds her rhythm and begins to briskly ride you, tightening her strong athletic thighs around your waist, locking herself into you enthusiastically.");
 
 output("\n\n<i>“Being Quinn means I often must stay here instead of joining our hunters,”</i> she husks, fingers hooked around your shoulders. <i>“Watch over the village, judge and carry out my will. It is frustrating. But... getting to lie with the most honored warriors afterwards... I can </i>feel<i> their spirit, I am in command of their feats when I move them, and it’s so... yes!”</i> She throws her head towards the ceiling and emits a savage howl, bucking around you ferociously, petite tits jouncing up and down. Your [pc.cock] throbs, oozing pre deliriously in response to getting jerked and kneaded this way and that in her supple, honey-soaked sex. {Your [pc.balls] tighten, the heavy load within raring to go...}");
 
-output("\n\n<i>“But you don’t cum,”</i> the zil says suddenly, as if sensing your thoughts. She looks down at you, orange-cheeked and panting slightly, still firmly embedded on your cock. <i>“Not yet. Quinn has not got everything she needs and that won’t do, will it?”</i> You shake your head breathlessly, hands still clenched around smooth ivory. All is eager yellow. All is horny sugar. Quinn resumes her movements, slowly but stubbornly pumping her lean, round butt towards your [pc.belly] and then back, working your giddy erection firmly. <i>“Yeessss... <i>“ she breathes, stroking your {chin / beard} and touching your [pc.chest]. <i>“You lie back and let your Quinn own you. Let me live your deeds and absorb your spirit.”</i>");
+output("\n\n<i>“But you don’t cum,”</i> the zil says suddenly, as if sensing your thoughts. She looks down at you, orange-cheeked and panting slightly, still firmly embedded on your cock. <i>“Not yet. Quinn has not got everything she needs and that won’t do, will it?”</i> You shake your head breathlessly, hands still clenched around smooth ivory. All is eager yellow. All is horny sugar. Quinn resumes her movements, slowly but stubbornly pumping her lean, round butt towards your [pc.belly] and then back, working your giddy erection firmly. <i>“Yeessss...”</i> she breathes, stroking your {chin / beard} and touching your [pc.chest]. <i>“You lie back and let your Quinn own you. Let me live your deeds and absorb your spirit.”</i>");
 
 output("\n\nIt’s a kind of pleasurable hell letting an embodiment of entitlement and frustration sit on top of you and wring your [pc.cock] inside her slick, drooling cunt, energetically levering herself to first one howling orgasm and then another; but for all the burning desire to let go and pack her absolutely full of [pc.cum] you could have a catheter inserted for all the likelihood it’s going to happen without her order. The pheromone fug, and the calm, sonorous words that came with it, are too powerful. When she cries out with delight, clenching her hips around yours and spattering clear syrup onto your [pc.belly] and [pc.legs], sheerest joy lights up your mind - you have pleased your Queen! - and denying the unbearable load bulging up your [pc.cock] {and [pc.balls}] seems a very small price to pay.");
 

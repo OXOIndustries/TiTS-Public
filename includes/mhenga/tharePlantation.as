@@ -187,7 +187,7 @@ public function thareManorResponse(response:String = "none"):void
 		case "appearance":
 			showDarnock();
 			
-			output("Professor Shep Darnock is a 5\'10\" male human who looks to be in his late middle age, which probably means he’s a couple of centuries old at least. Dressed in a plain cotton safari suit, he has a genial, interested expression seemingly carved onto his square, beardless face. He is quite beefy and has tough walnut skin that speaks of a privileged lifetime spent mostly outdoors. His white hair is thick but well-groomed. There is no indication of any outlandish gene modification upon him, except for the sort that would eliminate such irritations as liver spots, back pain and glasses.");
+			output("Professor Shep Darnock is a 5\' 10\" male human who looks to be in his late middle age, which probably means he’s a couple of centuries old at least. Dressed in a plain cotton safari suit, he has a genial, interested expression seemingly carved onto his square, beardless face. He is quite beefy and has tough walnut skin that speaks of a privileged lifetime spent mostly outdoors. His white hair is thick but well-groomed. There is no indication of any outlandish gene modification upon him, except for the sort that would eliminate such irritations as liver spots, back pain and glasses.");
 			output("\n\nIn appearance and mannerism, he is exactly the sort of person that since the dawn of civilization is to be found in the upper echelons of human society, and perhaps always will be.");
 			
 			break;
@@ -386,7 +386,7 @@ public function thareAbleResponse(response:String = "none"):void
 		case "appearance":
 			showAble();
 			
-			output("Able is a 5\'6\" zil male. His black carapace is dressed in white servant robes, tight trousers overlaid by a long, belted smock, emblazoned on the breast, like every other Thare worker’s clothes, with the Snugglé logo. He is perhaps slighter than the zil average, with narrow, girly shoulders. What little meat there is to be found on his lean, supple frame is concentrated on his backside, a heart-shape which subtly blossoms out and stretches the fabric of his tight costume in a pleasing manner. His golden face mimics that shape; a cute, pointed chin which curves out to accommodate his black eyes, delicate cheekbones and short, straight nose. His fuzzy pseudo-hair is combed primly back. When he talks, it’s difficult for your eyes not to be drawn to the wag of his brilliant yellow tube-tongue.");
+			output("Able is a 5\' 6\" zil male. His black carapace is dressed in white servant robes, tight trousers overlaid by a long, belted smock, emblazoned on the breast, like every other Thare worker’s clothes, with the Snugglé logo. He is perhaps slighter than the zil average, with narrow, girly shoulders. What little meat there is to be found on his lean, supple frame is concentrated on his backside, a heart-shape which subtly blossoms out and stretches the fabric of his tight costume in a pleasing manner. His golden face mimics that shape; a cute, pointed chin which curves out to accommodate his black eyes, delicate cheekbones and short, straight nose. His fuzzy pseudo-hair is combed primly back. When he talks, it’s difficult for your eyes not to be drawn to the wag of his brilliant yellow tube-tongue.");
 			if(ableSexed()) output(" Beneath the carapace between his thighs is exactly what you’d expect to be; a five-inch foreskinned zil dick which smells far better than it has any right to.");
 			
 			break;

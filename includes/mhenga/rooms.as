@@ -1284,13 +1284,13 @@ public function initMhengaRooms():void
 	//Plantation Quest Additions
 	rooms["1. UPPER BROOK"] = new RoomClass(this);
 	rooms["1. UPPER BROOK"].roomName = "UPPER\nBROOK";
-	rooms["1. UPPER BROOK"].description = "Your [pc.legs] sink deep into the mounds of faintly luminescent blue moss which bloom in the steep, boggy grounds that surround the chattering, gurgling stream. Intricate floral life flourishes along its banks, the passage of water allowing smaller ferns and flowers space and light that the massive ironwoods all around otherwise deny them. Down to the south the brook continues, intersected by the main path. Further up to the north, beyond the dank, slippery rocks, you can hear a distant roar of water.";
+	rooms["1. UPPER BROOK"].description = "";
 	rooms["1. UPPER BROOK"].northExit = "2. WATERFALL POOL";
 	rooms["1. UPPER BROOK"].southExit = "BABBLING BROOK 1"
 	rooms["1. UPPER BROOK"].addFlag(GLOBAL.OUTDOOR);
 	rooms["1. UPPER BROOK"].addFlag(GLOBAL.HAZARD);
 	rooms["1. UPPER BROOK"].addFlag(GLOBAL.FOREST);
-	rooms["1. UPPER BROOK"].runOnEnter = undefined;
+	rooms["1. UPPER BROOK"].runOnEnter = upperBrookBonus;
 
 	rooms["2. WATERFALL POOL"] = new RoomClass(this);
 	rooms["2. WATERFALL POOL"].roomName = "WATERFALL\nPOOL";
@@ -1314,7 +1314,7 @@ public function initMhengaRooms():void
 
 	rooms["4. RED ROCK OUTCROP"] = new RoomClass(this);
 	rooms["4. RED ROCK OUTCROP"].roomName = "RED ROCK\nOUTCROP";
-	rooms["4. RED ROCK OUTCROP"].description = "You wipe your brow. You are clutching onto a bulging outcrop of red stone, maybe 30 feet off the ground. You can find handholds and are reasonably stable, but also frighteningly exposed. Behind you, you can hear the shift and hiss of leaves in the breeze; you are almost beyond the reach of those towering ironwoods, but not quite. The cascade tumbles down nearby, the flume of water no longer obscured by the white veil it throws up at the bottom. It's impossible to make out anything above, but it looks like you can keep climbing upwards if you have the strength, or inch your way back down to the scrub steps.";
+	rooms["4. RED ROCK OUTCROP"].description = "You wipe your brow. You are clutching onto a bulging outcrop of red stone, maybe 30 feet off the ground. You can find handholds and are reasonably stable, but also frighteningly exposed. Behind you, you can hear the shift and hiss of leaves in the breeze; you are almost beyond the reach of those towering ironwoods, but not quite. The cascade tumbles down nearby, the flume of water no longer obscured by the white veil it throws up at the bottom. It’s impossible to make out anything above, but it looks like you can keep climbing upwards if you have the strength, or inch your way back down to the scrub steps.";
 	rooms["4. RED ROCK OUTCROP"].northExit = "5. RED ROCK LEDGE";
 	rooms["4. RED ROCK OUTCROP"].southExit = "3. FOOT OF THE CLIFF";
 	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.OUTDOOR);
@@ -1324,7 +1324,7 @@ public function initMhengaRooms():void
 
 	rooms["5. RED ROCK LEDGE"] = new RoomClass(this);
 	rooms["5. RED ROCK LEDGE"].roomName = "RED ROCK\nLEDGE";
-	rooms["5. RED ROCK LEDGE"].description = "The cliff face steps in here like a skewed pile of books, offering a place for you to stand in reasonable comfort as long as you keep a tight grip on the rock. To one side a spindly tree like a long, dark asparagus grows out of the rock, bulbous head waggling in the wind. Remarkable what can cling to life in the most perilous of places. Above you, the rock marches back outwards threateningly; you don't want to even try and climb onto that. It's just about possible to descend though. Or you could sidle along the ledge towards the hushing crash of the waterfall, see if you can progress from there.";
+	rooms["5. RED ROCK LEDGE"].description = "The cliff face steps in here like a skewed pile of books, offering a place for you to stand in reasonable comfort as long as you keep a tight grip on the rock. To one side a spindly tree like a long, dark asparagus grows out of the rock, bulbous head waggling in the wind. Remarkable what can cling to life in the most perilous of places. Above you, the rock marches back outwards threateningly; you don’t want to even try and climb onto that. It’s just about possible to descend though. Or you could sidle along the ledge towards the hushing crash of the waterfall, see if you can progress from there.";
 	rooms["5. RED ROCK LEDGE"].eastExit = "6. WATERFALL STAIRWAY";
 	rooms["5. RED ROCK LEDGE"].southExit = "4. RED ROCK OUTCROP";
 	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.OUTDOOR);
@@ -1334,7 +1334,7 @@ public function initMhengaRooms():void
 
 	rooms["6. WATERFALL STAIRWAY"] = new RoomClass(this);
 	rooms["6. WATERFALL STAIRWAY"].roomName = "WATERFALL\nSTAIRWAY";
-	rooms["6. WATERFALL STAIRWAY"].description = "You take deep breaths, clutching onto the dank rock. The waterfall thunders directly overhead, raw elemental power that is hard to comprehend, much less handle being underneath. Here, the cliff face offers a gradual advance upwards - if you've got the stomach to climb under the gigantic flume of water, feel its spray on your back and [pc.hair], risk the slippery, mossy, jagged stone under hand and foot. If you can just keep pulling yourself upwards, it looks like there's a level shoulder ahead - or you can shuffle back towards the dry ledge.";
+	rooms["6. WATERFALL STAIRWAY"].description = "You take deep breaths, clutching onto the dank rock. The waterfall thunders directly overhead, raw elemental power that is hard to comprehend, much less handle being underneath. Here, the cliff face offers a gradual advance upwards - if you’ve got the stomach to climb under the gigantic flume of water, feel its spray on your back and [pc.hair], risk the slippery, mossy, jagged stone under hand and foot. If you can just keep pulling yourself upwards, it looks like there’s a level shoulder ahead - or you can shuffle back towards the dry ledge.";
 	rooms["6. WATERFALL STAIRWAY"].northExit = "7. DRIFTWOOD SHOULDER";
 	rooms["6. WATERFALL STAIRWAY"].westExit = "5. RED ROCK LEDGE";
 	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.OUTDOOR);
@@ -1392,7 +1392,7 @@ public function initMhengaRooms():void
 	rooms["11. Zil Village Outskirts"].runOnEnter = undefined;
 
 	rooms["12. Zil Village Winnar"] = new RoomClass(this);
-	rooms["12. Zil Village Winnar"].roomName = "CHIEFTAN'S\nCIRCLE";
+	rooms["12. Zil Village Winnar"].roomName = "CHIEFTAN’S\nCIRCLE";
 	rooms["12. Zil Village Winnar"].description = "";
 	rooms["12. Zil Village Winnar"].southExit = "11. Zil Village Outskirts";
 	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.OUTDOOR);
@@ -1557,7 +1557,7 @@ public function initMhengaRooms():void
 
 	rooms["NARROW GORGE 1"] = new RoomClass(this);
 	rooms["NARROW GORGE 1"].roomName = "NARROW\nGORGE";
-	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You’re standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There’s also a fallen tree spanning the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you’re fairly sure it will hold your weight. ";
+	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You’re standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There’s also a fallen tree spanning the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you’re fairly sure it will hold your weight.";
 	rooms["NARROW GORGE 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["NARROW GORGE 1"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW GORGE 1"].system = "SYSTEM: ARA ARA";
@@ -1571,7 +1571,7 @@ public function initMhengaRooms():void
 
 	rooms["NARROW GORGE 2"] = new RoomClass(this);
 	rooms["NARROW GORGE 2"].roomName = "NARROW\nGORGE";
-	rooms["NARROW GORGE 2"].description = "This narrow gorge runs to the east with a small creek running through its center. It trickles down from the west where a small path leads up and out of the gorge. Walls of earth surround you on the other sides, looming like the sides of a massive grave.\n\nIt’s hard to walk here without getting your [pc.feet] wet. The temperature is noticeably cooler, but at least there’s less mist about. ";
+	rooms["NARROW GORGE 2"].description = "This narrow gorge runs to the east with a small creek running through its center. It trickles down from the west where a small path leads up and out of the gorge. Walls of earth surround you on the other sides, looming like the sides of a massive grave.\n\nIt’s hard to walk here without getting your [pc.feet] wet. The temperature is noticeably cooler, but at least there’s less mist about.";
 	rooms["NARROW GORGE 2"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["NARROW GORGE 2"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW GORGE 2"].system = "SYSTEM: ARA ARA";
