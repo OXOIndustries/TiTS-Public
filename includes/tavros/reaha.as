@@ -184,7 +184,7 @@ public function roughMilkingFollowerReaha():void {
 		else addDisabledButton(1,"Titfuck");
 		addButton(2,"Ride Strapon",rideFollowerReahasStrapon);
 	}
-	//{If NotFree: Scene ends}
+	//If NotFree: Scene ends
 	else
 	{
 		clearMenu();
@@ -420,7 +420,7 @@ public function beSubmissiveToReaha():void {
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
 		output("\n\nYou give a whine of sexual need, but the cow takes your mind off it with a harsh slap to the ass, digging her fingers in as she pulls her legs up onto the bed with you, angling down for a proper fucking. Your free hand wraps itself in the sheets, trying to get a firm hold on something as Reaha’s powerful hips hammering into you. Her thrusts are relentless, each pounding inch after inch of [reaha.milk]-soaked latex deep into your defenseless bowels, bulging your stomach obscenely as she finally works the greater part of the shaft into you. Your mind races, wishing beyond hope ofr some sexual organ to gratify amid the buttfucking, but your decisions have rendered you sexless, totally reliant on Reaha’s tender mercies to bring your pleasure. You’re stuck thrusting back against Reaha’s hips, taking even more of her huge dildo-cock until with a scream of glee you feel the leather straps pressing into your [pc.butt]. 18 inches of cock is buried inside you, stretching your spasming anal muscles to the very limit, pushing against the walls of your gut until you can feel it pounding into the bed right through you! Anal orgasm, the elusive holy grail of buttfucking, seems imminent. your butt muscles squeeze and wring the dildo, going wild around the fake cock Reaha’s pushed so deep into you. You arch your back and cry your pleasure, squeezing down as hard as you can around Reaha’s relentlessly ramming rod, daring her to ream your clenched ass as hard as she can as you finally peak as she buttfucks you into a body-rocking orgasm. Exhausted, you collapse utterly into Reaha’s bed, panting hard as you recover from the reaming.");
-		//{Genderless scene end. Fuckers.}
+		//Genderless scene end. Fuckers.
 	}
 	processTime(20+rand(10));
 	pc.orgasm();

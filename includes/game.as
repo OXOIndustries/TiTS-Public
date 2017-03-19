@@ -826,7 +826,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	if (kiMedbaySleeps()) return;
 	
-	var minPass:int = 420 + rand(80) + 1
+	var minPass:int = 420 + rand(80) + 1;
 	
 	if(outputs) clearOutput();
 	if(InShipInterior(pc))
