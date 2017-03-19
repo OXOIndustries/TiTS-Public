@@ -4,7 +4,7 @@ public function drLessauIPresume():void
 {
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	if (flags["MET_DR_LESSAU"] == undefined)
 	{
@@ -32,6 +32,15 @@ public function drLessauIPresume():void
 	drLessauMainMenu()
 }
 
+public function metCynthia():Boolean
+{
+	return (flags["BIOMED_GANGBANGED"] != undefined);
+}
+public function metWalt():Boolean
+{
+	return (flags["BIOMED_GANGBANGED"] != undefined);
+}
+
 public function drLessauMainMenu():void
 {
 	clearMenu();
@@ -46,9 +55,25 @@ public function drLessauMainMenu():void
 
 public function drLessauShop():void
 {
-	if (flags["DECK13_COMPLETE"] == 1 && !chars["DRLESSAU"].hasItemByType(GrayMicrobots)) chars["DRLESSAU"].inventory.push(new GrayMicrobots());
+	if (metCynthia())
+	{
+		if (!chars["DRLESSAU"].hasItemByType(Holstaria)) chars["DRLESSAU"].inventory.push(new Holstaria());
+	}
+	else chars["DRLESSAU"].destroyItem(new Holstaria(), -1);
+	if (metWalt())
+	{
+		if (!chars["DRLESSAU"].hasItemByType(Lupinol)) chars["DRLESSAU"].inventory.push(new Lupinol());
+	}
+	else chars["DRLESSAU"].destroyItem(new Lupinol(), -1);
+	if (flags["DECK13_COMPLETE"] == 1)
+	{
+		if(!chars["DRLESSAU"].hasItemByType(GrayMicrobots)) chars["DRLESSAU"].inventory.push(new GrayMicrobots());
+	}
 	else chars["DRLESSAU"].destroyItem(new GrayMicrobots(), -1);
-	if (flags["MCALLISTER_MYR_HYBRIDITY"] >= 3 && !chars["DRLESSAU"].hasItemByType(OrangePill)) chars["DRLESSAU"].inventory.push(new OrangePill());
+	if (flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+	{
+		if(!chars["DRLESSAU"].hasItemByType(OrangePill)) chars["DRLESSAU"].inventory.push(new OrangePill());
+	}
 	else chars["DRLESSAU"].destroyItem(new OrangePill(), -1);
 	
 	shopkeep = chars["DRLESSAU"];
@@ -77,7 +102,7 @@ public function drLessauWhyHere():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("<i>“So what’s the head of Steele Tech’s biomedical division doing in a backwater like this?”</i> you ask.");
 	output("\n\n<i>“Ah, yes, that. This planet, as I’m sure you’re aware, is lush with psionically gifted lifeforms owing to the abundant savicite. Other such planets exist, but Uveto is one of the few with such diversity and genetic closeness to the coreworld races. It presents a treasure trove of potential advancements in adapting those gifts to humans or ausar. Such a breakthrough would far surpass any progress that Xenogen has made on that front.”</i>");
@@ -93,7 +118,7 @@ public function drLessauKnewDad():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("You ask Lessau if he knew your father, a query that prompts the chimera’s ears to flatten and his gaze to shift briefly downward.");
 	output("\n\n<i>“I knew him quite well, yes, though chiefly in the final decades. I first met him some two centuries ago, when I was a student. He came to see my professor, who like myself studied nanomedicine, to acquire his own microsurgeons. They were experimental, far less refined and far less safe than yours, but he made a convincing argument for testing them on the frontier. I remember feeling a sense of power about him that I’ve not seen since...”</i> Lessau trails off, looking you over. <i>“... Though perhaps I see it now.”</i>");
@@ -135,7 +160,7 @@ public function drLessauDadIck():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("It’s kind of a squicky question, but you can’t help but ask. You know he did it with damn near everyone else.");
 	output("\n\n<i>“So, did you and dad ever...?”</i>");
@@ -157,7 +182,7 @@ public function drLessauWTFRU():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("<i>“So, what " + (pc.isAss() ? "the hell are you supposed to be anyway" : "are you, exactly") + "”</i> you ask, looking over the massive blend of traits that go into Lessau’s chimeric form. <i>“You look like " + (pc.isAss() ? "a snake fucked an ox and then that fucked a spider or something" : "one of those old Terran legends") + ".”</i>");
 	output("\n\n<i>“Oh? Oh, yes, all this.”</i> Lessau gestures to himself with one of his hands. <i>“I enjoy switching forms every few months, this has become one of my new favorites. It’s based off the Terran myths of the chimera, though with a few tweaks. The discovery of Mhen’ga and its naleen helped enormously with refining the synthesis, enough so to make this blend reproductively viable. But if you’re asking what I originally am, I was born as a human.”</i>");
@@ -177,7 +202,7 @@ public function drLessauDangers():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("You point out that if he’s changing his form every few months, Lessau ought to be the same sort of genetic mess that Victor was.")
 	output("\n\n<i>“And I would be indeed, were I unprotected. Fortunately, any piece of technology as complex as yours requires a prototype. My microsurgeons are slightly less refined than yours, but they share the same general set of functions. At present I’m using them as a testbed for developing new features that I hope to be able to pass on to yours someday.”</i>");
@@ -193,7 +218,7 @@ public function drLessauAppearance():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("You can only assume that Dr. Lessau was human at one point, but it’s impossible to tell under the mountain of gene mods he’s undergone, which have turned him into a creature similar to the mythic chimera. From the waist down his lower body is a massive serpent’s tail, normally spiraled into a coil underneath him to keep him at a few inches over six feet. The bulk of the tail’s scales are pitch black, save for a strip of white that runs down the front. His upper body is thickly muscled and covered in a thin layer of white fur that sports a thicker layer of orange around his shoulders and collar. Matching thick orange bands of fur are wrapped around each of his four wrists. Despite the thickness of his muscles, his hands are lean and nimble, the fingers tipped in sharp feline claws. His head is that of a lion, including an orange mane that cascades down his back as hair, but a pair of massive black horns stretch out from underneath the hair, more like a bull’s horns than a goat’s in how they angle up and forward. Adorning his back are a set of white feathered wings.");
 	output("\n\nThe doctor stands nude save for a lab coat worn open. He shows no obvious sexual endowments at first glance");
@@ -206,7 +231,7 @@ public function drLessauSex():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("You reach over the desk and run a finger across the fluff along Lessau’s chest.");
 	output("\n\n<i>“Think you can step away from your work for a bit to enjoy the results, doctor?”</i>");
@@ -225,7 +250,7 @@ public function drLessauOral():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("You ask Lessau if he wouldn’t mind putting that long, flexible tongue of his to work, in response to which the chimera pats his desk invitingly. You take the offer, hauling yourself up ");
 	if (pc.legCount > 1) output("and swinging your legs around to sit in front of him.");
@@ -299,7 +324,7 @@ public function drLessauVag():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	output("You tell Lessau that you’re feeling a little itchy, letting a hand fall indicatively to your rapidly moistening nethers. You ");
 	if (pc.hasCock()) output("can feel [pc.eachCock] stiffening, but right now you want to indulge your feminine lusts, and you "); 
@@ -369,7 +394,7 @@ public function drLessauAfter():void
 	clearOutput();
 	showBust("DRLESSAU");
 	showName("DOCTOR\nLESSAU");
-	author("COUCH");
+	author("Couch");
 	
 	if (flags["DRLESSAU_SEXED"] == undefined)
 	{
@@ -409,7 +434,8 @@ public function drLessauAfter():void
 
 public function steeleBiomedBonus():Boolean
 {
-	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
+	if(pc.hasStatusEffect("BioMed Gangbang Cooldown")) addDisabledButton(0, "Gangbang", undefined, "Maybe you should give your employees some time to cool off before trying this again.");
+	else if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
 	else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
 	
 	return false;
@@ -420,7 +446,7 @@ public function steeleBiomedGangbang():void
 	clearOutput();
 	showBust("CYNTHIASOLO", "WALTSOLO")
 	showName("STEELE\nBIOMED");
-	author("COUCH");
+	author("Couch");
 	clearMenu();
 	
 	output("You glance around the room, licking your lips at all the exotic beauties on display. Why not let them get to know their future boss? Besides, you’re feeling ");
@@ -482,19 +508,19 @@ public function steeleBiomedGangbangII():void
 	clearOutput();
 	showBust("CYNTHIASOLO", "WALTSOLO")
 	showName("STEELE\nBIOMED");
-	author("COUCH");
+	author("Couch");
 	
-	output("Distracted by your indulgence, you give a muffled grunt of surprise as " + (flags["BIOMED_GANGBANGED"] == undefined ? "the wolf" : "Walt") + " slips your remaining gear off to get at your [pc.hips]. A sweep of his tongue along your [pc.vagOrAss] makes you shiver, prompting him to keep going, each lick digging a little deeper in.");
-	output("\n\nMore of their coworkers join in now, assisting " + (flags["BIOMED_GANGBANGED"] == undefined ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, " + (pc.hasTail() ? "your tail, " : "") + "" + (pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
+	output("Distracted by your indulgence, you give a muffled grunt of surprise as " + (!metWalt() ? "the wolf" : "Walt") + " slips your remaining gear off to get at your [pc.hips]. A sweep of his tongue along your [pc.vagOrAss] makes you shiver, prompting him to keep going, each lick digging a little deeper in.");
+	output("\n\nMore of their coworkers join in now, assisting " + (!metCynthia() ? "the minotauress" : "Cynthia") + " with going for a feel of your [pc.chest], your ass, " + (pc.hasTail() ? "your tail, " : "") + "" + (pc.hasWings() ? "your wings, " : "") + "any and every part of your body. There’s scales, fur, even downy feathers stroking your body, surrounding you on all sides with colors and forms of all varieties. Stars, everyone here is just so exotic!");
 	output("\n\n<i>“Alright, alright, let’s not crowd " + pc.mf("him", "her") + ",”</i> the minotauress says after a bit of this. <i>“You’ll all get a turn, let’s do this all nice and orderly-like.”</i> She looks down at you with a grin as the rest of her coworkers draw back a bit."); 
-	if (flags["BIOMED_GANGBANGED"] == undefined) output("<i>“Name’s Cynthia, by the way. Pleasure to meet you, boss.”</i>");
+	if (!metCynthia()) output("<i>“Name’s Cynthia, by the way. Pleasure to meet you, boss.”</i>");
 	
 	output("\n\nAt her command, one of the scientists switches off the central display to leave the table bare. Cynthia pulls you down onto the table, your head resting comfortably on those pillowy cowtits. Her hands slide down to spread both your legs and hers.");
 	output("\n\n<i>“Alright, boys and girls,”</i> you say with a broad grin of your own, <i>“come and get it!”</i>");
-	output("\n\n" + (flags["BIOMED_GANGBANGED"] == undefined ? "The wolf boy from before" : "Even though he just came, Walt") + " is the first to mount you, cramming his cock deep into your waiting [pc.vagOrAss] with an open howl. You gasp in delight, clenching reflexively around him as he starts fucking you with firm, steady strokes. Each thrust plunges to exactly the right depth that you feel that knot stretch you even wider every time he bottoms out, teasing at popping inside but never quite taking that last step that would lock you up for anyone else to enjoy.");
+	output("\n\n" + (!metWalt() ? "The wolf boy from before" : "Even though he just came, Walt") + " is the first to mount you, cramming his cock deep into your waiting [pc.vagOrAss] with an open howl. You gasp in delight, clenching reflexively around him as he starts fucking you with firm, steady strokes. Each thrust plunges to exactly the right depth that you feel that knot stretch you even wider every time he bottoms out, teasing at popping inside but never quite taking that last step that would lock you up for anyone else to enjoy.");
 	output("\n\n<i>“Ooh, good boy,”</i> you purr, <i>“fuck me just like that. Give me that dirty dog dick!”</i>");
-	output("\n\n<i>“Yes " + pc.mf("sir", "ma’am") + ",”</i> he replies" + (flags["BIOMED_GANGBANGED"] == undefined ? ", the first words you’ve yet heard from him" : "") + ". <i>“I’ll do my best.”</i>");
-	output("\n\n<i>“" + (flags["BIOMED_GANGBANGED"] == undefined ? "That’s Walt, by the way." : "That boy’s got some awesome stamina.") + "”</i> Cynthia whispers as her hands slide back up to your chest, " + (pc.biggestTitSize() < 1 ? "caressing your muscles" : "kneading your tits") + " while you lie back and enjoy the fucking. You can see more lining up behind him, both the remaining boys and quite a few dick-wielding girls.");
+	output("\n\n<i>“Yes " + pc.mf("sir", "ma’am") + ",”</i> he replies" + (!metWalt() ? ", the first words you’ve yet heard from him" : "") + ". <i>“I’ll do my best.”</i>");
+	output("\n\n<i>“" + (!metWalt() ? "That’s Walt, by the way." : "That boy’s got some awesome stamina.") + "”</i> Cynthia whispers as her hands slide back up to your chest, " + (pc.biggestTitSize() < 1 ? "caressing your muscles" : "kneading your tits") + " while you lie back and enjoy the fucking. You can see more lining up behind him, both the remaining boys and quite a few dick-wielding girls.");
 	output("\n\nIt’s not much longer before Walt cums, filling you with that deliciously hot lupine spunk. You join him in howling, feeling his knot heat up and swell " + (pc.hasVagina() ? "just outside your pussy lips" : "right at the edge of your backdoor") + ". He certainly doesn’t lack for volume nor duration, jet after jet of creamy canine cum spurting into your waiting depths. It leaks freely from your [pc.vagOrAss] as he pulls out" + (pc.hasVagina() ? ", even flowing down to run over your tailhole as well" : "") + ". The next one quickly steps up, this one a lizard girl packing a pair of matching reptilian pricks. This time Cynthia gets to moo as one of the cocks goes into her waiting cunt, the other pressing into your freshly cum - lubed ass.");
 	
 	if (pc.hasCock())
@@ -537,7 +563,7 @@ public function steeleBiomedGangbangIII():void
 	clearOutput();
 	showBust("CYNTHIASOLO", "WALTSOLO")
 	showName("STEELE\nBIOMED");
-	author("COUCH");
+	author("Couch");
 	
 	output("Hours pass before you rouse from your sexual stupor. You’ve fucked practically everyone in the room, most of them at least twice and some far more than that. " + (pc.hasVagina() ? "Both of your holes feel" : "Your ass feels") + " thoroughly used and your belly looks thick and pregnant, your stomach having long since given up on complaining about all the cum you’ve taken in your greedy lust. The desk under you is soaked and there’s still a multicolored river of a dozen different types of semen bubbling forth from between your legs.");
 	output("\n\n<i>“Oof...”</i> you hear Cynthia groan from underneath you, her own belly somewhat less bloated than yours but still noticeably swollen with cum. <i>“Nothing like a good gangbang, huh boss?”</i>");
@@ -562,6 +588,7 @@ public function steeleBiomedGangbangIII():void
 	pc.orgasm();
 	pc.exhibitionism(2);
 	IncrementFlag("BIOMED_GANGBANGED");
+	pc.createStatusEffect("BioMed Gangbang Cooldown",0,0,0,0,true,"","",false,720);
 	processTime(140);
 	addButton(0, "Next", mainGameMenu)
 }

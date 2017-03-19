@@ -5251,12 +5251,9 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Doctor Lessau:</b> Met Him");
 					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times Sexed:</b> " + flags["DRLESSAU_SEXED"]);
 				}
-				if(flags["BIOMED_GANGBANGED"] != undefined)
-				{
-					output2("\n<b>* Cynthia:</b> Met Her");
-					output2("\n<b>* Walt:</b> Met Him");
-					output2("\n<b>* Cynthia & Walt, Times Gangbanged:</b> " + flags["BIOMED_GANGBANGED"]);
-				}
+				if(metCynthia()) output2("\n<b>* Cynthia:</b> Met Her");
+				if(metWalt()) output2("\n<b>* Walt:</b> Met Him");
+				if(flags["BIOMED_GANGBANGED"] != undefined) output2("\n<b>* Cynthia & Walt, Times Gangbanged:</b> " + flags["BIOMED_GANGBANGED"]);
 			}
 			// The Freezer
 			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined)

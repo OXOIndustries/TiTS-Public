@@ -1015,6 +1015,7 @@
 		public function buttRatingUnlocked(newButtRating:Number):Boolean
 		{
 			//if(hasPerk("Buttslut") && newButtRating < buttRatingRaw) return false;
+			if(hasPerk("Bubble Butt") && newButtRating < 10) return false;
 			return true;
 		}
 		public function buttRatingLockedMessage():String
@@ -9388,8 +9389,8 @@
 			tailGenitalColor = "";
 			if(this is PlayerCharacter)
 			{
-				flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-				flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+				if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined) flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+				if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 			}
 			return;
 		}
@@ -10238,6 +10239,7 @@
 			{
 				removePerk("Sterile");
 				removeStatusEffect("Vaginally-Filled");
+				removeStatusEffect("Pussy Pumped");
 			}
 		}
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
@@ -11648,13 +11650,17 @@
 		public function hipsDescript(): String {
 			return hipDescript(true);
 		}
+		public function hasSoftButt():Boolean
+		{
+			return (hasPerk("Buttslut") || hasPerk("Bubble Butt") || tone < 30);
+		}
 		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
 			var desc: String = "";
 			var rando: Number = 0;
-			var buttslut: Boolean = (hasPerk("Buttslut") || hasPerk("Bubble Butt"));
+			var softbutt: Boolean = hasSoftButt();
 			if (buttRating() <= 1) {
-				if (tone >= 60 && !buttslut) desc += "incredibly tight, perky ";
+				if (tone >= 60 && !softbutt) desc += "incredibly tight, perky ";
 				else {
 					if (rand(2) == 0) desc = "tiny";
 					else if (rand(2) == 0) desc = "very small";
@@ -11664,7 +11670,7 @@
 					desc += " ";
 				}
 			} else if (buttRating() < 4) {
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(6);
 					if (rando == 0) desc = "perky, muscular ";
 					else if (rando == 1) desc = "tight, toned ";
@@ -11674,7 +11680,7 @@
 					else if (rando == 5) desc = "muscular, toned ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "tight ";
 					else if (rando == 1) desc = "firm ";
@@ -11694,7 +11700,7 @@
 				}
 			} else if (buttRating() < 6) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(6);
 					if (rando == 0) desc = "nicely muscled ";
 					else if (rando == 1) desc = "nice, toned ";
@@ -11704,7 +11710,7 @@
 					else if (rando == 5) desc = "fair ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(2);
 					if (rando == 0) desc = "nice ";
 					else if (rando == 1) desc = "fair ";
@@ -11720,7 +11726,7 @@
 				}
 			} else if (buttRating() < 8) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(7);
 					if (rando == 0) desc = "full, toned ";
 					else if (rando == 1) {
@@ -11733,7 +11739,7 @@
 					else if (rando == 6) desc = "chiseled ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) {
 						if (asPlural) return "hand-filling ass cheeks";
@@ -11758,7 +11764,7 @@
 				}
 			} else if (buttRating() < 10) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(9);
 					if (rando == 0) desc = "large, muscular ";
 					else if (rando == 1) desc = "substantial, toned ";
@@ -11771,7 +11777,7 @@
 					else if (rando == 8) desc = "callipygean ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(10);
 					if (rando <= 2) desc = "squeezable ";
 					else if (rando <= 6) desc = "large ";
@@ -11794,7 +11800,7 @@
 				}
 			} else if (buttRating() < 13) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(7);
 					if (rando == 0) desc = "thick, muscular ";
 					else if (rando == 1) desc = "big, burly ";
@@ -11805,7 +11811,7 @@
 					else if (rando == 6) desc = "thick, strong ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "jiggling ";
 					else if (rando == 1) desc = "spacious ";
@@ -11828,7 +11834,7 @@
 				}
 			} else if (buttRating() < 16) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(8);
 					if (rando == 0) desc = "expansive, muscled ";
 					else if (rando == 1) desc = "voluminous, rippling ";
@@ -11840,7 +11846,7 @@
 					else if (rando == 7) desc = "powerful, expansive ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "expansive ";
 					else if (rando == 1) desc = "generous ";
@@ -11863,7 +11869,7 @@
 					else if (rando == 10) desc = "soft, padded ";
 				}
 			} else if (buttRating() < 20) {
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(6);
 					if (rando == 0) desc = "huge, toned ";
 					else if (rando == 1) desc = "vast, muscular ";
@@ -11873,7 +11879,7 @@
 					else if (rando == 5) desc = "muscle-bound ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(5);
 					if (rando == 0) desc = "huge ";
 					else if (rando == 1) desc = "vast ";
@@ -11902,7 +11908,7 @@
 					else if (rando == 10) desc = "swollen, pillow-like ";
 				}
 			} else {
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(7);
 					if (rando == 0) desc = "ginormous, muscle-bound ";
 					else if (rando == 1) desc = "colossal yet toned ";
@@ -11916,7 +11922,7 @@
 					else if (rando == 6) desc = "colossal, well-defined ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "ginormous ";
 					else if (rando == 1) desc = "colossal ";
