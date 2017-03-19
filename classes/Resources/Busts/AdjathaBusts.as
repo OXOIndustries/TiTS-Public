@@ -248,6 +248,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kally_nude.png", mimeType = "image/png")]
 		public var Bust_KALLY_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_big.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT_BELLY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_nude.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_nude_big.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT_BELLY_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/kitsune-traders.png", mimeType = "image/png")]
 		public var Bust_KAZRA_AND_LORRE:Class;
 
@@ -728,6 +737,15 @@ package classes.Resources.Busts
 			public var Full_KELLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_nude.png", mimeType = "image/png")]
 			public var Full_KELLY_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_big.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT_BELLY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_nude.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_nude_big.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT_BELLY_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;

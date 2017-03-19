@@ -120,6 +120,9 @@
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Kaithrit_Scout.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;
+		public function get Bust_KAITHRIT_SCOUT_BELLY():Class { return Bust_KAITHRIT_SCOUT; }
+		public function get Bust_KAITHRIT_SCOUT_NUDE():Class { return Bust_KAITHRIT_SCOUT; }
+		public function get Bust_KAITHRIT_SCOUT_BELLY_NUDE():Class { return Bust_KAITHRIT_SCOUT; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;

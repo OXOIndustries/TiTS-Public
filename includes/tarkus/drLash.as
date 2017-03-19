@@ -348,6 +348,18 @@ public function lashTreatment(treatment:String):void
 	addButton(0,"Next",lashTreatment2,treatment);
 }
 
+public function hasParasites(pType:String = "all"):Boolean
+{
+	if(pType == "tail" || pType == "all")
+	{
+		if (pc.hasParasiteTail()) return true;
+	}
+	if(pType == "mimbranes" || pType == "all")
+	{
+		if (attachedMimbranes() > 0) return true;
+	}
+	return false;
+}
 public function purgeParasites(pType:String = "all"):Boolean
 {
 	var parasites:Boolean = false;
