@@ -169,6 +169,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/doctor_lash.png", mimeType = "image/png")]
 		public var Bust_DR_LASH:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lessau.png", mimeType = "image/png")]
+		public var Bust_DR_LESSAU:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lessau_nude.png", mimeType = "image/png")]
+		public var Bust_DR_LESSAU_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/droid_security.png", mimeType = "image/png")]
 		public var Bust_DROID_SECURITY:Class;
 		public var Bounds_DROID_SECURITY:Rectangle = new Rectangle(60, 0, 63, 66);
@@ -717,6 +722,11 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/doctor_lash.png", mimeType = "image/png")]
 			public var Full_DR_LASH:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lessau.png", mimeType = "image/png")]
+			public var Full_DR_LESSAU:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lessau_nude.png", mimeType = "image/png")]
+			public var Full_DR_LESSAU_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/droid_security.png", mimeType = "image/png")]
 			public var Full_DROID_SECURITY:Class;

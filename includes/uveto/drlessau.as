@@ -2,7 +2,7 @@ import classes.Characters.DrLessau;
 
 public function drLessauIPresume():void
 {
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -100,7 +100,7 @@ public function drLessauTalkMenu():void
 public function drLessauWhyHere():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -116,7 +116,7 @@ public function drLessauWhyHere():void
 public function drLessauKnewDad():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -158,7 +158,7 @@ public function drLessauKnewDad():void
 public function drLessauDadIck():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -180,7 +180,7 @@ public function drLessauDadIck():void
 public function drLessauWTFRU():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -200,7 +200,7 @@ public function drLessauWTFRU():void
 public function drLessauDangers():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -216,7 +216,7 @@ public function drLessauDangers():void
 public function drLessauAppearance():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -229,7 +229,7 @@ public function drLessauAppearance():void
 public function drLessauSex():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -248,7 +248,7 @@ public function drLessauSex():void
 public function drLessauOral():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -322,7 +322,7 @@ public function drLessauVag():void
 	if(x < 0) x = rand(pc.totalVaginas());
 	
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU_NUDE");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -392,7 +392,7 @@ public function drLessauVag():void
 public function drLessauAfter():void
 {
 	clearOutput();
-	showBust("DRLESSAU");
+	showBust("DR_LESSAU");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
 	
@@ -419,7 +419,7 @@ public function drLessauAfter():void
 		output("\n\n<i>“Fuck <b>yes</b> I am,”</i> you purr, running a hand along your gravid belly. A particularly kinky part of your mind fantasizes about having a thrashing monstrous spawn in there. <i>“" + (pc.hasCock() && pc.cumQ() > 1000 ? "Not every day I get to fuck someone who cums like I do" : "Void, you cum so much") + ", and honestly? Getting fucked by a monster is <b>awesome</b>.”</i>");
 		output("\n\nHe seems pleased at you being so satisfied, giving you a kiss that you eagerly return. Your lips part just as you’re about to try slipping him some tongue, to your disappointment.");
 		output("\n\n<i>“I think you’re at your limit, [pc.name].”</i> Lessau says with a mirthful smile. <i>“You should go clean up and clean yourself out first if you still hunger for more of this monster.”</i>");
-		output("\n\nYou concede, making your way to the shower. You can’t help but " + (pc.exhibitionism() >= 33 ? "grin at" : "be embarrassed by the looks of") + " the lab techs as you walk by, most of whom blush or give thumbs-up. The " + (pc.exhibitionism() >= 33 ? "returned" : "") + " grins on the faces of the latter group tell you that you’re definitely not the only one getting some chimera action around here.");
+		output("\n\nYou concede, making your way to the shower. You can’t help but " + (pc.exhibitionism() >= 33 ? "grin at" : "be embarrassed by the looks of") + " the lab techs as you walk by, most of whom blush or give thumbs-up. The" + (pc.exhibitionism() >= 33 ? " returned" : "") + " grins on the faces of the latter group tell you that you’re definitely not the only one getting some chimera action around here.");
 		if (pc.exhibitionism() >= 50) output(" Maybe you can get them to join in sometime, or at least watch you going at it with their boss. It’s good to get to know your future employees, after all.");
 		output("\n\nThe warmth of the shower soon soothes away the eager heat in your loins, leaving only the delicious ache that comes from being well and truly fucked. You’re definitely going to have to do this again sometime.");
 	}
@@ -444,7 +444,7 @@ public function steeleBiomedBonus():Boolean
 public function steeleBiomedGangbang():void
 {
 	clearOutput();
-	showBust("CYNTHIASOLO", "WALTSOLO")
+	showBust("CYNTHIA", "WALT");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	clearMenu();
@@ -506,7 +506,7 @@ public function steeleBiomedGangbang():void
 public function steeleBiomedGangbangII():void
 {
 	clearOutput();
-	showBust("CYNTHIASOLO", "WALTSOLO")
+	showBust("CYNTHIA", "WALT");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	
@@ -561,7 +561,7 @@ public function steeleBiomedGangbangII():void
 public function steeleBiomedGangbangIII():void
 {
 	clearOutput();
-	showBust("CYNTHIASOLO", "WALTSOLO")
+	showBust("CYNTHIA", "WALT");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	
