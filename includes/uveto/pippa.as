@@ -252,7 +252,7 @@ public function givePippaFoodMenu(func:Function):void
 			else if (pc.inventory[i] is ZilHoney) giveItem = GIVE_ZIL_HONEY;
 			else giveItem = GIVE_OTHER_FOOD;
 			
-			addButton(btnSlot, pc.inventory[i].shortName, func, [giveItem, pc.inventory[i]]);
+			addButton(btnSlot, (pc.inventory[i].shortName + " x" + pc.inventory[i].quantity), func, [giveItem, pc.inventory[i]], StringUtil.toDisplayCase(pc.inventory[i].longName), ("Give Pippa " + pc.inventory[i].description + "."));
 			foodList.push(pc.inventory[i].shortName);
 			btnSlot++;
 		}
@@ -508,7 +508,9 @@ public function pippaSexMenu(func:Function):void
 	{
 		if (!pc.isTaur())
 		{
-			addButton(2, "Get Ridden", pippaChooseCockToFuckPussy, undefined, "Get Ridden", "Let Pippa ride you with her pussy.");
+			if(!pc.hasCock() && pc.hasHardLightEquipped()) addButton(2, "Get Ridden", pippaFuckPussy, -1, "Get Ridden", "Let Pippa ride you with her pussy.");
+			else if(pc.cockTotal() == 1 && !pc.hasHardLightEquipped()) addButton(2, "Get Ridden", pippaFuckPussy, 0, "Get Ridden", "Let Pippa ride you with her pussy.");
+			else addButton(2, "Get Ridden", pippaChooseCockToFuckPussy, undefined, "Get Ridden", "Let Pippa ride you with her pussy.");
 		}
 		else
 		{
