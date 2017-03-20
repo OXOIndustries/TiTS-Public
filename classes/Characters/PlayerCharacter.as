@@ -447,7 +447,7 @@ package classes.Characters
 			if(kGAMECLASS.flags["VENOM_ADDICTION"] != undefined)
 			{
 				//Not yet uber-addict:
-				if(hasPerk("Venom Slut"))
+				if(!hasPerk("Venom Slut"))
 				{
 					if(hasStatusEffect("Myr Venom Withdrawal")) kGAMECLASS.myrAddiction(-2 * totalDays);
 				}
