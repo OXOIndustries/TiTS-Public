@@ -1412,8 +1412,8 @@ public function rideKiroDickVictoryDrunkScene(blowjobbed:Boolean = false):void
 	else output("sphincter");
 	output(", stretching you wide as you accept her. She lets loose a throaty growl, licking her lips eagerly as she feels herself slipping inside of you at last. Slowly you begin bucking against her, taking inch after inch at every hump. She grunts with each impact, tail stroking across the sheets in a quick pace that conveys her excitement, clearly fighting not to reach up, grab your hips, and reverse your positions. It doesn’t take long before you find yourself seated on a sloshy, soft cushion. She groans with longing, tongue momentarily hanging out with pleasure at the feeling of being all the way inside of you. Unable to help herself, her hands reach up and caress the bulge her mammoth man-meat makes inside of you, visibly distending your belly. Her pride at stretching you out like this is palpable.");
 	//Only half stretch - Kiro used magic oil~
-	if(x >= 0) pc.cuntChange(x,chars["KIRO"].cockVolume(0));
-	else pc.buttChange(chars["KIRO"].cockVolume(0));
+	if(x >= 0) pc.cuntChange(x,Math.round(chars["KIRO"].cockVolume(0) / 2));
+	else pc.buttChange(Math.round(chars["KIRO"].cockVolume(0) / 2));
 	output("\n\nYou can feel her twin orbs churning with cum as she starts panting. You watch with great enjoyment as her tongue lolls out and she begins thrusting herself into you. Small, shallow thrusts, that barely stimulate you. You wave a finger at her. <i>“Restraint, pet.”</i>");
 
 	output("\n\n<i>“S-sorry, [pc.Master],”</i> she replies, forcing herself to be still, unable to help a tiny whimper at being so deeply inside you but unable to <i>move</i>. Slowly you rise, until only her tip remains inside you, then you fall back with a satisfying slap. She reaches up and takes hold of your [pc.legOrLegs], helping position you so that you can balance better; the last thing she wants at this critical juncture is for you to fall off!");
@@ -1446,9 +1446,21 @@ public function rideKiroDickVictoryDrunkScene(blowjobbed:Boolean = false):void
 	output("\n\nYou caress her face and say, <i>“[pc.Master] is pleased.”</i> She nods and smiles deeply, clearly just as proud of herself. Or just proud that she got such great sex even though she lost the contest. You take a few moments to catch your breath and let her catch hers, equine-prick still deeply embedded within you as you wait for a few moments more. You can feel it slowly growing flaccid after the intense workout you put it through; though your contractions do manage to keep it from going limp as fast as it would if you released her. She sighs and absently cuddles you in her arms; apparently the big tough pirate isn’t above snuggling when she’s sated. You allow her to embrace you for a moment before you pull yourself out of her grasp and sit yourself right back onto her shaft. Pressing your butt against her ");
 	if(blowjobbed) output("increasingly massive ");
 	output(" balls.");
-	//{Already full despite you helping her empty out earlier.} {Big enough to cushion you. Seems like she’s done processing all the ‘food’ you gave her.}");
+	//output(" Already full despite you helping her empty out earlier.// Big enough to cushion you. Seems like she’s done processing all the ‘food’ you gave her.");
 	output("\n\n<i>“" + pc.mf("M-master","M-mistress") + "? What are you - ooh! - doing?”</i> she asks, a touch of nervousness in her voice that is almost, but not quite, drowned out by her eagerness, her length slowly, steadily starting to stiffen inside of you. You force yourself to grip her inside you as you prepare yourself. With a seductive smile, you let her know you are just preparing yourself for round two. She didn’t think you were done, did she? You still have your whole day ahead of you. She grins in admiration and settles back, clearly ready to let you have your wicked way with her again... and again, and again too, if you want. You’re glad you won!");
-	if(x >= 0) pc.loadInCunt(chars["KIRO"],x);
+	if(blowjobbed)
+	{
+		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+		if(!pp.hasCock()) pp.createCock();
+		pp.createPerk("Fixed CumQ",(pc.cumQ() > kiro.cumQ() ? 10000 : 5000),0,0,0);
+		if(x >= 0) pc.loadInCunt(pp,x);
+		else pc.loadInAss(pp);
+	}
+	else
+	{
+		if(x >= 0) pc.loadInCunt(chars["KIRO"],x);
+		else pc.loadInAss(chars["KIRO"]);
+	}
 	processTime(35);
 	pc.orgasm();
 	kiro.orgasm();
@@ -1459,7 +1471,7 @@ public function rideKiroDickVictoryDrunkScene(blowjobbed:Boolean = false):void
 //Spike With Cum
 // Savin
 //Tool Tip: Put some cum in Kiro’s drink - as a Kui-Tan, her balls will swell way faster when she consumes spunk, so be ready for big balled tanuki loving!
-//{Requires some kind of bottled spooge}
+//Requires some kind of bottled spooge
 public function cumSpikeKirosDrink():void
 {
 	clearOutput();
@@ -1797,7 +1809,7 @@ public function kiroginityTakingPartII():void
 public function tookKiroginityPartIII():void
 {
 	clearOutput();
-	showKiro();
+	showKiro(true);
 	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Spent, you collapse on Kiro. She doesn’t recover for a few minutes, giving you both time to catch your breath and enjoy the simple pleasure of your warm bodies cuddling against one another. When her eyes finally blink open, she looks at you and smiles, then gently kisses you. You kiss her back, slowly and sensually twisting your tongue around her own, expressing your feelings in simple physical contact rather than with any words.");
@@ -2017,7 +2029,7 @@ public function catchVaginalFromKiro():void
 public function kiroFucksYourCuntPartII(x:int = 0):void
 {
 	clearOutput();
-	showKiro();
+	showKiro(true);
 	output("You come to a little later. Kiro’s still plowing you with vigorous force, and your [pc.vaginas] ");
 	if(pc.totalVaginas() == 1) output("is");
 	else output("are");
@@ -2117,7 +2129,7 @@ public function repeatVagFuckKiro():void
 
 	output("\n\nYou chuckle, and give one of Kiro’s meaty nuts a gentle squeeze - just enough to urge her ogre-sized dick to keep spurting and drooling for you. The sight of her just constantly <i>cumming</i> is enough to make your heart hammer with excitement.");
 	//if PC has full-ish nuki’ nuts:
-	if(pc.perkv1("'Nuki Nuts") > 0) output(" You can’t wait to be doing the same, but dumping your giant load deep in Kiro’s tight little pussy.");
+	if(pc.perkv1("'Nuki Nuts") > 0 && pc.balls > 0) output(" You can’t wait to be doing the same, but dumping your giant load deep in Kiro’s tight little pussy.");
 	else output(" You roll your lover’s sack in your hands, feeling the nice heft of her masculine enhancements... and loving every one of her quiet little moans.");
 	if(kiro.ballDiameter() >= 14) output(" You squeeze Kiro’s bean-bag sized nuts between your hands, grinning to yourself as her huge dick unleashes enough cum just from your gentle teasing to make a whole pack of porn studs jealous.");
 
@@ -2143,7 +2155,7 @@ public function repeatVagFuckKiro():void
 		output("\n\n<i>“Oooh, that’s the stuff, Angel,”</i> Kiro moans, chewing a lip and squeezing her tit a little harder, growing more and more desperate to wring every bit of pleasure from her body. <i>“You really know how to worship a cock, huh? Well, lemme show you how I do it...”</i>");
 		output("\n\nKiro starts to move her hips, dragging your [pc.cock] through the tight, slick slit of her sex until your crown is all that’s straining her lips open");
 		//if nuki nuts:
-		if(pc.perkv1("'Nuki Nuts")) output(", squirting thick strands of pre into her pussy");
+		if(pc.perkv1("'Nuki Nuts") > 0 && pc.balls > 0) output(", squirting thick strands of pre into her pussy");
 		output(". Rivulets of feminine excitement drool down your cock, a tiny mirror to the deluge flooding her cock-sheath. Her hands fall down to yours, lacing her fingers with your own and squeezing your [pc.boobs]; you groan and snuggle into her grasp, letting the kui-tan tease your nipples and squish your breasts even tighter around her cock.");
 
 		output("\n\nHer hips start to move after that, drawing your cock back in, and dragging her dick through your spunk-lubed cleavage. <i>“Ah, yeah,”</i> she moans, digging her fingers harder into you. Her hips rock forward and back, picking up speed as she goes - rising off your cock and thrusting back between your boobs. Double the pleasure, double the fun! Even the feeling of Kiro sliding her schlong through your rack is immensely pleasurable, nice and slippery and hot...");
@@ -2157,7 +2169,7 @@ public function repeatVagFuckKiro():void
 		output("\n\nYou start stroking her, slowly at first, but picking up speed nice and quickly. Kiro matches your speed all the while, starting to bounce in your lap. <i>“Oooh, that’s the stuff, Angel,”</i> Kiro moans, chewing a lip and squeezing her tit a little harder, growing more and more desperate to wring every bit of pleasure from her body. <i>“You really know how to worship a cock, huh? Well, lemme show you how I do it...”</i>");
 		output("\n\nKiro moves faster, dragging your [pc.cock " + x + "] through the tight, slick slit of her sex until your crown is all that’s straining her lips open");
 		//if nuki nuts: 
-		if(pc.perkv1("'Nuki Nuts") > 0) output(", squirting thick strands of pre into her pussy");
+		if(pc.perkv1("'Nuki Nuts") > 0 && pc.balls > 0) output(", squirting thick strands of pre into her pussy");
 		output(". Rivulets of feminine excitement drool down your cock, a tiny mirror to the deluge flooding her cock-sheath. Her hips come back down a moment later, spearing her again and eliciting a squeal of excitement from the lusty kui-tan. You stroke her, she rides you, and you both let your voices echo off the walls in a chorus of pleasure.");
 	}
 	//Combine:
@@ -2277,7 +2289,7 @@ public function kiroMilkerDoubleTimeBySavin():void
 
 //Manual Milking
 //Savin - Paid
-//{Any gender, needs moderate trust. Access from Sex menu}
+//Any gender, needs moderate trust. Access from Sex menu
 public function manualMilkingFromSavin():void
 {
 	clearOutput();
@@ -2766,7 +2778,7 @@ public function inviteSaenForKiroFilling():void
 	author("Adjatha");
 
 	output("You step back into the pirate’s chambers, Saendra close at your heels, eager to check out the surprise you promised her. When the halfbreed’s eyes glance on Kiro’s nubile backside, her eyes go wide as she scans further down, glued to the tanuki’s signature assets. Yours go a little wide too, for that matter - though you were only gone for a short while, the anticipation must’ve done a number on the kui-tan’s libido. Though you left her with " + kiro.ballsDescript(false, true) + ", they’ve inflated well over the size of a pair of beachballs, hanging past her knees, her legs partly swallowed by the soft, supple surface. As she turns around to face you, her expression is one of impatience and annoyance.");
-	//{First Time Intro Variant}
+	//First Time Intro Variant
 	if(flags["KIRO_X_SAEN_HAPPENED"] == undefined)
 	{
 		output("\n\n<i>“This is why you blew me off? To get some slut? You know I hate competing,”</i> she harrumphs, then looks over to Saendra with obvious disdain, <i>“even if it’s not much of a competit--Wait... Saen, is that you, honey?”</i>");
@@ -2776,7 +2788,7 @@ public function inviteSaenForKiroFilling():void
 		output("\n\nThe raccoon-girl appears to be blushing under her chestnut fur, inordinately pleased by the flattering tribute your mongrel friend is slathering on her. <i>“Y- yeah, she’s right!”</i> Kiro echos. <i>“I’m a damned work of art. You should be on your knees worshipping me!”</i> Her voice wavers, lacking some of its normal force, suggesting that for all her bluster, she’s still not quite over the surprised delight of Saendra’s flattery.");
 		flags["KIRO_X_SAEN_HAPPENED"] = 1;
 	}
-	//{Repeat Variant}
+	//Repeat Variant
 	else
 	{
 		output("\n\n<i>“Oho, my favorite acolyte, come back to worship at the altar of my cock?”</i> Kiro teases as Saendra enters. <i>“Kneel before my holy horsecock, and maybe I’ll bless you with a big, fertile load, hmm?”</i>");
