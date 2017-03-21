@@ -708,7 +708,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//H -> big H
 					else if(pc.breastRows[0].breastRatingRaw < 20)
 					{
-						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It’s hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you’re pretty sure that your fingers are sinking a little deeper into your assets. There’s a little bit more weight in your palms. You’re on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It’s hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you’re pretty sure that your fingers are sinking a little deeper into your assets. There’s a little bit more weight in your palms. You’re on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] with bigger, better boobs than them?"), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw = 20;
 					}
 					//big H -> HH
