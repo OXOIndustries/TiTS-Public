@@ -84,11 +84,14 @@ package classes.GameData
 		}
 		
 		[Serialize]
+		public var _persistentShips:Object;
+		public function get PersistentShips():Object { return _persistentShips; }
+		
+		[Serialize]
 		public var _activePlayerShip:SpaceShip;
 		public function get ActivePlayerShip():SpaceShip { return _activePlayerShip; }
 		
-		[Serialize]
-		public var _boardedShip:SpaceShip;
+		private var _boardedShip:SpaceShip;
 		public function get BoardedShip():SpaceShip { return _boardedShip; }
 		
 		private var _ownedShips:Array;
@@ -152,6 +155,8 @@ package classes.GameData
 		{
 			var so:Object = super.getSaveObject();
 			
+			DehydrateBoardedShip(so);
+			
 			so.ownedShips = [];
 			
 			for (var i:int = 0; i < _ownedShips.length; i++)
@@ -202,6 +207,8 @@ package classes.GameData
 		
 		override public function loadSaveObject(o:Object):void
 		{
+			var dehydratedBoardedShip:* = o.boardedShip;
+			
 			NewGame();
 			
 			for (var i:int = 0; i < o.ownedShips.length; i++)
@@ -251,6 +258,58 @@ package classes.GameData
 			delete o.ownedModules;
 			
 			super.loadSaveObject(o);
+			
+			HydrateBoardedShip(dehydratedBoardedShip);
+		}
+		
+		private function DehydrateBoardedShip(o:Object):void
+		{
+			if (_boardedShip == null)
+			{
+				so.boardedShip = "None";
+			}
+			else
+			{
+				var found:Boolean = false;
+				for (var key:String in _persistentShips)
+				{
+					if (_persistentShips[key] == _boardedShip)
+					{
+						found = true;
+						so.boardedShip = key;
+						break;
+					}
+				}
+				
+				if (found == false)
+				{
+					so.boardedShip = _boardedShip.getSaveObject();
+				}
+			}
+		}
+		
+		private function HydrateBoardedShip(o:Object):void
+		{
+			if (o === undefined)
+			{
+				_boardedShip = null;
+			}
+			else if (o is String)
+			{
+				if (o == "None")
+				{
+					_boardedShip = null;
+				}
+				else
+				{
+					_boardedShip = _persistentShips[o];
+				}
+			}
+			else if (o is Object)
+			{
+				_boardedShip = (new getDefinitionByName(o.classInstance));
+				_boardedShip.loadSaveObject(o);
+			}
 		}
 		
 		// Also store any persistent ships we may eventually give a shit about, f.ex:
