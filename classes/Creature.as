@@ -858,11 +858,12 @@
 			return "Despite the heat at the base of your spine, nothing changes back there.";
 		}
 		
-
 		public var tailCount: Number = 0;
 		public function tailCountUnlocked(newTailCount:Number):Boolean
 		{
 			if (hasTail(GLOBAL.TYPE_VULPINE) && tailCount == 9 && (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails") || hasPerk("Corrupted Nine-tails"))) return false;
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE) return false;
+			if (tailType == GLOBAL.TYPE_COCKVINE) return false;
 			return true;
 		}
 		public function tailCountLockedMessage():String
@@ -873,6 +874,13 @@
 				if (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails")) msg += "azure";
 				else msg += "purple";
 				msg += " sparks from your [pc.tails], but nothing is changed.";
+				return msg;
+			}
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_COCKVINE)
+			{
+				msg = "The creature masquerading as a tail seems pretty spooked about something all of a sudden;";
+				if (isBiped()) msg += " it’s wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
+				else msg += " it’s busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
 				return msg;
 			}
 			return "Despite the heat at the base of your spine, nothing changes back there.";
