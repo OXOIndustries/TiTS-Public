@@ -1310,7 +1310,8 @@ public function initMhengaRooms():void
 	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.OUTDOOR);
 	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.HAZARD);
 	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.FOREST);
-	rooms["3. FOOT OF THE CLIFF"].runOnEnter = undefined;
+	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.WATERFALL);
+	rooms["3. FOOT OF THE CLIFF"].runOnEnter = footOfTheCliffBonus;
 
 	rooms["4. RED ROCK OUTCROP"] = new RoomClass(this);
 	rooms["4. RED ROCK OUTCROP"].roomName = "RED ROCK\nOUTCROP";
@@ -1320,7 +1321,8 @@ public function initMhengaRooms():void
 	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.OUTDOOR);
 	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.HAZARD);
 	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.FOREST);
-	rooms["4. RED ROCK OUTCROP"].runOnEnter = undefined;
+	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.WATERFALL);
+	rooms["4. RED ROCK OUTCROP"].runOnEnter = waterFallAggroProc;
 
 	rooms["5. RED ROCK LEDGE"] = new RoomClass(this);
 	rooms["5. RED ROCK LEDGE"].roomName = "RED ROCK\nLEDGE";
@@ -1330,7 +1332,8 @@ public function initMhengaRooms():void
 	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.HAZARD);
 	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.FOREST);
-	rooms["5. RED ROCK LEDGE"].runOnEnter = undefined;
+	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.WATERFALL);
+	rooms["5. RED ROCK LEDGE"].runOnEnter = waterFallAggroProc;
 
 	rooms["6. WATERFALL STAIRWAY"] = new RoomClass(this);
 	rooms["6. WATERFALL STAIRWAY"].roomName = "WATERFALL\nSTAIRWAY";
@@ -1340,7 +1343,8 @@ public function initMhengaRooms():void
 	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.OUTDOOR);
 	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.HAZARD);
 	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.FOREST);
-	rooms["6. WATERFALL STAIRWAY"].runOnEnter = undefined;
+	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.WATERFALL);
+	rooms["6. WATERFALL STAIRWAY"].runOnEnter = waterFallAggroProc;
 
 	rooms["7. DRIFTWOOD SHOULDER"] = new RoomClass(this);
 	rooms["7. DRIFTWOOD SHOULDER"].roomName = "DRIFTWOOD\nSHOULDER";
@@ -1350,25 +1354,26 @@ public function initMhengaRooms():void
 	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.OUTDOOR);
 	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.HAZARD);
 	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.FOREST);
-	rooms["7. DRIFTWOOD SHOULDER"].runOnEnter = undefined;
+	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.WATERFALL);
+	rooms["7. DRIFTWOOD SHOULDER"].runOnEnter = driftwoodShoulderBonus;
 
 	rooms["8. RED ROCK SCREE"] = new RoomClass(this);
 	rooms["8. RED ROCK SCREE"].roomName = "RED\nROCK SCREE";
-	rooms["8. RED ROCK SCREE"].description = "";
+	rooms["8. RED ROCK SCREE"].description = "You are on a higgledy-piggledy run of loose sunburned rock, above the lenient shoulder. You really are a considerable distance up now - the sound of the waterfall is running liquid and a distant crash far below - but at least it’s no longer a straight drop down. The loose, crumbling rock means you have to be careful as you climb. To the east you can see a crevice in the grey rock face 45 degrees to the one you are currently on. A tough, fibrous rope bridge strung across the cliff wall and the smoothness wrought by many feet around its entrance suggest it’s frequently visited by the zil. Meanwhile you think you can just about see the tops of some wax structures to the west, beyond the head of the falls.";
 	rooms["8. RED ROCK SCREE"].eastExit = "9. GREY ROCK SHRINE";
 	rooms["8. RED ROCK SCREE"].westExit = "10. TOP OF THE CLIFF";
 	rooms["8. RED ROCK SCREE"].southExit = "7. DRIFTWOOD SHOULDER";
 	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.HAZARD);
 	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.FOREST);
-	rooms["8. RED ROCK SCREE"].runOnEnter = undefined;
+	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.WATERFALL);
+	rooms["8. RED ROCK SCREE"].runOnEnter = waterFallAggroProc;
 
 	rooms["9. GREY ROCK SHRINE"] = new RoomClass(this);
 	rooms["9. GREY ROCK SHRINE"].roomName = "GRAY\nROCK SHRINE";
 	rooms["9. GREY ROCK SHRINE"].description = "";
 	rooms["9. GREY ROCK SHRINE"].westExit = "8. RED ROCK SCREE";
 	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.OUTDOOR);
-	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.HAZARD);
 	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.FOREST);
 	rooms["9. GREY ROCK SHRINE"].runOnEnter = undefined;
 
@@ -1380,6 +1385,7 @@ public function initMhengaRooms():void
 	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.OUTDOOR);
 	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.HAZARD);
 	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.FOREST);
+	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.WATERFALL);
 	rooms["10. TOP OF THE CLIFF"].runOnEnter = undefined;
 
 	rooms["11. Zil Village Outskirts"] = new RoomClass(this);

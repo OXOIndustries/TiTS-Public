@@ -1,4 +1,5 @@
-﻿/*
+﻿import classes.Items.Treasures.AmberIdol;
+/*
 Plantation Quest
 by Nonesuch, the such of none. Whatever that means. I’m just stalling for time.
 
@@ -49,13 +50,25 @@ public function showKane():void
 	showBust("KANE");
 }
 
-
 public function lichensAndIronwoodsAbleDisableLelPlantationQuestWrapper():Boolean
 {
 	if(flags["PLANTATION_QUEST"] == 0 && flags["PQUEST_ABLE_TALK_DISABLE"] == undefined) flags["PQUEST_ABLE_TALK_DISABLE"] = 1;
 	return jungleEncounterChances();
 }
-
+public function waterFallAggroProc():Boolean
+{
+	if(flags["ENCOUNTERS_DISABLED"] == undefined)
+	{
+		flags["ENCOUNTERS_DISABLED"] = 1;
+		if(rand(3) == 0)
+		{
+			if(rand(2) == 0) zilHornetAggro();
+			else hoverFlyIntroProc();
+			return true;
+		}
+	}
+	return false;
+}
 
 //Subject: Salutations!
 //From: Shep Darnock
@@ -730,457 +743,576 @@ public function loseToKane():void
 	CombatManager.genericLoss();
 }
 
+//FOOT OF THE CLIFF
+public function footOfTheCliffBonus():Boolean
+{
+	if(flags["PQ_CLIFF_FOOTED"] == undefined)
+	{
+		flags["PQ_CLIFF_FOOTED"] = 1;
+		output("You sigh, gazing up at the looming red cliff face in front of you, so high it’s impossible to ascertain where it levels out. Well... it’s not going to climb itself.");
+		if(pc.hasItem(new ClimbingKit())) output(" At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.");
+		output("\n\n");
+	}
+	output("To the immediate west of the foaming waterfall pool the land rises, tufts of scrub growing out of natural steps at the foot of the red rock cliff. If you carefully climb outwards upon them from the waterfall pool, you can work your way around onto the cliff face proper.");
+	return waterFallAggroProc();
+}
+
+//DRIFTWOOD SHOULDER
+public function driftwoodShoulderBonus():Boolean
+{
+	if(flags["PQ_NALEENED"] == undefined) output("The angular, chipped rock is fairly level and dry here, high up the variegated cliff face. Going off the bleached wood and tangles of dried-out vegetation straggling the rock here and the waterfall probably once ran over this part of the mountain as well, before some calamitous shrug of geography changed the river’s course. From this vantage point, you can at last see the top of the falls - a white curtain tumbling down over a sheer ledge thirty feet above - and what you have to do to get to the top. The next stage is the short face just across the withered scrub, or the deadly wet causeway below.");
+	else
+	{
+		output("The angular, chipped rock is fairly level and dry here, high up the variegated cliff face. Probably the waterfall once ran over this part of the mountain as well, going off the bleached wood and tangles of dried-out vegetation straggling the rock, here and there, before the river course changed due to some calamitous shrug of the geography. From this vantage point, you can at last see the top of the falls - a white curtain tumbling down over a sheer ledge thirty feet above - and what you have to do to get to the top.");
+		output("\n\nOf course, you know now to avoid walking straight across the treacherous, honeycombed rock. Unless... you actually want to go visit the sex-mad kitty snakes beneath the falls?");
+		addButton(0,"Fall",driftwoodShoulderDoofiness,true);
+	}
+	return false;
+}
+
+public function driftwoodShoulderDoofiness(forceFall:Boolean = false):Boolean
+{
+	if(pc.reflexes() / 2 + rand(20)+1 >= 35 && !forceFall) output("\n\nYou begin to pick your way across the driftwood-scattered shoulder - and pause. Carefully, you reach out and pluck one of the lumps of dry bleached wood off the rock. A black hole yawns beneath it, breathing water-cooled air into your face. This whole section is as hollow as a honeycomb! You move as daintily as you can around the side, not putting your weight on any of the old vegetation. You think you hear sighs and hisses beneath you, carried up from what sounds like many feet below... thankfully no zil takes this particular opportunity to molest you, and after a tense few minutes you reach the other side. Whew!");
+	else
+	{
+		clearOutput();
+		output("You pick your way across the driftwood-scattered shoulder. It’s rather pleasant to not have to use your hands for once. You are halfway to the other side when a large tangle of rotten wood and dried scrub gives way beneath you, and with a horrified wail and a lurch in your chest you fall [pc.feet] first into a gaping chasm below.");
+		output("\n\nYou hurtle downwards, imagining the terrible impact, your broken body splayed on jagged stone in some Oneforsaken cave nobody will ever find you... before your [pc.butt] touches smooth rock, you whizz down a natural, water-carved slide and are flung into a deep, black pit, landing in something soft and dry before you can properly take in what’s happened.");
+		output("\n\nYou have a single, short moment to feel adrenaline-soaked relief, to move your limbs and feel for yourself that nothing is broken... before the couch beneath you shifts lugubriously, a multitude of hands touch your [pc.chest] and [pc.groin], and the stench of leathery sex settles into your nostrils.");
+		output("\n\n<i>“What was that?”</i> coos a woozy voice, somewhere below the shifting warmth.");
+		output("\n\n<i>“Fresh meat,”</i> hisses a female voice in your ear. You turn your head, gaze into lust-clouded feline eyes. The naleen smiles at you at the same time as she, and many others, coil their strong tails around your [pc.legs]. <i>“Provided to us by our zil landlords. So sweet, how they think of us.”</i> Her fluffy breasts press into your [pc.chest] as she molds her lips against yours...");
+		IncrementFlag("PQ_NALEENED");
+		//Lust up
+		processTime(30);
+		clearMenu();
+		showName("\nFALLING!");
+		showBust("NALEEN_BALL");
+		//addButton(0,"Next",naleenOrgyBall9999);
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyCharacters(pc);
+		CombatManager.setHostileCharacters(new NaleenMatingBall());
+		CombatManager.victoryScene(beatUpNaleenRapeBall);
+		CombatManager.lossScene(loseToNaleenRapeyBall);
+		CombatManager.displayLocation("MANY NALEEN");
+
+		clearMenu();
+		addButton(0, "Next", CombatManager.beginCombat);
+		return true;
+	}
+	return false;
+}
+//GREY ROCK SHRINE
+//Does not require energy to visit
+public function greyRockShrine():void
+{
+	output("Compared to the rest of the cliffs, using the rope bridge to access the crevice here is child’s play.");
+	output("\n\nTwo flickering candles set in alcoves right at the back light the cave, which stretches back about fifteen feet. The walls are covered with ochre palm prints and spindly paintings of winged beings on hunts, defeating serpents, kneeling before indescribable objects and beings... there is a carved table at the back between the two candles, upon which a number of items have been placed - arrowheads, a necklace of small discs, a long, curved fang.");
+	if(flags["PQ_TOOK_AMBER"] == undefined) 
+	{
+		output(" What catches the eye, however, is a huge round amber gemstone of some sort, covered in charcoal figures. It’s impossible to tell how valuable it might be.");
+		//Quinn persuaded: 
+		if(flags["9999"] != undefined) output("Probably best to leave all of this alone.");
+		else
+		{
+			//[Take It] [Leave]
+			addButton(0,"Take It",takeAmberPQDealy);
+		}
+	}
+	else output("There’s a fairly noticeable gap where the centrepiece of this display once was.");
+}
+
+//Take It
+public function takeAmberPQDealy():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	flags["PQ_TOOK_AMBER"] = 1;
+	output("You gingerly grasp the amber, half expecting some sort of trap to go off. But nothing happens. Shrugging, you slip the gemstone into a belt pocket.\n\n");
+	quickLoot(new AmberIdol());
+}
+
+//TOP OF THE CLIFF
+public function topOfTheCliffBonus():Boolean
+{
+	output("The wind whips over your [pc.hair] as you gaze southwards out at the green-and-occasionally-turquoise blanket of tree tops below you. The view from here, at the edge of a jungle-festooned mesa overlooking a plummeting cliff, is beyond words. ");
+	if(silly) output("A flock of bird creatures fly by, conveniently providing a sense of scale. ");
+	output("You think you can make out the gleaming white of Esbeth in the distance - and the gleaming reflection of spacecraft taking off and coming in. You are standing on the bare banks of the river which forms the waterfall. The rapids gurgle and chunter as it hurls itself off the outcropping rocks to make the distant thunder at least a hundred feet down.");
+	output("\n\nAhead, arranged around the river in the squat, lime, cedar-like trees that grow up here, are zil buildings - pale yellow and disc-shaped, almost like giant fungi growing out of the forest.");
+	return false;
+}
+
+//PC attempts to rest on waterfall squares
+public function restOnWaterfall():void
+{
+	clearOutput();
+	showName("\nNOPE.");
+	output("It’s impossible to rest here, clamped to the cliff as you are. Perhaps there is respite to be found at the top...?");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//PC attempts to fap on waterfall squares
+public function fapOnWaterfall():void
+{
+	clearOutput();
+	showName("\nNOPE.");
+	output("You can’t get at your bits whilst holding onto the cliff for dear life - even if there weren’t a swarm of zil somewhere nearby, waiting for you to do just that! Perhaps there is respite to be found at the top...?");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//PC Falls Off
+//Happens if PC energy/HP reaches 0 at any time, or if PC rolls it whilst fighting and ungripped.
+public function pcDunFallsOffDatHill():Boolean
+{
+	//Exhaustion
+	//Does not trigger during combat - so PC can use energizers during combat to avoid triggering it after resolution
+	if(pc.energy() <= 0 && !inCombat())
+	{
+		clearOutput();
+		showName("TOO\nTIRED");
+		output("You can’t take this anymore... ");
+		if(!(pc.armor is EmptySlot) && !(pc.upperUndergarment is EmptySlot)) output("Your sweat has soaked into your [pc.upperGarments]");
+		else output("You are soaked in sweat");
+		output(", the tendons in your wrists feel like they’re made of red hot iron, and your nerves are utterly shot. You can barely reach out to the next handhold without almost retching in fright, how far you are off the ground and the merciless sound of the waterfall blotting out all rational thought. You can only focus on one thing - getting down and away from this vertical nightmare, now.");
+		output("\n\nYou don’t remember much of the next hour - it’s an agonising descent, one slow finger-hold down after another, that terrible war-like blend of boredom and all-pervading fear. The one blessing is that the zil don’t attack you. Perhaps they sense you no longer present a threat to them, or simply don’t have the stomach to attack you in your current state.");
+		output("\n\nAfter altogether too long, you are collapsed in a sweat-soaked heap near the roaring hush of the waterfall pool, waiting for your heartbeat to return to normal and the adrenaline to stop jangling your nerves. Dully you stare up at the towering cliff that has defeated you. You are going to need a long rest, and maybe a rethink, before attempting it again.");
+		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a hard climb, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		//Place PC in WP square, +1 hour
+		processTime(60);
+		currentLocation = "2. WATERFALL POOL";
+		generateMap();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return true;
+	}
+	//Sparta’d
+	else
+	{
+		output("You bring your [pc.weapon] up to bear, preparing to give your insectile opponent a swatting... and place your weight on rock that suddenly isn’t there at all. You suck in a huge gulp of air as you find yourself slipping, falling, desperately clawing at the cliff face as you slide off the perch, jutting stone clawing at your chest and face. The callous laughter of the zil rings in your ears as handfuls of dirt come loose in your hands and you find yourself watching the ledge fly away from you... and the only sound is the waterfall and the air in your ears, very loud...");
+		//Fell from 3 squares up from Waterfall Pool or more: 
+		if(9999) 
+		{
+			output("\n\nSMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
+			pc.HP(-1000);
+		}
+		else
+		{
+			output("\n\nSPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
+			pc.HP(-10);
+		}
+		//Take 75% HP damage. If 2 < squares move down 2 squares, If less move to WP square
+		//Gotta make individual shit for individual rooms. Thanks 'suchy.
+		if(currentLocation == "3. FOOT OF THE CLIFF") currentLocation = "2. WATERFALL POOL";
+		else if(currentLocation == "4. RED ROCK OUTCROP") currentLocation = "3. FOOT OF THE CLIFF";
+		else if(currentLocation == "5. RED ROCK LEDGE") currentLocation = "3. FOOT OF THE CLIFF";
+		else if(currentLocation == "6. WATERFALL STAIRWAY") currentLocation = "4. RED ROCK OUTCROP";
+		else if(currentLocation == "7. DRIFTWOOD SHOULDER") currentLocation = "5. RED ROCK LEDGE";
+		else if(currentLocation == "8. RED ROCK SCREE") currentLocation = "6. WATERFALL STAIRWAY";
+		else if(currentLocation == "10. TOP OF THE CLIFF") currentLocation = "7. DRIFTWOOD SHOULDER";
+		else currentLocation == "2. WATERFALL POOL";
+		generateMap();
+	}
+	return false;
+}
+
+//PC always starts gripping the cliff. They suffer a 25% accuracy loss as long as this is the case. If they choose to release they no longer suffer this, but have a 40% chance of being knocked down the cliff every time the opponent connects with them. PC can swap without wasting a turn.
+/*Suggested Stats
+Level 5
+HP: 65
+Armor: 20
+Initial Lust: 30
+Dodge: 10%
+Intro
+*/
+
+public function zilHornetAggro():void
+{
+	output("\n\nSomething flicks past your ear. Imagining falling rock, you look up - and manage to duck to one side as the long, barb-tipped spear is thrust at you more accurately. <i>Real</i> falling rock crumbles beneath your [pc.feet].");
+	output("\n\n<i>“You are mine, far shist pig!”</i> squeaks the painted, armored female zil that is clutching it, roped to the cliff above you. Getting assaulted like this from above this high up is horribly unnerving - your heart chunters and your every instinct screams for you to make her stop.");
+	//if(9999) {At least your climbing gear give you a semblance of security whilst you fend her off.} / {You will have to clutch to the rock face and fend her off one-handed!}");
+	//start fighto!
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new ZilHornet());
+	CombatManager.victoryScene(pcWinsAgainstHornet);
+	CombatManager.lossScene(pcLoses2Hornet);
+	CombatManager.displayLocation("ZIL HORNET");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+	return;
+}
+
+//Release Grip
+//Tooltip: Let go of the cliff face so you can fight the zil properly.
+public function releaseGrippyDoDa():void
+{
+	output("You release your grip on the rock so you can properly defend yourself against your opponent. You try and put the whistling void below you out of mind...");
+}
+//Take Grip
+//Tooltip: Grip the cliff face with one hand so you don’t risk falling off.
+public function takeGripInTheButt():void
+{
+	output("You grip the cliff face, and the terrible anxiety creeping up your spine about the drop below you alleviates. Of course, fighting off your opponent is a bit tougher now...");
+}
+
+//PC Wins
+public function pcWinsAgainstHornet():void
+{
+	if(enemy.HP() <= 1) output("The spear sags in the fazed and wounded hornet’s grip, and you take the opportunity to seize it and rip it out of her grip. It’s clanking and splintering its way downwards long after you’ve thrown it. The zil hoists herself away before you can grab her, too.");
+	else output("The spear sags in the hornet’s grip as she’s finally driven to distraction, reaching beneath her armor with one hand to frig herself furiously. You take the opportunity to seize the spear and rip it out of her grip. It’s clonking and splintering its way downwards long after you’ve thrown it. The zil hoists herself upwards before you can grab her, too.");
+	//{merge}
+	output("\n\n<i>“You’ll tire eventually, land-stealer!”</i> she cries, as she pulls frenetically at her rope, reeling her bobbing abdomen and full, bare buttocks away from you.\n\n");
+	CombatManager.genericVictory();
+}
+
+//PC Loses
+public function pcLoses2Hornet():void
+{
+	if(pc.lust() >= pc.lustMax()) output("You groan woozily, overcome by pheromonal lust. All you want to do is shove your hand between your thighs and masturbate, but if you do that you’ll fall off...");
+	else output("You shudder, unable to summon the will to keep fighting. It’s all you can do to clutch agonized to the cliff and wish to be anywhere else.");
+	output("\n\nLoose rock rattles past you, chitinous boots working their way down towards you. A throbbing buzz seems to approach from all around you...");
+	output("\n\n<i>“No!”</i> growls the female zil, close now above you. You hear the creak of rope and swish of her spear. <i>“Be off with you! [pc.He] is mine.”</i> Blearily you look up, just in time to see a yellow-and-black vision of barbarian fury descend on you, honey-slick pussy first.");
+
+	//If dick that fits
+	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0)
+	{
+		var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
+		output("\n\n<i>“Like that?”</i> she demands, bending her pronged abdomen back to stab it into you above your [pc.chest]. Needling pain and fierce heat spreads out from the puncture wound. <i>“And that? And that?”</i> You cry out weakly, cringing away from her stinger, trying to beg for mercy. [pc.EachCock] responds immediately to her venom, tent-poling ");
+		if(!pc.isCrotchExposed()) output("your [pc.lowerUndergarments] ");
+		output("so fiercely you find yourself doubting ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("they");
+		output(" will ever go soft again. The arousal is so intense, your mouth open and vision swimming, you don’t even realize immediately what she’s doing as she descends on her ropes - reaching around you, pushing your face between her soft, pert breasts - until you feel the tough, fibrous pressure on the small of your back.");
+
+		output("\n\n<i>“I’m not having you kill yourself before I’ve gotten my satisfaction,”</i> she growls in your ear, as you sag backwards with relief in her makeshift harness. <i>“As much as I doubt you know the meaning of sacrificial honor, land-stealer.”</i> She descends still further, the give of her breasts shifting down your [pc.chest], until she can ");
+		if(!pc.isCrotchExposed()) output("pull your [pc.lowerGarments] down your [pc.legs] with a rude rip and shove, and ");
+		output("circles her smooth, booted legs around your [pc.hips]. With no further preamble, she roughly shoves her honey-leaking twat onto your helplessly erect [pc.cockNoun " + x + "].");
+		output("\n\nYou twitch and gasp as she uses you with savage jerks of her lithe, athletic thighs, jerking your length in her warm, slimy depths, taut abdomen slapping against your [pc.belly].");
+		if(pc.cocks[x].cLength() < 5) output("\n\n<i>“You are hung like the meekest of our men,”</i> she snaps in frustration, digging her fingers into your cheek, upping the pace of her humping. <i>“The word-wolf says you star-people have become weak from dependence on your metal pipes - this is surely what he meant!”</i>");
+		else output("\n\n<i>“Yes! Yes! Yes!”</i> she grits, digging her fingers into your cheek, upping the pace of her humping. <i>“Tell your masters to send MANY more weaklings with thick manhoods between their thighs. I enjoy them very much!”</i>");
+
+		//{merge}
+		output("\n\nYou are feverish, writhing to the pulse of pheromones slathered over your every sense, and you rocket [pc.cum] into her milking snatch in an unstoppable flurry");
+		if(pc.cumQ() >= 60) output("until it is oozing and dripping down your [pc.legs] into the void below");
+		output(".");
+
+		output("\n\n<i>“Already?”</i> the zil snorts, as you flail against her like a landed fish. She viciously stabs you with her stinger again in the [pc.thigh], a flare of pain to go with the intoxicating pleasure of her slick, tar cunt gloving your [pc.cock " + x + "]. <i>“Already? Do you think to escape by wilting out of me, pathetic soldier-child? I have barely begun! See how a true warrior fucks, and dwell upon it next time you think to invade our lands!”</i>");
+
+		output("\n\nYour dick is still achingly erect, and probably will be for hours given the sheer volume of zil-venom teeming through your veins. The only thing you can do is hang there and let her continue to have her savage way with your poor, tender body; feel her dig her fingers and thighs into you, feel the heat rise up inexorably to the kneading, honey-hole and erupt, flexing increasingly less and less [pc.cum] into that apoplectic insatiability until it’s clenching up dryly, and it’s all just a fever dream of stinging pain and swimming pleasure...");
+		//Time forward 1 hour, energy -70%, move to WP square
+		processTime(10);
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.energy(-50);
+		clearMenu();
+		addButton(0,"Next",zilHornetDickloss2);
+	}
+	//If no dick that fits
+	else
+	{
+		output("\n\n<i>“Like that?”</i> she demands, bending her pronged abdomen back to stab it into you above your [pc.chest]. Needling pain and fierce heat spreads out from the puncture wound. <i>“And that? And that?”</i> You cry out weakly, cringing away from her stinger, trying to beg for mercy you already know you aren’t going to get. ");
+		if(pc.hasVagina()) 
+		{
+			output("[pc.EachVagina] responds immediately to her venom, juicing ");
+			if(!pc.isCrotchExposed()) output("your [pc.underGarments] ");
+			output("so badly it’s like somebody just turned a warm tap on down there. ");
+		}
+		else if(pc.hasCock())
+		{
+			output("[pc.EachCock] responds immediately to her venom, tent-poling ");
+			if(!pc.isCrotchExposed()) output("your [pc.lowerUndergarments] ");
+			output("so fiercely you find yourself doubting it will ever go soft again. ");
+		}
+		output("The arousal is so intense, your mouth open and vision swimming, you don’t even realize immediately what she’s doing as she descends on her ropes and reaches around you, pushing your face between her soft, pert breasts until you feel the tough, fibrous pressure on the small of your back.");
+		output("\n\n<i>“I’m not having you kill yourself before I’ve taken my satisfaction,”</i> she growls in your ear, as you sag backwards with relief in the makeshift harness. <i>“As much as I doubt you know the meaning of sacrificial honor, land-stealer.”</i>");
+		if(!pc.hasCock()) 
+		{
+			output(" She raises a woad-daubed eyebrow as her gaze travels further down - presumably taking in the fact you aren’t tent-poling like mad");
+			if(pc.isCrotchExposed()) output("downstairs");
+			else output("in your [pc.underGarments]");
+			output(" - before athletically swinging her armored yellow legs around your neck.");
+		}
+		if(pc.hasCock()) 
+		{
+			output(" She snorts in disgust as her gaze travels further down - taking in the massive erection you’re sporting, far too big for a petite wasp girl to do anything with - before athletically swinging her armored yellow legs around your neck.");
+		}
+		output("\n\n<i>“You know how to lick, far shist pug,”</i> the yellow-and-black hellion rising over you asserts, bumping her sweet, oozing mons against your [pc.lips]. <i>“Your master’s boots don’t shine themselves, after all. Proceed.”</i>");
+
+		output("\n\nThe sound of the waterfall and wind around your precarious perch are muffled intermittently by soft yellow flesh clutching up around your [pc.ears] as you helplessly lap at your conqueror’s pussy. Whenever she feels you’re not giving it everything you’ve got, or your [pc.tongue] doesn’t dart across her flaps in exactly the way she wants, you feel a sharp point scrape across your [pc.belly], her sting circling over your [pc.skinFurScales] meaningfully. It’s intoxicatingly horrible - the more you mash your lips into her sex and bend your tongue into her warm channel the more she oozes honey, and the more you are forced to swallow the higher the pheromones fizz in your veins, your heart thumping in your chest");
+		if(pc.hasVagina()) output(" and [pc.eachVagina] dribbling [pc.girlCum] down your [pc.thighs] in giddy excitement");
+		else if(pc.hasCock()) 
+		{
+			output(" and your ignored, massive dick");
+			if(pc.cockTotal() > 1) output("s");
+			output(" strain against your [pc.belly] in giddy excitement");
+		}
+		output(".");
+
+		output("\n\n<i>“Good... right there,”</i> she groans, back arched against her ropes. You moan woozily as her thighs tighten hard around your head and she starts reactively thrusting herself against your face, smearing sticky sugar across your cheeks and nose. <i>“Yes!”</i> She cries out, a sudden gush invading your mouth and blotting out your throat. Your cough turns into a yelp of pain as she stings you in the thigh - from a loss of control or pure sadism, it’s impossible to tell. You whimper around your mouthful of bee twat as the surge of venomous heat forces you to orgasm, ");
+		if(pc.hasVagina()) output("[pc.eachVagina] pulsing delirious pleasure through your over-sensitized, sweating frame");
+		else if(pc.hasCock()) output("[pc.eachCock] pulsing wasted [pc.cum] up your sweaty front");
+		else output("your [pc.anus] clenching up in delirious pleasure");
+		output(".");
+
+		output("\n\n<i>“Yes! You like this, don’t you land-stealer!”</i> pants the zil, jabbing her chitinous boots into your back. <i>“It is good, because we have barely begun! A victorious warrior requires many groveling lickings from her pickings! If you did not know this you had no right coming here!”</i>");
+		output("\n\nUtterly defeated and subsumed in a deep sea of pheremonal honey, you can do nothing but dip your face between her thighs and tongue her opened snatch, the leak of thick sugar seeming to ooze directly down to your loins");
+		output(", filling it with slathering lust and forcing you to another orgasm, then another, then another...");
+
+		//Time forward 1 hour, energy -70%, move to WP square
+		processTime(10);
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.energy(-50);
+		addButton(0,"Next",zilHornetCuntLoss2);
+	}
+}
+
+public function zilHornetCuntLoss2():void
+{
+	clearOutput();
+	currentLocation = "2. WATERFALL POOL";
+	generateMap();
+	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
+	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but these are all reasons to be grateful.\n\n");
+	processTime(50);
+	pc.orgasm();
+	CombatManager.genericLoss();
+}
+
+public function zilHornetDickloss2():void
+{
+	clearOutput();
+	currentLocation = "2. WATERFALL POOL";
+	generateMap();
+	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
+	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but there are reasons to be grateful.");
+	output("\n\n");
+	processTime(50);
+	pc.orgasm();
+	CombatManager.genericLoss();
+}
+
+//Zil Hoverfly
+//Same set of grip/no grip mechanics to the Hornet
+/*Suggested Stats
+
+Level 5
+HP: 65
+Armor: 20
+Initial Lust: 25
+Dodge: 10%
+*/
+
+//Intro
+public function hoverFlyIntroProc():void
+{
+	output("\n\nThe crash and hush of the waterfall is progressively drowned out by another sound - the throbbing hum of skateboard-sized insect wings. With a dull lurch of dread, you turn your head to take in the male zil hovering above you, short stabbing spear in one hand and long shield in the other, war paint turning his scowl into a mask of fury.");
+	output("\n\n<i>“You should not have exposed yourself like this, far shist land-stealer. You are mine for the plucking!”</i>");
+	if(9999) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend him off.");
+	else output("\n\nYou will have to clutch to the rock face and fend him off one-handed!");
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setHostileCharacters(new ZilHoverFly());
+	CombatManager.victoryScene(winVsHoverfly);
+	CombatManager.lossScene(loseToHoverfly);
+	CombatManager.displayLocation("HOVERFLY");
+
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+	return;
+}
+
+//PC Wins
+public function winVsHoverfly():void
+{
+	output("Spear and shield splinter and clatter their long way down the cliff. ");
+	if(enemy.HP() <= 1) output("The zil warrior sags on his wings, too thrashed to do anything but hold himself in the air.");
+	else output("Face orange, the zil warrior claws at his groin plate, all thoughts departed except the need you’ve instilled in his nethers.");
+	output("\n\n<i>“You’ll tire eventually, land-stealer!”</i> he grits angrily as he sinks an erratic and jerky path downwards, eventually disappearing beneath the treetops. You allow yourself a sigh of relief.\n\n");
+	CombatManager.genericVictory();
+}
+
+//PC Loses
+public function loseToHoverfly():void
+{
+	output("You stumble and suddenly feel rock crumbling beneath your [pc.feet]. For one horrible moment you are losing your balance, the sound of the waterfall very loud in your ears...");
+	output("\n\nThe zil barges into you, arresting your fall with a flying rugby tackle.");
+	output("\n\n<i>“Not having you kill yourself, land-stealer,”</i> he growls, clasping you around the [pc.chest]. The throbbing flicker of his wings is like a cinemascope of the sky. <i>“Least not before I’ve gotten my satisfaction.”</i> The flicker intensifies as he half drags, half carries you down to a sheltered spot on the cliff. You are too subsumed in ");
+	if(pc.lust() >= pc.lustMax()) output("lust");
+	else output("tiredness");
+	output(" and frazzled by the fright of losing your balance. If the energetic wasp boy wants to fuck you... fine. That’s fine. That’s better than falling 50 feet onto jagged rock.");
+
+	output("\n\nThis train of thought is aided by the sweet, heated smell of his lean, athletic flesh, baking your senses in irresistible, cloying pheromones. It’s so easy to just breathe that in and let it soothe your jangling nerves with thoughts of thick, sexual honey");
+	if(pc.hasGenitals()) output(", ");
+	if(pc.hasCock()) output("[pc.eachCock] growing tender and erect");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("[pc.eachVagina] moistening and widening eagerly");
+	output(". By the time he’s laid you on the rocky shelf you’re ctually salivating slightly in anticipation.");
+
+	output("\n\nThe zil warrior slides his wings down and lies back on the rock, slender chest heaving, his expression one of well-worked triumph. He opens his gleaming thighs and retracts his groin plate, murmuring as his thick, jet, foreskinned dick springs outward, erect and ready.");
+	output("\n\n<i>“It’s not going to suck itself,”</i> he says, gazing at you heavy-lidded with the air of a returning conqueror. <i>“Do a good job and who knows... I could be persuaded to carry you down to the bottom.”</i>");
+	output("\n\nIt’s easy to agree to these terms. So easy that you’d worry about your current state of mind, but that would draw focus away from how enjoyable it is to grasp the bee boy’s cock at the root, fold his foreskin back with drags of your [pc.lips] and spread the ambrosia of zil spunk over your taste buds. The hoverfly’s slim, flat chest rises and falls, giving buzzing, sighing voice to the pleasure you give him by circling his exposed head with your [pc.tongue] before fully enveloping him in your mouth, the smooth, hard tar rubbing delectably over your lips as you hollow your cheeks around it.");
+	output("\n\nThe more intently you bob your head and tongue the zil’s shaft the more of his sweet pre he leaks, and the denser your own fug of lust becomes - it’s a deeply gratifying feedback loop which you quickly get lost in, all other thoughts drowned out by the need to keep milking him for more of that wonderful, oozing sugar.");
+	output(" Each drop you wick away with your [pc.tongue] ");
+	if(pc.hasVagina()) output("sends a shiver of sensation through [pc.eachVagina], becoming wetter and hotter until it feels like you have a leaking honey-pot of your very own between your [pc.thighs].");
+	else output("sends a fresh surge of lust up [pc.eachCock], throbbing harder and harder until it feels like you have your very own dripping, pheromone-laden sting between your [pc.thighs].");
+	output("\n\n<i>“That’s it...”</i> groans the warrior, hand gripping your [pc.hair], the woad spirals and stripes on his face a mask of ecstasy as you bend your head down to sheath every inch of him, his tight balls bumping against your chin, before pulling at his rock-hard shaft ardently. <i>“Keep doing that... that!”</i>");
+	output("\n\nHe arches his back and thrusts his lithe, armored hips into your face, squirting a thick load of honey down your throat. You swallow and coo around him, everything drowned out by a summer of sweet, pheromonal bliss opening up in your mind and groin. You keep kneading his pulsing cock with close pulls of your mouth, rubbing his underside with sharp drags of your [pc.tongue], focused on drawing every last drop of liquid gold you possibly can out of him. A croak and a polite but firm push to the head eventually informs you to stop. You look up at your zil subjugator, slightly dazed, deep in the summery bliss of a heavy dose of honey.");
+	output("\n\n<i>“You’re a poor fighter but a good cocksucker,”</i> he husks. <i>“Suits me to have your type running around our jungle - whatever the word-wolf says.”</i>");
+	output("\n\nAfter an immoderate period of lounging on the sun-baked rock, the male zil instructs you to put your hand on the rock. Happy to peacefully obey your honey daddy, you do so. Maybe he’ll let you suck him again when you get to the bottom? He’s too petite to properly carry you, but he does support you as you carefully climb down, curtly husking instructions in your [pc.ear]. You think you hear more buzzing nearby - other male zil, sensing a pheromone-soaked lust-sponge - but the one with his hands around your [pc.chest] angrily beats them away.");
+	output("\n\n<i>“We aren’t your personal honey trove, land-stealer,”</i> he growls, laying your unresisting body down next to the waterfall pool. <i>“Tell your masters that - and stay in the jungle if you want more.”</i> He buzzes off with a high whine.\n\n");
+	pc.loadInMouth(enemy);
+	processTime(25);
+	currentLocation = "2. WATERFALL POOL";
+	generateMap();
+	CombatManager.genericLoss();
+}
+
+//Naleen Mating Ball
+/*Has a huge amount of health (what’s 18 x 45?) and is therefore tough to beat by conventional methods. Lust rises passively every round... but the higher their lust climbs, the more attacks they get!
+
+Suggested stats
+Level 7
+HP 450
+Initial Lust 25
+Dodge 0%
+No. of attacks: 25-38 lust = 2, 39-60 = 3, 61-75 = 4, 76-89 = 5, 90-100 = 6
+20% resistance to lust attacks across the board
+*/
+
+public function beatUpNaleenRapeBall():void
+{
+	//PC wins via HP
+	if(enemy.HP() <= 1) 
+	{
+		output("Leathery coils and furry breasts sag beneath your [pc.legs], too beaten and enervated to continue holding you.");
+		output("\n\n<i>“Oh, let [pc.him] go, Ophia,”</i> snaps a thoroughly fed-up voice at the bottom of the pile. <i>“[pc.He]’s completely killing the vibe.”</i>");
+		output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+		output("\n\nYou will have to start the climb again - but that seems a small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
+	}
+	//PC wins via Lust
+	else
+	{
+		output("The naleen thrash, shiver and moan with delight, utterly lost in a group paroxysm of lust. They grasp, bite and thrust into each other in a frenzy, tails snapping and flailing, and though you feel like you’re in the middle of a scale-and-fur earthquake, they no longer have any interest in anything besides themselves. You manage to claw your way to one side, and tracing the side of the pit whilst naga bump and grind into you uncaringly, you manage to find an open space to haul yourself into and tumble down.");
+		output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+		output("\n\nYou will have to start the climb again - but that seems a fairly small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
+	}
+	currentLocation = "2. WATERFALL POOL";
+	generateMap();
+	CombatManager.genericVictory();
+}
+
+//PC Lost
+public function loseToNaleenRapeyBall():void
+{
+	if(pc.lust() >= pc.lustMax())
+	{
+		output("At some point your thrashing around stopped being about attempting to escape the naleen and became about joining in eagerly with their lithe, slithery mating dance. You can practically taste your own horniness, down here in the hot, sweaty darkness, and all there is left to do is to stop struggling and embrace as many purring, hissing cat-snakes as you can.");
+	}
+	else output("The shock of the fall, followed by this overwhelming pit of naleen, has robbed you of your will and strength. Your weak struggles only earn you even more ruthless tightening of the coils around your waist and [pc.legs], and finally you have to give in. Let them do as they wish with you; maybe they’ll let you go afterwards.");
+	output("\n\n<i>“This is how it is, tossed morsel,”</i> husks the female naleen, curling her arms around you, erect nipples brushing against your [pc.chest]. All you can see of her face are her fangs and the heady lust in her slit eyes, glistening in the dark. <i>“We don’t prey upon the sweet bees above. They provide tribute to our nest in return. So you will enliven our joining by being a good little ");
+	if(pc.hasCock()) output("cum-pump");
+	else output("piece of ass");
+	output(" for us; the peace of the jungle rests upon it.”</i>");
+
+	output("\n\nAs she talks, she ");
+	if(pc.hasCock()) output("mounts your [pc.cock], sensual delight furring her tones as she pushes her hot, dripping sex down your erect shaft.");
+	else output("rubs her opened, dripping pussy against your [pc.vagina], bracketing her soft lips and clit with yours.");
+	output(" A deep growl reverberates in your ear as tightly muscular arms twine around you from behind, fondling both your [pc.chest] and the female’s divinely soft and fluffy breasts simultaneously; the male grinds into you, opening your [pc.anus] and thrusting more and more of his diamondback dick into your [pc.ass] with determined jerks of his scaly hips.");
+	pc.buttChange(enemy.cockVolume(0));
+	if(pc.hasCock()) pc.cockChange();
+
+	output("\n\nThere’s nothing for you to do but clutch the sinuous female back, and whimper as she and her friend energetically take their pleasure from you.");
+	var x:int = -1;
+	if(pc.hasVagina()) x = 0;
+	if(pc.totalVaginas() > 1) y = 1;
+	if(x >= 0) 
+	{
+		output(" The male huffs his enjoyment as his trailing fingers find your [pc.vagina " + x + "]; he takes a moment to line himself up, in the next pushes his double cocks into both your cunt and your ");
+		if(pc.ass.looseness() < 2) output("tight ");
+		else if(pc.ass.wetness() > 0) output("slick ");
+		output("back passage.");
+	}
+	output(" They mold their bodies into you passionately, tonguing and biting each other’s lips over your head, all the while other naleen tails wrap themselves around your [pc.legs] and [pc.thighs], drawing you further into the heated, squirming morass until you can barely move, steeped in a shifting pit of scales and fur.");
+
+	output("\n\nThe first naleen ");
+	if(pc.hasCock()) output("slides off your throbbing cock and ");
+	output("moves her sinuous way up until she is at the top of the pile, meaningfully bumping her wet sex against your mouth. As you helplessly tongue her tangy, dripping hole");
+	if(pc.hasCock()) output(" a flicking tongue finds your [pc.cock], a pair of lips envelope your sensitive head. You can’t possibly see exactly what naleen is doing this, but by the trembles and muffled coos they transmit into your cock-flesh as they pull and knead at it, they’re getting royally railed as they do so.");
+	else if(pc.hasVagina()) output(" a flicking tongue finds your [pc.vagina " + x + "], a pair of lips press into your labia. You can’t possibly see exactly which naleen is doing this, but by the trembles and muffled coos they transmit into your flush pussy walls as they lap and flick at them, they’re getting royally railed as they do so.");
+	output("\n\nYou are made to give oral whilst oral is lavished upon you, all the while the big male pumps into your asshole ");
+	if(x >= 0) output("and [pc.vagina " + x + "] ");
+	output("unrelentingly, for a long minute in the heaving darkness. He grunts with profound relief, claws biting into your shoulders as he fills ");
+	if(x >= 0) output("two of your sensitive, twitching slots");
+	else output("you");
+	output(" with hot, gooey panther cum. Then he’s gone, withdrawing out of your opened hole");
+	if(x >= 0) output("s");
+	output(", and you’re being pulled somewhere else in the pile, lassoed away by another two or three tails in order to be some other naga’s toy. ");
+	if(pc.isHerm()) output("Another hot, wet pussy is molded on top of your [pc.cock] and kneads you this way and that, another fervid snake dick is thrust deep into your [pc.vagina " + x + "], digging into your tenderness deep;");
+	else if(pc.hasCock()) output("Another hot, wet pussy is molded on top of your [pc.cock] and kneads you this way and that;");
+	else if(pc.hasVagina()) output("Another fervid snake dick is thrust deep into your [pc.vagina " + x + "], digging into your tenderness deep;");
+	else output("E");
+	if(pc.hasGenitals()) output(" e");
+	output("very inch of you is felt, spread and used by the blissed-out predatory creatures.");
+
+	if(pc.hasCockTail()) output("\n\nYour [pc.cockTail], swollen up and eager in the presence of so much smooth pressure and musk, is quickly found and joyfully put to use. It pulses out cum with deep, heavy throbs into one squealing female, and then it is snatched away, pumped impatiently back to full hardness, and thrust into another.");
+	if(pc.hasCuntTail()) output("\n\nYour [pc.cuntTail], spreading and moistening itself eagerly to the smell of musk and the attentions of curious fingers, is quickly put to joyful use. Uncontrollable pleasure shimmers down it as one male after another pounds their cock into it, nubs rubbing over its slobbering insides before releasing their loads deep down its stem.");
+	var lactate:Boolean = false;
+	if(pc.canLactate()) 
+	{
+		lactate = true;
+		output("\n\nYour [pc.nipples] are ");
+		if(!pc.hasFuckableNipples()) output("tweaked");
+		else output("fingered");
+		output(" until you are dribbling [pc.milk] freely, after which you discover naleen <i>like</i> [pc.milk]. A lot. Fangs nip into the quaking flesh of your [pc.chest], thirsty mouths pulling intently at your taps, and you can do nothing but wail and release torrents of the stuff down their gullets in response, knowing full well that they won’t stop even when they have drunk you completely dry.");
+		pc.milked(100);
+	}
+	//Cock wings:
+	if(9999) output("\n\nIt doesn’t take much stimulation for your vine dicks to spring out from your back of their own accord, eagerly reacting to the endless stroke of leathery tails and clutching hands. They are soon threading their way through the morass, happy to be spear into every warm, welcoming hole they are coaxed towards. The pleasure of so many of your over-stimulated cocks thrusting home into some tight, wet crevice is electric, maddening; you can only tremble and thrash against your snake-like bonds as your tentacles do as they wish.");
+
+	output("\n\nYou are forced to loud orgasm once, twice... you lose count. Time and your own sensitivities have no meaning, down there in the suffocating dark. You ");
+	if(pc.hasCock()) output("spray [pc.cum] freely into some naleen’s dripping twat");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("convulse and dribble [pc.femcum] around a male’s hard, reptilian prick");
+	output(" - and then you are ruthlessly passed on to somewhere else in the pile, your groin ");
+	if(lactate) output("and [pc.chest] ");
+	output("some other sexed-up naga’s source of amusement. You are rendered a doll, to whom there is no sensation but the repeated use of your ");
+	if(pc.hasCock()) output("dick");
+	if(pc.totalCocks() > 1) output("s");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("cunt");
+	if(pc.totalVaginas() > 1) output("s");
+	if(lactate) output(" and your boobs");
+	output(" and your [pc.tongue] for the snake-tigers’ pleasure; there is no taste but their generous amounts of pussy juice and cum, and that is wonderful.");
+	processTime(30);
+	for(var i:int = 0; i < 20; i++)
+	{
+		pc.orgasm();
+	}
+	clearMenu();
+	addButton(0,"Next",naleenBallLossFinisher);
+}
+
+public function naleenBallLossFinisher():void
+{
+	//+2:30 Hours, Lust reset, pussy soaked, load in everywhere
+	output("Eventually the naleen have mercy on you. Or maybe they get bored of you, or the orgy finishes of its own accord. Whatever the case, you slowly come to your aching senses lying naked and alone, in some black cavern below the distant roar of the waterfall. The same one, or did they chuck you out of their <i>“nest”</i>? Concepts of time and place have deserted you - you just know how much your crotch and [pc.ass] ache, and how much warm naga cum is currently leaking out of you. Your fingers finding the smooth, comforting edges of your codex on the ground centers you a little.");
+	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit greyer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+	output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.\n\n");	
+	processTime(120);
+	currentLocation = "2. WATERFALL POOL";
+	generateMap();
+	CombatManager.genericLoss();
+}
+
+
 /*
-
-
-
-output("\n\nWATERFALL POOL");
-
-
-
-output("\n\nFOOT OF THE CLIFF");
-
-output("\n\nFirst: You sigh, gazing up at the looming red cliff face in front of you, so high it’s impossible to ascertain where it levels out. Well... it’s not going to climb itself. {Climbing Kit: At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.}");
-
-output("\n\nTo the immediate west of the foaming waterfall pool the land rises, tufts of scrub growing out of natural steps at the foot of the red rock cliff. If you carefully climb outwards upon them from the waterfall pool, you can work your way around onto the cliff face proper.");
-
-output("\n\nRED ROCK OUTCROP");
-
-output("\n\nYou wipe your brow. You are clutching onto a bulging outcrop of red stone, maybe 30 feet off the ground. You can find handholds and are reasonably stable, but also frighteningly exposed. Behind you, you can hear the shift and hiss of leaves in the breeze; you are almost beyond the reach of those towering ironwoods, but not quite. The cascade tumbles down nearby, the flume of water no longer obscured by the white veil it throws up at the bottom. It’s impossible to make out anything above, but it looks like you can keep climbing upwards if you have the strength, or inch your way back down to the scrub steps.");
-
-output("\n\nRED ROCK LEDGE");
-
-output("\n\nThe cliff face steps in here like a skewed pile of books, offering a place for you to stand in reasonable comfort as long as you keep a tight grip on the rock. To one side a spindly tree like a long, dark asparagus grows out of the rock, bulbous head waggling in the wind. Remarkable what can cling to life in the most perilous of places. Above you, the rock marches back outwards threateningly; you don’t want to even try and climb onto that. It’s just about possible to descend though. Or you could sidle along the ledge towards the hushing crash of the waterfall, see if you can progress from there.");
-
-output("\n\nWATERFALL STAIRWAY");
-
-output("\n\nYou take deep breaths, clutching onto the dank rock. The waterfall thunders directly overhead, raw elemental power that is hard to comprehend, much less handle being underneath. Here, the cliff face offers a gradual advance upwards - if you’ve got the stomach to climb under the gigantic flume of water, feel its spray on your back and [pc.hair], risk the slippery, mossy, jagged stone under hand and foot. If you can just keep pulling yourself upwards, it looks like there’s a level shoulder ahead - or you can shuffle back towards the dry ledge.");
-
-output("\n\nDRIFTWOOD SHOULDER");
-
-output("\n\nFirst: The angular, chipped rock is fairly level and dry here, high up the variegated cliff face. Going off the bleached wood and tangles of dried-out vegetation straggling the rock here and the waterfall probably once ran over this part of the mountain as well, before some calamitous shrug of geography changed the river’s course. From this vantage point, you can at last see the top of the falls - a white curtain tumbling down over a sheer ledge thirty feet above - and what you have to do to get to the top. The next stage is the short face just across the withered scrub, or the deadly wet causeway below.");
-
-output("\n\nRepeat: The angular, chipped rock is fairly level and dry here, high up the variegated cliff face. Probably the waterfall once ran over this part of the mountain as well, going off the bleached wood and tangles of dried-out vegetation straggling the rock, here and there, before the river course changed due to some calamitous shrug of the geography. From this vantage point, you can at last see the top of the falls - a white curtain tumbling down over a sheer ledge thirty feet above - and what you have to do to get to the top.");
-
-output("\n\nOf course, you know now to avoid walking straight across the treacherous, honeycombed rock. Unless... you actually want to go visit the sex-mad kitty snakes beneath the falls?");
-
-output("\n\n[Submit]");
-
-output("\n\nGoes north first time, reflex check succeed: You begin to pick your way across the driftwood-scattered shoulder - and pause. Carefully, you reach out and pluck one of the lumps of dry bleached wood off the rock. A black hole yawns beneath it, breathing water-cooled air into your face. This whole section is as hollow as a honeycomb! You move as daintily as you can around the side, not putting your weight on any of the old vegetation. You think you hear sighs and hisses beneath you, carried up from what sounds like many feet below... thankfully no zil takes this particular opportunity to molest you, and after a tense few minutes you reach the other side. Whew!");
-
-output("\n\nGoes north first time, reflex check failed: You pick your way across the driftwood-scattered shoulder. It’s rather pleasant to not have to use your hands for once. You are halfway to the other side when a large tangle of rotten wood and dried scrub gives way beneath you, and with a horrified wail and a lurch in your chest you fall [pc.feet] first into a gaping chasm below.");
-
-output("\n\nYou hurtle downwards, imagining the terrible impact, your broken body splayed on jagged stone in some Oneforsaken cave nobody will ever find you... before your [pc.butt] touches smooth rock, you whizz down a natural, water-carved slide and are flung into a deep, black pit, landing in something soft and dry before you can properly take in what’s happened.");
-
-output("\n\nYou have a single, short moment to feel adrenaline-soaked relief, to move your limbs and feel for yourself that nothing is broken... before the couch beneath you shifts lugubriously, a multitude of hands touch your [pc.chest] and [pc.groin], and the stench of leathery sex settles into your nostrils.");
-
-output("\n\n<i>“What was that?”</i> coos a woozy voice, somewhere below the shifting warmth.");
-
-<i>“Fresh meat,”</i> hisses a female voice in your ear. You turn your head, gaze into lust-clouded feline eyes. The naleen smiles at you at the same time as she, and many others, coil their strong tails around your [pc.legs]. <i>“Provided to us by our zil landlords. So sweet, how they think of us. <i>“ Her fluffy breasts press into your [pc.chest] as she molds her lips against yours...
-
-output("\n\n//Lust up");
-
-output("\n\nRED ROCK SCREE");
-
-output("\n\nYou are on a higgledy-piggledy run of loose sunburned rock, above the lenient shoulder. You really are a considerable distance up now - the sound of the waterfall is running liquid and a distant crash far below - but at least it’s no longer a straight drop down. The loose, crumbling rock means you have to be careful as you climb. To the east you can see a crevice in the grey rock face 45 degrees to the one you are currently on. A tough, fibrous rope bridge strung across the cliff wall and the smoothness wrought by many feet around its entrance suggest it’s frequently visited by the zil. Meanwhile you think you can just about see the tops of some wax structures to the west, beyond the head of the falls.");
-
-output("\n\nGREY ROCK SHRINE");
-
-output("\n\n//Does not require energy to visit");
-
-output("\n\nCompared to the rest of the cliffs, using the rope bridge to access the crevice here is child’s play.");
-
-output("\n\nTwo flickering candles set in alcoves right at the back light the cave, which stretches back about fifteen feet. The walls are covered with ochre palm prints and spindly paintings of winged beings on hunts, defeating serpents, kneeling before indescribable objects and beings... there is a carved table at the back between the two candles, upon which a number of items have been placed - arrowheads, a necklace of small discs, a long, curved fang. What catches the eye, however, is a huge round amber gemstone of some sort, covered in charcoal figures. It’s impossible to tell how valuable it might be. {Quinn persuaded: Probably best to leave all of this alone.}");
-
-output("\n\n[Take It] [Leave]");
-
-output("\n\nTake It");
-
-output("\n\n//Does not show if Quinn persuaded");
-
-output("\n\nYou gingerly grasp the amber, half expecting some sort of trap to go off. But nothing happens. Shrugging, you slip the gemstone into a belt pocket.");
-
-output("\n\nLeave");
-
-output("\n\nProbably better not to piss the zil off any more than they already are, at least for now. You retreat out of the shrine and back across to where you were.");
-
-output("\n\n//Back to Red Rock Scramble");
-
-output("\n\nTOP OF THE CLIFF");
-
-output("\n\nThe wind whips over your [pc.hair] as you gaze southwards out at the green-and-occasionally-turquoise blanket of tree tops below you. The view from here, at the edge of a jungle-festooned mesa overlooking a plummeting cliff, is beyond words. {Silly mode: A flock of bird creatures fly by, conveniently providing a sense of scale.} You think you can make out the gleaming white of Esbeth in the distance - and the gleaming reflection of spacecraft taking off and coming in. You are standing on the bare banks of the river which forms the waterfall. The rapids gurgle and chunter as it hurls itself off the outcropping rocks to make the distant thunder at least a hundred feet down.");
-
-output("\n\nAhead, arranged around the river in the squat, lime, cedar-like trees that grow up here, are zil buildings - pale yellow and disc-shaped, almost like giant fungi growing out of the forest.");
-
-output("\n\nPC attempts to rest on waterfall squares");
-
-output("\n\nIt’s impossible to rest here, clamped to the cliff as you are. Perhaps there is respite to be found at the top...?");
-
-output("\n\nPC attempts to fap on waterfall squares");
-
-output("\n\nYou can’t get at your bits whilst holding onto the cliff for dear life - even if there weren’t a swarm of zil somewhere nearby, waiting for you to do just that! Perhaps there is respite to be found at the top...?");
-
-output("\n\nPC Falls Off");
-
-output("\n\n//Happens if PC energy/HP reaches 0 at any time, or if PC rolls it whilst fighting and ungripped.");
-
-output("\n\nExhaustion");
-
-output("\n\n//Does not trigger during combat - so PC can use energizers during combat to avoid triggering it after resolution");
-
-output("\n\nYou can’t take this anymore... {you} / {your [pc.upperGarments]} are soaked in sweat, the tendons in your wrists feel like they’re made of red hot iron, and your nerves are utterly shot. You can barely reach out to the next handhold without almost retching in fright, how far you are off the ground and the merciless sound of the waterfall blotting out all rational thought. You can only focus on one thing - getting down and away from this vertical nightmare, now.");
-
-output("\n\nYou don’t remember much of the next hour - it’s an agonising descent, one slow finger-hold down after another, that terrible war-like blend of boredom and all-pervading fear. The one blessing is that the zil don’t attack you. Perhaps they sense you no longer present a threat to them, or simply don’t have the stomach to attack you in your current state.");
-
-output("\n\nAfter altogether too long, you are collapsed in a sweat-soaked heap near the roaring hush of the waterfall pool, waiting for your heartbeat to return to normal and the adrenaline to stop jangling your nerves. Dully you stare up at the towering cliff that has defeated you. You are going to need a long rest, and maybe a rethink, before attempting it again.");
-
-output("\n\n//Place PC in WP square, +1 hour");
-
-output("\n\nSparta’d");
-
-output("\n\nYou bring your [pc.weapon] up to bear, preparing to give your insectile opponent a swatting... and place your weight on rock that suddenly isn’t there at all. You suck in a huge gulp of air as you find yourself slipping, falling, desperately clawing at the cliff face as you slide off the perch, jutting stone clawing at your chest and face. The callous laughter of the zil rings in your ears as handfuls of dirt come loose in your hands and you find yourself watching the ledge fly away from you... and the only sound is the waterfall and the air in your ears, very loud...");
-
-output("\n\nFell from 3 squares up from Waterfall Pool or more: SMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
-
-output("\n\nFell from 2 squares up from WP or less: SPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
-
-output("\n\n//Take 75% HP damage. If 2 < squares move down 2 squares, If less move to WP square");
-
-
-
-
-
-
-output("\n\nZil Hornet");
-
-output("\n\n//PC always starts gripping the cliff. They suffer a 25% accuracy loss as long as this is the case. If they choose to release they no longer suffer this, but have a 40% chance of being knocked down the cliff every time the opponent connects with them. PC can swap without wasting a turn.");
-
-output("\n\nSuggested Stats");
-
-output("\n\nLevel 5");
-
-output("\n\nHP: 65");
-
-output("\n\nArmor: 20");
-
-output("\n\nInitial Lust: 30");
-
-output("\n\nDodge: 10%");
-
-output("\n\nIntro");
-
-output("\n\nSomething flicks past your ear. Imagining falling rock, you look up - and manage to duck to one side as the long, barb-tipped spear is thrust at you more accurately. <i>Real</i> falling rock crumbles beneath your [pc.feet].");
-
-output("\n\n<i>“You are mine, far shist pig!”</i> squeaks the painted, armored female zil that is clutching it, roped to the cliff above you. Getting assaulted like this from above this high up is horribly unnerving - your heart chunters and your every instinct screams for you to make her stop. {At least your climbing gear give you a semblance of security whilst you fend her off.} / {You will have to clutch to the rock face and fend her off one-handed!}");
-
-output("\n\nDescription");
-
-output("\n\nYou are fighting the Zil Hornet. Roped to the cliff-face above you, the 5’5”</i> zil is armed with a long, poison-soaked barb-spear, providing her with extensive reach. There is no question of getting away from her in your current position. Bare breasted, hair tied back, arrayed in beaten, beetle-like plates and smeared with war paint, she is a vision of primordial feminine fury, yellow and black vivid against the deep red of the rock. {You are fighting her one-handed, so your attacks are significantly less accurate.} {You are fighting her with both hands, so suffer no accuracy penalties - but nothing is holding you to the cliff-face...}");
-
-output("\n\nRelease Grip");
-
-output("\n\nTooltip: Let go of the cliff face so you can fight the zil properly.");
-
-output("\n\nYou release your grip on the rock so you can properly defend yourself against your opponent. You try and put the whistling void below you out of mind...");
-
-output("\n\nTake Grip");
-
-output("\n\nTooltip: Grip the cliff face with one hand so you don’t risk falling off.");
-
-output("\n\nYou grip the cliff face, and the terrible anxiety creeping up your spine about the drop below you alleviates. Of course, fighting off your opponent is a bit tougher now...");
-
-output("\n\nAttacks");
-
-output("\n\nSpear Thrust");
-
-output("\n\n//Kinetic penetrating, causes continuing drug damage if shield down");
-
-output("\n\nThe Hornet savagely thrusts her spear at you! {It bounces jarringly off your shield.} {You manage to shuffle desperately to one side, evading it.} {It breaks through your shield and stabs into you.} {It stabs viciously home, pain searing into your side.} {You groan as heat flares within you, pheromones surging into your bloodstream, lust pulsing steadily down to your nethers.} {You cry out as yet more pheromone poison is thrust into you, honeyed lust piling on top of honeyed lust. You’ve got to stop her doing that!}");
-
-output("\n\nSpear Buffet");
-
-output("\n\n//Kinetic. Does double damage vs. shields. If unshielded, drains PC energy by 5 and swaps them to ungripped.");
-
-output("\n\nThe Hornet winds her spear upward, takes a deep breath, and then swings the flat at you with a wild howl! {It blats off your shield. Oof - looks like it felt that.} {You manage to shuffle desperately to one side, evading it.} {Your shield gives in with an audible gasp of air, and the blow slaps into you.} {It thuds windingly into your side.} {Your hand is forced off the rock with the heavy momentum of the blow. After a few horrible moments, you manage to regain your balance.}");
-
-output("\n\nPC Wins");
-
-output("\n\n{The spear sags in the fazed and wounded hornet’s grip, and you take the opportunity to seize it and rip it out of her grip. It’s clanking and splintering its way downwards long after you’ve thrown it. The zil hoists herself away before you can grab her, too.}");
-
-output("\n\n{The spear sags in the hornet’s grip as she’s finally driven to distraction, reaching beneath her armor with one hand to frig herself furiously. You take the opportunity to seize the spear and rip it out of her grip. It’s clonking and splintering its way downwards long after you’ve thrown it. The zil hoists herself upwards before you can grab her, too.}");
-
-output("\n\n{merge}");
-
-output("\n\n<i>“You’ll tire eventually, land-stealer!”</i> she cries, as she pulls frenetically at her rope, reeling her bobbing abdomen and full, bare buttocks away from you.");
-
-output("\n\nPC Loses");
-
-output("\n\n{Lust loss: You groan woozily, overcome by pheromonal lust. All you want to do is shove your hand between your thighs and masturbate, but if you do that you’ll fall off... } {HP loss: You shudder, unable to summon the will to keep fighting. It’s all you can do to clutch agonized to the cliff and wish to be anywhere else.}");
-
-Loose rock rattles past you, chitinous boots working their way down towards you. A throbbing buzz seems to approach from all around you...
-
-output("\n\n<i>“No!”</i> growls the female zil, close now above you. You hear the creak of rope and swish of her spear. <i>“Be off with you! [pc.he] is mine.”</i> Blearily you look up, just in time to see a yellow-and-black vision of barbarian fury descend on you, honey-slick pussy first.");
-
-output("\n\nIf dick that fits");
-
-output("\n\n<i>“Like that?”</i> she demands, bending her pronged abdomen back to stab it into you above your [pc.chest]. Needling pain and fierce heat spreads out from the puncture wound. <i>“And that? And that?”</i> You cry out weakly, cringing away from her stinger, trying to beg for mercy. [pc.eachCock] responds immediately to her venom, tent-poling {your [pc.lowerUndergarments]} so fiercely you find yourself doubting {it / they} will ever go soft again. The arousal is so intense, your mouth open and vision swimming, you don’t even realize immediately what she’s doing as she descends on her ropes - reaching around you, pushing your face between her soft, pert breasts - until you feel the tough, fibrous pressure on the small of your back.");
-
-output("\n\n<i>“I’m not having you kill yourself before I’ve gotten my satisfaction,”</i> she growls in your ear, as you sag backwards with relief in her makeshift harness. <i>“As much as I doubt you know the meaning of sacrificial honor, land-stealer.”</i> She descends still further, the give of her breasts shifting down your [pc.chest], until she can {pull your [pc.lowerGarments] down your [pc.legs] with a rude rip and shove, and} circles her smooth, booted legs around your [pc.hips]. With no further preamble, she roughly shoves her honey-leaking twat onto your helplessly erect [pc.cock].");
-
-output("\n\nYou twitch and gasp as she uses you with savage jerks of her lithe, athletic thighs, jerking your length in her warm, slimy depths, taut abdomen slapping against your [pc.belly].");
-
-output("\n\nDick < 5 inches: <i>“You are hung like the meekest of our men,”</i> she snaps in frustration, digging her fingers into your cheek, upping the pace of her humping. <i>“The word-wolf says you star-people have become weak from dependence on your metal pipes - this is surely what he meant!”</i>");
-
-output("\n\nOtherwise: <i>“Yes! Yes! Yes!”</i> she grits, digging her fingers into your cheek, upping the pace of her humping. <i>“Tell your masters to send MANY more weaklings with thick manhoods between their thighs. I enjoy them very much!”</i>");
-
-output("\n\n{merge}");
-
-output("\n\nYou are feverish, writhing to the pulse of pheromones slathered over your every sense, and you rocket [pc.cum] into her milking snatch in an unstoppable flurry {until it is oozing and dripping down your [pc.legs] into the void below}.");
-
-output("\n\n<i>“Already?”</i> the zil snorts, as you flail against her like a landed fish. She viciously stabs you with her stinger again in the [pc.thigh], a flare of pain to go with the intoxicating pleasure of her slick, tar cunt gloving your [pc.cock]. <i>“Already? Do you think to escape by wilting out of me, pathetic soldier-child? I have barely begun! See how a true warrior fucks, and dwell upon it next time you think to invade our lands!”</i>");
-
-Your dick is still achingly erect, and probably will be for hours given the sheer volume of zil-venom teeming through your veins. The only thing you can do is hang there and let her continue to have her savage way with your poor, tender body; feel her dig her fingers and thighs into you, feel the heat rise up inexorably to the kneading, honey-hole and erupt, flexing increasingly less and less [pc.cum] into that apoplectic insatiability until it’s clenching up dryly, and it’s all just a fever dream of stinging pain and swimming pleasure...
-
-output("\n\n//Time forward 1 hour, energy -70%, move to WP square");
-
-output("\n\nYou come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
-
-output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but there are reasons to be grateful.");
-
-output("\n\nIf no dick that fits");
-
-output("\n\n<i>“Like that?”</i> she demands, bending her pronged abdomen back to stab it into you above your [pc.chest]. Needling pain and fierce heat spreads out from the puncture wound. <i>“And that? And that?”</i> You cry out weakly, cringing away from her stinger, trying to beg for mercy you already know you aren’t going to get. {[pc.eachVagina] responds immediately to her venom, juicing {your [pc.underGarments]} so badly it’s like somebody just turned a warm tap on down there.} {If no vag but dick: [pc.eachCock] responds immediately to her venom, tent-poling {your [pc.lowerUndergarments]} so fiercely you find yourself doubting {it / they} will ever go soft again.} The arousal is so intense, your mouth open and vision swimming, you don’t even realize immediately what she’s doing as she descends on her ropes and reaches around you, pushing your face between her soft, pert breasts until you feel the tough, fibrous pressure on the small of your back.");
-
-output("\n\n<i>“I’m not having you kill yourself before I’ve taken my satisfaction,”</i> she growls in your ear, as you sag backwards with relief in the makeshift harness. <i>“As much as I doubt you know the meaning of sacrificial honor, land-stealer.”</i> {If no dick: She raises a woad-daubed eyebrow as her gaze travels further down - presumably taking in the fact you aren’t tent-poling like mad {downstairs} / {in your [pc.underGarments]} - before athletically swinging her armored yellow legs around your neck. {If dick too big: She snorts in disgust as her gaze travels further down - taking in the massive erection you’re sporting, far too big for a petite wasp girl to do anything with - before athletically swinging her armored yellow legs around your neck.");
-
-output("\n\n<i>“You know how to lick, far shist pug,”</i> the yellow-and-black hellion rising over you asserts, bumping her sweet, oozing mons against your [pc.lips]. <i>“Your master’s boots don’t shine themselves, after all. Proceed.”</i>");
-
-output("\n\nThe sound of the waterfall and wind around your precarious perch are muffled intermittently by soft yellow flesh clutching up around your [pc.ears] as you helplessly lap at your conqueror’s pussy. Whenever she feels you’re not giving it everything you’ve got, or your [pc.tongue] doesn’t dart across her flaps in exactly the way she wants, you feel a sharp point scrape across your [pc.belly], her sting circling over your [pc.skinFurScales] meaningfully. It’s intoxicatingly horrible - the more you mash your lips into her sex and bend your tongue into her warm channel the more she oozes honey, and the more you are forced to swallow the higher the pheromones fizz in your veins, your heart thumping in your chest{ and {[pc.eachVagina] dribbling [pc.girlCum] down your [pc.thighs] in giddy excitement / { your ignored, massive dick{s} strain against your [pc.belly] in giddy excitement}.");
-
-output("\n\n<i>“Good... right there,”</i> she groans, back arched against her ropes. You moan woozily as her thighs tighten hard around your head and she starts reactively thrusting herself against your face, smearing sticky sugar across your cheeks and nose. <i>“Yes!”</i> She cries out, a sudden gush invading your mouth and blotting out your throat. Your cough turns into a yelp of pain as she stings you in the thigh - from a loss of control or pure sadism, it’s impossible to tell. You whimper around your mouthful of bee twat as the surge of venomous heat forces you to orgasm, {[pc.eachVagina] pulsing delirious pleasure through your over-sensitized, sweating frame / [pc.eachCock] pulsing wasted [pc.cum] up your sweaty front / your [pc.anus] clenching up in delirious pleasure}.");
-
-output("\n\n<i>“Yes! You like this, don’t you land-stealer!”</i> pants the zil, jabbing her chitinous boots into your back. <i>“It is good, because we have barely begun! A victorious warrior requires many groveling lickings from her pickings! If you did not know this you had no right coming here!”</i>");
-
-output("\n\nUtterly defeated and subsumed in a deep sea of pheremonal honey, you can do nothing but dip your face between her thighs and tongue her opened snatch, the leak of thick sugar seeming to ooze directly down to your own {groin} / {pussy} / {pussies}, filling {it / them} with slathering lust and forcing you to another orgasm, then another, then another...");
-
-output("\n\n//Time forward 1 hour, energy -70%, move to WP square");
-
-output("\n\nYou come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
-
-output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but these are all reasons to be grateful.");
-
-
-output("\n\nZil Hoverfly");
-
-output("\n\n//Same set of grip/no grip mechanics to the Hornet");
-
-output("\n\nSuggested Stats");
-
-output("\n\nLevel 5");
-output("\n\nHP: 65");
-output("\n\nArmor: 20");
-output("\n\nInitial Lust: 25");
-output("\n\nDodge: 10%");
-
-output("\n\nIntro");
-
-output("\n\nThe crash and hush of the waterfall is progressively drowned out by another sound - the throbbing hum of skateboard-sized insect wings. With a dull lurch of dread, you turn your head to take in the male zil hovering above you, short stabbing spear in one hand and long shield in the other, war paint turning his scowl into a mask of fury.");
-
-output("\n\n<i>“You should not have exposed yourself like this, far shist land-stealer. You are mine for the plucking!”</i>");
-
-output("\n\n{At least your climbing gear give you a semblance of security whilst you fend him off.} / {You will have to clutch to the rock face and fend him off one-handed!}");
-
-output("\n\nDescription");
-
-output("\n\nYou are fighting the Zil Hoverfly. In stature he is a typical male zil - 5’7”</i>, slim, boyish body clad in black carapace - but he is in full flight, open wings keeping him floating near your position, tauntingly just out of reach. He is armed with a long, thin shield and a poison-soaked assegai, with which he suddenly darts in and stabs you with to attack. He is daubed in war dyes and is livid with the joy of flight and battle, flicking this way and that, his heart-shaped face wild with varying degrees of lust, delight and righteous anger. There’s no chance of getting away from him up here - you’ll have to force him to buzz off.");
-
-output("\n\nAttacks");
-
-output("\n\nTwin Needle");
-
-output("\n\n//Low damage but attacks twice, kinetic + drug lust damage");
-
-output("\n\nThe Hoverfly flicks this way and that, testing your guard - or maybe simply teasing you - before suddenly darting in, deftly thrusting his assegai at you once, then swiftly again from another angle. {The blow bounces jarringly off your shield.} {You manage to shuffle desperately to one side, evading the attack.} {The blow breaks through your shield and stabs into you.} {The attack stabs viciously home, pain searing into your side.} {You groan as heat flares within you, zil pheromones surging into your bloodstream, lust pulsing steadily down to your [pc.groin].} {You cry out as yet more pheromone poison is thrust into you, honeyed lust piling on top of honeyed lust. You’ve got to stop him doing that!}");
-
-output("\n\nZweet Breeze");
-
-output("\n\n//Pheromone lust damage. 50% chance to blind PC");
-
-output("\n\nThe Hoverfly buzzes backwards, out of range of your [pc.meleeWeapon], before sliding his groin plating back, revealing his fat, black six inch cock, erect and gently leaking with golden anticipation. The thrum of his wings kicks up to a deafening vibration as he directs a flattening wash of air at you, laden with the warm and cloyingly sweet smell of his swollen sex. You can’t help but breathe some of it in, the scent teasing and twisting down your throat, sugary impulse and heat pulsing down into your [pc.groin]. {You make the mistake of trying to track his movements, and dust is blown into your [pc.eyes]. You are blinded!}");
-
-output("\n\nShield Up");
-
-output("\n\n//Increases armor by 40 for next two turns.");
-
-output("\n\nKeen black eyes on your [pc.weapon], the Hoverfly raises his thin, black shield, hunching his lithe form behind it, only his thrumming wings and cute behind visible. Whatever that material is made of, it looks tough.");
-
-output("\n\n<i>“Give me your metal blowpipe’s best shot, land-stealer!”</i> he cries.");
-
-output("\n\nContinuing effect: He’s still covering himself with his shield.");
-
-output("\n\nFinish effect: With a tired huff, the male zil’s allows his guard to sink back down.");
-
-output("\n\nPC Wins");
-
-output("\n\n{Spear and shield splinter and clatter their long way down the cliff. {The zil warrior sags on his wings, too thrashed to do anything but hold himself in the air.} {Face orange, the zil warrior claws at his groin plate, all thoughts departed except the need you’ve instilled in his nethers.}");
-
-output("\n\n<i>“You’ll tire eventually, land-stealer!”</i> he grits angrily as he sinks an erratic and jerky path downwards, eventually disappearing beneath the treetops. You allow yourself a sigh of relief.");
-
-output("\n\nPC Loses");
-
-{Exhaustion / Arousal} making your eyes swim, you stumble and suddenly feel rock crumbling beneath your [pc.feet]. For one horrible moment you are losing your balance, the sound of the waterfall very loud in your ears...
-
-output("\n\nThe zil barges into you, arresting your fall with a flying rugby tackle.");
-
-output("\n\n<i>“Not having you kill yourself, land-stealer,”</i> he growls, clasping you around the [pc.chest]. The throbbing flicker of his wings is like a cinemascope of the sky. <i>“Least not before I’ve gotten my satisfaction.”</i> The flicker intensifies as he half drags, half carries you down to a sheltered spot on the cliff. You are too subsumed in {lust / tiredness} and frazzled by the fright of losing your balance. If the energetic wasp boy wants to fuck you... fine. That’s fine. That’s better than falling 50 feet onto jagged rock.");
-
-output("\n\nThis train of thought is aided by the sweet, heated smell of his lean, athletic flesh, baking your senses in irresistible, cloying pheromones. It’s so easy to just breathe that in and let it soothe your jangling nerves with thoughts of thick, sexual honey{, {[pc.eachCock] growing tender and erect} {and} {[pc.eachVagina] moistening and widening eagerly}}. By the time he’s laid you on the rocky shelf you’re actually salivating slightly in anticipation.");
-
-output("\n\nThe zil warrior slides his wings down and lies back on the rock, slender chest heaving, his expression one of well-worked triumph. He opens his gleaming thighs and retracts his groin plate, murmuring as his thick, jet, foreskinned dick springs outward, erect and ready.");
-
-output("\n\n<i>“It’s not going to suck itself,”</i> he says, gazing at you heavy-lidded with the air of a returning conqueror. <i>“Do a good job and who knows... I could be persuaded to carry you down to the bottom.”</i>");
-
-output("\n\nIt’s easy to agree to these terms. So easy that you’d worry about your current state of mind, but that would draw focus away from how enjoyable it is to grasp the bee boy’s cock at the root, fold his foreskin back with drags of your [pc.lips] and spread the ambrosia of zil spunk over your taste buds. The hoverfly’s slim, flat chest rises and falls, giving buzzing, sighing voice to the pleasure you give him by circling his exposed head with your [pc.tongue] before fully enveloping him in your mouth, the smooth, hard tar rubbing delectably over your lips as you hollow your cheeks around it.");
-
-output("\n\nThe more intently you bob your head and tongue the zil’s shaft the more of his sweet pre he leaks, and the denser your own fug of lust becomes - it’s a deeply gratifying feedback loop which you quickly get lost in, all other thoughts drowned out by the need to keep milking him for more of that wonderful, oozing sugar. {Each drop you wick away with your [pc.tongue] {sends a shiver of sensation through [pc.eachVagina], becoming wetter and hotter until it feels like you have a leaking honey-pot of your very own between your [pc.thighs].} / {sends a fresh surge of lust up [pc.eachCock], throbbing harder and harder until it feels like you have your very own dripping, pheromone-laden sting between your [pc.thighs].}}");
-
-output("\n\n<i>“That’s it...”</i> groans the warrior, hand gripping your [pc.hair], the woad spirals and stripes on his face a mask of ecstasy as you bend your head down to sheath every inch of him, his tight balls bumping against your chin, before pulling at his rock-hard shaft ardently. <i>“Keep doing that... that!”</i>");
-
-output("\n\nHe arches his back and thrusts his lithe, armored hips into your face, squirting a thick load of honey down your throat. You swallow and coo around him, everything drowned out by a summer of sweet, pheromonal bliss opening up in your mind and groin. You keep kneading his pulsing cock with close pulls of your mouth, rubbing his underside with sharp drags of your [pc.tongue], focused on drawing every last drop of liquid gold you possibly can out of him. A croak and a polite but firm push to the head eventually informs you to stop. You look up at your zil subjugator, slightly dazed, deep in the summery bliss of a heavy dose of honey.");
-
-output("\n\n<i>“You’re a poor fighter but a good cocksucker,”</i> he husks. <i>“Suits me to have your type running around our jungle - whatever the word-wolf says.”</i>");
-
-output("\n\nAfter an immoderate period of lounging on the sun-baked rock, the male zil instructs you to put your hand on the rock. Happy to peacefully obey your honey daddy, you do so. Maybe he’ll let you suck him again when you get to the bottom? He’s too petite to properly carry you, but he does support you as you carefully climb down, curtly husking instructions in your [pc.ear]. You think you hear more buzzing nearby - other male zil, sensing a pheromone-soaked lust-sponge - but the one with his hands around your [pc.chest] angrily beats them away.");
-
-output("\n\n<i>“We aren’t your personal honey trove, land-stealer,”</i> he growls, laying your unresisting body down next to the waterfall pool. <i>“Tell your masters that - and stay in the jungle if you want more.”</i> He buzzes off with a high whine.");
-
-output("\n\nNaleen Mating Ball");
-
-output("\n\nNotes");
-
-output("\n\nHas a huge amount of health (what’s 18 x 45?) and is therefore tough to beat by conventional methods. Lust rises passively every round... but the higher their lust climbs, the more attacks they get!");
-
-output("\n\nSuggested stats");
-
-output("\n\nLevel 7");
-
-output("\n\nHP 450");
-
-output("\n\nInitial Lust 25");
-
-output("\n\nDodge 0%");
-
-output("\n\nNo. of attacks: 25-38 lust = 2, 39-60 = 3, 61-75 = 4, 76-89 = 5, 90-100 = 6");
-
-output("\n\n20% resistance to lust attacks across the board");
-
-
-output("\n\nDescription");
-
-output("\n\nYou are embroiled in the Naleen Mating Ball! Here, deep in the caverns below the waterfall, a whole host of the feline naga have made a wide hollow their own, and are in the middle of enthusiastically expressing their desire for the naleen race to persist. Their smooth, leathery coils and soft fur shifts languorously beneath your [pc.skinFurScales], and the smell of musk and excitement is overpowering in the still, oppressive darkness. You can’t tell how many of them there are - their sibilant hisses, titters and moans echo back to you through the caves, as if the whole warren is carpeted with serpent shag - however the ratio of fluffy boobs to double dicks pressing into you suggest there’s more female naleen here than male.");
-
-output("\n\nTheir attention is constantly drifting back to each other, but when they are focused on you they use their sure hands, sharp teeth and frighteningly strong tails to drag you further into their writhing midst, hungry for their orgy to grow ever larger and more exciting.");
-
-output("\n\nAttacks");
-
-output("\n\nSnake Slap");
-
-output("\n\n//Kinetic. Only procs if shield still up. 1.5x vs shield");
-
-output("\n\nIrritated by your kinetic barrier butting into them, a naleen rears his lower half out of the morass and smashes himself into it as hard as he can. {Your shield can’t hold out anymore, and the thick whip of lithe muscle carries straight on into you.}");
-
-output("\n\nBite");
-
-output("\n\n//Ignores shield. Small kinetic damage, degrades physique, reflexes and willpower. Does not stack");
-
-output("\n\nWet pressure spreads itself over a spot on your side, a libidinous love bite which culminates in needle-like teeth sinking past your [pc.skin]. {You grit your teeth as you feel venom work its way into your bloodstream, tightening up your muscles and clouding your mind.}");
-
-output("\n\nConstrict");
-
-output("\n\n//Only procs if shield is down. PC bound");
-
-output("\n\nSmooth, warm scales slide around your [pc.legs], a naleen’s tail curling itself around you, a loop that draws ever tighter. {You manage to wrench yourself clear.} {Your movements are limited in this pit of writhing, sighing flesh, and you can’t get yourself clear of it in time. A few moments more of sinuous movement, and you are completely bound in the naleen’s coils.}");
-
-output("\n\nFemale Tease");
-
-output("\n\n//Tease lust damage");
-
-output("\n\nA female naleen rears up in front of you; making hushing, soothing noises, she grasps your head and presses it between the soft, warm fluff of her breasts{, stroking your [pc.hair] as she does so}.");
-
-output("\n\nMale Tease");
-
-output("\n\n//Tease lust damage");
-
-output("\n\nStrong hands curl between your [pc.thighs] and slowly advance up your midriff to your [pc.chest]. His hard pecs rubbing against your back, the male naleen breathes a leopard’s growl in your ear, evidently enjoying what he’s touching.");
-
-output("\n\nTwin Tease");
-
-output("\n\n//Tease lust damage");
-
-output("\n\nA naleen collapses on top of you, pinning you beneath her soft, fluffy front. Muscular arms reaching around you to clasp themselves around her has you realize that you aren’t her focus of attention. The two predators kiss hungrily over your head, molding their fit, lithe bodies into you passionately: a snake-kitten toasty.");
-
-output("\n\nClaw");
-
-output("\n\n//Kinetic damage");
-
-output("\n\nMany hands are touching you, in all sorts of ways; a fondle, a clasp, a stroke. And, as a reminder of the savagery of these primordial predators, a violent, fully-clawed swipe. {The claws rake off your shield.} {The blow breaks through your shield and slashes into you.} {You manage to heave yourself out of the way.} {The claws rake into you.}");
-
-output("\n\nWhen the Booping’s Good");
-
-output("\n\n//Passively raises lust on self at end of each round by 3-6.");
-
-output("\n\nThe slathering ball of lusty naleen shivers and squirms, their passions growing ever more intense. {If attack gained: <b>The mating ball has gotten more frantic!</b>");
-
-output("\n\nPC wins via HP");
-
-output("\n\nLeathery coils and furry breasts sag beneath your [pc.legs], too beaten and enervated to continue holding you.");
-
-output("\n\n<i>“Oh, let [pc.him] go, Ophia,”</i> snaps a thoroughly fed-up voice at the bottom of the pile. <i>“[pc.he]’s completely killing the vibe.”</i>");
-
-output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
-
-output("\n\nYou will have to start the climb again - but that seems a small price to pay, weighed against not dying and not getting gang-raped by serpents.");
-
-output("\n\nPC wins via Lust");
-
-output("\n\nThe naleen thrash, shiver and moan with delight, utterly lost in a group paroxysm of lust. They grasp, bite and thrust into each other in a frenzy, tails snapping and flailing, and though you feel like you’re in the middle of a scale-and-fur earthquake, they no longer have any interest in anything besides themselves. You manage to claw your way to one side, and tracing the side of the pit whilst naga bump and grind into you uncaringly, you manage to find an open space to haul yourself into and tumble down.");
-
-output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
-
-output("\n\nYou will have to start the climb again - but that seems a fairly small price to pay, weighed against not dying and not getting gang-raped by serpents.");
-
-output("\n\nPC Lost");
-
-output("\n\n{Lost via lust: At some point your thrashing around stopped being about attempting to escape the naleen and became about joining in eagerly with their lithe, slithery mating dance. You can practically taste your own horniness, down here in the hot, sweaty darkness, and all there is left to do is to stop struggling and embrace as many purring, hissing cat-snakes as you can.} {Lost via HP: The shock of the fall, followed by this overwhelming pit of naleen, has robbed you of your will and strength. Your weak struggles only earn you even more ruthless tightening of the coils around your waist and [pc.legs], and finally you have to give in. Let them do as they wish with you; maybe they’ll let you go afterwards.}");
-
-output("\n\n{merge}");
-
-output("\n\n<i>“This is how it is, tossed morsel,”</i> husks the female naleen, curling her arms around you, erect nipples brushing against your [pc.chest]. All you can see of her face are her fangs and the heady lust in her slit eyes, glistening in the dark. <i>“We don’t prey upon the sweet bees above. They provide tribute to our nest in return. So you will enliven our joining by being a good little {cum-pump} {piece of ass} for us; the peace of the jungle rests upon it.”</i>");
-
-output("\n\nAs she talks, she {mounts your [pc.cock], sensual delight furring her tones as she pushes her hot, dripping sex down your erect shaft.} {rubs her opened, dripping pussy against your [pc.vagina], bracketing her soft lips and clit with yours.} A deep growl reverberates in your ear as tightly muscular arms twine around you from behind, fondling both your [pc.chest] and the female’s divinely soft and fluffy breasts simultaneously; the male grinds into you, opening your [pc.anus] and thrusting more and more of his diamondback dick into your [pc.ass] with determined jerks of his scaly hips.");
-
-output("\n\nThere’s nothing for you to do but clutch the sinuous female back, and whimper as she and her friend energetically take their pleasure from you. {If herm OR 1< pussy: The male huffs his enjoyment as his trailing fingers find your [pc.vagina1]; he takes a moment to line himself up, in the next pushes his double cocks into both your cunt and your {tight} / {slick} back passage.} They mold their bodies into you passionately, tonguing and biting each other’s lips over your head, all the while other naleen tails wrap themselves around your [pc.legs] and [pc.thighs], drawing you further into the heated, squirming morass until you can barely move, steeped in a shifting pit of scales and fur.");
-
-output("\n\nThe first naleen {slides off your throbbing cock and} moves her sinuous way up until she is at the top of the pile, meaningfully bumping her wet sex against your mouth. As you helplessly tongue her tangy, dripping hole{ a flicking tongue finds your [pc.cock0], a pair of lips envelope your sensitive head. You can’t possibly see exactly what naleen is doing this, but by the trembles and muffled coos they transmit into your cock-flesh as they pull and knead at it, they’re getting royally railed as they do so.} / { a flicking tongue finds your [pc.vagina0], a pair of lips press into your labia. You can’t possibly see exactly which naleen is doing this, but by the trembles and muffled coos they transmit into your flush pussy walls as they lap and flick at them, they’re getting royally railed as they do so.}");
-
-output("\n\nYou are made to give oral whilst oral is lavished upon you, all the while the big male pumps into your asshole {and [pc.vagina1]} unrelentingly, for a long minute in the heaving darkness. He grunts with profound relief, claws biting into your shoulders as he fills {two of your sensitive, twitching slots} / {you} with hot, gooey panther cum. Then he’s gone, withdrawing out of your opened hole{s}, and you’re being pulled somewhere else in the pile, lassoed away by another two or three tails in order to be some other naga’s toy. {Another hot, wet pussy is molded on top of your [pc.cock0] and kneads you this way and that;} / {Another fervid snake dick is thrust deep into your [pc.vagina0], digging into your tenderness deep;} / {Another hot, wet pussy is molded on top of your [pc.cock0] and kneads you this way and that, another fervid snake dick is thrust deep into your [pc.vagina0], digging into your tenderness deep;} every inch of you is felt, spread and used by the blissed-out predatory creatures.");
-
-output("\n\n{Your [pc.cockTail], swollen up and eager in the presence of so much smooth pressure and musk, is quickly found and joyfully put to use. It pulses out cum with deep, heavy throbs into one squealing female, and then it is snatched away, pumped impatiently back to full hardness, and thrust into another.} {Your [pc.cuntTail], spreading and moistening itself eagerly to the smell of musk and the attentions of curious fingers, is quickly put to joyful use. Uncontrollable pleasure shimmers down it as one male after another pounds their cock into it, nubs rubbing over its slobbering insides before releasing their loads deep down its stem.} {Lactation: Your [pc.nipples] are {tweaked} / {fingered} until you are dribbling [pc.milk] freely, after which you discover naleen <i>like</i> [pc.milk]. A lot. Fangs nip into the quaking flesh of your [pc.chest], thirsty mouths pulling intently at your taps, and you can do nothing but wail and release torrents of the stuff down their gullets in response, knowing full well that they won’t stop even when they have drunk you completely dry.} {Cock wings: It doesn’t take much stimulation for your vine dicks to spring out from your back of their own accord, eagerly reacting to the endless stroke of leathery tails and clutching hands. They are soon threading their way through the morass, happy to be spear into every warm, welcoming hole they are coaxed towards. The pleasure of so many of your over-stimulated cocks thrusting home into some tight, wet crevice is electric, maddening; you can only tremble and thrash against your snake-like bonds as your tentacles do as they wish.}");
-
-output("\n\nYou are forced to loud orgasm once, twice... you lose count. Time and your own sensitivities have no meaning, down there in the suffocating dark. You {spray [pc.cum] freely into some naleen’s dripping twat} {and} {convulse and dribble [pc.femcum] around a male’s hard, reptilian prick} - and then you are ruthlessly passed on to somewhere else in the pile, your [pc.groin] {and [pc.chest]} some other sexed-up naga’s source of amusement. You are rendered a doll, to whom there is no sensation but the repeated use of your {dick}{s} {and} {cunt}{s} {and} {your boobs} and your [pc.tongue] for the snake-tigers’ pleasure; there is no taste but their generous amounts of pussy juice and cum, and that is wonderful.");
-
-output("\n\n[pb]");
-
-output("\n\n//+2:30 Hours, Lust reset, pussy soaked, load in everywhere");
-
-output("\n\nEventually the naleen have mercy on you. Or maybe they get bored of you, or the orgy finishes of its own accord. Whatever the case, you slowly come to your aching senses lying naked and alone, in some black cavern below the distant roar of the waterfall. The same one, or did they chuck you out of their <i>“nest”</i>? Concepts of time and place have deserted you - you just know how much your [pc.groin] and [pc.anus] ache, and how much warm naga cum is currently leaking out of you. Your fingers finding the smooth, comforting edges of your codex on the ground centers you a little.");
-
-output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit greyer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
-
-output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.");
-
-
-
 output("\n\nPart 3: RK Lah Showdown");
 
 output("\n\nSquare Blurbs");
@@ -2594,7 +2726,7 @@ output("\n\nOtherwise: <i>“Experience, Quinn,”</i> you grin. <i>“Just rela
 
 output("\n\n{merge}");
 
-output("\n\nHoney seeps freely from the zil’s hole, soaking the furs and your groin in oozing warmth as you gently thrust against her. You make sure to give her the assiduous attention an uptown ho expects - catching at her tiny, black nipples with her teeth, lavishing them with your [pc.tongue]; dipping your fingers into her warm tunnel, stroking at her walls as you kiss her lasciviously, wrapping your tongue around the long, thin tube of hers - and soon enough you’re rewarded with vixenish abandon, Quinn’s svelte, athletic hips bucking against your own vigorously. {vagina > 1: You make sure to flex your [pc.butt] up so that your [pc.vagina1] gets to enjoy her excited palpitations too; that’s the joy having more than one, after all.}");
+output("\n\nHoney seeps freely from the zil’s hole, soaking the furs and your groin in oozing warmth as you gently thrust against her. You make sure to give her the assiduous attention an uptown ho expects - catching at her tiny, black nipples with her teeth, lavishing them with your [pc.tongue]; dipping your fingers into her warm tunnel, stroking at her walls as you kiss her lasciviously, wrapping your tongue around the long, thin tube of hers - and soon enough you’re rewarded with vixenish abandon, Quinn’s svelte, athletic hips bucking against your own vigorously. {vagina > 1: You make sure to flex your [pc.butt] up so that your [pc.vagina " + x + "] gets to enjoy her excited palpitations too; that’s the joy having more than one, after all.}");
 
 output("\n\n<i>“More like that!”</i> she gasps, petite boobs jouncing, arm wrapped firmly around your shoulders. <i>“I demand more like that!”</i> You firmly bump {your out-sized clit} against her nubby tender spot, and she pulls you into her wiry, sweaty embrace as she finds her high, mouth open and eyes pointed at the ceiling, slathering [pc.eachVagina] in pheromone-laden syrup. You are forced to a shimmering high yourself, pupils and pores dilated as you quiver against her, pressing your [pc.chest] against her small, sensitive breasts, [pc.femcum] mixing with honey as [pc.eachClit] throb deep pleasure through you.");
 

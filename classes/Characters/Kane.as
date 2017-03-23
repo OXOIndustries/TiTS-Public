@@ -179,6 +179,7 @@ package classes.Characters
 			setDefaultSexualPreferences();
 			isUniqueInFight = true;
 			btnTargetText = "Kane";
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			this._isLoading = false;
 			
@@ -202,7 +203,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "ZIL";
+			return "KANE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -229,7 +230,7 @@ package classes.Characters
 			//Bee Wit U
 			//Only uses if PC is stunned. Heavy pheromone lust damage
 			else if(target.hasStatusEffect("Stunned") && !target.hasAirtightSuit()) beeWitU(target);
-			else if(this.hasStatusEffect("Disarmed")) kaneDoubleSlap(target);
+			else if(this.hasStatusEffect("Disarmed")) punchyPunch(target);
 			else
 			{
 				//Wind
@@ -243,7 +244,21 @@ package classes.Characters
 				//Hit twice. Always use directly after PC has recovered from stun, so they have a chance to do something
 				else kaneDoubleSlap(target);
 			}
-		}		
+		}
+		public function punchyPunch(target:Creature):void
+		{
+			this.meleeWeapon.attack = 0;
+			this.meleeWeapon.longName = "fist";
+			this.meleeWeapon.attackVerb = "punch";
+			this.meleeWeapon.attackNoun = "punch";
+			this.meleeWeapon.hasRandomProperties = true;
+			CombatAttacks.MeleeAttack(this, target);
+			this.meleeWeapon.attack = 2;
+			this.meleeWeapon.longName = "rock";
+			this.meleeWeapon.attackVerb = "smash";
+			this.meleeWeapon.attackNoun = "smash";
+			this.meleeWeapon.hasRandomProperties = true;
+		}	
 		//Primitive Roofie
 		//Kinetic, medium HP damage, causes stun
 		//Not used if Stunned already.

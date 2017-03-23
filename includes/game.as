@@ -228,6 +228,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+		else if(InRoomWithFlag(GLOBAL.WATERFALL)) addButton(8,"Masturbate",fapOnWaterfall,undefined,"Masturbate","Try to blow off some steam.");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
 	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
@@ -758,7 +759,11 @@ public function rest(deltaT:int = -1):void {
 	var minPass:int;
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
+	if(InRoomWithFlag(GLOBAL.WATERFALL))
+	{
+		restOnWaterfall();
+		return;
+	}
 	clearOutput();
 
 	var postRestLustBonus:Number = 0;
@@ -1471,6 +1476,24 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		if(!rooms[arg].hasFlag(GLOBAL.HAZARD))
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
+		}
+	}
+
+	//Waterfall stuff.
+	if(rooms[arg].hasFlag(GLOBAL.WATERFALL))
+	{
+		pc.energy(-6);
+		if(arg == "8. RED ROCK SCREE" && currentLocation == "7. DRIFTWOOD SHOULDER")
+		{
+			if(flags["PQ_NALEENED"] == undefined) 
+			{
+				if(driftwoodShoulderDoofiness()) return;
+			}
+		}
+		if(pc.energy() <= 0)
+		{
+			pcDunFallsOffDatHill();
+			return;
 		}
 	}
 

@@ -446,7 +446,18 @@ package classes.GameData
 					target.addStatusValue("Pushed", 1, -1);
 				}
 			}
-			
+			if (target.hasStatusEffect("Shields Up") && !(target is PlayerCharacter))
+			{
+				target.addStatusValue("Shields Up",1,-1);
+				if(target.statusEffectv1("Shields Up") > 0) output("\n\n<b>He’s still covering himself with his shield.</b>");
+				else
+				{
+					target.removeStatusEffect("Shields Up");
+					output("\n\n<b>With a tired huff, the male zil’s allows his guard to sink back down.</b>");
+					target.shield.shields -= 40;
+					target.shields(-40);
+				}
+			}
 			if (target.hasPerk("Shield Regen") && target.hasShields() && target.shields() <= 0 && target.shieldsMax() > 0 && !target.hasStatusEffect("Used Shield Regen"))
 			{
 				if (target is PlayerCharacter)
@@ -1745,6 +1756,7 @@ package classes.GameData
 				if(target.hasStatusEffect("Naleen Coiled"))
 				{
 					if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
+					else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
 					else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
 					target.addStatusValue("Naleen Coiled",1,1);
 					if(panicJack)
