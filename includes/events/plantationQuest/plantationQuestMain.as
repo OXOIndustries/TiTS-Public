@@ -199,7 +199,7 @@ public function snugglePlantationQuestStartMeetAble2():void
 	output("\n\nYou do so. A glass of water and a small meal is provided to you by a silent, unsmiling Snugglé prisoner employee. Munching, you watch as the professor goes back to silently gazing at the screens thrown across the glass windows and plush furnishings of the veranda. From what you can gather from a cursory glance, they are analytics of the plantation’s probationers.");
 	output("\n\n<i>“Problem with the prisoners?”</i> you venture.");
 	output("\n\n<i>“Something like that,”</i> the white-haired human sighs. He sounds reluctant, as if you were talking to you about something taboo. <i>“A laborer jumped the fence a few weeks ago. It would not ordinarily be a problem - the jungle usually discharges them either to the plantation or Esbeth, quivering and begging to be taken back. Unfortunately, in this particular laborer’s case, the jungle itself </i>was<i> the goal.”</i>");
-	output("\n\nDarnock flicks his hand at the screen, and a prisoner’s file is projected onto it. A lean, male ausar gazes down at you; solemn, hungry yellow eyes beneath a shock of grey hair. MD6 - 605631 REMI-KELLEN LAH, reads the plate he’s holding up.");
+	output("\n\nDarnock flicks his hand at the screen, and a prisoner’s file is projected onto it. A lean, male ausar gazes down at you; solemn, hungry yellow eyes beneath a shock of gray hair. MD6 - 605631 REMI-KELLEN LAH, reads the plate he’s holding up.");
 	output("\n\n<i>“I must make clear,”</i> Darnock continues, <i>“that it was a bureaucratic snafu that had Remi sent here in the first place. Send me your thieves, I told Snugglé! Send me your petty criminals, your unlicensed prostitutes, your drug addicts - I will change them. I will HEAL them. Just don’t send me any eco-warriors. Don’t send me any activist ausar serving five years for a fire-bombing campaign against Xenogen. Because doing that might... it might cause problems.”</i>");
 	output("\n\nThe professor signals with two terse fingers and the prisoner file slides away, replaced by a geographical map of the immediate area. The perimeter of the plantation is shown, and a number of angry red circles intersect it.");
 	output("\n\n<i>“Since Lah escaped, we have been attacked six times by a tribe of zil. They use tactics which are completely out of keeping for their kind, exploiting programming blind spots to get past the turrets and destroy our crops. They are not out for sex; it is pure, targeted aggression.”</i> He gestures. A fuzzy video recording appears on the main screen, shot in night vision. A rangy figure is gesticulating wildly at insect-winged others, who are quickly dragging large pods into what looks like sugar cane.");
@@ -245,7 +245,7 @@ public function askAboootLah():void
 	clearOutput();
 	showDarnock();
 	flags["PQUEST_LAH_CHAT"] = 1;
-	output("<i>“How dangerous would you say this R.K. Lah is?”</i> you ask. Darnock brings up the lean ausar’s profile on the main screen again, clicks into a subset menu. You are treated to various shaky recordings of Lah participating in a protest march, shouting an address to an angry crowd of eco-protesters, his grey tail disappearing hurriedly behind a building as a line of riot police advance over glass and rubble...");
+	output("<i>“How dangerous would you say this R.K. Lah is?”</i> you ask. Darnock brings up the lean ausar’s profile on the main screen again, clicks into a subset menu. You are treated to various shaky recordings of Lah participating in a protest march, shouting an address to an angry crowd of eco-protesters, his gray tail disappearing hurriedly behind a building as a line of riot police advance over glass and rubble...");
 	output("\n\n<i>“He isn’t a murderer or some out-of-control mercenary,”</i> the old human replies at length, staring up into Lah’s round, yellow eyes. <i>“On the other hand - his psych report and history suggest he is unstable. He certainly does have a penchant for arson, as my crops have learnt to their intense displeasure. His last fire bombing attack on a Xenogen lab seriously injured someone - not the intention, but collateral damage is an unfortunate necessity when you are fighting the Dog, is it not?");
 	output("\n\n<i>“The most worrying thing is the hold he’s developed over this tribe of zil. I cannot imagine what he’s told them to get them to obey him, and with such fearlessness and precision. I don’t think there will be any avoiding fighting them, driving them to the four corners so he stands alone, Steele - it seems to be the only language the bee people understand, alas.”</i>");
 	processTime(3);
@@ -962,7 +962,7 @@ public function pcWinsAgainstHornet():void
 {
 	if(enemy.HP() <= 1) output("The spear sags in the fazed and wounded hornet’s grip, and you take the opportunity to seize it and rip it out of her grip. It’s clanking and splintering its way downwards long after you’ve thrown it. The zil hoists herself away before you can grab her, too.");
 	else output("The spear sags in the hornet’s grip as she’s finally driven to distraction, reaching beneath her armor with one hand to frig herself furiously. You take the opportunity to seize the spear and rip it out of her grip. It’s clonking and splintering its way downwards long after you’ve thrown it. The zil hoists herself upwards before you can grab her, too.");
-	//{merge}
+	//merge
 	output("\n\n<i>“You’ll tire eventually, land-stealer!”</i> she cries, as she pulls frenetically at her rope, reeling her bobbing abdomen and full, bare buttocks away from you.\n\n");
 	CombatManager.genericVictory();
 }
@@ -993,7 +993,7 @@ public function pcLoses2Hornet():void
 		if(pc.cocks[x].cLength() < 5) output("\n\n<i>“You are hung like the meekest of our men,”</i> she snaps in frustration, digging her fingers into your cheek, upping the pace of her humping. <i>“The word-wolf says you star-people have become weak from dependence on your metal pipes - this is surely what he meant!”</i>");
 		else output("\n\n<i>“Yes! Yes! Yes!”</i> she grits, digging her fingers into your cheek, upping the pace of her humping. <i>“Tell your masters to send MANY more weaklings with thick manhoods between their thighs. I enjoy them very much!”</i>");
 
-		//{merge}
+		//merge
 		output("\n\nYou are feverish, writhing to the pulse of pheromones slathered over your every sense, and you rocket [pc.cum] into her milking snatch in an unstoppable flurry");
 		if(pc.cumQ() >= 60) output("until it is oozing and dripping down your [pc.legs] into the void below");
 		output(".");
@@ -1193,14 +1193,14 @@ public function beatUpNaleenRapeBall():void
 	{
 		output("Leathery coils and furry breasts sag beneath your [pc.legs], too beaten and enervated to continue holding you.");
 		output("\n\n<i>“Oh, let [pc.him] go, Ophia,”</i> snaps a thoroughly fed-up voice at the bottom of the pile. <i>“[pc.He]’s completely killing the vibe.”</i>");
-		output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+		output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little grayer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 		output("\n\nYou will have to start the climb again - but that seems a small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
 	}
 	//PC wins via Lust
 	else
 	{
 		output("The naleen thrash, shiver and moan with delight, utterly lost in a group paroxysm of lust. They grasp, bite and thrust into each other in a frenzy, tails snapping and flailing, and though you feel like you’re in the middle of a scale-and-fur earthquake, they no longer have any interest in anything besides themselves. You manage to claw your way to one side, and tracing the side of the pit whilst naga bump and grind into you uncaringly, you manage to find an open space to haul yourself into and tumble down.");
-		output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+		output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little grayer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 		output("\n\nYou will have to start the climb again - but that seems a fairly small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
 	}
 	currentLocation = "2. WATERFALL POOL";
@@ -1303,7 +1303,7 @@ public function naleenBallLossFinisher():void
 {
 	//+2:30 Hours, Lust reset, pussy soaked, load in everywhere
 	output("Eventually the naleen have mercy on you. Or maybe they get bored of you, or the orgy finishes of its own accord. Whatever the case, you slowly come to your aching senses lying naked and alone, in some black cavern below the distant roar of the waterfall. The same one, or did they chuck you out of their <i>“nest”</i>? Concepts of time and place have deserted you - you just know how much your crotch and [pc.ass] ache, and how much warm naga cum is currently leaking out of you. Your fingers finding the smooth, comforting edges of your codex on the ground centers you a little.");
-	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit greyer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit grayer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 	output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.\n\n");	
 	processTime(120);
 	currentLocation = "2. WATERFALL POOL";
@@ -1337,11 +1337,11 @@ output("\n\nStanding next to the chair is a tall, rangy ausar; sat on top of it 
 
 output("\n\n<i>“This would be the land-stealer’s champion, then,”</i> she says placidly. <i>“You said such would come, and so it was true.”</i>");
 
-output("\n\n<i>“I- I thought they would send - yes, I did say that, and I speak truths!”</i> growls Remi-Kellen Lah. He looks different enough from his mugshots that you didn’t immediately recognize him, and not just because he’s wearing nothing but the tattered remains of his orange jumpsuit bottoms and some sort of cape-like fur around his neck. Weeks in the jungle have browned his skin, leaned his body right down and turned his grey hair into an unruly mop between his wide, pointy ears. Like the zil chieftain though, the crucial difference is not physical. When the ausar moves towards you it is in a jerky manner, his ears and pale eyes twitching this way and that, as if expecting an attack from an unexpected quarter at any instant. He points a long, clawed finger at you like the thrust of a sword.");
+output("\n\n<i>“I- I thought they would send - yes, I did say that, and I speak truths!”</i> growls Remi-Kellen Lah. He looks different enough from his mugshots that you didn’t immediately recognize him, and not just because he’s wearing nothing but the tattered remains of his orange jumpsuit bottoms and some sort of cape-like fur around his neck. Weeks in the jungle have browned his skin, leaned his body right down and turned his gray hair into an unruly mop between his wide, pointy ears. Like the zil chieftain though, the crucial difference is not physical. When the ausar moves towards you it is in a jerky manner, his ears and pale eyes twitching this way and that, as if expecting an attack from an unexpected quarter at any instant. He points a long, clawed finger at you like the thrust of a sword.");
 
 output("\n\n<i>“First the fascists take your land!”</i> There is an approving murmur of <i>“far shist”</i> around the circle. <i>“Then they send their minions to enforce their greed: indoctrinated wage-slaved pawns.”</i> A wondering, rousing buzz of <i>“indo t’chinater wayslay bawns”</i> follows. <i>“And so the unfairness becomes the new rule. You cannot allow this to happen!”</i> Lah balls his fist. <i>“This pawn’s appearance here only tells us that you are winning the battle, that you have the land-stealers rattled. With their attention on you now, we need only one more great demonstration of your fury and bravery to banish them from your lands forever!”</i>");
 
-output("\n\n<i>“And what are your words concerning the pawn [pc.him]self?”</i> says the zil chieftain calmly, once the wild cheering has died down. Lah stares at you. There’s something of a battle going on, behind those grey eyes.");
+output("\n\n<i>“And what are your words concerning the pawn [pc.him]self?”</i> says the zil chieftain calmly, once the wild cheering has died down. Lah stares at you. There’s something of a battle going on, behind those gray eyes.");
 
 output("\n\n<i>“[pc.he] has heard the truth,”</i> he says at last, almost visibly biting down on what the ausar who has spent the last four weeks living wild wants to say. <i>“If [pc.he] is at peace with it, then [pc.he] should go in peace, yes. If [pc.he] is here to blindly follow [pc.his] orders, then... then.”</i>");
 
@@ -1493,9 +1493,9 @@ output("\n\n15% Immunity to drug attacks");
 
 output("\n\nAppearance");
 
-output("\n\nYou are fighting RK Lah. The ausar fugitive stands maybe 6 foot tall, a height accentuated by his hard, jungle-leaned body and his wide, pointy ears. His skin is a sun-bronzed teak and his fur an orangey-grey, a shoulder-length matt of the stuff between his ears and down his bushy tail. Around his neck he has tied a long fur of some kind, which combined with the hunch of his shoulders lends him a prowling profile. Aside from that all he’s dressed in are the tattered remains of his bright orange jumpsuit bottoms; his bare feet are floured pale yellow with use.");
+output("\n\nYou are fighting RK Lah. The ausar fugitive stands maybe 6 foot tall, a height accentuated by his hard, jungle-leaned body and his wide, pointy ears. His skin is a sun-bronzed teak and his fur an orangey-gray, a shoulder-length matt of the stuff between his ears and down his bushy tail. Around his neck he has tied a long fur of some kind, which combined with the hunch of his shoulders lends him a prowling profile. Aside from that all he’s dressed in are the tattered remains of his bright orange jumpsuit bottoms; his bare feet are floured pale yellow with use.");
 
-output("\n\nHe has a long, studious face which would be reasonably fetching in some circumstance in which his lips weren’t curled up in a mask of rage and fear. Similarly, his pale grey eyes could be pools of moon-like calm, were they not nakedly shining the light of a mind that has spent weeks marching far into the jungle night. He is armed with black, thorn-like claws and a zil spear, which with his spidery arms give him considerable reach.");
+output("\n\nHe has a long, studious face which would be reasonably fetching in some circumstance in which his lips weren’t curled up in a mask of rage and fear. Similarly, his pale gray eyes could be pools of moon-like calm, were they not nakedly shining the light of a mind that has spent weeks marching far into the jungle night. He is armed with black, thorn-like claws and a zil spear, which with his spidery arms give him considerable reach.");
 
 
 output("\n\nAttacks");
@@ -1524,7 +1524,7 @@ output("\n\nWolf’s Tooth");
 
 output("\n\n//Standard kinetic penetrating attack. 20% chance to cause 5 bleed for 3 turns if unshielded");
 
-output("\n\nLah prowls around you, arm up and grey eyes flashing, thrusting his spear viciously at your side where he anticipates you won’t expect it. {His blow is blunted by your shield.} {His blow breaks through your shield and thunks into you.} {His blow thunks into your bare side.} {You manage to sidestep the attack.} {Causes bleed: Horribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet].}");
+output("\n\nLah prowls around you, arm up and gray eyes flashing, thrusting his spear viciously at your side where he anticipates you won’t expect it. {His blow is blunted by your shield.} {His blow breaks through your shield and thunks into you.} {His blow thunks into your bare side.} {You manage to sidestep the attack.} {Causes bleed: Horribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet].}");
 
 output("\n\nContinuing effect: Blood continues to drip freely from the puncture wound he’s given you. You feel drained and light-headed...");
 
@@ -2202,7 +2202,7 @@ output("\n\nIf burntplantation=0");
 
 output("\n\n{The bright sun of Ara Ara} / {The ghostly light of Mhen’ga’s moons} becomes less and less filtered as you follow the sawdust trail eastwards, the jungle thinning out until it stops, suddenly, at the edge of a huge field.");
 
-output("\n\nVoid, fuck and One, the manor is on fire! Other parts of the plantation are drooling smoke as well, but none quite so dramatically as its gleaming white centrepiece: A filthy cumulonimbus of blooming grey and flickering yellow towers over the plantation, lending the chaotic scene in front of you a pallor of unreality. Male zil flit over the lush fields and females trample across them, furiously battling drones, defense turrets and panicking prisoners in an ugly free-for-all. The nearest turret to you cycles and clicks, fruitlessly attempting to acquire targets that have already gotten past it; the head of the other lolls on its base, sparking and broken.");
+output("\n\nVoid, fuck and One, the manor is on fire! Other parts of the plantation are drooling smoke as well, but none quite so dramatically as its gleaming white centrepiece: A filthy cumulonimbus of blooming gray and flickering yellow towers over the plantation, lending the chaotic scene in front of you a pallor of unreality. Male zil flit over the lush fields and females trample across them, furiously battling drones, defense turrets and panicking prisoners in an ugly free-for-all. The nearest turret to you cycles and clicks, fruitlessly attempting to acquire targets that have already gotten past it; the head of the other lolls on its base, sparking and broken.");
 
 output("\n\nFirst: An orange-jumpsuited vulkrim charges past you into the jungle, pitch black eyes wild.");
 
@@ -2224,7 +2224,7 @@ output("\n\nTHARE PLANTATION FIELDS");
 
 output("\n\nFirst: You choke and wheeze as you push towards the heat of the manor inferno. The wind is thankfully running from behind you; you doubt you’d be able to approach otherwise.");
 
-output("\n\nRK Lah is standing by the soot-touched walls, watching the fire go, mouth slightly ajar. He looks over you at you vaguely at your approach, before turning back to it, entranced. Orange flickers in his wide, grey eyes.");
+output("\n\nRK Lah is standing by the soot-touched walls, watching the fire go, mouth slightly ajar. He looks over you at you vaguely at your approach, before turning back to it, entranced. Orange flickers in his wide, gray eyes.");
 
 output("\n\n<i>“Did everyone get out?”</i> you shout, over the fire’s roar and the melee in the fields behind you. Lah starts out of his trance, and barks a wry laugh.");
 
@@ -2270,7 +2270,7 @@ output("\n\nTooltip: The ausar activist’s angry agitation appears adequately a
 
 output("\n\n<i>“It is good to see you return, honored friend!”</i> Lah leaps down from his place by Quinn’s side and shakes your hand vigorously. <i>“Seriously, it’s nice to talk to - talk to someone from the outside world,”</i> he goes on in lower tones. <i>“And for the zil to see starwalkers walking amongst them in peace. What’s - what’s going on? At Esbeth? On the frontier?”</i>");
 
-output("\n\nYou give him what fragments of gossip you have, which is hungrily devoured by craning furry ears and wide, grey eyes.");
+output("\n\nYou give him what fragments of gossip you have, which is hungrily devoured by craning furry ears and wide, gray eyes.");
 
 output("\n\n<i>“So no U.G.C. intervention seems planned? That is good news, at least. What can I tell you about?”</i>");
 
