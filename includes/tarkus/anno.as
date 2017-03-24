@@ -796,7 +796,7 @@ public function askAbootAnnoz():void
 	showAnno();
 	output("<i>“So, tell me about yourself,”</i> you say, by way of breaking the ice.");
 	output("\n\n<i>“No, you,”</i> Anno giggles, giving you a playful punch on the shoulder. <i>“You’re the billionaire playboy’s " + pc.mf("son","daughter") + ". That’s, like, a hundred times more interesting than me.”</i>");
-	output("\n\nYou try and refudiate her claim, but Anno’s insistent, and eventually pries you into telling her a bit about yourself, your rather unorthodox upbringing and training, and eventually to the quest that’s brought you all the way out to Tarkus.");
+	output("\n\nYou try and repudiate her claim, but Anno’s insistent, and eventually pries you into telling her a bit about yourself, your rather unorthodox upbringing and training, and eventually to the quest that’s brought you all the way out to Tarkus.");
 	output("\n\n<i>“Aha! I knew it!”</i> she exclaims, a smug grin across her face. <i>“I thought I picked up a Steele signal coming from the wastes a while ago, but I couldn’t track it. That must be the probe you’re after! Wish I could help you, boss: would be nice to hear Vic’s voice again, even if it’s just a recording in a probe.”</i>");
 	output("\n\nShe hesitates a moment, before placing a hand on your shoulder, squeezing tight. <i>“I bet you would too, huh?”</i>");
 	output("\n\nYou nod sadly. <i>“Yeah... and now, your turn.”</i>");
