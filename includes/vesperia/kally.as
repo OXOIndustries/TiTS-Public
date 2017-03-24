@@ -209,7 +209,7 @@ public function approachKally():void
 		else output("You’ve got the ‘nuki fever bad, but that’s okay. You can look as much as you want while I’m working, and touch as much as you want when I’m not. You just can’t drink as much as you want. It’s getting close to cut-off time.");
 		output("”</i> She whirls to grab a glass, sending her boobs bouncing once more.”</i>");
 		output("\n\nThat sounds okay, as long as she’s the one to cut you off.");
-		//{+lust}
+		//+lust
 		pc.lust(10);
 	}
 	//Met, buzzed, have had <i>“special”</i> drinks
@@ -3174,7 +3174,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	if(!pc.isPregnant(x)) output(" and into your womb. You feel it settle inside your uterus, the heavy, liquid pleasure rolling around as it transforms you into a vessel for spunk. And through it all, you can feel her flare, so swollen, so completely overtaken by orgasm, that it has expanded to the point that it forms a clear outline on your expanded middle.");
 	else output(" all the way to your blocked-off womb. You feel it strain you mightily, then vent back out, the rushing fluids only serving to coax Kally to cum that much harder, her flare wide enough to make an imprint on the surface of your fluid-filled midsection.");
 	output("\n\nThe sisters climax for so long (and so messily) that you reach two more pussy-shattering climaxes by the time they finish. And even then, just feeling that hot, kui-tan goo sliding out of you is enough to make you whimper and quiver all over again.");
-	//{Loads in holes, go!}
+	//Loads in holes, go!
 	processTime(25);
 	pc.loadInAss(kiro);
 	pc.loadInCunt(kally,x);
