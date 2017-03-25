@@ -5680,6 +5680,21 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n* <i>No roaming encounter data has been logged.</i>");
 		}
 		
+		output2("\n\n" + blockHeader("Crew Team Building", false));
+		var teamBuildingCount:int = 0;
+		
+		if (pippaYammiThreesomeCount(0) > 0)
+		{
+			output2("\n<b>* Pippa, Yammi, Times Sexed in Threesome:</b> " + pippaYammiThreesomeCount(0));
+			teamBuildingCount++;
+		}
+		
+		if(teamBuildingCount == 0)
+		{
+			output2("\n<b><u>Not Available</u></b>");
+			output2("\n* <i>No team building activities have been logged.</i>");
+		}
+		
 		// Misc: (Optional)
 		output2("\n\n" + blockHeader("Miscellaneous", false));
 		var miscCount:int = 0;

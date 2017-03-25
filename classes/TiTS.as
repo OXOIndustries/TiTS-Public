@@ -355,6 +355,7 @@
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/pippa.as";
 		include "../includes/follower.pippa.as";
+		include "../includes/follower.multi_interactions.as";
 		
 		include "../includes/chargendata.as";
 		

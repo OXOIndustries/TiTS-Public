@@ -609,12 +609,40 @@ public function multiCrewInteractions():Array
 	}
 	if (InCollection(CREW_YAMMI, crewMembers))
 	{
-		if (rand(8) == 0 && flags["YAMMI_KITCHENED"] != undefined && InCollection(CREW_PIPPA, crewMembers))
+		if (rand(5) == 0 && flags["YAMMI_KITCHENED"] != undefined && InCollection(CREW_PIPPA, crewMembers))
 		{
 			crewMembers.splice(crewMembers.indexOf(CREW_YAMMI), 1);
 			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
 			
 			crewMessages += "\n\nPippa and Yammi are in the kitchen chatting while Yammi cooks.";
+			
+			if (flags["SEXED_YAMMI"] > 0 && pc.lust() >= 33 && pippaYammiThreesomeCount(0) == 0 && (pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur() && pippaSexed(0) > 0) flags["PIPPA_YAMMI_KITCHEN"] = 1;
+			else flags["PIPPA_YAMMI_KITCHEN"] = 0;
+		}
+		else flags["PIPPA_YAMMI_KITCHEN"] = 0;
+	}
+	if (InCollection(CREW_PIPPA, crewMembers))
+	{
+		if (hours > 13 && hours <= 14 && rand(2) == 0 && InCollection(CREW_ANNO, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_ANNO), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is givin Anno a post-workout massage, focusing on her torso and being careful to avoid getting oil in her fur.";
+		}
+		else if (rand(8) == 0 && InCollection(CREW_YAMMI, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_YAMMI), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is giving Yammi a massage, paying special attenion to her hands and feet.";
+		}
+		else if (!curedReahaInDebt() && rand(8) == 0 && InCollection(CREW_REAHA, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is giving Reaha a massage, paying special attenion to her back.";
 		}
 	}
 	
@@ -713,7 +741,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			if (InCollection(CREW_YAMMI, crewMembers)) crewMessages += "\n\n" + yammiShipBonusText();
-			addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
+			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Yammi", pippaYammiThreesomeIntro);
+			else addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
 		}
 	}
 	if (pexigaIsCrew())
@@ -732,7 +761,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			if (InCollection(CREW_PIPPA, crewMembers)) crewMessages += "\n\n" + pippaShipBonusText();
 			
-			addButton((count + other) - 1, "Pippa", pippaMainMenu);
+			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Pippa", pippaYammiThreesomeIntro);
+			else addButton((count + other) - 1, "Pippa", pippaMainMenu);
 		}
 	}
 	if (hasGooArmor() || gooArmorIsCrew())

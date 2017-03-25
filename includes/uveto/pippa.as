@@ -576,6 +576,13 @@ public function pippaSexMenu(func:Function):void
 		addDisabledButton(5, "Feed Milk", "Feed Milk", "You’ll need to be a heavily lactating non-taur to give Pippa a personal feeding.");
 	}
 	
+	if (pippaYammiThreesomeCount(0) > 0)
+	{
+		if (!yammiIsCrew()) addDisabledButton(6, "Yammi", "Yammi", "Yammi must be on your ship to have a threesome with her and Pippa.");
+		else if ((pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur()) addButton(6, "Yammi", pippaYammiThreesome, undefined, "Yammi", "Have a threesome with Pippa and Yammi.");
+		else addDisabledButton(6, "Yammi", "Yammi", "You must have a cock or hardlight-equipped underwear and not be a taur to have a threesome with Pippa and Yammi.");
+	}
+	
 	addButton(14, "Back", func, NEVERMIND);
 }
 
@@ -876,7 +883,7 @@ public function pippaSpecialMassage():void
 {
 	clearOutput();
 	clearMenu();
-	showPippa(true);
+	showPippa(true, true);
 	
 	output("Pippa smiles and requests, <i>“Give me just a little bit to prepare.”</i> She walks away, but reappears a few minutes later, looking no different. She leads you to her bed, and it’s obvious what she was preparing. Her bed is devoid of pillows or any typical bedding. The mattress has been wrapped in what seems to be some sort of plastic sheet, shining with an oily gloss. Towels are laid out all around the bed, and, rather than the bottle of oil that would be present at a normal massage, a bucket of oil sits on her nightstand. <i>“Now then, let’s get started.”</i>");
 	
@@ -965,7 +972,7 @@ public function pippaSpecialMassageII():void
 {
 	clearOutput();
 	clearMenu();
-	showPippa(true);
+	showPippa(true, true);
 	
 	output("The massage truly starts, as she begins working on your back muscles, but now, the ministrations of her hands alternate with the feeling of her rubbing her [pippa.tits] all up and down your backside. Sometimes she uses her tits and hands at the same time; as her hands work on your shoulders, you feel her [pippa.nipples] pressing into your lower back. To work on your legs, she flips around, resting her [pippa.pussyNoun] on your back and her breasts on your ass.");
 	
@@ -1921,7 +1928,7 @@ public function pippaGetFucked():void
 	
 	output("\n\nThe tip of her [pippa.hardlightCockNoun] comes to rest on your [pc.vagOrAss " + vagOrAss + "] and she slowly pushes in, " + (vagOrAss == -1 ? "spreading your " + RandomInCollection("ring", "rim", "hole") : "parting your " + RandomInCollection("folds", "lips")) + " and burying her length inside of you. ");
 	
-	pc.holeChange(vagOrAss, 10);
+	pc.holeChange(vagOrAss, pippa.hardLightVolume());
 	
 	output("  For a short bit, she doesn’t move her hips, leaving her [pippa.hardlightCock] buried in you.  Her hands, however, she moves, rubbing them along your [pc.hips], gently massaging and squeezing them.  The massaging and the sensation of your filled hole arouses you");
 	

@@ -853,13 +853,21 @@ public function yammiFollowerSexMenu():void
 		{
 			addButton(2,"Get Licked",getLickedByYamyams,undefined,"Get Licked","Hop up on the counter and give Yammi a taste of your" + (pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY ? " literal" : "") + " honeypot!");
 		}
-		else addDisabledButton(2,"Get Licked","Get Licked","You must have a vagina for this.");
+		else addDisabledButton(2, "Get Licked", "Get Licked", "You must have a vagina for this.");
+		
+		if (pippaYammiThreesomeCount(0) > 0)
+		{
+			if (!pippaOnShip()) addDisabledButton(3, "Pippa", "Pippa", "Pippa must be on your ship to have a threesome with her and Yammi.");
+			else if ((pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur()) addButton(3, "Pippa", pippaYammiThreesome, undefined, "Pippa", "Have a threesome with Pippa and Yammi.");
+			else addDisabledButton(3, "Pippa", "Pippa", "You must have a cock or hardlight-equipped underwear and not be a taur to have a threesome with Pippa and Yammi.");
+		}
 	}
 	else
 	{
 		addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You’re not aroused enough to be interested in this.");
 		addDisabledButton(1,"Fuck Her Vag","Fuck Her Vag","You’re not aroused enough to be interested in this.");
-		addDisabledButton(2,"Get Licked","Get Licked","You’re not aroused enough to be interested in this.");
+		addDisabledButton(2, "Get Licked", "Get Licked", "You’re not aroused enough to be interested in this.");
+		addDisabledButton(3, "Pippa", "Pippa", "You’re not aroused enough to be interested in this.");
 	}
 	addButton(14,"Back",yammiInTheKitchen);
 }
