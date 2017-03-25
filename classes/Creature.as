@@ -13611,7 +13611,7 @@
 			}
 			else {
 				if(adjectiveArray[1] > 0) descript += ", ";
-				descript += RandomInCollection("mutated cock","mixed dicks","mixed cocks","mismatched dicks","mixed pricks","mismatched members");
+				descript += RandomInCollection("mutated cock","mixed dick","mixed cock","mismatched dick","mixed prick","mismatched member");
 			}
 			return plural(descript);
 		}
