@@ -576,7 +576,7 @@ public function pippaSexMenu(func:Function):void
 		addDisabledButton(5, "Feed Milk", "Feed Milk", "You’ll need to be a heavily lactating non-taur to give Pippa a personal feeding.");
 	}
 	
-	if (pippaYammiThreesomeCount(0) > 0)
+	if (pippaYammiThreesomeCount(0) > 0 && pippaOnShip())
 	{
 		if (!yammiIsCrew()) addDisabledButton(6, "Yammi", "Yammi", "Yammi must be on your ship to have a threesome with her and Pippa.");
 		else if ((pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur()) addButton(6, "Yammi", pippaYammiThreesome, undefined, "Yammi", "Have a threesome with Pippa and Yammi.");

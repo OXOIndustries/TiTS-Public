@@ -867,7 +867,7 @@ public function yammiFollowerSexMenu():void
 		addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You’re not aroused enough to be interested in this.");
 		addDisabledButton(1,"Fuck Her Vag","Fuck Her Vag","You’re not aroused enough to be interested in this.");
 		addDisabledButton(2, "Get Licked", "Get Licked", "You’re not aroused enough to be interested in this.");
-		addDisabledButton(3, "Pippa", "Pippa", "You’re not aroused enough to be interested in this.");
+		if (pippaYammiThreesomeCount(0) > 0) addDisabledButton(3, "Pippa", "Pippa", "You’re not aroused enough to be interested in this.");
 	}
 	addButton(14,"Back",yammiInTheKitchen);
 }

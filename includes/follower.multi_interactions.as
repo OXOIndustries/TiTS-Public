@@ -93,7 +93,7 @@ public function pippaYammiThreesome():void
 	
 	if (pippaYammiThreesomeCount(0) == 0)
 	{
-		output("You reach a hand around each of the ladies, grabbing two handfuls of plump ass.  <i>“How about both Pippa and I stay here in the kitchen?”</i>");
+		output("You reach a hand around each of the ladies, grabbing two handfuls of plump ass.  <i>“How about both Pippa and I both stay here in the kitchen?”</i>");
 		
 		output("\n\nPippa giggles.  <i>“I see you're thinking what I'm thinking, " + pippaCallsSteele() + ".”</i>  She reachs around and grabs Yammi's other ass cheek, eliciting a sharp intake of air from the sparadat.");
 		
@@ -231,7 +231,39 @@ public function pippaYammiThreesomeDom(cockIndex:int):void
 
 public function pippaYammiThreesomeSub(cockIndex:int):void
 {
-	output("\n\nsub");
+	output("\n\nPippa moves her lips away from your mouth, kissing her way down to your neck, and then up toward your ear.  She pulls away from you briefly and quickly strips off her clothes.  She then continues kissing down your body, till she's down on her knees next to Yammi.  <i>“I couldn't help but want to join Yammi down here.”</i>  While Yammi continues sucking your [pc.cockNoun " + cockIndex + "], Pippa kisses her cheek and neck, using one hand to grope her pert breasts and the other to finger her pussy from behind.  Yammi moans into your [pc.cock " + cockIndex + "], her tongue vibrating along its length.  ");
+	
+	if (pc.balls > 0) output("Pippa stops kissing Yammi, relocating her [pippa.lips] to your [pc.balls].  She licks and sucks on them gently, her warm, wet tongue massaging your [pc.sack].");
+	else output("Pippa continues to finger Yammi, but removes the other hand and places it at the base of your shaft, stroking your [pc.cockNoun " + cockIndex + "] along with Yammi's own stroking and sucking.");
+	
+	output("\n\nAfter a bit, Yammi seemingly has no plans to stop sucking your [pc.cockNoun " + cockIndex + "], but Pippa wants her turn at it.  In one smooth motion, the pig-morph pulls your chef off of you and into a brief kiss.  Rather than completely taking Yammi's place entirely, Pippa kisses and licks the side of your [pc.cock " + cockIndex + "], inviting Yammi to do the same.  The two lusty ladies sandwich you in between their lips and tongues, kissing its entire length" + (pc.cocks[cockIndex].cWidth <= 1.2 ? " and completely enveloping it to kiss each other" : "") + ".  You hold their heads firmly to your shaft and, as their mouths stroke it up and down, their hands are free to grope at each other's breasts and pussies.");
+	
+	output("\n\nYou feel as though you could easily cum from those plush lips on your [pc.cockNoun " + cockIndex + "], but better than their upper lips, you're sure, are their wet and waiting lower lips.  You pull away from Pippa and Yammi and bend down to grab the latter, the lighter of the two, lifting her up and swinging her around, and laying her back on a table.  She spreads her legs, inviting you in.  <i>“Come and get it, [pc.name].”</i>  You waste no time moving in, grabbing her hips, and slowly pushing in past her folds and into her wet, cool pussy.  You begin to thrust, drawing your [pc.cock " + cockIndex + "] in and out of her clamping inner walls, so tight that were she not so soaking wet, you'd barely be able to move.  Pippa comes up next to Yammi and begins kissing her and groping her breasts.  Her eyes, however, land squarely on your [pc.cockNoun " + cockIndex + "] pounding away at sparadat pussy.  She reaches one hand down, fingers framing your intruding [pc.cockNoun " + cockIndex + "] and rubbing Yammi's clit.  You can feel her pussy quivering around your length, squeezing tighter and tighter.  This only spurs you on; you fuck her harder and faster and, between your pounding and Pippa's hands and mouth, Yammi can't resist.  Orgasm washes over her.  Her pussy squeezes and massages your [pc.cock " + cockIndex + "] and you barely keep from climaxing yourself.  After all, you still have one pussy to attend to.");
+	
+	output("\n\nYou slowly withdraw from Yammi, and turn your attention to Pippa.  The pig-morph has stopped kissing and groping Yammi and is bent over, waiting for you, [pippa.ass] swaying enticingly.  You stroll up behind her, and grab her [pippa.hips].  With her [pippa.pussy] soaking wet, and your [pc.cock " + cockIndex + "] slick with Yammi's juices, you easily slide in past her aroused, puffy lips.  The corkscrewed ridges of her [pippa.pussyNoun] slide over the length of your [pc.cockNoun " + "], and, already lifted to the heights of pleasure by Yammi, you barely manage to not climax on entry.  You bottom out and stop, allowing yourself to come down a bit before fucking Pippa.  While you rest, enjoying the feeling of being inside Pippa, Yammi recovers enough to get up.  The sparadat kneels beneath Pippa and begins licking and sucking on her clit.  Pippa begins moaning and, not to be outdone by Yammi's talented tongue, you begin thrusting.  Pippa's [pippa.pussyNoun] is mmuch warmer than Yammi's, not quite as tight, but with a more unique texture; you can't help but feel you're lucky to have such variety.  You can't dwell on that thought for long.  Between your [pc.cock " + cockIndex + "] probing her depths, and Yammi's attention to her clit, Pippa is fast approaching orgasm.  Her [pippa.pussy] spasms over your shaft, ridged walls massaging the entire length.  You power through Pippa's orgasm, again barely preventing your own.");
+	
+	output("\n\n<i>“Isn't it about time you finish, Boss?”</i>  Yammi smiles.");
+	
+	output("\n\n<i>“What did you have in mind, " + pippaCallsSteele() + "?”</i>  Pippa giggles.");
+	
+	output("\n\nYou pull out of Pippa and flip her over onto her back, and then lift Yammi up, letting her straddle the pig-morph.  Both of their pussies are right next to each other before you, flush, slick, and inviting.  However, you don't enter either for a second time.  Instead, you instruct Yammi to really press herself to Pippa, bringing their bodies flush together.  So close together, they begin to make out.  You slide your [pc.cock " + cockIndex + "] in between their pussies, letting thier slick folds envelope both sides of your length.  ");
+	
+	if (cockIndex >= 0)
+	{
+		if (pc.cocks[cockIndex].cLength() >= 20) output("Your [pc.cockNoun " + cockIndex + "] is so long that you can push all the way up through their bodies, sandwiching yourself in their soft breasts, and leaving a trail of mixed girl-cum down their torsos.  ");
+		else if (pc.cocks[cockIndex].cLength() >= 10) output("You [pc.cockNoun " + cockIndex + "] is so long that you can push part way up through their bodies, sandwiching yourself in and leaving girl-cum on their stomachs.  ");
+	}
+	
+	output("  At this point, you're so on edge that a light breeze blowing the right way could tip you over, and as soon as you bottom out between the two ladies, you can't help yourself: you go over the edge.");
+	
+	if (cockIndex >= 0) output("  You spray [pc.cum] through the length of their bodies, painting their pussies and torsos [pc.cumColor].");
+	else output("  You quake with delayed orgasm, sending shivers through the pile of fem-flesh before you.");
+	
+	output("\n\nYou pull yourself from between them, and Yammi rolls off of Pippa.  The two of them are quite filthy, sweaty, flushed, and covered in pussy juice" + (cockIndex >= 0 ? " and cum" : "") + ".  You tell the two of them to go take a shower, and you'll clean up the kitchen before anybody can see the state it's in.");
+	
+	output("\n\n<i>“You got it, Boss.”</i>");
+	
+	output("\n\n<i>“Thanks, " + pippaCallsSteele() + ".”</i>");
 	
 	pippaDominance(-1);
 }
