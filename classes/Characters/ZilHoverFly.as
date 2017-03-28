@@ -253,7 +253,7 @@ package classes.Characters
 					if(!target.hasStatusEffect("Aphro"))
 					{
 						output(" You groan as heat flares within you, zil pheromones surging into your bloodstream, lust pulsing steadily down to your [pc.groin].");
-						target.createStatusEffect("Aphro",5,4,0,0,false,"Icon_DrugVial","An aphrodisiac is in your blood, exciting you over time! It should fade quickly... unless you get redosed.",true,0);
+						target.createStatusEffect("Aphro",5,4,0,0,false,"Icon_DrugVial","An aphrodisiac is in your blood, exciting you over time! It should fade quickly... unless you get redosed.",true,0,0xFF0000);
 					}
 					else
 					{

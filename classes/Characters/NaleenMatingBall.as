@@ -161,6 +161,15 @@
 			this.cocks[0].cType = GLOBAL.TYPE_SNAKE;
 			this.cocks[1].cockColor = "purple";
 			this.cocks[1].cType = GLOBAL.TYPE_SNAKE;
+			this.vaginas = new Array();
+			this.createVagina();
+			this.vaginas[0].hymen = false;
+			this.vaginas[0].clits = 1;
+			this.vaginas[0].wetnessRaw = 4;
+			this.vaginas[0].loosenessRaw = 3;
+			this.vaginas[0].bonusCapacity = 1000;
+			this.vaginas[0].type = GLOBAL.TYPE_NAGA;
+			this.vaginas[0].vaginaColor = "pink";
 			//Goo is hyper friendly!
 			this.elasticity = 1.4;
 			//Fertility is a % out of 100. 
@@ -181,6 +190,7 @@
 			this.createStatusEffect("Disarm Immune");
 
 			this.inventory.push(new NaleenNip());
+			this.inventory[0].quantity = 5;
 			
 			isUniqueInFight = true;
 			btnTargetText = "Naleen";
@@ -282,7 +292,7 @@
 			else 
 			{
 				output("Your movements are limited in this pit of writhing, sighing flesh, and you can’t get yourself clear of it in time. A few moments more of sinuous movement, and you are completely bound in the naleen’s coils.");
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0,0xFF0000);
 				createStatusEffect("Constrict CD",5,0,0,0);
 			}
 		}

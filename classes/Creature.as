@@ -4661,8 +4661,8 @@
 			if (hasStatusEffect("Water Veil")) temp += statusEffectv2("Water Veil");
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
+			if (hasStatusEffect("Evasion Boost")) temp += statusEffectv1("Evasion Boost");
 			//Nonspecific evasion boost status effect enemies can use.
-			temp += statusEffectv1("Evasion Boost");
 			//Now reduced by restraints - 25% per point
 			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
 			

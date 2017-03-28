@@ -282,6 +282,7 @@ public function initMhengaRooms():void
 	rooms["JUNGLE EDGE"].southExit = "PURPLE FLOWERS 4";
 	rooms["JUNGLE EDGE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["JUNGLE EDGE"].addFlag(GLOBAL.FOREST);
+	rooms["JUNGLE EDGE"].runOnEnter = lahDetectorTest;
 
 	//21. A Bend in the Fern-Shrouded Path
 	rooms["FERNGROWTH PATH 1"] = new RoomClass(this);
@@ -1375,7 +1376,7 @@ public function initMhengaRooms():void
 	rooms["9. GREY ROCK SHRINE"].westExit = "8. RED ROCK SCREE";
 	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.FOREST);
-	rooms["9. GREY ROCK SHRINE"].runOnEnter = undefined;
+	rooms["9. GREY ROCK SHRINE"].runOnEnter = greyRockShrine;
 
 	rooms["10. TOP OF THE CLIFF"] = new RoomClass(this);
 	rooms["10. TOP OF THE CLIFF"].roomName = "TOP OF\nTHE CLIFF";
@@ -1386,7 +1387,7 @@ public function initMhengaRooms():void
 	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.HAZARD);
 	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.FOREST);
 	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.WATERFALL);
-	rooms["10. TOP OF THE CLIFF"].runOnEnter = undefined;
+	rooms["10. TOP OF THE CLIFF"].runOnEnter = topOfTheCliffBonus;
 
 	rooms["11. Zil Village Outskirts"] = new RoomClass(this);
 	rooms["11. Zil Village Outskirts"].roomName = "VILLAGE\nOUTSKIRTS";
@@ -1395,7 +1396,7 @@ public function initMhengaRooms():void
 	rooms["11. Zil Village Outskirts"].northExit = "12. Zil Village Winnar";
 	rooms["11. Zil Village Outskirts"].addFlag(GLOBAL.OUTDOOR);
 	rooms["11. Zil Village Outskirts"].addFlag(GLOBAL.FOREST);
-	rooms["11. Zil Village Outskirts"].runOnEnter = undefined;
+	rooms["11. Zil Village Outskirts"].runOnEnter = zilVillageOutskirts;
 
 	rooms["12. Zil Village Winnar"] = new RoomClass(this);
 	rooms["12. Zil Village Winnar"].roomName = "CHIEFTAN’S\nCIRCLE";
@@ -1403,7 +1404,7 @@ public function initMhengaRooms():void
 	rooms["12. Zil Village Winnar"].southExit = "11. Zil Village Outskirts";
 	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.OUTDOOR);
 	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.FOREST);
-	rooms["12. Zil Village Winnar"].runOnEnter = undefined;
+	rooms["12. Zil Village Winnar"].runOnEnter = chieftansCircleBonusFuckery;
 
 
 	// Vanae map additions

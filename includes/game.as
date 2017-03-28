@@ -1113,6 +1113,13 @@ public function flyMenu():void {
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
+		if(pc.hasKeyItem("RK Lay - Captured"))
+		{
+			output("<b>You should probably get rid of RK Lah before you skip town...</b>");
+			clearMenu();
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}
 		else 
 		{
 			pc.removeStatusEffect("Disarmed");
@@ -1316,6 +1323,7 @@ public function leaveShipOK():Boolean
 public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
+	if(pc.hasKeyItem("RK Lay - Captured")) return false;
 	return true;
 }
 
