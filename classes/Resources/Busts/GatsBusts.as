@@ -78,6 +78,9 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Dr_Haswell.png", mimeType = "image/png")]
 		public var Bust_DR_HASWELL:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/ehstraffe.png", mimeType = "image/png")]
+		public var Bust_EHSTRAFFE:Class;
+
 		public function get Bust_FENRISDRONEIV():Class { return Bust_TAMWOLF; }
 		public function get Bounds_FENRISDRONEIV():Rectangle { return Bounds_TAMWOLF; }
 		public function get Bust_FENRISDRONEIV_NIGHT():Class { return Bust_TAMWOLF; }
@@ -120,6 +123,9 @@
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Kaithrit_Scout.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;
+		public function get Bust_KAITHRIT_SCOUT_BELLY():Class { return Bust_KAITHRIT_SCOUT; }
+		public function get Bust_KAITHRIT_SCOUT_NUDE():Class { return Bust_KAITHRIT_SCOUT; }
+		public function get Bust_KAITHRIT_SCOUT_BELLY_NUDE():Class { return Bust_KAITHRIT_SCOUT; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
@@ -266,6 +272,13 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Male.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_MALE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/sylvie.png", mimeType = "image/png")]
+		public var Bust_SYLVIE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/sylvie_bra.png", mimeType = "image/png")]
+		public var Bust_SYLVIE_BRA:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/sylvie_nude.png", mimeType = "image/png")]
+		public var Bust_SYLVIE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Syri_Nude.png", mimeType = "image/png")]
@@ -313,6 +326,16 @@
 			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron_nude.png", mimeType = "image/png")]
 			public var Full_CAMERON_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/gats/hr/ehstraffe.png", mimeType = "image/png")]
+			public var Full_EHSTRAFFE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian_2.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE2:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/gats/hr/millie.png", mimeType = "image/png")]
 			public var Full_MILLIE:Class;
 			[Embed(source = "../../../assets/images/npcs/gats/hr/millie_nude.png", mimeType = "image/png")]
@@ -326,17 +349,17 @@
 			public function get Full_NAYNA_SUIT_NUDE():Class { return Full_NAYNA; }
 			public function get Full_NAYNA_SUIT_SOFT_NUDE():Class { return Full_NAYNA; }
 			
+			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie.png", mimeType = "image/png")]
+			public var Full_SYLVIE:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie_bra.png", mimeType = "image/png")]
+			public var Full_SYLVIE_BRA:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie_nude.png", mimeType = "image/png")]
+			public var Full_SYLVIE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/gats/hr/una.png", mimeType = "image/png")]
 			public var Full_UNA:Class;
 			[Embed(source = "../../../assets/images/npcs/gats/hr/una_nude.png", mimeType = "image/png")]
 			public var Full_UNA_NUDE:Class;
-
-			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian.png", mimeType = "image/png")]
-			public var Full_KORGONNE_FEMALE:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_2.png", mimeType = "image/png")]
-			public var Full_KORGONNE_FEMALE2:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
-			public var Full_KORGONNE_FEMALE_NUDE:Class;
 		}
 	}
 

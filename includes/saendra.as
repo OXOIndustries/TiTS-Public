@@ -317,7 +317,7 @@ public function saendraSexMenu():void
 		}
 	}
 
-	if (pc.hasTailCock() && pc.hasCock()) addButton(7, "Tailcock", saendraTailcockFuck, undefined, "Tailcock Titfuck", "Get a titfuck for your tailcock from Saendra.");
+	if (pc.hasTailCock()) addButton(7, "Tailcock", saendraTailcockFuck, undefined, "Tailcock Titfuck", "Get a titfuck for your tailcock from Saendra.");
 	else addDisabledButton(7, "Tailcock", "Tailcock Titfuck", "You need a tailcock for this!");
 	
 	addButton(14, "Leave", function():void {
@@ -1712,7 +1712,7 @@ public function saendraTailcockFuck():void
 	saenHeader(true);
 	author("Archangel");
 	
-	output("<i>“Well...”</i> You say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock");
+	output("<i>“Well...”</i> you say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock");
 	if(pc.tailCount > 1) output("s");
 	output(" over your head like a scorpion’s stinger, until " + (pc.tailCount == 1 ? "it’s" : "they’re") + " hanging over her face. ");
 
@@ -1734,7 +1734,7 @@ public function saendraTailcockFuck():void
 	output("\n\nSaen looks up at you, rubbing her chin with her hand, as if wondering what to do with you.");
 	if(pc.balls > 0) output(" You feel a ticklish feeling under your [pc.balls] and look down to see the tips of Saendra’s tails swishing back and forth against your [pc.sack]. You look back up at her to see a grin on her face.");
 
-	output("\n\n<i>“I got an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock], sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
+	output("\n\n<i>“I have an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock], sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
 
 	output("\n\n<i>“Actually, I got a better one,”</i> you say, flexing the muscles of your [pc.tailCock] and pushing past the confines of her tail to lodge the upper section of your [pc.tailCock] right between her hefty tits. <i>“Why not both?”</i> you add, rapidly wiggling your tailcock back and forth, motorboating her breasts and giving yourself both an impromptu titfuck and a great show of jiggling titflesh.");
 
@@ -1757,7 +1757,10 @@ public function saendraTailcockFuck():void
 	if (saendra.hasCock()) output(" Her cock starting to twitch too, matching your own rising orgasmic motions.");
 	output(" Her moans and gasps increase in pitch, and her tails go into overdrive, pumping so fast that you feel like you’re fucking a real pussy!");
 
-	output("\n\nIt’s not long before the urge is too much for you to bear. With a loud groan, you stick your fingers as far as they’ll go into Saendra’s ass and pussy and let yourself cum. Your [pc.cocks] spurt ropes of [pc.cumType] into the air, most of which falls on Saendra, while your [pc.tailCock] blasts [pc.cumType] directly into her face. At this point, the stimulation and sudden, overwhelming musk of your orgasm plastering her face is too much: with a yowl, Saendra finally lets loose and joins you, adding another load to the puddle growing on her bed and body.");
+	output("\n\nIt’s not long before the urge is too much for you to bear. With a loud groan, you stick your fingers as far as they’ll go into Saendra’s ass and pussy and let yourself cum. Y");
+	if(pc.hasCock()) output("our [pc.cocks] spurt" + (pc.cockTotal() == 1 ? "s" : "") + " ropes of [pc.cumType] into the air, most of which falls on Saendra, while y");
+	else if(pc.hasVagina() && pc.isSquirter()) output("our [pc.vaginas] blast" + (pc.totalVaginas() == 1 ? "s" : "") + " [pc.girlCumType] between your [pc.thighs] while y");
+	output("our [pc.tailCocks] blast" + (pc.tailCount == 1 ? "s" : "") + " [pc.cumType] directly into " + (pc.hasCock() ? "her" : "Saendra’s") + " face. At this point, the stimulation and sudden, overwhelming musk of your orgasm plastering her face is too much: with a yowl, Saendra finally lets loose and joins you, adding another load to the puddle growing on her bed and body.");
 
 	output("\n\nYou both stay there for a few seconds, panting, until Saen finally says <i>“Next time, we’re doing this in the shower.”</i>");
 
@@ -1767,6 +1770,7 @@ public function saendraTailcockFuck():void
 
 	pc.orgasm();
 	saendra.orgasm();
+	applyCumSoaked(pc);
 	processTime(30+rand(15));
 	clearMenu();
 	addButton(0, "Next", saendraPostFuckscene);

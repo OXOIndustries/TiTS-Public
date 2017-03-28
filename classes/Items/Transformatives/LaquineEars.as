@@ -103,13 +103,13 @@ package classes.Items.Transformatives
 			if(rand(10) < 2 + pc.laquineScore()) laquineEarsMinorTFsGO(pc,deltaShift);
 			else laquineEarsModerateTFsGo(pc,deltaShift);
 			/*
-			if(!pc.hasGenitals()) laquineEarsEmergencyGenitalAssignment(pc);
-			if(rand(10) < 7) laquineEarsMinorTFsGO(pc);
-			else if(rand(4) < 3) laquineEarsModerateTFsGo(pc);
+			if(!pc.hasGenitals()) laquineEarsEmergencyGenitalAssignment(pc,deltaShift);
+			if(rand(10) < 7) laquineEarsMinorTFsGO(pc,deltaShift);
+			else if(rand(4) < 3) laquineEarsModerateTFsGo(pc,deltaShift);
 			//Placeholder for major procs once I write them!
-			else laquineEarsModerateTFsGo(pc);*/
+			else laquineEarsModerateTFsGo(pc,deltaShift);*/
 		}
-		public function laquineEarsModerateTFsGo(pc:Creature,deltaShift):void
+		public function laquineEarsModerateTFsGo(pc:Creature,deltaShift:uint):void
 		{
 			var x:int = 0;
 			var i:int = 0;
@@ -133,7 +133,7 @@ package classes.Items.Transformatives
 				}
 			}
 			if(!pc.hasVagina() && pc.hasCock() && pc.balls == 0) choices.push(3);
-			//(Balls and Penor) BallRating gain of 1. Max 5”</i> diameter. (Higher if bulgy?)
+			//(Balls and Penor) BallRating gain of 1. Max 5" diameter. (Higher if bulgy?)
 			if(pc.hasCock() && pc.balls > 1 && (pc.ballDiameter() < 5 || (pc.ballDiameter() < 7 && pc.hasPerk("Bulgy")))) choices.push(4);
 			//Refractory to 4x human
 			if(pc.refractoryRate < 4 && pc.hasCock() && !pc.hasStatusEffect("Blue Balls")) choices.push(5);
@@ -152,7 +152,7 @@ package classes.Items.Transformatives
 			if(pc.fertility() < 5 && pc.hasVagina() && pc.isSquirter()) choices.push(10);
 			//10x preggo speed
 			if(pc.pregnancyIncubationBonusMotherRaw < 10 && pc.hasVagina()) choices.push(11);
-			if(pc.hasVagina()) choices.push(12);
+			if(!pc.isFullyWombPregnant() && pc.hasVagina()) choices.push(12);
 			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) 
 			{
 				choices.push(13);
@@ -568,7 +568,7 @@ package classes.Items.Transformatives
 						textBuff += "You are positively wet.";
 						if(!pc.isCrotchExposed()) textBuff += " Your [pc.vaginaNoun " + x + "] has turned your [pc.crotchCover] into a steaming, slippery swamp.";
 						else textBuff += " If you bothered with something as mundane as undies, they’d be a steaming, slippery swamp by now.";
-						textBuff += " It feels almost like someone reached deep into your cunt and flipped the switch labelled <i>“In Case of Horsedick, Add Lube”</i>. You suppose laquines must be nice and wet, particularly during breeding seasons, when they’re especially turned on. No doubt about it, <b>you’ve been given a very slick pussy.</b>";
+						textBuff += " It feels almost like someone reached deep into your cunt and flipped the switch labeled “In Case of Horsedick, Add Lube”. You suppose laquines must be nice and wet, particularly during breeding seasons, when they’re especially turned on. No doubt about it, <b>you’ve been given a very slick pussy.</b>";
 						pc.vaginas[x].wetness(1);
 					}
 					//Unaroused
@@ -1010,7 +1010,7 @@ package classes.Items.Transformatives
 			AddLogEvent("<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length,"passive",deltaShift);
 			return;
 		}
-		public function laquineEarsMinorTFsGO(pc:Creature, deltaShift):void
+		public function laquineEarsMinorTFsGO(pc:Creature, deltaShift:uint):void
 		{
 			var x:int = pc.biggestCockIndex();
 			var textBuff:String = "";
@@ -1375,13 +1375,13 @@ package classes.Items.Transformatives
 			//(Penorhaver) Bunnygirl Hallucinations +10 lust
 			if(select == 4)
 			{
-				bunnyGirlFapScene(pc,deltaShift);
+				bunnyGirlFapScene(pc,false,deltaShift);
 				return;
 			}
 			//(cuntwielder, nonpreg in one cunny) Bunnyhorse fantasies +10 lust
 			if(select == 5)
 			{
-				bunnyguyFapScene(pc,deltaShift);
+				bunnyguyFapScene(pc,false,deltaShift);
 				return;
 			}
 			//(Vagicite) Awkward, random wetness with obvious pheromonal smell. Exhibition gains!
@@ -1616,11 +1616,12 @@ package classes.Items.Transformatives
 				textBuff += "”</i> She rubs you slyly, taking her time to caress every massive vein along the path of her exploration. <i>“";
 				if(lassLaquineAcceptable(pc,x))
 				{
-					textBuff += "I cannot imagine a more fitting partner to take me. Your dick is so big, so perfect.”</i> She kisses it. <i>“And your body... you’re laquine to the core. I can feel it, throbbing through your dick. You know this is our purpose.”</i>";
+					textBuff += "I cannot imagine a more fitting partner to take me. Your dick is so big, so perfect.”</i> She kisses it. <i>“And your body... you’re laquine to the core. I can feel it, throbbing through your dick. You know this is our purpose.";
 					kGAMECLASS.flags["LAQUINE_LASS_BUNSCORED"] = 1;
 				}
-				else if(kGAMECLASS.flags["LAQUINE_LASS_BUNSCORED"] != undefined) textBuff += "What happened to you? You were supposed to be my laquine alpha...”</i> Her nose twitches, searching your musky cockscent for clues. <i>“You’re still laquine enough for now, I guess, but please... please put on Laquine Ears. I need my perfect bunny mate or we can’t keep fucking. It’s our purpose to breed, you and I. Promise me you’ll put some on, and I’ll fuck you forever.”</i>";
-				else textBuff += "You aren’t all laquine yet, though, are you?”</i> Her nose twitches, searching your musky cockscent for clues. <i>“You’re still... sort of Terran.”</i> She nuzzles the side of your dick. <i>“But no Terran has a dick like this. No true Terran floods their head with machines designed to turn them into a big-dicked, horse-bunny.”</i> She kisses your member. <i>“You can try to breed me, but it won’t sate me for long. Please, go full laquine, for me.”</i> She pouts at you, one ear draped across your throbbing immensity. <i>“Once you’re my bunnystud alpha, I’ll never need to ache for cum again.”</i> She squeezes you. <i>“You can feel it, can’t you? Your body transforming, telling you that this is its purpose?”</i>";
+				else if(kGAMECLASS.flags["LAQUINE_LASS_BUNSCORED"] != undefined) textBuff += "What happened to you? You were supposed to be my laquine alpha...”</i> Her nose twitches, searching your musky cockscent for clues. <i>“You’re still laquine enough for now, I guess, but please... please put on Laquine Ears. I need my perfect bunny mate or we can’t keep fucking. It’s our purpose to breed, you and I. Promise me you’ll put some on, and I’ll fuck you forever.";
+				else textBuff += "You aren’t all laquine yet, though, are you?”</i> Her nose twitches, searching your musky cockscent for clues. <i>“You’re still... sort of Terran.”</i> She nuzzles the side of your dick. <i>“But no Terran has a dick like this. No true Terran floods their head with machines designed to turn them into a big-dicked, horse-bunny.”</i> She kisses your member. <i>“You can try to breed me, but it won’t sate me for long. Please, go full laquine, for me.”</i> She pouts at you, one ear draped across your throbbing immensity. <i>“Once you’re my bunnystud alpha, I’ll never need to ache for cum again.”</i> She squeezes you. <i>“You can feel it, can’t you? Your body transforming, telling you that this is its purpose?";
+				textBuff += "”</i>";
 				textBuff += "\n\nYou start to shake your head, but your [pc.cockBiggest] throbs mightily, and not just physically. You feel it swell in your mind, pushing other thoughts out of the way to make room for more important drives. <i>“Yes.”</i> The words slips through your lips in a pleasured hiss as the svelte girl-bun dapples you with kisses.";
 				textBuff += "\n\nHer ears perk, lifting until they’re nearly as vertical and rigid as your [pc.cockNounBiggest]. The fertile hare smiles knowingly up at you, then slowly turns away, putting her forepaws on the ground and lifting her ass up beneath you so that your giant-sized rod lays across her back. Her ears swivel to listen to anything you have to say, primed and ready for instruction. Her tail twitches eagerly. Its poofiness sends pleasant tickles through the side of your shaft. <i>“Please,”</i> she begs, <i>“Breed me. Fuck me so pregnant!”</i>";
 				textBuff += "\n\nYou push her shoulders down, lifting her ass higher. The slit between her legs is bright pink and exquisitely puffy. A marble-sized clit peeks out of the bottom of it, already soaked with the same clear juices that matt down the fur of her inner thighs. You note that the entrance is so hungry that it occasionally pops open before snapping back closed, winking at you, coaxing you to thrust inside.";
@@ -1683,7 +1684,7 @@ package classes.Items.Transformatives
 				else textBuff += "\n\nWhen you stumble back, spent, you realize that her lips have snapped shut, trapping every ounce of your perverted payload in her womb for maximum impregnation.";
 				textBuff += "\n\n<i>“Th-thank you.”</i> The blissfully smiling laquine rolls on her back and sprawls, giggling almost drunkenly. <i>“";
 				if(lassLaquineAcceptable(pc,x) && kGAMECLASS.flags["LAQUINE_LASS_TRYSTS"] == 1) textBuff += "You’re my perfect Alpha, and I can’t wait to have even more babies.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“Could you... could you call for me more often? I need you... as often as you can.";
-				else if(lassLaquineAcceptable(pc,x)) textBuff += "You’re such a perfect Alpha... Anytime you want me, just close your eyes and think of me.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“I’ll always be there for your cum. Always.”</i>";
+				else if(lassLaquineAcceptable(pc,x)) textBuff += "You’re such a perfect Alpha... Anytime you want me, just close your eyes and think of me.”</i> She reaches down, fondling her swollen puss and shuddering. <i>“I’ll always be there for your cum. Always.";
 				else textBuff += "I don’t know if that’ll actually take.”</i> She smiles sadly, rubbing her swollen pussy. <i>“But it scratched my itch for now... Keep wearing those ears, and maybe we can see more of each other.";
 				textBuff += "”</i> She blows you a kiss, then fades away into nothingness.";
 
@@ -1923,6 +1924,7 @@ package classes.Items.Transformatives
 				{
 					textBuff += "<b>Your laquine ears expire</b>, but they do not crumble away as you might expect. Instead, they grow heavier, not with a payload of microsurgeons but with warm, pulsating flesh. There’s no ignoring it. The second pair of ears have grown onto you, and you can feel the new rabbit ears brushing back and forth against the old. <b>You have four bunny ears.</b> They look kind of nice, if you don’t mind appearing like you’ve suffered an obvious mutation.";
 					pc.earType = GLOBAL.TYPE_QUAD_LAPINE;
+					if(pc.earLength < 6) pc.earLength = 6 + rand(7);
 				}
 				else
 				{
@@ -1931,7 +1933,7 @@ package classes.Items.Transformatives
 			}
 			else 
 			{
-				textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You'll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it's possible for you to get the ears too. Shucks.";
+				textBuff += "The Laquine Ears fall from your head, unable to properly take root. <b>You’ll need to put on another set if you want to undergo more bunny-horse transformations.</b> You doubt it’s possible for you to get the ears too. Shucks.";
 			}
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 		}

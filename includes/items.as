@@ -897,8 +897,9 @@ public function keyItemDisplay(filter:String = ""):void
 	var btn:int = 0;
 	var desc:Boolean = (flags["KEY_ITEM_DESC_OFF"] ? false : true);
 	var hasDesc:Boolean = false;
-	var hasHolodisk:Boolean = false;
+	var hasKey:Boolean = false;
 	var hasCoupon:Boolean = false;
+	var hasHolodisk:Boolean = false;
 	var hasPanty:Boolean = false;
 	var hasCollar:Boolean = false;
 	
@@ -909,11 +910,16 @@ public function keyItemDisplay(filter:String = ""):void
 		{
 			var pItem:StorageClass = pc.keyItems[x];
 			
-			if(filter == "" || pItem.storageName.indexOf(filter) != -1)
+			if
+			(	filter == ""
+			||	(filter == "<KEY>" && (pItem.storageName.indexOf(" Key") != -1 || pItem.storageName.indexOf(" Pass") != -1 || pItem.storageName.indexOf(" Membership") != -1))
+			||	pItem.storageName.indexOf(filter) != -1
+			)
 			{
 				output(pItem.storageName + ((desc && pItem.tooltip.length > 0) ? (" - " + pItem.tooltip) : "") + "\n");
 				if(pItem.tooltip.length > 0) hasDesc = true;
 			}
+			if(pItem.storageName.indexOf(" Key") != -1 || pItem.storageName.indexOf(" Pass") != -1 || pItem.storageName.indexOf(" Membership") != -1) hasKey = true;
 			if(pItem.storageName.indexOf("Holodisk: ") != -1) hasHolodisk = true;
 			if(pItem.storageName.indexOf("Coupon - ") != -1) hasCoupon = true;
 			if(pItem.storageName.indexOf("Panties - ") != -1) hasPanty = true;
@@ -926,13 +932,17 @@ public function keyItemDisplay(filter:String = ""):void
 			if(filter == "") addDisabledButton(btn++, "All");
 			else addButton(btn++, "All", keyItemDisplay, "", "Filter: All", "View all Key Items.");
 			
-			if(hasHolodisk) {
-				if(filter == "Holodisk: ") addDisabledButton(btn++, "Holodisk");
-				else addButton(btn++, "Holodisk", keyItemDisplay, "Holodisk: ", "Filter: Holodisks", "View all holodisk items.");
+			if(hasKey) {
+				if(filter == "<KEY>") addDisabledButton(btn++, "Key");
+				else addButton(btn++, "Key", keyItemDisplay, "<KEY>", "Filter: Keys", "View all key-type items.");
 			}
 			if(hasCoupon) {
 				if(filter == "Coupon - ") addDisabledButton(btn++, "Coupon");
 				else addButton(btn++, "Coupon", keyItemDisplay, "Coupon - ", "Filter: Coupons", "View all coupon items.");
+			}
+			if(hasHolodisk) {
+				if(filter == "Holodisk: ") addDisabledButton(btn++, "Holodisk");
+				else addButton(btn++, "Holodisk", keyItemDisplay, "Holodisk: ", "Filter: Holodisks", "View all holodisk items.");
 			}
 			if(hasPanty) {
 				if(filter == "Panties - ") addDisabledButton(btn++, "Panty");

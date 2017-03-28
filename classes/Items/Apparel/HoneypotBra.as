@@ -43,7 +43,7 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 0;
+			this.sexiness = 2;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
@@ -74,7 +74,7 @@
 			}
 			else
 			{
-				sexiness = 0;
+				sexiness = 2;
 				deleteFlag(GLOBAL.ITEM_FLAG_TRANSPARENT);
 			}
 		}

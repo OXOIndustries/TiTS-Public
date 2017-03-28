@@ -458,7 +458,7 @@ public function buyBeersForMooseSloot():void
 		output("\n\nScooping it right up, Sylvie mock-salutes ");
 		if(flags["MET_KALLY"] != undefined) output("Kally");
 		else output("the chubby bartender");
-		output(" and begins to chug. She’s quite adept at pounding down the drink if the falling fluid level is any indication. Half the drink is gone before she comes up for air, smiling and licking the amber foam from her greenish blue-painted lips. <i>“Since you’ve been such a " + pc.mf("gentleman","classy lady") + ", it seems only fair I give you a little entertainment for your effort. Good thing a girl with a job like mine has enough stories to keep you entertained till closing time.”</i> She wraps an arm around your shoulders and pulls you close. <i>“Things around here can get pretty wild at times...”</i> She pauses for dramatic effect.");
+		output(" and begins to chug. She’s quite adept at pounding down the drink if the falling fluid level is any indication. Half the drink is gone before she comes up for air, smiling and licking the amber foam from her greenish blue-painted lips. <i>“Since you’ve been such a " + pc.mf("gentleman","classy lady") + ", it seems only fair I give you a little entertainment for your effort. Good thing a girl with a job like mine has enough stories to keep you entertained ‘til closing time.”</i> She wraps an arm around your shoulders and pulls you close. <i>“Things around here can get pretty wild at times...”</i> She pauses for dramatic effect.");
 		//Merge to sober stories
 		moosyStoriesGo(2,false);
 	}
@@ -1415,7 +1415,7 @@ public function sylvieSexMenu():void
 	}
 	if(pc.hasVagina())
 	{
-		addButton(2,"Spank ‘N Grind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutual orgasm.");
+		addButton(2,"Spank‘NGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
 		addButton(3,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
 	}
 	else 
@@ -1449,7 +1449,7 @@ public function sylvieForcyRouter():void
 public function leaveSylvieHighAndLessThanDryYaCunt():void
 {
 	clearOutput();
-	showSylvie();
+	showSylvie(true);
 	output("When you turn to leave, Sylvie ");
 	if(!(pc.armor is EmptySlot)) output("snags you by the collar");
 	else output("grabs you by the shoulder");
@@ -1896,7 +1896,7 @@ public function fuckyTittyBlowblow2():void
 	//More than 500 mLs - no new PG
 	if(cumQ > 500) output(" The [pc.cumGem] flow thickens into a belly-slicking downpour while the pool floods, drizzling runners of [pc.cumNoun] down the outer curvature of her boobs.");
 	//More than 1k
-	if(cumQ > 1000) output("\n\nBut you aren’t done, and Sylvie seems to know it. She steps back, sliding your cock completely free of your tits. It jerks wildly as it unloads, releasing thick ropes across the moose-taur’s front. You grab hold of it and aim, painting Sylvie’s tits until they’re little more than your cum-glazed canvas.");
+	if(cumQ > 1000) output("\n\nBut you aren’t done, and Sylvie seems to know it. She steps back, sliding your cock completely free of her tits. It jerks wildly as it unloads, releasing thick ropes across the moose-taur’s front. You grab hold of it and aim, painting Sylvie’s tits until they’re little more than your cum-glazed canvas.");
 	//More than 4k - no new PG
 	if(cumQ > 4000) output(" So you shift your aim lower to smother her hips and belly, slicking down the coarse fur below. [pc.cumNoun] pools around her hooves, but the cum-drunk slut just laughs and spins around, letting you frost her back, flanks, tail, and even her pussy.");
 	//More than 10k
@@ -1970,7 +1970,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	clearOutput();
 	showSylvie(true);
 	author("Meredith Caerwyn");
-	//{NON-FORCEFUL START}
+	//NON-FORCEFUL START
 	if(!forcy) 
 	{
 		output("Well, if that isn’t an invitation, you don’t know what is. Unable to resist, you ");
@@ -1994,7 +1994,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 		else output(" Amused");
 		output(" by her pleading, you decide to give this needy ‘taur exactly what she wants.");
 	}
-	//{FORCEFUL START}
+	//FORCEFUL START
 	else
 	{
 		currentLocation = "CANADA7";
@@ -2021,7 +2021,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 		else output("crotch");
 		output(".");
 	}
-	//{MERGE SCENES}
+	//MERGE SCENES
 	output("\n\nOf course, the spanking had hardly left you indifferent, as the wetness ");
 	//(biped)
 	if(pc.legCount > 1) output("between your [pc.legs]");

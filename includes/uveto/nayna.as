@@ -131,9 +131,9 @@ public function naynaSexMenu():void
 	clearMenu();
 	addButton(0,"Give BJ",maxLewdGogo,true,"Give BJ","Give her a blowjob.");
 	if(pc.hasCock()) addButton(1,"Fuck Her",fuckNayna,undefined,"Fuck Her","Fuck Nayna using a penis.");
-	else addDisabledButton(1,"Fuck Her","Fuck Her","You don't have a penis to fuck her with.");
+	else addDisabledButton(1,"Fuck Her","Fuck Her","You don’t have a penis to fuck her with.");
 	addButton(2,"Anal Catch",naynaFucksYourButt,undefined,"Anal Catch","Get the shy bunny to put it in your butt.");
-	if(pc.hasCock() && pc.biggestCockThickness() >= 5) addButton(3,"DickDock",naynaDockingForHyperPCs,undefined,"Dick Docking","Get Nayna to put her penis inside your far, far, far... FAR larger one. It'll probably feel great.");
+	if(pc.hasCock() && pc.biggestCockThickness() >= 5) addButton(3,"DickDock",naynaDockingForHyperPCs,undefined,"Dick Docking","Get Nayna to put her penis inside your far, far, far... FAR larger one. It’ll probably feel great.");
 	else addDisabledButton(3,"DickDock","DickDock","You need an exceedingly large penis for this - something big enough for Nayna to put her dick inside of.");
 	addButton(14,"Back",repeatNaynaApproach,true);
 }
@@ -180,7 +180,7 @@ public function upstairsGeoSurveyBonus():Boolean
 		if(flags["NAYNA_PISSED"] != undefined)
 		{
 			output("\n\nNayna is still here, though she studiously avoids your gaze. If you take a step toward her, she shifts backward. If you approach her, she moves to another part of the deck, as if she had something important to do elsewhere all the while. She wants nothing to do with you.");
-			addDisabledButton(0,"Nayna","Nayna","You pissed Nayna off, and it seems there's no salvaging the situation.");
+			addDisabledButton(0,"Nayna","Nayna","You pissed Nayna off, and it seems there’s no salvaging the situation.");
 		}
 		//Didn’t take offer
 		else if(flags["NAYNA_REJECTED"] != undefined) output("\n\nNayna is still here, tapping away at an unbroken Codex, doubtless absorbed in the minutia of her research. You could approach her again, but she’s probably still grouchy about your refusal to help her out.");
@@ -251,7 +251,7 @@ public function introduceYourselfToNayna():void
 	//Same menu with introduce grayed out
 	clearMenu();
 	addButton(0,"Help",volunteerToHelp,false,"Help","Volunteer to help her out.");
-	addButton(1,"Don't",dontVolunteerToHelpNayna,undefined,"Don't","You don't volunteer to help every random girl you run into.");
+	addButton(1,"Don’t",dontVolunteerToHelpNayna,undefined,"Don’t","You don’t volunteer to help every random girl you run into.");
 }
 
 //Offer to Pay
@@ -330,7 +330,7 @@ public function reluctantlyGiveNaynaName():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Help",volunteerToHelp,true,"Help","Volunteer to help her out.");
-	addButton(1,"Don't",dontVolunteerToHelpNayna,undefined,"Don't","You don't volunteer to help every random girl you run into.");
+	addButton(1,"Don’t",dontVolunteerToHelpNayna,undefined,"Don’t","You don’t volunteer to help every random girl you run into.");
 }
 
 //Volunteer to Help
@@ -468,7 +468,7 @@ public function naynaMainMenu():void
 	//[Appearance] [Talk] [Give Drone] [Flirt]
 	addButton(0,"Appearance",appearanceOfNayna);
 	addButton(1,"Talk",talkToNayna);
-	if(pc.hasItem(new WeatherDrone(),1)) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she's missing. Turns out these are the drones she's looking for.");
+	if(pc.hasItem(new WeatherDrone(),1)) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she’s missing. Turns out these are the drones she’s looking for.");
 	addButton(3,"Flirt",flirtWithNayna,undefined,"Flirt","Flirt with the cuddly bunny.");
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -955,11 +955,11 @@ public function maxLewdGogo(flirtIntro:Boolean = false):void
 		if(flags["NAYNA_BLOWN"] != undefined) output(" <i>“You really like them? I got implants last year... but nobody seemed to notice.”</i>");
 		output("\n\nRubbing her squishy flanks, you let your hands slide over her one-piece, latex-like undersuit, feathering across her belly. Her stomach has the barest amount of pooch, just enough to make it feel like you’re groping a big, warm pillow. Nayna gasps, but she doesn’t resist your caresses, not even when you probe downward to her crotch.");
 		//Done this before:
-		if(flags["NAYNA_BLOWN"] != undefined) output(" A hard cock, nine inches long and as thick around as a soda can tents her skin-tight garment, backed up by apple-sized testes that you know have to be enhanced somehow. Big as they are, you're still not sure how they can produce such... voluminous semen.");
+		if(flags["NAYNA_BLOWN"] != undefined) output(" A hard cock, nine inches long and as thick around as a soda can tents her skin-tight garment, backed up by apple-sized testes that you know have to be enhanced somehow. Big as they are, you’re still not sure how they can produce such... voluminous semen.");
 		//No new PG:
 		//know she’s a herm: 
 		else if(knowNayneIsAHerm()) output(" An equine sheath is there, just as you would expect from a laquine hermaphrodite, backed up by two apple-sized balls that feel almost disproportionately large next to their half-hidden spout, doubtless swollen with a lifetime of unspent seed.");
-		//Go to <i>“react well”</i> automatically.
+		//Go to “react well” automatically.
 		//No new PG: Not aware of herm: 
 		else 
 		{
@@ -1106,7 +1106,7 @@ public function reactWellToFutaLaquine():void
 	if(flags["NAYNA_BLOWN"] == undefined) output("Veins bulge fatter and more prominent. The obscene-looking, blunted head swells slightly, transforming into a flattened crown. It isn’t growing lengthwise so much any more, content to grow harder and firmer, a lurid little horsecock that’s entirely too fat for its nine inch length.");
 	else output("It looks almost regal with its flared crown, standing so proud against the otherwise soft bunny. Can it get any harder, you wonder?");
 	output(" You stroke it a few times to be sure, but all that earns you is a moan from Nayna and a few satisfying throbs against your palm.");
-	//{bimbo}
+	//bimbo
 	if(pc.isBimbo()) output("\n\nDumbly, you become aware that you’ve started drooling, but that just makes it hotter. You swirl your tongue over your [pc.lips], spreading your saliva over them, polishing your mouth into a shining orifice, ready for penetration.");
 	//brutality
 	else if(pc.isBro() || pc.isAss()) output("\n\nSmirking, you pat the bunny’s hefty balls and finger her cock-receptacle one last time, feeling the wetness sluice down her thighs. She’s as ripe for fucking as a girl can be. You could get her to do any filthy depraved act you could imagine. All you’d have to do is ask.");
@@ -1441,18 +1441,18 @@ public function naynaFucksYourButt():void
 	output(" and clarify that you’d like her to fuck your ass.");
 
 	output("\n\n<i>“Oh! ...Ohhhhhhh!”</i> she says, wide-eyed, her lips a perfect “o” of surprise. She frowns, her chin resting on one hand, considering it.");
-	output("\n\nYou let the laquine think it through, glancing down at the pert bulge just above her thighs. It gives a small twitch, resulting in a faint squeaking noise as she looks back up to you. It looks like the chubby scientist's body has come to a decision, even if her mind is too shell-shocked to reply.");
+	output("\n\nYou let the laquine think it through, glancing down at the pert bulge just above her thighs. It gives a small twitch, resulting in a faint squeaking noise as she looks back up to you. It looks like the chubby scientist’s body has come to a decision, even if her mind is too shell-shocked to reply.");
 
 	output("\n\nShe smiles shyly and ");
 	if(!naynaWarm()) output("slowly begins to undo her " + naynaClothes() + " then ");
 	output("nervously glances down at her dick and back up at you... then down again. Then, grinning slightly, she asks, <i>“");
-	if(flags["NAYNA_FUCKED_PC_BUTT"] == undefined) output("Really? I... well... okay. I'll try!");
+	if(flags["NAYNA_FUCKED_PC_BUTT"] == undefined) output("Really? I... well... okay. I’ll try!");
 	else output("Again? So I was pretty good then, huh?”</i> She runs a hand through her hair, adjusting an ear. <i>“I bet I can do better this time.")
 	output("”</i>");
 
 	output("\n\nShe takes a small breath, and you lean in against her, pressing your palm against her bulge, running your fingers up lightly, from balls to tip of her lovely, fat cock. She stops, her mouth open halfway, whatever word she was preparing dropping from her lips as she gives a full body shiver.");
 
-	output(" When her mouth starts moving again, she murmurs, soft and low, <i>“I didn't - ah! ...didn't even think about your butt that first time you did that, uhm... hug.”</i> She whimpers, her hips twitching against your palm. Her cock thickens nicely, big enough for her heartbeats to spread your fingertips wider.");
+	output(" When her mouth starts moving again, she murmurs, soft and low, <i>“I didn’t - ah! ...didn’t even think about your butt that first time you did that, uhm... hug.”</i> She whimpers, her hips twitching against your palm. Her cock thickens nicely, big enough for her heartbeats to spread your fingertips wider.");
 	output(" <i>“Now I can’t stop.”</i> She blushes as if she’d said something horrendously embarrassing, a pink flush just visible under the white fur of her cheeks.");
 	output("\n\nYou " + pc.mf("chuckle","giggle") + " at the snow bunny’s admission, answering that you’d been enjoying a few extra things in her hugs as well. You punctuate the statement with a firm squeeze against the shaft of her dick, feeling the thick ring of her sheath.");
 	output("\n\nNayna slides her soft, white-furred paw over your hand, guiding it, rubbing softly over the form-fitting suit. The laquine girl gives a throaty moan, her hand tightening on yours, stroking herself faster and faster with your hand. With a chorus of small squeaks, the broad, equine head of her dick pushes up over the lip of the latex, spilling out against your hand.");
@@ -1476,7 +1476,7 @@ public function naynaFucksYourButt():void
 	output(".");
 	output("\n\n<i>“I was kinda hoping you’d say that,”</i> she says. Her sentence starts in her usual peppy voice, but swiftly drops into a hungry growl. She dives back in against your neck, her teeth nibbling at your neck as her hands return to your ass. Between your own gasps of pleasure, your fingers slide across Nayna’s bodysuit, hurriedly peeling it from her.");
 	output("\n\nShe breaks her hungry bites and pulls back as you yank it down her shoulders and over the massive curve of her breasts. Her chest heaves as your fingers curl across it, and the tightness of the rubbery material drags your fingertips across her areolae. You feel the push of her nipples as they tighten under your fingertips. You lower yourself, tugging her bodysuit down further. When her breasts pop free, they bounce against your face, burying you in white, fluffy cleavage.");
-	output("\n\nWith her suit down to her waist and her arms trapped at her side, she looks down at you, her pink eyes aglow with a primal hunger. You peel down to her crotch, gazing at the thick, nine-inch organ throbbing beneath the tight material. You lean forward, running your tongue up her girthy length, feeling her pulse through the fabric. It's a little salty with sweat and excitement, pulsing hotly on your tongue.");
+	output("\n\nWith her suit down to her waist and her arms trapped at her side, she looks down at you, her pink eyes aglow with a primal hunger. You peel down to her crotch, gazing at the thick, nine-inch organ throbbing beneath the tight material. You lean forward, running your tongue up her girthy length, feeling her pulse through the fabric. It’s a little salty with sweat and excitement, pulsing hotly on your tongue.");
 	output("\n\nNayna gives a squeaky growl of frustration, wiggling her arms out of the latex and grabbing ");
 	if(pc.hasHair()) output("your [pc.hair]");
 	else output("you by the back of your head");
@@ -1493,11 +1493,11 @@ public function naynaFucksYourButt():void
 	else if(pc.ass.looseness() < 3) output(" You moan, softly. You hope you can handle something that thick. At any rate, you’re more than willing to try.");
 	else output(" You pant excitedly. Finally! Something big enough to satisfy your cavernous ass.");
 	output("\n\nWhen her fingers dig in and she begins to push against your asshole, you lean forward instinctively, raising your butt up to meet her. She lets out a hum of pleasure, her nose twitching against your cheek.");
-	output("\n\n<i>“Oh fuck, [pc.name]! It's so good! ");
+	output("\n\n<i>“Oh fuck, [pc.name]! It’s so good! ");
 	if(flags["NAYNA_FUCKED_PC_BUTT"] == undefined) output("I can’t believe I finally get to do this! ");
 	output("I never want to stop,”</i> she moans. She pushes harder, and you pant, feeling your hole stretch to accommodate the three-inch diameter of her dick.");
 	pc.buttChange(80);
-	output("\n\n<i>“I-ah-can't stop!”</i> she squeaks.");
+	output("\n\n<i>“I-ah-can’t stop!”</i> she squeaks.");
 	if(pc.isTaur()) output(" You feel her face pull back from your shoulder as");
 	output(" Nayna adjusts herself, her fingers grabbing your [pc.hips] tight. Before you can say anything, she shoves her dick into you.");
 	output("\n\nYour eyes widen and your breath catches in your throat as you feel her length jam all the way up into your ass. The flared ridge of her horse cock drives first, running wide and thick up into you, followed by her throbbing shaft, pulsing hard against your insides. You can’t move for a moment, riding out the wave of sudden fullness and an immediate soreness from her rough intrusion.");
@@ -1524,7 +1524,7 @@ public function naynaFucksYourButt():void
 		if(pc.totalVaginas() > 1) output("s");
 		output(".");
 	}
-	output("\n\n<i>“It's a - ung - a good thing you like it,”</i> says Nayna. <i>“I don't think I can stop! I don't think I'll ever stop!”</i>");
+	output("\n\n<i>“It’s a - ung - a good thing you like it,”</i> says Nayna. <i>“I don’t think I can stop! I don’t think I’ll ever stop!”</i>");
 	output("\n\nNayna pushes down against you. You feel the soft squish of her balls as they nestle against your ass, her dick pushing as deep as possible inside you. You glance over her shoulder again, just in time to see her massive thighs flex, pushing her up.");
 	output("\n\nYou gasp as her cock pistons out of you. Her horse-head drags along your inner passage, feeling like she’s scraping you out. Your hips rise to meet her, but her hands slam down against the small of your back, resting half her weight on you-keeping you pinned down. Up and up and up her cock goes until her tip bumps against your pliant ring, leaving you with a sense of absolute emptiness.");
 	output("\n\nIt’s only for a moment, though, as she pauses at her apex, then drives back down. You moan, more out of pleasure than pain as she drives her cock back down into you, filling you up so quickly that the breath whooshes out of you.");
@@ -1542,7 +1542,7 @@ public function naynaFucksYourButt():void
 	if(pc.isBimbo()) output(" It just feels so amazing to finally get a proper ass pounding!");
 	output(" Every thrust of her thick dick brings a new wave of pleasure crashing through you, and she’s shoving it in and out so fast, that a new surge of pleasure floods your body before the first is even gone.");
 
-	output("\n\nThe heavy laquine woman cries out desperately. <i>“I'm gonna - I'm gonna-!”</i> She fucks you harder and harder, and shoves deeper in you than she’d ever gone before. You feel the flared head of her cock swell deep inside you, feeling for all the world like someone’s buried a cantelope in your colon. <i>“Cummmmmmmmmmmm!”</i> she yells. You feel the first surge of cum pumping deep inside you, flooding you with heat and warmth. It radiates outward, and you realize it’s not just the heat. Nayna’s filling you with what feels like a gallon of bunny spunk.");
+	output("\n\nThe heavy laquine woman cries out desperately. <i>“I’m gonna - I’m gonna-!”</i> She fucks you harder and harder, and shoves deeper in you than she’d ever gone before. You feel the flared head of her cock swell deep inside you, feeling for all the world like someone’s buried a cantelope in your colon. <i>“Cummmmmmmmmmmm!”</i> she yells. You feel the first surge of cum pumping deep inside you, flooding you with heat and warmth. It radiates outward, and you realize it’s not just the heat. Nayna’s filling you with what feels like a gallon of bunny spunk.");
 	output("\n\nYou groan, reaching down to your stomach, gasping in shock as you first feel the flared head of Nayna’s cock rising up like a melon-sized lump against your tummy. You moan, halfway in pleasure and shock as you actually feel the moving bulge of her cock shooting out cum inside you. Your whole belly surges as she pumps her massive load inside you as a near-continuous stream.");
 	output("\n\n<i>“Oh fuck! Oh [pc.name]! Oh fuck yes!”</i> She’s moaning, repeating your name over and over again, her paws digging into your hips.");
 	if(pc.hasCock()) 
@@ -1595,7 +1595,7 @@ public function naynaFucksYourButt():void
 	output("\n\nNayna’s fingers brush softly against your belly. You realize with a start that there’s still a bit of a bulge there. It looks like you’re still carrying a partial load of the laquine’s cum inside you. Gently, she helps you up, and the two of you get dressed. Nayna can’t stop blushing, and you’re hard pressed not to do so yourself.");
 	output("\n\n<i>“We should do that again,”</i> she babbles, tongue lolling. Her fingers slowly drag her bodysuit back into place, operating entirely on autopilot. <i>“If you wanted. It was good, right?”</i> Rubbing at her half-hard prick through her suit, the drained laquine moans, ");
 	output("<i>“Sooo good...”</i>");
-	output("\n\nYou can't see any reason not to nod enthusiastically.");
+	output("\n\nYou can’t see any reason not to nod enthusiastically.");
 	
 	IncrementFlag("NAYNA_FUCKED_PC_BUTT");
 	processTime(45);
@@ -1673,7 +1673,7 @@ public function naynaDockingPart2():void
 	pc.lust(100);
 	clearMenu();
 	addButton(0,"Yes",cumInsideWhileDockingNayna,undefined,"Yes","Let her cum inside, consequences be damned!");
-	addButton(1,"No",makeNaynaCumOutsideAfterHyperFun,undefined,"No","Don't let her cum inside, but she can cum all over your dick if she wants.");
+	addButton(1,"No",makeNaynaCumOutsideAfterHyperFun,undefined,"No","Don’t let her cum inside, but she can cum all over your dick if she wants.");
 }
 
 
@@ -1712,7 +1712,7 @@ public function cumInsideWhileDockingNayna():void
 		pc.orgasm();
 		clearMenu();
 		addButton(0,"Help",helpNaynaWithBallflation,undefined,"Help","Help Nayna vent all that backed-up spooge.");
-		addButton(1,"Don't",dontHelpNaynaWithBallflation,undefined,"Don't","Don't help. It looks like she's enjoying it, and the cum will clearly squirt out on its own... in time.");
+		addButton(1,"Don’t",dontHelpNaynaWithBallflation,undefined,"Don’t","Don’t help. It looks like she’s enjoying it, and the cum will clearly squirt out on its own... in time.");
 	}
 	//No balls
 	else
@@ -1722,7 +1722,7 @@ public function cumInsideWhileDockingNayna():void
 		output("\n\nYou violently rock your hips, thrusting hard enough to make Nayna stumble. The poor bunny tumbles to the ground, and when her fattened phallus pops free, a tide of white");
 		if(pc.fluidColorSimple(pc.cumType) != "white") output(" and [pc.cumColor]");
 		output(" erupts out of your distended dick-slit. The mixed ejaculate smacks into Nayna with near-bruising force, pushing her several inches across the floor. She’s white-washed in an instant. If it wasn’t for her dick still spraying into the air like a broken sprinkler, she’d look like a ghost.");
-		output("\n\nYou jack your member, milking out the excess spooge. It flows out like a waterfall, every single drop feeling like a gallon of relief to your poor, ballooned prostate. Nayna’s pleasure gives out long before your own, but even when her dick goes limp, she lays below you, rubbing fresh cum into her fur with every spurt. Her soft-padded toes cradle the underside of your spasming dick until finish. Then she gives a few playful squeezes, just to be sure.");
+		output("\n\nYou jack your member, milking out the excess spooge. It flows out like a waterfall, every single drop feeling like a gallon of relief to your poor, ballooned prostate. Nayna’s pleasure gives out long before your own, but even when her dick goes limp, she lays below you, rubbing fresh cum into her fur with every spurt. Her soft-padded toes cradle the underside of your spasming dick until you finish. Then she gives a few playful squeezes, just to be sure.");
 		output("\n\n<i>“You know,”</i> the lusty laquine offers, wiping strings of jism out of her eye, <i>“I guess those rim-ward sluts know what they’re doing.”</i> She stumbles up to her feet, summoning her cleaning robot to take care of the excessive sex-juice. <i>“Maybe with ");
 		if(pc.balls == 1) output("more than one nut");
 		else output("some testes");

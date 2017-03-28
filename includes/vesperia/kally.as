@@ -209,7 +209,7 @@ public function approachKally():void
 		else output("You’ve got the ‘nuki fever bad, but that’s okay. You can look as much as you want while I’m working, and touch as much as you want when I’m not. You just can’t drink as much as you want. It’s getting close to cut-off time.");
 		output("”</i> She whirls to grab a glass, sending her boobs bouncing once more.”</i>");
 		output("\n\nThat sounds okay, as long as she’s the one to cut you off.");
-		//{+lust}
+		//+lust
 		pc.lust(10);
 	}
 	//Met, buzzed, have had <i>“special”</i> drinks
@@ -1506,7 +1506,7 @@ public function askAbootOtherKiroSisters():void
 		output("\n\n");
 		if(pc.isBimbo()) output("She seems <i>super</i> insecure. Could she, like, be worried that you wouldn’t want to fuck her any more if she has hotter sisters? <i>“You’re not getting jealous and stuff, are you?”</i>");
 		else if(pc.isNice()) output("You lean forward, resting your chin on your hands. <i>“Maybe I’m just so into this cute pirate chick that I wouldn’t mind meeting her family.”</i>");
-		else if(pc.isMischievous()) output("Why Kiro, you sound worried.”</i> You lean back and stretch languidly. <i>“Thinking the big, bad Captain Steele might just steal a sister’s heart the way [pc.heShe] stole yours?”</i> You put your hands behind your head and sigh. <i>“Don’t worry. I’ll do my best to repress my raw, unfettered charisma.”</i>");
+		else if(pc.isMischievous()) output("<i>“Why Kiro, you sound worried.”</i> You lean back and stretch languidly. <i>“Thinking the big, bad Captain Steele might just steal a sister’s heart the way [pc.heShe] stole yours?”</i> You put your hands behind your head and sigh. <i>“Don’t worry. I’ll do my best to repress my raw, unfettered charisma.”</i>");
 		else output("Her bluster is just a poor attempt to cover for her own insecurities. <i>“Kiro, I’m not going to try and fuck my way through your family.”</i> You pause, then add in the name of honesty, <i>“Unless they </i>really<i> want a piece.”</i>");
 		output("\n\nKiro ");
 		if(!pc.isBimbo() && pc.isNice()) output("awkwardly circles her fingers along the whorls of the table’s grain, babbling, <i>“That’s um... yeah. You’re too nice.”</i> She sucks in a breath of air, steadying herself. <i>“Too nice for a girl like me.”</i> The pirate shakes her head, dismissing whatever thoughts lurked beneath that admission.");
@@ -3174,7 +3174,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	if(!pc.isPregnant(x)) output(" and into your womb. You feel it settle inside your uterus, the heavy, liquid pleasure rolling around as it transforms you into a vessel for spunk. And through it all, you can feel her flare, so swollen, so completely overtaken by orgasm, that it has expanded to the point that it forms a clear outline on your expanded middle.");
 	else output(" all the way to your blocked-off womb. You feel it strain you mightily, then vent back out, the rushing fluids only serving to coax Kally to cum that much harder, her flare wide enough to make an imprint on the surface of your fluid-filled midsection.");
 	output("\n\nThe sisters climax for so long (and so messily) that you reach two more pussy-shattering climaxes by the time they finish. And even then, just feeling that hot, kui-tan goo sliding out of you is enough to make you whimper and quiver all over again.");
-	//{Loads in holes, go!}
+	//Loads in holes, go!
 	processTime(25);
 	pc.loadInAss(kiro);
 	pc.loadInCunt(kally,x);

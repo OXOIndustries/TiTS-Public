@@ -180,7 +180,7 @@ package classes.Items.Transformatives
 						//PC is garbed:
 						if(!pc.isCrotchExposed()) output("into your [pc.lowerGarment]");
 						else if(pc.legCount > 1) output("between your [pc.legs]");
-						else output("");
+						else output("between your [pc.thighs]");
 						output(" and find them completely drenched with the copious amount of fluids that drip from your vagina. Your lips are swelling obscenely around your fingers, puffing up deliciously as you grow more aroused. Then, all at once, your arousal dies off as the transformation ends just as abruptly as it started, leaving you needy, denied a well deserved orgasm, with wet and now much muskier fingers. <b>You now have a canine vagina that swells during arousal!</b>");
 						pc.libido(2);
 						pc.shiftVagina(x,GLOBAL.TYPE_CANINE);
@@ -369,7 +369,7 @@ package classes.Items.Transformatives
 				}
 				//Fur Color Change
 				//Effect: PC has fur - Fur color changes sometimes, usually when there's nothing else to change.
-				var newColor:String = RandomInCollection(["grey","cream","white","golden","brown","silver","orange","black"]);
+				var newColor:String = RandomInCollection(["gray","cream","white","golden","brown","silver","orange","black"]);
 				if(pc.hasFur() && pc.furColor != newColor && rand(5) == 0 && changes < changeLimit)
 				{
 					if(pc.furColorUnlocked(newColor))

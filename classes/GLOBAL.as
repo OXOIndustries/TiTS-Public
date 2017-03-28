@@ -990,6 +990,7 @@
 		public static const FROZENTUNDRA:int							= 26;
 		public static const SHIPINTERIOR:int							= 27; // Used to flag all rooms of player-own ships.
 		public static const POOL:int									= 28;
+		public static const WATERFALL:int								= 29;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;

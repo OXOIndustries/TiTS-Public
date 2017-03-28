@@ -208,6 +208,8 @@ public function configureMails():void
 	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("pippa_nuru", pippaNuruEmail, "New Service", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
+
+	MailManager.addMailEntry("plantation_quest_start", shepDarnocksPlantationQuestInviteText, "Salutations!", "Shep Darnock", "theshepard12@snugglecorp.org", quickPCTo, quickPCToAddress);
 }
 
 public function cuzName():String

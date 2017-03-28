@@ -458,7 +458,7 @@ public function jerynnAllowFucked():void
 	output("\n\nFinally, blissfully, she starts to push forward, the angled head of her cock popping into you with little fuss, especially with the aid of the liberal pool of pre already coating your insides.");
 	if (pc.hasVagina()) pc.cuntChange(pc.gapestVaginaIndex(), jerynn.biggestCockVolume());
 	else pc.buttChange(jerynn.biggestCockVolume());
-	//{Not super gapey:
+	//Not super gapey:
 	if ((pc.hasVagina() && pc.gapestVaginaLooseness() < 5) || (!pc.hasVagina() && pc.ass.looseness() < 5))
 	{
 		output(" It’s slow going, but the taur maintains an even pace as she gradually reams you out with her cock. Its shape makes for the perfect tool to burrow into a tight");
@@ -539,9 +539,9 @@ public function jerynnAllowFucked():void
 	output(" trying in vain to hold on to Jerynn’s knot. It slips free with a lewd <i>‘pop’</i> with a little struggle on both your parts... only to slam back into your [pc.vagOrAss] even harder with her next thrust.");
 
 	output("\n\nYou’re close, oh so close. Torn between Jerynn literally breaking you before she orgasms and her burgeoning knot grinding your");
-	if (pc.hasCock()) output(" prostate");
-	else if (pc.hasClit()) output(" clit");
+	if (pc.hasClit()) output(" clit");
 	else if (pc.hasVagina()) output(" g-spot");
+	else if (pc.hasCock()) output(" prostate");
 	else output(" sensetive walls");
 	output(" to dust, one final thrust is all it takes to set the taur off. Cum barrels up her draconic cock and into you, the first splash of liquid heat thundering into your");
 	if (!pc.hasVagina()) output(" guts");

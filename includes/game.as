@@ -228,6 +228,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+		else if(InRoomWithFlag(GLOBAL.WATERFALL)) addButton(8,"Masturbate",fapOnWaterfall,undefined,"Masturbate","Try to blow off some steam.");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
 	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
@@ -518,15 +519,15 @@ public function updateMailStatus():void
 	}
 }
 
-public function showPerksList():void
+public function showPerksList(filter:String = ""):void
 {
 	clearOutput2();
 	showPCBust();
 	setLocation("\nPERKS", "CODEX", "DATABASE");
 	author("");
-	clearGhostMenu();
-	addGhostButton(14, "Back", showPerkListHandler);
 	
+	var desc:Boolean = (flags["PERKS_DESC_OFF"] ? false : true);
+	var hasDesc:Boolean = false;
 	var perkList:Array = (pc as PlayerCharacter).perks;
 	
 	if (perkList.length == 0) output2("<i>No available character perks have been acquired.</i>");
@@ -540,10 +541,21 @@ public function showPerksList():void
 		
 		if (perk.combatOnly == false)
 		{
-			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
+			output2("<b>" + perk.storageName + "</b>" + ((desc && perkDesc.length > 0) ? (" - " + perkDesc) : ""));
+			if(perkDesc.length > 0) hasDesc = true;
+			output2("\n");
 		}
 	}
 	output2("\n");
+	
+	clearGhostMenu();
+	if(hasDesc) addGhostButton(13, ("Desc: " + (desc ? "On" : "Off")), perksDisplayToggleDesc, filter, "Descriptions", ("Toggle descriptions " + (desc ? "off" : "on") + "."));
+	addGhostButton(14, "Back", showPerkListHandler);
+}
+public function perksDisplayToggleDesc(filter:String = ""):void
+{
+	flags["PERKS_DESC_OFF"] = (flags["PERKS_DESC_OFF"] ? undefined : true);
+	showPerksList(filter);
 }
 
 public function crewRecruited(allcrew:Boolean = false):Number
@@ -758,7 +770,11 @@ public function rest(deltaT:int = -1):void {
 	var minPass:int;
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
+	if(InRoomWithFlag(GLOBAL.WATERFALL))
+	{
+		restOnWaterfall();
+		return;
+	}
 	clearOutput();
 
 	var postRestLustBonus:Number = 0;
@@ -826,7 +842,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	if (kiMedbaySleeps()) return;
 	
-	var minPass:int = 420 + rand(80) + 1
+	var minPass:int = 420 + rand(80) + 1;
 	
 	if(outputs) clearOutput();
 	if(InShipInterior(pc))
@@ -1108,6 +1124,13 @@ public function flyMenu():void {
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
+		if(pc.hasKeyItem("RK Lay - Captured"))
+		{
+			output("<b>You should probably get rid of RK Lah before you skip town...</b>");
+			clearMenu();
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}
 		else 
 		{
 			pc.removeStatusEffect("Disarmed");
@@ -1311,6 +1334,7 @@ public function leaveShipOK():Boolean
 public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
+	if(pc.hasKeyItem("RK Lay - Captured")) return false;
 	return true;
 }
 
@@ -1471,6 +1495,24 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		if(!rooms[arg].hasFlag(GLOBAL.HAZARD))
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
+		}
+	}
+
+	//Waterfall stuff.
+	if(rooms[arg].hasFlag(GLOBAL.WATERFALL))
+	{
+		pc.energy(-6);
+		if(arg == "8. RED ROCK SCREE" && currentLocation == "7. DRIFTWOOD SHOULDER")
+		{
+			if(flags["PQ_NALEENED"] == undefined) 
+			{
+				if(driftwoodShoulderDoofiness()) return;
+			}
+		}
+		if(pc.energy() <= 0)
+		{
+			pcDunFallsOffDatHill();
+			return;
 		}
 	}
 
@@ -2083,6 +2125,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 		// Pippa Nuru massage email
 		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();
+
+		//Plantation Quest Offer
+		//Key string - "plantation_quest_start"
+		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined)
+		{
+			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
+			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
+		}
 
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();

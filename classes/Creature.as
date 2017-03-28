@@ -858,11 +858,12 @@
 			return "Despite the heat at the base of your spine, nothing changes back there.";
 		}
 		
-
 		public var tailCount: Number = 0;
 		public function tailCountUnlocked(newTailCount:Number):Boolean
 		{
 			if (hasTail(GLOBAL.TYPE_VULPINE) && tailCount == 9 && (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails") || hasPerk("Corrupted Nine-tails"))) return false;
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE) return false;
+			if (tailType == GLOBAL.TYPE_COCKVINE) return false;
 			return true;
 		}
 		public function tailCountLockedMessage():String
@@ -873,6 +874,13 @@
 				if (hasPerk("Enlightened Nine-tails") || hasPerk("Nine-tails")) msg += "azure";
 				else msg += "purple";
 				msg += " sparks from your [pc.tails], but nothing is changed.";
+				return msg;
+			}
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE || tailType == GLOBAL.TYPE_COCKVINE)
+			{
+				msg = "The creature masquerading as a tail seems pretty spooked about something all of a sudden;";
+				if (isBiped()) msg += " it’s wrapped itself around your [pc.thigh], clinging on tightly and chirping to itself quietly...."
+				else msg += " it’s busy chirping away to itself and thrashing around, almost as if it were trying to seek out a predator....";
 				return msg;
 			}
 			return "Despite the heat at the base of your spine, nothing changes back there.";
@@ -1014,7 +1022,8 @@
 		
 		public function buttRatingUnlocked(newButtRating:Number):Boolean
 		{
-			if(hasPerk("Buttslut") && newButtRating < buttRatingRaw) return false;
+			//if(hasPerk("Buttslut") && newButtRating < buttRatingRaw) return false;
+			if(hasPerk("Bubble Butt") && newButtRating < 10) return false;
 			return true;
 		}
 		public function buttRatingLockedMessage():String
@@ -3012,7 +3021,7 @@
 						removeStatusEffect("Blue Balls");
 					}
 					//'Nuki Ball Reduction
-					if(perkv1("'Nuki Nuts") > 0 && balls >= 1)
+					if(perkv1("'Nuki Nuts") > 0 && balls > 0)
 					{
 						AddLogEvent("Your", "passive");
 						if(balls == 1) ExtendLogEvent(" testicle is back to its");
@@ -4652,8 +4661,8 @@
 			if (hasStatusEffect("Water Veil")) temp += statusEffectv2("Water Veil");
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
+			if (hasStatusEffect("Evasion Boost")) temp += statusEffectv1("Evasion Boost");
 			//Nonspecific evasion boost status effect enemies can use.
-			temp += statusEffectv1("Evasion Boost");
 			//Now reduced by restraints - 25% per point
 			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
 			
@@ -6774,6 +6783,11 @@
 		//Create a perk
 		public function createPerk(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, desc: String = ""): void 
 		{
+			if (hasPerk(keyName)) {
+				trace("Perk '" + statusName + "' already present on " + short);
+				return;
+			}
+			
 			var newPerk:StorageClass = new StorageClass();
 			newPerk.storageName = keyName;
 			newPerk.value1 = value1;
@@ -9081,7 +9095,7 @@
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
-			if(hasPerk("'Nuki Nuts") && balls >= 1 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
+			if(hasPerk("'Nuki Nuts") && balls > 0 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{
@@ -9184,7 +9198,7 @@
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
-				if(hasPerk("'Nuki Nuts") && balls >= 1)
+				if(hasPerk("'Nuki Nuts") && balls > 0)
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = (ballFullness/100) - 1;
@@ -9388,8 +9402,8 @@
 			tailGenitalColor = "";
 			if(this is PlayerCharacter)
 			{
-				flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-				flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+				if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined) flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+				if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 			}
 			return;
 		}
@@ -10238,6 +10252,7 @@
 			{
 				removePerk("Sterile");
 				removeStatusEffect("Vaginally-Filled");
+				removeStatusEffect("Pussy Pumped");
 			}
 		}
 		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
@@ -11648,13 +11663,17 @@
 		public function hipsDescript(): String {
 			return hipDescript(true);
 		}
+		public function hasSoftButt():Boolean
+		{
+			return (hasPerk("Buttslut") || hasPerk("Bubble Butt") || tone < 30);
+		}
 		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
 			var desc: String = "";
 			var rando: Number = 0;
-			var buttslut: Boolean = hasPerk("Buttslut");
+			var softbutt: Boolean = hasSoftButt();
 			if (buttRating() <= 1) {
-				if (tone >= 60 && !buttslut) desc += "incredibly tight, perky ";
+				if (tone >= 60 && !softbutt) desc += "incredibly tight, perky ";
 				else {
 					if (rand(2) == 0) desc = "tiny";
 					else if (rand(2) == 0) desc = "very small";
@@ -11664,7 +11683,7 @@
 					desc += " ";
 				}
 			} else if (buttRating() < 4) {
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(6);
 					if (rando == 0) desc = "perky, muscular ";
 					else if (rando == 1) desc = "tight, toned ";
@@ -11674,7 +11693,7 @@
 					else if (rando == 5) desc = "muscular, toned ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "tight ";
 					else if (rando == 1) desc = "firm ";
@@ -11694,7 +11713,7 @@
 				}
 			} else if (buttRating() < 6) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(6);
 					if (rando == 0) desc = "nicely muscled ";
 					else if (rando == 1) desc = "nice, toned ";
@@ -11704,7 +11723,7 @@
 					else if (rando == 5) desc = "fair ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(2);
 					if (rando == 0) desc = "nice ";
 					else if (rando == 1) desc = "fair ";
@@ -11720,7 +11739,7 @@
 				}
 			} else if (buttRating() < 8) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(7);
 					if (rando == 0) desc = "full, toned ";
 					else if (rando == 1) {
@@ -11733,7 +11752,7 @@
 					else if (rando == 6) desc = "chiseled ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) {
 						if (asPlural) return "hand-filling ass cheeks";
@@ -11758,7 +11777,7 @@
 				}
 			} else if (buttRating() < 10) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(9);
 					if (rando == 0) desc = "large, muscular ";
 					else if (rando == 1) desc = "substantial, toned ";
@@ -11771,7 +11790,7 @@
 					else if (rando == 8) desc = "callipygean ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(10);
 					if (rando <= 2) desc = "squeezable ";
 					else if (rando <= 6) desc = "large ";
@@ -11794,7 +11813,7 @@
 				}
 			} else if (buttRating() < 13) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(7);
 					if (rando == 0) desc = "thick, muscular ";
 					else if (rando == 1) desc = "big, burly ";
@@ -11805,7 +11824,7 @@
 					else if (rando == 6) desc = "thick, strong ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "jiggling ";
 					else if (rando == 1) desc = "spacious ";
@@ -11828,7 +11847,7 @@
 				}
 			} else if (buttRating() < 16) {
 				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(8);
 					if (rando == 0) desc = "expansive, muscled ";
 					else if (rando == 1) desc = "voluminous, rippling ";
@@ -11840,7 +11859,7 @@
 					else if (rando == 7) desc = "powerful, expansive ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "expansive ";
 					else if (rando == 1) desc = "generous ";
@@ -11863,7 +11882,7 @@
 					else if (rando == 10) desc = "soft, padded ";
 				}
 			} else if (buttRating() < 20) {
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(6);
 					if (rando == 0) desc = "huge, toned ";
 					else if (rando == 1) desc = "vast, muscular ";
@@ -11873,7 +11892,7 @@
 					else if (rando == 5) desc = "muscle-bound ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(5);
 					if (rando == 0) desc = "huge ";
 					else if (rando == 1) desc = "vast ";
@@ -11902,7 +11921,7 @@
 					else if (rando == 10) desc = "swollen, pillow-like ";
 				}
 			} else {
-				if (tone >= 65 && !buttslut) {
+				if (tone >= 65 && !softbutt) {
 					rando = rand(7);
 					if (rando == 0) desc = "ginormous, muscle-bound ";
 					else if (rando == 1) desc = "colossal yet toned ";
@@ -11916,7 +11935,7 @@
 					else if (rando == 6) desc = "colossal, well-defined ";
 				}
 				//Nondescript
-				else if (tone >= 30 && !buttslut) {
+				else if (tone >= 30 && !softbutt) {
 					rando = rand(4);
 					if (rando == 0) desc = "ginormous ";
 					else if (rando == 1) desc = "colossal ";
@@ -13592,7 +13611,7 @@
 			}
 			else {
 				if(adjectiveArray[1] > 0) descript += ", ";
-				descript += RandomInCollection("mutated cock","mixed dicks","mixed cocks","mismatched dicks","mixed pricks","mismatched members");
+				descript += RandomInCollection("mutated cock","mixed dick","mixed cock","mismatched dick","mixed prick","mismatched member");
 			}
 			return plural(descript);
 		}
@@ -17841,7 +17860,7 @@
 				{
 					AddLogEvent(ParseText(" You hear a faint gurgling from your stomach and [pc.balls] as you feel " + (balls == 1 ? "it" : "them") + " " + (ballFullness >= 100 ? "swelling with more and more [pc.cumNoun]" : "getting fuller and fuller with [pc.cumNoun]") + " each passing second. With your kui-tan physiology, all that " + fluidNoun(fluid) + " you ingested must have spiked your own [pc.cumNoun] production!"), "passive");
 				}
-				lust(20);
+				lust(5);
 				createStatusEffect("Cum Cascade", 0, 0, fluid, 0, true, "Icon_Sperm_Hearts", "Side effect of ‘Nuki Nuts.", false, 0, 0xB793C4);
 			}
 			

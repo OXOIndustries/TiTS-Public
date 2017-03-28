@@ -9,7 +9,7 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 import classes.GameData.CombatManager;
 import classes.Util.InCollection;
 import flash.sampler.NewObjectSample;
-//{If Dungeon not completed, add:}
+//If Dungeon not completed, add:
 public function chasmfallBonusFunction():Boolean
 {
 	if(flags["STELLAR_TETHER_CLOSED"] == undefined)
@@ -61,10 +61,10 @@ public function approachUGCTroopers():void
 		flags["MET_UGC_TROOPER_AT_CHASMFALL"] = 1;
 		output("You make your way forward towards the camp of Confederate troops parked ahead. Predictably, one of the Peacekeepers steps forward to challenge you. A grizzled older man chomping on a cigar, the Peacekeeper pulls down the rim of his sunglasses as you wander up, looking you up and down.");
 		//CUT CONTENT. SAVIN NEVER WROTE DIS SHIT.
-		//{if PC talked to Anno:}
-		//"Commander Dorna sent me," you say simply. "The name’s Steele."
+		//if PC talked to Anno:
+		//<i>“Commander Dorna sent me,”</i> you say simply. <i>“The name’s Steele.”</i>
 		//[The Mission]
-		//{else}
+		//else
 		output("\n\n<i>“Who the hell do you think you are, " + pc.mf("boy","girl") + "?”</i> the officer growls, couching his rifle under an arm. <i>“Ain’t no sane fellow walks up to a bunch of troops on high alert.”</i>");
 		output("\n\nYou shrug. <i>“I’m just looking around. What’s going on here?”</i>");
 		output("\n\nThe veteran cocks an eyebrow at you, and mutters. <i>“Damn rushers,”</i> as he taps out his cigar onto the parched dirt.");
@@ -229,7 +229,7 @@ public function knockOutTamtam():void
 	author("Savin");
 	showBust("TAMTAM");
 	showName("\nTAM");
-	//{+Hard}
+	//+Hard
 	pc.addHard(2);
 	output("A quick check around the room reveals a great big stonking wrench sitting within an arm’s reach. You pick it up, and approach the cat-girl. As she’s working, she doesn’t bother to look up as you near her. <i>“Kaska, is that you? Oh thank god, there was this crazy " + pc.mf("guy","bitch") + " and " + pc.mf("he","she") + " was shooting the place up and then Tam-wolf got hit and...”</i>");
 	output("\n\n<i>BONK!</i>");
@@ -383,7 +383,7 @@ public function dontTakeTamWulf():void
 }
 
 //Yes
-//{If PC is a Tech Specialist w/ Drone}
+//If PC is a Tech Specialist w/ Drone
 public function yesTechSpecialistsTakeTamWulf():void
 {
 	clearOutput();
@@ -408,7 +408,7 @@ public function yesTechSpecialistsTakeTamWulf():void
 		foundLootItems[foundLootItems.length] = new TamWolf();
 	}
 	//Yes
-	//{PC is not a Drone Tech}
+	//PC is not a Drone Tech
 	else
 	{
 		showBust(tamWolfBustDisplay(0));
@@ -666,7 +666,7 @@ public function kaskaBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 //Shit Gets Real, Here
-//{First time PC tries to leave the engineering room}
+//First time PC tries to leave the engineering room
 //Fen note: Actually play overtop of the normal room descriptions in the next room. Horray, cheezing! ...also the other room
 public function bombAlertBonusFunction():Boolean
 {
@@ -801,8 +801,8 @@ public function goUpTarkusLift():void
 }
 
 //Hack Turrets
-//{Fuck you and your Codex, Fen}
-//{PC needs to pass a moderate INT check for this shit}
+//Fuck you and your Codex, Fen
+//PC needs to pass a moderate INT check for this shit
 public function hackTheRocketPodsOnTarkus():void
 {
 	clearOutput();
@@ -810,7 +810,7 @@ public function hackTheRocketPodsOnTarkus():void
 	showBust("TURRET");
 	showName("ROCKET\nPODS");
 	output("<i>“Fight smart, not hard,”</i> Dad always said. You reach into your pack and pull out your Codex, bringing up the network selection, and quickly slicing into the station’s wireless.");
-	//{On Fail}
+	//On Fail
 	if(pc.intelligence() + rand(20) + 1 < 25)
 	{
 		output("\n\nYou spend a few minutes tapping around in the security system, but someone’s clearly been ramping up the anti-intruder countermeasures. You grit your teeth with effort, trying to pierce the security, but finding no backdoors or weak points to exploit. With a grunt of frustration, you toss your Codex back in your pack. Looks like it’s the hard way.");
@@ -819,7 +819,7 @@ public function hackTheRocketPodsOnTarkus():void
 		configRocketFight();
 		addButton(0, "Next", CombatManager.beginCombat);
 	}
-	//{On Pass}
+	//On Pass
 	else
 	{
 		output("\n\nClearly Tam was already in here fiddling around, and the security she put back up isn’t really the best, easily falling prey to your trained skill. A few minutes later, you hear a tell-tale “BEEP” from the turrets ahead as they reset to their default parameters. Another few strokes, and you slice yourself into their Friend/Foe ID system, and tag yourself as friendly. Pirates, not so much.");
@@ -840,8 +840,8 @@ public function sneakByZeTurrets():void
 	author("Savin");
 	showBust("TURRET");
 	showName("ROCKET\nPODS");
-	//{PC needs to make a difficult PHYSIQUE check. Taurs/Nagas/whatevers probably can't do this, since they weigh a ton and their arms would snap off}
-	//{Maybe tooltip: "The only other way past the turrets is to go under the walkway. Could be dangerous...}
+	//PC needs to make a difficult PHYSIQUE check. Taurs/Nagas/whatevers probably can't do this, since they weigh a ton and their arms would snap off
+	//Maybe tooltip: "The only other way past the turrets is to go under the walkway. Could be dangerous...
 	output("<i>“Discretion is the better part of valor,”</i> Dad always said. You roll your shoulders, wipe the sweat from your palms, and pull yourself over the guard rail. You tumble weightlessly, grabbing the bottom of the bridge, leaving yourself hanging over the void.");
 	output("\n\nOHGODTHAT’SALONGWAYDOWN! Up?! Whatever....");
 	output("\n\nYou try not to stare, even as your [pc.feet] dangle");
@@ -870,7 +870,7 @@ public function pcLosesToRocketPods():void
 }
 
 //END BOSS: Captain Khorgan Brytheck
-//{Dungeon end boss, in two parts: a damage-dealing heavy-hitter mech-suit fight, followed by a tease-heavy duel between her and the PC, swashbuckler style. Mech is armed with great big rocket pods and a gattling laser; PC has to square-hop to avoid missiles when they come in, or take MASSIVE damage}
+//Dungeon end boss, in two parts: a damage-dealing heavy-hitter mech-suit fight, followed by a tease-heavy duel between her and the PC, swashbuckler style. Mech is armed with great big rocket pods and a gattling laser; PC has to square-hop to avoid missiles when they come in, or take MASSIVE damage
 
 /*Room Description: Platinum Vein Approach
 {This is the big fucking C on your map; the other three rooms are arrayed in front of it (7,8,9 positions to its 5. From there, the Captain herself occupies another room to the North, making a cross of five rooms breaking off from the station}
@@ -1045,9 +1045,9 @@ public function victoriousVsCaptainOrcButt():void
 	pc.shields(pc.shieldsMax());
 	clearMenu();
 	addButton(0,"Fight", configKhorganFight, undefined, "Fight!","The captain’s clearly not going down without a fight. Time to finish this.");
-	//{Go to Captain Fight: Part 2}
+	//Go to Captain Fight: Part 2
 	addButton(1,"Demand",demandSurrenderFromPirate,undefined,"Demand Surrender","She’s desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.");
-	//{Tooltip: She’s right. You don’t have a chance...}
+	//Tooltip: She’s right. You don’t have a chance...
 	addButton(2,"Give Up",surrenderToCapnKhorgath,undefined,"Surrender","Surrender to the Captain. Why bother fighting?");
 }
 
@@ -1081,7 +1081,7 @@ public function demandSurrenderFromPirate():void
 }
 
 //Surrender Yourself
-//{Tooltip: She’s right. You don’t have a chance...}
+//Tooltip: She’s right. You don’t have a chance...
 public function surrenderToCapnKhorgath():void
 {
 	clearOutput();
@@ -1090,7 +1090,7 @@ public function surrenderToCapnKhorgath():void
 	showName("CAPTAIN\nKHORGAN");
 	output("With a heavy sigh, you drop your weapon and gear. At least this way you’ll make it out of here alive, even if Tarkus might be doomed because of it.");
 	output("\n\n<i>“Really?”</i> the captain sneers, scowling. <i>“I didn’t think you were that spineless, Steele. Fine, then. Get down on the ground, and don’t make any sudden movements.”</i>");
-	//{Go to Captain Khorgan's Broodmare badend}
+	//Go to Captain Khorgan's Broodmare badend
 	clearMenu();
 	addButton(0,"Next",loseToCaptainKhorganBadEnd);
 }
@@ -1107,17 +1107,17 @@ public function youBeatUpAnOrcWaytoGo():void
 	showBust("CAPTAIN_KHORGAN");
 	showName("CAPTAIN\nKHORGAN");
 	currentLocation = "360";
-	//{if by Lust}
+	//if by Lust
 	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("<i>“Oh, fuck,”</i> Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. Her hands reach up, clutching at her breasts, tearing what remains of her corset and clothes off to get at the stiff teats beneath. <i>“I can’t.... Fuck it, Steele, you can have the damn detonator. Take it! Just fuck me, take me, throw me on the deck and pound me. I’m all yours, you fucking animal.”</i>");
 	}
-	//{if by Damage}
+	//if by Damage
 	else
 	{
 		output("<i>“Oh, fuck,”</i> Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. She wipes a trickle of blood from the corner of her mouth, shooting you a twisted grin even as she winces in pain. <i>“Damn, you’re good. I yield, Steele... have your damn detonator. Have me, too. You’ve earned it,”</i> she adds, her hand slipping down to the ruins of her corset and pulling it aside to reveal the sheer swells of her heaving green bosom. Her look is inviting, almost desperate, practically begging you to fuck her.");
 	}
-	//{Combine:}
+	//Combine:
 	output("\n\nYou grab the detonator from her outstretched hand, eyes wandering across the bare expanse of her bust, unable to deny the ");
 	if(pc.hasCock()) output("stiffening of your [pc.cocks]");
 	else if(pc.hasVagina()) output("the growing wetness in your [pc.vagina]");
@@ -1292,7 +1292,7 @@ public function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 }
 
 //Captain Khorgan's Broodmare Badend
-//{If PC loses in the Mecha Fight}
+//If PC loses in the Mecha Fight
 public function loseToCaptainKhorganBadEnd():void
 {
 	var cockGrow:Boolean = false;
@@ -1301,20 +1301,20 @@ public function loseToCaptainKhorganBadEnd():void
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
-	//{if PC loses in the Swordfight, via lust:}
+	//if PC loses in the Swordfight, via lust:
 	if(enemy is CaptainKhorgan && pc.lust() >= pc.lustMax())
 	{
 		output("\n\nYour [pc.knees] buckle");
 		if(pc.legCount == 1) output("s");
 		output(" as the captain’s sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
 	}
-	//{if PC loses in the Swordfight, via damage:}
+	//if PC loses in the Swordfight, via damage:
 	else if(enemy is CaptainKhorgan)
 	{
 		output("\n\nYou’re losing ground. Even ignoring the sensual assault assailing your senses, the captain’s still an amazing swordsman, and you’re banged up after that fight against her mech. It’s hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
 	}
 	else output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain’s mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit’s great, heavy foot with her own.");
-	//{Combine, next para.}
+	//Combine, next para.
 	output("\n\nGrinning fiercely, the captain says, <i>“You’re brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live?”</i>");
 	output("\n\nYou nod. All thoughts of heroism, all ideals and hopes, your tough facade, it all breaks down when you feel her blade against your throat, her boot crushing down on your chest. You don’t want to die.");
 	output("\n\n<i>“Good choice,”</i> the captain says, looming over you. She flicks off her sword and sheathes it, kicking your own weapons away from you. <i>“I think you’ll make a good breeder, Steele. We’ll have such strong children... and if you’re a very, very good bed slave, you might see the sun again.”</i>");
@@ -2029,7 +2029,7 @@ public function victoryKaskaDicksex():void
 	output(" and presses her tongue out to taste you. She runs it up to your [pc.cockHeadBiggest] before parting her lips and letting it inside. She’s warm, wet and eager. In large part, her fervor for cocksucking could be attributed to her own overwhelming lust, turning an onerous favor into fuel for her own masturbation. As long as your dick is getting sucked, you’re fine with it.");
 	output("\n\nKaska noisily gasps for air in between her slurps. She doesn’t look up or acknowledge you, and you get the impression that she must not do this very often. Grabbing hold of her hair, you yank her back up to your [pc.cockHeadBiggest] and tip her head back, forcing her to look you eye to eye. A spark of defiance glows in her eyes but gutters and dies a second later. She may not like to take orders, yet she knows when she’s beaten. There isn’t even token resistance when you push her back and forth, coating ");
 	if(pc.biggestCockLength() >= 12) output("most of ");
-	output("your road with an even coat of pirate spit.");
+	output("your rod with an even coat of pirate spit.");
 
 	output("\n\nAfter a few minutes of this, Kaska’s technique improves, and you start to get dangerously hard. It’d be easy to forget her earlier reluctance with the way her tongue wraps around the midpoint of your shaft, sliding up and down in sync with her lips. You’re forced to push her off, lest you blow your load early, leaving Kaska breathing heavily while pre-cum runs unhindered from her cock, rolling across her knuckles on the way.");
 	output("\n\n<i>“Please, let me fuck you,”</i> she begs. Sweat beads on her brow. <i>“I need it. My balls are so full!”</i>");

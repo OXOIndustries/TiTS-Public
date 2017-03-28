@@ -411,7 +411,9 @@ package classes.Items.Transformatives
 					
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
-					target.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_FLUFFY];
+					target.tailFlags = [];
+					target.addTailFlag(GLOBAL.FLAG_LONG);
+					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;
 				}
 				else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
@@ -433,7 +435,6 @@ package classes.Items.Transformatives
 					target.tailCount = 1;
 					target.tailType = GLOBAL.TYPE_BOVINE;
 					target.tailFlags = [];
-					target.clearTailFlags();
 					target.addTailFlag(GLOBAL.FLAG_LONG);
 					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
 					changes++;

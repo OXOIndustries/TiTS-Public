@@ -446,7 +446,18 @@ package classes.GameData
 					target.addStatusValue("Pushed", 1, -1);
 				}
 			}
-			
+			if (target.hasStatusEffect("Shields Up") && !(target is PlayerCharacter))
+			{
+				target.addStatusValue("Shields Up",1,-1);
+				if(target.statusEffectv1("Shields Up") > 0) output("\n\n<b>He’s still covering himself with his shield.</b>");
+				else
+				{
+					target.removeStatusEffect("Shields Up");
+					output("\n\n<b>With a tired huff, the male zil’s allows his guard to sink back down.</b>");
+					target.shield.shields -= 40;
+					target.shields(-40);
+				}
+			}
 			if (target.hasPerk("Shield Regen") && target.hasShields() && target.shields() <= 0 && target.shieldsMax() > 0 && !target.hasStatusEffect("Used Shield Regen"))
 			{
 				if (target is PlayerCharacter)
@@ -574,7 +585,24 @@ package classes.GameData
 				}
 				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
 			}
-				
+			if (target.hasStatusEffect("Evasion Boost"))
+			{
+				if (target.getStatusMinutes("Evasion Boost") > 0) 
+				{
+					if(target is RKLah) output("\n\n<b>The ausar continues to jitter and start forwards and backwards unexpectedly. It’s a nightmare drawing a bead on him.</b>");
+					else if(target is PlayerCharacter) output("\n\n<b>Your evasion is still enhanced!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " evasion is still enhanced!</b>");
+					target.addStatusMinutes("Evasion Boost",-1);
+				}
+				else 
+				{
+					if(target is RKLah) output("\n\n<b>The ausar finally starts moving with something approaching normalcy, his burst of nervous energy exhausted.</b>");
+					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer have boosted evasion!</b>");
+					else if(target is PlayerCharacter) output("\n\n<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " enhanced evasion fades!</b>");
+					target.removeStatusEffect("Evasion Boost");
+				}
+			}
 			if (target.hasStatusEffect("Bleeding"))
 			{
 				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body; " + (target.statusEffectv2("Bleeding") >= 1 ? "your microsugeons working overtime to stem the ongoing damage" : "your microsurgeons have triaged the worst of it, but you’ll need proper rest to heal") + ".</b>");
@@ -846,19 +874,7 @@ package classes.GameData
 					target.removeStatusEffect("HP Boost CD");
 				}
 			}
-	
-			if(target.hasStatusEffect("Evasion Boost"))
-			{
-				target.addStatusMinutes("Evasion Boost",-1);
-				if(target.getStatusMinutes("Evasion Boost") <= 0)
-				{
-					if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer have boosted evasion!</b>");
-					else if (target is PlayerCharacter) output("\n\n<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer has boosted evasion!</b>");
-					target.removeStatusEffect("Evasion Boost");
-				}
-			}
-		
+			
 			if (target.hasStatusEffect("Resolve"))
 			{
 				target.addStatusValue("Resolve",1,-1);
@@ -1192,6 +1208,10 @@ package classes.GameData
 				else if (pc.hasStatusEffect("Mimbrane Smother"))
 				{
 					output("\n\n<b>You are being smothered by a Mimbrane!</b>");
+				}
+				else if(hasEnemyOfClass(RKLah))
+				{
+					output("\n\n<b>You are forced to stare dizzily at the ground, the bay and throb of the crowd in your ears, Lah’s hard, wiry arms locked firmly around your neck. You’ve got to get him off you!</b>");
 				}
 				else
 				{
@@ -1631,7 +1651,15 @@ package classes.GameData
 					// but we still hold a ref to it for further processing!
 					if (target is PlayerCharacter)
 					{
-						if (stunEffect.value2 == 1)
+						//For Kane shit
+						if(target.hasStatusEffect("Kane's Honey"))
+						{
+							//PC lust < 70:
+							if(target.lust() < 70) output("You shove the zil off you and grasp your [pc.weapon] firmly once again.");
+							else output("You manage to break away from the zil, grasping your [pc.weapon] and taking deep breaths, trying to control the arousal running fierce in your veins.");
+							target.removeStatusEffect("Kane's Honey");
+						}
+						else if (stunEffect.value2 == 1)
 						{
 							output("You shake yourself off, blinking rapidly. Whatever mental influence had crept into your brain seems to have flushed out, leaving your mind a bit foggy, but ready to fight regardless.");
 						}
@@ -1648,7 +1676,6 @@ package classes.GameData
 					{
 						output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
 					}
-					
 				}
 				else
 				{
@@ -1708,7 +1735,7 @@ package classes.GameData
 				return;
 			}
 			// Naleen coil grapple text
-			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale))
+			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall))
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
@@ -1738,6 +1765,7 @@ package classes.GameData
 				if(target.hasStatusEffect("Naleen Coiled"))
 				{
 					if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
+					else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
 					else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
 					target.addStatusValue("Naleen Coiled",1,1);
 					if(panicJack)
@@ -1843,6 +1871,7 @@ package classes.GameData
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the bolo.");
 						}
+						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{
@@ -1865,6 +1894,7 @@ package classes.GameData
 					{
 						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The bindings loosen a little, but your freedom is still out of reach... for now.");
 					}
+					else if (hasEnemyOfClass(RKLah)) output("You claw blindly at his face and try and buck furiously, to no avail.\n\n<i>“Stuck pig,”</i> grits the ausar, tightening his hold. <i>“Give in already.”</i>");
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 					if(panicJack)
@@ -4045,6 +4075,8 @@ package classes.GameData
 				else output(num2Text(enemiesAlive()) + " hostiles:");
 			}
 			
+			
+
 			// TODO: I guess this would be the place to point out blindness or whatever.
 			var totalBlinded:int = 0;
 			for (i = 0; i < _friendlies.length; i++)
@@ -4069,6 +4101,7 @@ package classes.GameData
 			{
 				displayHostileStatus(_hostiles[i]);
 			}
+			if(pc.hasKeyItem("RK Lah - Captured")) kGAMECLASS.lahAddendumToCombat();
 		}
 		
 		private function displayHostileStatus(target:Creature):void
