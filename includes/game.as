@@ -519,15 +519,15 @@ public function updateMailStatus():void
 	}
 }
 
-public function showPerksList():void
+public function showPerksList(filter:String = ""):void
 {
 	clearOutput2();
 	showPCBust();
 	setLocation("\nPERKS", "CODEX", "DATABASE");
 	author("");
-	clearGhostMenu();
-	addGhostButton(14, "Back", showPerkListHandler);
 	
+	var desc:Boolean = (flags["PERKS_DESC_OFF"] ? false : true);
+	var hasDesc:Boolean = false;
 	var perkList:Array = (pc as PlayerCharacter).perks;
 	
 	if (perkList.length == 0) output2("<i>No available character perks have been acquired.</i>");
@@ -541,10 +541,21 @@ public function showPerksList():void
 		
 		if (perk.combatOnly == false)
 		{
-			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
+			output2("<b>" + perk.storageName + "</b>" + ((desc && perkDesc.length > 0) ? (" - " + perkDesc) : ""));
+			if(perkDesc.length > 0) hasDesc = true;
+			output2("\n");
 		}
 	}
 	output2("\n");
+	
+	clearGhostMenu();
+	if(hasDesc) addGhostButton(13, ("Desc: " + (desc ? "On" : "Off")), perksDisplayToggleDesc, filter, "Descriptions", ("Toggle descriptions " + (desc ? "off" : "on") + "."));
+	addGhostButton(14, "Back", showPerkListHandler);
+}
+public function perksDisplayToggleDesc(filter:String = ""):void
+{
+	flags["PERKS_DESC_OFF"] = (flags["PERKS_DESC_OFF"] ? undefined : true);
+	showPerksList(filter);
 }
 
 public function crewRecruited(allcrew:Boolean = false):Number

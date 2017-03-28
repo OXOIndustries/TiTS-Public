@@ -337,7 +337,7 @@ public function snugglePlantationQuestStartMeetAble2():void
 	output("\n\nYou do so. A glass of water and a small meal is provided to you by a silent, unsmiling Snugglé prisoner employee. Munching, you watch as the professor goes back to silently gazing at the screens thrown across the glass windows and plush furnishings of the veranda. From what you can gather from a cursory glance, they are analytics of the plantation’s probationers.");
 	output("\n\n<i>“Problem with the prisoners?”</i> you venture.");
 	output("\n\n<i>“Something like that,”</i> the white-haired human sighs. He sounds reluctant, as if you were talking to you about something taboo. <i>“A laborer jumped the fence a few weeks ago. It would not ordinarily be a problem - the jungle usually discharges them either to the plantation or Esbeth, quivering and begging to be taken back. Unfortunately, in this particular laborer’s case, the jungle itself </i>was<i> the goal.”</i>");
-	output("\n\nDarnock flicks his hand at the screen, and a prisoner’s file is projected onto it. A lean, male ausar gazes down at you; solemn, hungry yellow eyes beneath a shock of grey hair. MD6 - 605631 REMI-KELLEN LAH, reads the plate he’s holding up.");
+	output("\n\nDarnock flicks his hand at the screen, and a prisoner’s file is projected onto it. A lean, male ausar gazes down at you; solemn, hungry yellow eyes beneath a shock of gray hair. MD6 - 605631 REMI-KELLEN LAH, reads the plate he’s holding up.");
 	output("\n\n<i>“I must make clear,”</i> Darnock continues, <i>“that it was a bureaucratic snafu that had Remi sent here in the first place. Send me your thieves, I told Snugglé! Send me your petty criminals, your unlicensed prostitutes, your drug addicts - I will change them. I will HEAL them. Just don’t send me any eco-warriors. Don’t send me any activist ausar serving five years for a fire-bombing campaign against Xenogen. Because doing that might... it might cause problems.”</i>");
 	output("\n\nThe professor signals with two terse fingers and the prisoner file slides away, replaced by a geographical map of the immediate area. The perimeter of the plantation is shown, and a number of angry red circles intersect it.");
 	output("\n\n<i>“Since Lah escaped, we have been attacked six times by a tribe of zil. They use tactics which are completely out of keeping for their kind, exploiting programming blind spots to get past the turrets and destroy our crops. They are not out for sex; it is pure, targeted aggression.”</i> He gestures. A fuzzy video recording appears on the main screen, shot in night vision. A rangy figure is gesticulating wildly at insect-winged others, who are quickly dragging large pods into what looks like sugar cane.");
@@ -385,7 +385,7 @@ public function askAboootLah():void
 	showDarnock();
 	author("Nonesuch");
 	flags["PQUEST_LAH_CHAT"] = 1;
-	output("<i>“How dangerous would you say this R.K. Lah is?”</i> you ask. Darnock brings up the lean ausar’s profile on the main screen again, clicks into a subset menu. You are treated to various shaky recordings of Lah participating in a protest march, shouting an address to an angry crowd of eco-protesters, his grey tail disappearing hurriedly behind a building as a line of riot police advance over glass and rubble...");
+	output("<i>“How dangerous would you say this R.K. Lah is?”</i> you ask. Darnock brings up the lean ausar’s profile on the main screen again, clicks into a subset menu. You are treated to various shaky recordings of Lah participating in a protest march, shouting an address to an angry crowd of eco-protesters, his gray tail disappearing hurriedly behind a building as a line of riot police advance over glass and rubble...");
 	output("\n\n<i>“He isn’t a murderer or some out-of-control mercenary,”</i> the old human replies at length, staring up into Lah’s round, yellow eyes. <i>“On the other hand - his psych report and history suggest he is unstable. He certainly does have a penchant for arson, as my crops have learnt to their intense displeasure. His last fire bombing attack on a Xenogen lab seriously injured someone - not the intention, but collateral damage is an unfortunate necessity when you are fighting the Dog, is it not?");
 	output("\n\n<i>“The most worrying thing is the hold he’s developed over this tribe of zil. I cannot imagine what he’s told them to get them to obey him, and with such fearlessness and precision. I don’t think there will be any avoiding fighting them, driving them to the four corners so he stands alone, Steele - it seems to be the only language the bee people understand, alas.”</i>");
 	processTime(3);
@@ -1130,7 +1130,7 @@ public function pcWinsAgainstHornet():void
 	author("Nonesuch");
 	if(enemy.HP() <= 1) output("The spear sags in the fazed and wounded hornet’s grip, and you take the opportunity to seize it and rip it out of her grip. It’s clanking and splintering its way downwards long after you’ve thrown it. The zil hoists herself away before you can grab her, too.");
 	else output("The spear sags in the hornet’s grip as she’s finally driven to distraction, reaching beneath her armor with one hand to frig herself furiously. You take the opportunity to seize the spear and rip it out of her grip. It’s clonking and splintering its way downwards long after you’ve thrown it. The zil hoists herself upwards before you can grab her, too.");
-	//{merge}
+	//merge
 	output("\n\n<i>“You’ll tire eventually, land-stealer!”</i> she cries, as she pulls frenetically at her rope, reeling her bobbing abdomen and full, bare buttocks away from you.\n\n");
 	CombatManager.genericVictory();
 }
@@ -1162,7 +1162,7 @@ public function pcLoses2Hornet():void
 		if(pc.cocks[x].cLength() < 5) output("\n\n<i>“You are hung like the meekest of our men,”</i> she snaps in frustration, digging her fingers into your cheek, upping the pace of her humping. <i>“The word-wolf says you star-people have become weak from dependence on your metal pipes - this is surely what he meant!”</i>");
 		else output("\n\n<i>“Yes! Yes! Yes!”</i> she grits, digging her fingers into your cheek, upping the pace of her humping. <i>“Tell your masters to send MANY more weaklings with thick manhoods between their thighs. I enjoy them very much!”</i>");
 
-		//{merge}
+		//merge
 		output("\n\nYou are feverish, writhing to the pulse of pheromones slathered over your every sense, and you rocket [pc.cum] into her milking snatch in an unstoppable flurry");
 		if(pc.cumQ() >= 60) output("until it is oozing and dripping down your [pc.legs] into the void below");
 		output(".");
@@ -1373,14 +1373,14 @@ public function beatUpNaleenRapeBall():void
 	{
 		output("Leathery coils and furry breasts sag beneath your [pc.legs], too beaten and enervated to continue holding you.");
 		output("\n\n<i>“Oh, let [pc.him] go, Ophia,”</i> snaps a thoroughly fed-up voice at the bottom of the pile. <i>“[pc.He]’s completely killing the vibe.”</i>");
-		output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+		output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little grayer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 		output("\n\nYou will have to start the climb again - but that seems a small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
 	}
 	//PC wins via Lust
 	else
 	{
 		output("The naleen thrash, shiver and moan with delight, utterly lost in a group paroxysm of lust. They grasp, bite and thrust into each other in a frenzy, tails snapping and flailing, and though you feel like you’re in the middle of a scale-and-fur earthquake, they no longer have any interest in anything besides themselves. You manage to claw your way to one side, and tracing the side of the pit whilst naga bump and grind into you uncaringly, you manage to find an open space to haul yourself into and tumble down.");
-		output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little greyer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+		output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little grayer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 		output("\n\nYou will have to start the climb again - but that seems a fairly small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
 	}
 	currentLocation = "2. WATERFALL POOL";
@@ -1488,7 +1488,7 @@ public function naleenBallLossFinisher():void
 	showBust("NALEEN_BALL");
 	//+2:30 Hours, Lust reset, pussy soaked, load in everywhere
 	output("Eventually the naleen have mercy on you. Or maybe they get bored of you, or the orgy finishes of its own accord. Whatever the case, you slowly come to your aching senses lying naked and alone, in some black cavern below the distant roar of the waterfall. The same one, or did they chuck you out of their <i>“nest”</i>? Concepts of time and place have deserted you - you just know how much your crotch and [pc.ass] ache, and how much warm naga cum is currently leaking out of you. Your fingers finding the smooth, comforting edges of your codex on the ground centers you a little.");
-	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit greyer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
+	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit grayer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 	output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.\n\n");	
 	processTime(120);
 	currentLocation = "2. WATERFALL POOL";
@@ -1683,6 +1683,7 @@ public function talkToQuinn():void
 	addButton(0, "Next", CombatManager.beginCombat);
 }
 
+
 //Agree
 //Tooltip: So he’s gone a bit off the rails, but Lah isn’t wrong.
 public function agreeWithDemBiyaaaatches():void
@@ -1705,7 +1706,6 @@ public function agreeWithDemBiyaaaatches():void
 		CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 		CombatManager.lossScene(loseToZatZilTribe);
 		CombatManager.displayLocation("ZIL TRIBE");
-
 		clearMenu();
 		addButton(0, "Next", CombatManager.beginCombat);
 	}
@@ -1722,6 +1722,7 @@ public function agreeWithDemBiyaaaatches():void
 		flags["PQ_PEACE_TIMESTAMP"] = GetGameTimestamp();
 		//[Talk] [Appearance] [Leave]
 		peacefulQuinnMenu();
+
 
 	}
 }

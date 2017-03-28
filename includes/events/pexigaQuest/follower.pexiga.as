@@ -353,7 +353,7 @@ public function pexigaYammiTalkGooo():void
 	output("\n\nPulling the burgundy plastic between her thighs, she leans forward, allowing the steady flow of saliva to rain into the container as she jills herself into a slavering mess. Blobs of fat, crystalline lubrication bubble from between her lower lips, and these too are transported into the bowl with the aid of her dexterous tail. In practically no time at all, the small basin has been filled to the brim with the pexiga’s fluids.");
 	output("\n\nShe pauses, panting and all smiles while a small, steamy cloud rises from her supple body. <i>“Tasty,”</i> she insists, drawing her soaked tail across her tongue. You dip a finger in the bowl and give the warm fluid a lick, confirming to the sugary girl that it is indeed quite flavorful.");
 	output("\n\n<i>“Tastes better with help,”</i> she teases, her big blue eyes full of a mischievous appetite.");
-	//{Player gains +5 lust}
+	//Player gains +5 lust
 	processTime(10);
 	pc.lust(5);
 	pexigaTalkMenu(pexigaYammiTalkGooo);

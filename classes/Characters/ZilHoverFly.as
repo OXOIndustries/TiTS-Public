@@ -31,7 +31,7 @@ package classes.Characters
 			this.originalRace = "zil";
 			this.a = "a ";
 			this.capitalA = "A";
-			this.long = "In stature he is a typical male zil - 5’7”, slim, boyish body clad in black carapace - but he is in full flight, open wings keeping him floating near your position, tauntingly just out of reach. He is armed with a long, thin shield and a poison-soaked assegai, with which he suddenly darts in and stabs you with to attack. He is daubed in war dyes and is livid with the joy of flight and battle, flicking this way and that, his heart-shaped face wild with varying degrees of lust, delight and righteous anger. There’s no chance of getting away from him up here - you’ll have to force him to buzz off.";
+			this.long = "In stature he is a typical male zil - 5\' 7\", slim, boyish body clad in black carapace - but he is in full flight, open wings keeping him floating near your position, tauntingly just out of reach. He is armed with a long, thin shield and a poison-soaked assegai, with which he suddenly darts in and stabs you with to attack. He is daubed in war dyes and is livid with the joy of flight and battle, flicking this way and that, his heart-shaped face wild with varying degrees of lust, delight and righteous anger. There’s no chance of getting away from him up here - you’ll have to force him to buzz off.";
 			this.customBlock = "The zil’s chitinous armor deflects your attack.";
 			this.isPlural = false;
 			this.meleeWeapon.attack = 2;

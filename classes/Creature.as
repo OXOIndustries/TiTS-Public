@@ -6783,6 +6783,11 @@
 		//Create a perk
 		public function createPerk(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, desc: String = ""): void 
 		{
+			if (hasPerk(keyName)) {
+				trace("Perk '" + statusName + "' already present on " + short);
+				return;
+			}
+			
 			var newPerk:StorageClass = new StorageClass();
 			newPerk.storageName = keyName;
 			newPerk.value1 = value1;
@@ -13606,7 +13611,7 @@
 			}
 			else {
 				if(adjectiveArray[1] > 0) descript += ", ";
-				descript += RandomInCollection("mutated cock","mixed dicks","mixed cocks","mismatched dicks","mixed pricks","mismatched members");
+				descript += RandomInCollection("mutated cock","mixed dick","mixed cock","mismatched dick","mixed prick","mismatched member");
 			}
 			return plural(descript);
 		}

@@ -1896,7 +1896,7 @@ public function fuckyTittyBlowblow2():void
 	//More than 500 mLs - no new PG
 	if(cumQ > 500) output(" The [pc.cumGem] flow thickens into a belly-slicking downpour while the pool floods, drizzling runners of [pc.cumNoun] down the outer curvature of her boobs.");
 	//More than 1k
-	if(cumQ > 1000) output("\n\nBut you aren’t done, and Sylvie seems to know it. She steps back, sliding your cock completely free of your tits. It jerks wildly as it unloads, releasing thick ropes across the moose-taur’s front. You grab hold of it and aim, painting Sylvie’s tits until they’re little more than your cum-glazed canvas.");
+	if(cumQ > 1000) output("\n\nBut you aren’t done, and Sylvie seems to know it. She steps back, sliding your cock completely free of her tits. It jerks wildly as it unloads, releasing thick ropes across the moose-taur’s front. You grab hold of it and aim, painting Sylvie’s tits until they’re little more than your cum-glazed canvas.");
 	//More than 4k - no new PG
 	if(cumQ > 4000) output(" So you shift your aim lower to smother her hips and belly, slicking down the coarse fur below. [pc.cumNoun] pools around her hooves, but the cum-drunk slut just laughs and spins around, letting you frost her back, flanks, tail, and even her pussy.");
 	//More than 10k
