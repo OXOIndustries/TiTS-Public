@@ -1242,7 +1242,10 @@ package classes.GameData
 			{
 				if(pc.lust() < pc.lustMax())
 				{
-					output("\n\nOh, something smells <i>divine</i>... like pure sex in vapor form. It makes your [pc.asshole] clench, hungry for cock. <b>Looks like you’re not gonna be able to ");
+					output("\n\nOh, something");
+					if(pc.hasAirtightSuit()) output(" looks <i>divine</i>... like pure sex in physical form");
+					else output(" smells <i>divine</i>... like pure sex in vapor form");
+					output(". It makes your [pc.asshole] clench, hungry for cock. <b>Looks like you’re not gonna be able to ");
 					if(pc.canFly()) output("fly");
 					else output("weasel");
 					output(" your way out of this encounter!</b>");

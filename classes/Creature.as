@@ -3560,6 +3560,14 @@
 				if(isMale()) autoSex = "Female";
 				if(!CodexManager.entryViewed("Nyrea")) autoSex += "???";
 			}
+			// Plural mobs
+			if(isPlural)
+			{
+				if(isSexless()) autoSex = "???";
+				else if(isFemale()) autoSex = "Female";
+				else if(isMale()) autoSex = "Male";
+				else autoSex = "Mixed";
+			}
 			
 			return autoSex;
 		}

@@ -440,7 +440,7 @@ public function ablePlantationQuestPostMeetingTalk():void
 	//[Customs] [Leave]
 	clearMenu();
 	addButton(0,"Customs",askZilbooooootyAboutCustoms);
-	addButton(1,"Leave",leaveAbleAfterTalkingPreQuestWhyNot);
+	addButton(14,"Leave",leaveAbleAfterTalkingPreQuestWhyNot);
 }
 
 //Customs
@@ -455,8 +455,9 @@ public function askZilbooooootyAboutCustoms():void
 	processTime(3);
 	//[Value?] [Leave]
 	clearMenu();
-	addButton(0,"Value?",talkToAbleAboutValue);
-	addButton(1,"Leave",leaveAbleAfterTalkingPreQuestWhyNot);
+	addDisabledButton(0,"Customs");
+	addButton(1,"Value?",talkToAbleAboutValue);
+	addButton(14,"Leave",leaveAbleAfterTalkingPreQuestWhyNot);
 }
 
 //Value?
@@ -471,7 +472,8 @@ public function talkToAbleAboutValue():void
 	flags["PQUEST_ABLE_VALUE_TALK"] = 1;
 	//[Customs] [Leave]
 	addButton(0,"Customs",askZilbooooootyAboutCustoms);
-	addButton(1,"Leave",leaveAbleAfterTalkingPreQuestWhyNot);
+	addDisabledButton(1,"Value?");
+	addButton(14,"Leave",leaveAbleAfterTalkingPreQuestWhyNot);
 }
 
 public function leaveAbleAfterTalkingPreQuestWhyNot():void
@@ -725,7 +727,7 @@ public function missionaryPositionWithKane():void
 	output("\n\nYou gasp and crow and giggle your delight to it, your [pc.girlCum] ");
 	if(pc.vaginas[x].wetness() < 3) output("dripping");
 	else output("drooling");
-	output(" freely down your [pc.legs], knowing your vocal enjoyment of it only intensifies how hard the zil sticks it to you. You reach around and clutch his tight bum as a shimmering orgasm blots out all thought, happy to lie back and let your boy toy do all the work, his nice shiny bludgeon of a cock rubbing and pushing into your [pc.vagina " + x + "] in a way that makes you cry out in delight");
+	output(" freely down your [pc.legOrLegs], knowing your vocal enjoyment of it only intensifies how hard the zil sticks it to you. You reach around and clutch his tight bum as a shimmering orgasm blots out all thought, happy to lie back and let your boy toy do all the work, his nice shiny bludgeon of a cock rubbing and pushing into your [pc.vagina " + x + "] in a way that makes you cry out in delight");
 	if(pc.canMilkSquirt()) output(", your engorged nipples jetting [pc.milk] into his scowling face as the ecstatic clenches reach up to your [pc.chest]");
 	output(".");
 	var y:int = -1;
@@ -811,10 +813,10 @@ public function loseToKane():void
 	showKane();
 	author("Nonesuch");
 	showName("DEFEAT:\nKANE");
-	if(pc.HP() <= 1) output("The strength departs your [pc.legs] and you collapse, hands sinking into soft moss. You shake your head urgently and throw your [pc.weapon] down when you hear the deadly whirr of the stone approaching. <i>Anything</i> but getting hit by that again.");
+	if(pc.HP() <= 1) output("The strength departs your [pc.legOrLegs] and you collapse, hands sinking into soft moss. You shake your head urgently and throw your [pc.weapon] down when you hear the deadly whirr of the stone approaching. <i>Anything</i> but getting hit by that again.");
 	else output("Your head swims. Everything seems to drip with honey, you can practically taste and feel it on your [pc.lips] and [pc.tongue], and oh Void the thought of being touched and roughly used when you’re in this state... you barely notice your [pc.weapon] tumbling out of your hand. It’s no longer of any importance.");
 	output("\n\nKane walks across to you slowly, only letting his weapon softly thump down into the moss when it’s completely obvious you aren’t bluffing; when he’s almost on top of you, and the smell of him is billowing thickly over your senses.");
-	output("\n\n<i>“That’s it?”</i> he growls in your face. <i>“I was not expecting the land-stealers to send a warrior so weak and dissolute.”</i> His black eyes flicker down, over your [pc.chest] and [pc.legs]. <i>“Still. You’re good for two things.”</i>");
+	output("\n\n<i>“That’s it?”</i> he growls in your face. <i>“I was not expecting the land-stealers to send a warrior so weak and dissolute.”</i> His black eyes flicker down, over your [pc.chest] and [pc.legOrLegs]. <i>“Still. You’re good for two things.”</i>");
 
 	output("\n\nHis glossy black hands are strong and sure as they ");
 	//If upper garment:
@@ -887,7 +889,7 @@ public function loseToKane():void
 
 	output("\n\nYou’re a quivering mess by the time he’s done, the moss around you sticky with the juices you’ve sprayed deliriously in response to getting fucked into the ground whilst under the effects of the zil’s incredibly potent sugar. Your [pc.eyes] roll and you groan woozily as Kane slides his hands forward, grips your [pc.chest] tightly and fills your [pc.vagOrAss] with warm, oozing honey seed, each clap of his thighs against your [pc.ass] accompanied by a harsh hum of purest gratification, wings flickering frenetically. ");
 	output("\n\n<i>“There,”</i> the tall zil grunts at last, releasing his grip and slowly pulling his cock out of your [pc.vagOrAss], dragging it along your tenderized walls and opening. A slow cascade of orange cum follows him out, drooling down your [pc.thighs]. <i>“Carry that back to your land-stealing masters’ feet, let them know exactly what we think of them and their weakling servants. You’re a poor warrior, but you will be an excellent message. And, when this is done perhaps: a respectable " + pc.mf("husband","wife") + ". For now though... push off.”</i>");
-	output("\n\nWith a throbbing buzz he returns to his seat in the trees, and watches balefully whilst, after a few moments of collecting yourself, you dazedly collect your scattered supplies and carefully descend back down besides the river, attempting to ignore the syrup oozing steadily down your [pc.legs] from your tender [pc.vagOrAss].");
+	output("\n\nWith a throbbing buzz he returns to his seat in the trees, and watches balefully whilst, after a few moments of collecting yourself, you dazedly collect your scattered supplies and carefully descend back down besides the river, attempting to ignore the syrup oozing steadily down your [pc.legOrLegs] from your tender [pc.vagOrAss].");
 	output("\n\nTime to rethink your approach, possibly.");
 	output("\n\n");
 	processTime(30);
@@ -937,7 +939,7 @@ public function driftwoodShoulderDoofiness(forceFall:Boolean = false):Boolean
 		output("\n\nYou hurtle downwards, imagining the terrible impact, your broken body splayed on jagged stone in some Oneforsaken cave nobody will ever find you... before your [pc.butt] touches smooth rock, you whizz down a natural, water-carved slide and are flung into a deep, black pit, landing in something soft and dry before you can properly take in what’s happened.");
 		output("\n\nYou have a single, short moment to feel adrenaline-soaked relief, to move your limbs and feel for yourself that nothing is broken... before the couch beneath you shifts lugubriously, a multitude of hands touch your [pc.chest] and [pc.groin], and the stench of leathery sex settles into your nostrils.");
 		output("\n\n<i>“What was that?”</i> coos a woozy voice, somewhere below the shifting warmth.");
-		output("\n\n<i>“Fresh meat,”</i> hisses a female voice in your ear. You turn your head, gaze into lust-clouded feline eyes. The naleen smiles at you at the same time as she, and many others, coil their strong tails around your [pc.legs]. <i>“Provided to us by our zil landlords. So sweet, how they think of us.”</i> Her fluffy breasts press into your [pc.chest] as she molds her lips against yours...");
+		output("\n\n<i>“Fresh meat,”</i> hisses a female voice in your ear. You turn your head, gaze into lust-clouded feline eyes. The naleen smiles at you at the same time as she, and many others, coil their strong tails around your [pc.legOrLegs]. <i>“Provided to us by our zil landlords. So sweet, how they think of us.”</i> Her fluffy breasts press into your [pc.chest] as she molds her lips against yours...");
 		IncrementFlag("PQ_NALEENED");
 		//Lust up
 		processTime(30);
@@ -1056,12 +1058,12 @@ public function pcDunFallsOffDatHill():Boolean
 		//Fell from 3 squares up from Waterfall Pool or more: 
 		if(currentLocation == "5. RED ROCK LEDGE" || currentLocation == "6. WATERFALL STAIRWAY" || currentLocation == "7. DRIFTWOOD SHOULDER" || currentLocation == "8. RED ROCK SCREE" || currentLocation == "10. TOP OF THE CLIFF") 
 		{
-			output("\n\nSMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
+			output("\n\nSMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legOrLegs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
 			pc.HP(-1000);
 		}
 		else
 		{
-			output("\n\nSPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
+			output("\n\nSPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legOrLegs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
 			pc.HP(-10);
 		}
 		//Take 75% HP damage. If 2 < squares move down 2 squares, If less move to WP square
@@ -1156,7 +1158,7 @@ public function pcLoses2Hornet():void
 		output(" will ever go soft again. The arousal is so intense, your mouth open and vision swimming, you don’t even realize immediately what she’s doing as she descends on her ropes - reaching around you, pushing your face between her soft, pert breasts - until you feel the tough, fibrous pressure on the small of your back.");
 
 		output("\n\n<i>“I’m not having you kill yourself before I’ve gotten my satisfaction,”</i> she growls in your ear, as you sag backwards with relief in her makeshift harness. <i>“As much as I doubt you know the meaning of sacrificial honor, land-stealer.”</i> She descends still further, the give of her breasts shifting down your [pc.chest], until she can ");
-		if(!pc.isCrotchExposed()) output("pull your [pc.lowerGarments] down your [pc.legs] with a rude rip and shove, and ");
+		if(!pc.isCrotchExposed()) output("pull your [pc.lowerGarments] down your [pc.legOrLegs] with a rude rip and shove, and ");
 		output("circles her smooth, booted legs around your [pc.hips]. With no further preamble, she roughly shoves her honey-leaking twat onto your helplessly erect [pc.cockNoun " + x + "].");
 		output("\n\nYou twitch and gasp as she uses you with savage jerks of her lithe, athletic thighs, jerking your length in her warm, slimy depths, taut abdomen slapping against your [pc.belly].");
 		if(pc.cocks[x].cLength() < 5) output("\n\n<i>“You are hung like the meekest of our men,”</i> she snaps in frustration, digging her fingers into your cheek, upping the pace of her humping. <i>“The word-wolf says you star-people have become weak from dependence on your metal pipes - this is surely what he meant!”</i>");
@@ -1164,7 +1166,7 @@ public function pcLoses2Hornet():void
 
 		//merge
 		output("\n\nYou are feverish, writhing to the pulse of pheromones slathered over your every sense, and you rocket [pc.cum] into her milking snatch in an unstoppable flurry");
-		if(pc.cumQ() >= 60) output("until it is oozing and dripping down your [pc.legs] into the void below");
+		if(pc.cumQ() >= 60) output("until it is oozing and dripping down your [pc.legOrLegs] into the void below");
 		output(".");
 
 		output("\n\n<i>“Already?”</i> the zil snorts, as you flail against her like a landed fish. She viciously stabs you with her stinger again in the [pc.thigh], a flare of pain to go with the intoxicating pleasure of her slick, tar cunt gloving your [pc.cock " + x + "]. <i>“Already? Do you think to escape by wilting out of me, pathetic soldier-child? I have barely begun! See how a true warrior fucks, and dwell upon it next time you think to invade our lands!”</i>");
@@ -1248,7 +1250,7 @@ public function zilHornetCuntLoss2():void
 	author("Nonesuch");
 	currentLocation = "2. WATERFALL POOL";
 	generateMap();
-	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
+	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legOrLegs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
 	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but these are all reasons to be grateful.\n\n");
 	processTime(50);
 	pc.orgasm();
@@ -1261,7 +1263,7 @@ public function zilHornetDickloss2():void
 	author("Nonesuch");
 	currentLocation = "2. WATERFALL POOL";
 	generateMap();
-	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
+	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legOrLegs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
 	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but there are reasons to be grateful.");
 	output("\n\n");
 	processTime(50);
@@ -1371,7 +1373,7 @@ public function beatUpNaleenRapeBall():void
 	//PC wins via HP
 	if(enemy.HP() <= 1) 
 	{
-		output("Leathery coils and furry breasts sag beneath your [pc.legs], too beaten and enervated to continue holding you.");
+		output("Leathery coils and furry breasts sag beneath your [pc.legOrLegs], too beaten and enervated to continue holding you.");
 		output("\n\n<i>“Oh, let [pc.him] go, Ophia,”</i> snaps a thoroughly fed-up voice at the bottom of the pile. <i>“[pc.He]’s completely killing the vibe.”</i>");
 		output("\n\nHalf a dozen hands firmly grab hold of you, haul you up and then tumble you over the lip of the hollow into a downward-sloping tunnel. You crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little grayer, and the omnipresent roar of the waterfall overhead sounds clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around it leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 		output("\n\nYou will have to start the climb again - but that seems a small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
@@ -1397,7 +1399,7 @@ public function loseToNaleenRapeyBall():void
 	{
 		output("At some point your thrashing around stopped being about attempting to escape the naleen and became about joining in eagerly with their lithe, slithery mating dance. You can practically taste your own horniness, down here in the hot, sweaty darkness, and all there is left to do is to stop struggling and embrace as many purring, hissing cat-snakes as you can.");
 	}
-	else output("The shock of the fall, followed by this overwhelming pit of naleen, has robbed you of your will and strength. Your weak struggles only earn you even more ruthless tightening of the coils around your waist and [pc.legs], and finally you have to give in. Let them do as they wish with you; maybe they’ll let you go afterwards.");
+	else output("The shock of the fall, followed by this overwhelming pit of naleen, has robbed you of your will and strength. Your weak struggles only earn you even more ruthless tightening of the coils around your waist and [pc.legOrLegs], and finally you have to give in. Let them do as they wish with you; maybe they’ll let you go afterwards.");
 	output("\n\n<i>“This is how it is, tossed morsel,”</i> husks the female naleen, curling her arms around you, erect nipples brushing against your [pc.chest]. All you can see of her face are her fangs and the heady lust in her slit eyes, glistening in the dark. <i>“We don’t prey upon the sweet bees above. They provide tribute to our nest in return. So you will enliven our joining by being a good little ");
 	if(pc.hasCock()) output("cum-pump");
 	else output("piece of ass");
@@ -1421,7 +1423,7 @@ public function loseToNaleenRapeyBall():void
 		else if(pc.ass.wetness() > 0) output("slick ");
 		output("back passage.");
 	}
-	output(" They mold their bodies into you passionately, tonguing and biting each other’s lips over your head, all the while other naleen tails wrap themselves around your [pc.legs] and [pc.thighs], drawing you further into the heated, squirming morass until you can barely move, steeped in a shifting pit of scales and fur.");
+	output(" They mold their bodies into you passionately, tonguing and biting each other’s lips over your head, all the while other naleen tails wrap themselves around your [pc.legOrLegs] and [pc.thighs], drawing you further into the heated, squirming morass until you can barely move, steeped in a shifting pit of scales and fur.");
 
 	output("\n\nThe first naleen ");
 	if(pc.hasCock()) output("slides off your throbbing cock and ");
@@ -1722,8 +1724,6 @@ public function agreeWithDemBiyaaaatches():void
 		flags["PQ_PEACE_TIMESTAMP"] = GetGameTimestamp();
 		//[Talk] [Appearance] [Leave]
 		peacefulQuinnMenu();
-
-
 	}
 }
 
@@ -1923,7 +1923,7 @@ public function losesToRKLah():void
 	clearMenu();
 	//[Accept] [Don’t]
 	addButton(0,"Accept",dontDieLIkeABitchToZil,undefined,"Accept","Lah will get his way. You will live.");
-	addButton(1,"Don't",fightTheEntireTribeYaMoroon,undefined,"Don't","You can take ‘em all on! Probably!");
+	addButton(1,"Don’t",fightTheEntireTribeYaMoroon,undefined,"Don’t","You can take ‘em all on! Probably!");
 }
 
 //Accept
@@ -1988,7 +1988,7 @@ public function fightTheEntireTribeYaMoroon():void
 //PC Loses
 public function loseToZatZilTribe():void
 {
-	showName("\NDEFEATED!");
+	showName("\nDEFEATED!");
 	author("Nonesuch");
 	if(pc.HP() <= 1) output("You falter, sweat stinging your eyes and blood dripping down your flank, and the next moment you are being battered to the floor with clubs and spear butts, your cries of pain drowned out under the stamp of a dozen carapace boots.");
 	else
@@ -2042,7 +2042,7 @@ public function pcBeatsUpAWholeTribeNewsAt11():void
 	if(pc.hasVagina()) addButton(1,"Use Vagina",takeQuinnInTheLadyWay,undefined,"Use Vagina","To the victor go the spoils...");
 	else addDisabledButton(1,"Use Vagina","Use Vagina","You need a vagina for this.");
 
-	addButton(2,"Let Her Go",letQuinGo,undefined,"Let Her Go","Let Quinn go. You aren't a savage.");
+	addButton(2,"Let Her Go",letQuinGo,undefined,"Let Her Go","Let Quinn go. You aren’t a savage.");
 }
 
 //Let Her Go
@@ -2444,7 +2444,7 @@ public function quinnAppearance():void
 	else output("\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.");
 	clearMenu();
 	peacefulQuinnMenu();
-	addDisabledButton(1,"Appearance","Appearance","You're looking at her right now.");
+	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
 }
 
 public function peacefulQuinnMenu():void
@@ -2457,9 +2457,9 @@ public function peacefulQuinnMenu():void
 		if(pc.hasVagina() || pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0) 
 		{
 			if(pc.lust() >= 33) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
-			else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for this.");
+			else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
 		}
-		else if(pc.hasCock()) addDisabledButton(2,"Sex","Sex","You're too big for sex with her.");
+		else if(pc.hasCock()) addDisabledButton(2,"Sex","Sex","You’re too big for sex with her.");
 		else addDisabledButton(2,"Sex","Sex","You have no suitable endowments for sex with her.");
 	}
 	else addDisabledButton(2,"Sex","Sex","You might want to hold your horses, buckaroo.");
@@ -2765,7 +2765,7 @@ public function lahTurnInPartDeusEx():void
 	output("\n\n(<b>+10,000 XP!</b>)");
 	pc.removeKeyItem("RK Lah - Captured");
 	output("\n(<b>Key Item Removed: </b>RK Lah - Captured)");
-	flags["PQ_SECURED_LAH"] = 2
+	flags["PQ_SECURED_LAH"] = 2;
 	pc.XP(10000);
 	processTime(2);
 	//[Rest] [Finish]
@@ -2869,9 +2869,9 @@ public function noCatchlahRestOption():void
 //Tooltip: A polished, rugby ball-sized hunk of semi-opaque, brown-red stone, rather like carnelian. Do the spidery, sooty figures and zil lettering painted onto it add to or detract from its value?
 //Artie
 
-//Tooltip: The <i>“spiritual value”</i> of this thing must be off the charts, surely.
+//Tooltip: The “spiritual value” of this thing must be off the charts, surely.
 //<i>“My goodness.”</i> Artie’s smirk melts off his face when you plonk the Ancestor Stone down in front of his diode. <i>“Where on Mhen’ga did you come by this, child?”</i>
-//{Kind: <i>“As a result of an unfortunate disagreement.} / {MIsc: <i>“It fell off the back of a spaceship.} / {Hard: <i>“Never you mind.} What can you give me for it?”</i>
+// {Kind: <i>“As a result of an unfortunate disagreement.} / {MIsc: <i>“It fell off the back of a spaceship.} / {Hard: <i>“Never you mind.} What can you give me for it?”</i>
 //<i>“I- wouldn’t like to--”</i> the bald human splutters. He seems entranced by it; he stretches his hand out and, when you don’t pull it away, carefully strokes it, tracing one of the long, lithe figures with two fingers. <i>“This belongs in a museum. A chance to meditate upon it first though... what a privilege...”</i> He looks up at you. <i>“Mine is a humble operation {Master / Miss} Steele, you may have noticed. But a finder’s fee seems appropriate - how does 5000 credits sound?”</i>
 //[Yes] [No]
 //Yes
@@ -3239,7 +3239,7 @@ public function vagScizzorWithQuinnsLizardGizzard():void
 	}
 	else output("\n\n<i>“I can see how star people can show us many things,”</i> she murmurs. Long, delicate fingers squeeze your [pc.butt]. <i>“I wish for you to visit often. Provide more demonstrations.”</i>");
 
-	//{merge}
+	//merge
 	output("\n\nAfter a little more languorous fondling, you put your gear back on and leave her snoozing on her pile of furs, a ");
 	if(!pc.isNaga() && !pc.isGoo()) output("spring in your step");
 	else if(pc.isNaga()) output("flick in your slither");
@@ -3282,7 +3282,7 @@ public function zilOnTopOfPC():void
 	if(pc.cocks[x].cLength() >= 7) output("\n\n<i>“So much bigger than my homegrown warriors,”</i> she remarks, a vein of husky excitement running through her tone. You groan softly as she moves her grip upwards, trails her fingertips of your [pc.cockHead " + x + "], and then slowly slinks them down again. <i>“You mustn’t show it to them. They will get very jealous.”</i>");
 	else if(pc.cocks[x].cLength() >= 5.6) output("\n\n<i>“Very alike to my homegrown warriors,”</i> she remarks, curiosity coloring her tone. <i>“Are all manhoods the same size?”</i> You groan softly as she moves her grip upwards, trails her fingertips of your [pc.cockHead " + x + "], and then slowly slinks them down again. <i>“Of course they are,”</i> she goes on, playful menace blotting out whimsy. <i>“Because this size suits Quinn.”</i>");
 	else output("\n\n<i>“Aren’t you sweet,”</i> she remarks, playful menace creeping through her tones. You gasp, tense up as she grips you tightly... and then relents, stroking your length with loving curls of her fingers. <i>“An indomitable, loyal warrior in the circle and jungle, yet hung like the meekest of my men.”</i> You ball fur in your hands as she grips you fiercely again, craning her mouth to your ear as she does. <i>“I like that combination </i>a lot.<i>”</i>");
-	//{merge}
+	//merge
 	output("\n\nHer cool thigh slides down your [pc.hip] as she climbs on top of you, boobs and abdomen jouncing slightly as she leads the oozing warmth of her honey-cunt up the underside of your [pc.cock " + x + "]. She still has her hand around the base of it, clutching it tightly, lining it up with assured movements like a prized, personal tool - which you suppose it is. Your mind is drowned in the deep, sweet smell of zil, leaving nothing but an open, sugary eagerness, a sunny will to do exactly as your sexy, assertive queen demands.");
 	output("\n\n<i>“That’s it,”</i> she sighs, other hand pressing down on your shoulder as she spreads her slick lips over your [pc.cockHead " + x + "]. <i>“Just lie back and let me do as I will...”</i> You can’t help but groan and twitch as she slowly sits herself down. The silken feel of her narrow tunnel advancing down your rock-hard prick, drooling honey over ");
 	if(pc.hasKnot(x)) output("the [pc.knot]");
@@ -3304,7 +3304,7 @@ public function zilOnTopOfPC():void
 	else output("beard");
 	output(" and touching your [pc.chest]. <i>“You lie back and let your Quinn own you. Let me live your deeds and absorb your spirit.”</i>");
 
-	output("\n\nIt’s a kind of pleasurable hell letting an embodiment of entitlement and frustration sit on top of you and wring your [pc.cock " + x + "] inside her slick, drooling cunt, energetically levering herself to first one howling orgasm and then another; but for all the burning desire to let go and pack her absolutely full of [pc.cum] you could have a catheter inserted for all the likelihood it’s going to happen without her order. The pheromone fug, and the calm, sonorous words that came with it, are too powerful. When she cries out with delight, clenching her hips around yours and spattering clear syrup onto your [pc.belly] and [pc.legs], sheerest joy lights up your mind - you have pleased your Queen! - and denying the unbearable load bulging up your [pc.cock " + x + "]");
+	output("\n\nIt’s a kind of pleasurable hell letting an embodiment of entitlement and frustration sit on top of you and wring your [pc.cock " + x + "] inside her slick, drooling cunt, energetically levering herself to first one howling orgasm and then another; but for all the burning desire to let go and pack her absolutely full of [pc.cum] you could have a catheter inserted for all the likelihood it’s going to happen without her order. The pheromone fug, and the calm, sonorous words that came with it, are too powerful. When she cries out with delight, clenching her hips around yours and spattering clear syrup onto your [pc.belly] and [pc.legOrLegs], sheerest joy lights up your mind - you have pleased your Queen! - and denying the unbearable load bulging up your [pc.cock " + x + "]");
 	if(pc.balls > 0) output(" and [pc.balls]");
 	output(" seems a very small price to pay.");
 
@@ -3417,7 +3417,7 @@ public function askQuinnAboutTheNaleen():void
 		output("\n\nQuinn hoots with laughter.");
 		output("\n\n<i>“Yes! What an amusing trap that is, do you not agree?”</i> she chortles. <i>“I could not be prouder of the warriors who devised it. Still! You got out of it and fought your way back up here, didn’t you? Perseverance is a finer trait than unthinking agility.”</i>");
 	}
-	//{merge}
+	//merge
 	output("\n\nShe taps her finger on the wax-polished arm of her chair.");
 	output("\n\n<i>“The naleen prey upon all creatures that live in the jungle. That is an unfortunate but unbreakable truth. However, as ravenous and evil as they are, they can be reasoned with. We know many like to come to the caves to perform their mating rituals in peace - we know that were we to do nothing about it, we would lose many of our own as after-sex snacks. And they would lose some also, in acts of retribution. They would never be able to truly relax.”</i> The zil plays idly with a tuft of fur on her chair-pelt. <i>“Of course, naleen cannot come to an agreement to such as us unless it seems heavily weighted in their favor. They are extremely prideful creatures. And so - the pitfall. I explained that we carved it in deference to them, and that we would send tribute sliding down to them during orgy season from time to time, so long as they left our own alone. They liked this a lot - and we gained an easy way of getting rid of intruders. The peace has held.”</i>");
 	output("\n\nShe pats the tuft down.");
