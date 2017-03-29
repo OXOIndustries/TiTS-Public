@@ -2887,57 +2887,6 @@ public function noCatchlahRestOption():void
 //Colenso rolls his seat over to one of his screens, and a few seconds later your codex beeps as your bank balance is updated.
 //<i>“Not really my thing, precious stones, primitive calligraphy ‘n that,”</i> he admits as he stows the zils’ trophy beneath the counter, <i>“but I do know a few people. Be interesting to see how many precursor theories it backs up.”</i>
 
-
-/* ESBETH STUFF TO DO 9999
-output("\n\nEsbeth Reworked Texts");
-
-output("\n\n//Add after 24 hours have passed since peaceful resolution.");
-
-output("\n\nBurt");
-
-output("\n\nGreet spread");
-
-output("\n\n<i>“Hey [pc.name]!”</i> A grinning Burt strides over to you when you prop yourself up at the bar. <i>“Here to try my new mead cask? Triple filtered, and made from only the finest zil produce!”</i> He gestures at several new draught fonts arrayed behind the counter.");
-
-output("\n\n[Shop]");
-
-output("\n\n<i>“Oh no, I don’t really need any of that type of stuff from you anymore.”</i> The big human drums his fingers on the counter with an air of cheery industry. <i>“A tribe of zil are selling honey, their plates, anything they’re willing to give directly to us now. Barter, anyway - they got a real thing against credits for some reason. But it’s great! I’ve got vats of different honeys fermenting in the back now, people back in the core interested in the samples I’ve been sending out. I think we could really make a go of things here now!”</i>");
-
-output("\n\n[Zil]");
-
-output("\n\n<i>“So you’re doing business with the zil now?”</i> you ask.");
-
-output("\n\n<i>“Yeah! This gaggle of ‘em came in from the jungle, wouldn’t leave until they got to talk to Penny and the wobbly U.G.C. gal,”</i> Burt explains, leaning on the bar. <i>“This tribe of ‘em decided they want to trade with us, all of a sudden, and I for one am not saying no to ‘em. What they want is really simple stuff - basic medicine, fabrics, building material - and what they’re selling, well, you can’t get it anywhere else in the galaxy.”</i> He kisses his fingers effusively. <i>“These are golden days, [pc.name]. Golden. Now I’ve got a surplus to work with, I can really start to think about all the things that might be done with that honey, cuz you know it’s amazing stuff. Not just mead, but perfume... therapeutic massages... aphrodisiac... once I send it off to a lab and know all of its properties...”</i>");
-
-output("\n\n<i>“But they want more than clothes, don’t they?”</i> you interrupt.");
-
-output("\n\n<i>“Oh yeah,”</i> Burt says, sobering. <i>“They reckon those Snugglé folks took their land when they built their big ass farm, way out there. They want them gone, they’ve made that pretty damn clear.”</i> He sighs, knitting his fingers. <i>“Not gonna lie, that’s a tough ask. Snugglé aren’t some two bit operation you can send a few letters to your system delegate about and expect they’ll pack up tomorrow. And plenty of people are going to </i>want<i> ‘em here, because they mean jobs and security. It’s a tough ask [pc.name], no question about that.”</i>");
-
-output("\n\n<i>“But...”</i> he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil bee girls ‘n boys, if there’s a chance!”</i>");
-
-output("\n\nFlahne");
-
-output("\n\n[Zil?]");
-
-output("\n\nTooltip: Ask if she’s talked to Quinn’s people yet.");
-
-output("\n\nYou ask if any zil have been in town recently.");
-
-output("\n\n<i>“Yes!”</i> she squeaks, long ears perking up. <i>“This... I suppose </i>delegation<i> is the only way to describe them, really. Officer Penny brought them up here, and once we got the air conditioning on full blast we had a long talk with them. How did you know about that, [pc.name]?”</i>");
-
-output("\n\nYou briefly describe your confrontation with Quinn’s tribe, how you talked them out of terrorizing Thare Plantation and persuaded them to talk to the people of Esbeth instead. {Nice: You stoically play down your own heroism - not that that dissuades Flahne much.} {Misc: Your account is heavy on the razor-like wit you used to completely destroy RK Lah.} {Hard: You briskly present the story as simple cause and effect; you saw what had to be done, and so did it.} {Bimbo: Your account is heavy on the </i>smell<i> and the </i>cuteness<i> of zil boys and oh Void you just wanna eat them up, though that doesn’t seem to turn Flahne off much.} {Brute: Your account is heavy on how superfine the zil honeys were and just how many of them you laid, though that doesn’t seem to turn Flahne off much.}");
-
-output("\n\n<i>“So we have you to thank for this!”</i> she exclaims, eyes wide. <i>“You made something really remarkable happen, [pc.name]. No natives have ever approached us like that before - making understandable demands, offering peaceful trade and stuff. It’s the first step in the uplifting process we U.G.C. first contact reps are supposed to look out for, and I’m sooooo pleased the zil cuties have taken it!”</i>");
-
-output("\n\nYou ask whether these understandable demands of theirs are achievable.");
-
-output("\n\n<i>“Maybe,”</i> sighs Flahne, expression turning significantly gloomier. <i>“</i>Very<i> maybe. It seems likely that Snugglé will want to expand their operation here, and once they do that, a full scale agri-forming won’t be far behind. If the colonists are overwhelmingly against that - as well as the natives - then they might think twice. But being an independent planet is tough, [pc.name]. If they leave then somebody else is likely to step in, and if they don’t then we’re likely to be harassed by pirates and other meanie heads. Couple of years of that, and even the zil might be begging Snugglé to come back.”</i>");
-
-output("\n\nShe sucks on her current lollipop morosely.");
-
-output("\n\n<i>“I’ve committed myself to looking at ways of getting Snugglé to pack up and go elsewhere, because I love those snugglebugs so much and want to do right by them, but...”</i> she sighs heavily. <i>“Sometimes I think I’m not cut out for making these kinds of big decisions.”</i>");
-*/
-
 //Part 5: Quinn Talks and Sex
 
 //[Talk]
