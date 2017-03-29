@@ -423,7 +423,7 @@ public function initTavrosRooms():void
 	rooms["9015"].addFlag(GLOBAL.INDOOR);
 	rooms["9015"].addFlag(GLOBAL.PUBLIC);
 	rooms["9015"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9015"].runOnEnter = undefined;
+	rooms["9015"].runOnEnter = merchantThoroughfareBonus;
 
 	//9016
 	rooms["9016"] = new RoomClass(this);
