@@ -3395,7 +3395,7 @@ public function talkToQuinnStuffGogogogogogogogogogo():void
 	{
 		addButton(0,"Esbeth",quinnsEsbethTalk,undefined,"Esbeth","Ask what, if anything, they intend to do about the star people settlement.");	
 	}
-	addButton(1,"Herself",talkToQuinnAboutHerself,undefined,"Herself","Ask how she became <i>“Quinn”</i>.");
+	addButton(1,"Herself",talkToQuinnAboutHerself,undefined,"Herself","Ask how she became “Quinn”.");
 
 	if(flags["PQ_NALEENED"] == undefined) addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the naleen you were unfortunate enough to encounter beneath the falls.");
 	else addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the hissing you heard underneath the falls.");
@@ -3405,6 +3405,6 @@ public function goBackToQuinnMain():void
 {
 	clearOutput();
 	showQuinn();
-	output("What would you ask of the zil \"Queen\" now?");
+	output("What would you ask of the zil “Queen” now?");
 	peacefulQuinnMenu();
 }

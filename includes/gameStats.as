@@ -5435,7 +5435,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Kui Country Bar and Lodge
-			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined || flags["MET_SYLVIE"] != undefined)
+			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined || flags["MET_MABBS"] != undefined || flags["MET_SYLVIE"] != undefined)
 			{
 				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
 				// Gloryholes
@@ -5478,6 +5478,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
 					if(flags["KIRO_KALLY_THREESOMES"] > 0) output2("\n<b>* Kally, Times Sexed in Threesome with Kiro:</b> " + flags["KIRO_KALLY_THREESOMES"]);
 					if(flags["SISTER_MILK_ACT"] != undefined) output2("\n<b>* Kally, Times Cock-Milked with Kiro:</b> " + flags["SISTER_MILK_ACT"]);
+				}
+				// Mabbs
+				if(flags["MET_MABBS"] != undefined)
+				{
+					output2("\n<b>* Mabbs:</b> Met her");
 				}
 				// Sylvie
 				if(flags["MET_SYLVIE"] != undefined)

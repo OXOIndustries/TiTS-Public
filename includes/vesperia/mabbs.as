@@ -20,7 +20,7 @@ public function mabbsBonus(button:int):void
 public function mabbsRace():String
 {
 	var choices:Array = ["mouse-girl","mouse"];
-	if(CodexManager.entryUnlocked("rodenian")) choices.push("rodenian");
+	if(CodexManager.entryUnlocked("Rodenian")) choices.push("rodenian");
 	return RandomInCollection(choices);
 }
 
@@ -119,7 +119,7 @@ public function mabbsSpeciesTalk():void
 	clearOutput();
 	showMabbs();
 	output("You ask her what species she is");
-	if(CodexManager.entryUnlocked("Rodenian")) output(", not 100% sure she's a rodenian");
+	if(CodexManager.entryUnlocked("Rodenian")) output(", not 100% sure she’s a rodenian");
 	output(".");
 	output("\n\nMabbs squints at you. <i>“Rodenian, dummy. You see mouse-girls anywhere else? Didn’t think so. Go look it up on your computer if you wanna know more, ‘cause I ain’t here to blather on and on about my people. So buy something or get out of my face.”</i>");
 	if(!CodexManager.entryUnlocked("Rodenian"))
@@ -129,7 +129,7 @@ public function mabbsSpeciesTalk():void
 	}
 	processTime(2);
 	mabbsMenu();
-	addDisabledButton(5,"Your Species","Your Species","You're discussing that right now.");
+	addDisabledButton(5,"Your Species","Your Species","You’re discussing that right now.");
 }
 
 //Buy
@@ -162,7 +162,7 @@ public function sellToMabbs():void
 	output("\n\nIt might be wise not to escalate the situation any further. You diplomatically nod and consider your options...");
 	processTime(2);
 	mabbsMenu();
-	addDisabledButton(1,"Sell","Sell","Selling doesn't seem like a great idea right now.");
+	addDisabledButton(1,"Sell","Sell","Selling doesn’t seem like a great idea right now.");
 }
 
 //Flirt
@@ -175,7 +175,7 @@ public function flirtWithMabbs():void
 	output(" and uncaringly laughs. <i>“You wanna get me off, buy something so I have an excuse to roll out of here and experiment with my stock.”</i>");
 	processTime(1);
 	mabbsMenu();
-	addDisabledButton(2,"Flirt","Flirt","Flirting didn't work out very well.");
+	addDisabledButton(2,"Flirt","Flirt","Flirting didn’t work out very well.");
 }
 
 //Leave
