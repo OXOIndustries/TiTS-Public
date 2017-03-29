@@ -1896,7 +1896,22 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				if(plantationQuestComplete())
 				{
-					output2(" Completed");
+					output2(" Found Lah");
+					if(flags["PQ_FOUGHT_TRIBE"] != undefined) output2(", Fought and defeated zil tribe");
+					switch(flags["PQ_RESOLUTION"])
+					{
+						case 1:
+						case 2: output2(", Declared peace with the zil village"); break;
+						case -1: output2(", Overthrew the zil village"); break;
+					}
+					if(flags["PQ_P_BURNED"] != undefined) output2(", Burned down zil village");
+					switch(flags["PQ_SECURED_LAH"])
+					{
+						case 1: output2(", Taken Lah, <i>Return to Darnock...</i>"); break;
+						case 2: output2(", Turned Lah in to Darnock, Rewarded, Completed"); break;
+						case -1: output2(", Let Lah go, <i>Return to Darnock...</i>"); break;
+						case -2: output2(", Let Lah go, Told Darnock, Rewarded, Completed"); break;
+					}
 				}
 				else
 				{
@@ -1914,19 +1929,25 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PQUEST_WHERE_CHAT"] != undefined) output2("\n<b>* Clues, Lah’s Location:</b> <i>Highlands to the north, on a large waterfall...</i>");
 				if(flags["PQUEST_ABLE_CUSTOMS_TALK"] != undefined) output2("\n<b>* Clues, Zil Customs:</b> <i>Challenge Lah to a fair fight and give something zil value to earn chieftain’s trust...</i>");
 				if(flags["PQUEST_ABLE_VALUE_TALK"] != undefined) output2("\n<b>* Clues, What Zil Value:</b> <i>Sex, winning belongings fairly, and something Lah is offereing them...</i>");
+				if(flags["PQ_TOOK_AMBER"] != undefined) output2("\n<b>* Amber Idol:</b> Taken");
 				if(flags["PQUEST_WATERFALLED"] == undefined)
 				{
 					output2("\n<b>* Kane:</b> Met him");
-					if(flags["KANE_DEFEATED"] != undefined) output2(", Defeated");
+					if(flags["KANE_DEFEATED"] != undefined) output2(", Defeated him");
 				}
-				if(9999 == 0)
-				{
-					output2("\n<b>* Snake Pit:</b> Encountered");
-				}
-				if(9999 == 0)
+				if(flags["PQ_SECURED_LAH"] || flags["PQ_BEAT_LAH"] != undefined)
 				{
 					output2("\n<b>* R.K. Lah:</b> Met him");
+					if(flags["PQ_BEAT_LAH"] == 1) output2(", Defeated him");
+					if(flags["PQ_BEAT_LAH"] == -1) output2(", Defeated by him");
 				}
+				if(flags["PQ_RESOLUTION"] != undefined)
+				{
+					output2("\n<b>* Quinn:</b> Met her");
+					if(flags["PQ_LET_QUINN_GO"] != undefined) output2(", Let her go");
+					if(flags["SEXED_QUINN"] != undefined) output2("\n<b>* Quinn, Times Sexed:</b> " + flags["SEXED_QUINN"]);
+				}
+				if(flags["PQ_NALEENED"] != undefined) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> " + flags["PQ_NALEENED"]);
 				
 				sideCount++;
 			}
