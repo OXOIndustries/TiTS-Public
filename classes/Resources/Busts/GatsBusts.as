@@ -162,6 +162,8 @@
 		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/mabbs_headphones.png", mimeType = "image/png")]
+		public var Bust_MABBS:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
@@ -335,6 +337,9 @@
 			public var Full_KORGONNE_FEMALE2:Class;
 			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/gats/hr/mabbs_headphones.png", mimeType = "image/png")]
+			public var Full_MABBS:Class;
 
 			[Embed(source = "../../../assets/images/npcs/gats/hr/millie.png", mimeType = "image/png")]
 			public var Full_MILLIE:Class;

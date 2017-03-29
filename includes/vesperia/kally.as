@@ -17,6 +17,12 @@ Kiro Threesome?*/
 
 /* TEST */
 
+public function showMabbs():void
+{
+	showBust("MABBS");
+	showName("\nMABBS");
+}
+
 public function showKallyAndKiro(nude:Boolean = false):void
 {
 	if(nude) showBust(kiroBustDisplay(nude),"KALLY_NUDE");
@@ -132,6 +138,7 @@ public function kallyBonusRoomTexts():Boolean
 	if(MailManager.isEntryUnlocked("del_moved")) delBonus(1);
 	roamingBarEncounter(2);
 	sylvieRoomBonuses(3);
+	mabbsBonus(5);
 	if(kaedeBlurb4KuiCountryBarAndGrilllll(4)) return true;
 	return false;
 }
