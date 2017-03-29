@@ -161,6 +161,11 @@ public function tavrosHangarStuff():Boolean
 
 public function merchantThoroughfareBonus():void
 {
+	if(currentLocation == "9015")
+	{
+		vendingMachineButton(0, "J'ejune");
+	}
+	
 	if(currentLocation == "9018")
 	{
 		darkChrysalisStorefront();

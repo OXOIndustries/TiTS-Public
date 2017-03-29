@@ -12,13 +12,13 @@
 public function burtsBarFunc():Boolean {
 	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
 	if(hours >= 12) {
-		//{Hasn't bet against Syri yet}
+		//Hasn't bet against Syri yet
 		if(flags["BET_AGAINST_SYRI"] == undefined) {
 			output("\n\nToward the corner of the Mead Hall, you note that a pair of holoscreens have been set up on one of the walls. A small crowd of dock workers and other spacers have gathered around it, apparently taking bets. Might be worth a look, who knows?");
 			//[Games]
 			addButton(2,"Games",syriGamesStart);
 		}
-		//{Has bet against Syri}
+		//Has bet against Syri
 		else {
 			output("\n\nThe cocksure ausar girl, Syri, is standing across from the game screens, deep into a match as she nurses a stiff Terran beer. Seeing you standing around, she waves you over, clearly looking for a rematch. ");
 			if(flags["FUCKED_SYRI_COUNT"] != undefined) output("She’s certainly got that lusty look in her eyes...");
@@ -47,11 +47,12 @@ public function burtsBarFunc():Boolean {
 		syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET();
 		return true;
 	}
-	if(flags["MET_BURT"] == undefined) this.addButton(0,"Bar",burtapproach);
-	else this.addButton(0,"Burt",burtapproach);
+	if(flags["MET_BURT"] == undefined) addButton(0,"Bar",burtapproach);
+	else addButton(0,"Burt",burtapproach);
 	roamingBarEncounter(3);
-	addButton(4,"Oil Cheat",oilyButt);
-	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
+	if(debug) addButton(4,"Oil Cheat",oilyButt);
+	else vendingMachineButton(4, "J'ejune");
+	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
 	return false;
 }
 
@@ -88,10 +89,19 @@ public function repeatBurtApproach():void {
 	author("Danaume");
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
-	output("Burt glances up at you, giving a sidelong grin and asking, <i>“Well [pc.name], what can I do for you today?”</i> He wipes his hands off on his yellow and black check flannel and then leans up against the bar beside you, his grin turning into a smirk as he really seems to enjoy your company.");
-	//[if (biggestTitSize < 1)]
-	if(pc.biggestTitSize() >= 2) output("\n\nHis brown eyes glance down at your chest, taking in your [pc.fullChest] with a fairly lecherous smirk, after which he has to drag his eyes back up to look at your face.");
-	output("\n\nHe spreads his arms to show off the whole of his bar and smiles, <i>“I’ve got mead on tap, gossip to share, and a cot in the back room.”</i> giving you a wink at that last part.");
+	//Greet spread
+	if(flags["PQ_RESOLUTION"] == 1 && flags["PQ_PEACE_TIMESTAMP"] + 24*60 < GetGameTimestamp())
+	{
+		output("<i>“Hey [pc.name]!”</i> A grinning Burt strides over to you when you prop yourself up at the bar. <i>“Here to try my new mead cask? Triple filtered, and made from only the finest zil produce!”</i> He gestures at several new draught fonts arrayed behind the counter.");
+		if(pc.biggestTitSize() >= 2) output("\n\nHis brown eyes glance down at your chest, taking in your [pc.fullChest] with a fairly lecherous smirk, after which he has to drag his eyes back up to look at your face.");
+	}
+	else
+	{
+		output("Burt glances up at you, giving a sidelong grin and asking, <i>“Well [pc.name], what can I do for you today?”</i> He wipes his hands off on his yellow and black check flannel and then leans up against the bar beside you, his grin turning into a smirk as he really seems to enjoy your company.");
+		//[if (biggestTitSize < 1)]
+		if(pc.biggestTitSize() >= 2) output("\n\nHis brown eyes glance down at your chest, taking in your [pc.fullChest] with a fairly lecherous smirk, after which he has to drag his eyes back up to look at your face.");
+		output("\n\nHe spreads his arms to show off the whole of his bar and smiles, <i>“I’ve got mead on tap, gossip to share, and a cot in the back room.”</i> giving you a wink at that last part.");
+	}
 	burtBarMenu();
 }
 
@@ -259,8 +269,15 @@ public function BurtShopCollectables():void {
 	author("Danaume");
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
+	if(flags["PQ_RESOLUTION"] == 1 && flags["PQ_PEACE_TIMESTAMP"] + 24*60 < GetGameTimestamp())
+	{
+		output("<i>“Oh no, I don’t really need any of that type of stuff from you anymore.”</i> The big human drums his fingers on the counter with an air of cheery industry. <i>“A tribe of zil are selling honey, their plates, anything they’re willing to give directly to us now. Barter, anyway - they got a real thing against credits for some reason. But it’s great! I’ve got vats of different honeys fermenting in the back now, people back in the core interested in the samples I’ve been sending out. I think we could really make a go of things here now!”</i>");
+		clearMenu();
+		this.addButton(0,"Next",burtapproach);
+		return;
+	}
 	//First Visit
-	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) 
+	else if(flags["BURT_COLLECTABLE_SHOP"] == undefined) 
 	{
 		flags["BURT_COLLECTABLE_SHOP"] = 0;
 		output("You ask Burt what he meant about collectables.");
@@ -559,8 +576,17 @@ public function talkToBurtAboutDeseZilGueys():void {
 	author("Danaume");
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
+	//[Zil]
+	if(flags["PQ_RESOLUTION"] == 1 && flags["PQ_PEACE_TIMESTAMP"] + 24*60 < GetGameTimestamp())
+	{
+		output("<i>“So you’re doing business with the zil now?”</i> you ask.");
+		output("\n\n<i>“Yeah! This gaggle of ‘em came in from the jungle, wouldn’t leave until they got to talk to Penny and the wobbly U.G.C. gal,”</i> Burt explains, leaning on the bar. <i>“This tribe of ‘em decided they want to trade with us, all of a sudden, and I for one am not saying no to ‘em. What they want is really simple stuff - basic medicine, fabrics, building material - and what they’re selling, well, you can’t get it anywhere else in the galaxy.”</i> He kisses his fingers effusively. <i>“These are golden days, [pc.name]. Golden. Now I’ve got a surplus to work with, I can really start to think about all the things that might be done with that honey, cuz you know it’s amazing stuff. Not just mead, but perfume... therapeutic massages... aphrodisiac... once I send it off to a lab and know all of its properties...”</i>");
+		output("\n\n<i>“But they want more than clothes, don’t they?”</i> you interrupt.");
+		output("\n\n<i>“Oh yeah,”</i> Burt says, sobering. <i>“They reckon those Snugglé folks took their land when they built their big ass farm, way out there. They want them gone, they’ve made that pretty damn clear.”</i> He sighs, knitting his fingers. <i>“Not gonna lie, that’s a tough ask. Snugglé aren’t some two bit operation you can send a few letters to your system delegate about and expect they’ll pack up tomorrow. And plenty of people are going to </i>want<i> ‘em here, because they mean jobs and security. It’s a tough ask [pc.name], no question about that.”</i>");
+		output("\n\n<i>“But...”</i> he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil bee girls ‘n boys, if there’s a chance!”</i>");
+	}
 	//Scene1
-	if(flags["BURT_ZIL_TALK"] == undefined || flags["BURT_ZIL_TALK"] == 3)
+	else if(flags["BURT_ZIL_TALK"] == undefined || flags["BURT_ZIL_TALK"] == 3)
 	{
 		flags["BURT_ZIL_TALK"] = 1;
 		output("Burt grins, <i>“Ah, the Zil, one of my favorite subjects. They are a lot like Terran honey bees, but don’t let that mix you up. They aren’t a hive mind, and any of them are able to have kids. They are more of a tribal kind of people, gathering in small bands and working the jungles they live in for their natural bounties. They are good people, and usually pretty peaceful. They follow that whole ‘make love, not war’ idea, and even if you piss them off, they are more likely to fuck you than kill you. Don’t underestimate them though. They aren’t complete primitives, and they have some nasty surprises.”</i>");

@@ -19,7 +19,7 @@ public function goldenPeakBonusFunction():Boolean
 		sluttyMcSlutOral();
 		return true;
 	}
-	vendingMachineButton(7);
+	vendingMachineButton(7, "J'ejune");
 	if(shadeAtTheBar())
 	{
 		//Shade Repeat Encounters

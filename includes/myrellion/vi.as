@@ -22,6 +22,7 @@ public function viBonus():Boolean
 		output("\n\nVi is standing here looking for patients to heal. If you want to, you could secure her services.");
 		addButton(0,"Vi",approachVi);
 	}
+	vendingMachineButton(1);
 	return false;
 }
 

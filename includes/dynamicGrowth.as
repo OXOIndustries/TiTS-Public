@@ -531,9 +531,7 @@ public function milkGainNotes():void
 		else if(!pc.isLactating() && pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
 		{
 			AddLogEvent(ParseText("The dryness of your " + possessive(pc.upperUndergarment.longName) + " material is relieving. No longer sticking to your [pc.fullChest], the opaque garment now gives you a more modest appearance. <b>Your top is no longer transparent!</b>"), "passive");
-			pc.createStatusEffect("Bra Transparency");
 			pc.upperUndergarment.onEquip(pc);
-			pc.removeStatusEffect("Bra Transparency");
 		}
 	}
 }

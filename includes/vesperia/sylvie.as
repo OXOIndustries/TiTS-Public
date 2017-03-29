@@ -1364,6 +1364,7 @@ public function sylvieSexyTimeIntro():void
 		{
 			output("The moment you speak, Sylvie is drunkenly shaking her head.");
 			output(" <i>“Nope! You still don’t have any genitals silly. Did you lose the Throbb I gave you?”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I don’t have any more on me, but that mouse over there might. She deals, but I haven’t busted her because she’s such a good informant. Just be careful, okay? Don’t go crazy with that stuff or I’ll only get to see you in the slammer.”</i> She pouts as if it would be the worst thing in the world.");
+			flags["SYLVIE_MABBSED"] = 1;
 			CodexManager.unlockEntry("Throbb");
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
@@ -1375,6 +1376,7 @@ public function sylvieSexyTimeIntro():void
 		output("The moment you speak, Sylvie is drunkenly shaking her head.");
 		output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some Throbb.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
 		output("\n\nSylvie nods as if that was the easiest task in the world.");
+		flags["SYLVIE_MABBSED"] = 1;
 		CodexManager.unlockEntry("Throbb");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1415,12 +1417,12 @@ public function sylvieSexMenu():void
 	}
 	if(pc.hasVagina())
 	{
-		addButton(2,"Spank‘NGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
+		addButton(2,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
 		addButton(3,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
 	}
 	else 
 	{
-		addDisabledButton(2,"Spank ‘N Grind","Spank ‘N Grind","You need a vagina in order to do all this.");
+		addDisabledButton(2,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
 		addDisabledButton(3,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
 	}
 	//[COMPLETE] [VenomKiss] Red Myr PCs only, kiss and lick her for an hour or two, making her cum like crazy.
@@ -1742,7 +1744,7 @@ public function crotchBustingSnuSnuPartTwo():void
 		output("\n\nSylvie looks on in bliss, then alarm as she feels the extent of your first torrential ejaculation. So much [pc.cum] erupts inside her that her middle balloons big enough for her to look pregnant, then bigger still. Your second squirt inflates her enough to lift her halfway out of the pool");
 		if(!pc.hasKnot(x)) output(", but at that point the pressure is simply too great for your [pc.cock " + x + "]. Thick gouts of excessively spermy relief backwash out of her alongside your orgasmic contractions, soaking you from the waist down and raising the level of the pool high enough that it may soon overflow.");
 		else output(", but you’re just getting started. With your knot stuck inside her, you fill her with enough spermy ecstasy that her hooves barely scrape the floor - and your [pc.butt] is lifted clean off the ground, supported entirely by the friction of your passion-conjoined forms. No seal is perfect, however. A few squirts later, [pc.cumGem] streams are spraying out of Sylvie’s puss in every direction, flooding the pool with evidence of the tryst.");
-		output("\n\nBy the time you’re done, you realize Sylvie has checked out mentally. Her eyes are rolled back so that only the whites are visible, and her tongue hangs out the size, drooling up her cheek. [pc.Cum] squirts out of her from vicious, post-orgasmic tremors, accompanied by gasps and moans that sound too earnest to be anything less than expressions of pure, subconscious ecstasy.");
+		output("\n\nBy the time you’re done, you realize Sylvie has checked out mentally. Her eyes are rolled back so that only the whites are visible, and her tongue hangs out the side, drooling up her cheek. [pc.Cum] squirts out of her from vicious, post-orgasmic tremors, accompanied by gasps and moans that sound too earnest to be anything less than expressions of pure, subconscious ecstasy.");
 	}
 	pc.HP(-40);
 	processTime(20);

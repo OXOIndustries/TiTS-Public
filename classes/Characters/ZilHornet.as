@@ -30,8 +30,8 @@ package classes.Characters
 			this.short = "zil hornet";
 			this.originalRace = "zil";
 			this.a = "a ";
-			this.capitalA = "A";
-			this.long = "Roped to the cliff-face above you, the 5’5” zil is armed with a long, poison-soaked barb-spear, providing her with extensive reach. There is no question of getting away from her in your current position. Bare breasted, hair tied back, arrayed in beaten, beetle-like plates and smeared with war paint, she is a vision of primordial feminine fury, yellow and black vivid against the deep red of the rock.";
+			this.capitalA = "A ";
+			this.long = "Roped to the cliff-face above you, the 5\' 5\" zil is armed with a long, poison-soaked barb-spear, providing her with extensive reach. There is no question of getting away from her in your current position. Bare breasted, hair tied back, arrayed in beaten, beetle-like plates and smeared with war paint, she is a vision of primordial feminine fury, yellow and black vivid against the deep red of the rock.";
 			this.customBlock = "The zil’s chitinous armor deflects your attack.";
 			this.isPlural = false;
 			this.meleeWeapon.attack = 2;
