@@ -1950,6 +1950,9 @@ public function variableRoomUpdateCheck():void
 	// Carbonado
 	if(carbonadoActiveHours()) rooms["UVS A9"].addFlag(GLOBAL.COMMERCE);
 	else rooms["UVS A9"].removeFlag(GLOBAL.COMMERCE);
+	// Steele Med
+	if(steeleBiomedBusinessHours()) rooms["UVI H36"].addFlag(GLOBAL.NPC);
+	else rooms["UVI H36"].removeFlag(GLOBAL.NPC);
 	// Pippa's house
 	if (flags["PIPPA_RECRUITED"] == 1)
 	{

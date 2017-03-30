@@ -283,7 +283,6 @@ public function initUvetoRooms():void
 	rooms["UVI H36"].moveMinutes = 1;
 	rooms["UVI H36"].runOnEnter = steeleBiomedBonus;
 	rooms["UVI H36"].addFlag(GLOBAL.INDOOR);
-	rooms["UVI H36"].addFlag(GLOBAL.NPC);
 	
 	rooms["UVI H38"] = new RoomClass(this);
 	rooms["UVI H38"].roomName = "LESSAU’S\nOFFICE";
@@ -447,6 +446,16 @@ public function initUvetoRooms():void
 	rooms["PIPPA HOUSE"].moveMinutes = 3;
 	rooms["PIPPA HOUSE"].runOnEnter = pippaHouseBonus;
 	rooms["PIPPA HOUSE"].addFlag(GLOBAL.INDOOR);
+
+	rooms["CYNTHIA APARTMENT"] = new RoomClass(this);
+	rooms["CYNTHIA APARTMENT"].roomName = "CYNTHIA’S\nAPARTMENT"
+	rooms["CYNTHIA APARTMENT"].description = "";
+	rooms["CYNTHIA APARTMENT"].planet = "PLANET: UVETO VII";
+	rooms["CYNTHIA APARTMENT"].system = "SYSTEM: SIRETTA";
+	rooms["CYNTHIA APARTMENT"].eastExit = "UVI N40";
+	rooms["CYNTHIA APARTMENT"].moveMinutes = 3;
+	rooms["CYNTHIA APARTMENT"].addFlag(GLOBAL.INDOOR);
+	rooms["CYNTHIA APARTMENT"].addFlag(GLOBAL.NPC);
 
 	rooms["UVI N42"] = new RoomClass(this);
 	rooms["UVI N42"].roomName = "SOUTHERN\nCOMMERCE";

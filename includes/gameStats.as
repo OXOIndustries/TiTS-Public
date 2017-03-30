@@ -5243,38 +5243,46 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Astra:</b> Met her");
 					if(flags["SHADE_OVI_ASTRA_RUN_IN"] != undefined) output2("\n<b>* Astra, Times Seen Shade Laying Eggs:</b> " + flags["SHADE_OVI_ASTRA_RUN_IN"]);
 				}
-				if (flags["PIPPA_AFFECTION"] != undefined)
+				if(flags["PIPPA_AFFECTION"] != undefined)
 				{
 					output2("\n<b>* Pippa:</b> Met her");
-					if (recruitedPippa()) 
+					if(recruitedPippa()) 
 					{
 						output2(", Crew member");
-						if (pippaOnShip()) output2(" (Onboard Ship)");
+						if(pippaOnShip()) output2(" (Onboard Ship)");
 						else output2(" (Left on Uveto)");
 					}
-					else if (pippaRecruitTurnedDown()) output(", Turned down request to join crew");
+					else if(pippaRecruitTurnedDown()) output(", Turned down request to join crew");
 					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + " %");
 					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + " %");
-					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
-					if (pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
-					if (pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
-					if (pippaSpecialMassagesGiven(0) > 0) output2("\n<b>* Pippa, Nuru Massages Given to You:</b> " + pippaSpecialMassagesGiven(0));
-					if (pippaSexed(0) > 0) output2("\n<b>* Pippa, Times Sexed:</b> " + pippaSexed(0));
+					if(pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
+					if(pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
+					if(pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
+					if(pippaSpecialMassagesGiven(0) > 0) output2("\n<b>* Pippa, Nuru Massages Given to You:</b> " + pippaSpecialMassagesGiven(0));
+					if(pippaSexed(0) > 0) output2("\n<b>* Pippa, Times Sexed:</b> " + pippaSexed(0));
 				}
 				variousCount++;
 			}
 			//SteeleTech Biomedical
-			if (flags["MET_DR_LESSAU"] != undefined)
+			if(flags["MET_DR_LESSAU"] != undefined || metCynthia() || metWalt())
 			{
 				output2("\n<b><u>Steele Tech Biomedical Division</u></b>");
-				if (flags["MET_DR_LESSAU"] != undefined)
+				if(flags["BIOMED_GANGBANGED"] != undefined) output2("\n<b>* Employees, Times Gangbanged:</b> " + flags["BIOMED_GANGBANGED"]);
+				if(flags["MET_DR_LESSAU"] != undefined)
 				{
 					output2("\n<b>* Doctor Lessau:</b> Met Him");
 					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times Sexed:</b> " + flags["DRLESSAU_SEXED"]);
 				}
-				if(metCynthia()) output2("\n<b>* Cynthia:</b> Met Her");
-				if(metWalt()) output2("\n<b>* Walt:</b> Met Him");
-				if(flags["BIOMED_GANGBANGED"] != undefined) output2("\n<b>* Cynthia & Walt, Times Gangbanged:</b> " + flags["BIOMED_GANGBANGED"]);
+				if(metCynthia())
+				{
+					output2("\n<b>* Cynthia:</b> Met Her");
+					if(flags["CYNTHIA_SEXED"] != undefined) output2("\n<b>* Cynthia, Times Sexed:</b> " + flags["CYNTHIA_SEXED"]);
+				}
+				if(metWalt())
+				{
+					output2("\n<b>* Walt:</b> Met Him");
+					if(flags["WALT_SEXED"] != undefined) output2("\n<b>* Walt, Times Sexed:</b> " + flags["WALT_SEXED"]);
+				}
 			}
 			// The Freezer
 			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined)
