@@ -388,7 +388,7 @@ public function pippaCrewEmail():String
 {
 	var ret:String = "Hi " + pc.short + ",";
 	
-	ret += "\n\nI've been thinking recently, and I'd like to talk to you about something.  Or more like, I have a request for you.  Please stop by when you get a chance.";
+	ret += "\n\nI’ve been thinking recently, and I’d like to talk to you about something. Or more like, I have a request for you. Please stop by when you get a chance.";
 	
 	ret += "\n\nSee you soon,";
 	ret += "\nPippa";
