@@ -599,17 +599,17 @@ public function multiCrewInteractions():Array
 			
 			crewMessages += "\n\nReaha and [bess.name] are wandering around the ship, trying to make themselves useful. Mostly helping each other clean up the place, making sure everything’s spick and span.";
 		}
-		else if (rand(8) == 0 && !curedReahaInDebt() && InCollection(CREW_PIPPA, crewMembers))
+		else if (rand(8) == 0 && !curedReahaInDebt() && InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
 		{
 			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
 			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
 			
-			crewMessages += "\n\nPippa's relaxing in the common room, looking well-fed.  Reaha’s catching a quick nap near her, flopped down on the couch, snoozing peacefully, and looking well-milked."; 
+			crewMessages += "\n\nPippa’s relaxing in the common room, looking well-fed. Reaha’s catching a quick nap near her, flopped down on the couch, snoozing peacefully, and looking well-milked."; 
 		}
 	}
 	if (InCollection(CREW_YAMMI, crewMembers))
 	{
-		if (rand(5) == 0 && flags["YAMMI_KITCHENED"] != undefined && InCollection(CREW_PIPPA, crewMembers))
+		if (rand(5) == 0 && flags["YAMMI_KITCHENED"] != undefined && InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
 		{
 			crewMembers.splice(crewMembers.indexOf(CREW_YAMMI), 1);
 			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
@@ -621,7 +621,7 @@ public function multiCrewInteractions():Array
 		}
 		else flags["PIPPA_YAMMI_KITCHEN"] = 0;
 	}
-	if (InCollection(CREW_PIPPA, crewMembers))
+	if (InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
 	{
 		if (hours > 13 && hours <= 14 && rand(2) == 0 && InCollection(CREW_ANNO, crewMembers))
 		{
@@ -761,7 +761,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			if (InCollection(CREW_PIPPA, crewMembers)) crewMessages += "\n\n" + pippaShipBonusText();
 			
-			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Pippa", pippaYammiThreesomeIntro);
+			if (flags["PIPPA_SETTLED_IN"] != 1) addButton((count + other) - 1, "Pippa", pippaShipIntro);
+			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Pippa", pippaYammiThreesomeIntro);
 			else addButton((count + other) - 1, "Pippa", pippaMainMenu);
 		}
 	}

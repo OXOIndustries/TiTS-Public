@@ -338,6 +338,10 @@
 			{
 				r.freezing.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440));
 			}
+			if (hasStatusEffect("Oil Cooled"))
+			{
+				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
+			}
 			
 			return r;
 		}
@@ -2892,6 +2896,10 @@
 			removeStatusEffect("Cum Soaked");
 			removeStatusEffect("Pussy Drenched");
 			removeStatusEffect("Oil Warmed");
+			removeStatusEffect("Oil Cooled");
+			removeStatusEffect("Oil Numbed");
+			removeStatusEffect("Oil Aroused");
+			removeStatusEffect("Oil Slicked");
 		}
 		public function canMasturbate():Boolean
 		{
@@ -17776,6 +17784,7 @@
 			if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
 			if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
 			if (hasPerk("Ice Cold")) prodFactor /= 2;
+			if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
 			
 			var producedLust:Number = deltaT * prodFactor;
 			
@@ -17881,6 +17890,8 @@
 				var requiresRemoval:Boolean = thisStatus.minutesLeft <= 0;
 				
 				var wholeHoursPassed:uint = ((kGAMECLASS.minutes + deltaT) / 60);
+				
+				var desc:String = "";
 				
 				switch (thisStatus.storageName)
 				{
@@ -18257,11 +18268,34 @@
 						}
 						break;
 					case "Oil Warmed":
-						var desc:String = "";
 						if(this is PlayerCharacter) desc = "You're covered in warm, protective oil!";
 						else desc = capitalA + short + " is covered in warm, protective oil!";
-						desc += "\nFreeze Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
+						desc += "\nFreezing Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						setStatusTooltip("Oil Warmed", desc);
+						break;
+					case "Oil Cooled":
+						if(this is PlayerCharacter) desc = "You're covered in cool, protective oil!";
+						else desc = capitalA + short + " is covered in cool, protective oil!";
+						desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
+						setStatusTooltip("Oil Cooled", desc);
+						break;
+					case "Oil Numbed":
+						if(this is PlayerCharacter) desc = "You're covered in numbing, lust-inhibiting oil!";
+						else desc = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
+						desc += "Your lust gains are decreased";
+						setStatusTooltip("Oil Numbed", desc);
+						break;
+					case "Oil Aroused":
+						if(this is PlayerCharacter) desc = "You're covered in arousing, lust-inducing oil!";
+						else desc = capitalA + short + " is covered in arousing, lust-inducing oil!";
+						desc += "Teasing is more effective, but you're more easily aroused";
+						setStatusTooltip("Oil Aroused", desc);
+						break;
+					case "Oil Slicked":
+						if(this is PlayerCharacter) desc = "You're covered in super slippery oil!";
+						else desc = capitalA + short + " is covered in super slippery oil!";
+						desc += "It's easier to slip away from someone's grasp";
+						setStatusTooltip("Oil Slicked", desc);
 						break;
 						
 					case "Tentacool":
