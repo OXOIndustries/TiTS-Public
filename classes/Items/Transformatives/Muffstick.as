@@ -319,7 +319,7 @@
 				if(target.libido() < 50)
 				{
 					output("\n\nYou ponder whether or not those thoughts mean your libido has spiked a bit.");
-					target.libido(1);
+					target.slowStatGain("libido", 3);
 				}
 				// turn vagina into mouthgina
 				// make vagina slightly pumped
