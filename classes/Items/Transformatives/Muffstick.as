@@ -289,18 +289,18 @@
 					if(target.cumQ() >= 1000) output(" geysers");
 					else if(target.cumQ() >= 100) output(" blasts");
 					else output(" spurts");
-					output("of [pc.cum] spraying out of your cock" + (target.cocks.length == 1 ? "" : "s"));
+					output(" of [pc.cum] spraying out of your cock" + (target.cocks.length == 1 ? "" : "s"));
 				}
 				output(", though luckily enough the");
 				if(target.isSquirter(selVag)) output(" copious");
 				output(" feminine juices only graze the codex, leaving some [pc.girlCumColor] spots on the screen.");
 				if(target.hasCock())
 				{
-					output("The [pc.cumNoun] however shoots unsurprisingly right where it was aimed, leaving some [pc.cumColor] marks on your torso and a bit on your face too.");
+					output(" The [pc.cumNoun] however shoots unsurprisingly right where it was aimed, leaving some [pc.cumColor] marks on your torso and a bit on your face too.");
 					if(kGAMECLASS.silly) output(" You shakingly raise your hand and try to wipe it off. No, not quite there, to your right... No, your other right... Wait, which mouth are your trying to clean, again?");
 					if(target.cumQ() >= 1000) output("The cum however splatters most of your upper body and face, covering you in the [pc.cumColor], sticky substance.");
 				}
-				output("Completely spent");
+				output(" Completely spent");
 				if(target.hasCock() && target.cumQ() >= 1000) output(" and spooge saturated");
 				output(", you end up lying there, on the ground, spasming with electric jolts of pleasure, tongues drooling from");
 				if(target.totalVaginas(GLOBAL.TYPE_MOUTHGINA) == 1) output(" both");
@@ -311,12 +311,16 @@
 				output("\n\n<b>You’re left with an unmistakably mouth-like opening, with plump");
 				if(newColor == "null") output(" [pc.vaginaColor " + selVag + "]");
 				else output(" " + newColor);
-				output(" lips, and a pair of clits that gleam like polished metal.</b> Experimentally, you start touching yourself, finding that your soft cushiony lips are as delicate as your inner ones used to be, if not more so. Feeling satisfied with inspecting the exterior, you allow a couple of fingers to slide past the pillowy cushions and into your hungry tunnel, <b>where an erogenous tongue has taken residence.</b> The ‘oral’ muscle turns out to be as sensitive as a clit, making you clamp down on your fingers with the lightest stroke against it. You can’t help but chuckle a bit at the thought of your pussy gobbling them whole. To be honest, you feel like you could let your nethers swallow any wide, thick cock right then and there, or scissor the first lady you meet, just to test out the delightful feeling of some crotch on crotch action.");
-				output("\n\nYou feel flushed and ponder whether or not those thoughts mean your libido has spiked a bit.");
+				output(" lips, and a pair of clits that gleam like polished metal.</b> Experimentally, you start touching yourself, finding that your soft cushiony lips are as delicate as your inner ones used to be, if not more so. Feeling satisfied with inspecting the exterior, you allow a couple of fingers to slide past the pillowy cushions and into your hungry tunnel, <b>where an erogenous tongue has taken residence.</b> The ‘oral’ muscle turns out to be as sensitive as a clit, making you clamp down on your digits with the lightest stroke against it. You can’t help but chuckle a bit at the thought of your pussy gobbling them whole. To be honest, you feel like you could let your nethers swallow any wide, thick cock right then and there, or scissor the first lady you meet, just to test out the delightful feeling of some crotch on crotch action.");
 				
 				// ++ Lust
-				// increase libido by 3
 				target.lust(50);
+				// increase libido by 3
+				if(target.libido() < 50)
+				{
+					output("\n\nYou ponder whether or not those thoughts mean your libido has spiked a bit.");
+					target.libido(1);
+				}
 				// turn vagina into mouthgina
 				// make vagina slightly pumped
 				// add tongue flag
@@ -331,7 +335,7 @@
 			
 			// Repeated uses:
 			
-			else if(target.vaginas[selVag].type == GLOBAL.TYPE_MOUTHGINA && target.vaginas[selVag].hasFlag(GLOBAL.FLAG_TONGUE) && newColor != "null")
+			else if(target.vaginas[selVag].type == GLOBAL.TYPE_MOUTHGINA && target.vaginas[selVag].hasFlag(GLOBAL.FLAG_TONGUE) && newColor != "null" && (kGAMECLASS.flags["MUFFSTICK_COLORED"] == undefined || newColor != target.vaginas[selVag].vaginaColor))
 			{
 				// Change color first time:
 				// Requirements: Mouth pussy, tongue flag
@@ -356,7 +360,7 @@
 				// Requirements: First color change scene done, Mouth pussy, tongue flag
 				else
 				{
-					output("After choosing the desired color, you smear the Muffstick on the lips of your [pc.vaginaColor " + selVag + "], finding it much easier now that you’ve done it a couple of times. You secretly hope to once again experience some intense heat and mind-numbing pleasure. Maybe even some increased sensitivity");
+					output("After choosing the desired color, you smear the Muffstick on the lips of your [pc.vaginaColor " + selVag + "] [pc.vaginaNoun " + selVag + "], finding it much easier now that you’ve done it a couple of times. You secretly hope to once again experience some intense heat and mind-numbing pleasure. Maybe even some increased sensitivity");
 					if(!target.vaginas[selVag].hasFlag(GLOBAL.FLAG_PUMPED)) output(" or more plump cushions");
 					output(", but unfortunately, your puffy lips and insides only heat up for a moment <b>before they change their pigmentation to " + newColor + "</b>.");
 					if(!target.vaginas[selVag].hasFlag(GLOBAL.FLAG_PUMPED)) output(" There’s probably a way to pump them up even further, <b>but it looks like this gene-mod has done all it can.</b> So you simply shake the thought away and decide to admire your new makeup instead.");
