@@ -11746,6 +11746,11 @@
 		{
 			return (hasPerk("Buttslut") || hasPerk("Bubble Butt") || tone < 30);
 		}
+		public function buttTone():Number
+		{
+			if(hasSoftButt()) return (tone > 20 ? 20 : (tone/2));
+			return tone;
+		}
 		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
 			var desc: String = "";
