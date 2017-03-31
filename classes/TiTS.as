@@ -353,7 +353,9 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
-		include "../includes/uveto/pippa.as"
+		include "../includes/uveto/pippa.as";
+		include "../includes/follower.pippa.as";
+		include "../includes/follower.multi_interactions.as";
 		
 		include "../includes/chargendata.as";
 		

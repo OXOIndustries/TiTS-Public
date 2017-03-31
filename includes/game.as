@@ -546,29 +546,108 @@ public function showPerksList():void
 	output2("\n");
 }
 
-public function crewRecruited(allcrew:Boolean = false):Number
+public const CREW_CELISE:int = 0;
+public const CREW_REAHA:int = 1;
+public const CREW_ANNO:int = 2;
+public const CREW_SERA:int = 3;
+public const CREW_BESS:int = 4;
+public const CREW_YAMMI:int = 5;
+public const CREW_GOO_ARMOR_IS_CREW:int = 6;
+public const CREW_PEXIGA:int = 7;
+public const CREW_PIPPA:int = 8;
+public const CREW_GOO_ARMOR_NOT:int = 9;
+public const CREW_VARMINT:int = 10;
+public const CREW_SIEGEWFULFE:int = 11;
+
+public function crewRecruited(allcrew:Boolean = false):Array
 {
-	var counter:Number = 0;
+	var crewMembers:Array = new Array();;
 	
 	// Actual crew members
-	if (flags["RECRUITED_CELISE"] > 0) counter++;
-	if (reahaRecruited()) counter++;
-	if (!annoNotRecruited()) counter++;
-	if (seraRecruited()) counter++;
-	if (bessIsFollower()) counter++;
-	if (yammiIsCrew()) counter++;
-	if (gooArmorIsCrew()) counter++;
-	if (pexigaIsCrew()) counter++;
+	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
+	if (reahaRecruited()) crewMembers.push(CREW_REAHA);
+	if (!annoNotRecruited()) crewMembers.push(CREW_ANNO);
+	if (seraRecruited()) crewMembers.push(CREW_SERA);
+	if (bessIsFollower()) crewMembers.push(CREW_BESS);
+	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
+	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
+	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
+	if (pippaOnShip()) crewMembers.push(CREW_PIPPA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
 	{
-		if (hasGooArmor() && !gooArmorIsCrew()) counter++;
-		if (varmintIsTame()) counter++;
-		if (siegwulfeIsCrew()) counter++;
+		if (hasGooArmor() && !gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_NOT);
+		if (varmintIsTame()) crewMembers.push(CREW_VARMINT);
+		if (siegwulfeIsCrew()) crewMembers.push(CREW_SIEGEWFULFE);
 	}
 	
-	return counter;
+	return crewMembers;
+}
+
+public function multiCrewInteractions():Array
+{
+	var crewMembers:Array = crewRecruited();
+	var crewMessages:String = "";
+	
+	if (InCollection(CREW_REAHA, crewMembers) && !reahaAddicted())
+	{
+		if (rand(8) == 0 && InCollection(CREW_BESS, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_BESS), 1);
+			
+			crewMessages += "\n\nReaha and [bess.name] are wandering around the ship, trying to make themselves useful. Mostly helping each other clean up the place, making sure everything’s spick and span.";
+		}
+		else if (rand(8) == 0 && !curedReahaInDebt() && InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa’s relaxing in the common room, looking well-fed. Reaha’s catching a quick nap near her, flopped down on the couch, snoozing peacefully, and looking well-milked."; 
+		}
+	}
+	if (InCollection(CREW_YAMMI, crewMembers))
+	{
+		if (rand(5) == 0 && flags["YAMMI_KITCHENED"] != undefined && InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_YAMMI), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa and Yammi are in the kitchen chatting while Yammi cooks.";
+			
+			if (flags["SEXED_YAMMI"] > 0 && pc.lust() >= 33 && pippaYammiThreesomeCount(0) == 0 && (pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur() && pippaSexed(0) > 0) flags["PIPPA_YAMMI_KITCHEN"] = 1;
+			else flags["PIPPA_YAMMI_KITCHEN"] = 0;
+		}
+		else flags["PIPPA_YAMMI_KITCHEN"] = 0;
+	}
+	if (InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
+	{
+		if (hours > 13 && hours <= 14 && rand(2) == 0 && InCollection(CREW_ANNO, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_ANNO), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is givin Anno a post-workout massage, focusing on her torso and being careful to avoid getting oil in her fur.";
+		}
+		else if (rand(8) == 0 && InCollection(CREW_YAMMI, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_YAMMI), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is giving Yammi a massage, paying special attenion to her hands and feet.";
+		}
+		else if (!curedReahaInDebt() && rand(8) == 0 && InCollection(CREW_REAHA, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is giving Reaha a massage, paying special attenion to her back.";
+		}
+	}
+	
+	crewMembers.push(crewMessages);
+	return crewMembers;
 }
 
 public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
@@ -577,7 +656,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		clearMenu();
 	}
 	
-	var crewMessages:String = "";
+	var crewMembers:Array = multiCrewInteractions();
+	var crewMessages:String = crewMembers.pop();
 	var count:int = 0; // For actual crew members
 	var other:int = 0; // For pets or other non-speaking crew members
 	if(celiseIsCrew()) {
@@ -597,20 +677,23 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			//Not Addicted (CURED XPACK: reaha.cured_expansion.as)
 			if(!reahaAddicted())
 			{
-				//Slave Reaha, random choice: 
-				if(curedReahaInDebt()) 
+				if (InCollection(CREW_REAHA, crewMembers))
 				{
-					if(rand(3) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
-					else if(rand(2) == 0) crewMessages += "\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.";
-					else crewMessages += "\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...";
-				}
-				//Freed Reaha, random choice: 
-				else
-				{
-					if(rand(4) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
-					else if(rand(3) == 0) crewMessages += "\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.";
-					else if(rand(2) == 0) crewMessages += "\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.";
-					else crewMessages += "\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.";
+					//Slave Reaha, random choice: 
+					if(curedReahaInDebt()) 
+					{
+						if(rand(3) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
+						else if(rand(2) == 0) crewMessages += "\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.";
+						else crewMessages += "\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...";
+					}
+					//Freed Reaha, random choice: 
+					else
+					{
+						if(rand(4) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
+						else if(rand(3) == 0) crewMessages += "\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.";
+						else if(rand(2) == 0) crewMessages += "\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.";
+						else crewMessages += "\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.";
+					}
 				}
 				addButton((count + other) - 1, "Reaha", curedReahaApproach);
 			}
@@ -648,7 +731,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
+			if (InCollection(CREW_BESS, crewMembers)) crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
 			addButton((count + other) - 1, bess.short, approachFollowerBess);
 		}
 	}
@@ -657,8 +740,9 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			crewMessages += "\n\n" + yammiShipBonusText();
-			addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
+			if (InCollection(CREW_YAMMI, crewMembers)) crewMessages += "\n\n" + yammiShipBonusText();
+			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Yammi", pippaYammiThreesomeIntro);
+			else addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
 		}
 	}
 	if (pexigaIsCrew())
@@ -668,6 +752,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\n" + pexigaShipBonusText();
 			addButton((count + other) - 1, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+		}
+	}
+	if (pippaOnShip())
+	{
+		count++;
+		if (!counter)
+		{
+			if (InCollection(CREW_PIPPA, crewMembers)) crewMessages += "\n\n" + pippaShipBonusText();
+			
+			if (flags["PIPPA_SETTLED_IN"] != 1) addButton((count + other) - 1, "Pippa", pippaShipIntro);
+			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Pippa", pippaYammiThreesomeIntro);
+			else addButton((count + other) - 1, "Pippa", pippaMainMenu);
 		}
 	}
 	if (hasGooArmor() || gooArmorIsCrew())
@@ -2035,7 +2131,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (!MailManager.isEntryUnlocked("del_moved") && delilahSubmissiveness() >= 5 && rand(10) == 0 && getPlanetName() != "Tarkus") { goMailGet("del_moved"); }
 
 		// Pippa Nuru massage email
-		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60)) && currentLocation != "PIPPA HOUSE") pippaNuruEmailGet();
+		// Pippa Crew message email
+		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (GetGameTimestamp() - (36 * 60)) && currentLocation != "PIPPA HOUSE") pippaCrewEmailGet();
 
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();

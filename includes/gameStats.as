@@ -807,7 +807,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n\n" + blockHeader("General Statistics", false));
 		// Crew
 		output2("\n<b><u>Crew</u></b>");
-		output2("\n<b>* Total Recruited:</b> " + crewRecruited(true));
+		output2("\n<b>* Total Recruited:</b> " + crewRecruited(true).length);
 		output2("\n<b>* Total Onboard:</b> " + crew(true, true));
 		// Traveling
 		output2("\n<b><u>Travel</u></b>");
@@ -5181,7 +5181,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if (pippaOnShip()) output2(" (Onboard Ship)");
 						else output2(" (Left on Uveto)");
 					}
-					else if (pippaRecruitTurnedDown()) output(", Turned down request to join crew");
+					else if (pippaRecruitTurnedDown()) output2(", Turned down request to join crew");
 					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + " %");
 					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + " %");
 					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
@@ -5678,6 +5678,21 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Not Available</u></b>");
 			output2("\n* <i>No roaming encounter data has been logged.</i>");
+		}
+		
+		output2("\n\n" + blockHeader("Crew Team Building", false));
+		var teamBuildingCount:int = 0;
+		
+		if (pippaYammiThreesomeCount(0) > 0)
+		{
+			output2("\n<b>* Pippa, Yammi, Times Sexed in Threesome:</b> " + pippaYammiThreesomeCount(0));
+			teamBuildingCount++;
+		}
+		
+		if(teamBuildingCount == 0)
+		{
+			output2("\n<b><u>Not Available</u></b>");
+			output2("\n* <i>No team building activities have been logged.</i>");
 		}
 		
 		// Misc: (Optional)

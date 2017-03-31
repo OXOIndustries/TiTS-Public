@@ -70,6 +70,7 @@ package classes.Engine.Combat
 		if (target.hasPerk("Easy")) damMulti += 0.2;
 		if (target != null && target.hasStatusEffect("Fuck Fever") && attacker != null && attacker.hasCock()) damMulti += 0.4;
 		if (target != null && target.hasStatusEffect("Flushed") && attacker != null && attacker.hasCock()) damMulti += 0.2;
+		if (target.hasStatusEffect("Oil Aroused")) damMulti += 0.1;
 		if (damMulti != 1) lustDamage.multiply(damMulti);
 		
 		// Apply resistances
