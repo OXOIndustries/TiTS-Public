@@ -121,6 +121,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
@@ -2945,6 +2947,32 @@ public function rubberMadeCodex():void
 	outputCodex("\n\nWhen exposed to moisture and sufficiently agitated, the gum-like product will spread rapidly, synthetically bonding with the subject’s underlying skin and fur. This produces a thin, latex-like coating over much if not all of a subject’s body. Repeat use creates subsequently thicker layers, potentially subsuming body hair and fur. J’ejune representatives caution against the accidental ingestion of Rubber-Made.");
 	outputCodex("\n");
 	CodexManager.viewedEntry("Rubber-Made");
+}
+public function muffstickCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Muffstick"));
+	outputCodex("<b>Manufactured By:</b> JoyCo");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("After an incredibly positive reception of the surprising side effects of Clippex, a nipple transforming specialist mod, JoyCo decided to create a similar product, specifically designed to change one’s pussy lips into those of a mouth. It has since become exceedingly popular among oral enthusiasts and has gotten great feedback from the more adventurous couples, praising it as the new best way of kissing.");
+	outputCodex("\n\nThe Muffstick was released in a brand new, more playful looking packaging. Although it was a blatant attempt of JoyCo’s marketing team to appeal to the customers using a more ‘cute’ approach, the product was met with splendid reviews from the modding community, with most reviewers comparing it favorably to the company’s usual ‘mundane and uninspired’ image. This has given JoyCo an incentive to consider the potential profitability of more colorful advertisement. However, with Muffstick being a rather new product, only time will tell if this approach will bring the company long-term success and convince its CEOs to continue along this path.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Muffstick");
+}
+public function fizzyfixCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("FizzyFix"));
+	outputCodex("<b>Manufactured By:</b> JoyCo");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Although most customers enjoyed having an erogenous tongue inside of their new ‘mouth’ after applying Muffstick, some found it too intense or just distasteful, not liking the idea of having an extra organ in their canal. Always aiming to please their customers and maximize their profits, JoyCo swiftly created the FizzyFix to address those concerns. However, due to a limited testing time, the product wasn‘t free from a major side-effect of its own that occurs when someone without a tongue in their cavern uses the pill. Thanks to the tingly pleasurable feeling it gives off, which is almost guaranteed to end just before achieving one’s climax, the FizzyFix quickly grew in popularity in various circles. Some found it to be a fantastic type of foreplay, others enjoyed the use of it in BDSM. The product designed to fix what some people thought of as an issue quickly became more popular than the Muffstick itself. Once again, not one to throw away a good business opportunity, JoyCo decided not only to always include a FizzyFix pill with the Muffstick, but to also have it be sold separately for a small amount of credits.");
+	outputCodex("\n");
+	CodexManager.unlockEntry("Muffstick");
+	CodexManager.viewedEntry("FizzyFix");
 }
 
 
