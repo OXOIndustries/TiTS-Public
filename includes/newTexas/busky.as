@@ -334,12 +334,12 @@ public function buskySex(): void {
 		
 		if (pc.hasBreasts() && pc.femininity <= 40) output(" tits on a guy");
 		else if (pc.hasBreasts() || pc.femininity > 40) {
-			if (pc.isFemboy()) output(" femboys");
+			if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" femboys");
 			else if (pc.isTreated()) output(" cows");
 			else output(" chicks");
 		}
 		output(", plenty of other bulls are, just not me. Sorry,");
-		if (pc.isFemboy()) output(" you’re a bit too girly for my tastes - not into that myself.");
+		if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" you’re a bit too girly for my tastes - not into that myself.");
 		else output(" just really not looking for what you’ve got");
 		output(". No offense intended of course.”</i>");
 		
