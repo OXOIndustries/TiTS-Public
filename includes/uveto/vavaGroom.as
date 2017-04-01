@@ -185,7 +185,7 @@ public function vavaGroomTimesServiced():int
 }
 public function vavaGroomPetLevel():int
 {
-	if(pc.hasPerk("Peace of Mind")) return 100;
+	if(pc.isSubby()) return 100;
 	
 	var obedience:int = 0;
 	var mult:int = 0;
