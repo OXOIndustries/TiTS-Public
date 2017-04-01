@@ -552,7 +552,9 @@ public function sitOnDelsFaceAtKallys():void
 	output("\n\nDel blushes, licking her lips. <i>“I love the taste of ");
 	if(x >= 0) output("your pussy juices");
 	else output("another slut’s ass");
-	output(", [pc.Master],”</i> she coos, eyes transfixed by your slit”</i>}. Slowly, her tongue slips out from her dark lips, one long slurp across your [pc.vagOrAss " + x + "]. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bench to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut. Maybe in her previous life, she might have been pretty popular with the ladies...");
+	output(", [pc.Master],”</i> she coos");
+	if(x >= 0) output(", eyes transfixed by your slit");
+	output(". Slowly, her tongue slips out from her dark lips, one long slurp across your [pc.vagOrAss " + x + "]. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bench to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut. Maybe in her previous life, she might have been pretty popular with the ladies...");
 	if(x < 0) output(" Or maybe the jocks at her school just used her to tongue-clean them enough that she got good at it. Would explain a lot.");
 	output("\n\nYou let yourself give a little moan as the trap-slut goes down on you, tongue delving deep ");
 	if(pc.hasVagina()) output("between your folds");
@@ -626,7 +628,7 @@ public function sitOnDelsFaceAtKallys():void
 	output("\n\nThat’s not the only thing that’s going to be kissing it, either. You let a pair of fingers slink down to your [pc.vagina], spreading the lips of your labia wide just shy of the trap’s chin, almost close enough to let your excitement drool down into her lips.");
 	//if 1-4:
 	if(flags["DEL_FACESAT"] == undefined || flags["DEL_FACESAT"] < 5) output(" <i>“Wait... you... you really want me to... to...”</i> she sputters indignantly, trying to hide the little tentpole between her slender legs");
-	else output(" She blushes, licking her lips. <i>“I love the taste of your pussy juices, mistress,”</i> she coos, eyes transfixed by your slit”</i>");
+	else output(" She blushes, licking her lips. <i>“I love the taste of your pussy juices, mistress,”</i> she coos, eyes transfixed by your slit");
 	output(". Slowly, her tongue slips out from her dark lips, one long slurp across your [pc.cunt]. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut. Maybe in her previous life, she might have been pretty popular with the ladies...");
 	output("\n\nYou let yourself give a little moan as the trap-slut goes down on you, tongue delving deep between your folds. <i>“That’s it, girl... Now, why don’t we have you do the alphabet?”</i>");
 
