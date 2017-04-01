@@ -119,7 +119,7 @@ public function mabbsSpeciesTalk():void
 	clearOutput();
 	showMabbs();
 	output("You ask her what species she is");
-	if(CodexManager.entryUnlocked("Rodenians")) output(", not 100% sure she's a rodenian");
+	if(CodexManager.entryUnlocked("Rodenians")) output(", not 100% sure she’s a rodenian");
 	output(".");
 	output("\n\nMabbs squints at you. <i>“Rodenian, dummy. You see mouse-girls anywhere else? Didn’t think so. Go look it up on your computer if you wanna know more, ‘cause I ain’t here to blather on and on about my people. So buy something or get out of my face.”</i>");
 	if(!CodexManager.entryUnlocked("Rodenians"))

@@ -825,7 +825,7 @@ public function rodenianCodexEntry():void
 	outputCodex("\n<b>Homeworld:</b> The forest world of Corvus");
 	outputCodex("\n<b>Lifespan:</b> 150");
 	outputCodex("\n<b>Sexes:</b> 33% Male and 66% Female");
-	outputCodex("\n<b>Height:</b> 4’2”</i> to 5’3”</i> (1.26-1.6m)");
+	outputCodex("\n<b>Height:</b> 4\'2\" to 5\'3\" (1.26 - 1.6m)");
 	outputCodex("\n<b>Weight:</b> 50 to 170 lbs");
 	outputCodex("\n<b>Ears:</b> Large, multifunction ears similar in structure to a terran mouse.");
 	outputCodex("\n<b>Fur:</b> Full body - typically white, pink, gray, or black (but often dyed).");
