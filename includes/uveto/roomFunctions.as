@@ -68,6 +68,14 @@ public function uvetoShipDock():Boolean
 	getLetterFromShade();
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
+	
+	return false;
+}
+public function uvetoDockingBonus():Boolean
+{
+	// Vava Groom
+	vavaGroomOutsideBonus();
+	
 	return false;
 }
 

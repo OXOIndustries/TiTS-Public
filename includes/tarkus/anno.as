@@ -558,11 +558,10 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 public function petPlayForAnnoAfterCheating():void
 {
 	clearOutput();
-	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined)
-	{
-		flags["TAKEN_ANNO_AROUND_AS_A_PET"] = 1;
-		pc.addHard(2);
-	}
+	
+	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined) pc.addHard(2);
+	IncrementFlag("TAKEN_ANNO_AROUND_AS_A_PET");
+	
 	author("Savin");
 	showAnno(true);
 	output("Grinning dangerously at Anno, you tell her to strip out of that uniform: dogs don’t wear clothes.");

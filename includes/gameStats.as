@@ -575,6 +575,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "SydianPregnancy": output2(" Sydian"); break;
 						case "SeraSpawnPregnancy": output2(" Sera"); break;
 						case "MilodanPregnancy": output2(" Milodan"); break;
+						case "BothriocPregnancy": output2(" Bothrioc, Eggs"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -3248,7 +3249,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					else output2(" (<i>Whereabouts unknown</i>)");
 				}
-				else if(flags["SERA_TRIPLE_X_RATED"] >= 4) output2(", Mistress");
+				else if(seraIsMistress()) output2(", Mistress");
 				else
 				{
 					if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
@@ -4240,7 +4241,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2("\n<b>* Anno, Times Used Her Vibrator:</b> " + flags["ANNO_TRIBERATOR_USED"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
-					if(flags["ANNO_PETPLAYED"] != undefined) output2("\n<b>* Anno, Times Walked:</b> " + flags["ANNO_PETPLAYED"]);
+					if(annoIsPet()) output2("\n<b>* Anno, Times Walked:</b> " + annoTimesWalked());
 				}
 				variousCount++;
 			}
@@ -5234,6 +5235,31 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Anyxine Rhenesunne:</b> Met her");
 				}
 			}
+			// Vava Groom
+			if(flags["VAVA_GROOM_VISIT"] != undefined)
+			{
+				output2("\n<b><u>Vava Groom</u></b>");
+				if(flags["VAVA_GROOM_ROLE"] != undefined)
+				{
+					output2("\n<b>* Services, Your Role:</b>");
+					switch(flags["VAVA_GROOM_ROLE"])
+					{
+						case 0: output2(" Neither Pet nor Owner"); break;
+						case 1: output2(" Owner"); break;
+						case -1: output2(" Pet"); break;
+						case -2: output2(" Both Pet and Owner"); break;
+					}
+				}
+				if(flags["VAVA_GROOM_SPECIAL_PET"] != undefined) output2("\n<b>* Services, Your Special Pet:</b> " + (flags["VAVA_GROOM_SPECIAL_PET"] == "None" ? "None, <i>Owner-In-Waiting</i>" : flags["VAVA_GROOM_SPECIAL_PET"]));
+				if(flags["VAVA_GROOM_SPECIAL_MASTER"] != undefined) output2("\n<b>* Services, Your Special Owner:</b> " + (flags["VAVA_GROOM_SPECIAL_MASTER"] == "None" ? "None, <i>Pet-In-Waiting</i>" : flags["VAVA_GROOM_SPECIAL_MASTER"]));
+				if(flags["VAVA_GROOM_ROLE"] < 0) output2("\n<b>* Services, Your Obedience:</b> " + vavaGroomPetLevel() + " %");
+				if(flags["VAVA_GROOM_SERVICE_GROOMING"] != undefined) output2("\n<b>* Services, Grooming, Total:</b> " + flags["VAVA_GROOM_SERVICE_GROOMING"]);
+				if(flags["VAVA_GROOM_SERVICE_OBEDIENCE_TRAINING"] != undefined) output2("\n<b>* Services, Obedience Training, Total:</b> " + flags["VAVA_GROOM_SERVICE_OBEDIENCE_TRAINING"]);
+				if(flags["VAVA_GROOM_SERVICE_EROTIC_TRAINING"] != undefined) output2("\n<b>* Services, Erotic Training, Total:</b> " + flags["VAVA_GROOM_SERVICE_EROTIC_TRAINING"]);
+				output2("\n<b>* Cruff:</b> Met him");
+				output2("\n<b>* Estie:</b> Met her");
+				variousCount++;
+			}
 			// Irestead
 			if(flags["MET_ASTRA"] != undefined || flags["PIPPA_AFFECTION"] != undefined)
 			{
@@ -5574,11 +5600,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["ERRA_RELATIONSHIP_TALK"] != undefined)
 			{
 				output2("\n<b>* Erra, Relationship:</b>");
-				if(flags["ERRA_LOVERS"] != undefined) output2(" Lovers");
+				if(erraLover()) output2(" Lovers");
 				else if(flags["ERRA_HEARTBROKEN"] != undefined) output2(" Rejected, You’ve broken her heart");
 				else output2(" Non-romantic");
+				if(erraCollared()) output2(", She is your pet");
 			}
-			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Cuddled:</b> " + flags["ERRA_SEXED"]);
+			if(flags["ERRA_CUDDLED"] > 0) output2("\n<b>* Erra, Times Cuddled:</b> " + flags["ERRA_CUDDLED"]);
 			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Sexed:</b> " + flags["ERRA_SEXED"]);
 			if(flags["ERRA_PETTED"] > 0) output2("\n<b>* Erra, Times Petted:</b> " + flags["ERRA_PETTED"]);
 			if(flags["ERRA_WALKIES"] > 0) output2("\n<b>* Erra, Times Walked:</b> " + flags["ERRA_WALKIES"]);

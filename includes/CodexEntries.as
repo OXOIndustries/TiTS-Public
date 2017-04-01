@@ -30,6 +30,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kaithrit", kaithritCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kalabast/Fhan’i", kalabastFhaniCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kui-Tan", kuitanCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
@@ -683,6 +684,44 @@ public function fanfirCodexEntry():void
 	outputCodex("\n\nTheir incredibly sophisticated and sturdy throats has lead the fanfir to have a natural love of music, singing and speech-giving, and with suitable safety equipment fanfir concerts are a rare treat, made rarer by how infrequently they occur. All travelers are warned that less scrupulous fanfir tend to be extremely persuasive, able to manipulate other’s behavioural patterns through the use of vocalized vibrations - as well as benefiting from an avaricious home culture with a rich history in the art of speech. Their love of wide open spaces and the acquisition of experience and physical treasures means the race are at their most visible and mobile during planet rushes.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Fanfir");
+}
+public function kalabastFhaniCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Kalabast / Fhan’i"));
+	outputCodex("<b>Name:</b> Kalabast (singular & plural); Fhan’i (singular & plural)");
+	outputCodex("\n<b>Genders:</b> Biologically, Kalabast 100% male, Fhan’i 100% female. Gene-modded exceptions are uncommon but existent.");
+	outputCodex("\n<b>Height:</b> 6\'2\" Kalabast avg, 5\'3\" Fhan’i avg.");
+	outputCodex("\n<b>Weight:</b> (105 kg) Kalabast avg, (75 kg) Fhan’i avg.");
+	outputCodex("\n<b>Hair:</b> Kalabast grow thick amounts of fur from the top of their heads. Fhan’i grow thick, pale tentacles in a hair-like arrangement.");
+	outputCodex("\n<b>Skin Color:</b> Kalabast grow short fur all across their bodies, which can be many natural shades from cream to dark brown. Fhan’i are hairless and albino white across their bodies, however their extremities are usually purple, red, orange or pink.");
+	outputCodex("\n<b>Ears:</b> Kalabast have large, lynx-like ears. Fhan’i have finned, human-like ears. Although less impressive in appearance, fhan’i have a far superior audial sense to the kalabast.");
+	outputCodex("\n<b>Eyes:</b> Kalabast have four eyes, two on either side of their face. The pupil is round but small, and the sclera is usually a rich brown or yellow. The Fhan’i have two black, pupil-less eyes. The fhan’i have poor natural vision whereas the kalabast are capable of perceiving infrared and ultraviolet.");
+	outputCodex("\n<b>Lifespan:</b> 100-110 years Kalabast, 70-75 years Fhan’i.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Bodily Structure"));
+	outputCodex("The Kalabast are a digitigrade bipedal race with four digits on each limb, as well as a long, short-furred, prehensile tail. They tend towards a heavy musculature in their arms, enabling them to run on all fours over short distances. They have long faces and wide noses which, with their mane-like hair, lends them a profile not dissimilar to the great feline beasts native to Earth and Rosha. They have loose-hanging balls and a single knotted penis around 7 inches in length, with nodules along the shaft.");
+	outputCodex("\n\nThe Fhan’i are a plantigrade bipedal race with five webbed digits on each limb, as well as a long, semi-rigid tail. This tail is forked into two thick leaf-like fronds at the tip, and enables a natural expertise at swimming. A number of vestigial tentacles hang around this appendage. They grow large breasts which produce milk naturally; this milk has weak transformative and psychoactive effects on others, engendering arousal universally and testicle growth in those that have them. They have a feminine shape and face immediately recognisable to the galactic norm. Between their thick thighs they have a single vagina, notable for its cilia-lined, penis-milking interior.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Breeding"));
+	outputCodex("The Fhan’i naturally produce extremely adaptable ovi, which make them capable of breeding with almost anything with a male sex to produce fhan’i offspring after a six month gestation. The Kalabast are not as able at crossbreeding, but produce dominant sperm which makes kalabast offspring a near-certainty within those couplings they are capable of. Within kalabast/fhan’i pairings a kalabast offspring is the outcome in about 1 in 4 cases - a fact that has enabled the continuation of both races, and shaped their shared history (see below).");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Domestic History"));
+	outputCodex("The Kalabast are natives to Denkozenne, a lush world filled with a myriad of biomes. Like most denizens of the planet, they had a roughly equal split of males and females. Before the kalabast had fully evolved sapience, a spacecraft carrying the extinct Fhan’i antecedent race crash-landed in the warm marshes that dominated a large continent of the planet. After a short time these individuals apparently reverted to a primitive state, and came to rely upon captured Denkozennian males to propagate.");
+	outputCodex("\n\nThe two reached the Bronze Age at roughly the same time, and quickly came to be the dominant races on the planet. Unsurprisingly the fhan’i’s needs - and predilection to express it in the form of male slave-taking - lead to wars of escalating savagery, with the fhan’i’s numbers and organisation matched by the kalabast’s physical strength and richer territories.");
+	outputCodex("\n\nAround the turn of the Digital Age, a fhan’i cabal of extremists invented a solution to finally break the impasse: a genophage that would change the kalabasts’ own DNA to irreversibly stop them producing females. Released secretly into the planet’s atmosphere and seas in fhan’i controlled territories in huge quantities, the virus was horribly effective, removing kalabast females within a generation. Unfortunately for the fhan’i, once the kalabast had understood what had happened they attacked their enemies with a hitherto unknown unity and purpose, brought together by a shared hatred. Within five years, the kalabast had won a thoroughly pyrrhic global victory.");
+	outputCodex("\n\nForced into reconciliation, the kalabast adopted the remaining fhan’i into their own society as second class citizens. Slowly but surely a new culture evolved, in which the fhan’i were kept as beloved pets or concubines, and breeding was carefully managed. With this benign form of sexual slavery in place, kalabast/fhan’i society became both peaceful and stagnant, with little to drive scientific endeavour. Many centuries passed by, the norm becoming more and more concrete with each passing generation until both races had come to see themselves as a single, conjoined people. This was the state of affairs when the anatae made landfall in the 10th Planetary Rush.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Galactic History"));
+	outputCodex("The Kalabast/Fhan’i represented a remarkably interesting but challenging project to the anatae; how to uplift them both, and dissolve the fhan’i’s slavehood, without upsetting the peaceful equilibrium the two races had managed to find? Around a dozen new worlds were swiftly annexed, with the most promising offered specifically to the kalabast to populate if they agreed to null their fhan’i pets second citizenship; the rest as alternatives. On all twelve worlds, the anatae relocated a slow trickle of alien migrants likely to be able to act as surrogates for one or both races.");
+	outputCodex("\n\nBoth races spread quickly throughout Imperial space. Whilst matriarchal fhan’i realms and hardliner kalabast slave kingdoms emerged, by and large the two fell along the lines the anatae were hoping, with open, equal societies under Imperial jurisdiction becoming the norm.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Present Day Culture"));
+	outputCodex("Over the years the relationship between the two races has broadly softened, with its former laws now acting as social tropes. Although they both have access to technology that can create female kalabast and male fhan’i, the kalabast regard the fhan’i as their ‘natural’ females, and vice versa. A general, genial patriarchal vibe still abounds; a kalabast is likely to keep 1-3 fhan’i as willing pets, although within U.G.C./Imperial space they will have the same legal rights as him. The kalabast are seen as natural leaders and providers, the fhan’i as muses and entertainers. This is by no means set in concrete; strict matriarchal societies exist, and both races are known to be sexually open-minded.");
+	outputCodex("\n\nIn more cultural terms the kalabast are stereotypically a laidback, individualist and pleasure-driven race. Historians and sociologists note that once in complete control of Denkozenne, their scientific advancement stalled completely. In comparison the fhan’i are energetic, inquisitive and selfless, and fit much more comfortably into the anatae way of thinking. They are almost always the liaison officers of their home planets and stations.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Kalabast/Fhan’i");
 }
 public function laquineCodexEntry():void
 {
@@ -3443,3 +3482,4 @@ public function stormguardCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Stormguard");
 }
+

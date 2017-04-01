@@ -28,6 +28,7 @@ public function initUvetoRooms():void
 	rooms["UVS F15"].moveMinutes = 1;
 	rooms["UVS F15"].runOnEnter = uvetoShipDock;
 	rooms["UVS F15"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS F15"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS F15"].addFlag(GLOBAL.SHIPHANGAR);
 
 	rooms["UVS D15"] = new RoomClass(this);
@@ -37,8 +38,11 @@ public function initUvetoRooms():void
 	rooms["UVS D15"].system = "SYSTEM: SIRETTA";
 	rooms["UVS D15"].northExit = "UVS D13";
 	rooms["UVS D15"].eastExit = "UVS F15";
+	rooms["UVS D15"].westExit = "VAVA GROOM";
 	rooms["UVS D15"].moveMinutes = 1;
+	rooms["UVS D15"].runOnEnter = uvetoDockingBonus;
 	rooms["UVS D15"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS D15"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVS D13"] = new RoomClass(this);
 	rooms["UVS D13"].roomName = "\nCORRIDOR";
@@ -49,6 +53,7 @@ public function initUvetoRooms():void
 	rooms["UVS D13"].southExit = "UVS D15";
 	rooms["UVS D13"].moveMinutes = 1;
 	rooms["UVS D13"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS D13"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVS D11"] = new RoomClass(this);
 	rooms["UVS D11"].roomName = "SHOP\nPASSAGE";
@@ -60,6 +65,7 @@ public function initUvetoRooms():void
 	rooms["UVS D11"].westExit = "UVS B11";
 	rooms["UVS D11"].moveMinutes = 1;
 	rooms["UVS D11"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS D11"].addFlag(GLOBAL.PUBLIC);
 	
 	rooms["UVS D9"] = new RoomClass(this);
 	rooms["UVS D9"].roomName = "PROMENADE\nSOUTH";
@@ -71,6 +77,7 @@ public function initUvetoRooms():void
 	rooms["UVS D9"].westExit = "UVS B9";
 	rooms["UVS D9"].moveMinutes = 1;
 	rooms["UVS D9"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS D9"].addFlag(GLOBAL.PUBLIC);
 	
 	/* Space Elevator */
 	rooms["UVS LIFT"] = new RoomClass(this);
@@ -80,6 +87,19 @@ public function initUvetoRooms():void
 	rooms["UVS LIFT"].system = "SYSTEM: SIRETTA";
 	rooms["UVS LIFT"].runOnEnter = uvetoSpaceElevatorInBonus;
 	rooms["UVS LIFT"].addFlag(GLOBAL.INDOOR);
+	
+	/* Vava Groom */
+	rooms["VAVA GROOM"] = new RoomClass(this);
+	rooms["VAVA GROOM"].roomName = "VAVA\nGROOM";
+	rooms["VAVA GROOM"].description = "";
+	rooms["VAVA GROOM"].planet = "UVETO STATION";
+	rooms["VAVA GROOM"].system = "SYSTEM: SIRETTA";
+	rooms["VAVA GROOM"].eastExit = "UVS D15";
+	rooms["VAVA GROOM"].moveMinutes = 1;
+	rooms["VAVA GROOM"].runOnEnter = vavaGroomBonus;
+	rooms["VAVA GROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["VAVA GROOM"].addFlag(GLOBAL.PUBLIC);
+	rooms["VAVA GROOM"].addFlag(GLOBAL.NPC);
 
 	/* Store? */
 	rooms["UVS B11"] = new RoomClass(this);
@@ -92,6 +112,7 @@ public function initUvetoRooms():void
 	rooms["UVS B11"].moveMinutes = 1;
 	rooms["UVS B11"].runOnEnter = uvetoLastChanceStoreEntry;
 	rooms["UVS B11"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS B11"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS B11"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["UVS B9"] = new RoomClass(this);
@@ -105,6 +126,7 @@ public function initUvetoRooms():void
 	rooms["UVS B9"].westExit = "UVS A9";
 	rooms["UVS B9"].moveMinutes = 1;
 	rooms["UVS B9"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS B9"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS B9"].runOnEnter = outsideCarbonado;
 
 	/* CFS */
@@ -117,6 +139,7 @@ public function initUvetoRooms():void
 	rooms["UVS A9"].moveMinutes = 1;
 	rooms["UVS A9"].runOnEnter = uvetoCarbonadoStore;
 	rooms["UVS A9"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS A9"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS A9"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["UVS B7"] = new RoomClass(this);
@@ -129,6 +152,7 @@ public function initUvetoRooms():void
 	rooms["UVS B7"].southExit = "UVS B9";
 	rooms["UVS B7"].moveMinutes = 1;
 	rooms["UVS B7"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS B7"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS B7"].runOnEnter = uvetoStationLoungeFunc;
 	
 	/* Docking 1 */
@@ -155,6 +179,7 @@ public function initUvetoRooms():void
 	rooms["UVS D7"].moveMinutes = 1;
 	rooms["UVS D7"].runOnEnter = uvetoSpaceElevatorBaseBonus;
 	rooms["UVS D7"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS D7"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS D7"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["UVS F7"] = new RoomClass(this);
@@ -168,6 +193,7 @@ public function initUvetoRooms():void
 	rooms["UVS F7"].westExit = "UVS D7";
 	rooms["UVS F7"].moveMinutes = 1;
 	rooms["UVS F7"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS F7"].addFlag(GLOBAL.PUBLIC);
 
 	/* Docking 2 */
 	/*
@@ -189,6 +215,7 @@ public function initUvetoRooms():void
 	rooms["UVS F9"].westExit = "UVS D9";
 	rooms["UVS F9"].moveMinutes = 1;
 	rooms["UVS F9"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS F9"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVS H7"] = new RoomClass(this);
 	rooms["UVS H7"].roomName = "EXECUTIVE\nLOBBY";
@@ -204,6 +231,7 @@ public function initUvetoRooms():void
 		return false;
 	};*/
 	rooms["UVS H7"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS H7"].addFlag(GLOBAL.PUBLIC);
 
 	/* Station C&C */
 	rooms["UVS J7"] = new RoomClass(this);
@@ -226,6 +254,7 @@ public function initUvetoRooms():void
 	rooms["UVS H9"].southExit = "UVS H11";
 	rooms["UVS H9"].moveMinutes = 1;
 	rooms["UVS H9"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS H9"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS H9"].addFlag(GLOBAL.NPC);
 	rooms["UVS H9"].runOnEnter = rhenWorldEntranceBonus;
 	
@@ -239,6 +268,7 @@ public function initUvetoRooms():void
 	rooms["UVS H11"].northExit = "UVS H9";
 	rooms["UVS H11"].moveMinutes = 1;
 	rooms["UVS H11"].addFlag(GLOBAL.INDOOR);
+	rooms["UVS H11"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVS H11"].addFlag(GLOBAL.NPC);
 	rooms["UVS H11"].runOnEnter = rhenesunneOfficeBonus;
 
@@ -258,6 +288,7 @@ public function initUvetoRooms():void
 	rooms["UVI F34"].moveMinutes = 1;
 	rooms["UVI F34"].runOnEnter = uvetoSpaceElevatorBonus;
 	rooms["UVI F34"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI F34"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI F34"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["UVI H34"] = new RoomClass(this);
@@ -270,6 +301,7 @@ public function initUvetoRooms():void
 	rooms["UVI H34"].southExit = "UVI H36";	
 	rooms["UVI H34"].westExit = "UVI F34";
 	rooms["UVI H34"].moveMinutes = 1;
+	rooms["UVI H34"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI H34"].addFlag(GLOBAL.INDOOR);
 	
 	/* Steele Biomed */
@@ -282,6 +314,7 @@ public function initUvetoRooms():void
 	rooms["UVI H36"].southExit = "UVI H38";	
 	rooms["UVI H36"].moveMinutes = 1;
 	rooms["UVI H36"].runOnEnter = steeleBiomedBonus;
+	rooms["UVI H36"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI H36"].addFlag(GLOBAL.INDOOR);
 	
 	rooms["UVI H38"] = new RoomClass(this);
@@ -293,6 +326,7 @@ public function initUvetoRooms():void
 	rooms["UVI H38"].moveMinutes = 1;
 	rooms["UVI H38"].runOnEnter = drLessauBonus;
 	rooms["UVI H38"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI H38"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI H38"].addFlag(GLOBAL.NPC);
 	
 	/* Sheriffs Office */
@@ -306,6 +340,7 @@ public function initUvetoRooms():void
 	rooms["UVI H32"].moveMinutes = 1;
 	rooms["UVI H32"].runOnEnter = uvetoSheriffsOfficeBonus;
 	rooms["UVI H32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI H32"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI H32"].addFlag(GLOBAL.NPC);
 
 	/* Geo Survey */
@@ -321,6 +356,7 @@ public function initUvetoRooms():void
 	//rooms["UVI J32"].inExit = "UP";
 	rooms["UVI J32"].moveMinutes = 1;
 	rooms["UVI J32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI J32"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI J32"].addFlag(GLOBAL.NPC);
 
 	// 9999 Disconnected until we actually use/need it
@@ -335,6 +371,7 @@ public function initUvetoRooms():void
 	rooms["UVI J32 F2"].inText = "Up";
 	rooms["UVI J32 F2"].moveMinutes = 1;
 	rooms["UVI J32 F2"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI J32 F2"].addFlag(GLOBAL.PUBLIC);
 	
 	rooms["BUNNY_FUN_HUT"] = new RoomClass(this);
 	rooms["BUNNY_FUN_HUT"].roomName = "OBSERVATION\nDECK";
@@ -346,6 +383,7 @@ public function initUvetoRooms():void
 	rooms["BUNNY_FUN_HUT"].moveMinutes = 1;
 	rooms["BUNNY_FUN_HUT"].runOnEnter = upstairsGeoSurveyBonus;
 	rooms["BUNNY_FUN_HUT"].addFlag(GLOBAL.INDOOR);
+	rooms["BUNNY_FUN_HUT"].addFlag(GLOBAL.PUBLIC);
 	rooms["BUNNY_FUN_HUT"].addFlag(GLOBAL.NPC);
 
 	rooms["UVI J34"] = new RoomClass(this);
@@ -359,6 +397,7 @@ public function initUvetoRooms():void
 	rooms["UVI J34"].westExit = "UVI H34";
 	rooms["UVI J34"].moveMinutes = 1;
 	rooms["UVI J34"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI J34"].addFlag(GLOBAL.PUBLIC);
 
 	/* Research Station Access */
 	rooms["UVI J36"] = new RoomClass(this);
@@ -370,6 +409,7 @@ public function initUvetoRooms():void
 	rooms["UVI J36"].moveMinutes = 1;
 	rooms["UVI J36"].runOnEnter = healingConsentacleTankBonus;
 	rooms["UVI J36"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI J36"].addFlag(GLOBAL.PUBLIC);
 
 	/* Entrance */
 	rooms["UVI L34"] = new RoomClass(this);
@@ -381,6 +421,7 @@ public function initUvetoRooms():void
 	rooms["UVI L34"].westExit = "UVI J34";
 	rooms["UVI L34"].moveMinutes = 3;
 	rooms["UVI L34"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI L34"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI L34"].runOnEnter = function():Boolean {
 		output("\n\nA long, snow-encrusted street runs north to south just ahead. To the west is the warm, protective embrace of Uveto’s central hub.");
 		if (pc.willTakeColdDamage()) output(" It’s all you can do to force yourself not to run for it... holy SHIT it’s cold here! You’ve got to get inside, or find some way to warm yourself up ASAP.");
@@ -403,6 +444,7 @@ public function initUvetoRooms():void
 	rooms["UVI N34"].westExit = "UVI L34";
 	rooms["UVI N34"].moveMinutes = 3;
 	rooms["UVI N34"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N34"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVI N36"] = new RoomClass(this);
 	rooms["UVI N36"].roomName = "CAR\nPARK";
@@ -413,6 +455,7 @@ public function initUvetoRooms():void
 	rooms["UVI N36"].southExit = "UVI N38";
 	rooms["UVI N36"].moveMinutes = 3;
 	rooms["UVI N36"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N36"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVI N38"] = new RoomClass(this);
 	rooms["UVI N38"].roomName = "\nINTERSECTION";
@@ -424,6 +467,7 @@ public function initUvetoRooms():void
 	rooms["UVI N38"].southExit = "UVI N40";
 	rooms["UVI N38"].moveMinutes = 3;
 	rooms["UVI N38"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N38"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVI N40"] = new RoomClass(this);
 	rooms["UVI N40"].roomName = "SOUTHERN\nRESIDENTAL";
@@ -436,6 +480,7 @@ public function initUvetoRooms():void
 	rooms["UVI N40"].moveMinutes = 3;
 	rooms["UVI N40"].runOnEnter = southernResidentialBonus;
 	rooms["UVI N40"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N40"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["PIPPA HOUSE"] = new RoomClass(this);
 	rooms["PIPPA HOUSE"].roomName = "PIPPA\nRESIDENCE"
@@ -468,6 +513,7 @@ public function initUvetoRooms():void
 	rooms["UVI N42"].moveMinutes = 3;
 	rooms["UVI N42"].runOnEnter = addUvetoColdBonus;
 	rooms["UVI N42"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N42"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["S&S_KIRILA"] = new RoomClass(this);
 	rooms["S&S_KIRILA"].roomName = "SPINARRAN\nSILK & STEEL";
@@ -478,6 +524,7 @@ public function initUvetoRooms():void
 	rooms["S&S_KIRILA"].moveMinutes = 3;
 	rooms["S&S_KIRILA"].runOnEnter = spinarranSilkAndSteelBonusFunc;
 	rooms["S&S_KIRILA"].addFlag(GLOBAL.INDOOR);
+	rooms["S&S_KIRILA"].addFlag(GLOBAL.PUBLIC);
 	rooms["S&S_KIRILA"].addFlag(GLOBAL.COMMERCE);
 
 	/* Another Store */
@@ -489,6 +536,7 @@ public function initUvetoRooms():void
 	rooms["UVI L42"].eastExit = "UVI N42";
 	rooms["UVI L42"].moveMinutes = 1;
 	rooms["UVI L42"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI L42"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI L42"].addFlag(GLOBAL.COMMERCE);
 	rooms["UVI L42"].runOnEnter = function():Boolean {
 		if (flags["MET_HUNTERS_DREAM_SHOPKEEP"] == undefined)
@@ -516,6 +564,7 @@ public function initUvetoRooms():void
 	rooms["UVI P38"].moveMinutes = 3;
 	rooms["UVI P38"].runOnEnter = addUvetoColdBonus;
 	rooms["UVI P38"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI P38"].addFlag(GLOBAL.PUBLIC);
 
 	/* Maglev Station */
 	rooms["UVI P40"] = new RoomClass(this);
@@ -527,6 +576,7 @@ public function initUvetoRooms():void
 	rooms["UVI P40"].moveMinutes = 1;
 	rooms["UVI P40"].runOnEnter = uvetoMaglevStation;
 	rooms["UVI P40"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI P40"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI P40"].addFlag(GLOBAL.TAXI); // 9999 TRAIN?
 
 	rooms["UVI N32"] = new RoomClass(this);
@@ -540,6 +590,7 @@ public function initUvetoRooms():void
 	rooms["UVI N32"].moveMinutes = 3;
 	rooms["UVI N32"].runOnEnter = addUvetoColdBonus;
 	rooms["UVI N32"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N32"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVI N30"] = new RoomClass(this);
 	rooms["UVI N30"].roomName = "TEMPLE\nSTREET";
@@ -552,6 +603,7 @@ public function initUvetoRooms():void
 	rooms["UVI N30"].moveMinutes = 3;
 	rooms["UVI N30"].runOnEnter = templeStreetBonus;
 	rooms["UVI N30"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVI N30"].addFlag(GLOBAL.PUBLIC);
 
 	/* Shades Residence */
 	rooms["UVI P30"] = new RoomClass(this);
@@ -574,6 +626,7 @@ public function initUvetoRooms():void
 	rooms["UVI P32"].moveMinutes = 1;
 	rooms["UVI P32"].runOnEnter = uvetoBarBonus;
 	rooms["UVI P32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI P32"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI P32"].addFlag(GLOBAL.BAR);
 
 	/* Mead Hall */
@@ -586,6 +639,7 @@ public function initUvetoRooms():void
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
 	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
+	rooms["UVI R32"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI R32"].runOnEnter = function():Boolean {
 		setNavDisabled(NAV_SOUTH_DISABLE);
 		return false;

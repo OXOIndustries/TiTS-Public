@@ -370,7 +370,7 @@ public function seraIsRepoed():void
 	output("\n\n<i>“We’ve already explained. Multiple times,”</i> replies Attica calmly. She taps a slather of papers on the counter. <i>“As per the agreements you made with Mods4U and Tavros Rental Space, your failure to meet payment deadlines has caused a buy-out clause to become available. It has been activated. You have been repossessed.”</i>");
 	output("\n\n<i>“By fucking WHO?”</i> As one the tarratch silently turn to look at you, framed in the doorway. Yellow, reptilian eyes bore holes in you.");
 	// PC submitted to Sera:
-	if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4)
+	if(seraIsMistress())
 	{
 		output("\n\n<i>“[pc.Him]?! But [pc.he]’s a... that’s my...”</i> Sera puts her hands over her face and laughs, in a groaning, despairing way. <i>“Right, so this is just a bad dream. A fucktoy of mine makes me their slave with the help of some overgrown moths.”</i> She feverishly claws at her arm. <i>“Good one, subconscious! You can let me out now!”</i>");
 	}
@@ -416,7 +416,7 @@ public function seraIsRepoedPtII():void
 	if(chars["SERA"].skinTone == "bright pink") output(" Teron was right – coloring her skin pink on top of this accentuates her new look perfectly. She actually looks quite sweet when she gets angry now.");
 	output("\n\nHer stilettos clack faster and more purposefully as she comes to her senses, and you ponder how to break the ice. But she does that for you.");
 	// PC submitted to Sera:
-	if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4)
+	if(seraIsMistress())
 	{
 		if(!pc.isBimbo())
 		{
@@ -3157,7 +3157,7 @@ public function seraBitcheningTalk():void
 	{
 		output("<i>“Just wanna talk,”</i> you say, pulling a chair over. Sera’s wicked grin retreats behind a guarded scowl.");
 		// If PC submitted to her AND used her talk options then
-		if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4 && (flags["SERA_TALKS_PAST"] != undefined || flags["SERA_TALKS_PRESENT"] != undefined || flags["SERA_TALKS_DEMONS"] != undefined || flags["SERA_TALKS_FURRIES"] != undefined))
+		if(seraIsMistress() && (flags["SERA_TALKS_PAST"] != undefined || flags["SERA_TALKS_PRESENT"] != undefined || flags["SERA_TALKS_DEMONS"] != undefined || flags["SERA_TALKS_FURRIES"] != undefined))
 		{
 			output("\n\n<i>“Why?”</i> she replies sullenly. <i>“I already told you about me. How else would you have known about my debt, and done this to me otherwise?”</i>");
 			if(pc.isBimbo()) output("\n\n<i>“Wanna hear it again!”</i> you reply sunnily. <i>“Your voice is sexy. And now I can listen to it all I want!”</i>");

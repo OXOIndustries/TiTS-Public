@@ -3862,6 +3862,17 @@ public function annoPupAtWork():void
 //[PetPlay] See if Anno’s willing to spend some time on the business end of a leash. 
 //Requires cock that fits or vagina. 
 //Accessible when Anno is a crew member.
+public function annoIsPet():Boolean
+{
+	return (flags["TAKEN_ANNO_AROUND_AS_A_PET"] != undefined || flags["ANNO_PETPLAYED"] != undefined);
+}
+public function annoTimesWalked():Number
+{
+	var timesWalked:Number = 0;
+	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] != undefined) timesWalked += flags["TAKEN_ANNO_AROUND_AS_A_PET"];
+	if(flags["ANNO_PETPLAYED"] != undefined) timesWalked += flags["ANNO_PETPLAYED"];
+	return timesWalked;
+}
 public function annoPupperPlay():void
 {
 	clearOutput();
