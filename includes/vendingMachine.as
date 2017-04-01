@@ -120,7 +120,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			break;
 		// Jejune Pharma Vending Machine
 		// <i>“Hi, Milly Bayes here!”</i>
-		// An As Seen On TV vending machine that sells Jejune Pharmaceutical products and minor items that don’t have an explicit manufacturer.  Can be located on Tavros or any other indoor area.
+		// An As Seen On TV vending machine that sells Jejune Pharmaceutical products and minor items that don’t have an explicit manufacturer. Can be located on Tavros or any other indoor area.
 		case "J'ejune":
 			author("Couch");
 			
@@ -131,6 +131,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			
 			chars["VENDINGMACHINE"].inventory.push(new LemonLoftcake());
 			chars["VENDINGMACHINE"].inventory.push(new StrawberryShortcake());
+			chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.00;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
@@ -169,7 +170,7 @@ public function jejuneMachineBack():void
 	showName("VENDING\nMACHINE");
 	author("Couch");
 	
-	output("After a few seconds of browsing, you opt to back away from the vending machine. As you walk away, you can still hear the infomercials playing just as clearly as if you were still standing right next to them.  My, but Milly Bayes has some pipes on her.");
+	output("After a few seconds of browsing, you opt to back away from the vending machine. As you walk away, you can still hear the infomercials playing just as clearly as if you were still standing right next to them. My, but Milly Bayes has some pipes on her.");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

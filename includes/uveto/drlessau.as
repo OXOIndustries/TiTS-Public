@@ -1,4 +1,20 @@
-import classes.Characters.DrLessau;
+// The Island of Doctor Lessau
+
+public function drLessauBonus():Boolean
+{
+	if (flags["MET_DR_LESSAU"] == undefined)
+	{
+		output("\n\nBehind the desk is a bizarre mishmash of cat, serpent, bull, and some sort of feathered beast. He doesn’t look like any alien species you recognize. Whatever he is, your entrance prompts him to look up.");
+		addButton(0,"Chimera", drLessauIPresume)
+	}
+	else
+	{
+		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in.");
+		addButton(0,"Lessau", drLessauIPresume)
+	}
+	
+	return false;
+}
 
 public function drLessauIPresume():void
 {
@@ -25,20 +41,21 @@ public function drLessauIPresume():void
 		output("\n\nThe chimera looks as though he’s about to say more, but shakes his head after a moment.");
 		output("\n\n<i>“Well, I imagine you didn’t come in for a reminder of your recent loss. My apologies. Come, take a look. I have quite a number of transformatives that might interest you, if you yearn to become something truly exotic. We can prepare them for you right here.”</i>");
 		
+		processTime(3);
+		
 		flags["MET_DR_LESSAU"] = 1;
 	}
-
-	processTime(3);
-	drLessauMainMenu()
+	
+	drLessauMainMenu();
 }
 
 public function metCynthia():Boolean
 {
-	return (flags["BIOMED_GANGBANGED"] != undefined);
+	return (flags["BIOMED_GANGBANGED"] != undefined || flags["MET_CYNTHIA"] != undefined);
 }
 public function metWalt():Boolean
 {
-	return (flags["BIOMED_GANGBANGED"] != undefined);
+	return (flags["BIOMED_GANGBANGED"] != undefined || flags["MET_WALT"] != undefined);
 }
 
 public function drLessauMainMenu():void
@@ -55,12 +72,12 @@ public function drLessauMainMenu():void
 
 public function drLessauShop():void
 {
-	if (metCynthia())
+	if (flags["MET_CYNTHIA"] >= 2)
 	{
 		if (!chars["DRLESSAU"].hasItemByType(Holstaria)) chars["DRLESSAU"].inventory.push(new Holstaria());
 	}
 	else chars["DRLESSAU"].destroyItem(new Holstaria(), -1);
-	if (metWalt())
+	if (flags["MET_WALT"] >= 2)
 	{
 		if (!chars["DRLESSAU"].hasItemByType(Lupinol)) chars["DRLESSAU"].inventory.push(new Lupinol());
 	}
@@ -385,6 +402,7 @@ public function drLessauVag():void
 	pc.loadInCunt(chars["DRLESSAU"],x);
 	pc.loadInCunt(chars["DRLESSAU"],x);
 	pc.orgasm();
+	
 	clearMenu();
 	addButton(0,"Next",drLessauAfter)
 }
@@ -420,7 +438,12 @@ public function drLessauAfter():void
 		output("\n\nHe seems pleased at you being so satisfied, giving you a kiss that you eagerly return. Your lips part just as you’re about to try slipping him some tongue, to your disappointment.");
 		output("\n\n<i>“I think you’re at your limit, [pc.name].”</i> Lessau says with a mirthful smile. <i>“You should go clean up and clean yourself out first if you still hunger for more of this monster.”</i>");
 		output("\n\nYou concede, making your way to the shower. You can’t help but " + (pc.exhibitionism() >= 33 ? "grin at" : "be embarrassed by the looks of") + " the lab techs as you walk by, most of whom blush or give thumbs-up. The" + (pc.exhibitionism() >= 33 ? " returned" : "") + " grins on the faces of the latter group tell you that you’re definitely not the only one getting some chimera action around here.");
-		if (pc.exhibitionism() >= 50) output(" Maybe you can get them to join in sometime, or at least watch you going at it with their boss. It’s good to get to know your future employees, after all.");
+		if (pc.exhibitionism() >= 66)
+		{
+			output(" Maybe you can get them to join in sometime, or at least watch you going at it with their boss. It’s good to get to know your");
+			if(9999 == 9999) output(" future");
+			output(" employees, after all.");
+		}
 		output("\n\nThe warmth of the shower soon soothes away the eager heat in your loins, leaving only the delicious ache that comes from being well and truly fucked. You’re definitely going to have to do this again sometime.");
 	}
 	
@@ -429,14 +452,22 @@ public function drLessauAfter():void
 	
 	pc.shower();
 	
+	clearMenu();
 	addButton(0, "Next", drLessauMainMenu)
 }
 
+public function steeleBiomedBusinessHours():Boolean
+{
+	return (flags["MET_DR_LESSAU"] != undefined && hours >= 9 && hours <= 17);
+}
 public function steeleBiomedBonus():Boolean
 {
-	if(pc.hasStatusEffect("BioMed Gangbang Cooldown")) addDisabledButton(0, "Gangbang", undefined, "Maybe you should give your employees some time to cool off before trying this again.");
-	else if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
-	else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
+	if(steeleBiomedBusinessHours())
+	{
+		if(pc.hasStatusEffect("BioMed Gangbang Cooldown")) addDisabledButton(0, "Gangbang", undefined, "Maybe you should give your employees some time to cool off before trying this again.");
+		else if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
+		else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
+	}
 	
 	return false;
 }
@@ -444,12 +475,14 @@ public function steeleBiomedBonus():Boolean
 public function steeleBiomedGangbang():void
 {
 	clearOutput();
-	showBust("CYNTHIA", "WALT");
+	showBust("CYNTHIA_NUDE", "WALT_NUDE");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	clearMenu();
 	
-	output("You glance around the room, licking your lips at all the exotic beauties on display. Why not let them get to know their future boss? Besides, you’re feeling ");
+	output("You glance around the room, licking your lips at all the exotic beauties on display. Why not let them get to know their");
+	if(9999 == 9999) output(" future");
+	output(" boss? Besides, you’re feeling ");
 	if (pc.hasVagina() && pc.hasCock()) output("hard and wet");
 	else if (pc.hasVagina()) output("wet and eager to fuck");
 	else output("a little stiff");
@@ -470,11 +503,19 @@ public function steeleBiomedGangbang():void
 		else if (pc.biggestTitSize() < 10) output("Now aren’t you a cutie?");
 		else if (pc.biggestTitSize() < 20) output("Ooh, we got ourselves some big girls here.");
 		else output("Hot damn, boss, you’re as big as they come, ain’tcha?");
-		output("”</i> The voice of the girl pressed against your back comes with a midwestern accent that makes you think of a New Texan, a thought given further support by the wet sensation against your back. You turn your head, seeing thick, muscular arms covered in dark brown fur and a fully bovine face grinning at you. <i>“Want a closer look?”</i>")
+		output("”</i> The voice of the girl pressed against your back comes with a midwestern accent that makes you think of a New Texan, a thought given further support by the wet sensation against your back. You turn your head, seeing thick, muscular arms covered in dark brown fur and a fully bovine face grinning at you. <i>“Want a closer look?”</i>");
 		
-		output("\n\nYou nod, reluctantly letting go of the wolf’s ears to turn and properly face the giant of a minotauress. She’s huge in every way: eight feet tall, biceps almost as thick as your head, and extravagant curves when it comes to bust and hips alike that manage not to look exaggerated thanks to how thick and buff she is. The thick black nubs sitting proudly upon her furry breasts are leaking trickles of creamy milk, prompting you to go in for a drink. The primal moo it elicits from the minotauress is every bit as delicious as the milk itself, one of those meaty arms slipping around your back to hold you in place.");
-		output("\n\n<i>“New Texan?”</i> you ask between gulps, prompting the minotauress to smirk.");
-		output("\n\n<i>“Not even close, boss. What, you think those bimbos are the only cowgirls out there? Naw, I just like being big and beefy. And-”</i> She’s briefly cut off by giving a long, exultant moo as you give her teat a particularly firm suck. <i>“Oh yeah... having udders is just the </i>best<i>.”</i>");
+		output("\n\nYou nod, reluctantly letting go of the wolf’s ears to turn and properly face");
+		if(!metCynthia()) output(" the giant of a minotauress");
+		else output(" the giant minotauress, Cynthia");
+		output(". She’s huge in every way: eight feet tall, biceps almost as thick as your head, and extravagant curves when it comes to bust and hips alike that manage not to look exaggerated thanks to how thick and buff she is. The thick black nubs sitting proudly upon her furry breasts are leaking trickles of creamy milk, prompting you to go in for a drink. The primal moo it elicits from the minotauress is every bit as delicious as the milk itself, one of those meaty arms slipping around your back to hold you in place.");
+		if(!metCynthia())
+		{
+			output("\n\n<i>“New Texan?”</i> you ask between gulps, prompting the minotauress to smirk.");
+			output("\n\n<i>“Not even close, boss. What, you think those bimbos are the only cowgirls out there? Naw, I just like being big and beefy. And-”</i> She’s briefly cut off by giving a long, exultant moo as you give her teat a particularly firm suck.");
+		}
+		else output("\n\nShe gives a long, exultant moo as you give her teat a particularly firm suck.");
+		output(" <i>“Oh yeah... having udders is just the </i>best<i>.”</i>");
 	}
 	
 	else
@@ -500,13 +541,14 @@ public function steeleBiomedGangbang():void
 	}
 
 	processTime(10);
+	clearMenu();
 	addButton(0, "Next", steeleBiomedGangbangII);
 }
 
 public function steeleBiomedGangbangII():void
 {
 	clearOutput();
-	showBust("CYNTHIA", "WALT");
+	showBust("CYNTHIA_NUDE", "WALT_NUDE");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	
@@ -555,13 +597,14 @@ public function steeleBiomedGangbangII():void
 	if (pc.milkFullness >= 30) pc.milked(100);
 	
 	processTime(30);
+	clearMenu();
 	addButton(0, "Next", steeleBiomedGangbangIII);
 }
 
 public function steeleBiomedGangbangIII():void
 {
 	clearOutput();
-	showBust("CYNTHIA", "WALT");
+	showBust("CYNTHIA_NUDE", "WALT_NUDE");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	
@@ -577,11 +620,11 @@ public function steeleBiomedGangbangIII():void
 	{
 		for (var x:int = 0; x < pc.totalVaginas(); x++) 
 		{	
-			pc.cuntChange(x, 300)
+			pc.cuntChange(x, walkCockVolume())
 			pc.loadInCunt(undefined, x)
 		}
 	}
-	pc.buttChange(300);
+	pc.buttChange(walkCockVolume());
 	pc.loadInAss();
 	pc.orgasm();
 	pc.orgasm();
@@ -590,5 +633,6 @@ public function steeleBiomedGangbangIII():void
 	IncrementFlag("BIOMED_GANGBANGED");
 	pc.createStatusEffect("BioMed Gangbang Cooldown",0,0,0,0,true,"","",false,720);
 	processTime(140);
+	clearMenu();
 	addButton(0, "Next", mainGameMenu)
 }

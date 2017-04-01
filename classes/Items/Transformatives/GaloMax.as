@@ -10,7 +10,7 @@
 	import classes.StringUtil;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
-	import classes.Engine.Utility.IncrementFlag
+	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.num2Text;
 	
 	public class GaloMax extends ItemSlotClass

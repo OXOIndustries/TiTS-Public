@@ -75,6 +75,7 @@
 		public static const FLAG_TAILCUNT:int                               = 42;
 		public static const FLAG_BEAK:int									= 43;
 		public static const FLAG_CORKSCREWED:int							= 44;
+		public static const FLAG_TONGUE:int									= 45;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -120,8 +121,9 @@
 			"Slightly Pumped",
 			"Fully Pumped",
 			"Tailcunt",
-			"Beak",
-			"Corkscrewed"
+			"Beaked",
+			"Corkscrewed",
+			"Tongued",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -212,6 +214,7 @@
 		public static const TYPE_WORG:int									= 71;
 		public static const TYPE_SWINE:int									= 72;
 		public static const TYPE_QUAD_LAPINE:int 							= 73;
+		public static const TYPE_MOUTHGINA:int 								= 74;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -287,7 +290,8 @@
 			"Milodan",
 			"Worg",
 			"Swine",
-			"Quad Lapine"
+			"Quad Lapine",
+			"Mouthgina",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -338,7 +342,7 @@
 			TYPE_DEMONIC,
 			TYPE_FROG,
 			TYPE_NYREA,
-			TYPE_GRYVAIN
+			TYPE_GRYVAIN,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -357,7 +361,7 @@
 			TYPE_GOOEY,
 			TYPE_BEE,
 			TYPE_FROG,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -398,7 +402,7 @@
 			TYPE_FROG,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_QUAD_LAPINE
+			TYPE_QUAD_LAPINE,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -419,7 +423,7 @@
 			TYPE_DEMONIC,
 			TYPE_NYREA,
 			TYPE_FLOWER,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -466,7 +470,7 @@
 			TYPE_NYREA,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -526,7 +530,7 @@
 			TYPE_DOVE,
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -565,7 +569,7 @@
 			TYPE_FROG,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -620,7 +624,7 @@
 			TYPE_FELINE,
 			TYPE_VULPINE,
 			TYPE_FLOWER,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		//SKINTYPES
@@ -900,7 +904,7 @@
 			TYPE_GABILANI,
 			TYPE_HRAD,
 			TYPE_GRYVAIN,
-			TYPE_SWINE
+			TYPE_SWINE,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -944,6 +948,7 @@
 			TYPE_GRYVAIN,
 			TYPE_FLOWER,
 			TYPE_SWINE,
+			TYPE_MOUTHGINA,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -958,6 +963,7 @@
 			FLAG_SLIGHTLY_PUMPED,
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
+			FLAG_TONGUE,
 		];
 		
 		//ROOM FLAGS

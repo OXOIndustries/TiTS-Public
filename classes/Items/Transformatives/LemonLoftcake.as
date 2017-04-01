@@ -49,8 +49,8 @@
 				// Consumption Text
 				output("You unwrap the cake roll from its foil pouch, resting on an inner paper backing that reads “Eat Me!”. The roll goes down in just a few bites, leaving the taste of lemons in your mouth while you wait for the results.");
 				
-				var tallMin:Number = 36;
-				var tallMax:Number = 144;
+				var tallMin:Number = (36 + 12);
+				var tallMax:Number = (144 - 24);
 				var tallChange:Number = 1 + rand(3);
 				if((target.tallness + tallChange) > tallMax) tallChange = (tallMax - target.tallness);
 				var newTallness:Number = target.tallness + tallChange;

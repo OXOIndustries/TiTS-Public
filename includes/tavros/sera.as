@@ -269,7 +269,7 @@ public function chrysalisInventory():Array
 	inventory.push(new DendroGro());
 	inventory.push(new Rainbotox());
 	inventory.push(new Chocolac());
-	inventory.push(new SweetTreat());
+	inventory.push(new SweetTreat()); // 9999 - Temporary
 	
 	return inventory;
 }
@@ -296,6 +296,11 @@ public function seraStoreSetup():void
 	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined)
 	{
 		chars["SERA"].inventory.push(new Lucifier());
+	}
+	// Other
+	if(CodexManager.entryUnlocked("Muffstick"))
+	{
+		chars["SERA"].inventory.push(new Muffstick());
 	}
 	
 	shopkeep = chars["SERA"];

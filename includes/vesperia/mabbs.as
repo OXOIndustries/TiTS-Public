@@ -129,7 +129,7 @@ public function mabbsSpeciesTalk():void
 	}
 	processTime(2);
 	mabbsMenu();
-	addDisabledButton(5,"Your Species","Your Species","You're discussing that right now.");
+	addDisabledButton(5,"Your Species","Your Species","You’re discussing that right now.");
 }
 
 //Buy
@@ -162,7 +162,7 @@ public function sellToMabbs():void
 	output("\n\nIt might be wise not to escalate the situation any further. You diplomatically nod and consider your options...");
 	processTime(2);
 	mabbsMenu();
-	addDisabledButton(1,"Sell","Sell","Selling doesn't seem like a great idea right now.");
+	addDisabledButton(1,"Sell","Sell","Selling doesn’t seem like a great idea right now.");
 }
 
 //Flirt
@@ -175,7 +175,7 @@ public function flirtWithMabbs():void
 	output(" and uncaringly laughs. <i>“You wanna get me off, buy something so I have an excuse to roll out of here and experiment with my stock.”</i>");
 	processTime(1);
 	mabbsMenu();
-	addDisabledButton(2,"Flirt","Flirt","Flirting didn't work out very well.");
+	addDisabledButton(2,"Flirt","Flirt","Flirting didn’t work out very well.");
 }
 
 //Leave

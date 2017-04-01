@@ -3514,17 +3514,48 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		else output2("\nEach vagina’s labia are swollen and fat, often shining with a wet sheen regardless of your arousal. You’re told that they wink when you’re aroused.");
 	}
 	//Shark Vagina:
-	else if(target.vaginas[x].type == GLOBAL.TYPE_SHARK)
-	{
+	else if(target.vaginas[x].type == GLOBAL.TYPE_SHARK) {
 		if(!eachOne) output2(" The exterior lips are puffy and framed by fin-like flaps, while the interior of your vaginal canal is filled with tiny cilia that massage and pull any invaders deeper in.");
 		else output2("\nEach vagina’s exterior lips are puffy and framed by fin-like flaps, while their interiors are filled with tiny cilia that massage and pull any invaders deeper in.");
-	}	
+	}
+	//Pork flavor
 	else if(target.vaginas[x].type == GLOBAL.TYPE_SWINE) {
 		if(!eachOne) output2(" The");
 		else output2("\nEach vagina’s");
 		output2(" exterior lips are typically featureless, except for when you’re aroused and they swell outward.");
 	}
+	//Attack of the mouthginas!
+	else if(target.vaginas[x].type == GLOBAL.TYPE_MOUTHGINA)
+	{
+		var mouthSize:String = "plump, bee stung";
+		var mouthPuff:Number = target.vaginalPuffiness(x);
+		if(mouthPuff <= 1) mouthSize = (RandomInCollection(["small", "petite", "supple"]) + ", womanly");
+		else if(mouthPuff <= 2) mouthSize = (RandomInCollection(["pouty", "puffy", "cushiony", "plump", "succulent", "juicy", "luscious", "voluptuous"]) + ", bee-stung");
+		else if(mouthPuff <= 3) mouthSize = (RandomInCollection(["hypnotic", "dazzling", "fat", "large", "engorged", "constantly pursed", "bloated", "pillowy", "whorish", "‘O’-shaped", "permanently puckered"]) + ", oversized");
+		else mouthSize = (RandomInCollection(["jacquesian", "scylla-tier", "universe-distorting"]) + ", hyper-sized");
+		
+		if(!eachOne) output2(" Instead of the usual inner and outer labia, your opening is shaped like a mouth, with " + mouthSize + " lips, frozen in a permanent seductive expression.");
+		else output2("\nInstead of the usual inner and outer labia, your vaginal openings are shaped like mouths, each with " + mouthSize + " lips, frozen in a permanent seductive expression.");
+		if(target.vaginas[x].clits >= 1)
+		{
+			if(target.vaginas[x].clits == 1) output2(" A single metallic-colored, polished clit adorns your muff,");
+			if(target.vaginas[x].clits == 2) output2(" A couple of metallic-colored, polished clits adorn your muff,");
+			if(target.vaginas[x].clits > 2) output2(" Several metallic-colored, polished clits adorn your muff,");
+			if(target.isBimbo()) output2(" looking totally adorable and");
+			else if(target.vaginas[x].clits > 2) output2(" giving it a punk-ish look and");
+			output2(" drawing all the attention - or wandering hands - to ");
+			if(!eachOne) output2(" itself");
+			else output2(" themselves");
+			output2(".");
+		}
+	}
 	
+	//Tongue
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_TONGUE))
+	{
+		if(!eachOne) output2(" The interior also hosts a thick erogenous tongue.");
+		else output2(" Their interiors each house a thick erogenous tongue.");
+	}
 	//Nubby
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.vaginas[x].type != GLOBAL.TYPE_SIREN) {
 		if(!eachOne) output2(" The lips and insides are covered in numerous nub-like protrusions.");
@@ -3532,13 +3563,13 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	}
 	//Pumped
 	var wasPumped:Boolean = pc.hasStatusEffect("Pussy Pumped");
-	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
 	{
 		if(!eachOne) output2(" The whole thing is ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if you tried, there is just no hiding its" : " under clothing, it generates a") + " considerable camel-toe.");
 		else output2(" They’re ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if you tried, there is just no hiding their" : " under clothing, they fully display their") + " monumental moose-knuckles.");
 	}
 	//Slightly pumped
-	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
 	{
 		if(!eachOne) output2(" The whole thing puffs out slightly, seemingly constantly engorged" + (wasPumped ? " ever since your play with a pussy pump" : " with girl flesh") + ".");
 		else output2(" They’re puffed out slightly, seemingly constantly engorged" + (wasPumped ? " ever since your play with a pussy pump" : " with girl flesh") + ".");
