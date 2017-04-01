@@ -1641,10 +1641,10 @@
 					buffer = lowerGarmentDescript();
 					break;
 				case "underGarment":
-					underGarmentDescript();
+					buffer = underGarmentDescript();
 					break;
 				case "underGarments":
-					underGarmentsDescript();
+					buffer = underGarmentsDescript();
 					break;
 				case "lowerGarmentOuter":
 					buffer = lowerGarmentOuterDescript();

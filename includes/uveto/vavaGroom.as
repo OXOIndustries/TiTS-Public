@@ -503,7 +503,7 @@ public function vavaGroomTalk(response:String = "intro"):void
 			output("\n\n<i>“For going on five epochs now,”</i> Estie replies with a big smile. She plays with the front hasp of her collar, making it jingle. <i>“My first owner was kind of a douche, although I didn’t realize that at the time. You don’t make smart decisions when you’re six. I just assumed he knew what he was talking about when he said I should focus on cooking and cleaning when I couldn’t get very far with my studies, then kept bringing up how useless I was at anything else when I got frustrated with not getting out of the apartment much.”</i>");
 			output("\n\n<i>“He wasn’t capable of seeing Hwnifwn der Estifaal’s potential,”</i> says Cruff, rubbing the fhan’i beneath her head tentacles fondly. She keens with pleasure, bending her head into it. <i>“She’s as smart as they come - she just needed the discipline and encouragement necessary to show it. Estie!”</i>");
 			output("\n\n<i>“Yes!”</i> The fhan’i’s back is ramrod straight.");
-			output("\n\n<i>“32 times 15 divided by 2.”</i>");
+			output("\n\n<i>“Thirty-two times fifteen, divided by two.”</i>");
 			output("\n\n<i>“4... 240!”</i>");
 			output("\n\n<i>“What is our next appointment?”</i>");
 			output("\n\n<i>“Ms. Taimy. She wants a brush for herself and grade 3 erotic training for her Roman.”</i>");
@@ -649,10 +649,15 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 				output("\n\nWhilst Cruff does your " + (pc.hasHair() ? "hair" : "scalp" ) + ", warm, nimble fingers grasp your [pc.tails].");
 				if(pc.hasTailGenital())
 				{
-					output(" Estie seems utterly unfazed by the flagrantly sexual nature of it; she briskly cleans and oils it from tail to tip, making the thing thrum with arousal.");
+					if(pc.tailCount == 1) output(" Estie seems utterly unfazed by the flagrantly sexual nature of it; she briskly cleans and oils it from tail to tip, making the thing thrum with arousal.");
+					else output(" Estie seems utterly unfazed by the flagrantly sexual nature of them; she briskly cleans and oils them from tail to tip, making them thrum with arousal.");
 					pc.lust(15);
 				}
-				else output("Estie briskly cleans and " + ((pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FLUFFY) || pc.hasTailFlag(GLOBAL.FLAG_FEATHERED)) ? "combs it until the thing is curling up your back" : "oils it until the thing is slithery and sinuous") + " with prideful pleasure.");
+				else
+				{
+					if(pc.tailCount == 1) output(" Estie briskly cleans and " + ((pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FLUFFY) || pc.hasTailFlag(GLOBAL.FLAG_FEATHERED)) ? "combs it until the thing is curling up your back" : "oils it until the thing is slithery and sinuous") + " with prideful pleasure.");
+					else output(" briskly cleans and " + ((pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FLUFFY) || pc.hasTailFlag(GLOBAL.FLAG_FEATHERED)) ? "combs them until they are curling up your back" : "briskly slathers them with oil until they are slithery and sinuous") + " with prideful pleasure.");
+				}
 			}
 			if((pc.hasHair() && pc.hairType == GLOBAL.HAIR_TYPE_REGULAR) || pc.hasLongEars() || pc.hasEmoteEars()) output("\n\n");
 			if(pc.hasHair() && pc.hairType == GLOBAL.HAIR_TYPE_REGULAR) output("Your head is dipped in warm water, and then Cruff sets about it with comb and brush. ");
@@ -682,20 +687,30 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			if(pc.hasArmor()) output(" as you climb back into your [pc.armor]");
 			else if(pc.canCoverSelf(false, "wings") && pc.statusEffectv1("Wing Position") == 1) output(" as you sweep your [pc.wings] back around you");
 			output(". <i>“It’s good to work with such healthy material.”</i>");
-			output("\n\n<i>“See you soon [pc.name]!”</i> says Estie as she leads you back to the reception area. You are going to practically bounce out of here - your whole body feels rested and refreshed. You just want to strut around, on Tavros maybe, see how many people you can make stare. <i>“" + RandomInCollection([
-				"Show your pets why they beg for you!",
-				"You’re only going to have to smile at any pet-to-be to make ‘em roll over for you, trust me!",
-				"Show your owner why <b>you’re</b> their favorite!",
-				"You’re only going to have to smile at any self-respecting owner to make ‘em run over leash in hand, trust me!"
-			]) +"”</i>");
+			output("\n\n<i>“See you soon [pc.name]!”</i> says Estie as she leads you back to the reception area. You are going to practically bounce out of here - your whole body feels rested and refreshed. You just want to strut around, on Tavros maybe, see how many people you can make stare. <i>“");
+			
+			var estieFin:Array = [];
+			
+			if((flags["VAVA_GROOM_SPECIAL_PET"] != undefined && flags["VAVA_GROOM_SPECIAL_PET"] != "None") || (flags["VAVA_GROOM_ROLE"] == -2 && vavaGroomPets().length > 0))
+				estieFin.push("Show your pets why they beg for you!");
+			if(flags["VAVA_GROOM_SPECIAL_PET"] == "None" || flags["VAVA_GROOM_ROLE"] == -2)
+				estieFin.push("You’re only going to have to smile at any pet-to-be to make ‘em roll over for you, trust me!");
+			if((flags["VAVA_GROOM_SPECIAL_MASTER"] != undefined && flags["VAVA_GROOM_SPECIAL_MASTER"] != "None") || (flags["VAVA_GROOM_ROLE"] == -2 && vavaGroomMasters().length > 0))
+				estieFin.push("Show your owner why <b>you’re</b> their favorite!");
+			if(flags["VAVA_GROOM_SPECIAL_MASTER"] == "None" || flags["VAVA_GROOM_ROLE"] == -2 || flags["VAVA_GROOM_ROLE"] == 0)
+				estieFin.push("You’re only going to have to smile at any self-respecting owner to make ‘em run over leash in hand, trust me!");
+			
+			if(estieFin.length > 0) output(RandomInCollection(estieFin));
+			else output("I DON’T KNOW WHAT HAPPENED. PLEASE DON’T HURT ME!");
+			output("”</i>");
 			
 			processTime(17);
 			
 			// PC moved to square outside VVG
-			// Health set to 125%
+			// Health set to 120%
 			// Tease damage buff 20% for 24 hours
 			
-			pc.createStatusEffect("Well-Groomed", 1.25, 1.2, 0, 0, false, "LustUp", "Your body feels extraordinarily rested and refreshed.\n\n+25% Max HP\n+20% Tease Damage", false, 1440);
+			pc.createStatusEffect("Well-Groomed", 1.2, 1.2, 0, 0, false, "LustUp", "Your body feels extraordinarily rested and refreshed.\n\n+20% Max HP\n+20% Tease Damage", false, 1440);
 			
 			pc.maxOutHP();
 			pc.maxOutEnergy();
