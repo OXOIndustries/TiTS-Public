@@ -698,6 +698,7 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 			pc.createStatusEffect("Well-Groomed", 1.25, 1.2, 0, 0, false, "LustUp", "Your body feels extraordinarily rested and refreshed.\n\n+25% Max HP\n+20% Tease Damage", false, 1440);
 			
 			pc.maxOutHP();
+			pc.maxOutEnergy();
 			
 			IncrementFlag("VAVA_GROOM_SERVICE_GROOMING");
 			
@@ -932,11 +933,13 @@ public function vavaGroomEroticTraining(response:String = ""):void
 			output(", and we have a chat with them about their preferences, we’ll move on to more advanced sessions. How does that sound?”</i>");
 			output("\n\nYou shiver slightly at the thought.");
 			
-			processTime(13);
+			processTime(35);
 			
 			// Slow libido gain
 			pc.slowStatGain("libido", 1);
+			restHeal();
 			
+			/* 9999 -- Hidden until it has a purpose!
 			if ((debug || vavaGroomPetLevel() >= 100) && !pc.hasPerk("Peace of Mind"))
 			{
 				output("\n\n(<b>Perk Gained: Peace of Mind</b> - Minimum lust is heightened. Enemies may peacefully surrender to you given their level--however, it may be very hard for you to resist enemies that peacefully demand you submit to them....)");
@@ -944,6 +947,7 @@ public function vavaGroomEroticTraining(response:String = ""):void
 				pc.personality = 0;
 				pc.createPerk("Peace of Mind", 0, 0, 0, 0, "You radiate an aura of Zen-like calm. You can offer enemies the chance to peacefully surrender. The lower their level, the better the chance will be. In turn, however, enemies that peacefully demand you submit to them may be very difficult to resist.... Additionally boosts minimum lust to 20.");
 			}
+			*/
 			
 			IncrementFlag("VAVA_GROOM_SERVICE_EROTIC_TRAINING");
 			

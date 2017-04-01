@@ -5252,7 +5252,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["VAVA_GROOM_SPECIAL_PET"] != undefined) output2("\n<b>* Services, Your Special Pet:</b> " + (flags["VAVA_GROOM_SPECIAL_PET"] == "None" ? "None, <i>Owner-In-Waiting</i>" : flags["VAVA_GROOM_SPECIAL_PET"]));
 				if(flags["VAVA_GROOM_SPECIAL_MASTER"] != undefined) output2("\n<b>* Services, Your Special Owner:</b> " + (flags["VAVA_GROOM_SPECIAL_MASTER"] == "None" ? "None, <i>Pet-In-Waiting</i>" : flags["VAVA_GROOM_SPECIAL_MASTER"]));
-				if(flags["VAVA_GROOM_ROLE"] < 0) output2("\n<b>* Services, Your Obedience:</b> " + vavaGroomPetLevel() + " %");
+				//if(flags["VAVA_GROOM_ROLE"] < 0) output2("\n<b>* Services, Your Obedience:</b> " + vavaGroomPetLevel() + " %");
 				if(flags["VAVA_GROOM_SERVICE_GROOMING"] != undefined) output2("\n<b>* Services, Grooming, Total:</b> " + flags["VAVA_GROOM_SERVICE_GROOMING"]);
 				if(flags["VAVA_GROOM_SERVICE_OBEDIENCE_TRAINING"] != undefined) output2("\n<b>* Services, Obedience Training, Total:</b> " + flags["VAVA_GROOM_SERVICE_OBEDIENCE_TRAINING"]);
 				if(flags["VAVA_GROOM_SERVICE_EROTIC_TRAINING"] != undefined) output2("\n<b>* Services, Erotic Training, Total:</b> " + flags["VAVA_GROOM_SERVICE_EROTIC_TRAINING"]);
