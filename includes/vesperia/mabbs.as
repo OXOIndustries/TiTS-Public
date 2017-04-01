@@ -20,7 +20,7 @@ public function mabbsBonus(button:int):void
 public function mabbsRace():String
 {
 	var choices:Array = ["mouse-girl","mouse"];
-	if(CodexManager.entryUnlocked("Rodenian")) choices.push("rodenian");
+	if(CodexManager.entryUnlocked("Rodenians")) choices.push("rodenian");
 	return RandomInCollection(choices);
 }
 
@@ -119,13 +119,13 @@ public function mabbsSpeciesTalk():void
 	clearOutput();
 	showMabbs();
 	output("You ask her what species she is");
-	if(CodexManager.entryUnlocked("Rodenian")) output(", not 100% sure she’s a rodenian");
+	if(CodexManager.entryUnlocked("Rodenians")) output(", not 100% sure she's a rodenian");
 	output(".");
 	output("\n\nMabbs squints at you. <i>“Rodenian, dummy. You see mouse-girls anywhere else? Didn’t think so. Go look it up on your computer if you wanna know more, ‘cause I ain’t here to blather on and on about my people. So buy something or get out of my face.”</i>");
-	if(!CodexManager.entryUnlocked("Rodenian"))
+	if(!CodexManager.entryUnlocked("Rodenians"))
 	{
 		output("\n\n(<b>Codex entry unlocked!</b>)");
-		CodexManager.unlockEntry("Rodenian");
+		CodexManager.unlockEntry("Rodenians");
 	}
 	processTime(2);
 	mabbsMenu();
@@ -171,7 +171,7 @@ public function flirtWithMabbs():void
 	clearOutput();
 	showMabbs();
 	output("<i>“Nope.”</i> Mabbs shuts you down before you can even get an opening line out. <i>“Don’t waste my time.”</i> She runs a finger around the gentle curvature of her ear, grinning as your eyes follow along. <i>“This body is </i>mine<i>. Not yours. Not anybody else’s. And tween you, me, and everybody else in the quadrant, other people just get in the way. If you can’t handle that... well, Sylvie’ll put out if you pour enough booze in her.”</i> She cups her breasts");
-	if(CodexManager.entryUnlocked("Rodenian")) output(" - unusually large for a rodenian -");
+	if(CodexManager.entryUnlocked("Rodenians")) output(" - unusually large for a rodenian -");
 	output(" and uncaringly laughs. <i>“You wanna get me off, buy something so I have an excuse to roll out of here and experiment with my stock.”</i>");
 	processTime(1);
 	mabbsMenu();
