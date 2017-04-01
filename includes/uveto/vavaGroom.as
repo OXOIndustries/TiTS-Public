@@ -113,7 +113,7 @@ public function vavaGroomMenu():void
 	{
 		// [Grooming]
 		if(pc.credits >= 1000) addButton(0, "Grooming", vavaGroomServiceGrooming, undefined, "Grooming", "1000 credits for a thorough combing and glossing.");
-		else addDisabledButton(0, "Grooming", "Grooming", "You don’t have enough credits to do this!/n Costs 1000 credits.");
+		else addDisabledButton(0, "Grooming", "Grooming", "You don’t have enough credits to do this!\n\nCosts 1000 credits.");
 		// [Obedience] [E. Training]
 		if(flags["VAVA_GROOM_ROLE"] < 0)
 		{
@@ -127,7 +127,7 @@ public function vavaGroomMenu():void
 			else
 			{
 				if(pc.credits >= 1000) addButton(2, "E. Training", vavaGroomServiceEroticTraining, undefined, "Erotic Training", "Receive some submissive tutelage.");
-				else addDisabledButton(2, "E. Training", "Erotic Training", "You don’t have enough credits to do this!/n Costs 1000 credits.");
+				else addDisabledButton(2, "E. Training", "Erotic Training", "You don’t have enough credits to do this!\n\nCosts 1000 credits.");
 			}
 		}
 	}
@@ -697,11 +697,11 @@ public function vavaGroomServiceGrooming(page:int = 0):void
 				estieFin.push("You’re only going to have to smile at any pet-to-be to make ‘em roll over for you, trust me!");
 			if((flags["VAVA_GROOM_SPECIAL_MASTER"] != undefined && flags["VAVA_GROOM_SPECIAL_MASTER"] != "None") || (flags["VAVA_GROOM_ROLE"] == -2 && vavaGroomMasters().length > 0))
 				estieFin.push("Show your owner why <b>you’re</b> their favorite!");
-			if(flags["VAVA_GROOM_SPECIAL_MASTER"] == "None" || flags["VAVA_GROOM_ROLE"] == -2 || flags["VAVA_GROOM_ROLE"] == 0)
+			if(flags["VAVA_GROOM_SPECIAL_MASTER"] == "None" || flags["VAVA_GROOM_ROLE"] == -2)
 				estieFin.push("You’re only going to have to smile at any self-respecting owner to make ‘em run over leash in hand, trust me!");
 			
 			if(estieFin.length > 0) output(RandomInCollection(estieFin));
-			else output("I DON’T KNOW WHAT HAPPENED. PLEASE DON’T HURT ME!");
+			else output("Knock ‘em dead!");
 			output("”</i>");
 			
 			processTime(17);
@@ -756,7 +756,7 @@ public function vavaGroomServiceEroticTraining():void
 			// Notes for future expansion: NPC Owners should be able to customize the experience according to their own wishes. PC should be able to get the Peace of Mind perk through persistent use.
 			// Requirement: Genitals
 			if(pc.credits >= 1000) addButton(0, "Go For It", vavaGroomEroticTraining, "go for it", "Go For It", "Pay 1000 credits to become a better sub.");
-			else addDisabledButton(0, "Go For It", "Go For It", "You don’t have the money for this./n Costs 1000 credits.");
+			else addDisabledButton(0, "Go For It", "Go For It", "You don’t have the money for this.\n\nCosts 1000 credits.");
 		}
 		else addDisabledButton(0, "Go For It", "Go For It", "You require genitals for this.");
 		addButton(1, "Not Today", vavaGroomEroticTraining, "not today", "Not Today", "Sounds slightly scary.");
