@@ -781,7 +781,7 @@ public function rodenianCodexEntry():void
 	clearOutputCodex();
 	showBust("MABBS");
 	outputCodex(header("Rodenians"));
-	outputCodex("<i>“Do not refer to a rodenian as a mouse unless you are looking to start a fight, and be wary of calling them ‘cute’. More than one careless spacefarer has parted ways with a finger for daring to compare one to a rat. Basically, just don’t point out that they resemble lowly pests. Definitely don’t point out that their english name was derived from the word ‘rodent’. It remains a sore spot centuries on.”</i>\n\t-The Intergalactic Guide to Manners, Volume VI, Terran Edition\n\n");
+	outputCodex("<i>“Do not refer to a rodenian as a mouse unless you are looking to start a fight, and be wary of calling them ‘cute’. More than one careless spacefarer has parted ways with a finger for daring to compare one to a rat. Basically, just don’t point out that they resemble lowly pests. Definitely don’t point out that their English name was derived from the word ‘rodent’. It remains a sore spot centuries on.”</i>\n\t-The Intergalactic Guide to Manners, Volume VI, Terran Edition\n\n");
 	outputCodex("<b>Name:</b> Name: Rodenian (singular), Rodenians (plural) / Ch’squee’ch’chk");
 	outputCodex("\n<b>Homeworld:</b> The forest world of Corvus");
 	outputCodex("\n<b>Lifespan:</b> 150");

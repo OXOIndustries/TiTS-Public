@@ -257,6 +257,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_nude_big.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT_BELLY_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/kane.png", mimeType = "image/png")]
+		public var Bust_KANE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kane_nude.png", mimeType = "image/png")]
+		public var Bust_KANE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/kitsune-traders.png", mimeType = "image/png")]
 		public var Bust_KAZRA_AND_LORRE:Class;
 
@@ -387,6 +392,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton_nude.png", mimeType = "image/png")]
 		public var Bust_QUENTON_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn.png", mimeType = "image/png")]
+		public var Bust_QUINN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_nude.png", mimeType = "image/png")]
+		public var Bust_QUINN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
 		
@@ -747,6 +757,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_nude_big.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT_BELLY_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kane.png", mimeType = "image/png")]
+			public var Full_KANE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kane_nude.png", mimeType = "image/png")]
+			public var Full_KANE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_nude.png", mimeType = "image/png")]
@@ -865,6 +880,11 @@ package classes.Resources.Busts
 			public var Full_QUENTON:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton_nude.png", mimeType = "image/png")]
 			public var Full_QUENTON_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn.png", mimeType = "image/png")]
+			public var Full_QUINN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_nude.png", mimeType = "image/png")]
+			public var Full_QUINN_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;
