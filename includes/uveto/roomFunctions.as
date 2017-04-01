@@ -594,7 +594,7 @@ public function uvetoFallToColdDamage():void
 		output("\n\nIt’s a struggle to peel open your eyes, the endless freezing winds having battered any exposed [pc.skinFurScales] so completely your [pc.face] is covered in outcroppings of icicles hanging from your features. You have to work your face a little, stretching and tugging against the icy buildup, as sensation slowly creeps back in - bringing with it the deep, throbbing pain of penetrating cold having set into the core of your body - before you can open them, finding yourself looking up at");
 		// 9999
 		output(" a crystal clear sky");
-		//an angry, vengeful sky
+		//output(" an angry, vengeful sky");
 		output(".");
 		
 		output("\n\nSomething is moving on the edge of your sight above you - no, in front, you realize. With no small amount of discomfort you look up and make out the shape of a large, nearly formless blob through your fuzzy vision. A person, you reason slowly, given how the shapes moving around; large, lumbering steps, each one taken tugging you forward on what must be some kind of sled through the snow.");
@@ -708,8 +708,9 @@ public function uvetoBarBonus():Boolean
 {
 	removeUvetoCold();
 	
+	// Hana
 	addButton(0, flags["MET_HANA"] == undefined ? "Bartender" : "Hana", approachHana);
-
+	
 	//STEPH IRSON!
 	if(hours % 2 == 0) 
 	{
@@ -724,14 +725,23 @@ public function uvetoBarBonus():Boolean
 	
 	// Shade events.
 	meetingShadeAtUvetoBar(2);
-
+	
+	// Jerome & Jerynn
 	var jeromePresent:Boolean = jeromeAtBar(3);
 	var jerynnPresent:Boolean = jerynnAtBar(jeromePresent ? 4 : 3);
 	
+	// Random Freezer encounters
+	var NPCs:Array = [];
 	// Natalie Irson
-	natalieFreezerAddendum(4);
+	if(natalieAvailableAtBar()) NPCs.push(natalieFreezerAddendum);
+	if(cynthiaAvailableAtBar()) NPCs.push(cynthiaAtTheFreezer);
+	if(waltAvailableAtBar()) NPCs.push(waltAtTheFreezer);
+	if(NPCs.length > 0 && (!jeromePresent || !jerynnPresent)) NPCs[rand(NPCs.length)](4);
+	
 	// Randoms
 	roamingBarEncounter(5);
+	
+	// Beatrice
 	if(flags["BEA_QUEST"] != 4) 
 	{
 		if(beatriceBonusButts(7)) return true;
@@ -949,22 +959,6 @@ public function uvetoSheriffsOfficeBonus():Boolean
 	buttslutinatorBonus();
 	
 	vendingMachineButton(1);
-	
-	return false;
-}
-
-public function drLessauBonus():Boolean
-{
-	if (flags["MET_DR_LESSAU"] == undefined)
-	{
-		output("\n\nBehind the desk is a bizarre mishmash of cat, serpent, bull, and some sort of feathered beast. He doesn’t look like any alien species you recognize. Whatever he is, your entrance prompts him to look up.");
-		addButton(0,"Chimera", drLessauIPresume)
-	}
-	else
-	{
-		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in.");
-		addButton(0,"Lessau", drLessauIPresume)
-	}
 	
 	return false;
 }

@@ -9,7 +9,6 @@
 	
 	public class Mabbs extends Creature
 	{
-		//constructor
 		public function Mabbs()
 		{
 			this._latestVersion = 1;
@@ -28,7 +27,7 @@
 			this.inventory = [];
 			inventory.push(new Gush());
 			inventory.push(new Throbb());
-						
+			
 			keeperBuy = "set in vesperia/mabbs.as";
 			
 			this.typesBought = [];
@@ -37,16 +36,9 @@
 		}
 		override public function get bustDisplay():String
 		{
-			// LERRIS_<COW_>_0
-			
 			var str:String = "MABBS";
 			
 			return str;
 		}
-		/*
-		override public function onLeaveBuyMenu():void
-		{
-			kGAMECLASS.lerrisMenu();
-		}*/
 	}
 }

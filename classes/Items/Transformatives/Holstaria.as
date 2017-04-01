@@ -72,7 +72,7 @@
 				if(target.hasFur() && !InCollection(target.furColor, holstariaFurColors)) tfList.push(3);
 				// PC has hair other than standard type:
 				// PC’s hair becomes standard hair.
-				if(target.hairType != GLOBAL.HAIR_TYPE_REGULAR) tfList.push(4);
+				if(target.hairType != GLOBAL.HAIR_TYPE_HAIR) tfList.push(4);
 				// PC has non-bovine legs or a different number of legs than two:
 				// PC’s legs become two furred bovine legs.
 				if(target.legType != GLOBAL.TYPE_BOVINE) tfList.push(5);
@@ -230,6 +230,7 @@
 					
 					target.skinType = GLOBAL.SKIN_TYPE_FUR;
 					target.furColor = newFurColor;
+					target.clearSkinFlags();
 				}
 				else output("\n\n" + target.skinTypeLockedMessage());
 				return;
@@ -247,11 +248,11 @@
 			}
 			// Standardize hair type:
 			if(select == 4) {
-				if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR))
+				if(target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_HAIR))
 				{
 					output("\n\nYour [pc.hair] soon begins to molt; or perhaps melt is a better way to describe how it feels, wicking away under the heat of your scalp to leave your head bare. It doesn’t stay that way for long, as fresh [pc.hairColor] locks grow in in short order, taking the heat with them. In time, the sensation fully fades, leaving you with a new full head of hair.");
 					
-					target.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+					target.hairType = GLOBAL.HAIR_TYPE_HAIR;
 					target.hairStyle = "null";
 				}
 				else output("\n\n" + target.hairTypeLockedMessage());

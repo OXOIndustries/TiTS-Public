@@ -335,8 +335,10 @@
 		include "../includes/events/kashimaIncident/roomfunctions.as";
 		
 		// Uveto
-		include "../includes/uveto/drlessau.as";
+		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/carbonado.as";
+		include "../includes/uveto/cynthia.as";
+		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
@@ -348,14 +350,14 @@
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
-		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
-		include "../includes/uveto/pippa.as"
+		include "../includes/uveto/walt.as";
 		
 		include "../includes/chargendata.as";
 		

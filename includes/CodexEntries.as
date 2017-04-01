@@ -33,6 +33,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kui-Tan", kuitanCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rodenians", rodenianCodexEntry);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Roehm", roehmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saeri", saeriCodexEntry);
@@ -121,6 +122,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
@@ -471,7 +474,7 @@ public function galotianCodexEntry():void
 	outputCodex("\n<b>Homeword:</b> Galotia");
 	outputCodex("\n<b>Height & Weight:</b> Highly variable");
 	outputCodex("\n<b>Coloration:</b> Highly variable, typically matches the local environs for camouflage purposes.");
-	outputCodex("\nLifespan: Indefinite. Galotians show no signs of aging or cellular degeneration.");
+	outputCodex("\n<b>Lifespan:</b> Indefinite. Galotians show no signs of aging or cellular degeneration.");
 	outputCodex("\n\n");	
 	outputCodex(blockHeader("History"));
 	outputCodex("Galotians were the first species encountered with any true shape-shifting potential. Discovered during the chaotic second Planet Rush, they were originally thought to be hostile predators. Early explorers fought tooth and nail to stop themselves from being enveloped in the horrifying blobs of goo that rolled out of Galotia’s swamps with little success.");
@@ -517,7 +520,7 @@ public function anataeCodexEntry():void
 	outputCodex(header("Anatae"));
 	outputCodex("<i>Ad maius bonum.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Anat");
-	outputCodex("\n<b>Genders:</b> Male (85%), Female (15%)");
+	outputCodex("\n<b>Sexes:</b> Male (85%), Female (15%)");
 	outputCodex("\n<b>Height:</b> Both sexes range between 5\' 11\" and 6\' 4\"");
 	outputCodex("\n<b>Weight:</b> 160 to 200 lbs");
 	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colours, often artificial.");
@@ -772,6 +775,52 @@ public function rahnCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Rahn");
 }
+
+public function rodenianCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("MABBS");
+	outputCodex(header("Rodenians"));
+	outputCodex("<i>“Do not refer to a rodenian as a mouse unless you are looking to start a fight, and be wary of calling them ‘cute’. More than one careless spacefarer has parted ways with a finger for daring to compare one to a rat. Basically, just don’t point out that they resemble lowly pests. Definitely don’t point out that their English name was derived from the word ‘rodent’. It remains a sore spot centuries on.”</i>\n\t-The Intergalactic Guide to Manners, Volume VI, Terran Edition\n\n");
+	outputCodex("<b>Name:</b> Name: Rodenian (singular), Rodenians (plural) / Ch’squee’ch’chk");
+	outputCodex("\n<b>Homeworld:</b> The forest world of Corvus");
+	outputCodex("\n<b>Lifespan:</b> 150");
+	outputCodex("\n<b>Sexes:</b> 33% Male and 66% Female");
+	outputCodex("\n<b>Height:</b> 4’2”</i> to 5’3”</i> (1.26-1.6m)");
+	outputCodex("\n<b>Weight:</b> 50 to 170 lbs");
+	outputCodex("\n<b>Ears:</b> Large, multifunction ears similar in structure to a terran mouse.");
+	outputCodex("\n<b>Fur:</b> Full body - typically white, pink, gray, or black (but often dyed).");
+	outputCodex("\n<b>Eyes:</b> Nearly identical to terran/ausar standard. Colored green, red, or blue.");
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Small and short-furred, rodenians bodies share many visual cues with the rodents of earth. They have large, dish-shaped ears with a small amount of mobility, allowing for superb hearing. Just below, their faces bear short, mouse-like muzzles that lack the oversized teeth one might expect. Their incisors are merely mildly oversized. Their hands and feet have claws extending from their tips for climbing. The legs themselves are plantigrade in structure, though rodenians tend to walk with an upraised heel, owing to slight variations in tendon length and bone structure. A tapered, prehensile tail provides near flawless counterbalance, as well as an additional limb for tool use.");
+	outputCodex("\n\nIn short, rodenians look like walking, talking mice, excepting for a few major reproductive differences covered further below.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Rodenians method of reproduction is highly unusual and, to many minds in the greater UGC, perverted. The females’ wombs are located in their breasts rather than their abdomen. Stranger still, those same wombs are accessed for breeding via secondary channels recessed deep in the ear. They do not lubricate during arousal. Instead, the flesh is lined with a friction-denying structure, similar to the nonstick coatings employed in cooking vessels. (Non rodenians have reported them to feel strange but pleasant.) Those passages route through the back of the skull, merge together, then travel down the neck and into the torso to split off into the twin uteruses.");
+	outputCodex("\n\nCleverly, a membrane seals the aural entrances as pressure is applied to the reproductive tissues, preventing hearing damage and sealing out any stray fluids. This adaptation is redundant, however, for the holes themselves are positioned so that any drainage naturally flows into ‘ear-ginas,’ allowing for the rodenian’s keen hearing to remain unobstructed.");
+	outputCodex("\n\nInsemination is handled by the more traditional males, for while they too have vestigial ear-cunts, their bodies have produced a more typical arrangement of genitalia for impregnation: one phallus between the legs, backed up by two testes, shaped and sized similarly to golf balls. The largeness of their gonads relative to their body size affords them impressive sexual endurance - something they need since there are two females with two wombs each for every rodenian male.");
+	outputCodex("\n\nIt’s no surprise then that rodenians mate in threes, with one male joining two females for life. Intercourse happens often, typically at least twice a day for the poor, overworked male, yet fertility rates are quite low. Females only ovulate every year or so, and their eggs have a thicker membrane than a terran’s. Scientists seem convinced that such a change was self-inflicted before UGC contact, a forward-thinking move to counter potential overpopulation.");
+	outputCodex("\n\nOnce inseminated, the female’s other womb will begin ovulating, throwing one egg after another out until the mother carries a set of unborn twins. The children grow slowly within her to minimize food stress, but after four to five months, the eggs are large enough to impede the mother’s movement, and birth can begin. It is at this point that she lays them - through her nipples. The first time can be quite painful, as residual membranes must tear, but each successive laying is typically viewed as more pleasant than the last. Some older rodenians even delight in it.");
+	outputCodex("\n\nThe mother’s body recovers quickly, her elastic flesh snapping closed in a matter of minutes if not seconds. The vacant womb will shrink, converting excess mass into a nutrient-rich cream over the coming days which the mother will then milk onto her adsorbent egg. This is not necessary for the production of healthy offspring, but those whose mothers took the time to milk-bathe their eggs are 2-3 inches taller on average. Only after all this secondary incubation will a rodenian child emerge, clawing free from his or her shell with quiet squeaks and a sharp birth-tooth.");
+	outputCodex("\n\nRodenian children mature rapidly, over 13-14 years, though females’ bodies do not begin to ovulate until late in their twenties, another quirk suspected to be by design rather than happenstance.\n\n");
+	outputCodex(blockHeader("Culture"));
+	outputCodex("Rodenian culture has been shaped by a single gland - what has come to be known as the hedonary gland. It grows in the rear of the skull, near the passages used for breeding, and when pressured, it releases a potent chemical cocktail that induces trance-like behavior. The resulting hyper-suggestibility leaves the recipient of nearly any sexual contact utterly at the mental mercy of their mates, an aspect slightly mitigated by their tendency to form romantic entanglements in trios.");
+	outputCodex("\n\nInvariably, all three sexual partners find themselves changed, utterly infatuated with each other, their minor irritants smoothed away into unwavering loyalty. Conflict is a thing of the past. Rodenian relationships are tripods of reinforced titanium. There is no weakness within them. Their language has no word for divorce, nor does it need one. The concept is utterly foreign. When one partner dies, the other two either die of grief or bond together all the stronger.");
+	outputCodex("\n\nFor this reason, they naturally became xenophobic. Aliens cannot come to love the way they do, cannot submit their very being during sexual congress. Their ears and their hedonary glands are a vulnerability all too easy to exploit, particularly for clever slavers. For this reason, many rodenians have formed closely guarded enclaves, limiting their contact with the outside. Those who do venture into the wider UGC typically do so with some sort of protection for their ears - specially designed headphones are the most common.\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Corvus is a planet dominated by forests on its one, large continent, and that is where the Rodenians developed. They had attained access to advanced levels of biosciences before first contact was made, three rushes ago, though they lagged behind in many other disciplines. No atmospheric craft had yet been devised. Self-drawing crossbows were their main form of self-defense. Slug-throwers had not even been invented. Power was siphoned from the roots of certain types of trees, a naturally occurring form of solar power.");
+	outputCodex("\n\nAt first, they welcomed outsiders with open arms... until more and more of their people vanished in the night, taken with a whimper and wiggle. The UGC did little to protect them from the dangers of the wider galaxy - pirates, slavers, and criminals - so the rodenians took matters into their own hands. They traded away their expertise in gene-modification for guns - big ones, and threatened to shoot down any ship who landed without their express consent. The crackling reports of their cannons made good on those threats.");
+	outputCodex("\n\nThe mouse-people of Corvus had learned a painful lesson about their own vulnerability, one they would not soon forget. With their home relatively secure from unwanted intervention, they allowed themselves to establish colonies on other worlds, but only after arming their colonists with the finest guns and the toughest helmets they could buy. Their caution has limited their influence on the galactic scale, but it has kept them safe for the most part.");
+	outputCodex("\n\nPirates prize them as easily programmed pleasure slaves. There is no need for drugs with side effects or expensive neurotherapy. A few slow fucks with a looping audio file playing in the background is all that’s needed to convert a proud rodenian into a simpering slave.");
+
+	outputCodex(blockHeader("Psychics"));
+	outputCodex("In recent years, rodenians have begun displaying a heretofore unforeseen talent for all things psychic. Skills in telepathy and telekinesis are most common, but odd reports of clairvoyants have cropped up as well. Rodenian ambassadors categorically deny any allegations of mass genetic modification of their people, instead claiming it as a natural evolution against predation. Experts in the field suggest that such a change cannot be explained by natural phenomena, but since access to Corvus is tightly restricted, no real investigation has been conducted.");
+	outputCodex("\n\nThese frightening powers rare among most core species, and frequently only a result of surgical implantation or extreme genetic manipulation. That a member race of the UGC would suddenly begin to show widespread psionic talent has caused many to reevaluate their opinion of the oft-ignored rodenians. Some theorize that this is the beginning of their rise to prominence. Others assume it is a destabilizing act that will bring about the big-eared mice’s downfall. Only time will tell.\n\n");
+	CodexManager.viewedEntry("Rodenians");
+}
+
+
 public function roehmCodexEntry():void
 {
 	clearOutputCodex();
@@ -815,7 +864,7 @@ public function saeriCodexEntry():void
 	outputCodex("<i>Butterfly girls. Second form of caterpillar-like siel.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Saeri");
 	outputCodex("\n<b>Taxonym:</b> Saeri");
-	outputCodex("\n<b>Genders:</b> Male, Female");
+	outputCodex("\n<b>Sexes:</b> Male, Female");
 	outputCodex("\n<b>Sex:</b> Male, Female");
 	outputCodex("\n<b>Height:</b> Fully matured saeri commonly range from five feet to just over six.");
 	outputCodex("\n<b>Weight:</b> Saeri are very light for their size, ranging between forty to sixty kilos.");
@@ -2121,7 +2170,7 @@ public function myrFungusCodex():void
 	outputCodex(header("Myr Fungi"));
 	if(silly) outputCodex("<i>Gross.</i>\n\n");
 	outputCodex("<b>Name:</b> Ophiocordyceps Myrmedius (Myr Fungus)");
-	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
+	outputCodex("\n<b>Sexes:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
 	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
 	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal “queens” can weigh up to a few hundred pounds at the base.");
 	outputCodex("\n<b>Hair:</b> Normal manifestations have no hair. Instead, their heads are covered by mushroom “hats.” Fungal queens have clear hair that pulses with colored light.");
@@ -2266,7 +2315,7 @@ public function essyraCodexEntry():void
 	
 	outputCodex(header("Essyras"));
 	outputCodex("<b>Name:</b> Essyra (Singular), Essyras (Plural)");
-	outputCodex("\n<b>Genders:</b> Female and Hermaphrodites");
+	outputCodex("\n<b>Sexes:</b> Female and Hermaphrodites");
 	outputCodex("\n<b>Height:</b> 6\' 6\" to 7\' 0\"");
 	outputCodex("\n<b>Hair:</b> Snow-white, pink, or light blue");
 	outputCodex("\n<b>Eyes:</b> Pink, human in shape and size");
@@ -2312,7 +2361,7 @@ public function frostwyrmCodexEntry():void
 	
 	outputCodex(header("Frostwyrm"));
 	outputCodex("<b>Name:</b> Unknown (Colloquially: Frostwyrm)");
-	outputCodex("\n<b>Genders:</b> Unknown. Assumed Male and Female.");
+	outputCodex("\n<b>Sexes:</b> Unknown. Assumed Male and Female.");
 	outputCodex("\n<b>Height:</b> 15\' to 20\'");
 	outputCodex("\n<b>Scales:</b> Snow white, flecked with glistening blue and silver");
 	outputCodex("\n<b>Eyes:</b> Four flame-red eyes");
@@ -2411,7 +2460,7 @@ public function lurelingsCodexEntry():void
 	showBust("9999");
 	
 	outputCodex(header("Lureling"));
-	outputCodex("<b>Genders:</b> Male and Female");
+	outputCodex("<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> 8\' 0\" to 8\' 8\" at the shoulders. Roughly 9\' from tip to tail.");
 	outputCodex("\n<b>Hair:</b> None.");
 	outputCodex("\n<b>Eyes:</b> Large, featureless black orbs.");
@@ -2467,7 +2516,7 @@ public function milodanCodexEntry():void
 	
 	outputCodex(header("Milodan"));
 	outputCodex("<b>Name:</b> Milodan");
-	outputCodex("\n<b>Genders:</b> Males and Females, Rare Hermaphrodites");
+	outputCodex("\n<b>Sexes:</b> Males and Females, Rare Hermaphrodites");
 	outputCodex("\n<b>Height:</b> 5\' 10\" to 7\' 5\". Males are significantly taller than females.");
 	outputCodex("\n<b>Hair:</b> Milodans have longer patches of fur atop their heads, which can vary in color from their fur patterns. Typical coloration includes black, light or dark blue, orange, or gray.");
 	outputCodex("\n<b>Eyes:</b> Slitted, feline eyes. Coloration is similar to that of humans.");
@@ -2510,7 +2559,7 @@ public function divraniCodexEntry():void
 	
 	outputCodex(header("Divrani"));
 	outputCodex("<b>Name:</b> Divrani (singular and plural)");
-	outputCodex("\n<b>Genders:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
+	outputCodex("\n<b>Sexes:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
 	outputCodex("\n<b>Height:</b> Divrani are short compared to most other Xamdam races, with both sexes standing between 4\' 10\" and 5\' 5\".");
 	outputCodex("\n<b>Hair:</b> Naturally bald. Once bonded, divrani grow a thick pate of slender, styleable flowering vines from their scalps. Usually green, but browns, whites, and blue-green colors are not uncommon.");
 	outputCodex("\n<b>Skin:</b> Divrani skin is naturally made up of body-wide soft, supple scales similar to those of an ovir. Upon bonding with a radglow plant, their skin becomes much smoother and covered with a thin gloss of oil. It takes on a very latex-like quality, and the divrani’s tactile sensation increases dramatically.");
@@ -2575,7 +2624,7 @@ public function hyraxxiCodexEntry():void
 	
 	outputCodex(header("Hyraxxi"));
 	outputCodex("<b>Name:</b> Hyraxx (Singular), Hyraxxi (Plural, Adjectival)");
-	outputCodex("\n<b>Genders:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");
+	outputCodex("\n<b>Sexes:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");
 	outputCodex("\n<b>Height:</b> Average 6\' 3\" to 6\' 9\" (Male) or 6\' 10\" to 7\' 5\" (Female)");
 	outputCodex("\n<b>Hair:</b> Thick, lustrous, and extremely soft hair covers the head, and similar fur coats the forelimbs and tail. Pubic and facial hair is noted to be exceptionally silky and smooth. Hair colors range from stone gray to dark browns and blues. Some rare cases of cyan blue or cream-white occur, especially in females.");
 	outputCodex("\n<b>Skin:</b> Hyraxx have exposed skin on their upper limbs, torsos, and faces. Most Hyraxx are dark-skinned, ranging from coal-black to tans and brown. A minority population has skin in shades of gray, with lighter colorations tending towards heavy freckling due to sun exposure.");
@@ -2945,6 +2994,32 @@ public function rubberMadeCodex():void
 	outputCodex("\n\nWhen exposed to moisture and sufficiently agitated, the gum-like product will spread rapidly, synthetically bonding with the subject’s underlying skin and fur. This produces a thin, latex-like coating over much if not all of a subject’s body. Repeat use creates subsequently thicker layers, potentially subsuming body hair and fur. J’ejune representatives caution against the accidental ingestion of Rubber-Made.");
 	outputCodex("\n");
 	CodexManager.viewedEntry("Rubber-Made");
+}
+public function muffstickCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Muffstick"));
+	outputCodex("<b>Manufactured By:</b> JoyCo");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("After an incredibly positive reception of the surprising side effects of Clippex, a nipple transforming specialist mod, JoyCo decided to create a similar product, specifically designed to change one’s pussy lips into those of a mouth. It has since become exceedingly popular among oral enthusiasts and has gotten great feedback from the more adventurous couples, praising it as the new best way of kissing.");
+	outputCodex("\n\nThe Muffstick was released in a brand new, more playful looking packaging. Although it was a blatant attempt of JoyCo’s marketing team to appeal to the customers using a more ‘cute’ approach, the product was met with splendid reviews from the modding community, with most reviewers comparing it favorably to the company’s usual ‘mundane and uninspired’ image. This has given JoyCo an incentive to consider the potential profitability of more colorful advertisement. However, with Muffstick being a rather new product, only time will tell if this approach will bring the company long-term success and convince its CEOs to continue along this path.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Muffstick");
+}
+public function fizzyfixCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("FizzyFix"));
+	outputCodex("<b>Manufactured By:</b> JoyCo");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Although most customers enjoyed having an erogenous tongue inside of their new ‘mouth’ after applying Muffstick, some found it too intense or just distasteful, not liking the idea of having an extra organ in their canal. Always aiming to please their customers and maximize their profits, JoyCo swiftly created the FizzyFix to address those concerns. However, due to a limited testing time, the product wasn‘t free from a major side-effect of its own that occurs when someone without a tongue in their cavern uses the pill. Thanks to the tingly pleasurable feeling it gives off, which is almost guaranteed to end just before achieving one’s climax, the FizzyFix quickly grew in popularity in various circles. Some found it to be a fantastic type of foreplay, others enjoyed the use of it in BDSM. The product designed to fix what some people thought of as an issue quickly became more popular than the Muffstick itself. Once again, not one to throw away a good business opportunity, JoyCo decided not only to always include a FizzyFix pill with the Muffstick, but to also have it be sold separately for a small amount of credits.");
+	outputCodex("\n");
+	CodexManager.unlockEntry("Muffstick");
+	CodexManager.viewedEntry("FizzyFix");
 }
 
 

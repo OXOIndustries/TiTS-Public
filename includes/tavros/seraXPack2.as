@@ -3386,6 +3386,7 @@ public function seraBitcheningStoreRandomize():void
 	groupB.push(new Circumscriber());
 	groupB.push(new Equilicum());
 	groupB.push(new SemensFriend());
+	groupB.push(new SweetTreat());
 	// Group C
 	// Clippex, Lactaid, Mighty Tight, Anusoft, Magic Milker, Pussyblossom
 	var groupC:Array = [];
@@ -3397,6 +3398,7 @@ public function seraBitcheningStoreRandomize():void
 	groupC.push(new MagicMilker());
 	groupC.push(new Pussybloom());
 	groupC.push(new Pussyblossom());
+	groupC.push(new Muffstick());
 	// Group D
 	// Throbb, Gush, Rubber Made, ClearYu, DumbFuck, Rainbotox
 	var groupD:Array = [];

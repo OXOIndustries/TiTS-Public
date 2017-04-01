@@ -4881,7 +4881,7 @@
 				}
 				else if(lips <= 8)
 				{
-					if(rand(3) == 0) result += "‘o’ shaped";
+					if(rand(3) == 0) result += "‘O’ shaped";
 					else if(rand(2) == 0) result += "whorish";
 					else result += "permanently puckered";
 				}
@@ -5104,6 +5104,8 @@
 			}
 			if(hasTongueFlag(GLOBAL.FLAG_PREHENSILE))
 				adjectives.push("talented", "rapacious", "ravenous", "flexible", "voracious", "prehensile");
+			if(hasTongueFlag(GLOBAL.FLAG_TAPERED))
+				adjectives.push("tapered", "pointy");
 			if(hasTongueFlag(GLOBAL.FLAG_HOLLOW))
 				adjectives.push("tubular", "hollow");
 			if(hasTongueFlag(GLOBAL.FLAG_SMOOTH))
@@ -5114,6 +5116,8 @@
 				adjectives.push("sticky", "glutinous", "viscous");
 			if(hasTongueFlag(GLOBAL.FLAG_NUBBY))
 				adjectives.push("textured", "rough", "abrasive", "raspy");
+			if(hasTongueFlag(GLOBAL.FLAG_SQUISHY))
+				adjectives.push("squishy", "soft");
 			if(hasTongueFlag(GLOBAL.FLAG_LUBRICATED))
 			{
 				adjectives.push("lubricated", "wet", "slippery");
@@ -8396,6 +8400,30 @@
 			}
 			return index;
 		}
+		public function inflateVagina(arg: int = 0): void
+		{
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(!vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			{
+				vaginas[arg].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+			}
+		}
+		public function deflateVagina(arg: int = 0): void
+		{
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+			}
+			else if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+			}
+		}
 		public function vaginalPuffiness(arg: int = 0): Number {
 			if (vaginas.length == 0) return 0;
 			var puffScore:Number = 0;
@@ -8408,6 +8436,7 @@
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
 			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
+			if(vaginas[arg].type == GLOBAL.TYPE_MOUTHGINA) puffScore += 1;
 			
 			return puffScore;
 		}
@@ -8515,6 +8544,43 @@
 			capacity *= elasticity;
 			if(isTaur()) capacity += 100;
 			return capacity;
+		}
+		public function inflateAsshole(): void
+		{
+			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(!ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			{
+				ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+			}
+		}
+		public function deflateAsshole(): void
+		{
+			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+			}
+			else if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+			}
+		}
+		public function analPuffiness(): Number {
+			var puffScore:Number = 0;
+			if(hasStatusEffect("Mimbrane Ass"))
+			{
+				if(statusEffectv3("Mimbrane Ass") > 3) puffScore += 1;
+				if(statusEffectv3("Mimbrane Ass") >= 8) puffScore += 1;
+				if(statusEffectv3("Mimbrane Ass") >= 13) puffScore += 1;
+			}
+			if(ass.hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
+			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
+			
+			return puffScore;
 		}
 		//Goddamnit Savin
 		public function cockCapacity(x:int = -1): Number
@@ -9651,6 +9717,11 @@
 					vaginas[slot].minLooseness = 1;
 					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 					vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					break;
+				case GLOBAL.TYPE_MOUTHGINA:
+					vaginas[slot].clits = 2;
+					vaginas[slot].vaginaColor = lipColor;
+					vaginas[slot].addFlag(GLOBAL.FLAG_TONGUE);
 					break;
 			}
 		}
@@ -11544,7 +11615,7 @@
 			{
 				if (descripted > 0) desc += ", ";
 				if (!ass.hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
-				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "pumped", "pillowy"]);
+				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "bloated", "pillowy"]);
 				descripted++;
 			}
 			if(!simple && descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
@@ -11674,6 +11745,11 @@
 		public function hasSoftButt():Boolean
 		{
 			return (hasPerk("Buttslut") || hasPerk("Bubble Butt") || tone < 30);
+		}
+		public function buttTone():Number
+		{
+			if(hasSoftButt()) return (tone > 20 ? 20 : (tone/2));
+			return tone;
 		}
 		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
@@ -12918,6 +12994,7 @@
 				else if (type == GLOBAL.TYPE_DEER) desc += "deer ";
 				else if (type == GLOBAL.TYPE_SHARK) desc += "shark ";
 				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
+				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -13078,6 +13155,17 @@
 					else
 						desc += RandomInCollection(["pig-pussy","swine-pussy","sow-pussy","animal-pussy","swine-slit","sow-slit","pig-cunt"]);
 				}
+				else if (type == GLOBAL.TYPE_MOUTHGINA)
+				{
+					if (!simple)
+					{
+						var mouthAdj:Array = ["mouth-like", "soft", "kissy", "exotic"];
+						if(kGAMECLASS.silly) mouthAdj.push("liptastic");
+						desc += (RandomInCollection(mouthAdj) + " " + RandomInCollection(["pussy", "twat", "cunt", "honeypot", "muff"]));
+					}
+					else
+						desc += RandomInCollection(["mouthgina","mouthgina","mouth-pussy","mouth-gina","mouth-muff", "maw"]);
+				}
 				else
 				{
 					if (!simple)
@@ -13211,6 +13299,21 @@
 				adjectiveCount++;
 				wetnessDisplayed = true;
 			}
+			// Mouthginas Override
+			if(rand(2) == 0 && vaginas[vaginaNum].type == GLOBAL.TYPE_MOUTHGINA && adjectiveCount == 0)
+			{
+				var mouthAdj:Array = [];
+				var mouthPuff:Number = vaginalPuffiness(vaginaNum);
+				if(mouthPuff <= 1) mouthAdj.push("nice", "petite", "supple");
+				else if(mouthPuff <= 2) mouthAdj.push("pouty", "puffy", "cushiony", "plump", "succulent", "juicy", "luscious", "voluptuous", "bee-stung", "swollen");
+				else if(mouthPuff <= 3) mouthAdj.push("hypnotic", "dazzling", "fat", "exquisitely large", "hyper-engorged", "constantly pursed", "bloated", "pillowy", "whorish", "‘O’-shaped", "permanently puckered");
+				else mouthAdj.push("jacquesian", "scylla-tier", "impossibly large", "universe-distorting");
+				if(mouthAdj.length > 0)
+				{
+					desc += RandomInCollection(mouthAdj);
+					adjectiveCount++;
+				}
+			}
 			// Mimbrane plumpness for primary vagina
 			if(rand(2) == 0 && vaginaNum == 0 && statusEffectv3("Mimbrane Pussy") > 3 && adjectiveCount == 0)
 			{
@@ -13247,9 +13350,21 @@
 			//Pussy pump - 50% addition of no other descs - doesn't stack well with loose/wet.
 			else if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
 			{
+				var pumpAdj:Array = [];
 				if (adjectiveCount > 0) desc += ", ";
-				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy", "slightly pumped"]);
-				else desc += RandomInCollection(["bulgy", "swollen", "plump", "pudgy", "permanently pumped", "jiggly", "wobbly", "pump-enhanced", "prodigious", "obscenely swollen", "lewdly bulging","bulging","pump-fattened"]);
+				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED))
+				{
+					pumpAdj.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("slightly pumped");
+					else pumpAdj.push("slightly plump");
+				}
+				else
+				{
+					pumpAdj.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else pumpAdj.push("permanently plump", "bloated", "fat");
+				}
+				desc += RandomInCollection(pumpAdj);
 				adjectiveCount++;
 			}
 			//BIMBO SPECIALS NEXT

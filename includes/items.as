@@ -368,6 +368,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;
 	else if(shopkeep is Sera) flags["PURCHASED_FROM_SERA"] = 1;
 	else if(shopkeep is Ceria) flags["CERIA_BOUGHT"] = 1;
+	else if(shopkeep is Mabbs) flags["MABBS_PURCHASES"] = 1;
 	
 	//Suma swap
 	if(arg is SumaCream)
