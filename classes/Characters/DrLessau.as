@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.Items.Miscellaneous.TerranTreats;
 	import classes.Items.Transformatives.DoveBalm;
 	import classes.Items.Transformatives.Hornitol;
+	import classes.Items.Transformatives.Pickmentation;
 	import classes.Items.Transformatives.PleasurePalette;
 	import classes.Items.Transformatives.RainbowGaze;
 	import classes.kGAMECLASS;
@@ -32,6 +33,7 @@ package classes.Characters
 			this.inventory.push(new TerranTreats());
 			this.inventory.push(new DoveBalm());
 			this.inventory.push(new Hornitol());
+			this.inventory.push(new Pickmentation());
 			this.inventory.push(new PleasurePalette());
 			this.inventory.push(new RainbowGaze());
 			
