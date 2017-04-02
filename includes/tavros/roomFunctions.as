@@ -187,6 +187,10 @@ public function redlightNEBonus():void
 	}
 	else output("To the east is the unmistakable white glare of Sentient Acquisitions.");
 }
+public function redlightSEBonus():void
+{
+	vendingMachineButton(0, "XXX");
+}
 
 public function anonsBarAddendums():Boolean {
 	if (saendraBarAddendum(3))

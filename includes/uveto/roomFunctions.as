@@ -939,7 +939,7 @@ public function uvetoIrson3():void
 	output("\n\nThe drone gets thumped away by something, and two pairs of furry arms grab Steph’s shoulders, hauling her away. Off-screen, a yipping voice cries, <i>“Seconds! Much fuck; so breed!”</i>");
 	output("\n\n<i>“BREED!”</i> several other voices echo.");
 	output("\n\n<i>“Tune in next week for - oh no!”</i> Steph yelps as several dark doggy-cocks flop onto her face, even as she’s being hauled off. Before one of them can plug itself in her lips, she manages to shout <i>“Uh, commercials! See ya next time!”</i>");
-	output("\n\n...Somehow she didn’t seem too distressed about her fate, there. Maybe she liked the korgonnes’ <i>“hugs”</i> a little too much...");
+	output("\n\n...Somehow she didn’t seem too distressed about her fate, there. Maybe she liked the korgonnes’ “hugs” a little too much...");
 	
 	watchStephEpisodeBroadcast("STEPH_DARGONED");
 	
@@ -956,8 +956,17 @@ public function uvetoStationLoungeFunc():Boolean
 		output("\n\nGalina and Marina are lounging around in the cafe, probably on their lunch break. Though they’re happily chattering away over their plates and fooling around with data-pads loaded with more science than you can shake a textbook at, they’re perfectly willing to stop and flash you inviting smiles when you pass by.");
 		addButton(0, "Huskars", annoUvetoHuskarFoursomeRepeat, undefined, "Huskar Twins", "Go over and see if you can stir up some sexy trouble with the bimbo-geniuses.");
 	}
-	vendingMachineButton(1, "J'ejune");
+	vendingMachineButton(1, "XXX");
 
+	return false;
+}
+
+public function uvetoExecLobbyBonus():Boolean
+{
+	vendingMachineButton(1, "J'ejune");
+	
+	//setNavDisabled(NAV_EAST_DISABLE);
+	
 	return false;
 }
 

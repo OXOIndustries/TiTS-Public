@@ -53,7 +53,7 @@ public function barBonusFunction():Boolean
 	}
 	addButton(1,"Watch TV",stephIrsonEpisodeTwo,undefined,"Watch TV","Watch the television. It looks like an episode of Steph Irson: Galactic Hunter is on.");
 	roamingBarEncounter(2);
-	vendingMachineButton(3, "J'ejune");
+	vendingMachineButton(3, "XXX");
 	return false;
 }
 //Order Food

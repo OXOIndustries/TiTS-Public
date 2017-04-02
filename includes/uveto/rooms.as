@@ -226,10 +226,7 @@ public function initUvetoRooms():void
 	rooms["UVS H7"].southExit = "UVS H9";
 	rooms["UVS H7"].westExit = "UVS F7";
 	rooms["UVS H7"].moveMinutes = 1;
-	/*rooms["UVS H7"].runOnEnter = function():Boolean {
-		setNavDisabled(NAV_EAST_DISABLE);
-		return false;
-	};*/
+	rooms["UVS H7"].runOnEnter = uvetoExecLobbyBonus;
 	rooms["UVS H7"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS H7"].addFlag(GLOBAL.PUBLIC);
 

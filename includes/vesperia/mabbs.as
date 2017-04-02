@@ -148,7 +148,7 @@ public function mabbsPostShopping():void
 {
 	clearOutput();
 	showMabbs();
-	output("Mabbs discretely tucks her bag away. <i>“Jammin. Got anything else ya need from me and my magic bag?”</i>");
+	output("Mabbs discretely tucks her bag away. <i>“Jammin’. Got anything else ya need from me and my magic bag?”</i>");
 	mabbsMenu();
 }
 
@@ -184,7 +184,7 @@ public function leaveMabbsBehind():void
 	clearOutput();
 	showMabbs();
 	output("You bid your farewell and make to leave.");
-	output("\n\n<i>“Cya, " + pc.mf("Mistah","Miss") + " Seal. Come my way whenever you got creds burnin’ a hole in your threads.”</i> Mabbs reaches up to her ear and cranks the volume back up.");
+	output("\n\n<i>“C’ya, " + pc.mf("Mistah","Miss") + " Seal. Come my way whenever you got creds burnin’ a hole in your threads.”</i> Mabbs reaches up to her ear and cranks the volume back up.");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

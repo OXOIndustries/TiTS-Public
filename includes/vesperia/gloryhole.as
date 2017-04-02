@@ -44,6 +44,7 @@ public function canadiaGloryhole():Boolean
 		if(9999 == 0) output(" Quiet moans emanate from a clearly masturbating occupant.");
 		addButton(0,"Use Hole",mountGloryhole,undefined,"Use the gloryhole, and the person working inside.")
 	}
+	vendingMachineButton(1, "XXX");
 	return false;
 }
 

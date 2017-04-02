@@ -22,6 +22,10 @@ public function vendingMachineButton(btnSlot:int = 0, machine:String = "energy")
 			output("\n\nA vending machine sits along the nearby wall, its pastel colors trying just a bit too hard to be cheery. A big red sticker on the upper-right proudly declares that the products within are “As Seen On Holovid”.");
 			addButton(btnSlot, "V.Machine", approachItemVendingMachine, machine, "Vending Machine", "Check out the J’ejune vending machine.");
 			break;
+		case "XXX":
+			output("\n\nThere’s a stereotypical adult convenience dispenser placed in a shaded spot. It’s black, headlined with an XXX rating written in red neon lights, but pretty much bland in design otherwise. If nothing else, it’s sure to cover most of your needs for a heated night.");
+			addButton(btnSlot, "V.Machine", approachItemVendingMachine, machine, "Vending Machine", "Check out the XXX vending machine.");
+			break;
 	}
 	
 	return false;
@@ -131,12 +135,36 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			
 			chars["VENDINGMACHINE"].inventory.push(new LemonLoftcake());
 			chars["VENDINGMACHINE"].inventory.push(new StrawberryShortcake());
-			chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.00;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
 			
 			shopkeepBackFunctor = jejuneMachineBack;
+			break;
+		// A dispenser selling adult goods. Specifically it could be used for items like condensol and omega oil. Things that can unlock scenes or temporary effects for smexing.
+		// You’ll find it in any bar/pub in game.
+		case "XXX":
+			author("Shadefalcon");
+			
+			chars["VENDINGMACHINE"].originalRace = "XXX";
+			chars["VENDINGMACHINE"].keeperBuy = "You walk over to the dispenser, " + (pc.exhibitionism() >= 66 ? "a confident stride as you get the occasional looks by the murmuring bystanders" : "trying your best not to feel overly conscious of the occasional looks you get by the murmuring bystanders" ) + ". When you finally reach the black box you firmly press a button on it’s front, opening a holo screen which displays the many adult wares sold by the vending machine.\n";
+			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
+			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
+			
+			chars["VENDINGMACHINE"].inventory.push(new Sterilex());
+			chars["VENDINGMACHINE"].inventory.push(new OmegaOil());
+			chars["VENDINGMACHINE"].inventory.push(new Condensol());
+			chars["VENDINGMACHINE"].inventory.push(new YTRLube());
+			chars["VENDINGMACHINE"].inventory.push(new MightyTight());
+			chars["VENDINGMACHINE"].inventory.push(new EasyFit());
+			chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
+			//chars["VENDINGMACHINE"].inventory.push(new Allure());
+			chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
+			
+			chars["VENDINGMACHINE"].sellMarkup = 1.25;
+			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
+			
+			shopkeepBackFunctor = null;
 			break;
 	}
 	
@@ -174,5 +202,15 @@ public function jejuneMachineBack():void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function xxxMachineBuyGo(item:ItemSlotClass):void
+{
+	showBust("");
+	showName("ITEM\nPURCHASED!");
+	author("Shadefalcon");
+	
+	output("You select your desired item and swipe your Codex across the dispenser’s scanner. It voices a delighted beep as it charges your account, and soon after the black box begins to hum calmly, the replicator inside it hard at work. A moment later you hear an audible thump as the product falls into the bottom of the vending machine. You reach down and take the " + item.longName + " out of the dispenser, pocketing it away for later usage.");
+	output("\n\n");
 }
 
