@@ -36,6 +36,11 @@ package classes.Resources.Busts
 		public var Bust_GOO_KNIGHT_BLUE:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/goo_knight_green.png", mimeType = "image/png")]
 		public var Bust_GOO_KNIGHT_GREEN:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/goo_knight_blue_nude.png", mimeType = "image/png")]
+		public var Bust_GOO_KNIGHT_BLUE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/goo_knight_green_nude.png", mimeType = "image/png")]
+		public var Bust_GOO_KNIGHT_GREEN_NUDE:Class;
+
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/krym.png", mimeType = "image/png")]
 		public var Bust_KRYM:Class;
@@ -89,6 +94,10 @@ package classes.Resources.Busts
 			public var Full_GOO_KNIGHT_BLUE:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/goo_knight_green.png", mimeType = "image/png")]
 			public var Full_GOO_KNIGHT_GREEN:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/goo_knight_blue_nude.png", mimeType = "image/png")]
+			public var Full_GOO_KNIGHT_BLUE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/goo_knight_green_nude.png", mimeType = "image/png")]
+			public var Full_GOO_KNIGHT_GREEN_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/krym.png", mimeType = "image/png")]
 			public var Full_KRYM:Class;
