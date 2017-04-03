@@ -22,6 +22,16 @@ public function puntToShip():Boolean
 	addButton(0,"Next",mainGameMenu);
 	return true;
 }
+public function exitToShipLocation():Boolean
+{
+	rooms[currentLocation].planet = rooms[shipLocation].planet;
+	rooms[currentLocation].system = rooms[shipLocation].system;
+	if (currentLocation != shipLocation)
+	{
+		addButton(7, "Exit", move, (rooms[shipLocation].hasFlag(GLOBAL.NUDITY_ILLEGAL) ? "SHIP INTERIOR" : shipLocation));
+	}
+	return false;
+}
 
 public function liftMove(destination:String):void
 {

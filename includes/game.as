@@ -1525,8 +1525,12 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 			clearOutput();
 			output("Nudity is illegal in that location! You’ll have to cover up if you want to go there.");
 			clearMenu();
-			addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
-			addButton(14, "Back", mainGameMenu);
+			if(currentLocation == "SHIP INTERIOR") addButton(0, "Next", mainGameMenu);
+			else
+			{
+				addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
+				addButton(14, "Back", mainGameMenu);
+			}
 			return;
 		}
 	}

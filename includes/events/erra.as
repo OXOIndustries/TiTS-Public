@@ -846,8 +846,9 @@ public function walkiesWithErra2(cock:Boolean):void
 	IncrementFlag("ERRA_WALKIES");
 	IncrementFlag("ERRA_SEXED");
 	pc.exhibitionism(2);
+	currentLocation = shipLocation;
 	clearMenu();
-	addButton(0,"Next",move,shipLocation);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Cuddle
@@ -901,8 +902,9 @@ public function erraCuddleScenes2():void
 	processTime(75);
 	pc.energy(100);
 	IncrementFlag("ERRA_CUDDLED");
+	currentLocation = shipLocation;
 	clearMenu();
-	addButton(0,"Next",move,shipLocation);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Getting the Collar
