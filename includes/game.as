@@ -1366,18 +1366,38 @@ public function landingEventCheck(arg:String = ""):Boolean
 	return false;
 }
 
-public function showerMenu():void {
+public function showerMenu(special:String = "ship"):void {
 	clearOutput();
-	output("You find yourself in the ship’s shower room. What would you like to do?");
+	output("You find yourself in the " + special + "’s shower room. What would you like to do?");
 	clearMenu();
 	addButton(0, "Shower", showerOptions, 0, "Shower", "Take a shower and wash off any sweat or grime you might have.");
-	if (pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
-	addButton(14, "Back", mainGameMenu);
+	if (special == "ship" && InShipInterior(pc) && pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
+	showerDoucheToggleButton(5);
+	addButton(14, "Back", showerExit);
+}
+public function showerDoucheToggleButton(btnSlot:int = 5):void
+{
+	if (pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") + pc.statusEffectv1("Orally-Filled") <= 0) return;
+	if (pc.hasStatusEffect("Shower Douche Toggle")) addButton(btnSlot, "Rinse: ON", showerDoucheToggle, undefined, "Use Douche", "Clean out the fluids that have been pumped into you. Select to turn rinsing off.");
+	else addButton(btnSlot, "Rinse: OFF", showerDoucheToggle, undefined, "No Douche", "Keep the fluids that are inside you for now. Select to turn rinsing on.");
+}
+public function showerDoucheToggle(btnSlot:int = 5):void
+{
+	if (pc.hasStatusEffect("Shower Douche Toggle")) pc.removeStatusEffect("Shower Douche Toggle");
+	else pc.createStatusEffect("Shower Douche Toggle");
+	showerDoucheToggleButton(btnSlot);
+}
+public function showerExit():void
+{
+	pc.removeStatusEffect("Shower Douche Toggle");
+	mainGameMenu();
 }
 
 public function showerOptions(option:int = 0):void
 {
-	if(seranigansTrigger("shower")) return;
+	var showerInShip:Boolean = InShipInterior(pc);
+	
+	if(showerInShip && seranigansTrigger("shower")) return;
 	
 	clearOutput();
 	clearMenu();
@@ -1386,13 +1406,21 @@ public function showerOptions(option:int = 0):void
 	if (option == 0)
 	{
 		author("Couch");
-		output("Adventuring is fun and all, but it also leaves a [pc.guy] feeling dirty at the end of the day");
-		if (pc.libido() > 50) output(", and not in the good way");
-		output(". You decide to hit the showers, stripping off your gear with a sigh of relief as you take a moment just to stretch and enjoy being");
+		if(showerInShip)
+		{
+			output("Adventuring is fun and all, but it also leaves a [pc.guy] feeling dirty at the end of the day");
+			if (pc.libido() > 50) output(", and not in the good way");
+			output(". You decide to hit the showers");
+		}
+		else output("You decide to take a shower");
+		output(", stripping off your gear with a sigh of relief as you take a moment just to stretch and enjoy being");
 		if (pc.isNude()) output(" fully");
 		else output(" truly");
 		output(" nude.");
-		output("\n\nThe water comes out icy cold, sending a shiver down your spine. You think to yourself that you really should spring for a better temperature regulator, carefully adjusting the dial back and forth until finding that sweet spot between freezing and scalding where the water is blissfully warm. Now you can finally relax, setting to applying a good dose of shampoo to your [pc.hair]. Your [pc.skinFurScalesNoun] comes next, your hands running up and down your front to coat every last inch in a nice thick lather.");
+		output("\n\nThe water comes out");
+		if(showerInShip) output(" icy cold, sending a shiver down your spine. You think to yourself that you really should spring for a better temperature regulator, carefully adjusting the dial back and forth until finding that sweet spot between freezing and scalding where the water is blissfully warm. Now you can finally relax, setting to applying");
+		else output(" in perfect streams and feels blissfully warm down your spine - not too hot, and not too cold - allowing you to let loose and relax. Now that you are settled in, you apply");
+		output(" a good dose of shampoo to your [pc.hair]. Your [pc.skinFurScalesNoun] comes next, your hands running up and down your front to coat every last inch in a nice thick lather.");
 		if (pc.biggestTitSize() >= 4) output(" You can’t help but take a moment just to grope your [pc.chest], licking your lips at how good it feels to be so busty.");
 		if (pc.hasWings()) output(" Now for the fun part.");
 		output(" You carefully apply more body wash to a brush and reach with it over your shoulder to scrub your back.");
@@ -1408,6 +1436,23 @@ public function showerOptions(option:int = 0):void
 		if (pc.buttTone() >= 30 && pc.buttRating() < 4) output(", relishing the hard, taut muscles you’ve worked so hard to achieve");
 		else if (pc.buttTone() < 30 && pc.buttRating() >= 10) output(", unable to resist topping it off with a good spank");
 		output(".");
+		
+		if(pc.hasStatusEffect("Shower Douche Toggle"))
+		{
+			output("\n\n");
+			if(pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") > 0)
+			{
+				output("You take the opportunity to relax your muscles fully, flaring your");
+				if(pc.statusEffectv1("Anally-Filled") > 0 && pc.statusEffectv1("Vaginally-Filled") > 0) output(" holes");
+				else if(pc.statusEffectv1("Vaginally-Filled") > 0) output(" puss" + (pc.vaginas.length == 1 ? "y" : "ies"));
+				else output(" anus");
+				output(" to allow the thick payload");
+				if(pc.statusEffectv1("Anally-Filled") > 0 && pc.statusEffectv1("Vaginally-Filled") > 0) output("s");
+				output(" you’re carrying to slowly ooze out. You whisk it all from your privates with brisk swishes of warm water, leaving yourself feeling clean and pleasantly empty. ");
+			}
+			if(pc.statusEffectv1("Orally-Filled") > 0) output("There’s a bottle of mouthwash in here, and you take the opportunity to flannel around your [pc.lips] before taking a swig, swilling it to one cheek then the other before spitting down the plughole. Minty fresh!");
+		}
+		
 		output("\n\nEven after you’re fully rinsed off, you let yourself stay under the water for a few minutes longer, just enjoying the warmth running down your body. There’s nothing like a good shower to just melt all the tension away.");
 		if (pc.lust() >= 33)
 		{
@@ -1435,7 +1480,7 @@ public function showerOptions(option:int = 0):void
 		else
 		{
 			output("\n\nFinally you feel you’ve gotten all the relaxation you can and shut off the water, stepping out and toweling yourself off. You slip your gear on with a refreshed smile, squeaky clean and ready to resume your adventure.");
-			addButton(0, "Next", mainGameMenu);
+			addButton(0, "Next", showerExit);
 		}
 		
 		pc.shower();

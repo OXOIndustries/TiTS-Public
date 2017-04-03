@@ -3339,6 +3339,7 @@ public function shipShowerFappening(scene:String = ""):void
 	clearOutput();
 	
 	var n:int = 0;
+	var showerInShip:Boolean = InShipInterior(pc);
 	
 	// ButtFuck
 	if (scene == "ButtFuck")
@@ -3385,7 +3386,10 @@ public function shipShowerFappening(scene:String = ""):void
 		if (pc.cumQ() >= 1000) output(" You’re practically outpacing the shower itself with your hose of a cock, every spurt flowing up your shaft coming out with such pressure that you almost feel as though you’ll cum again just from the act of cumming.");
 		if (pc.hasVagina()) output(" Below you feel [pc.eachVagina] add your feminine juices to the mix, a stream of [pc.girlCumColor] that accompanies the [pc.cumColor] spray from your cock.");
 		output(" You tilt your head back and let your eyelids flutter, relishing your messy orgasm.");
-		output("\n\nThankfully your choice of location means even the messiest orgasm is easy to clean up. You use the shower nozzle to hose down the side, and yourself, making sure you don’t leave any lotion behind on your dick. Once you’ve cleaned up, you step out of the shower and towel off, your loins satiated and your body cleaned up and ready for your next adventure.");
+		output("\n\nThankfully your choice of location means even the messiest orgasm is easy to clean up. You use the shower nozzle to hose down the side, and yourself, making sure you don’t leave any lotion behind on your dick. Once you’ve cleaned up, you step out of the shower and towel off, your loins satiated and your body cleaned up and");
+		if(showerInShip) output(" ready for your next adventure");
+		else output(" ready for action");
+		output(".");
 		
 		processTime(10 + rand(6));
 		pc.orgasm();
@@ -3443,7 +3447,10 @@ public function shipShowerFappening(scene:String = ""):void
 		if (pc.isNaga()) output(" slither");
 		else if (pc.isGoo()) output(" slide");
 		else output(" step");
-		output(" out of the shower and towel off. Soon you’ve reclaimed your gear, thoroughly refreshed and ready to resume your adventure.");
+		output(" out of the shower and towel off. Soon you’ve reclaimed your gear, thoroughly refreshed and");
+		if(showerInShip) output(" ready to resume your adventure");
+		else output(" ready for action");
+		output(".");
 		
 		processTime(10 + rand(6));
 		pc.orgasm();
@@ -3455,12 +3462,15 @@ public function shipShowerFappening(scene:String = ""):void
 		author("Couch");
 		output("On second thought, you’d rather save your strength for someone more appropriate. You wait for");
 		if (pc.hasCock()) output(" your erection to subside and");
-		output(" your urges to settle down before stepping out of the shower and toweling off. You slip your gear on with a refreshed smile, squeaky clean and ready to resume your adventure.");
+		output(" your urges to settle down before stepping out of the shower and toweling off. You slip your gear on with a refreshed smile, squeaky clean and");
+		if(showerInShip) output(" ready to resume your adventure");
+		else output(" ready for action");
+		output(".");
 		processTime(2);
 	}
 	
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", showerExit);
 }
 
 //CumCow Autofellatio w/Optional Cocknosis intro

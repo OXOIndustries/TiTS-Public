@@ -1807,7 +1807,7 @@ public function annoFollowerShowerSex():void
 	annoSexed(1);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", showerExit);
 }
 
 public function annoFollowerSpecialGear():void

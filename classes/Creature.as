@@ -2976,6 +2976,13 @@
 		}
 		public function shower():void
 		{
+			if(hasStatusEffect("Shower Douche Toggle"))
+			{
+				removeStatusEffect("Anally-Filled");
+				removeStatusEffect("Vaginally-Filled");
+				removeStatusEffect("Orally-Filled");
+				removeStatusEffect("Shower Douche Toggle");
+			}
 			removeStatusEffect("Sweaty");
 			removeStatusEffect("Mare Musk");
 			removeStatusEffect("Cum Soaked");
