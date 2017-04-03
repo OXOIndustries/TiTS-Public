@@ -1166,15 +1166,13 @@ package classes.Ships
 		
 		//{ region Combat
 		
-		public function IsDefeated():Boolean
-		{
-			return Hull <= 0;
-		}
+		public function get IsDefeated():Boolean { return Hull <= 0; }
 		
-		public function IsShielded():Boolean
-		{
-			return Shields > 0;
-		}
+		private var _isAlreadyDefeated:Boolean;
+		public function get IsAlreadyDefeated():Boolean { return _isAlreadyDefeated; }
+		public function set IsAlreadyDefeated(v:Boolean):void { _isAlreadyDefeated = v; }
+		
+		public function get IsShielded():Boolean { return Shields > 0; }
 		
 		public function IsCloaked():Boolean
 		{

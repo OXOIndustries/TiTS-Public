@@ -24,7 +24,10 @@ package classes.GameData
 		public function NewGame():void
 		{
 			// TODO: Change this to the Casstech (when I actually code the Casstech (aka when things actually work))
-			_activePlayerShip = new TestShip();
+			_persistentShips = { };
+			var defPcShip:SpaceShip = new TestShip();
+			_persistentShips["PCShip"] = defPcShip;
+			_activePlayerShip = defPcShip;
 			_activePlayerShip.Owner = kGAMECLASS.pc;
 			
 			_ownedShips = [];
@@ -87,10 +90,15 @@ package classes.GameData
 		public var _persistentShips:Object;
 		public function get PersistentShips():Object { return _persistentShips; }
 		
-		[Serialize]
-		public var _activePlayerShip:SpaceShip;
+		private var _activePlayerShip:SpaceShip;
 		public function get ActivePlayerShip():SpaceShip { return _activePlayerShip; }
 		
+		/* boardedShip is serialized in a special way:
+		* If the ship exists as an entry in the list of _persistentShips, then we only save a key to reconnect the propertly
+		* back to the true storage location of the target ship; that is, whatever is inside _persistentShips.
+		* If the ship is NOT persistent, say, it is a generic ship used as part of an encounter, then we save the whole ship object
+		* as we'll not actually have a copy of it inside _persistentShips; this also means we'll be saving various state such
+		* as status effects et al that may change the environment automatically. */
 		private var _boardedShip:SpaceShip;
 		public function get BoardedShip():SpaceShip { return _boardedShip; }
 		
@@ -266,7 +274,7 @@ package classes.GameData
 		{
 			if (_boardedShip == null)
 			{
-				so.boardedShip = "None";
+				o.boardedShip = "None";
 			}
 			else
 			{
@@ -276,14 +284,14 @@ package classes.GameData
 					if (_persistentShips[key] == _boardedShip)
 					{
 						found = true;
-						so.boardedShip = key;
+						o.boardedShip = key;
 						break;
 					}
 				}
 				
 				if (found == false)
 				{
-					so.boardedShip = _boardedShip.getSaveObject();
+					o.boardedShip = _boardedShip.getSaveObject();
 				}
 			}
 		}

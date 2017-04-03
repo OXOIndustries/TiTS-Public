@@ -75,7 +75,7 @@ package classes.Engine.ShipCombat.DamageTypes
 			if (HasFlag(flag))
 			{
 				var idx:uint = FlagIndex(flag);
-				if (idx != -1)
+				if (idx != uint.MAX_VALUE)
 				{
 					_flagCollection.splice(idx, 1);
 				}
@@ -130,7 +130,7 @@ package classes.Engine.ShipCombat.DamageTypes
 			{
 				if (_flagCollection[i].Flag == flag) return i;
 			}
-			return -1;
+			return uint.MAX_VALUE;
 		}
 		
 		public function Multiply(m:*):void
