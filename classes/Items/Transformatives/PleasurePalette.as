@@ -153,15 +153,18 @@
 					break;
 				case "glowing":
 					colorList.push(["glowing red", "G.Red"]);
-					colorList.push(["glowing ember", "G.Ember"]);
+					colorList.push(["glowing orange", "G.Orange"]);
+					colorList.push(["glowing amber", "G.Amber"]);
 					colorList.push(["glowing gold", "G.Gold"]);
 					colorList.push(["glowing pink", "G.Pink"]);
 					colorList.push(["luminous silver", "L.Silver"]);
+					colorList.push(["luminous green", "L.Green"]);
 					colorList.push(["luminous cyan", "L.Cyan"]);
+					colorList.push(["luminous blue", "L.Blue"]);
 					colorList.push(["luminous violet", "L.Violet"]);
-					colorList.push(["fiery blue", "F.Blue"]);
-					colorList.push(["foxfire", "Foxfire"]);
 					colorList.push(["hot white", "H. White"]);
+					if(target.level >= 6 || target.hasItemByType(Foxfire)) colorList.push(["glowing ember", "Foxfire"]);
+					if(target.level >= 6 || target.hasItemByType(Frostfire)) colorList.push(["fiery blue", "Frostfire"]);
 					break;
 			}
 			

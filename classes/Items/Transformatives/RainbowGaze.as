@@ -79,29 +79,73 @@
 			switch(colorType)
 			{
 				case "standard":
-					colorList = [
-						["red", "red-orange", "orange", "yellow-orange", "yellow", "yellow-green", "green", "teal", "cerulean", "blue", "indigo", "purple", "lavender", "pink", "rose", "peach", "brown", "hazel", "white", "black",
-						 "crimson", "garnet", "ruby", "citrine", "topaz", "amber", "peridot", "emerald", "jade", "turquoise", "aquamarine", "lapis", "sapphire", "violet", "amethyst", "opal", "pearl"],
-						["Red", "R.Orange", "Orange", "Y.Orange", "Yellow", "Y.Green", "Green", "Teal", "Cerulean", "Blue", "Indigo", "Purple", "Lavender", "Pink", "Rose", "Peach", "Brown", "Hazel", "White", "Black",
-						 "Crimson", "Garnet", "Ruby", "Citrine", "Topaz", "Amber", "Peridot", "Emerald", "Jade", "Turquoise", "Aquamarine", "Lapis", "Sapphire", "Violet", "Amethyst", "Opal", "Pearl"]
-					];
+					// Standard
+					colorList.push(["red", "Red"]);
+					colorList.push(["red-orange", "R.Orange"]);
+					colorList.push(["orange", "Orange"]);
+					colorList.push(["yellow-orange", "Y.Orange"]);
+					colorList.push(["yellow", "Yellow"]);
+					colorList.push(["yellow-green", "Y.Green"]);
+					colorList.push(["green", "Green"]);
+					colorList.push(["teal", "Teal"]);
+					colorList.push(["cerulean", "Cerulean"]);
+					colorList.push(["blue", "Blue"]);
+					colorList.push(["indigo", "Indigo"]);
+					colorList.push(["purple", "Purple"]);
+					colorList.push(["lavender", "Lavender"]);
+					colorList.push(["pink", "Pink"]);
+					colorList.push(["rose", "Rose"]);
+					colorList.push(["peach", "Peach"]);
+					colorList.push(["brown", "Brown"]);
+					colorList.push(["hazel", "Hazel"]);
+					colorList.push(["white", "White"]);
+					colorList.push(["black", "Black"]);
+					// Gemstone
+					colorList.push(["crimson", "Crimson"]);
+					colorList.push(["garnet", "Garnet"]);
+					colorList.push(["ruby", "Ruby"]);
+					colorList.push(["citrine", "Citrine"]);
+					colorList.push(["topaz", "Topaz"]);
+					colorList.push(["amber", "Amber"]);
+					colorList.push(["peridot", "Peridot"]);
+					colorList.push(["emerald", "Emerald"]);
+					colorList.push(["jade", "Jade"]);
+					colorList.push(["turquoise", "Turquoise"]);
+					colorList.push(["aquamarine", "Aquamarine"]);
+					colorList.push(["lapis", "Lapis"]);
+					colorList.push(["sapphire", "Sapphire"]);
+					colorList.push(["violet", "Violet"]);
+					colorList.push(["amethyst", "Amethyst"]);
+					colorList.push(["opal", "Opal"]);
+					colorList.push(["pearl", "Pearl"]);
 					break;
 				case "metallic":
-					colorList = [
-						["copper", "silver", "gold", "platinum", "sable"],
-						["Copper", "Silver", "Gold", "Platinum", "Sable"]
-					];
+					colorList.push(["copper", "Copper"]);
+					colorList.push(["silver", "Silver"]);
+					colorList.push(["gold", "Gold"]);
+					colorList.push(["platinum", "Platinum"]);
+					colorList.push(["sable", "Sable"]);
 					break;
 				case "glowing":
-					colorList = [
-						["glowing red", "glowing orange", "glowing amber", "glowing yellow", "glowing green", "glowing cyan", "glowing blue", "glowing purple", "glowing pink", "glowing white"],
-						["G.Red", "G.Orange", "G.Amber", "G.Yellow", "G.Green", "G.Cyan", "G.Blue", "G.Purple", "G.Pink", "G.White"]
-					];
+					colorList.push(["glowing red", "G.Red"]);
+					colorList.push(["glowing orange", "G.Orange"]);
+					colorList.push(["glowing amber", "G.Amber"]);
+					colorList.push(["glowing yellow", "G.Yellow"]);
+					colorList.push(["glowing green", "G.Green"]);
+					colorList.push(["glowing cyan", "G.Cyan"]);
+					colorList.push(["glowing blue", "G.Blue"]);
+					colorList.push(["glowing purple", "G.Purple"]);
+					colorList.push(["glowing pink", "G.Pink"]);
+					colorList.push(["glowing white", "G.White"]);
+					colorList.push(["glowing silver", "G.Silver"]);
+					colorList.push(["glowing gold", "G.Gold"]);
+					if(target.level >= 6 || target.hasItemByType(Foxfire)) colorList.push(["glowing ember", "Foxfire"]);
+					if(target.level >= 6 || target.hasItemByType(Frostfire)) colorList.push(["fiery blue", "Frostfire"]);
 					break;
 			}
 			
 			clearMenu();
-			for(i = 0; i < colorList[0].length; i++)
+			for(i = 0; i < colorList.length; i++)
 			{
 				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 				{
@@ -109,11 +153,11 @@
 					btnSlot++;
 				}
 				
-				if(target.eyeColor != colorList[0][i]) addButton(btnSlot, colorList[1][i], rbgUse, [target,colorList[0][i]], StringUtil.toDisplayCase(colorList[0][i]), String("Change the color of your eyes to " + colorList[0][i] + "."));
-				else addDisabledButton(btnSlot, colorList[1][i], StringUtil.toDisplayCase(colorList[0][i]), String("Your eyes are already " + colorList[0][i] + "."));
+				if(target.eyeColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], rbgUse, [target,colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), String("Change the color of your eyes to " + colorList[i][0] + "."));
+				else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your eyes are already " + colorList[i][0] + "."));
 				btnSlot++;
 				
-				if(colorList[0].length > 14 && (i + 1) == colorList[0].length)
+				if(colorList.length > 14 && (i + 1) == colorList.length)
 				{
 					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
 					addButton(btnSlot, "Back", rbgMenu, target);

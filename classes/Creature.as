@@ -5067,7 +5067,7 @@
 			var nouns:Array = ["eye"];
 			var description:String = "";
 			
-			var hasLuminousEyes:Boolean = (eyeColor.indexOf("luminous") != -1 || eyeColor.indexOf("glowing") != -1);
+			var hasLuminousEyes:Boolean = kGAMECLASS.colorIsLuminous(eyeColor);
 			
 			adjectives.push(eyeColor);
 			if(eyeType == GLOBAL.TYPE_WORG && !hasLuminousEyes) adjectives.push("glowing");
