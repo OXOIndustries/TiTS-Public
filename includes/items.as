@@ -362,7 +362,11 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	}
 	else if(shopkeep is VendingMachine)
 	{
-		if(shopkeep.originalRace == "J'ejune") jejuneMachineBuyGo(arg);
+		switch(shopkeep.originalRace)
+		{
+			case "J'ejune": jejuneMachineBuyGo(arg); break;
+			case "XXX": xxxMachineBuyGo(arg); break;
+		}
 	}
 	//Emmy magic!
 	else if(shopkeep is Emmy) flags["PURCHASED_FROM_EMS"] = 1;

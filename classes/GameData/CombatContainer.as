@@ -3260,6 +3260,7 @@ package classes.GameData
 			}
 			
 			var factor:Number = 1;
+			var factorMax:Number = 2;
 			var bonus:int = 0;
 			var msg:String = "";
 			
@@ -3269,9 +3270,10 @@ package classes.GameData
 			}
 			
 			if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
+			if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 			if (target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) factor *= 1.1;
 			
-			if (factor > 2) factor = 2;
+			if (factor > factorMax) factor = factorMax;
 		
 			if (attacker.hasPheromones()) bonus += 1;
 			if (teaseType == "SQUIRT") bonus += 2;

@@ -19,7 +19,10 @@ public function goldenPeakBonusFunction():Boolean
 		sluttyMcSlutOral();
 		return true;
 	}
-	vendingMachineButton(7, "J'ejune");
+	//if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
+	//else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
+	if(flags["MET_EMBRY"] == undefined) addButton(0,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
+	else addButton(0,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
 	if(shadeAtTheBar())
 	{
 		//Shade Repeat Encounters
@@ -37,14 +40,11 @@ public function goldenPeakBonusFunction():Boolean
 			else addButton(1,"Shade",shadeApproach,undefined,"Shade","Go talk to Shade, the bounty hunter you met previously.");
 		}
 	}
-	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won’t watch itself!");
-	//if(flags["MET_CANDICE"] == undefined) addButton(0,"Bartender",approachTheBartenderAtTheBar,undefined,"Bartender","See if you can get a decent drink on this ant-infested mudball.");
-	//else addButton(0,"Candice",approachTheBartenderAtTheBar,undefined,"Candice","See if you can get a drink or some fun from Candice.");
-	if(flags["MET_EMBRY"] == undefined) addButton(0,"Waitress",callWaitress,undefined,"Waitress","Call a waitress to order some food.");
-	else addButton(0,embry.short,callWaitress,undefined,embry.short,"Call her over. Maybe you can get some food or something.");
 	//Add Liliana's shit to the bar.
 	lilianaBonusShits(2);
 	roamingBarEncounter(3);
+	addButton(5,"Watch Screen",stephIrson4Go,undefined,"Watch Screen","That Steph Irson episode won’t watch itself!");
+	vendingMachineButton(7, "J'ejune");
 	
 	return false;
 }
@@ -57,8 +57,8 @@ public function showCandice():void
 	showBust("CANDICE");		
 }
 
-//Actually Buying a Drink
-//!!!!!!!!!!!!!!Embry now does this!!!!!!!!!!!!
+// Actually Buying a Drink
+// !!!!!!!!!!!!!!Embry now does this!!!!!!!!!!!!
 public function buyADrinkFromCandice(drink:String):void
 {
 	clearOutput();
@@ -286,7 +286,7 @@ public function stephIrson4Go():void
 	
 	output("You take a seat at the bar and pick up the remote sitting unattended, flicking the Super-HD viewscreen nearby over to another channel. The first thing you stumble upon is the start of the latest episode of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. Beneath the title script, a warning appears in large red letters: <i>“This Show Rated X, Adults Only, by the Galactic Entertainment Ratings Board due to graphic, sexual, and disturbing imagery. You have been warned.”</i> A smaller notice underneath announces <i>“This show brought to you by the New Texas Council for Entertainment,”</i> followed by a cute cartoon image of an overly-busty cow-girl giving you a wink and a thumbs up.");
 	output("\n\nThe title card fades away, replaced with a shaky camera shot that’s exploding with obviously digital color - a small disclaimer at the screen’s bottom tells you that the camera is operating in nightvision mode, with computer coloration added in real time by the producer A.I. The view resolves into a picture of the show’s host, Steph Irson, wearing her familiar khaki short-shorts and shirt, straining against the sheer size of her massive bust. The hostess doesn’t look much like the iconic nature presenter you remember growing up: she’s sporting a pair of cute little cat ears atop her head that twitch and fidget as she moves, and her lips and eyes glisten with a metallic gray. Perhaps most noticeable, though, is her immense bust, more than double in size over the perky D-cups she sports in her promotional material. You don’t think that shirt of hers is going to hold up to much - even a deep breath might burst those buttons and let her tits pop free on galactic TV. A big three-optic night vision rig is stuck on her forehead, awkwardly hooked around her kitty-ears.");
-	output("\n\n<i>“We’re here on Myrellion, one of the most dangerous and unforgiving worlds in the new Planet Rush,”</i> Steph whispers to the camera drone. Her New Brisbaner accent, at least, is more recognizable than her body these days.  <i>“It’s pitch black here in the caverns below the surface, where all intelligent life on this world lives!”</i> She taps her night vision goggles for emphasis, grinning at the camera. <i>“But we’re on even footing now, thanks to our friends at Xenogen, who’re nice enough to give me these cute goggles!”</i>");
+	output("\n\n<i>“We’re here on Myrellion, one of the most dangerous and unforgiving worlds in the new Planet Rush,”</i> Steph whispers to the camera drone. Her New Brisbaner accent, at least, is more recognizable than her body these days. <i>“It’s pitch black here in the caverns below the surface, where all intelligent life on this world lives!”</i> She taps her night vision goggles for emphasis, grinning at the camera. <i>“But we’re on even footing now, thanks to our friends at Xenogen, who’re nice enough to give me these cute goggles!”</i>");
 	output("\n\nShe bounces giddily, causing her bovine-like bosom to jiggle like gelatin under her shirt. <i>“Now, we’re here to find what’s gotta be the coolest species here on Myrellion, a planet full of insect-type creatures: the nyrea! A nyrea queen, to be precise! Nyrea flip what you and I know about biological sex right on its head, cuz the females have pseudo-penises and the males have genital slits just like pussies. Er, I mean vaginas!”</i>");
 	output("\n\nSteph chuckles and turns away from the camera, start to walk through the narrow, winding caverns. The camera drone follows, keeping her thick, booty-short-straining behind in view for the audience. <i>“Nyrean females vie for dominance among their own kind like old-earth predators, with submissive losers being forced to carry alphas’ eggs after the fight. Eggs they get through reverse sex with a male: inserting their pseudo-penis in his genital slit and extracting semen from little sacs inside him. Pretty nifty, huh? So today, I’m on the hunt for the biggest, baddest alpha nyrea I can find and see if we can get this strange, unique twist on mating on camera for you viewers at home! I’ve done a little scouting, and I think I’ve found a pretty likely place to find one: a deep cavern just up the tunnel here, covered in glowing moss and cave drawings.”</i>");
 	output("\n\nA few moments later and the Huntress has arrived at the cave in question: a big crack in the wall surrounded by softly glowing blue moss that’s been artificially arranged into a swirling pattern around the cavern entrance, several concentric circles that make the passage seem much bigger and more intimidating than it actually is. A few small bushes grow from the ground nearby, forming a sweeping approach to the cave, almost like a manor house’s cultivated garden. Steph wasn’t kidding when she said nyrean queen!");

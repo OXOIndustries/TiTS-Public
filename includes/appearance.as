@@ -302,9 +302,9 @@ public function appearance(forTarget:Creature):void
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
-		var hasMetallicEyes:Boolean = InCollection(target.eyeColor, "copper", "silver", "gold", "platinum", "sable");
-		var hasGemstoneEyes:Boolean = InCollection(target.eyeColor, "crimson", "garnet", "ruby", "citrine", "topaz", "amber", "peridot", "emerald", "jade", "turquoise", "aquamarine", "lapis", "sapphire", "violet", "amethyst", "opal", "pearl");
-		var hasLuminousEyes:Boolean = (target.eyeColor.indexOf("luminous") != -1 || target.eyeColor.indexOf("glowing") != -1);
+		var hasMetallicEyes:Boolean = colorIsMetallic(target.eyeColor);
+		var hasGemstoneEyes:Boolean = colorIsGemstone(target.eyeColor);
+		var hasLuminousEyes:Boolean = colorIsLuminous(target.eyeColor);
 		if(target.eyeType == GLOBAL.TYPE_ARACHNID)
 		{
 			output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead");
@@ -3628,3 +3628,18 @@ public function setTentacleLegsPref():void
 	
 	selectTentacleLegsPref();
 }
+
+// Color Checks
+public function colorIsMetallic(sColor:String = ""):Boolean
+{
+	return (InCollection(sColor, "bronze", "copper", "silver", "gold", "platinum", "sable", "onyx", "brass", "cobalt"));
+}
+public function colorIsGemstone(sColor:String = ""):Boolean
+{
+	return (InCollection(sColor, "crimson", "garnet", "ruby", "citrine", "topaz", "amber", "peridot", "emerald", "jade", "turquoise", "aquamarine", "lapis", "sapphire", "violet", "amethyst", "opal", "pearl", "crystal", "diamond"));
+}
+public function colorIsLuminous(sColor:String = ""):Boolean
+{
+	return (sColor.indexOf("luminous") != -1 || sColor.indexOf("glowing") != -1 || sColor.indexOf("fiery") != -1);
+}
+

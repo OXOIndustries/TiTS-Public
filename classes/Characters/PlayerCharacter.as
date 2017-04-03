@@ -430,10 +430,17 @@ package classes.Characters
 			var currExhib:Number = exhibitionism();
 
 			//All covered up? Reduce over time!
-			if(exhibitionismPoints == 0) 
+			if(exhibitionismPoints <= 0) 
 			{
 				//Skipping out on underwear will keep it from dropping, but won't raise it.
 				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
+				//High exhibitionism or sex-driven personality leads to being comfortable in kinky undies! Otherwise, degrade a little bit.
+				else if(isAssExposedByLowerUndergarment() || isCrotchExposedByLowerUndergarment() || isChestExposedByUpperUndergarment())
+				{
+					if((currExhib >= 50 || isBimbo() || isBro())) { /* Nada! */ }
+					else exhibitionism(-0.25 * totalDays);
+				}
+				//Otherwise, exhibitionism degrades.
 				else exhibitionism(-0.5 * totalDays);
 			}
 			else if(exhibitionismPoints >= 4 && currExhib < 50) exhibitionism(2);

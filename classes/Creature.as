@@ -1635,12 +1635,16 @@
 					buffer = upperGarmentsDescript();
 					break;
 				case "lowerGarments":
-				case "underGarments":
 					buffer = lowerGarmentsDescript();
 					break;
 				case "lowerGarment":
-				case "underGarment":
 					buffer = lowerGarmentDescript();
+					break;
+				case "underGarment":
+					buffer = underGarmentDescript();
+					break;
+				case "underGarments":
+					buffer = underGarmentsDescript();
 					break;
 				case "lowerGarmentOuter":
 					buffer = lowerGarmentOuterDescript();
@@ -2972,6 +2976,13 @@
 		}
 		public function shower():void
 		{
+			if(hasStatusEffect("Shower Douche Toggle"))
+			{
+				removeStatusEffect("Anally-Filled");
+				removeStatusEffect("Vaginally-Filled");
+				removeStatusEffect("Orally-Filled");
+				removeStatusEffect("Shower Douche Toggle");
+			}
 			removeStatusEffect("Sweaty");
 			removeStatusEffect("Mare Musk");
 			removeStatusEffect("Cum Soaked");
@@ -3803,6 +3814,7 @@
 				hitPoints -= level * 5;
 				
 			if (hasStatusEffect("Heart Tea")) hitPoints *= 1.1;
+			if (hasStatusEffect("Well-Groomed")) hitPoints *= statusEffectv1("Well-Groomed");
 				
 			return hitPoints;
 		}
@@ -4936,6 +4948,12 @@
 			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
 			return false;
 		}
+		public function hasEmoteEars(): Boolean
+		{
+			// For ear types that move emotively, like cute animal ears.
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			return false;
+		}
 		public function earDescript(): String
 		{
 			var adjectives:Array = new Array();
@@ -5056,7 +5074,7 @@
 			var nouns:Array = ["eye"];
 			var description:String = "";
 			
-			var hasLuminousEyes:Boolean = (eyeColor.indexOf("luminous") != -1 || eyeColor.indexOf("glowing") != -1);
+			var hasLuminousEyes:Boolean = kGAMECLASS.colorIsLuminous(eyeColor);
 			
 			adjectives.push(eyeColor);
 			if(eyeType == GLOBAL.TYPE_WORG && !hasLuminousEyes) adjectives.push("glowing");
@@ -13849,6 +13867,17 @@
 			if (lowerUndergarment.shortName != "" && armor.shortName != "") return armor.longName + " and " + lowerUndergarment.longName;
 			else if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
+			return "nothing";
+		}
+		public function underGarmentDescript(): String {
+			if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
+			else if (upperUndergarment.shortName != "") return upperUndergarment.longName;
+			return "nothing";
+		}
+		public function underGarmentsDescript(): String {
+			if (lowerUndergarment.shortName != "" && upperUndergarment.shortName != "") return upperUndergarment.longName + " and " + lowerUndergarment.longName;
+			else if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
+			else if (upperUndergarment.shortName != "") return upperUndergarment.longName;
 			return "nothing";
 		}
 		//Basic multiple cock description.

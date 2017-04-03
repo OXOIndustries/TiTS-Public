@@ -706,10 +706,10 @@
 			author("");
 		}
 		
-		public function showLevelUpPerks(character:PlayerCharacter):void
+		public function showLevelUpPerks(character:PlayerCharacter, gavePoints:Boolean = false):void
 		{
 			showModule("LevelUpPerks");
-			(_currentModule as LevelUpPerksModule).setCreatureData(character);
+			(_currentModule as LevelUpPerksModule).setCreatureData(character, gavePoints);
 			kGAMECLASS.showPCBust();
 			setLocation("", "LEVEL UP", "PERKS");
 			author("");

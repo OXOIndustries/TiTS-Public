@@ -119,7 +119,7 @@ public function mabbsSpeciesTalk():void
 	clearOutput();
 	showMabbs();
 	output("You ask her what species she is");
-	if(CodexManager.entryUnlocked("Rodenians")) output(", not 100% sure she's a rodenian");
+	if(CodexManager.entryUnlocked("Rodenians")) output(", not 100% sure she’s a rodenian");
 	output(".");
 	output("\n\nMabbs squints at you. <i>“Rodenian, dummy. You see mouse-girls anywhere else? Didn’t think so. Go look it up on your computer if you wanna know more, ‘cause I ain’t here to blather on and on about my people. So buy something or get out of my face.”</i>");
 	if(!CodexManager.entryUnlocked("Rodenians"))
@@ -148,7 +148,7 @@ public function mabbsPostShopping():void
 {
 	clearOutput();
 	showMabbs();
-	output("Mabbs discretely tucks her bag away. <i>“Jammin. Got anything else ya need from me and my magic bag?”</i>");
+	output("Mabbs discretely tucks her bag away. <i>“Jammin’. Got anything else ya need from me and my magic bag?”</i>");
 	mabbsMenu();
 }
 
@@ -184,7 +184,7 @@ public function leaveMabbsBehind():void
 	clearOutput();
 	showMabbs();
 	output("You bid your farewell and make to leave.");
-	output("\n\n<i>“Cya, " + pc.mf("Mistah","Miss") + " Seal. Come my way whenever you got creds burnin’ a hole in your threads.”</i> Mabbs reaches up to her ear and cranks the volume back up.");
+	output("\n\n<i>“C’ya, " + pc.mf("Mistah","Miss") + " Seal. Come my way whenever you got creds burnin’ a hole in your threads.”</i> Mabbs reaches up to her ear and cranks the volume back up.");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

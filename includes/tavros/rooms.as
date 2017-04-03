@@ -380,7 +380,7 @@ public function initTavrosRooms():void
 	rooms["9012"].moveMinutes = 1;
 	rooms["9012"].addFlag(GLOBAL.INDOOR);
 	rooms["9012"].addFlag(GLOBAL.PUBLIC);
-	rooms["9012"].runOnEnter = undefined;
+	rooms["9012"].runOnEnter = redlightSEBonus;
 
 	//9013
 	rooms["9013"] = new RoomClass(this);

@@ -51,7 +51,7 @@ public function burtsBarFunc():Boolean {
 	else addButton(0,"Burt",burtapproach);
 	roamingBarEncounter(3);
 	if(debug) addButton(4,"Oil Cheat",oilyButt);
-	else vendingMachineButton(4, "J'ejune");
+	else vendingMachineButton(4, "XXX");
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
 	return false;
 }

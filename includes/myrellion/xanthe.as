@@ -213,6 +213,10 @@ public function xantheHasBackCunt():Boolean
 	if(flags["XANTHE_BACK_GENITAL"] == 2) return true;
 	return false;
 }
+public function xantheIsHerm():Boolean
+{
+	return ((xantheHasFrontCock() || xantheHasBackCock()) && (xantheHasFrontCunt() || xantheHasBackCunt()));
+}
 
 public function xantheIsDommingPC():Boolean {
 	return (flags["XANTHE_MATED"] != undefined);

@@ -357,6 +357,7 @@
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
+		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		
 		include "../includes/chargendata.as";
@@ -463,7 +464,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.33";
+			version = "0.7.34";
 
 			//temporary nonsense variables.
 			temp = 0;

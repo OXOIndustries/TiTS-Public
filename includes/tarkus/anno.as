@@ -68,7 +68,7 @@ public function steeleTechTarkusOutsideFunction():Boolean
 	{
 		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon “Steele Tech” sign hangs above the door, although its usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the " + (flags["TARKUS_DESTROYED"] != undefined ? "now-lost" : "planet’s") + " wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
 	}
-	
+	vendingMachineButton(0, "J'ejune");
 	return false;
 }
 
@@ -558,11 +558,10 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 public function petPlayForAnnoAfterCheating():void
 {
 	clearOutput();
-	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined)
-	{
-		flags["TAKEN_ANNO_AROUND_AS_A_PET"] = 1;
-		pc.addHard(2);
-	}
+	
+	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined) pc.addHard(2);
+	IncrementFlag("TAKEN_ANNO_AROUND_AS_A_PET");
+	
 	author("Savin");
 	showAnno(true);
 	output("Grinning dangerously at Anno, you tell her to strip out of that uniform: dogs don’t wear clothes.");

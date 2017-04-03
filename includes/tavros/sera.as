@@ -171,7 +171,7 @@ public function approachSera():void
 			output("Sera glares at you and her expression quickly sours. The demoness doesn’t seem too thrilled about your presence.");
 			output("\n\nHer piercing eyes peer into your soul as she asks, <i>“What the do you want this time?”</i>");
 		}
-		else if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		else if(seraIsMistress())
 		{
 			output("Sera leans over the counter, extends her index claw and presses it against your throat. She gently scratches it up to the bottom of your chin.");
 			output("\n\n<i>“Mine,”</i> she says simply, smiling lazily.");
@@ -639,7 +639,7 @@ public function seraTalkTopics(response:String = ""):void
 					output("\n\n<i>“If I had a problem with you looking like someone who works in a kiddie amusement park you would know about it by now, sweetheart,”</i> she says. She leers at you toothily. <i>“I actually </i>like<i> you that way. Working out the aggression on one of the clowns themselves? More satisfying than I thought.”</i>");
 				}
 				// Furry AND submitted:
-				else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4)
+				else if(seraIsMistress())
 				{
 					output("\n\n<i>“Funny how these things work out, isn’t it,”</i> you smirk. She glares daggers at you.");
 					output("\n\n<i>“If you enslaved me just because of what I said to you before,”</i> she snarls, <i>“that makes you the smallest muzzle-mutant in existence. Which is some achievement. No offence, ‘[pc.master]’.”</i>");
@@ -709,7 +709,7 @@ public function seraSexMenu(display:Boolean = false):void
 			return;
 		}
 		// Post-subservience
-		else if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		else if(seraIsMistress())
 		{
 			output("Sera smirks to herself when she sees you. You feel a small thrill when she rounds the desk to press her body against you. The coolness of her armor contrasts palpably with the warmth of her exposed breasts and tumescent, girthy tool. Her hand unabashedly roams across your [pc.butt], squeezing a cheek with an easy grope, pushing you against her just a little bit more firmly.");
 			output("\n\n<i>“You wanna fuck, pet?”</i> Sera asks, grabbing hold of you by the");
@@ -733,7 +733,7 @@ public function seraSexMenu(display:Boolean = false):void
 	clearMenu();
 	if(pc.lust() >= 33)
 	{
-		if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		if(seraIsMistress())
 		{
 			addButton(0, "Fuck Me", seraSexXXXRouter);
 			if(pc.hasCock())
@@ -752,7 +752,7 @@ public function seraSexMenu(display:Boolean = false):void
 	else
 	{
 		addDisabledButton(0,"Fuck Me","Fuck Me","You aren’t turned on enough for this.");
-		if(flags["SERA_TRIPLE_X_RATED"] >= 4 && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren’t turned on enough for this.");
+		if(seraIsMistress() && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren’t turned on enough for this.");
 	}
 	addButton(14,"Back",approachSera);
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));

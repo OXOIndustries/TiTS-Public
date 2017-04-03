@@ -127,6 +127,8 @@ public function honeyNozzleClub():Boolean
 		}
 	}
 	
+	vendingMachineButton(4, "XXX");
+	
 	return false;
 }
 
