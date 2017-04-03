@@ -140,6 +140,7 @@ public function jadeStoreSetup():void
 	{
 		chars["JADE"].inventory.push(new Catnip());
 	}
+	else chars["JADE"].destroyItem(new Catnip());
 	chars["JADE"].inventory.push(new CaninePoppers());
 	chars["JADE"].inventory.push(new DracoGuard());
 	if(pc.level >= 4)

@@ -985,6 +985,15 @@ public function appearance(forTarget:Creature):void
 				if(target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
 				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
 			}
+			//Shark Wings/Dorsal Fin:
+			else if(target.wingType == GLOBAL.TYPE_SHARK)
+			{
+				if (target.wingCount == 2) output2(" a pair of ");
+				else if (target.wingCount == 4) output2(" a quartet of ");
+				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				if (target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
+				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
+		}
 		}
 		else output2(".");
 		// Neck mane stuff
