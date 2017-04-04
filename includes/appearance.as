@@ -304,7 +304,7 @@ public function appearance(forTarget:Creature):void
 		{
 			if(target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFur()) output2(" Beneath your fur, f");
 			else output2(" F");
-			output2(target.mf("freckles spot your cheeks.","reckles cutely adorn your cheeks."));
+			output2(target.mf("reckles spot your cheeks.","reckles cutely adorn your cheeks."));
 		}
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
@@ -931,7 +931,14 @@ public function appearance(forTarget:Creature):void
 				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
 				output2(" large bat-like demon-wings fold " + (target.statusEffectv1("Wing Position") == 1 ? "over your body" : "behind your shoulders") + ". With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
 			}
-			else if(target.wingType == GLOBAL.TYPE_SHARK) output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
+			else if(target.wingType == GLOBAL.TYPE_SHARK)
+			{
+				if(target.wingCount == 2) output2(" a pair of ");
+				else if(target.wingCount == 4) output2(" a quartet of ");
+				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				if(target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
+				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
+			}
 			else if(target.wingType == GLOBAL.TYPE_AVIAN)
 			{
 				if(target.wingCount == 2) output2(" a pair of");
@@ -983,24 +990,6 @@ public function appearance(forTarget:Creature):void
 				else output2(" Each tentacle contains a bulbous head with a cum-leaking slit");
 				output2(", perfect for mass breeding.");
 			}
-			//Shark Wings/Dorsal Fin:
-			else if(target.wingType == GLOBAL.TYPE_SHARK)
-			{
-				if(target.wingCount == 2) output2(" a pair of ");
-				else if(target.wingCount == 4) output2(" a quartet of ");
-				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				if(target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
-				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
-			}
-			//Shark Wings/Dorsal Fin:
-			else if(target.wingType == GLOBAL.TYPE_SHARK)
-			{
-				if (target.wingCount == 2) output2(" a pair of ");
-				else if (target.wingCount == 4) output2(" a quartet of ");
-				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				if (target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
-				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
-		}
 		}
 		else output2(".");
 		// Neck mane stuff
@@ -1856,7 +1845,7 @@ public function appearance(forTarget:Creature):void
 		else if(target.legType == GLOBAL.TYPE_DEER) 
 		{
 			if(target.legCount < 4) output2(" Your legs are lithe and agile, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in hooves");
-			else output2(" You have " + (rand(2) == 0 ? "thin, deer-like legs that are capped with" : "lithe, agile legs that end in") +  " hooves");
+			else output2(" You have " + (rand(2) == 0 ? "thin, deer-like legs that are capped with" : "lithe, agile legs that end in") + " hooves");
 			output2(", enabling you to nimbly leap and prance from place to place.");
 		}
 		else if(target.legType == GLOBAL.TYPE_CANINE) 

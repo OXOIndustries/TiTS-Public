@@ -755,9 +755,9 @@
 		}
 		public function wingTypeLockedMessage():String
 		{
-			if(wingType == 0) return "There is a tickling sensation around and between your shoulder blades, but nothing changes.";
+			if(wingType == 0 || wingCount <= 0) return "There is a tickling sensation around and between your shoulder blades, but nothing changes.";
 			if(wingCount == 1) return "Your [pc.wing] radiates with warmth but nothing about it changes.";
-			if(wingType == GLOBAL.TYPE_SHARK) return "Your [pc.wings] radiate with warmth but nothing about them changes.";
+			if(!hasWings()) return "Your [pc.wings] radiate with warmth but nothing about them changes.";
 			return "Your [pc.wings] flutter but do not change.";
 		}
 

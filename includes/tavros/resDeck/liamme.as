@@ -88,7 +88,7 @@ public function approachLiamme():void
 		else if(pc.isBro()) output("Your lips spread in a slow smile at the sight of a potential bedwarmer. ");
 		else if(pc.isNice()) output("You smile as you consider the girl, yet another potential friend just waiting to be made. ");
 		if(pc.isMischievous() || pc.isAss()) output("You smirk at the sight of the girl, yet another possible target for your near-irresistible Steele charm. ");
-		output("She seems to be distracted enough by whatever she’s looking at, girlish laughs escaping her cushiony lips with every tap of the screen. With a slight spring to your step you walk over to where the blonde-maned beauty is sitting and  ");
+		output("She seems to be distracted enough by whatever she’s looking at, girlish laughs escaping her cushiony lips with every tap of the screen. With a slight spring to your step you walk over to where the blonde-maned beauty is sitting and ");
 		if(pc.isTaur()) output("position your tauric-half as close to her as it can get without being intrusive.");
 		else output("plop your [pc.ass] down right next to hers.");
 		output(" The ausar’s fluffy, pointed ears spring upwards at the realization of your presence, with the rest of her body following suit.");
@@ -104,7 +104,7 @@ public function approachLiamme():void
 		}
 		else
 		{
-			output("\n\nYou give her a friendly look, trying not to make it obviously that you're taking in her svelte frame and guessing that she's hiding B-cups beneath it. At least you can see her big blue eyes. You ");
+			output("\n\nYou give her a friendly look, trying not to make it obviously that you’re taking in her svelte frame and guessing that she’s hiding B-cups beneath it. At least you can see her big blue eyes. You ");
 			if(pc.IQ() < 50) output("fumble for");
 			else output("quickly improvise");
 			output(" an ice-breaker.");
@@ -160,21 +160,21 @@ public function liammeMenu():void
 	addButton(1,"Talk",talkToLiamme,undefined,"Talk","Have a chat with Liamme.");
 	//[Sex] There isn’t anything to suggest Lia </i>isn’t<i> down for a good lay.
 	if(pc.lust() >= 33) addButton(2,"Sex",fuckLiamme,undefined,"Talk","There isn’t anything to suggest Lia </i>isn’t<i> down for a good lay.");
-	else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for that.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for that.");
 	//[Exhibition] Try to have a little exhibitionistic fun with this trappy puppy. //PC can’t be a taur, requires Liamme to have been sexed once, all talk scenes to be complete, moderate exhib score, misch/hard.
 	if(flags["SEXED_LIAMME"] != undefined && flags["LIAMME_TALK_SELF"] != undefined && flags["LIAMME_TALK_TAVROS"] != undefined && flags["LIAMME_TALK_MODS"] != undefined && pc.exhibitionism() >= 33 && (pc.isAss() || pc.isMischievous())) 
 	{
 		if(liammeSkirted()) addButton(3,"Exhibition",liammeExhibitionism,undefined,"Exhibition","Try to have a little exhibitionistic fun with this trappy puppy.");
-		else addDisabledButton(3,"Exhibition","Exhibition","You meet all the requirements for this scene, but Liamme doesn't - he needs to be wearing a skirt!\n\nMaybe tomorrow he will wear a more obliging outfit...");
+		else addDisabledButton(3,"Exhibition","Exhibition","You meet all the requirements for this scene, but Liamme doesn’t - he needs to be wearing a skirt!\n\nMaybe tomorrow he will wear a more obliging outfit...");
 	}
-	else addDisabledButton(3,"Exhibition","Exhibition","Requires:\n*Non-'taur\n*Sexed Liamme\n*Talking to him thoroughly\n*Moderate Exhibition level\n*Mischievous or Hard personality.");
+	else addDisabledButton(3,"Exhibition","Exhibition","Requires:\n*Non-‘taur\n*Sexed Liamme\n*Talking to him thoroughly\n*Moderate Exhibition level\n*Mischievous or Hard personality.");
 	addButton(14,"Leave",leaveLiamme);
 }
 public function backToLiammeMain():void
 {
 	clearOutput();
 	showLiamme();
-	output("You let Liamme know you'd like to do something else.");
+	output("You let Liamme know you’d like to do something else.");
 	clearMenu();
 	liammeMenu();
 }
@@ -197,7 +197,7 @@ public function liammeAppearance():void
 	author("HugsAlright");
 	output("Liamme is a ");
 	if(silly) output("smol");
-	else output("5’7”");
+	else output("5\' 7\"");
 	output(" ausar male. He’s made sure to accentuate his feminine features as much as possible: from the fluffy wolf-ears that part his lengthy, golden hair, past his blue eyes and the soft, welcoming curves of his face, right down to his pillowy, kissable lips. Hell, you’re sure your nose is picking up on the scent of a little perfume on this trappy doggy; he even <i>smells</i> feminine!");
 	output("\n\nHis utterly flat chest, fair skin, and svelte body are hidden by a blueish-green hoodie, and ");
 	if(liammeSkirted()) output("skirt shows off a fair bit of his squishy, jiggly, and rather impressive looking butt");
@@ -209,7 +209,7 @@ public function liammeAppearance():void
 	output("\n\nHis arms and legs are partially covered with a similar rich-blonde fluff that covers his head, like most ausar.");
 
 	liammeMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're doing that right now.");
+	addDisabledButton(0,"Appearance","Appearance","You’re doing that right now.");
 }
 
 //Talk
@@ -226,7 +226,7 @@ public function liammeTalkMenu():void
 	clearMenu();
 	addButton(0,"Him",talkToLiammeAboutHim,undefined,"Him","Ask Liamme about himself.");
 	addButton(1,"Tavros",talkToLiammeAboutTavros,undefined,"Tavros","Ask Liamma about Tavros and how he got here.");
-	addButton(2,"Mods?",talkToLiammeAboutMods,undefined,"Mods?","Ask him about mods. He's gotta have used them, right?");
+	addButton(2,"Mods?",talkToLiammeAboutMods,undefined,"Mods?","Ask him about mods. He’s gotta have used them, right?");
 	addButton(14,"Back",backToLiammeMain);
 }
 
@@ -248,7 +248,7 @@ public function talkToLiammeAboutHim():void
 	processTime(4);
 	flags["LIAMME_TALK_SELF"] = 1;
 	liammeTalkMenu();
-	addDisabledButton(0,"Him","Him","You're talking about that right now.");
+	addDisabledButton(0,"Him","Him","You’re talking about that right now.");
 }
 
 //Tavros
@@ -268,7 +268,7 @@ public function talkToLiammeAboutTavros():void
 	processTime(5);
 	flags["LIAMME_TALK_TAVROS"] = 1;
 	liammeTalkMenu();
-	addDisabledButton(1,"Tavros","Tavros","You're talking about that right now.");
+	addDisabledButton(1,"Tavros","Tavros","You’re talking about that right now.");
 }
 
 //Mods
@@ -294,7 +294,7 @@ public function talkToLiammeAboutMods():void
 	processTime(4);
 	flags["LIAMME_TALK_MODS"] = 1;
 	liammeTalkMenu();
-	addDisabledButton(2,"Mods?","Mods?","You're talking about that right now.");
+	addDisabledButton(2,"Mods?","Mods?","You’re talking about that right now.");
 }
 
 //Exhibition
@@ -329,7 +329,7 @@ public function liammeExhibitionism():void
 	else output("Smiling, you lean forwards again and present your seed-slick fingers to the femboy that coated them. Liamme stares at you lustfully for a moment before he tentatively reaches his tongue to the tips of your extended digits, and licks, quickly flicking it across the ends of your fingers. The cum-soaked trap pulls his oral organ back between his lips and his own salty alabaster into his mouth along with it, letting his eyes close shut as he revels in his own flavour for a moment. The ausar’s blue eyes open wide soon after, right before he leans forward and his pouty lips suddenly wrap around you fingers, suckling your sperm-smothered digits until they’re good and clean, excitement written across his face and hungry gaze. Once he’s had his fill, the femboy relents and takes his mouth away from your hand, leaving a little trail of saliva between your fingers and his tongue.");
 	output(" The trappy ausar before you tries to form a little smirk despite his beet-red cheeks and burning embarrassment, managing to talk to you between each heave of his flat chest, <i>“I’m... gonna get you good... for this one, [pc.name].”</i> He pauses, sitting himself upright and covering up his cum-soaked skirt, <i>“But for now, I need to go get cleaned up.”</i>");
 	output("\n\nYou tell the effeminate ausar that sounds like a good idea as you watch him stand up, still trying to hide the big, wet splotch on his clothes. He manages to give you a little wave goodbye and quickly makes his way back to his appartment, legs still a little wobbly with post-climax.");
-	//[Next] //Should take the PC out of his menus, adds lust and exhib.        
+	//[Next] //Should take the PC out of his menus, adds lust and exhib.
 	processTime(20);
 	pc.lust(10);
 	pc.exhibitionism(2);
@@ -385,9 +385,9 @@ public function liammeSexMenu():void
 	{
 		var x:int = pc.cockThatFits(liammeCapacity())
 		if(x >= 0 && pc.cocks[x].cLength() >= 6) addButton(0,"Buttfuck",buttfuckLiamme,undefined,"Buttfuck","Shove an appropriately sized dong up Liamme’s jiggly butt.");
-		else addDisabledButton(0,"Buttfuck","Buttfuck","Requires a cock that both fits inside him and isn't under six inches long. Nagas and centaurs need not apply..");
+		else addDisabledButton(0,"Buttfuck","Buttfuck","Requires a cock that both fits inside him and isn’t under six inches long. Nagas and centaurs need not apply..");
 	}
-	else addDisabledButton(0,"Buttfuck","Buttfuck","Requires a cock that both fits inside him and isn't under six inches long. Nagas and centaurs need not apply..");
+	else addDisabledButton(0,"Buttfuck","Buttfuck","Requires a cock that both fits inside him and isn’t under six inches long. Nagas and centaurs need not apply..");
 
 	if(pc.hasCock()) addButton(1,"Get BJ",getLiammeBlown,undefined,"Get BJ","Receive some oral pleasures from the plump-lipped ausar.");
 	else addDisabledButton(1,"Get BJ","Get BJ","You need a penis for this!");

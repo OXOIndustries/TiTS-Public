@@ -328,6 +328,7 @@
 			FLAG_MUZZLED,
 			FLAG_ANGULAR,
 			FLAG_BEAK,
+			FLAG_FRECKLED,
 		];
 		
 		public static const VALID_EYE_TYPES:Array = [
