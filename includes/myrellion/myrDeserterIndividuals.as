@@ -1978,23 +1978,26 @@ public function sitAndScrewGoldMyr():void
 	showDeserter(true,true);
 	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 	//IF PC LOSS:
-	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));	
-
+	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	var useStrapon:Boolean = true;
+	
 	//PC Loss:
 	if(combatLoss)
 	{
-		output("While you lie on the ground, the buxom beauty begins to slowly strip of her torn battle garb. It’s not long before you’re staring longingly at her honey-hued skin and ring-pierced nipples. Despite yourself, your ");
+		output("While you lie on the ground, the buxom beauty begins to slowly strip of her torn battle garb. It’s not long before you’re staring longingly at her honey-hued skin and ring-pierced nipples. Despite yourself, ");
 		if(pc.hasCock()) 
 		{
-			output("[pc.cocks] stiffen");
+			output("your [pc.cocks] stiffen");
 			if(pc.cockTotal() == 1) output("s");
 			if(pc.hasVagina()) output(" and ");
+			useStrapon = false;
 		}
 		if(pc.hasVagina() || !pc.hasCock()) output("you feel a delicious tingling sensation deep in your loins");
 		output(".");
-		if(hasGoldDildo())
+		if(!pc.hasCock() && hasGoldDildo())
 		{
 			output("\n\nExulting in her power, the myr searches through your stuff, though ultimately, she’s only interested in her fat strap-on. She reclaims it with a flourish.");
+			useStrapon = true;
 		}
 
 		output("\n\nStriding up to you, ");
@@ -2042,7 +2045,6 @@ public function sitAndScrewGoldMyr():void
 	//Else PC Win/Consent:
 	else
 	{
-		var useStrapon:Boolean = true;
 		if((pc.isHerm() && rand(2) == 0) || pc.isMale()) useStrapon = false;
 		
 		if(!useStrapon)
@@ -2230,7 +2232,7 @@ public function knockUpRedBitchChance():void
 			//Set incubation timer
 			flags["BRIHA_INCUBATION_TIMER"] = 0;
 			pc.clearRut();
-			trace("RED MYR KNOCKED UP!");			
+			trace("RED MYR KNOCKED UP!");
 		}
 	}
 }
