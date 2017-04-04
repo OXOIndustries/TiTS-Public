@@ -216,6 +216,11 @@ public function tharePlantationFieldsBonusRedux():Boolean
 		manerLahTurnInProc();
 		return true;
 	}
+	if(flags["PQ_SECURED_LAH"] == -1) 
+	{
+		returnToPlantationWithoutLah();
+		return true;
+	}
 	//Show if e-mail read and quest not completed
 	if(MailManager.isEntryViewed("plantation_quest_start") && !plantationQuestComplete())
 	{
@@ -278,7 +283,6 @@ public function tharePlantationFieldsBonusRedux():Boolean
 	}
 	else
 	{
-	
 		var msg:String = "";
 		var fullTime:int = ((hours * 60) + minutes);
 		
@@ -327,6 +331,7 @@ public function snugglePlantationQuestStartMeetAble():void
 
 public function snugglePlantationQuestStartMeetAble2():void
 {
+	generateMap();
 	clearOutput();
 	showDarnock();
 	author("Nonesuch");
@@ -2728,7 +2733,7 @@ public function manerLahTurnInProc():void
 	showBust("LAH","DARNOCK");
 	showName("DARNOCK\n& RK LAH");
 	output("Able buzzes out of the air and opens the gate for you. His tar black eyes flick from you to the fugitive ausar, his slender face full of questions - but he doesn’t ask them.");
-	currentLocation = rooms[currentLocation].southExit;
+	currentLocation = "THARE MANOR";
 	generateMap();
 	output("\n\n<i>“Sir is waiting for you.”</i>");
 	output("\n\nThat he is. Darnock stands on the steps of the manor, a proud beam splitting his face, and opens his arms wide as you come up the driveway, Lah in front of you.");
@@ -2775,8 +2780,8 @@ public function lahTurnInPartDeusEx():void
 	pc.XP(10000);
 	processTime(2);
 	//[Rest] [Finish]
-	addButton(1,"Finish",timeToHitTheRoad,undefined,"Finish","Time to hit the road.");
 	addButton(0,"Rest",postPlantationRest,undefined,"Rest","Let Able show you to a room.");
+	addButton(1,"Finish",timeToHitTheRoad,undefined,"Finish","Time to hit the road.");
 }
 
 //Finish
@@ -2827,10 +2832,12 @@ public function returnToPlantationWithoutLah():void
 {
 	showAble();
 	author("Nonesuch");
-	output("\n\nAble buzzes out of the air and opens the gate for you. His tar black eyes flicker over you, his slender face full of questions - but he doesn’t ask them.");
+	output("Able buzzes out of the air and opens the gate for you. His tar black eyes flicker over you, his slender face full of questions - but he doesn’t ask them.");
 	output("\n\n<i>“Sir is waiting for you.”</i>");
 	output("\n\nThat he is. Darnock stands on the manor steps, watching you approach up the gravel drive with a quizzical, searching expression.");
 	output("\n\n<i>“Steele! You return. In one piece - which is excellent to see - but also, I note, empty-handed. May I ask what has happened to our erstwhile escapee?”</i>");
+	currentLocation = "THARE MANOR";
+	generateMap();
 	output("\n\nYou go inside to his dining room and wait for him to settle in his chair before giving a debriefing. The old human plays with a pen, humourless smile frozen on his lips as you explain that you settled matters with the zil, and they agreed to stop attacking the plantation - but that Lah himself escaped into the jungle before you could nab him.");
 	output("\n\n<i>“A fine tale, one which I’m sure will garner you much acclaim once the celebrity sites get ahold of it,”</i> he says at last, tapping the pen on his desk. <i>“" + pc.mf("Dashing Sir","Delightful Miss") + " Steele melts the heart of the sultry alien princess and solves the stand-off through wit and chivalry - alas, the fiery rabble rouser slips through [pc.hisHer] grasp. To appear dramatically in a later installment, perhaps! However. Allow me to apply a less rosy gloss to this.”</i>");
 	output("\n\nDarnock gets up and walks slowly over to the veranda, arms behind his back.");

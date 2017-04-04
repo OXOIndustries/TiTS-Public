@@ -23,8 +23,8 @@ public function vendingMachineButton(btnSlot:int = 0, machine:String = "energy")
 			addButton(btnSlot, "V.Machine", approachItemVendingMachine, machine, "Vending Machine", "Check out the J’ejune vending machine.");
 			break;
 		case "XXX":
-			output("\n\nThere’s a stereotypical adult convenience dispenser placed in a shaded spot. It’s black, headlined with an XXX rating written in red neon lights, but pretty much bland in design otherwise. If nothing else, it’s sure to cover most of your needs for a heated night.");
-			addButton(btnSlot, "V.Machine", approachItemVendingMachine, machine, "Vending Machine", "Check out the XXX vending machine.");
+			output("\n\nThere’s a stereotypical adult convenience dispenser placed in a shaded spot. It’s black, headlined with an ‘XXX’ rating written in red neon lights, but pretty much bland in design otherwise. If nothing else, it’s sure to cover most of your needs for a heated night.");
+			addButton(btnSlot, "V.Machine", approachItemVendingMachine, machine, "Vending Machine", "Check out the adult-only vending machine.");
 			break;
 	}
 	
