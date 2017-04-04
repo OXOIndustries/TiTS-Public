@@ -1587,7 +1587,7 @@ package classes.Items.Transformatives
 				else output(ParseText(textBuff));
 			}
 			//Normal
-			if(pc.cocks[x].cLength < 16)
+			else if(pc.cocks[x].cLength < 16)
 			{
 				textBuff += " <i>“Ooooh, ";
 				if(pc.cocks[x].cType != GLOBAL.TYPE_EQUINE) textBuff += "you’re pretty decently sized! A dick like this could tempt any girl onto it.";
