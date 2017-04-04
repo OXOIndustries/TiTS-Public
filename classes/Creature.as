@@ -5972,6 +5972,7 @@
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
+				if (hasFaceFlag(GLOBAL.FLAG_FRECKLED)) adjectives.push("freckled");
 			}
 			//Space if adjective'd
 			if (adjectives.length > 0) output += RandomInCollection(adjectives) + " ";
