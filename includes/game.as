@@ -1701,7 +1701,7 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
 	// Visited Thare Plantation
-	if(flags["THARE_MANOR_ENTERED"] != undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
+	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);
 	//Mhenga Probe
 	if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] == undefined && flags["FOUGHT_DANE_ON_MHENGA"] == undefined)

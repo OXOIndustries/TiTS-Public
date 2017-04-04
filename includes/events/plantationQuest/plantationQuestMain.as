@@ -252,7 +252,7 @@ public function tharePlantationFieldsBonusRedux():Boolean
 			output("\n\nRK Lah is standing by the soot-touched walls, watching the fire go, mouth slightly ajar. He looks over you at you vaguely at your approach, before turning back to it, entranced. Orange flickers in his wide, grey eyes.");
 			output("\n\n<i>“Did everyone get out?”</i> you shout, over the fire’s roar and the melee in the fields behind you. Lah starts out of his trance, and barks a wry laugh.");
 			output("\n\n<i>“The warden had a private one-seater jet stowed in one wing. Had a go at giving us the <i>“friends, neighbours”</i> spiel when we broke through the perimeter - arms outstretched, you know - and then booked it to his getaway car the second the fire got going. Can you believe that bastard? I can’t imagine his corporate masters will be particularly glad to receive him back to their bosom.”</i> The ausar folds his thin arms. <i>“But all the staff got out. I made sure of that.”</i>");
-			output("\n\n<i>“What about Able?”</i> you ask. Lah frowns; his lips form an o. Fire gouts out of an upstairs window.");
+			output("\n\n<i>“What about Able?”</i> you ask. Lah frowns; his lips form an ‘o’. Fire gouts out of an upstairs window.");
 			output("\n\n<i>“Able,”</i> you shout in his ear. <i>“A zil boy, about so high. He worked for Darnock.”</i>");
 			output("\n\n<i>“I didn’t see any zil,”</i> he replies. His adam’s apple bobs. <i>“None of ours went into the house.”</i>");
 			output("\n\nYou both watch silently as the roof thunderously caves in, throwing up a blizzard of sparks.");
@@ -265,6 +265,10 @@ public function tharePlantationFieldsBonusRedux():Boolean
 			flags["PQ_P_BURNED"] = GetGameTimestamp();
 			output("\n\n(<b>+10,000 XP</b>)");
 			pc.XP(10000);
+			
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+			return true;
 		}
 		//If burntplantation=1, < 24 hours
 		else if(flags["PQ_P_BURNED"] + 24*60 > GetGameTimestamp())

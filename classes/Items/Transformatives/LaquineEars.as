@@ -45,7 +45,7 @@ package classes.Items.Transformatives
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 10;
+			this.basePrice = 1000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -94,7 +94,13 @@ package classes.Items.Transformatives
 			else kGAMECLASS.output(target.capitalA + target.short + " puts on the ears for a bit, then tosses them in the garbage.");
 			return false;
 		}
-		public function laquineEarProcDetemmienator(pc:Creature, initDuration:uint, targetDelta:uint):void
+		
+		public static function effectProc(target:Creature, initDuration:uint, targetDelta:uint):void
+		{
+			if (targetDelta > 0) laquineEarProcDetemmienator(target, initDuration, targetDelta);
+			else laquineEarsFinale(target, initDuration, targetDelta);
+		}
+		private static function laquineEarProcDetemmienator(pc:Creature, initDuration:uint, targetDelta:uint):void
 		{
 			// Calculate the time offset
 			var deltaShift:uint = initDuration - targetDelta;
@@ -109,7 +115,7 @@ package classes.Items.Transformatives
 			//Placeholder for major procs once I write them!
 			else laquineEarsModerateTFsGo(pc,deltaShift);*/
 		}
-		public function laquineEarsModerateTFsGo(pc:Creature,deltaShift:uint):void
+		private static function laquineEarsModerateTFsGo(pc:Creature,deltaShift:uint):void
 		{
 			var x:int = 0;
 			var i:int = 0;
@@ -1010,7 +1016,7 @@ package classes.Items.Transformatives
 			AddLogEvent("<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length,"passive",deltaShift);
 			return;
 		}
-		public function laquineEarsMinorTFsGO(pc:Creature, deltaShift:uint):void
+		private static function laquineEarsMinorTFsGO(pc:Creature, deltaShift:uint):void
 		{
 			var x:int = pc.biggestCockIndex();
 			var textBuff:String = "";
@@ -1502,7 +1508,7 @@ package classes.Items.Transformatives
 			return;
 		}
 		
-		public function fluffyChoiceDisplay(arg:Number):String 
+		private static function fluffyChoiceDisplay(arg:Number):String 
 		{
 			if(arg == 0) return " When you try to do some math, the numbers just wind up fucking.";
 			else if(arg == 1) return " When you picture a disgusting old woman, your mind peels back the effects of age to see the beauty she once was.";
@@ -1511,7 +1517,7 @@ package classes.Items.Transformatives
 			else if(arg == 4) return " When you think about something nonsexual, like your ship for instance, you can’t help but notice how graceful its curves are, how pretty a figure it cuts against the stars, and how much you’d love to make love with a cute bunny-girl on top of it.";
 			else return " When you try to distract yourself with stellar navigation, you instead mentally draw sexy constellations among the stars, clumping whole systems together into curvy, rabbit-eared lasses.";
 		}
-		public function laquineDickSizeAlert(old:Number,newS:Number):String
+		private static function laquineDickSizeAlert(old:Number,newS:Number):String
 		{
 			//seven inches
 			if(old < 7 && newS >= 7) return " <b>You’ve crossed over the threshold to having a seven inch dick - average for Terrans in this galaxy.</b>";
@@ -1523,7 +1529,7 @@ package classes.Items.Transformatives
 			else if(old < 18 && newS >= 18) return " <b>You’d better be careful now that your dick is this big. An errant boner could easily rip right through cheap underwear. On the flipside, you’re fairly certain you can please a centaur with ease.</b>";
 			return "";
 		}
-		public function laquineBallSizeUp(pc:Creature):void
+		private static function laquineBallSizeUp(pc:Creature):void
 		{
 			var targetS:Number = 1;
 			if(pc.ballDiameter() < 1) targetS = 1;
@@ -1537,11 +1543,11 @@ package classes.Items.Transformatives
 				pc.ballSizeRaw += 1;
 			}
 		}
-		public function lassLaquineAcceptable(pc:Creature,x:int):Boolean
+		public static function lassLaquineAcceptable(pc:Creature,x:int):Boolean
 		{
 			return (pc.earType == GLOBAL.TYPE_LAPINE && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.cocks[x].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
 		}
-		public function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false,deltaShift:Number = 0):void
+		public static function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false,deltaShift:Number = 0):void
 		{
 			var textBuff:String = "";
 			if(masturbate)
@@ -1720,7 +1726,7 @@ package classes.Items.Transformatives
 				addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
-		public function bunnyguyFapScene(pc:Creature,fap:Boolean = false,deltaShift:Number = 0):void
+		public static function bunnyguyFapScene(pc:Creature,fap:Boolean = false,deltaShift:Number = 0):void
 		{
 			var x:int = 0;
 			var textBuff:String = "";
@@ -1906,7 +1912,7 @@ package classes.Items.Transformatives
 				addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			}
 		}
-		public function laquineEarsFinale(pc:Creature, initDuration:uint, targetDelta:uint):void
+		private static function laquineEarsFinale(pc:Creature, initDuration:uint, targetDelta:uint):void
 		{
 			// Calculate the time offset
 			var deltaShift:uint = initDuration - targetDelta;
@@ -1938,7 +1944,7 @@ package classes.Items.Transformatives
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 		}
 		// Persistent status effect Hotfix
-		public function laquineEarsRemove(pc:Creature):void
+		public static function laquineEarsRemove(pc:Creature):void
 		{
 			clearOutput();
 			kGAMECLASS.showName("LAQUINE\nEARS");

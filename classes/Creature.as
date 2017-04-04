@@ -18471,23 +18471,23 @@
 					case "Laquine Ears":
 						if (startEffectLength >= 1140 && thisStatus.minutesLeft < 1140)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 1140);
+							LaquineEars.effectProc(this, startEffectLength, 1140);
 						}
 						if (startEffectLength >= 840 && thisStatus.minutesLeft < 840)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 840);
+							LaquineEars.effectProc(this, startEffectLength, 840);
 						}
 						if (startEffectLength >= 540 && thisStatus.minutesLeft < 540)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 540);
+							LaquineEars.effectProc(this, startEffectLength, 540);
 						}
 						if (startEffectLength >= 240 && thisStatus.minutesLeft < 240)
 						{
-							new LaquineEars().laquineEarProcDetemmienator(this, startEffectLength, 240);
+							LaquineEars.effectProc(this, startEffectLength, 240);
 						}
 						if(requiresRemoval)
 						{
-							new LaquineEars().laquineEarsFinale(this, startEffectLength, 0);
+							LaquineEars.effectProc(this, startEffectLength, 0);
 						}
 						break;
 					case "Heat":
@@ -18497,8 +18497,7 @@
 					case "Lagonic Rut":
 						if(requiresRemoval) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
 						break;
-					case "Curdsonwhey": 
-						
+					case "Curdsonwhey":
 						if (startEffectLength >= 180 && thisStatus.minutesLeft < 180)
 						{
 							Curdsonwhey.effectProc(this, startEffectLength, 180);
@@ -18520,7 +18519,6 @@
 							
 							AddLogEvent("You swallow, and nod with approval as the bitterness of the Curdsonwhey at the back of your throat finally washes away.", "passive", maxEffectLength);
 						}
-						
 						break;
 					case "Painted Penis":
 						if(requiresRemoval)
@@ -18878,7 +18876,7 @@
 						break;
 					case "Oil Warmed":
 						var desc:String = "";
-						if(this is PlayerCharacter) desc = "You're covered in warm, protective oil!";
+						if(this is PlayerCharacter) desc = "You’re covered in warm, protective oil!";
 						else desc = capitalA + short + " is covered in warm, protective oil!";
 						desc += "\nFreeze Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						setStatusTooltip("Oil Warmed", desc);
