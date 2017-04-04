@@ -1990,14 +1990,12 @@ public function sitAndScrewGoldMyr():void
 			output("your [pc.cocks] stiffen");
 			if(pc.cockTotal() == 1) output("s");
 			if(pc.hasVagina()) output(" and ");
-			useStrapon = false;
 		}
 		if(pc.hasVagina() || !pc.hasCock()) output("you feel a delicious tingling sensation deep in your loins");
 		output(".");
 		if(!pc.hasCock() && hasGoldDildo())
 		{
 			output("\n\nExulting in her power, the myr searches through your stuff, though ultimately, she’s only interested in her fat strap-on. She reclaims it with a flourish.");
-			useStrapon = true;
 		}
 
 		output("\n\nStriding up to you, ");
@@ -2021,6 +2019,7 @@ public function sitAndScrewGoldMyr():void
 			output("\n\nRegardless of your answer, the busty battle-maiden strips off your [pc.gear]. You’re left lying there with your aching [pc.cocksLight] brazenly exposed. Despite your embarassment - or perhaps because of it - your [pc.cockHeads] swell");
 			if(pc.cockTotal() == 1) output("s");
 			output(" with arousal.");
+			useStrapon = false;
 		}
 		//Else PC GotNoCock:
 		else

@@ -280,7 +280,6 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true,true) + ".");
 			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true,true) + ".");
 		}
-		//SharkMorph Face:
 		else if(target.faceType == GLOBAL.TYPE_SHARK)
 		{
 			output2("Your face is shark-like in shape, with a snout and an upper jaw that pushes past your lower one, and at the very tip, there are two nasal holes.");
@@ -604,10 +603,8 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
 				output2(" from your " + headNoun + ".");
 			}
-			//Shark Ears:
 			else if(target.earType == GLOBAL.TYPE_SHARK)
 			{
-				//pc is bald
 				output2(" A pair of triple-parted, sail-like ears protrude from the sides of your " + headNoun + ". The topmost sail points straight up while the other more smaller ones curve down.");
 			}
 			else if(target.earType == GLOBAL.TYPE_SWINE)
@@ -1559,8 +1556,12 @@ public function appearance(forTarget:Creature):void
 			else output2(" " + target.scaleColor + " chitin");
 			output2(" that is smooth to the touch.");
 		}
-		else if(target.tailType == GLOBAL.TYPE_SHARK || target.tailType == GLOBAL.TYPE_SIREN) {
-			output2(" A long shark-tail trails down from your backside, swaying to and fro while giving you a dangerous air.");
+		else if(target.tailType == GLOBAL.TYPE_SHARK || target.tailType == GLOBAL.TYPE_SIREN)
+		{
+			output2(" A long, shark-tail trails down from your backside, swaying to and fro while ");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("dripping goo everywhere.");
+			else output2("giving you a dangerous air.");
+			output2(" Halfway across it grows a smaller dorsal fin.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_FELINE) {
 			if(target.tailCount == 1)
@@ -1788,14 +1789,6 @@ public function appearance(forTarget:Creature):void
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
-		//Shark Tail:
-		else if(target.tailType == GLOBAL.TYPE_SHARK)
-		{
-			output2(" A long, shark-tail trails down from your backside, swaying to and fro while ");
-			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("dripping goo everywhere.");
-			else output2("giving you a dangerous air.");
-			output2(" Halfway across it grows a smaller dorsal fin.");
-		}
 		else if(target.tailType == GLOBAL.TYPE_SWINE) output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you’re happy.");
 		else if(target.tailType == GLOBAL.TYPE_TENTACLE)
 		{
@@ -2073,7 +2066,6 @@ public function appearance(forTarget:Creature):void
 				}
 			}
 		}
-		//Shark Legs:
 		else if(target.legType == GLOBAL.TYPE_SHARK)
 		{
 			if(target.legCount == 2)

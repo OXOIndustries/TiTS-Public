@@ -3287,10 +3287,7 @@
 			
 			if (hasTail())
 			{
-				if
-				(	(hasTailFlag(GLOBAL.FLAG_LONG) || hasTailFlag(GLOBAL.FLAG_PREHENSILE))
-				&&	(hasTailFlag(GLOBAL.FLAG_FURRED) || hasTailFlag(GLOBAL.FLAG_FLUFFY) || hasTailFlag(GLOBAL.FLAG_FEATHERED) || hasTailFlag(GLOBAL.FLAG_THICK) || hasTailFlag(GLOBAL.FLAG_AMORPHOUS) || hasTailFlag(GLOBAL.FLAG_GOOEY))
-				) return (bitsNeedCover <= coverage);
+				if(hasTailFlag(GLOBAL.FLAG_LONG) || hasTailFlag(GLOBAL.FLAG_PREHENSILE)) return (bitsNeedCover <= coverage);
 			} // you need long, furred tails to do this
 			
 			return false;

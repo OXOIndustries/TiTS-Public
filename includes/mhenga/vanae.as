@@ -214,14 +214,16 @@ public function vanaeTFScene():void
 	switch (options[rand(options.length)])
 	{
 		case "cock":
-			// Increase PC's ballEfficiency and cumMultiplier
-			if (pc.ballEfficiency < 5) pc.ballEfficiency += 0.25;
-			if (pc.ballEfficiency < 4) pc.ballEfficiency += 0.25;
-			if (pc.ballEfficiency < 3) pc.ballEfficiency += 0.25;
+			var cumChanged:Boolean = false;
 			
-			if (pc.cumMultiplier() < 3) pc.cumMultiplierRaw += 0.25;
-			if (pc.cumMultiplier() < 2) pc.cumMultiplierRaw += 0.25;
-			if (pc.cumMultiplier() < 1) pc.cumMultiplierRaw += 0.25;
+			// Increase PC's ballEfficiency and cumMultiplier
+			if (pc.ballEfficiency < 5) {pc.ballEfficiency += 0.25; cumChanged = true}
+			if (pc.ballEfficiency < 4) {pc.ballEfficiency += 0.25; cumChanged = true}
+			if (pc.ballEfficiency < 3) {pc.ballEfficiency += 0.25; cumChanged = true}
+			
+			if (pc.cumMultiplier() < 3) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
+			if (pc.cumMultiplier() < 2) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
+			if (pc.cumMultiplier() < 1) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
 			
 			output("Your [pc.cocks]");
 			if (pc.cocks.length > 1) output(" tingle and throb");
@@ -231,7 +233,8 @@ public function vanaeTFScene():void
 			output(" let out a deep guttural groan. When you can’t hold it any longer, you cry out as");
 			if (pc.cumQ() <= 200) output(" a small fountain of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurts");
 			else output(" small fountains of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurt");
-			output(" uncontrollably from your [pc.cockHeads]. <b>Your cum production has increased!</b>");
+			output(" uncontrollably from your [pc.cockHeads].");
+			if(cumChanged) output(" <b>Your cum production has increased!</b>");
 			
 			break;
 		
@@ -274,15 +277,17 @@ public function vanaeTFScene():void
 			
 			output("Deep inside of your [pc.vaginas], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCum] jump from your soppy slit");
 			if (pc.vaginas.length > 1) output("s");
-			output(". <b>Your vaginal wetness has increased"); 
-			if (!pc.isSquirter()) output(" and you are now a squirter");
-			output("!</b>");
+			output(".");
 			
 			for (var i:int = 0; i < pc.vaginas.length; i++)
 			{
 				if ((pc.vaginas[i] as VaginaClass).wetnessRaw < 4) pc.vaginas[i].wetnessRaw = 4;
 				else pc.vaginas[i].wetnessRaw += 0.1;
 			}
+			
+			output(" <b>Your vaginal wetness has increased"); 
+			if (!pc.isSquirter()) output(" and you are now a squirter");
+			output("!</b>");
 
 			break;
 	}
