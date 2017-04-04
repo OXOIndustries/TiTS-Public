@@ -76,6 +76,7 @@
 		public static const FLAG_BEAK:int									= 43;
 		public static const FLAG_CORKSCREWED:int							= 44;
 		public static const FLAG_TONGUE:int									= 45;
+		public static const FLAG_FRECKLED:int                               = 46;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",

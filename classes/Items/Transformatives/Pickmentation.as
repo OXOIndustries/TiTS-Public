@@ -74,9 +74,31 @@
 			addButton(1, "Unusual", rbgSelColor, [target, "unusual"]);
 			addButton(2, "Metallic", rbgSelColor, [target, "metallic"]);
 			addButton(3, "Glowing", rbgSelColor, [target, "glowing"]);
+			addButton(4,"Freckles",getFreckles,target);
 			addButton(14, "Back", rbgCancel, target);
 		}
-		
+		public function getFreckles(target:Creature):void
+		{
+			clearOutput();
+			kGAMECLASS.showName("\nFRECKLES!");
+			author("Night Trap");
+			var pc:Creature = target;
+			if(!pc.hasFaceFlag(GLOBAL.FLAG_FRECKLED))
+			{
+				output("You adjust the selector to freckles and press the medipen to the center of your forehead. There’s a quiet hiss from the device ");
+				if(pc.hasFaceFlag(GLOBAL.FLAG_FURRED) || pc.hasFur()) output(", but you don’t feel anything happen. You pull out your codex to check your face but are disappointed to find nothing has changed. It looks like freckles won’t show up on a furred face.");
+				else output(" followed by a tingling sensation that spreads from the injection site to the rest of your face. When the tingling finally ends you pull out your codex and use it to check your reflection, finding that <b>you now have freckles!</b>");
+				pc.addFaceFlag(GLOBAL.FLAG_FRECKLED);
+			}
+			else
+			{
+				output("You adjust the selector to freckles and press the medipen to the center of your forehead. There’s a quiet hiss from the device followed by a tingling sensation that spreads from the injection site to the rest of your face. When the tingling finally ends you pull out your codex and use it to check your reflection, finding ");
+				if(pc.hasFaceFlag(GLOBAL.FLAG_FURRED) || pc.hasFur()) output("that you can't tell the difference through your [pc.skinFurScales], but you're sure ")
+				output("that <b>your freckles are gone!</b>");
+				pc.removeFaceFlag(GLOBAL.FLAG_FRECKLED);
+			}
+			tfDone();
+		}
 		private function rbgCancel(target:Creature):void
 		{
 			clearOutput();

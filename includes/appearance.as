@@ -299,6 +299,13 @@ public function appearance(forTarget:Creature):void
 		}
 		// Special face additions
 		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
+		// Freckles
+		if(target.hasFaceFlag(GLOBAL.FLAG_FRECKLED))
+		{
+			if(target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFur()) output2(" Beneath your fur, f");
+			else output2(" F");
+			output2(target.mf("freckles spot your cheeks.","reckles cutely adorn your cheeks."));
+		}
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
