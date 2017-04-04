@@ -1650,6 +1650,12 @@ public function variableRoomUpdateCheck():void
 	if(seraAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
 	else rooms["NURSERYG12"].removeFlag(GLOBAL.NPC);
 	
+	if((hours < 4 || hours >= 12) && !pc.hasStatusEffect("Liamme Disabled")) 
+	{
+		if(!rooms["RESIDENTIAL DECK 12"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
+	}
+	else rooms["RESIDENTIAL DECK 12"].removeFlag(GLOBAL.NPC);
+
 	/* MHENGA */
 	
 	//Bounties

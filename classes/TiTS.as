@@ -192,6 +192,9 @@
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
 
+		//Tavros Residential Deck
+		include "../includes/tavros/resDeck/liamme.as";
+
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
 		include "../includes/vesperia/gloryhole.as";
@@ -464,7 +467,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.34";
+			version = "0.7.35";
 
 			//temporary nonsense variables.
 			temp = 0;
