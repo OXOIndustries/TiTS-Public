@@ -13,6 +13,7 @@
 	import classes.Items.Toys.NivasBionaHole;
 	import classes.Items.Toys.TamaniBionaHole;
 	import classes.Items.Transformatives.Bovinium;
+	import classes.Items.Transformatives.FrontRackCream;
 	import classes.kGAMECLASS;
 	
 	public class Lerris extends Creature
@@ -44,6 +45,7 @@
 			inventory.push(new FertitePlus());
 			inventory.push(new LactaidMilkTank());
 			inventory.push(new LactaidOverdrive());
+			inventory.push(new FrontRackCream());
 			
 			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...\n";
 			
