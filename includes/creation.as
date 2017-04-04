@@ -211,9 +211,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	output("\n\n<b>What name and sex would you like your character to have?</b>");
 	
 	//Set da race!
-	if(race == "human") pc.originalRace = race;
-	else if(race == "kui-tan") pc.originalRace = "half " + race;
-	else pc.originalRace = "half-" + race;
+	pc.originalRace = raceToOriginalRace(race);
 	//Menus vary based on race.
 	clearMenu();
 	if(race == "human") {
@@ -1922,6 +1920,68 @@ public function ohShitGameStarts():void {
 	else 
 		addButton(0,"Next",mainGameMenu);
 	
+}
+
+
+/* ORIGINAL RACE CORRECTION */
+
+public var pcMotherRaces:Array = ["human", "ausar", "kaithrit", "leithan", "kui-tan", "gryvain"];
+public function raceToOriginalRace(race:String = "human"):String
+{
+	var originalRace:String = race;
+	
+	if(race == "human") originalRace = race;
+	else if(race == "kui-tan") originalRace = "half " + race;
+	else originalRace = "half-" + race;
+	
+	return originalRace;
+}
+public function isCorrectOriginalRace():Boolean
+{
+	var originalRaces:Array = [];
+	
+	for(var i:int = 0; i < pcMotherRaces.length; i++)
+	{
+		originalRaces.push(raceToOriginalRace(pcMotherRaces[i]));
+	}
+	
+	return (InCollection(pc.originalRace, originalRaces));
+}
+public function fixOriginalRaceMenu():void
+{
+	clearMenu();
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < pcMotherRaces.length; i++)
+	{
+		addButton(btnSlot, StringUtil.toDisplayCase(pcMotherRaces[i]), fixOriginalRaceSelect, pcMotherRaces[i]);
+		btnSlot++;
+	}
+}
+public function fixOriginalRaceAlert():void
+{
+	clearOutput();
+	creationHeader("CODEX\nALERT");
+	author("Jacques00");
+	
+	output("Your codex suddenly beeps and vibrates. You quickly flip it into your view only to find that there is an urgent error you must correct.");
+	output("\n\n<i>Records indicate a glitch in the system. Your mother’s race data has been corrupted. Please fix this immediately by selecting a valid race from the options below.</i>");
+	output("\n\nThere is a list of races for you to choose from. Do you recall which race your mother was?");
+	
+	fixOriginalRaceMenu();
+}
+public function fixOriginalRaceSelect(race:String = "human"):void
+{
+	clearOutput();
+	creationHeader("CODEX\nALERT");
+	author("Jacques00");
+	
+	output("After selecting an option and a few quick beeps, your records have been updated and your mother’s race has been recorded as “" + StringUtil.toDisplayCase(race) + "”.");
+	output("\n\n<i>Thank you for taking the time to correct this matter and apologies for the inconvenience.</i>");
+	
+	pc.originalRace = raceToOriginalRace(race);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 
