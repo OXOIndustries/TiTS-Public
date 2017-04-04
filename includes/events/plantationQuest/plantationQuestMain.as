@@ -232,12 +232,16 @@ public function tharePlantationFieldsBonusRedux():Boolean
 		//[Enter]
 		if(!plantationQuestComplete()) 
 		{
-			addDisabledButton(0,"Enter","Enter","You should hunt the fugitive down before speaking to Darnock again.");
 			//Add to bottom of THARE PLANTATION FIELDS if PC has not yet talked to Able:
 			if(flags["PQUEST_ABLE_TALK_DISABLE"] == undefined && flags["PLANTATION_QUEST"] == 0)
 			{
 				output("\n\nAble the zil-servant is hanging around by the side of the gate, wings twitching fitfully. He casts a glance at you before looking away with a strong blush.");
-				addButton(1,"Able",ablePlantationQuestPostMeetingTalk);
+				addButton(1,"Able",ablePlantationQuestPostMeetingTalk,undefined,"Able","Perhaps he wants to talk about something?");
+			}
+			else if(flags["PLANTATION_QUEST"] == 0)
+			{
+				if(flags["PQUEST_ABLE_TALK_DISABLE"] != 2) addDisabledButton(0,"Enter","Enter","You should hunt the fugitive down before speaking to Darnock again.");
+				else addDisabledButton(0,"Enter","Enter","You should try and sort out the zil problem before speaking to Darnock again.");
 			}
 			else addButton(0,"Enter",snugglePlantationQuestStartMeetAble);
 		}
@@ -327,9 +331,9 @@ public function snugglePlantationQuestStartMeetAble():void
 	output("Able promptly buzzes out of the sky a short while after you press the button. He seems more tense and furtive than usual; his black eyes flicking up to yours and then away, his long tongue nipping in and out of his mouth, as if he were tasting something on the air.");
 	output("\n\n<i>“Master would like to see you,”</i> he says. The gate silently opens, gravel crunches as you are led up the immaculate path. <i>“He says it is important.”</i> The petite zil pauses at the steps, hands balling his Snugglé shift. <i>“Could you - once you have talked to Master, could we talk? I- I mean, you don’t have to. Just- just if you want.”</i> Eyes turned to the ground, he gestures at the open door of the mansion.");
 	processTime(2);
-	clearMenu();
 	//Move PC to Mansion square
 	currentLocation = "THARE MANOR";
+	clearMenu();
 	addButton(0,"Next",snugglePlantationQuestStartMeetAble2);
 }
 
@@ -346,7 +350,15 @@ public function snugglePlantationQuestStartMeetAble2():void
 	output("\n\nYou do so. A glass of water and a small meal is provided to you by a silent, unsmiling Snugglé prisoner employee. Munching, you watch as the professor goes back to silently gazing at the screens thrown across the glass windows and plush furnishings of the veranda. From what you can gather from a cursory glance, they are analytics of the plantation’s probationers.");
 	output("\n\n<i>“Problem with the prisoners?”</i> you venture.");
 	output("\n\n<i>“Something like that,”</i> the white-haired human sighs. He sounds reluctant, as if you were talking to you about something taboo. <i>“A laborer jumped the fence a few weeks ago. It would not ordinarily be a problem - the jungle usually discharges them either to the plantation or Esbeth, quivering and begging to be taken back. Unfortunately, in this particular laborer’s case, the jungle itself </i>was<i> the goal.”</i>");
-	output("\n\nDarnock flicks his hand at the screen, and a prisoner’s file is projected onto it. A lean, male ausar gazes down at you; solemn, hungry yellow eyes beneath a shock of gray hair. MD6 - 605631 REMI-KELLEN LAH, reads the plate he’s holding up.");
+	processTime(9);
+	clearMenu();
+	addButton(0,"Next",snugglePlantationQuestStartMeetAble3);
+}
+public function snugglePlantationQuestStartMeetAble3():void
+{
+	clearOutput();
+	showDarnock();
+	output("Darnock flicks his hand at the screen, and a prisoner’s file is projected onto it. A lean, male ausar gazes down at you; solemn, hungry yellow eyes beneath a shock of gray hair. MD6 - 605631 REMI-KELLEN LAH, reads the plate he’s holding up.");
 	output("\n\n<i>“I must make clear,”</i> Darnock continues, <i>“that it was a bureaucratic snafu that had Remi sent here in the first place. Send me your thieves, I told Snugglé! Send me your petty criminals, your unlicensed prostitutes, your drug addicts - I will change them. I will HEAL them. Just don’t send me any eco-warriors. Don’t send me any activist ausar serving five years for a fire-bombing campaign against Xenogen. Because doing that might... it might cause problems.”</i>");
 	output("\n\nThe professor signals with two terse fingers and the prisoner file slides away, replaced by a geographical map of the immediate area. The perimeter of the plantation is shown, and a number of angry red circles intersect it.");
 	output("\n\n<i>“Since Lah escaped, we have been attacked six times by a tribe of zil. They use tactics which are completely out of keeping for their kind, exploiting programming blind spots to get past the turrets and destroy our crops. They are not out for sex; it is pure, targeted aggression.”</i> He gestures. A fuzzy video recording appears on the main screen, shot in night vision. A rangy figure is gesticulating wildly at insect-winged others, who are quickly dragging large pods into what looks like sugar cane.");
@@ -355,7 +367,7 @@ public function snugglePlantationQuestStartMeetAble2():void
 	output("\n\n<i>“Mhen’ga stands at a crossroads, Steele,”</i> says Darnock, turning away from the prospect to look you in the eye with a quiet smile. <i>“Lah wishes to force it down the path of darkness. By harnessing the savagery of the natives, he aims to demonstrate to the evaluators that this world is too dangerous, too wild to be agri-formed and brought into the light of the wider galaxy. I have no doubt he believes his intentions noble. But make no mistake - they are to the detriment of every living being on this planet. If the evaluators find this plantation untenable because the zil are too war-like, they will almost certainly be denied sapient rights via the U.G.C. Mhen’ga may even be deemed too dangerous to settle - Esbeth will be abandoned. Snugglé shall be denied a fantastic world to study and foster. The pirates and slavers lurking in the wings handed a vast, free buffet.”</i>");
 	output("\n\nDarnock gestures, and this time a screen doesn’t pop up. Your attention is instead directed out the patio towards the green wall of the jungle, looming beyond the serried plantation fields.");
 	output("\n\n<i>“Lah is out there somewhere, Steele. Find him. Bring him to justice. Your reward shall be substantial - both fiscally, and in terms of the great good you shall render this world.”</i>");
-	processTime(18);
+	processTime(9);
 	//[Where?] [Lah] [Continue]
 	pquestIntroChatMenu();
 }
@@ -1494,6 +1506,7 @@ public function loseToNaleenRapeyBall():void
 
 public function naleenBallLossFinisher():void
 {
+	clearOutput();
 	author("Nonesuch");
 	showName("\nLATER...");
 	showBust("NALEEN_BALL");
