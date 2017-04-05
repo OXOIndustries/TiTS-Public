@@ -3528,7 +3528,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_JAMES"] != undefined)
 				{
 					output2("\n<b>* James:</b> Met him");
-					if(flags["BB_5FINGER_DISCOUNT"] != undefined) output2(", Gave “5-finger discount”");
+					if(flags["BB_5FINGER_DISCOUNT"] != undefined) output2(", Gave “Five Finger Discount”");
 				}
 				// Sally
 				if(flags["MET_SALLY"] != undefined)

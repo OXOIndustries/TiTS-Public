@@ -146,7 +146,8 @@ public function jamesMenu():void
 	addButton(1,"Himself",askJamesAbootHisRoboSelf,undefined,"Himself","Find out more about the exotic android.");
 	addButton(2,"Flirt",flirtWithJames,undefined,"Flirt","See what the synthetic stud’s stuffed in his slacks.");
 	addButton(3,"Advice",askJamesForAdvice,undefined,"Advice","Bartenders always have sage advice to give, right?");
-	addButton(4,"Discount",jamesFistFuckerDiscount,undefined,"Discount","Ask James about the five finger discount.");
+	if(flags["BB_5FINGER_DISCOUNT"] == 1) addDisabledButton(4,"Discount","Discount","You just did that.");
+	else addButton(4,"Discount",jamesFistFuckerDiscount,undefined,"Discount","Ask James about the five finger discount.");
 	addButton(5,"Appearance",jamesAppearance,undefined,"Appearance","Get a closer look at him.");
 	addButton(14,"Back",mainGameMenu);
 }
@@ -254,7 +255,6 @@ public function jamesFistFuckerDiscount():void
 	addButton(0,"Vagina",grabEmByThePussyTheyllLetYa);
 	addButton(1,"Ass",fiveFingahAsscount);
 	addButton(2,"Nope",nopeNoFiveFingerCuntPunch);
-
 }
 
 //[Vagina]
@@ -294,15 +294,14 @@ public function grabEmByThePussyTheyllLetYa():void
 	else
 	{
 		output("\n\nIt’s all you can do to stay calm as the handsome android packs your cunny with his hand. When he fits a fourth finger into you and still doesn’t encounter any serious resistance, he finally begins to form a fist inside your pussy. A moan of delight rings out of you as the synthetic fist stretches your walls. James moves his hand in up to the wrist, leaving your [pc.thighs] shaking. Before you can really get into it though, he starts to withdraw his fist. You groan in dismay, your [pc.cunt " + x + "] feeling terribly empty.");
-		output("\n\nJames removes his glove and shouts as loudly as he can to the entire saloon <i>“We’ve got a new one here today folks! " + pc.mf("His","Her") + " pussy is ready for business!”</i> Your cheeks burn from both arousal and the fact that the volume of your vagina has just been announced to the general public. James turns to you before heading back to his duties at the bar. <i>“You can collect your free drink any time you want.”</i> He winks before leaving you to redress. When you’ve suited up again you return to the bar to claim your prize, the eyes of many patrons, local and tourist alike, following you as you walk.");
 		pc.cuntChange(x,275);
+		output("\n\nJames removes his glove and shouts as loudly as he can to the entire saloon <i>“We’ve got a new one here today folks! " + pc.mf("His","Her") + " pussy is ready for business!”</i> Your cheeks burn from both arousal and the fact that the volume of your vagina has just been announced to the general public. James turns to you before heading back to his duties at the bar. <i>“You can collect your free drink any time you want.”</i> He winks before leaving you to redress. When you’ve suited up again you return to the bar to claim your prize, the eyes of many patrons, local and tourist alike, following you as you walk.");
 		flags["BB_5FINGER_DISCOUNT"] = 1;
 	}
 	pc.exhibitionism(1);
 	processTime(5);
 	pc.lust(20);
 	jamesMenu();
-	addDisabledButton(4,"Discount","Discount","You just did that.");
 }
 
 //[Ass]
@@ -340,13 +339,13 @@ public function fiveFingahAsscount():void
 		output("\n\nIt’s all you can do to stay calm as the handsome android packs your bowels with his hand. When he fits a fourth finger into you and still doesn’t encounter any serious resistance, he finally begins to form a fist inside your ass. A moan of delight rings out of you as the synthetic fist stretches your intestines. James moves his hand in up to the wrist, leaving your [pc.thighs] shaking. Before you can really get into it though, he starts to withdraw his fist. You groan in dismay, your [pc.asshole] feeling terribly empty.");
 		pc.buttChange(275);
 		output("\n\nJames removes his glove and shouts as loudly as he can to the entire saloon <i>“We’ve got a new one here today folks! " + pc.mf("His","Her") + " ass is ready for business!”</i> Your cheeks burn from both arousal and the fact that the volume of your anus has just been announced to the general public. James turns to you before heading back to his duties at the bar. <i>“You can collect your free drink any time you want.”</i> He winks before leaving you to redress. When you’ve suited up again you return to the bar to claim your prize, the eyes of many patrons, local and tourist alike, following you as you walk.");
+		flags["BB_5FINGER_DISCOUNT"] = 1;
 	}
 	//add 40 lust, do anal stretching check, pass 5 minutes, add exhibitionism, return PC to James’s talk menu, if PC got fisted make their next drink free.
 	processTime(5);
 	pc.exhibitionism(1);
 	pc.lust(20);
 	jamesMenu();
-	addDisabledButton(4,"Discount","Discount","You just did that.");
 }
 
 //[Nope]
@@ -361,7 +360,6 @@ public function nopeNoFiveFingerCuntPunch():void
 	//past 2 minutes, return PC to James’s talk menu
 	processTime(1);
 	jamesMenu();
-	addDisabledButton(4,"Discount","Discount","You just did that.");
 }
 
 //Drinks and Foods
