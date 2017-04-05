@@ -81,7 +81,7 @@ public function vavaGroomIntro(vanae:Boolean = false):void
 	{
 		output("<i>“Um...”</i> you wonder if this isn’t quite a rude thing to ask, but you aren’t going to be able to concentrate until you get it off your tongue. <i>“You’re a vanae, right?”</i>");
 		output("\n\n<i>“Fhan’i,”</i> the girl replies, with careful pronunciation. <i>“The emphasis is... oh, wait. You’ve come from the frontier, haven’t you?”</i> She leans forward with a grin, large breasts squeezed together as she bends her shoulders in. <i>“I know, isn’t it incredibly exciting! A race that is almost exactly like us, living native on a crazy jungle world. I only found out a week or so ago, and I’m still kinda wondering if someone is playing a big joke on me about it to be honest. If only we could talk to them! If only we knew if they keep histories, so we could - ”</i>");
-		output("\n\n<i>“Estie, you aren’t nattering a customer’s ears off, are you? [pc.he] probably doesn’t use them as much as you do, but I imagine [pc.he] still needs them.”</i>");
+		output("\n\n<i>“Estie, you aren’t nattering a customer’s ears off, are you? [pc.He] probably doesn’t use them as much as you do, but I imagine [pc.he] still needs them.”</i>");
 		output("\n\nYou turn to take in the large, furry shape emerging from within the ship, drying his paw-like hands on a towel and extending one to you.");
 	}
 	else

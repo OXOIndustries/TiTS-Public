@@ -2187,12 +2187,18 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			if(pc.biggestTitSize() > 1)
 			{
 				msg += ParseText("Intense pressure clamps around your [pc.chest], the soft flesh there feeling like it is being pushed inwards. You massage your boobs and take deep breaths, urging the sensation to pass. Which it does, but not before your proud bust has been winnowed down to a winsome, timid pair of A cups; bare, sensitive handfuls. ");
-				pc.milkFullness = 0;
-				for(i = 0; i < pc.bRows(); i++)
+				if(pc.breastRows.length > 1)
 				{
-					pc.breastRows[i].breastRatingRaw = 1;
-					pc.breastRows[i].breastRatingHoneypotMod = 0;
+					while (pc.breastRows.length > 1)
+					{
+						pc.removeBreastRow((pc.breastRows.length - 1), 1);
+					}
 				}
+				pc.breastRows[0].breasts = 2;
+				pc.breastRows[0].breastRatingRaw = 1;
+				pc.breastRows[0].breastRatingHoneypotMod = 0;
+				pc.breastRows[0].breastRatingLactationMod = 0;
+				pc.milkFullness = 0;
 				minPass += 2;
 			}
 			// If height > 5'5" reduce to 5'5"
