@@ -18418,7 +18418,7 @@
 			// imo fluid simulate could be replaced wholesale with !neverSerialize-- any character
 			// we save we care about these potential values in a broad sense.
 			
-			if ((fluidSimulate || this is PlayerCharacter) && flags["NURSERY_MATERNITY_WAIT_ACTIVE"] == undefined)
+			if ((fluidSimulate || this is PlayerCharacter) && !hasStatusEffect("Cum Paused") && flags["NURSERY_MATERNITY_WAIT_ACTIVE"] == undefined)
 			{
 				cumFlationSimulate(deltaT, doOut);
 				if (hasPerk("'Nuki Nuts") || ballFullness < 100) cumProduced(deltaT, doOut);
