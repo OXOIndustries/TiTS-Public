@@ -359,8 +359,8 @@ public function cynthiaSex(response:String = "intro"):void
 			output("\n\n<i>“Sure you’re not up for another round?”</i> you ask as you eat. Cynthia shakes her head.");
 			output("\n\n<i>“Sorry, time to get to work. Can’t be late because I was at home getting a morning quickie, no matter what their name is or how sexy " + indefiniteArticle(pc.race()) + " they are.”</i>");
 			output("\n\n<i>“Aww, but I’m your boss. Can’t I excuse you?”</i> you reply with a half-joking smile that prompts a smirk back from the cowgirl.");
-			output("\n\n");
-			if(9999 == 9999) output("<i>“</i>Future<i> boss. ");
+			output("\n\n<i>“");
+			if(9999 == 9999) output("</i>Future<i> boss. ");
 			output("You want to be able to take me for a morning ride, get out there and earn that company. Trust me, if you fight as good as you fuck, you’ll be calling the shots in no time. Then you can set whatever work hours you want.”</i>");
 			output("\n\nIt’s certainly an inspiring reward to think of as you make use of Cynthia’s shower for one last bit of warmth, heading out to face the chill outside with renewed vigor.");
 			
@@ -374,7 +374,11 @@ public function cynthiaSex(response:String = "intro"):void
 				if(currHour >= 24) currHour = 0;
 			}
 			
+			pc.createStatusEffect("Cum Paused");
+			pc.createStatusEffect("Milk Paused");
 			processTime(minPass);
+			pc.removeStatusEffect("Cum Paused");
+			pc.removeStatusEffect("Milk Paused");
 			
 			eatHomeCooking(25);
 			pc.milkInMouth(chars["CYNTHIA"]);

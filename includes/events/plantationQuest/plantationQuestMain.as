@@ -2029,8 +2029,11 @@ public function loseToZatZilTribe():void
 	output("<i>“Take comfort in the knowledge that others of your kind may learn from your end. And that it was quick.”</i>");
 	if(silly) output("\n\n<i>“Killing me won’t bring back your goddamn honey!”</i> you howl in his face.");
 	output("\n\nHalf a dozen zil heave the weight back - and then swing it forward. And then... there’s only the deafening inhalation of the wind.");
+	
+	processTime(11);
+	
 	//GAME (SPLAT) OVER.
-	badEnd("GAME OVER.");
+	badEnd((silly ? "GAME (SPLAT) OVER." : "GAME OVER."));
 }
 
 //PC Wins
