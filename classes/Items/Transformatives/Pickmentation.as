@@ -27,7 +27,7 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "A colorful injector labelled “Pickmentation.”";
+			description = "a colorful injector labeled “Pickmentation”";
 			tooltip = "This is an extremely garish medipen that constantly shifts between colors and patterns, with a selector mechanism at the bottom. Produced by Xenogen Biotech, it is based on the physiology of the Vanae of Mhen’ga, who are able to freely change the color and patterns of their flesh. The packaging claims that this will allow you to change your skin color.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
