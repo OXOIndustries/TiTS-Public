@@ -4193,7 +4193,7 @@
 			//Temporary Stuff
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
-			if (hasStatusEffect("Leithan Milk")) bonus += 33;
+			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
