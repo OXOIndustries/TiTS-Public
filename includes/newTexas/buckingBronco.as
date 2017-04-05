@@ -13,7 +13,7 @@ public function showJames(nude:Boolean = false):void
 //Approach and Description
 public function approachBuckBronoBonus():void
 {
-	output("\n\nA two-story rectangular building lies to the south, with a painted wooden sign emblazoned <i>“Bucking Bronco Saloon”</i>. Upon closer inspection, you notice there is a white line running diagonally through the B, creating a letter that could be read as either B or F.");
+	output("\n\nA two-story rectangular building lies to the south, with a painted wooden sign emblazoned “Bucking Bronco Saloon”. Upon closer inspection, you notice there is a white line running diagonally through the B, creating a letter that could be read as either B or F.");
 	if(pc.isTreated()) output(" Nice!");
 	else output(" Charming.");
 	output(" A sign above the doors reads in flowery script <i>“The Broodmare Bordello located on second floor.”</i>");
@@ -24,19 +24,19 @@ public function approachBuckBronoBonus():void
 		else output("...");
 	}
 	else if(rand(10) <= 2) output("\n\nThere are several clusters of people on the porch that encircles the building, some of them leaning against the exterior wall, many sitting in chairs arranged next to barrels that upon closer inspection are revealed to have hardlight projectors built into the tops of them, projecting old Terran games such as checkers and tables.");
-	//Original: [APPROACH]: A two-story rectangular building lies to the [CARDINAL DIRECTION], with a painted wooden sign emblazoned <i>“Bucking Bronco Saloon”</i>. Upon closer inspection, you notice there is a white line running diagonally through the B, creating a letter that could be read as either B or F. [If Bro or Ditz: Nice! //else: Charming.} There are several clusters of people on the porch that encircles the building, some of them leaning against the exterior wall, many sitting in chairs arranged next to barrels that upon closer inspection are revealed to have hardlight projectors built into the tops of them, projecting old Terran games such as checkers and tables. You also see the occasional cowgirl being bent over the railings for a quickie{silly mode: ; how gentlemanly!”</i>}. The entrance to the Bucking Bronco consists of well-worn, varnished wooden saloon doors. A sign above the doors reads in flowery script <i>“The Broodmare Bordello located on second floor.”</i>");
+	//Original: [APPROACH]: A two-story rectangular building lies to the [CARDINAL DIRECTION], with a painted wooden sign emblazoned “Bucking Bronco Saloon”. Upon closer inspection, you notice there is a white line running diagonally through the B, creating a letter that could be read as either B or F. [If Bro or Ditz: Nice! //else: Charming.} There are several clusters of people on the porch that encircles the building, some of them leaning against the exterior wall, many sitting in chairs arranged next to barrels that upon closer inspection are revealed to have hardlight projectors built into the tops of them, projecting old Terran games such as checkers and tables. You also see the occasional cowgirl being bent over the railings for a quickie{silly mode: ; how gentlemanly!}. The entrance to the Bucking Bronco consists of well-worn, varnished wooden saloon doors. A sign above the doors reads in flowery script <i>“The Broodmare Bordello located on second floor.”</i>");
 }
 
 public function saloonInteriorBonus():Boolean
 {
 	author("Night Trap");
-	output("Live piano music and the chatter of patrons fill your ears the moment you walk through the saloon doors. The entryway of the Bucking Bronco is extremely low-tech; aside from a modern synthetic carpet for customers to wipe their feet on, there is only a large taxidermied varmint posed on its hind legs holding in its forelegs a sign that reads <i>“No shirt, no shoes, no problem!”</i> Further inside, you see dozens of circular wooden tables with matching wooden chairs arranged around them, most of them occupied by happy bar-goers, not all of whom are clothed. The walls are decorated with the stuffed heads of ferocious-looking creatures, from ");
+	output("Live piano music and the chatter of patrons fill your ears the moment you walk through the saloon doors. The entryway of the Bucking Bronco is extremely low-tech; aside from a modern synthetic carpet for customers to wipe their feet on, there is only a large taxidermied varmint posed on its hind legs holding in its forelegs a sign that reads, <i>“No shirt, no shoes, no problem!”</i> Further inside, you see dozens of circular wooden tables with matching wooden chairs arranged around them, most of them occupied by happy bar-goers, not all of whom are clothed. The walls are decorated with the stuffed heads of ferocious-looking creatures, from ");
 	if(silly) output("rodents of unusual size");
 	else output("varmints of vastly different shapes and sizes");
-	output(" to a few truly alien ones your Codex can’t immediately recognize, and oil paintings depicting nude cowgirls in repose made decent only by wispy sheets of silk. The wall opposite the entrance is dominated by a wooden bar. Behind the bar is a sign that reads <i>“Ask about our Five Finger Discount!”</i>");
+	output(" to a few truly alien ones your Codex can’t immediately recognize, and oil paintings depicting nude cowgirls in repose made decent only by wispy sheets of silk. The wall opposite the entrance is dominated by a wooden bar. Behind the bar is a sign that reads, <i>“Ask about our Five Finger Discount!”</i>");
 	if(silly) output(" This place is way better than the last saloon you went to. It’s got blackjack, and hookers!");
 
-	output("\n\nIn the center of the room sits a shallow pit filled with padding surrounding a mechanical bull fashioned to look like a stallion with a large horse dildo incorporated into the saddle. A sign next to the pit reads <i>“The Fucking Bronco”</i>.");
+	output("\n\nIn the center of the room sits a shallow pit filled with padding surrounding a mechanical bull fashioned to look like a stallion with a large horse dildo incorporated into the saddle. A sign next to the pit reads “The Fucking Bronco”.");
 
 	output("\n\nYou see a flight of stairs along the western wall that leads up to the second floor, where the Broodmare Bordello is located.");
 
@@ -58,15 +58,15 @@ public function saloonInteriorBonus():Boolean
 	//[Bartender] //replace with [James] after first time player selects this
 	if(flags["MET_JAMES"] == undefined) addButton(0,"Bartender",imRickJamesBiyaaaaatch,undefined,"Bartender","See about getting a drink.");
 	else addButton(0,"James",imRickJamesBiyaaaaatch,undefined,"James","See about getting a drink from the moustache-touting mechanical mirth dispensor.");
-	addButton(1,"Food",bbFoodMenu,undefined,"Food","See what's on the menu?");
+	//[Order Food] //bring up Food Menu
+	addButton(1,"Food",bbFoodMenu,undefined,"Order Food","See what’s on the menu?");
+	//[Cowgirls] //replace with [Living Kegs] after first time player selects this
 	if(flags["LIVING_KEGGED"] == undefined) addButton(2,"Cowgirls",livingKegsApproach,undefined,"Cowgirls","Check out the booze-leaking cow-girls.");
 	else addButton(2,"Living Kegs",livingKegsApproach,undefined,"Living Kegs","Drinks are better fresh from the tap!");
-	//[Cowgirls] //replace with [Living Kegs] after first time player selects this
 	//[Rum Cow] Follow the wonderful scent of that cowgirl to the bar. //replace with [Sally] after the first time the player selects this.
 	if(flags["MET_SALLY"] == undefined) addButton(3,"Rum Cow",approachSally,undefined,"Rum Cow","Follow the wonderful scent of that cowgirl to the bar.");
 	else addButton(3,"Sally",approachSally,undefined,"Sally","Follow the wonderful scent of that cowgirl to the bar.");
 	//[Ride Bronco]
-	//[Order Food] //bring up Food Menu
 	return false;
 }
 
@@ -94,7 +94,7 @@ public function jamesAppearance():void
 	clearOutput();
 	showJames();
 	author("Night Trap");
-	output("James is a 6’4 android built to look like a human while still being subtly artificial. He has statuesque features that make his apparent age hard to pin down, with a chiseled jawline and smooth, flawless tan, but artificial skin, complemented by his slicked-back white hair and red eyes. His upper lip is obscured by an impressively large waxed handlebar mustache, but he is otherwise clean-shaven. His thick neck is encircled by an antiquated black silk bowtie, tied in large loops.");
+	output("James is a 6\' 4\" android built to look like a human while still being subtly artificial. He has statuesque features that make his apparent age hard to pin down, with a chiseled jawline and smooth, flawless tan, but artificial skin, complemented by his slicked-back white hair and red eyes. His upper lip is obscured by an impressively large waxed handlebar mustache, but he is otherwise clean-shaven. His thick neck is encircled by an antiquated black silk bowtie, tied in large loops.");
 	output("\n\nHe is wide-framed with an incredibly defined musculature");
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(", and you know that he’s strong enough to tear a human’s arm off with minimal effort");
 	else output("that you can’t help but admire");
@@ -144,7 +144,7 @@ public function jamesMenu():void
 	clearMenu();
 	addButton(0,"Order",jamesDrinkMenu,undefined,"Order","Order something to drink.");
 	addButton(1,"Himself",askJamesAbootHisRoboSelf,undefined,"Himself","Find out more about the exotic android.");
-	addButton(2,"Flirt",flirtWithJames,undefined,"Flirt","See what the synthetic stud's stuffed in his slacks.");
+	addButton(2,"Flirt",flirtWithJames,undefined,"Flirt","See what the synthetic stud’s stuffed in his slacks.");
 	addButton(3,"Advice",askJamesForAdvice,undefined,"Advice","Bartenders always have sage advice to give, right?");
 	addButton(4,"Discount",jamesFistFuckerDiscount,undefined,"Discount","Ask James about the five finger discount.");
 	addButton(5,"Appearance",jamesAppearance,undefined,"Appearance","Get a closer look at him.");
@@ -172,7 +172,8 @@ public function askJamesAbootHisRoboSelf():void
 	{
 		output("\n\nHe looks at you curiously. <i>“What about you? I haven’t gotten your name yet.”</i>");
 		output("\n\n<i>“Steele. [pc.name] Steele.”</i>");
-		output("\n\nJames wipes his hand on his apron before offering you a handshake. You accept, and find he has a grip like a hydraulic press. {Silly mode: For some reason you have an overwhelming urge to tell him <i>“You’re terminated, fucker.”</i>");
+		output("\n\nJames wipes his hand on his apron before offering you a handshake. You accept, and find he has a grip like a hydraulic press.");
+		if(silly) output(" For some reason you have an overwhelming urge to tell him <i>“You’re terminated, fucker.”</i>");
 		flags["JAMES_SELF_TALK"] = 1;
 	}
 	processTime(8);
@@ -215,14 +216,14 @@ public function askJamesForAdvice():void
 	output("Bartenders in fiction always give the hero some fresh perspective on their problems. It seems worth a shot to ask James if he has any advice. At the very least you could get a synthetic’s take on your quest. You paint the broad strokes of your quest and inform the android of the latest goings-on in your journey to claim your inheritance.");
 	output("\n\nJames listens eagerly to your story, a bit incredulous throughout. When you finish speaking he gives you his thoughts. <i>“Well, that’s quite a tale " + pc.mf("Mr.","Mrs.") + " Steele. And you’re asking me for advice?”</i>");
 	output("\n\nYou shrug, saying it couldn’t hurt.");
-	output("\n\nHe takes a moment to think, still cleaning and drying glasses and mugs the whole time. Finally, he shares his wisdom with you. ");
+	output("\n\nHe takes a moment to think, still cleaning and drying glasses and mugs the whole time. Finally, he shares his wisdom with you. <i>“");
 	//First probe has not been found:
-	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined) output("<i>“Maybe it won’t work out. But seeing if it does will be the best adventure you’ll ever have.");
+	if(flags["UNLOCKED_JUNKYARD_PLANET"] == undefined) output("Maybe it won’t work out. But seeing if it does will be the best adventure you’ll ever have.");
 	//First probe found but not second: 
-	else if(flags["PLANET_3_UNLOCKED"] == undefined) output("<i>“What lies behind you and what lies in front of you, pales in comparison to what lies inside of you.");
+	else if(flags["PLANET_3_UNLOCKED"] == undefined) output("What lies behind you and what lies in front of you, pales in comparison to what lies inside of you.");
 	//First and second probes found but not third:
-	else if(!reclaimedProbeMyrellion()) output("<i>“Great works are performed not by strength but by perseverance.");
-	else output("<i>“Perseverance is a great element of success. If you only knock long enough and loud enough at the gate, you are sure to wake up somebody.");
+	else if(!reclaimedProbeMyrellion()) output("Great works are performed not by strength but by perseverance.");
+	else output("Perseverance is a great element of success. If you only knock long enough and loud enough at the gate, you are sure to wake up somebody.");
 	output(" Does that help you at all?”</i>");
 
 	output("\n\nYou smile and thank James, telling him that his words were inspiring.");
@@ -279,7 +280,7 @@ public function grabEmByThePussyTheyllLetYa():void
 	var x:int = pc.biggestVaginaIndex();
 	output("\n\nYou gasp at the chilly feeling of the lubricant as James’s fingers begin to slip into your [pc.cunt " + x + "], but thankfully the lube warms up in a few seconds. Your gasp becomes one of lust as first one thick finger, then another works its way into your womanhood. When a third finger joins in, you have to bite your lip to stifle a moan.");
 
-	//Do a capacity check for the PC’s vagina. I don’t know what the volume of a large fist would be, but that’s what the volume of PC’s vagina needs to be. If PC’s vagina is too small, go to <i>“pussy too tight”</i>. If the fist fits, go to <i>“Pussy success”</i>.
+	//Do a capacity check for the PC’s vagina. I don’t know what the volume of a large fist would be, but that’s what the volume of PC’s vagina needs to be. If PC’s vagina is too small, go to “pussy too tight”. If the fist fits, go to “Pussy success”.
 	
 	if(pc.vaginalCapacity(x) < 300)
 	{
@@ -321,7 +322,7 @@ public function fiveFingahAsscount():void
 	output(" He slips a sterile nano-fiber glove onto his right hand before applying a generous amount of lubricant to it. <i>“Are you ready?”</i>");
 
 	output("\n\nYou take a deep breath and nod, steeling yourself for what’s about to happen.");
-	//Do a capacity check for the PC’s anus. I don’t know what the volume of a large fist would be, but that’s what the volume of PC’s anus needs to be. If PC’s anus is too small, go to <i>“ass too tight”</i>. If the fist fits, go to <i>“Ass success”</i>.
+	//Do a capacity check for the PC’s anus. I don’t know what the volume of a large fist would be, but that’s what the volume of PC’s anus needs to be. If PC’s anus is too small, go to “ass too tight”. If the fist fits, go to “Ass success”.
 
 	output("\n\nYou gasp at the chilly feeling of the lubricant as James’s fingers begin to slip into your [pc.asshole], but thankfully the lube warms up in a few seconds. Your gasp becomes one of lust as first one thick finger, then another works its way into your sphincter. When a third finger joins in, you have to bite your lip to stifle a moan.");
 
@@ -373,11 +374,11 @@ public function jamesDrinkMenu():void
 	clearMenu();
 	if(pc.isSmashed())
 	{
-		addDisabledButton(0,"Milk Stout","Milk Stout","You're too drunk for one of these.");
-		addDisabledButton(1,"Leithan Milk","Leithan Milk","You're too drunk for one of these.");
-		addDisabledButton(2,"Milktini","Milktini","You're too drunk for one of these.");
-		addDisabledButton(3,"V.Whiskey","Varmintbite Whiskey","You're too drunk for one of these.");
-		addDisabledButton(4,"Raging Bull","Raging Bull","You're too drunk for one of these.");
+		addDisabledButton(0,"Milk Stout","Milk Stout","You’re too drunk for one of these.");
+		addDisabledButton(1,"Leithan Milk","Leithan Milk","You’re too drunk for one of these.");
+		addDisabledButton(2,"Milktini","Milktini","You’re too drunk for one of these.");
+		addDisabledButton(3,"V.Whiskey","Varmintbite Whiskey","You’re too drunk for one of these.");
+		addDisabledButton(4,"Raging Bull","Raging Bull","You’re too drunk for one of these.");
 	}
 	else
 	{
@@ -387,9 +388,9 @@ public function jamesDrinkMenu():void
 			addButton(1,"Leithan Milk",drinkAtBuckingBronco,"Leithan Milk","Leithan Milk","Breastmilk from a Treated leithan. While it isn’t truly alcoholic, it produces an effect very similar to intoxication in humans. It is also a potent aphrodisiac, making this drink extremely popular with tourists hoping to keep up with the sex drives of the locals.");
 			addButton(2,"Milktini",drinkAtBuckingBronco,"Milktini","Milktini","A blend of milk, vodka, and white chocolate liqueur.");
 			if(!pc.isDrunk()) addButton(3,"V. Whiskey",drinkAtBuckingBronco,"Varmintbite Whiskey","Varmintbite Whiskey","Produced by one of the oldest breweries on New Texas, Varmintbite is so named because it once contained the venom of a now-extinct variety of varmint. The venom today is synthesized and perfectly harmless on its own, but it still retains its signature enzymatic effect, causing imbibers of most species to become roaringly drunk almost instantly.");
-			else addDisabledButton(3,"V. Whiskey","Varmintbite Whiskey","You're too drunk for one of those.");
+			else addDisabledButton(3,"V. Whiskey","Varmintbite Whiskey","You’re too drunk for one of those.");
 			if(!pc.isDrunk()) addButton(4,"Raging Bull",drinkAtBuckingBronco,"Raging Bull","Raging Bull","A bomb shot drink consisting of a glass of milk stout with a shot of Irish cream and Varmintbite whiskey dropped into it, chugged as quickly as possible. This drink can render even the most iron-livered bull utterly shit-faced in just a few seconds.");
-			else addDisabledButton(4,"Raging Bull","Raging Bull","You're too drunk for one of these.");
+			else addDisabledButton(4,"Raging Bull","Raging Bull","You’re too drunk for one of these.");
 		}
 		else
 		{
@@ -407,14 +408,14 @@ public function jamesDrinkMenu():void
 				if(pc.credits >= 15) addButton(3,"V.Whiskey",drinkAtBuckingBronco,"Varmintbite Whiskey","Varmintbite Whiskey","Produced by one of the oldest breweries on New Texas, Varmintbite is so named because it once contained the venom of a now-extinct variety of varmint. The venom today is synthesized and perfectly harmless on its own, but it still retains its signature enzymatic effect, causing imbibers of most species to become roaringly drunk almost instantly.\n\nCost: 15 Credits");
 				else addDisabledButton(3,"V.Whiskey","Varmintbite Whiskey","You cannot afford the 15 credits for this drink.");
 			}
-			else addDisabledButton(3,"V.Whiskey","Varmintbite Whiskey","You're too drunk for one of those.");
+			else addDisabledButton(3,"V.Whiskey","Varmintbite Whiskey","You’re too drunk for one of those.");
 
 			if(!pc.isDrunk()) 
 			{
 				if(pc.credits >= 30) addButton(4,"Raging Bull",drinkAtBuckingBronco,"Raging Bull","Raging Bull","A bomb shot drink consisting of a glass of milk stout with a shot of Irish cream and Varmintbite whiskey dropped into it, chugged as quickly as possible. This drink can render even the most iron-livered bull utterly shit-faced in just a few seconds.\n\nCost: 30 Credits");
 				else addDisabledButton(4,"Raging Bull","Raging Bull","You cannot afford the 30 credits for this drink.");
 			}
-			else addDisabledButton(4,"Raging Bull","Raging Bull","You're too drunk for one of these.");
+			else addDisabledButton(4,"Raging Bull","Raging Bull","You’re too drunk for one of these.");
 		}
 	}
 	addButton(14,"Back",backToJames);
@@ -516,14 +517,14 @@ public function bbFoodMenu():void
 	clearOutput();
 	showName("THE\nMENU:");
 	author("Night Trap");
-	output("\\\[Biscuits & gravy\\\] - 5 credits");
+	output("\\\[Biscuits & Gravy\\\] - 5 credits");
 	output("\nTwo buttermilk biscuits covered in a creamy pork sausage gravy. A breakfast favorite.");
-	output("\n\n\\\[Country ham\\\] - 15 credits");
+	output("\n\n\\\[Country Ham\\\] - 15 credits");
 	output("\nPan-fried ham on a bed of grits and smothered in red-eye gravy. Served with a side of skillet-baked cornbread.");
-	output("\n\n\\\[Chicken fried steak\\\] - 20 credits");
+	output("\n\n\\\[Chicken Fried Steak\\\] - 20 credits");
 	output("\nNot actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.");
-	output("\n\n\\\[72. oz. steak\\\] - 50 credits");
-	output("\nFour and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is <i>“just”</i> a large steak. Popular with tourists who want the full <i>“New Texas experience.”</i>");
+	output("\n\n\\\[72 oz. Steak\\\] - 50 credits");
+	output("\nFour and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is “just” a large steak. Popular with tourists who want the full “New Texas experience.”");
 
 	processTime(2);
 	clearMenu();
@@ -533,8 +534,8 @@ public function bbFoodMenu():void
 	else addDisabledButton(1,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 10 credits");
 	if(pc.credits >= 20) addButton(2,"CF Steak",eatAtTheBB,"CF Steak","Country Fried Steak","Not actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.\n\nCost: 20 credits");
 	else addDisabledButton(2,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 20 credits");
-	if(pc.credits >= 50) addButton(3,"72oz Steak",eatAtTheBB,"72oz Steak","72oz Steak","Four and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is <i>“just”</i> a large steak. Popular with tourists who want the full <i>“New Texas experience.”</i>\n\nCost: 50 credits");
-	else addDisabledButton(3,"72oz Steak","72oz Steak","You cannot afford that.\n\nCost: 20 credits");
+	if(pc.credits >= 50) addButton(3,"72oz Steak",eatAtTheBB,"72oz Steak","72 oz. Steak","Four and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is “just” a large steak. Popular with tourists who want the full “New Texas experience.”\n\nCost: 50 credits");
+	else addDisabledButton(3,"72oz Steak","72 oz. Steak","You cannot afford that.\n\nCost: 20 credits");
 	addButton(14,"Back",mainGameMenu);
 
 }
@@ -634,7 +635,7 @@ public function livingKegsApproach():void
 
 		output("\n\n<i>“Hey there, stranger!”</i> One of the cowgirls calls out, causing the gazes of the rest of the lineup to fall on you, <i>“Looking for a drink?”</i>");
 		output("\n\nThat particular busty bovine giggles and gives her big breasts an enticing shake for you. The rest of the cowgirls follow suit, hefting and squeezing their own tits to give you a better idea of what you’re dealing with.");
-		output("\n\nWell, if you are looking for a drink, maybe it wouldn’t be so bad to get one from one of these lovely ladies. Then again, you could always just go back to the bar and get a more <i>“normal”</i> drink.");
+		output("\n\nWell, if you are looking for a drink, maybe it wouldn’t be so bad to get one from one of these lovely ladies. Then again, you could always just go back to the bar and get a more “normal” drink.");
 		flags["MET_KEGS"] = 1;
 		processTime(5);
 	}
@@ -652,11 +653,11 @@ public function livingKegsApproach():void
 	//[Leave]
 	clearMenu();
 	if(pc.credits >= 25) addButton(0,"Beer",rumCowDrinkieDrink,undefined,"Beer","Get a drink from the girl branded with some kind of lager. Costs 25 credits.");
-	else addDisabledButton(0,"Beer","Beer","You can't afford that.");
+	else addDisabledButton(0,"Beer","Beer","You can’t afford that.");
 	if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Get a drink from the girl branded with some kind of high-proof whiskey. Costs 30 credits.");
-	else addDisabledButton(1,"Whiskey","Whiskey","You can't afford that.");
+	else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.");
 	if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits.");
-	else addDisabledButton(2,"Rum","Rum","You can't afford that.");
+	else addDisabledButton(2,"Rum","Rum","You can’t afford that.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -672,7 +673,7 @@ public function whiskeyCowMooDrink():void
 	author("HugsAlright");
 	output("You stroll your way up to the girl whose brand advertises she’s modded up to her literal tits with whiskey-producing transformative, changing what you can only assume to be human milk into the wonderful golden-brown liquid dripping from her big pink nipples. The cowgirl herself has long, curly, fiery red hair, with a smattering of freckles across her face, shoulder, and the top of her breasts to match. Her body is reminiscent of most cowgirls, busty and curvy, though she seems to have a tad bit more muscle than the other New Texan women in line.");
 	output("\n\n<i>“Ooooh,”</i> the buxom bovine coos at your approach, extending her arms in preparation for what looks to be an enticingly boob-filled hug, <i>“you made a good choice, " + pc.mf("hon","honey") + ".”</i>");
-	output("\n\nThe second you come within range of the cowgirl’s arms she wraps them around your shoulders and pulls you straight into her massive cleavage, causing you to release a surprised, and quickly muffled, grunt into her pillowy boobflesh. She loosens her <i>“hug”</i> a bit, allowing you to look up at her for a moment to see an eager smile on the redhead’s face, <i>“Well c’mon, " + pc.mf("hon","honey") + ", I’m all yours.”</i>");
+	output("\n\nThe second you come within range of the cowgirl’s arms she wraps them around your shoulders and pulls you straight into her massive cleavage, causing you to release a surprised, and quickly muffled, grunt into her pillowy boobflesh. She loosens her “hug” a bit, allowing you to look up at her for a moment to see an eager smile on the redhead’s face, <i>“Well c’mon, " + pc.mf("hon","honey") + ", I’m all yours.”</i>");
 	output("\n\nWell, that’s all the invitation you need at this point; you move your head as much as you can in this cowgirl’s grasp towards one of her wide, pink nipples, beads of her brain-liquifying liquids dripping down onto the floor. The bovine woman assists, guiding you towards her stiff teats until one is well within the reach of your tongue. You eagerly lap up the excess nectar dripping from her leaky nub before closing your [pc.lipsChaste] around her nipple; it’s whiskey alright, just as potent and tongue-tingling as you’d expect. With a want for more quickly flooding your mind, you get to suckling, drawing out more of the red-brown bounty from the busty bovine broad’s breasts to flow down your throat, burning all the way down and setting the redhead moaning.");
 	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
 	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lips] and her big ol’ tits.");
@@ -795,9 +796,13 @@ public function approachSally():void
 		output("\n\nFinally taking a seat next to the cowgirl, you’re able to notice a small smirk appear on her face before she puts her gaze on you.");
 		output("\n\n<i>“I think I’ve seen you here before, sweetie,”</i> she explains, swirling her drink around in its glass, more of her lusty scent pouring off her body and into your nostrils, <i>“Maybe while I was working? One of my satisfied customers?”</i>");
 		output("\n\nShe tosses you a wink, looking like she expects an answer. You breathe deep, trying to clear the intoxicating air around you from your lungs before you answer the blonde-haired cowgirl, telling her ");
-		if(pc.isNice()) output("that it’s most likely the case that you met her while she was <i>“on the job.”</i>");
-		else output("that’s probably the case, but you meet a lot of {pcMisch: hot} cowsluts in your jouneys, so you’re not sure.");
-
+		if(pc.isNice()) output("that it’s most likely the case that you met her while she was “on the job.”");
+		else
+		{
+			output("that’s probably the case, but you meet a lot of");
+			if(pc.isMisch() || pc.isBimbo() || pc.isBro()) output(" hot");
+			output(" cowsluts in your journeys, so you’re not sure.");
+		}
 		output("\n\nThe dusky, busty, lusty woman responds with a girly chuckle, <i>“I thought so.”</i> She lets a hand drift off her dink and turns to you, <i>“You got a name, sweetie?”</i>");
 		output("\n\nOnce again, your thoughts drift between a mirage of sex and what’s actually happening, and the rum-girl seems to take notice, and tries to call you back to the real world with the sound of her voice, and a touch of her hand on your shoulder, <i>“I seem to do this a lot to people, don’t you worry about it. I’m Sally, by the by.”</i>");
 		output("\n\nHer words do the trick, and bring you out of your pheromone induced trance, and you introduce yourself as <i>“[pc.name]”</i> in turn.");
@@ -838,7 +843,7 @@ public function sallyAppearance():void
 	output("\n\nThe most important fact about Sally, however, is that she’s completely nude.");
 	output("\n\nDespite the fact that she looks so young, Sally gives off a very motherly vibe, like you could just collapse onto her with your face right between her tits and fall asleep in her arms, though, that might be the constant wave of lust-inducing pheromones she’s giving off talking.");
 	sallyMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're doing that right now.");
+	addDisabledButton(0,"Appearance","Appearance","You’re doing that right now.");
 }
 
 public function sallyMenu():void
@@ -902,7 +907,7 @@ public function pheromonesTalkWithSally():void
 	output("If there’s one thing that’s definitely on your mind, it’s that sweet aroma Sally is emitting, and you decide to ask her about that.");
 	output("\n\n<i>“Well,");
 	if(pc.isTreated()) output(" as I’m sure you know,");
-	output("”</i> the rum-cow begins, brushing a few locks of her bright blonde hair away from her face, <i>“The treatment does a little something different to everyone who has it, and I’m sure you can guess what it did to me.”</i>");
+	output("”</i> the rum-cow begins, brushing a few locks of her bright blonde hair away from her face, <i>“The Treatment does a little something different to everyone who has it, and I’m sure you can guess what it did to me.”</i>");
 	output("\n\nYou’re having a hard time focusing on Sally’s words at this point, but give her a nod regardless. The dusky cowgirl obviously knows of her scent’s effects on you, and leans in a bit closer to your [pc.face], a wide smile on her face.");
 	output("\n\n<i>“Not that I mind it at all,”</i> she continues, placing her face even closer to yours, <i>“Must be a reward for being such a good girl when I was younger. It’s nice being able to make people all hot and bothered just by standing next to them.”</i>");
 	output("\n\nWith that said, she plants a quick kiss right on your [pc.lipsChaste], sending your already lust-addled brain into overdrive and causing blood to rush to your face, blushing your cheeks.");
@@ -929,7 +934,7 @@ public function sexWithSally():void
 	else output("fuck");
 	output(".");
 
-	output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That’s sounds just wonderful, <i>“ the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
+	output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That’s sounds just wonderful,”</i> the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
 
 	output("\n\nWith that, she extends a hand out to yours, the warm smile on her face making it look like she wants you to take hold of it. You manage to give her a blank stare and a nod before you reach out and grab her hand.");
 
@@ -947,10 +952,10 @@ public function sexWithSally():void
 	clearMenu();
 	//[SuckleFuck] Fuck Sally while you suckle her tits. //Requires a cock.
 	//[SuckleFinger] Have Sally finger you while you suckle her tits. //Requires a vagina.
+	if(pc.hasCock()) addButton(0,"Suckle Fuck",suckleFuckSally,undefined,"Suckle Fuck","Fuck Sally while you suckle her tits.");
+	else addDisabledButton(0,"Suckle Fuck","Suckle Fuck","You need a penis for this.");
 	if(pc.hasVagina()) addButton(1,"SuckleFinger",suckleFingerSally,undefined,"SuckleFinger","Have Sally finger you while you suckle her tits.");
 	else addDisabledButton(1,"SuckleFinger","SuckleFinger","You need a vagina for that.");
-	if(pc.hasCock()) addButton(0,"Suckle Fuck",suckleFuckSally,undefined,"Suckle Fuck","Fuck Sally while you suckle her tits.");
-	else addDisabledButton(1,"Suckle Fuck","Suckle Fuck","You need a penis for this.");
 }
 
 //Suckle fuck

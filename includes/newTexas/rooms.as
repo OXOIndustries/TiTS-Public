@@ -91,7 +91,7 @@ public function initNewTexasRooms():void
 	rooms["BUCKING BRONCO"].system = "SYSTEM: NYE";
 	rooms["BUCKING BRONCO"].addFlag(GLOBAL.INDOOR);
 	rooms["BUCKING BRONCO"].addFlag(GLOBAL.PUBLIC);
-	rooms["BUCKING BRONCO"].addFlag(GLOBAL.COMMERCE);
+	rooms["BUCKING BRONCO"].addFlag(GLOBAL.BAR);
 	rooms["BUCKING BRONCO"].runOnEnter = saloonInteriorBonus;
 	
 	//506 The Road
