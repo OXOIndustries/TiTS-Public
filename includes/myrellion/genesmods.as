@@ -250,7 +250,7 @@ public function genesModsBuyStuff():void
 	{
 		if(flags["PURCHASED_GENES_GALO"] == undefined)
 		{
-			if(!chars["GENE"].hasItem(new GaloMax())) chars["GENE"].inventory.push(new GaloMax());
+			if(!chars["GENE"].hasItemByType(GaloMax)) chars["GENE"].inventory.push(new GaloMax());
 		}
 		else chars["GENE"].destroyItem(new GaloMax());
 	}
@@ -259,6 +259,11 @@ public function genesModsBuyStuff():void
 		if(!chars["GENE"].hasItemByType(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
 	}
 	else chars["GENE"].destroyItem(new Cerespirin());
+	if(CodexManager.entryUnlocked("Muffstick"))
+	{
+		if(!chars["GENE"].hasItemByType(Muffstick)) chars["GENE"].inventory.push(new Muffstick());
+	}
+	else chars["GENE"].destroyItem(new Muffstick());
 	shopkeep = chars["GENE"];;
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
@@ -1453,12 +1458,9 @@ public function genesModsOverCounter():void
 		if (pc.isTreated())
 		{
 			output("\n\nYou go slightly cross-eyed and moo softly when he pulls out, your elastic cunt clinging eagerly to every inch of his dick as it recedes, unhappy to see such a well-sized member leave even for a second.");
-		
 			output("\n\n<i>“Oh good grief,”</i> he gasps. <i>“That size, and that tightness... it’s perfect. You have the perfect pussy. How can I possibly let you go when you’ve got that between your thighs");
-			// 9999
-			// {and you suck it down so well, too");
+			if(InCollection(pc.vaginas[x].type, [GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_MOUTHGINA])) output(" and you suck it down so well, too");
 			output("?”</i>");
-			
 			output("\n\n<i>“No talking now,”</i> you reply. It is inexplicable and infuriating to you that, laid out and ready to get the big, hard dicking your body is constantly crying out for, he is wasting time with words. <i>“I should not be able to talk right now you’re fucking me that good, ‘kay?”</i> Gene readily responds by shoving his cock right up to its base, reaching your most sensitive spot- and everything becomes a deep, golden, mooing bliss again."); 
 		}
 		

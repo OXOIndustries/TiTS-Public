@@ -27,8 +27,8 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a package containing a tube of Muffstick accompanied by a FizzyFix pill";
-			tooltip = "Created after the surprising success of the Clippex, this recent and popular JoyCo product is designed to reshape one’s pussylips into looking like those of a mouth.\n\nThe product is stored within a small pink box labeled “Muffstick”, written above an oddly playful-looking JoyCo logo, with a kiss mark replacing its usual smile. It looks like a regular metallic tube of lipstick with a see through cork and a wheel at the bottom, used to twist out the micro-surgeon infused compound. Just above the main wheel is a secondary multihued one, used to decide which color one wants to dress their muff with. The lipstick is accompanied by a flat gray pill with a red crossed out tongue mark stamped on it and a pamphlet that gives both simple and detailed instructions on how to use the two items.";
+			description = "a package containing a tube of Muffstick and a FizzyFix pill";
+			tooltip = "Created after the surprising success of the Clippex, this recent and popular JoyCo product is designed to reshape one’s pussylips into looking like those of a mouth.\n\nThe product is stored within a small pink box labeled “Muffstick”, written above an oddly playful-looking JoyCo logo, with a kiss mark replacing its usual smile. It looks like a regular metallic tube of lipstick with a see through cork and a wheel at the bottom, used to twist out the micro-surgeon infused compound. Just above the main wheel is a secondary multi-hued one, used to decide which color one wants to dress their muff with. The lipstick is accompanied by a flat gray pill with a red crossed out tongue mark stamped on it and a pamphlet that gives both simple and detailed instructions on how to use the two items.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
