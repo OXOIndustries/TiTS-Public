@@ -5031,6 +5031,7 @@
 					adjectives = ["reptilian", "small", "circular"];
 					break;
 				case GLOBAL.TYPE_LAPINE:
+				case GLOBAL.TYPE_QUAD_LAPINE:
 					if(earLength >= tallness/2) adjectives.push("droopy");
 					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
 					if(!nonFurrySkin) adjectives.push("furry");
@@ -11053,7 +11054,7 @@
 		public function laquineScore():int
 		{
 			var counter:int = 0;
-			if (earType == GLOBAL.TYPE_LAPINE || GLOBAL.TYPE_QUAD_LAPINE) counter++;
+			if (earType == GLOBAL.TYPE_LAPINE || earType == GLOBAL.TYPE_QUAD_LAPINE) counter++;
 			if (legType == GLOBAL.TYPE_LAPINE) counter++;
 			if (faceType == GLOBAL.TYPE_LAPINE && hasMuzzle()) counter++;
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
