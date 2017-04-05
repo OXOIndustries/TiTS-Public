@@ -154,7 +154,7 @@ package classes.Items.Transformatives
 				}
 				//Worg Face
 				//Effect: Has canine face - turn into worg face.
-				if(pc.faceType == GLOBAL.TYPE_CANINE && rand(4) == 0 && changes < changeLimit)
+				if((pc.faceType == GLOBAL.TYPE_CANINE || pc.faceType == GLOBAL.TYPE_LUPINE) && rand(4) == 0 && changes < changeLimit)
 				{
 					if(pc.faceTypeUnlocked(GLOBAL.TYPE_WORG))
 					{

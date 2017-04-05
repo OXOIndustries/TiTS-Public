@@ -197,6 +197,12 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the facial structure of a dog, wet nose and all, but overlaid with " + target.skinFurScales(true,true,false,true) + ".");
 			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
 		}
+		//wolf-face
+		else if(target.faceType == GLOBAL.TYPE_LUPINE) {
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a wolf’s face, wide and majestic, with jaws filled with sharp teeth. You’ve got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skin(true,true,true) + " underneath your furry visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the facial structure of a wolf, wide and majestic, but overlaid with " + target.skinFurScales(true,true,false,true) + ", and having jaws filled with sharp teeth.");
+			else output2("You have a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
+		}
 		//Knock-off dog-face
 		else if(target.faceType == GLOBAL.TYPE_WORG)
 		{
@@ -518,6 +524,10 @@ public function appearance(forTarget:Creature):void
 			{
 				output2(" A pair of large, adept fox ears sit high on your " + headNoun + ", always listening.");
 			}
+			else if(target.earType == GLOBAL.TYPE_LUPINE)
+			{
+				output2(" A pair of pointed wolf-like ears protrude from your " + headNoun + ", pointed and alert.");
+			}
 			else if(target.earType == GLOBAL.TYPE_DEER)
 			{
 				output2(" A pair of pointed, oval-shaped ears poke out from the sides of your " + headNoun + ", flicking and flopping about, making you look very much like a deer.");
@@ -653,6 +663,7 @@ public function appearance(forTarget:Creature):void
 				output2(" kangaroo ears that stick out at an angle.");
 			}
 			else if(target.earType == GLOBAL.TYPE_VULPINE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of large, adept fox ears that always seem to be listening.");
+			else if(target.earType == GLOBAL.TYPE_LUPINE) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed wolf ears.");
 			else if(target.earType == GLOBAL.TYPE_DEER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded ears that point out sideways, flicking and flopping about, making you look very much like a deer.");
 			else if(target.earType == GLOBAL.TYPE_DRACONIC) output2(" The " + target.hairDescript(true, true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head that serve as your ears. Bony fins sprout behind them.");
 			else if(target.earType == GLOBAL.TYPE_GRYVAIN) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head that serve as your ears. Long, bony fins sprout behind them.");
@@ -1128,11 +1139,12 @@ public function appearance(forTarget:Creature):void
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 			output2(" digit in shiny black. You can still feel through them all the same.");
 		}
-		else if(target.armType == GLOBAL.TYPE_CANINE || target.armType == GLOBAL.TYPE_VULPINE) 
+		else if(target.armType == GLOBAL.TYPE_CANINE || target.armType == GLOBAL.TYPE_VULPINE || target.armType == GLOBAL.TYPE_LUPINE) 
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			if(target.hasArmFlag(GLOBAL.FLAG_PAWS)) output2(" Soft pads rest on the tips of each of your fingers. ");
-			output2(" Your fingers are tipped with short, canine claws as well");
+			if(target.armType == GLOBAL.TYPE_LUPINE) output2(" Your fingers are tipped with thick, canine claws as well");
+			else output2(" Your fingers are tipped with short, canine claws as well");
 			if(target.armType == GLOBAL.TYPE_CANINE && !target.hasArmFlag(GLOBAL.FLAG_PAWS)) output2(", just like one of the ausar");
 			output2(".");
 		}
@@ -1355,6 +1367,7 @@ public function appearance(forTarget:Creature):void
 					output2(" bovid"); break;
 				case GLOBAL.TYPE_CANINE:
 				case GLOBAL.TYPE_VULPINE:
+				case GLOBAL.TYPE_LUPINE:
 				case GLOBAL.TYPE_TANUKI:
 					output2(" canid"); break;
 				case GLOBAL.TYPE_FELINE:
@@ -1493,21 +1506,31 @@ public function appearance(forTarget:Creature):void
 		
 		//TAILS
 		if(target.tailType == GLOBAL.TYPE_EQUINE) output2(" A long " + target.hairColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
-		else if(target.tailType == GLOBAL.TYPE_CANINE)
+		else if(target.tailType == GLOBAL.TYPE_CANINE || target.tailType == GLOBAL.TYPE_DOGGIE || target.tailType == GLOBAL.TYPE_LUPINE)
 		{
 			if(target.tailCount == 1)
 			{
 				output2(" A");
+				if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output2(" long,");
+				else if(target.tailType == GLOBAL.TYPE_DOGGIE) output2(" cute,");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 				else output2(" fuzzy");
-				output2(" " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+				output2(" " + target.furColor + " ");
+				if(target.tailType == GLOBAL.TYPE_LUPINE) output2("wolf-");
+				else output2("dog");
+				output2("tail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
 			}
 			else
 			{
 				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)));
+				if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output2(" long,");
+				else if(target.tailType == GLOBAL.TYPE_DOGGIE) output2(" cute,");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 				else output2(" fuzzy");
-				output2(" " + target.furColor + " dogtails sprout just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+				output2(" " + target.furColor + " ");
+				if(target.tailType == GLOBAL.TYPE_LUPINE) output2("wolf-");
+				else output2("dog");
+				output2("tails sprout just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_DEMONIC) output2(" A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
@@ -2000,6 +2023,23 @@ public function appearance(forTarget:Creature):void
 			else output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
 		}
 		else if(target.legType == GLOBAL.TYPE_VULPINE) output2(" Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
+		else if(target.legType == GLOBAL.TYPE_LUPINE) 
+		{
+			if(target.legCount < 4) 
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " powerful");
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow downwards from your waist, ending in large, bestial feet tipped with sharp canine claws.");
+			}
+			else
+			{
+				output2(" You have powerful");
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs that end in large, bestial feet tipped with sharp canine claws.");
+			}
+		}
 		else if(target.legType == GLOBAL.TYPE_DRACONIC)
 		{
 			if(target.isTaur()) output2(" Your human-like legs are sheathed in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey " : "") + "scales and end in clawed feet.");

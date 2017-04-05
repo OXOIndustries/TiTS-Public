@@ -4948,7 +4948,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -4999,6 +4999,10 @@
 					break;
 				case GLOBAL.TYPE_VULPINE:
 					adjectives = ["vulpine", "fox-like", "pointed", "triangular"];
+					if(!nonFurrySkin) adjectives.push("furry");
+					break;
+				case GLOBAL.TYPE_LUPINE:
+					adjectives = ["lupine", "wolf-like", "pointed", "triangular"];
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_DEMONIC:
@@ -5957,6 +5961,7 @@
 					case GLOBAL.TYPE_HUMANMASKED: adjectives.push("masked"); break;
 					case GLOBAL.TYPE_KUITAN: adjectives.push("kui-tan", "tanuki-like", "raccoon-like"); break;
 					case GLOBAL.TYPE_VULPINE: adjectives.push("vulpine", "fox-like", "foxy"); break;
+					case GLOBAL.TYPE_LUPINE: adjectives.push("lupine", "wolf-like", "bestial"); break;
 					case GLOBAL.TYPE_MOUSEMAN: adjectives.push("mousey", "mouse-like"); break;
 					case GLOBAL.TYPE_MOUSE: adjectives.push("mouse", "mousey", "mouse-like"); break;
 					case GLOBAL.TYPE_PANDA: adjectives.push("panda", "bear-like"); break;
@@ -6091,6 +6096,9 @@
 					break;
 				case GLOBAL.TYPE_VULPINE:
 					adjectives = ["vulpine", "fox-like", "fox"];
+					break;
+				case GLOBAL.TYPE_LUPINE:
+					adjectives = ["lupine", "wolf-like", "wolf"];
 					break;
 				case GLOBAL.TYPE_DRACONIC:
 					adjectives = ["draconic", "dragon-like", "reptilian", "bestial"];
@@ -6368,7 +6376,7 @@
 		}
 		public function hasClawedHands(): Boolean {
 			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_LUPINE);
 		}
 		public function hasPaddedHands(): Boolean {
 			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
@@ -6376,7 +6384,7 @@
 		}
 		public function hasPaddedLegs(): Boolean {
 			//if (hasLegFlag(GLOBAL.FLAG_PAWS)) return true; // reptiles... not sure 'bout them
-			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_AVIAN);
+			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_AVIAN);
 		}
 		public function lowerBody():String {
 			var output: String = "";
@@ -6412,6 +6420,7 @@
 						case GLOBAL.TYPE_CANINE: adjectives = ["canine", "canine", "dog-like"]; break;
 						case GLOBAL.TYPE_FELINE: adjectives = ["feline", "feline", "cat-like", "graceful"]; break;
 						case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "vulpine", "fox-like", "foxy"]; break;
+						case GLOBAL.TYPE_LUPINE: adjectives = ["lupine", "lupine", "wolf-like"]; break;
 						case GLOBAL.TYPE_BEE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_ARACHNID: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_DRIDER: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered", "pointed"]; break;
@@ -6487,6 +6496,7 @@
 					case GLOBAL.TYPE_CANINE: adjectives = ["canine", "dog-like"]; break;
 					case GLOBAL.TYPE_FELINE: adjectives = ["feline", "cat-like"]; break;
 					case GLOBAL.TYPE_VULPINE: adjectives = ["vulpine", "fox-like", "foxy"]; break;
+					case GLOBAL.TYPE_LUPINE: adjectives = ["lupine", "wolf-like"]; break;
 					case GLOBAL.TYPE_BEE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					case GLOBAL.TYPE_ARACHNID: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					case GLOBAL.TYPE_DRIDER: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered", "pointed"]; break;
@@ -10436,7 +10446,7 @@
 			if (frogScore() >= 5) race = "kerokoras";
 			if (kaithritScore() >= 6) race = "kaithrit";
 			if (felineScore() >= 5 && race != "kaithrit") race = felineRace();
-			if (canineScore() >= 5 && race != "ausar") race = canineRace();
+			if (canineScore() + lupineScore() >= 5 && race != "ausar") race = canineRace();
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
@@ -10522,10 +10532,21 @@
 		}
 		public function canineRace():String
 		{
-			if (demonScore() >= 3) return "hellhound-morph";
-			else if (huskarScore() >= 3) return "husky-morph";
-			if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) return "bitch-morph";
 			if(faceType == GLOBAL.TYPE_WORG) return "worg-morph";
+			if(demonScore() >= 3) return "hellhound-morph";
+			if(lupineScore() >= 3)
+			{
+				if(!hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+				{
+					if(isMale() && hasBreasts()) return "wolf-boi";
+					if(isMale() && !hasBeard() && tallness < 63) return "wolf-boy";
+					if(isMale()) return "wolf-man";
+					if(isFemale() || femininity > 60) return "wolf-girl";
+				}
+				return "wolf-morph";
+			}
+			if(huskarScore() >= 3) return "husky-morph";
+			if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) return "bitch-morph";
 			if(kGAMECLASS.silly) return "doge-morph";
 			return "canine-morph";
 		}
@@ -10997,6 +11018,16 @@
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
 			if (counter > 0 && hasFur()) counter++;
 			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVagina(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			return counter;
+		}
+		public function lupineScore(): int {
+			var counter: int = 0;
+			if (earType == GLOBAL.TYPE_LUPINE) counter++;
+			if (hasTail(GLOBAL.TYPE_LUPINE) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (armType == GLOBAL.TYPE_LUPINE && hasArmFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (legType == GLOBAL.TYPE_LUPINE && hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) counter++;
+			if (faceType == GLOBAL.TYPE_LUPINE) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function myrScore(): int
