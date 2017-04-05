@@ -23,7 +23,7 @@ public function approachBuckBronoBonus():void
 		if(silly) output("; how gentlemanly!");
 		else output("...");
 	}
-	else if(rand(10) <= 2) output("\n\nThere are several clusters of people on the porch that encircles the building, some of them leaning against the exterior wall, many sitting in chairs arranged next to barrels that upon closer inspection are revealed to have hardlight projectors built into the tops of them, projecting old Terran games such as checkers and tables.");
+	else if(rand(10) <= 2) output("\n\nThere are several clusters of people on the porch that encircles the building, some of them leaning against the exterior wall, many sitting in chairs arranged next to barrels that upon closer inspection are revealed to have hardlight devices built into the tops of them, projecting old Terran games such as checkers and tables.");
 	//Original: [APPROACH]: A two-story rectangular building lies to the [CARDINAL DIRECTION], with a painted wooden sign emblazoned “Bucking Bronco Saloon”. Upon closer inspection, you notice there is a white line running diagonally through the B, creating a letter that could be read as either B or F. [If Bro or Ditz: Nice! //else: Charming.} There are several clusters of people on the porch that encircles the building, some of them leaning against the exterior wall, many sitting in chairs arranged next to barrels that upon closer inspection are revealed to have hardlight projectors built into the tops of them, projecting old Terran games such as checkers and tables. You also see the occasional cowgirl being bent over the railings for a quickie{silly mode: ; how gentlemanly!}. The entrance to the Bucking Bronco consists of well-worn, varnished wooden saloon doors. A sign above the doors reads in flowery script <i>“The Broodmare Bordello located on second floor.”</i>");
 }
 
@@ -47,14 +47,12 @@ public function saloonInteriorBonus():Boolean
 	if(flags["MET_JAMES"] == undefined) output("\n\nYou see what looks to be an untreated human man in period attire serving drinks at the bar.");
 	else output("\n\nYou see James serving drinks at the bar.");
 
-	if(flags["LIVING_KEGGED"] == undefined) output("\n\nThere’s a group of naked cowgirls lined up near the bar, each of them sporting a spectacular bust with beads of various coloured liquids forming on their stiff teats.");
+	if(flags["LIVING_KEGGED"] == undefined) output("\n\nThere’s a group of naked cowgirls lined up near the bar, each of them sporting a spectacular bust with beads of various colored liquids forming on their stiff teats.");
 	else output("\n\nThose tit-modded cowgirls are lined up at their usual spot by the bar, ready to give you, and everyone else in the saloon, a taste of whatever their bountiful breasts have to offer, all of them giggling and bouncing around happily.");
 
 	if(flags["MET_SALLY"] == undefined) output("\n\nThat dark-skinned, rum-titted cowgirl is sitting at the bar and sipping a drink. She’s still completely nude, and you can practically smell whatever kind of pheromones she’s producing from over here, almost like the scent is calling you over to her.");
 	else output("\n\nSitting at the bar with a drink in her hands, and a lust-inducing haze surrounding her, is Sally, that rum-cow you met before. She’s looking at you like she knows her pheromones are already at work on your mind.");
-
-	//put the bar-based NPC blurbs like Kiro, Erra, and Anno here
-
+	
 	//[Bartender] //replace with [James] after first time player selects this
 	if(flags["MET_JAMES"] == undefined) addButton(0,"Bartender",imRickJamesBiyaaaaatch,undefined,"Bartender","See about getting a drink.");
 	else addButton(0,"James",imRickJamesBiyaaaaatch,undefined,"James","See about getting a drink from the moustache-touting mechanical mirth dispensor.");
@@ -67,6 +65,12 @@ public function saloonInteriorBonus():Boolean
 	if(flags["MET_SALLY"] == undefined) addButton(3,"Rum Cow",approachSally,undefined,"Rum Cow","Follow the wonderful scent of that cowgirl to the bar.");
 	else addButton(3,"Sally",approachSally,undefined,"Sally","Follow the wonderful scent of that cowgirl to the bar.");
 	//[Ride Bronco]
+	
+	//put the bar-based NPC blurbs like Kiro, Erra, and Anno here
+	roamingBarEncounter(5);
+	// 9999 - Disable other directions until content is available!
+	setNavDisabled(NAV_EAST_DISABLE);
+	setNavDisabled(NAV_WEST_DISABLE);
 	return false;
 }
 

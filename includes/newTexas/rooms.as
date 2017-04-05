@@ -70,7 +70,7 @@ public function initNewTexasRooms():void
 	rooms["505"] = new RoomClass(this);
 	rooms["505"].roomName = "THE\nROAD";
 	rooms["505"].description = "Little puffs of dust kick up with each step you take on this east-west thoroughfare. The roadway is a simple affair of cleared dirt that’s been weatherworn into what feels more like a series of ruts than a transportation hub. A gleaming white post protrudes from the waving grasses to the north, anchoring the eastmost side of an expansive porch. Behind it sits a large farmhouse; many of the passersby look to be heading towards its entrance - just to the west.";
-	rooms["505"].runOnEnter = undefined;
+	rooms["505"].runOnEnter = approachBuckBronoBonus;
 	rooms["505"].westExit = "504";
 	rooms["505"].eastExit = "506";
 	rooms["505"].southExit = "BUCKING BRONCO";
@@ -79,20 +79,70 @@ public function initNewTexasRooms():void
 	rooms["505"].addFlag(GLOBAL.OUTDOOR);
 	rooms["505"].addFlag(GLOBAL.PUBLIC);
 	//rooms["505"].addFlag(GLOBAL.NPC);
-	rooms["505"].runOnEnter = approachBuckBronoBonus;
 
-	//BUCKING BRONCO The Road
+	//BUCKING BRONCO
 	rooms["BUCKING BRONCO"] = new RoomClass(this);
 	rooms["BUCKING BRONCO"].roomName = "BUCKING\nBRONCO";
 	rooms["BUCKING BRONCO"].description = "";
-	rooms["BUCKING BRONCO"].runOnEnter = undefined;
+	rooms["BUCKING BRONCO"].runOnEnter = saloonInteriorBonus;
 	rooms["BUCKING BRONCO"].northExit = "505";
+	rooms["BUCKING BRONCO"].westExit = "BRONCO STAIRS 1";
+	rooms["BUCKING BRONCO"].eastExit = "BRONCO STAGE";
 	rooms["BUCKING BRONCO"].planet = "PLANET: NEW TEXAS";
 	rooms["BUCKING BRONCO"].system = "SYSTEM: NYE";
 	rooms["BUCKING BRONCO"].addFlag(GLOBAL.INDOOR);
 	rooms["BUCKING BRONCO"].addFlag(GLOBAL.PUBLIC);
 	rooms["BUCKING BRONCO"].addFlag(GLOBAL.BAR);
-	rooms["BUCKING BRONCO"].runOnEnter = saloonInteriorBonus;
+	
+	//BUCKING BRONCO Stairs Up
+	rooms["BRONCO STAIRS 1"] = new RoomClass(this);
+	rooms["BRONCO STAIRS 1"].roomName = "STAIRS\n1F";
+	rooms["BRONCO STAIRS 1"].description = "There is a flight of stairs located here that leads up to the second floor, or the Broodmare Bordello.";
+	rooms["BRONCO STAIRS 1"].runOnEnter = undefined;
+	rooms["BRONCO STAIRS 1"].eastExit = "BUCKING BRONCO";
+	rooms["BRONCO STAIRS 1"].inExit = "BRONCO STAIRS 2";
+	rooms["BRONCO STAIRS 1"].inText = "Up";
+	rooms["BRONCO STAIRS 1"].planet = "PLANET: NEW TEXAS";
+	rooms["BRONCO STAIRS 1"].system = "SYSTEM: NYE";
+	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.INDOOR);
+	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.PUBLIC);
+	
+	//BUCKING BRONCO Stairs Down
+	rooms["BRONCO STAIRS 2"] = new RoomClass(this);
+	rooms["BRONCO STAIRS 2"].roomName = "STAIRS\n2F";
+	rooms["BRONCO STAIRS 2"].description = "The stairway here travels back down to first floor of the Bucking Bronco Saloon.";
+	rooms["BRONCO STAIRS 2"].runOnEnter = undefined;
+	rooms["BRONCO STAIRS 2"].eastExit = "BROODMARE BORDELLO";
+	rooms["BRONCO STAIRS 2"].outExit = "BRONCO STAIRS 1";
+	rooms["BRONCO STAIRS 2"].outText = "Down";
+	rooms["BRONCO STAIRS 2"].planet = "PLANET: NEW TEXAS";
+	rooms["BRONCO STAIRS 2"].system = "SYSTEM: NYE";
+	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.INDOOR);
+	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.PUBLIC);
+	
+	//BUCKING BRONCO Bordello
+	rooms["BROODMARE BORDELLO"] = new RoomClass(this);
+	rooms["BROODMARE BORDELLO"].roomName = "BROODMARE\nBORDELLO";
+	rooms["BROODMARE BORDELLO"].description = "";
+	rooms["BROODMARE BORDELLO"].runOnEnter = undefined;
+	rooms["BROODMARE BORDELLO"].westExit = "BRONCO STAIRS 2";
+	rooms["BROODMARE BORDELLO"].planet = "PLANET: NEW TEXAS";
+	rooms["BROODMARE BORDELLO"].system = "SYSTEM: NYE";
+	rooms["BROODMARE BORDELLO"].addFlag(GLOBAL.INDOOR);
+	rooms["BROODMARE BORDELLO"].addFlag(GLOBAL.PUBLIC);
+	rooms["BROODMARE BORDELLO"].addFlag(GLOBAL.NPC);
+	
+	//BUCKING BRONCO Stage
+	rooms["BRONCO STAGE"] = new RoomClass(this);
+	rooms["BRONCO STAGE"].roomName = "STAGE\nAREA";
+	rooms["BRONCO STAGE"].description = "";
+	rooms["BRONCO STAGE"].runOnEnter = undefined;
+	rooms["BRONCO STAGE"].westExit = "BUCKING BRONCO";
+	rooms["BRONCO STAGE"].planet = "PLANET: NEW TEXAS";
+	rooms["BRONCO STAGE"].system = "SYSTEM: NYE";
+	rooms["BRONCO STAGE"].addFlag(GLOBAL.INDOOR);
+	rooms["BRONCO STAGE"].addFlag(GLOBAL.PUBLIC);
+	rooms["BRONCO STAGE"].addFlag(GLOBAL.NPC);
 	
 	//506 The Road
 	rooms["506"] = new RoomClass(this);
