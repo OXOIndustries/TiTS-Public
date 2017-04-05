@@ -83,12 +83,20 @@ public function waltTalk(topic:String = "none"):void
 			output("\n\n<i>“Why’d you change it?”</i> you ask");
 			if(flags["MET_EMMY"] != undefined) output(", though it’s not the first time you’ve heard of this with modded ausar");
 			output(".");
-			output("\n\n<i>“It’s different " + (pc.originalRace = "human" ? "for you humans" : "growing up among humans") + ". There’s no real stigma against transformative use - humans mod themselves more often and more thoroughly than any other race. It’s different for ausar: if you’re a girl who wants to get a dick, or a guy who wants to try out being a girl, nobody minds, but as soon as you want to adjust your species you start getting looks. Even here with the huskar, those modifications are only really accepted because they needed them to survive, and because they’re minor. Most of us who want to do more than that have to go off-planet, change our names, and hope nobody we know recognizes us.”</i>");
+			output("\n\n<i>“It’s different " + (pc.originalRace == "human" ? "for you humans" : "growing up among humans") + ". There’s no real stigma against transformative use - humans mod themselves more often and more thoroughly than any other race. It’s different for ausar: if you’re a girl who wants to get a dick, or a guy who wants to try out being a girl, nobody minds, but as soon as you want to adjust your species you start getting looks. Even here with the huskar, those modifications are only really accepted because they needed them to survive, and because they’re minor. Most of us who want to do more than that have to go off-planet, change our names, and hope nobody we know recognizes us.”</i>");
 			output("\n\nWalt looks like he could say more, but stops himself and lets out a growling sigh. <i>“Sorry to rant, it’s a sore spot.”</i>");
 			
 			processTime(2);
 			
 			flags["WALT_HIMSELF"] = 1;
+			
+			if(!isCorrectOriginalRace())
+			{
+				clearMenu();
+				addButton(0, "Next", fixOriginalRaceAlert);
+				eventQueue.push(waltBarMenu);
+				return;
+			}
 			
 			waltBarMenu();
 			addDisabledButton(1, "Himself");

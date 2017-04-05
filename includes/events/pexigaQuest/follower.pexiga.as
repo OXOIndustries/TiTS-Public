@@ -718,7 +718,7 @@ public function pexigaSexMenu():void
 	if(pc.hasCock() && pc.hasItem(new BubbleBuddy())) addButton(3,"Bubble",blowBubblesWithpexiga,undefined,"Bubble","Use your Bubble Buddy to make [pexiga.name] a ball to play with.");
 	else addDisabledButton(3,"Bubble","Bubble","You need a penis and a “Bubble Buddy” sex-toy in order to do this. Such toys are available from the TamaniCorp Vendor on Tavros Station.");
 
-	addButton(4,"Back",pexigaMainScreen);
+	addButton(14,"Back",pexigaMainScreen);
 }
 
 //[Facefuck]
@@ -1117,7 +1117,7 @@ public function pexigaFacefuckRouter():void
 {
 	if(pc.cockTotal() == 1) 
 	{
-		if(pc.cocks[y].thickness() <= 4) faceFuckDatPexigaFaceRingGagThingMaybe(0);
+		if(pc.cocks[0].thickness() <= 4) faceFuckDatPexigaFaceRingGagThingMaybe(0);
 		else tooBigPexigaFacefuck(0);
 	}
 	else if(pc.cockTotal() == 0)

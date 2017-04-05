@@ -211,9 +211,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	output("\n\n<b>What name and sex would you like your character to have?</b>");
 	
 	//Set da race!
-	if(race == "human") pc.originalRace = race;
-	else if(race == "kui-tan") pc.originalRace = "half " + race;
-	else pc.originalRace = "half-" + race;
+	pc.originalRace = raceToOriginalRace(race);
 	//Menus vary based on race.
 	clearMenu();
 	if(race == "human") {
@@ -780,8 +778,8 @@ public function chooseBreastSize():void {
 	//OLD
 	/*
 	output("<i>“Breasts?”</i>");
-	//{If female, pick a cup size!}
-	//{If male, more dialogue}
+	//If female, pick a cup size!
+	//If male, more dialogue
 	if(!pc.hasVagina()) {
 		output("\n\nVictor folds his arms and raises an eyebrow.");
 		output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“We both know you’re a sexual deviant. How do I know you don’t want your kid to grow up into the universe’s hottest tranz? Just pick flat if you don’t want them.”</i>");
@@ -1770,13 +1768,13 @@ public function takeCeliseAsACrewMember():void {
 	clearOutput();
 	showCelise();
 	creationHeader("\nCELISE");
-	//{Nice}
+	//Nice
 	if(pc.isNice()) output("You smile broadly and admit that you’d be happier to have her along; the more the merrier, in fact!");
-	//{Mischievious}
+	//Mischievious
 	else if(pc.isMischievous()) output("<i>“Why not? If nothing else, I guess I can use you as a super-soft beanbag chair, when we aren’t fucking.”</i>");
-	//{Mean}
+	//Mean
 	else output("You shrug and admit you don’t mind her coming along, so long as she stays out of your hair and doesn’t clog the vents with... stray moisture.");
-	//{merge}
+	//merge
 	output("\n\nCelise jiggles jubilantly, the accumulated mass of goo below her waist churning with excitement as she applauds. She gulps in a huge breath of air, ballooning herself comically before exhaling it in a quiet <i>“Yayyyy...”</i> You glance at her curiously, and she shyly covers her mouth, whispering, <i>“Sorry.”</i>");
 	output("\n\nWhatever, it’s time to get this show on the road! You grab the digikey off the shelf and step through the door.");
 	
@@ -1922,6 +1920,68 @@ public function ohShitGameStarts():void {
 	else 
 		addButton(0,"Next",mainGameMenu);
 	
+}
+
+
+/* ORIGINAL RACE CORRECTION */
+
+public var pcMotherRaces:Array = ["human", "ausar", "kaithrit", "leithan", "kui-tan", "gryvain"];
+public function raceToOriginalRace(race:String = "human"):String
+{
+	var originalRace:String = race;
+	
+	if(race == "human") originalRace = race;
+	else if(race == "kui-tan") originalRace = "half " + race;
+	else originalRace = "half-" + race;
+	
+	return originalRace;
+}
+public function isCorrectOriginalRace():Boolean
+{
+	var originalRaces:Array = [];
+	
+	for(var i:int = 0; i < pcMotherRaces.length; i++)
+	{
+		originalRaces.push(raceToOriginalRace(pcMotherRaces[i]));
+	}
+	
+	return (InCollection(pc.originalRace, originalRaces));
+}
+public function fixOriginalRaceMenu():void
+{
+	clearMenu();
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < pcMotherRaces.length; i++)
+	{
+		addButton(btnSlot, StringUtil.toDisplayCase(pcMotherRaces[i]), fixOriginalRaceSelect, pcMotherRaces[i]);
+		btnSlot++;
+	}
+}
+public function fixOriginalRaceAlert():void
+{
+	clearOutput();
+	creationHeader("CODEX\nALERT");
+	author("Jacques00");
+	
+	output("Your codex suddenly beeps and vibrates. You quickly flip it into your view only to find that there is an urgent error you must correct.");
+	output("\n\n<i>Records indicate a glitch in the system. Your mother’s race data has been corrupted. Please fix this immediately by selecting a valid race from the options below.</i>");
+	output("\n\nThere is a list of races for you to choose from. Do you recall which race your mother was?");
+	
+	fixOriginalRaceMenu();
+}
+public function fixOriginalRaceSelect(race:String = "human"):void
+{
+	clearOutput();
+	creationHeader("CODEX\nALERT");
+	author("Jacques00");
+	
+	output("After selecting an option and a few quick beeps, your records have been updated and your mother’s race has been recorded as “" + StringUtil.toDisplayCase(race) + "”.");
+	output("\n\n<i>Thank you for taking the time to correct this matter and apologies for the inconvenience.</i>");
+	
+	pc.originalRace = raceToOriginalRace(race);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 

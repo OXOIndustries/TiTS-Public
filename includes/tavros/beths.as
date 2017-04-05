@@ -1759,6 +1759,10 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		output("”</i>");
 		
 		processTime(3);
+		
+		pc.createStatusEffect("Cum Paused");
+		pc.createStatusEffect("Milk Paused");
+		
 		clearMenu();
 		addButton(0, "Next", bethsPermaContractBadEnd, (pc.isFemboy() ? "sign trap" : "sign next"));
 		return;
@@ -1974,7 +1978,8 @@ public function brothelTurnTrixLadyNonFem():void
 		}
 	}
 	// [Ok] [Nope]
-	addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+	if(pc.hasVagina() && pc.hasWombPregnancy()) addDisabledButton(0, "Okay", "Okay", "It is too dangerous to try this while you are pregnant!");
+	else addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
 	addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
 }
 
@@ -2070,7 +2075,8 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			
 			processTime(1);
 			
-			addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+			if(pc.hasVagina() && pc.hasWombPregnancy()) addDisabledButton(0, "Okay", "Okay", "It is too dangerous to try this while you are pregnant!");
+			else addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
 			addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
 			break;
 		case "license":
@@ -2133,6 +2139,9 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			//if(flags["BETHS_TIMES_WHORED"] == undefined) flags["BETHS_TIMES_WHORED"] = 0;
 			
 			processTime(2);
+			
+			pc.createStatusEffect("Cum Paused");
+			pc.createStatusEffect("Milk Paused");
 			
 			addButton(0, "Next", brothelTrappifyAnswer, "trapification");
 			break;
@@ -2418,6 +2427,9 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			output("\n\nYou say your goodbyes to Vaande and the other working girls, and fifteen minutes later you’re standing outside Beth’s for what seems like the first time in years. One... you hope your ship is still in dock. And how far ahead might your cousin be by now? You sure as hell hope [rival.he] isn’t a fan of porno streams.");
 			
 			processTime(2);
+			
+			pc.removeStatusEffect("Cum Paused");
+			pc.removeStatusEffect("Milk Paused");
 			
 			// [Sign Contract] [Leave]
 			addButton(0, "Next", move, rooms[currentLocation].westExit);

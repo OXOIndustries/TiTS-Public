@@ -294,7 +294,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && new LaquineEars().lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "F.Laquine";
@@ -4013,9 +4013,9 @@ public function adjustableHolofap():void
 
 public function laquineEarsMaleWrapper():void
 {
-	new LaquineEars().bunnyguyFapScene(pc,true);
+	LaquineEars.bunnyguyFapScene(pc,true);
 }
 public function laquineEarsFemaleWrapper():void
 {
-	new LaquineEars().bunnyGirlFapScene(pc,true);
+	LaquineEars.bunnyGirlFapScene(pc,true);
 }

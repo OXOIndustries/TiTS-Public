@@ -1929,7 +1929,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PQUEST_LAH_CHAT"] != undefined) output2("\n<b>* Clues, About R.K. Lah:</b> <i>Not a killer, but mentally unstable. Arsonist. Influenced a zil tribe...</i>");
 				if(flags["PQUEST_WHERE_CHAT"] != undefined) output2("\n<b>* Clues, Lah’s Location:</b> <i>Highlands to the north, on a large waterfall...</i>");
 				if(flags["PQUEST_ABLE_CUSTOMS_TALK"] != undefined) output2("\n<b>* Clues, Zil Customs:</b> <i>Challenge Lah to a fair fight and give something zil value to earn chieftain’s trust...</i>");
-				if(flags["PQUEST_ABLE_VALUE_TALK"] != undefined) output2("\n<b>* Clues, What Zil Value:</b> <i>Sex, winning belongings fairly, and something Lah is offereing them...</i>");
+				if(flags["PQUEST_ABLE_VALUE_TALK"] != undefined) output2("\n<b>* Clues, What Zil Value:</b> <i>Sex, winning belongings fairly, and something Lah is offering them...</i>");
 				if(flags["PQ_TOOK_AMBER"] != undefined) output2("\n<b>* Amber Idol:</b> Taken");
 				if(flags["PQUEST_WATERFALLED"] != undefined)
 				{
@@ -3395,7 +3395,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Residential Deck Stuff!
-			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true)
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined)
 			{
 				output2("\n<b><u>Residential Deck</u></b>");
 				// Aina
@@ -3426,6 +3426,12 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* Fyn:</b> Met him");
 						if(flags["FYN_SEXED"] > 0) output2("\n<b>* Fyn, Times Sexed:</b> " + flags["FYN_SEXED"]);
 					}
+				}
+				// Liamme
+				if(flags["MET_LIAMME"] != undefined)
+				{
+					output2("\n<b>* Liamme:</b> Met him");
+					if(flags["SEXED_LIAMME"] > 0) output2("\n<b>* Liamme, Times Sexed:</b> " + flags["SEXED_LIAMME"]);
 				}
 				// Semith
 				if(flags["MET_SEMITH"] == true)
