@@ -73,11 +73,26 @@ public function initNewTexasRooms():void
 	rooms["505"].runOnEnter = undefined;
 	rooms["505"].westExit = "504";
 	rooms["505"].eastExit = "506";
+	rooms["505"].southExit = "BUCKING BRONCO";
 	rooms["505"].planet = "PLANET: NEW TEXAS";
 	rooms["505"].system = "SYSTEM: NYE";
 	rooms["505"].addFlag(GLOBAL.OUTDOOR);
 	rooms["505"].addFlag(GLOBAL.PUBLIC);
 	//rooms["505"].addFlag(GLOBAL.NPC);
+	rooms["505"].runOnEnter = approachBuckBronoBonus;
+
+	//BUCKING BRONCO The Road
+	rooms["BUCKING BRONCO"] = new RoomClass(this);
+	rooms["BUCKING BRONCO"].roomName = "BUCKING\nBRONCO";
+	rooms["BUCKING BRONCO"].description = "";
+	rooms["BUCKING BRONCO"].runOnEnter = undefined;
+	rooms["BUCKING BRONCO"].northExit = "505";
+	rooms["BUCKING BRONCO"].planet = "PLANET: NEW TEXAS";
+	rooms["BUCKING BRONCO"].system = "SYSTEM: NYE";
+	rooms["BUCKING BRONCO"].addFlag(GLOBAL.INDOOR);
+	rooms["BUCKING BRONCO"].addFlag(GLOBAL.PUBLIC);
+	rooms["BUCKING BRONCO"].addFlag(GLOBAL.COMMERCE);
+	rooms["BUCKING BRONCO"].runOnEnter = saloonInteriorBonus;
 	
 	//506 The Road
 	rooms["506"] = new RoomClass(this);

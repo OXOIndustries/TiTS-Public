@@ -304,7 +304,7 @@ public function appearance(forTarget:Creature):void
 		{
 			if(target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFur()) output2(" Beneath your fur, f");
 			else output2(" F");
-			output2(target.mf("freckles spot your cheeks.","reckles cutely adorn your cheeks."));
+			output2(target.mf("reckles spot your cheeks.","reckles cutely adorn your cheeks."));
 		}
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
