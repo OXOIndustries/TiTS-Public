@@ -104,7 +104,8 @@ public function jamesAppearance():void
 	else output("that you can’t help but admire");
 	output(". Somehow he has managed to squeeze his massive arms into a white long-sleeved formal shirt with black sleeve garters and a red vest. Tied around his waist is a black bar apron that extends to just below his knees, concealing his groin from view. His powerful legs are clad in black slacks tucked into a pair of tall black boots.");
 	output("\n\nHe smiles winningly at you as you regard him, flashing his perfect white teeth.");
-
+	jamesMenu();
+	addDisabledButton(5,"Appearance");
 }
 
 //Approach to bar
