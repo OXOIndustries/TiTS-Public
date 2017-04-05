@@ -29,6 +29,7 @@ public function approachBuckBronoBonus():void
 
 public function saloonInteriorBonus():Boolean
 {
+	author("Night Trap");
 	output("Live piano music and the chatter of patrons fill your ears the moment you walk through the saloon doors. The entryway of the Bucking Bronco is extremely low-tech; aside from a modern synthetic carpet for customers to wipe their feet on, there is only a large taxidermied varmint posed on its hind legs holding in its forelegs a sign that reads <i>“No shirt, no shoes, no problem!”</i> Further inside, you see dozens of circular wooden tables with matching wooden chairs arranged around them, most of them occupied by happy bar-goers, not all of whom are clothed. The walls are decorated with the stuffed heads of ferocious-looking creatures, from ");
 	if(silly) output("rodents of unusual size");
 	else output("varmints of vastly different shapes and sizes");
@@ -58,8 +59,12 @@ public function saloonInteriorBonus():Boolean
 	if(flags["MET_JAMES"] == undefined) addButton(0,"Bartender",imRickJamesBiyaaaaatch,undefined,"Bartender","See about getting a drink.");
 	else addButton(0,"James",imRickJamesBiyaaaaatch,undefined,"James","See about getting a drink from the moustache-touting mechanical mirth dispensor.");
 	addButton(1,"Food",bbFoodMenu,undefined,"Food","See what's on the menu?");
+	if(flags["LIVING_KEGGED"] == undefined) addButton(2,"Cowgirls",livingKegsApproach,undefined,"Cowgirls","Check out the booze-leaking cow-girls.");
+	else addButton(2,"Living Kegs",livingKegsApproach,undefined,"Living Kegs","Drinks are better fresh from the tap!");
 	//[Cowgirls] //replace with [Living Kegs] after first time player selects this
 	//[Rum Cow] Follow the wonderful scent of that cowgirl to the bar. //replace with [Sally] after the first time the player selects this.
+	if(flags["MET_SALLY"] == undefined) addButton(3,"Rum Cow",approachSally,undefined,"Rum Cow","Follow the wonderful scent of that cowgirl to the bar.");
+	else addButton(3,"Sally",approachSally,undefined,"Sally","Follow the wonderful scent of that cowgirl to the bar.");
 	//[Ride Bronco]
 	//[Order Food] //bring up Food Menu
 	return false;
@@ -88,6 +93,7 @@ public function jamesAppearance():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("James is a 6’4 android built to look like a human while still being subtly artificial. He has statuesque features that make his apparent age hard to pin down, with a chiseled jawline and smooth, flawless tan, but artificial skin, complemented by his slicked-back white hair and red eyes. His upper lip is obscured by an impressively large waxed handlebar mustache, but he is otherwise clean-shaven. His thick neck is encircled by an antiquated black silk bowtie, tied in large loops.");
 	output("\n\nHe is wide-framed with an incredibly defined musculature");
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(", and you know that he’s strong enough to tear a human’s arm off with minimal effort");
@@ -102,6 +108,7 @@ public function imRickJamesBiyaaaaatch():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	if(flags["MET_JAMES"] == undefined) 
 	{
 		output("As you ");
@@ -144,14 +151,12 @@ public function jamesMenu():void
 	addButton(14,"Back",mainGameMenu);
 }
 
-//[Order]
-//Display drink menu9999
-
 //[Himself]
 public function askJamesAbootHisRoboSelf():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("You ask the synthetic server to tell you about himself.");
 	output("\n\n<i>“Well, I’m a Reaper Armaments bodyguard android. People prefer VIs for most combat roles since a VI is about as effective and far cheaper, but the truly wealthy and the truly friendless spring for AIs such as myself; if you can buy a real friend who literally </i>can’t<i> betray your trust, what reason do you have not to? Erm, not that my owner is truly friendless of course!”</i> James blushes when he realizes what he just implied. <i>“If anything I meant it as a compliment to her. See, my type of android is very expensive to make, and demand is limited enough that we aren’t mass produced. Each of us is custom-built to the specifications of the customer. Certain elements of my design,”</i> the android strikes a bodybuilder’s pose that threatens to destroy his clothes as he says this, <i>“meant that I was three times the price of most of my siblings. I guess I’m lucky my owner has a good eye for men.”</i> James stops flexing his synthetic muscles before any of the seams in his clothes burst.");
 	output("\n\n<i>“In terms of my personal history, I served my owner, who is also the owner of this fine establishment by the way, as a bodyguard for 14 years. When she retired to New Texas eight years ago, she brought me along. She’s very generous to those who serve her well; she offered me my freedom when she retired, but I turned her down. She’s a very kind woman, and I’m not made to self-actualize anyway.”</i>");
@@ -180,6 +185,7 @@ public function flirtWithJames():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("Putting on the old Steele charm, you ask James in your most seductive tone ");
 	if(pc.isBro() || pc.isAss()) output("if he wants to fuck");
 	else if(pc.isBimbo()) output("if he wants you to suck his cock");
@@ -205,6 +211,7 @@ public function askJamesForAdvice():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("Bartenders in fiction always give the hero some fresh perspective on their problems. It seems worth a shot to ask James if he has any advice. At the very least you could get a synthetic’s take on your quest. You paint the broad strokes of your quest and inform the android of the latest goings-on in your journey to claim your inheritance.");
 	output("\n\nJames listens eagerly to your story, a bit incredulous throughout. When you finish speaking he gives you his thoughts. <i>“Well, that’s quite a tale " + pc.mf("Mr.","Mrs.") + " Steele. And you’re asking me for advice?”</i>");
 	output("\n\nYou shrug, saying it couldn’t hurt.");
@@ -232,6 +239,7 @@ public function jamesFistFuckerDiscount():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("You gesture to the sign behind the bar that mentions a discount and ask James what it means.");
 	output("\n\nHe grins cheekily at you. <i>“Oh yes, the Five Finger Discount. It’s a little something we have to encourage, let’s just say, a certain class of clientele to visit us. You can get one free drink, anything you want, if you qualify for it.”</i>");
 	output("\n\nYour curiosity piqued by the mention of free booze, you ask him how to qualify for it.");
@@ -253,6 +261,7 @@ public function grabEmByThePussyTheyllLetYa():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("You tell James you’d like to see if you can qualify with your pussy.");
 	output("\n\nHe smiles, but otherwise acts as if you had just ordered a drink from him. <i>“Sure thing " + pc.mf("sir","ma’am") + ". If you would just step over to the end of the bar please and remove any potential obstructions. I’ll need to grab the necessary items.”</i>");
 	output("\n\nYou move to the end of the bar, realizing as you walk that just about everyone who was at the bar is now watching you. ");
@@ -300,6 +309,7 @@ public function fiveFingahAsscount():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("You tell James you’d like to see if you can qualify with your ass.");
 	output("\n\nHe smiles, but otherwise acts as if you had just ordered a drink from him. <i>“Sure thing " + pc.mf("sir","ma’am") + ". If you would just step over to the end of the bar please and remove any potential obstructions. I’ll need to grab the necessary items.”</i>");
 	output("\n\nYou move to the end of the bar, realizing as you walk that just about everyone who was at the bar is now watching you. ");
@@ -343,6 +353,7 @@ public function nopeNoFiveFingerCuntPunch():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("Deciding you would rather not have a very large fist inserted into your most sensitive places in public, you decline the bartender’s offer. He nods understandingly. <i>“Many tourists decline the offer as well. The New Texas culture isn’t for everyone of course.”</i>");
 	output("\n\nYou thank him for the offer before changing the topic.");
 
@@ -357,6 +368,7 @@ public function jamesDrinkMenu():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("What will you order?");
 	clearMenu();
 	if(pc.isSmashed())
@@ -412,6 +424,7 @@ public function backToJames():void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	output("What will you ask of the bartender now?");
 	jamesMenu();
 }
@@ -421,6 +434,7 @@ public function drinkAtBuckingBronco(drink:String):void
 {
 	clearOutput();
 	showJames();
+	author("Night Trap");
 	if(drink == "Milk Stout")
 	{
 		output("You pull out your codex to check the bar’s drink menu before eventually settling on the milk stout. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He grabs a large stout glass from under the counter and fills it to the brim with ice-cold beer, using an extremely ornate beer comb to remove the excess head on the beer before setting it down in front of you. You take your time savoring the taste of the stout. It has more alcohol in it than the average beer, but the sweet taste of the lactose perfectly masks it and blends well with the bitter flavor of the hops. When you drain the last dregs of foam you’re a little disappointed to be finished already. You set the empty glass back on the counter for the bartender to remove.");
@@ -447,8 +461,8 @@ public function drinkAtBuckingBronco(drink:String):void
 		pc.lust(55);
 		if(!pc.hasStatusEffect("Ellie's Milk"))
 		{
-			if(pc.hasStatusEffect("Leithan Milk")) pc.setStatusMinutes("Leithan Milk",1440);
-			else pc.createStatusEffect("Leithan Milk",0,0,0,0, false, "LustUp", "Leithan milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
+			if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
+			else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
 		}
 		else pc.setStatusMinutes("Ellie's Milk",1440);
 	}
@@ -501,6 +515,7 @@ public function bbFoodMenu():void
 {
 	clearOutput();
 	showName("THE\nMENU:");
+	author("Night Trap");
 	output("\\\[Biscuits & gravy\\\] - 5 credits");
 	output("\nTwo buttermilk biscuits covered in a creamy pork sausage gravy. A breakfast favorite.");
 	output("\n\n\\\[Country ham\\\] - 15 credits");
@@ -528,6 +543,7 @@ public function eatAtTheBB(fud:String):void
 {
 	clearOutput();
 	showName("\nNOMMING");
+	author("Night Trap");
 	//Food consumption scenes
 	output("You take a seat at an empty table and check the saloon’s menu on your codex. Deciding that you’re in the mood for some ");
 	if(fud == "B&Gravy") output("biscuits and gravy");
@@ -593,330 +609,470 @@ public function foodEpilogue(fud:String):void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Living Kegs
+//All scenes in this section credited to HugsAlright
+//Opening text
+
+//[Cowgirls]
+public function livingKegsApproach():void
+{
+	clearOutput();
+	showBust("SALLY", "WHISKEY_COW", "BEER_COW");
+	showName("LIVING\nKEGS");
+	author("HugsAlright");
+	if(flags["LIVING_KEGGED"] == undefined)
+	{
+		output("Walking a bit closer to the line of cowgirls, you can hear them talking to each other, turning back and forth and giggling. Finally closing in on the row of wonderful racks, you notice something written on their stomachs, right below their beautiful breasts. You squint and manage to get a good look at one of the markings: they’re all black, like some kind of brand; maybe some sort of mod? You don’t think anyone would be so cruel as to actually brand a cowgirl with a hot iron. Below the jiggling jugs of the each of the cowgirls is written: <b>~Bailey’s Brewery~</b> along with some kind of alcohol and proof number.");
+
+		//metBrandy:
+		if(flags["MET_BRANDY"] != undefined)
+		{
+			output("\n\nThen it strikes you: these girls work for the same brewery that Brandy does, and must have jobs similar to the one she used to have. All their tits are modded up with various alcohols, practically leaking their mind-numbing bounties with each shake of their expansive busts.");
+		}
+		//Else: 
+		else output("\n\nSo they’re all a bunch of... living kegs? That must be what they are, all their tits modded up with various alcohols, practically leaking their mind-numbing bounties with each shake of their expansive busts.");
+
+		output("\n\n<i>“Hey there, stranger!”</i> One of the cowgirls calls out, causing the gazes of the rest of the lineup to fall on you, <i>“Looking for a drink?”</i>");
+		output("\n\nThat particular busty bovine giggles and gives her big breasts an enticing shake for you. The rest of the cowgirls follow suit, hefting and squeezing their own tits to give you a better idea of what you’re dealing with.");
+		output("\n\nWell, if you are looking for a drink, maybe it wouldn’t be so bad to get one from one of these lovely ladies. Then again, you could always just go back to the bar and get a more <i>“normal”</i> drink.");
+		flags["MET_KEGS"] = 1;
+		processTime(5);
+	}
+	else
+	{
+		output("You approach the line-up of luscious-breasted cowgirls, a drink, straight from the tap, on your mind all the way over. The row of buxom bovine broads takes notice of your casual stroll over and stop their giggling and gossiping to face you.");
+		output("\n\n<i>“Back for another drink, " + pc.mf("stud","cutie") + "?”</i> One of them calls out, hefting her tits to give you a better view.");
+		output("\n\nWell, why else would you have come over here if not for another mouth-full of their alcoholic nectars?");
+		processTime(2);
+	}
+
+	//[Whiskey] Get a drink from the girl branded with some kind of high-proof whiskey. Costs 30 credits. //Requires 30 credits.
+	//[Beer] Get a drink from the girl branded with some kind of lager. Costs 25 credits. //Requires 25 credits.
+	//[Rum] Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits. //Requires 35 credits.
+	//[Leave]
+	clearMenu();
+	if(pc.credits >= 25) addButton(0,"Beer",rumCowDrinkieDrink,undefined,"Beer","Get a drink from the girl branded with some kind of lager. Costs 25 credits.");
+	else addDisabledButton(0,"Beer","Beer","You can't afford that.");
+	if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Get a drink from the girl branded with some kind of high-proof whiskey. Costs 30 credits.");
+	else addDisabledButton(1,"Whiskey","Whiskey","You can't afford that.");
+	if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits.");
+	else addDisabledButton(2,"Rum","Rum","You can't afford that.");
+	addButton(14,"Leave",mainGameMenu);
+}
+
+
+
+//Whiskey
+//[Whiskey]
+public function whiskeyCowMooDrink():void
+{
+	clearOutput();
+	showBust("WHISKEY_COW");
+	showName("WHISKEY\nCOW");
+	author("HugsAlright");
+	output("You stroll your way up to the girl whose brand advertises she’s modded up to her literal tits with whiskey-producing transformative, changing what you can only assume to be human milk into the wonderful golden-brown liquid dripping from her big pink nipples. The cowgirl herself has long, curly, fiery red hair, with a smattering of freckles across her face, shoulder, and the top of her breasts to match. Her body is reminiscent of most cowgirls, busty and curvy, though she seems to have a tad bit more muscle than the other New Texan women in line.");
+	output("\n\n<i>“Ooooh,”</i> the buxom bovine coos at your approach, extending her arms in preparation for what looks to be an enticingly boob-filled hug, <i>“you made a good choice, " + pc.mf("hon","honey") + ".”</i>");
+	output("\n\nThe second you come within range of the cowgirl’s arms she wraps them around your shoulders and pulls you straight into her massive cleavage, causing you to release a surprised, and quickly muffled, grunt into her pillowy boobflesh. She loosens her <i>“hug”</i> a bit, allowing you to look up at her for a moment to see an eager smile on the redhead’s face, <i>“Well c’mon, " + pc.mf("hon","honey") + ", I’m all yours.”</i>");
+	output("\n\nWell, that’s all the invitation you need at this point; you move your head as much as you can in this cowgirl’s grasp towards one of her wide, pink nipples, beads of her brain-liquifying liquids dripping down onto the floor. The bovine woman assists, guiding you towards her stiff teats until one is well within the reach of your tongue. You eagerly lap up the excess nectar dripping from her leaky nub before closing your [pc.lipsChaste] around her nipple; it’s whiskey alright, just as potent and tongue-tingling as you’d expect. With a want for more quickly flooding your mind, you get to suckling, drawing out more of the red-brown bounty from the busty bovine broad’s breasts to flow down your throat, burning all the way down and setting the redhead moaning.");
+	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
+	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lips] and her big ol’ tits.");
+	output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
+	output("\n\n<i>“Looks like you’ve had enough, " + pc.mf("hon","honey") + ",”</i> the redhead calls out, her massive breast still heaving and her nipples red from recent use. She brings a hand to your head and ruffles your [pc.hair], <i>“Now don’t you forget to pay the nice android at the bar.”</i>");
+	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
+	//[Next] //Removes credits, adds exhibitionism, adds two levels of drunkenness, and gives the player 33 lust, also returns them to the bar. 
+	pc.milkInMouth();
+	pc.imbibeAlcohol(80);
+	pc.exhibitionism(1);
+	pc.credits -= 30;
+	processTime(18);
+	pc.lust(20);
+	IncrementFlag("LIVING_KEGGED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Beer
+//[Beer]
+public function beerBoozeGalGo():void
+{
+	clearOutput();
+	showBust("BEER_COW");
+	showName("BEER\nCOW");
+	author("HugsAlright");
+	output("You stroll your way up to the girl whose brand advertises she’s modded up to her literal tits with beer-producing transformative, changing what you can only assume to be human milk into the wonderful golden liquid dripping from her big pink nipples. The cowgirl herself has shoulder-length, brunette hair, almost reaching far enough to cover her pale skin. Her body is reminiscent of most cowgirls, beautiful and curvy, though she seems to have a tad bit more bust than the other New Texan women in line.");
+	output("\n\n<i>“Oh, hi there!”</i> She calls out as you approach, bouncing up and down excitedly in place, setting her big boobies wobbling and flinging a few stray drops of golden-hued liquid from her nipples onto the floor, <i>“Here for a drink then?”</i>");
+	output("\n\nYou inform the cowgirl you are most certainly there for whatever she has on tap, causing her to release an overjoyed and overly girly giggle as you walk right up to her, just a hair’s breadth away from her beer leaking jugs. She smiles and holds them together for you, letting rivulettes of her alcoholic nectars trickle down across her pale, squishy boobflesh. Grinning back at her, you bring your hands up to cup her breasts, eliciting a little gasp from the cowgirl, filled with pleasure and mock-surprise.");
+	output("\n\n<i>“Oh, your hands are nice,”</i> she coos, settling into your grasp, <i>“Feel free to get started whenever you want.”</i>");
+	output("\n\nWell, that’s all the invitation you need at this point; you move your mouth, while still kneading the girl’s tits in your hands, towards one of her wide, pink nipples, beads of her brain-liquifying liquids dripping onto the floor. The bovine woman assists you, guiding her stiff teats towards your mouth until one is well within the reach of your tongue. You eagerly lap up the excess nectar dripping from her leaky nub before closing your [pc.lipsChaste] around her nipple; it’s some kind of lager, bitter but delicious. With a want for more quickly flooding your mind, you get to suckling, drawing out more of the flaxen bounty from the busty bovine broad’s breasts to flow down your throat, setting the brunette moaning.");
+	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
+	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lipsChaste] and her big ol’ tits.");
+	output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
+	output("\n\n<i>“Hope it was good!”</i> the busty brunette exclaims, cupping her breasts again and jiggling them around for you, <i>“Oh, and don’t forget to pay the android at the bar!”</i>");
+	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
+	//[Next] //Removes credits, adds exhibitionism, adds one level of drunkenness, and gives the player 33 lust, also returns them to the bar. 
+	pc.milkInMouth();
+	pc.imbibeAlcohol(45);
+	pc.exhibitionism(1);
+	pc.credits -= 25;
+	processTime(18);
+	pc.lust(20);
+	IncrementFlag("LIVING_KEGGED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Rum
+//[Rum]
+public function rumCowDrinkieDrink():void
+{
+	clearOutput();
+	showBust("SALLY");
+	showName("RUM\nCOW");
+	author("HugsAlright");
+	if(flags["MET_SALLY"] != undefined) showName("\nSALLY");
+	output("You stroll your way up to ");
+	if(flags["MET_SALLY"] != undefined) output("Sally,");
+	else output("the girl");
+	output(" whose brand advertises she’s modded up to her literal tits with rum-producing transformative, changing what you can only assume to be human milk into the wonderful golden-brown liquid dripping from her big pink nipples. ");
+	if(flags["MET_SALLY"] != undefined) output("Sally");
+	else output("The cowgirl");
+	output(" herself has long, blonde hair, draping down and covering more than a fair bit of her dusky skin and big breasts. Her body is reminiscent of most cowgirls, busty and curvy, though she seems to be a tad bit taller than the other New Texan women in line.");
+	output("\n\n<i>“Hey there, sweetie,”</i> she says, taking up a very confident, and rather sexy, stance, placing her hands on her hips and shifting her weight around until her tits start to quake, <i>“You came to the right place if you’re looking for a drink.”</i>");
+	output("\n\nA surprising sense of calm flushes your body as you near the dark-skinned cowgirl; she just smells so... nice. Some sort of pheromones? You can’t find yourself able to care enough to think about it, opting instead to simply fall forward, burying your face in the cowgirl’s cleavage with a contented sigh. Not too long after you feel a pair of hands start to run through your [pc.hair]. Barely managing to pull yourself from the tall woman’s warm boobflesh, you look up to see the big-boobed bovine smiling down at you, gazing right into your now lust-hazed eyes.");
+	output("\n\n<i>“Don’t worry,”</i> ");
+	if(flags["MET_SALLY"] != undefined) output("Sally");
+	else output("she");
+	output(" coos in a very motherly tone, caressing your back, shoulders and [pc.hair] with oh-so gentle fingers, <i>“I seem to have that effect on a lot of people. Now how about that drink?”</i>");
+
+	output("\n\nWith that said the cowgirl is already guiding you towards one of her wide, pink nipples, beads of her brain-liquifying liquids dripping onto the floor. You do the best you can to assist, wiggling around in the woman’s grasp until one of her stiff teats is well within the reach of your tongue. You eagerly lap up the excess nectar dripping from her leaky nub before closing your [pc.lipsChaste] around her nipple; it’s rum alright, sugary, potent, and tongue-warming. With a want for more quickly flooding your mind, you get to suckling, drawing out more of the orange-brown bounty from the busty bovine broad’s breasts to flow down your throat, burning all the way down and setting the dusky New Texan moaning.");
+	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on ");
+	if(flags["MET_SALLY"] != undefined) output("Sally");
+	else output("this woman’s");
+	output(" big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
+	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lipsChaste] and her big ol’ tits.");
+	output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
+	output("\n\n");
+	if(flags["MET_SALLY"] != undefined) output("Sally");
+	else output("She");
+	output(" rubs a thumb across your cheek, grinning down at you as you look up at her with an aphrodisiac and alcohol laden gaze, <i>“I think you’ve had enough there, sweetie. Just make sure you don’t forget to pay the bartender, alright?”</i>");
+	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
+	if(flags["MET_SALLY"] != undefined && silly) output("\n\nAs you walk you walk away, you can hear the keg-girl call out, <i>“Stay thirsty, my friend.”</i>");
+
+	//[Next] //Removes credits, adds exhibitionism, adds 3 level of drunkenness and some sort of aphrodisiac effect similar to Ellie’s, and gives the player 33 lust, also returns them to the bar.
+	if(!pc.hasStatusEffect("Ellie's Milk"))
+	{
+		if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
+		else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
+	}
+	else pc.setStatusMinutes("Ellie's Milk",1440);
+	pc.milkInMouth();
+	pc.imbibeAlcohol(150);
+	pc.exhibitionism(1);
+	pc.credits -= 35;
+	processTime(25);
+	pc.lust(20);
+	IncrementFlag("LIVING_KEGGED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Sally the Rum-Cow
+//Sally shows up in the bar from 02:00-12:00.
+//Nothing is taur compatible.
+//Shows up after getting a drink from her at least once.
+//Opening text
+//[Rum Cow]
+
+public function approachSally():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	if(flags["MET_SALLY"] == undefined)
+	{
+		output("You decide to go up to the cowgirl and begin to casually stroll your way to the bar. Her lust-inducing scent keeps your eyes fixed on her big, wobbly tits and dusky skin, sparkling with little drops of sweat, no doubt from a long, hard day of work.");
+		output("\n\nThe smell is more intoxicating than any alcohol being served at the bar, and keeps you well and focused on her voluptuous frame. It seems like an eternity before you actually reach the bar while you’re under the spell of her mind-melting pheromones.");
+		output("\n\nFinally taking a seat next to the cowgirl, you’re able to notice a small smirk appear on her face before she puts her gaze on you.");
+		output("\n\n<i>“I think I’ve seen you here before, sweetie,”</i> she explains, swirling her drink around in its glass, more of her lusty scent pouring off her body and into your nostrils, <i>“Maybe while I was working? One of my satisfied customers?”</i>");
+		output("\n\nShe tosses you a wink, looking like she expects an answer. You breathe deep, trying to clear the intoxicating air around you from your lungs before you answer the blonde-haired cowgirl, telling her ");
+		if(pc.isNice()) output("that it’s most likely the case that you met her while she was <i>“on the job.”</i>");
+		else output("that’s probably the case, but you meet a lot of {pcMisch: hot} cowsluts in your jouneys, so you’re not sure.");
+
+		output("\n\nThe dusky, busty, lusty woman responds with a girly chuckle, <i>“I thought so.”</i> She lets a hand drift off her dink and turns to you, <i>“You got a name, sweetie?”</i>");
+		output("\n\nOnce again, your thoughts drift between a mirage of sex and what’s actually happening, and the rum-girl seems to take notice, and tries to call you back to the real world with the sound of her voice, and a touch of her hand on your shoulder, <i>“I seem to do this a lot to people, don’t you worry about it. I’m Sally, by the by.”</i>");
+		output("\n\nHer words do the trick, and bring you out of your pheromone induced trance, and you introduce yourself as <i>“[pc.name]”</i> in turn.");
+		output("\n\n<i>“That’s a nice name,”</i> she tells you with a warm, almost parental tone, <i>“So what brought you over to me, then? Looking for free drinks? Some friendly conversation, or something else?”</i> With that last word you see her run a hand across the smooth skin of her breast, down her side, and across her thigh... right between her legs.");
+		output("\n\nWell... something did bring you over here, though, with all the pheromones trapping your thoughts in a haze of lust, you’re not sure what that something was. Maybe you should say something before you fuck her right here and now.");
+		flags["MET_SALLY"] = 1;
+	}
+	else
+	{
+		output("You make your way over to the bar, letting Sally’s hypnotizing aroma guide you all the way there until, before you know it, you’re sitting right next to her. The happy rum-girl turns toward you with a smile, her face as welcoming to your presence as ever.");
+		output("\n\n<i>“Hey there sweetie,”</i> she coos, letting herself relax as you fix your gaze on her, <i>“Didn’t get enough of me while I was working earlier?”</i>");
+		output("\n\nYeah, something like that, but with her mind-melting pheromones already trapping your mind in a fog of lust, it’s hard to formulate a proper answer.");
+	}
+	processTime(4);
+	sallyMenu();
+}
+
+//[Appearance] Take a good look at the rum-cow.
+//[Talk] Take some time to ask Sally about herself.
+//[Sex] Have you ever met a New Texan that wasn’t down for a fuck? //Requires cock or vag.
+//Repeatable opening text
+//[Sally]
+
+public function showSally():void
+{
+	showBust("SALLY");
+	showName("\nSALLY");
+}
+
+//Appearance
+public function sallyAppearance():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	output("Sally is a cowgirl who you estimate to be around 6’ tall. Her straight, blonde hair is parted by a pair of bovine-ears and two little pair horns before it drapes down to her back and around the feminine curves of her face. Deep blue eyes keep your attention fixed on the rum-cow’s visage, her cute button nose, and pouty lips before your eyes travel downwards across her dusky skin.");
+	output("\n\nShe looks like most New Texas gals: gorgeous. Her body is as curvy as any woman’s on this warm, dusty ball of Terran past, and her breasts just as big, at least a G-cup by your guess, each of them topped with a big, pink, wide nipple, just dripping with sugary rum, perfect to be suckled and pinched. If your gaze travels further down, you’re greeted with the wonderful sight of the bovine woman’s shapely legs, and big, squishy butt, complete with a happily swishing cowtail.");
+	output("\n\nThe most important fact about Sally, however, is that she’s completely nude.");
+	output("\n\nDespite the fact that she looks so young, Sally gives off a very motherly vibe, like you could just collapse onto her with your face right between her tits and fall asleep in her arms, though, that might be the constant wave of lust-inducing pheromones she’s giving off talking.");
+	sallyMenu();
+	addDisabledButton(0,"Appearance","Appearance","You're doing that right now.");
+}
+
+public function sallyMenu():void
+{
+	clearMenu();
+	addButton(0,"Appearance",sallyAppearance,undefined,"Appearance","Take a good look at the rum-cow.");
+	addButton(1,"Talk",talkToSally,undefined,"Talk","Take some time to ask Sally about herself.");
+	if(pc.hasGenitals()) addButton(2,"Sex",sexWithSally,undefined,"Sex","Have you ever met a New Texan that wasn’t down for a fuck?");
+	else addDisabledButton(2,"Sex","Sex","You need traditional genitals to have sex with Sally.");
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Talk
+public function talkToSally():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	output("Barely pulling yourself from the mind-numbing scent of Sally’s pheromones, you decide to ask her a few questions.");
+	processTime(1);
+	clearMenu();
+	//[Job] Ask Sally about her job in the field of... boob whoring?
+	addButton(0,"Job",sallyJobTalk,undefined,"Job","Ask Sally about her job in the field of... boob whoring?");
+	//[Pheromones] What’s the deal with those lust-inducing pheromones she’s secreting?
+	addButton(1,"Pheromones",pheromonesTalkWithSally,undefined,"Pheromones","What’s the deal with those lust-inducing pheromones she’s secreting?");
+	addButton(14,"Back",backToSallyMain);
+}
+
+public function backToSallyMain():void
+{
+	clearOutput();
+	showSally();
+	output("What will you do with Sally now?");
+	sallyMenu();
+}
+
+//Job
+public function sallyJobTalk():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	output("<i>“Oh, I enjoy it quite a bit,”</i> Sally begins, leaning back a bit in her seat, <i>“It sure is nice having someone’s lips around my tits all day, instead of those cold, hard machines they use down at the barn.”</i> As the cowgirl-keg is saying that she’s rubbing her hands up and down her big, soft breasts, a few beads of her sugary nectars running down her nipples.");
+	output("\n\nA renewed wave of intoxicating scent batters your mind as she does so, prompting you to ask her more about her line of work before you’re lost to lust.");
+	output("\n\n<i>“Well, I started working for the brewery about, what; two, three years ago? After that I sort’ve worked as ‘free samples’ or something like that at the actual brewery, and honestly, I couldn’t tell you what I was actually doing for work. After they gave me the mods it was all just, sex, sex, sex.”</i> The dusky cowgirl lets out a soft moan at the thought, her eyes fluttering shut as what you can only guess to be similar ideas fill your mind, <i>“It was a good time, let me tell you, but eventually I needed something just a </i>little<i> different. So, I wound up at the Bronco, and now the bulls and cows keep coming for their drinks, but the sex is on my terms, more or less.”</i>");
+	output("\n\nWell, judging from the smile on her face you saw when she was at work, it seems like she has quite the job, and you tell her so.");
+	output("\n\n<i>“I don’t think there’s any other job I’d rather have,”</i> she says grinning wide down into her glass for a moment before facing you again, <i>“Especially if it brings " + pc.mf("hunks","cuties") + " like you my way after-hours.”</i>");
+	output("\n\nThe combination of her kind words and the lust hazing your mind makes you smile, right into the bovine girl’s blue eyes.");
+	output("\n\n<i>“Believe it or not, there’s some people that </i>don’t<i> want a dream job like this,”</i> she continues, taking a small sip from her glass, <i>“Not too long ago some girl quit to work in the stockyard. I think her name was Sandy, or something like that. Don’t know why she quit, but she was cute as a button, with those little green ponytails of hers.”</i> Sally pauses and puts a confused look on her pretty face, <i>“She never talked much, though.”</i>");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",backToSallyMain);
+}
+
+//Pheromones
+public function pheromonesTalkWithSally():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	output("If there’s one thing that’s definitely on your mind, it’s that sweet aroma Sally is emitting, and you decide to ask her about that.");
+	output("\n\n<i>“Well,");
+	if(pc.isTreated()) output(" as I’m sure you know,");
+	output("”</i> the rum-cow begins, brushing a few locks of her bright blonde hair away from her face, <i>“The treatment does a little something different to everyone who has it, and I’m sure you can guess what it did to me.”</i>");
+	output("\n\nYou’re having a hard time focusing on Sally’s words at this point, but give her a nod regardless. The dusky cowgirl obviously knows of her scent’s effects on you, and leans in a bit closer to your [pc.face], a wide smile on her face.");
+	output("\n\n<i>“Not that I mind it at all,”</i> she continues, placing her face even closer to yours, <i>“Must be a reward for being such a good girl when I was younger. It’s nice being able to make people all hot and bothered just by standing next to them.”</i>");
+	output("\n\nWith that said, she plants a quick kiss right on your [pc.lipsChaste], sending your already lust-addled brain into overdrive and causing blood to rush to your face, blushing your cheeks.");
+	output("\n\n<i>“Gives customers a reason to keep coming back too,”</i> Sally tells you, finally pulling back.");
+	output("\n\nWhew.");
+	processTime(4);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",backToSallyMain);
+}
+
+//Sex
+//[Sex]
+public function sexWithSally():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	output("Allowing yourself to be taken by Sally’s ");
+	if(pc.hasCock()) output("cock-stiffening");
+	else output("pussy-wetting");
+	output(" aroma, you manage to string enough words together to tell her that you’d like to ");
+	if(pc.isNice() || pc.isMischievous()) output(" have some alone time with her");
+	else output("fuck");
+	output(".");
+
+	output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That’s sounds just wonderful, <i>“ the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
+
+	output("\n\nWith that, she extends a hand out to yours, the warm smile on her face making it look like she wants you to take hold of it. You manage to give her a blank stare and a nod before you reach out and grab her hand.");
+
+	output("\n\n<i>“C’mon this way then, sweetie.”</i>");
+
+	output("\n\nSoon you’re being led through the bar by Sally, her sweet scent keeping your eyes glued on her enticingly swaying booty and tail as she leads you up some stairs to what you’re guessing is the brothel portion of the bar. In all honesty, it’s hard to tell where you are with your mind like this.");
+	if(silly) output(" At some point on the trip you can hear Sally faintly singing something along the lines of <i>“And that Sally did dilly dally.”</i>");
+	output("\n\nBefore you know it you’re being pulled through a door into a cozy looking room with an even cushier looking bed, which Sally sits the both of you down on. With the sudden comfort of the warm mattress and blankets paired with your soon-to-be lover’s intoxicating aroma, all you can do is fall forward into the valley of Sally’s cleavage with a complacent groan.");
+	output("\n\nThe dusky cowgirl smiles and wraps her arms around your shoulders in response. <i>“Don’t worry, sweetie,”</i> she whispers, planting a kiss on your forehead, ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed() && !pc.isChestExposed()) output("and helping you work your way out of your [pc.gear] until you’re good and bare in her grasp, ");
+	output("<i>“I’ll take good care of you.”</i>");
+	output("\n\nOh, that sounds wonderful.");
+	processTime(4);
+	pc.lust(10);
+	clearMenu();
+	//[SuckleFuck] Fuck Sally while you suckle her tits. //Requires a cock.
+	//[SuckleFinger] Have Sally finger you while you suckle her tits. //Requires a vagina.
+	if(pc.hasVagina()) addButton(1,"SuckleFinger",suckleFingerSally,undefined,"SuckleFinger","Have Sally finger you while you suckle her tits.");
+	else addDisabledButton(1,"SuckleFinger","SuckleFinger","You need a vagina for that.");
+	if(pc.hasCock()) addButton(0,"Suckle Fuck",suckleFuckSally,undefined,"Suckle Fuck","Fuck Sally while you suckle her tits.");
+	else addDisabledButton(1,"Suckle Fuck","Suckle Fuck","You need a penis for this.");
+}
+
+//Suckle fuck
+//[SuckleFuck]
+public function suckleFuckSally():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	output("Sally looks down at your rock-hard [pc.cocks] and smiles at you, <i>“You need a little relief, don’t you, [pc.name]?”</i>");
+	output("\n\nYou slowly nod your head in response, rubbing your cheeks against her warm boobflesh.");
+	output("\n\n<i>“I’ll make sure you feel </i>real<i> good, sweetie,”</i> the cowgirl coos, giving you another kiss.");
+	output("\n\nSally starts to lie back against the pillows covering her bed, taking you down to the mattress along with her, your [pc.skinFurScales] rubbing against her warm flesh all the way there. A moment later a pair of shapely legs wrap around your [pc.butt], slowly guiding your eager shaft towards the warm embrace of Sally’s warm cunt. You let out a stuttering breath and look up to the dusky New Texan biting her lip and gazing down at you.");
+	output("\n\n<i>“Here, [pc.name], just relax,”</i> she coos.");
+	output("\n\nHer tender voice paired with her pheromones makes you feel so warm, and all you can do is let your muscles loosen. Putting your head back between your lover’s massive jugs, you roll your hips forward, oh-so gently until your [pc.cockHeadBiggest] meets Sally’s juicy nether-lips with a little squelch. The pair of legs around your [pc.hips] start to pull you in harder, all until your [pc.cockBiggest] penetrates Sally’s slick cunt, drawing a whimper from the cowgirl. Your mind fizzles blank with ecstasy as the rum-cow continues to push you forward with the silky flesh of her thighs, driving more and more of your cock into her until she starts to moan gently.");
+	pc.cockChange();
+	output("\n\n<i>“How’s that feel, sweetie?”</i> Sally asks, finally stopping your interminable penetration, leaving fem-lube to pour out around your [pc.cockBiggest].");
+	output("\n\nYou groan and whimper in response, begging for more, already attempting to move your [pc.hips], but the blonde-haired woman under keeps your pre-leaking dong well where it is, locking her legs around your [pc.butt].");
+	output("\n\n<i>“");
+	if(silly) output("Aaaarrrgghh, ye must be so thirsty from the walk up to me room, " + pc.mf("lad","lass") + ",");
+	else output("Oh, but you must be so thirsty after the walk up to my room,");
+	output("”</i> she teases, sliding a hand across your back and behind your head, guiding you out of her cleavage and to one of her stiff teats, <i>“Here.”</i>");
+	output("\n\nYou don’t even have to think twice about that; you lick your [pc.lips] before letting them wrap around Sally’s pink nub, drawing another quiet moan from from her as you start to suckle. Before too long rum starts to flow down your throat, reddening your cheeks and furthering your already rampant lust. You suckle long and hard, making your lover moan and gasp each time you flick your tongue across her nipple to gather up any stray drops of her wonderful nectars.");
+	output("\n\nWith your mind so addled by Sally’s pheromones, you barely notice when your hips start to move, seemingly on their own volition, gently drawing back and pulling your [pc.cockBiggest] from the cowslut’s tight slit. Pheromones and lusty moans batter your thoughts, keeping you well and focused on suckling Sally’s tits while your hips pump and pump in and out of the cowgirl, so tight and warm around your [pc.cockBiggest].");
+	output("\n\nWhat a thing it is to fuck like this, with aphrodisiacs and alcohol dulling your senses until all you can feel is your white-hot lust driving you onwards, not even noticing when you switch between Sally’s stiff nipples. You pick up the pace, rolling your hips faster and faster, slamming your ");
+	if(pc.hasKnot(pc.biggestCockIndex())) output("[pc.knotBiggest]");
+	else output("[pc.hips]");
+	output(" into the dark-skinned beauty until you can feel your orgasm start to swell inside your [pc.balls].");
+
+	if(pc.hasKnot(pc.biggestCockIndex()))
+	{
+		output("\n\nUnable to hold back, you slam your [pc.cockBiggest] home, and your [pc.knotBiggest] along with it. The obscene ball of cockflesh spread the cowgirl’s cunt wide before it finally slips in, drawing a few tender cries from her in the process.");
+		output("\n\nWith your knot firmly lodged in Sally’s wonderful muff, all you can do is cum, popping off her teat letting loose a long groan of pleasure. Your [pc.cockBiggest] spasms as you empty your load inside the cowgirl, the bliss of orgasm rocking your body.");
+		if(pc.cumQ() >= 2000) output(" Your bounty of [pc.cum] seems near-limitless, filling Sally’s pussy with all it can handle until her tummy starts to swell against yours under the tremendous pressure of your warm seed.");
+		//Else:
+		else output(" Your bounty of [pc.cum] fills Sally’s pussy to the brim while ecstasy shoots through your body, leaving you to bury your face in your lover’s cleavage and moan.");
+	}
+	//Else:
+	else
+	{
+		output("\n\nUnable to hold back, you slam your [pc.cockBiggest] home, allowing the pleasure of your pheromone-induced orgasm to overtake your senses, relaxing your body until you’re on your very edge.");
+		output("\n\nWith your cock firmly lodged in Sally’s wonderful muff, all you can do is cum, popping off her teat and letting loose a long groan of pleasure. Your [pc.cockBiggest] spasms as you empty your load inside the cowgirl, the bliss of orgasm rocking your body.");
+		if(pc.cumQ() >= 2000) output(" Your bounty of [pc.cum] seems near-limitless, filling Sally’s pussy with all it can handle until her tummy starts to swell against yours under the tremendous pressure of your warm seed.");
+		else output(" Your bounty of [pc.cum] fills Sally’s pussy to the brim while ecstasy shoots through your body, leaving you to bury your face in your lover’s cleavage and moan.");
+	}
+	output("\n\nComing down from your climax, you can’t find the strength to move anymore and simply collapse onto the cowgirl beneath you, barely able to keep yourself awake.");
+	output("\n\nYou can just faintly hear Sally’s voice over the haunting call of sleep.");
+	output("\n\n<i>“How was that, sweetie?”</i> she whispers, a hand running through your [pc.hair], <i>“Seems like you enjoyed yourself.”</i> Giving you a giggle, the rum-cow gives her hips a little wiggle with your ");
+	if(pc.hasKnot(pc.biggestCockIndex())) output("[pc.knot]");
+	else output("[pc.cockBiggest]");
+	output(" still inside her, pulling a shuddering breath from your lungs. You barely manage to pull your head up from her cleavage one last time to look at Sally beaming down at you and nod.");
+	output("\n\n<i>“I’m glad you did,”</i> she says with her motherly voice almost melding with the cloud of pheromones around you to serenade you to sleep, <i>“We can just lie here for a while, if you want, and go back to the bar whenever you’re ready.”</i>");
+	output("\n\nYeah, that sounds nice.");
+	processTime(60);
+	pc.orgasm();
+	pc.milkInMouth();
+	//[Next] //Pass an hour and return the PC to the bar, add an aphrodisiac effect like Ellies.
+	if(!pc.hasStatusEffect("Ellie's Milk"))
+	{
+		if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
+		else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
+	}
+	else pc.setStatusMinutes("Ellie's Milk",1440);
+	IncrementFlag("SEXED_SALLY");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Suckle finger
+//[SuckleFinger]
+public function suckleFingerSally():void
+{
+	clearOutput();
+	showSally();
+	author("HugsAlright");
+	output("Sally looks down at your dripping [pc.vaginas] and smiles at you, <i>“You need a little relief, don’t you, [pc.name]?”</i>");
+	output("\n\nYou slowly nod your head in response, rubbing your cheeks against her warm boobflesh.");
+	output("\n\n<i>“I’ll make sure you feel </i>real<i> good, sweetie,”</i> the cowgirl coos, giving you another kiss.");
+	output("\n\nSally hooks an arm around your [pc.legs] and turns you in her lap, leaving her arms wrapped around your shoulders and your face tantalizingly close to her heaving breast, just dripping with her sugary nectars, heat radiating off her bountiful orbs and onto your cheeks. You gulp and breathe heavy, looking up at your bovine lover with growing ardor and need, and she smiles back down at you.");
+	output("\n\n<i>“");
+	if(silly) output("Aaaarrrgghh, ye must be so thirsty from the walk up to me room, " + pc.mf("lad","lass") + ",");
+	else output("Oh, but you must be so thirsty after the walk up to my room,");
+	output("”</i> she teases, sliding a hand up your arm and behind your head, guiding you out of her cleavage and to one of her stiff teats, <i>“Here.”</i>");
+	output("\n\nYou don’t even have to think twice about that; you lick your [pc.lips] before letting them wrap around Sally’s pink nub, drawing a quiet moan from her as you start to suckle. Before too long rum starts to flow down your throat, reddening your cheeks and furthering your already rampant lust. You suckle long and hard, making your lover moan and gasp each time you flick your tongue across her nipple to gather up any stray drops of her wonderful nectars. Reaching a hand up, you grope at the bovine-broads more neglected breast, squeezing and kneading the full orb until more of her mind-melting nectars start to bead on her stiff teats.");
+	pc.milkInMouth();
+	output("\n\nYour lust has only grown since you’ve gotten to Sally’s room, your [pc.vaginas] leaking fem-lube with a need to be filled, and your lover takes notice. She slyly slides a hand down across a [pc.thigh] before it slips between your legs. A moment later you feel a finger brush against your lower-lips, loosing a whimper from your lips before that little digit finally delves into your slick cunt, followed by another after that.");
+	output("\n\n<i>“How’s that feel, sweetie?”</i> Sally asks, halting her penetration and giving her fingers a little wiggle inside of you.");
+	output("\n\nYou moan and whimper, begging for more, but the rum-cow keeps her digits put for a moment, grinning at your hungry, eager noises. Luckily, things don’t stay that way for long, as Sally quickly sets to drawing her fingers in and out of your slobbering pussy, leaving quite the mess of fem-lube to drip down onto her hand as she has her way with your [pc.vagina]. You’re still suckling her massive tits all the while, eagerly accepting more and more of her bounty as nipple-muffled moans make their way past your [pc.lips].");
+	output("\n\nWhat a thing it is to be fucked like this, with aphrodisiacs and alcohol dulling your senses until all you can feel is your white-hot lust burning in your loins, not even noticing when you switch between Sally’s stiff nipples. The cowgirl holding you picks up the pace, turning her once gentle probing into a right finger-fucking, still squeezing and suckling her breasts as you groan and cry out with pleasure.");
+	output("\n\nThat’s it; you can’t hold back any longer, with pheromones already battering your mind and Sally’s fingers lodged firmly in you cunt, all you can do is cum. Popping off the dusky girl’s stiff teat, you let out a long groan of pleasure as your [pc.vagina] clamps down around her sodden digits. The bliss of orgasm burns in your loins, shooting through your body like a constant flow of ecstasy, your cunt spasming and drooling [pc.girlcum] out onto Sally’s hand.");
+	if(pc.hasCock()) 
+	{
+		output(" Meanwhile, your [pc.cocks] discharge");
+		if(pc.cockTotal() == 1) output("s its");
+		else output("their");
+		output(" load of [pc.cum] all over your [pc.chest].");
+	}
+	output(" The cowslut coos happily as she watches you peak with pleasure");
+	if(pc.hasCock()) output(" and cream yourself");
+	output(", still gently sliding her fingers in and out of your [pc.vagina] until you’re good and spent.");
+	output("\n\nComing down from your climax, you can’t find the strength to move anymore and simply collapse into the embrace of the cowgirl holding you, barely able to keep yourself awake.");
+	output("\n\nYou can just faintly hear Sally’s voice over the haunting call of sleep.");
+	output("\n\n<i>“How was that, sweetie?”</i> she whispers, a hand running through your [pc.hair], <i>“Seems like you enjoyed yourself.”</i> Giving you a giggle, the rum-cow pulls her cum-soaked fingers from your still-drooling slit, drawing a shuddering breath from your lungs in the process. You barely manage to pull your head up from her cleavage one last time to see Sally beaming down at you and nod.");
+	output("\n\n<i>“I’m glad you did,”</i> she says with her motherly voice almost melding with the cloud of pheromones around you to serenade you to sleep, <i>“We can just lie here for a while, if you want, and go back to the bar whenever you’re ready.”</i>");
+	output("\n\nYeah, that sounds nice.");
+	processTime(60);
+	pc.orgasm();
+	pc.milkInMouth();
+	//[Next] //Pass an hour and return the PC to the bar, add an aphrodisiac effect like Ellies.
+	if(!pc.hasStatusEffect("Ellie's Milk"))
+	{
+		if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
+		else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
+	}
+	else pc.setStatusMinutes("Ellie's Milk",1440);
+	IncrementFlag("SEXED_SALLY");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
 /*
-
-output("\n\nLiving Kegs");
-output("\n\n//All scenes in this section credited to HugsAlright");
-
-output("\n\n//Opening text");
-
-output("\n\n[Cowgirls]");
-
-output("\n\nWalking a bit closer to the line of cowgirls, you can hear them talking to each other, turning back and forth and giggling. Finally closing in on the row of wonderful racks, you notice something written on their stomachs, right below their beautiful breasts. You squint and manage to get a good look at one of the markings: they’re all black, like some kind of brand; maybe some sort of mod? You don’t think anyone would be so cruel as to actually brand a cowgirl with a hot iron. Below the jiggling jugs of the each of the cowgirls is written: <b>Property of ~Bailey’s Brewery~</b> along with some kind of alcohol and proof number.");
-
-output("\n\n{metBrandy:");
-output("\n\nThen it strikes you: these girls work for the same brewery that Brandy does, and must have jobs similar to the one she used to have. All their tits are modded up with various alcohols, practically leaking their mind-numbing bounties with each shake of their expansive busts.");
-output("\n\n//Else:");
-output("\n\nSo they’re all a bunch of... living kegs? That must be what they are, all their tits modded up with various alcohols, practically leaking their mind-numbing bounties with each shake of their expansive busts.");
-output("\n\n}");
-
-output("\n\n<i>“Hey there, stranger!”</i> One of the cowgirls calls out, causing the gazes of the rest of the lineup to fall on you, <i>“Looking for a drink?”</i>");
-
-output("\n\nThat particular busty bovine giggles and gives her big breasts an enticing shake for you. The rest of the cowgirls follow suit, hefting and squeezing their own tits to give you a better idea of what you’re dealing with.");
-
-output("\n\nWell, if you are looking for a drink, maybe it wouldn’t be so bad to get one from one of these lovely ladies. Then again, you could always just go back to the bar and get a more <i>“normal”</i> drink.");
-
-output("\n\n[Whiskey] Get a drink from the girl branded with some kind of high-proof whiskey. Costs 30 credits. //Requires 30 credits.");
-output("\n\n[Beer] Get a drink from the girl branded with some kind of lager. Costs 25 credits. //Requires 25 credits.");
-output("\n\n[Rum] Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits. //Requires 35 credits.");
-output("\n\n[Leave]");
-output("\n\n//Repeatable text");
-output("\n\n[Living Kegs]");
-
-output("\n\nYou approach the line-up of luscious-breasted cowgirls, a drink, straight from the tap, on your mind all the way over. The row of buxom bovine broads takes notice of your casual stroll over and stop their giggling and gossiping to face you.");
-
-output("\n\n<i>“Back for another drink, {stud/cutie}?”</i> One of them calls out, hefting her tits to give you a better view.");
-
-output("\n\nWell, why else would you have come over here if not for another mouth-full of their alcoholic nectars?");
-
-output("\n\n[Whiskey] Get a drink from the girl branded with some kind of high-proof whiskey. It’ll probably cost you some credits. //Requires 30 credits.");
-output("\n\n[Beer] Get a drink from the girl branded with some kind of lager. It’ll probably cost you some credits. //Requires 25 credits.");
-output("\n\n[Rum] Get a drink from the girl branded with some kind of high-proof rum. It’ll probably cost you some credits. //Requires 35 credits.");
-output("\n\n[Leave]");
-output("\n\n//Whiskey");
-output("\n\n[Whiskey]");
-
-output("\n\nYou stroll your way up to the girl whose brand advertises she’s modded up to her literal tits with whiskey-producing transformative, changing what you can only assume to be human milk into the wonderful golden-brown liquid dripping from her big pink nipples. The cowgirl herself has long, curly, fiery red hair, with a smattering of freckles across her face, shoulder, and the top of her breasts to match. Her body is reminiscent of most cowgirls, busty and curvy, though she seems to have a tad bit more muscle than the other New Texan women in line. ");
-
-output("\n\n<i>“Ooooh,”</i> the buxom bovine coos at your approach, extending her arms in preparation for what looks to be an enticingly boob-filled hug, <i>“you made a good choice, {hon/honey}.”</i>");
-
-output("\n\nThe second you come within range of the cowgirl’s arms she wraps them around your shoulders and pulls you straight into her massive cleavage, causing you to release a surprised, and quickly muffled, grunt into her pillowy boobflesh. She loosens her <i>“hug”</i> a bit, allowing you to look up at her for a moment to see an eager smile on the redhead’s face, <i>“Well c’mon, {hon/honey}, I’m all yours.”</i>");
-
-output("\n\nWell, that’s all the invitation you need at this point; you move your head as much as you can in this cowgirl’s grasp towards one of her wide, pink nipples, beads of her brain-liquifying liquids dripping down onto the floor. The bovine woman assists, guiding you towards her stiff teats until one is well within the reach of your tongue. You eagerly lap up the excess nectar dripping from her leaky nub before closing your [pc.lips] around her nipple; it’s whiskey alright, just as potent and tongue-tingling as you’d expect. With a want for more quickly flooding your mind, you get to suckling, drawing out more of the red-brown bounty from the busty bovine broad’s breasts to flow down your throat, burning all the way down and setting the redhead moaning. ");
-
-output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
-
-output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lips] and her big ol’ tits.");
-
-output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
-
-output("\n\n<i>“Looks like you’ve had enough, {hon/honey},”</i> the redhead calls out, her massive breast still heaving and her nipples red from recent use. She brings a hand to your head and ruffles your [pc.hair], <i>“Now don’t you forget to pay the nice android at the bar.”</i>");
-
-output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
-
-output("\n\n[Next] //Removes credits, adds exhibitionism, adds two levels of drunkenness, and gives the player 33 lust, also returns them to the bar.    ");
-
-output("\n\n//Beer");
-output("\n\n[Beer]");
-
-output("\n\nYou stroll your way up to the girl whose brand advertises she’s modded up to her literal tits with beer-producing transformative, changing what you can only assume to be human milk into the wonderful golden liquid dripping from her big pink nipples. The cowgirl herself has shoulder-length, brunette hair, almost reaching far enough to cover her pale skin. Her body is reminiscent of most cowgirls, beautiful and curvy, though she seems to have a tad bit more bust than the other New Texan women in line. ");
-
-output("\n\n<i>“Oh, hi there!”</i> She calls out as you approach, bouncing up and down excitedly in place, setting her big boobies wobbling and flinging a few stray drops of golden-hued liquid from her nipples onto the floor, <i>“Here for a drink then?”</i>");
-
-output("\n\nYou inform the cowgirl you are most certainly there for whatever she has on tap, causing her to release an overjoyed and overly girly giggle as you walk right up to her, just a hair’s breadth away  from her beer leaking jugs. She smiles and holds them together for you, letting rivulettes of her alcoholic nectars trickle down across her pale, squishy boobflesh. Grinning back at her, you bring your hands up to cup her breasts, eliciting a little gasp from the cowgirl, filled with pleasure and mock-surprise.");
-
-output("\n\n<i>“Oh, your hands are nice,”</i> she coos, settling into your grasp, <i>“Feel free to get started whenever you want.”</i>");
-
-output("\n\nWell, that’s all the invitation you need at this point; you move your mouth, while still kneading the girl’s tits in your hands, towards one of her wide, pink nipples, beads of her brain-liquifying liquids dripping onto the floor. The bovine woman assists you, guiding her stiff teats towards your mouth until one is well within the reach of your tongue. You eagerly lap up the excess nectar dripping from her leaky nub before closing your [pc.lips] around her nipple; it’s some kind of lager, bitter but delicious. With a want for more quickly flooding your mind, you get to suckling, drawing out more of the flaxen bounty from the busty bovine broad’s breasts to flow down your throat, setting the brunette moaning. ");
-
-output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
-
-output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lips] and her big ol’ tits.");
-
-output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
-
-output("\n\n<i>“Hope it was good!”</i> the busty brunette exclaims, cupping her breasts again and jiggling them around for you, <i>“Oh, and don’t forget to pay the android at the bar!”</i>");
-
-output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
-
-output("\n\n[Next] //Removes credits, adds exhibitionism, adds one level of drunkenness, and gives the player 33 lust, also returns them to the bar.    ");
-output("\n\n//Rum");
-output("\n\n[Rum]");
-
-output("\n\nYou stroll your way up to {metSally: Sally, //Else: the girl} whose brand advertises she’s modded up to her literal tits with rum-producing transformative, changing what you can only assume to be human milk into the wonderful golden-brown liquid dripping from her big pink nipples. {metSally: Sally //Else: The cowgirl} herself has long, blonde hair, draping down and covering more than a fair bit of her dusky skin and big breasts. Her body is reminiscent of most cowgirls, busty and curvy, though she seems to be a tad bit taller than the other New Texan women in line.");
-
-output("\n\n<i>“Hey there, sweetie,”</i> she says, taking up a very confident, and rather sexy, stance, placing her hands on her hips and shifting her weight around until her tits start to quake, <i>“You came to the right place if you’re looking for a drink.”</i>");
-
-output("\n\nA surprising sense of calm flushes your body as you near the dark-skinned cowgirl; she just smells so... nice. Some sort of pheromones? You can’t find yourself able to care enough to think about it, opting instead to simply fall forward, burying your face in the cowgirl’s cleavage with a contented sigh. Not too long after you feel a pair of hands start to run through your [pc.hair]. Barely managing to pull yourself from the tall woman’s warm boobflesh, you look up to see the big-boobed bovine smiling down at you, gazing right into your now lust-hazed eyes.");
-
-output("\n\n<i>“Don’t worry,”</i> {metSally: Sally //Else: she} coos in a very motherly tone, caressing your back, shoulders and [pc.hair] with oh-so gentle fingers, <i>“I seem to have that effect on a lot of people. Now how about that drink?”</i>");
-
-output("\n\nWith that said the cowgirl is already guiding you towards one of her wide, pink nipples, beads of her brain-liquifying liquids dripping onto the floor. You do the best you can to assist, wiggling around in the woman’s grasp until one of her stiff teats is well within the reach of your tongue. You eagerly lap up the excess nectar dripping from her leaky nub before closing your [pc.lips] around her nipple; it’s rum alright, sugary, potent, and tongue-warming. With a want for more quickly flooding your mind, you get to suckling, drawing out more of the orange-brown bounty from the busty bovine broad’s breasts to flow down your throat, burning all the way down and setting the dusky New Texan moaning. ");
-
-output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on {metSally: Sally’s //Else: this woman’s} big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
-
-output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lips] and her big ol’ tits.");
-
-output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
-
-output("\n\n{metSally: Sally //Else: She} rubs a thumb across your cheek, grinning down at you as you look up at her with an aphrodisiac and alcohol laden gaze, <i>“I think you’ve had enough there, sweetie. Just make sure you don’t forget to pay the bartender, alright?”</i>");
-
-output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
-
-output("\n\n{metSallyAndSilly: As you walk you walk away, you can hear the keg-girl call out, <i>“Stay thirsty, my friend.”</i>}");
-
-output("\n\n[Next] //Removes credits, adds exhibitionism, adds 3 level of drunkenness and some sort of aphrodisiac effect similar to Ellie’s, and gives the player 33 lust, also returns them to the bar.");
-
-output("\n\nSally the Rum-Cow");
-output("\n\n//Sally shows up in the bar from 02:00-12:00.");
-output("\n\n//Nothing is taur compatible.");
-output("\n\n//Shows up after getting a drink from her at least once.");
-output("\n\n//Opening text");
-output("\n\n[Rum Cow]");
-
-output("\n\nYou decide to go up to the cowgirl and begin to casually stroll your way to the bar. Her lust-inducing scent keeps your eyes fixed on her big, wobbly tits and dusky skin, sparkling with little drops of sweat, no doubt from a long, hard day of work.");
-
-output("\n\nThe smell is more intoxicating than any alcohol being served at the bar, and keeps you well and focused on her voluptuous frame. It seems like an eternity before you actually reach the bar while you’re under the spell of her mind-melting pheromones.");
-
-output("\n\nFinally taking a seat next to the cowgirl, you’re able to notice a small smirk appear on her face before she puts her gaze on you.");
-
-output("\n\n<i>“I think I’ve seen you here before, sweetie,”</i> she explains, swirling her drink around in its glass, more of her lusty scent pouring off her body and into your nostrils, <i>“Maybe while I was working? One of my satisfied customers?”</i>");
-
-output("\n\nShe tosses you a wink, looking like she expects an answer. You breathe deep, trying to clear the intoxicating air around you from your lungs before you answer the blonde-haired cowgirl, telling her {pcKind: that it’s most likely the case that you met her while she was <i>“on the job.”</i> //pcMisch/Hard: that’s probably the case, but you meet a lot of {pcMisch: hot} cowsluts in your jouneys, so you’re not sure.}");
-
-output("\n\nThe dusky, busty, lusty woman responds with a girly chuckle, <i>“I thought so.”</i> She lets a hand drift off her dink and turns to you, <i>“You got a name, sweetie?”</i>");
-
-output("\n\nOnce again, your thoughts drift between a mirage of sex and what’s actually happening, and the rum-girl seems to take notice, and tries to call you back to the real world with the sound of her voice, and a touch of her hand on your shoulder, <i>“I seem to do this a lot to people, don’t you worry about it. I’m Sally, by the by.”</i>");
-
-output("\n\nHer words do the trick, and bring you out of your pheromone induced trance, and you introduce yourself as <i>“[pc.name]”</i> in turn.");
-
-output("\n\n<i>“That’s a nice name,”</i> she tells you with a warm, almost parental tone, <i>“So what brought you over to me, then? Looking for free drinks? Some friendly conversation, or something else?”</i> With that last word you see her run a hand across the smooth skin of her breast, down her side, and across her thigh... right between her legs.");
-
-output("\n\nWell... something did bring you over here, though, with all the pheromones trapping your thoughts in a haze of lust, you’re not sure what that something was. Maybe you should say something before you fuck her right here and now.");
-
-output("\n\n[Appearance] Take a good look at the rum-cow.");
-output("\n\n[Talk] Take some time to ask Sally about herself.");
-output("\n\n[Sex] Have you ever met a New Texan that wasn’t down for a fuck? //Requires cock or vag.");
-output("\n\n//Repeatable opening text");
-output("\n\n[Sally]");
-
-output("\n\nYou make your way over to the bar, letting Sally’s hypnotizing aroma guide you all the way there until, before you know it, you’re sitting right next to her. The happy rum-girl turns toward you with a smile, her face as welcoming to your presence as ever.");
-
-output("\n\n<i>“Hey there sweetie,”</i> she coos, letting herself relax as you fix your gaze on her, <i>“Didn’t get enough of me while I was working earlier?”</i>");
-
-output("\n\nYeah, something like that, but with her mind-melting pheromones already trapping your mind in a fog of lust, it’s hard to formulate a proper answer.");
-
-output("\n\n[Appearance] Take a good look at the rum-cow.");
-output("\n\n[Talk] Take some time to ask Sally about herself.");
-output("\n\n[Sex] Have you ever met a New Texan that wasn’t down for a fuck? //Requires cock or vag.");
-
-output("\n\n//Appearance");
-output("\n\n[Appearance]");
-
-output("\n\nSally is a cowgirl who you estimate to be around 6’ tall. Her straight, blonde hair is parted by a pair of bovine-ears and two little pair horns before it drapes down to her back and around the feminine curves of her face. Deep blue eyes keep your attention fixed on the rum-cow’s visage, her cute button nose, and pouty lips before your eyes travel downwards across her dusky skin.");
-
-output("\n\nShe looks like most New Texas gals: gorgeous. Her body is as curvy as any woman’s on this warm, dusty ball of Terran past, and her breasts just as big, at least a G-cup by your guess, each of them topped with a big, pink, wide nipple, just dripping with sugary rum, perfect to be suckled and pinched. If your gaze travels further down, you’re greeted with the wonderful sight of the bovine woman’s shapely legs, and big, squishy butt, complete with a happily swishing cowtail.");
-
-output("\n\nThe most important fact about Sally, however, is that she’s completely nude.");
-
-output("\n\nDespite the fact that she looks so young, Sally gives off a very motherly vibe, like you could just collapse onto her with your face right between her tits and fall asleep in her arms, though, that might be the constant wave of lust-inducing pheromones she’s giving off talking.");
-
-output("\n\n//Talk");
-output("\n\n[Talk]");
-
-output("\n\nBarely pulling yourself  from the mind-numbing scent of Sally’s pheromones, you decide to ask her a few questions.");
-
-output("\n\n[Job] Ask Sally about her job in the field of... boob whoring?");
-output("\n\n[Pheromones] What’s the deal with those lust-inducing pheromones she’s secreting?");
-
-output("\n\n//Job");
-output("\n\n[Job]");
-
-output("\n\n<i>“Oh, I enjoy it quite a bit,”</i> Sally begins, leaning back a bit in her seat, <i>“It sure is nice having someone’s lips around my tits all day, instead of those cold, hard machines they use down at the barn.”</i> As the cowgirl-keg is saying that she’s rubbing her hands up and down her big, soft breasts, a few beads of her sugary nectars running down her nipples.");
-
-output("\n\nA renewed wave of intoxicating scent batters your mind as she does so, prompting you to ask her more about her line of work before you’re lost to lust.");
-
-output("\n\n<i>“Well, I started working for the brewery about, what; two, three years ago? After that I sort’ve worked as ‘free samples’ or something like that at the actual brewery, and honestly, I couldn’t tell you what I was actually doing for work. After they gave me the mods it was all just, sex, sex, sex.”</i> The dusky cowgirl lets out a soft moan at the thought, her eyes fluttering shut as what you can only guess to be similar ideas fill your mind, <i>“It was a good time, let me tell you, but eventually I needed something just a </i>little<i> different. So, I wound up at the Bronco, and now the bulls and cows keep coming for their drinks, but the sex is on my terms, more or less.”</i>");
-
-output("\n\nWell, judging from the smile on her face you saw when she was at work, it seems like she has quite the job, and you tell her so.");
-
-output("\n\n<i>“I don’t think there’s any other job I’d rather have,”</i> she says grinning wide down into her glass for a moment before facing you again, <i>“Especially if it brings {cuties/hunks} like you my way after-hours.”</i>");
-
-output("\n\nThe combination of her kind words and the lust hazing your mind makes you smile, right into the bovine girl’s blue eyes.");
-
-output("\n\n<i>“Believe it or not, there’s some people that </i>don’t<i> want a dream job like this,”</i> she continues, taking a small sip from her glass, <i>“Not too long ago some girl quit to work in the stockyard. I think her name was Sandy, or something like that. Don’t know why she quit, but she was cute as a button, with those little green ponytails of hers.”</i> Sally pauses and puts a confused look on her pretty face, <i>“She never talked much, though.”</i>");
-
-output("\n\n//Pheromones");
-output("\n\n[Pheromones]");
-
-output("\n\nIf there’s one thing that’s definitely on your mind, it’s that sweet aroma Sally is emitting, and you decide to ask her about that.");
-
-output("\n\n<i>“Well, {pcTreated: as I’m sure you know,}”</i> the rum-cow begins, brushing a few locks of her bright blonde hair away from her face, <i>“The treatment does a little something different to everyone who has it, and I’m sure you can guess what it did to me.”</i>");
-
-output("\n\nYou’re having a hard time focusing on Sally’s words at this point, but give her a nod regardless. The dusky cowgirl obviously knows of her scent’s effects on you, and leans in a bit closer to your [pc.face], a wide smile on her face.");
-
-output("\n\n<i>“Not that I mind it at all,”</i> she continues, placing her face even closer to yours, <i>“Must be a reward for being such a good girl when I was younger. It’s nice being able to make people all hot and bothered just by standing next to them.”</i>");
-
-output("\n\nWith that said, she plants a quick kiss right on your [pc.lips], sending your already lust-addled brain into overdrive and causing blood to rush to your face, blushing your cheeks.");
-
-output("\n\n<i>“Gives customers a reason to keep coming back too,”</i> Sally tells you, finally pulling back.");
-
-output("\n\nWhew.");
-
-output("\n\n//This should add some lust to the PC’s.");
-
-output("\n\n//Sex");
-output("\n\n[Sex]");
-
-output("\n\nAllowing yourself to be taken by Sally’s {hasCock: cock-stiffening //Else: pussy-wetting} aroma, you manage to string enough words together to tell her that you’d like to {pcKind/Misch: have some alone time with her //pcHard/Bimbo/Brute: fuck}.");
-
-output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That’s sounds just wonderful, <i>“ the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
-
-output("\n\nWith that, she extends a hand out to yours, the warm smile on her face making it look like she wants you to take hold of it. You manage to give her a blank stare and a nod before you reach out and grab her hand.");
-
-output("\n\n<i>“C’mon this way then, sweetie.”</i>");
-
-output("\n\nSoon you’re being led through the bar by Sally, her sweet scent keeping your eyes glued on her enticingly swaying booty and tail as she leads you up some stairs to what you’re guessing is the brothel portion of the bar. In all honesty, it’s hard to tell where you are with your mind like this. {ifSilly: At some point on the trip you can hear Sally faintly singing something along the lines of <i>“And that Sally did dilly dally.”</i>}");
-
-output("\n\nBefore you know it you’re being pulled through a door into a cozy looking room with an even cushier looking bed, which Sally sits the both of you down on. With the sudden comfort of the warm mattress and blankets paired with your soon-to-be lover’s intoxicating aroma, all you can do is fall forward into the valley of Sally’s cleavage with a complacent groan.");
-
-output("\n\nThe dusky cowgirl smiles and wraps her arms around your shoulders in response. <i>“Don’t worry, sweetie,”</i> she whispers, planting a kiss on your forehead, {notNude: and helping you work your way out of your [pc.gear] until you’re good and bare in her grasp,} <i>“I’ll take good care of you.”</i>");
-
-output("\n\nOh, that sounds wonderful.");
-
-output("\n\n[SuckleFuck] Fuck Sally while you suckle her tits. //Requires a cock.");
-output("\n\n[SuckleFinger] Have Sally finger you while you suckle her tits. //Requires a vagina.");
-
-output("\n\n//Suckle fuck");
-output("\n\n[SuckleFuck]");
-
-output("\n\nSally looks down at your {hasCock: rock-hard [pc.cocks] //Else: dripping [pc.vaginas]} and smiles at you, <i>“You need a little relief, don’t you, [pc.name]?”</i>");
-
-output("\n\nYou slowly nod your head in response, rubbing your cheeks against her warm boobflesh.");
-
-output("\n\n<i>“I’ll make sure you feel </i>real<i> good, sweetie,”</i> the cowgirl coos, giving you another kiss.");
-
-output("\n\nSally starts to lie back against the pillows covering her bed, taking you down to the mattress along with her, your [pc.skinFurScales] rubbing against her warm flesh all the way there. A moment later a pair of shapely legs wrap around your [pc.butt], slowly guiding your eager shaft towards the warm embrace of Sally’s warm cunt. You let out a stuttering breath and look up to the dusky New Texan biting her lip and gazing down at you.");
-
-output("\n\n<i>“Here, [pc.name], just relax,”</i> she coos.");
-
-output("\n\nHer tender voice paired with her pheromones makes you feel so warm, and all you can do is let your muscles loosen. Putting your head back between your lover’s massive jugs, you roll your hips forward, oh-so gently until your [pc.cockheadBiggest] meets Sally’s juicy nether-lips with a little squelch. The pair of legs around your [pc.hips] start to pull you in harder, all until your [pc.cockBiggest] penetrates Sally’s slick cunt, drawing a whimper from the cowgirl. Your mind fizzles blank with ecstasy as the rum-cow continues to push you forward with the silky flesh of her thighs, driving more and more of your cock into her until she starts to moan gently.");
-
-output("\n\n<i>“How’s that feel, sweetie?”</i> Sally asks, finally stopping your interminable penetration, leaving fem-lube to pour out around your [pc.cockBiggest].");
-
-output("\n\nYou groan and whimper in response, begging for more, already attempting to move your [pc.hips], but the blonde-haired woman under keeps your pre-leaking dong well where it is, locking her legs around your [pc.butt].");
-
-output("\n\n<i>“{ifSilly: Aaaarrrgghh, ye must be so thirsty from the walk up to me room, {lad/lass}, //Else: Oh, but you must be so thirsty after the walk up to my room,}”</i> she teases, sliding a hand across your back and behind your head, guiding you out of her cleavage and to one of her stiff teats, <i>“Here.”</i>");
-
-output("\n\nYou don’t even have to think twice about that; you lick your [pc.lips] before letting them wrap around Sally’s pink nub, drawing another quiet moan from from her as you start to suckle. Before too long rum starts to flow down your throat, reddening your cheeks and furthering your already rampant lust. You suckle long and hard, making your lover moan and gasp each time you flick your tongue across her nipple to gather up any stray drops of her wonderful nectars.");
-
-output("\n\nWith your mind so addled by Sally’s pheromones, you barely notice when your hips start to move, seemingly on their own volition, gently drawing back and pulling your [pc.cockBiggest] from the cowslut’s tight slit. Pheromones and lusty moans batter your thoughts, keeping you well and focused on suckling Sally’s tits while your hips pump and pump in and out of the cowgirl, so tight and warm around your [pc.cockBiggest].");
-
-output("\n\nWhat a thing it is to fuck like this, with aphrodisiacs and alcohol dulling your senses until all you can feel is your white-hot lust driving you onwards, not even noticing when you switch between Sally’s stiff nipples. You pick up the pace, rolling your hips faster and faster, slamming your {hasKnot: [pc.knot] //Else: [pc.hips]} into the dark-skinned beauty until you can feel your orgasm start to swell inside your [pc.balls].");
-
-output("\n\n{hasKnot:");
-output("\n\nUnable to hold back, you slam your [pc.cockBiggest] home, and your [pc.knot] along with it. The obscene ball of cockflesh spread the cowgirl’s cunt wide before it finally slips in, drawing a few tender cries from her in the process.");
-
-output("\n\nWith your knot firmly lodged in Sally’s wonderful muff, all you can do is cum, popping off her teat letting loose a long groan of pleasure. Your [pc.cockBiggest] spasms as you empty your load inside the cowgirl, the bliss of orgasm rocking your body. {lotsOfCum: Your bounty of [pc.cum] seems near-limitless, filling Sally’s pussy with all it can handle until her tummy starts to swell against yours under the tremendous pressure of your warm seed. //Else: Your bounty of [pc.cum] fills Sally’s pussy to the brim while ecstasy shoots through your body, leaving you to bury your face in your lover’s cleavage and moan.}");
-output("\n\n//Else:");
-output("\n\nUnable to hold back, you slam your [pc.cockBiggest] home, allowing the pleasure of your pheromone-induced orgasm to overtake your senses, relaxing your body until you’re on your very edge.");
-
-output("\n\nWith your cock firmly lodged in Sally’s wonderful muff, all you can do is cum, popping off her teat and letting loose a long groan of pleasure. Your [pc.cockBiggest] spasms as you empty your load inside the cowgirl, the bliss of orgasm rocking your body. {lotsOfCum: Your bounty of [pc.cum] seems near-limitless, filling Sally’s pussy with all it can handle until her tummy starts to swell against yours under the tremendous pressure of your warm seed. //Else: Your bounty of [pc.cum] fills Sally’s pussy to the brim while ecstasy shoots through your body, leaving you to bury your face in your lover’s cleavage and moan.}");
-output("\n\n}");
-
-output("\n\nComing down from your climax, you can’t find the strength to move anymore and simply collapse onto the cowgirl beneath you, barely able to keep yourself awake.");
-
-output("\n\nYou can just faintly hear Sally’s voice over the haunting call of sleep.");
-
-output("\n\n<i>“How was that, sweetie?”</i> she whispers, a hand running through your [pc.hair], <i>“Seems like you enjoyed yourself.”</i> Giving you a giggle, the rum-cow gives her hips a little wiggle with your {hasKnot: [pc.knot] //Else: [pc.cockBiggest]} still inside her, pulling a shuddering breath from your lungs. You barely manage to pull your head up from her cleavage one last time to look at Sally beaming down at you and nod.");
-
-output("\n\n<i>“I’m glad you did,”</i> she says with her motherly voice almost melding with the cloud of pheromones around you to serenade you to sleep, <i>“We can just lie here for a while, if you want, and go back to the bar whenever you’re ready.”</i>");
-
-output("\n\nYeah, that sounds nice.");
-
-output("\n\n[Next] //Pass an hour and return the PC to the bar, add an aphrodisiac effect like Ellies.");
-
-output("\n\n//Suckle finger");
-output("\n\n[SuckleFinger]");
-
-output("\n\nSally looks down at your {hasCock: rock-hard [pc.cocks] //Else: dripping [pc.vaginas]} and smiles at you, <i>“You need a little relief, don’t you, [pc.name]?”</i>");
-
-output("\n\nYou slowly nod your head in response, rubbing your cheeks against her warm boobflesh.");
-
-output("\n\n<i>“I’ll make sure you feel </i>real<i> good, sweetie,”</i> the cowgirl coos, giving you another kiss.");
-
-output("\n\nSally hooks an arm around your [pc.legs] and turns you in her lap, leaving her arms wrapped around your shoulders and your face tantalizingly close to her heaving breast, just dripping with her sugary nectars, heat radiating off her bountiful orbs and onto your cheeks. You gulp and breathe heavy, looking up at your bovine lover with growing ardor and need, and she smiles back down at you.");
-
-output("\n\n<i>“{ifSilly: Aaaarrrgghh, ye must be so thirsty from the walk up to me room, {lad/lass}, //Else: Oh, but you must be so thirsty after the walk up to my room,}”</i> she teases, sliding a hand up your arm and behind your head, guiding you out of her cleavage and to one of her stiff teats, <i>“Here.”</i>");
-
-output("\n\nYou don’t even have to think twice about that; you lick your [pc.lips] before letting them wrap around Sally’s pink nub, drawing a quiet moan from her as you start to suckle. Before too long rum starts to flow down your throat, reddening your cheeks and furthering your already rampant lust. You suckle long and hard, making your lover moan and gasp each time you flick your tongue across her nipple to gather up any stray drops of her wonderful nectars. Reaching a hand up, you grope at the bovine-broads more neglected breast, squeezing and kneading the full orb until more of her mind-melting nectars start to bead on her stiff teats.");
-
-output("\n\nYour lust has only grown since you’ve gotten to Sally’s room, your [pc.vaginas] leaking fem-lube with a need to be filled, and your lover takes notice. She slyly slides a hand down across a [pc.thigh] before it slips between your legs. A moment later you feel a finger brush against your lower-lips, loosing a whimper from your lips before that little digit finally delves into your slick cunt, followed by another after that.");
-
-output("\n\n<i>“How’s that feel, sweetie?”</i> Sally asks, halting her penetration and giving her fingers a little wiggle inside of you.");
-
-output("\n\nYou moan and whimper, begging for more, but the rum-cow keeps her digits put for a moment, grinning at your hungry, eager noises. Luckily, things don’t stay that way for long, as Sally quickly sets to drawing her fingers in and out of your slobbering pussy, leaving quite the mess of fem-lube to drip down onto her hand as she has her way with your [pc.vagina]. You’re still suckling her massive tits all the while, eagerly accepting more and more of her bounty as nipple-muffled moans make their way past your [pc.lips].");
-
-output("\n\nWhat a thing it is to be fucked like this, with aphrodisiacs and alcohol dulling your senses until all you can feel is your white-hot lust burning in your loins, not even noticing when you switch between Sally’s stiff nipples. The cowgirl holding you picks up the pace, turning her once gentle probing into a right finger-fucking, still squeezing and suckling her breasts as you groan and cry out with pleasure.");
-
-output("\n\nThat’s it; you can’t hold back any longer, with pheromones already battering your mind and Sally’s fingers lodged firmly in you cunt, all you can do is cum. Popping off the dusky girl’s stiff teat, you let out a long groan of pleasure as your [pc.vagina] clamps down around her sodden digits. The bliss of orgasm burns in your loins, shooting through your body like a constant flow of ecstasy, your cunt spasming and drooling [pc.girlcum] out onto Sally’s hand. {hasCock: Meanwhile, your [pc.cocks] discharge{s} {its/their} load of [pc.cum] all over your [pc.chest].} The cowslut coos happily as she watches you peak with pleasure {hasCock: and cream yourself}, still gently sliding her fingers in and out of your [pc.vagina] until you’re good and spent. ");
-
-output("\n\nComing down from your climax, you can’t find the strength to move anymore and simply collapse into the embrace of the cowgirl holding you, barely able to keep yourself awake.");
-
-output("\n\nYou can just faintly hear Sally’s voice over the haunting call of sleep.");
-
-output("\n\n<i>“How was that, sweetie?”</i> she whispers, a hand running through your [pc.hair], <i>“Seems like you enjoyed yourself.”</i> Giving you a giggle, the rum-cow pulls her cum-soaked fingers from your still-drooling slit, drawing a shuddering breath from your lungs in the process. You barely manage to pull your head up from her cleavage one last time to see Sally beaming down at you and nod.");
-
-output("\n\n<i>“I’m glad you did,”</i> she says with her motherly voice almost melding with the cloud of pheromones around you to serenade you to sleep, <i>“We can just lie here for a while, if you want, and go back to the bar whenever you’re ready.”</i>");
-
-output("\n\nYeah, that sounds nice.");
-
-output("\n\n[Next] //Pass an hour and return the PC to the bar, add an aphrodisiac effect like Ellies.");
-
-output("\n\n//End of HugsAlright content");
-
-
-
 output("\n\nRiding the Bronco");
 output("\n\n//can’t be a taur or naga, can’t be virgin in the hole you choose, can’t ride while pregnant");
 output("\n\nYou approach the mechanical stallion in the middle of the saloon. It looks like a caricature of the upper half of a bronco with a saddle equipped with a horse dildo where a rider’s groin would normally rest, the animal facade ending just below the leg joints. The horse dildo on the saddle is over a foot in length and exceptionally thick, with a broad, flared tip. There are instructions on the sign next to the pit that read <i>“<b>Take the Bronco for a ride!</b> The Bronco is self-lubricating; all he needs is a few tugs before you mount up. Hold on until he finishes and win free drinks for a day, but if you get bucked off or finish first, you’re out!”</i>");
