@@ -2431,7 +2431,6 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			pc.removeStatusEffect("Cum Paused");
 			pc.removeStatusEffect("Milk Paused");
 			
-			// [Sign Contract] [Leave]
 			addButton(0, "Next", move, rooms[currentLocation].westExit);
 			break;
 		// [Sign Contract]
