@@ -262,6 +262,7 @@
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brynn.as";
+		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";

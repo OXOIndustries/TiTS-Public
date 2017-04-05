@@ -1652,6 +1652,9 @@
 				case "crotchCover":
 					buffer = crotchCover();
 					break;
+				case "assCover":
+					buffer = assCover();
+					break;
 				case "skinNoun":
 					buffer = skinNoun(true);
 					break;
@@ -4190,6 +4193,7 @@
 			//Temporary Stuff
 			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
+			if (hasStatusEffect("Leithan Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
 			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
@@ -13871,6 +13875,12 @@
 			else if(!isCrotchExposedByLowerUndergarment()) return lowerUndergarment.longName;
 			return "nothing";
 		}
+		public function assCover(): String
+		{
+			if(!isAssExposedByArmor()) return armor.longName;
+			else if(!isAssExposedByLowerUndergarment()) return lowerUndergarment.longName;
+			return "nothing";
+		}
 		public function lowerGarmentOuterDescript(): String {
 			if (armor.shortName != "") return armor.longName;
 			else if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
@@ -16980,7 +16990,89 @@
 			}
 			return (stretched || devirgined);
 		}
-		
+		public function instaDrunk():String
+		{
+			var outputS:String = "";
+			//Imbibe some to keep party train going.
+			imbibeAlcohol(30);
+			var thisStatus:StorageClass = getStatusEffect("Alcohol");
+			
+			if (thisStatus == null) return "";
+			
+			//Bump booze in blood up to drunko level
+			if(thisStatus.value2 < 55) thisStatus.value2 = 55;
+			
+			// Alcohol is consumed at a rate of 1 unit per minute
+			if (!hasStatusEffect("Buzzed"))
+			{
+				createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				physiqueMod += 2;
+				willpowerMod -= 1;
+				intelligenceMod -= 1;
+				outputS += "\n\nDamn, that stuff you were drinking was awesome. <b>You’re feeling pretty good right now. You must be buzzed.</b>";
+			}
+			if (!hasStatusEffect("Drunk"))
+			{
+				if (hasStatusEffect("Buzzed"))
+				{
+					getStatusEffect("Buzzed").hidden = true;
+				}
+				physiqueMod += 2;
+				reflexesMod -= 1;
+				createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You’re feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				outputS += "\n\nYour sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
+			}
+			return outputS;
+		}
+		public function instaSmashed():String
+		{
+			var outputS:String = "";
+			//Imbibe some to keep party train going.
+			imbibeAlcohol(30);
+			var thisStatus:StorageClass = getStatusEffect("Alcohol");
+			
+			if (thisStatus == null) return "";
+			
+			//Bump booze in blood up to drunko level
+			if(thisStatus.value2 < 75) thisStatus.value2 = 75;
+			
+			// Alcohol is consumed at a rate of 1 unit per minute
+			if (!hasStatusEffect("Buzzed"))
+			{
+				createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				physiqueMod += 2;
+				willpowerMod -= 1;
+				intelligenceMod -= 1;
+				outputS += "\n\nDamn, that stuff you were drinking was awesome. <b>You’re feeling pretty good right now. You must be buzzed.</b>";
+			}
+			if (!hasStatusEffect("Drunk"))
+			{
+				if (hasStatusEffect("Buzzed"))
+				{
+					getStatusEffect("Buzzed").hidden = true;
+				}
+				physiqueMod += 2;
+				reflexesMod -= 1;
+				createStatusEffect("Drunk",0,0,0,0, false, "Icon_DizzyDrunk", "You’re feeling a little drunk at the moment. Your faculties and reflexes are dulled, but you feel like you could arm wrestle the world if you were so inclined.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				outputS += "\n\nYour sense of balance is slipping a little. <b>You might be a little drunk. Just a little, you assure yourself.</b>";
+			}
+			if (!hasStatusEffect("Smashed"))
+			{
+				if (hasStatusEffect("Drunk"))
+				{
+					getStatusEffect("Drunk").hidden = true;
+				}
+				
+				physiqueMod += 1;
+				reflexesMod -= 1;
+				willpowerMod -= 1;
+				intelligenceMod -= 1;
+				createStatusEffect("Smashed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re three sheets to the wind, but you feel like you could flip a truck.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				return outputS += "\n\n" + ParseText("[pc.Walking] is increasingly difficult, but you’ll be damned if you don’t feel like you can do anything. <b>You’re smashed!</b>");
+			}
+			return outputS;
+		}
+
 		public function imbibeAlcohol(alcoholRating:int = 1):void
 		{
 			//E'rrybody should have dis status yo, it's da TiTS.
