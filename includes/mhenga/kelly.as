@@ -132,7 +132,7 @@ public function kellyOfficeApproach():void {
 
 	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. <i>“Welcome back to Xenogen Research Labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");
-	//{my friend}/{honey}
+	// my friend / honey
 	output("?”</i>");
 	processTime(1);
 	//[PurchaseMods] [Talk] [Flirt] [Leave]
@@ -173,11 +173,11 @@ public function kellysStoreSetup():void
 	{
 		chars["KELLY"].inventory.push(new Ovilium());
 	}
-	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
+	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
 	{
 		chars["KELLY"].inventory.push(new HoneySeed());
 	}
-	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined)
+	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
 	{
 		chars["KELLY"].inventory.push(new Honeydew());
 		chars["KELLY"].inventory.push(new Honeypot());

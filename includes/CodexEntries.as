@@ -352,7 +352,7 @@ public function kuitanCodexEntry():void
 	outputCodex("\n<b>Eyes:</b> Kui-tan have two forward facing eyes situated in their face, in the same manner as humans. Eye color tends towards shades of brown and orange, though gold eyes are possible, if rare.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Appearance"));
-	outputCodex("The kui-tan are a humanoid species native to the Arcysus's single moon of Jitafore, which orbits the planet Arcysus, who visually call to mind the mythical ‘tanuki’ of Japanese lore. Their bodies are typical of most intelligent humanoids - two legs, a torso, two arms, and a single head atop the torso. Kui-tan faces are strikingly similar to galactic norms, except that nose and jaws grow together and extend into a short but expressive muzzle, containing prominent canines but altogether omnivorous teeth. A single pair of ears, just pointy enough at the top to be oval-shaped rather than circular, sit atop the head with limited mobility.");
+	outputCodex("The kui-tan are a humanoid species native to Arcysus’s single orbiting moon, Jitafore, who visually call to mind the mythical ‘tanuki’ of Japanese lore. Their bodies are typical of most intelligent humanoids - two legs, a torso, two arms, and a single head atop the torso. Kui-tan faces are strikingly similar to galactic norms, except that nose and jaws grow together and extend into a short but expressive muzzle, containing prominent canines but altogether omnivorous teeth. A single pair of ears, just pointy enough at the top to be oval-shaped rather than circular, sit atop the head with limited mobility.");
 	outputCodex("\n\nThough they have five-fingered hands at the ends of their human-like arms, their plantigrade legs end in paw-like, four-toed feet. A single tail sprouts from every kui-tan’s rear, starting at a narrow base and swelling out immensely the closer one comes to the tip. These tails can be almost as long as a kui-tan is tall and as thick around as one’s waist. However, the bulk of a kui-tan’s tail is actually very dense, firmly packed fur, making it surprisingly light despite its bulky shape.");
 	outputCodex("\n\nKui-tan grow thick, dense fur that often makes them looking quite pudgy if left ungroomed. Most kui-tan do their best to keep it cut short and form-hugging, both to keep cool and for appearances’ sake. Their fur colors are generally browns with patches of black around the eyes, on the tips of the ears, in rings around the length of the tail, and in the shape of black socks over their feet and thighs. This fur grays in old age. It is not unheard of for kui-tan to dye themselves to suit personal preferences and tastes.");
 	outputCodex("\n\nAll kui-tan bear tapered penises thanks to their lack of a female sex. The tips have vaguely heart-shaped crowns formed by two rounded bulges on the underside of the glans at a tip at the tip. During kui-tan mating, the unique shape stimulates the cervix to dilate, allowing the father direct access to a fertile womb. A trio of knots, spaced along the length, swells upon orgasm, locking the lucky father in place. The erect length of a typical kui-tan falls somewhere between six and ten inches and not more than two inches in width, though reports of kui-tan with outsized genitals from mods are common; the race seems to have strong reactions to such items.");
@@ -565,7 +565,7 @@ public function daynarCodexEntry():void
 	outputCodex("<i>Not all lizards are untrustworthy: Just most.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> Males - 5\' 9\" ft, Females - 5\' 7\"");
+	outputCodex("\n<b>Height:</b> Males - 5\' 9\", Females - 5\' 7\"");
 	outputCodex("\n<b>Weight:</b> Males - 150 lbs, Females - 140 lbs");
 	outputCodex("\n<b>Hair:</b> None");
 	outputCodex("\n<b>Eyes:</b> Slit, reptilian irises. Sandy brown sclera, but self-controllable iris color.");
@@ -693,7 +693,7 @@ public function kalabastFhaniCodex():void
 	outputCodex(header("Kalabast / Fhan’i"));
 	outputCodex("<b>Name:</b> Kalabast (singular & plural); Fhan’i (singular & plural)");
 	outputCodex("\n<b>Genders:</b> Biologically, Kalabast 100% male, Fhan’i 100% female. Gene-modded exceptions are uncommon but existent.");
-	outputCodex("\n<b>Height:</b> 6\'2\" Kalabast avg, 5\'3\" Fhan’i avg.");
+	outputCodex("\n<b>Height:</b> 6\' 2\" Kalabast avg, 5\' 3\" Fhan’i avg.");
 	outputCodex("\n<b>Weight:</b> (105 kg) Kalabast avg, (75 kg) Fhan’i avg.");
 	outputCodex("\n<b>Hair:</b> Kalabast grow thick amounts of fur from the top of their heads. Fhan’i grow thick, pale tentacles in a hair-like arrangement.");
 	outputCodex("\n<b>Skin Color:</b> Kalabast grow short fur all across their bodies, which can be many natural shades from cream to dark brown. Fhan’i are hairless and albino white across their bodies, however their extremities are usually purple, red, orange or pink.");
@@ -825,7 +825,7 @@ public function rodenianCodexEntry():void
 	outputCodex("\n<b>Homeworld:</b> The forest world of Corvus");
 	outputCodex("\n<b>Lifespan:</b> 150");
 	outputCodex("\n<b>Sexes:</b> 33% Male and 66% Female");
-	outputCodex("\n<b>Height:</b> 4\'2\" to 5\'3\" (1.26 - 1.6m)");
+	outputCodex("\n<b>Height:</b> 4\' 2\" to 5\' 3\" (1.26 - 1.6 m)");
 	outputCodex("\n<b>Weight:</b> 50 to 170 lbs");
 	outputCodex("\n<b>Ears:</b> Large, multifunction ears similar in structure to a terran mouse.");
 	outputCodex("\n<b>Fur:</b> Full body - typically white, pink, gray, or black (but often dyed).");
@@ -868,7 +868,7 @@ public function roehmCodexEntry():void
 	outputCodex("<i>Whom to where gluttony is not a cardinal sin, but a way of life.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Roehm");
 	outputCodex("\n<b>Sexes:</b> 100% Hermaphrodite");
-	outputCodex("\n<b>Height:</b> Adults reach 6\'4\" height, 9\' length avg.");
+	outputCodex("\n<b>Height:</b> Adults reach 6\' 4\" height, 9\' length avg.");
 	outputCodex("\n<b>Weight:</b> 330 lbs (150 kg) avg.");
 	outputCodex("\n<b>Hair:</b> None.");
 	outputCodex("\n<b>Skin Color:</b> Naturally many different shades, from bright blue and red stripes, to dappled black, to uniform yellow. Different skin color confers no distinct physical traits.");

@@ -74,12 +74,14 @@ public function checkOutBountyBoard():void
 		flags["SEEN_JULIANS_AD"] = 1;
 	}
 	else {
-		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output("<b>Completed:</b>");
-		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == 1) output("<b>Accepted:</b>");
+		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output("<b>Completed:</b>");
+		else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output("<b>No Longer Needed:</b>");
+		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined) output("<b>Accepted:</b>");
 		else output("<b>Seen Before:</b>");
 	}
 	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for ‘a strapping, adventurous type’ to brave the jungles in search of something he can use for his research.");
-	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it’s quite lucrative.");
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output(" You know from experience that it’s quite lucrative.");
+	else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output(" <i>However, it seems like Xenogen is no longer in need of this service anymore.</i>");
 	else output(" It seems like it could be quite lucrative.");
 	// SynthSap
 	if(synthSapNoticeUnlock())

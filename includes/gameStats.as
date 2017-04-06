@@ -1958,7 +1958,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Zil Capture</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output2(" Completed");
-				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Disabled");
+				else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output2(" Disabled, <i>No longer required</i>");
 				else if
 				(	(flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
 				||	(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined && (flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined))
