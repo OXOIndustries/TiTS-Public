@@ -1774,7 +1774,7 @@ public function challengeLahToAFight():void
 	showLahAndQuinn();
 	author("Nonesuch");
 	output("<i>“I challenge him to battle!”</i> you say, pointing at Lah, loudly enough for the crowd to hear. <i>“If I beat his sorry ass you will give me a fair hearing about this business, as is your custom!”</i>");
-	output("\n\n<i>“That’s - that’s just absurd!”</i> barks Lah, color draining from his face. Quinn frowns, stroking her chin. <i>“[pc.heShe] seeks to impose [pc.hisHer] will on you through violence, as is the land-stealer’s way, just in a different way!”</i> the ausar goes on urgently. <i>“You cannot listen to him - [pc.heShe] speaks lies, I speak truths!”</i>");
+	output("\n\n<i>“That’s - that’s just absurd!”</i> barks Lah, color draining from his face. Quinn frowns, stroking her chin. <i>“[pc.HeShe] seeks to impose [pc.hisHer] will on you through violence, as is the land-stealer’s way, just in a different way!”</i> the ausar goes on urgently. <i>“You cannot listen to [pc.himHer] - [pc.heShe] speaks lies, I speak truths!”</i>");
 	//Amber stolen: 
 	if(flags["PQ_TOOK_AMBER"] != undefined) 
 	{
