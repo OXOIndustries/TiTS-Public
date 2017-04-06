@@ -102,7 +102,7 @@ public function appearance(forTarget:Creature):void
 
 		//Face
 		output2("\n\n");
-		if(InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LAPINE) && !target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) {
+		if(InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LAPINE) && !target.hasMuzzle()) {
 			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2("Your face is human in shape and structure, with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("Under your " + target.skinFurScales(true,true,false,true) + " you have a human-shaped head with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face is fairly human in shape, but is covered in " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
@@ -120,7 +120,7 @@ public function appearance(forTarget:Creature):void
 				else if(target.statusEffectv3("Mimbrane Face") >= 13) output2(" Your lips appear lusciously large and undeniably kissable.");
 			}
 		}
-		else if(target.faceType == GLOBAL.TYPE_LAPINE && target.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+		else if(target.faceType == GLOBAL.TYPE_LAPINE && target.hasMuzzle())
 		{
 			output2("You have a short-muzzled face");
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2(" with " + target.skin(true,true,true) + ".");
@@ -230,16 +230,16 @@ public function appearance(forTarget:Creature):void
 		}
 		//bird-face
 		else if(target.faceType == GLOBAL.TYPE_AVIAN) {
-			if(target.hasFaceFlag(GLOBAL.FLAG_BEAK)) output2("You have a bird-like face, complete with " + indefiniteArticle(target.lipColor) + " beak");
+			if(target.hasBeak()) output2("You have a bird-like face, complete with " + indefiniteArticle(target.lipColor) + " beak");
 			else output2("Your facial structure blends humanoid features with those of a bird, but lacking the signature beak");
-			if(target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) {
-				if(target.hasFaceFlag(GLOBAL.FLAG_BEAK)) output2(" - rather it looks like a beak, but is more like a muzzle in structure, retaining lips and teeth instead of sharp beak edges. But they are almost impossible to spot without closer inspection");
+			if(target.hasMuzzle()) {
+				if(target.hasBeak()) output2(" - rather it looks like a beak, but is more like a muzzle in structure, retaining lips and teeth instead of sharp beak edges. But they are almost impossible to spot without closer inspection");
 				else output2(". Instead you have a toothy reptilian muzzle, making your visage rather unsettling");
 			}
 			output2(".");
-			if(target.hasFeathers() || target.hasScales() && target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && !target.hasFaceFlag(GLOBAL.FLAG_BEAK)) output2(" It is adorned with " + indefiniteArticle(target.skinFurScales(true,true,false,true)) + ", completing the image.");
+			if(target.hasFeathers() || target.hasScales() && target.hasMuzzle() && !target.hasBeak()) output2(" It is adorned with " + indefiniteArticle(target.skinFurScales(true,true,false,true)) + ", completing the image.");
 			else output2(" The lack of feathers on your " + target.skinNoun() + " look rather strange.");
-			if(target.hasFaceFlag(GLOBAL.FLAG_BEAK) && !target.hasFeathers() && !target.hasFur() && target.isBald()) output2(" You somewhat resemble a vulture.");
+			if(target.hasBeak() && !target.hasFeathers() && !target.hasFur() && target.isBald()) output2(" You somewhat resemble a vulture.");
 		}
 		//Minotaaaauuuur-face
 		else if(target.faceType == GLOBAL.TYPE_BOVINE) {

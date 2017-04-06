@@ -4859,8 +4859,14 @@
 			//Size Adjectives
 			if(rand(3) == 0 || forcedAdjectives)
 			{
-				//Butts
-				if(lips <= 1)
+				//Lips
+				if(lips < 0)
+				{
+					if(rand(3) == 0) result += "non-existent";
+					else if(rand(2) == 0) result += "absent";
+					else result += "insubstantial";
+				}
+				else if(lips <= 1)
 				{
 					if(rand(3) == 0) result += "pencil-thin";
 					else if(rand(2) == 0) result += "lean";

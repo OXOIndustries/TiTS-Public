@@ -132,18 +132,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2(" " + GLOBAL.TYPE_NAMES[pc.eyeType]);
 		if(pc.eyebrowPierced != 0) output2("\n<b>* Eyebrow Piercing:</b> " + pc.eyebrowPierced + " " + StringUtil.toDisplayCase(pc.eyebrowPShort));
 		if(pc.nosePierced != 0) output2("\n<b>* Nose Piercing:</b> " + pc.nosePierced + " " + StringUtil.toDisplayCase(pc.nosePShort));
-		output2("\n<b>* Lips:</b>");
-		var lipsize:int = pc.lipRating();
-		if(lipsize <= 1) output2(" Pencil-thin");
-		else if(lipsize <= 2) output2(" Supple");
-		else if(lipsize <= 3) output2(" Plump");
-		else if(lipsize <= 4) output2(" Luscious");
-		else if(lipsize <= 5) output2(" Bee-stung");
-		else if(lipsize <= 6) output2(" Fat");
-		else if(lipsize <= 7) output2(" Bloated");
-		else if(lipsize <= 8) output2(" Whorish");
-		else output2(" Universe-distorting");
-		if(lipsize > 9) output2(" (" + formatFloat(lipsize, 3) + ")");
+		output2("\n<b>* Lips:</b> " + showCharLipRating("PC"));
 		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
 		if(pc.lipMod != 0 && pc.statusEffectv4("Nym-Foe Injections") != 0) output2("\n<b>* Lips, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv4("Nym-Foe Injections"), 3));
 		if(pc.lipPierced != 0 || flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2)
@@ -3694,17 +3683,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						output2("\n<b>* Gianna, Body, Breast Size:</b> " + StringUtil.toTitleCase(chars["GIANNA"].breastCup(0)) + "s");
 						output2("\n<b>* Gianna, Body, Posterior Size:</b> " + formatFloat(chars["GIANNA"].buttRating(), 3));
-						output2("\n<b>* Gianna, Body, Lip Size:</b>");
-						var giannaLipsize:int = chars["GIANNA"].lipRating();
-						if(giannaLipsize <= 1) output2(" Pencil-thin");
-						else if(giannaLipsize <= 2) output2(" Supple");
-						else if(giannaLipsize <= 3) output2(" Plump");
-						else if(giannaLipsize <= 4) output2(" Luscious");
-						else if(giannaLipsize <= 5) output2(" Bee-stung");
-						else if(giannaLipsize <= 6) output2(" Fat");
-						else if(giannaLipsize <= 7) output2(" Bloated");
-						else if(giannaLipsize <= 8) output2(" Whorish");
-						else output2(" Universe-distorting");
+						output2("\n<b>* Gianna, Body, Lip Size:</b> " + showCharLipRating("GIANNA"));
 					}
 					// Talk
 					if(flags["TALKED_TO_GIANNA"] != undefined)
@@ -6030,6 +6009,28 @@ public function displayEncounterLog(showID:String = "All"):void
 	output2("\n\n");
 }
 
+public function showCharLipRating(charName:String = ""):String
+{
+	if(charName == "" || chars[charName] == null) return "<i>Data unknown</i>";
+	
+	var txt:String = "";
+	var lipsize:int = chars[charName].lipRating();
+	
+	if(lipsize < 0) txt += "None";
+	else if(lipsize <= 1) txt += "Pencil-thin";
+	else if(lipsize <= 2) txt += "Supple";
+	else if(lipsize <= 3) txt += "Plump";
+	else if(lipsize <= 4) txt += "Luscious";
+	else if(lipsize <= 5) txt += "Bee-stung";
+	else if(lipsize <= 6) txt += "Fat";
+	else if(lipsize <= 7) txt += "Bloated";
+	else if(lipsize <= 8) txt += "Whorish";
+	else txt += "Universe-distorting";
+	
+	if(lipsize > 9) txt += " (" + formatFloat(lipsize, 3) + ")";
+	
+	return txt;
+}
 public function listCharGenitals(charName:String = ""):String
 {
 	if(charName == "" || chars[charName] == null) return "<i>Data unknown</i>";

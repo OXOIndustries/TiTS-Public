@@ -976,13 +976,13 @@ public function keyItemDisplayToggleDesc(filter:String = ""):void
 public function equipmentDisplay():void
 {
 	output("<b><u>Equipment:</u></b>\n");
-	output("<b>Melee Weapon:</b> " + StringUtil.toTitleCase(pc.meleeWeapon.description) + "\n");
-	output("<b>Ranged Weapon:</b> " + StringUtil.toTitleCase(pc.rangedWeapon.description) + "\n");
-	output("<b>Armor:</b> " + StringUtil.toTitleCase(pc.armor.description) + "\n");
-	output("<b>Shield:</b> " + StringUtil.toTitleCase(pc.shield.description) + "\n");
-	output("<b>Accessory:</b> " + StringUtil.toTitleCase(pc.accessory.description) + "\n");
-	output("<b>Underwear Bottom:</b> " + StringUtil.toTitleCase(pc.lowerUndergarment.description) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toDisplayCase(pc.rangedWeapon.longName) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toDisplayCase(pc.armor.longName) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
 	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
