@@ -81,14 +81,15 @@ public function statisticsScreen(showID:String = "All"):void
 		//if(pc.weightQ("full") > 0) output2(" (" + pc.weightQ("full") + " %)");
 		// Head
 		output2("\n<b><u>Head</u></b>");
-		output2("\n<b>* Face:</b> " + GLOBAL.TYPE_NAMES[pc.faceType]);
+		output2("\n<b>* Face:</b>");
 		if(pc.faceFlags.length > 0)
 		{
 			for(i = 0; i < pc.faceFlags.length; i++)
 			{
-				output2(", " + GLOBAL.FLAG_NAMES[pc.faceFlags[i]]);
+				output2(" " + GLOBAL.FLAG_NAMES[pc.faceFlags[i]] + ",");
 			}
 		}
+		output2(" " + GLOBAL.TYPE_NAMES[pc.faceType]);
 		if(pc.hasBeard())
 		{
 			output2("\n<b>* Beard:</b>");
