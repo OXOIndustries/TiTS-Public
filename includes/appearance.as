@@ -1154,7 +1154,8 @@ public function appearance(forTarget:Creature):void
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 			else output2(" human-shaped");
 			output2(" hands appear very demonic, tipped with sharp claws that seem to have replaced your fingernails.");
-			if(target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(" In addition, your forearms are covered by sleek plates of jet-black chitin along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY) && target.hasArmFlag(GLOBAL.FLAG_SMOOTH)) output2(" In addition, your forearms are covered by sleek plates of hardened goo along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
+			else if(target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(" In addition, your forearms are covered by sleek plates of jet-black chitin along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
 			else if(target.hasArmFlag(GLOBAL.FLAG_SPIKED)) output2(" In addition, a set of short jet-black bone spikes grow along the outside of each forearm and out of the back of your elbows, giving you an incredibly imposing look.");
 		}
 		else if(InCollection(target.armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_NYREA))
