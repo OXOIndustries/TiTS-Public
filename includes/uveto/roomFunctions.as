@@ -1357,7 +1357,7 @@ public function GRM44Fight():void
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {
-		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a tall black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
+		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a long black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
 
 		var en:Array = CombatManager.getHostileCharacters();
 		
@@ -2071,7 +2071,7 @@ public function soloFertilityPriestessFight():void
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {
-		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a tall black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
+		var s:String = "The Fertility Priestess, a female milodan, stands tall and nude before you, wielding a long black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
 		return s;
 	})
 	CombatManager.victoryScene(pcRepeatFertilityPriestessVictory);
