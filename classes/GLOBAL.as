@@ -125,6 +125,7 @@
 			"Beaked",
 			"Corkscrewed",
 			"Tongued",
+			"Freckled",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
