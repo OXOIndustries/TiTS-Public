@@ -5183,7 +5183,20 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					else if (pippaRecruitTurnedDown()) output2(", Turned down request to join crew");
 					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + " %");
-					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + " %");
+					if (pippaSexed(0) > 0)
+					{
+						var pippaTop:int = pippaDominance();
+						
+						output2("\n<b>* Pippa, Preferred Position:</b> ");
+						if (pippaTop > 50) output2("Top");
+						else if (pippaTop < 50) output2("Bottom");
+						else output2("No Preference");
+						
+						var topBottomStrength:int = Math.abs(pippaTop - 50);
+						
+						if (topBottomStrength <= 17 && topBottomStrength > 0) output2(", Slight Preference");
+						else if (topBottomStrength >= 33) output2(", Strong Preference");
+					}
 					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
 					if (pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
 					if (pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));

@@ -11,7 +11,7 @@ package classes.Characters
 		//constructor
 		public function Pippa()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -150,7 +150,7 @@ package classes.Characters
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.breastRows[0].breastRatingRaw = 30;
-			this.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_INVERTED;
+			this.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL; // They're actually inverted, but Creature class has way better descriptors for normal nipples, and any time it's being used, her nipples are probably erect, and functionally normal
 			this.nippleColor = "brown-pink";
 			this.nippleLengthRatio = 1;
 			this.nippleWidthRatio = 1;
@@ -161,6 +161,11 @@ package classes.Characters
 			this.ass.wetnessRaw = 2;
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity = 150;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL; // See nipple type note in constructor
 		}
 	}
 }

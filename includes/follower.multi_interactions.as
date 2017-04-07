@@ -157,7 +157,7 @@ public function pippaYammiThreesome():void
 	
 	output("\n\nPippa stops short of bringing Yammi to orgasm. Standing up, she jokes, <i>“I just wanted a taste.”</i> She steals your [pc.lips] away from Yammi, pressing them into her own. Yammi drops to the floor and takes your [pc.cockOrStrapon " + cockIndex + "] into her mouth, her longue tongue running along its length. Your own tongue explores Pippa’s mouth. As she kisses you, she alternates between rubbing your [pc.chest] and the top of Yammi’s head, seemingly unable to make up her mind. You keep one hand on Yammi’s head, running your fingers through her green hair, and use the other hand to grope Pippa’s [pippa.ass].");
 	
-	if (pippa.hasHardLightStrapOn() && rand(120) - 10 < pippaDominance()) pippaYammiThreesomeDom(cockIndex);
+	if (pippa.hasHardLightStrapOn() && randInRange(-110, 110) < pippaDominance()) pippaYammiThreesomeDom(cockIndex);
 	else pippaYammiThreesomeSub(cockIndex);
 	
 	pc.orgasm();
