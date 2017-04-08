@@ -1951,7 +1951,8 @@ public function fixOriginalRaceMenu():void
 {
 	clearMenu();
 	var btnSlot:int = 0;
-	for(var i:int = 0; i < pcMotherRaces.length; i++)
+	var i:int = 0;
+	for(i = 0; i < pcMotherRaces.length; i++)
 	{
 		addButton(btnSlot, StringUtil.toDisplayCase(pcMotherRaces[i]), fixOriginalRaceSelect, pcMotherRaces[i]);
 		btnSlot++;
