@@ -220,7 +220,7 @@ public function approachAraKei():void
 			output("\n\n<i>“Very pleasing,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +", smiling widely. <i>“What can the bothrioc do for you today, little one?”</i>");
 		}
 		// not found a master, but lane is currently top of the list
-		else if (flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_COUNTER"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
+		else if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] == undefined && flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_COUNTER"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
 		{
 			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
 			
@@ -233,7 +233,7 @@ public function approachAraKei():void
 			
 			output("\n\nYou do.");
 		}
-		else if (flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == 1)
+		else if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] == undefined && flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == 1)
 		{
 			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
 
@@ -285,6 +285,7 @@ public function araKeiPotentialMasterBlurbs():void
 
 		// Basically the way I saw it working was, when a Permanently Hypnotised PC reaches this bit they get bumped back down to Partially Hypnotised, and are thus able to detox and confront Lane. What Nik suggests in the comment seems wise, if what he's saying is the case; give the PC a 75% boost to their Willpower for the confront Lane scene only.
 		if(flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) flags["LANE_FULLY_HYPNOTISED_FOREVER"] = undefined;
+		if(flags["FOLLOWER_LANE_INTERVENTION"] != undefined) flags["FOLLOWER_LANE_INTERVENTION"] = undefined;
 		flags["ARAKEI_RESOLVED_MASTER_LANE"] = 1;
 	}
 	// Sera
