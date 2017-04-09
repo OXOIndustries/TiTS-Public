@@ -335,7 +335,7 @@ public function selleraPointItOut():void
 	
 	output("\n\nThe Federation officer’s response surprises you. You expected her to be taken aback, possibly offended, but instead she gives you a toothy smile with half-lidded eyes. <i>“You’re completely correct, Steele,”</i> she says softly. <i>“It’s probably insane. I’ve no doubt some say that about me. I hear more than people think, after all. But I lead in the only way I know how, and it conquered Kressia. It’ll conquer Gildenmere when the time comes. But most of all, it got me here. Now, as for how...”</i> She clears her throat and continues on with another story, eyes going slightly distant as she does.");
 
-	//{insert the rest of the text under Something Else beginning with "The Third Offensive Army..."}
+	//insert the rest of the text under Something Else beginning with "The Third Offensive Army..."
 	selleraSomethingElse(true);
 }
 

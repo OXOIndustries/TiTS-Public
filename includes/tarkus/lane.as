@@ -1853,7 +1853,7 @@ public function fuckedByMaleLane():void
 	if (!pc.hasVagina() && !pc.hasCock()) output(" it humps against your blank crotch, and Lane grunts in disappointment. He keeps at it, but it’s clear he’s not deriving as much pleasure from it as he’d like");
 	output(".");
 
-	output("\n\n<i>“I love [pc.race] asses,”</i> he says. He leans forward, pressing his chest and stomach against your upper and lower back. His tongue slips out and licks along the back of your ear, and you swoon. <i>“So much better than Daynarian asses. Ours are all hard and boney, but with an ass like yours...”</i> He draws his cock against you once more");
+	output("\n\n<i>“I love [pc.raceCute] asses,”</i> he says. He leans forward, pressing his chest and stomach against your upper and lower back. His tongue slips out and licks along the back of your ear, and you swoon. <i>“So much better than Daynarian asses. Ours are all hard and boney, but with an ass like yours...”</i> He draws his cock against you once more");
 	if (pc.hasVagina()) output(", soaking it in more of your juices");
 	output(". <i>“I feel like I could fuck it for days. Would you like that? Would you like to spend the weekend on my dick?”</i>");
 

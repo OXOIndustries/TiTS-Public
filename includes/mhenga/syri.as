@@ -468,7 +468,7 @@ public function pcLosesToSyriBettingHisAss():void {
 
 	output("\n\nAgain and again the ausar’s hips slap loudly into your [pc.butt], the sound of flesh on flesh echoing as your dog-cocked dominator picks up the pace, hammering your ass with increasing vigor. Soon, her long tongue lolls listlessly from her agape mouth. Syri’s panting with pleasure as she spears you over and over on her long knotty rod. You can feel a lake of her hot, salty pre bubbling in your hole, thick streams of it leaking out around her pounding prick to stain your thighs. Suddenly, a huge geyser of the thick alien cream seems to erupt into you; you cry out as Syri picks up to a furious pace, moaning with abandon as her prick spasms into you, flooding you with what feels like an endless tide of her cum. The boiling batter comes and comes, every thrust dumping more of her hot seed into your bowels until you feel bloated, stomach churning with the oncoming flood of ausar-cum.");
 
-	output("\n\nMinutes pass, leaving you heaving and groaning and pinned to the table as Syri collapses atop you, breasts pressing hard into your back. Her cock twitches in your rectum, little trickles of her cooling seed dribbling out around her engorged knot, just outside your worn hole. <i>“How’s it feel to be mounted and bred, " + pc.race() + "?”</i> she chuckles, her tone surprisingly affectionate. <i>“Don’t pretend you didn’t enjoy being my little bitch for the night, [pc.name]. A perfect ass like this...”</i> she gropes your cheek, kneading it between downy fingers, <i>“...can’t possibly lie.”</i>");
+	output("\n\nMinutes pass, leaving you heaving and groaning and pinned to the table as Syri collapses atop you, breasts pressing hard into your back. Her cock twitches in your rectum, little trickles of her cooling seed dribbling out around her engorged knot, just outside your worn hole. <i>“How’s it feel to be mounted and bred, " + pc.raceCute(true, true) + "?”</i> she chuckles, her tone surprisingly affectionate. <i>“Don’t pretend you didn’t enjoy being my little bitch for the night, [pc.name]. A perfect ass like this...”</i> she gropes your cheek, kneading it between downy fingers, <i>“...can’t possibly lie.”</i>");
 
 	output("\n\nYour only reply is a low moan as she gently rocks her hips back, pulling her spent prick from your ass. <i>“Just be glad I didn’t give you the knot, or we’d be here for hours. Of course, if that’s what you really want, little bitch, I’m sure that can be arranged. ");
 	//If first time:
@@ -841,7 +841,7 @@ public function syriReverseCowgirlConsensualization():void {
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Brushing a hand across the ausar beauty’s cheek, you tell her you’d like a front seat view of that nice, firm ass of hers bouncing on your cock. She grins down at you - the perfect opportunity for you to plant a kiss on her lips, cupping her cheeks and pulling her down. Her breath catches, voice melting into a low, contented moan as she relaxes in your arms.");
 
-	output("\n\n<i>“Is that how you " + plural(pc.race()) + " say ‘please’?”</i> she says, moving down to kiss along your neck, then shoulders. <i>“I prefer to pitch, captain, but for you...”</i>");
+	output("\n\n<i>“Is that how you " + plural(pc.raceCute(true)) + " say ‘please’?”</i> she says, moving down to kiss along your neck, then shoulders. <i>“I prefer to pitch, captain, but for you...”</i>");
 
 	output("\n\nSyri turns around atop you, planting her pert little ass right in front of your face as she grabs [pc.oneCock] in her firm, furred grip, giving it a few experimental pumps. Your prick jumps to attention, right into her waiting maw. Her tongue flicks out, trailing from base to [pc.cockHead " + x + "] until her lips wrap around your glans, planting a kiss right on the tip top of your prick. You lean back and sigh as Syri goes to work, pumping the length of your [pc.cock " + x + "] as her mouth tends the head, slathering your first inches in wet ausar kisses.");
 
@@ -1507,7 +1507,7 @@ public function insistOnCoochFucksSyri():void
 	output("\n\nSyri appears unmoved – probably it didn’t help to imply that she’s insane – but the body language of the other patrons shifts. They have been expecting a show, after all. Maybe if you can sway them....");
 	output("\n\n<i>“You were the one who brought ‘pups’ into this whole thing,”</i> you rationalize. <i>“I can totally understand why this is the wrong place and time to start a ");
 	//(if PC's race is half ausar or more) litter
-	if(pc.race() == "ausar" || pc.race() == "half-ausar") output("litter");
+	if(pc.race().indexOf("ausar") != -1) output("litter");
 	else output("family");
 	output(". So why don’t we just ask, does anybody here have a condom handy?”</i>");
 	output("\n\nA skinny male zil in the crowd immediately volunteers, <i>“I will get one.”</i>");

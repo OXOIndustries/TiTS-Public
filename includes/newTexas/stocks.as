@@ -220,7 +220,7 @@ public function useMiscreantManor2():void
 		output("\n\nYou twist against the rubber, but you can’t escape her fingers no matter how you writhe, nor the excitement she teases from your netherlips. In no time at all, she has your [pc.hips] twitching back against her, aching for her to slip another finger inside. She pushes her cock in instead, giving you a nice warm, cat-dick to tease your cunny. It’s still twitching, smacking into your g-spot, abusing your passage. Despite its small size, it soon has you mewling every bit as eagerly as its owner.");
 		pc.cuntChange(x,5);
 		output("\n\nYour perverse vocalizations soon lure another figure. That, or they heard the unsubtle ’smack-smack-smack’ of a happy couple fucking... or they smelled the scent of a ");
-		if(pc.inHeat() || pc.isBimbo() || pc.race() == "ausar" || pc.race() == "half-ausar") output("bitch in heat");
+		if(pc.inHeat() || pc.isBimbo() || pc.catDog("nyan", "bork", false) == "bork") output("bitch in heat");
 		else output("woman in need");
 		output(". Whatever the case, they jog faster once you start openly moaning from the sudden appearance of the cat-girl’s fingers on [pc.oneClit].");
 	}
@@ -455,7 +455,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 	{
 		output("\n\n<i>“Let’s hear your best moo, slut!”</i> Zephyr cries at the edge of her own climactic peak. <i>“Moo!”</i>");
 		output("\n\n");
-		if(pc.isTreated() || pc.race() == "cow") output("If your mouth weren’t so full of cock, you’d be grinning deliriously, but you try your best. <i>“Mmmrrphhh!”</i> The happy, oozing cock in your mouth throbs on your tongue from the vibrations, so you try again, this time louder, <i>“MMMRRPHWW~!”</i>");
+		if(pc.isTreated() || pc.race().indexOf("cow") != -1) output("If your mouth weren’t so full of cock, you’d be grinning deliriously, but you try your best. <i>“Mmmrrphhh!”</i> The happy, oozing cock in your mouth throbs on your tongue from the vibrations, so you try again, this time louder, <i>“MMMRRPHWW~!”</i>");
 		else output("You’d probably feel a little offended if it didn’t feel so goddamned <i>sexy</i>. She humps you to the hilt, popping that knot inside, and you do the only thing you can think of: you try to moo through the prick in your mouth. It comes out as a muffled, <i>“Mmmrph,”</i> but that seems to do the trick.");
 		output(" Zephyr roars triumphantly and yanks down on your hips, flattening your [pc.butt] against her gleaming abdominals, forcing every millimeter of her bestial dong inside your lips’ slick embrace.");
 		output("\n\nThe amazon’s knot pumps up in seconds, massively inflating to the rhythm of her powerful heart. It’s delicious, the way it stretches you, pauses, then stretches you some more. You could probably cum from this alone, but the horny she-stud isn’t content with merely cumming. She keeps trying to hump you, jerking her hips in tiny back-and-forth movements, dragging a knot that feels more like a beach ball than part of her anatomy through your vulnerable passage.");
@@ -571,7 +571,7 @@ public function stocksMouthgasms(args:Array):void
 	else if(inMouth == 1)
 	{
 		output("\n\nZephyr grunts and growls, then bellows, <i>“Here it comes ");
-		if(pc.isTreated() || pc.race() == "cow") output("cow");
+		if(pc.isTreated() || pc.race().indexOf("cow") != -1) output("cow");
 		else output("bitch");
 		output("!”</i> Her knot pops in, right behind your teeth, and swells, expanding with enough force to pry your jaw wide open. It aches, only mildly dulled by the pleasure coursing through the rest of you, but the amazonian dick-girl doesn’t seem to care in the slightest.");
 		output("\n\nYou ");

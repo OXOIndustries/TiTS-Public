@@ -3644,7 +3644,7 @@ public function autofellatioForNormies():void
 	else 
 	{
 		output("\n\nYou stroke a few times, making sure you’re as hard as humanly");
-		if(pc.race() != "terran" && pc.race() != "human") output(" (or inhumanly)");
+		if(!pc.isHuman()) output(" (or inhumanly)");
 		output(" possible before you get to the main event. ");
 	}
 	//Merge no new pg for no tits

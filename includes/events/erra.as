@@ -258,7 +258,7 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 		output("\n\nYou sit up and tell her this wasn’t exactly what you were expecting from her.");
 		output("\n\n<i>“What?”</i> she says, <i>“Aren’t all ausar girls into this kind of stuff?”</i>");
 
-		if(InCollection(pc.race(), ["ausar","half-ausar"])) output("\n\nYou cross your arms, making sure you give your [pc.tail] an emphasizing flick so your canine friend sees it, ");
+		if(pc.race().indexOf("ausar") != -1 && pc.hasTail()) output("\n\nYou cross your arms, making sure you give your [pc.tails] an emphasizing flick so your canine friend sees it, ");
 		else output("\n\nYou cock an eyebrow, ");
 		output("resulting in a sigh from Erra as she brings herself to sit down on the mattress. <i>“Well, honestly, I didn’t really get into, or know much about, this kind of stuff until I started hanging out with humans.”</i> The ausar smiles up at you, bringing herself down on all fours and crawling towards you. <i>“Ended up really liking it, getting treated like a puppy and all that stuff: the petting, the collars and leashes, all the ‘good girls’ and praise.”</i> She visibly shudders at her own words.");
 		output("\n\n<i>“But, you can treat me like a bad girl if you really want,”</i> the ausar whispers, smile turning to a lustful grin as her tail begins to sway back and forth.");
@@ -588,7 +588,7 @@ public function talkToErraAbootHerself():void
 	output("\n\nThe ebony ausar sighs, leaning against the bar like the weight of her conscience was suddenly made reality, <i>“It’s just... I like you, [pc.name], a lot, and I didn’t want to fuck anything up by being hasty or anything.”</i> She gazes at you for a long second and finishes her drink in a single go, <i>“Well, I guess you know now, anyways, so what do you say, [pc.name], think we can be an item?”</i>");
 	output("\n\nErra’s features twist into a nervous smile, her tail flailing in an offbeat rhythm as she taps her furry foot impatiently.");
 	output("\n\n<b>Looks like you’ve got a lovesick ausar on your hands now. You could let the puppy down and reject her affections, or you could become as much of an item as ");
-	if(pc.race().indexOf("ausar") >= 0) output("couple of libidinous aliens");
+	if(pc.race().indexOf("ausar") != -1) output("a couple of libidinous aliens");
 	else output(indefiniteArticle(pc.race()) + " and an extra-horny ausar");
 	output(" could be, like Erra suggested.</b>");
 

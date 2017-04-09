@@ -15,7 +15,7 @@
 		if(sRace.indexOf("half ") != -1)
 		{
 			if(fromPC) sRace = "human";
-			sRace = sRace.replace("half-", "");
+			sRace = sRace.replace("half ", "");
 		}
 		if(sRace.indexOf("part ") != -1) sRace = sRace.replace("part ", "");
 		
@@ -36,8 +36,10 @@
 		if(sRace.indexOf("anthro") != -1) sRace = "anthro";
 		if(InCollection(sRace, ["cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
 		if(InCollection(sRace, ["horse", "alicorn", "unicorn", "pegasus"])) sRace = "equine";
-		if(InCollection(sRace, ["hellhound", "husky", "wolf"])) sRace = "canine";
-		if(InCollection(sRace, ["chakat", "nekomata", "dragonne"])) sRace = "feline";
+		if(InCollection(sRace, ["dog", "doge", "puppy", "bitch", "hellhound", "husky"])) sRace = "canine";
+		if(InCollection(sRace, ["fox", "vixen"])) sRace = "vulpine";
+		if(InCollection(sRace, ["wolf", "worg"])) sRace = "lupine";
+		if(InCollection(sRace, ["cat", "kitten", "tiger", "tigeress", "panther", "jaguar", "cheetah", "lion", "lioness", "chakat", "nekomata", "dragonne"])) sRace = "feline";
 		if(InCollection(sRace, ["treant", "dryad"])) sRace = "plant";
 		if(sRace.indexOf("'rahn") != -1) sRace = "rahn";
 		if(sRace.indexOf("goblin") != -1) sRace = "gabilani";

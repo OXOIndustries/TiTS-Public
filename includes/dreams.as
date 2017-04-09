@@ -163,8 +163,8 @@ public function shotgunWeddingDream2():void
 	//PC has normal tongue:
 	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) 
 	{
-		output("\n\n You move your head back and forth to grind Anno’s pleasure buzzer as you prod the sides of her love-tunnel with your [pc.tongue]. Your ministrations bear fruit almost immediately: Anno’s trickle turns into an actual stream of femlube, and you have to start immediately swallowing to avoid drowning. You alternate between swirling your tongue in rapid circles inside her and lapping at her pussy like ");
-		if(pc.race() == "ausar" || pc.race() == "half-ausar") output(", appropriately,");
+		output("\n\n You move your head back and forth to grind Anno’s pleasure buzzer as you prod the sides of her love-tunnel with your [pc.tongue]. Your ministrations bear fruit almost immediately: Anno’s trickle turns into an actual stream of femlube, and you have to start immediately swallowing to avoid drowning. You alternate between swirling your tongue in rapid circles inside her and lapping at her pussy like");
+		if(pc.catDog("nyan", "bork", false) == "bork") output(", appropriately,");
 		output(" a thirsty dog lapping at water: your tongue powerfully stroking her pearl at the apex of each lick, pulling back her hood.");
 	}
 	//PC has long tongue:

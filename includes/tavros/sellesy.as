@@ -971,7 +971,7 @@ public function sellesyHardlightScene():void
 	}
 	//common ending
 	output("\n\n<i>“I suppose that was alright,”</i> Sellesy says. <i>“It was a diversion, at least.”</i> She climbs off of you and redresses, then heads for the door... but not before casting one last glance and smirk back. <i>“Toy");
-	if(InCollection(pc.race(),["ausar","half-ausar","milodan","huskar","half-huskar","canine-morph","hellhound-morph","husky-morph","bitch-morph","worg-morph","doge-morph"])) output("poodle");
+	if(pc.catDog("nyan", "bork") == "bork") output("-poodle");
 	else output("-boy");
 	output(",”</i> she says, and slips out of the room.");
 	IncrementFlag("SELLESY_HL");

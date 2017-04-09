@@ -388,7 +388,7 @@ public function inessaSaeriTalk():void
 	else // Not first time:
 	{
 		output("<i>“Anything else you can tell me about your species?”</i> you ask, and Inessa shakes her head.");
-		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being a [pc.race]–?”</i>");
+		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being a [pc.raceShort]–?”</i>");
 		output("\n\nYou tell her a bit about about being a [pc.race], and she seems fascinated. Once you’re done talking, she looks at the time and gulps. <i>“Whoops... I was meant to be on the clock, but I got distracted by your story. I should really get back to work!”</i>");
 	}
 	processTime(4);
@@ -1470,7 +1470,7 @@ public function newTexanGanguBangu():void
 	if(pc.race().toLowerCase().indexOf("cow") != -1 || (pc.isTreated() && pc.isBimbo())) output("\n\n<i>“Please enjoy your slutty fuck cow,”</i> you huskily moan, mooing and rubbing yourself desperately against their delectable dicks. You’re a cow, and cows are meant to get fucked and mated by bulls!");
 	else
 	{
-		output("\n\n<i>“I-I’m your slutty little [pc.race] whore - please use me as you wish!”</i> you huskily moan, rubbing yourself against their delectable dicks. It feels so <i>right</i>, like this is your purpose, to be the bull’s ");
+		output("\n\n<i>“I-I’m your slutty little [pc.raceCuteShort] whore - please use me as you wish!”</i> you huskily moan, rubbing yourself against their delectable dicks. It feels so <i>right</i>, like this is your purpose, to be the bull’s ");
 		if(pc.biggestTitSize() < 1) output("flat-chested");
 		else if(pc.biggestTitSize() <= 2) output("small-breasted");
 		else if(pc.biggestTitSize() <= 4) output("bare-breasted");

@@ -1354,7 +1354,7 @@ public function partTwoOfAntSlootBoogalooDoubleteam(partner:String = ""):void
 			}
 			else output("[pc.lowerUndergarment]");
 			output(". You feel a salacious thrill as he looks upon your naked [pc.race] body, soaking in your [pc.chest], [pc.belly] and loins.");
-			if(pc.race() != "myr" && pc.race() != "myr-morph") output(" You get the feeling it is the first time he’s seen a naked [pc.race], and you ");
+			if(pc.race().indexOf("myr") != -1) output(" You get the feeling it is the first time he’s seen a naked [pc.raceShort], and you ");
 			else output(" You ");
 			output("can tell by the swelling of his ample sized cock that he’s definitely enjoying the sight.");
 		}

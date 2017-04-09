@@ -23,7 +23,7 @@ Notes
 public function vavaGroomOutsideBonus():void
 {
 	// Not visited blurb
-	if(flags["VAVA_GROOM_VISIT"] == undefined) output("\n\nThrough the reinforced windows to the west, you can see a bulky, medium-sized ship is docked to the station’s arm. Colorful holo advertisements run along its side for something called ‘Vava Groom’. The ecstatic cartoons receiving a vigorous brushing morph into [pc.type] when their programs clock you looking at them. The large airlock that attaches the ship to Uveto Station has all the trappings of a warmly lit shop front, and it seems to be attracting a bustle of huskar.");
+	if(flags["VAVA_GROOM_VISIT"] == undefined) output("\n\nThrough the reinforced windows to the west, you can see a bulky, medium-sized ship is docked to the station’s arm. Colorful holo advertisements run along its side for something called ‘Vava Groom’. The ecstatic cartoons receiving a vigorous brushing morph into " + plural(pc.raceShort()) + " when their programs clock you looking at them. The large airlock that attaches the ship to Uveto Station has all the trappings of a warmly lit shop front, and it seems to be attracting a bustle of huskar.");
 	// Visited blurb
 	else output("\n\nTo the west, the incongruously warm glow of Vava Groom beckons you.");
 	return;

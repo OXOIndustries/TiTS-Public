@@ -1548,7 +1548,7 @@ public function saendraTakesItUpDaButte():void
 	output("\n\n<i>“Come on, a");
 	if (pc.cocks[selCock].cLength() < 5) output(" cute little");
 	else output(" big, hung");
-	output(" [pc.race] like you’s gotta be able to cum twice... three times... before I wear you out. So come on, let it go, hero. Smear my thighs with your seed.”</i>");
+	output(" [pc.raceBoyGirlShort] like you’s gotta be able to cum twice... three times... before I wear you out. So come on, let it go, hero. Smear my thighs with your seed.”</i>");
 
 	output("\n\nYou couldn’t resist that invitation even if you wanted to. And with the way she moves, the way her burning hot cunt swelters just a hair’s breadth from your leaking cockhead... you wouldn’t dream of holding back. With a fierce grunt, you slam your hips forward, almost piercing the folds of Saen’s sodden box, and blow your pent up load all over her taut thighs and sultry snatch. Your hips piston, fucking the wringing coils of her tail as cum bursts from your [pc.cock "+ selCock +"], hot globs of [pc.cumColor] smearing lewdly across her pussy. She’s quick to reach down and spread herself wide for you, lips agape as your seed pours in or smears around her crotch. <i>“Fuck yeah, hero! Just like that. Let it all out!”</i>");
 
@@ -1871,7 +1871,7 @@ public function newFutaSaendraScenes():void
 	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. It’s the latter one that overpowers you; the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
 
 	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
-	if(pc.race() == "ausar" || pc.race() == "half-ausar") output(", my favorite little bottom bitch");
+	if(pc.race().indexOf("ausar") != -1) output(", my favorite little bottom bitch");
 	output("!”</i>");
 
 	output("\n\nNow that you’re not going to be waking the neighbors - or at least, not the ones three doors down - Saen starts to move faster and harder, hammering your ");

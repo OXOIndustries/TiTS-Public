@@ -1533,6 +1533,20 @@
 				case "raceTypeHuman":
 					buffer = raceShort(true);
 					break;
+				case "raceCute":
+					buffer = raceCute();
+					break;
+				case "raceCuteShort":
+				case "raceCuteSimple":
+					buffer = raceCute(true);
+					break;
+				case "raceBoyGirl":
+					buffer = raceCute(false, true);
+					break;
+				case "raceBoyGirlShort":
+				case "raceBoyGirlSimple":
+					buffer = raceCute(true, true);
+					break;
 				case "armor":
 					buffer = armor.longName;
 					break;
@@ -10539,6 +10553,40 @@
 		{
 			return stripRace(race(), (strict && this is PlayerCharacter));
 		}
+		public function raceCute(simple:Boolean = false, boyGirl:Boolean = false): String
+		{
+			var sRace:String = race();
+			var sRaceShort:String = raceShort();
+			if(sRace.indexOf("boy") != -1 || sRace.indexOf("boi") != -1 || sRace.indexOf("girl") != -1) return sRace;
+			
+			if(simple)
+			{
+				switch(sRaceShort)
+				{
+					case "bovine":
+						sRaceShort = rawmfn("bull", "cow", "bovine");
+						break;
+					case "canine":
+						if(isBimbo() && rand(2) == 0) sRaceShort = "puppy";
+						else if(isBimbo() || femininity >= 75 && biggestTitSize() >= 7 && hasVagina()) sRaceShort = "bitch";
+						else sRaceShort = "dog";
+					case "vulpine":
+					case "kitsune":
+						sRaceShort = mf("fox", "vixen");
+					case "lupine":
+						sRaceShort = "wolf";
+					case "feline":
+						if(isBimbo() && rand(2) == 0) sRaceShort = "kitty";
+						else if(isBimbo() || femininity >= 75 && biggestTitSize() >= 7 && hasVagina()) sRaceShort = "pussy";
+						else sRaceShort = "cat";
+						break;
+				}
+			}
+			
+			if(boyGirl) sRaceShort += mf(" boy", " girl");
+			
+			return sRaceShort;
+		}
 		
 		public function equineRace():String
 		{
@@ -10557,24 +10605,24 @@
 			if (bovineScore() >= 6 && femininity <= 60 && femininity >= 40) return "bovine-morph";
 			if (hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
-				if (hasCock() && hasVagina()) return "futaurus";
+				if (isHerm()) return "futaurus";
 				if (femininity < 40 && faceType == GLOBAL.TYPE_BOVINE) return "minotaur";
 				if (femininity > 60) return "holstaurus";
 				if (femininity > 30) return "minitaur";
 			}
 			if (femininity > 60)
 			{
-				if (hasCock() && !hasVagina() && hasBreasts()) return "cow-boi";
-				if (hasCock() && !hasVagina()) return "bull-girl";
-				if (!hasGenitals()) return "cow-morph";
+				if (isMale() && hasBreasts()) return "cow-boi";
+				if (isMale()) return "bull-girl";
+				if (isSexless()) return "cow-morph";
 				return "cow-girl";
 			}
 			if (femininity < 40)
 			{
-				if (hasCock() && hasVagina()) return "bull-futa";
-				if (hasCock() && !hasVagina() && !hasBeard() && tallness < 63) return "bull-boy";
-				if (!hasCock() && hasVagina()) return "cow-boy";
-				if (hasCock() && !hasVagina()) return "bull-man";
+				if (isHerm()) return "bull-futa";
+				if (isMale() && !hasBeard() && tallness < 63) return "bull-boy";
+				if (isFemale()) return "cow-boy";
+				if (isMale()) return "bull-man";
 				return "bull-morph";
 			}
 			return "part bovine-morph";
@@ -10592,7 +10640,7 @@
 					if(isMale()) return "wolf-man";
 					if(isFemale() || femininity > 60) return "wolf-girl";
 				}
-				return "wolf-morph";
+				return "lupine-morph";
 			}
 			if(huskarScore() >= 3) return "husky-morph";
 			if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) return "bitch-morph";
@@ -19226,7 +19274,7 @@
 		{
 			var r:String = raceShort();
 			if (r.indexOf("kaithrit") != -1 || r.indexOf("feline") != -1) return c;
-			if (r.indexOf("ausar") != -1 || r.indexOf("canine") != -1) return d;
+			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
 			return (prefDog ? d : c);
 		}
 	}

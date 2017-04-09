@@ -1024,7 +1024,7 @@ public function seraInchStealingAintEasy(intro:Boolean = false):void
 		if(pc.canTitFuck()) output(" Sera’s tail takes to draping between your [pc.chest] getting a pseudo-titfuck out of it as she fucks your mouth. Which just makes your job harder still.");
 		output(" You start getting distracted by the cock in your mouth, sometimes pausing to fellate it properly with eyes closed in bliss. Then you remember that that is getting you nowhere, and get yourself back to the task at hand.");
 		output("\n\nYour mistress grunts suddenly, and starts spraying cum all over you again as you unthread another tricky loop.");
-		if(seraLength >= 20) output(" You’re so drenched in her jizz by this point that you’re more of a spermy ghost than a [pc.race].");
+		if(seraLength >= 20) output(" You’re so drenched in her jizz by this point that you’re more of a spermy ghost than " + indefiniteArticle(pc.raceShort()) + ".");
 		output(" Her chair, apparently waterproof, is currently serving as a cumbowl rather than a seat.");
 	}
 	// End inch variants
@@ -1466,7 +1466,8 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 				output(" partially opaque gel humanoid with long ears, brown eyes, deep red lips and a pretty face, despite its lack of a nose. Her flesh is a striking, gelatinous white, like Turkish delight, and she is agreeably slim by human standards, her perky, pert breasts and ass discernible underneath her simple slacks and blouse. Her “hair”, which seems to be simply an extension of her gel flesh, is done up in a neat top pile.");
 			}
 			output(" Sera waves a claw lazily.");
-			output("\n\n<i>“[pc.name], meet Jardi. She is a go’rahn and a bitch. Jardi, meet [pc.name]. [pc.He] is a [pc.race] and also a bitch.”</i> She bites her lower lip as she considers the two of you, before getting up. <i>“I’m going to make some adjustments in the back. You two have a chat. You’re going to be working together very closely soon.”</i>");
+			output("\n\n<i>“[pc.name], meet Jardi. She is a go’rahn and a bitch. Jardi, meet [pc.name]. [pc.He] is " + indefiniteArticle(pc.raceShort()) + " and also a bitch");
+			output(".”</i> She bites her lower lip as she considers the two of you, before getting up. <i>“I’m going to make some adjustments in the back. You two have a chat. You’re going to be working together very closely soon.”</i>");
 			output("\n\nJardi looks across at you shyly as the succubus strides out of the room. Feeling you should take the initiative, you ask the pretty gel-girl how she got to know Sera.");
 			output("\n\n<i>“I work on the flight deck. I didn’t come in here for anything specifically, I just like exploring the station, meeting new people. But when I came in here... uh...”</i> She twiddles her fingers, her cheeks turning a lovely rose color. <i>“I don’t know how much you know about the rahn, but we’re a very open and casual people when it comes to sex. Very... consensual? When I encountered something as forceful as that, I kind of... You know how they tell you when you meet a new people to wear a breathing mask, because they might be carrying stuff your immune system has no resistance to?”</i>");
 			output("\n\nYou tell her you understand. She looks at you with her big, brown eyes.");

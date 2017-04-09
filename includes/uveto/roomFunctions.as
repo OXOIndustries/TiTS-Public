@@ -1109,7 +1109,7 @@ public function approachKazraAndLorre():void
 		showName("ESSYRA\nTRADERS");
 		output("You approach the pair of pale pink fox-women, putting up a hand in greeting. The closer of the two, somewhat shorter but more muscular than her companion, steps forward to lean against the support pole in the middle of the tent.");
 		
-		output("\n\n<i>“Greetings, [pc.race],”</i> she says evenly, eyeing you with unabashed curiosity. <i>“Welcome to our home and trading post. I am Kazra, and this is my mate, Lorre.”</i>");
+		output("\n\n<i>“Greetings, [pc.raceCute],”</i> she says evenly, eyeing you with unabashed curiosity. <i>“Welcome to our home and trading post. I am Kazra, and this is my mate, Lorre.”</i>");
 		
 		output("\n\nKazra nods back to the heavily pregnant Essyra behind her, who regards you with a much warmer smile than her mate. <i>“Hello,”</i> she says shyly, putting a hand over the hefty belly straining the front of her leather shirt.");
 		

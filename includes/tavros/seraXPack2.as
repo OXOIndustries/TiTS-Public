@@ -4385,7 +4385,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	if(hasSchoolgirl) output(" school-girl-outfitted");
 	else output(" bare-breasted");
 	if(hasCuffs) output(", cuffed");
-	output(" bitch and their [pc.race] [pc.master] isn’t the most outrageous thing to ever stroll around these tasteful plazas, although you get the distinct impression that it’s deemed much more suitable for the seedy, seething deck below. Whatever. Let the disapproval blaze. You stop to have a look at the holo-board, silently pointing at the ground next to you; gratifyingly Sera kneels next to you after only a slight pause.");
+	output(" bitch and their [pc.raceShort] [pc.master] isn’t the most outrageous thing to ever stroll around these tasteful plazas, although you get the distinct impression that it’s deemed much more suitable for the seedy, seething deck below. Whatever. Let the disapproval blaze. You stop to have a look at the holo-board, silently pointing at the ground next to you; gratifyingly Sera kneels next to you after only a slight pause.");
 	output("\n\n<i>“Back straight. Good girl.”</i> You ruffle her hair fondly. She whimpers slightly in response, eyes fixed steadfastly on the middle distance, definitely not on any of the onlookers drinking in her round [sera.skinColor] ass. With a jerk of the leash, you carry on, intent on taking in as much of the deck as possible.");
 	
 	processTime(12);

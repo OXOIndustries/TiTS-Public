@@ -39,7 +39,7 @@ public function riyaAppearance():void
 public function riyaBonus():Boolean
 {
 	//If nonhuman: 
-	if(pc.race() != "human" && pc.race() != "terran") output("\n\nThere’s a woman in a U.G.C. uniform loitering about, gazing at you with undisguised suspicion. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
+	if(!pc.isHuman()) output("\n\nThere’s a woman in a U.G.C. uniform loitering about, gazing at you with undisguised suspicion. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
 	else output("\n\nThere’s a woman in a U.G.C. uniform loitering about, watching the passing shoppers keenly. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
 
 	//[U.G.C. Officer]
@@ -58,7 +58,7 @@ public function approachRiya():void
 		sockHerEpilogue();
 		return;
 	}
-	var inhuman:Boolean = (pc.race() != "human" && pc.race() != "terran");
+	var inhuman:Boolean = (!pc.isHuman());
 	if(flags["MET_RIYA"] == undefined)
 	{
 		output("You decide to approach the officer, glancing at her nametag as you do. <i>Batra, Riya</i>.");
@@ -79,7 +79,7 @@ public function approachRiya():void
 
 public function riyaMenu():void
 {
-	var inhuman:Boolean = (pc.race() != "human" && pc.race() != "terran");
+	var inhuman:Boolean = (!pc.isHuman());
 	clearMenu();
 	//[Talk]
 	addButton(0,"Talk",talkToRiya,inhuman);
@@ -102,9 +102,8 @@ public function riyaMenu():void
 public function riyaNickname():String
 {
 	var sName:String = "creep";
-	var race:String = pc.raceShort();
-	var isDogMorph:Boolean = (InCollection(race,["ausar","huskar","milodan","dog","doge","canine","husky","hellhound","bitch","worg"]));
-	var isCatMorph:Boolean = (InCollection(race,["kaithrit","cat","feline","lion"]));
+	var isDogMorph:Boolean = (pc.catDog("nyan", "bork", false) == "bork");
+	var isCatMorph:Boolean = (pc.catDog("nyan", "bork", true) == "nyan");
 	
 	if(isDogMorph) sName = "mutt";
 	else if(isCatMorph) sName = "alley cat";
@@ -376,7 +375,7 @@ public function sexRiyaCauseYerDumbAndDeserveToBePunished():void
 	clearOutput();
 	showRiya();
 	author("Franks");
-	var inhuman:Boolean = (pc.race() != "human" && pc.race() != "terran");
+	var inhuman:Boolean = (!pc.isHuman());
 	//Human;
 	//(If PC is male, taur, or has femininity below 40)
 	if(!pc.hasVagina() || pc.isTaur() || pc.femininity <= 40)
@@ -552,8 +551,8 @@ public function riyaVagigooVagitiems():void
 	showRiya(true);
 	author("Franks");
 	var race:String = pc.raceShort();
-	var isDogMorph:Boolean = (InCollection(race,["ausar","huskar","milodan","dog","doge","canine","husky","hellhound","bitch","worg"]));
-	var isCatMorph:Boolean = (InCollection(race,["kaithrit","cat","feline","lion"]));
+	var isDogMorph:Boolean = (pc.catDog("nyan", "bork", false) == "bork");
+	var isCatMorph:Boolean = (pc.catDog("nyan", "bork", true) == "nyan");
 	output("Riya smirks, reaching around the back of your head, pulling you in, and setting her teeth against your neck, making you squeal as she sinks them into your [pc.skinFurScales]. She pulls back after leaving an indent in your throat, gazing into your eyes hungrily. <i>“Alright, Steele. You want some of this? You got it.”</i> she says, using her grip on your neck to spin you about and herd you quickly into the elevator, where she grabs your wrists and deftly cuffs them behind your back.");
 	output("\n\nShe spins you around, meeting your eyes as her right hand ");
 	if(!pc.isCrotchExposed()) output("slips into your [pc.lowerGarment]");
@@ -706,8 +705,8 @@ public function riyaFellatioScene():void
 	showRiya(true);
 	author("Franks");
 	var race:String = pc.raceShort();
-	var isDogMorph:Boolean = (InCollection(race,["ausar","huskar","milodan","dog","doge","canine","husky","hellhound","bitch","worg"]));
-	var isCatMorph:Boolean = (InCollection(race,["kaithrit","cat","feline","lion"]));
+	var isDogMorph:Boolean = (pc.catDog("nyan", "bork", false) == "bork");
+	var isCatMorph:Boolean = (pc.catDog("nyan", "bork", true) == "nyan");
 	output("Riya grins, gripping your chin between her thumb and index finger and pulling you in for a kiss. Of course, Riya being Riya, it’s less a kiss and more an invasion of your mouth, her tongue finding yours and attempting to wrestle it into submission. She breaks the kiss, teeth catching your bottom lip and pulling it back a bit and releasing it, letting the soft flesh snap back into place. After that, she hooks her thumb into your mouth, yanking you along by the cheek towards the nearest public restroom. She nudges the door open with her foot, peeking inside to make sure it’s empty before kicking it all the way open and pulling you inside, herding you into an open stall and closing the door, sliding the bolt shut. ");
 	if(pc.exhibitionism() < 33) output("A bathroom stall? Won’t people hear you?");
 	else output("A bathroom stall? The thought of someone hearing you getting it in a public restroom sends a small shiver through your body.");
@@ -746,7 +745,7 @@ public function riyaFellatioScene():void
 	output("”</i> she asks, cuffing you across the cheek lightly before returning to her tablet. Is she filming this? No... the camera light isn’t blinking, and her thumbs are moving too fast. She’s clearly typing - at least until she looks over the side of her device again, eyes glinting with irritation. <i>“I’m trying to get some reports done here, Steele. Are you gonna blow me, or am I gonna have to put this thing away and facefuck you? You do seem like you’d like my balls slapping your chin.”</i> she says, pushing her hips forward until her prick is poking the back of your mouth again. Taking the hint, you begin to move your head up and down her shaft, your tongue wrapping around the head, sliding over her cumslit. Riya groans approvingly, beginning to type again. <i>“Bet you can’t make me nut before I finish this.”</i> she says, her trademark shit eating grin visible over the top of her tablet. Is that a challenge?");
 	output("\n\nApparently so, and it is <i>on</i>. You start to work harder on her schlong, right hand coming up to cradle her balls, the cum-swollen brown orbs weighty in your hand, filling and overflowing your palm easily. She throbs approvingly at this treatment, a drop of salty-sweet pre leaking onto your tongue. Encouraged, you push your head down further onto her shaft, her tip pressing into the back of your mouth again before you stop. <i>“Can’t take it all, Steele?”</i> Riya taunts, fingers tapping quickly against her screen. You squint up at her, tongue lapping along the sides of her shaft, her breath catching despite her best efforts to remain smug. Gathering yourself, you begin to push forward, steadily feeding a third of her beefy member down your gullet - and feel a hand on the back of your head, pushing you inexorably further down as Riya forces your jaws apart.");
 	output("\n\nShe seems to have given up typing for now, instead holding her device idle in her left hand, breathing hard as her fingers rub into your scalp. <i>“Such a good ");
-	if(race == "human") output("girl");
+	if(race == "human") output("girl!");
 	//PC is ausar/huskar/dogmorph:
 	else if(isDogMorph) output("mutt!");
 	// PC is kaithrit:

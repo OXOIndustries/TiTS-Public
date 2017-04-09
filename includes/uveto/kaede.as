@@ -600,10 +600,7 @@ public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
 	}
 	output(" Kaede moans, grinding against your crotch until you wrap your hands around her waist and pull her back into your lap, settling her against yourself as your body rises out the throes of orgasm. She gives you a husky little moan, craning her neck around to demand a kiss that you happily grant her.");
 	
-	var pcRace:String = pc.race();
-	output("\n\n<i>“I love it when a " + pcRace);
-	if(pcRace.indexOf("boy") == -1 && pcRace.indexOf("girl") == -1) output(" " + pc.mf("boy", "girl"));
-	output(" like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
+	output("\n\n<i>“I love it when " + indefiniteArticle(pc.raceCute(true, true)) + " like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
 
 	output("\n\nYou smile and stroke her ginger hair, telling her that you’d enjoy that. But, all good things must come to an end - or she’s never going to make that meeting. Kaede sighs and squirms out from your grasp, grabbing the washcloth from the shelf and wiping herself clean once again.");
 	
@@ -721,10 +718,7 @@ public function uvetoKaedeFuckHerAss(arg:Array):void
 	
 	output("\n\nChuckling to yourself, you let your fatigue take over and slump against Kaede’s back, keeping her pinned where she belongs: between you and the cum-soaked walls. She gives you a husky little moan, craning her neck around to demand a kiss that you happily grant her.");
 	
-	var pcRace:String = pc.race();
-	output("\n\n<i>“I love it when a " + pcRace);
-	if(pcRace.indexOf("boy") == -1 && pcRace.indexOf("girl") == -1) output(" " + pc.mf("boy", "girl"));
-	output(" like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
+	output("\n\n<i>“I love it when " + indefiniteArticle(pc.raceCute(true, true)) + " like you takes charge,”</i> she purrs, tail wiping wetly against your crotch. <i>“Wish we could stay like this forever.”</i>");
 	
 	output("\n\nYou smile and stroke her ginger hair, telling her that you’d enjoy that. But, all good things must come to an end - or she’s never going to make that meeting. Kaede sighs and squirms out from your grasp, grabbing the washcloth from the shelf and wiping herself clean once again.");
 	

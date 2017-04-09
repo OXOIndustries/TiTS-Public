@@ -393,7 +393,7 @@ public function flirtMoreWithGeoff():void
 	}
 	else
 	{
-		output("You look at Geoff’s lips. Your initial purpose was to try and gauge if he honestly doesn’t know you are flirting with him but it is forgotten when you imagine those lips on your body. As he casually talks about his job you figure he mustn’t know your true intentions. What kind of crazy person would pass up a hot [pc.race] like you?");
+		output("You look at Geoff’s lips. Your initial purpose was to try and gauge if he honestly doesn’t know you are flirting with him but it is forgotten when you imagine those lips on your body. As he casually talks about his job you figure he mustn’t know your true intentions. What kind of crazy person would pass up a hot [pc.raceShort] like you?");
 		
 		output("\n\nSo as the oblivious college student continues talking about junk he moves around: adjusting inventory, organizing tools, cleaning and being restless in general. You can’t help but notice the way his little ass looks in those jeans, the way his soft cock shifts as he moves. You lick your lips as thoughts of making him moan so loud his weirdo uncle blushes stream through your mind.");
 		
@@ -622,7 +622,7 @@ public function dudesTopGeoffRepeat():void
 	if (tCock == -1) tCock = pc.smallestCockIndex();
 	var tLength:Number = pc.cocks[tCock].cLength();
 
-	//{if (pc.cock =/= self lubing):}
+	//if (pc.cock =/= self lubing):
 	if(!pc.cocks[tCock].hasFlag(GLOBAL.FLAG_LUBRICATED)) output(" In the absence of synthetic or biological lubricant you work up a good glob of spit and open your [pc.lips] to let it fall to your [pc.cockHead].");
 	output(" Tightening your grip, you press your cockhead against his winking entrance.");
 
