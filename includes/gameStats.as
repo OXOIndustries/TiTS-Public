@@ -4676,7 +4676,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Gene, Dominance Level:</b> ");
 					if(flags["GENE_SUBMISSION_LEVEL"] == -1) output2("Refused his advances completely");
-					else output2(flags["GENE_SUBMISSION_LEVEL"] + "/10");
+					else output2(geneSubmissionLevel() + "/10");
 				}
 				if(flags["GENE_FUCKED"] != undefined) output2("\n<b>* Gene, Times Sexed:</b> " + flags["GENE_FUCKED"]);
 				if(flags["GENE_BLOWJOB"] != undefined) output2("\n<b>* Gene, Times Sucked His Cock:</b> " + flags["GENE_BLOWJOB"]);

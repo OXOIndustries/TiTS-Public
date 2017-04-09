@@ -2080,19 +2080,8 @@ public function letQuinGo():void
 	output("<i>“It was never anything personal, lady,”</i> you reply. You jerk your head brusquely at the jungle. <i>“Keep your stinger out of star-people business in future.”</i>");
 	output("\n\nShe moves pretty damn fast for the most sedate zil you’ve ever met. You go back across to the stunned Lah and haul him to his feet. <b>Better take this stray back to the pound and claim your reward.</b>");
 	processTime(2);
-	output("\n\n");
-	var spear:ZilSpear = new ZilSpear();
-	var bow:ZilBow = new ZilBow();
-	//If neither PC or enemy has champion kit, set it up.
-	if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItem(spear))
-	{
-		if(!enemy.hasItem(spear)) enemy.inventory.push(spear);
-	}
-	if(!(pc.rangedWeapon is ZilBow) && !pc.hasItem(bow))
-	{
-		if(!enemy.hasItem(bow)) enemy.inventory.push(bow);
-	}
-	CombatManager.genericVictory();
+	
+	quinnFinishExit();
 }
 
 //Demand
@@ -2436,25 +2425,8 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
 	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising rings of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 	processTime(2);
-	if(inCombat())
-	{
-		var spear:ZilSpear = new ZilSpear();
-		var bow:ZilBow = new ZilBow();
-		//If neither PC or enemy has champion kit, set it up.
-		if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItem(spear))
-		{
-			if(!enemy.hasItem(spear)) enemy.inventory.push(spear);
-		}
-		if(!(pc.rangedWeapon is ZilBow) && !pc.hasItem(bow))
-		{
-			if(!enemy.hasItem(bow)) enemy.inventory.push(bow);
-		}
-		output("\n\n");
-		CombatManager.genericVictory();
-		return;
-	}
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	
+	quinnFinishExit();
 }
 
 //Quinn Initial Texts
@@ -2531,24 +2503,13 @@ public function takeQuinnInTheLadyWay():void
 	output(".");
 	output("\n\nYou lazily fall on to one side, releasing Quinn so that you can bake in the post-coital bliss. You notice she is noticeably leaking honey from her bare cunt when she scrambles to her feet. That’s too bad - she’ll have to go into the jungle and find release there, hopefully remembering the taste of your pussy as she does so. She looks at you purse-mouthed, tense and uncertain.");
 	output("\n\n<i>“Go on, get out of here Princess Rugmunch,”</i> you smirk, reaching over and slapping her on the ass, drawing another enjoyable squeak out of her. <i>“Before I think about sticking a collar on you and employing you full-time.”</i>");
-	output("\n\nYou watch her jouncing abdomen and pert behind disappear into the jungle before going back across to Lah and gruffly hauling him to his feet. <b>Better take this stray back to the pound and claim your reward.</b>\n\n");
+	output("\n\nYou watch her jouncing abdomen and pert behind disappear into the jungle before going back across to Lah and gruffly hauling him to his feet. <b>Better take this stray back to the pound and claim your reward.</b>");
 	// -1 Nice Points
 	pc.addHard(3);
 	processTime(22);
 	pc.orgasm();
-	var spear:ZilSpear = new ZilSpear();
-	var bow:ZilBow = new ZilBow();
-	//If neither PC or enemy has champion kit, set it up.
-	if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItem(spear))
-	{
-		if(!enemy.hasItem(spear)) enemy.inventory.push(spear);
-	}
-	if(!(pc.rangedWeapon is ZilBow) && !pc.hasItem(bow))
-	{
-		if(!enemy.hasItem(bow)) enemy.inventory.push(bow);
-	}
-	output("\n\n");
-	CombatManager.genericVictory();
+	
+	quinnFinishExit();
 }
 
 //Male
@@ -2577,24 +2538,35 @@ public function putItInQuinnYaCunt():void
 	if(pc.cumQ() >= 500) output(" Your [pc.cumVisc] seed is soon spurting back around your girth, and you pull out your over-burdened cock and slap it between her buttocks, cannoning [pc.cum] up her back and into her blonde-and-brown hair. She cries out in disgust and anger, but you blot that out by flipping her over and giving her face and petite breasts a heavy creaming from your throbbing, fecund bitch-breaker too.");
 	output("\n\nAt last you lazily fall on to one side, releasing your hands from Quinn so that you can lie back and bake in the post-coital bliss. A delightfully obscene mixture of honey and cum is drooling from her bare cunt as she scrambles to her feet. She looks at you purse-mouthed, tense and uncertain.");
 	output("\n\n<i>“Go on, get out of here Princess Cocksleeve,”</i> you smirk, reaching over and slapping her on the ass, drawing another enjoyable squeak out of her. <i>“Before I think about sticking a collar on you and employing you full-time.”</i>");
-	output("\n\nYou watch her jouncing abdomen and pert behind disappear into the jungle before going back across to Lah and gruffly hauling him to his feet. <b>Better take this stray back to the pound and claim your reward.</b>\n\n");
+	output("\n\nYou watch her jouncing abdomen and pert behind disappear into the jungle before going back across to Lah and gruffly hauling him to his feet. <b>Better take this stray back to the pound and claim your reward.</b>");
 	// -1 Nice Points
 	pc.addHard(3);
 	processTime(25);
 	pc.orgasm();
-	var spear:ZilSpear = new ZilSpear();
-	var bow:ZilBow = new ZilBow();
-	//If neither PC or enemy has champion kit, set it up.
-	if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItem(spear))
+	
+	quinnFinishExit();
+}
+public function quinnFinishExit():void
+{
+	if(inCombat())
 	{
-		if(!enemy.hasItem(spear)) enemy.inventory.push(spear);
+		var spear:ZilSpear = new ZilSpear();
+		var bow:ZilBow = new ZilBow();
+		//If neither PC or enemy has champion kit, set it up.
+		if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItem(spear))
+		{
+			if(!enemy.hasItem(spear)) enemy.inventory.push(spear);
+		}
+		if(!(pc.rangedWeapon is ZilBow) && !pc.hasItem(bow))
+		{
+			if(!enemy.hasItem(bow)) enemy.inventory.push(bow);
+		}
+		output("\n\n");
+		CombatManager.genericVictory();
+		return;
 	}
-	if(!(pc.rangedWeapon is ZilBow) && !pc.hasItem(bow))
-	{
-		if(!enemy.hasItem(bow)) enemy.inventory.push(bow);
-	}
-	output("\n\n");
-	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Part 4: Resolutions
@@ -2976,7 +2948,7 @@ public function noGiveMeMens():void
 	pc.setStatusMinutes("PQ_CHIEF_LOCKED",60*3);
 	//Move PC to Village square, Chieftain square barred for three hours
 	clearMenu();
-	addButton(0,"Next",move,rooms[currentLocation]);
+	addButton(0,"Next",move,rooms[currentLocation].southExit);
 }
 
 //Sex
@@ -3203,7 +3175,7 @@ public function vagScizzorWithQuinnsLizardGizzard():void
 	{
 		output("\n\n<i>“Experience, Quinn,”</i> you grin. <i>“Just relax...”</i> You sensuously move against her, sliding the line of your pussy down hers, exploring the smooth textures of an alien sex. She looks more curious than overwhelmed with lust - until you push over something nubby and tough at the top of her opening, which makes her thigh tense up beneath your hand and forces a breathless hum past her lips. Grin widening, you rub back and forth against that with gentle pushes of your [pc.hips].");
 	}
-	output("\n\nHoney seeps freely from the zil’s hole, soaking the furs and your groin in oozing warmth as you gently thrust against her. You make sure to give her the assiduous attention an uptown ho expects - catching at her tiny, black nipples with her teeth, lavishing them with your [pc.tongue]; dipping your fingers into her warm tunnel, stroking at her walls as you kiss her lasciviously, wrapping your tongue around the long, thin tube of hers - and soon enough you’re rewarded with vixenish abandon, Quinn’s svelte, athletic hips bucking against your own vigorously.");
+	output("\n\nHoney seeps freely from the zil’s hole, soaking the furs and your groin in oozing warmth as you gently thrust against her. You make sure to give her the assiduous attention an uptown ho expects - catching at her tiny, black nipples with your teeth, lavishing them with your [pc.tongue]; dipping your fingers into her warm tunnel, stroking at her walls as you kiss her lasciviously, wrapping your tongue around the long, thin tube of hers - and soon enough you’re rewarded with vixenish abandon, Quinn’s svelte, athletic hips bucking against your own vigorously.");
 	if(pc.totalVaginas() > 1)
 	{
 		output(" You make sure to flex your [pc.butt] up so that your [pc.vagina " + y + "] gets to enjoy her excited palpitations too; that’s the joy having more than one, after all.");

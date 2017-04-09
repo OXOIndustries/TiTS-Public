@@ -24,7 +24,7 @@ public function pcIsMyrOrNyrea():Boolean
 	return false;
 }
 
-public function geneSubmissionLevel(addVal:int = 0):int
+public function geneSubmissionLevel(addVal:Number = 0):int
 {
 	if (flags["GENE_SUBMISSION_LEVEL"] == undefined) flags["GENE_SUBMISSION_LEVEL"] = 0;
 
@@ -35,7 +35,15 @@ public function geneSubmissionLevel(addVal:int = 0):int
 	if (flags["GENE_SUBMISSION_LEVEL"] < 0) flags["GENE_SUBMISSION_LEVEL"] = 0;
 	if (flags["GENE_SUBMISSION_LEVEL"] > 10) flags["GENE_SUBMISSION_LEVEL"] = 10;
 
-	return flags["GENE_SUBMISSION_LEVEL"];
+	return Math.round(flags["GENE_SUBMISSION_LEVEL"]);
+}
+// I also think it would be a good idea for his dominance to decay passively if the PC spends enough time away from him. Thinking:
+// 0-9 Dominance: 1 point down every 30 hours
+// 10 Dominance: 1 point down after 60 hours
+public function geneSubmissionLevelDecay(deltaT:uint, doOut:Boolean):void
+{
+	if(flags["GENE_SUBMISSION_LEVEL"] >= 10) geneSubmissionLevel(-((1/60) * (deltaT/60)));
+	else if (flags["GENE_SUBMISSION_LEVEL"] > 0) geneSubmissionLevel(-((1/30) * (deltaT/60)));
 }
 
 public function geneLustIncrease():void
@@ -323,9 +331,10 @@ public function geneTalk(cFunc:Function = null):void
 			output(" Certain enjoyable elements for one such as I?”</i> He grins");
 			if (pc.tallness < 120) output(" down");
 			output(" at you toothily. <i>“But however many ant women you feast upon, you never lose the passion for more. Not when so many interesting people keep walking through your front door.”</i>");
+			
+			geneSubmissionLevel(1);
 		}
 		processTime(3);
-		geneSubmissionLevel(1);
 
 		genesModsTalkMenu();
 		return;
