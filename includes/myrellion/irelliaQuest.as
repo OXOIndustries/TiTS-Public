@@ -140,8 +140,8 @@ public function firstIrelliaApproach():void
 	output("\n\nMarsail scowls, but waves her arm in your direction, her combined jewelry jingling obnoxiously. <i>“Fine then. Speak to us, star-walker. Why do you interrupt our conference? What are you called?”</i>");
 	processTime(5);
 	clearMenu();
-	addButton(0,"Introduce",introduceToIrelliaAndCo,undefined,"Introduce Yourself","Introduce yourself. You just wanted to touch bases with the locals and see what there take on the war is.");
-	//[Introduce - Introduce yourself. You just wanted to touch bases with the locals and see what there take on the war is.]
+	addButton(0,"Introduce",introduceToIrelliaAndCo,undefined,"Introduce Yourself","Introduce yourself. You just wanted to touch bases with the locals and see what their take on the war is.");
+	//[Introduce - Introduce yourself. You just wanted to touch bases with the locals and see what their take on the war is.]
 	addButton(1,"Irellia",introduceYourselfToIrelliaOnly,undefined,"Irellia","Introduce yourself and explain that you came to seek audience with Irellia, not the other two.");
 	//[Irellia - Introduce yourself and explain that you came to seek audience with Irellia, not the other two.]
 	addButton(2,"Nevermind",nevermindIrelliaAndCo,undefined,"Nevermind","Introduce yourself, but tell them that you’ve been offended and will be leaving.");
