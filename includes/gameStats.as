@@ -3510,10 +3510,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Bucking Bronco Saloonary
-			if(flags["MET_JAMES"] != undefined || flags["MET_SALLY"] != undefined || flags["MET_SYDNEY"] != undefined || flags["MET_KEGS"] != undefined || flags["LIVING_KEGGED"] != undefined)
+			if(flags["MET_JAMES"] != undefined || flags["MET_SALLY"] != undefined || flags["MET_SYDNEY"] != undefined || flags["MET_KEGS"] != undefined || flags["LIVING_KEGGED"] != undefined || flags["BRONCO_USED"] != undefined)
 			{
 				output2("\n<b><u>Bucking Bronco Saloon</u></b>");
+				if(flags["BB_5FINGER_DISCOUNT"] == 1 || pc.hasStatusEffect("Bucking Bronco Free Drinks"))
+				{
+					output2("\n<b>* Bar, Drinks, Discount:</b>");
+					if(pc.hasStatusEffect("Bucking Bronco Free Drinks")) output2(" All free for " + prettifyMinutes(pc.getStatusMinutes("Bucking Bronco Free Drinks")));
+					else output2(" One free");
+				}
 				if(flags["MET_KEGS"] != undefined || flags["LIVING_KEGGED"] != undefined) output2("\n<b>* Bailey’s Brewery, Living Kegs, Times Used:</b> " + (flags["LIVING_KEGGED"] != undefined ? flags["LIVING_KEGGED"] : 0));
+				if(flags["BRONCO_USED"] != undefined) output2("\n<b>* Fucking Bronco, Times Used:</b> " + flags["BRONCO_USED"]);
+				if(StatTracking.getStat("contests/fucking bronco losses") + StatTracking.getStat("contests/fucking bronco wins") > 0) output2("\n<b>* Fucking Bronco, Competition, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/fucking bronco wins") + "/" + StatTracking.getStat("contests/fucking bronco losses") + ", of " + (StatTracking.getStat("contests/fucking bronco losses") + StatTracking.getStat("contests/fucking bronco wins")) + " games");
 				// James
 				if(flags["MET_JAMES"] != undefined)
 				{

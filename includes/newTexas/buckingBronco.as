@@ -235,7 +235,7 @@ public function askJamesForAdvice():void
 	output("\n\nYou smile and thank James, telling him that his words were inspiring.");
 	output("\n\nHe chuckles and returns your thanks. <i>“That’s good, because I just looked that one up on the extranet when you asked. I hope you realize that I’m only a few years older than you are, and I’ve spent most of my life standing still and looking menacing.”</i>");
 	output("\n\nWell, that’s certainly less inspiring. You suppose the fact that they weren’t his own words doesn’t make them any less true though. Thanking the android again for the words of wisdom, you decide to move on.");
-	output("\n\n<i>“Any time [pc.name].”</i>");
+	output("\n\n<i>“Any time, [pc.name].”</i>");
 	processTime(4);
 	jamesMenu();
 	addDisabledButton(3,"Advice","Advice","You just talked about that.");
@@ -385,7 +385,7 @@ public function jamesDrinkMenu():void
 	}
 	else
 	{
-		if(flags["BB_5FINGER_DISCOUNT"] == 1)
+		if(flags["BB_5FINGER_DISCOUNT"] == 1 || pc.hasStatusEffect("Bucking Bronco Free Drinks"))
 		{
 			addButton(0,"Milk Stout",drinkAtBuckingBronco,"Milk Stout","Milk Stout","A stout, or dark beer, containing lactose, giving it a sweeter taste and more nutritional content.");
 			addButton(1,"Leithan Milk",drinkAtBuckingBronco,"Leithan Milk","Leithan Milk","Breastmilk from a Treated leithan. While it isn’t truly alcoholic, it produces an effect very similar to intoxication in humans. It is also a potent aphrodisiac, making this drink extremely popular with tourists hoping to keep up with the sex drives of the locals.");
@@ -1107,12 +1107,12 @@ public function ridingTheBuckingBronco():void
 	if(pc.analVirgin) butts = false;
 	if(pc.isPregnant()) 
 	{
-		output(" <b>Maybe you shouldn't do that while pregnant...</b>");
+		output(" <b>Maybe you shouldn’t do that while pregnant...</b>");
 		vags = false;
 		butts = false;
 	}
 	if(vags || butts) addButton(0,"Yeah!",rideTheBRonco);
-	else addDisabledButton(0,"Yeah!","Yeah!","You probably shouldn't ride this if you're pregnant or a virgin.");
+	else addDisabledButton(0,"Yeah!","Yeah!","You probably shouldn’t ride this if you’re pregnant or a virgin.");
 	addButton(1,"Nope",mainGameMenu);
 }
 
@@ -1132,7 +1132,7 @@ public function rideTheBRonco():void
 	else output("embarrassment");
 	output(" as the onlookers stare at your lewd behavior. Both locals and tourists alike are gathering to watch, many of them taking pictures or even recording videos, the boldest among them sometimes barking out at you to turn and smile for the camera or to show them your ass.");
 	if(pc.exhibitionism() < 33) output(" You still can’t really believe you’re doing this. Is a day of free drinks really worth embarrassing yourself in front of so many people? Especially if they’re going to be recording it?");
-	output(" You swing a leg onto the mechanical stallion and climb onto the saddle, which turns out to be heavily padded. At the <i>“shoulders”</i> of the stallion, just an inch from where your crotch will rest once you’re properly mounted sits a loop of leather, presumably for you to hold onto when the ride starts. There’s a button labeled <i>“Start”</i> on the mechanical stallion’s neck. Before you press it though, you need to decide how you’re going to finish mounting this bronco.");
+	output(" You swing a leg onto the mechanical stallion and climb onto the saddle, which turns out to be heavily padded. At the “shoulders” of the stallion, just an inch from where your crotch will rest once you’re properly mounted sits a loop of leather, presumably for you to hold onto when the ride starts. There’s a button labeled “Start” on the mechanical stallion’s neck. Before you press it though, you need to decide how you’re going to finish mounting this bronco.");
 	processTime(4);
 	clearMenu();
 	//[Vagina] [Ass] //grey out any orifice the PC is a virgin in
@@ -1144,7 +1144,7 @@ public function rideTheBRonco():void
 	if(choices.length > 0) addButton(0,"Vagina",vaginaBronco);
 	else addDisabledButton(0,"Vagina","Vagina","You need a vagina without a hymen for this.");
 	if(!pc.analVirgin) addButton(1,"Ass",takeAnalBronco);
-	else addDisabledButton(1,"Ass","Ass","Your first time probably shouldn't be on a violently bucking machine. That's a good way to get hurt.");
+	else addDisabledButton(1,"Ass","Ass","Your first time probably shouldn’t be on a violently bucking machine. That’s a good way to get hurt.");
 }
 
 //Vagina:
@@ -1174,7 +1174,8 @@ public function vaginaBronco():void
 	if(pc.vaginas[x].looseness() < 3 && pc.vaginalCapacity(x) < 200)
 	{
 		output("\n\nIt seems like an almost impossible task to fit the broad, flared head of the equine phallus past the lips of your tight womanhood, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your [pc.pussy " + x + "]. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow vagina. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your love tunnel. Over the better part of a minute, you sink more and more fake flesh into your [pc.pussy " + x + "], moaning out loud when the delicious feeling of your vaginal walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm.");
-		if(pc.hasCock()) output("\n\nPre-cum is dripping from your twitching [pc.cocks]. ");
+		output("\n\n");
+		if(pc.hasCock()) output("Pre-cum is dripping from your twitching [pc.cocks]. ");
 		output("A smattering of applause goes through the crowd, with a few catcalls and hoots for good measure. You take deep breaths to try calm yourself, the bestial wang inside you sporadically twitching and leaking more lubricants into your depths, almost setting off your orgasm a few times. When both you and the dildo have finally calmed down you tightly clutch the leather handhold and reach out and press the start button.");
 	}
 	else
@@ -1216,7 +1217,7 @@ public function vaginaBronco():void
 
 		else
 		{
-			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+			output("\n\n<b>You nearly cream yourself, but you’re no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
 		}
 	}
 	clearMenu();
@@ -1263,7 +1264,7 @@ public function vaginalBroncoPart2(x:int):void
 		}
 		else
 		{
-			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+			output("\n\n<b>You nearly cream yourself, but you’re no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
 		}
 	}
 	clearMenu();
@@ -1315,7 +1316,7 @@ public function vaginalBroncoPart3(x:int):void
 		}
 		else
 		{
-			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+			output("\n\n<b>You nearly cream yourself, but you’re no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
 		}
 	}
 	clearMenu();
@@ -1384,7 +1385,7 @@ public function takeAnalBronco():void
 
 		else
 		{
-			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+			output("\n\n<b>You nearly cream yourself, but you’re no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
 		}
 	}
 	clearMenu();
@@ -1435,7 +1436,7 @@ public function broncoAssPart2():void
 
 		else
 		{
-			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+			output("\n\n<b>You nearly cream yourself, but you’re no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
 		}
 	}
 	clearMenu();
@@ -1484,7 +1485,7 @@ public function buttBroncoPart3():void
 		}
 		else
 		{
-			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+			output("\n\n<b>You nearly cream yourself, but you’re no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
 		}
 	}
 	clearMenu();
@@ -1496,10 +1497,10 @@ public function loseBroncoDuetoStats():void
 {
 	clearOutput();
 	showBronco();
-	output("You try your level best to hold on to the Bronco as its gyrations increase, but you just can’t keep your grip. At the apex of one of its upwards bucks, your hands slip off of the leather ring, and you are flung off of the mechanical stallion. Thankfully, you land with a soft 'thud' on the high-tech padding in the ring. It takes you a few moments to realize you’ve just lost; the sudden and violent change in orientation has left you temporarily dazed and confused. Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
+	output("You try your level best to hold on to the Bronco as its gyrations increase, but you just can’t keep your grip. At the apex of one of its upwards bucks, your hands slip off of the leather ring, and you are flung off of the mechanical stallion. Thankfully, you land with a soft ‘thud’ on the high-tech padding in the ring. It takes you a few moments to realize you’ve just lost; the sudden and violent change in orientation has left you temporarily dazed and confused. Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
 	if(annoIsCrew())
 	{
-		output("\n\n Anno rushes over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I hope you have better luck next time; I’d sure love to see you </i>reach the climax<i>.”</i> She punctuates her last words with a naughty wink. Rolling your eyes at the lewd ausar, you don the last of your gear and thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well, your [pc.groin] burning with arousal after your interrupted sexual encounter.");
+		output("\n\nAnno rushes over to you to help you up. <i>“Are you alright, [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy, boss. I hope you have better luck next time; I’d sure love to see you </i>reach the climax<i>.”</i> She punctuates her last words with a naughty wink. Rolling your eyes at the lewd ausar, you don the last of your gear and thank Anno for the help. <i>“Any time, [pc.name]! Let me know next time you want to ride this thing so I can get a better view. Stay safe, boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well, your [pc.groin] burning with arousal after your interrupted sexual encounter.");
 	}
 	//else:
 	else
@@ -1512,6 +1513,9 @@ public function loseBroncoDuetoStats():void
 	pc.exhibitionism(2);
 	processTime(8);
 	pc.lust(10);
+	
+	fuckingBroncoTrack(false);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1537,6 +1541,9 @@ public function vaginalBroncoLustLoss(x:int):void
 	pc.exhibitionism(2);
 	processTime(8);
 	pc.orgasm();
+	
+	fuckingBroncoTrack(false);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1560,15 +1567,15 @@ public function vaginalVictoryVsBroncoButt(x:int):void
 	if(pc.vaginas[x].wetness() > 3) output(", squirting [pc.girlCum] all over your thighs and saddle and leaking more and more of the stuff as you bounce on the fake dick");
 	output(". Your orgasm is extended well beyond usual by the fact that the dildo is still vibrating and still pumping jizz into you, the massive flare on the tip keeping most of it trapped inside you. Your eyes cross and you moan even louder as your womb is filled to the brim with jizz. When you feel your belly start to stretch from the amount of cum being pumped into you, you cum a second time from the sensation. You’re utterly full of both cock and cum, and at this moment you wouldn’t have it any other way. Free drinks? Who needs them when you have a bellyful of warm spunk?");
 	output("\n\nEventually both your orgasm and that of your mechanical mount wind down. You are sweaty, flushed, and completely winded. You take some time to catch your breath. The audience starts to disperse, though many stay behind to finish masturbating to your nude, cum-pumped form. You look like you’re in the second trimester of a pregnancy, and you feel about that full as well. Evidently the voyeurs watching you appreciate your new look, because you soon hear moos and moans of pleasure from cows and bulls alike, their sexual fluids joining the mess you’ve left on the floor of the saloon.");
-	output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your walls all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet 'pop', you’re treated to one last spurt of deliciously hot spunk right across your [pc.clits]. Combined with the sudden torrent of pent-up semen that pours out of your canal, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you cream yourself, your pussy squirting a thick mixture of [pc.girlCum] and semen onto your [pc.legs] and the pads you’re lying on.");
+	output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your walls all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet ‘pop’, you’re treated to one last spurt of deliciously hot spunk right across your [pc.clits]. Combined with the sudden torrent of pent-up semen that pours out of your canal, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you cream yourself, your pussy squirting a thick mixture of [pc.girlCum] and semen onto your [pc.legs] and the pads you’re lying on.");
 	//Anno is a follower and is in the bar:
 	if(annoIsCrew())
 	{
-		output("\n\n Anno hurries over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again.");
+		output("\n\nAnno hurries over to you to help you up. <i>“Are you alright, [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy, boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again.");
 		//PC is not nude:
 		if(!pc.isCrotchExposed()) output(" Your spunk-stuffed pussy squelches lewdly as you slip the last of your clothing on, your motions forcing warm cum out of your lower lips.");
 
-		output("\n\nYou thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
+		output("\n\nYou thank Anno for the help. <i>“Any time, [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe, boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
 	}
 	//else:
 	else
@@ -1578,7 +1585,7 @@ public function vaginalVictoryVsBroncoButt(x:int):void
 		if(!pc.isCrotchExposed()) output(" Your spunk-stuffed pussy squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your lower lips.");
 		output(" When you’ve finally gathered everything up you step out of the ring and head towards the bar. You could really go for a drink right now!");
 	}
-	//PC should cum 3 times, add <i>“vaginally filled”</i> status with enough cumflation to give about a 6 month pregnant belly look, reset lust, take PC back to saloon, add massive exhibitionist gain
+	//PC should cum 3 times, add “vaginally filled” status with enough cumflation to give about a 6 month pregnant belly look, reset lust, take PC back to saloon, add massive exhibitionist gain
 	processTime(35);
 	for(var i:int = 0; i < 3; i++) { pc.orgasm(); }
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
@@ -1586,6 +1593,9 @@ public function vaginalVictoryVsBroncoButt(x:int):void
  	pp.createPerk("Fixed CumQ",40000,0,0,0);
  	pc.loadInCunt(pp,x);
  	pc.exhibitionism(2);
+	
+	fuckingBroncoTrack(true);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1607,6 +1617,10 @@ public function analLustLossToBronco():void
 	//PC should cum once, take PC back to saloon, add massive exhibitionist gain
 	processTime(6);
 	pc.orgasm();
+ 	pc.exhibitionism(2);
+	
+	fuckingBroncoTrack(false);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1636,10 +1650,10 @@ public function analVictoryAgainstBronco():void
 	//Anno is a follower and is in the bar:
 	if(annoIsCrew())
 	{
-		output("\n\nAnno hurries over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again.");
+		output("\n\nAnno hurries over to you to help you up. <i>“Are you alright, [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy, boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again.");
 		if(!pc.isAssExposed()) output(" Your spunk-stuffed ass squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your sphincter.");
 
-		output("\n\nYou thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
+		output("\n\nYou thank Anno for the help. <i>“Any time, [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe, boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
 	}
 	//else:
 	else
@@ -1655,9 +1669,29 @@ public function analVictoryAgainstBronco():void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!pp.hasCock()) pp.createCock();
  	pp.createPerk("Fixed CumQ",40000,0,0,0);
- 	pc.loadInAss(pp,x);
+ 	pc.loadInAss(pp);
  	pc.exhibitionism(2);
+	
+	fuckingBroncoTrack(true);
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+// Win/Loss Tracking
+public function fuckingBroncoTrack(win:Boolean = false):void
+{
+	if(!win)
+	{
+		StatTracking.track("contests/fucking bronco losses");
+	}
+	else
+	{
+		StatTracking.track("contests/fucking bronco wins");
+		// Reward for winning!
+		if(pc.hasStatusEffect("Bucking Bronco Free Drinks")) pc.setStatusMinutes("Bucking Bronco Free Drinks",1440);
+		else pc.createStatusEffect("Bucking Bronco Free Drinks", 0, 0, 0, 0, true, "", "", false, 1440);
+	}
+	IncrementFlag("BRONCO_USED");
+}
+
