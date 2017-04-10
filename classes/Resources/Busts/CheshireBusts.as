@@ -127,7 +127,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
-		public function get Bust_SYRI_NUDE():Class { return Bust_SYRI; }
+		[Embed(source = "../../../assets/images/npcs/cheshire/Syri_Nude.png", mimeType = "image/png")]
+		public var Bust_SYRI_NUDE:Class;
+		//public function get Bust_SYRI_NUDE():Class { return Bust_SYRI; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Vanae_Huntress.png", mimeType = "image/png")]
 		public var Bust_VANAE_HUNTRESS:Class;
@@ -261,7 +263,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Syri.png", mimeType = "image/png")]
 			public var Full_SYRI:Class;
-			public function get Full_SYRI_NUDE():Class { return Full_SYRI; }
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Syri_Nude.png", mimeType = "image/png")]
+			public var Full_SYRI_NUDE:Class;
+			//public function get Full_SYRI_NUDE():Class { return Full_SYRI; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Vanae_Huntress.png", mimeType = "image/png")]
 			public var Full_VANAE_HUNTRESS:Class;

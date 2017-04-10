@@ -65,7 +65,7 @@ public function saloonInteriorBonus():Boolean
 	if(flags["MET_SALLY"] == undefined) addButton(3,"Rum Cow",approachSally,undefined,"Rum Cow","Follow the wonderful scent of that cowgirl to the bar.");
 	else addButton(3,"Sally",approachSally,undefined,"Sally","Follow the wonderful scent of that cowgirl to the bar.");
 	//[Ride Bronco]
-	
+	addButton(4,"Ride Bronco",ridingTheBuckingBronco,undefined,"Ride Bronco","Get on that perverted horsey!");;
 	//put the bar-based NPC blurbs like Kiro, Erra, and Anno here
 	roamingBarEncounter(5);
 	// 9999 - Disable other directions until content is available!
@@ -1079,154 +1079,585 @@ public function suckleFingerSally():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function showBronco():void
+{
+	showBust("BRONCO");
+	showName("BUCKING\nBRONCO");
+}
 
-/*
-output("\n\nRiding the Bronco");
-output("\n\n//can’t be a taur or naga, can’t be virgin in the hole you choose, can’t ride while pregnant");
-output("\n\nYou approach the mechanical stallion in the middle of the saloon. It looks like a caricature of the upper half of a bronco with a saddle equipped with a horse dildo where a rider’s groin would normally rest, the animal facade ending just below the leg joints. The horse dildo on the saddle is over a foot in length and exceptionally thick, with a broad, flared tip. There are instructions on the sign next to the pit that read <i>“<b>Take the Bronco for a ride!</b> The Bronco is self-lubricating; all he needs is a few tugs before you mount up. Hold on until he finishes and win free drinks for a day, but if you get bucked off or finish first, you’re out!”</i>");
+//Riding the Bronco
+//can’t be a taur or naga, can’t be virgin in the hole you choose, can’t ride while pregnant
+public function ridingTheBuckingBronco():void
+{
+	clearOutput();
+	showBronco();
+	output("You approach the mechanical stallion in the middle of the saloon. It looks like a caricature of the upper half of a bronco with a saddle equipped with a horse dildo where a rider’s groin would normally rest, the animal facade ending just below the leg joints. The horse dildo on the saddle is over a foot in length and exceptionally thick, with a broad, flared tip. There are instructions on the sign next to the pit that read <i>“<b>Take the Bronco for a ride!</b> The Bronco is self-lubricating; all he needs is a few tugs before you mount up. Hold on until he finishes and win free drinks for a day, but if you get bucked off or finish first, you’re out!”</i>");
+	output("\n\nDo you want to ride the Bronco?");
+	processTime(1);
+	clearMenu();
+	//[Vagina] [Ass] //grey out any orifice the PC is a virgin in
+	var vags:Boolean = false;
+	var butts:Boolean = true;
+	var choices:Array = [];
+	for(var i:int = 0; i < pc.totalVaginas(); i++)
+	{
+		if(!pc.vaginas[i].hymen) choices.push(i);
+	}
+	if(choices.length > 0) vags = true;
+	if(pc.analVirgin) butts = false;
+	if(pc.isPregnant()) 
+	{
+		output(" <b>Maybe you shouldn't do that while pregnant...</b>");
+		vags = false;
+		butts = false;
+	}
+	if(vags || butts) addButton(0,"Yeah!",rideTheBRonco);
+	else addDisabledButton(0,"Yeah!","Yeah!","You probably shouldn't ride this if you're pregnant or a virgin.");
+	addButton(1,"Nope",mainGameMenu);
+}
 
-output("\n\nDo you want to ride the Bronco?");
-output("\n\n[Yeah!] //grey out if virgin in anus and vagina or if pregnant in either orifice, if virgin display tooltip <i>“You should probably try to get a little more sexual experience before taking on a challenge like this.”</i> If pregnant display tooltip <i>“Riding this would endanger your unborn offspring!”</i>");
-output("\n\n[Nope!]");
+public function rideTheBRonco():void
+{
+	clearOutput();
+	showBronco();
+	output("You step up to the mechanical stallion and examine your soon to be mount. You aren’t quite sure what the dildo is made of, but it is perhaps the most realistic replica of a penis you’ve ever encountered. When you reach out to touch the false phallus you’re surprised to find that it is warm. It’s actually warmer than a human would be, and as you pump it experimentally it throbs in your grip and leaks a large dollop of lubricant. You gather it up and spread it up and down the length of the shaft, and in doing so cause more lubricant to leak from the flared head of the dildo.");
+	output("\n\n");
+	if(!pc.isCrotchExposed())
+	{
+		output("You slip out of your [pc.gear], a small crowd beginning to form around the ring as you strip down.");
+	}
+	else output("A small crowd beginning to form around the ring.");
+	output(" You flush in ");
+	if(pc.exhibitionism() >= 33) output("arousal");
+	else output("embarrassment");
+	output(" as the onlookers stare at your lewd behavior. Both locals and tourists alike are gathering to watch, many of them taking pictures or even recording videos, the boldest among them sometimes barking out at you to turn and smile for the camera or to show them your ass.");
+	if(pc.exhibitionism() < 33) output(" You still can’t really believe you’re doing this. Is a day of free drinks really worth embarrassing yourself in front of so many people? Especially if they’re going to be recording it?");
+	output(" You swing a leg onto the mechanical stallion and climb onto the saddle, which turns out to be heavily padded. At the <i>“shoulders”</i> of the stallion, just an inch from where your crotch will rest once you’re properly mounted sits a loop of leather, presumably for you to hold onto when the ride starts. There’s a button labeled <i>“Start”</i> on the mechanical stallion’s neck. Before you press it though, you need to decide how you’re going to finish mounting this bronco.");
+	processTime(4);
+	clearMenu();
+	//[Vagina] [Ass] //grey out any orifice the PC is a virgin in
+	var choices:Array = [];
+	for(var i:int = 0; i < pc.totalVaginas(); i++)
+	{
+		if(!pc.vaginas[i].hymen) choices.push(i);
+	}
+	if(choices.length > 0) addButton(0,"Vagina",vaginaBronco);
+	else addDisabledButton(0,"Vagina","Vagina","You need a vagina without a hymen for this.");
+	if(!pc.analVirgin) addButton(1,"Ass",takeAnalBronco);
+	else addDisabledButton(1,"Ass","Ass","Your first time probably shouldn't be on a violently bucking machine. That's a good way to get hurt.");
+}
 
+//Vagina:
+public function vaginaBronco():void
+{
+	clearOutput();
+	showBronco();
+	var x:int = -1;
+	var choices:Array = [];
+	for(var i:int = 0; i < pc.totalVaginas(); i++)
+	{
+		if(!pc.vaginas[i].hymen) choices.push(i);
+	}
+	if(choices.length > 0) x = choices[rand(choices.length)];
+	else output("ERROR. NO VAGINA FOUND. WHERE IS MY VAGINA, SUMMER?");
+	output("You lift up your [pc.hips] to better position your [pc.pussy " + x + "] for penetration.");
 
-output("\n\nYou step up to the mechanical stallion and examine your soon to be mount. You aren’t quite sure what the dildo is made of, but it is perhaps the most realistic replica of a penis you’ve ever encountered. When you reach out to touch the false phallus you’re surprised to find that it is warm. It’s actually warmer than a human would be, and as you pump it experimentally it throbs in your grip and leaks a large dollop of lubricant. You gather it up and spread it up and down the length of the shaft, and in doing so cause more lubricant to leak from the flared head of the dildo.");
+	//PC is Vaginally-Filled: //prioritize this over vaginal wetness blurb.
+	if(pc.hasStatusEffect("Vaginally-Filled"))
+	{
+		output("\n\nThanks to the liquid leftovers of your previous lover, your pussy is already more than lubricated enough for the ride ahead.");
+	}
+	else if(pc.vaginas[x].wetness() < 3) output("\n\nYou take a moment to jerk the dildo off, forcing more lubricant to spill from its head. You smear some of the slippery liquid down the length of the equine phallus, but you spread the bulk of it inside your pussy, biting your lip a little to hold in a moan as you do so.");
+	else output("\n\nKnowing how wet your pussy is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.");
+	output(" With the prep work out of the way, you finally sink down onto the dildo.");
 
-output("\n\nYou slip out of your [pc.gear], a small crowd beginning to form around the ring as you strip down. You flush in {exhibitionist: arousal //else: embarrassment} as the onlookers stare at your lewd behavior. Both locals and tourists alike are gathering to watch, many of them taking pictures or even recording videos, the boldest among them sometimes barking out at you to turn and smile for the camera or to show them your ass. {PC isn’t exhibitionist: You still can’t really believe you’re doing this. Is a day of free drinks really worth embarrassing yourself in front of so many people? Especially if they’re going to be recording it?} You swing a leg onto the mechanical stallion and climb onto the saddle, which turns out to be heavily padded. At the <i>“shoulders”</i> of the stallion, just an inch from where your crotch will rest once you’re properly mounted sits a loop of leather, presumably for you to hold onto when the ride starts. There’s a button labeled <i>“Start”</i> on the mechanical stallion’s neck. Before you press it though, you need to decide how you’re going to finish mounting this bronco.");
-output("\n\n[Vagina] [Ass] //grey out any orifice the PC is a virgin in");
+	if(pc.vaginas[x].looseness() < 3 && pc.vaginalCapacity(x) < 200)
+	{
+		output("\n\nIt seems like an almost impossible task to fit the broad, flared head of the equine phallus past the lips of your tight womanhood, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your [pc.pussy " + x + "]. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow vagina. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your love tunnel. Over the better part of a minute, you sink more and more fake flesh into your [pc.pussy " + x + "], moaning out loud when the delicious feeling of your vaginal walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm.");
+		if(pc.hasCock()) output("\n\nPre-cum is dripping from your twitching [pc.cocks]. ");
+		output("A smattering of applause goes through the crowd, with a few catcalls and hoots for good measure. You take deep breaths to try calm yourself, the bestial wang inside you sporadically twitching and leaking more lubricants into your depths, almost setting off your orgasm a few times. When both you and the dildo have finally calmed down you tightly clutch the leather handhold and reach out and press the start button.");
+	}
+	else
+	{
+		output("\n\nWith a pussy as well-trained as yours it’s easy to penetrate yourself with this equine dildo. You spread your pussy wide with one hand and position the phallus with the other. You let out a pleasant moan as the flared head briefly catches on your lower lips before slipping inside you. That flare rubs along the walls of your love tunnel like few things can, sending pleasant feelings through your body. It only takes you a few seconds to reach the base of the fake cock, and you groan in disappointment that you’re already out of dick to pack your pussy with. The onlookers clap and cheer for you, some of them even calling out asking for your contact information. Eager to continue this erotic exercise you tightly clutch the leather handhold and reach out and press the start button.");
+	}
+	pc.cuntChange(x,120);
 
-output("\n\nVagina:");
-output("\n\nYou lift up your [pc.hips] to better position your [pc.pussy] for penetration.");
+	output("\n\nA rumble rolls through the Bronco as it begins its ride, the vibrations being transferred to your [pc.vagina " + x + "] through the dildo embedded in your muff, causing you to shudder in pleasure. Some of the people in the crowd are placing informal bets on how long it will take you to succeed or fail, and many are pulling out recording devices.");
+	//Anno is a follower and is in the bar: 
+	if(annoIsCrew()) output(" You see Anno wandering over to see what’s going on. Her face lights up when she notices it’s you on the Fucking Bronco.");
+	output(" The mechanical stallion’s rocking motions are fairly easy to keep up with for the first ten or so seconds, though the rumbling of the device keeps the dildo gently vibrating, making it a bit hard to concentrate on keeping up with the Bronco’s constantly changing center of gravity. After thirty or so seconds, you are no longer able to keep in sync enough with the Bronco’s motions, causing you to bounce an inch or two off the saddle, creating a rough facsimile of a lover making short, rough thrusts into your canal. It’s an altogether pleasant sensation that makes your womanhood clench at the dildo inside you.");
 
-output("\n\n{PC is Vaginally-Filled: //prioritize this over vaginal wetness blurb.");
-output("\n\nThanks to the liquid leftovers of your previous lover, your pussy is already more than lubricated enough for the ride ahead.");
+	//easy reflex + physique check. +15 lust. If this maxes out lust, go to Vaginal Lust Loss scene. If the reflex + physique check fails, go to Stat Loss scene.
+	processTime(6);
+	pc.lust(15);
+	//[Next]
+	if(pc.reflexes()/2 + rand(20) + 1 < 10 || pc.physique()/2 + rand(20) + 1 < 10)
+	{
+		clearMenu();
+		addButton(0,"Next",loseBroncoDuetoStats);
+		return;
+	}
+	if(pc.lust() >= pc.lustMax())
+	{
+		if(pc.libido() < rand(100))
+		{
+			if(pc.willpower() + rand(20) + 1 < 30)
+			{
+				clearMenu();
+				addButton(0,"Next",vaginalBroncoLustLoss,x);
+				return;
+			}
+			else
+			{
+				output("\n\n<b>Through sheer force of will, you hold yourself back from climax.</b>");
+			}
+		}
 
-output("\n\n/");
-output("\n\nNot filled, Vagina Wetness <3: You take a moment to jerk the dildo off, forcing more lubricant to spill from its head. You smear some of the slippery liquid down the length of the equine phallus, but you spread the bulk of it inside your pussy, biting your lip a little to hold in a moan as you do so. //Else: Knowing how wet your pussy is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.} With the prep work out of the way, you finally sink down onto the dildo.");
-output("\n\n}");
+		else
+		{
+			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",vaginalBroncoPart2,x);
+}
 
-output("\n\n{Vaginal looseness <3: It seems like an almost impossible task to fit the broad, flared head of the equine phallus past the lips of your tight womanhood, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your [pc. pussy]. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow vagina. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your love tunnel. Over the better part of a minute, you sink more and more fake flesh into your [pc.pussy], moaning out loud when the delicious feeling of your vaginal walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm. [has penis: Pre-cum is dripping from your twitching [pc.cocks].] A smattering of applause goes through the crowd, with a few catcalls and hoots for good measure. You take deep breaths to try calm yourself, the bestial wang inside you sporadically twitching and leaking more lubricants into your depths, almost setting off your orgasm a few times. When both you and the dildo have finally calmed down you tightly clutch the leather handhold and reach out and press the start button.");
-output("\n\n/");
-output("\n\nVaginal looseness 3 or more: With a pussy as well-trained as yours it’s easy to penetrate yourself with this equine dildo. You spread your pussy wide with one hand and position the phallus with the other. You let out a pleasant moan as the flared head briefly catches on your lower lips before slipping inside you. That flare rubs along the walls of your love tunnel like few things can, sending pleasant feelings through your body. It only takes you a few seconds to reach the base of the fake cock, and you groan in disappointment that you’re already out of dick to pack your pussy with. The onlookers clap and cheer for you, some of them even calling out asking for your contact information. Eager to continue this erotic exercise you tightly clutch the leather handhold and reach out and press the start button.");
-output("\n\n}");
+public function vaginalBroncoPart2(x:int):void
+{
+	clearOutput();
+	showBronco();
+	output("Though the Bronco you are speared on is bucking you around fairly hard at this point, you manage to keep your seat. More hoots and cheers go up from the crowd, which is now growing as locals who assumed a tourist such as yourself would lose begin to wander over to watch. ");
+	//Anno is a follower and is in the bar:
+	if(annoIsCrew()) output("You can hear Anno cheering for you with the occasional <i>“Go [pc.name]!”</i> ");
+	if(pc.biggestTitSize() >= 3) 
+	{
+		output("Your big rack certainly doesn’t detract from the appeal of watching you. With both your hands occupied holding onto the mechanical stallion, your [pc.breasts] are left free to bounce around unhindered. The stimulation ");
+		if(pc.canMilkSquirt()) output("quickly causes your [pc.nipples] to leak [pc.milk], and as the pleasurable flow increases, droplets of your [pc.milkNoun] begin flying off, covering you, the Bronco, and the padding around you in [pc.milkColor]");
+		else output("sends shockwaves of mixed pleasure and pain through your melons");
+	}
+	output(". You’re certainly giving the audience reason to watch, and the increasingly violent motions of the mechanical stallion send you higher and higher, treating your [pc.vagina " + x + "] to longer, deeper, and more frequent penetrations, forcing you to moan out in unmistakable pleasure. The vibrations of the dildo you’ve saddled are increasing in intensity with the movements of the Bronco, leaving you practically juicing yourself.");
+	//Moderate reflex + physique check. +30 lust. If this maxes Lust go to Vaginal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene.
+	processTime(10);
+	pc.lust(30);
+	if(pc.reflexes()/2 + rand(20) + 1 < 17 || pc.physique()/2 + rand(20) + 1 < 17)
+	{
+		clearMenu();
+		addButton(0,"Next",loseBroncoDuetoStats);
+		return;
+	}
+	if(pc.lust() >= pc.lustMax())
+	{
+		if(pc.libido() < rand(100))
+		{
+			if(pc.willpower() + rand(20) + 1 < 30)
+			{
+				clearMenu();
+				addButton(0,"Next",vaginalBroncoLustLoss,x);
+				return;
+			}
+			else
+			{
+				output("\n\n<b>Through sheer force of will, you hold yourself back from climax.</b>");
+			}
+		}
+		else
+		{
+			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",vaginalBroncoPart3,x);
+}
 
-output("\n\n//merge: A rumble rolls through the Bronco as it begins its ride, the vibrations being transferred to your [pc.cunt] through the dildo embedded in your muff, causing you to shudder in pleasure. Some of the people in the crowd are placing informal bets on how long it will take you to succeed or fail, and many are pulling out recording devices. {Anno is a follower and is in the bar: You see Anno wandering over to see what’s going on. Her face lights up when she notices it’s you on the Fucking Bronco.} The mechanical stallion’s rocking motions are fairly easy to keep up with for the first ten or so seconds, though the rumbling of the device keeps the dildo gently vibrating, making it a bit hard to concentrate on keeping up with the Bronco’s constantly changing center of gravity. After thirty or so seconds, you are no longer able to keep in sync enough with the Bronco’s motions, causing you to bounce an inch or two off the saddle, creating a rough facsimile of a lover making short, rough thrusts into your canal. It’s an altogether pleasant sensation that makes your womanhood clench at the dildo inside you.");
+public function vaginalBroncoPart3(x:int):void
+{
+	clearOutput();
+	showBronco();
+	output("Somehow though, you hold on. Judging by the intensity of its motions, the Bronco must nearly be at the climax of its performance. It’s bucking violently, lifting you higher and higher off the saddle and spearing you even harder on the false phallus than it was before. At this point it feels like someone very large is picking you up once a second and dropping you onto a massive equine vibrator. The motions of the Bronco make it so that whenever you fall back down onto the dildo, it’s at a different angle of penetration, ensuring that every inch of your love tunnel is raked by that hot, lube-leaking, vibrating flare, which seems to have almost doubled in size at this point.");
+	output("\n\nThe audience is cheering for you now, cows, bulls, and tourists all taking pictures and videos and hollering supportive cheers like <i>“Break that Bronco, bitch!”</i> or <i>“Ride that dick like you mean it!”</i> ");
+	//Anno is a follower and is in the bar:
+	if(annoIsCrew())
+	{
+		output("Your snowy-furred ausar gal continues cheering you on. <i>“Go for it [pc.name]! Show them what you can do!”</i> ");
+	}
+	output("You can barely hear anyone over the sounds of the mechanical stallion. By now its motor is at full power, and you can barely keep a grip on the leather handhold as the violent motions of the Bronco and the pleasing rumbles of its dildo vie to defeat you first. ");
+	if(pc.biggestTitSize() > 3) 
+	{
+		output("Your [pc.breasts] are flailing around with minds of their own, each mammary moving in a different direction, sometimes even hitting you right in face. ");
+		if(pc.canMilkSquirt()) output("The violent lurches of the Bronco send countless droplets of your [pc.milk] splattering onto everything nearby, including into the audience. Some of the tourists try to shield their eyes to avoid being blinded, but most of the locals cheer even more as they open their mouths to catch your lactic excess. ");
+	}
+	output(" It’s all just another sensation in the sea of pleasure you’re currently engulfed in.");
 
-output("\n\n//easy reflex + physique check. +15 lust. If this maxes out lust, go to Vaginal Lust Loss scene. If the reflex + physique check fails, go to Stat Loss scene.");
+	//Difficult reflex + physique check. +45 lust. If this maxes Lust go to Vaginal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene. If both checks pass, go to Vaginal Victory scene.
+	pc.lust(45);
 
-output("\n\n[Next]");
+	if(pc.reflexes()/2 + rand(20) + 1 < 20 || pc.physique()/2 + rand(20) + 1 < 20)
+	{
+		clearMenu();
+		addButton(0,"Next",loseBroncoDuetoStats);
+		return;
+	}
+	if(pc.lust() >= pc.lustMax())
+	{
+		if(pc.libido() < rand(100))
+		{
+			if(pc.willpower() + rand(20) + 1 < 30)
+			{
+				clearMenu();
+				addButton(0,"Next",vaginalBroncoLustLoss,x);
+				return;
+			}
+			else
+			{
+				output("\n\n<b>Through sheer force of will, you hold yourself back from climax.</b>");
+			}
+		}
+		else
+		{
+			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",vaginalVictoryVsBroncoButt,x);
+}
 
-output("\n\nThough the Bronco you are speared on is bucking you around fairly hard at this point, you manage to keep your seat. More hoots and cheers go up from the crowd, which is now growing as locals who assumed a tourist such as yourself would lose begin to wander over to watch. {Anno is a follower and is in the bar: You can hear Anno cheering for you with the occasional <i>“Go [pc.name]!”</i>} {Breast >C cup: Your big rack certainly doesn’t detract from the appeal of watching you. With both your hands occupied holding onto the mechanical stallion, your [pc.breasts] are left free to bounce around unhindered. The stimulation {is lactating: quickly causes your [pc.nipples] to leak [pc.milk], and as the pleasurable flow increases, droplets of your [pc.milk] begin flying off, covering you, the Bronco, and the padding around you in [pc.milkColor] //else: sends shockwaves of mixed pleasure and pain through your melons.} You’re certainly giving the audience reason to watch, and the increasingly violent motions of the mechanical stallion send you higher and higher, treating your [pc.cunt] to longer, deeper, and more frequent penetrations, forcing you to moan out in unmistakable pleasure. The vibrations of the dildo you’ve saddled are increasing in intensity with the movements of the Bronco, leaving you practically juicing yourself.");
+//Ass:
+public function takeAnalBronco():void
+{
+	clearOutput();
+	showBronco();
+	output("You lift up your [pc.hips] to better position your [pc.asshole] for penetration.");
 
-output("\n\n//Moderate reflex + physique check. +30 lust. If this maxes Lust go to Vaginal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene.");
+	//PC is Anally-Filled:
+	if(pc.hasStatusEffect("Anally-Filled")) output(" Thanks to the liquid leftovers of your previous lover, your pucker is already more than lubricated enough for the ride ahead.");
+	else if(pc.ass.wetness() < 3) output(" You take a moment to jerk the dildo off, forcing more lubricant to spill from its head. You smear some of the slippery liquid down the length of the equine phallus, but you spread the bulk of it inside your anus, biting your lip a little to hold in a moan as you do so.");
+	else output(" Knowing how wet your ass is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.");
+	output(" With the prep work out of the way, you finally sink down onto the dildo.");
 
-output("\n\n[Next]");
+	if(pc.ass.looseness() < 3 && pc.analCapacity() < 200)
+	{
+		output("\n\nIt seems like an almost impossible task to fit the broad, flared head of the equine phallus past the tight ring of your sphincter, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your ass. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow anus. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your bowels. Over the better part of a minute, you sink more and more fake flesh into the depths of your ass, moaning out loud when the delicious feeling of your interior walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm.");
+		if(pc.hasVagina())
+		{
+			output(" Your [pc.cunts] ");
+			if(pc.totalVaginas() == 1) output("is");
+			else output("are");
+			output(" clutching at the air in a desperate bid for the sort of penetration your ass is receiving.");
+		}
+		if(pc.hasCock()) output(" Pre-cum is dripping from your twitching [pc.cocks].");
+		output(" A smattering of applause goes through the crowd, with a few catcalls and hoots for good measure. You take deep breaths to try calm yourself, the bestial wang inside you sporadically twitching and leaking more lubricants into your depths, almost setting off your orgasm a few times. When both you and the dildo have finally calmed down you tightly clutch the leather handhold and reach out to press the start button.");
+	}
+	else
+	{
+		output("\n\nWith an ass as well-trained as yours it’s easy to penetrate yourself with this equine dildo. You spread your cheeks wide with one hand and position the phallus with the other. You let out a pleasant moan as the flared head briefly catches on your sphincter before slipping inside you. That flare rubs along the walls of your bowels like few things can, sending pleasant feelings through your body. It only takes you a few seconds to reach the base of the fake cock, and you groan in disappointment that you’re already out of dick to stuff your greedy ass with. The onlookers clap and cheer for you, some of them even calling out asking for your contact information. Eager to continue this erotic exercise, you tightly clutch the leather handhold and reach out to press the start button.");
+	}
+	pc.buttChange(120);
+	output("\n\nA rumble rolls through the Bronco as it begins its ride, the vibrations being transferred to your [pc.asshole] through the dildo embedded in your butt, causing you to shudder in pleasure. Some of the people in the crowd are placing informal bets on how long it will take you to succeed or fail, and many are pulling out recording devices. ");
+	if(annoIsCrew()) output("You see Anno wandering over to see what’s going on. Her face lights up when she notices it’s you on the Fucking Bronco. ");
+	output("The mechanical stallion’s rocking motions are fairly easy to keep up with for the first ten or so seconds, though the rumbling of the device keeps the dildo gently vibrating, making it a bit hard to concentrate on keeping up with the Bronco’s constantly changing center of gravity. After thirty or so seconds, you are no longer able to keep in sync enough with the Bronco’s motions, causing you to bounce an inch or two off the saddle, creating a rough facsimile of a lover making short, rough thrusts into your ass. It’s an altogether pleasant sensation that makes your pucker clench at the dildo inside you.");
+	//easy reflex + physique check. +15 lust. If this maxes out lust, go to Anal Lust Loss scene. If the reflex + physique check fails, go to Regular Loss scene.
+	processTime(5);
+	pc.lust(15);
+	//[Next]
+	if(pc.reflexes()/2 + rand(20) + 1 < 10 || pc.physique()/2 + rand(20) + 1 < 10)
+	{
+		clearMenu();
+		addButton(0,"Next",loseBroncoDuetoStats);
+		return;
+	}
+	if(pc.lust() >= pc.lustMax())
+	{
+		if(pc.libido() < rand(100))
+		{
+			if(pc.willpower() + rand(20) + 1 < 30)
+			{
+				clearMenu();
+				addButton(0,"Next",analLustLossToBronco);
+				return;
+			}
+			else
+			{
+				output("\n\n<b>Through sheer force of will, you hold yourself back from climax.</b>");
+			}
+		}
 
-output("\n\nSomehow though, you hold on. Judging by the intensity of its motions, the Bronco must nearly be at the climax of its performance. It’s bucking violently, lifting you higher and higher off the saddle and spearing you even harder on the false phallus than it was before. At this point it feels like someone very large is picking you up once a second and dropping you onto a massive equine vibrator. The motions of the Bronco make it so that whenever you fall back down onto the dildo, it’s at a different angle of penetration, ensuring that every inch of your love tunnel is raked by that hot, lube-leaking, vibrating flare, which seems to have almost doubled in size at this point.");
+		else
+		{
+			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",broncoAssPart2);
+}
 
-output("\n\nThe audience is cheering for you now, cows, bulls, and tourists all taking pictures and videos and hollering supportive cheers like <i>“Break that Bronco, bitch!”</i> or <i>“Ride that dick like you mean it!”</i> {Anno is a follower and is in the bar: Your snowy-furred ausar gal continues cheering you on. <i>“Go for it [pc.name]! Show them what you can do!”</i>} You can barely hear anyone over the sounds of the mechanical stallion. By now its motor is at full power, and you can barely keep a grip on the leather handhold as the violent motions of the Bronco and the pleasing rumbles of its dildo vie to defeat you first. {Breasts >C: Your [pc.breasts] are flailing around with minds of their own, each mammary moving in a different direction, sometimes even hitting you right in face. {Is lactating: The violent lurches of the Bronco send countless droplets of your [pc.milk] splattering onto everything nearby, including into the audience. Some of the tourists try to shield their eyes to avoid being blinded, but most of the locals cheer even more as they open their mouths to catch your lactic excess.} It’s all just another sensation in the sea of pleasure you’re currently engulfed in.");
+//[Next]
+public function broncoAssPart2():void
+{
+	clearOutput();
+	showBronco();
+	output("Though the Bronco you are speared on is bucking you around fairly hard at this point, you manage to keep your seat. More hoots and cheers go up from the crowd, which is now growing as locals who assumed a tourist such as yourself would quickly lose begin to wander over to watch. ");
+	//Anno is a follower and is in the bar:
+	if(annoIsCrew()) output("You can hear Anno cheering for you with the occasional <i>“Go [pc.name]!”</i> ");
+	//Breast >C cup:
+	if(pc.biggestTitSize() > 3)
+	{
+		output("Your big rack certainly doesn’t detract from the appeal of watching you. With both your hands occupied holding onto the mechanical stallion, your [pc.breasts] are left free to bounce around unhindered. The stimulation ");
+		if(pc.canMilkSquirt()) output("quickly causes your [pc.nipples] to leak [pc.milk], and as the pleasurable flow increases, droplets of your [pc.milkNoun] begin flying off, covering you, the Bronco, and the padding around you in [pc.milkColor]. ");
+		else output("sends shockwaves of mixed pleasure and pain through your melons. ");
+	}
+	output("You’re certainly giving the audience reason to watch, and the increasingly violent motions of the mechanical stallion send you higher and higher, treating your [pc.asshole] to longer, deeper, and more frequent penetrations, forcing you to moan out in unmistakable pleasure as your intestine is teased by the dildo’s vibrating head. The vibrations of the fake dick you’ve saddled are increasing in intensity with the movements of the Bronco, leaving you on the verge of orgasm.");
+	//Moderate reflex + physique check. +30 lust. If this maxes Lust go to Anal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene.
+	processTime(7);
+	pc.lust(30);
+	//[Next]
+	if(pc.reflexes()/2 + rand(20) + 1 < 17 || pc.physique()/2 + rand(20) + 1 < 17)
+	{
+		clearMenu();
+		addButton(0,"Next",loseBroncoDuetoStats);
+		return;
+	}
+	if(pc.lust() >= pc.lustMax())
+	{
+		if(pc.libido() < rand(100))
+		{
+			if(pc.willpower() + rand(20) + 1 < 30)
+			{
+				clearMenu();
+				addButton(0,"Next",analLustLossToBronco);
+				return;
+			}
+			else
+			{
+				output("\n\n<b>Through sheer force of will, you hold yourself back from climax.</b>");
+			}
+		}
 
-output("\n\n//Difficult reflex + physique check. +45 lust. If this maxes Lust go to Vaginal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene. If both checks pass, go to Vaginal Victory scene.");
+		else
+		{
+			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",buttBroncoPart3);
+}
 
+//[Next]
+public function buttBroncoPart3():void
+{
+	clearOutput();
+	showBronco();
+	output("Somehow though, you hold on. Judging by the intensity of its motions, the Bronco must nearly be at the climax of its performance. It’s bucking violently, lifting you higher and higher off the saddle and spearing you even harder on the false phallus than it was before. At this point it feels like someone very large is picking you up once a second and dropping you ass-first onto a massive equine vibrator. The motions of the Bronco make it so that whenever you fall back down onto the dildo, it’s at a different angle of penetration, ensuring that every inch of your colon is raked by that hot, lube-leaking, vibrating flare, which seems to have almost doubled in size at this point.");
+	output("\n\nThe audience is cheering for you now, cows, bulls, and tourists all taking pictures and videos and hollering supportive cheers like <i>“Break that Bronco, bitch!”</i> or <i>“Ride that dick like you mean it!”</i> ");
+	if(annoIsCrew()) output("Your snowy-furred ausar gal continues cheering you on. <i>“Go for it [pc.name]! Show them what you can do!”</i> ");
+	output("You can barely hear anyone over the sounds of the mechanical stallion. By now its motor is at full power, and you can barely keep a grip on the leather handhold as the violent motions of the Bronco and the pleasing rumbles of its dildo vie to defeat you first.");
+	if(pc.biggestTitSize() > 3)
+	{
+		output(" Your [pc.breasts] are flailing around with minds of their own, each mammary moving in a different direction, sometimes even hitting you right in face.");
+		if(pc.canMilkSquirt()) output(" The violent lurches of the Bronco send countless droplets of your [pc.milk] splattering onto everything nearby, including into the audience. Some of the tourists try to shield their eyes to avoid being blinded, but most of the locals cheer even more as they open their mouths to catch your lactic excess.");
+	}
+	output(" It’s all just another sensation in the sea of pleasure you’re currently engulfed in.");
 
-output("\n\nAss:");
-output("\n\nYou lift up your [pc.hips] to better position your [pc.asshole] for penetration.");
+	//Difficult reflex + physique check. +45 lust. If this maxes go to Anal Lust Loss scene. If reflex + physique check fails, go to Regular Loss scene. If both checks pass, go to Anal Win scene.
+	processTime(3);
+	pc.lust(45);
+	if(pc.reflexes()/2 + rand(20) + 1 < 20 || pc.physique()/2 + rand(20) + 1 < 20)
+	{
+		clearMenu();
+		addButton(0,"Next",loseBroncoDuetoStats);
+		return;
+	}
+	if(pc.lust() >= pc.lustMax())
+	{
+		if(pc.libido() < rand(100))
+		{
+			if(pc.willpower() + rand(20) + 1 < 30)
+			{
+				clearMenu();
+				addButton(0,"Next",analLustLossToBronco);
+				return;
+			}
+			else
+			{
+				output("\n\n<b>Through sheer force of will, you hold yourself back from climax.</b>");
+			}
+		}
+		else
+		{
+			output("\n\n<b>You nearly cream yourself, but you're no stranger to getting off. You ride the pleasure higher and higher, delaying your climax as long as possible.</b>");
+		}
+	}
+	clearMenu();
+	addButton(0,"Next",analVictoryAgainstBronco);
+}
 
-output("\n\n{PC is Anally-Filled:");
-output("\n\nThanks to the liquid leftovers of your previous lover, your pucker is already more than lubricated enough for the ride ahead.");
+//Stat Loss
+public function loseBroncoDuetoStats():void
+{
+	clearOutput();
+	showBronco();
+	output("You try your level best to hold on to the Bronco as its gyrations increase, but you just can’t keep your grip. At the apex of one of its upwards bucks, your hands slip off of the leather ring, and you are flung off of the mechanical stallion. Thankfully, you land with a soft 'thud' on the high-tech padding in the ring. It takes you a few moments to realize you’ve just lost; the sudden and violent change in orientation has left you temporarily dazed and confused. Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
+	if(annoIsCrew())
+	{
+		output("\n\n Anno rushes over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I hope you have better luck next time; I’d sure love to see you </i>reach the climax<i>.”</i> She punctuates her last words with a naughty wink. Rolling your eyes at the lewd ausar, you don the last of your gear and thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well, your [pc.groin] burning with arousal after your interrupted sexual encounter.");
+	}
+	//else:
+	else
+	{
+		output("\n\nAfter your senses return to you, you clamber up onto your feet, trying to avoid the looks of the people who had been watching you. You’re embarrassed to have busted your ass in front of a whole crowd of people, so you hastily gather up your belongings. ");
+		if(!pc.isCrotchExposed()) output("Only when you’re once again wearing your [pc.gear] do you exit the ring, burning with arousal after your interrupted sexual encounter.");
+		else output("When you exit the ring, your loins burn with unsatisfied arousal from your interrupted sexual encounter.");
+	}
+	//take PC back to saloon, add big exhibitionist gain
+	pc.exhibitionism(2);
+	processTime(8);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n/");
-output("\n\n{Not filled, Anal Wetness <3: You take a moment to jerk the dildo off, forcing more lubricant to spill from its head. You smear some of the slippery liquid down the length of the equine phallus, but you spread the bulk of it inside your anus, biting your lip a little to hold in a moan as you do so. //Else: Knowing how wet your ass is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.} With the prep work out of the way, you finally sink down onto the dildo.");
-output("\n\n}");
+//Vaginal Lust Loss
+public function vaginalBroncoLustLoss(x:int):void
+{
+	clearOutput();
+	showBronco();
+	output("You try to hold out against the pleasure being forced through you by the vibrating phallus inside your [pc.cunt " + x + "], but the sensations are overwhelming. With a cry of absolute bliss, you spontaneously climax, squirting [pc.girlcum]");
+	if(pc.hasCock()) output(" and [pc.cum]");
+	output(" all over the equine member and your thighs. Spasms of ecstasty roll through your [pc.cunt " + x + "] in a desperate effort to milk the dildo of its cum. The moment your first orgasmic contraction strokes the fake dick, the Bronco immediately stops moving with a mechanical hissing sound and begins returning to its neutral position. You moan desperately as the penetration stops at the moment your backed-up orgasm begins, and you bounce your [pc.hips] and [pc.ass] on the dildo");
+	if(pc.hasCock()) output(" and feverishly stroke your [pc.cocks]");
+	output(" in an effort to stimulate yourself further. No matter how you try though, you get no further response from the equine member. As your climax winds down you slow your lusty bouncing and take a moment to rest.");
+	if(annoIsCrew()) output(" Anno looks at you sympathetically, her ears flat and tail wagging low.");
+	output(" Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
 
-output("\n\n{Anal looseness <3: It seems like an almost impossible task to fit the broad, flared head of the equine phallus past the tight ring of your sphincter, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your ass. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow anus. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your bowels. Over the better part of a minute, you sink more and more fake flesh into the depths of your ass, moaning out loud when the delicious feeling of your interior walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm. [has vagina: Your [pc.cunts] {is/are} clutching at the air in a desperate bid for the sort of penetration your ass is receiving.} [has penis: Pre-cum is dripping from your twitching [pc.cocks].] A smattering of applause goes through the crowd, with a few catcalls and hoots for good measure. You take deep breaths to try calm yourself, the bestial wang inside you sporadically twitching and leaking more lubricants into your depths, almost setting off your orgasm a few times. When both you and the dildo have finally calmed down you tightly clutch the leather handhold and reach out to press the start button.");
-output("\n\n/");
-output("\n\nAnal looseness 3 or more: With an ass as well-trained as yours it’s easy to penetrate yourself with this equine dildo. You spread your cheeks wide with one hand and position the phallus with the other. You let out a pleasant moan as the flared head briefly catches on your sphincter before slipping inside you. That flare rubs along the walls of your bowels like few things can, sending pleasant feelings through your body. It only takes you a few seconds to reach the base of the fake cock, and you groan in disappointment that you’re already out of dick to stuff your greedy ass with. The onlookers clap and cheer for you, some of them even calling out asking for your contact information. Eager to continue this erotic exercise, you tightly clutch the leather handhold and reach out to press the start button.");
-output("\n\n}");
+	output("\n\nAfter catching your breath, you rise off of the dildo, moaning softly at the sudden feeling of emptiness in your thoroughly-stretched pussy. You’re embarrassed to have orgasmed so easily in front of a whole crowd of people, so you hastily gather up your belongings after climbing down from the Bronco. ");
+	if(!pc.isCrotchExposed()) output("Only when you’re once again wearing your [pc.gear] do you exit the ring, burning with arousal after your interrupted sexual encounter.");
+	else output("When you exit the ring, your loins burn with unsatisfied arousal from your interrupted sexual encounter.");
+	
+	//take PC back to saloon, add big exhibitionist gain
+	pc.exhibitionism(2);
+	processTime(8);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n//merge: A rumble rolls through the Bronco as it begins its ride, the vibrations being transferred to your [pc.asshole] through the dildo embedded in your butt, causing you to shudder in pleasure. Some of the people in the crowd are placing informal bets on how long it will take you to succeed or fail, and many are pulling out recording devices. {Anno is a follower and is in the bar: You see Anno wandering over to see what’s going on. Her face lights up when she notices it’s you on the Fucking Bronco.} The mechanical stallion’s rocking motions are fairly easy to keep up with for the first ten or so seconds, though the rumbling of the device keeps the dildo gently vibrating, making it a bit hard to concentrate on keeping up with the Bronco’s constantly changing center of gravity. After thirty or so seconds, you are no longer able to keep in sync enough with the Bronco’s motions, causing you to bounce an inch or two off the saddle, creating a rough facsimile of a lover making short, rough thrusts into your ass. It’s an altogether pleasant sensation that makes your pucker clench at the dildo inside you.");
+//Vaginal Victory
+public function vaginalVictoryVsBroncoButt(x:int):void
+{
+	clearOutput();
+	showBronco();
+	output("Just when you feel like you’re going to be thrown off, cum, or both, there’s a hissing sound as the Bronco suddenly stops bucking. The flare of the equine phallus expands suddenly as you feel the dildo inside you pulsing like a real penis would when cumming, and a wet warmth blossoms inside your [pc.cunt " + x + "]. The dildo is ejaculating! Your eyes go wide as you throw your head back and cry out in ecstasy before you start bucking your hips furiously into that still-cumming horse cock. You immediately break your death grip on the leather handhold to set one hand to diddling your [pc.clits] and your other to tweaking your [pc.nipple] in a bid to maximize your well-earned pleasure.");
+	if(pc.hasCock()) 
+	{
+		output(" Your [pc.cocks] hose");
+		if(pc.cockTotal() == 1) output("s");
+		output(" [pc.cum] all over you and the saddle of the Bronco as your manhood joins your [pc.cunt " + x + "] in orgasm.");
+	}
+	output("\n\nYour ecstatic moans are drowned out by the applause and cheers of the audience, ");
+	//Anno is a follower and is in the bar:
+	if(annoIsCrew()) output("Anno cheering loudest of all as her tail wags in a blur of white while ");
+	output("many of the assembled openly masturbate to your performance. Some of them are exchanging cash, clearly having won or lost bets, but most of them are now filming or photographing you as you cream all over the dildo");
+	if(pc.vaginas[x].wetness() > 3) output(", squirting [pc.girlCum] all over your thighs and saddle and leaking more and more of the stuff as you bounce on the fake dick");
+	output(". Your orgasm is extended well beyond usual by the fact that the dildo is still vibrating and still pumping jizz into you, the massive flare on the tip keeping most of it trapped inside you. Your eyes cross and you moan even louder as your womb is filled to the brim with jizz. When you feel your belly start to stretch from the amount of cum being pumped into you, you cum a second time from the sensation. You’re utterly full of both cock and cum, and at this moment you wouldn’t have it any other way. Free drinks? Who needs them when you have a bellyful of warm spunk?");
+	output("\n\nEventually both your orgasm and that of your mechanical mount wind down. You are sweaty, flushed, and completely winded. You take some time to catch your breath. The audience starts to disperse, though many stay behind to finish masturbating to your nude, cum-pumped form. You look like you’re in the second trimester of a pregnancy, and you feel about that full as well. Evidently the voyeurs watching you appreciate your new look, because you soon hear moos and moans of pleasure from cows and bulls alike, their sexual fluids joining the mess you’ve left on the floor of the saloon.");
+	output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your walls all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet 'pop', you’re treated to one last spurt of deliciously hot spunk right across your [pc.clits]. Combined with the sudden torrent of pent-up semen that pours out of your canal, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you cream yourself, your pussy squirting a thick mixture of [pc.girlCum] and semen onto your [pc.legs] and the pads you’re lying on.");
+	//Anno is a follower and is in the bar:
+	if(annoIsCrew())
+	{
+		output("\n\n Anno hurries over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again.");
+		//PC is not nude:
+		if(!pc.isCrotchExposed()) output(" Your spunk-stuffed pussy squelches lewdly as you slip the last of your clothing on, your motions forcing warm cum out of your lower lips.");
 
-output("\n\n//easy reflex + physique check. +15 lust. If this maxes out lust, go to Anal Lust Loss scene. If the reflex + physique check fails, go to Regular Loss scene.");
+		output("\n\nYou thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
+	}
+	//else:
+	else
+	{
+		output("\n\nWhen you recover from this unexpected orgasm, you stand up again on shaky legs. The crowd around you begins to scatter as you collect your gear. Hot cum leaks out of your pussy, dripping down your legs and onto the floor. You aren’t provided with a towel or any other means to clean yourself, so all you can do is wipe yourself off with your hands as best you can before getting dressed again.");
+		//PC is not nude:
+		if(!pc.isCrotchExposed()) output(" Your spunk-stuffed pussy squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your lower lips.");
+		output(" When you’ve finally gathered everything up you step out of the ring and head towards the bar. You could really go for a drink right now!");
+	}
+	//PC should cum 3 times, add <i>“vaginally filled”</i> status with enough cumflation to give about a 6 month pregnant belly look, reset lust, take PC back to saloon, add massive exhibitionist gain
+	processTime(35);
+	for(var i:int = 0; i < 3; i++) { pc.orgasm(); }
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+ 	pp.createPerk("Fixed CumQ",40000,0,0,0);
+ 	pc.loadInCunt(pp,x);
+ 	pc.exhibitionism(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n[Next]");
+//Anal Lust Loss
+public function analLustLossToBronco():void
+{
+	clearOutput();
+	showBronco();
+	output("You try to hold out against the pleasure being forced through you by the vibrating phallus inside your [pc.asshole], but the sensations are overwhelming. With a cry of absolute bliss, your ass clenches down on the dildo");
+	if(pc.hasCock()) output(" and you spray [pc.cum] all over your belly and thighs");
+	output(". Spasms of ecstasy roll through your ass in a desperate effort to milk the dildo of its cum. The moment your first orgasmic contraction strokes the fake dick, the Bronco immediately stops moving with a mechanical hissing sound and begins returning to its neutral position. You moan desperately as the penetration stops at the moment your backed-up orgasm begins, and you bounce your [pc.hips] and [pc.ass] on the dildo in an effort to stimulate yourself further. No matter how you try though, you get no further response from the equine member. As your climax winds down you slow your lusty bouncing and take a moment to rest.");
+	if(annoIsCrew()) output(" Anno looks at you sympathetically, her ears flat and tail wagging low.");
+	output(" Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
+	output("\n\nAfter catching your breath, you rise off of the dildo, moaning softly at the sudden feeling of emptiness in your thoroughly-stretched asshole. You’re embarrassed to have orgasmed so easily in front of a whole crowd of people, so you hastily gather up your belongings after climbing down from the Bronco. ");
 
-output("\n\nThough the Bronco you are speared on is bucking you around fairly hard at this point, you manage to keep your seat. More hoots and cheers go up from the crowd, which is now growing as locals who assumed a tourist such as yourself would quickly lose begin to wander over to watch. {Anno is a follower and is in the bar: You can hear Anno cheering for you with the occasional <i>“Go [pc.name]!”</i>} {Breast >C cup: Your big rack certainly doesn’t detract from the appeal of watching you. With both your hands occupied holding onto the mechanical stallion, your [pc.breasts] are left free to bounce around unhindered. The stimulation {is lactating: quickly causes your [pc.nipples] to leak [pc.milk], and as the pleasurable flow increases, droplets of your [pc.milk] begin flying off, covering you, the Bronco, and the padding around you in [pc.milkColor] //else: sends shockwaves of mixed pleasure and pain through your melons.} You’re certainly giving the audience reason to watch, and the increasingly violent motions of the mechanical stallion send you higher and higher, treating your [pc.asshole] to longer, deeper, and more frequent penetrations, forcing you to moan out in unmistakable pleasure as your intestine is teased by the dildo’s vibrating head. The vibrations of the fake dick you’ve saddled are increasing in intensity with the movements of the Bronco, leaving you on the verge of orgasm.");
+	if(!pc.isAssExposed()) output("Only when you’re once again wearing your [pc.gear] do you exit the ring, your [pc.asshole] aching with delight after your sexual encounter.");
+	else output("When you exit the ring, your [pc.asshole] aches with delight from the sexual encounter.");
+	//PC should cum once, take PC back to saloon, add massive exhibitionist gain
+	processTime(6);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-output("\n\n//Moderate reflex + physique check. +30 lust. If this maxes Lust go to Anal Lust Loss scene. If reflex + physique check fails, go to Stat Loss scene.");
+//Anal Victory
+public function analVictoryAgainstBronco():void
+{
+	clearOutput();
+	showBronco();
+	output("Just when you feel like you’re going to be thrown off, cum, or both, there’s a hissing sound as the Bronco suddenly stops bucking. The flare of the equine phallus expands suddenly as you feel the dildo inside you pulsing like a real penis would when ejaculating, and a wet warmth blossoms inside your ");
+	if(silly) output("yaoi-hole");
+	else output("bowels");
+	output(". The dildo is ejaculating! Your eyes go wide as you throw your head back and cry out in ecstasy before you start bucking your hips furiously into that still-cumming horse cock.");
+	if(pc.hasVagina()) output(" You immediately break your death grip on the leather handhold to diddle your [pc.clits] and tweak your [pc.nipple] in a bid to maximize your well-earned pleasure.");
+	if(pc.hasCock()) output(" You feverishly stroke your [pc.cockLargest] as you hose [pc.cum] all over yourself and the saddle of the Bronco, ejaculating far harder than you would have thanks to the vibrating flare pressing deliciously into your prostate.");
 
-output("\n\n[Next]");
+	output("\n\nYour ecstatic moans are drowned out by the applause and cheers of the audience, ");
+	//Anno is a follower and is in the bar:
+	if(annoIsCrew()) output("Anno cheering loudest of all as her tail wags in a blur of white while ");
+	output("many of the assembled openly masturbate to your performance. Some of them are exchanging cash, clearly having won or lost bets, but most of them are now filming or photographing you as you cum all over the dildo. Your orgasm is extended well beyond usual by the fact that the dildo is still vibrating and still pumping jizz into you, the massive flare on the tip keeping most of it trapped inside you. Your eyes cross and you moan even louder as your bowels are filled to the brim with jizz. When you feel your belly start to stretch from the amount of cum being pumped into you, you cum a second time from the sensation. You’re utterly full of both cock and cum, and at this moment you wouldn’t have it any other way. Free drinks? Who needs them when you have a bellyful of warm spunk?");
+	output("\n\nEventually both your own orgasm and that of your mechanical mount wind down. You are sweaty, flushed, and completely winded, so you take some time to catch your breath. The audience starts to disperse, though many stay behind to finish masturbating to your nude, cum-pumped form. You look like you’re in the second trimester of a pregnancy, and you feel about that full as well. Evidently the voyeurs watching you appreciate your new look, because you soon hear moos and moans of pleasure from cows and bulls alike, their sexual fluids joining the mess you’ve left on the floor of the saloon.");
+	output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your bowels all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet *pop*, you’re treated to one last spurt of deliciously hot spunk right across your pucker. Combined with the sudden torrent of pent-up semen that pours out of your ass, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you climax, your ass squirting a thick load of semen onto your [pc.legs] and the pads you’re lying on");
+	if(pc.hasCock()) output("to mix with your own [pc.cum]");
+	if(pc.isHerm()) output(" and [pc.girlCum]");
+	output(".");
 
-output("\n\nSomehow though, you hold on. Judging by the intensity of its motions, the Bronco must nearly be at the climax of its performance. It’s bucking violently, lifting you higher and higher off the saddle and spearing you even harder on the false phallus than it was before. At this point it feels like someone very large is picking you up once a second and dropping you ass-first onto a massive equine vibrator. The motions of the Bronco make it so that whenever you fall back down onto the dildo, it’s at a different angle of penetration, ensuring that every inch of your colon is raked by that hot, lube-leaking, vibrating flare, which seems to have almost doubled in size at this point.");
+	//Anno is a follower and is in the bar:
+	if(annoIsCrew())
+	{
+		output("\n\nAnno hurries over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again.");
+		if(!pc.isAssExposed()) output(" Your spunk-stuffed ass squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your sphincter.");
 
-output("\n\nThe audience is cheering for you now, cows, bulls, and tourists all taking pictures and videos and hollering supportive cheers like <i>“Break that Bronco, bitch!”</i> or <i>“Ride that dick like you mean it!”</i> {Anno is a follower and is in the bar: Your snowy-furred ausar gal continues cheering you on. <i>“Go for it [pc.name]! Show them what you can do!”</i>} You can barely hear anyone over the sounds of the mechanical stallion. By now its motor is at full power, and you can barely keep a grip on the leather handhold as the violent motions of the Bronco and the pleasing rumbles of its dildo vie to defeat you first. {Breasts >C: Your [pc.breasts] are flailing around with minds of their own, each mammary moving in a different direction, sometimes even hitting you right in face. {Is lactating: The violent lurches of the Bronco send countless droplets of your [pc.milk] splattering onto everything nearby, including into the audience. Some of the tourists try to shield their eyes to avoid being blinded, but most of the locals cheer even more as they open their mouths to catch your lactic excess.} It’s all just another sensation in the sea of pleasure you’re currently engulfed in.");
+		output("\n\nYou thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
+	}
+	//else:
+	else
+	{
+		output("\n\nWhen you recover from this unexpected orgasm, you stand up again on shaky legs. The crowd around you begins to scatter as you collect your gear. Hot cum leaks out of your pucker, dripping down your legs and onto the floor. You aren’t provided with a towel or any other means to clean yourself, so all you can do is wipe yourself off with your hands as best you can before getting dressed again.");
+		if(!pc.isAssExposed()) output(" Your spunk-stuffed ass squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your sphincter.");
+		output(" When you’ve finally gathered everything up you step out of the ring and head towards the bar. You could really go for a drink right now!");
+	}
+	//PC should cum 3 times, reset lust, add <i>“anally filled”</i> status with enough cumflation to give about a 6 month pregnant belly look, take PC back to saloon, add massive exhibitionist gain
+	processTime(35);
+	for(var i:int = 0; i < 3; i++) { pc.orgasm(); }
 
-output("\n\n//Difficult reflex + physique check. +45 lust. If this maxes go to Anal Lust Loss scene. If reflex + physique check fails, go to Regular Loss scene. If both checks pass, go to Anal Win scene.");
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+ 	pp.createPerk("Fixed CumQ",40000,0,0,0);
+ 	pc.loadInAss(pp,x);
+ 	pc.exhibitionism(2);
 
-
-output("\n\nStat Loss");
-output("\n\nYou try your level best to hold on to the Bronco as its gyrations increase, but you just can’t keep your grip. At the apex of one of its upwards bucks, your hands slip off of the leather ring, and you are flung off of the mechanical stallion. Thankfully, you land with a soft *thud* on the high-tech padding in the ring. It takes you a few moments to realize you’ve just lost; the sudden and violent change in orientation has left you temporarily dazed and confused. Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
-
-output("\n\n{Anno is a follower and is in the bar:");
-output("\n\n Anno rushes over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I hope you have better luck next time; I’d sure love to see you </i>reach the climax<i>.”</i> She punctuates her last words with a naughty wink. Rolling your eyes at the lewd ausar, you don the last of your gear and thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well, your [pc.groin] burning with arousal after your interrupted sexual encounter.");
-output("\n\n/");
-output("\n\nelse:");
-output("\n\nAfter your senses return to you, you clamber up onto your feet, trying to avoid the looks of the people who had been watching you. You’re embarrassed to have busted your ass in front of a whole crowd of people, so you hastily gather up your belongings. Only when you’re once again wearing your [pc.gear] do you exit the ring, your [pc.groin] burning with arousal after your interrupted sexual encounter.");
-output("\n\n}");
-
-output("\n\n//take PC back to saloon, add big exhibitionist gain");
-
-output("\n\nVaginal Lust Loss");
-output("\n\nYou try to hold out against the pleasure being forced through you by the vibrating phallus inside your [pc.cunt], but the sensations are overwhelming. With a cry of absolute bliss, you spontaneously climax, squirting [pc.girlcum] {has cock: and [pc.cum]} all over the equine member and your thighs. Spasms of ecstasty roll through your [pc.cunt] in a desperate effort to milk the dildo of its cum. The moment your first orgasmic contraction strokes the fake dick, the Bronco immediately stops moving with a mechanical hissing sound and begins returning to its neutral position. You moan desperately as the penetration stops at the moment your backed-up orgasm begins, and you bounce your [pc.hips] and [pc.ass] on the dildo {has cock: and feverishly stroke your [pc.cocks]} in an effort to stimulate yourself further. No matter how you try though, you get no further response from the equine member. As your climax winds down you slow your lusty bouncing and take a moment to rest. {Anno is a follower and is in the bar: Anno looks at you sympathetically, her ears flat and tail wagging low.} Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
-
-output("\n\nAfter catching your breath, you rise off of the dildo, moaning softly at the sudden feeling of emptiness in your thoroughly-stretched pussy. You’re embarrassed to have orgasmed so easily in front of a whole crowd of people, so you hastily gather up your belongings after climbing down from the Bronco. Only when you’re once again wearing your [pc.gear] do you exit the ring, your [pc.cunt] aching with delight after your sexual encounter.");
-
-output("\n\n//PC should cum once, reset lust, take PC back to saloon, add massive exhibitionist gain");
-
-
-output("\n\nVaginal Victory");
-output("\n\nJust when you feel like you’re going to be thrown off, cum, or both, there’s a hissing sound as the Bronco suddenly stops bucking. The flare of the equine phallus expands suddenly as you feel the dildo inside you pulsing like a real penis would when cumming, and a wet warmth blossoms inside your [pc.cunt]. The dildo is ejaculating! Your eyes go wide as you throw your head back and cry out in ecstasy before you start bucking your hips furiously into that still-cumming horse cock. You immediately break your death grip on the leather handhold to set one hand to diddling your [pc.clits] and your other to tweaking your [pc.nipple] in a bid to maximize your well-earned pleasure. {Has penis: Your [pc.cocks] hose [pc.cum] all over you and the saddle of the Bronco as your manhood joins your [pc.cunt] in orgasm.}");
-
-output("\n\nYour ecstatic moans are drowned out by the applause and cheers of the audience, {Anno is a follower and is in the bar: Anno cheering loudest of all as her tail wags in a blur of white while} many of the assembled openly masturbate to your performance. Some of them are exchanging cash, clearly having won or lost bets, but most of them are now filming or photographing you as you cream all over the dildo {vaginal wetness: >3:, squirting [pc.girlCum] all over your thighs and saddle and leaking more and more of the stuff as you bounce on the fake dick}. Your orgasm is extended well beyond usual by the fact that the dildo is still vibrating and still pumping jizz into you, the massive flare on the tip keeping most of it trapped inside you. Your eyes cross and you moan even louder as your womb is filled to the brim with jizz. When you feel your belly start to stretch from the amount of cum being pumped into you, you cum a second time from the sensation. You’re utterly full of both cock and cum, and at this moment you wouldn’t have it any other way. Free drinks? Who needs them when you have a bellyful of warm spunk?");
-
-output("\n\nEventually both your orgasm and that of your mechanical mount wind down. You are sweaty, flushed, and completely winded. You take some time to catch your breath. The audience starts to disperse, though many stay behind to finish masturbating to your nude, cum-pumped form. You look like you’re in the second trimester of a pregnancy, and you feel about that full as well. Evidently the voyeurs watching you appreciate your new look, because you soon hear moos and moans of pleasure from cows and bulls alike, their sexual fluids joining the mess you’ve left on the floor of the saloon.");
-
-output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your walls all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet *pop*, you’re treated to one last spurt of deliciously hot spunk right across your [pc.clits]. Combined with the sudden torrent of pent-up semen that pours out of your canal, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you cream yourself, your pussy squirting a thick mixture of [pc.girlCum] and semen onto your [pc.legs] and the pads you’re lying on.");
-
-output("\n\n{Anno is a follower and is in the bar:");
-output("\n\n Anno hurries over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again. {PC is not nude: Your spunk-stuffed pussy squelches lewdly as you slip the last of your clothing on, your motions forcing warm cum out of your lower lips.}");
-
-output("\n\nYou thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
-output("\n\n/");
-output("\n\n//else:");
-output("\n\nWhen you recover from this unexpected orgasm, you stand up again on shaky legs. The crowd around you begins to scatter as you collect your gear. Hot cum leaks out of your pussy, dripping down your legs and onto the floor. You aren’t provided with a towel or any other means to clean yourself, so all you can do is wipe yourself off with your hands as best you can before getting dressed again. {PC is not nude: Your spunk-stuffed pussy squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your lower lips.} When you’ve finally gathered everything up you step out of the ring and head towards the bar. You could really go for a drink right now!");
-
-output("\n\n//PC should cum 3 times, add <i>“vaginally filled”</i> status with enough cumflation to give about a 6 month pregnant belly look, reset lust, take PC back to saloon, add massive exhibitionist gain");
-output("\n\nAnal Lust Loss");
-output("\n\nYou try to hold out against the pleasure being forced through you by the vibrating phallus inside your {sillymode: yaoi-hole //else: [pc.asshole], but the sensations are overwhelming. With a cry of absolute bliss, your ass clenches down on the dildo {has cock: and you spray [pc.cum] all over your belly and thighs.} Spasms of ecstasy roll through your ass in a desperate effort to milk the dildo of its cum. The moment your first orgasmic contraction strokes the fake dick, the Bronco immediately stops moving with a mechanical hissing sound and begins returning to its neutral position. You moan desperately as the penetration stops at the moment your backed-up orgasm begins, and you bounce your [pc.hips] and [pc.ass] on the dildo in an effort to stimulate yourself further. No matter how you try though, you get no further response from the equine member. As your climax winds down you slow your lusty bouncing and take a moment to rest. {Anno is a follower and is in the bar: Anno looks at you sympathetically, her ears flat and tail wagging low.} Exclamations of disappointment fill the room, and people begin exchanging money, obviously having lost their personal wagers. It seems the smart money was not on you this time.");
-
-output("\n\nAfter catching your breath, you rise off of the dildo, moaning softly at the sudden feeling of emptiness in your thoroughly-stretched asshole. You’re embarrassed to have orgasmed so easily in front of a whole crowd of people, so you hastily gather up your belongings after climbing down from the Bronco. Only when you’re once again wearing your [pc.gear] do you exit the ring, your [pc.asshole] aching with delight after your sexual encounter.");
-
-output("\n\n//PC should cum once, take PC back to saloon, add massive exhibitionist gain");
-
-
-output("\n\nAnal Victory");
-output("\n\nJust when you feel like you’re going to be thrown off, cum, or both, there’s a hissing sound as the Bronco suddenly stops bucking. The flare of the equine phallus expands suddenly as you feel the dildo inside you pulsing like a real penis would when ejaculating, and a wet warmth blossoms inside your {sillymode: yaoi-hole //else: bowels}. The dildo is ejaculating! Your eyes go wide as you throw your head back and cry out in ecstasy before you start bucking your hips furiously into that still-cumming horse cock. You immediately break your death grip on the leather handhold to {has vagina: diddle your [pc.clits] and tweak your [pc.nipple] in a bid to maximize your well-earned pleasure. {Has penis: You feverishly stroke your [pc.cockLargest] as you hose [pc.cum] all over yourself and the saddle of the Bronco, ejaculating far harder than you would have thanks to the vibrating flare pressing deliciously into your prostate.}");
-
-output("\n\nYour ecstatic moans are drowned out by the applause and cheers of the audience, {Anno is a follower and is in the bar: Anno cheering loudest of all as her tail wags in a blur of white while} many of the assembled openly masturbate to your performance. Some of them are exchanging cash, clearly having won or lost bets, but most of them are now filming or photographing you as you cum all over the dildo. Your orgasm is extended well beyond usual by the fact that the dildo is still vibrating and still pumping jizz into you, the massive flare on the tip keeping most of it trapped inside you. Your eyes cross and you moan even louder as your bowels are filled to the brim with jizz. When you feel your belly start to stretch from the amount of cum being pumped into you, you cum a second time from the sensation. You’re utterly full of both cock and cum, and at this moment you wouldn’t have it any other way. Free drinks? Who needs them when you have a bellyful of warm spunk?");
-
-output("\n\nEventually both your own orgasm and that of your mechanical mount wind down. You are sweaty, flushed, and completely winded, so you take some time to catch your breath. The audience starts to disperse, though many stay behind to finish masturbating to your nude, cum-pumped form. You look like you’re in the second trimester of a pregnancy, and you feel about that full as well. Evidently the voyeurs watching you appreciate your new look, because you soon hear moos and moans of pleasure from cows and bulls alike, their sexual fluids joining the mess you’ve left on the floor of the saloon.");
-
-output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your bowels all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet *pop*, you’re treated to one last spurt of deliciously hot spunk right across your pucker. Combined with the sudden torrent of pent-up semen that pours out of your ass, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you climax, your ass squirting a thick load of semen onto your [pc.legs] and the pads you’re lying on {has penis: to mix with your own [pc.cum] {has vagina: and [pc.girlCum]}}.");
-
-output("\n\n{Anno is a follower and is in the bar:");
-output("\n\n Anno hurries over to you to help you up. <i>“Are you alright [pc.name]? That looked like a nasty fall.”</i> When you confirm that you are unhurt she breathes a sigh of relief and starts helping you collect your gear. The ausar girl speaks with you as she gathers your belongings. <i>“That was </i>incredibly<i> sexy boss. I could see from the start you </i>had it in you.<i>”</i> She punctuates her last words with a naughty wink. You groan at the ausar’s lewd pun, earning a girlish giggle from her. Anno brings you some napkins and towelettes from the bar to make up for her lame humor, and she helps you clean the hard to reach places on your body. When you’ve wiped off the worst of the mess you don your gear again. {PC is not nude: Your spunk-stuffed ass squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your sphincter.}}");
-
-output("\n\nYou thank Anno for the help. <i>“Any time [pc.name]! Let me know next time you want to ride this thing so I can get a better view, and maybe place a few bets myself. Stay safe boss!”</i> Anno gives you a peck on the cheek before returning to her previous activities. You exit the ring as well and head towards the bar. You could really go for a drink right now!");
-output("\n\n/");
-output("\n\n//else:");
-output("\n\nWhen you recover from this unexpected orgasm, you stand up again on shaky legs. The crowd around you begins to scatter as you collect your gear. Hot cum leaks out of your pucker, dripping down your legs and onto the floor. You aren’t provided with a towel or any other means to clean yourself, so all you can do is wipe yourself off with your hands as best you can before getting dressed again. {PC is not nude: Your spunk-stuffed ass squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your sphincter.}} When you’ve finally gathered everything up you step out of the ring and head towards the bar. You could really go for a drink right now!");
-
-output("\n\n//PC should cum 3 times, reset lust, add <i>“anally filled”</i> status with enough cumflation to give about a 6 month pregnant belly look, take PC back to saloon, add massive exhibitionist gain");
-
-
-*/
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
