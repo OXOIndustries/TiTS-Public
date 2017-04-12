@@ -172,7 +172,7 @@ public function malePartsTentacruelFun():void
 	else if(pc.hasVagina())
 	{
 		output("teases [pc.eachVagina]");
-		if(pc.hasClit()) output(", coiling and rubbing your [pc.eachClit]");
+		if(pc.hasClit()) output(", coiling and rubbing [pc.eachClit]");
 		else output(", ensuring constant stimulation");
 	}
 	else output("massages the base of your pelvis");
@@ -590,7 +590,7 @@ public function tentacleMassageFunShit():void
 		else if(pc.hasCock() && !pc.hasVagina()) output("one of her hands sinks down around [pc.oneCock] like an onahole");
 		else 
 		{
-			output("she teases both of your sexes at once, rubbing your [pc.eachCock] and [pc.eachVagina] in turn");
+			output("she teases both of your sexes at once, rubbing [pc.eachCock] and [pc.eachVagina] in turn");
 			if(pc.balls > 1) output(" while giving your [pc.balls] light presses to encourage them to unleash their load");
 		}
 		output(". After seconds that feel like minutes you feel the waves of pleasure welling up within your body. The final thing that pushes you over the edge is Celise poking one of her gooey thumbs into your [pc.ass] to ");
