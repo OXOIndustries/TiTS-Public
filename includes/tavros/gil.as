@@ -1,11 +1,11 @@
 import classes.Items.Transformatives.PupperPoppers;
 //Gil
-//By: Lashcharge
+//By: Lashcharge
 
 //A cuntboy doberman-morph that wants to to get the worg traits from the promotional red snausages. Pays 1000 or gives a blowjob for each Pupper Popper you bring him, up to nine at which point you can fuck him.
 
 //Background
-//Gil was born from self impregnation to an absurdly rich maleherm rockstar/music company CEO(race undecided). He is the 2nd out of 3 children born this way and has lots of half siblings. When he was young he was frequently bullied by his peers for being a <i>“clone”</i> and a cuntboy, especially from one particular nasty bully who harassed him through his school years.
+//Gil was born from self impregnation to an absurdly rich maleherm rockstar/music company CEO(race undecided). He is the 2nd out of 3 children born this way and has lots of half siblings. When he was young he was frequently bullied by his peers for being a “clone” and a cuntboy, especially from one particular nasty bully who harassed him through his school years.
 
 //He never had any advanced education apart from high school and his parent guaranteed all of his children a substantial allowance, so that money would not be a problem in their lives. Instead, he encouraged his children to pursue art with a fierce passion. Gil lacked skill in any artistic field, but still felt the familial pressure to conform with the family artistic endeavours. So, he chose to pursue gene modding, following an artistic genemod trend where everyone wanted to create their personal perfect idealized form. Currently he is a doberman-morph, but he sees it as a step necessary to reach his ideal form.
 
@@ -121,11 +121,11 @@ public function repeatGilApproach():void
 
 	processTime(2);
 	gilMenu();
-	//[Appearance] <i>“Take a gander at the dog boy.”</i>
-	//[Trade] <i>“Trade him some of those snausages.”</i> // Greyed out if the player doesn’t have a Pupper Popper. Replaced with Sell after you give him 9 Pupper Poppers.
-	//[Sell] <i>“Sell him some Pupper Poppers.”</i> // Only appears after Trade has been accessed 9 times.
-	//[Talk] <i>“Chat with him.”</i>// <i>“Gil might be more inclined to chat after his transformative problems are over.”</i> // Greyed out before Trade has been accessed 9 times.
-	//[Sex] <i>“Tell him that you would like to collect his reward.”</i> // <i>“You’ll need to deal with his transformative problems before you can have sex with him for free.”</i> // Greyed out before Trade has been accessed 9 times.
+	//[Appearance] “Take a gander at the dog boy.”
+	//[Trade] “Trade him some of those snausages.” // Greyed out if the player doesn’t have a Pupper Popper. Replaced with Sell after you give him 9 Pupper Poppers.
+	//[Sell] “Sell him some Pupper Poppers.” // Only appears after Trade has been accessed 9 times.
+	//[Talk] “Chat with him.” // “Gil might be more inclined to chat after his transformative problems are over.” // Greyed out before Trade has been accessed 9 times.
+	//[Sex] “Tell him that you would like to collect his reward.” // “You’ll need to deal with his transformative problems before you can have sex with him for free.” // Greyed out before Trade has been accessed 9 times.
 }
 
 public function gilMenu():void
@@ -138,15 +138,14 @@ public function gilMenu():void
 		else addDisabledButton(1,"Trade","Trade","You need a Pupper Popper to trade it to him.");
 		addDisabledButton(2,"Talk","Talk","Gil might be more inclined to chat after his transformative problems are over.");
 		addDisabledButton(3,"Sex","Sex","You’ll need to deal with his transformative problems before you can have sex with him for free.");
-		
 	}
 	else
 	{
 		if(pc.hasItem(new PupperPoppers())) addButton(1,"Sell",getCashForDoggo,true,"Sell","Sell him some pupper poppers.");
-		else addDisabledButton(1,"Sell","Sell","You don't have any Pupper Poppers to sell.");
+		else addDisabledButton(1,"Sell","Sell","You don’t have any Pupper Poppers to sell.");
 		addButton(2,"Talk",talkToGilDoggo,undefined,"Talk","Chat with him.");
 		if(pc.lust() >= 33) addButton(3,"Sex",sexWithGilYaDumbshit,undefined,"Sex","Tell him that you would like to collect his reward.");
-		else addDisabledButton(3,"Sex","Sex","You aren't aroused enough for sex.");
+		else addDisabledButton(3,"Sex","Sex","You aren’t aroused enough for sex.");
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -154,12 +153,12 @@ public function gilMenu():void
 //Appearance
 //consider transformations worg face and eyes, floppy and pointy ears.
 //he looks like a doberman-morph.
-public function  gilAppearance():void
+public function gilAppearance():void
 {
 	clearOutput();
 	showGil();
 	author("Lashcharge");
-	output("Gil is a 6 feet and 3 inches tall dog-morph that’s currently trying his best to stay inconspicuous. He wears a dark blue hoodie, a pair of ragged jeans that clings to his body tightly, and no shoes, walking on a pair of canine paws. The hoodie has <i>“Lance and the Inseminators”</i> written on the front, with the <i>“Lance”</i> part resembling throbbing, veiny flesh, while the rest looks like it’s written in spunk. The pulled up hood hides his ");
+	output("Gil is a 6 feet and 3 inches tall dog-morph that’s currently trying his best to stay inconspicuous. He wears a dark blue hoodie, a pair of ragged jeans that clings to his body tightly, and no shoes, walking on a pair of canine paws. The hoodie has “Lance and the Inseminators” written on the front, with the “Lance” part resembling throbbing, veiny flesh, while the rest looks like it’s written in spunk. The pulled up hood hides his ");
 	//Gil has canine ears:
 	if(gilCanineEars()) output("perked-up");
 	//Floppydog
@@ -312,13 +311,13 @@ public function giveDoggoADoggoTreat():void
 	processTime(4);
 	IncrementFlag("GIL_DOSES");
 	clearMenu();
-	//[Credits] <i>“Ask him to pay in cash.”</i> //Leads to Sell section.
+	//[Credits] “Ask him to pay in cash.” //Leads to Sell section.
 	addButton(0,"Credits",getCashForDoggo,undefined,"Credits","Ask him to pay in cash.");
-	//[Sex] <i>“Ask him to pay with sex.”</i> //Leads to the Sex section.
+	//[Sex] “Ask him to pay with sex.” //Leads to the Sex section.
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithGilYaDumbshit,true,"Sex","Ask him to pay with sex.");
-	else addDisabledButton(1,"Sex","Sex","You aren't aroused enough for that...");
-	//[Gift] <i>“Tell him it’s a gift.”</i>
-	addButton(2,"Gift",gilGiftGift,undefined,"Gift","Tell him it's a gift.");
+	else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for that...");
+	//[Gift] “Tell him it’s a gift.”
+	addButton(2,"Gift",gilGiftGift,undefined,"Gift","Tell him it’s a gift.");
 }
 
 //Gift
@@ -342,7 +341,7 @@ public function getCashForDoggo(direct:Boolean = false):void
 	clearOutput();
 	showGil();
 	author("Lashcharge");
-	//Since he's no longer dosing, we gotta increment & item purge! manually~
+	//Since he’s no longer dosing, we gotta increment & item purge! manually~
 	if(direct) 
 	{
 		IncrementFlag("GIL_DOSES");
@@ -357,13 +356,13 @@ public function getCashForDoggo(direct:Boolean = false):void
 		//[Sell] //Continue the next line
 		//[Don’t Sell]
 		clearMenu();
-		//[Credits] <i>“Ask him to pay in cash.”</i> //Leads to Sell section.
+		//[Credits] “Ask him to pay in cash.” //Leads to Sell section.
 		addButton(0,"Sell",getCashForDoggo,true,"Sell","Go ahead and sell.");
-		//[Sex] <i>“Ask him to pay with sex.”</i> //Leads to the Sex section.
+		//[Sex] “Ask him to pay with sex.” //Leads to the Sex section.
 		if(pc.lust() >= 33) addButton(1,"Sex",sexWithGilYaDumbshit,true,"Sex","Ask him to pay with sex.");
-		else addDisabledButton(1,"Sex","Sex","You aren't aroused enough for that...");
-		//[Gift] <i>“Tell him it’s a gift.”</i>
-		addButton(2,"Gift",gilGiftGift,undefined,"Gift","Tell him it's a gift.");
+		else addDisabledButton(1,"Sex","Sex","You aren’t aroused enough for that...");
+		//[Gift] “Tell him it’s a gift.”
+		addButton(2,"Gift",gilGiftGift,undefined,"Gift","Tell him it’s a gift.");
 		return;
 	}
 	output("<i>“Here are the 500 credits, as promised.”</i> He says handing you a credit chit.");
@@ -377,7 +376,7 @@ public function backToGilMenu():void
 {
 	clearOutput();
 	showGil();
-	output("Is there anything else you'd like from Gil?");
+	output("Is there anything else you’d like from Gil?");
 	gilMenu();
 }
 
@@ -485,9 +484,9 @@ public function sexWithGilYaDumbshit(fromTrade:Boolean = false):void
 	//if hasn’t revealed lower body and doesn’t have worg eyes:
 	else output("<i>“So, how about that blowjob?”</i> asks the dog-morph.");
 	processTime(1);
-	//[Blowjob] <i>“Get a sloppy blowjob from him.”</i> // Requires cock or hardlight.
-	//[Doggystyle] <i>“Fuck him doggystyle.”</i> // Requires cock or hardlight. Greyed out if haven’t given him nine snausages yet.
-	//[Get Off] <i>“Tell him to {give you what he owes you and }get off your ship.”</i>
+	//[Blowjob] “Get a sloppy blowjob from him.” // Requires cock or hardlight.
+	//[Doggystyle] “Fuck him doggystyle.” // Requires cock or hardlight. Greyed out if haven’t given him nine snausages yet.
+	//[Get Off] “Tell him to {give you what he owes you and }get off your ship.”
 	clearMenu();
 	if(pc.hasCock() || pc.hasHardLightStrapOn()) addButton(0,"Blowjob",getASloppyGrillBLowjorb,fromTrade,"Blowjob","Get a sloppy blowjob from him.");
 	else addDisabledButton(0,"Blowjob","Blowjob","You need a penis or hardlight dildo-equipped panties.");
@@ -497,7 +496,7 @@ public function sexWithGilYaDumbshit(fromTrade:Boolean = false):void
 		if((pc.hasCock() && pc.cockThatFits(1000) >= 0) || pc.hasHardLightStrapOn()) addButton(1,"Doggystyle",doggyStyleWithGil,undefined,"Doggystyle","Fuck him doggystyle.");
 		else addDisabledButton(1,"Doggystyle","Doggystyle","You need a penis that will fit inside of him or hardlight equipped underwear in order to do this.");
 	}
-	else addDisabledButton(1,"Doggystyle","Doggystyle","Gil won't do this until he's satisfied with his transformation.");
+	else addDisabledButton(1,"Doggystyle","Doggystyle","Gil won’t do this until he’s satisfied with his transformation.");
 
 	addButton(2,"Get Off",beATotalCuntToGil,fromTrade,"Get Off","Tell him to get off your ship.");
 }
@@ -913,7 +912,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 
 	processTime(30);
 	pc.orgasm();
-	//chars["GIL”</i>].loadInMouth(pc)
+	//chars["GIL"].loadInMouth(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1086,7 +1085,7 @@ public function doggyStyleWithGil():void
 		}
 		if(hardlighted) flags["GIL_HL_DEVIRGINED"] = 1;
 	}
-	pc.cockChange();
+	if(!hardlighted) pc.cockChange();
 
 	//pc is taur:
 	if(pc.isTaur())

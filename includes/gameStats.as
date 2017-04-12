@@ -831,6 +831,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["ANALED_YAMMI"] != undefined) totalVirginitiesTaken++;
 		if(flags["INESSA_VIRGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["SERA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
+		if(flags["GIL_PUSS_FUCKED"] != undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
@@ -3068,9 +3069,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Merch Deck
-			if(flags["MET_RIYA"] != undefined || flags["RIYA_PUNCHED"] != undefined)
+			if(flags["MET_GIL"] != undefined || flags["MET_RIYA"] != undefined || flags["RIYA_PUNCHED"] != undefined)
 			{
 				output2("\n<b><u>Merchant Deck</u></b>");
+				if(flags["MET_GIL"] != undefined)
+				{
+					output2("\n<b>* Gil:</b> Met him");
+					if(flags["GIL_DOSES"] != undefined) output2("\n<b>* Gil, Times You Gave Him Pupper Poppers:</b> " + flags["GIL_DOSES"]);
+					if(flags["GIL_PUSS_FUCKED"] != undefined) output2("\n<b>* Gil, Times You Fucked " + (silly ? "Him Right in the Pussy" : "His Pussy") + ":</b> " + flags["GIL_PUSS_FUCKED"]);
+				}
 				if(flags["MET_RIYA"] != undefined || flags["RIYA_PUNCHED"] != undefined)
 				{
 					output2("\n<b>* Riya:</b> Met her");

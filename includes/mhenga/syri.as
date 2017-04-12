@@ -67,12 +67,15 @@ public function syriGamesStart():void {
 	else addDisabledButton(1,"Bet 50","Bet 50","You’re too poor.");
 	if(pc.credits >= 100) addButton(2,"Bet 100",betSyriCredits,100);
 	else addDisabledButton(2,"Bet 100","Bet 100","You’re too poor.");
-	if(flags["TIMES_WON_AGAINST_SYRI"] == undefined) flags["TIMES_WON_AGAINST_SYRI"] = 0;
-	if(flags["TIMES_LOST_TO_SYRI"] == undefined) flags["TIMES_LOST_TO_SYRI"] = 0;
-	if(flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"] >= 3) addButton(3,"BetYourself",betYourselfAgainstSyri);
 	
+	var timesWin:int = 0;
+	var timesLoss:int = 0;
+	if(flags["TIMES_WON_AGAINST_SYRI"] != undefined) timesWin += flags["TIMES_WON_AGAINST_SYRI"];
+	if(flags["TIMES_LOST_TO_SYRI"] != undefined) timesLoss += flags["TIMES_LOST_TO_SYRI"];
+	if(timesWin + timesLoss >= 3) addButton(3,"BetYourself",betYourselfAgainstSyri);
 	else addDisabledButton(3,"BetYourself");
-	trace("SHIT ADDED UP: " + flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"]);
+	trace("SHIT ADDED UP: " + timesWin + timesLoss);
+	
 	addButton(14,"Back",notTodayDogslut);
 }
 
@@ -93,7 +96,7 @@ public function betSyriCredits(amount:int = 0):void {
 	clearOutput();
 	showSyri();
 	author("Savin");
-	flags["BET_AGAINST_SYRI"] = 1;
+	IncrementFlag("BET_AGAINST_SYRI");
 	flags["SYRI_BETTING_STORAGE"] = amount;
 	
 	if(flags["MET_SYRI"] == undefined) {
@@ -106,7 +109,7 @@ public function betSyriCredits(amount:int = 0):void {
 		clearMenu();
 		addButton(0,"Next",syriGameRouting);
 	}
-	//{PC must succeed two high-difficulty ranged weapon attacks out of three to win.}
+	//PC must succeed two high-difficulty ranged weapon attacks out of three to win.
 	else syriGameRouting();
 }
 
@@ -127,6 +130,11 @@ public function betYourselfAgainstSyri():void {
 		return;
 	}
 
+	var timesWin:int = 0;
+	var timesLoss:int = 0;
+	if(flags["TIMES_WON_AGAINST_SYRI"] != undefined) timesWin += flags["TIMES_WON_AGAINST_SYRI"];
+	if(flags["TIMES_LOST_TO_SYRI"] != undefined) timesLoss += flags["TIMES_LOST_TO_SYRI"];
+	
 	//If you've bet 3+ times against her
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) {
 		output("\n\n<i>“Well, well, feeling brave are we?”</i> the ausar girl says, slipping down from her perch to stalk toward you, hips swaying. She slips around you, one furry hand trailing across your [pc.hip]. <i>“Well, you’re not bad looking and not the worst gamer I’ve seen... not by a long shot... but I feel like I ought to warn you, [pc.name],”</i> she says, pressing herself up against you. At first, your mind can only think of the hefty, oh-so-soft orbs smushed against your back, a pert little teat on each rubbing across your [pc.armor]. After a moment, though, you feel a throbbing something... else... pressing against your [pc.butt].");
@@ -142,7 +150,7 @@ public function betYourselfAgainstSyri():void {
 		addButton(1,"Nope",notTodayDogslut);
 	}
 	//If PC has won and fucked Syri more than not:
-	else if(flags["TIMES_WON_AGAINST_SYRI"] >= flags["TIMES_LOST_TO_SYRI"]) {
+	else if(timesWin + timesLoss > 0 && timesWin >= timesLoss) {
 		output("\n\nSyri licks her lips and slips down beside you, a furry hand running across your hip. <i>“I can’t say I’m not looking forward to a chance to stick my cock in this fine slice of meat... though I gotta admit, losing to you isn’t so bad either. Let’s see what you’ve got!”</i>");
 		//[Go to Bet X text]
 		clearMenu();
@@ -169,17 +177,14 @@ public function syriGameRouting():void {
 	if(misses <= 1) won = true;
 
 	if(won) {
-		if(flags["TIMES_WON_AGAINST_SYRI"] == undefined) flags["TIMES_WON_AGAINST_SYRI"] = 0;
-		flags["TIMES_WON_AGAINST_SYRI"]++;
+		IncrementFlag("TIMES_WON_AGAINST_SYRI");
 	}
 	else {
-		if(flags["TIMES_LOST_TO_SYRI"] == undefined) flags["TIMES_LOST_TO_SYRI"] = 0;
-		flags["TIMES_LOST_TO_SYRI"]++;
+		IncrementFlag("TIMES_LOST_TO_SYRI");
 	}
 	//Bet yourself?
 	if(flags["SYRI_BETTING_STORAGE"] == 9001) {
-		if(flags["TIMES_BET_YOURSELF_AGAINST_SYRI"] == undefined) flags["TIMES_BET_YOURSELF_AGAINST_SYRI"] = 0;
-		flags["TIMES_BET_YOURSELF_AGAINST_SYRI"]++;
+		IncrementFlag("TIMES_BET_YOURSELF_AGAINST_SYRI");
 		if(won) pcBeatsSyriWhenSexBet();
 		else pcLosesToSyriBettingHisAss();
 	}
@@ -211,7 +216,7 @@ public function pcBeatsSyriWhenSexBet():void {
 	else addDisabledButton(2,"Up My Pussy","Up My Pussy","You need at least one vagina on your crotch large enough to accept Syri’s cock to play this scene.");
 	//Available in Syri's menu after winning her bet, requires a hardlight strapon, maybe no cock.
 	//[HL Frot&Fuck] Put your hardlight-equipped [pc.lowerUndergarment] to use on all of Syri's good bits.
-	if(pc.hasHardLightEquipped()) addButton(3,"HL Frot&Fuck",goddamnIAmSoTiredOfThisVanillaAssPuppyGirlSex,undefined,"HL Frot&Fuck","Put your hardlight-equipped [pc.lowerUndergarment] to use on all of Syri's good bits.");
+	if(pc.hasHardLightEquipped()) addButton(3,"HL Frot&Fuck",goddamnIAmSoTiredOfThisVanillaAssPuppyGirlSex,undefined,"HL Frot&Fuck","Put your hardlight-equipped [pc.lowerUndergarment] to use on all of Syri’s good bits.");
 	else addDisabledButton(3,"HL Frot&Fuck","HL Frot&Fuck","You need panties equipped with a hardlight dildo for this.");
 	addButton(4,"Nevermind",nevermindSyri,undefined,"Uh, Never mind","On second thought, you’ll pass on claiming your winnings this time.");
 }
@@ -326,7 +331,7 @@ public function victoryFuckSyrisBunghole():void {
 	pc.cockChange();
 
 	output("\n\nSyri starts to speak, but her voice catches as you push in, instead coming out as a high-pitched squeal as your prick spreads her wide, battering past her spasming sphincter and into the dark, warm, wet channel beyond. She grabs the table, trying to steady herself as your hips rock slowly forward, giving her just enough time to adjust to each and every one of your " + possessive(pc.cockDescript(x)));
-	//{if cockLength >= 12:}
+	//if cockLength >= 12:
 	if(pc.cocks[x].cLength >= 12) output(" many");
 	output(" inches.");
 
@@ -364,8 +369,7 @@ public function victoryFuckSyrisBunghole():void {
 	pc.orgasm();
 	chars["SYRI"].loadInAss(pc);
 	chars["SYRI"].orgasm();
-	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
-	flags["FUCKED_SYRI_COUNT"]++;
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	pc.exhibitionism(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -418,8 +422,7 @@ public function rideSyrisCockYouWinner():void {
 
 	output("\n\nSyri slips away, grabbing her shirt from the floor before turning back to you with a predatory grin. <i>“And next time... I’m on top.”</i>");
 	processTime(30+rand(15));
-	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
-	flags["FUCKED_SYRI_COUNT"]++;
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	pc.orgasm();
 	pc.loadInAss(chars["SYRI"]);
 	chars["SYRI"].orgasm();
@@ -460,7 +463,7 @@ public function pcLosesToSyriCredBetting():void {
 
 	output("\n\n<i>“Not bad, [pc.name], but you’ve gotta learn to watch your ass,”</i> she grins, her tail flicking around to brush your [pc.hips]. <i>“But not bad all the same. Little practice and you’ll be ready for the big leagues.”</i>");
 
-	output("\n\nYou sigh and tap a button on your codex, transferring the credits to the triumphant ausar. She shoots you a wink and saunters off for a drink, leaving you to contemplate your strategy for next time.");
+	output("\n\nYou sigh and tap a button on your codex, transferring " + num2Text(flags["SYRI_BETTING_STORAGE"]) + " credits to the triumphant ausar. She shoots you a wink and saunters off for a drink, leaving you to contemplate your strategy for next time.");
 	pc.credits -= flags["SYRI_BETTING_STORAGE"];
 	processTime(20+rand(5));
 	clearMenu();
@@ -542,10 +545,8 @@ public function pcLosesToSyriBettingHisAss():void {
 	output("”</i>");
 
 	output("\n\nSyri chuckles as she pulls out, leaving your hole feeling empty and well-stretched; your stomach gurgles plaintively, churning as her thick cum drools throughout your bowels. Plenty of it leaks out your [pc.asshole], dripping onto the dusty floor. She steps back and pulls up her pants, giving you a playful swat on the [pc.butt] as she saunters away to the bar, high-fiving some of the other regulars who just watched you get thoroughly plowed. Red-faced and leaking, you gather your gear and stumble to the restroom to get cleaned up.");
-	if(flags["TIMES_BUTTFUCKED_BY_SYRI"] == undefined) flags["TIMES_BUTTFUCKED_BY_SYRI"] = 0;
-	else flags["TIMES_BUTTFUCKED_BY_SYRI"]++;
-	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
-	flags["FUCKED_SYRI_COUNT"]++;
+	IncrementFlag("TIMES_BUTTFUCKED_BY_SYRI");
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	chars["SYRI"].orgasm();
 	pc.exhibitionism(1);
 	processTime(30+rand(15));
@@ -642,8 +643,12 @@ public function syriTalkOne():void {
 	author("Savin");
 	output("<i>“Hey,”</i> Syri says, crossing one leg over the other - just enough to hide the not-insignificant bulge in her pants. <i>“Sorry if I’m a little rough on you at game time. I get pretty into it, you know? Especially when I’ve got a nice piece of ass on the line.");
 	//If PC usually wins:
-	if(flags["TIMES_WON_AGAINST_SYRI"] > flags["TIMES_LOST_TO_SYRI"]) output(" Not that I really mind losing to you, either. I’m a top, but being on bottom can be good, too. You sure make it fun.”</i>");
-	else output("”</i>");
+	var timesWin:int = 0;
+	var timesLoss:int = 0;
+	if(flags["TIMES_WON_AGAINST_SYRI"] != undefined) timesWin += flags["TIMES_WON_AGAINST_SYRI"];
+	if(flags["TIMES_LOST_TO_SYRI"] != undefined) timesLoss += flags["TIMES_LOST_TO_SYRI"];
+	if(timesWin > timesLoss) output(" Not that I really mind losing to you, either. I’m a top, but being on bottom can be good, too. You sure make it fun.");
+	output("”</i>");
 	output("\n\nShe gives you a little smile - a surprisingly shy one - and takes a sip of her drink. <i>“Hey, if you ever want to get out of here... have a little fun, I mean...”</i> she fidgets nervously, <i>“You can always swing by and pick me up in the mornings. No fight for dominance shit, just two friends and a bed. W-we’re friends, right? We haven’t known each other very long, I mean, but once you stick a cock up someone’s ass... sorry. I’m probably making an ass of </i>myself<i>, but hey, I’m lonely and I like you.”</i>");
 
 	output("\n\nSyri gives you a wan smile at that, looking pointedly away and at her plate. <i>“You’re the only other gamer in this dump who can give me a run for my money, and you’re pretty great in the sack... on the table... whatever. Hey, even if you just wanna flop down on the couch and play some vidya for funsies, I’m game for anything. Doesn’t have to be just sex all the time.”</i>");
@@ -665,7 +670,7 @@ public function shootSyriDown():void {
 	output("\n\nSyri’s shoulders slump, but she nods her understanding. <i>“Roger that. No hard feelings; I’m used to it.”</i>");
 
 	output("\n\nShe sighs and turns back to her book, leaving you to walk away in silence.");
-	//{Syri can be approached again at the bar in the AM, re-triggering the conversation until the PC decides having her around is just peachy keen}
+	//Syri can be approached again at the bar in the AM, re-triggering the conversation until the PC decides having her around is just peachy keen
 	flags["SYRI_TALKS"] = undefined;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -680,7 +685,7 @@ public function sureBeFuckFriendsWithSyri():void {
 	output("\n\n<i>“Hey, you’re the captain of a ship, right? I saw you dock a while ago. That’s hot stuff. You should give me a tour sometime... </i>Captain<i> Steele. I haven’t been on a spaceship in ages, and I’d love to see your... captain’s quarters,”</i> she says, giving you a wink as her hand brushes playfully across your thigh.");
 
 	output("\n\nYou nod, telling her you may do just that.");
-	//{Return to Syri's root menu}
+	//Return to Syri's root menu
 	clearMenu();
 	addButton(0,"Next",approachSyriIntheMorning);
 }
@@ -955,6 +960,7 @@ public function syriReverseCowgirlConsensualization():void {
 	processTime(40+rand(10));
 	pc.orgasm();
 	chars["SYRI"].loadInAss(pc);
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
 }
@@ -1014,6 +1020,7 @@ public function missionaryWithTheDogDickedSlutSyri():void {
 	pc.orgasm();
 	chars["SYRI"].loadInAss(pc);
 	chars["SYRI"].orgasm();
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
 }
@@ -1082,6 +1089,7 @@ public function getVagFukkedBySyri():void {
 	pc.loadInMouth(chars["SYRI"]);
 	//pc.loadInCunt(chars["SYRI"], x);
 	chars["SYRI"].orgasm();
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
 }
@@ -1166,6 +1174,7 @@ public function catchAnalFromSyriIfYouDontUseACondom():void {
 	pc.orgasm();
 	pc.loadInAss(chars["SYRI"]);
 	chars["SYRI"].orgasm();
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
 }
@@ -1214,6 +1223,7 @@ public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 	chars["SYRI"].orgasm();
 	pc.loadInMouth(chars["SYRI"]);
 	pc.lust(33);
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	if (postScene == null) addButton(0, "Next", syriSexOutro);
 	else addButton(0, "Next", postScene);
@@ -1277,6 +1287,7 @@ public function bangSyriWithTailcock():void
 	pc.orgasm();
 	chars["SYRI"].orgasm();
 	IncrementFlag("SyriTailcocked");
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
@@ -1308,7 +1319,7 @@ public function syriSexOutro():void {
 }
 
 //Don't Go
-//{High libido/lust PCs}
+//High libido/lust PCs
 public function dontGoAwayYouKnotCunt():void {
 	clearOutput();
 	showSyri(true);
@@ -1325,7 +1336,7 @@ public function dontGoAwayYouKnotCunt():void {
 }
 
 //Me Too
-//{PC takes a shower with Syri. Can lead to a rimjob, or just hanging out and teasing}
+//PC takes a shower with Syri. Can lead to a rimjob, or just hanging out and teasing
 
 
 //Sure
@@ -1345,7 +1356,8 @@ public function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 		output(" Your own steps are a little off-kilter after getting reamed that hard!");
 	}
 	processTime(15+rand(10));
-	//{Return PC to bar}
+	//Return PC to bar
+	currentLocation = "BURT'S MAIN HALL";
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1419,7 +1431,8 @@ public function syriShowerAdventures2():void
 	output("\n\nBy the time you’re both done, Syri’s giving you a grin and offering you a hand up, <i>“Buy you a drink?”</i>");
 	//[Next] //Should take the PC back to purt’s padbass pead ball.
 	processTime(15+rand(10));
-	//{Return PC to bar}
+	//Return PC to bar
+	currentLocation = "BURT'S MAIN HALL";
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1818,8 +1831,7 @@ public function allVaginalPathsMergeHere():void
 	pc.orgasm();
 	chars["SYRI"].orgasm();
 	//pc.loadInCunt(chars["SYRI"],x);
-	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
-	flags["FUCKED_SYRI_COUNT"]++;
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	addButton(0,"Next",syriVagSexWrapupLikeHERDICKOOOOHSNAP);
 	//merge at part 3
@@ -1927,8 +1939,7 @@ public function giveHerYerButt():void
 	//Set early morning encounter if applicable
 	//Increase affection?
 	pc.loadInAss(chars["SYRI"]);
-	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
-	flags["FUCKED_SYRI_COUNT"]++;
+	IncrementFlag("FUCKED_SYRI_COUNT");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1948,7 +1959,7 @@ public function gettingSyrisPanties():void
 	output("\n\n<i>“Make yourself at home,”</i> you tell her, waving the ausar babe in. She grins and enters, wrapping an arm around her coat’s waist to keep its flaps closed. Syri does indeed make herself at home, exploring the familiar surroundings of your starship");
 	if(annoIsCrew()) output(", running a hand across some of Anno’s possessions scattered around the living space. She gives you an almost jealous look, though somehow you doubt it’s because of anything <i>you</i> did..");
 	output(". As she walks, your eyes are naturally drawn to the swaying slip of her hips, half-hidden behind a swishing black tail. Beneath that, you happen to notice that ");
-	if(9999 == 0) output("despite the frigid cold of the planet below,");
+	if(getPlanetName() == "Uveto") output("despite the frigid cold of the planet below,");
 	output(" Syri’s not wearing any shoes. In fact, all she’s wearing below her long coat looks like a set of tight blue fishnets that vanish up her legs.");
 	output("\n\n<i>“Wish I had a ship like this,”</i> Syri chuckles, turning back to you. <i>“I don’t get out into space nearly enough anymore.”</i>");
 	output("\n\nAs she speaks, Syri takes a seat on the arm of your couch and beckons you over, patting the seat beside her invitingly. You join her eagerly, more and more sure you know why your favorite ravenette came to visit. Once you’re seated, Syri leans down and grabs the side of your head, leaning you into her and pressing her face ");
