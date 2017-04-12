@@ -1652,6 +1652,11 @@ public function variableRoomUpdateCheck():void
 		if(!rooms["RESIDENTIAL DECK 12"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["RESIDENTIAL DECK 12"].removeFlag(GLOBAL.NPC);
+	if(flags["MET_GIL"] != undefined)
+	{
+		if(!rooms["9017"].hasFlag(GLOBAL.NPC)) rooms["9017"].addFlag(GLOBAL.NPC);
+	}
+	else rooms["9017"].removeFlag(GLOBAL.NPC);
 
 	/* MHENGA */
 	
