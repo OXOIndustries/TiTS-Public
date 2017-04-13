@@ -63,30 +63,35 @@ public function appearance(forTarget:Creature):void
 		if(target.tallness % 12 != 0) output2(" and " + Math.round(target.tallness % 12) + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
 		output2(" Right now, you’re");
-		if(target.isNude() || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
+		var isNude:Boolean = (target.isNude());
+		var showTits:Boolean = (target.isChestVisible() && target.hasBreasts());
+		var showCrotch:Boolean = (target.isCrotchVisible());
+		var showAss:Boolean = (target.isAssVisible());
+		var allExposed:Boolean = (target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed());
+		if(isNude || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
 		else output2(" wearing " + target.armor.description + ",");
-		if(target.isNude() || target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
+		if(isNude || target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
 		else output2(" using " + target.lowerUndergarment.description + " for underwear,");
-		if(target.isNude() || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
+		if(isNude || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
 		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
-		if(!target.isNude() && ((target.isChestExposed() && target.hasBreasts()) || target.isCrotchExposed() || target.isAssExposed()))
+		if(!isNude && (showTits || showCrotch || showAss))
 		{
-			output2(" Your outfit leaves little to the imagination, exposing your");
-			if(target.isChestExposed() && target.hasBreasts())
+			output2(" Your outfit leaves little to the imagination, " + (!allExposed ? "revealing" : "exposing") + " your");
+			if(showTits)
 			{
 				output2(" breasts");
-				if(target.isCrotchExposed() && target.isAssExposed()) output2(",");
-				else if(target.isCrotchExposed() || target.isAssExposed()) output2(" and");
+				if(showCrotch && showAss) output2(",");
+				else if(target.isCrotchVisible() || showAss) output2(" and");
 			}
-			if(target.isCrotchExposed())
+			if(showCrotch)
 			{
 				output2(" crotch");
-				if(target.isAssExposed()) output2(" and");
+				if(target.isAssVisible()) output2(" and");
 			}
-			if(target.isAssExposed()) output2(" ass");
+			if(showAss) output2(" ass");
 			output2(" to the world.");
 		}
-		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed() && !target.canUseTailsOrFurAsClothes())
+		if(allExposed && !target.canUseTailsOrFurAsClothes())
 		{
 			if(target.exhibitionism() >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");

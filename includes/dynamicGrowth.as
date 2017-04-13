@@ -44,9 +44,24 @@ public function immobilizedUpdate(count:Boolean = false):Number
 		var msg:String = "";
 		var bodyText: String = "";
 		var partList:Array = [];
+		var immobileParts:int = (bodyPart.length);
 		
 		// Hoverboard exception!
-		if(pc.hasItem(new Hoverboard()))
+		if(pc.hasItem(new Hoverboard())) immobileParts = 0;
+		// Underwear exceptions!
+		if(pc.lowerUndergarment is HardlightAGJock)
+		{
+			if(InCollection("balls", bodyPart)) immobileParts--;
+			if(InCollection("penis", bodyPart)) immobileParts--;
+			if(InCollection("clitoris", bodyPart)) immobileParts--;
+		}
+		if(pc.upperUndergarment is HardlightAGBra)
+		{
+			if(InCollection("breast", bodyPart)) immobileParts--;
+		}
+		
+		// Support exceptions!
+		if(immobileParts <= 0)
 		{
 			AddLogEvent("Your", "passive");
 			if(bodyPart.length > 0)
@@ -96,20 +111,29 @@ public function immobilizedUpdate(count:Boolean = false):Number
 			else msg += " enormous body parts";
 			msg += " make";
 			if(InCollection(bodyText, "gigantic gonad", "bloated belly")) msg += "s";
-			msg += " it impossible for you to move at all, you luckily have a remedy for that... Pulling out your pink hoverboard, you carefully guide it under your";
-			if(bodyPart.length == 1)
+			msg += " it impossible for you to move at all, you luckily have a remedy for that...";
+			if(pc.hasItem(new Hoverboard()))
 			{
-				if(bodyPart[0] == "balls") msg += ParseText(" [pc.sack]");
-				else if(bodyPart[0] == "boobs") msg += ParseText(" [pc.chest]");
-				else if(bodyPart[0] == "belly") msg += ParseText(" [pc.belly]");
-				else if(bodyPart[0] == "butt") msg += ParseText(" [pc.butt]");
+				msg += " Pulling out your pink hoverboard, you carefully guide it under your";
+				if(bodyPart.length == 1)
+				{
+					if(bodyPart[0] == "balls") msg += ParseText(" [pc.sack]");
+					else if(bodyPart[0] == "boobs") msg += ParseText(" [pc.chest]");
+					else if(bodyPart[0] == "belly") msg += ParseText(" [pc.belly]");
+					else if(bodyPart[0] == "butt") msg += ParseText(" [pc.butt]");
+					else msg += " body";
+				}
 				else msg += " body";
+				msg += ", relishing in the friction that’s cause by rubbing";
+				if(bodyPart.length == 1 && bodyPart[0] == "boobs") msg += " them";
+				else msg += " it";
+				msg += " against the toy’s surface. With a few audible struggles, the hoverboard does its job and lifts your immobilizing weight off the ground!";
 			}
-			else msg += " body";
-			msg += ", relishing in the friction that’s cause by rubbing";
-			if(bodyPart.length == 1 && bodyPart[0] == "boobs") msg += " them";
-			else msg += " it";
-			msg += " against the toy’s surface. With a few audible struggles, the hoverboard does its job and lifts your immobilizing weight off the ground! Now you can travel with ease... more or less.";
+			else if((pc.lowerUndergarment is HardlightAGJock) || (pc.upperUndergarment is HardlightAGBra))
+			{
+				msg += " Activating the anti-gravity switches in your undergarments, you quickly feel the immobilizing weight being lifted off the ground!";
+			}
+			msg += " Now you can travel with ease... more or less.";
 			
 			if(msg.length > 0) ExtendLogEvent(msg);
 			
@@ -126,7 +150,11 @@ public function bodyPartUpdates(partName:String = "none"):void
 	var weightQ:Number = pc.weightQ(partName);
 	var heightQ:Number = pc.heightRatio(partName);
 	
+	// Exceptions
 	if(pc.isGoo()) { /* Goos are immune to immobilization? */ }
+	else if(InCollection(partName, ["testicle", "penis", "clitoris"]) && (pc.lowerUndergarment is HardlightAGJock)) { /* Anti-grav underwear lifts crotch stuff. */ }
+	else if(InCollection(partName, ["breast"]) && (pc.upperUndergarment is HardlightAGBra)) { /* Anti-grav tops lifts chest stuff. */ }
+	// Weigh parts and add effects where necessary
 	else
 	{
 		if(partName == "testicle" && pc.balls > 0)
@@ -235,22 +263,22 @@ public function bodyPartCleanup(partName:String = "none"):void
 	switch (partName)
 	{
 		case "testicle":
-			altCheck = (pc.balls <= 0);
+			altCheck = (pc.balls <= 0 || (pc.lowerUndergarment is HardlightAGJock));
 			lvlRatio = lvlRatioBalls;
 			perRatio = percentBalls;
 			break;
 		case "penis":
-			altCheck = (!pc.hasCock());
+			altCheck = (!pc.hasCock() || (pc.lowerUndergarment is HardlightAGJock));
 			lvlRatio = lvlRatioPenis;
 			perRatio = percentPenis;
 			break;
 		case "clitoris":
-			altCheck = (!pc.hasVagina());
+			altCheck = (!pc.hasVagina() || (pc.lowerUndergarment is HardlightAGJock));
 			lvlRatio = lvlRatioClits;
 			perRatio = percentClits;
 			break;
 		case "breast":
-			altCheck = (!pc.hasBreasts());
+			altCheck = (!pc.hasBreasts() || (pc.upperUndergarment is HardlightAGBra));
 			lvlRatio = lvlRatioBoobs;
 			perRatio = percentBoobs;
 			break;
@@ -292,6 +320,24 @@ public function bodyPartCleanup(partName:String = "none"):void
 public function nutSwellUpdates():void
 {
 	bodyPartUpdates("testicle");
+	
+	// Special underwear changes!
+	if(pc.lowerUndergarment is HardlightAGJock)
+	{
+		var bigEndowments:Boolean = ((pc.balls > 0 && pc.ballSizeRaw >= 15) || (pc.cocks.length > 0 && pc.biggestCockLength() >= 15) || (pc.totalClits() > 0 && pc.clitLength >= 15));
+		if(bigEndowments && pc.lowerUndergarment.sexiness <= 3)
+		{
+			AddLogEvent(ParseText("You feel a tightening around your groin, the hardlight jock bulging and accentuating the vast bigness of your endowment housed within... <b>Your underwear looks a little sexier now!</b>"), "passive");
+			pc.createStatusEffect("Jock Sexiness");
+			pc.lowerUndergarment.onEquip(pc);
+			pc.removeStatusEffect("Jock Sexiness");
+		}
+		else if(!bigEndowments && pc.lowerUndergarment.sexiness > 3)
+		{
+			AddLogEvent(ParseText("No longer bulging it to its limits, the hardlight jock relaxes around your groin, giving you some much needed space to breath--however, due to that, <b>it seems to have lost a little bit of its sexual appeal</b>."), "passive");
+			pc.lowerUndergarment.onEquip(pc);
+		}
+	}
 }
 
 public function nutStatusCleanup():void
