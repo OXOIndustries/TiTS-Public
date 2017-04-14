@@ -169,6 +169,8 @@ public function accupitchLabBonus():void
 		//notNude:
 		if(!pc.isAssExposed()) output("drop your [pc.assCover] just enough so that the tattoo peeks out and");
 		output(" place your [pc.butt] close to the scanner. Sure enough, the little holo-pad picks up on your barcode and scans it with an approving <i>blip</i>, the door hissing open soon after...");
+		
+		flags["ACCUPITCH_VISIT"] = 1;
 	}
 	//repeat:
 	else
@@ -187,6 +189,7 @@ public function accupitchLabBonus():void
 	}
 	output("\n\nWalking into Accu-Pitch labs again, your eyes are greeted by a wealth of scientific equipment: blinking lights and computers, and bundles of wires lining the walls of the small lab. Though, beyond that most of the equipment seems to be related to audio: radios and speakers, various instruments lined up next to microphones, even a row of wine glasses and spoons placed carefully near a group of transceivers.");
 	output("\n\nBelle is nearby, her pants looking as full as ever, jotting down notes on a holo-pad as she moves from terminal to terminal, working diligently.");
+	
 	clearMenu();
 	addButton(0,"Belle",approachBelle,undefined,"Belle","Meet with the doctor.");
 	addButton(14,"Leave",move,rooms[currentLocation].northExit);
@@ -612,7 +615,7 @@ public function postWalkiesHeat2():void
 			output("your bitch thoroughly bred and filled with cum");
 			if(pc.isLactating()) output(" (and [pc.milk])");
 		}
-		output(", you’re left with your [pc.chest] heaving over the blonde ausar. Looking towards your master for some sign of approval, she gives you a smile and a nod, along with an assortment of <i>“Good " + pc.("boy","girl") + ",”</i> and other praises.");
+		output(", you’re left with your [pc.chest] heaving over the blonde ausar. Looking towards your master for some sign of approval, she gives you a smile and a nod, along with an assortment of <i>“Good " + pc.mf("boy","girl") + ",”</i> and other praises.");
 		output("\n\n<i>What a good pet you are, no doubt you’re a good breeder as well now.</i>");
 	}
 	//Else:
@@ -662,7 +665,7 @@ public function subTunerOvah():void
 		else output(" before returning to the matter at hand again: you.");
 	}
 	//firstTime:
-	if(flags["ACCUPITCH_VISIT"] == undefined)
+	if(flags["SUB_TUNERED"] == undefined)
 	{
 		output("\n\n<i>“Before I let you go,”</i> Belle begins, reaching over to a nearby lab bench and grabbing a small, black, rectangular box, <i>“There’s just one last thing I need to give you.”</i>");
 		output("\n\nWith that said, the Lady scientist walk around behind you, taking up a position just behind your [pc.butt]. <i>You’re unable to control your excitement, expecting another treat from your master");
@@ -695,14 +698,14 @@ public function subTunerOvah():void
 
 	output("\n\nAt this point you can only give your former-master a blank stare, finding yourself at a loss for words. Belle knows just what to say though: <i>“");
 	//firstTime: 
-	if(flags["ACCUPITCH_VISIT"] == undefined) output("Hmm, why don’t you keep that collar; no doubt I’ll be working on a new prototype for quite some time. I must say, you’re one of the best subjects I’ve ever had, and it would just be </i>wonderful<i> if you ever felt like running some more tests with me. Don’t worry about that thing turning on, by the way. It’s got a proximity limiter installed, and can’t be activated unless you’re well and deep inside my lab. ");
+	if(flags["SUB_TUNERED"] == undefined) output("Hmm, why don’t you keep that collar; no doubt I’ll be working on a new prototype for quite some time. I must say, you’re one of the best subjects I’ve ever had, and it would just be </i>wonderful<i> if you ever felt like running some more tests with me. Don’t worry about that thing turning on, by the way. It’s got a proximity limiter installed, and can’t be activated unless you’re well and deep inside my lab. ");
 	//notNude: 
 	if(!pc.isNude()) output("Well, I suppose you should get dressed and be on your way.");
 	else output("Well, I suppose you should be on your way then, my pet.");
 	output("”</i>");
 	output("\n\nYeah, that sounds like a good idea right about now.");
 
-	if(flags["ACCUPITCH_VISIT"] == undefined)
+	if(flags["SUB_TUNERED"] == undefined)
 	{
 		output("\n\n<b>You got the Sub-Tuner collar!</b>");
 		//Should give and equip the Sub-Tuner, as well as add it to the collar selection. Description: Collar - Sub-Tuner: a black leather collar covered in a web of wiring and circuitry.
@@ -713,7 +716,6 @@ public function subTunerOvah():void
 	}
 	//[Next] //Should return the PC to outside of AccuPitch labs, adds some libido.
 
-	IncrementFlag("ACCUPITCH_VISIT");
 	IncrementFlag("SUB_TUNERED");
 	processTime(10);
 	clearMenu();
