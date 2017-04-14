@@ -1508,6 +1508,11 @@ public function appearance(forTarget:Creature):void
 		}
 		
 		//Tramp Stamps
+		if(target.hasPerk("Barcoded"))
+		{
+			if(rand(2) == 0) output2(" There’s a barcode on your left butt cheek, forever marking you as the property of Belle and Accu-Pitch Labs.");
+			else output2(" On one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.");
+		}
 		if(target.hasPerk("Slut Stamp")) output2(" To highlight your vulgarity, a tattoo is permanently printed on your lower back, advertising how much of a slut you are to anyone who sees it.");
 		
 		//TAILS
@@ -2274,12 +2279,6 @@ public function appearance(forTarget:Creature):void
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
 		if(target.canCoverSelf(false, "wings")) addGhostButton(btnIndex++, StringUtil.toDisplayCase(target.wingsDescript(true)), selectWingPref, undefined, "Position " + StringUtil.toDisplayCase(target.wingsDescript(true)), "Change the position of your " + target.wingsDescript(true) + ".");
 
-		if(target.hasPerk("Barcoded")) 
-		{
-			if(rand(2) == 0) output2("\n\nThere’s a barcode on your left butt cheek, forever marking you as the property of Belle and AccuPitch Labs.");
-			else output2("\n\nOn one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.");
-		}
-
 		//PC Goo'ed up?
 		if(target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{
@@ -2405,8 +2404,8 @@ public function manageWornCollar():void
 		{
 			output2("Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled ");
 			//anno/SyriCrew/SavedKiro: 
-			if(flags["SUBTUNER_NAMED"] == 2) output2("<i>“[pc.name]”</i>");
-			else output2("<i>“Subject 69”</i>");
+			if(flags["SUBTUNER_NAMED"] == 2) output2("“[pc.name]”");
+			else output2("“Subject 69”");
 			output2(".");
 		}
 		else output2("You are currently wearing " + wornCollar.storageName + ".");
@@ -2423,13 +2422,19 @@ public function manageWornCollar():void
 		var itm:StorageClass = pc.getKeyItem(COLLAR_LIST[i] + " Collar");
 		if (itm != null)
 		{
-			addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollar, COLLAR_LIST[i]);
+			if(itm.value1 == 1) addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Remove this collar.");
+			else addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Wear this collar.");
 		}
 	}
 	
 	addGhostButton(14, "Back", backToAppearance, pc);
 }
 
+public function toggleCollarManage(newCollar:String):void
+{
+	toggleCollar(newCollar);
+	manageWornCollar();
+}
 public function toggleCollar(newCollar:String):void
 {
 	var itm:StorageClass = pc.getKeyItem(newCollar + " Collar");
@@ -2446,7 +2451,6 @@ public function toggleCollar(newCollar:String):void
 		if (wornCollar != null) wornCollar.value1 = 0;
 		itm.value1 = 1;
 	}
-	manageWornCollar();
 }
 
 public function boobStuff(forTarget:Creature = null):void
