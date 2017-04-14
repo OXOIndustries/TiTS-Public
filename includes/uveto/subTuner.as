@@ -38,7 +38,8 @@ public function subTunerUpgraded():Boolean
 public function uvetoSubtunerCollectionBootyButtsSupremeEatDabootyLikeGroceries():void
 {
 	clearOutput();
-
+	showName("SUB-\nTUNER");
+	author("HugsAlright");
 	output("Walking over to the sleek white table, you ");
 	if(pc.isBimbo()) output("bend all the way over");
 	else output("kneel down");
@@ -62,7 +63,7 @@ public function uvetoSubtunerCollectionBootyButtsSupremeEatDabootyLikeGroceries(
 public function putOnACyberneticDoggieCollarBecauseYoureNotVerySmart():void
 {
 	clearOutput();
-
+	author("HugsAlright");
 	output("Abandoning whatever caution you may have had before, you bring the collar to your neck, slowly wrapping it around your nape until the two ends of its buckle are right next to each other. Well, you’ve come this far already, no turning back now. You let the two electro-magnets snap closed together with a metallic <i>ca-thunk</i>, and as soon as the buckle is well and shut, a small red light turns on. Shortly after the crimson beacon starts blinking in the corner of your eye, the collar starts to emit a soft metallic hum. You feel your thoughts growing hazy as that gentle noise floods your mind.");
 	output("\n\nIt’s as if your own body is becoming heavier under the weight of the sound, almost to the point where you consider sitting down before a static-filled voice coming from the collar breaks your focus.");
 	output("\n\n<i>“Well, well,”</i> is the first thing you hear; the voice is poised, and most definitely feminine, <i>“Looks like someone other than me finally found my collar.”</i>");
@@ -82,7 +83,7 @@ public function putOnACyberneticDoggieCollarBecauseYoureNotVerySmart():void
 public function leaveTheSubTuner():void
 {
 	clearOutput();
-
+	author("HugsAlright");
 	output("Knowing full well that this thing is not your average collar, you carefully place the ring of leather and wires back where you found it, right under the chair.");
 	output("\n\nMaybe someone meant to leave it there?");
 	processTime(1);
@@ -94,7 +95,7 @@ public function leaveTheSubTuner():void
 public function meetingBelle():void
 {
 	clearOutput();
-
+	author("HugsAlright");
 	output("You wait there for a while, not feeling any need to move from where you are. <i>Resting here on your hands and knees feels perfect.</i> A few passersby give you strange looks, but you can’t really bring yourself to care; all you can really do is wait here on all fours, feeling happy more than anything else.");
 	output("\n\nOnly a little more time passes before you hear the same voice you heard from the collar, though this time it’s free of the static from earlier.");
 	output("\n\n<i>“Ah, there you are,”</i> the voice says, causing you to turn your gaze towards what looks to be a human woman. She’s got a very wide set of hips that only draw attention to an even more impressive derriere... along with the enormous bulge opposite that. You move your gaze up past her slim waist and comparatively large breasts, double-Ds at the least, to a jaw-droppingly feminine face: pouty lips and green eyes. Her long, black hair is being kept in a ponytail, keeping it away from her fair skin and the lab coat she’s wearing. All you can feel looking at her is an overwhelming want, your whole body eagerly awaiting whatever it is she has to say.");
@@ -126,6 +127,7 @@ public function getSubTunered():void
 	showBelle();
 	currentLocation = "SUBSHIT";
 	generateMap();
+	author("HugsAlright");
 	output("You are led around by this wonderful woman around the wabeship that is Uveto station, crawling along the floor until you reach what must be the scientist’s lab.");
 	output("\n\nFinally walking inside behind the scientist, your eyes are greeted by a wealth of scientific equipment: blinking lights and computers, and bundles of wires lining the walls of the small lab. Though, beyond that most of the equipment seems to be related to audio: radios and speakers, various instruments lined up next to microphones, even a row of wine glasses and spoons placed carefully near a group of transceivers.");
 	output("\n\n<i>“Welcome,”</i> the lady-scientist exclaims, extending an arm, <i>“To Accu-Pitch labs, or </i>my lab<i>, if you want to get specific.”</i> She turns around to look down at you, <i>“What you’re wearing there is one of my inventions. I call it the Sub-Tuner. It releases a series of harmonic frequencies that alter brain patterns, making the wearer more submissive and... suggestible, but I’m sure you’ve already noticed that.”</i>");
@@ -157,6 +159,7 @@ public function accupitchLabBonus():void
 	showBelle();
 	currentLocation = "SUBSHIT";
 	generateMap();
+	author("HugsAlright");
 	//firstTime:
 	if(flags["ACCUPITCH_VISIT"] == undefined)
 	{
@@ -193,7 +196,7 @@ public function approachBelle():void
 {
 	clearOutput();
 	showBelle();
-
+	author("HugsAlright");
 	output("You walk up to Belle, alerting her to your presence along the way. She quickly turns around and greets you with a smile.");
 	
 	clearMenu();
@@ -216,7 +219,9 @@ public function approachBelle():void
 
 public function wearingSubTuner():Boolean
 {
-	return ((pc as PlayerCharacter).hasKeyItem("Sub-Tuner Collar"));
+	var itm:StorageClass = pc.getKeyItem("Sub-Tuner Collar");
+	if(itm != null) return (itm.value1 == 1);
+	return false;
 }
 
 //[Experiments]
@@ -225,6 +230,7 @@ public function experimentsWithBelle():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("You tell Belle that you would very much like to help her with more of her experiments, resulting in a big grin from your soon-to-be master.");
 
 	//notWearingSubTuner:
@@ -255,6 +261,7 @@ public function kennelSubTuner():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	//notNude:
 	if(!pc.isNude())
 	{
@@ -340,6 +347,7 @@ public function walkiesWithBelleButt():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("<i>“But,”</i> Belle begins, giving her finger a little waggle and walking towards the door of her lab in a way that makes her booty quake in the most perfect way, <i>“Why don’t we see just how far we can push those protocols?”</i>");
 	output("\n\nYou’re not quite sure what that means, but ");
 	//pcAusar/Kaithrit/Half:
@@ -370,6 +378,7 @@ public function walkiesPart2():void
 {
 	clearOutput();
 	showBelle(true);
+	author("HugsAlright");
 	currentLocation = "UVS B9";
 	generateMap();
 	output("Belle leads you around Uveto station for quite some time, testing the abilities of her collar in all different ways. Sometimes she encourages you to go receive all manners of pets and praise from passersby, only to later chide you for talking to strangers, though, you can’t find yourself upset about it. <i>Your master knows best, after all.</i> Other times she instructs you to provide passing huskar, toves, and other aliens with a show, making you wiggle your butt in the air for them. Some of them respond to your teasing movements with slaps and gropes, ");
@@ -471,6 +480,7 @@ public function postWalkiesHeat():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("Belle walks you back to her lab, keeping a firm grip on your leash in an attempt to avoid any further distractions, although your naked form and cum-covered [pc.face] draw more than a few lustful looks on the way back. Your master keeps you in line though, all the way back to her scientific workspace.");
 	currentLocation = "SUBSHIT";
 	generateMap();
@@ -483,6 +493,7 @@ public function postWalkiesHeat2():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	output("Once you’re well within the relative privacy of Belle’s lab, the lady scientist walks over to a nearby bench and picks up a small remote, still leading you by your leash.");
 	output("\n\n<i>“This,”</i> she begins, holding up the remote for you to see, <i>“Is the newest addition to the Sub-Tuner, and I’ve still yet to test it. So, you’re going to be the very first person to try out the new ‘heat’ functions.”</i> The green-eyed woman goes to press a small button on the remote before continuing, keeping her eyes fixed on you, <i>“You may notice some... unpleasant sensations.”</i>");
 	output("\n\nAlmost immediately after that little switch is flicked, you can feel your ");
@@ -635,6 +646,7 @@ public function subTunerOvah():void
 {
 	clearOutput();
 	showBelle();
+	author("HugsAlright");
 	var x:int = -1;
 	x = pc.cockThatFits(1000);
 	if(x >= 0 && !pc.hasVagina())
