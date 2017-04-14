@@ -74,6 +74,7 @@ public function syriGamesStart():void {
 	if(flags["TIMES_LOST_TO_SYRI"] != undefined) timesLoss += flags["TIMES_LOST_TO_SYRI"];
 	if(timesWin + timesLoss >= 3) addButton(3,"BetYourself",betYourselfAgainstSyri);
 	else addDisabledButton(3,"BetYourself");
+	if(syriIsAFuckbuddy()) addButton(4,"Hug",syriHugStuff,undefined,"Hug","Hug the gamer-pup.");
 	trace("SHIT ADDED UP: " + timesWin + timesLoss);
 	
 	addButton(14,"Back",notTodayDogslut);
@@ -598,9 +599,13 @@ public function syriMorningMenu():void
 	if(syriIsAFuckbuddy()) {
 		if(pc.lust() >= 33) addButton(1,"Sex",syriSexMenu);
 		else addDisabledButton(1,"Sex");
+		//[Kiss Her]
+		//Morning interactions w/ Syri, must be fuckbuddies
+		addButton(4,"Kiss Her",morningInteractionsWithSyriKissHer);
 	}
 	addButton(2,"Appearance",syriAppearance);
 	if(flags["UNLOCK_SYRI_ANNO_TALK"] != undefined) addButton(3,"Anno",syriTalksAboutAnno);
+
 	addButton(14,"Leave",leaveMorningSyri);
 }
 
@@ -2247,4 +2252,50 @@ public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET4():v
 	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+//[Kiss Her]
+//Morning interactions w/ Syri, must be fuckbuddies
+public function morningInteractionsWithSyriKissHer():void
+{
+	clearOutput();
+	showSyri();
+	author("Savin");
+	output("You slide on over to Syri, hooking a finger over her datapad to push it out of the way.");
+	output("\n\n<i>“Hey, I’m-”</i> she starts, only to be cut off as you lean in, cupping one of the ausar’s cheeks and locking lips with her. Her tail shoots out behind her like an arrow before starting to wag, beating rapidly against the barstool. She sighs lightly and plants a hand on your hip, returning the gesture once her momentary surprise washes past her.");
+	output("\n\n<i>“I’m into that,”</i> Syri chuckles once you break the kiss. Her hand wanders down your leg, brushing across your crotch. <i>“Especially if it’s just the beginning.”</i>");
+	processTime(2);
+	pc.lust(2);
+	while(pc.lust() < 33)
+	{
+		pc.lust(1);
+	}
+	clearMenu();
+	syriMorningMenu();
+	addDisabledButton(4,"Kiss Her","Kiss Her","You just did that.");
+}
+
+//[Hug]
+//daytime only. Must be fuckbuddies.
+public function syriHugStuff():void
+{
+	clearOutput();
+	showSyri();
+	output("Actually, you’ve got your eye on something more fun than a game. You push Syri’s hardlight gun out of the way and step up to the big ol’ brunette, wrapping your arms around her and giving her a quick, hard hug.");
+	output("\n\n<i>“Oh! H-hey there!”</i> Syri laughs, tail wagging. She ");
+	if(pc.hasHair()) output("scruffles your [pc.hair]");
+	else output("pats your head");
+	output(" and starts to step back, smiling.");
+	processTime(2);
+	if(pc.lust() >= 33)
+	{
+		output("\n\nBefore she can get out of reach, you shift your hands down and grab two handfuls of that sweet ausar booty. She yelps, and you immediately hear jeers and cat-calls from the gang of gamers surrounding you as you pull the ausar babe back against you, kneading that ass like dough. You feel a thick, hard package pressing against your thigh, and Syri’s ears flatten against her head. You just lean in and give her a kiss, thrusting your tongue into her mouth. She’s too embarrased and turned on to resist, letting you explore her mouth freely for a good long while.");
+		output("\n\n<i>“God dammit!”</i> she hisses when you finally let her go. <i>“I build up all this street cred and now they’re just talkin’ about my ass again! Dammit!”</i>");
+		output("\n\n<i>“Admit it,”</i> you laugh, eying her crotch. <i>“You love it.”</i>");
+		output("\n\nSyri stiffens - in posture and in her pants - and grumbles something under her breath that sounds an awful lot like <i>“You know me too damn well.”</i>");
+		processTime(1);
+		pc.lust(4);
+	}
+	clearMenu();
+	syriMorningMenu();
 }
