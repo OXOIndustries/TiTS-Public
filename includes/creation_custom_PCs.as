@@ -61,6 +61,68 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			siliconeBoners.quantity = 10;
 			pc.inventory.push(siliconeBoners);
 			break;
+		case "galthus":
+			if(!TF) break;
+			if(!pc.hasCock()) pc.createCock();
+			pc.cocks[0].cLengthRaw = 11;
+			pc.cocks[0].cThicknessRatioRaw = 1.3;
+			pc.cumMultiplierRaw = 150;
+			pc.ballEfficiency = 400;
+			pc.intelligence(2);
+			pc.reflexes(2);
+			pc.aim(2);
+			if(pc.tallness < (6*12+3)) pc.tallness = 6*12 + 3;
+			if(pc.thickness > 40) pc.thickness = 40;
+			pc.eyeColor = "black";
+			pc.eyeType = GLOBAL.TYPE_BEE;
+			pc.earType = GLOBAL.TYPE_DRIDER;
+			pc.credits += 2000;
+			bonusTexts = "You were born a bit different than expected, but from differences come strength... and a very productive set of genitals.";
+			break;
+		case "legojohn":
+			if(!TF) break;
+			pc.tallness = 12*5+11;
+			pc.tone = 80;
+			pc.thickness = 25;
+			pc.faceType = GLOBAL.TYPE_SHARK;
+			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+			pc.scaleColor = "gray";
+			pc.hairLength = pc.tallness/2;
+			pc.hairColor = "blue";
+			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.wingType = GLOBAL.TYPE_SHARK;
+			pc.wingCount = 1;
+			pc.hipRatingRaw = 7;
+			pc.buttRatingRaw = 5;
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_SHARK;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.legType = GLOBAL.TYPE_CANINE;
+			pc.legCount = 2;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_PAWS);
+			pc.breastRows[0].breastRatingRaw = 8;
+			pc.boostLactation(100);
+
+			if(!pc.hasCock()) pc.createCock();
+			if(pc.cockTotal() < 2) pc.createCock();
+			pc.shiftCock(0,GLOBAL.TYPE_CANINE);
+			pc.shiftCock(1,GLOBAL.TYPE_CANINE);
+			pc.cocks[0].knotMultiplier = 1.333333;
+			pc.cocks[0].cLengthRaw = 19.5;
+			pc.cocks[0].cThicknessRatioRaw = 1.230769230769231;
+			pc.cocks[1].knotMultiplier = 1.333333;
+			pc.cocks[0].cLengthRaw = 20;
+			pc.cocks[0].cThicknessRatioRaw = 1.5;
+
+			if(!pc.hasVagina()) pc.createVagina();
+			pc.vaginas[0].wetnessRaw = 2;
+			pc.clitLength = 0.3;
+			bonusTexts = "Despite a curious blend of canine and shark genes finding their way into your genome, you are still Victor Steele's heir - but one with two big-ass dog-dicks and a desire to use them.";
+			break;
 		//Fetysh - Female, max fertility, the perks that increase pregnancy speed (I believe Marae's, Fera's and the brood mother one). Other perks I'll enjoy getting during leveling. As for character specifics, short, about 4'11", 95lbs, tentacle hair, blue-black skin, spaded tail, normal hands/feet. Virginal cunt/ass to start with and C-cup breasts. (Can those resist most normal forms of shrinking? Not all if you could, sort of like the bimbo body that keeps them at a minimum size)
 		case "fetysh":
 			if(!TF) break;
