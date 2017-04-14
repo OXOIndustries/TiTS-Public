@@ -2359,7 +2359,8 @@ public function appearance(forTarget:Creature):void
 }
 
 private var COLLAR_LIST:Array = [
-	"Jerynn’s"
+	"Jerynn’s",
+	"Sub-Tuner"
 ]
 
 public function hasCollars():Number
@@ -2393,7 +2394,15 @@ public function manageWornCollar():void
 	var wornCollar:StorageClass = getWornCollar();
 	if (wornCollar != null)
 	{
-		output2("You are currently wearing " + wornCollar.storageName + ".");
+		if(wornCollar.storageName == "Sub-Tuner Collar")
+		{
+			output2("Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled ");
+			//anno/SyriCrew/SavedKiro: 
+			if(flags["SUBTUNER_NAMED"] == 2) output2("<i>“[pc.name]”</i>");
+			else output2("<i>“Subject 69”</i>");
+			output2(".");
+		}
+		else output2("You are currently wearing " + wornCollar.storageName + ".");
 	}
 	else
 	{

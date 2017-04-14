@@ -213,9 +213,21 @@ public function initUvetoRooms():void
 	rooms["UVS F9"].system = "SYSTEM: SIRETTA";
 	rooms["UVS F9"].northExit = "UVS F7";
 	rooms["UVS F9"].westExit = "UVS D9";
+	rooms["UVS F9"].southExit = "SUBSHIT";
 	rooms["UVS F9"].moveMinutes = 1;
 	rooms["UVS F9"].addFlag(GLOBAL.INDOOR);
 	rooms["UVS F9"].addFlag(GLOBAL.PUBLIC);
+	rooms["UVS F9"].runOnEnter = subTunerBonusButts;
+
+	rooms["SUBSHIT"] = new RoomClass(this);
+	rooms["SUBSHIT"].roomName = "";
+	rooms["SUBSHIT"].description = "";
+	rooms["SUBSHIT"].planet = "UVETO STATION";
+	rooms["SUBSHIT"].system = "SYSTEM: SIRETTA";
+	rooms["SUBSHIT"].northExit = "UVS F9";
+	rooms["SUBSHIT"].moveMinutes = 1;
+	rooms["SUBSHIT"].addFlag(GLOBAL.INDOOR);
+	rooms["SUBSHIT"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["UVS H7"] = new RoomClass(this);
 	rooms["UVS H7"].roomName = "EXECUTIVE\nLOBBY";
