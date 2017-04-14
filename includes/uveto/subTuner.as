@@ -167,7 +167,8 @@ public function accupitchLabBonus():void
 		output("\n\nYou start with your eye, but the scanner does nothing, then your palm, then your fingertips, but nothing seems to be doing the trick.");
 		output("\n\nWait, could it be that barcode the woman-scientist put on your ass? Well, it’s worth a shot. You ");
 		//notNude:
-		if(!pc.isAssExposed()) output("drop your [pc.assCover] just enough so that the tattoo peeks out and} place your [pc.butt] close to the scanner. Sure enough, the little holo-pad picks up on your barcode and scans it with an approving <i>blip</i>, the door hissing open soon after...");
+		if(!pc.isAssExposed()) output("drop your [pc.assCover] just enough so that the tattoo peeks out and");
+		output(" place your [pc.butt] close to the scanner. Sure enough, the little holo-pad picks up on your barcode and scans it with an approving <i>blip</i>, the door hissing open soon after...");
 	}
 	//repeat:
 	else
