@@ -5204,6 +5204,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Accu-Pitch
+			if(flags["ACCUPITCH_VISIT"] != undefined)
+			{
+				output2("\n<b><u>Accu-Pitch Labs</u></b>");
+				output2("\n<b>* Belle:</b> Met her");
+				variousCount++;
+			}
 			// Carbonado
 			if(flags["MET_CFS"] != undefined)
 			{
