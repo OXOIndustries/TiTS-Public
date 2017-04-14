@@ -11874,11 +11874,11 @@
 			}
 			//Taurs
 			if (isTaur() && rand(3) == 0) {
-				desc += RandomInCollection("flank", "flank", "flank", "haunch", "hindquarter");
+				desc += RandomInCollection("flank", "flank", "flank", "haunch");
 			}
 			//Non taurs or taurs who didn't roll flanks
 			else {
-				desc += RandomInCollection("hip", "hip", "hip", "side", "quarter");
+				desc += RandomInCollection("hip", "hip", "hip", "side");
 			}
 			if (asPlural) desc = plural(desc);
 			return desc;
@@ -11906,293 +11906,301 @@
 			var desc: String = "";
 			var rando: Number = 0;
 			var softbutt: Boolean = hasSoftButt();
-			if (buttRating() <= 1) {
-				if (tone >= 60 && !softbutt) desc += "incredibly tight, perky ";
-				else {
-					if (rand(2) == 0) desc = "tiny";
-					else if (rand(2) == 0) desc = "very small";
-					else desc = "dainty";
-					//Soft PC's buns!
-					if (tone <= 30 && rand(3) == 0) desc += " yet soft";
-					desc += " ";
-				}
-			} else if (buttRating() < 4) {
-				if (tone >= 65 && !softbutt) {
-					rando = rand(6);
-					if (rando == 0) desc = "perky, muscular ";
-					else if (rando == 1) desc = "tight, toned ";
-					else if (rando == 2) desc = "firm ";
-					else if (rando == 3) desc = "compact, muscular ";
-					else if (rando == 4) desc = "tight ";
-					else if (rando == 5) desc = "muscular, toned ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(4);
-					if (rando == 0) desc = "tight ";
-					else if (rando == 1) desc = "firm ";
-					else if (rando == 2) desc = "compact ";
-					else if (rando == 3) desc = "petite ";
-				}
-				//FLABBAH
-				else {
-					rando = rand(7);
-					if (rando == 0) desc = "small, heart-shaped ";
-					else if (rando == 1) desc = "soft, compact ";
-					else if (rando == 2) desc = "soft, heart-shaped ";
-					else if (rando == 3) desc = "small, cushy ";
-					else if (rando == 4) desc = "small ";
-					else if (rando == 5) desc = "petite ";
-					else if (rando == 6) desc = "snug ";
-				}
-			} else if (buttRating() < 6) {
-				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !softbutt) {
-					rando = rand(6);
-					if (rando == 0) desc = "nicely muscled ";
-					else if (rando == 1) desc = "nice, toned ";
-					else if (rando == 2) desc = "muscly ";
-					else if (rando == 3) desc = "nice toned ";
-					else if (rando == 4) desc = "toned ";
-					else if (rando == 5) desc = "fair ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(2);
-					if (rando == 0) desc = "nice ";
-					else if (rando == 1) desc = "fair ";
-				}
-				//FLABBAH
-				else {
-					rando = rand(5);
-					if (rando == 0) desc = "nice, cushiony ";
-					else if (rando == 1) desc = "soft ";
-					else if (rando == 2) desc = "nicely-rounded, heart-shaped ";
-					else if (rando == 3) desc = "cushy ";
-					else if (rando == 4) desc = "soft, squeezable ";
-				}
-			} else if (buttRating() < 8) {
-				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !softbutt) {
-					rando = rand(7);
-					if (rando == 0) desc = "full, toned ";
-					else if (rando == 1) {
-						if (asPlural) return "muscular, hand-filling ass cheeks";
-						return "muscly handful of ass";
-					} else if (rando == 2) desc = "shapely, toned ";
-					else if (rando == 3) desc = "muscular, hand-filling ";
-					else if (rando == 4) desc = "shapely, chiseled ";
-					else if (rando == 5) desc = "full ";
-					else if (rando == 6) desc = "chiseled ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(4);
-					if (rando == 0) {
-						if (asPlural) return "hand-filling ass cheeks";
-						return "handful of ass";
-					} else if (rando == 1) desc = "full ";
-					else if (rando == 2) desc = "shapely ";
-					else if (rando == 3) desc = "hand-filling ";
-				}
-				//FLABBAH
-				else {
-					rando = rand(8);
-					if (rando == 0) desc = "somewhat jiggly ";
-					else if (rando == 1) desc = "soft, hand-filling ";
-					else if (rando == 2) desc = "cushiony, full ";
-					else if (rando == 3) {
-						if (asPlural) return "supple, hand-filling ass cheeks";
-						return "supple, handful of ass";
-					} else if (rando == 4) desc = "plush, shapely ";
-					else if (rando == 5) desc = "full ";
-					else if (rando == 6) desc = "soft, shapely ";
-					else if (rando == 7) desc = "rounded, spongy ";
-				}
-			} else if (buttRating() < 10) {
-				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !softbutt) {
-					rando = rand(9);
-					if (rando == 0) desc = "large, muscular ";
-					else if (rando == 1) desc = "substantial, toned ";
-					else if (rando == 2) desc = "big-but-tight ";
-					else if (rando == 3) desc = "squeezable, toned ";
-					else if (rando == 4) desc = "large, brawny ";
-					else if (rando == 5) desc = "big-but-fit ";
-					else if (rando == 6) desc = "powerful, squeezable ";
-					else if (rando == 7) desc = "large ";
-					else if (rando == 8) desc = "callipygean ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(10);
-					if (rando <= 2) desc = "squeezable ";
-					else if (rando <= 6) desc = "large ";
-					else if (rando <= 8) desc = "substantial ";
-					else desc = "callipygean ";
-				}
-				//FLABBAH
-				else {
-					rando = rand(10);
-					if (rando == 0) desc = "large, bouncy ";
-					else if (rando == 1) desc = "soft, eye-catching ";
-					else if (rando == 2) desc = "big, slappable ";
-					else if (rando == 3) desc = "soft, pinchable ";
-					else if (rando == 4) desc = "large, plush ";
-					else if (rando == 5) desc = "squeezable ";
-					else if (rando == 6) desc = "cushiony ";
-					else if (rando == 7) desc = "plush ";
-					else if (rando == 8) desc = "pleasantly plump ";
-					else if (rando == 9) desc = "callipygean ";
-				}
-			} else if (buttRating() < 13) {
-				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !softbutt) {
-					rando = rand(7);
-					if (rando == 0) desc = "thick, muscular ";
-					else if (rando == 1) desc = "big, burly ";
-					else if (rando == 2) desc = "heavy, powerful ";
-					else if (rando == 3) desc = "spacious, muscular ";
-					else if (rando == 4) desc = "toned, cloth-straining ";
-					else if (rando == 5) desc = "thick ";
-					else if (rando == 6) desc = "thick, strong ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(4);
-					if (rando == 0) desc = "jiggling ";
-					else if (rando == 1) desc = "spacious ";
-					else if (rando == 2) desc = "heavy ";
-					else if (rando == 3) desc = "cloth-straining ";
-				}
-				//FLABBAH
-				else {
-					rando = rand(9);
-					if (rando == 0) desc = "super-soft, jiggling ";
-					else if (rando == 1) desc = "spacious, cushy ";
-					else if (rando == 2) desc = "plush, cloth-straining ";
-					else if (rando == 3) desc = "squeezable, over-sized ";
-					else if (rando == 4) desc = "spacious ";
-					else if (rando == 5) desc = "heavy, cushiony ";
-					else if (rando == 6) desc = "slappable, thick ";
-					else if (rando == 7) desc = "jiggling ";
-					else if (rando == 8) desc = "spacious ";
-					else if (rando == 9) desc = "soft, plump ";
-				}
-			} else if (buttRating() < 16) {
-				//TOIGHT LIKE A TIGER
-				if (tone >= 65 && !softbutt) {
-					rando = rand(8);
-					if (rando == 0) desc = "expansive, muscled ";
-					else if (rando == 1) desc = "voluminous, rippling ";
-					else if (rando == 2) desc = "generous, powerful ";
-					else if (rando == 3) desc = "big, burly ";
-					else if (rando == 4) desc = "well-built, voluminous ";
-					else if (rando == 5) desc = "powerful ";
-					else if (rando == 6) desc = "muscular ";
-					else if (rando == 7) desc = "powerful, expansive ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(4);
-					if (rando == 0) desc = "expansive ";
-					else if (rando == 1) desc = "generous ";
-					else if (rando == 2) desc = "voluminous ";
-					else if (rando == 3) desc = "wide ";
-				}
-				//FLABBAH
-				else {
-					rando = rand(11);
-					if (rando == 0) desc = "pillow-like ";
-					else if (rando == 1) desc = "generous, cushiony ";
-					else if (rando == 2) desc = "wide, plush ";
-					else if (rando == 3) desc = "soft, generous ";
-					else if (rando == 4) desc = "expansive, squeezable ";
-					else if (rando == 5) desc = "slappable ";
-					else if (rando == 6) desc = "thickly-padded ";
-					else if (rando == 7) desc = "wide, jiggling ";
-					else if (rando == 8) desc = "wide ";
-					else if (rando == 9) desc = "voluminous ";
-					else if (rando == 10) desc = "soft, padded ";
-				}
-			} else if (buttRating() < 20) {
-				if (tone >= 65 && !softbutt) {
-					rando = rand(6);
-					if (rando == 0) desc = "huge, toned ";
-					else if (rando == 1) desc = "vast, muscular ";
-					else if (rando == 2) desc = "vast, well-built ";
-					else if (rando == 3) desc = "huge, muscular ";
-					else if (rando == 4) desc = "strong, immense ";
-					else if (rando == 5) desc = "muscle-bound ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(5);
-					if (rando == 0) desc = "huge ";
-					else if (rando == 1) desc = "vast ";
-					else if (rando == 2) desc = "giant ";
-					else if (rando == 3) {
-						if (asPlural) return "expansive, jiggling ass cheeks";
-						return "jiggling expanse of ass";
-					} else if (rando == 4) {
-						if (asPlural) return "copious, fleshy ass cheeks";
-						return "copious ass-flesh";
+			if(rand(2) == 0)
+			{
+				if (buttRating() <= 1) {
+					if (tone >= 60 && !softbutt) desc += "incredibly tight, perky ";
+					else {
+						if (rand(2) == 0) desc = "tiny";
+						else if (rand(2) == 0) desc = "very small";
+						else desc = "dainty";
+						//Soft PC's buns!
+						if (tone <= 30 && rand(3) == 0) desc += " yet soft";
+						desc += " ";
+					}
+				} else if (buttRating() < 4) {
+					if (tone >= 65 && !softbutt) {
+						rando = rand(6);
+						if (rando == 0) desc = "perky, muscular ";
+						else if (rando == 1) desc = "tight, toned ";
+						else if (rando == 2) desc = "firm ";
+						else if (rando == 3) desc = "compact, muscular ";
+						else if (rando == 4) desc = "tight ";
+						else if (rando == 5) desc = "muscular, toned ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(4);
+						if (rando == 0) desc = "tight ";
+						else if (rando == 1) desc = "firm ";
+						else if (rando == 2) desc = "compact ";
+						else if (rando == 3) desc = "petite ";
+					}
+					//FLABBAH
+					else {
+						rando = rand(7);
+						if (rando == 0) desc = "small, heart-shaped ";
+						else if (rando == 1) desc = "soft, compact ";
+						else if (rando == 2) desc = "soft, heart-shaped ";
+						else if (rando == 3) desc = "small, cushy ";
+						else if (rando == 4) desc = "small ";
+						else if (rando == 5) desc = "petite ";
+						else if (rando == 6) desc = "snug ";
+					}
+				} else if (buttRating() < 6) {
+					//TOIGHT LIKE A TIGER
+					if (tone >= 65 && !softbutt) {
+						rando = rand(6);
+						if (rando == 0) desc = "nicely muscled ";
+						else if (rando == 1) desc = "nice, toned ";
+						else if (rando == 2) desc = "muscly ";
+						else if (rando == 3) desc = "nice toned ";
+						else if (rando == 4) desc = "toned ";
+						else if (rando == 5) desc = "fair ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(2);
+						if (rando == 0) desc = "nice ";
+						else if (rando == 1) desc = "fair ";
+					}
+					//FLABBAH
+					else {
+						rando = rand(5);
+						if (rando == 0) desc = "nice, cushiony ";
+						else if (rando == 1) desc = "soft ";
+						else if (rando == 2) desc = "nicely-rounded, heart-shaped ";
+						else if (rando == 3) desc = "cushy ";
+						else if (rando == 4) desc = "soft, squeezable ";
+					}
+				} else if (buttRating() < 8) {
+					//TOIGHT LIKE A TIGER
+					if (tone >= 65 && !softbutt) {
+						rando = rand(7);
+						if (rando == 0) desc = "full, toned ";
+						else if (rando == 1) {
+							if (asPlural) return "muscular, hand-filling ass cheeks";
+							return "muscly handful of ass";
+						} else if (rando == 2) desc = "shapely, toned ";
+						else if (rando == 3) desc = "muscular, hand-filling ";
+						else if (rando == 4) desc = "shapely, chiseled ";
+						else if (rando == 5) desc = "full ";
+						else if (rando == 6) desc = "chiseled ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(4);
+						if (rando == 0) {
+							if (asPlural) return "hand-filling ass cheeks";
+							return "handful of ass";
+						} else if (rando == 1) desc = "full ";
+						else if (rando == 2) desc = "shapely ";
+						else if (rando == 3) desc = "hand-filling ";
+					}
+					//FLABBAH
+					else {
+						rando = rand(8);
+						if (rando == 0) desc = "somewhat jiggly ";
+						else if (rando == 1) desc = "soft, hand-filling ";
+						else if (rando == 2) desc = "cushiony, full ";
+						else if (rando == 3) {
+							if (asPlural) return "supple, hand-filling ass cheeks";
+							return "supple, handful of ass";
+						} else if (rando == 4) desc = "plush, shapely ";
+						else if (rando == 5) desc = "full ";
+						else if (rando == 6) desc = "soft, shapely ";
+						else if (rando == 7) desc = "rounded, spongy ";
+					}
+				} else if (buttRating() < 10) {
+					//TOIGHT LIKE A TIGER
+					if (tone >= 65 && !softbutt) {
+						rando = rand(9);
+						if (rando == 0) desc = "large, muscular ";
+						else if (rando == 1) desc = "substantial, toned ";
+						else if (rando == 2) desc = "big-but-tight ";
+						else if (rando == 3) desc = "squeezable, toned ";
+						else if (rando == 4) desc = "large, brawny ";
+						else if (rando == 5) desc = "big-but-fit ";
+						else if (rando == 6) desc = "powerful, squeezable ";
+						else if (rando == 7) desc = "large ";
+						else if (rando == 8) desc = "callipygean ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(10);
+						if (rando <= 2) desc = "squeezable ";
+						else if (rando <= 6) desc = "large ";
+						else if (rando <= 8) desc = "substantial ";
+						else desc = "callipygean ";
+					}
+					//FLABBAH
+					else {
+						rando = rand(10);
+						if (rando == 0) desc = "large, bouncy ";
+						else if (rando == 1) desc = "soft, eye-catching ";
+						else if (rando == 2) desc = "big, slappable ";
+						else if (rando == 3) desc = "soft, pinchable ";
+						else if (rando == 4) desc = "large, plush ";
+						else if (rando == 5) desc = "squeezable ";
+						else if (rando == 6) desc = "cushiony ";
+						else if (rando == 7) desc = "plush ";
+						else if (rando == 8) desc = "pleasantly plump ";
+						else if (rando == 9) desc = "callipygean ";
+					}
+				} else if (buttRating() < 13) {
+					//TOIGHT LIKE A TIGER
+					if (tone >= 65 && !softbutt) {
+						rando = rand(7);
+						if (rando == 0) desc = "thick, muscular ";
+						else if (rando == 1) desc = "big, burly ";
+						else if (rando == 2) desc = "heavy, powerful ";
+						else if (rando == 3) desc = "spacious, muscular ";
+						else if (rando == 4) desc = "toned, cloth-straining ";
+						else if (rando == 5) desc = "thick ";
+						else if (rando == 6) desc = "thick, strong ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(4);
+						if (rando == 0) desc = "jiggling ";
+						else if (rando == 1) desc = "spacious ";
+						else if (rando == 2) desc = "heavy ";
+						else if (rando == 3) desc = "cloth-straining ";
+					}
+					//FLABBAH
+					else {
+						rando = rand(9);
+						if (rando == 0) desc = "super-soft, jiggling ";
+						else if (rando == 1) desc = "spacious, cushy ";
+						else if (rando == 2) desc = "plush, cloth-straining ";
+						else if (rando == 3) desc = "squeezable, over-sized ";
+						else if (rando == 4) desc = "spacious ";
+						else if (rando == 5) desc = "heavy, cushiony ";
+						else if (rando == 6) desc = "slappable, thick ";
+						else if (rando == 7) desc = "jiggling ";
+						else if (rando == 8) desc = "spacious ";
+						else if (rando == 9) desc = "soft, plump ";
+					}
+				} else if (buttRating() < 16) {
+					//TOIGHT LIKE A TIGER
+					if (tone >= 65 && !softbutt) {
+						rando = rand(8);
+						if (rando == 0) desc = "expansive, muscled ";
+						else if (rando == 1) desc = "voluminous, rippling ";
+						else if (rando == 2) desc = "generous, powerful ";
+						else if (rando == 3) desc = "big, burly ";
+						else if (rando == 4) desc = "well-built, voluminous ";
+						else if (rando == 5) desc = "powerful ";
+						else if (rando == 6) desc = "muscular ";
+						else if (rando == 7) desc = "powerful, expansive ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(4);
+						if (rando == 0) desc = "expansive ";
+						else if (rando == 1) desc = "generous ";
+						else if (rando == 2) desc = "voluminous ";
+						else if (rando == 3) desc = "wide ";
+					}
+					//FLABBAH
+					else {
+						rando = rand(11);
+						if (rando == 0) desc = "pillow-like ";
+						else if (rando == 1) desc = "generous, cushiony ";
+						else if (rando == 2) desc = "wide, plush ";
+						else if (rando == 3) desc = "soft, generous ";
+						else if (rando == 4) desc = "expansive, squeezable ";
+						else if (rando == 5) desc = "slappable ";
+						else if (rando == 6) desc = "thickly-padded ";
+						else if (rando == 7) desc = "wide, jiggling ";
+						else if (rando == 8) desc = "wide ";
+						else if (rando == 9) desc = "voluminous ";
+						else if (rando == 10) desc = "soft, padded ";
+					}
+				} else if (buttRating() < 20) {
+					if (tone >= 65 && !softbutt) {
+						rando = rand(6);
+						if (rando == 0) desc = "huge, toned ";
+						else if (rando == 1) desc = "vast, muscular ";
+						else if (rando == 2) desc = "vast, well-built ";
+						else if (rando == 3) desc = "huge, muscular ";
+						else if (rando == 4) desc = "strong, immense ";
+						else if (rando == 5) desc = "muscle-bound ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(5);
+						if (rando == 0) desc = "huge ";
+						else if (rando == 1) desc = "vast ";
+						else if (rando == 2) desc = "giant ";
+						else if (rando == 3) {
+							if (asPlural) return "expansive, jiggling ass cheeks";
+							return "jiggling expanse of ass";
+						} else if (rando == 4) {
+							if (asPlural) return "copious, fleshy ass cheeks";
+							return "copious ass-flesh";
+						}
+					}
+					//FLABBAH
+					else {
+						rando = rand(11);
+						if (rando == 0) desc = "vast, cushiony ";
+						else if (rando == 1) desc = "huge, plump ";
+						else if (rando == 2) desc = "expansive, jiggling ";
+						else if (rando == 3) desc = "huge, cushiony ";
+						else if (rando == 4) desc = "huge, slappable ";
+						else if (rando == 5) desc = "seam-bursting ";
+						else if (rando == 6) desc = "plush, vast ";
+						else if (rando == 7) desc = "giant, slappable ";
+						else if (rando == 8) desc = "giant ";
+						else if (rando == 9) desc = "huge ";
+						else if (rando == 10) desc = "swollen, pillow-like ";
+					}
+				} else {
+					if (tone >= 65 && !softbutt) {
+						rando = rand(7);
+						if (rando == 0) desc = "ginormous, muscle-bound ";
+						else if (rando == 1) desc = "colossal yet toned ";
+						else if (rando == 2) desc = "strong, tremdously large ";
+						else if (rando == 3) {
+							if (asPlural) return "colossal, muscly ass cheeks";
+							return "colossal, muscly ass";
+						}
+						else if (rando == 4) desc = "tremendous, muscled ";
+						else if (rando == 5) desc = "ginormous, toned ";
+						else if (rando == 6) desc = "colossal, well-defined ";
+					}
+					//Nondescript
+					else if (tone >= 30 && !softbutt) {
+						rando = rand(4);
+						if (rando == 0) desc = "ginormous ";
+						else if (rando == 1) desc = "colossal ";
+						else if (rando == 2) desc = "tremendous ";
+						else if (rando == 3) desc = "gigantic ";
+					}
+					//FLABBAH
+					else {
+						rando = rand(13);
+						if (rando == 0) desc = "ginormous, jiggly ";
+						else if (rando == 1) desc = "plush, ginormous ";
+						else if (rando == 2) desc = "seam-destroying ";
+						else if (rando == 3) desc = "tremendous, rounded ";
+						else if (rando == 4) desc = "bouncy, colossal ";
+						else if (rando == 5) desc = "thong-devouring ";
+						else if (rando == 6) desc = "tremendous, thickly padded ";
+						else if (rando == 7) desc = "ginormous, slappable ";
+						else if (rando == 8) desc = "gigantic, rippling ";
+						else if (rando == 9) desc = "gigantic ";
+						else if (rando == 10) desc = "ginormous ";
+						else if (rando == 11) desc = "colossal ";
+						else if (rando == 12) desc = "tremendous ";
 					}
 				}
-				//FLABBAH
-				else {
-					rando = rand(11);
-					if (rando == 0) desc = "vast, cushiony ";
-					else if (rando == 1) desc = "huge, plump ";
-					else if (rando == 2) desc = "expansive, jiggling ";
-					else if (rando == 3) desc = "huge, cushiony ";
-					else if (rando == 4) desc = "huge, slappable ";
-					else if (rando == 5) desc = "seam-bursting ";
-					else if (rando == 6) desc = "plush, vast ";
-					else if (rando == 7) desc = "giant, slappable ";
-					else if (rando == 8) desc = "giant ";
-					else if (rando == 9) desc = "huge ";
-					else if (rando == 10) desc = "swollen, pillow-like ";
-				}
-			} else {
-				if (tone >= 65 && !softbutt) {
-					rando = rand(7);
-					if (rando == 0) desc = "ginormous, muscle-bound ";
-					else if (rando == 1) desc = "colossal yet toned ";
-					else if (rando == 2) desc = "strong, tremdously large ";
-					else if (rando == 3) {
-						if (asPlural) return "colossal, muscly ass cheeks";
-						return "colossal, muscly ass";
-					}
-					else if (rando == 4) desc = "tremendous, muscled ";
-					else if (rando == 5) desc = "ginormous, toned ";
-					else if (rando == 6) desc = "colossal, well-defined ";
-				}
-				//Nondescript
-				else if (tone >= 30 && !softbutt) {
-					rando = rand(4);
-					if (rando == 0) desc = "ginormous ";
-					else if (rando == 1) desc = "colossal ";
-					else if (rando == 2) desc = "tremendous ";
-					else if (rando == 3) desc = "gigantic ";
-				}
-				//FLABBAH
-				else {
-					rando = rand(13);
-					if (rando == 0) desc = "ginormous, jiggly ";
-					else if (rando == 1) desc = "plush, ginormous ";
-					else if (rando == 2) desc = "seam-destroying ";
-					else if (rando == 3) desc = "tremendous, rounded ";
-					else if (rando == 4) desc = "bouncy, colossal ";
-					else if (rando == 5) desc = "thong-devouring ";
-					else if (rando == 6) desc = "tremendous, thickly padded ";
-					else if (rando == 7) desc = "ginormous, slappable ";
-					else if (rando == 8) desc = "gigantic, rippling ";
-					else if (rando == 9) desc = "gigantic ";
-					else if (rando == 10) desc = "ginormous ";
-					else if (rando == 11) desc = "colossal ";
-					else if (rando == 12) desc = "tremendous ";
-				}
+			}
+			else if(hasPerk("Barcoded") && rand(7) == 0)
+			{
+				desc = RandomInCollection("barcode-stamped","barcode-branded","barcoded","id-branded","barcode-tattooed","id-stamped","AccuPitch-claimed","barcode-stamped","barcode-bearing");
+				desc += " ";
 			}
 			rando = rand(21);
 			if(!asPlural)
