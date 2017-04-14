@@ -590,6 +590,10 @@ public function annoFollowerInventoryCheck():void
 			anno.inventory.push(new AHCock());
 			anno.inventory.push(new ADCock());
 		}
+		if(pc.level >= 5)
+		{
+			if(!anno.hasItem(new ZhouLingRifle())) anno.inventory.push(new ZhouLingRifle());
+		}
 
 		// Buy/Sell markups
 		anno.sellMarkup = 1.1;
