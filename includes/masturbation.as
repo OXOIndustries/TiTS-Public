@@ -446,6 +446,24 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = adjustableHolofap;
 		faps.push(fap);
 	}
+	if(pc.hasCockTail())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "DicktailFuck";
+		fap.ttHeader = "Dicktail Fuck";
+		fap.ttBody = "Fuck yourself with your cock-carrying tail.";
+		fap.func = dickTailFuck;
+		faps.push(fap); 
+	}
+	if(pc.hasCockTail() && pc.hasGenitals())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "DicktailSuck";
+		fap.ttHeader = "Dicktail Suck";
+		fap.ttBody = "Suck off your cock-carrying tail.";
+		fap.func = tailSucking;
+		faps.push(fap); 
+	}
 	return faps;
 }
 

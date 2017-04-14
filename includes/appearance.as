@@ -1424,7 +1424,7 @@ public function appearance(forTarget:Creature):void
 				if(target.hipRating() < 6) output2(", and");
 				if(target.femininity > 50) {
 					if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that draw the attention of those around you, and");
-					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you [target.walk] with a sexy, swinging gait, and");
+					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you move with a sexy, swinging gait, and");
 					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you’ve birthed many children, and");
 					if(target.hipRating() >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
 				}
@@ -2273,6 +2273,13 @@ public function appearance(forTarget:Creature):void
 		var btnIndex:int = 0;
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
 		if(target.canCoverSelf(false, "wings")) addGhostButton(btnIndex++, StringUtil.toDisplayCase(target.wingsDescript(true)), selectWingPref, undefined, "Position " + StringUtil.toDisplayCase(target.wingsDescript(true)), "Change the position of your " + target.wingsDescript(true) + ".");
+
+		if(target.hasPerk("Barcoded")) 
+		{
+			if(rand(2) == 0) output2("\n\nThere’s a barcode on your left butt cheek, forever marking you as the property of Belle and AccuPitch Labs.");
+			else output2("\n\nOn one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.");
+		}
+
 		//PC Goo'ed up?
 		if(target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{

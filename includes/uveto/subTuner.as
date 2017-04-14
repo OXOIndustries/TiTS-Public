@@ -664,7 +664,7 @@ public function subTunerOvah():void
 		//For when the tattoo system is implemented: Should give the PC’s ass a <i>“barcoded”</i> tag or descriptor.");
 		//This could also behave like Sera’s Slut Stamp, as a perk of sorts, if this is the case, then: Barcode Perk Description: A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.
 		//Appearance screen blurbs: <i>“There’s a barcode on your left butt cheek, forever marking you as the property of Belle and AccuPitch Labs.”</i> OR (Random 50/50) <i>“On one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.”</i>
-		//9999
+		if(!pc.hasPerk("Barcoded")) pc.createPerk("Barcoded",0,0,0,0,"There’s a barcode on your left butt cheek, forever marking you as the property of Belle and AccuPitch Labs.")
 	}
 	output("\n\nBelle goes to grab your leash, giving you and order of <i>“Up, " + pc.mf("boy","girl") + "”</i> as she pulls your tether taut, and quick to follow orders, you stand up.");
 	output("\n\n<i>“Everything’s working better than I could have hoped,”</i> your master exclaims, reaching to unhook her leash from your collar, <i>“Which means this little endeavor has yielded more potential than I would have ever believed, and I couldn’t have done it without you, good " + pc.mf("boy","girl") + ".”</i> She ");
