@@ -17,6 +17,15 @@ Kiro Threesome?*/
 
 /* TEST */
 
+/*FLAGS:
+	flags["KIRO_PHONE_EVENT"]			1  = WINGMANNED AND SENT TO RECIPIENT.
+										2  = SENT TO KALLY!
+										-1 = FUCKED THIS SHIT, YOU'RE OUT.
+	flags["KIRO_KALLY_THREESOMES"]		   = NUMBER OF TOTAL THREESOMES
+	flags["KALLY_FAP_2_KIRO"] 			1  = CAUGHT KALLY FAPPING TO KIRO
+		
+*/
+
 public function showMabbs():void
 {
 	showBust("MABBS");
@@ -55,6 +64,7 @@ public function kiroKallyThreesomeUnlockPoints():Number
 	if(flags["KALLY_KISSED_KIRO"] == 1) counter++;
 	if(flags["KIRO_INCEST_TEASED"] == 1) counter++;
 	if(flags["KALLY_FAP_2_KIRO"] != undefined) counter++;
+	if(flags["KIRO_PHONE_EVENT"] == 2) counter++;
 	return counter;
 }
 
@@ -136,7 +146,15 @@ public function kallyBonusRoomTexts():Boolean
 		}
 	}
 	if(MailManager.isEntryUnlocked("del_moved")) delBonus(1);
-	roamingBarEncounter(2);
+	//Special Kiro bar event!
+	if(flags["KALLY_FAP_2_KIRO"] != undefined && roamingKiroAvailable() && kiroKallyThreesomes() == 0 && rand(5) == 0)
+	{
+		output("\n\nKiro was here... She left to use the bathroom,");
+		if(timesGloryholesUsed() > 0 || timesGloryholesWorked() > 0) output(" probably to dump a discrete load in the gloryholes,");
+		output(" but <b>she abandoned something in her hurry: a palm-sized codex-type device.</b>");
+		addButton(2,"Kiro's Codex",examineKirosCodex,undefined,"Kiro's Codex","Take a look at Kiro's abandoned codex.");
+	}
+	else roamingBarEncounter(2);
 	sylvieRoomBonuses(3);
 	mabbsBonus(5);
 	if(kaedeBlurb4KuiCountryBarAndGrilllll(4)) return true;
@@ -3221,4 +3239,89 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	//[Next] - end :3
 	clearMenu();
 	addButton(0,"Next",move,"CANADA5");
+}
+
+public function examineKirosCodex():void
+{
+	clearOutput();
+	showName("\nCODEX");
+	output("You scoop up her KihaCorp SS7 Comm, delighted to discover that it isn’t even locked. She was in the middle of a rather racy exchange with");
+	
+	if(pennyIsCumSlut() && rand(3) == 0) output(" - is that Penny? You peer closer for a better look at the genitally-augmented fox. A holo-preview of her bobbing up and down on her bestial rod loops hypnotically.");
+	else if(rand(2) == 0) output(" a gryvain. Nearly a dozens of slutty exhortations to milk out an enormous load are marked as <i>“read”</i> on the log.");
+	else output(" a cute (if flat-chested) ausar. A new message pops up showing off a pussy gaped around a toy’s enormously inflated.");
+	if(timesGloryholesUsed() > 0 || timesGloryholesWorked() > 0) output(" No wonder Kiro ran for the gloryholes.");
+	else output(" No wonder Kiro ran off. She’s probably jacking off a big enough load to clog a taur-sized toilet.");
+
+	output("\n\nFourteen different varieties of dick-pics are queued up in the selector, some drizzled in enough ‘nuki-jizz to look more like a frosted dessert than a blunt-headed tool. Kiro seems to have forgotten to hit ‘send’ before prancing off for some release.");
+	output("\n\nYou could be a total pal and send the meticulously holo-documented wangs off to their intended recipient... or you could have some fun by changing the address to an unintended third party... like Kally.");
+	if(kiroKallyThreesomeUnlockPoints() < 3) output(" That’d be a total dick move, though.");
+	else output(" That might be just what they need to finally break the sexual tension between them.  It’s thick enough that you’d need a plasma torch and a few hours to cut through it.");
+	output(" Or you could just go back to what you were doing. No point in tooling around with Kiro’s love life");
+	processTime(1);
+	//[Send] [Send Kally] [Neither]
+	clearMenu();
+
+	addButton(0,"Send",sendKirosNudesToHerFuckbro,undefined,"Send","Go ahead and send the nudes. Maybe she changed her mind about sending them before she left, but you have a hunch both parties will appreciate you pressing the button.");
+	addButton(1,"Send 2 Kally",sendKirosNudesToKally,undefined,"Send 2 Kally","Surely Kally can appreciate Kiro's fine form in the buff. Maybe it'll even spark something between them?");
+	addButton(2,"Neither",fuckThisShitImOutKiroKally,undefined,"Neither","Leave the codex. It's not your problem.");
+}
+
+//[Send]
+public function sendKirosNudesToHerFuckbro():void
+{
+	clearOutput();
+	showName("HELPING\nOUT");
+	output("With a bit of a chuckle, you hit the button to send off the pictures and swagger back to your table before the lusty pirate catches you messing with her comm. A wingman’s job is never done!");
+	flags["KIRO_PHONE_EVENT"] = 1;
+	pc.addMischievous(4);
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Send Kally]
+public function sendKirosNudesToKally():void
+{
+	clearOutput();
+	showKally();
+	showName("MATCH-\nMAKER!");
+	output("You make a few choice edits to the address field, and voila! You hear a chime from across the bar as you retreat to your seat.");
+	output("\n\nKally, oblivious to your subterfuge, reaches under the counter to procure her codex. Her fuzzy digits flit across the screen, then jerk to a stop. The kui-tan’s entire body tenses like a taut wire. She bites one cushy lower lip, then slowly - ever so slowly - the corners of her mouth rise in a smile. The chubby raccoon-girl’s tail swishes back and forth fast enough to create a breeze, her fingers nimbly pirouetting over the display as she crafts a response. You pretend to mind your own business when she does a quick scan of the room, turning your attention back to her just in time to see her take the Codex below the bar - and lift the hem of her skirt.");
+	output("\n\nKiro’s comm buzzes. Then it buzzes again. Kally sighs happily and bends over, tail upraised high enough that you can easily make out the wet lips of her pussy - and the rivulets of moisture travelling down her balls. When she comes back up, she’s breathing heavily and her computer is safely stowed.");
+	flags["KIRO_PHONE_EVENT"] = 2;
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",sendKirosNudesToKally2);
+}
+
+public function sendKirosNudesToKally2():void
+{
+	clearOutput();
+	showKallyAndKiro();
+	output("Kiro emerges from the bathroom, with nicely drained balls, and a confident swagger in her step. A frown clouds her face when she sees her comm sitting unattended on the table, like she can’t believe she just left it sitting out. She shakes her head and sits down, grabbing the petite device in one paw and thumbing through her new messages.");
+	output("\n\nHer gasp is loud enough to draw the attention of every patron in the room, and if that wasn’t bad enough, her recently emptied dick is quite visibly pushing out of its sheath, making it quite clear just what kind of missive the lusty raccoon-girl received. She whimpers and looks to bar, to her sister Kally, then back at the phone.");
+	output("\n\nKally winks, and Kiro looks like she’s ready to faint. A few seconds later, she winks back, as if she totally meant to send her sibling more than a dozen pictures of her own throbbing hardness. Her dick throbs mightily beneath her dress. If she’s not careful, it’ll rip right through.");
+	output("\n\nSomewhere beneath two sets of brown-furred cheeks, you’re sure epic blushes are brewing.");
+	if(kiroKallyThreesomeUnlockPoints() >= 9999) output(" They’re definitely ready for a threesome. You just need something to push them into actual action.");
+	else output(" There’s definitely a spark there, but maybe you need to do a bit more before you can guide them into a threesome.");
+	output("\n\nMission accomplished.");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Neither]
+public function fuckThisShitImOutKiroKally():void
+{
+	clearOutput();
+	showName("\nNOPE");
+	output("You decide to avoid this interpersonal land-mine and walk away. Still, you keep an eye on it to make sure nobody else takes it.");
+	if(pc.isNice()) output(" It’s the nice thing to do.");
+	else if(pc.isMischievous()) output(" Pranks are one thing; theft is another.");
+	else output(" If anybody is going to fuck with her, it’s gonna be you.");
+	flags["KIRO_PHONE_EVENT"] = -1;
+	pc.addNice(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
