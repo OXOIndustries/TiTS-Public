@@ -120,6 +120,12 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 	// If we're looking at an equippable item, equip it
 	if (isEquippableItem(item))
 	{
+		// Preventive measures
+		if(!pc.itemSlotUnlocked(item.type))
+		{
+			itemDisabledMessage(item.type);
+			return;
+		}
 		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
 		equipItem(item);
 	}

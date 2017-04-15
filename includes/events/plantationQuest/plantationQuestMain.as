@@ -1839,9 +1839,12 @@ public function chooseYourWeapon(bow:Boolean = false):void
 	var MisterLah:Creature = new RKLah();
 	MisterLah.inventory.push(pc.meleeWeapon);
 	MisterLah.inventory.push(pc.rangedWeapon);
+	pc.meleeWeapon.onRemove(pc);
+	pc.rangedWeapon.onRemove(pc);
 	if(!(pc.armor is EmptySlot))
 	{
 		MisterLah.inventory.push(pc.armor);
+		pc.armor.onRemove(pc);
 		pc.armor = new EmptySlot();
 	}
 	if(bow) 
@@ -1854,6 +1857,12 @@ public function chooseYourWeapon(bow:Boolean = false):void
 		pc.meleeWeapon = new ZilSpear();
 		pc.rangedWeapon = new Rock();
 	}
+	
+	// Lock slots to prevent item switching from inventory!
+	pc.lockItemSlot(GLOBAL.ARMOR, "<b>It is not of zil custom to change outfits while already in honorable combat!</b>");
+	pc.lockItemSlot(GLOBAL.MELEE_WEAPON, "<b>You are unable to wield a different weapon right now--where is your honor?!</b>");
+	pc.lockItemSlot(GLOBAL.RANGED_WEAPON, "<b>You can’t arm yourself with different weapons--you agreed to an honorable battle, remember?</b>");
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
 	CombatManager.setHostileCharacters(MisterLah);
@@ -1913,9 +1922,22 @@ public function beatUpRickLah():void
 	//Give PC back gear.
 	for(var x:int = 0; x < enemy.inventory.length; x++)
 	{
-		if(enemy.inventory[x].type == GLOBAL.RANGED_WEAPON) pc.rangedWeapon = enemy.inventory[x];
-		else if(enemy.inventory[x].type == GLOBAL.MELEE_WEAPON) pc.meleeWeapon = enemy.inventory[x];
-		else if(enemy.inventory[x].type == GLOBAL.ARMOR || enemy.inventory[x].type == GLOBAL.CLOTHING) pc.armor = enemy.inventory[x];
+		switch(enemy.inventory[x].type)
+		{
+			case GLOBAL.RANGED_WEAPON:
+				pc.rangedWeapon = enemy.inventory[x];
+				pc.rangedWeapon.onEquip(pc);
+				break;
+			case GLOBAL.MELEE_WEAPON:
+				pc.meleeWeapon = enemy.inventory[x];
+				pc.meleeWeapon.onEquip(pc);
+				break;
+			case GLOBAL.ARMOR:
+			case GLOBAL.CLOTHING:
+				pc.armor = enemy.inventory[x];
+				pc.armor.onEquip(pc);
+				break;
+		}
 	}
 	enemy.inventory = [];
 
@@ -1942,6 +1964,7 @@ public function losesToRKLah():void
 	output("\n\n<i>“[pc.HeShe] challenged and fought honorably,”</i> the female zil pronounces, shimmering eyes on you. <i>“And vanquished the cliffs besides. If [pc.HeShe] accepts the word-wolf’s truths are stronger than [pc.hisHer], [pc.heShe] is free to pledge their allegiance to me, and can go in peace.”</i>");
 	processTime(4);
 	flags["PQ_BEAT_LAH"] = -1;
+	
 	clearMenu();
 	//[Accept] [Don’t]
 	addButton(0,"Accept",dontDieLIkeABitchToZil,undefined,"Accept","Lah will get his way. You will live.");
@@ -2435,7 +2458,7 @@ public function quinnAppearance():void
 	clearOutput();
 	showQuinn();
 	author("Nonesuch");
-	output("From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5’8”</i>. She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that.");
+	output("From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that.");
 	output("\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.");
 	if(!fuckedQuinn()) output("\n\nYou’d readily assume, going off the rest of her, that underneath that implacable armor Quinn is just as stickily and headily zil as the rest of her female subjects; she certainly doesn’t display it outwardly, though.");
 	else output("\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.");
@@ -2563,6 +2586,12 @@ public function quinnFinishExit():void
 		}
 		output("\n\n");
 		CombatManager.genericVictory();
+		
+		// Unlock locked inventory slots!
+		pc.unlockItemSlot(GLOBAL.ARMOR);
+		pc.unlockItemSlot(GLOBAL.MELEE_WEAPON);
+		pc.unlockItemSlot(GLOBAL.RANGED_WEAPON);
+		
 		return;
 	}
 	clearMenu();

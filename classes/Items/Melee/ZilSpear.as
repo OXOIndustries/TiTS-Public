@@ -21,11 +21,11 @@ package classes.Items.Melee
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			this.shortName = "Z.Spear";
-			this.longName = "zil champion's assegai";
+			this.longName = "zil champion’s assegai";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a zil champion's assegai";
+			this.description = "a zil champion’s assegai";
 			
 			this.tooltip = "A short stabbing spear, with a broad, leaf-shaped tip made of flint. A favored weapon in zil hunting parties, the blade usually envenomed.";
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
