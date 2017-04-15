@@ -3,7 +3,7 @@
 
 public function subTunerBonusButts():void 
 {
-	if(((pc.hasCock() && pc.smallestCockVolume() < 1000) || pc.hasVagina()) && !pc.isTaur() && !pc.isNaga())
+	if(((pc.hasCock() && pc.smallestCockVolume() < saecVaginaCapacity()) || pc.hasVagina()) && !pc.isTaur() && !pc.isNaga())
 	{
 		if(flags["SUB_TUNERED"] == undefined)
 		{
@@ -28,6 +28,23 @@ public function showBelle(nude:Boolean = false):void
 	if(nude) nudeS = "_NUDE";
 	showBust("BELLE" + nudeS);
 }
+public function getBellePregContainer():PregnancyPlaceholder
+{
+	var ppBelle:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppBelle.removeCocks();
+	for(var i:int = 0; i < 2; i++)
+	{
+		ppBelle.createCock();
+		ppBelle.shiftCock(i, GLOBAL.TYPE_HUMAN);
+		ppBelle.cocks[i].cLengthRaw = 12;
+		ppBelle.cocks[i].flaccidMultiplier = 0.50;
+		ppBelle.cocks[i].addFlag(GLOBAL.FLAG_KNOTTED);
+	}
+	ppBelle.createPerk("Fixed CumQ", 1000, 0, 0, 0);
+	
+	return ppBelle;
+}
+public function saecVaginaCapacity():Number { return 1000; }
 
 public function subTunerUpgraded():Boolean
 {
@@ -204,7 +221,7 @@ public function approachBelle():void
 	output("You walk up to Belle, alerting her to your presence along the way. She quickly turns around and greets you with a smile.");
 	
 	clearMenu();
-	if(((pc.hasCock() && pc.smallestCockVolume() < 1000) || pc.hasVagina()) && !pc.isTaur() && !pc.isNaga()) 
+	if(((pc.hasCock() && pc.smallestCockVolume() < saecVaginaCapacity()) || pc.hasVagina()) && !pc.isTaur() && !pc.isNaga()) 
 	{
 		output("\n\n<i>“Ah, hello again. Here to assist me with some more experiments?”</i>");
 		addButton(0,"Experiments",experimentsWithBelle);
@@ -213,7 +230,7 @@ public function approachBelle():void
 	{
 		output("\n\n<i>“Ah, hello again. It seems you don’t have quite the right body for more experiments. Come back when ");
 		if(pc.isNaga() || pc.isTaur()) output("you can properly crawl around like a pet");
-		else if(pc.hasCock() && pc.smallestCockVolume() >= 1000 && !pc.hasVagina()) output("you have a reasonably sized phallus.");
+		else if(pc.hasCock() && pc.smallestCockVolume() >= saecVaginaCapacity() && !pc.hasVagina()) output("you have a reasonably sized phallus.");
 		else output("you have decent genitalia");
 		output(".”</i>");
 		addDisabledButton(0,"Experiments","Experiments","You don’t have the right body for the experiments she wants to perform.");
@@ -241,6 +258,8 @@ public function experimentsWithBelle():void
 	if(!wearingSubTuner())
 	{
 		output("\n\nFumbling around for a moment, you take out the Sub-Tuner and hand it to the lady scientist, who quickly accepts the collar, wraps it around you neck, and closes it nice and tight.");
+		if(!pc.hasKeyItem("Sub-Tuner Collar")) pc.createKeyItem("Sub-Tuner Collar",0,0,0,0);
+		toggleCollar("Sub-Tuner");
 	}
 	output("\n\nBefore another word can be said, the wide-hipped woman reaches out, and flips a single switch on the wired-up ring of ");
 	//upgradedSubTuner:
@@ -404,7 +423,7 @@ public function walkiesPart2():void
 	{
 		output("\n\nAt one point, you’re walking through the pathways of the re-purposed wabeship when you come across your own white-haired ausar slut: Anno. She approaches you and Belle with a wide grin on her face, seeing you in a collar obviously being something she enjoys.");
 		output("\n\n<i>“Hey there, boss,”</i> the ausar beauty calls out, causing you to look up at her, <i>“Hope you’re not having too much fun without me out here.”</i> Tossing you a quick wink, Anno turns her attention to Belle, who is just as interested in the snowy-haired pup as she is in you.");
-		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as <i>“Dr. Belle Baslocvicz”</i> before she continues. <i>“Your ‘boss’ has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Anno’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
+		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as “Dr. Belle Baslocvicz” before she continues. <i>“Your ‘boss’ has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Anno’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
 		output("\n\nAnno giggles and extends her hand to shake Belle’s, <i>“Well, it looks like [pc.name] is having fun, so I may have to take you up on that offer.”</i>");
 		output("\n\nThe two say their goodbyes, leaving you and Belle relatively alone in the wide open dome of Uveto station.");
 		if (flags["SUBTUNER_NAMED"] == undefined) flags["SUBTUNER_NAMED"] = 1;
@@ -423,7 +442,7 @@ public function walkiesPart2():void
 		else output("<i>“Having fun out here?”</i>");
 		output(" Giving you an odd, slightly lustful look, Syri turns her attention to Belle, who is just as interested in the wolfy bitch as she is in you.");
 		
-		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as <i>“Dr. Belle Baslocvicz”</i> before she continues. <i>“Your ‘Steele’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Syri’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
+		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as “Dr. Belle Baslocvicz” before she continues. <i>“Your ‘Steele’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Syri’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
 		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]”</i>");
 		output("\n\nThe ausar quickly starts walking the opposite direction of the two of you, leaving you and Belle relatively alone in the wide open dome of Uveto station.");
 		if (flags["SUBTUNER_NAMED"] == undefined) flags["SUBTUNER_NAMED"] = 1;
@@ -434,7 +453,7 @@ public function walkiesPart2():void
 	{
 		output("\n\nAt one point, you’re walking through the pathways of the re-purposed wabeship when you come across a very familiar, chestnut-furred kui-tan woman: Kiro, her balls as full as ever. She approaches you and Belle with a curious look on her face, clearly intrigued, or aroused, by the sight of you in a collar.");
 		output("\n\n<i>“Is that you, angel?”</i> the tanuki pirate calls out, causing you to look up at her, <i>“You having fun out here?”</i> Giving you an odd, slightly lustful look, Kiro turns her attention to Belle, who is just as interested in the raccoon-girl as she is in you.");
-		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as <i>“Dr. Belle Baslocvicz”</i> before she continues. <i>“Your ‘angel’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Kiro’s stout, curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
+		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as “Dr. Belle Baslocvicz” before she continues. <i>“Your ‘angel’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Kiro’s stout, curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
 		output("\n\n<i>“I think I’ll have to pass,”</i> Kiro scoffs, clearly thinking herself above Belle, and the rank of being her pet, <i>“Hopefully I’ll see you later, though, [pc.name].”</i> ");
 		output("\n\nThe kui-tan quickly says her goodbyes to you and starts walking the opposite direction of the two of you, leaving you and Belle relatively alone in the wide open dome of Uveto station.");
 		if (flags["SUBTUNER_NAMED"] == undefined) flags["SUBTUNER_NAMED"] = 1;
@@ -444,6 +463,7 @@ public function walkiesPart2():void
 	if(lover && pc.exhibitionism() >= 66) 
 	{
 		output("\n\nYou can only feel your lust grow after that encounter, being displayed in front of your lover all collar-bound and nude, already feeling blood rushing to your genitals.");
+		pc.lust(15);
 	}
 	//Else: 
 	else output("\n\nYou feel a small pang of shame at the fact that you were caught in the act like that. Maybe that’ll teach you to not fiddle with weird collars you find on space stations.");
@@ -451,7 +471,7 @@ public function walkiesPart2():void
 
 	output("\n\nIt isn’t long before your master decides it’s about time to take a break, propping herself up against a nearby wall and giving you an order of <i>“Sit, " + pc.mf("boy","girl") + ".”</i> She waits there for a moment, scanning the foot traffic around her before calling you over to her.");
 	output("\n\nQuickly heeding her command, you crawl your way over to Belle on your hand and knees until you’re right in front of her, looking up at her with eager eyes. Without any ritual or hesitation, the lady scientist quickly unbuckles her pants, and lets her package dangle free before you.");
-	output("\n\nYour eyes bulge and your tongue lolls at what you’re presented with: two knotted human cocks, each easily measuring a foot in length, with a nice, plump pair of balls to match, <i>and it all looks so delicious.</i> All you can think of is having both of those wonderful dongs between your lips, shooting their hot load down your throat, but all you can do is sit here and wait for your master’s next command, <i>like a good pet</i>.");
+	output("\n\nYour eyes bulge and your tongue lolls at what you’re presented with: two knotted human cocks, each easily measuring a foot in length, with a nice, plump pair of balls to match, <i>and it all looks so delicious.</i> All you can think of is having both of those wonderful dongs between your lips, shooting their hot load down your throat, but you can only sit here and wait for your master’s next command, <i>like a good pet</i>.");
 	output("\n\n<i>“Like what you see, " + pc.mf("boy","girl") + "?”</i> Belle asks with a smile, reaching a hand down to cup your cheek while simultaneously yanking your leash to pull your face into her crotch.");
 	output("\n\nThe smell is heavenly, so earthy and musky, and paired with the heat radiating off her package and onto your cheeks, all you can do is look up at her and pant in answer.");
 	output("\n\n<i>“Well, come on then,”</i> the dual-dicked woman says, <i>“Fetch.”</i>");
@@ -464,7 +484,7 @@ public function walkiesPart2():void
 
 	output("\n\nRedoubling your efforts, you start to move your mouth and hand faster, striving to bring Belle to orgasm. Your hard work quickly pays off, because soon after you hear a long, lewd groan force its way past the human woman’s pouty lips, her grip on your head tightening. You can already feel her cocks spasm in your mouth and dexterous grip.");
 
-	output("\n\nYou’re rewarded with a big, salty load down your throat, creamy spunk flowing down your gullet as your master rides out her climax, swelling your stomach until you’re feeling quite full and looking positively pregnant. Meanwhile, her other dong discharges all over your face, [pc.hair], and hand, leaving you thoroughly covered in hot white Terran cum.");
+	output("\n\nYou’re rewarded with a big, salty load down your throat, creamy spunk flowing down your gullet as your master rides out her climax, swelling your stomach until you’re feeling quite full and looking positively pregnant. Meanwhile, her other dong discharges all over your face, [pc.hair], and hand, leaving you thoroughly covered in hot white terran cum.");
 
 	output("\n\nPulling yourself off Belle’s twin cocks as she cums down from her peak, you look up at her expectantly, your face glazed with her seed and your tummy filled with her bountiful load.");
 
@@ -474,13 +494,18 @@ public function walkiesPart2():void
 	output("\n\n<i>“Well, looks like those ‘master first’ subroutines I programmed are working perfectly now, unlike the last time I tried this,”</i> Belle says, pulling her pants back up and taking a good look at the now dispersing crowd, <i>“Come then, " + pc.mf("boy","girl") + ", there’s just one last thing I need to test before we can get that collar off you.”</i>");
 
 	processTime(30);
+	
+	var ppBelle:PregnancyPlaceholder = getBellePregContainer();
+	pc.loadInMouth(ppBelle);
 	applyCumSoaked(pc);
+	pc.exhibitionism(1);
+	
 	clearMenu();
-	addButton(0,"Next",postWalkiesHeat);
+	addButton(0,"Next",postWalkiesHeat, ppBelle);
 }
 
 //Heat
-public function postWalkiesHeat():void
+public function postWalkiesHeat(ppBelle:PregnancyPlaceholder):void
 {
 	clearOutput();
 	showBelle();
@@ -490,10 +515,10 @@ public function postWalkiesHeat():void
 	generateMap();
 	processTime(2);
 	clearMenu();
-	addButton(0,"Next",postWalkiesHeat2);
+	addButton(0,"Next",postWalkiesHeat2, ppBelle);
 }
 
-public function postWalkiesHeat2():void
+public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 {
 	clearOutput();
 	showBelle();
@@ -512,7 +537,9 @@ public function postWalkiesHeat2():void
 	output("\n\nYou look up to your master and whine, whimpering to let her know of your sexual distress. She responds with a smirk before speaking up again, <i>“Hmm, looks like it’s working.”</i>");
 
 	var x:int = -1;
-	if(pc.hasCock()) x = pc.cockThatFits(1000);
+	if(pc.hasCock()) x = pc.cockThatFits(saecVaginaCapacity());
+	var v:int = -1;
+	if(pc.hasVagina()) v = rand(pc.vaginas.length);
 	//hasCock:
 	if(x >= 0)
 	{
@@ -535,7 +562,7 @@ public function postWalkiesHeat2():void
 		pc.cockChange();
 	}
 	//hasVag:
-	if(pc.hasVagina())
+	if(v >= 0)
 	{
 		output("\n\nYour master circles around behind you, getting a good look at your wet, needy pussy as she kneels down, getting her hands all over your [pc.hips]. Shortly after, you feel a finger run along your nether-lips, gathering up beads of [pc.girlCum] as it makes its way towards your taint.");
 		output("\n\n<i>“My, my,”</i> Belle breaths lustfully, <i>“Looks like the heat harmonics might have been tuned a little too high, judging by how wet you are. What do you say, " + pc.mf("boy","girl") + ", want me to fix that problem for you?”</i>");
@@ -546,12 +573,12 @@ public function postWalkiesHeat2():void
 		if(x == -1) output(", with your desire to cum only having grown since your earlier escapades with the lady scientist");
 		output(".");
 
-		output("\n\nTurning back around, you need only wait a moment before your feel one of Belle’s cockheads press againt your [pc.vagina], and another against your [pc.asshole]. The sudden pressure on both of your sodden holes makes you whimper with pleasure and pain");
+		output("\n\nTurning back around, you need only wait a moment before your feel one of Belle’s cockheads press against [pc.oneVagina], and another against your [pc.asshole]. The sudden pressure on both of your sodden holes makes you whimper with pleasure and pain");
 		if(x >= 0) output(", still breeding Saec and pumping your [pc.hips] as fast as you can");
-		output(". Before you can try to relax, your master thrusts her hips forwards, slipping her twin dongs into both of your holes. You cry out with pleasure as you’re penetrated by both of Belle’s cocks at once, spreading your pucker wide open and leaving your pussy wonderfully agape. Barely giving you any time to recover from her dual-dicks, the lady scientist behind you starts to shove more and more Terran cock into you.");
+		output(". Before you can try to relax, your master thrusts her hips forwards, slipping her twin dongs into both of your holes. You cry out with pleasure as you’re penetrated by both of Belle’s cocks at once, spreading your pucker wide open and leaving your pussy wonderfully agape. Barely giving you any time to recover from her dual-dicks, the lady scientist behind you starts to shove more and more terran cock into you.");
 		output("\n\nIt isn’t long before your master’s ever-expansive hips start to move, fucking you like the bitch in heat you are, her knots spreading your supple entrances with each thrust. <i>The feeling of being bred like this, of having your hungers sated, it all feels so good.</i> You moan as loud as you can with each thrust of Belle’s foot-long cocks, crying out as your inner walls hug at her shafts, eagerly accepting her turgid dicks into your waiting holes.");
-		pc.cuntChange(0,300);
-		pc.buttChange(300);
+		pc.cuntChange(v,ppBelle.cockVolume(0));
+		pc.buttChange(ppBelle.cockVolume(1));
 	}
 	//hasCock:
 	if(x >= 0)
@@ -582,7 +609,7 @@ public function postWalkiesHeat2():void
 		else output("Your [pc.cum] floods Saec’s cunt, painting her love tunnel [pc.cumColor] and causing her to whimper with renewed pleasure at the sudden sensation of your warm [pc.cumNoun] filling her to the brim.");
 	}
 	//HasVag:
-	if(pc.hasVagina())
+	if(v >= 0)
 	{
 		//hasCock:
 		if(x >= 0)
@@ -603,10 +630,10 @@ public function postWalkiesHeat2():void
 			else output(" begins");
 			output(" to spasm around Belle’s pussy-filling phallus while your [pc.asshole] does the same. You can hear your master groan with bliss as your holes tighten around her dual-dongs, still slamming her wide hips against yours. With climax overtaking your mind, you’re hardly able to notice your master’s own orgasm beginning.");
 		}
-		output("\n\n[pc.Girlcum] spills out around one of Belle’s turgid Terran rods as it spasms inside your [pc.vagina], her upper cock doing the same, already dispensing their white, molten loads into both of your holes. With not a moment to lose, the multi-cocked human slams her hips forward, driving her knots into your holes. You cry out as your [pc.vagina] and [pc.asshole] are spread even wider by the balls of cockflesh, stretching your orifices until they finally pop in, leaving you in bliss. You whimper as you’re pumped full of your master’s seed for the second time today, feeling her hot cum distend your [pc.stomach] until you’re feeling and looking full all over again. The lady scientist’s orgasm persists for quite some time, fully emptying her large pair of balls into you until the pressure is so great cum can only dribble out of your sodden, well-used holes. <i>You did a good job making your master cum like that.</i>");
+		output("\n\n[pc.Girlcum] spills out around one of Belle’s turgid terran rods as it spasms inside your [pc.vagina " + v + "], her upper cock doing the same, already dispensing their white, molten loads into both of your holes. With not a moment to lose, the multi-cocked human slams her hips forward, driving her knots into your holes. You cry out as your [pc.vagina " + v + "] and [pc.asshole] are spread even wider by the balls of cockflesh, stretching your orifices until they finally pop in, leaving you in ecstasy. You whimper as you’re pumped full of your master’s seed for the second time today, feeling her hot cum distend your [pc.stomach] until you’re feeling and looking full all over again. The lady scientist’s orgasm persists for quite some time, fully emptying her large pair of balls into you until the pressure is so great cum can only dribble out of your sodden, well-used holes. <i>You did a good job making your master cum like that.</i>");
 	}
 	//hasCockOnly:
-	if(x >= 0 && !pc.hasVagina())
+	if(x >= 0 && v < 0)
 	{
 		output("\n\nWith ");
 		if(pc.hasKnot(x)) output("your [pc.cock " + x + "] thoroughly knotted inside Saec’s pulsing cunt");
@@ -621,28 +648,26 @@ public function postWalkiesHeat2():void
 	//Else:
 	else
 	{
-		output("\n\nYou’re left panting under the weight of your post-orgasmic bliss, with ");
+		output("\n\nYou’re left panting under the weight of your post-orgasmic euphoria, with ");
 		if(x >= 0) output("both Saec and ");
 		output("Belle’s chest");
 		if(x >= 0) output("s");
 		output(" heaving with every breath ");
-		if(x < 0) output("she");
-		else output("they");
-		output(") take. Looking back at your master for some sign of approval, she gives you a slap on your [pc.butt] along with a tired, out-of-breath <i>“Good " + pc.mf("boy","girl") + ".”</i>");
+		if(x < 0) output("she takes");
+		else output("they take");
+		output(". Looking back at your master for some sign of approval, she gives you a slap on your [pc.butt] along with a tired, out-of-breath <i>“Good " + pc.mf("boy","girl") + ".”</i>");
 		output("\n\n<i>What a good pet you are.</i>");
 	}
 	//[Next]
 	processTime(30);
 	pc.orgasm();
 
-	if(pc.hasVagina())
+	if(v >= 0)
 	{
-		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
- 		if(!pp.hasCock()) pp.createCock();
-		pp.createPerk("Fixed CumQ",1000,0,0,0);
-		pc.loadInCunt(pp,0);
-		pc.loadInAss(pp);
+		pc.loadInCunt(ppBelle, v);
+		pc.loadInAss(ppBelle);
 	}
+	
 	clearMenu();
 	addButton(0,"Next",subTunerOvah);
 }
@@ -653,7 +678,7 @@ public function subTunerOvah():void
 	showBelle();
 	author("HugsAlright");
 	var x:int = -1;
-	if(pc.hasCock()) x = pc.cockThatFits(1000);
+	if(pc.hasCock()) x = pc.cockThatFits(saecVaginaCapacity());
 	if(x >= 0 && !pc.hasVagina())
 	{
 		output("After giving you and Saec some time to rest, Belle returns the happy, cum-filled ausar back to her place before returning to the matter at hand again: You.");
@@ -680,7 +705,7 @@ public function subTunerOvah():void
 		output("\n\n<b>You’ve got a barcode on your ass now!</b>");
 		//For when the tattoo system is implemented: Should give the PC’s ass a “barcoded” tag or descriptor.
 		//This could also behave like Sera’s Slut Stamp, as a perk of sorts, if this is the case, then: Barcode Perk Description: A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.
-		//Appearance screen blurbs: “There’s a barcode on your left butt cheek, forever marking you as the property of Belle and AccuPitch Labs.” OR (Random 50/50) “On one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.”
+		//Appearance screen blurbs: “There’s a barcode on your left butt cheek, forever marking you as the property of Belle and Accu-Pitch Labs.” OR (Random 50/50) “On one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.”
 		if(!pc.hasPerk("Barcoded")) pc.createPerk("Barcoded",0,0,0,0,"A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.")
 	}
 	output("\n\nBelle goes to grab your leash, giving you and order of <i>“Up, " + pc.mf("boy","girl") + "”</i> as she pulls your tether taut, and quick to follow orders, you stand up.");
@@ -714,7 +739,7 @@ public function subTunerOvah():void
 		//Actually equip it
 		toggleCollar("Sub-Tuner");
 	}
-	//[Next] //Should return the PC to outside of AccuPitch labs, adds some libido.
+	//[Next] //Should return the PC to outside of Accu-Pitch labs, adds some libido.
 
 	IncrementFlag("SUB_TUNERED");
 	processTime(10);

@@ -5205,10 +5205,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Accu-Pitch
-			if(flags["ACCUPITCH_VISIT"] != undefined)
+			if(flags["MET_BELLE"] != undefined)
 			{
 				output2("\n<b><u>Accu-Pitch Labs</u></b>");
 				output2("\n<b>* Belle:</b> Met her");
+				if(pc.hasKeyItem("Sub-Tuner Collar")) output2(", You’re her pet");
+				if(flags["SUB_TUNERED"] != undefined)
+				{
+					output2(", Walked you");
+					if(flags["SUB_TUNERED"] > 1) output2(" " + num2Text(flags["SUB_TUNERED"]) + " times");
+				}
 				variousCount++;
 			}
 			// Carbonado
@@ -5243,7 +5249,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Tlako:</b> Met her");
 					if(flags["TLAKO_BASKETS"] != undefined)
 					{
-						output2(", bought welcome basket from her");
+						output2(", Bought welcome basket from her");
 						if(flags["TLAKO_BASKETS"] > 1) output2(" " + num2Text(flags["TLAKO_BASKETS"]) + " times");
 					}
 					if(flags["FLORKED_TLAKO"] != undefined) output2("\n<b>* Tlako, Times Florked:</b> " + flags["FLORKED_TLAKO"]);
