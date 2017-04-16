@@ -576,7 +576,7 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 	//hasCock:
 	if(x >= 0)
 	{
-		output("\n\nYour master takes one look at your throbbing, needy cocks");
+		output("\n\nYour master takes one look at your throbbing, needy cock");
 		if(pc.cockTotal() > 1) output("s");
 		output(" before giving you a knowing smile, <i>“What’s wrong, " + pc.mf("boy","girl") + ", feeling pent up?”</i>");
 		output("\n\nYou nod as fast as you can, hoping Belle can do something to fix this terrible rut you’re in, with your desire to cum only having grown since your earlier escapades with the human woman.");
