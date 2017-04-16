@@ -226,6 +226,7 @@ public function initUvetoRooms():void
 	rooms["SUBSHIT"].system = "SYSTEM: SIRETTA";
 	rooms["SUBSHIT"].northExit = "UVS F9";
 	rooms["SUBSHIT"].moveMinutes = 1;
+	rooms["SUBSHIT"].runOnEnter = accupitchLabBonus;
 	rooms["SUBSHIT"].addFlag(GLOBAL.INDOOR);
 	rooms["SUBSHIT"].addFlag(GLOBAL.PUBLIC);
 

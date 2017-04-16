@@ -90,7 +90,7 @@ public function putOnACyberneticDoggieCollarBecauseYoureNotVerySmart():void
 	output("\n\nYou quickly fall to the ground on all fours; <i>yeah, that feels good</i>.");
 
 	processTime(10);
-	//[Next] //Should go to <i>“Meeting Belle”</i>.
+	//[Next] //Should go to “Meeting Belle”.
 	clearMenu();
 	addButton(0,"Next",meetingBelle);
 }
@@ -142,6 +142,7 @@ public function getSubTunered():void
 {
 	clearOutput();
 	showBelle();
+	rooms["SUBSHIT"].addFlag(GLOBAL.NPC);
 	currentLocation = "SUBSHIT";
 	generateMap();
 	author("HugsAlright");
@@ -170,10 +171,11 @@ public function getSubTunered():void
 
 //Repeatable opening
 //Text for Accu-Pitch Labs tiles.
-public function accupitchLabBonus():void
+public function accupitchLabBonus():Boolean
 {
 	clearOutput();
 	showBelle();
+	rooms["SUBSHIT"].addFlag(GLOBAL.NPC);
 	currentLocation = "SUBSHIT";
 	generateMap();
 	author("HugsAlright");
@@ -182,6 +184,14 @@ public function accupitchLabBonus():void
 	{
 		output("Making your way up to Accu-Pitch labs, you can see that the door is sealed and well-locked, but there’s a small scanner next to the entrance. Maybe it will recognize one of Doctor Belle’s test subjects?");
 		output("\n\nYou start with your eye, but the scanner does nothing, then your palm, then your fingertips, but nothing seems to be doing the trick.");
+		if(!pc.hasPerk("Barcoded"))
+		{
+			output("\n\nYou guess it’s no good to keep trying so you turn around and leave....");
+			processTime(1);
+			clearMenu();
+			addButton(0, "Next", leaveAccuPitchLabs);
+			return true;
+		}
 		output("\n\nWait, could it be that barcode the woman-scientist put on your ass? Well, it’s worth a shot. You ");
 		//notNude:
 		if(!pc.isAssExposed()) output("drop your [pc.assCover] just enough so that the tattoo peeks out and");
@@ -193,6 +203,14 @@ public function accupitchLabBonus():void
 	else
 	{
 		output("Walking your way up to Accu-Pitch labs, you can see that the door is once again sealed and locked, that all-too familiar scanner sitting next to the entrance.");
+		if(!pc.hasPerk("Barcoded"))
+		{
+			output("\n\nUnfortunately, you are lacking the barcode to get past the door locks so you turn around and leave....");
+			processTime(1);
+			clearMenu();
+			addButton(0, "Next", leaveAccuPitchLabs);
+			return true;
+		}
 		output("\n\nJust like last time, you ");
 		if(!pc.isAssExposed()) 
 		{
@@ -207,9 +225,20 @@ public function accupitchLabBonus():void
 	output("\n\nWalking into Accu-Pitch labs again, your eyes are greeted by a wealth of scientific equipment: blinking lights and computers, and bundles of wires lining the walls of the small lab. Though, beyond that most of the equipment seems to be related to audio: radios and speakers, various instruments lined up next to microphones, even a row of wine glasses and spoons placed carefully near a group of transceivers.");
 	output("\n\nBelle is nearby, her pants looking as full as ever, jotting down notes on a holo-pad as she moves from terminal to terminal, working diligently.");
 	
+	processTime(2);
+	
 	clearMenu();
 	addButton(0,"Belle",approachBelle,undefined,"Belle","Meet with the doctor.");
-	addButton(14,"Leave",move,rooms[currentLocation].northExit);
+	addButton(14,"Leave",leaveAccuPitchLabs);
+	
+	return true;
+}
+public function leaveAccuPitchLabs():void
+{
+	rooms["SUBSHIT"].removeFlag(GLOBAL.NPC);
+	processTime(1);
+	currentLocation = "UVS F9";
+	mainGameMenu();
 }
 
 //[Belle]
@@ -235,7 +264,7 @@ public function approachBelle():void
 		output(".”</i>");
 		addDisabledButton(0,"Experiments","Experiments","You don’t have the right body for the experiments she wants to perform.");
 	}
-	addButton(14,"Leave",move,"UVS F9");
+	addButton(14,"Leave",leaveAccuPitchLabs);
 }
 
 public function wearingSubTuner():Boolean
@@ -292,12 +321,13 @@ public function kennelSubTuner():void
 		output("\n\nYou can feel your mind go blank at that question, <i>unable to feel anything but excitement at that proposition</i>. Quickly pulling yourself together, you give Belle a nod, resulting in a confident smirk from the scientist.");
 		output("\n\n<i>“Alright then, " + pc.mf("boy","girl") + ", sit up,”</i> she commands.");
 		output("\n\nWithout a thought you heed her order, sitting yourself up on your knees, keeping your [pc.arms] curled up like a puppy’s and looking up at your master with growing eagerness. Belle slips down onto her knees, getting herself close enough to you that you can feel the heat radiating off her immense bulge. She grabs at your equipment and pulls it away until all your flesh is laid bare before her, leaving the lady scientist with a wide grin on her face, <i>“That’s more like it.”</i>");
+		output("\n\n");
 	}
-	else
+	if(pc.hasPerk("Barcoded"))
 	{
 		output("Before she continues, your master takes a brief walk over to a nearby lab bench, turns on her computer, and grabs a rather familiar, small, rectangular device. Leaning down, Belle brings the device to the barcode she printed on your ass and flips it on, and before you can even say <i>“Science!”</i> a file labeled ");
 		//anno/SyriCrew/SavedKiro:
-		if(flags["SUBTUNER_NAMED"] != undefined) output("<i>“[pc.name] Steele”</i>");
+		if(flags["SUBTUNER_NAMED"] != undefined) output("“[pc.name] Steele”");
 		else output("“Subject 69”");
 		output(" is brought up on Belle’s computer. Almost simultaneously, a little holo-tag appears on your collar: bright blue and ");
 		//anno/SyriCrew/SavedKiro: 
@@ -307,8 +337,9 @@ public function kennelSubTuner():void
 			output("emblazoned with the name “[pc.name].”");
 		}
 		else output("bearing the same label as the file on Belle’s terminal.");
+		output("\n\n");
 	}
-	output("\n\nYour new master gazes at your naked form for a long moment before taking up a position behind you, and you can practically feel her eyes scan your [pc.butt]. <i>You don’t turn to face her, though, because a good pet waits for their orders</i>. All you can do is sit there and tremble with anticipation as Belle kneels down behind you, <i>“I suppose you should be punished for taking things that don’t belong to you.”</i>");
+	output("Your new master gazes at your naked form for a long moment before taking up a position behind you, and you can practically feel her eyes scan your [pc.butt]. <i>You don’t turn to face her, though, because a good pet waits for their orders</i>. All you can do is sit there and tremble with anticipation as Belle kneels down behind you, <i>“I suppose you should be punished for taking things that don’t belong to you.”</i>");
 	output("\n\nWith that said, a palm caresses one of your lower cheeks, causing you to gasp at the sudden sensation of your master’s warm flesh on yours, <i>“Yes, I think you’ve been a very bad " + pc.mf("boy","girl") + ", taking my collar without my permission.”</i>");
 	output("\n\nWithout a single warning you feel a second hand smack against your [pc.butt] with a great <i>slap</i>, making you cry out as your assflesh is reddened by Belle’s punishing strike.");
 	output("\n\n<i>“Bad " + pc.mf("boy","girl") + ",”</i> she chides before delivering another slap to your more neglected cheek, sending a jolt of pleasure shooting through your spine, <i>“That’s a very bad " + pc.mf("boy","girl") + ".”</i>");
@@ -402,6 +433,7 @@ public function walkiesPart2():void
 	clearOutput();
 	showBelle(true);
 	author("HugsAlright");
+	rooms["SUBSHIT"].removeFlag(GLOBAL.NPC);
 	currentLocation = "UVS B9";
 	generateMap();
 	output("Belle leads you around Uveto station for quite some time, testing the abilities of her collar in all different ways. Sometimes she encourages you to go receive all manners of pets and praise from passersby, only to later chide you for talking to strangers, though, you can’t find yourself upset about it. <i>Your master knows best, after all.</i> Other times she instructs you to provide passing huskar, toves, and other aliens with a show, making you wiggle your butt in the air for them. Some of them respond to your teasing movements with slaps and gropes, ");
@@ -511,6 +543,7 @@ public function postWalkiesHeat(ppBelle:PregnancyPlaceholder):void
 	showBelle();
 	author("HugsAlright");
 	output("Belle walks you back to her lab, keeping a firm grip on your leash in an attempt to avoid any further distractions, although your naked form and cum-covered [pc.face] draw more than a few lustful looks on the way back. Your master keeps you in line though, all the way back to her scientific workspace.");
+	rooms["SUBSHIT"].addFlag(GLOBAL.NPC);
 	currentLocation = "SUBSHIT";
 	generateMap();
 	processTime(2);
@@ -690,7 +723,7 @@ public function subTunerOvah():void
 		else output(" before returning to the matter at hand again: you.");
 	}
 	//firstTime:
-	if(flags["SUB_TUNERED"] == undefined)
+	if(!pc.hasPerk("Barcoded"))
 	{
 		output("\n\n<i>“Before I let you go,”</i> Belle begins, reaching over to a nearby lab bench and grabbing a small, black, rectangular box, <i>“There’s just one last thing I need to give you.”</i>");
 		output("\n\nWith that said, the Lady scientist walk around behind you, taking up a position just behind your [pc.butt]. <i>You’re unable to control your excitement, expecting another treat from your master");
@@ -706,7 +739,7 @@ public function subTunerOvah():void
 		//For when the tattoo system is implemented: Should give the PC’s ass a “barcoded” tag or descriptor.
 		//This could also behave like Sera’s Slut Stamp, as a perk of sorts, if this is the case, then: Barcode Perk Description: A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.
 		//Appearance screen blurbs: “There’s a barcode on your left butt cheek, forever marking you as the property of Belle and Accu-Pitch Labs.” OR (Random 50/50) “On one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.”
-		if(!pc.hasPerk("Barcoded")) pc.createPerk("Barcoded",0,0,0,0,"A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.")
+		pc.createPerk("Barcoded",0,0,0,0,"A sleek black barcode is printed on your ass, left there by Dr. Belle for purely scientific purposes.")
 	}
 	output("\n\nBelle goes to grab your leash, giving you and order of <i>“Up, " + pc.mf("boy","girl") + "”</i> as she pulls your tether taut, and quick to follow orders, you stand up.");
 	output("\n\n<i>“Everything’s working better than I could have hoped,”</i> your master exclaims, reaching to unhook her leash from your collar, <i>“Which means this little endeavor has yielded more potential than I would have ever believed, and I couldn’t have done it without you, good " + pc.mf("boy","girl") + ".”</i> She ");
@@ -730,7 +763,7 @@ public function subTunerOvah():void
 	output("”</i>");
 	output("\n\nYeah, that sounds like a good idea right about now.");
 
-	if(flags["SUB_TUNERED"] == undefined)
+	if(!pc.hasKeyItem("Sub-Tuner Collar"))
 	{
 		output("\n\n<b>You got the Sub-Tuner collar!</b>");
 		//Should give and equip the Sub-Tuner, as well as add it to the collar selection. Description: Collar - Sub-Tuner: a black leather collar covered in a web of wiring and circuitry.
@@ -744,5 +777,5 @@ public function subTunerOvah():void
 	IncrementFlag("SUB_TUNERED");
 	processTime(10);
 	clearMenu();
-	addButton(0,"Next",move,"UVS F9");
+	addButton(0,"Next",leaveAccuPitchLabs);
 }
