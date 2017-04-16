@@ -1960,7 +1960,7 @@ public function treatmentHourProcs(totalHours:int):void
 				var dickBiggered:Boolean = false;
 				
 				//Can already autofellate - no cock growth - short intro
-				if(pc.canAutoFellate(-1))
+				if(pc.canAutoFellate(-1, true))
 				{
 					x = pc.longestCockIndex();
 					AddLogEvent(ParseText("[pc.OneCock] slaps accusingly against your [pc.chest]"), "passive", (125 - startHours) * 60);
@@ -1978,7 +1978,7 @@ public function treatmentHourProcs(totalHours:int):void
 					ExtendLogEvent(", leaving a trail of slime in its wake, climbing higher and higher.");
 
 					var backupCount:int = 0;
-					while(!pc.canAutoFellate(-1) && backupCount < 100)
+					while(!pc.canAutoFellate(x, true) && backupCount < 100)
 					{
 						pc.cocks[x].cLengthRaw += 2 + rand(4);
 						backupCount++;
