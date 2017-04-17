@@ -169,6 +169,7 @@ package classes.Characters
 			if(rand(2) == 0) skinTone = "green";
 			else skinTone = "blue";
 			long = "The ganraen knight’s " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
+			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			
 			this._isLoading = false;
 		}

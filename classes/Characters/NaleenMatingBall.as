@@ -194,7 +194,7 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "Naleen";
-
+			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 			this._isLoading = false;
 		}
 		

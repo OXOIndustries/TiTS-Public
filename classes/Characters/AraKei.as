@@ -191,6 +191,8 @@ package classes.Characters
 			// v2 == 2 -> she
 			createStatusEffect("Forced Gender");
 			
+			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
+
 			this._isLoading = false;
 		}
 		

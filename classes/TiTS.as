@@ -118,6 +118,7 @@
 		include "../includes/masturbation.eggTrainer.as";
 		include "../includes/masturbation.magicMilker.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
 		include "../includes/StubbedFunctions.as";
@@ -471,7 +472,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.39";
+			version = "0.7.40";
 
 			//temporary nonsense variables.
 			temp = 0;

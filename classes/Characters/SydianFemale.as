@@ -191,7 +191,7 @@
 			btnTargetText = "Sydian";
 			
 			randomise();
-			
+			kGAMECLASS.getRareDropsForCreatureByPlanet(2,this);
 			this._isLoading = false;
 		}
 		

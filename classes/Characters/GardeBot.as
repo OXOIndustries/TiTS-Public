@@ -192,6 +192,7 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "RogueBot";
+			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			
 			this._isLoading = false;
 

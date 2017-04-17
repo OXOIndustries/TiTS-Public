@@ -185,6 +185,7 @@
 			isUniqueInFight = true;
 			btnTargetText = "Lapinara";
 			randomise();
+			kGAMECLASS.getRareDropsForCreatureByPlanet(2,this);
 			
 			this._isLoading = false;
 		}

@@ -205,7 +205,7 @@
 			else if(rand(2) == 0) inventory.push(new RedMyrVenom());		
 			sexualPreferences.setRandomPrefs(4 + rand(3),1);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,	GLOBAL.REALLY_LIKES_SEXPREF);
-			
+			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			this._isLoading = false;
 		}
 		

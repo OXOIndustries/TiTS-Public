@@ -146,7 +146,7 @@ package classes.Characters
 			btnTargetText = "Frostwyrm";
 			
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
-			
+			kGAMECLASS.getRareDropsForCreatureByPlanet(-2,this);
 			this._isLoading = false;
 		}
 		

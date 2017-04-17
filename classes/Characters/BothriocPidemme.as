@@ -195,6 +195,7 @@ package classes.Characters
 			inventory = [];
 			if(rand(5) == 0) inventory.push(RandomInCollection(meleeWeapon, rangedWeapon, armor));
 			else if (rand(40) == 0) inventory.push(RandomInCollection(new Kirkite(), new Satyrite(), new Picardine()));
+			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			
 			this._isLoading = false;
 		}

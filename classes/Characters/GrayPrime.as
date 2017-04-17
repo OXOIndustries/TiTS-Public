@@ -168,6 +168,7 @@ package classes.Characters
 			
 			isUniqueInFight = true;
 			btnTargetText = "Gray Prime";
+			kGAMECLASS.getRareDropsForCreatureByPlanet(2,this);
 			
 			this._isLoading = false;
 		}

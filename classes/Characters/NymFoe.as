@@ -226,6 +226,7 @@
 			//Enemy Status: Bouncy x5 ("”</i>)
 			createStatusEffect("Bouncy!",5,0,0,0,false,"Icon_DefUp","Nym-Foe’s massive mammaries deflect basic attacks!\n\n100% chance to block basic attacks!",true,0);
 			this.createStatusEffect("Disarm Immune");
+			kGAMECLASS.getRareDropsForCreatureByPlanet(2,this);
 			this._isLoading = false;
 		}
 		

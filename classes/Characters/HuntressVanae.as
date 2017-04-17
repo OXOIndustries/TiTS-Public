@@ -138,7 +138,7 @@ package classes.Characters
 				if (rand(10) <= 1) inventory.push(new VanaeSpear());
 				else if(rand(10) <= 6) inventory.push(new SkySap());
 			}
-			
+			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 			this._isLoading = false;
 		}
 		

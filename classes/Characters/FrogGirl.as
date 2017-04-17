@@ -179,7 +179,7 @@
 			this.createStatusEffect("Disarm Immune");
 
 			this.inventory.push(new KerokorasVenom());
-			
+			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 			isUniqueInFight = true;
 			btnTargetText = "Froggirl";
 			

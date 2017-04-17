@@ -179,7 +179,7 @@
 			isUniqueInFight = true;
 			btnTargetText = "Wetraxxel";
 			sexualPreferences.setRandomPrefs(4 + rand(3),2);
-			
+			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			this._isLoading = false;
 		}
 		

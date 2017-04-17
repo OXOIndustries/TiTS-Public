@@ -207,7 +207,7 @@
 			this.inventory.push(new ZilSpear());
 			this.inventory.push(new ZilBow());
 			
-
+			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 
 			this._isLoading = false;
 		}

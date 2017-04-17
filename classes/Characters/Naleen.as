@@ -182,6 +182,7 @@
 			btnTargetText = "Naleen";
 			setDefaultSexualPreferences();
 			this._isLoading = false;
+			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 		}
 		
 		override public function get bustDisplay():String
