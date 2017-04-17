@@ -4809,7 +4809,7 @@ package classes.GameData
 				addButton(0, "Next", postCombatReturnToMenu);
 			}
 			
-			output("\n\n");
+			//output("\n\n");
 		}
 	}
 }

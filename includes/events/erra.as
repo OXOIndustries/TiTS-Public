@@ -210,7 +210,7 @@ public function talkToErraAboutErra():void
 	output("\n\nErra looks like she’s about to go off on a tangent, tail wagging violently. She stops herself from getting too giddy, smiles, and stares into her drink for a moment. She brings her gaze back up towards yours and asks, <i>“What about you? Do anything interesting?”</i>");
 	output("\n\nOh boy; you take a deep breath before you start to unravel your tale before her: your father, the probes, the fortune, your quest, your crew, ");
 	//notOnTavros:
-	if(getPlanetName() != "Tarkus") output("the planets you’ve been to, ");
+	if(rooms[currentLocation].planet != "TAVROS STATION") output("the planets you’ve been to, ");
 	output("and your good name. Erra is impressed by the time you finish, looking at you wide-eyed for a moment before speaking up, <i>“Uh, wow, you know when you’re picking up random " + pc.mf("guys","chicks") + " at bars, you don’t exactly expect to come across billionaire fortune-hunters, especially not cute ones.”</i>");
 	output("\n\nYou smile and tell her that’s what they usually say.");
 	processTime(15);
@@ -643,7 +643,9 @@ public function ifYouLikeErraThenYouShouldaPutACollarOnIt():void
 	output("\n\nTelling Erra that the box is most certainly for her, you promptly hand it over. She shoots you a curious look but accepts the gift, <i>“You know, you don’t have to start buying me stuff just because we’re a thing now, [pc.name].”</i>");
 	if(pc.isNice()) output("\n\nYou tell the ausar you just thought you’d repay her for the wonderful, purple, paw-printed gift she gave you.");
 	else output("\n\nYou roll your eyes and tell the ausar to just open the box.");
-	output("\n\n<i>“Alright, alright,”</i> she sighs, opening the box, pulling off the top to reveal the small ring of leather held within. Beaming down at it, the happy puppy pulls the collar from the box to get a better look at it, <i>“Hey! This is one of the ones from Happy Tails on Tavros, isn’t it?”</i> Still smiling, she turns the leather loop around, her gaze landing on the brass-colored tag. You watch intently as Erra lifts the tag up with a black-furred hand, before smiling even wider when she reads it, tail wagging swiftly behind her.");
+	output("\n\n<i>“Alright, alright,”</i> she sighs, opening the box, pulling off the top to reveal the small ring of leather held within. Beaming down at it, the happy puppy pulls the collar from the box to get a better look at it, <i>“Hey! This is one of the ones from Happy Tails");
+	if(rooms[currentLocation].planet != "TAVROS STATION") output(" on Tavros");
+	output(", isn’t it?”</i> Still smiling, she turns the leather loop around, her gaze landing on the brass-colored tag. You watch intently as Erra lifts the tag up with a black-furred hand, before smiling even wider when she reads it, tail wagging swiftly behind her.");
 	output("\n\nOnce she’s done with her inspection of the collar, your ausar lover quickly wraps it around her neck and closes the buckle. She turns her head in a few different directions to give you a better look at it, her smile becoming ever more smug, <i>“Suits me well, don’t you think?”</i>");
 	output("\n\nYou let Erra know it looks great on her, and she chuckles happily in response.");
 	output("\n\nThe ausar removes her new collar and starts to settle down a bit, seemingly lost in a sea of bliss and relief, letting out a contented sigh as she puts the leather ring back in its box, <i>“Thanks, [pc.name], it’s perfect.”</i> She flashes you another grin and speaks up once more, <i>“And I think I’ve got a few ways I could repay you for it when we get back to my ship.”</i> You see her tail pick up it’s pace again at its owner’s words.");

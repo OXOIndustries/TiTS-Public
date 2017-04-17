@@ -1882,7 +1882,7 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// Plantation Quest
-			if(MailManager.isEntryViewed("plantation_quest_start"))
+			if(flags["PQ_RESOLUTION"] != undefined || flags["PLANTATION_QUEST"] != undefined || MailManager.isEntryViewed("plantation_quest_start"))
 			{
 				output2("\n<b><u>Plantation Quest</u></b>");
 				output2("\n<b>* Status:</b>");
@@ -1921,6 +1921,13 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PQUEST_WHERE_CHAT"] != undefined) output2("\n<b>* Clues, Lah’s Location:</b> <i>Highlands to the north, on a large waterfall...</i>");
 				if(flags["PQUEST_ABLE_CUSTOMS_TALK"] != undefined) output2("\n<b>* Clues, Zil Customs:</b> <i>Challenge Lah to a fair fight and give something zil value to earn chieftain’s trust...</i>");
 				if(flags["PQUEST_ABLE_VALUE_TALK"] != undefined) output2("\n<b>* Clues, What Zil Value:</b> <i>Sex, winning belongings fairly, and something Lah is offering them...</i>");
+				if(flags["PQ_DIPLO_FAILS"] != undefined || flags["PQ_DIPLO_SUCCESS"] != undefined)
+				{
+					output2("\n<b>* Diplomacy:</b>");
+					if(flags["PQ_DIPLO_SUCCESS"] != undefined) output2(" Succeeded " + (flags["PQ_DIPLO_SUCCESS"] == 1 ? "once" : (flags["PQ_DIPLO_SUCCESS"] + " times")));
+					if(flags["PQ_DIPLO_FAILS"] != undefined && flags["PQ_DIPLO_SUCCESS"] != undefined) output2(", ");
+					if(flags["PQ_DIPLO_FAILS"] != undefined) output2(" Failed " + (flags["PQ_DIPLO_FAILS"] == 1 ? "once" : (flags["PQ_DIPLO_FAILS"] + " times")));
+				}
 				if(flags["PQ_TOOK_AMBER"] != undefined) output2("\n<b>* Amber Idol:</b> Taken");
 				if(flags["PQUEST_WATERFALLED"] != undefined)
 				{
@@ -5205,10 +5212,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Accu-Pitch
-			if(flags["ACCUPITCH_VISIT"] != undefined)
+			if(flags["MET_BELLE"] != undefined)
 			{
 				output2("\n<b><u>Accu-Pitch Labs</u></b>");
 				output2("\n<b>* Belle:</b> Met her");
+				if(pc.hasKeyItem("Sub-Tuner Collar")) output2(", You’re her pet");
+				if(flags["SUB_TUNERED"] != undefined)
+				{
+					output2(", Walked you");
+					if(flags["SUB_TUNERED"] > 1) output2(" " + num2Text(flags["SUB_TUNERED"]) + " times");
+				}
 				variousCount++;
 			}
 			// Carbonado
@@ -5243,7 +5256,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Tlako:</b> Met her");
 					if(flags["TLAKO_BASKETS"] != undefined)
 					{
-						output2(", bought welcome basket from her");
+						output2(", Bought welcome basket from her");
 						if(flags["TLAKO_BASKETS"] > 1) output2(" " + num2Text(flags["TLAKO_BASKETS"]) + " times");
 					}
 					if(flags["FLORKED_TLAKO"] != undefined) output2("\n<b>* Tlako, Times Florked:</b> " + flags["FLORKED_TLAKO"]);

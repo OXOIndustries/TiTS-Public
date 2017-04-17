@@ -9672,25 +9672,27 @@
 			}
 			return false
 		}
-		public function canAutoFellate(arg: int = 0): Boolean {
+		public function canAutoFellate(arg: int = 0, lengthOnly:Boolean = false): Boolean {
 			if (!hasCock()) return false;
 			if (arg >= 0) {
 				if (arg >= cocks.length) return false;
+				if (!lengthOnly && isFlexible()) return true;
 				return (cocks[arg].cLength() >= 1 / 6 * tallness && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, arg) || cocks[arg].cLength() >= tallness * 1 / 3) && genitalLocation() <= 1);
 			}
 			//Negative is code for see if any can.
-			else {
-				for (var x: int = 0; x < cocks.length; x++) {
-					if (cocks[x].cLength() >= tallness / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness / 3) && genitalLocation() <= 1)
-						return true;
-				}
-				return false;
+			if (!lengthOnly && isFlexible()) return true;
+			for (var x: int = 0; x < cocks.length; x++) {
+				if (cocks[x].cLength() >= tallness / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness / 3) && genitalLocation() <= 1)
+					return true;
 			}
+			return false;
 		}
-		public function canSelfSuck(arg: int = 0): Boolean {
-			return canAutoFellate(arg);
+		public function canSelfSuck(arg: int = 0, lengthOnly:Boolean = false): Boolean {
+			return canAutoFellate(arg, lengthOnly);
 		}
-		public function aCockToSuck(): int {
+		public function aCockToSuck(lengthOnly:Boolean = false): int {
+			if (!hasCock()) return -1;
+			if (!lengthOnly && isFlexible()) return rand(cocks.length);
 			var choices: Array = new Array();
 			for (var x: int = 0; x < cocks.length; x++) {
 				if (cocks[x].cLength() >= 1 / 6 * tallness && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness * 1 / 3) && genitalLocation() <= 1)
@@ -9698,6 +9700,9 @@
 			}
 			if (choices.length == 0) return 0;
 			return choices[rand(choices.length)];
+		}
+		public function isFlexible(): Boolean {
+			return (hasPerk("Flexibility") || hasStatusEffect("Gel Body"));
 		}
 		//Change cunt type!
 		public function shiftVagina(slot:int = 0, type:int = 0): void {
