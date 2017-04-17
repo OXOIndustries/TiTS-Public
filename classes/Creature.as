@@ -9823,6 +9823,10 @@
 					vaginas[slot].vaginaColor = lipColor;
 					vaginas[slot].addFlag(GLOBAL.FLAG_TONGUE);
 					break;
+				case GLOBAL.TYPE_BOTHRIOC:
+					vaginas[slot].wetnessRaw = 2;
+					vaginas[slot].loosenessRaw = 3;
+					break;
 			}
 		}
 		//Change cock type
@@ -9999,6 +10003,12 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					break;
+				case GLOBAL.TYPE_BOTHRIOC:
+					cocks[slot].cThicknessRatioRaw = 1.75;
+					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
+					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					break;
 
 			}

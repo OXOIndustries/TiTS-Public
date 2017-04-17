@@ -2,26 +2,13 @@ package classes.Characters
 {
 	import classes.CockClass;
 	import classes.Creature;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.Items.Armor.ChitPlate;
 	import classes.Items.Guns.BothriocRifle;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Melee.BothriocRapier;
-	import classes.StorageClass;
 	import classes.VaginaClass;
 	import classes.kGAMECLASS;
-	import classes.Engine.Utility.rand;
-	import classes.Engine.Utility.weightedRand;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	import classes.GameData.CombatAttacks;
-	import classes.GameData.CombatManager;
-	import classes.Engine.Combat.DamageTypes.*;
-	import classes.Engine.Combat.*; 
-	import classes.Engine.Interfaces.output;
-	import classes.StringUtil;
-	import classes.Util.RandomInCollection;
-	import classes.Util.InCollection;
 	
 	
 	public class AraKei extends Creature
@@ -38,7 +25,7 @@ package classes.Characters
 			a = "";
 			capitalA = "";
 			//this.long = "";
-			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
+			this.customBlock = "The bothrioc’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
 			
@@ -62,47 +49,49 @@ package classes.Characters
 			
 			this.level = 7;
 			this.XPRaw = normalXP();
-			this.credits = 80 + rand(80);
+			this.credits = 0;
 			this.HPMod = 70;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 35;
-			this.eyeType = GLOBAL.TYPE_HUMAN;
+			this.eyeType = GLOBAL.TYPE_BOTHRIOC;
 			this.eyeColor = "black";
-			this.tallness = 68;
+			this.tallness = 84;
 			this.thickness = 20;
 			this.tone = 70;
-			this.hairColor = RandomInCollection("black", "white", "electric blue", "rusty red");
+			this.hairColor = "electric blue";
 			this.scaleColor = "black";
 			this.furColor = "black";
 			this.hairLength = 3;
-			this.hairType = GLOBAL.TYPE_HUMAN;
+			this.hairType = GLOBAL.TYPE_BOTHRIOC;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 			this.skinTone = "pale";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_HUMAN;
+			this.faceType = GLOBAL.TYPE_BOTHRIOC;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.TYPE_HUMAN;
+			this.tongueType = GLOBAL.TYPE_BOTHRIOC;
+			this.tongueFlags = [GLOBAL.FLAG_LONG];
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_HUMAN;
+			this.armType = GLOBAL.TYPE_BOTHRIOC;
+			this.armFlags = [GLOBAL.FLAG_CHITINOUS];
 			this.gills = false;
-			this.legType = GLOBAL.TYPE_HUMAN;
-			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			this.legType = GLOBAL.TYPE_BOTHRIOC;
+			this.legCount = 4;
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_HEELS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = 0;
-			this.tailCount = 0;
-			this.tailFlags = new Array();
+			this.tailType = GLOBAL.TYPE_BOTHRIOC;
+			this.tailCount = 1;
+			this.tailFlags = [GLOBAL.FLAG_CHITINOUS];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -190,8 +179,6 @@ package classes.Characters
 			// v1 == 1 -> he
 			// v2 == 2 -> she
 			createStatusEffect("Forced Gender");
-			
-			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 
 			this._isLoading = false;
 		}
