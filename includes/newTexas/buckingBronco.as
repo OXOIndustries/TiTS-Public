@@ -531,14 +531,14 @@ public function bbFoodMenu():void
 
 	processTime(2);
 	clearMenu();
-	if(pc.credits >= 5) addButton(0,"B&Gravy",eatAtTheBB,"B&Gravy","Biscuits and Gravy","Two buttermilk biscuits covered in a creamy pork sausage gravy. A breakfast favorite.\n\nCost: 5 credits");
-	else addDisabledButton(0,"B&Gravy","Biscuits and Gravy","You cannot afford that.\n\nCost: 5 credits");
-	if(pc.credits >= 10) addButton(1,"Country Ham",eatAtTheBB,"Country Ham","Country Ham","Pan-fried ham on a bed of grits and smothered in red-eye gravy. Served with a side of skillet-baked cornbread.\n\nCost: 15 credits");
-	else addDisabledButton(1,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 10 credits");
-	if(pc.credits >= 20) addButton(2,"CF Steak",eatAtTheBB,"CF Steak","Country Fried Steak","Not actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.\n\nCost: 20 credits");
-	else addDisabledButton(2,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 20 credits");
-	if(pc.credits >= 50) addButton(3,"72oz Steak",eatAtTheBB,"72oz Steak","72 oz. Steak","Four and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is “just” a large steak. Popular with tourists who want the full “New Texas experience.”\n\nCost: 50 credits");
-	else addDisabledButton(3,"72oz Steak","72 oz. Steak","You cannot afford that.\n\nCost: 20 credits");
+	if(pc.credits >= 5) addButton(0,"B&Gravy",eatAtTheBB,"B&Gravy","Biscuits and Gravy","Two buttermilk biscuits covered in a creamy pork sausage gravy. A breakfast favorite.\n\nCost: 5 Credits");
+	else addDisabledButton(0,"B&Gravy","Biscuits and Gravy","You cannot afford that.\n\nCost: 5 Credits");
+	if(pc.credits >= 10) addButton(1,"Country Ham",eatAtTheBB,"Country Ham","Country Ham","Pan-fried ham on a bed of grits and smothered in red-eye gravy. Served with a side of skillet-baked cornbread.\n\nCost: 10 Credits");
+	else addDisabledButton(1,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 10 Credits");
+	if(pc.credits >= 20) addButton(2,"CF Steak",eatAtTheBB,"CF Steak","Country Fried Steak","Not actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.\n\nCost: 20 Credits");
+	else addDisabledButton(2,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 20 Credits");
+	if(pc.credits >= 50) addButton(3,"72oz Steak",eatAtTheBB,"72oz Steak","72 oz. Steak","Four and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is “just” a large steak. Popular with tourists who want the full “New Texas experience.”\n\nCost: 50 Credits");
+	else addDisabledButton(3,"72oz Steak","72 oz. Steak","You cannot afford that.\n\nCost: 50 Credits");
 	addButton(14,"Back",mainGameMenu);
 
 }
@@ -655,12 +655,12 @@ public function livingKegsApproach():void
 	//[Rum] Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits. //Requires 35 credits.
 	//[Leave]
 	clearMenu();
-	if(pc.credits >= 25) addButton(0,"Beer",rumCowDrinkieDrink,undefined,"Beer","Get a drink from the girl branded with some kind of lager. Costs 25 credits.");
-	else addDisabledButton(0,"Beer","Beer","You can’t afford that.");
-	if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Get a drink from the girl branded with some kind of high-proof whiskey. Costs 30 credits.");
-	else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.");
-	if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits.");
-	else addDisabledButton(2,"Rum","Rum","You can’t afford that.");
+	if(pc.credits >= 25) addButton(0,"Beer",beerBoozeGalGo,undefined,"Beer","Get a drink from the girl branded with some kind of lager.\n\nCost: 25 Credits");
+	else addDisabledButton(0,"Beer","Beer","You can’t afford that.\n\nCost: 25 Credits");
+	if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.\n\nCost: 30 Credits");
+	else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.\n\nCost: 30 Credits");
+	if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.\n\nCost: 35 Credits");
+	else addDisabledButton(2,"Rum","Rum","You can’t afford that.\n\nCost: 35 Credits");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -841,7 +841,7 @@ public function sallyAppearance():void
 	clearOutput();
 	showSally();
 	author("HugsAlright");
-	output("Sally is a cowgirl who you estimate to be around 6’ tall. Her straight, blonde hair is parted by a pair of bovine-ears and two little pair horns before it drapes down to her back and around the feminine curves of her face. Deep blue eyes keep your attention fixed on the rum-cow’s visage, her cute button nose, and pouty lips before your eyes travel downwards across her dusky skin.");
+	output("Sally is a cowgirl who you estimate to be around 6\' tall. Her straight, blonde hair is parted by a pair of bovine-ears and two little pair horns before it drapes down to her back and around the feminine curves of her face. Deep blue eyes keep your attention fixed on the rum-cow’s visage, her cute button nose, and pouty lips before your eyes travel downwards across her dusky skin.");
 	output("\n\nShe looks like most New Texas gals: gorgeous. Her body is as curvy as any woman’s on this warm, dusty ball of Terran past, and her breasts just as big, at least a G-cup by your guess, each of them topped with a big, pink, wide nipple, just dripping with sugary rum, perfect to be suckled and pinched. If your gaze travels further down, you’re greeted with the wonderful sight of the bovine woman’s shapely legs, and big, squishy butt, complete with a happily swishing cowtail.");
 	output("\n\nThe most important fact about Sally, however, is that she’s completely nude.");
 	output("\n\nDespite the fact that she looks so young, Sally gives off a very motherly vibe, like you could just collapse onto her with your face right between her tits and fall asleep in her arms, though, that might be the constant wave of lust-inducing pheromones she’s giving off talking.");
