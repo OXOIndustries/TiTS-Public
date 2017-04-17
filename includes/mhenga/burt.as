@@ -306,7 +306,7 @@ public function BurtShopCollectables():void {
 }
 
 public function burtPurchase(arg:int = 0):void {
-	if(pc.inventory[arg].shortName != "ZilRation" && pc.inventory[arg].shortName != "ZilHoney") burtRefusesYourItemYouHobo(arg);
+	if(!InCollection(pc.inventory[arg].shortName, ["ZilRation", "ZilHoney", "Z.Spear", "ZilBow"])) burtRefusesYourItemYouHobo(arg);
 	else burtMakesAPurchase(arg);
 }
 
@@ -317,12 +317,17 @@ public function burtMakesAPurchase(arg:int = 0):void {
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
 	var credits:int = 50;
-	if(pc.inventory[arg].shortName == "ZilRation") credits = 50;
-	else credits = 100;
+	switch(pc.inventory[arg].shortName)
+	{
+		case "ZilRation": credits = 50; break;
+		case "ZilHoney": credits = 100; break;
+		case "Z.Spear":
+		case "ZilBow": credits = (pc.inventory[arg].basePrice * 150); break;
+	}
 	pc.inventory[arg].quantity--;
 	pc.credits += credits;
 	
-	output("Burt takes a moment to look the " + pc.inventory[arg].description + " over, making sure that it is what you say it is, finally giving a nod as he tucks it behind the bar out of sight and sends over " + num2Text(credits) + " credits. <i>“There you go, pleasure doing business with you, [pc.name].”</i>");
+	output("Burt takes a moment to look the " + pc.inventory[arg].longName + " over, making sure that it is what you say it is, finally giving a nod as he tucks it behind the bar out of sight and sends over " + num2Text(credits) + " credits. <i>“There you go, pleasure doing business with you, [pc.name].”</i>");
 	//EAT ZE STACK!
 	if(pc.inventory[arg].quantity <= 0) pc.inventory.splice(arg,1);
 	//[pg]
@@ -336,7 +341,7 @@ public function burtRefusesYourItemYouHobo(arg:int = 0):void {
 	author("Danaume");
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
-	output("Burt glances at the " + pc.inventory[arg].description + " and sighs, <i>“Look, [pc.name], I don’t know if you are just confused or not, but this isn’t even remotely related to the Zil. I can’t buy this. Take this over to the Junk Hut if you want to get rid of it, I’m just not interested in buying it.”</i>");
+	output("Burt glances at the " + pc.inventory[arg].longName + " and sighs, <i>“Look, [pc.name], I don’t know if you are just confused or not, but this isn’t even remotely related to the Zil. I can’t buy this. Take this over to the Junk Hut if you want to get rid of it, I’m just not interested in buying it.”</i>");
 	//[Next]
 	this.clearMenu();
 	this.addButton(0,"Next",BurtShopCollectables);

@@ -29,11 +29,10 @@ package classes.Items.Melee
 			
 			this.tooltip = "A short stabbing spear, with a broad, leaf-shaped tip made of flint. A favored weapon in zil hunting parties, the blade usually envenomed.";
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
-
-
+			
 			this.attackVerb = "stab";
 			attackNoun = "thrust";
-						
+			
 			this.basePrice = 1000;
 			this.attack = 0;
 			baseDamage.kinetic.damageValue = 6.0;

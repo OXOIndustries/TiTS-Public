@@ -2378,7 +2378,7 @@ public function pcReignsAsDiplomancerSupreme():void
 	showQuinnAndLah();
 	author("Nonesuch");
 	output("A gesture from Quinn signals the end of your entreatment.");
-	output("\n\n<i>“I have listened to the land-stealer champion,”</i> she says, projecting her clear, sonorous voice so all present can hear it. <i>“Having considered... I believe there is merit to what [pc.he] says. [pc.he] has presented unexpected words that have the ring of truth to them, widening my understanding. We shall relent, and seek alliance with the star-people of Esbeth.”</i>");
+	output("\n\n<i>“I have listened to the land-stealer champion,”</i> she says, projecting her clear, sonorous voice so all present can hear it. <i>“Having considered... I believe there is merit to what [pc.he] says. [pc.He] has presented unexpected words that have the ring of truth to them, widening my understanding. We shall relent, and seek alliance with the star-people of Esbeth.”</i>");
 	output("\n\n<i>“No!”</i> howls Lah, over the murmurings of the crowd. <i>“You don’t understand, the attacks have to continue! You’ve only got a limited opportunity before-”</i>");
 	output("\n\n<i>“I </i>understand<i> that you lied to me,”</i> Quinn interrupts sharply, <i>“in order to ‘make things easier’. I think that’s the greatest truth you have spoken recently.”</i> She waves dismissively. <i>“Take him away if you wish, champion. I have no further use for him.”</i>");
 	output("\n\nThe lanky ausar slumps in the dirt, head bowed and clutching the sand, utterly broken.");
@@ -3046,7 +3046,7 @@ public function putItInAllThreeOfQuinnHoles():void
 	showQuinn(true);
 	author("Nonesuch");
 	output("<i>“I’m going to fuck you senseless in all three holes.”</i>");
-	output("\n\nThe words just tumble out of you. They aren’t even remotely appropriate, but here, in this warm, secluded space, with the saccharine pheromones pouring off her wasp factory and submerging your senses in honeyed need, the sight of her lithe, athletic body sprawled on the furs in front of you, they just... happen. [pc.eachCock], throbbing ");
+	output("\n\nThe words just tumble out of you. They aren’t even remotely appropriate, but here, in this warm, secluded space, with the saccharine pheromones pouring off her wasp factory and submerging your senses in honeyed need, the sight of her lithe, athletic body sprawled on the furs in front of you, they just... happen. [pc.EachCock], throbbing ");
 	if(pc.isCrotchExposed()) output("urgently");
 	else output("and straining urgently against your [pc.lowerUndergarment]");
 	output("has bypassed your brain entirely. The zil chieftain laughs with delighted condescension, knee waggling up and down. Oh Void, the way she arches her eyebrow... you ");
@@ -3169,7 +3169,7 @@ public function vagScizzorWithQuinnsLizardGizzard():void
 
 	output("You clamber onto the big, round heap of furs");
 	if(!pc.isCrotchExposed()) output(", sinuously removing your [pc.gear] as you come,");
-	output(" eyes full of her lithe, forest-fairy body. The roiling, intoxicating smell of oozing, horny honey is overwhelming, and you don’t fight what it directs you to do. One hand sliding softly up her bare, yellow hip, you dip your head between her legs and drag your [pc.tongue] along the neat line of her pussy, coating it with sugar. Arousal blooms like a firework inside your gut as you funnel her honey down your throat, heat flushing down to your groin, and you bend your tongue between her flaps, intensely eager for more. Quinn hums her approval, slim hips moving either side of your [pc.hips]. [pc.eachVagina] is getting very, very wet.");
+	output(" eyes full of her lithe, forest-fairy body. The roiling, intoxicating smell of oozing, horny honey is overwhelming, and you don’t fight what it directs you to do. One hand sliding softly up her bare, yellow hip, you dip your head between her legs and drag your [pc.tongue] along the neat line of her pussy, coating it with sugar. Arousal blooms like a firework inside your gut as you funnel her honey down your throat, heat flushing down to your groin, and you bend your tongue between her flaps, intensely eager for more. Quinn hums her approval, slim hips moving either side of your [pc.hips]. [pc.EachVagina] is getting very, very wet.");
 	output("\n\n<i>“So how do star-women do with each other?”</i> she murmurs; long, glossy fingers curl around your chin, making you look up to her molten brass eyes. <i>“Is it just like this? This is how my maidens love one another usually, I know, but I thought perhaps for other beings - who don’t have the sweetness - ?”</i>");
 	if(pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) 
 	{
