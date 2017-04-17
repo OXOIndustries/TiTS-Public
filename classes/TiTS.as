@@ -929,7 +929,6 @@
 			this.userInterface.BufferPagePrevHandler();
 		}
 		
-		// Cheaty hooks for stuff
 		public function IsFunction(name:String):Boolean
 		{
 			if (this[name] != undefined) return true;
