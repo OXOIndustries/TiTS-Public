@@ -4080,7 +4080,7 @@
 				}
 			}
 			var bonus:Number = 0;
-			if(hasStatusEffect("Adorahol")) bonus -= statusEffectv1("Adorahol");
+			bonus -= statusEffectv1("Adorahol");
 
 			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
@@ -4188,6 +4188,7 @@
 			if (hasPerk("Slut Stamp") && hasGenitals() && isCrotchGarbed()) currLib += perkv1("Slut Stamp");
 			if (perkv1("Dumb4Cum") > 24) currLib += perkv1("Dumb4Cum")-24;
 			currLib += statusEffectv3("Heat");
+			currLib += statusEffectv1("Rut");
 			currLib += statusEffectv1("Lagonic Rut");
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
@@ -4223,13 +4224,14 @@
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
 
 			//Temporary Stuff
-			if (hasStatusEffect("Sexy Costume")) bonus += statusEffectv1("Sexy Costume");
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
 			if (perkv1("Dumb4Cum") > 24) bonus += perkv1("Dumb4Cum")-24;
-			if (hasStatusEffect("Priapin")) bonus += statusEffectv4("Priapin");
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
+			bonus += statusEffectv1("Sexy Costume");
+			bonus += statusEffectv4("Priapin");
 			bonus += statusEffectv2("Heat");
+			bonus += statusEffectv2("Rut");
 			bonus += statusEffectv2("Lagonic Rut");
 			bonus += statusEffectv1("Omega Oil");
 
@@ -4633,7 +4635,7 @@
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasStatusEffect("Mare Musk")) temp += 2;
 			//You cannot handle the Mango!
-			if (hasStatusEffect("The Mango")) temp += statusEffectv1("The Mango");
+			temp += statusEffectv1("The Mango");
 			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
 			if(hasPerk("Sexy Thinking"))
 			{
@@ -4709,12 +4711,12 @@
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasStatusEffect("Riposting")) temp += 15;
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;
-			if (hasStatusEffect("Evasion Reduction")) temp -= statusEffectv1("Evasion Reduction");
 			if (hasStatusEffect("Resolve")) temp += 50;
-			if (hasStatusEffect("Water Veil")) temp += statusEffectv2("Water Veil");
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
-			if (hasStatusEffect("Evasion Boost")) temp += statusEffectv1("Evasion Boost");
+			temp += statusEffectv2("Water Veil");
+			temp += statusEffectv1("Evasion Boost");
+			temp -= statusEffectv1("Evasion Reduction");
 			//Nonspecific evasion boost status effect enemies can use.
 			//Now reduced by restraints - 25% per point
 			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
@@ -9244,7 +9246,7 @@
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
 			var bonus:Number = perkv1("Potent");
-			if (hasStatusEffect("Priapin")) bonus += statusEffectv2("Priapin");
+			bonus += statusEffectv2("Priapin");
 			multi += bonus;
 			if (multi < 0) return 0;
 			return multi;
@@ -9286,6 +9288,7 @@
 			else if (refractoryRate >= 30 && quantity < 1500) quantity = 1500;
 			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
+			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
@@ -9314,6 +9317,7 @@
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 
 			//Overriiiide for stuff
+			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
 			return quantity;
 		}
@@ -16535,8 +16539,9 @@
 		public function cumQuality():Number
 		{
 			var bonus:Number = 0;
-			if(hasPerk("Virile")) bonus += perkv1("Virile");
-			if(hasStatusEffect("Priapin")) bonus += statusEffectv1("Priapin");
+			bonus += perkv1("Virile");
+			bonus += statusEffectv1("Priapin");
+			bonus += statusEffectv4("Rut");
 			bonus += statusEffectv4("Lagonic Rut");
 			return (cumQualityRaw + cumQualityMod + bonus);
 		}
