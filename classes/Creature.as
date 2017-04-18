@@ -8631,6 +8631,12 @@
 			removeStatusEffect("Lagonic Rut");
 			if(eventLog) AddLogEvent("You sigh deeply, suddenly feeling calmer and less aggressive than you have in many days. When you manage to go more than a few minutes without getting angry at the thought of someone other than you pumping cum into a fertile pussy you realize that <b>your rut has ended.</b>");
 		}
+		public function heatMinutes():Number
+		{
+			var minutes:Number = 0;
+			if(getStatusMinutes("Heat") > 0) minutes = getStatusMinutes("Heat");
+			return minutes;
+		}
 		public function rutMinutes():Number
 		{
 			var minutes:Number = 0;
@@ -9265,7 +9271,7 @@
 			var lustCoefficient: Number = ((lust() / 2) + 75) / 100;
 			quantity = cumMultiplier() * lustCoefficient * maxCum() / ballEfficiency;
 			//Rut means bigger, ball-draining orgasms.
-			quantity += statusEffectv1("Rut");
+			if (inRut()) quantity *= 1.5;
 			if (quantity > currentCum()) quantity = currentCum();
 			//Round dat shit.
 			quantity = Math.round(quantity / 10) * 10;
@@ -9416,7 +9422,6 @@
 		//Placeholder
 		public function girlCumQ(arg: int = -1):Number
 		{
-			// 9999
 			if (!hasVagina()) return 0;
 			var quantity: Number = 0;
 			// lust - 50% = normal output. 0 = 75%. 100 = +125% output.
@@ -9447,7 +9452,7 @@
 			// Estimate initial quantity.
 			quantity = tempGirlCumMultiplier * lustCoefficient * (girlCumAmount + squirterBonus);
 			// Heat means wetter orgasms.
-			quantity += statusEffectv1("Heat");
+			if(inHeat()) quantity *= 1.5;
 			//GOO VENT BONUS!
 			if(statusEffectv1("Goo Vent") == 1) 
 			{

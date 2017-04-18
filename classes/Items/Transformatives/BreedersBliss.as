@@ -28,15 +28,15 @@ package classes.Items.Transformatives
 			//Used on inventory buttons
 			this.shortName = "B.Bliss";
 			//Regular name
-			this.longName = "Breeder's Bliss"
+			this.longName = "Breeder’s Bliss"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a dose of the drug known as \"Breeder's Bliss\"";
+			this.description = "a dose of the drug known as “Breeder’s Bliss";
 
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Created by Tamani Corp. originally as a therapeutic drug for individuals of species that naturally undergo a heat or rut cycle, this drug became one of the company's most popular items when early testing found that it could induce a similar state even in organisms that do not naturally experience a breeding season. With the tagline: <i>\"Make every season breeding season!\"</i> Breeder's Bliss has proven especially popular with individuals in interspecies relationships who wish to give their partner a more <i>\"natural\"</i> reproductive experience. A fine print warning reads <i>\"Tamani Corp. is not responsible for increased libido, increased aggression, loss of inhibition, or unexpected pregnancies.\"</i>";
+			this.tooltip = "Created by Tamani Corp. originally as a therapeutic drug for individuals of species that naturally undergo a heat or rut cycle, this drug became one of the company’s most popular items when early testing found that it could induce a similar state even in organisms that do not naturally experience a breeding season. With the tagline: <i>“Make every season breeding season!”</i> Breeder’s Bliss has proven especially popular with individuals in interspecies relationships who wish to give their partner a more “natural” reproductive experience. A fine print warning reads <i>“Tamani Corp. is not responsible for increased libido, increased aggression, loss of inhibition, or unexpected pregnancies.”</i>";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -74,19 +74,21 @@ package classes.Items.Transformatives
 				//For herms, 50% chance to proc heat or rut per consumption of Breeder's Bliss
 				//If possible, I'd like to make it so that taking a dose of Sterilex will end the effects of this drug early. I'd also like to make it so that you can be Sterilex'd/Infertile and still take this drug and gain the effects without becoming fertile. This way NPCs can be given Breeder's Bliss for the purposes of a scene and neither have to worry about pregnancy, nor being in heat/rut for a week.
 
-				if(!pc.isPregnant() && pc.hasVagina() && (!pc.inDeepHeat() || pc.getStatusMinutes("Heat") < 22*24*60) && (!pc.hasCock() || rand(2) == 0))
+				if(pc.hasVagina() && !pc.isFullyWombPregnant() && (!pc.hasCock() || rand(2) == 0))
 				{
+					var totalWombs:int = pc.totalWombPregnancies();
+					
 					//Heat Proc
 					if(!pc.inHeat())
 					{
 						output("You pop the pill into your mouth and swallow it with a bit of water from your canteen. At first nothing happens, but soon you begin to feel <i>hot</i>. Your nethers flush warmly with blood as heat blooms in ");
-						if(pc.totalVaginas() > 1) output("each of ");
+						if(totalWombs > 1) output("each of ");
 						output("your ");
-						if(pc.totalVaginas() > 1) output("unoccupied ");
+						if(totalWombs > 1) output("unoccupied ");
 						output("womb");
-						if(pc.totalVaginas() > 1) output("s");
+						if(totalWombs > 1) output("s");
 						output(". Suddenly your posture feels inexplicably wrong, so you shift to a more comfortable stance, unconsciously adjusting your ");
-						if(pc.legCount == 1) output("[pc.lowerBody]");
+						if(!pc.hasLegs()) output("[pc.lowerBody]");
 						else output("[pc.legs]");
 						output(" slightly and lifting your [pc.ass]");
 						if(pc.tailCount > 0) output(" and [pc.tails]");
@@ -94,18 +96,18 @@ package classes.Items.Transformatives
 						if(pc.isTaur()) output("lying down");
 						else output("bending over");
 						output(" and letting a train of horny studs creampie your twat");
-						if(pc.totalVaginas() > 1) output("s");
+						if(totalWombs > 1) output("s");
 						output(" until your womb");
-						if(pc.totalVaginas() > 1) output("s");
+						if(totalWombs > 1) output("s");
 						output(" swell");
-						if(pc.totalVaginas() > 1) output("s");
+						if(totalWombs == 1) output("s");
 						output(" with offspring. You’ve got a nursery ready for any future children already! Why aren’t you using it to its fullest capabilities?");
 
 						output("\n\nThe ");
 						//PC has pheromones or is ausar/huskar/kaithrit/or half any of these:
 						if(pc.hasPheromones()) output("scent of fertile pheromones wafting from");
 						else output("heat and moisture blossoming in");
-						output(" [pc.eachVagina] clues you in on what's happening at the same time as your Codex beeping to alert you that <b>you have gone into heat!</b>");
+						output(" [pc.eachVagina] clues you in on what’s happening at the same time as your Codex beeping to alert you that <b>you have gone into heat!</b>");
 
 						//Add the "Heat" status, status duration 1 week or until pregnant in all wombs.
 						//Yay, heat!
@@ -120,19 +122,18 @@ package classes.Items.Transformatives
 					else if(!pc.inDeepHeat())
 					{
 						output("You pop the pill into your mouth and swallow it with a bit of water from your canteen. At first nothing happens, but soon you begin to feel feverishly <i>hot</i>. Your already breed-hungry womb");
-						if(pc.totalVaginas() > 1) output("s cries");
-						else output(" cry");
+						if(totalWombs > 1) output("s cry");
+						else output(" cries");
 						output(" out in frustration. Before swallowing this pill you were horny; now you’re positively juicing yourself at the mere thought of a cock to fill your achingly empty puss");
-						if(pc.totalVaginas() == 1) output("y");
+						if(totalWombs == 1) output("y");
 						else output("ies");
 						output(". You’re desperate to be filled with hot cum, to have your breasts swell with milk to feed the young growing in your equally swollen belly! As your mind glazes over with daydreams of being thoroughly bred by endless hordes of virile mates, your posture becomes even more wantonly slutty, ");
 						//no legs: 
-						if(pc.legCount == 1) output("ass thrust outwards");
+						if(!pc.hasLegs()) output("ass thrust outwards");
 						else output("legs spread wide");
-
 						//has tail:
-						if(pc.tailCount > 0) output(", [pc.tails] waving and held as high as possible} to present your flushed, dripping sex to anyone who might be present");
-						output(".");
+						if(pc.tailCount > 0) output(", [pc.tails] waving and held as high as possible");
+						output(" to display your flushed, dripping sex to anyone who might be present.");
 
 						output("\n\nThe unmistakable scent of a fertile, needy breeding bitch fills the area. ");
 						if(pc.hasPheromones()) output("You realize immediately");
@@ -161,9 +162,9 @@ package classes.Items.Transformatives
 					//Already in Deep Heat
 					else
 					{
-						output("You pop the pill into your mouth and swallow it with a bit of water from your canteen. It's hard to discern any changes given how extreme your heat is already, but after several moments you feel your [pc.cunts] growing warmer. You groan as you realize instinctively that ");
+						output("You pop the pill into your mouth and swallow it with a bit of water from your canteen. It’s hard to discern any changes given how extreme your heat is already, but after several moments you feel your [pc.cunts] growing warmer. You groan as you realize instinctively that ");
 						//Add one week to Deep Heat status, maximum duration for Deep Heat should go no higher than 4 weeks
-						if(pc.getStatusMinutes("Heat") < 22*24*60) 
+						if(pc.heatMinutes() < 22*24*60) 
 						{
 							pc.extendHeat(7*24*60);
 							output("<b>your heat has been extended.</b>");
@@ -192,7 +193,7 @@ package classes.Items.Transformatives
 					//Already in Rut
 					else 
 					{
-						output("You pop the pill into your mouth and swallow it with a bit of water from your canteen. It's hard to discern any changes given the intensity of your rut, but after several moments pass your [pc.cocks] harden");
+						output("You pop the pill into your mouth and swallow it with a bit of water from your canteen. It’s hard to discern any changes given the intensity of your rut, but after several moments pass your [pc.cocks] harden");
 						if(pc.cockTotal() == 1) output("s");
 						output(" slightly and begin");
 						if(pc.cockTotal() == 1) output("s");
@@ -210,9 +211,9 @@ package classes.Items.Transformatives
 					}
 				}			
 				//If proc vagina when pregnant in all vaginas
-				else if(pc.isPregnant())
+				else if(pc.hasVagina() && pc.isFullyWombPregnant())
 				{
-					output("You pop the pill into your mouth and swallow it with a bit of water. After several moments have passed nothing seems to have changed. It seems this drug does nothing for you when you're already as pregnant as possible.");
+					output("You pop the pill into your mouth and swallow it with a bit of water. After several moments have passed nothing seems to have changed. It seems this drug does nothing for you when you’re already as pregnant as possible.");
 				}
 				else if(!pc.hasGenitals())
 				{
