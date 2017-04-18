@@ -780,7 +780,7 @@ package classes.Items.Transformatives
 					pc.setStatusValue("Heat",2,10);
 					pc.setStatusValue("Heat",3,25);
 					pc.setStatusValue("Heat",4,2);
-					pc.setStatusTooltip("Heat","Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+" + pc.statusEffectv1("Heat") * 100 + "% Fertility\n+" + pc.statusEffectv2("Heat") + " Minimum Lust\n+" + pc.statusEffectv3("Heat") + " Libido\n+" + pc.statusEffectv4("Heat") + " Tease Damage");
+					pc.setStatusTooltip("Heat","<b>You are in a deep heat!</b> Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+" + pc.statusEffectv1("Heat") * 100 + "% Fertility\n+" + pc.statusEffectv2("Heat") + " Minimum Lust\n+" + pc.statusEffectv3("Heat") + " Libido\n+" + pc.statusEffectv4("Heat") + " Tease Damage");
 					textBuff = ParseText(textBuff);
 					pc.extendHeat(7*24*60);
 				}

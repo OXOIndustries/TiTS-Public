@@ -8598,6 +8598,14 @@
 		{
 			return hasStatusEffect("Heat");
 		}
+		public function inDeepHeat():Boolean
+		{
+			if(hasStatusEffect("Heat"))
+			{
+				if(statusEffectv1("Heat") >= 10) return true;
+			}
+			return false;
+		}
 		public function inRut():Boolean
 		{
 			return (hasStatusEffect("Rut") || hasStatusEffect("Lagonic Rut"));
@@ -8610,7 +8618,7 @@
 		{
 			if(!inHeat()) return;
 			removeStatusEffect("Heat");
-			if(eventLog) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
+			if(eventLog) AddLogEvent("You shiver momentarily, feeling cooler and more relaxed than you have in many days. When you manage to go more than a few minutes without fantasizing about being pumped full of cum you realize that <b>your heat has ended.</b>","passive");
 		}
 		public function removeRut(eventLog:Boolean = true):void
 		{
@@ -8621,11 +8629,23 @@
 			if(!inRut()) return;
 			removeStatusEffect("Rut");
 			removeStatusEffect("Lagonic Rut");
-			if(eventLog) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
+			if(eventLog) AddLogEvent("You sigh deeply, suddenly feeling calmer and less aggressive than you have in many days. When you manage to go more than a few minutes without getting angry at the thought of someone other than you pumping cum into a fertile pussy you realize that <b>your rut has ended.</b>");
+		}
+		public function rutMinutes():Number
+		{
+			var minutes:Number = 0;
+			if(getStatusMinutes("Rut") > 0) minutes = getStatusMinutes("Rut");
+			if (getStatusMinutes("Lagonic Rut") > minutes) minutes = getStatusMinutes("Lagonic Rut");
+			return minutes;
 		}
 		public function extendHeat(arg:Number):void
 		{
 			if(hasStatusEffect("Heat")) addStatusMinutes("Heat",arg);
+		}
+		public function extendRut(arg:Number):void
+		{
+			if(hasStatusEffect("Rut")) addStatusMinutes("Rut",arg);
+			if(hasStatusEffect("Lagonic Rut")) addStatusMinutes("Lagonic Rut",arg);
 		}
 		public function analCapacity(): Number {
 			var capacity:Number = 20;

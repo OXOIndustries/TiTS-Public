@@ -160,6 +160,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
 			//chars["VENDINGMACHINE"].inventory.push(new Allure());
 			chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
+			chars["VENDINGMACHINE"].inventory.push(new BreedersBliss());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.25;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
