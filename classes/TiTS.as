@@ -945,7 +945,6 @@
 			this[name](args);
 		}
 		
-		// This is hacky as fuck, but it's the ONLY way I can think of pinning down exactly where this issue happens
 		public function jackJillDetector(btnName:String, tFunc:Function, tArg:*):void
 		{
 			if (flags["RIVALCONFIGURED"] == 1)
