@@ -249,6 +249,7 @@ public function initializeRooms():void
 	rooms["ERRAS SHIP"].description = "";
 	rooms["ERRAS SHIP"].planet = "SHIP: ERRA’S";
 	rooms["ERRAS SHIP"].system = "SYSTEM: REDACTED";
+	rooms["ERRAS SHIP"].runOnEnter = exitToShipLocation;
 	rooms["ERRAS SHIP"].moveMinutes = 1;
 	rooms["ERRAS SHIP"].addFlag(GLOBAL.INDOOR);
 

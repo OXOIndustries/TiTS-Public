@@ -86,7 +86,7 @@ package classes.UIComponents.ContentModules
 			this.addChild(_perkList);
 		}
 		
-		public function setCreatureData(creature:Creature):void
+		public function setCreatureData(creature:Creature, gavePoints:Boolean = false):void
 		{
 			_targetCreature = creature;
 			
@@ -95,7 +95,7 @@ package classes.UIComponents.ContentModules
 			_perkList.setInitialState(creature);
 			
 			// Give ourselves a disabled button
-			kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmSelection, undefined, "Confirm Selection", "Confirm the current perk selection, if any.");
+			kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmSelection, gavePoints, "Confirm Selection", "Confirm the current perk selection, if any.");
 		}
 		
 		public function perkButtonHandler(e:Event):void
@@ -121,31 +121,51 @@ package classes.UIComponents.ContentModules
 			_selectedPerkDetails.selectedPerkText = _selectedPerkButton.perkReference.perkDescription;
 		}
 		
-		public function confirmSelection():void
+		public function confirmSelection(gavePoints:Boolean = false):void
 		{
-			AddLogEvent("You have gained a level. Your stats have increased and you have gained new abilities!", "good");
-			
 			// Figure out autoperks that need to be applied
 			var _autoPerks:Vector.<PerkData> = kGAMECLASS.perkDB.getAutoPerksForCreature(_targetCreature);
-			
-			for (var i:int = 0; i < _autoPerks.length; i++)
-			{
-				if (!_targetCreature.hasPerk(_autoPerks[i].perkName))
-				{
-					_autoPerks[i].applyTo(_targetCreature);
-					ExtendLogEvent("\n\nLevel " + _autoPerks[i].levelLimit + " Auto Perk: <b>" + _autoPerks[i].perkName + "</b> - " + _autoPerks[i].perkDescription);
-				}
-			}
 			
 			// Get perk selections in the UI
 			var _selectedPerks:Vector.<PerkData> = _perkList.getSelectedPerks();
 			
-			for (var ii:int = 0; ii < _selectedPerks.length; ii++)
+			var msg:String = "";
+			var i:int = 0;
+			var leveledUp:Boolean = false;
+			var gainedPerks:int = _selectedPerks.length;
+			for (i = 0; i < _autoPerks.length; i++)
 			{
-				_selectedPerks[ii].applyTo(_targetCreature);
-				(_targetCreature as PlayerCharacter).unclaimedClassPerks--;
-				ExtendLogEvent("\n\nLevel " + _selectedPerks[ii].levelLimit + " Selected Perk: <b>" + _selectedPerks[ii].perkName + "</b> - " + _selectedPerks[ii].perkDescription);
+				// Auto perks only gained after level up!
+				if (!_targetCreature.hasPerk(_autoPerks[i].perkName)) { gainedPerks++; leveledUp = true; }
 			}
+			
+			if(leveledUp || gavePoints || gainedPerks > 0)
+			{
+				if(leveledUp) msg += "You have gained a level. ";
+				msg += "You";
+				if(gavePoints) msg += "r stats have increased";
+				if(gavePoints && gainedPerks > 0) msg += " and you";
+				if(gainedPerks > 0) msg += " have gained " + (gainedPerks == 1 ? "a new ability" : "new abilities");
+				msg += "!";
+			}
+			
+			for (i = 0; i < _autoPerks.length; i++)
+			{
+				if (!_targetCreature.hasPerk(_autoPerks[i].perkName))
+				{
+					_autoPerks[i].applyTo(_targetCreature);
+					msg += ("\n\nLevel " + _autoPerks[i].levelLimit + " Auto Perk: <b>" + _autoPerks[i].perkName + "</b> - " + _autoPerks[i].perkDescription);
+				}
+			}
+			
+			for (i = 0; i < _selectedPerks.length; i++)
+			{
+				_selectedPerks[i].applyTo(_targetCreature);
+				(_targetCreature as PlayerCharacter).unclaimedClassPerks--;
+				msg += ("\n\nLevel " + _selectedPerks[i].levelLimit + " Selected Perk: <b>" + _selectedPerks[i].perkName + "</b> - " + _selectedPerks[i].perkDescription);
+			}
+			
+			if(msg != "") AddLogEvent(msg, "good");
 			
 			kGAMECLASS.mainGameMenu();
 		}

@@ -355,7 +355,7 @@ public function reahaTalkNewTexas():void
 
 	processTime(10);
 
-	//{one time choice between:
+	//one time choice between:
 	//[Ew] [That's Natural...] [Man Up]
 	clearMenu();
 

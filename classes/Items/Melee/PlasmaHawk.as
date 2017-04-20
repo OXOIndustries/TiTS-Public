@@ -31,7 +31,7 @@
 			this.description = "a Plasma Hawk";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A thermal tomahawk developed on Uveto to hack through the ancient, thick-packed ice with ease. The razor-sharp blade surrounds itself with radiant energy when you squeeze a handle on the lever that looks a lot like a motorbike’s handlebar.";
+			this.tooltip = "A thermal tomahawk developed on Uveto to hack through the ancient, thick-packed ice with ease. The razor-sharp blade surrounds itself with radiant energy when you squeeze the lever on a handle that looks a lot like a motorbike’s handlebar.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

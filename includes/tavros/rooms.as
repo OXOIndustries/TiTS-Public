@@ -344,7 +344,7 @@ public function initTavrosRooms():void
 	//9010
 	rooms["9010"] = new RoomClass(this);
 	rooms["9010"].roomName = "RED\nLIGHT ZONE";
-	rooms["9010"].description = "You’re deep in Tavros Station’s red light district now. Foot traffic here is a little thinner than elsewhere on the merchant deck, but what’s here is far more lurid. Nude or barely-clothed bodies are frequently on display, stretching the taboo against public sex to the breaking point.\n\nThere is a long storefront here, though you cannot see inside. Instead, the walls to either side of the door are lined with holo projections wearing risque BDSM outfits. They’re paddling each other or playing with long, phallic objects for your pleasure. As you watch on, a shimmering model gives you a cottettish wink, gesturing for you to get inside.\n\nThe sign over the door reads ‘The Happy Tails’, with the name underlined by a gigantic glowing whip.";
+	rooms["9010"].description = "You’re deep in Tavros Station’s red light district now. Foot traffic here is a little thinner than elsewhere on the merchant deck, but what’s here is far more lurid. Nude or barely-clothed bodies are frequently on display, stretching the taboo against public sex to the breaking point.\n\nThere is a long storefront here, though you cannot see inside. Instead, the walls to either side of the door are lined with holo projections wearing risque BDSM outfits. They’re paddling each other or playing with long, phallic objects for your pleasure. As you watch on, a shimmering model gives you a coquettish wink, gesturing for you to get inside.\n\nThe sign over the door reads ‘The Happy Tails’, with the name underlined by a gigantic glowing whip.";
 	rooms["9010"].planet = "TAVROS STATION";
 	rooms["9010"].system = "SYSTEM: KALAS";
 	rooms["9010"].southExit = "9011";
@@ -380,7 +380,7 @@ public function initTavrosRooms():void
 	rooms["9012"].moveMinutes = 1;
 	rooms["9012"].addFlag(GLOBAL.INDOOR);
 	rooms["9012"].addFlag(GLOBAL.PUBLIC);
-	rooms["9012"].runOnEnter = undefined;
+	rooms["9012"].runOnEnter = redlightSEBonus;
 
 	//9013
 	rooms["9013"] = new RoomClass(this);
@@ -423,7 +423,7 @@ public function initTavrosRooms():void
 	rooms["9015"].addFlag(GLOBAL.INDOOR);
 	rooms["9015"].addFlag(GLOBAL.PUBLIC);
 	rooms["9015"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9015"].runOnEnter = undefined;
+	rooms["9015"].runOnEnter = merchantThoroughfareBonus;
 
 	//9016
 	rooms["9016"] = new RoomClass(this);

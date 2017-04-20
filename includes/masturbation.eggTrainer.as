@@ -44,6 +44,7 @@ You lose 1 level of Egg Trained each week you go without either using the machin
 public function eggTrainerInstallation():void
 {
 	clearOutput();
+	showBust("");
 	author("Savin");
 
 	if(InShipInterior())
@@ -73,6 +74,7 @@ public function eggTrainerInstallation():void
 public function repeatEggTrainerApproach():void
 {
 	clearOutput();
+	showBust("");
 	showName("EGG\nTRAINER");
 	author("Savin");
 	output("You find yourself drawn back to the bubblegum-pink Tamani Corp box sitting in your hold. The Egg Trainer is humming ever so faintly, thrumming as its internal mechanisms slosh around and heat the dozens and dozens of eggs inside it. It smells faintly of lilacs and lube. The saddle-seat atop it beckons you, inviting you to take a seat and take a load in.");

@@ -55,10 +55,13 @@ public function properlyUseTheSukmastr(x:int = 0):void
 {
 	clearOutput();
 	showName("SUKMASTR\n2000");
+	
+	var usedPreviously:Boolean = (flags["SUKMASTRED"] != undefined && pc.hasStatusEffect("Pussy Pumped"));
+	
 	//Not on ship
 	if(!InShipInterior()) output("You might not be in the comforting privacy of your own quarters, but that doesn’t mean you can’t put your portable pussy-pumper to work.");
 	//Ship
-	else output("There’s no matter place to indulge yourself with an expensive sextoy than in the privacy of your own quarters.");
+	else output("There’s no better place to indulge yourself with an expensive sextoy than in the privacy of your own quarters.");
 	//Merge, no new pg
 	output(" Pulling the SukMastr 2000 out");
 	if(!pc.isCrotchExposed()) output(", and your clothing off");
@@ -69,18 +72,22 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	//Pumped pussy
 	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
-		output(", delighted to discover that the cunt-moulded cup in your hand will still fit over your expanded pussy, allowing you to pump it up once more. Best of all, the cup still lingers with your residual scent");
+		output(", delighted to discover that the cunt-molded cup in your hand will");
+		if(usedPreviously) output(" still");
+		output(" fit over your expanded pussy, allowing you to pump it up");
+		if(usedPreviously) output(" once more");
+		output(". Best of all, the cup still lingers with your residual scent");
 		if(flags["PUMPED_KIRO_PUSSY"] != undefined) output(" alongside Kiro’s muskier, rich aroma");
 		output(". The sensuous smell instantly ");
 	}
 	else if(flags["PUMPED_KIRO_PUSSY"] != undefined) 
 	{
-		output(", delighted to discover that the cunt-moulded cup in your hand still smells vaguely of Kiro’s luscious pussy. It’s a heady aroma that instantly ");
+		output(", delighted to discover that the cunt-molded cup in your hand still smells vaguely of Kiro’s luscious pussy. It’s a heady aroma that instantly ");
 	}
 	//Used before
 	else if(flags["SUKMASTRED"] != undefined) output(", delighted to discover a hint of lingering, salacious scent, the evidence of your previous play. It’s a heady aroma that instantly ");
 	//Catch-all
-	else output(", delighted to discover that the cunt-moulded cup comes pre-treated with a dusting concentrated doh’rahn pheromones. It’s a heady, musky aroma that instantly ");
+	else output(", delighted to discover that the cunt-molded cup comes pre-treated with a dusting concentrated doh’rahn pheromones. It’s a heady, musky aroma that instantly ");
 	if(pc.hasCock())
 	{
 		if(pc.lust() >= 75) output("induces your [pc.cocks] to throb and ");
@@ -202,15 +209,18 @@ public function properlyUseTheSukmastr(x:int = 0):void
 		output("\n\nYour rubbery, inflated cunt aches, but it isn’t receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
 		pc.vaginas[x].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
+		pumpedPussyEffect(x);
 	}
 	else if(rand(3) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
 	{
 		output("\n\nWhen you look down, you realize that your [pc.vagina " + x + "] is taking a long time to shrink back down. You wait, but it only loses half of its size before stopping. <b>It looks like you have a permanently pumped-up pussy.</b>");
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+		pumpedPussyEffect(x);
 	}
 	else if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 	{
-		output("\n\nEventually, your [pc.vagina " + x + "] stops looking so obscenely-inflated and shrinks back down to its normal, puffy self. You wonder if a few more play sessions won’t fix that. After all, it worked once...");
+		output("\n\nEventually, your [pc.vagina " + x + "] stops looking so obscenely-inflated and shrinks back down to its normal, puffy self. You wonder if a few more play sessions won’t fix that.");
+		if(usedPreviously) output(" After all, it worked once...");
 	}
 	else
 	{
@@ -222,3 +232,10 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+// Appearance screen blurb about it being pumped from a machine is now temporary.
+public function pumpedPussyEffect(vIdx:int = -1):void
+{
+	pc.createStatusEffect("Pussy Pumped", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.setStatusMinutes("Pussy Pumped", (7 * 1440));
+}
+

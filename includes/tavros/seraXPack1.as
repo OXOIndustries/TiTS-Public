@@ -23,6 +23,10 @@ SERA_TIT_FUCK_LUCKY_DIP			Times Titfuck or Lucky Dip
 
 */
 
+public function seraIsMistress():Boolean
+{
+	return (flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4);
+}
 public function seraExitToMain():void
 {
 	pc.removeStatusEffect("Temporary Nudity Cheat");
@@ -38,24 +42,9 @@ public function seraSexXXXTFModsCheck():Boolean
 {
 	var numUnlocked:int = 0;
 	
-	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined)
-	{
-		if(!chars["SERA"].hasItemByType(Clippex)) chars["SERA"].inventory.push(new Clippex());
-		numUnlocked++;
-	}
-	else chars["SERA"].destroyItem(new Clippex());
-	if(flags["SERA_UNLOCK_SEMENS"] != undefined)
-	{
-		if(!chars["SERA"].hasItemByType(SemensFriend)) chars["SERA"].inventory.push(new SemensFriend());
-		numUnlocked++;
-	}
-	else chars["SERA"].destroyItem(new SemensFriend());
-	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined)
-	{
-		if(!chars["SERA"].hasItemByType(Lucifier)) chars["SERA"].inventory.push(new Lucifier());
-		numUnlocked++;
-	}
-	else chars["SERA"].destroyItem(new Lucifier());
+	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined) numUnlocked++;
+	if(flags["SERA_UNLOCK_SEMENS"] != undefined) numUnlocked++;
+	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined) numUnlocked++;
 	
 	if(numUnlocked >= 3) return true;
 	return false;
@@ -69,7 +58,7 @@ public function seraSexXXXTFModsAsk():void
 	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“... exotic?”</i>");
 	
 	// PC has submitted
-	if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+	if(seraIsMistress())
 	{
 		output("\n\n<i>“Of course I do silly,”</i> Sera smiles lazily. <i>“Some modder I would be if I didn’t. Why, are you interested?”</i>");
 		output("\n\n<i>“Yes mistress,”</i> you say, politely. Sera’s leer widens.");
@@ -254,7 +243,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 				addButton(0, "Yes Shrink", letSeraFuckYouXXXpac, "yes shrink", "Accept", "Allow Sera to shrink your [pc.cock " + cockIndex + "].");
 				addButton(1, "Got It", letSeraFuckYouXXXpac, "don't show me", "Refuse", "Tell her you’ve got this covered.");
 				addButton(2, "Nevermind", seraInchStealing, "nevermind", "Nevermind", "Actually, you’d rather not at this time....");
-				if(flags["SERA_TRIPLE_X_RATED"] >= 4) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
+				if(seraIsMistress()) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
 				else if(pc.WQ() >= 50) addButton(3, "Don’t Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
 				else addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the willpower to tell her off....");
 				return;
@@ -306,7 +295,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 		if(flags["SERA_TRIPLE_X_RATED"] < 0)
 		{
 			addButton(0, "Interested", letSeraFuckYouXXXpac, "interested", "Interested", "Tell her you are still interested.");
-			if(flags["SERA_TRIPLE_X_RATED"] >= 4) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
+			if(seraIsMistress()) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
 			else if(pc.WQ() >= 50) addButton(1, "Don’t Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
 			else addDisabledButton(1, "Don’t Care", "Not Interested", "You really don’t have the willpower to tell her off....");
 		}

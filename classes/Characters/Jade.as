@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	/*
 	import classes.Items.Miscellaneous.AusarTreats;
 	import classes.Items.Miscellaneous.HorsePill;
 	import classes.Items.Miscellaneous.KnotAProblem;
@@ -13,6 +14,7 @@
 	import classes.Items.Transformatives.OvirAce;
 	import classes.Items.Transformatives.OvirPositive;
 	import classes.Items.Transformatives.CaninePoppers;
+	*/
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -184,19 +186,19 @@
 		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
-			dataObject.inventory.push(new HorsePill().getSaveObject());
+			//dataObject.inventory.push(new HorsePill().getSaveObject());
 		}
 		public function UpgradeVersion2(dataObject:Object):void
 		{
-			dataObject.inventory.push(new AusarTreats().getSaveObject());
+			//dataObject.inventory.push(new AusarTreats().getSaveObject());
 		}
 		public function UpgradeVersion3(dataObject:Object):void
 		{
-			dataObject.inventory.push(new KnotAProblem().getSaveObject());
+			//dataObject.inventory.push(new KnotAProblem().getSaveObject());
 		}
 		public function UpgradeVersion4(dataObject:Object):void
 		{
-			dataObject.inventory.push(new NukiCookies().getSaveObject());
+			//dataObject.inventory.push(new NukiCookies().getSaveObject());
 		}
 		public function UpgradeVersion5(dataObject:Object):void
 		{
@@ -209,8 +211,8 @@
 		}
 		public function UpgradeVersion6(d:Object):void
 		{
-			d.inventory.push(new OvirAce().getSaveObject());
-			d.inventory.push(new OvirPositive().getSaveObject());
+			//d.inventory.push(new OvirAce().getSaveObject());
+			//d.inventory.push(new OvirPositive().getSaveObject());
 		}
 		public function UpgradeVersion7(d:Object):void
 		{
@@ -218,7 +220,7 @@
 		}
 		public function UpgradeVersion8(dataObject:Object):void
 		{
-			dataObject.inventory.push(new DracoGuard().getSaveObject());
+			//dataObject.inventory.push(new DracoGuard().getSaveObject());
 		}
 		public function UpgradeVersion9(d:Object):void
 		{
@@ -226,9 +228,10 @@
 		}
 		public function UpgradeVersion10(dataObject:Object):void
 		{
-			dataObject.inventory = UpdateInventory();
+			//dataObject.inventory = UpdateInventory();
 		}
 		
+		/*
 		private function UpdateInventory():Array
 		{
 			// Renew/Reorganize inventory
@@ -247,6 +250,7 @@
 			
 			return newInventory;
 		}
+		*/
 		
 		override public function onLeaveBuyMenu():void
 		{

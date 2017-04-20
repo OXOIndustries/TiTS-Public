@@ -24,9 +24,6 @@ public function showRival(nude:Boolean = false):void
 }
 public function rivalBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences[chars["RIVAL"].short.toUpperCase()] != "GATS") return chars["RIVAL"].short.toUpperCase();
-	
 	var sBust:String = chars["RIVAL"].short.toUpperCase();
 	if(nude) sBust += "_NUDE";
 	return sBust;

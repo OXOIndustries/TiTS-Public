@@ -28,6 +28,7 @@ public function hospitalShit():Boolean
 		output("\n\nA tall, svelte doctor is standing about, checking over patients charts. Perhaps she’s in charge–?");
 		addButton(0,"CMO",approachAnzhela,undefined,"CMO","Approach the chief medical officer.");
 	}
+	vendingMachineButton(1);
 	return false;
 }
 

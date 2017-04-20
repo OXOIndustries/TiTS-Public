@@ -44,6 +44,9 @@ public function altTooltip(itemName:String = "none"):String
 			else tooltip += "\n\n<i>“Hi, Milly Bayes here with new Sterilex! Getting ready for an orgy? Making sure your night on the town doesn’t turn sour? Just not ready to start a family with that special someone? Well now J’ejune Pharmaceutical is there for you with Sterilex! Sterilex’s powerful fast-acting agents provide you with twenty-four full hours of protection for any and all of your sexual organs, with no long-term hazards to your fertility! Don’t rely on condoms or other pills! Get protection you can trust, with Sterilex!”</i>";
 			tooltip += "\n\nBelow this, in much smaller text, is a warning informing you <b>not to take Sterilex more than once within twenty-four hours</b>. It also lists off a long string of minor potential side effects. Within the colorful packaging is a dull gray pill.";
 			break;
+		case "StrawberryShortcake":
+			tooltip += "A popular prank dish at parties, this cake roll is made with eggs, milk, flour, targeted microsurgeons that reduce the eater’s height considerably, strawberries and " + (silly ? "soap" : "love") + ".";
+			break;
 		case "SumaCream":
 		case "SumaCreamWhite":
 		case "SumaCreamBlack":

@@ -11,6 +11,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/alex.png", mimeType = "image/png")]
 		public var Bust_ALEX:Class;
+		public function get Bust_ALEX_NUDE():Class { return Bust_ALEX; }
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/amara.png", mimeType = "image/png")]
 		public var Bust_AMARA:Class;
@@ -35,6 +36,15 @@ package classes.Resources.Busts
 		public var Bust_GOO_KNIGHT_BLUE:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/goo_knight_green.png", mimeType = "image/png")]
 		public var Bust_GOO_KNIGHT_GREEN:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/goo_knight_blue_nude.png", mimeType = "image/png")]
+		public var Bust_GOO_KNIGHT_BLUE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/goo_knight_green_nude.png", mimeType = "image/png")]
+		public var Bust_GOO_KNIGHT_GREEN_NUDE:Class;
+
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/krym.png", mimeType = "image/png")]
+		public var Bust_KRYM:Class;
+		public var Bounds_KRYM:Rectangle = new Rectangle(44, 5, 70, 70);
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mayren.png", mimeType = "image/png")]
 		public var Bust_MAYREN:Class;
@@ -61,6 +71,7 @@ package classes.Resources.Busts
 		{
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/alex.png", mimeType = "image/png")]
 			public var Full_ALEX:Class;
+			public function get Full_ALEX_NUDE():Class { return Full_ALEX; }
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/amara.png", mimeType = "image/png")]
 			public var Full_AMARA:Class;
@@ -83,6 +94,13 @@ package classes.Resources.Busts
 			public var Full_GOO_KNIGHT_BLUE:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/goo_knight_green.png", mimeType = "image/png")]
 			public var Full_GOO_KNIGHT_GREEN:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/goo_knight_blue_nude.png", mimeType = "image/png")]
+			public var Full_GOO_KNIGHT_BLUE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/goo_knight_green_nude.png", mimeType = "image/png")]
+			public var Full_GOO_KNIGHT_GREEN_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/krym.png", mimeType = "image/png")]
+			public var Full_KRYM:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mayren.png", mimeType = "image/png")]
 			public var Full_MAYREN:Class;

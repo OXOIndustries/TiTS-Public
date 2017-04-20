@@ -869,7 +869,7 @@ public function kirosShipfixDaMachine():void
 
 	output("\n\n<i>“W-what!? Just fuck me already! I tried it!”</i> she cries, but you put up a hand and spin a spanner around your trigger finger. You’re gonna make this machine your bitch. You drop to a crouch, popping a panel off the side, looking down into the maze of wires and chips. And... it’s covered in spooge. Of course it is, what else. You sigh, pull on a glove, and reach in. A few moments, and a few new wires later, you slap the panel back on and hit the power button. Nothing happens.");
 
-	//{If FAIL!}
+	//If FAIL!
 	if (pc.IQ() < 75)
 	{
 		flags["RESCUE KIRO TECHSPEC MACHINE FIX"] = -1;
@@ -878,7 +878,7 @@ public function kirosShipfixDaMachine():void
 		clearMenu();
 		addButton(0, "Next", kirosShipWails, false);
 	}
-	//{Success}
+	//Success
 	else
 	{
 		flags["RESCUE KIRO TECHSPEC MACHINE FIX"] = 1;

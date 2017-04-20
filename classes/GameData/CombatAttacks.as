@@ -9,6 +9,7 @@ package classes.GameData
 	import classes.Characters.RaskvelMale;
 	import classes.Characters.ZilFemale;
 	import classes.Characters.NymFoe;
+	import classes.Characters.Kane;
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
@@ -501,6 +502,20 @@ package classes.GameData
 		 */
 		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "ranged"):Boolean
 		{
+			if(target is Kane && target.hasStatusEffect("KANE RANGED PREP") && !target.hasStatusEffect("KANE_AI_SKIP"))
+			{
+				kGAMECLASS.kaneRangedInterrupt();
+				var d:TypeCollection = target.meleeDamage();
+				damageRand(d, 15);
+				applyDamage(d, target, attacker, "melee");
+				target.createStatusEffect("KANE_AI_SKIP");
+				return false;
+			}
+			if(target.hasStatusEffect("KANE_AI_SKIP") && target is Kane) 
+			{
+				output("Further action is interrupted!");
+				return false;
+			}
 			if (rangedCombatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0)
@@ -556,11 +571,31 @@ package classes.GameData
 			var damage:TypeCollection = attacker.rangedDamage();
 			damageRand(damage, 15);
 			applyDamage(damage, attacker, target, special);
+			if(target is Kane) 
+			{
+				kGAMECLASS.kaneRangedReaction();
+				target.removeStatusEffect("KANE MELEE PREP");
+				target.createStatusEffect("KANE RANGED PREP");
+			}
 			return true;
 		}
 		
 		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "melee"):Boolean
 		{
+			if(target is Kane && target.hasStatusEffect("KANE MELEE PREP") && !target.hasStatusEffect("KANE_AI_SKIP"))
+			{
+				kGAMECLASS.kaneMeleeInterrupt();
+				var e:TypeCollection = target.meleeDamage();
+				damageRand(e, 15);
+				applyDamage(e, target, attacker, special);
+				target.createStatusEffect("KANE_AI_SKIP");
+				return false;
+			}
+			if(target.hasStatusEffect("KANE_AI_SKIP") && target is Kane) 
+			{
+				output("Further action is interrupted!");
+				return false;
+			}
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0)
@@ -622,6 +657,14 @@ package classes.GameData
 			var d:TypeCollection = attacker.meleeDamage();
 			damageRand(d, 15);
 			applyDamage(d, attacker, target, special);
+
+			if(target is Kane) 
+			{
+				kGAMECLASS.kaneMeleeReaction();
+				target.removeStatusEffect("KANE RANGED PREP");
+				target.createStatusEffect("KANE MELEE PREP");
+			}
+
 			return true;
 		}
 		

@@ -19,7 +19,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.PILL;
+			this.type = GLOBAL.FOOD;
 			//Used on inventory buttons
 			this.shortName = "Ruskvel";
 			//Regular name

@@ -278,7 +278,7 @@ public function saendraSexMenu():void
 {
 	clearMenu();
 
-	if (saendra.hasCock()) addButton(0, "Get Buttfucked", takeSaensCompletelyReasonablyProportionedFutaCock, undefined, "Get Buttfucked", "Put Saendra’s new cock to work on your ass.");
+	if (saendra.hasCock()) addButton(0, "GetButtfuck’d", takeSaensCompletelyReasonablyProportionedFutaCock, undefined, "Get Buttfucked", "Put Saendra’s new cock to work on your ass.");
 	else addButton(0, "Take Strapon", takeSaensStrappedyDappedyCock, undefined, "Take Strapon", "Saendra dons a strapon and goes to town on your ass.");
 
 	addButton(10, "Probe Sex", saendraProbesYourCuntWithHerMechaArm, undefined, "Probe Sex", "Saendra’s mechanical arm has some interesting features...");
@@ -317,7 +317,7 @@ public function saendraSexMenu():void
 		}
 	}
 
-	if (pc.hasTailCock() && pc.hasParasiteTail() && pc.hasCock()) addButton(7, "Tailcock", saendraTailcockFuck, undefined, "Tailcock Titfuck", "Get a titfuck for your tailcock from Saendra.");
+	if (pc.hasTailCock()) addButton(7, "Tailcock", saendraTailcockFuck, undefined, "Tailcock Titfuck", "Get a titfuck for your tailcock from Saendra.");
 	else addDisabledButton(7, "Tailcock", "Tailcock Titfuck", "You need a tailcock for this!");
 	
 	addButton(14, "Leave", function():void {
@@ -1198,7 +1198,7 @@ public function doTheCockingDeed():void
 
 	flags["SAENDRA GONNA GO GET A COCK"] = 3;
 
-	//{Deposit PC in Saen's cabin}
+	// Deposit PC in Saen's cabin
 	processTime(30+rand(15));
 	currentLocation = "PHOENIX QUARTERS";
 	clearMenu();
@@ -1712,23 +1712,33 @@ public function saendraTailcockFuck():void
 	saenHeader(true);
 	author("Archangel");
 	
-	output("<i>“Well...”</i> You say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock over your head like a scorpion’s stinger, until it’s hanging over her face. ");
+	output("<i>“Well...”</i> you say, grunting and pushing yourself up so you’re straddling her, before you bring your tailcock");
+	if(pc.tailCount > 1) output("s");
+	output(" over your head like a scorpion’s stinger, until " + (pc.tailCount == 1 ? "it’s" : "they’re") + " hanging over her face. ");
 
-	if(pc.isBimbo()) output("<i>“Check this out, Saen! I got this thing a while ago, and I totally love it! It’s soooo amazing! Wanna try it out?”</i> you say, giggling and poking one of her breasts with the tip of your [pc.tailCock].}");
-	else if(pc.isBro()) output("<i>“I got a new toy for you to play with, slut!”</i> you say, lightly smacking the side of her face with your [pc.tailCock].");
-	else if(pc.isAss()) output("<i>“I got a new toy for you to play with, slut!”</i> you say, lightly smacking the side of her face with your [pc.tailCock].");
-	else if(pc.isMischievous()) output("<i>“How about I ‘prick’ you?”</i> you say, grinning. Saendra rolls her eyes and groans at your pun as you wag your [pc.tailCock] above her.");
+	if(pc.isBimbo()) output("<i>“Check this out, Saen! I got " + (pc.tailCount == 1 ? "this thing" : "these things") + " a while ago, and I totally love " + (pc.tailCount == 1 ? "it! It’s" : "them! They’re") + " soooo amazing! Wanna try " + (pc.tailCount == 1 ? "it" : "‘em") + " out?”</i> you say, giggling and poking one of her breasts with the tip of [pc.oneTailCock].");
+	else if(pc.isBro()) output("<i>“I got a new toy for you to play with, slut!”</i> you say, lightly smacking the side of her face with [pc.oneTailCock].");
+	else if(pc.isAss()) output("<i>“I got a new toy for you to play with, slut!”</i> you say, lightly smacking the side of her face with [pc.oneTailCock].");
+	else if(pc.isMischievous()) output("<i>“How about I ‘prick’ you?”</i> you say, grinning. Saendra rolls her eyes and groans at your pun as you wag [pc.oneTailCock] above her.");
 
-	output("\n\n <i>“Whoa. Where did you get that thing?”</i> she says, sitting up and grabbing your tailcock, pulling it closer for a better look. You explain how you had seen the parasite while wandering around Myrellion, chased it, and decided to get it to join with you rather than squish it into slime. She nods her understanding and lies back down. <i>“I don’t mind playing around with it, but that isn’t going inside me, and there’s nothing you can say or do to change that!”</i> she warns, smacking your [pc.butt] with her tails. Well, it’s a partial victory, you suppose.");
+	output("\n\n<i>“Whoa. Where did you get that thing?”</i> she says, sitting up and grabbing your tailcock, pulling it closer for a better look. You explain");
+	if(pc.hasParasiteTail())
+	{
+		output(" how you had seen the parasite while");
+		if(pc.tailType == GLOBAL.TYPE_COCKVINE) output(" wandering around Myrellion, chased it, and decided to get it to join with you rather than squish it into slime");
+		else output(" adventuring");
+	}
+	else output(" that you’ve taken some specialized mods to get the new piece of anatomy");
+	output(". She nods her understanding and lies back down. <i>“I don’t mind playing around with it, but that isn’t going inside me, and there’s nothing you can say or do to change that!”</i> she warns, smacking your [pc.butt] with her tails. Well, it’s a partial victory, you suppose.");
 
 	output("\n\nSaen looks up at you, rubbing her chin with her hand, as if wondering what to do with you.");
 	if(pc.balls > 0) output(" You feel a ticklish feeling under your [pc.balls] and look down to see the tips of Saendra’s tails swishing back and forth against your [pc.sack]. You look back up at her to see a grin on her face.");
 
-	output("\n\n<i>“I got an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock],sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
+	output("\n\n<i>“I have an idea. How about...”</i> she wraps her soft, fluffy tails around your [pc.tailCock], sheathing them within a warm, furry prison. <i>“I’ll just get you off like this,”</i> she says, grinning.");
 
 	output("\n\n<i>“Actually, I got a better one,”</i> you say, flexing the muscles of your [pc.tailCock] and pushing past the confines of her tail to lodge the upper section of your [pc.tailCock] right between her hefty tits. <i>“Why not both?”</i> you add, rapidly wiggling your tailcock back and forth, motorboating her breasts and giving yourself both an impromptu titfuck and a great show of jiggling titflesh.");
 
-	output("\n\n <i>“Wha-? Hey, stop it! Ah!”</i> Saen yelps, mashing her tits together and effectively stopping any further movement. She grins up at you. <i>“Next time, a little warning, you ass!”</i> she says, playfully frowning up at you. You stick your tongue out at her and apologize.");
+	output("\n\n<i>“Wha-? Hey, stop it! Ah!”</i> Saen yelps, mashing her tits together and effectively stopping any further movement. She grins up at you. <i>“Next time, a little warning, you ass!”</i> she says, playfully frowning up at you. You stick your tongue out at her and apologize.");
 
 	output("\n\n<i>“Well, now that you’ve so nicely apologized, we can move on to the main course!”</i> she teases. She wraps her tails around the middle and lower sections of your [pc.tailCock], enclosing them in a warm, tight, furry sheath, with the upper portion of your [pc.tailCock] still trapped in the valley of her soft cleavage. Saendra then starts to slowly jerk you off with her tails, almost milking you, you think, with the way her tails tighten around your [pc.tailCock].");
 
@@ -1737,7 +1747,7 @@ public function saendraTailcockFuck():void
 	output("\n\nYou shudder as you feel the wet fur and soft titflesh slide around your [pc.tailCock]. It gets even better when she finally begins to use her tails in earnest, the furry appendages making your [pc.tailCock] feel like it’s in a very long, very soft onahole!");
 
 	output("\n\nDetermined to get her off too, you spit on the fingers of one hand, then reach down and roughly shove them into her ass and pussy without warning.")
-	if (saendra.hasCock()) output(" With your other hand, your grab her kitty dick, already hard, and spit into it before pumping up and down.}");
+	if (saendra.hasCock()) output(" With your other hand, your grab her kitty dick, already hard, and spit into it before pumping up and down.");
 
 	output("\n\nSaendra gasps, her mouth falling open in a perfect ‘O’ of pleasure and surprise. <i>“Oh you little-”</i> is all she manages to get out before you start thrusting your fingers in and out of her sodden box and tight ass")
 	if (saendra.hasCock()) output(" and jerking her spiny cock off")
@@ -1747,7 +1757,10 @@ public function saendraTailcockFuck():void
 	if (saendra.hasCock()) output(" Her cock starting to twitch too, matching your own rising orgasmic motions.");
 	output(" Her moans and gasps increase in pitch, and her tails go into overdrive, pumping so fast that you feel like you’re fucking a real pussy!");
 
-	output("\n\nIt’s not long before the urge is too much for you to bear. With a loud groan, you stick your fingers as far as they’ll go into Saendra’s ass and pussy and let yourself cum. Your [pc.cocks] spurt ropes of [pc.cumType] into the air, most of which falls on Saendra, while your [pc.tailCock] blasts [pc.cumType] directly into her face. At this point, the stimulation and sudden, overwhelming musk of your orgasm plastering her face is too much: with a yowl, Saendra finally lets loose and joins you, adding another load to the puddle growing on her bed and body.");
+	output("\n\nIt’s not long before the urge is too much for you to bear. With a loud groan, you stick your fingers as far as they’ll go into Saendra’s ass and pussy and let yourself cum. Y");
+	if(pc.hasCock()) output("our [pc.cocks] spurt" + (pc.cockTotal() == 1 ? "s" : "") + " ropes of [pc.cumType] into the air, most of which falls on Saendra, while y");
+	else if(pc.hasVagina() && pc.isSquirter()) output("our [pc.vaginas] blast" + (pc.totalVaginas() == 1 ? "s" : "") + " [pc.girlCumType] between your [pc.thighs] while y");
+	output("our [pc.tailCocks] blast" + (pc.tailCount == 1 ? "s" : "") + " [pc.cumType] directly into " + (pc.hasCock() ? "her" : "Saendra’s") + " face. At this point, the stimulation and sudden, overwhelming musk of your orgasm plastering her face is too much: with a yowl, Saendra finally lets loose and joins you, adding another load to the puddle growing on her bed and body.");
 
 	output("\n\nYou both stay there for a few seconds, panting, until Saen finally says <i>“Next time, we’re doing this in the shower.”</i>");
 
@@ -1757,6 +1770,7 @@ public function saendraTailcockFuck():void
 
 	pc.orgasm();
 	saendra.orgasm();
+	applyCumSoaked(pc);
 	processTime(30+rand(15));
 	clearMenu();
 	addButton(0, "Next", saendraPostFuckscene);
@@ -1824,7 +1838,7 @@ public function newFutaSaendraScenes():void
 
 	output("\n\nShe smacks your lubed-up butt again, harder this time, and you wiggle your [pc.butt] at her and push back against her cock. She’s got it nice and slicked up, too, slathered in so much lube that it’s dripping a nice little puddle between her legs. Even her balls, pressed against your hind end, seem nice and juicy with all that wetness on them... maybe when Saen’s done emptying them into your [pc.vagOrAss " + x + "] you can convince her to let you give them some well-deserved worship.");
 
-	output("\n\n<i>“So eager,”</i> Saendra says, and as she speaks you feel two of her fingers slip along your rump and down to the tip of her cock, pushing it down until her nubby ring is flush against the ");
+	output("\n\n<i>“So eager,”</i> Saendra says, and as she speaks, you feel two of her fingers slip along your rump and down to the tip of her cock, pushing it down until her nubby ring is flush against the ");
 	if(pc.hasVagina()) output("lips");
 	else output("ring");
 	output(" of your [pc.vagOrAss " + x + "]. <i>“You really must love dickgirls, huh? Wanna feel my tits on your back while I fuck you doggystyle... ugh, can’t tease you that much, or I might just cum all over your ass before we start.”</i>");
@@ -1885,7 +1899,7 @@ public function newFutaSaendraScenes():void
 		output("\n\n<i>“You can hang onto those,”</i> Saen laughs, reaching down to give you a kiss on the lips around her cummy pink undies. <i>“Since we can’t be together </i>all<i> the time... maybe");
 		if(pc.hasCock()) output(" when you get lonely you can use ‘em to jerk off and think of me, huh? Or maybe");
 		output(" you can be a real pervert and wear ‘em around. A big, girly, pink sign that you’re aaaaallllll mine,”</i> she giggles, kissing you again.");
-		output("\n\n <i>“Okay, I’m gonna go back down,”</i> she laughs, running a hand along your bare side. <i>“See you later, babe. Lock up when you can feel your legs again, okay.”</i>");
+		output("\n\n<i>“Okay, I’m gonna go back down,”</i> she laughs, running a hand along your bare side. <i>“See you later, babe. Lock up when you can feel your legs again, okay.”</i>");
 		output("\n\nYou give a weak thumbs up and roll onto your side, yawning contentedly.");
 		//[Next], back down to bar.
 		//Acquired new panties: Saendra’s - Ultra-tight and bright pink.

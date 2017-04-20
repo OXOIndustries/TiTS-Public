@@ -395,7 +395,7 @@ public function bigTCockSuckPartII():void
 	clearOutput();
 	showBigT(true);
 	author("JimThermic");
-	output("<b>--- Some Time Later ---</b>");
+	output("<b>-- Some Time Later --</b>");
 	// An hour
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist,");
 	if(!pc.isNude()) output(" half");
@@ -772,7 +772,7 @@ public function bigTFucksYouEpilogue():void
 	clearOutput();
 	showBigT(true);
 	author("JimThermic");
-	output("--- Some Time Later ---");
+	output("<b>-- Some Time Later --</b>");
 	// An hour
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist,");
 	if(!pc.isNude()) output(" half");

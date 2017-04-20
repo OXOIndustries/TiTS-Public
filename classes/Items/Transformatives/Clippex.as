@@ -22,7 +22,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			shortName = "Clippex";
 			longName = "bottle of Clippex";
 			
@@ -157,7 +157,7 @@
 				TFList.splice(x,1);
 				
 				if(select == 0 && changed) { /* No new line */ }
-				else msg += "\n\n";
+				//else msg += "\n\n";
 				
 				//#0 Catch all
 				if(select == 0 && !changed)

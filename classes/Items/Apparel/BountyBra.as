@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Creature;
 
 	public class BountyBra extends ItemSlotClass
 	{
@@ -41,12 +42,37 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 0;
+			this.sexiness = 2;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
 			
 			this.version = _latestVersion;
+		}
+		
+		public function toggleSexiness(toggleOn:Boolean = false):void
+		{
+			hasRandomProperties = true;
+			if(toggleOn)
+			{
+				sexiness = 4;
+				addFlag(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			}
+			else
+			{
+				sexiness = 2;
+				deleteFlag(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			}
+		}
+		
+		override public function onEquip(targetCreature:Creature):void
+		{
+			toggleSexiness(targetCreature.hasStatusEffect("Bra Transparency"));
+		}
+		
+		override public function onRemove(targetCreature:Creature):void
+		{
+			toggleSexiness(false);
 		}
 	}
 }

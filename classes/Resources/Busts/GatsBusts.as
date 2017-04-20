@@ -22,7 +22,6 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Anno.png", mimeType = "image/png")]
 		public var Bust_ANNO:Class;
 		public var Bounds_ANNO:Rectangle = new Rectangle(8, 17, 61, 56);
-		
 		[Embed(source = "../../../assets/images/npcs/gats/Anno_Nude.png", mimeType = "image/png")]
 		public var Bust_ANNO_NUDE:Class;
 
@@ -79,14 +78,21 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Dr_Haswell.png", mimeType = "image/png")]
 		public var Bust_DR_HASWELL:Class;
 
-		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
-		public var Bust_FENRISDRONEIV:Class;
-		public var Bounds_FENRISDRONEIV:Rectangle = new Rectangle(48, 16, 64, 64);
+		[Embed(source = "../../../assets/images/npcs/gats/ehstraffe.png", mimeType = "image/png")]
+		public var Bust_EHSTRAFFE:Class;
+
+		public function get Bust_FENRISDRONEIV():Class { return Bust_TAMWOLF; }
+		public function get Bounds_FENRISDRONEIV():Rectangle { return Bounds_TAMWOLF; }
+		public function get Bust_FENRISDRONEIV_NIGHT():Class { return Bust_TAMWOLF; }
+		public function get Bounds_FENRISDRONEIV_NIGHT():Rectangle { return Bounds_TAMWOLF; }
+		public function get Bust_FENRISDRONEIV_ARCTIC():Class { return Bust_TAMWOLF; }
+		public function get Bounds_FENRISDRONEIV_ARCTIC():Rectangle { return Bounds_TAMWOLF; }
 		
 		[Embed(source = "../../../assets/images/npcs/gats/flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Flahne_Nude.png", mimeType = "image/png")]
 		public var Bust_FLAHNE_NUDE:Class;
+		public function get Bust_FLAHNE_OVI_NUDE():Class { return Bust_FLAHNE_NUDE; }
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Geoff.png", mimeType = "image/png")]
 		public var Bust_GEOFF:Class;
@@ -117,6 +123,9 @@
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Kaithrit_Scout.png", mimeType = "image/png")]
 		public var Bust_KAITHRIT_SCOUT:Class;
+		public function get Bust_KAITHRIT_SCOUT_BELLY():Class { return Bust_KAITHRIT_SCOUT; }
+		public function get Bust_KAITHRIT_SCOUT_NUDE():Class { return Bust_KAITHRIT_SCOUT; }
+		public function get Bust_KAITHRIT_SCOUT_BELLY_NUDE():Class { return Bust_KAITHRIT_SCOUT; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
@@ -132,6 +141,19 @@
 		public var Bust_KIRO:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Kiro_Nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_NUDE:Class;
+		public function get Bust_KIRO_1():Class { return Bust_KIRO; }
+		public function get Bust_KIRO_1_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_2():Class { return Bust_KIRO; }
+		public function get Bust_KIRO_2_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_SM_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_SM_1_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_SM_2_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_LG_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_LG_1_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_LG_2_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_XL_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_XL_1_NUDE():Class { return Bust_KIRO_NUDE; }
+		public function get Bust_KIRO_XL_2_NUDE():Class { return Bust_KIRO_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE:Class;
@@ -140,6 +162,8 @@
 		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/mabbs_headphones.png", mimeType = "image/png")]
+		public var Bust_MABBS:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
@@ -160,11 +184,29 @@
 		
 		[Embed(source = "../../../assets/images/npcs/gats/nayna.png", mimeType = "image/png")]
 		public var Bust_NAYNA:Class;
+		public function get Bust_NAYNA_NUDE():Class { return Bust_NAYNA; }
+		public function get Bust_NAYNA_SOFT_NUDE():Class { return Bust_NAYNA; }
+		public function get Bust_NAYNA_SUIT():Class { return Bust_NAYNA; }
+		public function get Bust_NAYNA_SUIT_NUDE():Class { return Bust_NAYNA; }
+		public function get Bust_NAYNA_SUIT_SOFT_NUDE():Class { return Bust_NAYNA; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Penny_Nude.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE:Class;
+		public function get Bust_PENNY_NUDE_VIXEN():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_NUDE_VIXEN_1():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_NUDE_VIXEN_2():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_NUDE_HORSE():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_NUDE_HORSE_1():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_NUDE_HORSE_2():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_BIMBO():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_BIMBO_VIXEN():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_BIMBO_VIXEN_1():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_BIMBO_VIXEN_2():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_BIMBO_HORSE():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_BIMBO_HORSE_1():Class { return Bust_PENNY_NUDE; }
+		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY_NUDE; }
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Raskvel_Female.png", mimeType = "image/png")]
 		public var Bust_RASKVEL_FEMALE:Class;
@@ -175,6 +217,9 @@
 		public var Bust_RASKVEL_MALE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Raskvel_Male_Nude.png", mimeType = "image/png")]
 		public var Bust_RASKVEL_MALE_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/gats/Reaha.png", mimeType = "image/png")]
+		public var Bust_REAHA:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sellesy.png", mimeType = "image/png")]
 		public var Bust_SELLESY:Class;
@@ -218,12 +263,23 @@
 		public var Bust_STEPH_4:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Steph_4_Nude.png", mimeType = "image/png")]
 		public var Bust_STEPH_4_NUDE:Class;
+		public function get Bust_STEPH_5():Class { return Bust_STEPH_4; }
+		public function get Bust_STEPH_5_NUDE():Class { return Bust_STEPH_4_NUDE; }
+		public function get Bust_STEPH_6():Class { return Bust_STEPH_4; }
+		public function get Bust_STEPH_6_NUDE():Class { return Bust_STEPH_4_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Female.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_FEMALE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Male.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_MALE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/sylvie.png", mimeType = "image/png")]
+		public var Bust_SYLVIE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/sylvie_bra.png", mimeType = "image/png")]
+		public var Bust_SYLVIE_BRA:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/sylvie_nude.png", mimeType = "image/png")]
+		public var Bust_SYLVIE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
@@ -235,9 +291,13 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Tamtam_Nude.png", mimeType = "image/png")]
 		public var Bust_TAMTAM_NUDE:Class;
 
+		public function get Bust_TAMWOLF_DAMAGED():Class { return Bust_TAMWOLF; }
+		public function get Bounds_TAMWOLF_DAMAGED():Rectangle { return Bounds_TAMWOLF; }
 		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
 		public var Bust_TAMWOLF:Class;
 		public var Bounds_TAMWOLF:Rectangle = new Rectangle(48, 16, 64, 64);
+		public function get Bust_TAMWOLF_II():Class { return Bust_TAMWOLF; }
+		public function get Bounds_TAMWOLF_II():Rectangle { return Bounds_TAMWOLF; }
 		
 		[Embed(source = "../../../assets/images/npcs/gats/una.png", mimeType = "image/png")]
 		public var Bust_UNA:Class;
@@ -261,9 +321,6 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Male.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/gats/Reaha.png", mimeType = "image/png")]
-		public var Bust_REAHA:Class;
-		
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron.png", mimeType = "image/png")]
@@ -271,6 +328,19 @@
 			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron_nude.png", mimeType = "image/png")]
 			public var Full_CAMERON_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/gats/hr/ehstraffe.png", mimeType = "image/png")]
+			public var Full_EHSTRAFFE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian_2.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE2:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
+			public var Full_KORGONNE_FEMALE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/gats/hr/mabbs_headphones.png", mimeType = "image/png")]
+			public var Full_MABBS:Class;
+
 			[Embed(source = "../../../assets/images/npcs/gats/hr/millie.png", mimeType = "image/png")]
 			public var Full_MILLIE:Class;
 			[Embed(source = "../../../assets/images/npcs/gats/hr/millie_nude.png", mimeType = "image/png")]
@@ -278,22 +348,24 @@
 			
 			[Embed(source = "../../../assets/images/npcs/gats/hr/nayna.png", mimeType = "image/png")]
 			public var Full_NAYNA:Class;
+			public function get Full_NAYNA_NUDE():Class { return Full_NAYNA; }
+			public function get Full_NAYNA_SOFT_NUDE():Class { return Full_NAYNA; }
+			public function get Full_NAYNA_SUIT():Class { return Full_NAYNA; }
+			public function get Full_NAYNA_SUIT_NUDE():Class { return Full_NAYNA; }
+			public function get Full_NAYNA_SUIT_SOFT_NUDE():Class { return Full_NAYNA; }
 			
+			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie.png", mimeType = "image/png")]
+			public var Full_SYLVIE:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie_bra.png", mimeType = "image/png")]
+			public var Full_SYLVIE_BRA:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie_nude.png", mimeType = "image/png")]
+			public var Full_SYLVIE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/gats/hr/una.png", mimeType = "image/png")]
 			public var Full_UNA:Class;
 			[Embed(source = "../../../assets/images/npcs/gats/hr/una_nude.png", mimeType = "image/png")]
 			public var Full_UNA_NUDE:Class;
-
-			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian.png", mimeType = "image/png")]
-			public var Full_KORGONNE_FEMALE:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_2.png", mimeType = "image/png")]
-			public var Full_KORGONNE_FEMALE2:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
-			public var Full_KORGONNE_FEMALE_NUDE:Class;
 		}
-
-		
-
 	}
 
 }

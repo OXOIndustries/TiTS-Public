@@ -7,13 +7,7 @@ public function stephHeader(phase:int = 0, nude:Boolean = false):void
 public function stephBustDisplay(phase:int = 0, nude:Boolean = false):String
 {
 	var sBust:String = "STEPH";
-	if(phase >= 2)
-	{
-		// 9999 - Special artist exceptions!
-		if(kGAMECLASS.gameOptions.configuredBustPreferences["STEPH"] != "ADJATHA" && phase > 4) phase = 4;
-		
-		sBust += "_" + phase;
-	}
+	if(phase >= 2) sBust += "_" + phase;
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }

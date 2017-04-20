@@ -18,14 +18,14 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			
 			shortName = "Curdsonwhey";
-			longName = "curdsonwhey lozenge";
+			longName = "Curdsonwhey lozenge";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a curdsonwhey lozenge";
+			description = "a Curdsonwhey lozenge";
 			
 			tooltip = "This medicine is based upon a traditional myr remedy, administered to counteract the hormones released by bothrioc impregnation. It appears as a rather unappetizing, large brown lozenge.";
 			
@@ -46,10 +46,8 @@
 				
 				if (kGAMECLASS.bothriocAddiction() < 100)
 				{
-					target.createStatusEffect("Curdsonwhey", 0, 0, 0, 0, false, "PILL", "Curdsonwhey", false, 240);
+					target.createStatusEffect("Curdsonwhey", 0, 0, 0, 0, false, "Pill", "You are currently under the effects of the Curdsonwhey lozenge.", false, 240);
 				}
-				
-				return true;
 			}
 			else
 			{

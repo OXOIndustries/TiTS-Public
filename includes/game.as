@@ -228,11 +228,12 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+		else if(InRoomWithFlag(GLOBAL.WATERFALL)) addButton(8,"Masturbate",fapOnWaterfall,undefined,"Masturbate","Try to blow off some steam.");
 		else addButton(8, "Masturbate", masturbateMenu);
 	}
 	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
 	{
-		addButton(9, "Rest", rest);
+		addButton(9, "Rest", restMenu);
 	}
 	else 
 	{
@@ -518,15 +519,15 @@ public function updateMailStatus():void
 	}
 }
 
-public function showPerksList():void
+public function showPerksList(filter:String = ""):void
 {
 	clearOutput2();
 	showPCBust();
 	setLocation("\nPERKS", "CODEX", "DATABASE");
 	author("");
-	clearGhostMenu();
-	addGhostButton(14, "Back", showPerkListHandler);
 	
+	var desc:Boolean = (flags["PERKS_DESC_OFF"] ? false : true);
+	var hasDesc:Boolean = false;
 	var perkList:Array = (pc as PlayerCharacter).perks;
 	
 	if (perkList.length == 0) output2("<i>No available character perks have been acquired.</i>");
@@ -540,10 +541,21 @@ public function showPerksList():void
 		
 		if (perk.combatOnly == false)
 		{
-			output2("<b>" + perk.storageName + "</b> - " + perkDesc + "\n");
+			output2("<b>" + perk.storageName + "</b>" + ((desc && perkDesc.length > 0) ? (" - " + perkDesc) : ""));
+			if(perkDesc.length > 0) hasDesc = true;
+			output2("\n");
 		}
 	}
 	output2("\n");
+	
+	clearGhostMenu();
+	if(hasDesc) addGhostButton(13, ("Desc: " + (desc ? "On" : "Off")), perksDisplayToggleDesc, filter, "Descriptions", ("Toggle descriptions " + (desc ? "off" : "on") + "."));
+	addGhostButton(14, "Back", showPerkListHandler);
+}
+public function perksDisplayToggleDesc(filter:String = ""):void
+{
+	flags["PERKS_DESC_OFF"] = (flags["PERKS_DESC_OFF"] ? undefined : true);
+	showPerksList(filter);
 }
 
 public function crewRecruited(allcrew:Boolean = false):Number
@@ -716,11 +728,53 @@ public function passiveTimeEffects(minPass:int = 0):Boolean
 	return false;
 }
 
+public function restMenu():void
+{
+	clearOutput();
+	output("Do you wait for some minutes or take a rest for a few hours?");
+	
+	clearMenu();
+	
+	addButton(0, "Wait 5 min", wait, 5, "Wait 5 Minutes", "Wait for 5 minutes.");
+	addButton(1, "Wait 10 min", wait, 10, "Wait 10 Minutes", "Wait for 10 minutes.");
+	addButton(2, "Wait 30 min", wait, 30, "Wait 30 Minutes", "Wait for 30 minutes.");
+	
+	addButton(5, "Wait 1 hr", wait, 60, "Wait 1 Hour", "Wait for 1 hour.");
+	addButton(6, "Wait 2 hr", wait, 120, "Wait 2 Hours", "Wait for 2 hours.");
+	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
+	
+	addButton(9, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
+	
+	addButton(14, "Back", mainGameMenu);
+}
+public function wait(minPass:int = 0):void
+{
+	clearOutput();
+	
+	var hrPass:int = Math.floor(minPass/60);
+	
+	output("You decide to " + (minPass < 30 ? "stand" : "mosey") + " around and wait for");
+	if(hrPass <= 0) output(" " + num2Text(minPass) + " minutes");
+	else if(hrPass == 1) output(" one hour");
+	else output(" " + num2Text(hrPass) + " hours");
+	output(". While doing this doesn’t keep you rested, it manages to pass the time.");
+	
+	processTime(minPass);
+	
+	if(passiveTimeEffects(minPass)) return;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 public function rest(deltaT:int = -1):void {
 	var minPass:int;
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
+	if(InRoomWithFlag(GLOBAL.WATERFALL))
+	{
+		restOnWaterfall();
+		return;
+	}
 	clearOutput();
 
 	var postRestLustBonus:Number = 0;
@@ -788,7 +842,7 @@ public function sleep(outputs:Boolean = true):void {
 	
 	if (kiMedbaySleeps()) return;
 	
-	var minPass:int = 420 + rand(80) + 1
+	var minPass:int = 420 + rand(80) + 1;
 	
 	if(outputs) clearOutput();
 	if(InShipInterior(pc))
@@ -1061,11 +1115,18 @@ public function shipMenu():Boolean {
 
 public function flyMenu():void {
 	clearOutput();
-	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500")
+	if(!leavePlanetOK())
 	{
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined)
 		{
 			output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
+			clearMenu();
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}
+		if(pc.hasKeyItem("RK Lay - Captured"))
+		{
+			output("<b>You should probably get rid of RK Lah before you skip town...</b>");
 			clearMenu();
 			addButton(14, "Back", mainGameMenu);
 			return;
@@ -1270,6 +1331,12 @@ public function leaveShipOK():Boolean
 	}
 	return true;
 }
+public function leavePlanetOK():Boolean
+{
+	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
+	if(pc.hasKeyItem("RK Lay - Captured")) return false;
+	return true;
+}
 
 public function landingEventCheck(arg:String = ""):Boolean
 {
@@ -1299,18 +1366,38 @@ public function landingEventCheck(arg:String = ""):Boolean
 	return false;
 }
 
-public function showerMenu():void {
+public function showerMenu(special:String = "ship"):void {
 	clearOutput();
-	output("You find yourself in the ship’s shower room. What would you like to do?");
+	output("You find yourself in the " + special + "’s shower room. What would you like to do?");
 	clearMenu();
 	addButton(0, "Shower", showerOptions, 0, "Shower", "Take a shower and wash off any sweat or grime you might have.");
-	if (pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
-	addButton(14, "Back", mainGameMenu);
+	if (special == "ship" && InShipInterior(pc) && pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
+	showerDoucheToggleButton(5);
+	addButton(14, "Back", showerExit);
+}
+public function showerDoucheToggleButton(btnSlot:int = 5):void
+{
+	if (pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") + pc.statusEffectv1("Orally-Filled") <= 0) return;
+	if (pc.hasStatusEffect("Shower Douche Toggle")) addButton(btnSlot, "Rinse: ON", showerDoucheToggle, undefined, "Use Douche", "Clean out the fluids that have been pumped into you. Select to turn rinsing off.");
+	else addButton(btnSlot, "Rinse: OFF", showerDoucheToggle, undefined, "No Douche", "Keep the fluids that are inside you for now. Select to turn rinsing on.");
+}
+public function showerDoucheToggle(btnSlot:int = 5):void
+{
+	if (pc.hasStatusEffect("Shower Douche Toggle")) pc.removeStatusEffect("Shower Douche Toggle");
+	else pc.createStatusEffect("Shower Douche Toggle");
+	showerDoucheToggleButton(btnSlot);
+}
+public function showerExit():void
+{
+	pc.removeStatusEffect("Shower Douche Toggle");
+	mainGameMenu();
 }
 
 public function showerOptions(option:int = 0):void
 {
-	if(seranigansTrigger("shower")) return;
+	var showerInShip:Boolean = InShipInterior(pc);
+	
+	if(showerInShip && seranigansTrigger("shower")) return;
 	
 	clearOutput();
 	clearMenu();
@@ -1319,13 +1406,21 @@ public function showerOptions(option:int = 0):void
 	if (option == 0)
 	{
 		author("Couch");
-		output("Adventuring is fun and all, but it also leaves a [pc.guy] feeling dirty at the end of the day");
-		if (pc.libido() > 50) output(", and not in the good way");
-		output(". You decide to hit the showers, stripping off your gear with a sigh of relief as you take a moment just to stretch and enjoy being");
+		if(showerInShip)
+		{
+			output("Adventuring is fun and all, but it also leaves a [pc.guy] feeling dirty at the end of the day");
+			if (pc.libido() > 50) output(", and not in the good way");
+			output(". You decide to hit the showers");
+		}
+		else output("You decide to take a shower");
+		output(", stripping off your gear with a sigh of relief as you take a moment just to stretch and enjoy being");
 		if (pc.isNude()) output(" fully");
 		else output(" truly");
 		output(" nude.");
-		output("\n\nThe water comes out icy cold, sending a shiver down your spine. You think to yourself that you really should spring for a better temperature regulator, carefully adjusting the dial back and forth until finding that sweet spot between freezing and scalding where the water is blissfully warm. Now you can finally relax, setting to applying a good dose of shampoo to your [pc.hair]. Your [pc.skinFurScalesNoun] comes next, your hands running up and down your front to coat every last inch in a nice thick lather.");
+		output("\n\nThe water comes out");
+		if(showerInShip) output(" icy cold, sending a shiver down your spine. You think to yourself that you really should spring for a better temperature regulator, carefully adjusting the dial back and forth until finding that sweet spot between freezing and scalding where the water is blissfully warm. Now you can finally relax, setting to applying");
+		else output(" in perfect streams and feels blissfully warm down your spine - not too hot, and not too cold - allowing you to let loose and relax. Now that you are settled in, you apply");
+		output(" a good dose of shampoo to your [pc.hair]. Your [pc.skinFurScalesNoun] comes next, your hands running up and down your front to coat every last inch in a nice thick lather.");
 		if (pc.biggestTitSize() >= 4) output(" You can’t help but take a moment just to grope your [pc.chest], licking your lips at how good it feels to be so busty.");
 		if (pc.hasWings()) output(" Now for the fun part.");
 		output(" You carefully apply more body wash to a brush and reach with it over your shoulder to scrub your back.");
@@ -1338,9 +1433,26 @@ public function showerOptions(option:int = 0):void
 		output("\n\nOf course, you can’t forget below the belt.");
 		if (pc.hasTail()) output(" You curl [pc.oneTail] in front to help with lathering it up, briefly relishing the little pleasure spot right at the top of where it meets your spine.");
 		output(" Your [pc.hips] come next, followed by your [pc.ass]");
-		if (pc.tone >= 30 && pc.buttRating() < 4) output(", relishing the hard, taut muscles you’ve worked so hard to achieve");
-		else if (pc.tone < 30 && pc.buttRating() >= 10) output(", unable to resist topping it off with a good spank");
+		if (pc.buttTone() >= 30 && pc.buttRating() < 4) output(", relishing the hard, taut muscles you’ve worked so hard to achieve");
+		else if (pc.buttTone() < 30 && pc.buttRating() >= 10) output(", unable to resist topping it off with a good spank");
 		output(".");
+		
+		if(pc.hasStatusEffect("Shower Douche Toggle"))
+		{
+			output("\n\n");
+			if(pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") > 0)
+			{
+				output("You take the opportunity to relax your muscles fully, flaring your");
+				if(pc.statusEffectv1("Anally-Filled") > 0 && pc.statusEffectv1("Vaginally-Filled") > 0) output(" holes");
+				else if(pc.statusEffectv1("Vaginally-Filled") > 0) output(" puss" + (pc.vaginas.length == 1 ? "y" : "ies"));
+				else output(" anus");
+				output(" to allow the thick payload");
+				if(pc.statusEffectv1("Anally-Filled") > 0 && pc.statusEffectv1("Vaginally-Filled") > 0) output("s");
+				output(" you’re carrying to slowly ooze out. You whisk it all from your privates with brisk swishes of warm water, leaving yourself feeling clean and pleasantly empty. ");
+			}
+			if(pc.statusEffectv1("Orally-Filled") > 0) output("There’s a bottle of mouthwash in here, and you take the opportunity to flannel around your [pc.lips] before taking a swig, swilling it to one cheek then the other before spitting down the plughole. Minty fresh!");
+		}
+		
 		output("\n\nEven after you’re fully rinsed off, you let yourself stay under the water for a few minutes longer, just enjoying the warmth running down your body. There’s nothing like a good shower to just melt all the tension away.");
 		if (pc.lust() >= 33)
 		{
@@ -1368,7 +1480,7 @@ public function showerOptions(option:int = 0):void
 		else
 		{
 			output("\n\nFinally you feel you’ve gotten all the relaxation you can and shut off the water, stepping out and toweling yourself off. You slip your gear on with a refreshed smile, squeaky clean and ready to resume your adventure.");
-			addButton(0, "Next", mainGameMenu);
+			addButton(0, "Next", showerExit);
 		}
 		
 		pc.shower();
@@ -1405,16 +1517,20 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
 		var nudistPrevention:Boolean = false;
-		if((!pc.isChestGarbed() || pc.isChestExposed()) && pc.biggestTitSize() > 1) nudistPrevention = true;
-		if(!pc.isCrotchGarbed() || pc.isCrotchExposed() || pc.isAssExposed()) nudistPrevention = true;
+		if((!pc.isChestGarbed() || pc.isChestVisible()) && pc.biggestTitSize() > 1) nudistPrevention = true;
+		if(!pc.isCrotchGarbed() || ((pc.hasGenitals() || pc.balls > 0) && pc.isCrotchVisible()) || pc.isAssVisible()) nudistPrevention = true;
 		if(pc.canCoverSelf(true)) nudistPrevention = false;
 		if(nudistPrevention)
 		{
 			clearOutput();
 			output("Nudity is illegal in that location! You’ll have to cover up if you want to go there.");
 			clearMenu();
-			addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
-			addButton(14, "Back", mainGameMenu);
+			if(currentLocation == "SHIP INTERIOR") addButton(0, "Next", mainGameMenu);
+			else
+			{
+				addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
+				addButton(14, "Back", mainGameMenu);
+			}
 			return;
 		}
 	}
@@ -1428,6 +1544,24 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		if(!rooms[arg].hasFlag(GLOBAL.HAZARD))
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
+		}
+	}
+
+	//Waterfall stuff.
+	if(rooms[arg].hasFlag(GLOBAL.WATERFALL))
+	{
+		pc.energy(-6);
+		if(arg == "8. RED ROCK SCREE" && currentLocation == "7. DRIFTWOOD SHOULDER")
+		{
+			if(flags["PQ_NALEENED"] == undefined) 
+			{
+				if(driftwoodShoulderDoofiness()) return;
+			}
+		}
+		if(pc.energy() <= 0)
+		{
+			pcDunFallsOffDatHill();
+			return;
 		}
 	}
 
@@ -1862,7 +1996,12 @@ public function variableRoomUpdateCheck():void
 		rooms["UVI P30"].removeFlag(GLOBAL.OBJECTIVE);
 		rooms["UVI P30"].removeFlag(GLOBAL.NPC);
 	}
-	
+	// Carbonado
+	if(carbonadoActiveHours()) rooms["UVS A9"].addFlag(GLOBAL.COMMERCE);
+	else rooms["UVS A9"].removeFlag(GLOBAL.COMMERCE);
+	// Steele Med
+	if(steeleBiomedBusinessHours()) rooms["UVI H36"].addFlag(GLOBAL.NPC);
+	else rooms["UVI H36"].removeFlag(GLOBAL.NPC);
 	// Pippa's house
 	if (flags["PIPPA_RECRUITED"] == 1)
 	{
@@ -1874,11 +2013,13 @@ public function variableRoomUpdateCheck():void
 	}
 	
 	/* VESPERIA / CANADIA STATION */
+	/*
 	if(flags["KALLY_FAP_2_KIRO"] != undefined)
 	{
 		rooms["CANADA7"].eastExit = "CANADA8";
 	}
 	else rooms["CANADA7"].eastExit = "";
+	*/
 
 
 	/* MISC */
@@ -2026,7 +2167,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//KIRO FUCKMEET
 		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", -1, kiroFuckNetBonus()); }
 		//KIRO DATEMEET
-		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && rand(10) == 0) { goMailGet("kirodatemeet"); }
+		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && kiroSexed() && rand(10) == 0) { goMailGet("kirodatemeet"); }
 		trySendStephMail();
 		
 		//Jade muff-ins
@@ -2036,6 +2177,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 		// Pippa Nuru massage email
 		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();
+
+		//Plantation Quest Offer
+		//Key string - "plantation_quest_start"
+		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined)
+		{
+			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
+			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
+		}
 
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();

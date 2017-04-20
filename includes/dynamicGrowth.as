@@ -517,6 +517,23 @@ public function milkGainNotes():void
 		else ExtendLogEvent(ParseText("<b>If you don’t tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>"));
 		pc.removeStatusEffect("Pending Gain Milk Note: 200");
 	}
+	
+	// Special bra changes!
+	if((pc.upperUndergarment is BountyBra) || (pc.upperUndergarment is HoneypotBra))
+	{
+		if(pc.isLactating() && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
+		{
+			AddLogEvent(ParseText("The [pc.milk] leaking from your [pc.nipples] stains your " + pc.upperUndergarment.longName + ", making it slick and wet. As a result, the material becomes more and more see-through, allowing possible passerbys to see the private areas of your [pc.chest]. <b>Your top is now transparent!</b>"), "passive");
+			pc.createStatusEffect("Bra Transparency");
+			pc.upperUndergarment.onEquip(pc);
+			pc.removeStatusEffect("Bra Transparency");
+		}
+		else if(!pc.isLactating() && pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
+		{
+			AddLogEvent(ParseText("The dryness of your " + possessive(pc.upperUndergarment.longName) + " material is relieving. No longer sticking to your [pc.fullChest], the opaque garment now gives you a more modest appearance. <b>Your top is no longer transparent!</b>"), "passive");
+			pc.upperUndergarment.onEquip(pc);
+		}
+	}
 }
 
 public function lactationUpdateHourTick(totalHours:int):void

@@ -92,8 +92,12 @@ public function showPippa(naked:Boolean = false, oiled:Boolean = false):void
 	}
 	
 	// if naked false, show normal, clothed bust
+	if (!naked && !oiled) showBust("PIPPA");
 	// else if naked true and oiled false, show normal, naked bust
+	else if (naked && !oiled) showBust("PIPPA_NUDE");
 	// else if oiled true, show oiled, naked bust
+	else if (naked && oiled) showBust("PIPPA_NUDE");
+	else showBust("PIPPA_OILED");
 	
 	author("Ascent");
 }
@@ -206,109 +210,97 @@ public function pippaHappyEndingsGiven(addHappyEnding:int = 1):int
 
 public function hasValidPippaFood():Boolean
 {
-	return pc.hasItem(new BBQToGo()) || pc.hasItem(new MyrNectar()) || pc.hasItem(new Kalocrunch()) || pc.hasItem(new LargeEgg()) || pc.hasItem(new MhengaMango()) || pc.hasItem(new PexigaSaliva()) || pc.hasItem(new SmallEgg()) || pc.hasItem(new ZilHoney());
+	return pc.hasItemType(GLOBAL.FOOD);
 }
 
 // any non-transformative food items + some drinks
-public const GIVE_BBQ:String = "give bbq";
-public const GIVE_NECTAR:String = "give nectar";
-public const GIVE_KALOCRUNCH:String = "give kalocrunch";
-public const GIVE_LARGE_EGG:String = "give large egg";
-public const GIVE_MANGO:String = "give mango";
-public const GIVE_PEXIGA_SALIVA:String = "give saliva";
-public const GIVE_SMALL_EGG:String = "give small egg";
-public const GIVE_ZIL_HONEY:String = "give zil honey";
-public const NEVERMIND:String = "nevermind"; // Back out of menu without changing anything using this
+private const GIVE_BBQ:String = "give bbq";
+private const GIVE_NECTAR:String = "give nectar";
+private const GIVE_KALOCRUNCH:String = "give kalocrunch";
+private const GIVE_LARGE_EGG:String = "give large egg";
+private const GIVE_MANGO:String = "give mango";
+private const GIVE_PEXIGA_SALIVA:String = "give saliva";
+private const GIVE_SMALL_EGG:String = "give small egg";
+private const GIVE_ZIL_HONEY:String = "give zil honey";
+private const GIVE_OTHER_FOOD:String = "give other food";
+private const NEVERMIND:String = "nevermind"; // Back out of menu without changing anything using this
 
 public function givePippaFoodMenu(func:Function):void
 {
 	clearMenu();
 	
+	var giveItem:String = NEVERMIND;
 	var btnSlot:int = 0;
+	var foodList:Array = []; // To avoid dupes of the same food item.
 	
-	if (pc.hasItem(new BBQToGo()))
+	for(var i:int = 0; i < pc.inventory.length; i ++)
 	{
-		addButton(btnSlot, new BBQToGo().shortName, func, GIVE_BBQ);
-		btnSlot++;
-	}
-	if (pc.hasItem(new MyrNectar()))
-	{
-		addButton(btnSlot, new MyrNectar().shortName, func, GIVE_NECTAR);
-		btnSlot++;
-	}
-	if (pc.hasItem(new Kalocrunch()))
-	{
-		addButton(btnSlot, new Kalocrunch().shortName, func, GIVE_KALOCRUNCH);
-		btnSlot++;
-	}
-	if (pc.hasItem(new LargeEgg()))
-	{
-		addButton(btnSlot, new LargeEgg().shortName, func, GIVE_LARGE_EGG);
-		btnSlot++;
-	}
-	if (pc.hasItem(new MhengaMango()))
-	{
-		addButton(btnSlot, new MhengaMango().shortName, func, GIVE_MANGO);
-		btnSlot++;
-	}
-	if (pc.hasItem(new PexigaSaliva()))
-	{
-		addButton(btnSlot, new PexigaSaliva().shortName, func, GIVE_PEXIGA_SALIVA);
-		btnSlot++;
-	}
-	if (pc.hasItem(new SmallEgg()))
-	{
-		addButton(btnSlot, new SmallEgg().shortName, func, GIVE_SMALL_EGG);
-		btnSlot++;
-	}
-	if (pc.hasItem(new ZilHoney()))
-	{
-		addButton(btnSlot, new ZilHoney().shortName, func, GIVE_ZIL_HONEY);
-		btnSlot++;
+		if (btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", func, [NEVERMIND]);
+			btnSlot++;
+		}
+		if (pc.inventory[i].type == GLOBAL.FOOD && pc.inventory[i].quantity >= 1 && foodList.indexOf(pc.inventory[i].shortName) == -1)
+		{
+			if (pc.inventory[i] is BBQToGo) giveItem = GIVE_BBQ;
+			else if (pc.inventory[i] is MyrNectar) giveItem = GIVE_NECTAR;
+			else if (pc.inventory[i] is Kalocrunch) giveItem = GIVE_KALOCRUNCH;
+			else if ((pc.inventory[i] is LargeEgg) || (pc.inventory[i].longName.indexOf("large") != -1 && pc.inventory[i].longName.indexOf("egg"))) giveItem = GIVE_LARGE_EGG;
+			else if (pc.inventory[i] is MhengaMango) giveItem = GIVE_MANGO;
+			else if (pc.inventory[i] is PexigaSaliva) giveItem = GIVE_PEXIGA_SALIVA;
+			else if ((pc.inventory[i] is SmallEgg) || (pc.inventory[i].longName.indexOf("small") != -1 && pc.inventory[i].longName.indexOf("egg"))) giveItem = GIVE_SMALL_EGG;
+			else if (pc.inventory[i] is ZilHoney) giveItem = GIVE_ZIL_HONEY;
+			else giveItem = GIVE_OTHER_FOOD;
+			
+			addButton(btnSlot, (pc.inventory[i].shortName + " x" + pc.inventory[i].quantity), func, [giveItem, pc.inventory[i]], StringUtil.toDisplayCase(pc.inventory[i].longName), ("Give Pippa " + pc.inventory[i].description + "."));
+			foodList.push(pc.inventory[i].shortName);
+			btnSlot++;
+		}
+		if (foodList.length > 14 && (i + 1) == pc.inventory.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", func, [NEVERMIND]);
+		}
 	}
 	
-	addButton(14, "Back", func, NEVERMIND);
+	addButton(14, "Back", func, [NEVERMIND]);
 }
 
-public function pippaEatFood(food:String):String
+public function pippaEatFood(food:String, item:ItemSlotClass):String
 {
 	var response:String = "";
 	
 	switch(food)
 	{
 		case GIVE_BBQ:
-			pc.destroyItem(new BBQToGo(), 1);
 			response = "Pippa tears open the to-go box, and before you know it, there’s nothing left but bones.";
 			break;
 		case GIVE_NECTAR:
-			pc.destroyItem(new MyrNectar(), 1);
 			response = "Pippa opens the thermos of myr nectar and knocks it back like it’s a mere shot glass.";
 			break;
 		case GIVE_KALOCRUNCH:
-			pc.destroyItem(new Kalocrunch(), 1);
 			response = "Pippa eats through the kalocrunch bar in no time, leaving nothing but crumbs.";
 			break;
 		case GIVE_LARGE_EGG:
-			pc.destroyItem(new LargeEgg(), 1);
 			response = "Pippa quickly eats the large egg and licks her lips. She looks quite refreshed.";
 			break;
 		case GIVE_MANGO:
-			pc.destroyItem(new MhengaMango(), 1);
 			response = "Pippa eats the mango so quickly that there’s noticable juice spray. Somehow, she seems sexier.";
 			break;
 		case GIVE_PEXIGA_SALIVA:
-			pc.destroyItem(new PexigaSaliva(), 1);
 			response = "Pippa looks at the pexiga saliva warily, but upon catching the sweet scent, drinks it in one gulp.";
 			break;
 		case GIVE_SMALL_EGG:
-			pc.destroyItem(new SmallEgg(), 1);
 			response = "Pippa pops the small egg in her mouth whole and swallows it down.";
 			break;
 		case GIVE_ZIL_HONEY:
-			pc.destroyItem(new ZilHoney(), 1);
 			response = "Pippa downs the vial of honey in the blink of an eye. She looks more energetic.";
 			break;
+		default:
+			response = "With a blink of an eye, Pippa eats the food you gave her. She looks very satisfied.";
+			break;
 	}
+	pc.destroyItem(item, 1);
 	
 	pippaAffection(4);
 	pippaFed();
@@ -331,7 +323,7 @@ public function approachingPippasHouse(btnSlot:int = 1):void
 	{
 		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 
-		output("\n\nTo the west is Pippa’s house, now unoccupied. The sign advertising her massage services is still up, but has been unprofessionaly scrawled over with a large <i>“X”</i>.")
+		output("\n\nTo the west is Pippa’s house, now unoccupied. The sign advertising her massage services is still up, but has been unprofessionaly scrawled over with a large “X”.")
 	}
 	else
 	{
@@ -340,9 +332,11 @@ public function approachingPippasHouse(btnSlot:int = 1):void
 }
 
 // Handles initial meeting with Pippa after pressing her house buzzer
-public function meetPippa(itemGiven:String = ""):void
+public function meetPippa(arg:Array = null):void
 {
 	clearMenu();
+	
+	var itemGiven:String = (arg != null ? arg[0] : "");
 	
 	// Function initially called
 	if (itemGiven == "")
@@ -401,7 +395,7 @@ public function meetPippa(itemGiven:String = ""):void
 		
 		if (pc.isTreated())
 		{
-			output(" Before you can answer, she continues, <i>“But actually...you’re Treated, aren’t you?”</i>");
+			output(" Before you can answer, she continues, <i>“But actually... you’re Treated, aren’t you?”</i>");
 			
 			if (pc.isBimbo() || pc.isBro())
 			{
@@ -436,7 +430,7 @@ public function meetPippa(itemGiven:String = ""):void
 			output("<i>“You know, I actually do have food on me, if you’d like some.”</i>");
 		}
 		
-		output("\n\nShe responds excitedly, <i>“Really? That’s so nice, thank you!”</i> " + pippaEatFood(itemGiven) + " <i>“That was delicious. Now then, where were we?”</i>");
+		output("\n\nShe responds excitedly, <i>“Really? That’s so nice, thank you!”</i> " + pippaEatFood(itemGiven, arg[1]) + " <i>“That was delicious. Now then, where were we?”</i>");
 		
 		pippaAffection(1); // Small boost to normal food affection for initial meeting
 	}
@@ -514,7 +508,9 @@ public function pippaSexMenu(func:Function):void
 	{
 		if (!pc.isTaur())
 		{
-			addButton(2, "Get Ridden", pippaChooseCockToFuckPussy, undefined, "Get Ridden", "Let Pippa ride you with her pussy.");
+			if(!pc.hasCock() && pc.hasHardLightEquipped()) addButton(2, "Get Ridden", pippaFuckPussy, -1, "Get Ridden", "Let Pippa ride you with her pussy.");
+			else if(pc.cockTotal() == 1 && !pc.hasHardLightEquipped()) addButton(2, "Get Ridden", pippaFuckPussy, 0, "Get Ridden", "Let Pippa ride you with her pussy.");
+			else addButton(2, "Get Ridden", pippaChooseCockToFuckPussy, undefined, "Get Ridden", "Let Pippa ride you with her pussy.");
 		}
 		else
 		{
@@ -546,7 +542,7 @@ public function pippaSexMenu(func:Function):void
 		addDisabledButton(4, "Feed Milk", "Feed Milk", "You’ll need to be a heavily lactating non-taur to give Pippa a personal feeding.");
 	}
 	
-	addButton(14, "Back", func, NEVERMIND);
+	addButton(14, "Back", func, [NEVERMIND]);
 }
 
 // For rejecting sex during initial meeting if PC is treated
@@ -572,13 +568,9 @@ public function pippaRejectSex(itemGiven:String = ""):void
 	}
 	
 	output("\n\nShe stares at you for a second before responding, <i>“You know what? You can have your massage. Another time. For now, out.”</i> She walks over to the door and opens it, gesturing toward the outside.");
+	if (itemGiven != "" && itemGiven != NEVERMIND) output(" Her face softens slightly and she says, <i>“Thank you again, for the food.”</i>");
 	
-	if (pippaFed(0) > 0)
-	{
-		output(" Her face softens slightly and she says, <i>“Thank you, again, for the food.”</i>");
-	}
-	
-	addButton(0, "Leave", move, rooms[currentLocation].eastExit);
+	addButton(0, "Next", move, rooms[currentLocation].eastExit);
 }
 
 public const OIL_SOURCE_STANDARD_MASSAGE:String = "standard massage";
@@ -593,11 +585,11 @@ public function applyOilWarmed(target:Creature, source:String):void
 	if (source == OIL_SOURCE_STANDARD_MASSAGE) duration = 720;
 	else if (source == OIL_SOURCE_SPECIAL_MASSAGE) duration = 1440;
 	
-	if(target == chars["PC"]) desc = "You’re covered in warm, protective oil!";
+	if (target == chars["PC"]) desc = "You’re covered in warm, protective oil!";
 	else desc = target.capitalA + target.short + " is covered in warm, protective oil!";
 	desc += "\nFreeze resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, duration / 1440)) + "%";
 	
-	if(!target.hasStatusEffect("Oil Warmed"))
+	if (!target.hasStatusEffect("Oil Warmed"))
 	{
 		
 		target.createStatusEffect("Oil Warmed", 0, 0, 0, 0, false, "Icon_Water_Drop", "", false, duration, 0xFF7A59);
@@ -642,7 +634,7 @@ public function pippaStandardMassage():void
 	
 	output(" and call her back in. She reappears, now with a bottle of oil strapped to her waist. You close your eyes and let her go to work.");
 	
-	output("\n\nThe massage is...well, it’s more or less what you expect out of a massage. Pippa starts on your");
+	output("\n\nThe massage is... well, it’s more or less what you expect out of a massage. Pippa starts on your");
 	
 	if (pc.isTaur())
 	{
@@ -720,7 +712,7 @@ public function pippaHappyEnding(type:String = "hands"):void
 {
 	clearOutput();
 	clearMenu();
-	showPippa();
+	showPippa(false, true);
 	
 	var genitalType:int;
 	var penisIndex:int;
@@ -751,17 +743,20 @@ public function pippaHappyEnding(type:String = "hands"):void
 		
 		if (genitalType == 0)
 		{
-			output("slowly rubs oil all over your [pc.cock " + penisIndex + "] before gently wrapping her hand around it and gently stroking up and down. ");
+			output("slowly rubs oil all over your [pc.cock " + penisIndex + "] before gently wrapping her hand around it and gently stroking up and down.");
 			
-			if (pc.hasVagina() && !pc.isTaur()) output("With her other hand, she rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you.");
+			if (pc.hasVagina() && !pc.isTaur()) output(" With her other hand, she rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you.");
 		}
 		else
 		{
-			output("slowly rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you. With her other hand, she ");
+			output("slowly rubs oil into your [pc.pussy " + vaginaIndex + "], slips some fingers in, and begins finger fucking you.");
 			
-			if (pc.isTaur()) output("reaches under you and ");
-			
-			output("strokes your cock, rubbing oil into it at the same time.");
+			if (pc.hasCock())
+			{
+				output(" With her other hand, she ");
+				if (pc.isTaur()) output("reaches under you and ");
+				output("strokes your [pc.cockNoun " + penisIndex + "], rubbing oil into it at the same time.");
+			}
 		}
 	}
 	else if (type == "mouth")
@@ -784,13 +779,15 @@ public function pippaHappyEnding(type:String = "hands"):void
 			if (pc.cocks[penisIndex].volume() <= 11) output("the whole thing");
 			else output("as much as possible");
 			
-			output(" in her mouth. While her lips stroke up and down your shaft, her tongue swirls around licking at and massaging every square inch it can reach. ");
+			output(" in her mouth. While her lips stroke up and down your shaft, her tongue swirls around licking at and massaging every square inch it can reach.");
 			
-			if (pc.hasVagina() && !pc.isTaur()) output("Though her mouth is wrapped around your [pc.cockNoun " + penisIndex + "], her hands are free, and she uses one to gently rub and fuck your free [pc.pussyNoun " + vaginaIndex + "].");
+			if (pc.hasVagina() && !pc.isTaur()) output(" Though her mouth is wrapped around your [pc.cockNoun " + penisIndex + "], her hands are free, and she uses one to gently rub and fuck your free [pc.pussyNoun " + vaginaIndex + "].");
 		}
 		else
 		{
-			output("[pc.pussy " + vaginaIndex + "] before devouring it entirely. She sucks and licks all around, inside and out, getting at every square inch she can reach. If you didn’t know better, you’d think she was trying to literally eat your pussy. While she tends to your [pc.pussyNoun " + vaginaIndex + "] with her mouth, she uses her free hand to gently stroke your [pc.cockNoun " + penisIndex + "].");
+			output("[pc.pussy " + vaginaIndex + "] before devouring it entirely. She sucks and licks all around, inside and out, getting at every square inch she can reach. If you didn’t know better, you’d think she was trying to literally eat your pussy.");
+			
+			if (pc.hasCock() && !pc.isTaur()) output(" While she tends to your [pc.pussyNoun " + vaginaIndex + "] with her mouth, she uses her free hand to gently stroke your [pc.cockNoun " + penisIndex + "].");
 		}
 	}
 	else if (type == "tits")
@@ -992,14 +989,11 @@ public function pippaRejectMassage(itemGiven:String = ""):void
 	showPippa();
 	pippaAffection(-5);
 	
-	output("Pippa looks a little annoyed. <i>“That’s too bad. I’ll be here if you change your mind at some point.”</i>");
+	output("Pippa looks a little annoyed. <i>“That’s too bad. I’ll be here if you change your mind at some point.");
+	if (itemGiven != "" && itemGiven != NEVERMIND) output(" Thanks again for the food.");
+	output("”</i>");
 	
-	if (pippaFed(0) > 0)
-	{
-		output(" <i>“Thanks again for the food.”</i>");
-	}
-	
-	addButton(0, "Leave", move, rooms[currentLocation].eastExit);
+	addButton(0, "Next", move, rooms[currentLocation].eastExit);
 }
 
 // Description of entering Pippa's house
@@ -1013,14 +1007,14 @@ public function pippaHouseBonus(arg:String = ""):void
 	addButton(0, "Pippa", pippaMainMenu);
 }
 
-public function pippaMainMenu(arg:String = ""):void
+public function pippaMainMenu(arg:Array = null):void
 {
-	clearOutput();
+	if (arg == null || arg[0] != NEVERMIND) clearOutput();
 	clearMenu();
 	showPippa();
 	
-	if (arg == "") output("You approach Pippa and she greets you, <i>“Hey, " + pippaCallsSteele() + ". What’re we getting up to today?”</i>");
-	else if (arg != NEVERMIND) output("Pippa’s eyes light up. <i>“Food for me?”</i> " + pippaEatFood(arg) + " <i>“Thanks, " + pippaCallsSteele() + ".”</i>");
+	if (arg == null) output("You approach Pippa and she greets you, <i>“Hey, " + pippaCallsSteele() + ". What’re we getting up to today?”</i>");
+	else if (arg[0] != NEVERMIND) output("Pippa’s eyes light up. <i>“Food for me?”</i> " + pippaEatFood(arg[0], arg[1]) + " <i>“Thanks, " + pippaCallsSteele() + ".”</i>");
 	
 	addButton(0, "Appearance", pippaAppearance);
 	
@@ -1104,7 +1098,7 @@ public function pippaFuckAss():void
 	
 	output("\n\nYou quickly oblige, taking off your ");
 	
-	if(pc.isCrotchGarbed()) output("clothes");
+	if (pc.isCrotchGarbed()) output("clothes");
 	else output("gear");
 	
 	output(" and positioning yourself ");
@@ -1185,7 +1179,7 @@ public function pippaHotDog():void
 	
 	output("Pippa moves as close to you as can be and brings her [pippa.face] right up to yours, before stopping just short of kissing you. You can feel her hot breath on your face as she whispers, <i>“I bet you want my ass again.”</i> You respond with action and begin to reach around her body and grope her ass, but she stops you. <i>“Now wait just a second.”</i> She quickly removes her tight clothing, letting her jiggling curves free, then she removes your ");
 	
-	if(pc.isCrotchGarbed()) output("clothes");
+	if (pc.isCrotchGarbed()) output("clothes");
 	else output("gear");
 	
 	output(" as well.");
@@ -1283,7 +1277,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 	
 	output("Pippa places one hand between her legs, gently rubs her pussy through her tight yoga pants, and says, <i>“You know, " + pippaCallsSteele() + ", I love having my ass played with, but sometimes my pussy needs some love too. You think you can handle that?”</i> You respond by moving closer to her and placing your [pc.hand] over hers. She lightly kisses you and whispers, <i>“Good.”</i> She guides you to her bed and has you lay down, but not before removing your ");
 	
-	if(pc.isCrotchGarbed()) output("clothes.");
+	if (pc.isCrotchGarbed()) output("clothes.");
 	else output("gear.");
 	
 	output("\n\nWhile you get comfortably settled into Pippa’s bed, she puts on a little show, slowly stripping out of her tight clothes. First, facing toward you, she pulls her tank top up over her head, letting her [pippa.tits] and [pippa.belly] fall free. She crosses her arms under her tits, cradling them. Her big nipples are already erect, standing in the middle of her wide, brown-pink areola. Next, still facing you, she bends over, and pulls down her yoga pants. She shakes back and forth a bit, setting her giant boobs swinging. Finally, she turns around while spreading her legs, treating you to an eyeful of her [pippa.ass] and her spread [pippa.pussyNoun], adorned with a tuft of blonde hair.");
@@ -1408,7 +1402,7 @@ public function pippaGetSatOn():void
 	
 	output("\n\nPippa begins grinding her [pippa.pussy] into your face, but not before ordering, <i>“Lick.”</i> You comply, though you imagine the grinding would feel good even without your active contribution. Her pussy is already soaked, filling your mouth with ");
 	
-	if (silly) output("the taste of...is that bacon?! <i>“I hope you like bacon grease.”</i> Well, there goes your figure.");
+	if (silly) output("the taste of... is that bacon?! <i>“I hope you like bacon grease.”</i> Well, there goes your figure.");
 	else output("her juices. The taste is quite sweet, but you’re pretty sure it isn’t modded.");
 	
 	output(" She grabs the sides of your head and picks up her grinding a bit, moaning lightly. <i>“Look at me with those " + pc.mf("handsome", "pretty") + " [pc.eyes], " + pippaCallsSteele() + ".”</i> She holds your gaze, looking intently into your eyes. The rest of your face is completely smothered by her. She grinds her [pippa.pussyNoun] from your nose, all the way down to your chin, where you barely have time to breathe, smearing your face with her ");
@@ -1742,7 +1736,7 @@ public function pippaFeedMilkTakeControl():void
 		output("Whether or not it’s what she’s trying to do, she’s succeeding. As the pressure in your [pc.breasts] drops, the pressure in your loins builds. Your whole body tightens up, and all at once, releases its tension, shudders running through it.");
 	}
 	
-	output("\n\nFinally, Pippa is either full, or believes she’s drained you. She releases your [pc.nippleNoun], wordlessly sits up and puffs up her cheeks as if to indicate her mouth is full. You get the idea and open your mouth, and she leans over, locks her lips with yours, and spits some of your [pc.milk] into your mouth. You savour your own taste shortly, and then swallow. She just smiles, then leans over again to give you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower...and probably do laundry. I’ll see you later.”</i>");
+	output("\n\nFinally, Pippa is either full, or believes she’s drained you. She releases your [pc.nippleNoun], wordlessly sits up and puffs up her cheeks as if to indicate her mouth is full. You get the idea and open your mouth, and she leans over, locks her lips with yours, and spits some of your [pc.milk] into your mouth. You savour your own taste shortly, and then swallow. She just smiles, then leans over again to give you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower... and probably do laundry. I’ll see you later.”</i>");
 	
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
@@ -1826,7 +1820,7 @@ public function pippaFeedMilkHerControl():void
 		output("own body siezing up before descending into shuddering aftershocks."); 
 	}
 	
-	output("\n\nAs you both come down from your orgasmic highs, Pippa finally releases your [pc.nippleNoun] and slides off of you coming to lay next to you. After resting for a bit, she wordlessly sits up and leans over to kiss you, or so you think. She locks her lips with yours, and spits some of your [pc.milk] into your mouth. Caught off guard, you nearly choke, but manage to swallow it, and she giggles, before giving you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower...and probably do laundry. I’ll see you later.”</i>");
+	output("\n\nAs you both come down from your orgasmic highs, Pippa finally releases your [pc.nippleNoun] and slides off of you coming to lay next to you. After resting for a bit, she wordlessly sits up and leans over to kiss you, or so you think. She locks her lips with yours, and spits some of your [pc.milk] into your mouth. Caught off guard, you nearly choke, but manage to swallow it, and she giggles, before giving you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower... and probably do laundry. I’ll see you later.”</i>");
 	
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
@@ -1930,7 +1924,7 @@ public function pippaTalkHer():void
 	output("You decide to ask Pippa about herself. ");
 	
 	if (pc.isBimbo() || pc.isBro()) output("<i>“So, like, why are you a piggy?”</i>");
-	else ("<i>“So, why a pig?”</i>");
+	else output("<i>“So, why a pig?”</i>");
 	
 	output("\n\nShe narrows her eyes at you, ");
 	
@@ -1996,7 +1990,7 @@ public function pippaTalkYou():void
 	
 	output("\n\n<i>“");
 	if (pc.isBimbo()) output("I get to take over Daddy’s company! I hope so, anyway.");
-	else if (pc.isBro()) output("I get to take Pop’s company...I hope.");
+	else if (pc.isBro()) output("I get to take Pop’s company... I hope.");
 	else output("Victor Steele, the founder of Steele Tech, is my father. I’m going to succeed him. Or at least, that’s the plan.");
 	output("”</i>");
 	
@@ -2028,7 +2022,7 @@ public function pippaTalkCarbonado():void
 	
 	output("\n\n<i>“So why not work there?”</i>");
 	
-	output("\n\nPippa pauses and places a finger on her lower lip, thinking briefly, and answers, <i>“Well, it’s a nice place, and they’re nice people, I’m sure, but...I guess I just like working for myself. Not to mention, working from home is great. If I worked there, I’d have to venture through the cold, and spend an hour and a half of my day riding a space elevator.”</i> As she speaks the last part, her face twists into a grimace, somewhere between annoyance and fear. <i>“I’m happy to just stay here on the surface, when I can.”</i>");
+	output("\n\nPippa pauses and places a finger on her lower lip, thinking briefly, and answers, <i>“Well, it’s a nice place, and they’re nice people, I’m sure, but... I guess I just like working for myself. Not to mention, working from home is great. If I worked there, I’d have to venture through the cold, and spend an hour and a half of my day riding a space elevator.”</i> As she speaks the last part, her face twists into a grimace, somewhere between annoyance and fear. <i>“I’m happy to just stay here on the surface, when I can.”</i>");
 	
 	if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“But wouldn’t it be the best workin’ together?”</i>");
 	else output("\n\n<i>“Maybe you’d be more successful if you worked there instead of trying to freelance.”</i>");

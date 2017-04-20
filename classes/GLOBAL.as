@@ -75,6 +75,7 @@
 		public static const FLAG_TAILCUNT:int                               = 42;
 		public static const FLAG_BEAK:int									= 43;
 		public static const FLAG_CORKSCREWED:int							= 44;
+		public static const FLAG_TONGUE:int									= 45;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -120,8 +121,9 @@
 			"Slightly Pumped",
 			"Fully Pumped",
 			"Tailcunt",
-			"Beak",
-			"Corkscrewed"
+			"Beaked",
+			"Corkscrewed",
+			"Tongued",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -211,6 +213,8 @@
 		public static const TYPE_MILODAN:int								= 70;
 		public static const TYPE_WORG:int									= 71;
 		public static const TYPE_SWINE:int									= 72;
+		public static const TYPE_QUAD_LAPINE:int 							= 73;
+		public static const TYPE_MOUTHGINA:int 								= 74;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -285,7 +289,9 @@
 			"Bothrioc",
 			"Milodan",
 			"Worg",
-			"Swine"
+			"Swine",
+			"Quad Lapine",
+			"Mouthgina",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -336,7 +342,7 @@
 			TYPE_DEMONIC,
 			TYPE_FROG,
 			TYPE_NYREA,
-			TYPE_GRYVAIN
+			TYPE_GRYVAIN,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -355,7 +361,7 @@
 			TYPE_GOOEY,
 			TYPE_BEE,
 			TYPE_FROG,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -395,7 +401,8 @@
 			TYPE_GABILANI,
 			TYPE_FROG,
 			TYPE_GRYVAIN,
-			TYPE_SWINE
+			TYPE_SWINE,
+			TYPE_QUAD_LAPINE,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -416,7 +423,7 @@
 			TYPE_DEMONIC,
 			TYPE_NYREA,
 			TYPE_FLOWER,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -463,7 +470,7 @@
 			TYPE_NYREA,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -523,7 +530,7 @@
 			TYPE_DOVE,
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -562,7 +569,7 @@
 			TYPE_FROG,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -617,7 +624,7 @@
 			TYPE_FELINE,
 			TYPE_VULPINE,
 			TYPE_FLOWER,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		//SKINTYPES
@@ -710,6 +717,7 @@
 		public static const FLUID_TYPE_FRUIT_GIRLCUM:int						= 26;
 		public static const FLUID_TYPE_EGGNOG:int								= 27;
 		public static const FLUID_TYPE_PEPPERMINT:int							= 28;
+		public static const FLUID_TYPE_SUGAR:int								= 29;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -741,6 +749,7 @@
 			"Fruit Girl Cum",
 			"Eggnog",
 			"Peppermint Cum",
+			"Sugar Glaze",
 		];
 		
 		public static const FLUID_TYPE_SHORT:Array = [
@@ -773,6 +782,7 @@
 			"F.GCum",
 			"Eggnog",
 			"Mint.C",
+			"Sugar",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
@@ -794,6 +804,7 @@
 			FLUID_TYPE_FRUIT_CUM,
 			FLUID_TYPE_EGGNOG,
 			FLUID_TYPE_PEPPERMINT,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
@@ -807,6 +818,7 @@
 			FLUID_TYPE_NYREA_GIRLCUM,
 			FLUID_TYPE_HRAD_CUM,
 			FLUID_TYPE_FRUIT_GIRLCUM,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
@@ -823,11 +835,12 @@
 			FLUID_TYPE_CUM,
 			FLUID_TYPE_GIRLCUM,
 			FLUID_TYPE_BLUEBERRY_YOGURT,
+			FLUID_TYPE_SUGAR,
 		];
 		
 		// HAIRTYPES
 		public static const HAIR_TYPE_REGULAR:int						= 0;
-		public static const HAIR_TYPE_HAIR:int							= 0;
+		public static const HAIR_TYPE_HAIR:int							= HAIR_TYPE_REGULAR;
 		public static const HAIR_TYPE_FEATHERS:int						= 1;
 		public static const HAIR_TYPE_TRANSPARENT:int					= 2;
 		public static const HAIR_TYPE_GOO:int							= 3;
@@ -891,7 +904,7 @@
 			TYPE_GABILANI,
 			TYPE_HRAD,
 			TYPE_GRYVAIN,
-			TYPE_SWINE
+			TYPE_SWINE,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -935,6 +948,7 @@
 			TYPE_GRYVAIN,
 			TYPE_FLOWER,
 			TYPE_SWINE,
+			TYPE_MOUTHGINA,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -949,6 +963,7 @@
 			FLAG_SLIGHTLY_PUMPED,
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
+			FLAG_TONGUE,
 		];
 		
 		//ROOM FLAGS
@@ -981,6 +996,7 @@
 		public static const FROZENTUNDRA:int							= 26;
 		public static const SHIPINTERIOR:int							= 27; // Used to flag all rooms of player-own ships.
 		public static const POOL:int									= 28;
+		public static const WATERFALL:int								= 29;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -991,9 +1007,9 @@
 		public static const TIMES_CELISE_IN_BALLS:int                  = 2;
 
 		//ITEM TYPES
-		public static const PILL:int                                   = 0;
-		public static const FOOD:int                                   = 1;
-		public static const POTION:int                                 = 2;
+		public static const PILL:int                                   = 0; // Used for medicinal/misc and mostly legal drugs.
+		public static const FOOD:int                                   = 1; // Used for consumable food items.
+		public static const POTION:int                                 = 2; // Used for drinks/recovery items.
 		public static const MELEE_WEAPON:int                           = 3;
 		public static const RANGED_WEAPON:int                          = 4;
 		public static const ARMOR:int                                  = 5;
@@ -1001,13 +1017,13 @@
 		public static const UPPER_UNDERGARMENT:int                     = 7;
 		public static const LOWER_UNDERGARMENT:int                     = 8;
 		public static const ACCESSORY:int                              = 9;
-		public static const DRUG:int                                   = 10;
+		public static const DRUG:int                                   = 10; // Used for illegal or detrimental drugs/consumables.
 		public static const CLOTHING:int                               = 11;
-		public static const ALL:int                                    = 12; //Used for pawn shops!
-		public static const GADGET:int 								   = 13;
+		public static const ALL:int                                    = 12; // Used for pawn shops!
+		public static const GADGET:int 								   = 13; // Used for devices/appliances.
 		public static const EXPLOSIVECONSUMABLE:int					   = 14;
 		public static const QUEST_ITEM:int							   = 15; // Used for quest-related items.
-		public static const GEM:int 								   = 16;
+		public static const GEM:int 								   = 16; // Used for very valuable items.
 		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices.
 		
 		public static const ITEM_TYPE_NAMES:Array = [
@@ -1071,6 +1087,7 @@
 		public static const ITEM_FLAG_COMBAT_DRONE:int					= 15; // For combat drones
 		public static const ITEM_FLAG_INTERNAL_POWER:int				= 16; // For drones that do not require shields in order to function.
 		public static const ITEM_FLAG_UNDROPPABLE:int					= 17; // For items that cannot be dropped.
+		public static const ITEM_FLAG_TRANSPARENT:int					= 18; // Used specifically for clothing/armor that is see-through.
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1091,6 +1108,7 @@
 			"Combat Drone",
 			"Self-Powered",
 			"Undroppable",
+			"Transparent",
 		];
 		
 		/**

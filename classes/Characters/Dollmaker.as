@@ -439,7 +439,7 @@
 			//Hit
 			else
 			{
-				output("\n\nYou’re too slow to avoid the visor and it clicks around your eyes like an optic explosion. Rapid images of incredibly graphic ultraporn crackles across your vision. More alarmingly, YOU seem to be the star of every single one! Fake memories of fictitious fucking floods into you and, like a full sink with the tap on full blast, your real memories start flowing out of the basin. Years of training gurgle away as your life story is rewritten, chapter by cum-soaked chapter. Gaps in your memory start opening up like black holes-you can tell something’s missing, but you can’t put a finger on what it’s supposed to have been. When the visor finally pulls away, you’re so dizzy, you doubt you could hit the broadside of a ship, much less spindly robotic arms!");
+				output("\n\nYou’re too slow to avoid the visor and it clicks around your eyes like an optic explosion. Rapid images of incredibly graphic ultraporn crackle across your vision. More alarmingly, YOU seem to be the star of every single one! Fake memories of fictitious fucking floods into you and, like a full sink with the tap on full blast, your real memories start flowing out of the basin. Years of training gurgle away as your life story is rewritten, chapter by cum-soaked chapter. Gaps in your memory start opening up like black holes-you can tell something’s missing, but you can’t put a finger on what it’s supposed to have been. When the visor finally pulls away, you’re so dizzy, you doubt you could hit the broadside of a ship, much less spindly robotic arms!");
 				//{player takes 2-5 points of temporary Aim damage}
 				if(!target.hasStatusEffect("Mindwashed")) target.createStatusEffect("Mindwashed", 5, 0, 0, 0, false, "Icon_MindcontrolledMindbroke","You’re dizzy from having so much smut stuffed into your brain!\n\n<b>-5 Aim.</b>", true, 0);
 				else 
@@ -473,7 +473,11 @@
 			//Hit
 			else
 			{
-				output("\n\nYou try to avoid the fizzing hiss of aerosol latex, but it’s everywhere! Red paint sprays all over your [pc.gear] and [pc.skinFurScales], hardening almost as quickly as it touches you. Gooey layers of latex thicken, leaving your body rigid and your movements stiff. Somehow, the glossy rubber manages to transmit sensation directly into your nerves, leaving you far more sensitive with a heavy coating than if you’d been completely naked. <i>“That’s a good Doll,”</i> the machine coos and admittedly, you’re starting to look the part!");
+				output("\n\nYou try to avoid the fizzing hiss of aerosol latex, but it’s everywhere! Red paint sprays all over your [pc.gear]");
+				if(!target.hasAirtightSuit()) output(" and [pc.skinFurScales]");
+				output(", hardening almost as quickly as it touches you. Gooey layers of latex thicken, leaving your body rigid and your movements stiff.");
+				if(!target.hasAirtightSuit()) output(" Somehow, the glossy rubber manages to transmit sensation directly into your nerves, leaving you far more sensitive with a heavy coating than if you’d been completely naked.");
+				output(" <i>“That’s a good Doll,”</i> the machine coos and admittedly, you’re starting to look the part!");
 				//{player takes 2-5 points of temporary Reflex damage}
 				if(!target.hasStatusEffect("Latex Sprayed")) target.createStatusEffect("Latex Sprayed", 5, 0, 0, 0, false, "Icon_Perfume","You feel slower with all this latex on you!\n\n<b>-5 Reflexes.</b>", true, 0);
 				else 
@@ -484,7 +488,7 @@
 				target.reflexesMod -= 5;
 
 				var damage:TypeCollection = new TypeCollection( { tease: 3 } );
-				applyDamage(damageRand(damage, 15), this, target);
+				if(!target.hasAirtightSuit()) applyDamage(damageRand(damage, 15), this, target);
 			}
 		}
 		//Bimboleum Emitter

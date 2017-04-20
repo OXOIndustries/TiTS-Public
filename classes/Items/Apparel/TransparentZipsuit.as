@@ -46,6 +46,9 @@ package classes.Items.Apparel
 			resistances.electric.resistanceValue = 50.0;
 			resistances.burning.resistanceValue = 25.0;
 			
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			
 			this.version = this._latestVersion;
 		}
 	}

@@ -63,6 +63,10 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/bess.png", mimeType = "image/png")]
 		public var Bust_BESS:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/carver.png", mimeType = "image/png")]
+		public var Bust_BETH:Class;
+		public function get Bust_BETH_NUDE():Class { return Bust_BETH; }
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/betsy_victoria.png", mimeType = "image/png")]
 		public var Bust_BETSY_AND_VICTORIA:Class;
@@ -73,6 +77,11 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/betsy_victoria.png", mimeType = "image/png")]
 		public var Bust_BETSY_VICTORIA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/kat.png", mimeType = "image/png")]
+		public var Bust_BORING_MISTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kat_nude.png", mimeType = "image/png")]
+		public var Bust_BORING_MISTRESS_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget.png", mimeType = "image/png")]
 		public var Bust_BRIGET:Class;
@@ -159,7 +168,7 @@ package classes.Resources.Busts
 		public var Bounds_ESTALLIA:Rectangle = new Rectangle(45, 3, 60, 60);
 		[Embed(source = "../../../assets/images/npcs/adjatha/estallia_nude.png", mimeType = "image/png")]
 		public var Bust_ESTALLIA_NUDE:Class;
-		public var Bounds_ESTALLIA_NUDE:Rectangle = new Rectangle(45, 3, 60, 60);
+		public function get Bounds_ESTALLIA_NUDE():Rectangle { return Bounds_ESTALLIA; }
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
@@ -198,7 +207,7 @@ package classes.Resources.Busts
 		public var Bounds_GOLD_REMNANT_SI_OFFICER:Rectangle = new Rectangle(50, 0, 60, 60);
 		[Embed(source = "../../../assets/images/npcs/adjatha/gold_remnant_si_officer_nude.png", mimeType = "image/png")]
 		public var Bust_GOLD_REMNANT_SI_OFFICER_NUDE:Class;
-		public var Bounds_GOLD_REMNANT_SI_OFFICER_NUDE:Rectangle = new Rectangle(50, 0, 60, 60);
+		public function get Bounds_GOLD_REMNANT_SI_OFFICER_NUDE():Rectangle { return Bounds_GOLD_REMNANT_SI_OFFICER; }
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/gryvain.png", mimeType = "image/png")]
 		public var Bust_GRYVAIN:Class;
@@ -239,6 +248,20 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kally_nude.png", mimeType = "image/png")]
 		public var Bust_KALLY_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_big.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT_BELLY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_nude.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nessa_nude_big.png", mimeType = "image/png")]
+		public var Bust_KAITHRIT_SCOUT_BELLY_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/kane.png", mimeType = "image/png")]
+		public var Bust_KANE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kane_nude.png", mimeType = "image/png")]
+		public var Bust_KANE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/kitsune-traders.png", mimeType = "image/png")]
 		public var Bust_KAZRA_AND_LORRE:Class;
 
@@ -346,8 +369,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/orryx.png", mimeType = "image/png")]
 		public var Bust_ORRYX:Class;
 		
+		public function get Bust_PENNY_NUDE_HORSE():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function get Bust_PENNY_NUDE_HORSE_1():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function get Bust_PENNY_NUDE_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
 		[Embed(source = "../../../assets/images/npcs/adjatha/penny_bimbo_horse.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE:Class;
+		public function get Bust_PENNY_BIMBO_HORSE_1():Class { return Bust_PENNY_BIMBO_HORSE; }
+		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/petr.png", mimeType = "image/png")]
 		public var Bust_PETR:Class;
@@ -364,6 +392,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/quenton_nude.png", mimeType = "image/png")]
 		public var Bust_QUENTON_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn.png", mimeType = "image/png")]
+		public var Bust_QUINN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_nude.png", mimeType = "image/png")]
+		public var Bust_QUINN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
 		
@@ -376,10 +409,10 @@ package classes.Resources.Busts
 		public var Bounds_RED_HEAVY:Rectangle = new Rectangle(38, 0, 60, 60);
 		[Embed(source = "../../../assets/images/npcs/adjatha/red_heavy_weapons.png", mimeType = "image/png")]
 		public var Bust_RED_HEAVY_WEAPONS:Class;
-		public var Bounds_RED_HEAVY_WEAPONS:Rectangle = new Rectangle(38, 0, 60, 60);
+		public function get Bounds_RED_HEAVY_WEAPONS():Rectangle { return Bounds_RED_HEAVY; }
 		[Embed(source = "../../../assets/images/npcs/adjatha/red_heavy_nude.png", mimeType = "image/png")]
 		public var Bust_RED_HEAVY_NUDE:Class;
-		public var Bounds_RED_HEAVY_NUDE:Rectangle = new Rectangle(38, 0, 60, 60);
+		public function get Bounds_RED_HEAVY_NUDE():Rectangle { return Bounds_RED_HEAVY; }
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith.png", mimeType = "image/png")]
 		public var Bust_SEMITH:Class;
@@ -391,13 +424,13 @@ package classes.Resources.Busts
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(60, 0, 60, 60);
 		[Embed(source = "../../../assets/images/npcs/adjatha/saendra_dick.png", mimeType = "image/png")]
 		public var Bust_SAENDRA_FUTA:Class;
-		public var Bounds_SAENDRA_FUTA:Rectangle = new Rectangle(60, 0, 60, 60);
+		public function get Bounds_SAENDRA_FUTA():Rectangle { return Bounds_SAENDRA; }
 		[Embed(source = "../../../assets/images/npcs/adjatha/saendra_nude.png", mimeType = "image/png")]
 		public var Bust_SAENDRA_NUDE:Class;
-		public var Bounds_SAENDRA_NUDE:Rectangle = new Rectangle(60, 0, 60, 60);
+		public function get Bounds_SAENDRA_NUDE():Rectangle { return Bounds_SAENDRA; }
 		[Embed(source = "../../../assets/images/npcs/adjatha/saendra_nude_dick.png", mimeType = "image/png")]
 		public var Bust_SAENDRA_FUTA_NUDE:Class;
-		public var Bounds_SAENDRA_FUTA_NUDE:Rectangle = new Rectangle(60, 0, 60, 60);
+		public function get Bounds_SAENDRA_FUTA_NUDE():Rectangle { return Bounds_SAENDRA; }
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;
@@ -446,6 +479,9 @@ package classes.Resources.Busts
 		public var Bust_TERENSHA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/terensha_filled.png", mimeType = "image/png")]
 		public var Bust_TERENSHA_FILLED:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/egg.png", mimeType = "image/png")]
+		public var Bust_TENTACLE_EGG:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/tlako.png", mimeType = "image/png")]
 		public var Bust_TLAKO:Class;
@@ -544,6 +580,10 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bess.png", mimeType = "image/png")]
 			public var Full_BESS:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carver.png", mimeType = "image/png")]
+			public var Full_BETH:Class;
+			public function get Full_BETH_NUDE():Class { return Full_BETH; }
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/betsy_victoria.png", mimeType = "image/png")]
 			public var Full_BETSY_AND_VICTORIA:Class;
@@ -551,6 +591,11 @@ package classes.Resources.Busts
 			//public var Full_BETSY:Class;
 			//[Embed(source = "../../../assets/images/npcs/adjatha/hr/victoria.png", mimeType = "image/png")]
 			//public var Full_VICTORIA:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kat.png", mimeType = "image/png")]
+			public var Full_BORING_MISTRESS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kat_nude.png", mimeType = "image/png")]
+			public var Full_BORING_MISTRESS_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget.png", mimeType = "image/png")]
 			public var Full_BRIGET:Class;
@@ -703,6 +748,20 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_nude.png", mimeType = "image/png")]
 			public var Full_KELLY_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_big.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT_BELLY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_nude.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_nude_big.png", mimeType = "image/png")]
+			public var Full_KAITHRIT_SCOUT_BELLY_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kane.png", mimeType = "image/png")]
+			public var Full_KANE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kane_nude.png", mimeType = "image/png")]
+			public var Full_KANE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_nude.png", mimeType = "image/png")]
@@ -799,8 +858,13 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/orryx.png", mimeType = "image/png")]
 			public var Full_ORRYX:Class;
 			
+			public function get Full_PENNY_NUDE_HORSE():Class { return Full_PENNY_BIMBO_HORSE; }
+			public function get Full_PENNY_NUDE_HORSE_1():Class { return Full_PENNY_BIMBO_HORSE; }
+			public function get Full_PENNY_NUDE_HORSE_2():Class { return Full_PENNY_BIMBO_HORSE; }
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/penny_bimbo_horse.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_HORSE:Class;
+			public function get Full_PENNY_BIMBO_HORSE_1():Class { return Full_PENNY_BIMBO_HORSE; }
+			public function get Full_PENNY_BIMBO_HORSE_2():Class { return Full_PENNY_BIMBO_HORSE; }
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/petr.png", mimeType = "image/png")]
 			public var Full_PETR:Class;
@@ -816,6 +880,11 @@ package classes.Resources.Busts
 			public var Full_QUENTON:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton_nude.png", mimeType = "image/png")]
 			public var Full_QUENTON_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn.png", mimeType = "image/png")]
+			public var Full_QUINN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_nude.png", mimeType = "image/png")]
+			public var Full_QUINN_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;
@@ -891,6 +960,9 @@ package classes.Resources.Busts
 			public var Full_TERENSHA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha_filled.png", mimeType = "image/png")]
 			public var Full_TERENSHA_FILLED:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg.png", mimeType = "image/png")]
+			public var Full_TENTACLE_EGG:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tlako.png", mimeType = "image/png")]
 			public var Full_TLAKO:Class;

@@ -1011,7 +1011,7 @@ public function vanaeHuntressVaginalSex():void
 
 	output("\n\nBatting your hand away with flushed cheeks, the pale huntress chastises you and then slowly descends on your [pc.cock " + selCock + "]. Soon you are brushing against her slick alien slit, her velvety lips stroking your [pc.cockHead " + selCock + "]. Jolts of pleasure surge down your staff and you let out a low, guttural moan. Your pre-cum drools all over her silky snatch, marking it prematurely with your [pc.cumColor] spunk.");
 
-	output("\n\nUnwilling to wait a second longer, you slide your hands up her [enemy.thighs] and grab her [enemy.hips], pushing her down. She lets out a surprised cry as your impale her on your [pc.cockNounSimple " + selCock + "], sheathing yourself in her otherworldly [enemy.pussyNoun].");
+	output("\n\nUnwilling to wait a second longer, you slide your hands up her [enemy.thighs] and grab her [enemy.hips], pushing her down. She lets out a surprised cry as you impale her on your [pc.cockNounSimple " + selCock + "], sheathing yourself in her otherworldly [enemy.pussyNoun].");
 	//Dick virginity check
 	var lostVirgin:Boolean = pc.cockChange(true, false);
 

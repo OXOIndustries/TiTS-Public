@@ -31,10 +31,14 @@ public function messBonusFunction():Boolean
 	vendingMachineButton(2);
 	return false;
 }
+public function delAtTheMess():Boolean
+{
+	return (!MailManager.isEntryUnlocked("del_moved"));
+}
 public function barBonusFunction():Boolean
 {
 	//Has Del left?
-	if(!MailManager.isEntryUnlocked("del_moved"))
+	if(delAtTheMess())
 	{
 		//Bartender (Time 0-4)
 		if(delilahSubmissiveness() < 5) output("\n\nYou see a svelte, dusky-skinned girl moving behind the bar, dressed in a tight cocktail dress that nicely hugs her rounded ass, showing it off behind the see-through bar. More than one randy customer reaches over to smack that ass as she works, nearly making her spill every other drink she tries to pour!");
@@ -43,13 +47,17 @@ public function barBonusFunction():Boolean
 		if(flags["MET_DEL"] == undefined) addButton(0,"Bartender",approachDCLTrap,undefined,"Bartender","Approach the bartender for a drink or something.");
 		else addButton(0,"Del",approachDCLTrap,undefined,"Del","Approach Del the bartender for a drink or some other service.");
 	}
-	else addDisabledButton(0,"Bartender","Bartender","Del isn’t working the bar any longer. It looks like they’re having a tough time finding a replacement.");
+	else
+	{
+		addDisabledButton(0,"Bartender","Bartender","Del isn’t working the bar any longer. It looks like they’re having a tough time finding a replacement.");
+	}
 	addButton(1,"Watch TV",stephIrsonEpisodeTwo,undefined,"Watch TV","Watch the television. It looks like an episode of Steph Irson: Galactic Hunter is on.");
 	roamingBarEncounter(2);
+	vendingMachineButton(3, "XXX");
 	return false;
 }
 //Order Food
-//{One-time option}
+//One-time option
 public function orderFoodFromTheMess():void
 {
 	clearOutput();
@@ -203,7 +211,7 @@ public function getADrinkFromDCLsButt():void {
 //Quivering Quasar
 public function quiveringQuasar():void
 {
-	//{Temporarily Increases Physique value, small random chance to blind yourself on any given turn}
+	//Temporarily Increases Physique value, small random chance to blind yourself on any given turn
 	clearOutput();
 	processTime(3);
 	userInterface.showName("\nDELILAH");
@@ -240,7 +248,7 @@ public function sexOnAMeteor():void
 	userInterface.showBust("DELILAH");
 	processTime(3);
 	author("Savin");
-	//{Raise lust, temp. +Libido, -Lust Resistance, +Tease Damage}
+	//Raise lust, temp. +Libido, -Lust Resistance, +Tease Damage
 	output("<i>“Sex on a Meteor?”</i> you ask, cocking an eyebrow at the name.");
 	output("\n\n<i>“Owner’s choice,”</i> the bartender chuckles, <i>“It’ll make you all but irresistible... even to yourself!”</i>");
 	output("\n\nShe quickly pours what looks like a heady mixture of drinks, which end up in a bright pink concoction topped with a slice of orange and a curly straw. She slides it over to you, saying, <i>“Enjoy! Everyone else will, too!”</i>");
@@ -511,7 +519,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	clearOutput();
 	stephHeader(2, true);
 	
-	var x:int = 0;
+	var x:int = -1;
 	if(pc.hasCock()) x = pc.smallestCockIndex();
 	else if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	output("<i>“Say hi to the camera!”</i> The goo titters, bending over and wiggling her ass at the camera drone hovering around her. Winking at the camera over her shoulder, she reaches back and spreads her cheeks, quick and hard enough to rip her short pants and revealing a glistening wet ass and pussy - a human pair - beneath the torn bits of short pants still clinging to the hidden Steph’s hips. The drone zooms in on her slit, catching a bit of lens flare as the dim sun reflects off of Steph’s soaked-wet pussy, showing a thick trail of vaginal secretion trickling down from her spread hole.");
@@ -524,7 +532,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	output("\n\nShe giggles to herself, but looking around the bar, she’s not wrong. Plenty of other folk in the smoky back-room tavern are sporting impressive bulges in their pants, and some are even shamelessly jerking it.");
 
 	//If PC has fucked TrapCL AND has a dick that fits her or a vagina:
-	if(timesDelilahSexed() > 0 && (pc.hasCock() || pc.hasVagina()))
+	if(delAtTheMess() && timesDelilahSexed() > 0 && (pc.hasCock() || pc.hasVagina()))
 	{
 		output("\n\nSeeing your favorite bartender a short distance away, also watching the lewd display on galactic TV, you motion her over. Hesitantly, she obeys - it’s not like anyone’s ordering drinks with their hands full of dick. You pull the trappy lady-boy into your lap, your fingers quickly sliding down her lacy panties from under her knee-skirt, leaving her dusky cheeks bare against your ");
 		if(!pc.isCrotchGarbed()) output("[pc.skinFurScales]");
@@ -551,9 +559,9 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	}
 
 	output("\n\nBack on screen, the gray goo encasing Steph Irson has rolled onto her back, spreading her legs for the camera, fingers delving into poor Steph’s gaping cunt, thumb teasing the bud of her clitty. The goo herself is giving the audience a playful grin, clearly enjoying the galactic attention - or at least that of the drone as it buzzes around her, always searching for the best angle. Giving a little gasp of pleasure, her slimy fingers slip into Steph’s folds, spreading her cunt out for its closeup. The drone dutifully flies in, giving you a perfect High-Def view of Steph Irson’s pussy gaped around the googirl’s hand as she starts to jill off.");
-		output("\n\n<i>“Are you getting close, galaxy?”</i> the goo grins, fingers moving faster and faster through Steph’s exposed groin. Mimicking Steph’s own accent, she continues, <i>“Well, I sure am! Let’s finish together, everyone!”</i>");
+	output("\n\n<i>“Are you getting close, galaxy?”</i> the goo grins, fingers moving faster and faster through Steph’s exposed groin. Mimicking Steph’s own accent, she continues, <i>“Well, I sure am! Let’s finish together, everyone!”</i>");
 	//If PC is fucking TrapCL: 
-	if(timesDelilahSexed() > 0 && (pc.hasCock() || pc.hasVagina()))
+	if(delAtTheMess() && timesDelilahSexed() > 0 && (pc.hasCock() || pc.hasVagina()))
 	{
 		output("\n\nWell, who’re you to say no? You let down your guard, releasing your body to fulfill its most primal wishes with the help of the trappy bartender. ");
 		//Dicksex:
@@ -573,8 +581,8 @@ public function stephIrsonEpisodeTwoDashTwo():void
 }
 
 //Slut Training
-//{Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
-//Tooltip: Delilah needs to learn how to properly service her clients with that tight little ass of hers. You’re the perfect person to show her how it’s done...}
+//Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
+//Tooltip: Delilah needs to learn how to properly service her clients with that tight little ass of hers. You’re the perfect person to show her how it’s done...
 public function delilahSlutTraining():void
 {
 	clearOutput();

@@ -20,7 +20,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.DRUG;
+			type = GLOBAL.PILL;
 			shortName = "BumpyRd.";
 			longName = "Bumpy Road";
 			
@@ -122,15 +122,15 @@
 						for(i = 0; i < nonNubbyCocks.length; i++)
 						{
 							output("\n<b>" + StringUtil.capitalize(num2Ordinal(nonNubbyCocks[i] + 1)) + " Cock:</b>");
-							if(target.cocks[i].cockFlags.length > 0)
+							if(target.cocks[nonNubbyCocks[i]].cockFlags.length > 0)
 							{
-								for(x = 0; x < target.cocks[i].cockFlags.length; x++)
+								for(x = 0; x < target.cocks[nonNubbyCocks[i]].cockFlags.length; x++)
 								{
-									output(" " + GLOBAL.FLAG_NAMES[target.cocks[i].cockFlags[x]] + ",");
+									output(" " + GLOBAL.FLAG_NAMES[target.cocks[nonNubbyCocks[i]].cockFlags[x]] + ",");
 								}
 							}
-							if(target.cocks[i].cockColor != "") output(" " + StringUtil.toDisplayCase(target.cocks[i].cockColor) + ",");
-							output(" " + GLOBAL.TYPE_NAMES[target.cocks[i].cType]);
+							if(target.cocks[nonNubbyCocks[i]].cockColor != "") output(" " + StringUtil.toDisplayCase(target.cocks[nonNubbyCocks[i]].cockColor) + ",");
+							output(" " + GLOBAL.TYPE_NAMES[target.cocks[nonNubbyCocks[i]].cType]);
 							
 							addButton(btnSlot, "Cock " + (nonNubbyCocks[i] + 1), cockTF, [target, nonNubbyCocks[i]], StringUtil.capitalize(num2Ordinal(nonNubbyCocks[i] + 1)) + " Cock", "Use this on your [pc.cock " + nonNubbyCocks[i] + "].");
 							btnSlot++;
@@ -160,15 +160,15 @@
 						for(i = 0; i < nonNubbyCunts.length; i++)
 						{
 							output("\n<b>" + StringUtil.capitalize(num2Ordinal(nonNubbyCunts[i] + 1)) + " Vagina:</b>");
-							if(target.vaginas[i].vagooFlags.length > 0)
+							if(target.vaginas[nonNubbyCunts[i]].vagooFlags.length > 0)
 							{
-								for(x = 0; x < target.vaginas[i].vagooFlags.length; x++)
+								for(x = 0; x < target.vaginas[nonNubbyCunts[i]].vagooFlags.length; x++)
 								{
-									output(" " + GLOBAL.FLAG_NAMES[target.vaginas[i].vagooFlags[x]] + ",");
+									output(" " + GLOBAL.FLAG_NAMES[target.vaginas[nonNubbyCunts[i]].vagooFlags[x]] + ",");
 								}
 							}
-							if(target.vaginas[i].vaginaColor != "") output(" " + StringUtil.toDisplayCase(target.vaginas[i].vaginaColor) + ",");
-							output(" " + GLOBAL.TYPE_NAMES[target.vaginas[i].type]);
+							if(target.vaginas[nonNubbyCunts[i]].vaginaColor != "") output(" " + StringUtil.toDisplayCase(target.vaginas[nonNubbyCunts[i]].vaginaColor) + ",");
+							output(" " + GLOBAL.TYPE_NAMES[target.vaginas[nonNubbyCunts[i]].type]);
 							
 							addButton(btnSlot, "Vagina " + (nonNubbyCunts[i] + 1), cuntTF, [target, nonNubbyCunts[i]], StringUtil.capitalize(num2Ordinal(nonNubbyCunts[i] + 1)) + " Vagina", "Use this on your [pc.vagina " + nonNubbyCunts[i] + "].");
 							btnSlot++;

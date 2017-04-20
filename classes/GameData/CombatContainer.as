@@ -446,7 +446,18 @@ package classes.GameData
 					target.addStatusValue("Pushed", 1, -1);
 				}
 			}
-			
+			if (target.hasStatusEffect("Shields Up") && !(target is PlayerCharacter))
+			{
+				target.addStatusValue("Shields Up",1,-1);
+				if(target.statusEffectv1("Shields Up") > 0) output("\n\n<b>He’s still covering himself with his shield.</b>");
+				else
+				{
+					target.removeStatusEffect("Shields Up");
+					output("\n\n<b>With a tired huff, the male zil’s allows his guard to sink back down.</b>");
+					target.shield.shields -= 40;
+					target.shields(-40);
+				}
+			}
 			if (target.hasPerk("Shield Regen") && target.hasShields() && target.shields() <= 0 && target.shieldsMax() > 0 && !target.hasStatusEffect("Used Shield Regen"))
 			{
 				if (target is PlayerCharacter)
@@ -574,7 +585,24 @@ package classes.GameData
 				}
 				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
 			}
-				
+			if (target.hasStatusEffect("Evasion Boost"))
+			{
+				if (target.getStatusMinutes("Evasion Boost") > 0) 
+				{
+					if(target is RKLah) output("\n\n<b>The ausar continues to jitter and start forwards and backwards unexpectedly. It’s a nightmare drawing a bead on him.</b>");
+					else if(target is PlayerCharacter) output("\n\n<b>Your evasion is still enhanced!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " evasion is still enhanced!</b>");
+					target.addStatusMinutes("Evasion Boost",-1);
+				}
+				else 
+				{
+					if(target is RKLah) output("\n\n<b>The ausar finally starts moving with something approaching normalcy, his burst of nervous energy exhausted.</b>");
+					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer have boosted evasion!</b>");
+					else if(target is PlayerCharacter) output("\n\n<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " enhanced evasion fades!</b>");
+					target.removeStatusEffect("Evasion Boost");
+				}
+			}
 			if (target.hasStatusEffect("Bleeding"))
 			{
 				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body; " + (target.statusEffectv2("Bleeding") >= 1 ? "your microsugeons working overtime to stem the ongoing damage" : "your microsurgeons have triaged the worst of it, but you’ll need proper rest to heal") + ".</b>");
@@ -846,19 +874,7 @@ package classes.GameData
 					target.removeStatusEffect("HP Boost CD");
 				}
 			}
-	
-			if(target.hasStatusEffect("Evasion Boost"))
-			{
-				target.addStatusMinutes("Evasion Boost",-1);
-				if(target.getStatusMinutes("Evasion Boost") <= 0)
-				{
-					if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer have boosted evasion!</b>");
-					else if (target is PlayerCharacter) output("\n\n<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer has boosted evasion!</b>");
-					target.removeStatusEffect("Evasion Boost");
-				}
-			}
-		
+			
 			if (target.hasStatusEffect("Resolve"))
 			{
 				target.addStatusValue("Resolve",1,-1);
@@ -1193,6 +1209,10 @@ package classes.GameData
 				{
 					output("\n\n<b>You are being smothered by a Mimbrane!</b>");
 				}
+				else if(hasEnemyOfClass(RKLah))
+				{
+					output("\n\n<b>You are forced to stare dizzily at the ground, the bay and throb of the crowd in your ears, Lah’s hard, wiry arms locked firmly around your neck. You’ve got to get him off you!</b>");
+				}
 				else
 				{
 					output("\n\n<b>You are grappled and unable to fight normally!</b>");
@@ -1222,7 +1242,10 @@ package classes.GameData
 			{
 				if(pc.lust() < pc.lustMax())
 				{
-					output("\n\nOh, something smells <i>divine</i>... like pure sex in vapor form. It makes your [pc.asshole] clench, hungry for cock. <b>Looks like you’re not gonna be able to ");
+					output("\n\nOh, something");
+					if(pc.hasAirtightSuit()) output(" looks <i>divine</i>... like pure sex in physical form");
+					else output(" smells <i>divine</i>... like pure sex in vapor form");
+					output(". It makes your [pc.asshole] clench, hungry for cock. <b>Looks like you’re not gonna be able to ");
 					if(pc.canFly()) output("fly");
 					else output("weasel");
 					output(" your way out of this encounter!</b>");
@@ -1410,6 +1433,13 @@ package classes.GameData
 		private function runAway():void
 		{
 			clearOutput();
+			if (pc.inRut() && hasDickedEnemy())
+			{
+				//Attempt to flee vs enemy with cock.
+				output("You can’t flee, not when there’s a challenge to defeat. Especially not when said challenge has a penis. The mere thought of giving up enrages you!");
+				processCombat();
+				return;
+			}
 			output("You attempt to flee from your opponent");
 			if (hasEnemyOfClass(QueenOfTheDeep))
 			{
@@ -1624,7 +1654,15 @@ package classes.GameData
 					// but we still hold a ref to it for further processing!
 					if (target is PlayerCharacter)
 					{
-						if (stunEffect.value2 == 1)
+						//For Kane shit
+						if(target.hasStatusEffect("Kane's Honey"))
+						{
+							//PC lust < 70:
+							if(target.lust() < 70) output("You shove the zil off you and grasp your [pc.weapon] firmly once again.");
+							else output("You manage to break away from the zil, grasping your [pc.weapon] and taking deep breaths, trying to control the arousal running fierce in your veins.");
+							target.removeStatusEffect("Kane's Honey");
+						}
+						else if (stunEffect.value2 == 1)
 						{
 							output("You shake yourself off, blinking rapidly. Whatever mental influence had crept into your brain seems to have flushed out, leaving your mind a bit foggy, but ready to fight regardless.");
 						}
@@ -1641,7 +1679,6 @@ package classes.GameData
 					{
 						output(StringUtil.capitalize(target.getCombatName(), false) + " manage to recover their wits and adopt a fighting stance!");
 					}
-					
 				}
 				else
 				{
@@ -1701,7 +1738,7 @@ package classes.GameData
 				return;
 			}
 			// Naleen coil grapple text
-			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale))
+			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall))
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
@@ -1731,6 +1768,7 @@ package classes.GameData
 				if(target.hasStatusEffect("Naleen Coiled"))
 				{
 					if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
+					else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
 					else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
 					target.addStatusValue("Naleen Coiled",1,1);
 					if(panicJack)
@@ -1836,6 +1874,7 @@ package classes.GameData
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the bolo.");
 						}
+						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{
@@ -1858,6 +1897,7 @@ package classes.GameData
 					{
 						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The bindings loosen a little, but your freedom is still out of reach... for now.");
 					}
+					else if (hasEnemyOfClass(RKLah)) output("You claw blindly at his face and try and buck furiously, to no avail.\n\n<i>“Stuck pig,”</i> grits the ausar, tightening his hold. <i>“Give in already.”</i>");
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 					if(panicJack)
@@ -3220,6 +3260,7 @@ package classes.GameData
 			}
 			
 			var factor:Number = 1;
+			var factorMax:Number = 2;
 			var bonus:int = 0;
 			var msg:String = "";
 			
@@ -3229,9 +3270,10 @@ package classes.GameData
 			}
 			
 			if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
+			if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 			if (target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) factor *= 1.1;
 			
-			if (factor > 2) factor = 2;
+			if (factor > factorMax) factor = factorMax;
 		
 			if (attacker.hasPheromones()) bonus += 1;
 			if (teaseType == "SQUIRT") bonus += 2;
@@ -3311,12 +3353,13 @@ package classes.GameData
 			}
 			else
 			{
-				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2;
+				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
 				if (teaseType == "SQUIRT") damage += 5;
 				if (attacker.hasPheromones()) damage += 1 + rand(4);
 				damage *= (rand(31) + 85) / 100;
 				
-				if (damage > 15 + attacker.level * 2) damage = 15 + attacker.level * 2;
+				var cap:Number = 15 + attacker.level * 2 + attacker.statusEffectv3("Painted Penis");
+				if (damage > cap) damage = cap;
 				damage *= factor;
 				
 				//Tease % resistance.
@@ -3336,8 +3379,9 @@ package classes.GameData
 				//Tease armor - only used vs weapon-type attacks at present.
 				//damage -= target.lustDef();
 
+				cap = 30 + attacker.statusEffectv3("Painted Penis");
 				//Damage cap
-				if (damage > 30) damage = 30;
+				if (damage > cap) damage = cap;
 				//Damage min
 				if (damage < 0) damage = 0;
 				
@@ -3510,47 +3554,41 @@ package classes.GameData
 			}
 			
 			output("You try to get a feel for " + possessive(target.getCombatName()) + " likes and dislikes!");
-			if(target.isLustImmune) output("\nYou don’t think sexuality can win this fight!");
 			var buffer:String = "";
+			var prefs:int = 0;
 			var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
 			if(pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
-			for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
-				buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
-				//If has a preference set, talk about it!
-				if(target.sexualPreferences.getPref(i) != 0) {
-					output("\n");
-					//If succeeds at sense check!
-					if(PCBonus + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
-					{
-						if(target.sexualPreferences.getPref(i) == GLOBAL.REALLY_LIKES_SEXPREF)
+			if(target.isLustImmune) output("\nYou don’t think sexuality can win this fight!");
+			else
+			{
+				for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
+					buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
+					//If has a preference set, talk about it!
+					if(target.sexualPreferences.getPref(i) != 0) {
+						output("\n");
+						//If succeeds at sense check!
+						if(PCBonus + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
 						{
-							output(buffer + ": Really likes!");
+							switch(target.sexualPreferences.getPref(i))
+							{
+								case GLOBAL.REALLY_LIKES_SEXPREF: output(buffer + ": Really likes!"); break;
+								case GLOBAL.KINDA_LIKES_SEXPREF: output(buffer + ": Kinda likes!"); break;
+								case GLOBAL.KINDA_DISLIKES_SEXPREF: output(buffer + ": Dislikes!"); break;
+								case GLOBAL.REALLY_DISLIKES_SEXPREF: output(buffer + ": Dislikes a lot!"); break;
+								default: output(buffer + ": ERROR"); break;
+							}
 						}
-						else if(target.sexualPreferences.getPref(i) == GLOBAL.KINDA_LIKES_SEXPREF)
-						{
-							output(buffer + ": Kinda likes!");
-						}
-						else if(target.sexualPreferences.getPref(i) == GLOBAL.KINDA_DISLIKES_SEXPREF)
-						{
-							output(buffer + ": Dislikes!");
-						}
-						else if(target.sexualPreferences.getPref(i) == GLOBAL.REALLY_DISLIKES_SEXPREF)
-						{
-							output(buffer + ": Dislikes a lot!");
-						}
+						//if fails!
 						else 
 						{
-							output(buffer + ": ERROR");
+							output(buffer + ": You aren’t sure.");
 						}
-					}
-					//if fails!
-					else 
-					{
-						output(buffer + ": You aren’t sure.")
+						prefs++;
 					}
 				}
 			}
-			if(target is HandSoBot) output("\n\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
+			if(target is HandSoBot) output("\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
+			else if(!target.isLustImmune && prefs <= 0) output("\nIt seems " + target.getCombatPronoun("pa") + " sexual preferences do not sway strongly in one way or another...");
 		}
 		
 		private function checkForLoss(atEndOfRound:Boolean = false):Boolean
@@ -4042,6 +4080,8 @@ package classes.GameData
 				else output(num2Text(enemiesAlive()) + " hostiles:");
 			}
 			
+			
+
 			// TODO: I guess this would be the place to point out blindness or whatever.
 			var totalBlinded:int = 0;
 			for (i = 0; i < _friendlies.length; i++)
@@ -4066,6 +4106,7 @@ package classes.GameData
 			{
 				displayHostileStatus(_hostiles[i]);
 			}
+			if(pc.hasKeyItem("RK Lah - Captured")) kGAMECLASS.lahAddendumToCombat();
 		}
 		
 		private function displayHostileStatus(target:Creature):void
