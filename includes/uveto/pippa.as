@@ -506,7 +506,7 @@ public function pippaSexMenu(func:Function):void
 		
 		if (pc.cocks[longestCockIndex].cLength() >= 8)
 		{
-			addButton(0, "Ass Fuck", pippaFuckAss, undefined, "Fuck Her Ass", "Fuck Pippa's ass.");
+			addButton(0, "Ass Fuck", pippaFuckAss, undefined, "Fuck Her Ass", "Fuck Pippa’s ass.");
 		}
 		else
 		{
@@ -515,7 +515,7 @@ public function pippaSexMenu(func:Function):void
 	}
 	else
 	{
-		addDisabledButton(0, "Ass Fuck", "Fuck Her Ass", "Fuck Pippa's ass. (Requires a cock.)");
+		addDisabledButton(0, "Ass Fuck", "Fuck Her Ass", "Fuck Pippa’s ass. (Requires a cock.)");
 	}
 	
 	// Bend her over and hot dog her. Must have cock less than or equal to 4 thickness
@@ -542,16 +542,16 @@ public function pippaSexMenu(func:Function):void
 	{
 		if (!pc.isTaur())
 		{
-			addButton(2, "Get Ridden", pippaChooseCockToFuckPussy, undefined, "Get Ridden", "Let Pippa ride you with her pussy.");
+			addButton(2, "Pussy Fuck", pippaChooseCockToFuckPussy, undefined, "Pussy Fuck", "Fuck Pippa’s pig pussy.");
 		}
 		else
 		{
-			addDisabledButton(2, "Get Ridden", "Get Ridden", "Let Pippa ride you with her pussy. (Must not be a taur.)");
+			addDisabledButton(2, "Pussy Fuck", "Pussy Fuck", "Fuck Pippa’s pig pussy. (Must not be a taur.)");
 		}
 	}
 	else
 	{
-		addButton(2, "Get Ridden", pippaFuckPussy, undefined, "Get Ridden", "Let Pippa ride you with her pussy. (Requires a cock or hardlight-equipped underwear.)");
+		addButton(2, "Pussy Fuck", pippaFuckPussy, undefined, "Pussy Fuck", "Fuck Pippa’s pig pussy. (Requires a cock or hardlight-equipped underwear.)");
 	}
 	
 	// Pippa will sit on the PC’s face
@@ -972,7 +972,7 @@ public function pippaSpecialMassage():void
 	output("\n\nYou start by massaging it into each other’s chests. You run your hands over her [pippa.tits], gently squeezing and running your hands all around them. As you do, a light flush begins to spread through her chest. You stick your oiled up fingers into her inverted nipples, their hidden size obvious to the touch of your probing fingers. As your fingers emerge, so do her nippes, hardening with the further flushing of her chest. You fair about the same as she gives the same attention to you, rubbing the oil into your [pc.chest].");
 	
 	if (pc.isLactating()) output(" In your case, her massaging causes some of your [pc.milk] to dribble out and mix with the oil.");
-	if (pippaCurrentOil() == PIPPA_OIL_NUMB) output("  Even with the numbing properties of the oil, you can only resist so much eroticism.");
+	if (pippaCurrentOil() == PIPPA_OIL_NUMB) output(" Even with the numbing properties of the oil, you can only resist so much eroticism.");
 	
 	output("\n\nYou quickly finish oiling up your upper bodies and move onto your lower bodies. Pippa does you first, running her hands around your thighs");
 	
@@ -1228,7 +1228,7 @@ public function pippaFuckAss():void
 	else
 	{
 		// no top variation if taur, so do check here
-		if (randInRange(80, 120) < pippaDominance()) topVariation = true;
+		if (flags["PIPPA_ASS_FUCKED"] == 1 && randInRange(75, 125) < pippaDominance()) topVariation = true;
 		
 		output("You move toward her and embrace her, your hands immediately going for her [pippa.ass]. She grabs the sides of your face and forces her tongue into your mouth as you squeeze and knead her ass. As your tongues dance, lips pressed together, and your hands roam the expanse of her ass, you feel blood rushing to your [pc.cocks] as they stiffen");
 		
@@ -1241,7 +1241,7 @@ public function pippaFuckAss():void
 		
 		output("\n\nNot even waiting for you to respond, Pippa places one hand in the middle of your [pc.chest] and pushes you " + (topVariation ? "roughly" : "gently") + " back.");
 		
-		if (topVariation) output(" You've been positioned in front of a chair, and allow yourself to fall back into a seated position.");
+		if (topVariation) output(" You’ve been positioned in front of a chair, and allow yourself to fall back into a seated position.");
 	}
 	
 	output(" She turns her back to you and, as she bends over, slowly, sensuously peels down her tight yoga pants. Her ass pops free from her pants, even larger than you’d realized. She lightly sways it back and forth like a pendulum, and right above, her curly little tail twirls in a complementing hypnotic spiral. You can only stand mesmerized");
@@ -1271,14 +1271,14 @@ public function pippaFuckAss():void
 	{
 		pippaDominance(1);
 		
-		if (pc.isCrotchGarbed()) output(" At least until she turns around and walks toward you. <i>“Let's get you situated.”</i> She again bends over, this time to pull off your pants, giving her a look at your [pc.cocks]");
-		else output(" She slowly moves back toward you, still swaying her [pippa.ass], till she's right in front of you");
+		if (pc.isCrotchGarbed()) output(" At least until she turns around and walks toward you. <i>“Let’s get you situated.”</i> She again bends over, this time to pull off your pants, giving her a look at your [pc.cocks]");
+		else output(" She slowly moves back toward you, still swaying her [pippa.ass], till she’s right in front of you");
 		
 		if (pc.isChestGarbed()) output(", and while she does, you quickly pull off your top");
 		
-		if (pc.isCrotchGarbed()) output(". Now that you're stripped, she turns back around, once again giving you an eyeful of her [pippa.ass]");
+		if (pc.isCrotchGarbed()) output(". Now that you’re stripped, she turns back around, once again giving you an eyeful of her [pippa.ass]");
 		
-		output(". You reach forward, placing hands on her [pippa.hips], and she sits on your lap, trapping your [pc.cocks] in the valley of flesh that is her ass. Though your hands are on her hips, they're merely along for the ride as she presses the full weight of her [pippa.ass] into your lap, grinding and stroking your [pc.cocks] with her [pippa.buttcheeks]. You can feel the warm, soft flesh of her ass wrapped around you begin to feel slick, as your [pc.cocks] already " + (pc.cocks.length > 1 ? "drool" : "drools") + " precum.  Before you can get too into it, Pippa stands up again.  She reaches back toward you and grabs your " + (pc.cocks.length > 1 ? "longest cock" : "[pc.cock]") + ", before again sitting on your lap.  She guides your [pc.cock " + longestCockIndex + "] through her [pippa.buttcheeks] and lines your [pc.cockHead " + longestCockIndex + "] up with her [pippa.asshole].  She pushes down further, and your [pc.cockNoun " + longestCockIndex + "], already lubed with precum, easily slips inside her [pippa.asshole], eliciting a pleasured moan from her [pippa.lips].  She goes down, her inner walls squeezing and massaging your length all the while, until your [pc.cock " + longestCockIndex + "] is bottomed out in her and her [pippa.ass] is fully seated in your lap. Pippa’s [pippa.buttcheeks] have swallowed up so much of the length of your [pc.cock " + longestCockIndex + "] that even hilted, ");
+		output(". You reach forward, placing hands on her [pippa.hips], and she sits on your lap, trapping your [pc.cocks] in the valley of flesh that is her ass. Though your hands are on her hips, they’re merely along for the ride as she presses the full weight of her [pippa.ass] into your lap, grinding and stroking your [pc.cocks] with her [pippa.buttcheeks]. You can feel the warm, soft flesh of her ass wrapped around you begin to feel slick, as your [pc.cocks] already " + (pc.cocks.length > 1 ? "drool" : "drools") + " precum. Before you can get too into it, Pippa stands up again. She reaches back toward you and grabs your " + (pc.cocks.length > 1 ? "longest cock" : "[pc.cock]") + ", before again sitting on your lap. She guides your [pc.cock " + longestCockIndex + "] through her [pippa.buttcheeks] and lines your [pc.cockHead " + longestCockIndex + "] up with her [pippa.asshole]. She pushes down further, and your [pc.cockNoun " + longestCockIndex + "], already lubed with precum, easily slips inside her [pippa.asshole], eliciting a pleasured moan from her [pippa.lips]. She goes down, her inner walls squeezing and massaging your length all the while, until your [pc.cock " + longestCockIndex + "] is bottomed out in her and her [pippa.ass] is fully seated in your lap. Pippa’s [pippa.buttcheeks] have swallowed up so much of the length of your [pc.cock " + longestCockIndex + "] that even hilted, ");
 		
 		if (pc.cocks[longestCockIndex].cLength() < 12) output("less than half of your length is actually in her asshole.");
 		else if (pc.cocks[longestCockIndex].cLength() <= 15) output("hardly over half of your length is actually in her asshole.");
@@ -1286,9 +1286,9 @@ public function pippaFuckAss():void
 		else output("a noticeable stretch of your length isn’t even actually in her asshole.");
 		pc.cockChange();
 		
-		output("\n\nPippa begins to move, bouncing in your lap, dragging her [pippa.asshole] up and down the length of your [pc.cock " + longestCockIndex + "], her inner walls caressing and massaging you all the while. As she moves, your shaft is also squeezed and stroked between her [pippa.buttcheeks], providing a double onslaught of pleasure, and a sensation almost like she's giving you a tit job while you fuck her. As she grinds her [pippa.ass] into your [pc.cock " + longestCockIndex + "], you reach around, placing a hand on her [pippa.pussyNoun].  She's soaked, lips swollen with arousal. You run your fingers along her [pippa.pussy], gently stroking her clit and, with every stroke you make, her [pippa.asshole] spasms and contracts along the length of your [pc.cock " + longestCockIndex + "]. Breathing heavy, moaning with arousal, Pippa stops bouncing, presses her torso back into you, and does all of the work with her [pippa.hips].");
+		output("\n\nPippa begins to move, bouncing in your lap, dragging her [pippa.asshole] up and down the length of your [pc.cock " + longestCockIndex + "], her inner walls caressing and massaging you all the while. As she moves, your shaft is also squeezed and stroked between her [pippa.buttcheeks], providing a double onslaught of pleasure, and a sensation almost like she’s giving you a tit job while you fuck her. As she grinds her [pippa.ass] into your [pc.cock " + longestCockIndex + "], you reach around, placing a hand on her [pippa.pussyNoun]. She’s soaked, lips swollen with arousal. You run your fingers along her [pippa.pussy], gently stroking her clit and, with every stroke you make, her [pippa.asshole] spasms and contracts along the length of your [pc.cock " + longestCockIndex + "]. Breathing heavy, moaning with arousal, Pippa stops bouncing, presses her torso back into you, and does all of the work with her [pippa.hips].");
 		
-		output("\n\nYour [pc.chest] pressed into Pippa's back, you feel her warmth, and yearn to see the whole of her naked body.  You remove your hand from her [pippa.pussyNoun], eliciting a slight whine from her [pippa.lips].  You silence her with a sharp upward yank on her tanktop, freeing her [pippa.belly] and [pippa.breasts].  Throwing the shirt aside, you resume stroking her [pippa.pussy] with one hand.  The other, you wrap around her torso and fill with one of her [pippa.breasts].  Her [pippa.breastsNoun] are as soft and warm as her [pippa.ass], and just as gropeable. She's flush with arousal, and they're slick with light sweat, as is her back.  Nonetheless, her [pippa.nipples] are large enough that you're able to grasp one firmly between your fingers. As you finger her [pippa.pussy] and squeeze her [pippa.nipple], your attention is drawn back to her [pippa.ass], as it spasms around your [pc.cock " + longestCockIndex + "] more and more in response to your ministrations.  You hold onto her soft body tightly as her grinding becomes faster and wilder, and she once again begins bouncing in your lap, almost uncontrollably.");
+		output("\n\nYour [pc.chest] pressed into Pippa’s back, you feel her warmth, and yearn to see the whole of her naked body. You remove your hand from her [pippa.pussyNoun], eliciting a slight whine from her [pippa.lips]. You silence her with a sharp upward yank on her tanktop, freeing her [pippa.belly] and [pippa.breasts]. Throwing the shirt aside, you resume stroking her [pippa.pussy] with one hand. The other, you wrap around her torso and fill with one of her [pippa.breasts]. Her [pippa.breastsNoun] are as soft and warm as her [pippa.ass], and just as gropeable. She’s flush with arousal, and they’re slick with light sweat, as is her back. Nonetheless, her [pippa.nipples], normally inverted but long since emerged, are large enough that you’re able to grasp one firmly between your fingers. As you finger her [pippa.pussy] and squeeze her [pippa.nipple], your attention is drawn back to her [pippa.ass], as it spasms around your [pc.cock " + longestCockIndex + "] more and more in response to your ministrations. You hold onto her soft body tightly as her grinding becomes faster and wilder, and she once again begins bouncing in your lap, almost uncontrollably.");
 	}
 	else
 	{
@@ -1306,7 +1306,7 @@ public function pippaFuckAss():void
 		if (pc.isTaur()) output("over");
 		else output("behind");
 		
-		output(" her. For just a brief moment you rub your [pc.cock " + longestCockIndex + "] in between her [pippa.buttcheeks], taking in the feel of a valley of ass flesh caressing your length. However, that's not what you came for; you start pushing through her [pippa.buttcheeks] and line your [pc.cock " + longestCockIndex + "] up with her [pippa.asshole]. Already, your [pc.cockNoun] has been squeezed and stroked into producing precum, dripping into and lubing up Pippa's waiting hole. You push further, [pc.cockHead " + longestCockIndex + "] pressing up against her hole, before pushing futher still and spreading her [pippa.asshole] around your [pc.cock " + longestCockIndex + "], eliciting a pleasured moan from the pig girl's [pippa.lips]. You slowly push in as far as you can.  Her inner walls squeeze and massage you all the while, and your progress is finally stopped by her [pippa.ass]");
+		output(" her. For just a brief moment you rub your [pc.cock " + longestCockIndex + "] in between her [pippa.buttcheeks], taking in the feel of a valley of ass flesh caressing your length. However, that’s not what you came for; you start pushing through her [pippa.buttcheeks] and line your [pc.cock " + longestCockIndex + "] up with her [pippa.asshole]. Already, your [pc.cockNoun] has been squeezed and stroked into producing precum, dripping into and lubing up Pippa’s waiting hole. You push further, [pc.cockHead " + longestCockIndex + "] pressing up against her hole, before pushing futher still and spreading her [pippa.asshole] around your [pc.cock " + longestCockIndex + "], eliciting a pleasured moan from the pig girl’s [pippa.lips]. You slowly push in as far as you can. Her inner walls squeeze and massage you all the while, and your progress is finally stopped by her [pippa.ass]");
 		
 		if (pc.balls > 0) output(", where your balls come to rest.");
 		else output("where you finally bottom out to the hilt of your [pc.cock " + longestCockIndex + ".");
@@ -1321,11 +1321,11 @@ public function pippaFuckAss():void
 		
 		output("\n\nYou begin to move, pulling out till just your [pc.cockhead] remains in her asshole, before thrusting back in on repeat. The substantial valley that is her ass crack provides a unique sensation; your shaft is stroked and massaged by her [pippa.asshole], of course, but it also runs through her [pippa.buttcheeks], warm and wet, and almost like getting a tit job. Meanwhile, Pippa is moaning and panting heavily, unsprising given her [pippa.asshole] contracting and spasming along your length. You’re pretty sure you even heard a few snorts. ");
 		
-		if (!pc.isTaur()) output("She begins to move some on her own, grinding her [pippa.ass] into you.  Feeling less need to have a firm grasp on her [pippa.hips], you snake one hand between her legs, feeling her [pippa.pussy].  As you expected, her lips are swollen with carnal desire.  While she drags her [pippa.asshole] along your [pc.cock " + longestCockIndex + "], you finger her, drawing wilder movements from her [pippa.hips] and more spasming from her [pippa.asshole].");
+		if (!pc.isTaur()) output("She begins to move some on her own, grinding her [pippa.ass] into you. Feeling less need to have a firm grasp on her [pippa.hips], you snake one hand between her legs, feeling her [pippa.pussy]. As you expected, her lips are swollen with carnal desire. While she drags her [pippa.asshole] along your [pc.cock " + longestCockIndex + "], you finger her, drawing wilder movements from her [pippa.hips] and more spasming from her [pippa.asshole].");
 		
-		output("\n\nYou yearn to see all of Pippa's naked body");
+		output("\n\nYou yearn to see all of Pippa’s naked body");
 		
-		if (pc.isTaur()) output(", and, thanks to a conveniently placed mirror, you're off to a good start");
+		if (pc.isTaur()) output(", and, thanks to a conveniently placed mirror, you’re off to a good start");
 		
 		output(". Through her tank top, you can tell her back is beginning to sweat. ");
 		
@@ -1354,11 +1354,11 @@ public function pippaFuckAss():void
 		}
 		else
 		{
-			output("You yank the shirt off, causing her [pippa.tits] and her [pippa.stomach] to fall free, swinging and jiggling as you fuck her ass. Her back is flushed, a darker, redder shade of pink than the rest of her body. You deliver a sharp spank to her ass, eliciting a squeal and a contracting asshole. You grab at her [pippa.ass], squeezing and groping it rougher than earlier.  It's now slick with light sweat, but your fingers sink into her flesh so deeply that you hold on with ease.  The feel and sight of her, spasming asshole and flushed, jiggling body, urges you on to move faster and harder, and in turn you urger her on with the ministrations of your hands and your [pc.cock " + longestCockIndex + "] probing the depths of her [pippa.asshole].  You feed into each other's lust until you're nearly out of control.");
+			output("You yank the shirt off, causing her [pippa.tits] and her [pippa.stomach] to fall free, swinging and jiggling as you fuck her ass. Her back is flushed, a darker, redder shade of pink than the rest of her body. You deliver a sharp spank to her ass, eliciting a squeal and a contracting asshole. You grab at her [pippa.ass], squeezing and groping it rougher than earlier. It’s now slick with light sweat, but your fingers sink into her flesh so deeply that you hold on with ease. The feel and sight of her, spasming asshole and flushed, jiggling body, urges you on to move faster and harder, and in turn you urger her on with the ministrations of your hands and your [pc.cock " + longestCockIndex + "] probing the depths of her [pippa.asshole]. You feed into each other’s lust until you’re nearly out of control.");
 		}
 	}
 	
-	output("\n\nPippa’s moaning and panting picks up before turning into full on squealing and snorting, drowning out the sound of your bodies slapping together. <i>“I’m so close, [pc.name]! Feed my asshole with your cum!”</i> Right as she finishes yelling, both her [pippa.asshole] and her [pippa.buttcheeks] squeeze on your [pc.cock " + longestCockIndex + "]. Already barely hanging on, you give in and cum. Your [pc.cum] squirts into her asshole. Having her bowels filled with your [pc.cum] pushes her over the edge. Her body quivers and her ass tightens even further; you couldn't " + (topVariation ? "lift her off of you" : "pull out") + " even if you wanted to. Her hungry asshole draws from you every last drop of [pc.cum] it can get, milking you dry. Only after it’s eaten every last drop does it finally loosen up");
+	output("\n\nPippa’s moaning and panting picks up before turning into full on squealing and snorting, drowning out the sound of your bodies slapping together. <i>“I’m so close, [pc.name]! Feed my asshole with your cum!”</i> Right as she finishes yelling, both her [pippa.asshole] and her [pippa.buttcheeks] squeeze on your [pc.cock " + longestCockIndex + "]. Already barely hanging on, you give in and cum. Your [pc.cum] squirts into her asshole. Having her bowels filled with your [pc.cum] pushes her over the edge. Her body quivers and her ass tightens even further; you couldn’t " + (topVariation ? "lift her off of you" : "pull out") + " even if you wanted to. Her hungry asshole draws from you every last drop of [pc.cum] it can get, milking you dry. Only after it’s eaten every last drop does it finally loosen up");
 		
 		if (topVariation) output(". She rests in your lap briefly, catching her breath, before slowly standing up, allowing your [pc.cock " + longestCockIndex + "] to plop free and bring with it just a small bit of your [pc.cum].\n\nShe turns around and smiles at you. ");
 		else output(", allowing you to pull your [pc.cock " + longestCockIndex + "] out till it plops free, and with it, just a small bit of your [pc.cum].\n\nPippa slowly stands back upright and leans on you for a second, catching her breath. ");
@@ -1369,7 +1369,7 @@ public function pippaFuckAss():void
 	}
 	else if (topVariation)
 	{
-		output("<i>“I think I liked that change of pace.  Maybe I should be on top more often, " + pippaCallsSteele() + ".  Well anyway, I should clean up, but I do hope I'll see you later.”</i> She winks, and walks off to the shower.");
+		output("<i>“I think I liked that change of pace. Maybe I should be on top more often, " + pippaCallsSteele() + ". Well anyway, I should clean up, but I do hope I’ll see you later.”</i> She winks, and walks off to the shower.");
 	}
 	else
 	{
@@ -1401,12 +1401,12 @@ public function pippaHotDog():void
 	
 	var smallestCockIndex:int = pc.smallestCockIndex();
 	
-	output("\n\nHaving removed both of your clothes, Pippa again moves close to you, this time, turning her backside toward you. She presses her [pippa.ass] into your crotch and begins to gently grind into you. Your [pc.cocks] stiffen");
+	output("\n\nHaving stripped the both of you down, Pippa again moves close to you, this time, turning her backside toward you. She presses her [pippa.ass] into your crotch and begins to gently grind into you. Your [pc.cocks] stiffen");
 	
 	if (pc.cocks.length == 1) output("s and becomes lodged firmly between her [pippa.buttcheeks].");
 	else output(", especially your smallest [pc.cock " + smallestCockIndex + "], which has become lodged firmly between her [pippa.buttcheeks].");
 	
-	output(" As she continues to grind, you kiss her neck and reach around to play with her [pippa.tits]. Her large, normally inverted nipples emerge under the touch of your probing fingers, coming to stand at an inch in length and you feel her light moaning through your lips on her neck. ");
+	output(" Her [pippa.buttcheeks] form a valley of soft, warm ass flesh, envelping your [pc.cock " + smallestCockIndex + "] in pleasure. Precum drools from your [pc.cockhead " + smallestCockIndex + "], spilling into her crack, and allowing her [pippa.ass] to smoothly stroke your shaft along its length. As she continues to grind, you kiss her neck and reach around to play with her [pippa.tits]. Her large, normally inverted nipples emerge under the touch of your probing fingers, coming to stand at an inch in length and you feel her light moaning through your [pc.lips] on her neck. ");
 	
 	if (pc.biggestTitSize() >= 6)
 	{
@@ -1418,14 +1418,14 @@ public function pippaHotDog():void
 		output(".");
 	}
 	
-	output("\n\nYou feel strangely relaxed, locked together as you are with Pippa, almost like you could stand forever, lips on her neck, hands on her tits, and cock lodged in her ass crack, but she seems to be getting impatient, pressing her ass harder into your crotch. You reluctantly withdraw your hands from her [pippa.tits] and place one hand in the middle of her back, pushing her to bend her over a table. You’re treated to a view of her [pippa.ass], and before you know it, you’ve placed a hand on each cheek, groping at her ass like you were her tits. You squeeze her [pippa.buttcheeks] around your [pc.cock " + smallestCockIndex + "], fucking it like a pair of massive tits. Her ass is so large that ");
+	output("\n\nYou feel strangely relaxed, locked together as you are with Pippa, almost like you could stand forever, [pc.lips] on her neck, hands on her [pippa.tits], and [pc.cock] lodged in her ass crack, but she seems to be getting impatient, pressing her [pippa.ass] harder into your crotch. You reluctantly withdraw your hands from her [pippa.tits] and place one hand in the middle of her back, pushing her to bend her over a table. You’re treated to a view of her [pippa.ass], and before you know it, you’ve placed a hand on each cheek, groping at her [pippa.ass] as you were her tits. Your fingers sink into her flesh with ease, roaming and exploring her vast behind. You squeeze her [pippa.buttcheeks] around your [pc.cock " + smallestCockIndex + "], fucking it like a pair of massive tits. Her ass is so large that ");
 	
-	if (pc.cocks[smallestCockIndex].cLength() < 14) output("your cock is completely lost in her ass.");
-	else if (pc.cocks[smallestCockIndex].cLength() < 16) output("the head of your cock barely pops out the top of her ass crack.");
-	else if (pc.cocks[smallestCockIndex].cLength() < 28) output("more than half of your length is wedged in her ass.");
-	else output("a substantial length of your cock is wedged in her ass.");
+	if (pc.cocks[smallestCockIndex].cLength() < 14) output("your cock is completely lost in it.");
+	else if (pc.cocks[smallestCockIndex].cLength() < 16) output("the head of your cock barely peeks out from the top of her ass crack.");
+	else if (pc.cocks[smallestCockIndex].cLength() < 28) output("more than half of your length is wedged in it.");
+	else output(", even with your size, a substantial length of your [pc.cock " + smallestCockIndex + "] is wedged in it.");
 	
-	output("\n\nYou’re completely lost in running your cock through Pippa’s ass cheeks, fucking her cock-devouring, wobbling ass like it’s nothing more than your sex toy when she looks over her shoulder at you and flatly asks, <i>“Now you’re not thinking about my pleasure at all, are you?”</i> ");
+	output("\n\nYou’re completely lost in Pippa’s [pippa.ass], running your [pc.cock " + smallestCockIndex + "] through her [pippa.buttcheeks], and fucking her cock-devouring, wobbling ass like it’s nothing more than your sex toy when she looks over her shoulder at you and flatly asks, <i>“Now you’re not thinking about my pleasure at all, are you?”</i> ");
 	
 	if (pc.isAss())
 	{
@@ -1436,18 +1436,24 @@ public function pippaHotDog():void
 		output("You feel a twinge of guilt and your [pc.cock " + smallestCockIndex + "] starts to soften, till she makes a noise almost like whining and says, <i>“Don’t stop, please. ”</i>");
 	}
 	
-	output(" <i>“To be honest, it turns me on. Fuck my ass like it’s your property, " + pippaCallsSteele() + "! Get yourself off!”</i> Having said that, one of her hands snakes between her legs and begins playing with her pussy. From the squishing sound, you gather that she’s soaked. Spurred on, you fuck her ass cheeks with renewed vigor. You manhandle her ass, wrapping it around your [pc.cock " + smallestCockIndex + "], roughly squeezing it, occasionally slapping it, and even pinching it");
+	output(" <i>“To be honest, it turns me on");
 	
-	output("\n\nYou feel an all-too-familiar tightening in your loins, and as before, Pippa’s moaning and breathing devolves into animalistic squealing and snorting. You wrap her [pippa.buttcheeks] around your cock with all of your strength and climax, ");
+	if (pippaDominance() > 66) output(", but either way, don’t you worry; I’ll get you back later. For now, go ahead and get");
+	else if (pippaDominance() > 33) output(". Go ahead and fuck my ass like it’s your property. Get");
+	else output(" Use my ass like it’s no more than your fuck toy, [pc.name]! Get");
 	
-	if (pc.cocks[smallestCockIndex].cLength() < 14) output("filling the valley of her ass with your [pc.cum].");
-	else output("shooting your [pc.cum] all over her back and into the air, much of it coming back down onto her ass.");
+	output(" yourself off!”</i> Having said that, one of her hands snakes between her legs and begins playing with her [pippa.pussh]. From the squishing sound, you gather that she’s soaked. Spurred on, you fuck her [pippa.buttcheeks] with renewed vigor. You manhandle her [pippa.ass], wrapping it around your [pc.cock " + smallestCockIndex + "], roughly squeezing it, occasionally slapping it, and even pinching it. By now it’s more red than pink, both from your treatment, and from the aroused flush covering the pig-morph’s body. A light sheen of sweat covers her body, and you can only barely keep a grip on her [pippa.ass].");
 	
-	output(" Your climax dies down and you remove your cock from between Pippa’s ass cheeks. She collapses onto the table, still rubbing her pussy. A bit of your [pc.cum] drips down onto her pussy and, perhaps, coincidentally, she shudders and reachers her own climax. She sits quietly for a bit before almost whispering, <i>“I ");
+	output("\n\nYou feel an all-too-familiar tightening in your loins, and right on queue, Pippa’s moaning and breathing devolves into animalistic squealing and snorting. You wrap her [pippa.buttcheeks] around your cock with all of your strength and climax, ");
+	
+	if (pc.cocks[smallestCockIndex].cLength() < 14) output("filling the valley of her [pippa.ass] with your [pc.cum].");
+	else output("shooting your [pc.cum] all over her back and into the air, much of it coming back down onto her [pippa.ass] and flowing into her valley of ass flesh.");
+	
+	output(" Her [pippa.buttcheeks] flex and squeeze along your length, milking out every last drop of [pc.cum] that they can; she certainly has some muscles under all of that soft ass flesh. Her crack is wet and sticky with your [pc.cum] by the time you’re dry. You finally remove your [pc.cock] from her [pippa.buttcheeks], letting go of her as you do. She collapses onto the table, still fingering her [pippa.pussy]. The pig slut pays no attention to you at all, laying there flushed, sweating, and covered in your [pc.cum] as she masturbates. You watch your [pc.cum] flow through the valley of her [pippa.ass] like a [pc.cumColor] river, until a bit drips down onto her [pippa.pussy]. Right as it does, she shudders and reachers her own climax. Her body convulses and and her spasming [pippa.pussy] squirts the table with her [pippa.girlcum]. Her shvering finally calms down, and she sits quietly for a bit before almost whispering, <i>“I ");
 	
 	if (flags["PIPPA_HOTDOGGED"] == 1) output("still ");
 	
-	output("can’t believe getting my ass used like that feels so good. I’m just going to lay here for a bit, " + pippaCallsSteele() + ". You can go ahead and get going. I’ll seeya later.”</i>");
+	output("can’t believe getting my ass used like that feels so good. I’m just going to lay here for a bit before I get cleaned up, " + pippaCallsSteele() + ". You can go ahead and get going. I’ll seeya later.”</i>");
 	
 	flags["PIPPA_HOTDOGGED"] = 1;
 	pippaSexed();
@@ -1483,116 +1489,166 @@ public function pippaChooseCockToFuckPussy():void
 	}
 }
 
-// Let Pippa climb on top of you and ride your cock (or hardlight strapon) with her pussy
+// Let Pippa climb on top of you and ride your cock (or hardlight strapon) with her pussy (or, bottom variant, fuck her pussy in missionary position)
 public function pippaFuckPussy(cockOrStraponIndex:int):void
 {
 	clearOutput();
 	clearMenu();
 	showPippa(true);
 	
-	output("Pippa places one hand between her legs, gently rubs her pussy through her tight yoga pants, and says, <i>“You know, " + pippaCallsSteele() + ", I love having my ass played with, but sometimes my pussy needs some love too. You think you can handle that?”</i> You respond by moving closer to her and placing your [pc.hand] over hers. She lightly kisses you and whispers, <i>“Good.”</i> She guides you to her bed and has you lay down, but not before removing your ");
+	output("Pippa places one hand between her legs, gently rubs her pussy through her tight yoga pants, and says, ");
 	
-	if(pc.isCrotchGarbed()) output("clothes.");
-	else output("gear.");
+	if (flags["PIPPA_ASS_FUCKED"] == 1) output("<i>“You know, " + pippaCallsSteele() + ", I love having my ass played with, but sometimes my pussy needs some love too. You think you can handle that?”</i>");
+	else output("<i>“You know, " + pippaCallsSteele() + ", I’d really love to feel your cock in my pussy. How ’bout it?”</i>");
 	
-	output("\n\nWhile you get comfortably settled into Pippa’s bed, she puts on a little show, slowly stripping out of her tight clothes. First, facing toward you, she pulls her tank top up over her head, letting her [pippa.tits] and [pippa.belly] fall free. She crosses her arms under her tits, cradling them. Her big nipples are already erect, standing in the middle of her wide, brown-pink areola. Next, still facing you, she bends over, and pulls down her yoga pants. She shakes back and forth a bit, setting her giant boobs swinging. Finally, she turns around while spreading her legs, treating you to an eyeful of her [pippa.ass] and her spread [pippa.pussyNoun], adorned with a tuft of blonde hair.");
+	output("You respond by moving closer to her and placing your [pc.hand] over hers, teasing her [pippa.pussyNoun] with her through her pants. She lightly kisses you and whispers, <i>“Good.”</i> She grasps your hand, removing it from her crotch, and guides you to her bed. She quickly removes your ");
 	
-	output("\n\nFinished with her show, Pippa climbs into bed after you, straddling you, before kissing you down your body. She starts with a passionate kiss on your [pc.lips], followed by your neck, your [pc.chest], your navel, your inner thigh, and finally, ");
+	if(pc.isCrotchGarbed()) output("clothes");
+	else output("gear");
 	
-	if (cockOrStraponIndex == -1) output("she presses the activation for your hardlight cock, and plants a kiss right on its head");
-	else output("she plants a kiss right on the [pc.cockHead " + cockOrStraponIndex + "] of your [pc.cock " + cockOrStraponIndex + "]");
+	var bottomRand:int = randInRange(-25, 25);
 	
-	var cockLength:int = cockOrStraponIndex == -1 ? -1 : pc.cocks[cockOrStraponIndex].cLength(); // cockLength only used if PC is fucking Pippa with cock
+	var bottomVariation:Boolean = (cockOrStraponIndex == -1 || pc.cocks[cockOrStraponIndex].cLength() <= 10) && bottomRand > pippaDominance();
 	
-	output(". She gently massages your shaft with her hands till you’re fully erect. She then moves back up your body, positioning her waiting, dripping [pippa.pussyNoun] above your [pc.cockOrStrapon " + cockOrStraponIndex + "]. You hold it in place for her, and give her a grin. She returns your grin and slides her pussy down over you");
-	
-	if (cockOrStraponIndex == -1 || cockLength <= 10)
+	if (bottomVariation)
 	{
-		output(", completely enveloping your [pc.cockOrStrapon " + cockOrStraponIndex + "] inside of her, and bringing her full weight to bear on your hips. ");
+		output(" and climbs onto the bed, settling into a position of sitting on her knees and facing you. She slowly lifts up her tank top, letting her [pippa.belly] free, and stopping right below her [pippa.breasts]. She holds the edge of the shirt tightly below, and continues pulling it up, lifting her [pippa.breasts] with it until they finally fall free of the shirt. She pulls it off fully and throws it aside before rising off of her knees and back down, now onto all fours. She looks up at you, obvious hunger in her eyes, and her [pippa.tits] hang down, still jiggling from the motion. She turns away from you and reaches back to peel her tight yoga pants down to her knees, exposing her [pippa.ass] and her [pippa.pussy], adorned with a tuft of [pippa.hairColor] hair. She sways her [pippa.ass] and twirls her [pippa.tail], enticing you, letting her body do the talking as if to say, <i>“What are you waiting for?”</i>");
 		
-		if (cockOrStraponIndex >= 0) pc.cockChange(false, true);
+		output("\n\nYou answer the call of Pippa’s body, quickly climbing atop her, pushing her face down into the bed, and sitting on her legs, pinning her. You grab hold of her [pippa.ass], fingers kneading her soft, warm flesh. Continuing to grope her [pippa.ass], you lean down into her and kiss her neck. Your [pc.chest] and [pc.cocks] are pressed into her as you press you [pc.lips] into her supple neck. You continue kissing down her body as far as you can without changing your position, teasing her. Her breathing’s already heavy, her [pippa.pussy] needy. You scoot up her legs slightly, bringing your [pc.cockOrStrapon " + cockOrStraponIndex + "] right up to her [pippa.pussy], but don’t enter her quite yet. Instead, you continue to play with her [pippa.ass] a bit more, spreading her [pippa.buttcheeks] to get a view of her [pippa.asshole], lifting them to get a better view of her [pippa.pussy], and sometimes delivering them light spanks. Her [pippa.pussyNoun] grows wetter by the second, and the sounds from her [pippa.lips] are nearly whines at this point.");
 		
-		if (pc.tone <= 33)
-		{
-			output("Pippa is so heavy that you feel practically crushed beneath her, but the inside of her pussy is so warm and tight, that you can get past it");
-		}
-		else if (pc.tone <= 66)
-		{
-			output("You barely have the physique to support Pippa’s wait on your hips, but the warm, tight pussy wrapping around your [pc.cockOrStrapon " + cockOrStraponIndex + "] makes it worth it");
-		}
-		else
-		{
-			output("Despite Pippa’s weight, you can easily support her and fully enjoy the embrace of her warm, tight pussy");
-		}
+		output("\n\nYou decide you’ve teased the pig slut enough, and by now, you’re getting pretty anxious to feel her [pippa.pussy] around your [pc.cockOrStrapon " + cockOrStraponIndex + "] as well. You slowly part Pippa’s pussy lips, swollen and wet with arousal, pushing your [pc.cockOrStrapon " + cockOrStraponIndex + "] into her. The ridged walls of her [pippa.pussyNoun] twitch and squeeze along your length, just short of impeding your intrusion. You bottom out and briefly sit still, enjoying the feeling of her [pippa.pussy] enveloping your [pc.cockOrStrapon " + cockOrStraponIndex + "]");
 		
-		output(". She sits still for a moment, letting you both enjoy the feeling of you inside her");
+		if (cockOrStraponIndex >= 0 && pc.cocks[cockOrStraponIndex].cType == GLOBAL.TYPE_SWINE) output("; it’s almost like her pussy and your cock were made for each other, and, considering your current genetic makeup, maybe that’s not so far from the truth");
 		
-		if (cockOrStraponIndex >= 0 && pc.cocks[cockOrStraponIndex].cType == GLOBAL.TYPE_SWINE)
-		{
-			output(". It’s almost like her pussy and your cock were made for each other; considering your current genetic makeup, maybe that’s not so far from the truth. She looks at you with ravenous eyes and begins moving, grinding");
-		}
-		else output(", before she begins moving. She looks at you with ravenous eyes and grinds");
+		output(". You again sink your [pc.fingers] into Pippa’s [pippa.ass] and, using it as a grip, begin moving. Her [pippa.pussy] squeezes and ripples along your [pc.cockOrStrapon " + cockOrStraponIndex + "] expertly; the masseuse’s skills clearly aren’t confined to her hands, and you’ve no doubt that her yoga exercies include some that are pelvic-focused. As you thrust, Pippa digs her fingers into her bed, and her [pippa.ass] jiggles and shakes; heavy breaths and moans escape her throat. You spread her [pippa.buttcheeks], intending to finger her [pippa.asshole] as you fuck her, but she suddenly seizes up below you, shudders running through her body. Her [pippa.pussy] squeezes your [pc.cockOrStrapon " + cockOrStraponIndex + "] like a vice, trying to pull you over the edge, and her [pippa.asshole] twitches, winking at you. Did she just orgasm?");
 		
-		output(" her hips into you, alternately increasing and decreasing the weight pressing on you. The corkscrew - patterned ridges in Pippa’s [pippa.pussyNoun] would feel amazing even if she weren’t particularly talented, but she knows how to use more than just her hands to massage, squeezing and milking your cock with her tight pussy as she grinds; she’s definitely been doing pelvic-focused exercises with those yoga pants of hers. As she grinds on you, she gropes at her [pippa.tits], pinching and pulling on her [pippa.nipples]. She suddenly seizes up and shudders, squeezing your [pc.cockOrStrapon " + cockOrStraponIndex + "] like a vice. You barely hold on. Did she just orgasm?");
+		output("\n\n<i>“I did, but....”</i> Pippa answers your question, but stops, grunting and wiggling beneath you. You pull out of her [pippa.pussy] and stand up, unpinning her [pippa.legs], and she flips onto her back, facing you. <i>“But, I’m not done yet.”</i> She lifts and spreads her [pippa.legs]. <i>“Keep going, " + pippaCallsSteele() + ".”</i> You grab her [pippa.thighs] and yank her to the edge of the bed, eliciting a small gasp. Moving your hands down to her [pippa.hips], you move forward and push your [pc.cockOrStrapon " + cockOrStraponIndex + "] back into Pippa’s [pippa.pussy]. Having orgasmed onced already, she’s even wetter, and you practically glide in and out of her [pippa.pussy], even with her powerful squeezing. Continuing to thrust, you bend over her, pressing your [pc.chest] to her [pippa.chest] and your [pc.lips] to her [pippa.lips]. You kiss passionately, a kiss vibrating and barely held together due to moaning and grunting.");
 		
-		output("\n\n<i>“I did,”</i> she answers your question. <i>“Most would’ve been done after that, but I’m glad you held on, because I’m ready for round two, " + pippaCallsSteele() + ".”</i> She plants her hands firmly on your [pc.chest] and, this time, begins bouncing up and down. She massages your shaft with her pussy as she did before, but it’s now even wetter, increasing the pleasure you feel. As she bounces, her tits bounce with her, so much so they almost look as if they’ll fly off any second now. You reach around behind her to grab her ass, squeezing it, of course, but also using it as a grip to help spur on her bouncing. You run one finger around her asshole and find it’s opening up slightly like the good fuckhole it is. You slip your [pc.finger] inside and she squeals in pleasure, digging her fingers into your [pc.chest]");
+		if (pc.isLactating()) output(" As your tongues dance and your hands run along her [pippa.hips], your [pc.milk] dribbles down between your bodies");
 		
-		if (pc.isLactating()) output(", and prompting [pc.milk] to dribble down your body");
+		output(". She’s obviously nearing her second orgasm, as her [pippa.pussy] convulses along the length of your [pc.cockOrStrapon " + cockOrStraponIndex + "] and her kissing becomes sloppy and out of control, almost like she’s trying to devour your face. You up the intensity of the kiss, pressing your [pc.lips] to hers harder, probing her mouth as deep as you can with your [pc.tongue]. You thrust faster and harder, rapidly drawing both of you toward the edge. Her second orgasm hits sure enough, her body quivering below you, her tongue twitching in your mouth, and her [pippa.pussy] clamping down on your [pc.cockOrStrapon " + cockOrStraponIndex + "] tighter than ever. Her ridges ripple along the length of your [pc.cockOrStrapon " + cockOrStraponIndex + "], and this time, you can’t help but join her climax, your own orgasm crashing over you like a wave.");
 		
-		output(". She’s obviously nearing her second orgasm. She leans down and begins kissing you, sloppily, almost like she’s trying to devour your face. You return her kiss, and up the intensity, probing her ass with your finger and bouncing her harder. Her second orgasm hits sure enough, her ass squeezing your finger and her hot pussy clamping down on your [pc.cockOrStrapon " + cockOrStraponIndex + "]. This time, you join her, your own orgasm crashing over you like a wave.");
+		pippaDominance(-1);
 	}
 	else
 	{
-		output(" as far as she can, devouring about 10 inches of your [pc.cock " + cockOrStraponIndex + "] before she reaches her limit. You grab her thighs to help hold her up above your hips. ");
+		output(" and has you lay down on the bed, facing her. While you get comfortably settled into Pippa’s bed, she puts on a little show, slowly stripping out of her tight clothes. First, facing toward you, she pulls her tank top up over her head, letting her [pippa.tits] and [pippa.belly] fall free. She crosses her arms under her tits, cradling them. Her [pippa.nipples] have already emerged, standing firm with arousal in the middle of her wide, brown-pink areola. Next, still facing you, she slowly bends over, and peels down her yoga pants. She sways back and forth a bit, setting her [pippa.tits] swinging. Finally, she turns around while spreading her [pippa.legs], treating you to an eyeful of her [pippa.ass] and her spread [pippa.pussy], adorned with a tuft of [pippa.hairColor] hair.");
 		
-		pc.cockChange(false, true);
+		output("\n\nFinished with her show, Pippa stands up and climbs into bed after you, straddling you, before kissing you down your body. She starts with a passionate kiss on your [pc.lips], pressing her [pippa.lips] to yours before slipping her tongue into your mouth, playing with your own [pc.tongue]. She pulls back slightly from your mouth and moves briefly to your neck, giving it just a light kiss. Next her [pippa.lips] kiss around your [pc.chest]" + (pc.hasNipples() ? ", brushing over your [pc.nipples]" : "") + ". She moves down the rest of your torso barely lifting her [pippa.lips] from you, dragging them and her tongue down your body, over your navel, and to your [pc.hips]. She moves to your inner thigh, teasing you with light breaths, and finally, ");
 		
-		if (pc.tone <= 33)
+		if (cockOrStraponIndex == -1) output("she presses the activation for your hardlight cock, and plants a wet kiss right on its head");
+		else output("she plants a wet kiss right on the [pc.cockHead " + cockOrStraponIndex + "] of your [pc.cock " + cockOrStraponIndex + "]");
+		
+		var cockLength:int = cockOrStraponIndex == -1 ? -1 : pc.cocks[cockOrStraponIndex].cLength(); // cockLength only used if PC is fucking Pippa with cock
+		
+		output(". Continuing to kiss your " + (cockOrStraponIndex == -1 ? "holo-tip" : ("[pc.cockHead " + cockOrStraponIndex + "]")) + ", she gently runs her hand along your shaft, massing you to full erectness. She gives one last kiss, but continues pushing, allowing your [pc.cockOrStrapon " + cockOrStraponIndex + "] to part her [pippa.lips], and swallowing it " + (cockLength == -1 || cockLength >= 6 ? "till it begins to probe into her throat" : "till it’s completely enveloped in her warm, wet mouth") + ". She withdraws her mouth, leaving behind a thin coating of her saliva.");
+		
+		output("\n\nSatisfied with her work, Pippa moves back up your body, turning around as she does to give you a view of her [pippa.ass]. She positions her [pippa.hips] above your [pc.hips], and her waiting, dripping [pippa.pussyNoun] above your [pc.cockOrStrapon " + cockOrStraponIndex + "]. You use one hand to hold it in place for her, and place the other on her [pippa.hip]. She looks over her shoulder and grins at you and then slides her [pippa.pussy] down over you");
+		
+		if (cockOrStraponIndex == -1 || cockLength <= 10)
 		{
-			output("Pippa is so heavy that you can only hope that you’re actually contributing to holding her up.");
-		}
-		else if (pc.tone <= 66)
-		{
-			output("Pippa is quite heavy, but you’re doing your part in helping to hold her up");
+			output(", completely enveloping your [pc.cockOrStrapon " + cockOrStraponIndex + "] inside of her [pippa.pussy], and bringing her full weight to bear on your [pc.hips]. ");
+			
+			if (cockOrStraponIndex >= 0) pc.cockChange(false, true);
+			
+			if (pc.tone <= 33)
+			{
+				output("Pippa is so heavy that you feel practically crushed beneath her, but the inside of her [pippa.pussyNoun] is so warm and tight, that you can get past it");
+			}
+			else if (pc.tone <= 66)
+			{
+				output("You barely have the physique to support Pippa’s wait on your hips, but the [pippa.pussy] wrapping around your [pc.cockOrStrapon " + cockOrStraponIndex + "] makes it worth it");
+			}
+			else
+			{
+				output("Despite Pippa’s weight, you can easily support her and fully enjoy the embrace of her [pippa.pussy]");
+			}
+			
+			output(". She sits still for a moment, letting you both enjoy the feeling of you inside her");
+			
+			if (cockOrStraponIndex >= 0 && pc.cocks[cockOrStraponIndex].cType == GLOBAL.TYPE_SWINE)
+			{
+				output(". It’s almost like her pussy and your cock were made for each other; considering your current genetic makeup, maybe that’s not so far from the truth.");
+			}
+			else output(", before she begins moving.");
+			
+			output(" She gives you one last, ravenous look over her shoulder, before she turns away and begins grinding her hips into you, alternately increasing and decreasing the weight pressing on you. The corkscrew-patterned ridges in Pippa’s [pippa.pussyNoun] would feel amazing even if she weren’t particularly talented, but she knows how to use more than just her hands to massage, squeezing and milking your cock with her [pippa.pussy] as she grinds; she’s definitely been doing pelvic-focused exercises with those yoga pants of hers. As she grinds on you, she gropes at her [pippa.tits], pinching and pulling on her [pippa.nipples]. You grope her from the other side, fingers sinking into the soft flesh of her [pippa.ass] as it jiggles and ripples before you. You pull one of her [pippa.buttcheeks] aside and begin to move a finger toward her [pippa.asshole] when she suddenly seizes up and shudders, [pippa.pussy] squeezing your [pc.cockOrStrapon " + cockOrStraponIndex + "] like a vice. You see her [pippa.asshole] twitching, winking at you, and you feel her ridges ripple along your length, attempting to milk you for [pc.cumNoun]" + (cockOrStraponIndex == -1 ? " you can’t give":"") + "; you barely hold on. Did she just orgasm?");
+			
+			output("\n\n<i>“I did,”</i> she answers your question. <i>“But I’m glad you didn’t, because I’m ready for round two, " + pippaCallsSteele() + ".”</i> She spins herself around on your [pc.cockOrStrapon " + cockOrStraponIndex + "] and plants her hands firmly on your [pc.chest] and, this time, begins bouncing up and down. She massages your [pc.cockOrStrapon " + cockOrStraponIndex + "] with her [pippa.pussy] as she did before, but it’s now even wetter, increasing the pleasure you feel. As she bounces, her [pippa.tits] bounce with her, so much so they almost look as if they’ll fly off any second now. You reach around behind her to grab her [pippa.ass], squeezing it, of course, but also using it as a grip to help spur on her bouncing. Picking up where you left off before, you reach one finger through her valley of ass flesh and run it around her [pippa.asshole], finding that it’s still twitching and opening up slightly like the good fuckhole it is. You slip your [pc.finger] inside and she squeals in pleasure, digging her fingers into your [pc.chest]");
+			
+			if (pc.isLactating()) output(", and prompting [pc.milk] to dribble down your body");
+			
+			output(". She’s obviously nearing her second orgasm, as her [pippa.pussy] convulses along the length of your [pc.cockOrStrapon " + cockOrStraponIndex + "] and her [pippa.asshole] squeezes your finger. She leans down and begins kissing you, sloppily, almost like she’s trying to devour your face. You press your [pc.lips] to hers, returning her kiss, and up the intensity, probing all three of her holes with your [pc.tongue], [pc.cockOrStrapon " + cockOrStraponIndex + "], and [pc.finger], and bouncing her harder. Her second orgasm hits sure enough, her tongue twitching in your mouth, her [pippa.asshole] constricting around your finger, and her [pippa.pussy] clamping down on your [pc.cockOrStrapon " + cockOrStraponIndex + "]. Her ridges massage your length once again, and this time, you can’t help but join her, your own orgasm crashing over you like a wave.");
 		}
 		else
 		{
-			output("Despite Pippa’s weight, you don’t have much trouble helping to hold her up");
+			output(" as far as she can, devouring about 10 inches of your [pc.cock " + cockOrStraponIndex + "] before she reaches her limit. You grab her thick thighs, sinking your fingers into her soft flesh, to help hold her up above your [pc.hips]. ");
+			
+			pc.cockChange(false, true);
+			
+			if (pc.tone <= 33)
+			{
+				output("Pippa is so heavy that you can only hope that you’re actually contributing to holding her up.");
+			}
+			else if (pc.tone <= 66)
+			{
+				output("Pippa is quite heavy, but you’re doing your part in helping to hold her up");
+			}
+			else
+			{
+				output("Despite Pippa’s weight, you don’t have much trouble helping to hold her up");
+			}
+			
+			output(". She immeditely begins moving up and down, slowly at first. She runs her wet, corkscrew-ridged pussy up and down all 10 inches that she can fit inside her, just barely keeping your [pc.cockhead " + cockOrStraponIndex + "] inside at the peak of her movement before sliding back down. As she slides, she squeezes and milks your [pc.cock " + cockOrStraponIndex + "] with her vaginal walls with skills befitting one who would call herself a masseuse. As she slides along, massaging your shaft, she also massage her [pippa.tits], squeezing and twisting her [pippa.nipples]. At the peak of one of her motions, she suddenly shudders and nearly falls on you, squeezing your [pc.cock " + cockOrStraponIndex + "] so hard that it pops out. You almost lose it right there. Did she just orgasm?");
+			
+			output("\n\n<i>“I did,”</i> she answers your question, <i>“but I’m sure glad you didn’t. I want to go again, " + pippaCallsSteele() + ".”</i> She lifts herself back up and again impales her [pippa.pussy] on your [pc.cock " + cockOrStraponIndex + "]. She slides up and down even faster this time, leaving her slick pussy juice running down your shaft. She takes advantage of her own juices, reaching beneath her to the portion of your cock not inside her, and massaging it with her hands. Her surprising flexibility makes you think she’s been putting those yoga pants of hers to good use. With your hands occupied with holding her thighs for support, there’s nothing you can do but sit back and enjoy the feeling, and sink your fingers further into her soft, plentiful thigh flesh. The combination of both her hands and [pippa.pussy] stroking and massaging your shaft brings you to the brink of climax, and you can tell that Pippa is nearing her second orgasm by her heavy breathing and her flushed, sweating chest. Sure enough, she pushes herself down on your [pc.cock " + cockOrStraponIndex + "] as far as she can, releasing it from her grip, and barely placing her hands over yours for support before she climaxes again. Her [pippa.pussy] rippling over 10, or perhaps more, inches of your cock pushes you over the edge and you join her, orgasm hitting you like a train.");
 		}
 		
-		output(". She immeditely begins moving up and down, slowly at first. She runs her wet, corkscrew-ridged pussy up and down all 10 inches that she can fit inside her, just barely keeping your [pc.cockhead " + cockOrStraponIndex + "] inside at the peak of her movement before sliding back down. As she slides, she squeezes and milks your [pc.cock " + cockOrStraponIndex + "] with her vaginal walls with skills befitting one who would call herself a masseuse. As she slides along, massaging your shaft, she also massage her [pippa.tits], squeezing and twisting her pippa.nipples. At the peak of one of her motions, she suddenly shudders and nearly falls on you, squeezing your [pc.cock " + cockOrStraponIndex + "] so hard that it pops out. You almost lose it right there. Did she just orgasm?");
-		
-		output("\n\n<i>“I did,”</i> she answers your question, <i>“but I’m sure glad you didn’t. I want to go again, " + pippaCallsSteele() + ".”</i> She lifts herself back up and again impales herself on your [pc.cock " + cockOrStraponIndex + "]. She slides up and down even faster this time, leaving her slick pussy juice running down your shaft. She takes advantage of her own juices, reaching beneath her to the portion of your cock not inside her, and massaging it with her hands. Her surprising flexibility makes you think she’s been putting those yoga pants of hers to good use. With your hands occupied with holding her thighs for support, there’s nothing you can do but sit back and enjoy the feeling, and sink your fingers further into her soft, plentiful thigh flesh. The combination of both her hands and pussy stroking and massaging your shaft brings you to the brink of climax, and you can tell that Pippa is nearing her second orgasm by her heavy breathing and her flushed, sweating chest. Sure enough, she pushes herself down on your [pc.cock " + cockOrStraponIndex + "] as far as she can, releasing it from her grip, and barely placing her hands over yours for support before she climaxes again. Her hot pussy rippling over 10, or perhaps more, inches of your cock pushes you over the edge and you join her, orgasm hitting you like a train.");
+		pippaDominance(1);
 	}
 	
-	output(" Your ");
-	
-	if (cockOrStraponIndex >= 0)
+	if (pc.hasGenitals())
 	{
-		output("[pc.cum] floods her womb, ");
+		output(" Your ");
 		
-		if (pc.cumQ() >= 200) output("most of it flowing right back out");
-		else if (pc.cumQ() >= 75) output("much of it dripping right back out");
-		else output("only a little bit dripping back out");
+		if (cockOrStraponIndex >= 0)
+		{
+			output("[pc.cum] floods her womb, ");
+			
+			if (pc.cumQ() >= 200) output("most of it flowing right back out");
+			else if (pc.cumQ() >= 75) output("much of it dripping right back out");
+			else output("only a little bit dripping back out");
+		}
+		
+		if (cockOrStraponIndex >= 0 && pc.hasVagina()) output(", and your ");
+		
+		if (pc.hasVagina())
+		{
+			output("pussy sprays [pc.girlcum] over her bed");
+		}
+		
+		output(". Shivers run through your bodies and her [pippa.pussy] won’t stop twitching, ");
+		
+		if (cockOrStraponIndex >= 0) output("milking your [pc.cock " + cockOrStraponIndex + "] for every last drop of [pc.cum] it’ll give.");
+		else output("attempting to milk your fake holo-cock for cum that will never be.");
 	}
-	
-	if (cockOrStraponIndex >= 0 && pc.hasVagina()) output(", and your ");
-	
-	if (pc.hasVagina())
+	else
 	{
-		output("pussy sprays [pc.girlcum] over her bed");
+		output(" Despite having no real genitals, thanks to the hardlight strapon, shudders run through your body right along with her. You feel a tightening in your body and a desperate need to release something, though you have nothing to give. Nonetheless, the feeling passes.");
 	}
 	
-	output(".");
+	output(" You embrace each other as your climaxes wind down until finally, your bodies are still.");
 	
-	output("\n\nPippa slowly lifts herself off of your [pc.cockOrStrapon " + cockOrStraponIndex + "] and lowers herself to lay next to you, one arm draped across your chest. <i>“That was good, " + pippaCallsSteele() + ". I’m going to shower, so feel free to let yourself out.”</i> She plants a kiss on your cheek and climbs out of the bed. Big ass swaying, she walks away to the shower.");
+	if (bottomVariation) output("\n\nYou lift yourself off of Pippa and pull out your [pc.cockOrStrapon " + cockOrStraponIndex + "]. She continues laying on the bed, looking tired");
+	else output("\n\nPippa slowly lifts herself off of your [pc.cockOrStrapon " + cockOrStraponIndex + "] and lowers herself to lay next to you, one arm draped across your chest");
+	
+	output(". <i>“That was good, " + pippaCallsSteele() + ".”</i> She sounds tired. <i>“I’m going to shower, so feel free to let yourself out.”</i> She plants a kiss on your cheek and climbs out of the bed. Her [pippa.hips] swaying, she walks away to the shower.");
 	
 	pippaSexed();
 	pippaAffection(2);
 	processTime(25);
 	pc.orgasm();
 	applyPussyDrenched(pc);
-	pippaDominance(1);
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1613,14 +1669,14 @@ public function pippaGetSatOn():void
 	if (pc.isCrotchGarbed()) output("clothes");
 	else output("gear");
 	
-	output(",”</i> she orders. As you comply she lowers the massage table to a height that would allow her to comfortably sit on it. <i>“Now lay down.”</i> You again do as you’re told. She stands, looming over you, and, with no fanfare, quickly takes off her clothing. She slightly bends over you and runs a finger around your [pc.lips]. She removes her finger and, without a word, takes a seat on your face such that she can look at you face to face.");
+	output(",”</i> she orders. As you comply she lowers the massage table to a height that would allow her to comfortably sit on it. <i>“Now lay down.”</i> You again do as you’re told. She stands, looming over you, and, with no fanfare, quickly takes off her clothing, allowing you to take in her naked form, [pippa.tits], [pippa.belly], and [pippa.hips]. She slightly bends over you and runs a finger around your [pc.lips]. She removes her finger and, without a word, turns around and takes a seat on your face such that she can look into your [pc.eyes].");
 	
-	output("\n\nPippa begins grinding her [pippa.pussy] into your face, but not before ordering, <i>“Lick.”</i> You comply, though you imagine the grinding would feel good even without your active contribution. Her pussy is already soaked, filling your mouth with ");
+	output("\n\nPippa begins grinding her [pippa.pussy] into your face, but not before ordering, <i>“Lick.”</i> You comply, though you imagine the grinding would feel good even without your active contribution. Her [pippa.pussy] is already soaked, filling your mouth with ");
 	
-	if (silly) output("the taste of...is that bacon?! <i>“I hope you like bacon grease.”</i> Well, there goes your figure.");
+	if (silly) output("the taste of...is that bacon?! <i>“I hope you like bacon grease, " + pippaCallsSteele() + ".”</i> Well, there goes your figure.");
 	else output("her juices. The taste is quite sweet, but you’re pretty sure it isn’t modded.");
 	
-	output(" She grabs the sides of your head and picks up her grinding a bit, moaning lightly. <i>“Look at me with those " + pc.mf("handsome", "pretty") + " [pc.eyes], " + pippaCallsSteele() + ".”</i> She holds your gaze, looking intently into your eyes. The rest of your face is completely smothered by her. She grinds her [pippa.pussyNoun] from your nose, all the way down to your chin, where you barely have time to breathe, smearing your face with her ");
+	output(" She grabs the sides of your head and picks up her grinding a bit, moaning lightly. <i>“Look at me with those " + pc.mf("handsome", "pretty") + " [pc.eyes], " + pippaCallsSteele() + ".”</i> She holds your gaze, looking intently into your eyes. The rest of your face is completely smothered by her [pippa.pussy], [pippa.ass], and [pippa.thighs]. She grinds her [pippa.pussyNoun] from your nose, all the way down to your chin, where you barely have time to breathe, smearing your face with her ");
 	
 	if (silly) output("bacon grease");
 	else output("girl cum");
@@ -1676,14 +1732,14 @@ public function pippaGetSatOnFocus():void
 	clearMenu();
 	showPippa(true);
 	
-	output("You decide to focus all of your efforts on Pippa, wrapping your arms around her thighs to pull her further into your face and intently driving your [pc.tongue] into her [pippa.pussy]. She squeals, and then coos, <i>“That’s a good " + pc.mf("boy", "girl") + ", just like that.”</i> With you pulling her into your face, she lets go of your head and begins to knead her [pippa.tits]. Rhythmically grinding into your face and playing with her breasts, Pippa shudders and soaks your face with her ");
+	output("You decide to focus all of your efforts on Pippa, wrapping your arms around her [pippa.thighs] to pull her further into your face and intently driving your [pc.tongue] into her [pippa.pussy]. She squeals, and then coos, <i>“That’s a good " + pc.mf("boy", "girl") + ", just like that.”</i> With you pulling her into your face, she lets go of your head and begins to knead her [pippa.tits], sinking her hands into her soft flesh, and playing with her [pippa.nipples]. Rhythmically grinding into your face and playing with her [pippa.tits], Pippa shudders and soaks your face with her ");
 	
 	if (silly) output("grease");
 	else output("pussy juice");
 	
-	output(". Having climaxed, she removes your arms from her thighs and stands up, only to then reposition herself and again sit on your face, now facing the other direction. <i>“I’m not done using you yet, " + pippaCallsSteele() + ",”</i> she explains.");
+	output(". Having climaxed, she removes your arms from her [pippa.thighs] and stands up, only to then reposition herself and again sit on your face, now facing the other direction. <i>“I’m not done using you yet, " + pippaCallsSteele() + ",”</i> she explains.");
 	
-	output("\n\nThe way Pippa has positioned herself, your vision is completely obscured by her [pippa.ass], your nose is buried in the base of her [pippa.pussyNoun], and you’re in the perfect position to lick her [pippa.clit]. You reach up around in front of her to grope at her breasts, eliciting a moan. ");
+	output("\n\nThe way Pippa has positioned herself, your vision is completely obscured by her [pippa.ass], your nose is buried in the base of her [pippa.pussyNoun], and you’re in the perfect position to lick her [pippa.clit]. You reach up around in front of her to grope at her [pippa.tits], eliciting a moan. ");
 	
 	if (pc.hasGenitals() || (pc.hasBreasts() && pc.hasNipples()))
 	{
@@ -1724,9 +1780,23 @@ public function pippaGetSatOnFocus():void
 		output("She softly speaks, <i>“I’d like to reward you for doing such a good job, but....”</i> You don’t have a cock or a pussy of any sort, or even a sexy set of tits. No matter; you’re here to please her today. You continue to");
 	}
 	
-	output(" gently play with her nipples, and alternate between licking her clit and making out with her nether lips.");
+	output(" gently play with her [pippa.nipples], and alternate between licking her [pippa.clit] and making out with her puffy, aroused nether lips.");
 	
-	output("\n\nCompletely lost in Pippa’s rhythm, you nearly forget to breathe. Of course, her [pippa.ass] smothering your face doesn’t help with the breathing. If you weren’t smothered, you’d doubtlessly be " + RandomInCollection("grunting", "panting", "moaning") + " along with Pippa’s moaning. You can’t see her, but you imagine that she’s more flushed than before, and you can feel the sweat in her cleavage. You’re not even sure how much time has passed, but what feels like too soon, your orgasms hit simultaneously, subdued, but powerful. Pippa, once again slathers your face with her ");
+	output("\n\nCompletely lost in Pippa’s rhythm, you nearly forget to breathe. Of course, her [pippa.ass] smothering your face doesn’t help with the breathing. If you weren’t smothered, you’d doubtlessly be " + RandomInCollection("grunting", "panting", "moaning") + " along with Pippa’s moaning. You can’t see her, but you imagine that she’s more flushed than before, and you can feel the sweat in her cleavage of her [pippa.tits]. You’re not even sure how much time has passed, ");
+	
+	if (pc.hasGenitals() || (pc.hasBreasts() && pc.hasNipples()))
+	{
+		output("but what feels like too soon, your orgasms hit simultaneously, subdued, but powerful. Pippa’s hands work their magic, continuing to "); 
+		
+		if (pc.hasCock()) output("dance up and down the shaft of your [pc.cock]");
+		else if (pc.hasVagina()) output("probe your [pc.pussy]");
+		else output("tease your [pc.nipples]");
+		
+		output("as you climax");
+	}
+	else output("but in what feels like no time, Pippa climaxes once again");
+	
+	output(". Her [pippa.pussy] undulates over your [pc.lips] and, once again, she slathers your face with her ");
 	
 	if (silly) output("savory grease");
 	else output("sweet juices");
@@ -1740,9 +1810,9 @@ public function pippaGetSatOnFocus():void
 		if (pc.hasVagina()) output(" spray [pc.girlcum] onto her massage table");
 	}
 	
-	output(".");
+	output(". You can see her [pippa.ass] jiggle and shiver and feel the rise and fall of her [pippa.chest] as she catches her breath.");
 	
-	output("\n\nPippa climbs off of you and sighs, <i>“I’m already looking forward to the next time I get to use you, " + pippaCallsSteele() + ".”</i> She leans down and kisses your cheek. She winks at you and says, <i>“Be sure to clean yourself up,”</i> before leaving you to do just that.");
+	output("\n\nStill coming down from her climax, but not wanting to smother you too much, Pippa climbs off of you and sighs, <i>“I’m already looking forward to the next time I get to use you, " + pippaCallsSteele() + ".”</i> She leans down and kisses your cheek. She winks at you and says, <i>“Be sure to clean yourself up,”</i> before leaving you to do just that.");
 	
 	pc.orgasm();
 	applyPussyDrenched(pc);
@@ -1763,19 +1833,19 @@ public function pippaGetSatOnMasturbate():void
 	
 	output("You’re so turned on you can’t resist. You reach past Pippa, down to ");
 	
-	if (pc.hasCock()) output("stroke your [pc.cockNoun]");
-	else output("rub your [pc.pussyNoun]");
+	if (pc.hasCock()) output("stroke your [pc.cock]");
+	else output("rub your [pc.pussy]");
 	
-	output(" and in doing so, briefly let up on your licking. Pippa doesn’t let your lapse pass by unnoticed. <i>“Now just what do you think you’re doing?”</i> She stands up and turns around to face you. Looming over you, she chides you, <i>“So impatient. What a bad " + pc.mf("boy", "girl") + ".");
+	output(" and, in doing so, briefly let up on your licking. Pippa doesn’t let your lapse pass by unnoticed. <i>“Now just what do you think you’re doing?”</i> She stands up and turns around to face you. Looming over you, she chides you, <i>“So impatient. What a bad " + pc.mf("boy", "girl") + ".");
 	
 	if (pc.isAss()) output(" I suppose I shouldn’t be surprised.");
 	
-	output("”</i> She grabs your arms and moves them to your sides. Then she quickly climbs back on top of you, now facing toward your [pc.legOrLegs], and uses her legs to pin your arms by your side. <i>“Now let’s try this again.”</i>");
+	output("”</i> She grabs your arms and moves them to your sides. Then she quickly climbs back on top of you, now facing toward your [pc.legOrLegs], and using her own [pippa.legs] to pin your arms by your side. <i>“Now let’s try this again.”</i>");
 	
-	output("\n\nHaving sealed your movement, Pippa begins grinding on your face again, rougher than before. If the massage table weren’t soft, your head might be hurting. You lick and suck on her [pippa.pussyNoun] as best as you can, but the rough movements make it difficult. Unable to see anything beyond her [pippa.ass], you’re startled when ");
+	output("\n\nHaving sealed your movement, Pippa begins grinding on your face again, rougher than before. If you weren’t trapped between the soft massage table and Pippa’s soft body, your head might be hurting. You lick and suck on her [pippa.pussy] as best as you can, but the rough movements make it difficult. Unable to see anything beyond her [pippa.ass], you’re startled when ");
 	
 	var gasped:Boolean = false;
-	var gaspedString:String = "You lightly groan into Pippa’s pussy, but the sound is muffled and you don’t end up doing much more than vibrate your [pc.lips] and prompt her to speak, <i>“Did that hurt, " + pippaCallsSteele() + "? I guess your vibrating mouth feels good either way.”</i>";
+	var gaspedString:String = "You lightly groan into Pippa’s [pippa.pussy], but the sound is muffled and you don’t end up doing much more than vibrate your [pc.lips] and prompt her to speak, <i>“Did that hurt, " + pippaCallsSteele() + "? I guess your vibrating mouth feels good either way.”</i>";
 	
 	if (pc.hasBreasts()) {
 		output("you feel a sharp slap on your [pc.breasts], not enough to seriously hurt you, but enough to sting. ");
@@ -1783,20 +1853,20 @@ public function pippaGetSatOnMasturbate():void
 		output(gaspedString);
 		gasped = true;
 		
-		output(" She rains a few more light slaps on your breasts, moaning and grinding into your face all the while.");
+		output(" She rains a few more light slaps on your [pc.breasts], moaning and grinding her [pippa.pussy] into your face all the while.");
 	}
 	
 	if (pc.hasNipples()) {
 		if (!gasped)
 		{
-			output("you feel fingers roughly grab your nipples and painfully pull on them. ");
+			output("you feel fingers roughly grab your [pc.nipples] and painfully pull on them. ");
 			
 			output(gaspedString);
 			gasped = true;
 		}
 		else
 		{
-			output(" Next she moves onto your nipples, roughly grabbing and pulling on them.");
+			output(" Next she moves onto your [pc.nipples], roughly grabbing and pulling on them.");
 		}
 		
 		output(" She continues to abuse your [pc.nipples], pinching and twisting them, and even flicking them a few times. Judging by her ");
@@ -1810,7 +1880,7 @@ public function pippaGetSatOnMasturbate():void
 	if (pc.hasCock()) {
 		if (!gasped)
 		{
-			output("she roughly grabs your [pc.cock] and strokes up and down, almost mashing it. You can’t deny that it feels a little good, but it also hurts. ");
+			output("she roughly grabs your [pc.cock] and strokes up and down, almost mashing it. You can’t deny that it feels a little good, but it also hurts a bit. ");
 			
 			output(gaspedString);
 			gasped = true;
@@ -1820,7 +1890,7 @@ public function pippaGetSatOnMasturbate():void
 			output(" Her next victim is your [pc.cock], which she roughly grabs and strokes, inducing both pleasure and pain.");
 		}
 		
-		output(" She asks, <i>“You wanted to cum, didn’t you? Now’s your chance.”</i> She intently yanks her hand up and down your shaft, not getting any gentler. You hear her spit and feel it land right in the path of her hand. Lubed up from her saliva, the scale tips just enough toward pleasure that you pathetically cum. As you do, she reacts quickly, squeezing on your cock and causing your [pc.cum] to dribble out over her hand. You hear her clean her hand with her mouth after she removes it from your [pc.cockNoun].");
+		output(" She asks, <i>“You wanted to cum, didn’t you? Now’s your chance.”</i> She intently yanks her hand up and down your shaft, not getting any gentler, a far cry from her typical, gentle work. You hear her spit and feel it land right in the path of her hand. Lubed up from her saliva, the scale tips just enough toward pleasure that you pathetically cum. As you do, she reacts quickly, squeezing on your cock and causing your [pc.cum] to dribble out over her hand. You hear her clean her hand with her mouth after she removes it from your [pc.cock].");
 	}
 	else
 	{
@@ -1836,10 +1906,10 @@ public function pippaGetSatOnMasturbate():void
 			output(" Her next victim is your [pc.pussy], to which she delivers a stinging slap.");
 		}
 		
-		output(" She lightly slaps it one more time, before jamming her fingers inside and roughly finger fucking you. She asks, <i>“You wanted to cum, didn’t you? Now’s your chance.”</i> She continues fucking you with her hooked fingers, causing both pleasure and pain. As she fucks you, she roughly rubs your [pc.clit] with her palm. Unable to help your self, you orgasm, spraying both her massage table and her hand with your [pc.girlcum]. You hear her clean her hand with her mouth after she removes it from your [pc.pussyNoun].");
+		output(" She lightly slaps it one more time, before jamming her fingers inside and roughly finger fucking you, a far cry from her typical, gentle work. She asks, <i>“You wanted to cum, didn’t you? Now’s your chance.”</i> She continues fucking you with her hooked fingers, causing both pleasure and pain. As she fucks you, she roughly rubs your [pc.clit] with her palm. Unable to help your self, you orgasm, spraying both her massage table and her hand with your [pc.girlcum]. You hear her clean her hand with her mouth after she removes it from your [pc.pussy].");
 	}
 	
-	output("\n\nSeemingly satisfied with punishing you, Pippa returns her focus to her pleasure. She’s already moaning and panting, and, clearly having enjoyed the punishment, it doesn’t take much more of her grinding and your licking before she reaches a powerful climax and floods your face. She continues to sit on your face while catching her breath. She finally climbs off of you, freeing your arms and letting you see again. She’s sweating, and her whole body is deeply flushed. ");
+	output("\n\nSeemingly satisfied with punishing you, Pippa returns her focus to her pleasure. She’s already moaning and panting, and, clearly having enjoyed the punishment, it doesn’t take much more of her grinding and your licking before she reaches a powerful climax and cums all over your face. Her [pippa.ass] quivers above you and her [pippa.pussy] undulates along your face; your senses are flooded with her " + (silly ? "grease" : "juices") + ", taste, and smell. She continues to sit on your face while catching her breath, leaving you smothered beneath her, struggling to catch yours. She finally climbs off of you, freeing your arms and letting you see again. She’s sweating, and her whole body is deeply flushed. ");
 	
 	if (flags["PIPPA_ABUSIVE_SAT_ON"] == undefined)
 	{
@@ -1871,15 +1941,15 @@ public function pippaFeedMilk():void
 	
 	output("Pippa hungrily eyes your [pc.tits] and speaks, <i>“");
 	
-	if (pippaFed(0) > 0) output("You know, " + pippaCallsSteele() + ", I appreciate when you feed me normal food, but I have a special request today.");
-	else if (pippaAffection() >= PIPPA_AFFECTION_NAME) output("You never feed me any normal food, but maybe I could make a special request today?");
-	else output("Could I maybe ask you to feed me?");
+	if (pippaFed(0) > 0) output("You know, " + pippaCallsSteele() + ", I appreciate when you give me food, but I have a special request today.”</i>");
+	else if (pippaAffection() >= PIPPA_AFFECTION_NAME) output("You never give me any food, but maybe I could make a special request today?”</i>");
+	else output("Could I maybe ask you to...feed me?”</i> She looks almost embarassed.");
 	
-	output("”</i> As if you didn’t already know what she was getting at, she reaches for your chest and runs a finger around your [pc.nipplesNoun]");
+	output(" As if you didn’t already know what she was getting at, she reaches for your [pc.chest] and runs a finger around your [pc.nipples]");
 	
 	if (pc.isChestCovered()) output(" through your clothing");
 	
-	output(". You grant her request, <i>“");
+	output(". You gladly grant her request, <i>“");
 	
 	if (pc.isBimbo()) output("If there’s stuff that I love, it’s totally fucking and getting drinken!");
 	else output("I could certainly use a milking.");
@@ -1888,21 +1958,24 @@ public function pippaFeedMilk():void
 	
 	if (!pc.isNude()) output("and quickly pulling off your gear ");
 	
-	output("in the process. Once you’re by her bed, she places a hand on your [pc.breastsNoun] and gives a soft, tentative squeeze, drawing just a little of your [pc.milk]. Her eyes, now positively voracious, follow the [pc.milkNoun] as it flows down your body and she licks her lips, leaving a visible sheen of saliva. Nonetheless, she withdraws her hand and sits down on the edge of the bed, patting her lap. <i>“Sit.”</i>");
+	output("in the process. Once you’re by her bed, she places a hand on your [pc.breasts] and gives a soft, tentative squeeze, drawing just a little of your [pc.milk]. Her eyes, now positively voracious, follow the [pc.milkNoun] as it flows down your body and she licks her [pippa.lips], leaving a visible sheen of saliva. Nonetheless, she withdraws her hand and sits down on the edge of the bed, patting her lap. <i>“Sit.”</i>");
 	
-	output("\n\nYou take a seat on Pippa’s comfy lap, straddling her and bringing your [pc.breasts] level with her face. Pippa slowly brings her mouth to your right [pc.nippleNoun] and pauses for a moment, letting you feel her hot, heavy breathing. She wraps her plump lips around the nipple and gently runs her wet tongue around it, savoring the moment like some kind of breastfeeding connoisseur. After what seems like an eternity of teasing, she sucks, drawing a stream of [pc.milk] down her throat. And then she lets go again and looks you in the eyes. <i>“Mmm, your [pc.milkNoun] is so delicious, " + pippaCallsSteele() + ".");
+	output("\n\nYou take a seat on Pippa’s comfy lap, straddling her and bringing your [pc.breasts] level with her face. Pippa slowly brings her [pippa.lips] to your right [pc.nipple] and pauses for a moment, letting you feel her hot, heavy breathing. She wraps her [pippa.lips] around the [pc.nipple] and gently runs her wet tongue around it, savoring the moment like some kind of breastfeeding connoisseur. After what seems like an eternity of teasing, she sucks, drawing a stream of [pc.milk] down her throat. And then she lets go again and looks you in the eyes. <i>“Mmm, your [pc.milkNoun] is so delicious, " + pippaCallsSteele() + ".");
 	
-	if (pc.isTreatedCow()) output(" Especially since it’s treated.");
+	if (pc.isTreatedCow()) output(" And it’s even Treated.");
 	
-	output("”</i> Tired of her teasing, you grab the back of her head and push her face into your [pc.breastNoun]. She giggles and finally, really digs in. Her lips and tongue slide all around your [pc.nippleNoun], drawing a torrent of [pc.milk] from your [pc.breasts], and the insatiable pig slut greedily swallows every last drop.");
+	output("”</i> Tired of her teasing, you grab the back of her head and push her face into your [pc.breast]. She giggles and finally, really digs in. Her [pippa.lips] and tongue slide all around your [pc.nipple], drawing a torrent of [pc.milk] from your [pc.breasts], and the insatiable pig slut greedily swallows every last drop.");
 	
-	output("\n\nYou notice that, while feeding from you, Pippa has snaked a hand down between her legs and is rubbing her pussy. She, of course, isn’t the only one who’s turned on. ");
+	pc.lust(30);
+	
+	output("\n\nYou notice that, while feeding from you, Pippa has snaked a hand down between her legs and is rubbing her [pippa.pussy]. She, of course, isn’t the only one who’s turned on. ");
 	
 	if (pc.hasCock())
 	{
 		output("Your [pc.cock] is sandwiched between your bodies");
 		
 		if (pc.cocks[0].cLength() >= 12) output(" and nestled into her [pippa.tits]");
+		else output(", pressed into her [pippa.belly]");
 		
 		output(". ");
 	}
@@ -1911,13 +1984,23 @@ public function pippaFeedMilk():void
 		output("Your [pc.pussy] is soaked, your [pc.girlcum] surely mixing with Pippa’s as she masturbates. ");
 	}
 	
-	output("The position you’re in is great for feeding, but not so great for getting off at the same time. From her squirming, you think Pippa might be getting the same idea. You could take control and set the pace, but she likely will if you don’t.");
+	output("The position you’re in is great for feeding, but not so great for getting off at the same time. From her squirming, you think Pippa might be getting the same idea")
 	
-	addButton(0, "Take Control", pippaFeedMilkTakeControl, undefined, "Take Control", "Take control of this feeding.");
-	addButton(1, "Let Pippa", pippaFeedMilkHerControl, undefined, "Let Pippa Take Control", "Let Pippa handle this feeding.");
+	if (randInRange(70, 110) < pippaDominance())
+	{
+		output(", but before you can consider it further, Pippa takes control of the situation.");
+		
+		addButton(0, "Next", pippaFeedMilkHerControl, false);
+	}
+	else
+	{
+		output(". You could take control and set the pace, but she likely will if you don’t.");
+		
+		addButton(0, "Take Control", pippaFeedMilkTakeControl, undefined, "Take Control", "Take control of this feeding.");
+		addButton(1, "Let Pippa", pippaFeedMilkHerControl, true, "Let Pippa Take Control", "Let Pippa handle this feeding.");
+	}
 	
 	processTime(10);
-	pc.lust(15);
 	pippaAffection(5);
 	pippaSexed(1);
 }
@@ -1929,31 +2012,31 @@ public function pippaFeedMilkTakeControl():void
 	clearMenu();
 	showPippa(true);
 	
-	output("Taking action, you push Pippa down onto the bed and flip your positions so that she’s on top. You sit back up and lay her across your lap in a classic breastfeeding position. Your [pc.nippleNoun] having slipped from her mouth during the repositioning, she jokes, <i>“I’m a bit big to baby, don’t you think?”</i> With one hand you reach down between her legs and run her [pippa.clit] between your fingers and she moans, <i>“I guess this isn’t exactly babying.”</i> With your right [pc.breastNoun] practically drained already, you take the opportunity to switch, and move Pippa’s mouth to your left [pc.nippleNoun].");
+	output("Taking action, you push Pippa down onto the bed and flip your positions so that she’s on top. You sit back up and lay her across your lap in a classic breastfeeding position. Your [pc.nipple] having slipped from her [pippa.lips] during the repositioning, she jokes, <i>“I’m a bit big to baby, don’t you think?”</i> With one hand you reach down between her legs and run her [pippa.clit] between your fingers and she moans, <i>“I guess this isn’t exactly babying.”</i> With your right [pc.breast] practically drained already, you take the opportunity to switch, and move Pippa’s mouth to your left [pc.nippleNoun].");
 	
-	output("\n\nPippa latches onto your nipple like her life depends on it. The way her tongue moves over and around your [pc.nipple], it’s like she was born to massage with whatever appendage possible. Her hands move to your other breast, rubbing, squeezing, and teasing out any [pc.milkNoun] that she may have missed with her mouth. Despite the fact that Pippa completely gorged herself, your [pc.breasts] are bountiful, and [pc.milk] squirts out, running down your body and Pippa’s arms, and splattering her chest. In response, you can feel her [pippa.pussyNoun] getting even wetter. You wipe some of your [pc.milkNoun] up with your hand, and rub it into her warm pussy. Sticking a finger inside, you mix your [pc.milkNoun] and her pussy juices together, finger fucking her to the rhythm of her nursing. All at once, her pussy clamps down on your finger and her mouth, almost painfully, clamps down on your [pc.nippleNoun]. Shudders run through her body and she moans into your breast, trying not to let go. She comes down from her orgasmic high, and you pet the side of her head with your cleaner hand, gently rustling her hair. She looks you in the eyes, and resumes sucking.");
+	output("\n\nPippa latches onto your [pc.nipple] like her life depends on it. The way her tongue moves over and around your [pc.nipple], it’s like she was born to massage with whatever appendage possible. Her hands move to your other breast, rubbing, squeezing, and teasing out any [pc.milkNoun] that she may have missed with her mouth. Despite the fact that Pippa completely gorged herself, your [pc.breasts] are bountiful, and [pc.milk] squirts out, running down your body and Pippa’s arms, and splattering her [pippa.chest]. In response, you can feel her [pippa.pussyNoun] getting even wetter. You wipe some of your [pc.milk] up with your hand, and rub it into her [pippa.pussy]. Sticking a finger inside, you mix your [pc.milk] and her pussy juices together, finger fucking her to the rhythm of her nursing. All at once, her [pippa.pussy] clamps down on your finger and her mouth, almost painfully, clamps down on your [pc.nipple]. Shudders run through her body and she moans into your breast, trying not to let go. She comes down from her orgasmic high, and you pet the side of her head with your cleaner hand, gently rustling her hair. She looks you in the eyes, and resumes sucking.");
 	
 	if (pc.hasCock())
 	{
-		output("\n\nPippa may have orgasmed, but you’re harder than ever, your [pc.cock] nestled up against her head. You lube your [pc.cockNoun] up with the erotic mixture of girl cum and [pc.milkNoun] already coating your hand and begin to masturbate. Getting both your [pc.cockNoun] and [pc.breastsNoun] milked at the same time, you know you won’t last long, but you gently, steadily, run your wet hand up and down your shaft nonetheless. You feel your loins tightening and your orgasm bubbling up, your hand wrapped around you [pc.cockNoun] and Pippa’s plump, soft lips wrapped around your erect [pc.nippleNoun]. You cross the threshold, and your [pc.cum] spurts out, getting in Pippa’s hair, and even on her face. She just ignores it; your [pc.breasts] aren’t empty quite yet.");
+		output("\n\nPippa may have orgasmed, but you’re harder than ever, your [pc.cock] nestled up against her head. You lube your [pc.cock] up with the erotic mixture of girl cum and [pc.milkNoun] already coating your hand and begin to masturbate. Getting both your [pc.cock] and [pc.breasts] milked at the same time, you know you won’t last long, but you gently, steadily, run your wet hand up and down your shaft nonetheless. You feel your loins tightening and your orgasm bubbling up, your hand wrapped around your [pc.cock] and Pippa’s [pippa.lips] wrapped around your [pc.nipple]. You cross the threshold, and your [pc.cum] spurts out, getting in Pippa’s hair, and even on her face. She just ignores it, having more important matters to attend to; your [pc.breasts] aren’t empty quite yet.");
 	}
 	else if (pc.hasVagina())
 	{
-		output("\n\nPippa may have orgasmed, but you’re wetter than ever, her hanging hair brushing up against and tickling your [pc.pussy]. You rub the erotic mixture of girl cum and [pc.milkNoun] still coating your hand into your [pc.pussyNoun] and begin to masturbate. You hand rubbing your [pc.pussyNoun] and Pippa’s tongue rubbing around your sensitive [pc.nippleNoun] at the same time, you know you won’t last long, but you rub and finger onward. You feel your loins tightening and your orgasm bubbling up, your fingers probing your wet, warm depths, and Pippa’s wet, soft tongue probing at your erect [pc.nippleNoun] You cross the threshold, and your [pc.girlcum] spurts out, soaking Pippa’s bed and a few loose strands of her hanging hair. She surely felt your shuddering, but continues her sucking, determined to drain your [pc.breasts] and fill her stomach.");
+		output("\n\nPippa may have orgasmed, but you’re wetter than ever, her hanging hair brushing up against and tickling your [pc.pussy]. You rub the erotic mixture of girl cum and [pc.milkNoun] still coating your hand into your [pc.pussy] and begin to masturbate. Your hand rubbing your [pc.pussy] and Pippa’s tongue rubbing around your sensitive [pc.nippleNoun] at the same time, you know you won’t last long, but you rub and finger onward. You feel your loins tightening and your orgasm bubbling up, your fingers probing your wet, warm depths, and Pippa’s wet, soft tongue probing at your erect [pc.nippleNoun] You cross the threshold, and your [pc.girlcum] spurts out, soaking Pippa’s bed and a few loose strands of her hanging hair. She surely felt your shuddering, but continues her sucking, determined to drain your [pc.breasts] and fill her stomach.");
 	}
 	
 	output("\n\nThe rest of the breastfeeding session goes by slowly, but not in a bad way; you’re very relaxed as Pippa slowly, rhythmically, drains you. It’s a weird thought, but it almost is like you’re babying her. She even now has her eyes closed, seemingly as relaxed as you. She, however, really can use that tongue of hers. It’s unclear if she’s trying to make you feel good, or if it’s simple instinct, but it feels as if she’s trying to get you off with just her tongue on your [pc.nipple]. ");
 	
 	if (pc.hasGenitals())
 	{
-		output("If you hadn’t just brought yourself to orgasm, you’re sure that she would have.");
+		output("If you hadn’t just brought yourself to orgasm, you’re sure that she’d succeed.");
 	}
 	else
 	{
 		output("Whether or not it’s what she’s trying to do, she’s succeeding. As the pressure in your [pc.breasts] drops, the pressure in your loins builds. Your whole body tightens up, and all at once, releases its tension, shudders running through it.");
 	}
 	
-	output("\n\nFinally, Pippa is either full, or believes she’s drained you. She releases your [pc.nippleNoun], wordlessly sits up and puffs up her cheeks as if to indicate her mouth is full. You get the idea and open your mouth, and she leans over, locks her lips with yours, and spits some of your [pc.milk] into your mouth. You savour your own taste shortly, and then swallow. She just smiles, then leans over again to give you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower...and probably do laundry. I’ll see you later.”</i>");
+	output("\n\nFinally, Pippa is either full, or believes she’s drained you. She releases your [pc.nipple], wordlessly sits up and puffs up her cheeks as if to indicate her mouth is full. You get the idea and open your mouth, and she leans over, locks her lips with yours, and spits some of your [pc.milk] into your mouth. You savour your own taste shortly, and then swallow. She just smiles, then leans over again to give you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower...and probably do laundry. I’ll see you later.”</i>");
 	
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
@@ -1967,16 +2050,18 @@ public function pippaFeedMilkTakeControl():void
 }
 
 // Let Pippa take control of the breastfeeding session
-public function pippaFeedMilkHerControl():void
+public function pippaFeedMilkHerControl(gaveControl:Boolean):void
 {
 	clearOutput();
 	clearMenu();
 	showPippa(true);
 	
-	output("You do nothing, letting Pippa continue to nurse for a brief time, before she pulls you down onto the bed and flips your positions so that she’s on top. She straddles your [pc.leg] and, having removed your [pc.nippleNoun] from her mouth during the transition, she declares, <i>“Now this, I can work with.”</i> She lightly wiggles her hips back and forth, and runs her fingers around your [pc.nipples], evidently excited. Having already drained your right [pc.breastNoun], she takes the opportunity to switch, latching her mouth onto your left [pc.nippleNoun].");
+	if (gaveControl) output("You do nothing, letting Pippa continue to nurse for a brief time, before she pulls you down onto the bed and flips");
+	else output("Aiming to drink some [pc.milk] and get off too, Pippa takes action, pulling you down onto the bed and flipping");
 	
+	output(" your positions so that she’s on top. She straddles your [pc.leg] and, having removed your [pc.nipple] from her mouth during the transition, she declares, <i>“Now this, I can work with.”</i> She lightly wiggles her [pippa.hips] back and forth, and runs her fingers around your [pc.nipples], evidently excited. Having already drained your right [pc.breastNoun], she takes the opportunity to switch, latching her mouth onto your left [pc.nippleNoun].");
 	
-	output("\n\nPippa sucks almost roughly, like there’s no tomorrow. The way her tongue moves over and around your [pc.nipple], it’s like she was born to massage with whatever appendage possible. Contrasting and alternating with her soft tongue are her teeth, nibbling at your [pc.nippleNoun] not quite enough to hurt, but certainly not gently. Her hands move to your other breast, twisting, pinching, and teasing out any [pc.milkNoun] that she may have missed with her mouth. Despite the fact that Pippa completely gorged herself, your [pc.breasts] are bountiful, and [pc.milk] squirts out, running down your body and Pippa’s hands. You can feel Pippa’s warm, wet pussy on your [pc.leg], and soon enough, she begins grinding her hips, rubbing herself on your [pc.legNoun].");
+	output("\n\nPippa sucks on your [pc.nipples] almost roughly, like it’s her final meal. The way her tongue moves over and around your [pc.nipple], it’s like she was born to massage with whatever appendage possible. Contrasting and alternating with her soft tongue are her teeth, nibbling at your [pc.nipple] not quite enough to hurt, but certainly not gently. Her hands move to your other breast, twisting, pinching, and teasing out any [pc.milkNoun] that she may have missed with her mouth. Despite the fact that Pippa completely gorged herself, your [pc.breasts] are bountiful, and [pc.milk] squirts out, running down your body and Pippa’s hands. You can feel Pippa’s [pippa.pussy] on your [pc.leg], and soon enough, she begins grinding her hips, rubbing herself on your [pc.legNoun].");
 	
 	output("\n\n");
 	
@@ -1997,7 +2082,7 @@ public function pippaFeedMilkHerControl():void
 			if (pc.hasCocks()) output("one of your [pc.cocks]");
 			else output("your [pc.cock]");
 			
-			output(" against her thigh, allowing it to run between them, now getting lubed up with both her pussy juice and the [pc.milkNoun] that was soaking her hand. ");
+			output(" against it, allowing it to run between hand and thigh. As it does, it’s lubed up with both the pussy juice running down her thigh and the [pc.milkNoun] soaking her hand. ");
 			
 			if (pc.hasVagina())
 			{
@@ -2016,7 +2101,7 @@ public function pippaFeedMilkHerControl():void
 	else if (pc.hasVagina()) output(", as does the finger fucking your [pc.pussy]’s getting");
 	else output(", as does the motion of her tongue licking and caressing your [pc.nippleNoun]");
 	
-	output(". The pressure in your breasts is rapidly dropping, but it’s replaced with a growing pressure in your loins. You both go over the edge at the same time. Pippa siezes up, coating your [pc.thigh] in her juices and painfully biting down on your [pc.nipple]. This isn’t enough to stop your own orgasm, your ");
+	output(". The pressure in your breasts is rapidly dropping, but it’s replaced with a growing pressure in your loins. You both go over the edge at the same time. Pippa seizes up, coating your [pc.thigh] in her juices and painfully biting down on your [pc.nipple]. This, however, isn’t enough to stop your own orgasm, your ");
 	
 	if (pc.hasGenitals())
 	{
@@ -2034,10 +2119,12 @@ public function pippaFeedMilkHerControl():void
 	}
 	else
 	{
-		output("own body siezing up before descending into shuddering aftershocks."); 
+		output("own body siezing up before descending into shuddering aftershocks.");
 	}
 	
-	output("\n\nAs you both come down from your orgasmic highs, Pippa finally releases your [pc.nippleNoun] and slides off of you coming to lay next to you. After resting for a bit, she wordlessly sits up and leans over to kiss you, or so you think. She locks her lips with yours, and spits some of your [pc.milk] into your mouth. Caught off guard, you nearly choke, but manage to swallow it, and she giggles, before giving you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower...and probably do laundry. I’ll see you later.”</i>");
+	output(" Your bodies shudder and shake together, and Pippa’s feeding loses it’s franticness, but doesn’t stop. She continues to suck, getting every drop of [pc.milk] she can as you come down from your orgasmic highs.");
+	
+	output("\n\nFinally finished, Pippa releases your [pc.nippleNoun] and slides off of you coming to lay next to you. After resting for a bit, she wordlessly sits up and leans over to kiss you, or so you think. She locks her [pippa.lips] with yours, and spits some of your [pc.milk] into your mouth. Caught off guard, you nearly choke, but manage to swallow it, and she giggles, before giving you a proper kiss. <i>“Thanks for the meal, " + pippaCallsSteele() + ". I need to shower...and probably do laundry. I’ll see you later.”</i>");
 	
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
@@ -2055,18 +2142,19 @@ public function pippaGetFucked():void
 	clearMenu();
 	showPippa(true);
 	
-	if (flags["PIPPA_FUCKED_BY"] == 1) output("You ask Pippa to fuck you. She nods. <i>“Just a sec.”</i> She goes to retrieve her strapon. When she comes back, she’s stripped of her yoga pants and tanktop and now wearing her [pippa.lowerUndergarment] and a salacious smile.");
+	if (flags["PIPPA_FUCKED_BY"] == 1) output("You ask Pippa to fuck you. She smiles and nods. <i>“Just a sec.”</i> She goes to retrieve her strapon. When she comes back, she’s stripped of her yoga pants and tanktop and now wearing her [pippa.lowerUndergarment] and a salacious smile.");
 	else output("Pippa beams. <i>“I’ve been looking forward to trying this thing out.”</i> Strapon already on hand, she quickly strips off her yoga pants and tanktop, and pulls on the [pippa.lowerUndergarment] you bought her.");
 	
 	output(" She activates the underwear and her [pippa.hardlightCock] flops out into existence");
 	
-	if (flags["PIPPA_FUCKED_BY"] != 1) output(", a surprised, but pleased gasp escaping her lips in response to the new sensation. She ignores you briefly, gently running her hands along her new holo-cock, gaining a new appreciation for technology. She lets off and brings her attention back to you");
+	if (flags["PIPPA_FUCKED_BY"] != 1) output(", a surprised, but pleased gasp escaping her [pippa.lips] in response to the new sensation. She ignores you briefly, gently running her hands along her new holo-cock, gaining a new appreciation for technology. She lets off and brings her attention back to you");
+	else output(", a pleased, but subdued moan escaping her [pippa.lips] in response to the now familiar sensation. She brushers her hands over her [pippa.hardlightCock] briefly, but doesn’t take her attention off of you");
 	
-	output(". <i>“How about, first things first, you get me ready?”</i> You comply, kneeling before her. To start, you gently wrap your hand around her shaft and plant a few soft kisses along its length. With it semi-erect, you slightly firm up your grip and massage her to full erection. As you do, Pippa’s breathing grows heavier, and she gently runs her hands " + (pc.hasHair() ? "through" : "along") + " your [pc.hairDescript]. With her [pippa.hardlightCockNoun] completely erect, you kiss the head, before slipping it into your mouth. You run your [pc.tongue] and [pc.lips] all around its entire length, getting it nice, wet, and ready. Pippa continues to massage your head as you do, but you can feel her grip tensing up ever so slightly.");
+	output(". <i>“How about, first things first, you get me ready?”</i> You comply, kneeling before her. To start, you gently wrap your hand around her shaft, brushing your [pc.lips] along its length and planting a few soft kisses. With it semi-erect, you slightly firm up your grip and massage her to full erection. As you do, Pippa’s breathing grows heavier, and she gently runs her hands " + (pc.hasHair() ? "through" : "along") + " your [pc.hairDescript]. With her [pippa.hardlightCockNoun] completely erect, you kiss the head, before slipping it through your [pc.lips] and into your mouth. You run your [pc.tongue] and [pc.lips] all around its entire length, getting it nice, wet, and ready. Pippa continues to massage your head as you do, but you can feel her grip tensing up ever so slightly.");
 	
-	output("\n\nPippa bites her lower lip, and looks down at you, staring into your eyes, her grip tightening more. <i>“Your mouth is so warm and wet. Are you drooling over this fake cock?”</i> Even if you wanted to answer, you couldn’t; now with a firm grip on your head, she pushes you into her [pippa.hardlightCock]. After " + (pc.canDeepthroat() ? "bottoming out her [pippa.hardlightCockNoun] in your mouth" : "pushing you as far down as possible onto her [pippa.hardlightCockNoun]") + " she holds your head in place and pulls out before thrusting back in. She quickly works up a rhythm, fucking your mouth, heavily breathing and grunting. All you can do is keep your balance and be sure to breathe through your nose. Soon, she thrusts as far into your mouth as possible, and doubles over, wrapping her arms around your head. You feel shudders running through her body.");
+	output("\n\nPippa bites her lower lip, and looks down at you, staring into your [pc.eyes], her grip tightening more. <i>“Your mouth is so warm and wet. Are you drooling over this fake cock?”</i> Even if you wanted to answer, you couldn’t; now with a firm grip on your head, she pushes you into her [pippa.hardlightCock]. After " + (pc.canDeepthroat() ? "bottoming out her [pippa.hardlightCockNoun] in your mouth" : "pushing you as far down as possible onto her [pippa.hardlightCockNoun]") + " she holds your head in place and pulls out before thrusting back in. She quickly works up a rhythm, fucking your mouth, heavily breathing and grunting. All you can do is keep your balance and be sure to breathe through your nose as she fucks your mouth like a sex toy, drool escaping from the sides. Soon, she thrusts as far into your mouth as possible, proving into your throat, and doubles over, wrapping her arms around your head. You feel shudders running through her body and her hips buck uncontrollably.");
 	
-	output("\n\nFinally, she stands up and lets go of your head, letting her [pippa.hardlightCockNoun] out, and allowing you to breath in a nice, big breath of air. <i>“That was quite some warm up, " + pippaCallsSteele() + ".”</i> Her [pippa.hardlightCock] is still hard. Well, when you said you wanted to be fucked, you didn’t mean your mouth anyway. She circles around behind you. She bends over and grabs your ass, lifing you up");
+	output("\n\Finally the shudders die down, she stands up, and she lets go of your head, letting her [pippa.hardlightCock] out, and allowing you to breath in a nice, big breath of air. <i>“That was quite some warm up, " + pippaCallsSteele() + ".”</i> Her [pippa.hardlightCock] is still hard. Well, when you said you wanted to be fucked, you didn’t mean your mouth anyway. She circles around behind you, then grabs you by your [pc.hips], lifing you up");
 	
 	if (pc.isTaur()) output(" such that you’re kneeling in the front, but your [pc.ass] is up in the air, level with Pippa’s waist.");
 	else output(", and then pushing you down into a bent over position.");
@@ -2077,33 +2165,33 @@ public function pippaGetFucked():void
 	{
 		vagOrAss = rand(2) - 1;
 		
-		output(" <i>“Now then....”</i> You feel the head of her [pippa.hardlightCock] brushing along your crotch, between your [pc.assholeNoun] and [pc.vaginasNoun], teasing you. <i>“Which hole do I want to take?”</i>");
+		output(" <i>“Now then....”</i> You feel the head of her [pippa.hardlightCock] brushing along your crotch, between your [pc.asshole] and [pc.vaginas], teasing you. <i>“Which hole do I want to take?”</i>");
 	}
 	else
 	{
 		vagOrAss = -1;
 		
-		output(" <i>“Now then....”</i> You feel the head of her [pippa.hardlightCock] brushing and circling around your [pc.assholeNoun], teasing you. <i>“Your asshole looks so lovely and inviting.”</i>");
+		output(" <i>“Now then....”</i> You feel the head of her [pippa.hardlightCock] brushing and circling around your [pc.asshole], teasing you. <i>“Your asshole looks so lovely and inviting.”</i>");
 	}
 	
 	if (vagOrAss == 0) vagOrAss == rand(pc.vaginas.length);
 	
-	output("\n\nThe tip of her [pippa.hardlightCockNoun] comes to rest on your [pc.vagOrAss " + vagOrAss + "] and she slowly pushes in, " + (vagOrAss == -1 ? "spreading your " + RandomInCollection("ring", "rim", "hole") : "parting your " + RandomInCollection("folds", "lips")) + " and burying her length inside of you. ");
+	output("\n\nThe tip of her [pippa.hardlightCock] comes to rest on your [pc.vagOrAss " + vagOrAss + "] and she slowly pushes in, " + (vagOrAss == -1 ? "spreading your " + RandomInCollection("ring", "rim", "hole") : "parting your " + RandomInCollection("folds", "lips")) + " and burying her length inside of you. ");
 	
 	pc.holeChange(vagOrAss, pippa.hardLightVolume());
 	
-	output(" For a short bit, she doesn’t move her hips, leaving her [pippa.hardlightCock] buried in you. Her hands, however, she moves, rubbing them along your [pc.hips], gently massaging and squeezing them. The massaging and the sensation of your filled hole arouses you");
+	output(" For a short bit, she doesn’t move her [pippa.hips], leaving her [pippa.hardlightCock] buried in you. Her hands, however, she moves, rubbing them along your [pc.hips] and [pc.ass], gently massaging and squeezing as she does. The massaging and the sensation of your filled [pc.vagOrAss " + vagOrAss + "] arouses you");
 	
 	if (pc.hasGenitals())
 	{
 		output(", leaving your");
 		
-		if (pc.hasCock()) output(" [pc.cocksNoun] hard");
+		if (pc.hasCock()) output(" [pc.cocks] hard");
 		if (pc.isHerm()) output(" and your");
 		if (pc.hasVagina()) output(" [pc.pussies] wet");
 	}
 	
-	output(". You impatiently wiggle your hips, grinding into Pippa. She delivers a sharp smack to your ass. <i>“I just wanted to enjoy the feeling of your [pc.vagOrAssNoun " + vagOrAss + "] wrapped around me a bit.");
+	output(". You impatiently wiggle your [pc.hips], grinding into Pippa. She delivers a sharp smack to your [pc.ass]. <i>“Just wait a second; I wanted to enjoy the feeling of your [pc.vagOrAssNoun " + vagOrAss + "] wrapped around me a bit.");
 	
 	if (flags["PIPPA_FUCKED_BY"] != 1) output(" It’s my first time feeling this, after all.");
 	
@@ -2116,7 +2204,7 @@ public function pippaGetFucked():void
 	else if (pc.isMischievous()) output("<i>“I’m sure the feeling’s wonderful, but I can only take so much teasing.”</i>");
 	else output("<i>“I think you’ll like the feeling even more once you start moving.”</i>");
 	
-	output("\n\nShe says nothing more, but gently rubs your ass in the same spot she’d just spanked it and begins moving, slowly at first. She draws her smooth hardlight cock out until the tip is just barely held inside you, then pushes back in. She builds up her rhythm, thrusting in rougher and faster than she pulls out. As she does, she rubs, and massages your [pc.hips], frequently interjecting with a sharp spank to your ass. You can feel the building pleasure steal some of the dexterity from her fingers, her hands tensing and twitching ever so slightly as she massages you. She draws her hands away from you, and you prepare yourself for a spank that doesn’t come.");
+	output("\n\nShe says nothing more, but gently rubs your [pc.ass] in the same spot she’d just spanked it and begins moving, slowly at first. She draws her smooth hardlight cock out until the tip is just barely held inside you, then pushes back in. She builds up her rhythm, thrusting in rougher and faster than she pulls out. As she does, she rubs, and massages your [pc.hips] and [pc.ass], frequently interjecting with a sharp spank to your [pc.buttcheeks]. You can feel the building pleasure steal some of the dexterity from her fingers, her hands tensing and twitching ever so slightly as she massages you. She draws her hands away from you, and you prepare yourself for a spank that doesn’t come.");
 	
 	if (pc.hasGenitals())
 	{
@@ -2128,36 +2216,36 @@ public function pippaGetFucked():void
 			
 			if (pc.hasCock())
 			{
-				output("grab your [pc.cock]. Pippa strokes your shaft with the same rhythm of her thrusts, a rough and uncomposed handjob, different from what you’d normally expect from her. Despite the rough motions, her hands are soft and she’s applying just enough pressure. She strokes down as she thrusts into you, fingers playing up and down your shaft as they go down to meet her hips at your body, before separating again.");
+				output("grab your [pc.cock]. Pippa strokes your shaft with the same rhythm of her thrusts, a rough and uncomposed handjob, different from what you’d normally expect from her. Despite the rough motions, her hands are soft and she’s applying just enough pressure. She strokes down as she thrusts into you, fingers playing up and down your shaft as they go down to meet her [pippa.hips] at your body, before separating again.");
 			}
 			else
 			{
-				output("begin to rub your [pc.pussy]. Pippa only briefly teases her fingers along the outside, but with it already wet and ready, she quickly slips her fingers inside. She swirls her fingers around a bit, exploring and spreading you from within, before quickly moving on to finger fucking you. She pushes in and out alternately with the thrusting of her hips, pushing fingers in as her hips pull out and vice versa.");
+				output("begin to rub your [pc.pussy]. Pippa only briefly teases her fingers along the outside, but with it already wet and ready, she quickly slips her fingers inside. She swirls her fingers around a bit, exploring and spreading you from within, before quickly moving on to finger fucking you. She pushes in and out alternately with the thrusting of her hips, pushing fingers in as her [pippa.hips] pull out and vice versa.");
 			}
 		}
 		else
 		{
-			output("s spreading your [pc.buttcheeks]. Pippa keeps one hand spreading your ass open, and begins rubbing the ring of your asshole with a finger on her other hand. It feels as though she’s wet her fingers with her mouth, rubbing her spit into your [pc.asshole]. You feel your asshole spreading as she pushes one finger in, and then spreading further as a second finger joins in. She hooks her fingers into your ass, pushing in with her fingers when she pulls her [pippa.hardlightCock] out and vice versa.");
+			output("s spreading your [pc.buttcheeks]. Pippa keeps one hand spreading your [pc.ass] open, and begins rubbing the ring of your [pc.asshole] with a finger on her other hand. It feels as though she’s wet her fingers with her mouth, rubbing her spit into your [pc.asshole]. You feel your [pc.asshole] spreading as she pushes one finger in, and then spreading further as a second finger joins in. She hooks her fingers into your ass, pushing in with her fingers when she pulls her [pippa.hardlightCock] out and vice versa.");
 		}
 		
-		output(" You begin to feel a familiar pressure rising in your loins, but the motion of her fingers becomes more and more frantic and off kilter, eventually losing the rhythm of her thrusting hips.");
+		output(" With the dual assault of Pippa [pippa.hardlightCock] and fingers, you begin to feel a familiar pressure rising in your loins; she’s cleary feeling the same, as the motion of her fingers becomes more and more frantic and off kilter, eventually losing the rhythm of her thrusting hips.");
 		
-		output("\n\nPippa removes her fingers from you entirely and");
+		output("\n\nPippa hasn’t been going at you with her hand for long, but she suddenly removes her fingers from you entirely and");
 	}
 	else output("\n\nInstead, Pippa");
 	
-	output(" leans over you, wrapping her hands around your body. The thrusting of her hips picks up, becoming faster and wilder. She’s like an animal in heat at this point, her heavy breathing and moaning descending into grunting and squealing. Now only her hips move, thrusting roughly into you as though she’s preparing to spill seed as deep into your " + (vagOrAss == -1 ? "bowels" : "womb") + " as possible. As you’re fucked like a sow at the mercy of a boar, pressure" + (pc.hasGenitals() ? " again " : " ") + "builds in your loins. Before long, her wild thrusting pushes you over the edge, ");
+	output(" leans over you, wrapping her hands around your body, pressing her [pippa.belly] and [pippa.chest] into your back. The thrusting of her [pippa.hips] picks up, becoming faster and wilder. She’s like an animal in heat at this point, her heavy breathing and moaning descending into grunting and squealing. Now only her [pippa.hips] move, thrusting roughly into you as though she’s preparing to spill seed as deep into your " + (vagOrAss == -1 ? "bowels" : "womb") + " as possible. As you’re fucked like a lusty sow at the mercy of a wild boar, pressure " + (pc.hasGenitals() ? "continues to build" : "builds") + "in your loins and, before long, her wild thrusting prompts it to boil over, ");
 	
 	if (pc.hasGenitals()) {
 		if (pc.hasCock()) output("your [pc.cocks] shooting [pc.cum] onto the floor");
 		if (pc.isHerm()) output(" and ");
-		if (pc.hasVagina()) output("your [pc.pussies] spraying [pc.girlcum] onto " + (vagOrAss == -1 ? "the floor" : "her [pippa.hardlightCockNoun]"));
+		if (pc.hasVagina()) output("your [pc.pussies] spraying [pc.girlcum] onto " + (vagOrAss == -1 ? "the floor" : "her [pippa.hardlightCock]"));
 		
 		output(".");
 	}
 	else output("shudders and twitches running through your body.");
 	
-	output(" Your [pc.vagOrAssNoun " + vagOrAss + "] clenches around Pippa’s holo-cock and you pull her over the edge with you. She thrusts as far into you as she can go and tightens her grip on you, her noises coming to a halt. There’s no feeling of cum shooting into you, but with your bodies pressed together so tightly, you feel her every spasm.");
+	output(" Your [pc.vagOrAss " + vagOrAss + "] clenches and spasms around Pippa’s [pippa.hardlightCock] and you pull her over the edge with you. She thrusts as far into you as she can go and tightens her grip on you, her noises coming to a halt. There’s no feeling of cum shooting into you, but with your bodies pressed together so tightly, you feel her every twitch and shudder.");
 	
 	output("\n\nPippa’s movements die down, slowly but surely, and you hear her release her breath. She says nothing at first, still holding onto you, and regaining her breath. She finally stands up, pushing herself off of you. Her [pippa.hardlightCock] rapidly disappears from inside of you, as she switches it off. ");
 	
