@@ -267,7 +267,7 @@ package classes.Items.Transformatives
 						//PC is garbed:
 						if(!pc.isCrotchExposed()) output("into your [pc.lowerGarment]");
 						else if(pc.legCount > 1) output("between your [pc.legs]");
-						else output("");
+						else output("between your [pc.thighs]");
 						output(" and find them completely drenched with the copious amount of fluids that drip from your vagina. Your lips are swelling obscenely around your fingers, puffing up deliciously as you grow more aroused. Then, all at once, your arousal dies off as the transformation ends just as abruptly as it started, leaving you needy, denied a well deserved orgasm, with wet and now much muskier fingers. <b>You now have a canine vagina that swells during arousal!</b>");
 						pc.libido(2);
 						pc.shiftVagina(x,GLOBAL.TYPE_CANINE);
@@ -414,20 +414,19 @@ package classes.Items.Transformatives
 							if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))
 							{
 								output(", your [pc.leg] painfully shifting into a digitigrade leg");
-								if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output(" and ");
+								if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output(" and");
 							}
 							//Leg not Paws:
 							if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS))
 							{
-								if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(", your [pc.leg] ");
-								output("slowly gaining an adorable padded paw, tipped with claws.");
+								if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(", your [pc.leg]");
+								output(" slowly gaining an adorable padded paw, tipped with claws");
 							}
 							//Leg is Digitigrade and Paws:
 							if(pc.hasLegFlag(GLOBAL.FLAG_PAWS) && pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(", the muscles readjusting into a more canine shape");
 							output(".");
 							if(!pc.hasLegFlag(GLOBAL.FLAG_FURRED)) output(" The discomfort is replaced by an itch as hairs starts to grow. Soon your leg is completely covered in a beautiful coat of [pc.furColor] fur.");
-							output(" Seconds later, a seam forms in the middle, and your leg splits into two. ");
-							output(" When it’s all over, you stand up on <b>your single canine leg.</b>");
+							output(" Seconds later, a seam forms in the middle, and your leg splits into two. When it’s all over, you stand up on <b>your new canine legs.</b>");
 							pc.legCount = 2;
 							pc.genitalSpot = 0;
 						}
@@ -474,7 +473,7 @@ package classes.Items.Transformatives
 				
 				//Fur Color Change
 				//Effect: PC has fur - Fur color changes sometimes, usually when there's nothing else to change.
-				var newColor:String = RandomInCollection(["grey","cream","white","golden","brown","silver","orange","black"]);
+				var newColor:String = RandomInCollection(["gray","cream","white","golden","brown","silver","orange","black"]);
 				if(pc.hasFur() && pc.furColor != newColor && rand(5) == 0 && changes < changeLimit)
 				{
 					if(pc.furColorUnlocked(newColor))

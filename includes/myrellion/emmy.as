@@ -3288,7 +3288,7 @@ public function showerWithEmEmsPostFuck():void
 	}
 	else if(rand(4) == 0) output("she’s kneeling in front of you, bouncing her freshly-cleaned jugs around your [pc.cockBiggest] - and her own.");
 	else if(rand(3) == 0) output("she’s guiding you right back into her vagina, determined to ride you to a second orgasm before she has to return to the duller, outside world, where she has to contain her urges rather than revel in them.");
-	else if(rand(2) == 0) output("she’s on her knees and sucking you like her life depends on it, all the while hosing pre and cum into shower’s industrial strength drain.");
+	else if(rand(2) == 0) output("she’s on her knees and sucking you like her life depends on it, all the while hosing pre and cum down the shower’s industrial strength drain.");
 	else output("she has you on your back, your face buried deep in her cum-drenched pussy while her lips polish any remaining cunt residue from [pc.oneCock]. Nuzzling into her most intimate of places would be relaxing if she wasn’t slurping on you like you’re the galaxy’s last popsicle.");
 
 	output("\n\nAfter another orgasm - ");

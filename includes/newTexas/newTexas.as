@@ -42,7 +42,7 @@ public function customsAndCheckInOnNewTexas():Boolean
 	showBust("OGRAM","AMMA");
 	author("Savin");
 	output("The Customs and Visitor Check-in office dominates the only passage between the spaceport and the ranch proper, ensuring anybody coming or going gets a proper screening. Two desks are set up, facing each other across the thoroughfare: one is labeled <i>“Customs and Weapons Check,”</i> the other, <i>“Visitor Check-in.”</i> Very straightforward. ");
-	//{If First time going through:}
+	//If First time going through:
 	if(flags["NEW_TEXAN_CUSTOMS_MET"] == undefined)
 	{
 		output("\n\nA broad-chested, muscular bull-man is sitting lazily behind the Customs desk, leaning back in his chair and staring off into space. When he sees you, he sits up a little straighter, though in so doing he gasps a bit. Something seems to be distracting him, though you can’t see what... <i>“Ah. Sorry, slow day. Come on over, let’s get you checked out.”</i>");
@@ -53,10 +53,10 @@ public function customsAndCheckInOnNewTexas():Boolean
 	else if(flags["REFUSED_TEXAN_DISARM"] != undefined)
 	{
 		output("\n\n<i>“Changed your mind yet?”</i> Ogram says, picking up a clipboard full of paperwork for you.");
-		//{Same options} as first time meeting
+		//Same options as first time meeting
 		addButton(0,"Customs",repeatOgramApproach);
 	}
-	//{If Repeat:}
+	//If Repeat:
 	else
 	{
 		output("Ogram and Amma are sitting behind their desks, working hard at looking like they’re working hard. Every few seconds, Amma gives a tiny, muted gasp ");
@@ -120,7 +120,7 @@ public function noWeaponsInTexasHoss():void
 	flags["REFUSED_TEXAN_DISARM"] = undefined;
 	output("<i>“I’m unarmed anyway,”</i> you say with a shrug.");
 	output("\n\nOgram blinks. <i>“Huh. Did somebody actually read the FAQ on the website for once, or do you just prefer to lay in with your fists? Anyway, just sign the paperwork and you’re all good.”</i>");
-	//{Resume from Disarm, below}
+	//Resume from Disarm, below
 	customsPassFinale();
 }
 
@@ -135,7 +135,7 @@ public function disarmMeHoss():void
 	output("<i>“Alright,”</i> you say warily, handing over your armaments.");
 	output("\n\nTrue to his word, Ogram hooks a paper tag over your gear and stows it in a small container behind his desk. <i>“Thankya kindly. Now just finish off that paperwork, and you’re all good.”</i>");
 
-	//{No weapons resumes here}
+	//No weapons resumes here
 	customsPassFinale();
 }
 public function customsPassFinale():void
@@ -342,7 +342,7 @@ public function oggysCurrentJob():void
 	output("\n\n<i>“Eh,”</i> Og says, leaning back and looking right past you. <i>“It’s got a great view, for starters.”</i>");
 	output("\n\nYou follow his gaze over to Amma, who’s currently resting her heavy rack on her desk while she types. Seeing the two of you looking, she gives you an exaggerated wink.");
 	output("\n\nOgram hits a key on his terminal as you turn your attention back to him. Amma gives a muted little gasp, barely audible behind you. <i>“Not much else to do for someone with my skill set, either. We don’t exactly need cops around here, you know. Guess I could have been a breeder bull... gotta say, that actually has a lot of appeal, sticking your dick in a dozen different sluts every day... but then I’d have a million little Ograms running around calling me daddy. That’d be pretty fucking weird.”</i>");
-	//{If Ogram option unlocked in Amma’s menu:}
+	//If Ogram option unlocked in Amma’s menu:
 	if(flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] != 0)
 	{
 		output("\n\nBehind you, Amma smirks and says, <i>“When’re you going to put </i>one<i> little Ogram in me, babe?”</i>");
@@ -411,7 +411,7 @@ public function askOggyForSex():void
 		output("\n\nOgram grins, standing up and reaching for his zipper. <i>“Think you can handle the two of us, " + pc.mf("buddy","beautiful") + "?”</i>");
 		output("\n\nAmma grins, pressing her twin melons against you. <i>“Ready for the fuck of a lifetime, [pc.name]?”</i>");
 	}
-	//{Repeat}
+	//Repeat
 	else
 	{
 		output("<i>“So... how about you and Amma take a break. You’re working too hard.”</i>");
@@ -547,7 +547,7 @@ public function askAmmaAboutHerSelf():void
 	author("Savin");
 	showName("\nAMMA");
 	showBust("AMMA");
-	//{Unlocks <i>“Ogram”</i> talk option}
+	//Unlocks “Ogram” talk option
 	flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] = 1;
 	output("<i>“So, tell me about yourself,”</i> you say, inching a little closer to the cow-girl.");
 	output("\n\n<i>“Aw, you’re sweet,”</i> Amma says with a big smile. <i>“I’m just a lil’ native cow. Born and raised on NT! My ancestors came over with the first colonists, even, so I’m as pure Texan as you can get.”</i> She beams, swelling with pride at her family lineage.");
@@ -588,7 +588,7 @@ public function sexChatWithAmma():void
 	author("Savin");
 	showName("\nAMMA");
 	showBust("AMMA");
-	//{First time:}
+	//First time:
 	if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined)
 	{
 		output("Pulling yourself up onto Amma’s desk, you lean in and ask the busty, bovine bimbo if she’d be willing to give you a more intimate introduction to her planet. She gives you a lusty grin and leans in, giving you a close-up view of her massive, bovine cleavage. Your mouth is all but watering already.");
@@ -596,7 +596,7 @@ public function sexChatWithAmma():void
 		output("\n\nJust as she’s about to make contact, a hand grabs your [pc.butt], squeezing hard. You just about jump out of your skin as Ogram growls into your ears, <i>“But we come as a pair, Amma and I. Think you can handle the two of us, " + pc.mf("buddy","beautiful") + "?”</i>");
 		output("\n\nAmma grins, pressing her twin melons against you. <i>“Ready for the fuck of a lifetime, [pc.name]?”</i>");
 	}
-	//{Repeat}:
+	//Repeat:
 	else
 	{
 		output("<i>“So... how about you and Ogram take a break. You’re working too hard.”</i>");
@@ -798,7 +798,7 @@ public function useDaMilkar():void
 	author("Savin");
 	showCarrie();
 	
-	//{PC doesn't have a dick}
+	//PC doesn't have a dick
 	if(!pc.hasCock())
 	{
 		showName("MILKER\nOPERATOR");
@@ -811,7 +811,7 @@ public function useDaMilkar():void
 		addButton(0,"Next",mainGameMenu);
 		return;
 	}
-	//{First time, PC has a dick}
+	//First time, PC has a dick
 	if(StatTracking.getStat("milkers/prostate milker uses") == 0)
 	{
 		output("You step up to the cow-girl sitting on the stool and ask if you can use the machine here. The busty bovine hops up and beams at you. <i>“Hey there! Sure you can, all the milkers - even this big lug - are open to visitors. My name’s Carrie, and I’ll be taking care of you while you use it, okay? Before we get started, I gotta tell you: unlike the normal milkers, the boy-milker here’s pretty involved. You’re gonna have to have me walk you through using it the first time at least, so I hope you’re comfortable with a girl seeing you naked.”</i>");
@@ -852,7 +852,7 @@ public function FirstManMilkUseNoThanks():void
 	author("Savin");
 	showCarrie();
 	
-	//{PC will get First Time interactions until they decide to go through with it}
+	//PC will get First Time interactions until they decide to go through with it
 	output("If that’s the case, no thank you.");
 
 	output("\n\nCarrie shrugs. <i>“Suit yourself, sugar. I’m sure there’s plenty of girls who’d be happy to take care of you if you get too pent up, so no worries!”</i>");
@@ -1193,7 +1193,7 @@ public function getFoodAtBigTs():void
 	else addDisabledButton(4,"BBQ To-Go","BBQ To-Go","You need 20 credits to afford BBQ To-Go.");
 	//If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: 
 	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) addButton(5,"“SpecialOrder”",specialOrdersForTreatedGals,undefined,"“Special Order”","Get a meal with some of the Chef’s special sauce. It’s practically free food!");
-	//["Special Order”</i>]...
+	//["Special Order"]...
 	addButton(14,"Back",mainGameMenu);
 
 }
@@ -1206,7 +1206,7 @@ public function orderUp(order:String = ""):void
 	showHerman();
 	output("You give Herman your order, which he punches in on the register. He hands you a numbered ticket: <i>“Be right up, " + pc.mf("buddy","missy") + ".”</i>");
 	output("\n\nYou take your ticket and head over to one of the benches to wait. Before you can even sit down, though, you hear Chef Herman calling out your number. Damn, that’s fast! You return to the chef, pick up your order, complete with a side of fries and a big ol’ soda, and take your seat. A few bites is all it takes to convince you that Chef Herman’s cooking is finger-licking good!");
-	//{Energy Restored. Slight gain to thickness; salads slightly reduce thickness}. 
+	//Energy Restored. Slight gain to thickness; salads slightly reduce thickness. 
 	if(order == "Ribs")
 	{
 		pc.energy(100);
@@ -1266,7 +1266,7 @@ public function lootBBQ():void {
 	itemCollect(foundLootItems);
 }
 
-//<i>“Special Order”</i>
+//“Special Order”
 //Requires feminine PC with the Treatment, Fluid Addiction, Bimbofication, etc. 
 //Tooltip: You bet that chef’s got a nice, thick member that needs some relief, all pent up in those tight pants of his... and you bet it’d taste great with a little of his home cooking...
 public function specialOrdersForTreatedGals():void
@@ -2048,7 +2048,7 @@ public function carrieBlowjobsGo():void
 				output("\n\n<i>“Beats repairing refrigerators,”</i> agrees Cora, sucking her finger. <i>“Very messy, but... productive.”</i>");
 				output("\n\nYou grin down at them, a warm glow stretching from your mind to your groin blotting out everything else. What a wonderful, selfless pair of cock-polishers they are.");
 			}
-			//{merge}
+			//merge
 			output("\n\nEach arm laden with the soft");
 			if(pc.cumQ() < 1500) output(", gently dripping");
 			output(" weight of a cow girl, you slowly head back to the barn, their warm chatter passing you by. They jerk and give a joint coo and squeal when you leave them - your taste in their mouths, your red handprint on their butts.");
@@ -2100,7 +2100,7 @@ public function carrieBlowjobsGo():void
 			output("\n\n<i>“No, it’s fine,”</i> you grunt, intense lust pulsing behind your brow. <i>“Please go on...”</i>");
 			output("\n\n<i>“It’s not fine,”</i> she replies with conviction. <i>“Big fella like you can give us so much cum - but you need special treatment if I’m gonna get it all. Tell you what - if we do this again, I’ll bring help.”</i> The thought of this coupled with your overriding need are too much. Wordlessly you grip the back of her head and push her sweet, hot mouth back onto your [pc.cock " + x + "] again, opening her lips as far as they will go.");
 		}
-		//{merge}
+		//merge
 		output("\n\nCarrie’s cheeks hollow as she sucks your ragingly hard dick with increasing purpose, slurps, muffled hums of enjoyment and the soft clonk of a cowbell drifting out over the sun-plastered field. You are more than happy to let her set the pace, leaning back against the tree and doing nothing but slowly flexing your [pc.hips] into her wet, silken squeeze and groaning your approval, coaxing her on.");
 		//Knot, not massive cock
 		if(pc.hasKnot(x) && pc.cocks[x].cLength() < 12) output(" Her lips press against the swollen knot at the base of your cock as she envelopes you whole, and pleasure blossoms as she slips out her tongue and caresses that hot ring of flesh.");
@@ -2127,7 +2127,7 @@ public function carrieBlowjobsGo():void
 			if(pc.isTreatedBull()) output(" You grin down at her absurdly. Heavy need satiated, you feel nothing but shining fondness and warmth for the auburn cock-polisher.");
 			else output(" Heavy need satiated, you grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
-		//{merge}
+		//merge
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
 		else if(pc.tallness < 60) output("li’l ");
@@ -2983,7 +2983,7 @@ public function carrieCockTailSneakyDeaky():void
 	//(low ass wet)
 	if(pc.ass.wetness() < 1) output(" Thoughtfully, Carrie pauses the action to apply a bit of lubrication to the massive prong before she shoves it into you.");
 	else output(" Carrie watches carefully, ready to pause and apply lubrication, but you take the dildo without a peep; the stunned cowgirl’s finger hovers over the control dumbly as the toy hilts in your welcoming asshole.");
-	//{anal stretch check here}
+	//anal stretch check here
 	pc.buttChange(Math.round(pc.analCapacity()/2),true,true,false);
 	output(" As soon as you look comfortable with the penetration, she turns on the strokes.");
 

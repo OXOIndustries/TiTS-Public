@@ -1348,7 +1348,8 @@ public function talkCharlesMenu(lastF:Function = null):void
 	}
 	else if (flags["CHARLES_DISABLED_FIX"] == undefined)
 	{
-		addButton(2, "Fix", talkCharlesBuyFix, undefined, "Fix", "Buy some Curdsonwhey off the human.");
+		if(pc.hasStatusEffect("Curdsonwhey")) addDisabledButton(2, "Fix", "Fix", "You are already under the effects of Curdsonwhey.");
+		else addButton(2, "Fix", talkCharlesBuyFix, undefined, "Fix", "Buy some Curdsonwhey off the human.");
 	}
 
 	addButton(14, "Back", mainGameMenu);

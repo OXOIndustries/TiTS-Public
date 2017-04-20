@@ -138,6 +138,7 @@
 		include "../includes/events/seraSexParty.as";
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
+		include "../includes/events/plantationQuest/plantationQuestMain.as";
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
@@ -196,6 +197,7 @@
 		include "../includes/vesperia/gloryhole.as";
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
+		include "../includes/vesperia/mabbs.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";
@@ -333,8 +335,10 @@
 		include "../includes/events/kashimaIncident/roomfunctions.as";
 		
 		// Uveto
-		include "../includes/uveto/drlessau.as";
+		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/carbonado.as";
+		include "../includes/uveto/cynthia.as";
+		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
@@ -346,14 +350,15 @@
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
-		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
-		include "../includes/uveto/pippa.as";
+		include "../includes/uveto/vavaGroom.as";
+		include "../includes/uveto/walt.as";
 		include "../includes/follower.pippa.as";
 		include "../includes/follower.multi_interactions.as";
 		
@@ -461,7 +466,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.28";
+			version = "0.7.34";
 
 			//temporary nonsense variables.
 			temp = 0;

@@ -169,6 +169,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/doctor_lash.png", mimeType = "image/png")]
 		public var Bust_DR_LASH:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lessau.png", mimeType = "image/png")]
+		public var Bust_DR_LESSAU:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/lessau_nude.png", mimeType = "image/png")]
+		public var Bust_DR_LESSAU_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/droid_security.png", mimeType = "image/png")]
 		public var Bust_DROID_SECURITY:Class;
 		public var Bounds_DROID_SECURITY:Rectangle = new Rectangle(60, 0, 63, 66);
@@ -298,8 +303,12 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/juro_nude.png", mimeType = "image/png")]
 		public var Bust_JURO_NUDE:Class;
 
+		//[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede_old.png", mimeType = "image/png")]
+		//public var Bust_KAEDE_OLD:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede.png", mimeType = "image/png")]
 		public var Bust_KAEDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kaede_nude.png", mimeType = "image/png")]
+		public var Bust_KAEDE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara.png", mimeType = "image/png")]
 		public var Bust_KARA:Class;
@@ -370,13 +379,13 @@
 		public var Bounds_MILODANMALE:Rectangle = new Rectangle(30, 0, 65, 62);
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_club.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_CLUB:Class;
-		public var Bounds_MILODANMALE_CLUB:Rectangle = new Rectangle(30, 0, 65, 62);
+		public function get Bounds_MILODANMALE_CLUB():Rectangle { return Bounds_MILODANMALE; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_axe.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_AXE:Class;
-		public var Bounds_MILODANMALE_AXE:Rectangle = new Rectangle(30, 0, 65, 62);
+		public function get Bounds_MILODANMALE_AXE():Rectangle { return Bounds_MILODANMALE; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_nude.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_NUDE:Class;
-		public var Bounds_MILODANMALE_NUDE:Rectangle = new Rectangle(30, 0, 65, 62);
+		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
@@ -423,6 +432,13 @@
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ogram.png", mimeType = "image/png")]
 		public var Bust_OGRAM:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa.png", mimeType = "image/png")]
+		public var Bust_PIPPA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa_oiled.png", mimeType = "image/png")]
+		public var Bust_PIPPA_OILED:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/pippa_nude.png", mimeType = "image/png")]
+		public var Bust_PIPPA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/praetorian.png", mimeType = "image/png")]
 		public var Bust_PRAETORIAN:Class;
@@ -448,11 +464,11 @@
 		public var Bust_SAENDRA:Class;
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(17, 12, 66, 62);
 		public function get Bust_SAENDRA_FUTA():Class { return Bust_SAENDRA; }
-		public var Bounds_SAENDRA_FUTA:Rectangle = new Rectangle(17, 12, 66, 62);
+		public function get Bounds_SAENDRA_FUTA():Rectangle { return Bounds_SAENDRA; }
 		public function get Bust_SAENDRA_NUDE():Class { return Bust_SAENDRA; }
-		public var Bounds_SAENDRA_NUDE:Rectangle = new Rectangle(17, 12, 66, 62);
+		public function get Bounds_SAENDRA_NUDE():Rectangle { return Bounds_SAENDRA; }
 		public function get Bust_SAENDRA_FUTA_NUDE():Class { return Bust_SAENDRA; }
-		public var Bounds_SAENDRA_FUTA_NUDE:Rectangle = new Rectangle(17, 12, 66, 62);
+		public function get Bounds_SAENDRA_FUTA_NUDE():Rectangle { return Bounds_SAENDRA; }
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/shade_old.png", mimeType = "image/png")]
 		public var Bust_SHADE_COMBAT:Class;
@@ -529,6 +545,7 @@
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi.png", mimeType = "image/png")]
 		public var Bust_YAMMI:Class;
+		public function get Bust_YAMMI_APRON():Class { return Bust_YAMMI; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi_nude.png", mimeType = "image/png")]
 		public var Bust_YAMMI_NUDE:Class;
 
@@ -706,6 +723,11 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/doctor_lash.png", mimeType = "image/png")]
 			public var Full_DR_LASH:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lessau.png", mimeType = "image/png")]
+			public var Full_DR_LESSAU:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lessau_nude.png", mimeType = "image/png")]
+			public var Full_DR_LESSAU_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/droid_security.png", mimeType = "image/png")]
 			public var Full_DROID_SECURITY:Class;
 
@@ -830,8 +852,12 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/juro_nude.png", mimeType = "image/png")]
 			public var Full_JURO_NUDE:Class;
 
+			//[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede_old.png", mimeType = "image/png")]
+			//public var Full_KAEDE_OLD:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede.png", mimeType = "image/png")]
 			public var Full_KAEDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kaede_nude.png", mimeType = "image/png")]
+			public var Full_KAEDE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kara.png", mimeType = "image/png")]
 			public var Full_KARA:Class;
@@ -945,6 +971,13 @@
 			
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ogram.png", mimeType = "image/png")]
 			public var Full_OGRAM:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa.png", mimeType = "image/png")]
+			public var Full_PIPPA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa_oiled.png", mimeType = "image/png")]
+			public var Full_PIPPA_OILED:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/pippa_nude.png", mimeType = "image/png")]
+			public var Full_PIPPA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/praetorian.png", mimeType = "image/png")]
 			public var Full_PRAETORIAN:Class;
@@ -968,6 +1001,9 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
+			public function get Full_SAENDRA_FUTA():Class { return Full_SAENDRA; }
+			public function get Full_SAENDRA_NUDE():Class { return Full_SAENDRA; }
+			public function get Full_SAENDRA_FUTA_NUDE():Class { return Full_SAENDRA; }
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/shade_old.png", mimeType = "image/png")]
 			public var Full_SHADE_COMBAT:Class;
@@ -1040,6 +1076,7 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi.png", mimeType = "image/png")]
 			public var Full_YAMMI:Class;
+			public function get Full_YAMMI_APRON():Class { return Full_YAMMI; }
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi_nude.png", mimeType = "image/png")]
 			public var Full_YAMMI_NUDE:Class;
 

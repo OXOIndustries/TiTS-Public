@@ -18,7 +18,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 20;
-			this.type = GLOBAL.DRUG;
+			this.type = GLOBAL.POTION;
 			
 			//Used on inventory buttons
 			this.shortName = "Sydian P.";

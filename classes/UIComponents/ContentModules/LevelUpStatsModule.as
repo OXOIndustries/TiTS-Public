@@ -159,7 +159,8 @@ package classes.UIComponents.ContentModules
 				_statBars[i].barValue = _targetCreature[_barLabels[i]]() + _pointDistribution[i];
 				
 				// General bar settings
-				if ((_targetCreature[_barLabels[i]]() + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]())
+				//if ((_targetCreature[_barLabels[i]]() + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]())
+				if ((_targetCreature[_barLabels[i] + "Raw"] + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]()) // Take account Mod values!
 				{
 					_statBars[i].setBarChangeableMode();
 				}
@@ -240,16 +241,19 @@ package classes.UIComponents.ContentModules
 		
 		private function confirmPoints():void
 		{
+			var gavePoints:Boolean = false;
+			
 			// Remove the spent points from the creature object
 			_targetCreature.unspentStatPoints = _availablePoints;			
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{
 				_targetCreature[_barLabels[i]](_pointDistribution[i]);
+				if(_pointDistribution[i] > 0) gavePoints = true;
 			}
 			
 			// This is where we'd hook into the second stage of the levelling process
-			kGAMECLASS.userInterface.showLevelUpPerks(_targetCreature);
+			kGAMECLASS.userInterface.showLevelUpPerks(_targetCreature, gavePoints);
 		}
 	}
 

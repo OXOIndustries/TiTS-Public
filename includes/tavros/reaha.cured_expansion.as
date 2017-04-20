@@ -906,7 +906,7 @@ public function manUpReahaYouDumbCumsuckingSlut():void
 	combinePostCuredReahaTexasTalk();
 }
 
-//{Combine All}:
+//Combine All:
 public function combinePostCuredReahaTexasTalk():void
 {
 	output("\n\nReaha hesitates a moment before adding, <i>“I don’t want to sound like I hate them or anything. I love my sisters. But they’re not who I wanted to be, you know? Even if that’s where I ended up anyway...”</i>");

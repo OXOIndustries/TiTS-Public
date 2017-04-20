@@ -11,9 +11,6 @@ public function showBriget(nude:Boolean = false):void
 }
 public function brigetBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["BRIGET"] != "ADJATHA") return "BRIGET";
-	
 	var str:String = "BRIGET";
 	
 	if(brigetIsBusty()) str += "_TITS";
@@ -531,7 +528,7 @@ public function nurseryPlayerApptFunc():Boolean
 	if (flags["BRIGET_MET"] != undefined && (pc as PlayerCharacter).hasPregnancyOfTypeOtherThan("EggTrainerFauxPreg")) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn’t seem like the best idea, you can move into the nursery and allow the staff to take care of you until you’re ready to pop.");
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
-	addButton(1, "Shower", showerOptions, 0); // 9999 this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
+	addButton(1, "Shower", showerMenu, "nursery"); // this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
 
 	return false;
 }

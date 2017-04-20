@@ -106,6 +106,8 @@ public function queenOfTheDeepPCLoss():void
 
 	// cunts
 	var vi:int = 0;
+	var vList:Array = [];
+	var vIdx:int = -1;
 	if (pc.hasVagina())
 	{
 		for (vi = 0; vi < pc.vaginas.length; vi++)
@@ -115,9 +117,14 @@ public function queenOfTheDeepPCLoss():void
 				numEmptyVaginas++;
 				numEmptyHoles++;
 				bEmptyVagina = true;
+				vList.push(vi);
 			}
 		}
+		if(vList.length > 0) vIdx = vList[rand(vList.length)];
 	}
+	
+	var cIdx:int = -1;
+	if (pc.hasCock()) cIdx = pc.biggestCockIndex();
 
 	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
 
@@ -199,7 +206,8 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\n<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues, that I am not the last as my mother prophesied. Surrender your misused body to me, let me give you new purpose...”</i>");
 
 	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you cannot help but whimper as the two largest of her tentacles find their way to your [pc.legOrLegs], gently circling and caressing your [pc.asshole]");
-	if (bEmptyVagina) output(" and [pc.vaginas].");
+	if (bEmptyVagina) output(" and [pc.vaginas]");
+	output(".");
 
 	var needNL:Boolean = true;
 	if (pc.isBiped())
@@ -223,7 +231,8 @@ public function queenOfTheDeepPCLoss():void
 
 	output("\n\nA moment of silent anticipation consumes you, a momentary eternity of perfect stillness and contentment, before you feel the queen’s");
 	if (bMultiTentacle) output(" tentacles start their inescapable advance");
-	else output(" tentacle start to spread apart your asscheeks and squirm into your body. You scream in pleasure, utterly surrendering to sensation as your insides are fucked, filled, and bred by your queen.");
+	else output(" tentacle start");
+	output(" to spread apart your asscheeks and squirm into your body. You scream in pleasure, utterly surrendering to sensation as your insides are fucked, filled, and bred by your queen.");
 
 	output("\n\n<i>“Yes, that’s good,”</i> the queen moans, all but screaming herself as she reciprocates your ecstasy. <i>“Tell the world of your submission, let all Myrellion hear that a new brood will soon be born. Yes!”</i>");
 
@@ -238,7 +247,7 @@ public function queenOfTheDeepPCLoss():void
 
 	output("\n\nYou watch its descent eagerly, eyes wide as the tentacle it rides in thrusts deep within you, squirting what feels like thick, viscous liquid into the depths of your bowels. You feel the hit of the queen’s venom immediately, burning away at every last trace of resistance until you’re nothing more than putty in her hands, eagerly relaxing your body for her delicate young.");
 	if (numEmptyVaginas > 1) output(" Other tendrils soon follow, swelling with young and opening your body wide. They spear open your cervixes and discharge gallons of thick, sticky venom into your vacant wombs, creating a chemical nest for the unborn aliens to inhabit.");
-	else if (bEmptyVagina) output(" The tendril fucking your [pc.cunt] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
+	else if (bEmptyVagina && bEmptyAss) output(" The tendril fucking your [pc.cunt " + vIdx + "] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
 	
 	if (!pc.isPregnant(3))
 	{
@@ -269,13 +278,13 @@ public function queenOfTheDeepPCLoss():void
 	if (bMultiTentacle) output("s");
 	output(" open, squirting in more and more of her venomous cocktail and thrusting into you, making sure your body is too overwhelmed by pleasure to reject her children.");
 
-	if (pc.hasCock())
+	if (cIdx >= 0)
 	{
-		output("\n\n<i>“Poor thing,”</i> the queen moans as your [pc.cock] throbs and drools its excitement into the water to the beat of her tentacles’ ceaseless violation of your body. <i>“Let me give you some relief...”</i>");
+		output("\n\n<i>“Poor thing,”</i> the queen moans as your [pc.cock " + cIdx + "] throbs and drools its excitement into the water to the beat of her tentacles’ ceaseless violation of your body. <i>“Let me give you some relief...”</i>");
 
-		output("\n\nYou feel a cold hand wrap around your [pc.cock], gently stroking from base to tip in a slow, languid motion. It’s only a moment later that you realize the queen’s hand is covered in her venom, using it like lube to stroke you. Moaning, you wiggle your [pc.hips] and press yourself against your loving, caring captor, your body all but begging her for more.");
+		output("\n\nYou feel a cold hand wrap around your [pc.cock " + cIdx + "], gently stroking from base to tip in a slow, languid motion. It’s only a moment later that you realize the queen’s hand is covered in her venom, using it like lube to stroke you. Moaning, you wiggle your [pc.hips] and press yourself against your loving, caring captor, your body all but begging her for more.");
 
-		output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
+		output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock " + cIdx + "] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
 		if (silly) output(" death and taxes");
 		else output(" every other aspect of your queen’s menagerie of pleasures");
 		output(". With a howl of pure bliss, you unleash a torrent of spunk between the queen’s breasts, splattering her body with your [pc.cumNoun]. She just coos and continues to rub her mounds around your shaft, milking you dry of every drop.");
@@ -462,6 +471,8 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 
 	// cunts
 	var vi:int = 0;
+	var vList:Array = [];
+	var vIdx:int = -1;
 	if (pc.hasVagina())
 	{
 		for (vi = 0; vi < pc.vaginas.length; vi++)
@@ -471,16 +482,21 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 				numEmptyVaginas++;
 				numEmptyHoles++;
 				bEmptyVagina = true;
+				vList.push(vi);
 			}
 		}
+		if(vList.length > 0) vIdx = vList[rand(vList.length)];
 	}
+	
+	var cIdx:int = -1;
+	if (pc.hasCock()) cIdx = pc.biggestCockIndex();
 
 	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
 	
 	output("<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues. That I am not the last as my mother prophesied. Surrender your body to me, bear my young back among your people. Become the herald of a new age for my kind.”</i>");
 
 	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you can’t help but whimper as the two largest of her tentacles find their way between your [pc.legOrLegs], gently circling and caressing your [pc.asshole]");
-	if (pc.hasVagina()) output(" and [pc.vagina]");
+	if (pc.hasVagina()) output(" and [pc.vagina " + vIdx + "]");
 	output(".");
 
 	if (pc.isBiped())
@@ -503,8 +519,8 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 
 	output("\n\nA moment of silent anticipation consumes you, a momentary eternity of perfect stillness and contentment, before you feel the queen’s");
 	if (bMultiTentacle) output(" tentacles start their inescapable advance");
-	else output(" tentacle start to spread apart your asscheeks and squirm into your body");
-	output(". You scream in pleasure, utterly surrendering to sensation as your insides are fucked, filled, and bred by your queen.");
+	else output(" tentacle start");
+	output(" to spread apart your asscheeks and squirm into your body. You scream in pleasure, utterly surrendering to sensation as your insides are fucked, filled, and bred by your queen.");
 
 	output("\n\n<i>“Yes, that’s good,”</i> the queen moans, all but screaming herself as she reciprocates your ecstasy. <i>“Tell the world of your submission, let all Myrellion hear that you herald in a new age, a new brood for your queen! Yes!”</i>");
 
@@ -535,8 +551,8 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	output(" engorging, swelling with the alien’s offspring as they travel from her body to yours. A look over your shoulder shows the largest of the tentacles bloating, its translucent flesh strained by a small, white package that ejects from the queen’s armored back and starts its slow descent towards you. The creature inside, the queen’s first spawn, looks almost like a glistening white jellyfish filled with a cavalcade of swirling pinks and reds, slowly forming the unborn creature’s vitals. There’s only the vaguest hint of a humanoid half, the tiniest silhouette of a torso. It’s so small... so fragile.");
 
 	output("\n\nYou watch its descent eagerly, eyes wide as the tentacle it rides in thrusts deep within you, squirting what feels like thick, viscous liquid into the depths of your bowels. You feel the hit of the queen’s venom immediately, burning away at every last trace of resistance until you’re nothing more than putty in her hands, eagerly relaxing your body for her delicate young.");
-	if (numEmptyVaginas) output(" Other tendrils soon follow, swelling with young and opening your body wide. They spear open your cervixes and discharge gallons of thick, sticky venom into your vacant wombs, creating a chemical nest for the unborn aliens to inhabit.");
-	else if (bEmptyVagina) output(" The tendril fucking your [pc.cunt] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
+	if (numEmptyVaginas > 1) output(" Other tendrils soon follow, swelling with young and opening your body wide. They spear open your cervixes and discharge gallons of thick, sticky venom into your vacant wombs, creating a chemical nest for the unborn aliens to inhabit.");
+	else if (bEmptyVagina && bEmptyAss) output(" The tendril fucking your [pc.cunt " + vIdx + "] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
 
 	output("\n\nAnother scream of unparalleled pleasure rips itself from your throat as the first of the queen’s young penetrates your now-gaping ass, stretching you unbearably wide around even its seemingly tiny frame before it rushes into your deepest depths, squirted out into the sticky wad of chemicals left for it by the thrashing tentacle ravaging your bowels. A second spawn quickly follows the first, bloating your belly with the growing occupation of the queen’s alien brood.");
 	if (bEmptyAss && !bEmptyVagina) output(" Your ass is soon stuffed full of the queen’s many offspring");
@@ -546,13 +562,13 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	if (bMultiTentacle) output("s");
 	output(" open, squirting in more and more of her venomous cocktail and thrusting into you, making sure your body is too overwhelmed by pleasure to reject her children.");
 
-	if (pc.hasCock())
+	if (cIdx >= 0)
 	{
-		output("\n\n<i>“Poor thing,”</i> the queen moans as your [pc.cock] throbs and drools its excitement into the water to the beat of her tentacles’ ceaseless violation of your body. <i>“Let me give you some relief...”</i>");
+		output("\n\n<i>“Poor thing,”</i> the queen moans as your [pc.cock " + cIdx + "] throbs and drools its excitement into the water to the beat of her tentacles’ ceaseless violation of your body. <i>“Let me give you some relief...”</i>");
 
-		output("\n\nYou feel a cold hand wrap around your [pc.cock], gently stroking from base to tip in a slow, languid motion. It’s only a moment later that you realize the queen’s hand is covered in her venom, using it like lube to stroke you. Moaning, you wiggle your [pc.hips] and press yourself against your loving, caring captor, your body all but begging her for more.");
+		output("\n\nYou feel a cold hand wrap around your [pc.cock " + cIdx + "], gently stroking from base to tip in a slow, languid motion. It’s only a moment later that you realize the queen’s hand is covered in her venom, using it like lube to stroke you. Moaning, you wiggle your [pc.hips] and press yourself against your loving, caring captor, your body all but begging her for more.");
 
-		output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
+		output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock " + cIdx + "] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
 		if (silly) output(" death and taxes");
 		else output(" every other aspect of your queen’s menagerie of pleasures");
 		output(". With a howl of pure bliss, you unleash a torrent of spunk between the queen’s breasts, splattering her body with your [pc.cumNoun]. She just coos and continues to rub her mounds around your shaft, milking you dry of every drop.");
@@ -793,6 +809,8 @@ public function queenOfTheDeepGetEgged():void
 
 	// cunts
 	var vi:int = 0;
+	var vList:Array = [];
+	var vIdx:int = -1;
 	if (pc.hasVagina())
 	{
 		for (vi = 0; vi < pc.vaginas.length; vi++)
@@ -802,9 +820,14 @@ public function queenOfTheDeepGetEgged():void
 				numEmptyVaginas++;
 				numEmptyHoles++;
 				bEmptyVagina = true;
+				vList.push(vi);
 			}
 		}
+		if(vList.length > 0) vIdx = vList[rand(vList.length)];
 	}
+	
+	var cIdx:int = -1;
+	if (pc.hasCock()) cIdx = pc.biggestCockIndex();
 	
 	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
 
@@ -823,7 +846,7 @@ public function queenOfTheDeepGetEgged():void
 	output("\n\n<i>“You wish to drink from me?”</i> she asks, dark lips smiling. <i>“Please, dear one, don’t hold back. Let me nourish you... give you the strength to bear my young.”</i>");
 
 	output("\n\nHer offer is too good to pass up, and hearing her already purring about how full of children you’ll soon be sends a shiver of arousal down your spine");
-	if (pc.hasCock()) output(" until your [pc.cock] is stiff and pressing against her belly. The queen only smiles more, reaching down to wrap her cyan fingers around your prick and gently stroking it, urging you deeper into her embrace");
+	if (cIdx >= 0) output(" until your [pc.cock " + cIdx + "] is stiff and pressing against her belly. The queen only smiles more, reaching down to wrap her cyan fingers around your prick and gently stroking it, urging you deeper into her embrace");
 	output(". Licking your lips, you heft up her breast and press your [pc.lips] to it, locking them around her four-pointed teat.");
 
 	output("\n\nYou barely need to do anything to coax out a flow of amber nectar, alien milk that floods your mouth with a taste that brings back memories of oranges - wonderfully sweet... and just a little bitter.");
@@ -840,7 +863,7 @@ public function queenOfTheDeepGetEgged():void
 
 	output("\n\nYour heart flutters at the compliment... or at the feeling of several tentacles brushing against your [pc.asshole]");
 	if (pc.hasVagina()) output(" and [pc.cunts]");
-	output("; you can’t be sure. Either way, you continue to drink deep of the rich amber meal your lover is granting you, only stopping to moan and shiver as one of her tentacles sprays your [pc.vagOrAss] with its lusty red chemicals. You’re practically swimming in a sea of lust-venom by the time the queen seems satisfied that you can handle the amorous onslaught that is to come, and gently pries you off her breast.");
+	output("; you can’t be sure. Either way, you continue to drink deep of the rich amber meal your lover is granting you, only stopping to moan and shiver as one of her tentacles sprays your " + (bEmptyAss ? "[pc.asshole]" : "[pc.vagina " + vIdx + "]") + " with its lusty red chemicals. You’re practically swimming in a sea of lust-venom by the time the queen seems satisfied that you can handle the amorous onslaught that is to come, and gently pries you off her breast.");
 	
 	pc.milkInMouth(queenOfTheDeep);
 	
@@ -850,11 +873,11 @@ public function queenOfTheDeepGetEgged():void
 	output("\n\nYou would brace yourself, try to ready your body for what’s to come, but you quickly find that all the volition has drained out of your body, leaving you utterly relaxed in the queen’s arms. You’re not sure you could resist her now if you wanted to.");
 	if (pc.isBimbo()) output(" Not that you do! The thought of being pumped full of tiny little babies gets you even more excited than her venom... and those cock-tentacles look absolutely scrumptious. Maybe she’ll let you suck one while she fucks you full of little critters!");
 
-	output("\n\nThe first tentacle finds its way to your [pc.vagOrAss], gently prodding against your withering resistance until, with a wet pop, you feel the squirming alien appendage probing into you, slathering your already-tender walls with her lusty venom. Your eyes flutter, heart hammering as the sensation overwhelms you, almost wracking you with orgasm even as this first tendril enters you.");
+	output("\n\nThe first tentacle finds its way to your " + (bEmptyAss ? "[pc.asshole]" : "[pc.vagina " + vIdx + "]") + ", gently prodding against your withering resistance until, with a wet pop, you feel the squirming alien appendage probing into you, slathering your already-tender walls with her lusty venom. Your eyes flutter, heart hammering as the sensation overwhelms you, almost wracking you with orgasm even as this first tendril enters you.");
 
 	output("\n\n<i>“Rest easy, my darling,”</i> the queen says, still stroking you, trailing kisses across your cheek. <i>“All you need do now is let me work, let me give you pleasure. Your part in this comes later...”</i>");
 	
-	output("\n\nYou just moan and squirm, using what little movement your leaden body allows to buck back against the tentacle inside you, trying to get more and more of her into your [pc.vagOrAss].");
+	output("\n\nYou just moan and squirm, using what little movement your leaden body allows to buck back against the tentacle inside you, trying to get more and more of her into your " + (bEmptyAss ? "[pc.asshole]" : "[pc.vagina " + vIdx + "]") + ".");
 	if (numEmptyHoles > 1)
 	{
 		output(" Other tentacles squirm around your body, finding their way towards your other hole");
@@ -872,8 +895,8 @@ public function queenOfTheDeepGetEgged():void
 	output("\n\nIt’s so small and delicate. You can hardly believe that someday it will become the towering beast its mother is.");
 
 	output("\n\nYou watch its descent eagerly, eyes wide as the tentacle it rides in thrusts deep within you in a wave of the queen’s potent venom. You feel the hit of the chemical lust immediately, burning away at every last trace of resistance until you’re nothing more than putty in her hands, eagerly relaxing your body for her delicate young.");
-	if (numEmptyVaginas > 1) output(" Other tendrils soon follow, swelling with young and opening your body wide. They spear open your cervixes and discharging gallons of thick, sticky venom into your vacant wombs, creating a chemical nest for the unborn aliens to inhabit.");
-	else if (bEmptyVagina && bEmptyAss) output(" The tendril fucking your [pc.cunt] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
+	if (numEmptyVaginas > 1) output(" Other tendrils soon follow, swelling with young and opening your body wide. They spear open your cervixes and discharge gallons of thick, sticky venom into your vacant wombs, creating a chemical nest for the unborn aliens to inhabit.");
+	else if (bEmptyVagina && bEmptyAss) output(" The tendril fucking your [pc.cunt " + vIdx + "] follows the other’s example, swelling thicker and forcing your body to open wide for its precious payload. It gently, almost tenderly coaxes open your cervix and ejaculates a rush of thick, sticky venom into your vacant womb, creating a chemical nest for the unborn alien to inhabit.");
 
 	//permanent +wetness in holes filled, +10 Libido
 	if (!pc.isPregnant(3))
@@ -898,27 +921,31 @@ public function queenOfTheDeepGetEgged():void
 	imbibeVenomEffects();
 	pc.libido(10);
 	
-	output("\n\nAnother scream of unparalleled pleasure rips itself from your throat as the first of the queen’s young penetrates your now-gaping hole, stretching you unbearably wide around its seemingly tiny frame before it rushes into your deepest depths, squirted out into the sticky wad of chemicals left for it by the thrashing tentacle ravaging your bowels. A second spawn quickly follows the first, bloating your belly with the growing occupation of the queen’s alien brood.");
+	output("\n\nAnother scream of unparalleled pleasure rips itself from your throat as the first of the queen’s young penetrates your now-gaping hole, stretching you unbearably wide around its seemingly tiny frame before it rushes into your deepest depths, squirted out into the sticky wad of chemicals left for it by the thrashing tentacle ravaging your");
+	if (bEmptyVagina) output(" [pc.vaginas]");
+	if (bEmptyVagina && bEmptyAss) output(" and");
+	if (bEmptyAss) output(" bowels");
+	output(". A second spawn quickly follows the first, bloating your belly with the growing occupation of the queen’s alien brood.");
 	if (numEmptyHoles == 1)
 	{
 		output(" Your");
-		if (bEmptyVagina) output(" [pc.cunt]");
+		if (bEmptyVagina) output(" [pc.cunt " + vIdx + "]");
 		else output(" [pc.asshole]");
 		output(" is soon stuffed full of the queen’s many offspring");
 	}
 	else if (numEmptyHoles > 1 && numEmptyHoles != pc.vaginas.length + 1) output(" Every hole not full of other offspring is soon playing home to the queen’s offspring");
-	else output(" Your every hole is soon stuffed with the queen’s offspring");
+	else output(" " + (numEmptyHoles == 1 ? "Your" : "Every") + " hole is soon stuffed with the queen’s offspring");
 	output(", a squirming and writhing mass of tiny creatures that move in ways that make you feel ill, even as their mother’s tentacles continue to hold your hole");
 	if (numEmptyHoles > 1) output("s");
 	output(" open, squirting in more and more of her venomous cocktail and thrusting into you, making sure your body is too overwhelmed by pleasure to reject her children.");
 
-	if (pc.hasCock())
+	if (cIdx >= 0)
 	{
-		output("\n\n<i>“Poor thing,”</i> the queen moans as your [pc.cock] throbs and drools its excitement into the water. <i>“Let me give you some relief...”</i>");
+		output("\n\n<i>“Poor thing,”</i> the queen moans as your [pc.cock " + cIdx + "] throbs and drools its excitement into the water. <i>“Let me give you some relief...”</i>");
 
-		output("\n\nYou feel a cold hand wrap around your [pc.cock], gently stroking from base to tip in a slow, languid motion. It’s only a moment later that you realize the queen’s hand in covered in her venom, using it like lube to stroke you. Moaning, you wiggle your [pc.hips] and press yourself against the defeated queen, your body all but begging her for more.");
+		output("\n\nYou feel a cold hand wrap around your [pc.cock " + cIdx + "], gently stroking from base to tip in a slow, languid motion. It’s only a moment later that you realize the queen’s hand in covered in her venom, using it like lube to stroke you. Moaning, you wiggle your [pc.hips] and press yourself against the defeated queen, your body all but begging her for more.");
 
-		output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
+		output("\n\nShe eagerly provides it, shifting her body until her weighty breasts are positioned on either side of your [pc.cock " + cIdx + "] and enveloping it between them. You’re suddenly aware of how satin-soft they are; how the milk-swollen orbs compress around your shaft, deforming to make the most perfect pair of cockpillows imaginable. Your orgasm is as inevitable as");
 		if (silly) output(" death and taxes");
 		else output(" every other aspect of the queen’s menagerie of pleasures");
 		output(". With a howl of pure bliss, you unleash a torrent of spunk between the queen’s breasts, splattering her body with your [pc.cumNoun]. She just coos and continues to rub her mounds around your shaft, milking you dry of every drop.");

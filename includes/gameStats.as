@@ -575,6 +575,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "SydianPregnancy": output2(" Sydian"); break;
 						case "SeraSpawnPregnancy": output2(" Sera"); break;
 						case "MilodanPregnancy": output2(" Milodan"); break;
+						case "BothriocPregnancy": output2(" Bothrioc, Eggs"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -638,11 +639,14 @@ public function statisticsScreen(showID:String = "All"):void
 				if(pc.sexualPreferences.getPref(i) != 0)
 				{
 					output2("\n<b>* Preferences, " + StringUtil.toDisplayCase(GLOBAL.SEXPREF_DESCRIPTORS[i]) + ":</b>");
-					if(pc.sexualPreferences.getPref(i) >= GLOBAL.REALLY_LIKES_SEXPREF - 0.33335) output2(" Really likes!");
-					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_LIKES_SEXPREF - 0.29165) output2(" Kinda likes!");
-					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.KINDA_DISLIKES_SEXPREF - 0.125) output2(" Dislikes!");
-					else if(pc.sexualPreferences.getPref(i) >= GLOBAL.REALLY_DISLIKES_SEXPREF - 0.5) output2(" Dislikes a lot!");
-					else output2(" <i>Unknown</i>");
+					switch(pc.sexualPreferences.getPref(i))
+					{
+						case GLOBAL.REALLY_LIKES_SEXPREF: output2(" Really likes!"); break;
+						case GLOBAL.KINDA_LIKES_SEXPREF: output2(" Kinda likes!"); break;
+						case GLOBAL.KINDA_DISLIKES_SEXPREF: output2(" Dislikes!"); break;
+						case GLOBAL.REALLY_DISLIKES_SEXPREF: output2(" Dislikes a lot!"); break;
+						default: output2(" <i>Unknown</i>"); break;
+					}
 				}
 			}
 		}
@@ -866,6 +870,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cockvines:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
 				if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
 					output2("\n<b>* Births, Cockvines, Captured:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
+				if(StatTracking.getStat("pregnancy/milodan births") > 0)
+					output2("\n<b>* Births, Milodan Young:</b> " + StatTracking.getStat("pregnancy/milodan births"));
 				var nyreanEggs:Number = 0;
 				if(StatTracking.getStat("pregnancy/nyrea eggs") > 0)
 				{
@@ -1882,6 +1888,68 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b>");
 				if(flags["ZIL_PROBLEM_DEALT_WITH"] != undefined) output2(" Completed");
 				else output2(" <i>In progress...</i>");
+				sideCount++;
+			}
+			// Plantation Quest
+			if(MailManager.isEntryViewed("plantation_quest_start"))
+			{
+				output2("\n<b><u>Plantation Quest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(plantationQuestComplete())
+				{
+					output2(" Found Lah");
+					if(flags["PQ_FOUGHT_TRIBE"] != undefined) output2(", Fought and defeated zil tribe");
+					switch(flags["PQ_RESOLUTION"])
+					{
+						case 1:
+						case 2: output2(", Declared peace with the zil village"); break;
+						case -1: output2(", Overthrew the zil village"); break;
+					}
+					if(flags["PQ_P_BURNED"] != undefined) output2(", Burned down zil village");
+					switch(flags["PQ_SECURED_LAH"])
+					{
+						case 1: output2(", Taken Lah, <i>Return to Darnock...</i>"); break;
+						case 2: output2(", Turned Lah in to Darnock, Rewarded, Completed"); break;
+						case -1: output2(", Let Lah go, <i>Return to Darnock...</i>"); break;
+						case -2: output2(", Let Lah go, Told Darnock, Rewarded, Completed"); break;
+					}
+				}
+				else
+				{
+					if(flags["PLANTATION_QUEST"] == 0)
+					{
+						output2(" Talked to Darnock,");
+						if(flags["PQUEST_ABLE_TALK_DISABLE"] == 1) output2(" Didn’t talk to Able,");
+						else if(flags["PQUEST_ABLE_TALK_DISABLE"] == 2) output2(" Talked to Able,");
+						output2(" Find Lah,");
+					}
+					else output2(" Talk to Darnock,");
+					output2(" <i>In progress...</i>");
+				}
+				if(flags["PQUEST_LAH_CHAT"] != undefined) output2("\n<b>* Clues, About R.K. Lah:</b> <i>Not a killer, but mentally unstable. Arsonist. Influenced a zil tribe...</i>");
+				if(flags["PQUEST_WHERE_CHAT"] != undefined) output2("\n<b>* Clues, Lah’s Location:</b> <i>Highlands to the north, on a large waterfall...</i>");
+				if(flags["PQUEST_ABLE_CUSTOMS_TALK"] != undefined) output2("\n<b>* Clues, Zil Customs:</b> <i>Challenge Lah to a fair fight and give something zil value to earn chieftain’s trust...</i>");
+				if(flags["PQUEST_ABLE_VALUE_TALK"] != undefined) output2("\n<b>* Clues, What Zil Value:</b> <i>Sex, winning belongings fairly, and something Lah is offereing them...</i>");
+				if(flags["PQ_TOOK_AMBER"] != undefined) output2("\n<b>* Amber Idol:</b> Taken");
+				if(flags["PQUEST_WATERFALLED"] != undefined)
+				{
+					output2("\n<b>* Kane:</b> Met him");
+					if(flags["KANE_DEFEATED"] != undefined) output2(", Defeated him");
+				}
+				if(flags["PQ_SECURED_LAH"] || flags["PQ_BEAT_LAH"] != undefined)
+				{
+					output2("\n<b>* R.K. Lah:</b> Met him");
+					if(flags["PQ_BEAT_LAH"] == 1) output2(", Defeated him");
+					if(flags["PQ_BEAT_LAH"] == -1) output2(", Defeated by him");
+				}
+				if(flags["PQ_RESOLUTION"] != undefined)
+				{
+					output2("\n<b>* Quinn:</b> Met her");
+					if(flags["PQ_LET_QUINN_GO"] != undefined) output2(", Let her go");
+					if(flags["SEXED_QUINN"] != undefined) output2("\n<b>* Quinn, Times Sexed:</b> " + flags["SEXED_QUINN"]);
+				}
+				if(flags["PQ_NALEENED"] != undefined) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> " + flags["PQ_NALEENED"]);
+				
 				sideCount++;
 			}
 			// Zil Capture
@@ -3181,7 +3249,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					else output2(" (<i>Whereabouts unknown</i>)");
 				}
-				else if(flags["SERA_TRIPLE_X_RATED"] >= 4) output2(", Mistress");
+				else if(seraIsMistress()) output2(", Mistress");
 				else
 				{
 					if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output2(", Pissed off");
@@ -4173,7 +4241,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ANNO_TRIBERATOR_USED"] != undefined) output2("\n<b>* Anno, Times Used Her Vibrator:</b> " + flags["ANNO_TRIBERATOR_USED"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"] != undefined) output2("\n<b>* Anno, Times Mounted with Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_MOUNTUP"]);
 					if(flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"] != undefined) output2("\n<b>* Anno, Times Pounded Both Marina and Galina:</b> " + flags["UVETO_HUSKAR_FOURSOME_POUNDPUPPIES"]);
-					if(flags["ANNO_PETPLAYED"] != undefined) output2("\n<b>* Anno, Times Walked:</b> " + flags["ANNO_PETPLAYED"]);
+					if(annoIsPet()) output2("\n<b>* Anno, Times Walked:</b> " + annoTimesWalked());
 				}
 				variousCount++;
 			}
@@ -5120,7 +5188,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_CFS_GWEN"] != undefined) output2("\n<b>* Gwen:</b> Met her");
 				if(flags["FUCKED_GWEN"] != undefined) output2(", Sexed her");
 				if(flags["MET_CFS_EIMEAR"] != undefined) output2("\n<b>* Eimear:</b> Met her");
-				if(flags["HUNGOUT_CFS"] != undefined) output2("\n<b>* Gwen and Eimear:</b> Hung out with them");
+				if(flags["HUNGOUT_CFS"] != undefined)
+				{
+					output2("\n<b>* Gwen and Eimear:</b> Hung out with them");
+					if(flags["HUNGOUT_CFS"] > 1) output2(" " + num2Text(flags["HUNGOUT_CFS"]) + " times");
+				}
 				variousCount++;
 			}
 			// Nerrasa
@@ -5163,6 +5235,31 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Anyxine Rhenesunne:</b> Met her");
 				}
 			}
+			// Vava Groom
+			if(flags["VAVA_GROOM_VISIT"] != undefined)
+			{
+				output2("\n<b><u>Vava Groom</u></b>");
+				if(flags["VAVA_GROOM_ROLE"] != undefined)
+				{
+					output2("\n<b>* Services, Your Role:</b>");
+					switch(flags["VAVA_GROOM_ROLE"])
+					{
+						case 0: output2(" Neither Pet nor Owner"); break;
+						case 1: output2(" Owner"); break;
+						case -1: output2(" Pet"); break;
+						case -2: output2(" Both Pet and Owner"); break;
+					}
+				}
+				if(flags["VAVA_GROOM_SPECIAL_PET"] != undefined) output2("\n<b>* Services, Your Special Pet:</b> " + (flags["VAVA_GROOM_SPECIAL_PET"] == "None" ? "None, <i>Owner-In-Waiting</i>" : flags["VAVA_GROOM_SPECIAL_PET"]));
+				if(flags["VAVA_GROOM_SPECIAL_MASTER"] != undefined) output2("\n<b>* Services, Your Special Owner:</b> " + (flags["VAVA_GROOM_SPECIAL_MASTER"] == "None" ? "None, <i>Pet-In-Waiting</i>" : flags["VAVA_GROOM_SPECIAL_MASTER"]));
+				//if(flags["VAVA_GROOM_ROLE"] < 0) output2("\n<b>* Services, Your Obedience:</b> " + vavaGroomPetLevel() + " %");
+				if(flags["VAVA_GROOM_SERVICE_GROOMING"] != undefined) output2("\n<b>* Services, Grooming, Total:</b> " + flags["VAVA_GROOM_SERVICE_GROOMING"]);
+				if(flags["VAVA_GROOM_SERVICE_OBEDIENCE_TRAINING"] != undefined) output2("\n<b>* Services, Obedience Training, Total:</b> " + flags["VAVA_GROOM_SERVICE_OBEDIENCE_TRAINING"]);
+				if(flags["VAVA_GROOM_SERVICE_EROTIC_TRAINING"] != undefined) output2("\n<b>* Services, Erotic Training, Total:</b> " + flags["VAVA_GROOM_SERVICE_EROTIC_TRAINING"]);
+				output2("\n<b>* Cruff:</b> Met him");
+				output2("\n<b>* Estie:</b> Met her");
+				variousCount++;
+			}
 			// Irestead
 			if(flags["MET_ASTRA"] != undefined || flags["PIPPA_AFFECTION"] != undefined)
 			{
@@ -5172,13 +5269,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Astra:</b> Met her");
 					if(flags["SHADE_OVI_ASTRA_RUN_IN"] != undefined) output2("\n<b>* Astra, Times Seen Shade Laying Eggs:</b> " + flags["SHADE_OVI_ASTRA_RUN_IN"]);
 				}
-				if (flags["PIPPA_AFFECTION"] != undefined)
+				if(flags["PIPPA_AFFECTION"] != undefined)
 				{
 					output2("\n<b>* Pippa:</b> Met her");
-					if (recruitedPippa()) 
+					if(recruitedPippa()) 
 					{
 						output2(", Crew member");
-						if (pippaOnShip()) output2(" (Onboard Ship)");
+						if(pippaOnShip()) output2(" (Onboard Ship)");
 						else output2(" (Left on Uveto)");
 					}
 					else if (pippaRecruitTurnedDown()) output2(", Turned down request to join crew");
@@ -5197,24 +5294,34 @@ public function displayEncounterLog(showID:String = "All"):void
 						if (topBottomStrength <= 17 && topBottomStrength > 0) output2(", Slight Preference");
 						else if (topBottomStrength >= 33) output2(", Strong Preference");
 					}
-					if (pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
-					if (pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
-					if (pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
-					if (pippaSpecialMassagesGiven(0) > 0) output2("\n<b>* Pippa, Nuru Massages Given to You:</b> " + pippaSpecialMassagesGiven(0));
-					if (pippaSexed(0) > 0) output2("\n<b>* Pippa, Times Sexed:</b> " + pippaSexed(0));
+					if(pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
+					if(pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
+					if(pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
+					if(pippaSpecialMassagesGiven(0) > 0) output2("\n<b>* Pippa, Nuru Massages Given to You:</b> " + pippaSpecialMassagesGiven(0));
+					if(pippaSexed(0) > 0) output2("\n<b>* Pippa, Times Sexed:</b> " + pippaSexed(0));
 				}
 				variousCount++;
 			}
 			//SteeleTech Biomedical
-			if (flags["MET_DR_LESSAU"] != undefined)
+			if(flags["MET_DR_LESSAU"] != undefined || metCynthia() || metWalt())
 			{
 				output2("\n<b><u>Steele Tech Biomedical Division</u></b>");
-				if (flags["MET_DR_LESSAU"] != undefined)
+				if(flags["BIOMED_GANGBANGED"] != undefined) output2("\n<b>* Employees, Times Gangbanged:</b> " + flags["BIOMED_GANGBANGED"]);
+				if(flags["MET_DR_LESSAU"] != undefined)
 				{
 					output2("\n<b>* Doctor Lessau:</b> Met Him");
 					if(flags["DRLESSAU_SEXED"] != undefined) output2("\n<b>* Doctor Lessau, Times Sexed:</b> " + flags["DRLESSAU_SEXED"]);
 				}
-				
+				if(metCynthia())
+				{
+					output2("\n<b>* Cynthia:</b> Met Her");
+					if(flags["CYNTHIA_SEXED"] != undefined) output2("\n<b>* Cynthia, Times Sexed:</b> " + flags["CYNTHIA_SEXED"]);
+				}
+				if(metWalt())
+				{
+					output2("\n<b>* Walt:</b> Met Him");
+					if(flags["WALT_SEXED"] != undefined) output2("\n<b>* Walt, Times Sexed:</b> " + flags["WALT_SEXED"]);
+				}
 			}
 			// The Freezer
 			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined)
@@ -5375,7 +5482,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Kui Country Bar and Lodge
-			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined || flags["MET_SYLVIE"] != undefined)
+			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined || flags["MET_MABBS"] != undefined || flags["MET_SYLVIE"] != undefined)
 			{
 				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
 				// Gloryholes
@@ -5417,6 +5524,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["KALLY_BROED"] != undefined) output2("\n<b>* Kally, Times Licked Her Out:</b> " + flags["KALLY_BROED"]);
 					if(flags["KIRO_KALLY_THREESOMES"] > 0) output2("\n<b>* Kally, Times Sexed in Threesome with Kiro:</b> " + flags["KIRO_KALLY_THREESOMES"]);
+					if(flags["SISTER_MILK_ACT"] != undefined) output2("\n<b>* Kally, Times Cock-Milked with Kiro:</b> " + flags["SISTER_MILK_ACT"]);
+				}
+				// Mabbs
+				if(flags["MET_MABBS"] != undefined)
+				{
+					output2("\n<b>* Mabbs:</b> Met her");
 				}
 				// Sylvie
 				if(flags["MET_SYLVIE"] != undefined)
@@ -5500,11 +5613,12 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["ERRA_RELATIONSHIP_TALK"] != undefined)
 			{
 				output2("\n<b>* Erra, Relationship:</b>");
-				if(flags["ERRA_LOVERS"] != undefined) output2(" Lovers");
+				if(erraLover()) output2(" Lovers");
 				else if(flags["ERRA_HEARTBROKEN"] != undefined) output2(" Rejected, You’ve broken her heart");
 				else output2(" Non-romantic");
+				if(erraCollared()) output2(", She is your pet");
 			}
-			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Cuddled:</b> " + flags["ERRA_SEXED"]);
+			if(flags["ERRA_CUDDLED"] > 0) output2("\n<b>* Erra, Times Cuddled:</b> " + flags["ERRA_CUDDLED"]);
 			if(flags["ERRA_SEXED"] > 0) output2("\n<b>* Erra, Times Sexed:</b> " + flags["ERRA_SEXED"]);
 			if(flags["ERRA_PETTED"] > 0) output2("\n<b>* Erra, Times Petted:</b> " + flags["ERRA_PETTED"]);
 			if(flags["ERRA_WALKIES"] > 0) output2("\n<b>* Erra, Times Walked:</b> " + flags["ERRA_WALKIES"]);
@@ -5560,7 +5674,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(StatTracking.getStat("contests/kiro drinkoff losses") + StatTracking.getStat("contests/kiro drinkoff wins") > 0) output2("\n<b>* Kiro, Drinking Contest, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/kiro drinkoff wins") + "/" + StatTracking.getStat("contests/kiro drinkoff losses") + ", of " + (StatTracking.getStat("contests/kiro drinkoff losses") + StatTracking.getStat("contests/kiro drinkoff wins")) + " games");
 			}
 			output2("\n<b>* Kiro, Testicle Size:</b> " + prettifyLength(chars["KIRO"].ballDiameter()) + " across, " + prettifyLength(chars["KIRO"].ballSize()) + " around, each");
-			if(flags["KIRO_FUCKED_DURING_RESCUE"] != undefined || flags["KIRO_DEEPTHROATED_YOU"] != undefined || flags["KIRO_BALLJOBBED_YOU"] != undefined || flags["KIRO_X_SAEN_HAPPENED"] != undefined || flags["PUMPED_KIRO_PUSSY"] != undefined || flags["KIRO_ORGIED"] != undefined)
+			if(kiroSexed())
 			{
 				output2("\n<b>* Kiro, Sexual Organs:</b> " + listCharGenitals("KIRO"));
 				output2("\n<b>* Kiro, Sexual History:</b> Sexed her");

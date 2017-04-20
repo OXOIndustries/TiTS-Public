@@ -209,6 +209,8 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("pippa_nuru", pippaNuruEmail, "New Service", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("pippa_crew", pippaCrewEmail, "Request", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
+
+	MailManager.addMailEntry("plantation_quest_start", shepDarnocksPlantationQuestInviteText, "Salutations!", "Shep Darnock", "theshepard12@snugglecorp.org", quickPCTo, quickPCToAddress);
 }
 
 public function cuzName():String

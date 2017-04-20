@@ -171,7 +171,7 @@ public function approachSera():void
 			output("Sera glares at you and her expression quickly sours. The demoness doesn’t seem too thrilled about your presence.");
 			output("\n\nHer piercing eyes peer into your soul as she asks, <i>“What the do you want this time?”</i>");
 		}
-		else if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		else if(seraIsMistress())
 		{
 			output("Sera leans over the counter, extends her index claw and presses it against your throat. She gently scratches it up to the bottom of your chin.");
 			output("\n\n<i>“Mine,”</i> she says simply, smiling lazily.");
@@ -193,18 +193,9 @@ public function approachSera():void
 
 public function seraMenu(toLeave:Boolean = false):void
 {
+	seraStoreSetup();
+	
 	clearMenu();
-	shopkeep = chars["SERA"];
-	if(flags["ZODEE_GALOQUEST"] != undefined)
-	{
-		if(flags["PURCHASED_SERAS_GALO"] == undefined)
-		{
-			if(!chars["SERA"].hasItem(new GaloMax())) chars["SERA"].inventory.push(new GaloMax());
-		}
-		else chars["SERA"].destroyItem(new GaloMax());
-	}
-	chars["SERA"].keeperBuy = "While you’re accessing the shopping terminal, Sera produces a file and goes to work on her nails to keep them honed to a razor-like sharpness. You suppose there’s not much for her to do while she waits on you to make a purchase.\n";
-
 	addButton(0,"Appearance",seraAppearance);
 	addButton(1,"Buy",buyItem);
 	addButton(2,"Sell",seraSellCheck);
@@ -264,11 +255,63 @@ public function seraMenu(toLeave:Boolean = false):void
 	else addButton(14,"Back",mainGameMenu);
 }
 
+public function chrysalisInventory():Array
+{
+	var inventory:Array = [];
+	
+	inventory.push(new TerranTreats());
+	inventory.push(new Estrobloom());
+	inventory.push(new Tittyblossom());
+	inventory.push(new Pussybloom());
+	inventory.push(new Pussyblossom());
+	inventory.push(new ManUp());
+	inventory.push(new Condensol());
+	inventory.push(new DendroGro());
+	inventory.push(new Rainbotox());
+	inventory.push(new Chocolac());
+	inventory.push(new SweetTreat()); // 9999 - Temporary
+	
+	return inventory;
+}
+public function seraStoreSetup():void 
+{
+	chars["SERA"].keeperBuy = "While you’re accessing the shopping terminal, Sera produces a file and goes to work on her nails to keep them honed to a razor-like sharpness. You suppose there’s not much for her to do while she waits on you to make a purchase.\n";
+	
+	chars["SERA"].inventory = chrysalisInventory();
+	
+	// Galo
+	if(flags["ZODEE_GALOQUEST"] != undefined && flags["PURCHASED_SERAS_GALO"] == undefined)
+	{
+		chars["SERA"].inventory.push(new GaloMax());
+	}
+	// XXX-Rated
+	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined)
+	{
+		chars["SERA"].inventory.push(new Clippex());
+	}
+	if(flags["SERA_UNLOCK_SEMENS"] != undefined)
+	{
+		chars["SERA"].inventory.push(new SemensFriend());
+	}
+	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined)
+	{
+		chars["SERA"].inventory.push(new Lucifier());
+	}
+	// Other
+	if(CodexManager.entryUnlocked("Muffstick"))
+	{
+		chars["SERA"].inventory.push(new Muffstick());
+	}
+	
+	shopkeep = chars["SERA"];
+}
+
 //Sell Routing
 public function seraInDebt():Boolean
 {
 	if(flags["SERA_PARTY_INVITE"] != undefined && flags["SERA_PARTY_INVITE"] >= 4) return false;
 	if(flags["SERA_REPAID_LOAN"] != undefined) return false;
+	if(flags["SERA_BUSINESS_SETUP"] != undefined && (days - flags["SERA_BUSINESS_SETUP"] >= 365)) return false;
 	return true;
 }
 public function seraDebtCheck():Boolean
@@ -596,7 +639,7 @@ public function seraTalkTopics(response:String = ""):void
 					output("\n\n<i>“If I had a problem with you looking like someone who works in a kiddie amusement park you would know about it by now, sweetheart,”</i> she says. She leers at you toothily. <i>“I actually </i>like<i> you that way. Working out the aggression on one of the clowns themselves? More satisfying than I thought.”</i>");
 				}
 				// Furry AND submitted:
-				else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4)
+				else if(seraIsMistress())
 				{
 					output("\n\n<i>“Funny how these things work out, isn’t it,”</i> you smirk. She glares daggers at you.");
 					output("\n\n<i>“If you enslaved me just because of what I said to you before,”</i> she snarls, <i>“that makes you the smallest muzzle-mutant in existence. Which is some achievement. No offence, ‘[pc.master]’.”</i>");
@@ -666,7 +709,7 @@ public function seraSexMenu(display:Boolean = false):void
 			return;
 		}
 		// Post-subservience
-		else if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		else if(seraIsMistress())
 		{
 			output("Sera smirks to herself when she sees you. You feel a small thrill when she rounds the desk to press her body against you. The coolness of her armor contrasts palpably with the warmth of her exposed breasts and tumescent, girthy tool. Her hand unabashedly roams across your [pc.butt], squeezing a cheek with an easy grope, pushing you against her just a little bit more firmly.");
 			output("\n\n<i>“You wanna fuck, pet?”</i> Sera asks, grabbing hold of you by the");
@@ -690,7 +733,7 @@ public function seraSexMenu(display:Boolean = false):void
 	clearMenu();
 	if(pc.lust() >= 33)
 	{
-		if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		if(seraIsMistress())
 		{
 			addButton(0, "Fuck Me", seraSexXXXRouter);
 			if(pc.hasCock())
@@ -709,7 +752,7 @@ public function seraSexMenu(display:Boolean = false):void
 	else
 	{
 		addDisabledButton(0,"Fuck Me","Fuck Me","You aren’t turned on enough for this.");
-		if(flags["SERA_TRIPLE_X_RATED"] >= 4 && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren’t turned on enough for this.");
+		if(seraIsMistress() && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren’t turned on enough for this.");
 	}
 	addButton(14,"Back",approachSera);
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
@@ -1099,7 +1142,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>“Alright, meat, I’ll go easy on you this time. But next time...”</i>");
 			//End first-time variant
 		}
-		//{Start here If PC is a cockslut OR PC is an Ausar-type:}
+		//Start here If PC is a cockslut OR PC is an Ausar-type:
 		output("\n\n<i>“Woof!”</i> you answer, wagging ");
 		if(pc.tailCount > 0) output("your [pc.tails]");
 		else output("your [pc.butt] like a tail");

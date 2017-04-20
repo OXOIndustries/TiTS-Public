@@ -21,7 +21,7 @@
 			
 			quantity = 1;
 			stackSize = 10;
-			type = GLOBAL.POTION;
+			type = GLOBAL.PILL;
 			shortName = "P. Pal";
 			longName = "Pleasure Palette Permapaint";
 			
@@ -51,7 +51,7 @@
 			else
 			{
 				clearOutput();
-				output(target.capitalA + target.short + " uses the the permapaint to no effect.");
+				output(target.capitalA + target.short + " uses the permapaint to no effect.");
 			}
 			return false;
 		}
@@ -153,15 +153,18 @@
 					break;
 				case "glowing":
 					colorList.push(["glowing red", "G.Red"]);
-					colorList.push(["glowing ember", "G.Ember"]);
+					colorList.push(["glowing orange", "G.Orange"]);
+					colorList.push(["glowing amber", "G.Amber"]);
 					colorList.push(["glowing gold", "G.Gold"]);
 					colorList.push(["glowing pink", "G.Pink"]);
 					colorList.push(["luminous silver", "L.Silver"]);
+					colorList.push(["luminous green", "L.Green"]);
 					colorList.push(["luminous cyan", "L.Cyan"]);
+					colorList.push(["luminous blue", "L.Blue"]);
 					colorList.push(["luminous violet", "L.Violet"]);
-					colorList.push(["fiery blue", "F.Blue"]);
-					colorList.push(["foxfire", "Foxfire"]);
 					colorList.push(["hot white", "H. White"]);
+					if(target.level >= 6 || target.hasItemByType(Foxfire)) colorList.push(["glowing ember", "Foxfire"]);
+					if(target.level >= 6 || target.hasItemByType(Frostfire)) colorList.push(["fiery blue", "Frostfire"]);
 					break;
 			}
 			
@@ -390,8 +393,8 @@
 			// Genitalia:
 			if(target.hasGenitals())
 			{
-				var hasCock:Boolean = (target.hasVagina());
-				var hasVagina:Boolean = (target.hasCock());
+				var hasCock:Boolean = (target.hasCock());
+				var hasVagina:Boolean = (target.hasVagina());
 				var totalGenitals:int = (target.totalGenitals());
 				
 				output("\n\nAlthough ignored due to your nipple-related attentions, your");

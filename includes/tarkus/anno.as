@@ -37,9 +37,6 @@ public function showAnno(nude:Boolean = false):void
 }
 public function annoBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["ANNO"], ["CHESHIRE", "GATS"])) return "ANNO";
-	
 	// Catsuit Anno
 	var sBust:String = "ANNO";
 	
@@ -65,13 +62,13 @@ public function steeleTechTarkusOutsideFunction():Boolean
 	variableRoomUpdateCheck();
 	if (steeleTechTarkusShopAvailable())
 	{
-		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon “Steele Tech” sign hangs above the door, the last “e” on your name flickering pitifully every few moments. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands: mostly old machine parts, though there are a few weapons and useful bits with glowing holographic price tags hovering over them.");
+		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon “Steele Tech” sign hangs above the door, the last “e” on your name flickering pitifully every few moments. A dusty window set in side of the shop shows stacks of salvaged tech from the " + (flags["TARKUS_DESTROYED"] != undefined ? "now-lost" : "planet’s") + " wastelands: mostly old machine parts, though there are a few weapons and useful bits with glowing holographic price tags hovering over them.");
 	}
 	else
 	{
-		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon “Steele Tech” sign hangs above the door, although its usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
+		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon “Steele Tech” sign hangs above the door, although its usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the " + (flags["TARKUS_DESTROYED"] != undefined ? "now-lost" : "planet’s") + " wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
 	}
-	
+	vendingMachineButton(0, "J'ejune");
 	return false;
 }
 
@@ -561,11 +558,10 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 public function petPlayForAnnoAfterCheating():void
 {
 	clearOutput();
-	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined)
-	{
-		flags["TAKEN_ANNO_AROUND_AS_A_PET"] = 1;
-		pc.addHard(2);
-	}
+	
+	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined) pc.addHard(2);
+	IncrementFlag("TAKEN_ANNO_AROUND_AS_A_PET");
+	
 	author("Savin");
 	showAnno(true);
 	output("Grinning dangerously at Anno, you tell her to strip out of that uniform: dogs don’t wear clothes.");
@@ -799,7 +795,7 @@ public function askAbootAnnoz():void
 	showAnno();
 	output("<i>“So, tell me about yourself,”</i> you say, by way of breaking the ice.");
 	output("\n\n<i>“No, you,”</i> Anno giggles, giving you a playful punch on the shoulder. <i>“You’re the billionaire playboy’s " + pc.mf("son","daughter") + ". That’s, like, a hundred times more interesting than me.”</i>");
-	output("\n\nYou try and refudiate her claim, but Anno’s insistent, and eventually pries you into telling her a bit about yourself, your rather unorthodox upbringing and training, and eventually to the quest that’s brought you all the way out to Tarkus.");
+	output("\n\nYou try and repudiate her claim, but Anno’s insistent, and eventually pries you into telling her a bit about yourself, your rather unorthodox upbringing and training, and eventually to the quest that’s brought you all the way out to Tarkus.");
 	output("\n\n<i>“Aha! I knew it!”</i> she exclaims, a smug grin across her face. <i>“I thought I picked up a Steele signal coming from the wastes a while ago, but I couldn’t track it. That must be the probe you’re after! Wish I could help you, boss: would be nice to hear Vic’s voice again, even if it’s just a recording in a probe.”</i>");
 	output("\n\nShe hesitates a moment, before placing a hand on your shoulder, squeezing tight. <i>“I bet you would too, huh?”</i>");
 	output("\n\nYou nod sadly. <i>“Yeah... and now, your turn.”</i>");
@@ -3720,10 +3716,7 @@ public function continueServicingKaedeWithAnno():void
 	
 	output("\n\nKaede’s knees all but give out under her, and she stumbles back onto the edge of the bed. Anno gives her a little push back, and crawls in after her, trailing kisses up the shemale’s sweat-sheened body. Anno scoots out of the way, and soon both girls are beckoning you into bed with them. They don’t have to ask twice. You languidly clamber in between them, and are quickly rewarded with a pair of tail-wagging, cum-slathered ausars snuggling up against you, their heads resting on your [pc.chest], tails teasing at your [pc.legOrLegs]. Grinning, both of your lovers reach up and peck you on the cheek before settling in. You wrap your arms around them, and soon find yourself drifting off into a warm, peaceful nap.");
 
-	var ppKaede:PregnancyPlaceholder = new PregnancyPlaceholder();
-	ppKaede.balls = 2;
-	ppKaede.ballFullness = 100;
-	ppKaede.ballSizeRaw = 8;
+	var ppKaede:PregnancyPlaceholder = getKaedePregContainer();
 
 	pc.loadInMouth(ppKaede);
 

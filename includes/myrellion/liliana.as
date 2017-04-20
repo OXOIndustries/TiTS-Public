@@ -142,7 +142,7 @@ public function lilianaAppearance():void
 	output(". You ");
 	if(flags["LILIANA_SEEN_NAKKERS"] == undefined) output("estimate");
 	else output("know");
-	output(" her to be about 4’8”</i> when standing. Her body doesn’t look strong by any means");
+	output(" her to be about 4\' 8\" when standing. Her body doesn’t look strong by any means");
 	if(flags["LILIANA_SEEN_NAKKERS"] != undefined) output(", but you know that most of her thin frame is made up of lean muscle");
 	output(".");
 	output("\n\nHer sandy blonde hair barely reaches the dark pools of her eyes, always looking slightly disheveled even as she smoothes it over. Despite its shape and length her hair is thick and silky, looking");

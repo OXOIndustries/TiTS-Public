@@ -1,7 +1,7 @@
 ﻿import classes.Characters.LapinaraFemale;
 import classes.Engine.Combat.DamageTypes.TypeCollection;
 //The Lapinara (Junkyard Planet Enemy)
-//By WorldofDrakan
+//By Anonymous Drake
 
 //Enemy Lapinara Encounter:
 //**All Lapinara have a ⅓ chance of dropping a strange white carrot.
@@ -9,7 +9,7 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
 //Finding a Lapinara:
 public function encounterALapinara():void
 {
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	//[First Encounter]
 	if(flags["ENCOUNTERED_PARASITIC_LAPINARA"] == undefined)
 	{
@@ -85,7 +85,7 @@ public function loseToFemaleLapinara():void
 
 public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 {
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	//(Male/Genderless Variant)
 	output("Your lapinara assailant grins wickedly as she admires you, her prize. She approaches you, forcibly removing your [pc.gear]. ");
@@ -136,7 +136,7 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 //(Female/Herm Variant)
 public function loseToLapinaraAndGetEggplantedChicks():void
 {
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	var x:int = rand(pc.vaginaTotal());
 	output("\n\nYour lapinara assailant grins wickedly as she admires you, her prize. She approaches you, forcibly removing your [pc.gear]. The sex-crazed bunny-girl takes a moment to inspect your [pc.crotch]. You see her nodding in silent approval. She then moves a hand down to play with [pc.oneVagina], licking her lips in anticipation as she gently");
@@ -190,7 +190,7 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 
 public function defeatDatLapinara():void
 {
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	//Lapinara Loses By HP:
 	if(enemy.HP() < 1)
@@ -235,7 +235,7 @@ public function defeatDatLapinara():void
 public function cuntTailFuckLapinaraParasitic():void
 {
 	clearOutput();
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	output("You bring your fluid-hungry tail pussy to your front, giving the lapinara a good look at it. You tell her that her egg chute is going to be getting a good milking. She rolls her eyes at you, letting out an annoyed sigh.");
 	output("\n\n<i>“You won’t be getting any cum out of this thing, you know, and I can’t impregnate tail-cunts!”</i>");
@@ -279,7 +279,7 @@ public function lapinaraButtfuckSelector(cockNum:int = 0):void
 public function buttFuckALapinara(cockNum:int = 0):void
 {
 	clearOutput();
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	var x:int = cockNum;
 	if(x < 0) x = pc.smallestCockIndex();
@@ -315,7 +315,7 @@ public function buttFuckALapinara(cockNum:int = 0):void
 public function hotdoggingALapinara(cockNum:int = 0):void
 {
 	clearOutput();
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	var x:int = cockNum;
 	if(x < 0) x = pc.smallestCockIndex();
@@ -343,7 +343,7 @@ public function hotdoggingALapinara(cockNum:int = 0):void
 public function getLickedByLapinara():void
 {
 	clearOutput();
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	//**Requires vagina.
 	output("You lie down on the ground, spreading your [pc.legOrLegs] for the lapinara. She grins widely at the sight of your [pc.vaginas], and you swear that you can make out a hint of blush under her fur. You point to ");
@@ -380,7 +380,7 @@ public function getBlownByLapinara(cockNum:int = 0):void
 	var x:int = cockNum;
 	if(x < 0) x = pc.biggestCockIndex();
 	clearOutput();
-	author("WorldOfDrakan");
+	author("Anonymous Drake");
 	lapinaraBust();
 	//(Dick/Biggest Dick Just Right Size Variant- 12 Inches and Below)
 	if(pc.cocks[x].cLength() <= 12)

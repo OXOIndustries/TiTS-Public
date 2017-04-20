@@ -10,7 +10,7 @@
 	import classes.StringUtil;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
-	import classes.Engine.Utility.IncrementFlag
+	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.num2Text;
 	
 	public class GaloMax extends ItemSlotClass
@@ -65,6 +65,13 @@
 			author("Fenoxo");
 			var pc:Creature = target;
 			if(target is PlayerCharacter) {
+				//Already waiting on effects
+				if(target.hasStatusEffect("GaloMax"))
+				{
+					output("Nope. You’re still waiting for the effects of the last one to kick in. You’re not going to risk turning into a puddle.");
+					if(!kGAMECLASS.infiniteItems()) quantity++;
+					return false;
+				}
 				//Dose 1!
 				if(kGAMECLASS.flags["GALOMAX_DOSES"] == undefined)
 				{
@@ -80,18 +87,11 @@
 					output("\n\nIt... it wasn’t that bad. It didn’t feel nearly as big as it looked. You barely even felt it! Nothing to do now but wait for that lump in your belly to dissolve and work its magic. Just how long is this stuff supposed to take anyway?");
 					output("\n\nArticles on the Codex peg it somewhere between thirty minutes and an hour. Time to wait.");
 				}
-				//Already waiting on effects
-				else if(target.hasStatusEffect("GaloMax"))
-				{
-					output("Nope. You’re still waiting for the effects of the last one to kick in. You’re not going to risk turning into a puddle.");
-					if(!kGAMECLASS.infiniteItems()) quantity++;
-					return false;
-				}
 				//Repeat take this shit
 				else
 				{
 					output("Another day, another gelcap full of transformative possibilities. You roll the pill around in your palm as you wonder what it’ll do to you, then knock it back before doubts can overcome your courage. All that’s left is to wait a little while for the gelcap to dissolve and release the pre-packed mutagenic agents into your system.");
-				}	
+				}
 				pc.createStatusEffect("GaloMax",0,0,0,0,true,"","",false,30+rand(10));
 				IncrementFlag("GALOMAX_DOSES");
 			}

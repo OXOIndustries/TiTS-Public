@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Transformatives.OmegaOil;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
@@ -257,6 +258,7 @@ package classes.Characters
 				case GLOBAL.FLUID_TYPE_NECTAR:
 				case GLOBAL.FLUID_TYPE_MILKSAP:
 				case GLOBAL.FLUID_TYPE_CUMSAP:
+				case GLOBAL.FLUID_TYPE_SUGAR:
 					energy(20 * fxMult);
 					break;
 			}
@@ -408,6 +410,7 @@ package classes.Characters
 				updateExhibitionism(totalDays);
 				myrVenomUpdate(totalDays);
 			}
+			if(isFullyWombPregnant()) clearHeat();
 			
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
@@ -419,15 +422,27 @@ package classes.Characters
 		private function updateExhibitionism(totalDays:uint):void
 		{
 			var exhibitionismPoints:Number = 0;
-			if(isCrotchExposed()) exhibitionismPoints++;
-			if(isAssExposed()) exhibitionismPoints++;
-			if(isChestExposed() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isChestVisible() && biggestTitSize() >= 1) exhibitionismPoints++;
+			if(isCrotchVisible() && (hasGenitals() || balls > 0)) exhibitionismPoints++;
+			if(isAssVisible()) exhibitionismPoints++;
 			if(isNude()) exhibitionismPoints++;
 
 			var currExhib:Number = exhibitionism();
 
 			//All covered up? Reduce over time!
-			if(exhibitionismPoints == 0) exhibitionism(-0.5 * totalDays);
+			if(exhibitionismPoints <= 0) 
+			{
+				//Skipping out on underwear will keep it from dropping, but won't raise it.
+				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
+				//High exhibitionism or sex-driven personality leads to being comfortable in kinky undies! Otherwise, degrade a little bit.
+				else if(isAssExposedByLowerUndergarment() || isCrotchExposedByLowerUndergarment() || isChestExposedByUpperUndergarment())
+				{
+					if((currExhib >= 50 || isBimbo() || isBro())) { /* Nada! */ }
+					else exhibitionism(-0.25 * totalDays);
+				}
+				//Otherwise, exhibitionism degrades.
+				else exhibitionism(-0.5 * totalDays);
+			}
 			else if(exhibitionismPoints >= 4 && currExhib < 50) exhibitionism(2);
 			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
 			else if(exhibitionismPoints >= 2 && currExhib < 33) exhibitionism(1);
@@ -439,7 +454,7 @@ package classes.Characters
 			if(kGAMECLASS.flags["VENOM_ADDICTION"] != undefined)
 			{
 				//Not yet uber-addict:
-				if(hasPerk("Venom Slut"))
+				if(!hasPerk("Venom Slut"))
 				{
 					if(hasStatusEffect("Myr Venom Withdrawal")) kGAMECLASS.myrAddiction(-2 * totalDays);
 				}
@@ -571,7 +586,7 @@ package classes.Characters
 		private function buttslutBootyGrowth(totalDays:int):void
 		{
 			var bootyMin:Number = 18;
-	
+			
 			// If butt is max size or is currently filled, no need to grow.
 			if (buttRatingRaw >= bootyMin || statusEffectv1("Anally-Filled") > 0) return;
 			
@@ -592,7 +607,7 @@ package classes.Characters
 				else if (addBooty > 2) m += " a few sizes";
 				else if (addBooty > 1) m += " a another size or two";
 				else m += " some mass";
-				m += ParseText("... It seems your bubbly booty refuses to be any smaller" + (buttRatingRaw < 10 ? " than that." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
+				m += ParseText("... It seems your bubbly booty is desperate for attention, begging for something to fill it" + (buttRatingRaw < 10 ? "." : "--not that you’d complain!") + " <b>Your [pc.butts] have grown bigger!</b>");
 				
 				buttRatingRaw += addBooty;
 				

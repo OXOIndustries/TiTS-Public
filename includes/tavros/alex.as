@@ -33,9 +33,6 @@ public function alexNameBustDiplay(nude:Boolean = false):void {
 }
 public function alexBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["ALEX"] != "GATS") return "ALEX";
-	
 	var sBust:String = "ALEX";
 	if(nude) sBust += "_NUDE";
 	return sBust;

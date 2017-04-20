@@ -34,7 +34,6 @@ package classes.Engine.Combat
 					
 					if (colour) tMsg += "S: -<span class='shield'>" + Math.round(damageResult.shieldDamage) + "</span>";
 					else tMsg += "S: -" + Math.round(damageResult.shieldDamage);
-					
 					if (damageResult.hpDamage > 0 || damageResult.lustDamage > 0) tMsg += ", ";
 				}
 				if (damageResult.hpDamage > 0)

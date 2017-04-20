@@ -2,7 +2,7 @@
 import classes.Items.Junk.BrokenBrainmeltLamp;
 import classes.Items.Junk.DamagedVIChip;
 
-//{Additional Sex Scene ideas: 
+//Additional Sex Scene ideas: 
 
 
 //Male:
@@ -101,7 +101,7 @@ public function talkingWithYammiAbootPexiga():void
 		output("\n\nYou give the slight cook a playful shove. <i>“You’re so silly! People aren’t vegitables! Or, maybe some people are? But anyway, the pexiga isn’t! Probably.”</i> You explain you just don’t think the blue girl is enjoying herself very much and it’d be like way more fun if she was having a good time too!");
 	}
 	output("\n\nYammi scratches her head, looking a little uncomfortable. <i>“Well, I know the UGC sometimes does a whole ‘uplift’ thing, where they help rudimentary races get up to speed with the rest of the galaxy. But I think that’s mostly with new technology and better education. If you wanted to fix the pexiga, you’d have to dabble in some genetic tinkering.”</i>");
-	output("\n\nHer gills trill slightly and the sparadat girl fixes you with big, moist eyes. <i>“But, look, don’t go messing with people who do that kind of stuff. I don’t want anything to happen to you and anybody who could rewire the pexiga is not the kind of person you want to indebt yourself to. Trust me on this - I know a thing or two about debt!”</i>");
+	output("\n\nHer gills trill slightly and the sparadat girl fixes you with big, moist eyes. <i>“But, look, don’t go messing with people who do that kind of stuff. I don’t want anything to happen to you, and anybody who could rewire the pexiga is not the kind of person you want to indebt yourself to. Trust me on this - I know a thing or two about debt!”</i>");
 	if(!pc.isBimbo()) output("\n\nYou set the girl at ease with a few sympathetic words, but the whole time, your mind is trying to work through the pexiga problem. Who do you know with genetic expertise and a relaxed attitude towards ethical issues?");
 	else output("\n\nYou set the girl at ease with a casual grope of her pert breasts and a few nibbling kisses along the gill-slits of her neck. Your mind, such as it is, is still focused on the pexiga, though. Seems like you’ll need a real smarty for this. Who do you know with big brains?");
 
@@ -151,7 +151,7 @@ public function drByronMcallisterProfessionalPexigaAnus():void
 	clearOutput();
 	mcallisterHeader();
 	author("Adjatha");
-	if(!pc.isBimbo()) output("You mention the pitiful plight of the pexiga to Dr. McAllister and the burly man runs his fingers through his bushy beard in thought.");
+	if(!pc.isBimbo()) output("You mention the pitiful plight of the pexiga to Dr. McAllister, and the burly man runs his fingers through his bushy beard in thought.");
 	else output("Leaning against the big, burly man and running your fingers through his bushy beard, you mention your poor little pexiga. <i>“Surely somebody as smart and handsome as the big Dr. Byron can help,”</i> you murmur into his ear.");
 	output("\n\n<i>“Hrm! Yes, yes I see what you mean. A nasty hand fate dealt those poor creatures. I suppose once my affairs have concluded on Myrellion, I could certainly petition my superiors to take a look at these pexiga.”</i>");
 	output("\n\nYou mention that you have one onboard your ship. Would it be possible for him to do some tests right now?");
@@ -215,7 +215,7 @@ public function drBadgerChristmasYay():void
 	output("\n\n<i>“You’re damed right I can!”</i> she responds with a suitably self-satisfied grin on her face. Her whole body trembles, with what you hope is excitement. <i>“Go get your little friend and by the time you get back, I should have something ready for the two of you,”</i> she grins, her pink-tinted goggles casting a distorted reflection back at you.");
 	output("\n\nAre you really going to trust Dr. Badger to do what’s right?");
 	
-	//{Disable Badger until the quest is complete}
+	//Disable Badger until the quest is complete
 	flags["PEXIGA_TREATMENT"] = 0;
 	//[Get Pexiga] [Just Leave]
 	processTime(6);
@@ -234,7 +234,7 @@ public function justLeaveBadger():void
 	showBust("");
 	author("Adjatha");
 	
-	if(!pc.isBimbo()) output("You step out and release a breath you hadn’t realized you’d been holding. Maybe Yammi was right. Dealing with people like Badger just isn’t worth the risk. Maybe somebody else in the galaxy can help the pexiga. You’ll just have to keep looking.");
+	if(!pc.isBimbo()) output("You step out and release a breath you didn’t realize you’d been holding. Maybe Yammi was right. Dealing with people like Badger just isn’t worth the risk. Maybe somebody else in the galaxy can help the pexiga. You’ll just have to keep looking.");
 	else output("Doctor Badger is so funny sometimes. She seemed really excited about that thing she was going to do. You place your finger to your [pc.lipsChaste] and stand still in thought. Now what was it she wanted you to do? Oh pooh. You’ve forgotten it. Oh well! You’ll remember eventually!");
 	
 	//End
@@ -257,7 +257,7 @@ public function bringBadgerPexibork():void
 
 	processTime(2);
 	//All
-	//{Go To Nym-Foe fight}
+	//Go To Nym-Foe fight
 	clearMenu();
 	addButton(0,"Next",nymfoeSetup);
 }
@@ -286,7 +286,7 @@ public function afterNymFoeFight():void
 	output("\n\nYou and your pexiga reach the bottom of the stairs and find a virtual warehouse of dangerous looking machines. A set of grav-cuffs on flexsteel chains whip about clicking like crab claws as they try to snatch up a victim. A person-sized tube filled with what looks like pink champagne bubbles ominously as a few ice cubes float and bob at the surface, never seeming to melt. Devices shaped like heat lamps hum with ominous import, shedding just a faint radiance yet seeming to flood the chamber with sweltering warmth. There are even hefty tanks filled with silicone that seem to have tubes and injectors affixed to their tips for ease of inflation.");
 
 	processTime(3);
-	//{Go to Doll Maker fight}
+	//Go to Doll Maker fight
 	clearMenu();
 	addButton(0,"Next",dollmakerSetup);
 }
@@ -440,7 +440,7 @@ public function helpJumpStartZePexibutt():void
 		{
 			output("Her tail loops around and lightly caresses your [pc.balls], warm flesh against the cold weight of your burgeoning load. The broad, flat surface of her spaded tip is surprisingly flexible as it grips and fondles your bouncing sack with a delicious deftness that you wouldn’t have guessed the cock-stuffed, drooling pet to be capable of.");
 		}
-		else output(" Her tail loops around and lightly caresses the seam of your [ps.ass]. The thick, rounded extremity of her spaded tip pushes into your [pc.asshole] just far enough to locate your prostate. You gasp, a little amazed that the cock-stuffed and drooling pet bouncing between two climax-bloated shafts is capable of such delicious deftness.");
+		else output(" Her tail loops around and lightly caresses the seam of your [pc.ass]. The thick, rounded extremity of her spaded tip pushes into your [pc.asshole] just far enough to locate your prostate. You gasp, a little amazed that the cock-stuffed and drooling pet bouncing between two climax-bloated shafts is capable of such delicious deftness.");
 
 		output("\n\nThe pexiga’s full cheeks flush a pale blue, her eyes clenched at the suffocating heat of the throbbing flesh piercing her. Moaning, she thrashes her shoulders from side to side, before throwing her head and crying out in ecstasy. Her body ripples with the milking tightness of her orgasm and the trembling vibrations from Badger’s fuck-stick tell you she’s not too far behind. A thought strikes you and you lift the girl up off both cocks with a grunt of effort.");
 
@@ -517,7 +517,7 @@ public function acceptBeingBadgers():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",drBadgersAssistantBadEnd);
-	//(Go to <i>“Badger’s Assistant”</i> Bad End)
+	//(Go to “Badger’s Assistant” Bad End)
 }
 
 //[Decline]
@@ -551,7 +551,7 @@ public function pexigaNamingSetup():void
 	currentLocation = shipLocation;
 	generateMap();
 	
-	//{Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines}
+	//Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
@@ -593,7 +593,7 @@ public function pexigaNamingConventions(retFunc:Function = null):void
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	showPexiga();
-	//{Add <i>“Pexiga”</i> to the crew options}
+	//Add “Pexiga” to the crew options
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -674,7 +674,7 @@ public function argueWithBadger():void
 	processTime(15);
 	clearMenu();
 	//[Next]
-	//{Go to <i>“Badger’s Assistant”</i> Bad End}
+	//Go to “Badger’s Assistant” Bad End
 	addButton(0,"Next",drBadgersAssistantBadEnd);
 }
 
@@ -703,7 +703,7 @@ public function complyWivDaBadguh():void
 	else output("\n\n<i>“Woah! Anything you think? Badger’s so smart, it’s scary!");
 
 	output("\n\nTaking the alabaster girl by the arm, you let her lean against you as the two of you make your way back to the ship. She doesn’t seem to have much in the way of memories, so you help her fill in the sizable gaps in her experience by answering a whole slew of questions as the two of you make your way through Tarkus.");
-	//{Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines}
+	//Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines
 	clearMenu();
 	addButton(0,"Next",pexigaNamingSetup);
 }
@@ -752,7 +752,7 @@ public function talkToBimboBadgerAboutPexiga():void
 	//merge
 	output("\n\n<i>“Okay! Like, no problem at all. I can totally do it. Should be super easy. Go get your friend!”</i> Badger starts grabbing stuff seemingly at random and banging them together. You sure hope nothing bad happens...");
 
-	//{Badger is disabled until the end of the quest}
+	//Badger is disabled until the end of the quest
 	flags["PEXIGA_TREATMENT"] = 0;
 	processTime(3);
 	//[Get Pexiga] [Just Leave]
@@ -791,7 +791,7 @@ public function bimboBadgerPostNymfoeFight():void
 	output("\n\nYou and your pexiga reach the bottom of the stairs and find a virtual warehouse of dangerous looking machines. A set of grav-cuffs on flexsteel chains whip about clicking like crab claws as they try to snatch up a victim. A person-sized tube filled with what looks like pink champagne bubbles ominously as a few ice cubes float and bob at the surface, never seeming to melt. Devices shaped like heat lamps hum with ominous import, shedding just a faint radiance yet seeming to flood the chamber with sweltering warmth. There are even hefty tanks filled with silicone that seem to have tubes and injectors affixed to their tips for ease of inflation.");
 
 	processTime(3);
-	//{Go to Doll Maker fight}
+	//Go to Doll Maker fight
 	clearMenu();
 	addButton(0,"Next",dollmakerSetup);
 }
@@ -884,7 +884,7 @@ public function stayForBimboBadgersWork():void
 		output("Doctor Badger, apparently growing bored, begins tapping the colorful orb with a black furred finger. <i>“Eh heh heh. That tingles!”</i> She presses her palm on the sphere and the massive, jet black flesh of her thick member swells to life, pre-cum drippling from its tip in an instant. <i>“Woooah! That’s cool! I wonder how it does that?”</i> she ponders in an amazed tone that echoes your own. <i>“You should try that!”</i> she says with effervescent delight and before you can respond, she snatches your hand and slaps your palm against the colossal glass surface of the Bimbo Ball.");
 		output("\n\nYour hand tingles slightly but almost immediately your groin begings throbbing with excitement. You giggle and pull your hand off out of curiosity. The tingling goes away, so you put your other palm on and the delightful sensation returns. Oh what fun! You and Badger take turns poking the ball and gurgling at the near-orgasmic bliss that shoots through you with every touch. You should, like, get Badger to install this in your ship! You make a mental note to ask her to set it up, but the note is blown away like a slip of paper in a hurricane as the two of you lose complete track of time playing with the mesmeric glee of the Bimbo Ball, sticky with the seeping juices flowing from your overstimulated bodies.");
 		output("\n\nYou try licking the glass ball, but this proves unwise as a stray electrical arc crackles directly through your skull. With a wheezing giggle, like a beachball deflating, you collapse, darkness overtaking you.");
-		//{All of the PC’s dicks increase by 2 inches if they have any. PCs with at least A-cup breasts increase by 1 cup size}
+		//All of the PC’s dicks increase by 2 inches if they have any. PCs with at least A-cup breasts increase by 1 cup size
 		//Fen note: Did this below after both checks
 		*/
 
@@ -953,12 +953,12 @@ public function stayForBimboBadgersWork():void
 			output(" Your inner heat ebbs and flows with every panting gasp you take and you can feel your [pc.breasts] swelling under its vibrating hum, as if soaking up your siphoned brain power.");
 		}
 		if(pc.hasCock()) output(" A gushing ocean of needy lust washes through your [pc.cocks], the tender flesh throbbing in time with your racing heartbeat.");
-		//{If above 50 Int, PC loses 5 points of Int. If Int is 50 or below, player loses 2 points of Int.}
+		//If above 50 Int, PC loses 5 points of Int. If Int is 50 or below, player loses 2 points of Int.
 		//Fen note: Nope. Gonna make this IQ-based.
 		if(pc.IQ() >= 60) pc.intelligence(-5);
 		else if(pc.IQ() >= 35) pc.intelligence(-3);
 		else pc.intelligence(-1);
-		//{All of the PC’s dicks increase by 2 inches if they have any. PCs with at least A-cup breasts increase by 1 cup size};
+		//All of the PC’s dicks increase by 2 inches if they have any. PCs with at least A-cup breasts increase by 1 cup size
 	}
 	var x:int = 0;
 	if(pc.hasCock())
@@ -1070,7 +1070,7 @@ public function pexigaNamingSetup4BimboBadgerwerk():void
 	currentLocation = shipLocation;
 	generateMap();
 	
-	//{Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines}
+	//Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
@@ -1116,7 +1116,7 @@ public function shekkaPeacekeeperTalk():void
 	author("Adjatha");
 	output("You mention the UGC Peacekeepers to Shekka and she immediately interrupts you. <i>“Oh yeah, those guys? Geez, what a mess, am I right? Dozens of raskvel go missing to the Mess and nobody blinks an eye, but some wanted criminal from the core turns up on Tarkus and the police are out here faster than a jump start! I wouldn’t be surprised if the Confederacy was riding shotgun with slavers from day one.”</i>");
 	if(!pc.isBimbo()) output("\n\nShe seems awfully touchy about the subject. No sense beating around the bush, so you tell the excitable mechanic exactly what you’re planning.");
-	else output("\n\nYou clasp her hands to your [pc.breasts] and practically bounce up and down, begging for her help. <i>“Shekkaaaaaaa...”</i> you whine, <i>“you’re so smart and I really need to get in to Badger’s place, and couldn’t you maybe just help you out with this one teeny little favor? I’ll make sure it’ll be WELL worth your time,”</i> you hint, suggestively pursing your lips together.");
+	else output("\n\nYou clasp her hands to your [pc.breasts] and practically bounce up and down, begging for her help. <i>“Shekkaaaaaaa...”</i> you whine, <i>“you’re so smart and I really need to get in to Badger’s place, and couldn’t you maybe just help me out with this one, teeny little favor? I’ll make sure it’ll be WELL worth your time,”</i> you hint, suggestively pursing your lips together.");
 	output("\n\nThe crimson scaled girl eyes your pexiga warily before turning back to you. <i>“Hey, I’d love a chance to get some salvage from that bimbo-place. And, of course, the UGC and me get along about as well as a sparkplug and a bucket of anti-freeze. But I’ve got a business to think of. I can’t go around making trouble for Johnny Law just as a distraction for your weird monster there.”</i>");
 	output("\n\nHer tail whips back and forth in agitation. <i>“Sorry, sorry, I’m just a bit punchy, I guess. You find anything of interest, bring it back and I’ll give it a look, but count me out on the infiltration bit. I’ve spent too long looking into the Mess to risk getting picked up for petty Breaking and Entering, you know?”</i>");
 	output("\n\nLooks like you’re going to have to get help somewhere else.");
@@ -1134,17 +1134,17 @@ public function drLashPeacekeeprTalk():void
 	author("Adjatha");
 	output("The deranged doctor seems all too happy to discuss the fall of his rival across the way. <i>“Oh, of course, it had been a minor conceit of mine that the miserable “Doctor” Badger would be undone through my own machinations, but in truth it was a trivial thing. The expediency of her removal is all that matters. One less distraction from my visionary work.”</i>");
 	if(!pc.isBimbo()) output("\n\nLash seems a little less collected than usual. Perhaps he’s actually a bit nervous about having UGC agents so close to his sanctuary. Afterall, the immaculately clean building sticks out like a sore thumb amid the greasy, patchwork menagerie of the rest of Novahome. Carefully, you broach the topic of the peacekeepers themselves. Rather than waiting around and hoping they don’t notice him, why not take the initiative. Afterall, he doesn’t want to end up like Badger: on the run or in custody.");
-	else output("\n\nLashy seems a bit out of it. He’s normally so distant, but you think you can hear a little emotion leaking out here and there. You snap your fingers in realization; he probably misses Ms. Badger! He likes to complain, but it’s hard to stay mad at somebody as sexy as the Doc. He glances up in annoyance at your snap. Nodding emphatically, you offer your take on things: <i>“You should invite the Police over for a chat! Maybe they know where Badger went off to, and you could go visit her just like old times!”</i>");
+	else output("\n\nLashy seems a bit out of it. He’s normally so distant, but you think you can hear a little emotion leaking out here and there. You snap your fingers in realization: he probably misses Ms. Badger! He likes to complain, but it’s hard to stay mad at somebody as sexy as the Doc. He glances up in annoyance at your snap. Nodding emphatically, you offer your take on things: <i>“You should invite the Police over for a chat! Maybe they know where Badger went off to, and you could go visit her just like old times!”</i>");
 	output("\n\nDr. Lash’s glowing red goggles dim as he regard you critically. <i>“Ordinarily, I would reject such an idiotic proposition out of hand. However, the thought that these men of the law may take an interest above their paygrade had occurred to me prior to this conversation.”</i>");
 	output("\n\nYou ask if that means he’ll meet them himself.");
 	output("\n\nThe neuter turns a withering gaze on you. <i>“Just as I had hoped a small glimmer of insight had wormed its way into the sex-addled mucus of your brain... No, of course I will not accost these bureaucratic puppets myself. Like a smart man, I will be using a machine to redirect their attention. Observe.”</i> Dr. Lash produces a small, slim controller from a pocket and presses a button.");
-	output("\n\nA tremendous shock cracks through Novahome, the walls around you shuddering as the vessel-turned-city shudders under the muffled percussion of a distant bomb being detonated. Your eyes wided and you turn to ask him what that was, but the sinister figure predicts your question before you can even open your mouth.");
+	output("\n\nA tremendous shock cracks through Novahome, the walls around you shuddering as the vessel-turned-city shakes under the muffled percussion of a distant bomb being detonated. Your eyes wided and you turn to ask him what that was, but the sinister figure predicts your question before you can even open your mouth.");
 	output("\n\n<i>“A small bomb I planted in the western end of the city. Nothing world-shattering, of course.”</i> His thin lips twist in a mild smile. <i>“Just something I had left over from my attempts to dispose of that wretched Badger creature. Alas, she never rose to my bait and remained firmly ensconced in her lair until UGC intervention. Ah well...”</i> He sighs at the missed opportunity for murder.");
 	output("\n\n<i>“For my purposes now,”</i> Lash continues, as if lecturing a particularly dim pupil, <i>“the blast will be just large enough to incite a panic and redirect UGC attention. In all likelihood, they will determine it to be a further plot by those insipid pirates.");
 	//if player has completed Tarkus Bomb Quest:
 	if(flags["TARKUS_BOMB_TIMER"] <= 0 && flags["TARKUS_BOMB_TIMER"] != undefined || flags["PLANET_3_UNLOCKED"] != undefined) output(" Or perhaps a parting gift.");
 	output(" In any event, the necessity for their lackies to remain near my residence will be found wanting.”</i>");
-	output("\n\nDr. Lash turns his full attention to you and you can just about feel the severity of his mad fervor like a weight on your chest. <i>“I presume you had some errand to attend to in that cordoned shack. You may go and tend to your affairs now. Be forewarned, however: this was not a favor. I redirected the Peacekeepers for my personal advantage alone. I will not be tapped for trivial errands and those who presume to do so may find themselves on the operative end of the next detonation.”</i> He turns back to his work, dismissing you with an absent wave of his hand.");
+	output("\n\nDr. Lash turns his full attention to you and you can just about feel the severity of his mad fervor like a weight on your chest. <i>“I presume you had some errand to focus on in that cordoned shack. You may go and tend to your affairs now. Be forewarned, however: this was not a favor. I redirected the Peacekeepers for my personal advantage alone. I will not be tapped for trivial errands, and those who presume to do so may find themselves on the operative end of the next detonation.”</i> He turns back to his work, dismissing you with an absent wave of his hand.");
 	if(!pc.isBimbo()) output("\n\nYou’re not sure if you should thank him or draw your weapon. The man’s barking mad, that much is obvious. You’re tempted to tip off the Peacekeepers, but you suspect that’d only be signing their death warrants. If somebody steps up to Lash, they’re going to need to be prepared for the devil himself.");
 	else output("\n\nWhew, what a relief. All this thinking and talking was starting to make you feel dizzy. Lashy just is not as much fun as Doc Badger. Not by a long shot!");
 
@@ -1220,7 +1220,7 @@ public function noBadgerPostNymFoe():void
 	else output("Well, that was fun! Hopefully Badger left more neat little friends to play with. Still, nothing to help your pet just yet.");
 
 	output("\n\nYou dig around her back room, moving debris aside. Before long, you find a hastily concealed passage: sliding a piece of sheet metal from the back wall reveals a curling stairwell leading down. You hold your glowstick out, but the shaft goes too deep for your feeble light. ");
-	if(!pc.isBimbo()) output("This must lead to some subterranean bunker. No sense in turning around now, you figure as you lead the blue girl down the rusted steps.");
+	if(!pc.isBimbo()) output("This must lead to some subterranean bunker. No sense in turning around now, you figure, as you lead the blue girl down the rusted steps.");
 	else output("He heh heh. ‘Shaft.’ Boy, it feels like forever since you got to fuck something! Grapping your blue girl, you lead her down, deeper into the Badger’s lair.");
 
 	output("\n\nAs you go, you’re given a view of the network of pipes and hydraulic machinery just beneath the floorboards of the unassuming office. ");
@@ -1228,7 +1228,7 @@ public function noBadgerPostNymFoe():void
 	else output(" You don’t really know what all these things are for, but the Doc definitely has a type. Probably a bunch of silly pranks to, like, give boys huge boobs or something. Oooh! Maybe some are still active? It would be, like, super awesome if you came down here for your blue girl’s brain problems and got bigger, squishier tits for her too!");
 
 	output("\n\nYou and your pexiga reach the bottom of the stairs and find a darkened warehouse of dangerous looking machines. A set of grav-cuffs on flexsteel chains look like they’ve had too much use. A person-sized tube filled with what looks like pink champagne bubbles occasionally, lit from within and yet less bright than your plastic rod. There are even hefty tanks filled with silicone that seem to have tubes and injectors affixed to their tips for ease of inflation.");
-	//{Go to Doll Maker fight}
+	//Go to Doll Maker fight
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",dollmakerSetup);
@@ -1375,8 +1375,11 @@ public function nymfoeSetup():void
 	{
 		flags["NYM-FOE"] = 1;
 		output("As you make your way to Doctor Badger’s back room, you can’t help but stare at the bizarre assortment of inventions crowding just about every flat surface. You’re so caught up in trying to take in the sheer variety that you don’t even notice when you walk right into a pair of bouncy orbs. Drawing back, you find yourself eye-to-tits with a JoyCo nursedroid.");
-		output("\n\nThe pale-skinned, pink uniformed clinical android seems out of place, except for the spine-crushingly huge mega tits she’s supporting with groaning servos. The <i>“V-Ko”</i> designation on its upper right arm has been scratched off and - in Badger’s messy script - a new name has been scrawled in its place: Nym-Foe. The droid stares at you with wide, pink eyes and an innocent smile, her overfilled chest still jiggling from your impact. <i>“Medical services are currently mandatory,”</i> she explains, a segmented, steel tail whipping back and forth behind her.");
-		output("\n\nWhether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid. There’s no telling what kind of devious modifications the slutty scientist made to the medical aide. You look back at your pexiga’s empty eyes. If you want to help her, you’re going to have to get through this perverted nursedroid.");
+		output("\n\nThe pale-skinned, pink uniformed clinical android seems out of place, except for the spine-crushingly huge mega tits she’s supporting with groaning servos. The <i>“V-Ko”</i> designation on its upper right arm has been scratched off and - in Badger’s messy script - a new name has been scrawled in its place: Nym-Foe. The droid stares at you with wide, pink eyes and an innocent smile, her overfilled chest still jiggling from your impact. <i>“Medical services are currently mandatory,”</i> she explains, a segmented steel tail whipping back and forth behind her.");
+		output("\n\n");
+		if(flags["DR_BADGER_TURNED_IN"] == undefined) output("Whether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid.");
+		else output("It looks like Doctor Badger has left behind a guard droid and you must have tripped something to activate it.");
+		output(" There’s no telling what kind of devious modifications the slutty scientist made to the medical aide. You look back at your pexiga’s empty eyes. If you want to help her, you’re going to have to get through this perverted nursedroid.");
 		processTime(2);
 		//[Fight] [Leave]
 		clearMenu();
@@ -1529,7 +1532,7 @@ public function loseToNymFoeViaHP():void
 		output("\n\nYou gasp at the pinch and accidentally swallow a bit of the gushing girl’s lactate. A taste utterly unlike milk fills your mouth and tingles at the tip of your [pc.tongue]. Attempting to spit it out only allows more of the fluid into you and when an ominous shiver starts in your shoulders you know it’s too late. You can taste the strangely cold fluid all the way to the back of your throat, stuck there like a too-thick syrup. There’s a narcotic sweetness to it that flits across your tastebuds and burrows into your muscles. Even without intending it, you find your lips wrapping around the android’s synthetic nipple and coaxing more from it. You just need a second taste...");
 		output("\n\nYour face grows numb and before that numbness spreads to your brain, you take stock of the rest of your body. The needle in your ass seems to be injecting you with something. The sensation of swollen growth leaves your body itching fiercely. You struggle and squirm, but can’t quite seem to calm your rebelling body.");
 		output("\n\n<i>“Shh, shh,”</i> Nym-Foe comforts, stroking your head. <i>“You’re going to be all better.”</i> With your mouth full of the droid’s drugged milk and your body inflating from her injections, the best you can do is to let out a defiant moan as darkness overtakes you.");
-		//{Player’s ass, hips, thighs, lips, and breasts all increase by 3 steps. Libido increases by 15. If feminity is less than 50, it is set to 50. Player gains the lactating effects of 3 uses of a Gush Spraypen. Their hit points and energy are set to max.}
+		//Player’s ass, hips, thighs, lips, and breasts all increase by 3 steps. Libido increases by 15. If feminity is less than 50, it is set to 50. Player gains the lactating effects of 3 uses of a Gush Spraypen. Their hit points and energy are set to max.
 		if(pc.femininity < 50) pc.femininity = 50;
 		else pc.modFem(15);
 		
@@ -1564,7 +1567,7 @@ public function loseToNymFoeViaHP():void
 			output(", with anticipation.");
 			pc.lust(10);
 		}
-		//{player’s ass increases 3 steps}
+		//player’s ass increases 3 steps
 		//[Next]
 		nymFoeInjection(2,3);
 
@@ -1596,7 +1599,7 @@ public function loseToNymFoeViaHPBimboStep2():void
 	showNymFoe();
 	author("Adjatha");
 	output("Just as your bubble-like cheeks seem to reach their limit, the expanding goo spreads down into your [pc.hips], giving them a taste, too. <i>“This silicone is very special,”</i> the nurse adds with delight. <i>“It goes where instructed, without the need for multiple insertions. And, unlike most implants, these will feel just like your real body. Won’t that be fun?”</i> You nod excitedly as your flanks widen.");
-	//{player’s hips and thighs increase 3 steps}
+	//player’s hips and thighs increase 3 steps
 	nymFoeInjection(1,3);
 	nymFoeInjection(2,3);
 
@@ -1631,7 +1634,7 @@ public function loseToNymFoeViaHPBimboStep3():void
 		pc.lust(10);
 	}
 	output("The steel tail keep pumping, but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
-	//{player’s breasts increase by 3 cup sizes}
+	//player’s breasts increase by 3 cup sizes
 	nymFoeInjection(3,3);
 	processTime(3);
 	clearMenu();
@@ -1644,7 +1647,7 @@ public function loseToNymFoeViaHPBimboStep4():void
 	showNymFoe();
 	author("Adjatha");
 	output("In no time at all, your chest now sports [pc.breasts], wobbling with their overstuffed expansion but just as sensitive as before. You tremble with the bliss of your added weight, and can’t help but to rub your [pc.nipples] a little bit. <i>“And, for the cherry on top...”</i> Nym-Foe adds, tweaking your nose playfully. The silicone rushes across your face, settling in your [pc.lips] and bloating your pucker to swollen, dick-sucking perfection. You giggle with glee and lean forward to kiss the nurse droid for all her thoughtful gifts.");
-	//{player’s lips increase 3 steps, Libido increases by 15}
+	//player’s lips increase 3 steps, Libido increases by 15
 	pc.modFem(20);
 	nymFoeInjection(4,1);
 	processTime(4);
@@ -1677,7 +1680,7 @@ public function loseToNymFoeViaHPBimboStep5():void
 		}
 	}
 	output("\n\nYour body still teetering from the orgasm and your new proportions, Nym-Foe gently eases you down. She plucks a lollipop from between her breasts and hands it off to you with a smile. Without bothering to clean herself up, she leans over you, placing a breast before your mouth. You greedily take the offered nipple in your [pc.lips] and suckle away, drinking down her drug-sweet not-milk.");
-	//{if not already, the player begins lactating. Treat it as if they had 3 uses of Gush. If the player’s femininity was below 50, set it to 50. Player hp & energy set to max, lust set to 0}
+	//if not already, the player begins lactating. Treat it as if they had 3 uses of Gush. If the player’s femininity was below 50, set it to 50. Player hp & energy set to max, lust set to 0
 	if(!pc.canLactate()) output(" <b>You’re pretty sure it’s making you lactate.</b>");
 	else output(" <b>You’re pretty sure it’s bolstering off your ability to lactate.</b>");
 	if(pc.milkMultiplier < 100) pc.milkMultiplier = 100;
@@ -1773,7 +1776,7 @@ public function fuckTheNymFoe():void
 		}
 		output("\n\nShe needs no further encouragement, and the robotic girl pushes forward to rest the tip of her slight nose against the outer folds of your labia. Panting with heated gasps, she drinks in the bouquet of your feminine scent, stroking your lower lips with the velvety softness of her artificial skin. A tightness rolls across your core and you find yourself nibbling on your bottom lip. Rocking a bit, you stroke the firmness of [pc.oneClit] over the droid’s elegant contours. She raises a gloved hand to the [pc.skinFurScales] of your abdomen, the soft fabric caressing your tender underside with loving strokes. With whisper-like tenderness, she purses her lips and places an endless array of delicate kisses all around your trembling mound before finally reaching your lustful bead.");
 		output("\n\nYour sigh of relief is short-lived, however, as she moves from the faintest of tickling touches to a voracious engine of raw clit-loving. Her lips suck and slurp at your [pc.clit] while her tongue circles with such moist speed that you can feel the breath being drawn from your chest. Your body trembles as the throbbing need in your loins is stoked to a fiery passion in record time. Your jaw drops and your [pc.chest] heave");
-		if(pc.biggestTitSize() >= 1) output("s");
+		if(!pc.hasBreasts()) output("s");
 		output(", one hand weakly touching your panting throat");
 		if(!pc.isTaur()) output(" while the other lowers to pull her head even tighter against your overwrought mons");
 		output(". A tautness pulls at your body and it’s all you can do to push it back, shuddering with the effort.");
@@ -1827,8 +1830,8 @@ public function fuckNymFoe2():void
 	//No dickerdoodlez
 	if(!pc.hasCock())
 	{
-		output("Just as it seems the robotic girl will suckle the orgasm from you, she pulls back from your throbbing [pc.clit], placing a final kiss on it. You hadn’t even realized you were holding your breath until your chest falls with a gasping release. Blinking, you try to regain your thoughts but in the next heartbeat, Nym-Foe has begun the second prong of her assault. Tilting her head just a bit, she moves to press her impossibly beautiful lips to the swell of your womanhood and allows just the tip of her tongue to part those [pc.skinColor] folds with reverent worship. A moan travels up your spine like a lover’s fingertips and by the time it reaches your [pc.lips], you find yourself rocking against the girl’s face to coax her on.");
-		if(pc.legCount > 1) output(" Your [pc.thighs] tighten around her head, muscles squeezing against the droid’s synthetic skin like you’re trying to urge a horse its idle trotting to a full gallop.");
+		output("Just as it seems the robotic girl will suckle the orgasm from you, she pulls back from your throbbing [pc.clitNoun], placing a final kiss on it. You haven’t even realized you were holding your breath until your chest falls with a gasping release. Blinking, you try to regain your thoughts but in the next heartbeat, Nym-Foe has begun the second prong of her assault. Tilting her head just a bit, she moves to press her impossibly beautiful lips to the swell of your womanhood and allows just the tip of her tongue to part those [pc.skinColor] folds with reverent worship. A moan travels up your spine like a lover’s fingertips and by the time it reaches your [pc.lips], you find yourself rocking against the girl’s face to coax her on.");
+		if(pc.legCount > 1) output(" Your [pc.thighs] tighten around her head, muscles squeezing against the droid’s synthetic skin like you’re trying to urge a horse to switch from its idle trotting to a full gallop.");
 		else if(pc.isNaga()) output(" Your coils tighten in rippling rings of impatient bliss, as if to squeeze more of her extraordinarily skilled tongue into your lust-dripping depths.");
 		else if(pc.isGoo()) output(" Your gelatinous form tightens in rippling rings of impatient bliss, as if to squeeze more of her extraordinarily skilled tongue into your lust-dripping depths.");
 
@@ -1836,7 +1839,7 @@ public function fuckNymFoe2():void
 		output("\n\nAnd yet, even as your orgasm rises to nearly unbearable closeness, she pulls back once more. You nearly scream with your wanton urgency, so close to paradise and yet so far. You ");
 		if(pc.legCount < 4) output("lower your gaze");
 		else output("crane your head back");
-		output(" only to see Nym-Foe’s mellow expression looking back with inscrutable satisfaction. The silvery steel of her tail snakes upward and gently strokes the juicy bounty of your gushing cunny before curling upward to squeeze the curve of your [pc.ass]. She meets your gaze and quirks an eyebrow up at you. Frankly, at this point, you’d be just about willing to sell your whole inheritance to the ");
+		output(" only to see Nym-Foe’s mellow expression looking back with inscrutable satisfaction. The silvery steel of her tail snakes upward and gently strokes the juicy bounty of your gushing cunny before slithering above and curling to squeeze the curve of your [pc.ass]. She meets your gaze and quirks an eyebrow up at you. Frankly, at this point, you’d be just about willing to sell your whole inheritance to the ");
 		if(pc.isNice()) output("exquisite");
 		else if(pc.isMischievous()) output("crafty");
 		else output("damned");
@@ -1948,7 +1951,7 @@ public function fuckNymFoe3():void
 
 
 //[Suck Out]
-//{option blanked out if the player was not injected or has already removed their silicone}
+//option blanked out if the player was not injected or has already removed their silicone
 public function suckOutDatInjectionGoop():void
 {
 	clearOutput();
@@ -2073,7 +2076,7 @@ public function dollmakerSetup():void
 	if(!pc.isBimbo())
 	{
 		output("\n\nA harsh, unfriendly buzz comes from the machine as its electric voice hisses at you. <i>“Fuck-slut levels unsatisfactory. Initiating reconstruction protocols. Do not resist, Whore: you will be Dolled.”</i> Frankly, you’re not comfortable with how this machine used the word <i>“doll,”</i> and you’d just as soon not find out what exactly that involves. The limbs around you lift a strange array of tools and pincers as it attempts to grab you!");
-		//{Go to Battle}
+		//Go to Battle
 		clearMenu();
 		addButton(0,"Next",fightTheDollmaker);
 	}
@@ -2101,7 +2104,7 @@ public function bimboSkipDollmakerFight():void
 	
 	flags["DOLLMAKER_STATUS"] = 2;
 	
-	//{Skip Battle}
+	//Skip Battle
 	clearMenu();
 	addButton(0,"Next",afterDollmakerFight);
 }
@@ -2116,7 +2119,7 @@ public function volunteerForDollificationFight():void
 	
 	flags["DOLLMAKER_STATUS"] = 3;
 	
-	//{Go to <i>“Dolled”</i> Combat Result}
+	//Go to Dolled Combat Result
 	clearMenu();
 	addButton(0,"Next",dolledBadEnd);
 }
@@ -2305,7 +2308,7 @@ public function gushBadEndWithNymFoe():void
 	output(" with too-tender sensitivity that leaves flashes of blinding white detonating behind your eyes. You clutch your chest with one hand and grit your teeth, trying to push away the sensations while seizing a half-disassembled Hammer pistol from next to you. In this state, there’s no way it’s going to fire, but at least you can smash the hunk of metal into the nurse’s face until she fixes you!");
 	output("\n\nRaising your improvised weapon and struggling upright, you advance toward the artificial woman with a threat on your lips. Before you can actually speak it, however, a surprised gurgle lodges itself in your throat. The heat and pressure in your upper body blossoms like an aerial detonation, leaving you stunned and sweating.");
 	if(!pc.isChestExposed()) output(" Your [pc.upperGarment] tightens and strains as your chest inflates wildly! Despite its best attempts, the [pc.upperGarment] simply can’t hold back the unforgiving tide of your flesh and the whole thing stretches, groans, and finally tears open.");
-	output(" Your [pc.chest] jiggles and surges outward, growing beyond all reason and ballooning before your eyes. Titflesh swells at an impossible pace, the broken gun tumbling from your numb fingers with a distressing clatter.");
+	output(" Your [pc.breasts] jiggle and surge outward, growing beyond all reason and ballooning before your eyes. Titflesh swells at an impossible pace, the broken gun tumbling from your numb fingers with a distressing clatter.");
 
 	output("\n\nSlightly concerned, the droid tilts her head to one side and folds her arms behind her back. <i>“Oh dear,”</i> she frets, <i>“I wonder if that was supposed to be 0.1cc of accelerant?”</i>");
 
@@ -2321,7 +2324,7 @@ public function gushBadEndWithNymFoe():void
 	else output("\n\n<i>“Fucking yes I’m in distress! You sprayed some damned chemical garbage all over me and now I look like I’ve got moons strapped to my chest! Fix it!”</i>");
 
 	output("\n\nShe blinks, watching you intently. <i>“Request for assistance confirmed. Deploying immobilization countermeasures.”</i> Her tail pushes its way up to your [pc.ass] and the tip pokes in with a slight pinch. <i>“Do not be alarmed. Minor modifications are being made to acclimate you to your upgrades.”</i> She gently strokes your [pc.hair], a peculiar look on her face.");
-	output("\n\nThe bimbo-proportioned nurse snuggles up against your gigantic and still growing endowments with a peculiar look on her face. <i>“Oh, I almost forgot!”</i> Nym-Foe produces a lollipop from her hefty cleavage, and holds the candy out to you with a smile. <i>“Because you’ve been a good " + pc.mf("boy","girl") + ". Now. How would you like to discuss your payment?”</i>");
+	output("\n\nThe bimbo-proportioned nurse snuggles up against your gigantic, and still growing endowments, with a peculiar look on her face. <i>“Oh, I almost forgot!”</i> Nym-Foe produces a lollipop from her hefty cleavage, and holds the candy out to you with a smile. <i>“Because you’ve been a good " + pc.mf("boy","girl") + ". Now. How would you like to discuss your payment?”</i>");
 
 	processTime(15);
 	pc.lust(100);
@@ -2365,8 +2368,8 @@ public function gushBadEndWithNymFoe2():void
 	output("\n\nThe gang of raskvel salvagers laugh with amazement, tittering to themselves over your condition. <i>“What’d I tell you guys? Built like an oil tanker, am I right?”</i> The leader chortles, giving one of your exposed breasts an open-palmed slap. The impact is hard enough to send rippling waves through your [pc.milkNoun]-filled, titantic titflesh. The tidal action builds until your whole body sways from the strike, nearly knocking you to the ground.");
 	output("\n\n<i>“Hey new girl, tell my friends how you got outfitted with these military-grade honkers.”</i> You huff, tempted to bash the little fucker’s head against the table, but you hold back. The last thing you need is to be fined another week’s pay for hurting more rude customers. Instead, you simply hold your tongue and wait impatiently. <i>“No? Okay, I’ll tell it,”</i> the asshole declares with a lecherous glare. <i>“You guys feel free to help yourself while I walk you down the sad story of Ms. Mega Milk here.”</i>");
 	output("\n\nThe other raskvel need no further permission and they eagerly swarm around you. Small, red scaled hands brazenly grope and grab at your bare chest, grease-covered fingers leaving your mammaries stained as they jockey position for your head-sized nipples. You gasp as they manhandle your sensitive teats, squeezing and biting at your tender peaks until fat blobs of rich lactation bubbles up in warm release.");
-	output("\n\n<i>“See, Ms. Dairy Section figured it’d be fun to go messing around in places she wasn’t invited. Way I hear it, she ran into some crazy, malfunctioning nursedroid. The thing inflated her to.... This,”</i> he snickers, <i>“and the damned thing CHARGED her for it!”</i> The raskvel howl with laughter, while those who had been drinking at the time find [pc.milkNoun] shooting from their noses. A deep flush of embarrassment heats your body, but you refuse to engage. It’ll be over soon. It always is.");
-	output("\n\n<i>“The bot sends the bill to JoyCo, right? And they realize the thing’s malfunctioning so they come down to retrieve it. But, get this, they hold the mountain-titted slut to it!”</i> He delivers another stinging slap across your rack and you grit your teeth. <i>“Not even kidding! The fucking robot gives her ballistic-sized knockers and some kinda strengthening treatment just so she can move and then the company wants their money back!”</i>");
+	output("\n\n<i>“See, Ms. Dairy Section figured it’d be fun to go messing around in places she wasn’t invited. Way I hear it, she ran into some crazy, malfunctioning nursedroid and it inflated her to.... This,”</i> he snickers, <i>“and the damned thing CHARGED her for it!”</i> The raskvel howl with laughter, while those who had been drinking at the time find [pc.milkNoun] shooting from their noses. A deep flush of embarrassment heats your body, but you refuse to engage. It’ll be over soon. It always is.");
+	output("\n\n<i>“The bot sends the bill to JoyCo, right? And they realize the thing’s malfunctioning so they come down to retrieve it. But, get this, they hold the mountain-titted slut to it!”</i> He delivers another stinging slap across your rack and you grit your teeth. <i>“Not even kidding! The fucking robot gives her ballistic-sized knockers and some kinda strengthening treatment just so she can move, and then the company wants their money back!”</i>");
 	output("\n\nThe raskvel fondling your leaking breasts have apparently grown bored with simply pawing at you, so they set about more crass entertainments. A pair of them unbuckle their filthy overalls and expose their genital slits. Purple, pointed phalluses creep out and you close your eyes in disgust. This part won’t be over nearly as quickly. The bar patrons slide chairs up to boost their small frames level with your mammoth mounds. Hot pressure gathers at your teats and, embarrassingly easily, the tiny mechanics drive their cocks into your chest. The over-inflated milk ducts part before the assault, welcoming the stiff pricks like greedy pussies.");
 	output("\n\nYou can’t hold back the moan and the raskvel erupt into another chorus of mocking whoops. <i>“Listen to her!”</i> one snickers. <i>“What a slut!”</i> another adds. <i>“Bitch loves getting her tits fucked,”</i> a third declares. They rock back and forth, jamming their shafts into your well-worn peaks while their friends cheer them on.");
 	output("\n\nYou open your eyes to see the leader of the group enjoying the sight as much as anybody. He catches your eye and presses on. <i>“So she’s gotta pay back millions of creds worth of medical supplies, but she’s too big to even get into her ship. She tries a bunch of stuff, but just can’t make money fast enough to keep up with the interest. She even sells her ship but it’s not enough. And in the end, she’s gotta get a shit job at a dive like this, letting scumbags like us milk her and fuck her all day long. And get this: if she moos, our drinks are on her.”</i>");
@@ -2596,7 +2599,7 @@ public function drBadgersAssistantBadEnd2():void
 	showBust("DRBADGER_NUDE", rivalBustDisplay());
 	author("Adjatha");
 	output("Weeks later, Doctor Badger calls you into her office. The two of you have been inseparable since the job offer, working long hours to perfect her science. Just about the only break the two of you take is just long enough for the doctor to pound a fresh, fattening load or three of badger spunk into whichever hole strikes her fancy.");
-	output("\n\nIt’s been hard work, but the two of you finally tracked down you cousin, [rival.name]. The dumb slut always did put too much faith in bodyguards. Your cousin struggles against [rival.hisHer] bindings, alternately threatening and cajoling Doctor Badger, promising anything and everything to be set free. When you step into sight, [rival.hisHer] eyes go wide.");
+	output("\n\nIt’s been hard work, but the two of you finally tracked down your cousin, [rival.name]. The dumb slut always did put too much faith in bodyguards. Your cousin struggles against [rival.hisHer] bindings, alternately threatening and cajoling Doctor Badger, promising anything and everything to be set free. When you step into sight, [rival.hisHer] eyes go wide.");
 	output("\n\n<i>“[pc.name]? Is that you? What... what happened?”</i> You reply with a little laugh and turn in place to show off your vastly improved frame. You can tell the doctor went through great lengths to improve her technology, and of course she needed a test subject. [pc.HairColor] hair hangs down in bouncy curls, framing the feminine features of your [pc.skinColor] face. Your lips are thick, pronounced, and glistening like the surface of a gumball. Tits so huge and perfectly round that they could never be mistaken for natural hang from your chest with a heavy jiggle. Counter balancing your absurd breasts is your melon-sized ass cheeks that leaves you looking like an off-kilter hourglass. Your whole, bimbo-bloated proportions have been squeezed into a pink nurse’s uniform so skimpy and tight that every breath sends a dangerous strain through your double-breasted buttons.");
 	output("\n\n<i>“Why, thank you for noticing, [rival.name]! We’re both very proud at how I’ve come out, aren’t we, Doctor?”</i>");
 	

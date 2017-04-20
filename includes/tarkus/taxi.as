@@ -2,8 +2,11 @@
 {
 	if(flags["MET_NESSA"] == undefined) showName("KAITHRIT\nSCOUT");
 	else showName("\nNESSA");
-	if(!nude) showBust("KAITHRIT_SCOUT");
-	else if(nude) showBust("KAITHRIT_SCOUT_NUDE");
+	
+	var sBust:String = "KAITHRIT_SCOUT";
+	if(nessaBellyRating() >= 20) sBust += "_BELLY";
+	if(nude) sBust += "_NUDE";
+	showBust(sBust);
 }
 
 
@@ -24,7 +27,7 @@ public function tarkusScoutMenu():void
 	showNessa();
 	if(flags["TARKUS_DESTROYED"] != undefined)
 	{
-		output("When you step up to the cat-girl, she looks up from her holoscreen and sighs. <i>“Sorry, there's not really anywhere to take a taxi to anymore.”</i>");
+		output("When you step up to the cat-girl, she looks up from her holoscreen and sighs. <i>“Sorry, there’s not really anywhere to take a taxi to anymore.”</i>");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -77,26 +80,26 @@ public function tarkusTransitMenu():void
 {
 	clearMenu();
 	if(pc.credits >= 80) addButton(0,"Novahome",tarkusFlyTo,"TARKUS SCOUT AUTHORITY","Novahome","Secure a lift to Novahome for the low low price of 80 credits.");
-	else addDisabledButton(0,"Novahome","Novahome","You can't afford the 80 credits it would cost to get a ride to Novahome.");
+	else addDisabledButton(0,"Novahome","Novahome","You can’t afford the 80 credits it would cost to get a ride to Novahome.");
 	if(pc.credits >= 80) addButton(1,"The Lift",tarkusFlyTo,"279","The Lift","Secure a ride to the great lift for the low low price of 80 credits.");
-	else addDisabledButton(1,"The Lift","The Lift","You can't afford the 80 credits it would cost to get a ride to the great lift.");
+	else addDisabledButton(1,"The Lift","The Lift","You can’t afford the 80 credits it would cost to get a ride to the great lift.");
 
 	if(currentLocation == "279") 
 	{
-		addDisabledButton(1,"The Lift","The Lift","You're already at the great lift comm relay!");
+		addDisabledButton(1,"The Lift","The Lift","You’re already at the great lift comm relay!");
 	}
 	else if(currentLocation == "TARKUS SCOUT AUTHORITY")
 	{
-		addDisabledButton(0,"Novahome","Novahome","You're already at the Novahome scout office.");
+		addDisabledButton(0,"Novahome","Novahome","You’re already at the Novahome scout office.");
 	}
 	if(pc.hasCock() && pc.lust() >= 33) addButton(2,"To Bed",inviteNessaToBed,undefined,"To Bed","Take the kitty to bed.");
-	else if(pc.lust() < 33) addDisabledButton(2,"To Bed","To Bed","You aren't really aroused enough for that.");
+	else if(pc.lust() < 33) addDisabledButton(2,"To Bed","To Bed","You aren’t really aroused enough for that.");
 	else addDisabledButton(2,"To Bed","To Bed","The Kaithrit is only interested in lovers with penises, it seems. For shame.");
 	addButton(14,"Back",mainGameMenu);
 }
 
 
-//{Destination -- X Credits}
+//Destination -- X Credits
 public function tarkusFlyTo(arg:String):void
 {
 	clearOutput();
@@ -110,8 +113,8 @@ public function tarkusFlyTo(arg:String):void
 	}
 	else
 	{
-		output("<i>“Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and we'll have a transport out in a few minutes.”</i>");
-		output("\n\nTrue to the cat-girl's words, a desert-patterned hovercover arrives in minutes, piloted by a simplistic drone pilot that's already beginning to show signs of corrosion from Tarkus' toxic atmosphere. You slip into the car, and a moment later you’re on your way, zipping across the junkyards of Tarkus.");
+		output("<i>“Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and we’ll have a transport out in a few minutes.”</i>");
+		output("\n\nTrue to the cat-girl’s words, a desert-patterned hovercover arrives in minutes, piloted by a simplistic drone pilot that’s already beginning to show signs of corrosion from Tarkus’ toxic atmosphere. You slip into the car, and a moment later you’re on your way, zipping across the junkyards of Tarkus.");
 		output("\n\nNot long after, you arrive at your destination, and disembark into the wasteland. The hover-car zips away a minute later, leaving you behind.");
 	}
 	pc.credits -= 80;
@@ -147,7 +150,7 @@ public function fixCommsOnTarkus():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//[DUN] 2 Cum inflation, catgirl (cat ears and tail only, female human for the rest), if it's repeatable inflated larger each time
+//[DUN] 2 Cum inflation, catgirl (cat ears and tail only, female human for the rest), if it’s repeatable inflated larger each time
 //Offbeatr Reward - Bryan
 //Fen idea; Kaithrit cat-girl taxi slut on Tarkus.
 //New Option - To bed
@@ -262,7 +265,7 @@ public function inviteNessaToBed():void
 public function nessaFuckTimeLetsGo():void
 {
 	clearOutput();
-	showNessa();
+	showNessa(true);
 	output("The bed is a little small (and the room a little dingy), but the cock-hungry kaithrit in front of you is more than pleasing enough to make up for it. Nessa spins and pulls, dragging you off-balance and pushing you into the bed. You bounce once, and then she’s on top of you,");
 	if(!pc.isCrotchExposed()) output(" stripping off your [pc.lowerGarments] in a rush and");
 	output(" aggressively running her claws down your [pc.chest]. She checks her hands just as they’d be about to scrape across your [pc.nipples] and grins wickedly.");

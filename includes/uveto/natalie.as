@@ -12,10 +12,13 @@ public function natalieBustDisplay(nude:Boolean = false):String
 }
 
 // Add to the Freezer after watching Uveto’s Steph Irson:
+public function natalieAvailableAtBar():Boolean
+{
+	if(flags["STEPH_DARGONED"] == undefined) return false;
+	return (rand(4) != 0);
+}
 public function natalieFreezerAddendum(btnSlot:int = 0):void
 {
-	if(flags["STEPH_DARGONED"] == undefined) return;
-	
 	if(flags["NATALIE_MET"] == undefined)
 	{
 		output("\n\nYou notice a blonde woman sitting in one of the booths near the back of the bar, cradling a mug of something frothy and steaming. Unlike most of the natives’ cold color palettes, she’s wearing a khaki button-up shirt and trousers underneath a wool-padded jacket and pulled-up hood. She’s sitting quietly and alone, looking very much like she doesn’t want to be disturbed. Your attention almost wanders right by her, until you realize... she looks an awful lot like Steph Irson. Could it be...?");

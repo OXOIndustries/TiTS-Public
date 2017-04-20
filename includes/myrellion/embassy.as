@@ -9,10 +9,10 @@ public function theEmbassyBonusFunc():Boolean
 		output(" To the south are some offices, probably from where the day-to-day business of the airport was run before it was repurposed.");
 		
 		flags["MYRELLION_EMBASSY_VISITED"] = 1;
-		output("\n\nAs you enter the \"embassy\" - really a glorified aircraft hangar stuffed with desks, maps, and several disgruntled pioneers looking for entrance to the cities below - a tanuki-like kui-tan dressed in the familiar suit and tie of a U.G.C. government worker waves you over to his desk.");
+		output("\n\nAs you enter the “embassy” - really a glorified aircraft hangar stuffed with desks, maps, and several disgruntled pioneers looking for entrance to the cities below - a tanuki-like kui-tan dressed in the familiar suit and tie of a U.G.C. government worker waves you over to his desk.");
 		//[Kui-tan]
 		clearMenu();
-		addButton(0,"Kui-tan",approachUGCRepOnMyrel,undefined,"Kui-tan","The kui-tan at the desk seems to be in charge here. You'll need to talk to him to clear security, you reckon.");
+		addButton(0,"Kui-tan",approachUGCRepOnMyrel,undefined,"Kui-tan","The kui-tan at the desk seems to be in charge here. You’ll need to talk to him to clear security, you reckon.");
 		return true;
 	}
 	else
@@ -56,7 +56,7 @@ public function theEmbassyBonusFunc():Boolean
 			//Room note: 
 			if(flags["JURO_LYRALLA_CLOSET_SEEN"] == undefined) output("\n\nLyralla’s desk is empty, and Juro is nowhere to be found. Where could they be? You can faintly hear the occasional giggle emanating from a nearby storage closet.");
 			//Repeat:
-			else output("\n\nLyralla's desk is empty again, and Juro isn't in sight. They must have escaped to another sensuous closet rendezvous.");
+			else output("\n\nLyralla’s desk is empty again, and Juro isn’t in sight. They must have escaped to another sensuous closet rendezvous.");
 			//[Closet]
 			if(pc.hasStatusEffect("JuroXLyrallaCooldown")) addDisabledButton(1,"Closet","Closet","You’ve just seen them in action--Better not risk getting caught!");
 			else addButton(1,"Closet",catchLyrallaInZeAct,undefined,"Closet","Lyralla and Juro must be in there....");
@@ -169,19 +169,20 @@ public function talkToJuroAbootTheNatives():void
 {
 	clearOutput();
 	juroDisplay();
-	output("<i>“The myr?”</i> the ambassador says when you ask. <i>“You speak as if they’re one species. That’s a dangerous assumption on this world, likely to get you beaten in a back alley if nothing else. The Red and Gold Myr have a common ancestor, certainly, but they’ve evolved in markedly different ways. That both subspecies remain today is truly fascinating from a scientific standpoint. It’s the equivalent of the neanderthal and the Homo sapien evolving alongside each other on Earth, if you’ll accept the comparison. Only the neanderthals developed nuclear weapons.”</i>");
+	output("<i>“The myr?”</i> the ambassador says when you ask. <i>“You speak as if they’re one species. That’s a dangerous assumption on this world, likely to get you beaten in a back alley if nothing else. The Red and Gold Myr have a common ancestor, certainly, but they’ve evolved in markedly different ways. That both subspecies remain today is truly fascinating from a scientific standpoint. It’s the equivalent of the neanderthal and the Homo sapien evolving alongside each other on Earth, if you’ll accept the comparison. Only, the neanderthals developed nuclear weapons.”</i>");
 
-	output("\n\nHe chuckles at his own joke, though his smile quickly fades as an aide drops a stack of paperwork off on his desk. <i>“Damn. At any rate, they’re both fundamentally warlike, aggressive, and highly territorial - though the Gold Myr will say anything to the contrary. The </i>Red<i>s, on the other hand, would tell you that you don’t know the half of it. The Reds are certainly the aggressor state here: they unified some hundred years back under the flag of a military dictatorship before starting a campaign of conquest against the Golds seven years ago. The junta in charge of the Scarlet Federation - well, that’s the best translation we’ve come up with for the Red government, anyway - are fairly brutal by galactic standards, though they have done a remarkable job of keeping a primitive planet-wide society together. Better than humans or ausar could do at a point of comparable technological and societal development.");
+	output("\n\nHe chuckles at his own joke, though his smile quickly fades as an aide drops a stack of paperwork off on his desk. <i>“Damn. At any rate, they’re both fundamentally warlike, aggressive, and highly territorial - though the Gold Myr will say anything to the contrary. The </i>Red<i>s, on the other hand, would tell you that you don’t know the half of it. The Reds are certainly the aggressor state here: they unified some hundred years back under the flag of a military dictatorship before starting a campaign of conquest against the Golds seven years ago. The junta in charge of the Scarlet Federation - well, that’s the best translation we’ve come up with for the Red government, anyway - are fairly brutal by galactic standards, though they have done a remarkable job of keeping a primitive planet-wide society together. Better than humans or ausar could do at a point of comparable technological and societal development.”</i>");
 
 	output("\n\n<i>“The Gold Myr have been fighting a strategic withdrawal since the opening salvo. They’ll claim the moral high ground at every opportunity, though they were the first of the two to use chemical weapons,”</i> the ambassador shakes his head sadly. <i>“Barbaric... absolutely barbaric. Fortunately for them, the only airfield on the planet large enough for the U.G.C.’s purposes was immediately on top of their capital. Were it not for that, I have a sinking suspicion that the Fleet wouldn’t have minded overmuch if the Reds finished what they started.”</i>");
 
-	output("\n\nThe ambassador takes his glasses off and rubs one of the lenses on his suit, staring at the haze accumulating on them in the planet’s oppressive humidity. <i>“At any rate, both of myr races have attracted the attention of Xenogen, who are quickly taking control of the situation here on the planet. Both have interesting biological processes which the mega-corporations are keenly interested in. If only for that, we peacemakers have a duty to keep this planet from engulfing itself in nuclear fire, with the comforting guarantee that if we fail, the Fleet will avenge us on the few survivors of the native population.”</i>");
+	output("\n\nThe ambassador takes his glasses off and rubs one of the lenses on his suit, staring at the haze accumulating on them in the planet’s oppressive humidity. <i>“At any rate, both of the myr races have attracted the attention of Xenogen, who are quickly taking control of the situation here on the planet. Both have interesting biological processes which the mega-corporations are keenly interested in. If only for that, we peacemakers have a duty to keep this planet from engulfing itself in nuclear fire, with the comforting guarantee that if we fail, the Fleet will avenge us on the few survivors of the native population.”</i>");
 
 	output("\n\n<i>“Another note,”</i> he adds. <i>“Both races are entirely female-dominated. Males are an exceptional rarity on the planet, and to my understanding are kept solely for breeding purposes. ");
-	if(pc.isHerm()) output("<i>“I’ll caution you, some myr can become quite desperate for, ahem, male attention. Especially Red Myr breeders. Walk softly, but carry a big stick, " + pc.mf("Mister","Miss") + " Steele--however, be wary of the hierarchical society the myrmedion have developed. Unfamiliar females may not receive the most warm welcome.”</i>");
-	else if(pc.hasCock()) output("<i>“I’ll caution you, some myr can become quite desperate for male attention. Especially Red Myr breeders. Walk softly, but carry a big stick, " + pc.mf("Mister","Miss") + " Steele.”</i>");
-	else if(pc.hasVagina()) output("<i>“You’ll fit in well enough, " + pc.mf("Mister","Miss") + " Steele, though be wary of the hierarchical society the myrmedion have developed. Unfamiliar females may not receive the most warm welcome.”</i>");
-	else output("<i>“You’ll fit in well enough, " + pc.mf("Mister","Miss") + " Steele, and I’m sure you have little to fear from the civilians here.”</i>");
+	if(pc.isHerm()) output("I’ll caution you, some myr can become quite desperate for, ahem, male attention. Especially Red Myr breeders. Walk softly, but carry a big stick, " + pc.mf("Mister","Miss") + " Steele--however, be wary of the hierarchical society the myrmedion have developed. Unfamiliar females may not receive the most warm welcome.");
+	else if(pc.hasCock()) output("I’ll caution you, some myr can become quite desperate for male attention. Especially Red Myr breeders. Walk softly, but carry a big stick, " + pc.mf("Mister","Miss") + " Steele.");
+	else if(pc.hasVagina()) output("You’ll fit in well enough, " + pc.mf("Mister","Miss") + " Steele, though be wary of the hierarchical society the myrmedion have developed. Unfamiliar females may not receive the most warm welcome.");
+	else output("You’ll fit in well enough, " + pc.mf("Mister","Miss") + " Steele, and I’m sure you have little to fear from the civilians here.");
+	output("”</i>");
 	processTime(5);
 	jurosTalkMenu(talkToJuroAbootTheNatives);
 }

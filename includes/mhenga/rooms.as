@@ -282,6 +282,7 @@ public function initMhengaRooms():void
 	rooms["JUNGLE EDGE"].southExit = "PURPLE FLOWERS 4";
 	rooms["JUNGLE EDGE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["JUNGLE EDGE"].addFlag(GLOBAL.FOREST);
+	rooms["JUNGLE EDGE"].runOnEnter = lahDetectorTest;
 
 	//21. A Bend in the Fern-Shrouded Path
 	rooms["FERNGROWTH PATH 1"] = new RoomClass(this);
@@ -440,7 +441,7 @@ public function initMhengaRooms():void
 	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.OUTDOOR);
 	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.FOREST);
-	rooms["LICHENS AND IRONWOODS 3"].runOnEnter = jungleEncounterChances;
+	rooms["LICHENS AND IRONWOODS 3"].runOnEnter = lichensAndIronwoodsAbleDisableLelPlantationQuestWrapper;
 
 	//33. An Intersection of Lichens and Ironwoods
 	rooms["LICHENS AT IRONWOODS 2"] = new RoomClass(this);
@@ -555,10 +556,11 @@ public function initMhengaRooms():void
 	rooms["BABBLING BROOK 1"].system = "SYSTEM: ARA ARA";
 	rooms["BABBLING BROOK 1"].eastExit = "IRONWOODS 3";
 	rooms["BABBLING BROOK 1"].westExit = "IRONWOODS 2";
+	rooms["BABBLING BROOK 1"].northExit = "1. UPPER BROOK";
 	rooms["BABBLING BROOK 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["BABBLING BROOK 1"].addFlag(GLOBAL.HAZARD);
 	rooms["BABBLING BROOK 1"].addFlag(GLOBAL.FOREST);
-	rooms["BABBLING BROOK 1"].runOnEnter = jungleEncounterChances;
+	rooms["BABBLING BROOK 1"].runOnEnter = babblingBrookBonusUnlockShit;
 
 	//42. The Ironwoods
 	rooms["IRONWOODS 3"] = new RoomClass(this);
@@ -1257,7 +1259,7 @@ public function initMhengaRooms():void
 	rooms["THARE PATHWAY"].addFlag(GLOBAL.OUTDOOR);
 	rooms["THARE PATHWAY"].addFlag(GLOBAL.HAZARD);
 	rooms["THARE PATHWAY"].addFlag(GLOBAL.FOREST);
-	rooms["THARE PATHWAY"].runOnEnter = plantationApproachBonus;
+	rooms["THARE PATHWAY"].runOnEnter = plantationApproachBonusRedux;
 	
 	rooms["THARE FIELDS"] = new RoomClass(this);
 	rooms["THARE FIELDS"].roomName = "PLANTATION\nFIELDS";
@@ -1268,7 +1270,7 @@ public function initMhengaRooms():void
 	rooms["THARE FIELDS"].southExit = "THARE MANOR";
 	rooms["THARE FIELDS"].addFlag(GLOBAL.OUTDOOR);
 	rooms["THARE FIELDS"].addFlag(GLOBAL.FOREST);
-	rooms["THARE FIELDS"].runOnEnter = plantationFieldsBonus;
+	rooms["THARE FIELDS"].runOnEnter = tharePlantationFieldsBonusRedux;
 	
 	rooms["THARE MANOR"] = new RoomClass(this);
 	rooms["THARE MANOR"].roomName = "THARE\nMANOR";
@@ -1279,6 +1281,131 @@ public function initMhengaRooms():void
 	rooms["THARE MANOR"].addFlag(GLOBAL.INDOOR);
 	rooms["THARE MANOR"].addFlag(GLOBAL.BED);
 	rooms["THARE MANOR"].runOnEnter = undefined;
+
+	//Plantation Quest Additions
+	rooms["1. UPPER BROOK"] = new RoomClass(this);
+	rooms["1. UPPER BROOK"].roomName = "UPPER\nBROOK";
+	rooms["1. UPPER BROOK"].description = "";
+	rooms["1. UPPER BROOK"].northExit = "2. WATERFALL POOL";
+	rooms["1. UPPER BROOK"].southExit = "BABBLING BROOK 1"
+	rooms["1. UPPER BROOK"].addFlag(GLOBAL.OUTDOOR);
+	rooms["1. UPPER BROOK"].addFlag(GLOBAL.HAZARD);
+	rooms["1. UPPER BROOK"].addFlag(GLOBAL.FOREST);
+	rooms["1. UPPER BROOK"].runOnEnter = upperBrookBonus;
+
+	rooms["2. WATERFALL POOL"] = new RoomClass(this);
+	rooms["2. WATERFALL POOL"].roomName = "WATERFALL\nPOOL";
+	rooms["2. WATERFALL POOL"].description = "";
+	rooms["2. WATERFALL POOL"].westExit = "3. FOOT OF THE CLIFF";
+	rooms["2. WATERFALL POOL"].southExit = "1. UPPER BROOK"
+	rooms["2. WATERFALL POOL"].addFlag(GLOBAL.OUTDOOR);
+	rooms["2. WATERFALL POOL"].addFlag(GLOBAL.HAZARD);
+	rooms["2. WATERFALL POOL"].addFlag(GLOBAL.FOREST);
+	rooms["2. WATERFALL POOL"].runOnEnter = waterfallPoolBonusSchtuff;
+
+	rooms["3. FOOT OF THE CLIFF"] = new RoomClass(this);
+	rooms["3. FOOT OF THE CLIFF"].roomName = "FOOT OF\nTHE CLIFF";
+	rooms["3. FOOT OF THE CLIFF"].description = "";
+	rooms["3. FOOT OF THE CLIFF"].northExit = "4. RED ROCK OUTCROP";
+	rooms["3. FOOT OF THE CLIFF"].eastExit = "2. WATERFALL POOL"
+	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.OUTDOOR);
+	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.HAZARD);
+	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.FOREST);
+	rooms["3. FOOT OF THE CLIFF"].addFlag(GLOBAL.WATERFALL);
+	rooms["3. FOOT OF THE CLIFF"].runOnEnter = footOfTheCliffBonus;
+
+	rooms["4. RED ROCK OUTCROP"] = new RoomClass(this);
+	rooms["4. RED ROCK OUTCROP"].roomName = "RED ROCK\nOUTCROP";
+	rooms["4. RED ROCK OUTCROP"].description = "You wipe your brow. You are clutching onto a bulging outcrop of red stone, maybe 30 feet off the ground. You can find handholds and are reasonably stable, but also frighteningly exposed. Behind you, you can hear the shift and hiss of leaves in the breeze; you are almost beyond the reach of those towering ironwoods, but not quite. The cascade tumbles down nearby, the flume of water no longer obscured by the white veil it throws up at the bottom. It’s impossible to make out anything above, but it looks like you can keep climbing upwards if you have the strength, or inch your way back down to the scrub steps.";
+	rooms["4. RED ROCK OUTCROP"].northExit = "5. RED ROCK LEDGE";
+	rooms["4. RED ROCK OUTCROP"].southExit = "3. FOOT OF THE CLIFF";
+	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.OUTDOOR);
+	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.HAZARD);
+	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.FOREST);
+	rooms["4. RED ROCK OUTCROP"].addFlag(GLOBAL.WATERFALL);
+	rooms["4. RED ROCK OUTCROP"].runOnEnter = waterFallAggroProc;
+
+	rooms["5. RED ROCK LEDGE"] = new RoomClass(this);
+	rooms["5. RED ROCK LEDGE"].roomName = "RED ROCK\nLEDGE";
+	rooms["5. RED ROCK LEDGE"].description = "The cliff face steps in here like a skewed pile of books, offering a place for you to stand in reasonable comfort as long as you keep a tight grip on the rock. To one side a spindly tree like a long, dark asparagus grows out of the rock, bulbous head waggling in the wind. Remarkable what can cling to life in the most perilous of places. Above you, the rock marches back outwards threateningly; you don’t want to even try and climb onto that. It’s just about possible to descend though. Or you could sidle along the ledge towards the hushing crash of the waterfall, see if you can progress from there.";
+	rooms["5. RED ROCK LEDGE"].eastExit = "6. WATERFALL STAIRWAY";
+	rooms["5. RED ROCK LEDGE"].southExit = "4. RED ROCK OUTCROP";
+	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.HAZARD);
+	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.FOREST);
+	rooms["5. RED ROCK LEDGE"].addFlag(GLOBAL.WATERFALL);
+	rooms["5. RED ROCK LEDGE"].runOnEnter = waterFallAggroProc;
+
+	rooms["6. WATERFALL STAIRWAY"] = new RoomClass(this);
+	rooms["6. WATERFALL STAIRWAY"].roomName = "WATERFALL\nSTAIRWAY";
+	rooms["6. WATERFALL STAIRWAY"].description = "You take deep breaths, clutching onto the dank rock. The waterfall thunders directly overhead, raw elemental power that is hard to comprehend, much less handle being underneath. Here, the cliff face offers a gradual advance upwards - if you’ve got the stomach to climb under the gigantic flume of water, feel its spray on your back and [pc.hair], risk the slippery, mossy, jagged stone under hand and foot. If you can just keep pulling yourself upwards, it looks like there’s a level shoulder ahead - or you can shuffle back towards the dry ledge.";
+	rooms["6. WATERFALL STAIRWAY"].northExit = "7. DRIFTWOOD SHOULDER";
+	rooms["6. WATERFALL STAIRWAY"].westExit = "5. RED ROCK LEDGE";
+	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.OUTDOOR);
+	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.HAZARD);
+	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.FOREST);
+	rooms["6. WATERFALL STAIRWAY"].addFlag(GLOBAL.WATERFALL);
+	rooms["6. WATERFALL STAIRWAY"].runOnEnter = waterFallAggroProc;
+
+	rooms["7. DRIFTWOOD SHOULDER"] = new RoomClass(this);
+	rooms["7. DRIFTWOOD SHOULDER"].roomName = "DRIFTWOOD\nSHOULDER";
+	rooms["7. DRIFTWOOD SHOULDER"].description = "";
+	rooms["7. DRIFTWOOD SHOULDER"].northExit = "8. RED ROCK SCREE";
+	rooms["7. DRIFTWOOD SHOULDER"].southExit = "6. WATERFALL STAIRWAY";
+	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.HAZARD);
+	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.FOREST);
+	rooms["7. DRIFTWOOD SHOULDER"].addFlag(GLOBAL.WATERFALL);
+	rooms["7. DRIFTWOOD SHOULDER"].runOnEnter = driftwoodShoulderBonus;
+
+	rooms["8. RED ROCK SCREE"] = new RoomClass(this);
+	rooms["8. RED ROCK SCREE"].roomName = "RED\nROCK SCREE";
+	rooms["8. RED ROCK SCREE"].description = "You are on a higgledy-piggledy run of loose sunburned rock, above the lenient shoulder. You really are a considerable distance up now - the sound of the waterfall is running liquid and a distant crash far below - but at least it’s no longer a straight drop down. The loose, crumbling rock means you have to be careful as you climb. To the east you can see a crevice in the gray rock face 45 degrees to the one you are currently on. A tough, fibrous rope bridge strung across the cliff wall and the smoothness wrought by many feet around its entrance suggest it’s frequently visited by the zil. Meanwhile you think you can just about see the tops of some wax structures to the west, beyond the head of the falls.";
+	rooms["8. RED ROCK SCREE"].eastExit = "9. GREY ROCK SHRINE";
+	rooms["8. RED ROCK SCREE"].westExit = "10. TOP OF THE CLIFF";
+	rooms["8. RED ROCK SCREE"].southExit = "7. DRIFTWOOD SHOULDER";
+	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.HAZARD);
+	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.FOREST);
+	rooms["8. RED ROCK SCREE"].addFlag(GLOBAL.WATERFALL);
+	rooms["8. RED ROCK SCREE"].runOnEnter = waterFallAggroProc;
+
+	rooms["9. GREY ROCK SHRINE"] = new RoomClass(this);
+	rooms["9. GREY ROCK SHRINE"].roomName = "GRAY\nROCK SHRINE";
+	rooms["9. GREY ROCK SHRINE"].description = "";
+	rooms["9. GREY ROCK SHRINE"].westExit = "8. RED ROCK SCREE";
+	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.FOREST);
+	rooms["9. GREY ROCK SHRINE"].runOnEnter = greyRockShrine;
+
+	rooms["10. TOP OF THE CLIFF"] = new RoomClass(this);
+	rooms["10. TOP OF THE CLIFF"].roomName = "TOP OF\nTHE CLIFF";
+	rooms["10. TOP OF THE CLIFF"].description = "";
+	rooms["10. TOP OF THE CLIFF"].eastExit = "8. RED ROCK SCREE";
+	rooms["10. TOP OF THE CLIFF"].northExit = "11. Zil Village Outskirts";
+	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.OUTDOOR);
+	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.HAZARD);
+	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.FOREST);
+	rooms["10. TOP OF THE CLIFF"].addFlag(GLOBAL.WATERFALL);
+	rooms["10. TOP OF THE CLIFF"].runOnEnter = topOfTheCliffBonus;
+
+	rooms["11. Zil Village Outskirts"] = new RoomClass(this);
+	rooms["11. Zil Village Outskirts"].roomName = "VILLAGE\nOUTSKIRTS";
+	rooms["11. Zil Village Outskirts"].description = "";
+	rooms["11. Zil Village Outskirts"].southExit = "10. TOP OF THE CLIFF";
+	rooms["11. Zil Village Outskirts"].northExit = "12. Zil Village Winnar";
+	rooms["11. Zil Village Outskirts"].addFlag(GLOBAL.OUTDOOR);
+	rooms["11. Zil Village Outskirts"].addFlag(GLOBAL.FOREST);
+	rooms["11. Zil Village Outskirts"].runOnEnter = zilVillageOutskirts;
+
+	rooms["12. Zil Village Winnar"] = new RoomClass(this);
+	rooms["12. Zil Village Winnar"].roomName = "CHIEFTAN’S\nCIRCLE";
+	rooms["12. Zil Village Winnar"].description = "";
+	rooms["12. Zil Village Winnar"].southExit = "11. Zil Village Outskirts";
+	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.OUTDOOR);
+	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.FOREST);
+	rooms["12. Zil Village Winnar"].runOnEnter = chieftansCircleBonusFuckery;
+
 
 	// Vanae map additions
 	rooms["A TURNING POINT"] = new RoomClass(this);
@@ -1437,7 +1564,7 @@ public function initMhengaRooms():void
 
 	rooms["NARROW GORGE 1"] = new RoomClass(this);
 	rooms["NARROW GORGE 1"].roomName = "NARROW\nGORGE";
-	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You’re standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There’s also a fallen tree spanning the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you’re fairly sure it will hold your weight. ";
+	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You’re standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There’s also a fallen tree spanning the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you’re fairly sure it will hold your weight.";
 	rooms["NARROW GORGE 1"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["NARROW GORGE 1"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW GORGE 1"].system = "SYSTEM: ARA ARA";
@@ -1451,7 +1578,7 @@ public function initMhengaRooms():void
 
 	rooms["NARROW GORGE 2"] = new RoomClass(this);
 	rooms["NARROW GORGE 2"].roomName = "NARROW\nGORGE";
-	rooms["NARROW GORGE 2"].description = "This narrow gorge runs to the east with a small creek running through its center. It trickles down from the west where a small path leads up and out of the gorge. Walls of earth surround you on the other sides, looming like the sides of a massive grave.\n\nIt’s hard to walk here without getting your [pc.feet] wet. The temperature is noticeably cooler, but at least there’s less mist about. ";
+	rooms["NARROW GORGE 2"].description = "This narrow gorge runs to the east with a small creek running through its center. It trickles down from the west where a small path leads up and out of the gorge. Walls of earth surround you on the other sides, looming like the sides of a massive grave.\n\nIt’s hard to walk here without getting your [pc.feet] wet. The temperature is noticeably cooler, but at least there’s less mist about.";
 	rooms["NARROW GORGE 2"].runOnEnter = mhengaVanaeCombatZone;
 	rooms["NARROW GORGE 2"].planet = "PLANET: MHEN'GA";
 	rooms["NARROW GORGE 2"].system = "SYSTEM: ARA ARA";

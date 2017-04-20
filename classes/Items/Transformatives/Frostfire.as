@@ -28,7 +28,7 @@ package classes.Items.Transformatives
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.POTION;
+			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
 			this.shortName = "Frostfire";
 			//Regular name
