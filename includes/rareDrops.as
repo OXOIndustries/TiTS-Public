@@ -1,4 +1,6 @@
-﻿public function genericRareDrops(loot:Array):Array
+﻿import classes.Items.Stories.BXBIOne;
+
+public function genericRareDrops(loot:Array):Array
 {
 	var threshold:Number = 0;
 	var planet:String = getPlanetName().toLowerCase();
@@ -11,7 +13,7 @@
 			case "mhen'ga":
 				break;
 			case "tarkus":
-				//target.inventory.push();
+				if(!CodexManager.entryUnlocked("BXBI: I")) loot.push(new BXBIOne());
 				break;
 			case "myrellion":
 				break;
