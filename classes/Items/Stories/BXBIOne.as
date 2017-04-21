@@ -26,15 +26,15 @@
 			this.shortName = "A Story";
 			
 			//Regular name
-			this.longName = "story download code for \"BXBI Chapter 1\"";
+			this.longName = "story download code for “BXBI Chapter 1”";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a story download code for \"BXBI Chapter 1\"";
+			this.description = "a story download code for “BXBI Chapter 1”";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Using this item will add the story BXBI: Chapter 1 to your Codex's fiction section.";
+			this.tooltip = "Using this item will add the story BXBI: Chapter 1 to your Codex’s fiction section.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -67,7 +67,7 @@
 				if(CodexManager.entryUnlocked("BXBI: I")) kGAMECLASS.output("You realize that you already have this story and toss out the useless code.");
 				else
 				{
-					kGAMECLASS.output("You scan the code with your Codex, unlocking BXBI: Chapter 1 in your Codex's fiction section.");
+					kGAMECLASS.output("You scan the code with your Codex, unlocking BXBI: Chapter 1 in your Codex’s fiction section.");
 					CodexManager.unlockEntry("BXBI: I");
 				}
 			}
