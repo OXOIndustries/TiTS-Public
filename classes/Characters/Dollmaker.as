@@ -226,7 +226,6 @@
 			else if (rand(3) == 0) inventory.push(new NyreanCandy());
 			*/
 			this.createStatusEffect("Disarm Immune");
-			kGAMECLASS.getRareDropsForCreatureByPlanet(2,this);
 			this._isLoading = false;
 		}
 		

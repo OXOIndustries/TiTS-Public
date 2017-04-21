@@ -193,7 +193,6 @@ package classes.Characters
 			if(rand(10) == 0) inventory.push(new PrimitiveBow());
 			else if (rand(3) == 0) inventory.push(new ZilHoney());
 			else inventory.push(new ZilRation());
-			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 			this._isLoading = false;
 			//inventory.push(new ZilRation());
 			// {You are fighting her one-handed, so your attacks are significantly less accurate.} {You are fighting her with both hands, so suffer no accuracy penalties - but nothing is holding you to the cliff-face...}";

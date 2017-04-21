@@ -169,7 +169,6 @@
 			btnTargetText = "Queen";
 			
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
-			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			_isLoading = false;
 		}
 		

@@ -184,7 +184,6 @@
 			isUniqueInFight = true;
 			btnTargetText = "Naleen";
 			setDefaultSexualPreferences();
-			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 			this._isLoading = false;
 		}
 		

@@ -211,7 +211,6 @@
 			else if (rand(3) == 0) inventory.push(new RedMyrVenom());
 			else if (rand(3) == 0) inventory.push(new NyreanCandy());
 			
-			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			this._isLoading = false;
 		}
 		

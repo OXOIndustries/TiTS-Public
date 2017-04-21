@@ -190,7 +190,6 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "Korgonne";
-			kGAMECLASS.getRareDropsForCreatureByPlanet(-2,this);
 			
 			randomise();
 			

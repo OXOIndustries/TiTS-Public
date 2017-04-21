@@ -212,7 +212,6 @@
 			}
 			
 			createPerk("Can Crit",0,0,0,0);
-			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			_isLoading = false;
 		}
 		

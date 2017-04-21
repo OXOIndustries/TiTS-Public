@@ -169,7 +169,6 @@
 			
 			this.createPerk("Ranged Immune",0,0,0,0);
 			this.createStatusEffect("Disarm Immune");
-			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 			isUniqueInFight = true;
 			btnTargetText = "Cuntsnake";
 			randomise();

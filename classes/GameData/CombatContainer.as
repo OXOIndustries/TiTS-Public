@@ -4795,6 +4795,9 @@ package classes.GameData
 				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
 			}
 			
+			//Rare loot chance 2.0
+			loot = kGAMECLASS.genericRareDrops(loot);
+
 			if (loot.length > 0)
 			{
 				output("\n");

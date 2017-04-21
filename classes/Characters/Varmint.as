@@ -157,7 +157,6 @@ package classes.Characters
 			
 			isUniqueInFight = true;
 			btnTargetText = "Varmint";
-			kGAMECLASS.getRareDropsForCreatureByPlanet(-1,this);
 			this._isLoading = false;
 		}
 		

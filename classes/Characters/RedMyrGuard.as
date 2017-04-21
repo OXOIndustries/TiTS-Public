@@ -196,7 +196,6 @@
 			sexualPreferences.setRandomPrefs(2 + rand(3),1);
 			
 			_isMasked = rand(2) == 0;
-			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			this._isLoading = false;
 		}
 		

@@ -182,7 +182,6 @@
 			btnTargetText = "GrayGoo";
 			credits = 50 + rand(200);
 			sexualPreferences.setRandomPrefs(3 + rand(3));
-			kGAMECLASS.getRareDropsForCreatureByPlanet(2,this);
 			
 			this._isLoading = false;
 		}

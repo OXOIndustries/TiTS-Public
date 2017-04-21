@@ -164,7 +164,6 @@
 			isUniqueInFight = true;
 			btnTargetText = "ZilPack";
 			sexualPreferences.setRandomPrefs(6, 2);
-			kGAMECLASS.getRareDropsForCreatureByPlanet(1,this);
 			this._isLoading = false;
 		}
 		

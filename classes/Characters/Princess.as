@@ -199,7 +199,6 @@
 			rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
 			sexualPreferences.setRandomPrefs(7, 1);
 			inventory.push(new ReaperArmamentsMarkIShield());
-			kGAMECLASS.getRareDropsForCreatureByPlanet(3,this);
 			this._isLoading = false;
 		}
 		

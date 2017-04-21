@@ -1,41 +1,27 @@
-﻿/* PLANETS:
-1 - MHEN'GA
-2 - TARKUS
-3 - MYRELLION
-4 - 
-
--1 - NEW TEXAS
--2 - UVETO
-
-*/
-public function getRareDropsForCreatureByPlanet(planet:Number,target:Creature):void
+﻿public function genericRareDrops(loot:Array):Array
 {
 	var threshold:Number = 0;
+	var planet:String = getPlanetName().toLowerCase();
 	if(rand(100) <= threshold)
 	{
 		switch (planet)
 		{
-			case -1:
+			case "tavros station":
 				break;
-			case -2:
+			case "mhen'ga":
 				break;
-
-
-			case 1:
+			case "tarkus":
 				//target.inventory.push();
 				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
+			case "myrellion":
 				break;
 			default:
 				break;
 		}
 	}
 	//Easter special!
-	if(isEaster() && rand(100) <= threshold+1) target.inventory.push(eggSelect());
+	if(isEaster() && rand(100) <= threshold+1) loot.push(eggSelect());
+	return loot;	
 }
 
 public function isEaster():Boolean
