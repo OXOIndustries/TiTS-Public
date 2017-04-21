@@ -853,31 +853,35 @@ public function appearance(forTarget:Creature):void
 			//Antlers!
 			else if(target.hornType == GLOBAL.TYPE_DEER)
 			{
-				if(target.horns > 0)
-				{
-					if(rand(2) == 0) output2(" A pair of antlers sprout from your head, covered in velvet and indicating your status as a desirable mate.");
-					else output2(" Velvet-covered antlers sprout from your head, declaring your status as a desirable mate and formidable opponent.");
-					if(target.hornLength > 1) output2(" They are " + num2Text(int(target.hornLength)) + "-inch long and fork into " + num2Text(target.horns) + " points.");
-				}
+				if(rand(2) == 0) output2(" A pair of antlers sprout from your head, covered in velvet and indicating your status as a desirable mate.");
+				else output2(" Velvet-covered antlers sprout from your head, declaring your status as a desirable mate and formidable opponent.");
+				if(target.hornLength > 1) output2(" They are " + num2Text(int(target.hornLength)) + "-inch long and fork into " + num2Text(target.horns) + " points.");
 			}
 			else if(target.hornType == GLOBAL.TYPE_DRYAD)
 			{
-				if(target.horns > 0)
-				{
-					output2(" Two");
-					if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
-					output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of branches.");
-				}
+				output2(" Two");
+				if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
+				output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of branches.");
 			}
 			//Goatliness is next to godliness.
 			else if(target.hornType == GLOBAL.TYPE_GOAT)
 			{
-				if(target.horns > 0) output2(" Two curled ram horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
+				if(target.hornLength >= 6) output2(" Two curled goat horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
+				else output2(" Two goat horns stick stright out from your forehead, making you appear like a satyr out of terran legend.");
 			}
+			//Ram horns
 			else if(target.hornType == GLOBAL.TYPE_SHEEP)
 			{
-				if(rand(2) == 0) output2(" Impressive curved ram horns sprout from your head, showing off to all who can see that you are more than capable of defending yourself and your territory.");
-				else output2(" A pair of large ram horns grow from your head, showing off to all who can see that you are formidable opponent.");
+				if(rand(2) == 0)
+				{
+					if(target.hornLength >= 10) output2(" Impressive curved ram horns sprout from your head, showing off to all who can see that you are more than capable of defending yourself and your territory.");
+					else output2(" Slightly curved ewe horns emerge from your head, giving you a graceful appearance.");
+				}
+				else
+				{
+					if(target.hornLength >= 10) output2(" A pair of large ram horns grow from your head, showing off to all who can see that you are formidable opponent.");
+					else output2(" A pair of sheep-like horns grow from your head, each with a naturally elegant curve.");
+				}
 			}
 			//Rhinoceros horn!
 			else if(target.hornType == GLOBAL.TYPE_RHINO)
@@ -894,7 +898,7 @@ public function appearance(forTarget:Creature):void
 			//Unicorn horn!
 			else if(target.hornType == GLOBAL.TYPE_NARWHAL)
 			{
-				if(target.horns > 0) output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
+				output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
 			}
 		}
 		else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
@@ -1391,7 +1395,7 @@ public function appearance(forTarget:Creature):void
 			{
 				case GLOBAL.TYPE_DEER:
 					output2(" deer"); break;
-				case GLOBAL.TYPE_BOVINE:	
+				case GLOBAL.TYPE_BOVINE:
 				case GLOBAL.TYPE_GOAT:
 					output2(" bovid"); break;
 				case GLOBAL.TYPE_CANINE:

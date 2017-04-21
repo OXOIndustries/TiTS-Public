@@ -79,13 +79,12 @@ package classes.Items.Transformatives
 				}
 				//Change horn type to ram horns:
 				//PC has 2 horns: Change horn type to ram horns [75% chance]
-				if(pc.horns == 2 && !InCollection(pc.hornType, [GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT]) && rand(3) > 0 && changes < changeLimit)
+				if(pc.horns == 2 && pc.hornType != GLOBAL.TYPE_SHEEP && rand(3) > 0 && changes < changeLimit)
 				{
-					output("\n\nYou feel a mounting pressure from behind and even within your horns, gritting your teeth as it soon turns into a violent headache. Eventually, it fades and you pull out your codex to examine the offenders. The source of all of this quickly becomes apparent - <b>your horns have twisted and reshaped into impressive, curved ram’s horns!</b>");
+					output("\n\nYou feel a mounting pressure from behind and even within your [pc.hornsNoun], gritting your teeth as it soon turns into a violent headache. Eventually, it fades and you pull out your codex to examine the offenders. The source of all of this quickly becomes apparent - <b>your [pc.hornsNoun] have twisted and reshaped into " + (pc.hornLength >= 10 ? "impressive, curved ram" : "beautiful ewe") + "’s horns!</b>");
 					changes++;
-					pc.removeHorns();
 					pc.hornType = GLOBAL.TYPE_SHEEP;
-					pc.hornLength = 11;
+					if(pc.hornLength < 3) pc.hornLength = 3;
 					pc.horns = 2;
 				}
 				//PC has multiple horns: Merge all horns into one pair/two horns [75% chance]
@@ -93,7 +92,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.hornsUnlocked(2))
 					{
-						output("\n\nYour [pc.horns] suddenly start to feel sensitive, almost itchy, and reaching up to feel just what’s going on, you swear they’re actually shrinking. A quick check of the reflection in your codex confirms that this is <i>almost</i> true, but your first horns remain unscathed. You’re forced to look on in horror as your once-impressive rack fades into a shadow of its former self - but at least you’ve still got two horns.");
+						output("\n\nYour [pc.horns] suddenly start to feel sensitive, almost itchy, and reaching up to feel just what’s going on, you swear they’re actually shrinking. A quick check of the reflection in your codex confirms that this is <i>almost</i> true, but your first [pc.hornsNoun] remain unscathed. You’re forced to look on in horror as your once-impressive rack fades into a shadow of its former self - but at least you’ve still got two [pc.hornsNoun].");
 						pc.horns = 2;
 						changes++;
 					}
@@ -104,7 +103,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.hornsUnlocked(0))
 					{
-						output("\n\nYou notice a flake of something pass by your field of vision, and look up, confused. You can’t see anything above you that could be causing it, but when you go to move on, it happens again. Hmm. Raising a hand, you try searching your own head to see if you can find the issue, and soon come into your [pc.horn] - or, more accurately, what’s left of it. Even more rubs off in your hand and you panic, jerking it away. It doesn’t do any good though - the process continues and soon you’re left with no horn whatsoever.");
+						output("\n\nYou notice a flake of something pass by your field of vision, and look up, confused. You can’t see anything above you that could be causing it, but when you go to move on, it happens again. Hmm. Raising a hand, you try searching your own head to see if you can find the issue, and soon come into your [pc.horn] - or, more accurately, what’s left of it. Even more rubs off in your hand and you panic, jerking it away. It doesn’t do any good though - the process continues and soon you’re left with no [pc.hornNoun] whatsoever.");
 						pc.removeHorns();
 						changes++;
 					}

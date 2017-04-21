@@ -10761,6 +10761,11 @@
 			}
 			return "avian-morph";
 		}
+		public function goatRace():String
+		{
+			if(hasHorns() && horns >= 2 && hornType == GLOBAL.TYPE_GOAT && !hasMuzzle() && !hasFur() && hasLegFlag(GLOBAL.FLAG_HOOVES)) return "satyr-morph";
+			return "goat-morph";
+		}
 		public function plantRace():String
 		{
 			if (wingType == GLOBAL.TYPE_COCKVINE && wingCount > 0 && hasTail(GLOBAL.TYPE_COCKVINE) && cockTotal(GLOBAL.TYPE_TENTACLE) == cockTotal()) return "cockvine-morph";
@@ -10783,11 +10788,6 @@
 		}
 		public function sheepRace():String
 		{
-			if
-			(	hasHorns() && horns >= 2 && InCollection(hornType, [GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT])
-			&&	!hasMuzzle() && !hasFur()
-			&&	legType == GLOBAL.TYPE_SHEEP
-			) return "satyr-morph";
 			if(femininity > 60)
 			{
 				if (isMale() && hasBreasts()) return "sheep-boi";
@@ -11403,7 +11403,7 @@
 		public function sheepScore():int
 		{
 			var counter:int = 0;
-			if (hasHorns() && InCollection(hornType, [GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT])) counter++;
+			if (hasHorns(GLOBAL.TYPE_SHEEP)) counter++;
 			if (hasHair() && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasStatusEffect("frizzy hair")) counter++;
 			if (earType == GLOBAL.TYPE_SHEEP) counter++;
 			if (eyeType == GLOBAL.TYPE_SHEEP) counter++;
@@ -17500,8 +17500,12 @@
 							types.push("deer-like");
 							break;
 						case GLOBAL.TYPE_GOAT:
+							types.push("goat");
+							break;
 						case GLOBAL.TYPE_SHEEP:
-							types.push("ram");
+							if (hornLength >= 10) types.push("ram");
+							else types.push("ewe");
+							types.push("sheep");
 							break;
 						case GLOBAL.TYPE_RHINO:
 							types.push("rhino");
