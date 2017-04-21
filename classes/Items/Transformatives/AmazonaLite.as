@@ -8,13 +8,13 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Items.Transformatives.SumaCream;
+	import classes.Items.Transformatives.Amazona;
 	
-	public class SumaCreamBlack extends ItemSlotClass
+	public class AmazonaLite extends ItemSlotClass
 	{
-		private var pillColor:String = "black";
+		private var canType:String = "lite";
 		
-		public function SumaCreamBlack()
+		public function AmazonaLite()
 		{
 			_latestVersion = 1;
 			
@@ -22,18 +22,18 @@
 			stackSize = 12;
 			type = GLOBAL.PILL;
 			
-			shortName = "Suma Blk.";
-			longName = "Suma Black Cream capsule";
+			shortName = "AmzIT.Lite";
+			longName = "Amazona Lite";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a Suma Black Cream capsule";
+			description = "a can of Amazona Lite";
 			
-			tooltip = "[altTooltip SumaCreamBlack]";
+			tooltip = "[altTooltip AmazonaLite]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			basePrice = 800;
+			basePrice = 3000;
 			
 			version = _latestVersion;
 		}
@@ -42,12 +42,12 @@
 		{
 			if(target is PlayerCharacter)
 			{
-				SumaCream.sumaEffects(target, pillColor);
+				Amazona.amazonaEffects(target, canType);
 				return true;
 			}
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " uses the pill to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " drinks the can to no effect.");
 			}
 			return false;
 		}

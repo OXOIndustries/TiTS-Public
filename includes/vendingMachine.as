@@ -12,7 +12,7 @@ public function vendingMachineButton(btnSlot:int = 0, machine:String = "energy")
 				case "PLANET: MYRELLION": output("\n\nA dinged-up vending machine has been shoved into the corner. A big, in-your-face logo on it advertises <i>JoyCo Power-up Potions</i>."); break;
 				default: output("\n\nA vending machine sits next to a nearby wall, advertising <i>JoyCo Power-up Potions</i>."); break;
 			}
-			addButton(btnSlot, "V.Machine", buyAPowahPotionMenu, undefined, "Vending Machine", "See what these energy drinks are all about.");
+			addButton(btnSlot, "V.Machine", buyAPowahPotionMachine, undefined, "Vending Machine", "See what these energy drinks are all about.");
 			break;
 		case "Vesperian":
 			output("\n\nA vending machine with a picture of a cute deertaur on the front advertises the latest and greatest transformation products to come out of Vesperia in bold print. If you wanted to look more like the natives, this would be a good place to start.");
@@ -34,17 +34,23 @@ public function vendingMachineButton(btnSlot:int = 0, machine:String = "energy")
 //[Power Potion]
 //Get yourself an energy drink. Only 5 credits!
 //Restore all Energy
-public function buyAPowahPotionMenu():void
+public function buyAPowahPotionMachine():void
 {
 	clearOutput();
 	showBust("JOYCO_VENDING_MACHINE");
 	showName("VENDING\nMACHINE");
 	output("You walk over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you’re feeling down, just five measly credits!");
+	if(canVendAmazonaIcedTea()) amazonaIcedTeaBonus();
 	processTime(1);
+	buyAPowahPotionMenu();
+}
+public function buyAPowahPotionMenu():void
+{
 	clearMenu();
-	if(pc.credits >= 5) addButton(0,"P.Potion",buyAPowahPotion,undefined,"Power Potion","Get yourself an energy drink. Only 5 credits!");
-	else addDisabledButton(0,"P.Potion","Power Potion","You can’t even afford a five credit drink. Any poorer and you’ll be living out of a box.");
-	addButton(14,"Back",mainGameMenu);
+	if(pc.credits >= 5) addButton(0, "P.Potion", buyAPowahPotion,undefined, "Power Potion", "Get yourself an energy drink. Only 5 credits!");
+	else addDisabledButton(0, "P.Potion", "Power Potion", "You can’t even afford a five credit drink. Any poorer and you’ll be living out of a box.");
+	if(canVendAmazonaIcedTea()) addButton(1, "Amazona", approachItemVendingMachine, "Amazona", "Amazona Iced Tea", "Get yourself an Amazona drink.");
+	addButton(14, "Back", mainGameMenu);
 }
 public function buyAPowahPotion():void
 {
@@ -167,6 +173,25 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			
 			shopkeepBackFunctor = null;
 			break;
+		case "Amazona":
+			showBust("JOYCO_VENDING_MACHINE");
+			author("QuestyRobo");
+			
+			chars["VENDINGMACHINE"].originalRace = "Amazona";
+			chars["VENDINGMACHINE"].keeperBuy = "You press the button on the machine and a small holoscreen comes out. It seems like you have some options.\n";
+			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
+			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
+			
+			chars["VENDINGMACHINE"].inventory.push(new AmazonaClassic());
+			chars["VENDINGMACHINE"].inventory.push(new AmazonaLite());
+			chars["VENDINGMACHINE"].inventory.push(new AmazonaPlus());
+			chars["VENDINGMACHINE"].inventory.push(new Futazona());
+			
+			chars["VENDINGMACHINE"].sellMarkup = 1.0;
+			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
+			
+			shopkeepBackFunctor = amazonaIcedTeaBack;
+			break;
 	}
 	
 	vendShopScreen(buy);
@@ -212,6 +237,68 @@ public function xxxMachineBuyGo(item:ItemSlotClass):void
 	author("Shadefalcon");
 	
 	output("You select your desired item and swipe your Codex across the dispenser’s scanner. It voices a delighted beep as it charges your account, and soon after the black box begins to hum calmly, the replicator inside it hard at work. A moment later you hear an audible thump as the product falls into the bottom of the vending machine. You reach down and take the " + item.longName + " out of the dispenser, pocketing it away for later usage.");
+	output("\n\n");
+}
+
+public function canVendAmazonaIcedTea():Boolean
+{
+	// Bought at certain JoyCo Vending Machines (Sheriff’s Office on Uveto, Ellie’s Shop on New Texas, The Mess on Tarkus.)
+	return (InCollection(getPlanetName().toLowerCase(), ["new texas", "tarkus", "uveto station", "uveto vii"]));
+}
+public function amazonaIcedTeaBonus():void
+{
+	// Next paragraph and options are placed after current ones
+	output("\n\nA small plaque is bolted onto the front of the machine has the message: <i>“Congratulations! If you are reading this, then your local JoyCo-brand vending machine has been selected for an early trial of our new line of ‘Amazona’ products!”</i>");
+	output("\n\nYou see another button on the machine labeled <i>Amazona Iced Tea</i>. A small holo-projection of a muscular woman appears over the button, and starts to speak. <i>“Are you tired of being little? Do you want to unleash the queen of the jungle inside you? Then have an Amazona! Our unique cocktails of mutagens will turn you into the woman you’ve always dreamt of!”</i> It sounds like some kind of transformative. It’s pretty expensive though, <b>3000 credits</b>, sheesh!");
+}
+public function amazonaIcedTeaList(item:ItemSlotClass):String
+{
+	var msg:String = "\\\[ " + item.shortName + " \\\]: ";
+	
+	switch(item.shortName)
+	{
+		case "AmzIT.Clas":
+			msg += "A button labeled <i>Amazona Classic</i> with a picture of a large, muscular woman on it. It costs " + item.basePrice + " credits.";
+			break;
+		case "AmzIT.Lite":
+			msg += "A button labeled <i>Amazona Lite</i> with a picture of a tall, slender track star on it. It costs " + item.basePrice + " credits.";
+			break;
+		case "AmzIT.Plus":
+			msg += "A button labeled <i>Amazona Plus</i> with a picture of a ridiculously curvy, yet completely ripped woman on it. It costs " + item.basePrice + " credits.";
+			break;
+		case "Futazona":
+			msg += "A button labeled <i>Futazona</i> with a picture of several large, muscular women with huge cocks, engaged in a small orgy.";
+			if(flags["MET_ZEPHYR"] != undefined) msg += " Wait, is that Zephyr? A disclaimer below the picture says that all of the women are paid actresses, and that not all are users of Futazona.";
+			msg += " It’s priced higher than the others, at " + item.basePrice + " credits.";
+			break;
+	}
+	
+	return msg;
+}
+public function amazonaIcedTeaBack():void
+{
+	clearOutput();
+	showBust("JOYCO_VENDING_MACHINE");
+	showName("VENDING\nMACHINE");
+	author("QuestyRobo");
+	
+	output("Maybe you should try something else...");
+	
+	buyAPowahPotionMenu();
+}
+public function amazonaIcedTeaBuyGo(item:ItemSlotClass):void
+{
+	showBust("JOYCO_VENDING_MACHINE");
+	showName("ITEM\nPURCHASED!");
+	author("QuestyRobo");
+	
+	output("The machine hums for a second before letting out a loud clang, dispensing your selected drink.");
+	if(flags["PURCHASED_AMAZONA"] == undefined)
+	{
+		output("\n\nYou reach to grab it, but not before a message pops up <i>JoyCo is not responsible for any injury, illness, unwanted mutation, loss of motor function, or spontaneous combustion that may be associated with this product. Please check ingredients list for any potentially allergenic material. JoyCo and associates cannot be held responsible for any damages caused as a result of overuse, please drink responsibly.</i>");
+		output("\n\n... Okay then.");
+		flags["PURCHASED_AMAZONA"] = 1;
+	}
 	output("\n\n");
 }
 

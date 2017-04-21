@@ -289,9 +289,20 @@ public function buyItem():void {
 			{
 				temp = Math.round(temp * pc.keyItemv1("Coupon - TamaniCorp"));
 			}
-			
-			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
-			output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
+			// Listing inventory exceptions
+			if(shopkeep is VendingMachine)
+			{
+				switch(shopkeep.originalRace)
+				{
+					case "Amazona": output(amazonaIcedTeaList(shopkeep.inventory[x])); break;
+				}
+			}
+			// Default listing
+			else
+			{
+				if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
+				output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
+			}
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
@@ -372,6 +383,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		{
 			case "J'ejune": jejuneMachineBuyGo(arg); break;
 			case "XXX": xxxMachineBuyGo(arg); break;
+			case "Amazona": amazonaIcedTeaBuyGo(arg); break;
 		}
 	}
 	//Emmy magic!

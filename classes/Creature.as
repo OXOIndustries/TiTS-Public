@@ -3662,7 +3662,7 @@
 		}
 		public function hasPheromones():Boolean
 		{
-			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent")) return true;
+			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent") || hasPerk("Jungle Queen Scent")) return true;
 			if(hasPerk("Pheromone Sweat") && (statusEffectv1("Sweaty") > 0 || skinIsSoaked())) return true;
 			if(accessory is Allure) return true;
 			return false;	
@@ -8459,15 +8459,25 @@
 			
 			return vaginas[vIdx].looseness();
 		}
-		public function wettestVaginalWetness(): Number {
+		public function wettestVaginalWetness(raw:Boolean = false): Number {
 			if(!hasVagina()) return -1;
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (vaginas[index].wetness() < vaginas[counter].wetness()) index = counter;
+				if ((raw ? vaginas[index].wetnessRaw : vaginas[index].wetness()) < (raw ? vaginas[counter].wetnessRaw : vaginas[counter].wetness())) index = counter;
 			}
-			return vaginas[index].wetness();
+			return (raw ? vaginas[index].wetnessRaw : vaginas[index].wetness());
+		}
+		public function wettestVaginaIndex(raw:Boolean = false): int {
+			if (!hasVagina()) return -1;
+			var counter: Number = vaginas.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if ((raw ? vaginas[index].wetnessRaw : vaginas[index].wetness()) < (raw ? vaginas[counter].wetnessRaw : vaginas[counter].wetness())) index = counter;
+			}
+			return index;
 		}
 		public function driestVaginalWetness(raw:Boolean = false): Number {
 			if(!hasVagina()) return -1;
@@ -8486,6 +8496,16 @@
 			}
 			
 			return (raw ? vaginas[idx].wetnessRaw : vaginas[idx].wetness());
+		}
+		public function driestVaginaIndex(raw:Boolean = false): int {
+			if (!hasVagina()) return -1;
+			var counter: Number = vaginas.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if ((raw ? vaginas[index].wetnessRaw : vaginas[index].wetness()) > (raw ? vaginas[counter].wetnessRaw : vaginas[counter].wetness())) index = counter;
+			}
+			return index;
 		}
 		public function biggestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;

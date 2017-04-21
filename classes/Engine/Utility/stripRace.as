@@ -42,7 +42,7 @@
 		if(InCollection(sRace, ["cat", "kitten", "tiger", "tigeress", "panther", "jaguar", "cheetah", "lion", "lioness", "chakat", "nekomata", "dragonne"])) sRace = "feline";
 		if(InCollection(sRace, ["satyr"])) sRace = "goat";
 		if(InCollection(sRace, ["sheep", "ram", "lamb"])) sRace = "ovine";
-		if(InCollection(sRace, ["griffin", "hippogriff", "quetzalcoatl", "phoenix", "vulpogryph", "sirin", "harpy"])) sRace = "avian";
+		//if(InCollection(sRace, ["griffin", "hippogriff", "quetzalcoatl", "phoenix", "vulpogryph", "sirin", "harpy"])) sRace = "avian";
 		if(sRace.indexOf("shark") != -1 || InCollection(sRace, ["megalodon"])) sRace = "shark";
 		if(InCollection(sRace, ["treant", "dryad"])) sRace = "plant";
 		if(sRace.indexOf("'rahn") != -1) sRace = "rahn";

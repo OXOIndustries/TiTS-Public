@@ -8,13 +8,13 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Items.Transformatives.SumaCream;
+	import classes.Items.Transformatives.Amazona;
 	
-	public class SumaCreamBlack extends ItemSlotClass
+	public class Futazona extends ItemSlotClass
 	{
-		private var pillColor:String = "black";
+		private var canType:String = "futazona";
 		
-		public function SumaCreamBlack()
+		public function Futazona()
 		{
 			_latestVersion = 1;
 			
@@ -22,18 +22,18 @@
 			stackSize = 12;
 			type = GLOBAL.PILL;
 			
-			shortName = "Suma Blk.";
-			longName = "Suma Black Cream capsule";
+			shortName = "Futazona";
+			longName = "Futazona";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a Suma Black Cream capsule";
+			description = "a can of Futazona";
 			
-			tooltip = "[altTooltip SumaCreamBlack]";
+			tooltip = "[altTooltip Futazona]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			basePrice = 800;
+			basePrice = 6000;
 			
 			version = _latestVersion;
 		}
@@ -42,12 +42,12 @@
 		{
 			if(target is PlayerCharacter)
 			{
-				SumaCream.sumaEffects(target, pillColor);
+				Amazona.amazonaEffects(target, canType);
 				return true;
 			}
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " uses the pill to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " drinks the thermos to no effect.");
 			}
 			return false;
 		}
