@@ -131,6 +131,7 @@ public function jadeStoreSetup():void
 	chars["JADE"].inventory = new Array();
 	
 	//Inventory sorta alphabetically, because I'm a boss.
+	chars["JADE"].inventory.push(new SheepTF());
 	chars["JADE"].inventory.push(new AusarTreats());
 	if(pc.level >= 2)
 	{
@@ -157,7 +158,6 @@ public function jadeStoreSetup():void
 	chars["JADE"].inventory.push(new PandaPro());
 	chars["JADE"].inventory.push(new PupperPoppers());
 	chars["JADE"].inventory.push(new SharkBites());
-	chars["JADE"].inventory.push(new SheepTF());
 	chars["JADE"].inventory.push(new Swineapple());
 	//Nice, neat inventory complete :3
 	

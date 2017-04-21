@@ -5018,7 +5018,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -5128,6 +5128,10 @@
 				case GLOBAL.TYPE_SWINE:
 					adjectives = ["swine", "pig-like", "floppy"];
 					if(isBimbo()) adjectives.push("piggy");
+					break;
+				case GLOBAL.TYPE_SHEEP:
+					adjectives = ["sheep", "lamb-like", "floppy"];
+					if(!nonFurrySkin) adjectives.push("softly furred");
 					break;
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
@@ -6212,6 +6216,10 @@
 					break;
 				case GLOBAL.TYPE_SWINE:
 					adjectives = ["swine", "pig-like"];
+					break;
+				case GLOBAL.TYPE_SHEEP:
+					adjectives = ["sheep", "sheep-like"];
+					break;
 			}
 			// Flags
 			if (hasTailCock())
@@ -6516,6 +6524,7 @@
 						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic"]; break;
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 						case GLOBAL.TYPE_TENTACLE: adjectives = ["tentacle-toed", "tentacled", "tentacle imitation", "tentacle formed"]; break;
+						case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep", "sheep-like", "lamb-like"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -6589,6 +6598,7 @@
 					case GLOBAL.TYPE_MYR: adjectives = ["chitinous", "armored", scaleColor + "-chitin"]; break;
 					case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 					case GLOBAL.TYPE_SHARK: adjectives = ["shark-like","clawed","webbed"]; break;
+					case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep-like", "lamb-like", "bestial"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -10575,6 +10585,7 @@
 			if (orangeMyrScore() >= 9) race = "orange myr";
 			if (nyreaScore() >= 5) race = "nyrea";
 			if (sharkScore() >= 5) race = sharkRace();
+			if (sheepScore() >= 5) race = sheepRace();
 			if (plantScore() >= 5) race = plantRace();
 			if (laquineScore() >= 5) race = "laquine";
 			// Human-morphs
@@ -10609,26 +10620,53 @@
 			var sRaceShort:String = raceShort();
 			if(sRace.indexOf("boy") != -1 || sRace.indexOf("boi") != -1 || sRace.indexOf("girl") != -1) return sRace;
 			
+			var isCute:Boolean = (isBimbo() || tallness < 60);
+			// Cute conversions for complex short-race names.
 			if(simple)
 			{
 				switch(sRaceShort)
 				{
+					case "anthro":
+					case "alien":
+						if(hasFur() || hasFeathers()) sRaceShort = "furry";
+						else if(hasScales()) sRaceShort = "scaly";
+						else if(hasGooSkin()) sRaceShort = "goo";
+						else if(skinType == GLOBAL.SKIN_TYPE_LATEX) sRaceShort = "sexdoll";
+						break;
 					case "bovine":
-						sRaceShort = rawmfn("bull", "cow", "bovine");
+						sRaceShort = mf("bull", "cow");
 						break;
 					case "canine":
-						if(isBimbo() && rand(2) == 0) sRaceShort = "puppy";
+						if(isCute && rand(2) == 0) sRaceShort = "puppy";
 						else if(isBimbo() || femininity >= 75 && biggestTitSize() >= 7 && hasVagina()) sRaceShort = "bitch";
 						else sRaceShort = "dog";
+						break;
 					case "vulpine":
 					case "kitsune":
 						sRaceShort = mf("fox", "vixen");
+						break;
 					case "lupine":
 						sRaceShort = "wolf";
+						break;
 					case "feline":
-						if(isBimbo() && rand(2) == 0) sRaceShort = "kitty";
+						if(isCute && rand(2) == 0) sRaceShort = "kitty";
 						else if(isBimbo() || femininity >= 75 && biggestTitSize() >= 7 && hasVagina()) sRaceShort = "pussy";
 						else sRaceShort = "cat";
+						break;
+					case "avian":
+						sRaceShort = "bird";
+						break;
+					case "ovine":
+						if(isCute && rand(2) == 0) sRaceShort = "lamb";
+						else if(hasHorns()) sRaceShort = "ram";
+						else sRaceShort = "sheep";
+						break;
+					case "plant":
+						if(isCute && rand(2) == 0) sRaceShort = "daisy";
+						else sRaceShort = mf("plant", "flower");
+						break;
+					case "gabilani":
+						sRaceShort = "goblin";
 						break;
 				}
 			}
@@ -10742,6 +10780,30 @@
 			if(tallness >= 9) return "megalodon-morph";
 			if(tallness < 60) return "pygmy shark-morph";
 			return "shark-morph";
+		}
+		public function sheepRace():String
+		{
+			if
+			(	hasHorns() && horns >= 2 && InCollection(hornType, [GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT])
+			&&	!hasMuzzle() && !hasFur()
+			&&	legType == GLOBAL.TYPE_SHEEP
+			) return "satyr-morph";
+			if(femininity > 60)
+			{
+				if (isMale() && hasBreasts()) return "sheep-boi";
+				if (isMale()) return "ram-girl";
+				if (isSexless()) return "sheep-morph";
+				return "sheep-girl";
+			}
+			if(femininity < 40)
+			{
+				if (isMale() && !hasBeard() && tallness < 63) return "ram-boy";
+				if (isFemale()) return "sheep-boy";
+				if (isMale()) return "ram-man";
+				return "ram-morph";
+			}
+			if(thickness < 33 || tallness <= 60) return "lamb-morph";
+			return "ovine-morph";
 		}
 		public function tentacleRace():String
 		{
@@ -11336,6 +11398,19 @@
 			if(totalVaginas(GLOBAL.TYPE_SHARK) > 0) counter++;
 			if(balls > 0 && counter > 0) counter--;
 			if(biggestTitSize() > 2 && counter > 0) counter--;
+			return counter;
+		}
+		public function sheepScore():int
+		{
+			var counter:int = 0;
+			if (hasHorns() && InCollection(hornType, [GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT])) counter++;
+			if (hasHair() && hairType == GLOBAL.HAIR_TYPE_REGULAR && hasStatusEffect("frizzy hair")) counter++;
+			if (earType == GLOBAL.TYPE_SHEEP) counter++;
+			if (eyeType == GLOBAL.TYPE_SHEEP) counter++;
+			if (faceType == GLOBAL.TYPE_SHEEP && hasMuzzle()) counter++;
+			if (legType == GLOBAL.TYPE_SHEEP) counter++;
+			if (hasTail(GLOBAL.TYPE_SHEEP) && hasTailFlag(GLOBAL.FLAG_FLUFFY)) counter++;
+			if (counter > 0 && hasFur()) counter--;
 			return counter;
 		}
 		public function suulaScore(): int
@@ -17425,6 +17500,7 @@
 							types.push("deer-like");
 							break;
 						case GLOBAL.TYPE_GOAT:
+						case GLOBAL.TYPE_SHEEP:
 							types.push("ram");
 							break;
 						case GLOBAL.TYPE_RHINO:
