@@ -655,17 +655,55 @@ public function applyOilEffect(target:Creature, source:String):void
 {
 	clearOilEffects(target);
 	
+	var name:String = "";
 	var desc:String = "";
-	var duration:int = 1;
+	var duration:int;
+	var color:uint;
 	
 	if (source == OIL_SOURCE_STANDARD_MASSAGE) duration = 720;
 	else if (source == OIL_SOURCE_SPECIAL_MASSAGE) duration = 1440;
 	
-	if (target == chars["PC"]) desc = "You’re covered in warm, protective oil!";
-	else desc = target.capitalA + target.short + " is covered in warm, protective oil!";
-	desc += "\nFreeze resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, duration / 1440)) + "%";
+	switch (pippaCurrentOil())
+	{
+		case PIPPA_OIL_COOL:
+			name = "Oil Cooled";
+			if(target == chars["PC"]) desc = "You're covered in cool, protective oil!";
+			else desc = target.capitalA + target.short + " is covered in cool, protective oil!";
+			desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, duration / 1440)) + "%";
+			color = 0x59C7FF;
+			break;
+		case PIPPA_OIL_NUMB:
+			name = "Oil Numbed";
+			if(target == chars["PC"]) desc = "You're covered in numbing, lust-inhibiting oil!";
+			else desc = target.capitalA + target.short + " is covered in numbing, lust-inhibiting oil!";
+			desc += "\nLust gains are decreased.";
+			color = 0xBCAEC1;
+			break;
+		case PIPPA_OIL_LUST:
+			name = "Oil Aroused";
+			if(target == chars["PC"]) desc = "You're covered in arousing, lust-inducing oil!";
+			else desc = target.capitalA + target.short + " is covered in arousing, lust-inducing oil!";
+			desc += "\nTeasing is more effective, but arousal comes more easily.";
+			color = 0xFF8CD6;
+			break;
+		case PIPPA_OIL_SLIP:
+			name = "Oil Slicked";
+			if(target == chars["PC"]) desc = "You're covered in super slippery oil!";
+			else desc = target.capitalA + target.short + " is covered in super slippery oil!";
+			desc += "\nIt's easier to slip away from someone's grasp.";
+			color = 0xB793C4
+			break;
+		case PIPPA_OIL_WARM:
+		default:
+			name = "Oil Warmed";
+			if (target == chars["PC"]) desc = "You’re covered in warm, protective oil!";
+			else desc = target.capitalA + target.short + " is covered in warm, protective oil!";
+			desc += "\nFreeze resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, duration / 1440)) + "%";
+			color = 0xFF7A59;
+			break;
+	}
 	
-	target.createStatusEffect(OIL_STATUS_NAMES[pippaCurrentOil()], 0, 0, 0, 0, false, "Icon_Water_Drop", desc, false, duration, OIL_STATUS_COLORS[pippaCurrentOil()]);
+	target.createStatusEffect(name, 0, 0, 0, 0, false, "Icon_Water_Drop", desc, false, duration, color);
 }
 
 public function clearOilEffects(target:Creature):void
@@ -851,13 +889,13 @@ public function pippaHappyEnding(type:String = "hands"):void
 			{
 				output(" With her other hand, she ");
 				if (pc.isTaur()) output("reaches under you and ");
-				output("strokes your [pc.cockNoun " + penisIndex + "], rubbing oil into it at the same time.");
+				output("strokes your [pc.cock " + penisIndex + "], rubbing oil into it at the same time.");
 			}
 		}
 	}
 	else if (type == "mouth")
 	{
-		output("Pippa licks her lips and makes her way ");
+		output("Pippa licks her [pippa.lips] and makes her way ");
 		
 		if (pc.isTaur())
 		{
@@ -875,33 +913,33 @@ public function pippaHappyEnding(type:String = "hands"):void
 			if (pc.cocks[penisIndex].volume() <= 11) output("the whole thing");
 			else output("as much as possible");
 			
-			output(" in her mouth. While her lips stroke up and down your shaft, her tongue swirls around licking at and massaging every square inch it can reach.");
+			output(" in her mouth. While her [pippa.lips] stroke up and down your shaft, her tongue swirls around licking at and massaging every square inch it can reach.");
 			
-			if (pc.hasVagina() && !pc.isTaur()) output(" Though her mouth is wrapped around your [pc.cockNoun " + penisIndex + "], her hands are free, and she uses one to gently rub and fuck your free [pc.pussyNoun " + vaginaIndex + "].");
+			if (pc.hasVagina() && !pc.isTaur()) output(" Though her mouth is wrapped around your [pc.cock " + penisIndex + "], her hands are free, and she uses one to gently rub and fuck your free [pc.pussy " + vaginaIndex + "].");
 		}
 		else
 		{
 			output("[pc.pussy " + vaginaIndex + "] before devouring it entirely. She sucks and licks all around, inside and out, getting at every square inch she can reach. If you didn’t know better, you’d think she was trying to literally eat your pussy.");
 			
-			if (pc.hasCock() && !pc.isTaur()) output(" While she tends to your [pc.pussyNoun " + vaginaIndex + "] with her mouth, she uses her free hand to gently stroke your [pc.cockNoun " + penisIndex + "].");
+			if (pc.hasCock() && !pc.isTaur()) output(" While she tends to your [pc.pussy " + vaginaIndex + "] with her mouth, she uses her free hand to gently stroke your [pc.cock " + penisIndex + "].");
 		}
 	}
 	else if (type == "tits")
 	{
-		output("Pippa slips her arms out of her tank top and begins to raise it up, but, rather than removing it, she leaves it wrapped around her [pippa.tits] like a mini tube top. Her [pippa.breastsNoun] spill over the top and bottom of her make-shift wrap, creating an inviting passage underneath. She takes some of her massage oil and rubs it into her dual cleavage, and, sticking her hand in, all throughout the [pippa.breastNoun] passage she’s created. She approaches you, holds her [pippa.breastsNoun] up over your [pc.cock " + penisIndex + "], and lowers her [pippa.breasts] down over it. Your [pc.cockNoun " + penisIndex + "] surrounded by warm, soft, breast flesh, she begins moving up and down and wraps her arms around her chest, making the passage even tighter.");
+		output("Pippa slips her arms out of her tank top and begins to raise it up, but, rather than removing it, she leaves it wrapped around her [pippa.tits] like a mini tube top. Her [pippa.tits] spill over the top and bottom of her make-shift wrap, creating an inviting passage of soft boob flesh underneath. She takes some of her massage oil and rubs it into her dual cleavage, and, sticking her hand in, all throughout the soft, fleshy passage of cleavage she’s created. She approaches you, holds her [pippa.breasts] up over your [pc.cock " + penisIndex + "], and lowers her [pippa.breasts] down over it. Your [pc.cock " + penisIndex + "] surrounded by warm, soft, breast flesh, she begins moving up and down and wraps her arms around her chest, making the passage even tighter.");
 	}
 	
 	output("\n\nWhether it’s because of the oil, the state of relaxation you’ve been driven into, or some combination of the two, you’re in a heightened state of arousal, and her ");
 	
 	if (type == "hands") output("hands are just as magical now as they were during the massage");
 	else if (type == "mouth") output("tongue is just as magical as her hands were during the massage");
-	else if (type == "tits") output("[pippa.breastsNoun] wrapped around your [pc.cockNoun " + penisIndex + "] are as magical as her hands were during the massage");
+	else if (type == "tits") output("[pippa.breasts] wrapped around your [pc.cock " + penisIndex + "] are as magical as her hands were during the massage");
 	
 	output(". Already you feel your body tightening up, and, as soon as it comes on, it releases. Orgasmic bliss washes over you, ");
 	
 	if (type == "hands") output("coating Pippa’s hand in");
 	else if (type == "mouth") output("filling Pippa’s mouth with");
-	else if (type == "tits") output("flooding the valley of Pippa’s [pippa.breastsNoun] with");
+	else if (type == "tits") output("flooding the valley of Pippa’s [pippa.breasts] with");
 	
 	output(" your ");
 	

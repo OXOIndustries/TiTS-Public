@@ -640,7 +640,7 @@ public function multiCrewInteractions():Array
 			crewMembers.splice(crewMembers.indexOf(CREW_ANNO), 1);
 			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
 			
-			crewMessages += "\n\nPippa is givin Anno a post-workout massage, focusing on her torso and being careful to avoid getting oil in her fur.";
+			crewMessages += "\n\nPippa is giving Anno a post-workout massage, focusing on her torso and being careful to avoid getting oil in her fur.";
 		}
 		else if (rand(8) == 0 && InCollection(CREW_YAMMI, crewMembers))
 		{

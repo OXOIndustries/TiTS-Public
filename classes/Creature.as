@@ -18932,19 +18932,19 @@
 					case "Oil Numbed":
 						if(this is PlayerCharacter) desc = "You're covered in numbing, lust-inhibiting oil!";
 						else desc = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
-						desc += "Your lust gains are decreased";
+						desc += "\nLust gains are decreased.";
 						setStatusTooltip("Oil Numbed", desc);
 						break;
 					case "Oil Aroused":
 						if(this is PlayerCharacter) desc = "You're covered in arousing, lust-inducing oil!";
 						else desc = capitalA + short + " is covered in arousing, lust-inducing oil!";
-						desc += "Teasing is more effective, but you're more easily aroused";
+						desc += "\nTeasing is more effective, but arousal comes more easily.";
 						setStatusTooltip("Oil Aroused", desc);
 						break;
 					case "Oil Slicked":
 						if(this is PlayerCharacter) desc = "You're covered in super slippery oil!";
 						else desc = capitalA + short + " is covered in super slippery oil!";
-						desc += "It's easier to slip away from someone's grasp";
+						desc += "\nIt's easier to slip away from someone's grasp.";
 						setStatusTooltip("Oil Slicked", desc);
 						break;
 						
