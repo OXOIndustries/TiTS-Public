@@ -162,11 +162,10 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" It looks a bit strange with only the skin and no fur.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The presence of said scales gives your visage an eerie look, more reptile than mammal.");
 		}
-		//Face Appearance blurbs
 		else if(target.faceType == GLOBAL.TYPE_SHEEP)
 		{
-			output2("You have a short, " + pc.mf("blunt","cute") + " muzzle much like a sheep's.");
-			output2(" A coat of " + target.skinFurScales(true,true,false,true) + " decorates it.");
+			output2("You have a short, " + pc.mf("blunt","cute") + " muzzle much like a sheep’s.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + target.skinFurScales(true,true,false,true) + " decorates it.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_VULPINE) {
 			output2("You have a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
@@ -345,10 +344,13 @@ public function appearance(forTarget:Creature):void
 			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
 			output2(" A thick black ring lines your eye and your eyelids close from the side."); 
 		}
-		//Eyes Appearance blurbs
 		else if(target.eyeType == GLOBAL.TYPE_SHEEP)
 		{
-			output2(" Your eyes are sheep-like, sporting horizontal pupils.");
+			if(hasMetallicEyes) output2(" Metallically glistening in the light, your");
+			else if(hasGemstoneEyes) output2(" Like jewels, shimmering in the light, your");
+			else if(hasLuminousEyes) output2(" Like twinkling beacons, your");
+			else output2(" Your");
+			output2(" " + target.eyeColor + " eyes are sheep-like, sporting horizontal pupils.");
 		}
 		else if(target.eyeType == GLOBAL.TYPE_GRYVAIN)
 		{
@@ -494,7 +496,7 @@ public function appearance(forTarget:Creature):void
 			}
 			else if(target.earType == GLOBAL.TYPE_SHEEP)
 			{
-				output2(" A pair of sheep-like ears flop cutely down the sides of your head.");
+				output2(" A pair of sheep-like ears flop cutely down the sides of your " + headNoun + ".");
 			}
 			else if(target.earType == GLOBAL.TYPE_DRIDER)
 			{
@@ -648,6 +650,7 @@ public function appearance(forTarget:Creature):void
 			else if(target.earType == GLOBAL.TYPE_EQUINE) output2(" The " + target.hairDescript(true,true) + " on your head parts around a pair of very horse-like ears that grow up from your head.");
 			else if(target.earType == GLOBAL.TYPE_CANINE) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed dog ears.");
 			else if(target.earType == GLOBAL.TYPE_BOVINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
+			else if(target.earType == GLOBAL.TYPE_SHEEP) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of sheep-like ears that flop cutely down the sides of your head.");
 			else if(target.earType == GLOBAL.TYPE_DRIDER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
 			else if(target.earType == GLOBAL.TYPE_FELINE)
 			{
@@ -847,34 +850,38 @@ public function appearance(forTarget:Creature):void
 				output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from just above your forehead, sweeping backwards to follow the contour of your skull.");
 				if(target.isBimbo()) output2(" They’d make the most <i>adorable</i> handlebars for anybody looking to bust a nut down your throat!");
 			}
-			else if(target.hornType == GLOBAL.TYPE_SHEEP)
-			{
-				if(rand(2) == 0) output2(" Impressive curved ram horns sprout from your head, showing off to all who can see that you are more than capable of defending yourself and your territory.");
-				else output2(" A pair of large ram horns grow from your head, showing off to all who can see that you are formidable opponent.");
-			}
 			//Antlers!
 			else if(target.hornType == GLOBAL.TYPE_DEER)
 			{
-				if(target.horns > 0)
-				{
-					if(rand(2) == 0) output2(" A pair of antlers sprout from your head, covered in velvet and indicating your status as a desirable mate.");
-					else output2(" Velvet-covered antlers sprout from your head, declaring your status as a desirable mate and formidable opponent.");
-					if(target.hornLength > 1) output2(" They are " + num2Text(int(target.hornLength)) + "-inch long and fork into " + num2Text(target.horns) + " points.");
-				}
+				if(rand(2) == 0) output2(" A pair of antlers sprout from your head, covered in velvet and indicating your status as a desirable mate.");
+				else output2(" Velvet-covered antlers sprout from your head, declaring your status as a desirable mate and formidable opponent.");
+				if(target.hornLength > 1) output2(" They are " + num2Text(int(target.hornLength)) + "-inch long and fork into " + num2Text(target.horns) + " points.");
 			}
 			else if(target.hornType == GLOBAL.TYPE_DRYAD)
 			{
-				if(target.horns > 0)
-				{
-					output2(" Two");
-					if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
-					output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of branches.");
-				}
+				output2(" Two");
+				if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
+				output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of branches.");
 			}
 			//Goatliness is next to godliness.
 			else if(target.hornType == GLOBAL.TYPE_GOAT)
 			{
-				if(target.horns > 0) output2(" Two curled ram horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
+				if(target.hornLength >= 6) output2(" Two curled goat horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
+				else output2(" Two goat horns stick stright out from your forehead, making you appear like a satyr out of terran legend.");
+			}
+			//Ram horns
+			else if(target.hornType == GLOBAL.TYPE_SHEEP)
+			{
+				if(rand(2) == 0)
+				{
+					if(target.hornLength >= 10) output2(" Impressive curved ram horns sprout from your head, showing off to all who can see that you are more than capable of defending yourself and your territory.");
+					else output2(" Slightly curved ewe horns emerge from your head, giving you a graceful appearance.");
+				}
+				else
+				{
+					if(target.hornLength >= 10) output2(" A pair of large ram horns grow from your head, showing off to all who can see that you are formidable opponent.");
+					else output2(" A pair of sheep-like horns grow from your head, each with a naturally elegant curve.");
+				}
 			}
 			//Rhinoceros horn!
 			else if(target.hornType == GLOBAL.TYPE_RHINO)
@@ -891,7 +898,7 @@ public function appearance(forTarget:Creature):void
 			//Unicorn horn!
 			else if(target.hornType == GLOBAL.TYPE_NARWHAL)
 			{
-				if(target.horns > 0) output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
+				output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
 			}
 		}
 		else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
@@ -1388,7 +1395,7 @@ public function appearance(forTarget:Creature):void
 			{
 				case GLOBAL.TYPE_DEER:
 					output2(" deer"); break;
-				case GLOBAL.TYPE_BOVINE:	
+				case GLOBAL.TYPE_BOVINE:
 				case GLOBAL.TYPE_GOAT:
 					output2(" bovid"); break;
 				case GLOBAL.TYPE_CANINE:
@@ -1900,12 +1907,11 @@ public function appearance(forTarget:Creature):void
 			else output2(" You have " + (rand(2) == 0 ? "thin, deer-like legs that are capped with" : "lithe, agile legs that end in") + " hooves");
 			output2(", enabling you to nimbly leap and prance from place to place.");
 		}
-		//Legs Appearance blurbs
 		else if(target.legType == GLOBAL.TYPE_SHEEP)
 		{
-			if(target.thickness >= 50) output2(" Your furry, lamb-like legs end in hooves, allowing you to spring into action at a moment's notice.");
-			else if(target.thickness >= 25) output2(" Your slender, nimble legs end in hooves, allowing you to spring into action at a moment's notice.");
-			else output2(" Your willowy, sheep-like legs are capped off by hooves, allowing you to spring into action at a moment's notice.");
+			if(target.thickness >= 50) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "furry") + ", lamb-like legs end in hooves, allowing you to spring into action at a moment’s notice.");
+			else if(target.thickness >= 25) output2(" Your slender, nimble legs end in hooves, allowing you to spring into action at a moment’s notice.");
+			else output2(" Your willowy, sheep-like legs are capped off by hooves, allowing you to spring into action at a moment’s notice.");
 		}
 		else if(target.legType == GLOBAL.TYPE_CANINE) 
 		{
