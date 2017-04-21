@@ -218,6 +218,7 @@
 		public static const TYPE_QUAD_LAPINE:int 							= 73;
 		public static const TYPE_MOUTHGINA:int 								= 74;
 		public static const TYPE_LUPINE:int 								= 75;
+		public static const TYPE_SHEEP:int 									= 76;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -296,6 +297,7 @@
 			"Quad Lapine",
 			"Mouthgina",
 			"Lupine",
+			"Sheep",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -324,6 +326,7 @@
 			TYPE_WORG,
 			TYPE_SWINE,
 			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -349,6 +352,7 @@
 			TYPE_FROG,
 			TYPE_NYREA,
 			TYPE_GRYVAIN,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -411,6 +415,7 @@
 			TYPE_QUAD_LAPINE,
 			TYPE_DOGGIE,
 			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -482,6 +487,7 @@
 			TYPE_SWINE,
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -522,6 +528,7 @@
 			TYPE_NARWHAL,
 			TYPE_GRYVAIN,
 			TYPE_DRYAD,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -583,6 +590,7 @@
 			TYPE_TENTACLE,
 			TYPE_DOGGIE,
 			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [

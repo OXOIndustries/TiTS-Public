@@ -157,6 +157,7 @@ public function jadeStoreSetup():void
 	chars["JADE"].inventory.push(new PandaPro());
 	chars["JADE"].inventory.push(new PupperPoppers());
 	chars["JADE"].inventory.push(new SharkBites());
+	chars["JADE"].inventory.push(new SheepTF());
 	chars["JADE"].inventory.push(new Swineapple());
 	//Nice, neat inventory complete :3
 	

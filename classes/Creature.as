@@ -12654,7 +12654,6 @@
 				descript += "head";
 				return descript;
 			}
-
 			//50% odds of adjectives
 			if ((forceLength || rand(2) == 0) && !InCollection(hairStyle, "afro", "mohawk")) {
 				if (hairLength < 1) {
@@ -12718,6 +12717,12 @@
 			{
 				if(descripted > 0) descript += ", ";
 				descript += "latex";
+				descripted++;
+			}
+			if (rand(4) == 0 && descripted <= 1 && hasStatusEffect("frizzy hair"))
+			{
+				if(descripted > 0) descript += ", ";
+				descript += "frizzy";
 				descripted++;
 			}
 			//Mane special stuff.

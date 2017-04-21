@@ -162,6 +162,12 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" It looks a bit strange with only the skin and no fur.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The presence of said scales gives your visage an eerie look, more reptile than mammal.");
 		}
+		//Face Appearance blurbs
+		else if(target.faceType == GLOBAL.TYPE_SHEEP)
+		{
+			output2("You have a short, " + pc.mf("blunt","cute") + " muzzle much like a sheep's.");
+			output2(" A coat of " + target.skinFurScales(true,true,false,true) + " decorates it.");
+		}
 		else if(target.faceType == GLOBAL.TYPE_VULPINE) {
 			output2("You have a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" Oddly enough, there’s no fur on your animalistic muzzle, just " + target.skinFurScales(true,true,false,true) + "."); 
@@ -332,12 +338,17 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.eyeType == GLOBAL.TYPE_SHARK)
 		{
-			output2("Your eyes are a curious mix of piscine and feline features; a pair of black vertical slits instead of rounded pupils,");
+			output2(" Your eyes are a curious mix of piscine and feline features; a pair of black vertical slits instead of rounded pupils,");
 			if(hasMetallicEyes) output2(" sat amongst metallically glistening pools of " + target.eyeColor + " irises.");
 			else if(hasGemstoneEyes) output2(" each nestled in a shimmering gemstone-like " + target.eyeColor + " iris.");
 			else if(hasLuminousEyes) output2(" each nestled within " + indefiniteArticle(target.eyeColor) + " iris.");
 			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
 			output2(" A thick black ring lines your eye and your eyelids close from the side."); 
+		}
+		//Eyes Appearance blurbs
+		else if(target.eyeType == GLOBAL.TYPE_SHEEP)
+		{
+			output2(" Your eyes are sheep-like, sporting horizontal pupils.");
 		}
 		else if(target.eyeType == GLOBAL.TYPE_GRYVAIN)
 		{
@@ -480,6 +491,10 @@ public function appearance(forTarget:Creature):void
 			else if(target.earType == GLOBAL.TYPE_BOVINE)
 			{
 				output2(" A pair of round, floppy cow ears protrude from the sides of your " + headNoun + ".");
+			}
+			else if(target.earType == GLOBAL.TYPE_SHEEP)
+			{
+				output2(" A pair of sheep-like ears flop cutely down the sides of your head.");
 			}
 			else if(target.earType == GLOBAL.TYPE_DRIDER)
 			{
@@ -831,6 +846,11 @@ public function appearance(forTarget:Creature):void
 			{
 				output2(" A pair of " + num2Text(int(target.hornLength)) + "-inch horns grow from just above your forehead, sweeping backwards to follow the contour of your skull.");
 				if(target.isBimbo()) output2(" They’d make the most <i>adorable</i> handlebars for anybody looking to bust a nut down your throat!");
+			}
+			else if(target.hornType == GLOBAL.TYPE_SHEEP)
+			{
+				if(rand(2) == 0) output2(" Impressive curved ram horns sprout from your head, showing off to all who can see that you are more than capable of defending yourself and your territory.");
+				else output2(" A pair of large ram horns grow from your head, showing off to all who can see that you are formidable opponent.");
 			}
 			//Antlers!
 			else if(target.hornType == GLOBAL.TYPE_DEER)
@@ -1573,6 +1593,11 @@ public function appearance(forTarget:Creature):void
 			if(target.tailVenom == 100) output2(" Your swollen spider-butt is distended with the sheer amount of webbing it’s holding.");
 			*/
 		}
+		else if(target.tailType == GLOBAL.TYPE_SHEEP)
+		{
+			if(pc.tailCount == 1) output2(" A small lamb-like tail sprouts from your backside.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " small, lamb-like tails sprout from your backside.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_BEE) {
 			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard");
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("ened " + target.scaleColor + " goo");
@@ -1874,6 +1899,13 @@ public function appearance(forTarget:Creature):void
 			if(target.legCount < 4) output2(" Your legs are lithe and agile, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in hooves");
 			else output2(" You have " + (rand(2) == 0 ? "thin, deer-like legs that are capped with" : "lithe, agile legs that end in") + " hooves");
 			output2(", enabling you to nimbly leap and prance from place to place.");
+		}
+		//Legs Appearance blurbs
+		else if(target.legType == GLOBAL.TYPE_SHEEP)
+		{
+			if(target.thickness >= 50) output2(" Your furry, lamb-like legs end in hooves, allowing you to spring into action at a moment's notice.");
+			else if(target.thickness >= 25) output2(" Your slender, nimble legs end in hooves, allowing you to spring into action at a moment's notice.");
+			else output2(" Your willowy, sheep-like legs are capped off by hooves, allowing you to spring into action at a moment's notice.");
 		}
 		else if(target.legType == GLOBAL.TYPE_CANINE) 
 		{
