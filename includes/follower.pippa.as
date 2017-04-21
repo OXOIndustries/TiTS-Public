@@ -31,6 +31,7 @@ public const PIPPA_RECRUIT_REAHA:int = 1; // Having treated Reaha on board as yo
 public const PIPPA_RECRUIT_TREATED:int = 2; // Being treated
 public const PIPPA_RECRUIT_AFFECTION:int = 3; // Having a high affection score with Pippa
 
+// Gets a list of recruitment criteria for Pippa
 public function getPippaRecruitmentReasons():Array
 {
 	var recruitmentReasons:Array = new Array();
@@ -47,6 +48,7 @@ public function getPippaRecruitmentReasons():Array
 	return recruitmentReasons;
 }
 
+// If Pippa recruitment hasn't been triggered and at least two criteria for recruiting Pippa are met, the recruitment timer is triggered
 public function pippaCheckRecruitment():void
 {
 	if (flags["PIPPA_RECRUIT_TIMER"] == undefined && getPippaRecruitmentReasons().length >= 2) flags["PIPPA_RECRUIT_TIMER"] = GetGameTimestamp();
@@ -59,13 +61,14 @@ public function pippaCrewEmailGet():void
 	MailManager.unlockEntry("pippa_crew", GetGameTimestamp());
 }
 
+// Scene for Pippa asking to joing your crew
 public function pippaTalkInitialRecruit():void
 {
 	clearOutput();
 	clearMenu();
 	showPippa();
 	
-	output("<i>“I’m glad you stopped by to talk, " + pippaCallsSteele() + ".”</i> Pippa looks a bit nervous. <i>“I guess I’ll get straight to the point. I’ve been thinking about some of the things we’ve talked about: seeing new places, unique opportunities, and...cutting my parents off. I want to earn my keep as part of your crew. Working for you would be worth not working for myself.");
+	output("<i>“I’m glad you stopped by to talk, " + pippaCallsSteele() + ".”</i> Pippa looks a bit nervous. <i>“I guess I’ll get straight to the point. I’ve been thinking about some of the things we’ve talked about: seeing new places, unique opportunities, and... cutting my parents off. I want to earn my keep as part of your crew. Working for you would be worth not working for myself.");
 	
 	var recruitmentReasons:Array = getPippaRecruitmentReasons();
 	
@@ -77,7 +80,7 @@ public function pippaTalkInitialRecruit():void
 	
 	output(" And, of course, I like you.");
 	
-	if (InCollection(PIPPA_RECRUIT_AFFECTION, recruitmentReasons)) output("..a lot.");
+	if (InCollection(PIPPA_RECRUIT_AFFECTION, recruitmentReasons)) output(".. a lot.");
 	
 	output(" I hope you don’t need much convincing, but if you’ll have me, I’ll provide my services to the rest of the crew. Keep them relaxed and happy. Like I’ve mentioned, free massages are a great employee benefit. So?”</i> She looks more nervous than when she started.");
 	
@@ -87,6 +90,7 @@ public function pippaTalkInitialRecruit():void
 	addButton(1, "Decline", pippaTalkInitialRecruitDecline, undefined);
 }
 
+// Accept Pippa onto your crew
 public function pippaTalkInitialRecruitAccept():void
 {
 	clearOutput();
@@ -102,6 +106,7 @@ public function pippaTalkInitialRecruitAccept():void
 	addButton(0, "Next", move, rooms[currentLocation].eastExit);
 }
 
+// Don't let Pippa join your crew
 public function pippaTalkInitialRecruitDecline():void
 {
 	clearOutput();
@@ -110,13 +115,14 @@ public function pippaTalkInitialRecruitDecline():void
 	
 	flags["PIPPA_RECRUITED"] = -1;
 	
-	output("You decline Pippa’s request to join your crew, and her nervousness is replaced with a surprised sadness. <i>“I...really thought you’d accept. I’m sure you have your reasons, " + pippaCallsSteele() + ", but I hope you’ll reconsider. My offer is still open if you do, but for now, can you leave me alone?”</i>");
+	output("You decline Pippa’s request to join your crew, and her nervousness is replaced with a surprised sadness. <i>“I... really thought you’d accept. I’m sure you have your reasons, " + pippaCallsSteele() + ", but I hope you’ll reconsider. My offer is still open if you do, but for now, can you leave me alone?”</i>");
 	
 	processTime(1);
 	
 	addButton(0, "Next", move, rooms[currentLocation].eastExit);
 }
 
+// Let Pippa join your crew (after initially turning her down)
 public function pippaTalkRecruit():void
 {
 	clearOutput();
@@ -132,6 +138,7 @@ public function pippaTalkRecruit():void
 	addButton(0, "Next", move, rooms[currentLocation].eastExit);
 }
 
+// Ask Pippa to leave your ship
 public function pippaAskToLeave():void
 {
 	clearOutput();
@@ -140,7 +147,7 @@ public function pippaAskToLeave():void
 	
 	output("<i>“Pippa, do you still own your house on Uveto?”</i>");
 	
-	output("\n\n<i>“Yeah, it’s still mine....Why?”</i> She narrows her eyes at you.");
+	output("\n\n<i>“Yeah, it’s still mine.... Why?”</i> She narrows her eyes at you.");
 	
 	output("\n\n<i>“I’m gonna need you off the ship for a while.”</i>");
 	
@@ -154,6 +161,7 @@ public function pippaAskToLeave():void
 	addButton(1, "No", pippaAskToLeaveNo);
 }
 
+// Confirm Pippa leaving the ship
 public function pippaAskToLeaveYes():void
 {
 	clearOutput();
@@ -172,6 +180,7 @@ public function pippaAskToLeaveYes():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Change mind on Pippa leaving the ship
 public function pippaAskToLeaveNo():void
 {
 	clearOutput();
@@ -187,6 +196,7 @@ public function pippaAskToLeaveNo():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Bring Pippa back onto the ship
 public function pippaTalkTakeBack():void
 {
 	clearOutput();
@@ -202,6 +212,7 @@ public function pippaTalkTakeBack():void
 	addButton(0, "Next", move, rooms[currentLocation].eastExit);
 }
 
+// Pippa's initial scene on ship
 public function pippaShipIntro():void
 {
 	clearOutput();
@@ -220,6 +231,7 @@ public function pippaShipIntro():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Text that can display on the crew menu for Pippa
 public function pippaShipBonusText():String
 {
 	var bonusText:String;
@@ -236,6 +248,7 @@ public function pippaShipBonusText():String
 	return bonusText;
 }
 
+// Oil to buy oils for Pippa to use and choose her current oil
 public function pippaOilMenu():void
 {
 	clearOutput();
@@ -288,6 +301,7 @@ public function pippaOilMenu():void
 	addButton(14, "Back", pippaMainMenu);
 }
 
+// Sets Pippa's "equipped" oil
 public function pippaUseOil(oil:int):void
 {
 	clearOutput();
@@ -307,13 +321,13 @@ public function pippaUseOil(oil:int):void
 			output("Alright then. Let’s cool you down.");
 			break;
 		case PIPPA_OIL_NUMB:
-			output("Numbing oil...I hope my technique will still be effective.");
+			output("Numbing oil... I hope my technique will still be effective.");
 			break;
 		case PIPPA_OIL_LUST:
 			output("Massages with this should be very nice, but be careful with it; it’s a double edged sword.");
 			break;
 		case PIPPA_OIL_SLIP:
-			output("Slippery...this should be fun.");
+			output("Slippery... this should be fun.");
 			break;
 	}
 	
@@ -322,6 +336,7 @@ public function pippaUseOil(oil:int):void
 	addButton(0, "Next", pippaMainMenu);
 }
 
+// Buys new oil for Pippa to use
 public function pippaUnlockOil(oil:int):void
 {
 	pc.credits -= 5000;

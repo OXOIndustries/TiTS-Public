@@ -18918,33 +18918,33 @@
 						}
 						break;
 					case "Oil Warmed":
-						if(this is PlayerCharacter) desc = "You're covered in warm, protective oil!";
+						if(this is PlayerCharacter) desc = "You’re covered in warm, protective oil!";
 						else desc = capitalA + short + " is covered in warm, protective oil!";
 						desc += "\nFreezing Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						setStatusTooltip("Oil Warmed", desc);
 						break;
 					case "Oil Cooled":
-						if(this is PlayerCharacter) desc = "You're covered in cool, protective oil!";
+						if(this is PlayerCharacter) desc = "You’re covered in cool, protective oil!";
 						else desc = capitalA + short + " is covered in cool, protective oil!";
 						desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
 						setStatusTooltip("Oil Cooled", desc);
 						break;
 					case "Oil Numbed":
-						if(this is PlayerCharacter) desc = "You're covered in numbing, lust-inhibiting oil!";
+						if(this is PlayerCharacter) desc = "You’re covered in numbing, lust-inhibiting oil!";
 						else desc = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
 						desc += "\nLust gains are decreased.";
 						setStatusTooltip("Oil Numbed", desc);
 						break;
 					case "Oil Aroused":
-						if(this is PlayerCharacter) desc = "You're covered in arousing, lust-inducing oil!";
+						if(this is PlayerCharacter) desc = "You’re covered in arousing, lust-inducing oil!";
 						else desc = capitalA + short + " is covered in arousing, lust-inducing oil!";
 						desc += "\nTeasing is more effective, but arousal comes more easily.";
 						setStatusTooltip("Oil Aroused", desc);
 						break;
 					case "Oil Slicked":
-						if(this is PlayerCharacter) desc = "You're covered in super slippery oil!";
+						if(this is PlayerCharacter) desc = "You’re covered in super slippery oil!";
 						else desc = capitalA + short + " is covered in super slippery oil!";
-						desc += "\nIt's easier to slip away from someone's grasp.";
+						desc += "\nIt’s easier to slip away from someone’s grasp.";
 						setStatusTooltip("Oil Slicked", desc);
 						break;
 						

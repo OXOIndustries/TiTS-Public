@@ -24,6 +24,7 @@ public function pippaYammiThreesomeCount(addCount:int = 1):int
 	return flags["PIPPA_YAMMI_THREESOME"];
 }
 
+// Pippa/Yammi threesome first time scene
 public function pippaYammiThreesomeIntro():void
 {
 	clearOutput();
@@ -48,6 +49,7 @@ public function pippaYammiThreesomeIntro():void
 	addButton(2, "Both", pippaYammiThreesome);
 }
 
+// Turn down threesome and have sex with Pippa
 public function pippaYammiNoThreesomePippa():void
 {
 	clearOutput();
@@ -66,6 +68,7 @@ public function pippaYammiNoThreesomePippa():void
 	pippaSexMenu(pippaMainMenu);
 }
 
+// Turn down threesome and have sex with Yammi
 public function pippaYammiNoThreesomeYammi():void
 {
 	clearOutput();
@@ -82,7 +85,7 @@ public function pippaYammiNoThreesomeYammi():void
 	
 	yammiFollowerSexMenu();
 }
-
+ // Pippa/Yammi threesome part 1
 public function pippaYammiThreesome():void
 {
 	clearOutput();
@@ -101,7 +104,7 @@ public function pippaYammiThreesome():void
 		
 		output("\n\nYou tell her, <i>“You should know by now I’m not just teasing you.”</i>");
 		
-		output("\n\nYammi bites her lip and looks at Pippa, before looking back to you. <i>“I’m not completely sure about this, Boss, but...I guess you should also know by now, I trust you.”</i>");
+		output("\n\nYammi bites her lip and looks at Pippa, before looking back to you. <i>“I’m not completely sure about this, Boss, but... I guess you should also know by now, I trust you.”</i>");
 		
 		output("\n\nPippa grabs Yammi by the chin, turning her so they’re face-to-face, and plants a kiss on her green lips. <i>“You two done talking?”</i>");
 		
@@ -168,6 +171,7 @@ public function pippaYammiThreesome():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Pippa/Yammi threesome part 2a, PC and Pippa DP Yammi
 public function pippaYammiThreesomeDom(cockIndex:int):void
 {
 	output("\n\nPippa moves her [pippa.lips] away from your mouth, kissing her way down to your neck, and then up toward your [pc.ear]. She pulls back slightly and whispers to you, <i>“I’ll be right back.”</i> Before you can even acknowledge her statement, she runs out of the kitchen. Yammi, who barely seems to notice, continues lavishing attention on your [pc.cockOrStrapon " + cockIndex + "]. ");
@@ -205,7 +209,7 @@ public function pippaYammiThreesomeDom(cockIndex:int):void
 		
 		if (pc.cockVolume(x) > yammiPlaceholderCapacity()) output(", especially when I’m already filled up this much");
 		
-		output("....”</i> Despite what she’s saying, you feel her tight pussy on your [pc.cockOrStrapon " + cockIndex + "] twitching with anticipation.. Too turned on to pass up the advance, she sighs. <i>“Get me ready first...and be gentle!”</i>");
+		output("....”</i> Despite what she’s saying, you feel her tight pussy on your [pc.cockOrStrapon " + cockIndex + "] twitching with anticipation.. Too turned on to pass up the advance, she sighs. <i>“Get me ready first... and be gentle!”</i>");
 	}
 	
 	output("\n\nPippa giggles and apologizes, <i>“Sorry, Yammi. I guess I got a little overeager.”</i> You pull Yammi into you, her perky breasts pressed into your [pc.chest], so that you can see over her shoulder and down to her round behind. She again begins to gently ride you, face buried in your neck. Pippa places one hand on Yammi’s bouncing bottom, gently spreading her ass, and, with her other hand, she grasps the base of your [pc.cockOrStrapon " + cockIndex + "] below Yammi, briefly moving it along with the sparadat, wetting her hand with girl-cum. She takes a lubricated finger, gently runs it around Yammi’s asshole, and slowly slips it inside, coating the inside and outside with the sparadat’s own cum. Yammi’s moans are already picking up when Pippa slips another finger in, spreading your chef’s rim. She finger fucks Yammi's tight asshole gently and, as she does, you see a hunger fill her eyes. She licks her lips and removes her fingers from Yammi's ass before leaning down and quickly replacing her fingers with her tongue. Or so you imagine. You can’t see with her face buried in Yammi’s plump behind, but options are limited and it’s easy to imagine her devouring the cute sparadat’s sexy ass. Yammi’s moaning into your neck and the convulsing of her pussy around your [pc.cockOrStrapon " + cockIndex + "] seem to support your theory. After a bit she stands back up, tongue still hanging out and looking pleased with herself.");
@@ -223,7 +227,7 @@ public function pippaYammiThreesomeDom(cockIndex:int):void
 	
 	if (cockIndex >= 0) output(" and it looks like a bit of your [pc.cum] as well");
 	
-	output(". It’s a good thing your ship isn’t subject to health inspections. <i>“I...really ought to clean up my kitchen.”</i> You and Pippa decide to help her");
+	output(". It’s a good thing your ship isn’t subject to health inspections. <i>“I... really ought to clean up my kitchen.”</i> You and Pippa decide to help her");
 	
 	if (crewRecruited().length > 2) output(" clean up quickly, before anybody shows up to eat");
 	
@@ -233,6 +237,7 @@ public function pippaYammiThreesomeDom(cockIndex:int):void
 	flags["PIPPA_YAMMI_THREESOME_DOM"] = 1;
 }
 
+// Pippa/Yammi threesome part 2b, PC fucks both Pippa and Yammi
 public function pippaYammiThreesomeSub(cockIndex:int):void
 {
 	output("\n\nPippa moves her [pippa.lips] away from your mouth, kissing her way down to your neck, and then up toward your [pc.ear]. She pulls away from you briefly and quickly strips off her tight clothes, freeing her [pippa.breasts], [pippa.belly], and [pippa.ass]. She then continues kissing down your body, till she’s down on her knees next to Yammi. <i>“I couldn’t help but want to join Yammi down here.”</i> She winks at you. While Yammi continues sucking your [pc.cockOrStrapon " + cockIndex + "], Pippa kisses her cheek and neck, using one hand to grope her pert breasts and the other to finger her pussy from behind. Yammi moans into your [pc.cockOrStrapon " + cockIndex + "], her tongue vibrating along its length. ");

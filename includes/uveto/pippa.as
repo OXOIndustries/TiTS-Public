@@ -149,6 +149,7 @@ public const PIPPA_DOMINANCE_MIN:int = 0;
 public const PIPPA_DOMINANCE_DEFAULT:int = 50;
 public const PIPPA_DOMINANCE_MAX:int = 100;
 
+// Checks and sets Pippa's preference for top/bottom (dominance naming's really a misnomer)
 public function pippaDominance(addDominance:int = 0):int
 {
 	if (flags["PIPPA_DOMINANCE"] == undefined)
@@ -247,6 +248,7 @@ private const GIVE_ZIL_HONEY:String = "give zil honey";
 private const GIVE_OTHER_FOOD:String = "give other food";
 private const NEVERMIND:String = "nevermind"; // Back out of menu without changing anything using this
 
+// Menu for giving Pippa food
 public function givePippaFoodMenu(func:Function):void
 {
 	clearMenu();
@@ -626,22 +628,7 @@ public const PIPPA_OIL_NUMB:int = 2;
 public const PIPPA_OIL_LUST:int = 3;
 public const PIPPA_OIL_SLIP:int = 4;
 
-public const OIL_STATUS_NAMES:Array = [
-	"Oil Warmed",
-	"Oil Cooled",
-	"Oil Numbed",
-	"Oil Aroused",
-	"Oil Slicked"
-];
-
-public const OIL_STATUS_COLORS:Array = [
-	0xFF7A59,
-	0x59C7FF,
-	0xBCAEC1,
-	0xFF8CD6,
-	0xB793C4
-];
-
+// Gets the current type of oil that Pippa is using, with the default being warming oil
 public function pippaCurrentOil(change:int = -1):int
 {
 	if (change != -1) flags["PIPPA_CURRENT_OIL"] = change;
@@ -667,30 +654,30 @@ public function applyOilEffect(target:Creature, source:String):void
 	{
 		case PIPPA_OIL_COOL:
 			name = "Oil Cooled";
-			if(target == chars["PC"]) desc = "You're covered in cool, protective oil!";
+			if(target == chars["PC"]) desc = "You’re covered in cool, protective oil!";
 			else desc = target.capitalA + target.short + " is covered in cool, protective oil!";
 			desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, duration / 1440)) + "%";
 			color = 0x59C7FF;
 			break;
 		case PIPPA_OIL_NUMB:
 			name = "Oil Numbed";
-			if(target == chars["PC"]) desc = "You're covered in numbing, lust-inhibiting oil!";
+			if(target == chars["PC"]) desc = "You’re covered in numbing, lust-inhibiting oil!";
 			else desc = target.capitalA + target.short + " is covered in numbing, lust-inhibiting oil!";
 			desc += "\nLust gains are decreased.";
 			color = 0xBCAEC1;
 			break;
 		case PIPPA_OIL_LUST:
 			name = "Oil Aroused";
-			if(target == chars["PC"]) desc = "You're covered in arousing, lust-inducing oil!";
+			if(target == chars["PC"]) desc = "You’re covered in arousing, lust-inducing oil!";
 			else desc = target.capitalA + target.short + " is covered in arousing, lust-inducing oil!";
 			desc += "\nTeasing is more effective, but arousal comes more easily.";
 			color = 0xFF8CD6;
 			break;
 		case PIPPA_OIL_SLIP:
 			name = "Oil Slicked";
-			if(target == chars["PC"]) desc = "You're covered in super slippery oil!";
+			if(target == chars["PC"]) desc = "You’re covered in super slippery oil!";
 			else desc = target.capitalA + target.short + " is covered in super slippery oil!";
-			desc += "\nIt's easier to slip away from someone's grasp.";
+			desc += "\nIt’s easier to slip away from someone’s grasp.";
 			color = 0xB793C4
 			break;
 		case PIPPA_OIL_WARM:
@@ -706,6 +693,15 @@ public function applyOilEffect(target:Creature, source:String):void
 	target.createStatusEffect(name, 0, 0, 0, 0, false, "Icon_Water_Drop", desc, false, duration, color);
 }
 
+public const OIL_STATUS_NAMES:Array = [
+	"Oil Warmed",
+	"Oil Cooled",
+	"Oil Numbed",
+	"Oil Aroused",
+	"Oil Slicked"
+];
+
+// Removes all oil effects
 public function clearOilEffects(target:Creature):void
 {
 	for (var i:int = 0; i < OIL_STATUS_NAMES.length; i++)
@@ -1109,6 +1105,7 @@ public function pippaSpecialMassage():void
 	addButton(0, "Next", pippaSpecialMassageII);
 }
 
+// Pippa's nuru massage scene part 2
 public function pippaSpecialMassageII():void
 {
 	clearOutput();
@@ -1197,6 +1194,7 @@ public function pippaHouseBonus(arg:String = ""):void
 	addButton(0, "Pippa", pippaMainMenu);
 }
 
+// Pippa's main menu that leads to other menus and scenes
 public function pippaMainMenu(arg:Array = null):void
 {
 	if (arg == null || arg[0] != NEVERMIND) clearOutput();
@@ -1244,7 +1242,7 @@ public function pippaMainMenu(arg:Array = null):void
 	else addButton(14, "Leave", mainGameMenu);
 }
 
-// Bend Pippa over and fuck her in the ass
+// Bend Pippa over and fuck her in the ass or with her having a high enough top preference, Pippa may ride Steele's cock with her ass
 public function pippaFuckAss():void
 {
 	clearOutput();
@@ -1525,7 +1523,7 @@ public function pippaChooseCockToFuckPussy():void
 	}
 }
 
-// Let Pippa climb on top of you and ride your cock (or hardlight strapon) with her pussy (or, bottom variant, fuck her pussy in missionary position)
+// Let Pippa climb on top of you and ride your cock (or hardlight strapon) with her pussy (or, bottom variant, chance to fuck her pussy in missionary position)
 public function pippaFuckPussy(cockOrStraponIndex:int):void
 {
 	clearOutput();
@@ -1761,7 +1759,7 @@ public function pippaGetSatOn():void
 	pippaDominance(1);
 }
 
-// Focus on pleasing Pippa while she sits on your face
+// Focus on pleasing Pippa while she sits on your face, softer variation
 public function pippaGetSatOnFocus():void
 {
 	clearOutput();
@@ -1860,7 +1858,7 @@ public function pippaGetSatOnFocus():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-// Attempt to masturbate while Pippa sits on your face
+// Attempt to masturbate while Pippa sits on your face and she punishes you
 public function pippaGetSatOnMasturbate():void
 {
 	clearOutput();
@@ -1979,7 +1977,7 @@ public function pippaFeedMilk():void
 	
 	if (pippaFed(0) > 0) output("You know, " + pippaCallsSteele() + ", I appreciate when you give me food, but I have a special request today.”</i>");
 	else if (pippaAffection() >= PIPPA_AFFECTION_NAME) output("You never give me any food, but maybe I could make a special request today?”</i>");
-	else output("Could I maybe ask you to...feed me?”</i> She looks almost embarassed.");
+	else output("Could I maybe ask you to... feed me?”</i> She looks almost embarassed.");
 	
 	output(" As if you didn’t already know what she was getting at, she reaches for your [pc.chest] and runs a finger around your [pc.nipples]");
 	
@@ -2085,7 +2083,7 @@ public function pippaFeedMilkTakeControl():void
 	
 }
 
-// Let Pippa take control of the breastfeeding session
+// Let Pippa take control of the breastfeeding session (chance of her taking control automatically)
 public function pippaFeedMilkHerControl(gaveControl:Boolean):void
 {
 	clearOutput();
@@ -2172,6 +2170,7 @@ public function pippaFeedMilkHerControl(gaveControl:Boolean):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Get bent over and fucked in ass or, if applicable, pussy (random chance) by Pippa
 public function pippaGetFucked():void
 {
 	clearOutput();
@@ -2300,6 +2299,7 @@ public function pippaGetFucked():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Description of Pippa's appearance
 public function pippaAppearance():void
 {
 	clearOutput();
@@ -2343,6 +2343,7 @@ public function pippaAppearance():void
 	addButton(0, "Back", pippaMainMenu);
 }
 
+// Displays options for talking to Pippa
 public function pippaTalkMenu(from:Function = undefined):void
 {
 	clearOutput();
@@ -2399,6 +2400,7 @@ public function pippaTalkMenu(from:Function = undefined):void
 	addButton(14, "Back", pippaMainMenu);
 }
 
+// Talk about Pippa
 public function pippaTalkHer():void
 {
 	clearOutput();
@@ -2452,6 +2454,7 @@ public function pippaTalkHer():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkHer);
 }
 
+// Talk about yourself to Pippa
 public function pippaTalkYou():void
 {
 	clearOutput();
@@ -2491,6 +2494,7 @@ public function pippaTalkYou():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkYou);
 }
 
+// Talk about Carbonado
 public function pippaTalkCarbonado():void
 {
 	clearOutput();
@@ -2520,6 +2524,7 @@ public function pippaTalkCarbonado():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkCarbonado);
 }
 
+// Talk about Pippa getting a cock (unlocks option to get her a hardlight strapon)
 public function pippaTalkCock():void
 {
 	clearOutput();
@@ -2555,6 +2560,7 @@ public function pippaTalkCock():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkCock);
 }
 
+// Talk to Pippa about her hardlight strapon
 public function pippaTalkHardlight():void
 {
 	clearOutput();
@@ -2569,6 +2575,7 @@ public function pippaTalkHardlight():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkHardlight);
 }
 
+// If PC has any hardlight-equipped underwear in their inventory, can give them to Pippa
 public function pippaGiveHardlight():void
 {
 	clearOutput();
@@ -2595,6 +2602,7 @@ public function pippaGiveHardlight():void
 	addButton(14, "Back", pippaTalkMenu);
 }
 
+// Give Pippa selected HL underwear
 public function pippaGiveHardlightII(undies:ItemSlotClass):void
 {
 	clearOutput();
@@ -2618,6 +2626,7 @@ public function pippaGiveHardlightII(undies:ItemSlotClass):void
 	addButton(14, "Back", pippaTalkMenu);
 }
 
+// Talk about Pippa's financial situation
 public function pippaTalkMoney():void
 {
 	clearOutput();
@@ -2661,15 +2670,31 @@ public function pippaTalkMoney():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkMoney);
 }
 
+// Talk to Pippa about Yammi
 public function pippaTalkYammi():void
 {
 	clearOutput();
 	clearMenu();
 	showPippa();
 	
-	output("Pippa previously mentioned that she was a fan of cow-girl ice cream. <i>“You know, the cashier from a New Texas Iced Teats location is currently on my crew. She’s my chef.”</i>");
-	
-	output("\n\nHer eyes light up. <i>“Is that so? I’ll have to keep that in mind. Maybe I can pay her a visit some time. Especially if she can get me some ice cream.”</i>");
+	if (recruitedPippa())
+	{
+		output("Pippa’s eyes light up. <i>“Yammi’s great, isn’t she? I can sit and chat with her while she cooks and it’s like having a personal chef.”</i>");
+		
+		if (pippaYammiThreesomeCount(0) > 0) output(" She grins at you salaciously.  <i>“And of course, she sure is a sexy little thing. I can’t get enough of the two of you.");
+		
+		output(" Joining your crew might just be the best decision I’ve ever made.");
+		
+		if (pippaKickedOffShip()) output("... Now if only you’d let me back on the ship.");
+		
+		output("”</i>");
+	}
+	else
+	{
+		output("Pippa previously mentioned that she was a fan of cow-girl ice cream. <i>“You know, the cashier from a New Texas Iced Teats location is currently on my crew. She’s my chef.”</i>");
+		
+		output("\n\nHer eyes light up. <i>“Is that so? I’ll have to keep that in mind. Maybe I can pay her a visit some time. Especially if she can get me some ice cream.”</i>");
+	}
 	
 	flags["PIPPA_TALKED_YAMMI"] = 1;
 	processTime(1);
@@ -2693,6 +2718,7 @@ public function pippaTalkYammi():void
 	addButton(0, "Next", pippaTalkMenu, pippaTalkReaha);
 }*/
 
+// Flirt with Pippa (unlock sex given her affection level's high enough or you're Treated
 public function pippaFlirt():void
 {
 	clearOutput();
