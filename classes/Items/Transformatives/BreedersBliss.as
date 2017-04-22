@@ -76,7 +76,7 @@ package classes.Items.Transformatives
 
 				if(pc.hasVagina() && !pc.isFullyWombPregnant() && (!pc.hasCock() || rand(2) == 0))
 				{
-					var totalWombs:int = pc.totalWombPregnancies();
+					var totalWombs:int = pc.totalVaginas() - pc.totalWombPregnancies();
 					
 					//Heat Proc
 					if(!pc.inHeat())

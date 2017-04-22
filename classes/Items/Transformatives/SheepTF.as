@@ -27,7 +27,7 @@ package classes.Items.Transformatives
 			//Used on inventory buttons
 			this.shortName = "New Uwe";
 			//Regular name
-			this.longName = "an New Uwe pill"
+			this.longName = "a New Uwe pill"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
