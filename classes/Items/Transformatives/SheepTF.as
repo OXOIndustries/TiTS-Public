@@ -25,15 +25,15 @@ package classes.Items.Transformatives
 			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
-			this.shortName = "Ovinium";
+			this.shortName = "New Uwe";
 			//Regular name
-			this.longName = "an Ovinium pill"
+			this.longName = "an New Uwe pill"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a white pill stamped with the word “Ovinium”";
+			this.description = "a white pill stamped with the words “New Uwe”";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Not to be confused with the similarly named Bovinium, this is a transformative pill designed by Xenogen Biotech to make the user take on characteristics similar to that of a Terran sheep. Effects are recorded to range between giving the user ram horns (though almost exclusively this occurs in men) and causing them to start growing a thick layer of fluffy, insulating wool. The pill itself looks bland, but the wrapper with the stylized sheep printed on it is rather fetching.";
+			this.tooltip = "This is a transformative pill designed by Xenogen Biotech to make the user take on characteristics similar to that of a Terran sheep. Effects are recorded to range between giving the user ram horns (though almost exclusively this occurs in men) and causing them to start growing a thick layer of fluffy, insulating wool. The pill itself looks bland, but the wrapper with the stylized sheep printed on it is rather fetching.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
