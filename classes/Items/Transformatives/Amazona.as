@@ -66,6 +66,33 @@
 		
 		public static function amazonaEffects(target:Creature, canType:String = "none"):void
 		{
+			if(target.hasStatusEffect("Amazona Disabled"))
+			{
+				clearOutput();
+				kGAMECLASS.showName((canType == "futazona" ? "FUTAZONA" : "AMAZONA") + "\nICED TEA");
+				author("QuestyRobo");
+				
+				output("Your stomach growls in defiance whenever you even look at the container. You set it back into your pack; maybe you’ll be in the mood for it later.");
+				output("\n\n");
+				
+				if (!kGAMECLASS.infiniteItems())
+				{
+					switch(canType)
+					{
+						case "classic": kGAMECLASS.itemCollect([new AmazonaClassic()]); break;
+						case "lite": kGAMECLASS.itemCollect([new AmazonaLite()]); break;
+						case "plus": kGAMECLASS.itemCollect([new AmazonaPlus()]); break;
+						case "futazona": kGAMECLASS.itemCollect([new Futazona()]); break;
+						default: kGAMECLASS.itemCollect([new Amazona()]); break;
+					}
+				}
+				else
+				{
+					clearMenu();
+					addButton(0,"Next",kGAMECLASS.useItemFunction);
+				}
+				return;
+			}
 			if(canType == "futazona")
 			{
 				futazonaEffects(target);
@@ -111,9 +138,10 @@
 					break;
 			}
 			
+			if(overdoseEffects(target, canType)) return;
+			
 			tfEffects(target, canType, 4);
 			energyGain(target);
-			perkGain(target);
 			
 			drinkAmazona(target, canType);
 			
@@ -160,10 +188,11 @@
 			else output(" You sit back and just drink, letting the sweet, nutty concoction sweep away all of your troubles.");
 			output(" Your whole body feels warm, despite the coldness of the drink. A tingling sensation breaks out all over you as the transformatives once held within go to work on your body.");
 			
+			if(overdoseEffects(target, "futazona")) return;
+			
 			tfEffects(target, canType, 3);
 			tfFutazonaEffects(target, canType, 2);
 			energyGain(target);
-			perkGain(target);
 			
 			drinkAmazona(target, "futazona");
 			
@@ -174,10 +203,11 @@
 		public static function futazonaCancel(target:Creature):void
 		{
 			clearOutput();
-			kGAMECLASS.showName("AMAZONA\nICED TEA");
+			kGAMECLASS.showName("FUTAZONA\nICED TEA");
 			author("QuestyRobo");
 			
-			output("You decide not to open the thermos right now, and stow it away.\n\n");
+			output("You decide not to open the thermos right now, and stow it away.");
+			output("\n\n");
 			
 			if (!kGAMECLASS.infiniteItems())
 			{
@@ -761,7 +791,7 @@
 				{
 					output("\n\nThere’s a pleasant throbbing in your [pc.sack], like a constant, weak orgasm. You reach down and knead at it");
 					if(!target.isCrotchExposed()) output(" through your [pc.lowerGarments]");
-					output(", enhancing the pleasant sensations, until your " + (target.balls == 1 ? "teste starts" : "testes start") + " pulsing rapidly. The sensation only make you squeeze harder, letting you feel how " + (target.balls == 1 ? "it seems" : "they seem") + " to grow slightly with each pulse. Your [pc.cocks] " + ( totalCocks == 1 ? "is" : "are") + " rock hard, spraying streams of pre-cum in time with the pulsations. By the time the growth stops, your [pc.balls] " + (target.balls == 1 ? "has" : "have") + " become considerably larger, and your crotch is covered in a thick layer of pre.");
+					output(", enhancing the pleasant sensations, until your " + (target.balls == 1 ? "teste starts" : "testes start") + " pulsing rapidly. The sensation only make you squeeze harder, letting you feel how " + (target.balls == 1 ? "it seems" : "they seem") + " to grow slightly with each pulse. Your [pc.cocks] " + (totalCocks == 1 ? "is" : "are") + " rock hard, spraying streams of pre-cum in time with the pulsations. By the time the growth stops, your [pc.balls] " + (target.balls == 1 ? "has" : "have") + " become considerably larger, and your crotch is covered in a thick layer of pre.");
 					
 					target.ballSizeRaw += 2;
 					target.lust(25);
@@ -803,21 +833,190 @@
 			target.energy(50);
 			target.lust(5);
 		}
-		public static function perkGain(target:Creature):void
+		
+		// Overdosing
+		// Overdoses trigger at 6 to 10 uses within a 24 hour period.
+		// Using a Futazona or Amazona during the overdosing period will reset the countdown.
+		// Overdose growth ignores the size cap of the item you used.
+		// Overdosing has it’s own transformations, and won’t trigger any of the non-overdosing effects
+		// Only one Overdosing effect, and potentially a perk trigger, can happen per use
+		public static function overdoseEffects(target:Creature, canType:String):Boolean
 		{
-			if(9999 == 9999 || target.hasPheromones() || amazonaDrinks(target) < 7) return;
-			
-			// Perk
-			if(!target.hasPerk("Jungle Queen Scent"))
+			// Warnings:
+			// 10 uses
+			if(amazonaDrinks(target) >= 10)
 			{
-				output("\n\n9999");
+				output("\n\nYour mind wants to drink more, but your body can’t take another drop. You retch the second the drink touches your mouth, spitting it all over the ground, and dropping the container in surprise. Dammit, what a waste.");
 				
-				// Name: Jungle Queen Scent
-				// Description: You smell like a mighty queen of the jungle. Boosts tease attacks.
+				// PC cannot use Amazona or Futazona for 24 hours after
+				target.createStatusEffect("Amazona Disabled", 0, 0, 0, 0, true, "", "", false, 1440);
+				
+				drinkAmazona(target, canType);
+				
+				clearMenu();
+				addButton(0,"Next",kGAMECLASS.useItemFunction);
+				return true;
+			}
+			
+			if(amazonaDrinks(target) < 6) return false;
+			
+			var select:int = 0;
+			var TFList:Array = [];
+			
+			if(target.hasBreasts()) TFList.push(0);
+			if(target.hipRatingRaw < 30 && target.buttRatingRaw < 30) TFList.push(1);
+			if(canType == "futazona" && target.hasCock()) TFList.push(2);
+			if(canType == "futazona" && target.balls > 0) TFList.push(3);
+			
+			if(TFList.length <= 0) return false;
+			
+			select = TFList[rand(TFList.length)];
+			
+			var totalCocks:int = target.cocks.length;
+			var cIdx:int = target.shortestCockIndex();
+			
+			switch(select)
+			{
+				// Breast growth
+				// increases by 6-8
+				// high lust gain
+				// no size cap
+				case 0:
+					output("\n\nYour [pc.breasts] feel warm, a bit too warm. Warm quickly turns to hot, and then way too hot.");
+					if(!target.isChestExposed()) output(" You tear off your [pc.upperGarments], desperate to cool your tits.");
+					else output(" Even without anything covering them, your chest is still sweltering.");
+					output(" You fan at your burning melons, with your hands, desperate to do anything to cool them off. The heat seems to expand, outgrowing your flesh; at least that’s what it seems like.");
+					output("\n\nYou press your hands to your breasts, and you feel the raw heat emanating off of them, but also something else, some kind of pressure. It feels... weird, not bad though. You start to knead your flesh, feeling the heat begin to recede as you do. The pressure starts building as the heat goes away, the strange feeling quickly shifting into something more pleasurable. You stand and");
+					if(target.exhibitionism() < 33) output(" shamefully");
+					else output(" unashamedly");
+					output(" grope your [pc.breasts], pinching at your [pc.nipples] just to enhance the sensation.");
+					output("\n\nYou can feel the pressure building, hurdling you toward what’s going to be an immense boobgasm.");
+					if(target.isLactating()) output(" [pc.Milk] beads at the tips of your [pc.nipples], cascading into sloppy streams that soak your front.");
+					
+					var bustUp:int = 6 + rand(3);
+					for(var b:int = 0; b < target.breastRows.length; b++)
+					{
+						target.breastRows[b].breastRatingRaw += bustUp;
+					}
+					
+					output(" You feel the pressure peak, and close your eyes in anticipation of release. Here it comes! Here it-it-it’s not stopping! The pressure builds even more, pushing out against the inside of your skin. Your tits feel like balloons as they start to expand, swallowing up your hands as they try to hold back the tide. They just keep going!");
+					if(kGAMECLASS.flags["USED_GUSH"] != undefined) output(" Even Gush wasn’t this bad!");
+					output(" When they stop, it’s a struggle to even keep your balance with how much just got added onto your chest.");
+					if(!target.isChestExposed()) output("\n\nSomehow your [pc.upperGarments] just barely manage to fit back on you, stretching obscenely over your newly enhanced assets.");
+					
+					target.lust(50);
+					break;
+				// Hips and Ass growth
+				// increases by 4-6 for each
+				// caps at 30 for each
+				case 1:
+					output("\n\nYou suddenly trip over yourself, finding your sense of balance failing you. You barely manage to stay on your [pc.feet], but your balance is still so off that you think it’s better idea to sit down. You fumble your way to a sitting position, wondering what’s happening with your " + (target.hasLegs() ? "legs" : "lower body") + ". Your answer comes quickly as you see your [pc.hips] and [pc.thighs] bloating out at a rapid pace.");
+					output("\n\nJust after you notice that, something else grabs your attention; namely, that you seem to be getting taller. Looking down confirms that this isn’t the case, and instead it’s your [pc.ass] growing in tandem with your " + (target.hasLegs() ? "legs" : "lower body") + " that’s pushing you upward. All you can do is sit there as pound after pound of plush posterior packs profusely on your pelvis.");
+					
+					var hipUp:int = 4 + rand(3);
+					var bootyUp:int = 4 + rand(3);
+					target.hipRatingRaw += hipUp;
+					target.buttRatingRaw += bootyUp;
+					
+					output("\n\nWhen the growth stops, you’re a few inches higher than when you first sat down, and your thighs look like they’ve gained the mass of two large hams. Sitting up is a challenge with your newly added weight, but you eventually manage. It’s a little more challenging to walk with so much extra weight, but a quick feel of your [pc.ass] reassures you that it just might be worth it.");
+					break;
+				// Penis growth
+				// Increases by 4-6, 6-8 with Hung
+				// increases thickness ratio by 0.1
+				// Futazona only
+				// Requires a penis
+				case 2:
+					output("\n\nYour [pc.cocks] shoot");
+					if(totalCocks == 1) output("s");
+					output(" to full hardness,");
+					if(!target.isCrotchExposed()) output(" nearly tearing your [pc.underGarments] off of you.");
+					else output(" flying upward with enough force to give anyone unlucky enough to be in front of you a good smack.");
+					output(" You reel back, lightheaded at your sudden tumescence.");
+					if(!target.isCrotchExposed()) output(" Your [pc.underGarment] feeling almost painfully tight.");
+					if(target.exhibitionism() < 33) output(" You find a nice, private place to strip them off.");
+					else output(" You tear them off, not caring who sees.");
+					output(" You grasp your " + (totalCocks == 1 ? "meat" : "shafts") + ", feeling " + (totalCocks == 1 ? "it" : "them") + " jump in your hand");
+					if(totalCocks != 1) output("s");
+					output(". " + (totalCocks == 1 ? "It’s" : "They’re") + " harder than you’ve ever felt " + (totalCocks == 1 ? "it" : "them") + ", the veins seeming to be working overtime to supply so much blood.");
+					output("\n\nYou start to jerk yourself off, desperate to relieve the aching, throbbing hardness. " + (totalCocks == 1 ? "It feels" : "They feel") + " so much more sensitive than usual, every stroke sending a shuddering wave of bliss up your spine, causing you to throw your head back. You stroke faster and faster, each stroke seeming to send more and more blood into [pc.eachCock]. Eventually you notice that your strokes are lasting longer than they should; you look down and realize that there’s at least another inch of dick-flesh down there!");
+					output("\n\nYou try to get your body to stop, but it’s not listening to you anymore. Your hands continue to stroke, each movement seeming to drag another few centimeters of cock out of your groin. The continued masturbation, combined with the sight of your expanding [pc.cocks] sets you off. Your [pc.balls]");
+					if(target.balls > 1) output(" tighten up as they send");
+					else output(" tightens up as it sends");
+					output(" a fresh volley of [pc.cum] up your urethra");
+					if(totalCocks != 1) output("s");
+					output(". Your hand");
+					if(totalCocks != 1) output("s");
+					output(" shoot");
+					if(totalCocks == 1) output("s");
+					output(" up to the end");
+					if(totalCocks != 1) output("s");
+					output(" of your shaft");
+					if(totalCocks != 1) output("s");
+					output(", yanking another inch out with them. You unload onto the ground in front of you, making a huge [pc.cumColor] mess.");
+					output("\n\nPanting, you take inspection of the aftermath. You’re a <i>lot</i> longer than you used to be, and thicker than you think you should be. Getting to know some big women might be a good idea, especially if you’re going to keep drinking this stuff.");
+					
+					var cockUp:int = 4 + rand(3);
+					if(target.hasPerk("Hung")) cockUp += 2;
+					for(var c:int = 0; c < target.cocks.length; c++)
+					{
+						target.cocks[c].cLengthRaw += cockUp;
+						target.cocks[c].cThicknessRatioRaw += 0.1;
+					}
+					
+					target.orgasm();
+					break;
+				// Ball growth 
+				// Increases by 8-12, 12-16 with bulgy
+				// Futazona only
+				// Requires balls and a penis
+				case 3:
+					output("\n\nYour [pc.balls] feel really sore all of a sudden, like you haven’t cum in months.");
+					if(target.exhibitionism() < 33) output(" You find a secluded corner to deal with your dilemma.");
+					else output(" You make sure at least one person is looking before tending to it.");
+					if(!target.isCrotchExposed()) output(" You strip off your [pc.underGarments] to get at them.");
+					output(" You start to massage your sack, trying to relieve the soreness. Void, they feel so dense! Has it really been that long since you came?");
+					output("\n\nYou manage to massage out the soreness, but the dense feeling remains, in fact it seems to be getting worse. Unthinkingly, you give your balls a mild squeeze, which seems to set off something. The denseness turns to extreme heaviness, like your [pc.balls] are suddenly made of lead! You panic, thinking something must have gone horribly wrong, when suddenly a wave of pleasure knocks you off your feet.");
+					output("\n\nYou land [pc.ass] first, the pressure in your crotch too much for you to get up. Your [pc.cockBiggest] points at you accusingly. it’s rock hard, and leaking a thick drop of pre. You grab and start stroking for dear life, desperate to relieve to pounding fullness in your sack. You go off very quickly, hosing yourself [pc.cumColor]. But neither the heaviness or your orgasm fade. Your dick is a firehose, spraying you down with the endless liquid from your hydrant-like balls. You manage to fumble your tool to aim away from you. You wipe the [pc.cum] from your face, finally able to see what’s happening, only to jump in shock as you see your [pc.balls] swelling.");
+					output("\n\nThey’re packing on size in tune with your orgasm; if you didn’t know any better, you’d say they were making [pc.cumNoun] faster than their expanding mass could contain it! You have no choice but to ride out the rest of your orgasm, steeping yourself in a small lake of your own ejaculate. When you finally come down, it’s a struggle to even get back up. Even after you do manage to get to your feet, your newly enhanced package makes it difficult to walk. You’d better get out of here before someone makes you clean this up, you’re going to have enough trouble just washing yourself down.");
+					
+					target.ballSizeRaw += 8 + rand(5);
+					if(target.hasPerk("Bulgy")) target.ballSizeRaw += 4;
+					target.lust(100);
+					target.ballFullness = 100;
+					target.orgasm();
+					kGAMECLASS.applyCumSoaked(target);
+					break;
+			}
+			
+			// Perk gain
+			if(!target.hasPerk("Jungle Queen Scent") && rand(4) == 0)
+			{
+				output("\n\nSomething smells good, really good. You sniff around the air, trying to locate the source. Eventually, you realize where the smell is coming from, it’s you! It’s thick and musky, but still very pleasant: the perfect scent for a big, strong amazon.");
+				
 				// Functions like Pheromone Cloud
-				output("\n\n(<b>Perk Gained: Jungle Queen Scent</b> - Your body emits pheromones that give you a distinctively commanding scent.)");
+				output("\n\n(<b>Perk Gained: Jungle Queen Scent</b> - You smell like a mighty queen of the jungle. Boosts tease attacks.)");
 				target.createPerk("Jungle Queen Scent", 0, 0, 0, 0, "You smell like a mighty queen of the jungle. Boosts tease attacks.");
 			}
+			/*
+			else if((!target.hasPerk("Snu-Snu Queen") && !target.hasPerk("Energizing Libido")) && target.libido() >= 40 && rand(10) == 0)
+			{
+				output("\n\nYou feel horny; no, not just horny, <i>really</i> horny, like you could fuck a line of studs and only be hungry for more afterward! You feel like a sexual dynamo, able to convert the energy from one fuck into energy for another. It doesn’t make much sense, but Newton was a bitch anyway!");
+				
+				// 1/4 chance to gain 1-3 energy per sexual encounter. Guaranteed at >95 libido
+				// Lost if libido goes below 40
+				output("\n\n(<b>Gained Perk: " + (kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido") + "</b> - Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.)");
+				target.createPerk((kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido"), 0, 0, 0, 0, "Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.");
+			}
+			*/
+			
+			output("\n\nThat really didn’t seem like it was supposed to happen. <b>You should probably hold off on these if you don’t want that to happen again</b>");
+			
+			drinkAmazona(target, canType);
+			
+			clearMenu();
+			addButton(0,"Next",kGAMECLASS.useItemFunction);
+			
+			return true;
 		}
 	}
 }
