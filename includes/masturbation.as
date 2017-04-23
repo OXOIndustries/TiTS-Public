@@ -3596,7 +3596,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//No new PG - milkSquirt but no extra dicks
 	else if(pc.canMilkSquirt())
 	{
-		output(" You are an absolute mess, however. You were so fixated on your lovely tool that you didn’t even notice the [pc.milk] spraying from your [pc.chest].");
+		output(" You are an absolute mess, however. You were so fixated on your lovely tool that you didn’t even notice the [pc.milkNoun] spraying from your [pc.chest].");
 		if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) output(" You smell like a dairy.");
 		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY && CodexManager.entryUnlocked("Zil")) output(" You smell like a zil orgy.");
 		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" You smell like a beehive.");

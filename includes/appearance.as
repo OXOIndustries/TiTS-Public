@@ -2404,8 +2404,8 @@ public function appearance(forTarget:Creature):void
 
 private var COLLAR_LIST:Array = [
 	"Jerynn’s",
-	"Sub-Tuner"
-]
+	"Sub-Tuner",
+];
 
 public function hasCollars():Number
 {

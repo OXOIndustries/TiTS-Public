@@ -1076,12 +1076,12 @@ public function chooseSexualGift():void {
 	}
 	if(pc.hasPerk("Elasticity"))
 	{
-		pc.elasticity -= .5;
+		pc.elasticity -= 0.5;
 		pc.removePerk("Elasticity");
 	}
 	if(pc.hasPerk("Fertility"))
 	{
-		pc.fertilityRaw -= 0.15;
+		//pc.fertilityRaw -= 0.15;
 		pc.removePerk("Fertility");
 	}
 	if(pc.hasPerk("Milky"))
@@ -1160,11 +1160,10 @@ public function applySexualGift(arg:String = "none"):void {
 	}
 	else if(arg == "elasticity") {
 		pc.createPerk("Elasticity",0,0,0,0,"Increases the elasticity of your orifices and renders them more resistant to stretching.");
-		pc.elasticity += .5;
+		pc.elasticity += 0.5;
 	}
 	else if(arg == "fertility") {
-		pc.fertilityRaw += 0.15;
-		pc.createPerk("Fertility",0,0,0,0,"Increases your odds of getting pregnant.");
+		pc.createPerk("Fertility",1.15,0,0,0,"Increases your odds of getting pregnant.");
 	}
 	else if(arg == "milky") {
 		pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");

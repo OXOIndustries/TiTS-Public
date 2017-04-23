@@ -3053,13 +3053,9 @@
 				
 				if(this is PlayerCharacter || fluidSimulate) ballFullness = cumAmt;
 
-				//Biomass vent
-				if(statusEffectv1("Goo Vent") == 1)
-				{
-					flags["GOO_BIOMASS"] = 0;
-				}
 				if(this is PlayerCharacter)
 				{
+					//Mimbrane feeding
 					kGAMECLASS.mimbraneFeed("cock");
 					if(hasStatusEffect("Blue Balls") && balls >= 1)
 					{
@@ -3094,37 +3090,64 @@
 			{
 				if(this is PlayerCharacter)
 				{
+					//Mimbrane feeding
 					kGAMECLASS.mimbraneFeed("vagina");
 				}
 			}
 			
 			if (this is PlayerCharacter) 
 			{
-				StatTracking.track("sex/player/orgasms");
+				//Biomass vent
+				if(statusEffectv1("Goo Vent") == 1 && hasGenitals())
+				{
+					flags["GOO_BIOMASS"] = 0;
+				}
 				//Slamazon shit
 				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
 				{
 					kGAMECLASS.eventQueue.push(kGAMECLASS.amazonEnduranceNotice);
 					removeStatusEffect("Amazonian Endurance Report Needed");
 				}
+				StatTracking.track("sex/player/orgasms");
 			}
 			else
 			{
 				StatTracking.track("characters/" + short + "/orgasms");
 			}
 			
-			if (hasStatusEffect("Dumbfuck"))
-			{
-				if(!hasStatusEffect("Dumbfuck Orgasm Procced"))
-				{
-					createStatusEffect("Dumbfuck Orgasm Procced", 0, 0, 0, 0, true, "", "", false, 0);
-				}
-				addStatusValue("Dumbfuck Orgasm Procced",1,1);
-				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
-			}
-			
 			lustRaw = 0;
-			if(!hasPerk("Amazonian Endurance")) energy(-5);
+			if (this is PlayerCharacter) 
+			{
+				//Dumbfuck orgasms
+				if (hasStatusEffect("Dumbfuck"))
+				{
+					if(!hasStatusEffect("Dumbfuck Orgasm Procced"))
+					{
+						createStatusEffect("Dumbfuck Orgasm Procced", 0, 0, 0, 0, true, "", "", false, 0);
+					}
+					addStatusValue("Dumbfuck Orgasm Procced",1,1);
+					trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
+				}
+				//Energy loss/gain checks
+				var energyLoss:Boolean = true;
+				if(hasPerk("Snu-Snu Queen") || hasPerk("Energizing Libido"))
+				{
+					// Lost if libido goes below 40
+					if(libido() < 40)
+					{
+						createStatusEffect("Remove Energizing Libido", 0, 0, 0, 0, true, "", "", false, 0);
+						energy(-10);
+					}
+					// 1/4 chance to gain 1-3 energy per sexual encounter. Guaranteed at >95 libido
+					else if(libido() >= 95 || rand(4) == 0)
+					{
+						energy(1 + rand(3));
+					}
+					energyLoss = false;
+				}
+				if(hasPerk("Amazonian Endurance")) energyLoss = false;
+				if(energyLoss) energy(-5);
+			}
 			minutesSinceCum = 0;
 			timesCum++;
 		}
@@ -7266,7 +7289,7 @@
 					else if (storageValueNum == 2) array[counter].value2 = newValue;
 					else if (storageValueNum == 3) array[counter].value3 = newValue;
 					else if (storageValueNum == 4) array[counter].value4 = newValue;
-					else if (storageValueNum == 5) array[counter].description = newValue;
+					else if (storageValueNum == 5) array[counter].tooltip = newValue;
 					else throw new Error("setStorageValue called with an invalid index.");
 					return;
 				}
@@ -9275,7 +9298,8 @@
 		public function cumMultiplier():Number
 		{
 			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
-			var bonus:Number = perkv1("Potent");
+			var bonus:Number = 0;
+			bonus += perkv1("Potent");
 			bonus += statusEffectv2("Priapin");
 			multi += bonus;
 			if (multi < 0) return 0;
@@ -9325,11 +9349,7 @@
 			//Overloaded nuki' nuts will fully drain
 			if(hasPerk("'Nuki Nuts") && balls > 0 && perkv1("'Nuki Nuts") > 0 && quantity < currentCum()) quantity = currentCum();
 			//BIOMASS ADDED LAST!
-			if(statusEffectv1("Goo Vent") == 1) 
-			{
-				if(flags["GOO_BIOMASS"] == undefined) kGAMECLASS.flags["GOO_BIOMASS"] = 0;
-				quantity += flags["GOO_BIOMASS"];
-			}
+			if(statusEffectv1("Goo Vent") == 1) quantity += biomassQ(true);
 			trace("Total produced: " + quantity);
 			return quantity;
 		}
@@ -9488,11 +9508,7 @@
 			// Heat means wetter orgasms.
 			if(inHeat()) quantity *= 1.5;
 			//GOO VENT BONUS!
-			if(statusEffectv1("Goo Vent") == 1) 
-			{
-				if(flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
-				quantity += flags["GOO_BIOMASS"];
-			}
+			if(statusEffectv1("Goo Vent") == 1) quantity += biomassQ(true);
 			// Round values.
 			quantity = Math.round(quantity / 10) * 10;
 			trace("Girl-cum produced: " + quantity);
@@ -9508,6 +9524,21 @@
 				else if(girlCumMultiplier() < 50) girlCumMultiplier(1);
 				arg -= 2;
 			}
+		}
+		public function biomassQ(perGenital:Boolean = false): Number
+		{
+			if(flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
+			
+			var numGenital:int = 0;
+			if(hasCock()) numGenital++;
+			if(hasVagina()) numGenital++;
+			
+			if(perGenital)
+			{
+				if(numGenital != 0) return Math.round(flags["GOO_BIOMASS"] / numGenital);
+				return 0;
+			}
+			return flags["GOO_BIOMASS"];
 		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
@@ -16636,8 +16667,16 @@
 		// Male-centric stuff (Father)
 		public var cumQualityRaw:Number = 1;
 		public var cumQualityMod:Number = 0;
-		public function cumQuality():Number
+		public function cumQuality(arg:Number = 0):Number
 		{
+			if(arg != 0)
+			{
+				cumQualityRaw += arg;
+			}
+			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
+			{
+				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
+			}
 			var bonus:Number = 0;
 			bonus += perkv1("Virile");
 			bonus += statusEffectv1("Priapin");
@@ -16651,14 +16690,9 @@
 		 * It should include all things that could possibly influence the raw "power" of virility.
 		 * @return
 		 */
-		public function virility():Number
+		public function virility(arg:Number = 0):Number
 		{
-			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Firing Blanks"))
-			{
-				if (hasPerk("Infertile") || !hasStatusEffect("Priapin")) return 0;
-			}
-			
-			return cumQuality();
+			return cumQuality(arg);
 		}
 		
 		public var pregnancyIncubationBonusFatherRaw:Number = 1;
@@ -16686,8 +16720,11 @@
 				fertilityRaw += arg;
 			}
 			if (hasStatusEffect("Infertile") || hasPerk("Infertile") || hasPerk("Sterile")) return 0;
+			var bonus:Number = 0;
+			bonus += perkv1("Fertility");
+			bonus += statusEffectv1("Heat");
 			
-			return fertilityRaw + fertilityMod + statusEffectv1("Heat");
+			return fertilityRaw + fertilityMod + bonus;
 		}
 		
 		public var pregnancyIncubationBonusMotherRaw:Number = 1;
@@ -19224,7 +19261,7 @@
 					case "Flahne_Extra_Pissed":
 						if (requiresRemoval)
 						{
-							kGAMECLASS.flags["FLAHNE_MAKEUP"] = 1;
+							flags["FLAHNE_MAKEUP"] = 1;
 						}
 						break;
 						

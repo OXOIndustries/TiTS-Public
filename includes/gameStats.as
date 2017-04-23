@@ -3586,17 +3586,17 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Iced Teats</u></b>");
 				// Yum, icecream!
-				var flavorsTotal:int = 0;
-				if(flags["HAD_GEWINFRUIT"] != undefined) flavorsTotal++;
-				if(flags["HAD_YOKTO"] != undefined) flavorsTotal++;
-				if(flags["HAD_BLITZABERRY"] != undefined) flavorsTotal++;
-				if(flags["HAD_STRAWBERRY"] != undefined) flavorsTotal++;
-				if(flags["HAD_JUMBIJUMBI"] != undefined) flavorsTotal++;
-				if(flags["HAD_DARGINUT"] != undefined) flavorsTotal++;
-				if(flags["HAD_CHOCOLATE"] != undefined) flavorsTotal++;
-				if(flags["HAD_FLAMEBERKS"] != undefined) flavorsTotal++;
-				output2("\n<b>* Number of Flavors Tasted:</b> " + flavorsTotal);
-				if(silly && flavorsTotal >= 8) output2(", <i>Yum!</i>");
+				var icedTeatsFlavors:Array = [];
+				if(flags["HAD_GEWINFRUIT"] != undefined) icedTeatsFlavors.push(" Gewinfruit");
+				if(flags["HAD_YOKTO"] != undefined) icedTeatsFlavors.push(" Yokto");
+				if(flags["HAD_BLITZABERRY"] != undefined) icedTeatsFlavors.push(" Blitzaberry");
+				if(flags["HAD_STRAWBERRY"] != undefined) icedTeatsFlavors.push(" Strawberry");
+				if(flags["HAD_JUMBIJUMBI"] != undefined) icedTeatsFlavors.push(" Jumbijumbi");
+				if(flags["HAD_DARGINUT"] != undefined) icedTeatsFlavors.push(" Darginut");
+				if(flags["HAD_CHOCOLATE"] != undefined) icedTeatsFlavors.push(" Chocolate");
+				if(flags["HAD_FLAMEBERKS"] != undefined) icedTeatsFlavors.push(" Flameberks");
+				if(icedTeatsFlavors.length > 0) output2("\n<b>* Flavors Tasted:</b>" + CompressToList(icedTeatsFlavors));
+				if(silly && icedTeatsFlavors.length >= 8) output2(", <i>Yum!</i>");
 				// Yammi
 				output2("\n<b>* Yammi:</b> Met her");
 				if(yammiRecruited())
@@ -5321,7 +5321,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(pippaOnShip()) output2(" (Onboard Ship)");
 						else output2(" (Left on Uveto)");
 					}
-					else if(pippaRecruitTurnedDown()) output(", Turned down request to join crew");
+					else if(pippaRecruitTurnedDown()) output2(", Turned down request to join crew");
 					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + " %");
 					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + " %");
 					if(pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
@@ -5850,13 +5850,29 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["BUTTSLUTINATOR"] != undefined || flags["OMNISUITED"] != undefined || flags["ORGASMENDER"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
+		if(flags["BUTTSLUTINATOR"] != undefined || flags["PURCHASED_AMAZONA"] != undefined || flags["OMNISUITED"] != undefined || flags["ORGASMENDER"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined)
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Buttslutinator Mark 2
 			if(flags["BUTTSLUTINATOR"] != undefined)
 			{
 				output2("\n<b>* Buttslutinator Mark II, Times Used:</b> " + flags["BUTTSLUTINATOR"]);
+			}
+			// Amazona
+			if(flags["PURCHASED_AMAZONA"] != undefined)
+			{
+				output2("\n<b>* JoyCo, Amazona Iced Tea:</b> Bought");
+				if(flags["AMAZONA_DRINKS"] != undefined)
+				{
+					if(flags["AMAZONA_DRINKS"][0] == 1) output2(", Used once");
+					else output2(", Used " + flags["AMAZONA_DRINKS"][0]+ " times");
+					var amazonaFlavors:Array = [];
+					if(flags["AMAZONA_DRINKS"][1] > 0) amazonaFlavors.push(" Classic");
+					if(flags["AMAZONA_DRINKS"][2] > 0) amazonaFlavors.push(" Lite");
+					if(flags["AMAZONA_DRINKS"][3] > 0) amazonaFlavors.push(" Plus");
+					if(flags["AMAZONA_DRINKS"][4] > 0) amazonaFlavors.push(" Futazona");
+					if(amazonaFlavors.length > 0) output2(", Tasted" + CompressToList(amazonaFlavors));
+				}
 			}
 			// Omnisuit
 			if(flags["OMNISUITED"] != undefined)

@@ -681,6 +681,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.armType = GLOBAL.TYPE_CANINE;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.addArmFlag(GLOBAL.FLAG_PAWS);
 			pc.tailType = GLOBAL.TYPE_DRACONIC;
 			pc.tailCount = 1;
 			pc.clearTailFlags();
@@ -957,14 +958,16 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
 			pc.legType = GLOBAL.TYPE_VULPINE;
 			pc.legCount = 2;
-			pc.armType = GLOBAL.TYPE_CANINE;
+			pc.armType = GLOBAL.TYPE_LUPINE;
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_LONG);
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.addArmFlag(GLOBAL.FLAG_PAWS);
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_LONG);
 			pc.addLegFlag(GLOBAL.FLAG_FURRED);
 			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_PAWS);
 			break;
 		/*Peppercotton Oviposter, High Fertility, Normal Height (Five Seven), 2 Breasts ( D Cup), 1 Vagina, 1 Butt, */
 		case "peppercotton":

@@ -846,7 +846,11 @@
 			// 10 uses
 			if(amazonaDrinks(target) >= 10)
 			{
-				output("\n\nYour mind wants to drink more, but your body can’t take another drop. You retch the second the drink touches your mouth, spitting it all over the ground, and dropping the container in surprise. Dammit, what a waste.");
+				output("\n\nYour mind wants to drink more, but your body can’t take another drop. You retch the second");
+				//output(" the drink touches your mouth");
+				if(target.isBimbo()) output(" you feel the drink make a strange tickle in your tummy");
+				else output(" you feel the drink gurgle in your stomach");
+				output(", spitting it all over the ground, and dropping the container in surprise. Dammit, what a waste.");
 				
 				// PC cannot use Amazona or Futazona for 24 hours after
 				target.createStatusEffect("Amazona Disabled", 0, 0, 0, 0, true, "", "", false, 1440);
@@ -989,6 +993,7 @@
 			}
 			
 			// Perk gain
+			// 1/4 chance to get Jungle Queen Scent
 			if(!target.hasPerk("Jungle Queen Scent") && rand(4) == 0)
 			{
 				output("\n\nSomething smells good, really good. You sniff around the air, trying to locate the source. Eventually, you realize where the smell is coming from, it’s you! It’s thick and musky, but still very pleasant: the perfect scent for a big, strong amazon.");
@@ -997,8 +1002,8 @@
 				output("\n\n(<b>Perk Gained: Jungle Queen Scent</b> - You smell like a mighty queen of the jungle. Boosts tease attacks.)");
 				target.createPerk("Jungle Queen Scent", 0, 0, 0, 0, "You smell like a mighty queen of the jungle. Boosts tease attacks.");
 			}
-			/*
-			else if((!target.hasPerk("Snu-Snu Queen") && !target.hasPerk("Energizing Libido")) && target.libido() >= 40 && rand(10) == 0)
+			// 1/10 chance to get Energizing Libido/Snu-Snu Queen if libido is over 40
+			else if((!target.hasPerk("Snu-Snu Queen") && !target.hasPerk("Energizing Libido")) && target.libido() >= 40 && ((target.hasPerk("Amazonian Endurance") && rand(4) == 0) || rand(10) == 0))
 			{
 				output("\n\nYou feel horny; no, not just horny, <i>really</i> horny, like you could fuck a line of studs and only be hungry for more afterward! You feel like a sexual dynamo, able to convert the energy from one fuck into energy for another. It doesn’t make much sense, but Newton was a bitch anyway!");
 				
@@ -1007,7 +1012,6 @@
 				output("\n\n(<b>Gained Perk: " + (kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido") + "</b> - Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.)");
 				target.createPerk((kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido"), 0, 0, 0, 0, "Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.");
 			}
-			*/
 			
 			output("\n\nThat really didn’t seem like it was supposed to happen. <b>You should probably hold off on these if you don’t want that to happen again</b>");
 			
