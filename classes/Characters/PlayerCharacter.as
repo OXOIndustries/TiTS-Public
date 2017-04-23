@@ -13,6 +13,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
 	import classes.Engine.Interfaces.ParseText;
+	import classes.Engine.Interfaces.ParseQuotes;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
@@ -354,9 +355,10 @@ package classes.Characters
 		}
 		public function UpgradeVersion2(d:Object):void
 		{
+			var i:uint = 0;
 			if (d.perks)
 			{
-				for (var i:uint = 0; i < d.perks.length; i++)
+				for (i = 0; i < d.perks.length; i++)
 				{
 					if (d.perks[i] && d.perks[i].storageName)
 					{
@@ -370,7 +372,35 @@ package classes.Characters
 								d.perks[i].value1 = 1.15;
 								break;
 						}
-						d.perks[i].tooltip = ParseText(d.perks[i].tooltip);
+						d.perks[i].tooltip = ParseQuotes(d.perks[i].tooltip);
+					}
+				}
+			}
+			if (d.keyItems)
+			{
+				for (i = 0; i < d.keyItems.length; i++)
+				{
+					if (d.keyItems[i] && d.keyItems[i].storageName)
+					{
+						switch(d.keyItems[i].storageName)
+						{
+							case "Holodisk: Horsecock Hell 2":
+								d.keyItems[i].tooltip = "A pair of holodisks labeled ‘<b>Horsecock Hell 2: A Tail of Two Twats</b>’. The cover makes a big deal out of the star of the show: ‘Nivas Oxonef’.";
+								break;
+							default:
+								d.keyItems[i].tooltip = ParseQuotes(d.keyItems[i].tooltip);
+								break;
+						}
+					}
+				}
+			}
+			if (d.statusEffects)
+			{
+				for (i = 0; i < d.statusEffects.length; i++)
+				{
+					if (d.statusEffects[i] && d.statusEffects[i].storageName)
+					{
+						d.statusEffects[i].tooltip = ParseQuotes(d.statusEffects[i].tooltip);
 					}
 				}
 			}

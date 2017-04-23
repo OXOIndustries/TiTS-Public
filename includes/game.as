@@ -541,7 +541,7 @@ public function showPerksList(filter:String = ""):void
 		
 		if (perk.combatOnly == false)
 		{
-			output2("<b>" + perk.storageName + "</b>" + ((desc && perkDesc.length > 0) ? (" - " + perkDesc) : ""));
+			output2("<b>" + ParseQuotes(perk.storageName) + "</b>" + ((desc && perkDesc.length > 0) ? (" - " + perkDesc) : ""));
 			if(perkDesc.length > 0) hasDesc = true;
 			output2("\n");
 		}
