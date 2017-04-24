@@ -2637,9 +2637,9 @@ public function pippaTalkMoney():void
 	
 	if (pippaKickedOffShip())
 	{
-		output("You ask Pippa about her money situation now that she's not currently part of your crew.");
+		output("You ask Pippa about her money situation now that she’s not currently part of your crew.");
 		
-		output("\n\nShe glares slightly at you. <i>“I'm not taking money from my parents again, if that's what you're asking. I've got enough saved up to live on it for a while, even with few customers.”</i> Her expression softens and she sighs. <i>“You know I love you, " + pippaCallsSteele() + ", but I'm not too happy about being left back on Uveto. I do hope you'll let me join you again soon.”</i>");
+		output("\n\nShe glares slightly at you. <i>“I’m not taking money from my parents again, if that’s what you’re asking. I’ve got enough saved up to live on it for a while, even with few customers.”</i> Her expression softens and she sighs. <i>“You know I love you, " + pippaCallsSteele() + ", but I’m not too happy about being left back on Uveto. I do hope you’ll let me join you again soon.”</i>");
 		
 		processTime(1);
 		
@@ -2696,7 +2696,7 @@ public function pippaTalkYammi():void
 	{
 		output("Pippa’s eyes light up. <i>“Yammi’s great, isn’t she? I can sit and chat with her while she cooks and it’s like having a personal chef.”</i>");
 		
-		if (pippaYammiThreesomeCount(0) > 0) output(" She grins at you salaciously.  <i>“And of course, she sure is a sexy little thing. I can’t get enough of the two of you.");
+		if (pippaYammiThreesomeCount(0) > 0) output(" She grins at you salaciously. <i>“And of course, she sure is a sexy little thing. I can’t get enough of the two of you.");
 		
 		output(" Joining your crew might just be the best decision I’ve ever made.");
 		
@@ -2781,9 +2781,9 @@ public function pippaTalkParents():void
 	clearMenu();
 	showPippa();
 	
-	output("Now that Pippa's settled aboard your ship, you ask her if things have changed at all with her parents and her financial situation.");
+	output("Now that Pippa’s settled aboard your ship, you ask her if things have changed at all with her parents and her financial situation.");
 	
-	output("\n\nShe crosses her arms and gives you a half-hearted smile. <i>“Well, I told them I got a, as they put it, real job and asked them to stop sending me money. They're happy about that, if nothing else, and I am too. But you know what, " + pippaCallsSteele() + "? In a lot of ways, this isn't much different from what I was doing before.  I'm still traveling around the universe, and giving massages. This is just faster paced and with steady pay.”</i>");
+	output("\n\nShe crosses her arms and gives you a half-hearted smile. <i>“Well, I told them I got a, as they put it, real job and asked them to stop sending me money. They’re happy about that, if nothing else, and I am too. But you know what, " + pippaCallsSteele() + "? In a lot of ways, this isn’t much different from what I was doing before. I’m still traveling around the universe, and giving massages. This is just faster paced and with steady pay.”</i>");
 	
 	output("\n\n");
 	
@@ -2791,7 +2791,7 @@ public function pippaTalkParents():void
 	else if (pc.isAss()) output("<i>“And you get to see me every day.”</i>");
 	else output("<i>“And you get a great boss.”</i>");
 	
-	output("\n\nShe giggles softly and smiles genuinely. <i>“That certainly is a nice change.”</i> She shifts her crossed arms to a position under her breasts and subtly bites her lower lip. <i>“I really am glad to be here.  Thank you, " + pippaCallsSteele() + ".”</i> There's a brief moment of silence and her smile fades into a contemplative look. She sighs and uncrosses her arms. <i>“I guess my parents don't have to like or understand everything about me. I'm happy and they care about me, so that's good enough.”</i> She steps in and gives you a peck on the cheek. <i>“Thanks for checking in on me, " + pippaCallsSteele() + ". I'm happy to talk whenever you like.”</i>");
+	output("\n\nShe giggles softly and smiles genuinely. <i>“That certainly is a nice change.”</i> She shifts her crossed arms to a position under her breasts and subtly bites her lower lip. <i>“I really am glad to be here. Thank you, " + pippaCallsSteele() + ".”</i> There’s a brief moment of silence and her smile fades into a contemplative look. She sighs and uncrosses her arms. <i>“I guess my parents don’t have to like or understand everything about me. I’m happy and they care about me, so that’s good enough.”</i> She steps in and gives you a peck on the cheek. <i>“Thanks for checking in on me, " + pippaCallsSteele() + ". I’m happy to talk whenever you like.”</i>");
 	
 	processTime(3);
 	
