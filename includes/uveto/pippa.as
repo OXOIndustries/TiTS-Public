@@ -2377,7 +2377,9 @@ public function pippaTalkMenu(from:Function = undefined):void
 		else addButton(3, "Hardlight", pippaTalkHardlight, undefined, "Hardlight", "Ask Pippa about her hardlight underwear.");
 	}
 	
-	if (flags["PIPPA_TALKED_HER"] != 1 || flags["PIPPA_TALKED_CARBONADO"] != 1 || flags["PIPPA_TALKED_YOU"] != 1 || pippaAffection(0) < PIPPA_AFFECTION_MASSAGE) addDisabledButton(4, "Money", "Money", "Maybe you should get closer to Pippa better before questioning her finances.");
+	if (pippaOnShip() && from == pippaTalkParents) addDisabledButton(4, "Parents", "Parents", "You just talked to her about that.");
+	else if (pippaOnShip()) addButton(4, "Parents", pippaTalkParents, undefined, "Parents", "Talk to Pippa about her parents.");
+	else if (flags["PIPPA_TALKED_HER"] != 1 || flags["PIPPA_TALKED_CARBONADO"] != 1 || flags["PIPPA_TALKED_YOU"] != 1 || pippaAffection(0) < PIPPA_AFFECTION_MASSAGE) addDisabledButton(4, "Money", "Money", "Maybe you should get closer to Pippa better before questioning her finances.");
 	else if (from == pippaTalkMoney) addDisabledButton(4, "Money", "Money", "You just talked to her about that.");
 	else addButton(4, "Money", pippaTalkMoney, undefined, "Money", "Talk to Pippa about money.");
 	
@@ -2633,39 +2635,52 @@ public function pippaTalkMoney():void
 	clearMenu();
 	showPippa();
 	
-	if (pc.isBimbo() || pc.isBro()) output("<i>“So you fly all over the place and can’t give massages. How do you have money?”</i>");
-	else output("<i>“So you’ve a planet hopping lifestyle, and you’ve mentioned your lack of customers multiple times. Yet, you don’t seem too concerned with your financial situation.”</i>");
-	
-	output("\n\nPippa looks around like she doesn’t really want to talk about it. Maybe you shouldn’t have asked; money can be a sensitive topic. Finally, she sighs before speaking, <i>“Well, here’s the thing. She was no Victor Steele, but I had a grandmother who managed to make quite a bit of money during the last Planet Rush. I never met her, unfortunately, but she was very generous with her money.” She hardens her expression slightly and continues, “And to be clear, I’ve gotten plenty of customers on planets besides this one.”</i>");
-	
-	output("\n\nYou’re surprised to hear that. You wouldn’t guess she was a rich girl, but it does explain a lot. <i>“Is this grandmother anybody I’d recognize?”</i>");
-	
-	output("\n\n<i>“No. She was all money, no fame. Anyway, my parents don’t fully approve of my life right now. They don’t understand why I’d mod myself like I have and run around from planet to planet working a job like this. Still, they support me.”</i> She looks down, a slightly sad smile forming on her face, and looks back up. <i>“You know, " + pippaCallsSteele() + ", I actually envy you a bit. I appreciate my parents’ support, and I like not having to worry about money, but it must be nice to set out into the unknown, prove yourself, and earn what’s yours. Not that you started with nothing, I’m sure. As much as the idea appeals to me though, I’ll admit it’s a bit scary.”</i>");
-	
-	output("\n\n<i>“")
-	
-	if (pc.isBimbo() || pc.isBro()) output("You can totally do it!");
-	else if (pc.isNice()) output("I think you could do it. You’re smart and driven.");
-	else if (pc.isMischievous()) output("Well you’ll never know if you could do it unless you try.");
-	else output("You know sitting around whining isn’t going to get you anywhere.");
-	
-	output("”</i>");
-	
-	output("\n\nShe perks up a bit and smiles at you. ");
-	
-	if (pc.isAss() || pc.isMischievous()) output("<i>“Yeah, I suppose you’re right.");
-	else output("<i>“I appreciate the vote of confidence.");
-	
-	output(" It’s something to think about at least. Maybe it’s about time I cut my parents off. Thanks for the talk, " + pippaCallsSteele() + ".”</i>");
-	
-	if (flags["PIPPA_TALKED_MONEY"] != 1)
+	if (pippaKickedOffShip())
 	{
-		flags["PIPPA_TALKED_MONEY"] = 1;
-		pippaAffection(5);
+		output("You ask Pippa about her money situation now that she's not currently part of your crew.");
+		
+		output("\n\nShe glares slightly at you. <i>“I'm not taking money from my parents again, if that's what you're asking. I've got enough saved up to live on it for a while, even with few customers.”</i> Her expression softens and she sighs. <i>“You know I love you, " + pippaCallsSteele() + ", but I'm not too happy about being left back on Uveto. I do hope you'll let me join you again soon.”</i>");
+		
+		processTime(1);
+		
+		addButton(1, "Recruit", pippaTalkTakeBack, undefined, "Recruit", "Ask Pippa to rejoin your crew");
 	}
-	
-	processTime(5);
-	pippaCheckRecruitment();
+	else
+	{
+		if (pc.isBimbo() || pc.isBro()) output("<i>“So you fly all over the place and can’t give massages. How do you have money?”</i>");
+		else output("<i>“So you’ve a planet hopping lifestyle, and you’ve mentioned your lack of customers multiple times. Yet, you don’t seem too concerned with your financial situation.”</i>");
+		
+		output("\n\nPippa looks around like she doesn’t really want to talk about it. Maybe you shouldn’t have asked; money can be a sensitive topic. Finally, she sighs before speaking, <i>“Well, here’s the thing. She was no Victor Steele, but I had a grandmother who managed to make quite a bit of money during the last Planet Rush. I never met her, unfortunately, but she was very generous with her money.” She hardens her expression slightly and continues, “And to be clear, I’ve gotten plenty of customers on planets besides this one.”</i>");
+		
+		output("\n\nYou’re surprised to hear that. You wouldn’t guess she was a rich girl, but it does explain a lot. <i>“Is this grandmother anybody I’d recognize?”</i>");
+		
+		output("\n\n<i>“No. She was all money, no fame. Anyway, my parents don’t fully approve of my life right now. They don’t understand why I’d mod myself like I have and run around from planet to planet working a job like this. Still, they support me.”</i> She looks down, a slightly sad smile forming on her face, and looks back up. <i>“You know, " + pippaCallsSteele() + ", I actually envy you a bit. I appreciate my parents’ support, and I like not having to worry about money, but it must be nice to set out into the unknown, prove yourself, and earn what’s yours. Not that you started with nothing, I’m sure. As much as the idea appeals to me though, I’ll admit it’s a bit scary.”</i>");
+		
+		output("\n\n<i>“")
+		
+		if (pc.isBimbo() || pc.isBro()) output("You can totally do it!");
+		else if (pc.isNice()) output("I think you could do it. You’re smart and driven.");
+		else if (pc.isMischievous()) output("Well you’ll never know if you could do it unless you try.");
+		else output("You know sitting around whining isn’t going to get you anywhere.");
+		
+		output("”</i>");
+		
+		output("\n\nShe perks up a bit and smiles at you. ");
+		
+		if (pc.isAss() || pc.isMischievous()) output("<i>“Yeah, I suppose you’re right.");
+		else output("<i>“I appreciate the vote of confidence.");
+		
+		output(" It’s something to think about at least. Maybe it’s about time I cut my parents off. Thanks for the talk, " + pippaCallsSteele() + ".”</i>");
+		
+		if (flags["PIPPA_TALKED_MONEY"] != 1)
+		{
+			flags["PIPPA_TALKED_MONEY"] = 1;
+			pippaAffection(5);
+		}
+		
+		processTime(5);
+		pippaCheckRecruitment();
+	}
 	
 	addButton(0, "Next", pippaTalkMenu, pippaTalkMoney);
 }
@@ -2733,7 +2748,7 @@ public function pippaFlirt():void
 	}
 	else if (pippaAffection(0) >= PIPPA_AFFECTION_SEX)
 	{
-		output("\n\n<i>“You have been a pleasure to have around, " + pippaCallsSteele() + ".”</i> She hesitates for a moment before a lusty look spreads across her face. <i>“I think I’d enjoy making our relationship a little more personal.”</i>");
+		output("\n\n<i>“You have been a pleasure to have around, " + pippaCallsSteele() + "....”</i> She hesitates for a moment before a lusty look spreads across her face. <i>“I think I’d enjoy making our relationship a little more personal.”</i>");
 	}
 	else
 	{
@@ -2758,4 +2773,27 @@ public function pippaNuruEmailGet():void
 	AddLogEvent("<b>New Email From Pippa (pippa_pig@cmail.com)!</b>", "passive");
 
 	MailManager.unlockEntry("pippa_nuru", GetGameTimestamp());
+}
+
+public function pippaTalkParents():void
+{
+	clearOutput();
+	clearMenu();
+	showPippa();
+	
+	output("Now that Pippa's settled aboard your ship, you ask her if things have changed at all with her parents and her financial situation.");
+	
+	output("\n\nShe crosses her arms and gives you a half-hearted smile. <i>“Well, I told them I got a, as they put it, real job and asked them to stop sending me money. They're happy about that, if nothing else, and I am too. But you know what, " + pippaCallsSteele() + "? In a lot of ways, this isn't much different from what I was doing before.  I'm still traveling around the universe, and giving massages. This is just faster paced and with steady pay.”</i>");
+	
+	output("\n\n");
+	
+	if (pc.isNice()) output("<i>“And we get to see each other every day.”</i>");
+	else if (pc.isAss()) output("<i>“And you get to see me every day.”</i>");
+	else output("<i>“And you get a great boss.”</i>");
+	
+	output("\n\nShe giggles softly and smiles genuinely. <i>“That certainly is a nice change.”</i> She shifts her crossed arms to a position under her breasts and subtly bites her lower lip. <i>“I really am glad to be here.  Thank you, " + pippaCallsSteele() + ".”</i> There's a brief moment of silence and her smile fades into a contemplative look. She sighs and uncrosses her arms. <i>“I guess my parents don't have to like or understand everything about me. I'm happy and they care about me, so that's good enough.”</i> She steps in and gives you a peck on the cheek. <i>“Thanks for checking in on me, " + pippaCallsSteele() + ". I'm happy to talk whenever you like.”</i>");
+	
+	processTime(3);
+	
+	addButton(0, "Next", pippaTalkMenu, pippaTalkParents);
 }
