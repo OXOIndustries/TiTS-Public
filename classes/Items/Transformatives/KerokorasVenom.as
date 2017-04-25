@@ -59,13 +59,13 @@ package classes.Items.Transformatives
 				var i:int = 0;
 				var isTopClothed:Boolean = target.isChestCovered();
 				var isBottomClothed:Boolean = target.isCrotchGarbed();
-				var hasKeroFace:Boolean = InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_FROG);
+				var hasKeroFace:Boolean = InCollection(target.faceType, [GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_FROG]);
 				var faceChanged:Boolean = false;
 				var frogSkinColors:Array = ["orange and green", "mottled brown", "black and gold", "black and blue", "black and red", "red and blue", "black, blue and yellow", "gold"];
 				var frogIrisColors:Array = ["red", "ruby", "green", "emerald", "blue", "sapphire", "yellow", "amber", "gold", "black"];
 				
 				// Humanization first
-				if(target.skinType != GLOBAL.SKIN_TYPE_SKIN || target.eyeType != GLOBAL.TYPE_FROG || !hasKeroFace)
+				if((target.skinType != GLOBAL.SKIN_TYPE_SKIN || target.eyeType != GLOBAL.TYPE_FROG || !hasKeroFace) && rand(2) == 0)
 				{
 					output("\n\nThe first thing you feel after swallowing the sticky concoction is a giddy lightheadedness. You feel like jumping in the trees and finding something to lick, maybe all the things to lick! You shake your head, clearing the silly thoughts from it.");
 					
@@ -134,7 +134,7 @@ package classes.Items.Transformatives
 				}
 				
 				// Firststuff: Genderbits
-				else if(!target.hasVagina() || target.femininity < 80)
+				else if((!target.hasVagina() || target.femininity < 80) && rand(2) == 0)
 				{
 					//Pc grows a vagina!
 					if(changes < changeLimit && !target.hasVagina() && rand(3) != 0)
@@ -186,7 +186,7 @@ package classes.Items.Transformatives
 				}
 				
 				// Nextstuff: Boobers
-				if(changes < changeLimit)
+				if(changes < changeLimit && rand(2) == 0)
 				{
 					//pc boobshrink
 					if(changes < changeLimit && target.biggestTitSize() > 0)
@@ -352,7 +352,8 @@ package classes.Items.Transformatives
 				}
 				
 				// thirdstuff: Froggify yoself
-				if(changes < changeLimit && target.skinType == GLOBAL.SKIN_TYPE_SKIN)
+				var hasKeroSkin:Boolean = InCollection(target.skinType, [GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX, GLOBAL.SKIN_TYPE_PLANT]);
+				if(changes < changeLimit && hasKeroSkin)
 				{
 					//low chance to lose hair
 					if(changes < changeLimit && target.hasHair() && rand(3) == 0)

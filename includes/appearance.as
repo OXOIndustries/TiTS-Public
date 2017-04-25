@@ -916,6 +916,8 @@ public function appearance(forTarget:Creature):void
 				else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
 			}
 		}
+		// Worn collars
+		appearanceWornCollar();
 		//BODY PG HERE
 		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 		if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(", mostly covered in a layer of " + target.skinFurScales(true, true));
@@ -2438,6 +2440,25 @@ public function getWornCollar():StorageClass
 	return null;
 }
 
+public function appearanceWornCollar():void
+{
+	var wornCollar:StorageClass = getWornCollar();
+	if (wornCollar != null)
+	{
+		switch(wornCollar.storageName)
+		{
+			case "Sera’s Collar":
+				output2(" Around your neck, a black leather and lace collar, replete with tiny pearls and a brass ring, is tightly fixed.");
+				break;
+			case "Sub-Tuner Collar":
+				output2(" Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled " + (flags["SUBTUNER_NAMED"] == 2 ? "“[pc.name]”" : "“Subject 69”") + ".");
+				break;
+			default:
+				output2(" You are currently wearing " + wornCollar.storageName + " around your neck.");
+				break;
+		}
+	}
+}
 public function manageWornCollar():void
 {
 	clearOutput2();

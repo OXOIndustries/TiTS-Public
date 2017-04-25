@@ -57,6 +57,7 @@ public function gigaCeliseMenu():void
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Shrink",shrinkBackToNormalCelise);
+	if(flags["CELISE_NO_BED_SENPAI"] == true) addButton(3,"Allow Bed",celiseBedToggle,true,"Allow Goo Bed","Allow Celise to approach you before bed if she is in the mood.");
 	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She’ll be at the hangar in Tavros if you ever want her back.");
 	this.addButton(14,"Back",crew);
 }

@@ -883,7 +883,7 @@ public function sleep(outputs:Boolean = true):void {
 		if(outputs)
 		{
 			//CELISE NIGHT TIME BEDTIMEZ
-			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
+			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined && flags["CELISE_NO_BED_SENPAI"] == undefined)
 			{
 				celiseOffersToBeYourBedSenpai();
 				return;

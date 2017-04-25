@@ -1149,6 +1149,7 @@ public function fuckedSeraAsMistress():Boolean
 	if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) totalSex += flags["SERA_FACE_RIDE_TRAINING"];
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) totalSex += flags["SERA_TIT_FUCK_LUCKY_DIP"];
 	if(flags["SERA_PARTY_FUCKED"] != undefined) totalSex += flags["SERA_PARTY_FUCKED"];
+	if(flags["SERA_TAILED"] != undefined) totalSex += flags["SERA_TAILED"];
 	
 	if(totalSex > 0) return true;
 	
@@ -1174,13 +1175,16 @@ public function seraSexXXXRouter():void
 	if(flags["SERA_FACE_RIDE_TRAINING"] == undefined) newScenes.push(seraSexXXXGetRiddenStart);
 	choices.push(seraSexXXXGetRiddenStart);
 	// Titfuck/Vaginal or Anal + Lucky Dip
-	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] == undefined) newScenes.push(seraSexXXXTitfuckLuckyDipStart);
 	if(flags["SERA_UNLOCK_CLIPPEX"] != undefined) chance += 2;
 	if(flags["SERA_UNLOCK_SEMENS"] != undefined) chance += 2;
 	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined) chance += 2;
+	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] == undefined || (timesFuckedSera() % 4 == 0 && chance < 6)) newScenes.push(seraSexXXXTitfuckLuckyDipStart);
 	if(rand(chance) == 0) choices.push(seraSexXXXTitfuckLuckyDipStart);
-	if(pc.hasParasiteTailCock()) choices.push(seraCockvineScene);
-
+	if(pc.hasParasiteTailCock())
+	{
+		if(flags["SERA_TAILED"] == undefined) newScenes.push(seraCockvineScene);
+		choices.push(seraCockvineScene);
+	}
 	
 	// Go go sexytimes
 	if(newScenes.length > 0) newScenes[rand(newScenes.length)]();
@@ -1674,13 +1678,17 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			output("<i>“Mistress.”</i>");
 			output("\n\nSera looks down at you from atop her stool silently, tapping her nails on the counter. She looks like she’s waiting for something. What that might be occurs to you at the exact moment the shop door beeps.");
 			output("\n\n<i>“I won’t be late again mistress, I sw- oh.”</i> The purple dominatrix eats you and Jardi up with her eyes for a few moments, a predatory smile on her face, then without a word gets up and saunters into the back, slapping her butt cheek lightly with her tail as she does.");
-			if(wearingSeraCollar())
+			if(!wearingSeraCollar())
+			{
+				output(" You take a deep breath and offer your hand to the albino goo girl; she as ever takes it with a tremulous red smile. Together you head down the corridor and into the smoky, spacey gloom of Sera’s bedroom.");
+				output("\n\n<i>“I thought the hand-holding thing would stop being adorable but it never does,”</i> murmurs the tall, dusky figure lounging at the head of the bed, twisting a hookah pipe. <i>“I’m going to have to look into getting you two matching collars.”</i> Brilliant, inhuman eyes consider you from across the room. <i>“Here.”</i>");
+			}
+			else
 			{
 				output("\n\n<i>“Oh hey, you got one too!”</i> Jardi’s shy gaze has drifted down to your neck. You realize that she’s got a slim band of seamless blue steel running around her own, evenly set with little white gemstones. Like snow crystals, perhaps. <i>“Yours has got such a pretty blue stone, though. I guess they’re both...”</i> A small, breathy gasp escapes the rahn’s mouth, and she squirms slightly, squeezing her thighs together. <i>“I guess they’ve got different... oh Void...”</i>");
 				output("\n\n<i>“Don’t keep me waiting.”</i> Sera’s command husks its way up the hall. Jardi grips your hand and almost yanks you towards the back door.");
+				output("\n\n<i>“I thought the hand-holding thing would stop being adorable but it never does,”</i> murmurs the tall, dusky figure lounging at the head of the bed, twisting a hookah pipe. “All collared up now, as promised.” Brilliant, inhuman eyes consider you from across the room. <i>“Here.”</i>");
 			}
-			else output(" You take a deep breath and offer your hand to the albino goo girl; she as ever takes it with a tremulous red smile. Together you head down the corridor and into the smoky, spacey gloom of Sera’s bedroom.");
-			output("\n\n<i>“I thought the hand-holding thing would stop being adorable but it never does,”</i> murmurs the tall, dusky figure lounging at the head of the bed, twisting a hookah pipe. <i>“I’m going to have to look into getting you two matching collars.”</i> Brilliant, inhuman eyes consider you from across the room. <i>“Here.”</i>");
 			output("\n\nThe memory of the things you have done in here combine with the dense ambience to make you feel open, pliant, accepting and sensitive before you’ve even gotten to Sera’s proffered nozzle and sucked in the hot, perfumed air. You close your eyes and let it permeate through you, making your pores open and the blood rise to the surface of your skin, warmth sinking down to your groin");
 			if(pc.hasGenitals())
 			{
@@ -2569,7 +2577,7 @@ public function seraCollarValue(value:String = "", track:Boolean = false):Number
 		switch(value)
 		{
 			case "on":
-				if(track) itm.value2 = -1;
+				if(track) itm.value2 = 0;
 				retValue = itm.value2;
 				break;
 			case "off":

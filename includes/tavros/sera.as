@@ -669,7 +669,7 @@ public function seraSexMenu(display:Boolean = false):void
 		showSera();
 		// If PC gets normally fucked twice, chooses sex again
 		// Further, it's not really fair that players could get locked out of the additional content completely based on that one quick decision. Could the "next step" scene repeat every third time the "Sex?" option is chosen instead?
-		if((((flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"]) >= 2) || timesFuckedSera() >= 10) && (timesFuckedSera() % 3 == 0) && flags["SERA_TRIPLE_X_RATED"] == undefined)
+		if((((flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"]) >= 2) || timesFuckedSera() >= 5) && (timesFuckedSera() % 2 == 0) && flags["SERA_TRIPLE_X_RATED"] == undefined)
 		{
 			author("Nonesuch");
 			output("Sera smirks to herself when she sees you hovering. You look away, pretending to be interested in a collection of particularly disgusting ornaments on a shelf. After you’ve let a few moments go by, you steal another look at her. She’s still gazing at you, brilliant yellow eyes running up and down your frame, that proprietary smile still on her face. You feel a small thrill when she finally disengages herself from the counter and slowly walks across to you, dick and hips swinging.");

@@ -44,6 +44,7 @@ public function celiseFollowerInteractions():void {
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Transform",gigaCeliseTransform,undefined,"Transform","Tell Celise that you’d like her to grow lots of gooey tentacles for you to have fun with.");
+	if(flags["CELISE_NO_BED_SENPAI"] == true) addButton(3,"Allow Bed",celiseBedToggle,true,"Allow Goo Bed","Allow Celise to approach you before bed if she is in the mood.");
 	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She’ll be at the hangar in Tavros if you ever want her back.");
 	addButton(14,"Back",crew);
 }
@@ -947,6 +948,38 @@ public function celiseOffersToBeYourBedSenpai():void {
 	clearMenu();
 	addButton(0,"Yes",letCeliseInForBed);
 	addButton(1,"No",dontLetCeliseInForBed);
+	addButton(3,"Disallow Bed",celiseBedToggle,false,"Disallow Goo Bed","Refuse and tell Celise you don’t want her to ask again until you allow it.");
+}
+
+public function celiseBedToggle(gooBed:Boolean = false):void
+{
+	clearOutput();
+	author("Jacques00");
+	showCelise();
+	if(!gooBed)
+	{
+		if(pc.isNice()) output("You apologize");
+		else if (pc.isMischievous()) output("You wave her off");
+		else output("You shoo her away");
+		output(" and tell her you would rather have some space to yourself.");
+		output("\n\n<i>“Ah, O-okay...”</i> Celise frowns, almost melting into a puddle of sadness.");
+		output("\n\nYou then add that you’ll let her know if you are ever in the mood again.");
+		output("\n\nWith those words, she instantly perks up with eager thoughts of you allowing her to do kinky things with you in the future probably running through her mind. She then quickly shuffles off so you can finally be alone.");
+		
+		flags["CELISE_NO_BED_SENPAI"] = true;
+		sleep(false);
+	}
+	else
+	{
+		output("You tap Celise and tell her that she is welcome to greet you any time you head off to bed");
+		if(flags["CREWMEMBER_SLEEP_WITH"] != undefined) output(" and are without company");
+		output(".");
+		output("\n\nThe goo girl quickly bubbles up with a great <i>“YAY!”</i> and commences to give you a big, gooey hug. <i>“If you are feeling lonely, I’ll totally keep you company!”</i>");
+		
+		flags["CELISE_NO_BED_SENPAI"] = undefined;
+		clearMenu();
+		addButton(0, "Next", (flags["GIGACELISE"] == 1 ? gigaCeliseRepeatApproach : celiseFollowerInteractions));
+	}
 }
 
 //Don’t let her in
