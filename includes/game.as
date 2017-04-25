@@ -233,7 +233,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
 	{
-		addButton(9, "Rest", restMenu);
+		if(canRest()) addButton(9, "Rest", restMenu);
+		else addDisabledButton(9, "Rest", "Rest", "You can’t seem to rest or wait here at the moment....");
 	}
 	else 
 	{
@@ -241,10 +242,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		{
 			addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
 		}
-		else
-		{
-			addButton(9, "Sleep", sleep);
-		}
+		else if(canSleep()) addButton(9, "Sleep", sleep);
+		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
 		
 	addButton(14, "Codex", showCodex);
@@ -728,6 +727,15 @@ public function passiveTimeEffects(minPass:int = 0):Boolean
 	return false;
 }
 
+public function canRest():Boolean
+{
+	return true;
+}
+public function canSleep():Boolean
+{
+	return true;
+}
+
 public function restMenu():void
 {
 	clearOutput();
@@ -749,6 +757,9 @@ public function restMenu():void
 }
 public function wait(minPass:int = 0):void
 {
+	//Turn encounters back on.
+	flags["ENCOUNTERS_DISABLED"] = undefined;
+	
 	clearOutput();
 	
 	var hrPass:int = Math.floor(minPass/60);

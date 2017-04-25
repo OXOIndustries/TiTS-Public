@@ -96,17 +96,17 @@
 			if (effect.minutesLeft <= 0) totalHours++;
 
 			// The only way to really model this and get the values I want requires looping rand, rip
-			var msg:String;
+			var msg:String = "";
 			var p:Number = effect.value2 * 20;
 			for (var i:int = 0; i < totalHours; i++)
 			{
 				if (p >= rand(100) + 1)
 				{
-					msg = bigHorsePillMutations(target, effect);
+					msg += bigHorsePillMutations(target, effect);
 				}
 				else
 				{
-					msg = smallHorsePillMutations(target, effect);
+					msg += smallHorsePillMutations(target, effect);
 				}
 			}
 			
@@ -117,7 +117,7 @@
 			
 			if (effect.minutesLeft <= 0)
 			{
-				AddLogEvent("<b>Your body calms down. The pills must have worn off.</b>", "passive", maxEffectLength);
+				AddLogEvent("<b>Your body calms down. The horse pills must have worn off.</b>", "passive", maxEffectLength);
 			}
 		}
 		
