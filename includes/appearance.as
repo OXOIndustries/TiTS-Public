@@ -2394,9 +2394,14 @@ public function appearance(forTarget:Creature):void
 		var collarCount:int = hasCollars();
 		if (collarCount > 0)
 		{
-			addGhostButton(btnIndex++, (collarCount == 1 ? "Collar" : "Collars"), manageWornCollar, undefined, (collarCount == 1 ? "Collar" : "Collars"), "Manage which, if any, collar you’re wearing.");
+			if(kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, (collarCount == 1 ? "Collar" : "Collars"), manageWornCollar, undefined, (collarCount == 1 ? "Collar" : "Collars"), "Manage which, if any, collar you’re wearing.");
+			else addDisabledGhostButton(btnIndex++, (collarCount == 1 ? "Collar" : "Collars"), (collarCount == 1 ? "Collar" : "Collars"), "You cannot access your collar menu at this time.");
 		}
-		if (target.hasStatusEffect("Laquine Ears") && target.getStatusMinutes("Laquine Ears") <= 5) addGhostButton(btnIndex++, "Laquine Ears", LaquineEars.laquineEarsRemove, target, "Remove Laquine Ears", "The Laquine Ears have probably been used up by now, should you remove them?");
+		if (target.hasStatusEffect("Laquine Ears") && target.getStatusMinutes("Laquine Ears") <= 5)
+		{
+			if(kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, "Laquine Ears", LaquineEars.laquineEarsRemove, target, "Remove Laquine Ears", "The Laquine Ears have probably been used up by now, should you remove them?");
+			else addDisabledGhostButton(btnIndex++, "Laquine Ears", "Remove Laquine Ears", "You cannot do this at this time.");
+		}
 	}
 	
 	setTarget(null);
@@ -2404,6 +2409,7 @@ public function appearance(forTarget:Creature):void
 
 private var COLLAR_LIST:Array = [
 	"Jerynn’s",
+	"Sera’s",
 	"Sub-Tuner",
 ];
 
@@ -2438,15 +2444,23 @@ public function manageWornCollar():void
 	var wornCollar:StorageClass = getWornCollar();
 	if (wornCollar != null)
 	{
-		if(wornCollar.storageName == "Sub-Tuner Collar")
+		switch(wornCollar.storageName)
 		{
-			output2("Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled ");
-			//anno/SyriCrew/SavedKiro: 
-			if(flags["SUBTUNER_NAMED"] == 2) output2("“[pc.name]”");
-			else output2("“Subject 69”");
-			output2(".");
+			case "Sera’s Collar":
+				output2("You are currently wearing Sera’s Black Lace Collar.");
+				output2("\n\nThis collar is composed of soft, rich leather around its ring, out of which wings of black lace sprout, contouring with the shape of your neck. Tiny pearls dangle from the lace, making small clicking sounds when you move energetically. A large brass ring connects to the back; a strange, blue gemstone is affixed to the front, glowing softly from within. ‘PROPERTY OF SERA’ is embossed into the leather. Altogether it’s an alluring, gothic piece of fetish-wear, elegant even - at least if you don’t know the purpose of the gemstone.");
+				break;
+			case "Sub-Tuner Collar":
+				output2("Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled ");
+				//anno/SyriCrew/SavedKiro: 
+				if(flags["SUBTUNER_NAMED"] == 2) output2("“[pc.name]”");
+				else output2("“Subject 69”");
+				output2(".");
+				break;
+			default:
+				output2("You are currently wearing " + wornCollar.storageName + ".");
+				break;
 		}
-		else output2("You are currently wearing " + wornCollar.storageName + ".");
 	}
 	else
 	{
@@ -2460,8 +2474,17 @@ public function manageWornCollar():void
 		var itm:StorageClass = pc.getKeyItem(COLLAR_LIST[i] + " Collar");
 		if (itm != null)
 		{
-			if(itm.value1 == 1) addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Remove this collar.");
-			else addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Wear this collar.");
+			switch(COLLAR_LIST[i])
+			{
+				case "Sera’s":
+					if(itm.value1 == 1) addGhostButton(btnIdx++, "Sera’s", toggleSeraCollarOff, undefined, "Sera’s Collar", "Remove this collar.");
+					else addGhostButton(btnIdx++, "Sera’s", toggleSeraCollarOn, undefined, "Sera’s Collar", "Wear this collar.");
+					break;
+				default:
+					if(itm.value1 == 1) addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Remove this collar.");
+					else addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Wear this collar.");
+					break;
+			}
 		}
 	}
 	

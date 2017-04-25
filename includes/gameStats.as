@@ -644,6 +644,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["PC_SELF_SUCKED_STANDARD"] != undefined) selfSuck += flags["PC_SELF_SUCKED_STANDARD"];
 		if(pc.hasPerk("Auto-Autofellatio")) selfSuck += pc.perkv1("Auto-Autofellatio");
 		if(selfSuck > 0) output2("\n<b>* Masturbation, Times Autofellatio:</b> " + selfSuck);
+		if(flags["SERA_COLLAR_FAPS"] > 0) output2("\n<b>* Masturbation, Times Used Sera’s Collar:</b> " + flags["SERA_COLLAR_FAPS"]);
 		if(flags["HL_STRAPON_FAP_ADJUSTABLE"] != undefined) output2("\n<b>* Masturbation, Times Used Upgraded Hardlight Strap-On:</b> " + flags["HL_STRAPON_FAP_ADJUSTABLE"]);
 	}
 	
@@ -1783,6 +1784,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_PARTY_DATE"] != undefined) output2(", Attended");
 				if(flags["SERA_PARTY_INVITE"] >= 3) output2(", Completed");
 				if(flags["SERA_PARTY_INVITE"] >= 4) output2(", On payroll");
+				if(pc.hasKeyItem("Sera’s Collar")) output2(", Gifted with Sera’s Collar");
 				if(flags["SERA_PARTY_STAGE1"] != undefined) output2("\n<b>* Selected Costume:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_STAGE1"]));
 				if(flags["SERA_PARTY_ATTIRE"] != undefined) output2("\n<b>* Sera, Attire:</b> " + StringUtil.toDisplayCase(flags["SERA_PARTY_ATTIRE"]));
 				output2("\n<b>* Sera, Influence Score:</b> " + seraInfluence());

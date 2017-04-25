@@ -464,6 +464,26 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = tailSucking;
 		faps.push(fap); 
 	}
+	// Sera Collar Faps
+	if(wearingSeraCollar())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Gem Anal";
+		fap.ttHeader = "Sera’s Collar - Anal";
+		fap.ttBody = "Use the hard-light dildo Sera gave you on your ass.";
+		fap.func = fapSeraCollarAnal;
+		faps.push(fap);
+		
+		if(pc.hasVagina())
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Gem Vag";
+			fap.ttHeader = "Sera’s Collar - Vaginal";
+			fap.ttBody = "Use the hard-light dildo Sera gave you on your pussy.";
+			fap.func = fapSeraCollarVag;
+			faps.push(fap);
+		}
+	}
 	return faps;
 }
 

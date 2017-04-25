@@ -1673,7 +1673,13 @@ public function seraSexXXXJardiThreesome(response:String = "jardis"):void
 			
 			output("<i>“Mistress.”</i>");
 			output("\n\nSera looks down at you from atop her stool silently, tapping her nails on the counter. She looks like she’s waiting for something. What that might be occurs to you at the exact moment the shop door beeps.");
-			output("\n\n<i>“I won’t be late again mistress, I sw- oh.”</i> The purple dominatrix eats you and Jardi up with her eyes for a few moments, a predatory smile on her face, then without a word gets up and saunters into the back, slapping her butt cheek lightly with her tail as she does. You take a deep breath and offer your hand to the albino goo girl; she as ever takes it with a tremulous red smile. Together you head down the corridor and into the smoky, spacey gloom of Sera’s bedroom.");
+			output("\n\n<i>“I won’t be late again mistress, I sw- oh.”</i> The purple dominatrix eats you and Jardi up with her eyes for a few moments, a predatory smile on her face, then without a word gets up and saunters into the back, slapping her butt cheek lightly with her tail as she does.");
+			if(wearingSeraCollar())
+			{
+				output("\n\n<i>“Oh hey, you got one too!”</i> Jardi’s shy gaze has drifted down to your neck. You realize that she’s got a slim band of seamless blue steel running around her own, evenly set with little white gemstones. Like snow crystals, perhaps. <i>“Yours has got such a pretty blue stone, though. I guess they’re both...”</i> A small, breathy gasp escapes the rahn’s mouth, and she squirms slightly, squeezing her thighs together. <i>“I guess they’ve got different... oh Void...”</i>");
+				output("\n\n<i>“Don’t keep me waiting.”</i> Sera’s command husks its way up the hall. Jardi grips your hand and almost yanks you towards the back door.");
+			}
+			else output(" You take a deep breath and offer your hand to the albino goo girl; she as ever takes it with a tremulous red smile. Together you head down the corridor and into the smoky, spacey gloom of Sera’s bedroom.");
 			output("\n\n<i>“I thought the hand-holding thing would stop being adorable but it never does,”</i> murmurs the tall, dusky figure lounging at the head of the bed, twisting a hookah pipe. <i>“I’m going to have to look into getting you two matching collars.”</i> Brilliant, inhuman eyes consider you from across the room. <i>“Here.”</i>");
 			output("\n\nThe memory of the things you have done in here combine with the dense ambience to make you feel open, pliant, accepting and sensitive before you’ve even gotten to Sera’s proffered nozzle and sucked in the hot, perfumed air. You close your eyes and let it permeate through you, making your pores open and the blood rise to the surface of your skin, warmth sinking down to your groin");
 			if(pc.hasGenitals())
@@ -2431,3 +2437,508 @@ public function seraSexXXXTitfuckLuckyDipPerform(TFItem:String = ""):void
 		addButton(0, "Next", seraExitToMain);
 	}
 }
+
+
+// Sera’s Collar + Tongue Fuck
+/*
+Notes
+•	She gifts it the second time you ask for the salary, having used that money to get it made.
+•	PC can use the gem dildo to masturbate. Sera probably has some way of keeping count how many times you do it.
+•	Has a good sexiness rating (+3?)... but in order to take it off you have to throat the gem-dildo.
+•	Kiss scene can happen whenever salary asked for, regardless of collar. Collar gives extra dialogue though
+•	Jardi gets her own collar, mentioned in threesome scene
+*/
+
+public function seraOrallyTrained():int
+{
+	var numTrained:int = 0;
+	
+	if(flags["SERA_EXHIBITION_BLOWJOB"] != undefined) numTrained += flags["SERA_EXHIBITION_BLOWJOB"];
+	if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) numTrained += flags["SERA_FACE_RIDE_TRAINING"];
+	
+	return numTrained;
+}
+// Gifting Scene
+// If PC already getting salary, scene plays next time they go get it
+public function seraGiftCollar(page:int = 0):void
+{
+	clearOutput();
+	author("Nonesuch");
+	showSera();
+	clearMenu();
+	
+	switch(page)
+	{
+		case 0:
+			output("Sera sits cross-legged on her stool, lips pursed and face stony, as you deliver your report.");
+			output("\n\n<i>“Mm. Nice, watching your mouth move,”</i> she says at last. <i>“You aren’t getting your salary this week. I got you something instead. Take off your shit and come into the back.”</i>");
+			output("\n\nYou follow the pale blue hair, jouncing bum and coiling, beckoning spade a few moments after they’ve disappeared beyond the door, your [pc.skinFurScales] shiveringly bared for whatever it is the sadistic slave driver has got prepared.");
+			output("\n\nShe’s sat on her bed, swinging the end of her tail, leering with that trademark blend of menace and lust of hers, by the time you enter her room. There’s a small, red box on the floor on front of her, done up in black ribbon.");
+			output("\n\n<i>“It’s great, you know, ordering someone to do whatever I want and them just doing it,”</i> she husks, reptilian eyes crawling over your naked body. <i>“Kneel.”</i> You comply,");
+			if(pc.isNaga()) output(" coils settling into the carpet");
+			else if(pc.isGoo()) output(" goo settling into the carpet");
+			else if(pc.isTaur() || pc.isDrider()) output(" folding your legs beneath you");
+			else if(pc.hasKnees()) output(" knees pressing into the carpet");
+			else output(" settling down onto the carpet");
+			output(", and there’s no denying the pang of submissive pleasure you get from obeying. The shiny latex of Sera’s thigh-highs are inches away from your nose; above them climb the flawless, obscene curves and taut canvas of her hips, stomach and breasts.");
+			output("\n\n<i>“Very nice,”</i> she hisses, molten eyes gazing down, one set of cerulean claws stroking a breast, the other grazing the length of her thick cock. Her tail-spade slithers down and touches you in the pit of your throat, leading slowly up to your chin before withdrawing, leaving a faint trace of cock-musk behind. <i>“It’s a picture that’s missing something, though. Go ahead and open your prezzie.”</i> The pulpy spade slaps your hand when you reach for the box. <i>“You should know better than that by now, slut,”</i> admonishes Mistress in a sharper voice.");
+			
+			processTime(5);
+			pc.lust(5);
+			
+			addButton(0, "Next", seraGiftCollar, 1);
+			break;
+		case 1:
+			output("Well then. Hands firmly on the carpet, you bend forward - making sure your [pc.ass] is up and nicely flared - and grab the ribbon end with your teeth. It’s thankfully not tied very tightly, but it’s still fairly awkward to do this using only your mouth, a performance of careful, huffing yanks that Sera no doubt enjoys. You tip the box lid off with your [pc.tongue]. You gaze down at the contents, and then up at her in silent query.");
+			output("\n\n<i>“Go ahead,”</i> she says, grinning back. <i>“You have permission to use your hands.”</i> You pick the band of ornate material out of its wrapping and examine it carefully. It’s a collar, as you had perhaps guessed - but a pretty unique looking one. Ferns of fine black lace covered in little faux-pearls sprout from the leather band, which has PROPERTY OF SERA embossed in gothic script on one side. It has a brass hasp ring attached at the back and at the front... a gemstone? It’s blue and glows faintly from within, not unlike the ones she has fixed in her own collar - but bigger.");
+			output("\n\n<i>“Yeah, that there’s the real treat,”</i> the succubus says, eagerness breaking through the controlled veneer. She draws you up onto the bed and takes the collar, carefully fixing the soft leather around your throat. It makes an ominous ‘click’ when it’s in place; you exhale slowly, touching the pretty, black thing. It’s surprisingly comfortable, the lace contouring perfectly with the shape of your neck. It’s tight though, tight enough that you are made aware of its presence with every breath you take.");
+			output("\n\n<i>“Thank you Mistress,”</i> you say, swiftly remembering your manners as Sera sidles around in front of you.");
+			output("\n\n<i>“Oh, thanking is coming later, bitch. You haven’t seen what this thing can do yet...”</i> Mouth ajar, she reaches out her claws and grasps the front-mounted gemstone. With a small twist and click, she dehouses the thing entirely.");
+			output("\n\n<i>“Kiss.”</i> The gently glowing oval is presented to your [pc.lips]. Brow furrowed, you bend forward and press your lips against the stone. You gasp as something suddenly rears out of it in response, a hard form made of warm light that bats you in the cheek before stretching outwards ever further...");
+			output("\n\n<i>“Nice,”</i> Sera says, admiring the hardlight projection of a thick, human penis in her hand, once it has finished growing out to a foot in length. She sits back down on her bed, holding it by the shaft and twisting it around so that you can take it in from every angle. Good Void, it’s even got balls. And the thing moves and sways exactly like a dick of that size would... <i>“Perfect, you might even say. Remind you of anything?”</i> She sets it down, leans back and grasps the holo-cock’s fleshy twin, thickening between her legs. <i>“Now wherever you go, my little field agent, you’ll only be a simple kiss away from a big piece of your owner’s love. C’mere.”</i>");
+			output("\n\nYou crawl forward a bit, and the gem is presented to your lips again, this time the back. <i>“Lick, and say ‘Thank you, Mistress’.”</i>");
+			output("\n\n<i>“Th-thank you, Mistress.”</i> Your tongue slides over the warm, hard stone. With a click, the obscene shape dangling away from you retracts, and in a second it’s just a gemstone again. Sera clicks it back into place on your neck, before reaching around your head. Her intoxicating, smoky smell and the mesmerizing sight of her boobs prevent you from realizing what she’s doing until you hear a second click, and the leather leash is being led out above you.");
+			output("\n\n<i>“Yeeeess,”</i> she purrs, gazing down at you kneeling in front of her proudly, taut leash in one hand, her hardening cock in the other. <i>“That’s it, right there. Picture complete.”</i> She licks her lips, enjoying the sight of you for a couple moments more, before giving the leash a sharp yank, forcing you forward with a gasp. She opens her hips a bit; the moist, musky tip of her penis, real one this time, touches your lips. <i>“Now. Now you start thanking me.”</i>");
+			
+			processTime(7);
+			pc.lust(10);
+			
+			addButton(0, "Next", seraGiftCollar, 2);
+			break;
+		case 2:
+			output("The collar strains your neck as you wrap your hand around the hot, purple meat of Sera’s shaft. Just enough to be uncomfortable, just enough to remind you of its presence, whilst you pull her to full, wooden erection and spread your [pc.lips] over the bulbous tip, savoring the heavy, spicy flavor of her musk spreading over your taste buds.");
+			output("\n\n<i>“I know the dildo won’t be as good as the real thing,”</i> Sera murmurs, exhaling long and low and closing her eyes as you open wide and fill your mouth with her cock. <i>“That’s why we make the most of these li’l opportunities...”</i> ");
+			output("\n\nYou sink deep onto her hot, delicious root, deep enough for the bulb to press against your tonsils, before slowly slurping outwards, retracting so you can lick her further down, fondling her big, heavy balls as you do it, creeping your fingers further inside even to trace the lips of her pussy. Her husky groans, and the presence of sharp nails stroking");
+			if(!pc.hasHair()) output(" behind your [pc.ear]");
+			else output(" you through your [pc.hair]");
+			output(" informs you how much Mistress enjoys your masterful attention.");
+			// If vagina and PC has done strap-on face dildo scene at least twice:
+			if(pc.hasVagina() && seraOrallyTrained() >= 2)
+			{
+				output("\n\nYou’re getting wet, outrageously wet, doing this; the taste and feel of cock in your mouth sparking urgent instructions in your brain, making [pc.eachVagina] feel like " + (pc.vaginas.length == 1 ? "it’s" : "they’re") + " melting. She’s hardwired you by now into being an oral slut, and that combined with the deep submission of being naked, collared and on your [pc.knees] in front of this sadistic cunt is wonderful, arousal as deep and black and devouring as a tarpit. You let her know how much you enjoy it with hungry, muffled moans, letting her feel your drool seep down her foot-long cock before sweeping them away with luxurious drags of your [pc.tongue].");
+			}
+			output("\n\nSera tugs you up roughly with a jerk of the leash when you reach the bottom, levering you up so you can be placed at the top of her hot, veiny fuck-pole again.");
+			output("\n\n<i>“Faster now,”</i> she growls, steadily playing the leather strap through her hand so you can sink your [pc.lips] further and further down it. You comply, fixing your [pc.eyes] on her face above the gentle tremble of her boobs as you blanket the bottom of her cock in both hands and pump the top briskly within your mouth, hollowing your cheeks around her to provide the sweetest, tightest pocket of ecstasy possible. Obscene slurps and gulps fill the room as your head bobs energetically, and a servile thrill shivers through you as you watch Sera writhe and growl, stretching her unearthly body, tugging at a nipple viciously in response to your efforts. You know you can source a torrent of delicious filth out of her in more than one way doing this.");
+			output("\n\n<i>“That’s right, just like that you born cocksucker, you");
+			if(pc.hasVagina() && pc.buttRating() >= 10) output(" fat-bottomed breeder bitch");
+			else if(pc.hasCock() && pc.biggestCockVolume() < chars["SERA"].cockVolume(0)) output(" twig-dicked little sissy");
+			else output(" rump-shaking ho");
+			output(",”</i> she groans, head thrown back now, lost in it completely. <i>“Polish that demon dick like you know how! Show your pimp why she pays so well to keep you around...”</i>");
+			output("\n\nHer fat balls twitch, her dick swells against your hollowed cheeks like it’s going to explode, and then she’s reflexively thrusting upwards into your maw, a heavy gout of cock-cream pulsed towards your throat with every quaking heave of her thighs. You’re well-practiced at this by now though and you maintain your suction and focus supremely, draining her completely despite her lusty thrashings and the tight pressure around your neck. You smack your lips as you withdraw, her bell-end completely clean, and open your mouth so she can admire the lake of pearl she’s left within, before swallowing the oily, musky load all down with a heavy gulp.");
+			output("\n\n<i>“Beautiful,”</i> Sera says, looking you in the eye as she strokes your jaw line, and the genuineness in her tone makes your [pc.skin] tingle with happiness. <i>“Forgot to give you a facial, you’re that good.”</i> ");
+			output("\n\n<i>“Mistress...”</i> You stroke your collar all away around its circumference, listening to the tiny pearls click together. A question has been tickling the back of your mind, and you think now, when she’s wallowing in post-blowjob bliss, is the best time to put it. <i>“...how do I take this off? If I ever wanted to, I mean.”</i>");
+			output("\n\n<i>“Hmm? Oh, that’s easy.”</i> The succubus is withdrawing a cigarette from a packet on the bedside table. <i>“Just take the jewel off, and kiss the front once. Then kiss the front again, five seconds later.”</i>");
+			output("\n\nShe sits there and watches you, eyes and cigarette-end glowing, as you work this out, before laughing throatily. The sound of purest evil.");
+			
+			processTime(11);
+			
+			// Black Jeweled Collar added to PC’s person
+			// ++ Lust, load in mouth
+			// Move PC to outside Dark Chrysalis
+			
+			output("\n\n<b>You got Sera’s Black Lace Collar!</b>");
+			// v1: Wearing toggle off/on
+			// v2: Day last taken off
+			// v3: Day last masturbated with vag
+			// v4: Day last masturbated with ass
+			pc.createKeyItem("Sera’s Collar", 0, 0, 0, 0);
+			toggleCollar("Sera’s");
+			
+			pc.lust(25);
+			pc.loadInMouth(chars["SERA"]);
+			
+			currentLocation = "9018";
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
+public function wearingSeraCollar():Boolean
+{
+	var itm:StorageClass = pc.getKeyItem("Sera’s Collar");
+	if(itm != null) return (itm.value1 == 1);
+	return false;
+}
+public function seraCollarValue(value:String = "", track:Boolean = false):Number
+{
+	var itm:StorageClass = pc.getKeyItem("Sera’s Collar");
+	var retValue:Number = 0;
+	if(itm != null)
+	{
+		switch(value)
+		{
+			case "on":
+				if(track) itm.value2 = -1;
+				retValue = itm.value2;
+				break;
+			case "off":
+				if(track) itm.value2 = days;
+				retValue = itm.value2;
+				break;
+			case "vag":
+				if(track) itm.value3 = days;
+				retValue = itm.value3;
+				break;
+			case "ass":
+				if(track) itm.value4 = days;
+				retValue = itm.value4;
+				break;
+			case "fap":
+				retValue = Math.max(itm.value3, itm.value4);
+				break;
+		}
+	}
+	return retValue;
+}
+// Taking it Off and On
+// Scene activates if PC attempts to un-equip it
+public function toggleSeraCollarOff(response:String = "prompt"):void
+{
+	clearOutput2();
+	author("Nonesuch");
+	clearGhostMenu();
+	
+	switch(response)
+	{
+		case "prompt":
+			output2("You follow the line of your collar all the way around. The joining at the back is completely seamless, and it’s so tight it’s impossible to fit a finger between it and your neck. Bar finding a very trustworthy lasering service, there’s only one thing you can do to try taking it off: Follow the instructions Sera gave you. You click the central jewel out, consider the pretty blue thing. Kiss the top... then kiss it again, five seconds later.");
+			output2("\n\nAre you going to do it?");
+			
+			addGhostButton(0, "Yes", toggleSeraCollarOff, "yes");
+			addGhostButton(1, "No", toggleSeraCollarOff, "no");
+			break;
+		case "no":
+			output2("You snap the jewel back into place. It’s a lovely collar, on reflection. Yeah. No need to remove it.");
+			
+			addGhostButton(0, "Next", manageWornCollar);
+			break;
+		case "yes":
+			output2("You plant your [pc.lips] on the warm, dry stone, then draw it back to give the giant, glowing replica of Sera’s penis space to spring gleefully into existence. You swivel the smooth, twelve-inch piece around in your hands thoughtfully. You’ve done this before, haven’t you? It won’t be all that tough. It should be approached as a welcome opportunity to practice, more than anything.");
+			output2("\n\nYou spread your lips over the smooth, round knob of the head, jaw cracking a bit as you open wide to accept the solid projection of cock into your mouth. It’s missing a lot of the qualities of the original that make it such an enjoyable experience to suck off - the filthily delicious taste, the expectancy of hot cum drowning your taste buds, and overarching all the seductive, malevolent body and mind attached to it - but still. The breadth and density of it filling your maw, sliding past your [pc.lips] and down your [pc.tongue] towards your tonsils, causes happy memories to flourish, warmth pulsing down to your [pc.groin].");
+			output2("\n\nYou slide it in and out a few times, getting used to its size, steadying yourself for the next stage - then, taking a deep breath, you firmly push it into your throat. The impulse to retch grips your senses... and then you’re past it, accepting inch after glorious inch into your esophagus, stretching your neck beneath your collar. A huffing moan escapes your nostrils as you watch more and more of it disappear before your eyes, the hand feeding it in getting inexorably closer, the other instinctively");
+			if(pc.hasVagina()) output2(" scrabbling at [pc.eachVagina]");
+			else if(pc.hasCock()) output2(" jerking [pc.eachCock]");
+			else output2(" reaching at your [pc.asshole]");
+			output2(", pulse thudding in your temple, the base of it tantalizingly close... and then in a panic you’re drawing it out, a remarkable amount of dripping holo-cock reaching out of your mouth before finally your air-hole is unblocked and you’re able to draw in coughing, saliva-choked breaths.");
+			output2("\n\nAlright. Alright, this time. You wait until your heartbeat has steadied and you’ve taken several deep, reassuring breaths, before submitting to the slutty ritual again. Calmly you open your mouth around the dildo’s smooth end and let it swell your cheeks again, fellating the glowing, flavorless light rhythmically, building yourself up; then you make it enter your throat again, determinedly feeding it further and further in, eyes fixed upon the glittering base. They water as the proud thickness claims you as deep as it possibly can, seemingly stretching into your stomach itself; but the insistent stroke of your fingers on your");
+			if(pc.hasVagina()) output2(" [pc.clit]");
+			else if(pc.hasCock()) output2(" [pc.cock]");
+			else output2(" [pc.butt]");
+			output2(" keeps you going, makes the acuteness of it ecstatic.");
+			output2("\n\nYour [pc.lips] touch the stone - you even let your [pc.tongue] slip out, lap at the balls... and then in a sudden, hollowing moment, it’s gone, faux-cock meat retracting and blinking away in a second, leaving your throat gaped around nothing, stone clutched to your mouth. With an almost imperceptible click, the collar opens at the front. The [pc.skin] on your neck breathes fresh air.");
+			output2("\n\nYou sit yourself down and take some big, sighing inhalations. You’re free of the soft, incessant pressure around the neck - at the expense of some heavy throating practice. Very Sera. You click the stone back into place upon the opened band of leather and lace and finally stow it into your gear.");
+			
+			seraCollarValue("off", true);
+			toggleCollar("Sera’s");
+			pc.lust(15);
+			
+			addGhostButton(0, "Next", manageWornCollar);
+			break;
+	}
+}
+// Putting it on
+// Blurb plays if PC equips it
+public function toggleSeraCollarOn():void
+{
+	clearOutput2();
+	author("Nonesuch");
+	
+	output2("You take up the opened curlicue of leather and lace, hesitate... and then thread it around your neck. It fastens at the front, behind the glowing cerulean stone, with an emphatic ‘click’. A tiny frog leaps in your stomach. Sera’s collar has its soft, sure grip around your throat now - and you know what you have to do if you ever want release from it.");
+	
+	seraCollarValue("on", true);
+	toggleCollar("Sera’s");
+	pc.lust(5);
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", manageWornCollar);
+}
+
+// Masturbation
+// Add [Gem Vag] and [Gem Anal] if PC is wearing it in Masturbation options
+public function fapSeraCollarVag():void
+{
+	clearOutput();
+	author("Nonesuch");
+	showBust("");
+	showName("SERA’S\nCOLLAR");
+	
+	var vIdx:int = rand(pc.vaginas.length);
+	var numClits:int = pc.totalClits();
+	
+	output("Your fingers touch the cerulean gemstone held in place over your throat, and with a small jerk and click, you uncouple it. You bring it up to your mouth and lay your lips upon the dry, faintly warm jewel, quickly pulling it back to avoid being batted in the face by the foot-long projection of hard light which springs eagerly into existence out of it.");
+	output("\n\nYou have to laugh at the absurdity of it: both the giant glowing blue wang now in your hand, and the whole ritual involved in turning it on. Honestly, how in love with yourself would you have to be to have something like this made? The demon-morph must have had it carefully measured and molded, all so you could have this ridiculous thing attached to your neck. Still... you heft it this way and that, enjoying its stiff waggle and bobbing balls. There’s no questioning she has a really nice dick. And this way you can enjoy it without necessarily getting an earful of abuse, or a big helping of cum splattered over you.");
+	output("\n\nYou lie back and spread your [pc.hips]. The size of the phallus requires you to hold it with both hands, using one to angle it whilst with the other you gently butt it against [pc.eachVagina]. You spend a little while nuzzling the smooth, warm head against [pc.eachClit], flicking over " + (pc.vaginas.length == 1 ? "it" : "them") + " like only you know how, sending fizzles of pure pleasure quivering through your lower half. Your pussy is soon lush with anticipation, " + (pc.isSquirter(vIdx) ? "drooling" : "moist with") + " [pc.girlCum]; but it’s only when");
+	if(numClits > 1) output(" [pc.eachClit] are bulging well out of their hoods");
+	else output(" your [pc.clit] is bulging well out of its hood");
+	output(" to your insistent nudging that you push the big, bright, bulbous protrusion against your entrance proper.");
+	output("\n\nSlowly you slide it in, opening your [pc.lips] as the firm thickness of it spreads you wide, inch after inch disappearing inside. You always forget how <i>big</i> she is... your body knows this invader, instinctively remembers all of the times it’s roughly made one of your wet holes its own, and quivers with filthy delight in response to it. You groan hoarsely as you");
+	if(pc.vaginalCapacity(vIdx) < chars["SERA"].cockVolume(0)) output(" fit as much of it inside of you as you can");
+	else output(" keep feeding it in until its big, plush testicles are propped up against your thighs");
+	output(", a big, warm insertion filling your [pc.vagina " + vIdx + "] wonderfully.");
+	
+	pc.cuntChange(vIdx, chars["SERA"].cockVolume(0));
+	
+	output("\n\nYou begin to steadily jerk it with one hand, working it against your sensitive walls deep inside you; your other skitters over your needy clit");
+	if(numClits > 1) output("s");
+	output(", fingering them so pleasure enflames every nerve ending your cunt has to offer. You gasp as your fingers flick furiously, gasp again, and then swear as [pc.eachClit] pulsate");
+	if(numClits > 1) output("s");
+	output(", sensation throbbing through you.");
+	output("\n\nOnly when the last delicious buzz has dissipated do you begin to work the dildo inside of you hard, bending that wonderful, obdurate density into your walls, this way and that. It’s simply a nice, satisfying feeling to begin with, but then you find the spot, <i>the</i> spot, and the next moment you’re levering the thing like a stuck brake handle, enthralled to that deep, glorious feeling growing deep within you.");
+	output("\n\nYou arch your back as it breaks over you, seizing your muscles up in orgasm, and you dig the phallus into you hard, intensifying the quakes rolling through [pc.eachVagina].");
+	if(!pc.isSquirter(vIdx)) output(" A thin dribble of [pc.girlCum] finds its way past your packed entrance.");
+	else output(" Gratuitous spurts of [pc.girlCum] force their way past your packed entrance.");
+	output("\n\nWhen the last delicious pulse has dissipated, you slowly retract the smooth firmness out of you, sighing at the pleasure of it sliding over your sensitive, gently aching walls, gasping a bit as the bulbous head catches at your lips. You serenely consider your twelve inch friend, damp now but obdurate and waggly as ever, its faint, warm glow matching how you feel rather well. You draw it up to your [pc.lips] and give the back a lick");
+	if(!pc.isSquirter()) output(", tasting your [pc.femCumFlavor] juices as you do");
+	output(".");
+	output("\n\n<i>“Thank you, Mistress.”</i>");
+	output("\n\nThe hard light retracts out of existence, and in a moment you’re holding nothing but a deceptively light gemstone again. You fix it back into your collar and then, with a reluctant sigh, get back to what you were doing.");
+	
+	processTime(15);
+	pc.orgasm();
+	seraCollarValue("vag", true);
+	IncrementFlag("SERA_COLLAR_FAPS");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function fapSeraCollarAnal():void
+{
+	clearOutput();
+	author("Nonesuch");
+	showBust("");
+	showName("SERA’S\nCOLLAR");
+	
+	output("Your fingers touch the cerulean gemstone held in place over your throat, and with a small jerk and click, you uncouple it. You bring it up to your mouth and lay your lips upon the dry, faintly warm jewel, quickly pulling it back to avoid being batted in the face by the foot-long projection of hard light which springs eagerly into existence out of it.");
+	output("\n\nYou have to laugh at the absurdity of it: both the giant glowing blue wang now in your hand, and the whole ritual involved in turning it on. Honestly, how in love with yourself would you have to be to have something like this made? The demon-morph must have had it carefully measured and molded, all so you could have this ridiculous thing attached to your neck. Still... you heft it this way and that, enjoying its stiff waggle and bobbing balls. There’s no questioning she has a really nice dick. And this way you can enjoy it without necessarily getting an earful of abuse, or a big helping of cum splattered over you.");
+	output("\n\nYou lay yourself down on your side, reaching your [pc.thigh] up and arching your back so you can bump the bulbous head of the hardlight dildo against your [pc.anus]. It’s awkward, particularly with a member this size, to properly position it. However... you gasp at the frisson of sensation you get as the warm, blunt head nudges inwards, slowly but surely opening you up, that delicious intensity that dances between pain and pleasure. Yep, definitely worth it.");
+	output("\n\nHolding onto the sturdy warmth of the projection hard, you work yourself open with tight, huffing grunts, loosening yourself to the point where it can be pushed inside. You gasp slightly as you manage it, the tight insides of your ass clamping down around the dense head. You always forget how fucking big she is! You spend a few moments deliberately relaxing yourself, and then with a firm push, begin to fill your colon with delicious, obdurate density, inch after inch of it disappearing beyond your stretched ring.");
+	output("\n\nTo begin with the sensation is simply intense, enjoyable only in a diffuse way, the hard smoothness filling and rubbing against your passageway as you stir yourself slowly. Gradually though, genuine pleasure does begin to flow through you, as");
+	if(pc.hasVagina()) output(" the dildo presses into your sensitive pussy walls");
+	if(pc.isHerm()) output(" and");
+	if(pc.hasCock()) output(" you find your prostate and repeatedly bump over it, making [pc.eachCock] flex and jerk eagerly");
+	output(". You begin to work the shaft harder, driven to stoke that arousal, emitting little gasps as it burns hotter with each jerk of the dildo within you.");
+	output("\n\nYou feel an acute desire to");
+	if(pc.hasVagina()) output(" diddle your [pc.vaginas]");
+	else if(pc.hasCock()) output(" pump your [pc.cocks]");
+	else output("stimulate your [pc.nipples]");
+	output(" at the same time, work yourself into a fit - but you bite down on it. Better to train yourself to be a true anal slut, to get off to the sensation of your mistress using your ass and your ass alone. That was surely her intention when she gave you this thing... you whine as your mind floods with submissive thoughts, driving the huge, glowing penis between the cheeks of your [pc.ass] roughly, desperate to translate that tantalizing, knock-on arousal into true orgasm.");
+	output("\n\nAfter a couple of minutes of hard butt-reaming, ratcheting your lust up by agonizing degrees, you manage it.");
+	if(pc.hasCock())
+	{
+		output(" Having already leaked a ton of pre, [pc.eachCock] seize");
+		if(pc.cocks.length == 1) output("s up and then " + (pc.cumQ() < 500 ? "spurts" : "fountains" ));
+		else output(" and " + (pc.cumQ() < 500 ? "spurt" : "fountain" ));
+		output(" [pc.cum] all over");
+		if(InShipInterior(pc)) output(" your sheets");
+		else output(" the ground");
+		output(".");
+	}
+	else if(pc.hasVagina())
+	{
+		output(" [pc.EachVagina] shiver");
+		if(pc.vaginas.length == 1) output("s");
+		output(" with each unrelenting press of the thick dildo and then break");
+		if(pc.vaginas.length == 1) output("s");
+		output(" into a series of wonderful clenches, sourcing");
+		if(!pc.isSquirter()) output(" a few fragrant drops of [pc.girlCum]");
+		else output(" a delicious spurt of [pc.girlCum]");
+		output(" with each crashing wave of joy.");
+	}
+	else
+	{
+		output(" Your [pc.buttcheeks] clench tight and your climax finally erupts");
+		if(pc.canMilkSquirt()) output(" as [pc.milk] squirts freely from your [pc.nipples]");
+		else output(", sending pleasurable shivers up your spine");
+		output(".");
+	}
+	output(" You moan in submissive ecstasy, driving the dildo into you forcefully all the while.");
+	output("\n\nOnce");
+	if(pc.hasCock()) output(" your [pc.cocks] " + (pc.cocks.length == 1 ? "is" : "are") + " flopped down in blissed out defeat");
+	if(pc.isHerm()) output(" and");
+	if(pc.hasVagina()) output(" your [pc.vaginas] " + (pc.vaginas.length == 1 ? "has quaked out its" : "have quaked out their") + " last");
+	if(pc.isSexless()) output(" your rapid anal spasms subside");
+	output(", you slowly withdraw the hard-light cock, gasping slightly as the head stretches out your [pc.anus] again. You draw it up to your [pc.lips] and give the back a lick.");
+	output("\n\n<i>“Thank you, Mistress.”</i>");
+	output("\n\nThe hard light retracts out of existence, and in a moment you’re holding nothing but a deceptively light gemstone again. You fix it back into your collar. You feel raw and tender, but profoundly satisfied with the efforts you’ve put into becoming a better anal slut. Won’t your mistress be pleased! You clean yourself up and after a few more moments of rest, continue on your way.");
+	
+	processTime(15);
+	pc.orgasm();
+	seraCollarValue("ass", true);
+	IncrementFlag("SERA_COLLAR_FAPS");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Tongue Fucking What is This I Don’t Even
+// Has chance of playing every time PC asks for salary, similarly to existing tail-cock scene, if the PC has at least met kerokeras or raskvel (c’mon man)
+public function seraTongueFuckBonus():Boolean
+{
+	output("\n\n<i>“I’m interested,”</i> Sera interrupts, before you’re halfway through your current tale of the frontier, <i>“if you’ve ever seen something like... this.”</i>");
+	output("\n\nHolding your gaze, she opens her mouth. Out of it flops her tongue - a long, slick ribbon of red, unspooling and lolling down her front until the blunt end slaps restlessly against her breasts. Staring at her with that thing hanging out, you realize for a sudden, jarring moment how inhuman your Mistress really looks - an eerie vision of sensual unholiness beyond the sweatiest of medieval imaginings. There can’t be many aliens that come into her shop that can guess her origins.");
+	
+	var hasCock:Boolean = pc.hasCock();
+	var select:int = -1;
+	
+	var convoList:Array = [];
+	if(pc.tongueType == GLOBAL.TYPE_DEMONIC) select = 1;
+	if(pc.tongueType == GLOBAL.TYPE_RASKVEL) select = 2;
+	if(pc.tongueType == GLOBAL.TYPE_FROG) select = 3;
+	if(select < 0 && (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined)) convoList.push(4);
+	if(select < 0 && flags["MET_KEROKORAS"] != undefined) convoList.push(5);
+	
+	if(select < 0 && convoList.length > 0) select = (convoList[rand(convoList.length)]);
+	
+	switch(select)
+	{
+		// Demon tongue:
+		case 1:
+			output("\n\n<i>“Uh... yeah?”</i> You open your own mouth and lollop out your own tongue, dangling it down as far as your [pc.chest] as well. Sera smirks, retracting her own to speak.");
+			output("\n\n<i>“I wondered if you were making good use of all that Lucifier,”</i> she says, eye on the end of it. She leans back on her counter, eyes half-lidded. <i>“Alright. Go on.”</i>");
+			break;
+		// Raskvel tongue:
+		case 2:
+			output("\n\n<i>“Kinda?”</i> You open your own mouth and lollop out your own tongue, a wide, wet, purple carpet that can easily touch your [pc.chest] as well. Sera eyes widen slightly, and she retracts her own to speak.");
+			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Bit lizard-y, but... useful-looking. Tell me how you got it.”</i>");
+			break;
+		// Kerokeras tongue:
+		case 3:
+			output("\n\n<i>“Kinda?”</i> Your tongue never turns down the opportunity to perform, and the moment you open your mouth it’s out there, whipping this way and that with wet, sticky intent. You have it catch a fetish doll off a nearby shelf and deposit it clumsily next to Sera. Her eyes widen slightly, and she retracts her own to speak.");
+			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Bit lizard-y, but... useful-looking. Tell me how you got it.”</i>");
+			break;
+		// Raskvel met:
+		case 4:
+			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the raskvel, the Tarkus-born race of rabbit-reptiles and their big, long tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
+			break;
+		// If not raskvel but kerokeras:
+		case 5:
+			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the kerokeras, the obscure race of frog-alogues that inhabit Mhen’ga, and their long, sticky whip-tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
+			break;
+	}
+	
+	output("\n\nShe gazes at your [pc.lips], the tip of her tongue tracing her own cerulean lips, as you talk, trying to come up with tidbits that might tickle her modding passions. You falter - it’s plainly evident that she’s not really listening - yet she impatiently waves her hand, urging you to continue talking about alien anatomy, and the things you’ve gotten into on the frontier. The moment you start getting into it again, however, she strides forward and forcefully pulls you into a hot kiss.");
+	output("\n\nHer clawed hands roughly grope your [pc.ass] as her lips mold into yours, plush breasts pooling against your [pc.chest]. You open your mouth, and for a moment taste her warm, smoky breath... and then that is replaced by her tongue, rearing past your teeth and into your mouth like a snake that’s spotted something plump and furry in the bushes. It’s a prehensile beast that can easily wrap around yours, melding with it passionately, owning it and squeezing it in muffled, saliva-slathered embrace. But Sera isn’t interested in merely your mouth. Your [pc.eyes] widen as she bends in further, and with a filthy wet sound pushes her long tongue past your tonsils.");
+	output("\n\nYou try and relax as wet, hot muscle reaches down your throat but it’s rather difficult, particularly when its owner is");
+	if(!pc.isCrotchExposed()) output(" shoving its hand inside your [pc.lowerGarment] and");
+	if(hasCock) output(" gripping your [pc.cock] and brusquely jerking you, working leaden arousal into your shaft with sharp, certain movements");
+	else output(" sliding her digits into your [pc.pussy], brusquely fingering you with clever, certain movements");
+	output(". You quiver as she ravages you, pinioned upon her extremities at both ends, and she husks something wicked into your mouth, " + (hasCock ? "jacking" : "jilling") + " you harder. The next second she’s withdrawing her tongue, slithering up your esophagus and then past your own [pc.tongue], pulling away from you sharply. You heave for breath.");
+	output("\n\n<i>“‘S why I’m interested in long tongues,”</i> she growls. <i>“For me, anyway. " + (InCollection(select, [1, 2, 3]) ? "Yours is for other purposes." : "On you it’d be for other purposes.") + " Sub, dom... a tonsil toucher is something to have. I wanna have a selection of gene mods that produce ‘em in my shop.”</i>");
+	
+	processTime(4);
+	pc.lust(20);
+	
+	clearMenu();
+	addButton(0, "Next", seraTongueFuck, [select, hasCock]);
+	
+	return true;
+}
+public function seraTongueFuck(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	showSera();
+	clearMenu();
+	
+	var select:int = arg[0];
+	var hasCock:Boolean = arg[1];
+	
+	// If collar:
+	if(wearingSeraCollar())
+	{
+		output("Her burning eyes travel downwards, to the gothic curlicue of black lace and leather strapped tightly around your neck.");
+		output("\n\n<i>“I’ve got an app that keeps count of how many times you use that thing, you know,”</i> she murmurs, in a lower, sultry tone. <i>“And how many times you take it off.");
+		if(seraCollarValue("fap") > 0 && days - seraCollarValue("fap") <= 7)
+		{
+			// PC has masturbated with and has taken it off in last 7 days:
+			if(seraCollarValue("off") > 0 && days - seraCollarValue("off") <= 7) output(" I know you’ve been enjoying yourself. In your mouth, in your " + (seraCollarValue("fap") == seraCollarValue("vag") ? "pussy" : "ass pussy") + "... mmm, what a </i>good<i> slut. Taking it balls deep for Mistress, even when you’re light years away doing research for her.");
+			// If PC has masturbated with it but hasn’t taken it off in last 7 days:
+			else output(" I’m glad you’ve been enjoying the best dick in the galaxy. You’ve earned that. But no taking it off? I use <i>all</i> of your holes as and when, slut. Hard. So you better train ‘em all.");
+		}
+		else
+		{
+			// If PC has not masturbated with it, but has taken it off in last 7 days:
+			if(seraCollarValue("off") > 0 && days - seraCollarValue("off") <= 7) output(" No masturbating... but plenty of deep throating. Saving yourself for the real thing, but still getting some training in? Oh, I like that a <b>lot</b>, slut!");
+			// If PC has not masturbated with it in last 7 days:
+			else output(" Which isn’t nearly enough. It’s not enough to just look pretty if you belong to me, bottom bitch; you gotta train. Get that thing up you on the regular, and sing my name as you do it.");
+		}
+		output("”</i>");
+		output("\n\n");
+	}
+	output("Lust enlivens the succubus’s face as she goes on, and you have a single moment to draw breath before she presses the assault again, gripping you in her supple embrace so she can invade your mouth with her rolling, lavishing serpent of a tongue again, lips mushing over each other, curling around your own for a few moments before she penetrates your gullet with it, blocking out your air. She fucks your throat with it, thrusting into it back and forth, all the while her hand reaches between your [pc.thighs] and masturbates you furiously");
+	if(hasCock) output(", tight grip whipping up and down your [pc.cock] until it’s straining and beading pre");
+	else
+	{
+		output(", hot fingers curving into your [pc.vagina] and flicking away at your [pc.clits] ceaselessly until");
+		if(pc.vaginas[0].clits == 1) output(" it’s straining out of its hood");
+		else output(" they’re straining out of their hoods");
+	}
+	output(".");
+	// If tail genitals:
+	if(pc.hasTailGenital())
+	{
+		output(" Her spade tail wraps around your own tail until it looks like the galaxy’s most obscene medical symbol,");
+		if(pc.hasTailCock()) output(" frotting your [pc.tailCocks] until " + (pc.tailCount == 1 ? "it’s" : "they’re") + " giddily bulging and straining");
+		else output(" thrusting into " + (pc.tailCount == 1 ? "your" : "one of your") + " [pc.cuntTails] hard until it’s sopping and shimmering with joy");
+		output(".");
+	}
+	
+	pc.lust(100);
+	
+	output("\n\nYou are helpless to do anything but hold the curve of her back and take it, trying to do your best to relax and not gag to the singular sensation of her wet, eel-like appendage filling your mouth and throat, pulse thudding in your ears as the moments drag by, and then cumming like a caught fish yourself, seizing up and spurting");
+	if(hasCock) output(" [pc.cum]");
+	else output(" [pc.girlCum]");
+	output(" all over her hand, transfixed upon the savage, expert movements of her fingers and upon her tongue, the asphyxiating kiss making it all the wilder and more intoxicating.");
+	// Large output:
+	if((hasCock && pc.cumQ() >= 1000) || (!hasCock && pc.girlCumQ() >= 1000)) output(" Your orgasm is, as ever, gratuitous, and you spray the floor of the shop with your " + (hasCock ? "seed" : "pussy juices") + ", led on by the relentless march of her " + (hasCock ? "jerking" : "fingering") + ".");
+	output("\n\nYour muffled whines and moans combines with her own dark chuckle in the recesses of your mouth, and she withdraws, letting you take a couple of gasping breaths before going back to snogging you lasciviously one last time, tongues and lips rolling over each other as orgasm continues to tremble through your [pc.groin], before she departs with a pinching bite on your lower lip.");
+	output("\n\n<i>“Mmm,”</i> she sighs, still holding you close, exploring the insides of her around mouth ruminatively. <i>“Tastes of fuck-slave.”</i>");
+	// Lust/cum reset
+	if((hasCock && pc.cumQ() < 1000) || (!hasCock && pc.girlCumQ() < 1000))
+	{
+		output("\n\nShe considers her own " + (hasCock ? "[pc.cum]" : "[pc.girlCum]") + "-smeared hand dispassionately, and then presents it to you. Holding her gaze, you obediently lick her clean, lapping away every trace of " + (hasCock ? "[pc.cumFlavor]" : "[pc.girlCumFlavor]") + ", finishing by sucking on her index finger. You receive a pleased smile and a stroke behind the [pc.ear] in return.");
+		pc.orgasm();
+		processTime(5);
+		
+		addButton(0, "Next", seraTongueFuckFin, false);
+	}
+	else
+	{
+		output("\n\nShe steps back and considers the respectably sized puddle of " + (hasCock ? "[pc.cum]" : "[pc.girlCum]") + " on the floor beneath you dispassionately.");
+		output("\n\n<i>“You’re such a messy pet, aren’t you?”</i> She shakes her head. <i>“It’s fun making you squirt, but man, I don’t envy the person who has to clean that up.”</i> She sashays back behind her counter, tail swinging. <i>“");
+		if(InCollection(select, [1, 2, 3])) output("Good thing you’ve got that tongue.");
+		else output("Like I said - you need to sort yourself out with a better tongue.");
+		output(" Don’t take too long - I don’t want a customer slipping in it.”</i>");
+		output("\n\nHumiliation burns on your cheeks as you " + (pc.hasKnees() ? "kneel" : "lower yourself") + " down over the " + (hasCock ? "[pc.cumVisc]" : "[pc.girlCumVisc]") + " pool and begin to lap it up. This tastes nowhere <i>near</i> as good going cold. The pleasant ache in your genitals and the fuzz of subspace help a lot, though...");
+		pc.orgasm();
+		processTime(20);
+		
+		addButton(0, "Next", seraTongueFuckFin, true);
+	}
+}
+public function seraTongueFuckFin(lickedFloor:Boolean = false):void
+{
+	clearOutput();
+	author("Nonesuch");
+	showSera();
+	
+	if(lickedFloor)
+	{
+		output("Only after she’s considered the spit-polished cerami-synth floor with a sadist’s discerning eye does Sera");
+		if(!wearingSeraCollar()) output(" let you get up");
+		else output("’s spade tail catch the brass ring of your collar and orders you up with a stiff jerk");
+		output(". Your mouth feels thoroughly despoiled, but the pleased smile and rub behind the [pc.ear] you receive from Mistress makes it all worthwhile. Probably.");
+		output("\n\n");
+	}
+	output("<i>“Keep discovering interesting things out there and sticking them into you, my little researcher,”</i> Sera says, casually leaning over and pressing a button on her store screen. Your codex beeps the sweet sound of credits received a moment later. <i>“Remember to keep brushing your teeth, though. Oral hygiene is very important.”</i>");
+	
+	processTime(3);
+	
+	seraGetDosh();
+	IncrementFlag("SERA_TONGUE_FUCKED");
+	
+	clearMenu();
+	addButton(0, "Next", seraMenu);
+}
+

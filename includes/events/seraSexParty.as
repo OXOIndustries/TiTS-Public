@@ -1669,17 +1669,47 @@ public function seraSexPartyConclusion():void
 // Salary
 public function seraGetSalary():void
 {
+	if(flags["SERA_SALARY_PAID"] != undefined && !pc.hasKeyItem("Sera’s Collar"))
+	{
+		seraGiftCollar();
+		return;
+	}
+	
 	clearOutput();
 	author("Nonesuch");
 	showSera();
 	
+	var surpriseSex:Array = [seraMenu];
+	var selFunc:Function = seraMenu;
+	
+	if(pc.hasCuntTail()) surpriseSex.push(getTailUsedBySera);
+	if(pc.hasParasiteTailCock()) surpriseSex.push(seraCockvineScene);
+	if((flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["MET_KEROKORAS"] != undefined) && pc.hasGenitals()) surpriseSex.push(seraTongueFuckBonus);
+	
+	if(surpriseSex.length > 0) selFunc = surpriseSex[rand(surpriseSex.length)];
+	
 	output("<i>“So... can I have my salary? Mistress?”</i> Sera leans back on her stool, crosses her legs.");
 	output("\n\n<i>“Tell me about the things you’ve seen first,”</i> she says. <i>“And gotten on your knees for, no doubt.”</i>");
-	output("\n\nWith the help of your codex you outline what you’ve been up to, the planets you’ve visited and the sights you’ve seen. Sera seems glazed by this formality she’s invented for you at first, but does gradually get into it, making you go back over your hornier exploits until you find yourself more embarrassed about them than you did even at the time. That she makes you feel red is palpably what she really wants from this “field research”, and she’s got a big shit-eating grin on her face by the end.");
+	output("\n\nWith the help of your codex you outline what you’ve been up to, the planets you’ve visited and the sights you’ve seen.");
+	
+	if(selFunc == seraTongueFuckBonus)
+	{
+		seraTongueFuckBonus();
+		return;
+	}
+	
+	output(" Sera seems glazed by this formality she’s invented for you at first, but does gradually get into it, making you go back over your hornier exploits until you find yourself more embarrassed about them than you did even at the time. That she makes you feel red is palpably what she really wants from this “field research”, and she’s got a big shit-eating grin on her face by the end.");
 	output("\n\n<i>“Very good, Steele,”</i> she purrs. <i>“Could definitely do with more bits about you getting alien reproductive fluid samples all over your face, though. Think about that for next time.”</i> She taps her store screen carelessly, and your bank account is updated.");
 	
 	processTime(15 + rand(16));
 	
+	seraGetDosh();
+	
+	clearMenu();
+	addButton(0, "Next", selFunc);
+}
+public function seraGetDosh():void
+{
 	/*
 	var weeksPast:int = Math.floor((GetGameTimestamp() - flags["SERA_SALARY_DATE"]) / 60 / 24 / 7);
 	var totalCredits:int = 0;
@@ -1697,10 +1727,5 @@ public function seraGetSalary():void
 	pc.credits += totalCredits;
 	flags["SERA_SALARY_DATE"] = GetGameTimestamp();
 	IncrementFlag("SERA_SALARY_PAID");
-	
-	clearMenu();
-	if(pc.hasCuntTail() && rand(2) == 0) addButton(0, "Next", getTailUsedBySera);
-	else if(pc.hasParasiteTailCock() && rand(2) == 0) addButton(0, "Next", seraCockvineScene);
-	else addButton(0, "Next", seraMenu);
 }
 
