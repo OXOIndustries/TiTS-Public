@@ -264,6 +264,7 @@
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
+		include "../includes/newTexas/brandy.as";
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
@@ -472,7 +473,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.41";
+			version = "0.7.42";
 
 			//temporary nonsense variables.
 			temp = 0;

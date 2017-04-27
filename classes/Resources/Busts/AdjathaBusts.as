@@ -83,6 +83,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kat_nude.png", mimeType = "image/png")]
 		public var Bust_BORING_MISTRESS_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/brandy.png", mimeType = "image/png")]
+		public var Bust_BRANDY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/brandy_nude.png", mimeType = "image/png")]
+		public var Bust_BRANDY_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget.png", mimeType = "image/png")]
 		public var Bust_BRIGET:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/briget_nude.png", mimeType = "image/png")]

@@ -13,7 +13,7 @@ public function showJames(nude:Boolean = false):void
 //Approach and Description
 public function approachBuckBronoBonus():void
 {
-	output("\n\nA two-story rectangular building lies to the south, with a painted wooden sign emblazoned “Bucking Bronco Saloon”. Upon closer inspection, you notice there is a white line running diagonally through the B, creating a letter that could be read as either B or F.");
+	output("A two-story rectangular building lies to the south, with a painted wooden sign emblazoned “Bucking Bronco Saloon”. Upon closer inspection, you notice there is a white line running diagonally through the B, creating a letter that could be read as either B or F.");
 	if(pc.isTreated()) output(" Nice!");
 	else output(" Charming.");
 	output(" A sign above the doors reads in flowery script <i>“The Broodmare Bordello located on second floor.”</i>");

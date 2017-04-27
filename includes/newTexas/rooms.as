@@ -70,10 +70,9 @@ public function initNewTexasRooms():void
 	rooms["505"] = new RoomClass(this);
 	rooms["505"].roomName = "THE\nROAD";
 	rooms["505"].description = "Little puffs of dust kick up with each step you take on this east-west thoroughfare. The roadway is a simple affair of cleared dirt that’s been weatherworn into what feels more like a series of ruts than a transportation hub. A gleaming white post protrudes from the waving grasses to the north, anchoring the eastmost side of an expansive porch. Behind it sits a large farmhouse; many of the passersby look to be heading towards its entrance - just to the west.";
-	rooms["505"].runOnEnter = approachBuckBronoBonus;
+	//rooms["505"].runOnEnter = ;
 	rooms["505"].westExit = "504";
-	rooms["505"].eastExit = "506";
-	rooms["505"].southExit = "BUCKING BRONCO";
+	rooms["505"].eastExit = "505.5";
 	rooms["505"].planet = "PLANET: NEW TEXAS";
 	rooms["505"].system = "SYSTEM: NYE";
 	rooms["505"].addFlag(GLOBAL.OUTDOOR);
@@ -85,7 +84,7 @@ public function initNewTexasRooms():void
 	rooms["BUCKING BRONCO"].roomName = "BUCKING\nBRONCO";
 	rooms["BUCKING BRONCO"].description = "";
 	rooms["BUCKING BRONCO"].runOnEnter = saloonInteriorBonus;
-	rooms["BUCKING BRONCO"].northExit = "505";
+	rooms["BUCKING BRONCO"].northExit = "505.5";
 	rooms["BUCKING BRONCO"].westExit = "BRONCO STAIRS 1";
 	rooms["BUCKING BRONCO"].eastExit = "BRONCO STAGE";
 	rooms["BUCKING BRONCO"].planet = "PLANET: NEW TEXAS";
@@ -144,12 +143,39 @@ public function initNewTexasRooms():void
 	rooms["BRONCO STAGE"].addFlag(GLOBAL.PUBLIC);
 	rooms["BRONCO STAGE"].addFlag(GLOBAL.NPC);
 	
+
+	//505.5 The Road
+	rooms["505.5"] = new RoomClass(this);
+	rooms["505.5"].roomName = "THE\nROAD";
+	rooms["505.5"].description = "";
+	rooms["505.5"].westExit = "505";
+	rooms["505.5"].eastExit = "505.75";
+	rooms["505.5"].southExit = "BUCKING BRONCO";
+	rooms["505.5"].planet = "PLANET: NEW TEXAS";
+	rooms["505.5"].system = "SYSTEM: NYE";
+	rooms["505.5"].addFlag(GLOBAL.OUTDOOR);
+	rooms["505.5"].addFlag(GLOBAL.PUBLIC);
+	rooms["505.5"].runOnEnter = approachBuckBronoBonus;
+
+	//505.75 The Road
+	rooms["505.75"] = new RoomClass(this);
+	rooms["505.75"].roomName = "THE\nROAD";
+	rooms["505.75"].description = "";
+	rooms["505.75"].runOnEnter = brandyBonusShiiiit;
+	rooms["505.75"].westExit = "505.5";
+	rooms["505.75"].eastExit = "506";
+	rooms["505.75"].planet = "PLANET: NEW TEXAS";
+	rooms["505.75"].system = "SYSTEM: NYE";
+	rooms["505.75"].addFlag(GLOBAL.OUTDOOR);
+	rooms["505.75"].addFlag(GLOBAL.PUBLIC);
+	rooms["505.75"].addFlag(GLOBAL.NPC);
+
 	//506 The Road
 	rooms["506"] = new RoomClass(this);
 	rooms["506"].roomName = "THE\nROAD";
 	rooms["506"].description = "Wooden fence posts line the roadside, polished to such a gleaming sheen that you can see your face reflected across patterned grain. They’re at least eight feet tall and connected by slats inches thick. New Texans either have immense livestock or value size more than the rest of the galaxy. The result is a barrier tall enough to give even the largest beasts pause and strong enough to arrest a speeding hovertruck. Behind the posts, there are acres of rolling fields; you get the impression that wandering off the beaten paths might run you afoul of the locals. It’s best to stay on the road for now. A gap to the southeast reveals a colorful structure.";
 	rooms["506"].runOnEnter = undefined;
-	rooms["506"].westExit = "505";
+	rooms["506"].westExit = "505.75";
 	rooms["506"].eastExit = "507";
 	rooms["506"].planet = "PLANET: NEW TEXAS";
 	rooms["506"].system = "SYSTEM: NYE";
