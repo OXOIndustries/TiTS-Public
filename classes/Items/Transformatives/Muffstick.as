@@ -269,7 +269,7 @@
 				if(newColor == "null") output(" transparent");
 				else output(" " + newColor);
 				output(" glisten starts spreading out, first coating the inner labia and then the rest of your orifice. After a short while, you use up the remainder of the Muffstick and watch the last layer thinning out.");
-				output("\n\nYou get but a moment to admire the slutty makeup you’ve given your slit before your crotch suddenly feels like it’s been set on fire. Intense pleasure spreads throughout your honeypot, every inch of it now made several times more sensitive than a clit, forcing you to buck your hips in the air for relief. The combination of mind blowing pleasure and scorching heat simply becomes too much to bear, robbing you of your strength. As your [pc.legs] gradually give in, your motions slowly die down and you slump onto your back. After taking a moment to fetch your breath, you gather whatever energy you have left and prop yourself up on the elbows, directing your attention towards the Codex.");
+				output("\n\nYou get but a moment to admire the slutty makeup you’ve given your slit before your crotch suddenly feels like it’s been set on fire. Intense pleasure spreads throughout your honeypot, every inch of it now made several times more sensitive than a clit, forcing you to buck your hips in the air for relief. The combination of mind blowing pleasure and scorching heat simply becomes too much to bear, robbing you of your strength. As your [pc.legs] gradually give in, your motions slowly die down and you slump onto your back. After taking a moment to fetch your breath, you gather whatever energy you have left and prop yourself up on your elbows, directing your attention towards the Codex.");
 				output("\n\nIt doesn’t take long before you see the outer lips puffing out, melting together with the inner ones and slowly forming an undeniably mouth-like entrance. And what a mouth it is - a pair of plump lips frozen in a seductive");
 				if(target.vaginas[selVag].looseness() <= 3) output(" ‘O’");
 				else output(", pouty");
@@ -281,8 +281,8 @@
 				output("\n\nIf you had any strength after suffering through all the pleasure and the scorching heat in your shifting pussy, you would most likely be all over them by now; instead you can only lick your lips in the anticipation of what you can do with them later on...");
 				output("\n\nYou spend some time staring at this sensual display of your hot tongue dancing around your newly formed lips, grazing the polished clits every now and then - which feels absolutely <i>amazing</i> - before you realize that you’re able to watch yourself lick your own mouth. Or, to be more precise, witness an erogenous tongue lolling out and circling the oversensitive, swollen lips of your muff.");
 				output("\n\nInitially quite shocked by this sudden change, you’re soon too busy losing yourself in the mind-blowing pleasure it brings to even care. You have full control of the seductive licker and find yourself moving it with the same ease and precision as the one upstairs, sliding it rapidly along the sensitive rims, going from one clit to another with reckless abandon.");
-				output("\n\nAlready flushed and turned on from the heat inside your maw, the added sensations from the erogenous tongue and the oh-so arousing show the Codex treats you to serve as the tipping point. The climax washes over you like a tsunami of euphoria, flooding your entire system with orgasmic ecstasy. The strong current reaches out all the way to your brain, completely overloading it with wave after wave of unparalleled pleasure, leaving you a quivering, moaning mess, with eyes rolled upwards and a classic O-face expression.\n\n");
-				output("Streams of [pc.girlcum] gush out from your mouthgina");
+				output("\n\nAlready flushed and turned on from the heat inside your maw, the added sensations from the erogenous tongue and the oh-so arousing show the Codex treats you to serve as the tipping point. The climax washes over you like a tsunami of euphoria, flooding your entire system with orgasmic ecstasy. The strong current reaches out all the way to your brain, completely overloading it with wave after wave of unparalleled pleasure, leaving you a quivering, moaning mess, with eyes rolled upwards and a classic O-face expression.");
+				output("\n\nStreams of [pc.girlcum] gush out from your mouthgina");
 				if(target.hasCock())
 				{
 					output(" joined in by the");
@@ -298,7 +298,7 @@
 				{
 					output(" The [pc.cumNoun] however shoots unsurprisingly right where it was aimed, leaving some [pc.cumColor] marks on your torso and a bit on your face too.");
 					if(kGAMECLASS.silly) output(" You shakingly raise your hand and try to wipe it off. No, not quite there, to your right... No, your other right... Wait, which mouth are your trying to clean, again?");
-					if(target.cumQ() >= 1000) output("The cum however splatters most of your upper body and face, covering you in the [pc.cumColor], sticky substance.");
+					if(target.cumQ() >= 1000) output(" The cum however splatters most of your upper body and face, covering you in the [pc.cumColor], sticky substance.");
 				}
 				output(" Completely spent");
 				if(target.hasCock() && target.cumQ() >= 1000) output(" and spooge saturated");
