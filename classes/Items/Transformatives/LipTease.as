@@ -305,7 +305,7 @@
 			}
 			if(colorType == "mouthgina")
 			{
-				lipType = ("[pc.vagina " + idx + "]");
+				lipType = ("[pc.vagina " + idx + "] lips");
 			}
 			
 			clearOutput();
