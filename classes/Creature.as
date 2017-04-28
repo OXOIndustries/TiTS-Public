@@ -5474,7 +5474,7 @@
 		//Modify femininity!
 		public function modFem(change: Number, strength: Number = 1): String {
 			var output: String = "";
-			var old: String = faceDesc();
+			var old: String = face(true);
 			//If already perfect!
 			if (change == 0) return "";
 			//Abord if at an end of the scale
@@ -5493,13 +5493,13 @@
 			}
 			//Large change
 			if (Math.abs(change) > 5) {
-				if (change > 0) output = "\n\n<b>Your facial features soften as your body becomes more feminine. (+" + Math.round(change * 10) / 10 + ")</b>";
-				else output = "\n\n<b>Your facial features harden as your body becomes more masculine. (" + Math.round(change * 10) / 10 + ")</b>";
+				if (change > 0) output = "\n\n<b>Your facial features soften as your body becomes more feminine. (+" + Math.round(change * 10) / 10 + " Femininity)</b>";
+				else output = "\n\n<b>Your facial features harden as your body becomes more masculine. (-" + Math.round(change * 10) / 10 + " Femininity)</b>";
 			}
 			//Barely noticable change!
 			else {
-				if (change > 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperceptibly towards being more feminine. (+" + Math.round(change * 10) / 10 + ")";
-				else if (change < 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperciptibly towards being more masculine. (" + Math.round(change * 10) / 10 + ")";
+				if (change > 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperceptibly towards being more feminine. (+" + Math.round(change * 10) / 10 + " Femininity)";
+				else if (change < 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperciptibly towards being more masculine. (-" + Math.round(change * 10) / 10 + " Femininity)";
 			}
 			return output;
 		}
