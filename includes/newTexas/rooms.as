@@ -279,27 +279,41 @@ public function initNewTexasRooms():void
 	//The Barn (GIANNA)(South Center)
 	rooms["512"] = new RoomClass(this);
 	rooms["512"].roomName = "THE\nBARN";
-	rooms["512"].description = "You’re standing square in the middle of a wide passage that runs north-south through the center of the barn. Stalls line it on either side along its whole length, but what really catches your eye is the bank of blinking lights built into the eastern wall. Flat panel displays, blinking lights, and various keypads all vie for your attention. It looks like you’ve found the controls for the barn’s machinery. The stall next to the console is closed, and marked “occupied”. Faint moans emanate from within. Opposite, the door hangs open. You could step inside if you wished.";
-	rooms["512"].runOnEnter = giannaBonusShit;
+	rooms["512"].description = "";
+	rooms["512"].runOnEnter = milkBarn512Func;
 	rooms["512"].southExit = "511";
 	rooms["512"].northExit = "513";
 	rooms["512"].westExit = "517";
+	rooms["512"].eastExit = "STALL EAST";
 	rooms["512"].moveMinutes = 1;
 	rooms["512"].planet = "PLANET: NEW TEXAS";
 	rooms["512"].system = "SYSTEM: NYE";
 	rooms["512"].addFlag(GLOBAL.INDOOR);
 	rooms["512"].addFlag(GLOBAL.PUBLIC);
 	//rooms["512"].addFlag(GLOBAL.NPC);
+
+	//Stall East
+	rooms["STALL EAST"] = new RoomClass(this);
+	rooms["STALL EAST"].roomName = "MILKING\nSTALL";
+	rooms["STALL EAST"].description = "";
+	rooms["STALL EAST"].runOnEnter = undefined;
+	rooms["STALL EAST"].westExit = "512";
+	rooms["STALL EAST"].moveMinutes = 1;
+	rooms["STALL EAST"].planet = "PLANET: NEW TEXAS";
+	rooms["STALL EAST"].system = "SYSTEM: NYE";
+	rooms["STALL EAST"].addFlag(GLOBAL.INDOOR);
+	rooms["STALL EAST"].addFlag(GLOBAL.PUBLIC);
 	
 	//513
 	//The Barn (North Center)
 	rooms["513"] = new RoomClass(this);
 	rooms["513"].roomName = "THE\nBARN";
-	rooms["513"].description = "It’s not often you get to see buildings constructed in the ancients’ styles, built with nothing more than beams of hewn wood, sweat, and a few metal bolts. Of course, here and there you see hints of modern technology running through it. New Texas may be an upper-class tourist hotspot advertised as getting back to nature, but they’re obviously spending their credits on securing the best milking technology available. Judging by the deep groans of pleasure coming from the sealed stall to the west, they’re milking more than milk too. The door to the east is marked “occupied” as well.\n\nYou can hear a dull thudding coming from one of the stalls to the east.";
-	rooms["513"].runOnEnter = randomBarnEventFunc;
+	rooms["513"].description = "";
+	rooms["513"].runOnEnter = milkBarn513Func;
 	rooms["513"].southExit = "512";
 	rooms["513"].northExit = "514";
 	rooms["513"].eastExit = "HALEY";
+	rooms["513"].westExit = "STALL NW";
 	rooms["513"].moveMinutes = 1;
 	rooms["513"].planet = "PLANET: NEW TEXAS";
 	rooms["513"].system = "SYSTEM: NYE";
@@ -319,15 +333,28 @@ public function initNewTexasRooms():void
 	rooms["HALEY"].addFlag(GLOBAL.INDOOR);
 	rooms["HALEY"].addFlag(GLOBAL.PUBLIC);
 	rooms["HALEY"].addFlag(GLOBAL.NPC);
+
+	//Stall North-west
+	rooms["STALL NW"] = new RoomClass(this);
+	rooms["STALL NW"].roomName = "MILKING\nSTALL";
+	rooms["STALL NW"].description = "";
+	rooms["STALL NW"].runOnEnter = undefined;
+	rooms["STALL NW"].eastExit = "513";
+	rooms["STALL NW"].moveMinutes = 1;
+	rooms["STALL NW"].planet = "PLANET: NEW TEXAS";
+	rooms["STALL NW"].system = "SYSTEM: NYE";
+	rooms["STALL NW"].addFlag(GLOBAL.INDOOR);
+	rooms["STALL NW"].addFlag(GLOBAL.PUBLIC);
 	
 	//514
 	//The Barn (North End)
 	rooms["514"] = new RoomClass(this);
 	rooms["514"].roomName = "THE\nBARN";
-	rooms["514"].description = "The barn’s central thoroughfare comes to an abrupt end here at the north wall. Worse yet, only one of the stalls has the door open. You can enter it to the west, if you like. To the east, there’s rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You’ll need to head south if you want to clear your head.";
-	rooms["514"].runOnEnter = randomBarnEventFunc;
+	rooms["514"].description = "";
+	rooms["514"].runOnEnter = milkBarn514Func;
 	rooms["514"].southExit = "513";
 	rooms["514"].westExit = "BrynnsStall";
+	rooms["514"].eastExit = "STALL NE";
 	rooms["514"].moveMinutes = 1;
 	rooms["514"].planet = "PLANET: NEW TEXAS";
 	rooms["514"].system = "SYSTEM: NYE";
@@ -347,6 +374,18 @@ public function initNewTexasRooms():void
 	rooms["BrynnsStall"].addFlag(GLOBAL.INDOOR);
 	rooms["BrynnsStall"].addFlag(GLOBAL.PUBLIC);
 	rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
+
+	//Stall North-east
+	rooms["STALL NE"] = new RoomClass(this);
+	rooms["STALL NE"].roomName = "MILKING\nSTALL";
+	rooms["STALL NE"].description = "";
+	rooms["STALL NE"].runOnEnter = undefined;
+	rooms["STALL NE"].westExit = "514";
+	rooms["STALL NE"].moveMinutes = 1;
+	rooms["STALL NE"].planet = "PLANET: NEW TEXAS";
+	rooms["STALL NE"].system = "SYSTEM: NYE";
+	rooms["STALL NE"].addFlag(GLOBAL.INDOOR);
+	rooms["STALL NE"].addFlag(GLOBAL.PUBLIC);
 	
 	//515
 	//Milking Stall - Will have a milker someday

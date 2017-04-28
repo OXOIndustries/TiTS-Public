@@ -126,9 +126,9 @@ public function giannaAvailableSilicone(arg:int = 0):Number
 //  ACTUAL CONTENT FUNCTIONS
 //================================
 
-public function giannaBonusShit():Boolean
+public function giannaBonusShit():void
 {
-	if(giannaAWOL()) return false;
+	if(giannaAWOL()) return;
 	
 	//Unmet blurb
 	if(flags["MET_GIANNA"] == undefined)
@@ -205,7 +205,6 @@ public function giannaBonusShit():Boolean
 	}
 	addButton(0,"Gianna",approachGianna,undefined,"Gianna","Approach the naked android.");
 	if(flags["MET_GIANNA"] == undefined) addButton(0,"Android",approachGianna,undefined,"Android","Approach the naked android.");
-	return false;
 }
 
 public function approachGianna(special:String = ""):void

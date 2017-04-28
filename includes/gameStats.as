@@ -3525,6 +3525,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Brandy
+			if(flags["MET_BRANDY"] != undefined)
+			{
+				output2("\n<b><u>Bailey’s Bovine Brewery</u></b>");
+				output2("\n<b>* Brandy:</b> Met her");
+				if(flags["SUCKLED_BRANDY"] != undefined) output2("\n<b>* Brandy, Times Suckled:</b> " + flags["SUCKLED_BRANDY"]);
+				if(flags["BRANDY_MISSIONARY"] != undefined) output2("\n<b>* Brandy, Times Fucked Her Vagina:</b> " + flags["BRANDY_MISSIONARY"]);
+				if(flags["BRANDY_MISCREANTED"] != undefined) output2("\n<b>* Brandy, Times Sexed at Miscreant Manor:</b> " + flags["BRANDY_MISCREANTED"]);
+				if(flags["BRANDY_STALLED"] != undefined) output2("\n<b>* Brandy, Times Sexed in Stall:</b> " + flags["BRANDY_STALLED"]);
+				variousCount++;
+			}
 			// Bucking Bronco Saloonary
 			if(flags["MET_JAMES"] != undefined || flags["MET_SALLY"] != undefined || flags["MET_SYDNEY"] != undefined || flags["MET_KEGS"] != undefined || flags["LIVING_KEGGED"] != undefined || flags["BRONCO_USED"] != undefined)
 			{
@@ -3554,7 +3565,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_SYDNEY"] != undefined) output2("\n<b>* Sydney:</b> Met him");
 				variousCount++;
 			}
-			// 9999 Brandy if(flags["MET_BRANDY"] != undefined) output2("\n<b>* Brandy:</b> Met her");
 			// The Fields
 			if(flags["MET_CAMERON"] != undefined || flags["MET_VARMINT"] != undefined || varmintIsCrew())
 			{

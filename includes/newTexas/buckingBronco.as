@@ -49,9 +49,6 @@ public function saloonInteriorBonus():Boolean
 
 	if(flags["LIVING_KEGGED"] == undefined) output("\n\nThere’s a group of naked cowgirls lined up near the bar, each of them sporting a spectacular bust with beads of various colored liquids forming on their stiff teats.");
 	else output("\n\nThose tit-modded cowgirls are lined up at their usual spot by the bar, ready to give you, and everyone else in the saloon, a taste of whatever their bountiful breasts have to offer, all of them giggling and bouncing around happily.");
-
-	if(flags["MET_SALLY"] == undefined) output("\n\nThat dark-skinned, rum-titted cowgirl is sitting at the bar and sipping a drink. She’s still completely nude, and you can practically smell whatever kind of pheromones she’s producing from over here, almost like the scent is calling you over to her.");
-	else output("\n\nSitting at the bar with a drink in her hands, and a lust-inducing haze surrounding her, is Sally, that rum-cow you met before. She’s looking at you like she knows her pheromones are already at work on your mind.");
 	
 	//[Bartender] //replace with [James] after first time player selects this
 	if(flags["MET_JAMES"] == undefined) addButton(0,"Bartender",imRickJamesBiyaaaaatch,undefined,"Bartender","See about getting a drink.");
@@ -62,8 +59,12 @@ public function saloonInteriorBonus():Boolean
 	if(flags["LIVING_KEGGED"] == undefined) addButton(2,"Cowgirls",livingKegsApproach,undefined,"Cowgirls","Check out the booze-leaking cow-girls.");
 	else addButton(2,"Living Kegs",livingKegsApproach,undefined,"Living Kegs","Drinks are better fresh from the tap!");
 	//[Rum Cow] Follow the wonderful scent of that cowgirl to the bar. //replace with [Sally] after the first time the player selects this.
-	if(flags["MET_SALLY"] == undefined) addButton(3,"Rum Cow",approachSally,undefined,"Rum Cow","Follow the wonderful scent of that cowgirl to the bar.");
-	else addButton(3,"Sally",approachSally,undefined,"Sally","Follow the wonderful scent of that cowgirl to the bar.");
+	if(sallyBarHours())
+	{
+		if(flags["MET_SALLY"] == undefined) output("\n\nThat dark-skinned, rum-titted cowgirl is sitting at the bar and sipping a drink. She’s still completely nude, and you can practically smell whatever kind of pheromones she’s producing from over here, almost like the scent is calling you over to her.");
+		else output("\n\nSitting at the bar with a drink in her hands, and a lust-inducing haze surrounding her, is Sally, that rum-cow you met before. She’s looking at you like she knows her pheromones are already at work on your mind.");
+		addButton(3,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),approachSally,undefined,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),"Follow the wonderful scent of that cowgirl to the bar.");
+	}
 	//[Ride Bronco]
 	addButton(4,"Ride Bronco",ridingTheBuckingBronco,undefined,"Ride Bronco","Get on that perverted horsey!");;
 	//put the bar-based NPC blurbs like Kiro, Erra, and Anno here
@@ -433,6 +434,16 @@ public function backToJames():void
 	jamesMenu();
 }
 
+public function aphrodisiacMilkEffect():void
+{
+	if(!pc.hasStatusEffect("Ellie's Milk"))
+	{
+		if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
+		else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
+	}
+	else pc.setStatusMinutes("Ellie's Milk",1440);
+}
+
 //Drink consumption scenes
 public function drinkAtBuckingBronco(drink:String):void
 {
@@ -463,12 +474,7 @@ public function drinkAtBuckingBronco(drink:String):void
 		else pc.credits -= 8;
 		pc.imbibeAlcohol(10);
 		pc.lust(55);
-		if(!pc.hasStatusEffect("Ellie's Milk"))
-		{
-			if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
-			else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
-		}
-		else pc.setStatusMinutes("Ellie's Milk",1440);
+		aphrodisiacMilkEffect();
 	}
 	//[Milktini]- You pull out your codex to check the bar’s drink menu before eventually settling on the milktini.
 	else if(drink == "Milktini")
@@ -659,8 +665,11 @@ public function livingKegsApproach():void
 	else addDisabledButton(0,"Beer","Beer","You can’t afford that.\n\nCost: 25 Credits");
 	if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.\n\nCost: 30 Credits");
 	else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.\n\nCost: 30 Credits");
-	if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.\n\nCost: 35 Credits");
-	else addDisabledButton(2,"Rum","Rum","You can’t afford that.\n\nCost: 35 Credits");
+	if(!sallyBarHours())
+	{
+		if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.\n\nCost: 35 Credits");
+		else addDisabledButton(2,"Rum","Rum","You can’t afford that.\n\nCost: 35 Credits");
+	}
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -763,12 +772,7 @@ public function rumCowDrinkieDrink():void
 	if(flags["MET_SALLY"] != undefined && silly) output("\n\nAs you walk you walk away, you can hear the keg-girl call out, <i>“Stay thirsty, my friend.”</i>");
 
 	//[Next] //Removes credits, adds exhibitionism, adds 3 level of drunkenness and some sort of aphrodisiac effect similar to Ellie’s, and gives the player 33 lust, also returns them to the bar.
-	if(!pc.hasStatusEffect("Ellie's Milk"))
-	{
-		if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
-		else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
-	}
-	else pc.setStatusMinutes("Ellie's Milk",1440);
+	aphrodisiacMilkEffect();
 	pc.milkInMouth();
 	pc.imbibeAlcohol(150);
 	pc.exhibitionism(1);
@@ -787,6 +791,10 @@ public function rumCowDrinkieDrink():void
 //Opening text
 //[Rum Cow]
 
+public function sallyBarHours():Boolean
+{
+	return (hours >= 2 && hours <= 12);
+}
 public function approachSally():void
 {
 	clearOutput();
@@ -1016,12 +1024,7 @@ public function suckleFuckSally():void
 	pc.orgasm();
 	pc.milkInMouth();
 	//[Next] //Pass an hour and return the PC to the bar, add an aphrodisiac effect like Ellies.
-	if(!pc.hasStatusEffect("Ellie's Milk"))
-	{
-		if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
-		else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
-	}
-	else pc.setStatusMinutes("Ellie's Milk",1440);
+	aphrodisiacMilkEffect();
 	IncrementFlag("SEXED_SALLY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1068,12 +1071,7 @@ public function suckleFingerSally():void
 	pc.orgasm();
 	pc.milkInMouth();
 	//[Next] //Pass an hour and return the PC to the bar, add an aphrodisiac effect like Ellies.
-	if(!pc.hasStatusEffect("Ellie's Milk"))
-	{
-		if(pc.hasStatusEffect("Aphrodisiac Milk")) pc.setStatusMinutes("Aphrodisiac Milk",1440);
-		else pc.createStatusEffect("Aphrodisiac Milk",0,0,0,0, false, "LustUp", "This milk is keeping your body more aroused than normal. You’ll have to wait for it to wear off before your body goes back to normal.", false, 1440);
-	}
-	else pc.setStatusMinutes("Ellie's Milk",1440);
+	aphrodisiacMilkEffect();
 	IncrementFlag("SEXED_SALLY");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
