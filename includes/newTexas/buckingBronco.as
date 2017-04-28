@@ -450,72 +450,58 @@ public function drinkAtBuckingBronco(drink:String):void
 	clearOutput();
 	showJames();
 	author("Night Trap");
-	if(drink == "Milk Stout")
+	
+	var nPrice:Number = 0;
+	
+	switch(drink)
 	{
-		output("You pull out your codex to check the bar’s drink menu before eventually settling on the milk stout. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He grabs a large stout glass from under the counter and fills it to the brim with ice-cold beer, using an extremely ornate beer comb to remove the excess head on the beer before setting it down in front of you. You take your time savoring the taste of the stout. It has more alcohol in it than the average beer, but the sweet taste of the lactose perfectly masks it and blends well with the bitter flavor of the hops. When you drain the last dregs of foam you’re a little disappointed to be finished already. You set the empty glass back on the counter for the bartender to remove.");
-		//remove 5 credits, add a small amount of drunkenness, return to drink menu.
-		if(flags["BB_5FINGER_DISCOUNT"] == 1)
-		{
-			flags["BB_5FINGER_DISCOUNT"] = 2;
-		}
-		else pc.credits -= 5;
-		pc.imbibeAlcohol(8);
+		case "Milk Stout":
+			output("You pull out your codex to check the bar’s drink menu before eventually settling on the milk stout. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He grabs a large stout glass from under the counter and fills it to the brim with ice-cold beer, using an extremely ornate beer comb to remove the excess head on the beer before setting it down in front of you. You take your time savoring the taste of the stout. It has more alcohol in it than the average beer, but the sweet taste of the lactose perfectly masks it and blends well with the bitter flavor of the hops. When you drain the last dregs of foam you’re a little disappointed to be finished already. You set the empty glass back on the counter for the bartender to remove.");
+			//remove 5 credits, add a small amount of drunkenness, return to drink menu.
+			nPrice = 5;
+			pc.imbibeAlcohol(8);
+			break;
+		case "Leithan Milk":
+			output("You pull out your codex to check the bar’s drink menu before eventually settling on Leithan Milk. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He reaches into a refrigerator cleverly concealed beneath the bar and brings out a metal pitcher full to the brim with a sweet-smelling milk. He sets it down in front of you along with a white ceramic mug. <i>“This is all milked by hand each morning. You’ll only find fresher straight from the source.”</i> James grins as he continues speaking. <i>“I sure hope you’ve got nowhere to be for the rest of the day. This is the favorite drink of the employees of the Broodmare Bordello. In its own way, this is the most expensive item on the menu. I’m sure you’ll be able to figure out what I mean soon enough.”</i> The android leaves you with that warning and a naughty wink.");
+			output("\n\nYou fill your mug with milk and take a sip. It’s one of the sweetest things you’ve ever tasted, but the warm feeling the beverage fills you with drives you to immediately drain the mug before filling it again as quickly as you can. Each mugful you consume fans the heat inside you and directs it more towards your crotch. When you finish the last drops of milk you can’t help but groan in disappointment and arousal. When James hears you, he walks over to you and removes the pitcher and mug. <i>“Well, at the very least you’ll be able to get your money’s worth at the Bordello now. Or maybe you’d like to take the Bronco for a ride? Nothing like a potent aphrodisiac to help you get over any lingering shyness.”</i>");
+			output("\n\nYou nod feverishly, telling the android you’ll consider it. You step away from the bar, eager to find any way to tamp down your overwhelming arousal.");
+			//remove 8 credits, add Leithan Milk status effect with 12 hour duration, return player to bar
+			nPrice = 8;
+			pc.imbibeAlcohol(10);
+			pc.lust(55);
+			aphrodisiacMilkEffect();
+			break;
+		case "Milktini":
+			output("You pull out your codex to check the bar’s drink menu before eventually settling on the milktini. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He grabs an antique-looking cocktail mixer and begins pouring in milk, vodka, and white chocolate liqueur before shaking it all together with all the skill of a master. After the android finishes mixing your drink, he places a martini glass in front of you before filling it with the contents of the mixer. <i>“I hope you enjoy it. Many people around here like to drink these with dessert.”</i>");
+			output("\n\nYou take a sip of the cocktail in front of you. It’s sweet and deliciously creamy. Though you know the drink contains a fair amount of alcohol, you can barely taste it, only feeling a slight tell-tale burn with each swallow. By the time your drink is almost gone you find yourself wishing you had some cake or a similar dessert to go along with it. When you place the empty martini glass back on the bar, James removes it for cleaning. <i>“I’m glad to see you enjoyed it " + pc.mf("sir","ma’am") + ". Let me know if you need anything else.”</i>");
+			//remove 10 credits, add moderate drunkenness, return to drink menu
+			nPrice = 10;
+			pc.imbibeAlcohol(18);
+			break;
+		case "Varmintbite Whiskey":
+			output("You pull out your codex to check the bar’s drink menu before eventually settling on a shot of varmintbite whiskey. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He pulls out a bottle of potent-looking whiskey with a stylized drawing of a varmint dribbling venom into a pair of shot glasses. The synthetic bartender places a shot glass in front of you and pours the whiskey into it, cautioning you as he does so. <i>“This whiskey is designed for people with an existing alcohol tolerance to get drunk quickly. If you’re not an experienced drinker, you’re about to be totally shit-faced.”</i>");
+			output("\n\nYou thank the android for his warning before taking a deep breath and slamming back the shot. A burning sensation immediately fills your throat and spreads to your chest as you gulp the shot down, just as you’d expect from whiskey. You close your eyes from the feeling, shaking your head to distract yourself. When you open your eyes again though, you feel dizzy. Euphoria is clouding your senses; you have to prop yourself on the bar momentarily to keep from losing your balance, but you don’t even care. You feel ready to take on the whole world right now. James removes your shot glass while you’re still reeling, grinning at your stupor as he tells you <i>“I’d recommend waiting a while before drinking anything else.”</i>");
+			output("\n\nAs you lurch away from the bar you slur out that you’ll think about it.");
+			//remove 15 credits, add major drunkenness, return player to bar
+			nPrice = 15;
+			output(pc.instaDrunk());
+			break;
+		case "Raging Bull":
+			output("You pull out your codex to check the bar’s drink menu before eventually settling on a raging bull. Your order prompts a raised eyebrow and a question from James. <i>“Are you sure " + pc.mf("sir","ma’am") + "? I guarantee that will make you totally drunk no matter how experienced of a drinker you are.”</i>");
+			output("\n\nYou affirm that that is exactly why you ordered it.");
+			output("\n\nThe bartender grins at you cheekily. <i>“The customer is always right.”</i> He fills a stout glass with a dark milk stout most of the way to the brim. Setting it aside, he fills a single shot glass half with snakebite whiskey and half with irish cream. He places the two glasses in front of you. <i>“You’re supposed to drop the shot glass into the beer and chug the whole cocktail as quickly as you can. Just don’t lean too far back while you drink; we’ve had more than a few tourists get drunk so fast they fell backwards.”</i>");
+			output("\n\nNoting the android’s instructions, you drop the shot glass into the beer and immediately gulp down the mixture as quickly as you can. As rapidly as you chug the mixture, you can barely taste it, but it’s a chaotic jumble of three different loosely-mixed flavors that makes you eager to get it past your tongue as soon as possible. You already feel buzzed halfway through the drink; when you slam the stout glass down on the counter with a satisfying clink of glass on glass, you are four sheets to the wind. You feel so pleasant right now, even as the room spins around you. You giggle stupidly as James clears away your glass. You barely notice when he speaks to you. <i>“I’m afraid I have to cut you off for now. You’re welcome to order any food you’d like from our menu though. Stay safe " + pc.mf("sir","ma’am") + "!”</i> The synthetic bartender waves you away with a warm smile.");
+			//remove 30 credits, set player to maximum drunkenness, return player to bar
+			nPrice = 30;
+			output(pc.instaSmashed());
+			break;
+		default:
+			output("ERROR: DRINK NOT FOUND!");
+			break;
 	}
-	else if(drink == "Leithan Milk")
-	{
-		output("You pull out your codex to check the bar’s drink menu before eventually settling on Leithan Milk. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He reaches into a refrigerator cleverly concealed beneath the bar and brings out a metal pitcher full to the brim with a sweet-smelling milk. He sets it down in front of you along with a white ceramic mug. <i>“This is all milked by hand each morning. You’ll only find fresher straight from the source.”</i> James grins as he continues speaking. <i>“I sure hope you’ve got nowhere to be for the rest of the day. This is the favorite drink of the employees of the Broodmare Bordello. In its own way, this is the most expensive item on the menu. I’m sure you’ll be able to figure out what I mean soon enough.”</i> The android leaves you with that warning and a naughty wink.");
-		output("\n\nYou fill your mug with milk and take a sip. It’s one of the sweetest things you’ve ever tasted, but the warm feeling the beverage fills you with drives you to immediately drain the mug before filling it again as quickly as you can. Each mugful you consume fans the heat inside you and directs it more towards your crotch. When you finish the last drops of milk you can’t help but groan in disappointment and arousal. When James hears you, he walks over to you and removes the pitcher and mug. <i>“Well, at the very least you’ll be able to get your money’s worth at the Bordello now. Or maybe you’d like to take the Bronco for a ride? Nothing like a potent aphrodisiac to help you get over any lingering shyness.”</i>");
-		output("\n\nYou nod feverishly, telling the android you’ll consider it. You step away from the bar, eager to find any way to tamp down your overwhelming arousal.");
-		//remove 8 credits, add Leithan Milk status effect with 12 hour duration, return player to bar
-		if(flags["BB_5FINGER_DISCOUNT"] == 1)
-		{
-			flags["BB_5FINGER_DISCOUNT"] = 2;
-		}
-		else pc.credits -= 8;
-		pc.imbibeAlcohol(10);
-		pc.lust(55);
-		aphrodisiacMilkEffect();
-	}
-	//[Milktini]- You pull out your codex to check the bar’s drink menu before eventually settling on the milktini.
-	else if(drink == "Milktini")
-	{
-		output("When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He grabs an antique-looking cocktail mixer and begins pouring in milk, vodka, and white chocolate liqueur before shaking it all together with all the skill of a master. After the android finishes mixing your drink, he places a martini glass in front of you before filling it with the contents of the mixer. <i>“I hope you enjoy it. Many people around here like to drink these with dessert.”</i>");
-		output("\n\nYou take a sip of the cocktail in front of you. It’s sweet and deliciously creamy. Though you know the drink contains a fair amount of alcohol, you can barely taste it, only feeling a slight tell-tale burn with each swallow. By the time your drink is almost gone you find yourself wishing you had some cake or a similar dessert to go along with it. When you place the empty martini glass back on the bar, James removes it for cleaning. <i>“I’m glad to see you enjoyed it " + pc.mf("sir","ma’am") + ". Let me know if you need anything else.”</i>");
-		//remove 10 credits, add moderate drunkenness, return to drink menu
-		if(flags["BB_5FINGER_DISCOUNT"] == 1)
-		{
-			flags["BB_5FINGER_DISCOUNT"] = 2;
-		}
-		else pc.credits -= 10;
-		pc.imbibeAlcohol(18);
-	}
-	else if(drink == "Varmintbite Whiskey")
-	{
-		output("You pull out your codex to check the bar’s drink menu before eventually settling on a shot of varmintbite whiskey. When you give James your order he smiles and says <i>“Coming right up " + pc.mf("sir","ma’am") + ".”</i> He pulls out a bottle of potent-looking whiskey with a stylized drawing of a varmint dribbling venom into a pair of shot glasses. The synthetic bartender places a shot glass in front of you and pours the whiskey into it, cautioning you as he does so. <i>“This whiskey is designed for people with an existing alcohol tolerance to get drunk quickly. If you’re not an experienced drinker, you’re about to be totally shit-faced.”</i>");
-		output("\n\nYou thank the android for his warning before taking a deep breath and slamming back the shot. A burning sensation immediately fills your throat and spreads to your chest as you gulp the shot down, just as you’d expect from whiskey. You close your eyes from the feeling, shaking your head to distract yourself. When you open your eyes again though, you feel dizzy. Euphoria is clouding your senses; you have to prop yourself on the bar momentarily to keep from losing your balance, but you don’t even care. You feel ready to take on the whole world right now. James removes your shot glass while you’re still reeling, grinning at your stupor as he tells you <i>“I’d recommend waiting a while before drinking anything else.”</i>");
-		output("\n\nAs you lurch away from the bar you slur out that you’ll think about it.");
-		//remove 15 credits, add major drunkenness, return player to bar
-		if(flags["BB_5FINGER_DISCOUNT"] == 1)
-		{
-			flags["BB_5FINGER_DISCOUNT"] = 2;
-		}
-		else pc.credits -= 15;
-		output(pc.instaDrunk());
-	}
-	else
-	{
-		output("You pull out your codex to check the bar’s drink menu before eventually settling on a raging bull. Your order prompts a raised eyebrow and a question from James. <i>“Are you sure " + pc.mf("sir","ma’am") + "? I guarantee that will make you totally drunk no matter how experienced of a drinker you are.”</i>");
-		output("\n\nYou affirm that that is exactly why you ordered it.");
-		output("\n\nThe bartender grins at you cheekily. <i>“The customer is always right.”</i> He fills a stout glass with a dark milk stout most of the way to the brim. Setting it aside, he fills a single shot glass half with snakebite whiskey and half with irish cream. He places the two glasses in front of you. <i>“You’re supposed to drop the shot glass into the beer and chug the whole cocktail as quickly as you can. Just don’t lean too far back while you drink; we’ve had more than a few tourists get drunk so fast they fell backwards.”</i>");
-		output("\n\nNoting the android’s instructions, you drop the shot glass into the beer and immediately gulp down the mixture as quickly as you can. As rapidly as you chug the mixture, you can barely taste it, but it’s a chaotic jumble of three different loosely-mixed flavors that makes you eager to get it past your tongue as soon as possible. You already feel buzzed halfway through the drink; when you slam the stout glass down on the counter with a satisfying clink of glass on glass, you are four sheets to the wind. You feel so pleasant right now, even as the room spins around you. You giggle stupidly as James clears away your glass. You barely notice when he speaks to you. <i>“I’m afraid I have to cut you off for now. You’re welcome to order any food you’d like from our menu though. Stay safe " + pc.mf("sir","ma’am") + "!”</i> The synthetic bartender waves you away with a warm smile.");
-		//remove 30 credits, set player to maximum drunkenness, return player to bar
-		if(flags["BB_5FINGER_DISCOUNT"] == 1)
-		{
-			flags["BB_5FINGER_DISCOUNT"] = 2;
-		}
-		else pc.credits -= 30;
-		output(pc.instaSmashed());
-	}
+	if(flags["BB_5FINGER_DISCOUNT"] == 1) { flags["BB_5FINGER_DISCOUNT"] = 2; }
+	else if(!pc.hasStatusEffect("Bucking Bronco Free Drinks")) { /* Free Drinks! */ }
+	else pc.credits -= nPrice;
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -672,8 +658,6 @@ public function livingKegsApproach():void
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
-
-
 
 //Whiskey
 //[Whiskey]
