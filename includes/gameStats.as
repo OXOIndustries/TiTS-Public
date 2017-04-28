@@ -5885,6 +5885,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["AMAZONA_DRINKS"][4] > 0) amazonaFlavors.push(" Futazona");
 					if(amazonaFlavors.length > 0) output2(", Tasted" + CompressToList(amazonaFlavors));
 				}
+				if(pc.hasStatusEffect("Amazona Uses")) output2("\n<b>* JoyCo, Amazona Iced Tea, Last Drink:</b> " + prettifyMinutes(1440 - pc.getStatusMinutes("Amazona Uses")) + " ago");
 			}
 			// Omnisuit
 			if(flags["OMNISUITED"] != undefined)

@@ -709,6 +709,7 @@
 				else output("\n\n" + target.createCockLockedMessage());
 			}
 			
+			var i:int = 0;
 			var cIdx:int = 0;
 			var cockLengthMax:Number = 0;
 			var ballSizeMax:Number = 0;
@@ -747,14 +748,18 @@
 					{
 						output("\n\nYou feel a tightness in your [pc.cocks], like " + (totalCocks == 1 ? "it’s" : "they are") + " an overly plump");
 						if(totalCocks == 2) output(" pair of");
+						else if(totalCocks != 1) output(" group of");
 						output(" sausage");
 						if(totalCocks != 1) output("s");
 						output(" ready to pop out of " + (totalCocks == 1 ? "its" : "their") + " skin.");
-						if(!target.isCrotchExposed()) output(" You pull off your [pc.lowerGarments] and your iron rod{s} pop out with such force that " + (totalCocks == 1 ? "it" : "they") + " smack you in the gut.");
+						if(!target.isCrotchExposed()) output(" You pull off your [pc.lowerGarments] and your iron rod" + (totalCocks == 1 ? " pops" : "s pop") + " out with such force that " + (totalCocks == 1 ? "it" : "they") + " smack you in the gut.");
 						else output(" Strangely, it doesn’t seem like you’re fully erect yet; your dong" + (totalCocks == 1 ? " is" : "s are") + " still quite soft and floppy. A cursory touch quickly changes that, a simple brush along a vein causes a surge of blood to rush into " + (totalCocks == 1 ? "it" : "them") + ", shooting " + (totalCocks == 1 ? "it" : "them") + " to full erectness so fast that " + (totalCocks == 1 ? "it" : "they") + " smack you right in the gut.");
 						output("\n\nYou reel back from the impact, quickly grabbing hold of your overly energetic [pc.cocks]. It already feels like there’s a lot more cockmeat there for you to grab, and there’s still more to come. By the time it stops you’ve got about two more inches to your name.");
 						
-						target.cocks[cIdx].cLengthRaw += 2;
+						for(i = 0; i < target.cocks.length; i++)
+						{
+							target.cocks[i].cLengthRaw += 2;
+						}
 						target.lust(25);
 					}
 					else output("\n\n" + target.cockLengthLockedMessage());
@@ -777,7 +782,10 @@
 							if(!target.isCrotchExposed()) output(" You shove them back into your [pc.underGarments], having more important things to do than jerk off all day, as nice as that would be.");
 							else output(" You sigh at your erect state; a lack of pants is going to make getting around a bit awkward for the next few minutes.");
 							
-							target.cocks[cIdx].cLengthRaw += 2;
+							for(i = 0; i < target.cocks.length; i++)
+							{
+								target.cocks[i].cLengthRaw += 2;
+							}
 							target.lust(100);
 							target.orgasm();
 							kGAMECLASS.applyCumSoaked(target);
