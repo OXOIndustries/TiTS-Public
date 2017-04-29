@@ -570,6 +570,7 @@ public function uvetoFallToColdDamage():void
 	
 	if (InRoomWithFlag(GLOBAL.OUTDOOR))
 	{
+		showBust("LUNA");
 		author("Savin");
 		output("You waken with a start, gasping for breath. Though your insides still throb with the vestigial ache of the Uvetan cold, you can feel heat washing over your limbs, bathing you in dry warmth. Never before has a space heater felt so good.");
 		
@@ -595,6 +596,7 @@ public function uvetoFallToColdDamage():void
 	}
 	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
+		showBust("JEROME");
 		author("Gedan");
 
 		output("A loud crinkling noise draws you back from the brink, a regular rustle akin to a metronome tapping on the side of your near-unconsciousness. You feel yourself shift in time with the noise, something dragging you along as your body resists for a moment before following suit.");
