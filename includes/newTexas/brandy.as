@@ -84,7 +84,8 @@ public function brandyMenu():void
 	//[Talk] Have a pretty one-sided conversation.
 	addButton(1,"Talk",talkToBrandywhine,undefined,"Talk","Have a pretty one-sided conversation.");
 	//[Sex] Maybe the busty bovine is up for some fun.
-	if(pc.lust() >= 33) addButton(2,"Sex",sexWithBrandy,undefined,"Sex","Maybe the busty bovine is up for some fun.");
+	if(pc.isTaur()) addDisabledButton(2,"Sex","Sex","This is only possible for non-taurs.");
+	else if(pc.lust() >= 33) addButton(2,"Sex",sexWithBrandy,undefined,"Sex","Maybe the busty bovine is up for some fun.");
 	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for that.");
 	//[Exhibitionism] Take advantage of Brandy’s past. //Requires that the “Her Mods” scene be done, and a mischievous or hard personality, not taur or naga compatible.
 	if(flags["BRANDY_MODS"] != undefined && !pc.isNice() && !pc.isTaur() && !pc.isNaga()) 
@@ -316,18 +317,27 @@ public function sexWithBrandy():void
 	processTime(13);
 	clearMenu();
 	//[Suckle] Suckle them Cow titterinos.
-	addButton(0,"Suckle",suckleDatMooTit,undefined,"Suckle","Suckle them Cow titterinos.");
-	if(pc.hasCock() && pc.cockThatFits(brandyCapacity()) >= 0)
+	if(pc.isNaga())
 	{
-		//[Moosionary] //Requires PC to have a Cock.
-		addButton(1,"Moosionary",moosionaryWithBrandy,undefined,"Moosionary","Do it in the old fashioned way.");
+		addDisabledButton(0,"Suckle","Suckle","This is only possible for non-taurs.");
+		addDisabledButton(1,"Moosionary","Moosionary","This is only possible for non-taurs.");
+		addDisabledButton(2,"Titfuck","Titfuck","This is only possible for non-taurs.");
 	}
-	else 
+	else
 	{
-		addDisabledButton(1,"Moosionary","Moosionary","You need a penis that fits inside Brandy for this.");
+		addButton(0,"Suckle",suckleDatMooTit,undefined,"Suckle","Suckle them Cow titterinos.");
+		if(pc.hasCock() && pc.cockThatFits(brandyCapacity()) >= 0)
+		{
+			//[Moosionary] //Requires PC to have a Cock.
+			addButton(1,"Moosionary",moosionaryWithBrandy,undefined,"Moosionary","Do it in the old fashioned way.");
+		}
+		else 
+		{
+			addDisabledButton(1,"Moosionary","Moosionary","You need a penis that fits inside Brandy for this.");
+		}
+		if(pc.hasCock()) addButton(2,"Titfuck",tittyFuckMissMooCow,undefined,"Titfuck","Have a little cleavage-humping fun.");
+		else addDisabledButton(2,"Titfuck","Titfuck","You need a penis that fits inside Brandy for this.");
 	}
-	if(pc.hasCock()) addButton(2,"Titfuck",tittyFuckMissMooCow,undefined,"Titfuck","Have a little cleavage-humping fun.");
-	else addDisabledButton(2,"Titfuck","Titfuck","You need a penis that fits inside Brandy for this.");
 	//[Cuddle] Give the cowgirl something unexpected.
 	addButton(3,"Cuddle",cuddleWithBrandy,undefined,"Cuddle","Give the cowgirl something unexpected.");
 	//[Return]
