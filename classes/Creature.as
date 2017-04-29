@@ -5493,13 +5493,13 @@
 			}
 			//Large change
 			if (Math.abs(change) > 5) {
-				if (change > 0) output = "\n\n<b>Your facial features soften as your body becomes more feminine. (+" + Math.round(change * 10) / 10 + " Femininity)</b>";
-				else output = "\n\n<b>Your facial features harden as your body becomes more masculine. (-" + Math.round(change * 10) / 10 + " Femininity)</b>";
+				if (change > 0) output = "\n\n<b>Your facial features soften as your body becomes more feminine. (+" + Math.round(change * 10) / 10 + " femininity)</b>";
+				else output = "\n\n<b>Your facial features harden as your body becomes more masculine. (-" + Math.round(change * 10) / 10 + " femininity)</b>";
 			}
 			//Barely noticable change!
 			else {
-				if (change > 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperceptibly towards being more feminine. (+" + Math.round(change * 10) / 10 + " Femininity)";
-				else if (change < 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperciptibly towards being more masculine. (-" + Math.round(change * 10) / 10 + " Femininity)";
+				if (change > 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperceptibly towards being more feminine. (+" + Math.round(change * 10) / 10 + " femininity)";
+				else if (change < 0) output = "\n\nThere’s a tingling in your " + old + " as it changes imperciptibly towards being more masculine. (-" + Math.round(change * 10) / 10 + " femininity)";
 			}
 			return output;
 		}
@@ -5734,7 +5734,7 @@
 				// Display 'U GOT FAT'
 				if (change > 0) return "\n\nYour center of balance changes a little bit as your body noticeably widens. (+" + Math.round(change * 10) / 10 + " body thickness)";
 				// GET THIN BITCH
-				if (change < 0) return "\n\nEach movement feels a tiny bit easier than the last. Did you just lose a little weight!? (" + Math.round(change * 10) / 10 + " body thickness)";
+				if (change < 0) return "\n\nEach movement feels a tiny bit easier than the last. Did you just lose a little weight!? (-" + Math.round(change * 10) / 10 + " body thickness)";
 			}
 			return "";
 		}
@@ -5760,7 +5760,7 @@
 				// Display BITCH I WORK OUT
 				if (change > 0) return "\n\nYour body feels a little more solid as you move, and your muscles look slightly more visible. (+" + Math.round(change * 10) / 10 + " muscle tone)";
 				// Display DERP I HAVE GIRL MUSCLES
-				if (change < 0) return "\n\nMoving brings with it a little more jiggle than you’re used to. You don’t seem to have gained weight, but your muscles look less visible. (" + Math.round(change * 10) / 10 + " muscle tone)";
+				if (change < 0) return "\n\nMoving brings with it a little more jiggle than you’re used to. You don’t seem to have gained weight, but your muscles look less visible. (-" + Math.round(change * 10) / 10 + " muscle tone)";
 			}
 			return "";
 		}

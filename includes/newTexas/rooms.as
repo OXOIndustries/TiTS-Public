@@ -981,12 +981,24 @@ public function initNewTexasRooms():void
 	rooms["569"].southExit = "507";
 	rooms["569"].northExit = "570";
 	rooms["569"].westExit = "572";
+	rooms["569"].eastExit = "TEN TON OFFICE";
 	rooms["569"].moveMinutes = 1;
 	rooms["569"].planet = "PLANET: NEW TEXAS";
 	rooms["569"].system = "SYSTEM: NYE";
 	rooms["569"].addFlag(GLOBAL.INDOOR);
 	rooms["569"].addFlag(GLOBAL.NPC);
 	rooms["569"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["TEN TON OFFICE"] = new RoomClass(this);
+	rooms["TEN TON OFFICE"].roomName = "QUENTON’S\nOFFICE";
+	rooms["TEN TON OFFICE"].description = "";
+	rooms["TEN TON OFFICE"].runOnEnter = undefined;
+	rooms["TEN TON OFFICE"].westExit = "569";
+	rooms["TEN TON OFFICE"].planet = "PLANET: NEW TEXAS";
+	rooms["TEN TON OFFICE"].moveMinutes = 1;
+	rooms["TEN TON OFFICE"].system = "SYSTEM: NYE";
+	rooms["TEN TON OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["TEN TON OFFICE"].addFlag(GLOBAL.PRIVATE);
 
 	rooms["570"] = new RoomClass(this);
 	rooms["570"].roomName = "MAIN\nHALL";
