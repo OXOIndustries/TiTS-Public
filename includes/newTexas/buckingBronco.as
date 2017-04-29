@@ -613,7 +613,8 @@ public function foodEpilogue(fud:String):void
 public function livingKegsApproach():void
 {
 	clearOutput();
-	showBust("SALLY", "WHISKEY_COW", "BEER_COW");
+	if(!sallyBarHours()) showBust("SALLY", "WHISKEY_COW", "BEER_COW");
+	else showBust("WHISKEY_COW", "BEER_COW");
 	showName("LIVING\nKEGS");
 	author("HugsAlright");
 	if(flags["LIVING_KEGGED"] == undefined)

@@ -1115,6 +1115,7 @@ Intro
 public function zilHornetAggro():void
 {
 	author("Nonesuch");
+	showName("SURPRISE\nATTACK!");
 	output("\n\nSomething flicks past your ear. Imagining falling rock, you look up - and manage to duck to one side as the long, barb-tipped spear is thrust at you more accurately. <i>Real</i> falling rock crumbles beneath your [pc.feet].");
 	output("\n\n<i>“You are mine, far shist pig!”</i> squeaks the painted, armored female zil that is clutching it, roped to the cliff above you. Getting assaulted like this from above this high up is horribly unnerving - your heart chunters and your every instinct screams for you to make her stop.");
 	if(pc.hasItem(new ClimbingKit())) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend her off.");
@@ -1127,6 +1128,7 @@ public function zilHornetAggro():void
 	CombatManager.victoryScene(pcWinsAgainstHornet);
 	CombatManager.lossScene(pcLoses2Hornet);
 	CombatManager.displayLocation("ZIL HORNET");
+	showBust("ZIL_HORNET");
 
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);
@@ -1319,6 +1321,7 @@ public function hoverFlyIntroProc():void
 	CombatManager.victoryScene(winVsHoverfly);
 	CombatManager.lossScene(loseToHoverfly);
 	CombatManager.displayLocation("HOVERFLY");
+	showBust("ZIL_HOVERFLY");
 
 	clearMenu();
 	addButton(0, "Next", CombatManager.beginCombat);

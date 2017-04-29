@@ -74,7 +74,6 @@ public function buyAPowahPotion():void
 // Build a vending machine that dispenses/collects items.
 public function approachItemVendingMachine(machine:String = "none"):void
 {
-	showBust("");
 	showName("VENDING\nMACHINE");
 	processTime(1);
 	
@@ -86,6 +85,8 @@ public function approachItemVendingMachine(machine:String = "none"):void
 	switch(machine)
 	{
 		case "Pawn":
+			showBust("");
+			
 			chars["VENDINGMACHINE"].originalRace = "robot";
 			chars["VENDINGMACHINE"].keeperBuy = "ERROR\n";
 			chars["VENDINGMACHINE"].keeperSell = "ERROR\n";
@@ -116,6 +117,8 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			break;
 		// Taur vending machine on Canadia Station
 		case "Vesperian":
+			showBust("TAURICO_VENDING_MACHINE");
+			
 			chars["VENDINGMACHINE"].originalRace = "Vesperian";
 			chars["VENDINGMACHINE"].keeperBuy = "The vending machine is clean, its buttons overlaid with bright holo-projections of the various products it offers. Many appear to be out of stock.\n";
 			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
@@ -132,6 +135,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 		// <i>“Hi, Milly Bayes here!”</i>
 		// An As Seen On TV vending machine that sells Jejune Pharmaceutical products and minor items that don’t have an explicit manufacturer. Can be located on Tavros or any other indoor area.
 		case "J'ejune":
+			showBust("JEJUNE_VENDING_MACHINE");
 			author("Couch");
 			
 			chars["VENDINGMACHINE"].originalRace = "J'ejune";
@@ -150,6 +154,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 		// A dispenser selling adult goods. Specifically it could be used for items like condensol and omega oil. Things that can unlock scenes or temporary effects for smexing.
 		// You’ll find it in any bar/pub in game.
 		case "XXX":
+			showBust("XXX_VENDING_MACHINE");
 			author("Shadefalcon");
 			
 			chars["VENDINGMACHINE"].originalRace = "XXX";

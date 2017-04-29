@@ -235,9 +235,6 @@ package classes.Resources.Busts
 		public var Bust_ILARIA_PREG:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ilaria_pregnant_nude.png", mimeType = "image/png")]
 		public var Bust_ILARIA_PREG_NUDE:Class;
-		
-		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
-		public var Bust_JOYCO_VENDING_MACHINE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/jade.png", mimeType = "image/png")]
 		public var Bust_JADE:Class;
@@ -247,6 +244,12 @@ package classes.Resources.Busts
 		public var Bust_JADE_NIPS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jade_nips_nude.png", mimeType = "image/png")]
 		public var Bust_JADE_NIPS_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/james.png", mimeType = "image/png")]
+		public var Bust_JAMES:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
+		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/kally.png", mimeType = "image/png")]
 		public var Bust_KALLY:Class;
@@ -305,6 +308,10 @@ package classes.Resources.Busts
 		public var Bust_KIRO_XL_1_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro_xl_2_nude.png", mimeType = "image/png")]
 		public var Bust_KIRO_XL_2_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/lah.png", mimeType = "image/png")]
+		public var Bust_LAH:Class;
+		public var Bounds_LAH:Rectangle = new Rectangle(30, 0, 65, 65);
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
@@ -437,6 +444,9 @@ package classes.Resources.Busts
 		public var Bust_SAENDRA_FUTA_NUDE:Class;
 		public function get Bounds_SAENDRA_FUTA_NUDE():Rectangle { return Bounds_SAENDRA; }
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/sally.png", mimeType = "image/png")]
+		public var Bust_SALLY:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone_nude.png", mimeType = "image/png")]
@@ -517,6 +527,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/xotchi.png", mimeType = "image/png")]
 		public var Bust_XOTCHI:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/vending_adult.png", mimeType = "image/png")]
+		public var Bust_XXX_VENDING_MACHINE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/yammi.png", mimeType = "image/png")]
 		public var Bust_YAMMI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/yammi_follower.png", mimeType = "image/png")]
@@ -532,6 +545,17 @@ package classes.Resources.Busts
 		public var Bust_ZIL_CALLGIRL_PREG:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl_pregnant_cum.png", mimeType = "image/png")]
 		public var Bust_ZIL_CALLGIRL_PREG_CUM:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/hornet.png", mimeType = "image/png")]
+		public var Bust_ZIL_HORNET:Class;
+		public var Bounds_ZIL_HORNET:Rectangle = new Rectangle(0, 10, 70, 70);
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/hoverfly.png", mimeType = "image/png")]
+		public var Bust_ZIL_HOVERFLY:Class;
+		public var Bounds_ZIL_HOVERFLY:Rectangle = new Rectangle(12, 23, 70, 70);
+		[Embed(source = "../../../assets/images/npcs/adjatha/hoverfly_nude.png", mimeType = "image/png")]
+		public var Bust_ZIL_HOVERFLY_NUDE:Class;
+		public function get Bounds_ZIL_HOVERFLY_NUDE():Rectangle { return Bounds_ZIL_HOVERFLY; }
 
 		CONFIG::IMAGEPACK
 		{
@@ -727,9 +751,6 @@ package classes.Resources.Busts
 			public var Full_ILARIA_PREG:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ilaria_pregnant_nude.png", mimeType = "image/png")]
 			public var Full_ILARIA_PREG_NUDE:Class;
-			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
-			public var Full_JOYCO_VENDING_MACHINE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade.png", mimeType = "image/png")]
 			public var Full_JADE:Class;
@@ -739,6 +760,12 @@ package classes.Resources.Busts
 			public var Full_JADE_NIPS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade_nips_nude.png", mimeType = "image/png")]
 			public var Full_JADE_NIPS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/james.png", mimeType = "image/png")]
+			public var Full_JAMES:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
+			public var Full_JOYCO_VENDING_MACHINE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally.png", mimeType = "image/png")]
 			public var Full_KALLY:Class;
@@ -797,6 +824,9 @@ package classes.Resources.Busts
 			public var Full_KIRO_XL_1_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_xl_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_2_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lah.png", mimeType = "image/png")]
+			public var Full_LAH:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
@@ -918,6 +948,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra_nude_dick.png", mimeType = "image/png")]
 			public var Full_SAENDRA_FUTA_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sally.png", mimeType = "image/png")]
+			public var Full_SALLY:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
 			public var Full_SIMONE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone_nude.png", mimeType = "image/png")]
@@ -997,6 +1030,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/xotchi.png", mimeType = "image/png")]
 			public var Full_XOTCHI:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vending_adult.png", mimeType = "image/png")]
+			public var Full_XXX_VENDING_MACHINE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi.png", mimeType = "image/png")]
 			public var Full_YAMMI:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi_follower.png", mimeType = "image/png")]
@@ -1012,6 +1048,14 @@ package classes.Resources.Busts
 			public var Full_ZIL_CALLGIRL_PREG:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_pregnant_cum.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL_PREG_CUM:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hornet.png", mimeType = "image/png")]
+			public var Full_ZIL_HORNET:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hoverfly.png", mimeType = "image/png")]
+			public var Full_ZIL_HOVERFLY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hoverfly_nude.png", mimeType = "image/png")]
+			public var Full_ZIL_HOVERFLY_NUDE:Class;
 		}
 	}
 
