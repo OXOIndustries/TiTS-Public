@@ -22,12 +22,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/busky_nude.png", mimeType = "image/png")]
 		public var Bust_BUSKY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jay_echo/gooey_shopkeeper.png", mimeType = "image/png")]
+		public var Bust_CRYSTAL_GOO_SHOPKEEP:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/ehstraffe.png", mimeType = "image/png")]
 		public var Bust_EHSTRAFFE:Class;
 		public var Bounds_EHSTRAFFE:Rectangle = new Rectangle(28, 0, 60, 60);
-		
-		[Embed(source = "../../../assets/images/npcs/jay_echo/inessa_nude.png", mimeType = "image/png")]
-		public var Bust_INESSA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/giala_honey.png", mimeType = "image/png")]
 		public var Bust_GIALA:Class;
@@ -40,7 +40,14 @@ package classes.Resources.Busts
 		public var Bust_GOO_KNIGHT_BLUE_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/goo_knight_green_nude.png", mimeType = "image/png")]
 		public var Bust_GOO_KNIGHT_GREEN_NUDE:Class;
-
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/gwen.png", mimeType = "image/png")]
+		public var Bust_CFS_GWEN:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/gwen_nude.png", mimeType = "image/png")]
+		public var Bust_CFS_GWEN_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/inessa_nude.png", mimeType = "image/png")]
+		public var Bust_INESSA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/krym.png", mimeType = "image/png")]
 		public var Bust_KRYM:Class;
@@ -81,11 +88,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/busky_nude.png", mimeType = "image/png")]
 			public var Full_BUSKY_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/gooey_shopkeeper.png", mimeType = "image/png")]
+			public var Full_CRYSTAL_GOO_SHOPKEEP:Class;
+
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/ehstraffe.png", mimeType = "image/png")]
 			public var Full_EHSTRAFFE:Class;
-			
-			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/inessa_nude.png", mimeType = "image/png")]
-			public var Full_INESSA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/giala_honey.png", mimeType = "image/png")]
 			public var Full_GIALA:Class;
@@ -98,6 +105,14 @@ package classes.Resources.Busts
 			public var Full_GOO_KNIGHT_BLUE_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/goo_knight_green_nude.png", mimeType = "image/png")]
 			public var Full_GOO_KNIGHT_GREEN_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/gwen.png", mimeType = "image/png")]
+			public var Full_CFS_GWEN:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/gwen_nude.png", mimeType = "image/png")]
+			public var Full_CFS_GWEN_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/inessa_nude.png", mimeType = "image/png")]
+			public var Full_INESSA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/krym.png", mimeType = "image/png")]
 			public var Full_KRYM:Class;
