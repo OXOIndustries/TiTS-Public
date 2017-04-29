@@ -4278,7 +4278,7 @@
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			
-			var scalar:int = 1;
+			var scalar:Number = 1;
 			if(hasPerk("Resin")) scalar = perkv1("Resin");
 			
 			return ((level * 5 * scalar) + bonuses);

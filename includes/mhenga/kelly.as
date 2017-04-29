@@ -3050,7 +3050,7 @@ public function deepFuckKellysButthole():void
 }
 
 //Oral Her
-//If coming from <i>“Share a Meal”</i> automatically go to one of the variants, skipping the setup completely.
+//If coming from “Share a Meal” automatically go to one of the variants, skipping the setup completely.
 public function oralHer(onCouch:Boolean = false):void
 {
 	clearOutput();
@@ -3423,7 +3423,7 @@ public function leaveKellyNext(fromOffice:Boolean = false):void
 }
 
 //Kelly's Cunny
-public function eatOutKellysQuoteUnquoteCunny():void
+public function eatOutKellysQuoteUnquoteCunny(onCouch:Boolean = false):void
 {
 	pc.girlCumInMouth(chars["KELLY"]);
 	clearOutput();
@@ -3462,13 +3462,18 @@ public function eatOutKellysQuoteUnquoteCunny():void
 		output("\n\nSomehow you figured it would end this way. You extend a hand to help her up and motion for her to show you the way.");
 		output("\n\nThe sticky, gooey bunny-herm slides easily off the table, still dripping thick globs of honey. She stretches a kink from her back, favors you with a smile, and starts leading the way to the bathroom, still holding you by the hand.");
 		output("\n\n<b>Later....</b>");
+		output("\n\n");
+		if(!onCouch) output("You move to sit on Kelly’s couch, still stark naked, but clean. ");
 		//if clothed:
 		if(!pc.isNude())
 		{
-			output("\n\nYou move to sit on Kelly’s couch, still stark naked, but clean. She said your [pc.gear] would take a while to finish washing, so she told you to just make yourself comfortable while she finishes bathing. Apparently bunny-honey tends to stick to her fur.");
+			output("She said your [pc.gear] would take a while to finish washing, so she told you to just make yourself comfortable while she finishes bathing. Apparently bunny-honey tends to stick to her fur.");
 		}
-		else output("\n\nYou move to sit on Kelly’s couch, still stark naked, but clean. You’ve been feeling a bit tired after your little encounter. Not that Kelly’s playfulness during the bath helped either. So you decide to make good on her offer to just relax while she finishes bathing. Maybe it’s her way of apologizing for wearing you out... not that you minded.");
-		output("\n\nAs you lounge on her couch, you find that your little stint with the bee-bunny has gotten you a bit aroused");
+		else output("You’ve been feeling a bit tired after your little encounter. Not that Kelly’s playfulness during the bath helped either. So you decide to make good on her offer to just relax while she finishes bathing. Maybe it’s her way of apologizing for wearing you out... not that you minded.");
+		output("\n\n");
+		if(!onCouch) output("As you lounge on her couch, y");
+		else output("Y");
+		output("ou find that your little stint with the bee-bunny has gotten you a bit aroused");
 		if(pc.hasCock()) 
 		{
 			output(" if your half-erect [pc.cocks] ");
