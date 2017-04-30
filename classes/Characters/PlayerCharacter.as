@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Transformatives.OmegaOil;
+	import classes.Items.Transformatives.SheepTF;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
@@ -446,6 +447,11 @@ package classes.Characters
 					maneHairGrow(totalDays);
 				}
 				
+				if (hasPerk("Wooly"))
+				{
+					woolyFurGrow(totalDays);
+				}
+				
 				if (hasPerk("Buttslut"))
 				{
 					buttslutBootyGrowth(totalDays);
@@ -734,6 +740,15 @@ package classes.Characters
 				}
 				
 				AddLogEvent(m, "passive", deltaShift + (i * 1440));
+			}
+		}
+		private function woolyFurGrow(totalDays:uint):void
+		{
+			// Tick days to regrow wooly fur if it has been cut.
+			if(perkv1("Wooly") < 0)
+			{
+				addPerkValue("Wooly", 1, totalDays);
+				if(perkv1("Wooly") > 0) setPerkValue("Wooly", 1, 0);
 			}
 		}
 		
@@ -1054,6 +1069,34 @@ package classes.Characters
 					removePerk("Energizing Libido");
 				}
 				removeStatusEffect("Remove Energizing Libido");
+			}
+			if(hasPerk("Wooly"))
+			{
+				// If sheered or changed skin type recently, regrow fur after 7 days!
+				if(perkv1("Wooly") >= 1 && !hasFur())
+				{
+					setPerkValue("Wooly", 1, -7);
+					return;
+				}
+				// Regrow wool when timer hits 0.
+				if(perkv1("Wooly") == 0)
+				{
+					AddLogEvent(("A familiar tingle spreads across your [pc.skin], and before you can scratch the itch, " + (hasFur() ? "the fur on your chest and back grows and thickens into curls" : "thick, curly fur starts to push out from your chest and back") + ", making you appear like quite the sheep. <b>You have regrown your coat of wool!</b>"), "passive", deltaT);
+					SheepTF.growWool(this);
+				}
+			}
+			if(hasStatusEffect("Wool Removal"))
+			{
+				AddLogEvent("An itching sensation hits you, and you feel the need to scratch it.", "passive", deltaT);
+				// Remove Wooly Perk.
+				if(hasPerk("Wooly"))
+				{
+					if(hasFur() && perkv1("Wooly") >= 1) ExtendLogEvent(" As you claw at your [pc.skinNoun], thick patches of curly wool fall off the surface like loose yarn, " + (hasFur() ? "leaving behind relatively short fur" : "leaving you with your [pc.skinFurScales]") + ". Checking your codex, you confirm that your body has lost the ability to maintain its wooly coat.");
+					else ExtendLogEvent(" You claw at your [pc.skinNoun] until the irritation subsides. Relaxed, you check your codex, only to find that your body has lost the ability to regrow and maintain its wooly coat.");
+					ExtendLogEvent("\n\n(<b>Perk Lost: Wooly</b>)");
+					removePerk("Wooly");
+				}
+				removeStatusEffect("Wool Removal");
 			}
 		}
 	}

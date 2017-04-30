@@ -5864,7 +5864,7 @@
 						else adjectives.push(RandomInCollection(["smooth","plant-like","glossy","verdant","crisp","lush","verdurous"]));
 					}
 					if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
-					if (hasSkinFlag(GLOBAL.FLAG_THICK)) adjectives.push("thick");
+					if (hasSkinFlag(GLOBAL.FLAG_THICK) || (!skin && hasFur() && perkv1("Wooly") >= 1)) adjectives.push("thick");
 					if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
 					if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin)
 					{
@@ -6006,8 +6006,16 @@
 				//else output += "dermis";
 			} else if (skinType == GLOBAL.SKIN_TYPE_FUR) {
 				temp = rand(10);
-				if (temp <= 7 || appearance) output += "fur";
-				else if (temp <= 8) output += "pelt";
+				if (temp <= 7 || appearance)
+				{
+					if (perkv1("Wooly") >= 1 && rand(2) == 0) output += "wool";
+					output += "fur";
+				}
+				else if (temp <= 8)
+				{
+					if (perkv1("Wooly") >= 1 && rand(2) == 0) output += "fleece";
+					output += "pelt";
+				}
 				else output += "coat";
 			} else if (skinType == GLOBAL.SKIN_TYPE_SCALES) {
 				temp = rand(10);
@@ -11461,7 +11469,9 @@
 			if (faceType == GLOBAL.TYPE_SHEEP && hasMuzzle()) counter++;
 			if (legType == GLOBAL.TYPE_SHEEP) counter++;
 			if (hasTail(GLOBAL.TYPE_SHEEP) && hasTailFlag(GLOBAL.FLAG_FLUFFY)) counter++;
-			if (counter > 0 && hasFur()) counter--;
+			if (hasPerk("Wooly")) counter++;
+			if (hasFur() && perkv1("Wooly") >= 1) counter++;
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function suulaScore(): int
@@ -18508,7 +18518,7 @@
 			if (hasStatusEffect("T.Pack")) return false;
 			
 			// Perk for some kinda TF or some shit, effect for a temporary/timed effect?
-			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins")) return false;
+			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins") || (hasFur() && perkv1("Wooly") >= 1)) return false;
 			return true;
 		}
 		

@@ -110,6 +110,19 @@ package classes.Items.Transformatives
 			kGAMECLASS.showName("SKIN\nCLEAR");
 			author("Owens");
 			
+			// Remove Wooly perk
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && target.hasPerk("Wooly") && !target.hasStatusEffect("Wool Removal"))
+			{
+				output("After waiting a good while, nothing happens.... You even check your codex for any internal changes, but nothing out of the ordinary shows up. Suddenly, you feel a burning tingle quickly followed by a cool shiver. Double-checking your codex, you discover nothing again. Well something did happen... didn’t it?");
+				
+				target.createStatusEffect("Wool Removal");
+				
+				clearMenu();
+				addButton(0, "Next", kGAMECLASS.useItemFunction);
+				
+				return;
+			}
+			
 			var changes:int = 0;
 			
 			// If pc skin type is not skin, change pc skin type to skin. Remove all flags.

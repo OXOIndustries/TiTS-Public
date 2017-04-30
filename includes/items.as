@@ -289,6 +289,10 @@ public function buyItem():void {
 			{
 				temp = Math.round(temp * pc.keyItemv1("Coupon - TamaniCorp"));
 			}
+			else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
+			{
+				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty"));
+			}
 			// Listing inventory exceptions
 			if(shopkeep is VendingMachine)
 			{
@@ -347,6 +351,11 @@ public function buyItemOK(arg:ItemSlotClass):void
 	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
 	{
 		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
+		hasCoupon = true;
+	}
+	else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty"));
 		hasCoupon = true;
 	}
 	
@@ -409,15 +418,19 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		pc.removeKeyItem(couponName);
 		usedCoupon = true;
 	}
-	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
 	{
 		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
-		pc.removeKeyItem(couponName);
-		usedCoupon = true;
-		output("The coupon saved on your codex is used and instantly changes the final price. ");
 		pc.removeKeyItem("Coupon - TamaniCorp");
+		usedCoupon = true;
 	}
+	else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty"));
+		pc.removeKeyItem("Coupon - Shear Beauty");
+		usedCoupon = true;
+	}
+	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
 	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
 	pc.credits -= price;

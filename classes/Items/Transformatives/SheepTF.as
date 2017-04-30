@@ -223,18 +223,35 @@ package classes.Items.Transformatives
 				}
 				//PC does not have wool: Grow a thick layer of wool on the chest and back, gains the “Wooly” perk described later. White [40%] or black [10%].
 				//Grow a thick layer of wool on the chest and back: 
-				/* Fen note: cut. No built in support for such a thing and dont want people stuck with wool forever.
-				if(!)
+				/* Fen note: cut. No built in support for such a thing and dont want people stuck with wool forever. */
+				/* Jac note: Will implement, but rare chance and high sheep score--notes describe how to remove perk. */
+				if(!pc.hasPerk("Wooly") && pc.sheepScore() >= 4 && changes < changeLimit && rand(4) == 0)
 				{
-					output("\n\nAn almost familiar feeling spreads across your chest and back and you pause for a moment, concerned");
-					if(!pc.hasFur()) output(".");
-					else output(" - you already have fur!");
-					output(" Suddenly though, you remember the packet and how it mentioned you could grow wool from this - maybe that’s what’s happening to you now. It doesn’t make the process feel, or look, any less strange. ");
-					if(pc.hasFur()) output("The fur on your chest and back thickens and lengthens, pushing outward and curling up.");
-					else output("A thick, curly ‘fur’ starts to push out from your chest and back.");
-					output(" <b>Soon, you’re left with a thick layer of sheep’s wool!</b> It’s a little awkward to move around with, but it’ll certainly keep you warm!");
-					//[Gain 'Wooly' Perk] - Fen: Nein.
-				}*/
+					if(pc.hasFur() || pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
+					{
+						output("\n\nAn almost familiar feeling spreads across your chest and back and you pause for a moment, concerned");
+						if(!pc.hasFur()) output(".");
+						else output(" - you already have fur!");
+						output(" Suddenly though, you remember the packet and how it mentioned you could grow wool from this - maybe that’s what’s happening to you now. It doesn’t make the process feel, or look, any less strange. ");
+						if(pc.hasFur()) output("The fur on your chest and back thickens and lengthens, pushing outward and curling up.");
+						else output("A thick, curly ‘fur’ starts to push out from your chest and back.");
+						output(" <b>Soon, you’re left with a thick layer of sheep’s wool!</b> It’s a little awkward to move around with, but it’ll certainly keep you warm!");
+						// Wooly perk:
+						// Minus 10% to reflexes. (cut)
+						// Minus 10% to damage taken from kinetic attacks. (cut)
+						// Gives highest level of cold resistance.
+						// Adds text to appearance description “Your chest and back are covered in a thick, bushy layer of wool”
+						// Perk is lost when wool is removed via Skin Clear - after taking 2 doses if the PC has fur. The first one will only remove fur.
+						// Potential to temporarily lose perk by selling wool? Possible option to have it shorn by Ceria on Tavros Station in return for either money or a free hair treatment. Perk returns after 7 game days - provided the PCs racial score is high enough to be identified as a sheep-morph.
+						// [Gain 'Wooly' Perk]
+						// v1: Wool status. 1 is grown. Negative number is days since last sheered. If negative, will tick up and regrow fur/wool when it reaches 0.
+						output("\n\n(<b>Perk Gained: Wooly</b> - You are now covered a thick layer of sheep’s wool.)");
+						pc.createPerk("Wooly", 0, 0, 0, 0, "Your body naturally grows a thick layer of wool.");
+						growWool(pc);
+						changes++;
+					}
+					else output("\n\n" + pc.skinTypeLockedMessage());
+				}
 				//PC has more than two eyes: Lose eyes until there are only two of the original type [75%]
 				//Lose eyes until there are only two of the original type:
 				if(pc.eyeType == GLOBAL.TYPE_ARACHNID && changes < changeLimit && rand(4) > 0)
@@ -361,5 +378,22 @@ package classes.Items.Transformatives
 			else kGAMECLASS.output(target.capitalA + target.short + " ingests the pill but to no effect.");
 			return false;
 		}
-	}		
+		public static function growWool(target:Creature):void
+		{
+			if(!target.hasPerk("Wooly")) return;
+			
+			var hasSmooth:Boolean = target.hasSkinFlag(GLOBAL.FLAG_SMOOTH);
+			var hasFluff:Boolean = target.hasSkinFlag(GLOBAL.FLAG_FLUFFY);
+			if(!target.hasFur())
+			{
+				if(!target.hasPartFur()) target.furColor = target.hairColor;
+				target.skinType = GLOBAL.SKIN_TYPE_FUR;
+				target.clearSkinFlags();
+				target.addSkinFlag(GLOBAL.FLAG_THICK);
+				if(hasSmooth) target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+				if(hasFluff) target.addSkinFlag(GLOBAL.FLAG_FLUFFY);
+			}
+			target.setPerkValue("Wooly", 1, 1);
+		}
+	}
 }

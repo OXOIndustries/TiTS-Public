@@ -1059,6 +1059,10 @@ public function appearance(forTarget:Creature):void
 			else output2(" Poofing out your chest");
 			output2(" is a fluffy ball of " + target.furColor + " " + ((target.hasFur() || target.hasFeathers()) ? target.skinNoun(false,true) : "fur") + ".");
 		}
+		if(target.hasFur() && target.perkv1("Wooly") >= 1)
+		{
+			output2(" Your chest and back are covered in a thick, bushy layer of wool.");
+		}
 		// Cum Splattered!
 		if(target.hasStatusEffect("Cum Soaked") || target.hasStatusEffect("Pussy Drenched"))
 		{
