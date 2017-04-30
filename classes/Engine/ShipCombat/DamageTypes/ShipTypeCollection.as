@@ -1,6 +1,5 @@
 package classes.Engine.ShipCombat.DamageTypes 
 {
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	/**
 	 * ...
 	 * @author Gedan

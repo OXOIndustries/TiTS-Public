@@ -4,6 +4,8 @@ package classes.Ships
 	import classes.DataManager.Serialization.VersionedSaveableV2;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.ShipCombat.DamageTypes.*;
+	import classes.Engine.ShipCombat.ShipAction;
+	import classes.Engine.ShipCombat.ShipCombatOrderContainer;
 	import classes.Resources.StatusIcons;
 	import classes.Ships.Map.*;
 	import classes.Ships.Map.Library.TestMapInterior;
@@ -78,6 +80,15 @@ package classes.Ships
 		public var _name:String;
 		public function get Name():String { return _name; }
 		public function set Name(v:String):void { _name = v; }
+		
+		public function CombatName(cap:Boolean = false):String
+		{
+			return (cap ? "The " : "the ") + _name;
+		}
+		public function CombatNameFormatted(cap:Boolean = false):String
+		{
+			return (cap ? "<i>The " : "<i>the ") + _name + "</i>";
+		}
 		
 		protected var _manufacturer:String;
 		public function get Manufacturer():String { return _manufacturer; }
@@ -929,6 +940,20 @@ package classes.Ships
 			});
 		}
 		
+		public function AddBonusWeaponEffect(inKinWeapBonus:Number, inKinWeapMult:Number, inKinWeapAccBonus:Number, inKinWeapAccMult:Number, inEnergyWeapBonus:Number, inEnergyWeapMult:Number, inEnergyWeapAccBonus:Number, inEnergyWeapAccMulti:Number):void
+		{
+			AddTemporaryModifier("Bonus Weapons", {
+				kineticWeaponBonus: inKinWeapBonus,
+				kineticWeaponMultiplier: inKinWeapMult,
+				kinetciWeaponAccuracyBonus: inKinWeapAccBonus,
+				kineticWeaponAccuracyMultiplier: inKinWeapAccMult,
+				energyWeaponBonus: inEnergyWeapBonus,
+				energyWeaponMultiplier: inEnergyWeapMult,
+				energyWeaponAccuracyBonus: inEnergyWeapAccBonus,
+				energyWeaponAccuracyMultiplier: inEnergyWeapAccMulti
+			});
+		}
+		
 		public function AddCloakEffect(duration:int, durationType:String, cloakStrength:Number = 1):void
 		{
 			var se:StatusEffectPayload = new StatusEffectPayload("Cloaked", {
@@ -1166,6 +1191,20 @@ package classes.Ships
 		
 		//{ region Combat
 		
+		public function BeginCombat():void
+		{
+			_shipCombatOrders = new ShipCombatOrderContainer();
+		}
+		
+		public function EndCombat():void
+		{
+			_shipCombatOrders = null;
+			ClearCombatStatusEffects();
+		}
+		
+		private var _shipCombatOrders:ShipCombatOrderContainer;
+		public function get CombatOrders():ShipCombatOrderContainer { return _shipCombatOrders; }
+		
 		public function get IsDefeated():Boolean { return Hull <= 0; }
 		
 		private var _isAlreadyDefeated:Boolean;
@@ -1324,6 +1363,18 @@ package classes.Ships
 		{
 			ClearTemporaryEffects();
 			OnRoundEndEffectEvents();
+		}
+		
+		public function CombatAI(playerShips:Array, enemyShips:Array):void
+		{
+			// Do things with the ShipCombatOrderContainer instance!
+			throw new Error("CombatAI has not been overridden!");
+		}
+		
+		public function CalculateCapacitorCost(forAction:ShipAction):Number
+		{
+			// TODO: Implement cost bonuses
+			return forAction.CapacitorCost;
 		}
 		
 		//} endregion

@@ -1,7 +1,9 @@
 ﻿package classes
 {
+	import classes.GameData.CombatManager;
 	import classes.GameData.Perks;
 	import classes.GameData.ShipManager;
+	import classes.Ships.Library.TestHostileShip;
 	import classes.Ships.SpaceShip;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.ContentModule;
@@ -1342,6 +1344,22 @@
 		public function get jerynn():Jerynn
 		{
 			return chars["JERYNN"];
+		}
+		
+		public function testShipCombat():void
+		{
+			CombatManager.newSpaceCombat();
+			CombatManager.setFriendlyActors(shipDb.ActivePlayerShip);
+			CombatManager.setHostileActors(new TestHostileShip());
+			CombatManager.victoryScene(function():void { } );
+			CombatManager.lossScene(function():void { } );
+			CombatManager.displayLocation("Basic Ship Test");
+			
+			clearOutput();
+			output("Basic Ship Fight Test");
+			
+			clearMenu();
+			addButton(0, "Next", CombatManager.beginCombat);
 		}
 	}
 }

@@ -49,6 +49,7 @@ package classes.Ships.Modules.UpgradeModules
 			{
 				return OwningShip.TargetingStaffed(HookedCrew, flatBonus);
 			}
+			
 			// Weapon position is unstaffed but the main Gunnery module is staffed
 			// pls gib safe navigation operator tia
 			else if (HookedCrew == null 
