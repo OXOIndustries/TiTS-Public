@@ -34,7 +34,7 @@
 			this.description = "a story download code for “Captured...”";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Using this item will add the story \"Captured...\" to your Codex’s fiction section.";
+			this.tooltip = "Using this item will add the story “Captured...” to your Codex’s fiction section.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -67,7 +67,7 @@
 				if(CodexManager.entryUnlocked("Captured...")) kGAMECLASS.output("You realize that you already have this story and toss out the useless code.");
 				else
 				{
-					kGAMECLASS.output("You scan the code with your Codex, unlocking \"Captured by the Demons\" in your Codex’s fiction section.");
+					kGAMECLASS.output("You scan the code with your Codex, unlocking “Captured by the Demons” in your Codex’s fiction section.");
 					CodexManager.unlockEntry("Captured...");
 				}
 			}
