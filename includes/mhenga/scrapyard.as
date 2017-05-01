@@ -128,7 +128,7 @@ public function flirtWithGeoff():void {
 	}
 
 	// Masculine players who haven't flirted harder with him get options.
-	if (pc.isMasculine() && flags["SEXED_GEOFF_MASC"] == undefined)
+	if (pc.isMan() && flags["SEXED_GEOFF_MASC"] == undefined)
 	{
 		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
 
@@ -189,7 +189,9 @@ public function flirtWithGeoff():void {
 	//Female:
 	else if(pc.hasVagina() && !pc.hasCock()) {
 		output("\n\nIt’s quite pleasant being weighed, unfurled and mapped out like this, and [pc.eachVagina] is already softened and beading with moisture when Geoff slides his hand down your [pc.butt] and touches it with the tips of his fingers. He traces the periphery of your wet opening backwards, and as you wet from the delicious sensation he sinks first one and then two fingers into you, stroking the sensitive entrance of your tunnel as he tests you.");
-		output("\n\n<i>“You know,”</i> he murmurs into your ear as your breath comes quicker, <i>“I’m kinda surprised you aren’t, you know, packing down there. You hear these crazy stories about girls on the frontier... not that you. Uh. I don’t mean to say that. It’s not that you’re-”</i> you silently tell him to let his body do the talking for a while by putting a finger on his lips. He grins and moves into you, pushing you up against the wall");
+		output("\n\n<i>“You know,”</i> he murmurs into your ear as your breath comes quicker, <i>“I’m kinda surprised you aren’t, you know, packing down there.");
+		if(pc.isFeminine()) output(" You hear these crazy stories about girls on the frontier... not that you.");
+		output(" Uh. I don’t mean to say that. It’s not that you’re-”</i> you silently tell him to let his body do the talking for a while by putting a finger on his lips. He grins and moves into you, pushing you up against the wall");
 		if(pc.hasClit()) output(" as his fingers drift onto your [pc.clit] and begins to circle it,");
 		output(" working with greater intent now. You move your hands down from his face to do some exploring of your own, enjoying the pockets of softness to be found upon his frame here and there, ameliorating his firm, bony form. He groans softly as, grinning, your hand slides into his pants and finds his hardening, sturdy six inch prick. You move your hand over and around his length before focusing on his frenulum, stroking it gently whilst he continues to frig you");
 		if(pc.hasClit()) output(", bending fingers into you as he flicks your [pc.oneClit] insistently with his thumb");
@@ -344,7 +346,7 @@ public function GeoffRepeatFuck():void {
 		output("\n\nAfter he’s finished and withdraws from you, you spend a long minute gathering your breath, enjoying the feeling of each other’s bodies and the sticky humidity, the hissing steam continuing to billow around you indifferently. After you’ve come back to Terra a bit you smile at him. There’s no real need to say anything anymore, and you just grin at each other like idiots. You give him a bit more of a cuddle before putting your clothes on and leaving the scrapyard through the back. Although you’re more than a bit damp, the hot sun will quickly take care of that.");
 		pc.loadInAss(chars["GEOFF"]);
 	}
-	if(pc.isFeminine() && flags["SEXED_GEOFF_MASC"] == 1 && flags["SEXED_GEOFF"] == 1)
+	if(pc.isFeminine() && flags["SEXED_GEOFF_MASC"] == 1 && flags["SEXED_GEOFF"] == 1) { /* Not sure why this check is here... */ }
 	processTime(45+rand(10));
 	pc.orgasm();
 	geoff.orgasm();
