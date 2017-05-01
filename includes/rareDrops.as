@@ -19,7 +19,7 @@ public function genericRareDrops(loot:Array):Array
 				break;
 			case "tarkus":
 				if(!CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
-				else if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
+				else if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBITwo());
 				break;
 			case "myrellion":
 				break;
