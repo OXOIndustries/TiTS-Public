@@ -25,13 +25,13 @@ package classes.Items.Transformatives
 			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
-			this.shortName = "New Uwe";
+			this.shortName = "New Ewe";
 			//Regular name
-			this.longName = "a New Uwe pill"
+			this.longName = "a New Ewe pill"
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a white pill stamped with the words “New Uwe”";
+			this.description = "a white pill stamped with the words “New Ewe”";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This is a transformative pill designed by Xenogen Biotech to make the user take on characteristics similar to that of a Terran sheep. Effects are recorded to range between giving the user ram horns (though almost exclusively this occurs in men) and causing them to start growing a thick layer of fluffy, insulating wool. The pill itself looks bland, but the wrapper with the stylized sheep printed on it is rather fetching.";
 			
