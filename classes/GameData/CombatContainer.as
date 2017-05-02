@@ -3587,14 +3587,15 @@ package classes.GameData
 					prefs++;
 				}
 				
-				output("\n\nLust Resistances:");
+				var damIdx:uint = 0;
 				
+				output("\n\nLust Resistances:");
 				var lR:TypeCollection = target.getLustResistances();
 				for (i = 0; i < DamageType.LustDamageTypes.length - 1; i++)
 				{
 					output("\n");
 					
-					var damIdx:uint = DamageType.LustDamageTypes[i];
+					damIdx = DamageType.LustDamageTypes[i];
 					var rValue:Number = lR.getType(damIdx).damageValue;
 					
 					output(lR.getType(damIdx).longName + " Resistance: ");
@@ -3619,7 +3620,7 @@ package classes.GameData
 			var tarC:TypeCollection = target.shields() > 0 ? target.getShieldResistances() : target.getHPResistances();
 			for (var i:int = 0; i < DamageType.HPDamageTypes.length - 1; i++)
 			{
-				var damIdx:uint = DamageType.HPDamageTypes[i];
+				damIdx = DamageType.HPDamageTypes[i];
 				output("\n" + tarC.getType(damIdx).longName + " Resistance: ");
 				
 				if (pcGearEyeballBonus + rand(20) + 1 >= target.level * 3 * ((target.willpowerMax() * 1.5) - target.willpower()) / target.willpowerMax())
