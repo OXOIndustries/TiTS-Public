@@ -67,7 +67,7 @@
 				if(CodexManager.entryUnlocked("Fuck the System")) kGAMECLASS.output("You realize that you already have this story and toss out the useless code.");
 				else
 				{
-					kGAMECLASS.output("You scan the code with your Codex, unlocking \"Fuck the System\" in your Codex’s fiction section.");
+					kGAMECLASS.output("You scan the code with your Codex, unlocking “Fuck the System” in your Codex’s fiction section.");
 					CodexManager.unlockEntry("Fuck the System");
 				}
 			}
