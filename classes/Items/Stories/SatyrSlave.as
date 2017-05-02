@@ -10,11 +10,11 @@
 	import classes.Engine.Combat.inCombat;
 	import classes.GameData.CodexManager;
 	
-	public class CapturedByTheDemons extends ItemSlotClass
+	public class SatyrSlave extends ItemSlotClass
 	{
 		
 		//constructor
-		public function CapturedByTheDemons()
+		public function SatyrSlave()
 		{
 			this._latestVersion = 1;
 			
