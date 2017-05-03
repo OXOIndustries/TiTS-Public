@@ -458,15 +458,25 @@ public function drLessauAfter():void
 
 public function steeleBiomedBusinessHours():Boolean
 {
-	return (flags["MET_DR_LESSAU"] != undefined && hours >= 9 && hours <= 17);
+	return (hours >= 9 && hours <= 17);
 }
 public function steeleBiomedBonus():Boolean
 {
 	if(steeleBiomedBusinessHours())
 	{
-		if(pc.hasStatusEffect("BioMed Gangbang Cooldown")) addDisabledButton(0, "Gangbang", undefined, "Maybe you should give your employees some time to cool off before trying this again.");
-		else if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
-		else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
+		output("Steele Tech’s biomedical division has a cozy office feel to it, white walls and dark wood paneling complementing the dark blue carpeting. A large holoprojector table dominates the center of the room, the large central display showing a planetary map with highlighted points of interest, while smaller displays ringing the edges of the table serve as personal consoles for many of the researchers. Other researchers are off in cubicles along the walls that provide a bit more privacy. Bookcases dot the walls; most are filled with textbooks, but you see a few shelves dedicated to tabletop gamebooks. You also notice that almost all of the researchers are modded to at least some degree, many heavily so. Most are women, though there are a few men as well.");
+		output("\n\nAn office door along the south wall is currently open just a crack. Set to the right of the door is an embossed metal sign labeled with a small copy of the Steele Tech logo, below which is the inscription “Dr. Lessau, Head Researcher”.");
+		
+		if(flags["MET_DR_LESSAU"] != undefined)
+		{
+			if(pc.hasStatusEffect("BioMed Gangbang Cooldown")) addDisabledButton(0, "Gangbang", undefined, "Maybe you should give your employees some time to cool off before trying this again.");
+			else if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
+			else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
+		}
+	}
+	else
+	{
+		output("The Steele Biomedical offices are down to a skeleton crew at night. A few researchers have stayed late to work on their own projects, but most of the consoles are off or asleep. Even the ceiling lights are dimmed, lending the office a quiet feeling. The lights of the head researcher’s office, though, remain on even at this hour.");
 	}
 	
 	return false;

@@ -1,23 +1,53 @@
 // Added to The Freezer off business hours after having participated in the office gangbang
 public function waltAvailableAtBar():Boolean
 {
-	return (!steeleBiomedBusinessHours() && flags["BIOMED_GANGBANGED"] != undefined && !pc.hasStatusEffect("Walt Cooldown"));
+	return (!steeleBiomedBusinessHours() && !pc.hasStatusEffect("Walt Cooldown"));
 }
 public function waltAtTheFreezer(btnSlot:int = 0):void
 {
-	output("\n\nYou see the wolfman, Walt, sitting at a table, nursing a drink. He sniffs the air as you enter, looking up in your direction.");
-	// [Walt] Go to Walt Talk Menu
-	addButton(btnSlot, "Walt", approachWalt);
+	output("\n\n");
+	if(!metWalt())
+	{
+		output("You spot an anthropomorphic wolfman sitting at one of the tables, nursing a drink. From the way he’s dressed, he probably works at one of the offices around here.");
+		// [Wolf] Go to Introduction, remove and replace with Walt
+		addButton(btnSlot, "Wolf", approachWalt, true);
+	}
+	else
+	{
+		output("\n\nYou see the wolfman, Walt, sitting at a table, nursing a drink. He sniffs the air as you enter, looking up in your direction.");
+		// [Walt] Go to Walt Talk Menu
+		addButton(btnSlot, "Walt", approachWalt);
+	}
 }
 
-public function approachWalt():void
+public function approachWalt(intro:Boolean = false):void
 {
 	clearOutput();
 	showBust("WALT");
-	showName("\nWALT");
 	author("Couch");
 	
-	output("<i>“Oh, [pc.name]. Here for a drink?”</i> Walt’s still wearing his officewear, though considerably less buttoned up. With his shirt unbuttoned you can see he’s got a silver necklace on underneath.");
+	// Introduction
+	if(intro)
+	{
+		showName("\nWOLF");
+		
+		output("You take a seat across from the wolf, who looks up at you in what starts as a mixture of annoyance and confusion before recognition seems to dawn.");
+		output("\n\n<i>“You’re...?”</i> he asks, his voice trailing off. Now that you’re up close you can see that he’s got a lean, wiry build under his business casual attire. His shirt is unbuttoned, revealing the glint of a silver-hued chain that’s hard to make out against his matching gray fur.");
+		output("\n\n<i>“Steele, [pc.name] Steele,”</i> you reply, finishing the sentence for him with a");
+		if(pc.isNice()) output(" sweet smile");
+		else if(pc.isMischievous()) output(" sly grin");
+		else output(" cocky smirk");
+		output(". <i>“Maybe you’ve heard of me.”</i>");
+		output("\n\nThe man looks you over before nodding and offering a hand. <i>“It’s Walt. I work for Steele Biomedical, over by the elevator. Our boss was saying you might come around.”</i>");
+		output("\n\nYou return the handshake.");
+		output("\n\n<i>“Not sure what I can do for you outside the office, but if you just want to talk, feel free.”</i>");
+	}
+	else
+	{
+		showName("\nWALT");
+		
+		output("<i>“Oh, [pc.name]. Here for a drink?”</i> Walt’s still wearing his officewear, though considerably less buttoned up. With his shirt unbuttoned you can see he’s got a silver necklace on underneath.");
+	}
 	
 	processTime(1);
 	

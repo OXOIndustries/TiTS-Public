@@ -317,7 +317,7 @@ public function initUvetoRooms():void
 	/* Steele Biomed */
 	rooms["UVI H36"] = new RoomClass(this);
 	rooms["UVI H36"].roomName = "STEELE BIOMED\nOFFICES";
-	rooms["UVI H36"].description = "Steele Tech’s biomedical division has a cozy office feel to it, white walls and dark wood paneling complementing the dark blue carpeting. A large holoprojector table dominates the center of the room, the large central display showing a planetary map with highlighted points of interest, while smaller displays ringing the edges of the table serve as personal consoles for many of the researchers. Other researchers are off in cubicles along the walls that provide a bit more privacy. Bookcases dot the walls; most are filled with textbooks, but you see a few shelves dedicated to tabletop gamebooks. You also notice that almost all of the researchers are modded to at least some degree, many heavily so. Most are women, though there are a few men as well. \n\nAn office door along the south wall is currently open just a crack. Set to the right of the door is an embossed metal sign labeled with a small copy of the Steele Tech logo, below which is the inscription “Dr. Lessau, Head Researcher”. ";
+	rooms["UVI H36"].description = "";
 	rooms["UVI H36"].planet = "PLANET: UVETO VII";
 	rooms["UVI H36"].system = "SYSTEM: SIRETTA";
 	rooms["UVI H36"].northExit = "UVI H34";
