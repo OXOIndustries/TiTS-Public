@@ -1169,6 +1169,15 @@ public function itemInteractMenu(counter:Boolean = false):Number
 			itemMessages += omnisuitMenuBonus(count - 1);
 		}
 	}
+	// Hardlight Anti-Grav Thong
+	if (isWearingHardlightAGThong())
+	{
+		count++
+		if (!counter)
+		{
+			itemMessages += hardlightAGThongBonus(count - 1);
+		}
+	}
 	
 	if(!counter) {
 		clearBust();

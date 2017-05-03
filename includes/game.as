@@ -2105,6 +2105,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processEmmyEvents(deltaT, doOut, totalDays);
 	processZheniyaEvents(deltaT, doOut, totalDays);
 	processHLPantyShit();
+	processHardlightAGThongBlurbs(deltaT, doOut);
 	geneSubmissionLevelDecay(deltaT, doOut);
 	
 	// Per-day events
