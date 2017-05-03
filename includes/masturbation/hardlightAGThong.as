@@ -27,7 +27,7 @@ public function hardlightAGThongBonus(btnSlot:int):String
 	var bonusText:String = "\n\nYou are reminded of your snugly fitting hardlight anti-grav thong";
 	// if any dildo on:
 	if(hardlightAGThongDildo()) bonusText += " that currently fills your insides";
-	bonusText += ". Maybe you can play around with its settings?.";
+	bonusText += ". Maybe you can play around with its settings?";
 	
 	addButton(btnSlot, (pc.lowerUndergarment.shortName), hardlightAGThongMenu, undefined, StringUtil.toDisplayCase(pc.lowerUndergarment.longName), "Interact with your hardlight anti-grav thong.");
 	
