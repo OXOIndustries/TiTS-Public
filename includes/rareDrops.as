@@ -3,6 +3,9 @@ import classes.Items.Stories.BXBITwo;
 import classes.Items.Stories.EightClicks;
 import classes.Items.Stories.BecomingOneOfTheGirls;
 import classes.Items.Stories.FuckTheSystem;
+import classes.Items.Stories.SatyrSlave;
+import classes.Items.Stories.CapturedByTheDemons;
+
 
 public function genericRareDrops(loot:Array):Array
 {
@@ -16,20 +19,26 @@ public function genericRareDrops(loot:Array):Array
 			case "tavros station":
 				break;
 			case "mhen'ga":
+				if(!CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
+				if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
+				if(!CodexManager.entryUnlocked("Satyr Slave")) tempLoot.push(new SatyrSlave());
 				break;
 			case "tarkus":
-				if(!CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
-				else if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBITwo());
+				if(!CodexManager.entryUnlocked("||||||||")) tempLoot.push(new EightClicks());
+				if(!CodexManager.entryUnlocked("FuckTheSystem")) tempLoot.push(new FuckTheSystem());
 				break;
 			case "myrellion":
+				if(!CodexManager.entryUnlocked("Captured...")) tempLoot.push(new CapturedByTheDemons());
+				if(!CodexManager.entryUnlocked("Satyr Slave")) tempLoot.push(new SatyrSlave());
+				if(!CodexManager.entryUnlocked("FuckTheSystem")) tempLoot.push(new FuckTheSystem());
 				break;
 			default:
 				break;
 		}
+		//Universal rare drops~
 		if(tempLoot.length == 0) 
 		{
-			if(!CodexManager.entryUnlocked("||||||||")) tempLoot.push(new EightClicks());
-			if(!CodexManager.entryUnlocked("FuckTheSystem")) tempLoot.push(new FuckTheSystem());
+								
 		}
 	}
 	//Easter special!
