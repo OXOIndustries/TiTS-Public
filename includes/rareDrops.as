@@ -20,7 +20,7 @@ public function genericRareDrops(loot:Array):Array
 				break;
 			case "mhen'ga":
 				if(!CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
-				if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
+				if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBITwo());
 				if(!CodexManager.entryUnlocked("Satyr Slave")) tempLoot.push(new SatyrSlave());
 				break;
 			case "tarkus":
@@ -38,7 +38,10 @@ public function genericRareDrops(loot:Array):Array
 		//Universal rare drops~
 		if(tempLoot.length == 0) 
 		{
-								
+			/*
+			// Missing entries?
+			if(!CodexManager.entryUnlocked("Becoming One...")) tempLoot.push(new BecomingOneOfTheGirls());
+			*/
 		}
 	}
 	//Easter special!
