@@ -8319,6 +8319,10 @@ public function bessEvent17():void
 		
 		output("\n\n[bess.name] pouts a little bit, spinning the z-g ball on one finger. <i>“... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!”</i>");
 	}
+	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_SLUTTY)
+	{
+		output("\n\nYou think back to exactly what (and who) you were doing while everyone else was playing Graviball, blushing at the memories. [bess.name] raises an eyebrow, but doesn't comment.");
+	}
 
 	//{If Ship Has a Holoroom:
 	if (9999 == 0)

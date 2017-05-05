@@ -19,13 +19,15 @@
 		public static const UPBRINGING_BOOKWORM:uint						= 2;
 		public static const UPBRINGING_AUSTERE:uint							= 3;
 		public static const UPBRINGING_BALANCED:uint						= 4;
-		public static const MAX_UPBRINGINGS:uint							= 5;
+		public static const UPBRINGING_SLUTTY:uint							= 5;
+		public static const MAX_UPBRINGINGS:uint							= 6;
 		
 		public static const UPBRINGING_NAMES:Array = [
 			"Pampered",
 			"Athletic",
 			"Bookworm",
 			"Austere",
+			"Slutty",
 			"Balanced"
 		];
 
