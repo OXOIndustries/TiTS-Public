@@ -50,6 +50,8 @@ package classes.Ships
 			_capacitorModule = new CapacitorModule(this);
 			_gunneryModule = new GunneryModule(this);
 			
+			_inherentGadgets = [];
+			
 			_hullMaxBase = 100;
 			Hull = HullMax;
 			
@@ -786,6 +788,7 @@ package classes.Ships
 			{
 				_fittedModules.push(newModule);
 				_cachedFittedModules = null;
+				_cachedGadgets = null;
 				newModule.Owner = this;
 			}
 		}
@@ -795,6 +798,7 @@ package classes.Ships
 			{
 				_fittedModules.splice(_fittedModules.indexOf(oldModule), 1);
 				_cachedFittedModules = null;
+				_cachedGadgets = null;
 			}
 			
 			if (oldModule.Owner != null)
@@ -823,6 +827,8 @@ package classes.Ships
 		}
 		public function UnassignCrewFromModule(crew:Creature):void
 		{
+			_cachedAssignedCrewmembers = null;
+			
 			if (crew.assignedModule != null)
 			{
 				crew.assignedModule.AssignedCrewMember = null;
@@ -830,6 +836,30 @@ package classes.Ships
 				crew.assignedModule = null;
 			}
 		}
+		
+		protected var _cachedAssignedCrewmembers:Array;
+		public function get AssignedCrewmembers():Array
+		{
+			if (_cachedAssignedCrewmembers == null)
+			{
+				_cachedAssignedCrewmembers = [];
+				
+				var fm:Array = FittedModules;
+				for (var i:int = 0; i < fm.length; i++)
+				{
+					var m:ShipModule = fm[i] as ShipModule;
+					
+					if (m.HookedCrew != null)
+					{
+						_cachedAssignedCrewmembers.push(m.HookedCrew);
+					}
+				}
+			}
+			return _cachedAssignedCrewmembers;
+		}
+		
+		protected var _inherentGadgets:Array;
+		public function get InherentGadgets():Array { return _inherentGadgets; }
 		
 		//} endregion
 		
@@ -1190,6 +1220,34 @@ package classes.Ships
 		//} endregion
 		
 		//{ region Combat
+		
+		public function get HasAvailableGadgets():Boolean
+		{
+			if (_cachedGadgets == null)
+			{
+				var t:Array = AvailableGadgets;
+			}
+			
+			return _cachedGadgets > 0;
+		}
+		
+		protected var _cachedGadgets:Array;
+		public function get AvailableGadgets():Array
+		{
+			if (_cachedGadgets == null)
+			{
+				_cachedGadgets = [];
+				_cachedGadgets = _cachedGadgets.concat(_inherentGadgets);
+				
+				var m:Array = FittedModules;
+				for each (var mod:ShipModule in m)
+				{
+					_cachedGadgets = _cachedGadgets.concat(mod.GrantedGadgets);
+				}
+			}
+			
+			return _cachedGadgets;
+		}
 		
 		public function BeginCombat():void
 		{

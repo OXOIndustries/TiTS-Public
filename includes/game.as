@@ -571,6 +571,20 @@ public function crewRecruited(allcrew:Boolean = false):Number
 	return counter;
 }
 
+// TODO: This is a temporary solution, I just don't want to refactor ALL of the crew shit right now
+public function getCrewOnShip():Array
+{
+	var c:Array = [];
+	if (celiseIsCrew()) c.push(celise);
+	if (reahaisCrew()) c.push(reaha);
+	if (annoIsCrew()) c.push(anno);
+	if (bessIsCrew()) c.push(bess);
+	if (yammiIsCrew()) c.push(yammi);
+	if (gooArmorIsCrew()) c.push(gooArmor);
+	if (siegwulfeIsCrew()) c.push(siegwulfe);
+	return c;
+}
+
 public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();

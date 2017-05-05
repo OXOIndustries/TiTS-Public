@@ -17,11 +17,7 @@ package classes.Engine.ShipCombat
 		public var UniqueName:String;
 		public var ButtonName:String;
 		public var TooltipTitle:String;
-		
-		public function get TooltipBody():String
-		{
-			
-		}
+		protected var TooltipBody:String;
 		
 		public var CapacitorCost:Number = 0;
 		public var RequiresTarget:Boolean = true;
@@ -90,6 +86,22 @@ package classes.Engine.ShipCombat
 			
 			Implementor(user, target, palyerGroup, hostileGroup);
 			user.Capacitor -= user.CalculateCapacitorCost(this);
+		}
+		
+		public function GenerateMenuTooltip(user:SpaceShip):String
+		{
+			var s:String = TooltipBody;
+			
+			if (IsAvailable(user))
+			{
+				s += "\n\nThis action is currently unavailable.";
+			}
+			else
+			{
+				s += "\n\nEnergy Cost: " + user.CalculateCapacitorCost(this);
+			}
+			
+			return s;
 		}
 		
 		public function ShipAction() 

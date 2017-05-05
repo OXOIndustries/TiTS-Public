@@ -88,14 +88,89 @@ package classes.GameData
 			//addButton(1, "Maneuvers", );
 			addDisabledButton(1, "Maneuvers", "Maneuvers", "You haven't learned or been granted any maneuvers yet!");
 			
-			addButton(2, "Gadgets", );
+			if (pcShip.HasAvailableGadgets)
+			{
+				addButton(2, "Gadgets", showGadgetsMenu);
+			}
+			else
+			{
+				addDisabledButton(2, "Gadgets");
+			}
 			
 			addButton(5, "Navigation", showNavigationMenu);
 			
 			addButton(6, "Gunnery", );
-			addButton(7, "Crew", );
+			
+			// TODO: We might need a way to properly identify an assignable crewmember that is present on the ship.
+			// This'll be pissing in the wind toward restructuring even more of the game right now though...
+			if (kGAMECLASS.crew(true, false) > 0)
+			{
+				addButton(7, "Crew", showCrewMenu);
+			}
+			else
+			{
+				addDisabledButton(7, "Crew", "Crew Assignments", "You have no assignable crew.");
+			}
 			
 			addButton(14, "EXECUTE", executePlayerOrders);
+		}
+		
+		private function showCrewMenu():void
+		{
+			// This is going to be annoying as holyfuckkkkkk
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Crew assignment menu.");
+			
+			var assignedCrew:Array = PlayerShip.AssignedCrewmembers;
+			var availCrew:Array = kGAMECLASS.getCrewOnShip;
+			
+			for (var i:int = 0; i < 
+			
+		}
+		
+		private function showGadgetsMenu():void
+		{
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Gadget display menu.");
+			
+			var gadgets:Array = PlayerShip.AvailableGadgets;
+			var gadgetCommands:Array = [];
+			
+			for (var i:int = 0; i < gadgets.length; i++)
+			{
+				var cc:CommandContainer = new CommandContainer();
+				var ga:ShipAction = gadgets[i] as ShipAction;
+				
+				cc.text = ga.ButtonName;
+				cc.IsDisabled = PlayerShip.CombatOrders.SelectedAction == ga || ga.IsAvailable(PlayerShip);
+				cc.func = function(new_act:ShipAction, return_f:Function):Function {
+					return function():void {
+						selectAction(new_act, return_f);
+					}
+				}(ga, showGadgetsMenu);
+				cc.arg = undefined;
+				cc.ttHeader = ga.TooltipTitle;
+				cc.ttBody = ga.GenerateMenuTooltip(PlayerShip);
+				cc.IsPurple = PlayerShip.CombatOrders.SelectedAction == ga;
+				
+				gadgetCommands.push(cc);
+			}
+			
+			var backCC:CommandContainer = new CommandContainer();
+			backCC.func = showCombatMenu;
+			backCC.text = "Back";
+			
+			StructureButtons(gadgetCommands, backCC, true);
+		}
+		
+		private function selectAction(newAction:ShipAction, returnTo:Function):void
+		{
+			PlayerShip.CombatOrders.SelectedAction = PlayerShip.CombatOrders.SelectedAction == newAction ? null : newAction;
+			returnTo();
 		}
 		
 		private function showNavigationMenu():void
@@ -234,7 +309,7 @@ package classes.GameData
 			
 			resolveRangeChanges(_friendlies[0], _hostiles[0]);
 			
-			
+			processCombat();
 		}
 		
 		private function applyOverchargeStates(tarShip:SpaceShip):void
@@ -316,7 +391,7 @@ package classes.GameData
 			{
 				if (rangeChange == -1)
 				{
-					output(shipB.CombatNameFormatted(true) + " closes to " + getCurrentRange() + !");
+					output(shipB.CombatNameFormatted(true) + " closes to " + getCurrentRange() + "!");
 				}
 				else if (rangeChange == 1)
 				{
@@ -363,7 +438,7 @@ package classes.GameData
 		
 		override public function processCombat():void
 		{
-			
+			// Actually resolve and apply all of the combat actions requred for all ships
 		}
 		
 		override public function endCombatRound():void

@@ -8522,7 +8522,6 @@
 			return hasNipplesofType(GLOBAL.NIPPLE_TYPE_LIPPLES, rowNum);
 		}
 		public function hasDickNipples(rowNum:int = -1): Boolean {
-			//trace("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
 			return hasNippleCocks(rowNum);
 		}
 		public function hasNippleCocks(rowNum:int = -1): Boolean {

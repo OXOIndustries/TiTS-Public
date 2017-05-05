@@ -8,6 +8,9 @@ package classes.Engine.ShipCombat
 	 */
 	public class ShipCombatOrderContainer 
 	{
+		public var SelectedAction:ShipAction;
+	
+		//{ region Range Settings
 		public static const RANGE_POINTBLANK:uint = 0;
 		public static const RANGE_CLOSE:uint = 1;
 		public static const RANGE_MID:uint = 2;
@@ -30,7 +33,9 @@ package classes.Engine.ShipCombat
 		];
 		
 		public var DesiredRange:uint = 0;
+		//}
 		
+		//{ region Overcharge Settings
 		public static const OVERCHARGE_NONE:uint 		= 0;
 		public static const OVERCHARGE_GUNNERY:uint 	= 1;
 		public static const OVERCHARGE_AUTOLOADERS:uint = 1 << 1;
@@ -41,8 +46,6 @@ package classes.Engine.ShipCombat
 		public static const OVERCHARGE_SHIELDING:uint 	= 1 << 6;
 		
 		public var DesiredOverchargeStation:uint = OVERCHARGE_NONE;
-		
-		public var SelectedAction:Object;
 		
 		private static function RegisterOverchargeToShip(tarShip:SpaceShip, ovrMask:uint):void
 		{
@@ -167,6 +170,8 @@ package classes.Engine.ShipCombat
 		
 		public static var OVERCHARGE_STATION_MASKS:Array;
 		public static var OVERCHARGE_STATION_DETAILS:Array;
+		
+		//}
 	}
 
 }
