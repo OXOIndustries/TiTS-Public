@@ -40,6 +40,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
+			hardLightEquipped = true;
+			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
 			
