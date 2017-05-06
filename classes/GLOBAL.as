@@ -384,6 +384,7 @@
 			FLAG_GOOEY,
 			FLAG_STICKY,
 			FLAG_NUBBY,
+			FLAG_TAPERED,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [

@@ -251,6 +251,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Genital Location:</b> " + GLOBAL.GENITAL_SPOT_NAMES[pc.genitalLocation()]);
 			if(pc.hasStatusEffect("Genital Slit")) output2(", Genital Slit");
 		}
+		if(pc.hasPheromones()) output2("\n<b>* Pheromone Level:</b> " + pc.pheromoneLevel());
 		
 		// Chest
 		if(pc.breastRows.length > 0 || pc.hasNipples())

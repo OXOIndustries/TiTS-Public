@@ -322,7 +322,7 @@ public function burtMakesAPurchase(arg:int = 0):void {
 		case "ZilRation": credits = 50; break;
 		case "ZilHoney": credits = 100; break;
 		case "Z.Spear":
-		case "ZilBow": credits = (pc.inventory[arg].basePrice * 150); break;
+		case "ZilBow": credits = (pc.inventory[arg].basePrice * 1.5); break;
 	}
 	pc.inventory[arg].quantity--;
 	pc.credits += credits;

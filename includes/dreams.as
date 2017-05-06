@@ -480,9 +480,9 @@ public function venusDreamyButtStart():void
 	author("eSuccubus");
 	output("Tonight’s the night, and it’s going to happen again and again.");
 	output("\n\nHas to happen.");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
-	output("\n\nThere is a wet heat between your legs that reaches up inside you and strokes your mind as well. One image surfaces from the maelstrom of thought: a green-skinned plant woman who only wants what is best for you. Best for both of you. There is no sign of her yet, here in the dark forest. Memories of your arrival are fuzzy, but the <i>“why”</i> of your visit isn’t. That relentless stroking feeling, like your mind itself being jerked off. Subconsciously, it’s been haunting you for a long time. Your conscious mind doesn’t even know how badly you hunger.");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
+	output("\n\nThere is a wet heat between your legs that reaches up inside you and strokes your mind as well. One image surfaces from the maelstrom of thought: a green-skinned plant woman who only wants what is best for you. Best for both of you. There is no sign of her yet, here in the dark forest. Memories of your arrival are fuzzy, but the “why” of your visit isn’t. That relentless stroking feeling, like your mind itself being jerked off. Subconsciously, it’s been haunting you for a long time. Your conscious mind doesn’t even know how badly you hunger.");
 	output("\n\nThe forest makes you feel like everything will be alright. The part of you that tells you when you are home, filled with her and connected to her and buried face-first in her breasts, is pulsing happily. A tether between you and she, the object of your desire, flashing vibrations into your mind until the comfortgasm of submission has you scrabbling more quickly through the overgrowth. Maybe you will fall face first into her tits.");
 	output("\n\nThinking of her calls an image of the Venus Pitcher to mind. Powerful, cunning, tempting, seductive: your mental image grows in intensity until you can see her ghostly image superimposed over the environment. An effect like wearing glasses with a hologram of her on the inside. There she is. Breasts swaying from side to side. Blinking has a familiar difficulty to it, and your fixated mind sees her in the foreground of the world. In front of the trees, even in front of your hand when you try holding it up in front of your face.");
 	output("\n\nShe is there, from the waist up, a perfect image of your leafy temptress floating like a cheap holovid effect on the inside of a pair of glasses... you look at the tiny version of her painted on your hand, but you know you’re really seeing her from inside your eyes. From inside your head. She’s mouthing something. Can’t hear the words. Have to get closer with the ghostly images of her on the inside of your eyes to guide you. They remain when you blink. They are within, bouncing boobs and all.");
@@ -496,8 +496,8 @@ public function venusDreamsPart2():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("The answer is swift and sure.");
 	output("\n\n<i>“You are wrong, you need this,”</i> says a confident feminine voice. The voice. Her voice. Its harmonics begin euphoric stimulation of a part of you that is more than physical. You fall to the ground in shivering paroxysms at this first taste of her. It was never so strong before, but your face pressed to the scattered leaves is undeniable proof of her control. Something feels strange about all this.");
 	output("\n\nThat thought vanishes quickly because the beautiful and welcoming voice is outside, inside, everywhere and everything.");
@@ -519,8 +519,8 @@ public function venusDreamsPart3():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("She pauses her show, breasts falling out of her hands with a joyfully perky bounce. The brain-shudder that follows this gesture makes you feel like you want to cum. You’re right on the cusp, but something is missing.");
 	output("\n\n<i>“What am I supposed to do with that?”</i> she says, pointing down between your legs with one hand, while the other covers her mouth to barely-suppress a laugh.");
 	output("\n\nYou look down and see...");
@@ -528,21 +528,24 @@ public function venusDreamsPart3():void
 	output("\n\nThe stimulation has all been mental, internal, mesmerizing and deep. She seems to be laughing at you, and so are the ghostly visions of her imposed on your eyes and within your mind. You scrabble your hands futilely between your legs, finding no way to force pleasure through the front. No womb to impregnate, no cock to surrender to her or supply her with your seed. You think for a moment as she looms over you, her vines extending and tickling you as they probe the blank expanse where your sex might otherwise reside.");
 	output("\n\nYou look up at her, trying to ask a question, trying to muster words or thought. The ravishing plant woman has resumed the slow oscillation of her tits, moving them in circles that leave afterimages in your vision. The real tits are now backdrops for tiny busts of her, massaging her breasts, which are resting on your eyelids. You blink, with effort, and still see tiny versions of her winking and tempting you. When you open your eyes, the phantom venus pitchers transparently imposed on your field of view happen to line up perfectly with her nipples.");
 	output("\n\nShe is everywhere. She is within. She is without. You have to offer something. She can’t be left wanting. She can’t be left without a part of you to use...");
-	clearMenu();
-	addButton(0,"Next",venusDreamsPartBimbo);
+	
 	//it branches after this into multiple possible scenes
+	var venusDreamList:Array = [];
+	
+	if(pc.isBimbo()) venusDreamList.push(venusDreamsPartBimbo);
+	if(pc.biggestTitSize() >= 10) venusDreamList.push(venusDreamsPartFucknormousTits);
+	
 	clearMenu();
-	if(pc.isBimbo()) addButton(0,"Next",venusDreamsPartBimbo);
-	else if(pc.biggestTitSize() >= 10) addButton(0,"Next",venusDreamsPartFucknormousTits);
-	else addButton(0,"Next",venusPitcherDreamsPartNormal);
+	if(venusDreamList.length > 0) addButton(0, "Next", venusDreamList[rand(venusDreamList.length)]);
+	else addButton(0, "Next", venusPitcherDreamsPartNormal);
 }
 
 public function venusDreamsPartBimbo():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("That’s like, no problem though. You know the answer. She seems surprised, because you smile and kneel instead of looking sad. You lay on your side on the leafy ground, and face away from the lady. Well, you try. But the titties are so big. Need to lookit the titties! So you gaze all sultry and stuff, you know, like over your shoulder at them. You lick and then open your [pc.lips], your tongue laid out and curling obscenely. You’ll suck anything so good. Anything, anyone, fuck your brain, fill your mouth, make your bimbo body burst like a cumming pussy or a spurting cock or a clenching ass or a happy titgasm.");
 	output("\n\nAll of you should be like that. One big sexy slut slit for her to fuck. Your [pc.butt] is facing toward her. She might not be able to see your [pcasshole] so you grip one butt cheek and pull it upward. If you had a pussy or a cock she’d be able to see that. Instead, the nice lady emits an appreciative murr at the sight. <i>“I’ve got all the slutty holes you need!”</i> you giggle. <i>“Like, duh, if there’s no pussy then just make new pussies. Mouth ‘n ass ‘n brain all slutty pussies.”</i> You keep your lips wide open. Your butt wiggles when you rub your hip against the leafy ground. Squirming eagerness A nice smell fills the air and your eyes get all heavy and stuff. Sex and flowers and musk and ache and it isn’t all from you. Good, she likes it.");
 	output("\n\nShe seems intrigued and reaches out. But you laid on the ground too far from her, aww, you’re gonna have to get up when you just posed all sexy! But no, because the ground moves and vines reveal themselves. A conveyor belt of vines pulling you closer. Unstoppable. Feels squirmy and good.");
@@ -558,7 +561,7 @@ public function venusDreamsPartBimbo():void
 	output("\n\nYou seem to see yourself from outside, hovering over your body spit roasted high off the forest floor. Suspended in a web of vines, the beautiful lady rubbing her nipples and rotating those mind-stealing globes, everything is perfect.");
 	output("\n\nLike, wow, who’s that down there... She’s droolin’ so much. Fuck, her whole body is full..");
 	output("\n\nIt is. Sparks and spikes and bolts of pleasure. One finds a place inside your ass you weren’t sure existed, and just begins vibrating on top of it. Whatever the liquid on those vines is, it coats your tongue and turns it into a clit, a cock, a pussy, an entire sexual explosion between your lips. Only the whites of your eyes are visible in the moment her vines really begin their push.");
-	output("\n\nLubricated, gentle, and all encompassing. The vines in your ass weave themselves together to form a structure like a huge but prehensile dildo. It keeps going and going until nothing is left of <i>“you”</i> except the you floating above, watching herself get fucked. The body down there looks uncomfortable with the vines filling it up and going all the way through. But all your discomfort is taken away by those big tits. She drifts forward through the fertile ground and rests her huge tits on your face.");
+	output("\n\nLubricated, gentle, and all encompassing. The vines in your ass weave themselves together to form a structure like a huge but prehensile dildo. It keeps going and going until nothing is left of “you” except the you floating above, watching herself get fucked. The body down there looks uncomfortable with the vines filling it up and going all the way through. But all your discomfort is taken away by those big tits. She drifts forward through the fertile ground and rests her huge tits on your face.");
 	output("\n\nGiggling. Clenching. Trying to send instructions to the poor vine-sleeve of meat and need and groaning ecstasy below with the plant lady’s green tits taking your mind. None of your instructions work. None of your thoughts work. Eventually even your out of body experience starts having mindless fuckquakes that send the green woman’s seed gushing back out of your butt. Mingled with your drool it has painted a pale green trail down your chest and formed a puddle under your suspended form.");
 	pc.lust(100);
 	clearMenu();
@@ -569,8 +572,8 @@ public function venusDreamsPartBimbo2():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("There is nowhere inside your head for your mind to run from this. The pleasure is so much that you just spread and contort before going limp. You belong to her now. Your tongue feels so good from that stuff. Sucky, sucky, blank stars and rainbows cascading through your mind - a wonderful backdrop to the dancing ghostly images of her embedded in your subconscious, playing on the viewscreen of your visual cortex.");
 	output("\n\nYou always see her. Always crave her. Your mouth is like a pussy, your ass is like a pussy. Vines grab your thighs and hips, holding you tight with an intimate closeness. The breasts resting on your face remind you that those big titties you so love are as close as they can be. You’re simply unable to deal with that. The sensitivity of a bimbo body overtakes and there is white hot pleasure. After this, your mind is too overtaxed to firmly record it all. You have to focus on one thing at a time if you’re gonna get any thinking done. You drool, and at one point begin to giggle.");
 	output("\n\nShe loves that because the mouth-vines which are pushing out of sight down your throat get the full vibration treatment. Spurting. There is spurting on your tongue. So much that the stuff oozes down it and you think it should be hard to breathe. But it is easy. Easy to breathe and sway. You can only see her green flesh - and the two superimposed images of her dancing and swaying inside your eyes.");
@@ -594,8 +597,8 @@ public function venusDreamsPartBimbo3():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("The mess the next morning is unspeakable, and leaves you with a lot to think about. You are covered in ");
 	if(pc.hasCock()) output("drying streams of cum");
 	else if(pc.hasVagina()) output("trickles of dried pussy juice");
@@ -615,8 +618,8 @@ public function venusDreamsPartFucknormousTits():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("Even though your mind is slow in the presence of this beautiful leafy seductress, you try to find an answer to her question. While looking down your body, you couldn’t help but notice something. Grabbing your [pc.tits] by their [pc.nipples], you lift them dully into the air, as high as you can, and let them drop. They bounce and sway, reminding you of the hypnotic breasts buried somewhere in barely-encoded memory. Hers. Yours are like hers, and that symmetry is joyous: reminding you of the woman in front of you, when she was seducing you, drawing you in, welcoming you into her warm arms. The rebounding boobquake makes more of the shivery stroking-stroking-stroking feeling invade your thoughts. The secret connection jerks off your mind and you’re drooling with the possibilities mingled with the impossibility of resistance.");
 	output("\n\nYou feel permeated, like her roots are in every part of you.");
 	output("\n\n<i>“To seed your breasts?”</i> The plant’s breath catches in her throat. The intrigued look she gives you is gratifying. <i>“I suppose they are big enough... if you would offer them up for that purpose.”</i>");
@@ -632,8 +635,8 @@ public function venusDreamsPartDicknipples():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("You shake your head.");
 	output("\n\n<i>“No? Did you have something else in mind?”</i> the pitcher asks.");
 	output("\n\nYou grip your [pc.dickNipples] more tightly for emphasis, bringing up a spurt of precum. You show off their shape, their heft, and the tiny dribbles which are then oozing down your [pc.breasts].");
@@ -643,12 +646,12 @@ public function venusDreamsPartDicknipples():void
 	output("\n\n<i>“Not yet,”</i> she admonishes. You are close enough to reach out and touch her, though. The green manipulator flips you over with a third vine wound around your waist. It is an intimate gesture, as it brings you closer to the hole down to her resting place under the forest floor.");
 	output("\n\n<i>“I would never let you fall,”</i> she reminds you with a companionable squeeze.");
 	output("\n\nSparks of pleasure come from your chest. They travel a much shorter distance than if she were stroking a normal cock, and so there is less time between each signal. The weight of your dicknipples turns her on, and she uses a few of the vine strokes to tilt the nipples left and right on your yielding tits. Pleasure is interrupting each thought in such a way that even your normally worshipful gaze turns hazy every time you look up at her. The vines can do as much as any hand, plus the way they are wrapping up your cocknips creates a swampy prison from which neither pleasure nor the building rivers of pre-ejaculate can escape. One vine, wound so tightly that nothing can ooze out from between its coils, dedicates itself to each nippledick.");
-	output("\n\nYour cocks are bathing in slick <i>“personal”</i> lubricant, and the feeling of mounting euphoria is in your tits as well as your brain. Your entire upper body is floating, the lower half forgotten. She turned you over at some point there, so she is looming over you now.");
+	output("\n\nYour cocks are bathing in slick “personal” lubricant, and the feeling of mounting euphoria is in your tits as well as your brain. Your entire upper body is floating, the lower half forgotten. She turned you over at some point there, so she is looming over you now.");
 	output("\n\n<i>“How are we... going to do this?”</i> she asks, her usual calm demeanor momentarily turned perplexed.");
 	output("\n\nYou are laying on your back with your huge firm breasts almost covering your face. Her vines hold you fast and jerk your tits, and her body is over you. She’s partly connected to a vast structure underground, and so the act of fitting your dicknipple in her pussy is daunting. You hear a satisfied sigh from above, and notice she is spreading her slick nether lips with the fingers of one hand. Your vine-wrapped dicknipples jut skyward - and then are released.");
 	output("\n\nFreed, they glisten with her vines’ strange humours and your own all too understandable fluids. She mingles the juice from her pussy with this, grabbing one of the nipplecocks. Then she pulls you closer to the hole, and straddles one of your [pc.breast]. The slicked up shaft slides inside of her.");
 	output("\n\n<i>“Oh yes!”</i> she cries out, with every appearance of abandon. You can only see her taut ass and curved back. You feel so much more. Your [pc.dickNipple] is buried in her sex. It is not that hot, but it is wet and perfectly sized. She rides you down to the hilt, astride your huge tit as if it were an inflatable bouncy ball. Your cock swells, its slight curve pressing against the walls of her sex as she extends above the deep rooted hole in the ground and mounts your tit reverse cowgirl.");
-	output("\n\nThis still leaves one cock out in the cold. She could just grasp it with the vines, but the plant woman chooses a more personal touch. Her long slender fingers capture it. The entrance of her wet perfect sex squeezes tight on your cock’s base. The back <i>“muscle”</i> of the erected dicknipple is being sucked as if by tiny mouths. A complete internal muscular control is mirrored in her hand, so the way her thumb and forefinger pump the base of the neglected dick not trapped in her folds is the same as her pussy’s ministrations.");
+	output("\n\nThis still leaves one cock out in the cold. She could just grasp it with the vines, but the plant woman chooses a more personal touch. Her long slender fingers capture it. The entrance of her wet perfect sex squeezes tight on your cock’s base. The back “muscle” of the erected dicknipple is being sucked as if by tiny mouths. A complete internal muscular control is mirrored in her hand, so the way her thumb and forefinger pump the base of the neglected dick not trapped in her folds is the same as her pussy’s ministrations.");
 	clearMenu();
 	addButton(0,"Next",venusDreamsPartDicknipples2);
 }
@@ -657,13 +660,13 @@ public function venusDreamsPartDicknipples2():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("You feel her weight, but her vines are taking much of it off of you. There is just enough to know she is sitting astride you, pushing air out of your body with each gleeful titquake from her butt and inner thighs slamming down on your breast. Your dicknipple has vanished, hilted, but you see her nectar and your precum mingled on the shaft when she rises up. Each time the gorgeous goddess of the vine lets herself drop, your head spins and your titty dick vanishes.");
 	output("\n\nHer back glistens with moisture, and the reflected light in the dark vegetation makes her glow in your vision. Your lower body is forgotten in the wild rut as the extended foreplay builds to a head. Bouncing, slapping, the music of passion throughout the forest. It is not long before tension takes over your upper body and you begin to feel light headed. You inform her that you are about to cum. It has never been like this before.");
 	output("\n\nThen the waves begin. The inside of her pussy is sucking, trying to swallow you deeper within. It moves in paroxysms: true spasms as a tight-knit conveyor belt of pleasure just sucks on and on. Trying to pull your cock deeper into her body. Her hand emulates this by switching from just two fingers to a full palm stroke. Now both hands. She is riding, moaning, letting her breath out in tiny gasps. The only thing in the world are your cocks and her control.");
 	output("\n\nOne of her hands grabs the base, slides up your slick [pc.dickNipple] exposed in the open forest air, and when it reaches the head it slips off your cock entirely - brushing her tight palm over the glans and frenulum with tickling pressure. This is a lot like your other cock feels, inside her pussy. Somehow she knows, and can mirror the sensation of her pussy with just a hand. When the first hand leaves your cock, the other grasps the base and repeats the motion. Hand over hand. Her body over you. Her bouncing righting smacking impacts filling your ears and mind with a deep-hilted braingasm. She’s so close and you’re so completely locked inside her.");
-	output("\n\nClimax arrives. Your entire breast goes pebbly with goosebumps and tenses up - becoming firm and heavy as cum prepares to flow along your nipple-shaft. The moment is here. Your breasts pulse, cum is squirting from both cocks and your mind sings its approval. An entire pleasure system wracked by her perfect milking. Everything else goes numb, joyously. It is like a tightness, a cramping in your shoulders - but then the cramp lets out. The tightness is gone. All over. All over your mind too. The tightness of life itself, in that moment, has no hold on you. You are cumming, and it is for her and in her and all through you. Spurt after spurt of cum flying into the air and coating both of her hands from the <i>“free”</i> dick, while the spreading cum pools and surrounds the one inside her. She laughs joyously at the geyser. You hear her sucking her fingers, lapping up the stuff. At least, she does that at first. Then her movement slows. She takes a single long deep breath, and another, trying to speak.");
+	output("\n\nClimax arrives. Your entire breast goes pebbly with goosebumps and tenses up - becoming firm and heavy as cum prepares to flow along your nipple-shaft. The moment is here. Your breasts pulse, cum is squirting from both cocks and your mind sings its approval. An entire pleasure system wracked by her perfect milking. Everything else goes numb, joyously. It is like a tightness, a cramping in your shoulders - but then the cramp lets out. The tightness is gone. All over. All over your mind too. The tightness of life itself, in that moment, has no hold on you. You are cumming, and it is for her and in her and all through you. Spurt after spurt of cum flying into the air and coating both of her hands from the “free” dick, while the spreading cum pools and surrounds the one inside her. She laughs joyously at the geyser. You hear her sucking her fingers, lapping up the stuff. At least, she does that at first. Then her movement slows. She takes a single long deep breath, and another, trying to speak.");
 	output("\n\n<i>“Oh, oh my...”</i> she manages to get out, then another noise you at first fail to realize came from the same body: <i>“Eeeeeeeeeeeee...”</i>");
 	output("\n\nAn uncharacteristically keening emits from the woman above you. Your be-dicked and mounted tit quivers because her inner thighs are moving as though shocked. Streams of her sweet-scented plant cum flow down your breast in waterfalls. You try to catch a stream of her secretions in your mouth, but it is occupied and there is too much motion anyway. Streams of water and cum are scattered to paint the surrounding trees more readily than they manage to stay on your face.");
 	output("\n\nJolt after jolt. She is still squealing. A glance up shows her shoulders and head lolling without resistance. No trace of sapience in her eyes, her belly swelling outward until she looks positively gravid. You wonder why. Oh, right. Your dick is still cumming, deep inside her. Spurting ropes of cum that paint the furthest walls of her sex then ooze back out onto your breast. She is too stuffed to take any more. Her swollen belly bounces against your own. There is labor in her rise-and-fall motion now, but she shows no sign of wanting escape.");
@@ -686,11 +689,11 @@ public function venusDreamsPartFucknormousTits2():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("You’re nodding your consent before she’s even finished the proposal. Vines are already winding precisely around your ankles. The green slithering appendages stem from a hole beneath the woman. They lift you up, treating your weight like no burden at all. There is a moment of inversion as you are suspended by your ankles, hanging free and open with your eyes level with her mouth, and vice versa. Nothing between your legs is exposed, but your [pc.tits] try to fall and cover your face. This vulnerability occupies your mind for a moment, and then your nipples are being squeezed.");
-	output("\n\nShe has drawn you close enough that she is using her fingers on your [pc.nipples], not vines. Her pinching and squeezing allows you to feel how smooth her fingertips are. No ridges or grooves there, only the smooth plant <i>“flesh”</i> pressing your nipples in. They perk up in response to her touch, and the vision of her lips curling up in a smile. You are close to her. You breathe deeply, letting your big tits and nips surrender to her. Your arms hang free. Strung up in helplessness, there is nothing you can do as she keenly inspects your breasts.");
-	output("\n\nFingers massage so deep that you feel the sensitive nerve endings pulsing happy messages to your mind. With no other sexual contact to distract you. She is feeling you out, giving the impression she can feel right through to the interior structure of your [pc.breasts] with her greenish <i>“tongue”</i> between her lips. Her eyes are locked unblinking on the flushed and goosebump laden skin. As much as you can while hanging there, you try to rock against her palms and let her squeeze your tits.");
+	output("\n\nShe has drawn you close enough that she is using her fingers on your [pc.nipples], not vines. Her pinching and squeezing allows you to feel how smooth her fingertips are. No ridges or grooves there, only the smooth plant “flesh” pressing your nipples in. They perk up in response to her touch, and the vision of her lips curling up in a smile. You are close to her. You breathe deeply, letting your big tits and nips surrender to her. Your arms hang free. Strung up in helplessness, there is nothing you can do as she keenly inspects your breasts.");
+	output("\n\nFingers massage so deep that you feel the sensitive nerve endings pulsing happy messages to your mind. With no other sexual contact to distract you. She is feeling you out, giving the impression she can feel right through to the interior structure of your [pc.breasts] with her greenish “tongue” between her lips. Her eyes are locked unblinking on the flushed and goosebump laden skin. As much as you can while hanging there, you try to rock against her palms and let her squeeze your tits.");
 	output("\n\nShe wastes no time after feeling out their form and structure. The nipple tips are spread open. Smearing some greenish fluid on your nips, she presses them to their fullest extension. Small vines with grasping sticky tips pull the nipples and areolae forward, stretching the flesh of your [pc.breasts] to bring them into prominence. She moves so a light from some distant place can highlight and warm your boobs. Then there is a brief pinch at the tip.");
 	output("\n\nThe smallest of her vines are weaving their way inside your nipples. It looks strange. You hang upside down, so the vines weave their way upward and in diagonally. Expecting discomfort, finding only pleasure. Tension along your breasts and into the muscles in your shoulders and back. Tight, and she is smiling.");
 	output("\n\n<i>“Good, you have been so good. Accept me. Welcome my seed inside.”</i> She intones these and other words like them, allowing her beautiful harmonics to create arousal. Your nipples grow even more engorged. Seeing the vines vanish inside of them, they grow. Swelling outward, the inside of your breasts is full of vines and a cold sensation. Cold, numbing, filling. Her vines pump obscenely, showing fluid flowing along the inside of them and swelling your tits to their largest extent.");
@@ -711,9 +714,9 @@ public function venusDreamsPartFucknormousTits3():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
-	output("The vines fuck in and out, but they twine around the larger one, turning it into a nipple-fucking green dildo with flanges and bumps from the smaller vines it is <i>“wearing”</i>. Your nipples are numb to discomfort, as only pleasure remains. The pleasure of life growing inside of you. You can feel it stir, feel it spread, feel it filling and fulfilling your brain.");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
+	output("The vines fuck in and out, but they twine around the larger one, turning it into a nipple-fucking green dildo with flanges and bumps from the smaller vines it is “wearing”. Your nipples are numb to discomfort, as only pleasure remains. The pleasure of life growing inside of you. You can feel it stir, feel it spread, feel it filling and fulfilling your brain.");
 	output("\n\n<i>“This is endless,”</i> she announces, as she once more kisses your head.");
 	output("\n\nVision flashes green. Both breasts bounce against one another as the larger vines wetly fuck your tits deep. Fucking your nipples into wide spread holes for receptive mating. She is fucking you pregnant, and intent on her task. Then her delicate little hands, dwarfed by both your tits and the huge vines fucking your nipples, grasp your breasts. Pressing them together, creating a narrow valley of cleavage.");
 	output("\n\nYou lay there as spurts travel along the vines. They swell before your eyes, bowing outward, letting waves of green seed that dwarf the previous flood into your tits. So much has filled them that some spurts back out and falls onto your  chest, spilled upon you, marking you. Laying there, giggles and groans escaping a mind drugged and fucked. Your chest is close to your head, your mind, and it is using this shortened connection to over burden the sensory hub for pleasure. Each pulse travels such a short distance from the deep-fucked seedbed she has forged inside your body.");
@@ -730,7 +733,7 @@ public function venusDreamsPartFucknormousTits3():void
 	output("\n\nTime for birth arrives. They breach the sack inside your breasts with a warm forcibly drugged feverish beautiful euphoria. There is a squeaking sound as the seed pods spill free, you are turned once more upside down, out of the sun, dangled above her. You see her approving face looking up, and hear the squeaking squeak of emerging young.");
 	output("\n\nEeeeeee....");
 	output("\n\nEeeeeeee....");
-	output("\n\nEeeeeeeee the high satisfaction to your urge of seedbed <i>“motherhood”</i> and the daily doses of golden nectar.");
+	output("\n\nEeeeeeeee the high satisfaction to your urge of seedbed “motherhood” and the daily doses of golden nectar.");
 	output("\n\nEEEEEEEE the ship’s alarm going off.");
 	output("\n\nYou jolt upright in a puddle of your sticky nipple cum, both tit-toppers erect, and turn off the ship’s notification.");
 	output("\n\nThat was a crazy dream.");
@@ -747,8 +750,8 @@ public function venusPitcherDreamsPartNormal():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("Cold sweat coats your body. You reach between your legs.");
 	output("\n\nWas it always that way? You swear you remember some other use you served, some other purpose orbiting around the space between your legs.");
 	output("\n\n<i>“I suppose this will have to do,”</i> she says. Rather than use her vines, the green beauty reaches out her hands and you walk willingly into her arms. A passionate kiss, sealing your lips, cutting off both your protests and your self-flagellation. She tells you everything will be alright.");
@@ -759,7 +762,7 @@ public function venusPitcherDreamsPartNormal():void
 	output("\n\nOne particularly large vine, golden nectar flowing from the tip, finds its way down your tongue. Your eyes swim and then go into soft focus at the taste of honey beyond honey, musk and the claimed essence of a thousand submissions to her all forced into your head by liquid and desire.");
 	output("\n\nWell, that and her cock up your ass. Spreading, fucking, a full foot long but bendy and prehensile and able to find every place in the walls that touches where sex organs used to be. You are less complete outside, but finally completed within. The vine in your mouth flows down your throat, but some property of the nectar makes this a natural, comfortable, even comforting process. You suck the nectar deeply until it fills your belly and you go limp. Arms limp from the shoulders, legs nerveless and easy for her to spread as her vines and hands combine to raise you high up. Only the tip, the first inch, of her vined faux-phallus is within you. She lets you drop.");
 	output("\n\nFalling onto her cock stretches your sphincter wide and brings answering reports from every nerve cluster in your body: she is fucking you, overriding all other sensations. There is only tightness in your ass and the way her mouth is open taking in deep breaths of thoroughly unnecessary air. The panting, the grunting, the eagerness in how she swings her hips. Each movement is carried to you and makes music in the air around you both.");
-	output("\n\nSlap, smack, squish. So much lubricant and nectar inside that it flows back out onto the ground from your stretched well fucked ass. She is powerful and the vines around your wrists and ankles aid her in lifting and dropping you. Gravity bottoms you out and makes you its bitch every time you think you have a moment’s break from her long thick <i>“cock”</i>. You ride it deep, making sure to wiggle and squeeze your sphincter as tight as you can on the full hilting.");
+	output("\n\nSlap, smack, squish. So much lubricant and nectar inside that it flows back out onto the ground from your stretched well fucked ass. She is powerful and the vines around your wrists and ankles aid her in lifting and dropping you. Gravity bottoms you out and makes you its bitch every time you think you have a moment’s break from her long thick “cock”. You ride it deep, making sure to wiggle and squeeze your sphincter as tight as you can on the full hilting.");
 	output("\n\nShe moans, she can feel it, and she is even more inspired to let go when her would-be fucktoy begins riding and bouncing. You can only move a little in her grasp, but a little is enough. <i>“Oh, such an eager [pc.boyGirl]... I shall have to help you express both that desire, and all of your fluids...”</i> She pauses, smirks, whispers something: <i>“Oh, but you cannot.”</i>");
 
 	pc.lust(20);
@@ -770,8 +773,8 @@ public function venusPitcherDreamsPartNormal2():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("That reminder does it. There is no way for cum, for juices, for anything to leave your body. No way for the pleasure to escape. She keeps fucking your ass, now at a piston’s rapid pace. She does not stop her movements. Occasional strokes vary in intensity, stopping just short of a full hilting so that your ass has to clench around a different part of the thick viney shaft. Her fucking has made you the shape of her, in her strong arms.");
 	output("\n\nNow her hands grip your hips, leaving an impression, fucking you full of her. You stay there trembling. Something is cumming but it has nowhere to escape.");
 	output("\n\n<i>“So close...”</i> she groans from over your shoulder. Does she mean you? Yes, close. Tightness and tension in your lower body is preparing to release itself in a final moment where nothing has any hold on your mind but her. You will melt into sweet green embrace and submit thoroughly to her shaft. You tell her as much and she only smiles a pained smile.");
@@ -800,8 +803,8 @@ public function venusDreamEpilogue():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("You lay there catching your breath, and consider how to navigate to the shower with a minimum of further stickiness. Except, there is something more important. Your ass is squeezing, clenching, tingling, trying to get your attention. Something squirming under the covers. Moving them aside reveals vines, winding up the hatch of the ship, into your room, between your legs, pressing into your ass. Promptly they begin to vibrate and some strange golden fluid oozes out of your ass. Spurted inside by the moving vines. They wind around each other. Pleasure, pleasure, surrender, the buzzing psychic imprint of something more powerful than you.");
 	output("\n\nHands clamoring to stimulate your body, you feel your legs tug you out of bed...");
 	output("\n\nYou begin to follow the vines, back to their source.");
@@ -814,8 +817,8 @@ public function venusDreamsEpilogue2():void
 {
 	clearOutput();
 	author("eSuccubus");
-	userInterface.showBust("VENUSPITCHER");
-	userInterface.showName("VENUS\nPITCHER");
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
 	output("With a jolt, still coated in cum, you bolt out of the bed the moment you wake. This time making sure you’re really upright. You pinch your skin, you let the reassuringly cool air of your room assure you. You check for vines. None.");
 
 	output("\n\nThe ");

@@ -234,14 +234,14 @@ public function talkNatalie(response:String = "none"):void
 			msg += "\n\n<i>“Of course, that’s just, like, the most mundane part of the job! The real exciting stuff is getting to look at never-before-seen species, or try and figure out the real mysterious ones. What I’m most interested of anything here on the planet is what the locals call the ‘frostwyrms,’ these huge dragon-like beasties that’re supposed to be bigger than Terran blue whales, and whose roars can shatter the ice for miles!”</i>";
 			msg += "\n\n";
 			// Has seen frostwyrm, not killed:
-			if(9999 == 0) msg += "Yeah, you’ve seen one of those. Huge and terrifying is right.";
+			if(flags["MET_FROSTWYRM"] != undefined && flags["FROSTWYRMSLAIN"] == undefined) msg += "Yeah, you’ve seen one of those. Huge and terrifying is right.";
 			// Has killed wyrm:
-			else if(9999 == 0) msg += "<i>“Yeah, about that...”</i> you chuckle awkwardly. Whoops. There’s probably more than that one wyrm, though, right?";
+			else if(flags["MET_FROSTWYRM"] != undefined && flags["FROSTWYRMSLAIN"] != undefined) msg += "<i>“Yeah, about that...”</i> you chuckle awkwardly. Whoops. There’s probably more than that one wyrm, though, right?";
 			// not seen:
 			else msg += "Wow, that sounds like something out of " + (MailManager.isEntryUnlocked("syribooks") ? "one of Syri’s" : "some") + " fantasy books.";
 			msg += "\n\nNat chuckles, brushing a loose lock of hair behind an ear. <i>“Yeah, so, I’ve been trying to track a live one down every chance I get, but no luck. I coulda sworn I’ve caught glimpses of one out on the Rift, but...";
 			// killed:
-			if(9999 == 0) msg += " I guess you took care of that one, huh? Damn, what a shame. B-b-but I know you probably didn’t have a ch-choice, right?";
+			if(flags["FROSTWYRMSLAIN"] != undefined) msg += " I guess you took care of that one, huh? Damn, what a shame. B-b-but I know you probably didn’t have a ch-choice, right?";
 			// else:
 			else msg += " I can never get c-close enough to be sure. Always flies off.";
 			msg += "”</i>";

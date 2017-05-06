@@ -258,7 +258,8 @@ public function jamesFistFuckerDiscount():void
 	processTime(5);
 	clearMenu();
 	//[Vagina] [Ass] [Nope]
-	addButton(0,"Vagina",grabEmByThePussyTheyllLetYa);
+	if(pc.hasVagina()) addButton(0,"Vagina",grabEmByThePussyTheyllLetYa);
+	else addDisabledButton(0,"Vagina","Vagina", "You need a vagina for this!");
 	addButton(1,"Ass",fiveFingahAsscount);
 	addButton(2,"Nope",nopeNoFiveFingerCuntPunch);
 }
