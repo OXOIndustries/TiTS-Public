@@ -1154,7 +1154,7 @@ public function vaginaBronco():void
 	else output("\n\nKnowing how wet your pussy is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.");
 	output(" With the prep work out of the way, you finally sink down onto the dildo.");
 
-	if(pc.vaginas[x].looseness() < 3 && pc.vaginalCapacity(x) < 200)
+	if(pc.vaginas[x].looseness() < 3 || pc.vaginalCapacity(x) < 200)
 	{
 		output("\n\nIt seems like an almost impossible task to fit the broad, flared head of the equine phallus past the lips of your tight womanhood, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your [pc.pussy " + x + "]. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow vagina. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your love tunnel. Over the better part of a minute, you sink more and more fake flesh into your [pc.pussy " + x + "], moaning out loud when the delicious feeling of your vaginal walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm.");
 		output("\n\n");
@@ -1319,7 +1319,7 @@ public function takeAnalBronco():void
 	else output(" Knowing how wet your ass is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.");
 	output(" With the prep work out of the way, you finally sink down onto the dildo.");
 
-	if(pc.ass.looseness() < 3 && pc.analCapacity() < 200)
+	if(pc.ass.looseness() < 3 || pc.analCapacity() < 200)
 	{
 		output("\n\nIt seems like an almost impossible task to fit the broad, flared head of the equine phallus past the tight ring of your sphincter, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your ass. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow anus. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your bowels. Over the better part of a minute, you sink more and more fake flesh into the depths of your ass, moaning out loud when the delicious feeling of your interior walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm.");
 		if(pc.hasVagina())
