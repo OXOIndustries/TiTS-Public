@@ -374,7 +374,6 @@
 		public var hours:int;
 		public var minutes:int;
 		
-		// Get a 'packed' version of the current in-game time. Useful for date/time passage comparisons stored in flags.
 		public function GetGameTimestamp():uint
 		{
 			var value:uint = 0;
