@@ -3685,10 +3685,24 @@
 		}
 		public function hasPheromones():Boolean
 		{
-			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent") || hasPerk("Jungle Queen Scent")) return true;
-			if(hasPerk("Pheromone Sweat") && (statusEffectv1("Sweaty") > 0 || skinIsSoaked())) return true;
-			if(accessory is Allure) return true;
-			return false;	
+			return (pheromoneLevel() > 0);	
+		}
+		public function pheromoneLevel():Number
+		{
+			var muskLevel:Number = 0;
+			
+			if(hasPerk("Pheromone Cloud")) muskLevel += 4;
+			if(hasPerk("Alpha Scent")) muskLevel += 4;
+			if(hasPerk("Jungle Queen Scent")) muskLevel += 4;
+			if(hasPerk("Pheromone Sweat"))
+			{
+				muskLevel += Math.min(statusEffectv1("Sweaty"), 5);
+				if(this is PlayerCharacter && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) muskLevel += 2;
+				if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) muskLevel += 2;
+			}
+			if(accessory is Allure) muskLevel += 1;
+			
+			return muskLevel;
 		}
 		public function canDeepthroat():Boolean
 		{
@@ -3939,6 +3953,9 @@
 			{
 				return currLust;
 			}
+		}
+		public function maxOutLust(): void {
+			lustRaw = lustMax();
 		}
 		public function lustDef():Number
 		{
