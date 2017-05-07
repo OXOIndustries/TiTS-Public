@@ -18873,6 +18873,14 @@
 		{
 			if (!hasStatusEffect("Boobswell Pads")) return;
 			
+			// Failsafe!
+			if (statusEffectv1("Boobswell Pads") > (breastRows.length - 1))
+			{
+				AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(statusEffectv1("Boobswell Pads") + 1) + " row of breasts disintegrate as the row is non-existent. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
+				removeStatusEffect("Boobswell Pads");
+				return;
+			}
+			
 			var targetRow:BreastRowClass = breastRows[statusEffectv1("Boobswell Pads")] as BreastRowClass;
 			var originalRating:Number = Math.floor(targetRow.breastRating());
 			

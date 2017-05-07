@@ -2541,7 +2541,7 @@ public function sylvieRutFunPart4():void
 	else output(" ");
 	output("calm, mmm? Placid, feeling like you’ve done your duty as a male, eh?”</i>");
 	output("\n\nThat’s true. She still smells... well, arousing, but you are no longer quite so driven, quite so determined to impregnate every fertile pussy in a five mile radius. <b>Your rut has ended.</b>");
-	output("\n\nSylvie nods. <i>“It’s a shame you [pc.boyGirls] get so sug");
+	output("\n\nSylvie nods. <i>“It’s a shame you [pc.boyGirl]s get so sug");
 	if(sylvieDrunkLevel() >= 2) output("... shug... sug");
 	output("gestible while you’re in rut, but God, can you ever </i>fuck<i>. I can’t even get knocked up right now, but a few words and you cum like a firehose!”</i>");
 	output("\n\nSlowly closing your jaw, you shake your head and smile ruefully. Regardless of whether you could knock her up, that was truly an experience to remember. <b>You should return to her whenever you’re in rut, and she can help you bring it to a swift end.</b>");
