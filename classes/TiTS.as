@@ -384,7 +384,6 @@
 			return value;
 		}
 
-		// Queued event system
 		public var timestampedEventBuffer:Array;
 		public var eventQueue:Array;
 
