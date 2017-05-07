@@ -123,7 +123,7 @@ public function imRickJamesBiyaaaaatch():void
 		else output("mosey");
 		output(" up to the bar you lock eyes with the bartender, who shoots you a welcoming smile and greets you warmly. <i>“Welcome to the Bucking Bronco");
 		if(silly) output(", how tough are ya?");
-		else output(pc.mf("sir","ma’am") + ".");
+		else output(", " + pc.mf("sir","ma’am") + ".");
 		output(" My name is James, and it’d be my pleasure to serve you. Now, what can I get for you?”</i> It’s obvious this close from his eyes and skin that James is an android, and a top-quality one at that.");
 		flags["MET_JAMES"] = 1;
 	}
