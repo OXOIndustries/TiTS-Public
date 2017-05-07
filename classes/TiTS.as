@@ -370,7 +370,6 @@
 		
 		public var chars:Object;
 
-		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
 		public var days:int;
 		public var hours:int;
 		public var minutes:int;
