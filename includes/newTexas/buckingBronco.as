@@ -501,7 +501,7 @@ public function drinkAtBuckingBronco(drink:String):void
 			break;
 	}
 	if(flags["BB_5FINGER_DISCOUNT"] == 1) { flags["BB_5FINGER_DISCOUNT"] = 2; }
-	else if(!pc.hasStatusEffect("Bucking Bronco Free Drinks")) { /* Free Drinks! */ }
+	else if(pc.hasStatusEffect("Bucking Bronco Free Drinks")) { /* Free Drinks! */ }
 	else pc.credits -= nPrice;
 	processTime(10);
 	clearMenu();
@@ -931,7 +931,7 @@ public function sexWithSally():void
 	else output("fuck");
 	output(".");
 
-	output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That’s sounds just wonderful,”</i> the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
+	output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That sounds just wonderful,”</i> the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
 
 	output("\n\nWith that, she extends a hand out to yours, the warm smile on her face making it look like she wants you to take hold of it. You manage to give her a blank stare and a nod before you reach out and grab her hand.");
 
