@@ -75,6 +75,18 @@ public function saloonInteriorBonus():Boolean
 	return false;
 }
 
+// Discount Stuff
+public function freeDrinkAtBuckingBronco():Boolean
+{
+	return (flags["BB_5FINGER_DISCOUNT"] == 1 || pc.hasStatusEffect("Bucking Bronco Free Drinks"));
+}
+public function payForDrinkAtBuckingBronco(nPrice:Number = 0):void
+{
+	if(flags["BB_5FINGER_DISCOUNT"] == 1) { flags["BB_5FINGER_DISCOUNT"] = 2; }
+	else if(pc.hasStatusEffect("Bucking Bronco Free Drinks")) { /* Free Drinks! */ }
+	else pc.credits -= nPrice;
+}
+
 //NPCs
 //James- An android with a large handlebar mustache. He stands 6’4 with white hair and red eyes and was originally created as a bodyguard model. Think The Terminator as a bartender. He served as a bodyguard for the mysterious woman who owns the Bucking Bronco, and when she retired to New Texas she brought James with her. James is often no-nonsense, but he can be a cheeky git when he wants. He’s always ready with a pearl of wisdom, never mind that he may have just looked it up on the Extranet a few seconds ago. He wears a white, collared long-sleeve shirt with brass buttons with a black bow-tie and black sleeve garters that emphasize his large biceps, a red vest, and black pants, boots, and a black apron from his waist to his shins. His dick is the dick on the mechanical bull, but that’s a secret. Only highly observant PCs will notice.
 
@@ -387,7 +399,7 @@ public function jamesDrinkMenu():void
 	}
 	else
 	{
-		if(flags["BB_5FINGER_DISCOUNT"] == 1 || pc.hasStatusEffect("Bucking Bronco Free Drinks"))
+		if(freeDrinkAtBuckingBronco())
 		{
 			addButton(0,"Milk Stout",drinkAtBuckingBronco,"Milk Stout","Milk Stout","A stout, or dark beer, containing lactose, giving it a sweeter taste and more nutritional content.");
 			addButton(1,"Leithan Milk",drinkAtBuckingBronco,"Leithan Milk","Leithan Milk","Breastmilk from a Treated leithan. While it isn’t truly alcoholic, it produces an effect very similar to intoxication in humans. It is also a potent aphrodisiac, making this drink extremely popular with tourists hoping to keep up with the sex drives of the locals.");
@@ -500,9 +512,7 @@ public function drinkAtBuckingBronco(drink:String):void
 			output("ERROR: DRINK NOT FOUND!");
 			break;
 	}
-	if(flags["BB_5FINGER_DISCOUNT"] == 1) { flags["BB_5FINGER_DISCOUNT"] = 2; }
-	else if(pc.hasStatusEffect("Bucking Bronco Free Drinks")) { /* Free Drinks! */ }
-	else pc.credits -= nPrice;
+	payForDrinkAtBuckingBronco(nPrice);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -649,14 +659,23 @@ public function livingKegsApproach():void
 	//[Rum] Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits. //Requires 35 credits.
 	//[Leave]
 	clearMenu();
-	if(pc.credits >= 25) addButton(0,"Beer",beerBoozeGalGo,undefined,"Beer","Get a drink from the girl branded with some kind of lager.\n\nCost: 25 Credits");
-	else addDisabledButton(0,"Beer","Beer","You can’t afford that.\n\nCost: 25 Credits");
-	if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.\n\nCost: 30 Credits");
-	else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.\n\nCost: 30 Credits");
-	if(!sallyBarHours())
+	if(freeDrinkAtBuckingBronco())
 	{
-		if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.\n\nCost: 35 Credits");
-		else addDisabledButton(2,"Rum","Rum","You can’t afford that.\n\nCost: 35 Credits");
+		addButton(0,"Beer",beerBoozeGalGo,undefined,"Beer","Get a drink from the girl branded with some kind of lager.");
+		addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.");
+		if(!sallyBarHours()) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.");
+	}
+	else
+	{
+		if(pc.credits >= 25) addButton(0,"Beer",beerBoozeGalGo,undefined,"Beer","Get a drink from the girl branded with some kind of lager.\n\nCost: 25 Credits");
+		else addDisabledButton(0,"Beer","Beer","You can’t afford that.\n\nCost: 25 Credits");
+		if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.\n\nCost: 30 Credits");
+		else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.\n\nCost: 30 Credits");
+		if(!sallyBarHours())
+		{
+			if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.\n\nCost: 35 Credits");
+			else addDisabledButton(2,"Rum","Rum","You can’t afford that.\n\nCost: 35 Credits");
+		}
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -676,13 +695,15 @@ public function whiskeyCowMooDrink():void
 	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
 	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lips] and her big ol’ tits.");
 	output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
-	output("\n\n<i>“Looks like you’ve had enough, " + pc.mf("hon","honey") + ",”</i> the redhead calls out, her massive breast still heaving and her nipples red from recent use. She brings a hand to your head and ruffles your [pc.hair], <i>“Now don’t you forget to pay the nice android at the bar.”</i>");
+	output("\n\n<i>“Looks like you’ve had enough, " + pc.mf("hon","honey") + ",”</i> the redhead calls out, her massive breast still heaving and her nipples red from recent use. She brings a hand to your head and ruffles your [pc.hair]");
+	if(!freeDrinkAtBuckingBronco()) output(", <i>“Now don’t you forget to pay the nice android at the bar.”</i>");
+	else output(".");
 	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
 	//[Next] //Removes credits, adds exhibitionism, adds two levels of drunkenness, and gives the player 33 lust, also returns them to the bar. 
 	pc.milkInMouth();
 	pc.imbibeAlcohol(80);
 	pc.exhibitionism(1);
-	pc.credits -= 30;
+	payForDrinkAtBuckingBronco(30);
 	processTime(18);
 	pc.lust(20);
 	IncrementFlag("LIVING_KEGGED");
@@ -706,13 +727,15 @@ public function beerBoozeGalGo():void
 	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
 	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lipsChaste] and her big ol’ tits.");
 	output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
-	output("\n\n<i>“Hope it was good!”</i> the busty brunette exclaims, cupping her breasts again and jiggling them around for you, <i>“Oh, and don’t forget to pay the android at the bar!”</i>");
+	output("\n\n<i>“Hope it was good!”</i> the busty brunette exclaims, cupping her breasts again and jiggling them around for you");
+	if(!freeDrinkAtBuckingBronco()) output(", <i>“Oh, and don’t forget to pay the android at the bar!”</i>");
+	else output(".");
 	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
 	//[Next] //Removes credits, adds exhibitionism, adds one level of drunkenness, and gives the player 33 lust, also returns them to the bar. 
 	pc.milkInMouth();
 	pc.imbibeAlcohol(45);
 	pc.exhibitionism(1);
-	pc.credits -= 25;
+	payForDrinkAtBuckingBronco(25);
 	processTime(18);
 	pc.lust(20);
 	IncrementFlag("LIVING_KEGGED");
@@ -753,7 +776,9 @@ public function rumCowDrinkieDrink():void
 	output("\n\n");
 	if(flags["MET_SALLY"] != undefined) output("Sally");
 	else output("She");
-	output(" rubs a thumb across your cheek, grinning down at you as you look up at her with an aphrodisiac and alcohol laden gaze, <i>“I think you’ve had enough there, sweetie. Just make sure you don’t forget to pay the bartender, alright?”</i>");
+	output(" rubs a thumb across your cheek, grinning down at you as you look up at her with an aphrodisiac and alcohol laden gaze, <i>“I think you’ve had enough there, sweetie.");
+	if(!freeDrinkAtBuckingBronco()) output(" Just make sure you don’t forget to pay the bartender, alright?");
+	output("”</i>");
 	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
 	if(flags["MET_SALLY"] != undefined && silly) output("\n\nAs you walk you walk away, you can hear the keg-girl call out, <i>“Stay thirsty, my friend.”</i>");
 
@@ -762,7 +787,7 @@ public function rumCowDrinkieDrink():void
 	pc.milkInMouth();
 	pc.imbibeAlcohol(150);
 	pc.exhibitionism(1);
-	pc.credits -= 35;
+	payForDrinkAtBuckingBronco(35);
 	processTime(25);
 	pc.lust(20);
 	IncrementFlag("LIVING_KEGGED");
