@@ -3685,10 +3685,24 @@
 		}
 		public function hasPheromones():Boolean
 		{
-			if(hasPerk("Pheromone Cloud") || hasPerk("Alpha Scent") || hasPerk("Jungle Queen Scent")) return true;
-			if(hasPerk("Pheromone Sweat") && (statusEffectv1("Sweaty") > 0 || skinIsSoaked())) return true;
-			if(accessory is Allure) return true;
-			return false;	
+			return (pheromoneLevel() > 0);	
+		}
+		public function pheromoneLevel():Number
+		{
+			var muskLevel:Number = 0;
+			
+			if(hasPerk("Pheromone Cloud")) muskLevel += 4;
+			if(hasPerk("Alpha Scent")) muskLevel += 4;
+			if(hasPerk("Jungle Queen Scent")) muskLevel += 4;
+			if(hasPerk("Pheromone Sweat"))
+			{
+				muskLevel += Math.min(statusEffectv1("Sweaty"), 5);
+				if(this is PlayerCharacter && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) muskLevel += 2;
+				if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) muskLevel += 2;
+			}
+			if(accessory is Allure) muskLevel += 1;
+			
+			return muskLevel;
 		}
 		public function canDeepthroat():Boolean
 		{
@@ -3939,6 +3953,9 @@
 			{
 				return currLust;
 			}
+		}
+		public function maxOutLust(): void {
+			lustRaw = lustMax();
 		}
 		public function lustDef():Number
 		{
@@ -18855,6 +18872,14 @@
 		private function updateBoobswellPads(deltaT:uint, doOut:Boolean):void
 		{
 			if (!hasStatusEffect("Boobswell Pads")) return;
+			
+			// Failsafe!
+			if (statusEffectv1("Boobswell Pads") > (breastRows.length - 1))
+			{
+				AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(statusEffectv1("Boobswell Pads") + 1) + " row of breasts disintegrate as the row is non-existent. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
+				removeStatusEffect("Boobswell Pads");
+				return;
+			}
 			
 			var targetRow:BreastRowClass = breastRows[statusEffectv1("Boobswell Pads")] as BreastRowClass;
 			var originalRating:Number = Math.floor(targetRow.breastRating());

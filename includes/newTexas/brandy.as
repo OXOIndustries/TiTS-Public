@@ -461,16 +461,16 @@ public function moosionaryWithBrandy():void
 	processTime(20);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",knottyMoosionary);
+	addButton(0,"Next",knottyMoosionary, x);
 }
 
-public function knottyMoosionary():void
+public function knottyMoosionary(x:int):void
 {
 	clearOutput();
 	showBrandy(true);
 	author("HugsAlright");
 	if(silly) author("HugsItsNotAlright");
-	output("\n\nWaking up from your nap, you feel hands rubbing across your back. Looking up, you see Brandy, as you’d expect. She smiles and blushes, nodding her head slightly to get you to look down, only to realize your soft cock is still inside her, and going against all the feelings trying to keep you in your spot, you pick yourself up and straighten yourself. With some reluctance you pull your flaccid [pc.cockNoun " + x + "] out of the Brandy’s nice, soft bottom, causing a wet squelch as you do so.");
+	output("Waking up from your nap, you feel hands rubbing across your back. Looking up, you see Brandy, as you’d expect. She smiles and blushes, nodding her head slightly to get you to look down, only to realize your soft cock is still inside her, and going against all the feelings trying to keep you in your spot, you pick yourself up and straighten yourself. With some reluctance you pull your flaccid [pc.cockNoun " + x + "] out of the Brandy’s nice, soft bottom, causing a wet squelch as you do so.");
 	if(pc.cumQ() >= 1000) output(" A seemingly endless amount of [pc.cum] spills out onto the sheets from Brandy’s gaped hole.");
 	output("\n\nYou look to Brandy, a wide smile on her face; it seems she enjoyed herself. Unfortunately, you have to focus on your journey, and get yourself ready to keep moving.");
 	processTime(30);

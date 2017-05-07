@@ -234,7 +234,7 @@ public function appearance(forTarget:Creature):void
 		}
 		//cat-face
 		else if(target.faceType == GLOBAL.TYPE_FELINE) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a cat-like face, complete with moist nose and whiskers. Your " + target.skinFurScales(true,true,false,true) + " hides " + target.skin(true,true,true) + " underneath.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a cat-like face, complete with a moist nose and whiskers. Your " + target.skinFurScales(true,true,false,true) + " hides " + target.skin(true,true,true) + " underneath.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your facial structure blends humanoid features with those of a cat. A moist nose and whiskers are included, but overlaid with " + target.skinFurScales(true,true,false,true) + ".");
 			else output2("You have a cat-like face, complete with a cute, moist nose and whiskers. The " + target.skin(true,true,true) + " that is revealed by your lack of fur looks quite unusual on so feline a face.");
 		}

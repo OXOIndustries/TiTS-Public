@@ -2096,7 +2096,7 @@ public function inessaWalksOnTheWildSide():void
 	output("\n\n<i>“Did I do alright, [pc.master]?”</i> she manages at last, wiping a trailer of cum off one of her star-burst eyes.");
 	output("\n\n<i>“Very,”</i> you reply. You let your gaze drift beyond her to the shelves and hoardings, a possessive hand running down Inessa’s warm, slim flank. <i>“There’s plenty of other gear to advertise in here, isn’t there? More... advanced goods, that customers need real inducement to buy. Have a long think about that before I next visit.”</i>");
 	output("\n\nYou step away and let an extremely flushed saeri hurry off to find a wash basin in the back.");
-	if(flags["INESSA_BELTED"] == 2) output(" You think you hear her twitter curses about her chastity belt all the way.");
+	if(flags["INESSA_BELTED"] != 2) output(" You think you hear her twitter curses about her chastity belt all the way.");
 	//Small Exhibitionism score bump
 	pc.exhibitionism(2);
 	processTime(35);

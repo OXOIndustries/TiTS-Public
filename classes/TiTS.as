@@ -370,12 +370,10 @@
 		
 		public var chars:Object;
 
-		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
 		public var days:int;
 		public var hours:int;
 		public var minutes:int;
 		
-		// Get a 'packed' version of the current in-game time. Useful for date/time passage comparisons stored in flags.
 		public function GetGameTimestamp():uint
 		{
 			var value:uint = 0;
@@ -385,7 +383,6 @@
 			return value;
 		}
 
-		// Queued event system
 		public var timestampedEventBuffer:Array;
 		public var eventQueue:Array;
 

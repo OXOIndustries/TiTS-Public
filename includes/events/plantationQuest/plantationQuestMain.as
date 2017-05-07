@@ -1550,7 +1550,7 @@ public function zilVillageOutskirts():void
 	output("\n\nAhead the river deviates to the west, thanks to a steep promontory of rock. A wooden ramp leads up it, surrounded by zil wax-homes. To the south the river runs its course to the cliff edge.");
 	if(flags["PQ_SECURED_LAH"] == 1 && !pc.hasKeyItem("RK Lah - Captured")) {
 		output("The two male zil wordlessly hustle RK Lah over to you as you step down the ramp, his thin wrists bound. Time to take the defeated ausar back to the Plantation, you guess.");
-		//”</i>RK Lah”</i> appears in Key Items if PC picks him up either here or through the violent resolution
+		//“RK Lah” appears in Key Items if PC picks him up either here or through the violent resolution
 		output("\n\n(<b>Key Item Gained:</b> RK Lah - Captured)");
 		pc.createKeyItem("RK Lah - Captured");
 	}
@@ -2715,6 +2715,8 @@ public function captiveLahBonusShit():void
 	clearOutput();
 	showLah()
 	output("<i>“Don’t,”</i> snaps Lah, voice almost breaking with loathing, when you attempt to strike up conversation. <i>“Take me back to Snugglé. Take me anywhere, so long as it’s away from you.”</i>");
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }*/
 
 public function lahDetectorTest():Boolean

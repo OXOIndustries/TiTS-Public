@@ -576,7 +576,8 @@ public function mhengaVanaeAbandonedCamp():Boolean
 	if(flags["SALVAGED VANAE CAMP"] != 2) addButton(0, "Salvage", mhengaSalvageFromCamp);
 	else 
 	{
-		if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It’ll cost you 40 credits to ride back to Mhen’ga.");
+		if(pc.hasKeyItem("RK Lah - Captured")) addDisabledButton(0,"Call Taxi","Call Taxi","You should take RK Lah back to the Plantation before getting out of here.");
+		else if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It’ll cost you 40 credits to ride back to Mhen’ga.");
 		else addDisabledButton(0,"Call Taxi","Call Taxi","You can’t afford the 40 credits for a taxi. Damn.");
 	}
 	addButton(9,"Sleep",sleepInRuinedCamp,undefined,"Sleep", ((flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined ? "The camp is a wreck, but if you cleaned it up" : "With the camp mostly cleaned up") + ", you might be able to bed down here."));

@@ -1389,18 +1389,18 @@ public function showerMenu(special:String = "ship"):void {
 public function showerDoucheToggleButton(btnSlot:int = 5):void
 {
 	if (pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") + pc.statusEffectv1("Orally-Filled") <= 0) return;
-	if (pc.hasStatusEffect("Shower Douche Toggle")) addButton(btnSlot, "Rinse: ON", showerDoucheToggle, undefined, "Use Douche", "Clean out the fluids that have been pumped into you. Select to turn rinsing off.");
+	if (pc.statusEffectv1("Shower Douche Toggle") == 1) addButton(btnSlot, "Rinse: ON", showerDoucheToggle, undefined, "Use Douche", "Clean out the fluids that have been pumped into you. Select to turn rinsing off.");
 	else addButton(btnSlot, "Rinse: OFF", showerDoucheToggle, undefined, "No Douche", "Keep the fluids that are inside you for now. Select to turn rinsing on.");
 }
 public function showerDoucheToggle(btnSlot:int = 5):void
 {
-	if (pc.hasStatusEffect("Shower Douche Toggle")) pc.removeStatusEffect("Shower Douche Toggle");
-	else pc.createStatusEffect("Shower Douche Toggle");
+	if (!pc.hasStatusEffect("Shower Douche Toggle")) pc.createStatusEffect("Shower Douche Toggle", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.setStatusValue("Shower Douche Toggle", 1, (pc.statusEffectv1("Shower Douche Toggle") == 1 ? 0 : 1));
 	showerDoucheToggleButton(btnSlot);
 }
 public function showerExit():void
 {
-	pc.removeStatusEffect("Shower Douche Toggle");
+	//pc.removeStatusEffect("Shower Douche Toggle");
 	mainGameMenu();
 }
 
@@ -1448,7 +1448,7 @@ public function showerOptions(option:int = 0):void
 		else if (pc.buttTone() < 30 && pc.buttRating() >= 10) output(", unable to resist topping it off with a good spank");
 		output(".");
 		
-		if(pc.hasStatusEffect("Shower Douche Toggle"))
+		if(pc.statusEffectv1("Shower Douche Toggle") == 1 && pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") + pc.statusEffectv1("Orally-Filled") > 0)
 		{
 			output("\n\n");
 			if(pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") > 0)

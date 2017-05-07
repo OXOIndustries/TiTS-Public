@@ -475,7 +475,7 @@ package classes.GameData
 			if (target.hasStatusEffect("Riposting")) target.removeStatusEffect("Riposting");
 			if (target.hasStatusEffect("Bloodthirsted")) target.removeStatusEffect("Bloodthirsted");
 	
-			if (target.hasPerk("Juggernaught"))
+			if (target.hasPerk("Juggernaut"))
 			{
 				if (target.hasStatusEffect("Stunned") && rand(4) == 0)
 				{

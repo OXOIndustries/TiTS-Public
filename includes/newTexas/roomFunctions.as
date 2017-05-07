@@ -52,7 +52,7 @@ public function milkBarn513Func():Boolean
 }
 public function milkBarn514Func():Boolean
 {
-	output("The barn’s central thoroughfare comes to an abrupt end here at the north wall. Worse yet, only one of the stalls has the door open. You can enter it to the west, if you like. To the east, there’s rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You’ll need to head south if you want to clear your head. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You’ll need to head south if you want to clear your head.");
+	output("The barn’s central thoroughfare comes to an abrupt end here at the north wall. Worse yet, only one of the stalls has the door open. You can enter it to the west, if you like. To the east, there’s rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You’ll need to head south if you want to clear your head.");
 	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
 	return randomBarnEventFunc();

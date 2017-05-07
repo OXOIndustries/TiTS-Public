@@ -869,7 +869,7 @@ public function fuckTheSystem():void
 	outputCodex("\n\nThe Defense Force was more than happy to do so.");
 
 	outputCodex("\n\n");
-	CodexManager.viewedEntry("Fuck The System");
+	CodexManager.viewedEntry("Fuck the System");
 }
 
 //Becoming One of the Girls

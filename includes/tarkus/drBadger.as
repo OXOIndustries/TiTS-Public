@@ -290,7 +290,7 @@ public function heyDocImAHero():void
 	//IF PC HAS MORE THAN ONE SET OF BREASTS
 	if(pc.bRows() > 1)
 	{
-		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack.<b>You now have only one set of breasts</b>!");
+		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack. <b>You now have only one set of breasts</b>!");
 		while(pc.bRows() > 1)
 		{
 			pc.removeBreastRow(1,1);
@@ -783,7 +783,7 @@ public function removeDatCuntTail():void
 	//IF PC HAS MORE THAN ONE SET OF BREASTS
 	if(pc.removeBreastRowUnlocked(1, 1) && pc.bRows() > 1 && changes < 3 && rand(3) == 0)
 	{
-		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack.<b>You now have only one set of breasts</b>!");
+		output("\n\nWhile your main set of breasts twitch and slosh with the fluid that fills them, your extra breasts slide smoothly upwards, merging soundlessly into just your one emphatic rack. <b>You now have only one set of breasts</b>!");
 		while(pc.bRows() > 1)
 		{
 			pc.removeBreastRow(1,1);
