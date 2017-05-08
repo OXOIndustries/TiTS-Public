@@ -2106,7 +2106,6 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processZheniyaEvents(deltaT, doOut, totalDays);
 	processHLPantyShit();
 	processHardlightAGThongBlurbs(deltaT, doOut);
-	geneSubmissionLevelDecay(deltaT, doOut);
 	
 	// Per-day events
 	if (totalDays >= 1)
@@ -2121,6 +2120,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
 		updateBothriocAddiction(totalDays);
+		geneSubmissionLevelDecay(totalDays);
 		seraBitcheningStoreInventory(totalDays);
 		seraOnTavrosObedience(totalDays);
 	}
