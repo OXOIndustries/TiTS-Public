@@ -1635,6 +1635,16 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 }
 
 public function discardItem(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to discard!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	clearOutput();
 	output("You discard " + lootList[0].description + " (x" + lootList[0].quantity + ").\n\n");
 	lootList.splice(0,1);
@@ -1644,6 +1654,16 @@ public function discardItem(lootList:Array):void {
 }
 
 public function replaceItemPicker(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to replace!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	clearOutput();
 	output("You have " + lootList[0].description + " (x" + lootList[0].quantity + ") but there is no room left in your inventory.\n\n");
 	output("What will you replace?");
@@ -1667,17 +1687,27 @@ public function replaceItemPicker(lootList:Array):void {
 }
 
 public function useLoot(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to use!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	var loot:ItemSlotClass = lootList[0];
 	
 	// Remove equipped items from the list
 	// useLoot returns true during an equip-call
 	if (useItem(loot))
 	{
-		lootList.splice(0, 1);
+		if(isEquippableItem(loot)) lootList.splice(0, 1);
 	}
 	else if (loot.quantity <= 0)
 	{
-		lootList.splice(0,1);
+		lootList.splice(0, 1);
 	}
 	
 	if (lootList.length > 0)
@@ -1686,6 +1716,16 @@ public function useLoot(lootList:Array):void {
 	}
 }
 public function abandonLoot(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to toss out!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
 	clearMenu();
