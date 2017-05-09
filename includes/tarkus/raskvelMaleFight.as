@@ -1614,7 +1614,8 @@ public function stayAroundForBonusRaskbuttSex():void
 	clearMenu();
 	addButton(0,"Lick Pussy",lickPussyRaskButt,raskWinner,"Lick Pussy","Put the winner to work on your pussy, where he belongs.");
 	addButton(1,"Lick Feet",feetLickingGoodTimes,raskWinner,"Lick Feet","Put the winner to work down at your feet, where he belongs.");
-	addButton(2,"Tail Cunt Milk",seduceCuntTailMilk,raskWinner,"Tail Cunt Milk","Milk the winner dry with your tail-mounted twat.");
+	if(pc.hasTailCunt()) addButton(2,"Tail Cunt Milk",seduceCuntTailMilk,raskWinner,"Tail Cunt Milk","Milk the winner dry with your tail-mounted twat.");
+	else addDisabledButton(2,"Tail Cunt Milk","Tail Cunt Milk","This requires a tail vagina!");
 }
 
 //Lick pussy

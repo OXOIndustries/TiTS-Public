@@ -862,7 +862,8 @@ public function buyModsFromBusky():void {
 
 //Calculate item price from base price and sellMark Up from Busky.as
 public function getBuskyPrice(item:*):Number {
-	return Math.round(item.basePrice * chars["BUSKY"].sellMarkup);
+	//return Math.round(item.basePrice * chars["BUSKY"].sellMarkup);
+	return Math.round(item.basePrice);
 }
 
 //Buy some cloths from Busky - custom menu as all pieces of clothing have a sub menu
