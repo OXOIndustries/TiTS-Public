@@ -1,5 +1,6 @@
 ﻿package classes.Items.Apparel
 {
+	import classes.Engine.Interfaces.*;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
@@ -50,6 +51,8 @@
 		
 		override public function onEquip(targetCreature:Creature):void
 		{
+			output("\n\n(You can also make adjustments to this item in the <b>Interact</b> menu of your inventory.)");
+			
 			targetCreature.createStatusEffect("HL Thong", 0, 0, 0, 0, true, "", "", false, 0);
 		}
 		

@@ -4219,9 +4219,21 @@ private function seraHasItem(setItem:ItemSlotClass):Boolean
 	
 	return false;
 }
+private function seraWalkSchoolgirl():Boolean
+{
+	return (seraHasItem(new SchoolgirlOutfit()) || seraHasItem(new SchoolgirlCostume()));
+}
+private function seraWalkCuffs():Boolean
+{
+	return (seraHasItem(new GravCuffs()));
+}
+private function seraWalkWhip():Boolean
+{
+	return (seraHasItem(new Whip()) || seraHasItem(new BioWhip()));
+}
 public function seraBitcheningPunishWalkies(initialize:Boolean = false):void
 {
-	if(initialize) seraWalkItems = [];
+	if(initialize) seraWalkItems.length = 0;
 	
 	clearOutput();
 	showSera();
@@ -4311,9 +4323,9 @@ public function seraBitcheningPunishWalkiesGo():void
 	showSera();
 	author("Nonesuch");
 	
-	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
-	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
-	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
+	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
+	var hasCuffs:Boolean = seraWalkCuffs();
+	var hasWhip:Boolean = seraWalkWhip();
 	
 	// S.Girl O.
 	if(hasSchoolgirl)
@@ -4375,9 +4387,9 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
-	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
-	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
+	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
+	var hasCuffs:Boolean = seraWalkCuffs();
+	var hasWhip:Boolean = seraWalkWhip();
 	
 	output("You maintain a brisk but casual pace as you exit your ship into the empty hangar and head towards the elevator, lead trailing behind you, giving her plenty of time to get used to how fast she has to click-clack on her high heels behind you to stop her collar tightening. For your part, you keep a soft grip on the lock - it wouldn’t do at all to be dragging her around like a trawler net of fish - but whenever you feel the tether is playing out a bit too long, you give it a little squeeze. Having a feel of that delicious weight at the other end, at the same time as chivvying her along.");
 	output("\n\nYou don’t take her to the Merchant Deck, where she can see what’s happened to the Dark Chrysalis. You aren’t <i>that</i> cruel. The two of you are hardly going to stand out much near the red light district anyway. Instead, you get the lift to take you to the floor above. Sera’s expression is blank, her slit eyes turned to the ceiling, but in the cramped space of the lift you can hear her breath come thick and fast; you don’t think she realizes how hard she’s biting her own lip. You give her a comforting squeeze on the boob as the door slides open, and you step confidently out into the well-lit hubbub of the Res Deck.");
@@ -4433,7 +4445,7 @@ public function seraBitcheningPunishWalkiesWitnessAina():void
 	showSera();
 	author("Nonesuch");
 	
-	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
+	var hasWhip:Boolean = seraWalkWhip();
 	
 	output("<i>“[pc.name]! Hi!”</i> You hear Aina long before you see her; the steady clop-clop-clop falters and then speeds up when she sees you coming the other way. The centauress’s initial friendly grin turns into a puzzled frown, further embellished by a blush, when she fully takes the two of you in. <i>“What are you - ? Who is - ?”</i>");
 	output("\n\n<i>“Hey Aina,”</i> you say brightly. <i>“Lovely today, isn’t it? I’m just taking my bitch out for a stroll. Say hello, Sera.”</i>");
@@ -4462,7 +4474,7 @@ public function seraBitcheningPunishWalkiesWitnessFyn():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
+	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
 	
 	output("<i>“What’s all this then?”</i>");
 	output("\n\nOne moment you’re on your own in a quiet spot of the Northern Plaza; the next Fyn the vildarii is standing by your side, taking in the two of you with interest.");
@@ -4521,7 +4533,7 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	generateMap();
 	showLocationName();
 	
-	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
+	var hasWhip:Boolean = seraWalkWhip();
 	
 	output("<i>“M-mistress?!”</i> A pale, petite rahn is staring at you from across the concourse, goggle-eyed.");
 	output("\n\n<i>“Oh One...”</i> moans Sera. <i>“Anything but this. PLEASE.”</i> The leash tugs backwards in your hand. You firmly lock it.");
@@ -4554,9 +4566,9 @@ public function seraBitcheningPunishWalkiesNext():void
 	generateMap();
 	showLocationName();
 	
-	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
-	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
-	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
+	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
+	var hasCuffs:Boolean = seraWalkCuffs();
+	var hasWhip:Boolean = seraWalkWhip();
 	
 	output("Casually presenting your well-trained pet to the public like this has only made the domineering arousal saturating your [pc.groin] all the more brazen and fiery, and along the quieter southern balustrade you decide to do something about it. What use is an obedient fuck-pet if you can’t have them satiate you as and when you demand it, after all? You lead her behind a holo-board advertising new apartments. Her breath, hot and heavy, is in your ears as you turn and calmly consider the succulent succubus");
 	if(hasSchoolgirl) output(" school girl");
@@ -4595,9 +4607,9 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 	showSera();
 	author("Nonesuch");
 	
-	var hasSchoolgirl:Boolean = InCollection(seraWalkItems, [(new SchoolgirlOutfit()), (new SchoolgirlCostume())]);
-	var hasCuffs:Boolean = InCollection(seraWalkItems, [(new GravCuffs())]);
-	var hasWhip:Boolean = InCollection(seraWalkItems, [(new Whip()), (new BioWhip())]);
+	var hasSchoolgirl:Boolean = seraWalkSchoolgirl();
+	var hasCuffs:Boolean = seraWalkCuffs();
+	var hasWhip:Boolean = seraWalkWhip();
 	
 	switch(response)
 	{
@@ -4693,7 +4705,7 @@ public function seraBitcheningPunishWalkiesOral(response:String = "none"):void
 public function seraBitcheningPunishWalkiesEnd():void
 {
 	IncrementFlag("SERA_BITCHENING_PUNISH_WALKIES");
-	seraWalkItems = [];
+	seraWalkItems.length = 0;
 	
 	chars["SERA"].removeStatusEffect("Sera Masturbated");
 	pc.removeStatusEffect("Seranigans Punishment");

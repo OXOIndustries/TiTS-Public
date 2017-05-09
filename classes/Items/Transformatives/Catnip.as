@@ -363,7 +363,7 @@ package classes.Items.Transformatives
 			}
 			
 			// perks!
-			if(target.hasTail(GLOBAL.TYPE_FELINE) && target.legType == GLOBAL.TYPE_FELINE && target.armType == GLOBAL.TYPE_FELINE && target.earType == GLOBAL.TYPE_FELINE && !target.hasPerk("Flexibility") && rand(4) == 0)
+			if(target.hasTail(GLOBAL.TYPE_FELINE) && target.legType == GLOBAL.TYPE_FELINE && target.armType == GLOBAL.TYPE_FELINE && target.earType == GLOBAL.TYPE_FELINE && !target.hasPerk("Flexibility"))
 			{
 				output("\n\nYou feel something odd in your joints. After some experimental stretching you’ve found yourself able to fold in entirely unnatural ways - you can effortlessly touch the base of your tail with your nose, folding both forward and backward alike! You already have kinky ideas of putting this into some use.");
 				output("\n\n(<b>Perk Gained: Flexibility</b> - You can bend and stretch more than most other creatures.)");

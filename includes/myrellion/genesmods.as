@@ -14,7 +14,7 @@ public function isGeneSubmissionDisabled():Boolean
 
 public function isGeneSubmissionLevelMaxed():Boolean
 {
-	return flags["GENE_SUBMISSION_LEVEL"] == 10;
+	return flags["GENE_SUBMISSION_LEVEL"] >= 10;
 }
 
 public function pcIsMyrOrNyrea():Boolean
@@ -29,21 +29,27 @@ public function geneSubmissionLevel(addVal:Number = 0):int
 	if (flags["GENE_SUBMISSION_LEVEL"] == undefined) flags["GENE_SUBMISSION_LEVEL"] = 0;
 
 	if (isGeneSubmissionDisabled()) return -1;
-
+	
+	if (addVal > 0) flags["GENE_SUBMISSION_DATE"] = days;
+	
 	flags["GENE_SUBMISSION_LEVEL"] += addVal;
 
 	if (flags["GENE_SUBMISSION_LEVEL"] < 0) flags["GENE_SUBMISSION_LEVEL"] = 0;
 	if (flags["GENE_SUBMISSION_LEVEL"] > 10) flags["GENE_SUBMISSION_LEVEL"] = 10;
 
-	return Math.round(flags["GENE_SUBMISSION_LEVEL"]);
+	return Math.floor(flags["GENE_SUBMISSION_LEVEL"]);
 }
 // I also think it would be a good idea for his dominance to decay passively if the PC spends enough time away from him. Thinking:
 // 0-9 Dominance: 1 point down every 30 hours
 // 10 Dominance: 1 point down after 60 hours
-public function geneSubmissionLevelDecay(deltaT:uint, doOut:Boolean):void
+public function geneSubmissionLevelDecay(totalDays:uint):void
 {
-	if(flags["GENE_SUBMISSION_LEVEL"] >= 10) geneSubmissionLevel(-((1/60) * (deltaT/60)));
-	else if (flags["GENE_SUBMISSION_LEVEL"] > 0) geneSubmissionLevel(-((1/30) * (deltaT/60)));
+	if(isGeneSubmissionDisabled() || pc.isSubby()) return;
+	
+	var decayDelay:int = (!isGeneSubmissionLevelMaxed() ? 1 : 3);
+	if(flags["GENE_SUBMISSION_DATE"] != undefined && ((days - flags["GENE_SUBMISSION_DATE"]) < decayDelay)) return;
+	
+	geneSubmissionLevel(-(totalDays));
 }
 
 public function geneLustIncrease():void
@@ -977,6 +983,7 @@ public function genesModsBlowjob():void
 		// cumflate
 		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
 		pc.lust(33);
+		pc.orgasm();
 	}
 	processTime(29);
 	IncrementFlag("GENE_BLOWJOB");

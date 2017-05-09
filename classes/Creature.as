@@ -17146,29 +17146,32 @@
 			return holeChange(-1,volume,display,spacingsF,spacingsB);
 		}
 		
-		public function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
+		public function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false, display:Boolean = true):Boolean 
 		{
 			if (cockVirgin && hasCock())
 			{
 				cockVirgin = false;
-				var msg:String = "";
-				if(spacingsF) msg += " ";
-				msg += "<b>"
-				if (this is PlayerCharacter)
+				if(display)
 				{
-					msg += "You have succumbed to your desires and lost your";
-					if (hasVagina()) msg += " masculine";
-					msg += " virginity.";
+					var msg:String = "";
+					if(spacingsF) msg += " ";
+					msg += "<b>"
+					if (this is PlayerCharacter)
+					{
+						msg += "You have succumbed to your desires and lost your";
+						if (hasVagina()) msg += " masculine";
+						msg += " virginity.";
+					}
+					else
+					{
+						msg += capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her");
+						if (hasVagina()) msg += " masculine";
+						msg += " virginity.";
+					}
+					msg += "</b>"
+					if (spacingsB) msg += " ";
+					output(msg);
 				}
-				else
-				{
-					msg += capitalA + short + " has succumbed to " + mf("his", "her") + " desires and lost " + mf("his", "her");
-					if (hasVagina()) msg += " masculine";
-					msg += " virginity.";
-				}
-				msg += "</b>"
-				if (spacingsB) msg += " ";
-				output(msg);
 				return true;
 			}
 			return false;
