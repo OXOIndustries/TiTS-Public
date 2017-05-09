@@ -8405,6 +8405,7 @@
 		public function wetness(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
+			if (arg < 0) return ass.wetness();
 			return vaginas[arg].wetness();
 		}
 		public function looseness(arg: int = 0): Number {
