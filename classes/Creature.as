@@ -3720,7 +3720,7 @@
 		public function exhibitionism(arg:Number = 0):Number
 		{
 			var originalExhibtionism:Number = exhibitionismRaw;
-			trace("Initial exhibition level: " + exhibitionismRaw);
+			if(this is PlayerCharacter) trace("Initial exhibition level: " + exhibitionismRaw);
 			if(arg > 0)
 			{
 				//Mild exhib scene gainz! GET SWOLE
@@ -3751,12 +3751,15 @@
 						else exhibitionismRaw += arg;
 					}
 				}
-				if(originalExhibtionism < 10 && exhibitionismRaw >= 10) AddLogEvent("Maybe having sex in front of an audience wouldn’t be that bad.", "passive");
-				else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) AddLogEvent("You’re still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.", "passive");
-				else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) AddLogEvent("You’ve got to admit to yourself that you’re developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it’s a pretty common, socially accepted fetish... in most places.", "passive");
-				else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) AddLogEvent(ParseText("Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don’t stop caving into those thoughts you’re going to wind up being a hard-core exhibitionist!</b>"), "passive");
-				else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) AddLogEvent("Maybe you could buy a stand for your Codex and rig up a live holostream for when you’re getting naughty. It’d probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It’s telling that <b>you’ve almost completely obliterated your inhibitions about exhibitionism.</b>", "passive");
-				else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) AddLogEvent("Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you’d bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you’ll be able to rent it out someday? <b>You’re as much of an exhibitionist as anyone can be.</b>", "passive");
+				if(this is PlayerCharacter)
+				{
+					if(originalExhibtionism < 10 && exhibitionismRaw >= 10) AddLogEvent("Maybe having sex in front of an audience wouldn’t be that bad.", "passive");
+					else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) AddLogEvent("You’re still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.", "passive");
+					else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) AddLogEvent("You’ve got to admit to yourself that you’re developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it’s a pretty common, socially accepted fetish... in most places.", "passive");
+					else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) AddLogEvent(ParseText("Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don’t stop caving into those thoughts you’re going to wind up being a hard-core exhibitionist!</b>"), "passive");
+					else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) AddLogEvent("Maybe you could buy a stand for your Codex and rig up a live holostream for when you’re getting naughty. It’d probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It’s telling that <b>you’ve almost completely obliterated your inhibitions about exhibitionism.</b>", "passive");
+					else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) AddLogEvent("Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you’d bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you’ll be able to rent it out someday? <b>You’re as much of an exhibitionist as anyone can be.</b>", "passive");
+				}
 			}
 			//Negative points
 			else if(arg < 0) 

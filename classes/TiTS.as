@@ -467,7 +467,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.45";
+			version = "0.7.46";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1332,6 +1332,10 @@
 		public function get jerynn():Jerynn
 		{
 			return chars["JERYNN"];
+		}
+		public function get del():Delilah
+		{
+			return chars["DELILAH"];
 		}
 	}
 }
