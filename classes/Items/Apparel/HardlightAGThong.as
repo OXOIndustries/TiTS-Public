@@ -25,7 +25,7 @@
 			this.description = "a hardlight anti-gravity thong";
 			
 			// Written By: AHornyPanda
-			this.tooltip = "A narrow metallic waistband fitted with a hardlight projector. Upon activation it coats the wearer’s genitals in dazzling ruby light, leaving them in full view as they press against the transparent glow. A delta of light is projected at the wearer’s buttcrack and connects to the genitals through a thin string of light. Designed to tightly, but comfortably, fit around the wearer’s genitals and ass, it will sexily flaunt their assets to all onlookers. In addition to the activation button, there is a button to project a cock when a strap-on is needed, and with additional buttons to fill the wearer with a number of hardlight dildos.";
+			this.tooltip = "A narrow metallic waistband fitted with a hardlight projector. Upon activation it coats the wearer’s genitals in dazzling sapphire light, leaving them in full view as they press against the transparent glow. A delta of light is projected at the wearer’s buttcrack and connects to the genitals through a thin string of light. Designed to tightly, but comfortably, fit around the wearer’s genitals and ass, it will sexily flaunt their assets to all onlookers. In addition to the activation button, there is a button to project a cock when a strap-on is needed, and with additional buttons to fill the wearer with a number of hardlight dildos.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
