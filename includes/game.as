@@ -2160,8 +2160,12 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		}
 	}
 	
+	var sendMails:Boolean = true;
+	
 	// Don't send mails to the player whilst aboard the kashima
-	if (flags["KASHIMA_STATE"] != 1)
+	if (flags["KASHIMA_STATE"] != 1) sendMails = false;
+	
+	if(sendMails)
 	{
 		//NEVRIE MAIL!
 		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
@@ -2223,7 +2227,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
-		
+	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();

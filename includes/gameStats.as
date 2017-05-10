@@ -4219,7 +4219,31 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Rumors
 				if(flags["SHEKKA_TALKED_THE_MESS"] != undefined) output2("\n<b>* Rumors, Shekka:</b> <i>She believes the catering company is abducting people.</i>");
 				// Beth
-				if(metBeth()) output2("\n<b>* Beth:</b> Met her");
+				if(metBeth())
+				{
+					output2("\n<b>* Beth:</b> Met her");
+					if(flags["CARVER_HANDJOBBED_U"] != undefined) output2(", She gave you a handjob");
+					if(flags["CARVER_DEL_TALK"] != undefined)
+					{
+						output2("\n<b>* Beth, Talk, Delilah:</b>");
+						switch(flags["CARVER_DEL_TALK"])
+						{
+							case 1: output2(" You prefer Delilah the way she is"); break;
+							case 2: output2(" You support feminizing Delilah"); break;
+							case 3: output2(" You prefer it if Delilah was free"); break;
+						}
+					}
+					if(flags["CARVER_TARKUS_TALK"] != undefined)
+					{
+						output2("\n<b>* Beth, Talk, Indentured Servitude:</b>");
+						switch(flags["CARVER_TARKUS_TALK"])
+						{
+							case 1: output2(" You think slavery is wrong"); break;
+							case 0: output2(" You are indifferent about slavery"); break;
+							case -1: output2(" You think slavery is fine"); break;
+						}
+					}
+				}
 				// Delilah
 				if(flags["MET_DEL"] != undefined)
 				{

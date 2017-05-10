@@ -38,7 +38,7 @@ public function delEmailString():String
 }
 public function delLightEmailString():String
 {
-	return "Hi! I don't know if you remember me, what with your big important space adventures and all, but I'm Del. The bartender from Tarkus. Carver told me to write you and thank you: apparently you convinced her not to modify me anymore, and sell me to someone that'll take better care of me. So thank you. Thank you so much!\n\nShe's just sold me to some kui-tan woman who owns a bar near Vesperia. I'm en-route there now. She seems nice, actually...\n\nIf you're ever in system, come by Canadia Station. Your drinks are on me. :)\n\nBest,\n\tDelray Crawford\n\n<i>Attached to the bottom of the email is a set of Warp Gate coordinates that mark the way to Canadia Station, high over Vesperia - a coreward planet colonized by humans centuries ago.</i>";
+	return "Hi! I don’t know if you remember me, what with your big important space adventures and all, but I’m Del. The bartender from Tarkus. Carver told me to write you and thank you: apparently you convinced her not to modify me anymore, and sell me to someone that’ll take better care of me. So thank you. Thank you so much!\n\nShe’s just sold me to some kui-tan woman who owns a bar near Vesperia. I’m en-route there now. She seems nice, actually...\n\nIf you’re ever in system, come by Canadia Station. Your drinks are on me. :)\n\nBest,\n\tDelray Crawford\n\n<i>Attached to the bottom of the email is a set of Warp Gate coordinates that mark the way to Canadia Station, high over Vesperia - a coreward planet colonized by humans centuries ago.</i>";
 }
 
 //Del @ Kui Country Lounge
@@ -1200,9 +1200,9 @@ public function talkToCarverAboutTarkusOp():void
 	processTime(7);
 	//[It’s Wrong] [No Opinion] [It’s Fine]
 	clearMenu();
-	addButton(0,"It's Wrong",talkToCarverAboutTarkusBEINWRONG,undefined,"It's Wrong","Slavery is wrong, yo.");
+	addButton(0,"It’s Wrong",talkToCarverAboutTarkusBEINWRONG,undefined,"It’s Wrong","Slavery is wrong, yo.");
 	addButton(1,"No Opinion",talkToCarverAboutTarkusNOOPINION,undefined,"No Opinion","Be polite you guess.");
-	addButton(2,"It's Fine",talkToCarverAboutTarkusITSFINE,undefined,"It's Fine","Slavery is fine.");
+	addButton(2,"It’s Fine",talkToCarverAboutTarkusITSFINE,undefined,"It’s Fine","Slavery is fine.");
 }
 
 //[Its Wrong]
@@ -1347,7 +1347,7 @@ public function noComment():void
 	clearOutput();
 	showBethCarver();
 	author("Savin");
-	output("You change the topic. You're not ready to make a decision right now.");
+	output("You change the topic. You’re not ready to make a decision right now.");
 	carverMainMenu();
 }
 
@@ -1440,10 +1440,10 @@ public function carverMainMenu():void
 {
 	clearMenu();
 	if(flags["CARVER_DEL_TALK"] == undefined) addButton(0,"Del",talkToCarverAbootDel,undefined,"Del","Talk to Carver about Delilah.");
-	else addDisabledButton(0,"Del","Del","You've already made your opinion clear on this matter.");
+	else addDisabledButton(0,"Del","Del","You’ve already made your opinion clear on this matter.");
 
-	if(flags["CARVER_TARKUS_TALK"] == undefined) addButton(1,"Tarkus Op",talkToCarverAboutTarkusOp,undefined,"Tarkus Op","Talk with Carver about her operation here on Tarkus.");
-	else addDisabledButton(1,"Tarkus Op","Tarkus Op","You've already spoken about the Tarkus Op.");
+	if(flags["CARVER_TARKUS_TALK"] == undefined) addButton(1,"Tarkus Op",talkToCarverAboutTarkusOp,undefined,"Tarkus Operation","Talk with Carver about her operation here on Tarkus.");
+	else addDisabledButton(1,"Tarkus Op","Tarkus Operation","You’ve already spoken about the Tarkus operation.");
 
 	addButton(14,"Leave",doneSuckingUpToBethsBoobers);
 }

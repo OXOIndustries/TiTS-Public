@@ -52,7 +52,7 @@
 
 public function metBeth():Boolean
 {
-	if(flags["MET_DEL"] != undefined) return true;
+	if(flags["MET_BETH_CARVER"] != undefined || flags["MET_DEL"] != undefined) return true;
 	return false;
 }
 
