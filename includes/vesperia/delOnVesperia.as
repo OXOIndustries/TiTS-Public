@@ -23,8 +23,7 @@ public function showDelString(nude:Boolean = false):String
 }
 public function showDel(nude:Boolean = false):void
 {
-	if(!MailManager.isEntryUnlocked("del_moved")) showName("\nDEL");
-	else showName("\nDELILAH");
+	showName("\n" + (!MailManager.isEntryUnlocked("del_moved") ? "DELILAH" : "DEL"));
 	showBust(showDelString(nude));
 }
 //Content Pack Intro
