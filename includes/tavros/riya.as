@@ -720,14 +720,15 @@ public function riyaFellatioScene():void
 	else output("\n\nYou obey eagerly, dropping down, your voice ringing out in sultry need as you beg your hung partner to stuff her meat down your throat, to force feed you her ball-batter straight from the tap. The thought of someone hearing your whorish pleas or even peeking over the top of the stall to watch you sucking dick in a bathroom makes your cunt wetter every second.");
 	output(" She just grins, unbuckling her belt and working her thumbs into the waistline of her pants, pulling them down to reveal her plain white boxers. They come down in short order too, letting her fat, soft chocolate cock flop in front of your face, the officer shifting her hips forward, gripping her tool with one hand and slapping your cheek with it, hard.");
 
-	output("\n\nThe sound fills the bathroom for a brief moment and your cheek stings from the impact - not to mention the humiliation(and arousal) you get from being slapped across your face with a juicy prick. She pulls back again and you flinch instinctively, drawing a chuckle from the sadistic woman. <i>“Aww, ");
+	output("\n\nThe sound fills the bathroom for a brief moment and your cheek stings from the impact - not to mention the humiliation (and arousal) you get from being slapped across your face with a juicy prick. She pulls back again and you flinch instinctively, drawing a chuckle from the sadistic woman. <i>“Aww, ");
 	// PC is human: 
-	if(race == "human") output("is the cockshock setting in? I know it’s scary being up close and personal with something as big as my dick. I don’t give a shit, don’t get me wrong. But I know.”</i>");
+	if(race == "human") output("is the cockshock setting in? I know it’s scary being up close and personal with something as big as my dick. I don’t give a shit, don’t get me wrong. But I know.");
 	//PC is ausar/huskar/dogmorph: 
-	else if(isDogMorph) output("is puppy’s widdle feewings hurt? Is she gonna tuck her widdle tail between her legs and cry?”</i>");
+	else if(isDogMorph) output("is puppy’s widdle feewings hurt? Is she gonna tuck her widdle tail between her legs and cry?");
 	// PC is kaithrit: 
-	else if(isCatMorph) output("is kitty scaaared? I guess that’s why they call you <i>pussy</i>cats.”</i>");
-	else output("is the little alien bitch nervous? In over her head? Is this too much cock for you, you dumb little slut?”</i>");
+	else if(isCatMorph) output("is kitty scaaared? I guess that’s why they call you <i>pussy</i>cats.");
+	else output("is the little alien bitch nervous? In over her head? Is this too much cock for you, you dumb little slut?");
+	output("”</i>");
 
 	output("\n\nShe sends her cock swinging into your face again - and again, and again, the rod of mocha flesh getting harder and harder with every impact until it actually starts to hurt a bit, rather than sting. Once she’s at half-mast, Riya pumps her hand up and down her shaft a few times until the veiny thing is almost fully erect, pulsing visibly in front of your face. She wastes no time inching her hips forward and bumping her pre-leaking tip into your [pc.lips], the powerful, salty taste assaulting your mouth. <i>“Well, Steele? It ain’t gonna blow itself.”</i> she says as she pushes forward another inch, your nostrils the next to come under attack. Her smell permeates your olfactory senses, strong and intoxicating, your mouth seeming to open of it’s own accord to welcome this exemplary specimen in.");
 	output("\n\nShe leans back against the stall door and reaches into one of her breast pockets to withdraw a sleek black tablet, the SteeleTech logo proudly displayed on it’s back. You blink - it’s rather strange to see your company’s products in this sort of situation. Riya slides her thumb across the other side of the device and you hear it open with a beep. Her cock pulses in your mouth and it’s owner peeks over the top of her tablet, one eyebrow quirking curiously. <i>“Why aren’t you sucking my dick, Steele?”</i> she asks, right hand leaving her tablet to rest on your head, her powerful fingers gripping your ");
@@ -758,14 +759,14 @@ public function riyaFellatioScene():void
 
 	output("\n\nShe keeps pushing you down, your throat constricting powerfully around her girth as your body vainly tries to force the insertion out, only adding to her pleasure. Your eyes begin to water, chest burning as your lungs run low on oxygen, drool leaking liberally down your chin - and onto Riya’s heavy brown nuts as the swinging orbs slap into your face. Your [pc.lips] are stretched thin around her base and you can <i>feel</i> your throat bulging obscenely, distending to accommodate the fat meat buried in it. Looking up at Riya, it becomes apparent that she doesn’t seem very interested in moving for the moment, eyes fluttering shut. She spends a few long moments simply luxuriating in the feeling of your neck wringing her cock, wrapped in sweltering tightness. As usual, she seems completely unconcerned with your pleasure or lack thereof, rolling her hips back and slamming herself home, driving her schlong back down your gullet.");
 	output("\n\nBy now your lungs have passed burning and begun to scream for air, your hands coming up of their own accord to bat at Riya’s powerful thighs. Your vision is beginning to dim, arms hitting with all the strength of a kitten until you can’t take it any more, limbs going limply to your sides as your eyes flutter shut. You find yourself coughing and gasping frantically for air a few seconds (you think) later, the dusky futa gripping you firmly under one armpit, keeping you from falling to the floor. <i>“Too much for you, ");
-	if(race == "human") output("Steele? Guess you’ve been spending too much time with those pindick xenos.”</i>");
+	if(race == "human") output("Steele? Guess you’ve been spending too much time with those pindick xenos.");
 	//PC is ausar/huskar/dogmorph:
-	else if(isDogMorph) output("mutt? I thought dogs loved swallowing bones. Are you... having a ruff day?”</i>");
+	else if(isDogMorph) output("mutt? I thought dogs loved swallowing bones. Are you... having a ruff day?");
 	// PC is Kaithrit: 
-	else if(isCatMorph) output("puss? I thought cats loved milk. You’re sure not showing it.”</i>");
+	else if(isCatMorph) output("puss? I thought cats loved milk. You’re sure not showing it.");
 	// PC is other: 
-	else output("alien? Guess they don’t grow em’ this big on... whatever ball of dirt you’re from.”</i>");
-	output(" she says, grinning lopsidedly down at you. You try to marshal a witty reply, but all that comes out is loud sputtering and hacking, your recently cock-clogged esophagus unable to articulate properly. <i>“Anyways, back to work. Since you can’t take the heat I’m packing, why don’t you start on my nuts instead?”</i>");
+	else output("alien? Guess they don’t grow em’ this big on... whatever ball of dirt you’re from.");
+	output("”</i> she says, grinning lopsidedly down at you. You try to marshal a witty reply, but all that comes out is loud sputtering and hacking, your recently cock-clogged esophagus unable to articulate properly. <i>“Anyways, back to work. Since you can’t take the heat I’m packing, why don’t you start on my nuts instead?”</i>");
 
 	output("\n\nShe slowly releases your shoulder as she says this, allowing you to support yourself, one hand coming up to wipe away some of the drool on your chin. Her hand meanwhile drifts up to your head again, pinching one of your [pc.ears] and tugging you forward with it, smushing your face into those heavy, churning balls. The smell of them fills your nostrils as Riya releases your ear and grips the back of your head again, rubbing your mouth against her sack lazily. <i>“Don’t be shy, ");
 	if(race == "human") output("Steele!");

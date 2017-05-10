@@ -206,6 +206,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_nude_3.png", mimeType = "image/png")]
 		public var Bust_RILEY_NUDE_3:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/riya.png", mimeType = "image/png")]
+		public var Bust_RIYA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/riya_nude.png", mimeType = "image/png")]
+		public var Bust_RIYA_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/saendra.png", mimeType = "image/png")]
 		public var Bust_SAENDRA:Class;
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(60, 0, 60, 60);
@@ -454,6 +459,11 @@ package classes.Resources.Busts
 			public var Full_RILEY_BRA_3:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_3.png", mimeType = "image/png", compression = true)]
 			public var Full_RILEY_NUDE_3:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/riya.png", mimeType = "image/png")]
+			public var Full_RIYA:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/riya_nude.png", mimeType = "image/png")]
+			public var Full_RIYA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra.png", mimeType = "image/png", compression = true)]
 			public var Full_SAENDRA:Class;
