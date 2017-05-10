@@ -33,7 +33,7 @@ public function messBonusFunction():Boolean
 }
 public function delAtTheMess():Boolean
 {
-	return (!MailManager.isEntryUnlocked("del_moved"));
+	return (!MailManager.isEntryUnlocked("del_moved") && !MailManager.isEntryUnlocked("del_moved_light"));
 }
 public function barBonusFunction():Boolean
 {
@@ -54,6 +54,7 @@ public function barBonusFunction():Boolean
 	addButton(1,"Watch TV",stephIrsonEpisodeTwo,undefined,"Watch TV","Watch the television. It looks like an episode of Steph Irson: Galactic Hunter is on.");
 	roamingBarEncounter(2);
 	vendingMachineButton(3, "XXX");
+	if(flags["MET_CARVER"] != undefined) addButton(5,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
 	return false;
 }
 //Order Food
@@ -167,6 +168,10 @@ public function approachDCLMenu():void
 	}
 	
 	if(peacekeeperTalkAvailable()) addButton(5,"Peacekeepers",dclPeacekeeperTalk);
+
+	if(flags["MET_CARVER"] == undefined && delilahSubmissiveness() >= 1) addButton(6,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
+	else if(flags["MET_CARVER"] == undefined) addDisabledButton(6,"Carver","Carver","Del doesn't quite know you well enough to let you meet her boss yet.");
+	else addDisabledButton(6,"Carver","Carver","You've already been behind the bar. You can go straight to her if you want, just step away from Del and walk in.");
 	
 	addButton(14,"Leave",mainGameMenu);
 }

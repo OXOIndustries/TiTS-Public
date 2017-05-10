@@ -32,6 +32,10 @@ public function delEmailString():String
 {
 	return "Hi! I don’t know if you remember me with your big important space adventures and all, but I’m Delilah, the bartender from The Mess’s lounge on Tarkus. You helped show me what Bethany Carver was trying to (even though she was a bitch about it!) - mostly by putting me over the bar ;)\n\nSo I just wanted to let you know I’ve left Tarkus. Carver did some more procedures on me, and then sold me off to some kui-tan lady on a space station above Vesperia. I just landed a couple hours ago, and I’m about to go on my first shift. If you get a chance... it’d mean a lot if you stopped by. You helped me really <i>get used</i> to/at my old job, so maybe you could do the same again?\n\nHugs and kisses!\n\t~Del\n\n<i>Attached to the bottom of the email is a set of Warp Gate coordinates that mark the way to Canadia Station, high over Vesperia - a coreward planet colonized by humans centuries ago. What’s she doing way out there?</i>";
 }
+public function delLightEmailString():String
+{
+	return "Hi! I don't know if you remember me, what with your big important space adventures and all, but I'm Del. The bartender from Tarkus. Carver told me to write you and thank you: apparently you convinced her not to modify me anymore, and sell me to someone that'll take better care of me. So thank you. Thank you so much!\n\nShe's just sold me to some kui-tan woman who owns a bar near Vesperia. I'm en-route there now. She seems nice, actually...\n\nIf you're ever in system, come by Canadia Station. Your drinks are on me. :)\n\nBest,\n\tDelray Crawford\n\n<i>Attached to the bottom of the email is a set of Warp Gate coordinates that mark the way to Canadia Station, high over Vesperia - a coreward planet colonized by humans centuries ago.</i>";
+}
 
 //Del @ Kui Country Lounge
 //Add to bar description if PC hasn’t met Del here before:
@@ -1118,4 +1122,525 @@ public function showDelString(nude:Boolean = false):String
 		else return ("DELILAH_SHEMALE" + bust_Append);
 	}
 	return "";
+}
+
+//Stopping Shemalification
+//Add [Carver] to Del’s Tarkus menu after you’ve borked Del at least once.
+//[Carver]
+//Have Del let you behind the bar so you can have a chat with her owner.
+public function delCarverTalkForWorstDel():void
+{
+	clearOutput();
+	showDel();
+	author("Savin");
+	if(flags["MET_BETH_CARVER"] == undefined)
+	{
+		output("You lean across the bar and plant a hand on Del’s shoulder, pointing to the door behind the bar with the hand that doesn’t quickly find itself tweaking one of her little nipples. <i>“");
+		if(pc.isNice()) output("Can I go see your boss?");
+		else if(pc.isMischievous()) output("Mind if I see the big-titted stripper back there?”</i>");
+		else output("I’m gonna hop over and go talk to your boss, kay?”</i>");
+
+		output("\n\n<i>“K-kay?”</i> Del squeaks, squirming back as you ");
+		if(pc.tallness < 60) output("haul yourself up onto the counter and jump over");
+		else if(pc.isTaur()) output("gingerly lift a leg up and over the bar");
+		else output("hop the counter");
+		output(". You saunter on past her and through the door, leaving the trappy bartender calling something about there being a gate for the bar right next to her.");
+
+		output("\n\nThe door slides open at your touch, revealing a short hallway leading to a curtain of beads hanging from an hatchway whose door has been removed entirely. A rich, coffee-and-cinnamon aroma drifts out from the back room, mixing with a faint hint of sex that hangs in the air. You rap your knuckles on the metal bulkhead beside the curtain, peering through the slender gaps between them as you do so to get a glimpse of what might await you inside.");
+		output("\n\n<i>“Enter,”</i> a commanding female voice snaps from inside, a mixture of sensuality and sovereign demand that leaves no room for question; no time for second-guesses. You brush through the curtain and step into Bethany Carver’s domain.");
+		processTime(5);
+		clearMenu();
+		addButton(0,"Next",delCarverTalkForWorstDel2);
+	}
+	else
+	{
+		repeatCarverApproach();
+		return;
+	}
+}
+
+public function showBethCarver():void
+{
+	showName("BETH\nCARVER");
+	showBust("BETH");
+}
+
+public function delCarverTalkForWorstDel2():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("The woman herself sits facing you from behind a crescent-shaped mahogany desk, polished to a shine and occupied with only a single projector band that stretches across its length, surrounding the entrepreneuress with a bevy of flickering yellow holograms displaying byzantine charts and finances. Carver glances up from her work for only the briefest moment before nodding to a plush leather chair facing hers - the only other piece of furniture in the room.");
+	output("\n\nUnless you want to count the half-dozen naked bodies lounging around Carver’s legs as furniture, anyway. She certainly seems to, ignoring their quiet moans and plaintive caresses of her legs as if they weren’t there. You recognize humans, ausar, laquine, and even a gryvain amongst them - all of them are svelte and buxom, and all of them have small, naked dicks brazenly on display. The harem look up at you with wide eyes full of wonder, and not a small amount of lust as their gazes wander across your body. You quickly become keenly aware of a myriad of eyes settling on your loins");
+	if(pc.biggestTitSize() >= 1) output(" and breasts");
+	output(", ");
+	if(pc.isCrotchExposed() || pc.isChestExposed()) output("drinking in the sights of your bare flesh.");
+	else output("undressing you in their minds.");
+
+	output("\n\nIt takes you a moment to shake the overwhelming lust emanating from the harem lounging around Carver’s legs; you awkwardly step around the chair and seat yourself, waiting for their owner to acknowledge you.");
+	output("\n\nThe slave-mistress leaves you waiting for a long, slow minute. You’re sure she could have stopped her work a dozen times in that span, but she lets you wait until she’s good and ready. As she works, you are inevitably drawn to her nearly-naked body: her large, full breasts covered by heart-shaped pasties that don’t quite cover the entirety of her nipples, the heavy mounds rising and falling slowly and evenly with her breath. If you were a lesser " + pc.mf("","wo") + "man, you’d be squirming by the time she finally disengages the holograms and leans forward onto the desk, steepling her fingers.");
+	output("\n\n<i>“" + pc.mf("Mister","Miss") + " Steele,”</i> Carver says simply, a faint smile playing across her purple lips. <i>“You want something.”</i>");
+	output("\n\nIt’s a statement, not a question.");
+	processTime(3);
+	clearMenu();
+	//[Delilah] [Tarkus Op] [Leave]
+	carverMainMenu();
+}
+
+//Tarkus Op
+//Talk with Carver about her operation here on Tarkus.
+//One time only.
+public function talkToCarverAboutTarkusOp():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("<i>“Tell me about your operation here,”</i> you say, gesturing back towards the bar, and the Mess beyond it. <i>“A woman like yourself doesn’t come all the way out here to open a bar.”</i>");
+	output("\n\nCarver smirks, ever so slightly. <i>“No, I didn’t. This is one of several dozen business ventures I control within Rush Space. ");
+	//PC has purchased Reaha:
+	if(reahaRecruited()) output("I believe you’re familiar with my cathouse on Tavros. ");
+	output("The Mess and its associated bar are relatively minor among my holdings, but it is out of the way and serves as a convenient place to pimp out my low-risk investments.”</i>");
+	output("\n\nYou blink.");
+	output("\n\n<i>“Delilah. She’s an investment... a work in progress. The most recent to work here; not the first or the last by any means. When I’m done breaking her will, molding her into a perfect willing cocksleeve for every john that pops a boner in sight of her... I’ll finish her gene mods and sell her off. You won’t even notice when it’s a different sissy slut taking her place behind the bar in a few weeks.”</i>");
+	output("\n\nCold. <i>“So, you’re using this place as somewhere to break in slaves?”</i>");
+	output("\n\nCarver mocks offense, putting a hand to her chest and leaning back in her chair. <i>“For indentured servants, Steele. Not slaves. That would be illegal.”</i>");
+	output("\n\nShe chuckles smugly and leans back in her leather chair, crossing one bare leg over the other. <i>“Tell me, Steele: what’s your take on the indenture trade?");
+	//Reaha Freed:
+	if(reahaFree()) output(" From what I hear, you haven’t been keeping a tight leash on your own purchases.");
+	output("”</i>");
+
+	processTime(7);
+	//[It’s Wrong] [No Opinion] [It’s Fine]
+	clearMenu();
+	addButton(0,"It's Wrong",talkToCarverAboutTarkusBEINWRONG,undefined,"It's Wrong","Slavery is wrong, yo.");
+	addButton(1,"No Opinion",talkToCarverAboutTarkusNOOPINION,undefined,"No Opinion","Be polite you guess.");
+	addButton(2,"It's Fine",talkToCarverAboutTarkusITSFINE,undefined,"It's Fine","Slavery is fine.");
+}
+
+//[Its Wrong]
+//+Kindness
+public function talkToCarverAboutTarkusBEINWRONG():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("<i>“Slavery is wrong,”</i> you tell her. It might masquerade as legal, but ultimately she and every other filthy slave-hawker in the galaxy are keeping people against their will.");
+	output("\n\nA faint frown twitches in the corner of Carver’s mouth. <i>“They’re not slaves, Steele. Then again, I don’t expect someone of your means to understand the struggles of those with nothing. Any mistake you make, and your daddy’s company can come to your rescue... someone like Delilah, though? One mistake can ruin them for life. What I do is a step up from destitution, having to choose between food or your next hit from whatever drug eases the pain of existence. The people I take in, they’re directionless... hopeless... without someone to guide them. To show them who they really are.”</i>");
+	output("\n\nSo what, Carver thinks she’s doing this people a kindness?");
+	output("\n\n<i>“Do I look kind to you, Steele? No? I’m an entrepreneur, and I can’t stand to see people going to waste. Delilah would have gone her entire life in utter mediocrity, unremarkable and unremembered. I’m building her into something worthwhile, something worth the air she breathes. Something that people <b>desire</b>.”</i>");
+	output("\n\n<i>“Not everyone is born with animal magnetism, or the talent to carve themselves a legend,”</i> Carver adds, locking eyes with you. <i>“My business is human recycling, turing the discarded flesh of the galaxy into instruments of the most exquisite pleasure. No one who empties their balls in Delilah’s whorish ass will ever forget her... I can’t say the same for someone who subjected themselves to the art she tried to peddle before I took her in.”</i>");
+	flags["CARVER_TARKUS_TALK"] = 1;
+	pc.addNice(5);
+	processTime(6);
+	clearMenu();
+	carverMainMenu();
+}
+
+//[No Opinion]
+//+Misch
+public function talkToCarverAboutTarkusNOOPINION():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("You shrug, and tell her you haven’t put much thought into it. Carver’s business is what it is.");
+	output("\n\n<i>“A position wiser than it seems,”</i> Carver smirks. <i>“What I do is a business: nothing more, nothing less. Getting sentimental over sl- servants - is foolish. Delilah and her kind are human refuse, the discarded and the forgotten of the galaxy. I take them in, mold them into instruments of the most exquisite pleasure, and release them into the galaxy. I make them worth... anything. Without someone to guide them, to give their lives purpose, people like her would waste away in obscurity.”</i>");
+	output("\n\n<i>“But what I do is not gentle, or kind,”</i> she continues. <i>“To be reborn means to be reshaped, body and mind alike.”</i>");
+	output("\n\nCarver reaches down and gently strokes the hair of one of the naked dick-girls fawning over her. The slut gasps at the unexpected touch, and Carver’s touch runs downward, across a synthetic breast and stroking a shriveled, effete cock. The girl stiffens and cries out; you see white cockmilk leak out from between her mistress’s fingers, drawn out with a single caress.");
+	output("\n\n<i>“Existing for nothing but pleasure isn’t the worse thing this galaxy has to offer,”</i> Carver says, sitting back in her chair and regarding her semen-soaked hand. <i>“Far from it. And someone like you, someone who gallivants across the galaxy sampling all its strange pleasures for yourself... you understand that better than most. You might make a good trainer yourself, if you tried. You’ve done wonders with Delilah already.”</i>");
+	output("\n\nWhile she speaks, Carver reaches down and wipes the cum off onto the breast of the gryvaini slave leaning against her desk, making the dragoness lick her fingers clean. <i>“But that’s a conversation for another time.”</i>");
+	flags["CARVER_TARKUS_TALK"] = 0;
+	pc.addMischievous(5);
+
+	processTime(6);
+	carverMainMenu();
+}
+
+//[It’s Fine]
+//+Hard
+public function talkToCarverAboutTarkusITSFINE():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("You shrug. The way Carver conducts slavery is fine - these people signed up for it, after all.");
+	output("\n\nCarver nods and smiles. <i>“Good. I’m glad we see eye to eye, Steele. The business I run is a net positive for the galaxy, whether or not the sluts themselves realize it. Each and every one of them was mediocre, a waste of flesh and breath, before I took them in. Gave them purpose. Molded them into instruments of the most exquisite pleasure. And they benefit from that, too... before long Delilah will enjoy taking cock a hundred times more intensely than any one john that enjoys her body.”</i>");
+	output("\n\nCarver reaches down and gently strokes the hair of one of the naked dick-girls fawning over her. The slut gasps at the unexpected touch, and Carver’s touch runs downward, across a synthetic breast and stroking a shriveled, effete cock. The girl stiffens and cries out; you see white cockmilk leak out from between her mistress’s fingers, drawn out with a single caress.");
+	output("\n\n<i>“Existing for nothing but pleasure isn’t the worse thing this galaxy has to offer,”</i> Carver says, sitting back in her chair and regarding her semen-soaked hand. <i>“Far from it. And someone like you, someone who gallivants across the galaxy sampling all its strange pleasures for yourself... you understand that better than most. You might make a good trainer yourself, if you tried. You’ve done wonders with Delilah already.”</i>");
+	output("\n\nCarver chuckles and leans back, rubbing the submissive’s sticky cum between her fingers.");
+	flags["CARVER_TARKUS_TALK"] = -1;
+	if(pc.hasCock()) 
+	{
+		output(" After a moment, she glances up at you and crooks a spunk-slick finger at you, beckoning you closer...");
+		processTime(6);
+		clearMenu();
+		//[Approach] [Stay Back]
+		addButton(0,"Approach",getAnHJFromCarver,undefined,"Approach","There’s an offer hanging in the air. See where this goes.");
+		addButton(1,"Stay Back",stayBackFromCarver,undefined,"Stay Back","Don’t take her up on... whatever she’s offering.");
+	}
+	else
+	{
+		processTime(6);
+		output("\n\nCarver reaches down and wipes the cum off onto the breast of the gryvaini slave leaning against her desk, making the dragoness lick her fingers clean. <i>“But that’s a conversation for another time.”</i>");
+		carverMainMenu();
+	}
+}
+
+//[Stay Back]
+//Don’t take her up on... whatever she’s offering.
+public function stayBackFromCarver():void
+{
+	clearOutput();
+	showBethCarver();
+	output("You keep your seat, letting the tension of the moment pass without acknowledgement. Carver shakes her head and reaches down, smearing the cum onto the hair of one of the sluts still fawning over her, wiping herself clean in the girl’s amber locks.");
+	output("\n\n<i>“I suppose that’s a conversation for another time. Did you need something else, Steele?”</i>");
+	processTime(2);
+	carverMainMenu();
+}
+
+//[Approach]
+//There’s an offer hanging in the air. See where this goes.
+public function getAnHJFromCarver():void
+{
+	clearOutput();
+	showBethCarver();
+	output("You stand up and take a seat on the edge of Carver’s desk, close enough that she can reach out and touch you. ");
+	if(pc.isCrotchExposed()) output("She does so, reaching forward with her cum-slathered hand and wrapping her slender digits around your [pc.cock].");
+	else output("She brushes your [pc.lowerGarment] out of the way with her clean hand and grasps your [pc.cock] with the cum-soaked one, pulling your prick out and gently caressing it.");
+	output("\n\nYou gasp at the unexpected contact. Carver smirks up at you, leaning back into her plush leather seat and moving her wrist with slow, even motions. The sissy slave’s cum acts as more than competent lube, letting Carver’s sinfully soft fingers glide across your stiffening cockflesh with ease.");
+	output("\n\n<i>“I’m hard on my property... but I can be very good to my friends, Steele,”</i> Carver purrs. <i>“Especially my powerful friends. And I don’t just mean your company. You’re an adventurer, an influencer, the kind of person who can shape the fate of planets... whether you want to or not. There’s a galaxy of opportunities out here for you, if you only know where to look.”</i>");
+	output("\n\nAs she speaks, Carver’s hand starts moving faster, pumping your shaft with quickening ardor. Acting on animal instinct, your hands grab at the edge of the desk, digging in until your knuckles turn white. You have to fight not to cum in a matter of seconds, struggling against a clenching pressure boiling up in your loins.");
+	output("\n\n<i>“But I can see you’re... occupied right now. Perhaps after I’m finished with Delilah and Tarkus, you and I can have a longer discussion about future partnerships?”</i>");
+	output("\n\nYou try to accept, but all that comes out is a moan. Without thinking, you babble something about cumming; you bite your lip to cut yourself off, trying to keep some dignity in your pleasure. The buxom woman doesn’t pay you any mind, but just keeps milking your cock with that insistent, even motion of hers, steadily carving through your resistance until your [pc.cock] throbs, and ");
+	//small cumVol: 
+	if(pc.cumQ() < 25) output("a stream of cockmilk leaks out around Carver’s fingers, dripping into her lap. She smirks up at you and rubs the rest of your nut out onto her thighs and belly.");
+	else if(pc.cumQ() < 500) output("a thick, creamy load of [pc.cum] spurts out from between her fingers, splattering all over her bare breasts. Carver laughs and chews one of her purple lips, jacking her wrist faster until your throbbing erection’s dumped the full volume of your load all over the woman’s chest and belly.");
+	else output("a jet of pent-up spunk erupts all over her, splattering Carver’s face, chest, and belly with a deluge of [pc.cum]. She keeps massaging your [pc.cock] until every last drop of your monumental load has poured over her body.");
+	output(" She makes no effort to hide the fact that she enjoys being covered in your seed.");
+
+	output("\n\nWhen you’ve finished emptying your [pc.balls], Carver releases your dick and reclines in her chair. Without prompting, the myriad sluts crowded around the bottom of the desk crawl up onto Carver, licking and kissing her cum-soaked body clean.");
+	output("\n\n<i>“Will that be all, Steele,”</i> she asks with a smile.");
+
+	processTime(15);
+	flags["CARVER_HANDJOBBED_U"] = 1;
+	pc.orgasm();
+	carverMainMenu();
+}
+
+//Delilah
+//Talk to Carver about Delilah
+public function talkToCarverAbootDel():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("<i>“Let’s talk about Del,”</i> you prompt.");
+	output("\n\nCarver nods. <i>“She’s a good girl. Reluctant, but shows promise with a bit of training. I doubt it will be much longer before she’s broken in enough to allow me to finish her conversion. The profit from her sale should be more than enough to cover what I’ve invested in her already.”</i>");
+	output("\n\nSo, that’s her plan, then? Turn Del into a willing femboy and then just sell her off again?");
+	output("\n\n<i>“Femboy?”</i> Carver chuckles. <i>“The girl you see outside is just part of what I have planned for her. Once she’s accepted the pleasure of taking cock and her resolve to fight me has withered, I’ll continue to modify her. I think Delilah would look good with D-cups, don’t you? Though that dick of hers is still much too big for a proper sissy, so that will have to be atrophied further.”</i>");
+	output("\n\n<i>“You’re going to turn her into a woman?”</i>");
+	output("\n\nCarver shrugs and gestures down to the harem at her feet. <i>“Most of one. As you can see, I like my whores to keep their cocks. Keep them shriveled and soft, leaking cum at the slightest touch without ever even thinking about getting hard. It’s the ultimate physical form of submission, and the truest sign of a consumate buttslut. Besides, sissy-clits are in vogue in holoporn this century.”</i>");
+	output("\n\nSo the <i>“offer”</i> Carver made you to use Del... that was part of breaking the trap’s resolve?");
+	output("\n\n<i>“It was; and still is. But if learning this shatters <b>your</b> resolve... well, there are plenty more wealthy sex-addicts blowing through this backwater planet. Del just seems to like you the best.”</i>");
+	output("\n\nMaybe you could use that to your advantage, and have a say in Del’s fate...");
+	processTime(7);
+	//[Release Del] [Feminize Del] [Leave Del Be] [No Comment]
+	clearMenu();
+	addButton(0,"Release Del",releaseDelSlootypuffJr,undefined,"Release Del","Tell Carver she should release Del. Maybe you could pay for her freedom?");
+	addButton(1,"Feminize Del",feminizeDelPlease,undefined,"Feminize Del","Tell Carver that you support her feminizing Del further.");
+	addButton(2,"Leave Del Be",leaveDelBe,undefined,"Leave Del Be","Tell Carver to leave Del the way she is: you like her as a sissy trap.");
+	addButton(3,"No Comment",noComment,undefined,"No Comment","Carver knows best for her property. Leave this topic alone.");
+}
+
+//No Comment
+//Carver knows best for her property. Leave this topic alone.
+public function noComment():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("You change the topic. You're not ready to make a decision right now.");
+	carverMainMenu();
+}
+
+//[Leave Del Be]
+//+Kind. Del will no longer ever leave Tarkus.
+//Tell Carver to leave Del the way she is: you like her as a sissy trap.
+public function leaveDelBe():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("<i>“What if I asked you to leave Del as she is?”</i> you venture. <i>“I like her already.”</i>");
+	output("\n\nCarver raises an eyebrow, ever so slightly. <i>“Do you, now? That’s good. She’s surprisingly popular merchandise, I admit... but I’ve made such plans for turning her into a big-titted bimbo. It would be such a waste to leave her as she is.”</i>");
+	output("\n\nWould it, though? You tell her that having Delilah stay the same would certainly encourage you to keep returning to the Tarkus, even if using Del doesn’t stay free forever.");
+	output("\n\n<i>“Interesting. I’ll consider it, " + pc.mf("mister","miss") + " Steele,”</i> Carver says. <i>“In the meantime, please feel free to continue");
+	if(pc.hasCock()) output(" sodomizing");
+	else output(" enjoying");
+	output(" my property to your heart’s content. Now, was there anything else?”</i>");
+	flags["CARVER_DEL_TALK"] = 1;
+	pc.addNice(10);
+	processTime(5);
+	carverMainMenu();
+}
+
+//[Feminize Del]
+//Tell Carver that you support her feminizing Del further.
+//Immediately start the 30-day shemalification countdown.
+public function feminizeDelPlease():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("<i>“And I’d like </i>her<i> best with a big pair of tits,”</i> you say with a grin, eying up Carver’s nearly-bare bosom. They must be, what, F-cups? So soft, and perky for their size, too...");
+	output("\n\nThe slave-mistress smiles and crosses her arms under her chest, an overt - and oh-so-effective - attempt to emphasize the heavy chest-pillows that have captured your attention. <i>“I thought you might. When Del’s transformation is complete, I’ll make sure she sends you a message so you can keep in touch. I mostly sell these sluts to other businessmen, so I’m sure you and her next owner can come to some sort of arrangement.”</i>");
+	output("\n\nAnd you can’t just buy Del yourself?");
+	output("\n\n<i>“Sorry, Steele,”</i> Carver chuckles. <i>“I can only sell top-shelf merchandise to accredited debt consolidators and traders. Plus, you don’t own a brothel as far as I know, and someone like Delilah needs an audience. If you’re interested in big-breasted slaves, though, I suggest you visit my bordello on Tavros Station sometime. Kat, the manager, moves some open-contract property from time to time.”</i>");
+	output("\n\n<i>“Now, was there anything else?”</i>");
+	processTime(6);
+	pc.addHard(5);
+	flags["CARVER_DEL_TALK"] = 2;
+	carverMainMenu();
+}
+
+//[Release Del]
+//+Kindness. In 30 days, move Del to Canadia Station, but still as a Trap (see next section).
+//Tell Carver she should release Del. Maybe you could pay for her freedom?
+public function releaseDelSlootypuffJr():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("<i>“No,”</i> Carver says, cutting you off before you’ve even halfway explained what you want. <i>“I do not free my servants before their contracts have expired. Nor will I sell them to someone who will. Indentured servitude is a punishment, but it’s also an opportunity, Steele - a chance for the galaxy’s human refuse to become something better than they were. Delilah was going nowhere in her life before I took her in. When I’m done with her, she’ll be one of the galaxy’s best cum-dumps. It’s something, at least.”</i>");
+	output("\n\nYou scowl, sinking back into your chair. Dammit.");
+	output("\n\n<i>“At least don’t modify her anymore,”</i> you venture. <i>“I like her just the way she is, and you know she likes me, too.”</i>");
+	output("\n\nCarver chuckles, a gesture that makes her enormous breasts quake hypnotically. <i>“No, that won’t do at all... but I suppose, if another debt-trader wanted to purchase her contract from me before Delilah finally caves and lets me finish her treatments, well... just for you, perhaps I’ll let her go for a premium. I can’t guarantee what her next owner will do with her, or if they’ll allow you to keep visiting her, but I suppose that won’t be my problem.”</i>");
+	output("\n\n<i>“In the meantime, feel free to keep visiting Del. It might still be your last chance before she finds herself with a nice pair of tits.”</i>");
+	output("\n\nThat’s... something, you guess...");
+	processTime(6);
+	pc.addNice(10);
+	flags["CARVER_DEL_TALK"] = 3;
+	carverMainMenu();
+}
+
+//Leave
+//Take your leave of Beth Carver.
+public function doneSuckingUpToBethsBoobers():void
+{
+	clearOutput();
+	showBethCarver();
+	author("Savin");
+	output("<i>“I’ll be heading out,”</i> you tell her, standing.");
+	output("\n\nCarver nods, slowly, watching every move you make with sultry eyes. <i>“Of course, captain. I’ll be here... for now. Please enjoy my servants and refreshments while you remain on Tarkus.”</i>");
+	processTime(2);
+	clearMenu();
+	flags["MET_BETH_CARVER"] = 1;
+	addButton(0,"Next",mainGameMenu);
+}
+
+//PC returns to Carver after 1st meeting
+public function repeatCarverApproach():void
+{
+	clearOutput();
+	showBethCarver();
+	output("You pass by Delilah without a word, heading through the door behind the bar and into Carver’s office. The beaded curtains part around your shoulders, revealing the mistress’s office, much as you remember it.");
+	output("\n\n<i>“Captain,”</i> the woman behind the polished oak desk says, giving you the faintest incline of her head. <i>“What is it you desire?”</i>");
+	carverMainMenu();
+}
+
+public function carverMainMenu():void
+{
+	clearMenu();
+	if(flags["CARVER_DEL_TALK"] == undefined) addButton(0,"Del",talkToCarverAbootDel,undefined,"Del","Talk to Carver about Delilah.");
+	else addDisabledButton(0,"Del","Del","You've already made your opinion clear on this matter.");
+
+	if(flags["CARVER_TARKUS_TALK"] == undefined) addButton(1,"Tarkus Op",talkToCarverAboutTarkusOp,undefined,"Tarkus Op","Talk with Carver about her operation here on Tarkus.");
+	else addDisabledButton(1,"Tarkus Op","Tarkus Op","You've already spoken about the Tarkus Op.");
+
+	addButton(14,"Leave",doneSuckingUpToBethsBoobers);
+}
+
+//Adding Del to NC Station
+public function shittyDelBonus(num:Number):Number
+{
+	output("\n\nYou recognise Del sauntering around the bar, waiting on tables and manning the bar when the owner is busy elsewhere. He’s wearing a slick black waiter’s outfit with a slick red tie, pinned with some sort of glowing holographic button. There’s almost no trace of the slutty femboy you met on Tarkus: Del’s voice is a touch deeper, and his movements carry a masculine confidence that would have seemed comical before; now, it suits him just fine. Still, his figure is slight and effeminate, with wide hips and soft curves that almost beg for a squeeze or a grope.");
+	//[Del]
+	addButton(num,"Del",approachVesperianTrapDel);
+	return (num+1);
+}
+
+public function approachVesperianTrapDel():void
+{
+	clearOutput();
+	showDel();
+	author("Savin");
+	//First Time Interact:
+	if(flags["MET_VESPERIAN_DEL"] == undefined)
+	{
+		output("You head over to the dusky waiter and put a hand on his shoulder, getting his attention. Del turns, ready to ask what you need... before he recognizes you, and his eyes brighten.");
+		output("\n\n<i>“[pc.name]!”</i> he grins, throwing his arms around you and giving you a tight hug. <i>“I can’t believe you came! How’s it going?”</i>");
+		output("\n\nDel motions over to one of the unoccupied tables in his section, taking a seat across from you. You ");
+		if(pc.isTaur()) output("plop your bestial hindquarters down beside the table");
+		else if(pc.isNaga()) output("coil yourself into a sitting position facing him");
+		else output("swing yourself into a chair facing him");
+		output(" and ask him how he’s been. What happened since the last time you spoke?");
+
+		output("\n\n<i>“I’m good. Real good!”</i> he grins. <i>“The woman who bought me, Kally... she’s been great. After that bitch Carver, I was pretty terrified this whole indentured servitude thing was going to be an unending nightmare, but whatever you said to her must have changed her mind. And thank God, it turns out there’s actually decent people in the slave market. She’s been great so far, letting me get back into some decent clothes, and doing decent work. I haven’t had to fuck anybody I don’t want to, and heck, Kally herself hasn’t even tried to get in my pants. Not that I’d mind if she asked...”</i>");
+		output("\n\nHe chuckles and lazily tucks a lock of blonde hair behind a ear. <i>“It almost feels like a normal life again. All thanks to you and that silver tongue! Kally’s even helping me put away some money away to clear out my debt. It’ll be awhile, but eventually...”</i>");
+		output("\n\n<i>“That’s great,”</i> you tell him. The two of you spend the next little while chatting, with Del seeming happier by the minute. Eventually, though, the kui-tan behind the bar calls for her, cutting your conversation short. Del slips away with a smile, reminding you that drinks are on her for what you did for her.");
+		output("\n\nLooks like you did some good in the galaxy this time...");
+		processTime(5);
+		flags["MET_VESPERIAN_DEL"] = 1;
+	}
+	//Repeat Interactions
+	else
+	{
+		output("You go over to Del and tap him on the shoulder, getting his attention.");
+		output("\n\n<i>“Hey, [pc.name]!”</i> he grins, setting his drink tray down. <i>“Good to see you. What’s up?”</i>");
+		//Del only sells drinks; no other interact options cuz lol. The first drink you get from her is free; all further drinks are heavily discounted.
+		processTime(1);
+	}
+	delTrapMenu();
+}
+
+public function delTrapMenu():void
+{
+	clearMenu();
+	addButton(0,"Buy A Drink",drinkFromTrapDel);
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Drink
+//Get a drink from the slutty waitress.
+public function drinkFromTrapDel():void
+{
+	clearOutput();
+	showDel();
+	output("You tell Del you’re feeling thirsty, alright.");
+	output("\n\n<i>“A drink? Sure, here’s what we’ve got on tap,”</i> Del says, flipping a handpiece out of her skirt’s pocket and projecting the menu across her deliciously flat chest, making sure you have to stare right at her softly moving breasts to pick out your drink of choice. <i>“See anything you want?”</i>");
+	//Same drink choices as Kally has. If it’s before 18:00, add [Body Shots] option.
+	kallyDrinkDisplay();
+	delTrapDrinkMenu();
+}
+
+public function delTrapDrinkMenu():void
+{
+	clearMenu();
+	if(flags["MET_VESPERIAN_DEL"] == 1)
+	{
+		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(0,"*Doe-Eyed D",delTrapDrinkPurchase,"Doe-Eyed Draught","Doe-Eyed Draught","Doe-Eyed Draught is a local microbrew produced in-house and flavored with our special additive. The warm amber beer bears a slight, hoppy flavor with a hint of almond. Sure to have you looking doe-eyed after a few drinks! 14% alcohol equivalency by volume.\n\nPrice: FREE Credits");
+		else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","That marking is suspicious. You should ask the bartender about it.");
+		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(1,"*N. Nookie",delTrapDrinkPurchase,"Nutty Nookie","Nutty Nookie","A rich, nutty beer with a flavor that’s best described as chocolatey. Nutty Nookie’s aren’t for the faint of heart, as they contain 13% alcohol equivalency by volume and a generous helping of our secret ingredient to lend it a thicker, warmer afterglow.\n\nPrice: FREE Credits");
+		else addDisabledButton(1,"*N. Nookie","Nutty Nookie","That marking is suspicious. You should ask the bartender about it.");
+		
+		addButton(2,"V. Vapor",delTrapDrinkPurchase,"V. Vapor","Vesperian Vapor","Like its namesake, a Vesperian Vapor is a light, crisp drink with a hint of citrous flavor hiding just beneath its bubbly effervescence. Contains 7% alcohol by volume.\n\nPrice: FREE Credits");
+		
+		addButton(3,"Royal Red",delTrapDrinkPurchase,"Royal Red","Royal Red","A foamy, crimson-colored beer with a bitter taste and the faintest hint of cherry. Royal Red is a common beer brewed locally on Vesperia. Contains 8% alcohol by volume.\n\nPrice: FREE Credits");
+		
+		addButton(4,"P. Pilsner",delTrapDrinkPurchase,"Pneumatic Pilsner","Pneumatic Pilsner","Has a kick like a launch catapult and an afterglow like an engine nozzle. Imported from breweries on Tallax. 16% alcohol by volume.\n\nPrice: FREE Credits");
+		
+		if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(5,"*Kui Creamer",delTrapDrinkPurchase,"Kui Creamer","Kui Creamer","Incredibly creamy with a mild sweetness that goes just right with a cold night by a warm fire. Kui Creamers are taken as a pair of shots. 21% alcohol equivalency by volume, with a concentration of our secret ingredient that’ll leave your heart fluttering.\n\nPrice: FREE Credits");
+		else addDisabledButton(5,"*Kui Creamer","Kui Creamer","That marking is suspicious. You should the bartender about it.");
+	}
+	else
+	{
+		if(pc.credits >= 6) 
+		{
+			if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(0,"*Doe-Eyed D",delTrapDrinkPurchase,"Doe-Eyed Draught","Doe-Eyed Draught","Doe-Eyed Draught is a local microbrew produced in-house and flavored with our special additive. The warm amber beer bears a slight, hoppy flavor with a hint of almond. Sure to have you looking doe-eyed after a few drinks! 14% alcohol equivalency by volume.\n\nPrice: 6 Credits");
+			else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","That marking is suspicious. You should ask the bartender about it.");
+		}
+		else addDisabledButton(0,"*Doe-Eyed D","*Doe-Eyed Draught","You can’t afford that.\n\nPrice: 6 Credits");
+		if(pc.credits >= 7) 
+		{
+			if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(1,"*N. Nookie",delTrapDrinkPurchase,"Nutty Nookie","Nutty Nookie","A rich, nutty beer with a flavor that’s best described as chocolatey. Nutty Nookie’s aren’t for the faint of heart, as they contain 13% alcohol equivalency by volume and a generous helping of our secret ingredient to lend it a thicker, warmer afterglow.\n\nPrice: 7 Credits");
+			else addDisabledButton(1,"*N. Nookie","Nutty Nookie","That marking is suspicious. You should ask the bartender about it.");
+		}
+		else addDisabledButton(1,"*N. Nookie","Nutty Nookie","You can’t afford that.\n\nPrice: 7 Credits");
+		if(pc.credits >= 10) 
+		{
+			addButton(2,"V. Vapor",delTrapDrinkPurchase,"V. Vapor","Vesperian Vapor","Like its namesake, a Vesperian Vapor is a light, crisp drink with a hint of citrous flavor hiding just beneath its bubbly effervescence. Contains 7% alcohol by volume.\n\nPrice: 10 Credits");
+		}
+		else addDisabledButton(2,"V. Vapor","Vesperian Vapor","You cannot afford that.\n\nPrice: 10 Credits");
+		if(pc.credits >= 12) 
+		{
+			addButton(3,"Royal Red",delTrapDrinkPurchase,"Royal Red","Royal Red","A foamy, crimson-colored beer with a bitter taste and the faintest hint of cherry. Royal Red is a common beer brewed locally on Vesperia. Contains 8% alcohol by volume.\n\nPrice: 12 Credits");
+		}
+		else addDisabledButton(3,"Royal Red","Royal Red","You cannot afford that.\n\nPrice: 12 Credits");
+		if(pc.credits >= 20) 
+		{
+			addButton(4,"P. Pilsner",delTrapDrinkPurchase,"Pneumatic Pilsner","Pneumatic Pilsner","Has a kick like a launch catapult and an afterglow like an engine nozzle. Imported from breweries on Tallax. 16% alcohol by volume.\n\nPrice: 20 Credits");
+		}
+		else addDisabledButton(4,"P. Pilsner","Pneumatic Pilsner","You cannot afford this.\n\nPrice: 20 Credits");
+		if(pc.credits >= 22) 
+		{
+			if(flags["KALLYS_SECRET_INGREDIENT"] != undefined) addButton(5,"*Kui Creamer",delTrapDrinkPurchase,"Kui Creamer","Kui Creamer","Incredibly creamy with a mild sweetness that goes just right with a cold night by a warm fire. Kui Creamers are taken as a pair of shots. 21% alcohol equivalency by volume, with a concentration of our secret ingredient that’ll leave your heart fluttering.\n\nPrice: 22 Credits");
+			else addDisabledButton(5,"*Kui Creamer","Kui Creamer","That marking is suspicious. You should the bartender about it.");
+		}
+		else addDisabledButton(5,"*Kui Creamer","Kui Creamer","You cannot afford this.\n\nPrice: 22 Credits");
+	}
+	addButton(14,"Back",approachVesperianTrapDel);
+}
+
+public function delTrapDrinkPurchase(drink:String):void
+{
+	clearOutput();
+	showDel();
+	var special:Boolean = false;
+	var bill:Boolean = true;
+	if(flags["MET_VESPERIAN_DEL"] == 1)
+	{
+		flags["MET_VESPERIAN_DEL"] = 2;
+		bill = false;
+	}
+	if(drink == "Doe-Eyed Draught") 
+	{
+		pc.imbibeAlcohol(28);
+		special = true;
+		addLoveyDoveWithAlcohol();
+		if(bill) pc.credits -= 6;
+	}
+	else if(drink == "Nutty Nookie") 
+	{
+		pc.imbibeAlcohol(26);
+		special = true;
+		addLoveyDoveWithAlcohol();
+		if(bill) pc.credits -= 7;
+	}
+	else if(drink == "V. Vapor") 
+	{
+		pc.imbibeAlcohol(14);
+		if(bill) pc.credits -= 10;
+	}
+	else if(drink == "Royal Red")
+	{
+		pc.imbibeAlcohol(16);
+		if(bill) pc.credits -= 12;
+	}
+	else if(drink == "Pneumatic Pilsner") 
+	{
+		pc.imbibeAlcohol(32);
+		if(bill) pc.credits -= 20;
+	}
+	else if(drink == "Kui Creamer") 
+	{
+		pc.imbibeAlcohol(42);
+		special = true;
+		addLoveyDoveWithAlcohol();
+		if(bill) pc.credits -= 22;
+	}
+	output("You ");
+	if(bill) output("swipe the creds over to Del");
+	else output("make your order");
+	output(". She swiftly rushes off to make your drink, returning with ");
+	if(drink != "Kui Creamer") output("an ice cold glass of " + drink);
+	else output("shot glasses of " + drink);
+	output(". ");
+	if(drink == "Kui Creamer") output("You take them one after the other, surprised at how pleasant they taste. There’s no real alcoholic kick, just the smooth heat of Kally’s creamy drinks.");
+	else if(drink == "Nutty Nookie") output("It goes down slow but smooth, leaving you with a warm, rich feeling settling into your stomach.");
+	else if(drink == "V. Vapor") output("It’s a lovely drink that you can take your time with, swirling the beverage around in your glass in between sips.");
+	else if(drink == "Royal Red") output("The thick head clings to your upper lip with every sip, but you lap it up after every swallow. It’s bitter, just like the drink, and subtly flavorful.");
+	else if(drink == "Doe-Eyed Draught") output("You suck down a long pull of the opaque amber beverage. It’s good. Damned good. You take another few swallows before slapping it down and belching, remembering your manners too late to excuse yourself. The bartender grins.");
+	else if(drink == "Pneumatic Pilsner") output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
+	processTime(4);
+	delTrapMenu();
 }

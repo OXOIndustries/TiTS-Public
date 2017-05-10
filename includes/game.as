@@ -2189,7 +2189,25 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//Jade muff-ins
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
 
-		if (!MailManager.isEntryUnlocked("del_moved") && delilahSubmissiveness() >= 5 && rand(10) == 0 && getPlanetName() != "Tarkus") { goMailGet("del_moved"); }
+		//Del moved to Canada as trap.
+		if(flags["CARVER_DEL_TALK"] == 3)
+		{
+			if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
+			else if(!MailManager.isEntryUnlocked("del_moved_light") && flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved_light");
+		}
+		//Del moving to Canada as shemale
+		else if ((!MailManager.isEntryUnlocked("del_moved") && delilahSubmissiveness() >= 10) || flags["CARVER_DEL_TALK"] == 2) 
+		{
+			if(getPlanetName() != "Tarkus")
+			{
+				if(flags["CARVER_DEL_TALK"] == 1) {}
+				else 
+				{
+					if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
+					else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp() && !MailManager.isEntryUnlocked("del_moved")) goMailGet("del_moved");
+				}
+			}
+		}
 
 		// Pippa Nuru massage email
 		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();

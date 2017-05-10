@@ -206,6 +206,7 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("del_moved_light",delLightEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("pippa_nuru", pippaNuruEmail, "New Service", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
 

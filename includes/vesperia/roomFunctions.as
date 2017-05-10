@@ -2,7 +2,7 @@ import classes.RoomClass;
 
 public function canadiaUnlocked():Boolean
 {
-	return (flags["CANADA_UNLOCKED"] == 1 || MailManager.isEntryViewed("kirodatemeet") || MailManager.isEntryViewed("del_moved"));
+	return (flags["CANADA_UNLOCKED"] == 1 || MailManager.isEntryViewed("kirodatemeet") || MailManager.isEntryViewed("del_moved") || MailManager.isEntryUnlocked("del_moved_light"));
 }
 
 public function flyToCanadia():void
