@@ -5678,6 +5678,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["KAEDE_MET_ON_UVETO"] != undefined) kaedePlanets.push(" Uveto");
 			if(flags["KAEDE_CANADA_MET"] != undefined) kaedePlanets.push(" Canadia");
 			if(kaedePlanets.length > 0) output2(", Seen on" + CompressToList(kaedePlanets));
+			if(flags["KAEDE_EXHIBITIONISM"] != undefined) output2("\n<b>* Kaede, Exhibitionism:</b> " + flags["KAEDE_EXHIBITIONISM"] + "/100");
 			if(flags["KAEDE_NT_ENCOUNTER"] != undefined)
 			{
 				output2("\n<b>* Kaede, New Texas Encounter:</b>");

@@ -6,24 +6,29 @@ After the player breaks Delilah in on Tarkus, Beth will complete her feminizatio
 Once you meet her and have some fun, it’ll be possible to give her a SynthSheath and upgrade her to Horsecock Shemale. Cuz why not.
 */
 
-public function showDel(nude:Boolean = false):void
+public function showDelString(nude:Boolean = false):String
 {
 	var bust_Append:String = "";
 	if(nude) bust_Append = "_NUDE";
 	if(!MailManager.isEntryUnlocked("del_moved"))
 	{
-		showName("\nDEL");
-		showBust("DELILAH" + bust_Append);
+		return ("DELILAH" + bust_Append);
 	}
 	else
 	{
-		showName("\nDELILAH");
-		if(del.hasCock(GLOBAL.TYPE_EQUINE)) showBust("DELILAH_SHEMALE_HORSE" + bust_Append);
-		else showBust("DELILAH_SHEMALE" + bust_Append);
+		if(del.hasCock(GLOBAL.TYPE_EQUINE)) return ("DELILAH_SHEMALE_HORSE" + bust_Append);
+		else return ("DELILAH_SHEMALE" + bust_Append);
 	}
+	return "";
+}
+public function showDel(nude:Boolean = false):void
+{
+	if(!MailManager.isEntryUnlocked("del_moved")) showName("\nDEL");
+	else showName("\nDELILAH");
+	showBust(showDelString(nude));
 }
 //Content Pack Intro
-//PC gets an email from Del, about a month after having <i>“broken her in”</i> on Tarkus. Once email is sent, remove Del from Tarkus.
+//PC gets an email from Del, about a month after having “broken her in” on Tarkus. Once email is sent, remove Del from Tarkus.
 
 //From: Del Crawford (Delray.Crawford.136572@Galnet.org)
 //To: [pc.email]@SteeleTech.corp
@@ -432,7 +437,7 @@ public function sexWithKallysDel():void
 	}
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(5,"Public Use",delSlutTraining,undefined,"Public Use","Kallly’s customers look a little pent up! You and Del could take care of them all with your asses, just like old times.");
 	else if(pc.mf("him","her") != "her" || pc.analVirgin || !pc.hasCock()) addDisabledButton(5,"Public Use","Public Use","Slut training requires you to be feminine, dick-equipped, non-anal virgin so that you can show Delilah how it’s done.");
-	else addDisabledButton(5,"Public Use","Public Use","It's a little early in the day to be getting into something like this.");
+	else addDisabledButton(5,"Public Use","Public Use","It’s a little early in the day to be getting into something like this.");
 
 	addButton(14,"Back",delCanadiaMeeting);
 }
@@ -611,7 +616,7 @@ public function sitYoBootyOnDelsFacebooty():void
 	output("\n\n<i>“That was the English alphabet,”</i> you grin, swinging around to a reverse-cowgirl post over her head. <i>“Now let’s see about the Ausar alphabet.”</i>");
 
 	output("\n\nYour thighs are nice and drenched, but it doesn’t stop your oral protege from going back to work, now half-mad from lust and pleasure as you start back on her cock, one hand wrapping around her ");
-	if(del.hasCock(GLOBAL.TYPE_EQUINE)) output("tiny little trap-sack");
+	if(!del.hasCock(GLOBAL.TYPE_EQUINE)) output("tiny little trap-sack");
 	else output("black, veiny horseballs");
 	output(" as the other dusts off her glans, wiping away the accumulated pre-seed on its tip. The two of you soon come to something of a rhythm: for every curve of the flowing ausar script, another squeeze of the sack or a flick of the featherduster. Your pace picks up as she gets closer and closer to the edge, hips twitching up as you squeeze and massage her balls, steadily milking out what promises to be a nice, big load from the trappy fuck-slut.");
 	output("\n\nWhen she cums, it’s everything you were hoping it would be. With a cry and a buck of her hips, the cock in your hand erupts into a geyser of spooge, drenching the duster and your fingers in a nice, thick layer of creamy spunk. She gives a final gasp and slumps back, having finally achieved a sweet release. You swing your [pc.hips] back around, looking down on her blissed-out face, cum-dumped featherduster still in hand.");
@@ -848,7 +853,7 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	output(". Somewhere deep in the back of your mind, some chemical compulsion responds: without so much as thinking, you find yourself leaning down and flicking your tongue across the slit, lapping at the thick stud-cream bubbling up from. Del yelps, chest heaving at the unfamiliar sensation; you just give her a wink and thrust your [pc.tongue] deeper, opening up her horsey dong and slurping up all that sweet pre.");
 
 	output("\n\nThat’s the stuff! You wrap both hands around Del’s cock and open wide, swallowing as much of her length as you can and pumping what’s left over. More and more hot, sticky cum pumps down your throat, deposited directly into your stomach. You feel Del’s hands gripping your [pc.hair], her legs wrapping around your shoulders... but all you can see is hot, thick cock desperately in need of sucking.");
-	output("\n\n<i>“It feels so real!”</i> Del moans, rocking her hips to push just a little more horsedick down your throat. <i>“Like it’s... like I’m... I’m...  I’m cumming!”</i>");
+	output("\n\n<i>“It feels so real!”</i> Del moans, rocking her hips to push just a little more horsedick down your throat. <i>“Like it’s... like I’m... I’m... I’m cumming!”</i>");
 	output("\n\nYour eyes go wide as the synth-sheath swells in your throat, momentarily blocking your airway with its bestial girth, before a deluge of cum surges through it and down your gullet. There’s no choice but to take it; every last, steaming drop of horsey cream shoots straight into your belly. You feel that glorious liquid weight slosh and settle inside you, straining your insides with all the contents of Del’s new, shiny black balls. Only when you’ve swallowed the trappy babe’s first, massive load - and you’re so full of cum that it’s leaking out your mouth, and you’re seeing stars from being choked with dick - only then does Del’s cock slowly start to soften, letting you get a gasp of musk-laden air as her horsecock starts to pull itself free of your throat.");
 	output("\n\nYou expect to hear Del comment, or at least keep babbling on like before, but when you’re finally able to reorient yourself and detatch yourself from her equine penis you find that she’s collapsed on her back in a panting heap of sweaty, sexually overwhelmed dickgirl. You laugh - which causes a fair bit of warm cream to trickle down your chin - and take a seat next to Del, gently teasing her nipples and new equine sheath as she comes down from her orgasmic high.");
 	output("\n\nA few minutes later, still breathing hard and trembling at your touches, Del manages to murmur: <i>“S-so how do I take it off?”</i>");
@@ -1018,7 +1023,7 @@ public function delSlootybuttTrainingSrTheDoombringer():void
 		output("\n\n<i>“Why don’t you join us?”</i> you purr.");
 
 		//Kaede has VERY high Exhibitionism:
-		if(flags["KAEDE_EXHIBITIONISM"] >= 66 && flags["KAEDE_EXHIBITIONISM"] != undefined)
+		if(flags["KAEDE_EXHIBITIONISM"] != undefined && flags["KAEDE_EXHIBITIONISM"] >= 66)
 		{
 			output("\n\nYou pat the space on the bench between yourself and Del, and the two of you scoot apart to give Kaede a space to present herself to the audience. She blinks at you, but you can see her knees knocking, tail twitching under all the gazes wandering over her suddenly naked frame. After a moment, Kaede drops her arms and lets her tail wag off on its own, chewing her lip and nervously glancing about. Folks in the crowd wolf-whistle and catcall, and some even rub their lovely hardons in her direction, ready to get a taste of that sweet halfbreed booty.");
 			output("\n\n<i>“You’re a terrible influence!”</i> Kaede whispers, crawling up between you and Del, grabbing your [pc.breast] and giving you a wink. <i>“God, what’s Anno gonna think if she finds out...”</i>");
@@ -1104,18 +1109,3 @@ public function delSlutTrainingEpilogue2():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function showDelString(nude:Boolean = false):String
-{
-	var bust_Append:String = "";
-	if(nude) bust_Append = "_NUDE";
-	if(!MailManager.isEntryUnlocked("del_moved"))
-	{
-		return ("DELILAH" + bust_Append);
-	}
-	else
-	{
-		if(del.hasCock(GLOBAL.TYPE_EQUINE)) return ("DELILAH_SHEMALE_HORSE" + bust_Append);
-		else return ("DELILAH_SHEMALE" + bust_Append);
-	}
-	return "";
-}
