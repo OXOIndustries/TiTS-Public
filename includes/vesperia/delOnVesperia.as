@@ -1113,9 +1113,6 @@ public function delSlutTrainingEpilogue2():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-
-}
-
 //Stopping Shemalification
 //Add [Carver] to Del’s Tarkus menu after you’ve borked Del at least once.
 //[Carver]
@@ -1635,3 +1632,4 @@ public function delTrapDrinkPurchase(drink:String):void
 	else if(drink == "Pneumatic Pilsner") output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
 	processTime(4);
 	delTrapMenu();
+}
