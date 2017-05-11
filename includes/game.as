@@ -2194,22 +2194,18 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
 
 		//Del moved to Canada as trap.
-		if(flags["CARVER_DEL_TALK"] == 3)
+		if(!MailManager.isEntryUnlocked("del_moved") && !MailManager.isEntryUnlocked("del_moved_light") && getPlanetName() != "Tarkus" && flags["CARVER_DEL_TALK"] != 1)
 		{
-			if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
-			else if(!MailManager.isEntryUnlocked("del_moved_light") && flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved_light");
-		}
-		//Del moving to Canada as shemale
-		else if ((!MailManager.isEntryUnlocked("del_moved") && delilahSubmissiveness() >= 10) || flags["CARVER_DEL_TALK"] == 2) 
-		{
-			if(getPlanetName() != "Tarkus")
+			if(flags["CARVER_DEL_TALK"] == 3)
 			{
-				if(flags["CARVER_DEL_TALK"] == 1) {}
-				else 
-				{
-					if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
-					else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp() && !MailManager.isEntryUnlocked("del_moved")) goMailGet("del_moved");
-				}
+				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
+				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved_light");
+			}
+			//Del moving to Canada as shemale
+			else if (delilahSubmissiveness() >= 10 || flags["CARVER_DEL_TALK"] == 2) 
+			{
+				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
+				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved");
 			}
 		}
 

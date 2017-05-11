@@ -775,7 +775,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	{
 		output("licks around your ");
 		if(hardlighted) output("faux-cock");
-		else output("[pc.cockLight " + x + "]");
+		else output("[pc.cockNounSimple " + x + "]");
 		output(", ");
 		//pc dick has ribbed or nubby flag:
 		if(!hardlighted && (pc.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) || pc.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)))
@@ -1101,7 +1101,7 @@ public function doggyStyleWithGil():void
 		else output("cock");
 		output(". If it wasn’t for how wet he is you would have a lot of trouble just getting your ");
 		if(hardlighted) output("fun-stick");
-		else output("[pc.cockLight " + x + "]");
+		else output("[pc.cockNounSimple " + x + "]");
 		output(" to move at all in this state. His big bubbly butt wobbles every time your pelvis hits his rear. You grab onto the frame of the bed, using it as extra leverage to pound even faster into his animalistic vagina.");
 	}
 	//else:
@@ -1116,7 +1116,7 @@ public function doggyStyleWithGil():void
 		else output("cock");
 		output(" in. If it wasn’t for how wet he is you would have a lot of trouble just getting your ");
 		if(hardlighted) output("toy-dick");
-		else output("[pc.cockLight " + x + "]");
+		else output("[pc.cockNounSimple " + x + "]");
 		output(" to move at all in this state. His big bubbly butt wobbles every time you drill it in, and you can’t help but give one of his black furry cheeks a good squeeze. He gasps at your groping and moans as you bottom right back in him. You trace your other hand over his back, not finding a hint of excess muscle or fat, your other hand quickly following behind, before you grab his shoulders to make it easier to pound into his animalistic pussy.");
 	}
 	output("\n\nAs the sex continues, you start to notice a strange smell in the air, a mix of manly musk, sweat and pheromones, and it’s all coming from the dog-morph. The smell of his sweat-drenched body is overpowering, each drop enticing you to thrust your ");

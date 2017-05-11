@@ -554,7 +554,15 @@ public function getLiammeBlown():void
 	output("\n\nYou’re content to let the puppy finish cleaning up, and let yourself fall backwards onto the bed. Liamme joins you on the mattress soon after, climbing atop your body and bringing his effeminate face close to yours.");
 	output("\n\n<i>“Your cum tastes really good,”</i> he states plainly, blonde locks drooping down around your [pc.face], his voice barely more than a whisper, <i>“You should try some.”</i>");
 	output("\n\nWith that, he’s pressing his cushy lips against your [pc.lips] again, that taste of [pc.cockNoun " + x + "] still potent on his tongue. You graciously accept the kiss and let your [pc.tongue] probe his mouth as his does the same to yours. [pc.CumFlavor] does your palate well, and you’re soon craving more. Alas, your flavorful tongue-tying ends when Liamme pulls back, smiling dreamily as he shimmies down to rest his head on your [pc.chest], fluffy mane caressing your [pc.skinFurScales].");
-	pc.loadInMouth(pc);
+	
+	var snowball:Number = (pc.cumQ() * 0.25);
+	if(snowball > 100) snowball = 100;
+	var ppLiamme:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppLiamme.hasCock()) ppLiamme.createCock();
+	ppLiamme.createPerk("Fixed CumQ", snowball, 0, 0, 0);
+	ppLiamme.cumType = pc.cumType;
+	pc.loadInMouth(ppLiamme);
+	
 	output("\n\nYou can’t really keep your eyes open after all of that, and right now, you wouldn’t really mind falling asleep with Liamme to let your afterglow fade. ");
 
 	processTime(30);

@@ -1644,7 +1644,7 @@ public function analVictoryAgainstBronco():void
 	else output("bowels");
 	output(". The dildo is ejaculating! Your eyes go wide as you throw your head back and cry out in ecstasy before you start bucking your hips furiously into that still-cumming horse cock.");
 	if(pc.hasVagina()) output(" You immediately break your death grip on the leather handhold to diddle your [pc.clits] and tweak your [pc.nipple] in a bid to maximize your well-earned pleasure.");
-	if(pc.hasCock()) output(" You feverishly stroke your [pc.cockLargest] as you hose [pc.cum] all over yourself and the saddle of the Bronco, ejaculating far harder than you would have thanks to the vibrating flare pressing deliciously into your prostate.");
+	if(pc.hasCock()) output(" You feverishly stroke your [pc.cockBiggest] as you hose [pc.cum] all over yourself and the saddle of the Bronco, ejaculating far harder than you would have thanks to the vibrating flare pressing deliciously into your prostate.");
 
 	output("\n\nYour ecstatic moans are drowned out by the applause and cheers of the audience, ");
 	//Anno is a follower and is in the bar:
@@ -1653,7 +1653,7 @@ public function analVictoryAgainstBronco():void
 	output("\n\nEventually both your own orgasm and that of your mechanical mount wind down. You are sweaty, flushed, and completely winded, so you take some time to catch your breath. The audience starts to disperse, though many stay behind to finish masturbating to your nude, cum-pumped form. You look like you’re in the second trimester of a pregnancy, and you feel about that full as well. Evidently the voyeurs watching you appreciate your new look, because you soon hear moos and moans of pleasure from cows and bulls alike, their sexual fluids joining the mess you’ve left on the floor of the saloon.");
 	output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your bowels all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet *pop*, you’re treated to one last spurt of deliciously hot spunk right across your pucker. Combined with the sudden torrent of pent-up semen that pours out of your ass, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you climax, your ass squirting a thick load of semen onto your [pc.legs] and the pads you’re lying on");
 	if(pc.hasCock()) output("to mix with your own [pc.cum]");
-	if(pc.isHerm()) output(" and [pc.girlCum]");
+	if(pc.isHerm() && pc.girlCumType != pc.cumType) output(" and [pc.girlCum]");
 	output(".");
 
 	//Anno is a follower and is in the bar:

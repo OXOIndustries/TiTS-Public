@@ -1021,7 +1021,7 @@
 				target.createPerk((kGAMECLASS.silly ? "Snu-Snu Queen" : "Energizing Libido"), 0, 0, 0, 0, "Your insatiable libido energizes your body during sex, giving you more energy through sheer adrenaline.");
 			}
 			
-			output("\n\nThat really didn’t seem like it was supposed to happen. <b>You should probably hold off on these if you don’t want that to happen again</b>");
+			output("\n\nThat really didn’t seem like it was supposed to happen. <b>You should probably hold off on these if you don’t want that to happen again.</b>");
 			
 			drinkAmazona(target, canType);
 			
