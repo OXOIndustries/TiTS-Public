@@ -1878,6 +1878,7 @@
 				case "cockNounComplex":
 					buffer = cockNounComplex(arg2);
 					break;
+				case "cockLight":
 				case "cockSimple":
 				case "cockNounSimple":
 				case "cockNoun":
@@ -13124,7 +13125,7 @@
 		public function clitsDescript(pussy: Number = -1): String {
 			if (pussy >= 0)
 			{
-				if (vaginas[pussy].clits == 1) clitDescript(pussy);
+				if (vaginas[pussy].clits == 1) return clitDescript(pussy);
 				return plural(clitDescript(pussy));
 			}
 			if (totalClits() > 1) return plural(clitDescript());
