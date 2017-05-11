@@ -2,21 +2,31 @@ import classes.Characters.PlayerCharacter;
 import classes.Items.Apparel.MagneticHarness;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.StorageClass;
-public function showJerynn(isNude:Boolean = false):void
+
+public function showJerynn(isNude:Boolean = false, harness:Boolean = false):void
 {
 	author("Gedan");
-	showBust(isNude ? "JERYNN" : "JERYNN_NUDE");
+	showBust(jerynnBustDisplay(isNude, harness));
 	showName(jerynnIsMistress() ? "MISTRESS\nJERYNN" : "\nJERYNN");
+}
+public function jerynnBustDisplay(isNude:Boolean = false, harness:Boolean = false):String
+{
+	var sBust:String = "JERYNN";
+	
+	if(harness) sBust += "_DOM";
+	if(isNude) sBust += "_NUDE";
+	
+	return sBust;
 }
 
 public function metJerynn():Boolean
 {
-	return flags["MET_JERYNN"] != undefined;
+	return (flags["MET_JERYNN"] != undefined);
 }
 
 public function jerynnIsMistress():Boolean
 {
-	return isWearingJerynnsCollar() || (flags["JERYNN_RESPONSE_LIKED"] != undefined && flags["JERYNN_RESPONSE_LIKED"] <= 1);
+	return (isWearingJerynnsCollar() || (flags["JERYNN_RESPONSE_LIKED"] != undefined && flags["JERYNN_RESPONSE_LIKED"] <= 1));
 }
 
 public function jerynnPetstuffLevel(inc:Boolean = false):int
@@ -732,7 +742,7 @@ public function jerynnAllowRidden():void
 public function jerynnAllowPetstuff():void
 {
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	output("The little tag hanging from the collar wrapped tightly around your neck jangles faintly as Jerynn clips a leash - <i>your</i> leash - securely alongside it. A wordless tug and she takes off, leading you out of the bar amidst a sea of lustful stares and half-whispered lewd comments.");
 
@@ -837,7 +847,7 @@ public function jerynnAllowPetstuff():void
 
 public function jerynnRescuesYourFrozenAss():Boolean
 {
-	showBust("JERYNN");
+	showBust(jerynnBustDisplay());
 	author("Gedan");
 
 	if (flags["JERYNN_FUCKED"] == undefined || pc.isTaur())
@@ -976,7 +986,7 @@ public function jerynnUnderslungChanceIt():void
 public function jerynnUnderslungShare():void
 {
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	output("<i>“Good choice, friend,”</i> she half-laughs");
 	if (jerynnPetstuffLevel() == 0) output(", perhaps not expecting you to agree to the offer");
@@ -1073,7 +1083,7 @@ public function jerynnUnderslungShare():void
 public function jerynnUnderslungShareII():void
 {
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	var vIdx:int = pc.gapestVaginaIndex();
 
@@ -1146,7 +1156,7 @@ public function jerynnUnderslungShareII():void
 public function jerynnUnderslungShareIII(vIdx:int):void
 {
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	output("Without the ability to see outside of the coat, all you have to focus on is the seemingly never ending quantity of cock burrowing into you. It feels like it’s wormed its way all the way");
 	if (!pc.hasVagina()) output(" up to your stomach");
@@ -1248,7 +1258,7 @@ public function jerynnUnderslungShareIII(vIdx:int):void
 public function jerynnUnderslungShareIV():void
 {
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	output("You lose track of how many loads Jerynn has pumped into you; for all you know, you’ve been hanging under her for weeks, slowly bloated with more and more spunk. At some point her tireless balls pumped your [pc.belly] full enough for you to rub against the inside of her coat");
 	if (pc.hasCock()) output(", trapping your [pc.cocks] between your [pc.skinFurScales] and the soft wool");
@@ -1336,7 +1346,7 @@ public function jerynnUnderslungShareIV():void
 public function jerynnPetstuffHerPlace(isLemmeOut:Boolean = false):void
 {
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	trace("Her Place");
 	
@@ -1488,7 +1498,7 @@ public function jerynnPetstuffHerPlacePostShopping():void
 	trace("Her place, post shopping");
 	
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	output("Her tail loops the leash over the top of her cock and tugs the slack out. It pulls you off your ass and towards her throbbing, engorged dick mouth-first. The pointed tip slides past your lips with ease and you’re soon suckling on her cock eagerly. Careful yanks on the leash pull you further, only stopping when her dragon dick reaches the back of your throat. The fresh taste of hot precum graces your tongue and you set to gulping it down eagerly, lost in the task of servicing Mistress however she pleases.");
 	
@@ -1582,7 +1592,7 @@ public function jerynnPetstuffSleepingOver():void
 	trace("Sleepover");
 	
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	output("Finally clean and dry, "+ (jerynnIsMistress() ? "Mistress" : "") +" Jerynn grabs the leash and wraps it tightly around her hand, keeping you close to her side. She leads you out of the bathroom and back into the main room of her apartment, everything in here sized appropriately for a near nine foot tall dragonic-taur. The middle of the room sports a giant, sunken pit, stuffed full of pillows and blankets. Its bottom is a giant mattress filling the entire recess as the taur steps down into it, the fabric puffing out around her foot paw as she does. You feel tiny by comparison, a sense that only grows stronger when you hop down into the pillow-stuffed pit.");
 
@@ -1622,7 +1632,7 @@ public function jerynnPetstuffSleepingOver():void
 public function jerynnPetstuffLikeIt(response:int):void
 {
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	var responses:Object = { liked: response };
 
@@ -1699,7 +1709,7 @@ public function jerynnPetstuffLikeIt(response:int):void
 public function jerynnPetstuffLimbStuff(compOpts:Array):void
 {
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	var responses:Object = compOpts[0];
 	var response:int = compOpts[1];
@@ -1752,7 +1762,7 @@ public function jerynnPetstuffLimbStuff(compOpts:Array):void
 public function jerynnPetstuffSkin(compOpts:Array):void
 {
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	var responses:Object = compOpts[0];
 	var response:int = compOpts[1];
@@ -1811,7 +1821,7 @@ public function jerynnPetstuffSkin(compOpts:Array):void
 public function jerynnPetstuffVoice(compOpts:Array):void
 {
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	var responses:Object = compOpts[0];
 	var response:int = compOpts[1];
@@ -1857,7 +1867,7 @@ public function jerynnPetstuffWakeUp(responses:Object = null):void
 	trace("Wake up");
 	
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	// Opt in is shown if you selected any one of the same options she would and you didn't balk at the very first option. => vary'd as simply "OptIn:"
 
@@ -2033,7 +2043,7 @@ public function jerynnPetstuffWakeUp(responses:Object = null):void
 public function jerynnPetstuffOptIn():void
 {
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	output("[pc.BarkMeow]!");
 	
@@ -2048,7 +2058,7 @@ public function jerynnPetstuffOptIn():void
 	
 	output("\n\nYou’re all too happy to comply, quickly thundering through the declaration whilst every word is recorded for posterity. Words fall from your throat almost automatically, announcing your willingness to hand over everything you have to Mistress Jerynn in a few short paragraphs; your equipment, your body and your mind forever.");
 	
-	output("\n\nHer cock throbs with every sentence, every inch of power that you promise her over your very existence until, with a final statement of your name, you designate her as your Mistress and your owner. She holds herself back for you to finish reciting the end of it, signalling her thorough enjoyment of your self-debasement with a thunderous blast of spunk. The weight, the heat, the throbbing of it all join together and throw you plunging over the edge into a similarly mind-bending orgasm of your own, your body working overtime to milk your Mistress’s cock of every last drop of pleasure possible.");
+	output("\n\nHer cock throbs with every sentence, every inch of power that you promise her over your very existence until, with a final statement of your name, you designate her as your Mistress and your owner. She holds herself back for you to finish reciting the end of it, signaling her thorough enjoyment of your self-debasement with a thunderous blast of spunk. The weight, the heat, the throbbing of it all join together and throw you plunging over the edge into a similarly mind-bending orgasm of your own, your body working overtime to milk your Mistress’s cock of every last drop of pleasure possible.");
 	
 	output("\n\nThe enormity of it knocks you silly, fuckdrunk out of your mind. When reality seeps back in around the edges, Mistress is busy tapping away at the tablet. Being glass you can make out the cart of tens of thousands of credits of assorted mods expanding as she piles on customizations and specifics. She works quickly, seeming to know exactly what every last toggle does, where every option she most desires is tucked away. All you can do is heave breath into your lungs and twitch around her draconic dick. Her thumb presses tight to the corner and seals your fate; an order placed and a certain video filed away.");
 	
@@ -2071,7 +2081,7 @@ public function jerynnPetstuffOptIn():void
 public function jerynnPetstuffNoOptIn():void
 {
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	output("<i>“No,”</i> you say with some measure of reservation.");
 	
@@ -2130,7 +2140,7 @@ public function jerynnPetstuffLongWalk():void
 	trace("Long Walk");
 	
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	output("Jerynn saunters around, far more casually than the trip back to Irestead. Now that you’re back, she seems content to take her time. Your world is the inky blackness of the coat, the throbbing length of cock speared into your depths and the heavy musk of many, many orgasms. An occasional voice slips through, muffled somewhat by your wooly prison. The odd rumbling of some type of vehicle moving past.");
 
@@ -2192,7 +2202,7 @@ public function jerynnPetstuffBar():void
 	trace("Bar");
 	
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	output("She sets back off with definitive purpose, a certain sway to her swagger that you can’t help but deem intentional; you swing around more than the you did during the trip back to Irestead and it feels almost a little disorientating. No time to get used to it though, as the sounds of your surroundings change again. It almost sounds as though a fire is roaring away somewhere off in the distance, an overlay of various, chattering voices around the place holding a dozen different conversations.");
 
@@ -2307,7 +2317,7 @@ public function jerynnPetstuffNightWithJerome():void
 	trace("Night with jerome");
 	
 	clearOutput();
-	showJerynn(true);
+	showJerynn(true, true);
 
 	output("The trip back to");
 	if (jerynnIsMistress()) output(" Mistress’s");
@@ -2458,7 +2468,7 @@ public function jerynnPetstuffNightWithJeromeII():void
 public function jerynnPetstuffBadEnd():void
 {
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	output("Your");
 	if (!pc.hasVagina()) output(" [pc.ass]");
@@ -2485,6 +2495,7 @@ public function jerynnPetstuffBadEnd():void
 public function jerynnPetstuffBadEndII(isOptIn:Boolean):void
 {
 	clearOutput();
+	showJerynn(false, true);
 
 	output("Numb. Everything is numb. Your head feels as though it’s been filled with cotton wool, your mouth similar. It’s a real struggle to tear open your eyes, every single muscle in your body refusing to cooperate, and when you do the light entering them is physically painful. You have to squint to keep the worst of the pain away, your surroundings blurry, unfocused.");
 
@@ -2558,7 +2569,7 @@ public function jerynnPetstuffBadEndII(isOptIn:Boolean):void
 public function jerynnPetstuffBadEndIII(isOptIn:Boolean):void
 {
 	clearOutput();
-	showJerynn();
+	showJerynn(false, true);
 
 	output("The next few weeks pass in much the same way, a routine building where you spend the majority of your time sleeping between meals. Every bowl finds itself peppered with another round of pills.");
 	if (!isOptIn)
@@ -2698,7 +2709,7 @@ public function jerynnPetstuffBadEndIV():void
 	
 	output("\n\n<i>“I didn’t like the look of [rival.himHer], or [rival.hisHer] goons, so I did some digging. And I found out who you used to be.”</i> she continues, patting the mattress next to her. You hop up into her arms without a second thought. <i>“The only way I can keep you safe, pet, is to stay one step ahead of them.”</i>");
 	
-	output("\n\nShe cradles you tightly in a possessive embrace as she lays out her plan. An adventure really, travelling around the rush frontier in search of a certain set of probes. Probes intended for <i>you</i>. Mistress will keep you safe, keep you loved... and keep you in your place... there’s just one thing you have to do first.");
+	output("\n\nShe cradles you tightly in a possessive embrace as she lays out her plan. An adventure really, traveling around the rush frontier in search of a certain set of probes. Probes intended for <i>you</i>. Mistress will keep you safe, keep you loved... and keep you in your place... there’s just one thing you have to do first.");
 	
 	output("\n\nHer tablet reappears, pulled from one of the many pockets dotted around the taurs coat. On its display is a formal contract, passing the cost of many, many hundreds of thousands of credits worth of modifications off onto you officially along with a very... long term plan for the remuneration of said costs. And until those costs are repaid, you would be hers to do with as she pleases; everything you own, everything you are, everything you will be, hers until such time as the debt is repaid.");
 	
