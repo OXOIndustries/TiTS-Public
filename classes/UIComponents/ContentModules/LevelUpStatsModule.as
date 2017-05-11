@@ -156,7 +156,8 @@ package classes.UIComponents.ContentModules
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{
-				_statBars[i].barValue = _targetCreature[_barLabels[i]]() + _pointDistribution[i];
+				//_statBars[i].barValue = _targetCreature[_barLabels[i]]() + _pointDistribution[i];
+				_statBars[i].barValue = _targetCreature[_barLabels[i] + "Raw"] + _pointDistribution[i];
 				
 				// General bar settings
 				//if ((_targetCreature[_barLabels[i]]() + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]())
