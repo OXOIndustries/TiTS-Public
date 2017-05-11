@@ -485,7 +485,7 @@ public function steeleBiomedBonus():Boolean
 public function steeleBiomedGangbang():void
 {
 	clearOutput();
-	showBust("CYNTHIA_NUDE", "WALT_NUDE");
+	showBust("WALT_NUDE", "CYNTHIA_NUDE");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	clearMenu();
@@ -558,7 +558,7 @@ public function steeleBiomedGangbang():void
 public function steeleBiomedGangbangII():void
 {
 	clearOutput();
-	showBust("CYNTHIA_NUDE", "WALT_NUDE");
+	showBust("WALT_NUDE", "CYNTHIA_NUDE");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	
@@ -614,7 +614,7 @@ public function steeleBiomedGangbangII():void
 public function steeleBiomedGangbangIII():void
 {
 	clearOutput();
-	showBust("CYNTHIA_NUDE", "WALT_NUDE");
+	showBust("WALT_NUDE", "CYNTHIA_NUDE");
 	showName("STEELE\nBIOMED");
 	author("Couch");
 	
