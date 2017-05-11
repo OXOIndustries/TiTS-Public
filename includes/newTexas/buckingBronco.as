@@ -624,7 +624,7 @@ public function foodEpilogue(fud:String):void
 public function livingKegsApproach():void
 {
 	clearOutput();
-	if(!sallyBarHours()) showBust("SALLY", "WHISKEY_COW", "BEER_COW");
+	if(!sallyBarHours()) showBust("WHISKEY_COW", "BEER_COW", "SALLY");
 	else showBust("WHISKEY_COW", "BEER_COW");
 	showName("LIVING\nKEGS");
 	author("HugsAlright");
@@ -1671,7 +1671,7 @@ public function analVictoryAgainstBronco():void
 		if(!pc.isAssExposed()) output(" Your spunk-stuffed ass squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your sphincter.");
 		output(" When you’ve finally gathered everything up you step out of the ring and head towards the bar. You could really go for a drink right now!");
 	}
-	//PC should cum 3 times, reset lust, add <i>“anally filled”</i> status with enough cumflation to give about a 6 month pregnant belly look, take PC back to saloon, add massive exhibitionist gain
+	//PC should cum 3 times, reset lust, add “anally filled” status with enough cumflation to give about a 6 month pregnant belly look, take PC back to saloon, add massive exhibitionist gain
 	processTime(35);
 	for(var i:int = 0; i < 3; i++) { pc.orgasm(); }
 
