@@ -140,6 +140,7 @@
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
 		include "../includes/masturbation/cockTailMasturbation.as";
+		include "../includes/masturbation/exhibitionismPerk.as";
 		include "../includes/masturbation/hardlightAGThong.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";

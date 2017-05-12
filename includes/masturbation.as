@@ -527,6 +527,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	clearMenu();
 	
 	var aborted:Boolean = false;
+	var btnSlot:int = 0;
 	
 	//Masturbation prevention
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
@@ -539,78 +540,87 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
 	}
-	//Exhibitionist fap! - overrides all other faps
-	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 66)
+	//Exhibitionism masturbation
+	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 	{
-		output("Out here? In public?\n\n...Yeah, that’ll do nicely.\n\n");
-		
-		addButton(0,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
-		//Special new texas shit
-		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+		//Exhibitionist fap! - overrides all other faps
+		if(pc.exhibitionism() >= 66)
 		{
-			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
+			output("Out here? In public?\n\n...Yeah, that’ll do nicely.\n\n");
+			
+			addButton(btnSlot++,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
+			//Special new texas shit
+			if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS")
+			{
+				addButton(btnSlot++,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
+			}
+			if(pc.hasPerk("Ultra-Exhibitionist"))
+			{
+				if(pc.isNude()) addButton(btnSlot++, "Tease", exhibitionismStrip, undefined, "Public Tease", "Reveal every inch of your body to anyone interested.");
+				else addButton(btnSlot++, "Strip", exhibitionismStrip, undefined, "Public Striptease", "Strip and reveal every inch of your body to anyone interested.");
+			}
+			addButton(14,"Back",mainGameMenu);
+			return;
 		}
-		addButton(14,"Back",mainGameMenu);
-		return;
-	}
-	//Low Exhibitionist fap! - overrides all other faps
-	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.exhibitionism() >= 33)
-	{
-		output("Out here? In public?\n\n...<b>it’ll have to do</b>.\n\n");
-		
-		addButton(0,"Exhibitionism",moderateExhibitionOmniFap);
-		//Special new texas shit
-		if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+		//Low Exhibitionist fap! - overrides all other faps
+		else if(pc.exhibitionism() >= 33)
 		{
-			addButton(1,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
+			output("Out here? In public?\n\n...<b>it’ll have to do</b>.\n\n");
+			
+			addButton(btnSlot++,"Exhibitionism",moderateExhibitionOmniFap);
+			//Special new texas shit
+			if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS")
+			{
+				addButton(btnSlot++,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
+			}
+			addButton(14,"Back",mainGameMenu);
+			return;
 		}
-		addButton(14,"Back",mainGameMenu);
-		return;
-	}
-	//Pussy out, unless you're being force-fapped.
-	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && pc.libido() < 70)
-	{
-		if(pc.libido() < 10) output("You’d never even consider masturbating in public!");
-		else if(pc.libido() < 20) {
-			output("No way. You aren’t the kind of person that would masturbate in public");
-			if(pc.lust() >= 75) output(", no matter how horny you are!");
-			else output(".");
-		}
-		else if(pc.libido() < 30) output("The galaxy may be a wide-open place with all kinds of different social norms concerning publicly self-satisfying sexual needs, but you’re too nervous to engage in that sort of thing yourself.");
-		else if(pc.libido() < 40) output("This is a public place! You aren’t keen on the idea of masturbating here. Maybe slip back to somewhere a little more private.");
-		else if(pc.libido() < 50) output("You aren’t the kind of person to just drop trou and take care of business in public, even if it would be kind of hot.")
-		else if(pc.libido() < 60) 
+		//Pussy out, unless you're being force-fapped.
+		else if(pc.libido() < 70)
 		{
-			output("Yeah, you definitely want to masturbate, but this is a public place! Everyone would be able to see you there with your [pc.butt] in the dirt, ");
-			if(pc.hasCock()) output("jacking off like wild.");
-			else if(pc.hasVagina()) output("grinding your [pc.vaginas] like wild.");
-			else output("playing with yourself like some kind of wild animal.");
-			pc.lust(5);
-			output(" Fuck! Now you’re even hornier.");
+			if(pc.libido() < 10) output("You’d never even consider masturbating in public!");
+			else if(pc.libido() < 20) {
+				output("No way. You aren’t the kind of person that would masturbate in public");
+				if(pc.lust() >= 75) output(", no matter how horny you are!");
+				else output(".");
+			}
+			else if(pc.libido() < 30) output("The galaxy may be a wide-open place with all kinds of different social norms concerning publicly self-satisfying sexual needs, but you’re too nervous to engage in that sort of thing yourself.");
+			else if(pc.libido() < 40) output("This is a public place! You aren’t keen on the idea of masturbating here. Maybe slip back to somewhere a little more private.");
+			else if(pc.libido() < 50) output("You aren’t the kind of person to just drop trou and take care of business in public, even if it would be kind of hot.")
+			else if(pc.libido() < 60) 
+			{
+				output("Yeah, you definitely want to masturbate, but this is a public place! Everyone would be able to see you there with your [pc.butt] in the dirt, ");
+				if(pc.hasCock()) output("jacking off like wild.");
+				else if(pc.hasVagina()) output("grinding your [pc.vaginas] like wild.");
+				else output("playing with yourself like some kind of wild animal.");
+				pc.lust(5);
+				output(" Fuck! Now you’re even hornier.");
+			}
+			else 
+			{
+				output("You consider masturbating here, but ultimately, you can’t. It doesn’t matter that having people watching you masturbating would be totally hot. You’re still too nervous about it all. What if someone took a picture and put it up on the extranet? You can imagine the tabloids now: some garish headline plastered above a picture of you with both hands");
+				if(pc.hasCuntTail() && pc.hasCock()) output(" pumping your cunt-tail up and down on [pc.oneCock].");
+				else if(pc.hasCock() && pc.canAutoFellate(-1)) output(" aiming your wildly orgasming cock into your own mouth, your [pc.lips] sealed tightly about the head.");
+				else if(pc.hasCock()) output(" vigorously pumping at [pc.oneCock].");
+				else if(pc.hasVagina()) output(" doing your level best to fist [pc.oneVagina], your other hand toying with a [pc.nipple].");
+				else output(" roaming licentiously across your own body.");
+				output("\n\nYou whimper. The idle thoughts have you feeling even hotter now. You’d better find a good place to relieve yourself.");
+			}
+			output("\n\n(70 libido or sufficient exhibitionism experience is required to masturbate in public spaces.)");
+			aborted = true;
+			if(pc.perkv1("'Nuki Nuts") > 0) 
+			{
+				output("\n\n<b>No! You have to do this! You’re getting too swollen not to!</b> You’ll have to just blush and bear it!");
+				aborted = false;
+			}
+			else if(roundTwo)
+			{
+				output("\n\n<b>No! You have to - you’re too turned on from milking yourself!");
+				aborted = false;
+			}
+			output("\n\n");
 		}
-		else 
-		{
-			output("You consider masturbating here, but ultimately, you can’t. It doesn’t matter that having people watching you masturbating would be totally hot. You’re still too nervous about it all. What if someone took a picture and put it up on the extranet? You can imagine the tabloids now: some garish headline plastered above a picture of you with both hands");
-			if(pc.hasCuntTail() && pc.hasCock()) output(" pumping your cunt-tail up and down on [pc.oneCock].");
-			else if(pc.hasCock() && pc.canAutoFellate(-1)) output(" aiming your wildly orgasming cock into your own mouth, your [pc.lips] sealed tightly about the head.");
-			else if(pc.hasCock()) output(" vigorously pumping at [pc.oneCock].");
-			else if(pc.hasVagina()) output(" doing your level best to fist [pc.oneVagina], your other hand toying with a [pc.nipple].");
-			else output(" roaming licentiously across your own body.");
-			output("\n\nYou whimper. The idle thoughts have you feeling even hotter now. You’d better find a good place to relieve yourself.");
-		}
-		output("\n\n(70 libido or sufficient exhibitionism experience is required to masturbate in public spaces.)");
-		aborted = true;
-		if(pc.perkv1("'Nuki Nuts") > 0) 
-		{
-			output("\n\n<b>No! You have to do this! You’re getting too swollen not to!</b> You’ll have to just blush and bear it!");
-			aborted = false;
-		}
-		else if(roundTwo)
-		{
-			output("\n\n<b>No! You have to - you’re too turned on from milking yourself!");
-			aborted = false;
-		}
-		output("\n\n");
 	}
 	if(aborted)
 	{
@@ -620,7 +630,6 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	// Get available faps
 	var faps:Array = availableFaps(roundTwo);
 	var i:int = 0;
-	var btnSlot:int = 0;
 	
 	// If we got back a null array from the listing functor, it should have created the button for us.
 	if (faps == null)

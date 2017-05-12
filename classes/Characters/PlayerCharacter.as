@@ -486,19 +486,16 @@ package classes.Characters
 		
 		private function updateExhibitionism(totalDays:uint):void
 		{
-			var exhibitionismPoints:Number = 0;
-			if(isChestVisible() && biggestTitSize() >= 1) exhibitionismPoints++;
-			if(isCrotchVisible() && (hasGenitals() || balls > 0)) exhibitionismPoints++;
-			if(isAssVisible()) exhibitionismPoints++;
-			if(isNude()) exhibitionismPoints++;
-
+			var exhibitionismPoints:Number = exposureLevel(true);
 			var currExhib:Number = exhibitionism();
 
 			//All covered up? Reduce over time!
-			if(exhibitionismPoints <= 0) 
+			if(exhibitionismPoints <= 0)
 			{
+				//Exhibitionism locked at 100 and does not fall with time, even if fully clothed.
+				if(hasPerk("Ultra-Exhibitionist")) { /* Nada! */ }
 				//Skipping out on underwear will keep it from dropping, but won't raise it.
-				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
+				else if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
 				//High exhibitionism or sex-driven personality leads to being comfortable in kinky undies! Otherwise, degrade a little bit.
 				else if(isAssExposedByLowerUndergarment() || isCrotchExposedByLowerUndergarment() || isChestExposedByUpperUndergarment())
 				{
@@ -512,6 +509,8 @@ package classes.Characters
 			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
 			else if(exhibitionismPoints >= 2 && currExhib < 33) exhibitionism(1);
 			else if(currExhib < 20) exhibitionism(1);
+			
+			if(hasPerk("Ultra-Exhibitionist")) kGAMECLASS.processExhibitionismStrip(totalDays);
 		}
 		
 		private function myrVenomUpdate(totalDays:uint):void

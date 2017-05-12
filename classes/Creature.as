@@ -2158,6 +2158,18 @@
 				case "cunts":
 					buffer = vaginasDescript();
 					break;
+				case "vaginasLight":
+				case "pussiesLight":
+				case "cuntsLight":
+				case "vaginasNoun":
+				case "pussiesNoun":
+				case "cuntsNoun":
+				case "vaginasSimple":
+				case "pussiesSimple":
+				case "cuntsSimple":
+				case "vaginasNounSimple":
+					buffer = vaginasDescriptLight();
+					break;
 				case "eachVagina":
 				case "eachPussy":
 				case "eachCunt":
@@ -3431,6 +3443,33 @@
 			}
 			return isAssExposed();
 		}
+		public function exposureLevel(alsoVisible:Boolean = false):Number
+		{
+			var exhibitionismPoints:Number = 0;
+			
+			// Chest
+			if(biggestTitSize() >= 1)
+			{
+				if((!alsoVisible && isChestExposed()) || isChestVisible()) exhibitionismPoints++;
+			}
+			// Genitals
+			if((hasGenitals() || balls > 0))
+			{
+				if((!alsoVisible && isCrotchExposed()) || isCrotchVisible()) exhibitionismPoints++;
+			}
+			// Ass
+			if((!alsoVisible && isAssExposed()) || isAssVisible()) exhibitionismPoints++;
+			// Nudity
+			if(isNude()) exhibitionismPoints++;
+			
+			return exhibitionismPoints;
+		}
+		public function isFullyExposed(alsoVisible:Boolean = false):Boolean
+		{
+			if(isNude()) return true;
+			
+			return (exposureLevel(alsoVisible) > 0);
+		}
 		
 		public function hasArmor():Boolean
 		{
@@ -3754,16 +3793,34 @@
 				}
 				if(this is PlayerCharacter)
 				{
-					if(originalExhibtionism < 10 && exhibitionismRaw >= 10) AddLogEvent("Maybe having sex in front of an audience wouldn’t be that bad.", "passive");
-					else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) AddLogEvent("You’re still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.", "passive");
-					else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) AddLogEvent("You’ve got to admit to yourself that you’re developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it’s a pretty common, socially accepted fetish... in most places.", "passive");
-					else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) AddLogEvent(ParseText("Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don’t stop caving into those thoughts you’re going to wind up being a hard-core exhibitionist!</b>"), "passive");
-					else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) AddLogEvent("Maybe you could buy a stand for your Codex and rig up a live holostream for when you’re getting naughty. It’d probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It’s telling that <b>you’ve almost completely obliterated your inhibitions about exhibitionism.</b>", "passive");
-					else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) AddLogEvent("Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you’d bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you’ll be able to rent it out someday? <b>You’re as much of an exhibitionist as anyone can be.</b>", "passive");
+					var msg:String = "";
+					
+					if(originalExhibtionism < 10 && exhibitionismRaw >= 10) msg += "Maybe having sex in front of an audience wouldn’t be that bad.";
+					else if(originalExhibtionism < 20 && exhibitionismRaw >= 20) msg += "You’re still feeling a little bit of residual thrill. Who knew audiences could be so... intriguing.";
+					else if(originalExhibtionism < 33 && exhibitionismRaw >= 33) msg += "You’ve got to admit to yourself that you’re developing a bit of an <b>exhibitionism fetish</b>. Sure, you get nervous as hell about the idea of showing yourself off, but you get horny as hell too. At least it’s a pretty common, socially accepted fetish... in most places.";
+					else if(originalExhibtionism < 50 && exhibitionismRaw >= 50) msg += ParseText("Your mind keeps supplying you with excuses to bare a little [pc.skinFurScales] around others, or ways to risk getting caught mid-coitus. <b>If you don’t stop caving into those thoughts you’re going to wind up being a hard-core exhibitionist!</b>");
+					else if(originalExhibtionism < 66 && exhibitionismRaw >= 66) msg += "Maybe you could buy a stand for your Codex and rig up a live holostream for when you’re getting naughty. It’d probably be too bulky to carry around all the time, but once you win your inheritance, you could probably turn a pretty penny banging ultraporn stars in front of a broadcasting prism. It’s telling that <b>you’ve almost completely obliterated your inhibitions about exhibitionism.</b>";
+					else if(originalExhibtionism < 100 && exhibitionismRaw >= 100) msg += "Fuck, you love getting naked, particularly in front of an audience - the bigger the better. If you could, you’d bone in front of a full house at the TerraDome (brought to you by JoyCo). Maybe you’ll be able to rent it out someday? <b>You’re as much of an exhibitionist as anyone can be.</b>";
+					
+					if(!hasPerk("Ultra-Exhibitionist"))
+					{
+						if(exhibitionismRaw >= 100)
+						{
+							var ultra:String = kGAMECLASS.extraExhibitionismGain((originalExhibtionism >= 100));
+							if(ultra != "")
+							{
+								if(msg != "") msg += "\n\n";
+								msg += ultra;
+							}
+						}
+					}
+					else setPerkValue("Ultra-Exhibitionist", 2, 0);
+					
+					if(msg != "") AddLogEvent(msg, "passive");
 				}
 			}
 			//Negative points
-			else if(arg < 0) 
+			else if(arg < 0 && !hasPerk("Ultra-Exhibitionist"))
 			{
 				//no mods!
 				exhibitionismRaw += arg;
@@ -4266,6 +4323,7 @@
 			//Doesn't stack for reasons.
 			if (hasPerk("Treated Readiness") && bonus < 33) bonus = 33;
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
+			if (perkv1("Ultra-Exhibitionist") > 0 && isFullyExposed(true)) bonus += (bonus < 23 ? 33 : 10);
 
 			//Temporary Stuff
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
@@ -4287,6 +4345,7 @@
 			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
 			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
+			
 			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
@@ -13990,6 +14049,15 @@
 			}
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
 		}
+		public function vaginasDescriptLight(): String {
+			var output: String = "";
+			if (vaginas.length < 1) return "<b>ERROR: NO VAGS DETECTED for vaginasDescriptLight()</b>";
+			if (matchedVaginas()) output += vaginaNoun2(vaginas[0]);
+			else output += vaginaNoun2(vaginas[rand(vaginas.length)]);
+			//pluralize dat shit
+			if (totalVaginas() > 1) output = plural(output);
+			return output;
+		}
 		// hole tightness checks
 		public function isHoleTight(indexNum:Number = -1):Boolean
 		{
@@ -18830,6 +18898,7 @@
 			if (hasPerk("Ice Cold")) prodFactor /= 2;
 			
 			var producedLust:Number = deltaT * prodFactor;
+			if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (deltaT * exposureLevel(true));
 			
 			if (lust() + producedLust < lustCap)
 			{
@@ -18933,6 +19002,10 @@
 							thisStatus.value4 += ((3 * 60) + rand(2 * 60));
  						}
 						break;
+					case "Exhibitionism Reserve":
+						// Wearing exposed clothing should not prevent reset.
+						if(isFullyExposed(true)) thisStatus.minutesLeft + deltaT;
+						break;
 				}
 				
 				// Effects created with a 0 or less duration aren't handled by this code ever.
@@ -18976,6 +19049,9 @@
 					case "Rut":
 					case "Lagonic Rut":
 						if(requiresRemoval) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
+						break;
+					case "Exhibitionism Reserve":
+						if(requiresRemoval) AddLogEvent("The urge to publicly display yourself, which has been welling up inside of you fades from your body. <b>You may now enjoy public sex without the risk of becoming a permanent exhibitionist... for a while.</b>");
 						break;
 					case "Curdsonwhey":
 						if (startEffectLength >= 180 && thisStatus.minutesLeft < 180)
