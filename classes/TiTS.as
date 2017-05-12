@@ -235,6 +235,7 @@
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
 		include "../includes/tarkus/drBadger.as";
@@ -467,7 +468,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.47";
+			version = "0.7.48";
 
 			//temporary nonsense variables.
 			temp = 0;

@@ -166,6 +166,12 @@ public function rustPlainsEncounters():Boolean {
 		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
 		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
 		choices[choices.length] = raskvelGangEncounter;
+		//If not disabled.
+		if(flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] == 1 || flags["ABANDONED_CHAURMINE"] == undefined) 
+		{
+			choices.push(encounterChaurmine);
+		}
+
 
 		//Run the event
 		choices[rand(choices.length)]();

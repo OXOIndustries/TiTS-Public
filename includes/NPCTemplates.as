@@ -124,6 +124,7 @@
 	prepChar(justUpdate, "JERYNN", Jerynn);
 	prepChar(justUpdate, "MABBS", Mabbs);
 	prepChar(justUpdate, "CYNTHIA", Cynthia);
+	prepChar(justUpdate, "CHAURMINE", Chaurmine);
 	
 	
 	// Check all characters have version information set
