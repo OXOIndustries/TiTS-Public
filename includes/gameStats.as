@@ -2192,6 +2192,26 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["LANE_FEMALE_SEXED"] > 0) output2("\n<b>* Lane, Times Sexed Her:</b> " + flags["LANE_FEMALE_SEXED"]);
 				sideCount++;
 			}
+			if(flags["MET_CHAURMINE"] != undefined)
+			{
+				var chaurmineName:String = (flags["MET_CHAURMINE"] == -1 ? "Lizard Man" : "Chaurmine");
+				
+				output2("\n<b><u>Steele Meets Steel</u></b>");
+				output2("\n<b>* " + chaurmineName + ":</b>");
+				if(flags["ABANDONED_CHAURMINE"] >= 3) output2(" <i>Whereabouts unknown</i>");
+				else output2(" Active");
+				if(flags["ABANDONED_CHAURMINE"] != undefined)
+				{
+					output2(", abandoned him");
+					if(flags["ABANDONED_CHAURMINE"] == 2) output2(" twice");
+					else if(flags["ABANDONED_CHAURMINE"] > 2) output2(" " + num2Text(flags["ABANDONED_CHAURMINE"]) + " times");
+				}
+				if(flags["CHAURMINE_HELPED"] > 0) output2("\n<b>* " + chaurmineName + ", Times Helped Him:</b> " + flags["CHAURMINE_HELPED"]);
+				if(flags["CHAURMINE_GUARDED"] > 0) output2("\n<b>* " + chaurmineName + ", Times Guarded Him:</b> " + flags["CHAURMINE_GUARDED"]);
+				if(flags["CHAURMINE_RELATIONSHIP"] != undefined) output2("\n<b>* " + chaurmineName + ", Affection:</b> " + chaurmineRelationship());
+				if(flags["SEXED_CHAURMINE"] > 0) output2("\n<b>* " + chaurmineName + ", Times Sexed Him:</b> " + flags["SEXED_CHAURMINE"]);
+				sideCount++;
+			}
 		}
 		
 		if(showID == "Myrellion" || showID == "All")
