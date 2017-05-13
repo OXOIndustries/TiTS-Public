@@ -18898,7 +18898,7 @@
 			if (hasPerk("Ice Cold")) prodFactor /= 2;
 			
 			var producedLust:Number = deltaT * prodFactor;
-			if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (deltaT * exposureLevel(true));
+			if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
 			
 			if (lust() + producedLust < lustCap)
 			{
@@ -19004,7 +19004,7 @@
 						break;
 					case "Exhibitionism Reserve":
 						// Wearing exposed clothing should not prevent reset.
-						if(isFullyExposed(true)) thisStatus.minutesLeft + deltaT;
+						if(isFullyExposed(true)) thisStatus.minutesLeft += deltaT;
 						break;
 				}
 				

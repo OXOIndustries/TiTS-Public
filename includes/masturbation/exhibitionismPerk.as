@@ -89,7 +89,7 @@ public function exhibitionismLocationToggle():void
 				if(inPublic)
 				{
 					msg += "You set foot into " + pcLocation + ", scanning your surroundings as you move further in. The amount of people around you staggers you with a wave of lust, sending electric tingles down your spine. Just being in the midst of so many people causes you to burn with desire and";
-					if(!pc.isFullyExposed()) msg += " you begin to wonder just how much better it would feel if you were to reveal more of yourself...";
+					if(!pc.isNude()) msg += " you begin to wonder just how much better it would feel if you were to reveal more of yourself...";
 					else msg += " the eyes that turn around to take in your nude form act like a fuel stream. This feels <i>so</i> right!";
 					msg += "\n\nYou snap back to reality and continue on your way, bursting with excitement.";
 					if(pcLocation != "Tavros Station") msg += " Maybe you should give the passersby a show?";
@@ -322,7 +322,7 @@ public function processExhibitionismStrip(totalDays:uint):void
 	
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP) || rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return;
 	
-	if(ultraExhib.value2 >= 7 && !pc.isFullyExposed())
+	if(ultraExhib.value2 >= 7 && !pc.isNude())
 	{
 		if(eventQueue.indexOf(exhibitionismForceStrip) == -1) eventQueue.push(exhibitionismForceStrip);
 	}
