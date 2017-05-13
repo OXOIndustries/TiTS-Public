@@ -788,6 +788,7 @@ package classes.Ships
 			{
 				_fittedModules.push(newModule);
 				_cachedFittedModules = null;
+				_cachedAssignableModules = null;
 				_cachedGadgets = null;
 				newModule.Owner = this;
 			}
@@ -798,6 +799,7 @@ package classes.Ships
 			{
 				_fittedModules.splice(_fittedModules.indexOf(oldModule), 1);
 				_cachedFittedModules = null;
+				_cachedAssignableModules = null;
 				_cachedGadgets = null;
 			}
 			
@@ -856,6 +858,26 @@ package classes.Ships
 				}
 			}
 			return _cachedAssignedCrewmembers;
+		}
+		protected var _cachedAssignableModules:Array;
+		public function get AssignableModules():Array
+		{
+			if (_cachedAssignableModules == null)
+			{
+				_cachedAssignableModules = [];
+				
+				var fm:Array = FittedModules;
+				for (var i:int = 0; i < fm.length; i++)
+				{
+					var m:ShipModule = fm[i] as ShipModule;
+					
+					if (m.CanBeStaffed)
+					{
+						_cachedAssignableModules.push(m);
+					}
+				}
+			}
+			return _cachedAssignableModules;
 		}
 		
 		protected var _inherentGadgets:Array;

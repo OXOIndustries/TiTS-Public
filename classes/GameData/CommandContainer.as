@@ -23,7 +23,7 @@ package classes.GameData
 			kGAMECLASS.flags["LAST_FAP"] = text;
 			if (arg != undefined)
 			{
-				func(arg);
+				func.apply(arg);
 			}
 			else
 			{

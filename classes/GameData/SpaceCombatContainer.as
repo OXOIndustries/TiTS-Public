@@ -3,6 +3,8 @@ package classes.GameData
 	import classes.Creature;
 	import classes.Engine.ShipCombat.*;
 	import classes.Engine.Interfaces.*;
+	import classes.Ships.Modules.CapacitorModule;
+	import classes.Ships.Modules.ShipModule;
 	import classes.Ships.SpaceShip;
 	import classes.Ships.StatusEffectPayload;
 	import classes.kGAMECLASS;
@@ -121,13 +123,182 @@ package classes.GameData
 			clearOutput();
 			clearMenu();
 			
-			output("{{PLACEHOLDER}} Crew assignment menu.");
+			output("{{PLACEHOLDER}} Crew assignment summary menu.\n");
 			
 			var assignedCrew:Array = PlayerShip.AssignedCrewmembers;
-			var availCrew:Array = kGAMECLASS.getCrewOnShip;
+			var availCrew:Array = kGAMECLASS.getCrewOnShip();
+			var assignableModules:Array = PlayerShip.AssignableModules;
+		
+			var numAssignedModules:uint = 0;
 			
-			for (var i:int = 0; i < 
+			if (assignableModules.length == 0)
+			{
+				output("You have no assignable modules.");
+			}
+			else
+			{
+				output("<b>Assignable Modules:</b>");
+				
+				for (var i:int = 0; i < assignableModules.length; i++)
+				{
+					var am:ShipModule = assignableModules[i] as ShipModule;
+					
+					output("\n" + am.Name + " - " + am.Model + ": ");
+					if (am.HookedCrew != null)
+					{
+						numAssignedModules++;
+						output(am.HookedCrew.short + " assigned.");
+						// TODO: Also inject ability to display contributed bonus from this assignment to summary?
+					}
+				}
+				
+				if (numAssignedModules > 0)
+				{
+					addButton(0, "Unassign", showUnassignCrewMenu);
+				}
+				
+				// TODO: I think this needs further checking- not all crew may be able to be assigned to every module
+				if (availCrew > numAssignedModules)
+				{
+					addButton(1, "Assign", showAssignCrewMenu);
+				}
+			}
 			
+			addButton(14, "Back", showCombatMenu);
+		}
+		
+		private function showUnassignCrewMenu():void
+		{
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Crew unassignment selection menu.\n");
+			
+			var assignedCrew:Array = PlayerShip.AssignedCrewmembers;
+			var availCrew:Array = kGAMECLASS.getCrewOnShip();
+			var assignableModules:Array = PlayerShip.AssignableModules;
+			
+			output("<b>Assigned Modules:</b>");
+			
+			var btnOpts:Array = [];
+
+			for (var i:int = 0; i < assignableModules.length; i++)
+			{
+				var am:ShipModule = assignableModules[i] as ShipModule;
+				
+				if (am.HookedCrew == null) continue;
+				
+				var amName:String = am.Model.length > 7 ? am.Model.substr(0, 7) : am.Model;
+				output("\n" + String(btnOpts.length + 1) + ": " + am.Name + " - " + am.Model + ". Assigned: " + am.HookedCrew.short);
+				var btn:CommandContainer = new CommandContainer();
+				btn.func = unassignCrewFromModule;
+				btn.arg = am.HookedCrew;
+				btn.text = String(btnOpts.length + 1) + ": " + amName;
+				btn.ttHeader = "Unassign " + am.HookedCrew.short;
+				btn.ttBody = "Unassign " + am.HookedCrew.short + " from the ship module " + am.Name;
+				btnOpts.push(btn);
+			}
+			
+			var backCC:CommandContainer = new CommandContainer();
+			backCC.func = showCrewMenu;
+			backCC.text = "Back";
+			StructureButtons(btnOpts, backCC);
+		}
+		
+		private function unassignCrewFromModule(c:Creature):void
+		{
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Unassigned " + c.short + " from " + c.assignedModule.Name);
+			
+			PlayerShip.UnassignCrewFromModule(c);
+			
+			addButton(0, "Next", showCrewMenu);
+		}
+		
+		private function showAssignCrewMenu():void
+		{
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Crew assignment selection menu.\n");
+			
+			var assignableModules:Array = PlayerShip.AssignableModules;
+			
+			output("<b>Unassigned Modules:</b>");
+			
+			var btnOpts:Array = [];
+			
+			for (var i:int = 0; i < assignableModules.length; i++)
+			{
+				var am:CapacitorModule = assignableModules[i] as ShipModule;
+				
+				if (am.HookedCrew != null) continue;
+				
+				var amName:String = am.Model.length > 7 ? am.Model.substr(0, 7) : am.Model;
+				output("\n" + String(btnOpts.length + 1) + ": " + am.Name + " - " + am.Model + ".");
+				
+				var btn:CommandContainer = new CommandContainer();
+				btn.func = selectModuleToAssign;
+				btn.arg = am;
+				btn.text = String(btnOpts.length + 1) + ": " + amName;
+				btn.ttHeader = "Assign Crew";
+				btn.ttBody = "Assign a crewmember to the ship module " + am.Name;
+				btnOpts.push(btn);
+			}
+			
+			var backCC:CommandContainer = new CommandContainer();
+			backCC.func = showCrewMenu;
+			backCC.text = "Back";
+			StructureButtons(btnOpts, backCC);
+		}
+		
+		private function selectModuleToAssign(m:ShipModule):void
+		{
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Crew assignment for module " + m.Name + " assignment.\n");
+			
+			var assignedCrew:Array = PlayerShip.AssignedCrewmembers;
+			var availCrew:Array = kGAMECLASS.getCrewOnShip();
+			
+			output("Available Crewmembers:");
+			
+			var btnOpts:Array = [];
+			
+			for (var i:int = 0; i < availCrew.length; i++)
+			{
+				var c:Creature = availCrew[i] as Creature;
+				
+				output("\n" + c.short + ": " + (c.assignedModule == null ? "Unassigned." : "Assigned to " + c.assignedModule.Name + "."));
+				
+				var btn:CommandContainer = new CommandContainer();
+				btn.func = assignCrewToModule;
+				btn.arg = [m, c];
+				btn.text = c.short;
+				btn.header = "Assign " + c.short;
+				btn.ttBody = "Assign " + c.short + " to the ship module " + m.Name + ".";
+				btnOpts.push(btn);
+			}
+			
+			var backCC:CommandContainer = new CommandContainer();
+			backCC.func = showAssignCrewMenu;
+			backCC.text = "Back";
+			StructureButtons(btnOpts, backCC);
+		}
+		
+		private function assignCrewtoModule(m:ShipModule, c:Creature):void
+		{
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Assigning crewmember " + c.short + " to module " + m.Name + ".");
+			
+			PlayerShip.AssignCrewToModule(c, m);
+			
+			addButton(0, "Next", showCrewMenu);
 		}
 		
 		private function showGadgetsMenu():void
