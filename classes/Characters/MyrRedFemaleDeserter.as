@@ -280,9 +280,9 @@
 			//Size: 50%
 			if(rand(2) == 0)
 			{
-				sBuilder += sizeDescripts[rand(sizeDescripts.length)];
+				if(sizeDescripts.length > 0) sBuilder += sizeDescripts[rand(sizeDescripts.length)];
 				//Pregnant stuff & Size: 50% or 25% overall odds.
-				if(isPregnant() && rand(2) == 0)
+				if(isPregnant() && pregDescripts.length > 0 && rand(2) == 0)
 				{
 					sBuilder += ", ";
 					sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
