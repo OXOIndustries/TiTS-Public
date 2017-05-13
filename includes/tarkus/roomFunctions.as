@@ -172,7 +172,6 @@ public function rustPlainsEncounters():Boolean {
 			choices.push(encounterChaurmine);
 		}
 
-
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
@@ -206,6 +205,12 @@ public function rustCoastEncounters():Boolean {
 		
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
+
+		//If not disabled.
+		if(flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] == 1 || flags["ABANDONED_CHAURMINE"] == undefined) 
+		{
+			e.push( { v: encounterChaurmine, w: 1 } );
+		}
 	
 		//Run the event
 		weightedRand(e)();
@@ -244,6 +249,11 @@ public function rustRidgesEncounters():Boolean {
 		
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
+		//If not disabled.
+		if(flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] == 1 || flags["ABANDONED_CHAURMINE"] == undefined) 
+		{
+			e.push( { v: encounterChaurmine, w: 1 } );
+		}
 
 		//Run the event
 		weightedRand(e)();
