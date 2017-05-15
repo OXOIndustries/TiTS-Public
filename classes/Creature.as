@@ -7087,14 +7087,14 @@
 			//trace("Removing combat statuses.");
 			if (hasStatusEffect("Sensor Link"))
 			{
-				removeStatusEffect("Sensor Link");
 				aimMod -= 5;
+				removeStatusEffect("Sensor Link");
 			}
 			if (hasStatusEffect("Gassed"))
 			{
-				removeStatusEffect("Gassed");
 				aimMod += 5;
 				reflexesMod += 5;
+				removeStatusEffect("Gassed");
 			}
 			if (hasStatusEffect("Reduced Goo"))
 			{
