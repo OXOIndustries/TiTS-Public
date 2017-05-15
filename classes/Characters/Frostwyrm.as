@@ -171,7 +171,7 @@ package classes.Characters
 			}
 			if (!target.hasStatusEffect("Psychic Miasma"))
 			{
-				{enemyAttacks.push( { v: wyrmPsiMiasma, w: 10 } ); }
+				enemyAttacks.push( { v: wyrmPsiMiasma, w: 10 } );
 			}
 			
 			enemyAttacks.push( { v: wyrmTailSlap, w: 10 } );
