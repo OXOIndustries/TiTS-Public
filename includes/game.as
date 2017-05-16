@@ -2164,7 +2164,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	var sendMails:Boolean = true;
 	
 	// Don't send mails to the player whilst aboard the kashima
-	if (flags["KASHIMA_STATE"] != 1) sendMails = false;
+	if (flags["KASHIMA_STATE"] == 1) sendMails = false;
 	
 	if(sendMails)
 	{
