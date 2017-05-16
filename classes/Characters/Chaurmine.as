@@ -2,8 +2,8 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Melee.ShockBlade;
-	import classes.Items.Guns.HammerPistol;
+	import classes.Items.Melee.SaurmorianHammer;
+	import classes.Items.Guns.SaurmorianRifle;
 	import classes.Items.Protection.DecentShield;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatAttacks;
@@ -25,27 +25,36 @@
 			this.originalRace = "saurmorian";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "";
+			this.long = "His vicious snout - combined with his tense, hulking frame - displays a savage visage, contrasting greatly with your otherwise calm surroundings. Armed with his massive hammer and heavy railgun in each hand, he looks ready to fight a small army all by himself. The cold air steams off of his sweltering body, gusts of air from above occasionally whipping and thrashing the misty streams like tattered cloth.\n\nHis azure eyes are filled with an intense fire.";
 			this.customDodge = "In a shocking burst of speed, the scaled titan jerks his heavy frame just in time - dodging your attack.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
 			
-			this.meleeWeapon = new ShockBlade();
+			this.meleeWeapon = new SaurmorianHammer();
 			this.meleeWeapon.hasRandomProperties = true;
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 5;
 			
-			meleeWeapon.baseDamage.electric.damageValue = 3;
-			
-			this.rangedWeapon = new HammerPistol();
+			this.rangedWeapon = new SaurmorianRifle();
 			this.rangedWeapon.hasRandomProperties = true;
-			this.rangedWeapon.attackVerb = "shoot";
-			this.rangedWeapon.attackNoun = "shot";
-			
-			rangedWeapon.baseDamage.kinetic.damageValue = 3;
+			this.rangedWeapon.baseDamage.kinetic.damageValue = 5;
 			
 			this.armor.longName = "armor";
-			this.armor.defense = 3;
+			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
-			this.shield = new DecentShield();
+			//this.shield = new DecentShield();
+
+			//500% damage taken from non-lust damage when stunned
+
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.tease.damageValue = 100.0;
+			baseHPResistances.drug.damageValue = 90.0;
+			baseHPResistances.psionic.damageValue = 90.0;
+			baseHPResistances.pheromone.damageValue = 90.0;
+			baseHPResistances.burning.damageValue = 90.0;
+			baseHPResistances.kinetic.damageValue = 90.0;
+			baseHPResistances.freezing.damageValue = 90.0;
+			baseHPResistances.electric.damageValue = 90.0;
+			baseHPResistances.corrosive.damageValue = 90.0;
 			
 			this.level = 10;
 			this.physiqueRaw = 50;
@@ -179,151 +188,106 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
 
-			this.inventory.push(new ShockBlade());
 			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			this.createPerk("Multiple Shots",1,0,0,0,"");
+			this.createPerk("Stun Immune",1,0,0,0,"");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
-			
+
 			isUniqueInFight = true;
-			btnTargetText = "Dane";
+			btnTargetText = "Chaurmine";
 			setDefaultSexualPreferences();
 			_isLoading = false;
 		}
 		
 		override public function get bustDisplay():String
 		{
-			return "DANE";
+			return "CHAURMINE";
 		}
 		
 		override public function setDefaultSexualPreferences():void
 		{
-			//Likes:
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE,	GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,					GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,				GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,					GLOBAL.KINDA_LIKES_SEXPREF);
-
-			//Dislikes
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE,		GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BALDNESS,				GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_NARROW_HIPS,				GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BUTTS,				GLOBAL.KINDA_DISLIKES_SEXPREF);
+			
 		}
-		
+		//500% damage taken from non-lust damage when stunned
+		//low chance to [Charge] randomly
+		//otherwise [Ranged Attack] or [Melee Attack]
+
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
+			/* Normal lust res set */
+			if(!hasStatusEffect("Stunned"))
+			{
+				baseHPResistances = new TypeCollection();
+				baseHPResistances.tease.damageValue = 100.0;
+				baseHPResistances.drug.damageValue = 90.0;
+				baseHPResistances.pheromone.damageValue = 90.0;
+				baseHPResistances.burning.damageValue = 90.0;
+				baseHPResistances.kinetic.damageValue = 90.0;
+				baseHPResistances.freezing.damageValue = 90.0;
+				baseHPResistances.electric.damageValue = 90.0;
+				baseHPResistances.corrosive.damageValue = 90.0;
+				baseHPResistances.psionic.damageValue = 90.0;
+			}
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(target.hasStatusEffect("Grappled"))
+			//Headbutt - every fourth round charge
+			else if(CombatManager.getRoundCount() % 4 == 0)
 			{
-				if(target.statusEffectv3("Grappled") == 0) daneCrotchSmother(target);
-				else daneLickitongue(target);
+				chaurmineCharge(target);
 			}
-			//Headbutt - every fifth round until out of energy
-			else if(CombatManager.getRoundCount() % 5 == 0 && energy() >= 25)
-			{
-				//As the PC attack
-				CombatAttacks.HeadbuttImpl(alliedCreatures, hostileCreatures, this, target);
-				energy( -25);
-			}
-			else if(CombatManager.getRoundCount() % 7 == 0)
-			{
-				daneGrappleAttack(target);
-			}
-			else if(rand(2) == 0 && energy() >= 25)
-			{
-				daneCrossSlashAttack(target);
-				energy(-25);
-			}
-			else daneQuadStrike(target);
+			else if(rand(2) == 0) chaurmineMelee(target);
+			else chaurmineRanged(target);
 		}
 		
-		private function daneCrossSlashAttack(target:Creature):void
+		public function chaurmineMelee(target:Creature):void
 		{
-			output("Dane reaches high with both swords and brings them down crossways simultaneously!");
-			//Miss
-			if(combatMiss(this, target)) output("\nYou duck under the swings.");
-			//Hit
-			else
+			for (var i:int = 0; i < 2; i++)
 			{
-				output("\nThe blades hit you while crossed in a perfect 'x'!");
-				var damage:TypeCollection = meleeDamage();
-				damage.multiply(3);
-				damageRand(damage, 15);
-				applyDamage(damage, this, target);
+				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+				output("\n");
 			}
 		}
-		
-		private function daneLickitongue(target:Creature):void
-		{
-			if(target.hasAirtightSuit())
-			{
-				output("You feel something warm and wet rub and press against your [pc.crotch]. Dane's tongue tries to get at your nethers but your airtight [pc.armor] prevents that from happening.");
-			}
-			else
-			{
-				output("You feel something warm and wet ");
-				if(!target.isNude()) output("worm past your [pc.lowerGarments] to ");
-				output("lick your [pc.crotch]. It flutters around expertly, ");
-				var choices:Array = new Array();
-			
-				if(target.hasCock()) choices[choices.length] = 0;
-				if(target.hasVagina()) choices[choices.length] = 1;
-				if(target.balls > 0) choices[choices.length] = 2;
-				if(choices.length == 0) choices[choices.length] = 3;
-			
-				var select:int = choices[rand(choices.length)];
-				if(select == 0) output("paying special attention to [pc.oneCock]. It loops about it, tugging and sliding, forcing you to feel incredible pleasure.");
-				else if(select == 1) output("diving right into [pc.oneVagina]. Thrusting in and out, it slides and licks across every inner fold, driving you wild with desire.");
-				else if(select == 2) output("lovingly polishing your [pc.balls] before sliding over your taint to your [pc.asshole]. There, it busily rims you, sometimes even sliding an inch inside your asshole.");
-				else output("diving right into rimming your asshole. The thick intruder feels so wet and lewd that you can't help but offer up hot little pants of encouragement.");
-				output(" Dane's tongue feels amazing.");
-				target.lust(20+rand(10));
-				if(target.lust() >= target.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
-			}
-		}
-		
-		private function daneCrotchSmother(target:Creature):void
-		{
-			output("Dane takes advantage of the grapple to flip you around, suspending you upside down at crotch level. One of his hands pulls open the bottom of his armor to expose his crotch; you can't tell which, he seems like he's all hands from your current position. A hard, red dog-cock is there, sticking out of a narrow slit. Meanwhile his hands roam over your body, busily fondling and rubbing. It feels and smells better than it has any right to.");
-			output("\n\n<i>\"Ready to give in yet? I've got something special to show you.\"</i>");
-			target.lust(5+rand(7));
-			if(target.lust() >= target.lustMax()) output("\n\nYou nod, moaning in overwhelming lust.\n\nDane drops you. <i>\"Good " + target.mfn("boy","girl","pet") + ".\"</i>");
-			target.addStatusValue("Grappled",3,1);
-		}
-		
-		private function daneGrappleAttack(target:Creature):void
-		{
-			output("Charging forward, Dane sheaths his weapons simultaneously. His arms come open, open-palmed and grabbing for you!");
-			//Miss
-			if(combatMiss(this, target)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, pulling his weapons once more. <i>\"Speed alone cannot win a fight.\"</i>");
-			//Hit
-			else
-			{
-				output("\nYou try to twist out of the way, but there's just so many hands grabbing for you at once. Your arms are pinned to your [pc.hips] by one pair while the other bear hugs you against his broad, armored chest.");
-				output("\n<b>You are grappled!</b>");
-				target.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
-			}
-		}
-		
-		private function daneQuadStrike(target:Creature):void
+		public function chaurmineRanged(target:Creature):void
 		{
 			for (var i:int = 0; i < 2; i++)
 			{
 				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 				output("\n");
 			}
-			
-			for (i = 0; i < 2; i++)
+		}
+
+		public function chaurmineCharge(target:Creature):void
+		{
+			output("<i>“I </i>will<i> understand what I’m feeling, with </i>your<i> help [pc.name],”</i> he thunders, <i>“Even if I have to force it.”</i>");
+			output("\n\nChaurmine moves his weapons out of the way as he lowers his head, a growl slipping through clenched teeth with a steamy burst before charging.");
+			if(!combatMiss(this,target)) 
 			{
-				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
-				output("\n");
+				output("\n\nYou grunt as his metal skull rams into you, ");
+				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
+				{
+					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+					output("knocking the air from your lungs and sending you sliding on the icy floor, your mind reeling.");
+				}
+				else output("though you manage to avoid being dazed.");
+				var damage:TypeCollection = meleeDamage();
+				damage = damageRand(damage, 15);
+				applyDamage(damage, this, target, "minimal");
+			}
+			else
+			{
+				output("\n\nYou dodge out of the way just in time, and watch as his momentum carries him into the surrounding icy walls and pierces his horns into the frigid, crystalline surface, locking him in place.");
+				createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "He is stuck in place and cannot attack.", true, 0, 0xFF0000);
+				baseHPResistances = new TypeCollection();
+				baseHPResistances.tease.damageValue = 100.0;
+				baseHPResistances.drug.damageValue = 90.0;
+				baseHPResistances.pheromone.damageValue = 90.0;
+				baseHPResistances.burning.damageValue = -500.0;
+				baseHPResistances.kinetic.damageValue = -500.0;
+				baseHPResistances.freezing.damageValue = -500.0;
+				baseHPResistances.electric.damageValue = -500.0;
+				baseHPResistances.corrosive.damageValue = -500.0;
+				baseHPResistances.psionic.damageValue = 90.0;
 			}
 		}
 	}
