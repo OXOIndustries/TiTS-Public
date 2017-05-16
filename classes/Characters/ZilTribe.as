@@ -207,8 +207,6 @@
 			this.inventory.push(new ZilSpear());
 			this.inventory.push(new ZilBow());
 			
-
-
 			this._isLoading = false;
 		}
 		
@@ -255,12 +253,12 @@
 			if(hasStatusEffect("Trip CD")) 
 			{
 				addStatusValue("Trip CD",1,-1);
-				if(statusEffectv1("Trip CD") == 0) removeStatusEffect("Trip CD");
+				if(statusEffectv1("Trip CD") <= 0) removeStatusEffect("Trip CD");
 			}
 			if(hasStatusEffect("Armor Restore CD")) 
 			{
 				addStatusValue("Armor Restore CD",1,-1);
-				if(statusEffectv1("Armor Restore CD") == 0) removeStatusEffect("Armor Restore CD");
+				if(statusEffectv1("Armor Restore CD") <= 0) removeStatusEffect("Armor Restore CD");
 			}
 			choices = [];
 			choices.push(getStabbedBiyatch);
@@ -373,6 +371,7 @@
 				output(" You can’t stop yourself being pulled down in turn! The remaining zil cheer and close in, scenting victory.");
 				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
 			}
+			this.createStatusEffect("Trip CD",5,0,0,0);
 		}
 		//High Summer
 		//One of their attacks is always this. Pheromone lust damage
@@ -400,7 +399,7 @@
 		{
 			output("Whilst two zil box you in with their circling spear-tips, the rest of the mob rearrange themselves. Shields change hands, black carapace tightening up with concerted concentration. Before you know it you’re being assaulted on all sides again, the warrior wasps’ armor revitalized.");
 			this.shields(70);
-			this.createStatusEffect("Armor Restore CD",4,0,0,0);
+			this.createStatusEffect("Armor Restore CD",5,0,0,0);
 		}
 		//Honey-cane
 		//Only active if Lust 80 or more. Reduces lust by 60, tease damage to PC. Can only be used once

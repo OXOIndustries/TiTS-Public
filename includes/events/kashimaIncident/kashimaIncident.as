@@ -293,7 +293,7 @@ public function lustyBugpony():void
 	{
 		output(" Just... just get behind me and");
 		if (pc.isTaur()) output(" mount up. Gimme everything you’ve got!");
-		else output(" get going. Just take it easy, I’ve never fucked a [pc.race] like you before.");
+		else output(" get going. Just take it easy, I’ve never fucked " + indefiniteArticle(pc.raceShort()) + " like you before.");
 	}
 	else output(" This is... going to be kind of awkward. I guess we’ll have to take turns, unless you’re way stretchier than you look.");
 	output("”</i>");

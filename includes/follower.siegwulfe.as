@@ -86,7 +86,7 @@ public function activateSiegwulfe(fromInv:Boolean = false):void
 	
 	siegwulfeGenitals(-1);
 	siegwulfeGenitals(0);
-	if(flags["WULFE_ON_SHIP"] != true) flags["WULFE_ON_SHIP"] = true;
+	flags["WULFE_ON_SHIP"] = true;
 	
 	// [Insert Namebox Here]
 	clearMenu();

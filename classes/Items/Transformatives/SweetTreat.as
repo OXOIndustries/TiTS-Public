@@ -25,7 +25,7 @@
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a doughy, bite sized Sweet Treat";
-			tooltip = "Wrapped up in delicate paper, the Sweet Treat oozes sugary goodness, the glazing slowly flowing but never quite managing to drip off its pastry home. Just looking at it makes your mouth water.";
+			tooltip = "Wrapped up in delicate paper, the Sweet Treat oozes sugary goodness, the glazing slowly flowing but never quite managing to drip off its pastry home. Just looking at it makes your mouth water.\n\nA small text box lists it as a genital fluid transformation mod.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

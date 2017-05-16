@@ -72,22 +72,22 @@
 				if(target.hairType != GLOBAL.HAIR_TYPE_REGULAR) tfList.push(3);
 				// PC has non-canine legs or a different number of legs than two:
 				// PC’s legs become two furred, digitigrade canine legs.
-				if(target.legType != GLOBAL.TYPE_CANINE) tfList.push(4);
+				if(target.legType != GLOBAL.TYPE_LUPINE) tfList.push(4);
 				// PC has non-canine or non-furred canine arms:
 				// PC gains furred, non-padded canine arms.
-				if(target.armType != GLOBAL.TYPE_CANINE || (!target.hasArmFlag(GLOBAL.FLAG_FURRED) || target.hasArmFlag(GLOBAL.FLAG_PAWS))) tfList.push(5);
+				if(target.armType != GLOBAL.TYPE_LUPINE) tfList.push(5);
 				// PC has no tail:
 				// Grow a canine tail.
 				if(!target.hasTail()) tfList.push(6);
 				// PC has a non-canine tail:
 				// Change any tails to a single canine tail.
-				if(target.hasTail() && target.tailType != GLOBAL.TYPE_CANINE) tfList.push(7);
+				if(target.hasTail() && target.tailType != GLOBAL.TYPE_LUPINE) tfList.push(7);
 				// PC has non-canine ears:
 				// PC gains canine ears.
-				if(target.earType != GLOBAL.TYPE_CANINE) tfList.push(8);
+				if(target.earType != GLOBAL.TYPE_LUPINE) tfList.push(8);
 				// PC has canine ears, fur, and a non-canine face:
 				// PC gains a canine face.
-				if(target.earType == GLOBAL.TYPE_CANINE && target.faceType != GLOBAL.TYPE_CANINE) tfList.push(9);
+				if(target.earType == GLOBAL.TYPE_LUPINE && (target.faceType != GLOBAL.TYPE_LUPINE || target.faceType != GLOBAL.TYPE_WORG)) tfList.push(9);
 				// PC has non-canine tongue:
 				// PC gains canine tongue.
 				if(target.tongueType != GLOBAL.TYPE_CANINE) tfList.push(10);
@@ -148,7 +148,7 @@
 		
 		private function tailTF(target:Creature, newTailCount:Number = 1):void
 		{
-			target.tailType = GLOBAL.TYPE_CANINE;
+			target.tailType = GLOBAL.TYPE_LUPINE;
 			target.tailCount = newTailCount;
 			target.tailFlags = [];
 			target.addTailFlag(GLOBAL.FLAG_LONG);
@@ -215,18 +215,18 @@
 			}
 			// Change leg type to digitigrade canine:
 			if(select == 4) {
-				if(target.legTypeUnlocked(GLOBAL.TYPE_CANINE))
+				if(target.legTypeUnlocked(GLOBAL.TYPE_LUPINE))
 				{
 					output("\n\nYour " + (target.legCount == 1 ? "[pc.leg] is" : "[pc.legs] are") + " peppered with shocks that force you to sit, your muscles spasming uncontrollably. You watch as your lower body twists and morphs, forming into");
 					if(target.legCount <= 2) output(" a pair of");
-					output(" digitigrade legs coated in silky [pc.furColor] fur. Each bears three large, thick toes tipped with distinctly canine claws, further distinguishing them from an ausar’s legs. You soon get on your feet to get the hang of walking with <b>your new canine legs.</b>");
+					output(" digitigrade legs coated in silky [pc.furColor] fur. Each bears three large, thick toes tipped with distinctly lupine claws, further distinguishing them from an ausar’s legs. You soon get on your feet to get the hang of walking with <b>your new lupine legs.</b>");
 					
 					if(target.legCount < 2)
 					{
 						target.legCount = 2;
 						target.genitalSpot = 0;
 					}
-					target.legType = GLOBAL.TYPE_CANINE;
+					target.legType = GLOBAL.TYPE_LUPINE;
 					target.legFlags = [];
 					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_PAWS);
@@ -237,11 +237,11 @@
 			}
 			// Change arm type to furred canine, no pads:
 			if(select == 5) {
-				if(target.armType == GLOBAL.TYPE_CANINE || target.armTypeUnlocked(GLOBAL.TYPE_CANINE))
+				if(target.armTypeUnlocked(GLOBAL.TYPE_LUPINE))
 				{
-					output("\n\nYour arms twitch and writhe as they’re covered in a sleek layer of [pc.furColor] fur, your fingernails transforming into canine clawtips.");
+					output("\n\nYour arms twitch and writhe as they’re covered in a sleek layer of [pc.furColor] fur, your fingernails transforming into thick, wolf-like clawtips.");
 					
-					target.armType = GLOBAL.TYPE_CANINE;
+					target.armType = GLOBAL.TYPE_LUPINE;
 					target.armFlags = [];
 					target.addArmFlag(GLOBAL.FLAG_FURRED);
 				}
@@ -252,7 +252,7 @@
 			if(select == 6) {
 				if(target.tailCountUnlocked(1))
 				{
-					output("\n\nYou feel a sudden urge to wag your non-existent tail, but your body soon sets to fixing that. Each twitch of your back muscles pushes a bit more of a nub out from your backside, filling in with a thick coating of fluffy fur to complete the emergence of your new canine tail.");
+					output("\n\nYou feel a sudden urge to wag your non-existent tail, but your body soon sets to fixing that. Each twitch of your back muscles pushes a bit more of a nub out from your backside, filling in with a thick coating of fluffy fur to complete the emergence of your new wolf tail.");
 					
 					tailTF(target);
 				}
@@ -261,11 +261,11 @@
 			}
 			// Change existing tails to single canine tail:
 			if(select == 7) {
-				if(target.tailTypeUnlocked(GLOBAL.TYPE_CANINE))
+				if(target.tailTypeUnlocked(GLOBAL.TYPE_LUPINE))
 				{
 					output("\n\nYour " + (target.tailCount == 1 ? "tail feels" : "tails feel") + " the urge to wag back and forth, each time bringing a more and more distinctly canine appearance to your backside. By the time the wagging stops you’ve been left with a");
 					if(target.tailCount != 1) output(" single");
-					output(" fluffy wolf tail, thick and bushy. <b>You now have a canine tail.</b>");
+					output(" fluffy wolf tail, thick and bushy. <b>You now have a wolf tail.</b>");
 					
 					target.removeTails();
 					tailTF(target);
@@ -275,22 +275,22 @@
 			}
 			// Change ear type to canine ears:
 			if(select == 8) {
-				if(target.earTypeUnlocked(GLOBAL.TYPE_CANINE))
+				if(target.earTypeUnlocked(GLOBAL.TYPE_LUPINE))
 				{
-					output("\n\nYour ears perk upwards, higher and higher until they sit nearly at the top of your head. The tips continue to stretch upward as they streamline into a pair of triangular canine ears, coated in a thin layer of fur.");
+					output("\n\nYour ears perk upwards, higher and higher until they sit nearly at the top of your head. The tips continue to stretch upward as they streamline into a pair of triangular wolf ears, coated in a thin layer of fur.");
 					
-					target.earType = GLOBAL.TYPE_CANINE;
+					target.earType = GLOBAL.TYPE_LUPINE;
 				}
 				else output("\n\n" + target.earTypeLockedMessage());
 				return;
 			}
 			// Get canine face:
 			if(select == 9) {
-				if(target.faceTypeUnlocked(GLOBAL.TYPE_CANINE))
+				if(target.faceTypeUnlocked(GLOBAL.TYPE_LUPINE))
 				{
-					output("\n\nYou feel the need to pant harder, your jaw hanging open as your face elongates into a new lupine muzzle, <b>leaving you with a very wolf-like face</b>.");
+					output("\n\nYou feel the need to pant harder, your jaw hanging open as your face widens and elongates into a new lupine muzzle, <b>leaving you with a very wolf-like face</b>.");
 					
-					target.faceType = GLOBAL.TYPE_CANINE;
+					target.faceType = GLOBAL.TYPE_LUPINE;
 					target.faceFlags = [];
 					target.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 					//target.addFaceFlag(GLOBAL.FLAG_LONG);
@@ -308,6 +308,7 @@
 					
 					target.tongueType = GLOBAL.TYPE_CANINE;
 					target.tongueFlags = [];
+					target.addTongueFlag(GLOBAL.FLAG_LONG);
 				}
 				else output("\n\n" + target.tongueTypeLockedMessage());
 				return;

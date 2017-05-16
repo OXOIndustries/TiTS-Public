@@ -26,7 +26,7 @@ package classes.GameData
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.Util.InCollection;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Combat.DamageTypes.*;
 	
 	/**
 	 * TODO:
@@ -3558,14 +3558,14 @@ package classes.GameData
 			output("You try to get a feel for " + possessive(target.getCombatName()) + " likes and dislikes!");
 			var buffer:String = "";
 			var prefs:int = 0;
-			var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
-			if(pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
-			if(target.isLustImmune) output("\nYou don’t think sexuality can win this fight!");
+			var PCBonus:Number = pc.intelligence() / 2 + pc.libido() / 20;
+			if (pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
+			
+			if (target.isLustImmune) output("\nYou don’t think sexuality can win this fight!");
 			else
 			{
-				for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
+				for(i = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
 					buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
-					//If has a preference set, talk about it!
 					if(target.sexualPreferences.getPref(i) != 0) {
 						output("\n");
 						//If succeeds at sense check!
@@ -3573,24 +3573,67 @@ package classes.GameData
 						{
 							switch(target.sexualPreferences.getPref(i))
 							{
-								case GLOBAL.REALLY_LIKES_SEXPREF: output(buffer + ": Really likes!"); break;
-								case GLOBAL.KINDA_LIKES_SEXPREF: output(buffer + ": Kinda likes!"); break;
-								case GLOBAL.KINDA_DISLIKES_SEXPREF: output(buffer + ": Dislikes!"); break;
-								case GLOBAL.REALLY_DISLIKES_SEXPREF: output(buffer + ": Dislikes a lot!"); break;
+								case GLOBAL.REALLY_LIKES_SEXPREF: 		output(buffer + ": Really likes!"); break;
+								case GLOBAL.KINDA_LIKES_SEXPREF: 		output(buffer + ": Kinda likes!"); break;
+								case GLOBAL.KINDA_DISLIKES_SEXPREF: 	output(buffer + ": Dislikes!"); break;
+								case GLOBAL.REALLY_DISLIKES_SEXPREF:	output(buffer + ": Dislikes a lot!"); break;
 								default: output(buffer + ": ERROR"); break;
 							}
 						}
 						//if fails!
 						else 
 						{
-							output(buffer + ": You aren’t sure.");
+							output(buffer + ": You aren’t sure.")
 						}
-						prefs++;
+					}
+					prefs++;
+				}
+				
+				var damIdx:uint = 0;
+				
+				output("\n\nLust Resistances:");
+				var lR:TypeCollection = target.getLustResistances();
+				for (i = 0; i < DamageType.LustDamageTypes.length - 1; i++)
+				{
+					output("\n");
+					
+					damIdx = DamageType.LustDamageTypes[i];
+					var rValue:Number = lR.getType(damIdx).damageValue;
+					
+					output(lR.getType(damIdx).longName + " Resistance: ");
+					if (PCBonus + rand(20) + 1 >= target.level * 3 * (150 - target.libido()) / 100)
+					{
+						output(" " + String(Math.round(lR.getType(damIdx).damageValue * 100) / 100) + "%");
+					}
+					else
+					{
+						output(" You aren’t sure.");
 					}
 				}
 			}
 			if(target is HandSoBot) output("\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
-			else if(!target.isLustImmune && prefs <= 0) output("\nIt seems " + target.getCombatPronoun("pa") + " sexual preferences do not sway strongly in one way or another...");
+			else if (!target.isLustImmune && prefs <= 0) output("\nIt seems " + target.getCombatPronoun("pa") + " sexual preferences do not sway strongly in one way or another...");
+			
+			var pcGearEyeballBonus:Number = pc.intelligence() / 2 + (pc.willpower() / (target.willpowerMax() / 5));
+			if (pc.hasPerk("Keen Eyes")) pcGearEyeballBonus = pc.perkv1("Keen Eyes");
+			
+			output("\n\nCasting a glance over " + possessive(target.getCombatName()) + " equipment, you try and get some measure of their combat prowess.");
+			output("\n\nDamage Resistances:");
+			var tarC:TypeCollection = target.shields() > 0 ? target.getShieldResistances() : target.getHPResistances();
+			for (var i:int = 0; i < DamageType.HPDamageTypes.length - 1; i++)
+			{
+				damIdx = DamageType.HPDamageTypes[i];
+				output("\n" + tarC.getType(damIdx).longName + " Resistance: ");
+				
+				if (pcGearEyeballBonus + rand(20) + 1 >= target.level * 3 * ((target.willpowerMax() * 1.5) - target.willpower()) / target.willpowerMax())
+				{
+					output(String(Math.round(tarC.getType(damIdx).damageValue * 100) / 100) + "%");
+				}
+				else
+				{
+					output("You can’t tell.");
+				}
+			}
 		}
 		
 		private function checkForLoss(atEndOfRound:Boolean = false):Boolean
@@ -4797,6 +4840,9 @@ package classes.GameData
 				output(" loaded on " + (CombatManager.multipleEnemies() ? "anonymous credit chits" : "an anonymous credit chit") + " that you appropriate.");
 			}
 			
+			//Rare loot chance 2.0
+			loot = kGAMECLASS.genericRareDrops(loot);
+
 			if (loot.length > 0)
 			{
 				output("\n");
@@ -4811,7 +4857,7 @@ package classes.GameData
 				addButton(0, "Next", postCombatReturnToMenu);
 			}
 			
-			output("\n\n");
+			//output("\n\n");
 		}
 	}
 }

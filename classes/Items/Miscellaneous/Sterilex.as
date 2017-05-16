@@ -65,6 +65,10 @@
 			
 			if(target is PlayerCharacter)
 			{
+				// Rut/Heat removal on use.
+				if(target.inHeat()) target.clearHeat();
+				if(target.inRut()) target.clearRut();
+				
 				// Sexless get duds:
 				if(target.hasPerk("Infertile") || !target.hasGenitals())
 				{

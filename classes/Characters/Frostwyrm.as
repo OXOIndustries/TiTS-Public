@@ -146,7 +146,6 @@ package classes.Characters
 			btnTargetText = "Frostwyrm";
 			
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
-			
 			this._isLoading = false;
 		}
 		

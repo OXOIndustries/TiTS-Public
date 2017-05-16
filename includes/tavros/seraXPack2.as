@@ -2630,7 +2630,7 @@ public function seraBitchTrainingPunishCumRation(fromMenu:Boolean = false):void
 		// After having masturbated:
 		else
 		{
-			output("\n\n<i>“Oh dear, am I?”</i> she trills, smirking coyness restored. <i>“And [pc.master] wants to do it by putting his dick in my mouth? What a smart and imaginative [pc.master] [pc.he] is.”</i> She clacks her teeth together meaningfully.");
+			output("\n\n<i>“Oh dear, am I?”</i> she trills, smirking coyness restored. <i>“And [pc.master] wants to do it by putting [pc.his] dick in my mouth? What a smart and imaginative [pc.master] [pc.he] is.”</i> She clacks her teeth together meaningfully.");
 			output("\n\n<i>“Less simpering, more sucking,”</i> you say, managing to keep a stern face. Keeping her eyes locked with yours, Sera slides off her bed and crawls over to you, heavy, bare boobs swaying from side to side as she comes. She deliberately flourishes her three inch claws as she takes hold of your [pc.cock " + cIdx + "].");
 		}
 		output("\n\nYou exhale lowly, keeping your gaze fixed on the [sera.skinColor] shrew as she works the base of your cock, coaxing pleasure and heat further and further along it before,");
@@ -4385,7 +4385,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	if(hasSchoolgirl) output(" school-girl-outfitted");
 	else output(" bare-breasted");
 	if(hasCuffs) output(", cuffed");
-	output(" bitch and their [pc.race] [pc.master] isn’t the most outrageous thing to ever stroll around these tasteful plazas, although you get the distinct impression that it’s deemed much more suitable for the seedy, seething deck below. Whatever. Let the disapproval blaze. You stop to have a look at the holo-board, silently pointing at the ground next to you; gratifyingly Sera kneels next to you after only a slight pause.");
+	output(" bitch and their [pc.raceShort] [pc.master] isn’t the most outrageous thing to ever stroll around these tasteful plazas, although you get the distinct impression that it’s deemed much more suitable for the seedy, seething deck below. Whatever. Let the disapproval blaze. You stop to have a look at the holo-board, silently pointing at the ground next to you; gratifyingly Sera kneels next to you after only a slight pause.");
 	output("\n\n<i>“Back straight. Good girl.”</i> You ruffle her hair fondly. She whimpers slightly in response, eyes fixed steadfastly on the middle distance, definitely not on any of the onlookers drinking in her round [sera.skinColor] ass. With a jerk of the leash, you carry on, intent on taking in as much of the deck as possible.");
 	
 	processTime(12);

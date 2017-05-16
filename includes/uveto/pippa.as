@@ -2416,8 +2416,8 @@ public function pippaTalkHer():void
 	
 	output("\n\nShe narrows her eyes at you, ");
 	
-	if (pc.race() == "pig-morph") output("and asks, <i>“Who are you to ask that?”</i> She");
-	else if (pc.race() != pc.originalRace) output("and says, <i>“You don’t see me asking why you’re " + indefiniteArticle(pc.race()) + ".”</i> She");
+	if (pc.raceShort() == "pig") output("and asks, <i>“Who are you to ask that?”</i> She");
+	else if (pc.race() != pc.originalRace) output("and says, <i>“You don’t see me asking why you’re " + indefiniteArticle(pc.raceCute(true)) + ".”</i> She");
 	else output("but she");
 	
 	output(" answers the question anyway. <i>“It’s not that interesting of a story. Growing up, even before I’d modded myself, I was already a rather large girl. You know how people love rhyme and alliteration in their insults. Well, it didn’t take long before “Pippa Pig” became the go-to phrase for those looking to make fun of me. Joke’s on them; it also didn’t take long before I started to like the sound of that.”</i>");

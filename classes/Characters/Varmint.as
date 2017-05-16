@@ -157,7 +157,6 @@ package classes.Characters
 			
 			isUniqueInFight = true;
 			btnTargetText = "Varmint";
-			
 			this._isLoading = false;
 		}
 		

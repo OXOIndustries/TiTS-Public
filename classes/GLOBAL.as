@@ -76,6 +76,7 @@
 		public static const FLAG_BEAK:int									= 43;
 		public static const FLAG_CORKSCREWED:int							= 44;
 		public static const FLAG_TONGUE:int									= 45;
+		public static const FLAG_FRECKLED:int                               = 46;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -124,6 +125,7 @@
 			"Beaked",
 			"Corkscrewed",
 			"Tongued",
+			"Freckled",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -215,6 +217,8 @@
 		public static const TYPE_SWINE:int									= 72;
 		public static const TYPE_QUAD_LAPINE:int 							= 73;
 		public static const TYPE_MOUTHGINA:int 								= 74;
+		public static const TYPE_LUPINE:int 								= 75;
+		public static const TYPE_SHEEP:int 									= 76;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -292,6 +296,8 @@
 			"Swine",
 			"Quad Lapine",
 			"Mouthgina",
+			"Lupine",
+			"Sheep",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -319,6 +325,8 @@
 			TYPE_FROG,
 			TYPE_WORG,
 			TYPE_SWINE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -327,6 +335,7 @@
 			FLAG_MUZZLED,
 			FLAG_ANGULAR,
 			FLAG_BEAK,
+			FLAG_FRECKLED,
 		];
 		
 		public static const VALID_EYE_TYPES:Array = [
@@ -343,6 +352,7 @@
 			TYPE_FROG,
 			TYPE_NYREA,
 			TYPE_GRYVAIN,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -403,6 +413,9 @@
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
 			TYPE_QUAD_LAPINE,
+			TYPE_DOGGIE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -420,10 +433,12 @@
 			TYPE_KUITAN,
 			TYPE_OVIR,
 			TYPE_MYR,
+			TYPE_VULPINE,
 			TYPE_DEMONIC,
 			TYPE_NYREA,
 			TYPE_FLOWER,
 			TYPE_TENTACLE,
+			TYPE_LUPINE,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -471,6 +486,8 @@
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
 			TYPE_TENTACLE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -511,6 +528,7 @@
 			TYPE_NARWHAL,
 			TYPE_GRYVAIN,
 			TYPE_DRYAD,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -570,6 +588,9 @@
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
 			TYPE_TENTACLE,
+			TYPE_DOGGIE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [

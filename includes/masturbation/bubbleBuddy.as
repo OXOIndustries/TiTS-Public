@@ -367,7 +367,7 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 	{
 		output("You heft the warm bubble between your hands, feeling the contents slosh a little. It’s hard not to be a little disappointed in yourself! It’s obvious that a little boost is in order, and thanks to the genetic gift of your ‘nuki nuts even a small amount will be more than adequate.");
 		output("\n\nNot enough to turn your testes into swollen cum-tankers, but certainly enough to stuff up an eager slut, or paint yourself and others ivory. Just the thought sends a thrum of pleasure right down to your [pc.cocks]. Time to get started.");
-		output("\n\nThe first test is figuring out how best to drink from it without wasting the precious reserves. You give the surface a testing poke, feeling it wobble. Placing the bubble to your lips, you nibble at the edges, " + pc.mf("chuckling","giggling") + " to yourself at the ridiculousness of it all. Still, the insistent throbbing of your [pc.cocks], and the need to fill your [pc.balls] until they churn with potent seed is very persuasive.");
+		output("\n\nThe first test is figuring out how best to drink from it without wasting the precious reserves. You give the surface a testing poke, feeling it wobble. Placing the bubble to your lips, you nibble at the edges, " + pc.mf("chuckling","giggling") + " to yourself at the ridiculousness of it all. Still, the insistent throbbing of your [pc.cocks], and the need to fill your [pc.balls] until " + (pc.balls <= 1 ? "it" : "they") + " churn with potent seed is very persuasive.");
 		output("\n\nYou nibble at the thin boundary between your [pc.lips] and their liquid prize; it still takes a little work, but finally something gives. Your flavorsome [pc.cumNoun] graces the tip of your tongue, and you open wide, all but stuffing the bubble into your mouth. You swallow it down with a wicked smile, spitting out the then-empty membrane afterwards, smacking your [pc.lips] together contentedly.");
 		output("\n\nIt doesn’t take long for tingles of pleasure to rush their way to your nethers, heralding future growth in a way that gets you hot under the collar.");
 		pc.lust(10);
@@ -381,7 +381,9 @@ public function drinkSomeBubbleBud(item:ItemSlotClass):void
 	else if(item is MediumCumBubble)
 	{
 		output("With a wicked smirk, you squeeze and play with the tension of the cum-bubble. It’s not bad, sure. But you know full well that with this [pc.cumNoun] sloshing around in your stomach instead of this bubble? You could produce something <i>far</i> more impressive thanks to your unique biology. The thought’s enough to get you excited; you could make one of these beauties <i>burst</i>.");
-		output("\n\n...It just takes a little kick-starting. Your [pc.cocks] grow hard with the thought, and when your muscles clench, your [pc.balls] lift up a little. That’s right, these babies could ");
+		output("\n\n...It just takes a little kick-starting. Your [pc.cocks] grow");
+		if(pc.cockTotal() == 1) output("s");
+		output(" hard with the thought, and when your muscles clench, your [pc.balls] lift up a little. That’s right, these babies could ");
 		if(pc.ballFullness >= 100) output("still find some room to grow");
 		else output("definitely use filling up");
 		output(". You squeeze the surface again, watching the bubble stretch beneath your [pc.fingers].");
@@ -840,7 +842,13 @@ public function tentacleGooCeliseFeeding():void
 	output("\n\nThe tentacles inside both you and Celise being vibrating, the sticky, sloppy surface of the green ooze heating with the intensity of their motion. The galotian’s semi-translucent skin shows the tentacles in her gut pushing up even as the one in her throat sinks deeper until all three meet in her belly. The limbs inside and surrounding your body practically buzz with the organic engine driving them on, squelching with lascivious fixation. The temple of your resistance begins to crumble before the tentacle siege. Your throat catches with the overheated gasps that draw the strength from your seemingly boneless limbs bit by bit.");
 	output("\n\nWith her last bit of defiance, your googirl squeezes the cum bubble as hard as she can. Its pliant surface stretches, bulges and deforms before at last popping in a [pc.cumColor] blowout! The liquid mass splits in a dozen streams, as if being vacuumed by an invisible pressure and siphoned in different directions. Each [pc.cumVisc] stream rushes through the slime pool and is channelled up the quivering lengths of the gooey tentacles, their loads rushing with accelerating haste until - in gushing spree - the tentacles discharge their creamy burdens.");
 	output("\n\nCelise distends with the gooey [pc.cumNoun] of your breached cum bubble, her belly filling from above and below as the transfixing tentacles swell her curvaceous frame with gut-bloating seed. The limbs inside your body release similar streams next, your hot cum flooding back into your body with a spine tingling, slimy texture that leaves your shoulders shivering and your hips quaking.");
-	if(pc.hasCock()) output(" The milking coils around your [pc.cocks] are too skilled at their trade and fresh seed rushes from your tender loins, filling the thin gap between you and your galotian with [pc.cumVisc] [pc.cumNoun].");
+	if(pc.hasCock())
+	{
+		output(" The milking coils around your [pc.cocks]");
+		if(pc.cockTotal() == 1) output(" is too skilled at its");
+		else output(" are too skilled at their");
+		output(" trade and fresh seed rushes from your tender loins, filling the thin gap between you and your galotian with [pc.cumVisc] [pc.cumNoun].");
+	}
 	if(pc.hasVagina()) output(" The tentacles inside your clenching cavity spray the thick salve of your hot jism deep into your body, the potent issue painting your vagina folds [pc.cumColor].");
 
 	output("\n\nA few weak spurts of jizz rain down on the two of you from the encircling tentacles as they slowly lose their firmness, gradually sinking into the puddle until you and Celise are left to yourselves once more. The slimy girl licks a stray glob of cum from your cheek and plants a gooey kiss on your forehead. <i>“Never underestimate us galotians,”</i> she murmurs, cuddling you in a big, wet hug that incidentally cleans the rest of the cum from you hungrily. You give the girl a peck in return and gradually pry yourself from her clinging mass. You kind of wonder how many of these little pantomimes she’s been acting out when you’re off the ship.");

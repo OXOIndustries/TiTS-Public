@@ -10,7 +10,7 @@ package classes.GameData
 	 */
 	public class SingleCombatAttack 
 	{
-		public var Implementor:Function = null; // Function that implements attack (dmg, txt)
+		public var Implementor:Function = null;
 		
 		public var ButtonName:String = "UNSET"; // Text for the button element
 		public var TooltipTitle:String = "UNSET";

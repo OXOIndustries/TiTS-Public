@@ -184,7 +184,6 @@
 			isUniqueInFight = true;
 			btnTargetText = "Naleen";
 			setDefaultSexualPreferences();
-			
 			this._isLoading = false;
 		}
 		

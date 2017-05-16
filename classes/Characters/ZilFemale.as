@@ -182,7 +182,6 @@
 			else inventory.push(new ZilRation());
 			
 			Randomize();
-			
 			this._isLoading = false;
 		}
 		

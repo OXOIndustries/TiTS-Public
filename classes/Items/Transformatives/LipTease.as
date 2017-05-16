@@ -305,7 +305,7 @@
 			}
 			if(colorType == "mouthgina")
 			{
-				lipType = ("[pc.vagina " + idx + "]");
+				lipType = ("[pc.vagina " + idx + "] lips");
 			}
 			
 			clearOutput();
@@ -326,7 +326,7 @@
 				default:
 					sizeDiff = Math.max(1, Math.round(sizeDiff / 2));
 					if(sizeType == "decrease") sizeDiff *= -1;
-					if(target.lipMod + sizeDiff < 0) sizeDiff = 0;
+					if(target.lipMod + sizeDiff < -10) sizeDiff = 0;
 					else if(target.lipModUnlocked(target.lipMod + sizeDiff)) sizeChanged = true;
 					break;
 				case "lipple":

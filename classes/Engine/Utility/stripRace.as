@@ -15,7 +15,7 @@
 		if(sRace.indexOf("half ") != -1)
 		{
 			if(fromPC) sRace = "human";
-			sRace = sRace.replace("half-", "");
+			sRace = sRace.replace("half ", "");
 		}
 		if(sRace.indexOf("part ") != -1) sRace = sRace.replace("part ", "");
 		
@@ -28,14 +28,22 @@
 		if(sRace.indexOf(" halfbreed") != -1) sRace = sRace.replace(" halfbreed", "");
 		if(sRace.indexOf("-girl") != -1) sRace = sRace.replace("-girl", "");
 		if(sRace.indexOf("-boy") != -1) sRace = sRace.replace("-boy", "");
+		if(sRace.indexOf("-boi") != -1) sRace = sRace.replace("-boi", "");
+		if(sRace.indexOf("-man") != -1) sRace = sRace.replace("-man", "");
 		
 		// Names
 		if(sRace.indexOf("robot") != -1 || sRace.indexOf("machine") != -1 || sRace.indexOf("droid") != -1 || sRace.indexOf("automaton") != -1 || sRace.indexOf("conglomerate") != -1 || sRace.indexOf("junker") != -1) sRace = "robot";
 		if(sRace.indexOf("anthro") != -1) sRace = "anthro";
 		if(InCollection(sRace, ["cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
 		if(InCollection(sRace, ["horse", "alicorn", "unicorn", "pegasus"])) sRace = "equine";
-		if(InCollection(sRace, ["hellhound", "husky"])) sRace = "canine";
-		if(InCollection(sRace, ["chakat", "nekomata", "dragonne"])) sRace = "feline";
+		if(InCollection(sRace, ["dog", "doge", "puppy", "bitch", "hellhound", "husky"])) sRace = "canine";
+		if(InCollection(sRace, ["fox", "vixen"])) sRace = "vulpine";
+		if(InCollection(sRace, ["wolf", "worg"])) sRace = "lupine";
+		if(InCollection(sRace, ["cat", "kitten", "tiger", "tigeress", "panther", "jaguar", "cheetah", "lion", "lioness", "chakat", "nekomata", "dragonne"])) sRace = "feline";
+		if(InCollection(sRace, ["satyr"])) sRace = "goat";
+		if(InCollection(sRace, ["sheep", "ram", "lamb"])) sRace = "ovine";
+		//if(InCollection(sRace, ["griffin", "hippogriff", "quetzalcoatl", "phoenix", "vulpogryph", "sirin", "harpy"])) sRace = "avian";
+		if(sRace.indexOf("shark") != -1 || InCollection(sRace, ["megalodon"])) sRace = "shark";
 		if(InCollection(sRace, ["treant", "dryad"])) sRace = "plant";
 		if(sRace.indexOf("'rahn") != -1) sRace = "rahn";
 		if(sRace.indexOf("goblin") != -1) sRace = "gabilani";

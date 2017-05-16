@@ -144,7 +144,6 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "WetraHound";
-			
 			this._isLoading = false;
 		}
 		

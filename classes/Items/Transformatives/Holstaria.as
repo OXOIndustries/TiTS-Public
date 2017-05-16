@@ -429,7 +429,7 @@
 				{
 					if(subCockLength > target.cocks[i].cLengthRaw) subCockLength = Math.floor(target.cocks[i].cLengthRaw);
 					newCockLength = target.cocks[i].cLengthRaw - subCockLength;
-					if(newCockLength >= 3 && target.cockLengthUnlocked(i, newCockLength)) needShrinks.push(i);
+					if(newCockLength >= 3 && target.cockLengthUnlocked(i, newCockLength)) needShrinks.push([i, newCockLength]);
 					if(newCockLength < 3 && target.removeCockUnlocked(i, 1)) penisBegone.push(i);
 				}
 				if((needShrinks.length + penisBegone.length) > 0)
@@ -442,19 +442,25 @@
 					
 					for(i = 0; i < needShrinks.length; i++)
 					{
-						target.cocks[needShrinks[i]].cLengthRaw = newCockLength;
+						target.cocks[needShrinks[i][0]].cLengthRaw = needShrinks[i][1];
 					}
-					for(i = 0; i < penisBegone.length; i++)
+					for(i = (penisBegone.length - 1); i >= 0; i--)
 					{
 						target.removeCock(penisBegone[i]);
 					}
 					
+					if(!target.hasCock() && target.balls > 0)
+					{
+						output(" Including the disappearance of your [pc.sack]...");
+						target.balls = 0;
+					}
+					
 					// New pussy:
-					if(needShrinks.length <= 0 && target.removeCocksUnlocked() && !target.hasVagina() && target.createVaginaUnlocked(1))
+					if(needShrinks.length <= 0 && (!target.hasCock() || target.removeCocksUnlocked()) && !target.hasVagina() && target.createVaginaUnlocked(1))
 					{
 						output("\n\nBut you’re not done yet. As the last bit of your male endowment vanishes, a new feminine feeling wells up in its place. Your pubic mound puffs outward with new fatness, coming to a sharp inward crease as if sporting tight cameltoe. You marvel as the puffy petals part to reveal a black interior glistening with fresh juices. <b>You’ve grown a pussy!</b>");
 						
-						target.removeCocks();
+						if(target.hasCock()) target.removeCocks();
 						target.createVagina();
 						vaginaTF(target);
 					}

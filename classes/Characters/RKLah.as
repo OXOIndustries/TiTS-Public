@@ -234,20 +234,19 @@ package classes.Characters
 			if(combatMiss(this, target)) output("You manage to sidestep the attack.");
 			else
 			{
+				if(target.shields() <= 0) output("His claws rake viciously through your [pc.skin].");
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(0.5);
 				applyDamage(damageRand(damage, 15), this, target);
-
-				if(target.shields() <= 0) output("His claws rake viciously through your [pc.skin].");
 				//If bleed:
 				if(!target.hasStatusEffect("Bleeding")) 
 				{
 					target.createStatusEffect("Bleeding", 1, 3, 5, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0,0xFF0000);
-					output(" <b>Blood dribbles freely from the ragged wound.</b>");
+					output("\n<b>Blood dribbles freely from the ragged wound.</b>");
 				}
 				else 
 				{
-					output(" <b>The deepened cuts bleed faster!</b>");
+					output("\n<b>The deepened cuts bleed faster!</b>");
 					// Add a stack and refresh duration
 					target.addStatusValue("Bleeding", 1, 1);
 					target.setStatusValue("Bleeding", 2, 3);
@@ -283,12 +282,12 @@ package classes.Characters
 				{
 					if(!target.hasStatusEffect("Bleeding"))
 					{
-						output(" Horribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet]. <b>You are bleeding.</b>");
+						output("\nHorribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet]. <b>You are bleeding.</b>");
 						target.createStatusEffect("Bleeding", 1, 3, 5, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0,0xFF0000);
 					}
 					else 
 					{
-						output(" <b>The deepened cuts bleed faster!</b>");
+						output("\n<b>The deepened cuts bleed faster!</b>");
 						// Add a stack and refresh duration
 						target.addStatusValue("Bleeding", 1, 1);
 						target.setStatusValue("Bleeding", 2, 3);
@@ -311,9 +310,9 @@ package classes.Characters
 			if(combatMiss(this, target)) output("\nYou manage to sidestep the attack.");
 			else
 			{
+				output(" You instinctively throw your arms in the way, saving your face at the expense of searing pain against your palms. Fffffffuck that stings!");
 				var damage:TypeCollection = new TypeCollection( { electric: 15 } );
 				applyDamage(damageRand(damage, 15), this, target);
-				output(" You instinctively throw your arms in the way, saving your face at the expense of searing pain against your palms. Fffffffuck that stings!");
 				if(rand(2) == 0 && !target.hasStatusEffect("Burning") && target.shields() <= 0)
   				{
   					output("\n<b>You are now on fire!</b>");

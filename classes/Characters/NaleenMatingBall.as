@@ -194,7 +194,6 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "Naleen";
-
 			this._isLoading = false;
 		}
 		

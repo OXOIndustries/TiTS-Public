@@ -184,7 +184,6 @@
 				long += " A misty cloud of [pc.cumColor] billows around the eggs, clinging to several of the outliers. If they weren’t fertilized already, then you’ve certainly got a few new kids on the way. The gooey incubator looks at you with wild eyes, her arms clutching her eggy belly protectively. Looks like this artificial momma will do anything to protect her clutch!";
 				lustRaw = 0;
 			}
-			
 			this._isLoading = false;
 		}
 		

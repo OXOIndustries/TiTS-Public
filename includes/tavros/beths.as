@@ -1759,6 +1759,10 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		output("”</i>");
 		
 		processTime(3);
+		
+		pc.createStatusEffect("Cum Paused");
+		pc.createStatusEffect("Milk Paused");
+		
 		clearMenu();
 		addButton(0, "Next", bethsPermaContractBadEnd, (pc.isFemboy() ? "sign trap" : "sign next"));
 		return;
@@ -1974,7 +1978,8 @@ public function brothelTurnTrixLadyNonFem():void
 		}
 	}
 	// [Ok] [Nope]
-	addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+	if(pc.hasVagina() && pc.hasWombPregnancy()) addDisabledButton(0, "Okay", "Okay", "It is too dangerous to try this while you are pregnant!");
+	else addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
 	addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
 }
 
@@ -2070,7 +2075,8 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			
 			processTime(1);
 			
-			addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+			if(pc.hasVagina() && pc.hasWombPregnancy()) addDisabledButton(0, "Okay", "Okay", "It is too dangerous to try this while you are pregnant!");
+			else addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
 			addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
 			break;
 		case "license":
@@ -2134,6 +2140,9 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			
 			processTime(2);
 			
+			pc.createStatusEffect("Cum Paused");
+			pc.createStatusEffect("Milk Paused");
+			
 			addButton(0, "Next", brothelTrappifyAnswer, "trapification");
 			break;
 		case "trapification":
@@ -2178,12 +2187,18 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			if(pc.biggestTitSize() > 1)
 			{
 				msg += ParseText("Intense pressure clamps around your [pc.chest], the soft flesh there feeling like it is being pushed inwards. You massage your boobs and take deep breaths, urging the sensation to pass. Which it does, but not before your proud bust has been winnowed down to a winsome, timid pair of A cups; bare, sensitive handfuls. ");
-				pc.milkFullness = 0;
-				for(i = 0; i < pc.bRows(); i++)
+				if(pc.breastRows.length > 1)
 				{
-					pc.breastRows[i].breastRatingRaw = 1;
-					pc.breastRows[i].breastRatingHoneypotMod = 0;
+					while (pc.breastRows.length > 1)
+					{
+						pc.removeBreastRow((pc.breastRows.length - 1), 1);
+					}
 				}
+				pc.breastRows[0].breasts = 2;
+				pc.breastRows[0].breastRatingRaw = 1;
+				pc.breastRows[0].breastRatingHoneypotMod = 0;
+				pc.breastRows[0].breastRatingLactationMod = 0;
+				pc.milkFullness = 0;
 				minPass += 2;
 			}
 			// If height > 5'5" reduce to 5'5"
@@ -2419,7 +2434,9 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			
 			processTime(2);
 			
-			// [Sign Contract] [Leave]
+			pc.removeStatusEffect("Cum Paused");
+			pc.removeStatusEffect("Milk Paused");
+			
 			addButton(0, "Next", move, rooms[currentLocation].westExit);
 			break;
 		// [Sign Contract]

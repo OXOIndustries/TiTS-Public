@@ -818,7 +818,7 @@ public function disarmDelsTrap():void
 	output(". ");
 	if(pc.isTaur())
 	{
-		output("Before pushing in, though, you mount the girlish Del. Placing a [pc.foot] on the countertop, you raise yourself up and plant the other, holding your [pc.race] bulk over your diminutive lover. She winces as your [pc.feet] touch the bar and your ");
+		output("Before pushing in, though, you mount the girlish Del. Placing a [pc.foot] on the countertop, you raise yourself up and plant the other, holding your [pc.raceShort] bulk over your diminutive lover. She winces as your [pc.feet] touch the bar and your ");
 		if(x == 100) output("holo-");
 		output("crown touches her anus, ");
 		//(sexed<5)

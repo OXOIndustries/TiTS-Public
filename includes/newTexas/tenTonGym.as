@@ -34,7 +34,9 @@ public function gymEntranceBonus():Boolean
 	else if(!pc.hasKeyItem("Ten Ton Gym Membership") && !pc.hasStatusEffect("Gym Pass")) output("\n\nUpon seeing you walk in, Quenton’s familiar grin lights up his face. <i>“How do, friend? Good to see you back. Here for a workout?”</i>");
 	//Has gym membership: 
 	else output("\n\nQuenton grins and waves to you as you walk inside. <i>“How do, [pc.name]? Good to see you back. Enjoy your workout.”</i>");
-
+	
+	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+	
 	//[Quenton] Go to Talk to Quenton
 	//[To Hallway]{locked if PC doesn’t have membership}
 	//[To Weight Room]{locked if PC doesn’t have membership}
@@ -50,7 +52,7 @@ public function passDetector():Boolean
 		showName("NONE\nSHALL PASS");
 		output("A strong arm bars your progress. <i>“Whoah! Sorry, but ya got ta have a pass to use the facilities.”</i>");
 		currentLocation = "569";
-		generateMapForLocation(currentLocation);
+		generateMap();
 		showName("TEN\nTON GYM");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -132,7 +134,7 @@ public function hardWorkout():void
 	output("\n\nOne of the bulls starts lifting at the bar next to you, and an impromptu contest begins, both of you lifting heavier and heavier weights as the other does. You grit your teeth and push through it, determined to show the locals you’ve got what it takes.");
 	output("\n\nThe contest comes to an abrupt end when a cowgirl walks by and tickles the bull’s crotch, nearly making him drop the bar. He struggles to right his weight, and you do the same. It’s a strain to even sit up after that, but you nod to your worthy opponent, then head off to stretch out the soreness.");
 	output("\n\nYour muscles have become considerably more toned.");
-	//{+3 muscle tone, +2 toward [Sore] debuff, +2 [Sweaty], -50 energy}{Time: 30 minutes}");
+	// +3 muscle tone, +2 toward [Sore] debuff, +2 [Sweaty], -50 energy}{Time: 30 minutes}"
 	processTime(30);
 	pc.energy(-50);
 	soreDebuff(2);
@@ -172,7 +174,7 @@ public function takeAJogInTenTonGym():void
 	output("You hit the track at a moderate pace, working your way up to a swift walk, then a gentle jog. After about half a lap, you catch up with the group of cows, and fall in with them. It seems like they’re here to chat just as much as they’re here to work out, and most of the conversation revolves around the local bulls and who’s best in the sack, though there’s mention of some curious people working at the nearby barn.");
 	output("\n\nYou do a few more laps with the locals, then excuse yourself, slowing to a walk and heading off the track. It’s an easy workout, but it leaves you with a healthy glow and a light sweat once you’re done.");
 	output("\n\nYou feel slightly trimmer after your workout.");
-	//{-1 frame, +1 toward [Sore] debuff, +1 [Sweaty], -30 energy}{Time: 30 minutes}
+	// -1 frame, +1 toward [Sore] debuff, +1 [Sweaty], -30 energy {Time: 30 minutes}
 	processTime(30);
 	pc.modThickness(-1,false);
 	soreDebuff(1);
@@ -192,7 +194,7 @@ public function takeARunInNewTexas():void
 	output("\n\nYou move over to the side to let them pass, then speed up to match their pace, running in time along with them. A few of them grunt a greeting, but every one of them is breathing hard, sweat flowing freely down their chests. They set a grueling pace, but you match it and keep up with them for at least a few miles.");
 	output("\n\nSoon, you’re dripping sweat and have to cool off. One of the bulls razzes you about not being able to keep up, but running with them until you collapse doesn’t sound like the best idea. You head off the track, then grab a gym towel and wipe yourself off.");
 	output("\n\nYou feel like you’ve shed a few pounds from that workout.");
-	//{-3 frame, +2 toward [Sore] debuff, +2 [Sweaty], -50 energy}{Time: 30 minutes}
+	// -3 frame, +2 toward [Sore] debuff, +2 [Sweaty], -50 energy {Time: 30 minutes}
 	pc.slowStatGain("reflexes",1);
 	processTime(30);
 	pc.modThickness(-3,false);
@@ -315,7 +317,7 @@ public function quickSwim():void
 	output("\n\nOnce the water’s past your waist, you plunge in and swim a few laps. It’s amazingly refreshing, and you turn on your back and float, letting your worries wash away with the water.");
 	output("\n\nAfter a few moments, you remind yourself that you’re here to work out, not drift away, and you push yourself a little through a few more laps. It’s a good workout, and leaves you feeling tired but energized.");
 	output("\n\nYou feel a little stronger and fitter after your swim.");
-	//{+1 muscle tone, -1 frame, +1 toward [Sore] debuff, -30 energy}{Time: 30 minutes}
+	// +1 muscle tone, -1 frame, +1 toward [Sore] debuff, -30 energy {Time: 30 minutes}
 	pc.modTone(1,false);
 	pc.modThickness( -1, false);
 	pc.shower();
@@ -337,7 +339,7 @@ public function swimLapsAtZePool():void
 	output("\n\nAfter a few laps, you swim up alongside the local cows who are also doing laps, and nod a quick greeting to them, then match their pace. They clearly do this a lot, and it’s a struggle at first, but you manage to stay with them for a while.");
 	output("\n\nSoon enough, your limbs start feeling heavy, and your once-smooth strokes start to stutter. You swim for the edge and pull yourself out, sore but satisfied.");
 	output("\n\nYou feel stronger and fitter after your swim.");
-	//{+2 muscle tone, -2 frame, +2 toward [Sore] debuff, -50 energy}{Time: 30 minutes}
+	// +2 muscle tone, -2 frame, +2 toward [Sore] debuff, -50 energy {Time: 30 minutes}
 	processTime(30);
 	pc.slowStatGain("aim",1);
 	pc.energy(-50);
@@ -359,7 +361,7 @@ public function spaTimesFunStuff():void
 	output("\n\nThe smooth water is just barely beneath too hot, but once you get used to it, you let out a deep sigh of relief. You find a place to relax among the bubbling jets, and let the warm water soothe away your aches and pains.");
 	output("\n\nAs you suspected before, not all the water’s motion is from the jets. There are several couples enjoying both the spa and each other, thrusting together in slow, lazy strokes. Pretty much what you’d expect for New Texas. Must be a great way to come down from a workout.");
 	output("\n\nAfter a while, you feel yourself starting to get too warm, and climb out. The air feels suddenly cold, a bit bracing but not uncomfortable. Time to find a towel.");
-	//{+20 energy, +15-20 Lust}{Time: 20 minutes}
+	// +20 energy, +15-20 Lust {Time: 20 minutes}
 	processTime(20);
 	pc.energy(20);
 	pc.lust(15+rand(5));
@@ -401,7 +403,7 @@ public function takeAShowerSloot():void
 	{
 		output("\n\nThe hot water washes away your sweat and soreness, and it’s a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end, and you soon head out and towel yourself off, then get dressed again.");
 		output("\n\nYou needed that.");
-		//{Remove all [Sweaty]}{Time: 10 minutes}
+		// Remove all [Sweaty] {Time: 10 minutes}
 	}
 	else
 	{
@@ -498,7 +500,7 @@ public function purchaseTempGymMembershipConfirm():void
 	pc.credits -= 500;
 	pc.createStatusEffect("Gym Pass", 0, 0, 0, 0, false, "Icon_Haste", "You have a temporary gym pass to the Ten Ton Gym on New Texas.", false, 1440);
 	variableRoomUpdateCheck();
-	generateMapForLocation(currentLocation);
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -529,7 +531,7 @@ public function purchaseLifetimeGymMembership():void
 	pc.credits -= 10000;
 	pc.createKeyItem("Ten Ton Gym Membership",0,0,0,0);
 	variableRoomUpdateCheck();
-	generateMapForLocation(currentLocation);
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -559,10 +561,18 @@ public function quentonPersonalTraining():void
 		if(flags["SEXED_QUENTON"] == undefined) output("<i>“Oh, I get what you’re sayin’,”</i> Quenton says, and stands up to his full height. He puffs out his chest, pecs straining against his shirt, stretching the gym’s logo across his musculature. <i>“There’s nothin’ I like more than a good, hard body against mine, except maybe a good lift. And even that’s made better with a good lay after. Or maybe durin’.”</i> He chuckles. <i>“So I’m up for it if you’re askin’.”</i>");
 		// and has had sex with Quenton: 
 		else output("<i>“You know I do,”</i> Quenton says with a chuckle. <i>“You’re up for another round, then, hardbody?”</i>");
+		
+		rooms["569"].removeFlag(GLOBAL.NPC);
+		rooms["TEN TON OFFICE"].addFlag(GLOBAL.NPC);
+		currentLocation = "TEN TON OFFICE";
+		generateMap();
+		
 		output("\n\nDamn right you are. Quenton props a sign that says ‘Be Back Soon’ on the desk, then opens up the door to his office and invites you in, closing the door behind you both.");
 		output("\n\nQuenton’s office is small but simple, with a desk and cabinet taking up about half of it. Lights shine down from the ceiling, and two of the walls are nothing but enormous mirrors.");
 		output("\n\nThe short-horned bull takes a bottle of lube out of one desk drawer, then strips out of his shirt and pants, and spreads his arms and legs as he flexes for you. Quenton is ridiculously ripped, with veins standing out over rock-hard muscles bulging beneath his tanned skin. His foot-long horse cock also has thick veins standing out on either side, with a pair of bulging balls dangling behind it. He’s also entirely hairless, further making all of his muscles and his pronounced package stand out.");
 		output("\n\nQuenton flexes his way through a few poses, then turns to you with a grin, clearly hoping you like what you see. <i>“You pitchin’ or catchin’, hardbody? I’m good for you either way.”</i>");
+		
+		processTime(1);
 		
 		// [Pitch] Go to Pitching Quenton {requires penis or strap-on}
 		// [Catch] Go to Catching Quenton
@@ -571,6 +581,21 @@ public function quentonPersonalTraining():void
 		else addDisabledButton(2, "Pitch", "Pitch", "You don’t have the proper equipment for this.");
 		addButton(1, "Catch", quentonTrainingCatch, "catch", "Catch", "Have him take you from behind.");
 	}
+}
+public function doYouEvenLiftBro():void
+{
+	clearOutput();
+	output("Do you even lift, bro?" + pc.modTone(100));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function quentonTrainingFinish():void
+{
+	processTime(1);
+	rooms["TEN TON OFFICE"].removeFlag(GLOBAL.NPC);
+	rooms["569"].addFlag(GLOBAL.NPC);
+	currentLocation = "569";
+	mainGameMenu();
 }
 
 // Pitching Quenton
@@ -687,7 +712,7 @@ public function quentonTrainingPitch():void
 	
 	// [Done] Go to Entrance
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", quentonTrainingFinish);
 }
 
 // Catching Quenton
@@ -835,7 +860,7 @@ public function quentonTrainingCatch(response:String = ""):void
 	
 	// [Done] Go to Entrance
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", quentonTrainingFinish);
 }
 
 // Simone

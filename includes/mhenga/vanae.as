@@ -43,7 +43,7 @@ public function encounterVanae(isHuntress:Boolean):void
 			output("\n\nIt seems she was trying to hit you with the blunt end though - was she trying to knock you out?");
 			
 			output("\n\n<i>“... Whoops, I missed. You’re no ordinary");
-			if(pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+			if(pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
 			else output(" off-worlder");
 			output("!”</i> the vanae woman exclaims. She looks fairly humanoid, except for her tentacle hair, tail, and organic skirt. Her tentacles are violet colored and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing violet swirls and patterns, just like her hair.");
 			
@@ -113,7 +113,7 @@ public function encounterVanae(isHuntress:Boolean):void
 			output(" You’re glad you moved first, because a vanae huntress lands right where you were standing with a thud. She just came out of nowhere!");
 
 			output("\n\n<i>“I missed? You’re no ordinary");
-			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
 			else output(" off-worlder");
 			output(".”</i> She looks completely perplexed at your ability to sense her beforehand. You’re pretty sure she wouldn’t get it even if you explained it to her.");
 
@@ -214,14 +214,16 @@ public function vanaeTFScene():void
 	switch (options[rand(options.length)])
 	{
 		case "cock":
-			// Increase PC's ballEfficiency and cumMultiplier
-			if (pc.ballEfficiency < 5) pc.ballEfficiency += 0.25;
-			if (pc.ballEfficiency < 4) pc.ballEfficiency += 0.25;
-			if (pc.ballEfficiency < 3) pc.ballEfficiency += 0.25;
+			var cumChanged:Boolean = false;
 			
-			if (pc.cumMultiplier() < 3) pc.cumMultiplierRaw += 0.25;
-			if (pc.cumMultiplier() < 2) pc.cumMultiplierRaw += 0.25;
-			if (pc.cumMultiplier() < 1) pc.cumMultiplierRaw += 0.25;
+			// Increase PC's ballEfficiency and cumMultiplier
+			if (pc.ballEfficiency < 5) {pc.ballEfficiency += 0.25; cumChanged = true}
+			if (pc.ballEfficiency < 4) {pc.ballEfficiency += 0.25; cumChanged = true}
+			if (pc.ballEfficiency < 3) {pc.ballEfficiency += 0.25; cumChanged = true}
+			
+			if (pc.cumMultiplier() < 3) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
+			if (pc.cumMultiplier() < 2) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
+			if (pc.cumMultiplier() < 1) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
 			
 			output("Your [pc.cocks]");
 			if (pc.cocks.length > 1) output(" tingle and throb");
@@ -231,7 +233,8 @@ public function vanaeTFScene():void
 			output(" let out a deep guttural groan. When you can’t hold it any longer, you cry out as");
 			if (pc.cumQ() <= 200) output(" a small fountain of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurts");
 			else output(" small fountains of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurt");
-			output(" uncontrollably from your [pc.cockHeads]. <b>Your cum production has increased!</b>");
+			output(" uncontrollably from your [pc.cockHeads].");
+			if(cumChanged) output(" <b>Your cum production has increased!</b>");
 			
 			break;
 		
@@ -274,15 +277,17 @@ public function vanaeTFScene():void
 			
 			output("Deep inside of your [pc.vaginas], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCum] jump from your soppy slit");
 			if (pc.vaginas.length > 1) output("s");
-			output(". <b>Your vaginal wetness has increased"); 
-			if (!pc.isSquirter()) output(" and you are now a squirter");
-			output("!</b>");
+			output(".");
 			
 			for (var i:int = 0; i < pc.vaginas.length; i++)
 			{
 				if ((pc.vaginas[i] as VaginaClass).wetnessRaw < 4) pc.vaginas[i].wetnessRaw = 4;
 				else pc.vaginas[i].wetnessRaw += 0.1;
 			}
+			
+			output(" <b>Your vaginal wetness has increased"); 
+			if (!pc.isSquirter()) output(" and you are now a squirter");
+			output("!</b>");
 
 			break;
 	}
@@ -315,7 +320,7 @@ public function vanaePCVictory():void
 		if (enemy is HuntressVanae)
 		{
 			output("\n\n<i>“W-what manner of");
-			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
 			else output(" creature");
 			output(" are you? I’ve never failed at an ambush before!”</i> the vanae huntress exclaims. Her spear is lying far away from her now. She’s completely at your mercy...");
 
@@ -335,7 +340,7 @@ public function vanaePCVictory():void
 			output("The busty huntress can’t take it any longer, letting out a sweet cry as she falls to the ground. All the while she’s stroking her [enemy.clits], gazing at you as she masturbates furiously.");
 
 			output("\n\n<i>“Oh sweet Sky Mother, I can’t take it any longer");
-			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" - I don’t care if you are a [pc.race]");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" - I don’t care if you are a [pc.raceShort]");
 			output(". Please, just fuck me!”</i> she whimpers, plunging her index finger inside of her drooling snatch. She lewdly spreads her [enemy.legs] just so you can see just how sopping wet she is.");
 		}
 		else
@@ -555,7 +560,7 @@ public function vanaeVictorySexIntro(scene:String):void
 			if (enemy is HuntressVanae)
 			{
 				output("\n\n<i>“Y-you want to breed with me willingly, after I tried to attack you? Um... sure!”</i> Her cheeks flush. Suddenly she’s acting quite coy. <i>“...");
-				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You’re really strange, for a [pc.race]. You’re quite different from others of your kind");
+				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You’re really strange, for a [pc.raceShort]. You’re quite different from others of your kind");
 				else output(" You really aren’t from around here, are you? I’ve never met an off-worlder like you before");
 				output(".”</i>");
 			}
@@ -563,7 +568,7 @@ public function vanaeVictorySexIntro(scene:String):void
 			else
 			{
 				output("\n\n<i>“Y-you’re serious? Really? You’re not just messing with me?”</i> The girly huntress lifts her head and releases her legs. You’d swear she was looking at you, but her eyelids are firmly closed. <i>“... You’re not a normal");
-				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
 				else output(" off-worlder");
 				output(", are you? I mean, I don’t have much experience to speak of, but I’m pretty sure this isn’t normal. You’re supposed to eat me or something.”</i>");
 			}
@@ -1028,7 +1033,7 @@ public function vanaeHuntressVaginalSex():void
 	else output("\n\nIs... is every pussy as good as this?! You can’t believe you’ve gone without sex for so long before now. You’re not sure you’ll ever be the same again.");
 
 	output("\n\n<i>“Oh sweet Sky Mother, your cock feels so good pressing deep inside of me!”</i> the busty huntress whimpers. As you stir around inside of her licking honey pot, her webbed fingers cling to your back, digging into your [pc.skinFurScales]. You keep a firm grip on her [enemy.hips] as she wiggles about; her alien insides pressing, lashing, and clenching excitedly around your [pc.cock " + selCock + "]. <i>“Fuck me harder,");
-	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" you damn [pc.race]!");
+	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" you damn [pc.raceShort]!");
 	else output(" off-worlder!");
 	output(" Shove your [pc.cock " + selCock + "] deep inside of me and fill my womb with your wonderful spunk. Breed me!”</i>");
 
@@ -1520,7 +1525,7 @@ public function vanaeHuntressMilkBath():void
 		if (pc.hasCock()) output(" [pc.cum]");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.girlcum]");
-		output(" explode from your [pc.groin] and shoots all over the place. You continue to spasm spastically and unload like a [pc.race]-shaped geyser until you are utterly spent.");
+		output(" explode from your [pc.groin] and shoots all over the place. You continue to spasm spastically and unload like a [pc.raceShort]-shaped geyser until you are utterly spent.");
 
 		output("\n\n<i>“Couldn’t hold out anymore? I understand, it’s pretty intense. But we’re nowhere near finished yet");
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(" , off-worlder");
@@ -1529,7 +1534,7 @@ public function vanaeHuntressMilkBath():void
 		output("\n\nShe reaches out with a single toe and strokes your slimy loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you’re already unloading more of your spunk, letting it splash wildly against the underside of her [enemy.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you’ve ever experienced.");
 
 		output("\n\n<i>“You want more,");
-		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
 		else output(" off-worlder");
 		output("? Okay then, I can do that,”</i> she purrs, stroking you off with her foot. Her very touch feels more incredible than sex as you continue to spasm and spurt shamelessly.");
 
@@ -1699,7 +1704,7 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	// Max Length 12 inches.
 
 	output("\n\nThe exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. <i>“... Today is a very good day for you,");
-	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
 	else output(" off-worlder");
 	output(". I’m fertile and raring to go.”</i>");
 
@@ -1878,7 +1883,7 @@ public function vanaeHuntressPCDefeatMilkbath():void
 		if (pc.hasCock()) output(" [pc.cum]");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.girlcum]");
-		output(" explode from your [pc.groin] and shoot all over the place. You continue to spasm spastically and unload like a [pc.race]-shaped jism geyser until you are utterly spent. ");
+		output(" explode from your [pc.groin] and shoot all over the place. You continue to spasm spastically and unload like a [pc.raceShort]-shaped jism geyser until you are utterly spent. ");
 
 		output("\n\n<i>“Couldn’t hold out anymore? I understand, it’s pretty intense. But we’re nowhere near finished yet");
 		if (pc.zilScore() < 4 && pc.naleenScore() < 5) output(", off-worlder");
@@ -1887,7 +1892,7 @@ public function vanaeHuntressPCDefeatMilkbath():void
 		output("\n\nShe reaches out with a single toe and strokes your slimy loins. The tiniest touch causes your lower body to seize up with pleasure. A few strokes and you’re already unloading more of your spunk, letting it splash wildly against the underside of her [enemy.foot]. You moan and beg for more; her drug enhanced touch more intense than anything you’ve ever experienced.");
 
 		output("\n\n<i>“You want more,");
-		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.raceShort]");
 		else output(" off-worlder");
 		output("? Okay then, I can do that,”</i> she purrs, stroking you off with her foot. Her very touch feels more incredible than sex as you continue to spasm and spurt shamelessly.");
 

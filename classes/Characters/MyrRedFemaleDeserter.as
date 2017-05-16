@@ -210,7 +210,6 @@
 				a = "";
 				capitalA = "";
 			}
-			
 			this._isLoading = false;
 		}
 		

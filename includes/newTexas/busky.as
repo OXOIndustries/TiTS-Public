@@ -559,7 +559,7 @@ public function buskySexGetBlown():void {
 		if(pc.hasArmor()) output(" fiddling with your clothes until he finally gets access to your package,");
 		output(" and buries his face in your crotch, your fully erect [pc.cocks] already throbbing against it.");
 		
-		output("\n\nOvercome by Busky’s pheromones saturating the air, it’s all you can do to lean back against the countertop, a limp smile crawling across your face as Busky presses his face against your [pc.race] crotch");
+		output("\n\nOvercome by Busky’s pheromones saturating the air, it’s all you can do to lean back against the countertop, a limp smile crawling across your face as Busky presses his face against your " + GLOBAL.TYPE_NAMES[pc.cocks[cockIndex].cType].toLowerCase() + " crotch");
 		if(pc.hasPerk("Pheromone Cloud")) output(", drinking in the overwhelming scent of masculinity emanating from you");
 		output(".");
 	

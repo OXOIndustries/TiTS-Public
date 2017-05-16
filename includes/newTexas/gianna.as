@@ -126,9 +126,9 @@ public function giannaAvailableSilicone(arg:int = 0):Number
 //  ACTUAL CONTENT FUNCTIONS
 //================================
 
-public function giannaBonusShit():Boolean
+public function giannaBonusShit():void
 {
-	if(giannaAWOL()) return false;
+	if(giannaAWOL()) return;
 	
 	//Unmet blurb
 	if(flags["MET_GIANNA"] == undefined)
@@ -205,7 +205,6 @@ public function giannaBonusShit():Boolean
 	}
 	addButton(0,"Gianna",approachGianna,undefined,"Gianna","Approach the naked android.");
 	if(flags["MET_GIANNA"] == undefined) addButton(0,"Android",approachGianna,undefined,"Android","Approach the naked android.");
-	return false;
 }
 
 public function approachGianna(special:String = ""):void
@@ -3160,6 +3159,7 @@ public function suckGiannasRoboCockDuring69():void
 	output("\n\nShe holds the door for you once you gather your gear, and you walk back into the barn proper together. It swings closed, hiding the evidence of your tryst from casual inspection. Not that the locals would notice or care.");
 	processTime(10);
 	pc.orgasm();
+	pc.loadInMouth(chars["GIANNA"]);
 	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3245,6 +3245,7 @@ public function eatOutPussyOfRoboChicksDuring69():void
 	output("\n\nYou wipe the cherry-flavored evidence of Gianna’s lust from your [pc.face] and sit up with a sated smile. She’s smiling over at you and shaking her head, eminently pleased. The android helps you gather your things and holds the door for you with a sated smile.");
 	processTime(11);
 	pc.orgasm();
+	pc.girlCumInMouth(chars["GIANNA"]);
 	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -4112,7 +4113,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 	}
 	if(arg == "clit")
 	{
-		
+		/* Nada */
 	}
 }
 

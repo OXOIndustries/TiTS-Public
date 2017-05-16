@@ -169,19 +169,24 @@ public function tavrosHangarStuff():Boolean
 	return false;
 }
 
-public function merchantThoroughfareBonus():void
+public function merchantThoroughfareBonus():Boolean
 {
 	if(currentLocation == "9015")
 	{
 		vendingMachineButton(0, "J'ejune");
 	}
-	
+	if(currentLocation == "9017")
+	{
+		repeatGilBonus();
+	}
 	if(currentLocation == "9018")
 	{
 		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
+		if(gilPupperProccer()) return true;
 	}
 	else flags["NAV_DISABLED"] = undefined;
+	return false;
 }
 
 public function redlightNEBonus():void

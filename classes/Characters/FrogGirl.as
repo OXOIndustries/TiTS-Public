@@ -179,7 +179,6 @@
 			this.createStatusEffect("Disarm Immune");
 
 			this.inventory.push(new KerokorasVenom());
-			
 			isUniqueInFight = true;
 			btnTargetText = "Froggirl";
 			

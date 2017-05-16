@@ -1299,7 +1299,7 @@ public function yesYouCanDomMeXanthe():void
 	clearOutput();
 	showXanthe();
 	output("You can’t deny her words, instead looking at your [pc.feet] with flushing cheeks. Soon you feel a curved finger being slipped underneath your chin, bringing it upwards until you are staring into her eyes.");
-	output("\n\n<i>“Submit to me, my " + pc.mf("handsome","beautiful") + " [pc.race], and I will love you and take care of you until the end of days.”</i> A gentle kiss is lavished on your raised jawline and fills you with incredible warmth. <i>“I will fiercely protect you like no other, and others will know that you belong to ME.”</i>");
+	output("\n\n<i>“Submit to me, my " + pc.mf("handsome","beautiful") + " [pc.raceCuteShort], and I will love you and take care of you until the end of days.”</i> A gentle kiss is lavished on your raised jawline and fills you with incredible warmth. <i>“I will fiercely protect you like no other, and others will know that you belong to ME.”</i>");
 	output("\n\nHer sudden burst of possessiveness and sweet, caring promises cause");
 	if(pc.hasKnees()) output(" your [pc.knees]");
 	else output("s you");
@@ -1614,6 +1614,8 @@ public function leftTeasedForEver(x:int = 0):void
 	output("\n\n<i>“There there, pet, it’s okay. You’re safe and in my arms.”</i> Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It’s not long before you fall into the most incredibly deep sleep in her arms.");
 	
 	//days += 3;
+	pc.createStatusEffect("Cum Paused");
+	pc.createStatusEffect("Milk Paused");
 	processTime(30 + (60 * 24 * 3));
 	clearMenu();
 	addButton(0,"Next",goodGodJimTLetItEndXantheStrappedUp);
@@ -1628,6 +1630,8 @@ public function goodGodJimTLetItEndXantheStrappedUp():void
 	output("<b>...The next day...</b>");
 	output("\n\nWhen you wake up, get dressed, and leave the dungeon, you feel like the last four days were some wonderful dream. Your body aches all over, yet you’re filled with an ongoing high and a slight skip in your step.");
 	processTime(1320);
+	pc.removeStatusEffect("Cum Paused");
+	pc.removeStatusEffect("Milk Paused");
 	pc.orgasm();
 	flags["XANTHE_MATED"] = 1;
 	sleepHeal();
@@ -1758,7 +1762,7 @@ public function notASlutXanthe():void
 	showXanthe();
 	output("You object to her calling you a slut! Making cute grumpy noises through your ball gag, you wiggle about and try to show your displeasure.");
 	output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
-	output("\n\n<i>“... You’re </i>not<i> a slut? I guess it must be some </i>other<i> [pc.race] " + pc.mf("boy","girl") + " that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.”</i> Xanthe teases you, all the while lavishing another stinging spank on your [pc.butt].");
+	output("\n\n<i>“... You’re </i>not<i> a slut? I guess it must be some </i>other<i> [pc.raceBoyGirlShort] that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.”</i> Xanthe teases you, all the while lavishing another stinging spank on your [pc.butt].");
 	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
 	if(pc.biggestTitSize() >= 1 && pc.hasCock()) 
 	{
@@ -1886,6 +1890,8 @@ public function slutNotASlutEpilogue():void
 	output("\n\nThe first sensation that returns to you is that of your Mistress’s arms tightly wrapped around you and your [pc.hair] being gently stroked. You nuzzle into the warmth and smell of fresh rain that is obviously her. Soon you can feel your body shiver and tremble spasmodically from the following emotional and physical crash.");
 
 	output("\n\n<i>“There there, pet, it’s okay. You’re safe and in my arms.”</i> Her husky, reassuring words fill your heart with an indescribably intense and heart wrenching sense of love. It’s not long before you fall into the most incredibly deep sleep in her arms.");
+	pc.createStatusEffect("Cum Paused");
+	pc.createStatusEffect("Milk Paused");
 	processTime(55);
 	pc.orgasm();
 	pc.orgasm();
@@ -1905,6 +1911,8 @@ public function epilogueToInflatibleXanthPlugs():void
 	//Rest lust shortly before leaving.
 	pc.orgasm();
 	processTime(100);
+	pc.removeStatusEffect("Cum Paused");
+	pc.removeStatusEffect("Milk Paused");
 	flags["XANTHE_MATED"] = 1;
 	sleepHeal();
 	clearMenu();

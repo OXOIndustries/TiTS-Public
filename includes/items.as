@@ -120,6 +120,12 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 	// If we're looking at an equippable item, equip it
 	if (isEquippableItem(item))
 	{
+		// Preventive measures
+		if(!pc.itemSlotUnlocked(item.type))
+		{
+			itemDisabledMessage(item.type);
+			return;
+		}
 		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
 		equipItem(item);
 	}
@@ -283,9 +289,24 @@ public function buyItem():void {
 			{
 				temp = Math.round(temp * pc.keyItemv1("Coupon - TamaniCorp"));
 			}
-			
-			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
-			output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
+			else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
+			{
+				temp = Math.round(temp * pc.keyItemv1("Coupon - Shear Beauty"));
+			}
+			// Listing inventory exceptions
+			if(shopkeep is VendingMachine)
+			{
+				switch(shopkeep.originalRace)
+				{
+					case "Amazona": output(amazonaIcedTeaList(shopkeep.inventory[x])); break;
+				}
+			}
+			// Default listing
+			else
+			{
+				if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
+				output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
+			}
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
@@ -332,6 +353,11 @@ public function buyItemOK(arg:ItemSlotClass):void
 		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
 		hasCoupon = true;
 	}
+	else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty"));
+		hasCoupon = true;
+	}
 	
 	output("Are you sure you want to buy " + arg.description + " for");
 	if(hasCoupon) output(" a discounted price of");
@@ -366,6 +392,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		{
 			case "J'ejune": jejuneMachineBuyGo(arg); break;
 			case "XXX": xxxMachineBuyGo(arg); break;
+			case "Amazona": amazonaIcedTeaBuyGo(arg); break;
 		}
 	}
 	//Emmy magic!
@@ -391,15 +418,19 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		pc.removeKeyItem(couponName);
 		usedCoupon = true;
 	}
-	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	else if(shopkeep is Lerris && pc.hasKeyItem("Coupon - TamaniCorp"))
 	{
 		price = Math.round(price * pc.keyItemv1("Coupon - TamaniCorp"));
-		pc.removeKeyItem(couponName);
-		usedCoupon = true;
-		output("The coupon saved on your codex is used and instantly changes the final price. ");
 		pc.removeKeyItem("Coupon - TamaniCorp");
+		usedCoupon = true;
 	}
+	else if(shopkeep is Ceria && pc.hasKeyItem("Coupon - Shear Beauty"))
+	{
+		price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty"));
+		pc.removeKeyItem("Coupon - Shear Beauty");
+		usedCoupon = true;
+	}
+	if(usedCoupon) output("The coupon saved on your codex is used and instantly changes the final price. ");
 	
 	output("You purchase " + arg.description + " for " + num2Text(price) + " credits.");
 	pc.credits -= price;
@@ -976,13 +1007,13 @@ public function keyItemDisplayToggleDesc(filter:String = ""):void
 public function equipmentDisplay():void
 {
 	output("<b><u>Equipment:</u></b>\n");
-	output("<b>Melee Weapon:</b> " + StringUtil.toTitleCase(pc.meleeWeapon.description) + "\n");
-	output("<b>Ranged Weapon:</b> " + StringUtil.toTitleCase(pc.rangedWeapon.description) + "\n");
-	output("<b>Armor:</b> " + StringUtil.toTitleCase(pc.armor.description) + "\n");
-	output("<b>Shield:</b> " + StringUtil.toTitleCase(pc.shield.description) + "\n");
-	output("<b>Accessory:</b> " + StringUtil.toTitleCase(pc.accessory.description) + "\n");
-	output("<b>Underwear Bottom:</b> " + StringUtil.toTitleCase(pc.lowerUndergarment.description) + "\n");
-	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toDisplayCase(pc.rangedWeapon.longName) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toDisplayCase(pc.armor.longName) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.shield.longName) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.accessory.longName) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.upperUndergarment.longName) + "\n\n");
 	
 	output("<b><u>Equipment Stats:</u></b>\n");
 	output("<b>" + StringUtil.toDisplayCase(pc.meleeWeapon.longName) + "</b>\n");
@@ -1136,6 +1167,15 @@ public function itemInteractMenu(counter:Boolean = false):Number
 		if (!counter)
 		{
 			itemMessages += omnisuitMenuBonus(count - 1);
+		}
+	}
+	// Hardlight Anti-Grav Thong
+	if (isWearingHardlightAGThong())
+	{
+		count++
+		if (!counter)
+		{
+			itemMessages += hardlightAGThongBonus(count - 1);
 		}
 	}
 	

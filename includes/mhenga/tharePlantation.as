@@ -351,10 +351,10 @@ public function thareAbleMenu(menu:String = "intro"):void
 			// [Buttfuck] [Lick n Ride] [Fuck n Ride]
 			if(pc.hasCock() && pc.smallestCockVolume() <= getAblePregContainer().analCapacity()) addButton(0, "Buttfuck", thareSexResponse, "buttfuck", "Buttfuck", "Put the subby zil’s ass to the use it was made for.");
 			else addDisabledButton(0, "Buttfuck", "Buttfuck", "You need a non-gigantic cock to do this.");
-			if(pc.hasVagina()) addButton(1, "Lick n Ride", thareSexResponse, "lick n ride", "Lick n Ride", "Get licked, then give the zil boy a ride.");
-			else addDisabledButton(1, "Lick n Ride", "Lick n Ride", "You need a pussy for this.");
-			if(pc.hasCock() && pc.smallestCockVolume() <= getAblePregContainer().analCapacity() && pc.hasVagina()) addButton(2, "Fuck n Ride", thareSexResponse, "fuck n ride", "Fuck n Ride", "Do the zil up the butt, then let him mount you.");
-			else addDisabledButton(2, "Fuck n Ride", "Fuck n Ride", "You need a reasonably-sized cock and pussy to do this.");
+			if(pc.hasVagina()) addButton(1, "Lick n Ride", thareSexResponse, "lick n ride", "Lick and Ride", "Get licked, then give the zil boy a ride.");
+			else addDisabledButton(1, "Lick n Ride", "Lick and Ride", "You need a pussy for this.");
+			if(pc.hasCock() && pc.smallestCockVolume() <= getAblePregContainer().analCapacity() && pc.hasVagina()) addButton(2, "Fuck n Ride", thareSexResponse, "fuck n ride", "Fuck and Ride", "Do the zil up the butt, then let him mount you.");
+			else addDisabledButton(2, "Fuck n Ride", "Fuck and Ride", "You need a reasonably-sized cock and pussy to do this.");
 			addButton(9, "Sleep", thareAbleResponse, "sleep", "Sleep", "You’re bagged after the jungle trek and meal. No time for anything but a " + sleepTooltip + ".");
 			break;
 		case "sleep":
