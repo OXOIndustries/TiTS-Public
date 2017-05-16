@@ -15,6 +15,11 @@ import classes.PregnancyData;
 
 //Meet Regular Venus Pitcher
 public function encounterRegularTentaclePitcherYouGay():void {
+	if(venusSubmission() >= 100)
+	{
+		venusBadEnd();
+		return;
+	}
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
 	CodexManager.unlockEntry("Venus Pitchers");
@@ -533,6 +538,11 @@ public function elderVenusPitcherEncounter():void {
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
 	CodexManager.unlockEntry("Venus Pitchers");
+	if(venusSubmission() >= 100)
+	{
+		venusBadEnd();
+		return;
+	}
 	//*First Time
 	if (flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] == undefined) {
 		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] = 1;
@@ -603,7 +613,6 @@ public function elderVenusPitcherEncounter():void {
 		}
 	}
 }
-
 
 //[No]
 public function noRepeatElderVenusPitcher():void {
@@ -1489,3 +1498,238 @@ public function addChildVenusPitcher(numChild:int = 1):void
 	);
 }
 
+public function venusBadEnd():void
+{
+	userInterface.showBust("VENUS_PITCHER_ELDER");
+	userInterface.showName("VENUS\nPITCHER");
+	author("Fenoxo Fenbutt");
+	output("\n\nA familiar-looking figure peeks from out of the thick vegetation to favor you with a friendly wave. It’s a venus pitcher! She’s smiling at you, beaming even, letting her breasts bounce back and forth hypnotically. The diaphanous leaves that cover them may as well be transparent silk for all that they cover. Your eyes are drawn to the faint purple of her nipples, bulging through their botanical wrappings, arcing through the air, left and right... left and right.");
+	output("\n\n<i>“Welcome back,”</i> the verdant vixen all but purrs to you, beckoning you closer with a crooked finger. <i>“The forest sings at your presence... and I... I am ready for your offering.”</i>");
+	output("\n\nYou wipe your nose and smile giddily. You’ve barely found this pitcher and you already feel like a fool in love. Your head swims with the sound of her voice. Every inhalation is a sweetened promise. Your heart thrums. Thoughts come slowly, as if they’ve spent an evening at the bar and have to wobble a great distance to come home. That’s okay, there’s tits in front of you, and they’re getting closer, filling your vision just like her pollen is filling your mind, making you content and malleable.");
+	output("\n\n<i>Stars, you love this feeling.</i>");
+	output("\n\n<i>“Oh, you’re so eager, aren’t you?”</i> The venus pitcher’s voice pours across you like the slowest, warmest wave of amber honey, binding you in comfort and sweet promise. <i>“You off-worlders are truly a gift from the Earthmother. Look how bountiful I’ve become, how lush and </i>ripe<i> your constant visits have made me?”</i>");
+	output("\n\nOf course she’s right. That’s why her breasts are so amazing, so <i>luscious</i> and creamy. That’s why you feel like you’re falling into them, her smooth skin soft against your cheeks, her flowery scent filling your head. You kiss at her supple tits more by instinct than choice, your body on autopilot, worshipping the fertile goddess who has chosen to claim you today. She tastes like cherries and cream. It makes your tongue tingle with giddy vibrations, or is that just what you’ve been told to feel? You’re too happy to remember... or care.");
+	output("\n\nYou’re so deep inside her cleavage that you can’t see anything else, not even the sky’s faint light. Her floral, earthy scent and cooing, gentle words are everything. Her arms encircle you, soft as satin pillows and strong as steel cables. You couldn’t escape if you tried. And you try, if only to verify how firmly she has you, to ensure that you can’t possibly escape to what you’ve consigned yourself to. It’s what you wanted, after all: to stay on Mhen’ga, roaming the forests, searching for pitchers to obey.");
+	output("\n\nBecause they need you. Almost as much as you need them.");
+	output("\n\n<i>“Don’t struggle, ");
+	if(pc.hasCock()) output("lovely seeder");
+	else output("silly breeder");
+	output(".”</i>");
+
+	output("\n\nYour muscles go as slack as cut string.");
+	output("\n\n<i>“There we go,”</i> the verdant princess strokes your [pc.hair], and sighs pleasantly. <i>“You shouldn’t need to worry. Just relax, and let me take care of you.”</i> She shifts her grip to press your face against a nipple, pushing the leaf aside with your questing lips. <i>“You deserve a reward.”</i>");
+	output("\n\nYou certainly do. Your [pc.lipsChaste] seal around the beryl nub, granting your tongue access a split second later. You slather it in spit, sparking hot bursts of its perfect flavor across your palate. There’s no other way to describe it. The actual sensation is buried so deeply under hypnotic suggestions that it’s impossible to tell your body’s reactions from those programmed into your mind. The two are inseparably entwined in a column of oral ecstasy that would curl your toes were they not so delightfully, helplessly immobile.");
+	processTime(10);
+	pc.lust(25);
+	clearMenu();
+	addButton(0,"Next",venusPitcherBadEnd2);
+}
+
+public function venusPitcherBadEnd2():void
+{
+	clearOutput();
+	userInterface.showBust("VENUS_PITCHER_ELDER");
+	userInterface.showName("VENUS\nPITCHER");
+	author("Fenoxo");
+	output("Merely being in contact with a venus pitcher is enough to make the world spin in the background. Wait... No, she’s flipping you upside down, carrying you down into her subterranean bulb. The sensation is familiar enough to you that you can recognize it even when your world is centered wholly on the perfect breasts upon which you now nurse. Even when her pollen comes thicker and muggier than a sauna’s steam, crowding aside more complex thoughts with bubbling passion and waves of flaxen acceptance.");
+	output("\n\n<i>“It’s so silly that you ever thought you were meant for something else.”</i> Her words are as sweet as the nectar leaking into your mouth. <i>“You were meant for me... and my sisters. We needed you, and you need us, don’t you.”</i>");
+	output("\n\nYou make a gurgling sound around the ambrosial plant-honey pouring down your throat, but she shushes you with a loving gesture.");
+	output("\n\n<i>“Don’t try to answer. Just relax and listen,”</i> the vixen tenderly instructs. <i>“You know what drinking this is going to do to you by now. It’s going to arouse you, because you are so easy to arouse.”</i> Whisper-soft touches slip across your [pc.chest] from the dozens of slithering tendrils that emerge from the walls, a few winding ");
+	if(pc.legCount > 1) output("down between your [pc.legs]");
+	else output("down around your [pc.leg]");
+	output(". <i>“You know that you’re going to get horny, and juicy, and give me exactly what I want, because that’s what you and creatures like you are </i>for<i>. And my sisters and I will make you feel so very good in exchange. So good... so wonderful. You would trade your soul for another drop, would you not?”</i> She pulls you off her nipple by the scruff of your neck, clearly expecting a reply.");
+	output("\n\nTalking is hard with your lips so sticky and your body so simultaneously relaxed and aroused, but you manage to slur an obedient, <i>“Mmmmhmmm.”</i> Without her breast in your mouth, the universe seems so cold and empty, almost sad and joyless. You writhe slowly, head flopping in an approximation of a nod. You <i>need</i> her to know that she can have your soul if she wants, just so long that you can go back to nursing, can go back to gorging yourself on her fecund fluid, feeling it swirl and bubble in your belly. It’s warm and syrupy, viscous and deliriously erotic. It radiates through your limbs, flushing your [pc.skin] everywhere it goes. More telling, it suffuses your crotch");
+	if(pc.hasCock()) 
+	{
+		output(", oozing into your [pc.cocks] until you feel like your erection");
+		if(pc.cockTotal() > 1) output("s are");
+		else output(" is");
+		output(" more filled with sticky venus-nectar than blood.");
+	}
+	else if(pc.hasVagina())
+	{
+		output(", oozing into your [pc.vaginas] until you feel like you’re leaking sticky venus-nectar down your thighs.");
+	}
+	else output(", oozing down your blank (but nonetheless engorged) pubic mound around to your [pc.asshole], making you feel simultaneously swollen and empty, like your sphincter is somehow twice as big and three times as tight.");
+
+	output("\n\nYou gasp in delight as she presses you back to her left breast, rewarding your obedience with a fresh blast of saccharine.");
+	output("\n\n<i>“You have been so good... so good to us.”</i> She sighs, enjoying the feeling of your greedy suckling. <i>“I should do more for you.”</i> Her fingers gently ");
+	if(pc.hasHair()) output("through through your [pc.hair], dragging slowly across your scalp.");
+	else output("trace over your head, dragging slowly across your scalp.");
+	output(" <i>“I should let you taste my other nectar. It is better... stronger. One taste, and you’ll be ruined for everything else. You’ll never want to do anything but drink it... drink it and get milked. Do you want that? Do you want to give yourself to me and my sisters forever?”</i>");
+	output("\n\nYou fall away from her nipple, lips smeared in gold, eyes dilated from the dark of her subterranean pod alongside her nectar, nodding like a broken bobblehead. You want that nectar. You want to suck and lick her harder while she uses your body. You want to cum so good for her, give her ");
+	if(pc.hasCock()) output("gallons of [pc.cum]");
+	else if(pc.hasVagina()) 
+	{
+		output("all the [pc.girlCum] you can ");
+		if(!pc.isSquirter()) output("leak");
+		else output("squirt");
+	}
+	else output("all the [pc.milk] in the universe");
+	output(". You want to beg, but on some level you know being her floppy fuckdoll is the most obedient, most desirable thing you can do. The knowledge that you’re submitting to her so totally nearly makes you cum... but not quite, not without her tentacles, fucking and sucking you, wringing you for your nutritious juices.");
+	processTime(25);
+	pc.lust(75);
+	clearMenu();
+	addButton(0,"Next",venusPitcherBadEnd3);
+}
+
+public function venusPitcherBadEnd3():void
+{
+	clearOutput();
+	author("Fenoxo Fenbooty");
+	userInterface.showBust("VENUS_PITCHER_ELDER");
+	userInterface.showName("VENUS\nPITCHER");
+	output("Greenish purplish tentacles surround each of your limbs, torturously pulling you away from your mistress. They’re slippery with something that smells like flowers in bloom but grip tight enough that no amount of lubricant will let you escape. You weakly strain forward, trying to recapture the dark green nub of her nipple, but you’re too <i>relaxed</i>. Your body is passively, submissively aroused. It aches to be taken, not to take, and you cannot summon the motivation to do anything but hang there, watching and waiting.");
+	output("\n\n<i>“We can only make this nectar in times of plenty,”</i> the venus pitcher explains, wiggling delightedly. Her fingers trace down her drained bests, across a tummy with the slightest hint of pudginess to a skirt made entirely from pinkish-purple blooms. <i>“In a way, this is your doing. Your tireless contributions let me send so many seeds into the world. Consider this as your reward.”</i> She raises the edge of her organic garment with a showwoman’s deliberate slowness. Beneath you see inhumanly smooth thighs joining together around a petite, flowery slit. The petals are somehow a richer purple and pink than her skirt ever could be, and they bloom before your eyes, glistening with the promise of the pleasures contained within.");
+	output("\n\nYour mouth salivates.");
+	if(pc.canLactate()) output(" Your [pc.nipples] ache, dribbling [pc.milk].");
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cocks] drip");
+		if(pc.cockTotal() == 1) output("s");
+		output(" pre.");
+	}
+	if(pc.hasVagina()) output(" A mote of jealousy surfaces, then snuffs out. Of course she has the most gorgeous pussy in the universe. You can’t possibly compare to it, but at least you can give it the worship it deserves.");
+
+	output("\n\n<i>“You animals are all the same: so excited by a little slot between the legs. It makes so much more sense to be on the end of a tentacle, where it can touch and fuck any part of your body, but I suppose it’s okay if you can’t look away.”</i> The green woman pauses, regarding your straining genitalia. <i>“This excites you that much?”</i> She colors purple as you eye-fuck her bared muff. <i>“Th-then I’ll have to keep showing it to you.”</i> The tentacles drag you closer. That cunt smells like peaches and lavender. <i>“Now you’re getting ripe.”</i> A slickened length brushes your [pc.nipple]. You whimper and leak. Her pussy is close enough that it’s all you can smell now.");
+	output("\n\nLarge clumps of pollen fall from the ceiling, bathing everything in a pale pink glow. It thrums and pulses like a heartbeat, lulling you into complacency as you’re placed still closer to the plant-girl’s heavenly cunt. All you have to do is stick out your tongue and you can taste it. One muscle movement, and you’ll experience a flavor so incredible that you’ll never want for anything else again. You’ll be permanently addicted to venus pitchers, body, mind, and soul.");
+	output("\n\nThe only reason you haven’t yet is because she hasn’t given you permission.");
+	processTime(10);
+	pc.lust(24);
+	clearMenu();
+	addButton(0,"Next",venusPitcherBadEnd4);
+}
+
+public function venusPitcherBadEnd4():void
+{
+	clearOutput();
+	userInterface.showBust("VENUS_PITCHER_ELDER");
+	userInterface.showName("VENUS\nPITCHER");
+	author("Fenoxo Fenfen");
+	output("<i>“Go ahead,”</i> the venus pitcher’s melodious voice urges. <i>“Taste it, if you want.”</i> She pets you like you’re little more than a purchased animal. <i>“We both know you want it.”</i>");
+	output("\n\nYou do. You want it so bad that the desire forces its way through clouds of lazy lust to prod your body into action. You throw yourself as far forward as your bindings will allow. On contact with your [pc.lipsChaste], you instantly understand why you’d never want to go back. It hasn’t even reached your taste buds, but somehow you still feel subsumed in its rich flavor, like your lips are two extra tongues. It’s a dizzying, heady brew of passion and contentment and all the best-smelling flowers in the universe rolling into one petite little package. You experimentally lick one of her petals and shudder wildly, your body thrashing in its binding as you experience your first ever tongue-gasm.");
+	output("\n\n<i>“Mmm, no wonder you animals like to breed so much. Keep licking,”</i> your green mistress instructs, thrusting her hips into your face. Her tentacles coil tight around the rest of you, supporting the rest of your body so that you can focus entirely on moving your tongue in the right ways. ");
+	if(pc.cockTotal() == 1) output("One slips around your [pc.cock] as if it was meant to hold it. It probably was, the tight sleeve of rippling flesh is going to make you cum so many times, nectar-goddess permitting.");
+	else if(pc.cockTotal() > 1) output(StringUtil.upperCase(num2Text(pc.cockTotal())) + " slip onto your [pc.cocks], sized perfectly to hold each of them. The wriggling, sucking sleeves fit as if they were grown specifically to milk you, and they’re going to be so successful, nectar-goddess permitting.");
+	if(pc.totalVaginas() == 1) output(" A turgid tentacle slips off your thigh and buries itself deep into your [pc.vagina] in a single, scintillating thrust, spearing you on your nectar-goddess’s organ. It fills you up so completely, fits your passage so flawlessly, that you can only assume she grew it specifically to tend to your feminine flower.");
+	else if(pc.totalVaginas() > 1) output(" Turgid tentacles slip off your [pc.thighs] and bury themselves deep into your [pc.vaginas] in coordinated thrusts, spearing you on your nectar-goddess’s organs. They fill you up so completely, fit your passage so flawlessly, that you can only assume she grew them specifically to tend to your feminine flowers.");
+	if(pc.canLactate()) output(" Your [pc.nipples] squirt [pc.milk], but that’s okay. There’s something sucking on them. The venus pitcher’s special nectar is so good that makes you spray [pc.milkNoun] harder than you ever have before. You could milk yourself dry just from licking her fragrant cunt. You wouldn’t need a single suck on your sloppy teats.");
+
+	output("\n\nStars... oh stars...");
+	if(pc.hasCock())
+	{
+		output(" [pc.Cum] squirts in thick ropes into the tentacle");
+		if(pc.cockTotal() > 1) output("s");
+		output(".");
+	}
+	if(pc.hasVagina()) 
+	{
+		output(" [pc.GirlCum] erupts around the tentacle");
+		if(pc.totalVaginas() > 1) output("s");
+		output(", wrung from a place deep inside you.");
+	}
+	output(" You lick, and you cum... or something that feels like cumming anyway. There’s no cooldown, no post-coital satisfaction, just swaying between sublime bliss and aching, incredible need. You stab your tongue deep inside her cunt, your [pc.lips] sealed tight to her petals. Her ambrosia flows down your gulping throat as you try your best not to lose a single droplet of it.");
+
+	output("\n\nYou can’t go back. You don’t want to go back. This moment needs to go on forever. Every lewd-sounding slurp rings in your ears. Motes of indescribable, heavenly ecstasy wrap your tongue up inside their honeyed embrace, somehow more important for your mind to observe than the ");
+	if(pc.hasCock()) output("cock");
+	else if(pc.hasVagina()) output("pussy");
+	else output("boob");
+	output("-draining orgasms shuddering through the rest of your body. You could float away on clouds made entirely of the flavor of this venus-pitcher’s cunt, your mind disconnecting from a fleshy husk capable of little more than service to its flowery queen.");
+
+	output("\n\nYou love her, especially her pussy, and her pussy loves you back. That’s why it keeps giving you more to drink, more mind-meltingly good cuntjuice. Any resistance to the idea of serving this venus pitcher... any venus pitcher is gone, liquefied and sucked away by her tentacles, replaced with sublime obedience and the silky warmth that drizzles from her juicy snatch onto your sluttily wiggling tongue.");
+	output("\n\nThrust. Slurp. Cum. Obey. Lick. Simple concepts are at the helm, the rest of your brain too drugged up and cummy for anything more complex. You’re just a tongue and an endless series of orgasms, more pet than person.");
+	pc.milked();
+	pc.milked();
+	processTime(65);
+	for(var x:int = 0; x < 10; x++)
+	{
+		pc.orgasm();
+	}
+	pc.milked();
+	clearMenu();
+	addButton(0,"Next",venusPitcherBadEnd5);
+}
+
+public function venusPitcherBadEnd5():void
+{
+	clearOutput();
+	author("Fenoxo Fenfen");
+	showName("NEED... MORE\nPITCHERS");
+	output("When you’re dumped out onto the forest floor, you don’t bother getting up - partly because you’re exhausted, partly because you secretly hope she’ll come back up for another round. It’s an hour before you finally have the energy to rouse yourself, and by then you’re bitterly missing the taste of her ambrosia.");
+	output("\n\nDully, you realize that ");
+	if(pc.balls > 0)
+	{
+		output("your [pc.balls] ");
+		if(pc.balls <= 1) output("has");
+		else output("have");
+		output(" already refilled, flush and plumper than you remember. In no time at all, you’ve come down with a case of blue balls so severe that only another pitcher can save you.");
+	}
+	else if(pc.hasCock())
+	{
+		output("[pc.eachCock] has swollen with impractical turgidity, hard and leaking. Internally, you can feel the [pc.cumNoun] simmering, aching to get out, like you’ve spent three days straight edging and desperately need another pitcher to pour your lust into.");
+	}
+	else if(pc.hasVagina()) output("[pc.eachVagina] is already soaked and needy, sending tingles of remembered pleasure to your brain that remind you how good it felt to be stuffed by the pitcher.");
+	else output(" [pc.MilkNoun] dribbles from your [pc.nipples], your [pc.chest] producing it so quickly that you doubt you can go more than an hour without making a [pc.milkColor] mess.");
+
+	output("\n\nYou stumble into the woods in search of another venus pitcher, licking your chapped lips and promising that this one will be the last one. After this, you can go back to your usual routine. Just one more pussy-licking, mind-shattering series of orgasms and you can go back to being an heir" + pc.mf("","ess") + " on a mission.");
+
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",venusPitcherBadEnd6);
+}
+
+public function venusPitcherBadEnd6():void
+{
+	clearOutput();
+	author("Fenoxo Fenfen");
+	userInterface.showBust("VENUS_PITCHER_ELDER");
+	userInterface.showName("VENUS\nPITCHER");
+	output("The next venus pitcher you encounter is ever more well-developed than the last. Her pendulous tits hang down to her waist when you find her. Inky green nipples sway back and forth with her breath, something she is all too happy to accentuate when she sees your state. Your mind all but shutting down in the face of such erotic mesmerization is no surprise. It’s expected. You sink into her arms, into her pod, into bliss, into <i>your purpose</i>.");
+	//Cock
+	if(pc.hasCocks())
+	{
+		output("\n\nYou can’t get your [pc.cocks] into her tentacles fast enough. Their vice-like squeezing is a balm for your hyper-engorged erections. The rapid back-and-forth pumping of your members is better than masturbation - hell, it’s better than sex! When you orgasm, and you do so often, your ejaculations seem endless, voluminous in the extreme. They bloat the tentacles with the immense size of your spurts, sending fat bulges along the hungry floral lengths, yet you never tire. Refractory periods may as well not exist for you at this point, allowing you to suck and fuck for as long as your leafy mistress will allow.");
+	}
+	else if(pc.hasCock())
+	{
+		output("\n\nYou can’t get your [pc.cock] into her tentacle fast enough. Its vice-like squeezing is a balm for your hyper-engorged erection. The rapid back-and-forth pumping of your member is better than masturbation - hell, it’s better than sex! When you orgasm, and you do so often, your ejaculations seem endless, voluminous in the extreme. They bloat the tentacle with the immense size of your spurts, sending fat bulges along the hungry floral length, yet you never tire. Refractory periods may as well not exist for you at this point, allowing you to suck and fuck for as long as your leafy mistress will allow.");
+	}
+	//Cunt
+	if(pc.hasVagina())
+	{
+		output("\n\nTwo tentacles slam into your [pc.vagina] in unison, the narrow lengths curling around one another to give your insatiable box the fucking it oh so clearly needs. You can hardly contain the joy they stir up in your loins. Were it not for the nipple in your mouth, you’d be screaming in heedless joy, ripping your voicebox ragged in an attempt to let the universe know just how completely you’re controlled by the pleasure ");
+		if(pc.legCount > 1) output("between your [pc.legs]");
+		else output("driving deep beneath your [pc.leg]");
+		output(".");
+	}
+	//Milkymilk
+	if(pc.biggestTitSize() >= 1)
+	{
+		output("\n\n[pc.Milk] erupts from your [pc.nipples] the moment the verdant enchantress’s tendrils secure your tits. Your [pc.chest] is heavy and wet, wobbling and spraying. The thin streams fork in dozens of different directions, but the venus pitcher’s straining suckers catch it all. Good thing, too because you’re a milky, milky [pc.girlBoy]. Every ounce you swallow seems to go straight to your [pc.milkNoun]-tanks, only to pour back out into the pitcher in an endless cycle that leaves you hornier and more blissed out with every repetition.");
+	}
+	//Merge
+	output("\n\nEverything is wet and warm and cummy and comforting and just so... so perfect. You must spend hours in the greater pitcher’s embrace, giving her everything you can, listening to her sweet voice tell you how to spend the rest of your life. Her words are so sweet and so firm that they seem to slip right through what few conscious thoughts are left to you, snuggling into every crack and crevice in your brain where they can wait to activate.");
+	output("\n\nAccepting her words is almost as hot as having your face pressed between her legs and receiving her blessed nectar. It’s almost as hot as completely submitting your will to her guidance, as giving her complete control over your mind in exchange for another few moments between her legs. Your stomach gurgles, totally overpacked, and still you drink...");
+	pc.milked();
+	pc.milked();
+	processTime(65);
+	pc.milkInMouth();
+	for(var x:int = 0; x < 10; x++)
+	{
+		pc.orgasm();
+	}
+	pc.milked();
+	clearMenu();
+	addButton(0,"Next",venusPitcherBadEnd7);
+}
+
+public function venusPitcherBadEnd7():void
+{
+	clearOutput();
+	author("Fenoxo");
+	userInterface.showBust("VENUS_PITCHER_ELDER","VENUSPITCHER","VENUSPITCHER");
+	userInterface.showName("VENUS\nPITCHER");
+	showName("BAD\nEND");
+	output("This time, you don’t waste any time when you wake. The sweet residue on your lips invigorates you. The rapacious hunger between your [pc.thighs] guides you. You stagger off into the woods to search for the next pitcher. There’s still so much pleasure to experience, so many pitchers to serve. You can kneel before each of them and beg them to have you. Nothing else matters.");
+	badEnd();
+}

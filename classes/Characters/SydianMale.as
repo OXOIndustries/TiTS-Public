@@ -171,7 +171,6 @@
 			btnTargetText = "Sydian";
 			
 			randomise();
-			
 			this._isLoading = false;
 		}
 		

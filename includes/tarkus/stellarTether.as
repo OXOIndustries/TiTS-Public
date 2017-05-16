@@ -490,8 +490,8 @@ public function tamtamBadEndPetPooch():void
 	output("\n\nYou nod.");
 	output("\n\n<i>“Puppies bark, silly!”</i> Tam says, a hint of danger in her voice. <i>“Don’t they?”</i>");
 	output("\n\nYou bark");
-	if(pc.race() == "ausar" || pc.race() == "half-ausar") output(", giving into your baser, canid instincts");
-	else if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") output(", going against every instinct in your feline head");
+	if(pc.catDog("nyan", "bork", false) == "bork") output(", giving into your baser, canid instincts");
+	else if(pc.catDog("nyan", "bork", true) == "nyan") output(", going against every instinct in your feline head");
 	output(".");
 
 	output("\n\n<i>“Good puppy!”</i> Tam praises, one of her hands reaching out to you. You recoil, an instinctive fear taking over you... until her fingers slip up ");

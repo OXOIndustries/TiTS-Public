@@ -1,4 +1,3 @@
-
 // Cynthia at the Freezer
 // Overview
 // Solo content for Cynthia, one of the participants in the Biomedical gangbang and Dr. Lessau’s chief project manager.
@@ -43,7 +42,7 @@ public function approachCynthia(intro:Boolean = false):void
 		if(pc.isNice()) output(" with a hint of embarrassment at Cynthia’s surprise.");
 		else if(pc.isMischievous()) output(" with a cheeky grin, enjoying the way Cynthia’s eyes widen as recognition dawns.");
 		else output(" with a cocky smirk. <i>“You might have heard of me.”</i>");
-		output("\n\n<i>“Ahaha... should’ve known, shouldn’t I? I work for Dr. Lessau over at Biomedical, he was just telling us to be on the lookout for " + indefiniteArticle(pc.race()) + ". Nice to meet you, [pc.name].”</i>");
+		output("\n\n<i>“Ahaha... should’ve known, shouldn’t I? I work for Dr. Lessau over at Biomedical, he was just telling us to be on the lookout for " + indefiniteArticle(pc.raceShort()) + ". Nice to meet you, [pc.name].”</i>");
 		output("\n\nYou assure Cynthia the pleasure is yours.");
 		output("\n\n<i>“Well, if you’ve got something you want to chat about, just let me know.”</i>");
 	}
@@ -279,7 +278,7 @@ public function cynthiaSex(response:String = "intro"):void
 			pc.cockChange();
 			
 			output("\n\n<i>“That’s it, you horny cow,”</i> you purr, <i>“grip it just like that.”</i>");
-			output("\n\n<i>“Mmm, then get moving, you horny [pc.race].”</i> Cynthia takes a showy gulp of her milk, fondling her other breast for your viewing pleasure. <i>“I can take everything you’ve got.”</i>");
+			output("\n\n<i>“Mmm, then get moving, you horny [pc.raceBoyGirlShort].”</i> Cynthia takes a showy gulp of her milk, fondling her other breast for your viewing pleasure. <i>“I can take everything you’ve got.”</i>");
 			output("\n\nYou start off slow, relishing Cynthia’s puffy cunt and the gorgeous amazonian beauty laid out before you. She rewards you with even showier milk play, giving herself a squeeze to send a jet of creamy white squirting into her waiting mouth. You step it up slowly, enjoying the show as she starts to lose control, accidentally giving herself a milk facial. Soon she’s forced into giving up the milk play entirely in favor of mooing as you gear up into giving her the wild plowing she deserves.");
 			output("\n\n<i>“Ah! Oh! Oh yeah, moooo! Moo-ooooo!”</i>");
 			output("\n\nYou cum with a feral growl, driving yourself to the hilt");
@@ -357,10 +356,10 @@ public function cynthiaSex(response:String = "intro"):void
 			
 			output("The next morning you wake to find yourself nestled in a warm and toasty embrace that it’s extremely hard to convince yourself to get up from, though the promise of a warm breakfast with some more fresh milk from Cynthia certainly helps when you can’t stay any longer.");
 			output("\n\n<i>“Sure you’re not up for another round?”</i> you ask as you eat. Cynthia shakes her head.");
-			output("\n\n<i>“Sorry, time to get to work. Can’t be late because I was at home getting a morning quickie, no matter what their name is or how sexy " + indefiniteArticle(pc.race()) + " they are.”</i>");
+			output("\n\n<i>“Sorry, time to get to work. Can’t be late because I was at home getting a morning quickie, no matter what their name is or how sexy " + indefiniteArticle(pc.raceShort()) + " they are.”</i>");
 			output("\n\n<i>“Aww, but I’m your boss. Can’t I excuse you?”</i> you reply with a half-joking smile that prompts a smirk back from the cowgirl.");
-			output("\n\n");
-			if(9999 == 9999) output("<i>“</i>Future<i> boss. ");
+			output("\n\n<i>“");
+			if(9999 == 9999) output("</i>Future<i> boss. ");
 			output("You want to be able to take me for a morning ride, get out there and earn that company. Trust me, if you fight as good as you fuck, you’ll be calling the shots in no time. Then you can set whatever work hours you want.”</i>");
 			output("\n\nIt’s certainly an inspiring reward to think of as you make use of Cynthia’s shower for one last bit of warmth, heading out to face the chill outside with renewed vigor.");
 			
@@ -374,7 +373,11 @@ public function cynthiaSex(response:String = "intro"):void
 				if(currHour >= 24) currHour = 0;
 			}
 			
+			pc.createStatusEffect("Cum Paused");
+			pc.createStatusEffect("Milk Paused");
 			processTime(minPass);
+			pc.removeStatusEffect("Cum Paused");
+			pc.removeStatusEffect("Milk Paused");
 			
 			eatHomeCooking(25);
 			pc.milkInMouth(chars["CYNTHIA"]);

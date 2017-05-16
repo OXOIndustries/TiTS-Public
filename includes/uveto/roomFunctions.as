@@ -570,6 +570,7 @@ public function uvetoFallToColdDamage():void
 	
 	if (InRoomWithFlag(GLOBAL.OUTDOOR))
 	{
+		showBust("LUNA");
 		author("Savin");
 		output("You waken with a start, gasping for breath. Though your insides still throb with the vestigial ache of the Uvetan cold, you can feel heat washing over your limbs, bathing you in dry warmth. Never before has a space heater felt so good.");
 		
@@ -595,6 +596,7 @@ public function uvetoFallToColdDamage():void
 	}
 	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
+		showBust("JEROME");
 		author("Gedan");
 
 		output("A loud crinkling noise draws you back from the brink, a regular rustle akin to a metronome tapping on the side of your near-unconsciousness. You feel yourself shift in time with the noise, something dragging you along as your body resists for a moment before following suit.");
@@ -1109,7 +1111,7 @@ public function approachKazraAndLorre():void
 		showName("ESSYRA\nTRADERS");
 		output("You approach the pair of pale pink fox-women, putting up a hand in greeting. The closer of the two, somewhat shorter but more muscular than her companion, steps forward to lean against the support pole in the middle of the tent.");
 		
-		output("\n\n<i>“Greetings, [pc.race],”</i> she says evenly, eyeing you with unabashed curiosity. <i>“Welcome to our home and trading post. I am Kazra, and this is my mate, Lorre.”</i>");
+		output("\n\n<i>“Greetings, [pc.raceCute],”</i> she says evenly, eyeing you with unabashed curiosity. <i>“Welcome to our home and trading post. I am Kazra, and this is my mate, Lorre.”</i>");
 		
 		output("\n\nKazra nods back to the heavily pregnant Essyra behind her, who regards you with a much warmer smile than her mate. <i>“Hello,”</i> she says shyly, putting a hand over the hefty belly straining the front of her leather shirt.");
 		
@@ -1357,7 +1359,7 @@ public function GRM44Fight():void
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {
-		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a tall black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
+		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a long black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
 
 		var en:Array = CombatManager.getHostileCharacters();
 		
@@ -2052,10 +2054,13 @@ public function GlacialRiftCoast():Boolean
 
 public function soloFertilityPriestessFight():void
 {
+	clearOutput();
+	author("Savin");
+	
 	showBust("MILODAN_PRIESTESS");
 	//showName("MILODAN\nPRIESTESS");
 	
-	output("\n\nAs you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they’re wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, baring her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
+	output("As you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they’re wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, baring her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
 
 	output("\n\n<i>“I thought it might be you!”</i> she snarls, twirling her staff until its gemstone head is levelled at your [pc.chest]. <i>“My sister");
 	if (flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined && flags["FERTILITY_PRIESTESSES_FOUGHT"] > 1) output("s have");
@@ -2071,7 +2076,7 @@ public function soloFertilityPriestessFight():void
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {
-		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a tall black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
+		var s:String = "The Fertility Priestess, a female milodan, stands tall and nude before you, wielding a long black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
 		return s;
 	})
 	CombatManager.victoryScene(pcRepeatFertilityPriestessVictory);

@@ -63,7 +63,7 @@
 	import classes.Parser.ParseEngine;
 
 	import classes.DataManager.DataManager;
-	import classes.GameData.StatTracking;
+	import classes.GameData.*;
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;
@@ -91,10 +91,6 @@
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
 	{		
-		// Smoosh all the included stuff into the TiTS class
-		// this is a HORRIBLE way of architecting the system, but it's better then not
-		// using classes at all
-		
 		//Core Game Stuff
 		include "../includes/appearance.as";
 		include "../includes/BackerCredits.as";
@@ -118,6 +114,7 @@
 		include "../includes/masturbation.eggTrainer.as";
 		include "../includes/masturbation.magicMilker.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
 		include "../includes/StubbedFunctions.as";
@@ -142,6 +139,8 @@
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
+		include "../includes/masturbation/cockTailMasturbation.as";
+		include "../includes/masturbation/hardlightAGThong.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/saendra.as";
@@ -167,6 +166,7 @@
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/fyn.as";
+		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
@@ -191,6 +191,9 @@
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
+
+		//Tavros Residential Deck
+		include "../includes/tavros/resDeck/liamme.as";
 
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
@@ -258,7 +261,9 @@
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
+		include "../includes/newTexas/brandy.as";
 		include "../includes/newTexas/brynn.as";
+		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
@@ -356,6 +361,7 @@
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
+		include "../includes/uveto/subTuner.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
@@ -464,7 +470,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.34";
+			version = "0.7.45";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -921,7 +927,6 @@
 			this.userInterface.BufferPagePrevHandler();
 		}
 		
-		// Cheaty hooks for stuff
 		public function IsFunction(name:String):Boolean
 		{
 			if (this[name] != undefined) return true;
@@ -938,7 +943,6 @@
 			this[name](args);
 		}
 		
-		// This is hacky as fuck, but it's the ONLY way I can think of pinning down exactly where this issue happens
 		public function jackJillDetector(btnName:String, tFunc:Function, tArg:*):void
 		{
 			if (flags["RIVALCONFIGURED"] == 1)

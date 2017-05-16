@@ -14,7 +14,7 @@
 //Add to the flight deck of the Nova, 2 spaces east of the LZ. 
 public function tarkusScoutAuthorityOffice():Boolean
 {
-	output("What was once the crew chief’s office overlooking the flight deck has been converted into a U.G.C. scout base, complete with maps and star charts hanging from the walls and a massive board map dominating the center, with landmarks and racial analysis printouts scattered over it. Behind the chief’s desk sits a buxom kaithrit with her bright orange hair pulled back into a long ponytail.");
+	output("What was once the crew chief’s office overlooking the flight deck has been converted into a U.G.C. scout base, complete with maps and star charts hanging from the walls and a massive board map dominating the center, with landmarks and racial analysis printouts scattered over it. Behind the chief’s desk sits a female kaithrit with her bright orange hair pulled back into a long ponytail.");
 	addButton(0,"Scout",tarkusScoutMenu,undefined,"Scout","Talk to the scout about security transportation to different parts of the planet.");
 	//[Scout] (PC hasn’t fixed any comm arrays)
 	return false;
@@ -311,7 +311,7 @@ public function nessaFuckTimeLetsGo():void
 	else output("she presses her spooge-inflated gut and b-cup breasts against you");
 	output(". Nipples like ripe cherries squish down, and lips as warm and soft as fire-roasted marshmallows meet yours for a saucy kiss. Her tongue dances in slow circles around yours, her exotic, almost spicy saliva making your whole mouth tingle.");
 
-	output("\n\nNessa wraps her arms around your neck and lifts her hips, transitioning from a slow grind-fuck to a faster, sweatier bang. Ringlets of her auburn hair cascade around you, making the rest of the world disappear while she kisses you. Sometimes she nips at your neck or licks your ears. Other times she stops smooching long enough to whisper something like, <i>“Not yet... don’t cum yet.”</i> Her asscheeks quiver in your palms, and when she picks up the pace, she stops kissing you entirely, closing her eyes and purring as hard as she can.");
+	output("\n\nNessa wraps her arms around your neck and lifts her hips, transitioning from a slow grind-fuck to a faster, sweatier bang. Ringlets of her ginger hair cascade around you, making the rest of the world disappear while she kisses you. Sometimes she nips at your neck or licks your ears. Other times she stops smooching long enough to whisper something like, <i>“Not yet... don’t cum yet.”</i> Her asscheeks quiver in your palms, and when she picks up the pace, she stops kissing you entirely, closing her eyes and purring as hard as she can.");
 	output("\n\nSquelching and vibrating around you, Nessa’s quim does everything it can to drag you to the brink of orgasm. Even when she’s not squeezing down on you, you can still feel her clit buzzing on your cunt-soaked rod like a vibrator set on low.");
 	if(pc.balls > 0)
 	{
@@ -379,5 +379,10 @@ public function nessaBellyRating(arg:Number = 0):Number
 {
 	if(flags["NESSA_BELLY"] == undefined) flags["NESSA_BELLY"] = 0;
 	if(arg > 0) flags["NESSA_BELLY"] += arg;
-	return flags["NESSA_BELLY"]/1000;
+	
+	var nessaBelly:Number = flags["NESSA_BELLY"];
+	var bellyMax:Number = 100000;
+	if(!silly && nessaBelly > bellyMax) nessaBelly = bellyMax;
+	
+	return nessaBelly/1000;
 }

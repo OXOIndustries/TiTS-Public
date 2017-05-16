@@ -294,7 +294,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && new LaquineEars().lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "F.Laquine";
@@ -445,6 +445,44 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ttBody = "You upgraded your strap-on. A dick you enlarge at will might be fun to play with!";
 		fap.func = adjustableHolofap;
 		faps.push(fap);
+	}
+	if(pc.hasCockTail())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "DicktailFuck";
+		fap.ttHeader = "Dicktail Fuck";
+		fap.ttBody = "Fuck yourself with your cock-carrying tail.";
+		fap.func = dickTailFuck;
+		faps.push(fap); 
+	}
+	if(pc.hasCockTail() && pc.hasGenitals())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "DicktailSuck";
+		fap.ttHeader = "Dicktail Suck";
+		fap.ttBody = "Suck off your cock-carrying tail.";
+		fap.func = tailSucking;
+		faps.push(fap); 
+	}
+	// Sera Collar Faps
+	if(wearingSeraCollar())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Gem Anal";
+		fap.ttHeader = "Sera’s Collar - Anal";
+		fap.ttBody = "Use the hard-light dildo Sera gave you on your ass.";
+		fap.func = fapSeraCollarAnal;
+		faps.push(fap);
+		
+		if(pc.hasVagina())
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Gem Vag";
+			fap.ttHeader = "Sera’s Collar - Vaginal";
+			fap.ttBody = "Use the hard-light dildo Sera gave you on your pussy.";
+			fap.func = fapSeraCollarVag;
+			faps.push(fap);
+		}
 	}
 	return faps;
 }
@@ -3578,7 +3616,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//No new PG - milkSquirt but no extra dicks
 	else if(pc.canMilkSquirt())
 	{
-		output(" You are an absolute mess, however. You were so fixated on your lovely tool that you didn’t even notice the [pc.milk] spraying from your [pc.chest].");
+		output(" You are an absolute mess, however. You were so fixated on your lovely tool that you didn’t even notice the [pc.milkNoun] spraying from your [pc.chest].");
 		if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) output(" You smell like a dairy.");
 		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY && CodexManager.entryUnlocked("Zil")) output(" You smell like a zil orgy.");
 		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" You smell like a beehive.");
@@ -3644,7 +3682,7 @@ public function autofellatioForNormies():void
 	else 
 	{
 		output("\n\nYou stroke a few times, making sure you’re as hard as humanly");
-		if(pc.race() != "terran" && pc.race() != "human") output(" (or inhumanly)");
+		if(!pc.isHuman()) output(" (or inhumanly)");
 		output(" possible before you get to the main event. ");
 	}
 	//Merge no new pg for no tits
@@ -4013,9 +4051,9 @@ public function adjustableHolofap():void
 
 public function laquineEarsMaleWrapper():void
 {
-	new LaquineEars().bunnyguyFapScene(pc,true);
+	LaquineEars.bunnyguyFapScene(pc,true);
 }
 public function laquineEarsFemaleWrapper():void
 {
-	new LaquineEars().bunnyGirlFapScene(pc,true);
+	LaquineEars.bunnyGirlFapScene(pc,true);
 }

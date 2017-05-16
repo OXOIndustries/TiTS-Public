@@ -246,7 +246,7 @@ public function phoenixBridgeDisks():void
 
 	output("\n\nDelightful.");
 
-	pc.createKeyItem("Holodisk: Horsecock Hell 2", 0, 0, 0, 0, "A pair of holodisks labeled ‘<b>Horsecock Hell 2: A Tail of Two Twats</b>’. The cover makes a big deal out of the star of the show: ‘Nivas Oxonef’");
+	pc.createKeyItem("Holodisk: Horsecock Hell 2", 0, 0, 0, 0, "A pair of holodisks labeled ‘<b>Horsecock Hell 2: A Tail of Two Twats</b>’. The cover makes a big deal out of the star of the show: ‘Nivas Oxonef’.");
 	output("\n\n<b>Horsecock Hell 2 has been added to Key Items</b>");
 
 	clearMenu();

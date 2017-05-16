@@ -138,7 +138,6 @@ package classes.Characters
 				if (rand(10) <= 1) inventory.push(new VanaeSpear());
 				else if(rand(10) <= 6) inventory.push(new SkySap());
 			}
-			
 			this._isLoading = false;
 		}
 		

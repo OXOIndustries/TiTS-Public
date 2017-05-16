@@ -162,9 +162,9 @@ public function investigateFrogapi():void
 	else output("This strange six-legged created sit perched on its fuzzy haunches, bird-like talons hooked over the edge of the glittering screens of its stand. Four, emotive limbs gesture frenetically through the air as it regards you with a row of four, glittering eyes, its sideways pupils regarding you with alien expression. Beneath those eyes clicks a wide, hooked beak, and two, overlong ears twitch in time to its speech. Covered completely in deep-blue fur, the creature looks more like some kind of living stuffed animal.");
 	output(" It beckons you in with one hooked talon, while the other turns the dial on what looks like an antique pocketwatch. Its remaining two limbs brush down an adorably tiny vest buttoned snugly over the creature’s round, fuzzy belly.");
 
-	output("\n\n<i>“Let’s see, you are a...</i>\" it mutters, glancing down at the device in its hand. ");
-	var race:String = pc.race();
-	if(race == "human" || race == "terran" || race == "ausar" || race == "kaithrit" || race == "kui-tan") output("<i>“" + race + "! Wonderful! I’ve worked with your kind before!”</i>");
+	output("\n\n<i>“Let’s see, you are a...”</i> it mutters, glancing down at the device in its hand. ");
+	var race:String = pc.raceShort();
+	if(InCollection(race, ["human", "terran", "ausar", "kaithrit", "kui-tan"])) output("<i>“" + StringUtil.capitalize(race) + "! Wonderful! I’ve worked with your kind before!”</i>");
 	else output("It shakes the device in its hand and tucks it away into a tiny pocket. <i>“Doesn’t matter, a tove that can’t do business with an unknown species is a tove that’ll never get his own wabeship, am I right?”</i>");
 
 	output("\n\n<i>“Good sapient, I am Orryx, a male, if you’re wondering, tove in good standing with the Gyre Galactic Camarilla,”</i> he begins. <i>“Wait! Hold on! I forgot something!”</i> Before you can say a word, he vanishes down into the depths of the podium. The entire structure can’t be more than five feet high, but you hear the sound of splashing and metal clanging before the creature returns.");

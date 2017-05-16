@@ -289,7 +289,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 			output("”</i>");
 			flags["SEEN_RED_DESERTER_PREGGERS"] = 1;
 		}
-		//{Second Pregnancy && First Time Seeing Her Pregnant (this time)
+		//Second Pregnancy && First Time Seeing Her Pregnant (this time)
 		else if(flags["SEEN_RED_DESERTER_PREGGERS"] == undefined && flags["RED_MYR_BIRTHS"] == 1)
 		{
 			output("\n\n<i>“Hi there, soldier. You’ve gone and knocked me up again,”</i> she grins, rubbing her bump. <i>“You’re a regular stud, aren’t you? Making a girl waddle around the battlefield");
@@ -329,7 +329,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		//Red/Briha:
 		if(!gold)
 		{
-			//{Post-pregnancy:
+			//Post-pregnancy:
 			if(flags["RED_MYR_BIRTHS"] != undefined) 
 			{
 				output("\n\n<i>“Hi, soldier. ");
@@ -938,7 +938,7 @@ public function loseToAntGrillDeserts():void
 			else output("strap-on");
 			output(". <i>“Might want to use this,”</i> she says, wearing an evil smile.");
 			//THE BELOW CONTENT WAS CUT. I DON'T CARE FOR IT. -F
-			//{(Briha and used flag at 2).. until a smell hits her nose. She looks more closely at the toy. <i>“Ehh... did you cum on the Private?”</i>");
+			// {(Briha and used flag at 2).. until a smell hits her nose. She looks more closely at the toy. <i>“Ehh... did you cum on the Private?”</i>");
 			//output("\n\n{(nice)"Totally did. Sorry!”</i> you admit. /(else)You produce a giddy giggle(PC masc) barely befitting your appearance}. }/(used flag at 1).. until a thought occurs to her. <i>“You didn’t stick this anywhere dangerous, did you? Like, into a cockvine or a fungal myr or something?”</i>");
 			//output("\n\n{(nice)"Er, no,”</i> you answer carefully. <i>“Not dangerous </i>per se<i>.”</i> /(else)You grin instead of answering{(mean) - though you note her suggestions for another day}. }");
 			//DO NOT remove dildo item from PC until after the loss scene starts - triggers alt. text in sex scene opening
@@ -1978,21 +1978,22 @@ public function sitAndScrewGoldMyr():void
 	showDeserter(true,true);
 	var DontKnowName:Boolean = (enemy.short != "Lys" && enemy.short != "Briha");
 	//IF PC LOSS:
-	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));	
-
+	var combatLoss:Boolean = (inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax()));
+	var useStrapon:Boolean = true;
+	
 	//PC Loss:
 	if(combatLoss)
 	{
-		output("While you lie on the ground, the buxom beauty begins to slowly strip of her torn battle garb. It’s not long before you’re staring longingly at her honey-hued skin and ring-pierced nipples. Despite yourself, your ");
+		output("While you lie on the ground, the buxom beauty begins to slowly strip of her torn battle garb. It’s not long before you’re staring longingly at her honey-hued skin and ring-pierced nipples. Despite yourself, ");
 		if(pc.hasCock()) 
 		{
-			output("[pc.cocks] stiffen");
+			output("your [pc.cocks] stiffen");
 			if(pc.cockTotal() == 1) output("s");
 			if(pc.hasVagina()) output(" and ");
 		}
 		if(pc.hasVagina() || !pc.hasCock()) output("you feel a delicious tingling sensation deep in your loins");
 		output(".");
-		if(hasGoldDildo())
+		if(!pc.hasCock() && hasGoldDildo())
 		{
 			output("\n\nExulting in her power, the myr searches through your stuff, though ultimately, she’s only interested in her fat strap-on. She reclaims it with a flourish.");
 		}
@@ -2018,6 +2019,7 @@ public function sitAndScrewGoldMyr():void
 			output("\n\nRegardless of your answer, the busty battle-maiden strips off your [pc.gear]. You’re left lying there with your aching [pc.cocksLight] brazenly exposed. Despite your embarassment - or perhaps because of it - your [pc.cockHeads] swell");
 			if(pc.cockTotal() == 1) output("s");
 			output(" with arousal.");
+			useStrapon = false;
 		}
 		//Else PC GotNoCock:
 		else
@@ -2042,7 +2044,6 @@ public function sitAndScrewGoldMyr():void
 	//Else PC Win/Consent:
 	else
 	{
-		var useStrapon:Boolean = true;
 		if((pc.isHerm() && rand(2) == 0) || pc.isMale()) useStrapon = false;
 		
 		if(!useStrapon)
@@ -2230,7 +2231,7 @@ public function knockUpRedBitchChance():void
 			//Set incubation timer
 			flags["BRIHA_INCUBATION_TIMER"] = 0;
 			pc.clearRut();
-			trace("RED MYR KNOCKED UP!");			
+			trace("RED MYR KNOCKED UP!");
 		}
 	}
 }
@@ -2376,7 +2377,7 @@ public function giveDildoToAntSloot(gold:Boolean):void
 	//tooltip: Give the {dirty }sex toy back to the myr{ and let her know that you used it}.
 	
 	//CUT ORIGINAL Z DIALOGUE AND REPLACED WITH OPTIONS THAT AREN'T JUST THE PC BEING A GIGANTIC CUNT
-	//{(nice)Smiling/(misch)With a stare rife with implications/(mean)Grunting}, you pull out the dildo and drop it at her feet. {PC used it)"By the way, I got some use out of it," you say, as she picks it up.}
+	// {(nice)Smiling/(misch)With a stare rife with implications/(mean)Grunting}, you pull out the dildo and drop it at her feet. {PC used it)"By the way, I got some use out of it," you say, as she picks it up.}
 	output("You pass the dildo back to its proper owner.");
 	if(pc.isBimbo()) output(" <i>“It’s a super nice toy!”</i>");
 	else if(pc.isNice()) output(" <i>“It seems only fitting I return your property.”</i>");
@@ -3030,7 +3031,7 @@ public function useBrihasVibeAnal():void
 		output("Eyeing the red myr’s vibrator, you decide on the dirtiest place you can think of. For several minutes, you smear it with your saliva, coating it to ease insertion.");
 		if(pc.ass.looseness() >= 3) output(" You needn’t have bothered - the eight-inch toy slides into your [pc.asshole] like a one-man cargo shuttle slipping through an inter-system gate.");
 		else output(" The preparation is worth it - your [pc.asshole] yields grudgingly to the wet toy, accepting it into your depths with a sticky welcome.");
-		//{butt stretch/butt hymen check}
+		//butt stretch/butt hymen check
 		pc.buttChange(20);
 		if(pc.libido() >= 66) output("\n\nIt’s a natural next step to ");
 		else output("\n\nIt takes a few moments to nerve yourself up to ");
@@ -3140,7 +3141,7 @@ public function didloDPWivStolenDildo(target:String = "vag"):void
 	else if(target == "ass") pc.buttChange(pp.cockVolume(0)); // 75
 	
 	output("\n\nYou masturbate to a froth with the first dildo, working yourself into such a fugue that your lust-addled mind craves more penetration. Extended plunges with the first toy dredge up lubrication from deep in your core, until you’re satisfied that you’re wet enough to take the smaller one as well. With care but very little ceremony, you slip it in alongside its larger sibling.");
-	//{second vaginal/anal/whatever stretch check (for double pen; both heads together are probably ~5in wide)}
+	//second vaginal/anal/whatever stretch check (for double pen; both heads together are probably ~5in wide)
 	
 	pp.cocks[0].cThicknessRatioRaw = 1.5;
 	

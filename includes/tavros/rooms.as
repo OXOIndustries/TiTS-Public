@@ -677,6 +677,8 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
+	rooms["RESIDENTIAL DECK 12"].runOnEnter = liammeBonus;
 	
 	//1013 North Walkway 2
 	rooms["RESIDENTIAL DECK 13"] = new RoomClass(this);

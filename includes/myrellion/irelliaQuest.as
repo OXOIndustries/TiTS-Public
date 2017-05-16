@@ -140,8 +140,8 @@ public function firstIrelliaApproach():void
 	output("\n\nMarsail scowls, but waves her arm in your direction, her combined jewelry jingling obnoxiously. <i>“Fine then. Speak to us, star-walker. Why do you interrupt our conference? What are you called?”</i>");
 	processTime(5);
 	clearMenu();
-	addButton(0,"Introduce",introduceToIrelliaAndCo,undefined,"Introduce Yourself","Introduce yourself. You just wanted to touch bases with the locals and see what there take on the war is.");
-	//[Introduce - Introduce yourself. You just wanted to touch bases with the locals and see what there take on the war is.]
+	addButton(0,"Introduce",introduceToIrelliaAndCo,undefined,"Introduce Yourself","Introduce yourself. You just wanted to touch bases with the locals and see what their take on the war is.");
+	//[Introduce - Introduce yourself. You just wanted to touch bases with the locals and see what their take on the war is.]
 	addButton(1,"Irellia",introduceYourselfToIrelliaOnly,undefined,"Irellia","Introduce yourself and explain that you came to seek audience with Irellia, not the other two.");
 	//[Irellia - Introduce yourself and explain that you came to seek audience with Irellia, not the other two.]
 	addButton(2,"Nevermind",nevermindIrelliaAndCo,undefined,"Nevermind","Introduce yourself, but tell them that you’ve been offended and will be leaving.");
@@ -272,7 +272,7 @@ public function nevermindIrelliaAndCo():void
 	//Mischievous
 	else if(pc.isMischievous()) output("<i>“The real question is: how have you fine ladies not missed my obvious royal bearing? You address " + pc.mf("Prince","Princess") + " [pc.name] Steele, heir" + pc.mf("","ress") + " to the mighty Steele Tech, and you do so poorly. I suggest you have your servants bring you a fresh helping of tact; you are sorely in need of it in these trying times.”</i> You turn on your heel, a playful smile on your face. Maybe you ought to give playing the royal a try sometime.\n\nA hand falls on your shoulder, stopping you in your tracks. <i>“Such exaggerated boasting ill becomes you. Do you think us simpletons that devour every half-assed story we are offered?”</i>");
 	//Hard
-	else output("<i>“Why are you so rude?”</i> You gesture at Marsail while the assembled myr gasp. <i>“Your city is perched on the edge of annihilation, and the only thing keeping it from tipping into nonexistence is the UGC’s good graces.”</i> You shrug disarmingly and turn away, making to leave. <i>“A single [pc.race] with a decent starship could wipe out one of your armies in an afternoon. It’d be a shame if potential allies left after being so ill treated - potential allies like [pc.name] Steele.”</i>\n\nA hand falls on your shoulder, stopping you. Maybe you managed to talk some sense into these royal twits.\n\n<i>“You are as uncouth as you are impertinent. You are lucky we stand in house Uldred. Such slanderous speech would see you serving in a punishment detail if we stood in Nil’dor.”</i> Marsail’s razor-edged scowl could cut glass.");
+	else output("<i>“Why are you so rude?”</i> You gesture at Marsail while the assembled myr gasp. <i>“Your city is perched on the edge of annihilation, and the only thing keeping it from tipping into nonexistence is the UGC’s good graces.”</i> You shrug disarmingly and turn away, making to leave. <i>“A single [pc.raceShort] with a decent starship could wipe out one of your armies in an afternoon. It’d be a shame if potential allies left after being so ill treated - potential allies like [pc.name] Steele.”</i>\n\nA hand falls on your shoulder, stopping you. Maybe you managed to talk some sense into these royal twits.\n\n<i>“You are as uncouth as you are impertinent. You are lucky we stand in house Uldred. Such slanderous speech would see you serving in a punishment detail if we stood in Nil’dor.”</i> Marsail’s razor-edged scowl could cut glass.");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",meetingIrelliaPt2,true);

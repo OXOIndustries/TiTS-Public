@@ -63,30 +63,35 @@ public function appearance(forTarget:Creature):void
 		if(target.tallness % 12 != 0) output2(" and " + Math.round(target.tallness % 12) + " inches");
 		output2(" tall by ancient imperial measurements and " + Math.round(target.tallness * 0.0254 * 100)/100 + " meters in the more accepted metric system.");
 		output2(" Right now, you’re");
-		if(target.isNude() || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
+		var isNude:Boolean = (target.isNude());
+		var showTits:Boolean = (target.isChestVisible() && target.hasBreasts());
+		var showCrotch:Boolean = (target.isCrotchVisible());
+		var showAss:Boolean = (target.isAssVisible());
+		var allExposed:Boolean = (target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed());
+		if(isNude || target.armor is EmptySlot) output2(" not wearing a single scrap of armor,");
 		else output2(" wearing " + target.armor.description + ",");
-		if(target.isNude() || target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
+		if(isNude || target.lowerUndergarment is EmptySlot) output2(" going commando down south,");
 		else output2(" using " + target.lowerUndergarment.description + " for underwear,");
-		if(target.isNude() || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
+		if(isNude || target.upperUndergarment is EmptySlot) output2(" and letting your torso breathe, unrestricted by any undertop.");
 		else output2(" and girding your upper body with " + target.upperUndergarment.description + ".");
-		if(!target.isNude() && ((target.isChestExposed() && target.hasBreasts()) || target.isCrotchExposed() || target.isAssExposed()))
+		if(!isNude && (showTits || showCrotch || showAss))
 		{
-			output2(" Your outfit leaves little to the imagination, exposing your");
-			if(target.isChestExposed() && target.hasBreasts())
+			output2(" Your outfit leaves little to the imagination, " + (!allExposed ? "revealing" : "exposing") + " your");
+			if(showTits)
 			{
 				output2(" breasts");
-				if(target.isCrotchExposed() && target.isAssExposed()) output2(",");
-				else if(target.isCrotchExposed() || target.isAssExposed()) output2(" and");
+				if(showCrotch && showAss) output2(",");
+				else if(target.isCrotchVisible() || showAss) output2(" and");
 			}
-			if(target.isCrotchExposed())
+			if(showCrotch)
 			{
 				output2(" crotch");
-				if(target.isAssExposed()) output2(" and");
+				if(target.isAssVisible()) output2(" and");
 			}
-			if(target.isAssExposed()) output2(" ass");
+			if(showAss) output2(" ass");
 			output2(" to the world.");
 		}
-		if(target.isChestExposed() && target.isCrotchExposed() && target.isAssExposed() && !target.canUseTailsOrFurAsClothes())
+		if(allExposed && !target.canUseTailsOrFurAsClothes())
 		{
 			if(target.exhibitionism() >= 100) output2(" You’re a shameless exhibitionist and proud of it, flaunting your naked body and giving the entire galaxy quite an eyeful!");
 			else if(target.exhibitionism() >= 66) output2(" Your naked body is like a second outfit for you, giving you naughty thoughts when in the public’s gaze.");
@@ -102,7 +107,7 @@ public function appearance(forTarget:Creature):void
 
 		//Face
 		output2("\n\n");
-		if(InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LAPINE) && !target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) {
+		if(InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LAPINE) && !target.hasMuzzle()) {
 			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2("Your face is human in shape and structure, with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("Under your " + target.skinFurScales(true,true,false,true) + " you have a human-shaped head with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face is fairly human in shape, but is covered in " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
@@ -120,7 +125,7 @@ public function appearance(forTarget:Creature):void
 				else if(target.statusEffectv3("Mimbrane Face") >= 13) output2(" Your lips appear lusciously large and undeniably kissable.");
 			}
 		}
-		else if(target.faceType == GLOBAL.TYPE_LAPINE && target.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+		else if(target.faceType == GLOBAL.TYPE_LAPINE && target.hasMuzzle())
 		{
 			output2("You have a short-muzzled face");
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2(" with " + target.skin(true,true,true) + ".");
@@ -156,6 +161,11 @@ public function appearance(forTarget:Creature):void
 			//(if skin)
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" It looks a bit strange with only the skin and no fur.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The presence of said scales gives your visage an eerie look, more reptile than mammal.");
+		}
+		else if(target.faceType == GLOBAL.TYPE_SHEEP)
+		{
+			output2("You have a short, " + pc.mf("blunt","cute") + " muzzle much like a sheep’s.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + target.skinFurScales(true,true,false,true) + " decorates it.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_VULPINE) {
 			output2("You have a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
@@ -197,6 +207,12 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the facial structure of a dog, wet nose and all, but overlaid with " + target.skinFurScales(true,true,false,true) + ".");
 			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
 		}
+		//wolf-face
+		else if(target.faceType == GLOBAL.TYPE_LUPINE) {
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a wolf’s face, wide and majestic, with jaws filled with sharp teeth. You’ve got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skin(true,true,true) + " underneath your furry visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the facial structure of a wolf, wide and majestic, but overlaid with " + target.skinFurScales(true,true,false,true) + ", and having jaws filled with sharp teeth.");
+			else output2("You have a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
+		}
 		//Knock-off dog-face
 		else if(target.faceType == GLOBAL.TYPE_WORG)
 		{
@@ -224,16 +240,16 @@ public function appearance(forTarget:Creature):void
 		}
 		//bird-face
 		else if(target.faceType == GLOBAL.TYPE_AVIAN) {
-			if(target.hasFaceFlag(GLOBAL.FLAG_BEAK)) output2("You have a bird-like face, complete with " + indefiniteArticle(target.lipColor) + " beak");
+			if(target.hasBeak()) output2("You have a bird-like face, complete with " + indefiniteArticle(target.lipColor) + " beak");
 			else output2("Your facial structure blends humanoid features with those of a bird, but lacking the signature beak");
-			if(target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) {
-				if(target.hasFaceFlag(GLOBAL.FLAG_BEAK)) output2(" - rather it looks like a beak, but is more like a muzzle in structure, retaining lips and teeth instead of sharp beak edges. But they are almost impossible to spot without closer inspection");
+			if(target.hasMuzzle()) {
+				if(target.hasBeak()) output2(" - rather it looks like a beak, but is more like a muzzle in structure, retaining lips and teeth instead of sharp beak edges. But they are almost impossible to spot without closer inspection");
 				else output2(". Instead you have a toothy reptilian muzzle, making your visage rather unsettling");
 			}
 			output2(".");
-			if(target.hasFeathers() || target.hasScales() && target.hasFaceFlag(GLOBAL.FLAG_MUZZLED) && !target.hasFaceFlag(GLOBAL.FLAG_BEAK)) output2(" It is adorned with " + indefiniteArticle(target.skinFurScales(true,true,false,true)) + ", completing the image.");
+			if(target.hasFeathers() || target.hasScales() && target.hasMuzzle() && !target.hasBeak()) output2(" It is adorned with " + indefiniteArticle(target.skinFurScales(true,true,false,true)) + ", completing the image.");
 			else output2(" The lack of feathers on your " + target.skinNoun() + " look rather strange.");
-			if(target.hasFaceFlag(GLOBAL.FLAG_BEAK) && !target.hasFeathers() && !target.hasFur() && target.isBald()) output2(" You somewhat resemble a vulture.");
+			if(target.hasBeak() && !target.hasFeathers() && !target.hasFur() && target.isBald()) output2(" You somewhat resemble a vulture.");
 		}
 		//Minotaaaauuuur-face
 		else if(target.faceType == GLOBAL.TYPE_BOVINE) {
@@ -280,7 +296,6 @@ public function appearance(forTarget:Creature):void
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true,true) + ".");
 			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true,true) + ".");
 		}
-		//SharkMorph Face:
 		else if(target.faceType == GLOBAL.TYPE_SHARK)
 		{
 			output2("Your face is shark-like in shape, with a snout and an upper jaw that pushes past your lower one, and at the very tip, there are two nasal holes.");
@@ -299,6 +314,13 @@ public function appearance(forTarget:Creature):void
 		}
 		// Special face additions
 		if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") output2(" A distinctive purple stripe runs across the bridge of your nose.");
+		// Freckles
+		if(target.hasFaceFlag(GLOBAL.FLAG_FRECKLED))
+		{
+			if(target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFur()) output2(" Beneath your fur, f");
+			else output2(" F");
+			output2(target.mf("reckles spot your cheeks.","reckles cutely adorn your cheeks."));
+		}
 		//M/F stuff!
 		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
@@ -315,12 +337,20 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.eyeType == GLOBAL.TYPE_SHARK)
 		{
-			output2("Your eyes are a curious mix of piscine and feline features; a pair of black vertical slits instead of rounded pupils,");
+			output2(" Your eyes are a curious mix of piscine and feline features; a pair of black vertical slits instead of rounded pupils,");
 			if(hasMetallicEyes) output2(" sat amongst metallically glistening pools of " + target.eyeColor + " irises.");
 			else if(hasGemstoneEyes) output2(" each nestled in a shimmering gemstone-like " + target.eyeColor + " iris.");
 			else if(hasLuminousEyes) output2(" each nestled within " + indefiniteArticle(target.eyeColor) + " iris.");
 			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
 			output2(" A thick black ring lines your eye and your eyelids close from the side."); 
+		}
+		else if(target.eyeType == GLOBAL.TYPE_SHEEP)
+		{
+			if(hasMetallicEyes) output2(" Metallically glistening in the light, your");
+			else if(hasGemstoneEyes) output2(" Like jewels, shimmering in the light, your");
+			else if(hasLuminousEyes) output2(" Like twinkling beacons, your");
+			else output2(" Your");
+			output2(" " + target.eyeColor + " eyes are sheep-like, sporting horizontal pupils.");
 		}
 		else if(target.eyeType == GLOBAL.TYPE_GRYVAIN)
 		{
@@ -464,6 +494,10 @@ public function appearance(forTarget:Creature):void
 			{
 				output2(" A pair of round, floppy cow ears protrude from the sides of your " + headNoun + ".");
 			}
+			else if(target.earType == GLOBAL.TYPE_SHEEP)
+			{
+				output2(" A pair of sheep-like ears flop cutely down the sides of your " + headNoun + ".");
+			}
 			else if(target.earType == GLOBAL.TYPE_DRIDER)
 			{
 				output2(" A pair of large pointy ears stick out from your " + headNoun + ".");
@@ -511,6 +545,10 @@ public function appearance(forTarget:Creature):void
 			else if(target.earType == GLOBAL.TYPE_VULPINE)
 			{
 				output2(" A pair of large, adept fox ears sit high on your " + headNoun + ", always listening.");
+			}
+			else if(target.earType == GLOBAL.TYPE_LUPINE)
+			{
+				output2(" A pair of pointed wolf-like ears protrude from your " + headNoun + ", pointed and alert.");
 			}
 			else if(target.earType == GLOBAL.TYPE_DEER)
 			{
@@ -597,10 +635,8 @@ public function appearance(forTarget:Creature):void
 				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
 				output2(" from your " + headNoun + ".");
 			}
-			//Shark Ears:
 			else if(target.earType == GLOBAL.TYPE_SHARK)
 			{
-				//pc is bald
 				output2(" A pair of triple-parted, sail-like ears protrude from the sides of your " + headNoun + ". The topmost sail points straight up while the other more smaller ones curve down.");
 			}
 			else if(target.earType == GLOBAL.TYPE_SWINE)
@@ -614,6 +650,7 @@ public function appearance(forTarget:Creature):void
 			else if(target.earType == GLOBAL.TYPE_EQUINE) output2(" The " + target.hairDescript(true,true) + " on your head parts around a pair of very horse-like ears that grow up from your head.");
 			else if(target.earType == GLOBAL.TYPE_CANINE) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed dog ears.");
 			else if(target.earType == GLOBAL.TYPE_BOVINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
+			else if(target.earType == GLOBAL.TYPE_SHEEP) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of sheep-like ears that flop cutely down the sides of your head.");
 			else if(target.earType == GLOBAL.TYPE_DRIDER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
 			else if(target.earType == GLOBAL.TYPE_FELINE)
 			{
@@ -649,6 +686,7 @@ public function appearance(forTarget:Creature):void
 				output2(" kangaroo ears that stick out at an angle.");
 			}
 			else if(target.earType == GLOBAL.TYPE_VULPINE) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of large, adept fox ears that always seem to be listening.");
+			else if(target.earType == GLOBAL.TYPE_LUPINE) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed wolf ears.");
 			else if(target.earType == GLOBAL.TYPE_DEER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded ears that point out sideways, flicking and flopping about, making you look very much like a deer.");
 			else if(target.earType == GLOBAL.TYPE_DRACONIC) output2(" The " + target.hairDescript(true, true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head that serve as your ears. Bony fins sprout behind them.");
 			else if(target.earType == GLOBAL.TYPE_GRYVAIN) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head that serve as your ears. Long, bony fins sprout behind them.");
@@ -815,26 +853,35 @@ public function appearance(forTarget:Creature):void
 			//Antlers!
 			else if(target.hornType == GLOBAL.TYPE_DEER)
 			{
-				if(target.horns > 0)
-				{
-					if(rand(2) == 0) output2(" A pair of antlers sprout from your head, covered in velvet and indicating your status as a desirable mate.");
-					else output2(" Velvet-covered antlers sprout from your head, declaring your status as a desirable mate and formidable opponent.");
-					if(target.hornLength > 1) output2(" They are " + num2Text(int(target.hornLength)) + "-inch long and fork into " + num2Text(target.horns) + " points.");
-				}
+				if(rand(2) == 0) output2(" A pair of antlers sprout from your head, covered in velvet and indicating your status as a desirable mate.");
+				else output2(" Velvet-covered antlers sprout from your head, declaring your status as a desirable mate and formidable opponent.");
+				if(target.hornLength > 1) output2(" They are " + num2Text(int(target.hornLength)) + "-inch long and fork into " + num2Text(target.horns) + " points.");
 			}
 			else if(target.hornType == GLOBAL.TYPE_DRYAD)
 			{
-				if(target.horns > 0)
-				{
-					output2(" Two");
-					if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
-					output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of branches.");
-				}
+				output2(" Two");
+				if(target.hornLength > 1) output2(" " + num2Text(int(target.hornLength)) + "-inch long");
+				output2(" antlers, forking into " + num2Text(target.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of branches.");
 			}
 			//Goatliness is next to godliness.
 			else if(target.hornType == GLOBAL.TYPE_GOAT)
 			{
-				if(target.horns > 0) output2(" Two curled ram horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
+				if(target.hornLength >= 6) output2(" Two curled goat horns twist back from your forehead, curling over your [target.ears] like a satyr out of terran legend.");
+				else output2(" Two goat horns stick stright out from your forehead, making you appear like a satyr out of terran legend.");
+			}
+			//Ram horns
+			else if(target.hornType == GLOBAL.TYPE_SHEEP)
+			{
+				if(rand(2) == 0)
+				{
+					if(target.hornLength >= 10) output2(" Impressive curved ram horns sprout from your head, showing off to all who can see that you are more than capable of defending yourself and your territory.");
+					else output2(" Slightly curved ewe horns emerge from your head, giving you a graceful appearance.");
+				}
+				else
+				{
+					if(target.hornLength >= 10) output2(" A pair of large ram horns grow from your head, showing off to all who can see that you are formidable opponent.");
+					else output2(" A pair of sheep-like horns grow from your head, each with a naturally elegant curve.");
+				}
 			}
 			//Rhinoceros horn!
 			else if(target.hornType == GLOBAL.TYPE_RHINO)
@@ -851,7 +898,7 @@ public function appearance(forTarget:Creature):void
 			//Unicorn horn!
 			else if(target.hornType == GLOBAL.TYPE_NARWHAL)
 			{
-				if(target.horns > 0) output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
+				output2(" A slender ivory horn extends from your forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
 			}
 		}
 		else if(target.hasStatusEffect("Horn Bumps")) output2(" <b>Your forehead is red and irritated in two different places. The upraised bumps stand out quite visibly.</b>");
@@ -869,6 +916,8 @@ public function appearance(forTarget:Creature):void
 				else output2(" Nestled above your ear, there is " + indefiniteArticle(target.getStatusTooltip("Hair Flower")) + " orchid. It looks like you stuck it there but it’s very much a part of you, flourishing from your scalp merrily.");
 			}
 		}
+		// Worn collars
+		appearanceWornCollar();
 		//BODY PG HERE
 		output2("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 		if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(", mostly covered in a layer of " + target.skinFurScales(true, true));
@@ -924,7 +973,14 @@ public function appearance(forTarget:Creature):void
 				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
 				output2(" large bat-like demon-wings fold " + (target.statusEffectv1("Wing Position") == 1 ? "over your body" : "behind your shoulders") + ". With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
 			}
-			else if(target.wingType == GLOBAL.TYPE_SHARK) output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
+			else if(target.wingType == GLOBAL.TYPE_SHARK)
+			{
+				if(target.wingCount == 2) output2(" a pair of ");
+				else if(target.wingCount == 4) output2(" a quartet of ");
+				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
+				if(target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
+				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
+			}
 			else if(target.wingType == GLOBAL.TYPE_AVIAN)
 			{
 				if(target.wingCount == 2) output2(" a pair of");
@@ -976,24 +1032,6 @@ public function appearance(forTarget:Creature):void
 				else output2(" Each tentacle contains a bulbous head with a cum-leaking slit");
 				output2(", perfect for mass breeding.");
 			}
-			//Shark Wings/Dorsal Fin:
-			else if(target.wingType == GLOBAL.TYPE_SHARK)
-			{
-				if(target.wingCount == 2) output2(" a pair of ");
-				else if(target.wingCount == 4) output2(" a quartet of ");
-				else if(target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				if(target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
-				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
-			}
-			//Shark Wings/Dorsal Fin:
-			else if(target.wingType == GLOBAL.TYPE_SHARK)
-			{
-				if (target.wingCount == 2) output2(" a pair of ");
-				else if (target.wingCount == 4) output2(" a quartet of ");
-				else if (target.wingCount > 1) output2(" " + num2Text(int(target.wingCount)));
-				if (target.wingCount > 1) output2(" large shark-like fins have sprouted between your shoulder blades. With them you have far more control over swimming underwater.");
-				else output2(" a large shark-like fin has sprouted between your shoulder blades. With it you have far more control over swimming underwater.");
-		}
 		}
 		else output2(".");
 		// Neck mane stuff
@@ -1020,6 +1058,10 @@ public function appearance(forTarget:Creature):void
 			if(target.biggestTitSize() > 2) output2(" Nestled between your breasts");
 			else output2(" Poofing out your chest");
 			output2(" is a fluffy ball of " + target.furColor + " " + ((target.hasFur() || target.hasFeathers()) ? target.skinNoun(false,true) : "fur") + ".");
+		}
+		if(target.hasFur() && target.perkv1("Wooly") >= 1)
+		{
+			output2(" Your chest and back are covered in a thick, bushy layer of wool.");
 		}
 		// Cum Splattered!
 		if(target.hasStatusEffect("Cum Soaked") || target.hasStatusEffect("Pussy Drenched"))
@@ -1135,11 +1177,12 @@ public function appearance(forTarget:Creature):void
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 			output2(" digit in shiny black. You can still feel through them all the same.");
 		}
-		else if(target.armType == GLOBAL.TYPE_CANINE || target.armType == GLOBAL.TYPE_VULPINE) 
+		else if(target.armType == GLOBAL.TYPE_CANINE || target.armType == GLOBAL.TYPE_VULPINE || target.armType == GLOBAL.TYPE_LUPINE) 
 		{
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.hasArmFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + target.furColor + " fur covers your arms, giving them a distinctly animalistic bent.");
 			if(target.hasArmFlag(GLOBAL.FLAG_PAWS)) output2(" Soft pads rest on the tips of each of your fingers. ");
-			output2(" Your fingers are tipped with short, canine claws as well");
+			if(target.armType == GLOBAL.TYPE_LUPINE) output2(" Your fingers are tipped with thick, canine claws as well");
+			else output2(" Your fingers are tipped with short, canine claws as well");
 			if(target.armType == GLOBAL.TYPE_CANINE && !target.hasArmFlag(GLOBAL.FLAG_PAWS)) output2(", just like one of the ausar");
 			output2(".");
 		}
@@ -1149,7 +1192,8 @@ public function appearance(forTarget:Creature):void
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 			else output2(" human-shaped");
 			output2(" hands appear very demonic, tipped with sharp claws that seem to have replaced your fingernails.");
-			if(target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(" In addition, your forearms are covered by sleek plates of jet-black chitin along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
+			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY) && target.hasArmFlag(GLOBAL.FLAG_SMOOTH)) output2(" In addition, your forearms are covered by sleek plates of hardened goo along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
+			else if(target.hasArmFlag(GLOBAL.FLAG_CHITINOUS)) output2(" In addition, your forearms are covered by sleek plates of jet-black chitin along the outside of each arm. Smaller pentagonal plates trail up your upper arms and over your shoulders.");
 			else if(target.hasArmFlag(GLOBAL.FLAG_SPIKED)) output2(" In addition, a set of short jet-black bone spikes grow along the outside of each forearm and out of the back of your elbows, giving you an incredibly imposing look.");
 		}
 		else if(InCollection(target.armType, GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_DRIDER, GLOBAL.TYPE_BEE, GLOBAL.TYPE_NYREA))
@@ -1357,11 +1401,12 @@ public function appearance(forTarget:Creature):void
 			{
 				case GLOBAL.TYPE_DEER:
 					output2(" deer"); break;
-				case GLOBAL.TYPE_BOVINE:	
+				case GLOBAL.TYPE_BOVINE:
 				case GLOBAL.TYPE_GOAT:
 					output2(" bovid"); break;
 				case GLOBAL.TYPE_CANINE:
 				case GLOBAL.TYPE_VULPINE:
+				case GLOBAL.TYPE_LUPINE:
 				case GLOBAL.TYPE_TANUKI:
 					output2(" canid"); break;
 				case GLOBAL.TYPE_FELINE:
@@ -1412,7 +1457,7 @@ public function appearance(forTarget:Creature):void
 				if(target.hipRating() < 6) output2(", and");
 				if(target.femininity > 50) {
 					if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that draw the attention of those around you, and");
-					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you [target.walk] with a sexy, swinging gait, and");
+					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you move with a sexy, swinging gait, and");
 					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you’ve birthed many children, and");
 					if(target.hipRating() >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
 				}
@@ -1496,25 +1541,40 @@ public function appearance(forTarget:Creature):void
 		}
 		
 		//Tramp Stamps
+		if(target.hasPerk("Barcoded"))
+		{
+			if(rand(2) == 0) output2(" There’s a barcode on your left butt cheek, forever marking you as the property of Belle and Accu-Pitch Labs.");
+			else output2(" On one of your ass cheeks is a barcode, placed there by Dr. Belle for her scientific research, and to remind you of your place as her pet.");
+		}
 		if(target.hasPerk("Slut Stamp")) output2(" To highlight your vulgarity, a tattoo is permanently printed on your lower back, advertising how much of a slut you are to anyone who sees it.");
 		
 		//TAILS
 		if(target.tailType == GLOBAL.TYPE_EQUINE) output2(" A long " + target.hairColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
-		else if(target.tailType == GLOBAL.TYPE_CANINE)
+		else if(target.tailType == GLOBAL.TYPE_CANINE || target.tailType == GLOBAL.TYPE_DOGGIE || target.tailType == GLOBAL.TYPE_LUPINE)
 		{
 			if(target.tailCount == 1)
 			{
 				output2(" A");
+				if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output2(" long,");
+				else if(target.tailType == GLOBAL.TYPE_DOGGIE) output2(" cute,");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 				else output2(" fuzzy");
-				output2(" " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+				output2(" " + target.furColor + " ");
+				if(target.tailType == GLOBAL.TYPE_LUPINE) output2("wolf-");
+				else output2("dog");
+				output2("tail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
 			}
 			else
 			{
 				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)));
+				if(target.hasTailFlag(GLOBAL.FLAG_LONG)) output2(" long,");
+				else if(target.tailType == GLOBAL.TYPE_DOGGIE) output2(" cute,");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 				else output2(" fuzzy");
-				output2(" " + target.furColor + " dogtails sprout just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+				output2(" " + target.furColor + " ");
+				if(target.tailType == GLOBAL.TYPE_LUPINE) output2("wolf-");
+				else output2("dog");
+				output2("tails sprout just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_DEMONIC) output2(" A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
@@ -1546,6 +1606,11 @@ public function appearance(forTarget:Creature):void
 			if(target.tailVenom == 100) output2(" Your swollen spider-butt is distended with the sheer amount of webbing it’s holding.");
 			*/
 		}
+		else if(target.tailType == GLOBAL.TYPE_SHEEP)
+		{
+			if(pc.tailCount == 1) output2(" A small lamb-like tail sprouts from your backside.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " small, lamb-like tails sprout from your backside.");
+		}
 		else if(target.tailType == GLOBAL.TYPE_BEE) {
 			output2(" A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift. It is covered in hard");
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("ened " + target.scaleColor + " goo");
@@ -1563,8 +1628,12 @@ public function appearance(forTarget:Creature):void
 			else output2(" " + target.scaleColor + " chitin");
 			output2(" that is smooth to the touch.");
 		}
-		else if(target.tailType == GLOBAL.TYPE_SHARK || target.tailType == GLOBAL.TYPE_SIREN) {
-			output2(" A long shark-tail trails down from your backside, swaying to and fro while giving you a dangerous air.");
+		else if(target.tailType == GLOBAL.TYPE_SHARK || target.tailType == GLOBAL.TYPE_SIREN)
+		{
+			output2(" A long, shark-tail trails down from your backside, swaying to and fro while ");
+			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("dripping goo everywhere.");
+			else output2("giving you a dangerous air.");
+			output2(" Halfway across it grows a smaller dorsal fin.");
 		}
 		else if(target.tailType == GLOBAL.TYPE_FELINE) {
 			if(target.tailCount == 1)
@@ -1792,14 +1861,6 @@ public function appearance(forTarget:Creature):void
 			}
 		}
 		else if(target.tailType == GLOBAL.TYPE_FROG) output2(" Your stubby frog tail wiggles around at the back of your waist, just asking to be squeezed.");
-		//Shark Tail:
-		else if(target.tailType == GLOBAL.TYPE_SHARK)
-		{
-			output2(" A long, shark-tail trails down from your backside, swaying to and fro while ");
-			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2("dripping goo everywhere.");
-			else output2("giving you a dangerous air.");
-			output2(" Halfway across it grows a smaller dorsal fin.");
-		}
 		else if(target.tailType == GLOBAL.TYPE_SWINE) output2(" A curly, little pig tail sticks out above your " + target.buttDescript() + ", twirling when you’re happy.");
 		else if(target.tailType == GLOBAL.TYPE_TENTACLE)
 		{
@@ -1849,8 +1910,14 @@ public function appearance(forTarget:Creature):void
 		else if(target.legType == GLOBAL.TYPE_DEER) 
 		{
 			if(target.legCount < 4) output2(" Your legs are lithe and agile, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in hooves");
-			else output2(" You have " + (rand(2) == 0 ? "thin, deer-like legs that are capped with" : "lithe, agile legs that end in") +  " hooves");
+			else output2(" You have " + (rand(2) == 0 ? "thin, deer-like legs that are capped with" : "lithe, agile legs that end in") + " hooves");
 			output2(", enabling you to nimbly leap and prance from place to place.");
+		}
+		else if(target.legType == GLOBAL.TYPE_SHEEP)
+		{
+			if(target.thickness >= 50) output2(" Your " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey" : "furry") + ", lamb-like legs end in hooves, allowing you to spring into action at a moment’s notice.");
+			else if(target.thickness >= 25) output2(" Your slender, nimble legs end in hooves, allowing you to spring into action at a moment’s notice.");
+			else output2(" Your willowy, sheep-like legs are capped off by hooves, allowing you to spring into action at a moment’s notice.");
 		}
 		else if(target.legType == GLOBAL.TYPE_CANINE) 
 		{
@@ -2011,6 +2078,23 @@ public function appearance(forTarget:Creature):void
 			else output2(" Where your legs would normally start you have grown the body of a spider, with " + num2Text(target.legCount) + " spindly legs that sprout from its sides.");
 		}
 		else if(target.legType == GLOBAL.TYPE_VULPINE) output2(" Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
+		else if(target.legType == GLOBAL.TYPE_LUPINE) 
+		{
+			if(target.legCount < 4) 
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.legCount)) + " powerful");
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs grow downwards from your waist, ending in large, bestial feet tipped with sharp canine claws.");
+			}
+			else
+			{
+				output2(" You have powerful");
+				if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
+				output2(" legs that end in large, bestial feet tipped with sharp canine claws.");
+			}
+		}
 		else if(target.legType == GLOBAL.TYPE_DRACONIC)
 		{
 			if(target.isTaur()) output2(" Your human-like legs are sheathed in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gooey " : "") + "scales and end in clawed feet.");
@@ -2077,7 +2161,6 @@ public function appearance(forTarget:Creature):void
 				}
 			}
 		}
-		//Shark Legs:
 		else if(target.legType == GLOBAL.TYPE_SHARK)
 		{
 			if(target.legCount == 2)
@@ -2239,6 +2322,7 @@ public function appearance(forTarget:Creature):void
 		var btnIndex:int = 0;
 		addGhostButton(btnIndex++, "PrefGender", selectGenderPref, undefined, "Preferred Gender", "Indicate the gender you would prefer your character to be considered.");
 		if(target.canCoverSelf(false, "wings")) addGhostButton(btnIndex++, StringUtil.toDisplayCase(target.wingsDescript(true)), selectWingPref, undefined, "Position " + StringUtil.toDisplayCase(target.wingsDescript(true)), "Change the position of your " + target.wingsDescript(true) + ".");
+
 		//PC Goo'ed up?
 		if(target.hairType == GLOBAL.HAIR_TYPE_GOO || target.hasStatusEffect("Goo Vent") || target.hasStatusEffect("Goo Crotch"))
 		{
@@ -2316,17 +2400,24 @@ public function appearance(forTarget:Creature):void
 		var collarCount:int = hasCollars();
 		if (collarCount > 0)
 		{
-			addGhostButton(btnIndex++, (collarCount == 1 ? "Collar" : "Collars"), manageWornCollar, undefined, (collarCount == 1 ? "Collar" : "Collars"), "Manage which, if any, collar you’re wearing.");
+			if(kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, (collarCount == 1 ? "Collar" : "Collars"), manageWornCollar, undefined, (collarCount == 1 ? "Collar" : "Collars"), "Manage which, if any, collar you’re wearing.");
+			else addDisabledGhostButton(btnIndex++, (collarCount == 1 ? "Collar" : "Collars"), (collarCount == 1 ? "Collar" : "Collars"), "You cannot access your collar menu at this time.");
 		}
-		if (target.hasStatusEffect("Laquine Ears") && target.getStatusMinutes("Laquine Ears") <= 5) addGhostButton(btnIndex++, "Laquine Ears", new LaquineEars().laquineEarsRemove, target, "Remove Laquine Ears", "The Laquine Ears have probably been used up by now, should you remove them?");
+		if (target.hasStatusEffect("Laquine Ears") && target.getStatusMinutes("Laquine Ears") <= 5)
+		{
+			if(kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, "Laquine Ears", LaquineEars.laquineEarsRemove, target, "Remove Laquine Ears", "The Laquine Ears have probably been used up by now, should you remove them?");
+			else addDisabledGhostButton(btnIndex++, "Laquine Ears", "Remove Laquine Ears", "You cannot do this at this time.");
+		}
 	}
 	
 	setTarget(null);
 }
 
 private var COLLAR_LIST:Array = [
-	"Jerynn’s"
-]
+	"Jerynn’s",
+	"Sera’s",
+	"Sub-Tuner",
+];
 
 public function hasCollars():Number
 {
@@ -2353,13 +2444,48 @@ public function getWornCollar():StorageClass
 	return null;
 }
 
+public function appearanceWornCollar():void
+{
+	var wornCollar:StorageClass = getWornCollar();
+	if (wornCollar != null)
+	{
+		switch(wornCollar.storageName)
+		{
+			case "Sera’s Collar":
+				output2(" Around your neck, a black leather and lace collar, replete with tiny pearls and a brass ring, is tightly fixed.");
+				break;
+			case "Sub-Tuner Collar":
+				output2(" Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled " + (flags["SUBTUNER_NAMED"] == 2 ? "“[pc.name]”" : "“Subject 69”") + ".");
+				break;
+			default:
+				output2(" You are currently wearing " + wornCollar.storageName + " around your neck.");
+				break;
+		}
+	}
+}
 public function manageWornCollar():void
 {
 	clearOutput2();
 	var wornCollar:StorageClass = getWornCollar();
 	if (wornCollar != null)
 	{
-		output2("You are currently wearing " + wornCollar.storageName + ".");
+		switch(wornCollar.storageName)
+		{
+			case "Sera’s Collar":
+				output2("You are currently wearing Sera’s Black Lace Collar.");
+				output2("\n\nThis collar is composed of soft, rich leather around its ring, out of which wings of black lace sprout, contouring with the shape of your neck. Tiny pearls dangle from the lace, making small clicking sounds when you move energetically. A large brass ring connects to the back; a strange, blue gemstone is affixed to the front, glowing softly from within. ‘PROPERTY OF SERA’ is embossed into the leather. Altogether it’s an alluring, gothic piece of fetish-wear, elegant even - at least if you don’t know the purpose of the gemstone.");
+				break;
+			case "Sub-Tuner Collar":
+				output2("Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled ");
+				//anno/SyriCrew/SavedKiro: 
+				if(flags["SUBTUNER_NAMED"] == 2) output2("“[pc.name]”");
+				else output2("“Subject 69”");
+				output2(".");
+				break;
+			default:
+				output2("You are currently wearing " + wornCollar.storageName + ".");
+				break;
+		}
 	}
 	else
 	{
@@ -2373,13 +2499,28 @@ public function manageWornCollar():void
 		var itm:StorageClass = pc.getKeyItem(COLLAR_LIST[i] + " Collar");
 		if (itm != null)
 		{
-			addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollar, COLLAR_LIST[i]);
+			switch(COLLAR_LIST[i])
+			{
+				case "Sera’s":
+					if(itm.value1 == 1) addGhostButton(btnIdx++, "Sera’s", toggleSeraCollarOff, undefined, "Sera’s Collar", "Remove this collar.");
+					else addGhostButton(btnIdx++, "Sera’s", toggleSeraCollarOn, undefined, "Sera’s Collar", "Wear this collar.");
+					break;
+				default:
+					if(itm.value1 == 1) addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Remove this collar.");
+					else addGhostButton(btnIdx++, COLLAR_LIST[i], toggleCollarManage, COLLAR_LIST[i], (COLLAR_LIST[i] + " Collar"), "Wear this collar.");
+					break;
+			}
 		}
 	}
 	
 	addGhostButton(14, "Back", backToAppearance, pc);
 }
 
+public function toggleCollarManage(newCollar:String):void
+{
+	toggleCollar(newCollar);
+	manageWornCollar();
+}
 public function toggleCollar(newCollar:String):void
 {
 	var itm:StorageClass = pc.getKeyItem(newCollar + " Collar");
@@ -2396,7 +2537,6 @@ public function toggleCollar(newCollar:String):void
 		if (wornCollar != null) wornCollar.value1 = 0;
 		itm.value1 = 1;
 	}
-	manageWornCollar();
 }
 
 public function boobStuff(forTarget:Creature = null):void

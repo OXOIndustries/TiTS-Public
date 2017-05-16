@@ -837,6 +837,7 @@ public function jerynnAllowPetstuff():void
 
 public function jerynnRescuesYourFrozenAss():Boolean
 {
+	showBust("JERYNN");
 	author("Gedan");
 
 	if (flags["JERYNN_FUCKED"] == undefined || pc.isTaur())

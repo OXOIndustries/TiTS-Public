@@ -1182,7 +1182,7 @@ public function taurBarAdventures(config:int = 1):void
 	if(config != 2) output("unprotected, moist slits, a smorgasbord of cunt awaiting impregnation");
 	else output("dozens of gift-wrapped, bulging dicks, a smorgasbord of cock waiting for your decision");
 	output(". You push your way through the crowd to the bar. All the dripping you’ve been doing has you parched, and you need refreshments before you show these people what a centaur can do.");
-	output("\n\nThe thought that you’re not really a centaur, just a [pc.race] in a costume doesn’t even come to mind, ");
+	output("\n\nThe thought that you’re not really a centaur, just a [pc.raceShort] in a costume doesn’t even come to mind, ");
 	if(config != 2) output("not when your bulging balls feel like they’re flooding with fresh, thick cum.");
 	else output("not when your cunt is promising you the world in exchange for a little penetration.");
 

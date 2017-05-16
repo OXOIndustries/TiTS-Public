@@ -176,7 +176,6 @@
 			btnTargetText = "Sexbot";
 
 			randomise();
-			
 			this._isLoading = false;
 		}
 		

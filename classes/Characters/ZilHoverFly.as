@@ -191,7 +191,6 @@ package classes.Characters
 			sexualPreferences.setRandomPrefs(5+rand(3));
 			
 			inventory.push(new ZilRation());
-			
 			this._isLoading = false;
 			//inventory.push(new ZilRation());
 			// {You are fighting her one-handed, so your attacks are significantly less accurate.} {You are fighting her with both hands, so suffer no accuracy penalties - but nothing is holding you to the cliff-face...}";

@@ -179,7 +179,6 @@
 			isUniqueInFight = true;
 			btnTargetText = "Wetraxxel";
 			sexualPreferences.setRandomPrefs(4 + rand(3),2);
-			
 			this._isLoading = false;
 		}
 		

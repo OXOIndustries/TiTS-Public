@@ -699,6 +699,8 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					armProperties.push(pc.armFlags[i]);
 			}
+			// Special exceptions
+			if(pc.armType == GLOBAL.TYPE_DEMONIC && pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) && !pc.hasArmFlag(GLOBAL.FLAG_SMOOTH)) armProperties.push(GLOBAL.FLAG_SMOOTH);
 			pc.clearArmFlags();
 			pc.armFlags = armProperties;
 		}
@@ -1040,7 +1042,7 @@ public function gooBodyCustomizer():void
 	else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","Your lower body is already made of goo!");
 	if(pc.hasTail())
 	{
-		if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_FLUFFY) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
+		if(pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FLUFFY) || pc.hasTailFlag(GLOBAL.FLAG_SCALED) || pc.hasTailFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasTailFlag(GLOBAL.FLAG_FEATHERED))
 		{
 			if(gooBiomass() >= 20) addGhostButton(8,"Revert Tail",revertGooBodyPart,"tail","Revert Tail","Revert [pc.eachTail] back to goo.\n\n<b>20 mLs Biomass</b>");
 			else addDisabledGhostButton(8,"Revert Tail","Revert Tail","You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");

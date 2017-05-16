@@ -27,8 +27,8 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "A colorful injector labelled \"Pickmentation.\"";
-			tooltip = "This is an extremely garish medipen that constantly shifts between colors and patterns, with a selector mechanism at the bottom. Produced by Xenogen Biotech, it is based on the physiology of the Vanae of Mhen'ga, who are able to freely change the color and patterns of their flesh. The packaging claims that this will allow you to change your skin color.";
+			description = "a colorful injector labeled “Pickmentation”";
+			tooltip = "This is an extremely garish medipen that constantly shifts between colors and patterns, with a selector mechanism at the bottom. Produced by Xenogen Biotech, it is based on the physiology of the Vanae of Mhen’ga, who are able to freely change the color and patterns of their flesh. The packaging claims that this will allow you to change your skin color.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -74,14 +74,36 @@
 			addButton(1, "Unusual", rbgSelColor, [target, "unusual"]);
 			addButton(2, "Metallic", rbgSelColor, [target, "metallic"]);
 			addButton(3, "Glowing", rbgSelColor, [target, "glowing"]);
+			addButton(4, "Freckles", getFreckles, target);
 			addButton(14, "Back", rbgCancel, target);
 		}
-		
+		private function getFreckles(target:Creature):void
+		{
+			clearOutput();
+			kGAMECLASS.showName("\nFRECKLES!");
+			author("Night Trap");
+			var pc:Creature = target;
+			if(!pc.hasFaceFlag(GLOBAL.FLAG_FRECKLED))
+			{
+				output("You adjust the selector to freckles and press the medipen to the center of your forehead. There’s a quiet hiss from the device ");
+				if(pc.hasFaceFlag(GLOBAL.FLAG_FURRED) || pc.hasFur()) output(", but you don’t feel anything happen. You pull out your codex to check your face but are disappointed to find nothing has changed. It looks like freckles won’t show up on a furred face.");
+				else output(" followed by a tingling sensation that spreads from the injection site to the rest of your face. When the tingling finally ends you pull out your codex and use it to check your reflection, finding that <b>you now have freckles!</b>");
+				pc.addFaceFlag(GLOBAL.FLAG_FRECKLED);
+			}
+			else
+			{
+				output("You adjust the selector to freckles and press the medipen to the center of your forehead. There’s a quiet hiss from the device followed by a tingling sensation that spreads from the injection site to the rest of your face. When the tingling finally ends you pull out your codex and use it to check your reflection, finding ");
+				if(pc.hasFaceFlag(GLOBAL.FLAG_FURRED) || pc.hasFur()) output("that you can’t tell the difference through your [pc.skinFurScales], but you’re sure ")
+				output("that <b>your freckles are gone!</b>");
+				pc.removeFaceFlag(GLOBAL.FLAG_FRECKLED);
+			}
+			tfDone();
+		}
 		private function rbgCancel(target:Creature):void
 		{
 			clearOutput();
 			kGAMECLASS.showName("PICK-\nMENTATION");
-			author("Lodestar");
+			author("Night Trap");
 			
 			output("You put the Pickmentation back into your inventory.\n\n");
 			if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new Pickmentation()]);
@@ -102,7 +124,7 @@
 			
 			clearOutput();
 			kGAMECLASS.showName(colorType.toUpperCase() + "\nCOLORS");
-			author("Lodestar");
+			author("Night Trap");
 			
 			output("What color do you choose?\n\n");
 			
@@ -152,19 +174,19 @@
 					break;
 				case "glowing":
 					colorList.push(["glowing red", "G.Red"]);
-					colorList.push(["glowing blue", "G.Blue"]);
-					colorList.push(["glowing green", "G.Green"]);
-					colorList.push(["glowing yellow", "G.Yellow"]);
 					colorList.push(["glowing orange", "G.Orange"]);
+					colorList.push(["glowing yellow", "G.Yellow"]);
+					colorList.push(["glowing green", "G.Green"]);
+					colorList.push(["glowing blue", "G.Blue"]);
 					colorList.push(["glowing purple", "G.Purple"]);
-					colorList.push(["glowing ember", "G.Ember"]);
-					colorList.push(["glowing gold", "G.Gold"]);
 					colorList.push(["glowing pink", "G.Pink"]);
-					colorList.push(["luminous silver", "L.Silver"]);
+					colorList.push(["glowing gold", "G.Gold"]);
 					colorList.push(["luminous cyan", "L.Cyan"]);
 					colorList.push(["luminous violet", "L.Violet"]);
-					colorList.push(["fiery blue", "F.Blue"]);
+					colorList.push(["luminous silver", "L.Silver"]);
 					colorList.push(["hot white", "H. White"]);
+					if(target.level >= 6 || target.hasItemByType(Foxfire)) colorList.push(["glowing ember", "Foxfire"]);
+					if(target.level >= 6 || target.hasItemByType(Frostfire)) colorList.push(["fiery blue", "Frostfire"]);
 					break;
 			}
 			
@@ -202,7 +224,7 @@
 			target.skinTone = newColor;
 
 			output("You adjust the selector to " + newColor + " and press the injector just below your sternum. There’s a quiet hiss from the device, ");
-			if(target.hasFur() || target.hasScales() || target.hasFeathers()) output("but nothing else seems to happen. It seems changing your skin color doesn't do much when its covered by fur or scales.");
+			if(target.hasFur() || target.hasScales() || target.hasFeathers()) output("but nothing else seems to happen. It seems changing your skin color doesn’t do much when its covered by fur or scales.");
 			else output("followed by a tingling sensation that spreads from the injection site over your whole body. " + StringUtil.upperCase(newColor) + " is spreading outwards from your sternum, replacing your previous skin color. <b>You now have [pc.skinTone] [pc.skinNoun].</b>");
 
 			tfDone();

@@ -1223,6 +1223,9 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.chitinColor == null) baby.chitinColor = "NOT SET";
 				if(baby.featherColor == null) baby.featherColor = "NOT SET";
 				
+				// Race Hotfix
+				if(baby.originalRace != "human" && baby.originalRace.indexOf("half") != -1 && baby.originalRace.indexOf("human") != -1) baby.originalRace = "human";
+				
 				// Print stats
 				if(baby.Quantity == 1) output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
 				else output("\n<b>* " + StringUtil.toDisplayCase(num2Text(baby.Quantity)) + " Children:</b> ");
@@ -1472,7 +1475,7 @@ public function nurseryBrigetNurseryStaff():void
 	author("Savin");
 	showBriget();
 
-	//{Has no special staff:
+	//Has no special staff:
 	if (!hasNurseryStaff())
 	{
 		output("Out of curiosity, you ask <i>“If I find someone out there in the galaxy that would fit in well here at the nursery, can I offer them a job?”</i>");

@@ -319,7 +319,7 @@ public function payVKoForHealing(cost:int):void
 	output("\n\nYou do your best to relax as the droid fusses with your injuries. Her deft hands move around your wounded flesh with practiced ease. V-Ko’s flesh is remarkably soft for something so artificial. If it wasn’t for the other obvious signs of her manufacture, you could almost believe that her hands were human. Of course, when her index finger’s tip bends backward at the first joint to expose a spray nozzle, any illusions of her humanity are shattered like a cockpit window in a meteor storm.");
 	output("\n\nPressing her mechanical digit’s tips near to your hurts, she coos, <i>“This will only take a moment.”</i> Her words are chased by a blast of frigid mist against your wounds, so cold that your teeth chatter. However, the chill soon fades away, replaced by warmth as your tissues knit together to repair the damage. Whatever she’s packing in that little sprayer is potent stuff! She repeats the process at the site of every injury, and you do your best to let her work as swiftly as possible.");
 	output("\n\nA few minutes later, you’re preparing to leave and feeling as hale ");
-	if(pc.race() != "horse") output("as a horse");
+	if(pc.raceShort() != "equine") output("as a horse");
 	else output("as the horse that you so resemble");
 	output(".");
 	processTime(8+rand(5));

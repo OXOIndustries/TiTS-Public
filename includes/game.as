@@ -233,7 +233,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	if (!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
 	{
-		addButton(9, "Rest", restMenu);
+		if(canRest()) addButton(9, "Rest", restMenu);
+		else addDisabledButton(9, "Rest", "Rest", "You can’t seem to rest or wait here at the moment....");
 	}
 	else 
 	{
@@ -241,10 +242,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		{
 			addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
 		}
-		else
-		{
-			addButton(9, "Sleep", sleep);
-		}
+		else if(canSleep()) addButton(9, "Sleep", sleep);
+		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
 		
 	addButton(14, "Codex", showCodex);
@@ -541,7 +540,7 @@ public function showPerksList(filter:String = ""):void
 		
 		if (perk.combatOnly == false)
 		{
-			output2("<b>" + perk.storageName + "</b>" + ((desc && perkDesc.length > 0) ? (" - " + perkDesc) : ""));
+			output2("<b>" + ParseQuotes(perk.storageName) + "</b>" + ((desc && perkDesc.length > 0) ? (" - " + perkDesc) : ""));
 			if(perkDesc.length > 0) hasDesc = true;
 			output2("\n");
 		}
@@ -728,6 +727,15 @@ public function passiveTimeEffects(minPass:int = 0):Boolean
 	return false;
 }
 
+public function canRest():Boolean
+{
+	return true;
+}
+public function canSleep():Boolean
+{
+	return true;
+}
+
 public function restMenu():void
 {
 	clearOutput();
@@ -749,6 +757,9 @@ public function restMenu():void
 }
 public function wait(minPass:int = 0):void
 {
+	//Turn encounters back on.
+	flags["ENCOUNTERS_DISABLED"] = undefined;
+	
 	clearOutput();
 	
 	var hrPass:int = Math.floor(minPass/60);
@@ -872,7 +883,7 @@ public function sleep(outputs:Boolean = true):void {
 		if(outputs)
 		{
 			//CELISE NIGHT TIME BEDTIMEZ
-			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
+			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined && flags["CELISE_NO_BED_SENPAI"] == undefined)
 			{
 				celiseOffersToBeYourBedSenpai();
 				return;
@@ -1525,12 +1536,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 			clearOutput();
 			output("Nudity is illegal in that location! You’ll have to cover up if you want to go there.");
 			clearMenu();
-			if(currentLocation == "SHIP INTERIOR") addButton(0, "Next", mainGameMenu);
-			else
-			{
-				addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
-				addButton(14, "Back", mainGameMenu);
-			}
+			if(currentLocation == "SHIP INTERIOR") { /* No need to sneak back if already in ship! */ }
+			else addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
+			addButton(14, "Back", mainGameMenu);
 			return;
 		}
 	}
@@ -1571,10 +1579,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
-	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)))
-	{
-		if(moveMinutes > 1) moveMinutes -= 1;
-	}
+	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes -= 1;
+	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
 	flags["PREV_LOCATION"] = currentLocation;
@@ -1650,6 +1656,17 @@ public function variableRoomUpdateCheck():void
 	if(seraAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
 	else rooms["NURSERYG12"].removeFlag(GLOBAL.NPC);
 	
+	if((hours < 4 || hours >= 12) && !pc.hasStatusEffect("Liamme Disabled")) 
+	{
+		if(!rooms["RESIDENTIAL DECK 12"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
+	}
+	else rooms["RESIDENTIAL DECK 12"].removeFlag(GLOBAL.NPC);
+	if(flags["MET_GIL"] != undefined)
+	{
+		if(!rooms["9017"].hasFlag(GLOBAL.NPC)) rooms["9017"].addFlag(GLOBAL.NPC);
+	}
+	else rooms["9017"].removeFlag(GLOBAL.NPC);
+
 	/* MHENGA */
 	
 	//Bounties
@@ -1698,7 +1715,7 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["DEEP JUNGLE 2"].removeFlag(GLOBAL.PLANT_BULB);
 	// Visited Thare Plantation
-	if(flags["THARE_MANOR_ENTERED"] != undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
+	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);
 	//Mhenga Probe
 	if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] == undefined && flags["FOUGHT_DANE_ON_MHENGA"] == undefined)
@@ -2088,6 +2105,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processEmmyEvents(deltaT, doOut, totalDays);
 	processZheniyaEvents(deltaT, doOut, totalDays);
 	processHLPantyShit();
+	processHardlightAGThongBlurbs(deltaT, doOut);
+	geneSubmissionLevelDecay(deltaT, doOut);
 	
 	// Per-day events
 	if (totalDays >= 1)
@@ -2102,12 +2121,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
 		updateBothriocAddiction(totalDays);
-		processOmegaFever();
 		seraBitcheningStoreInventory(totalDays);
 		seraOnTavrosObedience(totalDays);
 	}
-	
-	racialPerkUpdateCheck(); // Want to move this into creatures too but :effort: right now
 	
 	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(Math.floor((minutes + deltaT) / 60));
 	
@@ -2241,14 +2257,6 @@ public function processLeithaCharmTime(deltaT:uint, doOut:Boolean):void
 	if (pc.hasStatusEffect("Leitha Charm"))
 	{
 		pc.addStatusValue("Leitha Charm", 1, deltaT * 20);
-	}
-}
-
-public function processOmegaFever():void
-{
-	if (pc.hasPerk("Omega Fever"))
-	{
-		(new OmegaOil()).checkOmegaFever();
 	}
 }
 
@@ -2800,196 +2808,6 @@ public function processEmmyEvents(deltaT:uint, doOut:Boolean, totalDays:uint):vo
 	if (totalDays >= 1)
 	{
 		flags["EMMY_SPECIAL"] = undefined;
-	}
-}
-
-public function racialPerkUpdateCheck():void
-{
-	if(pc.hasPerk("'Nuki Nuts"))
-	{
-		if(pc.balls <= 0 && pc.perkv1("'Nuki Nuts") != 0)
-		{
-			// Empty reserves!
-			pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
-			pc.setPerkValue("'Nuki Nuts", 1, 0);
-		}
-		if(pc.perkv2("'Nuki Nuts") != 1 && pc.nukiScore() < 3)
-		{
-			if(pc.balls > 0)
-			{
-				//Nuts inflated:
-				if(pc.perkv1("'Nuki Nuts") > 0)
-				{
-					AddLogEvent(ParseText("The extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your"), "passive");
-					if(pc.originalRace.indexOf("kui-tan") != -1) ExtendLogEvent(" natural kui-tan genes");
-					else ExtendLogEvent(" kui-tan body-mods");
-					ExtendLogEvent(ParseText(", you won’t be swelling up with excess [pc.cumNoun] any more."));
-				}
-				//Nuts not inflated:
-				else
-				{
-					AddLogEvent(ParseText("A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you’ve replaced too much kui-tan DNA to reap the full benefits."), "passive");
-				}
-				ExtendLogEvent("\n\n(<b>Perk Lost: 'Nuki Nuts</b>)");
-				pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
-				pc.removePerk("'Nuki Nuts");
-				nutStatusCleanup();
-			}
-			else
-			{
-				AddLogEvent("(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)", "passive");
-				pc.removePerk("'Nuki Nuts");
-			}
-		}
-		else if(pc.perkv2("'Nuki Nuts") == 1 && pc.balls <= 0)
-		{
-			AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You have no nuts to expand!)", "passive");
-			pc.removePerk("'Nuki Nuts");
-		}
-	}
-	if(pc.hasPerk("Fecund Figure"))
-	{
-		if(!pc.hasVagina())
-		{
-			AddLogEvent("No longer possessing a vagina, your body tingles", "passive");
-			if((pc.perkv1("Fecund Figure") + pc.perkv2("Fecund Figure") + pc.perkv3("Fecund Figure")) > 0) ExtendLogEvent(", rapidly changing as you lose your fertility goddess-like build");
-			ExtendLogEvent(".\n\n(<b>Perk Lost: Fecund Figure</b>)");
-			pc.removePerk("Fecund Figure");
-		}
-	}
-	if(pc.hasStatusEffect("Special Scrotum"))
-	{
-		if(pc.balls <= 0)
-		{
-			AddLogEvent("A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that, due to the lack of testicles, the unique covering for your non-existent scrotum has finally dissolved from your system.", "passive");
-			pc.removeStatusEffect("Special Scrotum");
-		}
-	}
-	if(pc.statusEffectv4("Vanae Markings") > 0)
-	{
-		if(pc.balls <= 0)
-		{
-			AddLogEvent("A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that the last remnants of your " + pc.skinAccent + " testicular tattoos have left your body, leaving the area bare.", "passive");
-			pc.setStatusValue("Vanae Markings", 4, 0);
-		}
-	}
-	if(pc.hasStatusEffect("Nyrea Eggs"))
-	{
-		if(pc.nyreaScore() < 3)
-		{
-			AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive");
-			if(pc.statusEffectv1("Nyrea Eggs") > 0)
-			{
-				ExtendLogEvent(" Strangely, you feel");
-				if(pc.statusEffectv1("Nyrea Eggs") <= 5) ExtendLogEvent(" as if something is missing.");
-				else if(pc.statusEffectv1("Nyrea Eggs") <= 10) ExtendLogEvent(" a bit lighter now.");
-				else if(pc.statusEffectv1("Nyrea Eggs") <= 50) ExtendLogEvent(" like you have lost some pounds.");
-				else if(pc.statusEffectv1("Nyrea Eggs") <= 100) ExtendLogEvent(" much lighter now.");
-				else ExtendLogEvent(" like a huge weight has been lifted from you.");
-			}
-			ExtendLogEvent(" Double-checking your codex, you find that");
-			if(pc.statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absobed into your body"));
-			else ExtendLogEvent(ParseText(" your [pc.cumNoun] is no longer capable of producing eggs anymore"));
-			ExtendLogEvent(". It must be due to the lack of nyrean genes in your system....");
-			pc.removeStatusEffect("Nyrea Eggs");
-		}
-	}
-	if(pc.hasPerk("Slut Stamp"))
-	{
-		if(!pc.hasGenitals())
-		{
-			AddLogEvent(ParseText("A sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly"), "passive");
-			if(pc.isCrotchGarbed()) ExtendLogEvent(ParseText(" struggle through your [pc.lowerGarments],"));
-			ExtendLogEvent(" turn back and wince hard when the area is instantly struck by a refreshing coolness - as if being splashed on with cold water after being branded. When your hazed vision returns to normal, you see the slutty tattoo that resides there gradually dissolve and vanish before your eyes. It looks like your lack of genitalia makes it easier for you to cope with your libido now.\n\n(<b>Perk Lost: Slut Stamp</b>)");
-			pc.removePerk("Slut Stamp");
-		}
-	}
-	if (pc.hasPerk("Androgyny") && pc.perkv1("Androgyny") > 0 && !pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED))
-	{ // racialPerkUpdateCheck: removal of Androgyny perk with the loss of muzzle.
-		AddLogEvent("With your face becoming more human, your appearance is now no longer androgynous.\n\n(<b>Perk Lost: Androgyny</b> - You’ve lost your muzzle.)", "passive");
-		pc.removePerk("Androgyny");
-	}
-	if (pc.hasPerk("Icy Veins") && pc.perkv1("Icy Veins") > 0 && (!pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY) || !InCollection(pc.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)))
-	{ // racialPerkUpdateCheck: removal of Icy Veins perk with he loss of fluffy fur (fork on still having fur but not fluffy flag?).
-		AddLogEvent("Without all that thick, fluffy coat of fur you suddenly feel rather cold...\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)", "passive");
-		pc.removePerk("Icy Veins");
-	}
-	if(flags["GALOMAX_DOSES"] != undefined)
-	{
-		if(pc.hasHair() && pc.hairType != GLOBAL.HAIR_TYPE_GOO && !pc.hasStatusEffect("Hair Regoo"))
-		{
-			AddLogEvent(ParseText("There is a slight tingling sensation at the roots of your [pc.hair].... Hm, strange...."), "passive");
-			pc.createStatusEffect("Hair Regoo", 0, 0, 0, 0, true, "", "", false, 720);
-		}
-	}
-	if(pc.hasPerk("Black Latex"))
-	{
-		if(pc.skinType != GLOBAL.SKIN_TYPE_LATEX && !pc.hasStatusEffect("Latex Regrow"))
-		{
-			AddLogEvent("Somehow, losing your natural latex skin makes you feel naked and insecure... You hope this feeling doesn’t last for too long...", "passive");
-			pc.createStatusEffect("Latex Regrow", 0, 0, 0, 0, true, "", "", false, 720);
-		}
-	}
-	if(pc.armType == GLOBAL.TYPE_FLOWER && pc.hasVagina())
-	{
-		if(pc.totalWombPregnancies() < pc.vaginas.length)
-		{
-			if(pc.hasStatusEffect("Arm Flower")) return;
-			
-			// Choose Flower Color
-			var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
-			
-			AddLogEvent("A summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how.", "passive");
-			
-			pc.createStatusEffect("Arm Flower", 0, 0, 0, 0, true, "", flowerColor, false);
-			// +Lust, slow Libido increase of 5
-			pc.slowStatGain("libido", 5);
-			pc.lust(50);
-		}
-		else if(pc.hasStatusEffect("Arm Flower"))
-		{
-			AddLogEvent("Your " + pc.getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].", "passive");
-			
-			//Libido decrease of 3
-			pc.libido(-3);
-			pc.removeStatusEffect("Arm Flower");
-		}
-	}
-	else if(pc.armType != GLOBAL.TYPE_FLOWER && pc.hasStatusEffect("Arm Flower"))
-	{
-		pc.removeStatusEffect("Arm Flower");
-	}
-	if(pc.hasPerk("Resin"))
-	{
-		if(pc.skinType != GLOBAL.SKIN_TYPE_BARK)
-		{
-			AddLogEvent("The surface of your body tingles and your nose briefly catches a whiff of a familiar amber aroma--which then completely dissipates into the air. Curious, you check your codex and, sure enough, due to the lack of your once bark skin, you’ve lost the ability to create a resin cast to protect yourself. Well, at least you feel a bit more nimble now...\n\n(<b>Perk Lost: Resin</b>)", "passive");
-			
-			pc.removePerk("Resin");
-		}
-	}
-	if(pc.hasPerk("Flower Power"))
-	{
-		var numFlowers:int = 0;
-		if(pc.hasStatusEffect("Hair Flower"))
-		{
-			if(pc.statusEffectv1("Hair Flower") > 1) numFlowers += pc.statusEffectv1("Hair Flower");
-			else numFlowers++;
-		}
-		if(pc.hasStatusEffect("Arm Flower")) numFlowers += 2;
-		if(pc.hasVaginaType(GLOBAL.TYPE_FLOWER)) numFlowers += pc.totalVaginas(GLOBAL.TYPE_FLOWER);
-		if(pc.tailGenitalArg == GLOBAL.TYPE_FLOWER && pc.hasTailCunt()) numFlowers += pc.tailCount;
-		
-		if (pc.perkv1("Flower Power") <= 0 && numFlowers > 0)
-		{
-			AddLogEvent("The flower" + (numFlowers == 1 ? "" : "s") + " located on your body blossom" + (numFlowers == 1 ? "s" : "") + ", ready to unleash " + (numFlowers == 1 ? "its" : "their") + " lust-inducing spores--this also adds to your sexual appetite... not that that’s a bad thing, after all!", "passive");
-		}
-		else if (pc.perkv1("Flower Power") > 0 && numFlowers <= 0)
-		{
-			AddLogEvent("Without any flowers located on your body, you feel the need to produce spores fade. While this relaxes your body’s sexual urges, you know that producing any new flowers will have you ready for pollination again.", "passive");
-		}
-		
-		pc.setPerkValue("Flower Power", 1, numFlowers);
 	}
 }
 

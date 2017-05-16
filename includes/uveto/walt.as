@@ -1,23 +1,53 @@
 // Added to The Freezer off business hours after having participated in the office gangbang
 public function waltAvailableAtBar():Boolean
 {
-	return (!steeleBiomedBusinessHours() && flags["BIOMED_GANGBANGED"] != undefined && !pc.hasStatusEffect("Walt Cooldown"));
+	return (!steeleBiomedBusinessHours() && !pc.hasStatusEffect("Walt Cooldown"));
 }
 public function waltAtTheFreezer(btnSlot:int = 0):void
 {
-	output("\n\nYou see the wolfman, Walt, sitting at a table, nursing a drink. He sniffs the air as you enter, looking up in your direction.");
-	// [Walt] Go to Walt Talk Menu
-	addButton(btnSlot, "Walt", approachWalt);
+	output("\n\n");
+	if(!metWalt())
+	{
+		output("You spot an anthropomorphic wolfman sitting at one of the tables, nursing a drink. From the way he’s dressed, he probably works at one of the offices around here.");
+		// [Wolf] Go to Introduction, remove and replace with Walt
+		addButton(btnSlot, "Wolf", approachWalt, true);
+	}
+	else
+	{
+		output("\n\nYou see the wolfman, Walt, sitting at a table, nursing a drink. He sniffs the air as you enter, looking up in your direction.");
+		// [Walt] Go to Walt Talk Menu
+		addButton(btnSlot, "Walt", approachWalt);
+	}
 }
 
-public function approachWalt():void
+public function approachWalt(intro:Boolean = false):void
 {
 	clearOutput();
 	showBust("WALT");
-	showName("\nWALT");
 	author("Couch");
 	
-	output("<i>“Oh, [pc.name]. Here for a drink?”</i> Walt’s still wearing his officewear, though considerably less buttoned up. With his shirt unbuttoned you can see he’s got a silver necklace on underneath.");
+	// Introduction
+	if(intro)
+	{
+		showName("\nWOLF");
+		
+		output("You take a seat across from the wolf, who looks up at you in what starts as a mixture of annoyance and confusion before recognition seems to dawn.");
+		output("\n\n<i>“You’re...?”</i> he asks, his voice trailing off. Now that you’re up close you can see that he’s got a lean, wiry build under his business casual attire. His shirt is unbuttoned, revealing the glint of a silver-hued chain that’s hard to make out against his matching gray fur.");
+		output("\n\n<i>“Steele, [pc.name] Steele,”</i> you reply, finishing the sentence for him with a");
+		if(pc.isNice()) output(" sweet smile");
+		else if(pc.isMischievous()) output(" sly grin");
+		else output(" cocky smirk");
+		output(". <i>“Maybe you’ve heard of me.”</i>");
+		output("\n\nThe man looks you over before nodding and offering a hand. <i>“It’s Walt. I work for Steele Biomedical, over by the elevator. Our boss was saying you might come around.”</i>");
+		output("\n\nYou return the handshake.");
+		output("\n\n<i>“Not sure what I can do for you outside the office, but if you just want to talk, feel free.”</i>");
+	}
+	else
+	{
+		showName("\nWALT");
+		
+		output("<i>“Oh, [pc.name]. Here for a drink?”</i> Walt’s still wearing his officewear, though considerably less buttoned up. With his shirt unbuttoned you can see he’s got a silver necklace on underneath.");
+	}
 	
 	processTime(1);
 	
@@ -83,12 +113,20 @@ public function waltTalk(topic:String = "none"):void
 			output("\n\n<i>“Why’d you change it?”</i> you ask");
 			if(flags["MET_EMMY"] != undefined) output(", though it’s not the first time you’ve heard of this with modded ausar");
 			output(".");
-			output("\n\n<i>“It’s different " + (pc.originalRace = "human" ? "for you humans" : "growing up among humans") + ". There’s no real stigma against transformative use - humans mod themselves more often and more thoroughly than any other race. It’s different for ausar: if you’re a girl who wants to get a dick, or a guy who wants to try out being a girl, nobody minds, but as soon as you want to adjust your species you start getting looks. Even here with the huskar, those modifications are only really accepted because they needed them to survive, and because they’re minor. Most of us who want to do more than that have to go off-planet, change our names, and hope nobody we know recognizes us.”</i>");
+			output("\n\n<i>“It’s different " + (pc.originalRace == "human" ? "for you humans" : "growing up among humans") + ". There’s no real stigma against transformative use - humans mod themselves more often and more thoroughly than any other race. It’s different for ausar: if you’re a girl who wants to get a dick, or a guy who wants to try out being a girl, nobody minds, but as soon as you want to adjust your species you start getting looks. Even here with the huskar, those modifications are only really accepted because they needed them to survive, and because they’re minor. Most of us who want to do more than that have to go off-planet, change our names, and hope nobody we know recognizes us.”</i>");
 			output("\n\nWalt looks like he could say more, but stops himself and lets out a growling sigh. <i>“Sorry to rant, it’s a sore spot.”</i>");
 			
 			processTime(2);
 			
 			flags["WALT_HIMSELF"] = 1;
+			
+			if(!isCorrectOriginalRace())
+			{
+				clearMenu();
+				addButton(0, "Next", fixOriginalRaceAlert);
+				eventQueue.push(waltBarMenu);
+				return;
+			}
 			
 			waltBarMenu();
 			addDisabledButton(1, "Himself");
@@ -288,7 +326,7 @@ public function waltSex(arg:Array = null):void
 			output("\n\n<i>“Good boy,”</i> you half-whisper, a heady grin on as you look behind you at the werewolf pounding your pussy. <i>“Fuck me just like that, let everyone see what a good, naughty wolfie you are.”</i>");
 			output("\n\nWalt responds with another growl, a bit louder this time as he picks up the pace little by little. Both of his hands have fallen back to your hips now, allowing you to moan and croon as much as you like. You don’t go overboard, but it wouldn’t take much to hear you over the crowd now, especially with so many of those nearby now focused on you, watching you get fucked, watching you get railed by a hot, dirty wolf dick in full view. Void, public sex is just the <i>best</i>!");
 			output("\n\nYou don’t want it to end, even as you feel Walt’s balls churning with fresh seed every time they slap against your body, those furry nuts full to bursting and ready to blow. You opt to do the next best thing and egg him on, moving your own hips a bit to help strengthen those last few thrusts.");
-			output("\n\n<i>“Come on, wolfie, nut in this horny [pc.race], you know you want to. Give me the knot!”</i>");
+			output("\n\n<i>“Come on, wolfie, nut in this horny [pc.raceShort], you know you want to. Give me the knot!”</i>");
 			output("\n\nWalt manages not to obey, and even succeeds in choking back what’s still clearly a howl as he cums, his knot pulling away just in the nick of time to avoid tying you. It’s a disappointment to be sure, but the sensation of steaming hot werewolf spunk flooding your twat is a perfect consolation prize. It comes out around the sides of his dick in a frothy mixture with your [pc.girlCumNoun], the wolf having plenty enough volume to both satisfy your womb and leave your pussy good and messy.");
 			output("\n\n<i>“Ooooh...”</i> you groan as Walt pulls out, promptly sliding back towards his own chair. You take the opportunity to wag your hips a bit, showing off your cum-bubbling cunt. <i>“You naughty boy.”</i>");
 			output("\n\nWalt just gives a groaning growl in response, already working on getting his dick back in his pants before the staff can come by and notice. You opt to take your time a little, flashing Walt a cheeky grin and ensuring those who’ve been watching the show get a good look at the results before you settle down.");

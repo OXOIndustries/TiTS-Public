@@ -343,6 +343,13 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lane_m_nude.png", mimeType = "image/png")]
 		public var Bust_LANE_M_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/liamme.png", mimeType = "image/png")]
+		public var Bust_LIAMME:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/liamme_skirt.png", mimeType = "image/png")]
+		public var Bust_LIAMME_SKIRT:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/liamme_nude.png", mimeType = "image/png")]
+		public var Bust_LIAMME_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lieve_nude.png", mimeType = "image/png")]
@@ -352,6 +359,11 @@
 		public var Bust_LOGAN:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/logan_nude.png", mimeType = "image/png")]
 		public var Bust_LOGAN_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/luna.png", mimeType = "image/png")]
+		public var Bust_LUNA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/luna_nude.png", mimeType = "image/png")]
+		public var Bust_LUNA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/lustomorph_ausar.png", mimeType = "image/png")]
 		public var Bust_LUSTOMORPH_AUSAR:Class;
@@ -444,6 +456,13 @@
 		public var Bust_PRAETORIAN:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/praetorian_nude.png", mimeType = "image/png")]
 		public var Bust_PRAETORIAN_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/prai.png", mimeType = "image/png")]
+		public var Bust_PRAI:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/prai_dress.png", mimeType = "image/png")]
+		public var Bust_PRAI_DRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/prai_nude.png", mimeType = "image/png")]
+		public var Bust_PRAI_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/princess.png", mimeType = "image/png")]
 		public var Bust_PRINCESS:Class;
@@ -889,6 +908,13 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lane_m_nude.png", mimeType = "image/png")]
 			public var Full_LANE_M_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/liamme.png", mimeType = "image/png")]
+			public var Full_LIAMME:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/liamme_skirt.png", mimeType = "image/png")]
+			public var Full_LIAMME_SKIRT:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/liamme_nude.png", mimeType = "image/png")]
+			public var Full_LIAMME_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lieve_nude.png", mimeType = "image/png")]
@@ -898,6 +924,11 @@
 			public var Full_LOGAN:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/logan_nude.png", mimeType = "image/png")]
 			public var Full_LOGAN_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/luna.png", mimeType = "image/png")]
+			public var Full_LUNA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/luna_nude.png", mimeType = "image/png")]
+			public var Full_LUNA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/lustomorph_ausar.png", mimeType = "image/png")]
 			public var Full_LUSTOMORPH_AUSAR:Class;
@@ -983,6 +1014,13 @@
 			public var Full_PRAETORIAN:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/praetorian_nude.png", mimeType = "image/png")]
 			public var Full_PRAETORIAN_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/prai.png", mimeType = "image/png")]
+			public var Full_PRAI:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/prai_dress.png", mimeType = "image/png")]
+			public var Full_PRAI_DRESS:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/prai_nude.png", mimeType = "image/png")]
+			public var Full_PRAI_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/princess.png", mimeType = "image/png")]
 			public var Full_PRINCESS:Class;

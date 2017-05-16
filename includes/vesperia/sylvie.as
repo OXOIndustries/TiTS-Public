@@ -715,7 +715,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\nYou shake your head, curious.");
 		output("\n\n<i>“We didn’t have to clean up any of it ourselves.”</i> Sylvie giggles to herself, content in her secret for a moment. <i>“Once word got out, just about every kaithrit on the station found their way down to the accident site. The milk came back clear from contaminants, so we let ‘em go at it. An hour later there wasn’t a drop left to be found anywhere, though I swear that corridor still smells like a dairy.”</i> She shakes her head and laughs. <i>“So much for avoiding stereotypes, eh?”</i>");
 		output("\n\nLaughing along with her, you can’t shake the image of twenty or thirty kaithrit, crawling all over a hallway in search of more creamy milk.");
-		if(InCollection(pc.raceShort(),["kaithrit","cat","tiger","panther","cheetah","feline"]) || pc.felineScore() >= 3) output(" Not that you can blame them. You’d likely do the same, given the chance.");
+		if(pc.catDog("nyan", "bork") == "nyan") output(" Not that you can blame them. You’d likely do the same, given the chance.");
 		output("\n\nSylvie drinks a little bit more, eyes twinkling. <i>“");
 		processTime(13);
 		pc.lust(5);

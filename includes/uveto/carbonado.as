@@ -25,6 +25,8 @@ public function uvetoCarbonadoStore():Boolean
 
 	if (!carbonadoActiveHours())
 	{
+		showBust("CFS_EIMEAR");
+		
 		output("\n\nEimear shuffles you and all of the other hangers-on out of the shop so that they can close for the night.");
 		currentLocation = "UVS B9";
 
@@ -76,6 +78,7 @@ public function uvetoCarbonadoStore():Boolean
 	}
 	else
 	{
+		showBust("");
 		output(" Gwen and Eimear are nowhere to be seen, the automated terminal still spun around as a prominent invitation toward self-service...");
 	}
 
@@ -94,15 +97,16 @@ public function uvetoCarbonadoStore():Boolean
 public function uvetoCarbonadoRepeat():void
 {
 	clearOutput();
-	showCarbonado();
 
 	if (pc.hasStatusEffect("Gwen In Back"))
 	{
+		showBust("");
 		output("You walk up to the automated register, finding a catalog of the available wares.");
 		addButton(0, "Shop", cfsGoBuyMenu);
 	}
 	else
 	{
+		showBust("CFS_GWEN");
 		output("<i>“Hey there [pc.name]! Can I help you find anything today?”</i> Gwen asks, flipping the electronic catalog of wares in your direction.");
 		uvetoCarbonadoMenu();
 	}

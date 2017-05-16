@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Transformatives.OmegaOil;
+	import classes.Items.Transformatives.SheepTF;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
@@ -13,8 +14,10 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
 	import classes.Engine.Interfaces.ParseText;
+	import classes.Engine.Interfaces.ParseQuotes;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
+	import classes.Util.RandomInCollection;
 	import classes.Engine.Interfaces.AddLogEvent;
 	import classes.Engine.Interfaces.ExtendLogEvent;
 	
@@ -27,7 +30,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -94,7 +97,7 @@ package classes.Characters
 			// Anal Heat dampen
 			if(hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"))
 			{
-				(new OmegaOil()).reduceOmegaEffect();
+				OmegaOil.reduceOmegaEffect(this);
 			}
 			// Cumflation
 			if (cumFrom != null)
@@ -351,6 +354,58 @@ package classes.Characters
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
 		}
+		public function UpgradeVersion2(d:Object):void
+		{
+			var i:uint = 0;
+			if (d.perks)
+			{
+				for (i = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						switch(d.perks[i].storageName)
+						{
+							case "Fertility":
+								d.fertilityRaw -= 0.15;
+								d.perks[i].value1 = 1.15;
+								break;
+							case "Virile":
+								d.perks[i].value1 = 1.15;
+								break;
+						}
+						d.perks[i].tooltip = ParseQuotes(d.perks[i].tooltip);
+					}
+				}
+			}
+			if (d.keyItems)
+			{
+				for (i = 0; i < d.keyItems.length; i++)
+				{
+					if (d.keyItems[i] && d.keyItems[i].storageName)
+					{
+						switch(d.keyItems[i].storageName)
+						{
+							case "Holodisk: Horsecock Hell 2":
+								d.keyItems[i].tooltip = "A pair of holodisks labeled ‘<b>Horsecock Hell 2: A Tail of Two Twats</b>’. The cover makes a big deal out of the star of the show: ‘Nivas Oxonef’.";
+								break;
+							default:
+								d.keyItems[i].tooltip = ParseQuotes(d.keyItems[i].tooltip);
+								break;
+						}
+					}
+				}
+			}
+			if (d.statusEffects)
+			{
+				for (i = 0; i < d.statusEffects.length; i++)
+				{
+					if (d.statusEffects[i] && d.statusEffects[i].storageName)
+					{
+						d.statusEffects[i].tooltip = ParseQuotes(d.statusEffects[i].tooltip);
+					}
+				}
+			}
+		}
 		
 		override public function getCombatName():String
 		{
@@ -392,6 +447,11 @@ package classes.Characters
 					maneHairGrow(totalDays);
 				}
 				
+				if (hasPerk("Wooly"))
+				{
+					woolyFurGrow(totalDays);
+				}
+				
 				if (hasPerk("Buttslut"))
 				{
 					buttslutBootyGrowth(totalDays);
@@ -409,6 +469,9 @@ package classes.Characters
 				
 				updateExhibitionism(totalDays);
 				myrVenomUpdate(totalDays);
+				processOmegaFever(totalDays);
+				//updateHeatPerk(totalDays);
+				//updateRutPerk(totalDays);
 			}
 			if(isFullyWombPregnant()) clearHeat();
 			
@@ -417,6 +480,8 @@ package classes.Characters
 			updateGooState(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
+			
+			racialPerkUpdateCheck(deltaT, doOut);
 		}
 		
 		private function updateExhibitionism(totalDays:uint):void
@@ -675,6 +740,363 @@ package classes.Characters
 				}
 				
 				AddLogEvent(m, "passive", deltaShift + (i * 1440));
+			}
+		}
+		private function woolyFurGrow(totalDays:uint):void
+		{
+			// Tick days to regrow wooly fur if it has been cut.
+			if(perkv1("Wooly") < 0)
+			{
+				addPerkValue("Wooly", 1, totalDays);
+				if(perkv1("Wooly") > 0) setPerkValue("Wooly", 1, 0);
+			}
+		}
+		
+		private function updateHeatPerk(totalDays:uint):void
+		{
+			// Ignore if already pregnant or infertile
+			if(!hasVagina() || isFullyWombPregnant() || fertility() <= 0) return;
+			
+			var heatCycle:StorageClass = getPerkEffect("Heat Cycle");
+			
+			if(heatCycle == null) return;
+			
+			// v1: Cooldown days
+			// v2: Max days
+			// Add value for cooldown
+			heatCycle.value1 += totalDays;
+			// If days desired is reached enable cycle
+			if(heatCycle.value1 < heatCycle.value2) return;
+			// Reset counter
+			heatCycle.value1 = 0;
+			
+			var msg:String = "";
+			var numWombs:int = totalVaginas() - totalWombPregnancies();
+			
+			// Heat
+			if(!inHeat())
+			{
+				msg += "9999";
+				msg += " <b>You are now in heat.</b>";
+				
+				// Heat effects
+				// v1 - fertility boon
+				// v2 - minimum lust boost
+				// v3 - libido boost
+				// v4 - tease bonus!
+				createStatusEffect("Heat", 5, 25, 10, 3, false, "LustUp", "Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage", false, 28800, 0xB793C4);
+				libido(1);
+			}
+			// Deep Heat
+			else if(!inDeepHeat())
+			{
+				msg += "9999";
+				msg += " <b>You are in a deep heat.</b>";
+				
+				// Yay, heat!
+				// v1 - fertility boon
+				// v2 - minimum lust boost
+				// v3 - libido boost
+				// v4 - tease bonus!
+				setStatusValue("Heat", 1, 10);
+				setStatusValue("Heat", 2, 10);
+				setStatusValue("Heat", 3, 25);
+				setStatusValue("Heat", 4, 2);
+				setStatusTooltip("Heat", "<b>You are in a deep heat!</b> Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+" + statusEffectv1("Heat") * 100 + "% Fertility\n+" + statusEffectv2("Heat") + " Minimum Lust\n+" + statusEffectv3("Heat") + " Libido\n+" + statusEffectv4("Heat") + " Tease Damage");
+				extendHeat(7 * 24 * 60);
+			}
+			// Already in Deep Heat
+			else if(heatMinutes() < 22 * 24 * 60)
+			{
+				msg += "9999";
+				msg += " <b>Your heat has been extended.</b>";
+				extendHeat(7 * 24 * 60);
+			}
+			
+			if(msg.length > 0) AddLogEvent(msg, "passive", 1440 - (GetGameTimestamp() % 1440));
+		}
+		private function updateRutPerk(totalDays:uint):void
+		{
+			// Ignore if can't fertilize or sterile
+			if(!hasCock() || virility() <= 0) return;
+			
+			var rutCycle:StorageClass = getPerkEffect("Rut Cycle");
+			
+			if(rutCycle == null) return;
+			
+			// v1: Cooldown days
+			// v2: Max days
+			// Add value for cooldown
+			rutCycle.value1 += totalDays;
+			// If days desired is reached enable cycle
+			if(rutCycle.value1 < rutCycle.value2) return;
+			// Reset counter
+			rutCycle.value1 = 0;
+			
+			var msg:String = "";
+			var numCocks:int = totalCocks();
+			
+			// Rut
+			if(!inRut())
+			{
+				msg += "9999";
+				msg += " <b>You are now in rut.</b>";
+				
+				// Rut effects
+				// v1 - libido increase.
+				// v2 - min lust
+				// v3 - minimum cum increase.
+				// v4 - virility increase
+				createStatusEffect("Rut", 5, 25, 1000, 4, false, "LustUp", "Your body is driven for aggressive breeding, increasing your libido and virility, as well as boosting your minimum cum output.\n\n+5 Libido\n+25 Minimum Lust\n+1000mLs Minimum Cum\n+400% Virility",false,28800,0xB793C4);
+			}
+			// Already in Rut
+			else if(rutMinutes() < 22 * 24 * 60)
+			{
+				msg += "9999";
+				msg += " <b>Your rut has been extended.</b>";
+				extendRut(7 * 24 * 60);
+			}
+			
+			if(msg.length > 0) AddLogEvent(msg, "passive", 1440 - (GetGameTimestamp() % 1440));
+		}
+		private function processOmegaFever(totalDays:uint):void
+		{
+			if (hasPerk("Omega Fever"))
+			{
+				OmegaOil.checkOmegaFever(this);
+			}
+		}
+
+		private function racialPerkUpdateCheck(deltaT:uint, doOut:Boolean):void
+		{
+			if(hasPerk("'Nuki Nuts"))
+			{
+				if(balls <= 0 && perkv1("'Nuki Nuts") != 0)
+				{
+					// Empty reserves!
+					ballSizeMod -= perkv1("'Nuki Nuts");
+					setPerkValue("'Nuki Nuts", 1, 0);
+				}
+				if(perkv2("'Nuki Nuts") != 1 && nukiScore() < 3)
+				{
+					if(balls > 0)
+					{
+						//Nuts inflated:
+						if(perkv1("'Nuki Nuts") > 0)
+						{
+							AddLogEvent(ParseText("The extra size in your [pc.balls] bleeds off, making it easier to walk. You have a hunch that without all your"), "passive", deltaT);
+							if(originalRace.indexOf("kui-tan") != -1) ExtendLogEvent(" natural kui-tan genes");
+							else ExtendLogEvent(" kui-tan body-mods");
+							ExtendLogEvent(ParseText(", you won’t be swelling up with excess [pc.cumNoun] any more."));
+						}
+						//Nuts not inflated:
+						else
+						{
+							AddLogEvent(ParseText("A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you’ve replaced too much kui-tan DNA to reap the full benefits."), "passive", deltaT);
+						}
+						ExtendLogEvent("\n\n(<b>Perk Lost: 'Nuki Nuts</b>)");
+						ballSizeMod -= perkv1("'Nuki Nuts");
+						removePerk("'Nuki Nuts");
+						kGAMECLASS.nutStatusCleanup();
+					}
+					else
+					{
+						AddLogEvent("(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)", "passive", deltaT);
+						removePerk("'Nuki Nuts");
+					}
+				}
+				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
+				{
+					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
+					removePerk("'Nuki Nuts");
+				}
+			}
+			if(hasPerk("Fecund Figure"))
+			{
+				if(!hasVagina())
+				{
+					AddLogEvent("No longer possessing a vagina, your body tingles", "passive", deltaT);
+					if((perkv1("Fecund Figure") + perkv2("Fecund Figure") + perkv3("Fecund Figure")) > 0) ExtendLogEvent(", rapidly changing as you lose your fertility goddess-like build");
+					ExtendLogEvent(".\n\n(<b>Perk Lost: Fecund Figure</b>)");
+					removePerk("Fecund Figure");
+				}
+			}
+			if(hasStatusEffect("Special Scrotum"))
+			{
+				if(balls <= 0)
+				{
+					AddLogEvent("A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that, due to the lack of testicles, the unique covering for your non-existent scrotum has finally dissolved from your system.", "passive", deltaT);
+					removeStatusEffect("Special Scrotum");
+				}
+			}
+			if(statusEffectv4("Vanae Markings") > 0)
+			{
+				if(balls <= 0)
+				{
+					AddLogEvent("A tingling sensations hits your crotch as you feel something fading away... Your codex beeps, informing you that the last remnants of your " + skinAccent + " testicular tattoos have left your body, leaving the area bare.", "passive", deltaT);
+					setStatusValue("Vanae Markings", 4, 0);
+				}
+			}
+			if(hasStatusEffect("Nyrea Eggs"))
+			{
+				if(nyreaScore() < 3)
+				{
+					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);
+					if(statusEffectv1("Nyrea Eggs") > 0)
+					{
+						ExtendLogEvent(" Strangely, you feel");
+						if(statusEffectv1("Nyrea Eggs") <= 5) ExtendLogEvent(" as if something is missing.");
+						else if(statusEffectv1("Nyrea Eggs") <= 10) ExtendLogEvent(" a bit lighter now.");
+						else if(statusEffectv1("Nyrea Eggs") <= 50) ExtendLogEvent(" like you have lost some pounds.");
+						else if(statusEffectv1("Nyrea Eggs") <= 100) ExtendLogEvent(" much lighter now.");
+						else ExtendLogEvent(" like a huge weight has been lifted from you.");
+					}
+					ExtendLogEvent(" Double-checking your codex, you find that");
+					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absobed into your body"));
+					else ExtendLogEvent(ParseText(" your [pc.cumNoun] is no longer capable of producing eggs anymore"));
+					ExtendLogEvent(". It must be due to the lack of nyrean genes in your system....");
+					removeStatusEffect("Nyrea Eggs");
+				}
+			}
+			if(hasPerk("Slut Stamp"))
+			{
+				if(!hasGenitals())
+				{
+					AddLogEvent(ParseText("A sudden burning sensation hits your lower back, right above your [pc.ass]. You quickly"), "passive", deltaT);
+					if(isCrotchGarbed()) ExtendLogEvent(ParseText(" struggle through your [pc.lowerGarments],"));
+					ExtendLogEvent(" turn back and wince hard when the area is instantly struck by a refreshing coolness - as if being splashed on with cold water after being branded. When your hazed vision returns to normal, you see the slutty tattoo that resides there gradually dissolve and vanish before your eyes. It looks like your lack of genitalia makes it easier for you to cope with your libido now.\n\n(<b>Perk Lost: Slut Stamp</b>)");
+					removePerk("Slut Stamp");
+				}
+			}
+			if (hasPerk("Androgyny") && perkv1("Androgyny") > 0 && !hasFaceFlag(GLOBAL.FLAG_MUZZLED))
+			{ // removal of Androgyny perk with the loss of muzzle.
+				AddLogEvent("With your face becoming more human, your appearance is now no longer androgynous.\n\n(<b>Perk Lost: Androgyny</b> - You’ve lost your muzzle.)", "passive", deltaT);
+				removePerk("Androgyny");
+			}
+			if (hasPerk("Icy Veins") && perkv1("Icy Veins") > 0 && (!hasSkinFlag(GLOBAL.FLAG_FLUFFY) || !InCollection(skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)))
+			{ // removal of Icy Veins perk with he loss of fluffy fur (fork on still having fur but not fluffy flag?).
+				AddLogEvent("Without all that thick, fluffy coat of fur you suddenly feel rather cold...\n\n(<b>Perk Lost: Icy Veins</b> - You’ve lost your insulating coat of fur, and as a result you are now weaker against cold.)", "passive", deltaT);
+				removePerk("Icy Veins");
+			}
+			if(flags["GALOMAX_DOSES"] != undefined)
+			{
+				if(hasHair() && hairType != GLOBAL.HAIR_TYPE_GOO && !hasStatusEffect("Hair Regoo"))
+				{
+					AddLogEvent(ParseText("There is a slight tingling sensation at the roots of your [pc.hair].... Hm, strange...."), "passive", deltaT);
+					createStatusEffect("Hair Regoo", 0, 0, 0, 0, true, "", "", false, 720);
+				}
+			}
+			if(hasPerk("Black Latex"))
+			{
+				if(skinType != GLOBAL.SKIN_TYPE_LATEX && !hasStatusEffect("Latex Regrow"))
+				{
+					AddLogEvent("Somehow, losing your natural latex skin makes you feel naked and insecure... You hope this feeling doesn’t last for too long...", "passive", deltaT);
+					createStatusEffect("Latex Regrow", 0, 0, 0, 0, true, "", "", false, 720);
+				}
+			}
+			if(armType == GLOBAL.TYPE_FLOWER && hasVagina())
+			{
+				if(totalWombPregnancies() < vaginas.length)
+				{
+					if(hasStatusEffect("Arm Flower")) return;
+					
+					// Choose Flower Color
+					var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
+					
+					AddLogEvent("A summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how.", "passive", deltaT);
+					
+					createStatusEffect("Arm Flower", 0, 0, 0, 0, true, "", flowerColor, false);
+					// +Lust, slow Libido increase of 5
+					slowStatGain("libido", 5);
+					lust(50);
+				}
+				else if(hasStatusEffect("Arm Flower"))
+				{
+					AddLogEvent("Your " + getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].", "passive", deltaT);
+					
+					//Libido decrease of 3
+					libido(-3);
+					removeStatusEffect("Arm Flower");
+				}
+			}
+			else if(armType != GLOBAL.TYPE_FLOWER && hasStatusEffect("Arm Flower"))
+			{
+				removeStatusEffect("Arm Flower");
+			}
+			if(hasPerk("Resin"))
+			{
+				if(skinType != GLOBAL.SKIN_TYPE_BARK)
+				{
+					AddLogEvent("The surface of your body tingles and your nose briefly catches a whiff of a familiar amber aroma--which then completely dissipates into the air. Curious, you check your codex and, sure enough, due to the lack of your once bark skin, you’ve lost the ability to create a resin cast to protect yourself. Well, at least you feel a bit more nimble now...\n\n(<b>Perk Lost: Resin</b>)", "passive", deltaT);
+					
+					removePerk("Resin");
+				}
+			}
+			if(hasPerk("Flower Power"))
+			{
+				var numFlowers:int = 0;
+				if(hasStatusEffect("Hair Flower"))
+				{
+					if(statusEffectv1("Hair Flower") > 1) numFlowers += statusEffectv1("Hair Flower");
+					else numFlowers++;
+				}
+				if(hasStatusEffect("Arm Flower")) numFlowers += 2;
+				if(hasVaginaType(GLOBAL.TYPE_FLOWER)) numFlowers += totalVaginas(GLOBAL.TYPE_FLOWER);
+				if(tailGenitalArg == GLOBAL.TYPE_FLOWER && hasTailCunt()) numFlowers += tailCount;
+				
+				if (perkv1("Flower Power") <= 0 && numFlowers > 0)
+				{
+					AddLogEvent("The flower" + (numFlowers == 1 ? "" : "s") + " located on your body blossom" + (numFlowers == 1 ? "s" : "") + ", ready to unleash " + (numFlowers == 1 ? "its" : "their") + " lust-inducing spores--this also adds to your sexual appetite... not that that’s a bad thing, after all!", "passive", deltaT);
+				}
+				else if (perkv1("Flower Power") > 0 && numFlowers <= 0)
+				{
+					AddLogEvent("Without any flowers located on your body, you feel the need to produce spores fade. While this relaxes your body’s sexual urges, you know that producing any new flowers will have you ready for pollination again.", "passive", deltaT);
+				}
+				
+				setPerkValue("Flower Power", 1, numFlowers);
+			}
+			if(hasStatusEffect("Remove Energizing Libido"))
+			{
+				AddLogEvent("You feel less horny and energetic than usual--and you just had an orgasm too! Perhaps due to a low libido, your body has given up on the ability to replenish energy when you engage in sexual activity?", "passive", deltaT);
+				if(hasPerk("Snu-Snu Queen"))
+				{
+					ExtendLogEvent("\n\n(<b>Perk Lost: Snu-Snu Queen</b>)");
+					removePerk("Snu-Snu Queen");
+				}
+				if(hasPerk("Energizing Libido"))
+				{
+					ExtendLogEvent("\n\n(<b>Perk Lost: Energizing Libido</b>)");
+					removePerk("Energizing Libido");
+				}
+				removeStatusEffect("Remove Energizing Libido");
+			}
+			if(hasPerk("Wooly"))
+			{
+				// If sheered or changed skin type recently, regrow fur after 7 days!
+				if(perkv1("Wooly") >= 1 && !hasFur())
+				{
+					setPerkValue("Wooly", 1, -7);
+					return;
+				}
+				// Regrow wool when timer hits 0.
+				if(perkv1("Wooly") == 0)
+				{
+					AddLogEvent(("A familiar tingle spreads across your [pc.skin], and before you can scratch the itch, " + (hasFur() ? "the fur on your chest and back grows and thickens into curls" : "thick, curly fur starts to push out from your chest and back") + ", making you appear like quite the sheep. <b>You have regrown your coat of wool!</b>"), "passive", deltaT);
+					SheepTF.growWool(this);
+				}
+			}
+			if(hasStatusEffect("Wool Removal"))
+			{
+				AddLogEvent("An itching sensation hits you, and you feel the need to scratch it.", "passive", deltaT);
+				// Remove Wooly Perk.
+				if(hasPerk("Wooly"))
+				{
+					if(hasFur() && perkv1("Wooly") >= 1) ExtendLogEvent(" As you claw at your [pc.skinNoun], thick patches of curly wool fall off the surface like loose yarn, " + (hasFur() ? "leaving behind relatively short fur" : "leaving you with your [pc.skinFurScales]") + ". Checking your codex, you confirm that your body has lost the ability to maintain its wooly coat.");
+					else ExtendLogEvent(" You claw at your [pc.skinNoun] until the irritation subsides. Relaxed, you check your codex, only to find that your body has lost the ability to regrow and maintain its wooly coat.");
+					ExtendLogEvent("\n\n(<b>Perk Lost: Wooly</b>)");
+					removePerk("Wooly");
+				}
+				removeStatusEffect("Wool Removal");
 			}
 		}
 	}

@@ -23,7 +23,7 @@
 			type = GLOBAL.PILL;
 			
 			shortName = "Suma Blk.";
-			longName = " Suma Black Cream capsule";
+			longName = "Suma Black Cream capsule";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			

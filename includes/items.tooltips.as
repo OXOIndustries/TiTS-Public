@@ -22,6 +22,18 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		
 		// Consumables
+		case "AmazonaClassic":
+			tooltip += "A 23 oz tin can labeled: “Amazona Classic.” The can is decorated with a stylized drawing of a large, muscular woman showing off her ripped figure. Small text reveals that this is " + (silly ? "Clit Kiwi" : "Grapefruit") + " flavored.";
+			break;
+		case "AmazonaLite":
+			tooltip += "A 12 oz tin can labeled: “Amazona Lite.” The can is decorated with a stylized drawing of an athletically built woman sprinting. Small text reveals that this is " + (silly ? "Lime Crime flavored" : "Lime Cream flavored") + ".";
+			break;
+		case "AmazonaPlus":
+			tooltip += "A 30 oz bottle labeled: “Amazona Plus.” The bottle is decorated with a stylized drawing of an extremely curvy woman cradling her huge tits in her ripped arms. Small text reveals that this is watermelon flavored.";
+			break;
+		case "Futazona":
+			tooltip += "A 20 oz solid steel thermos labeled: “Futazona.” The thermos is decorated with a stylized mural depicting several muscular hermaphrodites caught up in an orgy. The cap has a dial on it labeled: “Classic,” “Lite,” and “Plus.” Small text reveals that this is Hazelnut and Honey flavored.";
+			break;
 		case "KerokorasVenom":
 			tooltip += "A vial of ";
 			if(silly) tooltip += "k";

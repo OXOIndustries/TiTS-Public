@@ -197,7 +197,6 @@
 			btnTargetText = "Milodan";
 			
 			randomise();
-			
 			this._isLoading = false;
 		}
 		

@@ -84,6 +84,13 @@
 					else kGAMECLASS.output("\n\n" + target.faceTypeLockedMessage());
 				}
 				//The important stuff
+				// Remove Wooly perk
+				if(target.hasFur() && target.perkv1("Wooly") >= 1 && !target.hasStatusEffect("Wool Removal") && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nThe [pc.skinNoun] under your wool itches briefly and then quickly dissipates. Did... did something just happen?");
+					target.createStatusEffect("Wool Removal");
+					changes++;
+				}
 				//Remove fur/scales:
 				if((pc.skinType == GLOBAL.SKIN_TYPE_FUR || pc.skinType == GLOBAL.SKIN_TYPE_SCALES) && rand(3) == 0 && changes < changeLimit)
 				{

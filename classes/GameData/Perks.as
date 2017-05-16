@@ -135,7 +135,7 @@ package classes.GameData
 			tough2.levelLimit = 6;
 			tough2.autoGained = true;
 			tough2.perkName = "Tough 2";
-			tough2.perkDescription = "Increases Kinetic damage resistance provided by 'Tough' to 15% (+5%).";
+			tough2.perkDescription = "Increases Kinetic damage resistance provided by ‘Tough’ to 15% (+5%).";
 			tough2.applicationFunction = function():void {
 				kGAMECLASS.pc.baseHPResistances.kinetic.resistanceValue += 5.0;
 				kGAMECLASS.pc.baseShieldResistances.kinetic.resistanceValue += 5.0;
@@ -171,7 +171,7 @@ package classes.GameData
 			cleave.classLimit = GLOBAL.CLASS_MERCENARY;
 			cleave.levelLimit = 7;
 			cleave.perkName = "Cleave";
-			cleave.perkDescription = "Grants an extra, low-accuracy swing when fighting groups of enemies or \"plural\" type foes.";
+			cleave.perkDescription = "Grants an extra, low-accuracy swing when fighting groups of enemies or “plural” type foes.";
 			insertPerkData(cleave);
 
 			//2. Concentrate Fire: When you land consecutive ranged attacks, you gain a slight bonus to damage. 
@@ -200,7 +200,7 @@ package classes.GameData
 			secondAttack.classLimit = GLOBAL.CLASS_MERCENARY;
 			secondAttack.levelLimit = 8;
 			secondAttack.perkName = "Second Attack";
-			secondAttack.perkDescription = "Allows you to make a second, low-accuracy attack whenever you perform a melee attack. Can stack with \"Cleave.\"";
+			secondAttack.perkDescription = "Allows you to make a second, low-accuracy attack whenever you perform a melee attack. Can stack with “Cleave.”";
 			insertPerkData(secondAttack);
 
 			//2. Second Shot - flurry attack on ranged shot
@@ -440,7 +440,7 @@ package classes.GameData
 			overcharge.classLimit = GLOBAL.CLASS_ENGINEER;
 			overcharge.levelLimit = 3;
 			overcharge.perkName = "Overcharge";
-			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for 150% normal damage. If the target's shields have been depleted, the shot may stun the target. Requires an energy weapon.";
+			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for 150% normal damage. If the target’s shields have been depleted, the shot may stun the target. Requires an energy weapon.";
 			insertPerkData(overcharge);
 			
 			var volley:PerkData = new PerkData();
@@ -538,7 +538,7 @@ package classes.GameData
 			weaponHack.classLimit = GLOBAL.CLASS_ENGINEER;
 			weaponHack.levelLimit = 7;
 			weaponHack.perkName = "Weapon Hack";
-			weaponHack.perkDescription = "Allows you to spend 15 energy to hack the enemy's energy weapons, preventing their use for four to five rounds";
+			weaponHack.perkDescription = "Allows you to spend 15 energy to hack the enemy’s energy weapons, preventing their use for four to five rounds";
 			insertPerkData(weaponHack);
 			
 			//Shield Hack: Hack an enemy's shields, weakening them! {Deals heavy damage to shields}
@@ -546,7 +546,7 @@ package classes.GameData
 			shieldHack.classLimit = GLOBAL.CLASS_ENGINEER;
 			shieldHack.levelLimit = 7;
 			shieldHack.perkName = "Shield Hack";
-			shieldHack.perkDescription = "Allows you to spend 25 energy to hack an enemy's shield, dealing very high shield damage.";
+			shieldHack.perkDescription = "Allows you to spend 25 energy to hack an enemy’s shield, dealing very high shield damage.";
 			insertPerkData(shieldHack);
 
 			//Level 8

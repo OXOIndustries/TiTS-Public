@@ -22,12 +22,12 @@
 			this.shortName = "ZilBow";
 			
 			//Regular name
-			this.longName = "zil champion's bow";
+			this.longName = "zil champion’s bow";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a zil champion's bow";
+			this.description = "a zil champion’s bow";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A small bow made out of pliant wood and fibrous thread, complete with a quiver of dart-like arrows. Well suited to the tight confines of the Mhen’gan jungle."

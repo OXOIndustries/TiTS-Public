@@ -184,7 +184,6 @@
 			btnTargetText = "Raskvel";
 			
 			randomise();
-			
 			this._isLoading = false;
 		}
 		
