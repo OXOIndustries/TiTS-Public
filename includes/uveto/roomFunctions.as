@@ -53,13 +53,12 @@ public function GlacialRiftEncounterBonus():Boolean
 
 		if(chaurmineOnUveto()) 
 		{
-			choices.push(chaurmineChasmShit);
-			choices.push(chaurmineChasmShit);
-			choices.push(chaurmineChasmShit);
-			choices.push(chaurmineChasmShit);
-			choices.push(chaurmineChasmShit);
-			choices.push(chaurmineChasmShit);
-			choices.push(chaurmineChasmShit);
+			if(flags["CHAURMINE_WINS"] == undefined)
+			{
+				choices.push(chaurmineChasmShit);
+				choices.push(chaurmineChasmShit);
+				choices.push(chaurmineChasmShit);
+			}
 			choices.push(chaurmineChasmShit);
 		}		
 		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
