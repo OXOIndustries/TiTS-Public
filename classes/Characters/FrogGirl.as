@@ -186,7 +186,7 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
 			randomise();
 			updateDesc();
-			
+			kGAMECLASS.mhengaSSTDChance(this);
 			this._isLoading = false;
 		}
 		

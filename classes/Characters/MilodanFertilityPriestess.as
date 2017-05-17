@@ -197,7 +197,8 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER, GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
-			
+			kGAMECLASS.uvetoSSTDChance(this);
+
 			this._isLoading = false;
 		}
 		

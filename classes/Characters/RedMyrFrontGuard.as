@@ -190,7 +190,7 @@
 			btnTargetText = "Red Guard";
 			
 			sexualPreferences.setRandomPrefs(2 + rand(3),1);
-			
+			kGAMECLASS.myrellionSSTDChance(this);
 			this._isLoading = false;
 		}
 		

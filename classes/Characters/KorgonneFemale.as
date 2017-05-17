@@ -192,7 +192,7 @@
 			btnTargetText = "Korgonne";
 			
 			randomise();
-			
+			kGAMECLASS.uvetoSSTDChance(this);
 			this._isLoading = false;
 		}
 		

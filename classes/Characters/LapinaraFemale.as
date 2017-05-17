@@ -184,6 +184,7 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "Lapinara";
+			kGAMECLASS.tarkusSSTDChance(this);
 			randomise();
 			
 			this._isLoading = false;

@@ -210,7 +210,7 @@
 			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
 			else if (rand(3) == 0) inventory.push(new RedMyrVenom());
 			else if (rand(3) == 0) inventory.push(new NyreanCandy());
-			
+			kGAMECLASS.myrellionSSTDChance(this);
 			this._isLoading = false;
 		}
 		

@@ -194,6 +194,7 @@ package classes.Characters
 			this._isLoading = false;
 			//inventory.push(new ZilRation());
 			// {You are fighting her one-handed, so your attacks are significantly less accurate.} {You are fighting her with both hands, so suffer no accuracy penalties - but nothing is holding you to the cliff-face...}";
+			kGAMECLASS.mhengaSSTDChance(this);
 		}
 
 		override public function get bustDisplay():String

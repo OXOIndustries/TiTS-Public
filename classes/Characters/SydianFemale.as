@@ -191,6 +191,7 @@
 			btnTargetText = "Sydian";
 			
 			randomise();
+			kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
 		}
 		

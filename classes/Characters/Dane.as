@@ -182,6 +182,7 @@
 			isUniqueInFight = true;
 			btnTargetText = "Dane";
 			setDefaultSexualPreferences();
+			kGAMECLASS.mhengaSSTDChance(this);
 			_isLoading = false;
 		}
 		

@@ -202,6 +202,8 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.REALLY_DISLIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
 			
+			kGAMECLASS.tarkusSSTDChance(this);
+
 			this._isLoading = false;
 		}
 		
