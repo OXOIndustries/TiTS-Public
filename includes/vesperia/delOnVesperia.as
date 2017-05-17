@@ -435,7 +435,7 @@ public function sexWithKallysDel():void
 	else
 	{
 		if(pc.hasItem(new HorseCock())) addButton(2,"Horse-Cock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
-		addDisabledButton(2,"Horsecock?","Horsecock?","You need to have an item that can give her a horse-dick for this.");
+		else addDisabledButton(2,"Horsecock?","Horsecock?","You need to have an item that can give her a horse-dick for this.");
 	}
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(5,"Public Use",delSlutTraining,undefined,"Public Use","Kallly’s customers look a little pent up! You and Del could take care of them all with your asses, just like old times.");
 	else if(pc.mf("him","her") != "her" || pc.analVirgin || !pc.hasCock()) addDisabledButton(5,"Public Use","Public Use","Slut training requires you to be feminine, dick-equipped, non-anal virgin so that you can show Delilah how it’s done.");
