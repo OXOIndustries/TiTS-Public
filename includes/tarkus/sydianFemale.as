@@ -372,7 +372,7 @@ public function sydianFemalePCVictory():void
 	
 	clearMenu();
 
-	if (pc.lust() <= 33)
+	if (pc.lust() < 33)
 	{
 		output("\n\nYou’re not aroused enough to take advantage of her, though.");
 

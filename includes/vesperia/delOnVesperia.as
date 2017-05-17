@@ -364,7 +364,7 @@ public function bethCarverDiscussionWithDel():void
 	clearOutput();
 	showDel();
 	output("<i>“Since you’re out from under her thumb now, mind telling me more about that woman, Carver?”</i>");
-	output("\n\nDel visibly shudders. <i>“Sure, if you really want. Ugh, just thinking about that big-titted skank makes my skin crawl. She’s a slaver - like, an actual real slaver - I’m sure of it. The way the other girls I was with talked about her, she’d constantly be trying to screw you into going deeper and deeper into debt. Make you buy mods, pay huge prices for rent... you’re supposed to give debtees a way to pay their way to freedom, but she’s just like any stupid corporation: she’ll fuck you until you’re hers forever.”</i>");
+	output("\n\nDel visibly shudders. <i>“Sure, if you really want. Ugh, just thinking about that big-titted skank makes my skin crawl. She’s a slaver - like, an actual real slaver - I’m sure of it. The way the other girls I was with talked about her, she’d constantly be trying to screw you into going deeper and deeper into debt. Make you buy mods, pay huge prices for rent... you’re supposed to give debtors a way to pay their way to freedom, but she’s just like any stupid corporation: she’ll fuck you until you’re hers forever.”</i>");
 	output("\n\nIf that’s the case, why’d Carver let her get away?");
 	output("\n\n<i>“It was... weird. After I finally caved and let her pump me full of feminizers, she said I was ‘finished’ right after, and just sold me out of the blue. It’s like... like the whole point of her having bought me and done all this to me was to make me into a cock-hungry slut of a girl just for the sake of it. Maybe she gets off on it?”</i>");
 	output("\n\nDel giggles at the thought. <i>“I wish I knew more about that bitch, though. Her whole operation was so skeezy, but I don’t have any actual proof of what she was doing. If I did, I’d be at the Peacekeeper office before you could blink!”</i>");
@@ -435,7 +435,7 @@ public function sexWithKallysDel():void
 	else
 	{
 		if(pc.hasItem(new HorseCock())) addButton(2,"Horse-Cock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
-		addDisabledButton(2,"Horsecock?","Horsecock?","You need to have an item that can give her a horse-dick for this.");
+		else addDisabledButton(2,"Horsecock?","Horsecock?","You need to have an item that can give her a horse-dick for this.");
 	}
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(5,"Public Use",delSlutTraining,undefined,"Public Use","Kallly’s customers look a little pent up! You and Del could take care of them all with your asses, just like old times.");
 	else if(pc.mf("him","her") != "her" || pc.analVirgin || !pc.hasCock()) addDisabledButton(5,"Public Use","Public Use","Slut training requires you to be feminine, dick-equipped, non-anal virgin so that you can show Delilah how it’s done.");

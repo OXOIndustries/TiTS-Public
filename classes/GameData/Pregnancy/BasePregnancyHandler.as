@@ -330,6 +330,9 @@ package classes.GameData.Pregnancy
 			}
 			else
 			{
+				// Sterility Ommissions
+				if (virility <= 0 || fertility <= 0) return false;
+				
 				totalChance = (virility + fertility) / 2;
 				if (thisPtr.debugTrace) trace("Mother + Father Fertility chance bonus multi = " + totalChance);
 				
