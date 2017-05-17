@@ -3636,10 +3636,16 @@ public function annoRandoBarBonus(button:int = 0):void
 
 public function annoBarEncounterRouter():void
 {
-	if(rand(4) == 0) annoShootsAGuyDownnnn();
-	else if(rand(3) == 0) annoGonnaGitIt();
-	else if(rand(2) == 0) annoGonnaGitDragonBOOOTAYYYYY();
-	else annoPupAtWork();
+	var funcList:Array = [];
+	
+	funcList.push(annoShootsAGuyDownnnn);
+	funcList.push(annoGonnaGitIt);
+	funcList.push(annoGonnaGitDragonBOOOTAYYYYY);
+	if(syriAtBurts() && currentLocation != "BURT'S MAIN HALL") funcList.push(annoPupAtWork);
+	
+	if(funcList.length > 0) funcList[rand(funcList.length)]();
+	
+	return;
 }
 //Anno Shoots a Guy Down
 public function annoShootsAGuyDownnnn():void
