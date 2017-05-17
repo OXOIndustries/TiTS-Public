@@ -44,7 +44,7 @@
 			this.tallness = 62;
 			this.scaleColor = "red";
 			
-			this.long = "You are fighting the red myr guard. She's a ropey 5’10”, dressed in Federation-standard heavy trench-coat and peaked cap, her antennae poking out of the latter and her smallish boobs tightening the fabric of the former. Beneath her uniform her crimson chitin serves to armor her even further against whatever this uncompromising world has to throw at her. She has a semi-automatic slug-launcher slung over her shoulder, but she isn't even trying to reach for that.";
+			this.long = "She's a ropey 5’10”, dressed in Federation-standard heavy trench-coat and peaked cap, her antennae poking out of the latter and her smallish boobs tightening the fabric of the former. Beneath her uniform her crimson chitin serves to armor her even further against whatever this uncompromising world has to throw at her. She has a semi-automatic slug-launcher slung over her shoulder, but she isn't even trying to reach for that.";
 			this.customDodge = "The seasoned soldier throws herself sideways. Your attack misses her by an inch and she deftly tumbles back to her feet.";
 			this.customBlock = "The female soldier brings up her hatchet and deftly parries your attack. Throwing you off, she then twirls the hand-axe in her hand.";
 			this.isPlural = false;
