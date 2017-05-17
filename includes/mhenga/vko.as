@@ -126,6 +126,18 @@ public function getDiseaseProbedYo():void
 	output("\n\n<i>“Analyzing....”</i>");
 	output("\n\n<i>“Analyzing....”</i> V-Ko bites her tongue as she focuses, working.");
 
+	var sstds:Number = 0;
+	//SSTD check first!
+	while(pc.hasSSTD())
+	{
+		var disease:String = pc.getRandomSSTD();
+		sstds++;
+		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with <i>“ + disease + <i>“! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
+		output("\n\nV-Ko pats you comfortingly and resumes scanning you.");
+		output("\n\n<i>“Analyzing cellular structures....”</i>");
+		pc.removeStatusEffect(disease);
+	}
+
 	var detectedParasites:int = 0;
 	clearMenu();
 	
@@ -173,13 +185,17 @@ public function getDiseaseProbedYo():void
 	
 	if (detectedParasites == 0)
 	{
-		output("\n\nShe gasps, <i>“You’re completely clean! I could not find a single foreign contaminant in your system, though my sensors did detect a highly advanced group of microsurgeons. My heuristic programs have determined them to be safe, likely part of an immune supplement.”</i>");
+		output("\n\nShe gasps, <i>“You’re completely clean! ");
+		if(sstds == 0) output("I could not find a single foreign contaminant in your system, though my sensors did detect a highly advanced group of microsurgeons. My heuristic programs have determined them to be safe, likely part of an immune supplement.”</i>");
+		else output("The pathogens inside you are already breaking down thanks to your microsurgeon immune boosters. Though I am unfamiliar with the make and model, my heuristic programs have determined them to be an advanced prototype. Lucky you!”</i>")
 		output("\n\nYou inform her that she’s correct as you hop down off the table. <i>“");
+
 		if(pc.isNice()) output("Is there a charge?");
 		else if(pc.isMischievous()) output("I hope I didn’t forget to pay again....");
 		else output("If you were going to charge me, it’s too late now.");
 		output("”</i>");
-		output("\n\nV-Ko titters, <i>“Examinations are always free! Treatment is another matter. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
+		if(sstds > 0) output("\n\nV-Ko titters, <i>“Examinations are always free! Treatments have a price, but your immune boosters provided a trust to bill for the licensing cost of this software algorithm. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
+		else output("\n\nV-Ko titters, <i>“Examinations are always free! Treatment is another matter. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
 		//Menu
 		approachVKo(false);
 	}
