@@ -3517,6 +3517,16 @@
 			return false;
 		}
 		
+		public function inPowerArmor():Boolean
+		{
+			// 9999
+			return false;
+		}
+		public function canUsePowerArmorWeapon():Boolean
+		{
+			return (inPowerArmor() || physique() >= 40);
+		}
+		
 		public function removeClothes(item:String = "all"):void
 		{
 			if(item == "all" || item == "underwear" || item == "upperUndergarment") { upperUndergarment.onRemove(this); upperUndergarment = new EmptySlot(); }

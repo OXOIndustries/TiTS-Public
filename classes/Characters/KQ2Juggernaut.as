@@ -186,6 +186,11 @@ package classes.Characters
 			return "JUGGERNAUT";
 		}
 		
+		override public function inPowerArmor():Boolean
+		{
+			return true;
+		}
+		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			if (shields() <= 0 && !hasStatusEffect("GunShield Overloaded"))

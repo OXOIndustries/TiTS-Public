@@ -706,6 +706,7 @@ public function talkAboutChaurminesFamily():void
 	clearOutput();
 	showChaurmine();
 	author("Aullama");
+	clearMenu();
 	//first time:
 	if(flags["CHAURMINE_FAMIRY_TALKED"] == undefined)
 	{
@@ -739,7 +740,6 @@ public function talkAboutChaurminesFamily():void
 		output("\n\nTaking it all in, you inquire about his actual family once more. He said he had six siblings. You’re curious about them, as well as his mother. Or ‘matron’, as he called her.");
 		output("\n\nChaurmine sighs tiredly and shakes his head, <i>“I’ve been an open book for you, [pc.name]. This time I’m gonna stay closed...”</i>");
 		processTime(10);
-		clearMenu();
 		flags["CHAURMINE_FAMIRY_TALKED"] = 1;
 		//[Push]
 		addButton(0,"Push",chaurmineFamilyPush,undefined,"Push","Push for more info. You’ve got to know more! (He might not like it though...)");
