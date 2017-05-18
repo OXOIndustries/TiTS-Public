@@ -183,6 +183,7 @@
 			btnTargetText = "Khorgan";
 			sexualPreferences.setRandomPrefs(3 + rand(3));
 
+			kGAMECLASS.tarkusSSTDChance(this);
 			this._isLoading = false;
 		}
 		

@@ -167,7 +167,7 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "Queen";
-			
+			kGAMECLASS.myrellionSSTDChance(this);
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
 			_isLoading = false;
 		}

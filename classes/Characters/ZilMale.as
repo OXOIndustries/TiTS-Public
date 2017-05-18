@@ -184,6 +184,8 @@
 			long += ".";
 			if(rand(5) == 0) inventory.push(new PrimitiveBow());
 			else inventory.push(new ZilRation());
+
+			kGAMECLASS.mhengaSSTDChance(this);
 		}
 		
 		override public function get bustDisplay():String

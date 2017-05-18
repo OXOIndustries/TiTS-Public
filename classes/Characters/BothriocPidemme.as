@@ -198,6 +198,8 @@ package classes.Characters
 			if(rand(5) == 0) inventory.push(RandomInCollection(meleeWeapon, rangedWeapon, armor));
 			else if (rand(40) == 0) inventory.push(RandomInCollection(new Kirkite(), new Satyrite(), new Picardine()));
 			
+			kGAMECLASS.myrellionSSTDChance(this);
+			
 			this._isLoading = false;
 		}
 		

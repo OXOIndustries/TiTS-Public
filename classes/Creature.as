@@ -19452,6 +19452,19 @@
 							Tentacool.tentacoolTF(this, thisStatus); 
 						}				
 						break;
+					case "Undetected Furpies":
+					case "Furpies Simplex H":
+					case "Furpies Simplex C":
+					case "Furpies Simplex D":
+						//HorsePill.OnHourTF(deltaT, maxEffectLength, doOut, this, thisStatus);
+						kGAMECLASS.furpiesProcsGoooo(deltaT, maxEffectLength, doOut, this, thisStatus);
+						if(requiresRemoval) 
+						{
+							thisStatus.minutesLeft = 0;
+							requiresRemoval = false;
+						}
+						break;
+					
 				}
 				
 				if (requiresRemoval)
@@ -19624,6 +19637,49 @@
 			if (r.indexOf("kaithrit") != -1 || r.indexOf("feline") != -1) return c;
 			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
 			return (prefDog ? d : c);
+		}
+		public function hasSSTD():Boolean
+		{
+			return (getRandomSSTD() != "none");
+		}
+		public function clearSSTDs():void
+		{
+			removeSSTDs();
+		}
+		public function removeSSTDs():void
+		{
+			removeStatusEffect("Undetected Furpies");
+			removeStatusEffect("Furpies Simplex H");
+			removeStatusEffect("Furpies Simplex D");
+			removeStatusEffect("Furpies Simplex C");
+		}
+		public function getRandomSSTD():String
+		{
+			var SSTDs:Array = [];
+			if(hasStatusEffect("Undetected Furpies")) SSTDs.push("Undetected Furpies");
+			if(hasStatusEffect("Furpies Simplex H")) SSTDs.push("Furpies Simplex H");
+			if(hasStatusEffect("Furpies Simplex D")) SSTDs.push("Furpies Simplex D");
+			if(hasStatusEffect("Furpies Simplex C")) SSTDs.push("Furpies Simplex C");
+
+			if(SSTDs.length == 0) return "none";
+			else return SSTDs[rand(SSTDs.length)];
+		}
+		public function isSSTDImmune():Boolean
+		{
+			return false;
+		}
+		public function sstdChecks(cumFrom:Creature = null,location:String = "ass"):void
+		{
+			//FURPIES!
+			if(cumFrom.hasSSTD() && !this.isSSTDImmune())
+			{
+				kGAMECLASS.output(cumFrom.getRandomSSTD());
+				if(cumFrom.getRandomSSTD() == "Undetected Furpies") 
+				{
+					kGAMECLASS.output(cumFrom.getRandomSSTD());
+					createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+				}
+			}
 		}
 	}
 }

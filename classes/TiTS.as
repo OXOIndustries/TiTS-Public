@@ -370,6 +370,8 @@
 		include "../includes/uveto/walt.as";
 		
 		include "../includes/chargendata.as";
+		include "../includes/SSTDs/furpies.as";
+		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;
 

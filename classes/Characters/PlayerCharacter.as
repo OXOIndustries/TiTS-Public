@@ -73,12 +73,11 @@ package classes.Characters
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
 				if(cumflationEnabled()) cumflationHappens(cumFrom,vagIndex);
+				sstdChecks(cumFrom,"vagina");
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
-			
 			return false;
 		}
-		
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
@@ -102,6 +101,7 @@ package classes.Characters
 			// Cumflation
 			if (cumFrom != null)
 			{
+				sstdChecks(cumFrom,"ass");
 				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
 				return this.tryKnockUp(cumFrom, 3);
 			}
@@ -152,6 +152,7 @@ package classes.Characters
 					if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
+			if(cumFrom != null) sstdChecks(cumFrom,"mouth");
 			return false;
 		}
 		
@@ -181,6 +182,7 @@ package classes.Characters
 				kGAMECLASS.dumb4CumReset();
 			}
 			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
+			if(cumFrom != null) sstdChecks(cumFrom,"mouth");
 			return false;
 		}
 		// *shrug*

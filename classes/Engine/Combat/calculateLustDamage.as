@@ -50,6 +50,7 @@ package classes.Engine.Combat
 			if (slutsauceBonus > 5) slutsauceBonus = 5;
 			lustDamage.tease.damageValue += slutsauceBonus;
 		}
+
 		//25% dam multiplier
 		if (lustDamage.tease.damageValue > 0 && target != null && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
 
@@ -63,6 +64,10 @@ package classes.Engine.Combat
 		if (target.hasPerk("Easy")) damMulti += 0.2;
 		if (target != null && target.hasStatusEffect("Fuck Fever") && attacker != null && attacker.hasCock()) damMulti += 0.4;
 		if (target != null && target.hasStatusEffect("Flushed") && attacker != null && attacker.hasCock()) damMulti += 0.2;
+		if (attacker.hasFur())
+		{
+			if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) damMulti += 0.25;
+		}
 		if (damMulti != 1) lustDamage.multiply(damMulti);
 		
 		// Apply resistances

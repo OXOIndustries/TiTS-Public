@@ -3287,6 +3287,10 @@ package classes.GameData
 			if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
 			if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 			if (target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) factor *= 1.1;
+			if (attacker.hasFur())
+			{
+				if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) factor *= 1.25;
+			}
 			
 			if (factor > factorMax) factor = factorMax;
 		
@@ -4163,8 +4167,32 @@ package classes.GameData
 			for (i = 0; i < _hostiles.length; i++)
 			{
 				displayHostileStatus(_hostiles[i]);
+				//Furpies bonus damage warning!
+				if (_hostiles[i].hasFur())
+				{
+					if (pc.statusEffectv2("Furpies Simplex H") == 1 || pc.statusEffectv2("Furpies Simplex C") == 1 || pc.statusEffectv2("Furpies Simplex D") == 1)
+					{
+						if(_hostiles[i].hasGenitals())
+						{
+							//Foe is masculine furry
+							if(_hostiles[i].mf("m","f") == "m")
+							{
+								output("\n\nHe’s got such sexy fur covering his body! You could just snuggle into it and let him have his way with you... <b>Better hope he doesn’t tease you or you’ll spread your legs like a </b>");
+								if(pc.hasVagina(GLOBAL.TYPE_EQUINE) || pc.horseScore() >= 3) output("<b>mare</b>");
+								else output("<b>bitch</b>");
+								output("<b> in heat!</b>");
+							}
+							//Foe is feminine furry
+							else
+							{
+								output("\n\nHer fur is so shimmery and sexy! Better <b>hope she doesn't tease you or you'll be putty in her paws -  a docile, domesticated mate, even!</b>");
+							}
+						}
+					}
+				}
 			}
 			if(pc.hasKeyItem("RK Lah - Captured")) kGAMECLASS.lahAddendumToCombat();
+
 		}
 		
 		private function displayHostileStatus(target:Creature):void

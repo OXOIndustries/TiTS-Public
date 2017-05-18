@@ -165,6 +165,7 @@
 			btnTargetText = "ZilPack";
 			sexualPreferences.setRandomPrefs(6, 2);
 			this._isLoading = false;
+			kGAMECLASS.mhengaSSTDChance(this);
 		}
 		
 		override public function get bustDisplay():String
