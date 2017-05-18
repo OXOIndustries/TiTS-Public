@@ -40,19 +40,19 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 28000;
+			this.basePrice = 25000;
 			
-			baseDamage.kinetic.damageValue = 30;
+			baseDamage.kinetic.damageValue = 25;
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			
-			this.attack = 0;
-			this.critBonus = 5;
-			this.defense = 5;
+			this.attack = -10;
+			this.critBonus = 0;
+			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.evasion = 0;
+			this.evasion = -8;
 			this.fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);

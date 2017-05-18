@@ -40,14 +40,14 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 35000;
+			this.basePrice = 25000;
 			
-			baseDamage.kinetic.damageValue = 30;
+			baseDamage.kinetic.damageValue = 28;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
-			this.attack = 5;
-			this.critBonus = 6;
-			this.defense = 2;
+			this.attack = -2;
+			this.critBonus = -2;
+			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
