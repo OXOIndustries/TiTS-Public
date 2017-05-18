@@ -40,19 +40,21 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 25000;
-			this.attack = -2;
-			this.critBonus = -2;
+			this.basePrice = 35000;
 			
-			baseDamage.kinetic.damageValue = 28;
+			baseDamage.kinetic.damageValue = 30;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
-			this.defense = 0;
+			this.attack = 5;
+			this.critBonus = 6;
+			this.defense = 2;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.evasion = -5;
 			this.fortification = 0;
+			
+			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 
 			this.version = _latestVersion;
 		}	

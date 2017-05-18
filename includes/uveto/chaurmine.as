@@ -69,8 +69,11 @@ public function fenfernoAndIce():void
 	output("\n\nNot quite in the blink of an eye, but still surprisingly swift, Chaurmine grabs the haft of his hammer with an armored hand and swings the head to his feet - the impact enough to make you flinch as it smashes a large dent into the icy floor. <i>“I want you to fight me,”</i> he says, his massive frame tense, <i>“I want you to fight me without holding back, as if your life were at risk.”</i>");
 	output("\n\nYou hesitate, having no desire to cause either of you injury - especially all the way out here.");
 	output("\n\nNoticing your nervous demeanor, Chaurmine gives a bittersweet smile, <i>“Saurmorians aren’t people of complex feelings or relationships, [pc.name]. Saurmorians don’t feel these things - not the same way you do, at least. I need to know why I feel this way, and the best way I can do that is through what I do best.”</i> He pulls his lips back into a rumbling growl, <i>“Win or lose, I need to know why you have started this inferno inside me!”</i> The cold, humid air whips against the two of you from above, carrying the steam hissing off of his molten body in swaying motions, reminding you of tattered cloth. <b><i>“I need to know why you have claimed my heart!”</i></b>");
-	output("\n\n<b>It's a fight!</b>");
+	output("\n\n<b>It’s a fight!</b>");
 	processTime(15);
+	
+	flags["MET_CHAURMINE"] = 2;
+	
 	clearMenu();
 
 	CombatManager.newGroundCombat();
@@ -385,7 +388,7 @@ public function chaurmineUvetoStationBonus():void
 	addButton(0,"Chaurmine",approachCharmine);
 }
 
-///Visiting Chaurmine
+// Visiting Chaurmine
 public function approachCharmine():void
 {
 	clearOutput();
@@ -422,6 +425,7 @@ public function approachCharmine():void
 		processTime(1);
 		chaurmineUvetoMenu();
 	}
+	if(flags["MET_CHAURMINE"] < 2) flags["MET_CHAURMINE"] = 2;
 }
 
 public function chaurmineUvetoMenu():void
@@ -433,7 +437,7 @@ public function chaurmineUvetoMenu():void
 	addButton(1,"Talk",chaurmineUvetoTalks);
 	//[Sex] // Go to Uveto Sex
 	if(pc.lust() >= 33) addButton(2,"Sex",chaurmineUvetoSexApproach);
-	else addDisabledButton(2,"Sex","Sex","You aren't aroused enough for this.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
 	//[Leave]
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -627,7 +631,7 @@ public function backToUvetoChaurmine():void
 	clearOutput();
 	showChaurmine();
 	author("Fenoxo Fenfeeeeeeen");
-	output("Is there something else you'd like to ask of Chaurmine? The big lug seems quite intent on you.");
+	output("Is there something else you’d like to ask of Chaurmine? The big lug seems quite intent on you.");
 	chaurmineUvetoMenu();
 }
 
@@ -792,7 +796,7 @@ public function myrVenomChaurmineFun():void
 	if(pc.hasCock())
 	{
 		output(", setting off [pc.eachCock] and ");
-		if(pc.cumQ() < 500)  output("glazing your middle and [pc.fullChest] with thick volleys of [pc.cumNoun]");
+		if(pc.cumQ() < 500) output("glazing your middle and [pc.fullChest] with thick volleys of [pc.cumNoun]");
 		else output("drenching your entire [pc.belly] and [pc.fullChest] with barrage after barrage of [pc.cumNoun] - even coating the metal titan -");
 		output(" from your [pc.balls]. Heart racing, arms flailing, every brutal thrust jostling your body and flinging crystalline drops of sweat and saliva");
 		if(pc.isLactating()) output(" and [pc.milkColor] [pc.milkNoun]");
@@ -807,7 +811,7 @@ public function myrVenomChaurmineFun():void
 	else output("moaning in aroused awe as you feel his fat cunt-wrecker bulging obscenely into your hands through your [pc.skinFurScales]. Cupping your distended flesh, you move in rhythm to his thrusts, effectively jerking him off through your [pc.skinFurScales]. Chaurmine grunts, and you squeal in delight as his thrusts come faster");
 	output(".");
 
-	output("\n\nIn the middle of another of your delirious and mind wracking orgasms, Chaurmine suddenly doubles over, jaws clamping onto your neck as he gives one last ass-bruising thrust into your [pc.vagina " + x +  "]. Your hands zip up to his jaws, earning you disapproving snarls as you give weak attempts at prying his jaws open - the painful grip of his teeth most definitely breaking the skin. You feel his fat xeno-saur cock twitch and flex inside you, bloating even further as his backed up seed distends the already thick cumvein, and stretching your vaginal walls painfully as the thick cum rushes towards your womb.");
+	output("\n\nIn the middle of another of your delirious and mind wracking orgasms, Chaurmine suddenly doubles over, jaws clamping onto your neck as he gives one last ass-bruising thrust into your [pc.vagina " + x + "]. Your hands zip up to his jaws, earning you disapproving snarls as you give weak attempts at prying his jaws open - the painful grip of his teeth most definitely breaking the skin. You feel his fat xeno-saur cock twitch and flex inside you, bloating even further as his backed up seed distends the already thick cumvein, and stretching your vaginal walls painfully as the thick cum rushes towards your womb.");
 
 	output("\n\nThe first powerful blast virtually floods your uterus, basting your fallopian tubes, and continues to spout the titan’s virile seed. Gurgling and gagging, your hands scrape and claw at Chaurmine’s teeth as you cum <i>hard</i>, your writhing and contorting causing your expanding middle to jiggle and wobble. With every voluminous blast, your belly expands further and further until, with a whimper, you can’t take any more; the excess reptile goo dripping and leaking around his outrageously wide cock, more seems to enter you than exit - eventually bursting and streaming out with every additional drop of cum. Your sight starts to waver, seeing vague spots while the edges of your vision darken.");
 

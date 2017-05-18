@@ -16,6 +16,7 @@ package classes.GameData
 	import classes.GLOBAL;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Items.Guns.HardlightBow;
+	import classes.Items.Melee.SaurmorianHammer;
 	import classes.Items.Miscellaneous.GrayMicrobots;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.*;
@@ -674,6 +675,16 @@ package classes.GameData
 			
 			var d:TypeCollection = attacker.meleeDamage();
 			damageRand(d, 15);
+			
+			// Damage adjustments
+			if(attacker.meleeWeapon is SaurmorianHammer && (target.originalRace == "saurmorian" || target.race() == "saurmorian"))
+			{
+				var saurianScaleBreak:TypeCollection = new TypeCollection();
+				saurianScaleBreak.kinetic.damageValue = 10;
+				saurianScaleBreak.addFlag(DamageFlag.PENETRATING);
+				d.add(saurianScaleBreak);
+			}
+			
 			applyDamage(d, attacker, target, special);
 
 			if(target is Kane) 

@@ -2080,6 +2080,7 @@
 					break;
 				case "allChestDescript":
 				case "fullChest":
+				case "chestFull":
 					buffer = allChestDesc();
 					break;
 				case "biggestBreastDescript":

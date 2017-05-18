@@ -51,7 +51,7 @@ public function GlacialRiftEncounterBonus():Boolean
 		//POSSIBLE ENCOUNTERS! KORGI!
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 
-		if(chaurmineOnUveto()) 
+		if(flags["MET_CHAURMINE"] < 2 && chaurmineOnUveto()) 
 		{
 			if(flags["CHAURMINE_WINS"] == undefined)
 			{
@@ -108,7 +108,7 @@ public function uvetoShipDock():Boolean
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
 	
-	if(flags["CHAURMINE_WINS"] != undefined) chaurmineUvetoStationBonus();
+	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined)) chaurmineUvetoStationBonus();
 
 	return false;
 }

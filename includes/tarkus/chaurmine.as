@@ -2,7 +2,7 @@
 by Aullama
 
 Summary
-Chaurmine is a saurmorian, a species of armored reptiles from Molis. Upon hatching, it was immediately apparent that Chaurmine was going to be an exceptionally strong and virile male; deep amber skin being a rare occurrence. Shortly after he reached maturity, he jumped at the first chance to get offworld, preferring to try an unknown life over being a matron's favored cum pump. After being on his own for a long while, he eventually meets the PC on Tarkus. If the PC interacts more with Chaurmine on Novahome, he will meet the PC in the hangar and confess his feelings. Depending on how the PC reacts, they may find him on Uveto, where they help Chaurmine cope with his emotions via fighting, and then interacting with him in Uveto Station.
+Chaurmine is a saurmorian, a species of armored reptiles from Molis. Upon hatching, it was immediately apparent that Chaurmine was going to be an exceptionally strong and virile male; deep amber skin being a rare occurrence. Shortly after he reached maturity, he jumped at the first chance to get offworld, preferring to try an unknown life over being a matron’s favored cum pump. After being on his own for a long while, he eventually meets the PC on Tarkus. If the PC interacts more with Chaurmine on Novahome, he will meet the PC in the hangar and confess his feelings. Depending on how the PC reacts, they may find him on Uveto, where they help Chaurmine cope with his emotions via fighting, and then interacting with him in Uveto Station.
 
 Mechanics/Technicalities
 Chaurmine_helped_or_guarded 
@@ -129,7 +129,7 @@ public function helpChaurmine():void
 	output("Knowing where this is going, and figuring he has no patience for a show, ");
 	//flaggedNude
 	if(pc.isChestExposed()) output("you move toward the brute, and he gives an amused snort, <i>“D’ya go walking everywhere like that?”</i> You grin mischievously as you kneel next to him");
-	else output("you start to head towards him only for him to growl disapprovingly, his scales lightly scraping together as he shakes his head. <i>“The shit you’re wearing. Off with it. If you’re going to jerk me off or whatever in the middle of nowhere, the least you could do is provide some proper eye candy...”</i> he barks, <i>“Just waist up, actually... Don’t want you getting any ideas, now.”</i> You shrug, figuring there’s no harm in going along with the strange request, and start to remove your [pc.chestCovers]. Hell, maybe it will prevent <i>him</i> from getting over excited. You kneel next to him once he is satisfied");
+	else output("you start to head towards him only for him to growl disapprovingly, his scales lightly scraping together as he shakes his head. <i>“The shit you’re wearing. Off with it. If you’re going to jerk me off or whatever in the middle of nowhere, the least you could do is provide some proper eye candy...”</i> he barks, <i>“Just waist up, actually... Don’t want you getting any ideas, now.”</i> You shrug, figuring there’s no harm in going along with the strange request, and start to remove your [pc.upperGarments]. Hell, maybe it will prevent <i>him</i> from getting over excited. You kneel next to him once he is satisfied");
 	output(". Up close you feel a heavy warmth radiating from the metal-scaled form in front of you, accompanied by his musk. Your own body becomes slightly flushed with heat in response, seeming to pool to your crotch. His piercing stare falters at your closeness, and takes in your [pc.skinFurScales] as he scans your face.");
 	if(pc.hasVagina()) output(" His firey azure eyes abruptly turn downward, showing particular interest in your crotch as he catches your scent.");
 
@@ -489,9 +489,9 @@ public function chaurmineMenu(disabledButton:Number = -1):void
 	if(disabledButton == 1) addDisabledButton(1,"Talk","Talk","Maybe you should do something else for a moment.");
 	else addButton(1,"Talk",talkToChaurmine,undefined,"Talk","Find out some more about Chaurmine");
 	if(disabledButton == 2) addDisabledButton(2,"Sex","Sex","Maybe do something else for a bit.");
-	else if(pc.lust() < 33) addDisabledButton(2,"Sex","Sex","You aren't really in the mood for this.\n\n(Lust 33+ required.)");
+	else if(pc.lust() < 33) addDisabledButton(2,"Sex","Sex","You aren’t really in the mood for this.\n\n(Lust 33+ required.)");
 	//else addButton(2,"Sex",,undefined,"Sex","Take the big brute for a ride.");
-	else if(chaurmineRelationship() < 10) addDisabledButton(2,"Sex","Sex","He doesn't seem ready for sex yet. Maybe talk to him, get to know him. See if he has any hobbies.");
+	else if(chaurmineRelationship() < 10) addDisabledButton(2,"Sex","Sex","He doesn’t seem ready for sex yet. Maybe talk to him, get to know him. See if he has any hobbies.");
 	else addButton(2,"Sex",sexWithChaurmine);
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -528,10 +528,10 @@ public function talkToChaurmine():void
 	addButton(0,"About Him",aboutChaurmineTheCunt,undefined,"About Him","Get to know the big guy.");
 	//[His home] Ask about where he came from.
 	if(flags["CHAURMINE_HIM_TALKED"] != undefined) addButton(1,"His Home",talkToChaurmineAboutHome,undefined,"His Home","Ask about where he came from.");
-	else addDisabledButton(1,"His Home","His Home","You don't know him well enough for this.");
+	else addDisabledButton(1,"His Home","His Home","You don’t know him well enough for this.");
 	//[Family] What was his family like?
 	if(chaurmineRelationship() >= 25) addButton(2,"Family",talkAboutChaurminesFamily,undefined,"Family","What was his family like?");
-	else addDisabledButton(2,"Family","Family","Your relationship with him isn't well developed enough for this.");
+	else addDisabledButton(2,"Family","Family","Your relationship with him isn’t well developed enough for this.");
 	//[Back]
 	addButton(14,"Back",backToChaurmineMain,1);
 }
@@ -742,7 +742,7 @@ public function talkAboutChaurminesFamily():void
 		clearMenu();
 		flags["CHAURMINE_FAMIRY_TALKED"] = 1;
 		//[Push]
-		addButton(0,"Push",chaurmineFamilyPush,undefined,"Push","Push for more info. You've got to know more! (He might not like it though...)");
+		addButton(0,"Push",chaurmineFamilyPush,undefined,"Push","Push for more info. You’ve got to know more! (He might not like it though...)");
 		//[Back]
 		addButton(14,"Back",backToChaurmineMain);
 	}
@@ -753,7 +753,7 @@ public function talkAboutChaurminesFamily():void
 		output("\n\nThis is met with a dismissive snort.");
 
 		//[Push]
-		addButton(0,"Push",chaurmineFamilyPush,undefined,"Push","Push for more info. You've got to know more! (He might not like it though...)");
+		addButton(0,"Push",chaurmineFamilyPush,undefined,"Push","Push for more info. You’ve got to know more! (He might not like it though...)");
 		//[Back]
 		addButton(14,"Back",backToChaurmineMain);
 	}
@@ -1013,8 +1013,9 @@ public function intimateCatchChaurmine():void
 	{
 		output("; your [pc.tails] wrap");
 		if(pc.tailCount == 1) output("s");
-		output(" around his armored leg as if to anchor yourself to him}. Gliding lower, his hand moves to your crotch");
+		output(" around his armored leg as if to anchor yourself to him");
 	}
+	output(". Gliding lower, his hand moves to your crotch");
 	//pcHasCock:
 	if(pc.hasCock())
 	{
@@ -1111,7 +1112,7 @@ public function intimateCatchChaurmine():void
 	//ifVaginal:
 	if(x >= 0)
 	{
-		output("\n\nYou moan with abandon as he flicks a claw past [pc.oneClit], [pc.skinFucScales] glistening with a growling layer of sweat from a coiling heat building with each thrust and grind against your most sensitive flesh. [pc.OneVagina] contracts excitedly, milking Chaurmine’s monstrous shaft for his strong seed, and fill your womb to the brim. His armored hips thrust a touch faster, metal scales smacking wet and loud against your [pc.ass], but maintains enough thought to diddle your [pc.clits]");
+		output("\n\nYou moan with abandon as he flicks a claw past [pc.oneClit], [pc.skinFurScales] glistening with a growling layer of sweat from a coiling heat building with each thrust and grind against your most sensitive flesh. [pc.OneVagina] contracts excitedly, milking Chaurmine’s monstrous shaft for his strong seed, and fill your womb to the brim. His armored hips thrust a touch faster, metal scales smacking wet and loud against your [pc.ass], but maintains enough thought to diddle your [pc.clits]");
 		if(pc.hasCock()) output(", ignoring your jouncing [pc.cocks]");
 		output(". He seems to be waiting for you to give in first.");
 
@@ -1248,7 +1249,7 @@ public function chaurmineTaurOral():void
 	else output("raise a brow at his tone");
 	output(", but decide to humor him. With deliberate, languid motions, you slowly turn your tauric form in a circle for the titan’s appraisal");
 	//pcNotFullyNude:
-	if(!pc.isCrotchExposed() && !pc.isAssExposed() && !pc.isChestExposed())  output(" and, knowing he’ll want to see everything, remove your [pc.gear]");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed() && !pc.isChestExposed()) output(" and, knowing he’ll want to see everything, remove your [pc.gear]");
 	output(". His azure eyes run along bare [pc.skinFurScales], taking in your [pc.thighs] and [pc.legs]");
 	if(pc.tailCount > 0) output("; the movements of your [pc.tails] momentarily catch his attention too");
 	output(". ");
@@ -1805,7 +1806,7 @@ public function tellChaurmineYouLikeLikeHimAndStuff():void
 	processTime(8);
 	//[Next] // Gain lover status // Increase relationship by 50% (of current)
 	flags["CHAURMINE_LOVER"] = 1;
-	chaurmineRelationship(chaurmineRelationship()/2);
+	chaurmineRelationship(Math.round(chaurmineRelationship()/2));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

@@ -1431,6 +1431,15 @@ public function equipItem(arg:ItemSlotClass):void {
 	{
 		SiegwulfeEquip();
 	}
+	else if(arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR))
+	{
+		// Power armor req?
+		if(9999 == 0 || pc.physique() < 40)
+		{
+			output("You are not strong enough to equip your " + arg.longName + "!\n\n");
+			removedItem = arg;
+		}
+	}
 	else
 	{
 		//No undies with Omnisuit!
