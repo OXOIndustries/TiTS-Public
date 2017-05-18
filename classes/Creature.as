@@ -19457,7 +19457,6 @@
 					case "Furpies Simplex H":
 					case "Furpies Simplex C":
 					case "Furpies Simplex D":
-						//HorsePill.OnHourTF(deltaT, maxEffectLength, doOut, this, thisStatus);
 						kGAMECLASS.furpiesProcsGoooo(deltaT, maxEffectLength, doOut, this, thisStatus);
 						if(requiresRemoval) 
 						{

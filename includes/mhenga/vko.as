@@ -132,7 +132,7 @@ public function getDiseaseProbedYo():void
 	{
 		var disease:String = pc.getRandomSSTD();
 		sstds++;
-		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with <i>“ + disease + <i>“! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
+		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with " + disease + "! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
 		output("\n\nV-Ko pats you comfortingly and resumes scanning you.");
 		output("\n\n<i>“Analyzing cellular structures....”</i>");
 		pc.removeStatusEffect(disease);
