@@ -586,6 +586,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		pc.libido(3);
 		pc.faceType = targetType;
 		pc.clearFaceFlags();
+		if(targetType == GLOBAL.TYPE_EQUINE) pc.addFaceFlag(GLOBAL.FLAG_LONG);
 		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 		pc.addFaceFlag(GLOBAL.FLAG_FURRED);
 	}

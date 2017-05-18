@@ -107,13 +107,18 @@ public function appearance(forTarget:Creature):void
 
 		//Face
 		output2("\n\n");
+		var faceFurScales:String = target.skinFurScales(true,true,false,true);
+		if(target.hasFaceFlag(GLOBAL.FLAG_FURRED)) faceFurScales = target.furColor + " fur";
+		else if(target.hasFaceFlag(GLOBAL.FLAG_SCALED)) faceFurScales = target.scaleColor + " scales";
+		else if(target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) faceFurScales = target.furColor + " feathers";
+		else if(target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) faceFurScales = target.scaleColor + " chitin";
 		if(InCollection(target.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LAPINE) && !target.hasMuzzle()) {
 			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2("Your face is human in shape and structure, with " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("Under your " + target.skinFurScales(true,true,false,true) + " you have a human-shaped head with " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face is fairly human in shape, but is covered in " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output2("Your face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + target.skinFurScales(true,true,false,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) output2("Your face is mostly human in shape, decorated with " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) output2("Your face is mostly human in shape, with hints of " + target.skinFurScales(true,true,false,true) + " over " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("Under your " + faceFurScales + " you have a human-shaped head with " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face is fairly human in shape, but is covered in " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2("Your face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + faceFurScales + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) output2("Your face is mostly human in shape, decorated with " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) output2("Your face is mostly human in shape, with hints of " + faceFurScales + " over " + target.skin(true,true,true) + ".");
 			// Special addons
 			if(target.faceType == GLOBAL.TYPE_SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_LAPINE) output2(" The constant twitches of your nose and the length of your incisors gives your visage a hint of bunny-like cuteness.");
@@ -129,14 +134,14 @@ public function appearance(forTarget:Creature):void
 		{
 			output2("You have a short-muzzled face");
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2(" with " + target.skin(true,true,true) + ".");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES)) output2(" covered in " + target.skinFurScales(true,true,false,true) + ".");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK)) output2(" framed with " + target.skinFurScales(true,true,false,true) + ".");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" covered in " + faceFurScales + ".");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) output2(" framed with " + faceFurScales + ".");
 			else output2(".");
 			output2(" The constant twitches of your nose and the length of your incisors gives your visage an obvious bunny-like cuteness.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_HUMANMASKED) {
 			//appearance for skinheads
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinType != GLOBAL.SKIN_TYPE_SCALES) {
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinType != GLOBAL.SKIN_TYPE_SCALES && !target.hasFaceFlag(GLOBAL.FLAG_FURRED) && !target.hasFaceFlag(GLOBAL.FLAG_SCALED)) {
 				output2("Your face is human in shape and structure, with " + target.skin(true,true,true));
 				if(InCollection(target.skinTone, "black", "ebony", "sable") && InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO)) output2(", though with your dusky hue, the black kui-tan mask you sport isn’t properly visible.");
 				else output2(", though it is decorated with a sly-looking kui-tan mask over your eyes.");
@@ -144,98 +149,97 @@ public function appearance(forTarget:Creature):void
 			//appearance furscales
 			else {
 				var furScaleColor:String = "";
-				if(target.skinType == GLOBAL.SKIN_TYPE_FUR) furScaleColor = target.furColor;
-				else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) furScaleColor = target.scaleColor;
+				if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) furScaleColor = target.furColor;
+				else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) furScaleColor = target.scaleColor;
 				//(black/midnight furscales)
-				if(InCollection(furScaleColor, "black", "midnight")) output2("Under your " + target.skinFurScales(true,true,false,true) + " hides a black kui-tan mask, barely visible due to your inky hue, and");
+				if(InCollection(furScaleColor, "black", "midnight")) output2("Under your " + faceFurScales + " hides a black kui-tan mask, barely visible due to your inky hue, and");
 				else 
 				{
-					if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Your " + target.skinFurScales(true,true,false,true) + " are decorated with a sly-looking kui-tan mask, and under them");
-					else output2(" Your " + target.skinFurScales(true,true,false,true) + " is decorated with a sly-looking kui-tan mask, and under it");
+					if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" Your " + faceFurScales + " are decorated with a sly-looking kui-tan mask, and under them");
+					else output2(" Your " + faceFurScales + " is decorated with a sly-looking kui-tan mask, and under it");
 				}
 				output2(" you have a human-shaped head with " + target.skin(true,true,true) + ".");
 			}
 		}
 		else if(target.faceType == GLOBAL.TYPE_KUITAN) {
-			output2("You have a triangular kui-tan face, replete with sensitive whiskers and a little black nose; a mask shades the space around your eyes, set apart from your " + target.skinFurScales() + " by a band of white.");
+			output2("You have a triangular kui-tan face, replete with sensitive whiskers and a little black nose; a mask shades the space around your eyes, set apart from your " + faceFurScales + " by a band of white.");
 			//(if skin)
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" It looks a bit strange with only the skin and no fur.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The presence of said scales gives your visage an eerie look, more reptile than mammal.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" It looks a bit strange with only the skin and no fur.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" The presence of said scales gives your visage an eerie look, more reptile than mammal.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_SHEEP)
 		{
 			output2("You have a short, " + pc.mf("blunt","cute") + " muzzle much like a sheep’s.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + target.skinFurScales(true,true,false,true) + " decorates it.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + faceFurScales + " decorates it.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_VULPINE) {
 			output2("You have a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2(" Oddly enough, there’s no fur on your animalistic muzzle, just " + target.skinFurScales(true,true,false,true) + "."); 
-			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" A coat of " + target.skinFurScales(true,true,false,true) + " decorates your muzzle.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" Strangely, " + target.skinFurScales(true,true,false,true) + " adorn every inch of your animalistic visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" Oddly enough, there’s no fur on your animalistic muzzle, just " + faceFurScales + "."); 
+			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + faceFurScales + " decorates your muzzle.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" Strangely, " + faceFurScales + " adorn every inch of your animalistic visage.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_MOUSEMAN) {
-			//appearance
 			output2("Your face is generally human in shape and structure, with " + target.skin(true,true,true));
-			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" under your " + target.skinFurScales(true,true,false,true));
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2(" under your " + faceFurScales);
 			output2(" and mousey buckteeth.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_MOUSE) {
-			//appearance
 			output2("You have a snubby, tapered mouse’s face, with whiskers, a little pink nose, and ");
-			if(!InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(target.skin(true,true,true));
-			else output2(target.skin(true,true,true) + " under your " + target.skinFurScales(true,true,false,true));
+			if(!InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) && !target.hasFaceFlag(GLOBAL.FLAG_FURRED) && !target.hasFaceFlag(GLOBAL.FLAG_SCALED) && !target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2(target.skin(true,true,true));
+			else output2(target.skin(true,true,true) + " under your " + faceFurScales);
 			output2(". Two large incisors complete it.");
 		}
 		//Naga (same as snake)
 		else if(target.faceType == GLOBAL.TYPE_SNAKE) {
 			output2("You have a face that resembles a combination between a human’s and a snake’s,");
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2(" covered in a layer of " + target.skinFurScales(true,true,false,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" covered in " + target.skinFurScales(true,true,false,true) + ", as one would expect of such a reptilian visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" covered in a layer of " + faceFurScales + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" covered in " + faceFurScales + ", as one would expect of such a reptilian visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2(" framed with a border of " + faceFurScales + ", looking very much like a mythical feathered serpent.");
 			else output2(" oddly uncovered by scales. Instead, your snake-like snout is covered in " + target.skin(true,true,true) + ".");
 			if(rand(2) == 0) output2(" A set of retractable, needle-like fangs sit in place of your canines and are ready to dispense their venom.");
 			else output2(" In addition, a pair of poisonous fangs protrude from your mouth over your lower lip.");
 		}
 		//horse-face
 		else if(target.faceType == GLOBAL.TYPE_EQUINE) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("Your face is almost entirely equine in appearance, even having " + target.skinFurScales() + ". Underneath the fur, you believe you have " + target.skin(true,false,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the face and head structure of a horse, overlaid with " + target.skinFurScales(true,true,false,true) + ".");
-			else output2("Your face is equine in shape and structure. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("Your face is almost entirely equine in appearance, even having " + faceFurScales + ". Underneath the fur, you believe you have " + target.skin(true,false,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("You have the face and head structure of a horse, overlaid with " + faceFurScales + ".");
+			else output2("Your face is equine in shape and structure. The odd visage is hairless and covered with " + faceFurScales + ".");
 		}
 		//dog-face
 		else if(target.faceType == GLOBAL.TYPE_CANINE) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a dog’s face, complete with wet nose and panting tongue. You’ve got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skin(true,true,true) + " underneath your furry visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the facial structure of a dog, wet nose and all, but overlaid with " + target.skinFurScales(true,true,false,true) + ".");
-			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a dog’s face, complete with wet nose and panting tongue. You’ve got " + faceFurScales + ", hiding your " + target.skin(true,true,true) + " underneath your furry visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("You have the facial structure of a dog, wet nose and all, but overlaid with " + faceFurScales + ".");
+			else output2("You have a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + faceFurScales + ".");
 		}
 		//wolf-face
 		else if(target.faceType == GLOBAL.TYPE_LUPINE) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a wolf’s face, wide and majestic, with jaws filled with sharp teeth. You’ve got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skin(true,true,true) + " underneath your furry visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("You have the facial structure of a wolf, wide and majestic, but overlaid with " + target.skinFurScales(true,true,false,true) + ", and having jaws filled with sharp teeth.");
-			else output2("You have a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + target.skinFurScales(true,true,false,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a wolf’s face, wide and majestic, with jaws filled with sharp teeth. You’ve got " + faceFurScales + ", hiding your " + target.skin(true,true,true) + " underneath your furry visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("You have the facial structure of a wolf, wide and majestic, but overlaid with " + faceFurScales + ", and having jaws filled with sharp teeth.");
+			else output2("You have a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + faceFurScales + ".");
 		}
 		//Knock-off dog-face
 		else if(target.faceType == GLOBAL.TYPE_WORG)
 		{
 			//Fur/Feather:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) 
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) 
 			{
-				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You’ve got " + target.skinFurScales(true,true,false,true) + ", hiding your " + target.skinFurScales(true,true,true,true) + " underneath your ");
-				if(target.hasFur()) output2("furry");
+				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. You’ve got " + faceFurScales + ", hiding your " + target.skin(true,true,true) + " underneath your ");
+				if(target.hasFur() || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("furry");
 				else output2("feathered");
 				output2(" visage.");
 			}
 			//Scales:
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES)
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED))
 			{
-				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. Its overlaid with " + target.skinFurScales(true,true,false,true) + ".");
+				output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. Its overlaid with " + faceFurScales + ".");
 			}
 			//Others:
 			else output2("You have the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from your lips. The odd visage is hairless and covered with " + target.skinFurScales(true,true,true,true) + ".");
 		}
 		//cat-face
 		else if(target.faceType == GLOBAL.TYPE_FELINE) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a cat-like face, complete with a moist nose and whiskers. Your " + target.skinFurScales(true,true,false,true) + " hides " + target.skin(true,true,true) + " underneath.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your facial structure blends humanoid features with those of a cat. A moist nose and whiskers are included, but overlaid with " + target.skinFurScales(true,true,false,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a cat-like face, complete with a moist nose and whiskers. Your " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your facial structure blends humanoid features with those of a cat. A moist nose and whiskers are included, but overlaid with " + faceFurScales + ".");
 			else output2("You have a cat-like face, complete with a cute, moist nose and whiskers. The " + target.skin(true,true,true) + " that is revealed by your lack of fur looks quite unusual on so feline a face.");
 		}
 		//bird-face
@@ -247,69 +251,69 @@ public function appearance(forTarget:Creature):void
 				else output2(". Instead you have a toothy reptilian muzzle, making your visage rather unsettling");
 			}
 			output2(".");
-			if(target.hasFeathers() || target.hasScales() && target.hasMuzzle() && !target.hasBeak()) output2(" It is adorned with " + indefiniteArticle(target.skinFurScales(true,true,false,true)) + ", completing the image.");
+			if((target.hasFeathers() || target.hasScales() || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) && target.hasMuzzle() && !target.hasBeak()) output2(" It is adorned with " + faceFurScales + ", completing the image.");
 			else output2(" The lack of feathers on your " + target.skinNoun() + " look rather strange.");
 			if(target.hasBeak() && !target.hasFeathers() && !target.hasFur() && target.isBald()) output2(" You somewhat resemble a vulture.");
 		}
 		//Minotaaaauuuur-face
 		else if(target.faceType == GLOBAL.TYPE_BOVINE) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Your " + target.skinFurScales(true,true,false,true) + " thickens noticably on your head, looking shaggy and more than a little monstrous once laid over your visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Your " + faceFurScales + " thickens noticably on your head, looking shaggy and more than a little monstrous once laid over your visage.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
 			else output2("You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
 		}
 		//Panda-face
 		else if(target.faceType == GLOBAL.TYPE_PANDA) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Your " + target.skinFurScales(true,true,false,true) + " hides " + target.skin(true,true,true) + " underneath.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face resembles an anthropomorphic panda’s, though strangely, it is covered in shimmering scales, right up to your black nose.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Your " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face resembles an anthropomorphic panda’s, though strangely, it is covered in shimmering scales, right up to your black nose.");
 			else output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
 		}
 		//Lizard-face
 		else if(target.faceType == GLOBAL.TYPE_LIZAN) {
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("You have a face resembling that of a lizard. Between the toothy maw, pointed snout, and the layer of " + target.skinFurScales(true,true,false,true) + " covering your face, you have quite the fearsome visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your face is that of a lizard, complete with a toothy maw and pointed snout. " + StringUtil.upperCase(target.skinFurScales(true,true,false,true)) + " complete the look, making you look quite fearsome.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of a lizard. Between the toothy maw, pointed snout, and the layer of " + faceFurScales + " covering your face, you have quite the fearsome visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face is that of a lizard, complete with a toothy maw and pointed snout. " + StringUtil.upperCase(faceFurScales) + " complete the look, making you look quite fearsome.");
 			else output2("You have a face resembling that of a lizard, and with your toothy maw, you have quite a fearsome visage. The reptilian visage does look a little odd with just " + target.skin(true,true,true) + " and not a single scale.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_BADGER)
 		{
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR) output2("Your head pushes out into a muzzle with white fur across your nose and mouth as well as in a wide stripe up the center of your brow, giving you the appearance of a humanoid badger. The rest of it is wrapped in " + target.skinFurScales(true,true,false,true) + " that covers your " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2("Your head pushes out into a muzzle with white scales across your nose and mouth as well as in a wide stripe up the center of your brow, giving you the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + target.skinFurScales(true,true,false,true) + " that covers your " + target.skin(true,true,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("Your head pushes out into a muzzle with white fur across your nose and mouth as well as in a wide stripe up the center of your brow, giving you the appearance of a humanoid badger. The rest of it is wrapped in " + faceFurScales + " that covers your " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your head pushes out into a muzzle with white scales across your nose and mouth as well as in a wide stripe up the center of your brow, giving you the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + faceFurScales + " that covers your " + target.skin(true,true,true) + ".");
 			else output2("Your head pushes out into a curiously hairless badger-face, covered only with " + target.skin(true,true,true) + ".");
 		}
 		else if(target.faceType == GLOBAL.TYPE_DRACONIC) {
-			output2("Your face is a narrow, reptilian muzzle. It looks like a predatory lizard’s at first glance, but with an unusual array of spikes along the under-jaw. It gives you a regal but fierce visage. Opening your mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + target.skinFurScales(true,true,false,true) + ".");
+			output2("Your face is a narrow, reptilian muzzle. It looks like a predatory lizard’s at first glance, but with an unusual array of spikes along the under-jaw. It gives you a regal but fierce visage. Opening your mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + faceFurScales + ".");
 		}
 		else if(target.faceType == GLOBAL.TYPE_KANGAROO) {
 			output2("Your face is shaped like that of a kangaroo ");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN) output2("but bald, not covered in fur");
-			else output2("and covered with " + target.skinFurScales(true,true,false,true));
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("but bald, not covered in fur");
+			else output2("and covered with " + faceFurScales);
 			output2(". It’s almost rabbit-like, except for the length of your muzzle.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_GABILANI) {
 			output2("You have a narrow-jawed gabilani face");
-			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN) output2(", covered in " + target.skinFurScales(true,true,false,true));
-			else output2(", covered with " + target.skinFurScales(true,true,false,true));
+			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN) output2(", covered in " + faceFurScales);
+			else output2(", covered with " + faceFurScales);
 			output2(", appearing almost goblinoid with alien facial features.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_FROG)
 		{
 			output2("Your face is anuran in shape, reflecting the frog-like transformations you’ve undergone. The smooth visage is further exaggerated with a notable lack of a nose, having broadly spaced nostrils instead.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) output2(" Your face is covered in " + target.skin(true,true,true) + ".");
-			else output2(" Strangely enough, your face is also covered with " + target.skin(true,true,true) + ".");
+			if((target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) && !target.hasFaceFlag(GLOBAL.FLAG_FURRED) && !target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) && !target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) output2(" Your face is covered in " + target.skin(true,true,true) + ".");
+			else output2(" Strangely enough, your face is also covered with " + faceFurScales + ".");
 		}
 		else if(target.faceType == GLOBAL.TYPE_SHARK)
 		{
 			output2("Your face is shark-like in shape, with a snout and an upper jaw that pushes past your lower one, and at the very tip, there are two nasal holes.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SCALES && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" The glistening surface is slick to the touch, as if you just lubed up not too long ago.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) output2(" The surface is covered in fine scales.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" The surface is covered with " + target.skinFurScales(true,true,false,true) + " , making you look like a rather odd hybrid.");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK)) output2(" Hard" + target.skinFurScales(true,true,false,true) + " covers the surface, " + (silly ? "making you look like Boaty McBoatface" : "giving you a tough, hydrodynamic look") + ".");
+			if((target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) output2(" The glistening surface is slick to the touch, as if you just lubed up not too long ago.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" The surface is covered in fine scales.");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2(" The surface is covered with " + faceFurScales + " , making you look like a rather odd hybrid.");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) output2(" Hard" + faceFurScales + " covers the surface, " + (silly ? "making you look like Boaty McBoatface" : "giving you a tough, hydrodynamic look") + ".");
 			else output2(" Even without scales, the surface is smooth and hairless, perfect for underwater exploration.");
 			output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly menacing appearance.");
 		}
 		else if(target.faceType == GLOBAL.TYPE_SWINE) {
 			//appearance
 			output2("Your face is mostly human in shape and structure, with " + target.skin(true,true,true));
-			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS)) output2(" under your " + target.skinFurScales(true,true,false,true));
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) output2(" under your " + faceFurScales);
 			output2(" but it’s adorned with a flat, pig-like nose.");
 		}
 		// Special face additions
