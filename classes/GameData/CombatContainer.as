@@ -490,9 +490,29 @@ package classes.GameData
 					target.removeStatusEffect("Paralyzed");
 				}
 			}
+			
+			if (target.hasStatusEffect("Deep Freeze"))
+			{
+				target.addStatusValue("Deep Freeze", 1, -1);
+				if (target.hasStatusEffect("Burning")) target.addStatusValue("Deep Freeze", 1, -1);
+				if (target.hasStatusEffect("Burn")) target.addStatusValue("Deep Freeze", 1, -1);
+				if (target.statusEffectv1("Deep Freeze") <= 0)
+				{
+					if (target is PlayerCharacter) output("\n\n<b>After the frost melts away, you shake from the deep freeze and ready yourself for action!</b>");
+					else output("\n\n<b>After the frost melts away, " + target.getCombatName() + " shake" + (!target.isPlural ? "s" : "") + " from the deep freeze and " + (!target.isPlural ? "is" : "are") + " ready for action!</b>");
+					target.removeStatusEffect("Deep Freeze");
+				}
+				else
+				{
+					if (target is PlayerCharacter) output("\n\n<b>You slowly defrost, but your body is still in a deep freeze...</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " slowly defrost" + (!target.isPlural ? "s" : "") + ", but " + target.getCombatPronoun("pa") + " body is still in a deep freeze...</b>");
+				}
+			}
+			
 			if (target.hasStatusEffect("Burning"))
 			{
 				target.addStatusValue("Burning", 1, -1);
+				if (!target.willTakeBurnDamage(target.statusEffectv2("Burning"))) target.addStatusValue("Burning", 1, -1);
 				//Remove status!
 				if (target.statusEffectv1("Burning") <= 0)
 				{
@@ -509,11 +529,34 @@ package classes.GameData
 				}
 			}
 			
+			if(target.hasStatusEffect("Burn"))
+			{
+				var burnValue:Number = 3 + rand(4);
+				target.addStatusValue("Burn", 1, -1);
+				if (!target.willTakeBurnDamage(burnValue)) target.addStatusValue("Burn", 1, -1);
+				
+				if (target is PlayerCharacter)
+				{
+					output("\n\n<b>The flames slowly lick at you, " + (target.statusEffectv1("Burn") > 0 ? "resisting any attempt to put them out" : "refusing to go out until they’ve done their foul work") + ".</b>");
+				}
+				else
+				{
+					output("\n\n<b>Flames slowly lick at " + target.getCombatName() + ", " + (target.statusEffectv1("Burn") > 0 ? "resisting any attempt to put them out" : "refusing to go out until they’ve done their foul work") + ".</b>");
+				}
+				
+				if (target.statusEffectv1("Burn") <= 0)
+				{
+					target.removeStatusEffect("Burn");
+				}
+				
+				applyDamage(new TypeCollection( { burning: burnValue } ), null, target);
+			}
+			
 			//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
 			if (target.hasStatusEffect("Aphro"))
 			{
 				target.addStatusValue("Aphro", 2, -1);
-				if (target.statusEffectv2("Aphro") == 0)
+				if (target.statusEffectv2("Aphro") <= 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The aphrodisiac in your bloodstream has faded!</b>");
 					else output("\n\n<b>The aphrodisiac in " + possessive(target.getCombatName()) + " bloodstream has faded!</b>");
@@ -557,34 +600,6 @@ package classes.GameData
 				}
 			}
 			
-			if(target.hasStatusEffect("Burn"))
-			{
-				if (target is PlayerCharacter)
-				{
-					output("\n\n<b>The flames slowly lick at you, " + (target.statusEffectv1("Burn") > 1 ? "resisting any attempt to put them out" : "refusing to go out until they’ve done their foul work") + ".</b>");
-					if(target.statusEffectv1("Burn") > 1) 
-					{
-						target.addStatusValue("Burn",1,-1);
-					}
-					else 
-					{
-						target.removeStatusEffect("Burn");
-					}
-				}
-				else
-				{
-					output("\n\n<b>Flames slowly lick at " + target.getCombatName() + ", " + (target.statusEffectv1("Burn") > 1 ? "resisting any attempt to put them out" : "refusing to go out until they’ve done their foul work") + ".</b>");
-					if (target.statusEffectv1("Burn") > 1)
-					{
-						target.addStatusValue("Burn", 1, -1);
-					}
-					else
-					{
-						target.removeStatusEffect("Burn");
-					}
-				}
-				applyDamage(new TypeCollection( { burning: 3 + rand(4) } ), null, target);
-			}
 			if (target.hasStatusEffect("Evasion Boost"))
 			{
 				if (target.getStatusMinutes("Evasion Boost") > 0) 

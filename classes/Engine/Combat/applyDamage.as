@@ -8,10 +8,12 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Utility.possessive;
+	import classes.Engine.Utility.rand;
 	import classes.Items.Guns.Goovolver;
 	import classes.Util.RandomInCollection;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatContainer;
+	import classes.StringUtil;
 	
 	/**
 	 * Apply damage wraps all of the general output stuff and isolates it from the actual damage calculation.
@@ -70,22 +72,22 @@ package classes.Engine.Combat
 				{
 					if (target.hasShields())
 					{
-						output(" " + possessive(target.getCombatName()) + " shields crackle but hold.");
+						output(" " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shields crackle but hold.");
 					}
 					else
 					{
-						output(" " + possessive(target.getCombatName()) + " armored coatings absorb the brunt of the damage but remain intact.");
+						output(" " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " armored coatings absorb the brunt of the damage but remain intact.");
 					}
 				}
 				else
 				{
 					if (target.hasShields())
 					{
-						output(" " + possessive(target.getCombatName()) + " shield crackles but holds."); 
+						output(" " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shield crackles but holds."); 
 					}
 					else
 					{
-						output(" " + possessive(target.getCombatName()) + " armor absorbs the brunt of the damage but remains intact.");
+						output(" " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " armor absorbs the brunt of the damage but remains intact.");
 					}
 				}
 			}
@@ -175,7 +177,7 @@ package classes.Engine.Combat
 				else output(" You gain vitality as your opponents’ vigor is stolen.");
 			}
 			else output(" You feel weaker as your vitality is leeched away.");
-			attacker.HP(Math.round(damageResult.hpDamage * .5))
+			attacker.HP(Math.round(damageResult.hpDamage * .5));
 		}
 		else if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.GREATER_VAMPIRIC) && attacker.HP() < attacker.HPMax())
 		{
@@ -185,7 +187,49 @@ package classes.Engine.Combat
 				else output(" You gain vitality as your opponents’ vigor is stolen.");
 			}
 			else output(" You feel weaker as your vitality is leeched away.");
-			attacker.HP(Math.round(damageResult.hpDamage * .9))
+			attacker.HP(Math.round(damageResult.hpDamage * .9));
+		}
+		// Stun Special
+		if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
+		{
+			if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
+			else output(" <b>[target.CombatName] is stunned!</b>");
+			target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", (target is PlayerCharacter ? "You are stunned and cannot move until you recover!" : "Cannot act for a turn."), true, 0, 0xFF0000);
+		}
+		
+		// Special stuff
+		switch(special)
+		{
+			case "fzr":
+				if(target.hasStatusEffect("Burning") || target.hasStatusEffect("Burn"))
+				{
+					output("\n<b>The flames burning");
+					if (target is PlayerCharacter) output(" your");
+					else output(" [target.combatName]’s");
+					output(" body have been extinguished!</b>");
+					target.removeStatusEffect("Burning");
+					target.removeStatusEffect("Burn");
+				}
+				if(!target.hasStatusEffect("Deep Freeze"))
+				{
+					var deepFreezeChance:int = 2 + rand(2);
+					if(!target.willTakeColdDamage(baseDamage.freezing.damageValue)) deepFreezeChance += 2 ;
+					if(rand(deepFreezeChance) == 0)
+					{
+						output("\n<b>");
+						if (target is PlayerCharacter) output("The freezing sensation hits you, slowing down your movememnts. You’re frozen!");
+						else output("The freezing sensation slows down the target" + (!target.isPlural ? "’s" : "s’") + " movements. [target.CombatName] " + (!target.isPlural ? "is" : "are") + " frozen!");
+						output("</b>");
+						
+						// "Deep Freeze"
+						// v1: Number of turns.
+						// v2: Evasion change.
+						// v3: Crushing damage inflicted multiplier.
+						// v4: 
+						target.createStatusEffect("Deep Freeze", 4, -50, 2, 0, false, "Icon_Snowflake", (attacker is PlayerCharacter ? "Your enemy has been all but frozen by your attacks, lowering their evasiveness and increasing their vulnerability to your crushing attacks." : "Evasion has been lowered and vulnerability to crushing attacks have been increased."), true, 0, 0xFFFFFF);
+					}
+				}
+				break;
 		}
 
 		// Lust damage output

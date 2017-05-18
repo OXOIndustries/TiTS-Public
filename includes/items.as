@@ -1705,7 +1705,7 @@ public function useLoot(lootList:Array):void {
 	{
 		if(isEquippableItem(loot)) lootList.splice(0, 1);
 	}
-	else if (loot.quantity <= 0)
+	if (loot.quantity <= 0)
 	{
 		lootList.splice(0, 1);
 	}

@@ -4818,6 +4818,7 @@
 			if (hasStatusEffect("Spear Wall")) temp += 50;
 			if (hasStatusEffect("Leech Empowerment")) temp += 50;
 			temp += statusEffectv2("Water Veil");
+			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");
 			temp -= statusEffectv1("Evasion Reduction");
 			//Nonspecific evasion boost status effect enemies can use.
@@ -18610,6 +18611,13 @@
 			
 			// Perk for some kinda TF or some shit, effect for a temporary/timed effect?
 			if (hasPerk("Icy Veins") || hasStatusEffect("Icy Veins") || (hasFur() && perkv1("Wooly") >= 1)) return false;
+			return true;
+		}
+		
+		public function willTakeBurnDamage(resToAvoid:Number = 25.0):Boolean
+		{
+			if (hasStatusEffect("Deep Freeze")) return false;
+			if (getHPResistances().burning.resistanceValue >= resToAvoid) return false;
 			return true;
 		}
 		

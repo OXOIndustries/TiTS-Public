@@ -53,6 +53,12 @@ package classes.Engine.Combat
 		
 		if (attacker != null && (special == "ranged" || special == "melee"))
 		{
+			if(target.hasStatusEffect("Deep Freeze") && baseDamage.hasFlag(DamageFlag.CRUSHING))
+			{
+				damageResult.wasCrit = true;
+				baseHPDamage.multiply(target.statusEffectv3("Deep Freeze"));
+			}
+			
 			if (special == "melee")
 			{				
 				// Melee crit
@@ -71,9 +77,9 @@ package classes.Engine.Combat
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
-
+				
 				//Burninate the countryside
-				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)
+				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
 					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
 				}
@@ -82,7 +88,7 @@ package classes.Engine.Combat
 				if(attacker is PlayerCharacter && !target.hasStatusEffect("Melee Counter")) target.createStatusEffect("Melee Counter",0,0,0,0);
 			}
 			else
-			{	
+			{
 				if (attacker.hasStatusEffect("Concentrated Fire"))
 				{
 					baseHPDamage.add(attacker.statusEffectv1("Concentrated Fire"));
@@ -105,25 +111,11 @@ package classes.Engine.Combat
 				}
 				
 				//Burninate the countryside
-				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)
+				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
 					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
 				}
 			}
-		}
-		else if (special == "goovolver")
-		{
-			
-		}
-		else if (special == "slut ray")
-		{
-			/*
-			if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
-			{
-				damageResult.wasCrit = true;
-				baseLustDamage.multiply(2);
-			}
-			*/
 		}
 		
 		/****************************

@@ -15,6 +15,7 @@ package classes.GameData
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.GLOBAL;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Items.Guns.HardlightBow;
 	import classes.Items.Miscellaneous.GrayMicrobots;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.*;
@@ -427,6 +428,23 @@ package classes.GameData
 			ConcussiveShot.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ConcussiveShot);
 			
+			// Multi-Arrow
+			MultiArrow = new SingleCombatAttack();
+			MultiArrow.ButtonName = "MultiArrow";
+			MultiArrow.DisabledIfEffectedBy = ["Disarmed"];
+			MultiArrow.EnergyCost = 30;
+			MultiArrow.IsRangedBased = true;
+			MultiArrow.RequiresTarget = false;
+			MultiArrow.RequiresItemFlags = [GLOBAL.ITEM_FLAG_BOW_WEAPON];
+			MultiArrow.ExtendedDisplayabilityCheck = function():Boolean {
+				return (kGAMECLASS.pc.rangedWeapon is HardlightBow);
+			}
+			MultiArrow.TooltipTitle = "Multi-Arrow";
+			MultiArrow.TooltipBody = "Fire a small volley of arrows from your hardlight bow against multiple enemies.";
+			MultiArrow.Implementor = MultiArrowImpl;
+			MultiArrow.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
+			a.push(MultiArrow);
+			
 			// Goozooka
 			GoozookaAttack = new SingleCombatAttack();
 			GoozookaAttack.ButtonName = "Goozooka";
@@ -708,6 +726,7 @@ package classes.GameData
 			}
 			
 			if (attacker.hasPerk("Multiple Shots")) numShots = attacker.perkv1("Multiple Shots");
+			if (attacker.hasStatusEffect("Bonus Shots")) numShots += attacker.statusEffectv1("Bonus Shots");
 			
 			var numFlurries:int = 0;
 			if (attacker.hasPerk("Second Shot")) numFlurries++;
@@ -761,6 +780,7 @@ package classes.GameData
 			
 			var numHits:int = 0;
 			if (attacker.hasPerk("Multiple Attacks")) numSwings = attacker.perkv1("Multiple Attacks");
+			if (attacker.hasStatusEffect("Bonus Attacks")) numSwings += attacker.statusEffectv1("Bonus Attacks");
 			
 			var totalSwings:int = numSwings + numFlurries;
 			for (var i:int = 0; i < totalSwings; i++)
@@ -1014,6 +1034,18 @@ package classes.GameData
 			}
 			
 			SingleRangedAttackImpl(attacker, target, false, "slut ray");
+		}
+		
+		public static function FZRAttackImpl(attacker:Creature, target:Creature):void
+		{
+			if (attacker.hasStatusEffect("Disarmed"))
+			{
+				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
+				else output(attacker.getCombatName() + " scrabbles about, trying to find " + attacker.getCombatPronoun("pa") + " missing weapon.");
+				return;
+			}
+			
+			SingleRangedAttackImpl(attacker, target, false, "fzr");
 		}
 		//} endregion
 		
@@ -1755,7 +1787,7 @@ package classes.GameData
 					output(", stunning your enemy!");
 					
 					var rounds:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0,0xFF0000);
+					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".",true,0,0xFF0000);
 				}
 				
 				// Add some burning damage for the explosion
@@ -1763,6 +1795,57 @@ package classes.GameData
 				damage.add(new TypeCollection( { burning: 10 } ));
 				damage = damageRand(damage,15);
 				applyDamage(damage, attacker, target, "ranged");
+			}
+		}
+		
+		public static var MultiArrow:SingleCombatAttack;
+		private static function MultiArrowImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			if (attacker is PlayerCharacter) output("You nock a number of your smart arrows and draw your hardlight bowstring back, taking careful aim at the space just ahead of your enemy.");
+			else if (attacker.isPlural) output("[attacker.CombatName] nock a number of their smart arrows and draw your hardlight bowstrings back, taking careful aim at the space just ahead of you.");
+			else output("[attacker.CombatName] nocks a number of [attacker.combatHisHer] smart arrows and draws [attacker.combatHisHer] hardlight bowstring back, taking careful aim at the space just ahead of you.");
+			
+			// Count active targets
+			var numFoes:int = 0;
+			var i:int = 0;
+			for(i = 0; i < hGroup.length; i++)
+			{
+				if (!hGroup[i].isDefeated()) numFoes++;
+			}
+			// Number of arrows shot (or one arrow per target)
+			var shots:Number = 4;
+			if(shots < numFoes) shots = numFoes;
+			// Each target gets a hit
+			for(i = 0; i < hGroup.length; i++)
+			{
+				var cTarget:Creature = hGroup[i] as Creature;
+				if (cTarget.isDefeated()) continue;
+				output("\n");
+				if (rangedCombatMiss(attacker, cTarget, 0))
+				{
+					if (attacker is PlayerCharacter) output("You let loose, but the arrows sail clean past your intended target.");
+					else if (attacker.isPlural) output("[attacker.CombatName] let loose, but the arrows sail clean past their intended target.");
+					else if (cTarget is PlayerCharacter) output("[attacker.CombatName] lets loose, but the arrows sail clean past you.");
+					else output("[attacker.CombatName] lets loose, but the arrows sail clean past [attacker.combatHisHer] intended target.");
+				}
+				else if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
+				{
+					if (attacker is PlayerCharacter) output("Your blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");
+					else if (attacker.isPlural) output("[attacker.CombatName] blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");
+					else if (cTarget is PlayerCharacter) output("Luckily, [attacker.CombatName]’s blind <b>multi-arrow shot</b> missed you.");
+					else output("[attacker.CombatName]’s blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");
+				}
+				else
+				{
+					if (attacker is PlayerCharacter) output("You let loose and land a hit on " + cTarget.getCombatName() + " with your <b>multi-arrow shot</b>!");
+					else if (attacker.isPlural) output("[attacker.CombatName] let loose and hit " + cTarget.getCombatName() + " with their <b>multi-arrow shot</b>!");
+					else if (cTarget is PlayerCharacter) output("[attacker.CombatName] lets loose and hits you with [attacker.combatHisHer] <b>multi-arrow shot</b>!");
+					else output("[attacker.CombatName] lets loose and hits " + cTarget.getCombatName() + " with [attacker.combatHisHer] <b>multi-arrow shot</b>!");
+					
+					var damage:TypeCollection = attacker.rangedDamage();
+					damage.multiply(shots * (1 / numFoes));
+					applyDamage(damage, attacker, cTarget, "minimal");
+				}
 			}
 		}
 		
@@ -1907,7 +1990,7 @@ package classes.GameData
 					//{Stun chance}
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
-						output("<b> The hit was hard enough to stun you!</b>");
+						output(" <b>The hit was hard enough to stun you!</b>");
 						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
 					}
 					var damage:TypeCollection = attacker.meleeDamage();
