@@ -4302,6 +4302,8 @@
 			currLib += statusEffectv3("Heat");
 			currLib += statusEffectv1("Rut");
 			currLib += statusEffectv1("Lagonic Rut");
+			currLib += statusEffectv1("Undetected Locofever");
+			currLib += statusEffectv1("Locofever");
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
 			if (currLib > libidoMax())
@@ -19474,7 +19476,14 @@
 							requiresRemoval = false;
 						}
 						break;
-					
+					case "Undetected Locofever":
+					case "Locofever":
+						kGAMECLASS.locofeverProcs(deltaT, maxEffectLength, doOut, this, thisStatus);
+						if(requiresRemoval) 
+						{
+							kGAMECLASS.locofeverFinish(deltaT, maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
 				}
 				
 				if (requiresRemoval)
@@ -19648,28 +19657,50 @@
 			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
 			return (prefDog ? d : c);
 		}
-		public function hasSSTD():Boolean
+		public function hasSSTD(sstdName:String = "any"):Boolean
 		{
+			if(sstdName != "any")
+			{
+				if(InCollection(sstdName, sstdList))
+				{
+					for(var i:int = 0; i < statusEffects.length; i++)
+					{
+						if(statusEffects[i].storageName == sstdName) return true;
+					}
+				}
+				return false;
+			}
 			return (getRandomSSTD() != "none");
 		}
 		public function clearSSTDs():void
 		{
 			removeSSTDs();
 		}
+		public function get sstdList():Array
+		{
+			return [
+				"Undetected Furpies",
+				"Furpies Simplex H",
+				"Furpies Simplex D",
+				"Furpies Simplex C",
+				"Undetected Locofever",
+				"Locofever",
+			];
+		};
 		public function removeSSTDs():void
 		{
-			removeStatusEffect("Undetected Furpies");
-			removeStatusEffect("Furpies Simplex H");
-			removeStatusEffect("Furpies Simplex D");
-			removeStatusEffect("Furpies Simplex C");
+			for(var i:int = 0; i < sstdList.length; i++)
+			{
+				removeStatusEffect(sstdList[i]);
+			}
 		}
 		public function getRandomSSTD():String
 		{
 			var SSTDs:Array = [];
-			if(hasStatusEffect("Undetected Furpies")) SSTDs.push("Undetected Furpies");
-			if(hasStatusEffect("Furpies Simplex H")) SSTDs.push("Furpies Simplex H");
-			if(hasStatusEffect("Furpies Simplex D")) SSTDs.push("Furpies Simplex D");
-			if(hasStatusEffect("Furpies Simplex C")) SSTDs.push("Furpies Simplex C");
+			for(var i:int = 0; i < statusEffects.length; i++)
+			{
+				if(InCollection(statusEffects[i].storageName, sstdList)) SSTDs.push(statusEffects[i].storageName);
+			}
 
 			if(SSTDs.length == 0) return "none";
 			else return SSTDs[rand(SSTDs.length)];
@@ -19680,14 +19711,21 @@
 		}
 		public function sstdChecks(cumFrom:Creature = null,location:String = "ass"):void
 		{
-			//FURPIES!
 			if(cumFrom.hasSSTD() && !this.isSSTDImmune())
 			{
-				kGAMECLASS.output(cumFrom.getRandomSSTD());
-				if(cumFrom.getRandomSSTD() == "Undetected Furpies") 
+				var catchSSTD:String = cumFrom.getRandomSSTD();
+				//kGAMECLASS.output(catchSSTD);
+				switch(catchSSTD)
 				{
-					kGAMECLASS.output(cumFrom.getRandomSSTD());
-					createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+					case "Undetected Furpies":
+						//FURPIES!
+						if(hasSSTD("Undetected Furpies") || hasSSTD("Furpies Simplex H") || hasSSTD("Furpies Simplex D") || hasSSTD("Furpies Simplex C")) { /* Already have it! */ }
+						else createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+						break;
+					case "Undetected Locofever":
+						if(hasSSTD("Undetected Locofever") || hasSSTD("Locofever")) { /* Already have it! */ }
+						else createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xB793C4);
+						break;
 				}
 			}
 		}
