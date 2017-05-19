@@ -208,6 +208,11 @@
 		{
 			
 		}
+		
+		override public function canUsePowerArmorWeapon():Boolean
+		{
+			return true;
+		}
 		//500% damage taken from non-lust damage when stunned
 		//low chance to [Charge] randomly
 		//otherwise [Ranged Attack] or [Melee Attack]

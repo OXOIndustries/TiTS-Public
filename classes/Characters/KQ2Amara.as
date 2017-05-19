@@ -193,6 +193,11 @@ package classes.Characters
 			return "AMARA";
 		}
 		
+		override public function inPowerArmor():Boolean
+		{
+			return true;
+		}
+		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);

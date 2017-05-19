@@ -54,7 +54,7 @@ package classes.Items.Guns
 			this.evasion = -5;
 			this.fortification = 0;
 			
-			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
+			//addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 
 			this.version = _latestVersion;
 		}	

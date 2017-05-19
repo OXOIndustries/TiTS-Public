@@ -1275,12 +1275,14 @@ package classes.GameData
 			else
 			{
 				var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
-				addButton(0, "Attack", selectSimpleAttack, { func: af, isMelee: true }, "Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
+				if(pc.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, "Attack", "Melee Attack", "Your melee weapon is too heavy to lift and use!");
+				else addButton(0, "Attack", selectSimpleAttack, { func: af, isMelee: true }, "Melee Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
 			}
 			
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
-			addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
+			if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "Your ranged weapon is too heavy to lift and use!");
+			else addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
 			
 			//
 			// inventory
