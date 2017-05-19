@@ -4500,6 +4500,27 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Myrellion" || showID == "All")
 		{
+			// DMXXX
+			if(flags["SEEN_XENOGEN_PROTEST"] != undefined || flags["DMZ_DICK_SIGNING"] != undefined)
+			{
+				output2("\n<b><u>D.M.Z.</u></b>");
+				if(flags["SEEN_XENOGEN_PROTEST"] != undefined)
+				{
+					output2("\n<b>* Anti-Xenogen Protestors:</b> Seen");
+				}
+				if(flags["DMZ_DICK_SIGNING"] != undefined)
+				{
+					output2("\n<b>* Excited Fangirl:</b> Met her");
+					switch(flags["DMZ_DICK_SIGNING"])
+					{
+						case "tits": output2(", You signed her tits"); break;
+						case "cock": output2(", You signed her cock"); break;
+						case "none": output2(", You refused to sign her cock"); break;
+						case "dosh": output2(", You accepted credits to sign her cock"); break;
+					}
+				}
+				variousCount++;
+			}
 			// Embassy
 			if(flags["MET_ARAKEI"] != undefined || flags["MET_CHARLES"] != undefined || flags["MET_JURO"] != undefined || flags["MET_LYRALLA"] != undefined || flags["MET_NEHZARA"] != undefined)
 			{
@@ -4686,7 +4707,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Streets of Gildenmere
-			if(flags["MET_ORRYX"] != undefined || flags["LIRIEL_MET"] != undefined || flags["LAST_ANT_ORGY"] != undefined)
+			if(flags["MET_ORRYX"] != undefined || flags["LIRIEL_MET"] != undefined || flags["LAST_ANT_ORGY"] != undefined || flags["SEEN_ORANGE_MYR"] != undefined)
 			{
 				output2("\n<b><u>Gildenmere</u></b>");
 				// Liriel, Martians
@@ -4721,6 +4742,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["LAST_ANT_ORGY"] == 2) output2(" Orgy failed to avoid");
 					if(flags["ANT_ORGY_TIME"] != undefined) output2(", " + prettifyMinutes(GetGameTimestamp() - flags["ANT_ORGY_TIME"]) + " ago");
 					if(flags["ANT_ORGY_COUNT"] != undefined) output2("\n<b>* Horny Myr Soldiers, Times Had Orgy With:</b> " + flags["ANT_ORGY_COUNT"]);
+				}
+				// Orange Myr Sighting
+				if(flags["SEEN_ORANGE_MYR"] != undefined)
+				{
+					output2("\n<b>* Orange Myr Group:</b> Seen");
 				}
 				variousCount++;
 			}

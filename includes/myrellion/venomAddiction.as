@@ -295,6 +295,15 @@ public function venomExpirationNotice():void
 
 //Special Scene: Desperation Oral
 //PC is either withdrawing or addicted and not high on R.Venom. Only plays in Kressia or the DMZ. Small chance to play per step.
+public function sluttyMcSlutOralBonus():Boolean
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
+	{
+		sluttyMcSlutOral();
+		return true;
+	}
+	return false;
+}
 public function sluttyMcSlutOral():void
 {
 	showName("RED\nMYR");
