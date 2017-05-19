@@ -1785,8 +1785,8 @@ public function gooShrinkBreastsMenu():void
 	if(pc.bRows() == 1 && pc.biggestTitSize() >= 1)
 	{
 		//Determine boobcost
-		if(pc.breastRows[x].breastRating() < 6) boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-1)) * 0.75)) * pc.breastRows[x].breasts;
-		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-2)) * 0.75)) * pc.breastRows[x].breasts;
+		if(pc.breastRows[0].breastRating() < 6) boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw-1)) * 0.75)) * pc.breastRows[0].breasts;
+		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw-2)) * 0.75)) * pc.breastRows[0].breasts;
 		//Let's do it.
 		shrinkASpecificTitRow(0);
 		return;
@@ -1798,7 +1798,7 @@ public function gooShrinkBreastsMenu():void
 		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-2)) * 0.75)) * pc.breastRows[x].breasts;
 		//Display costs
 		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Biomass Gain: </b>" + boobCost + " mLs");
-		if(pc.breastRows[0].breastRating() >= 1) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
+		if(pc.breastRows[x].breastRating() >= 1) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
 		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You can’t make this row any smaller.");
 	}
 	showBiomass();
