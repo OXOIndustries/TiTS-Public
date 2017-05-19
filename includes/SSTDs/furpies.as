@@ -116,6 +116,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	{
 		effect.value4 = 3;
 		textBuff += "<i>BEEP!</i> An irritating tone from your Codex interrupts your thoughts. <i>“Alert! Infection detected! Preliminary scans identify a variant of Furpies Simplex ";
+		
+		CodexManager.unlockEntry("Furpies");
+		
 		if(rand(3) == 0) 
 		{
 			textBuff += "H";
@@ -592,30 +595,3 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	}
 }
 
-/*Codex:
-	Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on <REDACTED>, but it was not identified for six more months thanks to its insidious design.
-This strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.
-Furpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.
-
-How Furpies is Spread
-	Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.
-	As always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)
-
-Asymptomatic Carriers
-	In most hosts, Furpies lies dormant, transforming its infected host into an inadvertent seeder. This was thought a blessing at first, but examination of the disease’s genetic code has revealed that it is simply biding its time. A biological clock built into the virus itself will count down over five to ten years, then switch Furpies to an active state.
-	This is alluded to in Doctor Badger’s manifesto as “The Furpocalypse.”
-	If strong steps to eradicate Furpies are not taken, the galaxy may become a lot furrier in the years to come, something some species would welcome with open arms - and others would violently protest.
-
-Symptoms and Effects
-[2 Days] Temporary genital swelling - this is thought to be the beginning of Furpies’ attempts to increase sexual drive.
-[2-4 Days] Increased attraction to other furry species. This typically manifests as a sort of fetish for soft fur. Patients report this to be particularly pleasant.
-[5-6 Days] Growth of animal ears. Furpies Simplex H, C, and D are the main variants, each one tied to a different animal species. Victims with Furpies H gain the features of a horse, while C and D refer to cats and dogs.
-[7-9 Days] Genital transformation. Some patients have declined cures for the disease until after this stage of infection, citing the pleasure of attaining animal genitalia. This is not recommended.
-[8-10 Days] Limbs transform into a hybridization of human and animal features. Luckily Furpies is carefully engineered to momentarily sever nervous connections with the legs and arms to prevent any pain.
-[9 Days] Animal tail growth.
-[10-11 Days] Full body fur. Heat-sensitive races must be careful if they reach this stage, as the extra insulation makes them vulnerable to heat stroke.
-[12-14 Days] Animal-like face. This is the final transformation that the disease will wreak on its hosts, though it remains in the body for long after.
-Furpies remains active in the host’s body indefinitely, making them more susceptible to sexual advances of other furry individuals, and more sexually active in general. Among infected, sexual intercourse occurs roughly 400% more often than galactic norms.
-
-Doctor Badger
-	The UGC is aggressively looking for any sign of the disease’s creator in hopes of finding an effective, easy-to-produce cure. She is considered armed and extremely dangerous. Please call your local Peacekeeper office if you have any information on Doctor Badger’s whereabouts, and DO NOT APPROACH HER PERSONALLY.*/

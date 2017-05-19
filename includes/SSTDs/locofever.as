@@ -110,6 +110,9 @@ public function locofeverProcs(deltaT:uint, maxEffectLength:uint, doOut:Boolean,
 				if(effect.value4 == 2)
 				{
 					msg += "\n\nYou barely notice the beep of your Codex warning that <b>you’ve come down with locofever</b> and that your microsurgeons will be busy battling it to keep you from spreading it around. That doesn’t matter. All that matters is that you go out and fuck right <i>now</i>.";
+					
+					CodexManager.unlockEntry("Locofever");
+					
 					effect.storageName = "Locofever";
 					effect.tooltip = "You’ve come down with a case of locofever, setting your mating instincts into overdrive. Your immune boosters should keep you from spreading it around any further.";
 				}
@@ -161,15 +164,3 @@ public function locofeverFinish(deltaT:uint, maxEffectLength:uint, doOut:Boolean
 	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
 }
 
-/*
-
-Codex Entry
-An ever-present danger of planet rushes is the intermingling of spaceborne illnesses with indigenous lifeforms and the mutations that can result. In the case of the junk planet Tarkus, it was the mingling of a simple fever brought by one of the rushers with the breeding-driven biology of the local raskvel that brought about locofever.
-
-The locofever virus attacks the brain and reproductive organs, causing the production of hormones that produce an estrus-like response in the infectee akin to the natural state of raskvel. The desire to breed becomes overwhelming, while pleasure from masturbation is sharply reduced to further encourage the infectee to have sex as often as possible.
-
-A typical host is capable of fighting off the infection within one to two weeks. Most publicly available immune boosters are able to prevent the spread of the infection, which has prevented locofever from becoming an epidemic, but curing the illness requires direct medical treatment or letting it run its course.
-
-Locofever is believed to still be uncommon among raskvel, though the exact numbers of infected are difficult to determine both because of raskvel breeding habits and because the species is asymptomatic. Aside from them it is most commonly found among younger ausar, who have been known to deliberately infect themselves with locofever as a form of recreational drug and cultural rebellion.
-
-*/
