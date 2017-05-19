@@ -15,6 +15,7 @@ package classes.Engine.Combat
 	 */
 	public function calculateShieldDamage(target:Creature, attacker:Creature, damageResult:DamageResult, special:String = ""):void
 	{
+		if (target == null) return;
 		if (target.shieldsRaw <= 0) return;
 		
 		var tarResistances:TypeCollection = target.getShieldResistances();

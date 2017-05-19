@@ -90,8 +90,7 @@ public function NTGiftShopBonusFunc():Boolean
 	{
 		flags["SEEN_ELLIES_SHOP"] = 1;
 		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you’ve just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");
-		//applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
-		pc.lust(10);
+		applyDamage(new TypeCollection( { tease: 10 } ), chars["ELLIE"], pc, "minimal");
 	}
 	else pc.lust(5);
 	output("The gift shop looks like every other gift shop in the ‘verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There’s a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled “The Treatment.” ");

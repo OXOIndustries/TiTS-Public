@@ -288,6 +288,7 @@ public function talkWithJuroAbootOrangeMyr():void
 
 	pc.removeKeyItem("Orange Myr Data");
 	flags["MCALLISTER_MYR_HYBRIDITY"] = 4;
+	pc.createStatusEffect("Orange Myr Sighting Delay", 0, 0, 0, 0, true, "", "", false, (14 * 24 * 60));
 
 	jurosTalkMenu(talkWithJuroAbootOrangeMyr);
 }

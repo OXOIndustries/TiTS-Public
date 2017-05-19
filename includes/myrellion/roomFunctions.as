@@ -122,7 +122,6 @@ public function DMZRandoEventsBonus():Boolean
 
 public function streetOutsideBarBonus():Boolean
 {
-	if(myrXenogenProtestBonus()) return true;
 	if(sluttyMcSlutOralBonus()) return true;
 	
 	if (karaQuestTurninNeeded()) output(" <b>Kara’s standing in a dark alley down at the end of the street to the south, almost out of sight.</b>");
@@ -136,11 +135,6 @@ public function streetOutsideBarBonus():Boolean
 	if (!mcallisterIsIn())
 	{
 		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters: THE DOCTOR IS <i><b>OUT</b></i>!");
-	}
-	
-	if (pc.hasStatusEffect("Myrellion Xenogen Protestors"))
-	{
-		output("\n\nA small crowd of mixed races are visible on the side, passionately protesting Xenogen’s presence. Their synchronous chants and undulating signs can be heard and seen by all passerbys in the area.");
 	}
 
 	return false;
@@ -1529,46 +1523,6 @@ public function dmzFanDickSigning(response:String = "intro"):void
 	}
 }
 
-// Xenogen Protest Event
-// Occurs on the square outside the Xenogen Biotech building, but only if the PC has completed the first Zil Capture Quest for Dr. Haswell, and has not completed the second, and last, quest.
-public function myrXenogenProtestBonus():Boolean
-{
-	if
-	(	flags["SEEN_XENOGEN_PROTEST"] == undefined
-	&&	( flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined )
-	&&	( flags["NEVRIE_QUEST"] == undefined && flags["MCALLISTER_MYR_HYBRIDITY"] == undefined )
-	) {
-		myrXenogenProtest();
-		return true;
-	}
-	return false;
-}
-public function myrXenogenProtest():void
-{
-	clearOutput();
-	showBust("XENOGEN_PROTESTORS");
-	showName("XENOGEN\nPROTEST");
-	author("RanmaChan");
-	clearMenu();
-	
-	output("Walking by the Xenogen Biotech building you notice some sort of commotion. As you get closer you see that a small crowd has formed, made up of a myriad of different races. It is mostly a group of humans, ausar, and kaithrit; but it even contains a few laquines, gryvians, and lethians. They seem to be chanting something, and you can see some of them holding up signs.");
-	output("\n\nAs you walk closer you can start to hear what they are chanting:");
-	output("\n\n<i>“Xenogen go home. Leave the Zil alone! Xenogen go home! Leave the Zil alone!”</i>");
-	output("\n\nWalking closer still, you can read the signs now:");
-	output("\n\n‘Go home Xenogen!’ ‘Leave them alone!’ ‘Stop the exploitation!’ ‘Zil are people too!’");
-	output("\n\nOne sign is just a crude drawing of what you presume to be a Zil and what might be a human holding hands, with hearts randomly drawn all around it.");
-	if(pc.isNice()) output("\n\nHmm, these people feel pretty strongly about this, and what Xenogen is doing. Maybe you ought to rethink your actions?");
-	else if(pc.isMischievous()) output("\n\nHey, maybe their protest will work, and maybe it won’t, but it doesn’t matter. You need to find your dad’s probes, and to do that you need credits. Dr. Haswell’s are as good as anyone’s, right?");
-	else output("\n\nThe UGC is pretty clear on this sort of thing when it comes to planet rushes, these new species don’t have any rights. Xenogen can do what they want with them, and nothing the protesters do will matter, other than slowing down progress; both scientific, and commercial. If these people got their way, nothing would ever get done.");
-	
-	processTime(5);
-	
-	pc.createStatusEffect("Myrellion Xenogen Protestors", 0, 0, 0, 0, true, "", "", false, (3 * 1440));
-	flags["SEEN_XENOGEN_PROTEST"] = 1;
-	
-	addButton(0, "Next", mainGameMenu);
-}
-
 // Orange Myr Sighting Event
 // Can only be found after the PC has completed the entire Myr Hybridity Quest, including giving the Orange Pill to the UGC Diplomat Juro. This event can only trigger after 7 to 14 days have passed of Juro telling the PC he would offer the transformative item.
 // Location, random Gildenmere tile. Time, anywhere between 12:00 - 4:00 in the afternoon.
@@ -1576,8 +1530,9 @@ public function orangeMyrSightingBonus():Boolean
 {
 	if
 	(	flags["SEEN_ORANGE_MYR"] == undefined
-	&&	( flags["MCALLISTER_MYR_HYBRIDITY"] == 4 && (GetGameTimestamp() - flags["MCALLISTER_MYR_HYBRIDITY_START"]) >= (21 * 24 * 60) )
+	&&	flags["MCALLISTER_MYR_HYBRIDITY"] == 4
 	&&	( hours >= 12 && hours <= 16 )
+	&&	( !pc.hasStatusEffect("Orange Myr Sighting Delay") && ((GetGameTimestamp() - flags["MCALLISTER_MYR_HYBRIDITY_START"]) >= (14 * 24 * 60)) )
 	) {
 		orangeMyrSighting();
 		return true;

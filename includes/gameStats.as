@@ -4053,9 +4053,11 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Xenogen Laboratory
-			if(flags["MET_DR_HASWELL"] != undefined || flags["KELLY_MET"] != undefined)
+			if(flags["MET_DR_HASWELL"] != undefined || flags["KELLY_MET"] != undefined || flags["SEEN_XENOGEN_PROTEST"] != undefined)
 			{
 				output2("\n<b><u>Xenogen Biotech Laboratory</u></b>");
+				// Xenogen Go Home!
+				if(flags["SEEN_XENOGEN_PROTEST"] != undefined) output2("\n<b>* Anti-Xenogen Protestors:</b> Seen");
 				// Julian Haswell
 				if(flags["MET_DR_HASWELL"] != undefined) output2("\n<b>* Dr. Haswell:</b> Met him");
 				// Kelly!
@@ -4501,13 +4503,9 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(showID == "Myrellion" || showID == "All")
 		{
 			// DMXXX
-			if(flags["SEEN_XENOGEN_PROTEST"] != undefined || flags["DMZ_DICK_SIGNING"] != undefined)
+			if(flags["DMZ_DICK_SIGNING"] != undefined)
 			{
 				output2("\n<b><u>D.M.Z.</u></b>");
-				if(flags["SEEN_XENOGEN_PROTEST"] != undefined)
-				{
-					output2("\n<b>* Anti-Xenogen Protestors:</b> Seen");
-				}
 				if(flags["DMZ_DICK_SIGNING"] != undefined)
 				{
 					output2("\n<b>* Excited Fangirl:</b> Met her");
