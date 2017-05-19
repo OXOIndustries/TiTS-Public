@@ -19653,6 +19653,16 @@
 			removeStatusEffect("Furpies Simplex D");
 			removeStatusEffect("Furpies Simplex C");
 		}
+		public function sstdTotal():Number
+		{
+			var num:Number = 0;
+			if(hasStatusEffect("Undetected Furpies")) num++;
+			if(hasStatusEffect("Furpies Simplex H")) num++;
+			if(hasStatusEffect("Furpies Simplex D")) num++;
+			if(hasStatusEffect("Furpies Simplex C")) num++;
+
+			return num;
+		}
 		public function getRandomSSTD():String
 		{
 			var SSTDs:Array = [];
@@ -19676,8 +19686,8 @@
 				kGAMECLASS.output(cumFrom.getRandomSSTD());
 				if(cumFrom.getRandomSSTD() == "Undetected Furpies") 
 				{
-					kGAMECLASS.output(cumFrom.getRandomSSTD());
-					createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+					//Furries are immune to furpies.
+					if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
 				}
 			}
 		}

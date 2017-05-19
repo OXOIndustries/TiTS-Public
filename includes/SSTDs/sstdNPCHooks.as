@@ -5,7 +5,7 @@
 
 public function tarkusSSTDChance(arg:Creature):void
 {
-	if(rand(50) == 0) arg.createStatusEffect("Undetected Furpies");
+	if(rand(40) == 0) arg.createStatusEffect("Undetected Furpies");
 }
 
 public function uvetoSSTDChance(arg:Creature):void
@@ -15,5 +15,5 @@ public function uvetoSSTDChance(arg:Creature):void
 
 public function myrellionSSTDChance(arg:Creature):void
 {
-	if(rand(50) == 0) arg.createStatusEffect("Undetected Furpies");
+	if(rand(70) == 0) arg.createStatusEffect("Undetected Furpies");
 }
