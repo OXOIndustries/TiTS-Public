@@ -8,6 +8,7 @@ package classes.GameData
 	import classes.Ships.SpaceShip;
 	import classes.Ships.StatusEffectPayload;
 	import classes.kGAMECLASS;
+	import classes.Engine.ShipCombat.ActionLibrary;
 	
 	/**
 	 * ...
@@ -70,6 +71,7 @@ package classes.GameData
 		override public function beginCombat():void
 		{
 			displayFightLocation();
+			showCombatUI();
 			showCombatMenu();
 			userInterface().levelUpOff();
 			userInterface().messengerOff();
@@ -79,9 +81,11 @@ package classes.GameData
 		{
 			if (!doneRoundActions())
 			{
-				doPerRoundActions();
+				// doPerRoundActions can exit early if a victory/loss condition has been hit -- respect the exeuction.
+				if (doPerRoundActions()) return;
 			}
 			
+			clearMenu();
 			setAllButtonColors(true);
 			
 			addButton(0, "Overcharge", showOverchargeMenu);
@@ -101,7 +105,7 @@ package classes.GameData
 			
 			addButton(5, "Navigation", showNavigationMenu);
 			
-			addButton(6, "Gunnery", );
+			addButton(6, "Gunnery", showGunneryMenu);
 			
 			// TODO: We might need a way to properly identify an assignable crewmember that is present on the ship.
 			// This'll be pissing in the wind toward restructuring even more of the game right now though...
@@ -114,7 +118,62 @@ package classes.GameData
 				addDisabledButton(7, "Crew", "Crew Assignments", "You have no assignable crew.");
 			}
 			
+			
+			generateFleeButton();
+			
 			addButton(14, "EXECUTE", executePlayerOrders);
+			
+			showOrderSummary();
+			showCombatDescriptions();
+		}
+		
+		private function generateFleeButton():void
+		{
+			var spoolEffect:StatusEffectPayload = PlayerShip.GetStatusEffect("Lightdrive Spooling");
+			if (spoolEffect == null)
+			{
+				addButton(13, "Flee", beginFleeSpool, undefined, "Flee", "Begin spooling up your light drive to make good an emergency escape!");
+			}
+			else if (spoolEffect.Payload.chargedInRound >= roundCounter)
+			{
+				addButton(13, "Flee", finalizeFleeSpool, undefined, "Fleet", "Engage your light drive and escape!");
+			}
+			else
+			{
+				addDisabledButton(13, "Flee", "Flee", "Your lightdrive is currently spooling up!");
+			}
+		}
+		
+		private function beginFleeSpool():void
+		{
+			// Chew up a load of capacitor?
+			PlayerShip.CombatOrders.SelectedAction = ActionLibrary.SpoolLightdrive;
+			executePlayerOrders();
+		}
+		
+		private function applyFleeSpool():void
+		{
+			
+		}
+		
+		private function finalizeFleeSpool():void
+		{
+			
+		}
+		
+		private function showGunneryMenu():void
+		{
+			clearOutput();
+			clearMenu();
+			
+			output("{{PLACEHOLDER}} Disable subsets of weapon systems to consume less capacitor in the next round.\n");
+			
+			addDisabledButton(0, "Disable W.", "Disable Weapons", "Disable specific weapon systems.");
+			addDisabledButton(1, "Enable W.", "Enable Weapons", "Enable specific weapon systems.");
+			addDisabledButton(2, "Spec. Tar.", "Specify Targets", "Specify specific targets for specific weapon systems. Unassigned weapons will still fire upon your primary target.");
+			addDisabledButton(4, "Clear Tar.", "Clear Targets", "Clear any specific targets assigned to weapon systems. All weapons will fire upon your primary target.");
+			
+			addButton(14, "Back", showCombatMenu);
 		}
 		
 		private function showCrewMenu():void
@@ -574,21 +633,20 @@ package classes.GameData
 				}
 			}
 		}
+		
 		private function getCurrentRange():String
 		{
 			return ShipCombatOrderContainer.RANGE_NAMES[CurrentCombatRange];
 		}
 		
-		private function doPerRoundActions():void
+		private function doPerRoundActions():Boolean
 		{
 			clearOutput();
 			clearMenu();
 			showCombatUI();
 			
-			if (checkForVictory()) return;
-			if (checkForLoss()) return;
-			
-			showCombatDescriptions();
+			if (checkForVictory()) return true;
+			if (checkForLoss()) return true;
 			
 			_initForRound = _roundCounter;
 			
@@ -599,11 +657,18 @@ package classes.GameData
 				var ss:SpaceShip = concatLists[i] as SpaceShip;
 				ss.OnRoundStart();
 			}
+			
+			return false;
+		}
+		
+		private function showOrderSummary():void
+		{
+			output("{{PLACEHOLDER}} Show a summary of the currently assigned orders that will be executed this round.");
 		}
 		
 		private function showCombatDescriptions():void
 		{
-			output("{{PLACEHOLDER}} Player ship status.");
+			output("\n\n{{PLACEHOLDER}} Player ship status.");
 			output("\n\n{{PLACEHOLDER}} Enemy ship status.");
 		}
 		

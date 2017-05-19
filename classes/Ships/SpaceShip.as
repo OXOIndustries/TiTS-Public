@@ -1,21 +1,21 @@
 package classes.Ships 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.DataManager.Serialization.VersionedSaveableV2;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.ShipCombat.DamageTypes.*;
-	import classes.Engine.ShipCombat.ShipAction;
-	import classes.Engine.ShipCombat.ShipCombatOrderContainer;
+	import classes.Engine.ShipCombat.*
 	import classes.Resources.StatusIcons;
 	import classes.Ships.Map.*;
 	import classes.Ships.Map.Library.TestMapInterior;
 	import classes.Ships.Modules.*;
 	import classes.Ships.Modules.UpgradeModules.*;
-	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import classes.kGAMECLASS;
 	import classes.StorageClass;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Utility.*;
+	import classes.Engine.Interfaces.*;
 	
 	//TODO: Weapon assignments
 	//TODO: Console assignments
@@ -36,6 +36,7 @@ package classes.Ships
 		// Owner is essentially the pilot, so we'll have a nicer accessor in addition to the base IOwned 
 		// interface even though we don't implement IOwned directly (because it has serialization implications)
 		public function get OwningCharacter():Creature { return (_owner == null ? null : _owner as Creature); }
+		public function get IsPlayerShip():Boolean { return (OwningCharacter is PlayerCharacter); }
 		
 		public function SpaceShip() 
 		{
@@ -1455,6 +1456,31 @@ package classes.Ships
 		{
 			// TODO: Implement cost bonuses
 			return forAction.CapacitorCost;
+		}
+		
+		public function TakeDamage(incomingDamage:ShipTypeCollection):void
+		{
+			// TODO: actually call into damage code from here
+			
+			var spoolEffect:StatusEffectPayload = GetStatusEffect("Lightdrive Spooling");
+			if (spoolEffect && HullPercent < 0.75)
+			{
+				RemoveStatusEffect("Lightdrive Spooling");
+				
+				if (IsPlayerShip)
+				{
+					output("\n\nAdditional hull damage has engaged your lightdrives safety protocols, cancelling the engine spool-up process!");
+				}
+				else
+				{
+					output("\n\nAdditional hull damage has engaged " + possessive(Name) + " lightdrive safety protocols, cancelling the engine spool-up process!");
+				}
+			}
+		}
+		
+		public function DealDamage(outgoingDamage:ShipTypeCollection):void
+		{
+			// TODO:
 		}
 		
 		//} endregion
