@@ -3522,6 +3522,15 @@
 			// 9999
 			return false;
 		}
+		public function hasPowerArmorItem():Boolean
+		{
+			if(meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || accessory.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || shield.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || armor.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR)) return true;
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				if(inventory[i].hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR)) return true;
+			}
+			return false;
+		}
 		public function canUsePowerArmorWeapon():Boolean
 		{
 			return (inPowerArmor() || physique() >= 40);

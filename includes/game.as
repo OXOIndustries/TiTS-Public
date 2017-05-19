@@ -1579,7 +1579,8 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
-	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes -= 1;
+	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = Math.floor(moveMinutes / 2);
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
