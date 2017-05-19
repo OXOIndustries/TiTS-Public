@@ -217,7 +217,7 @@ public function getMilkedWithMillie():void
 	if(pc.isChestGarbed()) 
 	{
 		output(" Shaking her head, she grabs you by the [pc.upperGarment] and tugs. <i>“This’ll have to come off. Can’t get your boobs pumped if they’re all squished up in some kind of titty-prison. You should really consider letting the girls breathe a little.”</i>");
-		output("\n\nYou slip out of your [pc.underGarments] ");
+		output("\n\nYou slip out of your [pc.upperGarments] ");
 		if(flags["MILLIE_MILK_COUNT"] != undefined) output("while your heart beats excitedly against your breastbone");
 		else output("a little awkwardly at the command");
 		output(".");
