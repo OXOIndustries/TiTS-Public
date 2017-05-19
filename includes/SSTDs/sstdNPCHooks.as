@@ -1,4 +1,25 @@
-﻿public function mhengaSSTDChance(arg:Creature):void
+﻿// SSTD Masterlist
+public function sstdList(filter:String = "all"):Array
+{
+	var nameList:Array = [];
+	
+	if(filter == "all" || filter == "Furpies")
+	{
+		nameList.push("Undetected Furpies");
+		nameList.push("Furpies Simplex H");
+		nameList.push("Furpies Simplex D");
+		nameList.push("Furpies Simplex C");
+	}
+	if(filter == "all" || filter == "Locofever")
+	{
+		nameList.push("Undetected Locofever");
+		nameList.push("Locofever");
+	}
+	
+	return nameList;
+};
+
+public function mhengaSSTDChance(arg:Creature):void
 {
 	var sstdList:Array = [];
 	if(rand(50) == 0) sstdList.push("Undetected Furpies");
@@ -51,7 +72,7 @@ public function induceSSTDGo(arg:String = "none"):void
 	showBust("");
 	showName("CONTRACT\nSSTD");
 	
-	if(InCollection(arg, pc.sstdList))
+	if(InCollection(arg, sstdList()))
 	{
 		output("You have contracted " + arg + "!");
 		var pp:PregnancyPlaceholder = new PregnancyPlaceholder();

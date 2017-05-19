@@ -19657,10 +19657,15 @@
 			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
 			return (prefDog ? d : c);
 		}
-		public function hasSSTD(sstdName:String = "any"):Boolean
+		public function hasSSTD(sstdName:String = "all", inFamily:Boolean = false):Boolean
 		{
-			if(sstdName != "any")
+			if(inFamily)
 			{
+				if(sstdTotal(sstdName) > 0) return true;
+			}
+			else if(sstdName != "all")
+			{
+				var sstdList:Array = kGAMECLASS.sstdList();
 				if(InCollection(sstdName, sstdList))
 				{
 					for(var i:int = 0; i < statusEffects.length; i++)
@@ -19672,30 +19677,21 @@
 			}
 			return (getRandomSSTD() != "none");
 		}
-		public function clearSSTDs():void
+		public function clearSSTDs(filter:String = "all"):void
 		{
-			removeSSTDs();
+			removeSSTDs(filter);
 		}
-		public function get sstdList():Array
+		public function removeSSTDs(filter:String = "all"):void
 		{
-			return [
-				"Undetected Furpies",
-				"Furpies Simplex H",
-				"Furpies Simplex D",
-				"Furpies Simplex C",
-				"Undetected Locofever",
-				"Locofever",
-			];
-		};
-		public function removeSSTDs():void
-		{
+			var sstdList:Array = kGAMECLASS.sstdList(filter);
 			for(var i:int = 0; i < sstdList.length; i++)
 			{
 				removeStatusEffect(sstdList[i]);
 			}
 		}
-		public function sstdTotal():Number
+		public function sstdTotal(filter:String = "all"):Number
 		{
+			var sstdList:Array = kGAMECLASS.sstdList(filter);
 			var num:Number = 0;
 			for(var i:int = 0; i < statusEffects.length; i++)
 			{
@@ -19704,8 +19700,9 @@
 
 			return num;
 		}
-		public function getRandomSSTD():String
+		public function getRandomSSTD(filter:String = "all"):String
 		{
+			var sstdList:Array = kGAMECLASS.sstdList(filter);
 			var SSTDs:Array = [];
 			for(var i:int = 0; i < statusEffects.length; i++)
 			{
@@ -19719,7 +19716,7 @@
 		{
 			return hasPerk("STD Immune");
 		}
-		public function sstdChecks(cumFrom:Creature = null,location:String = "ass"):void
+		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
 			if(cumFrom.hasSSTD() && !this.isSSTDImmune())
 			{
@@ -19729,12 +19726,12 @@
 				{
 					case "Undetected Furpies":
 						//FURPIES!
-						if(hasSSTD("Undetected Furpies") || hasSSTD("Furpies Simplex H") || hasSSTD("Furpies Simplex D") || hasSSTD("Furpies Simplex C")) { /* Already have it! */ }
+						if(hasSSTD("Furpies", true)) { /* Already have it! */ }
 						// Furries are immune to furpies.
 						else if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
 						break;
 					case "Undetected Locofever":
-						if(hasSSTD("Undetected Locofever") || hasSSTD("Locofever")) { /* Already have it! */ }
+						if(hasSSTD("Locofever", true)) { /* Already have it! */ }
 						else createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xB793C4);
 						break;
 				}
