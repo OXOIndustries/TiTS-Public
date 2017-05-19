@@ -46,13 +46,13 @@ package classes.Items.Melee
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			
-			this.attack = -10;
+			this.attack = -7;
 			this.critBonus = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.evasion = -8;
+			this.evasion = -5;
 			this.fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
