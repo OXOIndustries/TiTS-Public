@@ -19717,7 +19717,7 @@
 		}
 		public function isSSTDImmune():Boolean
 		{
-			return false;
+			return hasPerk("STD Immune");
 		}
 		public function sstdChecks(cumFrom:Creature = null,location:String = "ass"):void
 		{
