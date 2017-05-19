@@ -126,36 +126,55 @@ public function getDiseaseProbedYo():void
 	output("\n\n<i>“Analyzing....”</i>");
 	output("\n\n<i>“Analyzing....”</i> V-Ko bites her tongue as she focuses, working.");
 
-	var sstds:Number = 0;
-	//SSTD check first!
-	while(pc.hasSSTD())
-	{
-		var disease:String = pc.getRandomSSTD();
-		sstds++;
-		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with " + disease + "! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
-		output("\n\nV-Ko pats you comfortingly and resumes scanning you.");
-		output("\n\n<i>“Analyzing cellular structures....”</i>");
-		pc.removeStatusEffect(disease);
-	}
-
+	var button:Number = 0;
 	var detectedParasites:int = 0;
 	clearMenu();
-	
+	//SSTD check first!
+	if(pc.hasSSTD())
+	{
+		var sstds:Number = pc.sstdTotal();
+		var disease:String = pc.getRandomSSTD();
+		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with " + disease + "! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. ");
+		if(sstds > 1)
+		{
+			output("<i>“I’m detecting multiple infections! How could this happen? The prototype immune system boosters I detected in your system should have protected you!”</i>");
+		}
+		else
+		{
+			output("<i>“The prototype immune system in your blood should have protected you. This must be a particularly nasty specimen.”</i>");
+		}
+		output(" V-Ko tilts her head, eyes flickering. <i>“I can provide them with additional processing power to properly identify and remove the infectious material for a modest sum of 500 credits.");
+		if(pc.credits < 500)
+		{
+			output(" Unfortunately, your bank account does not contain sufficient funds.”</i>");
+		}
+		else
+		{
+			output(" Treatment will take no longer than fifteen minutes.”</i>");
+			output("\n\n<i>“Do you consent?”</i>");
+			clearMenu();
+			addButton(button, "CureDisease", removeDiseasesVKO);
+			addButton(14, "No Removal", turnDownTreatment);
+			button++;
+		}		
+	}	
 	//Cunt snake
 	if(pc.hasCuntSnake())
 	{
 		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by a class ‘C’ parasitic snake! In order to treat that I will have to administer anesthesia.”</i>");
-		addButton(detectedParasites, "Treat C.Snk", removeParasite, "cuntsnake");
+		addButton(button, "Treat C.Snk", removeParasite, "cuntsnake");
 		addButton(14, "No Removal", turnDownTreatment);
 		detectedParasites++;
+		button++;
 	}
 	
 	if (pc.tailType == GLOBAL.TYPE_COCKVINE)
 	{
 		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by a hydrus constuprula parasitic vine! In order to treat that I will have to administer anesthesia.”</i>");
-		addButton(detectedParasites, "Treat C.Vne", removeParasite, "cockvine");
+		addButton(button, "Treat C.Vne", removeParasite, "cockvine");
 		addButton(14, "No Removal", turnDownTreatment);
 		detectedParasites++;
+		button++;
 	}
 
 	if (attachedMimbranes() > 0)
@@ -178,16 +197,21 @@ public function getDiseaseProbedYo():void
 		else output(" them");
 		output(" I will have to administer anesthesia. Shall we begin?”</i>");
 				
-		addButton(detectedParasites, "Treat Mimbs", removeParasite, "mimbrane");
+		addButton(button, "Treat Mimbs", removeParasite, "mimbrane");
 		addButton(14, "No Removal", turnDownTreatment);
 		detectedParasites++;
+		button++;
 	}
-	
-	if (detectedParasites == 0)
+	if(button == 0 && detectedParasites == 0 && sstds > 0)
+	{
+		output("\n\n<i>“Is there any other way in which I could assist you today?”</i>");
+		approachVKo(false);
+	}
+	else if (button == 0)
 	{
 		output("\n\nShe gasps, <i>“You’re completely clean! ");
 		if(sstds == 0) output("I could not find a single foreign contaminant in your system, though my sensors did detect a highly advanced group of microsurgeons. My heuristic programs have determined them to be safe, likely part of an immune supplement.”</i>");
-		else output("The pathogens inside you are already breaking down thanks to your microsurgeon immune boosters. Though I am unfamiliar with the make and model, my heuristic programs have determined them to be an advanced prototype. Lucky you!”</i>")
+		else output("The pathogens inside you are already breaking down thanks to your microsurgeon immune boosters. Though I am unfamiliar with the make and model, my heuristic programs have determined them to be an advanced prototype. Lucky you!”</i>");
 		output("\n\nYou inform her that she’s correct as you hop down off the table. <i>“");
 
 		if(pc.isNice()) output("Is there a charge?");
@@ -206,9 +230,21 @@ public function getDiseaseProbedYo():void
 	else if (detectedParasites == 1)
 	{
 		output("\n\n<i>“Shall we begin your treatment?”</i>");
-	}
-	
+	}	
 	processTime(10+rand(3));
+}
+
+public function removeDiseasesVKO():void
+{
+	clearOutput();
+	showVKo();
+	author("Fenoxo");
+	output("After a few moments of simulated concentration, the nursedroid speaks up, <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
+	output("\n\n<i>“Do you require additional services?”</i>");
+	pc.removeSSTDs();
+	processTime(15);
+	pc.credits -= 500;
+	approachVKo(false);
 }
 
 //Negatory during exam:

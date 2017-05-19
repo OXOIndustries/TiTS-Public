@@ -8,7 +8,7 @@
 public function tarkusSSTDChance(arg:Creature):void
 {
 	var sstdList:Array = [];
-	if(rand(50) == 0) sstdList.push("Undetected Furpies");
+	if(rand(40) == 0) sstdList.push("Undetected Furpies");
 	if((arg.originalRace == "raskvel" || arg.raceShort() == "raskvel") && rand(30) == 0) sstdList.push("Undetected Locofever");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
@@ -23,7 +23,7 @@ public function uvetoSSTDChance(arg:Creature):void
 public function myrellionSSTDChance(arg:Creature):void
 {
 	var sstdList:Array = [];
-	if(rand(50) == 0) sstdList.push("Undetected Furpies");
+	if(rand(70) == 0) sstdList.push("Undetected Furpies");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 

@@ -19694,6 +19694,16 @@
 				removeStatusEffect(sstdList[i]);
 			}
 		}
+		public function sstdTotal():Number
+		{
+			var num:Number = 0;
+			for(var i:int = 0; i < statusEffects.length; i++)
+			{
+				if(InCollection(statusEffects[i].storageName, sstdList)) num++;
+			}
+
+			return num;
+		}
 		public function getRandomSSTD():String
 		{
 			var SSTDs:Array = [];
@@ -19720,7 +19730,8 @@
 					case "Undetected Furpies":
 						//FURPIES!
 						if(hasSSTD("Undetected Furpies") || hasSSTD("Furpies Simplex H") || hasSSTD("Furpies Simplex D") || hasSSTD("Furpies Simplex C")) { /* Already have it! */ }
-						else createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+						// Furries are immune to furpies.
+						else if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
 						break;
 					case "Undetected Locofever":
 						if(hasSSTD("Undetected Locofever") || hasSSTD("Locofever")) { /* Already have it! */ }

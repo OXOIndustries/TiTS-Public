@@ -426,9 +426,46 @@ public function getExamanitedByVi():void
 	var parasites:int = 0;
 	if(pc.hasCuntTail()) parasites++;
 	if(pc.hasCockTail()) parasites++;
-	if(attachedMimbranes() > 0) parasites++;
+	if (attachedMimbranes() > 0) parasites++;
+	var sstds:Number = pc.sstdTotal();
 	//if detected more than one lot of parasites:
-	if(parasites > 1)
+	if(sstds > 0)
+	{
+		output("\n\n<i>“I should also inform you, it appears you have contracted ");
+		if(sstds > 1) output("more than one type of disease");
+		else output(pc.getRandomSSTD());
+		if(parasites > 0)
+		{
+			output(" and ");
+			if(parasites > 1) output("multiple parasites");
+			else output("a parasite as well");
+			output(". Unfortunately, I can only ");
+			if(parasites > 1) output("treat one of your parasitic infections at a time. Alternatively, I can cure your diseases for a modest 500 credits.");
+			else output("treat a parasite or your diseases at a time. The latter costs 500 credits.");
+			
+		}
+		else
+		{
+			output(". A treatment to cure ");
+			if(sstds > 1) output("them");
+			else output("it");
+			output(" can be produced for only 500 credits and a few minutes of processing time. Would you like a treatment?");
+		}
+		output(" Please indicate your choice, " + pc.mf("sir","ma’am") + ".”</i>");
+		clearMenu();
+		if(attachedMimbranes() > 0) addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
+		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don't have any mimbranes to remove.");
+		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
+		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
+		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
+		else addDisabledButton(2,"Treat C.Vine","Cockvine Treatment","You have no cockvines to remove.");
+
+		if(sstds > 0 && pc.credits >= 500) addButton(3,"TreatDisease",removeDiseasesVI,undefined,"TreatDisease","Get any diseases you're carrying removed for 500 credits.");
+		else if(pc.credits < 500 && sstds > 0) addDisabledButton(3,"TreatDisease","Treat Disease","You cannot afford this treatment.");
+		else addDisabledButton(3,"TreatDisease","TreatDisease","You don't have any diseases.");
+		addButton(4,"None",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
+	}
+	else if(parasites > 1)
 	{
 		output("\n\n<i>“I should also inform you, it appears you have more than one type of parasitic affliction. Unfortunately, I can only treat one lot of parasites in a single procedure. Please indicate which infestation you would like me to treat first, " + pc.mf("sir","ma’am") + ".”</i>");
 		// Show list of parasites + no removal button.
@@ -493,6 +530,21 @@ public function getExamanitedByVi():void
 		// Return to menu
 		viMenu();
 	}
+}
+
+public function removeDiseasesVI():void
+{
+	clearOutput();
+	showVKo();
+	author("Fenoxo");
+	output("After a few moments of simulated concentration, the nursedroid speaks up, <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
+	output("\n\n<i>“Do you require additional services?”</i>");
+	pc.removeSSTDs();
+	processTime(15);
+	pc.credits -= 500;
+	IncrementFlag("TREATED_BY_VI");
+	viMenu();
+
 }
 
 //Remove Parasite
