@@ -547,7 +547,7 @@ public function immuneSystemBoost():void
 	{
 		output("<i>“So could you reverse...”</i>");
 		output("\n\n<i>“No.”</i> Doctor Lash interrupts. <i>“No and do not even think to inquire further. It is not my business to undo my own work.”</i>");
-		addDisabledButton(4,"STD Immunity","STD Immunity","Well that's a bust.");
+		addDisabledButton(4,"STD Immunity","STD Immunity","Well that’s a bust.");
 		return;
 	}
 	else
@@ -560,8 +560,8 @@ public function immuneSystemBoost():void
 		processTime(3);
 		clearMenu();
 		if(pc.credits >= 10000) addButton(0,"Agree",agreeToLashingHealth,undefined,"Agree","Agree to have Dr. Lash make you immune to STDs... <b>for 10,000 credits.</b>");
-		else addDisabledButton(0,"Agree","Agree","You don't have enough money for this.");
-		addButton(1,"Don't",dontAgreeToLashStuff);
+		else addDisabledButton(0,"Agree","Agree","You don’t have enough money for this.");
+		addButton(1,"Don’t",dontAgreeToLashStuff);
 	}
 }
 
@@ -582,7 +582,7 @@ public function agreeToLashingHealth():void
 	output("\n\nDoctor Lash smirks. <i>“Of course you accepted. My work is far more valuable than that vulgar price, but things being as they are... we all must make sacrifices from time to time.”</i> He sighs. <i>“Give me your hand.”</i>");
 	output("\n\nYou do.");
 	if(pc.isBro() || pc.isAss()) output(" If he tries anything funny, you can always sock him one.");
-	output("\n\nDoctor Lash produces a small device and waves it over your palm four or five times.  <i>“Money well spent. You should be immune to everything under the sun and then some. However, I cannot be blamed if my modifications adversely affect your ability to reproduce. After all, my personal code needs no such considerations.”</i>");
+	output("\n\nDoctor Lash produces a small device and waves it over your palm four or five times. <i>“Money well spent. You should be immune to everything under the sun and then some. However, I cannot be blamed if my modifications adversely affect your ability to reproduce. After all, my personal code needs no such considerations.”</i>");
 	output("\n\nWell, that’s something.");
 	output("\n\nThe doctor turns away, finished with you.");
 	pc.credits -= 10000;
@@ -590,8 +590,8 @@ public function agreeToLashingHealth():void
 	pc.fertilityRaw /= 2;
 	pc.cumQualityRaw /= 2;
 	//perk!
-	pc.createPerk("STD Immune",0,0,0,0);
 	output("\n\n(<b>Perk Gained: STD Immune</b> - You can no longer be infected with sexually transmitted diseases.)");
+	pc.createPerk("STD Immune",0,0,0,0,"You are immune to sexually transmitted diseases.");
 	flags["LASHED_IMMUNITY"] = 1;
 	pc.removeSSTDs();
 	clearMenu();

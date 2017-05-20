@@ -8,11 +8,17 @@ public function statsScreenMenu(currentFunc:Function):Boolean
 	// Personal
 	if(showID == "Personal") addDisabledGhostButton(0, "Personal");
 	else addGhostButton(0, "Personal", currentFunc, "Personal", "Personal Statistics", "Show information about yourself.");
-	// Other
-	if(showID == "Other") addDisabledGhostButton(1, "Other");
-	else addGhostButton(1, "Other", currentFunc, "Other", "Other Statistics", "Show your other statistics.");
+	// Medical
+	if(showID == "Medical") addDisabledGhostButton(1, "Medical");
+	else addGhostButton(1, "Medical", currentFunc, "Medical", "Medical Statistics", "Show your medical statistics.");
 	// Encounters
 	addGhostButton(2, "Encounters", displayEncounterLog, flags["TOGGLE_MENU_LOG"], "Encounters", "Show the encounters and other miscellaneous information.");
+	// Combat
+	if(showID == "Combat") addDisabledGhostButton(5, "Combat");
+	else addGhostButton(5, "Combat", currentFunc, "Combat", "Combat Statistics", "Show your combat statistics.");
+	// Other
+	if(showID == "Other") addDisabledGhostButton(6, "Other");
+	else addGhostButton(6, "Other", currentFunc, "Other", "Other Statistics", "Show your other statistics.");
 	// Everything
 	if(showID == "All") addDisabledGhostButton(13, "All");
 	else addGhostButton(13, "All", currentFunc, "All", "All Data", "Show the cumulative log.");
@@ -650,8 +656,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasStatusEffect("Exhibitionism Reserve")) output2("\n<b>* Exhibitionism, Times Done Excessive Acts:</b> " + pc.statusEffectv1("Exhibitionism Reserve"));
 	}
 	
-	// Other
-	if(showID == "Other" || showID == "All")
+	// Combat
+	if(showID == "Combat" || showID == "All")
 	{
 		//======CORE STATISTICS=====//
 		output2("\n\n" + blockHeader("Core Statistics", false));
@@ -799,7 +805,11 @@ public function statisticsScreen(showID:String = "All"):void
 		Moved all these to their respective sections under "Encounters"!
 		
 		*/
-		
+	}
+	
+	// Other
+	if(showID == "Other" || showID == "All")
+	{
 		//=====GENERAL STATS=====//
 		output2("\n\n" + blockHeader("General Statistics", false));
 		// Crew
@@ -946,6 +956,35 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, TamaniCorp Egg Trainer Eggs, Total:</b> " + StatTracking.getStat("pregnancy/egg trainer eggs laid"));
 				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds") > 0)
 					output2("\n<b>* Births, Venus Pitcher Seeds, Unfertilized:</b> " + StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds"));
+			}
+		}
+	}
+	
+	// Medical
+	if(showID == "Medical" || showID == "All")
+	{
+		//======SSTD STATISTICS=====//
+		output2("\n\n" + blockHeader("Infection Statistics", false));
+		
+		// SSTDs
+		output2("\n<b><u>SSTDs</u></b>");
+		var bHasSSTD:Boolean = pc.hasSSTD();
+		output2("\n<b>* Status:</b> " + (bHasSSTD ? "Infected" : " Not infected"));
+		if(pc.isSSTDImmune()) output2(", Immune to SSTDs");
+		if(bHasSSTD)
+		{
+			output2("\n<b>* Infected by, Total:</b> " + pc.sstdTotal());
+			var sstdList:Array = sstdList();
+			var SSTDs:Array = [];
+			for(i = 0; i < pc.statusEffects.length; i++)
+			{
+				var sstdName:String = pc.statusEffects[i].storageName;
+				var sstdDetected:Boolean = (sstdName.indexOf("Undetected") == -1);
+				if(InCollection(sstdName, sstdList))
+				{
+					output2("\n<b><u>" + (!sstdDetected ? "<i>Unknown SSTD</i>" : sstdName) + "</u></b>");
+					output2("\n<b>* Duration:</b> " + prettifyMinutes(sstdMaxTime(sstdName) - pc.statusEffects[i].minutesLeft));
+				}
 			}
 		}
 		
@@ -2197,6 +2236,7 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Myrellion" || showID == "All")
 		{
 			// The Great Ant World War
+			/*
 			if(flags["MET_JURO"] != undefined)
 			{
 				output2("\n<b><u>War in Myrellion</u></b>");
@@ -2205,6 +2245,7 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress... STILL IN DEVELOPMENT</i>");
 				sideCount++;
 			}
+			*/
 			// Bothrioc Addiction
 			if(flags["BOTHRIOC_ADDICTION"] != undefined && flags["BOTHRIOC_ADDICTION"] != 0)
 			{
@@ -4200,6 +4241,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Doctor Lash’s Office</u></b>");
 				output2("\n<b>* Doctor Lash:</b> Met him");
+				if(flags["LASHED_IMMUNITY"] != undefined) output2(", He upgraded your nanites");
 				variousCount++;
 			}
 			// Aurora
