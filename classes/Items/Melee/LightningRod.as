@@ -37,8 +37,8 @@
 			basePrice = 10000;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 10;
-			baseDamage.electric.damageValue = 8;
+			baseDamage.kinetic.damageValue = 7;
+			baseDamage.electric.damageValue = 6;
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
@@ -49,7 +49,7 @@
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			evasion = 0;
+			evasion = 3;
 			fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

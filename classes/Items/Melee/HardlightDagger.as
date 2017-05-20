@@ -37,7 +37,7 @@
 			basePrice = 13800;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 10;
+			baseDamage.kinetic.damageValue = 8;
 			baseDamage.burning.damageValue = 9;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.PENETRATING);
