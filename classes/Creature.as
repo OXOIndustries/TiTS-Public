@@ -3522,6 +3522,15 @@
 			// 9999
 			return false;
 		}
+		public function hasPowerArmorItem():Boolean
+		{
+			if(meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || accessory.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || shield.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || armor.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR)) return true;
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				if(inventory[i].hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR)) return true;
+			}
+			return false;
+		}
 		public function canUsePowerArmorWeapon():Boolean
 		{
 			return (inPowerArmor() || physique() >= 40);
@@ -4302,6 +4311,8 @@
 			currLib += statusEffectv3("Heat");
 			currLib += statusEffectv1("Rut");
 			currLib += statusEffectv1("Lagonic Rut");
+			currLib += statusEffectv1("Undetected Locofever");
+			currLib += statusEffectv1("Locofever");
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			
 			if (currLib > libidoMax())
@@ -19474,7 +19485,14 @@
 							requiresRemoval = false;
 						}
 						break;
-					
+					case "Undetected Locofever":
+					case "Locofever":
+						kGAMECLASS.locofeverProcs(deltaT, maxEffectLength, doOut, this, thisStatus);
+						if(requiresRemoval) 
+						{
+							kGAMECLASS.locofeverFinish(deltaT, maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
 				}
 				
 				if (requiresRemoval)
@@ -19648,56 +19666,83 @@
 			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
 			return (prefDog ? d : c);
 		}
-		public function hasSSTD():Boolean
+		public function hasSSTD(sstdName:String = "all", inFamily:Boolean = false):Boolean
 		{
+			if(inFamily)
+			{
+				if(sstdTotal(sstdName) > 0) return true;
+			}
+			else if(sstdName != "all")
+			{
+				var sstdList:Array = kGAMECLASS.sstdList();
+				if(InCollection(sstdName, sstdList))
+				{
+					for(var i:int = 0; i < statusEffects.length; i++)
+					{
+						if(statusEffects[i].storageName == sstdName) return true;
+					}
+				}
+				return false;
+			}
 			return (getRandomSSTD() != "none");
 		}
-		public function clearSSTDs():void
+		public function clearSSTDs(filter:String = "all"):void
 		{
-			removeSSTDs();
+			removeSSTDs(filter);
 		}
-		public function removeSSTDs():void
+		public function removeSSTDs(filter:String = "all"):void
 		{
-			removeStatusEffect("Undetected Furpies");
-			removeStatusEffect("Furpies Simplex H");
-			removeStatusEffect("Furpies Simplex D");
-			removeStatusEffect("Furpies Simplex C");
+			var sstdList:Array = kGAMECLASS.sstdList(filter);
+			for(var i:int = 0; i < sstdList.length; i++)
+			{
+				removeStatusEffect(sstdList[i]);
+			}
 		}
-		public function sstdTotal():Number
+		public function sstdTotal(filter:String = "all"):Number
 		{
+			var sstdList:Array = kGAMECLASS.sstdList(filter);
 			var num:Number = 0;
-			if(hasStatusEffect("Undetected Furpies")) num++;
-			if(hasStatusEffect("Furpies Simplex H")) num++;
-			if(hasStatusEffect("Furpies Simplex D")) num++;
-			if(hasStatusEffect("Furpies Simplex C")) num++;
+			for(var i:int = 0; i < statusEffects.length; i++)
+			{
+				if(InCollection(statusEffects[i].storageName, sstdList)) num++;
+			}
 
 			return num;
 		}
-		public function getRandomSSTD():String
+		public function getRandomSSTD(filter:String = "all"):String
 		{
+			var sstdList:Array = kGAMECLASS.sstdList(filter);
 			var SSTDs:Array = [];
-			if(hasStatusEffect("Undetected Furpies")) SSTDs.push("Undetected Furpies");
-			if(hasStatusEffect("Furpies Simplex H")) SSTDs.push("Furpies Simplex H");
-			if(hasStatusEffect("Furpies Simplex D")) SSTDs.push("Furpies Simplex D");
-			if(hasStatusEffect("Furpies Simplex C")) SSTDs.push("Furpies Simplex C");
+			for(var i:int = 0; i < statusEffects.length; i++)
+			{
+				if(InCollection(statusEffects[i].storageName, sstdList)) SSTDs.push(statusEffects[i].storageName);
+			}
 
 			if(SSTDs.length == 0) return "none";
 			else return SSTDs[rand(SSTDs.length)];
 		}
 		public function isSSTDImmune():Boolean
 		{
-			return false;
+			return hasPerk("STD Immune");
 		}
-		public function sstdChecks(cumFrom:Creature = null,location:String = "ass"):void
+		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
-			//FURPIES!
 			if(cumFrom.hasSSTD() && !this.isSSTDImmune())
 			{
-				kGAMECLASS.output(cumFrom.getRandomSSTD());
-				if(cumFrom.getRandomSSTD() == "Undetected Furpies") 
+				var catchSSTD:String = cumFrom.getRandomSSTD();
+				//kGAMECLASS.output(catchSSTD);
+				switch(catchSSTD)
 				{
-					//Furries are immune to furpies.
-					if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+					case "Undetected Furpies":
+						//FURPIES!
+						if(hasSSTD("Furpies", true)) { /* Already have it! */ }
+						// Furries are immune to furpies.
+						else if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+						break;
+					case "Undetected Locofever":
+						if(hasSSTD("Locofever", true)) { /* Already have it! */ }
+						else createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xB793C4);
+						break;
 				}
 			}
 		}

@@ -132,6 +132,9 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
+	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
@@ -3538,5 +3541,54 @@ public function stormguardCodex():void
 	outputCodex("\n\nThe Stormguard of Uveto in particular are a hardy faction, having established themselves before the full corporate takeover of the world. Ever since the Camarilla and other corporate interests have taken control of the planet, the Stormguard temple there has fought tooth and nail within the legal system, exploiting religious protection acts to prevent their eviction from the frosty world. Lucky for them, they’ve created a symbiotic relationship with the ausar colony on Uveto, acting as scouts, guides, and beast-hunters for the otherwise pacifistic inhabitants.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Stormguard");
+}
+
+/* SSTDs */
+
+public function furpiesCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Furpies"));
+	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on <REDACTED>, but it was not identified for six more months thanks to its insidious design.");
+	outputCodex("\n\nThis strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.");
+	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("How Furpies is Spread"));
+	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
+	outputCodex("\n\nAs always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Asymptomatic Carriers"));
+	outputCodex("In most hosts, Furpies lies dormant, transforming its infected host into an inadvertent seeder. This was thought a blessing at first, but examination of the disease’s genetic code has revealed that it is simply biding its time. A biological clock built into the virus itself will count down over five to ten years, then switch Furpies to an active state.");
+	outputCodex("\n\nThis is alluded to in Doctor Badger’s manifesto as “The Furpocalypse.”");
+	outputCodex("\n\nIf strong steps to eradicate Furpies are not taken, the galaxy may become a lot furrier in the years to come, something some species would welcome with open arms - and others would violently protest.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Symptoms and Effects"));
+	outputCodex("* <b>2 Days</b>: Temporary genital swelling - this is thought to be the beginning of Furpies’ attempts to increase sexual drive.");
+	outputCodex("\n* <b>2-4 Days</b>: Increased attraction to other furry species. This typically manifests as a sort of fetish for soft fur. Patients report this to be particularly pleasant.");
+	outputCodex("\n* <b>5-6 Days</b>: Growth of animal ears. Furpies Simplex H, C, and D are the main variants, each one tied to a different animal species. Victims with Furpies H gain the features of a horse, while C and D refer to cats and dogs.");
+	outputCodex("\n* <b>7-9 Days</b>: Genital transformation. Some patients have declined cures for the disease until after this stage of infection, citing the pleasure of attaining animal genitalia. This is not recommended.");
+	outputCodex("\n* <b>8-10 Days</b>: Limbs transform into a hybridization of human and animal features. Luckily Furpies is carefully engineered to momentarily sever nervous connections with the legs and arms to prevent any pain.");
+	outputCodex("\n* <b>9 Days</b>: Animal tail growth.");
+	outputCodex("\n* <b>10-11 Days</b>: Full body fur. Heat-sensitive races must be careful if they reach this stage, as the extra insulation makes them vulnerable to heat stroke.");
+	outputCodex("\n* <b>12-14 Days</b>: Animal-like face. This is the final transformation that the disease will wreak on its hosts, though it remains in the body for long after.");
+	outputCodex("\n\nFurpies remains active in the host’s body indefinitely, making them more susceptible to sexual advances of other furry individuals, and more sexually active in general. Among infected, sexual intercourse occurs roughly 400% more often than galactic norms.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Doctor Badger"));
+	outputCodex("The UGC is aggressively looking for any sign of the disease’s creator in hopes of finding an effective, easy-to-produce cure. She is considered armed and extremely dangerous. Please call your local Peacekeeper office if you have any information on Doctor Badger’s whereabouts, and DO NOT APPROACH HER PERSONALLY.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Furpies");
+}
+public function locofeverCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Locofever"));
+	outputCodex("An ever-present danger of planet rushes is the intermingling of spaceborne illnesses with indigenous lifeforms and the mutations that can result. In the case of the junk planet Tarkus, it was the mingling of a simple fever brought by one of the rushers with the breeding-driven biology of the local raskvel that brought about locofever.");
+	outputCodex("\n\nThe locofever virus attacks the brain and reproductive organs, causing the production of hormones that produce an estrus-like response in the infectee akin to the natural state of raskvel. The desire to breed becomes overwhelming, while pleasure from masturbation is sharply reduced to further encourage the infectee to have sex as often as possible.");
+	outputCodex("\n\nA typical host is capable of fighting off the infection within one to two weeks. Most publicly available immune boosters are able to prevent the spread of the infection, which has prevented locofever from becoming an epidemic, but curing the illness requires direct medical treatment or letting it run its course.");
+	outputCodex("\n\nLocofever is believed to still be uncommon among raskvel, though the exact numbers of infected are difficult to determine both because of raskvel breeding habits and because the species is asymptomatic. Aside from them it is most commonly found among younger ausar, who have been known to deliberately infect themselves with locofever as a form of recreational drug and cultural rebellion.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Locofever");
 }
 

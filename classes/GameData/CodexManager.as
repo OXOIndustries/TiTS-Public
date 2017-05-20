@@ -18,34 +18,36 @@ package classes.GameData
 			CodexManager.CODEXTREE = new Object();
 			
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_PERSON] = "PERSONS";
-			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ORGANIZATION] = "ORGANIZATIONS";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ROBOT] = "RACE: ROBOTIC";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE] = "RACE: CORE";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_MHENGA] = "RACE: MHEN’GA";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_TARKUS] = "RACE: TARKUS";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_MYRELLION] = "RACE: MYRELLION";
-			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_EVENT] = "EVENTS";
-			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_STORY] = "FICTION";
-			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_LOCATION] = "LOCATIONS";
-			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ITEM] = "ITEMS";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_UVETO] = "RACE: UVETO";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE_XAMDAM] = "RACE: XAMDAM";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ORGANIZATION] = "ORGANIZATIONS";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_EVENT] = "EVENTS";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_LOCATION] = "LOCATIONS";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ITEM] = "ITEMS";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_MEDICAL] = "MEDICAL";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_STORY] = "FICTION";
 			
 			
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_PERSON]			= new Object();
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ORGANIZATION]	= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ROBOT]			= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE]			= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_MHENGA]		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_TARKUS]		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_MYRELLION]	= new Object();
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_UVETO] 		= { };
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_XAMDAM]		= { };
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_UVETO] 		= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE_XAMDAM]		= new Object();
 
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_EVENT] 		= new Object();
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_STORY] 		= new Object();
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_LOCATION] 	= new Object();
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ITEM] 		= new Object();		
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ORGANIZATION]	= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_EVENT] 			= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_LOCATION] 		= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ITEM] 			= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_MEDICAL] 		= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_STORY] 			= new Object();	
 		}
 		
 		private static var ALWAYSUNLOCKEDENTRIES:Array;
@@ -69,7 +71,8 @@ package classes.GameData
 		public static const CODEX_TYPE_EVENT:int 		= 10;
 		public static const CODEX_TYPE_LOCATION:int 	= 11;
 		public static const CODEX_TYPE_ITEM:int 		= 12;
-		public static const CODEX_TYPE_STORY:int 		= 13;
+		public static const CODEX_TYPE_MEDICAL:int 		= 13;
+		public static const CODEX_TYPE_STORY:int 		= 14;
 		
 		
 		

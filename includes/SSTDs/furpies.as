@@ -3,8 +3,8 @@ That’s Horse, Cat, and Dog, for those wondering.
 Author: Fenpai Finally Noticed Meoxo
 
 Notes:
-Created by Dr. Badger to be spread extensively. 95% of all infections are asymptomatic, effectively creating "seeders" who don’t know what they’re doing to their partners.
-Dormant infections activate after a period of five to ten years with the planned goal of creating the "furpocalypse."
+Created by Dr. Badger to be spread extensively. 95% of all infections are asymptomatic, effectively creating “seeders” who don’t know what they’re doing to their partners.
+Dormant infections activate after a period of five to ten years with the planned goal of creating the “furpocalypse.”
 Virtually eliminated in the core, absolutely rampant on new rush worlds.
 Symptoms:
 Anyone with body fur is immune.
@@ -40,7 +40,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		effect.value4 = 2;
 		if(pc.hasFur())
 		{
-			textBuff += "\n\nA rapid, hacking cough afflicts you out of nowhere, leaving you hacking and retching until you expel a ball of viscous looking green slime. Looks like you caught some kind of infection that your body rejected...";
+			textBuff += "A rapid, hacking cough afflicts you out of nowhere, leaving you hacking and retching until you expel a ball of viscous looking green slime. Looks like you caught some kind of infection that your body rejected...";
 			pc.removeStatusEffect("Undetected Furpies");
 		}
 		//Only boy parts
@@ -107,7 +107,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		//Neuters stoopid face
 		else
 		{
-			textBuff += "\n\nA rapid, hacking cough afflicts you out of nowhere, leaving you hacking and retching until you expel a ball of viscous looking green slime. Looks like you caught some kind of infection that your body rejected...";
+			textBuff += "A rapid, hacking cough afflicts you out of nowhere, leaving you hacking and retching until you expel a ball of viscous looking green slime. Looks like you caught some kind of infection that your body rejected...";
 			pc.removeStatusEffect("Undetected Furpies");
 		}
 	}
@@ -116,6 +116,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	{
 		effect.value4 = 3;
 		textBuff += "<i>BEEP!</i> An irritating tone from your Codex interrupts your thoughts. <i>“Alert! Infection detected! Preliminary scans identify a variant of Furpies Simplex ";
+		
+		CodexManager.unlockEntry("Furpies");
+		
 		if(rand(3) == 0) 
 		{
 			textBuff += "H";
@@ -275,9 +278,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 						if(pc.hasFur() || pc.hasFeathers() || pc.hasScales()) textBuff += ParseText(", [pc.skinFurScales] growing on this new surface");
 						textBuff += ", before finally twisting into a new sheath.";
 					}
-					textBuff += " The surface of your cock seems a bit more raw than it was before, with thin, dark veins visible all around it. Once the Canine Poppers are done with their work, your arousal quickly dies off, and <b>your new canine dick quickly recedes into its new protective sheath.</b>";
-					pc.shiftCock(x,GLOBAL.TYPE_CANINE);
+					textBuff += " The surface of your cock seems a bit more raw than it was before, with thin, dark veins visible all around it. Once the Furpies have done with their work, your arousal quickly dies off, and <b>your new canine dick quickly recedes into its new protective sheath.</b>";
 					pc.libido(5);
+					pc.shiftCock(x,GLOBAL.TYPE_CANINE);
 				}
 				//1 ween to cat
 				else if(targetType == GLOBAL.TYPE_FELINE)
@@ -288,13 +291,14 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 						if(pc.cocks[y].cType != GLOBAL.TYPE_FELINE) catDix.push(y);
 					}
 					x = catDix[rand(catDix.length)];
-					textBuff += ParseText("Oh... oh! A potent orgasm overwhelms you from nowhere. Your [pc.legs] ");
+					textBuff += ParseText("Oh... oh! A potent orgasm overwhelms you from nowhere. Your [pc.legOrLegs] ");
 					if(pc.legCount == 1) textBuff += "is";
 					else textBuff += "are";
-					textBuff += ParseText(" jello, dropping you to the ground. Spurts of [pc.cum] spray out of [pc.oneCock] that flexes strangely, pulling into itself then throbbing out. Its very shape seems to twist from one ejaculation to the next. Every jet of [pc.cumNoun] is met with a shift to its surface. The pleasure builds higher, and before your eyes you see a dozens of nubby <i>“barbs”</i> appear on the surface, sort of like a kaithrit’s or feline’s.");
+					textBuff += ParseText(" jello, dropping you to the ground. Spurts of [pc.cum] spray out of [pc.oneCock] that flexes strangely, pulling into itself then throbbing out. Its very shape seems to twist from one ejaculation to the next. Every jet of [pc.cumNoun] is met with a shift to its surface. The pleasure builds higher, and before your eyes you see a dozens of nubby “barbs” appear on the surface, sort of like a kaithrit’s or feline’s.");
 					textBuff += "\n\nGrabbing hold, you stroke the now alien member, pumping the last few squirts from your body. The prick between your fingers seems completely foreign to you, feline in the extreme. <b>Furpies has given you a cat-penis!</b>";
 					pc.libido(5);
 					pc.shiftCock(x,GLOBAL.TYPE_FELINE);
+					pc.orgasm();
 				}
 			}
 		}
@@ -322,7 +326,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					textBuff += ParseText(" and discover that your [pc.vaginaNoun " + x + "] has changed shape!");
 					textBuff += "\n\nIn its place, <b>you’ve developed an equine vagina, complete with lips so large and plush that they look to have been recently pumped.</b>";
 					pc.lust(10);
-					pc.slowStatGain("libido",5);
+					pc.libido(5);
 					pc.shiftVagina(x,GLOBAL.TYPE_EQUINE);
 					pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
 				}
@@ -353,7 +357,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		effect.value4 = 8;
 		var legged:Boolean = false;
 		//Legs (requires non-furred legs):
-		if(!pc.hasLegFlag(GLOBAL.FLAG_FURRED) && ((targetType == GLOBAL.TYPE_EQUINE && target.legType != targetType) || (targetType == GLOBAL.TYPE_CANINE && target.legType != targetType) || (targetType == GLOBAL.TYPE_FELINE && target.legType != targetType)))
+		if(!pc.hasLegFlag(GLOBAL.FLAG_FURRED) && pc.legType != targetType && InCollection(targetType, [GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE]))
 		{
 			if(pc.legTypeUnlocked(targetType) && pc.legCountUnlocked(2))
 			{
@@ -374,7 +378,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.legCount = 2;
 				}
 				//Horse legs
-				if(targetType == GLOBAL.TYPE_EQUINE && target.legType != targetType)
+				if(targetType == GLOBAL.TYPE_EQUINE && pc.legType != targetType)
 				{
 					textBuff += ParseText("\n\nInstead of feet or even paws, your develop shining black hooves. Your ankle is placed partway up your leg, the knee a little further above. You can hear bones cracking as the horse-like structure solidifies, and you’re silently thankful that you can’t feel a thing. Finally, a layer of horse-like hair erupts from your [pc.thighs] down, completing <b>your new equine legs.</b>");
 					if(pc.isTaur()) textBuff += " The rest of your lower body matches them, leaving you looking like a centaur.";
@@ -385,7 +389,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
 				//Doggo legs
-				else if(targetType == GLOBAL.TYPE_CANINE && target.legType != targetType)
+				else if(targetType == GLOBAL.TYPE_CANINE && pc.legType != targetType)
 				{
 					textBuff += "\n\nStrangely shaped digits sit at the end of your morphing limbs, stubby and fat. Your ankles climb higher up your leg as the shape of your feet resolves into something that’s clearly meant to be a paw - only it looks completely alien without fur. Little pads dot the underside as short black claws appear from the tips. A thick coat of fur sprouts from the solidifying skin as the transformation completes, <b>leaving you with dog-like paws instead of feet.</b>";
 					if(pc.isTaur()) textBuff += " The rest of your tauric lower half changes to match: <b>you’re a dog-taur!</b>";
@@ -396,7 +400,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					pc.addLegFlag(GLOBAL.FLAG_FURRED);
 				}
 				//Kitty legs
-				else if(targetType == GLOBAL.TYPE_FELINE && target.legType != targetType)
+				else if(targetType == GLOBAL.TYPE_FELINE && pc.legType != targetType)
 				{
 					textBuff += "\n\nStrangely shaped digits sit at the end of your morphing limbs, stubby and fat. Your ankles climb higher up your leg as the shape of your feet resolves into something that’s clearly meant to be a paw - only it looks completely alien without fur. Cute little pads push their way out of the underside as sharp claws emerge from your toes. A thick coat of fur sprouts from the solidifying skin as the transformation completes, <b>leaving you with cat-like paws instead of feet.</b>";
 					if(pc.isTaur()) textBuff += " The rest of your tauric lower half changes to match: <b>you’re a cat-taur now!</b>";
@@ -409,7 +413,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 			}
 		}
 		//Arms not-furred
-		if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED) && ((pc.armType != targetType && targetType == GLOBAL.TYPE_FELINE) || (pc.armType != targetType && targetType == GLOBAL.TYPE_CANINE) || (pc.armType != targetType && targetType == GLOBAL.TYPE_EQUINE)))
+		if(!pc.hasArmFlag(GLOBAL.FLAG_FURRED) && pc.armType != targetType && InCollection(targetType, [GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE]))
 		{
 			if(pc.armTypeUnlocked(targetType))
 			{
@@ -451,46 +455,46 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else if(effect.value4 < 9 && effect.minutesLeft < (17280 - 9*24*60))
 	{
 		effect.value4 = 9;
-		if (target.tailTypeUnlocked(targetType) && target.tailCountUnlocked(1))
+		if (pc.tailTypeUnlocked(targetType) && pc.tailCountUnlocked(1))
 		{
 			//Horse
 			if(targetType == GLOBAL.TYPE_EQUINE)
 			{			
-				if(target.tailType == 0) textBuff += "There is a sudden tickling on your ass, and you notice you have sprouted a long, shiny horsetail of the same " + target.hairColor + " color as your hair.";
+				if(pc.tailType == 0) textBuff += "There is a sudden tickling on your ass, and you notice you have sprouted a long, shiny horsetail of the same " + pc.hairColor + " color as your hair.";
 				//if bee/spider-butt.
-				else if (target.tailType == GLOBAL.TYPE_ARACHNID || target.tailType == GLOBAL.TYPE_BEE)
+				else if (InCollection(pc.tailType, [GLOBAL.TYPE_ARACHNID, GLOBAL.TYPE_BEE, GLOBAL.TYPE_MYR]))
 				{
-					textBuff += "Your " + target.tailsDescript() + " bunch";
-					if(target.tailCount == 1) textBuff += "es";
+					textBuff += "Your " + pc.tailsDescript() + " bunch";
+					if(pc.tailCount == 1) textBuff += "es";
 					textBuff += " up as ";
-					if(target.tailCount == 1) textBuff += "it begins";
+					if(pc.tailCount == 1) textBuff += "it begins";
 					else textBuff += "they begin";
 					textBuff += " shrinking, exoskeleton flaking off like a snake sheds its skin. ";
-					if(target.tailCount == 1) textBuff += "It bunches";
+					if(pc.tailCount == 1) textBuff += "It bunches";
 					else textBuff += "They bunch";
 					textBuff += " up until ";
-					if(target.tailCount == 1) textBuff += "it is";
+					if(pc.tailCount == 1) textBuff += "it is";
 					else textBuff += "they are";
 					textBuff += " as small as a tennis ball, then explode";
-					if(target.tailCount == 1) textBuff += "s";
+					if(pc.tailCount == 1) textBuff += "s";
 					textBuff += " outwards, growing into an animalistic, vaguely-tail shaped appendage. Moments later, it explodes into filaments of pain, dividing into hundreds of strands and turning into a shiny horsetail.";
 				}
 				//if other animal tail
 				else {
-					textBuff += "Pain lances up your " + target.assholeDescript() + " as your " + target.tailsDescript() + " shift";
-					if(target.tailCount == 1) textBuff += "s";
+					textBuff += "Pain lances up your " + pc.assholeDescript() + " as your " + pc.tailsDescript() + " shift";
+					if(pc.tailCount == 1) textBuff += "s";
 					textBuff += " and morph";
 					textBuff += "s";
 					textBuff += " disgustingly. With one last wave of pain, ";
-					if(target.tailCount == 1) textBuff += "it splits";
+					if(pc.tailCount == 1) textBuff += "it splits";
 					else textBuff += "they split";
 					textBuff += " into hundreds of tiny filaments, transforming into a horsetail.";
 				}
 				textBuff += " <b>You now have a horse-tail.</b>", false;
-				target.clearTailFlags();
-				target.addTailFlag(GLOBAL.FLAG_LONG);
-				target.tailCount = 1;
-				target.tailType = GLOBAL.TYPE_EQUINE;
+				pc.tailCount = 1;
+				pc.tailType = GLOBAL.TYPE_EQUINE;
+				pc.clearTailFlags();
+				pc.addTailFlag(GLOBAL.FLAG_LONG);
 			}
 			//Doggo
 			else if(targetType == GLOBAL.TYPE_CANINE)
@@ -516,33 +520,28 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 					}
 					else textBuff += "the skin itching as a thick coat of fur grows on it";
 					textBuff += ". Eventually the transformation ends and you see <b>your new canine tail happily wagging behind you.</b>";
-					pc.tailType = GLOBAL.TYPE_CANINE;
-					pc.clearTailFlags();
-					pc.addTailFlag(GLOBAL.FLAG_FURRED);
-					pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
-					pc.addTailFlag(GLOBAL.FLAG_LONG);
 				}
 				else
 				{
 					textBuff += "You feel a painful pinch right on the tip of your tailbone and instinctively reach for it, finding a small bump that wasn’t there earlier. ";
 					if(!pc.isAssExposed()) textBuff += ParseText("You pull down your [pc.lowerGarments] to take a better look at it. ");
 					textBuff += ParseText("The bump grows larger, slowly and painfully extending your spine with new flesh and bone into a long, naked tail. The growth pains are quickly replaced by an intense itch all around your new tail as new fine hairs sprout from your [pc.skinColor] [pc.skinNoun]. They become thicker, covering it in a beautiful coat of fur. You enthusiastically wiggle <b>your [pc.furColor] canine tail back and forth.</b>");
-					pc.tailCount = 1;
-					pc.tailType = GLOBAL.TYPE_CANINE;
-					pc.clearTailFlags();
-					pc.addTailFlag(GLOBAL.FLAG_FURRED);
-					pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
-					pc.addTailFlag(GLOBAL.FLAG_LONG);
 				}
+				pc.tailCount = 1;
+				pc.tailType = GLOBAL.TYPE_CANINE;
+				pc.clearTailFlags();
+				pc.addTailFlag(GLOBAL.FLAG_FURRED);
+				pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+				pc.addTailFlag(GLOBAL.FLAG_LONG);
 			}
 			//Cat
 			else if(targetType == GLOBAL.TYPE_FELINE)
 			{
 				textBuff += ParseText("You feel a mounting pressure on your backside, culminating in what feels like a knot forming just over your [pc.butt]. You give a yelp as the knot bursts, and suddenly flesh is spilling out behind you, forming into a slender tendril. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
 				textBuff += ParseText(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you’ve definitely got a cat’s tail now.</b>");
-				target.tailCount = 1;
-				target.tailType = GLOBAL.TYPE_FELINE;
-				target.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+				pc.tailCount = 1;
+				pc.tailType = GLOBAL.TYPE_FELINE;
+				pc.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
 			}
 		}
 	}
@@ -592,34 +591,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	}
 	if (textBuff.length > 0)
 	{
-		AddLogEvent(textBuff, "passive");
+		AddLogEvent(textBuff, "passive", maxEffectLength);
 	}
 }
 
-/*Codex:
-	Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as "fursecution" in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on <REDACTED>, but it was not identified for six more months thanks to its insidious design.
-This strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.
-Furpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.
-
-How Furpies is Spread
-	Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.
-	As always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)
-
-Asymptomatic Carriers
-	In most hosts, Furpies lies dormant, transforming its infected host into an inadvertent seeder. This was thought a blessing at first, but examination of the disease’s genetic code has revealed that it is simply biding its time. A biological clock built into the virus itself will count down over five to ten years, then switch Furpies to an active state.
-	This is alluded to in Doctor Badger’s manifesto as "The Furpocalypse."
-	If strong steps to eradicate Furpies are not taken, the galaxy may become a lot furrier in the years to come, something some species would welcome with open arms - and others would violently protest.
-
-Symptoms and Effects
-[2 Days] Temporary genital swelling - this is thought to be the beginning of Furpies’ attempts to increase sexual drive.
-[2-4 Days] Increased attraction to other furry species. This typically manifests as a sort of fetish for soft fur. Patients report this to be particularly pleasant.
-[5-6 Days] Growth of animal ears. Furpies Simplex H, C, and D are the main variants, each one tied to a different animal species. Victims with Furpies H gain the features of a horse, while C and D refer to cats and dogs.
-[7-9 Days] Genital transformation. Some patients have declined cures for the disease until after this stage of infection, citing the pleasure of attaining animal genitalia. This is not recommended.
-[8-10 Days] Limbs transform into a hybridization of human and animal features. Luckily Furpies is carefully engineered to momentarily sever nervous connections with the legs and arms to prevent any pain.
-[9 Days] Animal tail growth.
-[10-11 Days] Full body fur. Heat-sensitive races must be careful if they reach this stage, as the extra insulation makes them vulnerable to heat stroke.
-[12-14 Days] Animal-like face. This is the final transformation that the disease will wreak on its hosts, though it remains in the body for long after.
-Furpies remains active in the host’s body indefinitely, making them more susceptible to sexual advances of other furry individuals, and more sexually active in general. Among infected, sexual intercourse occurs roughly 400% more often than galactic norms.
-
-Doctor Badger
-	The UGC is aggressively looking for any sign of the disease’s creator in hopes of finding an effective, easy-to-produce cure. She is considered armed and extremely dangerous. Please call your local Peacekeeper office if you have any information on Doctor Badger’s whereabouts, and DO NOT APPROACH HER PERSONALLY.*/

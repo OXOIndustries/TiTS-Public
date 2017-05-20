@@ -270,7 +270,7 @@ public function chooseStartingRace(race:String = "human"):void {
 		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "black";
-		CodexManager.unlockEntry("Leithan");
+		CodexManager.unlockEntry("Leithans");
 		addButton(0,"Male",setStartingSex,1);
 		addButton(1,"Female",setStartingSex,3);
 	}

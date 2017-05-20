@@ -51,7 +51,7 @@ public function initializeMyrellionRooms():void
 	rooms["601"].northExit = "602";
 	rooms["601"].westExit = "603";
 	rooms["601"].moveMinutes = 2;
-	rooms["601"].runOnEnter = DMZRandoEventsBonus;
+	rooms["601"].runOnEnter = airFieldCentralBonus;
 	rooms["601"].addFlag(GLOBAL.OUTDOOR);
 	rooms["601"].addFlag(GLOBAL.PUBLIC);
 

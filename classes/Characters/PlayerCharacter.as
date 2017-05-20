@@ -786,7 +786,6 @@ package classes.Characters
 				// v3 - libido boost
 				// v4 - tease bonus!
 				createStatusEffect("Heat", 5, 25, 10, 3, false, "LustUp", "Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage", false, 28800, 0xB793C4);
-				libido(1);
 			}
 			// Deep Heat
 			else if(!inDeepHeat())
@@ -800,9 +799,9 @@ package classes.Characters
 				// v3 - libido boost
 				// v4 - tease bonus!
 				setStatusValue("Heat", 1, 10);
-				setStatusValue("Heat", 2, 10);
+				setStatusValue("Heat", 2, 35);
 				setStatusValue("Heat", 3, 25);
-				setStatusValue("Heat", 4, 2);
+				setStatusValue("Heat", 4, 5);
 				setStatusTooltip("Heat", "<b>You are in a deep heat!</b> Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+" + statusEffectv1("Heat") * 100 + "% Fertility\n+" + statusEffectv2("Heat") + " Minimum Lust\n+" + statusEffectv3("Heat") + " Libido\n+" + statusEffectv4("Heat") + " Tease Damage");
 				extendHeat(7 * 24 * 60);
 			}

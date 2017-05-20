@@ -83,7 +83,7 @@ public function meetingEllie():void
 	output(".");
 
 	output("\n\n<i>“Hehe. Like what you see?”</i> she teases, finally putting a stop to her blatant show and crossing her arms under her cow-like bosom. <i>“Don’t be shy - most of the bulls around here sure aren’t!”</i>");
-	applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 10 } ), chars["ELLIE"], pc, "minimal");
 	processTime(4);
 	clearMenu();
 	//[Yes] [Meh] [Don’t Like Girls]

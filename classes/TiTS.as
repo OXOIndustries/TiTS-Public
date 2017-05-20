@@ -371,6 +371,7 @@
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";
+		include "../includes/SSTDs/locofever.as";
 		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;
@@ -472,7 +473,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.50";
+			version = "0.7.52";
 
 			//temporary nonsense variables.
 			temp = 0;
