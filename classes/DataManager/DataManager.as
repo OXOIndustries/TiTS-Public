@@ -46,7 +46,7 @@
 		}
 	
 		// Define the current version of save games.
-		public static const LATEST_SAVE_VERSION:int = 30;
+		public static const LATEST_SAVE_VERSION:int = 31;
 		public static const MINIMUM_SAVE_VERSION:int = 30;
 		
 		private var _autoSaveEnabled:Boolean = false;
@@ -100,6 +100,7 @@
 			var sv27:SaveVersionUpgrader27;
 			var sv28:SaveVersionUpgrader28;
 			var sv29:SaveVersionUpgrader29;
+			var sv30:SaveVersionUpgrader30;
 			
 			// I'm putting this fucking thing here for the same reason.
 			var dbgShield:DBGShield;
@@ -1581,6 +1582,7 @@
 		{
 			if (dataFile.data.version == undefined)
 			{
+				var d:Object = cloneObject(dataFile.data);
 				return false;
 			}
 			else if (dataFile.data.minVersion == undefined) // Special case for V1 saves
