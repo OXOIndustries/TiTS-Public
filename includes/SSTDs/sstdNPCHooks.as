@@ -18,6 +18,25 @@ public function sstdList(filter:String = "all"):Array
 	
 	return nameList;
 };
+// Max duration in case they need to be referenced anywhere.
+public function sstdMaxTime(sstdName:String):Number
+{
+	var maxTime:Number = 0;
+	
+	switch(sstdName)
+	{
+		case "Undetected Furpies":
+		case "Furpies Simplex H":
+		case "Furpies Simplex D":
+		case "Furpies Simplex C":
+		case "Undetected Locofever":
+		case "Locofever":
+			maxTime = 17280;
+			break;
+	}
+	
+	return maxTime;
+};
 
 public function mhengaSSTDChance(arg:Creature):void
 {

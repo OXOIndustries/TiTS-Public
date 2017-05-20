@@ -202,7 +202,7 @@ public function zilBaggedApproach():void {
 	processTime(5);
 	flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] = 1;
 	
-	pc.createStatusEffect("M'henga Xenogen Protest Delay", 0, 0, 0, 0, true, "", "", false, 15);
+	pc.createStatusEffect("Mhen'ga Xenogen Protest Delay", 0, 0, 0, 0, true, "", "", false, 15);
 	
 	clearMenu();
 	addButton(0,"Accept",acceptRepeatZilMission);

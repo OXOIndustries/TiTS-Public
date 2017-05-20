@@ -250,6 +250,12 @@ package classes.UIComponents.ContentModuleComponents
 			var hasEntries:Boolean = false;
 			
 			var children:Array = new Array();
+				
+			var tabs:String = "";
+			for (var l:int = 0; l < level; l++)
+			{
+				tabs += "\t";
+			}
 			
 			for (var key:String in treeBranch)
 			{
@@ -257,11 +263,11 @@ package classes.UIComponents.ContentModuleComponents
 				
 				if (treeBranch[key]["functor"] != undefined)
 				{
-					children.push({index:key, child:buildLeaf(treeBranch, key, level)});
+					children.push({index:key, child:tabs + buildLeaf(treeBranch, key, level)});
 				}
 				else
 				{
-					children.push({index:key, child:(key as String) + "\n", subChildren:buildTextTree(treeBranch[key], level + 1)});
+					children.push({index:key, child:tabs + (key as String) + "\n", subChildren:buildTextTree(treeBranch[key], level + 1)});
 				}
 			}
 			
@@ -290,12 +296,12 @@ package classes.UIComponents.ContentModuleComponents
 		private function buildLeaf(leaf:Object, key:String, level:int = 0):String
 		{
 			var msg:String = "";
-			
+			/*
 			for (var i:int = 0; i < level; i++)
 			{
 				msg += "\t";
 			}
-			
+			*/
 			if (CodexManager.entryUnlocked(key))
 			{
 				if (key == _activeKey)
