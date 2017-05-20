@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "an aegis light machinegun";
 			
 			//Displayed on tooltips during mouseovers
-			tooltip = "A streamlined, clean-looking machine gun. No fancy bells or whistles, designed expressly to shoot a man dead, and shoot him very dead. There’s just the slight issue that the thing looks about four times larger than it should be, what with it having been designed to be wielded by an operator encased in a suit of tank-like power armor. Large enough, almost, to act as a defensive tool.";
+			tooltip = "A military-grade squad automatic weapon, the Aegis is a high-tech solution to front line offense and defense. Equipped with a huge box of ammunition, the user can send a withering hail of bullets down range and generate a hardlight shield around the weapon's muzzle, creating moving point of cover in whatever direction he or she is firing.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot"
 			
@@ -42,19 +42,20 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 12500;
-			this.attack = -3;
+			this.attack = -5;
 			
-			baseDamage.kinetic.damageValue = 25;
+			baseDamage.kinetic.damageValue = 24;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
+			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 0;
+			this.shields = 15;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = -5;
 			this.evasion = 0;
-			this.fortification = 10;
+			this.fortification = 0;
 
 			this.version = _latestVersion;
 		}
