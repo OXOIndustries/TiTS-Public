@@ -1403,6 +1403,12 @@
 
 		public function showBust(... args):void 
 		{
+			if(args.length == 1 && args[0] == "")
+			{
+				hideBust();
+				return;
+			}
+			
 			var argS:String = "";
 			for (var i:int = 0; i < args.length; i++)
 			{
