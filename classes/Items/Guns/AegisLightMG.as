@@ -42,19 +42,19 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 12500;
-			this.attack = -4;
+			this.attack = -3;
 			
 			baseDamage.kinetic.damageValue = 25;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			
-			this.defense = 2;
+			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 0;
+			this.fortification = 10;
 
 			this.version = _latestVersion;
 		}
