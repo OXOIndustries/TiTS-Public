@@ -430,6 +430,7 @@ package classes.GameData
 			a.push(ConcussiveShot);
 			
 			// Multi-Arrow
+			/* Fen note: NOPE. I do not want to go down the road of every weapon having thier own special attacks. If we were going that route, we shouldnt have had classes.
 			MultiArrow = new SingleCombatAttack();
 			MultiArrow.ButtonName = "MultiArrow";
 			MultiArrow.DisabledIfEffectedBy = ["Disarmed"];
@@ -444,7 +445,7 @@ package classes.GameData
 			MultiArrow.TooltipBody = "Fire a small volley of arrows from your hardlight bow against multiple enemies.";
 			MultiArrow.Implementor = MultiArrowImpl;
 			MultiArrow.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
-			a.push(MultiArrow);
+			a.push(MultiArrow);*/
 			
 			// Goozooka
 			GoozookaAttack = new SingleCombatAttack();

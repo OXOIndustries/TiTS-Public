@@ -37,8 +37,8 @@
 			basePrice = 10000;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 10;
-			baseDamage.electric.damageValue = 8;
+			baseDamage.kinetic.damageValue = 7;
+			baseDamage.electric.damageValue = 6;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);

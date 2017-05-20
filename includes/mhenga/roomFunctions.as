@@ -38,7 +38,7 @@ public function xenogenOutsideBlurb():Boolean
 	{
 		output("\n\n<b>Xenogen Biotech is currently open!</b> Office hours are 6:00 to 17:00 standard terran time.");
 	}
-	if (pc.hasStatusEffect("M'henga Xenogen Protestors"))
+	if (pc.hasStatusEffect("Mhen'ga Xenogen Protestors"))
 	{
 		output("\n\nA small crowd of mixed races are visible on the side, passionately protesting Xenogen’s presence. Their synchronous chants and undulating signs can be heard and seen by all passerbys in the area.");
 	}
@@ -769,7 +769,7 @@ public function zilXenogenProtestBonus():Boolean
 	(	flags["SEEN_XENOGEN_PROTEST"] == undefined
 	&&	( flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined )
 	&&	flags["JULIANS_QUEST_DISABLED"] == undefined
-	&&	!pc.hasStatusEffect("M'henga Xenogen Protest Delay")
+	&&	!pc.hasStatusEffect("Mhen'ga Xenogen Protest Delay")
 	) {
 		zilXenogenProtest();
 		return true;
@@ -796,7 +796,7 @@ public function zilXenogenProtest():void
 	
 	processTime(5);
 	
-	pc.createStatusEffect("M'henga Xenogen Protestors", 0, 0, 0, 0, true, "", "", false, (3 * 1440));
+	pc.createStatusEffect("Mhen'ga Xenogen Protestors", 0, 0, 0, 0, true, "", "", false, (3 * 1440));
 	flags["SEEN_XENOGEN_PROTEST"] = 1;
 	
 	addButton(0, "Next", mainGameMenu);

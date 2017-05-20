@@ -27,7 +27,9 @@
 			
 			description = "a hardlight-stringed bow";
 			
-			tooltip = "A popular choice among wealthy sport-hunters across the galaxy, this bow, as the name would suggest, features a hardlight bowstring that is capable of changing tension and draw-strength based on its user’s wishes. Along with its sleek, high-durability design and weightless bow-string, this weapon uses SmartShoot™ arrow tips that project their own shaft and fletching, and can change shape based on the archer’s needs; the bow is even capable of firing  multiple of these “smart arrows” at once.";
+			tooltip = "A popular choice among wealthy sport-hunters across the galaxy, this bow, as the name would suggest, features a hardlight bowstring that is capable of changing tension and draw-strength based on its user’s wishes. Along with its sleek, high-durability design and weightless bow-string, this weapon uses SmartShoot™ arrow tips that project their own shaft and fletching, and can change shape based on the archer’s needs";
+			//Fen: nope - tooltip += "; the bow is even capable of firing  multiple of these “smart arrows” at once";
+			tooltip += ".";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -50,7 +52,7 @@
 			fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);
-			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			//Fen: nope - addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			version = _latestVersion;
 			

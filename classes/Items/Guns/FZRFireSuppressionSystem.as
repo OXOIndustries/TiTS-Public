@@ -26,7 +26,7 @@
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a lightning-slinging shock bow";
+			description = "an FZR Fire Suppression System";
 			
 			tooltip = "Usually found on starships for fighting fires in zero-grav situations, the FZR Fire Suppression System fires a spread of cooling chemicals used to suppress blazes on space stations or ships. Despite its intended use, this tool has often been used as a makeshift freezing weapon. With its large spread, it’s unlikely you’ll miss your target with an FZR in hand, though its large size and cumbersome back-mounted chemical pack may slow you down more than a fair bit.";
 			
