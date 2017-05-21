@@ -112,9 +112,6 @@ public function locofeverProcs(deltaT:uint, maxEffectLength:uint, doOut:Boolean,
 					msg += "\n\nYou barely notice the beep of your Codex warning that <b>you’ve come down with locofever</b> and that your microsurgeons will be busy battling it to keep you from spreading it around. That doesn’t matter. All that matters is that you go out and fuck right <i>now</i>.";
 					
 					CodexManager.unlockEntry("Locofever");
-					
-					effect.storageName = "Locofever";
-					effect.tooltip = "You’ve come down with a case of locofever, setting your mating instincts into overdrive. Your immune boosters should keep you from spreading it around any further.";
 				}
 			}
 			
@@ -122,6 +119,10 @@ public function locofeverProcs(deltaT:uint, maxEffectLength:uint, doOut:Boolean,
 			if(deltaT >= 1440) dayMult = Math.floor(deltaT / 1440);
 			effect.value4 += (1 * dayMult);
 			effect.value1 += (5 * dayMult);
+			
+			effect.storageName = "Locofever";
+			effect.tooltip = ("You’ve come down with a case of locofever, setting your mating instincts into overdrive. Your immune boosters should keep you from spreading it around any further.\n\n+" + effect.value1 + " Libido");
+			effect.iconShade = 0xFF69B4;
 			effect.hidden = false;
 		}
 	}

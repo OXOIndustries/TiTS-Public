@@ -19141,11 +19141,11 @@
 						//FURPIES!
 						if(hasSSTD("Furpies", true)) { /* Already have it! */ }
 						// Furries are immune to furpies.
-						else if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xB793C4);
+						else if(!this.hasFur()) createStatusEffect("Undetected Furpies",0,0,0,0,true,"","Hidden furpies infection! OH NOEZ",false,17280,0xFF69B4);
 						break;
 					case "Undetected Locofever":
 						if(hasSSTD("Locofever", true)) { /* Already have it! */ }
-						else createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xB793C4);
+						else createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xFF69B4);
 						break;
 				}
 			}
