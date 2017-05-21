@@ -114,7 +114,7 @@ public function jamesAppearance():void
 	output("James is a 6\' 4\" android built to look like a human while still being subtly artificial. He has statuesque features that make his apparent age hard to pin down, with a chiseled jawline and smooth, flawless tan, but artificial skin, complemented by his slicked-back white hair and red eyes. His upper lip is obscured by an impressively large waxed handlebar mustache, but he is otherwise clean-shaven. His thick neck is encircled by an antiquated black silk bowtie, tied in large loops.");
 	output("\n\nHe is wide-framed with an incredibly defined musculature");
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(", and you know that he’s strong enough to tear a human’s arm off with minimal effort");
-	else output("that you can’t help but admire");
+	else output(" that you can’t help but admire");
 	output(". Somehow he has managed to squeeze his massive arms into a white long-sleeved formal shirt with black sleeve garters and a red vest. Tied around his waist is a black bar apron that extends to just below his knees, concealing his groin from view. His powerful legs are clad in black slacks tucked into a pair of tall black boots.");
 	output("\n\nHe smiles winningly at you as you regard him, flashing his perfect white teeth.");
 	jamesMenu();
@@ -825,7 +825,7 @@ public function approachSally():void
 			if(pc.isMisch() || pc.isBimbo() || pc.isBro()) output(" hot");
 			output(" cowsluts in your journeys, so you’re not sure.");
 		}
-		output("\n\nThe dusky, busty, lusty woman responds with a girly chuckle, <i>“I thought so.”</i> She lets a hand drift off her dink and turns to you, <i>“You got a name, sweetie?”</i>");
+		output("\n\nThe dusky, busty, lusty woman responds with a girly chuckle, <i>“I thought so.”</i> She lets a hand drift off her drink and turns to you, <i>“You got a name, sweetie?”</i>");
 		output("\n\nOnce again, your thoughts drift between a mirage of sex and what’s actually happening, and the rum-girl seems to take notice, and tries to call you back to the real world with the sound of her voice, and a touch of her hand on your shoulder, <i>“I seem to do this a lot to people, don’t you worry about it. I’m Sally, by the by.”</i>");
 		output("\n\nHer words do the trick, and bring you out of your pheromone induced trance, and you introduce yourself as <i>“[pc.name]”</i> in turn.");
 		output("\n\n<i>“That’s a nice name,”</i> she tells you with a warm, almost parental tone, <i>“So what brought you over to me, then? Looking for free drinks? Some friendly conversation, or something else?”</i> With that last word you see her run a hand across the smooth skin of her breast, down her side, and across her thigh... right between her legs.");
@@ -1067,7 +1067,7 @@ public function suckleFingerSally():void
 	{
 		output(" Meanwhile, your [pc.cocks] discharge");
 		if(pc.cockTotal() == 1) output("s its");
-		else output("their");
+		else output(" their");
 		output(" load of [pc.cum] all over your [pc.chest].");
 	}
 	output(" The cowslut coos happily as she watches you peak with pleasure");
