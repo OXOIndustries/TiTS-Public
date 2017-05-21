@@ -1415,7 +1415,7 @@
 				if (i > 0) argS += ", ";
 				argS += args[i];
 			}
-			//trace("showBust called with args: [" + argS + "]");
+			//trace("showBust called with args: [" + args.join(", ") + "]");
 			if(args.length > 0) _leftSideBar.locationBlock.showBust(args);
 			else _leftSideBar.locationBlock.showBust(args);
 		}
@@ -1427,7 +1427,7 @@
 		
 		public function hideBust():void
 		{
-			trace("hideBust called");
+			//trace("hideBust called");
 			_leftSideBar.locationBlock.hideBust();
 		}
 

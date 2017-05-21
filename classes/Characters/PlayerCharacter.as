@@ -57,6 +57,16 @@ package classes.Characters
 			return 8;
 		}
 		
+		override public function nameDisplay():String
+		{
+			return short;
+		}
+		
+		override public function lustDef():Number
+		{
+			return willpower()/5;
+		}
+		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
@@ -1098,6 +1108,54 @@ package classes.Characters
 				}
 				removeStatusEffect("Wool Removal");
 			}
+		}
+		
+		// Mimbrane jazz.
+		public function mimbranePartDescript(mimType: String = ""): String
+		{
+			var mimbrane:StorageClass = getPerkEffect(mimType);
+			
+			if(mimbrane == null) return ("<b>ERROR: mimbranePartDescript() called for unknown mimbrane “" + mimType + "”</b>");
+			
+			//Mimbrane additions in relation to face.
+			var desc: String = "";
+			
+			//Player character check--not sure if NPCs can get the Mims since the flags are probably global...
+			// 50% trust and hunger-related description
+			if(rand(2) == 0) {
+				if(mimbrane.value1 <= 0) desc += "mutinous";
+				else if(mimbrane.value1 <= 1) desc += "shifty";
+				else if(mimbrane.value1 <= 2) desc += "questionable";
+				else if(mimbrane.value1 <= 3) desc += "befriended";
+				else if(mimbrane.value1 <= 4) desc += "loyal";
+				else desc += "devoted";
+				desc += " and ";
+				if(mimbrane.value2 <= 0) desc += "satiated";
+				else if(mimbrane.value2 <= 1) desc += "well-fed";
+				else if(mimbrane.value2 <= 2) desc += "fed";
+				else if(mimbrane.value2 <= 3) desc += "slightly hungry";
+				else if(mimbrane.value2 <= 4) desc += "hungry";
+				else if(mimbrane.value2 <= 5) desc += "very hungry";
+				else if(mimbrane.value2 <= 6) desc += "starving";
+				else desc += "irritable";
+			}
+			// 50% sweatiness and combat-ready description
+			if (rand(2) == 0) {
+				if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && mimbrane.value1 >= 3) {
+					if (desc != "") desc += ", ";
+					desc += RandomInCollection(["glistening", "moist", "slippery", "self-lathering", "perspiring", "mucid", "sudoriferous", "clammy", "diaphoretic", "sweating"]);
+				}
+				if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && mimbrane.value1 >= 4) {
+					if (desc != "") desc += " and ";
+					desc += RandomInCollection(["lust-inducing", "lust-spraying", "lust-projecting", "lust-spitting"]);
+				}
+			}
+			if (desc != "") desc += " ";
+			// Mimbrane descriptor
+			if (rand(10) > 4) desc += "Mimbrane";
+			else desc += RandomInCollection(["parasite", "epidel", "graft", "second skin", "cum leech"]);
+			
+			return desc;
 		}
 	}
 }

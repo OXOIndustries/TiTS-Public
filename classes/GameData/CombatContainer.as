@@ -4090,7 +4090,7 @@ package classes.GameData
 		public function beginCombat():void
 		{
 			validateContainer();
-			showCombatDescriptions();
+			//showCombatDescriptions();
 			showCombatMenu();
 			showCombatUI(true);
 			userInterface().levelUpOff();

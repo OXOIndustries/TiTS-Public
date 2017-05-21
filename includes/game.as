@@ -383,7 +383,7 @@ public function showCodex():void
 	//addGhostButton(2, "Log", function():void { } );
 	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) 
+	if(flags["EMMY_QUEST"] >= 6)
 	{
 		if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece.");
 		else addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
@@ -611,17 +611,21 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 				//Slave Reaha, random choice: 
 				if(curedReahaInDebt()) 
 				{
-					if(rand(3) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
-					else if(rand(2) == 0) crewMessages += "\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.";
-					else crewMessages += "\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...";
+					crewMessages += RandomInCollection([
+						"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+						"\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.",
+						"\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...",
+					]);
 				}
 				//Freed Reaha, random choice: 
 				else
 				{
-					if(rand(4) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
-					else if(rand(3) == 0) crewMessages += "\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.";
-					else if(rand(2) == 0) crewMessages += "\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.";
-					else crewMessages += "\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.";
+					crewMessages += RandomInCollection([
+						"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+						"\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.",
+						"\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.",
+						"\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.",
+					]);
 				}
 				addButton((count + other) - 1, "Reaha", curedReahaApproach);
 			}
@@ -1231,7 +1235,7 @@ public function flyTo(arg:String):void {
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
-		if (pc.hasItem(new StrangeEgg()) || pc.hasItemInStorage(new StrangeEgg()))
+		if (pc.hasItemByType(StrangeEgg) || pc.hasItemInStorage(new StrangeEgg()))
 		{
 			//PC can preggo with it?
 			//Has an open spot!
@@ -1578,9 +1582,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	moveMinutes += immobilizedUpdate(true);
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
-	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
+	if(pc.hasItemByType(DongDesigner)) moveMinutes *= 2;
 	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
-	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = Math.floor(moveMinutes / 2);
+	if(pc.hasItemByType(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = Math.floor(moveMinutes / 2);
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
