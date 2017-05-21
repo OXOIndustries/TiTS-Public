@@ -29,6 +29,8 @@ public function dreamChances():Boolean
 		}
 		if(venusSubmission() >= 65)
 		{
+			if(pc.hasVagina()) dreams.push(everyLittleInchDream);
+			if(pc.hasCock() && pc.canSelfSuck()) dreams.push(venusAutofellateDream);
 			dreams.push(venusDreamyButtStart);
 		}
 		// On board ship-related dreams
@@ -848,6 +850,67 @@ public function venusDreamsEpilogue2():void
 	output(" is absolutely everywhere.");
 	pc.orgasm();
 	 //if there are status effects involving being covered in cum, put them here! Also like, maybe lust set to 0
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//Completing the Circuit
+//self facial scene, for penis-havers
+public function venusAutofellateDream():void
+{
+	clearOutput();
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
+	author("eSuccubus");
+
+	output("Your hazy brain notices the slightest discomfort, first. Your shoulders and back are on the ground, lower body from the waist down leaned against something so you form an obscene <i>“L”</i> shape with your ");
+	if(pc.hasToes()) output("toes");
+	else output("[pc.feet]");
+	output(" pointed at the ceiling and [pc.cockBiggest] pointed at your face. Hard. Your [pc.butt] is exposed and slick from some spreading nectar. Dripping from the tip of a long ridged vine - prehensile, flitting, and teasing around your rear entrance. It pushes inside, and all is squeezing walls as your butt welcomes it. Your prick begins to drool long streams of pre-ejaculate right onto your face. This is just the start. It feels electric as the obscene butt-searching vegetation does anything but vegetate: it latches right onto your prostate and attaches with a tiny suction cup. Oblivious from the onslaught of white-hot pleasure, you don’t notice a cum-seeking sheath of leaves descending from above until it is wrapped about you. It leaves the tip of your dick free to drool into the open air, but otherwise jerks your shaft like a soft and verdant hand.");
+
+	output("\n\nPrecum oozes down your taut stomach and flows onto the ground below: a sign that you are somehow ‘incomplete’. Your cock agrees, pulsing and waiting, waiting for the thing that will let it cum. It only takes you a moment for your mouth and tongue to volunteer, instinctively forming a welcoming carpet. Suction. That’s what’s missing..");
+
+	output("\n\nWith the help of a supportive green hand on your butt, your body bends impossibly and the tip of your cock enters your mouth. You taste plant nectar drooling from the leaf-onahole as your eyes roll back, and the vine in your ass goes wild with insistent hammering pulses. No vibrator could make you hum so hard, and no other additive could make your own [pc.cum] pulsing down your greedy gullet quite so sweet. Comforting, mind-filling, shock-jolting orgasm makes you uselessly fatigued, and the vine keeping you in place feels more and more natural when it is impossible to fight.");
+
+	output("\n\nSucking yourself is shockingly pleasurable. You never realized how warm your own mouth is. Somehow your entire length pulses down your throat. You are a self contained system for pleasure. Your only need is the vine invading your overfucked rear and asserting dominion over your prostate. The electric buzz keeps you sucking, keeps you in place, and keeps your eyes fixed on the approving smile of the curvy green woman pulling you down underground and into her lair when-");
+
+	output("\n\nYou awaken with a start, somehow having propped yourself against the edge of the bunk in just the right position to deliver a sloppy self-facial blast from your spent and softening [pc.cock]. Your [pc.balls] are still taut against the base muscle, and are churning as though eager to go another round. Pity it was just a dream... surely such delights exist nowhere in the universe.");
+	applyCumSoaked(pc);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+
+}
+
+//Every Inch
+//messy plant nectar fucked-full scene for vagina havers
+public function everyLittleInchDream():void
+{
+	clearOutput();
+	showBust("VENUSPITCHER");
+	showName("VENUS\nPITCHER");
+	author("eSuccubus");
+	output("-The lengthy plant stamen invades your mouth. You are tormenting your cunt and pinching your clit. You can’t help it. The sweet syrup that plant prick is flooding your mouth with is thick and delicious. It makes you hot from the inside out until you sway your hips like a bitch in heat and try to shove more fingers inside your fuckhole. Your pussy is opening like a flower, the engorged lips spreading. Turning your eyes upward only shows you the length of the long green-skinned dick descending from the futa flower above you. Her cheeks are tinged deeper green with arousal - and her breasts are bouncing with each thrust.");
+	output("\n\nShortly after your tongue touched the sticky syrupy coated length, she began to fuck your face. Now you’re in a world where this gorgeous lady is hammering your lips and throat. Drool and her golden nectar leak from the corner of your mouth. Every swallow you make is rewarded with more of it. Her pleasure is obvious and sincere, as her own mouth is hanging dumbly open. You watch her tits bounce around with the ferocity of those thrusts. Your face is surrounded by her thighs every time she hilts deep, and her dick discharges right into your stomach.");
+	output("\n\nYour throat is stretched and your eyes are watering. She shows no signs of letting up, no emotion at all save pleasure. No sound but the slap of her wet thighs and the brief murr of appreciation as your pussy is forming more than droplets, more than streams. A spreading, viscous puddle of needy fucksign has so permeated the ground that it is beginning to pool half an inch deep around your knees and feet.");
+	output("\n\nYou’ve never been so wet.");
+	output("\n\nYou feel a flash of pride at the drool on the ground, there to paint you as a wanton slut for her cock in the eyes of anyone lucky enough to stumble upon this place. Your tongue slides on the bottom of the plant lady’s shaft, getting out of the way so your warm vacuum sealed mouth can take as much veiny viney fuckstick as possible. You give pleasure and she finally grips the sides of your head and holds you deep. No more bobbing, no more swaying, no more fucking. Stillness. Then the taste.");
+	output("\n\nHer shaft is seated to the back of your tongue and it is spurting something divine.");
+	output("\n\nShe groans deep and you feel the cock vibrate. Something oozes from it, and her hips shake against your face with each thrust, spilling precious droplets to paint your chin and neck with a thicker seed. You redouble your suction. You won’t let it escape.");
+	output("\n\nThere is no way to tell when the transition happens. One moment you’re providing oral service to a woman, using an organ that is very much yours - mouth and tongue and all - and then an instant later your throat is a cock sleeve, because there is no way to think or be a person on the other side of that nectar. Nectar, sweeter than before. Your vision blurs. Your head seems to shake. You taste your own thoughts as they turn to liquid syrup on your tongue and flow down into your belly.");
+	output("\n\nYou are no longer fingering your pussy because it is cumming. A white hot nerveless explosion. All mind and soul and your submission to the cock, your worship of it, your drinking in. Your hands have instead reported to their new home: fondling your warm and swelling belly as she distends it with her sublime seed. Swelling out under your hands as if pregnant. You are. Impregnated with the knowledge of your new home - flooded with her cum.");
+	output("\n\n<i>“We have two more holes to fuck.”</i>");
+	output("\n\nTears actually form at the corners of your eyes when she says it. Joy and silence and a blissfully quiet anxiety-free mind. For a moment, her cock leaves your lips - with that huge loud pop of escaping forceful suction and your instinctive suckling motions - just for a moment, and you think maybe you can run.");
+	output("\n\nBut now your pussy and ass are relaxing to welcome her cock, and your weak arms and legs are barely managing to turn you in your own puddle of slick feminine want. Your belly holds you somewhat off the ground, still sweetly full. Your tongue is sticky. More than just your belly has been filled. Your mind is trying to move through nectar, filled right up to the brim of the tank.  She seals your fate.");
+	output("\n\nIf this is what happens when she fucks your belly full, where will you keep your mind when she’s flooded your ass and pussy too? You present them both for her appreciation: face down, ass up.");
+	output("\n\nBefore the thrust you were still just barely pondering what will happen to the few thoughts that haven’t turned to nectar and leaked out of your cunt. That thought liquefies too. Eyes rolled back in your head, nectar dripping from moist lips, spread. Around her. She’s deep inside and your pussy is cumming just from insertion. In the midst of one orgasm, being fucked to another, sweet blank smiles stealing time on your face.");
+	output("\n\nYour clit sings oversensitivity that would make you back away from any normal lover, that would require you to have a breather to just feel pretty and free and alive and safe and like your own person again.");
+	output("\n\nInstead you roll into it, working your oversensitized nub against the top of her cock as your brain turns to nectar and a slow, happy, drugged giggle escapes when she begins pushing your bouncy, cum-inflated belly against the ground on every obscenely squelching thrust.");
+	output("\n\nYour quivering pussy doesn’t stop its overload of torment until the moment you are listening to a beeping alarm clock and grabbing sheets instead of sex-moistened leaves on the forest floor.");
+	output("\n\nAnd tears are in the corners of your eyes again, as you resolve to get dressed once the flood has been cleaned up.");
+
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
