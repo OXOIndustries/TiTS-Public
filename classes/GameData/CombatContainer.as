@@ -2221,7 +2221,7 @@ package classes.GameData
 			if(pc.hasStatusEffect("Blinded") || target.isInvisible())
 			{
 				clearOutput();
-				output("You you can try to tease your foe" + (target.isPlural ? "s" : "") + " into submission...");
+				output("You can try to tease your foe" + (target.isPlural ? "s" : "") + " into submission...");
 				output("\n<b>Unfortunately, you can’t see the enemy clearly enough to do that!</b>");
 				
 				clearMenu();

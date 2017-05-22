@@ -15358,7 +15358,7 @@
 				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [String(hairColor)];
 				else collection = ["green","emerald"];
 			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
-				collection = ["pale yellow","apple-flesh yellow","creamy lemon"];
+				collection = ["pale yellow","blanched yellow","creamy lemon"];
 			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
 				collection = ["creamy yellow", "creamy yellow", "light yellow","muddy golden", "cream colored", "cream colored"];
 			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
