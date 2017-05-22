@@ -50,32 +50,26 @@ public function processEventBuffer():Boolean
 		clearOutput();
 		clearBust();
 		
-		
 		output("<b>" + possessive(pc.short) + " log:</b>");
 		
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
+		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
 		{
 			var tEvent:EventContainer = timestampedEventBuffer[i];
 			
-			var d:int = days;
-			var h:int = hours;
-			var m:int = minutes;
-			
-			if (tEvent.timestamp > 0)
+			var d:int = 0;
+			var h:int = 0;
+			var m:int = tEvent.timestamp;
+			if (m >= 60)
 			{
-				m += tEvent.timestamp;
-				if (m >= 60)
-				{
-					h += m / 60;
-					m = m % 60;
-				}
-				
-				if (h >= 24)
-				{
-					d += h / 24;
-					h = h % 24;
-				}
+				h += m / 60;
+				m = m % 60;
+			}
+			if (h >= 24)
+			{
+				d += h / 24;
+				h = h % 24;
 			}
 			
 			output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? (String("0") + h) : String(h)) + ":" + (m < 10 ? (String("0") + m) : String(m)) + "</b></span>\\\] " + tEvent.msg);
@@ -2131,17 +2125,19 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		seraOnTavrosObedience(totalDays);
 	}
 	
-	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(Math.floor((minutes + deltaT) / 60));
+	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
+	
+	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(totalHours);
 	
 	processMimbranesTime(deltaT, doOut, totalDays);
 	processLeithaCharmTime(deltaT, doOut);
 	processLaneDetoxEvents(deltaT);
 	
 	//Check to see if something changed in body part notices
-	milkMultiplierGainNotificationCheck();
-	milkGainNotes();
-	nutSwellUpdates();
-	immobilizedUpdate();
+	milkMultiplierGainNotificationCheck(deltaT);
+	milkGainNotes(deltaT);
+	nutSwellUpdates(deltaT);
+	immobilizedUpdate(false, deltaT);
 
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck"))

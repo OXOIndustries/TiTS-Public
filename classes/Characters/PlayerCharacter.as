@@ -633,7 +633,7 @@ package classes.Characters
 			
 			if (effect.value1 > 1000 && rand(2) == 0)
 			{
-				AddLogEvent("You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?", "passive", 1440 - (GetGameTimestamp() % 1440));
+				AddLogEvent("You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?", "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 			}
 		}
 		
@@ -823,7 +823,7 @@ package classes.Characters
 				extendHeat(7 * 24 * 60);
 			}
 			
-			if(msg.length > 0) AddLogEvent(msg, "passive", 1440 - (GetGameTimestamp() % 1440));
+			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		private function updateRutPerk(totalDays:uint):void
 		{
@@ -867,7 +867,7 @@ package classes.Characters
 				extendRut(7 * 24 * 60);
 			}
 			
-			if(msg.length > 0) AddLogEvent(msg, "passive", 1440 - (GetGameTimestamp() % 1440));
+			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		private function processOmegaFever(totalDays:uint):void
 		{
