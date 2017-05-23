@@ -1618,7 +1618,7 @@ public function venusPitcherBadEnd4():void
 	else if(pc.cockTotal() > 1) output(StringUtil.upperCase(num2Text(pc.cockTotal())) + " slip onto your [pc.cocks], sized perfectly to hold each of them. The wriggling, sucking sleeves fit as if they were grown specifically to milk you, and they’re going to be so successful, nectar-goddess permitting.");
 	if(pc.totalVaginas() == 1) output(" A turgid tentacle slips off your thigh and buries itself deep into your [pc.vagina] in a single, scintillating thrust, spearing you on your nectar-goddess’s organ. It fills you up so completely, fits your passage so flawlessly, that you can only assume she grew it specifically to tend to your feminine flower.");
 	else if(pc.totalVaginas() > 1) output(" Turgid tentacles slip off your [pc.thighs] and bury themselves deep into your [pc.vaginas] in coordinated thrusts, spearing you on your nectar-goddess’s organs. They fill you up so completely, fit your passage so flawlessly, that you can only assume she grew them specifically to tend to your feminine flowers.");
-	if(pc.canLactate()) output(" Your [pc.nipples] squirt [pc.milk], but that’s okay. There’s something sucking on them. The venus pitcher’s special nectar is so good that makes you spray [pc.milkNoun] harder than you ever have before. You could milk yourself dry just from licking her fragrant cunt. You wouldn’t need a single suck on your sloppy teats.");
+	if(pc.canLactate()) output(" Your [pc.nipples] squirt [pc.milk], but that’s okay. There’s something sucking on them. The venus pitcher’s special nectar is so good that it makes you spray [pc.milkNoun] harder than you ever have before. You could milk yourself dry just from licking her fragrant cunt. You wouldn’t need a single suck on your sloppy teats.");
 
 	output("\n\nStars... oh stars...");
 	if(pc.hasCock())
@@ -1694,7 +1694,7 @@ public function venusPitcherBadEnd6():void
 	author("Fenoxo Fenfen");
 	showBust("VENUS_PITCHER_ELDER");
 	showName("VENUS\nPITCHER");
-	output("The next venus pitcher you encounter is ever more well-developed than the last. Her pendulous tits hang down to her waist when you find her. Inky green nipples sway back and forth with her breath, something she is all too happy to accentuate when she sees your state. Your mind all but shutting down in the face of such erotic mesmerization is no surprise. It’s expected. You sink into her arms, into her pod, into bliss, into <i>your purpose</i>.");
+	output("The next venus pitcher you encounter is even more well-developed than the last. Her pendulous tits hang down to her waist when you find her. Inky green nipples sway back and forth with her breath, something she is all too happy to accentuate when she sees your state. Your mind all but shutting down in the face of such erotic mesmerization is no surprise. It’s expected. You sink into her arms, into her pod, into bliss, into <i>your purpose</i>.");
 	//Cock
 	if(pc.hasCocks())
 	{
