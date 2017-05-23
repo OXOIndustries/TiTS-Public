@@ -208,6 +208,9 @@
 		{
 			var lastButtonIndex:int = 0;
 			
+			// Reset to page 1 if not a lotta buttons.
+			if(lastButton() <= 14) _buttonPage = 1;
+			
 			for (var i:int = (_buttonData.length - 1); i >= 0; i--)
 			{
 				if (_buttonData[i].buttonName != "")
@@ -242,7 +245,7 @@
 		public function resetButtons():void
 		{
 			CheckPages();
-			if (lastButton() < 14) _buttonPage = 1;
+			//if (lastButton() < 14) _buttonPage = 1;
 			
 			var initialIndex:int = (_buttonPage - 1) * 15;
 			
