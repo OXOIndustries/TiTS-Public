@@ -1578,7 +1578,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItemByType(DongDesigner)) moveMinutes *= 2;
 	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
-	if(pc.hasItemByType(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = Math.floor(moveMinutes / 2);
+	if(pc.hasItemByType(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
