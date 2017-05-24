@@ -11832,7 +11832,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			
 			output("\n\nYou try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your asshole is finger fucked with from behind, your forbidden place penetrated. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.");
 			
-			output("\n\n[bess.HeShe] knows exactly where to stimulate you as electrifying electrifying pleasure runs up your spine. [bess.HisHer] fingers are so thoroughly lubricated that your pucker takes them easily, filling you with an intensely pleasurable sensation. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like?");
+			output("\n\n[bess.HeShe] knows exactly where to stimulate you as electrifying pleasure runs up your spine. [bess.HisHer] fingers are so thoroughly lubricated that your pucker takes them easily, filling you with an intensely pleasurable sensation. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like?");
 			
 			output("\n\n<i>“Let’s move things further, shall we, "+ bessSexName() +"? I will allow your lowly cock to fuck my ass - be thankful.”</i>");
 			

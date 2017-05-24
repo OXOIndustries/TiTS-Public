@@ -4667,7 +4667,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						output2("\n<b>* [embry.name], Sexual Organs:</b> " + listCharGenitals("EMBRY"));
 						output2("\n<b>* [embry.name], Sexual History:</b> Sexed her");
-						if(flags["EMBRY_VAGINAL_SEX_UNLOCKED"] != undefined) output2(", Fucked her pussy");
+						if(!chars["EMBRY"].vaginalVirgin) output2(", Fucked her pussy");
 						if(flags["GOTTEN_TO_FUCK_EMBRYBUTT"] != undefined) output2(", Fucked her ass");
 						if(flags["GOTTEN_AN_EMBRY_BJ"] != undefined) output2(", She sucked your dick");
 						if(flags["GOTTEN_CUNNILINGUS_FROM_EMBRY"] != undefined) output2(", She ate your pussy");

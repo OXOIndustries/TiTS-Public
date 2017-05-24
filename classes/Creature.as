@@ -9099,6 +9099,7 @@
 			return lactationQ(arg);
 		}
 		public function lactationQ(arg:int = -1): Number {
+			if (hasPerk("Fixed MilkQ")) return perkv1("Fixed MilkQ");
 			var total:Number = 0;
 			//So much easier now - just a quick lookup.
 			//Arg -1 = amount from biggest tits.
@@ -9525,6 +9526,7 @@
 		//Placeholder
 		public function girlCumQ(arg: int = -1):Number
 		{
+			if (hasPerk("Fixed GirlCumQ")) return perkv1("Fixed GirlCumQ");
 			if (!hasVagina()) return 0;
 			var quantity: Number = 0;
 			// lust - 50% = normal output. 0 = 75%. 100 = +125% output.

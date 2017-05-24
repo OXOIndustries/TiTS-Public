@@ -22,7 +22,9 @@ public function dickTailFuck():void
 	if(pc.hasVagina()) output("your waiting snatch");
 	else output("your waiting pucker");
 	output(". The riotous member doesn’t seem to care much for foreplay, immediately leaping out of your hands and pressing its head against your exposed hole.");
-
+	
+	var pp:PregnancyPlaceholder = getParasiticPregContainer(pc.tailType);
+	
 	//hasVagina:
 	if(pc.hasVagina()) 
 	{
@@ -54,7 +56,7 @@ public function dickTailFuck():void
 
 		output("\n\nYou’re left with your [pc.chest] heaving and a cunt filled to the brim with cum. Propping yourself up on your elbows, you witness your [pc.tailCock] making it’s way out of your sodden hole, covered in [pc.girlCumNoun]. You reach forward and give your prehensile friend an appreciative little stroke, smiling as you do so. Nothing left to do now besides clean up and get ready to move again.");
 		//This variation should have a chance to trigger a cockvine pregnancy.
-		pc.loadInCunt(chars["COCKVINE"], vIdx);
+		pc.loadInCunt(pp, vIdx);
 	}
 	//noVagina:
 	else
@@ -81,7 +83,7 @@ public function dickTailFuck():void
 		output(". Your climax continues for quite some time as you’re pumped full of warm cum, shuddering with pleasure as you wind down.");
 
 		output("\n\nYou’re left with your [pc.chest] heaving and a butt filled to the brim with cum. Propping yourself up on your elbows, you witness your [pc.tailCock] making it’s way out of your sodden hole. You reach forward and give your prehensile friend an appreciative little stroke, smiling as you do so. Nothing left to do now besides clean up and get ready to move again.");
-		pc.loadInAss(chars["COCKVINE"]);
+		pc.loadInAss(pp);
 	}
 	processTime(23);
 	pc.orgasm();
@@ -161,7 +163,10 @@ public function tailSucking():void
 	}
 	//Cock takes priority over vagina.
 	output("\n\nAs you wind down, your tailcock retracts itself from your mouth, leaving your jaw relatively sore. You cough up a bit of your [pc.tail]’s cum as it finishes its exodus. Smiling at your happily relieved tail, you lick your spunk-covered lips, stroking the appendage appreciatively as it returns to its position behind you. Nothing left to do now besides clean up and get ready to move again.");
-	pc.loadInMouth(chars["COCKVINE"]);
+	
+	var pp:PregnancyPlaceholder = getParasiticPregContainer(pc.tailType);
+	
+	pc.loadInMouth(pp);
 	processTime(15);
 	pc.orgasm();
 	clearMenu();
