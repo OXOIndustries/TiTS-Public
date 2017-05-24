@@ -4066,3 +4066,315 @@ public function laquineEarsFemaleWrapper():void
 {
 	LaquineEars.bunnyGirlFapScene(pc,true);
 }
+
+//Cockvine Fun
+//Self-Suck (Cumcow version)
+ 
+//requires tailcock + cock or vagina.
+public function cumCowCockvineSuck():void
+{
+	clearOutput();
+	showName("SNACK\nTIME");
+	author("Nonesuch");
+	output("Lust radiates through you, making you feel... hungry, more than anything. Hungry for hard, hot thickness filling your wet holes, swelling up and releasing delicious, syrupy cum deep within you, making your synapses light up like a festive market. You lick your [pc.lips]. One DAMN what you’d do for a good, hard dicking right now!");
+	output("\n\nYou blink, realising that whilst you were lost in your needy reverie, your [pc.cockTail] has writhed its way upwards, and is now bobbing and weaving in front of your face, a cobra to your face’s charm. Although who’s really being hypnotized here? A long, woozy groan escapes you, mouth slightly ajar, transfixed by the thing’s movements. Its lust is your own, and you can feel the red hot urge course up it in ever greater surges, desperate to shove itself into the nearest wet hole. And it’s so wonderfully thick and juicy-looking, moistness forming at its engorging tip...");
+	output("\n\nThe appendage suddenly springs forward, driven utterly by its own desires, planting itself straight into your mouth. You’re startled for a single moment... and then the sheer <i>rightness</i> of it takes over, and you take a grip of the warm, writhing stem, stroking it as you welcome its verdant, horny meat between your lips, dragging at the shaft with your [pc.tongue].");
+	output("\n\nYour [pc.tailCock] writhes of its own accord within your mouth: short, little thrusts that make you whimper, pleasure radiating through your tail");
+	if(pc.hasCock()) output(", [pc.eachCock] quickly stiffening");
+	if(pc.isHerm()) output(" and ");
+	else if(pc.hasVagina()) output(", ");
+	if(pc.hasVagina()) output("[pc.eachVagina] growing ever wetter");
+	output(", eager to join in on the fun. Your eyes flutter shut as all thought is blotted out by sunny pleasure, slathering your [pc.tail]’s head with saliva as it thrusts in and out of your mouth, pounding your willing orifice.");
+
+	output("\n\nOne of your [pc.hands] drifts down to your ");
+	if(pc.hasCock()) output("rigid member");
+	if(pc.totalCocks() > 1) output("s");
+	else if(pc.hasVagina())
+	{
+		output("waiting quim");
+		if(pc.totalVaginas() > 1) output("s");
+	}
+	output(" whilst your tail ravishes your mouth, bulging your cheeks with each thrust.");
+
+	//hasCock:
+	if(pc.hasCock())
+	{
+		output("\n\nYour [pc.cockBiggest] is straining towards your face, filled with hot indignation ");
+		if(pc.canAutoFellate()) output("that some usurper has taken its rightful place deep inside your mouth");
+		else output("that some noodly usurper is receiving intense gratification and not it");
+		output(". You comfortingly grasp it by the shaft and begin to pump it, assuring it with every grind of your wrist that it’s still number one in your self-addicted world. You moan around your [pc.cockTail]’s girth as intense pleasure grips you in twin places. Every slutty whimper and roll of your tongue excites your tail-cock even further, causing it to thrust faster and faster, trying to force its way further down your throat.");
+		output("\n\nWithin a few moments that’s exactly what it’s doing, gloriously miring itself deep in your gullet with one assured pump after another, the intense sensation of being roughly used like this and the joy of doing it both yours to enjoy. You are rendered utterly insensate with pleasure, eyes crossing, ears filled with the utterly obscene ‘schlork’ sounds your [pc.cockTail] draws out of you, incapable of doing anything else but whip your hand up and down your [pc.cockBiggest].");
+		output("\n\nYour hand speeds up in a desperate attempt to keep tempo with your eagerly pistoning tailcock, stroking your tool as beads of warm pre roll down onto your fingers");
+		if(pc.hasKnot(pc.biggestCockIndex())) output(", teasing your [pc.knotBiggest] with each downstroke");
+		output(". As you release another muffled, quivering groan, you feel your impending orgasm start to build, a familiar, uncomfortable sensation growing in your loins... and your tail. Both your hand and tail pick up their pace, rushing towards a joint climax.");
+		output("\n\nYou let loose a feral cry of pleasure, your body tensing in orgasm, [pc.cocks] spasming as you spray your load all over");
+		//ifShip:
+		if(currentLocation == "SHIP INTERIOR") output(" your ship");
+		else output(" the ground");
+		output(" until your [pc.cum] starts to run down your hand, still stroking your cock as your climax reaches its crest. At the same time, your [pc.tailCock] starts to empty itself into your waiting maw, pleasure rocketing through your body, cum running down your throat as it continues to thrust in and out of your mouth, its seed spilling out onto your cheeks and trickling down your chin.");
+	}
+	//hasVagina:
+	else
+	{
+		output("\n\nAn eager finger delves into your [pc.vagina], slowly working its way in and out of your snatch before a second finger joins it, gently moaning around the wriggling tail stuck in between your [pc.lips] as you schlick yourself silly. Your pussy doesn’t want your fingers, it wants some of the dick cramming itself into the tight suck of your mouth, and the scrabbling of your digits is desperate, the keening frustration of it boiling over. Every slutty whimper and roll of your tongue excites your tail-cock even further, causing it to thrust faster and faster, trying to force its way further down your throat.");
+		output("\n\nWithin a few moments that’s exactly what it’s doing, gloriously miring itself deep in your gullet with one assured pump after another, the intense sensation of being roughly used like this and the joy of doing it both yours to enjoy. You are rendered utterly insensate with pleasure, eyes crossing, ears filled with the utterly obscene ‘schlork’ sounds your [pc.cockTail] draws out of you, incapable of doing anything else but reach your questing, flicking fingers deep into your [pc.vagina].");
+		output("\n\nYou coat your fingers in [pc.girlCum] as you lavish your tail with oral affections. As you release another muffled, quivering groan, you feel your impending orgasm start to build, a familiar, uncomfortable sensation growing in your loins... and your tail. Both your hand and tail pick up their pace, rushing towards a joint climax.");
+		output("\n\nYou let loose a feral cry of pleasure, your body tensing in orgasm, [pc.vagina] clamping down on your fingers as it spasms, ");
+		if(pc.isSquirter()) output("spraying the inside of your thighs");
+		else output("emitting a dribble of");
+		output(" [pc.girlCum], moaning all the while. At the same time, your [pc.tailCock] starts to empty itself into your waiting maw, pleasure rocketing through your body, cum running down your throat as it continues to thrust in and out of your mouth, its seed spilling out onto your cheeks and trickling down your chin.");
+	}
+	//Cock takes priority over vagina.
+	output("\n\nYour tailcock retracts itself from your mouth once it has spurted its last, leaving your jaw relatively sore. You cough up a bit of your [pc.tail]’s cum as it finishes its exodus, but you smile brightly at your happily relieved appendage, giving it a luscious lick and kiss as it recedes. What a lucky [pc.girl] you are, to have such a long, bendy and energetic friend with you on your adventures. It can blow a thick, delicious load into your mouth whenever you like! The taste of fresh, warm cum glows on your taste buds and permeates your whole body with a sense of deepest satisfaction, and you get ready to continue on feeling nothing but happiness.");
+
+	processTime(22);
+	pc.loadInMouth(pc);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//Cockwing Orgy
+//* Can auto-proc if PC is cumcow or if Willpower < 25% , Libido > 50% and Lust > 70
+//* Otherwise a masturbation option.
+//Voluntary Masturbation
+//[Tentacles]
+//Requirements: Vag, Cockwings (any number/variety)
+//Tooltip: Get frisky with those delightful appendages of yours.
+
+public function cockwingCumcowOrgy():void
+{
+	clearOutput();
+	showName("COCKWING\nORGY");
+	author("Nonesuch");
+	var plant:Boolean = (pc.wingType == GLOBAL.TYPE_COCKVINE);
+	var count:Number = pc.wingCount;
+	output("The more turned on you become the more the buds on your back dilate, tight heat pulsating through the obscene tentacles they head, impatient to burst free and do as they may. You sigh as you let it happen, lust inflating their thick mass and craning them outwards, " + num2Text(pc.wingCount) + " ");
+	if(plant) output("vine-cocks");
+	else output("prehensile demon tentacles");
+	output(" waving and bobbing around you. Simmering with arousal you clasp one and slide your grip down it, cooing as it bulges in response, desire to thrust home into a wet hole and thoroughly fertilize it thrumming all the way down its shaft.");
+
+	output("\n\nAnd you have ");
+	if(pc.wingCount > 1) output("more than ");
+	output("one of those. You spread your [pc.thighs] and drift your fingers between them, curling your fingers into ");
+	if(pc.totalVaginas() == 1) output("your [pc.vagina]");
+	else if(pc.totalVaginas() > 1)
+	{
+		output("your first, moist, needy hole, then ");
+		if(pc.totalVaginas() == 2) output("the other");
+		else output("another");
+	}
+	output(", until the heat you’ve been feeling is coursing through ");
+	if(pc.totalVaginas() == 1) output("it");
+	else output("them");
+	output(", both masculine and feminine urge gripping your senses.");
+
+	output("\n\nIt’s a heady, enthralling mix, more than any single human was supposed to experience really, and it’s without any mental instruction at all that one of your tentacle cocks suddenly rears back behind you and eagerly thrusts itself between your fingers, tunnelling eagerly towards your [pc.vagina 0]. You gasp, and then coo as the thick, blunt tip packs into your hole, spreading it wide and then thrusting home deep. You feel the joy of penetration and being penetrated, rippling through you from both ends, and it’s mindblowingly good. Without a second’s thought you abandon what control you have over your overburdened carnal desires, groaning with intense joy as your other tentacle-cocks writhe gleefully in response, batting at your [pc.skinFurScales] as they impatiently seek orifices of their own.");
+	pc.cuntChange(0,pc.tailCockVolume());
+
+	if(pc.totalVaginas() == 2 && count >= 2)
+	{
+		output("\n\nYou grip one of them and helpfully guide it between your [pc.legs], pressing it against the lips of your [pc.vagina 1], feverishly rubbing it as you do. It needs zero further invitation to thrust its mass beyond your sensitive hole, boring its hot, smoothness deep inside you.");
+		pc.cuntChange(1,pc.tailCockVolume());
+	}
+	else if(pc.totalVaginas() > 2 && count >= 2)
+	{
+		output("\n\nYou cram as many of them into your hands as you can and greedily thrust them between your [pc.legs], helpfully introducing them to the bouquet of tight, dewy-petalled flowers you’ve got down there. They bump against each other and ride over [pc.eachClit] in their impatience to get at them, and within moments [pc.eachVagina] are packed with hot, smooth ");
+		if(plant) output("plant-cock");
+		else output("demon tentacles");
+		output(", shivers of almost unbearable pleasure spreading through you.");
+		pc.cuntChange(1,pc.tailCockVolume());
+		pc.cuntChange(2,pc.tailCockVolume());
+	}
+	if(count > pc.totalVaginas())
+	{
+		output("It doesn’t take long for one of them to slide between the cheeks of your [pc.ass], pressing at the warm, sensitive pucker it finds in there. You groan and urge it on, sensation darting up your spine as you work yourself loose and finally slot home, intense gratification coursing up the tentacle cock as it sinks itself into the incredibly tight, hot tunnel that is your ass with heavy, happy undulations.");
+		pc.buttChange(0,pc.tailCockVolume());
+	}
+	output("\n\nYou whine with joy, urging your own over-stimulated prehensile dicks on whilst simultaneously enjoying the fruits of being the receiver, the thick, flexible phalluses pressing into each other through the sensitive walls of your fuck-holes. You experimentally tense yourself up around them, wriggle a bit, and almost orgasm on the spot to the pleasure, your tentacle cocks thrashing around deliriously. One DAMN are you a good screw! You open your mouth wider as the almost unbearable pleasure builds... and then flinch as one of your disregarded tentacles, feral with unrequited lust, coils up and thrusts itself beyond your lips. Bull’s eye! You splutter slightly around the beading, ");
+	if(!plant) output("musky");
+	else output("herbal");
+	output(" head bending this way and that inside your mouth excitedly, but manage to compose yourself, and batten your lips and cheeks around it. Pleasure swells wonderfully up it, yet another appendage bathed in the purest self-pleasure you’ve ever known.");
+
+	output("\n\nYou barely last 30 seconds within this wriggling thicket of arching tentacle cocks before reaching a brilliant O, [pc.eachVagina] ");
+	if(!pc.isSquirter()) output("dribbling");
+	else output("squirting");
+	output(" [pc.femcum] richly around your packed hole");
+	if(pc.totalVaginas() > 1) output("s");
+	output(", muffled squeals reverberating up the one deeply embedded in your mouth. Drunk and reckless with pleasure, you stretch backwards against ");
+	if(rooms[currentLocation].hasFlag(GLOBAL.INDOOR)) output("the floor");
+	else output("the ground");
+	output(", opening your [pc.hips] as wide as you can so you can really reach into your tender, dripping nest");
+	if(pc.totalVaginas() > 1) output("s");
+	output(", touch you exactly where it makes electricity nibble into your core, greedy for even greater heights of ecstasy.");
+	if(count >= 5 && pc.hasFuckableNipples() && pc.biggestTitSize() >= 1) 
+	{
+		output("More of your tentacles slither and slap against your [pc.chest], hungry for attention. Glee courses through you as they find your [pc.nipples], plump and parted with arousal, and thrust themselves into their sensitive insides. ");
+		if(pc.isLactating()) output("[pc.milk]");
+		else output("[pc.femcum]");
+		output(" dribbles down your front as they spear deep into your breasts again and again.");
+	}
+
+	output("\n\nYou make the ");
+	if(plant) output("cockvine");
+	else output("demon tentacle");
+	output(" using your mouth pump in further and further, until finally your deep-throating it, thrusting well in and out of your neck. Dully you wonder what anyone that ");
+	if(currentLocation != "SHIP INTERIOR") output("happened upon you");
+	else output("happened to come into your room");
+	output(" right now would make of you, writhing around ");
+	if(currentLocation == "SHIP INTERIOR") output("on your bed");
+	else output("on the floor");
+	output(", salaciously transfixed upon your own over-sexed self...");
+	if(pc.exhibitionism() >= 66) output(" you quiver in delight at the thought, imagination sparking with every delicious thrust of a tentacle, fantasising about drawing others into your tangle of prehensile cocks, every single one of them embedded in a tight, eager hole...");
+	else output(" It’s shameful but you can’t help it, it’s just so Onedamned good...");
+
+	output("\n\nAnother feminine orgasm shudders through you in response to the motion in your crammed ");
+	if(pc.totalVaginas() >= 1) output("pussy");
+	else output("pussies");
+	output(" and ass, sweat pouring down your face and back arching to the mindblowing joy of it, and all the while the pressure in your writhing dicks grows, increasing the intensity with which they plough your quivering holes. Finally and gloriously they unload, hot ");
+	if(plant) output("plant");
+	else output("demon");
+	output(" cum shooting up their length and discharging into every orifice you own. ");
+	if(count <= 6) output("One");
+	else output("Some");
+	output(" of them lose themselves entirely and whip loose like untethered rigging, spraying their seed across your [pc.chest] and [pc.belly]. Meanwhile [pc.eachVagina], your stomach and your colon swell with slimy warmth to every glorious pulse until it’s drooling thickly out of absolutely everything. The one unloading in your mouth pulls slowly outwards when you’ve finally finished sucking yourself dry, dripping wet, musky cum onto your face. It’s completely disgusting and absolutely wonderful.");
+
+	output("\n\nYou spend a long time just ");
+	if(currentLocation != "SHIP INTERIOR") output("lying there");
+	else output("leaning back");
+	output(", eyes vacant, nerves tingling and tentacles flopped around you, blown away by the pleasure you’ve experienced within yourself. Eventually the cooling of your own cum on your skin drives you to shake out of it and clean yourself up, at least as far as you can when ");
+	if(pc.totalVaginas() == 1) output("your pussy");
+	else output("your pussies");
+	if(pc.hasFuckableNipples() && count >= 5 && pc.biggestTitSize() >= 1) output(", boobs");
+	output(", mouth and butt have just received a simultaneous and very messy creaming. You really went to town on yourself!");
+
+	processTime(45);
+	pc.loadInMouth(pc);
+	pc.loadInCunt(pc,0);
+	if(pc.totalVaginas() > 1) pc.loadInCunt(pc,1);
+	if(pc.totalVaginas() > 2) pc.loadInCunt(pc,2);
+	pc.loadInAss(pc);
+	applyCumSoaked(pc);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Involuntary
+//Requirement: Vag, Cockwings, PC is cumcow or if Willpower < 25% , Libido > 50% and Lust > 70
+public function involuntarilyCockwangYourself():void
+{
+	clearOutput();
+	showName("COCKWING\nORGY");
+	author("Nonesuch");
+	var plant:Boolean = (pc.wingType == GLOBAL.TYPE_COCKVINE);
+	var count:Number = pc.wingCount;
+	var inRoom:Boolean = currentLocation == "SHIP INTERIOR";
+	output("Unfettered lust is seething through you like wildfire, and increasingly you lack the will to think about anything but the heat beneath your [pc.skinFurScalesNoun] and the way [pc.eachVagina] beg} for a good, hard filling. It’s profably due to how over-sexed your form has become. You moan slightly as your back tentacles push inexorably outwards, inflated by the roaring flame of your arousal, waving and wagging around you, batting gently against your face and [pc.chest]. You can’t even <i>think</i> when those things are hard and ready, " + num2Text(pc.wingCount) + " thick, sinuous ");
+	if(plant) output("plant");
+	else output("demon");
+	output(" cocks all demanding your attention...");
+
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+	{
+		output("\n\nYou vaguely realize you’re getting a lot of odd stares. The singular and palpably sexual purpose of the tentacles sprouting from your back making passersby either blank and hurry past you as fast as possible, or turn away in embarrassment or disgust.");
+		if(pc.exhibitionism() >= 66) output(" The scene you’re creating only makes it even more dirtily arousing - but still, some sense of propriety (and a wish to go at yourself for as long and hard as possible) urges you to find somewhere quieter.");
+		else output(" Blushing hotly, your attention turns to find somewhere quieter.");
+		output(" Heart thumping in your chest, you hurry to a secluded alleyway, your ");
+		if(!plant) output("demonic fuck-limbs");
+		else output("cockvines");
+		output(" pulsating and thrashing around with unrequited lust all the while. And if someone happens on you whilst you’re in here... Fine. Let them watch. Hopefully they’ll join in.");
+	}
+	output("\n\nWhen they writhe, seized up by their own feral longings, you make no effort to control them any further, and squeal as they take matters into their own metaphorical hands, impatiently wriggling their beading, musky heads towards every wet, enticing orifice upon your body. The strength goes out of your [pc.legs] as one thick, blunt tip packs into your [pc.vagina 0], spreading it wide and then thrusting home deep. You feel the joy of penetration and being penetrated, rippling through you from both ends, and it’s mindblowingly good. You collapse on ");
+	if(inRoom) output("your bed");
+	else output("the ground");
+	output(", overtaken by intense joy as your other tentacle-cocks bat at your [pc.skinFurScales], impatiently seeking holes of their own.");
+	pc.cuntChange(0,pc.tailCockVolume());
+
+	if(pc.totalVaginas() == 2)
+	{
+		output("\n\nYou grip one of them and helpfully guide it between your [pc.legs], pressing it against the lips of your [pc.vagina 1], feverishly rubbing it as you do. It thrusts its mass beyond your sensitive hole, boring its hot, smoothness deep inside you.");
+		pc.cuntChange(1,pc.tailCockVolume());
+	}
+	if(pc.totalVaginas() > 2)
+	{
+		output("\n\nYou cram as many of them into your hands as you can and greedily thrust them between your [pc.legs], helpfully introducing them to the bouquet of tight, dewy-petalled flowers you’ve got down there. They bump against each other and ride over [pc.eachClit] in their impatience to get at them, and within moments [pc.eachVagina] are packed with hot, smooth ");
+		if(plant) output("plant-cock");
+		else output("demon tentacles");
+		output(", shivers of almost unbearable pleasure spreading through you.");
+		pc.cuntChange(1,pc.tailCockVolume());
+		pc.cuntChange(2,pc.tailCockVolume());
+	}
+	output("\n\nIt doesn’t take long for one of them to slide between the cheeks of your [pc.ass], pressing at the warm, sensitive pucker it finds in there. You groan and urge it on, sensation darting up your spine as you work yourself loose and finally slot home, intense gratification coursing up the tentacle cock as it sinks itself into the incredibly tight, hot tunnel that is your ass with heavy, happy undulations.");
+	pc.buttChange(pc.tailCockVolume());
+
+	output("\n\nYou whine with joy, urging your own over-stimulated prehensile dicks on whilst simultaneously enjoying the rich fruits of being the receiver, the thick, flexible phalluses pressing into each other through the sensitive walls of your fuck-holes. You experimentally tense yourself up around them, wriggle a bit, and almost orgasm on the spot to the pleasure, your tentacle cocks thrashing around deliriously. One DAMN are you a good screw! You open your mouth wider as the almost unbearable pleasure builds... and then flinch as one of your disregarded tentacles, feral with unrequited lust, coils up and thrusts itself beyond your lips. Bull’s eye! You splutter slightly around the beading, ");
+	if(!plant) output("musky");
+	else output("herbal");
+	output(" head bending this way and that inside your mouth excitedly, but manage to compose yourself, and batten your lips and cheeks around it. Pleasure swells wonderfully up it, yet another appendage bathed in the purest self-pleasure you’ve ever known.");
+
+	output("\n\nYou barely last 30 seconds within this wriggling thicket of arching tentacle cocks before reaching a brilliant O, [pc.eachVagina] ");
+	if(!pc.isSquirter()) output("dribbling");
+	else output("squirting");
+	output(" [pc.femcum] richly around your packed hole");
+	if(pc.totalVaginas() > 1) output("s");
+	output(", muffled squeals reverberating up the one deeply embedded in your mouth. Drunk and reckless with pleasure, you stretch backwards against ");
+	if(!inRoom) output("the ground");
+	else output("your floor");
+	output(", opening your [pc.hips] as wide as you can so they can really reach into your tender, dripping nest");
+	if(pc.totalVaginas() > 1) output("s");
+	output(", touch you exactly where it makes electricity nibble into your core, greedy for even greater heights of ecstasy.");
+	if(count >= 5 && pc.hasFuckableNipples() && pc.biggestTitSize() >= 1) 
+	{
+		output(" More of your tentacles slither and slap against your [pc.chest], hungry for attention. Glee courses through you as they find your [pc.nipples], plump and parted with arousal, and thrust themselves into their sensitive insides.");
+		if(pc.isLactating()) output(" [pc.Milk]");
+		else output(" [pc.GirlCum]");
+		output(" dribbles down your front as they spear deep into your breasts again and again.");
+	}
+
+	output("\n\nYou make the ");
+	if(plant) output("cockvine");
+	else output("demon tentacle");
+	output(" using your mouth pump in further and further, until finally your deep-throating it, thrusting well in and out of your neck. Dully you wonder what anyone that ");
+	if(!inRoom) output("happened upon you");
+	else output("happened to come into your room");
+	output(" right now would make of you, writhing around ");
+	if(inRoom) output("on your bed");
+	else output("on the floor");
+	output(", salaciously transfixed upon your own over-sexed self...");
+	if(pc.exhibitionism() >= 66) output(" you quiver in delight at the thought, imagination sparking with every delicious thrust of a tentacle, fantasising about drawing others into your tangle of prehensile cocks, every single one of them embedded in a tight, eager hole...");
+	else output(" It’s shameful but you can’t help it, it’s just so Onedamned good...");
+
+	output("\n\nAnother feminine orgasm shudders through you in response to the motion in your crammed ");
+	if(pc.totalVaginas() == 1) output("pussy");
+	else output("pussies");
+	output(" and ass, sweat pouring down your face and back arching to the mindblowing joy of it, and all the while the pressure in your writhing dicks grows, increasing the intensity with which they plough your quivering holes. Finally and gloriously they unload, hot ");
+	if(plant) output("plant");
+	else output("demon");
+	output(" cum shooting up their length and discharging into every orifice you own. ");
+	if(count <= 6) output("One");
+	else output("Some");
+	output(" of them lose themselves entirely and whip loose like untethered rigging, spraying their seed across your [pc.chest] and [pc.belly]. Meanwhile [pc.eachVagina], your stomach and your colon swell with slimy warmth to every glorious pulse until it’s drooling thickly out of absolutely everything. The one unloading in your mouth pulls slowly outwards when you’ve finally finished sucking yourself dry, dripping wet, musky cum onto your face.");
+	//!Cum addiction:
+	if(9999) output(" It’s completely disgusting and absolutely wonderful.");
+	else output(" You lick your [pc.lips], closing your eyes and savouring the thick, musky taste, causing another dose of endorphins to blossom through your body. Cock cream is such a wonderful treat... and now you’ve got # taps of it, ready to stuff you full of it whenever you want.");
+	output("\n\nYou spend a long time just ");
+	if(!inRoom) output("lying there");
+	else output("leaning back");
+	output(", eyes vacant, nerves tingling and tentacles flopped around you, blown away by the pleasure you’ve experienced within yourself. Eventually the cooling of your own cum on your skin drives you to shake out of it and clean yourself up, at least as far as you can when ");
+	if(pc.totalVaginas() == 1) output("your pussy");
+	else output("your pussies");
+	if(count >= 5 && pc.hasFuckableNipples() && pc.biggestTitSize() >= 1) 
+	output(", boobs");
+	output(", mouth and butt have just received a simultaneous and very messy creaming. You really went to town on yourself!");
+	processTime(45);
+	pc.loadInMouth(pc);
+	pc.loadInCunt(pc,0);
+	if(pc.totalVaginas() > 1) pc.loadInCunt(pc,1);
+	if(pc.totalVaginas() > 2) pc.loadInCunt(pc,2);
+	pc.loadInAss(pc);
+	applyCumSoaked(pc);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
