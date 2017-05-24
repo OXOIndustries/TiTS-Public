@@ -29,16 +29,22 @@ public function dreamChances():Boolean
 		}
 		if(venusSubmission() >= 65)
 		{
+			if(pc.hasVagina()) dreams.push(everyLittleInchDream);
+			if(pc.hasCock() && pc.canSelfSuck()) dreams.push(venusAutofellateDream);
 			dreams.push(venusDreamyButtStart);
 		}
 		// On board ship-related dreams
 		if(currentLocation == "SHIP INTERIOR")
 		{
-			//Anno shotgun weddings
-			if(annoIsCrew() && flags["MET_SYRI"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO" && pc.hasCock()) dreams.push(shotgunWeddingDream);
-			//Reaha dreams
+			if(annoIsCrew() && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO" && pc.hasCock())
+			{
+				// Anno shotgun weddings
+				if(flags["MET_SYRI"] != undefined) dreams.push(shotgunWeddingDream);
+				// Ginormous Tiddies
+				if(flags["KAEDE_MET_ON_UVETO"] == 1) dreams.push(annoAndKaedesGinormousTiddies);
+			}
+			// Reaha dreams
 			if(reahaIsCrew() && pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA") dreams.push(reahaDreamSequenceForNerdsByNerdsDesignedByNerdsToArouseNerdsForNerdpletion);
-			if(flags["KAEDE_MET_ON_UVETO"] == 1 && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO" && pc.hasCock()) dreams.push(annoAndKaedesGinormousTiddies);
 		}
 	}
 	if(dreams.length > 0) 
@@ -251,10 +257,10 @@ public function shotgunWeddingDream2():void
 		else output("You notice that your [pc.knot] has already begun to swell, and is so sensitive that casually brushing it as you undressed nearly made you cum on the spot. It must have been the drink; there’s no way you’d be so horny otherwise!");
 		output(" By the time you’re done, Anno has already gotten on all fours, tail high and wagging a million miles an hour. She looks over her shoulder at you, face flushed scarlet and mouth open in a pant as she lets out a begging whine.");
 	}
-	output("\n\nYou drop down to your knees behind Anno, sinking into an ever-expanding lake of ausar fem-lube as you align your [pc.cockBiggest] with her now fully-bloomed pussy. There’s an intricate web of fem-slime hanging between her thighs that you have to push through to claim your prize. With the drink the priest gave you flowing through your system, you practically pounce on Anno, the snowy Ausar yelping as you grab her big hips. Purely on instinct, you guide your [pc.cockNounComplex] to her womanhood, parting the veil of slime with your [p.cockHead]. With a violent thrust of your [pc.hips] and a yelp from Anno, you ram your [pc.cock] into your lover- no, your bitch. That’s all you can think of her as right now. You are feeling more bestial and feral than you have in your entire life, and right now you want to mount your bitch. Now that you’re operating at this level, you realize that all the pussy-eating you did was just prep work for the hard, animalistic fuck you’re about to dish out; now you don’t have to worry about going slow with your new wife- <b>no, your bitch</b>.");
+	output("\n\nYou drop down to your knees behind Anno, sinking into an ever-expanding lake of ausar fem-lube as you align your [pc.cockBiggest] with her now fully-bloomed pussy. There’s an intricate web of fem-slime hanging between her thighs that you have to push through to claim your prize. With the drink the priest gave you flowing through your system, you practically pounce on Anno, the snowy Ausar yelping as you grab her big hips. Purely on instinct, you guide your [pc.cockNounComplex] to her womanhood, parting the veil of slime with your [pc.cockHead]. With a violent thrust of your [pc.hips] and a yelp from Anno, you ram your [pc.cock] into your lover- no, your bitch. That’s all you can think of her as right now. You are feeling more bestial and feral than you have in your entire life, and right now you want to mount your bitch. Now that you’re operating at this level, you realize that all the pussy-eating you did was just prep work for the hard, animalistic fuck you’re about to dish out; now you don’t have to worry about going slow with your new wife- <b>no, your bitch</b>.");
 	output("\n\nWith that single thought consuming your mind, you pull back your [pc.hips] and slam into Anno again, eliciting a pitiful whine from your white-furred canine mate before your [pc.knot] kisses her lower lips with a sloppy, wet squish. She lets out a happy little sound when you grind your bulb against her clit, the sensation overwhelming the both of you. The canid girl’s quim is a constantly spasming, soaking wet channel of pleasure. Her walls slimily wring your manhood from every direction, trying their damndest to suck the cum right out of you. Your [pc.cockSimple] feels like it would melt in the boiling cauldron that is Anno’s slit if you weren’t pistoning it in and out as fast as you could. You pound into her squishy butt so fast that it almost produces one continual sound rather than individual slaps.");
 	output("\n\nYour bitch cums almost immediately. How could she not? She howls as a huge gush of fem-cum squirts out around your [pc.cockNounComplex], and your frenetic penetration sends it splattering everywhere, much of it landing on the priest and Syri. In the brief but frequent instances where you pause to grind your [pc.knot] against Anno’s engorged button, she cums again with a wailing howl, sending more girl-jizz flying. Each time she howls, more of the audience joins in with her, until the whole temple sounds like someone just let a cat loose in a kennel.");
-	output("\n\nThe one time when you take your eyes off Anno to look over, you see that Syri has become the center of a one-woman foursome. She has one of the shotgun-toting ausar who was with her on all fours in front of her as she wildly fucks his ass. At the same time she is fellating the other gunman, and being fucked by the priest, who is guiding her thrusts with his own. Eventually though, the only thing in your mind is the overwhelming desire to fuck your [pc.knot] as deep into your bitch as your can, to mate her as publicly and as hard as possible in order to let everyone else know that she’s yours and yours alone. By this point Anno is nearly unconscious. She is locked in a continuous orgasm, forcing you to hold onto her hips as tight as possible to keep them from jerking fitfully while you breed her. This proves impossible once your bitch-breaker swells to the point that you graze her pleasure buzzer from every angle you attempt, so you simply give up and let her flared hips go.\n\nYou lean down over her, placing your [pc.chest] on her shoulders, [pc.hands] over hers, and your face next to hers in a passionate kiss. In this position you simply let Anno’s hips do what they want, which turns out to be fucking your [pc.knot] into her overwhelmed pussy. After a few battering thrusts, her spasming folds finally relax enough to accept your breeding bulb, and you feel your [p.cockHead] pressing against her dilated cervix, reveling in the sensation as every inch of your shaft is squeezed and basted in Anno’s juices. You break the kiss to let out a howl yourself as your [pc.balls] go");
+	output("\n\nThe one time when you take your eyes off Anno to look over, you see that Syri has become the center of a one-woman foursome. She has one of the shotgun-toting ausar who was with her on all fours in front of her as she wildly fucks his ass. At the same time she is fellating the other gunman, and being fucked by the priest, who is guiding her thrusts with his own. Eventually though, the only thing in your mind is the overwhelming desire to fuck your [pc.knot] as deep into your bitch as your can, to mate her as publicly and as hard as possible in order to let everyone else know that she’s yours and yours alone. By this point Anno is nearly unconscious. She is locked in a continuous orgasm, forcing you to hold onto her hips as tight as possible to keep them from jerking fitfully while you breed her. This proves impossible once your bitch-breaker swells to the point that you graze her pleasure buzzer from every angle you attempt, so you simply give up and let her flared hips go.\n\nYou lean down over her, placing your [pc.chest] on her shoulders, [pc.hands] over hers, and your face next to hers in a passionate kiss. In this position you simply let Anno’s hips do what they want, which turns out to be fucking your [pc.knot] into her overwhelmed pussy. After a few battering thrusts, her spasming folds finally relax enough to accept your breeding bulb, and you feel your [pc.cockHead] pressing against her dilated cervix, reveling in the sensation as every inch of your shaft is squeezed and basted in Anno’s juices. You break the kiss to let out a howl yourself as your [pc.balls] go");
 	if(pc.balls == 1) output("es");
 	output(" into overdrive, dumping their scalding hot payload into your bitch’s defenseless baby-maker.");
 	if(pc.cockTotal() > 1) 
@@ -535,8 +541,6 @@ public function venusDreamsPart3():void
 	
 	if(pc.isBimbo()) venusDreamList.push(venusDreamsPartBimbo);
 	if(pc.biggestTitSize() >= 10) venusDreamList.push(venusDreamsPartFucknormousTits);
-	if(pc.hasVagina()) venusDreamList.push(everyLittleInchDream);
-	if(pc.hasCock() && pc.canSelfSuck()) venusDreamList.push(venusAutofellateDream);
 	
 	clearMenu();
 	if(venusDreamList.length > 0) addButton(0, "Next", venusDreamList[rand(venusDreamList.length)]);
@@ -882,7 +886,7 @@ public function venusAutofellateDream():void
 	applyCumSoaked(pc);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",venusDreamEpilogue);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Every Inch
@@ -929,7 +933,7 @@ public function annoAndKaedesGinormousTiddies():void
 	output("<i>“Ooooh yeah...”</i> you moan, letting your eyes open as a tingle of pleasure rushes through your body, <i>“That’s the stuff.”</i>");
 
 	output("\n\nA groan of bliss escapes your lips as your [pc.eyes] meet Kaede’s blue puppy-dog eyes, your [pc.cock] held firmly amidst her big, soft titties while the puppy sits happily between your legs. ");
-	if(pc.cocks[0].cLength() >= 12) output("Your [p.cockHead] is just barely able to poke out beyond Kaede’s cleavage and right into her mouth, where it’s lavished with oral affections.");
+	if(pc.cocks[0].cLength() >= 12) output("Your [pc.cockHead] is just barely able to poke out beyond Kaede’s cleavage and right into her mouth, where it’s lavished with oral affections.");
 	else output("Your [pc.cockNoun] is well sheathed in Kaede’s cleavage, though a fair amount remain remains uncovered and unloved. Luckily, those excess inches are quickly gobbled up by the eager-to-please halfbreed, taken into her warm, wet embrace of tongue.");
 	output(" Void, she’s gotten really good at these titjobs since she took those breast mods she mentioned, not to mention the hefty pair of G-cups suit her well. Speaking of, Anno is positioned just behind her, guiding her girlfriend’s head onto your cock while sporting a rather similar bust: nice and big and soft and... milky.");
 
@@ -939,7 +943,7 @@ public function annoAndKaedesGinormousTiddies():void
 
 	output("\n\nWith that command given, Anno pulls her hand back and stands up, massive tits wobbling as she straightens herself and flashes you a lustful grin. A moment later she starts to saunter towards you, making sure to have her big, milk-leaking breast jiggle and quake as much as possible until she reaches you. Taking a seat on the arm of your chair, she swings arounds so her bountiful jugs are right in your face, beads of milk already forming on her big, pink nipples, <i>“How about a drink to go with that treat?”</i>");
 	output("\n\nBefore you have a chance to respond, Anno’s already shoving her big, soft titties all up in your [pc.face], which quickly falls into the valley of her cleavage. You let out another groan as your cheeks are caressed by ausar boobflesh, so warm and kneading, but Anno didn’t come here for a motorboating; you reach up and grab at her breasts with an impassioned fervor, immediately giving them a good squeeze once they’re in your hands. She mewls as you have your way with her chest and places a hand on your head, running it through your [pc.hair] and slowly guiding you to one of her stiff teats. You eagerly accept her nipple into your mouth, letting your lips wrap around it and flicking your tongue across it, resulting in a pleasured gasp from Anno. You’re not all that surprised to find her lactatious bounty already dribbling onto your [pc.tongue]; she’s been extra-milky since she’d taken the same mods Kaede had, to the point where you and the fiery-haired shemale need to drain the ausar regularly.");
-	output("\n\nNot wanting any of the ausar’s bounty to go to waste, you begin suckling on Anno’s stiff nipple, drawing more milk out onto your tongue to flow down your throat, and drawing a few lewd moans from the snowy-haired slut as well. With your free hands you continue to grope at the big-breasted girl’s leaky jugs, squeezing and kneading them to draw out more of her bounty, and causing her grip on your head to tighten. All the while, Kaede is still hard at work on your [pc.cock], rubbing her big, soft breasts all over your shaft, keeping it nice and warm in the cleavage of her pillowy chest while her mouth lavishes your [p.cockHead]. Between the caress of your lovers’ combined boobflesh, and the rigourous blowing and mouthful of milk you’re receiving, you find yourself in bliss. You content yourself to sink back in your seat and moan onto Anno’s pink, milk-leaking teats as her red-headed girlfriend brings you closer and closer to orgasm with every shift of her tits and every movement of her tongue. With all that going on and Anno’s near-ceaseless moaning and groaning into your [pc.ear], it’s no surprise you’re already so close to your climax, able to feel hot [pc.cumNoun] pooling in your urethra and you loins burning with the need for relief.");
+	output("\n\nNot wanting any of the ausar’s bounty to go to waste, you begin suckling on Anno’s stiff nipple, drawing more milk out onto your tongue to flow down your throat, and drawing a few lewd moans from the snowy-haired slut as well. With your free hands you continue to grope at the big-breasted girl’s leaky jugs, squeezing and kneading them to draw out more of her bounty, and causing her grip on your head to tighten. All the while, Kaede is still hard at work on your [pc.cock], rubbing her big, soft breasts all over your shaft, keeping it nice and warm in the cleavage of her pillowy chest while her mouth lavishes your [pc.cockHead]. Between the caress of your lovers’ combined boobflesh, and the rigourous blowing and mouthful of milk you’re receiving, you find yourself in bliss. You content yourself to sink back in your seat and moan onto Anno’s pink, milk-leaking teats as her red-headed girlfriend brings you closer and closer to orgasm with every shift of her tits and every movement of her tongue. With all that going on and Anno’s near-ceaseless moaning and groaning into your [pc.ear], it’s no surprise you’re already so close to your climax, able to feel hot [pc.cumNoun] pooling in your urethra and you loins burning with the need for relief.");
 	output("\n\nWell, there’s not much point to holding back any longer; you let your willpower slide away as a low grunt makes its way out your lungs before it’s quickly muffled by the milk-dripping nipple in your mouth, your limbs tensing with the power of your ensuing orgasm. Your [pc.cock] spasms as bliss overtakes your senses, already dispensing its load of [pc.cum] into Kaede’s mouth, her lips still wrapped firmly around your cockhead. You moan and shiver as your climax continues, ");
 	if(pc.cumQ() >= 1000) output("and although you can’t see it, you can hear yours and Anno’s ginger pup whimper as her tummy distends under the pressure of your tremendous load.");
 	else output("listening to your ginger pup gulp down each shot of spunk you have to offer her.");
@@ -948,7 +952,7 @@ public function annoAndKaedesGinormousTiddies():void
 
 	output("\n\nYes... you need more. You can feel your mind crying out for it: <i>“MORE! MORE! MORE! MORE!”</i>");
 	output("\n\nOver and over: <i>“MORE! MORE! MORE...”</i>");
-	output("\n\nEventually, though, all those cries off <i>“More!”</i> begin to change, like your name is being called: <i>“[pc.name]! [pc.name]! [pc.name!]");
+	output("\n\nEventually, though, all those cries off <i>“More!”</i> begin to change, like your name is being called: <i>“[pc.name]! [pc.name]! [pc.name!]”</i>");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",annoKaedeTiddyDrama);
@@ -966,7 +970,7 @@ public function annoKaedeTiddyDrama():void
 	//ifSilly:
 	if(silly) output("\n\nWait! This is not your beautiful house! These are not Anno’s massive milk-leaking breasts!");
 	else output("\n\nYou’re quick to realize none of what you just dreamt actually happened, looking around to see not a single pair of breasts above a D-cup, nor any ginger half-breeds attached to your cock, leaving you with a slight pang of disappointment.");
-	output("\n\n<i>“Oh...”</i> she moans, <i>“You’re finally awake, you’ve been, uh... doing </i>that<i> for a while now.”</i> With that last word she nods her head to get you to look down, and you do so, only to see you’ve covered this pup’s tummy in your [pc.cum], your [p.cockHead] still gently leaking onto her smooth stomach.");
+	output("\n\n<i>“Oh...”</i> she moans, <i>“You’re finally awake, you’ve been, uh... doing </i>that<i> for a while now.”</i> With that last word she nods her head to get you to look down, and you do so, only to see you’ve covered this pup’s tummy in your [pc.cum], your [pc.cockHead] still gently leaking onto her smooth stomach.");
 	output("\n\nYou look back up to the girl’s nipples, still stiff and a bit reddened from your sleepy suckling... and all to succulent for you to resist.");
 
 	if(pc.isNice()) 
