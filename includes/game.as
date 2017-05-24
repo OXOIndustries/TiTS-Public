@@ -798,16 +798,26 @@ public function rest(deltaT:int = -1):void {
 				cumCowAutoFellatio(true, (280 + rand(30) + 1));
 				return;
 			}
+			else if(pc.perkv2("Auto-Autofellatio") <= 0 && rand(3) == 0 && pc.hasTailCock() && pc.hasGenitals()) 
+			{
+				cumCowCockvineSuck();
+				return;
+			}
 			else if(pc.perkv2("Auto-Autofellatio") <= 0 && rand(3) == 0 && pc.canAutoFellate(-1))
 			{
 				cumCowAutoFellatio(true, (280 + rand(30) + 1));
 				return;
 			}
+
 			else if(rand(20) == 0)
 			{
 				autoCocknosisDistraction();
 				postRestLustBonus = pc.libido()/3 + 20;
 			}
+		}
+		if(pc.isCumSlut() && pc.libido() >= 50 && pc.lust() >= 70 && pc.WQ() < 25 && pc.hasVagina() && pc.hasBackGenitals() && rand(4) == 0) 
+		{
+			eventQueue.push(involuntarilyCockwangYourself);
 		}
 		minPass = 230 + rand(20) + 1;
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) {

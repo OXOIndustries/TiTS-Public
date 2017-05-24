@@ -3673,6 +3673,10 @@
 		{
 			return (isTreated() && hasStatusEffect("Cum-Cow"));	
 		}
+		public function isCumSlut():Boolean
+		{
+			return (isCumCow() || hasPerk("Dumb4Cum"));
+		}
 		public function isFauxCow():Boolean
 		{
 			return (isTreated() && 9999 == 0);

@@ -457,12 +457,24 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	}
 	if(pc.hasCockTail() && pc.hasGenitals())
 	{
-		fap = new FapCommandContainer();
-		fap.text = "DicktailSuck";
-		fap.ttHeader = "Dicktail Suck";
-		fap.ttBody = "Suck off your cock-carrying tail.";
-		fap.func = tailSucking;
-		faps.push(fap); 
+		if(pc.isCumCow() && pc.hasTailCock() && pc.hasGenitals()) 
+		{
+			fap = new FapCommandContainer();
+			fap.text = "Tailsuck";
+			fap.ttHeader = "Tailcock Suck";
+			fap.ttBody = "Get some much-needed [pc.cumNoun] from your taildick.";
+			fap.func = cumCowCockvineSuck;
+			faps.push(fap);
+		}
+		else
+		{
+			fap = new FapCommandContainer();
+			fap.text = "DicktailSuck";
+			fap.ttHeader = "Dicktail Suck";
+			fap.ttBody = "Suck off your cock-carrying tail.";
+			fap.func = tailSucking;
+			faps.push(fap);
+		}
 	}
 	// Sera Collar Faps
 	if(wearingSeraCollar())
@@ -483,6 +495,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			fap.func = fapSeraCollarVag;
 			faps.push(fap);
 		}
+	}
+	if(pc.hasVagina() && pc.hasBackGenitals()) 
+	{
+		fap = new FapCommandContainer();
+		fap.text = "TentaOrgy";
+		fap.ttHeader = "TentaOrgy";
+		fap.ttBody = "Get frisky with those delightful appendages of yours.";
+		fap.func = cockwingOrgySluts;
+		faps.push(fap);
 	}
 	return faps;
 }
@@ -4069,7 +4090,6 @@ public function laquineEarsFemaleWrapper():void
 
 //Cockvine Fun
 //Self-Suck (Cumcow version)
- 
 //requires tailcock + cock or vagina.
 public function cumCowCockvineSuck():void
 {
@@ -4133,7 +4153,6 @@ public function cumCowCockvineSuck():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-
 //Cockwing Orgy
 //* Can auto-proc if PC is cumcow or if Willpower < 25% , Libido > 50% and Lust > 70
 //* Otherwise a masturbation option.
@@ -4142,7 +4161,7 @@ public function cumCowCockvineSuck():void
 //Requirements: Vag, Cockwings (any number/variety)
 //Tooltip: Get frisky with those delightful appendages of yours.
 
-public function cockwingCumcowOrgy():void
+public function cockwingOrgySluts():void
 {
 	clearOutput();
 	showName("COCKWING\nORGY");
@@ -4189,7 +4208,7 @@ public function cockwingCumcowOrgy():void
 	if(count > pc.totalVaginas())
 	{
 		output("It doesn’t take long for one of them to slide between the cheeks of your [pc.ass], pressing at the warm, sensitive pucker it finds in there. You groan and urge it on, sensation darting up your spine as you work yourself loose and finally slot home, intense gratification coursing up the tentacle cock as it sinks itself into the incredibly tight, hot tunnel that is your ass with heavy, happy undulations.");
-		pc.buttChange(0,pc.tailCockVolume());
+		pc.buttChange(pc.tailCockVolume());
 	}
 	output("\n\nYou whine with joy, urging your own over-stimulated prehensile dicks on whilst simultaneously enjoying the fruits of being the receiver, the thick, flexible phalluses pressing into each other through the sensitive walls of your fuck-holes. You experimentally tense yourself up around them, wriggle a bit, and almost orgasm on the spot to the pleasure, your tentacle cocks thrashing around deliriously. One DAMN are you a good screw! You open your mouth wider as the almost unbearable pleasure builds... and then flinch as one of your disregarded tentacles, feral with unrequited lust, coils up and thrusts itself beyond your lips. Bull’s eye! You splutter slightly around the beading, ");
 	if(!plant) output("musky");
@@ -4356,7 +4375,7 @@ public function involuntarilyCockwangYourself():void
 	else output("Some");
 	output(" of them lose themselves entirely and whip loose like untethered rigging, spraying their seed across your [pc.chest] and [pc.belly]. Meanwhile [pc.eachVagina], your stomach and your colon swell with slimy warmth to every glorious pulse until it’s drooling thickly out of absolutely everything. The one unloading in your mouth pulls slowly outwards when you’ve finally finished sucking yourself dry, dripping wet, musky cum onto your face.");
 	//!Cum addiction:
-	if(9999) output(" It’s completely disgusting and absolutely wonderful.");
+	if(pc.isCumSlut()) output(" It’s completely disgusting and absolutely wonderful.");
 	else output(" You lick your [pc.lips], closing your eyes and savouring the thick, musky taste, causing another dose of endorphins to blossom through your body. Cock cream is such a wonderful treat... and now you’ve got # taps of it, ready to stuff you full of it whenever you want.");
 	output("\n\nYou spend a long time just ");
 	if(!inRoom) output("lying there");
