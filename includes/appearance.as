@@ -133,9 +133,9 @@ public function appearance(forTarget:Creature):void
 		else if(target.faceType == GLOBAL.TYPE_LAPINE && target.hasMuzzle())
 		{
 			output2("You have a short-muzzled face");
-			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2(" with " + target.skin(true,true,true) + ".");
-			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" covered in " + faceFurScales + ".");
+			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" covered in " + faceFurScales + ".");
 			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) output2(" framed with " + faceFurScales + ".");
+			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) output2(" with " + target.skin(true,true,true) + ".");
 			else output2(".");
 			output2(" The constant twitches of your nose and the length of your incisors gives your visage an obvious bunny-like cuteness.");
 		}
@@ -174,7 +174,7 @@ public function appearance(forTarget:Creature):void
 		}
 		else if(target.faceType == GLOBAL.TYPE_VULPINE) {
 			output2("You have a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
-			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN || !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" Oddly enough, there’s no fur on your animalistic muzzle, just " + faceFurScales + "."); 
+			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" Oddly enough, there’s no fur on your animalistic muzzle, just " + faceFurScales + "."); 
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + faceFurScales + " decorates your muzzle.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" Strangely, " + faceFurScales + " adorn every inch of your animalistic visage.");
 		}

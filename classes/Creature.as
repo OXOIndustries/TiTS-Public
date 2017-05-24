@@ -125,6 +125,7 @@
 		public var isPlural:Boolean = false;
 
 		public var fluidSimulate:Boolean = false;
+		public var lustSimulate:Boolean = false;
 		public var statusSimulate:Boolean = false;
 
 		public var customDodge: String = "";
@@ -18372,46 +18373,49 @@
 		
 		private function updateLustValues(deltaT:uint, doOut:Boolean):void
 		{
-			var lustCap:Number = Math.round(lustMax() * 0.75);
-			
-			if (hasStatusEffect("Egg Addled 2"))
+			if (lustSimulate || this is PlayerCharacter)
 			{
-				lustCap = lustMax();
-			}
-			
-			var prodFactor:Number = 100 / (1920) * ((libido() * 3 + 100) / 100);
-			if (hasPerk("Extra Ardor")) prodFactor *= 2;
-			if (hasStatusEffect("Ludicrously Endowed")) prodFactor *= 1.5;
-			if (hasStatusEffect("Overwhelmingly Endowed")) prodFactor *= 2;
-			if (hasStatusEffect("Red Myr Venom")) prodFactor *= 1.5;
-			if (hasStatusEffect("Egg Addled 1")) prodFactor *= 1.25;
-			if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
-			if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
-			if (hasPerk("Ice Cold")) prodFactor /= 2;
-			
-			var producedLust:Number = deltaT * prodFactor;
-			if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
-			
-			if (lust() + producedLust < lustCap)
-			{
-				lust(producedLust);
-			}
-			else if (lust() > lustCap)
-			{
-				// Optimised slightly- mul/div is more expensive than add/sub, but
-				// we can treat chained mul/divs as adds/subs to the same factor, thus
-				// add up all the shit then operate once.
+				var lustCap:Number = Math.round(lustMax() * 0.75);
 				
-				var reducer:int = 0.25;
+				if (hasStatusEffect("Egg Addled 2"))
+				{
+					lustCap = lustMax();
+				}
 				
-				if (hasPerk("Ice Cold")) reducer -= 0.25;
-				if (hasPerk("Extra Ardor")) reducer += 0.25;
+				var prodFactor:Number = 100 / (1920) * ((libido() * 3 + 100) / 100);
+				if (hasPerk("Extra Ardor")) prodFactor *= 2;
+				if (hasStatusEffect("Ludicrously Endowed")) prodFactor *= 1.5;
+				if (hasStatusEffect("Overwhelmingly Endowed")) prodFactor *= 2;
+				if (hasStatusEffect("Red Myr Venom")) prodFactor *= 1.5;
+				if (hasStatusEffect("Egg Addled 1")) prodFactor *= 1.25;
+				if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
+				if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
+				if (hasPerk("Ice Cold")) prodFactor /= 2;
 				
-				if (reducer >= 0) lust( -producedLust * reducer);
-			}
-			else
-			{
-				lustRaw = lustCap;
+				var producedLust:Number = deltaT * prodFactor;
+				if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
+				
+				if (lust() + producedLust < lustCap)
+				{
+					lust(producedLust);
+				}
+				else if (lust() > lustCap)
+				{
+					// Optimised slightly- mul/div is more expensive than add/sub, but
+					// we can treat chained mul/divs as adds/subs to the same factor, thus
+					// add up all the shit then operate once.
+					
+					var reducer:int = 0.25;
+					
+					if (hasPerk("Ice Cold")) reducer -= 0.25;
+					if (hasPerk("Extra Ardor")) reducer += 0.25;
+					
+					if (reducer >= 0) lust( -producedLust * reducer);
+				}
+				else
+				{
+					lustRaw = lustCap;
+				}
 			}
 		}
 		

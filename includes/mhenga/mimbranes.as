@@ -1623,11 +1623,11 @@ public function mimbraneSleepEvents():void
 	}
 
 	// Reprorduction takes precedence over breathing events
-	if (!mimNoticed && pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv3("Mimbrane Cock") >= 15)
+	if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv3("Mimbrane Cock") >= 15)
 	{
 		outputDone = true;
 
-		if (pc.statusEffectv1("Mimbrane Cock") >= 2 && rand(100) <= mimFreq)
+		if (!mimNoticed && pc.statusEffectv1("Mimbrane Cock") >= 2 && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Noticed Mimbrane Cock Reproduction!");
 
@@ -1668,11 +1668,11 @@ public function mimbraneSleepEvents():void
 		mimbraneReproduce("Mimbrane Cock");
 	}
 
-	if (!mimNoticed && pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv3("Mimbrane Pussy") >= 15)
+	if (pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv3("Mimbrane Pussy") >= 15)
 	{
 		outputDone = true;
 
-		if (pc.statusEffectv1("Mimbrane Pussy") >= 2 && rand(100) <= mimFreq)
+		if (!mimNoticed && pc.statusEffectv1("Mimbrane Pussy") >= 2 && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Noticed Mimbrane Pussy Reproduction!");
 
@@ -1713,11 +1713,11 @@ public function mimbraneSleepEvents():void
 		mimbraneReproduce("Mimbrane Pussy");
 	}
 
-	if (!mimNoticed && pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv3("Mimbrane Ass") >= 15)
+	if (pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv3("Mimbrane Ass") >= 15)
 	{
 		outputDone = true;
 
-		if (pc.statusEffectv1("Mimbrane Ass") >= 2 && rand(100) <= mimFreq)
+		if (!mimNoticed && pc.statusEffectv1("Mimbrane Ass") >= 2 && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Noticed Mimbrane Ass Reproduction!");
 
@@ -1759,11 +1759,11 @@ public function mimbraneSleepEvents():void
 		mimbraneReproduce("Mimbrane Ass");
 	}
 
-	if (!mimNoticed && pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv3("Mimbrane Balls") >= 15)
+	if (pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv3("Mimbrane Balls") >= 15)
 	{
 		outputDone = true;
 
-		if (pc.statusEffectv1("Mimbrane Balls") >= 2 && rand(100) <= mimFreq)
+		if (!mimNoticed && pc.statusEffectv1("Mimbrane Balls") >= 2 && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Noticed Mimbrane Balls Reproduction!");
 
@@ -1803,11 +1803,11 @@ public function mimbraneSleepEvents():void
 		mimbraneReproduce("Mimbrane Balls");
 	}
 
-	if (!mimNoticed && pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv3("Mimbrane Boobs") >= 15)
+	if (pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv3("Mimbrane Boobs") >= 15)
 	{
 		outputDone = true;
 
-		if (pc.statusEffectv1("Mimbrane Boobs") >= 2 && rand(100) <= mimFreq)
+		if (!mimNoticed && pc.statusEffectv1("Mimbrane Boobs") >= 2 && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Noticed Mimbrane Boobs Reproduction!");
 
@@ -1846,7 +1846,7 @@ public function mimbraneSleepEvents():void
 		mimbraneReproduce("Mimbrane Boobs");
 	}
 
-	if (!mimNoticed && ((pc.hasStatusEffect("Mimbrane Hand Left") && pc.statusEffectv3("Mimbrane Hand Left") >= 15) || (pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv3("Mimbrane Hand Right") >= 15)))
+	if ((pc.hasStatusEffect("Mimbrane Hand Left") && pc.statusEffectv3("Mimbrane Hand Left") >= 15) || (pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv3("Mimbrane Hand Right") >= 15))
 	{
 		outputDone = true;
 
@@ -1855,7 +1855,7 @@ public function mimbraneSleepEvents():void
 		if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.statusEffectv1("Mimbrane Hand Left") >= 2) trustedRepro = true;
 		if (pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Right") >= 2) trustedRepro = true;
 
-		if (trustedRepro && rand(100) <= mimFreq)
+		if (!mimNoticed && trustedRepro && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Noticed Mimbrane Hand Reproduction!");
 
@@ -2014,7 +2014,7 @@ public function mimbraneSleepEvents():void
 		if (pc.hasStatusEffect("Mimbrane Hand Right")) mimbraneReproduce("Mimbrane Hand Right");
 	}
 
-	if (!mimNoticed && ((pc.hasStatusEffect("Mimbrane Foot Left") && pc.statusEffectv3("Mimbrane Foot Left") >= 15) || (pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv3("Mimbrane Foot Right") >= 15)))
+	if ((pc.hasStatusEffect("Mimbrane Foot Left") && pc.statusEffectv3("Mimbrane Foot Left") >= 15) || (pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv3("Mimbrane Foot Right") >= 15))
 	{
 		outputDone = true;
 
@@ -2023,7 +2023,7 @@ public function mimbraneSleepEvents():void
 		if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.statusEffectv1("Mimbrane Foot Left") >= 2) trustedRepro = true;
 		if (pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Right") >= 2) trustedRepro = true;
 
-		if (trustedRepro && rand(100) <= mimFreq)
+		if (!mimNoticed && trustedRepro && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Noticed Mimbrane Foot Reproduction!");
 
@@ -2171,11 +2171,11 @@ public function mimbraneSleepEvents():void
 		if (pc.hasStatusEffect("Mimbrane Foot Right")) mimbraneReproduce("Mimbrane Foot Right");
 	}
 
-	if (!mimNoticed && pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv3("Mimbrane Face") >= 15)
+	if (pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv3("Mimbrane Face") >= 15)
 	{
 		outputDone = true;
 
-		if (rand(100) <= mimFreq)
+		if (!mimNoticed && rand(100) <= mimFreq)
 		{
 			if (mimbraneDebug) trace("Special Event Mimbrane Face Reproduction!");
 

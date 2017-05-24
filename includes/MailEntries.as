@@ -449,4 +449,5 @@ public function confirmMailConfig():void
 	(userInterface as GUI).perkDisplayButton.Activate();
 	(userInterface as GUI).dataButton.Activate();
 	(userInterface as GUI).appearanceButton.Activate();
+	(userInterface as GUI).mailsDisplayButton.Activate();
 }

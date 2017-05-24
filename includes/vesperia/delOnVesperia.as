@@ -1124,8 +1124,9 @@ public function delCarverTalkForWorstDel():void
 	{
 		output("You lean across the bar and plant a hand on Del’s shoulder, pointing to the door behind the bar with the hand that doesn’t quickly find itself tweaking one of her little nipples. <i>“");
 		if(pc.isNice()) output("Can I go see your boss?");
-		else if(pc.isMischievous()) output("Mind if I see the big-titted stripper back there?”</i>");
-		else output("I’m gonna hop over and go talk to your boss, kay?”</i>");
+		else if(pc.isMischievous()) output("Mind if I see the big-titted stripper back there?");
+		else output("I’m gonna hop over and go talk to your boss, kay?");
+		output("”</i>");
 
 		output("\n\n<i>“K-kay?”</i> Del squeaks, squirming back as you ");
 		if(pc.tallness < 60) output("haul yourself up onto the counter and jump over");

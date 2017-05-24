@@ -799,7 +799,7 @@ public function riyaFellatioScene():void
 
 	output("\n\nYou have a sneaking suspicion you know what’s next... and after your partner hauls your head back off of her girth, your suspicions are confirmed. <i>“Take a deep breath, ");
 	// PC is human:
-	if(race == "Steele") output("Steele."); 
+	if(race == "human") output("Steele."); 
 	//PC is ausar/huskar/dogmorph: 
 	else if(isDogMorph) output("muttslut.");
 	// PC is kaithrit: 
@@ -813,7 +813,7 @@ public function riyaFellatioScene():void
 	output("\n\nThe stranger outside the stall mumbles a hurried apology followed by quickly departing footsteps. ");
 	//PC exhibitionism score above 33:
 	if(pc.exhibitionism() >= 33) output("The thrill you get knowing that your degeneracy has been seen stays though, sending a rush of heat to your already sweltering loins. ");
-	else output("Your cheeks flush in shame at the realization that you’ve been caught in the act, though that doesn’t stop your [pc.twat] wetting itself with arousal. ");
+	else output("Your cheeks flush in shame at the realization that you’ve been caught in the act, though that doesn’t stop your [pc.vagina] wetting itself with arousal. ");
 	output("The beating your face is taking shows no signs of stopping, your drool glistening up and down the meatrod stuffing your gullet and dribbling down your chin again. Riya seems to be close at least, her grunting taking on a needy tone. You <i>hope</i> she’s close; a fair amount of the air you sucked down earlier has been forced right back out by the feverish facefucking the dickgirl cop is unleashing on you. You can’t even concentrate on jilling yourself off, hands instead gripping Riya’s thighs to steady yourself as she wears your throat out.");
 
 	output("\n\nThere’s no real warning when she cums, beyond her thrusting becoming short and erratic, the dusky woman instinctively burying her member as deeply as possible into your throat before her cock swells within the clinging, wet heat of your bulging neck, balls sliding up your chin as they prepare to dump their cargo into your belly. Good thing, too - you’re starting to run out of air again. Her fingers clutch your ");

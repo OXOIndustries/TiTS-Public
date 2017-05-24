@@ -206,7 +206,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	// Removed the part where Victor is thinking about death and gloriously happy at the same time, it was a mixed focus. I've just neatened things up and spaced things out.
 	output("Victor approaches the lady in question. Without hesitation, she agrees, quite flattered to be chosen to sire his child and heir. The sex is amazing, and with the use of special Tamani-brand fertility agents, pregnancy is assured.");
 	output("\n\nOnly wanting the best for their future child, the two lovebirds head to Victor’s private clinic, eager to make sure only the best genes take hold in his future heir. On route, the mining magnate holds hands with the mother of his child, a knowing grin on both their faces.");
-	output("\n\nWhen they arrive, Victor’s doctor sits him down, while his chosen wife is taken to the medbay. He ducks his holo-glasses in his pocket, looking at the expectant father with a warm smile.");
+	output("\n\nWhen they arrive, Victor’s doctor sits him down, while his chosen wife is taken to the medbay. He tucks his holo-glasses into his coat pocket, looking at the expectant father with a warm smile.");
 	output("\n\n<i>“So, Victor, what sex did you want the child to be?”</i> the doctor asks, <i>“Given that grin, I bet you and the lucky girl even have a name picked out.”</i>");
 	output("\n\n<b>What name and sex would you like your character to have?</b>");
 	
