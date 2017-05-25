@@ -3617,19 +3617,17 @@ package classes.GameData
 				
 				var damIdx:uint = 0;
 				
-				output("\n\nLust Resistances:");
+				output("\n\n<b><u>Lust Resistances</u></b>");
 				var lR:TypeCollection = target.getLustResistances();
 				for (i = 0; i < DamageType.LustDamageTypes.length - 1; i++)
 				{
-					output("\n");
-					
 					damIdx = DamageType.LustDamageTypes[i];
 					var rValue:Number = lR.getType(damIdx).damageValue;
 					
-					output(lR.getType(damIdx).longName + " Resistance: ");
+					output("\n* <b>" + lR.getType(damIdx).longName + " Resistance:</b> ");
 					if (PCBonus + rand(20) + 1 >= target.level * 3 * (150 - target.libido()) / 100)
 					{
-						output(" " + String(Math.round(lR.getType(damIdx).damageValue * 100) / 100) + "%");
+						output(" " + String(Math.round(lR.getType(damIdx).damageValue * 100) / 100) + " %");
 					}
 					else
 					{
@@ -3643,17 +3641,17 @@ package classes.GameData
 			var pcGearEyeballBonus:Number = pc.intelligence() / 2 + (pc.willpower() / (target.willpowerMax() / 5));
 			if (pc.hasPerk("Keen Eyes")) pcGearEyeballBonus = pc.perkv1("Keen Eyes");
 			
-			output("\n\nCasting a glance over " + possessive(target.getCombatName()) + " equipment, you try and get some measure of their combat prowess.");
-			output("\n\nDamage Resistances:");
+			output("\n\nCasting a glance over " + possessive(target.getCombatName()) + " equipment, you try and get some measure of " + target.getCombatPronoun("pa") + " combat prowess.");
+			output("\n\n<b><u>Damage Resistances</u></b>");
 			var tarC:TypeCollection = target.shields() > 0 ? target.getShieldResistances() : target.getHPResistances();
 			for (var i:int = 0; i < DamageType.HPDamageTypes.length - 1; i++)
 			{
 				damIdx = DamageType.HPDamageTypes[i];
-				output("\n" + tarC.getType(damIdx).longName + " Resistance: ");
+				output("\n* <b>" + tarC.getType(damIdx).longName + " Resistance:</b> ");
 				
 				if (pcGearEyeballBonus + rand(20) + 1 >= target.level * 3 * ((target.willpowerMax() * 1.5) - target.willpower()) / target.willpowerMax())
 				{
-					output(String(Math.round(tarC.getType(damIdx).damageValue * 100) / 100) + "%");
+					output(String(Math.round(tarC.getType(damIdx).damageValue * 100) / 100) + " %");
 				}
 				else
 				{
