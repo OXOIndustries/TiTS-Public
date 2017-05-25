@@ -1136,7 +1136,7 @@ public function flyMenu():void {
 	clearOutput();
 	if(!leavePlanetOK())
 	{
-		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined)
+		if(flags["CHECKED_GEAR_AT_OGGY"] == 1)
 		{
 			output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
 			clearMenu();
@@ -1150,10 +1150,9 @@ public function flyMenu():void {
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
-		else 
-		{
-			pc.removeStatusEffect("Disarmed");
-		}
+		
+		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
+		pc.removeStatusEffect("Disarmed");
 	}
 	output("Where do you want to go?");
 	clearMenu();

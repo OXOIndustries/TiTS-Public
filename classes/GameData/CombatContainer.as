@@ -327,7 +327,7 @@ package classes.GameData
 			
 			if (!pc.hasStatusEffect("Tripped") && (hasEnemyOfClass(Queensguard) || hasEnemyOfClass(Taivra)))
 			{
-				if (kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == undefined)
+				if (flags["FREED_DANE_FROM_TAIVRA"] == undefined)
 				{
 					if (pc.statusEffectv1("Cage Distance") != 0) addButton(10, "Cage", function():void {
 						kGAMECLASS.setEnemy(_hostiles[0]);
@@ -831,7 +831,7 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Disarmed") && (!(target is Varmint) && !(hasEnemyOfClass(Varmint))))
+			if (target.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] == undefined)
 			{
 				target.addStatusValue("Disarmed",1,-1);
 				if(target.statusEffectv1("Disarmed") <= 0)
@@ -1268,7 +1268,7 @@ package classes.GameData
 			}
 
 			// attack
-			if (hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
+			if (flags["CHECKED_GEAR_AT_OGGY"] != undefined && hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
 			{
 				addButton(0, "Lasso", selectSimpleAttack, { func: kGAMECLASS.lassoAVarmint }, "Lasso", "Use this lasso you’ve been provided with to properly down this varmint.");
 			}
@@ -1966,6 +1966,13 @@ package classes.GameData
 				if (pc.hasActiveCombatDrone())
 				{
 					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else if(pc.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] != undefined)
+					{
+						if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You are disarmed and can’t communicate with Tam-wolf right now!");
+						else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You are disarmed and can’t communicate with [wulfe.name] right now!");
+						else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You are disarmed and can’t access your " + pc.accessory.longName + " right now!"));
+						else addDisabledButton(bOff, "Drone Target", "Drone Target", "You are disarmed and can’t access your combat drone right now!");
+					}
 					else if(pc.hasTamWolf()) addButton(bOff, "TamWolf", selectDroneTarget, undefined, "Tam-wolf, Go!", ("Have Tam-wolf target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addButton(bOff, pc.accessory.shortName, selectDroneTarget, undefined, "Accessory Target", ("Have your " + pc.accessory.longName + " target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
@@ -4344,7 +4351,7 @@ package classes.GameData
 					output("You perch behind cover wherever you can find it,");
 					if(pc.hasStatusEffect("Disarmed"))
 					{
-						if(hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso")) output(" ready to swing your lasso");
+						if(pc.hasKeyItem("Lasso") && flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" ready to swing your lasso");
 						else output(" readying yourself");
 					}
 					else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
@@ -4419,6 +4426,11 @@ package classes.GameData
 		
 		private function doCombatDrone(droneUser:Creature):void
 		{
+			if(droneUser == pc && pc.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] != undefined)
+			{
+				if(!pc.hasStatusEffect("Varmint Buddy")) return;
+			}
+			
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
 			if (droneUser.hasCombatDrone(true) && !droneUser.hasStatusEffect("Varmint Buddy"))
 			{
