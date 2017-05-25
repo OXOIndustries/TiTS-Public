@@ -748,8 +748,8 @@ public function rideDelCowboy(x:int):void
 	output("\n\nThen again, as you’re leaving you make way for a gang of a half-dozen ausar men going past you into the restroom. Maybe Del’ll be occupied for a while longer...");
 	processTime(24);
 	pc.orgasm();
-	pc.loadInAss(del);
-	pc.loadInAss(del);
+	if(x >= 0) pc.loadInCunt(del, x);
+	else pc.loadInAss(del);
 	timesDelilahSexed(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
