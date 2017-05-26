@@ -3296,7 +3296,7 @@ public function camarillaCodex():void
 public function humphardIncCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_HUMPHARD");
 	outputCodex(header("Humphard Inc."));
 	outputCodex("<b>Company Name:</b> Humphard Incorporated");
 	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor");
@@ -3361,7 +3361,7 @@ public function kihaCorpCodex():void
 public function novaSecuritiesCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_NOVA_SECURITIES");
 	outputCodex(header("Nova Securities"));
 	outputCodex("<b>Company Name:</b> Nova Securities");
 	outputCodex("\n<b>Industry:</b> Private military");
@@ -3399,7 +3399,7 @@ public function reaperCodex():void
 public function rhenWorldCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_RHENWORLD");
 	outputCodex(header("RhenWorld"));
 	outputCodex("<b>Company Name:</b> RhenWorld Stellar Excavations");
 	outputCodex("\n<b>Industry:</b> Mining");
