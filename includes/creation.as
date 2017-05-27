@@ -1259,31 +1259,32 @@ public function chooseHowPCIsRaised():void {
 	output("\n\nVictor pondered on just how he would raise his " + pc.mf("son","daughter") + " and future heir. His first instinct was to pamper [pc.himHer] and give [pc.himHer] a head start on life. Still, that could lead to his " + pc.mf("son","daughter") + " lacking willpower, since [pc.heShe] never would have worked for what [pc.heShe] has.");
 	output("\n\nThe mining magnate could make his heir work for everything. An austere upbringing would certainly result in a strong will, but less of a financial, helping hand. It would be tough on both of them, but it might just pay off.");
 	output("\n\nIf his " + pc.mf("son","daughter") + " spend too much time working or playing, however, [pc.heShe] would have no time for extracurricular activities. If Victor encouraged [pc.himHer] to nurture [pc.hisHer] physical skills, [pc.heShe] would probably grow up strong and well rounded, but not so book-smart. The opposite was also true - if he pushed his child towards study, [pc.heShe] would come out mentally strong, but perhaps physically weaker.");
+	output("\n\nHowever, he could always encourage his heir to follow in his footsteps more than average, and really get to be intimate with those [pc.heShe] knows. Maybe even a little too intimate.");
 	output("\n\nPerhaps the best approach was to practice moderation, and give a little time to everything. Favoring nothing in particular would mean his child wouldn’t specialize in anything, but it would also mean [pc.heShe] wasn’t lacking in anything, either.");
 	output("\n\n<b>What kind of upbringing does your character have?</b>");
 	
 	//[Pampered][Athletic][Bookworm][Austere][Balanced]
 	clearMenu();
-	addButton(0,"Pampered",applyUpbringing,0,"Pampered","You begin with more starting money, but lower willpower.");
-	addButton(1,"Athletic",applyUpbringing,1,"Athletic","You begin with higher physical skills but lower mental ones.");
-	addButton(2,"Bookworm",applyUpbringing,2,"Bookworm","You begin with higher mental skills but lower physical ones.");
-	addButton(3,"Austere",applyUpbringing,3,"Austere","You begin with less starting money, but higher willpower.");
-	addButton(4,"Balanced",applyUpbringing,4,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	addButton(0,"Pampered",applyUpbringing,GLOBAL.UPBRINGING_PAMPERED,"Pampered","You begin with more starting money, but lower willpower.");
+	addButton(1,"Athletic",applyUpbringing,GLOBAL.UPBRINGING_ATHLETIC,"Athletic","You begin with higher physical skills but lower mental ones.");
+	addButton(2,"Bookworm",applyUpbringing,GLOBAL.UPBRINGING_BOOKWORM,"Bookworm","You begin with higher mental skills but lower physical ones.");
+	addButton(3,"Austere",applyUpbringing,GLOBAL.UPBRINGING_AUSTERE,"Austere","You begin with less starting money, but higher willpower.");
+	addButton(4,"Slutty",applyUpbringing,GLOBAL.UPBRINGING_SLUTTY,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	addButton(13,"Balanced",applyUpbringing,GLOBAL.UPBRINGING_BALANCED,"Balanced","You begin well rounded, not specialized or lacking in anything.");
 	addButton(14,"Back",chooseAPhysicalAffinity);
 }
 
 public function applyUpbringing(arg:int = 0):void {
+	flags["PC_UPBRINGING"] = arg;
 	switch(arg)
 	{
 		//Pampered
-		case 0:
+		case GLOBAL.UPBRINGING_PAMPERED:
 			pc.willpowerRaw--;
 			pc.credits += 1000;
-			flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_PAMPERED;
 			break;
 		//Athletic
-		case 1:
-			flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_ATHLETIC;
+		case GLOBAL.UPBRINGING_ATHLETIC:
 			pc.physiqueRaw++;
 			pc.reflexesRaw++;
 			pc.aimRaw++;
@@ -1292,21 +1293,25 @@ public function applyUpbringing(arg:int = 0):void {
 			pc.libidoRaw++;
 			break;
 		//Bookworm
-		case 2:
-			flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_BOOKWORM;
+		case GLOBAL.UPBRINGING_BOOKWORM:
 			pc.physiqueRaw--;
 			pc.reflexesRaw--;
 			pc.intelligenceRaw += 2;
 			break;
 		//Austere
-		case 3:
-			flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_AUSTERE;
+		case GLOBAL.UPBRINGING_AUSTERE:
 			pc.willpowerRaw++;
 			pc.credits -= 250;
 			break;
+		//Slutty
+		case GLOBAL.UPBRINGING_SLUTTY:
+			pc.reflexesRaw++;
+			pc.intelligenceRaw--;
+			pc.libidoRaw += 5;
+			pc.credits += 500;
+			break;
 		//Balanced
-		case 4:
-			flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_BALANCED;
+		case GLOBAL.UPBRINGING_BALANCED:
 			break;
 	}
 
@@ -1342,6 +1347,9 @@ public function chooseAlignment():void {
 			break;
 		case GLOBAL.UPBRINGING_AUSTERE:
 			output(" don’t experience the luxuries one might expect from the heir to Steele Tech. Just like your father, you work for everything you have. Forged from adversity, you learn to value what you’ve earned, rather than expecting it to be given to you for free.");
+			break;
+		case GLOBAL.UPBRINGING_SLUTTY:
+			output("’re always sleeping around, indulging in the pleasures of life. Your suitors greatly enjoyed your abilities in the bedroom, and you found yourself heavily compensated for your work.");
 			break;
 		case GLOBAL.UPBRINGING_BALANCED:
 			output("’re always trying a bit of everything and anything. In the end, you come out quite balanced for it, just as your father had hoped you would.");
@@ -2028,7 +2036,8 @@ public function fixPcUpbringing():void
 	addButton(1,"Athletic",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_ATHLETIC);
 	addButton(2,"Bookworm",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BOOKWORM);
 	addButton(3,"Austere",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_AUSTERE);
-	addButton(4,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
+	addButton(4,"Slutty",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_SLUTTY);
+	addButton(13,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
 }
 
 public function fixPcUpbringingSetNew(upType:uint):void

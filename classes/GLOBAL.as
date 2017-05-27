@@ -11,7 +11,7 @@
 		public static const CLASS_NAMES:Array = [
 			"Smuggler",
 			"Mercenary",
-			"Tech Specialist"
+			"Tech Specialist",
 		];
 		
 		public static const UPBRINGING_PAMPERED:uint						= 0;
@@ -19,14 +19,16 @@
 		public static const UPBRINGING_BOOKWORM:uint						= 2;
 		public static const UPBRINGING_AUSTERE:uint							= 3;
 		public static const UPBRINGING_BALANCED:uint						= 4;
-		public static const MAX_UPBRINGINGS:uint							= 5;
+		public static const UPBRINGING_SLUTTY:uint							= 5;
+		public static const MAX_UPBRINGINGS:uint							= 6;
 		
 		public static const UPBRINGING_NAMES:Array = [
 			"Pampered",
 			"Athletic",
 			"Bookworm",
 			"Austere",
-			"Balanced"
+			"Balanced",
+			"Slutty",
 		];
 
 		//Body Part Flags - used for any body part that supports the new flags system.
