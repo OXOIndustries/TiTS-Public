@@ -163,6 +163,7 @@
 		public static const TYPE_TANUKI:int                                 = 24; //Changed from 18 to 24 soz is the same as kui-tan
 		public static const TYPE_SHARK:int                                  = 19;
 		public static const TYPE_SIREN:int                                  = 20;
+		public static const TYPE_SUULA:int                                  = GLOBAL.TYPE_SIREN;
 		public static const TYPE_DEER:int                                   = 21;
 		public static const TYPE_ANEMONE:int                                = 22;
 		public static const TYPE_TENTACLE:int                               = 23;

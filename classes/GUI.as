@@ -596,6 +596,8 @@
 			
 			// Disable all but the relevant side buttons
 			mainButtonsOnly();
+			
+			if(kGAMECLASS.pc.short.length > 0) addGhostButton(14, "Back", mainMenuToggle);
 		}
 		
 		public function showOptionsModule():void
