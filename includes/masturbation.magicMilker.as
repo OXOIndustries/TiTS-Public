@@ -1,6 +1,4 @@
-﻿import classes.Items.Miscellaneous.MilkBag;
-
-//JoyCo Magic-Milker 7
+﻿//JoyCo Magic-Milker 7
 //Tooltip:
 //"For expectant mammalian mothers or personal use. Please consult an expert in your species' physiology before inducing lactation."
 //The JoyCo Magic Milker 7 looks like little more than an apple-sized sphere with an activation stud and two tiny, clear cups hanging off of metallic tubes. It seems that in order to use it, one nearly needs to hold it near exposed nipples and press the button. The machine will do the rest, even reshaping the cups to accommodate multiple nipples or revealing more in the case of particularly boobilicious users.
@@ -8,7 +6,10 @@
 public function joyCoMagicMilker7Sucks():void
 {
 	clearOutput();
+	showName("MAGIC\nMILKER");
+	
 	var milkProduced:Number = pc.milkQ();
+	
 	output("Grabbing the Magic-Milker 7, a product of JoyCo, in your hand, you can’t help but marvel at the sleek, engineered surface. Two small, clear cups hang down from the glittering orb on umbilicals of polished metal, dangling limply, though you know they’ll spring to life as soon as you push the button on the central ball.");
 	//No Top
 	if(!pc.isChestGarbed()) 
@@ -281,8 +282,11 @@ public function joyCoMagicMilker7Sucks():void
 			pc.orgasm();
 			pc.orgasm();
 		}
+		
+		var bagPops:Boolean = (milkProduced >= 3000 && rand(4) != 0);
+		
 		//Bag Pops Cause Yer Hyper Milky
-		if(milkProduced >= 3000)
+		if(bagPops)
 		{
 			if(pc.hasLipples())
 			{
@@ -299,7 +303,7 @@ public function joyCoMagicMilker7Sucks():void
 		if(!pc.hasFuckableNipples())
 		{
 			output("\n\nThe Magic-Milker 7 tugs your teats until they’re inflamed and sore. Every single drop that you have to give has been taken");
-			if(milkProduced < 3000) output(" and bagged.");
+			if(!bagPops) output(" and bagged.");
 			else output(", bagged, and spilled.");
 			output(" Detecting this, it turns off and withdraws the cup-tipped arms from your [pc.fullChest]. A blue-tinged holographic appears above the orb, reading:\n\n<b>" + Math.round(milkProduced) + " mLs.</b>");
 		}
@@ -322,54 +326,47 @@ public function joyCoMagicMilker7Sucks():void
 			pc.nippleLengthRatio += .2;
 		}
 		//Get Milk Item
-		if(milkProduced < 3000)
+		if(!bagPops)
 		{
 			var foundLootItems:Array = [];
-			foundLootItems.push(new MilkBag());
+			var fluidType:Number = pc.milkType;
 			output("\n\nThe bag seals off, leaving you with");
-			foundLootItems[0].hasRandomProperties = true;
 			if(milkProduced < 700) 
 			{
-				foundLootItems[0].shortName = "S." + GLOBAL.FLUID_TYPE_SHORT[pc.milkType] + "Bag";
-				foundLootItems[0].stackSize = 30;
-				foundLootItems[0].longName = "small bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
-				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Not Very Full";
-				foundLootItems[0].basePrice = 2;
+				foundLootItems.push(new MilkBagS());
+				//foundLootItems[0].shortName = "S." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].longName = "small bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
 			}
 			else if(milkProduced <= 1400) 
 			{
-				foundLootItems[0].shortName = "M." + GLOBAL.FLUID_TYPE_SHORT[pc.milkType] + "Bag";
-				foundLootItems[0].stackSize = 15;
-				foundLootItems[0].longName = "medium bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
-				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Somewhat Full";
-				foundLootItems[0].basePrice = 4;
+				foundLootItems.push(new MilkBagM());
+				//foundLootItems[0].shortName = "M." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].longName = "medium bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
 			}
 			else if(milkProduced <= 2100) 
 			{
-				foundLootItems[0].shortName = "L." + GLOBAL.FLUID_TYPE_SHORT[pc.milkType] + "Bag";
-				foundLootItems[0].stackSize = 10;
-				foundLootItems[0].longName = "large bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
-				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Mostly Full";
-				foundLootItems[0].basePrice = 6;
+				foundLootItems.push(new MilkBagL());
+				//foundLootItems[0].shortName = "L." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].longName = "large bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
 			}
-			else 
+			else
 			{
-				foundLootItems[0].shortName = "X." + GLOBAL.FLUID_TYPE_SHORT[pc.milkType] + "Bag";
-				foundLootItems[0].stackSize = 6;
-				foundLootItems[0].longName = "full bag of " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType].toLowerCase();
-				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Dangerously Full";
-				foundLootItems[0].basePrice = 10;
+				foundLootItems.push(new MilkBagX());
+				//foundLootItems[0].shortName = "X." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].longName = "full bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
 			}
+			foundLootItems[0].fluidType = fluidType;
 			foundLootItems[0].description = indefiniteArticle(foundLootItems[0].longName);
 			
-			TooltipManager.addFullName(foundLootItems[0].shortName, StringUtil.toTitleCase(foundLootItems[0].longName));
-			TooltipManager.addTooltip(foundLootItems[0].shortName, foundLootItems[0].tooltip);
+			//TooltipManager.addFullName(foundLootItems[0].shortName, StringUtil.toTitleCase(foundLootItems[0].longName));
+			//TooltipManager.addTooltip(foundLootItems[0].shortName, foundLootItems[0].tooltip);
 			
 			//Milk items probably just good for selling. Value relatively low for normal milk but honey is worth 2x milk, and maybe other more exotic lactations could also get value boosts?
 			//Set value and adjust descs
 			output(" " + foundLootItems[0].description + ".");
 			output("\n\n");
-			foundLootItems[0].basePrice = fluidValue(pc.milkType, foundLootItems[0].basePrice);
+			foundLootItems[0].basePrice = fluidValue(fluidType, foundLootItems[0].basePrice);
+			foundLootItems[0].hasRandomProperties = true;
 			itemScreen = mainGameMenu;
 			lootScreen = mainGameMenu;
 			useItemFunction = mainGameMenu;
@@ -384,6 +381,24 @@ public function joyCoMagicMilker7Sucks():void
 		processTime(20+rand(5));
 		pc.milked(pc.milkFullness);
 	}
+}
+public function milkBagTooltipBonus(milkBag:MilkBag):String
+{
+	if(milkBag.shortName == "MilkBag") return "";
+	
+	var tooltip:String = "";
+	tooltip += "Fluid Type: " + GLOBAL.FLUID_TYPE_NAMES[milkBag.fluidType];
+	tooltip += "\nFullness: ";
+	switch(milkBag.fullnessLevel)
+	{
+		case 0: tooltip += "Empty"; break;
+		case 1: tooltip += "Not Very Full"; break;
+		case 2: tooltip += "Somewhat Full"; break;
+		case 3: tooltip += "Mostly Full"; break;
+		case 4: tooltip += "Dangerously Full"; break;
+	}
+	tooltip += "\n";
+	return tooltip;
 }
 
 // Alter fluid's total value with a rarity multiplier! (put at the end of fluid calculations.)
