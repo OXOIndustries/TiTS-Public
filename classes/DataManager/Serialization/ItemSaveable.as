@@ -5,6 +5,8 @@
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.describeType;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	/**
 	 * ItemSaveable implements a flag to determine if a given item has randomised properties. Items with the flag set will save and load ALL of their properties to file,
@@ -36,6 +38,7 @@
 		public function set quantity(v:Number):void { _quantity = v; }
 		
 		public var shortName:String = "";
+		public var hasUniqueName:Boolean = false;
 		
 		/**
 		 * Serialization settings. If an item doesn't have random properties defined, we don't have to save/restore all the shit for it every time, so we can just ignore it.
@@ -210,6 +213,12 @@
 					{
 						this[prop] = dataObject[prop];
 					}
+				}
+				if (dataObject.hasOwnProperty("classInstance") && (dataObject['hasUniqueName'] == true))
+				{
+					this['shortName'] = dataObject['shortName'];
+					TooltipManager.addFullName(this['shortName'],StringUtil.toTitleCase(this['longName']))
+					TooltipManager.addTooltip(this['shortName'],this['tooltip']);
 				}
 			}
 			else

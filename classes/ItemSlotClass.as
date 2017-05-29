@@ -10,9 +10,6 @@
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	import classes.kGAMECLASS;
-	import classes.Items.Miscellaneous.MilkBag;
-	
 	public class ItemSlotClass extends ItemSaveable
 	{
 		public var stackSize:int;
@@ -21,6 +18,7 @@
 		
 		//Regular name
 		public var longName:String;
+		
 		
 		//Longass shit, not sure what used for yet.
 		private var _description:String;
@@ -80,6 +78,8 @@
 			this.stackSize = 5;
 			//Used on inventory buttons
 			this.shortName = "";
+			//Unique shortName flag
+			hasUniqueName = false;
 			//Regular name
 			this.longName = "";
 			//Longass shit, not sure what used for yet.
@@ -272,7 +272,6 @@
 				
 				if(!short)
 				{
-					if(this is MilkBag) valueString += kGAMECLASS.milkBagTooltipBonus(this);
 					valueString += ("Item Type: " + GLOBAL.ITEM_TYPE_NAMES[type] + "\n");
 					valueString += ("Quantity: " + quantity + "\n");
 				}

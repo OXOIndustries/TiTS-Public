@@ -329,44 +329,56 @@ public function joyCoMagicMilker7Sucks():void
 		if(!bagPops)
 		{
 			var foundLootItems:Array = [];
+			foundLootItems.push(new MilkBag());
 			var fluidType:Number = pc.milkType;
+			foundLootItems[0].fluidType = fluidType;
 			output("\n\nThe bag seals off, leaving you with");
 			if(milkProduced < 700) 
 			{
-				foundLootItems.push(new MilkBagS());
-				//foundLootItems[0].shortName = "S." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].shortName = "S." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
 				foundLootItems[0].longName = "small bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
+				foundLootItems[0].fullnessLevel = 1;
+				foundLootItems[0].stackSize = 30;
+				foundLootItems[0].basePrice = 2;
 			}
 			else if(milkProduced <= 1400) 
 			{
-				foundLootItems.push(new MilkBagM());
-				//foundLootItems[0].shortName = "M." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].shortName = "M." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
 				foundLootItems[0].longName = "medium bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
+				foundLootItems[0].fullnessLevel = 2;
+				foundLootItems[0].stackSize = 15;
+				foundLootItems[0].basePrice = 4;
 			}
 			else if(milkProduced <= 2100) 
 			{
-				foundLootItems.push(new MilkBagL());
-				//foundLootItems[0].shortName = "L." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].shortName = "L." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
 				foundLootItems[0].longName = "large bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
+				foundLootItems[0].fullnessLevel = 3;
+				foundLootItems[0].stackSize = 10;
+				foundLootItems[0].basePrice = 6;
 			}
 			else
 			{
-				foundLootItems.push(new MilkBagX());
-				//foundLootItems[0].shortName = "X." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
+				foundLootItems[0].shortName = "X." + GLOBAL.FLUID_TYPE_SHORT[fluidType] + "Bag";
 				foundLootItems[0].longName = "full bag of " + GLOBAL.FLUID_TYPE_NAMES[fluidType].toLowerCase();
+				foundLootItems[0].fullnessLevel = 4;
+				foundLootItems[0].stackSize = 6;
+				foundLootItems[0].basePrice = 10;
 			}
-			foundLootItems[0].fluidType = fluidType;
 			foundLootItems[0].description = indefiniteArticle(foundLootItems[0].longName);
+			foundLootItems[0].tooltip = "[altTooltipMilkBag]" + milkBagTooltipBonus(foundLootItems[0]);
 			
-			//TooltipManager.addFullName(foundLootItems[0].shortName, StringUtil.toTitleCase(foundLootItems[0].longName));
-			//TooltipManager.addTooltip(foundLootItems[0].shortName, foundLootItems[0].tooltip);
+			TooltipManager.addFullName(foundLootItems[0].shortName, StringUtil.toTitleCase(foundLootItems[0].longName));
+			TooltipManager.addTooltip(foundLootItems[0].shortName, foundLootItems[0].tooltip);
 			
 			//Milk items probably just good for selling. Value relatively low for normal milk but honey is worth 2x milk, and maybe other more exotic lactations could also get value boosts?
 			//Set value and adjust descs
 			output(" " + foundLootItems[0].description + ".");
 			output("\n\n");
 			foundLootItems[0].basePrice = fluidValue(fluidType, foundLootItems[0].basePrice);
+			foundLootItems[0].hasUniqueName = true;
 			foundLootItems[0].hasRandomProperties = true;
+			
 			itemScreen = mainGameMenu;
 			lootScreen = mainGameMenu;
 			useItemFunction = mainGameMenu;
@@ -382,13 +394,17 @@ public function joyCoMagicMilker7Sucks():void
 		pc.milked(pc.milkFullness);
 	}
 }
+public function altTooltipMilkBag():String
+{
+	var tooltip:String = "This bag was filled from a Magic-Milker 7, a product of JoyCo. JoyCo makes no guarantees of the quality or safety of the fluid this bag contains.";
+	tooltip += "\n\nThe value of this item will vary depending on its level of fullness and the fluid inside, though most liquids will never bypass basic commodity levels.";
+	return tooltip;
+}
 public function milkBagTooltipBonus(milkBag:MilkBag):String
 {
-	if(milkBag.shortName == "MilkBag") return "";
-	
-	var tooltip:String = "";
-	tooltip += "Fluid Type: " + GLOBAL.FLUID_TYPE_NAMES[milkBag.fluidType];
-	tooltip += "\nFullness: ";
+	var tooltip:String = "\n";
+	tooltip += "\n<b>Fluid Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[milkBag.fluidType];
+	tooltip += "\n<b>Fullness:</b> ";
 	switch(milkBag.fullnessLevel)
 	{
 		case 0: tooltip += "Empty"; break;
@@ -397,7 +413,6 @@ public function milkBagTooltipBonus(milkBag:MilkBag):String
 		case 3: tooltip += "Mostly Full"; break;
 		case 4: tooltip += "Dangerously Full"; break;
 	}
-	tooltip += "\n";
 	return tooltip;
 }
 

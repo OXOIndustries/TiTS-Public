@@ -23,13 +23,14 @@
 			type = GLOBAL.POTION;
 			
 			shortName = "MilkBag";
-			longName = "milk bag";
+			hasUniqueName = true;
+			longName = "bag of milk";
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a bag of milk";
 			
-			tooltip = "This bag was filled from a Magic-Milker 7, a product of JoyCo. JoyCo makes no guarantees of the quality or safety of the fluid this bag contains.\n\nThe value of this item will vary depending on its level of fullness and the fluid inside, though most liquids will never bypass basic commodity levels.";
+			tooltip = "[altTooltipMilkBag]";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
