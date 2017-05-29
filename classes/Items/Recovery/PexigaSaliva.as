@@ -25,7 +25,7 @@
 			this.shortName = "P.Saliva";
 			
 			//Regular name
-			this.longName = "bit of bottled pexiga saliva";
+			this.longName = "bottled pexiga saliva";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
