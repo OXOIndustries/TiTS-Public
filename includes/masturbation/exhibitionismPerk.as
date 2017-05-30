@@ -44,7 +44,7 @@ public function extraExhibitionismGain(gain:Boolean = false):String
 			msg += "If you continue to engage in public lewdness, <b>you might end up hooked to the thrills of exhibitionism.</b>";
 			break;
 		case 1:
-			msg += "With your recent venture, you have taken the first step towards becoming an exhibtionist down to your very core. <b>If you continue to consistently expose yourself, your exhibitionist tendencies might eventually become permanent.</b>";
+			msg += "With your recent venture, you have taken the first step towards becoming an exhibitionist down to your very core. <b>If you continue to consistently expose yourself, your exhibitionist tendencies might eventually become permanent.</b>";
 			break;
 		case 7:
 			msg += "Your most recent public show of perversion was a massive thrill, exposing yourself is just <i>so</i> hot! <b>Unless you want the thrills of exhibitionism to become one with your body, you should probably hold back on publicly indecent activities for a few days.</b>";

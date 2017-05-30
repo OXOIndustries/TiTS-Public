@@ -89,7 +89,7 @@ public function encounterChaurmine():void
 		else output("Whatever this thing is, it’s noticeably bigger than its previous opponent. Covered almost entirely in metallic-silver scales on its powerful, hefty frame, it’s a wonder how the creature has managed to survive in this wasteland of rust. But there it sits, breathing and moving, as it stares at you with piercing azure eyes, each with a slitted pupil. Above its armored brows and snout sits a trio of hefty metal horns, curved up and forward much like that of some prehistoric creature. As it stands idle and lets you stare along its broad shoulders, bulging arms, up its thick plantigrade legs and heavy tail, it clearly isn’t aggressive. No, <i>he</i>, you correct yourself, as your inquisitive gaze finally falls upon his");
 		output(" throbbing, black shaft; his groin all but exposed from the tattered remains of his gear. The thick and lengthy phallus, ribbed along its length, rises from an almost equine sheath. A sheath delicately encased by small scales, that is. From base to tip, the shaft looks roughly fourteen inches long, and at least three inches thick. It takes you a while to draw your eyes back down from its blunt head to the rather soft and smooth large sack below, the alluring skin a dark amber. Not wanting to stare any longer, you look into his face once more, and only now do you see his scales splattered in pink goo.");
 
-		output("\n\n<i>“What, are you gonna try and eat me too?,”</i> he growls in a deep, guttural voice, startling you out of your daze. Though you don’t think he means any enmity, there is a hint of apprehension in his tone, while he practically drips exhaustion. Shaking your head, you assure him that you’re not here to eat him, you just happened to chance upon the end of his fight. <i>“Some fucking luck you have then, huh?”</i> he coughs out a laugh as his panting turns to more stable breathing.");
+		output("\n\n<i>“What, are you gonna try and eat me too?”</i> he growls in a deep, guttural voice, startling you out of your daze. Though you don’t think he means any enmity, there is a hint of apprehension in his tone, while he practically drips exhaustion. Shaking your head, you assure him that you’re not here to eat him, you just happened to chance upon the end of his fight. <i>“Some fucking luck you have then, huh?”</i> he coughs out a laugh as his panting turns to more stable breathing.");
 		output("\n\nLooking at the metal behemoth’s situation with more than a little sympathy, you take cautious steps towards the beast. <i>“Look, this might be a </i>little<i> forward, but I think, for your safety-”</i>");
 		output("\n\n<i>“No, get outta here,”</i> he blurts, his lips curling back in a snarl of disapproval.");
 		output("\n\n<i>“-it would be best if I stayed,”</i> you continue, followed by a derisive snort from the brute.");
@@ -597,7 +597,7 @@ public function talkToChaurmineAboutTarkus():void
 	output("So why is he on Tarkus specifically? Hardly seems like a place that would have anything of worth to him.");
 	output("\n\n<i>“Not here for the locals, either,”</i> he grunts, <i>“I was hoping to find some outdated weapons that may have been thrown out. Every once in a rare while, old tech can still be useful. Though I haven’t found jack shit yet, and now I regret coming to this heap of junk. The air irritates my scales...”</i> He shivers, making his scales clank and clatter against each other.");
 	output("\n\nThat brings up an interesting question; How have his scales not corroded? Not just from the environment, but the natives too.");
-	output("\n\nChaurmine responds with a shrug as he growls, <i>“Hmph, fuck if I know. What I </i>do<i> know is that any of those bugs or fat-eared skinks that come near me are getting a fistful of these scales they covet so much!”</i> He curls an armored hand into a tight fist, his silvery scales reflecting the surrounding area like polished platemail. <i>“No, seriously, tell me if you any bugs.”</i>");
+	output("\n\nChaurmine responds with a shrug as he growls, <i>“Hmph, fuck if I know. What I </i>do<i> know is that any of those bugs or fat-eared skinks that come near me are getting a fistful of these scales they covet so much!”</i> He curls an armored hand into a tight fist, his silvery scales reflecting the surrounding area like polished platemail. <i>“No, seriously, tell me if you see any bugs.”</i>");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",backToChaurmineMain);
@@ -678,7 +678,7 @@ public function chaurmineTalkAboutGrowingUp():void
 	author("Aullama");
 
 	output("When you ask about the actual place Chaurmine grew up, and what it was like, his response is a detached sigh.");
-	output("\n\n<i>“Yeah... Ok.,”</i> he grumbles. Seeing the look on your face, the brute gestures dismissively, <i>“Nah, not a sob story really. Just a boring, common one. Grew up in one of the slums outside the capital, Aegidis. The streets were narrow and packed, but most buildings were open and airy on the inside. Traditional saurmorian architecture, you see. Food and comfort usually weren’t a problem in the slums... usually.”</i>");
+	output("\n\n<i>“Yeah... Okay,”</i> he grumbles. Seeing the look on your face, the brute gestures dismissively, <i>“Nah, not a sob story really. Just a boring, common one. Grew up in one of the slums outside the capital, Aegidis. The streets were narrow and packed, but most buildings were open and airy on the inside. Traditional saurmorian architecture, you see. Food and comfort usually weren’t a problem in the slums... usually.”</i>");
 	output("\n\nSo he lived a simple, but comfortable life, you note as you nod for him to continue.");
 	output("\n\nChaurmine actually snorts in minor amusement, <i>“I guess... Though there were some less than pleasant moments. A common thing to do for fun, and money, in the otherwise quiet alleys was to hold black markets of sorts and sell off the local stray dogs as exotic pets. Even forming fights for those interested in attack or guard dogs, to show off the merchandise,”</i> he spits out in distaste.");
 	output("\n\nGiven his deepening frown, and his tone, you can assume how he feels about these <i>activities</i>. You are curious though; what do saurmorian dogs look like?");
@@ -1088,7 +1088,7 @@ public function intimateCatchChaurmine():void
 	//pcOrificeCapacity<135cubedinches:
 	if(capacity < 135)
 	{
-		output("\n\nyour mind unable to wrap itself around the monstrous girth tunneling into your [pc.vagOrAss " + x + "]. Your breath catches with every fat, bulbous rib along his length that slips past your ");
+		output(" your mind unable to wrap itself around the monstrous girth tunneling into your [pc.vagOrAss " + x + "]. Your breath catches with every fat, bulbous rib along his length that slips past your ");
 		if(x >= 0) output("lower lips");
 		else output("backdoor");
 		output(", and before long, [pc.fullChest] heaving, more and more of your [pc.vagOrAss " + x + "] is stretched painfully taut, and Chaurmine hisses when he’s to the hilt");
@@ -1096,7 +1096,7 @@ public function intimateCatchChaurmine():void
 	//>135cubedinches:
 	else
 	{
-		output("\n\nyour body gleefully accepting the deliciously thick kind of shaft it’s been made for; your [pc.vagOrAss " + x + "] clinging tightly to the obscene penis as if it were a perfectly made custom glove, your stretched inner walls pulsing along its length. Chaurmine rumbles appreciatively as his scale-studded sheath presses and wrinkles against your [pc.vagOrAss " + x + "]");
+		output(" your body gleefully accepting the deliciously thick kind of shaft it’s been made for; your [pc.vagOrAss " + x + "] clinging tightly to the obscene penis as if it were a perfectly made custom glove, your stretched inner walls pulsing along its length. Chaurmine rumbles appreciatively as his scale-studded sheath presses and wrinkles against your [pc.vagOrAss " + x + "]");
 	}
 	output(".");
 
@@ -1106,7 +1106,7 @@ public function intimateCatchChaurmine():void
 	else output("softly gripping the bulging outline of his fat cock against your [pc.skinFurScales], and gasp as you feel - and <i>see</i> - the titan’s blunt head lurch and throb at your touch.");
 
 	output("\n\nDeciding you’ve adjusted to his ribbed shaft, Chaurmine begins giving slight, almost delicate thrusts, gradually drawing more and more monstrous girth out each time, your gasps growing louder with his intensifying rhythm. It almost feels like he’s counting each fat rib on his penis, withdrawing one by one. You stifle a laugh with a lip bite and a moan, your pleasure headed towards an immense peak as more and more cock is repeatedly thrust into your [pc.vagOrAss " + x + "]");
-	if(pc.hasCock()) output(", sawing against your prostate");
+	if(x < 0 && pc.hasCock()) output(", sawing against your prostate");
 	output(". Even as things grow heated, your [pc.hips] writhing to match every thrust, Chaurmine seems to remain focused on your pleasure as he pants searing breath against your neck; a large hand catches you by surprise, moving from your side to your crotch.");
 
 	//ifVaginal:
@@ -1140,7 +1140,7 @@ public function intimateCatchChaurmine():void
 		//pcHasTailVagina:
 		if(pc.hasTailCunt())
 		{
-			output("\n\n[pc.EachTailCunt] wraps and grinds against Chaurmine’s limbs, luxuriating in the friction of his girl-cum lubed scales. You then get the to move [pc.oneTailCunt] up to the lizard’s lapping tongue; hoping for some extra oral action. Chaurmine eyes the approaching pussy-tipped tail, snorting in amusement as it drips girl-cim everywhere. Deciding to humor you, he takes a moment to drag his black tongue up your tail’s slit, sending shivers up and down your spine. You’ll have to see if he can do that more some other time...");
+			output("\n\n[pc.EachTailCunt] wraps and grinds against Chaurmine’s limbs, luxuriating in the friction of his girl-cum lubed scales. You then get the to move [pc.oneTailCunt] up to the lizard’s lapping tongue; hoping for some extra oral action. Chaurmine eyes the approaching pussy-tipped tail, snorting in amusement as it drips girl-cum everywhere. Deciding to humor you, he takes a moment to drag his black tongue up your tail’s slit, sending shivers up and down your spine. You’ll have to see if he can do that more some other time...");
 		}
 
 		output("\n\nYou gasp, the fat cock spreading you wide, grinding against your tight walls, hits <i>that</i> spot. Swooning as the renewed inner heat boils over, you all but cream yourself silly on that juicy shaft, ");
@@ -1167,7 +1167,7 @@ public function intimateCatchChaurmine():void
 		//pcHasTailVagina:
 		if(pc.hasTailCunt())
 		{
-			output("\n\n[pc.EachTailCunt] wraps and grinds against Chaurmine’s limbs, luxuriating in the friction of his girl-cum lubed scales. You then get the to move [pc.oneTailCunt] up to the lizard’s lapping tongue; hoping for some extra oral action. Chaurmine eyes the approaching pussy-tipped tail, snorting in amusement as it drips girl-cim everywhere. Deciding to humor you, he takes a moment to drag his black tongue up your tail’s slit, sending shivers up and down your spine. You’ll have to see if he can do that more some other time...");
+			output("\n\n[pc.EachTailCunt] wraps and grinds against Chaurmine’s limbs, luxuriating in the friction of his girl-cum lubed scales. You then get the to move [pc.oneTailCunt] up to the lizard’s lapping tongue; hoping for some extra oral action. Chaurmine eyes the approaching pussy-tipped tail, snorting in amusement as it drips girl-cum everywhere. Deciding to humor you, he takes a moment to drag his black tongue up your tail’s slit, sending shivers up and down your spine. You’ll have to see if he can do that more some other time...");
 		}
 		output("\n\nYou cry out, tender backdoor writhing and milking the monstrous onyx cock, as Chaurmine sets a solid rhythm. His tongue flicks your [pc.ear], the titan’s hot breath searing, his panting interrupted with an occasional grunt.");
 		output("\n\nYou’re forced ever closer to that blissful peak, clutching the sturdy sheets tightly and your [pc.legs] tensing, as your anal walls are spread taut and slathered in the lizard’s increasingly copious pre-cum.");
@@ -1211,7 +1211,7 @@ public function stayWithCharmineAfterRiding():void
 
 	output("With a contented sigh, you melt into Chaurmine’s warm arms as you both bask in the afterglow. As you both doze off, he continues to rub his snout along your shoulders, neck, and [pc.face] with affectionate caresses. You absently moan whenever you feel his teeth poke your [pc.skinFurScales] with soft bites and nibbles.");
 	output("\n\nThis continues for what feels like a blissful eternity, luxuriating in the steamy and surprisingly tender treatment from the cuddly lizard. At some point he even turns you around to face him, tilting your [pc.face] back to lavish you with soft licks from collar bone to jaw; he ends up washing this side of your neck just as much as the other, his chest rumbling happily to every moan and sigh you make.");
-	output("\n\nEventually though, time catches up, and Chaurmine sits upright, saying that he has things to do and it’s time part. You give a heavy sigh, reluctant to release your arms from around his neck. If only-");
+	output("\n\nEventually though, time catches up, and Chaurmine sits upright, saying that he has things to do and it’s time to part. You give a heavy sigh, reluctant to release your arms from around his neck. If only-");
 	output("\n\nYou let out a yelp as Chaurmine abruptly stands, holding your weight while your [pc.feet]");
 	if(pc.hasWings()) output(", as well as your [pc.wings]");
 	if(pc.tailCount > 0) output(" and your [pc.tails]");
