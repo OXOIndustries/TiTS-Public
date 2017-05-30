@@ -21,7 +21,6 @@
         <manifest>
            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
            <supports-screens android:normalScreens="true"/>
-           <uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
            <application android:enabled="true">
                <activity android:excludeFromRecents="false">
                    <intent-filter>
