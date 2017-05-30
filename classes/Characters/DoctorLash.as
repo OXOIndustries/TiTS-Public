@@ -6,6 +6,7 @@
 	import classes.Items.Protection.DecentShield;
 	import classes.Items.Miscellaneous.MightyTight;
 	import classes.Items.Miscellaneous.Sterilex;
+	import classes.Items.Miscellaneous.ChillPill;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.kGAMECLASS;
 	
@@ -26,6 +27,8 @@
 			
 			inventory.push(new Sterilex());
 			inventory.push(new MightyTight());
+			inventory.push(new ChillPill());
+			
 			sellMarkup = 1.5;
 			keeperBuy = "You ask to see the doctor’s inventory.\n\nOpening a case lined with pill packets, the doctor responds, <i>“I’ll accept your credits if you are willing to end your species’ nasty habit of procreation. If one is not going to rid themselves of disgusting genitalia, then at least try to make them as useless as possible. Perhaps these can help...”</i>\n";
 			keeperSell = ".....\n";

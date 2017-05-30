@@ -125,6 +125,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Chill Pill", chillPillCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
@@ -3072,6 +3073,23 @@ public function fizzyfixCodex():void
 	outputCodex("\n");
 	CodexManager.unlockEntry("Muffstick");
 	CodexManager.viewedEntry("FizzyFix");
+}
+public function chillPillCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Chill Pill"));
+	outputCodex("<b>Manufactured By:</b> SolarRise Laboratory");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Chill Pill is the first and only product released by the now bankrupt SolarRise Laboratory. Marketed as a libido-reduction drug, Chill Pill quickly became the subject of many lawsuits, with users reporting an overwhelming variety of negative side effects - ranging from hair loss and rashes to stomach ulcers, fatigue, infertility, and headaches.");
+	outputCodex("\n\nCompany founders and head scientists, Dr. Morgan Solar and Dr. Harold Rise insisted during proceedings that their product had been thoroughly tested, and that that no such side effects had ever surfaced. However, despite their ability to back these claims up with testing logs and other documents, judges ruled against them again and again.");
+	outputCodex("\n\nIt is frequently rumored that a certain well-known sex product manufacturer may have - concerned about the potential loss in sales that decreased libidos would bring - had a hand in the proceedings, possibly financing lawsuits or even paying off court members. In fact, many of the plaintiffs were later discovered to have had preexisting connections with employees of the company itself.");
+	outputCodex("\n\nHowever, not even these rumors were enough to stop reputation-conscious stores from pulling the product off their shelves. Already struggling with costs from the court case, and now unable to find buyers for their product or even anyone willing to associate with their brand name, SolarRise was forced to close.");
+	outputCodex("\n\nDr. Solar and Dr. Rise seem to have taken the fiasco in remarkably good spirits, and while their current whereabouts are unknown, they later went on to make Chill Pill’s recipe available to the public. Thusly, it is reasonably easy for a dedicated customer to find less reputable sellers stocking functionally similar products - going by names such as Frigidol, Lustop, and Limpstick.");
+	outputCodex("\n\nSome sellers even claim to have salvaged stocks of the original product, but it is unclear whether these items are the real deal, or simply more counterfeits.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Chill Pill");
 }
 
 
