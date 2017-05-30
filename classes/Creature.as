@@ -8698,6 +8698,36 @@
 			}
 			return index;
 		}
+		public function inAnalHeat():Boolean
+		{
+			return (hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"));
+		}
+		public function removeAnalHeat(eventLog:Boolean = true):void
+		{
+			clearAnalHeat(eventLog);
+		}
+		public function clearAnalHeat(eventLog:Boolean = true):void
+		{
+			if(!inAnalHeat()) return;
+			removeStatusEffect("Fuck Fever");
+			removeStatusEffect("Flushed");
+			removeStatusEffect("Strangely Warm");
+			if(this is PlayerCharacter && eventLog) AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?","passive");
+		}
+		public function analHeatMinutes():Number
+		{
+			var minutes:Number = 0;
+			if(getStatusMinutes("Strangely Warm") > 0) minutes = getStatusMinutes("Strangely Warm");
+			if(getStatusMinutes("Flushed") > minutes) minutes = getStatusMinutes("Flushed");
+			if(getStatusMinutes("Fuck Fever") > minutes) minutes = getStatusMinutes("Fuck Fever");
+			return minutes;
+		}
+		public function extendAnalHeat(arg:Number):void
+		{
+			if(hasStatusEffect("Strangely Warm")) addStatusMinutes("Strangely Warm",arg);
+			if(hasStatusEffect("Flushed")) addStatusMinutes("Flushed",arg);
+			if(hasStatusEffect("Fuck Fever")) addStatusMinutes("Fuck Fever",arg);
+		}
 		public function inHeat():Boolean
 		{
 			return hasStatusEffect("Heat");
@@ -8745,7 +8775,7 @@
 		{
 			var minutes:Number = 0;
 			if(getStatusMinutes("Rut") > 0) minutes = getStatusMinutes("Rut");
-			if (getStatusMinutes("Lagonic Rut") > minutes) minutes = getStatusMinutes("Lagonic Rut");
+			if(getStatusMinutes("Lagonic Rut") > minutes) minutes = getStatusMinutes("Lagonic Rut");
 			return minutes;
 		}
 		public function extendHeat(arg:Number):void
@@ -18537,6 +18567,11 @@
 						break;
 					case "Heat":
 						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
+						else if(isFullyWombPregnant())
+						{
+							if (deferredEvents == null) deferredEvents = [heatCleanup];
+							else deferredEvents.push(heatCleanup);
+						}
 						break;
 					case "Rut":
 					case "Lagonic Rut":
@@ -18580,8 +18615,6 @@
 						//Pregnancy clears - gotta cheat to get the Omega Oil status clear.
 						else if(hasAnalPregnancy())
 						{
-							if(this is PlayerCharacter) AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?", "passive");
-							requiresRemoval = true;
 							if (deferredEvents == null) deferredEvents = [analHeatCleanup];
 							else deferredEvents.push(analHeatCleanup);
 						}
@@ -18926,7 +18959,12 @@
 		}
 		public function analHeatCleanup():void
 		{
+			clearAnalHeat();
 			removeStatusEffect("Omega Oil");
+		}
+		public function heatCleanup():void
+		{
+			clearHeat();
 		}
 		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
 		{

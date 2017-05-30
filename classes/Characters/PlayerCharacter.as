@@ -485,7 +485,6 @@ package classes.Characters
 				//updateHeatPerk(totalDays);
 				//updateRutPerk(totalDays);
 			}
-			if(isFullyWombPregnant()) clearHeat();
 			
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
