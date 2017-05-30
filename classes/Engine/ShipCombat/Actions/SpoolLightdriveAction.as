@@ -34,7 +34,7 @@ package classes.Engine.ShipCombat.Actions
 				"Lightdrive Spooling",
 				{
 					chargedInRound: CombatManager.getRoundCount() + 2
-				}
+				},
 				-1, 
 				StatusEffectPayload.DURATION_PERM, 
 				StatusIcons.Constrict,

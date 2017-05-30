@@ -106,6 +106,9 @@ package classes.Ships
 		
 		//{ region Basic stats
 		
+		protected var _level:Number;
+		public function get Level():Number { return _level; }
+		
 		[Serialize]
 		public var _hull:Number;
 		public function get Hull():Number { return _hull; }
@@ -318,6 +321,14 @@ package classes.Ships
 			var c:Number = _capacitorMaxBase + CapacitorBattery.PowerStorage;
 			var m:Number = 1.0;
 			
+			var dm:Array = GetDefensiveModules();
+			for (var i:int = 0; i < dm.length; i++)
+			{
+				var dmm:DefensiveModule = dm[i] as DefensiveModule;
+				c += dmm.BonusCapacitor;
+				m += dmm.BonusCapacitorMultiplier;
+			}
+			
 			var payload:Object = GetCombinedStatusPayloads("Bonus Capacitor");
 			if (payload != null)
 			{
@@ -330,57 +341,78 @@ package classes.Ships
 		
 		public function get CapacitorPercent():Number { return Capacitor / CapacitorMax; }
 		
-		public function get CapacitorRecharge():Number
+		public function get CapacitorRechargePerRound():Number
 		{
-			var c:Number = CapacitorBattery.RechargeRate;
+			var c:Number = CapacitorBattery.RechargeRatePerMinute;
 			var m:Number = 1.0;
+			
+			var dm:Array = GetDefensiveModules();
+			for (var i:int = 0; i < dm.length; i++)
+			{
+				var dmm:DefensiveModule = dm[i] as DefensiveModule;
+				c += dmm.BonusCapacitorPerRound;
+				m += dmm.BonusCapacitorRechargeMultiplier;
+			}
 			
 			var payload:Object = GetCombinedStatusPayloads("Bonus Capacitor");
 			if (payload != null)
 			{
-				c += payload.capacitorRecharge;
+				c += payload.capacitorRechargePerRound;
 				m += payload.capacitorRechargeMultiplier;
+			}
+			
+			if (CapacitorBattery.HookedCrew != null)
+			{
+				var perk:StorageClass = CapacitorBattery.HookedCrew.getPerkEffect("Crew Skill - Power Specialist");
+				if (perk != null)
+				{
+					c += (CapacitorMax * (perk.value1 * 0.015));
+				}
+			}
+			
+			return c * m;
+		}
+		public function get CapacitorRechargePerMinute():Number
+		{
+			var c:Number = CapacitorBattery.RechargeRatePerMinute;
+			var m:Number = 1.0;
+			
+			var dm:Array = GetDefensiveModules();
+			for (var i:int = 0; i < dm.length; i++)
+			{
+				var dmm:DefensiveModule = dm[i] as DefensiveModule;
+				c += dmm.BonusCapacitorPerMinute;
+				m += dmm.BonusCapacitorRechargeMultiplier;
+			}
+			
+			var payload:Object = GetCombinedStatusPayloads("Bonus Capacitor");
+			if (payload != null)
+			{
+				c += payload.capacitorRechargePerMinute;
+				m += payload.capacitorRechargeMultiplier;
+			}
+			
+			if (CapacitorBattery.HookedCrew != null)
+			{
+				var perk:StorageClass = CapacitorBattery.HookedCrew.getPerkEffect("Crew Skill - Power Specialist");
+				if (perk != null)
+				{
+					c += (CapacitorMax * (perk.value1 * 0.015));
+				}
 			}
 			
 			return c * m;
 		}
 		
 		protected var _targeting:Number;
-		public function Targeting(flatBonus:Number = 0):Number
+		public function Targeting(flatBonus:Number = 0, bonusMul:Number = 0):Number
 		{
-			var t:Number = _targeting;
-			var m:Number = 1.0;
-			
-			var om:Array = GetOffensiveModules();
-			for (var i:int = 0; i < om.length; i++)
-			{
-				var omm:OffensiveModule = om[i] as OffensiveModule;
-				t += omm.BonusTargeting;
-				m += omm.BonusTargetingMultiplier;
-			}
-			
-			var payload:Object = GetCombinedStatusPayloads("Bonus Targeting");
-			if (payload != null)
-			{
-				t += payload.targeting;
-				m += payload.targetingMultiplier;
-			}
-			
-			// 20% of pilots aim or will (whichever is highest)
-			if (OwningCharacter != null)
-			{
-				var maxStat:Number = Math.max(OwningCharacter.willpower(), OwningCharacter.aim());
-				t += (maxStat * 0.2);
-			}
-			
-			t += flatBonus;
-			
-			return t * m;
+			return TargetingStaffed(OwningCharacter, flatBonus, bonusMul);
 		}
-		public function TargetingStaffed(crewMember:Creature, flatBonus:Number = 0):Number
+		public function TargetingStaffed(crewMember:Creature, flatBonus:Number = 0, bonusMul:Number = 0):Number
 		{
 			var t:Number = _targeting;
-			var m:Number = 1.0;
+			var m:Number = 1.0 + bonusMul;
 			
 			var om:Array = GetOffensiveModules();
 			for (var i:int = 0; i < om.length; i++)
@@ -492,6 +524,12 @@ package classes.Ships
 			}
 
 			return a * m;
+		}
+		
+		public function get Reflexes():Number
+		{
+			if (OwningCharacter != null) return OwningCharacter.reflexes();
+			return 0;
 		}
 		
 		protected var _armor:Number;
@@ -941,12 +979,13 @@ package classes.Ships
 			});
 		}
 		
-		public function AddBonusCapacitorEffect(inCap:Number, inCapMulti:Number, inRecharge:Number, inRechargeMulti:Number):void
+		public function AddBonusCapacitorEffect(inCap:Number, inCapMulti:Number, inRechargeRound:Number, inRechargeMinute:Number, inRechargeMulti:Number):void
 		{
 			AddTemporaryModifier("Bonus Capacitor", {
 				capacitor: inCap,
 				capacitorMultiplier: inCapMulti,
-				capacitorRecharge: inRecharge,
+				capacitorRechargePerRound: inRechargeRound,
+				capacitorRechargePerMinute: inRechargeMinute,
 				capacitorRechargeMultiplier: inRechargeMulti
 			});
 		}
@@ -1251,7 +1290,7 @@ package classes.Ships
 				var t:Array = AvailableGadgets;
 			}
 			
-			return _cachedGadgets > 0;
+			return _cachedGadgets.length > 0;
 		}
 		
 		protected var _cachedGadgets:Array;
@@ -1442,8 +1481,16 @@ package classes.Ships
 		
 		public function OnRoundEnd():void
 		{
+			RoundRegenerationEffects();
 			ClearTemporaryEffects();
 			OnRoundEndEffectEvents();
+		}
+		
+		private function RoundRegenerationEffects():void
+		{
+			Hull += HullRechargePerRound;
+			Shields += ShieldRechargePerRound;
+			Capacitor += CapacitorRechargePerRound;
 		}
 		
 		public function CombatAI(playerShips:Array, enemyShips:Array):void
@@ -1452,18 +1499,22 @@ package classes.Ships
 			throw new Error("CombatAI has not been overridden!");
 		}
 		
-		public function CalculateCapacitorCost(forAction:ShipAction):Number
+		public function CalculateCapacitorCostForAction(forAction:ShipAction):Number
 		{
 			// TODO: Implement cost bonuses
 			return forAction.CapacitorCost;
 		}
 		
-		public function TakeDamage(incomingDamage:ShipTypeCollection):void
+		public function CalculateCapacitorCostForModule(forModule:ShipModule):Number
 		{
-			// TODO: actually call into damage code from here
-			
+			// TODO: Implement cost bonuses
+			return forModule.CapConsumption;
+		}
+		
+		public function TakeDamage(sdr:ShipDamageResult):void
+		{
 			var spoolEffect:StatusEffectPayload = GetStatusEffect("Lightdrive Spooling");
-			if (spoolEffect && HullPercent < 0.75)
+			if (spoolEffect && HullPercent < 0.75 && sdr.hullDamage > 0)
 			{
 				RemoveStatusEffect("Lightdrive Spooling");
 				
@@ -1478,9 +1529,9 @@ package classes.Ships
 			}
 		}
 		
-		public function DealDamage(outgoingDamage:ShipTypeCollection):void
+		public function DealDamage(sdr:ShipDamageResult):void
 		{
-			// TODO:
+			
 		}
 		
 		//} endregion

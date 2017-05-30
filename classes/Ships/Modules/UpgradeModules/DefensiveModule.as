@@ -23,6 +23,11 @@ package classes.Ships.Modules.UpgradeModules
 			_bonusArmor = 0;
 			_bonusArmorMultiplier = 0.0;
 			
+			_bonusCapacitor = 0;
+			_bonusCapacitorMultiplier = 0.0;
+			_bonusCapacitorPerRound = 0;
+			_bonusCapacitorPerMinute = 0;
+			_bonusCapacitorRechargeMultiplier = 0.0;
 			
 			_bonusShields = 0;
 			_bonusShieldsMultiplier = 0;
@@ -43,6 +48,12 @@ package classes.Ships.Modules.UpgradeModules
 		protected var _bonusArmor:Number;
 		protected var _bonusArmorMultiplier:Number;
 		
+		protected var _bonusCapacitor:Number;
+		protected var _bonusCapacitorMultiplier:Number;
+		protected var _bonusCapacitorPerRound:Number;
+		protected var _bonusCapacitorPerMinute:Number;
+		protected var _bonusCapacitorRechargeMultiplier:Number;
+		
 		protected var _bonusShields:Number;
 		protected var _bonusShieldsMultiplier:Number;
 		protected var _bonusShieldResistances:ShipTypeCollection;
@@ -61,6 +72,12 @@ package classes.Ships.Modules.UpgradeModules
 		public function get BonusArmor():Number { return _bonusArmor; }
 		public function get BonusArmorMultiplier():Number { return _bonusArmorMultiplier; }
 
+		public function get BonusCapacitor():Number { return _bonusCapacitor; }
+		public function get BonusCapacitorMultiplier():Number { return _bonusCapacitorMultiplier; }
+		public function get BonusCapacitorPerRound():Number { return _bonusCapacitorPerRound; }
+		public function get BonusCapacitorPerMinute():Number { return _bonusCapacitorPerMinute; }
+		public function get BonusCapacitorRechargeMultiplier():Number { return _bonusCapacitorRechargeMultiplier; }
+		
 		public function get BonusShields():Number { return _bonusShields; }
 		public function get BonusShieldsMultiplier():Number { return _bonusShieldsMultiplier; }
 		public function get BonusShieldResistances():ShipTypeCollection { return _bonusShieldResistances; }

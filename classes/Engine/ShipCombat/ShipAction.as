@@ -33,7 +33,7 @@ package classes.Engine.ShipCombat
 		
 		public function IsAvailable(usingShip:SpaceShip):Boolean
 		{
-			if (CapacitorCost != 0 && usingShip.Capacitor() < usingShip.CalculateCapacitorCost(this)) return false;
+			if (CapacitorCost != 0 && usingShip.Capacitor < usingShip.CalculateCapacitorCostForAction(this)) return false;
 			
 			if (DisabledIfEffectedBy.length > 0)
 			{
@@ -84,8 +84,8 @@ package classes.Engine.ShipCombat
 			kGAMECLASS.SetTargetShip(target);
 			kGAMECLASS.SetEnemyShip(user == kGAMECLASS.shipDb.ActivePlayerShip ? target : user);
 			
-			Implementor(user, target, palyerGroup, hostileGroup);
-			user.Capacitor -= user.CalculateCapacitorCost(this);
+			Implementor(user, target, playerGroup, hostileGroup);
+			user.Capacitor -= user.CalculateCapacitorCostForAction(this);
 		}
 		
 		public function GenerateMenuTooltip(user:SpaceShip):String
@@ -98,7 +98,7 @@ package classes.Engine.ShipCombat
 			}
 			else
 			{
-				s += "\n\nEnergy Cost: " + user.CalculateCapacitorCost(this);
+				s += "\n\nEnergy Cost: " + user.CalculateCapacitorCostForAction(this);
 			}
 			
 			return s;

@@ -26,6 +26,7 @@ package classes.Ships
 		public var Duration:int = -1;
 		public var Hidden:Boolean = false;
 		public var IconClass:Class = null;
+		public var IconColor:uint = 0xFFFFFF;
 		
 		private function FuncLookup(prop:String):Function
 		{

@@ -95,6 +95,15 @@ package classes.Engine.ShipCombat.DamageTypes
 			return false;
 		}
 		
+		public function GetFlag(flag:uint):ShipDamageFlag
+		{
+			for (var i:uint = 0; i < _flagCollection.length; i++)
+			{
+				if (_flagCollection[i].Flag == flag) return _flagCollection[i];
+			}
+			return null;
+		}
+		
 		public function GetFlagsArray():Array
 		{
 			var a:Array = [];
@@ -212,6 +221,8 @@ package classes.Engine.ShipCombat.DamageTypes
 					if (resistances.CanTrigger(_flagCollection[i].Flag))
 					{
 						var df:DamageFlagTrigger = resistances.GetTrigger(_flagCollection[i].Flag).GetTriggerValues(_flagCollection[i].Flag);
+						
+						if (df.AutoApply == false) continue;
 						
 						switch(df.Operation)
 						{

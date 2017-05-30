@@ -3,12 +3,12 @@ package classes.GameData
 	import classes.Creature;
 	import classes.Engine.ShipCombat.*;
 	import classes.Engine.Interfaces.*;
-	import classes.Ships.Modules.CapacitorModule;
-	import classes.Ships.Modules.ShipModule;
+	import classes.Ships.Modules.*;
 	import classes.Ships.SpaceShip;
 	import classes.Ships.StatusEffectPayload;
 	import classes.kGAMECLASS;
 	import classes.Engine.ShipCombat.ActionLibrary;
+	import classes.Engine.Utility.rand;
 	
 	/**
 	 * ...
@@ -23,11 +23,6 @@ package classes.GameData
 		// Just a nice utility func for shorthand code/optimization
 		private var _playerShip:SpaceShip;
 		public function get PlayerShip():SpaceShip { return _playerShip; }
-		
-		public function get PlayerShip():SpaceShip
-		{
-			return kGAMECLASS.shipDb.ActivePlayerShip;
-		}
 		
 		private var _currentCombatRange:uint = ShipCombatOrderContainer.RANGE_FAR;
 		public function get CurrentCombatRange():uint { return _currentCombatRange; }
@@ -118,10 +113,9 @@ package classes.GameData
 				addDisabledButton(7, "Crew", "Crew Assignments", "You have no assignable crew.");
 			}
 			
-			
 			generateFleeButton();
 			
-			addButton(14, "EXECUTE", executePlayerOrders);
+			addButton(14, "EXECUTE", processCombat);
 			
 			showOrderSummary();
 			showCombatDescriptions();
@@ -148,17 +142,13 @@ package classes.GameData
 		{
 			// Chew up a load of capacitor?
 			PlayerShip.CombatOrders.SelectedAction = ActionLibrary.SpoolLightdrive;
-			executePlayerOrders();
-		}
-		
-		private function applyFleeSpool():void
-		{
-			
+			processCombat();
 		}
 		
 		private function finalizeFleeSpool():void
 		{
-			
+			output("You smash the engage button on your FTL control panel.");
+			CombatManager.abortCombat();
 		}
 		
 		private function showGunneryMenu():void
@@ -217,7 +207,7 @@ package classes.GameData
 				}
 				
 				// TODO: I think this needs further checking- not all crew may be able to be assigned to every module
-				if (availCrew > numAssignedModules)
+				if (availCrew.length > numAssignedModules)
 				{
 					addButton(1, "Assign", showAssignCrewMenu);
 				}
@@ -291,7 +281,7 @@ package classes.GameData
 			
 			for (var i:int = 0; i < assignableModules.length; i++)
 			{
-				var am:CapacitorModule = assignableModules[i] as ShipModule;
+				var am:ShipModule = assignableModules[i] as ShipModule;
 				
 				if (am.HookedCrew != null) continue;
 				
@@ -337,7 +327,7 @@ package classes.GameData
 				btn.func = assignCrewToModule;
 				btn.arg = [m, c];
 				btn.text = c.short;
-				btn.header = "Assign " + c.short;
+				btn.ttHeader = "Assign " + c.short;
 				btn.ttBody = "Assign " + c.short + " to the ship module " + m.Name + ".";
 				btnOpts.push(btn);
 			}
@@ -348,7 +338,7 @@ package classes.GameData
 			StructureButtons(btnOpts, backCC);
 		}
 		
-		private function assignCrewtoModule(m:ShipModule, c:Creature):void
+		private function assignCrewToModule(m:ShipModule, c:Creature):void
 		{
 			clearOutput();
 			clearMenu();
@@ -468,7 +458,7 @@ package classes.GameData
 				if (i == 0) output("\n\n<b>" + sDetails.StationTitle + "</b>: ");
 				else output("\n<b>" + sDetails.StationTitle + "</b>: ");
 				
-				if (usedOvercharges & sDetails.OverchargeMask > 0)
+				if ((usedOvercharges & sDetails.OverchargeMask) > 0)
 				{
 					output(sDetails.UnavailableDescription);
 					addDisabledButton(i, sDetails.ButtonTitle);
@@ -477,7 +467,7 @@ package classes.GameData
 				{
 					output(sDetails.AvailableDescription);
 					addButton(i, sDetails.ButtonTitle, overchargeToggle, sDetails.OverchargeMask);
-					if (PlayerShip.CombatOrders.DesiredOverchargeStation & sDetails.OverchargeMask > 0)
+					if ((PlayerShip.CombatOrders.DesiredOverchargeStation & sDetails.OverchargeMask) > 0)
 					{
 						output(" " + sDetails.SelectedAddendum);
 						setButtonPurple(i);
@@ -504,44 +494,6 @@ package classes.GameData
 			showOverchargeMenu();
 		}
 		
-		private function executePlayerOrders():void
-		{
-			clearOutput();
-			
-			// TODO: Rough plan of action:
-			// Gather all of the actions that must be decided on first on each ship (f.ex select range).
-			// Stuff all of these decisions in the ShipCombatOrderContainer present on _that_ ship, then begin execution in layers
-			
-			// > Resolve distance
-			// > All effects applied
-			// > Weaponsfire
-			
-			var concatLists:Array = _friendlies.concat(_hostiles);
-			var numShips:uint = concatLists.length;
-			
-			for (var i:int = 0; i < numShips; i++)
-			{
-				var ss:SpaceShip = concatLists[i] as SpaceShip;
-				if (ss != PlayerShip) ss.CombatAI(_friendlies, _hostiles);
-				
-				// We can apply the overcharges right now, as this'll be the first "tier" of things that need to happen
-				applyOverchargeStates(ss);
-			}
-			
-			// This will need to be reworked for multiple ships but that'll be way down the line if it ever happens.
-			// This should be (relatively) easy, it's just legworking I don't want to invest right now:
-			// Offer target selection when selecting a new range, store that alongside the desired range, allow all ships
-			// to resolve based off this and give the ships that _arent_ the target essentially a free-roll to their desired range.
-			if (_friendlies.length > 1 || _hostiles.length > 1)
-			{
-				throw new Error("Ship range resolution requires refactoring to handle multiple ships on either side of combat!");
-			}
-			
-			resolveRangeChanges(_friendlies[0], _hostiles[0]);
-			
-			processCombat();
-		}
-		
 		private function applyOverchargeStates(tarShip:SpaceShip):void
 		{
 			if (tarShip.CombatOrders.DesiredOverchargeStation != ShipCombatOrderContainer.OVERCHARGE_NONE)
@@ -551,7 +503,7 @@ package classes.GameData
 				// being able to do things like overcharge the same thing multiple times in a single encounter etc. (Heatsinking?)
 				for (var i:int = 0; i < ShipCombatOrderContainer.OVERCHARGE_STATION_MASKS.length; i++)
 				{
-					if (tarShip.CombatOrders.DesiredOverchargeStation & ShipCombatOrderContainer.OVERCHARGE_STATION_MASKS[i] > 0)
+					if ((tarShip.CombatOrders.DesiredOverchargeStation & ShipCombatOrderContainer.OVERCHARGE_STATION_MASKS[i]) > 0)
 					{
 						var overchargeDetails:OverchargeStationDetails = ShipCombatOrderContainer.OVERCHARGE_STATION_DETAILS[i] as OverchargeStationDetails;
 						overchargeDetails.EffectApplicator(tarShip);
@@ -575,8 +527,8 @@ package classes.GameData
 				output("You and " + shipB.CombatNameFormatted() + " list away from each other, the void between your ships increasing to " + getCurrentRange() + "!");
 			}
 			
-			var aRoll:Number = shipA.Thrust() + rand(20) + 1;
-			var bRoll:Number = shipB.Thrust() + rand(20) + 1;
+			var aRoll:Number = shipA.Thrust + rand(20) + 1;
+			var bRoll:Number = shipB.Thrust + rand(20) + 1;
 			
 			if (Math.abs(aRoll - bRoll) < 10) return;
 			
@@ -674,7 +626,59 @@ package classes.GameData
 		
 		override public function processCombat():void
 		{
-			// Actually resolve and apply all of the combat actions requred for all ships
+			clearOutput();
+			
+			// TODO: Rough plan of action:
+			// Gather all of the actions that must be decided on first on each ship (f.ex select range).
+			// Stuff all of these decisions in the ShipCombatOrderContainer present on _that_ ship, then begin execution in layers
+			
+			// > Resolve distance
+			// > All effects applied
+			// > Weaponsfire
+			
+			var allShips:Array = _friendlies.concat(_hostiles);
+			var numShips:uint = allShips.length;
+			
+			for (var i:int = 0; i < numShips; i++)
+			{
+				var ss:SpaceShip = allShips[i] as SpaceShip;
+				if (ss != PlayerShip) ss.CombatAI(_friendlies, _hostiles);
+				
+				// We can apply the overcharges right now, as this'll be the first "tier" of things that need to happen
+				applyOverchargeStates(ss);
+			}
+			
+			// This will need to be reworked for multiple ships but that'll be way down the line if it ever happens.
+			// Offer target selection when selecting a new range, store that alongside the desired range, allow all ships
+			// to resolve based off this and give the ships that _arent_ the target essentially a free-roll to their desired range.
+			if (_friendlies.length > 1 || _hostiles.length > 1)
+			{
+				throw new Error("Ship range resolution requires refactoring to handle multiple ships on either side of combat!");
+			}
+			
+			resolveRangeChanges(_friendlies[0], _hostiles[0]);
+			
+			allShips.sortOn("Reflexes", Array.NUMERIC | Array.DESCENDING);
+			
+			// Now perform any selected actions for each ship
+			for (i = 0; i < numShips; i++)
+			{
+				ApplyCombatActions(allShips[i] as SpaceShip);
+			}
+			
+			endCombatRound();
+		}
+		
+		private function ApplyCombatActions(ss:SpaceShip):void
+		{
+			var sco:ShipCombatOrderContainer = ss.CombatOrders;
+			
+			if (sco.SelectedAction != null)
+			{
+				sco.SelectedAction.Execute(ss, sco.SelectedTarget, _friendlies, _hostiles);
+			}
+			
+			ActionLibrary.Weaponfire.Execute(ss, sco.SelectedTarget, _friendlies, _hostiles); // Weapons always fire!
 		}
 		
 		override public function endCombatRound():void
@@ -757,7 +761,7 @@ package classes.GameData
 			return false;
 		}
 		
-		private function checkForLoss(atEndOfRound:Boolean):Boolean
+		private function checkForLoss(atEndOfRound:Boolean = false):Boolean
 		{
 			var tEnemy:SpaceShip;
 			
@@ -961,7 +965,13 @@ package classes.GameData
 		
 		override public function showCombatUI(setAsInit:Boolean = false):void
 		{
+			if (setAsInit)
+			{
+				userInterface().resetNPCStats();
+			}
 			
+			userInterface().showPlayerParty(_friendlies, false);
+			userInterface().showHostileParty(_hostiles, false);
 		}
 	}
 

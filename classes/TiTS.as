@@ -362,6 +362,7 @@
 		include "../includes/chargendata.as";
 		
 		public var chars:Object;
+		public var charDict:Dictionary;
 		public var shipDb:ShipManager;
 
 		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
@@ -473,6 +474,7 @@
 			import classes.ItemSlotClass;
 
 			chars = new Object();
+			charDict = new Dictionary();
 			
 			//What inventory screen is up?
 			shopkeep = undefined;
@@ -517,7 +519,10 @@
 			
 			mapper = new Mapper(this.rooms)
 
-			this.chars["PC"] = new PlayerCharacter();
+			var tPC:PlayerCharacter = new PlayerCharacter();
+			chars["PC"] = tPC;
+			charDict[tPC] = "PC";
+			
 			shipDb = new ShipManager(); // Gotta do this after at least the PC object exists
 			_perkDB = new Perks();
 			
@@ -1344,6 +1349,10 @@
 		public function get jerynn():Jerynn
 		{
 			return chars["JERYNN"];
+		}
+		public function get yammi():Yammi
+		{
+			return chars["YAMMI"];
 		}
 		
 		public function testShipCombat():void

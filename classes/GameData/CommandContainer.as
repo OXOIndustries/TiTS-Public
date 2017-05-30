@@ -42,7 +42,7 @@ package classes.GameData
 			ttBody = undefined;
 		}
 		
-		public function AddAsButton(idx:int)
+		public function AddAsButton(idx:int):void
 		{
 			if (IsDisabled)
 			{

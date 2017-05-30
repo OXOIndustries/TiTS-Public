@@ -8,7 +8,12 @@ package classes.Engine.ShipCombat
 	 */
 	public class ShipCombatOrderContainer 
 	{
+		//{ region Action Settings
 		public var SelectedAction:ShipAction;
+		public var SelectedTarget:SpaceShip;
+		
+		public var WeaponTargetOverride:Array;
+		//}
 	
 		//{ region Range Settings
 		public static const RANGE_POINTBLANK:uint = 0;

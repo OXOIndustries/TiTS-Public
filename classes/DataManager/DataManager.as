@@ -1263,7 +1263,8 @@
 			if (obj.saveNotes != "No notes available.") kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
 			
 			// Game data
-			kGAMECLASS.chars = new Object();
+			kGAMECLASS.initializeNPCs();
+			
 			var aRef:Object = kGAMECLASS.chars;
 			var failure:Boolean = false;
 			

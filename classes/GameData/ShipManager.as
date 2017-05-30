@@ -298,7 +298,7 @@ package classes.GameData
 		
 		private function HydrateBoardedShip(o:Object):void
 		{
-			if (o === undefined)
+			if (o === null)
 			{
 				_boardedShip = null;
 			}

@@ -9,6 +9,10 @@ package classes.Ships.Library
 	import classes.Ships.Modules.ReactorModule;
 	import classes.Ships.Modules.ShieldModule;
 	import classes.Ships.SpaceShip;
+	import classes.Engine.ShipCombat.ShipCombatOrderContainer;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.ShipCombat.ActionLibrary;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -52,6 +56,20 @@ package classes.Ships.Library
 			_gunneryModule = new GunneryModule(this);
 			
 			_fittedModules = [];
+		}
+		
+		override public function get Reflexes():Number { return 10; }
+		
+		override public function CombatAI(playerShips:Array, enemyShips:Array):void
+		{
+			// We don't execute or return an action here, we select one
+			// and pack it into CombatOrders -- this will then execute in order of Reflexes.
+			// Gunfire will happen automatically just like the players ship, this is simply
+			// an opportunity to run additional actions, similar to the player.
+			
+			CombatOrders.DesiredRange = ShipCombatOrderContainer.RANGE_POINTBLANK;
+			CombatOrders.SelectedTarget = playerShips[0];
+			CombatOrders.SelectedAction = (rand(2) == 0 ? ActionLibrary.TestAction : null);
 		}
 		
 	}

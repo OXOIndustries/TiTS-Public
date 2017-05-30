@@ -1327,12 +1327,12 @@
 		
 		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
 		{
-			_rightSideBar.showPlayerParty(chars, false);
+			_rightSideBar.showPlayer(chars, asInit);
 		}
 		
 		public function showHostileParty(chars:Array, asInit:Boolean = false):void
 		{
-			_leftSideBar.showHostileParty(chars, false);
+			_leftSideBar.showHostiles(chars, asInit);
 		}
 		
 		public function hideTime():void 

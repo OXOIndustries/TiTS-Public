@@ -6,6 +6,19 @@ package classes.Engine.ShipCombat.DamageTypes
 	 */
 	public class ShipDamageFlag 
 	{
+		public static function NewShieldBreakerTrigger(val:Number = 0.75, isMul:Boolean = true):ShipDamageFlag
+		{
+			var sdf:ShipDamageFlag = new ShipDamageFlag(SHIELDBREAKER);
+			sdf.CreateTrigger(TYPE_SHIELD, val, isMul ? OP_MUL : OP_ADD, false);
+			return sdf;
+		}
+		public static function NewArmorPenTrigger(val:Number = 0.75, isMul:Boolean = true):ShipDamageFlag
+		{
+			var sdf:ShipDamageFlag = new ShipDamageFlag(ARMORPENETRATING);
+			sdf.CreateTrigger(TYPE_ARMOR, val, isMul ? OP_MUL : OP_ADD, false);
+			return sdf;
+		}
+		
 		public static const OP_MUL:uint = 0;
 		public static const OP_ADD:uint = 1;
 		
@@ -18,6 +31,8 @@ package classes.Engine.ShipCombat.DamageTypes
 		public static const TYPE_SHIELD:uint = 5;
 		public static const TYPE_ARMOR:uint = 6;
 		public static const TYPE_HULL:uint = 7;
+		public static const WTYPE_KINETIC:uint = 8;
+		public static const WTYPE_ENERGY:uint = 9;
 		
 		public static const FlagNames:Array = [];
 		
@@ -57,17 +72,18 @@ package classes.Engine.ShipCombat.DamageTypes
 			}
 		}
 		
-		private function CreateTrigger(trigger:uint, value:Number, op:uint = OP_MUL):void
+		private function CreateTrigger(trigger:uint, value:Number, op:uint = OP_MUL, autoApply:Boolean = true):void
 		{			
 			if (HasTriggerFor(trigger))
 			{
 				var o:DamageFlagTrigger = GetTriggerValues(trigger);
 				o.Value = value;
 				o.Operation = op;
+				o.AutoApply = autoApply;
 			}
 			else
 			{
-				_triggers.push(new DamageFlagTrigger(trigger, value, op));
+				_triggers.push(new DamageFlagTrigger(trigger, value, op, autoApply));
 			}
 		}
 		

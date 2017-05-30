@@ -12,13 +12,18 @@ package classes.Ships.Modules
 			super(owner);
 			
 			_powerStorage = 500;
+			_rechargeRatePerRound = 50;
+			_rechargeRatePerMinute = 5;
 		}
 		
 		protected var _powerStorage:int;
 		public function get PowerStorage():int { return _powerStorage; }
 		
-		protected var _rechargeRate:Number;
-		public function get RechargeRate():Number { return _rechargeRate; }
+		protected var _rechargeRatePerRound:Number;
+		public function get RechargeRatePerRound():Number { return _rechargeRatePerRound; }
+		
+		protected var _rechargeRatePerMinute:Number;
+		public function get RechargeRatePerMinute():Number { return _rechargeRatePerMinute; }
 	}
 
 }

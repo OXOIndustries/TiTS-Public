@@ -64,12 +64,12 @@ public function creationHeader(sName:String = ""):void
 }
 public function startCharacterCreation(e:Event = null):void 
 {
-	chars["PC"] = new PlayerCharacter();
 	initializeNPCs();
-	chars["PC"].short = "uncreated";
-	chars["PC"].level = 1;
-	chars["PC"].shield = new classes.Items.Protection.BasicShield();
-	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
+	
+	pc.short = "uncreated";
+	pc.level = 1;
+	pc.shield = new classes.Items.Protection.BasicShield();
+	pc.shieldsRaw = pc.shieldsMax();
 	MailManager.resetMails();
 	ChildManager.resetChildren();
 	userInterface.mailsDisplayButton.Deactivate();
@@ -98,7 +98,7 @@ public function startCharacterCreation(e:Event = null):void
 
 	userInterface.currentPCNotes = undefined;
 	//Tag as in creation.
-	chars["PC"].createStatusEffect("In Creation",0,0,0,0);
+	pc.createStatusEffect("In Creation",0,0,0,0);
 	clearOutput();
 	if(stage.contains(userInterface.textInput)) removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");

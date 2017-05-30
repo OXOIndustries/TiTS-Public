@@ -76,7 +76,8 @@
 				"OnTakeDamageOutput",
 				"isUniqueInFight",
 				"_long",
-				"assignedModule"
+				"assignedModule",
+				"Index"
 			);
 			
 			cocks = new Array();
@@ -101,6 +102,7 @@
 		public var originalRace: String = "human";
 		public var a: String = "a ";
 		
+		// This is an end-run around trying to wrangle overrideable static functions. It means setup is a little messier but it can be hidden.
 		public function get Index():String
 		{
 			return kGAMECLASS.charDict[this];

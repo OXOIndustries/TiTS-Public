@@ -266,6 +266,11 @@ package classes.GameData
 			if (combatContainer) return combatContainer.getCombatEffect(effectName);
 			return null;
 		}
+		public static function getCombatRange():uint
+		{
+			if (!(combatContainer is SpaceCombatContainer)) throw new Error("Range is only applicable to space combat scenarios.");
+			return (combatContainer as SpaceCombatContainer).CurrentCombatRange;
+		}
 	}
 
 }

@@ -1,6 +1,16 @@
-﻿public function initializeNPCs(justUpdate:Boolean = false):void 
+﻿import classes.Characters.PlayerCharacter;
+import flash.utils.Dictionary;
+public function initializeNPCs(justUpdate:Boolean = false):void 
 {
-	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
+	if (!justUpdate)
+	{
+		chars = new Object();
+		charDict = new Dictionary();
+		
+		var nPC:PlayerCharacter = new PlayerCharacter();
+		chars["PC"] = nPC;
+		charDict[nPC] = "PC";
+	}
 	
 	prepChar(justUpdate, "CELISE", Celise);
 	prepChar(justUpdate, "RIVAL", Rival);
@@ -122,6 +132,7 @@
 	prepChar(justUpdate, "KAZRA", Kazra);
 	prepChar(justUpdate, "PIPPA", Pippa);
 	prepChar(justUpdate, "JERYNN", Jerynn);
+	prepChar(justUpdate, "YAMMI", Yammi);
 	
 	
 	// Check all characters have version information set
@@ -142,17 +153,8 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 {
 	if (!justUpdate || (justUpdate && chars[index] == undefined))
 	{
-		chars[index] = new classT();
+		var objInst:Object = new classT();
+		chars[index] = objInst;
+		charDict[objInst] = index;
 	}
-	
-	if (charDict == null)
-	{
-		charDict = new Dictionary();
-	}
-		
-	// Always potentially keep the most recent iteration of a character object in the dict
-	charDict[chars[index]] = index;
 }
-
-import flash.utils.Dictionary;
-public var charDict:Dictionary

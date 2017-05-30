@@ -23,6 +23,7 @@ package classes.Ships.Modules
 			_baseValue = 0;
 			_room = null;
 			_powerConsumption = 0;
+			_capConsumption = 0;
 			_grantedGadgets = [];
 		}
 		
@@ -69,9 +70,12 @@ package classes.Ships.Modules
 		protected var _powerConsumption:Number;
 		public function get PowerConsumption():Number { return _powerConsumption; }
 		
+		protected var _capConsumption:Number;
+		public function get CapConsumption():Number { return _capConsumption; }
+		
 		// Gadgets are just Ship Attacks with a different flag, tied to the presence of certain modules
 		protected var _grantedGadgets:Array;
-		public function get GrantedGadgets():Array { return _grantedAbilites; }
+		public function get GrantedGadgets():Array { return _grantedGadgets; }
 		
 		protected var _canBeStaffed:Boolean;
 		public function get CanBeStaffed():Boolean { return _canBeStaffed; }

@@ -1,5 +1,6 @@
 ﻿package classes.UIComponents.StatusEffectComponents 
 {
+	import classes.Ships.StatusEffectPayload;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.DisplayObject;
 	import flash.display.Graphics;
@@ -152,17 +153,24 @@
 		 * Create a new child and push it into the storage array
 		 * @param	iconClass
 		 */
-		private function BuildNewChild(effectName:String, iconClass:String, tooltipText:String, durationRemaining:int, iconShade:uint):StatusEffectElement
+		private function BuildNewChild(effectName:String, iconClass:*, tooltipText:String, durationRemaining:int, iconShade:uint):StatusEffectElement
 		{
 			var iconT:Class;
 
-			if (StatusIcons[iconClass] !== undefined)
-			{
-				iconT = StatusIcons[iconClass];
+			if (iconClass is String)
+			{	
+				if (StatusIcons[iconClass] !== undefined)
+				{
+					iconT = StatusIcons[iconClass];
+				}
+				else
+				{
+					iconT = StatusIcons.Icon_Missing;
+				}
 			}
 			else
 			{
-				iconT = StatusIcons.Icon_Missing;
+				iconT = iconClass;
 			}
 			
 			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipText, durationRemaining, iconShade, this.mouseHandlerFunc);
@@ -363,6 +371,57 @@
 					this.removeChild(childElem);
 				}
 			}
+		}
+		
+		/**
+		 * Ship status effects use a different fundamental container than Creature effects.
+		 * @param	statusEffects
+		 */
+		public function updateShipDisplay(statusEffects:Object):void
+		{
+			_workElems = _workElems.concat(_childElements);
+			_childElements.splice(0, _childElements.length);
+			
+			for (var seKey:String in statusEffects)
+			{
+				var se:StatusEffectPayload = statusEffects[seKey];
+				if (se.Hidden == true || se.IconClass == null) continue;
+				
+				var matched:Boolean = false;
+				
+				if (_workElems.length > 0)
+				{
+					for (var vecElem:int = 0; vecElem < _workElems.length; vecElem++)
+					{
+						var dispElem:StatusEffectElement = _workElems[vecElem];
+						
+						if (dispElem.name == se.Name)
+						{
+							matched = true;
+							dispElem.durationRemaining = se.Duration;
+							dispElem.tooltipText = se.TooltipBody;
+							// iconShade
+							
+							if (dispElem == _lastActiveElement)
+							{
+								_tooltipElement.UpdateDurationText(se.Duration);
+								_tooltipElement.UpdateTooltip(se.TooltipBody);
+								// iconShade
+							}
+						}
+					}
+				}
+				
+				if (matched == false)
+				{
+					_childElements.push(BuildNewChild(se.Name, se.IconClass, se.TooltipBody, se.Duration, se.IconColor));
+				}
+			}
+			
+			_workElems = _workElems.filter(vectFilterMethod, this);
+			RemoveExpiredChildren();
+			SortChildren();
+			RepositionChildren();
 		}
 		
 		/**

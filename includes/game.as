@@ -576,12 +576,12 @@ public function getCrewOnShip():Array
 {
 	var c:Array = [];
 	if (celiseIsCrew()) c.push(celise);
-	if (reahaisCrew()) c.push(reaha);
+	if (reahaIsCrew()) c.push(reaha);
 	if (annoIsCrew()) c.push(anno);
 	if (bessIsCrew()) c.push(bess);
 	if (yammiIsCrew()) c.push(yammi);
 	if (gooArmorIsCrew()) c.push(gooArmor);
-	if (siegwulfeIsCrew()) c.push(siegwulfe);
+	if (siegwulfeIsCrew()) c.push(wulfe);
 	return c;
 }
 
