@@ -99,7 +99,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 
 		bothriocAddiction(1);
 		if (rand(4) <= 2 && pc.libido() < 80) pc.slowStatGain("libido", 2 + rand(2));
-		if (rand(4) <= 2 && pc.tone > 20) pc.modTone(3 + rand(3), true);
+		if (rand(4) <= 2 && pc.tone < 20) pc.modTone(3 + rand(3), true);
 	}
 	else if (opt == 1)
 	{
