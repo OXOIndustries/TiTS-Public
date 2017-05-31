@@ -3629,6 +3629,11 @@
 			{
 				autoSex = "Unisex";
 			}
+			// Bothrioc
+			if(originalRace == "bothrioc" || race.indexOf("bothrioc") != -1)
+			{
+				autoSex = (!CodexManager.entryViewed("Bothrioc") ? "???" : "Unisex");
+			}
 			// Nyrea
 			if(originalRace == "nyrea" || race.indexOf("nyrea") != -1)
 			{
