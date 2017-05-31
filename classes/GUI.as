@@ -962,7 +962,7 @@
 		public function clearOutput():void
 		{
 			// No need to clear already blank pages!
-			if ((_currentModule as GameTextModule).htmlText == "\n") return;
+			if (outputBuffer == "\n") return;
 			
 			pushToBuffer();
 			showPrimaryOutput();
