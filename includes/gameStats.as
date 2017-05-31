@@ -5425,21 +5425,21 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(pippaOnShip()) output2(" (Onboard Ship)");
 						else output2(" (Left on Uveto)");
 					}
-					else if (pippaRecruitTurnedDown()) output2(", Turned down request to join crew");
+					else if(pippaRecruitTurnedDown()) output2(", Turned down request to join crew");
 					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + " %");
-					if (pippaSexed(0) > 0)
+					if(pippaSexed(0) > 0)
 					{
 						var pippaTop:int = pippaDominance();
 						
 						output2("\n<b>* Pippa, Preferred Position:</b> ");
-						if (pippaTop > 50) output2("Top");
-						else if (pippaTop < 50) output2("Bottom");
+						if(pippaTop > 50) output2("Top");
+						else if(pippaTop < 50) output2("Bottom");
 						else output2("No Preference");
 						
 						var topBottomStrength:int = Math.abs(pippaTop - 50);
 						
-						if (topBottomStrength <= 17 && topBottomStrength > 0) output2(", Slight Preference");
-						else if (topBottomStrength >= 33) output2(", Strong Preference");
+						if(topBottomStrength <= 17 && topBottomStrength > 0) output2(", Slight Preference");
+						else if(topBottomStrength >= 33) output2(", Strong Preference");
 					}
 					if(pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
 					if(pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
@@ -5992,15 +5992,17 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n* <i>No roaming encounter data has been logged.</i>");
 		}
 		
+		// Team Building
 		output2("\n\n" + blockHeader("Crew Team Building", false));
 		var teamBuildingCount:int = 0;
 		
-		if (pippaYammiThreesomeCount(0) > 0)
+		if(pippaYammiThreesomeCount(0) > 0)
 		{
 			output2("\n<b>* Pippa, Yammi, Times Sexed in Threesome:</b> " + pippaYammiThreesomeCount(0));
 			teamBuildingCount++;
 		}
 		
+		//Nothing recorded
 		if(teamBuildingCount == 0)
 		{
 			output2("\n<b><u>Not Available</u></b>");
