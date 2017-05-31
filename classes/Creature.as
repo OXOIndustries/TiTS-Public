@@ -339,6 +339,10 @@
 			{
 				r.freezing.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440));
 			}
+			if (hasStatusEffect("Oil Cooled"))
+			{
+				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
+			}
 			
 			return r;
 		}
@@ -2155,6 +2159,10 @@
 				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
+				case "vaginasSimple":
+				case "vaginasNoun":
+					buffer = simpleVaginasNoun();
+					break;
 				case "vaginas":
 				case "pussies":
 				case "cunts":
@@ -2192,6 +2200,10 @@
 				case "vagOrAsshole":
 				case "pussyOrAsshole":
 					buffer = vagOrAss(arg2);
+					break;
+				case "vagOrAssNoun":
+				case "vagOrAssSimple":
+					buffer = vagOrAssNoun(arg2);
 					break;
 				case "clit":
 				case "clitoris":
@@ -3037,6 +3049,10 @@
 			removeStatusEffect("Cum Soaked");
 			removeStatusEffect("Pussy Drenched");
 			removeStatusEffect("Oil Warmed");
+			removeStatusEffect("Oil Cooled");
+			removeStatusEffect("Oil Numbed");
+			removeStatusEffect("Oil Aroused");
+			removeStatusEffect("Oil Slicked");
 		}
 		public function canMasturbate():Boolean
 		{
@@ -13093,6 +13109,11 @@
 			if (hasVagina() && arg >= 0) return vaginaDescript(arg);
 			return assholeDescript();
 		}
+		public function vagOrAssNoun(arg:int = 0):String
+		{
+			if (hasVagina() && arg >= 0) return vaginaNounDescript(arg);
+			return assholeDescript(true);
+		}
 		//Vaginas + Descript
 		public function oneTailVaginaDescript():String
 		{
@@ -13184,6 +13205,21 @@
 		{
 			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
 			return vaginaNoun2(vaginas[vaginaNum]);
+		}
+		public function simpleVaginasNoun():String {
+			var output:String = "";
+			
+			if (vaginas.length < 1) return "<b>ERROR: NO PUSSIES DETECTED for simpleVaginasNoun()</b>";
+			if (matchedVaginas()) output += vaginaNoun2(vaginas[0], true);
+			else output += randomSimpleVaginaNoun();
+			
+			if (vaginas.length > 1) output = plural(output);
+			
+			return output;
+		}
+		public function randomSimpleVaginaNoun():String
+		{
+			return RandomInCollection("pussy","pussy","pussy","pussy","pussy","vagina","vagina","vagina","cunt","cunt","slit");
 		}
 		public function vaginaNoun2(vag:VaginaClass, simple:Boolean = false, special:String = ""):String
 		{
@@ -18427,6 +18463,7 @@
 				if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
 				if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
 				if (hasPerk("Ice Cold")) prodFactor /= 2;
+			if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
 				
 				var producedLust:Number = deltaT * prodFactor;
 				if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
@@ -18552,6 +18589,8 @@
 				var requiresRemoval:Boolean = thisStatus.minutesLeft <= 0;
 				
 				var wholeHoursPassed:uint = ((kGAMECLASS.minutes + deltaT) / 60);
+				
+				var desc:String = "";
 				
 				switch (thisStatus.storageName)
 				{
@@ -18909,6 +18948,31 @@
 						oilDesc += "\nFreeze Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						setStatusTooltip("Oil Warmed", oilDesc);
 						break;
+					case "Oil Cooled":
+						if(this is PlayerCharacter) desc = "You’re covered in cool, protective oil!";
+						else desc = capitalA + short + " is covered in cool, protective oil!";
+						desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
+						setStatusTooltip("Oil Cooled", desc);
+						break;
+					case "Oil Numbed":
+						if(this is PlayerCharacter) desc = "You’re covered in numbing, lust-inhibiting oil!";
+						else desc = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
+						desc += "\nLust gains are decreased.";
+						setStatusTooltip("Oil Numbed", desc);
+						break;
+					case "Oil Aroused":
+						if(this is PlayerCharacter) desc = "You’re covered in arousing, lust-inducing oil!";
+						else desc = capitalA + short + " is covered in arousing, lust-inducing oil!";
+						desc += "\nTeasing is more effective, but arousal comes more easily.";
+						setStatusTooltip("Oil Aroused", desc);
+						break;
+					case "Oil Slicked":
+						if(this is PlayerCharacter) desc = "You’re covered in super slippery oil!";
+						else desc = capitalA + short + " is covered in super slippery oil!";
+						desc += "\nIt’s easier to slip away from someone’s grasp.";
+						setStatusTooltip("Oil Slicked", desc);
+						break;
+						
 					case "Tentatool":
 						if (this is PlayerCharacter && requiresRemoval)
 						{

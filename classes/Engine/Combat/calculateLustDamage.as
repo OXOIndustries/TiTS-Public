@@ -70,6 +70,7 @@ package classes.Engine.Combat
 		{
 			if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) damMulti += 0.25;
 		}
+		if (target.hasStatusEffect("Oil Aroused")) damMulti += 0.1;
 		if (damMulti != 1) lustDamage.multiply(damMulti);
 		
 		// Apply resistances
