@@ -222,6 +222,7 @@
 		public static const TYPE_MOUTHGINA:int 								= 74;
 		public static const TYPE_LUPINE:int 								= 75;
 		public static const TYPE_SHEEP:int 									= 76;
+		public static const TYPE_REDPANDA:int 									= 77;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -301,6 +302,7 @@
 			"Mouthgina",
 			"Lupine",
 			"Sheep",
+			"Lesser Panda",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -330,6 +332,7 @@
 			TYPE_SWINE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -420,6 +423,7 @@
 			TYPE_DOGGIE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -443,6 +447,7 @@
 			TYPE_FLOWER,
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
+			TYPE_REDPANDA,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -492,6 +497,7 @@
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -595,6 +601,7 @@
 			TYPE_DOGGIE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [

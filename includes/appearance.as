@@ -278,6 +278,13 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2("Your face resembles an anthropomorphic panda’s, though strangely, it is covered in shimmering scales, right up to your black nose.");
 			else output2("You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
 			break;
+		case GLOBAL.TYPE_REDPANDA:
+			output2(RandomInCollection([
+				"You have a short, cute muzzle much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s. A coat of patterned " + target.furColor + " fur decorates your visage.",
+				"Your face sports a blunt muzzle, much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s. A coat of patterned " + target.furColor + " fur decorates your visage.",
+				"Your face has distinct markings and patterns along your " + target.furColor + ", short muzzle, much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s."
+			]));
+			break;
 		//Lizard-face
 		case GLOBAL.TYPE_LIZAN:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2("You have a face resembling that of a lizard. Between the toothy maw, pointed snout, and the layer of " + faceFurScales + " covering your face, you have quite the fearsome visage.");
@@ -574,6 +581,10 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_PANDA:
 				output2(" A pair of rounded, panda-like ears protrude from your " + headNoun + ", " + target.mf("standing tall and proud", "looking absolutely adorable") + ".");
 				break;
+			case GLOBAL.TYPE_REDPANDA:
+				if(target.tallness <= 72) output2("A pair of big " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda ears perk up on top of your head, listening closely to any surrounding noise.");
+				else output2("A pair of cute, furry " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda ears poke out of the top of your head, listening closely to any surrounding noise.");
+				break;
 			case GLOBAL.TYPE_RASKVEL:
 				output2(" A pair of");
 				if(target.earLength >= (target.tallness * 0.6)) output2(" " + num2Text(target.earLength) + "-inch");
@@ -717,6 +728,9 @@ public function appearance(forTarget:Creature):void
 				break;
 			case GLOBAL.TYPE_PANDA:
 				output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of round panda ears.");
+				break;
+			case GLOBAL.TYPE_REDPANDA:
+				output2("The " + target.hairDescript(true,true) + " atop your head is parted by a pair of " + (target.tallness <= 72 ? "large" : "cute") + " " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda ears that are always listening to any surrounding noise.");
 				break;
 			case GLOBAL.TYPE_RASKVEL:
 				output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of");
@@ -1282,6 +1296,14 @@ public function appearance(forTarget:Creature):void
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
 			output2(" fingers are thick and capped with bear-like claws but maintain their human opposability.");
 			break;
+		case GLOBAL.TYPE_REDPANDA:
+			if(target.hasArmFlag(GLOBAL.FLAG_FLUFFY)) output2(" A fluffy layer of solid " + target.furColor + " fur covers your arms.");
+			output2(" " + RandomInCollection([
+				"Each of your arms are tipped with broad, bear-like paws",
+				"Your fingers are tipped with cute, bear-like paw pads",
+				"The palms of your hands, as well as your fingers are adorned with soft and cute pads"
+			]) + ".");
+			break;
 		case GLOBAL.TYPE_KUITAN:
 			if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms end with gel-padded fingers. ");
 			else if(!target.hasFur()) output2(" Dark brown pads rest on the tips of each of your fingers. ");
@@ -1469,6 +1491,7 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_LAPINE:
 				output2(" lagomorph"); break;
 			case GLOBAL.TYPE_BADGER:
+			case GLOBAL.TYPE_REDPANDA:
 				output2(" mustelid"); break;
 			case GLOBAL.TYPE_MOUSE:
 				output2(" rodent"); break;
@@ -1802,6 +1825,21 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_PANDA:
 			if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" A short, slimy panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a gooey little accent.");
 			else output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
+			break;
+		case GLOBAL.TYPE_REDPANDA:
+			if(target.tailCount <= 1)
+			{
+				if(target.hasTailFlag(GLOBAL.FLAG_FLUFFY)) output2(" A long, bushy " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda tail sprouts from your backside. Its " + target.furColor + " ringed pattern is a hypnotizing sight to behold.");
+				else if(rand(2) == 0) output2(" A long furry tail hangs from your backside. Its " + target.furColor + " ringed pattern is a hypnotizing sight to behold.");
+				else output2(" A long, " + target.furColor + " ringed tail waves behind you.");
+			}
+			else
+			{
+				output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long");
+				if(target.hasTailFlag(GLOBAL.FLAG_FLUFFY)) output2(", bushy " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda tails sprout from your backside. Their " + target.furColor + " ringed patterns are a hypnotizing sight to behold.");
+				else if(rand(2) == 0) output2(" furry tails hangs from your backside. Their " + target.furColor + " ringed patterns are a hypnotizing sight to behold.");
+				else output2(", " + target.furColor + " ringed tails wave behind you.");
+			}
 			break;
 		case GLOBAL.TYPE_RASKVEL:
 			if(target.tailCount == 1)
@@ -2169,6 +2207,11 @@ public function appearance(forTarget:Creature):void
 				output2(" legs grow downwards from your waist, ending in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "fluffy") + " panda-paws.");
 			}
 			output2(" You even have " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "blunt" : "sharp-looking") + " claws growing from the tips of your short toes.");
+			break;
+		case GLOBAL.TYPE_REDPANDA:
+			if(target.hasLegFlag(GLOBAL.FLAG_FLUFFY)) output2(" Your fluffy, " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda-like legs end with soft and cute bear-like paws.");
+			else if(target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(" Your furry, " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda-like legs end with broad and powerful-looking paws.");
+			else output2(" Your solid " + target.furColor + " " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "gummi-like" : "furred") + " legs end with plush, bear-like paws.");
 			break;
 		case GLOBAL.TYPE_FROG:
 			if(target.legCount < 4)
