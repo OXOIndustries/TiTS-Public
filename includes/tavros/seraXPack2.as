@@ -549,7 +549,8 @@ public function mods4UChrysalisDiscount():void
 public function mods4UChrysalisSaendra():void
 {
 	clearOutput();
-	saenSeraHeader();
+	showBust(saendraBustDisplay(), "CHRYSALIS_DRONE");
+	showName("\nSAENDRA");
 	author("Nonesuch");
 
 	output("<i>“Hey,”</i> you say, approaching your fluffy lover and grabbing a handful of her ass. <i>“Ready for this?”</i>");

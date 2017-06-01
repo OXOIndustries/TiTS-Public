@@ -2336,7 +2336,7 @@ public function displayQuestLog(showID:String = "All"):void
 							if(flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 5) output2(", <i>Keep investigating or return to Hepane...</i>");
 							else output2(", <i>Return to Hepane!</i>");
 						}
-						break
+						break;
 					case FAZIAN_QUEST_REJECTED: output2(" Refused to help Hepane find Fazian"); break;
 					case FAZIAN_QUEST_FAILED: output2(" Offered to help Hepane, Did not find enough useful clues, Failed"); break;
 					case FAZIAN_QUEST_INVESTIGATED:
@@ -2633,7 +2633,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Drone Hunting</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["NAYNA_REJECTED"] != undefined) output2(" Refused to help Nayna");
-				else if(flags["NAYNA_QUEST_STARTED"] != undefined)
+				else if(flags["NAYNA_QUEST_STARTED"] != undefined || flags["NAYNA_DRONES_TURNED_IN"] != undefined)
 				{
 					var naynaDrones:int = 0;
 					if(flags["DRONED_UVIP F20"] != undefined) naynaDrones++;
@@ -2657,8 +2657,8 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b> Seen ritual");
 				switch(flags["UVGR_SAVICITE_IDOL"])
 				{
-					case -1: output2(", Did not take idol");
-					case 1: output2(", Took idol");
+					case -1: output2(", Did not take idol"); break;
+					case 1: output2(", Took idol"); break;
 				}
 				sideCount++;
 			}

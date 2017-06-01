@@ -31,8 +31,8 @@ flags["PLANTATION_QUEST"] = 0; 			- QUEST STARTED
 flags["PQUEST_WHERE_CHAT"] = 1; 		- TALKED WITH DARNOCK ABOUT WHERE LAH IS.
 flags["PQUEST_LAH_CHAT"] = 1;			- TALKED WITH DARNOCK ABOUT WHO LAH IS.
 flags["PQUEST_ABLE_TALK_DISABLE"] = 1;	- ABLES EARLY PQUEST TALK IS DISABLED BECAUSE WALKED AWAY.
-flags["PQUEST_ABLE_TALK_DISABLE"] = 2;  - ABLE EARLY PQUEST DISCUSSIONS LOCKED BECAUSE PC TALKED 2HIM.
-flags["PQUEST_ABLE_CUSTOMS_TALK"] = 1;  - ABLE TOLD YOU ABOUT CUSTOMS
+flags["PQUEST_ABLE_TALK_DISABLE"] = 2;	- ABLE EARLY PQUEST DISCUSSIONS LOCKED BECAUSE PC TALKED 2HIM.
+flags["PQUEST_ABLE_CUSTOMS_TALK"] = 1;	- ABLE TOLD YOU ABOUT CUSTOMS
 flags["PQUEST_ABLE_VALUE_TALK"] = 1; 	- ABLE TOLD YOU ABOUT WHAT THEY VALUE
 
 flags["PQ_RESOLUTION"]					- 1: GOOD END, 2: PEACEFUL WITH PC BUT SHIT BURNIN, -1: PC WREKT TRIBE
@@ -1174,7 +1174,7 @@ public function pcLoses2Hornet():void
 	{
 		var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 		output("\n\n<i>“Like that?”</i> she demands, bending her pronged abdomen back to stab it into you above your [pc.chest]. Needling pain and fierce heat spreads out from the puncture wound. <i>“And that? And that?”</i> You cry out weakly, cringing away from her stinger, trying to beg for mercy. [pc.EachCock] responds immediately to her venom, tent-poling ");
-		if(!pc.isCrotchExposed()) output("your [pc.lowerUndergarments] ");
+		if(!pc.isCrotchExposed()) output("your [pc.lowerGarments] ");
 		output("so fiercely you find yourself doubting ");
 		if(pc.cockTotal() == 1) output("it");
 		else output("they");
@@ -1189,7 +1189,7 @@ public function pcLoses2Hornet():void
 
 		//merge
 		output("\n\nYou are feverish, writhing to the pulse of pheromones slathered over your every sense, and you rocket [pc.cum] into her milking snatch in an unstoppable flurry");
-		if(pc.cumQ() >= 60) output("until it is oozing and dripping down your [pc.legOrLegs] into the void below");
+		if(pc.cumQ() >= 60) output(" until it is oozing and dripping down your [pc.legOrLegs] into the void below");
 		output(".");
 
 		output("\n\n<i>“Already?”</i> the zil snorts, as you flail against her like a landed fish. She viciously stabs you with her stinger again in the [pc.thigh], a flare of pain to go with the intoxicating pleasure of her slick, tar cunt gloving your [pc.cock " + x + "]. <i>“Already? Do you think to escape by wilting out of me, pathetic soldier-child? I have barely begun! See how a true warrior fucks, and dwell upon it next time you think to invade our lands!”</i>");
@@ -1218,14 +1218,14 @@ public function pcLoses2Hornet():void
 		else if(pc.hasCock())
 		{
 			output("[pc.EachCock] responds immediately to her venom, tent-poling ");
-			if(!pc.isCrotchExposed()) output("your [pc.lowerUndergarments] ");
+			if(!pc.isCrotchExposed()) output("your [pc.lowerGarments] ");
 			output("so fiercely you find yourself doubting it will ever go soft again. ");
 		}
 		output("The arousal is so intense, your mouth open and vision swimming, you don’t even realize immediately what she’s doing as she descends on her ropes and reaches around you, pushing your face between her soft, pert breasts until you feel the tough, fibrous pressure on the small of your back.");
 		output("\n\n<i>“I’m not having you kill yourself before I’ve taken my satisfaction,”</i> she growls in your ear, as you sag backwards with relief in the makeshift harness. <i>“As much as I doubt you know the meaning of sacrificial honor, land-stealer.”</i>");
 		if(!pc.hasCock()) 
 		{
-			output(" She raises a woad-daubed eyebrow as her gaze travels further down - presumably taking in the fact you aren’t tent-poling like mad");
+			output(" She raises a woad-daubed eyebrow as her gaze travels further down - presumably taking in the fact you aren’t tent-poling like mad ");
 			if(pc.isCrotchExposed()) output("downstairs");
 			else output("in your [pc.underGarments]");
 			output(" - before athletically swinging her armored yellow legs around your neck.");
@@ -1357,7 +1357,7 @@ public function loseToHoverfly():void
 	if(pc.hasCock()) output("[pc.eachCock] growing tender and erect");
 	if(pc.isHerm()) output(" and ");
 	if(pc.hasVagina()) output("[pc.eachVagina] moistening and widening eagerly");
-	output(". By the time he’s laid you on the rocky shelf you’re ctually salivating slightly in anticipation.");
+	output(". By the time he’s laid you on the rocky shelf you’re actually salivating slightly in anticipation.");
 
 	output("\n\nThe zil warrior slides his wings down and lies back on the rock, slender chest heaving, his expression one of well-worked triumph. He opens his gleaming thighs and retracts his groin plate, murmuring as his thick, jet, foreskinned dick springs outward, erect and ready.");
 	output("\n\n<i>“It’s not going to suck itself,”</i> he says, gazing at you heavy-lidded with the air of a returning conqueror. <i>“Do a good job and who knows... I could be persuaded to carry you down to the bottom.”</i>");
@@ -2558,7 +2558,7 @@ public function putItInQuinnYaCunt():void
 	output("\n\nHer intermittent shudders and clenches only serve to drive you on, your [pc.hips] clapping into her short, yellow backside fervently, groans forced past your [pc.lips] as pleasure coils around the stern flesh of your cock, succulent heat beginning to rise up to boiling point. The cute little gasps and squeaks you’re beginning to draw out of the quivering zil chieftain with each intent thrust are clearly not made from a place of anguish, either.");
 	output("\n\n<i>“You’re enjoying that, aren’t you Princess?”</i> you growl tauntingly, adjusting your grip so that you can mold your fingers into her breast, rolling your fingers over a small, taut black nipple. <i>“Feels pretty good to be put in your place, doesn’t it?”</i>");
 	output("\n\n<i>“I do this for my people - far shist brute!”</i> she snaps, head pressed into the sand. You enjoy yourself by angling your [pc.cock " + x + "] down knowingly, pressing into a sweet spot that makes her throw her striped hair back and flick at the air with her golden tube-tongue insensate, stopping her from continuing her rant for a few long moments. <i>“ - I chose for us to face you - I take the fall for our failure to stop you. If - if I did otherwise, I would not be Quinn!”</i>");
-	output("\n\n<i>“Uh huh.”</i> You casually swat one of her buttocks, admiring the hand-mark you leave, and laugh as she tightens up around your [pc.cockHead " + x + "], fresh honey oozes around you and onto the ground. <i>“Totally not because none of your subjects dare give it you the way you love it.”</i> Looking up from her you take in Lah, who’s recovered enough to be watching the scene in front of him with an expression of enthralled horror.");
+	output("\n\n<i>“Uh huh.”</i> You casually swat one of her buttocks, admiring the hand-mark you leave, and laugh as she tightens up around your [pc.cockHead " + x + "], fresh honey oozes around you and onto the ground. <i>“Totally not because none of your subjects dare give it to you the way you love it.”</i> Looking up from her you take in Lah, who’s recovered enough to be watching the scene in front of him with an expression of enthralled horror.");
 	output("\n\n<i>“Isn’t that right, mutt?”</i> you ask tauntingly, relishing the gloating excitement in your own tones. <i>“You never did get to sample this sugar, did you?”</i> You emphasize your words by thrusting yourself into Quinn’s opened twat roughly, spattering syrup on your naked thighs, hand gripped around her spiky hair. The slack-jawed ausar doesn’t reply - either in a trance, or not recovered from being knocked for six. <i>“Too bad,”</i> you groan theatrically to his non-response, closing your [pc.eyes] as orgasm overwhelms you, ecstasy tightening up your muscles. <i>“These zil honeys make for good fucks once they’re shown a bit of discipline...”</i>");
 	output("\n\nYour [pc.cock " + x + "] bulges deep in the gooey, quivering heaven of the zil’s cunt and then releases brilliantly, packing it out with [pc.cum] via heavy, juicy flexes, making you hold and pump into her hard, intent on elongating every whiplash of joy as much as possible. Her gasps and shudders only intensify your gratification, and you tighten her grip, letting her feel your strength and surety, a vice around her softness that spreads and claims her again and again.");
 	if(pc.cumQ() >= 500) output(" Your [pc.cumVisc] seed is soon spurting back around your girth, and you pull out your over-burdened cock and slap it between her buttocks, cannoning [pc.cum] up her back and into her blonde-and-brown hair. She cries out in disgust and anger, but you blot that out by flipping her over and giving her face and petite breasts a heavy creaming from your throbbing, fecund bitch-breaker too.");
@@ -2670,7 +2670,7 @@ public function talkToLahAboutEscape():void
 	output("<i>“How exactly did you get out of the plantation and wind up here?”</i> you ask. <i>“Darnock seemed pretty surprised that anyone managed it.”</i>");
 	output("\n\n<i>“A few others did it,”</i> replies Lah, strolling slowly around the plateau with you, hands behind back. <i>“You saw yourself they didn’t have walls, just turrets. So if you were willing to risk getting a stun bolt between your shoulderblades - and let me tell you, those things sting fierce for days afterwards - you could always try leaping into the jungle if your group got assigned to the perimeter fields. But if you managed to evade the turrets and the drones, what were you going to do then?”</i>");
 	output("\n\nLah barks with dry laughter, gazing out over the huts and trees to the south west.");
-	output("\n\n<i>“I remember one kaithrit in my work group - smuggler. Grew up on a jungle world, said Mhen’ga was pussy shit, in her words. Got away in the first week, sprained her ankle doing it, spent a day limping her way to Esbeth, fighting off naleen and worse on the way. What’s waiting for her at the entrance? Their police officer, a riot-mech and a cab back to the plantation. Snugglé know exactly where you’re going to go, because what else are you going to do? Let the tentacle women enslave you?”</i>");
+	output("\n\n<i>“I remember one kaithrit in my work group - smuggler. Grew up on a jungle world, said Mhen’ga was pussy shit, in her words. Got away in the first week, sprained her ankle doing it, spent a day limping her way to Esbeth, fighting off naleen and worse on the way. What’s waiting for her at the entrance? Their police officer, a riot-mech and a cab back to the plantation. Snugglé knows exactly where you’re going to go, because what else are you going to do? Let the tentacle women enslave you?”</i>");
 	output("\n\nHe rubs his chin, pale eyes lowering to the bustle of the zil village.");
 	output("\n\n<i>“So I always knew that if I were going to get out, it would be </i>out<i>. Permanently. I had my beliefs and my education, and that stood me apart from the other prisoners - lowlives and sad-stories mostly, struggled to see beyond their own noses. I knew about Snugglé’s practices, I knew if they were using prison labor it had to be because the natives were restless. It was just a case of connecting up with them. The other prisoners laughed and cheered when I ran for it the first time I got put on the far fields, like they always did. A bit of entertainment to break up the backbreaking monotony of life on that fucking plantation.”</i> Lah’s wiry shoulders rise and fall. <i>“I am so glad you didn’t try and take me back there. I am so glad I will never see any of them again.”</i>");
 	processTime(6);
@@ -3054,7 +3054,7 @@ public function putItInAllThreeOfQuinnHoles():void
 	output("\n\nThe words just tumble out of you. They aren’t even remotely appropriate, but here, in this warm, secluded space, with the saccharine pheromones pouring off her wasp factory and submerging your senses in honeyed need, the sight of her lithe, athletic body sprawled on the furs in front of you, they just... happen. [pc.EachCock], throbbing ");
 	if(pc.isCrotchExposed()) output("urgently");
 	else output("and straining urgently against your [pc.lowerUndergarment]");
-	output("has bypassed your brain entirely. The zil chieftain laughs with delighted condescension, knee waggling up and down. Oh Void, the way she arches her eyebrow... you ");
+	output(" has bypassed your brain entirely. The zil chieftain laughs with delighted condescension, knee waggling up and down. Oh Void, the way she arches her eyebrow... you ");
 	if(!pc.isNaga()) output("step");
 	else output("slither");
 	output(" towards the bed reactively.");
@@ -3277,7 +3277,7 @@ public function zilOnTopOfPC():void
 	if(pc.hasKnot(x) && pc.balls > 0) output(" and ");
 	if(pc.balls > 0) output("your [pc.balls]");
 	if(!pc.hasKnot(x) && pc.balls == 0) output("base");
-	output(" is so good you can feel the sweetness of Nirvana on your [pc.furSkinScales] and tongue. Instinctively you reach out and clasp her hourglass waist as she ");
+	output(" is so good you can feel the sweetness of Nirvana on your [pc.skinFurScales] and tongue. Instinctively you reach out and clasp her hourglass waist as she ");
 	if(pc.cocks[x].cLength() < 5.6) output("gloves you whole, easily taking every inch of your eager boy dick");
 	else output("takes as much of you as she can in her tight tunnel, the rest of your dick soaked in syrup");
 	output("; she strokes your hands fondly, before gently but firmly taking them off, leading them back and planting them on the thick, wide femurs of the bone trophy behind you.");
@@ -3321,7 +3321,7 @@ public function zilOnTopOfPC():void
 		output(" of [pc.cum] that gobbets down onto you. She grips your softening member, slapping it this way and that playfully. <i>“Remember to bring this with you again next time. It is a pleasing shape.”</i>");
 	}
 	output("\n\nQuinn drops to one side, the exploration of your naked, ravished body continuing with flicks of her golden pupils. Although her smell remains overpowering, the pheromonal imperative of it seems to be fading - nothing stops you from slowly reaching out and clasping her thigh and beneath the arm, do a bit of tired, fond exploring yourself. A significant part of you regrets that all-encompassing submissive goldenness receding. Wouldn’t it be nice to stay here forever as your savage queen’s fuck-pet?...");
-	output("\n\n<i>“Come back later,”</i> she murmurs in your ear, pointedly taking your hands of her pretty breasts. Reluctantly you clamber out of the bed and try to find your gear in the dim, flickering light, <i>Void</i> does your dick ache. <i>“When you have performed many more brave, wise deeds in my name. I will relive and absorb them with you. Maybe one day - I will sire a child with them.”</i>");
+	output("\n\n<i>“Come back later,”</i> she murmurs in your ear, pointedly taking your hands off her pretty breasts. Reluctantly you clamber out of the bed and try to find your gear in the dim, flickering light, <i>Void</i> does your dick ache. <i>“When you have performed many more brave, wise deeds in my name. I will relive and absorb them with you. Maybe one day - I will sire a child with them.”</i>");
 	output("\n\nA couple of handmaidens pass you on the path from the Quinn’s yurt, heated towels and buckets sloshing.");
 	processTime(30);
 	pc.orgasm();
