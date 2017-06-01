@@ -301,6 +301,10 @@ public function buyItem():void {
 				switch(shopkeep.originalRace)
 				{
 					case "Amazona": output(amazonaIcedTeaList(shopkeep.inventory[x])); break;
+					default :
+						if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
+						output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
+					break;
 				}
 			}
 			// Default listing
