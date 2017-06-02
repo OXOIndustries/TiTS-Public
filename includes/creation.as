@@ -1269,8 +1269,8 @@ public function chooseHowPCIsRaised():void {
 	addButton(1,"Athletic",applyUpbringing,GLOBAL.UPBRINGING_ATHLETIC,"Athletic","You begin with higher physical skills but lower mental ones.");
 	addButton(2,"Bookworm",applyUpbringing,GLOBAL.UPBRINGING_BOOKWORM,"Bookworm","You begin with higher mental skills but lower physical ones.");
 	addButton(3,"Austere",applyUpbringing,GLOBAL.UPBRINGING_AUSTERE,"Austere","You begin with less starting money, but higher willpower.");
-	addButton(4,"Slutty",applyUpbringing,GLOBAL.UPBRINGING_SLUTTY,"Balanced","You begin well rounded, not specialized or lacking in anything.");
-	addButton(13,"Balanced",applyUpbringing,GLOBAL.UPBRINGING_BALANCED,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	//addButton(4,"Slutty",applyUpbringing,GLOBAL.UPBRINGING_SLUTTY,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	addButton(4,"Balanced",applyUpbringing,GLOBAL.UPBRINGING_BALANCED,"Balanced","You begin well rounded, not specialized or lacking in anything.");
 	addButton(14,"Back",chooseAPhysicalAffinity);
 }
 
@@ -2036,8 +2036,8 @@ public function fixPcUpbringing():void
 	addButton(1,"Athletic",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_ATHLETIC);
 	addButton(2,"Bookworm",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BOOKWORM);
 	addButton(3,"Austere",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_AUSTERE);
-	addButton(4,"Slutty",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_SLUTTY);
-	addButton(13,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
+	//addButton(4,"Slutty",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_SLUTTY);
+	addButton(4,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
 }
 
 public function fixPcUpbringingSetNew(upType:uint):void
