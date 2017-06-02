@@ -272,6 +272,7 @@
 		include "../includes/newTexas/gianna.as";
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
+		include "../includes/newTexas/mirrin.as";
 		include "../includes/newTexas/rooms.as";
 		include "../includes/newTexas/roomFunctions.as";
 		include "../includes/newTexas/stocks.as";
@@ -1342,6 +1343,10 @@
 		public function get del():Delilah
 		{
 			return chars["DELILAH"];
+		}
+		public function get mirrin():Mirrin
+		{
+			return chars["MIRRIN"];
 		}
 	}
 }

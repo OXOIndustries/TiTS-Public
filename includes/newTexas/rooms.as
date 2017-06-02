@@ -973,6 +973,17 @@ public function initNewTexasRooms():void
 	rooms["540"].addFlag(GLOBAL.NPC);
 	rooms["540"].addFlag(GLOBAL.PUBLIC);
 
+	rooms["MIRRINS"] = new RoomClass(this);
+	rooms["MIRRINS"].roomName = "MIRRIN'S\nPLACE";
+	rooms["MIRRINS"].description = "";
+	rooms["MIRRINS"].runOnEnter = undefined;
+	rooms["MIRRINS"].northExit = "";
+	rooms["MIRRINS"].moveMinutes = 1;
+	rooms["MIRRINS"].planet = "PLANET: NEW TEXAS";
+	rooms["MIRRINS"].system = "SYSTEM: NYE";
+	rooms["MIRRINS"].addFlag(GLOBAL.INDOOR);
+	rooms["MIRRINS"].addFlag(GLOBAL.NPC);
+
 	//GYM SHIT!
 	rooms["569"] = new RoomClass(this);
 	rooms["569"].roomName = "TEN\nTON GYM";
