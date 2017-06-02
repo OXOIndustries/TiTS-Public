@@ -157,29 +157,26 @@ public function testCharGenSelection():void
 
 public function confirmRaceChoice(race:String = "human"):void {
 	clearOutput();
-	if(race == "human")
+	switch(race)
 	{
-		output("A purely human heritage would give Victor’s child the body one would expect - two legs, two arms, two eyes, a head of hair, etc.... There’s really not much more to say about such a choice.");
-	}
-	else if(race == "ausar")
-	{
-		output("As a half-ausar, Victor’s child would start with dog-like ears, a canine tail, and a red, knotted penis if male. The ausar are known for their close bond with humanity and would be a likely pick for the child’s mother.");
-	}
-	else if(race == "kaithrit")
-	{
-		output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it’ll have a soft-spined, cat-like penis.");
-	}
-	else if(race == "leithan")
-	{
-		output("Leithans are a race visually similar to mythological centaurs, though they trace their origins to reptile-like species and have six clawed legs. They have powerful, prehensile tails as well as a highly acute set of four ears: two tapered ones on the side of their heads, and two large bunny-like ears atop. They are known for their speed and strength, and have a distinct color palette of grays and blacks, with yellow bioluminate areas on their scales. Leithans are also much taller than normal, reaching natural heights up to nine feet tall. If the child is male, it will have a large, bulbous reptilian penis between its rear legs.");
-	}
-	else if(race == "kui-tan")
-	{
-		output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species’ adolescent young, and balls that engorge with seed the longer they go without release.");
-	}
-	else if (race == "gryvain")
-	{
-		output("Gryvain are a highly advanced race of winged hermaphrodites, blending mammalian and reptilian biology. They have darkly scaled limbs, fleshy upper bodies, prehensile tails, curling horns, and frilled ears. Their eyes are dark gold and vertically slitted. All gryvain are feminine in appearance, and most have voluptuous figures: broad egg-laying hips and large breasts. They have bulbous, reptilian phalluses with internal testes, mounted over vaginas that have rings of internal, nub-like secondary clitorises inside, which makes birth and sex extraordinarily pleasurable.");
+		case "human":
+			output("A purely human heritage would give Victor’s child the body one would expect - two legs, two arms, two eyes, a head of hair, etc.... There’s really not much more to say about such a choice.");
+			break;
+		case "ausar":
+			output("As a half-ausar, Victor’s child would start with dog-like ears, a canine tail, and a red, knotted penis if male. The ausar are known for their close bond with humanity and would be a likely pick for the child’s mother.");
+			break;
+		case "kaithrit":
+			output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it’ll have a soft-spined, cat-like penis.");
+			break;
+		case "leithan":
+			output("Leithans are a race visually similar to mythological centaurs, though they trace their origins to reptile-like species and have six clawed legs. They have powerful, prehensile tails as well as a highly acute set of four ears: two tapered ones on the side of their heads, and two large bunny-like ears atop. They are known for their speed and strength, and have a distinct color palette of grays and blacks, with yellow bioluminate areas on their scales. Leithans are also much taller than normal, reaching natural heights up to nine feet tall. If the child is male, it will have a large, bulbous reptilian penis between its rear legs.");
+			break;
+		case "kui-tan":
+			output("The kui-tan are a raccoon-like race who invariably have a phallus with multiple knots. They are also known to have fuzzy, rounded ears, fluffy tails bigger than many species’ adolescent young, and balls that engorge with seed the longer they go without release.");
+			break;
+		case "gryvain":
+			output("Gryvain are a highly advanced race of winged hermaphrodites, blending mammalian and reptilian biology. They have darkly scaled limbs, fleshy upper bodies, prehensile tails, curling horns, and frilled ears. Their eyes are dark gold and vertically slitted. All gryvain are feminine in appearance, and most have voluptuous figures: broad egg-laying hips and large breasts. They have bulbous, reptilian phalluses with internal testes, mounted over vaginas that have rings of internal, nub-like secondary clitorises inside, which makes birth and sex extraordinarily pleasurable.");
+			break;
 	}
 
 	output("\n\nIs this the race Victor chooses?")
@@ -214,101 +211,97 @@ public function chooseStartingRace(race:String = "human"):void {
 	pc.originalRace = raceToOriginalRace(race);
 	//Menus vary based on race.
 	clearMenu();
-	if(race == "human") {
-		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		//output("male or female");
-		addButton(0,"Male",setStartingSex,1);
-		addButton(1,"Female",setStartingSex,3);
-	}
-	else if(pc.originalRace == "half-ausar") {
-		pc.earType = GLOBAL.TYPE_CANINE;
-		pc.tailType = GLOBAL.TYPE_CANINE;
-		pc.tailCount = 1;
-		pc.addTailFlag(GLOBAL.FLAG_LONG);
-		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
-		pc.addTailFlag(GLOBAL.FLAG_FURRED);
-		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		//output("male or female");
-		addButton(0,"Male",setStartingSex,1);
-		addButton(1,"Female",setStartingSex,3);
-		//addButton(2,"Herm.",setStartingSex,2);
-	}
-	else if(pc.originalRace == "half-kaithrit") {
-		pc.earType = GLOBAL.TYPE_FELINE;
-		pc.tailType = GLOBAL.TYPE_FELINE;
-		pc.tailCount = 2;
-		pc.addTailFlag(GLOBAL.FLAG_LONG);
-		pc.addTailFlag(GLOBAL.FLAG_FURRED);
-		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		//output("male or female");
-		addButton(0,"Male",setStartingSex,1);
-		addButton(1,"Female",setStartingSex,3);
-		//addButton(2,"Herm.",setStartingSex,2);
-	}
-	//Half-leithan Starting Goods
-	else if(pc.originalRace == "half-leithan") {
-		pc.legCount = 6;
-		pc.genitalSpot = 2;
-		//Clawed lizardfeet
-		pc.legType = GLOBAL.TYPE_LIZAN;
-		pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
-		pc.addLegFlag(GLOBAL.FLAG_SCALED);
-		pc.addLegFlag(GLOBAL.FLAG_PAWS);
-		//Non-chitinous leithan arms
-		pc.armType = GLOBAL.TYPE_LEITHAN;
-		//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
-		pc.earType = GLOBAL.TYPE_LEITHAN;
-		pc.earLength = 3;
-		//>Reptilian, forked tongues
-		pc.tongueType = GLOBAL.TYPE_LEITHAN;
-		pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
-		pc.addTongueFlag(GLOBAL.FLAG_LONG);
-		pc.tailType = GLOBAL.TYPE_LIZAN;
-		pc.tailCount = 1;
-		pc.addTailFlag(GLOBAL.FLAG_LONG);
-		pc.addTailFlag(GLOBAL.FLAG_SCALED);
-		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
-		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
-		pc.scaleColor = "black";
-		CodexManager.unlockEntry("Leithans");
-		addButton(0,"Male",setStartingSex,1);
-		addButton(1,"Female",setStartingSex,3);
-	}
-	else if(pc.originalRace == "half kui-tan")
+	switch(pc.originalRace)
 	{
-		pc.earType = GLOBAL.TYPE_KUITAN;
-		pc.tailCount = 1;
-		pc.tailType = GLOBAL.TYPE_KUITAN;
-		pc.addTailFlag(GLOBAL.FLAG_LONG);
-		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
-		pc.addTailFlag(GLOBAL.FLAG_FURRED);
-		pc.faceType = GLOBAL.TYPE_HUMANMASKED;
-		pc.armType = GLOBAL.TYPE_KUITAN;
-		pc.addArmFlag(GLOBAL.FLAG_FURRED);
-		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		//output("male or hermaphroditic");
-		addButton(0,"Male",setStartingSex,1);
-		addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
-		addButton(2,"Herm",setStartingSex,2);
-	}
-	else if (pc.originalRace == "half-gryvain")
-	{
-		pc.legType = GLOBAL.TYPE_GRYVAIN;
-		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		pc.addLegFlag(GLOBAL.FLAG_SCALED);
-		pc.tailCount = 1;
-		pc.tailType = GLOBAL.TYPE_GRYVAIN;
-		pc.addTailFlag(GLOBAL.FLAG_SCALED);
-		pc.addTailFlag(GLOBAL.FLAG_LONG);
-		pc.addTailFlag(GLOBAL.FLAG_TAPERED);
-		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
-		pc.earType = GLOBAL.TYPE_GRYVAIN;
-		pc.earLength = 3;
-		pc.wingType = GLOBAL.TYPE_GRYVAIN;
-		pc.wingCount = 2;
-		pc.eyeType = GLOBAL.TYPE_GRYVAIN;
-		addButton(0, "Female", setStartingSex, 3);
-		addButton(1, "Herm", setStartingSex, 2);
+		case "human":
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			addButton(0,"Male",setStartingSex,1);
+			addButton(1,"Female",setStartingSex,3);
+			break;
+		case "half-ausar":
+			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.tailType = GLOBAL.TYPE_CANINE;
+			pc.tailCount = 1;
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			addButton(0,"Male",setStartingSex,1);
+			addButton(1,"Female",setStartingSex,3);
+			//addButton(2,"Herm.",setStartingSex,2);
+			break;
+		case "half-kaithrit":
+			pc.earType = GLOBAL.TYPE_FELINE;
+			pc.tailType = GLOBAL.TYPE_FELINE;
+			pc.tailCount = 2;
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			addButton(0,"Male",setStartingSex,1);
+			addButton(1,"Female",setStartingSex,3);
+			//addButton(2,"Herm.",setStartingSex,2);
+			break;
+		case "half-leithan":
+			pc.legCount = 6;
+			pc.genitalSpot = 2;
+			//Clawed lizardfeet
+			pc.legType = GLOBAL.TYPE_LIZAN;
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			pc.addLegFlag(GLOBAL.FLAG_PAWS);
+			//Non-chitinous leithan arms
+			pc.armType = GLOBAL.TYPE_LEITHAN;
+			//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
+			pc.earType = GLOBAL.TYPE_LEITHAN;
+			pc.earLength = 3;
+			//>Reptilian, forked tongues
+			pc.tongueType = GLOBAL.TYPE_LEITHAN;
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.tailType = GLOBAL.TYPE_LIZAN;
+			pc.tailCount = 1;
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_SCALED);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
+			pc.scaleColor = "black";
+			CodexManager.unlockEntry("Leithans");
+			addButton(0,"Male",setStartingSex,1);
+			addButton(1,"Female",setStartingSex,3);
+			break;
+		case "half kui-tan":
+			pc.earType = GLOBAL.TYPE_KUITAN;
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_KUITAN;
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.faceType = GLOBAL.TYPE_HUMANMASKED;
+			pc.armType = GLOBAL.TYPE_KUITAN;
+			pc.addArmFlag(GLOBAL.FLAG_FURRED);
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			addButton(0,"Male",setStartingSex,1);
+			addDisabledButton(1,"Female","Female","Kui-tan cannot be female.")
+			addButton(2,"Herm",setStartingSex,2);
+			break;
+		case "half-gryvain":
+			pc.legType = GLOBAL.TYPE_GRYVAIN;
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_SCALED);
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_GRYVAIN;
+			pc.addTailFlag(GLOBAL.FLAG_SCALED);
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_TAPERED);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.earType = GLOBAL.TYPE_GRYVAIN;
+			pc.earLength = 3;
+			pc.wingType = GLOBAL.TYPE_GRYVAIN;
+			pc.wingCount = 2;
+			pc.eyeType = GLOBAL.TYPE_GRYVAIN;
+			addButton(0, "Female", setStartingSex, 3);
+			addButton(1, "Herm", setStartingSex, 2);
+			break;
 	}
 
 	displayInput();
@@ -406,7 +399,6 @@ public function setStartingSex(sex:int = 1):void {
 				pc.buttRatingRaw = 5;
 			}
 		}
-
 	}
 	//Girls or herms? Cunt stuff
 	if (sex >= 2) {
@@ -1146,60 +1138,60 @@ public function chooseSexualGift():void {
 		addButton(14,"Back",chooseYourJunkSize);
 	else 
 		addButton(14,"Back",chooseBreastSize);
-	
 }
 
 public function applySexualGift(arg:String = "none"):void {
-	if(arg == "virile") {
-		pc.createPerk("Virile",1.15,0,0,0,"Increases the quality of your sperm.");
-	}
-	else if(arg == "potent") {
-		//pc.cumMultiplierRaw += 1;
-		pc.refractoryRate += 1;
-		pc.createPerk("Potent",1,0,0,0,"Increases the size of your orgasms and the speed at which you produce ejaculate.");
-	}
-	else if(arg == "elasticity") {
-		pc.createPerk("Elasticity",0,0,0,0,"Increases the elasticity of your orifices and renders them more resistant to stretching.");
-		pc.elasticity += 0.5;
-	}
-	else if(arg == "fertility") {
-		pc.createPerk("Fertility",1.15,0,0,0,"Increases your odds of getting pregnant.");
-	}
-	else if(arg == "milky") {
-		pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");
-	}
-	else if(arg == "incubator") {
-		//(pc as PlayerCharacter).pregnancyIncubationBonusMotherRaw += 0.5;
-		pc.createPerk("Incubator",1,0,0,0,"Increases the speed at which your pregnancies progress.");
-	}
-	else if(arg == "hung") {
-		pc.createPerk("Hung",0,0,0,0,"Increases the size of your penis and how fast it grows.");
-		if(pc.hasCock()) {
-			pc.cocks[0].cLengthRaw += 2;
-			if(pc.cocks[0].cThicknessRatioRaw < 1.1) pc.cocks[0].cThicknessRatioRaw = 1.1;
-		}
-	}
-	else if(arg == "mini") {
-		pc.createPerk("Mini",0,0,0,0,"Decreases the size of your penis and how fast it shrinks.");
-		if(pc.hasCock()) {
-			pc.cocks[0].cLengthRaw -= 1;
-		}
-	}
-	else if(arg == "bulgy") {
-		pc.createPerk("Bulgy",0,0,0,0,"Increase the size of any gonads and the speed at which they are enhanced.");
-		pc.ballSizeRaw += 4;
-		//HUEG BALLZ
-		if(pc.originalRace == "half kui-tan") pc.ballSizeRaw += 5;
-		pc.ballEfficiency += 1;
-	}
-	else if(arg == "extra ardor") {
-		pc.createPerk("Extra Ardor",0,0,0,0,"Increases lust gain over time.");
-	}
-	else if(arg == "ice cold") {
-		pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time.");
-	}
-	else if(arg == "infertile") {
-		pc.createPerk("Infertile",0,0,0,0,"You are unable to reproduce offspring naturally.");
+	switch (arg)
+	{
+		case "virile":
+			pc.createPerk("Virile",1.15,0,0,0,"Increases the quality of your sperm.");
+			break;
+		case "potent":
+			pc.refractoryRate += 1;
+			pc.createPerk("Potent",1,0,0,0,"Increases the size of your orgasms and the speed at which you produce ejaculate.");
+			break;
+		case "elasticity":
+			pc.elasticity += 0.5;
+			pc.createPerk("Elasticity",0,0,0,0,"Increases the elasticity of your orifices and renders them more resistant to stretching.");
+			break;
+		case "fertility":
+			pc.createPerk("Fertility",1.15,0,0,0,"Increases your odds of getting pregnant.");
+			break;
+		case "milky":
+			pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");
+			break;
+		case "incubator":
+			pc.createPerk("Incubator",1,0,0,0,"Increases the speed at which your pregnancies progress.");
+			break;
+		case "hung":
+			pc.createPerk("Hung",0,0,0,0,"Increases the size of your penis and how fast it grows.");
+			if(pc.hasCock()) {
+				pc.cocks[0].cLengthRaw += 2;
+				if(pc.cocks[0].cThicknessRatioRaw < 1.1) pc.cocks[0].cThicknessRatioRaw = 1.1;
+			}
+			break;
+		case "mini":
+			pc.createPerk("Mini",0,0,0,0,"Decreases the size of your penis and how fast it shrinks.");
+			if(pc.hasCock()) {
+				pc.cocks[0].cLengthRaw -= 1;
+			}
+			break;
+		case "bulgy":
+			pc.createPerk("Bulgy",0,0,0,0,"Increase the size of any gonads and the speed at which they are enhanced.");
+			pc.ballSizeRaw += 4;
+			//HUEG BALLZ
+			if(pc.originalRace == "half kui-tan") pc.ballSizeRaw += 5;
+			pc.ballEfficiency += 1;
+			break;
+		case "extra ardor":
+			pc.createPerk("Extra Ardor",0,0,0,0,"Increases lust gain over time.");
+			break;
+		case "ice cold":
+			break;
+			pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time.");
+		case "infertile":
+			pc.createPerk("Infertile",0,0,0,0,"You are unable to reproduce offspring naturally.");
+			break;
 	}
 	chooseAPhysicalAffinity();
 }
@@ -1267,52 +1259,60 @@ public function chooseHowPCIsRaised():void {
 	output("\n\nVictor pondered on just how he would raise his " + pc.mf("son","daughter") + " and future heir. His first instinct was to pamper [pc.himHer] and give [pc.himHer] a head start on life. Still, that could lead to his " + pc.mf("son","daughter") + " lacking willpower, since [pc.heShe] never would have worked for what [pc.heShe] has.");
 	output("\n\nThe mining magnate could make his heir work for everything. An austere upbringing would certainly result in a strong will, but less of a financial, helping hand. It would be tough on both of them, but it might just pay off.");
 	output("\n\nIf his " + pc.mf("son","daughter") + " spend too much time working or playing, however, [pc.heShe] would have no time for extracurricular activities. If Victor encouraged [pc.himHer] to nurture [pc.hisHer] physical skills, [pc.heShe] would probably grow up strong and well rounded, but not so book-smart. The opposite was also true - if he pushed his child towards study, [pc.heShe] would come out mentally strong, but perhaps physically weaker.");
+	output("\n\nHowever, he could always encourage his heir to follow in his footsteps more than average, and really get to be intimate with those [pc.heShe] knows. Maybe even a little too intimate.");
 	output("\n\nPerhaps the best approach was to practice moderation, and give a little time to everything. Favoring nothing in particular would mean his child wouldn’t specialize in anything, but it would also mean [pc.heShe] wasn’t lacking in anything, either.");
 	output("\n\n<b>What kind of upbringing does your character have?</b>");
 	
 	//[Pampered][Athletic][Bookworm][Austere][Balanced]
 	clearMenu();
-	addButton(0,"Pampered",applyUpbringing,0,"Pampered","You begin with more starting money, but lower willpower.");
-	addButton(1,"Athletic",applyUpbringing,1,"Athletic","You begin with higher physical skills but lower mental ones.");
-	addButton(2,"Bookworm",applyUpbringing,2,"Bookworm","You begin with higher mental skills but lower physical ones.");
-	addButton(3,"Austere",applyUpbringing,3,"Austere","You begin with less starting money, but higher willpower.");
-	addButton(4,"Balanced",applyUpbringing,4,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	addButton(0,"Pampered",applyUpbringing,GLOBAL.UPBRINGING_PAMPERED,"Pampered","You begin with more starting money, but lower willpower.");
+	addButton(1,"Athletic",applyUpbringing,GLOBAL.UPBRINGING_ATHLETIC,"Athletic","You begin with higher physical skills but lower mental ones.");
+	addButton(2,"Bookworm",applyUpbringing,GLOBAL.UPBRINGING_BOOKWORM,"Bookworm","You begin with higher mental skills but lower physical ones.");
+	addButton(3,"Austere",applyUpbringing,GLOBAL.UPBRINGING_AUSTERE,"Austere","You begin with less starting money, but higher willpower.");
+	addButton(4,"Slutty",applyUpbringing,GLOBAL.UPBRINGING_SLUTTY,"Balanced","You begin well rounded, not specialized or lacking in anything.");
+	addButton(13,"Balanced",applyUpbringing,GLOBAL.UPBRINGING_BALANCED,"Balanced","You begin well rounded, not specialized or lacking in anything.");
 	addButton(14,"Back",chooseAPhysicalAffinity);
 }
 
 public function applyUpbringing(arg:int = 0):void {
-	//Pampered
-	if(arg == 0) {
-		pc.willpowerRaw--;
-		pc.credits += 1000;
-		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_PAMPERED;
-	}
-	//Athletic
-	else if (arg == 1) {
-		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_ATHLETIC;
-		pc.physiqueRaw++;
-		pc.reflexesRaw++;
-		pc.aimRaw++;
-		pc.intelligenceRaw--;
-		pc.willpowerRaw--;
-		pc.libidoRaw++;
-	}
-	//Bookworm
-	else if (arg == 2) {
-		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_BOOKWORM;
-		pc.physiqueRaw--;
-		pc.reflexesRaw--;
-		pc.intelligenceRaw+=2;
-	}
-	//Austere
-	else if (arg == 3) {
-		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_AUSTERE;
-		pc.willpowerRaw++;
-		pc.credits -= 250;
-	}
-	//Balanced
-	else if(arg == 4) {
-		flags["PC_UPBRINGING"] = GLOBAL.UPBRINGING_BALANCED;
+	flags["PC_UPBRINGING"] = arg;
+	switch(arg)
+	{
+		//Pampered
+		case GLOBAL.UPBRINGING_PAMPERED:
+			pc.willpowerRaw--;
+			pc.credits += 1000;
+			break;
+		//Athletic
+		case GLOBAL.UPBRINGING_ATHLETIC:
+			pc.physiqueRaw++;
+			pc.reflexesRaw++;
+			pc.aimRaw++;
+			pc.intelligenceRaw--;
+			pc.willpowerRaw--;
+			pc.libidoRaw++;
+			break;
+		//Bookworm
+		case GLOBAL.UPBRINGING_BOOKWORM:
+			pc.physiqueRaw--;
+			pc.reflexesRaw--;
+			pc.intelligenceRaw += 2;
+			break;
+		//Austere
+		case GLOBAL.UPBRINGING_AUSTERE:
+			pc.willpowerRaw++;
+			pc.credits -= 250;
+			break;
+		//Slutty
+		case GLOBAL.UPBRINGING_SLUTTY:
+			pc.reflexesRaw++;
+			pc.intelligenceRaw--;
+			pc.libidoRaw += 5;
+			pc.credits += 500;
+			break;
+		//Balanced
+		case GLOBAL.UPBRINGING_BALANCED:
+			break;
 	}
 
 	chooseAlignment();
@@ -1334,29 +1334,29 @@ public function chooseAlignment():void {
 	// This was pretty much written from scratch. It gives a common vision and resource for players and writers to draw upon regarding the PC's upbringing, making them able to identify with them from the get-go, rather than 'I was born and now I'm 20 and at my dad's funeral'. Tooltips added.
 	output("<b>... Some time later ...</b>");
 	output("\n\nAs you, [pc.name], grow up, you");
-	if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED)
+	switch(flags["PC_UPBRINGING"])
 	{
-		output(" live in the lap of luxury. Things are quite easy for you, but at the same time, you feel the warmth of being provided for by your trillionare father.");
-	}
-	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC)
-	{
-		output("’re gently encouraged to take part in physical activity. Taking to it like a duck to water, you spend much of your youth sweating and putting your body to work.");
-	}
-	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
-	{
-		output("’re gently encouraged to take up more mental pursuits. Taking to it like a duck to water, you spend most of your time reading or expanding your thinking. Your test scores are the envy of your academy.");
-	}
-	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE)
-	{
-		output(" don’t experience the luxuries one might expect from the heir to Steele Tech. Just like your father, you work for everything you have. Forged from adversity, you learn to value what you’ve earned, rather than expecting it to be given to you for free.");
-	}
-	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BALANCED)
-	{
-		output("’re always trying a bit of everything and anything. In the end, you come out quite balanced for it, just as your father had hoped you would.");
-	}
-	else
-	{
-		output(" live your life as an enimga. There is nothing particularly worth mentioning about your early upbringing in life whatsoever...");
+		case GLOBAL.UPBRINGING_PAMPERED:
+			output(" live in the lap of luxury. Things are quite easy for you, but at the same time, you feel the warmth of being provided for by your trillionare father.");
+			break;
+		case GLOBAL.UPBRINGING_ATHLETIC:
+			output("’re gently encouraged to take part in physical activity. Taking to it like a duck to water, you spend much of your youth sweating and putting your body to work.");
+			break;
+		case GLOBAL.UPBRINGING_BOOKWORM:
+			output("’re gently encouraged to take up more mental pursuits. Taking to it like a duck to water, you spend most of your time reading or expanding your thinking. Your test scores are the envy of your academy.");
+			break;
+		case GLOBAL.UPBRINGING_AUSTERE:
+			output(" don’t experience the luxuries one might expect from the heir to Steele Tech. Just like your father, you work for everything you have. Forged from adversity, you learn to value what you’ve earned, rather than expecting it to be given to you for free.");
+			break;
+		case GLOBAL.UPBRINGING_SLUTTY:
+			output("’re always sleeping around, indulging in the pleasures of life. Your suitors greatly enjoyed your abilities in the bedroom, and you found yourself heavily compensated for your work.");
+			break;
+		case GLOBAL.UPBRINGING_BALANCED:
+			output("’re always trying a bit of everything and anything. In the end, you come out quite balanced for it, just as your father had hoped you would.");
+			break;
+		default:
+			output(" live your life as an enimga. There is nothing particularly worth mentioning about your early upbringing in life whatsoever...");
+			break;
 	}
 	output("\n\nStill, the one thing a parent can never choose is exactly what kind of person their children will be. <b>When your friends talk about you, what word do they use to describe your personality?</b>");
 	output("\n\n<i>(This choice will affect how your character reacts to the challenges and situations [pc.heShe] finds [pc.himHer]self in. Ultimately, the choice will still remain with you, the player, but the way [pc.name] goes through those choices may vary with personality.)</i>");
@@ -1396,21 +1396,22 @@ public function chooseGenderIdentity():void
 
 public function genderConfirm(pref:String):void
 {
-	if (pref == "auto")
+	switch(pref)
 	{
-		pc.removeStatusEffect("Force Male Gender");
-		pc.removeStatusEffect("Force Fem Gender");
+		case "auto":
+			pc.removeStatusEffect("Force Male Gender");
+			pc.removeStatusEffect("Force Fem Gender");
+			break;
+		case "male":
+			pc.removeStatusEffect("Force Fem Gender");
+			pc.createStatusEffect("Force Male Gender");
+			break;
+		case "female":
+			pc.removeStatusEffect("Force Male Gender");
+			pc.createStatusEffect("Force Fem Gender");
+			break;
 	}
-	else if (pref == "male")
-	{
-		pc.removeStatusEffect("Force Fem Gender");
-		pc.createStatusEffect("Force Male Gender");
-	}
-	else if (pref == "female")
-	{
-		pc.removeStatusEffect("Force Male Gender");
-		pc.createStatusEffect("Force Fem Gender");
-	}
+	
 	chooseClass();
 }
 
@@ -1446,10 +1447,20 @@ public function classConfirm(arg:int = 0):void {
 	clearOutput();
 	creationHeader("SELECT\nA CLASS");
 	
-	if(arg == GLOBAL.CLASS_SMUGGLER) output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
-	else if(arg == GLOBAL.CLASS_MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
-	else if(arg == GLOBAL.CLASS_ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
+	switch(arg)
+	{
+		case GLOBAL.CLASS_SMUGGLER:
+			output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
+			break;
+		case GLOBAL.CLASS_MERCENARY:
+			output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
+			break;
+		case GLOBAL.CLASS_ENGINEER:
+			output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
+			break;
+	}
 	output("\n\nIs this the career you’d like to pursue?");
+	
 	clearMenu();
 	addButton(0,"Yes",setClass,arg);
 	addButton(1,"No",chooseClass);
@@ -1457,15 +1468,18 @@ public function classConfirm(arg:int = 0):void {
 
 public function setClass(arg:int = 0):void {
 	pc.characterClass = arg;
-	if(arg == GLOBAL.CLASS_SMUGGLER) {
-		pc.rangedWeapon = new classes.Items.Guns.HoldOutPistol();
-	}
-	if(arg == GLOBAL.CLASS_MERCENARY) {
-		pc.rangedWeapon = new classes.Items.Guns.EagleHandgun();
-	}
-	if(arg == GLOBAL.CLASS_ENGINEER) {
-		pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
-		pc.shield = new classes.Items.Protection.DecentShield();
+	switch(arg)
+	{
+		case GLOBAL.CLASS_SMUGGLER:
+			pc.rangedWeapon = new classes.Items.Guns.HoldOutPistol();
+			break;
+		case GLOBAL.CLASS_MERCENARY:
+			pc.rangedWeapon = new classes.Items.Guns.EagleHandgun();
+			break;
+		case GLOBAL.CLASS_ENGINEER:
+			pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
+			pc.shield = new classes.Items.Protection.DecentShield();
+			break;
 	}
 	pc.meleeWeapon = new classes.Items.Melee.Knife();
 	pc.armor = new classes.Items.Apparel.DressClothes();
@@ -1585,9 +1599,12 @@ public function tutorialIntro4():void {
 	output("\n\nSighing, you press the injector port to the inside of your arm.");
 	output("\n\n<i>“This recording is set up to rep-”</i>");
 	output("\n\nThe injector hisses as it pricks your skin, pouring its payload into your veins. There’s a bit of burning pain, but nothing as bad ");
-	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("as the time you shocked yourself on an arc spanner");
-	else if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("as the time you took a slug in the leg");
-	else output("as the time you dropped your cargo on your foot, breaking more than a few toes in the process");
+	switch(pc.characterClass)
+	{
+		case GLOBAL.CLASS_SMUGGLER: output("as the time you dropped your cargo on your foot, breaking more than a few toes in the process"); break;
+		case GLOBAL.CLASS_MERCENARY: output("as the time you took a slug in the leg"); break;
+		case GLOBAL.CLASS_ENGINEER: output("as the time you shocked yourself on an arc spanner"); break;
+	}
 	output(". You grow a little flushed for a moment as the tiny machines settle into you. It passes swiftly. All things considered, you feel... the same.");
 	output("\n\n<i>“Atta " + pc.mf("boy","girl") + ". I had something like that made for me after a particularly rough infection, though it wound up mutating me from exotic species’ sexual fluids as well.”</i>");
 	output("\n\nA fucking horndog until the end. Of course.");
@@ -2019,7 +2036,8 @@ public function fixPcUpbringing():void
 	addButton(1,"Athletic",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_ATHLETIC);
 	addButton(2,"Bookworm",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BOOKWORM);
 	addButton(3,"Austere",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_AUSTERE);
-	addButton(4,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
+	addButton(4,"Slutty",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_SLUTTY);
+	addButton(13,"Balanced",fixPcUpbringingSetNew,GLOBAL.UPBRINGING_BALANCED);
 }
 
 public function fixPcUpbringingSetNew(upType:uint):void

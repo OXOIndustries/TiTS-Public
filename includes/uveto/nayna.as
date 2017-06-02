@@ -116,11 +116,14 @@ public function lookAtWeatherDrone():void
 public function takeANaynaDrone():void
 {
 	clearOutput();
-	if(currentLocation == "UVIP F20") flags["DRONED_UVIP F20"] = 1;
-	else if(currentLocation == "UVIP T6") flags["DRONED_UVIP T6"] = 1;
-	else if(currentLocation == "UVIP V14") flags["DRONED_UVIP V14"] = 1;
-	else if(currentLocation == "UVIP X34") flags["DRONED_UVIP X34"] = 1;
-	else if(currentLocation == "UVIP L28") flags["DRONED_UVIP L28"] = 1;
+	switch(currentLocation)
+	{
+		case "UVIP F20": flags["DRONED_UVIP F20"] = 1; break;
+		case "UVIP T6": flags["DRONED_UVIP T6"] = 1; break;
+		case "UVIP V14": flags["DRONED_UVIP V14"] = 1; break;
+		case "UVIP X34": flags["DRONED_UVIP X34"] = 1; break;
+		case "UVIP L28": flags["DRONED_UVIP L28"] = 1; break;
+	}
 	output("You dig the poor drone out. ");
 	output("\n\n");
 	quickLoot(new WeatherDrone());

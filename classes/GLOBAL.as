@@ -11,7 +11,7 @@
 		public static const CLASS_NAMES:Array = [
 			"Smuggler",
 			"Mercenary",
-			"Tech Specialist"
+			"Tech Specialist",
 		];
 		
 		public static const UPBRINGING_PAMPERED:uint						= 0;
@@ -19,14 +19,16 @@
 		public static const UPBRINGING_BOOKWORM:uint						= 2;
 		public static const UPBRINGING_AUSTERE:uint							= 3;
 		public static const UPBRINGING_BALANCED:uint						= 4;
-		public static const MAX_UPBRINGINGS:uint							= 5;
+		public static const UPBRINGING_SLUTTY:uint							= 5;
+		public static const MAX_UPBRINGINGS:uint							= 6;
 		
 		public static const UPBRINGING_NAMES:Array = [
 			"Pampered",
 			"Athletic",
 			"Bookworm",
 			"Austere",
-			"Balanced"
+			"Balanced",
+			"Slutty",
 		];
 
 		//Body Part Flags - used for any body part that supports the new flags system.
@@ -163,6 +165,7 @@
 		public static const TYPE_TANUKI:int                                 = 24; //Changed from 18 to 24 soz is the same as kui-tan
 		public static const TYPE_SHARK:int                                  = 19;
 		public static const TYPE_SIREN:int                                  = 20;
+		public static const TYPE_SUULA:int                                  = GLOBAL.TYPE_SIREN;
 		public static const TYPE_DEER:int                                   = 21;
 		public static const TYPE_ANEMONE:int                                = 22;
 		public static const TYPE_TENTACLE:int                               = 23;
@@ -219,6 +222,7 @@
 		public static const TYPE_MOUTHGINA:int 								= 74;
 		public static const TYPE_LUPINE:int 								= 75;
 		public static const TYPE_SHEEP:int 									= 76;
+		public static const TYPE_REDPANDA:int 									= 77;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -298,6 +302,7 @@
 			"Mouthgina",
 			"Lupine",
 			"Sheep",
+			"Lesser Panda",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -327,6 +332,7 @@
 			TYPE_SWINE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -417,6 +423,7 @@
 			TYPE_DOGGIE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -440,6 +447,7 @@
 			TYPE_FLOWER,
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
+			TYPE_REDPANDA,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -489,6 +497,7 @@
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -592,6 +601,7 @@
 			TYPE_DOGGIE,
 			TYPE_LUPINE,
 			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [

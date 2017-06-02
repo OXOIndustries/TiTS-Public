@@ -814,7 +814,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n\n" + blockHeader("General Statistics", false));
 		// Crew
 		output2("\n<b><u>Crew</u></b>");
-		output2("\n<b>* Total Recruited:</b> " + crewRecruited(true));
+		output2("\n<b>* Total Recruited:</b> " + crewRecruited(true).length);
 		output2("\n<b>* Total Onboard:</b> " + crew(true, true));
 		// Traveling
 		output2("\n<b><u>Travel</u></b>");
@@ -2336,7 +2336,7 @@ public function displayQuestLog(showID:String = "All"):void
 							if(flags["FAZIAN_QUEST_SUCCESSES"] + flags["FAZIAN_QUEST_FAILURES"] < 5) output2(", <i>Keep investigating or return to Hepane...</i>");
 							else output2(", <i>Return to Hepane!</i>");
 						}
-						break
+						break;
 					case FAZIAN_QUEST_REJECTED: output2(" Refused to help Hepane find Fazian"); break;
 					case FAZIAN_QUEST_FAILED: output2(" Offered to help Hepane, Did not find enough useful clues, Failed"); break;
 					case FAZIAN_QUEST_INVESTIGATED:
@@ -2633,7 +2633,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Drone Hunting</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["NAYNA_REJECTED"] != undefined) output2(" Refused to help Nayna");
-				else if(flags["NAYNA_QUEST_STARTED"] != undefined)
+				else if(flags["NAYNA_QUEST_STARTED"] != undefined || flags["NAYNA_DRONES_TURNED_IN"] != undefined)
 				{
 					var naynaDrones:int = 0;
 					if(flags["DRONED_UVIP F20"] != undefined) naynaDrones++;
@@ -2657,8 +2657,8 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b>* Status:</b> Seen ritual");
 				switch(flags["UVGR_SAVICITE_IDOL"])
 				{
-					case -1: output2(", Did not take idol");
-					case 1: output2(", Took idol");
+					case -1: output2(", Did not take idol"); break;
+					case 1: output2(", Took idol"); break;
 				}
 				sideCount++;
 			}
@@ -4667,7 +4667,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						output2("\n<b>* [embry.name], Sexual Organs:</b> " + listCharGenitals("EMBRY"));
 						output2("\n<b>* [embry.name], Sexual History:</b> Sexed her");
-						if(flags["EMBRY_VAGINAL_SEX_UNLOCKED"] != undefined) output2(", Fucked her pussy");
+						if(!chars["EMBRY"].vaginalVirgin) output2(", Fucked her pussy");
 						if(flags["GOTTEN_TO_FUCK_EMBRYBUTT"] != undefined) output2(", Fucked her ass");
 						if(flags["GOTTEN_AN_EMBRY_BJ"] != undefined) output2(", She sucked your dick");
 						if(flags["GOTTEN_CUNNILINGUS_FROM_EMBRY"] != undefined) output2(", She ate your pussy");
@@ -5427,7 +5427,20 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					else if(pippaRecruitTurnedDown()) output2(", Turned down request to join crew");
 					output2("\n<b>* Pippa, Affection:</b> " + pippaAffection() + " %");
-					output2("\n<b>* Pippa, Dominance:</b> " + pippaDominance() + " %");
+					if(pippaSexed(0) > 0)
+					{
+						var pippaTop:int = pippaDominance();
+						
+						output2("\n<b>* Pippa, Preferred Position:</b> ");
+						if(pippaTop > 50) output2("Top");
+						else if(pippaTop < 50) output2("Bottom");
+						else output2("No Preference");
+						
+						var topBottomStrength:int = Math.abs(pippaTop - 50);
+						
+						if(topBottomStrength <= 17 && topBottomStrength > 0) output2(", Slight Preference");
+						else if(topBottomStrength >= 33) output2(", Strong Preference");
+					}
 					if(pippaFed(0) > 0) output2("\n<b>* Pippa, Times You Fed Her:</b> " + pippaFed(0));
 					if(pippaStandardMassagesGiven(0) > 0) output2("\n<b>* Pippa, Standard Massages Given to You:</b> " + pippaStandardMassagesGiven(0));
 					if(pippaHappyEndingsGiven(0) > 0) output2("\n<b>* Pippa, Happy Endings Given to You:</b> " + pippaHappyEndingsGiven(0));
@@ -5977,6 +5990,23 @@ public function displayEncounterLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Not Available</u></b>");
 			output2("\n* <i>No roaming encounter data has been logged.</i>");
+		}
+		
+		// Team Building
+		output2("\n\n" + blockHeader("Crew Team Building", false));
+		var teamBuildingCount:int = 0;
+		
+		if(pippaYammiThreesomeCount(0) > 0)
+		{
+			output2("\n<b>* Pippa, Yammi, Times Sexed in Threesome:</b> " + pippaYammiThreesomeCount(0));
+			teamBuildingCount++;
+		}
+		
+		//Nothing recorded
+		if(teamBuildingCount == 0)
+		{
+			output2("\n<b><u>Not Available</u></b>");
+			output2("\n* <i>No team building activities have been logged.</i>");
 		}
 		
 		// Misc: (Optional)

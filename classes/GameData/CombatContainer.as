@@ -327,7 +327,7 @@ package classes.GameData
 			
 			if (!pc.hasStatusEffect("Tripped") && (hasEnemyOfClass(Queensguard) || hasEnemyOfClass(Taivra)))
 			{
-				if (kGAMECLASS.flags["FREED_DANE_FROM_TAIVRA"] == undefined)
+				if (flags["FREED_DANE_FROM_TAIVRA"] == undefined)
 				{
 					if (pc.statusEffectv1("Cage Distance") != 0) addButton(10, "Cage", function():void {
 						kGAMECLASS.setEnemy(_hostiles[0]);
@@ -831,7 +831,7 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Disarmed") && (!(target is Varmint) && !(hasEnemyOfClass(Varmint))))
+			if (target.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] == undefined)
 			{
 				target.addStatusValue("Disarmed",1,-1);
 				if(target.statusEffectv1("Disarmed") <= 0)
@@ -1268,7 +1268,7 @@ package classes.GameData
 			}
 
 			// attack
-			if (hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
+			if (flags["CHECKED_GEAR_AT_OGGY"] != undefined && hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso"))
 			{
 				addButton(0, "Lasso", selectSimpleAttack, { func: kGAMECLASS.lassoAVarmint }, "Lasso", "Use this lasso you’ve been provided with to properly down this varmint.");
 			}
@@ -1739,7 +1739,9 @@ package classes.GameData
 			var latexBonus:int = 0;
 			var panicJack:Boolean = (target.hasPerk("Panic Ejaculation") && target.hasCock());
 			var panicBonus:int = 0;
+			var slipperyBonus:int = 0;
 			if(panicJack) panicBonus = 5;
+			if (target.hasStatusEffect("Oil Slicked")) slipperyBonus = 5;
 			if(target.hasPerk("Black Latex")) latexBonus = 2;
 			// TODO Tweak the shit out of this probably for other NPCs to be able to call into it			
 			if (target is PlayerCharacter) clearOutput();
@@ -1759,7 +1761,7 @@ package classes.GameData
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
-					if(target.reflexes() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+					if(target.reflexes() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
 						output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
 						if(panicJack)
 						{
@@ -1771,7 +1773,7 @@ package classes.GameData
 				}
 				else 
 				{
-					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 > 24) {
+					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
 						output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
 						if(panicJack)
 						{
@@ -1850,7 +1852,7 @@ package classes.GameData
 			{
 				if (target.hasPerk("Escape Artist") && target.reflexes() >= target.physique())
 				{
-					if (target.reflexes() + rand(20) + 7 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+					if (target.reflexes() + rand(20) + 7 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 + slipperyBonus > target.statusEffectv2("Grappled"))
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
@@ -1869,7 +1871,7 @@ package classes.GameData
 				}
 				else
 				{
-					if(target.physique() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 > target.statusEffectv2("Grappled"))
+					if(target.physique() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Grappled") * 5 + slipperyBonus > target.statusEffectv2("Grappled"))
 					{
 						// TODO It might be an idea to do something similar to how drone targets work now, in that the actual
 						// enemy DOING the grappling is stored as a transient property on the victim of the grapple,
@@ -1966,6 +1968,13 @@ package classes.GameData
 				if (pc.hasActiveCombatDrone())
 				{
 					if(pc.hasStatusEffect("Varmint Buddy")) addButton(bOff, "Varmint", selectDroneTarget, undefined, "Varmint, Go!", ("Have your varmint target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else if(pc.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] != undefined)
+					{
+						if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You are disarmed and can’t communicate with Tam-wolf right now!");
+						else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You are disarmed and can’t communicate with [wulfe.name] right now!");
+						else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You are disarmed and can’t access your " + pc.accessory.longName + " right now!"));
+						else addDisabledButton(bOff, "Drone Target", "Drone Target", "You are disarmed and can’t access your combat drone right now!");
+					}
 					else if(pc.hasTamWolf()) addButton(bOff, "TamWolf", selectDroneTarget, undefined, "Tam-wolf, Go!", ("Have Tam-wolf target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addButton(bOff, pc.accessory.shortName, selectDroneTarget, undefined, "Accessory Target", ("Have your " + pc.accessory.longName + " target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
@@ -3288,7 +3297,7 @@ package classes.GameData
 			
 			if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
 			if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
-			if (target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) factor *= 1.1;
+			if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
 			if (attacker.hasFur())
 			{
 				if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) factor *= 1.25;
@@ -3610,19 +3619,17 @@ package classes.GameData
 				
 				var damIdx:uint = 0;
 				
-				output("\n\nLust Resistances:");
+				output("\n\n<b><u>Lust Resistances</u></b>");
 				var lR:TypeCollection = target.getLustResistances();
 				for (i = 0; i < DamageType.LustDamageTypes.length - 1; i++)
 				{
-					output("\n");
-					
 					damIdx = DamageType.LustDamageTypes[i];
 					var rValue:Number = lR.getType(damIdx).damageValue;
 					
-					output(lR.getType(damIdx).longName + " Resistance: ");
+					output("\n* <b>" + lR.getType(damIdx).longName + " Resistance:</b> ");
 					if (PCBonus + rand(20) + 1 >= target.level * 3 * (150 - target.libido()) / 100)
 					{
-						output(" " + String(Math.round(lR.getType(damIdx).damageValue * 100) / 100) + "%");
+						output(" " + String(Math.round(lR.getType(damIdx).damageValue * 100) / 100) + " %");
 					}
 					else
 					{
@@ -3636,17 +3643,17 @@ package classes.GameData
 			var pcGearEyeballBonus:Number = pc.intelligence() / 2 + (pc.willpower() / (target.willpowerMax() / 5));
 			if (pc.hasPerk("Keen Eyes")) pcGearEyeballBonus = pc.perkv1("Keen Eyes");
 			
-			output("\n\nCasting a glance over " + possessive(target.getCombatName()) + " equipment, you try and get some measure of their combat prowess.");
-			output("\n\nDamage Resistances:");
+			output("\n\nCasting a glance over " + possessive(target.getCombatName()) + " equipment, you try and get some measure of " + target.getCombatPronoun("pa") + " combat prowess.");
+			output("\n\n<b><u>Damage Resistances</u></b>");
 			var tarC:TypeCollection = target.shields() > 0 ? target.getShieldResistances() : target.getHPResistances();
 			for (var i:int = 0; i < DamageType.HPDamageTypes.length - 1; i++)
 			{
 				damIdx = DamageType.HPDamageTypes[i];
-				output("\n" + tarC.getType(damIdx).longName + " Resistance: ");
+				output("\n* <b>" + tarC.getType(damIdx).longName + " Resistance:</b> ");
 				
 				if (pcGearEyeballBonus + rand(20) + 1 >= target.level * 3 * ((target.willpowerMax() * 1.5) - target.willpower()) / target.willpowerMax())
 				{
-					output(String(Math.round(tarC.getType(damIdx).damageValue * 100) / 100) + "%");
+					output(String(Math.round(tarC.getType(damIdx).damageValue * 100) / 100) + " %");
 				}
 				else
 				{
@@ -4344,7 +4351,7 @@ package classes.GameData
 					output("You perch behind cover wherever you can find it,");
 					if(pc.hasStatusEffect("Disarmed"))
 					{
-						if(hasEnemyOfClass(Varmint) && pc.hasKeyItem("Lasso")) output(" ready to swing your lasso");
+						if(pc.hasKeyItem("Lasso") && flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" ready to swing your lasso");
 						else output(" readying yourself");
 					}
 					else if(pc.hasWeapon() && rand(2) == 0) output(" [pc.readyingWeapon]");
@@ -4419,6 +4426,11 @@ package classes.GameData
 		
 		private function doCombatDrone(droneUser:Creature):void
 		{
+			if(droneUser == pc && pc.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] != undefined)
+			{
+				if(!pc.hasStatusEffect("Varmint Buddy")) return;
+			}
+			
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
 			if (droneUser.hasCombatDrone(true) && !droneUser.hasStatusEffect("Varmint Buddy"))
 			{

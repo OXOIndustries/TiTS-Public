@@ -19,6 +19,7 @@
 		//Regular name
 		public var longName:String;
 		
+		
 		//Longass shit, not sure what used for yet.
 		private var _description:String;
 		public function get description():String { return _description; }
@@ -77,6 +78,8 @@
 			this.stackSize = 5;
 			//Used on inventory buttons
 			this.shortName = "";
+			//Unique shortName flag
+			hasUniqueName = false;
 			//Regular name
 			this.longName = "";
 			//Longass shit, not sure what used for yet.

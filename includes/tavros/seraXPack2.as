@@ -350,7 +350,7 @@ public function seraIsRepoed():void
 	chars["SERA"].removeStatusEffect("Hymenified");
 	chars["SERA"].removeStatusEffect("Tickled Pink");
 	// Update Sera inventory!
-	chars["SERA"].inventory = [];
+	chars["SERA"].inventory.length = 0;
 	// Reset Sera conditions!
 	chars["SERA"].lust(0, true);
 	chars["SERA"].minutesSinceCum = 0;
@@ -549,7 +549,8 @@ public function mods4UChrysalisDiscount():void
 public function mods4UChrysalisSaendra():void
 {
 	clearOutput();
-	saenSeraHeader();
+	showBust(saendraBustDisplay(), "CHRYSALIS_DRONE");
+	showName("\nSAENDRA");
 	author("Nonesuch");
 
 	output("<i>“Hey,”</i> you say, approaching your fluffy lover and grabbing a handful of her ass. <i>“Ready for this?”</i>");
@@ -3366,7 +3367,7 @@ public function seraBitcheningStoreInventory(totalDays:int):void
 }
 public function seraBitcheningStoreRandomize():void
 {
-	chars["SERA"].inventory = [];
+	chars["SERA"].inventory.length = 0;
 	
 	// Group A
 	// ManUp, Estrobloom, Junk in the Trunk, Tittyblossom, Condensol, Virection
@@ -4207,7 +4208,7 @@ public function seraBitcheningPunishCumRation():void
 // Walkies
 // Requires Leash in inventory, doesn’t need to be equipped since that’s a faff.
 // If PC has other usable accessories in inventory (possibly link to ship storage also?)
-private var seraWalkItems:Array = [];
+private var seraWalkItems:Array = new Array;
 private function seraHasItem(setItem:ItemSlotClass):Boolean
 {
 	if(seraWalkItems.length == 0) return false;

@@ -596,6 +596,8 @@
 			
 			// Disable all but the relevant side buttons
 			mainButtonsOnly();
+			
+			if(kGAMECLASS.pc.short.length > 0) addGhostButton(14, "Back", mainMenuToggle);
 		}
 		
 		public function showOptionsModule():void
@@ -959,6 +961,9 @@
 		
 		public function clearOutput():void
 		{
+			// No need to clear already blank pages!
+			if (outputBuffer == "\n") return;
+			
 			pushToBuffer();
 			showPrimaryOutput();
 			

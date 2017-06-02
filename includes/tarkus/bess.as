@@ -2189,7 +2189,7 @@ public function talkToBessAboutBoobs():void
 		output(" You know that [bess.heShe] loves toying with [bess.hisHer] [bess.chestNoun], given how sensitive [bess.hisHer] nipples are.");
 	}
 
-	//{Altering breast size/lactation once opens the "Nipples" topic in discussion menu}.
+	// Altering breast size/lactation once opens the "Nipples" topic in discussion menu.
 	clearMenu();
 	addButton(0, "BreastSize", talkToBessAboutBoobSize);
 	addButton(1, "Lactation", talkToBessAboutLactation);
@@ -7265,12 +7265,12 @@ public function bessEvent9():void
 
 	if (9999 == 9999)
 	{
-		//{ If on starter ship.
+		// If on starter ship.
 		output("\n\nYou’ve seen books before, your father had a fondness for them. He also had a soft spot for archaic pornography, so you quickly check over the covers to discern their content.");
 	}
 	else
 	{
-		//{ If not on Starter Ship
+		// If not on Starter Ship
 		output("\n\nYou remember seeing an old shipping crate back there, you hadn’t had a chance to look at what was in it. Your father had a fondness for books, as well as archaic pornography, so you’re familiar with the medium.");
 	}
 
@@ -8291,36 +8291,34 @@ public function bessEvent17():void
 
 	output("\n\nPeople love gambling on Graviball on the galactic rim. You hear there are shadier matches played on the fringe worlds where there are almost no rules and certain shock weapons are allowed.");
 
-	if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC)
+	switch(flags["PC_UPBRINGING"])
 	{
-		output("\n\n<i>“Of course I’ve played Graviball - who do you take me for?”</i> You scoff, you spent half your childhood playing every kind of sport the galaxy had to offer; mostly at your father’s insistence. <i>“They used to call me the ‘Steele Hammer’ back home when I was playing in the junior leagues because I had a way of making that z-g ball crash down.”</i>");
-
-		output("\n\n<i>“O-hoh, so you’re a pro then? Guess you wouldn’t turn down a challenge from a synthetic newb like me, then?”</i> [bess.name]’s [bess.eyeColor] eyes are alight with competitive spirit, as [bess.heShe] spins the gravity-defying ball on one finger.");
-	}
-	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM)
-	{
-		output("\n\n<i>“Well, I was a bit of an indoors sort. Partially because of my old man, but also because I genuinely love reading. I never really did play many sports growing up.”</i> You reluctantly admit, looking at the z-g ball. What were the rules again?");
-		
-		output("\n\n<i>“That’s no good! I love books too, but you organic types have got to keep the blood pumping through your veins. Embrace the day, seize the moment, live life to the fullest!”</i> [bess.name] sighs, obviously disappointed by your hermit-like attitude.");
-	}
-	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BALANCED)
-	{
-		output("\n\n<i>“I played it a bit at school - the old man was always making sure I tried everything at least once, so I had a balanced education.”</i> You inform [bess.himHer], all the while eyeing off the way [bess.heShe]’s spinning the z-g ball on [bess.hisHer] index finger.");
-	}
-	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE)
-	{
-		output("\n\n<i>“I had a pretty strict upbringing; I didn’t really get time to play sports. Even though my old man was rich, he made me earn my way from a young age - I never got any hand outs.”</i> You tell [bess.name], realizing you’d never told [bess.himHer] how hard you had it growing up. As a Steele, most people automatically assumed you lived a pampered lifestyle from a young age.");
-		
-		output("\n\nThe edge of [bess.name]’s eyes soften, then [bess.heShe] gets a little gleam in [bess.hisHer] eyes. <i>“All work and no play? Now I know why your family are called Steeles. How about we recapture some of that lost childhood...?”</i>");
-	}
-	else if (flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED)
-	{
-		output("\n\n<i>“Sure, I played a fair bit of Graviball, though mostly for social reasons. We had a field built into our space yacht; I’ve even played against a few celebrities.”</i> You admit, realizing how pampered you sound right now. Your old man let you live in the lap of luxury growing up, which is probably why he’s making you earn your inheritance now with this galactic treasure hunt.");
-		
-		output("\n\n[bess.name] pouts a little bit, spinning the z-g ball on one finger. <i>“... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!”</i>");
+		case GLOBAL.UPBRINGING_ATHLETIC:
+			output("\n\n<i>“Of course I’ve played Graviball - who do you take me for?”</i> You scoff, you spent half your childhood playing every kind of sport the galaxy had to offer; mostly at your father’s insistence. <i>“They used to call me the ‘Steele Hammer’ back home when I was playing in the junior leagues because I had a way of making that z-g ball crash down.”</i>");
+			output("\n\n<i>“O-hoh, so you’re a pro then? Guess you wouldn’t turn down a challenge from a synthetic newb like me, then?”</i> [bess.name]’s [bess.eyeColor] eyes are alight with competitive spirit, as [bess.heShe] spins the gravity-defying ball on one finger.");
+			break;
+		case GLOBAL.UPBRINGING_BOOKWORM:
+			output("\n\n<i>“Well, I was a bit of an indoors sort. Partially because of my old man, but also because I genuinely love reading. I never really did play many sports growing up.”</i> You reluctantly admit, looking at the z-g ball. What were the rules again?");
+			output("\n\n<i>“That’s no good! I love books too, but you organic types have got to keep the blood pumping through your veins. Embrace the day, seize the moment, live life to the fullest!”</i> [bess.name] sighs, obviously disappointed by your hermit-like attitude.");
+			break;
+		case GLOBAL.UPBRINGING_AUSTERE:
+			output("\n\n<i>“I had a pretty strict upbringing; I didn’t really get time to play sports. Even though my old man was rich, he made me earn my way from a young age - I never got any hand outs.”</i> You tell [bess.name], realizing you’d never told [bess.himHer] how hard you had it growing up. As a Steele, most people automatically assumed you lived a pampered lifestyle from a young age.");
+			output("\n\nThe edge of [bess.name]’s eyes soften, then [bess.heShe] gets a little gleam in [bess.hisHer] eyes. <i>“All work and no play? Now I know why your family are called Steeles. How about we recapture some of that lost childhood...?”</i>");
+			break;
+		case GLOBAL.UPBRINGING_PAMPERED:
+			output("\n\n<i>“Sure, I played a fair bit of Graviball, though mostly for social reasons. We had a field built into our space yacht; I’ve even played against a few celebrities.”</i> You admit, realizing how pampered you sound right now. Your old man let you live in the lap of luxury growing up, which is probably why he’s making you earn your inheritance now with this galactic treasure hunt.");
+			output("\n\n[bess.name] pouts a little bit, spinning the z-g ball on one finger. <i>“... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!”</i>");
+			break;
+		case GLOBAL.UPBRINGING_SLUTTY:
+			output("\n\nYou think back to exactly what (and who) you were doing while everyone else was playing Graviball, blushing at the memories. [bess.name] raises an eyebrow, but doesn't comment.");
+			break;
+		case GLOBAL.UPBRINGING_BALANCED:
+		default:
+			output("\n\n<i>“I played it a bit at school - the old man was always making sure I tried everything at least once, so I had a balanced education.”</i> You inform [bess.himHer], all the while eyeing off the way [bess.heShe]’s spinning the z-g ball on [bess.hisHer] index finger.");
+			break;
 	}
 
-	//{If Ship Has a Holoroom:
+	// If Ship Has a Holoroom:
 	if (9999 == 0)
 	{
 		output("\n\n<i>“How about we play a game? I’ve reprogrammed the holoroom to run a very realistic simulation of the real thing. Pitch, crowd and the whole works! Even digital teammates to fill in the gaps,”</i> the");
@@ -10406,10 +10404,12 @@ public function bessMorningEvents():void
 
 	// Repeat Scene.
 	// Occurs bess is your lover AND you're not sleeping next to her at night (bessSleepW = false).
-	//if (flags["BESS_LOVER"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] != "BESS" && hours < 8 && rand(3) == 0)
-	//{
-	//	flags["BESS_MORNING_EVENT_NOTSLEEPINGWITH"] = 1;
-	//}
+	/*
+	if (flags["BESS_LOVER"] != undefined && flags["CREWMEMBER_SLEEP_WITH"] != "BESS" && hours < 8 && rand(3) == 0)
+	{
+		flags["BESS_MORNING_EVENT_NOTSLEEPINGWITH"] = 1;
+	}
+	*/
 
 	flags["BESS_SLEEPWITH_DOMORNING"] = undefined;
 	
@@ -10787,7 +10787,7 @@ public function bessGetBlowjob():void
 		
 		output("\n\nYou turn to [bess.name] and lustily eye the silver-skinned sex bot. Imagining [bess.himHer] stroking your [pc.cocks] with [bess.hisHer] "+ bess.mf("firm", "soft") +" fingers, teasing your [pc.cockHead] with [bess.hisHer] tongue... it’s enough to drive you mad!");
 
-		//{Random Output #1 (50% chance):
+		// Random Output #1 (50% chance):
 		if (rand(2) == 0)
 		{
 			output("\n\n<i>“Hey, "+ bessSexName() +", I’m feeling pretty hard right now... think you could give me a hand?”</i>");
@@ -11150,7 +11150,7 @@ public function bessGetBlowjob():void
 		output("\n\nWhen it slips inside your buttocks you try not to clench, relaxing and feeling it weave its way deep inside of you. Swiftly seeking out your prostate, it drags along it in long, low strokes. Delicious, humming pleasure floods through every inch of your being as [bess.heShe] teases your inner ass, fucking and pumping deep inside of your sweet hole!");
 	}
 
-	//{PC cock size above 14 inches:
+	// PC cock size above 14 inches:
 	if ((pc as PlayerCharacter).biggestCockLength() > 12)
 	{
 		output("\n\n[bess.name] seems to want to take more of your [pc.cock "+ cockIdx +"] into [bess.hisHer] mouth, but it’s simply too <i>huge</i>. Trying a few times, [bess.heShe] gags on your incredible girth, pulling back in failure. <i>“G-gah... syntax errors! There’s no way I’m taking something </i>this<i> big without going all out. Disengaging oral safeties!”</i>");
@@ -11419,7 +11419,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 	if (pc.cocks.length > 1) output("s");
 	output(" with every movement, [bess.hisHer] synthetic "+ (bTargetVag ? "pussy" : "sphincter") +" actively milking your erection for all it’s worth.");
 
-	//{PC has a knot && BessIsDom:
+	// PC has a knot && BessIsDom:
 	if (pc.hasKnot(cockIdx) && bessIsDom())
 	{
 		output("\n\nThe longer you fuck [bess.himHer], the more your [pc.knot "+ cockIdx +"] begins to swell. You instinctively go to pull out, fearing getting stuck in [bess.himHer], but as you do so a sharp tug at your leather leash keeps you firmly in place.");
@@ -11832,7 +11832,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			
 			output("\n\nYou try to stand perfectly still as [bess.heShe] slips another slick finger inside of your back door, stretching you open that much more. You can’t help but shiver as your asshole is finger fucked with from behind, your forbidden place penetrated. You clench around [bess.hisHer] fingers and let out a breathy moan, wondering how long it’ll be before you hit that inevitable peak.");
 			
-			output("\n\n[bess.HeShe] knows exactly where to stimulate you as electrifying electrifying pleasure runs up your spine. [bess.HisHer] fingers are so thoroughly lubricated that your pucker takes them easily, filling you with an intensely pleasurable sensation. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like?");
+			output("\n\n[bess.HeShe] knows exactly where to stimulate you as electrifying pleasure runs up your spine. [bess.HisHer] fingers are so thoroughly lubricated that your pucker takes them easily, filling you with an intensely pleasurable sensation. If this is what [bess.heShe] can do with [bess.hisHer] fingers, what is [bess.hisHer] cock going to feel like?");
 			
 			output("\n\n<i>“Let’s move things further, shall we, "+ bessSexName() +"? I will allow your lowly cock to fuck my ass - be thankful.”</i>");
 			
@@ -12226,7 +12226,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		else output(" deep inside of you");
 		output(".");
 	
-		//{bess has a pussy, PC has a cock, and Bess's tailcunt is set to active:
+		// bess has a pussy, PC has a cock, and Bess's tailcunt is set to active:
 		if (bess.hasVagina() && pc.hasCock() && bess.hasTailCunt())
 		{
 			output("\n\nAs you’re being filled with [bess.hisHer] synthetic spunk, your [pc.cockNoun] in turn spurts wildly into [bess.hisHer] detached pussy. It sucks on your length with unusual force, sucking and slurping up your [pc.cum]. It’s like you’re being fucked while attached to a milker!");

@@ -215,10 +215,17 @@ public function walkUpToDocLashAgain(back:Boolean = true):void
 	addButton(0,"Services",genitalRemovalShit,undefined,"Services","Access Dr. Lash’s services.");
 	addButton(1,"Talk",talkToDocLash);
 	if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) addButton(2,"Raygun?",raygunStuff,undefined,"Ask About Doctor Badger’s Raygun","Talk to Doctor Lash about the raygun Dr. Badger gave you for Penny, and see if he can help you change it to work on her instead");
-	shopkeep = chars["DRLASH"];
-	addButton(5,"Buy",buyItem,undefined,"Buy","Ask Dr. Lash if he has any items to sell.");
+	addButton(5,"Buy",drLashBuyWrapper,undefined,"Buy","Ask Dr. Lash if he has any items to sell.");
 	if(peacekeeperTalkAvailable()) addButton(6,"Peacekeepers",drLashPeacekeeprTalk);
 	addButton(14,"Back",mainGameMenu);
+}
+public function drLashBuyWrapper():void
+{
+	shopkeep = chars["DRLASH"];
+	
+	CodexManager.unlockEntry("Chill Pill");
+	
+	buyItem();
 }
 
 //Genital Removal Menu
@@ -534,8 +541,9 @@ public function talkToDocLash():void
 	addButton(1,"Why?",whyDrLashDoesShit,undefined,"Why?","Why is he out here doing this weird stuff?");
 	addButton(2,"Flirt",flirtWithDrLash,undefined,"Flirt","Maybe he’s cooled off a bit. He’s gotta have a butthole he can still have fun with, right?");
 	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drLashTalkAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
-	if(!pc.hasPerk("STD Immune")) addButton(4,"STD Immunity",immuneSystemBoost,undefined,"STD Immunity","Carefully broach the topic of STD immunity to the Doctor. Maybe he can improve your immune system?");
-	else addButton(4,"STD Immunity",immuneSystemBoost,undefined,"STD Immunity","See Dr. Lash will reverse his work.");
+	if(flags["LASHED_IMMUNITY"] != undefined) addButton(4,"STD Immunity",immuneSystemBoost,undefined,"STD Immunity","See Dr. Lash will reverse his work.");
+	else if(!pc.isSSTDImmune()) addButton(4,"STD Immunity",immuneSystemBoost,undefined,"STD Immunity","Carefully broach the topic of STD immunity to the Doctor. Maybe he can improve your immune system?");
+	else addDisabledButton(4,"STD Immunity","STD Immunity","You are already immune to STDs.");
 	addButton(14,"Back",walkUpToDocLashAgain);
 }
 
@@ -543,7 +551,7 @@ public function immuneSystemBoost():void
 {
 	clearOutput();
 	showDrLash();
-	if(pc.hasPerk("STD Immune"))
+	if(flags["LASHED_IMMUNITY"] != undefined)
 	{
 		output("<i>“So could you reverse...”</i>");
 		output("\n\n<i>“No.”</i> Doctor Lash interrupts. <i>“No and do not even think to inquire further. It is not my business to undo my own work.”</i>");

@@ -143,7 +143,7 @@ public function customsPassFinale():void
 	output("\n\nYou spend a minute or two filling in your signature or initials on a few forms. Eventually, you hand them over to Ogram, who stamps them. As he does so, you notice the bull-man wince, snaking a hand down under the desk. Maybe he’s got a cramp?");
 	output("\n\n<i>“Alright. Just step on over to the visitor check-in desk. Somebody’ll be with you...”</i> He shudders a little bit, barely muting a curse. <i>“Uh, real soon.”</i>");
 	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
-	if(pc.hasEquippedWeapon()) flags["CHECKED_GEAR_AT_OGGY"] = 1;
+	flags["CHECKED_GEAR_AT_OGGY"] = (pc.hasEquippedWeapon() ? 1 : 0);
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",visitorDeskApproach);
@@ -279,6 +279,7 @@ public function getDisarmedRepeat():void
 	else
 	{
 		output("You casually inform him that you don’t have any weapons, watching as Og’s eyebrow climbs steadily higher.\n\n<i>“I’ll have to give you a quick check-over,”</i> he says while waving a portable scanner over your body. <i>“All right, you’re clear. Have a good one.”</i>");
+		flags["CHECKED_GEAR_AT_OGGY"] = 0;
 	}
 	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
 	
@@ -662,7 +663,7 @@ public function spitRoastAmmoOnYerDicks():void
 	output("\n\n<i>“Fuck. Keep that up and I’m gonna be hard again before you’re done,”</i> Og laughs, pulling himself up onto his desk beside the cow-girl and giving her a pat on the behind.");
 	output("\n\nYou pull yourself out of Amma a moment later, taking a towel from Og when he offers and cleaning yourself up. You really got yourself messy, now that you look at yourself: all slathered in cum and Amma’s juices, sweat and milk staining your [pc.skinFurScales]. You sigh contentedly as you wipe up, occasionally glancing up at the drooling cow-cunt still bent over and stretched wide. Amma herself seems content to stay bent over, resting against her lover’s desk and looking up at him dreamily.");
 	output("\n\n<i>“Well, thanks for sharing you two,”</i> you say");
-	if(pc.hasStatusEffect("Disarmed") || flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(", getting on your way");
+	if(pc.hasStatusEffect("Disarmed") || flags["CHECKED_GEAR_AT_OGGY"] == 1) output(", getting on your way");
 	else output(", grabbing your gear");
 	output(".");
 	output("\n\n<i>“Any time!”</i> Amma grins, giving you a parting butt-wiggling as you pass. <i>“We should do this again, next time you pass by!”</i>");
@@ -747,7 +748,7 @@ public function worshipZeBullCawk():void
 		output("\n\nShe swats him on the knee.");
 	}
 	output("\n\nYou give the pair a half-conscious nod as you’re helped up and start to");
-	if(pc.hasStatusEffect("Disarmed") || flags["CHECKED_GEAR_AT_OGGY"] != undefined) output(" get on your way");
+	if(pc.hasStatusEffect("Disarmed") || flags["CHECKED_GEAR_AT_OGGY"] == 1) output(" get on your way");
 	else output(" collect your gear");
 	output(".");
 	processTime(15);

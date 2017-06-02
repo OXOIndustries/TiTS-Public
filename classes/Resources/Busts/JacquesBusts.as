@@ -527,16 +527,22 @@ package classes.Resources.Busts
 		public var Bust_LOGO_GALACTIC_HUNTRESS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/galactic_huntress_1.png", mimeType = "image/png")]
 		public var Bust_LOGO_GALACTIC_HUNTRESS_1:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/humphard.png", mimeType = "image/png")]
+		public var Bust_LOGO_HUMPHARD:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/jejune.png", mimeType = "image/png")]
 		public var Bust_LOGO_JEJUNE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/joyco.png", mimeType = "image/png")]
 		public var Bust_LOGO_JOYCO:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/kihacorp.png", mimeType = "image/png")]
 		public var Bust_LOGO_KIHACORP:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/nova_securities.png", mimeType = "image/png")]
+		public var Bust_LOGO_NOVA_SECURITIES:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/pyrite.png", mimeType = "image/png")]
 		public var Bust_LOGO_PYRITE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
 		public var Bust_LOGO_REAPER:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/rhenworld.png", mimeType = "image/png")]
+		public var Bust_LOGO_RHENWORLD:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/sits.png", mimeType = "image/png")]
 		public var Bust_LOGO_SITS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/snuggle.png", mimeType = "image/png")]
@@ -564,16 +570,22 @@ package classes.Resources.Busts
 			public var Full_LOGO_GALACTIC_HUNTRESS:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress_1.png", mimeType = "image/png")]
 			public var Full_LOGO_GALACTIC_HUNTRESS_1:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/humphard.png", mimeType = "image/png")]
+			public var Full_LOGO_HUMPHARD:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/jejune.png", mimeType = "image/png")]
 			public var Full_LOGO_JEJUNE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/joyco.png", mimeType = "image/png")]
 			public var Full_LOGO_JOYCO:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/kihacorp.png", mimeType = "image/png")]
 			public var Full_LOGO_KIHACORP:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/nova_securities.png", mimeType = "image/png")]
+			public var Full_LOGO_NOVA_SECURITIES:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/pyrite.png", mimeType = "image/png")]
 			public var Full_LOGO_PYRITE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/reaper.png", mimeType = "image/png")]
 			public var Full_LOGO_REAPER:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/rhenworld.png", mimeType = "image/png")]
+			public var Full_LOGO_RHENWORLD:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/sits.png", mimeType = "image/png")]
 			public var Full_LOGO_SITS:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png")]

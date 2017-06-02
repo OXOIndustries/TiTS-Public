@@ -369,6 +369,8 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
+		include "../includes/follower.pippa.as";
+		include "../includes/follower.multi_interactions.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";

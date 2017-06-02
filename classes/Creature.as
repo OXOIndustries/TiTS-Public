@@ -339,6 +339,10 @@
 			{
 				r.freezing.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440));
 			}
+			if (hasStatusEffect("Oil Cooled"))
+			{
+				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
+			}
 			
 			return r;
 		}
@@ -2155,6 +2159,10 @@
 				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
+				case "vaginasSimple":
+				case "vaginasNoun":
+					buffer = simpleVaginasNoun();
+					break;
 				case "vaginas":
 				case "pussies":
 				case "cunts":
@@ -2192,6 +2200,10 @@
 				case "vagOrAsshole":
 				case "pussyOrAsshole":
 					buffer = vagOrAss(arg2);
+					break;
+				case "vagOrAssNoun":
+				case "vagOrAssSimple":
+					buffer = vagOrAssNoun(arg2);
 					break;
 				case "clit":
 				case "clitoris":
@@ -3037,6 +3049,10 @@
 			removeStatusEffect("Cum Soaked");
 			removeStatusEffect("Pussy Drenched");
 			removeStatusEffect("Oil Warmed");
+			removeStatusEffect("Oil Cooled");
+			removeStatusEffect("Oil Numbed");
+			removeStatusEffect("Oil Aroused");
+			removeStatusEffect("Oil Slicked");
 		}
 		public function canMasturbate():Boolean
 		{
@@ -3612,6 +3628,11 @@
 			)
 			{
 				autoSex = "Unisex";
+			}
+			// Bothrioc
+			if(originalRace == "bothrioc" || race.indexOf("bothrioc") != -1)
+			{
+				autoSex = (!CodexManager.entryViewed("Bothrioc") ? "???" : "Unisex");
 			}
 			// Nyrea
 			if(originalRace == "nyrea" || race.indexOf("nyrea") != -1)
@@ -5081,7 +5102,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function earDescript(): String
@@ -5157,6 +5178,10 @@
 					break;
 				case GLOBAL.TYPE_PANDA:
 					adjectives = ["panda", "bear-like", "rounded"];
+					if(!nonFurrySkin) adjectives.push("furry", "softly furred");
+					break;
+				case GLOBAL.TYPE_REDPANDA:
+					adjectives = ["panda", "panda-like", "pointed"];
 					if(!nonFurrySkin) adjectives.push("furry", "softly furred");
 					break;
 				case GLOBAL.TYPE_LEITHAN:
@@ -6111,6 +6136,7 @@
 					case GLOBAL.TYPE_MOUSEMAN: adjectives.push("mousey", "mouse-like"); break;
 					case GLOBAL.TYPE_MOUSE: adjectives.push("mouse", "mousey", "mouse-like"); break;
 					case GLOBAL.TYPE_PANDA: adjectives.push("panda", "bear-like"); break;
+					case GLOBAL.TYPE_REDPANDA: adjectives.push("panda", "mustelid-like"); break;
 					case GLOBAL.TYPE_BADGER: adjectives.push("badger", "mustelid"); break;
 					case GLOBAL.TYPE_KANGAROO: adjectives.push("kangaroo", "‘roo-like"); break;
 					case GLOBAL.TYPE_FROG: adjectives.push("flat", "frog-like"); break;
@@ -6209,6 +6235,9 @@
 					break;
 				case GLOBAL.TYPE_PANDA:
 					adjectives = ["panda", "bear-like"];
+					break;
+				case GLOBAL.TYPE_REDPANDA:
+					adjectives = ["lesser panda", "lesser panda-like"];
 					break;
 				case GLOBAL.TYPE_FELINE:
 					adjectives = ["feline", "cat-like"];
@@ -6526,15 +6555,15 @@
 		}
 		public function hasClawedHands(): Boolean {
 			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_LUPINE);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_LUPINE);
 		}
 		public function hasPaddedHands(): Boolean {
 			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA);
+			return InCollection(armType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA);
 		}
 		public function hasPaddedLegs(): Boolean {
 			//if (hasLegFlag(GLOBAL.FLAG_PAWS)) return true; // reptiles... not sure 'bout them
-			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_AVIAN);
+			return InCollection(legType, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_AVIAN);
 		}
 		public function lowerBody():String {
 			var output: String = "";
@@ -6586,6 +6615,7 @@
 						case GLOBAL.TYPE_TANUKI: adjectives = ["tanuki-like", "tanuki-like", "dexterous", "nimble"]; break;
 						case GLOBAL.TYPE_DEER: adjectives = ["deer-like", "deer-like", "hooved", "nimble", "lithe", "agile"]; break;
 						case GLOBAL.TYPE_PANDA: adjectives = ["panda", "panda", "bear-like", "thick"]; break;
+						case GLOBAL.TYPE_REDPANDA: adjectives = ["panda", "panda", "lesser panda-like", "cute"]; break;
 						case GLOBAL.TYPE_MLP: adjectives = ["pony", "pony-like", "cartoony", "cute"]; break;
 						case GLOBAL.TYPE_RASKVEL: adjectives = ["reptilian"]; break;
 						case GLOBAL.TYPE_OVIR: adjectives = ["human-like"]; break;
@@ -6663,6 +6693,7 @@
 					case GLOBAL.TYPE_TANUKI: adjectives = ["tanuki-like", "dexterous", "nimble"]; break;
 					case GLOBAL.TYPE_DEER: adjectives = ["deer-like", "nimble"]; break;
 					case GLOBAL.TYPE_PANDA: adjectives = ["panda", "panda", "bear-like", "thick"]; break;
+					case GLOBAL.TYPE_PANDA: adjectives = ["panda", "panda", "lesser panda-like", "cute"]; break;
 					case GLOBAL.TYPE_MLP: adjectives = ["pony", "pony-like", "cartoony", "cute"]; break;
 					case GLOBAL.TYPE_RASKVEL: adjectives = ["reptilian", "clawed"]; break;
 					case GLOBAL.TYPE_OVIR: adjectives = ["human-like"]; break;
@@ -6780,7 +6811,7 @@
 		}
 		public function hasToeClaws():Boolean
 		{
-			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_AVIAN)) return true;
+			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN)) return true;
 			return false;
 		}
 		public function kneesDescript(): String 
@@ -8698,6 +8729,36 @@
 			}
 			return index;
 		}
+		public function inAnalHeat():Boolean
+		{
+			return (hasStatusEffect("Strangely Warm") || hasStatusEffect("Flushed") || hasStatusEffect("Fuck Fever"));
+		}
+		public function removeAnalHeat(eventLog:Boolean = true):void
+		{
+			clearAnalHeat(eventLog);
+		}
+		public function clearAnalHeat(eventLog:Boolean = true):void
+		{
+			if(!inAnalHeat()) return;
+			removeStatusEffect("Fuck Fever");
+			removeStatusEffect("Flushed");
+			removeStatusEffect("Strangely Warm");
+			if(this is PlayerCharacter && eventLog) AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?","passive");
+		}
+		public function analHeatMinutes():Number
+		{
+			var minutes:Number = 0;
+			if(getStatusMinutes("Strangely Warm") > 0) minutes = getStatusMinutes("Strangely Warm");
+			if(getStatusMinutes("Flushed") > minutes) minutes = getStatusMinutes("Flushed");
+			if(getStatusMinutes("Fuck Fever") > minutes) minutes = getStatusMinutes("Fuck Fever");
+			return minutes;
+		}
+		public function extendAnalHeat(arg:Number):void
+		{
+			if(hasStatusEffect("Strangely Warm")) addStatusMinutes("Strangely Warm",arg);
+			if(hasStatusEffect("Flushed")) addStatusMinutes("Flushed",arg);
+			if(hasStatusEffect("Fuck Fever")) addStatusMinutes("Fuck Fever",arg);
+		}
 		public function inHeat():Boolean
 		{
 			return hasStatusEffect("Heat");
@@ -8745,7 +8806,7 @@
 		{
 			var minutes:Number = 0;
 			if(getStatusMinutes("Rut") > 0) minutes = getStatusMinutes("Rut");
-			if (getStatusMinutes("Lagonic Rut") > minutes) minutes = getStatusMinutes("Lagonic Rut");
+			if(getStatusMinutes("Lagonic Rut") > minutes) minutes = getStatusMinutes("Lagonic Rut");
 			return minutes;
 		}
 		public function extendHeat(arg:Number):void
@@ -9099,6 +9160,7 @@
 			return lactationQ(arg);
 		}
 		public function lactationQ(arg:int = -1): Number {
+			if (hasPerk("Fixed MilkQ")) return perkv1("Fixed MilkQ");
 			var total:Number = 0;
 			//So much easier now - just a quick lookup.
 			//Arg -1 = amount from biggest tits.
@@ -9525,6 +9587,7 @@
 		//Placeholder
 		public function girlCumQ(arg: int = -1):Number
 		{
+			if (hasPerk("Fixed GirlCumQ")) return perkv1("Fixed GirlCumQ");
 			if (!hasVagina()) return 0;
 			var quantity: Number = 0;
 			// lust - 50% = normal output. 0 = 75%. 100 = +125% output.
@@ -10655,6 +10718,7 @@
 			if (deerScore() >= 4) race = "deer-morph";
 			if (raskvelScore() >= 4) race = "raskvel-morph";
 			if (pandaScore() >= 4) race = "panda-morph";
+			if (redPandaScore() >= 4) race = redPandaRace();
 			if (pigScore() >= 4) race = "pig-morph";
 			if (bunnyScore() >= 4) race = "bunny-morph";
 			if (ausarScore() >= 4)
@@ -10763,6 +10827,8 @@
 						if(isCute && rand(2) == 0) sRaceShort = "daisy";
 						else sRaceShort = mf("plant", "flower");
 						break;
+					case "lesser panda":
+						sRaceShort = "panda";
 					case "gabilani":
 						sRaceShort = "goblin";
 						break;
@@ -10870,6 +10936,11 @@
 			if (skinType == GLOBAL.SKIN_TYPE_BARK && hasHorns(GLOBAL.TYPE_DRYAD)) return "treant";
 			if (skinType == GLOBAL.SKIN_TYPE_PLANT && (hasHorns(GLOBAL.TYPE_DRYAD) || hasStatusEffect("Hair Flower"))) return "dryad";
 			return "plant-morph";
+		}
+		public function redPandaRace():String
+		{
+			if(furColor.indexOf("red") != -1 || furColor.indexOf("auburn") != -1 || furColor.indexOf("brown") != -1) return "red panda-morph";
+			return "lesser panda-morph";
 		}
 		public function sharkRace():String
 		{
@@ -11479,6 +11550,29 @@
 			if (counter > 1 && hasVagina() && totalClits()/totalVaginas() == 2) counter++;
 			if (counter > 2 && hairType == GLOBAL.HAIR_TYPE_FEATHERS) counter++;
 			if (counter > 4 && hasTongueFlag(GLOBAL.FLAG_LONG) && hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) counter++;
+			return counter;
+		}
+		public function redPandaScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.TYPE_REDPANDA) counter++;
+			if (faceType == GLOBAL.TYPE_REDPANDA) counter++;
+			if (armType == GLOBAL.TYPE_REDPANDA)
+			{
+				counter++;
+				if(hasArmFlag(GLOBAL.FLAG_FLUFFY)) counter++;
+			}
+			if (legType == GLOBAL.TYPE_REDPANDA)
+			{
+				counter++;
+				if(hasLegFlag(GLOBAL.FLAG_FLUFFY)) counter++;
+			}
+			if (hasTail(GLOBAL.TYPE_REDPANDA))
+			{
+				counter++;
+				if(hasTailFlag(GLOBAL.FLAG_FLUFFY)) counter++;
+			}
+			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
 		public function sharkScore(): int
@@ -13061,6 +13155,11 @@
 			if (hasVagina() && arg >= 0) return vaginaDescript(arg);
 			return assholeDescript();
 		}
+		public function vagOrAssNoun(arg:int = 0):String
+		{
+			if (hasVagina() && arg >= 0) return vaginaNounDescript(arg);
+			return assholeDescript(true);
+		}
 		//Vaginas + Descript
 		public function oneTailVaginaDescript():String
 		{
@@ -13152,6 +13251,21 @@
 		{
 			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
 			return vaginaNoun2(vaginas[vaginaNum]);
+		}
+		public function simpleVaginasNoun():String {
+			var output:String = "";
+			
+			if (vaginas.length < 1) return "<b>ERROR: NO PUSSIES DETECTED for simpleVaginasNoun()</b>";
+			if (matchedVaginas()) output += vaginaNoun2(vaginas[0], true);
+			else output += randomSimpleVaginaNoun();
+			
+			if (vaginas.length > 1) output = plural(output);
+			
+			return output;
+		}
+		public function randomSimpleVaginaNoun():String
+		{
+			return RandomInCollection("pussy","pussy","pussy","pussy","pussy","vagina","vagina","vagina","cunt","cunt","slit");
 		}
 		public function vaginaNoun2(vag:VaginaClass, simple:Boolean = false, special:String = ""):String
 		{
@@ -18395,6 +18509,7 @@
 				if (hasStatusEffect("Egg Addled 3")) prodFactor *= 1.75;
 				if (hasStatusEffect("X-Zil-Rate") || hasStatusEffect("Mead")) prodFactor *= 4;
 				if (hasPerk("Ice Cold")) prodFactor /= 2;
+			if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
 				
 				var producedLust:Number = deltaT * prodFactor;
 				if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
@@ -18521,6 +18636,8 @@
 				
 				var wholeHoursPassed:uint = ((kGAMECLASS.minutes + deltaT) / 60);
 				
+				var desc:String = "";
+				
 				switch (thisStatus.storageName)
 				{
 					case "Laquine Ears":
@@ -18535,6 +18652,11 @@
 						break;
 					case "Heat":
 						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
+						else if(isFullyWombPregnant())
+						{
+							if (deferredEvents == null) deferredEvents = [heatCleanup];
+							else deferredEvents.push(heatCleanup);
+						}
 						break;
 					case "Rut":
 					case "Lagonic Rut":
@@ -18578,8 +18700,6 @@
 						//Pregnancy clears - gotta cheat to get the Omega Oil status clear.
 						else if(hasAnalPregnancy())
 						{
-							if(this is PlayerCharacter) AddLogEvent("You feel calmer and more clear-headed. Has the heat already faded?", "passive");
-							requiresRemoval = true;
 							if (deferredEvents == null) deferredEvents = [analHeatCleanup];
 							else deferredEvents.push(analHeatCleanup);
 						}
@@ -18874,6 +18994,31 @@
 						oilDesc += "\nFreeze Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						setStatusTooltip("Oil Warmed", oilDesc);
 						break;
+					case "Oil Cooled":
+						if(this is PlayerCharacter) desc = "You’re covered in cool, protective oil!";
+						else desc = capitalA + short + " is covered in cool, protective oil!";
+						desc += "\nBurning Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440)) + "%";
+						setStatusTooltip("Oil Cooled", desc);
+						break;
+					case "Oil Numbed":
+						if(this is PlayerCharacter) desc = "You’re covered in numbing, lust-inhibiting oil!";
+						else desc = capitalA + short + " is covered in numbing, lust-inhibiting oil!";
+						desc += "\nLust gains are decreased.";
+						setStatusTooltip("Oil Numbed", desc);
+						break;
+					case "Oil Aroused":
+						if(this is PlayerCharacter) desc = "You’re covered in arousing, lust-inducing oil!";
+						else desc = capitalA + short + " is covered in arousing, lust-inducing oil!";
+						desc += "\nTeasing is more effective, but arousal comes more easily.";
+						setStatusTooltip("Oil Aroused", desc);
+						break;
+					case "Oil Slicked":
+						if(this is PlayerCharacter) desc = "You’re covered in super slippery oil!";
+						else desc = capitalA + short + " is covered in super slippery oil!";
+						desc += "\nIt’s easier to slip away from someone’s grasp.";
+						setStatusTooltip("Oil Slicked", desc);
+						break;
+						
 					case "Tentatool":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
@@ -18924,7 +19069,12 @@
 		}
 		public function analHeatCleanup():void
 		{
+			clearAnalHeat();
 			removeStatusEffect("Omega Oil");
+		}
+		public function heatCleanup():void
+		{
+			clearHeat();
 		}
 		public function updateAlcoholState(deltaT:uint, doOut:Boolean):void
 		{
