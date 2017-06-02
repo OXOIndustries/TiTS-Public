@@ -112,7 +112,7 @@ public function sayYesToDragonPT():void
 	//[Train] [Free?] [Not Now]
 	clearMenu();
 	var momsSpaghetti:String = "";
-	if(silly) momsSpaghetti = ".. mom's spaghetti.";
+	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
 	addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Free?",askMirrinAboutFreebootie,false,"Free?","Seems too good to be true.");
 	addButton(2,"Not Now",downTurnDragonPT,undefined,"Not Now","You can train with her later.");
@@ -140,7 +140,7 @@ public function uhNoDragonPT():void
 	//[Train] [Free?] [Not Now]
 	clearMenu();
 	var momsSpaghetti:String = "";
-	if(silly) momsSpaghetti = ".. mom's spaghetti.";
+	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
 	addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Free?",askMirrinAboutFreebootie,true,"Free?","Seems too good to be true.");
 	addButton(2,"Not Now",downTurnDragonPT,undefined,"Not Now","You can train with her later.");
@@ -271,7 +271,7 @@ public function askMirrinAboutFreebootie(bonusLust:Boolean = false):void
 	//[Train] [Not Now]
 	clearMenu();
 	var momsSpaghetti:String = "";
-	if(silly) momsSpaghetti = ".. mom's spaghetti.";
+	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
 	addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Not Now",downTurnDragonPT,undefined,"Not Now","You can train with her later.");
 }
@@ -355,10 +355,10 @@ public function mirrinMenu():void
 	else if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_CONFIDENTED"] == undefined) addDisabledButton(1,"Training","Training","Maybe you should talk about that last bout of fun before any more training...");
 	else addButton(1,"Training",repeatableMirrinTraining,undefined,"Training","Get cut!");
 
-	if(flags["MIRRIN_TRAINED"] == undefined) addDisabledButton(2,"Talk","Talk","She's not interested in talking right now.");
+	if(flags["MIRRIN_TRAINED"] == undefined) addDisabledButton(2,"Talk","Talk","She’s not interested in talking right now.");
 	else if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_TREATMENT_TALKED"] == undefined) addButton(2,"Talk",talkToMirrin,undefined,"Talk","Might be a good idea to see how she’s doing...");
 	else addButton(2,"Talk",talkToMirrin,undefined,"Talk","Surely there’s more to her than swole gains?");
-	if(flags["SEXED_MIRRIN"] == undefined) addDisabledButton(3,"Her Place","Her Place","You definitely haven't gotten the okay for this.");
+	if(flags["SEXED_MIRRIN"] == undefined) addDisabledButton(3,"Her Place","Her Place","You definitely haven’t gotten the okay for this.");
 	else if(flags["MIRRIN_CONFIDENTED"] == undefined) addDisabledButton(3,"Her Place","Her Place","Maybe talk to her about last time, give her some <i>confidence</i>.");
 	else addButton(3,"Her Place",visitMirrinsPlace,undefined,"Her Place","Into the dragon’s lair...");
 
@@ -402,7 +402,7 @@ public function mirrinAppearance():void
 	else output("\n\nShe appears to be focused on her routine and doesn’t seem to notice you looking her over... or just won’t say anything about it.");
 
 	mirrinMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're looking at her right now!");
+	addDisabledButton(0,"Appearance","Appearance","You’re looking at her right now!");
 }
 
 //Training
@@ -1061,17 +1061,17 @@ public function mirrinTalkMenu():void
 	if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_TREATMENT_TALKED"] == undefined)
 	{
 		addButton(5,"Treatment",mirrinTreatmentTalk,undefined,"Treatment","It could actually be beneficial...");
-		addDisabledButton(0,"Her","Her","Now's not a good time...");
-		addDisabledButton(1,"You","You","Now's not a good time...");
-		addDisabledButton(2,"Race","Race","Now's not a good time...");
-		addDisabledButton(3,"Mods","Mods","Now's not a good time...");
-		addDisabledButton(4,"New Texas","New Texas","Now's not a good time...");
-		addDisabledButton(6,"Confidence","Confidence","Now's not a good time...");
+		addDisabledButton(0,"Her","Her","Now’s not a good time...");
+		addDisabledButton(1,"You","You","Now’s not a good time...");
+		addDisabledButton(2,"Race","Race","Now’s not a good time...");
+		addDisabledButton(3,"Mods","Mods","Now’s not a good time...");
+		addDisabledButton(4,"New Texas","New Texas","Now’s not a good time...");
+		addDisabledButton(6,"Confidence","Confidence","Now’s not a good time...");
 	}
 	else
 	{
 		if(flags["MIRRIN_HER_TALK"] == undefined) addButton(0,"Her",askMirrinAboutHer,undefined,"Her","Get to know the curious hybrid.");
-		else addDisabledButton(0,"Her","Her","You've already had this conversation.");
+		else addDisabledButton(0,"Her","Her","You’ve already had this conversation.");
 		if(flags["MIRRIN_YOU_TALK"] == undefined) 
 		{
 			if(flags["MIRRIN_HER_TALK"] != undefined) addButton(1,"You",talkToMirrinAbootYuuuu,undefined,"You","You showstopper, you.");
@@ -1088,11 +1088,11 @@ public function mirrinTalkMenu():void
 		if(flags["MIRRIN_NT_TALKED"] == undefined) addButton(4,"New Texas",talkAboutNewTexas,undefined,"New Texas","Ask her about New Texas.");
 		else addDisabledButton(4,"New Texas","New Texas","You already talked about this.");
 
-		if(flags["MIRRIN_TREATMENT_TALKED"] == undefined) addDisabledButton(5,"Treatment","Treatment","She isn't ready to talk about this yet.");
+		if(flags["MIRRIN_TREATMENT_TALKED"] == undefined) addDisabledButton(5,"Treatment","Treatment","She isn’t ready to talk about this yet.");
 		else addDisabledButton(5,"Treatment","Treatment","You already talked about this.");
 
 		if(flags["SEXED_MIRRIN"] != undefined && flags["MIRRIN_CONFIDENTED"] == undefined) addButton(6,"Confidence",mirrinYerConfidenceBaaaaaeby,undefined,"Confidence","Give her a much-needed boost of confidence.");
-		else addDisabledButton(6,"Confidence","Confidence","Now's not a good time...");
+		else addDisabledButton(6,"Confidence","Confidence","Now’s not a good time...");
 	}
 	addButton(14,"Back",repeatMirrinApproach);
 }
@@ -1197,7 +1197,7 @@ public function talkToMirrinAbootYuuuu():void
 	//[Training] [Later]
 	clearMenu();
 	var momsSpaghetti:String = "";
-	if(silly) momsSpaghetti = ".. mom's spaghetti.";
+	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
 	addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Later",laterMomsSpaghetti,undefined,"Later","Mom’s spaghetti won’t wait forever.");
 }
@@ -1239,7 +1239,7 @@ public function talkAboutMirrinRace():void
 	output("\n\n<i>“So like, in what was known as Ancient China so and so many millennia ago, a myth around a certain creature came about, yadda yadda. It was called a qilin. Said to be incredibly auspicious, ordained by the spirits to choose worthy emperors,”</i> she recalls whimsically, her distracted eyes gazing up somewhere. <i>“I just couldn’t get it out of my mind. Terra actually having an analogue for gryvain! Or what Terrans call gryvain, anyway,”</i> she smirks, briefly glancing to you as she does.");
 	output("\n\n<i>“Once I had a design, it was merely about the money. I liked the pottery of that same period of Chinese history, so... skin,”</i> Mirrin shows you a clay-red forearm. <i>“And the obsession with... carved jade happened too,”</i> she continues, stroking both of her ornate dragon horns. You notice her biting her lip as she does...");
 	output("\n\nShe quickly regains her train of thought. <i>“Horse stuff is easy, just controlled pills. So, legs, hair, tail, hooves... it did also make me a little slow in the memory, though.”</i>");
-	output("\n\nThat explains why she has pauses and weird phrasing in her speech.  She sticks a double jointed, equine leg forward, swiveling a jade hoof around.");
+	output("\n\nThat explains why she has pauses and weird phrasing in her speech. She sticks a double jointed, equine leg forward, swiveling a jade hoof around.");
 	output("\n\n<i>“And other things,”</i> she adds, her knees rubbing together briefly. You note the squeeze it has on her bulge...");
 	output("\n\n<i>“So yah, I’m Mirrin, I’m a qilin. Or at least, something like it,”</i> finishes Mirrin, a satisfied look on her face.");
 	processTime(15);
@@ -1301,11 +1301,11 @@ public function talkAboutNewTexas():void
 	output("\n\nShe mimics said droopy face. <i>“Not my problem,”</i> she finishes. You sense that it’s more complicated than that.");
 	output("\n\n<i>“Anyway, up for some exercise?”</i>");
 	processTime(30);
-	pc.lust(10);//Fen note: this is less than 50 because this doesn't seem like a +50 scene.
+	pc.lust(10);//Fen note: this is less than 50 because this doesn’t seem like a +50 scene.
 	flags["MIRRIN_NT_TALKED"] = 1;
 	clearMenu();
 	var momsSpaghetti:String = "";
-	if(silly) momsSpaghetti = ".. mom's spaghetti.";
+	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
 	addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Later",laterMomsSpaghetti,undefined,"Later","Mom’s spaghetti won’t wait forever.");
 }
@@ -1422,7 +1422,7 @@ public function mirrinFirstTImeOneOffSex():void
 	}
 	output("\n\nShe’s rather gentle, placing both hands round your jaw. Still, you can’t shake the feeling that... <i>oh</i>.");
 	output("\n\nThe more this goes on, the more you feel her tongue trying to find space in your mouth. It’s already wrapped around your own [pc.tongue], tightening like a constricting snake. You feel it go deeper, just about tickling the very back of your larynx. Gag reflex don’t fail ya now!");
-	output("\n\nThrough all this, she’s hunched herself up to a kneeling position over your prone form and you haven’t the focus to adjust. You ‘hmmm’ to each strong push and pull of her tongue, completely at its mercy. And then she pulls back, her deep red, draconic tongue being slowly drawn out of your mouth. You eye the writhing thing escaping from you: it must be a foot long at least! It hangs in the air, dripping with mutual saliva; of which the breathy qilin slurps up.   ");
+	output("\n\nThrough all this, she’s hunched herself up to a kneeling position over your prone form and you haven’t the focus to adjust. You ‘hmmm’ to each strong push and pull of her tongue, completely at its mercy. And then she pulls back, her deep red, draconic tongue being slowly drawn out of your mouth. You eye the writhing thing escaping from you: it must be a foot long at least! It hangs in the air, dripping with mutual saliva; of which the breathy qilin slurps up.");
 	output("\n\n<i>“Goddamn *<i>huff</i>* didn’t think you were such a pushover, Steele...”</i> she teases, licking and sucking on one of her fingers. You <i>really</i> want to say something back to her but your tongue is just a little worn out right now. Your arms splay out behind you as an added sign of defeat.");
 	output("\n\n<i>“I think I know how to handle you, </i>elskan<i>...”</i> she whispers.");
 	processTime(35);
@@ -1566,7 +1566,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 		output("\n\nInstead of fully choking you, it constricts your squeals and inhalations, making them rise in pitch.");
 		output("\n\nWith a final surge of energy, you feel the monster dick inside you pulse and throb until it unleashes its load. Thick, unbearably hot cum floods every part of your womb and [pc.cunt " + x + "], so much of it filling you up that you feel it physically start weighing you down. Mirrin stifles her own throaty orgasm, burying her face beside yours into the bed.");
 		output("\n\nWhat feels like an eternity of bliss being injected with so much baby batter is interrupted as she lets go of your neck. You splutter and gasp as cool air invades your lungs but the internal warmth you feel in your body overrides it.");
-		output("\n\n<i>“*<i>huff</i>* Holy...  *<i>huff</i>* shit...”</i>whispers your lover into your ear. <i>“Best... fuck ever...”</i>");
+		output("\n\n<i>“*<i>huff</i>* Holy... *<i>huff</i>* shit...”</i>whispers your lover into your ear. <i>“Best... fuck ever...”</i>");
 		output("\n\nShe - very thankfully - hasn’t slumped on top of you. You probably wouldn’t survive if she did. Instead, she basks in the afterglow, her hands moving up and down your [pc.skinFurScales] to comfort you. She still hasn’t actually removed her softening horsedick from your well-stretched cumhole...");
 		//[Next]
 		processTime(30);
@@ -1708,9 +1708,9 @@ public function mirrinYerConfidenceBaaaaaeby():void
 //Scene concepts and requirements:
 //Oil Worship into Double Handjob: All PC’s. Very messy.
 //Deep DP: PC has vagina, height 80<.
-//Sparr Fight into Oral for the winner:  PC has cock at 18’’< and/or vagina. High PC stats = wins.
+//Sparr Fight into Oral for the winner: PC has cock at 18’’< and/or vagina. High PC stats = wins.
 //Humiliating Pork: (aside sounding like a bad chinese translation of something with bacon in it) REWORKED: All PC’s. Pure humiliation anal sex. Special things happen when PC thickness >65. That’s what ya get for being a fatty fat person, fatty. YEAH, YOU GET HOT BUTTSEX MY BRO.
-//Dommy Oral: PC has cock at 18’’< and/or vagina. A merging of ‘TongueFun’ for ease.  Written into Sparr Fight because it essentially ends up the same anyway if you win.
+//Dommy Oral: PC has cock at 18’’< and/or vagina. A merging of ‘TongueFun’ for ease. Written into Sparr Fight because it essentially ends up the same anyway if you win.
 
 //Her Place
 //tooltip: Into the dragon’s lair...
@@ -1768,7 +1768,7 @@ public function mirrinSexMenu():void
 	addButton(0,"BodWorship",mirrinBodyWorship,undefined,"Body Worship","Oil her down with that orange stuff; watch her blow!");
 	if(pc.hasVagina()) addButton(1,"Deep DP",deepMirrinDP,undefined,"Deep DP","Embrace the dragon’s power. Requires a vagina.");
 	else addDisabledButton(1,"Deep DP","Deep DP","You need a vagina for this.");
-	//Sparr Fight into Oral for the winner:  PC has cock at 18’’< and/or vagina. High PC stats = wins.
+	//Sparr Fight into Oral for the winner: PC has cock at 18’’< and/or vagina. High PC stats = wins.
 	if(pc.biggestCockLength() < 18 || pc.hasVagina()) addButton(2,"Train..?",trainFightyFlighty,undefined,"Train..?","Spar to see who cums out on top!");
 	else addDisabledButton(2,"Train..?","Train..?","You need a penis of 18\" or less or a vagina for this.");
 	addButton(3,"Humiliation",humiliationAnalWithMirrin,undefined,"Humiliation","Try something a bit different and a bit rougher.");
@@ -2100,7 +2100,7 @@ public function loseToMirrin():void
 	clearOutput();
 	showMirrin(true);
 	author("SoAndSo");
-	output("<i>“Woohoo, I’m a winner, a winner is me, oh yeh,”</i> jokes the qilin, doing a mock dance. She kneels down on the edge of the bed, her toned, bare butt pointed at your direction. She uses her elbows to rest on then turns her head to you.  <i>“Come </i>oooon<i>, Steele.”</i>");
+	output("<i>“Woohoo, I’m a winner, a winner is me, oh yeh,”</i> jokes the qilin, doing a mock dance. She kneels down on the edge of the bed, her toned, bare butt pointed at your direction. She uses her elbows to rest on then turns her head to you. <i>“Come </i>oooon<i>, Steele.”</i>");
 	//PC is kind:
 	if(pc.isNice())
 	{
@@ -2184,7 +2184,7 @@ public function nahNoHumiliationAnal():void
 	output("You tell her you’re not into the idea.");
 	output("\n\n<i>“No worries, I’ll think of something else for us...”</i>");
 	processTime(1);
-	//brings up [BodWorship] [Deep DP] [Train..?] [Humiliation]  sex options menu.
+	//brings up [BodWorship] [Deep DP] [Train..?] [Humiliation] sex options menu.
 	mirrinSexMenu();
 	addDisabledButton(3,"Humiliation","Humiliation","You just opted out of that.");
 }

@@ -3886,6 +3886,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Lola:</b> Met her");
 					if(flags["SEXED_LOLA"] != undefined) output2("\n<b>* Lola, Times Sexed:</b> " + flags["SEXED_LOLA"]);
 				}
+				if(flags["MET_MIRRIN"] != undefined)
+				{
+					output2("\n<b>* Mirrin:</b> Met her");
+					if(flags["MIRRIN_CONFIDENTED"] != undefined) output2(", You boosted her confidence");
+					if(flags["SEXED_MIRRIN"] != undefined) output2("\n<b>* Mirrin, Times Sexed:</b> " + flags["SEXED_MIRRIN"]);
+				}
 				if(flags["MET_SIMONE"] != undefined)
 				{
 					output2("\n<b>* Simone:</b> Met her");
