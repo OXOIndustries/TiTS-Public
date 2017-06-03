@@ -129,6 +129,16 @@ public function disableExploreEvents():Boolean
 
 public function mainGameMenu(minutesMoved:Number = 0):void
 {
+	// Bad ends prevent triggering events and renewing menu.
+	if(gameOverEvent)
+	{
+		clearOutput();
+		output("<b>GAME OVER</b>");
+		output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
+		clearMenu();
+		return;
+	}
+	
 	flags["COMBAT MENU SEEN"] = undefined;
 	
 	if (flags["PC_UPBRINGING"] == undefined)

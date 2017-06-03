@@ -237,8 +237,8 @@ public function tlakoHerselfTopic():void
 			break;
 		// pc Nature = Slutty:
 		/*case GLOBAL.UPBRINGING_SLUTTY:
-			output(" You remember blushing as your father coached you on how to score the perfect date. It seemed awkward at the time, but it turned out to be the most useful advice you got.");*/
-			break;
+			output(" You remember blushing as your father coached you on how to score the perfect date. It seemed awkward at the time, but it turned out to be the most useful advice you got.");
+			break;*/
 		// pc Nature = Balanced:
 		case GLOBAL.UPBRINGING_BALANCED:
 		default:

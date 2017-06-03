@@ -1,11 +1,5 @@
 ﻿public function setupInputControls():void
 {
-
-
-
-
-
-		
 	//----------------------------------------------------------------
 	// Base UI buttons 
 

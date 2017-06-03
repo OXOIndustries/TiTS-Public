@@ -1304,12 +1304,12 @@ public function applyUpbringing(arg:int = 0):void {
 			pc.credits -= 250;
 			break;
 		//Slutty
-		case GLOBAL.UPBRINGING_SLUTTY:
+		/*case GLOBAL.UPBRINGING_SLUTTY:
 			pc.reflexesRaw++;
 			pc.intelligenceRaw--;
 			pc.libidoRaw += 5;
 			pc.credits += 500;
-			break;
+			break;*/
 		//Balanced
 		case GLOBAL.UPBRINGING_BALANCED:
 			break;
