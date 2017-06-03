@@ -1259,7 +1259,7 @@ public function chooseHowPCIsRaised():void {
 	output("\n\nVictor pondered on just how he would raise his " + pc.mf("son","daughter") + " and future heir. His first instinct was to pamper [pc.himHer] and give [pc.himHer] a head start on life. Still, that could lead to his " + pc.mf("son","daughter") + " lacking willpower, since [pc.heShe] never would have worked for what [pc.heShe] has.");
 	output("\n\nThe mining magnate could make his heir work for everything. An austere upbringing would certainly result in a strong will, but less of a financial, helping hand. It would be tough on both of them, but it might just pay off.");
 	output("\n\nIf his " + pc.mf("son","daughter") + " spend too much time working or playing, however, [pc.heShe] would have no time for extracurricular activities. If Victor encouraged [pc.himHer] to nurture [pc.hisHer] physical skills, [pc.heShe] would probably grow up strong and well rounded, but not so book-smart. The opposite was also true - if he pushed his child towards study, [pc.heShe] would come out mentally strong, but perhaps physically weaker.");
-	output("\n\nHowever, he could always encourage his heir to follow in his footsteps more than average, and really get to be intimate with those [pc.heShe] knows. Maybe even a little too intimate.");
+	//output("\n\nHowever, he could always encourage his heir to follow in his footsteps more than average, and really get to be intimate with those [pc.heShe] knows. Maybe even a little too intimate.");
 	output("\n\nPerhaps the best approach was to practice moderation, and give a little time to everything. Favoring nothing in particular would mean his child wouldn’t specialize in anything, but it would also mean [pc.heShe] wasn’t lacking in anything, either.");
 	output("\n\n<b>What kind of upbringing does your character have?</b>");
 	
@@ -1348,9 +1348,9 @@ public function chooseAlignment():void {
 		case GLOBAL.UPBRINGING_AUSTERE:
 			output(" don’t experience the luxuries one might expect from the heir to Steele Tech. Just like your father, you work for everything you have. Forged from adversity, you learn to value what you’ve earned, rather than expecting it to be given to you for free.");
 			break;
-		case GLOBAL.UPBRINGING_SLUTTY:
+		/*case GLOBAL.UPBRINGING_SLUTTY:
 			output("’re always sleeping around, indulging in the pleasures of life. Your suitors greatly enjoyed your abilities in the bedroom, and you found yourself heavily compensated for your work.");
-			break;
+			break;*/
 		case GLOBAL.UPBRINGING_BALANCED:
 			output("’re always trying a bit of everything and anything. In the end, you come out quite balanced for it, just as your father had hoped you would.");
 			break;

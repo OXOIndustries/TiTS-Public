@@ -236,8 +236,8 @@ public function tlakoHerselfTopic():void
 			output(" You remember the cabin by the purple lake on Dorlin IV, the long hours spent with your father, enjoying the silence of the woods around you, and all those times he fished you out of the lake.");
 			break;
 		// pc Nature = Slutty:
-		case GLOBAL.UPBRINGING_SLUTTY:
-			output(" You remember blushing as your father coached you on how to score the perfect date. It seemed awkward at the time, but it turned out to be the most useful advice you got.");
+		/*case GLOBAL.UPBRINGING_SLUTTY:
+			output(" You remember blushing as your father coached you on how to score the perfect date. It seemed awkward at the time, but it turned out to be the most useful advice you got.");*/
 			break;
 		// pc Nature = Balanced:
 		case GLOBAL.UPBRINGING_BALANCED:

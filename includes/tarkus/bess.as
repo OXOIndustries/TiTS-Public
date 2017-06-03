@@ -8309,9 +8309,9 @@ public function bessEvent17():void
 			output("\n\n<i>“Sure, I played a fair bit of Graviball, though mostly for social reasons. We had a field built into our space yacht; I’ve even played against a few celebrities.”</i> You admit, realizing how pampered you sound right now. Your old man let you live in the lap of luxury growing up, which is probably why he’s making you earn your inheritance now with this galactic treasure hunt.");
 			output("\n\n[bess.name] pouts a little bit, spinning the z-g ball on one finger. <i>“... Well okay, this is no private yacht, and I’m no celebrity - just a bot with a ball. Anyway, the point is you know how to play!”</i>");
 			break;
-		case GLOBAL.UPBRINGING_SLUTTY:
+		/*case GLOBAL.UPBRINGING_SLUTTY:
 			output("\n\nYou think back to exactly what (and who) you were doing while everyone else was playing Graviball, blushing at the memories. [bess.name] raises an eyebrow, but doesn't comment.");
-			break;
+			break;*/
 		case GLOBAL.UPBRINGING_BALANCED:
 		default:
 			output("\n\n<i>“I played it a bit at school - the old man was always making sure I tried everything at least once, so I had a balanced education.”</i> You inform [bess.himHer], all the while eyeing off the way [bess.heShe]’s spinning the z-g ball on [bess.hisHer] index finger.");
