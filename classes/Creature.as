@@ -2159,8 +2159,13 @@
 				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
-				case "vaginasSimple":
 				case "vaginasNoun":
+				case "pussiesNoun":
+				case "cuntsNoun":
+				case "vaginasSimple":
+				case "pussiesSimple":
+				case "cuntsSimple":
+				case "vaginasNounSimple":
 					buffer = simpleVaginasNoun();
 					break;
 				case "vaginas":
@@ -2171,13 +2176,6 @@
 				case "vaginasLight":
 				case "pussiesLight":
 				case "cuntsLight":
-				case "vaginasNoun":
-				case "pussiesNoun":
-				case "cuntsNoun":
-				case "vaginasSimple":
-				case "pussiesSimple":
-				case "cuntsSimple":
-				case "vaginasNounSimple":
 					buffer = vaginasDescriptLight();
 					break;
 				case "eachVagina":
@@ -18991,7 +18989,7 @@
 						var oilDesc:String = "";
 						if(this is PlayerCharacter) oilDesc = "You’re covered in warm, protective oil!";
 						else oilDesc = capitalA + short + " is covered in warm, protective oil!";
-						oilDesc += "\nFreeze Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
+						oilDesc += "\nFreezing Resistance: +" + Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Warmed") / 1440)) + "%";
 						setStatusTooltip("Oil Warmed", oilDesc);
 						break;
 					case "Oil Cooled":

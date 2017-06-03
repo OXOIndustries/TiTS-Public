@@ -115,7 +115,7 @@ public function NTBarbequeBonusFunc():Boolean
 	output(" is busily trying to fill the orders as they come in, clearly swamped with customers.");
 	addButton(0,"Food",getFoodAtBigTs,undefined,"Food","See what’s on the menu.");
 	addButton(1,"Watch Screen",stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerATreatedCowGirlForShitsAndGigglesWhyIsThisFunctionNameSoLong,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
-	vendingMachineButton(2, "J'ejune");
+	vendingMachineButton(2);
 	return false;
 }
 

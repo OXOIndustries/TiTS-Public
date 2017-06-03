@@ -1832,13 +1832,13 @@ public function shipStorageMenuRoot():void
 	
 	var btnSlot:int = 5;
 	
-	if (kGAMECLASS.flags["DONG_DESIGNER_INSTALLED"] == 1)
+	if (flags["DONG_DESIGNER_INSTALLED"] == 1)
 	{
 		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
 		addButton(btnSlot,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
 		btnSlot++;
 	}
-	if(kGAMECLASS.flags["EGG_TRAINER_INSTALLED"] == 1) 
+	if(flags["EGG_TRAINER_INSTALLED"] == 1) 
 	{
 		output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
 		//if PC has a belly full of eggs:

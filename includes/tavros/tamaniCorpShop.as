@@ -100,24 +100,27 @@ public function lerrisMenu():void
 
 public function lerrisProducts():void
 {
-	// Unlocks
-	if(pc.level >= 2)
-	{
-		if(!chars["LERRIS"].hasItem(new NukiNutbutter())) chars["LERRIS"].inventory.push(new NukiNutbutter());
-	}
-	else chars["LERRIS"].destroyItem(new NukiNutbutter());
+	chars["LERRIS"].inventory = new Array();
+	
 	// Lerris after clearing Tarkus makes sense.
-	if(flags["PLANET_3_UNLOCKED"] != undefined)
-	{
-		if(!chars["LERRIS"].hasItem(new Anusoft())) chars["LERRIS"].inventory.push(new Anusoft());
-	}
-	else chars["LERRIS"].destroyItem(new Anusoft());
+	if(flags["PLANET_3_UNLOCKED"] != undefined) chars["LERRIS"].inventory.push(new Anusoft());
+	chars["LERRIS"].inventory.push(new NivasBionaHole());
+	chars["LERRIS"].inventory.push(new TamaniBionaHole());
+	chars["LERRIS"].inventory.push(new Bovinium());
+	chars["LERRIS"].inventory.push(new BreedersBliss());
+	chars["LERRIS"].inventory.push(new BubbleBuddy());
+	// No point in it being sold again if it's already installed!
+	if(flags["EGG_TRAINER_INSTALLED"] != 1) chars["LERRIS"].inventory.push(new EggTrainer());
+	chars["LERRIS"].inventory.push(new FertitePlus());
+	if(flags["PLANET_3_UNLOCKED"] != undefined) chars["LERRIS"].inventory.push(new FrontRackCream());
+	chars["LERRIS"].inventory.push(new Lactaid());
+	chars["LERRIS"].inventory.push(new LactaidMilkTank());
+	chars["LERRIS"].inventory.push(new LactaidOverdrive());
+	// Unlocks
+	if(pc.level >= 2) chars["LERRIS"].inventory.push(new NukiNutbutter());
 	// Sera babies
-	if(flags["MET_SERA"] != undefined)
-	{
-		if(!chars["LERRIS"].hasItem(new Priapin())) chars["LERRIS"].inventory.push(new Priapin());
-	}
-	else chars["LERRIS"].destroyItem(new Priapin());
+	if(flags["MET_SERA"] != undefined) chars["LERRIS"].inventory.push(new Priapin());
+	//chars["LERRIS"].inventory.push(new Sterilex());
 	
 	CodexManager.unlockEntry("Bubble Buddy");
 	shopkeep = lerris;
