@@ -1257,7 +1257,7 @@ public function chaurmineTaurOral():void
 	if(pc.exhibitionism() < 33) {}
 	else if(pc.exhibitionism() < 50) output("Heat spreads through you as Chaurmine absorbs your naked form, and you take deep, slow breaths to calm your speeding heart.");
 	else if(pc.exhibitionism() < 66) output("With every part of you that Chaurmine’s eyes pass over, a small shiver creeps its way up your spine as you feel that distinct thrill of being so exposed.");
-	else output("Your breath catches as Chaurmine’s azure orbs roam over you, your heartbeat thundering in your ears as your [pc.legs] quiver, struggling to keep you upright; you can almost <i>feel</i> his gaze along your [pc.skinFurScales]. A part of you wishes this juggernaut of a corvette had a crew, for all the more eyes to see you in such a lewd state. Heat pools to your [crotch] at the thought.");
+	else output("Your breath catches as Chaurmine’s azure orbs roam over you, your heartbeat thundering in your ears as your [pc.legs] quiver, struggling to keep you upright; you can almost <i>feel</i> his gaze along your [pc.skinFurScales]. A part of you wishes this juggernaut of a corvette had a crew, for all the more eyes to see you in such a lewd state. Heat pools to your [pc.crotch] at the thought.");
 
 	output("\n\nHe runs a hand down your tauric body, and his claws graze your [pc.skinFurScales], sending a shudder down your frame that follows his touch. Inevitably, he ends his exotic pilgrimage standing behind you with a rough grope of your [pc.ass]; your [pc.feet] shuffle in anticipation.");
 
@@ -1402,7 +1402,9 @@ public function chaurmineTaurOral():void
 		output("pushed, a grunt forced out of you as you’re shoved up to the strange bed. <i>“Put those [pc.feet] of yours on the frame");
 		if(pc.tallness >= 84) output(". Don’t worry, it’ll hold");
 		output(",”</i> he curtly commands, and you readily comply. As your front [pc.feet] step onto the solid structure, it’s clear it would take <i>a lot</i> of force to cause any damage. The thing might as well be a small marble pool.");
-		output("\n\nOnce you are in position, Chaurmine slinks to the floor behind you, virtually crawling in order to put his armored snout level with your [pc.vaginas] {pcHeight84+: despite the size of your large, bestial body}. Seeing him balance on his hands and feet - his heavy tail swaying behind him, the titanic scales layered down his shoulders and back shining in the light - gives you the image of some prehistoric creature.");
+		output("\n\nOnce you are in position, Chaurmine slinks to the floor behind you, virtually crawling in order to put his armored snout level with your [pc.vaginas]");
+		if(pc.tallness >= 84) output(" despite the size of your large, bestial body");
+		output(". Seeing him balance on his hands and feet - his heavy tail swaying behind him, the titanic scales layered down his shoulders and back shining in the light - gives you the image of some prehistoric creature.");
 		output("\n\nRidiculous. Though you decide to keep the thought for later as soon as his heated breath licks across your [pc.crotch] like flames. The change in position still puzzles you though.");
 		output("\n\n<i>“Uhm, wasn’t the last position better-”</i>");
 		output("\n\n<i>“No,”</i> the brute curtly answers. He flashes you a grin before his black tongue is giving even more lascivious licks along your [pc.vagina " + x + "].");
