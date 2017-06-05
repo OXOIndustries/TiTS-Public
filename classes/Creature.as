@@ -4394,39 +4394,36 @@
 				arg *= 1.5;
 			}
 			// Normal
-			if (stat == "physique") 
+			switch(stat)
 			{
-				statCurrent = physique();
-				statPercent = statCurrent / physiqueMax() * 100;
-			}
-			else if (stat == "reflexes") 
-			{
-				statCurrent = reflexes();
-				statPercent = statCurrent / reflexesMax() * 100;
-			}
-			else if (stat == "aim") 
-			{
-				statCurrent = aim();
-				statPercent = statCurrent / aimMax() * 100;
-			}
-			else if (stat == "intelligence") 
-			{
-				statCurrent = intelligence();
-				statPercent = statCurrent / intelligenceMax() * 100;
-			}
-			else if (stat == "willpower") 
-			{
-				statCurrent = willpower();
-				statPercent = statCurrent / willpowerMax() * 100;
-			}
-			else if (stat == "libido") 
-			{
-				statCurrent = libido();
-				statPercent = statCurrent / libidoMax() * 100;
-			}
-			else {
-				kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn’t a real stat!");
-				return 0;
+				case "physique":
+					statCurrent = physique();
+					statPercent = statCurrent / physiqueMax() * 100;
+					break;
+				case "reflexes":
+					statCurrent = reflexes();
+					statPercent = statCurrent / reflexesMax() * 100;
+					break;
+				case "aim":
+					statCurrent = aim();
+					statPercent = statCurrent / aimMax() * 100;
+					break;
+				case "intelligence":
+					statCurrent = intelligence();
+					statPercent = statCurrent / intelligenceMax() * 100;
+					break;
+				case "willpower":
+					statCurrent = willpower();
+					statPercent = statCurrent / willpowerMax() * 100;
+					break;
+				case "libido":
+					statCurrent = libido();
+					statPercent = statCurrent / libidoMax() * 100;
+					break;
+				default:
+					kGAMECLASS.output("ERROR: slowStatGain called with stat argument of " + stat + ". This isn’t a real stat!");
+					return 0;
+					break;
 			}
 			
 			var isGain:Boolean = arg > 0;
@@ -4453,10 +4450,8 @@
 			}
 			else
 			{
-				while (arg > 0)
-				{
+				while (arg > 0) {
 					arg--;
-					
 					if (statPercent >= 95) change++;
 					else if (statPercent >= 90) change += .9;
 					else if (statPercent >= 85) change += .8;
@@ -4470,20 +4465,23 @@
 					else if (statPercent >= 30) change += .15;
 					else change += .1;					
 				}
-				
 				change = 0 - change;
 			}
 			
-			if (stat == "physique") return physique(change);
-			else if (stat == "reflexes") return reflexes(change);
-			else if (stat == "aim") return aim(change);
-			else if (stat == "intelligence") return intelligence(change);
-			else if (stat == "willpower") return willpower(change);
-			else if (stat == "libido") return libido(change);
-			else {
-				trace("ERROR: slowStatGain got to the end with a stat that should’ve called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
-				return 0;
+			switch(stat)
+			{
+				case "physique": statCurrent = physique(change); break;
+				case "reflexes": statCurrent = reflexes(change); break;
+				case "aim": statCurrent = aim(change); break;
+				case "intelligence": statCurrent = intelligence(change); break;
+				case "willpower": statCurrent = willpower(change); break;
+				case "libido": statCurrent = libido(change); break;
+				default:
+					trace("ERROR: slowStatGain got to the end with a stat that should’ve called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
+					statCurrent = 0;
+					break;
 			}
+			return statCurrent;
 		}
 		public function hasWeapon(weaponName:String = "any"):Boolean
 		{
