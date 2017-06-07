@@ -62,7 +62,8 @@ package classes.Items.Transformatives
 				var boobRowMax:int = 3;
 				if(pc.isNaga() || pc.isGoo()) boobRowMax = 5;
 				// Initial, from item:
-				boobRowMax = 10;
+				//Fen: NOPE!
+				//boobRowMax = 10;
 				
 				if(pc.bRows() == boobRowMax) maxBoobsWarn(target);
 				else if (pc.bRows() < boobRowMax && rand(2) == 0) boobRowTF(target);
@@ -83,13 +84,13 @@ package classes.Items.Transformatives
 			
 			if(pc.bRows() == 1)
 			{
-				output("It doesn’t take long until a swelling feel surges beneath your [pc.breasts]. Curious, you caress the skin and notice how sensitive to the touch it is. A pair of fleshy nubs poke out, followed by an excess of flesh that keeps on budding up <b>until it forms into a new pair of ");
+				output("It doesn’t take long until a swelling feel surges beneath your [pc.breasts]. Curious, you caress the skin and notice how sensitive to the touch it is. A pair of nubs poke out, followed by an excess of flesh that keeps on budding up <b>until it forms into a new pair of ");
 				if(!pc.hasBreasts() && pc.tone >= 60) output("muscular pecs");
 				else if(pc.biggestTitSize() == 1) output("flat breasts");
 				else output("A-cup breasts");
 				output(" below the ones you already had.</b>");
 			}
-			else if(pc.bRows() == 9)
+			else if(pc.bRows() == 4)
 			{
 				output("A familiar sensation courses through your chest area. A pair of fleshy nubs poke out, followed by an excess of soft flesh that keep on budding up <b>until it forms into a new pair of ");
 				if(!pc.hasBreasts() && pc.tone >= 60) output("muscular pecs");
