@@ -66,7 +66,7 @@ package classes.Items.Transformatives
 				//boobRowMax = 10;
 				
 				if(pc.bRows() == boobRowMax) maxBoobsWarn(target);
-				else if (pc.bRows() < boobRowMax && rand(2) == 0) boobRowTF(target);
+				else if (pc.bRows() < boobRowMax && rand(2) == 0) boobRowTF(target, boobRowMax);
 				else dudWarn(target);
 			}
 			
@@ -78,7 +78,7 @@ package classes.Items.Transformatives
 			return false;
 		}
 		
-		public function boobRowTF(target:Creature):void
+		public function boobRowTF(target:Creature, boobRowMax:int):void
 		{
 			var pc:Creature = target;
 			
@@ -90,7 +90,7 @@ package classes.Items.Transformatives
 				else output("A-cup breasts");
 				output(" below the ones you already had.</b>");
 			}
-			else if(pc.bRows() == 4)
+			else if(pc.bRows() == (boobRowMax - 1))
 			{
 				output("A familiar sensation courses through your chest area. A pair of fleshy nubs poke out, followed by an excess of soft flesh that keep on budding up <b>until it forms into a new pair of ");
 				if(!pc.hasBreasts() && pc.tone >= 60) output("muscular pecs");
@@ -102,7 +102,7 @@ package classes.Items.Transformatives
 				else output("breasts");
 				output(".</i>");
 			}
-			else 
+			else
 			{
 				output("A familiar sensation courses through your chest area. Smiling, you lower your head to confirm that flesh, muscle and fat are rearranging themselves anew. You eye two small lumps of flesh that quickly develop into [pc.nipples]. It doesn’t take long for their formation to finish, but once they fully bud out they herald a swell of flesh that soon accommodates right under your other mammaries. When the warm distention process ends, a tactile inspection confirms that <b>you now have another set of ");
 				if (!pc.hasBreasts() && pc.tone >= 60) output("muscular pecs");
@@ -116,9 +116,9 @@ package classes.Items.Transformatives
 			pc.breastRows[newRow].nippleType = pc.breastRows[(newRow - 1)].nippleType; // This copies the nipple type from the previous row and makes it the same value for the new row.
 			pc.breastRows[newRow].breasts = 2;
 			
-			if (pc.hasBreasts())
+			if (pc.breastRows[(newRow - 1)].breastRatingRaw >= 1)
 			{
-				pc.breastRows[pc.breastRows.length - 1].breastRatingRaw = 1;
+				pc.breastRows[newRow].breastRatingRaw = 1;
 			}
 			
 			kGAMECLASS.clearMenu();
