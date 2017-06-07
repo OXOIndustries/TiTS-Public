@@ -25,14 +25,14 @@ public function mirrinGymBonus(button:int = 0):Boolean
 	{
 		if(flags["MET_MIRRIN"] == undefined) 
 		{
-			//{While in Ten Ton Gym, description before first encounter: Dragon-morph}
+			// While in Ten Ton Gym, description before first encounter: Dragon-morph
 			output("\n\nA rather imposing figure performs squats and deadlifts near the weights. A flurry of red, silver and green, you vaguely think you’ve seen her somewhere else...");
 			addButton(button,"DragonMorph",approachMirrinFirstTime,undefined,"Dragon-Morph","Just a dragon girl, living in a lonely world.");
 		}
-		//{While in Ten Ton Gym, repeat encounter: Mirrin}
+		// While in Ten Ton Gym, repeat encounter: Mirrin
 		else
 		{
-			//{While in Ten Ton Gym, PC has had sex with her at least once, has done [Talk] > [Confidence]: Mirrin}
+			// While in Ten Ton Gym, PC has had sex with her at least once, has done [Talk] > [Confidence]: Mirrin
 			if(flags["SEXED_MIRRIN"] != undefined && flags["MIRRIN_CONFIDENTED"] != undefined)
 			{
 				output("\n\nMirrin is working out in her usual spot by the weights. Every so often, a gym-goer walks up and talks with her, usually ending in an autograph. Perhaps she could use a distraction?");
@@ -168,7 +168,7 @@ public function trainWivDragonBonars():void
 	output("\n\nMirrin just shrugs back, gesturing to some mats a few meters away. <i>“Need to see how you measure up,”</i> she flatly replies. As she walks over to said mats, you notice that her strides are quite powerful for a biped, her hooves <i>clop clopping</i> lightly against the hard floor. You wonder: how she could even manage the more reasonably proportioned running machines with those things?");
 	output("\n\nOnce you’re in position - straightened up, facing towards the mirror - she stands at your side. <i>“Okay, so this is training. You’re here to learn. The grinding, hard stuff will come naturally when your technique is approved,”</i> she explains. You wonder if she’s being euphemistic. <i>“Alright, do a T-pose for me.”</i>");
 	output("\n\nYou press your feet together and outstretch your arms to a 90 degree angle each way.");
-	//{PC tone >70 and Physique >25:}
+	// PC tone >70 and Physique >25:
 	if(pc.tone > 70 && pc.physique() > 25)
 	{
 		output("\n\nYou’re very confident in your rigid posture, [pc.legs] bent ever so slightly forward. You don’t even need to look! Easy stuff.");
@@ -353,7 +353,7 @@ public function mirrinMenu():void
 	addButton(0,"Appearance",mirrinAppearance,undefined,"Appearance","Quick! She’s not looking...");
 	if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_TREATMENT_TALKED"] == undefined) addDisabledButton(1,"Training","Training","Maybe you should talk about what happened before doing more training.");
 	else if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_CONFIDENTED"] == undefined) addDisabledButton(1,"Training","Training","Maybe you should talk about that last bout of fun before any more training...");
-	else addButton(1,"Training",repeatableMirrinTraining,undefined,"Training","Get cut!");
+	else addButton(1,"Training",repeatableMirrinTraining,undefined,"Training",("Get cut!" + (silly ? " Put that knife down..." : "")));
 
 	if(flags["MIRRIN_TRAINED"] == undefined) addDisabledButton(2,"Talk","Talk","She’s not interested in talking right now.");
 	else if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_TREATMENT_TALKED"] == undefined) addButton(2,"Talk",talkToMirrin,undefined,"Talk","Might be a good idea to see how she’s doing...");
@@ -683,7 +683,7 @@ public function repeatableMirrinTraining():void
 		output("\n\nAnd Mirrin lurches forward to catch you.");
 		output("\n\n<i>“Gotcha, gotcha!”</i>");
 		output("\n\nYou regain your sense of self, finding yourself clasped tightly against her with her face a few inches from yours. It’s those eyes... your chest flutters. You both lock into each others gaze for a few seconds.");
-		output("\n\n<i>“You okay, [pc.name?],”</i> asks the velvety voiced she-dragon.");
+		output("\n\n<i>“You okay, [pc.name]?,”</i> asks the velvety voiced she-dragon.");
 		if(pc.isNice()) output("\n\n<i>“Uhh... yeah,”</i> you nod slowly, unable to break eye contact.");
 		else if(pc.isMischievous()) output("\n\n<i>“Uhm... maybe,”</i> you say with a quiver, placing a hand on her arm.");
 		else output("\n\n<i>“Just about”</i> you say in a subdued voice, blinking a bit.");
@@ -1010,7 +1010,7 @@ public function foodWithMirrin():void
 }
 
 //Talk
-//{All dialogue options through [Talk] should grey out and become unavailable after being read through once}
+//All dialogue options through [Talk] should grey out and become unavailable after being read through once
 //tooltip: Surely there’s more to her than swole gains?
 public function talkToMirrin():void
 {
