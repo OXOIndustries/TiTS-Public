@@ -205,7 +205,7 @@ public function trainWivDragonBonars():void
 	//PC tone >70 and Physique >25:
 	if(pc.tone > 70 && pc.physique() >= 25)
 	{
-		output("\n\nYou power through your first thirty with relative ease, not too fast or too slow. The more you do, the more spurned on your become to do more. You’re going so low that your [pc.chest] and [pc.belly] seem to bounce you back up again. Mirrin’s calling out every tenth press but you’re too focused to care. Soon though, you’re feeling the shakes <i>and</i> the burn");
+		output("\n\nYou power through your first thirty with relative ease, not too fast or too slow. The more you do, the more spurned on you become to do more. You’re going so low that your [pc.chest] and [pc.belly] seem to bounce you back up again. Mirrin’s calling out every tenth press but you’re too focused to care. Soon though, you’re feeling the shakes <i>and</i> the burn");
 		if(silly) output(" and also something to do with the fat cats on Wall Street goes in and out of your mind");
 		output(". You push yourself up with a final bit of drive and say <i>“Done”</i> a bit breathlessly.");
 		//PC is Athletic:
@@ -1167,7 +1167,7 @@ public function talkToMirrinAbootYuuuu():void
 	showMirrin();
 	author("SoAndSo");
 	output("You go with her original question.");
-	output("\n\n<i>“Well...”</i> you begin, starting with your parents, childhood and so on. You talk about your career as a [pc.startingCareer]* and the early exploits you’ve gone through, the planets you’ve seen, the locals you’ve... become <i>very</i> familiar with. Mirrin laughs with her hand over her mouth at some of those tales.");
+	output("\n\n<i>“Well...”</i> you begin, starting with your parents, childhood and so on. You talk about your career as [pc.aStartingCareer] and the early exploits you’ve gone through, the planets you’ve seen, the locals you’ve... become <i>very</i> familiar with. Mirrin laughs with her hand over her mouth at some of those tales.");
 	output("\n\nThe talk quickly shifts to the mess surrounding your inheritance of SteeleTech, the mention of which makes the attentive Mirrin raise an eyebrow.");
 	output("\n\n<i>“That’s you?? I thought Steele was just a common name. But holy <i>shit</i>, that’s actually pretty baller,”</i> she exclaims, inching ever so slightly closer to you. <i>“So what, you’ve got your ship here and just do anything anywhere being the baddest ass?”</i>");
 	output("\n\nMy ass isn’t <i>that</i> bad, you think to yourself. Oh wait.");

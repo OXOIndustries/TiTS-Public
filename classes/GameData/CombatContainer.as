@@ -584,7 +584,7 @@ package classes.GameData
 				}
 			}
 	
-			//{player takes 4-9 lust damage every turn, per stack of <i>“Vibe”</i> DoT}			
+			// player takes 4-9 lust damage every turn, per stack of “Vibe” DoT
 			if (target.hasStatusEffect("Vibed"))
 			{
 				output("\n\n<b>The bio-magnetic vibes keep buzzing away! Their stimulation starts getting to you, and before long, you’re panting and having difficulty keeping your balance.</b>");
@@ -1335,13 +1335,10 @@ package classes.GameData
 			// sense
 			addButton(6, "Sense", selectSimpleAttack, { func: generateSenseMenu }, "Sense", "Attempts to get a feel for a foe’s likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
-			// wait
-			addButton(8, "Wait", waitRound, undefined, "Wait", "There’s no real reason to this unless you’re just dragging out combat to see what your enemy will do.");
 			// fantasize
-			addButton(9, "Fantasize", fantasizeRound, undefined, "Fantasize", "Fantasize about your foe until you’re helpless and on your [pc.knees] before them.");
-			
-			// trip
-			if (pc.hasStatusEffect("Tripped")) addButton(10, "Stand Up", standupRound, undefined, "Stand Up", "Stand up, getting rid of the “Trip” status effect. This will consume your offensive action for this turn.");
+			addButton(8, "Fantasize", fantasizeRound, undefined, "Fantasize", "Fantasize about your foe until you’re helpless and on your [pc.knees] before them.");
+			// wait
+			addButton(9, "Wait", waitRound, undefined, "Wait", "There’s no real reason to this unless you’re just dragging out combat to see what your enemy will do.");
 			
 			//
 			//
@@ -1355,8 +1352,12 @@ package classes.GameData
 					else if (pc.energy() >= 5) addButton(3, "StaticBurst", doStaticBurst);
 					else addDisabledButton(3, "StaticBurst");
 				}
-				
 				addButton(14, "Struggle", kGAMECLASS.adultCockvineStruggleOverride, undefined, "Struggle", "Struggle free of the Cockvines crushing grip.");
+			}
+			else if (pc.hasStatusEffect("Tripped"))
+			{
+				// trip
+				addButton(14, "Stand Up", standupRound, undefined, "Stand Up", "Stand up, getting rid of the “Trip” status effect. This will consume your offensive action for this turn.");
 			}
 			else
 			{
@@ -1862,19 +1863,19 @@ package classes.GameData
 				{
 					target.lust(10 + target.libido()/10);
 
-					//{fail to escape 1} 
+					// fail to escape 1
 					if (target.statusEffectv1("Mimbrane Smother") == 0)
 					{
 						output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
 						target.setStatusValue("Mimbrane Smother", 1, 1);
 					}
-					//{fail to escape 2} 
+					// fail to escape 2
 					else if (target.statusEffectv1("Mimbrane Smother") == 1)
 					{
 						output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.")
 						target.setStatusValue("Mimbrane Smother", 1, 2);
 					}
-					//{defeated} 
+					// defeated
 					else if (target.statusEffectv1("Mimbrane Smother") == 2)
 					{
 						output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your [pc.knees]. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
@@ -4234,7 +4235,7 @@ package classes.GameData
 							//Foe is feminine furry
 							else
 							{
-								output("\n\nHer fur is so shimmery and sexy! Better <b>hope she doesn't tease you or you'll be putty in her paws -  a docile, domesticated mate, even!</b>");
+								output("\n\nHer fur is so shimmery and sexy! Better <b>hope she doesn’t tease you or you’ll be putty in her paws - a docile, domesticated mate, even!</b>");
 							}
 						}
 					}

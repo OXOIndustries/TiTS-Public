@@ -76,8 +76,12 @@ public function exhibitionismLocationToggle():void
 	
 	var ultraExhib:StorageClass = pc.getPerkEffect("Ultra-Exhibitionist");
 	var inPublic:Boolean = (rooms[currentLocation].hasFlag(GLOBAL.PUBLIC));
+	var libidoQ:Number = pc.LQ();
+	var libidoMult:Number = 2;
+	if(libidoQ >= 33) libidoMult = 1.5;
+	if(libidoQ >= 66) libidoMult = 1;
 	
-	if(rand(4) == 0)
+	if(rand(4 * libidoMult) == 0)
 	{
 		var pcLocation:String = getPlanetName();
 		var msg:String = "";
@@ -113,10 +117,12 @@ public function exhibitionismLocationToggle():void
 	
 	ultraExhib.value1 = (!inPublic ? 0 : 1);
 	
-	if(inPublic && rand(10) == 1)
+	if(inPublic && rand(10 * libidoMult) == 0 && !pc.hasStatusEffect("Exhibitionist Blurb Cooldown"))
 	{
 		//if(eventQueue.indexOf(exhibitionismBlurbs) == -1) eventQueue.push(exhibitionismBlurbs);
 		exhibitionismBlurbs();
+		
+		pc.createStatusEffect("Exhibitionist Blurb Cooldown", 0, 0, 0, 0, true, "", "", false, 60);
 	}
 }
 

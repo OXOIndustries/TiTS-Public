@@ -222,7 +222,7 @@ package classes.GameData
 			insertPerkData(heavilyArmored);
 
 			//1 - Combined into "Rending Attacks" due to code still not supporting forking shit.
-			//1A.  Rending Attack: When you make a Power Strike, you leave your enemy's armor Sundered for a short while, decreasing their Defense. 
+			//1A. Rending Attack: When you make a Power Strike, you leave your enemy's armor Sundered for a short while, decreasing their Defense. 
 			//1B. Suppressing Fire: When you use Rapid Fire, your barrage of attacks leaves your enemies Staggered for a few turns, decreasing their combat effectiveness.
 			var rendingAttacks:PerkData = new PerkData();
 			rendingAttacks.classLimit = GLOBAL.CLASS_MERCENARY;
