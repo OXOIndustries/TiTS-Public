@@ -1341,21 +1341,20 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 		case GLOBAL.UPBRINGING_PAMPERED:
 			output("\n\nConsidering the way Briget brought you up, completely in the lap of luxury with all the love and attention - and expensive things - you could ever want, you know she’s telling the truth.");
 			break;
-
 		case GLOBAL.UPBRINGING_AUSTERE:
 			output("\n\nMaybe without Dad around to force your kids to endure what you went through, she’ll actually be able to live up to that promise.");
 			break;
-
 		case GLOBAL.UPBRINGING_ATHLETIC:
 			output("\n\nYou’re more concerned about them growing up nice and strong like you - but despite her soft, curvy physique, you know Briget’s more than capable of ensuring that. She plays a mean game of gravball for a hundred and thirty year old.");
 			break;
-
 		case GLOBAL.UPBRINGING_BOOKWORM:
 			output("\n\nEducation, you know, Briget can handle in spades. She looks every bit the sexy teacher, and has the cyber-brain to match.");
 			break;
-
-		default:
+		/*case GLOBAL.UPBRINGING_SLUTTY:
+			output("\n\nBriget must not have realized exactly what you were up to all those years, but you feel that she won't let them get up to anything naughty for a long while.");
+			break;*/
 		case GLOBAL.UPBRINGING_BALANCED:
+		default:
 			output("\n\nYou turned out better than average under her care, and that was in Dad’s estate, not that much different from your average kid. With a staff of experts and a top of the line facility under her direction, you can’t wait to see what Briget can do.");
 			break;
 	}

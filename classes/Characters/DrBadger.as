@@ -178,6 +178,7 @@
 			this.ass.loosenessRaw = 2;
 			
 			this._isLoading = false;
+			this.createStatusEffect("Undetected Furpies");
 		}
 		public function UpgradeVersion3(dataObject:Object):void
 		{

@@ -33,6 +33,45 @@ public function TundraEncounterBonus():Boolean
 	}
 	return false;
 }
+public function GlacialRiftEncounterBonus():Boolean
+{
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	//Just reuse Uveto's shit. It doesnt matter much really.
+	IncrementFlag("TUNDRA_STEP");
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
+		//Reset step counter
+		flags["TUNDRA_STEP"] = 0;
+		
+		//POSSIBLE ENCOUNTERS! SABERFLOOF!
+		choices[choices.length] = encounterAMilodan;
+		choices[choices.length] = encounterAMilodan;
+		choices[choices.length] = encounterAMilodan;
+		//POSSIBLE ENCOUNTERS! KORGI!
+		choices[choices.length] = encounterAKorgonneFemaleHostile;
+
+		if(flags["MET_CHAURMINE"] < 2 && chaurmineOnUveto()) 
+		{
+			if(flags["CHAURMINE_WINS"] == undefined)
+			{
+				choices.push(chaurmineChasmShit);
+				choices.push(chaurmineChasmShit);
+				choices.push(chaurmineChasmShit);
+			}
+			choices.push(chaurmineChasmShit);
+		}		
+		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
+		{
+			choices.push(soloFertilityPriestessFight);
+		}
+		
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
 
 public function HereBeDragonBonus():Boolean
 {
@@ -69,6 +108,8 @@ public function uvetoShipDock():Boolean
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
 	
+	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined)) chaurmineUvetoStationBonus();
+
 	return false;
 }
 public function uvetoDockingBonus():Boolean
@@ -2015,36 +2056,6 @@ public function GRM44Apologize():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-}
-
-public function GlacialRiftEncounterBonus():Boolean
-{
-	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
-	//Just reuse Uveto's shit. It doesnt matter much really.
-	IncrementFlag("TUNDRA_STEP");
-	var choices:Array = new Array();
-	//If walked far enough w/o an encounter
-	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
-		//Reset step counter
-		flags["TUNDRA_STEP"] = 0;
-		
-		//POSSIBLE ENCOUNTERS! SABERFLOOF!
-		choices[choices.length] = encounterAMilodan;
-		choices[choices.length] = encounterAMilodan;
-		choices[choices.length] = encounterAMilodan;
-		//POSSIBLE ENCOUNTERS! KORGI!
-		choices[choices.length] = encounterAKorgonneFemaleHostile;
-		
-		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
-		{
-			choices.push(soloFertilityPriestessFight);
-		}
-		
-		//Run the event
-		choices[rand(choices.length)]();
-		return true;
-	}
-	return false;
 }
 
 public function GlacialRiftCoast():Boolean

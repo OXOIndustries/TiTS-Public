@@ -1214,7 +1214,7 @@ public function treatmentHourProcs(totalHours:int):void
 		}
 		
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && startHours < 141 && treatedHours >= 141 && rand(10) <= 3)
+		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 141 && treatedHours >= 141 && rand(10) <= 3)
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
@@ -2818,7 +2818,7 @@ public function treatmentHourProcs(totalHours:int):void
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && startHours < 145 && treatedHours >= 145 && rand(10) <= 1)
+		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 145 && treatedHours >= 145 && rand(10) <= 1)
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
@@ -3898,7 +3898,7 @@ public function treatmentHourProcs(totalHours:int):void
 		}
 		
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && startHours < 165 && treatedHours >= 165 && rand(10) <= 1)
+		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 165 && treatedHours >= 165 && rand(10) <= 1)
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{

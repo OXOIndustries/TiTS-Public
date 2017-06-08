@@ -40,6 +40,7 @@ package classes.Engine.Combat.DamageTypes
 		public static const GREATER_VAMPIRIC:uint = 22; //Steals 90% of HP damage dealt
 		public static const CRYSTALGOOARMOR:uint = 23;
 		public static const SYDIANARMOR:uint = 24;
+		public static const CHANCE_APPLY_STUN:uint = 25;
 		
 		public static const FlagNames:Array = [];
 		
@@ -63,13 +64,14 @@ package classes.Engine.Combat.DamageTypes
 			FlagNames[BYPASS_SHIELD] 		= "Shield Bypass";
 			FlagNames[ONLY_SHIELD] 			= "Targets Shield";
 			FlagNames[EASY] 				= "Easy";
-			FlagNames[CHANCE_APPLY_BURN]	= "Burn DoT Chance"
+			FlagNames[CHANCE_APPLY_BURN]	= "Burn DoT Chance";
 			FlagNames[DRAINING] 			= "Draining";
 			FlagNames[GREATER_DRAINING] 	= "Greater Draining";
 			FlagNames[VAMPIRIC] 			= "Vampiric";
 			FlagNames[GREATER_VAMPIRIC] 	= "Greater Vampiric";
 			FlagNames[CRYSTALGOOARMOR]		= "Crystal Goo Armor";
 			FlagNames[SYDIANARMOR]			= "Sydian Armor";
+			FlagNames[CHANCE_APPLY_STUN]	= "Stun Chance";
 		}
 		
 		private var _thisFlag:uint;

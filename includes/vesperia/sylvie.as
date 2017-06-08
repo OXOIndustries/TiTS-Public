@@ -1900,7 +1900,7 @@ public function fuckyTittyBlowblow2():void
 	//More than 1k
 	if(cumQ > 1000) output("\n\nBut you aren’t done, and Sylvie seems to know it. She steps back, sliding your cock completely free of her tits. It jerks wildly as it unloads, releasing thick ropes across the moose-taur’s front. You grab hold of it and aim, painting Sylvie’s tits until they’re little more than your cum-glazed canvas.");
 	//More than 4k - no new PG
-	if(cumQ > 4000) output(" So you shift your aim lower to smother her hips and belly, slicking down the coarse fur below. [pc.cumNoun] pools around her hooves, but the cum-drunk slut just laughs and spins around, letting you frost her back, flanks, tail, and even her pussy.");
+	if(cumQ > 4000) output(" So you shift your aim lower to smother her hips and belly, slicking down the coarse fur below. [pc.CumNoun] pools around her hooves, but the cum-drunk slut just laughs and spins around, letting you frost her back, flanks, tail, and even her pussy.");
 	//More than 10k
 	if(cumQ > 10000) output("\n\nThe policegirl must think the mess is getting out of hand, because she steps back to slide your [pc.cockHead " + x + "] back inside her tunnel, capturing wave after wave of virile bliss.");
 	//More than 20k - no new PG.
@@ -2162,7 +2162,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 	}
 	//Body
 	output("\n\nOnce you’re both safely inside a cabin room, Sylvie pushes you down onto your [pc.knees] before slamming the door closed with a single swing of her hefty behind. It’s a dizzying, intoxicating feeling to be at the mercy of this huge, tauric woman. Or have you just breathed in enough of the vast amount of alcohol she’s put away to become passively sozzled yourself? You shiver, tensing your trapped wrists as black, shiny hooves clop slowly around you, moving with the heavy deliberation of drunken concentration.");
-	output("\n\n<i>“I know where you been looking,”</i> slurs Sylvie. You can just about make out her flushed, jolly face peering over her shoulder at you, beyond the vast furred behind dominating your vision. She lifts her short tail, and the tang of heavy female arousal hits you, emanating from that big, puffy, purple fuck-hole of hers, slick with arousal. [pc.eachVagina] swims with lusty heat; partially in reflex and partially for provocative effect, you lick your [pc.lips] so that they shine with the saliva filling your mouth. That draws a pleased, lusty groan from the moosetaur hovering above you.");
+	output("\n\n<i>“I know where you been looking,”</i> slurs Sylvie. You can just about make out her flushed, jolly face peering over her shoulder at you, beyond the vast furred behind dominating your vision. She lifts her short tail, and the tang of heavy female arousal hits you, emanating from that big, puffy, purple fuck-hole of hers, slick with arousal. [pc.EachVagina] swims with lusty heat; partially in reflex and partially for provocative effect, you lick your [pc.lips] so that they shine with the saliva filling your mouth. That draws a pleased, lusty groan from the moosetaur hovering above you.");
 	output("\n\n<i>“Yeah. Can’t help yourself, can you? ");
 	//First:
 	if(flags["SYLVIE_CUFFNFUCK"] == undefined) output("No offence, but I had you down as a subby lil pussy munch from the start. Just a question of, could you go the distance with me...”</i> She sighs as she slowly lowers her hindquarters, down far enough to reach out and eagerly lick her plump labia, oiling your [pc.tongue] with her scent. <i>“ ...lemme tell ya, I’m glad you did.”</i>");
@@ -2541,7 +2541,7 @@ public function sylvieRutFunPart4():void
 	else output(" ");
 	output("calm, mmm? Placid, feeling like you’ve done your duty as a male, eh?”</i>");
 	output("\n\nThat’s true. She still smells... well, arousing, but you are no longer quite so driven, quite so determined to impregnate every fertile pussy in a five mile radius. <b>Your rut has ended.</b>");
-	output("\n\nSylvie nods. <i>“It’s a shame you [pc.boyGirls] get so sug");
+	output("\n\nSylvie nods. <i>“It’s a shame you [pc.boyGirl]s get so sug");
 	if(sylvieDrunkLevel() >= 2) output("... shug... sug");
 	output("gestible while you’re in rut, but God, can you ever </i>fuck<i>. I can’t even get knocked up right now, but a few words and you cum like a firehose!”</i>");
 	output("\n\nSlowly closing your jaw, you shake your head and smile ruefully. Regardless of whether you could knock her up, that was truly an experience to remember. <b>You should return to her whenever you’re in rut, and she can help you bring it to a swift end.</b>");

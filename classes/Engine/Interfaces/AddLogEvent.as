@@ -13,7 +13,7 @@ package classes.Engine.Interfaces
 		
 		tEvent.msg = eventMessage;
 		tEvent.style = logColor;
-		tEvent.timestamp = modTimestamp;
+		tEvent.timestamp = GetGameTimestamp() + modTimestamp;
 		
 		kGAMECLASS.timestampedEventBuffer.push(tEvent);
 	}

@@ -207,6 +207,7 @@
 			this.inventory.push(new ZilSpear());
 			this.inventory.push(new ZilBow());
 			
+			kGAMECLASS.mhengaSSTDChance(this);
 			this._isLoading = false;
 		}
 		

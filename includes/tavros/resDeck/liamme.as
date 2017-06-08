@@ -326,7 +326,7 @@ public function liammeExhibitionism():void
 		//Syri seems like an appropriate stand-in...
 		pc.loadInMouth(chars["SYRI"]);
 	}
-	else output("Smiling, you lean forwards again and present your seed-slick fingers to the femboy that coated them. Liamme stares at you lustfully for a moment before he tentatively reaches his tongue to the tips of your extended digits, and licks, quickly flicking it across the ends of your fingers. The cum-soaked trap pulls his oral organ back between his lips and his own salty alabaster into his mouth along with it, letting his eyes close shut as he revels in his own flavour for a moment. The ausar’s blue eyes open wide soon after, right before he leans forward and his pouty lips suddenly wrap around you fingers, suckling your sperm-smothered digits until they’re good and clean, excitement written across his face and hungry gaze. Once he’s had his fill, the femboy relents and takes his mouth away from your hand, leaving a little trail of saliva between your fingers and his tongue.");
+	else output("Smiling, you lean forwards again and present your seed-slick fingers to the femboy that coated them. Liamme stares at you lustfully for a moment before he tentatively reaches his tongue to the tips of your extended digits, and licks, quickly flicking it across the ends of your fingers. The cum-soaked trap pulls his oral organ back between his lips and his own salty alabaster into his mouth along with it, letting his eyes close shut as he revels in his own flavor for a moment. The ausar’s blue eyes open wide soon after, right before he leans forward and his pouty lips suddenly wrap around you fingers, suckling your sperm-smothered digits until they’re good and clean, excitement written across his face and hungry gaze. Once he’s had his fill, the femboy relents and takes his mouth away from your hand, leaving a little trail of saliva between your fingers and his tongue.");
 	output(" The trappy ausar before you tries to form a little smirk despite his beet-red cheeks and burning embarrassment, managing to talk to you between each heave of his flat chest, <i>“I’m... gonna get you good... for this one, [pc.name].”</i> He pauses, sitting himself upright and covering up his cum-soaked skirt, <i>“But for now, I need to go get cleaned up.”</i>");
 	output("\n\nYou tell the effeminate ausar that sounds like a good idea as you watch him stand up, still trying to hide the big, wet splotch on his clothes. He manages to give you a little wave goodbye and quickly makes his way back to his appartment, legs still a little wobbly with post-climax.");
 	//[Next] //Should take the PC out of his menus, adds lust and exhib.
@@ -412,7 +412,13 @@ public function buttfuckLiamme():void
 	output("Your ausar lover runs his downy furred hands all over your body as your kiss continues: up and down your sides, ");
 	if(pc.biggestTitSize() >= 1) output("squeezing at your [pc.chest], and ");
 	else output("his hands");
-	output(" caressing your hips. Then Liamme reaches what he’s <i>really</i> after. His furred fingers wrap around your slowly-stiffening shaft one by one, getting a firm grip on your love-muscle before he starts to move his wrist, slowly jerking you off. The motions of the ausar’s fluffy hand have you whimpering and moaning quietly into the femboy’s mouth, your [pc.cockNoun " + x + "] fully erect before too long.");
+	output(" caressing your hips. Then Liamme reaches what he’s <i>really</i> after. His furred fingers wrap around your slowly-stiffening shaft");
+	if(pc.cockTotal() > 1) output("s");
+	output(" one by one, getting a firm grip on");
+	if(pc.cockTotal() > 1) output(" one of");
+	output(" your love-muscle");
+	if(pc.cockTotal() > 1) output("s");
+	output(" before he starts to move his wrist, slowly jerking you off. The motions of the ausar’s fluffy hand have you whimpering and moaning quietly into the femboy’s mouth, your [pc.cockNoun " + x + "] fully erect before too long.");
 	output("\n\nBetween tongue-filled kisses, Liamme manages to moan out his desires. <i>“I want this in my ass,”</i> he whispers lustfully, tightening his grip on your cock. You manage to form a smirk amidst the flurry of the trappy ausar’s plump lips after hearing that.");
 
 	output("\n\nDeciding it best to be as straightforward as he was, you grab Liamme’s slim waist, turn him around, and send him tumbling face-first onto the mattress. He yelps with surprise when he hits the bed, reeling from the sudden change of scenery. Once he regains his composure and realizes he’s going to get exactly what he asked for, he turns his head, looking back at you with a lewd smile, nothing but lust in his eyes. You return his grin and kneel down on the mattress, straddling his shins. Knowing what’s going to happen next, Liamme reaches down, getting a good grip on the hem of his ");
@@ -424,16 +430,16 @@ public function buttfuckLiamme():void
 	output(" come off easily, along with the pair of panties beneath ");
 	if(liammeSkirted()) output("it");
 	else output("them");
-	output(", to reveal Liamme’s, squishy, jiggly butt.");
+	output(", to reveal Liamme’s squishy, jiggly butt.");
 	output("\n\nThe trappy ausar looks back at you with the same ardor-filled smile he was giving you before, licking his lips as his gaze meets your stiffening cock");
 	if(pc.cockTotal() > 1) output("s");
 	output(", golden-hued tail swaying lazily. You can already feel your thoughts becoming hazy as lust fills your mind, [pc.eyes] locked on Liamme’s oh-so gropable ass. Your hands dart down, your fingers digging into ausar booty until you force a shuddering moan out of your lover’s mouth. You take a few moments to knead the ausar’s squeezable behind in your dexterous grip, stopping every once in awhile to give his lower cheeks a firm slap, watching his assflesh jiggle as his moans and gasps fill the air. Before you know it, your [pc.cocks]");
-	if(pc.cockTotal() == 1) output("is diamonds");
-	else output("are diamonds");
-	output(", ready to sink into Liamme’s tailhole, and that’s just what you’re going to do.");
+	if(pc.cockTotal() == 1) output(" is");
+	else output(" are");
+	output(" as hard as diamonds, ready to sink into Liamme’s tailhole, and that’s just what you’re going to do.");
 
 	output("\n\nYou shift your hands from your lover’s ass to his girly hips, getting a firm grip before you yank his shapely butt upwards, level with your [pc.cock " + x + "]. Liamme looks back at you once more, the same lascivious grin on his face. <i>“C’mon,”</i> he says softly, reaching a fluffy blonde hand back to spread his ass for you, giving you a good view of his plush, supple asshole, <i>“Give it to me.”</i> He brushes his tail along your chin as if to taunt you, and you quickly take hold of the fluffy blonde appendage, stroking it until its owner starts to whimper.");
-	output("\n\nNot one to deny such a pretty, pretty ausar his wishes, you take hold of your [pc.cock" + x + "] and drop it into the crack of Liamme’s ass. You rock your hips back, dragging your tool through the embrace of the femboy’s cheeks right until your [pc.cockHead " + x + "] meets his pucker. The trappy ausar squirms with anticipation when your cockhead brushes against his tailhole, eager to get things started. Tightening your grip on his spacious hips, you give Liamme what he wants and start to push your [pc.hips] forward.");
+	output("\n\nNot one to deny such a pretty, pretty ausar his wishes, you take hold of your [pc.cock " + x + "] and drop it into the crack of Liamme’s ass. You rock your hips back, dragging your tool through the embrace of the femboy’s cheeks right until your [pc.cockHead " + x + "] meets his pucker. The trappy ausar squirms with anticipation when your cockhead brushes against his tailhole, eager to get things started. Tightening your grip on his spacious hips, you give Liamme what he wants and start to push your [pc.hips] forward.");
 	
 	output("\n\nIt barely takes any pressure to penetrate the femboy’s supple entrance, your [pc.cockhead " + x + "] easily slipping into Liamme’s pucker with a groan of pleasure from the puppy. Looks like this trappy ausar’s a real buttslut, at least to the point where he can relax enough to let cock slip into him this easily. You don’t let up and start to rock your hips forward, shoving more and more of your [pc.cock " + x + "] into your lover’s butt, making him cry out with delight, furry fists clenching with each inch you work into him. <i>“Fuck yeah,”</i> he moans as you finally bottom out inside him, ");
 	if(pc.hasKnot(x)) output("[pc.knot " + x + "] teasing his plush pucker, ");
@@ -443,7 +449,7 @@ public function buttfuckLiamme():void
 	if(pc.isNice()) output("\n\n<i>“Of course not,”</i> you reassure the femboy, giving his recently-spanked bottom an affectionate rub.");
 	else output("\n\nYou give his already punished bottom another rough slap, returning his smirk, <i>“I’ll get to it when I get to it.”</i>");
 
-	output("\n\nStarting to pull your [pc.hips] back, you drag your [pc.cock " + x + "] along Liamme’s inner walls, setting him moaning and whimpering as he’s emptied. By the time your glans reach the femboy’s asshole again, he’s already panting, whining needily, his pucker convulsing like it’s trying to draw your [pc.cock" + x + "] back into him. The ausar starts to push his hips backwards, attempting to spear himself on your turgid rod, grunting and moaning with each wiggle of his girly sides. You help the femboy along and begin to thrust your cock back into him, finding yourself groaning with bliss as Liamme’s ");
+	output("\n\nStarting to pull your [pc.hips] back, you drag your [pc.cock " + x + "] along Liamme’s inner walls, setting him moaning and whimpering as he’s emptied. By the time your glans reach the femboy’s asshole again, he’s already panting, whining needily, his pucker convulsing like it’s trying to draw your [pc.cock " + x + "] back into him. The ausar starts to push his hips backwards, attempting to spear himself on your turgid rod, grunting and moaning with each wiggle of his girly sides. You help the femboy along and begin to thrust your cock back into him, finding yourself groaning with bliss as Liamme’s ");
 	if(silly) output("boi pussi");
 	else output("bootyhole");
 	output(" squeezes at your [pc.cock " + x + "]. Your lover’s own knotty doggy-dong jumps in attention, dispensing a warm glob of white pre on his sheets when your [pc.cockHead " + x + "] passes over the little ball of his prostate.");
@@ -500,6 +506,7 @@ public function afterLiammeButtsmex():void
 	output("When you wake, you’re sprawled out across Liamme’s bed, a fuzzy feeling of pleasure still tingling in your loins. Turning your stiff neck in a few different directions, you see a familiar, happy blonde ausar pulling on his panties. You groan and stretch, and the commotion you make gets Lia’s attention, the femboy quickly turning towards you as he reaches for the rest of his clothes.");
 	output("\n\n<i>“Oh, you’re awake!”</i> He exclaims before leaning down and planting his lips right on your cheek. You smile at the little display of affection and sit yourself upright, yawning as you do so. <i>“Hey, uh, I gotta start getting ready for work soon,”</i> Liamme tells you, a look of disappointment on his face, <i>“But this was really fun, we should do it again sometime.”</i>");
 	output("\n\nLiamme’s face quickly returns to a grin, though less lascivious this time and more pleased, <i>“Mind walking me back to the plaza?”</i>");
+	output("\n\n");
 	if(pc.isMischievous()) output("You tell him you think you have the time, your voice thick with sarcasm.");
 	else if(pc.isAss()) output("You groan at the prospect of having to get up already, but oblige.");
 	else output("You happily accept his proposition.");
@@ -553,8 +560,16 @@ public function getLiammeBlown():void
 	output("\n\nOnce you do finally come down, the femboy between your legs removes himself from your [pc.cock " + x + "] and opens his maw, showing you his mouth, filled to the brim with [pc.cumNoun], his tongue painted [pc.cumColor]. You smile at his display, [pc.chest] heaving as you bring a hand down to give Liamme an appreciative pet between his big blonde ears. He grins as your fingers run through his mane, and quickly gulps down your cum before returning his lips to your softening [pc.cockNoun] to lick up the rest of your seed.");
 	output("\n\nYou’re content to let the puppy finish cleaning up, and let yourself fall backwards onto the bed. Liamme joins you on the mattress soon after, climbing atop your body and bringing his effeminate face close to yours.");
 	output("\n\n<i>“Your cum tastes really good,”</i> he states plainly, blonde locks drooping down around your [pc.face], his voice barely more than a whisper, <i>“You should try some.”</i>");
-	output("\n\nWith that, he’s pressing his cushy lips against your [pc.lips] again, that taste of [pc.cockNoun " + x + "] still potent on his tongue. You graciously accept the kiss and let your [pc.tongue] probe his mouth as his does the same to yours. [pc.CumFlavour] does your palate well, and you’re soon craving more. Alas, your flavourful tongue-tying ends when Liamme pulls back, smiling dreamily as he shimmies down to rest his head on your [pc.chest], fluffy mane caressing your [pc.skinFurScales].");
-	pc.loadInMouth(pc);
+	output("\n\nWith that, he’s pressing his cushy lips against your [pc.lips] again, that taste of [pc.cockNoun " + x + "] still potent on his tongue. You graciously accept the kiss and let your [pc.tongue] probe his mouth as his does the same to yours. [pc.CumFlavor] does your palate well, and you’re soon craving more. Alas, your flavorful tongue-tying ends when Liamme pulls back, smiling dreamily as he shimmies down to rest his head on your [pc.chest], fluffy mane caressing your [pc.skinFurScales].");
+	
+	var snowball:Number = (pc.cumQ() * 0.25);
+	if(snowball > 100) snowball = 100;
+	var ppLiamme:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppLiamme.hasCock()) ppLiamme.createCock();
+	ppLiamme.createPerk("Fixed CumQ", snowball, 0, 0, 0);
+	ppLiamme.cumType = pc.cumType;
+	pc.loadInMouth(ppLiamme);
+	
 	output("\n\nYou can’t really keep your eyes open after all of that, and right now, you wouldn’t really mind falling asleep with Liamme to let your afterglow fade. ");
 
 	processTime(30);
@@ -571,9 +586,10 @@ public function liammePostBeej():void
 	output("When you wake, you’re sprawled out across Liamme’s bed, a fuzzy feeling of pleasure still tingling in your loins. Turning your stiff neck in a few different directions, you see a familiar, happy blonde ausar pulling on his panties. You groan and stretch, and the commotion you make gets Lia’s attention, the femboy quickly turning towards you as he reaches for the rest of his clothes.");
 	output("\n\n<i>“Oh, you’re awake!”</i> He exclaims before leaning down and planting his lips right on your cheek. You smile at the little display of affection and sit yourself upright, yawning as you do so. <i>“Hey, uh, I gotta start getting ready for work soon,”</i> Liamme tells you, a look of disappointment on his face, <i>“But this was really fun, we should do it again sometime.”</i>");
 	output("\n\nLiamme’s face quickly returns to a grin, though less lascivious this time and more pleased, <i>“Mind walking me back to the plaza?”</i>");
-	if(pc.isMischievous()) output("\n\nYou tell him you think you have the time, your voice thick with sarcasm.");
-	else if(pc.isAss()) output("\n\nYou groan at the prospect of having to get up already, but oblige.");
-	else output("\n\nYou happily accept his proposition.");
+	output("\n\n");
+	if(pc.isMischievous()) output("You tell him you think you have the time, your voice thick with sarcasm.");
+	else if(pc.isAss()) output("You groan at the prospect of having to get up already, but oblige.");
+	else output("You happily accept his proposition.");
 	processTime(80+rand(20));
 	applyLiamDisable();
 	IncrementFlag("SEXED_LIAMME");

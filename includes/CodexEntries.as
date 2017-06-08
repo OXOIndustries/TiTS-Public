@@ -125,12 +125,16 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Chill Pill", chillPillCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "AI Systems", AISystemsCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
@@ -141,7 +145,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Diverting Jokes", DivertingTarkusJokesAndJests);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck The System", fuckTheSystem);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck the System", fuckTheSystem);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
 }
 
@@ -219,7 +223,7 @@ public function humanTerranCodex():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
 	outputCodex("Humans have managed to maintain extensive records deep into their history such that it would be impossible to properly describe the entirety of their development in this short summary. Two traits have remained constants - exploration and conflict. Nearly every major advancement has come as a result of one of these two. Humans are a race that easily throws themselves to war, falling back on tribal instincts that lead them to obliterate or dominate others. Additionally, they will recklessly throw themselves at the unknown, determined to go to difficult locations for no other reason than to be the first.");
-	outputCodex("\n\nBoth these instincts have been reigned in over the years, but one need only look at the early human wars with their own colonies to see how quickly they will jump to violence, even with their with people.");
+	outputCodex("\n\nBoth these instincts have been reigned in over the years, but one need only look at the early human wars with their own colonies to see how quickly they will jump to violence, even with their own people.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Other Notes"));
 	outputCodex("Mostly harmless.");
@@ -326,7 +330,7 @@ public function leithanCodexEntry():void
 	outputCodex(blockHeader("Combat"));
 	outputCodex("Unlike many advanced species through the galaxy, the Leithans began as prey creatures on their homeworld, and have over the millennia developed several defensive adaptations to ward off the very large, unintelligent predators that attacked them. The first feature most people notice about a Leithan is her natural armor: while the tauric lower body is completely covered with thick, leathery scales (befitting the species’ reptilian origin), the flanks, arms, legs, and tail are protected by a chitinous secondary layer. Leithan armor is thick enough to stop most low-caliber bullets, and even deflect low-grade laser fire at range; more importantly for the species, however, it is capable of withstanding the enormous pressure of most titanic predators’ crushing maws, giving Leithans some defense against their native hunters.");
 	outputCodex("\n\nSecond, the Leithans have developed six powerful legs, allowing them unparalleled running speeds over short bursts. Leithan endurance is not above average, but their speed is usually enough to avoid or outrun danger before exhaustion sets in.");
-	outputCodex("\n\nThird, Leithans have adapted bright warning signs on their armor plates. These yellow, bioluminescent patterns are unique to each Leithans, and serve to frighten off some larger predators, especially at night. The coloration of their warning lights has become iconic in Leithan culture, and many Leithans choose to dye their hair or decorate themselves with gold stripes and swirls, adding to the effect of their natural defense. The bioluminescent stripes have a variable brightness, controlled subconsciously by their owner: in times of extreme emotion or distress, they flare brighter, while when calm and relaxed, the lights are almost completely dimmed.");
+	outputCodex("\n\nThird, Leithans have adapted bright warning signs on their armor plates. These yellow, bioluminescent patterns are unique to each Leithan, and serve to frighten off some larger predators, especially at night. The coloration of their warning lights has become iconic in Leithan culture, and many Leithans choose to dye their hair or decorate themselves with gold stripes and swirls, adding to the effect of their natural defense. The bioluminescent stripes have a variable brightness, controlled subconsciously by their owner: in times of extreme emotion or distress, they flare brighter, while when calm and relaxed, the lights are almost completely dimmed.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Environs"));
 	outputCodex("The Leithan homeworld, a small planet orbiting Alpha Centauri (hence the common nickname for the species, Centaurins) is a vast, cold-weather desert and shrubland for the most part, punctuated by several dozen small seas, but no proper oceans. The atmosphere is naturally very dense and humid, with a water content much higher than that of Terra or Ausaril.");
@@ -2743,23 +2747,23 @@ public function throbbCodexEntry():void
 	outputCodex(blockHeader("Legality"));
 	outputCodex("The UGC prohibits chemical manufacturing equipment from being sold with the capability to manufacture Throbb, though the chemical itself is not illegal at the Confederation level. 97% of all UGC planets have outlawed the substance in one way or another. Many of the remaining 3% make a brisk trade on sexual tourism, often taxing Throbb heavily to subsidize medical and psychological treatment for addicts.\n\n");
 	outputCodex(blockHeader("Known Effects"));
-	outputCodex("\t* Sudden phallus growth.");
-	outputCodex("\n\t* Abrupt phallus expansion.");
-	outputCodex("\n\t* Testicle growth.");
-	outputCodex("\n\t* Increased virility.\n\n");
+	outputCodex("<b>*</b> Sudden phallus growth.");
+	outputCodex("\n<b>*</b> Abrupt phallus expansion.");
+	outputCodex("\n<b>*</b> Testicle growth.");
+	outputCodex("\n<b>*</b> Increased virility.\n\n");
 	outputCodex(blockHeader("Known Side Effects"));
-	outputCodex("\t* Dramatic increase to libido.");
-	outputCodex("\n\t* Brief sexual euphoria.");
-	outputCodex("\n\t* Spontaneous orgasm.");
-	outputCodex("\n\t* Permanently reduced inhibitions.");
-	outputCodex("\n\t* Increased genital sensitivity.");
-	outputCodex("\n\t* Enlarged pleasure centers of the brain.\n\n");
+	outputCodex("<b>*</b> Dramatic increase to libido.");
+	outputCodex("\n<b>*</b> Brief sexual euphoria.");
+	outputCodex("\n<b>*</b> Spontaneous orgasm.");
+	outputCodex("\n<b>*</b> Permanently reduced inhibitions.");
+	outputCodex("\n<b>*</b> Increased genital sensitivity.");
+	outputCodex("\n<b>*</b> Enlarged pleasure centers of the brain.\n\n");
 	outputCodex(blockHeader("Known Users"));
-	outputCodex("\t* Aileh Atru, porn star");
-	outputCodex("\n\t* Juan Gartex, sex worker");
-	outputCodex("\n\t* Kawthon Kandy, ultraporn star");
-	outputCodex("\n\t* Rod Chrysler, former Vesperian Prime Minister turned porn star");
-	outputCodex("\n\t* Tank Kannon, ultraporn star\n\n");
+	outputCodex("<b>*</b> Aileh Atru, porn star");
+	outputCodex("\n<b>*</b> Juan Gartex, sex worker");
+	outputCodex("\n<b>*</b> Kawthon Kandy, ultraporn star");
+	outputCodex("\n<b>*</b> Rod Chrysler, former Vesperian Prime Minister turned porn star");
+	outputCodex("\n<b>*</b> Tank Kannon, ultraporn star\n\n");
 	outputCodex(blockHeader("WARNINGS"));
 	outputCodex("Throbb is almost assuredly illegal. Do not use it. Should you come across any, turn it over to your local UGC Peacekeepers or planetary security forces. If you are on a planet where it is legal, avoid it all costs. It could ruin your life. (Attached is a short, anti-drug video clip. In it, a kaithrit is holding up a hotdog. She says, <i>“This is your dick. And this-”</i> Then she pivots and smacks face-first into the side of a tubular ship, rusted out with age. Rubbing her nose, she adds, <i>“...is your dick on Throbb. It isn’t going anywhere, and certainly not in me. Any questions?”</i>)");
 	outputCodex("\n\n");
@@ -3070,6 +3074,23 @@ public function fizzyfixCodex():void
 	CodexManager.unlockEntry("Muffstick");
 	CodexManager.viewedEntry("FizzyFix");
 }
+public function chillPillCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Chill Pill"));
+	outputCodex("<b>Manufactured By:</b> SolarRise Laboratory");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Chill Pill is the first and only product released by the now bankrupt SolarRise Laboratory. Marketed as a libido-reduction drug, Chill Pill quickly became the subject of many lawsuits, with users reporting an overwhelming variety of negative side effects - ranging from hair loss and rashes to stomach ulcers, fatigue, infertility, and headaches.");
+	outputCodex("\n\nCompany founders and head scientists, Dr. Morgan Solar and Dr. Harold Rise insisted during proceedings that their product had been thoroughly tested, and that that no such side effects had ever surfaced. However, despite their ability to back these claims up with testing logs and other documents, judges ruled against them again and again.");
+	outputCodex("\n\nIt is frequently rumored that a certain well-known sex product manufacturer may have - concerned about the potential loss in sales that decreased libidos would bring - had a hand in the proceedings, possibly financing lawsuits or even paying off court members. In fact, many of the plaintiffs were later discovered to have had preexisting connections with employees of the company itself.");
+	outputCodex("\n\nHowever, not even these rumors were enough to stop reputation-conscious stores from pulling the product off their shelves. Already struggling with costs from the court case, and now unable to find buyers for their product or even anyone willing to associate with their brand name, SolarRise was forced to close.");
+	outputCodex("\n\nDr. Solar and Dr. Rise seem to have taken the fiasco in remarkably good spirits, and while their current whereabouts are unknown, they later went on to make Chill Pill’s recipe available to the public. Thusly, it is reasonably easy for a dedicated customer to find less reputable sellers stocking functionally similar products - going by names such as Frigidol, Lustop, and Limpstick.");
+	outputCodex("\n\nSome sellers even claim to have salvaged stocks of the original product, but it is unclear whether these items are the real deal, or simply more counterfeits.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Chill Pill");
+}
 
 
 /* Technology */
@@ -3293,7 +3314,7 @@ public function camarillaCodex():void
 public function humphardIncCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_HUMPHARD");
 	outputCodex(header("Humphard Inc."));
 	outputCodex("<b>Company Name:</b> Humphard Incorporated");
 	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor");
@@ -3358,7 +3379,7 @@ public function kihaCorpCodex():void
 public function novaSecuritiesCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_NOVA_SECURITIES");
 	outputCodex(header("Nova Securities"));
 	outputCodex("<b>Company Name:</b> Nova Securities");
 	outputCodex("\n<b>Industry:</b> Private military");
@@ -3396,7 +3417,7 @@ public function reaperCodex():void
 public function rhenWorldCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_RHENWORLD");
 	outputCodex(header("RhenWorld"));
 	outputCodex("<b>Company Name:</b> RhenWorld Stellar Excavations");
 	outputCodex("\n<b>Industry:</b> Mining");
@@ -3538,5 +3559,54 @@ public function stormguardCodex():void
 	outputCodex("\n\nThe Stormguard of Uveto in particular are a hardy faction, having established themselves before the full corporate takeover of the world. Ever since the Camarilla and other corporate interests have taken control of the planet, the Stormguard temple there has fought tooth and nail within the legal system, exploiting religious protection acts to prevent their eviction from the frosty world. Lucky for them, they’ve created a symbiotic relationship with the ausar colony on Uveto, acting as scouts, guides, and beast-hunters for the otherwise pacifistic inhabitants.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Stormguard");
+}
+
+/* SSTDs */
+
+public function furpiesCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Furpies"));
+	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on <REDACTED>, but it was not identified for six more months thanks to its insidious design.");
+	outputCodex("\n\nThis strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.");
+	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("How Furpies is Spread"));
+	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
+	outputCodex("\n\nAs always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Asymptomatic Carriers"));
+	outputCodex("In most hosts, Furpies lies dormant, transforming its infected host into an inadvertent seeder. This was thought a blessing at first, but examination of the disease’s genetic code has revealed that it is simply biding its time. A biological clock built into the virus itself will count down over five to ten years, then switch Furpies to an active state.");
+	outputCodex("\n\nThis is alluded to in Doctor Badger’s manifesto as “The Furpocalypse.”");
+	outputCodex("\n\nIf strong steps to eradicate Furpies are not taken, the galaxy may become a lot furrier in the years to come, something some species would welcome with open arms - and others would violently protest.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Symptoms and Effects"));
+	outputCodex("<b>* 2 Days</b>: Temporary genital swelling - this is thought to be the beginning of Furpies’ attempts to increase sexual drive.");
+	outputCodex("\n<b>* 2-4 Days</b>: Increased attraction to other furry species. This typically manifests as a sort of fetish for soft fur. Patients report this to be particularly pleasant.");
+	outputCodex("\n<b>* 5-6 Days</b>: Growth of animal ears. Furpies Simplex H, C, and D are the main variants, each one tied to a different animal species. Victims with Furpies H gain the features of a horse, while C and D refer to cats and dogs.");
+	outputCodex("\n<b>* 7-9 Days</b>: Genital transformation. Some patients have declined cures for the disease until after this stage of infection, citing the pleasure of attaining animal genitalia. This is not recommended.");
+	outputCodex("\n<b>* 8-10 Days</b>: Limbs transform into a hybridization of human and animal features. Luckily Furpies is carefully engineered to momentarily sever nervous connections with the legs and arms to prevent any pain.");
+	outputCodex("\n<b>* 9 Days</b>: Animal tail growth.");
+	outputCodex("\n<b>* 10-11 Days</b>: Full body fur. Heat-sensitive races must be careful if they reach this stage, as the extra insulation makes them vulnerable to heat stroke.");
+	outputCodex("\n<b>* 12-14 Days</b>: Animal-like face. This is the final transformation that the disease will wreak on its hosts, though it remains in the body for long after.");
+	outputCodex("\n\nFurpies remains active in the host’s body indefinitely, making them more susceptible to sexual advances of other furry individuals, and more sexually active in general. Among infected, sexual intercourse occurs roughly 400% more often than galactic norms.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Doctor Badger"));
+	outputCodex("The UGC is aggressively looking for any sign of the disease’s creator in hopes of finding an effective, easy-to-produce cure. She is considered armed and extremely dangerous. Please call your local Peacekeeper office if you have any information on Doctor Badger’s whereabouts, and DO NOT APPROACH HER PERSONALLY.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Furpies");
+}
+public function locofeverCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Locofever"));
+	outputCodex("An ever-present danger of planet rushes is the intermingling of spaceborne illnesses with indigenous lifeforms and the mutations that can result. In the case of the junk planet Tarkus, it was the mingling of a simple fever brought by one of the rushers with the breeding-driven biology of the local raskvel that brought about locofever.");
+	outputCodex("\n\nThe locofever virus attacks the brain and reproductive organs, causing the production of hormones that produce an estrus-like response in the infectee akin to the natural state of raskvel. The desire to breed becomes overwhelming, while pleasure from masturbation is sharply reduced to further encourage the infectee to have sex as often as possible.");
+	outputCodex("\n\nA typical host is capable of fighting off the infection within one to two weeks. Most publicly available immune boosters are able to prevent the spread of the infection, which has prevented locofever from becoming an epidemic, but curing the illness requires direct medical treatment or letting it run its course.");
+	outputCodex("\n\nLocofever is believed to still be uncommon among raskvel, though the exact numbers of infected are difficult to determine both because of raskvel breeding habits and because the species is asymptomatic. Aside from them it is most commonly found among younger ausar, who have been known to deliberately infect themselves with locofever as a form of recreational drug and cultural rebellion.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Locofever");
 }
 

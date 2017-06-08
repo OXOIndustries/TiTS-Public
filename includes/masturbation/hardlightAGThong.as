@@ -488,7 +488,7 @@ public function processHardlightAGThongBlurbs(deltaT:uint, doOut:Boolean):void
 			
 			if(msgList[msgIdx] == "orgasm") { if(eventQueue.indexOf(hardlightAGThongOrgasm) == -1) eventQueue.push(hardlightAGThongOrgasm); }
 			else if(msgList[msgIdx] == "lust") { if(eventQueue.indexOf(hardlightAGThongLust) == -1) eventQueue.push(hardlightAGThongLust); }
-			else if(msgList[msgIdx] != "") AddLogEvent(msgList[msgIdx], "passive");
+			else if(msgList[msgIdx] != "") AddLogEvent(msgList[msgIdx], "passive", deltaT);
 			
 			// Maybe an hour delay between reports.
 			if(msgList[msgIdx] != "") pc.createStatusEffect("HL Thong Message Delay", 0, 0, 0, 0, true, "", "", false, (1 * 60));

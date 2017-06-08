@@ -6,7 +6,7 @@
 	import flash.utils.getDefinitionByName
 	import classes.Resources.Busts.*;
 	import classes.GLOBAL;
-	import classes.Util.RandomInCollection;
+	import classes.Engine.Utility.rand;
 	/**
 	 * ...
 	 * @author Gedan
@@ -147,8 +147,9 @@
 				
 				while (possibleArtists.length > 0)
 				{
-					var tArtist:String = RandomInCollection(possibleArtists);
-					possibleArtists.splice(possibleArtists.indexOf(tArtist), 1);
+					var idx:int = rand(possibleArtists.length);
+					var tArtist:String = possibleArtists[idx];
+					possibleArtists.splice(idx, 1);
 					
 					tBust = lookupBustInClass(bustName, NPCBustImages[tArtist], doNude);
 					if (tBust != null)
@@ -204,8 +205,9 @@
 				
 				while (possibleArtists.length > 0)
 				{
-					var tArtist:String = RandomInCollection(possibleArtists);
-					possibleArtists.splice(possibleArtists.indexOf(tArtist), 1);
+					var idx:int = rand(possibleArtists.length);
+					var tArtist:String = possibleArtists[idx];
+					possibleArtists.splice(idx, 1);
 					
 					bounds = lookupBoundsInClass(bustName, NPCBustImages[tArtist], doNude);
 					if (bounds != null)

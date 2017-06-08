@@ -87,7 +87,7 @@
 				if(target.earType != GLOBAL.TYPE_LUPINE) tfList.push(8);
 				// PC has canine ears, fur, and a non-canine face:
 				// PC gains a canine face.
-				if(target.earType == GLOBAL.TYPE_LUPINE && (target.faceType != GLOBAL.TYPE_LUPINE || target.faceType != GLOBAL.TYPE_WORG)) tfList.push(9);
+				if(target.earType == GLOBAL.TYPE_LUPINE && target.faceType != GLOBAL.TYPE_LUPINE && target.faceType != GLOBAL.TYPE_WORG) tfList.push(9);
 				// PC has non-canine tongue:
 				// PC gains canine tongue.
 				if(target.tongueType != GLOBAL.TYPE_CANINE) tfList.push(10);
@@ -130,7 +130,7 @@
 				if(target.thickness > 0) tfList.push(17);
 				// None of the above apply:
 				// Gain perk “Alpha Scent”
-				if(!target.hasPerk("Alpha Scent") && (tfList.length <= 0 || target.canineScore() >= 5)) tfList.push(18);
+				if(!target.hasPerk("Alpha Scent") && (tfList.length <= 0 || target.lupineScore() >= 5)) tfList.push(18);
 				
 				if(tfList.length > 0) select = tfList[rand(tfList.length)];
 				// None of the above apply:

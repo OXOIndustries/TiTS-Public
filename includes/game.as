@@ -50,32 +50,26 @@ public function processEventBuffer():Boolean
 		clearOutput();
 		clearBust();
 		
-		
 		output("<b>" + possessive(pc.short) + " log:</b>");
 		
 		timestampedEventBuffer.sortOn("timestamp", Array.NUMERIC);
+		
 		for (var i:int = 0; i < timestampedEventBuffer.length; i++)
 		{
 			var tEvent:EventContainer = timestampedEventBuffer[i];
 			
-			var d:int = days;
-			var h:int = hours;
-			var m:int = minutes;
-			
-			if (tEvent.timestamp > 0)
+			var d:int = 0;
+			var h:int = 0;
+			var m:int = tEvent.timestamp;
+			if (m >= 60)
 			{
-				m += tEvent.timestamp;
-				if (m >= 60)
-				{
-					h += m / 60;
-					m = m % 60;
-				}
-				
-				if (h >= 24)
-				{
-					d += h / 24;
-					h = h % 24;
-				}
+				h += m / 60;
+				m = m % 60;
+			}
+			if (h >= 24)
+			{
+				d += h / 24;
+				h = h % 24;
 			}
 			
 			output("\n\n\\\[<span class='" + tEvent.style + "'><b>D: " + d + " T: " + (h < 10 ? (String("0") + h) : String(h)) + ":" + (m < 10 ? (String("0") + m) : String(m)) + "</b></span>\\\] " + tEvent.msg);
@@ -135,6 +129,16 @@ public function disableExploreEvents():Boolean
 
 public function mainGameMenu(minutesMoved:Number = 0):void
 {
+	// Bad ends prevent triggering events and renewing menu.
+	if(gameOverEvent)
+	{
+		clearOutput();
+		output("<b>GAME OVER</b>");
+		output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
+		clearMenu();
+		return;
+	}
+	
 	flags["COMBAT MENU SEEN"] = undefined;
 	
 	if (flags["PC_UPBRINGING"] == undefined)
@@ -383,7 +387,7 @@ public function showCodex():void
 	//addGhostButton(2, "Log", function():void { } );
 	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) 
+	if(flags["EMMY_QUEST"] >= 6)
 	{
 		if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece.");
 		else addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
@@ -557,29 +561,108 @@ public function perksDisplayToggleDesc(filter:String = ""):void
 	showPerksList(filter);
 }
 
-public function crewRecruited(allcrew:Boolean = false):Number
+public const CREW_CELISE:int = 0;
+public const CREW_REAHA:int = 1;
+public const CREW_ANNO:int = 2;
+public const CREW_SERA:int = 3;
+public const CREW_BESS:int = 4;
+public const CREW_YAMMI:int = 5;
+public const CREW_GOO_ARMOR_IS_CREW:int = 6;
+public const CREW_PEXIGA:int = 7;
+public const CREW_PIPPA:int = 8;
+public const CREW_GOO_ARMOR_NOT:int = 9;
+public const CREW_VARMINT:int = 10;
+public const CREW_SIEGEWFULFE:int = 11;
+
+public function crewRecruited(allcrew:Boolean = false):Array
 {
-	var counter:Number = 0;
+	var crewMembers:Array = new Array();;
 	
 	// Actual crew members
-	if (flags["RECRUITED_CELISE"] > 0) counter++;
-	if (reahaRecruited()) counter++;
-	if (!annoNotRecruited()) counter++;
-	if (seraRecruited()) counter++;
-	if (bessIsFollower()) counter++;
-	if (yammiIsCrew()) counter++;
-	if (gooArmorIsCrew()) counter++;
-	if (pexigaIsCrew()) counter++;
+	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
+	if (reahaRecruited()) crewMembers.push(CREW_REAHA);
+	if (!annoNotRecruited()) crewMembers.push(CREW_ANNO);
+	if (seraRecruited()) crewMembers.push(CREW_SERA);
+	if (bessIsFollower()) crewMembers.push(CREW_BESS);
+	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
+	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
+	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
+	if (pippaOnShip()) crewMembers.push(CREW_PIPPA);
 	
 	// Pets or other non-speaking crew members
 	if (allcrew)
 	{
-		if (hasGooArmor() && !gooArmorIsCrew()) counter++;
-		if (varmintIsTame()) counter++;
-		if (siegwulfeIsCrew()) counter++;
+		if (hasGooArmor() && !gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_NOT);
+		if (varmintIsTame()) crewMembers.push(CREW_VARMINT);
+		if (siegwulfeIsCrew()) crewMembers.push(CREW_SIEGEWFULFE);
 	}
 	
-	return counter;
+	return crewMembers;
+}
+
+public function multiCrewInteractions():Array
+{
+	var crewMembers:Array = crewRecruited();
+	var crewMessages:String = "";
+	
+	if (InCollection(CREW_REAHA, crewMembers) && !reahaAddicted())
+	{
+		if (rand(8) == 0 && InCollection(CREW_BESS, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_BESS), 1);
+			
+			crewMessages += "\n\nReaha and [bess.name] are wandering around the ship, trying to make themselves useful. Mostly helping each other clean up the place, making sure everything’s spick and span.";
+		}
+		else if (rand(8) == 0 && !curedReahaInDebt() && InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa’s relaxing in the common room, looking well-fed. Reaha’s catching a quick nap near her, flopped down on the couch, snoozing peacefully, and looking well-milked."; 
+		}
+	}
+	if (InCollection(CREW_YAMMI, crewMembers))
+	{
+		if (rand(5) == 0 && flags["YAMMI_KITCHENED"] != undefined && InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_YAMMI), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa and Yammi are in the kitchen chatting while Yammi cooks.";
+			
+			if (flags["SEXED_YAMMI"] > 0 && pc.lust() >= 33 && pippaYammiThreesomeCount(0) == 0 && (pc.hasCock() || pc.hasHardLightEquipped()) && !pc.isTaur() && pippaSexed(0) > 0) flags["PIPPA_YAMMI_KITCHEN"] = 1;
+			else flags["PIPPA_YAMMI_KITCHEN"] = 0;
+		}
+		else flags["PIPPA_YAMMI_KITCHEN"] = 0;
+	}
+	if (InCollection(CREW_PIPPA, crewMembers) && flags["PIPPA_SETTLED_IN"] == 1)
+	{
+		if (hours > 13 && hours <= 14 && rand(2) == 0 && InCollection(CREW_ANNO, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_ANNO), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is giving Anno a post-workout massage, focusing on her torso and being careful to avoid getting oil in her fur.";
+		}
+		else if (rand(8) == 0 && InCollection(CREW_YAMMI, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_YAMMI), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is giving Yammi a massage, paying special attenion to her hands and feet.";
+		}
+		else if (!curedReahaInDebt() && rand(8) == 0 && InCollection(CREW_REAHA, crewMembers))
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_REAHA), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_PIPPA), 1);
+			
+			crewMessages += "\n\nPippa is giving Reaha a massage, paying special attenion to her back.";
+		}
+	}
+	
+	crewMembers.push(crewMessages);
+	return crewMembers;
 }
 
 public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
@@ -588,7 +671,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		clearMenu();
 	}
 	
-	var crewMessages:String = "";
+	var crewMembers:Array = multiCrewInteractions();
+	var crewMessages:String = crewMembers.pop();
 	var count:int = 0; // For actual crew members
 	var other:int = 0; // For pets or other non-speaking crew members
 	if(celiseIsCrew()) {
@@ -608,20 +692,27 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			//Not Addicted (CURED XPACK: reaha.cured_expansion.as)
 			if(!reahaAddicted())
 			{
+				if (InCollection(CREW_REAHA, crewMembers))
+				{
 				//Slave Reaha, random choice: 
 				if(curedReahaInDebt()) 
 				{
-					if(rand(3) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
-					else if(rand(2) == 0) crewMessages += "\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.";
-					else crewMessages += "\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...";
+					crewMessages += RandomInCollection([
+						"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+						"\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.",
+						"\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...",
+					]);
 				}
 				//Freed Reaha, random choice: 
 				else
 				{
-					if(rand(4) == 0) crewMessages += "\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.";
-					else if(rand(3) == 0) crewMessages += "\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.";
-					else if(rand(2) == 0) crewMessages += "\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.";
-					else crewMessages += "\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.";
+					crewMessages += RandomInCollection([
+						"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+						"\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.",
+						"\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.",
+						"\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.",
+					]);
+				}
 				}
 				addButton((count + other) - 1, "Reaha", curedReahaApproach);
 			}
@@ -659,7 +750,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
+			if (InCollection(CREW_BESS, crewMembers)) crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
 			addButton((count + other) - 1, bess.short, approachFollowerBess);
 		}
 	}
@@ -668,8 +759,9 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			crewMessages += "\n\n" + yammiShipBonusText();
-			addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
+			if (InCollection(CREW_YAMMI, crewMembers)) crewMessages += "\n\n" + yammiShipBonusText();
+			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Yammi", pippaYammiThreesomeIntro);
+			else addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
 		}
 	}
 	if (pexigaIsCrew())
@@ -679,6 +771,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\n" + pexigaShipBonusText();
 			addButton((count + other) - 1, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+		}
+	}
+	if (pippaOnShip())
+	{
+		count++;
+		if (!counter)
+		{
+			if (InCollection(CREW_PIPPA, crewMembers)) crewMessages += "\n\n" + pippaShipBonusText();
+			
+			if (flags["PIPPA_SETTLED_IN"] != 1) addButton((count + other) - 1, "Pippa", pippaShipIntro);
+			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Pippa", pippaYammiThreesomeIntro);
+			else addButton((count + other) - 1, "Pippa", pippaMainMenu);
 		}
 	}
 	if (hasGooArmor() || gooArmorIsCrew())
@@ -800,16 +904,26 @@ public function rest(deltaT:int = -1):void {
 				cumCowAutoFellatio(true, (280 + rand(30) + 1));
 				return;
 			}
+			else if(pc.perkv2("Auto-Autofellatio") <= 0 && rand(3) == 0 && pc.hasTailCock() && pc.hasGenitals()) 
+			{
+				cumCowCockvineSuck();
+				return;
+			}
 			else if(pc.perkv2("Auto-Autofellatio") <= 0 && rand(3) == 0 && pc.canAutoFellate(-1))
 			{
 				cumCowAutoFellatio(true, (280 + rand(30) + 1));
 				return;
 			}
+
 			else if(rand(20) == 0)
 			{
 				autoCocknosisDistraction();
 				postRestLustBonus = pc.libido()/3 + 20;
 			}
+		}
+		if(pc.isCumSlut() && pc.libido() >= 50 && pc.lust() >= 70 && pc.WQ() < 25 && pc.hasVagina() && pc.hasBackGenitals() && rand(4) == 0) 
+		{
+			eventQueue.push(involuntarilyCockwangYourself);
 		}
 		minPass = 230 + rand(20) + 1;
 		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) {
@@ -1128,7 +1242,7 @@ public function flyMenu():void {
 	clearOutput();
 	if(!leavePlanetOK())
 	{
-		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined)
+		if(flags["CHECKED_GEAR_AT_OGGY"] == 1)
 		{
 			output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
 			clearMenu();
@@ -1142,10 +1256,9 @@ public function flyMenu():void {
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
-		else 
-		{
-			pc.removeStatusEffect("Disarmed");
-		}
+		
+		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
+		pc.removeStatusEffect("Disarmed");
 	}
 	output("Where do you want to go?");
 	clearMenu();
@@ -1231,7 +1344,7 @@ public function flyTo(arg:String):void {
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
-		if (pc.hasItem(new StrangeEgg()) || pc.hasItemInStorage(new StrangeEgg()))
+		if (pc.hasItemByType(StrangeEgg) || pc.hasItemInStorage(new StrangeEgg()))
 		{
 			//PC can preggo with it?
 			//Has an open spot!
@@ -1389,18 +1502,18 @@ public function showerMenu(special:String = "ship"):void {
 public function showerDoucheToggleButton(btnSlot:int = 5):void
 {
 	if (pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") + pc.statusEffectv1("Orally-Filled") <= 0) return;
-	if (pc.hasStatusEffect("Shower Douche Toggle")) addButton(btnSlot, "Rinse: ON", showerDoucheToggle, undefined, "Use Douche", "Clean out the fluids that have been pumped into you. Select to turn rinsing off.");
+	if (pc.statusEffectv1("Shower Douche Toggle") == 1) addButton(btnSlot, "Rinse: ON", showerDoucheToggle, undefined, "Use Douche", "Clean out the fluids that have been pumped into you. Select to turn rinsing off.");
 	else addButton(btnSlot, "Rinse: OFF", showerDoucheToggle, undefined, "No Douche", "Keep the fluids that are inside you for now. Select to turn rinsing on.");
 }
 public function showerDoucheToggle(btnSlot:int = 5):void
 {
-	if (pc.hasStatusEffect("Shower Douche Toggle")) pc.removeStatusEffect("Shower Douche Toggle");
-	else pc.createStatusEffect("Shower Douche Toggle");
+	if (!pc.hasStatusEffect("Shower Douche Toggle")) pc.createStatusEffect("Shower Douche Toggle", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.setStatusValue("Shower Douche Toggle", 1, (pc.statusEffectv1("Shower Douche Toggle") == 1 ? 0 : 1));
 	showerDoucheToggleButton(btnSlot);
 }
 public function showerExit():void
 {
-	pc.removeStatusEffect("Shower Douche Toggle");
+	//pc.removeStatusEffect("Shower Douche Toggle");
 	mainGameMenu();
 }
 
@@ -1448,7 +1561,7 @@ public function showerOptions(option:int = 0):void
 		else if (pc.buttTone() < 30 && pc.buttRating() >= 10) output(", unable to resist topping it off with a good spank");
 		output(".");
 		
-		if(pc.hasStatusEffect("Shower Douche Toggle"))
+		if(pc.statusEffectv1("Shower Douche Toggle") == 1 && pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") + pc.statusEffectv1("Orally-Filled") > 0)
 		{
 			output("\n\n");
 			if(pc.statusEffectv1("Anally-Filled") + pc.statusEffectv1("Vaginally-Filled") > 0)
@@ -1578,8 +1691,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	moveMinutes += immobilizedUpdate(true);
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
-	if(pc.hasItem(new DongDesigner())) moveMinutes *= 2;
-	if(pc.hasItem(new Hoverboard()) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes -= 1;
+	if(pc.hasItemByType(DongDesigner)) moveMinutes *= 2;
+	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	if(pc.hasItemByType(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
@@ -1587,6 +1701,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	currentLocation = arg;
 	generateMap();
 	if(pc.hasStatusEffect("Treatment Exhibitionism Gain 4 DickGirls") && pc.hasCock() && rooms[arg].hasFlag(GLOBAL.PUBLIC)) treatmentCumCowExhibitionism();
+	if(pc.hasPerk("Ultra-Exhibitionist")) exhibitionismLocationToggle();
 	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
@@ -2106,7 +2221,6 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processZheniyaEvents(deltaT, doOut, totalDays);
 	processHLPantyShit();
 	processHardlightAGThongBlurbs(deltaT, doOut);
-	geneSubmissionLevelDecay(deltaT, doOut);
 	
 	// Per-day events
 	if (totalDays >= 1)
@@ -2121,21 +2235,24 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		thollumYardMushroomGrow();
 		laneHandleCredits(totalDays);
 		updateBothriocAddiction(totalDays);
+		geneSubmissionLevelDecay(totalDays);
 		seraBitcheningStoreInventory(totalDays);
 		seraOnTavrosObedience(totalDays);
 	}
 	
-	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(Math.floor((minutes + deltaT) / 60));
+	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
+	
+	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(totalHours);
 	
 	processMimbranesTime(deltaT, doOut, totalDays);
 	processLeithaCharmTime(deltaT, doOut);
 	processLaneDetoxEvents(deltaT);
 	
 	//Check to see if something changed in body part notices
-	milkMultiplierGainNotificationCheck();
-	milkGainNotes();
-	nutSwellUpdates();
-	immobilizedUpdate();
+	milkMultiplierGainNotificationCheck(deltaT);
+	milkGainNotes(deltaT);
+	nutSwellUpdates(deltaT);
+	immobilizedUpdate(false, deltaT);
 
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck"))
@@ -2160,8 +2277,12 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		}
 	}
 	
+	var sendMails:Boolean = true;
+	
 	// Don't send mails to the player whilst aboard the kashima
-	if (flags["KASHIMA_STATE"] != 1)
+	if (flags["KASHIMA_STATE"] == 1) sendMails = false;
+	
+	if(sendMails)
 	{
 		//NEVRIE MAIL!
 		if (!MailManager.isEntryUnlocked("myrpills") && flags["MCALLISTER_MEETING_TIMESTAMP"] <= (GetGameTimestamp() - (24 * 60))) nevriMailGet();
@@ -2189,10 +2310,26 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//Jade muff-ins
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
 
-		if (!MailManager.isEntryUnlocked("del_moved") && delilahSubmissiveness() >= 5 && rand(10) == 0 && getPlanetName() != "Tarkus") { goMailGet("del_moved"); }
+		//Del moved to Canada as trap.
+		if(!MailManager.isEntryUnlocked("del_moved") && !MailManager.isEntryUnlocked("del_moved_light") && getPlanetName() != "Tarkus" && flags["CARVER_DEL_TALK"] != 1)
+		{
+			if(flags["CARVER_DEL_TALK"] == 3)
+			{
+				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
+				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved_light");
+			}
+			//Del moving to Canada as shemale
+			else if (delilahSubmissiveness() >= 10 || flags["CARVER_DEL_TALK"] == 2) 
+			{
+				if(flags["DEL_MOVE_TIMER"] == undefined) flags["DEL_MOVE_TIMER"] = GetGameTimestamp();
+				else if(flags["DEL_MOVE_TIMER"] + 60*24*10 <= GetGameTimestamp()) goMailGet("del_moved");
+			}
+		}
 
 		// Pippa Nuru massage email
-		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60))) pippaNuruEmailGet();
+		if (!MailManager.isEntryUnlocked("pippa_nuru") && flags["PIPPA_NURU_TIMER"] <= (GetGameTimestamp() - (24 * 60)) && currentLocation != "PIPPA HOUSE") pippaNuruEmailGet();
+		// Pippa Crew message email
+		if (!MailManager.isEntryUnlocked("pippa_crew") && flags["PIPPA_RECRUIT_TIMER"] <= (GetGameTimestamp() - (36 * 60)) && currentLocation != "PIPPA HOUSE") pippaCrewEmailGet();
 
 		//Plantation Quest Offer
 		//Key string - "plantation_quest_start"
@@ -2205,7 +2342,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
-		
+	
 	flags["HYPNO_EFFECT_OUTPUT_DONE"] = undefined;
 	variableRoomUpdateCheck();
 	updatePCStats();

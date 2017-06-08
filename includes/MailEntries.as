@@ -206,8 +206,10 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("del_moved_light",delLightEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("pippa_nuru", pippaNuruEmail, "New Service", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("pippa_crew", pippaCrewEmail, "Request", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
 
 	MailManager.addMailEntry("plantation_quest_start", shepDarnocksPlantationQuestInviteText, "Salutations!", "Shep Darnock", "theshepard12@snugglecorp.org", quickPCTo, quickPCToAddress);
 }
@@ -385,6 +387,18 @@ public function pippaNuruEmail():String
 	return ret;
 }
 
+public function pippaCrewEmail():String
+{
+	var ret:String = "Hi " + pc.short + ",";
+	
+	ret += "\n\nI’ve been thinking recently, and I’d like to talk to you about something. Or more like, I have a request for you. Please stop by when you get a chance.";
+	
+	ret += "\n\nSee you soon,";
+	ret += "\nPippa";
+	
+	return ret;
+}
+
 public function initialMailConfiguration():void
 {
 	clearOutput2();
@@ -448,4 +462,5 @@ public function confirmMailConfig():void
 	(userInterface as GUI).perkDisplayButton.Activate();
 	(userInterface as GUI).dataButton.Activate();
 	(userInterface as GUI).appearanceButton.Activate();
+	(userInterface as GUI).mailsDisplayButton.Activate();
 }

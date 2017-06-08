@@ -105,12 +105,6 @@ public function approachShekka():void
 
 public function shekkaMainMenu():void
 {
-	shopkeep = chars["SHEKKA"];
-	chars["SHEKKA"].keeperBuy = "<i>“I’d like to buy something,”</i> you offer. <i>“What have you got for sale?”</i>\n\nShekka spreads her arms to encompass her entire shop. <i>“Just about anything you see is for sale, but you probably don’t have much interest in buying your gadgets by the part. I’ve got a few items that seem pretty popular among you rushers. One second.”</i> She fiddles with a slim, sparking device atop her workbench to little effect. Growling, she grabs a wrench and whacks it. A flickering, holographic menu displays her wares and their prices. <i>“There we go!”</i>\n";
-	//List prices and whatnot. Back should go back to Shekka's main menu.
-	//Sell Menu
-	chars["SHEKKA"].keeperSell = "Shekka remarks, <i>“I’ll buy if it’s something worth using.”</i>\n";
-	chars["SHEKKA"].keeperGreeting = "Shekka shrugs. <i>“Well, what do you want then?”</i>\n";
 	clearMenu();
 	addButton(0,"Appearance",shekkaAppearance,undefined,"Appearance","Review what Shekka looks like in detail.");
 	addButton(1,"Talk",talkToShekka,undefined,"Talk","Talk to Shekka about a range of topics.");
@@ -124,14 +118,33 @@ public function shekkaMainMenu():void
 		if(flags["TIMES_SEXED_SHEKKA"] == undefined) addDisabledButton(2,"Flirt","Flirt","You aren’t turned on enough to try for sex right now.");
 		else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough to be interested in sex.");
 	}
-	addButton(5,"Buy",buyItem);
-	addButton(6,"Sell",sellItem);
+	addButton(5,"Buy", shekkaShop);
+	addButton(6,"Sell", shekkaShop, true);
 	if(pc.hasStatusEffect("Rusted Emitters")) addButton(7,"Fix Emit.",fixMyEmittersShekka,undefined,"Fix Emit.","See if Shekka can possibly fix your sydian-damaged shield emitters.");
 	else addDisabledButton(7,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don’t worry about it.");
 	if(pcHasJunkPrize() && flags["SHEKKA_SCRAP_DISABLED"] == undefined) addButton(8,"Sell Prize",shekkaGetsSoldRaskShitz,undefined,"Sell Prize","Try to sell off the sweet loot you bought from the gang of raskvel males.");
 	else addDisabledButton(8,"Sell Prize","Sell Prize","You haven’t found any special salvage to sell.");
 	if(peacekeeperTalkAvailable()) addButton(9,"Peacekeepers",shekkaPeacekeeperTalk);
 	addButton(14,"Back",mainGameMenu);
+}
+
+public function shekkaShop(sell:Boolean = false):void
+{
+	shopkeep = chars["SHEKKA"];
+	chars["SHEKKA"].keeperBuy = "<i>“I’d like to buy something,”</i> you offer. <i>“What have you got for sale?”</i>\n\nShekka spreads her arms to encompass her entire shop. <i>“Just about anything you see is for sale, but you probably don’t have much interest in buying your gadgets by the part. I’ve got a few items that seem pretty popular among you rushers. One second.”</i> She fiddles with a slim, sparking device atop her workbench to little effect. Growling, she grabs a wrench and whacks it. A flickering, holographic menu displays her wares and their prices. <i>“There we go!”</i>\n";
+	//List prices and whatnot. Back should go back to Shekka's main menu.
+	//Sell Menu
+	chars["SHEKKA"].keeperSell = "Shekka remarks, <i>“I’ll buy if it’s something worth using.”</i>\n";
+	chars["SHEKKA"].keeperGreeting = "Shekka shrugs. <i>“Well, what do you want then?”</i>\n";
+	
+	if(pc.level >= 7)
+	{
+		if(!chars["SHEKKA"].hasItemByType(FZRFireSuppressionSystem)) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
+	}
+	else chars["SHEKKA"].destroyItem(new FZRFireSuppressionSystem());
+	
+	if(!sell) buyItem();
+	else sellItem();
 }
 
 public function fixMyEmittersShekka():void

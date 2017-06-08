@@ -34,7 +34,7 @@ public function ellieApproachButtonSetup():void
 {
 	if(flags["MET_ELLIE"] != undefined) addButton(0,"Ellie",ellieMenu,undefined,"Ellie","Approach Ellie, the leithan running the gift shop.");
 	else addButton(0,"Shopkeep",meetingEllie,undefined,"Shopkeep","Approach the shopkeeper and see what she’s selling.");
-	vendingMachineButton(1);
+	vendingMachineButton(1, "J'ejune");
 }
 
 //Meeting Ellie ([Shopkeeper])
@@ -83,7 +83,7 @@ public function meetingEllie():void
 	output(".");
 
 	output("\n\n<i>“Hehe. Like what you see?”</i> she teases, finally putting a stop to her blatant show and crossing her arms under her cow-like bosom. <i>“Don’t be shy - most of the bulls around here sure aren’t!”</i>");
-	applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 10 } ), chars["ELLIE"], pc, "minimal");
 	processTime(4);
 	clearMenu();
 	//[Yes] [Meh] [Don’t Like Girls]

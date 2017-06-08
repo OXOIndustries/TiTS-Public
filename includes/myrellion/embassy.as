@@ -282,12 +282,13 @@ public function talkWithJuroAbootOrangeMyr():void
 	
 	output("\n\n<i>“Come on, ambassador. At least make it available to people. Even you have got to be able to see showing the myr how closely related they really are is a start towards peace. Sure, it’ll be a system shock to see hybrids out there, but the myr have got to find a common ground. Maybe an orange myr could be it.”</i>");
 	
-	output("\n\nJuro sighs and rubs at his temples. <i>“Doubtful, but... it would be unfair to the myrmidon not to give them that chance, I suppose. Please forward the data to my office, and I’ll ensure it makes its way to the medical staff here in the demilitarized zone. I make no promises for them, but I will at least make the data and whatever samples your company sends us available to the medical center.”</i>");
+	output("\n\nJuro sighs and rubs at his temples. <i>“Doubtful, but... it would be unfair to the myrmedion not to give them that chance, I suppose. Please forward the data to my office, and I’ll ensure it makes its way to the medical staff here in the demilitarized zone. I make no promises for them, but I will at least make the data and whatever samples your company sends us available to the medical center.”</i>");
 	
 	output("\n\nYou smile and thank the ambassador, shaking his furry hand. At least that’s a chance for something better than war for Myrellion.");
 
 	pc.removeKeyItem("Orange Myr Data");
 	flags["MCALLISTER_MYR_HYBRIDITY"] = 4;
+	pc.createStatusEffect("Orange Myr Sighting Delay", 0, 0, 0, 0, true, "", "", false, (14 * 24 * 60));
 
 	jurosTalkMenu(talkWithJuroAbootOrangeMyr);
 }

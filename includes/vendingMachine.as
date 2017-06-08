@@ -78,6 +78,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 	processTime(1);
 	
 	var buy:Boolean = true;
+	var planet:String = getPlanetName().toLowerCase();
 	
 	chars["VENDINGMACHINE"].inventory = [];
 	chars["VENDINGMACHINE"].typesBought = [];
@@ -143,6 +144,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
 			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
 			
+			if(planet != "tavros station" && flags["PLANET_3_UNLOCKED"] != undefined) chars["VENDINGMACHINE"].inventory.push(new FrontRackCream());
 			chars["VENDINGMACHINE"].inventory.push(new LemonLoftcake());
 			chars["VENDINGMACHINE"].inventory.push(new StrawberryShortcake());
 			
@@ -162,16 +164,16 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
 			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
 			
-			chars["VENDINGMACHINE"].inventory.push(new Sterilex());
-			chars["VENDINGMACHINE"].inventory.push(new OmegaOil());
+			if(planet == "new texas") chars["VENDINGMACHINE"].inventory.push(new Allure());
+			if(planet != "tavros station") chars["VENDINGMACHINE"].inventory.push(new BreedersBliss());
 			chars["VENDINGMACHINE"].inventory.push(new Condensol());
-			chars["VENDINGMACHINE"].inventory.push(new YTRLube());
-			chars["VENDINGMACHINE"].inventory.push(new MightyTight());
 			chars["VENDINGMACHINE"].inventory.push(new EasyFit());
-			chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
-			//chars["VENDINGMACHINE"].inventory.push(new Allure());
 			chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
-			chars["VENDINGMACHINE"].inventory.push(new BreedersBliss());
+			chars["VENDINGMACHINE"].inventory.push(new MightyTight());
+			chars["VENDINGMACHINE"].inventory.push(new OmegaOil());
+			if(planet != "new texas") chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
+			chars["VENDINGMACHINE"].inventory.push(new Sterilex());
+			if(planet != "uveto station" || flags["TLAKO_THANKED"] != undefined) chars["VENDINGMACHINE"].inventory.push(new YTRLube());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.25;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;

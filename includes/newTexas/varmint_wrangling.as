@@ -341,7 +341,7 @@ public function varmintProc():void
 //PC uses "Lasso" -- based on AIM
 public function lassoAVarmint(attacker:Creature, target:Creature):void
 {
-	clearOutput();
+	//clearOutput();
 	//Set drone target
 	//attacker.droneTarget = target;
 	output("You twirl your light lasso, trying to get a bead on " + target.getCombatName() + ". When you've got enough spin, you let the lasso go, hurling it toward " + target.getCombatName() + "!");

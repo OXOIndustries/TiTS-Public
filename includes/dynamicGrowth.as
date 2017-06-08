@@ -1,8 +1,8 @@
 ﻿/* Dynamic growth/weight systems for immobilzation! */
 
-public function removeImmobilized():void
+public function removeImmobilized(deltaT:uint = 0):void
 {
-	AddLogEvent("<b>You’re no longer immobilized by your out-sized equipment!</b>", "good");
+	AddLogEvent("<b>You’re no longer immobilized by your out-sized equipment!</b>", "good", deltaT);
 	pc.removeStatusEffect("Endowment Immobilized");
 }
 
@@ -26,7 +26,7 @@ private var percentButts:Array = [25, 50, 75, 100];
 
 /* General framework stuff */
 
-public function immobilizedUpdate(count:Boolean = false):Number
+public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 {
 	if(!pc.hasStatusEffect("Endowment Immobilized")) return 0;
 	
@@ -63,7 +63,7 @@ public function immobilizedUpdate(count:Boolean = false):Number
 		// Support exceptions!
 		if(immobileParts <= 0)
 		{
-			AddLogEvent("Your", "passive");
+			AddLogEvent("Your", "passive", deltaT);
 			if(bodyPart.length > 0)
 			{
 				if(InCollection("balls", bodyPart))
@@ -137,7 +137,7 @@ public function immobilizedUpdate(count:Boolean = false):Number
 			
 			if(msg.length > 0) ExtendLogEvent(msg);
 			
-			removeImmobilized();
+			removeImmobilized(deltaT);
 			pc.lust(5 * bodyPart.length);
 		}
 	}
@@ -145,7 +145,7 @@ public function immobilizedUpdate(count:Boolean = false):Number
 	return bodyPart.length;
 }
 
-public function bodyPartUpdates(partName:String = "none"):void
+public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 {
 	var weightQ:Number = pc.weightQ(partName);
 	var heightQ:Number = pc.heightRatio(partName);
@@ -162,7 +162,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 			//Hit basketball size >= 9
 			if(weightQ >= percentBalls[0] && heightQ >= lvlRatioBalls[0] && !pc.hasStatusEffect("Egregiously Endowed"))
 			{
-				AddLogEvent(ParseText("Ugh, you could really use a chance to offload some [pc.cumNoun]. You"), "passive");
+				AddLogEvent(ParseText("Ugh, you could really use a chance to offload some [pc.cumNoun]. You"), "passive", deltaT);
 				if(pc.ballDiameter() >= 9 && pc.ballDiameter() < 12)
 				{
 					if(pc.balls == 1) ExtendLogEvent("r testicle has reached the size of a basketball and shows");
@@ -182,7 +182,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 			//Hit beachball size >= 15
 			if(weightQ >= percentBalls[1] && heightQ >= lvlRatioBalls[1] && !pc.hasStatusEffect("Ludicrously Endowed"))
 			{
-				AddLogEvent(ParseText("Every movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that it wobbles from its own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal."), "passive");
+				AddLogEvent(ParseText("Every movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that it wobbles from its own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal."), "passive", deltaT);
 				
 				pc.createStatusEffect("Ludicrously Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized endowments cause you to gain fifty percent more lust over time.", false, 0);
 				pc.lust(5);
@@ -190,7 +190,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 			//Hit barrel size
 			if(weightQ >= percentBalls[2] && heightQ >= lvlRatioBalls[2] && !pc.hasStatusEffect("Overwhelmingly Endowed"))
 			{
-				AddLogEvent("Whoah, this is awkward. Your", "passive");
+				AddLogEvent("Whoah, this is awkward. Your", "passive", deltaT);
 				if(pc.balls == 1) ExtendLogEvent(" testicle is");
 				else ExtendLogEvent(" nuts are");
 				if(pc.ballDiameter() >= 25 && pc.ballDiameter() < 40) ExtendLogEvent(" practically barrel-sized");
@@ -208,7 +208,7 @@ public function bodyPartUpdates(partName:String = "none"):void
 			//hit person size
 			if(weightQ >= percentBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItem(new Hoverboard()))
 			{
-				AddLogEvent("You strain as hard as you can, but there’s just no helping it. You’re immobilized. Your", "passive");
+				AddLogEvent("You strain as hard as you can, but there’s just no helping it. You’re immobilized. Your", "passive", deltaT);
 				if(pc.balls == 1) ExtendLogEvent(" testicle is");
 				else ExtendLogEvent(" balls are");
 				ExtendLogEvent(" just too swollen to allow you to move anywhere. The bulk of your body weight is right there in your");
@@ -247,10 +247,10 @@ public function bodyPartUpdates(partName:String = "none"):void
 		}
 	}
 	
-	bodyPartCleanup(partName);
+	bodyPartCleanup(partName, deltaT);
 }
 
-public function bodyPartCleanup(partName:String = "none"):void
+public function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 {
 	if(immobilizedUpdate(true) >= 1) return;
 	
@@ -298,7 +298,7 @@ public function bodyPartCleanup(partName:String = "none"):void
 	
 	if ((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
 	{
-		removeImmobilized();
+		removeImmobilized(deltaT);
 	}
 	if ((altCheck || weightQ < perRatio[2] || heightQ < lvlRatio[2]) && pc.hasStatusEffect("Overwhelmingly Endowed"))
 	{
@@ -317,9 +317,9 @@ public function bodyPartCleanup(partName:String = "none"):void
 
 /* Nuts stuff! */
 
-public function nutSwellUpdates():void
+public function nutSwellUpdates(deltaT:uint = 0):void
 {
-	bodyPartUpdates("testicle");
+	bodyPartUpdates("testicle", deltaT);
 	
 	// Special underwear changes!
 	if(pc.lowerUndergarment is HardlightAGJock)
@@ -327,14 +327,14 @@ public function nutSwellUpdates():void
 		var bigEndowments:Boolean = ((pc.balls > 0 && pc.ballSizeRaw >= 15) || (pc.cocks.length > 0 && pc.biggestCockLength() >= 15) || (pc.totalClits() > 0 && pc.clitLength >= 15));
 		if(bigEndowments && pc.lowerUndergarment.sexiness <= 3)
 		{
-			AddLogEvent(ParseText("You feel a tightening around your groin, the hardlight jock bulging and accentuating the vast bigness of your endowment housed within... <b>Your underwear looks a little sexier now!</b>"), "passive");
+			AddLogEvent(ParseText("You feel a tightening around your groin, the hardlight jock bulging and accentuating the vast bigness of your endowment housed within... <b>Your underwear looks a little sexier now!</b>"), "passive", deltaT);
 			pc.createStatusEffect("Jock Sexiness");
 			pc.lowerUndergarment.onEquip(pc);
 			pc.removeStatusEffect("Jock Sexiness");
 		}
 		else if(!bigEndowments && pc.lowerUndergarment.sexiness > 3)
 		{
-			AddLogEvent(ParseText("No longer bulging it to its limits, the hardlight jock relaxes around your groin, giving you some much needed space to breath--however, due to that, <b>it seems to have lost a little bit of its sexual appeal</b>."), "passive");
+			AddLogEvent(ParseText("No longer bulging it to its limits, the hardlight jock relaxes around your groin, giving you some much needed space to breath--however, due to that, <b>it seems to have lost a little bit of its sexual appeal</b>."), "passive", deltaT);
 			pc.lowerUndergarment.onEquip(pc);
 		}
 	}
@@ -418,7 +418,7 @@ public function bigBallBadEnd():void
 public function honeyPotBump(cumShot:Boolean = false, totalDays:int = 0):void
 {
 	var msg:String = "";
-	var baseDShift:uint = totalDays == 0 ? 0 : GetGameTimestamp() % 1440;
+	var baseDShift:uint = (totalDays == 0 ? 0 : GetGameTimestamp() % 1440);
 	
 	totalDays = 1;
 	
@@ -487,7 +487,7 @@ public function honeyPotBump(cumShot:Boolean = false, totalDays:int = 0):void
 }
 
 //Notes about milk gain increases
-public function milkGainNotes():void
+public function milkGainNotes(deltaT:uint = 0):void
 {
 	var msg:String = "";
 	var x:int = 0;
@@ -503,7 +503,7 @@ public function milkGainNotes():void
 			else pc.breastRows[x].breastRatingLactationMod = 1;
 		}
 
-		AddLogEvent(ParseText("There’s no way you could miss how your [pc.fullChest] have swollen up with [pc.milk]. You figure it won’t be long before they’re completely full. It might be a good idea to milk them soon. <b>With all that extra weight, "), "passive");
+		AddLogEvent(ParseText("There’s no way you could miss how your [pc.fullChest] have swollen up with [pc.milk]. You figure it won’t be long before they’re completely full. It might be a good idea to milk them soon. <b>With all that extra weight, "), "passive", deltaT);
 		if(pc.bRows() > 1) ExtendLogEvent("the top row is ");
 		else ExtendLogEvent("they’re ");
 		ExtendLogEvent(ParseText("currently [pc.breastCupSize]s"));
@@ -521,7 +521,7 @@ public function milkGainNotes():void
 			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 2.5;
 			else pc.breastRows[x].breastRatingLactationMod = 1.5;
 		}
-		AddLogEvent(ParseText("Your [pc.fullChest] feel more than a little sore. They’re totally and unapologetically swollen with [pc.milk]. You heft the [pc.breastCupSize]s and sigh, swearing you can almost hear them slosh. <b>They’re totally full.</b>"), "passive");
+		AddLogEvent(ParseText("Your [pc.fullChest] feel more than a little sore. They’re totally and unapologetically swollen with [pc.milk]. You heft the [pc.breastCupSize]s and sigh, swearing you can almost hear them slosh. <b>They’re totally full.</b>"), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain Milk Note: 100");
 	}
 	//Cross 150% milk fullness + 2 cups
@@ -535,7 +535,7 @@ public function milkGainNotes():void
 			else pc.breastRows[x].breastRatingLactationMod = 2;
 		}
 		
-		AddLogEvent(ParseText("Your [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It’s actually getting kind of painful to hold in all that liquid weight, and if "), "passive");
+		AddLogEvent(ParseText("Your [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It’s actually getting kind of painful to hold in all that liquid weight, and if "), "passive", deltaT);
 		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) ExtendLogEvent("it wasn’t for your genetically engineered super-tits, your body would be slowing down production");
 		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("it wasn’t for your honeypot gene, your body would be slowing down production");
 		else if(pc.isPregnant()) ExtendLogEvent("you weren’t pregnant, you’d probably be slowing production.");
@@ -555,7 +555,7 @@ public function milkGainNotes():void
 			else pc.breastRows[x].breastRatingLactationMod = 3;
 		}
 		
-		AddLogEvent(ParseText("The tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can’t help but wish for relief or a cessation of your lactation, whichever comes first. "), "passive");
+		AddLogEvent(ParseText("The tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can’t help but wish for relief or a cessation of your lactation, whichever comes first. "), "passive", deltaT);
 		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) ExtendLogEvent("<b>However, with your excessively active udders, you are afraid the production will never stop.</b>");
 		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("<b>However, with your honeypot gene, they’ll likely never stop.</b>");
 		else if(pc.isPregnant()) ExtendLogEvent("<b>With a pregnancy on the way, there’s no way your body will stop producing.</b>");
@@ -569,14 +569,14 @@ public function milkGainNotes():void
 	{
 		if(pc.isLactating() && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
 		{
-			AddLogEvent(ParseText("The [pc.milk] leaking from your [pc.nipples] stains your " + pc.upperUndergarment.longName + ", making it slick and wet. As a result, the material becomes more and more see-through, allowing possible passerbys to see the private areas of your [pc.chest]. <b>Your top is now transparent!</b>"), "passive");
+			AddLogEvent(ParseText("The [pc.milk] leaking from your [pc.nipples] stains your " + pc.upperUndergarment.longName + ", making it slick and wet. As a result, the material becomes more and more see-through, allowing possible passerbys to see the private areas of your [pc.chest]. <b>Your top is now transparent!</b>"), "passive", deltaT);
 			pc.createStatusEffect("Bra Transparency");
 			pc.upperUndergarment.onEquip(pc);
 			pc.removeStatusEffect("Bra Transparency");
 		}
 		else if(!pc.isLactating() && pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
 		{
-			AddLogEvent(ParseText("The dryness of your " + possessive(pc.upperUndergarment.longName) + " material is relieving. No longer sticking to your [pc.fullChest], the opaque garment now gives you a more modest appearance. <b>Your top is no longer transparent!</b>"), "passive");
+			AddLogEvent(ParseText("The dryness of your " + possessive(pc.upperUndergarment.longName) + " material is relieving. No longer sticking to your [pc.fullChest], the opaque garment now gives you a more modest appearance. <b>Your top is no longer transparent!</b>"), "passive", deltaT);
 			pc.upperUndergarment.onEquip(pc);
 		}
 	}
@@ -720,63 +720,63 @@ public function lactationUpdateHourTick(totalHours:int):void
 }
 
 //Milk Multiplier crosses a 10 point threshold from raising
-public function milkMultiplierGainNotificationCheck():void
+public function milkMultiplierGainNotificationCheck(deltaT:uint = 0):void
 {
 	var msg:String = "";
 	
 	//kGAMECLASS cheat to cheat these messages into the event buffer? Or pass event buffer as an argument? Regardless, seems the cleanest way to keep it from interrupting the scene it gets called in.
 	//30
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 30")) {
-		AddLogEvent(ParseText("The soreness in your [pc.nipples] is both persistent and pleasant in its own unique way. There’s no disguising how it makes your [pc.chest] practically glow with warmth."), "passive");
+		AddLogEvent(ParseText("The soreness in your [pc.nipples] is both persistent and pleasant in its own unique way. There’s no disguising how it makes your [pc.chest] practically glow with warmth."), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 30");
 	}
 	//40
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 40")) {
-		AddLogEvent(ParseText("Tingles run through your [pc.fullChest] every now and again. Your [pc.nipples] even feel moist. Perhaps you’ll start lactating soon?"), "passive");
+		AddLogEvent(ParseText("Tingles run through your [pc.fullChest] every now and again. Your [pc.nipples] even feel moist. Perhaps you’ll start lactating soon?"), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 40");
 	}
 	//50
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 50")) {
-		AddLogEvent(ParseText("A single droplet of [pc.milk] escapes from one of your [pc.nipples]"), "passive");
+		AddLogEvent(ParseText("A single droplet of [pc.milk] escapes from one of your [pc.nipples]"), "passive", deltaT);
 		if(pc.isChestGarbed()) ExtendLogEvent(ParseText(", staining your [pc.upperGarments] [pc.milkColor]"));
 		ExtendLogEvent(". <b>You’re lactating</b>, albeit slowly.");
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 50");
 	}
 	//60
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 60")) {
-		AddLogEvent(ParseText("Judging by the feelings in your [pc.fullChest], you can safely say that you’re making [pc.milk] faster than before. Is that what "), "passive");
+		AddLogEvent(ParseText("Judging by the feelings in your [pc.fullChest], you can safely say that you’re making [pc.milk] faster than before. Is that what "), "passive", deltaT);
 		if(pc.hasPregnancy()) ExtendLogEvent("it feels like to be an expectant mother?");
 		else ExtendLogEvent("expectant mothers feel like?");
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 60");
 	}
 	//70
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 70")) {
-		AddLogEvent("You’re pretty sure you’re lactating even more now. As a matter of fact, a scan by your codex confirms it. Your body is producing a decent amount of milk, perhaps a little under half its maximum capability.", "passive");
+		AddLogEvent("You’re pretty sure you’re lactating even more now. As a matter of fact, a scan by your codex confirms it. Your body is producing a decent amount of milk, perhaps a little under half its maximum capability.", "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 70");
 	}
 	//80
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 80")) {
-		AddLogEvent(ParseText("Heat suffuses your chest, just another indication that your [pc.fullChest] have passed a new threshold of productivity. You’re definitely lactating harder."), "passive");
+		AddLogEvent(ParseText("Heat suffuses your chest, just another indication that your [pc.fullChest] have passed a new threshold of productivity. You’re definitely lactating harder."), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 80");
 	}
 	//90
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 90")) {
-		AddLogEvent(ParseText("There’s no doubt about how bountiful your [pc.fullChest] are feeling, swollen with potential just waiting to be milked out so that they can produce more. <b>You’re getting close to having your body as trained for lactation as possible.</b>"), "passive");
+		AddLogEvent(ParseText("There’s no doubt about how bountiful your [pc.fullChest] are feeling, swollen with potential just waiting to be milked out so that they can produce more. <b>You’re getting close to having your body as trained for lactation as possible.</b>"), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 90");
 	}
 	//100
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 100")) {
-		AddLogEvent(ParseText("A wonderful, productive feeling swells in your [pc.fullChest], tingling hotly. A quick scan with your codex reports that your body is making [pc.milk] at its full capacity."), "passive");
+		AddLogEvent(ParseText("A wonderful, productive feeling swells in your [pc.fullChest], tingling hotly. A quick scan with your codex reports that your body is making [pc.milk] at its full capacity."), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 100");
 	}
 	//110
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 110")) {
-		AddLogEvent(ParseText("Somehow, your body is adapting to all the milking its been put through, and your [pc.fullChest] feel more powerful and fecund than ever before. Your chest is a well-trained milking machine."), "passive");
+		AddLogEvent(ParseText("Somehow, your body is adapting to all the milking its been put through, and your [pc.fullChest] feel more powerful and fecund than ever before. Your chest is a well-trained milking machine."), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 110");
 	}
 	//125
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 125")) {
-		AddLogEvent(ParseText("Your chest is practically singing in delight, and the only thing it sings about is [pc.milk] - rivers of never ending, liquid flows that will spill from you unceasingly. You have trained them to lactate as well as anything can be trained. If you want to make any more [pc.milk], you’ll have to grow your [pc.fullChest] bigger or turn to science."), "passive");
+		AddLogEvent(ParseText("Your chest is practically singing in delight, and the only thing it sings about is [pc.milk] - rivers of never ending, liquid flows that will spill from you unceasingly. You have trained them to lactate as well as anything can be trained. If you want to make any more [pc.milk], you’ll have to grow your [pc.fullChest] bigger or turn to science."), "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 125");
 	}
 }

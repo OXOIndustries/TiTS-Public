@@ -3,17 +3,6 @@
 	import classes.CockClass;
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Miscellaneous.FertitePlus;
-	import classes.Items.Miscellaneous.Lactaid;
-	import classes.Items.Miscellaneous.LactaidMilkTank;
-	import classes.Items.Miscellaneous.LactaidOverdrive;
-	import classes.Items.Miscellaneous.Sterilex;
-	import classes.Items.Toys.BubbleBuddy;
-	import classes.Items.Toys.EggTrainer;
-	import classes.Items.Toys.NivasBionaHole;
-	import classes.Items.Toys.TamaniBionaHole;
-	import classes.Items.Transformatives.Bovinium;
-	import classes.Items.Transformatives.BreedersBliss;
 	import classes.kGAMECLASS;
 	
 	public class Lerris extends Creature
@@ -34,18 +23,8 @@
 			this.customBlock = "";
 			this.isPlural = false;
 			
+			// Handled in tamaniCorpShop.as
 			this.inventory = [];
-			inventory.push(new BubbleBuddy());
-			inventory.push(new EggTrainer());
-			inventory.push(new NivasBionaHole());
-			inventory.push(new TamaniBionaHole());
-			inventory.push(new Lactaid());
-			inventory.push(new Sterilex());
-			inventory.push(new Bovinium());
-			inventory.push(new FertitePlus());
-			inventory.push(new LactaidMilkTank());
-			inventory.push(new LactaidOverdrive());
-			inventory.push(new BreedersBliss());
 			
 			keeperBuy = "Lerris busies herself with her prodigious tits whilst you browse the shops wares; casting a casual glance in her direction, you catch her squeezing her boobs together with her arms, wiggling this way and that...\n";
 			
@@ -192,10 +171,7 @@
 			this.ass.loosenessRaw = 4;
 			this.ass.bonusCapacity = 250;
 		}
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			dataObject.inventory.push(new BubbleBuddy().getSaveObject());
-		}
+		
 		override public function get bustDisplay():String
 		{
 			// LERRIS_<COW_>_0

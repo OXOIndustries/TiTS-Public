@@ -52,7 +52,7 @@
 
 public function metBeth():Boolean
 {
-	if(flags["MET_DEL"] != undefined) return true;
+	if(flags["MET_BETH_CARVER"] != undefined || flags["MET_DEL"] != undefined) return true;
 	return false;
 }
 
@@ -2367,6 +2367,10 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			output("\n\nSometimes you work the floor, trailing your hand up clients’ arms, winking at them friendlily from the bar, getting onto your [pc.knees] and sliding your pink, sparkly lips down thick, musky cock, clambering onto laps and writhing out slow dances to the music’s pulses, rubbing your [pc.butt] up and down growing erections. Sometimes you participate in the live feeds that a couple of the rooms are set up for; donning tight latex and sliding around in an oiled vat with half a dozen giggly, booby hos for the amusement of watchers light years away, or even with some lucky (and rich) client for advertisements. More often though, Kat has you in your room. You’re a relatively rare treat, and sold as such.");
 			output("\n\nThe constant buzz of horniness the mods gave you never dissipates, and you usually greet your customers with thong-clad [pc.butt] arched and a smouldering gaze over your shoulder. You love the rough, impulsive couplings you can get this way, often spraying [pc.cum] onto the sheets with a girly moan before they’re halfway done with you. More often though, males who’ve paid the premium want the fantasy they always envisaged with a gorgeous trap. They want to watch you spend minutes worshipping their cocks with honey, oil, long drags of the lips, expert curls of the tongue, thirsty hollows of the cheeks; they want to jack themselves up on Priapin so they can bend you over on the bed and spend hours filling out your tight, elastic back passage with said cocks, pounding your sensitive bitch boi buzzer over and over; they sometimes even want you to penetrate them with your cute, unintimidating dick, live out things they never would elsewhere.");
 			output("\n\nYou get a few female clients, too. Women who don’t trust regular boy toys to be gentle or solicitous enough. Women with boyfriends that won’t countenance a threeway with a hunk, but will with a sissy. Kaithrit females’ tastes run naturally towards girly boys, and they are not gentle, or easy to satiate. You wind up nursing a bruised torso after particularly long and rough rides with some curt, muscular lioness twice your size a few times.");
+			
+			output("\n\n");
+			pc.buttChange(pp.cockVolume(0), true, false, true);
+			pc.cockChange(false, true, true);
 			
 			//if(flags["BETHS_TIMES_WHORED_HANDS"] == undefined) flags["BETHS_TIMES_WHORED_HANDS"] = 0;
 			//if(flags["BETHS_TIMES_WHORED_MOUTH"] == undefined) flags["BETHS_TIMES_WHORED_MOUTH"] = 0;

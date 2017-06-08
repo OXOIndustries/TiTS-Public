@@ -166,6 +166,12 @@ public function rustPlainsEncounters():Boolean {
 		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
 		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
 		choices[choices.length] = raskvelGangEncounter;
+		//If not disabled.
+		if(chaurmineOnTarkus())
+		{
+			choices.push(encounterChaurmine);
+			if(rand(2) == 0) choices.push(encounterChaurmine);
+		}
 
 		//Run the event
 		choices[rand(choices.length)]();
@@ -200,6 +206,9 @@ public function rustCoastEncounters():Boolean {
 		
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
+
+		//If not disabled.
+		if(chaurmineOnTarkus()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
 	
 		//Run the event
 		weightedRand(e)();
@@ -238,6 +247,8 @@ public function rustRidgesEncounters():Boolean {
 		
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
+		//If not disabled.
+		if(chaurmineOnTarkus()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
 
 		//Run the event
 		weightedRand(e)();

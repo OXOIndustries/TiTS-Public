@@ -2654,7 +2654,7 @@ public function toggleSeraCollarOn():void
 	
 	output2("You take up the opened curlicue of leather and lace, hesitate... and then thread it around your neck. It fastens at the front, behind the glowing cerulean stone, with an emphatic ‘click’. A tiny frog leaps in your stomach. Sera’s collar has its soft, sure grip around your throat now - and you know what you have to do if you ever want release from it.");
 	
-	seraCollarValue("on", true);
+	//seraCollarValue("on", true);
 	toggleCollar("Sera’s");
 	pc.lust(5);
 	
@@ -2901,7 +2901,7 @@ public function seraTongueFuck(arg:Array):void
 	// Large output:
 	if((hasCock && pc.cumQ() >= 1000) || (!hasCock && pc.girlCumQ() >= 1000)) output(" Your orgasm is, as ever, gratuitous, and you spray the floor of the shop with your " + (hasCock ? "seed" : "pussy juices") + ", led on by the relentless march of her " + (hasCock ? "jerking" : "fingering") + ".");
 	output("\n\nYour muffled whines and moans combines with her own dark chuckle in the recesses of your mouth, and she withdraws, letting you take a couple of gasping breaths before going back to snogging you lasciviously one last time, tongues and lips rolling over each other as orgasm continues to tremble through your [pc.groin], before she departs with a pinching bite on your lower lip.");
-	output("\n\n<i>“Mmm,”</i> she sighs, still holding you close, exploring the insides of her around mouth ruminatively. <i>“Tastes of fuck-slave.”</i>");
+	output("\n\n<i>“Mmm,”</i> she sighs, still holding you close, exploring around the insides of her mouth ruminatively. <i>“Tastes of fuck-slave.”</i>");
 	// Lust/cum reset
 	if((hasCock && pc.cumQ() < 1000) || (!hasCock && pc.girlCumQ() < 1000))
 	{

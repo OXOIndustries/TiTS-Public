@@ -9,6 +9,11 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_QUEENOFTHEDEEP; }
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/reasner.png", mimeType = "image/png")]
+		public var Bust_BEATRICE:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/reasner_nude.png", mimeType = "image/png")]
+		public var Bust_BEATRICE_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally.png", mimeType = "image/png")]
 		public var Bust_DALLY:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/dally_nude.png", mimeType = "image/png")]
@@ -201,6 +206,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jacques00/babe_nude_3.png", mimeType = "image/png")]
 		public var Bust_RILEY_NUDE_3:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jacques00/riya.png", mimeType = "image/png")]
+		public var Bust_RIYA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/riya_nude.png", mimeType = "image/png")]
+		public var Bust_RIYA_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/saendra.png", mimeType = "image/png")]
 		public var Bust_SAENDRA:Class;
 		public var Bounds_SAENDRA:Rectangle = new Rectangle(60, 0, 60, 60);
@@ -262,53 +272,58 @@ package classes.Resources.Busts
 		// Easiest way to specify these- compiler constants will avoid these being embedded in the non-imagepack version aka OH GOD WHERE DID THE FILESIZE GOOOOO
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/dally.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/reasner.png", mimeType = "image/png")]
+			public var Full_BEATRICE:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/reasner_nude.png", mimeType = "image/png")]
+			public var Full_BEATRICE_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/dally.png", mimeType = "image/png")]
 			public var Full_DALLY:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/dally_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/dally_nude.png", mimeType = "image/png")]
 			public var Full_DALLY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/dally_limp_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/dally_limp_nude.png", mimeType = "image/png")]
 			public var Full_DALLY_LIMP_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv.png", mimeType = "image/png")]
 			public var Full_FENRISDRONEIV:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv_night.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv_night.png", mimeType = "image/png")]
 			public var Full_FENRISDRONEIV_NIGHT:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv_arctic.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/fenris_mkiv_arctic.png", mimeType = "image/png")]
 			public var Full_FENRISDRONEIV_ARCTIC:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/firewall.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/firewall.png", mimeType = "image/png")]
 			public var Full_FIREWALL:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/firewall_battle.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/firewall_battle.png", mimeType = "image/png")]
 			public var Full_FIREWALL_BATTLE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/queen_fuzzlebottom.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/queen_fuzzlebottom.png", mimeType = "image/png")]
 			public var Full_FUZZLEBOTTOM:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo.png", mimeType = "image/png")]
 			public var Full_GRAY_GOO:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo_prime.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo_prime.png", mimeType = "image/png")]
 			public var Full_GRAY_GOO_PRIME:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo_prime_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo_prime_2.png", mimeType = "image/png")]
 			public var Full_GRAY_GOO_PRIME_2:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo_giga.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/gray_goo_giga.png", mimeType = "image/png")]
 			public var Full_GRAY_GOO_GIGA:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/hand_so.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/hand_so.png", mimeType = "image/png")]
 			public var Full_HAND_SO:Class;
 		
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/horace_decker.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/horace_decker.png", mimeType = "image/png")]
 			public var Full_HORACE_DECKER:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/irellia.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/irellia.png", mimeType = "image/png")]
 			public var Full_IRELLIA:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jardi.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jardi.png", mimeType = "image/png")]
 			public var Full_JARDI:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jardi_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jardi_nude.png", mimeType = "image/png")]
 			public var Full_JARDI_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jarvis.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/jarvis.png", mimeType = "image/png")]
 			public var Full_JARVIS:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kaede.png", mimeType = "image/png")]
@@ -316,144 +331,149 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kaede_nude.png", mimeType = "image/png")]
 			public var Full_KAEDE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kirlarwe.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/kirlarwe.png", mimeType = "image/png")]
 			public var Full_KIRLARWE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana.png", mimeType = "image/png")]
 			public var Full_LILIANA:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_blanket.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_blanket.png", mimeType = "image/png")]
 			public var Full_LILIANA_BLANKET:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_nude.png", mimeType = "image/png")]
 			public var Full_LILIANA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_cyborg.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_cyborg.png", mimeType = "image/png")]
 			public var Full_LILIANA_CYBORG:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_cyborg_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_cyborg_nude.png", mimeType = "image/png")]
 			public var Full_LILIANA_CYBORG_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_regen.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_regen.png", mimeType = "image/png")]
 			public var Full_LILIANA_REGEN:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_regen_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/liliana_regen_nude.png", mimeType = "image/png")]
 			public var Full_LILIANA_REGEN_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/lyralla.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/lyralla.png", mimeType = "image/png")]
 			public var Full_LYRALLA:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/lyralla_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/lyralla_nude.png", mimeType = "image/png")]
 			public var Full_LYRALLA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/queen_marsail.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/queen_marsail.png", mimeType = "image/png")]
 			public var Full_MARSAIL:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/matron_oserre.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/matron_oserre.png", mimeType = "image/png")]
 			public var Full_MATRON_OSERRE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_pilot.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_pilot.png", mimeType = "image/png")]
 			public var Full_MYR_GOLD_PILOT:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_soldier.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_soldier.png", mimeType = "image/png")]
 			public var Full_MYR_GOLD_GUARD:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_guard.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_guard.png", mimeType = "image/png")]
 			public var Full_MYR_GOLD_GUARD_HAMMER:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_rebel.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_rebel.png", mimeType = "image/png")]
 			public var Full_MYR_GOLD_REBEL:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_student.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_gold_student.png", mimeType = "image/png")]
 			public var Full_MYR_GOLD_STUDENT:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_red_guard.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_red_guard.png", mimeType = "image/png")]
 			public var Full_MYR_RED_GUARD:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_red_guard_mask.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/myr_red_guard_mask.png", mimeType = "image/png")]
 			public var Full_MYR_RED_GUARD_MASK:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie.png", mimeType = "image/png")]
 			public var Full_NATALIE:Class;		
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie_nude.png", mimeType = "image/png")]
 			public var Full_NATALIE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara.png", mimeType = "image/png")]
 			public var Full_NEHZARA:Class;		
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara_nude.png", mimeType = "image/png")]
 			public var Full_NEHZARA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova.png", mimeType = "image/png")]
 			public var Full_NOVA:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude_0.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE_0:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nova_nude_1.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE_1:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny.png", mimeType = "image/png")]
 			public var Full_PENNY:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude.png", mimeType = "image/png")]
 			public var Full_PENNY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_canine_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_canine_0.png", mimeType = "image/png")]
 			public var Full_PENNY_NUDE_VIXEN:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_canine_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_canine_1.png", mimeType = "image/png")]
 			public var Full_PENNY_NUDE_VIXEN_1:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_canine_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_canine_2.png", mimeType = "image/png")]
 			public var Full_PENNY_NUDE_VIXEN_2:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_equine_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_equine_0.png", mimeType = "image/png")]
 			public var Full_PENNY_NUDE_HORSE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_equine_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_equine_1.png", mimeType = "image/png")]
 			public var Full_PENNY_NUDE_HORSE_1:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_equine_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_nude_equine_2.png", mimeType = "image/png")]
 			public var Full_PENNY_NUDE_HORSE_2:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_canine_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_canine_0.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_VIXEN:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_canine_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_canine_1.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_VIXEN_1:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_canine_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_canine_2.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_VIXEN_2:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_equine_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_equine_0.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_HORSE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_equine_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_equine_1.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_HORSE_1:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_equine_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/penny_bimbo_equine_2.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_HORSE_2:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/deep_lake_queen.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/deep_lake_queen.png", mimeType = "image/png")]
 			public var Full_QUEENOFTHEDEEP:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/ramis.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/ramis.png", mimeType = "image/png")]
 			public var Full_RAMIS:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/ramis_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/ramis_nude.png", mimeType = "image/png")]
 			public var Full_RAMIS_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_0.png", mimeType = "image/png")]
 			public var Full_RILEY_0:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_0.png", mimeType = "image/png")]
 			public var Full_RILEY_BRA_0:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_0.png", mimeType = "image/png")]
 			public var Full_RILEY_NUDE_0:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_1.png", mimeType = "image/png")]
 			public var Full_RILEY_1:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_1.png", mimeType = "image/png")]
 			public var Full_RILEY_BRA_1:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_1.png", mimeType = "image/png")]
 			public var Full_RILEY_NUDE_1:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_2.png", mimeType = "image/png")]
 			public var Full_RILEY_2:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_2.png", mimeType = "image/png")]
 			public var Full_RILEY_BRA_2:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_2.png", mimeType = "image/png")]
 			public var Full_RILEY_NUDE_2:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_3.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_3.png", mimeType = "image/png")]
 			public var Full_RILEY_3:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_3.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_bra_3.png", mimeType = "image/png")]
 			public var Full_RILEY_BRA_3:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_3.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/babe_nude_3.png", mimeType = "image/png")]
 			public var Full_RILEY_NUDE_3:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/riya.png", mimeType = "image/png")]
+			public var Full_RIYA:Class;
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/riya_nude.png", mimeType = "image/png")]
+			public var Full_RIYA_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
 			public var Full_SAENDRA_FUTA:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra_nude.png", mimeType = "image/png")]
 			public var Full_SAENDRA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra_futa_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/saendra_futa_nude.png", mimeType = "image/png")]
 			public var Full_SAENDRA_FUTA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/scalla.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/scalla.png", mimeType = "image/png")]
 			public var Full_SCALLA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/shekka.png", mimeType = "image/png")]
@@ -461,34 +481,34 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/shekka_nude.png", mimeType = "image/png")]
 			public var Full_SHEKKA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe.png", mimeType = "image/png")]
 			public var Full_SIEGWULFE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_nude.png", mimeType = "image/png")]
 			public var Full_SIEGWULFE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_bimbo.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_bimbo.png", mimeType = "image/png")]
 			public var Full_SIEGWULFE_BIMBO:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_bimbo_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/siegwulfe_bimbo_nude.png", mimeType = "image/png")]
 			public var Full_SIEGWULFE_BIMBO_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme.png", mimeType = "image/png")]
 			public var Full_SYLVIE:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme_bra.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme_bra.png", mimeType = "image/png")]
 			public var Full_SYLVIE_BRA:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme_nude.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/mountme_nude.png", mimeType = "image/png")]
 			public var Full_SYLVIE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_0.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_0.png", mimeType = "image/png")]
 			public var Full_TAMWOLF_DAMAGED:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_1.png", mimeType = "image/png")]
 			public var Full_TAMWOLF:Class;
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_2.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/tamwolf_2.png", mimeType = "image/png")]
 			public var Full_TAMWOLF_II:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/varmint.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/varmint.png", mimeType = "image/png")]
 			public var Full_VARMINT:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/jacques00/hr/vedice.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/npcs/jacques00/hr/vedice.png", mimeType = "image/png")]
 			public var Full_VEDICE:Class;
 		}
 		
@@ -507,16 +527,22 @@ package classes.Resources.Busts
 		public var Bust_LOGO_GALACTIC_HUNTRESS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/galactic_huntress_1.png", mimeType = "image/png")]
 		public var Bust_LOGO_GALACTIC_HUNTRESS_1:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/humphard.png", mimeType = "image/png")]
+		public var Bust_LOGO_HUMPHARD:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/jejune.png", mimeType = "image/png")]
 		public var Bust_LOGO_JEJUNE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/joyco.png", mimeType = "image/png")]
 		public var Bust_LOGO_JOYCO:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/kihacorp.png", mimeType = "image/png")]
 		public var Bust_LOGO_KIHACORP:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/nova_securities.png", mimeType = "image/png")]
+		public var Bust_LOGO_NOVA_SECURITIES:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/pyrite.png", mimeType = "image/png")]
 		public var Bust_LOGO_PYRITE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
 		public var Bust_LOGO_REAPER:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/rhenworld.png", mimeType = "image/png")]
+		public var Bust_LOGO_RHENWORLD:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/sits.png", mimeType = "image/png")]
 		public var Bust_LOGO_SITS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/snuggle.png", mimeType = "image/png")]
@@ -532,39 +558,45 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/aegis.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/aegis.png", mimeType = "image/png")]
 			public var Full_LOGO_AEGIS:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/akkadi.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/akkadi.png", mimeType = "image/png")]
 			public var Full_LOGO_AKKADI:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/bell-isle_grunmann.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/bell-isle_grunmann.png", mimeType = "image/png")]
 			public var Full_LOGO_BELL_ISLE_GRUNMANN:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/carver.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/carver.png", mimeType = "image/png")]
 			public var Full_LOGO_CARVER:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress.png", mimeType = "image/png")]
 			public var Full_LOGO_GALACTIC_HUNTRESS:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress_1.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress_1.png", mimeType = "image/png")]
 			public var Full_LOGO_GALACTIC_HUNTRESS_1:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/jejune.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/humphard.png", mimeType = "image/png")]
+			public var Full_LOGO_HUMPHARD:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/jejune.png", mimeType = "image/png")]
 			public var Full_LOGO_JEJUNE:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/joyco.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/joyco.png", mimeType = "image/png")]
 			public var Full_LOGO_JOYCO:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/kihacorp.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/kihacorp.png", mimeType = "image/png")]
 			public var Full_LOGO_KIHACORP:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/pyrite.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/nova_securities.png", mimeType = "image/png")]
+			public var Full_LOGO_NOVA_SECURITIES:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/pyrite.png", mimeType = "image/png")]
 			public var Full_LOGO_PYRITE:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/reaper.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/reaper.png", mimeType = "image/png")]
 			public var Full_LOGO_REAPER:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/sits.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/rhenworld.png", mimeType = "image/png")]
+			public var Full_LOGO_RHENWORLD:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/sits.png", mimeType = "image/png")]
 			public var Full_LOGO_SITS:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png")]
 			public var Full_LOGO_SNUGGLE:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/steele_tech.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/steele_tech.png", mimeType = "image/png")]
 			public var Full_LOGO_STEELETECH:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/tamanicorp.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/tamanicorp.png", mimeType = "image/png")]
 			public var Full_LOGO_TAMANICORP:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/ugc.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/ugc.png", mimeType = "image/png")]
 			public var Full_LOGO_UGC:Class;
-			[Embed(source = "../../../assets/images/logos/jacques00/hr/xenogen.png", mimeType = "image/png", compression = true)]
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/xenogen.png", mimeType = "image/png")]
 			public var Full_LOGO_XENOGEN:Class;
 		}
 	}

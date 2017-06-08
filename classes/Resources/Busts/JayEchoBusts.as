@@ -24,6 +24,11 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/gooey_shopkeeper.png", mimeType = "image/png")]
 		public var Bust_CRYSTAL_GOO_SHOPKEEP:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/cynthia.png", mimeType = "image/png")]
+		public var Bust_CYNTHIA:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/cynthia_nude.png", mimeType = "image/png")]
+		public var Bust_CYNTHIA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/ehstraffe.png", mimeType = "image/png")]
 		public var Bust_EHSTRAFFE:Class;
@@ -70,6 +75,11 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/sierva.png", mimeType = "image/png")]
 		public var Bust_SIERVA:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/walt.png", mimeType = "image/png")]
+		public var Bust_WALT:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/walt_nude.png", mimeType = "image/png")]
+		public var Bust_WALT_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/yarasta.png", mimeType = "image/png")]
 		public var Bust_YARASTA:Class;
@@ -90,6 +100,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/gooey_shopkeeper.png", mimeType = "image/png")]
 			public var Full_CRYSTAL_GOO_SHOPKEEP:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/cynthia.png", mimeType = "image/png")]
+			public var Full_CYNTHIA:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/cynthia_nude.png", mimeType = "image/png")]
+			public var Full_CYNTHIA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/ehstraffe.png", mimeType = "image/png")]
 			public var Full_EHSTRAFFE:Class;
@@ -134,6 +149,11 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/sierva.png", mimeType = "image/png")]
 			public var Full_SIERVA:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/walt.png", mimeType = "image/png")]
+			public var Full_WALT:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/walt_nude.png", mimeType = "image/png")]
+			public var Full_WALT_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/yarasta.png", mimeType = "image/png")]
 			public var Full_YARASTA:Class;

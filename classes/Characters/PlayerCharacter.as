@@ -54,7 +54,17 @@ package classes.Characters
 		// Level Cap
 		override public function levelMax():int
 		{
-			return 8;
+			return 9;
+		}
+		
+		override public function nameDisplay():String
+		{
+			return short;
+		}
+		
+		override public function lustDef():Number
+		{
+			return willpower()/5;
 		}
 		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
@@ -73,12 +83,11 @@ package classes.Characters
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
 				if(cumflationEnabled()) cumflationHappens(cumFrom,vagIndex);
+				sstdChecks(cumFrom,"vagina");
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
-			
 			return false;
 		}
-		
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
@@ -102,6 +111,7 @@ package classes.Characters
 			// Cumflation
 			if (cumFrom != null)
 			{
+				sstdChecks(cumFrom,"ass");
 				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
 				return this.tryKnockUp(cumFrom, 3);
 			}
@@ -152,6 +162,7 @@ package classes.Characters
 					if(cumFrom.girlCumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
+			if(cumFrom != null) sstdChecks(cumFrom,"mouth");
 			return false;
 		}
 		
@@ -181,6 +192,7 @@ package classes.Characters
 				kGAMECLASS.dumb4CumReset();
 			}
 			if(cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
+			if(cumFrom != null) sstdChecks(cumFrom,"mouth");
 			return false;
 		}
 		// *shrug*
@@ -473,7 +485,6 @@ package classes.Characters
 				//updateHeatPerk(totalDays);
 				//updateRutPerk(totalDays);
 			}
-			if(isFullyWombPregnant()) clearHeat();
 			
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
@@ -486,19 +497,16 @@ package classes.Characters
 		
 		private function updateExhibitionism(totalDays:uint):void
 		{
-			var exhibitionismPoints:Number = 0;
-			if(isChestVisible() && biggestTitSize() >= 1) exhibitionismPoints++;
-			if(isCrotchVisible() && (hasGenitals() || balls > 0)) exhibitionismPoints++;
-			if(isAssVisible()) exhibitionismPoints++;
-			if(isNude()) exhibitionismPoints++;
-
+			var exhibitionismPoints:Number = exposureLevel(true);
 			var currExhib:Number = exhibitionism();
 
 			//All covered up? Reduce over time!
-			if(exhibitionismPoints <= 0) 
+			if(exhibitionismPoints <= 0)
 			{
+				//Exhibitionism locked at 100 and does not fall with time, even if fully clothed.
+				if(hasPerk("Ultra-Exhibitionist")) { /* Nada! */ }
 				//Skipping out on underwear will keep it from dropping, but won't raise it.
-				if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
+				else if(upperUndergarment is EmptySlot || lowerUndergarment is EmptySlot) { /* Nada! */ }
 				//High exhibitionism or sex-driven personality leads to being comfortable in kinky undies! Otherwise, degrade a little bit.
 				else if(isAssExposedByLowerUndergarment() || isCrotchExposedByLowerUndergarment() || isChestExposedByUpperUndergarment())
 				{
@@ -512,6 +520,8 @@ package classes.Characters
 			else if(exhibitionismPoints >= 3 && currExhib < 40) exhibitionism(1);
 			else if(exhibitionismPoints >= 2 && currExhib < 33) exhibitionism(1);
 			else if(currExhib < 20) exhibitionism(1);
+			
+			if(hasPerk("Ultra-Exhibitionist")) kGAMECLASS.processExhibitionismStrip(totalDays);
 		}
 		
 		private function myrVenomUpdate(totalDays:uint):void
@@ -622,7 +632,7 @@ package classes.Characters
 			
 			if (effect.value1 > 1000 && rand(2) == 0)
 			{
-				AddLogEvent("You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?", "passive", 1440 - (GetGameTimestamp() % 1440));
+				AddLogEvent("You feel completely bloated with your production of nyrean eggs... Perhaps you should make some time to expel them?", "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 			}
 		}
 		
@@ -785,7 +795,6 @@ package classes.Characters
 				// v3 - libido boost
 				// v4 - tease bonus!
 				createStatusEffect("Heat", 5, 25, 10, 3, false, "LustUp", "Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage", false, 28800, 0xB793C4);
-				libido(1);
 			}
 			// Deep Heat
 			else if(!inDeepHeat())
@@ -799,9 +808,9 @@ package classes.Characters
 				// v3 - libido boost
 				// v4 - tease bonus!
 				setStatusValue("Heat", 1, 10);
-				setStatusValue("Heat", 2, 10);
+				setStatusValue("Heat", 2, 35);
 				setStatusValue("Heat", 3, 25);
-				setStatusValue("Heat", 4, 2);
+				setStatusValue("Heat", 4, 5);
 				setStatusTooltip("Heat", "<b>You are in a deep heat!</b> Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+" + statusEffectv1("Heat") * 100 + "% Fertility\n+" + statusEffectv2("Heat") + " Minimum Lust\n+" + statusEffectv3("Heat") + " Libido\n+" + statusEffectv4("Heat") + " Tease Damage");
 				extendHeat(7 * 24 * 60);
 			}
@@ -813,7 +822,7 @@ package classes.Characters
 				extendHeat(7 * 24 * 60);
 			}
 			
-			if(msg.length > 0) AddLogEvent(msg, "passive", 1440 - (GetGameTimestamp() % 1440));
+			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		private function updateRutPerk(totalDays:uint):void
 		{
@@ -857,7 +866,7 @@ package classes.Characters
 				extendRut(7 * 24 * 60);
 			}
 			
-			if(msg.length > 0) AddLogEvent(msg, "passive", 1440 - (GetGameTimestamp() % 1440));
+			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		private function processOmegaFever(totalDays:uint):void
 		{
@@ -1098,6 +1107,54 @@ package classes.Characters
 				}
 				removeStatusEffect("Wool Removal");
 			}
+		}
+		
+		// Mimbrane jazz.
+		public function mimbranePartDescript(mimType: String = ""): String
+		{
+			var mimbrane:StorageClass = getPerkEffect(mimType);
+			
+			if(mimbrane == null) return ("<b>ERROR: mimbranePartDescript() called for unknown mimbrane “" + mimType + "”</b>");
+			
+			//Mimbrane additions in relation to face.
+			var desc: String = "";
+			
+			//Player character check--not sure if NPCs can get the Mims since the flags are probably global...
+			// 50% trust and hunger-related description
+			if(rand(2) == 0) {
+				if(mimbrane.value1 <= 0) desc += "mutinous";
+				else if(mimbrane.value1 <= 1) desc += "shifty";
+				else if(mimbrane.value1 <= 2) desc += "questionable";
+				else if(mimbrane.value1 <= 3) desc += "befriended";
+				else if(mimbrane.value1 <= 4) desc += "loyal";
+				else desc += "devoted";
+				desc += " and ";
+				if(mimbrane.value2 <= 0) desc += "satiated";
+				else if(mimbrane.value2 <= 1) desc += "well-fed";
+				else if(mimbrane.value2 <= 2) desc += "fed";
+				else if(mimbrane.value2 <= 3) desc += "slightly hungry";
+				else if(mimbrane.value2 <= 4) desc += "hungry";
+				else if(mimbrane.value2 <= 5) desc += "very hungry";
+				else if(mimbrane.value2 <= 6) desc += "starving";
+				else desc += "irritable";
+			}
+			// 50% sweatiness and combat-ready description
+			if (rand(2) == 0) {
+				if(flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1 && mimbrane.value1 >= 3) {
+					if (desc != "") desc += ", ";
+					desc += RandomInCollection(["glistening", "moist", "slippery", "self-lathering", "perspiring", "mucid", "sudoriferous", "clammy", "diaphoretic", "sweating"]);
+				}
+				if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == 1 && mimbrane.value1 >= 4) {
+					if (desc != "") desc += " and ";
+					desc += RandomInCollection(["lust-inducing", "lust-spraying", "lust-projecting", "lust-spitting"]);
+				}
+			}
+			if (desc != "") desc += " ";
+			// Mimbrane descriptor
+			if (rand(10) > 4) desc += "Mimbrane";
+			else desc += RandomInCollection(["parasite", "epidel", "graft", "second skin", "cum leech"]);
+			
+			return desc;
 		}
 	}
 }

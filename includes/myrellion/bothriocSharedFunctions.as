@@ -45,7 +45,7 @@ public function updateBothriocAddiction(totalDays:uint):void
 
 	if (s > 0 && bothriocAddiction() == 0)
 	{
-		AddLogEvent("The world has taken on harder edges in the last couple of hours, and you feel cooler and somehow taller. There’s a small, aching emptiness inside of you where the soft, profound peace you once knew resided - however, that is easy to shake off with the stronger rationality returning on top of it, and the realisation the bothrioc hormones must finally be worked out of your system.", "passive", totalDays * 1440);
+		AddLogEvent("The world has taken on harder edges in the last couple of hours, and you feel cooler and somehow taller. There’s a small, aching emptiness inside of you where the soft, profound peace you once knew resided - however, that is easy to shake off with the stronger rationality returning on top of it, and the realisation the bothrioc hormones must finally be worked out of your system.", "passive", ((1440 - (GetGameTimestamp() % 1440)) + (i * 1440)));
 	}
 }
 
@@ -99,7 +99,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 
 		bothriocAddiction(1);
 		if (rand(4) <= 2 && pc.libido() < 80) pc.slowStatGain("libido", 2 + rand(2));
-		if (rand(4) <= 2 && pc.tone > 20) pc.modTone(3 + rand(3), true);
+		if (rand(4) <= 2 && pc.tone < 20) pc.modTone(3 + rand(3), true);
 	}
 	else if (opt == 1)
 	{
@@ -359,7 +359,7 @@ public function bothriocEggnancy100Effects(deltaT:uint, opt:int):void
 	}
 	else if (opt == 1)
 	{
-		AddLogEvent("The dense glow growing inside you intensifies the total peace you already feel. Nothing is more gratifying than these hours of pregnancy; nothing feels better than the sensation of the warm oil flowing all the way through you, forever honing you into a creature of pure, submissive sensuality.");
+		AddLogEvent("The dense glow growing inside you intensifies the total peace you already feel. Nothing is more gratifying than these hours of pregnancy; nothing feels better than the sensation of the warm oil flowing all the way through you, forever honing you into a creature of pure, submissive sensuality.", "passive", deltaT);
 
 		bothriocEggnancySub100Effects(deltaT, opt, false);
 

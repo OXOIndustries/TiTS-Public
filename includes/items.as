@@ -12,6 +12,8 @@ import classes.Items.Accessories.SiegwulfeItem;
 import classes.Items.Armor.Unique.Omnisuit;
 import classes.Items.Armor.Unique.OmnisuitCollar;
 import classes.Items.Armor.Unique.StrangeCollar;
+import classes.Items.Melee.Rock;
+import classes.Items.Miscellaneous.EmptySlot;
 
 public function isEquippableItem(item:ItemSlotClass):Boolean
 {
@@ -299,6 +301,10 @@ public function buyItem():void {
 				switch(shopkeep.originalRace)
 				{
 					case "Amazona": output(amazonaIcedTeaList(shopkeep.inventory[x])); break;
+					default :
+						if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
+						output(StringUtil.upperCase(shopkeep.inventory[x].description, false) + " - " + temp + " credits.");
+					break;
 				}
 			}
 			// Default listing
@@ -881,45 +887,45 @@ public function unequipMenu(inCombat:Boolean = false):void
 	if (pc.upperUndergarment.shortName != "")
 	{
 		if(inCombat) addDisabledButton(0, "U.Top Off", StringUtil.toDisplayCase(pc.upperUndergarment.longName), "Cannot be unequipped in combat.");
-		else addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, "bra");
+		else addOverrideItemButton(0, pc.upperUndergarment, "U.Top Off", unequip, pc.upperUndergarment);
 	}
 	else addDisabledButton(0, "Undertop", "Undertop", "You are not wearing anything in this slot.");
 
 	if (pc.shield.shortName != "")
 	{
-		addOverrideItemButton(1, pc.shield, "Shield Off", unequip, "shield");
+		addOverrideItemButton(1, pc.shield, "Shield Off", unequip, pc.shield);
 	}
 	else addDisabledButton(1, "Shield", "Shield Generator", "You do not have a shield generator equipped.");
 	
 	if (pc.lowerUndergarment.shortName != "")
 	{
 		if(inCombat) addDisabledButton(5, "U.Wear Off", StringUtil.toDisplayCase(pc.lowerUndergarment.longName), "Cannot be unequipped in combat.");
-		else addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, "underwear");
+		else addOverrideItemButton(5, pc.lowerUndergarment, "U.Wear Off", unequip, pc.lowerUndergarment);
 	}
 	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
 	
 	if (pc.meleeWeapon.shortName != "Rock")
 	{
-		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
+		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
 	}
 	else addDisabledButton(2, "Melee", "Melee Weapon", "You do not have a melee weapon equipped.");
 	
 	if (pc.armor.shortName != "")
 	{
 		if(inCombat) addDisabledButton(6, "Armor Off", StringUtil.toDisplayCase(pc.armor.longName), "Cannot be unequipped in combat.");
-		else addOverrideItemButton(6, pc.armor, "Armor Off", unequip, "armor");
+		else addOverrideItemButton(6, pc.armor, "Armor Off", unequip, pc.armor);
 	}
 	else addDisabledButton(6, "Armor", "Armor", "You are not wearing anything in this slot.");
 	
 	if (pc.rangedWeapon.shortName != "Rock")
 	{
-		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
+		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, pc.rangedWeapon);
 	}
 	else addDisabledButton(7, "Ranged", "Ranged Weapon", "You do not have a ranged weapon equipped.");
 	
 	if (pc.accessory.shortName != "")
 	{
-		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, "accessory");
+		addOverrideItemButton(3, pc.accessory, "Acc. Off", unequip, pc.accessory);
 	}
 	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
@@ -1312,13 +1318,13 @@ public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):voi
 		addButton(0, "Next", itemScreen);
 	}
 }
-public function unequip(arg:String, next:Boolean = true):void 
+public function unequip(item:ItemSlotClass, next:Boolean = true):void 
 {
 	clearOutput();
 	
 	if(inCombat())
 	{
-		if(!InCollection(arg, ["mWeapon", "rWeapon"]))
+		if(!InCollection(item.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON]))
 		{
 			output("You’re in combat--you can’t possibly unequip this item right now!");
 			return;
@@ -1330,87 +1336,66 @@ public function unequip(arg:String, next:Boolean = true):void
 		}
 	}
 	
+	if(!pc.itemSlotUnlocked(item.type))
+	{
+		itemDisabledMessage(item.type);
+		return;
+	}
+	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var unequippedItems:Array = new Array();
 	
-	if(arg == "bra") {
-		if(!pc.itemSlotUnlocked(GLOBAL.UPPER_UNDERGARMENT))
-		{
-			itemDisabledMessage(GLOBAL.UPPER_UNDERGARMENT);
-			return;
-		}
-		unequippedItems[unequippedItems.length] = pc.upperUndergarment;
-		pc.upperUndergarment = new classes.Items.Miscellaneous.EmptySlot();
-	}
-	else if(arg == "underwear") {
-		if(!pc.itemSlotUnlocked(GLOBAL.LOWER_UNDERGARMENT))
-		{
-			itemDisabledMessage(GLOBAL.LOWER_UNDERGARMENT);
-			return;
-		}
-		unequippedItems[unequippedItems.length] = pc.lowerUndergarment;
-		pc.lowerUndergarment = new classes.Items.Miscellaneous.EmptySlot();
-	}
-	else if(arg == "shield") {
-		if(!pc.itemSlotUnlocked(GLOBAL.SHIELD))
-		{
-			itemDisabledMessage(GLOBAL.SHIELD);
-			return;
-		}
-		unequippedItems[unequippedItems.length] = pc.shield;
-		pc.shield = new classes.Items.Miscellaneous.EmptySlot();
-	}
-	else if(arg == "accessory") {
-		if(!pc.itemSlotUnlocked(GLOBAL.ACCESSORY))
-		{
-			itemDisabledMessage(GLOBAL.ACCESSORY);
-			return;
-		}
-		if(pc.accessory is SiegwulfeItem)
-		{
-			SiegwulfeUnequip();
-		}
-		unequippedItems[unequippedItems.length] = pc.accessory;
-		pc.accessory = new classes.Items.Miscellaneous.EmptySlot();
-	}
-	else if(arg == "armor") {
-		if(!pc.itemSlotUnlocked(GLOBAL.ARMOR))
-		{
-			itemDisabledMessage(GLOBAL.ARMOR);
-			return;
-		}
-		if(pc.armor is Omnisuit) 
-		{
-			output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
-			unequippedItems[unequippedItems.length] = new OmnisuitCollar();
-			pc.removeStatusEffect("Rubber Wrapped");
-		}
-		else unequippedItems[unequippedItems.length] = pc.armor;
-		pc.armor = new classes.Items.Miscellaneous.EmptySlot();
-	}
-	else if(arg == "mWeapon") {
-		if(!pc.itemSlotUnlocked(GLOBAL.MELEE_WEAPON))
-		{
-			itemDisabledMessage(GLOBAL.MELEE_WEAPON);
-			return;
-		}
-		unequippedItems[unequippedItems.length] = pc.meleeWeapon;
-		pc.meleeWeapon = new classes.Items.Melee.Rock();
-	}
-	else if(arg == "rWeapon") {
-		if(!pc.itemSlotUnlocked(GLOBAL.RANGED_WEAPON))
-		{
-			itemDisabledMessage(GLOBAL.RANGED_WEAPON);
-			return;
-		}
-		unequippedItems[unequippedItems.length] = pc.rangedWeapon;
-		pc.rangedWeapon = new classes.Items.Melee.Rock();
+	switch(item.type)
+	{
+		case GLOBAL.CLOTHING:
+		case GLOBAL.ARMOR:
+			if(pc.armor is Omnisuit) 
+			{
+				output("Touching a small stud on the collar, you command the Omnisuit to retract. It does so at once, making you shiver and shudder as it disengages from your [pc.skinFurScales]. The crawling latex tickles at first, but with each blob that flows up into the collar, the sensations deaden. Once you’re completely uncovered, the collar hisses and snaps open, falling into a numbed palm. Your sense of touch is vastly diminished without the suit, leading you to wonder if it wouldn’t be better to just put it back on.\n\n");
+				unequippedItems.push(new OmnisuitCollar());
+				pc.removeStatusEffect("Rubber Wrapped");
+			}
+			else unequippedItems.push(pc.armor);
+			pc.armor = new EmptySlot();
+			break;
+		case GLOBAL.MELEE_WEAPON:
+			unequippedItems.push(pc.meleeWeapon);
+			pc.meleeWeapon = new Rock();
+			break;
+		case GLOBAL.RANGED_WEAPON:
+			unequippedItems.push(pc.rangedWeapon);
+			pc.rangedWeapon = new Rock();
+			break;
+		case GLOBAL.SHIELD:
+			unequippedItems.push(pc.shield);
+			pc.shield = new EmptySlot();
+			break;
+		case GLOBAL.ACCESSORY:
+			if(pc.accessory is SiegwulfeItem)
+			{
+				SiegwulfeUnequip();
+			}
+			unequippedItems.push(pc.accessory);
+			pc.accessory = new EmptySlot();
+			break;
+		case GLOBAL.LOWER_UNDERGARMENT:
+			unequippedItems.push(pc.lowerUndergarment);
+			pc.lowerUndergarment = new EmptySlot();
+			break;
+		case GLOBAL.UPPER_UNDERGARMENT:
+			unequippedItems.push(pc.upperUndergarment);
+			pc.upperUndergarment = new EmptySlot();
+			break;
 	}
 	
-	unequippedItems[unequippedItems.length - 1].onRemove(pc);
+	var i:int = 0;
+	for(i = 0; i < unequippedItems.length; i++)
+	{
+		unequippedItems[i].onRemove(pc);
+	}
 	
 	itemCollect(unequippedItems);
-	if(inCombat()) backToCombatInventory(unequippedItems[unequippedItems.length - 1]);
+	if(inCombat()) backToCombatInventory(item);
 }
 
 // atm, no equippable items have a stacksize > 1, so there is never a possibility that we'd have to split an item stack to equip an item the player holds in their inventory.
@@ -1449,6 +1434,12 @@ public function equipItem(arg:ItemSlotClass):void {
 	else if(arg is SiegwulfeItem)
 	{
 		SiegwulfeEquip();
+	}
+	// Power armor req
+	else if(arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
+	{
+		output("You are not strong enough to equip your " + arg.longName + "!\n\n");
+		removedItem = arg;
 	}
 	else
 	{
@@ -1654,6 +1645,16 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 }
 
 public function discardItem(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to discard!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	clearOutput();
 	output("You discard " + lootList[0].description + " (x" + lootList[0].quantity + ").\n\n");
 	lootList.splice(0,1);
@@ -1663,6 +1664,16 @@ public function discardItem(lootList:Array):void {
 }
 
 public function replaceItemPicker(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to replace!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	clearOutput();
 	output("You have " + lootList[0].description + " (x" + lootList[0].quantity + ") but there is no room left in your inventory.\n\n");
 	output("What will you replace?");
@@ -1686,17 +1697,27 @@ public function replaceItemPicker(lootList:Array):void {
 }
 
 public function useLoot(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to use!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	var loot:ItemSlotClass = lootList[0];
 	
 	// Remove equipped items from the list
 	// useLoot returns true during an equip-call
 	if (useItem(loot))
 	{
-		lootList.splice(0, 1);
+		if(isEquippableItem(loot)) lootList.splice(0, 1);
 	}
-	else if (loot.quantity <= 0)
+	if (loot.quantity <= 0)
 	{
-		lootList.splice(0,1);
+		lootList.splice(0, 1);
 	}
 	
 	if (lootList.length > 0)
@@ -1705,6 +1726,16 @@ public function useLoot(lootList:Array):void {
 	}
 }
 public function abandonLoot(lootList:Array):void {
+	// Failsafe!
+	if(lootList.length <= 0)
+	{
+		clearOutput();
+		output("Error: You have nothing to toss out!\n\n");
+		clearMenu();
+		addButton(0,"Next",lootScreen);
+		return;
+	}
+	
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
 	clearMenu();
@@ -1801,13 +1832,13 @@ public function shipStorageMenuRoot():void
 	
 	var btnSlot:int = 5;
 	
-	if (kGAMECLASS.flags["DONG_DESIGNER_INSTALLED"] == 1)
+	if (flags["DONG_DESIGNER_INSTALLED"] == 1)
 	{
 		output("\n\nNearby, the TamaniCorp Dong Designer hums with life.");
 		addButton(btnSlot,"D.Designer",useInstalledDickBox,undefined,"Dong Designer","Use the TamaniCorp Hora Series Dong Designer you found on Tarkus.");
 		btnSlot++;
 	}
-	if(kGAMECLASS.flags["EGG_TRAINER_INSTALLED"] == 1) 
+	if(flags["EGG_TRAINER_INSTALLED"] == 1) 
 	{
 		output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
 		//if PC has a belly full of eggs:
@@ -1864,7 +1895,7 @@ public function populateTakeMenu(items:Array, type:String, func:Function = null)
 		pgIdx = i / maxPerPage;
 		var pgOset:int = 15 * pgIdx;
 		
-		addItemButton(btnIdx + pgIdx, items[i], func, [items[i], type]);
+		addItemButton((btnIdx + pgOset), items[i], func, [items[i], type]);
 	}
 	
 	var menuInserts:int = 0;

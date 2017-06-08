@@ -3,7 +3,7 @@
 //Gildenmere Hospital
 public function viBonus():Boolean
 {
-	output("There's one word for this hospital - <i>grand</i>. The sheer size of this place is overwhelming. The floors are made of shining onyx and there are pillars of gleaming crystal. The hospital beds are hidden behind fancifully embroidered partitions. The smell of antiseptic is nowhere to be found, carefully masked with lilac, jasmine, and rose.\n\nThere are many doctors and nurses bustling about, re-establishing that this place is indeed a hospital. The medical professionals are constantly in transit from one patient to another, slipping in and out from the patterned privacy screens.");
+	output("There’s one word for this hospital - <i>grand</i>. The sheer size of this place is overwhelming. The floors are made of shining onyx and there are pillars of gleaming crystal. The hospital beds are hidden behind fancifully embroidered partitions. The smell of antiseptic is nowhere to be found, carefully masked with lilac, jasmine, and rose.\n\nThere are many doctors and nurses bustling about, re-establishing that this place is indeed a hospital. The medical professionals are constantly in transit from one patient to another, slipping in and out from the patterned privacy screens.");
 	//PC Has Never Met This V-Ko
 	if(flags["MET_VI"] == undefined)
 	{
@@ -11,7 +11,7 @@ public function viBonus():Boolean
 		if(flags["MET_VKO"] == undefined) 
 		{
 			output(" She looks like a V-Ko android. But why is she on Myrellion?");
-			output(" Your codex chimes, <i>\"V-Ko model nursedroid detected. Manufactured by JoyCo. Provides basic medical services. More data available upon request.\"</i>");
+			output(" Your codex chimes, <i>“V-Ko model nursedroid detected. Manufactured by JoyCo. Provides basic medical services. More data available upon request.”</i>");
 			// Unlock 'V-Ko IV' Codex Entry
 			CodexManager.unlockEntry("V-Ko");			
 		}
@@ -104,7 +104,7 @@ public function viMenu():void
 	addButton(0,"Appearance",viAppearance,undefined,"Appearance","Take a look at Vi.");
 	addButton(1,"Talk",talkToVi,undefined,"Talk","Talk to Vi.");
 	if(pc.HP() < pc.HPMax()) addButton(2,"Heal",healFromVi,undefined,"Heal","Get your wounds treated.");
-	else addDisabledButton(2,"Heal","Heal","You don't have any wounds to treat!");
+	else addDisabledButton(2,"Heal","Heal","You don’t have any wounds to treat!");
 	addButton(3,"Examination",getExamanitedByVi,undefined,"Examination","Have Vi give you a thorough examination.");
 	addButton(4,"S.Relief",viSexualRelief,undefined,"S.Relief","Have Vi provide sexual relief.");
 	addButton(5,"Buy",viShop);
@@ -112,7 +112,7 @@ public function viMenu():void
 	//[Modify]
 	// ‘Pleasure’ talk topic must have been watched, to learn that she’s been tampered with already.
 	if(flags["VI_PLEASURE_TALKED"] != undefined) addButton(7,"Modify",modifyViMenu,undefined,"Modify","Modify Vi’s specs to suit your tastes!");
-	else addDisabledButton(7,"Modify","Modify","She doesn't look like the kind of 'bot that would modify her chassis.");
+	else addDisabledButton(7,"Modify","Modify","She doesn’t look like the kind of ‘bot that would modify her chassis.");
 	if(pc.hasItem(new DamagedVIChip())) addButton(8,"Give VI Chip",nurseDroidChipTurnIn,"Vi","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
 	addButton(14,"Leave",mainGameMenu);
 	
@@ -135,7 +135,7 @@ public function viAppearance():void
 	output("\n\nThere’s a small inscription on her upper right arm: <i>“V-Ko Model IV”</i>.");
 	processTime(3);
 	viMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're looking at her appearance right now!");
+	addDisabledButton(0,"Appearance","Appearance","You’re looking at her appearance right now!");
 }
 
 //Talk
@@ -156,9 +156,9 @@ public function viTalkMenu():void
 	addButton(1,"Model",talkToViAboutHerModel,undefined,"Model","Ask her about her model.");
 	addButton(2,"Owner",talkToViAboutHerOwner,undefined,"Owner","Ask her who owns her.");
 	if(flags["HEALED_BY_VI"] != undefined || flags["TREATED_BY_VI"] != undefined) addButton(3,"Methods",talkToViAboutHerMethods,undefined,"Methods","Ask her about her treatment methods.");
-	else addDisabledButton(3,"Methods","Methods","You'll have to see her methods before you can ask about them.");
+	else addDisabledButton(3,"Methods","Methods","You’ll have to see her methods before you can ask about them.");
 	if(flags["VI_SEXED"] != undefined) addButton(4,"Pleasure",talkToViAboutPleasure,undefined,"Pleasure","Ask her about why she seems to feel pleasure.");
-	else addDisabledButton(4,"Pleasure","Pleasure","You'll need to be intimate with her before you can ask this.");
+	else addDisabledButton(4,"Pleasure","Pleasure","You’ll need to be intimate with her before you can ask this.");
 	addButton(14,"Back",viMenu);
 }
 
@@ -306,7 +306,7 @@ public function healFromVi():void
 	// Yes goes to ‘Get Healed’.
 	// No goes to ‘Turn Down Healing’.
 	if(pc.credits >= cost) addButton(0,"Yes",getHealedByVi,cost,"Yes","Pay Vi to heal you.\n\n<b>Cost: </b>" + cost + " credits");
-	else addDisabledButton(0,"Yes","Yes","You can't afford that.");
+	else addDisabledButton(0,"Yes","Yes","You can’t afford that.");
 	addButton(1,"No",dontTakeViHeals);
 }
 
@@ -350,7 +350,7 @@ public function getHealedByVi(cost:Number):void
 		output("\n\n<i>“All done, " + pc.mf("sir","ma’am") + "! Here are your clothes,”</i> she adds, helpfully handing your [pc.gear] to you. <i>“Is there anything else you require?”</i>");
 	}
 	//Else PC’s one of those fucking furry nudists like Tigger:
-	else output("\n\n<i>\"All done, " + pc.mf("sir","ma’am") + "! Is there anything else you require?”</i>");
+	else output("\n\n<i>“All done, " + pc.mf("sir","ma’am") + "! Is there anything else you require?”</i>");
 	pc.HP(pc.HPMax());
 	pc.credits -= cost;
 	processTime(23);
@@ -426,16 +426,53 @@ public function getExamanitedByVi():void
 	var parasites:int = 0;
 	if(pc.hasCuntTail()) parasites++;
 	if(pc.hasCockTail()) parasites++;
-	if(attachedMimbranes() > 0) parasites++;
+	if (attachedMimbranes() > 0) parasites++;
+	var sstds:Number = pc.sstdTotal();
 	//if detected more than one lot of parasites:
-	if(parasites > 1)
+	if(sstds > 0)
+	{
+		output("\n\n<i>“I should also inform you, it appears you have contracted ");
+		if(sstds > 1) output("more than one type of disease");
+		else output(pc.getRandomSSTD());
+		if(parasites > 0)
+		{
+			output(" and ");
+			if(parasites > 1) output("multiple parasites");
+			else output("a parasite as well");
+			output(". Unfortunately, I can only ");
+			if(parasites > 1) output("treat one of your parasitic infections at a time. Alternatively, I can cure your diseases for a modest 500 credits.");
+			else output("treat a parasite or your diseases at a time. The latter costs 500 credits.");
+			
+		}
+		else
+		{
+			output(". A treatment to cure ");
+			if(sstds > 1) output("them");
+			else output("it");
+			output(" can be produced for only 500 credits and a few minutes of processing time. Would you like a treatment?");
+		}
+		output(" Please indicate your choice, " + pc.mf("sir","ma’am") + ".”</i>");
+		clearMenu();
+		if(attachedMimbranes() > 0) addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
+		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don’t have any mimbranes to remove.");
+		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
+		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
+		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
+		else addDisabledButton(2,"Treat C.Vine","Cockvine Treatment","You have no cockvines to remove.");
+
+		if(sstds > 0 && pc.credits >= 500) addButton(3,"TreatDisease",removeDiseasesVI,undefined,"Treat Disease","Get any diseases you’re carrying removed for 500 credits.");
+		else if(pc.credits < 500 && sstds > 0) addDisabledButton(3,"TreatDisease","Treat Disease","You cannot afford this treatment.");
+		else addDisabledButton(3,"TreatDisease","Treat Disease","You don’t have any diseases.");
+		addButton(4,"None",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
+	}
+	else if(parasites > 1)
 	{
 		output("\n\n<i>“I should also inform you, it appears you have more than one type of parasitic affliction. Unfortunately, I can only treat one lot of parasites in a single procedure. Please indicate which infestation you would like me to treat first, " + pc.mf("sir","ma’am") + ".”</i>");
 		// Show list of parasites + no removal button.
 		// Treating a parasite goes to the ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’’ scene, also further down.
 		clearMenu();
 		if(attachedMimbranes() > 0) addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
-		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don't have any mimbranes to remove.");
+		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don’t have any mimbranes to remove.");
 		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
 		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
 		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
@@ -493,6 +530,21 @@ public function getExamanitedByVi():void
 		// Return to menu
 		viMenu();
 	}
+}
+
+public function removeDiseasesVI():void
+{
+	clearOutput();
+	showVKo();
+	author("Fenoxo");
+	output("After a few moments of simulated concentration, the nursedroid speaks up, <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
+	output("\n\n<i>“Do you require additional services?”</i>");
+	pc.removeSSTDs();
+	processTime(15);
+	pc.credits -= 500;
+	IncrementFlag("TREATED_BY_VI");
+	viMenu();
+
 }
 
 //Remove Parasite
@@ -611,7 +663,7 @@ public function viSexualRelief():void
 		clearMenu();
 		//[ReturnIt] [Don’t]
 		addButton(0,"Return It",returnVisPussyPot);
-		addButton(1,"Don't",dontReturnsVisCunt);
+		addButton(1,"Don’t",dontReturnsVisCunt);
 	}
 	//Else // Pussy not borrowed:
 	else
@@ -691,16 +743,16 @@ public function viSexMenu():void
 			// PC must not be taur
 			if(pc.isTaur()) addDisabledButton(5,"Cowgirl","Cowgirl","This sexual position does not work with your anatomy.");
 			else addButton(5,"Cowgirl",cowgirlWithVi,undefined,"Cowgirl","Get into a bed, have her climb on you, and have some face-to-face sex, cowgirl style.");
-			if(pc.isTaur()) addDisabledButton(7,"Rough Sex","Rough Sex","This doesn't work with your body type.");
+			if(pc.isTaur()) addDisabledButton(7,"Rough Sex","Rough Sex","This doesn’t work with your body type.");
 			else addButton(7,"Rough Sex",roughSexWithVi,undefined,"Rough Sex","Ravish the nurse-droid <i>rough</i> and <i>hard</i>. WARNING: Hardcore SM content.");
 		}
 		else 
 		{
-			addDisabledButton(0,"Ride Her","Ride Her","You're too big to fit inside her.");
+			addDisabledButton(0,"Ride Her","Ride Her","You’re too big to fit inside her.");
 			if(pc.isTaur()) addDisabledButton(5,"Cowgirl","Cowgirl","This sexual position does not work with your anatomy.");
-			else addDisabledButton(5,"Cowgirl","Cowgirl","You're too big to fit inside her.");
-			if(pc.isTaur()) addDisabledButton(7,"Rough Sex","Rough Sex","This doesn't work with your body type.");
-			else addDisabledButton(7,"Rough Sex","Rough Sex","You're too big to fit inside her.");
+			else addDisabledButton(5,"Cowgirl","Cowgirl","You’re too big to fit inside her.");
+			if(pc.isTaur()) addDisabledButton(7,"Rough Sex","Rough Sex","This doesn’t work with your body type.");
+			else addDisabledButton(7,"Rough Sex","Rough Sex","You’re too big to fit inside her.");
 		}
 		addButton(2,"Potency T.",viPotencyTest,undefined,"Potency Test","Get a ‘Potency Test’ from the nurse droid to test your [pc.cumNoun]-making capacity. Must have a cock.");
 		addButton(8,"Titty Fuck",tittyFuckDatVi,undefined,"Titty Fuck","Fuck her tits and add some cream to her chest. Must have a cock.");
@@ -1045,7 +1097,7 @@ public function viPotencyTest():void
 	//[Yes] [No]
 	clearMenu();
 	if(pc.credits >= 500) addButton(0,"Yes",yeahSureIWannaCumMoreSlut);
-	else addDisabledButton(0,"Yes","Yes","You can't afford that treatment.");
+	else addDisabledButton(0,"Yes","Yes","You can’t afford that treatment.");
 	addButton(1,"No",noIDontWantNutTreatments);
 }
 
@@ -1462,11 +1514,11 @@ public function useVisPussy():void
 	// tooltip.getHer: Get Vi to use her pocket pussy on you herself. Must have a cock.
 	// tooltip.takeIt: Take Vi’s pussy from her and keep it!
 	if(!pc.isTaur()) addButton(0,"Use It",useVisDisembodiedPussy,undefined,"Use It","Order Vi to go back to her duties, while you stay with her pussy.");
-	else addDisabledButton(0,"Use It","Use It","You can't really reach to do that with your current body shape.");
+	else addDisabledButton(0,"Use It","Use It","You can’t really reach to do that with your current body shape.");
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(chars["VI"].vaginalCapacity(0)) >= 0) addButton(1,"Get Jacked",viGetHerScene,undefined,"Get Jacked","Get Vi to use her pocket pussy on you herself. Must have a cock.");
-		else addDisabledButton(1,"Get Jacked","Get Jacked","You're too big to fit inside.");
+		else addDisabledButton(1,"Get Jacked","Get Jacked","You’re too big to fit inside.");
 	}
 	else addDisabledButton(1,"Get Jacked","Get Jacked","You need to have a penis for this.");
 	addButton(2,"Take It",takeVisVagina,undefined,"Take It","Take Vi’s pussy from her and keep it!");

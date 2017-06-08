@@ -140,6 +140,7 @@
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
 		include "../includes/masturbation/cockTailMasturbation.as";
+		include "../includes/masturbation/exhibitionismPerk.as";
 		include "../includes/masturbation/hardlightAGThong.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
@@ -235,6 +236,7 @@
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
 		include "../includes/tarkus/drBadger.as";
@@ -270,6 +272,7 @@
 		include "../includes/newTexas/gianna.as";
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
+		include "../includes/newTexas/mirrin.as";
 		include "../includes/newTexas/rooms.as";
 		include "../includes/newTexas/roomFunctions.as";
 		include "../includes/newTexas/stocks.as";
@@ -342,6 +345,7 @@
 		// Uveto
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/carbonado.as";
+		include "../includes/uveto/chaurmine.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
@@ -365,17 +369,20 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
+		include "../includes/follower.pippa.as";
+		include "../includes/follower.multi_interactions.as";
 		
 		include "../includes/chargendata.as";
+		include "../includes/SSTDs/furpies.as";
+		include "../includes/SSTDs/locofever.as";
+		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;
 
-		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
 		public var days:int;
 		public var hours:int;
 		public var minutes:int;
 		
-		// Get a 'packed' version of the current in-game time. Useful for date/time passage comparisons stored in flags.
 		public function GetGameTimestamp():uint
 		{
 			var value:uint = 0;
@@ -385,7 +392,6 @@
 			return value;
 		}
 
-		// Queued event system
 		public var timestampedEventBuffer:Array;
 		public var eventQueue:Array;
 
@@ -470,7 +476,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.45";
+			version = "0.7.58";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1335,6 +1341,14 @@
 		public function get jerynn():Jerynn
 		{
 			return chars["JERYNN"];
+		}
+		public function get del():Delilah
+		{
+			return chars["DELILAH"];
+		}
+		public function get mirrin():Mirrin
+		{
+			return chars["MIRRIN"];
 		}
 	}
 }

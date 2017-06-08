@@ -125,7 +125,7 @@ package classes.Items.Transformatives
 				}
 				//PC has more than two legs: Legs merge to leave two of the same type as the original set [100% chance]
 				//Legs merge to leave two of the same type as the original set:
-				if(pc.legCount > 2 && changes < changeLimit)
+				if(((pc.isTaur() && rand(4) == 0) || pc.legCount > 2) && pc.legType != GLOBAL.TYPE_SHEEP && changes < changeLimit)
 				{
 					if(pc.legCountUnlocked(2))
 					{
@@ -140,7 +140,7 @@ package classes.Items.Transformatives
 				//Tail splits in two to leave two human legs: 
 				else if(pc.isNaga() && changes < changeLimit)
 				{
-					if(pc.legTypeUnlocked(GLOBAL.TYPE_SHEEP) && pc.legCountUnlocked(2))
+					if(pc.legTypeUnlocked(GLOBAL.TYPE_HUMAN) && pc.legCountUnlocked(2))
 					{
 						output("\n\nYou feel something strange in the tip of your tail and twist down to have a look. The problem soon becomes apparent - it’s split in two! The divide starts to spread up and up your tail until your balance is thrown completely off as you’re left with two running down from your thighs. Luckily, this doesn’t seem permanent as they start to shift and transform, eventually <b>leaving you with two human legs</b>. It’s going to take a while to get used to walking instead of slithering again!");
 						pc.clearLegFlags();
@@ -155,11 +155,11 @@ package classes.Items.Transformatives
 				}
 				//PC has two legs: Change to hooved, sheeplike legs [25%]
 				//Change to hooved, sheeplike legs: 
-				else if(pc.legCount == 2 && pc.legType != GLOBAL.TYPE_SHEEP && rand(4) == 0 && changes < changeLimit)
+				else if((pc.legCount == 2 || pc.isTaur()) && pc.legType != GLOBAL.TYPE_SHEEP && rand(4) == 0 && changes < changeLimit)
 				{
 					if(pc.legTypeUnlocked(GLOBAL.TYPE_SHEEP))
 					{
-						output("\n\nYour [pc.legs] suddenly start shaking and quickly give out under you, leaving you sprawled out along the ground. Looking back, you realize that your legs and feet are reshaping themselves. It takes a while, but as you watch,<b> they transform into hooved, sheeplike legs.</b>");
+						output("\n\nYour [pc.legs] suddenly start shaking and quickly give out under you, leaving you sprawled out along the ground. Looking back, you realize that your legs and feet are reshaping themselves. It takes a while, but as you watch, <b>they transform into hooved, sheeplike legs.</b>");
 						pc.clearLegFlags();
 						pc.legType = GLOBAL.TYPE_SHEEP;
 						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);

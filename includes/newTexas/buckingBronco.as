@@ -75,6 +75,18 @@ public function saloonInteriorBonus():Boolean
 	return false;
 }
 
+// Discount Stuff
+public function freeDrinkAtBuckingBronco():Boolean
+{
+	return (flags["BB_5FINGER_DISCOUNT"] == 1 || pc.hasStatusEffect("Bucking Bronco Free Drinks"));
+}
+public function payForDrinkAtBuckingBronco(nPrice:Number = 0):void
+{
+	if(flags["BB_5FINGER_DISCOUNT"] == 1) { flags["BB_5FINGER_DISCOUNT"] = 2; }
+	else if(pc.hasStatusEffect("Bucking Bronco Free Drinks")) { /* Free Drinks! */ }
+	else pc.credits -= nPrice;
+}
+
 //NPCs
 //James- An android with a large handlebar mustache. He stands 6’4 with white hair and red eyes and was originally created as a bodyguard model. Think The Terminator as a bartender. He served as a bodyguard for the mysterious woman who owns the Bucking Bronco, and when she retired to New Texas she brought James with her. James is often no-nonsense, but he can be a cheeky git when he wants. He’s always ready with a pearl of wisdom, never mind that he may have just looked it up on the Extranet a few seconds ago. He wears a white, collared long-sleeve shirt with brass buttons with a black bow-tie and black sleeve garters that emphasize his large biceps, a red vest, and black pants, boots, and a black apron from his waist to his shins. His dick is the dick on the mechanical bull, but that’s a secret. Only highly observant PCs will notice.
 
@@ -102,7 +114,7 @@ public function jamesAppearance():void
 	output("James is a 6\' 4\" android built to look like a human while still being subtly artificial. He has statuesque features that make his apparent age hard to pin down, with a chiseled jawline and smooth, flawless tan, but artificial skin, complemented by his slicked-back white hair and red eyes. His upper lip is obscured by an impressively large waxed handlebar mustache, but he is otherwise clean-shaven. His thick neck is encircled by an antiquated black silk bowtie, tied in large loops.");
 	output("\n\nHe is wide-framed with an incredibly defined musculature");
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(", and you know that he’s strong enough to tear a human’s arm off with minimal effort");
-	else output("that you can’t help but admire");
+	else output(" that you can’t help but admire");
 	output(". Somehow he has managed to squeeze his massive arms into a white long-sleeved formal shirt with black sleeve garters and a red vest. Tied around his waist is a black bar apron that extends to just below his knees, concealing his groin from view. His powerful legs are clad in black slacks tucked into a pair of tall black boots.");
 	output("\n\nHe smiles winningly at you as you regard him, flashing his perfect white teeth.");
 	jamesMenu();
@@ -123,7 +135,7 @@ public function imRickJamesBiyaaaaatch():void
 		else output("mosey");
 		output(" up to the bar you lock eyes with the bartender, who shoots you a welcoming smile and greets you warmly. <i>“Welcome to the Bucking Bronco");
 		if(silly) output(", how tough are ya?");
-		else output(pc.mf("sir","ma’am") + ".");
+		else output(", " + pc.mf("sir","ma’am") + ".");
 		output(" My name is James, and it’d be my pleasure to serve you. Now, what can I get for you?”</i> It’s obvious this close from his eyes and skin that James is an android, and a top-quality one at that.");
 		flags["MET_JAMES"] = 1;
 	}
@@ -258,7 +270,8 @@ public function jamesFistFuckerDiscount():void
 	processTime(5);
 	clearMenu();
 	//[Vagina] [Ass] [Nope]
-	addButton(0,"Vagina",grabEmByThePussyTheyllLetYa);
+	if(pc.hasVagina()) addButton(0,"Vagina",grabEmByThePussyTheyllLetYa);
+	else addDisabledButton(0,"Vagina","Vagina", "You need a vagina for this!");
 	addButton(1,"Ass",fiveFingahAsscount);
 	addButton(2,"Nope",nopeNoFiveFingerCuntPunch);
 }
@@ -386,7 +399,7 @@ public function jamesDrinkMenu():void
 	}
 	else
 	{
-		if(flags["BB_5FINGER_DISCOUNT"] == 1 || pc.hasStatusEffect("Bucking Bronco Free Drinks"))
+		if(freeDrinkAtBuckingBronco())
 		{
 			addButton(0,"Milk Stout",drinkAtBuckingBronco,"Milk Stout","Milk Stout","A stout, or dark beer, containing lactose, giving it a sweeter taste and more nutritional content.");
 			addButton(1,"Leithan Milk",drinkAtBuckingBronco,"Leithan Milk","Leithan Milk","Breastmilk from a Treated leithan. While it isn’t truly alcoholic, it produces an effect very similar to intoxication in humans. It is also a potent aphrodisiac, making this drink extremely popular with tourists hoping to keep up with the sex drives of the locals.");
@@ -499,9 +512,7 @@ public function drinkAtBuckingBronco(drink:String):void
 			output("ERROR: DRINK NOT FOUND!");
 			break;
 	}
-	if(flags["BB_5FINGER_DISCOUNT"] == 1) { flags["BB_5FINGER_DISCOUNT"] = 2; }
-	else if(!pc.hasStatusEffect("Bucking Bronco Free Drinks")) { /* Free Drinks! */ }
-	else pc.credits -= nPrice;
+	payForDrinkAtBuckingBronco(nPrice);
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -613,7 +624,7 @@ public function foodEpilogue(fud:String):void
 public function livingKegsApproach():void
 {
 	clearOutput();
-	if(!sallyBarHours()) showBust("SALLY", "WHISKEY_COW", "BEER_COW");
+	if(!sallyBarHours()) showBust("WHISKEY_COW", "BEER_COW", "SALLY");
 	else showBust("WHISKEY_COW", "BEER_COW");
 	showName("LIVING\nKEGS");
 	author("HugsAlright");
@@ -648,14 +659,23 @@ public function livingKegsApproach():void
 	//[Rum] Get a drink from the girl branded with some kind of high-proof rum. Costs 35 credits. //Requires 35 credits.
 	//[Leave]
 	clearMenu();
-	if(pc.credits >= 25) addButton(0,"Beer",beerBoozeGalGo,undefined,"Beer","Get a drink from the girl branded with some kind of lager.\n\nCost: 25 Credits");
-	else addDisabledButton(0,"Beer","Beer","You can’t afford that.\n\nCost: 25 Credits");
-	if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.\n\nCost: 30 Credits");
-	else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.\n\nCost: 30 Credits");
-	if(!sallyBarHours())
+	if(freeDrinkAtBuckingBronco())
 	{
-		if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.\n\nCost: 35 Credits");
-		else addDisabledButton(2,"Rum","Rum","You can’t afford that.\n\nCost: 35 Credits");
+		addButton(0,"Beer",beerBoozeGalGo,undefined,"Beer","Get a drink from the girl branded with some kind of lager.");
+		addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.");
+		if(!sallyBarHours()) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.");
+	}
+	else
+	{
+		if(pc.credits >= 25) addButton(0,"Beer",beerBoozeGalGo,undefined,"Beer","Get a drink from the girl branded with some kind of lager.\n\nCost: 25 Credits");
+		else addDisabledButton(0,"Beer","Beer","You can’t afford that.\n\nCost: 25 Credits");
+		if(pc.credits >= 30) addButton(1,"Whiskey",whiskeyCowMooDrink,undefined,"Whiskey","Get a drink from the girl branded with some kind of high-proof whiskey.\n\nCost: 30 Credits");
+		else addDisabledButton(1,"Whiskey","Whiskey","You can’t afford that.\n\nCost: 30 Credits");
+		if(!sallyBarHours())
+		{
+			if(pc.credits >= 35) addButton(2,"Rum",rumCowDrinkieDrink,undefined,"Rum","Get a drink from the girl branded with some kind of high-proof rum.\n\nCost: 35 Credits");
+			else addDisabledButton(2,"Rum","Rum","You can’t afford that.\n\nCost: 35 Credits");
+		}
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -675,13 +695,15 @@ public function whiskeyCowMooDrink():void
 	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
 	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lips] and her big ol’ tits.");
 	output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
-	output("\n\n<i>“Looks like you’ve had enough, " + pc.mf("hon","honey") + ",”</i> the redhead calls out, her massive breast still heaving and her nipples red from recent use. She brings a hand to your head and ruffles your [pc.hair], <i>“Now don’t you forget to pay the nice android at the bar.”</i>");
+	output("\n\n<i>“Looks like you’ve had enough, " + pc.mf("hon","honey") + ",”</i> the redhead calls out, her massive breast still heaving and her nipples red from recent use. She brings a hand to your head and ruffles your [pc.hair]");
+	if(!freeDrinkAtBuckingBronco()) output(", <i>“Now don’t you forget to pay the nice android at the bar.”</i>");
+	else output(".");
 	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
 	//[Next] //Removes credits, adds exhibitionism, adds two levels of drunkenness, and gives the player 33 lust, also returns them to the bar. 
 	pc.milkInMouth();
 	pc.imbibeAlcohol(80);
 	pc.exhibitionism(1);
-	pc.credits -= 30;
+	payForDrinkAtBuckingBronco(30);
 	processTime(18);
 	pc.lust(20);
 	IncrementFlag("LIVING_KEGGED");
@@ -705,13 +727,15 @@ public function beerBoozeGalGo():void
 	output("\n\nIt isn’t long before you can feel your mind being lost to the girl’s alcoholic lactation, dulling your senses and replacing any woes you may have been holding onto with a sense of euphoria as you suck and suck some more on this woman’s big, soft breasts. You suckle long and hard on this cowgirl’s tits for what seems like an eternity, happily accepting all the alcohol she has to offer down your gullet, numbing your mind to the point where you barely notice switching breasts for the woman’s sake. When you do switch breast, you do so with a bit of reluctance, but speedily get to sucking on the bovine girl’s jugs again, flicking your tongue across her nipples to lick up any stray liquor, making sure none of it goes to waste.");
 	output("\n\nYour pleasant little drink is brought to an end all too soon when you’re pulled off one of the cowgirl’s stiff teats with a wet pop, leaving a trail of saliva and alcohol between your [pc.lipsChaste] and her big ol’ tits.");
 	output("\n\nYou feel a pang of emptiness at the loss of the the bovine broad’s bounty flowing betwixt your lips, but that emptiness is quickly replaced by the realization of your newfound drunkenness, along with a renewed lust burning into your loins.");
-	output("\n\n<i>“Hope it was good!”</i> the busty brunette exclaims, cupping her breasts again and jiggling them around for you, <i>“Oh, and don’t forget to pay the android at the bar!”</i>");
+	output("\n\n<i>“Hope it was good!”</i> the busty brunette exclaims, cupping her breasts again and jiggling them around for you");
+	if(!freeDrinkAtBuckingBronco()) output(", <i>“Oh, and don’t forget to pay the android at the bar!”</i>");
+	else output(".");
 	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
 	//[Next] //Removes credits, adds exhibitionism, adds one level of drunkenness, and gives the player 33 lust, also returns them to the bar. 
 	pc.milkInMouth();
 	pc.imbibeAlcohol(45);
 	pc.exhibitionism(1);
-	pc.credits -= 25;
+	payForDrinkAtBuckingBronco(25);
 	processTime(18);
 	pc.lust(20);
 	IncrementFlag("LIVING_KEGGED");
@@ -752,7 +776,9 @@ public function rumCowDrinkieDrink():void
 	output("\n\n");
 	if(flags["MET_SALLY"] != undefined) output("Sally");
 	else output("She");
-	output(" rubs a thumb across your cheek, grinning down at you as you look up at her with an aphrodisiac and alcohol laden gaze, <i>“I think you’ve had enough there, sweetie. Just make sure you don’t forget to pay the bartender, alright?”</i>");
+	output(" rubs a thumb across your cheek, grinning down at you as you look up at her with an aphrodisiac and alcohol laden gaze, <i>“I think you’ve had enough there, sweetie.");
+	if(!freeDrinkAtBuckingBronco()) output(" Just make sure you don’t forget to pay the bartender, alright?");
+	output("”</i>");
 	output("\n\nThat’s something you most definitely won’t soon forget, happily following the cowgirl’s orders and stumbling drunkenly towards the bar.");
 	if(flags["MET_SALLY"] != undefined && silly) output("\n\nAs you walk you walk away, you can hear the keg-girl call out, <i>“Stay thirsty, my friend.”</i>");
 
@@ -761,7 +787,7 @@ public function rumCowDrinkieDrink():void
 	pc.milkInMouth();
 	pc.imbibeAlcohol(150);
 	pc.exhibitionism(1);
-	pc.credits -= 35;
+	payForDrinkAtBuckingBronco(35);
 	processTime(25);
 	pc.lust(20);
 	IncrementFlag("LIVING_KEGGED");
@@ -799,7 +825,7 @@ public function approachSally():void
 			if(pc.isMisch() || pc.isBimbo() || pc.isBro()) output(" hot");
 			output(" cowsluts in your journeys, so you’re not sure.");
 		}
-		output("\n\nThe dusky, busty, lusty woman responds with a girly chuckle, <i>“I thought so.”</i> She lets a hand drift off her dink and turns to you, <i>“You got a name, sweetie?”</i>");
+		output("\n\nThe dusky, busty, lusty woman responds with a girly chuckle, <i>“I thought so.”</i> She lets a hand drift off her drink and turns to you, <i>“You got a name, sweetie?”</i>");
 		output("\n\nOnce again, your thoughts drift between a mirage of sex and what’s actually happening, and the rum-girl seems to take notice, and tries to call you back to the real world with the sound of her voice, and a touch of her hand on your shoulder, <i>“I seem to do this a lot to people, don’t you worry about it. I’m Sally, by the by.”</i>");
 		output("\n\nHer words do the trick, and bring you out of your pheromone induced trance, and you introduce yourself as <i>“[pc.name]”</i> in turn.");
 		output("\n\n<i>“That’s a nice name,”</i> she tells you with a warm, almost parental tone, <i>“So what brought you over to me, then? Looking for free drinks? Some friendly conversation, or something else?”</i> With that last word you see her run a hand across the smooth skin of her breast, down her side, and across her thigh... right between her legs.");
@@ -930,7 +956,7 @@ public function sexWithSally():void
 	else output("fuck");
 	output(".");
 
-	output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That’s sounds just wonderful,”</i> the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
+	output("\n\nThe rum-cow seems happy about that, a big grin appearing on her face before the rest of her drink disappears past her plush lips. <i>“That sounds just wonderful,”</i> the dark-hued woman says, standing up from her stool and setting her breasts jiggling in the process, <i>“I’ve got a room here at the cathouse we can use, if you’d like that.”</i>");
 
 	output("\n\nWith that, she extends a hand out to yours, the warm smile on her face making it look like she wants you to take hold of it. You manage to give her a blank stare and a nod before you reach out and grab her hand.");
 
@@ -1041,7 +1067,7 @@ public function suckleFingerSally():void
 	{
 		output(" Meanwhile, your [pc.cocks] discharge");
 		if(pc.cockTotal() == 1) output("s its");
-		else output("their");
+		else output(" their");
 		output(" load of [pc.cum] all over your [pc.chest].");
 	}
 	output(" The cowslut coos happily as she watches you peak with pleasure");
@@ -1154,7 +1180,7 @@ public function vaginaBronco():void
 	else output("\n\nKnowing how wet your pussy is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.");
 	output(" With the prep work out of the way, you finally sink down onto the dildo.");
 
-	if(pc.vaginas[x].looseness() < 3 && pc.vaginalCapacity(x) < 200)
+	if(pc.vaginas[x].looseness() < 3 || pc.vaginalCapacity(x) < 200)
 	{
 		output("\n\nIt seems like an almost impossible task to fit the broad, flared head of the equine phallus past the lips of your tight womanhood, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your [pc.pussy " + x + "]. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow vagina. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your love tunnel. Over the better part of a minute, you sink more and more fake flesh into your [pc.pussy " + x + "], moaning out loud when the delicious feeling of your vaginal walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm.");
 		output("\n\n");
@@ -1319,7 +1345,7 @@ public function takeAnalBronco():void
 	else output(" Knowing how wet your ass is, the only preparation you require is to finger yourself for a few moments, biting your lip a little to hold in a moan as you do so.");
 	output(" With the prep work out of the way, you finally sink down onto the dildo.");
 
-	if(pc.ass.looseness() < 3 && pc.analCapacity() < 200)
+	if(pc.ass.looseness() < 3 || pc.analCapacity() < 200)
 	{
 		output("\n\nIt seems like an almost impossible task to fit the broad, flared head of the equine phallus past the tight ring of your sphincter, but you’re not backing out after getting to this point! With one hand you spread your entrance as wide as possible while using your other hand to angle the flare of the dildo so that only part of it is pressing into your ass. At first it seems like this just isn’t going to work, but with a grunt of effort and a few shouts of encouragement from the audience, you finally wedge the head of the dildo into your narrow anus. A loud, whorish moan of pleasure is ripped from your [pc.lips] by the insertion, the incredible feeling of fullness overwhelming your self-restraint in an instant. When you finally adjust to the sensation, you realize with no small degree of trepidation that you still have more than a foot of phallus to feed into your bowels. Over the better part of a minute, you sink more and more fake flesh into the depths of your ass, moaning out loud when the delicious feeling of your interior walls being stretched temporarily becomes too much. By the time you finally bottom out on the dildo, your legs are quivering and you are on the verge of orgasm.");
 		if(pc.hasVagina())
@@ -1618,7 +1644,7 @@ public function analVictoryAgainstBronco():void
 	else output("bowels");
 	output(". The dildo is ejaculating! Your eyes go wide as you throw your head back and cry out in ecstasy before you start bucking your hips furiously into that still-cumming horse cock.");
 	if(pc.hasVagina()) output(" You immediately break your death grip on the leather handhold to diddle your [pc.clits] and tweak your [pc.nipple] in a bid to maximize your well-earned pleasure.");
-	if(pc.hasCock()) output(" You feverishly stroke your [pc.cockLargest] as you hose [pc.cum] all over yourself and the saddle of the Bronco, ejaculating far harder than you would have thanks to the vibrating flare pressing deliciously into your prostate.");
+	if(pc.hasCock()) output(" You feverishly stroke your [pc.cockBiggest] as you hose [pc.cum] all over yourself and the saddle of the Bronco, ejaculating far harder than you would have thanks to the vibrating flare pressing deliciously into your prostate.");
 
 	output("\n\nYour ecstatic moans are drowned out by the applause and cheers of the audience, ");
 	//Anno is a follower and is in the bar:
@@ -1627,7 +1653,7 @@ public function analVictoryAgainstBronco():void
 	output("\n\nEventually both your own orgasm and that of your mechanical mount wind down. You are sweaty, flushed, and completely winded, so you take some time to catch your breath. The audience starts to disperse, though many stay behind to finish masturbating to your nude, cum-pumped form. You look like you’re in the second trimester of a pregnancy, and you feel about that full as well. Evidently the voyeurs watching you appreciate your new look, because you soon hear moos and moans of pleasure from cows and bulls alike, their sexual fluids joining the mess you’ve left on the floor of the saloon.");
 	output("\n\nOnce you feel like your legs will support you again, you begin the process of climbing down from the Bronco. Slowly, you lift up off the dildo, the engorged flare scraping your bowels all the way up and stoking your arousal all over again. When you finally remove the shaft with a wet *pop*, you’re treated to one last spurt of deliciously hot spunk right across your pucker. Combined with the sudden torrent of pent-up semen that pours out of your ass, you succumb to one last climax, slipping off the Bronco onto the high-tech padding below and bucking your [pc.hips] helplessly as you climax, your ass squirting a thick load of semen onto your [pc.legs] and the pads you’re lying on");
 	if(pc.hasCock()) output("to mix with your own [pc.cum]");
-	if(pc.isHerm()) output(" and [pc.girlCum]");
+	if(pc.isHerm() && pc.girlCumType != pc.cumType) output(" and [pc.girlCum]");
 	output(".");
 
 	//Anno is a follower and is in the bar:
@@ -1645,7 +1671,7 @@ public function analVictoryAgainstBronco():void
 		if(!pc.isAssExposed()) output(" Your spunk-stuffed ass squelches lewdly as you slip the last of your clothing on, your motions forcing more warm cum out of your sphincter.");
 		output(" When you’ve finally gathered everything up you step out of the ring and head towards the bar. You could really go for a drink right now!");
 	}
-	//PC should cum 3 times, reset lust, add <i>“anally filled”</i> status with enough cumflation to give about a 6 month pregnant belly look, take PC back to saloon, add massive exhibitionist gain
+	//PC should cum 3 times, reset lust, add “anally filled” status with enough cumflation to give about a 6 month pregnant belly look, take PC back to saloon, add massive exhibitionist gain
 	processTime(35);
 	for(var i:int = 0; i < 3; i++) { pc.orgasm(); }
 

@@ -36,7 +36,7 @@ package classes.Items.Transformatives
 			this.description = "a dose of the drug known as “Breeder’s Bliss”";
 
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Created by Tamani Corp. originally as a therapeutic drug for individuals of species that naturally undergo a heat or rut cycle, this drug became one of the company’s most popular items when early testing found that it could induce a similar state even in organisms that do not naturally experience a breeding season. With the tagline: <i>“Make every season breeding season!”</i> Breeder’s Bliss has proven especially popular with individuals in interspecies relationships who wish to give their partner a more “natural” reproductive experience. A fine print warning reads <i>“Tamani Corp. is not responsible for increased libido, increased aggression, loss of inhibition, or unexpected pregnancies.”</i>";
+			this.tooltip = "Created by TamaniCorp originally as a therapeutic drug for individuals of species that naturally undergo a heat or rut cycle, this drug became one of the company’s most popular items when early testing found that it could induce a similar state even in organisms that do not naturally experience a breeding season. With the tagline: <i>“Make every season breeding season!”</i> Breeder’s Bliss has proven especially popular with individuals in interspecies relationships who wish to give their partner a more “natural” reproductive experience. A fine print warning reads <i>“TamaniCorp is not responsible for increased libido, increased aggression, loss of inhibition, or unexpected pregnancies.”</i>";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -153,9 +153,9 @@ package classes.Items.Transformatives
 						//v3 - libido boost
 						//v4 - tease bonus!
 						pc.setStatusValue("Heat",1,10);
-						pc.setStatusValue("Heat",2,10);
+						pc.setStatusValue("Heat",2,35);
 						pc.setStatusValue("Heat",3,25);
-						pc.setStatusValue("Heat",4,2);
+						pc.setStatusValue("Heat",4,5);
 						pc.setStatusTooltip("Heat","<b>You are in a deep heat!</b> Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+" + pc.statusEffectv1("Heat") * 100 + "% Fertility\n+" + pc.statusEffectv2("Heat") + " Minimum Lust\n+" + pc.statusEffectv3("Heat") + " Libido\n+" + pc.statusEffectv4("Heat") + " Tease Damage");
 						pc.extendHeat(7*24*60);
 					}

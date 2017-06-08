@@ -69,6 +69,17 @@ public function uvetoNerrasaBuy():void
 	}
 	else chars["NERRASA"].destroyItem(new Frostfire());
 	
+	if(pc.level >= 7)
+	{
+		if(!chars["NERRASA"].hasItemByType(HardlightDagger)) chars["NERRASA"].inventory.push(new HardlightDagger());
+	}
+	else chars["NERRASA"].destroyItem(new HardlightDagger());
+	if(pc.level >= 8)
+	{
+		if(!chars["NERRASA"].hasItemByType(HardlightBow)) chars["NERRASA"].inventory.push(new HardlightBow());
+	}
+	else chars["NERRASA"].destroyItem(new HardlightBow());
+	
 	if(canBuySiegwulfe())
 	{
 		if(!chars["NERRASA"].hasItemByType(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());

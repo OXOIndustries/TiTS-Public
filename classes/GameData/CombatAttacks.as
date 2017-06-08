@@ -15,6 +15,8 @@ package classes.GameData
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.GLOBAL;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Items.Guns.HardlightBow;
+	import classes.Items.Melee.SaurmorianHammer;
 	import classes.Items.Miscellaneous.GrayMicrobots;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.*;
@@ -204,6 +206,19 @@ package classes.GameData
 			Volley.Implementor = VolleyImpl;
 			Volley.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(Volley);
+
+			// ChargeWeapon
+			ChargeWeapon = new SingleCombatAttack();
+			ChargeWeapon.ButtonName = "Charge Weap.";
+			ChargeWeapon.EnergyCost = 15;
+			ChargeWeapon.RequiresPerk = "Charge Weapon";
+			ChargeWeapon.DisabledIfEffectedBy = ["Disarmed","Charged Weapon"];
+			ChargeWeapon.IsRangedBased = false;
+			ChargeWeapon.TooltipTitle = "Charge Weapon";
+			ChargeWeapon.TooltipBody = "Electrify a melee weapon for the duration of the battle and take a single, low-accuracy swipe with the charged weapon.";
+			ChargeWeapon.Implementor = chargeWeaponImpl;
+			ChargeWeapon.SetAttackTypeFlags(SingleCombatAttack.ATF_MELEE, SingleCombatAttack.ATF_SPECIAL);
+			a.push(ChargeWeapon);
 			
 			// Overcharge
 			Overcharge = new SingleCombatAttack();
@@ -222,13 +237,14 @@ package classes.GameData
 			// Deflector Regen
 			DeflectorRegeneration = new SingleCombatAttack();
 			DeflectorRegeneration.ButtonName = "D. Regen";
-			DeflectorRegeneration.EnergyCost = 20;
+			DeflectorRegeneration.EnergyCost = 0;
 			DeflectorRegeneration.RequiresPerk = "Deflector Regeneration";
+			DeflectorRegeneration.DisabledIfEffectedBy = ["Tech Shield CD"];
 			DeflectorRegeneration.ExtendedAvailabilityCheck = function():Boolean {
 				return kGAMECLASS.pc.hasShields();
 			}
 			DeflectorRegeneration.TooltipTitle = "Deflector Regeneration";
-			DeflectorRegeneration.TooltipBody = "Restores a portion of your shields every turn for four turns. Higher intelligence will increase the amount.";
+			DeflectorRegeneration.TooltipBody = "Restores a portion of your shields and energy every turn for four turns. Higher intelligence will increase the amount.\n\n<b>Once per combat.</b>";
 			DeflectorRegeneration.RequiresTarget = false;
 			DeflectorRegeneration.Implementor = DeflectorRegenerationImpl;
 			DeflectorRegeneration.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
@@ -237,13 +253,14 @@ package classes.GameData
 			// Power Surge
 			PowerSurge = new SingleCombatAttack();
 			PowerSurge.ButtonName = "P. Surge";
-			PowerSurge.EnergyCost = 33;
+			PowerSurge.EnergyCost = 0;
 			PowerSurge.RequiresPerk = "Power Surge";
+			PowerSurge.DisabledIfEffectedBy = ["Tech Shield CD"];
 			PowerSurge.ExtendedAvailabilityCheck = function():Boolean {
 				return kGAMECLASS.pc.hasShields();
 			}
 			PowerSurge.TooltipTitle = "Power Surge";
-			PowerSurge.TooltipBody = "Restores a moderate amount of shields based on intelligence.";
+			PowerSurge.TooltipBody = "Restores a moderate amount of shields and energy based on intelligence.\n\n<b>Once per combat.</b>";
 			PowerSurge.RequiresTarget = false;
 			PowerSurge.Implementor = PowerSurgeImpl;
 			PowerSurge.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
@@ -294,6 +311,18 @@ package classes.GameData
 			WeaponHack.Implementor = WeaponHackImpl;
 			WeaponHack.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(WeaponHack);
+
+			// Charge Shield
+			ChargeShield = new SingleCombatAttack();
+			ChargeShield.ButtonName = "Charge Sh.";
+			ChargeShield.EnergyCost = 15;
+			ChargeShield.RequiresPerk = "Charge Shield";
+			ChargeShield.DisabledIfEffectedBy = ["Charged Shield"];
+			ChargeShield.TooltipTitle = "Charge Shield";
+			ChargeShield.TooltipBody = "Charge your shield so that it can overload when struck, creating flashes bright enough to blind the unwary - or zap those stupid enough to try for a punch.";
+			ChargeShield.Implementor = ChargeShieldImpl;
+			ChargeShield.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
+			a.push(ChargeShield);
 			
 			// PocketSand/Flash Grenade
 			PocketSand = new SingleCombatAttack();
@@ -426,6 +455,24 @@ package classes.GameData
 			ConcussiveShot.Implementor = ConcussiveShotImpl;
 			ConcussiveShot.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ConcussiveShot);
+			
+			// Multi-Arrow
+			/* Fen note: NOPE. I do not want to go down the road of every weapon having there own special attacks. If we were going that route, we shouldnt have had classes.
+			MultiArrow = new SingleCombatAttack();
+			MultiArrow.ButtonName = "MultiArrow";
+			MultiArrow.DisabledIfEffectedBy = ["Disarmed"];
+			MultiArrow.EnergyCost = 30;
+			MultiArrow.IsRangedBased = true;
+			MultiArrow.RequiresTarget = false;
+			MultiArrow.RequiresItemFlags = [GLOBAL.ITEM_FLAG_BOW_WEAPON];
+			MultiArrow.ExtendedDisplayabilityCheck = function():Boolean {
+				return (kGAMECLASS.pc.rangedWeapon is HardlightBow);
+			}
+			MultiArrow.TooltipTitle = "Multi-Arrow";
+			MultiArrow.TooltipBody = "Fire a small volley of arrows from your hardlight bow against multiple enemies.";
+			MultiArrow.Implementor = MultiArrowImpl;
+			MultiArrow.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
+			a.push(MultiArrow);*/
 			
 			// Goozooka
 			GoozookaAttack = new SingleCombatAttack();
@@ -656,6 +703,16 @@ package classes.GameData
 			
 			var d:TypeCollection = attacker.meleeDamage();
 			damageRand(d, 15);
+			
+			// Damage adjustments
+			if(attacker.meleeWeapon is SaurmorianHammer && (target.originalRace == "saurmorian" || target.race() == "saurmorian"))
+			{
+				var saurianScaleBreak:TypeCollection = new TypeCollection();
+				saurianScaleBreak.kinetic.damageValue = 10;
+				saurianScaleBreak.addFlag(DamageFlag.PENETRATING);
+				d.add(saurianScaleBreak);
+			}
+			
 			applyDamage(d, attacker, target, special);
 
 			if(target is Kane) 
@@ -708,6 +765,7 @@ package classes.GameData
 			}
 			
 			if (attacker.hasPerk("Multiple Shots")) numShots = attacker.perkv1("Multiple Shots");
+			if (attacker.hasStatusEffect("Bonus Shots")) numShots += attacker.statusEffectv1("Bonus Shots");
 			
 			var numFlurries:int = 0;
 			if (attacker.hasPerk("Second Shot")) numFlurries++;
@@ -761,6 +819,7 @@ package classes.GameData
 			
 			var numHits:int = 0;
 			if (attacker.hasPerk("Multiple Attacks")) numSwings = attacker.perkv1("Multiple Attacks");
+			if (attacker.hasStatusEffect("Bonus Attacks")) numSwings += attacker.statusEffectv1("Bonus Attacks");
 			
 			var totalSwings:int = numSwings + numFlurries;
 			for (var i:int = 0; i < totalSwings; i++)
@@ -1015,6 +1074,18 @@ package classes.GameData
 			
 			SingleRangedAttackImpl(attacker, target, false, "slut ray");
 		}
+		
+		public static function FZRAttackImpl(attacker:Creature, target:Creature):void
+		{
+			if (attacker.hasStatusEffect("Disarmed"))
+			{
+				if (attacker is PlayerCharacter) output("You try to attack until you remember that you’ve been disarmed!");
+				else output(attacker.getCombatName() + " scrabbles about, trying to find " + attacker.getCombatPronoun("pa") + " missing weapon.");
+				return;
+			}
+			
+			SingleRangedAttackImpl(attacker, target, false, "fzr");
+		}
 		//} endregion
 		
 		
@@ -1085,6 +1156,11 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
+			if (!target.hasStatusEffect("Staggered") && attacker.hasPerk("Rending Attacks"))
+			{
+				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0,0xFF0000);
+				output(" <b>[target.CombatName] is staggered by the hail of fire!</b>");
+			}
 		}
 		
 		public static var PowerStrike:SingleCombatAttack;
@@ -1112,9 +1188,16 @@ package classes.GameData
 			else output("[attacker.CombatName] draws back [attacker.combatHisHer] " + attacker.meleeWeapon.longName + " and lands a hit on [target.combatName]!");
 			
 			var d:TypeCollection = attacker.meleeDamage();
-			d.multiply(2);
+			var multiplier:Number = 2;
+			if(attacker.hasPerk("Second Attack")) multiplier += 0.7;
+			d.multiply(multiplier);
 			damageRand(d, 15);
 			applyDamage(d, attacker, target);
+			if(!target.hasStatusEffect("Sundered") && attacker.hasPerk("Rending Attacks"))
+			{
+				output(" <b>Sundered</b>!");
+				target.createStatusEffect("Sundered", 4+rand(2), 0, 0, 0, false, "DefenseDown", "Defense is reduced by 50%!", true,0,0xFF0000);
+			}
 		}
 		
 		public static var TakeCover:SingleCombatAttack;
@@ -1188,11 +1271,15 @@ package classes.GameData
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You launch a paralyzing shock at [target.combatName]!");
+			if (attacker is PlayerCharacter) 
+			{
+				if(attacker.hasPerk("Fuck Sense")) output("You blink innocently while launching a paralyzing shock at [target.combatName]!");
+				else output("You launch a paralyzing shock at [target.combatName]!");
+			}
 			else if (target is PlayerCharacter) output("[attacker.CombatName] fires a paralyzing shock at you!");
 			else output("[attacker.CombatName] fires a paralyzing shock at [target.combatName]!");
 			
-			if (attacker.intelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10)
+			if (attacker.bimboIntelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10)
 			{
 				output("\nThe effect is immediate! ");
 				if (target is PlayerCharacter) output(" You shudder and stop, temporarily paralyzed!");
@@ -1201,7 +1288,12 @@ package classes.GameData
 			}
 			else
 			{
-				output("\nIt has no effect!");
+				output("\nIt fails to paralyze [target.CombatName]!");
+			}
+			if(attacker.hasPerk("Deadly Shock"))
+			{
+				var targetDamage:int = Math.round(10 + attacker.level * 2 + attacker.bimboIntelligence() / 1.25);
+				applyDamage(damageRand(new TypeCollection( { kinetic: targetDamage } ), 15), attacker, target, "minimal");
 			}
 		}
 		
@@ -1220,6 +1312,20 @@ package classes.GameData
 				
 				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
 			}
+		}
+
+		public static var ChargeWeapon:SingleCombatAttack;
+		private static function chargeWeaponImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			if(target is PlayerCharacter) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.mfn("his","her","its") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
+			else 
+			{
+				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It's just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden '<i>kzzzt</i>' of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe's way!");
+				else output("You flick the switch on a wrist-mounted powercell, pumping arcs of deadly electricity into your " + attacker.meleeWeapon.longName + ", then try for a quick strike with the newly charged weapon!\n");
+			}
+			if (attacker.hasPerk("Fuck Sense")) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you're pretty sure it'll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~", true, 0);
+			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity.", true, 0);
+			SingleMeleeAttackImpl(attacker, target, true);
 		}
 		
 		public static var Overcharge:SingleCombatAttack;
@@ -1247,7 +1353,11 @@ package classes.GameData
 				return;
 			}
 			
-			if (attacker is PlayerCharacter) output("You overcharge your " + attacker.rangedWeapon.longName + " and land a hit on " + target.getCombatName() + "!");
+			if (attacker is PlayerCharacter) 
+			{
+				if(attacker.hasPerk("Fuck Sense")) output("You crank your " + attacker.rangedWeapon.longName + " up to 11, your fingers massaging the delicate electronics all on their own. Pulling the trigger comes as a surprise, but the super-charged shot connects with " + target.getCombatName() + " all the same!");
+				else output("You overcharge your " + attacker.rangedWeapon.longName + " and land a hit on " + target.getCombatName() + "!");
+			}
 			else output(" [attacker.CombatName] connects with [attacker.combatHisHer] overcharged " + attacker.rangedWeapon.attackNoun + "!");
 			
 			var d:TypeCollection = attacker.rangedDamage();
@@ -1274,29 +1384,46 @@ package classes.GameData
 		public static var DeflectorRegeneration:SingleCombatAttack;
 		private static function DeflectorRegenerationImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("You fiddle with your shield, tuning it to regenerate over the next few turns.");
+			attacker.createStatusEffect("Tech Shield CD",0,0,0,0,true,"","",true);
+			if (attacker is PlayerCharacter) 
+			{
+				if (attacker.hasPerk("Fuck Sense")) output("Your fingers tweak the machinery of your shield generator as easily as a cute boy's nipples, twisting and tugging until the power is trickling back into your shield. The less you think about it, the easier it is to do!");
+				else output("You fiddle with your shield, tuning it to regenerate over the next few turns.");
+			}
 			else output("[attacker.CombatName] leans down to fiddle with their shield generator. The field responds, visibly bolstering as the emitters work harder to replenish the depleted field.");
+
+			var amount:Number = Math.ceil((attacker.bimboIntelligence() * 1.5 + rand(attacker.level) + attacker.shieldsMax() * 0.25) / 3);
 			
-			attacker.createStatusEffect("Deflector Regeneration", 4, Math.ceil((attacker.intelligence() * 1.5 + rand(attacker.level) + attacker.shieldsMax() * 0.25) / 4), 0, 0, false, "DefenseUp", "Recovering shields every round.", true, 0);
+			attacker.createStatusEffect("Deflector Regeneration", 4, amount, 0, 0, false, "DefenseUp", "Recovering shields every round.", true, 0);
 		}
 		
 		public static var PowerSurge:SingleCombatAttack;
 		private static function PowerSurgeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("You channel a surge of power into your shield generator, instantly restoring a portion of the emitters lost energy.");
+			attacker.createStatusEffect("Tech Shield CD",0,0,0,0,true,"","",true);
+			if (attacker is PlayerCharacter) 
+			{
+				if (attacker.hasPerk("Fuck Sense")) output("Your fingers tweak the machinery of your shield generator as easily as a cute girl's clitty, twisting and tugging until a jolt of power restores a portion of the shield's missing energy. The less you think about it, the easier it is to do!");
+				else output("You channel a surge of power into your shield generator, instantly restoring a portion of the emitters lost energy.");
+			}
 			else output("[attacker.CombatName] channels a surge of power into [attacker.combatHisHer] shield generator, instantly restoring a portion of the lost energy.");
 			
-			var a:int = Math.ceil(attacker.intelligence() * 1.5 + rand(attacker.level) + attacker.shieldsMax() * 0.25);
-			if (a + attacker.shields() > attacker.shieldsMax()) a = attacker.shieldsMax() - attacker.shields();
+			var amount:Number = Math.ceil((attacker.bimboIntelligence() * 1.5 + rand(attacker.level) + attacker.shieldsMax() * 0.25));
 			
-			attacker.shields(a);
-			output(" (" + a + ")");
+			if (amount + attacker.shields() > attacker.shieldsMax()) amount = attacker.shieldsMax() - attacker.shields();
+			attacker.energy(33);
+			attacker.shields(amount);
+			output(" (" + amount + ")");
 		}
 		
 		public static var ThermalDisruptor:SingleCombatAttack;
 		private static function ThermalDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a wave of burning fire on [target.combatName].");
+			if (attacker is PlayerCharacter) 
+			{
+				output("Raising the disruptor, you unleash a wave of burning fire on [target.combatName].");
+				if(attacker.isBimbo()) output(" Gosh, that fire is pretty!");
+			}
 			else if (target is PlayerCharacter) output("[attacker.CombatName] spins a long device around from their back, levelling it squarely in your direction. In the blink of an eye it unleashes a wave of burning fire directly at you!");
 			else output("[attacker.CombatName] spins a long device around from their back, levelling it at [target.combatName], unleashing a wave of burning fire!");
 			
@@ -1305,7 +1432,7 @@ package classes.GameData
 				output(" The flames surge, licking at your targets compatriots!");
 			}
 			
-			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.intelligence());
+			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.bimboIntelligence());
 			var baseDamage:TypeCollection = new TypeCollection( { burning: targetDamage } );
 			var pluralDamage:TypeCollection = new TypeCollection( { burning: targetDamage * 2 } );
 			var totalDamage:DamageResult;
@@ -1329,7 +1456,11 @@ package classes.GameData
 		public static var GravidicDisruptor:SingleCombatAttack;
 		private static function GravidicDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Raising the disruptor, you unleash a targeted gravitic disruption on [target.combatName].");
+			if (attacker is PlayerCharacter) 
+			{
+				if(!attacker.isBimbo()) output("Raising the disruptor, you unleash a targeted gravitic disruption on [target.combatName].");
+				else output("Raising the disruptor, you unleash a pretty purple swirl-ball on [target.combatName]. It's so pretty you can almost forget that you're manipulating gravity itself! Science is fun!")
+			}
 			else if (target is PlayerCharacter) output("[attacker.CombatName] spins a long device around from their back, levelling it squarely in your direction. Your limbs suddenly feel heavy, a crushing weight bearing down on you from all sides!");
 			else output("[attacker.CombatName] spins a long device around from their back, levelling it at [target.combatName], unleashing a targeted gravitic disruption in [target.combatHisHer] direction!");
 			
@@ -1338,7 +1469,7 @@ package classes.GameData
 				output(" The disruption spreads to encompass a small, localized area neatly surrounding your enemies!");
 			}
 			
-			var targetDamage:int = Math.round(15 + attacker.level * 2.5 + attacker.intelligence() / 1.5);
+			var targetDamage:int = Math.round(15 + attacker.level * 2.5 + attacker.bimboIntelligence() / 1.5);
 			var baseDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage } );
 			var pluralDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage * 2 } );
 			
@@ -1392,6 +1523,28 @@ package classes.GameData
 			}
 			
 			outputDamage(dr);
+		}
+
+		public static var ChargeShield:SingleCombatAttack;
+		private static function ChargeShieldImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			if (attacker is PlayerCharacter) 
+			{
+				if (attacker.hasPerk("Fuck Sense")) output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. You do a happy little wiggle while you work. It'll make your butt look super great.");
+				else output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. It should be good for two pulses, minimum.");
+			}
+			else output("[attacker.CombatName] tweaks " + attacker.mfn("his","her","its") + " shield generator. The nearly invisible barrier shines brighter as a result. Better be careful when attacking!");
+
+			var moddedInt:int = attacker.intelligence();
+			if(attacker.hasPerk("Fuck Sense"))
+			{
+				moddedInt = attacker.intelligenceMax() - attacker.intelligence() + 1;
+				moddedInt += attacker.libido()/10;
+				if(moddedInt > attacker.level * 5) moddedInt = attacker.level * 5;
+			}
+			var targetDamage:int = Math.round(10 + attacker.level * 3 + moddedInt);
+					
+			attacker.createStatusEffect("Charged Shield", 2, targetDamage, 0, moddedInt, false, "DefenseUp", "Chance of blinding attackers - and damaging melee attackers for up to " + targetDamage + " electrical damage!", true, 0);
 		}
 		
 		public static var WeaponHack:SingleCombatAttack;
@@ -1541,7 +1694,15 @@ package classes.GameData
 				else if (target is PlayerCharacter) output(possessive(attacker.getCombatName()) + " strike connects with you!");
 				else output(possessive(attacker.getCombatName()) + " strike connects with [target.combatName]!");
 				
-				applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 } ), 15), attacker, target, "minimal");
+				var damHolder:Number = attacker.physique()/2;
+				if((target.hasCock() || target.balls > 0) && target.isCrotchExposed())
+				{
+					damHolder += attacker.physique()/2;
+				}
+				if(target.balls > 0 && target.ballDiameter() >= 7) damHolder += attacker.physique();
+				damHolder = Math.ceil(damHolder);
+
+				applyDamage(damageRand(new TypeCollection( { kinetic: damHolder } ), 15), attacker, target, "minimal");
 				
 				if ((attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) || target is Kaska)
 				{
@@ -1755,7 +1916,7 @@ package classes.GameData
 					output(", stunning your enemy!");
 					
 					var rounds:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for "+ rounds +" turns.",true,0,0xFF0000);
+					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".",true,0,0xFF0000);
 				}
 				
 				// Add some burning damage for the explosion
@@ -1763,6 +1924,57 @@ package classes.GameData
 				damage.add(new TypeCollection( { burning: 10 } ));
 				damage = damageRand(damage,15);
 				applyDamage(damage, attacker, target, "ranged");
+			}
+		}
+		
+		public static var MultiArrow:SingleCombatAttack;
+		private static function MultiArrowImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			if (attacker is PlayerCharacter) output("You nock a number of your smart arrows and draw your hardlight bowstring back, taking careful aim at the space just ahead of your enemy.");
+			else if (attacker.isPlural) output("[attacker.CombatName] nock a number of their smart arrows and draw your hardlight bowstrings back, taking careful aim at the space just ahead of you.");
+			else output("[attacker.CombatName] nocks a number of [attacker.combatHisHer] smart arrows and draws [attacker.combatHisHer] hardlight bowstring back, taking careful aim at the space just ahead of you.");
+			
+			// Count active targets
+			var numFoes:int = 0;
+			var i:int = 0;
+			for(i = 0; i < hGroup.length; i++)
+			{
+				if (!hGroup[i].isDefeated()) numFoes++;
+			}
+			// Number of arrows shot (or one arrow per target)
+			var shots:Number = 4;
+			if(shots < numFoes) shots = numFoes;
+			// Each target gets a hit
+			for(i = 0; i < hGroup.length; i++)
+			{
+				var cTarget:Creature = hGroup[i] as Creature;
+				if (cTarget.isDefeated()) continue;
+				output("\n");
+				if (rangedCombatMiss(attacker, cTarget, 0))
+				{
+					if (attacker is PlayerCharacter) output("You let loose, but the arrows sail clean past your intended target.");
+					else if (attacker.isPlural) output("[attacker.CombatName] let loose, but the arrows sail clean past their intended target.");
+					else if (cTarget is PlayerCharacter) output("[attacker.CombatName] lets loose, but the arrows sail clean past you.");
+					else output("[attacker.CombatName] lets loose, but the arrows sail clean past [attacker.combatHisHer] intended target.");
+				}
+				else if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
+				{
+					if (attacker is PlayerCharacter) output("Your blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");
+					else if (attacker.isPlural) output("[attacker.CombatName] blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");
+					else if (cTarget is PlayerCharacter) output("Luckily, [attacker.CombatName]’s blind <b>multi-arrow shot</b> missed you.");
+					else output("[attacker.CombatName]’s blind <b>multi-arrow shot</b> missed " + cTarget.getCombatName() + ".");
+				}
+				else
+				{
+					if (attacker is PlayerCharacter) output("You let loose and land a hit on " + cTarget.getCombatName() + " with your <b>multi-arrow shot</b>!");
+					else if (attacker.isPlural) output("[attacker.CombatName] let loose and hit " + cTarget.getCombatName() + " with their <b>multi-arrow shot</b>!");
+					else if (cTarget is PlayerCharacter) output("[attacker.CombatName] lets loose and hits you with [attacker.combatHisHer] <b>multi-arrow shot</b>!");
+					else output("[attacker.CombatName] lets loose and hits " + cTarget.getCombatName() + " with [attacker.combatHisHer] <b>multi-arrow shot</b>!");
+					
+					var damage:TypeCollection = attacker.rangedDamage();
+					damage.multiply(shots * (1 / numFoes));
+					applyDamage(damage, attacker, cTarget, "minimal");
+				}
 			}
 		}
 		
@@ -1907,7 +2119,7 @@ package classes.GameData
 					//{Stun chance}
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
-						output("<b> The hit was hard enough to stun you!</b>");
+						output(" <b>The hit was hard enough to stun you!</b>");
 						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
 					}
 					var damage:TypeCollection = attacker.meleeDamage();

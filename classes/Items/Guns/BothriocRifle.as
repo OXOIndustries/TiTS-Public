@@ -19,7 +19,7 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "B.Rifle";
+			this.shortName = "Both.Rifle";
 			
 			//Regular name
 			this.longName = "bothrioc rifle";

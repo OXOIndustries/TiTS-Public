@@ -116,6 +116,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/briha_pregnant_nude.png", mimeType = "image/png")]
 		public var Bust_BRIHA_PREGNANT_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/bronco.png", mimeType = "image/png")]
+		public var Bust_BRONCO:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/carrie_nude.png", mimeType = "image/png")]
@@ -125,14 +128,19 @@ package classes.Resources.Busts
 		public var Bust_CASS:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass_nude.png", mimeType = "image/png")]
 		public var Bust_CASS_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/cockvine_single.png", mimeType = "image/png")]
+		public var Bust_COCKVINE_SEEDLING:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/cora.png", mimeType = "image/png")]
 		public var Bust_CORA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/cora_nude.png", mimeType = "image/png")]
 		public var Bust_CORA_NUDE:Class;
-
-		[Embed(source = "../../../assets/images/npcs/adjatha/cockvine_single.png", mimeType = "image/png")]
-		public var Bust_COCKVINE_SEEDLING:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/cow_lager.png", mimeType = "image/png")]
+		public var Bust_BEER_COW:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cow_whiskey.png", mimeType = "image/png")]
+		public var Bust_WHISKEY_COW:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/darnock.png", mimeType = "image/png")]
 		public var Bust_DARNOCK:Class;
@@ -654,6 +662,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha_pregnant_nude.png", mimeType = "image/png")]
 			public var Full_BRIHA_PREGNANT_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bronco.png", mimeType = "image/png")]
+			public var Full_BRONCO:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carrie.png", mimeType = "image/png")]
 			public var Full_CARRIE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carrie_nude.png", mimeType = "image/png")]
@@ -663,14 +674,19 @@ package classes.Resources.Busts
 			public var Full_CASS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cass_nude.png", mimeType = "image/png")]
 			public var Full_CASS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cockvine_single.png", mimeType = "image/png")]
+			public var Full_COCKVINE_SEEDLING:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cora.png", mimeType = "image/png")]
 			public var Full_CORA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cora_nude.png", mimeType = "image/png")]
 			public var Full_CORA_NUDE:Class;
-
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cockvine_single.png", mimeType = "image/png")]
-			public var Full_COCKVINE_SEEDLING:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cow_lager.png", mimeType = "image/png")]
+			public var Full_BEER_COW:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cow_whiskey.png", mimeType = "image/png")]
+			public var Full_WHISKEY_COW:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/darnock.png", mimeType = "image/png")]
 			public var Full_DARNOCK:Class;

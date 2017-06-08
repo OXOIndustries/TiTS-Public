@@ -887,7 +887,7 @@ public function askEmmyAboutShields():void
 	if(pc.isBimbo()) 
 	{
 		output("Yeah, she’d totally bust a hole in anything she tried to stretch over that mammoth. Then all that yummy cum could squirt and gush wherever it wanted! You resolve to make sure she gets like, totally inside you ");
-		if(flags["FUCKED_EMMY"] != undefined) output("whenver you fuck next");
+		if(flags["EMMY_FUCKED"] != undefined) output("whenever you fuck next");
 		else output("if you ever fuck her");
 		output(". To think of all the cum that could be wasted!");
 	}

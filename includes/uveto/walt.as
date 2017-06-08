@@ -14,7 +14,7 @@ public function waltAtTheFreezer(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("\n\nYou see the wolfman, Walt, sitting at a table, nursing a drink. He sniffs the air as you enter, looking up in your direction.");
+		output("You see the wolfman, Walt, sitting at a table, nursing a drink. He sniffs the air as you enter, looking up in your direction.");
 		// [Walt] Go to Walt Talk Menu
 		addButton(btnSlot, "Walt", approachWalt);
 	}

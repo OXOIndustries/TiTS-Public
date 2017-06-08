@@ -96,6 +96,8 @@ public function weightRoomBonusFunction():Boolean
 	//[Hard Workout] Go to Light Workout {locked if PC has [Sore] debuff or doesn’t have 50 energy}
 	if(pc.energy() >= 50 && !pc.isWornOut()) addButton(1,"Hard Workout",hardWorkout,undefined,"Hard Workout","A hard workout that’ll help you build muscle <b>and</b> strength.");
 	else addDisabledButton(1,"Hard Workout","Hard Workout","You’re too tired for that workout.");
+	//Mirrin: #2
+	mirrinGymBonus(2);
 	//[Cowgirl] Go to Simone
 	if(flags["MET_SIMONE"] == undefined) addButton(3,"Cowgirl",simoneWorkoutApproach,undefined,"Cowgirl","A cowgirl can be seen lifting weights here.");
 	else addButton(3, "Simone", simoneWorkoutApproach, undefined, "Simone", "Pump some iron with the competitive cowgirl.");

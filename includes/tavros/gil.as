@@ -598,9 +598,11 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 		}
 		else output("sighs, <i>“Still nothing nice in here.”</i>");
 
-		output("\n\n<i>“When are y’going to grow a dick to fuck me?”</i> he asks as you turn on your hardlight.}");
+		output("\n\n<i>“When are y’going to grow a dick to fuck me?”</i> he asks as you turn on your hardlight.");
 		
-		output("\n\nHe starts by nudging his moist nose against your glowing shaft, taking the opportunity to get a few goods sniffs and enjoying the smell of your{pc has cunt: moist} underwear. The dog boy wastes no time, opening his maw wide and gliding his tongue across your luminous surface, starting from the base and going all the way to the tip. When it’s completely glazed in doggie slobber, he gives one last lap across the bottom, before pulling back completely.");
+		output("\n\nHe starts by nudging his moist nose against your glowing shaft, taking the opportunity to get a few goods sniffs and enjoying the smell of your");
+		if(pc.hasVagina()) output(" moist");
+		output(" underwear. The dog boy wastes no time, opening his maw wide and gliding his tongue across your luminous surface, starting from the base and going all the way to the tip. When it’s completely glazed in doggie slobber, he gives one last lap across the bottom, before pulling back completely.");
 	}
 	//pc has genital slit:
 	else if(pc.hasStatusEffect("Genital Slit"))
@@ -753,7 +755,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	else output("meat");
 	output(" with one hand while the other explores the rest of your body. Just as you’re about to complain, he ");
 	//pc dick has foreskin flag:
-	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output("shoves his canine tongue down your foreskin and teasingly licks its insides. As he does this, he’s also slowly pulling your foreskin down, exposing your saliva-coated [pc.cockHead " + x + "] to his warm breath");
+	if(!hardlighted && pc.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED)) output("shoves his canine tongue down your foreskin and teasingly licks its insides. As he does this, he’s also slowly pulling your foreskin down, exposing your saliva-coated [pc.cockHead " + x + "] to his warm breath");
 	else
 	{
 		output("wraps his canine tongue around ");
@@ -762,7 +764,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	}
 	output(". He kisses your tip and suckles on it, slowly draining your precum, before ");
 	//pc dick has double head flag:
-	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) output("sinking in, enveloping your topmost cockhead, and then doing it all over again for the second.");
+	if(!hardlighted && pc.cocks[x].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) output("sinking in, enveloping your topmost cockhead, and then doing it all over again for the second.");
 	else output("shoving the rest of it into his mouth.");
 	if(pc.cockTotal() > 1) output(" His free hand gives your [pc.cockSmallest] a slow, mechanical handjob, and he’s obviously more passionate about using his mouth.");
 	if(pc.cockTotal() > 2) output(" His free hand jumps between your other cocks, keeping them hard with idle handjobs, but he’s obviously more passionate about using his mouth.");
@@ -773,10 +775,10 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	{
 		output("licks around your ");
 		if(hardlighted) output("faux-cock");
-		else output("[pc.cockLight " + x + "]");
+		else output("[pc.cockNounSimple " + x + "]");
 		output(", ");
 		//pc dick has ribbed or nubby flag:
-		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) || pc.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) 
+		if(!hardlighted && (pc.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) || pc.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)))
 		{
 			output("paying special attention to the ");
 			if(pc.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED)) output("ribs");
@@ -833,7 +835,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 		else output("[pc.knot " + x + "]");
 		output(" in no time");
 		//pc dick has knotted flag:
-		if(pc.cocks[x].hasFlag(GLOBAL.FLAG_KNOTTED)) output(" and then eagerly taking it in");
+		if(!hardlighted && pc.cocks[x].hasFlag(GLOBAL.FLAG_KNOTTED)) output(" and then eagerly taking it in");
 	}
 	output(".");
 
@@ -1099,7 +1101,7 @@ public function doggyStyleWithGil():void
 		else output("cock");
 		output(". If it wasn’t for how wet he is you would have a lot of trouble just getting your ");
 		if(hardlighted) output("fun-stick");
-		else output("[pc.cockLight " + x + "]");
+		else output("[pc.cockNounSimple " + x + "]");
 		output(" to move at all in this state. His big bubbly butt wobbles every time your pelvis hits his rear. You grab onto the frame of the bed, using it as extra leverage to pound even faster into his animalistic vagina.");
 	}
 	//else:
@@ -1114,7 +1116,7 @@ public function doggyStyleWithGil():void
 		else output("cock");
 		output(" in. If it wasn’t for how wet he is you would have a lot of trouble just getting your ");
 		if(hardlighted) output("toy-dick");
-		else output("[pc.cockLight " + x + "]");
+		else output("[pc.cockNounSimple " + x + "]");
 		output(" to move at all in this state. His big bubbly butt wobbles every time you drill it in, and you can’t help but give one of his black furry cheeks a good squeeze. He gasps at your groping and moans as you bottom right back in him. You trace your other hand over his back, not finding a hint of excess muscle or fat, your other hand quickly following behind, before you grab his shoulders to make it easier to pound into his animalistic pussy.");
 	}
 	output("\n\nAs the sex continues, you start to notice a strange smell in the air, a mix of manly musk, sweat and pheromones, and it’s all coming from the dog-morph. The smell of his sweat-drenched body is overpowering, each drop enticing you to thrust your ");
@@ -1159,7 +1161,8 @@ public function doggyStyleWithGil():void
 	//else:
 	else
 	{
-		output("\n\nYou decide to silence his snide remarks by almost pulling out{pc not taur:, taking a moment to admire your ");
+		output("\n\nYou decide to silence his snide remarks by almost pulling out");
+		if(!pc.isTaur()) output(", taking a moment to admire your ");
 		if(hardlighted) output("luminous faux-penis");
 		else output("glistening, [pc.cock " + x + "]");
 		output(" before hammering it into his swollen, canine pussy. Wrapping your hands around his thin waist, you hammer your hips against his buttocks with a loud thump, each time forcing a loud moan out of his lips.");
