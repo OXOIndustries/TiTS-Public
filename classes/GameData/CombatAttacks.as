@@ -457,7 +457,7 @@ package classes.GameData
 			a.push(ConcussiveShot);
 			
 			// Multi-Arrow
-			/* Fen note: NOPE. I do not want to go down the road of every weapon having there own special attacks. If we were going that route, we shouldnt have had classes.
+			/* Fen note: NOPE. I do not want to go down the road of every weapon having their own special attacks. If we were going that route, we shouldnt have had classes.
 			MultiArrow = new SingleCombatAttack();
 			MultiArrow.ButtonName = "MultiArrow";
 			MultiArrow.DisabledIfEffectedBy = ["Disarmed"];
@@ -907,7 +907,7 @@ package classes.GameData
 			}
 		}
 		
-		//{ region Item Attack Implementors
+		// region Item Attack Implementors
 		public static function DroneAttack(attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Your");
@@ -1320,10 +1320,10 @@ package classes.GameData
 			if(target is PlayerCharacter) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.mfn("his","her","its") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
 			else 
 			{
-				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It's just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden '<i>kzzzt</i>' of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe's way!");
+				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It’s just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden ‘<i>kzzzt</i>’ of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe’s way!");
 				else output("You flick the switch on a wrist-mounted powercell, pumping arcs of deadly electricity into your " + attacker.meleeWeapon.longName + ", then try for a quick strike with the newly charged weapon!\n");
 			}
-			if (attacker.hasPerk("Fuck Sense")) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you're pretty sure it'll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~", true, 0);
+			if (attacker.hasPerk("Fuck Sense")) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~", true, 0);
 			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity.", true, 0);
 			SingleMeleeAttackImpl(attacker, target, true);
 		}
@@ -1387,7 +1387,7 @@ package classes.GameData
 			attacker.createStatusEffect("Tech Shield CD",0,0,0,0,true,"","",true);
 			if (attacker is PlayerCharacter) 
 			{
-				if (attacker.hasPerk("Fuck Sense")) output("Your fingers tweak the machinery of your shield generator as easily as a cute boy's nipples, twisting and tugging until the power is trickling back into your shield. The less you think about it, the easier it is to do!");
+				if (attacker.hasPerk("Fuck Sense")) output("Your fingers tweak the machinery of your shield generator as easily as a cute boy’s nipples, twisting and tugging until the power is trickling back into your shield. The less you think about it, the easier it is to do!");
 				else output("You fiddle with your shield, tuning it to regenerate over the next few turns.");
 			}
 			else output("[attacker.CombatName] leans down to fiddle with their shield generator. The field responds, visibly bolstering as the emitters work harder to replenish the depleted field.");
@@ -1403,7 +1403,7 @@ package classes.GameData
 			attacker.createStatusEffect("Tech Shield CD",0,0,0,0,true,"","",true);
 			if (attacker is PlayerCharacter) 
 			{
-				if (attacker.hasPerk("Fuck Sense")) output("Your fingers tweak the machinery of your shield generator as easily as a cute girl's clitty, twisting and tugging until a jolt of power restores a portion of the shield's missing energy. The less you think about it, the easier it is to do!");
+				if (attacker.hasPerk("Fuck Sense")) output("Your fingers tweak the machinery of your shield generator as easily as a cute girl’s clitty, twisting and tugging until a jolt of power restores a portion of the shield’s missing energy. The less you think about it, the easier it is to do!");
 				else output("You channel a surge of power into your shield generator, instantly restoring a portion of the emitters lost energy.");
 			}
 			else output("[attacker.CombatName] channels a surge of power into [attacker.combatHisHer] shield generator, instantly restoring a portion of the lost energy.");
@@ -1459,7 +1459,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) 
 			{
 				if(!attacker.isBimbo()) output("Raising the disruptor, you unleash a targeted gravitic disruption on [target.combatName].");
-				else output("Raising the disruptor, you unleash a pretty purple swirl-ball on [target.combatName]. It's so pretty you can almost forget that you're manipulating gravity itself! Science is fun!")
+				else output("Raising the disruptor, you unleash a pretty purple swirl-ball on [target.combatName]. It’s so pretty you can almost forget that you’re manipulating gravity itself! Science is fun!")
 			}
 			else if (target is PlayerCharacter) output("[attacker.CombatName] spins a long device around from their back, levelling it squarely in your direction. Your limbs suddenly feel heavy, a crushing weight bearing down on you from all sides!");
 			else output("[attacker.CombatName] spins a long device around from their back, levelling it at [target.combatName], unleashing a targeted gravitic disruption in [target.combatHisHer] direction!");
@@ -1530,7 +1530,7 @@ package classes.GameData
 		{
 			if (attacker is PlayerCharacter) 
 			{
-				if (attacker.hasPerk("Fuck Sense")) output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. You do a happy little wiggle while you work. It'll make your butt look super great.");
+				if (attacker.hasPerk("Fuck Sense")) output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. You do a happy little wiggle while you work. It’ll make your butt look super great.");
 				else output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. It should be good for two pulses, minimum.");
 			}
 			else output("[attacker.CombatName] tweaks " + attacker.mfn("his","her","its") + " shield generator. The nearly invisible barrier shines brighter as a result. Better be careful when attacking!");
@@ -2116,7 +2116,7 @@ package classes.GameData
 				{
 					//[enemy.short][capital]
 					output(StringUtil.capitalize(attacker.getCombatName(), false) + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
-					//{Stun chance}
+					// Stun chance
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
 						output(" <b>The hit was hard enough to stun you!</b>");
