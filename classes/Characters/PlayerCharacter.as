@@ -54,7 +54,7 @@ package classes.Characters
 		// Level Cap
 		override public function levelMax():int
 		{
-			return 9;
+			return 10;
 		}
 		
 		override public function nameDisplay():String

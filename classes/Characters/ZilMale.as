@@ -185,6 +185,8 @@
 			if(rand(5) == 0) inventory.push(new PrimitiveBow());
 			else inventory.push(new ZilRation());
 
+			createStatusEffect("Flying", 0, 0, 0, 0, false, "Icon_Wings", "Flying, cannot be struck by normal melee attacks!", true, 0);
+
 			kGAMECLASS.mhengaSSTDChance(this);
 		}
 		

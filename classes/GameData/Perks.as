@@ -239,6 +239,31 @@ package classes.GameData
 			giantSlayer.perkDescription = "Grants +5% chance to critical strike foes who are 7 feet or taller.";
 			insertPerkData(giantSlayer);
 
+			//Level 10
+			//Passive: Single Minded: Your Willpower increases to the maximum for your level whenever your Health drops below 50%.
+			var singleMinded:PerkData = new PerkData();
+			singleMinded.classLimit = GLOBAL.CLASS_MERCENARY;
+			singleMinded.levelLimit = 10;
+			singleMinded.autoGained = true;
+			singleMinded.perkName = "Single Minded";
+			singleMinded.perkDescription = "Increases willpower to maximum when your HP is below 50%.";
+			insertPerkData(singleMinded);
+
+			//1. Lunge: Your melee attacks can affect flying enemies normally, and your basic attacks also have a very low a chance to stagger grounded opponents. //(5% chance of pc.physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 10 check to apply sunder)
+			var lunge:PerkData = new PerkData();
+			lunge.classLimit = GLOBAL.CLASS_MERCENARY;
+			lunge.levelLimit = 10;
+			lunge.perkName = "Lunge";
+			lunge.perkDescription = "Grants the ability to target most flying enemies with melee attacks and a low chance to stagger ground-bound foes.";
+			insertPerkData(lunge);
+
+			//2. Bigger Guns: You can use Heavy weapons without needing to meet the physique requirements.
+			var biggerGuns:PerkData = new PerkData();
+			biggerGuns.classLimit = GLOBAL.CLASS_MERCENARY;
+			biggerGuns.levelLimit = 10;
+			biggerGuns.perkName = "Bigger Guns";
+			biggerGuns.perkDescription = "You can use Heavy weapons without needing to meet the physique requirements.";
+			insertPerkData(biggerGuns);
 		}
 		
 		private function ConfigureSmugglerPerks():void
@@ -454,6 +479,34 @@ package classes.GameData
 			desperation.perkName = "Desperation";
 			desperation.perkDescription = "Grants +7% critical hit chance when your HP drops below 50%.";
 			insertPerkData(desperation);
+
+			//Smuggler 10
+			//Perk: Cloak and Dagger: When you hit with a basic attack, you gain a small bonus to Evasion until the start of your next turn.
+ 			//2. Mag Binders: You throw a set of magnetic, semi-guided restraints at your enemy, potentially stunning them for 1-3 rounds and dealing light shocking damage. Stacks with extra shot for any bonus ranged attacks.
+			var cloakAndDagger:PerkData = new PerkData();
+			cloakAndDagger.classLimit = GLOBAL.CLASS_SMUGGLER;
+			cloakAndDagger.levelLimit = 10;
+			cloakAndDagger.autoGained = true;
+			cloakAndDagger.perkName = "Cloak and Dagger";
+			cloakAndDagger.perkDescription = "Gain a small bonus to evasion for one turn after landing a basic attack hit (melee or ranged).";
+			insertPerkData(cloakAndDagger);
+
+			//1. Can Opener: When you score a critical hit with a melee weapon, or strike a blinded or stunned target with one, you have a chance of Sundering the target's armor, which reduces its Defense for several rounds. //(physique vs reflexes. Standard “+10” type difficulty check)
+			var canOpener:PerkData = new PerkData();
+			canOpener.classLimit = GLOBAL.CLASS_SMUGGLER;
+			canOpener.levelLimit = 10;
+			canOpener.perkName = "Can Opener";
+			canOpener.perkDescription = "Grants a chance to sunder an enemy after landing a critical hit, reducing the effectiveness of their armor by 50%.";
+			insertPerkData(canOpener);
+
+			//2. Mag Binders: You throw a set of magnetic, semi-guided restraints at your enemy, potentially stunning them for 1-3 rounds and dealing light shocking damage. 
+			//Fen cutting dis: Stacks with extra shot for any bonus ranged attacks.
+			var magBinders:PerkData = new PerkData();
+			magBinders.classLimit = GLOBAL.CLASS_SMUGGLER;
+			magBinders.levelLimit = 10;
+			magBinders.perkName = "Mag Binders";
+			magBinders.perkDescription = "Grants the ability to throw a set of magnetic, self-guided restraints at the enemy, potentiall stunning them for 1-3 rounds and dealing light shocking damage.";
+			insertPerkData(magBinders);
 
 		}
 		
@@ -671,6 +724,33 @@ package classes.GameData
 			deadlyShock.perkName = "Deadly Shock";
 			deadlyShock.perkDescription = "Boosts the amount of electrical current used for Paralyzing Shock, allowing it to do a moderate amount of electrical damage on top of the stun effect.";
 			insertPerkData(deadlyShock);
+
+			//Tech Specialist 10
+			//Perk: Rapid Recharge: You regain a small amount of Shields back on any turn you don't take damage.
+			var rapidRecharge:PerkData = new PerkData();
+			rapidRecharge.classLimit = GLOBAL.CLASS_ENGINEER;
+			rapidRecharge.levelLimit = 10;
+			rapidRecharge.autoGained = true;
+			rapidRecharge.perkName = "Rapid Recharge";
+			rapidRecharge.perkDescription = "Grants passive shield regeneration on any turn where no damage is taken.";
+			insertPerkData(rapidRecharge);
+
+			/*1A. Dampening Field: Your Gravidic Charge deals more damage (vs. primary target), and the  gravidic field lingers for 3 rounds after detonation, dramatically lessening the damage dealt by kinetic weapons -- both yours and enemies'! (Fen: 50%? Might be OP. Fuck it. Let’s try it)
+			1B. Lingering Burns: Your Thermal Charge deals bonus damage (vs. primary target), and has a chance to keep your enemies burning for 2 turns if they didn't have shields up.*/
+			var boostedCharges:PerkData = new PerkData();
+			boostedCharges.classLimit = GLOBAL.CLASS_ENGINEER;
+			boostedCharges.levelLimit = 10;
+			boostedCharges.perkName = "Boosted Charges";
+			boostedCharges.perkDescription = "Enhances your gravidic and thermal charges' damage, and also provides secondary effects. Gravidic charge leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal charge has a chance of lighting your foes on fire.";
+			insertPerkData(boostedCharges);
+
+			//2. Linked Emitters: While your shields are up, you gain a bonus 5% Critical chance with all energy weapons.*/
+			var linkedEmitters:PerkData = new PerkData();
+			linkedEmitters.classLimit = GLOBAL.CLASS_ENGINEER;
+			linkedEmitters.levelLimit = 10;
+			linkedEmitters.perkName = "Linked Emitters";
+			linkedEmitters.perkDescription = "Grants 5% critical hit chance with energy weapons while your shields are up.";
+			insertPerkData(linkedEmitters);
 		}
 		
 		public function getPlayerClassPerksList():Vector.<PerkData>

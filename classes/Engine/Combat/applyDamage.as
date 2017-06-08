@@ -49,9 +49,14 @@ package classes.Engine.Combat
 		}
 		
 		// Begin message outpuuuuut.
-		if (damageResult.wasCrit == true)
+		if (damageResult.wasCrit == true && special == "melee")
 		{
 			output("\n<b>Critical hit!</b>");
+			if(attacker.hasPerk("Can Opener") && attacker.physique()/2 + rand(20) + 1 > target.physique()/2 + 10)
+			{
+				if(!target.hasStatusEffect("Staggered")) target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0,0xFF0000);
+				output(" <b>[target.CombatName] is staggered by your critical strike!</b>");
+			}
 		}
 		
 		if (damageResult.wasSneak == true)

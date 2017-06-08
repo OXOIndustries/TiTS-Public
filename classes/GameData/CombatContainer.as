@@ -282,7 +282,12 @@ package classes.GameData
 					}
 				}
 			}
-			
+			//Shield regen stuff here!
+			if(pc.hasStatusEffect("Shields Damaged")) pc.removeStatusEffect("Shields Damaged");
+			else if(pc.hasPerk("Rapid Recharge"))
+			{
+				pc.shields(pc.bimboIntelligence()/3+3);
+			}
 			if(!pc.hasShields() || pc.shields() <= 0)
 			{
 				if(pc.hasCombatDrone(true) && !pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_INTERNAL_POWER) && !pc.hasStatusEffect("Varmint Buddy"))
@@ -291,7 +296,6 @@ package classes.GameData
 					pc.createStatusEffect("Drone Disabled",1,0,0,0,false,"Icon_Paralysis","Without shields, your drone cannot attack!",true,0,0xFF0000);
 				}
 			}
-			
 			return false;
 		}
 		
@@ -567,6 +571,16 @@ package classes.GameData
 					if (target is PlayerCharacter) output("\n\n<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
 					else output("\n\n<b>The aphrodisiac in " + possessive(target.getCombatName()) + " bloodstream continues to excite " + target.getCombatPronoun("himher") + "!</b>");
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
+				}
+			}
+			//"Gravitational Anomaly" reduces kinetic damage!
+			if(target.hasStatusEffect("Gravitational Anomaly"))
+			{
+				target.addStatusValue("Gravitational Anomaly",1,-1);
+				if(target.statusEffectv1("Gravitational Anomaly") <= 0)
+				{
+					output("\n\n<b>The gravitational field fades.</b>");
+					target.removeStatusEffect("Gravitational Anomaly");
 				}
 			}
 	

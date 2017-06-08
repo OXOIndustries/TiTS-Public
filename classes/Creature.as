@@ -3481,7 +3481,7 @@
 		}
 		public function canUsePowerArmorWeapon():Boolean
 		{
-			return (inPowerArmor() || physique() >= 40);
+			return (inPowerArmor() || physique() >= 40 || hasPerk("Bigger Guns"));
 		}
 		
 		public function removeClothes(item:String = "all"):void
@@ -4235,6 +4235,8 @@
 			// Slave collar multiplier.
 			if(hasStatusEffect("Psi Slave Collar")) currWill = Math.floor(currWill * statusEffectv2("Psi Slave Collar"));
 			
+			if(HP()/HPMax() <= 0.5 && hasPerk("Single Minded")) currWill = willpowerMax();
+
 			if (currWill > willpowerMax())
 			{
 				return willpowerMax();
@@ -4784,6 +4786,10 @@
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;
 			if (melee) temp += meleeWeapon.critBonus;
+			if (hasPerk("Linked Emitters"))
+			{
+				if ((melee && hasMeleeEnergyWeapon()) || (!melee && hasRangedEnergyWeapon())) temp += 5;
+			} 
 			else temp += rangedWeapon.critBonus;
 			if (hasPerk("Critical Blows")) temp += 10;
 			if (hasStatusEffect("Quaramarta!")) temp += 15;
@@ -4812,6 +4818,7 @@
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasStatusEffect("Riposting")) temp += 15;
+			if (hasStatusEffect("DaggerCloaked")) temp += 5;
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;
 			if (hasStatusEffect("Resolve")) temp += 50;
 			if (hasStatusEffect("Spear Wall")) temp += 50;

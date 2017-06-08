@@ -148,6 +148,16 @@ package classes.Engine.Combat
 			if(!attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);
 		}
 		
+		//Reduce damage for gravitational fiiiieeeeelds
+		if(attacker != null && target != null)
+		{
+			if(attacker.hasStatusEffect("Gravitational Anomaly") || target.hasStatusEffect("Gravitational Anomaly"))
+			{
+				//baseHPDamage.multiply(0.5);
+				//baseHPDamage.multiply(new TypeCollection( { kinetic: 0.5 } ));
+				baseHPDamage.kinetic.damageValue *= 0.5;
+			}
+		}
 		
 
 		/****************************
@@ -186,6 +196,9 @@ package classes.Engine.Combat
 		damageResult.shieldDamage = Math.round(damageResult.shieldDamage);
 		damageResult.lustDamage = Math.round(damageResult.lustDamage);
 		damageResult.totalDamage = Math.round(damageResult.totalDamage);
+
+		//For tracking shield regeneration for level 10 boopers
+		if(damageResult.shieldDamage > 0 && !target.hasStatusEffect("Shields Damaged")) target.createStatusEffect("Shields Damaged", 0, 0, 0, 0, true, "", "", true, 0);
 
 		return damageResult;
 	}

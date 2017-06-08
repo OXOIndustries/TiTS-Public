@@ -439,6 +439,17 @@ package classes.GameData
 			BurstOfEnergy.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			a.push(BurstOfEnergy);
 			
+			// Mag Binders
+			MagBinders = new SingleCombatAttack();
+			MagBinders.ButtonName = "MagBindrs";
+			//MagBinders.DisabledIfEffectedBy = [""];
+			MagBinders.RequiresPerk = "Mag Binders";
+			MagBinders.Implementor = MagBindersImpl;
+			MagBinders.TooltipTitle = "Mag Binders";
+			MagBinders.TooltipBody = "Throw a set of magnetic restraints at your enemy, dealing light electricity damage and potentially stunning them for up to three turns. Damage and hit chances are based off of reflexes.";
+			MagBinders.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
+			a.push(MagBinders);
+
 			// Concussive Shot
 			ConcussiveShot = new SingleCombatAttack();
 			ConcussiveShot.ButtonName = "C. Shot";
@@ -618,6 +629,12 @@ package classes.GameData
 			var damage:TypeCollection = attacker.rangedDamage();
 			damageRand(damage, 15);
 			applyDamage(damage, attacker, target, special);
+
+			if(attacker.hasPerk("Cloak and Dagger"))
+			{
+				if(!attacker.hasStatusEffect("DaggerCloaked")) attacker.createStatusEffect("DaggerCloaked", 0, 0, 0, 0, true, "", "", true, 0);
+			}
+
 			if(target is Kane) 
 			{
 				kGAMECLASS.kaneRangedReaction();
@@ -641,6 +658,11 @@ package classes.GameData
 			if(target.hasStatusEffect("KANE_AI_SKIP") && target is Kane) 
 			{
 				output("Further action is interrupted!");
+				return false;
+			}
+			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
+			{
+				output("You can't reach [target.combatName]!" + target.mfn(" He"," She"," It") + " is too high!");
 				return false;
 			}
 			if (combatMiss(attacker, target))
@@ -714,7 +736,15 @@ package classes.GameData
 			}
 			
 			applyDamage(d, attacker, target, special);
-
+			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+			{
+				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0,0xFF0000);
+				output(" <b>[target.CombatName] is staggered by your lunge!</b>");
+			}
+			if(attacker.hasPerk("Cloak and Dagger"))
+			{
+				if(!attacker.hasStatusEffect("DaggerCloaked")) attacker.createStatusEffect("DaggerCloaked", 0, 0, 0, 0, true, "", "", true, 0);
+			}
 			if(target is Kane) 
 			{
 				kGAMECLASS.kaneMeleeReaction();
@@ -1433,6 +1463,7 @@ package classes.GameData
 			}
 			
 			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.bimboIntelligence());
+			if(attacker.hasPerk("Boosted Charges")) targetDamage += attacker.level + attacker.bimboIntelligence();
 			var baseDamage:TypeCollection = new TypeCollection( { burning: targetDamage } );
 			var pluralDamage:TypeCollection = new TypeCollection( { burning: targetDamage * 2 } );
 			var totalDamage:DamageResult;
@@ -1451,6 +1482,12 @@ package classes.GameData
 			}
 			
 			outputDamage(totalDamage);
+
+			if(!target.hasStatusEffect("Burning"))
+			{
+				target.createStatusEffect("Burning", 2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
+				output(" <b>[target.CombatName] is on fire!</b>");
+			}
 		}
 		
 		public static var GravidicDisruptor:SingleCombatAttack;
@@ -1470,6 +1507,12 @@ package classes.GameData
 			}
 			
 			var targetDamage:int = Math.round(15 + attacker.level * 2.5 + attacker.bimboIntelligence() / 1.5);
+			if(attacker.hasPerk("Boosted Charges")) 
+			{
+				targetDamage += attacker.level + attacker.bimboIntelligence();
+				attacker.createStatusEffect("Gravitational Anomaly",4,0,0,0,false,"Icon_DizzyDrunk","All kinetic damage dealt is halved.",true,0);
+				output("\n<b>The lingering gravitic field will make kinetic attacks less effective!</b>");
+			}
 			var baseDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage } );
 			var pluralDamage:TypeCollection = new TypeCollection( { unresistablehp: targetDamage * 2 } );
 			
@@ -1888,7 +1931,61 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!\n");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
-		
+		public static var MagBinders:SingleCombatAttack;
+		public static function MagBindersImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		{
+			if (attacker is PlayerCharacter)
+			{
+				output("You produce a set of self-guided restraints and sling them at your target!\n");
+			}
+			else
+			{
+				output("[attacker.CombatName] slings a set of self-guided restraints your way.\n");
+			}
+	
+			if (combatMiss(attacker, target))
+			{
+				if (attacker is PlayerCharacter)
+				{
+					if(target.customDodge.length == 0) output("They miss!");
+					else output(target.customDodge);
+				}
+				else
+				{
+					output("[attacker.CombatHeShe] misses.");
+				}
+			}
+			/* No extra miss for blind. SELF-GUIDED, BITCHES!
+			else if (attacker.hasStatusEffect("Blinded") && rand(2) > 0)
+			{
+				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
+				else output("[attacker.CombatHisHer] blind strike fails to connect.");
+			}*/
+			//Attack connected!
+			else
+			{
+				output("They connect with an audible 'zap'");
+				if (attacker.reflexes() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
+				{
+					if(target is PlayerCharacter) output(" and snap into place, wrapping you up. <b>You are stunned!</b>");
+					else
+					{
+						if (target.isPlural) output(" and wrap up <b>[target.CombatName], stunning them.</b>");
+						else output(" and snap into place. <b>[target.CombatName] is stunned!</b>");
+					}
+					target.createStatusEffect("Stunned", 2+rand(3), 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0,0xFF0000);
+				}
+				else
+				{
+					if(attacker is PlayerCharacter) output(", but [target.combatName] struggles out before they can snap into place.");
+					else output(", but you struggle out before they can restrain you.");
+				}
+				applyDamage(damageRand(new TypeCollection( { electric: attacker.reflexes() + attacker.level * 2 } ), 15), attacker, target, "minimal");
+			}
+		}
+
+
+
 		public static var ConcussiveShot:SingleCombatAttack;
 		private static function ConcussiveShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{

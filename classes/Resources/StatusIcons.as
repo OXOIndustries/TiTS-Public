@@ -158,6 +158,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/wine.svg", mimeType = "image/svg")]
 		public static var Icon_Wine:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/wings.svg", mimeType = "image/svg")]
+		public static var Icon_Wings:Class;
+
 		[Embed(source = "../../assets/icons/statuseffects/snowflake.svg", mimeType = "image/svg")]
 		public static var Icon_Snowflake:Class;
 		
