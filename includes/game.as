@@ -28,7 +28,6 @@ import classes.StringUtil;
 
 public function get canSaveAtCurrentLocation():Boolean
 {
-
 	if(inCombat()) 
 		return false;
 
@@ -1190,8 +1189,8 @@ public function outputMaxXP():String
 	return msg;
 }
 
-public function shipMenu():Boolean {
-	
+public function shipMenu():Boolean
+{
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
 	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
@@ -1238,7 +1237,8 @@ public function shipMenu():Boolean {
 	return false;
 }
 
-public function flyMenu():void {
+public function flyMenu():void
+{
 	clearOutput();
 	if(!leavePlanetOK())
 	{
@@ -1333,8 +1333,8 @@ public function flyMenu():void {
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function flyTo(arg:String):void {
-	
+public function flyTo(arg:String):void
+{
 	generateMapForLocation("SHIP INTERIOR");
 	
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
@@ -1368,66 +1368,59 @@ public function flyTo(arg:String):void {
 	
 	clearOutput();
 	
-	if(arg == "Mhen'ga")
+	switch(arg)
 	{
-		shipLocation = "SHIP HANGAR";
-		currentLocation = "SHIP HANGAR";
-		flyToMhenga();
-	}
-	else if(arg == "Tavros")
-	{
-		shipLocation = "TAVROS HANGAR";
-		currentLocation = "TAVROS HANGAR";
-		flyToTavros();
-	}
-	else if(arg == "Tarkus")
-	{
-		shipLocation = "201";
-		currentLocation = "201";
-		landOnTarkus();
-	}
-	else if(arg == "New Texas")
-	{
-		shipLocation = "500";
-		currentLocation = "500";
-		landOnNewTexas();
-	}
-	else if(arg == "Myrellion")
-	{
-		shipLocation = "600";
-		currentLocation = "600";
-		flyToMyrellion();
-	}
-	else if (arg == "MyrellionDeepCaves")
-	{
-		shipLocation = "2I7";
-		currentLocation = "2I7";
-		flyToMyrellionDeepCaves();
-	}
-	else if(arg == "Poe A")
-	{
-		shipLocation = "POESPACE";
-		currentLocation = "POESPACE";
-		flyToPoeA();
-	}
-	else if (arg == "karaQuest2")
-	{
-		shortTravel = (shipLocation == "600");
-		interruptMenu = true;
-		kq2TravelToKara(shortTravel);
-	}
-	else if (arg == "Uveto")
-	{
-		shipLocation = "UVS F15";
-		currentLocation = "UVS F15";
-		flyToUveto();
-		interruptMenu = true;
-	}
-	else if (arg == "Canadia")
-	{
-		shipLocation = "CANADA1";
-		currentLocation = "CANADA1";
-		flyToCanadia();
+		case "Tavros":
+			shipLocation = "TAVROS HANGAR";
+			currentLocation = "TAVROS HANGAR";
+			flyToTavros();
+			break;
+		case "Mhen'ga":
+			shipLocation = "SHIP HANGAR";
+			currentLocation = "SHIP HANGAR";
+			flyToMhenga();
+			break;
+		case "Tarkus":
+			shipLocation = "201";
+			currentLocation = "201";
+			landOnTarkus();
+			break;
+		case "New Texas":
+			shipLocation = "500";
+			currentLocation = "500";
+			landOnNewTexas();
+			break;
+		case "Myrellion":
+			shipLocation = "600";
+			currentLocation = "600";
+			flyToMyrellion();
+			break;
+		case "MyrellionDeepCaves":
+			shipLocation = "2I7";
+			currentLocation = "2I7";
+			flyToMyrellionDeepCaves();
+			break;
+		case "Poe A":
+			shipLocation = "POESPACE";
+			currentLocation = "POESPACE";
+			flyToPoeA();
+			break;
+		case "karaQuest2":
+			shortTravel = (shipLocation == "600");
+			interruptMenu = true;
+			kq2TravelToKara(shortTravel);
+			break;
+		case "Uveto":
+			shipLocation = "UVS F15";
+			currentLocation = "UVS F15";
+			interruptMenu = true;
+			flyToUveto();
+			break;
+		case "Canadia":
+			shipLocation = "CANADA1";
+			currentLocation = "CANADA1";
+			flyToCanadia();
+			break;
 	}
 	
 	var timeFlown:Number = (shortTravel ? 30 + rand(10) : 600 + rand(30));
