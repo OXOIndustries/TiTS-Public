@@ -4139,6 +4139,20 @@
 			return Math.round(lust() / lustMax() * 100);
 		}
 		
+		public function bimboIntelligence():Number
+		{
+			var amount:Number = intelligence();
+			//Bimbos actually do better with LESS intelligence!
+			if (hasPerk("Fuck Sense")) 
+			{
+				//Inverse intelligence + libido - bimbo tech specs can minmax easier whynot~
+				amount = (intelligenceMax() - intelligence() + 1);
+				amount += libido()/10;
+				//Gotta cap it so it doesn't get FUCKED SILLY
+				if(amount >= level*5) amount = level*5;
+			}
+			return amount;
+		}
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 
 		{
 			if (apply)
@@ -4660,6 +4674,12 @@
 				temp -= 5;
 				if(temp < 0) temp = 0;
 			}
+			//Sundered - -50% armor!
+			if (hasStatusEffect("Sundered")) 
+			{
+				if (hasPerk("Heavily Armored")) temp *= 0.75;
+				else temp *= 0.5;
+			}
 			return temp;
 		}
 		public function shieldDefense(): Number 
@@ -4668,6 +4688,7 @@
 			temp += meleeWeapon.shieldDefense;
 			temp += rangedWeapon.shieldDefense;
 			temp += armor.shieldDefense + upperUndergarment.shieldDefense + lowerUndergarment.shieldDefense + accessory.shieldDefense + shield.shieldDefense;
+			if(hasPerk("Advanced Shielding")) temp += Math.floor(bimboIntelligence()/4);
 			return temp;
 		}
 		public function shields(arg: Number = 0): Number {
@@ -4766,6 +4787,8 @@
 			else temp += rangedWeapon.critBonus;
 			if (hasPerk("Critical Blows")) temp += 10;
 			if (hasStatusEffect("Quaramarta!")) temp += 15;
+			//7% when below 50% for smugglebro perks!
+			if (hasPerk("Desperation") && HP()/HPMax() < 0.5) temp += 7;
 			temp += armor.critBonus + upperUndergarment.critBonus + lowerUndergarment.critBonus + accessory.critBonus + shield.critBonus;
 			if(temp > 50) temp = 50;
 			return temp;
@@ -17784,6 +17807,7 @@
 			var bonus:Number = 0;
 			
 			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
+			if(hasPerk("Drone Control")) bonus += Math.floor(bimboIntelligence()/4);
 			
 			return dmg + bonus;
 		}

@@ -54,7 +54,7 @@ public function encounterAMilodan():void
 	var milodan_color:String = milodan.furColor;
 	showMilodanMale();
 	author("Wsan");
-	output("A hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
+	output("\n\nA hulking, shaggy-furred shape appears out of Uveto’s unforgiving landscapes. ");
 	//PC tallness < 85: 
 	if(pc.tallness < 85) output("He’s markedly taller than you are, and his musculature is intense.");
 	//Pc tallness >= 85 to 89:

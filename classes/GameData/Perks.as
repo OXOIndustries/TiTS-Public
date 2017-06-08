@@ -210,6 +210,35 @@ package classes.GameData
 			secondShot.perkName = "Second Shot";
 			secondShot.perkDescription = "Allows you to make a second, low-accuracy attack whenever you shoot a ranged weapon.";
 			insertPerkData(secondShot);
+
+			//Level 9
+			//Passive: Heavily Armored - Reduces the effectiveness of Sunder on you by 50% (resulting in a 25% armor nerf instead of 50%).
+			var heavilyArmored:PerkData = new PerkData();
+			heavilyArmored.classLimit = GLOBAL.CLASS_MERCENARY;
+			heavilyArmored.levelLimit = 9;
+			heavilyArmored.autoGained = true;
+			heavilyArmored.perkName = "Heavily Armored";
+			heavilyArmored.perkDescription = "Reduces the effectiveness of Sunder (and Sunder-like effects) on you by 50%.";
+			insertPerkData(heavilyArmored);
+
+			//1 - Combined into "Rending Attacks" due to code still not supporting forking shit.
+			//1A.  Rending Attack: When you make a Power Strike, you leave your enemy's armor Sundered for a short while, decreasing their Defense. 
+			//1B. Suppressing Fire: When you use Rapid Fire, your barrage of attacks leaves your enemies Staggered for a few turns, decreasing their combat effectiveness.
+			var rendingAttacks:PerkData = new PerkData();
+			rendingAttacks.classLimit = GLOBAL.CLASS_MERCENARY;
+			rendingAttacks.levelLimit = 9;
+			rendingAttacks.perkName = "Rending Attacks";
+			rendingAttacks.perkDescription = "Allows your Power Strike to apply Sunder (reducing armor by 50%) and your Rapid Fire to Stagger your opponents (reducing reflexes and aim).";
+			insertPerkData(rendingAttacks);
+
+			//2. Giant Slayer: - +5 crit against enemies 7’ or taller. RIP, Kaska/KhorganMech
+			var giantSlayer:PerkData = new PerkData();
+			giantSlayer.classLimit = GLOBAL.CLASS_MERCENARY;
+			giantSlayer.levelLimit = 9;
+			giantSlayer.perkName = "Giant Slayer";
+			giantSlayer.perkDescription = "Grants +5% chance to critical strike foes who are 7 feet or taller.";
+			insertPerkData(giantSlayer);
+
 		}
 		
 		private function ConfigureSmugglerPerks():void
@@ -400,6 +429,32 @@ package classes.GameData
 			secondShot.perkDescription = "Allows you to make a second, low-accuracy attack whenever you shoot a ranged weapon.";
 			insertPerkData(secondShot);
 
+			//Level 9
+			//Passive: Survival Instincts. Once per fight when you're below 50% of your Health, you immediately recover from any Stun, Stagger, or Knockdown effect, and your Escape chance increases to 100% -- assuming it's possible to escape in the first place.
+			var survivalInstincts:PerkData = new PerkData();
+			survivalInstincts.classLimit = GLOBAL.CLASS_SMUGGLER;
+			survivalInstincts.levelLimit = 9;
+			survivalInstincts.autoGained = true;
+			survivalInstincts.perkName = "Survival Instincts";
+			survivalInstincts.perkDescription = "Removes Stunned, Staggered, and Knockdown effects when your HP drops below 50%. Also grants you a 100% escape chance if possible.";
+			insertPerkData(survivalInstincts);
+
+			//1. Second Attack - flurry attack on melee
+			var alphaStrike:PerkData = new PerkData();
+			alphaStrike.classLimit = GLOBAL.CLASS_SMUGGLER;
+			alphaStrike.levelLimit = 9;
+			alphaStrike.perkName = "Alpha Strike";
+			alphaStrike.perkDescription = "Allows your first attack in any combat to be a critical hit.";
+			insertPerkData(alphaStrike);
+
+			//2. Second Shot - flurry attack on ranged shot
+			var desperation:PerkData = new PerkData();
+			desperation.classLimit = GLOBAL.CLASS_SMUGGLER;
+			desperation.levelLimit = 9;
+			desperation.perkName = "Desperation";
+			desperation.perkDescription = "Grants +7% critical hit chance when your HP drops below 50%.";
+			insertPerkData(desperation);
+
 		}
 		
 		private function ConfigureEngineerPerks():void
@@ -443,12 +498,20 @@ package classes.GameData
 			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for 150% normal damage. If the target’s shields have been depleted, the shot may stun the target. Requires an energy weapon.";
 			insertPerkData(overcharge);
 			
+			/*
 			var volley:PerkData = new PerkData();
 			volley.classLimit = GLOBAL.CLASS_ENGINEER;
 			volley.levelLimit = 3;
 			volley.perkName = "Volley";
 			volley.perkDescription = "Grants the ability to perform an extra ranged attack with reduced accuracy, but a chance of causing blindness regardless. Requires an energy weapon.";
-			insertPerkData(volley);
+			insertPerkData(volley);*/
+
+			var chargeWeapon:PerkData = new PerkData();
+			chargeWeapon.classLimit = GLOBAL.CLASS_ENGINEER;
+			chargeWeapon.levelLimit = 3;
+			chargeWeapon.perkName = "Charge Weapon";
+			chargeWeapon.perkDescription = "Grants the ability to charge your melee weapon with electricity for even deadlier strikes!";
+			insertPerkData(chargeWeapon);
 			
 			// Level 4
 			var armorTweaks:PerkData = new PerkData();
@@ -463,14 +526,14 @@ package classes.GameData
 			powerSurge.classLimit = GLOBAL.CLASS_ENGINEER;
 			powerSurge.levelLimit = 4;
 			powerSurge.perkName = "Power Surge";
-			powerSurge.perkDescription = "Grants the ability to restore a moderate amount of shielding for 33 energy.";
+			powerSurge.perkDescription = "Grants the ability to restore a moderate amount of shielding and 33 energy. Usable once per combat at no cost.";
 			insertPerkData(powerSurge);
 			
 			var deflectorRegen:PerkData = new PerkData();
 			deflectorRegen.classLimit = GLOBAL.CLASS_ENGINEER;
 			deflectorRegen.levelLimit = 4;
 			deflectorRegen.perkName = "Deflector Regeneration";
-			deflectorRegen.perkDescription = "Grants the ability to restore a moderate amount of shielding over four combat rounds for 20 energy.";
+			deflectorRegen.perkDescription = "Grants the ability to restore a moderate amount of shielding and energy over four combat rounds. Usable once per combat at no cost.";
 			insertPerkData(deflectorRegen);
 			
 			// Level 5
@@ -533,14 +596,22 @@ package classes.GameData
 			fightSmarter.perkDescription = "Improves melee and ranged accuracy by a small portion of your intelligence.";
 			insertPerkData(fightSmarter);
 			
-			//Weapon Hack: Hack an enemy's energy weapons, locking them! {Inflicts Disarm. Obviously has no effect on kinetic-based foes.}
+			/*Weapon Hack: Hack an enemy's energy weapons, locking them! {Inflicts Disarm. Obviously has no effect on kinetic-based foes.}
 			var weaponHack:PerkData = new PerkData();
 			weaponHack.classLimit = GLOBAL.CLASS_ENGINEER;
 			weaponHack.levelLimit = 7;
 			weaponHack.perkName = "Weapon Hack";
 			weaponHack.perkDescription = "Allows you to spend 15 energy to hack the enemy’s energy weapons, preventing their use for four to five rounds";
-			insertPerkData(weaponHack);
+			insertPerkData(weaponHack);*/
 			
+			//Charge shield:
+			var chargeShield:PerkData = new PerkData();
+			chargeShield.classLimit = GLOBAL.CLASS_ENGINEER;
+			chargeShield.levelLimit = 7;
+			chargeShield.perkName = "Charge Shield";
+			chargeShield.perkDescription = "Allows you to infuse your shield with a destructive electrical charge that can blind your foes when struck or damage melee attackers. Costs 15 energy and expires after being triggered twice.";
+			insertPerkData(chargeShield);
+
 			//Shield Hack: Hack an enemy's shields, weakening them! {Deals heavy damage to shields}
 			var shieldHack:PerkData = new PerkData();
 			shieldHack.classLimit = GLOBAL.CLASS_ENGINEER;
@@ -574,6 +645,32 @@ package classes.GameData
 			secondShot.perkName = "Second Shot";
 			secondShot.perkDescription = "Allows you to make a second, low-accuracy attack whenever you shoot a ranged weapon.";
 			insertPerkData(secondShot);
+
+			//Level 9
+			//Passive: Advanced Shielding: Your Shields gain a Defense value, much like armor, which reduces incoming damage. This bonus Defense is equal to 25% of your Intelligence.
+			var advancedShielding:PerkData = new PerkData();
+			advancedShielding.classLimit = GLOBAL.CLASS_ENGINEER;
+			advancedShielding.levelLimit = 9;
+			advancedShielding.autoGained = true;
+			advancedShielding.perkName = "Advanced Shielding";
+			advancedShielding.perkDescription = "Grants a defense bonus to your shields equal to 25% of your intelligence.";
+			insertPerkData(advancedShielding);
+
+			//1. Drone Control - Any drone you control (whether you made or acquired it) gains a bonus to accuracy and damage equal to 10% of your Intelligence.
+			var droneControl:PerkData = new PerkData();
+			droneControl.classLimit = GLOBAL.CLASS_ENGINEER;
+			droneControl.levelLimit = 9;
+			droneControl.perkName = "Drone Control";
+			droneControl.perkDescription = "Grants any drone you control (whether you made or acquired it) a damage bonus equal to 25% of your Intelligence.";
+			insertPerkData(droneControl);
+
+			//2. Deadly Shock: Your Paralyzing Shock ability now deals a moderate amount of Electrical damage in addition to its stun effect.
+			var deadlyShock:PerkData = new PerkData();
+			deadlyShock.classLimit = GLOBAL.CLASS_ENGINEER;
+			deadlyShock.levelLimit = 9;
+			deadlyShock.perkName = "Deadly Shock";
+			deadlyShock.perkDescription = "Boosts the amount of electrical current used for Paralyzing Shock, allowing it to do a moderate amount of electrical damage on top of the stun effect.";
+			insertPerkData(deadlyShock);
 		}
 		
 		public function getPlayerClassPerksList():Vector.<PerkData>

@@ -600,6 +600,29 @@ package classes.GameData
 				}
 			}
 			
+			if (target.HP()/target.HPMax() < 0.5 && target.hasPerk("Survival Instincts") && !target.hasStatusEffect("Survivaled"))
+			{
+				output("\n\n<b>Your survival instincts kick in! Now would be a good time to run!</b>");
+				//Stun, Stagger, or Knockdown
+				if(target.hasStatusEffect("Stun") || target.hasStatusEffect("Stunned"))
+				{
+					output("\nYou are no longer stunned!");
+					target.removeStatusEffect("Stun");
+					target.removeStatusEffect("Stunned");
+				}
+				if(target.hasStatusEffect("Staggered"))
+				{
+					output("\nYou are no longer staggered!");
+					target.removeStatusEffect("Staggered");
+				}
+				if(target.hasStatusEffect("Tripped"))
+				{
+					output("\nYou are no longer tripped!");
+					target.removeStatusEffect("Tripped");
+				}
+				target.createStatusEffect("Survivaled",0,0,0,0,true,"","",true);
+			}
+
 			if (target.hasStatusEffect("Evasion Boost"))
 			{
 				if (target.getStatusMinutes("Evasion Boost") > 0) 
@@ -771,6 +794,7 @@ package classes.GameData
 					if (target is PlayerCharacter) output("\n\n<b>You recover " + temp + " points of shielding.</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " recovers " + temp + " points of shielding!</b>");
 					target.shields(temp);
+					target.energy(10);
 				}
 				if(target.statusEffectv1("Deflector Regeneration") <= 0)
 				{
@@ -1594,6 +1618,8 @@ package classes.GameData
 				else if(difficulty == 3) difficulty = 20;
 				else if(difficulty == 4) difficulty = 10;
 				else difficulty = 5;
+				//Special succeeeeeesss!
+				if(pc.hasStatusEffect("Survivaled")) difficulty = 110;
 				trace("Successful escape chance: " + difficulty + " %")
 				//Success!
 				if (rand(100) + 1 <= difficulty) {
