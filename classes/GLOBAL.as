@@ -222,7 +222,7 @@
 		public static const TYPE_MOUTHGINA:int 								= 74;
 		public static const TYPE_LUPINE:int 								= 75;
 		public static const TYPE_SHEEP:int 									= 76;
-		public static const TYPE_REDPANDA:int 									= 77;
+		public static const TYPE_REDPANDA:int 								= 77;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",

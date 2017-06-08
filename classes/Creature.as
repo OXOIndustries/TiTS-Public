@@ -4160,10 +4160,12 @@
 			if (hasPerk("Fuck Sense")) 
 			{
 				//Inverse intelligence + libido - bimbo tech specs can minmax easier whynot~
-				amount = (intelligenceMax() - intelligence() + 1);
-				amount += libido()/10;
+				var bimbInt:Number = (intelligenceMax() - intelligence() + 1);
+				bimbInt += libido()/10;
 				//Gotta cap it so it doesn't get FUCKED SILLY
-				if(amount >= level*5) amount = level*5;
+				if(bimbInt >= level*5) bimbInt = level*5;
+				//Compare actual intelligence (for exceptions like Dumb4Cum and extra smart bimbos)
+				return Math.max(bimbInt, amount);
 			}
 			return amount;
 		}
