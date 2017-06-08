@@ -1552,6 +1552,20 @@
 				case "raceBoyGirlSimple":
 					buffer = raceCute(true, true);
 					break;
+				case "class":
+				case "classType":
+				case "characterClass":
+				case "startingCareer":
+				case "occupation":
+					buffer = GLOBAL.CLASS_NAMES[characterClass].toLowerCase();
+					break;
+				case "aClass":
+				case "aClassType":
+				case "aCharacterClass":
+				case "aStartingCareer":
+				case "anOccupation":
+					buffer = indefiniteArticle(GLOBAL.CLASS_NAMES[characterClass].toLowerCase());
+					break;
 				case "armor":
 					buffer = armor.longName;
 					break;
