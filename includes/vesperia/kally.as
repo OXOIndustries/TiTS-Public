@@ -3564,7 +3564,7 @@ public function kiroAndKallyGoToGetMilkedThreesome6():void
 	clearMenu();
 	addButton(0,"Neon Pink",rahnMilkerFunTimes,"pink","Neon Pink","As tight and as talented as the unholy fusion of a New Texan cow-girl and a horny rahn. The hole is lined with a puffy simulacrum of a slit with the barest hint of a bubble-gum pink interior. It’s soaking wet and smells just as fruity as it looks.");
 	addButton(1,"Sting-Pleaser",rahnMilkerFunTimes,"green","Sting-Pleaser","Simulates a semen-harvesting plant from Kyvaria, known for its unique, non-aphrodisiac venom. It causes the unusual experience of ejaculating without orgasm, at least at first. In time, the sensation of expelling large quantities of seed inevitably leads to a proper climax.");
-	if(!pc.isGoo()) addButton(2,"Electro-Sense",rahnMilkerFunTimes,"yellow","Electro-Sense","<i>“Electro-Sensory Stim.”</i> The orifice embedded in the wall doesn’t even look like a real pussy, just a narrow slit in a light-blue, rubber-like material. There’s also a warning: <i>“Not to be used by gelatinous life forms.”</i>");
+	if(!pc.isGoo()) addButton(2,"Electro-Sense",rahnMilkerFunTimes,"blue","Electro-Sense","<i>“Electro-sensory Stim.”</i> The orifice embedded in the wall doesn’t even look like a real pussy, just a narrow slit in a light-blue, rubber-like material. There’s also a warning: <i>“Not to be used by gelatinous life forms.”</i>");
 	else addDisabledButton(2,"Electro-Sense","Electro-Sense","This is not safe for gelatinous life forms.");
 	addButton(3,"Succubus",rahnMilkerFunTimes,"purple","Succubus","There’s no explanation of the mechanism at play, just a liability waiver insisting that the Spunk Bunker is not responsible for any damage to the user’s psyche or genitalia. It goes on to add that they are also not liable for changes to the user’s genome, virility, or personality. Beneath all the glowing warnings is a perfect example of terran pussy, rendered in cute purple. It must be some kind of high grade synthetic skin, because it absolutely looks like the real deal. It’s even wet.");
 }
@@ -3818,12 +3818,12 @@ public function rahnMilkerFunTimes(arg:String):void
 	IncrementFlag("KIRO_KALLY_THREESOMES");
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Yes",yesVixetteCumSlurpies,undefined,"Yes","Make Vixette clean you off.");
-	addButton(1,"No",noVixetteCumSlurpies,undefined,"No","Don’t let Vixette clean you off.");
+	addButton(0,"Yes",yesVixetteCumSlurpies,arg,"Yes","Make Vixette clean you off.");
+	addButton(1,"No",noVixetteCumSlurpies,arg,"No","Don't let Vixette clean you off.");
 }
 
 //[No]
-public function noVixetteCumSlurpies():void
+public function noVixetteCumSlurpies(arg:String):void
 {
 	clearOutput();
 	currentLocation = shipLocation;
@@ -3835,15 +3835,103 @@ public function noVixetteCumSlurpies():void
 	output("\n\nYou");
 	if(!pc.isCrotchExposed()) output(" pull up your [pc.crotchCovers] and");
 	output(" say your goodbye, trying to ignore the sound of Kiro cramming her dick down the fox’s throat alongside her sister. It is one of the <i>lewdest</i> things you’ve ever heard.");
-
+	teamMilkingAfterEffects(arg);
 	processTime(13);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function teamMilkingAfterEffects(arg:String):void
+{
+	var x:int = pickSpunkBunkerCock();
+	var hungBonus:Number = 0;
+	if(pc.hasPerk("Hung")) hungBonus++;
+	if(pc.hasPerk("Mini")) hungBonus -= 0.75;
+
+	if(arg == "pink")
+	{
+		//Make dicks bigger!
+		if(pc.cocks[x].cLength() < 30 && pc.cocks[x].thickness() < 6.5) 
+		{
+			if(pc.cockLengthUnlocked(x, pc.cocks[x].cLength()+ 1 + hungBonus)) 
+			{
+				pc.cocks[x].cLength(1+hungBonus);
+				output("\n\n<b>Your [pc.cock " + x + "] is hanging a little longer and stronger thanks to the pink pussy's insiatible slurping, the better to fill it in the future.");
+			}
+			else output("\n\nYou lose any extra length and girth that the pink pussy's vacuum-pumping might have lent you.");
+		}
+		else output("\n\nYou lose any extra length and girth that the pink pussy's vacuum-pumping might have lent you. <b>You're already huge!</b>");
+	}
+	else if(arg == "blue")
+	{
+		//Refractory boost!
+		if(pc.refractoryRate < 3)
+		{
+			output("\n\nThe residual tingle in your reproductive anatomy hints that all that shocking has energized... something. <b>A bio-scan with your Codex indicates that your refractory period has shortened...</b>");
+			pc.refractoryRate+= 0.25;;
+		}
+		else if(pc.refractoryRate < 10)
+		{
+			output("\n\n<b>The tingling delights coursing through your hyper-virile anatomy leave you feeling like you're making [pc.cumNoun] even faster than before.</b> You'll be ready for another trip here in no time at all!");
+			pc.refractoryRate++;
+		}
+		else
+		{
+			output("\n\nYou didn't think it possible, but <b>all the tingles and after-shocks running through your body feel like they've pushed your reproductive system into overdrive</b>. You can actually notice your [pc.balls] getting heavier with each passing second, like they can't refill fast enough.");
+			pc.refractoryRate += 3;
+		}
+	}
+	else if(arg == "green")
+	{
+		var newlined:Boolean = false
+		if(pc.libido() < pc.libidoMax())
+		{
+			pc.slowStatGain("libido",1);
+			if(pc.libido() < 50) pc.slowStatGain("libido",1);
+			if(pc.libido() < 30) pc.slowStatGain("libido",1);
+			if(pc.libido() < 15) pc.slowStatGain("libido",1);
+			output("\n\n<b>A lingering sense that you should spend more time cumming remains long after you've left the milking parlor.</b>");
+			newlined = true;
+		}
+		if(pc.cumMultiplierRaw < pc.ballEfficiency)
+		{
+			pc.cumMultiplierRaw++;
+			if(pc.cumMultiplierRaw < pc.ballEfficiency - 20) pc.cumMultiplierRaw += 4;
+			if(pc.cumMultiplierRaw < pc.ballEfficiency - 100) pc.cumMultiplierRaw += 10;
+			if(pc.cumMultiplierRaw < pc.ballEfficiency - 200) pc.cumMultiplierRaw += 40;
+			if(!newlined) output("\n\n");
+			else output(" ");
+			output("<b>You feel like all that venom is making you better at emptying your [pc.balls]. More of this, and you'll wind up spraying every drop in one go!</b>");
+		}
+	}
+	else
+	{
+		//50% chance of moderate
+		if(rand(2) == 0)
+		{
+			pc.boostCum(30);
+			pc.ballSize(4);
+			output("\n\n<b>You come away from the experience with bigger-feeling balls and a taut sack.</b> Whatever the \"Succubus\" did to you, it left you with the potential to feed it even more the next time...");
+		}
+		//25% chance of big cum density boost and small ballgain
+		else if(rand(2) == 0)
+		{
+			pc.boostCum(300);
+			pc.ballSize(4);
+			output("\n\nYour balls churn, growing denser as the drugs they've been exposed to finalize their changes. They're a little bigger too! <b>You'll definitely be making bigger cum-shots now!</b>");
+		}
+		//25% chance of yuge ballgain
+		else
+		{
+			pc.ballSize(35);
+			output("\n\n<b>Your balls are so much bigger than before!</b> What did the \"Succubus\" pump into you?");
+		}
+	}
+}
+
 //Yes
 //Vixette Triple BJ Cleanup Job
-public function yesVixetteCumSlurpies():void
+public function yesVixetteCumSlurpies(arg:String):void
 {
 	clearOutput();
 	showKallyAndKiroAndVixette(true);
@@ -3892,15 +3980,16 @@ public function yesVixetteCumSlurpies():void
 	processTime(15);
 	pc.lust(5);
 	clearMenu();
-	addButton(0,"Next",vixetteCleaningEnd);
+	addButton(0,"Next",vixetteCleaningEnd,arg);
 }
-public function vixetteCleaningEnd():void
+public function vixetteCleaningEnd(arg:String):void
 {
 	clearOutput();
 	showKallyAndKiro();
 	author("Fenoxo");
 	output("The three of you say your goodbyes and make your way back to the landing pad with significantly lightened pouches and flushed cheeks. Kally leans on Kiro for support most of the way, something the younger sibling is all too happy to allow.");
 	if(pc.isBimbo()) output("\n\nSo cyuuuuute!");
+	teamMilkingAfterEffects(arg);
 	processTime(5);
 	clearMenu();
 	currentLocation = shipLocation;

@@ -2354,6 +2354,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
 		}
+		if(pc.hasCock() && pc.thinnestCockThickness() < 7 && pc.balls >= 2 && pc.ballDiameter() >= 12 && pc.ballFullness >= 50 && !MailManager.isEntryUnlocked("kally_kiro_milkvite") && kiroKallyThreesomesAvailable() && rand(20) == 0 && flags["KIRO_KALLY_TEAM_MILKED"] == undefined) goMailGet("kally_kiro_milkvite");
 
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
