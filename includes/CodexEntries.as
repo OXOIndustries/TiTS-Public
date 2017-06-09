@@ -3568,12 +3568,12 @@ public function furpiesCodexEntry():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Furpies"));
-	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on <REDACTED>, but it was not identified for six more months thanks to its insidious design.");
+	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on \\\[REDACTED\\\], but it was not identified for six more months thanks to its insidious design.");
 	outputCodex("\n\nThis strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.");
 	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("How Furpies is Spread"));
-	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
+	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as well as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
 	outputCodex("\n\nAs always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Asymptomatic Carriers"));

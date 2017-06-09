@@ -3363,8 +3363,12 @@ public function crotchStuff(forTarget:Creature = null):void
 			else if(target.ass.wetness() < 5) output2(" with thin streams of lubricant occasionally dribbling from the orifice.");
 			else output2(" with thick streams of lubricant oozing constantly from the orifice quite liberally.");
 		}
-		if(target.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output2(" Your soft donut of a pucker protrudes obscenely, almost like a miniature pubic mound that rubs against your buns with every step you take.");
-		else if(target.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" Your pucker is inhumanly soft and puffy, a beckoning donut with a perfect little hole in the middle.");
+		var assSwellBonus:int = target.analPuffiness();
+		if(assSwellBonus >= 5) output2(" Your inhumanly soft, incredibly puffy and hyper-sized donut of a pucker protrudes greatly from between your buns like an obscene pubic mound, unable to be ignored when moving and unable to be hidden easily from view.");
+		else if(assSwellBonus >= 4) output2(" Your soft, puffy and abnormally large donut of a pucker protrudes obscenely, like an obvious pubic mound that rubs against your buns with every movement you make.");
+		else if(assSwellBonus >= 3) output2(" Your soft and puffy " + (target.hasPlumpAsshole() ? "donut of a pucker protrudes obscenely, like a pubic mound that rubs against your buns with every movement you make" : "pucker protrudes obscenely between your buns") + ".");
+		else if(assSwellBonus >= 2) output2(" Your soft " + (target.hasPlumpAsshole() ? "donut of a pucker protrudes obscenely, almost like a miniature pubic mound that rubs against your buns with every step you take" : "pucker protrudes obscenely between your buns") + ".");
+		else if(assSwellBonus >= 1) output2(" Your pucker is inhumanly soft and puffy, a " + (target.hasPlumpAsshole() ? "beckoning donut with a perfect little hole in the middle" : "little swollen between your buttcheeks") + ".");
 	}
 	
 	if(forTarget != null) setTarget(null);

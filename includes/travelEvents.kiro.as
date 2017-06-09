@@ -3937,7 +3937,7 @@ public function kiroKallyDoubleMilkingThreesome4(x:int):void
 	else output("You hit five tanks. I’m honestly not sure if I’ll meet that today, but I’m sure as hell gonna try.");
 	output("”</i>");
 
-	output("\n\n<i>“’Kay...”</i> is Kally’s monosyllabic answer.");
+	output("\n\n<i>“‘Kay...”</i> is Kally’s monosyllabic answer.");
 	output("\n\nYou get more substantive sounds from her when you resume buttfucking her. Kiro looks on eagerly, clearly getting off on watching you prepare to nut in her sister. There’s so much moisture dribbling from Kally’s cunt that it hangs between your hips and her ass in webs when you draw back, and when you thrust home, it luridly splatters.");
 	output("\n\n<i>“Give her your biggest load, angel,”</i> Kiro coos. <i>“I want to see the look on her face when she realizes how much jizz she’s going to be carrying around in her gut the rest of the day.”</i>");
 	output("\n\nThe image of a big-bellied Kally stumbling around, blushing and dripping a trail of [pc.cumColor] sperm in her bar is enough to send you over the edge.");

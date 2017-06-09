@@ -12,6 +12,21 @@
 	}
 }
 
+public function reahaHeader(nude:Boolean = false):void
+{
+	showName("\nREAHA");
+	author("Savin");
+	showReaha(nude);
+}
+
+public function showReaha(nude:Boolean = false):void
+{
+	//var nudeBonus:String = "";
+	//if(nude) nudeBonus = "_NUDE";
+	//showBust("REAHA"+nudeBonus);
+	showBust("REAHA");
+}
+
 public function reahaRecruited():Boolean
 {
 	if(flags["REAHA_BOOTED"] != undefined) return false;
@@ -54,8 +69,7 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 	{
 		clearOutput();
 		author("Savin");
-		userInterface.showName("\nREAHA");
-		userInterface.showBust("REAHA");
+		reahaHeader();
 
 		output("You make your way down to Reaha’s quarters, and find her door open. Standing shirtless, the huge-breasted cow-girl looks up from the bucket of milk she’s busily filling up, her tail swishing faster as you approach.");
 
@@ -114,8 +128,7 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 public function getAGlassOfMilkFromReapersCowsona():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 	output("Cupping one of the cow’s hefty tits, you ask if she’s ready for a good milking. ");
 	if(flags["REAHA_FREE"] == 1) output("\n\n<i>“From you? Always, [pc.name],”</i>");
 	else output("\n\n<i>“If that’s what </i>you<i> want,”</i>");
@@ -155,8 +168,7 @@ public function getAGlassOfMilkFromReapersCowsona():void {
 public function roughMilkingFollowerReaha():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 	output("You tighten your grip on the poor cow-slut’s teats, fingers sinking into her soft, squishy boobflesh. They’re practically deflating under your grip as more and more of her sweet [reaha.milk] floods out into the bucket, sloshing ever closer toward the brim as you continue to coax out her heavy load. Reaha groans as you squeeze her tighter, trying and failing to keep her voice from breaking into an ecstatic “Moooooo!” as she cums. Her [reaha.milk] flow practically explodes as her whole body quivers and quakes, from her big tits to her thighs as she creams herself, fem-spunk drooling lewdly from her sodden snatch as the boobgasm rocks her sultry form.");
 	output("\n\n<i>“Gaaaah!”</i> she cries, her mooing finally resuming a human tone as the steady flow of [reaha.milkColor] dies down to nothing but a trickle, smearing across your fingers. <i>“O-oh fuck me, that... that feeling makes it all worthwhile,”</i> she breathes, head resting");
 
@@ -196,8 +208,7 @@ public function roughMilkingFollowerReaha():void {
 public function stopRoughMilkingReaha():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 	output("You gently brush Reaha’s hand off your crotch, and she takes the hint in stride, merely holding your hand for a moment longer before letting go with a ginger kiss to your knuckles. <i>“Thanks, [pc.name]. Wanna give me a few minutes to clean up?”</i>");
 	output("\n\nYou give her a nod -- and an affectionate pat on the ass -- as you collect your gear and head back to your cabin.");
 	processTime(1);
@@ -209,8 +220,7 @@ public function stopRoughMilkingReaha():void {
 public function suckleFollowerReahasTits():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 	output("Suddenly, you let go of the cow’s big, full udders, hands moving down to her huge hips as she lets out a startled, forlorn cry. With a grunt, you flip Reaha around and push her up against the bulkhead, legs spread lewdly and tits bouncing, still pouring her [reaha.milk] down her chest. She whines, fingers diving into her slick slit as you move in close, cupping one of her huge breasts to your lips. <i>“Be gentle,”</i> she breathes, but you know full well she wants anything but that.");
 	output("\n\nWith a grin, you push Reaha’s hands away from her sodden box, leaving her breathing hard with her pent up lust and gasping at your slightest touch as her body begs for release. You flick your [pc.tongue] out at her big teat, lapping at the stream of [reaha.milk] flowing from her bosom, tasting of the sweet");
 	if(chars["REAHA"].milkType == GLOBAL.FLUID_TYPE_MILK) output(", rich milk, just like a real cows, but as thick as cream");
@@ -249,8 +259,7 @@ public function sexWithFollowerReaha(doOutput:Boolean = true):void {
 	{
 		clearOutput();
 		author("Savin");
-		userInterface.showName("\nREAHA");
-		userInterface.showBust("REAHA");
+		reahaHeader();
 		output("You give the cow-slut a little push up against the nearest wall, watching as her teats harden to pinpoint peaks as you lean in close; cupping one of her huge orbs, your other hand caressing her flared hip.");
 		//If Free:
 		if(flags["REAHA_FREE"] == 1) 
@@ -278,8 +287,7 @@ public function sexWithFollowerReaha(doOutput:Boolean = true):void {
 public function titjobFromSlaveCow():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader(true);
 	var x:int = pc.cockThatFits(400);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Your wandering hand snakes up Reaha’s supple skin, caressing the side of one of her big, leaky breasts, stopping just long enough to pinch the prominent teat, drawing forth a clear bead of [reaha.milk] and a hiss of pleasure from the cow-slut. <i>“What do you say we put these to work?”</i> you grin, teasing her huge nipples as the ");
@@ -323,8 +331,7 @@ public function titjobFromSlaveCow():void {
 public function rideFollowerReahasStrapon():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader(true);
 	output("You let a hand slip around Reaha’s wide hips, squeezing one of her big, soft ass cheeks and whispering into one of her floppy cow-ears, <i>“Why don’t you find us something to play with?”</i>");
 
 	output("\n\nReaha ");
@@ -368,8 +375,7 @@ public function rideFollowerReahasStrapon():void {
 public function beSubmissiveToReaha():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader(true);
 	output("The thought of that big, hard rod of latex thrusting deep into your bowels is enough to get your ");
 	if(pc.hasVagina()) output("[pc.vaginas] drooling with excitement");
 	if(pc.hasVagina() && pc.hasCock()) output(" and your ");
@@ -432,8 +438,7 @@ public function beSubmissiveToReaha():void {
 public function dominantReahaAss():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader(true);
 	output("You push Reaha onto the bed, looming over the horny cow as she rolls onto her back, grabbing her milky tits protectively. You slip down to your [pc.knees], taking one of her feet in your hands, gently massaging the ball as you work one of the leather straps around her ankle. She blushes hard as you take her big toe into you mouth, licking the ticklish underside until she’s biting her lip, fingers snaking down to her quivering slit. Her other leg is like putty in your hands, easily slipped through the other strap; you pull the leather undergarment up her thick thighs, brushing her seeking hand aside as you caress the inner shaft of the double-dildo, angling it up toward the cow’s cavernous cunt. Her legs wrap around your shoulders as you slip closer to her, watching her chest rise and fall, tits wobbling with every panting, expectant breath.");
 	output("\n\nYou pause just before the moment of penetration, the crown of the latex cock just spreading the lips of Reaha’s pussy. Your fingers take point, tips teasing across the over-sensitive flesh of the cow’s inner thighs, brushing the rose-tinted flesh near her lust-patches before letting your middle digits caress the very lip of her quivering quim, sending a shock of pleasure up the cow’s body that manifests as a convulsive shudder, cunt drooling obscenely at the lightest touch. Your finger slips in easily, the lubricated passage practically sucking you into its hot embrace. Reaha gives a pitiful little gasp as you enter her, rolling your finger around in the plentiful juices flowing from her gaping pussy. Every touch to her tender walls sends a shiver of ecstasy up her spine, coating your finger in a thick deluge of feminine slime. You let another finger slide into her, and another, pushing the better part of your fist into the cow-slut’s expansive slit, which stretches as easily to accommodate your grip as it would a bull-stud’s massive cock.");
 	output("\n\nReaha cries out, back arching off the bed as you fist her, slathering your hand in her free-flowing juices. You pull out, just enough to grasp the shaft of your strapon cock and stroke it vigorously, pumping the rod and coating it with Reaha’s lube, making sure both ends are nice and soaked before sidling the straps up to Reaha’s hips, sliding the rigid rod of the latex cock into the fist-shaped hole of the cow-slut’s sex. With the strapon snugly in place, you step back to admire your work: over a pool of fem-cum towers a monolith of latex cock, bobbing unsteadily as Reaha’s shaky breath rocks through her lust-addled body. You give the cow a reassuring pat on the tit as you climb into bed, straddling her wide hips and angling your [pc.butt] over the tower of dildo rising from her crotch, taking the time to rock your own [pc.hips] back against it, reveling in the warm wetness of the lubed-up shaft pressing through the crack of you ass, smearing her cunny’s juice across your winking hole.");
@@ -477,8 +482,7 @@ public function dominantReahaAss():void {
 public function tieUpReahaAndFuckHerButt():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader(true);
 	var x:int = pc.cockThatFits(chars["REAHA"].analCapacity());
 	x = pc.smallestCockIndex();
 	output("You can’t help but lick your lips as you take in the gratuitous curves of Reaha’s body: the huge, unbound breasts practically sloshing with cream; her overly wide, child-bearing hips; and the jiggling expanse of her bubble butt. Following your eyes, the cow-slut grins, hands on her big hips. <i>“See something you like, </i>" + pc.mf("master","mistress") + "<i>?”</i> she says with marked cock-sureness, thrusting her prodigious chest out just enough to make the two full mounds bounce lewdly for you. You cup one of Reaha’s massive tits, giving it a rough squeeze as you push her back, forcing her up against the cabin walls. She gives a sharp gasp, twisting to look away as your hand savagely kneads the thick, soft breast, causing the puffy teat at its tip to bead with [reaha.milk]. Her breath catches as she starts to lactate, [reaha.milkColor] rivulets running between your fingers. You press in closer, giving her defenseless neck a hard kiss that ends in a gentle little bite, just enough to leave her pale flesh reddened.");
@@ -520,8 +524,7 @@ public function tieUpReahaAndFuckHerButt():void {
 public function reahaFollowerAppearance():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 	output("Reaha Hayes was certainly born a human, though she’s put more than a few gene-mods in her system over the years that have given her a distinctly bovine appearance. She’s not much over five foot, with tremendously wide hips, and an ass you could lose yourself in, thick enough to sink a hand into. On the right cheek of her butt, she’s got a large tattoo of the Coalition Expeditionary Force’s logo: the only remaining hint on her fleshy, cow-like body that she was once a warrior. Sprouting from her backside, just above her butt, is a slender tail that swishes absently as you look at her: nearly a yard from tip to base, with a plume of red fur at the end. Her face is still fully human, save for a pair of cute little bovine horns poking out from her flowing ass-length strawberry hair. She’s standing stark naked, if only because her massive and often variable bust-size denies all attempts to constrain it: her tits, swollen with [reaha.milk], are truly massive when she doesn’t get them milked, though happily she’s able to tend to that herself now. With her hands free, she’s able to keep them small enough to let her walk around her cabin, though she’s often resting them on a tabletop or folding her arms under them for support.");
 	output("\n\nReaha has a pair of huge FF-cup breasts, each with a big inch-long nipple at its tip.");
 	output("\n\nShe has a loose, wet pussy tucked between her legs, and a snug little asshole between her expansive ass cheeks, right where it belongs.");
@@ -539,9 +542,9 @@ public function ReahaBrothelSexMenu():void
 {
 	clearOutput();
 	author("Savin");
-	if(flags["KAT_MET"] != undefined) userInterface.showName("KAT &\nREAHA");
-	else userInterface.showName("MISTRESS &\nREAHA");
-	userInterface.showBust("BORING_MISTRESS","REAHA");
+	if(flags["KAT_MET"] != undefined) showName("KAT &\nREAHA");
+	else showName("MISTRESS &\nREAHA");
+	showBust("BORING_MISTRESS","REAHA");
 	
 
 	//time 0600-0959
@@ -681,8 +684,8 @@ public function buyCowslutsForYou():void
 {
 	author("Savin");
 	clearOutput();
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("BORING_MISTRESS","REAHA");
+	showName("\nREAHA");
+	showBust("BORING_MISTRESS","REAHA");
 	flags["REAHA_BOUGHT"] = 1;
 	flags["REAHA_IS_CREW"] = 1;
 
@@ -709,8 +712,7 @@ public function shutUpYouBovineSlutIDidntJustPayFiveGrandForABacktalkingBitch():
 {
 	author("Savin");
 	clearOutput();
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 
 	output("<i>“No,”</i> you answer, <i>“Now come on, let’s get you to the ship.”</i>");
 	output("\n\n<i>“I... yes, "+ pc.mf("master","mistress") +",”</i> she sighs, looking back down again as you lead the way to the door.");
@@ -725,8 +727,7 @@ public function oneTimeReahaBlammy():void
 {
 	author("Savin");
 	clearOutput();
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 
 	output("Seeing Reaha clearly has something to say to the brothel mistress, you give her a nod, <i>“Fine. This once. But don’t think you’re gonna mouth off on me.”</i>");
 	output("\n\n<i>“You got it,”</i> the cow-girl says, just a moment before practically hoisting her erstwhile mistress over the desk by the collar of her blouse. <i>“Listen up you bimbo piece of shit, I am sick and </i>fucking<i> tired of being called a dumb cow or a big-titted whore. I did NOT sign up for this to be hooked up to a bunch of machines and pumped full of drugs until I could barely think, and then left to rot for days between some horny john coming in and using me. My contract said I was down to fuck, not to be whored out. And I am </i>really<i> sick of your shit-eating superior attitude, slut. You are NOT fucking better than me, and no amount of latex fetish-wear is ever gonna change that. Oh, no... you are the lowest form of life in this fucking universe; and even with all these gene mods, you’re a hell of a lot less human than I am. You had better thank your dear and fluffy lord I am getting the fuck OUT of here, because the next time I got my hands free, I was coming for your smug little bitch ass. And if you call me a cow again, so help me I will come down on you like the hand of God. Do. You. Get. Me?”</i>");
@@ -741,8 +742,7 @@ public function reahaISFREEEEEEE():void
 	//BRINGS YOU BACK TO THE SHIP. TAKE NOTE, FUCKNOXO
 	author("Savin");
 	clearOutput();
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 	clearMenu();
 	currentLocation = "SHIP INTERIOR";
 	generateMapForLocation(currentLocation);
@@ -776,8 +776,7 @@ public function reahaWantsToKnowWhatsUp():void
 	author("Savin");
 	clearOutput();
 	clearMenu();
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader();
 
 	flags["REAHA_SLAVE"] = 1;
 
@@ -800,8 +799,7 @@ public function fuckReahasPussyintheBrothel():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader(true);
 	output("You drop a hundred-cred chit into the little slot on the wall, and with a pneumatic hiss, the door deepest inside Beth’s Big-Breasted Brothel slides open. A tiny timer starts ticking down from 10 minutes, and with a nod from the guard in the hall, you step into the room. The door slides closed behind you, and the lights of the room flicker brightly, letting you get a good look at your companion. Suspended a few feet away, with wrists bound to a wrought-iron bar and back stuck with dozens of pink needles, all connected to tanks on the ceiling, is a woman. A small screen above her displays the name Reaha just above your timer.");
 	output("\n\nReaha is just a touch over five feet tall, with exceptional curves in all the right places... mostly her tits. Looking at your sultry companion, your eyes are instantly drawn to the massive, milky melons on her chest, each so heavy that she’s permanently affixed to the ground, held immobile by the sheer weight of her tremendous titflesh. She smiles faintly over her shoulder as you approach, hips swaying seductively as she asks, <i>“Oh </i>finally<i> someone’s here! Please tell me you want some of my milk... I’ve got soooo much saved up for you!”</i>");
 	output("\n\nYou slip behind the girl, lowering yourself down onto your [pc.knees] to get on her level. She shivers with excitement, grinding her plump derriere against your crotch as you pull off the tiny micro-skirt she’s got on, revealing the military tattoos stenciled on her big butt cheeks, marking the ex-army bitch for the indebted slave slut that she is. Seeing her cunt already drooling on your britches, you toss your [pc.lowerGarments] aside, revealing your [pc.cock].");
@@ -850,8 +848,7 @@ public function RideReahasStraponAtTheBrothel():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	reahaHeader(true);
 	output("You drop a hundred-cred chit into the little slot on the wall, and with a pneumatic hiss, the door deepest inside Beth’s Big-Breasted Brothel slides open. A tiny timer starts ticking down from 10 minutes, and with a nod from the guard in the hall, you step into the room. The door slides closed behind you, and the lights of the room flicker brightly, letting you get a good look at your companion. Suspended a few feet away, with wrists bound to a wrought-iron bar and back stuck with dozens of pink needles, all connected to tanks on the ceiling, is a woman. A small screen above her displays the name Reaha just above your timer.");
 	output("\n\nThe slut looks over her shoulder at you, barely able to see over her own huge ass and flowing strawberry hair. She’s utterly immobile, unable to do much more than stare as you approach: her wrists are chained to an iron bar, and her tits... they’re huge: big enough to pin her to the floor, a pair of perfectly rounded orbs straining under their milky weight. Reaha smiles faintly over her shoulder as you approach, hips swaying seductively as she asks, <i>“Oh </i>finally<i> someone’s here! Please tell me you want some of my milk... I’ve got soooo much saved up for you!”</i> Well, with tits like that, she’s probably got enough saved up for half the station. You approach her, sliding a hand appreciatively across her expansive backside, thumb brushing across a big marine tattoo chiseled into her right cheek, hinting at the whore’s former occupation. ");
 	output("\n\nYou dig your fingers into her rump, rolling the cow-girl over onto her back. She gives a startled yelp, groaning as her arms twist around in their restraints; the misty-pink-filled tubes flop around her as Reaha comes to rest with her back as much against the wall as it can be. She looks up at you with hazy blue eyes, thrusting her chest out, making her huge tits jiggle obscenely in her lap. You straddle the cow-girl and grab one of her massive orbs, pinching the wide areola just enough to make her leak a thin trail of milk which arcs");
@@ -911,6 +908,5 @@ public function RideReahasStraponAtTheBrothel():void
 	//Third is destination function - don't include ()'s
 	//addButton(0,"Repeat",exampleGrinding);
 	addButton(0,"Next",mainGameMenu);
-
 }
 
