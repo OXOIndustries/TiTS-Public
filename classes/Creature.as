@@ -3307,7 +3307,7 @@
 			
 			if (isAssVisible())
 			{
-				if(ass.hasFlag(GLOBAL.FLAG_PUMPED) || (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !isFluffy) || !hasFurOrFeathers)
+				if(analPuffiness() >= 2 || (analPuffiness() >= 1 && !isFluffy) || !hasFurOrFeathers)
 				{
 					bitsNeedCover++; // you always need at least 1 tail to cover your ass, unless you have fluffy fur
 				}
@@ -12048,10 +12048,10 @@
 				descripted++;
 			}
 			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
-			if(!simple && descripted == 0 && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(2) == 0)
+			if(!simple && descripted == 0 && (analPuffiness() >= 1) && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
-				if (!ass.hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
+				if (analPuffiness() < 2) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
 				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "bloated", "pillowy"]);
 				descripted++;
 			}
@@ -12065,7 +12065,7 @@
 			if (descripted > 0) desc += " ";
 			//Butt descriptor
 			rando = rand(18);
-			if(!simple && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(4) == 0) desc += "donut";
+			if(!simple && hasPlumpAsshole() && rand(4) == 0) desc += "donut";
 			else if (rando <= 2) desc += "ass";
 			else if (rando <= 5) desc += "anus";
 			else if (rando <= 7) desc += "pucker";

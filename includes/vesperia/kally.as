@@ -161,7 +161,7 @@ public function kallyBonusRoomTexts():Boolean
 		output("\n\nKiro was here... She left to use the bathroom,");
 		if(timesGloryholesUsed() > 0 || timesGloryholesWorked() > 0) output(" probably to dump a discrete load in the gloryholes,");
 		output(" but <b>she abandoned something in her hurry: a palm-sized codex-type device.</b>");
-		addButton(2,"Kiro's Codex",examineKirosCodex,undefined,"Kiro's Codex","Take a look at Kiro's abandoned codex.");
+		addButton(2,"Kiro’s Codex",examineKirosCodex,undefined,"Kiro’s Codex","Take a look at Kiro’s abandoned codex.");
 	}
 	else roamingBarEncounter(2);
 	sylvieRoomBonuses(3);
@@ -3265,15 +3265,15 @@ public function examineKirosCodex():void
 	output("\n\nFourteen different varieties of dick-pics are queued up in the selector, some drizzled in enough ‘nuki-jizz to look more like a frosted dessert than a blunt-headed tool. Kiro seems to have forgotten to hit ‘send’ before prancing off for some release.");
 	output("\n\nYou could be a total pal and send the meticulously holo-documented wangs off to their intended recipient... or you could have some fun by changing the address to an unintended third party... like Kally.");
 	if(kiroKallyThreesomeUnlockPoints() < 3) output(" That’d be a total dick move, though.");
-	else output(" That might be just what they need to finally break the sexual tension between them.  It’s thick enough that you’d need a plasma torch and a few hours to cut through it.");
+	else output(" That might be just what they need to finally break the sexual tension between them. It’s thick enough that you’d need a plasma torch and a few hours to cut through it.");
 	output(" Or you could just go back to what you were doing. No point in tooling around with Kiro’s love life");
 	processTime(1);
 	//[Send] [Send Kally] [Neither]
 	clearMenu();
 
 	addButton(0,"Send",sendKirosNudesToHerFuckbro,undefined,"Send","Go ahead and send the nudes. Maybe she changed her mind about sending them before she left, but you have a hunch both parties will appreciate you pressing the button.");
-	addButton(1,"Send 2 Kally",sendKirosNudesToKally,undefined,"Send 2 Kally","Surely Kally can appreciate Kiro's fine form in the buff. Maybe it'll even spark something between them?");
-	addButton(2,"Neither",fuckThisShitImOutKiroKally,undefined,"Neither","Leave the codex. It's not your problem.");
+	addButton(1,"Send 2 Kally",sendKirosNudesToKally,undefined,"Send 2 Kally","Surely Kally can appreciate Kiro’s fine form in the buff. Maybe it’ll even spark something between them?");
+	addButton(2,"Neither",fuckThisShitImOutKiroKally,undefined,"Neither","Leave the codex. It’s not your problem.");
 }
 
 //[Send]
@@ -3297,7 +3297,7 @@ public function sendKirosNudesToKally():void
 	showName("MATCH-\nMAKER!");
 	output("You make a few choice edits to the address field, and voila! You hear a chime from across the bar as you retreat to your seat.");
 	output("\n\nKally, oblivious to your subterfuge, reaches under the counter to procure her codex. Her fuzzy digits flit across the screen, then jerk to a stop. The kui-tan’s entire body tenses like a taut wire. She bites one cushy lower lip, then slowly - ever so slowly - the corners of her mouth rise in a smile. The chubby raccoon-girl’s tail swishes back and forth fast enough to create a breeze, her fingers nimbly pirouetting over the display as she crafts a response. You pretend to mind your own business when she does a quick scan of the room, turning your attention back to her just in time to see her take the Codex below the bar - and lift the hem of her skirt.");
-	output("\n\nKiro’s comm buzzes. Then it buzzes again. Kally sighs happily and bends over, tail upraised high enough that you can easily make out the wet lips of her pussy - and the rivulets of moisture travelling down her balls. When she comes back up, she’s breathing heavily and her computer is safely stowed.");
+	output("\n\nKiro’s comm buzzes. Then it buzzes again. Kally sighs happily and bends over, tail upraised high enough that you can easily make out the wet lips of her pussy - and the rivulets of moisture traveling down her balls. When she comes back up, she’s breathing heavily and her computer is safely stowed.");
 	flags["KIRO_PHONE_EVENT"] = 2;
 	processTime(5);
 	clearMenu();
@@ -3381,7 +3381,7 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 {
 	clearOutput();
 	showKallyAndKiro();
-	author("Fen's Horse-Cock");
+	author("Fen’s Horse-Cock");
 	output("You’re all but dragged to the elevator by the two handsy kui-tan. In between sips of their semen-laced beverages, they snuggle close to you, trading kisses and hugs. Plush, warm breasts smush against you from the right. Silky fur slides across your [pc.belly] from the left. Below, you can feel the sisters’ swelling sacks reacting to their drinks, roiling with alien virility. In the confined space of the elevator, their murmurs of ardor and desire reverberate against the walls until they seem a single purr of desire.");
 
 	//Repeat
@@ -3397,7 +3397,7 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 	else
 	{
 		output("\n\n<i>“So where are we going?”</i> Kiro asks, groaning and shifting to make room for a pair of nuts suddenly the size of cantaloupes.");
-		output("\n\nKally caresses one slowly, adoringly. She sips her drink to buy herself more time for ball fondling. <i>“To the Spunk Bunker.”</i> She squeezes, then shudders and wobbles as her own testes experience a sudden surge of growth.  The swell of her fuzzy pouch peeks under the hem of her skirt. <i>“It’s a... a.... mmm... a specialty parlor for protein scavenging life forms - galotians, rahn, and the like.”</i>");
+		output("\n\nKally caresses one slowly, adoringly. She sips her drink to buy herself more time for ball fondling. <i>“To the Spunk Bunker.”</i> She squeezes, then shudders and wobbles as her own testes experience a sudden surge of growth. The swell of her fuzzy pouch peeks under the hem of her skirt. <i>“It’s a... a.... mmm... a specialty parlor for protein scavenging life forms - galotians, rahn, and the like.”</i>");
 		//Bimbo
 		if(pc.isBimbo()) 
 		{
@@ -3420,7 +3420,7 @@ public function kiroAndKallyGoToGetMilkedThreesome2():void
 		{
 			output("\n\nYou and Kiro look at each other and smile, realizing exactly who is going to be providing the next week’s worth of drinks for this establishment. The tanuki-girl is a little too busy groaning and wiggling beneath her sister’s talented fingertips to comment, leaving you to answer. <i>“And they pay for cum?”</i>");
 			output("\n\nShaking her head, the curvaceous bartender tries to gather herself. <i>“No... they don’t pay for cum. They just don’t charge you for the privilege of using their facility... if you can...”</i> She gasps as Kiro grabs her by the dick and pulls her tight, passionately kissing at the nape of her neck.");
-			output("\n\n<i>“If you can produce cum like a pent-up kui-tan?”</i>  you supply");
+			output("\n\n<i>“If you can produce cum like a pent-up kui-tan?”</i> you supply");
 			if(pc.isMischievous()) output(", grinning roguishly");
 			output(".");
 			output("\n\nKally nods and loops her tail back around you, pulling you in close. <i>“Yeah...”</i> She nips her sister’s ear, then kisses you square on the [pc.lips], tongue probing hungrily. The flavorful residue of her exotic beer lingers on her lips, mixing with her own inhuman taste. Hands explore bodies, caressing soft-furred breasts. Heavy ballsacks slide against one another, lurching with spasms of powerful growth, sloshing as more and more seed pools in the capacitive flesh.");
@@ -3476,7 +3476,7 @@ public function kiroAndKallyGoToGetMilkedThreesome4():void
 	output("Kally reaches across to slap Kiro’s tits. <i>“No! If I can’t... can’t cum... you can’t either!”</i>");
 	output("\n\nThe pirate’s reacts in typical Kiro fashion: by squirting a torrential volley of pre-spunk in between her tits. The trapped horse-cock’s flare is easily visible, jutting from the middle of her cleavage, and it gets more visible with every passing second. The upper portions of her dress become quite transparent once suitably soaked, displaying rich chocolate nipples and pebbly equine flare with equal ease. The sex-addicted tanuki-girl rubs at her sore boob. Her juices squish around so loudly that you wonder if they can hear it from inside a nearby shop. Hell, there’s a visible lake of the stuff, trapped between tits and tool, and it’s only getting bigger. Soon it’s going to spill out over Kiro’s plunging neckline.");
 	output("\n\nYou pity the poor station janitor.");
-	output("\n\n<i>“Bitchy Ice Queen,”</i> Kiro whimpers, stealing glances at Kally’s nuts as she stumbles on. Both sisters are still growing, both in size and eagerness. If they aren’t careful, they just barely touch the station’s smooth deckplates. The older sibling’s directions are hard to understand with all the ecstatic sighs and ‘fuck’s she interrupts herself with, but it sounds like you're closing in your destination. Good thing, too. If you the trip took too much longer, you’d have to drag the kui-tan along on their beanbag chair-sized nads. In four or five minutes, their feet wouldn’t touch the ground.");
+	output("\n\n<i>“Bitchy Ice Queen,”</i> Kiro whimpers, stealing glances at Kally’s nuts as she stumbles on. Both sisters are still growing, both in size and eagerness. If they aren’t careful, they just barely touch the station’s smooth deckplates. The older sibling’s directions are hard to understand with all the ecstatic sighs and ‘fuck’s she interrupts herself with, but it sounds like you’re closing in your destination. Good thing, too. If you the trip took too much longer, you’d have to drag the kui-tan along on their beanbag chair-sized nads. In four or five minutes, their feet wouldn’t touch the ground.");
 	output("\n\nOne thing becomes clear as you close in on the neon-lit <i>“Spunk Bunker”</i> sign: the more over-sized the girls’ nuts get, the more deferential to your opinion they become. Neither seems the least offended by your casual guidance, nor by their sibling’s biting criticisms. Kally’s rolls her hips against your own and never stops trying to entice you into giving her a handjob. Kiro is just as bad and twice as wanton, grinding herself against you from the other side, letting the pre-spunk spill down your side so that she can hump you all the easier. She grouses when you spin her forward, making her push her bloated ballsack through the door on her tippy toes, but her protest seems half-hearted, like she does so more out of habit than genuine feeling. She’s just happy you’re paying attention.");
 	//Nuki nutted up yourself
 	if(pc.hasStatusEffect("Egregiously Endowed") || pc.hasStatusEffect("Ludicrously Endowed") || pc.hasStatusEffect("Overwhelmingly Endowed"))
@@ -3555,9 +3555,9 @@ public function kiroAndKallyGoToGetMilkedThreesome6():void
 	output("\n\nThe sisters seem content to enjoy the robotic greeter’s attentions until you make a selection. Which hole will you use?");
 
 	//Bubble-gum pink Rahn/Cow-girl cunt. Sweet and fruity. Strong suction. Makes dick a little bigger.
-	//<i>“Kyvaryan Sting-Pleaser.”</i> - Ejaculate from venom BEFORE climax.
+	//“Kyvaryan Sting-Pleaser.” - Ejaculate from venom BEFORE climax.
 	//Blue. Electro-sensory stim with prostate action. Simulates a wide array of sensations before inducing climax via prostate shock. No goos.
-	//Purple <i>“The Succubus”</i> - Very ordinary (if high grade pleasure tube) operated by psychic, pleasure-feeding being with access to high grade //pharmaceuticals.
+	//Purple “The Succubus” - Very ordinary (if high grade pleasure tube) operated by psychic, pleasure-feeding being with access to high grade //pharmaceuticals.
 	//KIRO - Scented Lady - pheromones misted in face, inducing faux rut.
 	//KALLY - KIRO REPLICA
 	processTime(10);
@@ -3599,15 +3599,15 @@ public function rahnMilkerFunTimes(arg:String):void
 			if(pc.cockTotal() > 2) output("es");
 			output(" out of the way and");
 		}
-		output(" gently insert your [pc.cockHead " + x + "] into the candied cunt. It’s surprisingly warm and delightfully slick. Better still is the suction tugging you deeper into its velvet clutches, dragging you through the wonderfully textured walls. Nubs and ripples caress you along the way. That rhythmic, pulsing suction causes more  blood to pool in your [pc.cock " + x + "]. It feels bigger and harder than it should be, so girthy that for a moment the tunnel’s enclosure seems claustrophobic. Then you get bigger too, absolutely stuffing the cream-puff cunny with cock.");
+		output(" gently insert your [pc.cockHead " + x + "] into the candied cunt. It’s surprisingly warm and delightfully slick. Better still is the suction tugging you deeper into its velvet clutches, dragging you through the wonderfully textured walls. Nubs and ripples caress you along the way. That rhythmic, pulsing suction causes more blood to pool in your [pc.cock " + x + "]. It feels bigger and harder than it should be, so girthy that for a moment the tunnel’s enclosure seems claustrophobic. Then you get bigger too, absolutely stuffing the cream-puff cunny with cock.");
 	}
-	//"Kyvaryan Sting-Pleaser.”</i> - Ejaculate from venom BEFORE climax.
+	//"Kyvaryan Sting-Pleaser." - Ejaculate from venom BEFORE climax.
 	else if(arg == "green")
 	{
 		output("You choose the green, waxy-looking entrance over the more technological marvels on offer. ");
 		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock" + x + "] from confinement. ");
 		output("As you press against the verdant faux-cunt, you are struck by the texture: it doesn’t feel anything like it looks. It reminds you of a slippery version of felt. You could thrust in with ease, but you take the time to admire the spreading lips. They’re gorgeously ruffled, almost neon green at the fringes but rich emerald on the inside.");
-		if(CodexManager.entryUnlocked("Venus Pitchers")) output("\n\n{You are briefly reminded of the venus pitchers of Mhen’ga.");
+		if(CodexManager.entryUnlocked("Venus Pitchers")) output("\n\nYou are briefly reminded of the venus pitchers of Mhen’ga.");
 		else output("\n\nIf fucking plant pussies counted as botany, the galaxy would have a whole lot more scientists.");
 
 		output("\n\nYou");
@@ -3644,7 +3644,7 @@ public function rahnMilkerFunTimes(arg:String):void
 		}
 		output(" gently insert your [pc.cockHead " + x + "] into the rubber twat. It provides a passable sensation - not too hot, not too cold, but still a bit to rigid and unfeeling for your tastes - at first. Then you must trip a sensor or something because your [pc.cock " + x + "] lights up like a christmas tree. Microscopic sparks of electric current sparkle across your [pc.dickColor " + x + "] dickskin, providing a tangled mixture of pleasure and pain that you could study for eons and fail to untangle.");
 	}
-	//Purple <i>“The Succubus”</i> - Very ordinary (if high grade pleasure tube) operated by psychic, pleasure-feeding being with access to high grade pharmaceuticals.
+	//Purple “The Succubus” - Very ordinary (if high grade pleasure tube) operated by psychic, pleasure-feeding being with access to high grade pharmaceuticals.
 	else
 	{
 		output("You choose the devious purple pussy over the the other exotic choices on offer. ");
@@ -3667,7 +3667,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	output("\n\n<i>“That looks okay... but do you have something a bit more like a real pussy?”</i> Kiro asks your robotic host. <i>“Something that’ll really make me feel like I’ve got this hot bitch embedded in the wall?”</i> She grabs Kally’s ass in both hands and swats it. The sharp crack of the impact reverberates through the milking room.");
 	output("\n\n<i>“Ooh!”</i> Kally gasps in surprise, dick throbbing into the android’s hand.");
 
-	output("\n\nThe slutty robo-vixen approximates a smirk, still stroking both girls. Ropes of pre-cum thick enough to knock up a terran dribble off her knuckles. <i>“Of course. We have a special hole for girls like you.  This way.”</i> She gives a meaningful tug, knuckles wrapping tight around Kiro’s medial ring, leading the cocky herm around by her too-hard dick. A short distance away, a panel in the wall opens up by wireless command.");
+	output("\n\nThe slutty robo-vixen approximates a smirk, still stroking both girls. Ropes of pre-cum thick enough to knock up a terran dribble off her knuckles. <i>“Of course. We have a special hole for girls like you. This way.”</i> She gives a meaningful tug, knuckles wrapping tight around Kiro’s medial ring, leading the cocky herm around by her too-hard dick. A short distance away, a panel in the wall opens up by wireless command.");
 	output("\n\nYou smell it more than hear or see it. Instantly, the room is awash in the scent of pussy. There’s no other word for it. Sopping wet cunt fills the air, worse than an entire sorority ODing on Breeder’s Bliss. You can see Kiro’s nostrils flare alongside her dick. Kally too is affected. Her eyelids droop and cuntjuice splatters the floor between her thighs. Even you feel the pheromones’ siren call, demanding you hump the fuckable little dick-milker hard enough to break through the wall. You try.");
 
 	//Kally
@@ -3963,7 +3963,7 @@ public function yesVixetteCumSlurpies(arg:String):void
 	output("\n\nKally giggles nervously once you’ve completely secured yourself. Kiro favors you with a knowing wink as she lays a sensuous kiss on her sister’s lips. Down below, Vixette’s tongue leaps into action, swirling from dick to dick, climbing over them as a tree-inhabiting snake might traverse jungle foliage. It flicks across your [pc.cockHead " + x + "] and laps at the tiniest creases and crevices, even scooping a few dregs of jism from your urethra. Vixette’s eyes have once more taken on the appearance of hearts, growing bigger the moment until at last, her servos seize, sending her heavy silicone jugs jiggling. Her eyes flash white, and she collapses, mouth limply sliding from a trio of immaculate cleaned cocks.");
 	if(flags["VIXETTE_MOUTHGASMED"] == undefined)
 	{
-		output("\n\n{Kiro looks concerned for the robovixen.");
+		output("\n\nKiro looks concerned for the robovixen.");
 		output("\n\n<i>“She’s fine,”</i> Kally explains. <i>“She just cross-wired her sexual pleasure subroutines to trigger from the taste of cum. Smell too, I guess. I think she just came so hard she blacked out... or whited out, I guess. She’ll be up and running again in a sec-”</i>");
 		output("\n\n<i>“Mmmmm... thank you so much!”</i> Vixette purrs, rolling on the ground and stroking her mammoth mounds in the aftershocks of android ecstasy. <i>“You really are the best, Kally.”</i>");
 		output("\n\nKiro clears her throat.");

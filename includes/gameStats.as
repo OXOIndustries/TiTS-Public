@@ -5708,6 +5708,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Spunk Bunker
+			if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined || flags["VIXETTE_MOUTHGASMED"] != undefined)
+			{
+				output2("\n<b><u>Spunk Bunker</u></b>");
+				if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined) output2("\n<b>* Services, Times Cock-Milked with Kiro and Kally:</b> " + flags["KIRO_KALLY_TEAM_MILKED"]);
+				if(flags["VIXETTE_MOUTHGASMED"] != undefined) output2("\n<b>* Vixette, Times She Sucked Your Dick:</b> " + flags["VIXETTE_MOUTHGASMED"]);
+				variousCount++;
+			}
 		}
 		
 		// Nothing recorded
@@ -5856,6 +5864,15 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kiro:</b>");
 			if(flags["KIRO_DISABLED_MINUTES"] > 0) output2(" Away");
 			else output2(" Active");
+			if(flags["KIRO_PHONE_EVENT"] != undefined)
+			{
+				output2("\n<b>* Kiro, Her Codex:</b> Found");
+				switch(flags["KIRO_PHONE_EVENT"])
+				{
+					case 1: output2(", You sent her nudes for her"); break;
+					case 2: output2(", You sent her nudes to Kally"); break;
+				}
+			}
 			output2("\n<b>* Kiro, Trust:</b> " + kiroTrust() + " %");
 			if(flags["KIRO_DRINKING_CONTEST_RESULTS"] != undefined)
 			{

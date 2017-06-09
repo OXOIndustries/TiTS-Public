@@ -445,7 +445,7 @@ public function reahaDreamPart2():void
 public function reahaDreamPart3():void
 {
 	clearOutput();
-	showReaha(true);
+	reahaHeader(true);
 	author("Shadefalcon");
 	//50 % chance of occurring instead of sleeping Reaha:
 	if(rand(2) == 0)

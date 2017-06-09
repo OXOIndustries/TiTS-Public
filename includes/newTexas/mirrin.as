@@ -387,10 +387,10 @@ public function mirrinAppearance():void
 	output(" has clay-red skin. Some darker red scales cover parts of her body - notably thighs, arms, clawed hands and shoulders - like most gryvain, although Mirrin appears to have less scales than the norm. Other places - elbows, back of her calves - have tufts of silver and jade fur, much like a horse’s mane. The silver-and-jade hair on her head is uniformly straight and about 2’ long, bound in a tight ponytail with 3’ of binding instead of a hairband. Her shorter silver horse-tail bobs about, tilted at an angle above her shorts and is bound in the same way as her hair.");
 
 	output("\n\nA set of two ornate, fearsome, jade-green draconic horns extend from the top of her forehead. Complex, erratic swirls and patterns adorn them. They curve back over her head, the points then curving upwards towards the ceiling. You’d say they were at least a foot long. Her ears appear to do the same: long, lithe things, almost elven in shape with a slight upward bend towards the tip. They’re also a foot long by your reckoning.");
-	output("\n\nShe has a surprisingly feminine face: a straight, pointed nose and lack of makeup add a hint of masculinity. Her eyes are draconic but are red in colour instead of the typical yellow you normally see amongst gryvain.");
+	output("\n\nShe has a surprisingly feminine face: a straight, pointed nose and lack of makeup add a hint of masculinity. Her eyes are draconic but are red in color instead of the typical yellow you normally see amongst gryvain.");
 	//PC has had sex with her at least once:
 	if(flags["SEXED_MIRRIN"] != undefined) output(" You know that her mouth hides a dextrous, foot long tongue: a thought that tickles the hot, sordid memories you have of her.");
-	output("\n\nShe is exceptionally powerful in her build: A rock-hard mass of sculpted, flexing muscle. Her shoulders, abs and biceps have particularly detailed muscle mass. She stands on two similarly built equine legs with strange hooves. Said hooves are slightly splayed and are jade green in colour, patterned much like her horns.");
+	output("\n\nShe is exceptionally powerful in her build: A rock-hard mass of sculpted, flexing muscle. Her shoulders, abs and biceps have particularly detailed muscle mass. She stands on two similarly built equine legs with strange hooves. Said hooves are slightly splayed and are jade green in color, patterned much like her horns.");
 	if(flags["MIRRIN_TRAINED"] != undefined && flags["MIRRIN_TRAINED"] >= 4) output(" You’ve heard her true voice: somehow, she’s got a second set of vocal chords, powerful enough to emulate a mythical dragons roar.");
 
 	output("\n\nHer shapely chest heaves and expands with every stretch she makes, all tightly bound inside a black sports top. She looks like an E-cup, although her overall size makes her chest seem more reasonably proportioned. Looking further down, your eyes are drawn to the impressive bulge between her legs. Black straps peek out over the rim of the strained pair of skintight black shorts that hold it all in, implying a particularly restrictive jockstrap. You find yourself biting your [pc.lipChaste].");
@@ -492,7 +492,7 @@ public function repeatableMirrinTraining():void
 	{
 		output("<i>“Hey there, can we do some training?”</i> you say from behind the hulking dragon.");
 		output("\n\n<i>“Back for more? I got some good stuff planned,”</i> says Mirrin.");
-		output("\n\nIn a true reflection of what she does, she’s wearing a skintight leotard. Its colour scheme is somewhat garish - covered in black, yellow and pink - but it appears to be incredibly well fitted, almost unnaturally so. Her intrusive, distracting bulge leaves even less to the imagination than before... you just about manage to tear your [pc.eyes] away from it.");
+		output("\n\nIn a true reflection of what she does, she’s wearing a skintight leotard. Its color scheme is somewhat garish - covered in black, yellow and pink - but it appears to be incredibly well fitted, almost unnaturally so. Her intrusive, distracting bulge leaves even less to the imagination than before... you just about manage to tear your [pc.eyes] away from it.");
 		//PC is kind:
 		if(pc.isNice()) 
 		{
@@ -588,7 +588,7 @@ public function repeatableMirrinTraining():void
 		output("\n\nWith a little bit of hesitation and a big distraction dangling around your face, you plow on through with your last set. You swear you can see right into her urethra the entire time...");
 		output("\n\nWith one final, blessed beep, you haul the hateful barbell onto its handles. Mirrin walks around to your side and only then do you exhale fully, trying to come down from your energetic high. All this time, the gym goers appear to have gravitated ever so slightly towards you and Mirrin... True to the spirit of New Texas, there’s enough catcalling, wolf whistling and genital jostling to drown out a sports crowd.");
 		output("\n\n<i>“Ugh... give me a few minutes,”</i> Mirrin says in response. She clops off to the changing rooms, ignoring the crowd around her. You yourself slowly sit up, stretching out your [pc.arms] and [pc.legs]. There’s still a vague hint of musk floating around your [pc.face].");
-		if(pc.isTreated()) output(" It’s enough to keep you flushed and horny for a good while. So much smokey dragon flavour...");
+		if(pc.isTreated()) output(" It’s enough to keep you flushed and horny for a good while. So much smokey dragon flavor...");
 		output("\n\nAlmost as quickly as she left, Mirrin is back and covered up. She’s changed to a rather unremarkable white bikini top with white short shorts. However, she doesn’t seem to have <i>quite</i> got her full package to fit properly... they’re still inside her shorts but almost wrap round her hips, forming two snakelike bulges.");
 		output("\n\n<i>“I could do with some grill, what do you say to food, Steele?”</i>");
 		//PC gains +6 tone, +2 Physique and +1 Willpower. Gains ‘Sore’ and ‘Sweaty’ status effects.
@@ -683,7 +683,7 @@ public function repeatableMirrinTraining():void
 		output("\n\nAnd Mirrin lurches forward to catch you.");
 		output("\n\n<i>“Gotcha, gotcha!”</i>");
 		output("\n\nYou regain your sense of self, finding yourself clasped tightly against her with her face a few inches from yours. It’s those eyes... your chest flutters. You both lock into each others gaze for a few seconds.");
-		output("\n\n<i>“You okay, [pc.name]?,”</i> asks the velvety voiced she-dragon.");
+		output("\n\n<i>“You okay, [pc.name]?”</i> asks the velvety voiced she-dragon.");
 		if(pc.isNice()) output("\n\n<i>“Uhh... yeah,”</i> you nod slowly, unable to break eye contact.");
 		else if(pc.isMischievous()) output("\n\n<i>“Uhm... maybe,”</i> you say with a quiver, placing a hand on her arm.");
 		else output("\n\n<i>“Just about”</i> you say in a subdued voice, blinking a bit.");
@@ -846,9 +846,9 @@ public function foodWithMirrin():void
 			output("\n\n<i>“Hm, surprised they even have extranet here,”</i> you say, trying not to sound impressed.");
 			output("\n\n<i>“Oh Steele, so pious,”</i> she chides, then laughs.");
 		}
-		output("\n\n<i>“So... everyone’s a little odd around me. At least here, on New Texas. Other planets, ooh, waah, big celebrity, crowd, crowd, crowd,”</i> she begins explaining in her own special way. <i>“But uh... for whatever reasons, very few here want to talk to me. And yet... they all have my social media alerts. I just know that they’re gonna get home or have five minutes in the toilet and just blow their loads over all <i>this</i>,”</i> she says, pointing up and down her frame.");
+		output("\n\n<i>“So... everyone’s a little odd around me. At least here, on New Texas. Other planets, ooh, waah, big celebrity, crowd, crowd, crowd,”</i> she begins explaining in her own special way. <i>“But uh... for whatever reasons, very few here want to talk to me. And yet... they all have my social media alerts. I just know that they’re gonna get home or have five minutes in the toilet and just blow their loads over all </i>this<i>,”</i> she says, pointing up and down her frame.");
 		output("\n\nHow curious, you posit. There’s not much more that can be said in time as the food arrives.");
-		output("\n\n<i>“Aw, all this <i>beef</i>,”</i> says a woozy Mirrin. It’s mostly the same as the last meal you had with her but the fries appear to be covered in some sort of cheese and gravy. You deal out a generous portion for yourself and tuck in.");
+		output("\n\n<i>“Aw, all this </i>beef<i>,”</i> says a woozy Mirrin. It’s mostly the same as the last meal you had with her but the fries appear to be covered in some sort of cheese and gravy. You deal out a generous portion for yourself and tuck in.");
 		output("\n\nMirrin seems to be eating slower than last time. You ask her about the sudden change.");
 		output("\n\nShe stops mid-steak. <i>“Ey, so... obviously being this uhhh, jacked, you need pure physical matter to build yourself with. Buuut... I was also a compulsive eater when I was younger. Eh, I’m good at maintaining myself but I can just... eat and eat, until it comes back to bite me,”</i> she says, a little embarrassed. She even puts down her fingerful of diced steak.");
 		output("\n\n<i>“Gah, what kind of personal trainer gorges in front of her client, eh? Enough for me,”</i> she concedes, downing a big glug of beer.");
@@ -917,7 +917,7 @@ public function foodWithMirrin():void
 		output("\n\nShe gets her brewski quickly enough but a group of three shirtless bulls suddenly stand in her way. Huh... you cautiously get up to get a better look.");
 		output("\n\n<i>“Heeeey, darlin’,”</i> you hear the biggest of the three say, a heavily bearded and bald alpha bull who’s only a few inches taller than Mirrin. He’s pretty much a beef mountain by the looks of things, a small pair of shorts being his only bit of clothing.");
 		output("\n\n<i>“Me an’ the boys saw that there picture of you an’ yer friend over there,”</i> he says, eyeing you from behind Mirrin.");
-		output("\n\n<i>“We got ta thinkin’: bet a she-bull like you ain’t had a proper ride! I’m sure ya friend has done you right afore but " + pc.mf("he","she") + " can’t give you what we got: Pure Texas beef™, </i><b>URNGH!</b><i>,”</i> he boasts, posing with his chiseled guns.");
+		output("\n\n<i>“We got ta thinkin’: bet a she-bull like you ain’t had a proper ride! I’m sure ya friend has done you right afore but " + pc.mf("he","she") + " can’t give you what we got: Pure Texas beef™, </i><b>URNGH!</b><i>”</i> he boasts, posing with his chiseled guns.");
 		if(pc.isBimbo() && pc.isTreated()) output(" He’s a proper bull alright and you’d be pulling down those useless shorts there and then if you could, just go get a taste...");
 		output("\n\n<i>“Yeah, that’sa spirit, Doug!”</i> says a random voice behind him.");
 		output("\n\nMirrin just stands there, leaning on a forward thrusted hoof. Her look is one of sheer incredulity. She places her bottle back on the counter.");
@@ -1256,7 +1256,7 @@ public function mirrinModsTalk():void
 	author("SoAndSo");
 	output("You jump off the bridge she built. <i>“So, horse mods? What else did you use?”</i> you inquire.");
 	output("\n\nMirrin straightens herself up, dusts herself down and clears her throat. It reminds you of a particularly proud museum curator.");
-	output("\n\n<i>“Right, so... Skin. And by extension, scales,”</i> she begins, putting her right hand on her left forearm. <i>“An offshoot of Rainbowtox. A contact in pharmaceuticals narrowed it down to uuuh, a washed out colour palette. Happy with red, would’ve preferred slate-blue. Hair,”</i> she grabs a hold of her ponytail and actual pony tail with a smug grin. <i>“Au natural. Only change is some parts are a bit green.”</i>");
+	output("\n\n<i>“Right, so... Skin. And by extension, scales,”</i> she begins, putting her right hand on her left forearm. <i>“An offshoot of Rainbowtox. A contact in pharmaceuticals narrowed it down to uuuh, a washed out color palette. Happy with red, would’ve preferred slate-blue. Hair,”</i> she grabs a hold of her ponytail and actual pony tail with a smug grin. <i>“Au natural. Only change is some parts are a bit green.”</i>");
 	output("\n\nShe holds one of her legs up, bending it so it rests on the opposite knee. She points to one of her slightly over-sized hooves. <i>“These were hard. So like... When I was describing how I wanted it to work to the pharmacy guy, he explained what he was going to use and it was such a complex chemical name. Beta-xenophylenophena-something-or-other. Worked it real good but fucking. Expensive. Same with these beauts,”</i> she’s holding one of her horns again. <i>“Took a while to grow but they’re just perfect.”</i>");
 	output("\n\nLooking at both horn and hoof properly, the detail is staggering. Almost translucent, you could imagine that a particularly strong light would irradiate her crown of horns with a green glow.");
 	output("\n\n<i>“How about the horse, er, bits?”</i> You say, idly fidgeting with your [pc.hair].");
@@ -1640,7 +1640,7 @@ public function mirrinFirstTimev3Part2():void
 	showMirrin(true);
 	author("SoAndSo");
 	output("You wake up.");
-	output("\n\nIt can’t have been more than thirty seconds. Your throat and mouth feel absolutely stuffed with still-hot qilin cum, it’s flavour overpowering and smokey. You splutter before opening your eyes, the first instinct being to <i>breeeathe</i>.");
+	output("\n\nIt can’t have been more than thirty seconds. Your throat and mouth feel absolutely stuffed with still-hot qilin cum, it’s flavor overpowering and smokey. You splutter before opening your eyes, the first instinct being to <i>breeeathe</i>.");
 	output("\n\nThe first thing you see is Mirrin standing over the end of the bed, her brace of mammoth cocks not even soft after her load dump. Is she taking a picture?!");
 	output("\n\n<i>“Hey-”</i> you weakly begin before coughing up yet more dragon cream onto your chest. Looking around your head, it’s as if someone threw an entire tin of paint of your upper body. Just how much cum can she make...?!");
 	output("\n\n<i>“Hoooold still,”</i> she says, a photo shutter sound playing shortly afterwards. <i>“Perfect...”</i>");
@@ -1686,9 +1686,9 @@ public function mirrinYerConfidenceBaaaaaeby():void
 	output(" says the slightly menacing qilin. You flush red as she says it, reminding you of the sensations you felt. She lets go of squeezing you, standing up to stretch a little.");
 
 	output("\n\n<i>“Cuz of that, though, I gotta thank you. Being here on uhhh, New Texas, I admit that I was going... crazy or something,”</i> she says, twirling her fingers as usual. <i>“But all this, with you, shows that it’s all just me messing with me. Myself, even. ");
-	if(pc.isNice()) output("You helped me with just being nice and... being sweet.");
-	else if(pc.isMischievous()) output("You helped me relax and feel great about being me.");
-	else output("You showed me how to be decisive and how to self-improve.");
+	if(pc.isNice()) output("You helped me with just being nice and... being sweet");
+	else if(pc.isMischievous()) output("You helped me relax and feel great about being me");
+	else output("You showed me how to be decisive and how to self-improve");
 	output(",”</i> she says sincerely, her smile the widest you’ve seen yet.");
 
 	output("\n\n<i>“Couldn’t have done it otherwise");
@@ -1831,7 +1831,7 @@ public function deepMirrinDP():void
 	output("\n\nYou’re now angled like a cocksleeve, 90 degrees from Mirrin’s pelvis. The amount of <i>fullness</i> you feel is almost overwhelming. Instead of crying out in pleasure, you can only whimper in meek mumbles and groans of discomfort.");
 	pc.buttChange(mirrin.cockVolume(0));
 	pc.cuntChange(x,mirrin.cockVolume(0));
-	output("\n\nAs if sensing your pleasure-mixed pain, the in-control qilin uses a hand to stroke the [pc.skunFurScales] on your back. It doesn’t last. Using both hands, she grabs you by the hips and begins a deep, <i>deep</i>, fuck of both of your holes. A glimpse downwards and you can see the shifting bulge her second cock makes in your pelvis.");
+	output("\n\nAs if sensing your pleasure-mixed pain, the in-control qilin uses a hand to stroke the [pc.skinFurScales] on your back. It doesn’t last. Using both hands, she grabs you by the hips and begins a deep, <i>deep</i>, fuck of both of your holes. A glimpse downwards and you can see the shifting bulge her second cock makes in your pelvis.");
 	output("\n\nInstead of picking up the pace, she makes sure you feel every inch of her twin beasts from tip to base. She bottoms you out several, agonizingly, slow times. The stretching you are getting is definitely going to leave a mark...");
 	output("\n\nWithout warning, she picks up the pace. Holding tight onto your [pc.hips] and with a slap on your [pc.butt], she <i>hammers</i> her full lengths into your slicked up holes. Each time she bottoms out, a reflexive moan escapes your agape mouth, energising her to go faster each time. Your [pc.pussy " + x + "] is so slick and slippery that [pc.girlCum] spurts and drips all the way down Mirrin’s shaft.");
 	if(pc.hasCock()) output(" Your poor, semi-hard erection goes by untouched, aching from need.");
@@ -1883,7 +1883,7 @@ public function trainFightyFlighty():void
 	output("\n\nAlready this seems like a bad idea but if you actually win? Can’t pass that up!");
 	output("\n\nYou both take a stance of equal distance from each other on opposite sides of the ‘bedroom’ area. Hers seems loose and relaxed.");
 	//PC is Mercenary:
-	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nYou take a balanced, controlled martial arts stance that you’ve used during your Mercenary work, one that favours being able to adapt.");
+	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nYou take a balanced, controlled martial arts stance that you’ve used during your Mercenary work, one that favors being able to adapt.");
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("\n\nYou adopt an aggressive posture, one based on your Smuggler’s ethos of fast attacks.");
 	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("\n\nYou take a defensive posture that you’ve gotten familiar with in your more risky Tech jobs, one that allows you to exploit weaknesses in enemy attacks.");
 	output("\n\nAfter sizing each other up, a tension starts to build in the room.");
@@ -2036,10 +2036,10 @@ public function winAgainstMirrin():void
 		output("\n\nYou find your hands are reflexively gripping the bedspread. Sure pays to have double sets of sexes! The lusty qilin reaffirms this by tightening her grip on your [pc.sheathBiggest] and <i>then</i> by pushing her mouth right up to your [pc.pussy] as if to fully engorge on it. Her monster tongue fills out your [pc.cunt] with ease, writhing and sliding inside against your hyper-sensitive walls. Having a glance down, you swear you can almost see it bulge through your [pc.skin]...");
 		output("\n\nThe deeper it gets, the more agitated and active it becomes, finding places within that you’d never thought would be felt. Her mouth-snake constantly brushes, rubs and slides against your G-spot. Every slurp and sway of her tongue brings you closer and closer to climaxing, your pleasured cries getting louder and louder!");
 		output("\n\n<i>“Cuh... fuh! Myeruh-”</i> you stammer, followed by a throat burning orgasm!");
-		output("\n\nOverwhelming surges of sensation and heat that rise from your pelvis. With only a throaty cry, [pc.cumVisc], [pc.cumFlavour] [pc.cumNoun] shoots out over your [pc.belly] while a splash of [pc.girlCumVisc] [pc.girlCum] covers the eye-closed face of your qilin lover, leaving splotches of [pc.girlCumColour] [pc.girlCumNoun] all over her mouth and chin.");
-		if(pc.cumQ() >= 500) output(" The sheer volume of your [pc.cum] output is shown on the bedsheets: a splatterzone of [pc.cumColour]!");
+		output("\n\nOverwhelming surges of sensation and heat that rise from your pelvis. With only a throaty cry, [pc.cumVisc], [pc.cumFlavor] [pc.cumNoun] shoots out over your [pc.belly] while a splash of [pc.girlCumVisc] [pc.girlCum] covers the eye-closed face of your qilin lover, leaving splotches of [pc.girlCumColor] [pc.girlCumNoun] all over her mouth and chin.");
+		if(pc.cumQ() >= 500) output(" The sheer volume of your [pc.cum] output is shown on the bedsheets: a splatterzone of [pc.cumColor]!");
 		output(" She keeps squeezing on your softening [pc.cock], trying to get as much love juice from you as possible while her tongue goes into overdrive, writhing wildly within your sensation-saturated walls.");
-		output("\n\nFeeling light-headed, you lay onto your back, breath squeaky and fast from that intense double orgasm. Mirrin clambers up to you, her mouth liberally sprayed with your [pc.girlCum] and [pc.cumNoun]. Without hesitation, she draws your [pc.lips] to hers, giving you a long, impassioned and flavoured taste of yourself.");
+		output("\n\nFeeling light-headed, you lay onto your back, breath squeaky and fast from that intense double orgasm. Mirrin clambers up to you, her mouth liberally sprayed with your [pc.girlCum] and [pc.cumNoun]. Without hesitation, she draws your [pc.lips] to hers, giving you a long, impassioned and flavored taste of yourself.");
 	}
 	//PC has cock:
 	else if(pc.hasCock())
@@ -2061,10 +2061,10 @@ public function winAgainstMirrin():void
 		if(pc.totalCocks() > 1) output(" You’re not even concerned with your untouched [pc.cockSmallest] while getting such special treatment.");
 		output(" The tight grip of her hand, the sloppier, faster movement of her tongue and the smooth, gentle sensation of her mouth on your [pc.cockHeadBiggest] are almost unbearable. She hasn’t even been going that long and already you can feel yourself close to cumming.");
 
-		output("\n\nThen you feel it, that surge of sensation and heat that rises from your pelvis. With only a throaty cry, your [pc.cumVisc], [pc.cumFlavour] [pc.cumNoun] shoots out into your lover’s awaiting maw!");
+		output("\n\nThen you feel it, that surge of sensation and heat that rises from your pelvis. With only a throaty cry, your [pc.cumVisc], [pc.cumFlavor] [pc.cumNoun] shoots out into your lover’s awaiting maw!");
 		if(pc.cumQ() < 2000) output(" She’s prepared, holding her stance so that it goes right down her throat without stopping, her tongue frantically twisting around your orgasming [pc.cockBiggest].");
-		else output(" She’s prepared for your output, her throat and stance ready to take in as much as possible. It quickly seems that that’s not enough, so she pulls her head back and aims your spurting [pc.cockBiggest] away from the bed. <i>“</i>Shit<i>, look at it go!”</i> She calls out, [pc.cumColour] trailing from her delighted face.");
-		output("\n\nYou lay back off of your elbows, fully spent. Your cum-covered lover clambers on the bed to meet you eye to eye, drawing your mouth to her’s for a deep, [pc.cumFlavour] tasting kiss.");
+		else output(" She’s prepared for your output, her throat and stance ready to take in as much as possible. It quickly seems that that’s not enough, so she pulls her head back and aims your spurting [pc.cockBiggest] away from the bed. <i>“</i>Shit<i>, look at it go!”</i> She calls out, [pc.cumColor] trailing from her delighted face.");
+		output("\n\nYou lay back off of your elbows, fully spent. Your cum-covered lover clambers on the bed to meet you eye to eye, drawing your mouth to her’s for a deep, [pc.cumFlavor] tasting kiss.");
 	}
 	//PC has vagina:
 	else if(pc.hasVagina())
@@ -2080,7 +2080,7 @@ public function winAgainstMirrin():void
 
 		output("\n\nShe eyes you when your mewling moans rise in frequency. Your [pc.legs] can’t seem to stay still as your lovebox is eaten out. She moves in even closer, her face barely a few inches from your pelvis proper. Having a glance down, you swear you can almost see it bulge through your [pc.skin]... her tongue goes as far in as it can, then begins to <i>writhe</i>.");
 		output("\n\nAs if letting lose some manner of beast, Mirrin’s dextrous foot long tongue squirms, snakes, and fills out your tender [pc.pussy " + x + "]. Finding places you never thought possible, it constantly brushes and slides against your G-spot. Every slurp and sway of her tongue brings you closer and closer to climaxing, your pleasured cries getting louder and louder!");
-		output("\n\n<i>“Cuh... fuh! Myeruh-”</i> you stammer, followed by a throat burning orgasm. A splash of [pc.girlCumVisc] [pc.girlCumNoun] covers the scrunched up face of your qilin lover, leaving splotches of [pc.girlCumColour] [pc.girlCumNoun] all over her mouth and chin. In those final few seconds, her tongue goes into overdrive, writhing wildly within your sensation-saturated walls!");
+		output("\n\n<i>“Cuh... fuh! Myeruh-”</i> you stammer, followed by a throat burning orgasm. A splash of [pc.girlCumVisc] [pc.girlCumNoun] covers the scrunched up face of your qilin lover, leaving splotches of [pc.girlCumColor] [pc.girlCumNoun] all over her mouth and chin. In those final few seconds, her tongue goes into overdrive, writhing wildly within your sensation-saturated walls!");
 		output("\n\nFeeling light-headed, you lay onto your back, breath squeaky and fast. Mirrin clambers up to you, her mouth liberally sprayed with your [pc.girlCum]. Without hesitation, she draws your [pc.lips] to hers, giving you a long, impassioned taste of yourself.");
 	}
 
@@ -2130,7 +2130,7 @@ public function loseToMirrin():void
 	if(silly) output(" <i>“Helvitis fokking fokk!”</i> Or something like that.");
 	output("\n\nA thick dribble of her femcum ends up in your mouth and all over your [pc.lips].");
 	output("\n\nYou can feel her insides tensing and spasming against your tongue as her orgasm subsides, eventually going limp after a few more seconds.");
-	output("\n\nYou withdraw your mouth from your sated lover, wiping your mouth of her femjuice; but not before savouring a little.");
+	output("\n\nYou withdraw your mouth from your sated lover, wiping your mouth of her femjuice; but not before savoring a little.");
 	output("\n\nYou stand up to inspect your lover: Her arms lie splayed in front of her and her face is still planted into the covers. She meekly turns her head to you, droopy eyelids and a breathy grin on her face.");
 
 	//PC is kind:
