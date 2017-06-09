@@ -662,7 +662,7 @@ package classes.GameData
 			}
 			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
 			{
-				output("You can't reach [target.combatName]!" + target.mfn(" He"," She"," It") + " is too high!");
+				output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " can’t reach [target.combatName]! " + (!target.isPlural ? (target.mfn("He","She","It") + " is") : "They are") + " too high!");
 				return false;
 			}
 			if (combatMiss(attacker, target))
@@ -738,8 +738,9 @@ package classes.GameData
 			applyDamage(d, attacker, target, special);
 			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
-				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0,0xFF0000);
-				output(" <b>[target.CombatName] is staggered by your lunge!</b>");
+				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are staggered, and your" : (target.getCombatName() + " is staggered, and " + target.getCombatPronoun("hisher")) + " Aim and Reflexes have been reduced!"), true, 0,0xFF0000);
+				if(target is PlayerCharacter) output(" <b>You are staggered by the lunge!</b>");
+				else output(" <b>[target.CombatName] is staggered by " + (attacker is PlayerCharacter ? "your" : "the") + " lunge!</b>");
 			}
 			if(attacker.hasPerk("Cloak and Dagger"))
 			{
@@ -1188,8 +1189,9 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			if (!target.hasStatusEffect("Staggered") && attacker.hasPerk("Rending Attacks"))
 			{
-				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0,0xFF0000);
-				output(" <b>[target.CombatName] is staggered by the hail of fire!</b>");
+				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are staggered, and your" : (target.getCombatName() + " is staggered, and " + target.getCombatPronoun("hisher")) + " Aim and Reflexes have been reduced!"), true, 0,0xFF0000);
+				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");
+				else output(" <b>[target.CombatName] is staggered by the hail of fire!</b>");
 			}
 		}
 		
@@ -1347,14 +1349,14 @@ package classes.GameData
 		public static var ChargeWeapon:SingleCombatAttack;
 		private static function chargeWeaponImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if(target is PlayerCharacter) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.mfn("his","her","its") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
+			if(!(attacker is PlayerCharacter)) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.mfn("his","her","its") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
 			else 
 			{
 				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It’s just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden ‘<i>kzzzt</i>’ of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe’s way!");
 				else output("You flick the switch on a wrist-mounted powercell, pumping arcs of deadly electricity into your " + attacker.meleeWeapon.longName + ", then try for a quick strike with the newly charged weapon!\n");
 			}
-			if (attacker.hasPerk("Fuck Sense")) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~", true, 0);
-			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity.", true, 0);
+			if (attacker is PlayerCharacter) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", (attacker.hasPerk("Fuck Sense") ? "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~" : "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity."), true, 0);
+			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Weapon is electrified and will deal bonus damage based upon current intellectual capacity.", true, 0);
 			SingleMeleeAttackImpl(attacker, target, true);
 		}
 		
@@ -1964,7 +1966,7 @@ package classes.GameData
 			//Attack connected!
 			else
 			{
-				output("They connect with an audible 'zap'");
+				output("They connect with an audible ‘<i>zap</i>’");
 				if (attacker.reflexes() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{
 					if(target is PlayerCharacter) output(" and snap into place, wrapping you up. <b>You are stunned!</b>");
