@@ -212,6 +212,14 @@ public function configureMails():void
 	MailManager.addMailEntry("pippa_crew", pippaCrewEmail, "Request", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
 
 	MailManager.addMailEntry("plantation_quest_start", shepDarnocksPlantationQuestInviteText, "Salutations!", "Shep Darnock", "theshepard12@snugglecorp.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("kally_kiro_milkvite",kallyKiroMilkvite,"Safety First!","Kally Tamahime","kally@kui_country.cas",quickPCTo,quickPCToAddress);
+}
+
+public function kallyKiroMilkvite():String
+{
+	var ret:String = "";
+	ret += "Hey, Rush-" + pc.mf("Boy", "Girl") + "!\n\nIs Kiro not taking care of you? I got word that you were looking pretty backed up out there. Don't wait to pop off a load! It's a serious health risk. Hell, grab Kiro and swing those big ol' balls my way, and I might show you guys a place that'll help relieve some of the pressure. Just don't expect me to remember if you aren't properly packing! This place doesn't accept anything less than twelve-inch nuts swimming in their own sperm!\n\n-Kally ;3\n\nP.S. Don't show up with a fuckin' log either. They don't exactly cater to Throbb addicts there, ya know?";
+	return ret;
 }
 
 public function cuzName():String
