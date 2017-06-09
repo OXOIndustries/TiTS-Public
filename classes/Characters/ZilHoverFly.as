@@ -182,6 +182,7 @@ package classes.Characters
 			this.ass.bonusCapacity += 15;
 
 			this.createStatusEffect("Disarm Immune");
+			createStatusEffect("Flying", 0, 0, 0, 0, false, "Icon_Wings", "Flying, cannot be struck by normal melee attacks!", true, 0);
 			
 			isUniqueInFight = true;
 			btnTargetText = "ZilMale";

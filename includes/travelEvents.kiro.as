@@ -3637,6 +3637,19 @@ public function kiroKallyThreesomesApproach():void
 	
 	clearOutput();
 	showKallyAndKiro();
+
+	//THREESOME INTERRUPTUS!
+	if(pc.hasCock() && pc.ballDiameter() >= 12 && pc.balls >= 2)
+	{
+		if(pc.thinnestCock() < 7) 
+		{
+			if(pc.ballFullness >= 50) 
+			{
+				kiroAndKallyGoToGetMilkedThreesome();
+				return;
+			}		
+		}
+	}
 	//Threesomes Intro
 	//Bimbo
 	if(pc.isBimbo()) output("<i>“Know what would be tons of fun?”</i> you ask, so bubbly you’re almost effervescent. <i>“Your sister.”</i>");
