@@ -953,7 +953,7 @@ public function annoAndKaedesGinormousTiddies():void
 
 	output("\n\nYes... you need more. You can feel your mind crying out for it: <i>“MORE! MORE! MORE! MORE!”</i>");
 	output("\n\nOver and over: <i>“MORE! MORE! MORE...”</i>");
-	output("\n\nEventually, though, all those cries off <i>“More!”</i> begin to change, like your name is being called: <i>“[pc.name]! [pc.name]! [pc.name!]”</i>");
+	output("\n\nEventually, though, all those cries off <i>“More!”</i> begin to change, like your name is being called: <i>“[pc.name]! [pc.name]! [pc.name]!”</i>");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",annoKaedeTiddyDrama);

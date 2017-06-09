@@ -964,12 +964,18 @@ public function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 	
-	if (kiMedbaySleeps()) return;
-	
 	var minPass:int = 420 + rand(80) + 1;
+	var inShip:Boolean = InShipInterior(pc);
 	
-	if(outputs) clearOutput();
-	if(InShipInterior(pc))
+	if(outputs)
+	{
+		clearOutput();
+		eventBufferXP();
+	}
+	
+	// Before sleep events
+	if(kiMedbaySleeps()) return;
+	if(inShip)
 	{
 		if(outputs)
 		{
@@ -979,42 +985,42 @@ public function sleep(outputs:Boolean = true):void {
 				annoSleepWithIntroduce();
 				return;
 			}
-		}
-		//Queue up cured Reaha
-		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
-		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
-		{
-			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
-		}
-	}
-	if(outputs)
-	{
-		eventBufferXP();
-	}
-	if(InShipInterior(pc))
-	{
-		if(outputs)
-		{
-			//CELISE NIGHT TIME BEDTIMEZ
-			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined && flags["CELISE_NO_BED_SENPAI"] == undefined)
+			
+			var interrupt:Boolean = false;
+			
+			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
-				celiseOffersToBeYourBedSenpai();
-				return;
+				case "ANNO":
+					if (annoIsCrew() && rand(3) == 0)
+					{
+						annoSleepSexyTimes();
+						interrupt = true;
+					}
+					break;
+				case "REAHA":
+					if (reahaIsCrew() && rand(3) == 0)
+					{
+						sleepWithCuredReaha();
+						interrupt = true;
+					}
+					break;
+				case "BESS":
+					if (bessIsCrew() && rand(3) == 0)
+					{
+						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+					}
+					break;
+				// No partner selected.
+				default:
+					//CELISE NIGHT TIME BEDTIMEZ
+					if(celiseIsCrew() && rand(3) == 0 && flags["CELISE_NO_BED_SENPAI"] == undefined)
+					{
+						celiseOffersToBeYourBedSenpai();
+						interrupt = true;
+					}
+					break;
 			}
-			else if (annoIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
-			{
-				annoSleepSexyTimes();
-				return;
-			}
-			else if (bessIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
-			{
-				flags["BESS_SLEEPWITH_DOMORNING"] = 1;
-			}
-			else if (reahaIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA")
-			{
-				sleepWithCuredReaha();
-				return;
-			}
+			if(interrupt) return;
 		}
 	}
 	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minPass/60)) + " hours.");
@@ -1022,18 +1028,35 @@ public function sleep(outputs:Boolean = true):void {
 	sleepHeal();
 	
 	processTime(minPass);
-	dreamChances();
-	if(outputs)
-	{
-		mimbraneSleepEvents();
-		if(InShipInterior(pc)) grayGooSpessSkype();
-	}
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
 	
+	// Dream events
+	var dreamed:Boolean = dreamChances();
+	
+	// Between sleep events
+	if(outputs)
+	{
+		mimbraneSleepEvents();
+		if(inShip) grayGooSpessSkype();
+	}
+	
+	// After sleep events
+	if(inShip)
+	{
+		//Queue up cured Reaha
+		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
+		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
+		{
+			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
+		}
+	}
+	
 	clearMenu();
-	if(InShipInterior(pc))
+	
+	// Waking up events
+	if(inShip && !dreamed)
 	{
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
 		{
