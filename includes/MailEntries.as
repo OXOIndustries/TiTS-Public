@@ -218,7 +218,7 @@ public function configureMails():void
 public function kallyKiroMilkvite():String
 {
 	var ret:String = "";
-	ret += "Hey, Rush-" + pc.mf("Boy", "Girl") + "!\n\nIs Kiro not taking care of you? I got word that you were looking pretty backed up out there. Don't wait to pop off a load! It's a serious health risk. Hell, grab Kiro and swing those big ol' balls my way, and I might show you guys a place that'll help relieve some of the pressure. Just don't expect me to remember if you aren't properly packing! This place doesn't accept anything less than twelve-inch nuts swimming in their own sperm!\n\n-Kally ;3\n\nP.S. Don't show up with a fuckin' log either. They don't exactly cater to Throbb addicts there, ya know?";
+	ret += "Hey, Rush-" + pc.mf("Boy", "Girl") + "!\n\nIs Kiro not taking care of you? I got word that you were looking pretty backed up out there. Don’t wait to pop off a load! It’s a serious health risk. Hell, grab Kiro and swing those big ol’ balls my way, and I might show you guys a place that’ll help relieve some of the pressure. Just don’t expect me to remember if you aren’t properly packing! This place doesn’t accept anything less than twelve-inch nuts swimming in their own sperm!\n\n-Kally ;3\n\nP.S. Don’t show up with a fuckin’ log either. They don’t exactly cater to Throbb addicts there, ya know?";
 	return ret;
 }
 

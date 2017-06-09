@@ -225,7 +225,7 @@ public function trainWivDragonBonars():void
 	//else:
 	else
 	{
-		output("\n\nYou power through your first set of ten relatively easily, if a little slowly. The more you do, the better you feel. Mirrin’s calling out every tenth press, although you’re already mouthing the number of each one anyway. A bit sooner than you thought, you’re feeling the shakes. You finish one last press, slumping on your front for a few seconds then slowly rise to stand up. <i>“Duh.. done,”</i> you breathlessly say.");
+		output("\n\nYou power through your first set of ten relatively easily, if a little slowly. The more you do, the better you feel. Mirrin’s calling out every tenth press, although you’re already mouthing the number of each one anyway. A bit sooner than you thought, you’re feeling the shakes. You finish one last press, slumping on your front for a few seconds then slowly rise to stand up. <i>“Duh... done,”</i> you breathlessly say.");
 		if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC) output(" But you’re feeling a second wind! Blessed be these Steele genes.");
 		//This makes no sense. SNIP! 
 		//<i>“[RNG= 35-50], hmmm... well, it’s what you’re here for, eh?”</i> comments the smirking draconid. <i>“Take a few minutes, then we do crunches.”</i>
@@ -811,7 +811,7 @@ public function foodWithMirrin():void
 		else output("You eyeroll at her enthusiasm but realise you’re enjoying the same thing: ");
 		output("stuffing juicy meat into your mouth.");
 		output("\n\nThere doesn’t seem to be much room to talk: It takes a straight twenty minutes for you to both clear out the food, although Mirrin definitely took the lion’s share. Your body’s going to be angry at you sooner rather than later... and Mirrin’s just out for the count. Slovenly hunched over, it seems she’s had more than she can handle. You wonder if she’s hiding something from you...");
-		output("\n\n<i>“Can’t... </i>*huff*<i> fuckin’... </i>ertu að djóka<i>, I’m.. so bad,”</i> she says, staring at the empty punnets. She slowly dunks her head on the table, her normally immaculate hair looking frazzled. You almost get grazed by her horns...");
+		output("\n\n<i>“Can’t... </i>*huff*<i> fuckin’... </i>ertu að djóka<i>, I’m... so bad,”</i> she says, staring at the empty punnets. She slowly dunks her head on the table, her normally immaculate hair looking frazzled. You almost get grazed by her horns...");
 		output("\n\nThinking that she’d probably be better off to take a breather before trying to move, you say your goodbyes. She’s laughing to herself but gives you a lazy wave anyway. Back to the ship!");
 		processTime(40);
 		pc.modThickness(3);
@@ -1522,7 +1522,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 			output(". It doesn’t take long for your aroused [pc.pussy] to give in to her ministrations, [pc.girlCum] running down Mirrin’s clawed fingers in response. That familiar, orgasmic build up - already jumpstarted by your deep anal fuck - rises within, making you moan louder and louder until... you cum, loud and messy!");
 			output("\n\n[pc.girlCumColor] fluid spurts onto the floor below, dripping all over your lower body and Mirrin’s hooves.");
 		}
-		output("\n\n<i>“Ahh.. nice - </i>huff<i> - work, [pc.name]... but I’m not - </i>huff<i> - done with you.”</i>");
+		output("\n\n<i>“Ahh... nice - </i>huff<i> - work, [pc.name]... but I’m not - </i>huff<i> - done with you.”</i>");
 		output("\n\nUsing the energy of your messy orgasm, she goes for a final burst of thrusts. You can feel <i>something</i> pulsing through her rigid cock. She groans with throaty undertones louder and louder until she hammers you down one final time on her meatspear. Then it comes.");
 		output("\n\nA thick surge of dragon-cum forces its way into your guts, filling out your colon almost instantly. It barely has room to move as your tightly fitted [pc.asshole] prevents it from leaving! Your belly swells up with what feels like a litre of hot, almost burning seed. Your qilin lover’s girlish moans fill your ears as she humps and pumps her final spurts of fresh semen. <i>“Ohh, <i>shit</i>... Steele...”</i> she trails off, nuzzling the side of your neck.");
 		output("\n\nAfter half a minute of basking in the mutual afterglow, her donger softens and recedes from your well-stretched hole. A splattering of white fluid from your ass spills onto floor below. She’s still holding you, looking to your [pc.eyes] from the side with a tired, satisfied grin.");
@@ -1585,7 +1585,7 @@ public function firstTimeMirrinSexActual(arg:int = 1):void
 		output("\n\nHaving two different forces pump together feels instantly overwhelming but you endure, holding back your internal pleasure through sheer force of will. Your [pc.face] scrunches up in concentration and restraint, getting a giggle out of your dominant qilin lover. <i>“Well, Steele... if you’re going to be useless, better open up again,”</i> she chides, pushing her biggest dicks pulsing head onto your [pc.lips].");
 		output("\n\nBegrudgingly, you let her inside, your jaw opening wider and wider to accept her. Your compliance brings a soft <i>“Ooh...”</i> from the draconid’s lips. Slowly at first, she rolls her hips up and around, both simultaneously grinding your now-solid [pc.cock] and using your mouth as a cock pleaser! The thought draws out a low groan from you, peaks and valleys of sensation tingling all throughout your body as you’re pinned down and used by this predator.");
 		output("\n\nFrom nowhere, you feel a strong pressure on your ribcage. Mirrin’s sculpted, muscled thighs squeeze tightly against you, either out of purpose or from reflex... well, you’re too pre-occupied to think on it. However, it does make breathing a little harder: air going out is fine but coming in is a struggle. It’s already making your [pc.skin] tingle with numbness but your [pc.cock] remains rock hard.");
-		output("\n\n<i>“That’s it, Steele.. *<i>unff</i>* surrender...”</i> she breathlessly calls out, grinding her weighty testes and mammoth members across the front of your body. You can even feel a hot, wet sensation gliding against your lower belly... <i>ohhh</i>. Must be her under-appreciated pussy.");
+		output("\n\n<i>“That’s it, Steele... *<i>unff</i>* surrender...”</i> she breathlessly calls out, grinding her weighty testes and mammoth members across the front of your body. You can even feel a hot, wet sensation gliding against your lower belly... <i>ohhh</i>. Must be her under-appreciated pussy.");
 		output("\n\nA spurt of smoky, hot pre-cum hits the roof of your mouth. Mirrin stifles a girlish moan as it happens, her lower body tensing up to hold it all back. She squeezes your ribs even harder, to the point where your arms lose some sensation. It’s getting... harder to... focus!");
 		output("\n\nMirrin’s grip on your [pc.cock] gets tighter and tighter in her calloused palm, rough skin uncomfortably constricting on your sensitive shaft. If she’s this tight-gripped, you might not even be able to climax at all...");
 		output("\n\nWith her strongest pump yet, she releases your tortured [pc.cock]. It still fits snuggly in between her cheeks but the smoother, soothing skin of her ass is a welcome reprieve. She stares you down from above, her foot long tongue seeping out of her mouth and her wide eyes full of lust. With both hands free, she grabs you by the top of your [pc.hair], pulling your head forward so her thick horsecock goes even further down your throat!");
@@ -2149,7 +2149,7 @@ public function loseToMirrin():void
 	else
 	{
 		output("\n\n<i>“Told you I’d get ya,”</i> you say flatly, a knowing, smug grin on your face.");
-		output("\n\n <i>“Heh.. *<i>huff</i>* remind me to uhhh... take you down a peg later,”</i> she replies slowly.");
+		output("\n\n <i>“Heh... *<i>huff</i>* remind me to uhhh... take you down a peg later,”</i> she replies slowly.");
 	}
 	output("\n\n<i>“Mmmm... just gonna... stay here for a few... hours,”</i> the breathy qilin adds, rubbing her face and bare chest against the covers. <i>“Think of that all over again...”</i>");
 	output("\n\nShe seems rather worn out by the apparently amazing mouthjob you just gave her. Not wishing to disturb her, you gather your things together and bid the satisfied dragon goodbye. Back to the ship!");
