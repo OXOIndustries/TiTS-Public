@@ -10872,6 +10872,7 @@
 						break;
 					case "lesser panda":
 						sRaceShort = "panda";
+						break;
 					case "gabilani":
 						sRaceShort = "goblin";
 						break;
