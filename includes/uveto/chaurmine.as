@@ -663,7 +663,7 @@ public function chaurmineUvetoSexMenuAdditions():void
 		else if(pc.isPregnant()) addDisabledButton(5,"Myr Venom","Myr Venom","This would not be safe to try pregnant.")
 		else addButton(5,"Myr Venom",myrVenomChaurmineFun,undefined,"Myr Venom","You wonder; what would happen if...");
 	}
-	else addDisabledButton(5,"Locked","Locked","You need the \"Myr Venom\" perk for this scene.");
+	else addDisabledButton(5,"Locked","Locked","You need the “Myr Venom” perk for this scene.");
 
 	addButton(6,"Battle",battleWithChaurmineVoluntarily,undefined,"Battle","Face the titan in battle again down on the icy moon.");
 }
