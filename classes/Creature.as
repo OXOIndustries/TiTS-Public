@@ -1853,6 +1853,7 @@
 					break;
 				case "crotch":
 				case "groin":
+				case "genitals":
 					buffer = crotchDescript();
 					break;
 				case "base":
