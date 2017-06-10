@@ -575,7 +575,7 @@ public const CREW_SIEGEWFULFE:int = 11;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
-	var crewMembers:Array = new Array();;
+	var crewMembers:Array = new Array();
 	
 	// Actual crew members
 	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);

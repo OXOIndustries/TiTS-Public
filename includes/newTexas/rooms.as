@@ -97,27 +97,29 @@ public function initNewTexasRooms():void
 	rooms["BRONCO STAIRS 1"] = new RoomClass(this);
 	rooms["BRONCO STAIRS 1"].roomName = "STAIRS\n1F";
 	rooms["BRONCO STAIRS 1"].description = "There is a flight of stairs located here that leads up to the second floor, or the Broodmare Bordello.";
-	rooms["BRONCO STAIRS 1"].runOnEnter = undefined;
+	rooms["BRONCO STAIRS 1"].runOnEnter = saloonStairsBonus;
 	rooms["BRONCO STAIRS 1"].eastExit = "BUCKING BRONCO";
-	rooms["BRONCO STAIRS 1"].inExit = "BRONCO STAIRS 2";
-	rooms["BRONCO STAIRS 1"].inText = "Up";
+	//rooms["BRONCO STAIRS 1"].inExit = "BRONCO STAIRS 2";
+	//rooms["BRONCO STAIRS 1"].inText = "Up";
 	rooms["BRONCO STAIRS 1"].planet = "PLANET: NEW TEXAS";
 	rooms["BRONCO STAIRS 1"].system = "SYSTEM: NYE";
 	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.INDOOR);
 	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.PUBLIC);
+	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.LIFTUP);
 	
 	//BUCKING BRONCO Stairs Down
 	rooms["BRONCO STAIRS 2"] = new RoomClass(this);
 	rooms["BRONCO STAIRS 2"].roomName = "STAIRS\n2F";
 	rooms["BRONCO STAIRS 2"].description = "The stairway here travels back down to first floor of the Bucking Bronco Saloon.";
-	rooms["BRONCO STAIRS 2"].runOnEnter = undefined;
+	rooms["BRONCO STAIRS 2"].runOnEnter = saloonStairsBonus;
 	rooms["BRONCO STAIRS 2"].eastExit = "BROODMARE BORDELLO";
-	rooms["BRONCO STAIRS 2"].outExit = "BRONCO STAIRS 1";
-	rooms["BRONCO STAIRS 2"].outText = "Down";
+	//rooms["BRONCO STAIRS 2"].outExit = "BRONCO STAIRS 1";
+	//rooms["BRONCO STAIRS 2"].outText = "Down";
 	rooms["BRONCO STAIRS 2"].planet = "PLANET: NEW TEXAS";
 	rooms["BRONCO STAIRS 2"].system = "SYSTEM: NYE";
 	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.INDOOR);
 	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.PUBLIC);
+	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.LIFTDOWN);
 	
 	//BUCKING BRONCO Bordello
 	rooms["BROODMARE BORDELLO"] = new RoomClass(this);
