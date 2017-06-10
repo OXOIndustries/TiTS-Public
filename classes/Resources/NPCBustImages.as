@@ -32,6 +32,7 @@
 		public static var JAMESAB:Object = new JamesABBusts();
 		public static var JAYECHO:Object = new JayEchoBusts();
 		public static var LAPINBEAU:Object = new LapinbeauBusts();
+		public static var LILIRURU:Object = new LiliRuruBusts();
 		public static var MANIACPAINT:Object = new ManiacPaintBusts();
 		public static var NUBATTORI:Object = new NuBattoriBusts();
 		public static var PEEKAY:Object = new PeeKayBusts();
