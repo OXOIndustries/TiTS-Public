@@ -1875,14 +1875,20 @@ All stacks of [Sore] can be removed by sleeping.
 
 public function soreDebuff(arg:int = 0):Number
 {
-	if(!pc.hasStatusEffect("Sore Counter"))
-	{
-		pc.createStatusEffect("Sore Counter");
-	}
+	soreChange(arg);
+	
+	return pc.statusEffectv1("Sore Counter");
+}
+
+public function soreChange(arg:int = 0):void
+{
 	if(arg != 0)
 	{
+		if(!pc.hasStatusEffect("Sore Counter")) pc.createStatusEffect("Sore Counter");
 		pc.addStatusValue("Sore Counter", 1, arg);
-		
+	}
+	if(arg > 0)
+	{
 		if(pc.statusEffectv1("Sore Counter") >= 9 && !pc.hasStatusEffect("Worn Out"))
 		{
 			pc.removeStatusEffect("Sore");
@@ -1902,38 +1908,34 @@ public function soreDebuff(arg:int = 0):Number
 			pc.removeStatusEffect("Worn Out");
 		}
 	}
-	return pc.statusEffectv1("Sore Counter");
-}
-
-public function soreChange(arg:int = 0):void
-{
-	if(!pc.hasStatusEffect("Sore Counter"))
+	if(arg < 0)
 	{
-		pc.createStatusEffect("Sore Counter");
-	}
-	if(arg != 0)
-	{
-		pc.addStatusValue("Sore Counter", 1, arg);
-		
-		if(pc.statusEffectv1("Sore Counter") < 3 && pc.hasStatusEffect("Sore"))
+		if(pc.statusEffectv1("Sore Counter") < 3 && pc.isSore())
 		{
 			pc.removeStatusEffect("Sore");
 			pc.removeStatusEffect("Very Sore");
 			pc.removeStatusEffect("Worn Out");
-			pc.removeStatusEffect("Sore Counter");
 		}
-		else if(pc.statusEffectv1("Sore Counter") < 6 && pc.statusEffectv1("Sore Counter") >= 3 && pc.hasStatusEffect("Very Sore"))
+		else if(pc.statusEffectv1("Sore Counter") < 6 && pc.statusEffectv1("Sore Counter") >= 3 && !pc.hasStatusEffect("Sore"))
 		{
 			pc.createStatusEffect("Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are sore and will regain energy slower. Sleep to recover.", false, 0, 0xFFFFFF);
 			pc.removeStatusEffect("Very Sore");
 			pc.removeStatusEffect("Worn Out");
 		}
-		else if(pc.statusEffectv1("Sore Counter") < 9 && pc.statusEffectv1("Sore Counter") >= 6 && pc.hasStatusEffect("Worn Out"))
+		else if(pc.statusEffectv1("Sore Counter") < 9 && pc.statusEffectv1("Sore Counter") >= 6 && !pc.hasStatusEffect("Very Sore"))
 		{
 			pc.removeStatusEffect("Sore");
 			pc.createStatusEffect("Very Sore", 0, 0, 0, 0, false, "Icon_Crying", "You are very sore and will regain energy much slower. Sleep to recover.", false, 0, 0xFF8080);
 			pc.removeStatusEffect("Worn Out");
 		}
+	}
+	
+	if(pc.hasStatusEffect("Sore Counter") && pc.statusEffectv1("Sore Counter") <= 0)
+	{
+		pc.removeStatusEffect("Sore");
+		pc.removeStatusEffect("Very Sore");
+		pc.removeStatusEffect("Worn Out");
+		pc.removeStatusEffect("Sore Counter");
 	}
 }
 

@@ -181,6 +181,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasPerk("Regal Mane")) output2("\n<b>* Neck, Mane:</b> " + GLOBAL.FLAG_NAMES[pc.perkv1("Regal Mane")]);
 		// Body
 		output2("\n<b><u>Body</u></b>");
+		if(pc.hasStatusEffect("Sore Counter")) output2("\n<b>* Soreness Level:</b> " + pc.statusEffectv1("Sore Counter"));
+		if(pc.hasStatusEffect("Sweaty")) output2("\n<b>* Sweat Level:</b> " + pc.statusEffectv1("Sweaty"));
 		output2("\n<b>* Tone:</b> " + pc.tone + "/" + pc.toneMax());
 		output2("\n<b>* Thickness:</b> " + pc.thickness + "/" + pc.thicknessMax());
 		output2("\n<b>* Skin:</b>");
