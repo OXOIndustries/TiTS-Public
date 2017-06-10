@@ -61,7 +61,6 @@ package classes.Engine.Combat
 				damageResult.wasCrit = true;
 				baseHPDamage.multiply(target.statusEffectv3("Deep Freeze"));
 			}
-
 			
 			if (special == "melee")
 			{				

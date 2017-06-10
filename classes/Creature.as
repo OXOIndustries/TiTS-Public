@@ -8989,10 +8989,7 @@
 		{
 			for(var x:int = 1; x < breastRows.length; x++)
 			{
-				if(x > 0)
-				{
-					if(breastRows[x].nippleType != breastRows[x-1].nippleType) return false;
-				}
+				if(breastRows[x].nippleType != breastRows[x-1].nippleType) return false;
 			}
 			return true;
 		}
@@ -14007,22 +14004,18 @@
 			return matchedVaginas();
 		}
 		public function matchedVaginas():Boolean {
+			//After the first cooch, see if they match against the previous.
 			for(var x:int = 1; x < totalVaginas(); x++)
 			{
-				//After the first cooch, see if they match against the previous.
-				if(x > 0)
+				//Don't match? NOT MATCHED. GTFO.
+				if(vaginas[x].type != vaginas[x-1].type) return false;
+				//Flag check
+				if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
 				{
-					//Don't match? NOT MATCHED. GTFO.
-					if(vaginas[x].type != vaginas[x-1].type) return false;
-					//Flag check
-					if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
+					for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
 					{
-						for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
-						{
-							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
-						}
+						if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 					}
-					//return false;
 				}
 			}
 			return true;

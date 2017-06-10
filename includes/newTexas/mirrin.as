@@ -245,7 +245,7 @@ public function trainWivDragonBonars():void
 	pc.slowStatGain("physique",2);
 	pc.slowStatGain("willpower",1);
 	soreDebuff(5);
-	pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+	sweatyDebuff(1);
 	IncrementFlag("MIRRIN_TRAINED_FIRSTIE");
 	clearMenu();
 	addButton(0,"Next",goToFrontOfGym);
@@ -481,7 +481,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("reflexes",1);
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
-		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		sweatyDebuff(1);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -540,7 +540,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("reflexes",2);
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
-		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		sweatyDebuff(1);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -598,7 +598,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("physique",2);
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
-		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		sweatyDebuff(1);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -717,7 +717,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("physique",3);
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
-		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		sweatyDebuff(1);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -740,7 +740,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("physique",1);
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
-		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a workout, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
+		sweatyDebuff(1);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Her Place]* [Leave]
 		//*Goes straight to [Her Place] dialogue/scene.
