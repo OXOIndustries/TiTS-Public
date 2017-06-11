@@ -560,7 +560,7 @@ package classes.GameData
 		 */
 		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "ranged"):Boolean
 		{
-			if(target is Kane && target.hasStatusEffect("KANE RANGED PREP") && !target.hasStatusEffect("KANE_AI_SKIP"))
+			if(target is Kane && target.hasStatusEffect("KANE RANGED PREP") && !target.hasStatusEffect("KANE_AI_SKIP") && !target.isImmobilized())
 			{
 				kGAMECLASS.kaneRangedInterrupt();
 				var d:TypeCollection = target.meleeDamage();
@@ -569,7 +569,7 @@ package classes.GameData
 				target.createStatusEffect("KANE_AI_SKIP");
 				return false;
 			}
-			if(target.hasStatusEffect("KANE_AI_SKIP") && target is Kane) 
+			if(target is Kane && target.hasStatusEffect("KANE_AI_SKIP")) 
 			{
 				output("Further action is interrupted!");
 				return false;
@@ -607,7 +607,7 @@ package classes.GameData
 				else output("[target.CombatName] manages to avoid " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.attackNoun + ".");
 				return false;
 			}
-			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
+			if (target is NymFoe && target.hasStatusEffect("Bouncy!"))
 			{
 				var k:TypeCollection = attacker.rangedDamage();
 				if(k.kinetic.damageValue > 0)
@@ -646,7 +646,7 @@ package classes.GameData
 		
 		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "melee"):Boolean
 		{
-			if(target is Kane && target.hasStatusEffect("KANE MELEE PREP") && !target.hasStatusEffect("KANE_AI_SKIP"))
+			if(target is Kane && target.hasStatusEffect("KANE MELEE PREP") && !target.hasStatusEffect("KANE_AI_SKIP") && !target.isImmobilized())
 			{
 				kGAMECLASS.kaneMeleeInterrupt();
 				var e:TypeCollection = target.meleeDamage();
@@ -655,7 +655,7 @@ package classes.GameData
 				target.createStatusEffect("KANE_AI_SKIP");
 				return false;
 			}
-			if(target.hasStatusEffect("KANE_AI_SKIP") && target is Kane) 
+			if(target is Kane && target.hasStatusEffect("KANE_AI_SKIP")) 
 			{
 				output("Further action is interrupted!");
 				return false;
@@ -704,7 +704,7 @@ package classes.GameData
 				return false;
 			}
 			
-			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
+			if (target is NymFoe && target.hasStatusEffect("Bouncy!"))
 			{
 				var k:TypeCollection = attacker.meleeDamage();
 				if(k.kinetic.damageValue > 0)
@@ -834,7 +834,7 @@ package classes.GameData
 			if (attacker.hasStatusEffect("Disarmed"))
 			{
 				if (attacker is PlayerCharacter) output("You try to attack until you remember you got disarmed!");
-				else output("[attacker.CombatName] scrabbles about, trying to find [attacker.combatHimHer] missing weapon.");
+				else output("[attacker.CombatName] scrabbles about, trying to find [attacker.combatHisHer] missing weapon.");
 				return;
 			}
 			
@@ -1933,6 +1933,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!\n");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
+		
 		public static var MagBinders:SingleCombatAttack;
 		public static function MagBindersImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
@@ -1985,9 +1986,7 @@ package classes.GameData
 				applyDamage(damageRand(new TypeCollection( { electric: attacker.reflexes() + attacker.level * 2 } ), 15), attacker, target, "minimal");
 			}
 		}
-
-
-
+		
 		public static var ConcussiveShot:SingleCombatAttack;
 		private static function ConcussiveShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
@@ -1996,15 +1995,15 @@ package classes.GameData
 			
 			if (rangedCombatMiss(attacker, target, 0))
 			{
-				if (attacker is PlayerCharacter) output(" You let fly, but the arrow sails clean past your intended target.");
+				output(" You let fly, but the arrow sails clean past your intended target.");
 			}
 			else if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
 			{
-				if (attacker is PlayerCharacter) output(" Your blind <b>concussion shot</b> missed.");
+				output(" Your blind <b>concussion shot</b> missed.");
 			}
 			else
 			{
-				if (attacker is PlayerCharacter) output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
+				output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
 				
 				if (target.physique()/2 + rand(20) + 1 >= attacker.aim()/2 + 10 || target.hasStatusEffect("Stun Immune"))
 				{
@@ -2304,7 +2303,7 @@ package classes.GameData
 				}
 				else output("You whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
 			}
-			if(target.lust() < target.lustMax() && attacker is RaskvelMale)
+			if(attacker is RaskvelMale && target.lust() < target.lustMax())
 			{
 				target.createStatusEffect("Attempt Seduction", 0, 0, 0, 0, true, "", "", true, 0);
 			}
