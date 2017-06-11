@@ -1447,6 +1447,7 @@ public function zilCallGirlKnockUp(nVirility:Number = 0):void
 		if (nVirility >= 2 && rand(10) == 0) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(4);
 		flags["ZIL_CALLGIRL_GESTATION"] = (debug ? 30 : ((180 + rand(31)) * 24 * 60));
 		flags["ZIL_CALLGIRL_PREG"] = GetGameTimestamp();
+		pc.clearRut();
 		trace("Knocked up");
 	}
 	return;

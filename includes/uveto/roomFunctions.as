@@ -1636,6 +1636,7 @@ public function fertilityPriestessFuckHerGoHard():void
 		output("\n\n<i>“Oooh, that’s the stuff!”</i> the priestess purrs, wrapping her hands around her packed belly. <i>“I can feel your little swimmers working already. Ah, strong enough to defeat me... strong enough to give me a litter of mighty kits!”</i>");
 
 		if (pc.virility() <= 0) output("\n\nWell, maybe not. But no need to tell her that!");
+		else pc.clearRut();
 	}
 	else
 	{
@@ -1851,6 +1852,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		IncrementFlag("FERTILITY_PRIESTESSES_FUCKED");
 
 		pc.orgasm();
+		pc.clearRut();
 		CombatManager.genericLoss();
 		return;
 	}

@@ -4395,6 +4395,7 @@
 		}
 		public function willpowerMax(): Number {
 			var bonuses:int = 0;
+			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return ((level * 5) + bonuses);
 		}

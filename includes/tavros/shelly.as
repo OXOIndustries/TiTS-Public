@@ -293,7 +293,11 @@ public function omniShellyEpilogueBlurb():void
 	{
 		output("\n\nYou pat your egg-stuffed lover on the stomach and tell her you’d be happy to relieve her of her eggs or just have some fun at any time.");
 	}
-	flags["CAME_INSIDE_SHELLY"] = undefined;
+	if(flags["CAME_INSIDE_SHELLY"] != undefined)
+	{
+		flags["CAME_INSIDE_SHELLY"] = undefined;
+		pc.clearRut();
+	}
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
