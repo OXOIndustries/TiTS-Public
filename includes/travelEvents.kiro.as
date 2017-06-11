@@ -3278,7 +3278,7 @@ public function kissMaisHand():void
 		output("Smirking, you bend low to plant a gentle kiss upon Mai’s hand. She titters, masking her smile with other hand, eyes twinkling");
 		if(pc.isBimbo()) output(" when you start lewdly fellating her thumb");
 		output(".");
-		output("\n\n<i>“Do you see this, Miko? You could really learn a thing or two Captain Steele. Now quit playing that impertinent dick of yours. We have things to do.”</i> Mai gestures at you, her smaller prick already starting to harden within its lacy sheath.");
+		output("\n\n<i>“Do you see this, Miko? You could really learn a thing or two from Captain Steele. Now quit playing that impertinent dick of yours. We have things to do.”</i> Mai gestures at you, her smaller prick already starting to harden within its lacy sheath.");
 	}
 	//Merge
 	output("\n\nKiro cocks her hips to the side and flashes a sassy smile. <i>“");
@@ -3359,7 +3359,7 @@ public function kiroFuckOrgyFuntimes3():void
 	if(pc.cumQ() >= 5000)
 	{
 		output(" surprised at how easily the incestuous sisters have brought you off, spraying a torrent of [pc.cum] into the subby fox’s maw. There’s no way she should be able to swallow it all, but through some miracle of sluttiness, Miko manages, loudly gulping. There seems to be no end to the flood you produce nor the addict’s hunger for your product. Your body takes over, driven on autopilot by the raw pleasure from both ends, bucking into one fox’s mouth before sliding back into the other’s prostate-pounding embrace.");
-		output("\n\nNo matter how powerful or voluminous your orgasms may normally be, this one takes the cake. Your internal muscles clench more strongly than you had ever thought possible, squeezing every drop of seed through your urethra in order to feed Mai. You feel less like a person and more like consciousness bound to an engine of ecstasy and eruption, like Miko’s personal cum-tank, always on hand to feed her - and Mai has your remote.");
+		output("\n\nNo matter how powerful or voluminous your orgasms may normally be, this one takes the cake. Your internal muscles clench more strongly than you had ever thought possible, squeezing every drop of seed through your urethra in order to feed Miko. You feel less like a person and more like consciousness bound to an engine of ecstasy and eruption, like Miko’s personal cum-tank, always on hand to feed her - and Mai has your remote.");
 		output("\n\nWhen Miko collapses on her back, cradling her distended belly, it changes little. All outside sensation could cease, and you would still keep coming, getting off on the feeling of your own [pc.cum] jetting through your overloaded urethra.");
 		output("\n\nMai giggles and slips out, but your climax will not slow. You splatter seed across Miko’s feminine muzzle. You paint her tits and drench her fur, working your way down her body until she’s practically plastered to the floor, moaning. Then, once she’s completely, utterly soaked in sperm, you sag back into Mai’s arms, letting her guide you to the floor. You dimly note that the gem studs on her cock’s silken wrapping are all gone.");
 		output("\n\n<i>“");

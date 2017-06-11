@@ -349,7 +349,7 @@ public function snugglePlantationQuestStartMeetAble2():void
 	output("\n\n<i>“Not another word, Steele! Sit yourself down. Act as if you just spent the best part of a day ploughing through space traffic and then a hostile jungle, just to take audience with a foolish old man.”</i>");
 	output("\n\nYou do so. A glass of water and a small meal is provided to you by a silent, unsmiling Snugglé prisoner employee. Munching, you watch as the professor goes back to silently gazing at the screens thrown across the glass windows and plush furnishings of the veranda. From what you can gather from a cursory glance, they are analytics of the plantation’s probationers.");
 	output("\n\n<i>“Problem with the prisoners?”</i> you venture.");
-	output("\n\n<i>“Something like that,”</i> the white-haired human sighs. He sounds reluctant, as if you were talking to you about something taboo. <i>“A laborer jumped the fence a few weeks ago. It would not ordinarily be a problem - the jungle usually discharges them either to the plantation or Esbeth, quivering and begging to be taken back. Unfortunately, in this particular laborer’s case, the jungle itself </i>was<i> the goal.”</i>");
+	output("\n\n<i>“Something like that,”</i> the white-haired human sighs. He sounds reluctant, as if he were talking to you about something taboo. <i>“A laborer jumped the fence a few weeks ago. It would not ordinarily be a problem - the jungle usually discharges them either to the plantation or Esbeth, quivering and begging to be taken back. Unfortunately, in this particular laborer’s case, the jungle itself </i>was<i> the goal.”</i>");
 	processTime(9);
 	clearMenu();
 	addButton(0,"Next",snugglePlantationQuestStartMeetAble3);
