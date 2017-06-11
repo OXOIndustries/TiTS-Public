@@ -2030,12 +2030,12 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	output("\n\nKaska noisily gasps for air in between her slurps. ");
 
 	if(!jail) output("She doesn’t look up or acknowledge you, and you get the impression that she must not do this very often. Grabbing hold of her hair, you yank her back up to your [pc.cockHeadBiggest] and tip her head back, forcing her to look you eye to eye. A spark of defiance glows in her eyes but gutters and dies a second later. She may not like to take orders, yet she knows when she’s beaten. There isn’t even token resistance when you push her back and forth, coating ");
-	else output("She looks you in the eye while she does it, and you get the impression that she's become quite a talented cock-sucker from her time in prison, either from servicing other prisoners or her own relentlessly enhanced meat. Grabbing hold of her hair, you guide her all the way back to your [pc.cockHeadBiggest] and look deep in her alien eyes. There's no defiance, only lust and arousal. Whatever she might of thought before, Kaska wants this now. She wants you to fuck her face until you finally spill your load. There isn't a single mote of resistance when you push her back and forth roughly, coating ");
+	else output("She looks you in the eye while she does it, and you get the impression that she’s become quite a talented cock-sucker from her time in prison, either from servicing other prisoners or her own relentlessly enhanced meat. Grabbing hold of her hair, you guide her all the way back to your [pc.cockHeadBiggest] and look deep in her alien eyes. There’s no defiance, only lust and arousal. Whatever she might of thought before, Kaska wants this now. She wants you to fuck her face until you finally spill your load. There isn’t a single mote of resistance when you push her back and forth roughly, coating ");
 	if(pc.biggestCockLength() >= 12) output("most of ");
 	output("your rod with an even coat of pirate spit.");
 
 	if(!jail) output("\n\nAfter a few minutes of this, Kaska’s technique improves, and you start to get dangerously hard. It’d be easy to forget her earlier reluctance with the way her tongue wraps around the midpoint of your shaft, sliding up and down in sync with her lips. You’re forced to push her off, lest you blow your load early, leaving Kaska breathing heavily while pre-cum runs unhindered from her cock, rolling across her knuckles on the way.");
-	else output("\n\nAfter a few minutes of this, Kaska's eager mouth and wiggling tongue have you dangerously hard. It'd be easy to forget her earlier reluctance with the way she suckles around the midpoint of your shaft, making your [pc.cockHeadBiggest] bulge into her throat. You're forced to push her off, lest you blow your load early, leaving Kaska breathing heavily and fervently milking enormous blobs of pre-cum from her cock, slowly painting the floor in her mess.");
+	else output("\n\nAfter a few minutes of this, Kaska’s eager mouth and wiggling tongue have you dangerously hard. It’d be easy to forget her earlier reluctance with the way she suckles around the midpoint of your shaft, making your [pc.cockHeadBiggest] bulge into her throat. You’re forced to push her off, lest you blow your load early, leaving Kaska breathing heavily and fervently milking enormous blobs of pre-cum from her cock, slowly painting the floor in her mess.");
 	output("\n\n<i>“Please, let me fuck you,”</i> she begs. Sweat beads on her brow. <i>“I need it. My balls are so full!”</i>");
 
 	output("\n\nYou smile and hook your hands under her armpits, lifting her up to her feet. <i>“");
@@ -2050,7 +2050,7 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	if(!jail) output("\n\nKaska gasps, <i>“W-why does it feel this good?”</i> Her legs wobble dangerously. <i>“No... I’m... I’m not supposed to like this...”</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>“Yesssss....”</i>");
 	else output("\n\nKaska gasps, <i>“W-why does it feel this good?”</i> Her legs wobble dangerously. <i>“These fucking drugs... Turning me into a fucking onahole!”</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>“Yesssss....”</i>");
 	if(!jail) output("\n\nYou almost don’t hear the quiet admission of pleasure, but it’s there all the same. You’d never guess her so vaginally inexperienced after slipping inside of her oozing slut-tunnel. ");
-	else output("\n\nYou can't miss the hissed admission of pleasure, but even if you did, the following gasps of delight her opinion on a hard dicking quite well known to you. Her sodden slut-tunnel grips you like a pro. ");
+	else output("\n\nYou can’t miss the hissed admission of pleasure, but even if you did, the following gasps of delight her opinion on a hard dicking quite well known to you. Her sodden slut-tunnel grips you like a pro. ");
 	output("The muscles inside squeeze and stroke at you with greater levels of excitement after each new inch you feed it. Your [pc.cock " + x + "] trembles under the caresses. They are at the same time both foreign and familiar; Kaska’s race’s anatomy is just different enough that the muscles squeezing at you from inside her pussy do so in unexpected ways, feeling distinctly alien yet all too pleasurable. When your ");
 	if(pc.balls > 0) output("[pc.balls] slap against her own");
 	else output("[pc.base " + x + "] presses against her");
@@ -2087,7 +2087,7 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	if(pc.hasKnot(x)) output("with an audible pop ");
 	output("to examine your work. The once-mighty pirate is a blubbering wreck, still quivering in the aftershocks of her pleasure. She glistens with sweat and pants for breath, reduced to a quivering puddle of sex.");
 	if(!jail) output(" Slowly drifting up, her limp body floats in the zero-G atmosphere. The spunk she had been shooting, unnoticed until now, bubbles and swirls around her, though a residue of white lines the box she had been pressed against.");
-	else output(" And what a deep puddle it is! The stuff they've given her to enlarge her penis has increased her virility commensurately, ensuring that someone is going to have to come clean this place with a mop.")
+	else output(" And what a deep puddle it is! The stuff they’ve given her to enlarge her penis has increased her virility commensurately, ensuring that someone is going to have to come clean this place with a mop.")
 	if(!jail)
 	{
 		if(silly) output("\n\n It seems you both managed to cream two boxes today.");
@@ -2138,7 +2138,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 	if(pc.isNice())
 	{
 		output("\n\n<i>“We’ve both gotten worked up here, and I think it would be best if we both sated our baser needs before moving on.”</i> You smile warmly, saying, <i>“");
-		if(jail) output("Since you're in jail, I think it's only fair that I get to dictate how this will work. Don't you agree?”</i>");
+		if(jail) output("Since you’re in jail, I think it’s only fair that I get to dictate how this will work. Don’t you agree?”</i>");
 		else output("Since I won fair and square, I think it’s only fair that I get to dictate how all this will work. Don’t you agree?”</i>");
 		output("\n\nKaska tilts her head slightly, then nods, either too lust-drunk to object or secretly submissive enough to want this. She even kisses at your finger as you pull it away.");
 		output("\n\n<i>“Great,”</i> you add, <i>“then you can lick me while you tug on that dick of yours, okay?”</i>");
@@ -2157,10 +2157,10 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 		else output("your");
 		output(" lower lips. <i>“");
 		if(!jail) output("If you wanted to fuck me, you should’ve fought harder.");
-		else output("I don't think you'll be fucking anyone for some time with a dick like that.");
+		else output("I don’t think you’ll be fucking anyone for some time with a dick like that.");
 		output("”</i> You edge your [pc.hips] close enough to Kaska’s face that she can’t help but smell your scent. <i>“");
 		if(!jail) output("I might even help you tug on that thing while you do it.");
-		else output("I suppose I can tug that monstrous toy a little while you lick. I guess that's what it's for now: rewarding you for being a good slut.");
+		else output("I suppose I can tug that monstrous toy a little while you lick. I guess that’s what it’s for now: rewarding you for being a good slut.");
 		output("”</i>");
 	}
 	//Naughty
@@ -2175,7 +2175,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 	}
 	//Merge
 	output("\n\nAmazed at how a once proud, combative pirate can be turned into an eager cunt-licker, you grab her by the back of the head and pull her face into your crotch, mashing it into [pc.oneVagina]. At first, Kaska seems confused at her new place, but within a few seconds, she opens her mouth and ");
-	if(jail) output("eagerly takes her first few licks. It's obviously from the powerful plunges of her tongue that she's had practice at licking pussy. She puts every technique she's learned to work, backed up with drug-infused passion. Her organ slides deep while her lips seal around your lower pair, already glossy with [pc.girlCumNoun].");
+	if(jail) output("eagerly takes her first few licks. It’s obviously from the powerful plunges of her tongue that she’s had practice at licking pussy. She puts every technique she’s learned to work, backed up with drug-infused passion. Her organ slides deep while her lips seal around your lower pair, already glossy with [pc.girlCumNoun].");
 	else 
 	{
 		output("tentatively takes her first few licks. It’s obviously from the nervous, inexpert flicks of her tongue that she’s no frequent pussy-licker. She soon makes up for her lack of experience with sheer passion, letting her ardor guide her into rapid, hungry licks that penetrate deeply while her lips seal around your lower pair.");
@@ -2194,7 +2194,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 		if(pc.totalVaginas() > 2) output(" She moves to your third twat after licking the second clean, then back to the first. You could get used to this kind of attention.");
 	}
 	output("\n\nFaint, wet sounds of flesh slapping flesh come from below you. Glancing around Kaska’s noisily slurping head, you spot the source of the sound. She’s got ");
-	if(jail) output("both hands wrapped tightly around her three-foot cock and pumping it with wild abandon. It's so thick that her fingers can barely touch each other. Pre-cum soaks the entire thing in a curtain of shimmering ecstasy. Below the crown, her strokes have caused it to bubble in a frothy foam. She strokes so fast that she can't be far from finishing, especially not with the fattened blobs of pre that roll out of her tip with every tug. It would be so easy to push the hyper-endowed hermaphrodite over the edge.");
+	if(jail) output("both hands wrapped tightly around her three-foot cock and pumping it with wild abandon. It’s so thick that her fingers can barely touch each other. Pre-cum soaks the entire thing in a curtain of shimmering ecstasy. Below the crown, her strokes have caused it to bubble in a frothy foam. She strokes so fast that she can’t be far from finishing, especially not with the fattened blobs of pre that roll out of her tip with every tug. It would be so easy to push the hyper-endowed hermaphrodite over the edge.");
 	else output("her fist wrapped tightly around her cock and is pumping it with wild abandon. There’s so much pre-cum leaking from her tip that her entire hand glistens with it, and the sticky liquid has frothed into a bubbling ring just below her glans. She’s stroking so fast that she can’t be far from finishing. It would only take a little extra to push her over the edge.");
 	//Gooey undercarriage
 	if(pc.isGoo())
@@ -2244,7 +2244,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 	}
 	else 
 	{
-		output("\n\nGravity suddenly seems to double, but you hold onto Kaska's head for support, smashing your climax-sensitized lips into her face for as long as you can. She ragdolls before you can derive much more pleasure, however, leaving you standing on wobbling [pc.legs] and wondering how to spend the rest of your day.");
+		output("\n\nGravity suddenly seems to double, but you hold onto Kaska’s head for support, smashing your climax-sensitized lips into her face for as long as you can. She ragdolls before you can derive much more pleasure, however, leaving you standing on wobbling [pc.legs] and wondering how to spend the rest of your day.");
 		processTime(20);
 		pc.orgasm();
 		clearMenu();

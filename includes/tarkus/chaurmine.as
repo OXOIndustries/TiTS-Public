@@ -151,7 +151,7 @@ public function helpChaurmine():void
 	addButton(1,"Blowjob",blowjobChaurmineHelp,undefined,"Blowjob","He looks quite juicy.");
 	//[Titfuck] // PC has bust size 11+
 	if(pc.biggestTitSize() >= 11) addButton(2,"Titfuck",titfuckChaurmineToiletPaper,undefined,"Titfuck","Though he seems to dislike breasts, you <i>know</i> you can change his mind.");
-	else addDisabledButton(2,"Titfuck","Titfuck","You need a bigger penis for this.")
+	else addDisabledButton(2,"Titfuck","Titfuck",("You need " + (!pc.hasBreasts() ? "huge tits" : "bigger boobs") + " for this..."));
 }
 
 //Handjob
@@ -502,7 +502,7 @@ public function chaurmineAppearance():void
 	clearOutput();
 	showChaurmine();
 	author("Aullama");
-	output("Chaurmine is a saurmorian. Standing at approximately 8 feet 6 inches tall by ancient imperial measurements and 2.6 meters in the more accepted metric system. He wears little, remaining topless, but wears tough tactical groin armor fitted for saurmorian use.");
+	output("Chaurmine is a saurmorian. Standing at approximately 8 feet, 6 inches tall by ancient imperial measurements and 2.6 meters in the more accepted metric system. He wears little, remaining topless, but wears tough tactical groin armor fitted for saurmorian use.");
 	output("\n\nHe has a thick and boxy reptilian face, covered in a tough, amber hide. Massive, incredibly heavy scales - a shiny metallic-silver - encase him from head to toe, virtually obscuring the underlying amber skin. His primal visage an example of rugged masculinity, he seems all the more bestial with his heavy scales guarding a massive jaw along his snout. His two eyes are solid pools of azure, each parted by a vertical slit for a pupil, his fiery gaze always seeming to sear through whatever he is focusing on. While hairless, his scales run extra thick along his jaw, over his head, neck and shoulders to cascade down his back and along his tail; as if mocking a more mammalian mane with metal scales. You assume he has ears, though you can’t see them. He has a black tongue, at first appearing canine, but a closer look reveals it to be wider and longer, as well as looking quite a bit softer. Three dangerous metal horns jut from his head; the two bigger horns starting at the back of his skull, the thick bases curving up along his head before protruding up just above his brows. The third one thrusting upwards from his nose.");
 	output("\n\nHe has a humanoid upper body with the usual torso, arms, hands, and fingers. While human in function and structure, his fingers are covered in scales like the rest of him, which continue to grow from his fingers in place of nails or claws. A thick, reptilian tail sways behind him towards the ground, weighed down by incredibly heavy scales sheathing its length. His muscular thighs hold up his stout, strapping build, accentuated by a brawny ass. Two bulky plantigrade legs extend below his waist, ending in wide and flat saurmorian feet, with four toes tipped with scale-claws.");
 	output("\n\nHe has beefy pecs, and a rock solid six pack. Both are shielded and reinforced by his thick scales. His form shows no signs of nipples.");
@@ -865,7 +865,7 @@ public function chaurmineSexMenu():void
 	addButton(2,"Handjob",shipHandjob,undefined,"Handjob","You <i>still</i> want to feel that bulging, ribbed shaft in your hands.");
 	addButton(3,"Blowjob",chaurmineHJShipBeej,undefined,"Blowjob","His fat onyx shaft still looks <i>really</i> juicy.");
 	if(pc.biggestTitSize() >= 11) addButton(4,"Titfuck",chaurmineShippyShipTitfuckyDuckyHucky,undefined,"Titfuck","Maybe he could use some more convincing...");
-	else addDisabledButton(4,"Titfuck","Titfuck","You need bigger boobs for this...");
+	else addDisabledButton(4,"Titfuck","Titfuck",("You need " + (!pc.hasBreasts() ? "huge tits" : "bigger boobs") + " for this..."));
 	addButton(14,"Leave", leaveCharmineSex);
 }
 

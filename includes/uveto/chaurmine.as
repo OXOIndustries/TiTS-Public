@@ -663,7 +663,7 @@ public function chaurmineUvetoSexMenuAdditions():void
 		else if(pc.isPregnant()) addDisabledButton(5,"Myr Venom","Myr Venom","This would not be safe to try pregnant.")
 		else addButton(5,"Myr Venom",myrVenomChaurmineFun,undefined,"Myr Venom","You wonder; what would happen if...");
 	}
-	else addDisabledButton(5,"Locked","Locked","You need the \"Myr Venom\" perk for this scene.");
+	else addDisabledButton(5,"Locked","Locked","You need the “Myr Venom” perk for this scene.");
 
 	addButton(6,"Battle",battleWithChaurmineVoluntarily,undefined,"Battle","Face the titan in battle again down on the icy moon.");
 }
@@ -779,7 +779,7 @@ public function myrVenomChaurmineFun():void
 	output("\n\nWhether from his rut or his temper - or both - the space underneath the lizard is becoming incredibly uncomfortable, forcing you to abandon that juicy sack and shaft before you suffocate. Standing with a hand supporting you on sweltering scales, you gasp as your lungs are filled with warm, but comparatively frigid air. Free from your grasp, Chaurmine lets out a huff of scorching breath in relief.");
 
 	output("\n\nSeeing the titan’s distended xeno-saur cock twitch and throb above the swollen, cum-engorged balls, sloshing with their gooey weight, only fans the flames to your own ardor - loins aching with intense desire ever since your venom seeped into the lizard. Slyly sliding onto the odd bed, you lean in close to Chaurmine, letting all of his senses take in your sweat slicked body as each hand grips one of his upper horns - and tenderly caressing and cupping the scaled titan’s fat, ribbed phallus and churning sack with your [pc.feet]");
-	if(pc.tailCount > 0 && pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" , and the tip of [pc.eachTail] tickles and teases his cumslit");
+	if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" , and the tip of [pc.eachTail] tickles and teases his cumslit");
 	output(".");
 	output("\n\n<i>“You’ve disobeyed me multiple times now,”</i> you whisper into his scales, <i>“That’s not how a virile breeder should act, is it?”</i> You wait for him to answer, grinning when he curls his armored lips into a growl - at least, you think that’s a response to your question - and give his onyx penis an encouraging squeeze. <i>“No, it isn’t. Now, are you going to show me what a great breeder you are? Show me that you even </i>can<i> breed?”</i> you taunt, every breathy syllable you whisper a challenge to the rutting lizard.");
 	output("\n\nYou slip further back onto the alien bed, pulling Chaurmine with you by his horns, until you come to rest against the headboard. Chest heaving as the titan’s heat envelops you again - leaving you panting just as much as him - you tug his horns back once he’s on top of you, forcing him to expose his throat to you in a very submissive gesture. He growls in displeasure, neck scales vibrating with every rumble. With a hum, you glide your [pc.tongue] over his scales; over the collar bone, up his neck, and finally polishing the long scales along his jaw, producing the delightful sound of wet flesh caressing hard, smooth metal. Chaurmine shivers and gasps as yet more venom seeps into his blood. Through your own haze of pent up need and smothering heat, you momentarily worry if you’ve gotten carried away with your venom...");
