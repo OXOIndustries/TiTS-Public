@@ -1687,8 +1687,12 @@ public function inseminateShadesCuntTail():void
 {
 	if(pc.virility() <= 0) return;
 	
-	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined) flags["SHADE_INSEMINATION_COUNTER"] = 1;
-	flags["SHADES_CUNTTAIL_FED"] = 1;
+	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined)
+	{
+		flags["SHADE_INSEMINATION_COUNTER"] = 1;
+		pc.clearRut();
+	}
+	IncrementFlag("SHADES_CUNTTAIL_FED");
 }
 
 //Tailcunt Oviposition

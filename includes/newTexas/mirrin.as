@@ -452,7 +452,7 @@ public function repeatableMirrinTraining():void
 		if(pc.tone > 70 && pc.physique() >= 25) output("It’s a bit tough at first but you’re able to push yourself up steadily back to a standing position.");
 		else if(pc.tone > 30 && pc.physique() >= 10) output("It’s a strain to push yourself up again but after the initial, troublesome uphill thrust, you reach the standing position.");
 		else output("You find it quite difficult to complete the motion at first. You feel that your body lacks a certain strength in some areas. Nevertheless, your struggling eventually lets you to finish at the correct position.");
-		if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC) output(" This feels quite natural, now that you think about it.}");
+		if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC) output(" This feels quite natural, now that you think about it.");
 		output("\n\nDespite all that, you’re sure that your [pc.ass] is going to appreciate your efforts...");
 
 		output("\n\nFlaring her nose a bit, Mirrin saunters around you with a particularly piercing gaze. You watch her movements with your peripheral vision and all you see is a set of unblinking red eyes staring you down. <i>“Eight more,”</i> she commands. <i>“This thing has a rep counter so I’ll </i>know<i> if you skip, Steele. Now I’ll be back in a bit.”</i>");
@@ -1416,9 +1416,10 @@ public function mirrinFirstTImeOneOffSex():void
 	else
 	{
 		output("\n\nYou can feel her warmth for you brush against your body, making your ");
-		if(pc.isHerm()) output("[pc.cocks] rise and your [pc.biggestVagina] wetten} in response.");
+		if(pc.isHerm()) output("[pc.cocks] rise and your [pc.biggestVagina] wetten");
 		else if(pc.hasCock()) output("[pc.cocks] rise");
 		else output("[pc.biggestVagina] wetten");
+		output(" in response.");
 	}
 	output("\n\nShe’s rather gentle, placing both hands round your jaw. Still, you can’t shake the feeling that... <i>oh</i>.");
 	output("\n\nThe more this goes on, the more you feel her tongue trying to find space in your mouth. It’s already wrapped around your own [pc.tongue], tightening like a constricting snake. You feel it go deeper, just about tickling the very back of your larynx. Gag reflex don’t fail ya now!");
@@ -1928,7 +1929,7 @@ public function trainFuckWivDisBitchMirrin():void
 		}
 	}
 	//PC is Smuggler:
-	else if(pc.characterClass == GLOBAL.CLASS_MERCENARY)
+	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 	{
 		output("You take the initiative.");
 		output("\n\nGoing the offensive, you aim for her weak points first: ribs, knees and her centre of gravity. You strike fast rather than hard, although she’s quicker than her size would suggest. You miss most attacks, some are blocked and only a few appear to have a visible effect on her.");
@@ -2280,9 +2281,10 @@ public function yeahAnalStuff():void
 	else output("\n\n<i>“Scream for me, fuckmeat!”</i>");
 
 	output("\n\nOn command, you whine through your restraint. An excited giggle from your dominator shows her approval but it only makes her redouble the efforts in fucking your gaping hole. ");
-	if(pc.isHerm()) output("Your [pc.cocks] and [pc.pussies] - perpetually hard and wet from need -} won’t be getting relieved any time soon...");
-	else if(pc.hasCock()) output("Your [pc.cocks] - perpetually hard from this brutal prostate punishment - ");
-	else if(pc.hasVagina()) output("Your poor [pc.pussies] -in a burning heat of need - ");
+	if(pc.isHerm()) output("Your [pc.cocks] and [pc.pussies] - perpetually hard and wet from need");
+	else if(pc.hasCock()) output("Your [pc.cocks] - perpetually hard from this brutal prostate punishment");
+	else if(pc.hasVagina()) output("Your poor [pc.pussies] - in a burning heat of need");
+	output(" - won’t be getting relieved any time soon...");
 
 	output("\n\nTaking a pleasure in your whines and scrunched up face, the dragoness slows her thrusts but refocuses on trying to bottom out inside you. You and your poor sluthole are completely at her mercy. <i>“Holy <i>shit</i> guys, this is *</i>unffff...<i>* the best thing in the world. Don’t you guys just”</i> - she pauses, shunting her meatspear harshly into you - <i>“wish you had this ass right now, huh? Yeeeah, I see you in the chat you </i>dogs<i>,”</i> she murmurs with a sensuous voice into her dataslate. Hot pre-cum fills out what little space is left, some of it spreading all the way round Mirrins meatpole for added lube... and encouragement. The heat is enough to bring out a timid whine from your stuffed mouth which in turn makes Mirrin giggle maliciously at your feeble form. The claw gripping your [pc.butt] grips just a little bit harder...");
 

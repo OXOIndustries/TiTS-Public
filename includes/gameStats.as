@@ -5988,6 +5988,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(chars["SHADE"].isLactating()) output2("\n<b>* Shade, Milk Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[chars["SHADE"].milkType]);
 			}
 			if(flags["SEXED_SHADE"] != undefined) output2("\n<b>* Shade, Times Sexed:</b> " + flags["SEXED_SHADE"]);
+			if(flags["SHADES_CUNTTAIL_FED"] != undefined) output2("\n<b>* Shade, Times Fed Her Tail Cunt:</b> " + flags["SHADES_CUNTTAIL_FED"]);
 			if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2("\n<b>* Shade, Times Fucked by Her Hardlight Strap-on:</b> " + flags["TAKEN_SHADES_HARDLIGHT"]);
 			if(flags["SHADE_BOOBWORSHIP"] != undefined) output2("\n<b>* Shade, Times Worshipped Her Boobs:</b> " + flags["SHADE_BOOBWORSHIP"]);
 			roamCount++;

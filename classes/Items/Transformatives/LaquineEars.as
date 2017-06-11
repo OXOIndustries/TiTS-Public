@@ -1489,7 +1489,7 @@ package classes.Items.Transformatives
 		}
 		public static function lassLaquineAcceptable(pc:Creature,x:int):Boolean
 		{
-			return (pc.earType == GLOBAL.TYPE_LAPINE && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.cocks[x].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
+			return ((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.cocks[x].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
 		}
 		public static function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false,deltaShift:Number = 0):void
 		{
