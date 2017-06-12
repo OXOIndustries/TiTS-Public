@@ -34,19 +34,20 @@ public function appearance(forTarget:Creature):void
 	setTarget(forTarget);
 
 	clearOutput2();
-	showPCBust();
 	showLocationName();
 	showName("\nAPPEARANCE");
 	author("");
 	clearGhostMenu();
 	if(debug) addGhostButton(13, ("Debug: " + (debug ? "ON" : "OFF")), Cheats.toggleDebug, undefined, "Toggle Debug", "Turn debug mode off.");
-	addGhostButton(14, "Back", pcAppearance);
 	
 	var rando:int = 0;
 	var feedVal:int;
 	
 	// For the PC
 	if(target != pc) return;
+	
+	showPCBust();
+	addGhostButton(14, "Back", pcAppearance);
 	
 	//Creation stuff
 	if(target.hasStatusEffect("In Creation"))
@@ -181,7 +182,7 @@ public function appearance(forTarget:Creature):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) output2(" The presence of said scales gives your visage an eerie look, more reptile than mammal.");
 			break;
 		case GLOBAL.TYPE_SHEEP:
-			output2("You have a short, " + pc.mf("blunt","cute") + " muzzle much like a sheep’s.");
+			output2("You have a short, " + target.mf("blunt","cute") + " muzzle much like a sheep’s.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) output2(" A coat of " + faceFurScales + " decorates it.");
 			break;
 		case GLOBAL.TYPE_VULPINE:
@@ -1313,13 +1314,13 @@ public function appearance(forTarget:Creature):void
 		case GLOBAL.TYPE_LAPINE:
 			if(target.hasArmFlag(GLOBAL.FLAG_THICK)) 
 			{
-				if(pc.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your thick, gooey arms ");
+				if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your thick, gooey arms ");
 				else output2(" Your thick, fur-covered arms ");
 				output2("end with broad forearms and big fingers. In contrast, delicate pads line the underside.");
 			}
 			else
 			{
-				if(pc.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms ");
+				if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" Your gooey arms ");
 				else output2(" Your furry arms ");
 				output2("end with small, delicate paws. Each finger has a soft pad on the underside as well. You couldn’t ask for a less threatening pair of mits.");
 			}
@@ -1678,7 +1679,7 @@ public function appearance(forTarget:Creature):void
 			}
 			break;
 		case GLOBAL.TYPE_SHEEP:
-			if(pc.tailCount == 1) output2(" A small lamb-like tail sprouts from your backside.");
+			if(target.tailCount == 1) output2(" A small lamb-like tail sprouts from your backside.");
 			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " small, lamb-like tails sprout from your backside.");
 			break;
 		case GLOBAL.TYPE_DRIDER:
@@ -1739,7 +1740,7 @@ public function appearance(forTarget:Creature):void
 			output2(" A tapered tail hangs down from just above your " + target.buttDescript() + ". It sways back and forth, assisting you with keeping your balance.");
 			break;
 		case GLOBAL.TYPE_LAPINE:
-			if(pc.tailCount == 1)
+			if(target.tailCount == 1)
 			{
 				output2(" A short,");
 				if(target.hasTailFlag(GLOBAL.FLAG_GOOEY)) output2(" slimy");
@@ -3829,7 +3830,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		else output2(" Their lips and insides are covered in numerous nub-like protrusions.");
 	}
 	//Pumped
-	var wasPumped:Boolean = pc.hasStatusEffect("Pussy Pumped");
+	var wasPumped:Boolean = target.hasStatusEffect("Pussy Pumped");
 	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
 	{
 		if(!eachOne) output2(" The whole thing is ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if you tried, there is just no hiding its" : " under clothing, it generates a") + " considerable camel-toe.");

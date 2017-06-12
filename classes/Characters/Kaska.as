@@ -33,9 +33,6 @@
 			
 			//this.meleeWeapon = new RaskvelWrench();
 			
-			rangedWeapon.baseDamage.kinetic.damageValue = 1;
-			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
-			
 			this.rangedWeapon.attack = -5;
 			this.rangedWeapon.longName = "dual-barreled machine gun";
 			this.rangedWeapon.attackVerb = "shoot";

@@ -1538,7 +1538,7 @@ public function giveEmmyAnItem(item:String):void
 			output("\n\nPlacing the weapon on the table, the grinning Jackaless wiggles with unbounded excitement. <i>“All yours, hero.”</i>\n\n");
 			//Loot, queue next page in eventqueue
 			eventQueue.push(emmyLootPart2);
-			for(var i:int = 0; i < 10; i++) { pc.destroyItem(new CrystalShard()); }
+			pc.destroyItem(new CrystalShard(), 10);
 			quickLoot(emmyLoot);
 		}
 		return;

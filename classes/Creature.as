@@ -18516,13 +18516,10 @@
 				{
 					if (ass.loosenessRaw < ass.minLooseness) ass.loosenessRaw = ass.minLooseness;
 					
-					if (this is PlayerCharacter && origTightness <= 4)
+					if (this is PlayerCharacter)
 					{
-						AddLogEvent("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>", "passive", deltaT);
-					}
-					else
-					{
-						AddLogEvent("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>", "passive", deltaT);
+						if (origTightness <= 4) AddLogEvent("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>", "passive", deltaT);
+						else AddLogEvent("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>", "passive", deltaT);
 					}
 				}
 			}
