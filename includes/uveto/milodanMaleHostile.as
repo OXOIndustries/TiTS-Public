@@ -34,7 +34,7 @@ public function milodanCombatPrep():Creature
 	milodan.long = "The male Milodan stands at about seven and a half feet, ";
 	//Pc tallness < 85: 
 	if(pc.tallness < 85) milodan.long += "towering above you.";
-	//{Pc tallness > 85:
+	//Pc tallness > 85:
 	else milodan.long += "looking you fiercely in the eye.";
 	milodan.long += " His thick " + milodan.furColor + " fur serves to keep him warm in the blistering cold of the rift, a particularly shaggy tuft of it sticking out from his chest. He’s built like a goddamn house, his fur unable to conceal the thick muscle lurking beneath it. His feline ears are laid back and his fangs and claws are prominently displayed, ";
 	//milodan_weapon = club: 
@@ -1003,8 +1003,8 @@ public function milodanPregnancyEnds():void
 {
 	clearOutput();
 	author("Wsan");
-	showName("\nBIRTHING!");
 	showBust("");
+	showName("\nBIRTHING!");
 
 	var se:StorageClass = pc.getStatusEffect("Milodan Pregnancy Ends");
 	

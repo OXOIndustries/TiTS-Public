@@ -1415,7 +1415,7 @@ public function femSydianFuck():void
 	else
 	{
 		output("You lower yourself and lift her ass with your hands");
-		//{(bare hands), savoring the tingle of pleasure on your palms}
+		// (bare hands), savoring the tingle of pleasure on your palms
 		output(". Lining your");
 		if (!asTailcock) output(" [pc.cock "+cockIdx+"]");
 		else output(" [pc.tail]");
@@ -1436,7 +1436,7 @@ public function femSydianFuck():void
 	else output("<i>“Find out, slut,”</i> you command.");
 	output(" The sydian’s reply is transformed into a grunt as you thrust forward, impaling her pussy on your");
 	if (asTailcock) output(" tailcock");
-	else output(" cock."); //{greater of cock length or 24} inches.");
+	else output(" cock."); // (greater of cock length or 24) inches.
 
 	//Cockcchange check (whatever the fuck this is)
 	if (!asTailcock) pc.cockChange(true, false);
@@ -1509,6 +1509,8 @@ public function sydianPregnancyEnds():void
 {
 	clearOutput();
 	author("Zeikfried");
+	showBust("");
+	showName("\nBIRTHING!");
 
 	var se:StorageClass = pc.getStatusEffect("Sydian Pregnancy Ends");
 	
@@ -1558,7 +1560,7 @@ public function sydianPregnancyEnds():void
 	if (babym) output(" his");
 	output(" her");
 	output(" pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
-	//{ (comment out if methods to know father are added) 
+	// (comment out if methods to know father are added) 
 	output(" That raises an interesting question. Which human did you sleep with to make such a beautiful");
 	if (babym) output(" boy");
 	else output(" girl");
