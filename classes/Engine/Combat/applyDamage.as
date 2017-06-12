@@ -49,10 +49,10 @@ package classes.Engine.Combat
 		}
 		
 		// Begin message outpuuuuut.
-		if (damageResult.wasCrit == true && special == "melee")
+		if (damageResult.wasCrit == true)
 		{
 			output("\n<b>Critical hit!</b>");
-			if(attacker.hasPerk("Can Opener") && attacker.physique()/2 + rand(20) + 1 > target.physique()/2 + 10)
+			if(special == "melee" && attacker.hasPerk("Can Opener") && attacker.physique()/2 + rand(20) + 1 > target.physique()/2 + 10)
 			{
 				target.createStatusEffect("Sundered", 4+rand(2), 0, 0, 0, false, "DefenseDown", "Defense is reduced by 50%!", true,0,0xFF0000);
 				if(target is PlayerCharacter) output(" <b>You are sundered by the critical strike!</b>");

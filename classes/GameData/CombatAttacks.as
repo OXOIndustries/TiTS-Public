@@ -442,7 +442,7 @@ package classes.GameData
 			// Mag Binders
 			MagBinders = new SingleCombatAttack();
 			MagBinders.ButtonName = "MagBindrs";
-			//MagBinders.DisabledIfEffectedBy = [""];
+			MagBinders.DisabledIfEffectedBy = ["Disarmed"];
 			MagBinders.RequiresPerk = "Mag Binders";
 			MagBinders.Implementor = MagBindersImpl;
 			MagBinders.TooltipTitle = "Mag Binders";
