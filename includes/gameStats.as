@@ -5802,7 +5802,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 1: output2(", Lovers"); break;
 				}
 			}
-			if(flags["CHAURMINE_WINS"] > 0) output2("\n<b>* " + chaurmineName + ", Times Defeated Him in Combat:</b> " + flags["CHAURMINE_WINS"]);
+			var chaurFightWin:int = (flags["CHAURMINE_WINS"] > 0 ? flags["CHAURMINE_WINS"] : 0);
+			var chaurFightLoss:int = (flags["CHAURMINE_LOSSES"] > 0 ? flags["CHAURMINE_LOSSES"] : 0);
+			var chaurmineFights:int = (chaurFightWin + chaurFightLoss);
+			if(chaurmineFights > 0) output2("\n<b>* " + chaurmineName + ", Combat, Your Win/Loss Ratio:</b> " + chaurFightWin + "/" + chaurFightLoss + ", of " + chaurmineFights + " encounters");
 			if(flags["SEXED_CHAURMINE"] > 0) output2("\n<b>* " + chaurmineName + ", Times Sexed Him:</b> " + flags["SEXED_CHAURMINE"]);
 			//sideCount++;
 			roamCount++;
