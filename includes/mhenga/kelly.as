@@ -445,7 +445,7 @@ public function giveKellySkySap(count:int):void
 	
 	for(var x:int = 0; x < count; x++)
 	{
-		pc.destroyItem(new SkySap(), 1);
+		pc.destroyItemByClass(SkySap, 1);
 		IncrementFlag("KELLY_SKYSAP_COLLECT");
 		creds += 100;
 	}
@@ -2274,7 +2274,7 @@ public function kellyHyperPlayAwwwYiss():void
 			output("\n\nKelly bites her lip indecisively, but from the way you can see precum starting to bead at the tip of each dick and drool down, you know you’ve got her. <i>“O-okay,”</i> she declares, nodding as she convinces herself. <i>“If you want to see all of me, then I’ll give you a show to remember.”</i> she declares. <i>“But my medicine just doesn’t wear off like that; I’ll need a counter-agent first. There’s this mod I’ve heard of called Throbb; a small dose of that should be just the trick. But I don’t have any on me, and it’s not the sort of thing I can get at work, though I could synthesize more for my needs if I did have some. Do you have any?”</i> she asks.");
 		}
 		//No Throbb in inventory:
-		if(!pc.hasItem(new Throbb(),1))
+		if(!pc.hasItemByClass(Throbb,1))
 		{
 			output("\n\nYou shrug. Sadly you don’t really have any on yourself. But you’ll keep this chat of yours in mind in case you ever come across any.");
 			output("\n\n<i>“Good idea,”</i> Kelly grins. <i>“But, since we both seem to be in the mood for some ‘fun,’ I’m sure there’s plenty of other things we can do together,”</i> she suggests, posing slightly for emphasis.");
@@ -2290,7 +2290,7 @@ public function kellyHyperPlayAwwwYiss():void
 			output("\n\nKelly takes it from you, a little uncertainly, but with a determined look on her face, already adjusting the delivery mechanism. <i>“Right, I just need a little of this; too much and I might end up getting modded, not countered,”</i> she explains. Satisfied with her tweaking, she nods and brings the business end of it to rest against the base of her shafts. <i>“Alright, here goes nothing,”</i> she declares, and depresses the trigger, hissing as the minute dose rushes into her bloodstream.");
 			output("\n\nShe shivers, and rubs the injection site tenderly. <i>“Okay now... it’s going to take time for this stuff to kick in, but arousal should help; why don’t you and I have a little fun to give it a jumpstart?”</i> she suggests. <i>“Your cock in my cunt would be just the thing... besides, it’d be more fun than just sitting around watching my junk,”</i> she manages to quip dryly.");
 			output("\n\nSounds like a plan.");
-			pc.destroyItem(new Throbb(),1);
+			pc.destroyItemByClass(Throbb,1);
 		}
 	}
 	//After Throbb (Repeatable)

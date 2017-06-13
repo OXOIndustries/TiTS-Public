@@ -563,7 +563,7 @@ public function uvetoSearchAbandonedCamp():void
 
 public function uvetoAbandonedCampLootCheck():void
 {
-	if (pc.accessory is LeithaCharm || pc.hasItemByType(LeithaCharm))
+	if (pc.accessory is LeithaCharm || pc.hasItemByClass(LeithaCharm))
 	{
 		mainGameMenu();
 		return;

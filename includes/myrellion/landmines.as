@@ -3,7 +3,7 @@ import classes.Items.Accessories.Minesweeper;
 public function tryEncounterLandmines():Boolean
 {
 	var hitChance:int = 100;
-	if(pc.hasItem(new Hoverboard())) hitChance += 200;
+	if(pc.hasItemByClass(Hoverboard)) hitChance += 200;
 	
 	if (rand(hitChance) <= 2)
 	{
@@ -30,7 +30,7 @@ public function tryEncounterLandmines():Boolean
 public function encounterLandmines():void
 {
 	output("As you’re making your way through the caverns connecting the myr front lines, your");
-	if(pc.hasItem(new Hoverboard())) output(" hoverboard suddenly dips and bumps into");
+	if(pc.hasItemByClass(Hoverboard)) output(" hoverboard suddenly dips and bumps into");
 	else output(" [pc.foot] suddenly hits");
 	output(" something heavy and metallic. You only have the span of a heartbeat to think before a shrill whine echoes through the cavern and a little metal ball pops up from the ground, no bigger than your fist.");
 

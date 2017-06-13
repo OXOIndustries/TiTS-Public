@@ -1367,7 +1367,7 @@ public function flyTo(arg:String):void
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
-		if (pc.hasItemByType(StrangeEgg) || pc.hasItemInStorage(new StrangeEgg()))
+		if (pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg))
 		{
 			//PC can preggo with it?
 			//Has an open spot!
@@ -1707,9 +1707,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	moveMinutes += immobilizedUpdate(true);
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
-	if(pc.hasItemByType(DongDesigner)) moveMinutes *= 2;
+	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
 	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
-	if(pc.hasItemByType(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
+	if(pc.hasItemByClass(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);

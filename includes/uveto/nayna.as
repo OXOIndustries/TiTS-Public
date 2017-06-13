@@ -450,7 +450,7 @@ public function repeatNaynaApproach(backsies:Boolean = false):void
 		{
 			output("Nayna’s ear lifts higher and higher, pivoting to follow your progress through the room. When you’re a few steps away, the other joins it, swiveling to regard you a half-second before the rest of the laquine. <i>“[pc.name]! How goes your adventures? Have you come across any of my drones yet?”</i>");
 			//No drones
-			if(!pc.hasItem(new WeatherDrone(),1))
+			if(!pc.hasItemByClass(WeatherDrone,1))
 			{
 				output("\n\nYou shake your head apologetically.");
 				output("\n\n<i>“Hey, don’t worry about it,”</i> Nayna chirps. <i>“I’m sure you’ll find some before too long. After all, you’re the brave rusher, out looking for adventure!”</i>");
@@ -471,7 +471,7 @@ public function naynaMainMenu():void
 	//[Appearance] [Talk] [Give Drone] [Flirt]
 	addButton(0,"Appearance",appearanceOfNayna);
 	addButton(1,"Talk",talkToNayna);
-	if(pc.hasItem(new WeatherDrone(),1)) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she’s missing. Turns out these are the drones she’s looking for.");
+	if(pc.hasItemByClass(WeatherDrone,1)) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she’s missing. Turns out these are the drones she’s looking for.");
 	addButton(3,"Flirt",flirtWithNayna,undefined,"Flirt","Flirt with the cuddly bunny.");
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -763,7 +763,7 @@ public function giveHerADrone():void
 		}
 	}
 	IncrementFlag("NAYNA_DRONES_TURNED_IN");
-	pc.destroyItem(new WeatherDrone(),1);
+	pc.destroyItemByClass(WeatherDrone,1);
 	processTime(2);
 	//[Accept Hug] [Nah]
 	clearMenu();

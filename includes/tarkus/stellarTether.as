@@ -128,7 +128,7 @@ public function tamWolfBustDisplay(mode:int = 1):String
 // Tamwolf Check function
 public function hasTamWolfOnSelf():Boolean
 {
-	if(pc.hasTamWolf() || pc.hasItemByName("TamWolf") || pc.hasItemByName("TamWolf2.0")) return true;
+	if (pc.hasTamWolf() || pc.hasItemByClass(TamWolf) || pc.hasItemByClass(TamWolfDamaged) || pc.hasItemByClass(TamWolfII)) return true;
 	return false;
 }
 

@@ -185,8 +185,8 @@
 					colorList.push(["luminous violet", "L.Violet"]);
 					colorList.push(["luminous silver", "L.Silver"]);
 					colorList.push(["hot white", "H. White"]);
-					if(target.level >= 6 || target.hasItemByType(Foxfire)) colorList.push(["glowing ember", "Foxfire"]);
-					if(target.level >= 6 || target.hasItemByType(Frostfire)) colorList.push(["fiery blue", "Frostfire"]);
+					if(target.level >= 6 || target.hasItemByClass(Foxfire)) colorList.push(["glowing ember", "Foxfire"]);
+					if(target.level >= 6 || target.hasItemByClass(Frostfire)) colorList.push(["fiery blue", "Frostfire"]);
 					break;
 			}
 			

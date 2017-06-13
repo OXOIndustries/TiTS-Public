@@ -251,7 +251,7 @@ public function giveDemAGem(gems:int):void
 	showPraetorians();
 	output("You take out a pouch ");
 	if(gems > 1) output("laden with gemstones");
-	else if(pc.hasItem(new GemSatchel())) output("laden with gemstones");
+	else if(pc.hasItemByClass(GemSatchel)) output("laden with gemstones");
 	else output("with a gemstone");
 	output(" and offer them to the guards, hoping to appeal to their avarice. The guards approach, their dark eyes glinting with greed as you reveal your briberous payload. When they get a good look at the stones, though, their lips curl, and the lead guard plants her hands on her hips.");
 	output("\n\n<i>“Is that it?”</i> she scowls, squinting at your offering. <i>“No, no, I’m not going to risk Queen Taivra’s wrath for </i>that<i>,”</i> she scoffs, shoving your hand back.");
@@ -509,7 +509,7 @@ public function searchTheQueensChambers():void
 }
 public function lootTaivrasGemsCheck():void
 {
-	if(pc.hasItemByType(GemSatchel))
+	if(pc.hasItemByClass(GemSatchel))
 	{
 		mainGameMenu();
 		return;

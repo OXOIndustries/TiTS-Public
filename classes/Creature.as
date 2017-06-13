@@ -2612,6 +2612,7 @@
 			if(hasPerk("Hidden Loot")) slots += 2;
 			return slots;
 		}
+		
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(arg == null || inventory.length == 0) return false;
@@ -2635,7 +2636,7 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
-		public function hasItemByType(ref:Class, amount:int = 1):Boolean
+		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if (ref == null || inventory.length == 0) return false;
 			
@@ -2661,6 +2662,7 @@
 			if (amt >= amount) return true;
 			return false;
 		}
+		
 		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2695,7 +2697,6 @@
 			}
 			return;
 		}
-		
 		public function destroyItemByReference(arg:ItemSlotClass):void
 		{
 			if (arg == null || inventory.length == 0) return;
@@ -2707,7 +2708,6 @@
 				inventory.splice(inventory.indexOf(arg), 1);
 			}
 		}
-		
 		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2742,9 +2742,9 @@
 			}
 			return;
 		}
-		public function destroyItemByType(type:Class, amount:int = 1):void
+		public function destroyItemByClass(arg:Class, amount:int = 1):void
 		{
-			if (type == null || inventory.length == 0 || amount == 0) return;
+			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			
@@ -2753,7 +2753,7 @@
 			{
 				for (i = 0; i < inventory.length; i++)
 				{
-					if (inventory[i] is type) inventory.splice(i, 1);
+					if (inventory[i] is arg) inventory.splice(i, 1);
 				}
 			}
 			// Normal
@@ -2762,10 +2762,10 @@
 				for (i = 0; i < inventory.length; i++)
 				{
 					//Item in the slot?
-					if (inventory[i] is type) 
+					if (inventory[i] is arg) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0 && (inventory[i] is type)) 
+						while(amount > 0 && inventory[i].quantity > 0 && (inventory[i] is arg)) 
 						{
 							inventory[i].quantity--;
 							amount--;
@@ -18983,7 +18983,7 @@
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							if(armor is GooArmor) AddLogEvent(ParseText("[goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!"), "passive", maxEffectLength);
-							if(hasItemByName("Goo Armor")) AddLogEvent(ParseText("[goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!"), "passive", maxEffectLength);
+							if(hasItemByClass(GooArmor)) AddLogEvent(ParseText("[goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!"), "passive", maxEffectLength);
 							kGAMECLASS.gooArmorDefense(thisStatus.value1);
 						}
 						break;

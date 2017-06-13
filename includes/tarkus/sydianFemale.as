@@ -392,7 +392,7 @@ public function sydianFemalePCVictory():void
 		else
 		{
 			output(" or just leave her here.");
-			if (pc.hasItem(new Throbb())) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
+			if (pc.hasItemByClass(Throbb)) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
 		}
 
 		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don’t have a wiener!");
@@ -405,7 +405,7 @@ public function sydianFemalePCVictory():void
 
 		addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
 
-		if (!pc.hasItem(new Throbb())) addDisabledButton(2, "Give Throbb", "Give Throbb", "You’re not carrying any Throbb.");
+		if (!pc.hasItemByClass(Throbb)) addDisabledButton(2, "Give Throbb", "Give Throbb", "You’re not carrying any Throbb.");
 		else if (enemy.hasStatusEffect("Unarmored")) addDisabledButton(2, "Give Throbb", "Give Throbb", "The broken-armored sydian’s too nervous for you to get a clean stick with the needle.");
 		else addButton(2, "Give Throbb", femSydianGiveThrob, undefined, "Give Throbb", "Jab the cocky bitch with a dose of Throbb and watch her break down and beg.");
 
@@ -1214,7 +1214,7 @@ public function femSydianGiveThrob():void
 	
 	output("\n\nYou watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.\n\n");
 	
-	pc.destroyItem(new Throbb(), 1);
+	pc.destroyItemByClass(Throbb, 1);
 	
 	CombatManager.genericVictory();
 }

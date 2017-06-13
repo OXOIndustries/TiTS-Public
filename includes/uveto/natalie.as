@@ -88,7 +88,7 @@ public function natalieMenu():void
 	addButton(0, "Talk", talkNatalie, "talk", "Talk", "Ask Natalie about herself -- and not her work, this time.");
 	if(flags["NATALIE_TAMES_VARMINT"] == undefined)
 	{
-		if(flags["NATALIE_NEED_SILICONE"] != undefined && !pc.hasItem(new Silicone()))
+		if(flags["NATALIE_NEED_SILICONE"] != undefined && !pc.hasItemByClass(Silicone))
 		{
 			if(!varmintIsWild()) flags["NATALIE_NEED_SILICONE"] = undefined;
 			else addDisabledButton(1, "Varmint", "Varmint", "Natalie can only help you if you’re carrying some silicone first!");
@@ -313,7 +313,7 @@ public function talkNatalie(response:String = "none"):void
 			processTime(2);
 			
 			// If doesn’t have silicone:
-			if(!pc.hasItem(new Silicone()))
+			if(!pc.hasItemByClass(Silicone))
 			{
 				output("\n\nYou shake your head. You don’t have enough silicone on hand to feed the big blue beast.");
 				output("\n\n<i>“Okay,”</i> Nat says. <i>“No problem. Go find some, and bring ‘er back here. I’ll help you sort the little guy out, but we’re gonna need the r-r-raw materials, first.”</i>");
@@ -339,7 +339,7 @@ public function talkNatalie(response:String = "none"):void
 			currentLocation = "SHIP INTERIOR";
 			generateMap();
 			processTime(25 + rand(10));
-			pc.destroyItem(new Silicone(), 1);
+			pc.destroyItemByClass(Silicone, 1);
 			flags["NATALIE_NEED_SILICONE"] = undefined;
 			
 			showBust(natalieBustDisplay(), "VARMINT");

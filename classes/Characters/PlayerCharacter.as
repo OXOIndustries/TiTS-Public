@@ -322,6 +322,37 @@ package classes.Characters
 			}
 			return;
 		}
+		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
+		{
+			if(ShipStorageInventory.length == 0) return false;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			{
+				if(ShipStorageInventory[x] is ref) foundAmount += ShipStorageInventory[x].quantity;
+			}
+			if(foundAmount >= amount) return true;
+			return false;
+		}
+		public function destroyItemInStorageByClass(ref:Class, amount:int = 1):void
+		{
+			if(ShipStorageInventory.length == 0) return;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			{
+				//Item in the slot?
+				if(ShipStorageInventory[x] is ref) 
+				{
+					//If we still need to eat some, eat em up!
+					while(amount > 0 && ShipStorageInventory[x].quantity > 0) 
+					{
+						ShipStorageInventory[x].quantity--;
+						amount--;
+						if(ShipStorageInventory[x].quantity <= 0) ShipStorageInventory.splice(x,1);
+					}
+				}
+			}
+			return;
+		}
 		
 		override public function HPMax():Number
 		{

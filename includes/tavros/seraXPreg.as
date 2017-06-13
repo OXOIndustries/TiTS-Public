@@ -269,7 +269,7 @@ public function seraPriapinAction(response:String = ""):void
 			break;
 		case "give":
 			pc.createStatusEffect("Give Sera Priapin");
-			pc.destroyItem(new Priapin());
+			pc.destroyItemByClass(Priapin);
 			seraBreedResponse(["ready"]);
 			break;
 		default:

@@ -442,7 +442,7 @@ public function sx1PuzzleOfDoomMenu():void
 	else if (flags["SAENDRA_XPACK1_ASKEDVAL"] == 1) addButton(3, "Holo Burn", sx1Holoburn, undefined, "Holo Burn", "Try and overload the rooms electronics, and fry whoever’s jacked into the computer system in there.");
 	else addDisabledButton(3, "Holo Burn");
 
-	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.hasItem(new FlashGrenade())) addButton(4, "Flashbang", sx1ThrowFlashbang, undefined, "Flashbang", "Throw a flashbang in and storm the room.");
+	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.hasItemByClass(FlashGrenade)) addButton(4, "Flashbang", sx1ThrowFlashbang, undefined, "Flashbang", "Throw a flashbang in and storm the room.");
 	else addDisabledButton(4, "Flashbang", "Throw Flashbang", "You don’t have any flashbangs to hand.");
 }
 

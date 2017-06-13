@@ -283,7 +283,7 @@ public function exhibitionismBlurbs():void
 			var exhibFaps:Array = [];
 			exhibFaps.push(moderateExhibitionOmniFap);
 			exhibFaps.push(goddamnitJimTAndYourExhibitionism);
-			if(pc.hasItem(new GravCuffs()) && pcLocation == "New Texas") exhibFaps.push(cuffSelfRouter);
+			if(pc.hasItemByClass(GravCuffs) && pcLocation == "New Texas") exhibFaps.push(cuffSelfRouter);
 			exhibFaps.push(exhibitionismForceStrip);
 			
 			exhibFunc = exhibFaps[rand(exhibFaps.length)];

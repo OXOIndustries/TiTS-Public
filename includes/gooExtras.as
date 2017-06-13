@@ -3199,7 +3199,7 @@ public function gooVaginaDeflate(arg:int = 0):void
 /* Goo Ball Functions */
 public function gooballUsed(gooBall:Class):void
 {
-	pc.destroyItemByType(gooBall);
+	pc.destroyItemByClass(gooBall);
 	
 	clearMenu();
 	addButton(0, "Next", useItemFunction);

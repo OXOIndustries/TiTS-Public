@@ -137,9 +137,8 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	pc.orgasm();
 	pc.orgasm();
 	//GET RID OF EGGS
-	var egg:ItemSlotClass = new StrangeEgg();
-	if(pc.hasItem(egg)) pc.destroyItem(egg);
-	else pc.destroyItemInStorage(egg);
+	if(pc.hasItemByClass(StrangeEgg)) pc.destroyItemByClass(StrangeEgg);
+	else pc.destroyItemInStorageByClass(StrangeEgg);
 	clearMenu();
 	addButton(0,"Next",postPychicTentacleImpreg,[destination,x]);
 }

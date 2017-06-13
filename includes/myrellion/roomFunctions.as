@@ -320,7 +320,7 @@ public function searchDatBunker():void
 }
 public function searchBunkerRifleCheck():void
 {
-	if(pc.rangedWeapon is MyrRifle || pc.hasItemByType(MyrRifle))
+	if(pc.rangedWeapon is MyrRifle || pc.hasItemByClass(MyrRifle))
 	{
 		mainGameMenu();
 		return;
@@ -759,7 +759,7 @@ public function deepCavesDescend():void
 	{
 		showName("CLIMBING\nDOWN");
 		//Pass 1 hour. Drain 50 Energy.
-		var bHasKit:Boolean = pc.hasItemByType(ClimbingKit);
+		var bHasKit:Boolean = pc.hasItemByClass(ClimbingKit);
 		
 		output("You grab some of the ropes hanging off the cliff face and test their strength - they seem solid enough to hold your weight");
 		if(pc.isGoo() || pc.isTaur() || pc.isNaga() || pc.isDrider()) output(", at least if you use several of them together");
@@ -793,7 +793,7 @@ public function ascendFromDeepCaves():void
 		showName("CLIMBING\nUP");
 		//Pass 90 minutes. Drain 50 Energy. For the lulz, could make ton-weight centaurs unable to climb back up. 
 		
-		var bHasKit:Boolean = pc.hasItemByType(ClimbingKit);
+		var bHasKit:Boolean = pc.hasItemByClass(ClimbingKit);
 		
 		if (!bHasKit)
 		{

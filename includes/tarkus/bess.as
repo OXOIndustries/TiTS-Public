@@ -357,7 +357,7 @@ public function bessHasClothingItem(clothingType:Class):Boolean
 	// 9999
 	// can't really pack this into uints -- too many options (outfits) even if we split armor/upper/lower (more than 32 options)
 	// creature inventory I guess is a decent placeholder for now maybe -- can look into other options later, hence wrapping simple call here
-	return bess.hasItemByType(clothingType);
+	return bess.hasItemByClass(clothingType);
 }
 
 public function bessHasGlasses():Boolean

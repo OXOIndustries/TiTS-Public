@@ -1610,7 +1610,7 @@ public function kiroSexMenu():void
 	else addDisabledButton(2,"2xMilker","2xMilker","You need a penis to participate in this scene.");
 	addButton(3,"Hand Milk",manualMilkingFromSavin,undefined,"Hand Milk","Hand milk Kiro, and she doesn’t lactate...");
 	//PUSSY PUMPIN~
-	if(pc.hasItem(new SukMastr()))
+	if(pc.hasItemByClass(SukMastr))
 	{
 		if(kiroTrust() >= 66)
 		{

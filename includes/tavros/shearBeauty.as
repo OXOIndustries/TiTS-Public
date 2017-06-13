@@ -553,8 +553,8 @@ public function ceriaHairDyeColors(colorType:String = "none", dyePart:String = "
 			colorList.push(["glowing silver", "G.Silver"]);
 			colorList.push(["glowing white", "G.White"]);
 			colorList.push(["iridescent", "Iridescent", ("Can’t decide on one color? Dye your " + dyePart + " iridescent for a more multi-colored look.")]);
-			if(pc.level >= 6 || pc.hasItemByType(Foxfire)) colorList.push(["glowing ember", "Foxfire", ("Dye your " + dyePart + " glowing ember to appear as if it’s emitting hot fire.")]);
-			if(pc.level >= 6 || pc.hasItemByType(Frostfire)) colorList.push(["fiery blue", "Frostfire", ("Dye your " + dyePart + " fiery blue to appear as if it’s covered in cool flames.")]);
+			if(pc.level >= 6 || pc.hasItemByClass(Foxfire)) colorList.push(["glowing ember", "Foxfire", ("Dye your " + dyePart + " glowing ember to appear as if it’s emitting hot fire.")]);
+			if(pc.level >= 6 || pc.hasItemByClass(Frostfire)) colorList.push(["fiery blue", "Frostfire", ("Dye your " + dyePart + " fiery blue to appear as if it’s covered in cool flames.")]);
 			break;
 	}
 	

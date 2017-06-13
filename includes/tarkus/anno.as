@@ -753,7 +753,7 @@ public function annoTalkMenu():void
 	
 	if (!pc.hasKeyItem("Goozooka"))
 	{
-		if (pc.hasItem(new GrayMicrobots()))
+		if (pc.hasItemByClass(GrayMicrobots))
 		{
 			addButton(5, "Gray Goo", beginTheGoozookeningHas, undefined, "Gray Goo", "Ask Anno about the samples you’ve collected from some Gray Goos.");
 		}
@@ -1517,7 +1517,7 @@ public function beginTheGoozookeningHas():void
 	
 	var pGoovolver:Goovolver = new Goovolver();
 	
-	if (pc.hasItem(pGoovolver) || pc.rangedWeapon is Goovolver)
+	if (pc.hasItemByClass(Goovolver) || pc.rangedWeapon is Goovolver)
 	{
 		if (pc.credits >= 1000)
 		{
@@ -1570,7 +1570,7 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	if (buyGoovolverToo == false)
 	{
 		pc.credits -= 1000;
-		if (pc.hasItem(pGoovolver)) pc.destroyItem(pGoovolver, 1);
+		if (pc.hasItemByClass(Goovolver)) pc.destroyItemByClass(Goovolver, 1);
 		else if (pc.rangedWeapon is Goovolver) pc.rangedWeapon = new Rock();
 	}
 	else
@@ -1579,7 +1579,7 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 		pc.credits -= (pGooCost + 1000);
 	}
 	
-	pc.destroyItem(new GrayMicrobots());
+	pc.destroyItemByClass(GrayMicrobots);
 
 	pc.createKeyItem("Goozooka", 0, 0, 0, 0, "This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy’s most sensitive spots. Consumes a vial of gray goo per shot!");
 	output("\n\n<b>(Key Item Gained: Goozooka -</b> This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy’s most sensitive spots. Consumes a vial of gray goo per shot!<b>)</b>");
@@ -1602,7 +1602,7 @@ public function goozookaRaepsForAnnoButts():void
 
 	//{+Mischevious, -1 Goo Sample}
 	pc.addMischievous(1);
-	pc.destroyItem(new GrayMicrobots(), 1);
+	pc.destroyItemByClass(GrayMicrobots, 1);
 
 	output("When Anno turns to get back to her job, you quietly break open the back of your new goo-launcher and slot in the vial of goo. With a mischievous grin, you level the cannon at Anno’s hind end and flick the button on the computer beside the trigger.");
 
@@ -2284,7 +2284,7 @@ public function deck13WeaponRacks():void
 }
 public function deck13WeaponPistolCheck():void
 {
-	if(pc.rangedWeapon is NovaPistol || pc.hasItemByType(NovaPistol))
+	if(pc.rangedWeapon is NovaPistol || pc.hasItemByClass(NovaPistol))
 	{
 		mainGameMenu();
 		return;
@@ -2299,7 +2299,7 @@ public function deck13WeaponPistolCheck():void
 }
 public function deck13WeaponRifleCheck():void
 {
-	if(pc.rangedWeapon is NovaRifle || pc.hasItemByType(NovaRifle))
+	if(pc.rangedWeapon is NovaRifle || pc.hasItemByClass(NovaRifle))
 	{
 		mainGameMenu();
 		return;

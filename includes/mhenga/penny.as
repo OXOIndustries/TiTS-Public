@@ -656,7 +656,7 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	//Mission complete
 	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
 
-	if(pc.hasItem(new IQBGone())) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 }
 public function friendPennyTalkMenu(func:Function = null):void
 {
@@ -1387,7 +1387,7 @@ public function pennyGirlfriendMenu():void
 	//Mission complete
 	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
 
-	if(pc.hasItem(new IQBGone())) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -1562,7 +1562,7 @@ public function pennyFutanariTalk():void {
 		this.clearMenu();
 		this.addButton(0,"Stay Girl",stayAGirlYouBitch);
 		this.addButton(1,"Get A Dick",pennySproutsAWeiner);
-		if(pc.hasItem(new HorseCock())) 
+		if(pc.hasItemByClass(HorseCock)) 
 		{
 			if(CodexManager.entryUnlocked("SynthSheath")) addButton(2,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.\n\nWho needs Throbb when you can be a stallion?");
 			else addButton(2,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. You have a hunch it might be more than it seems. You shouldn’t give this to her unless you’re ready for things to get a little out of hand.\n\nIt might also prevent her from getting too into Throbb.");
@@ -1608,7 +1608,7 @@ public function pennyFutanariTalk():void {
 			this.clearMenu();
 			this.addButton(0,"Stay Girl",stayAGirlYouBitch);
 			this.addButton(1,"Get A Dick",pennySproutsAWeiner);
-			if(pc.hasItem(new HorseCock())) 
+			if(pc.hasItemByClass(HorseCock)) 
 			{
 				if(CodexManager.entryUnlocked("SynthSheath")) addButton(2,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.\n\nWho needs Throbb when you can be a stallion?");
 				else addButton(2,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. You have a hunch it might be more than it seems. You shouldn’t give this to her unless you’re ready for things to get a little out of hand.\n\nIt might also prevent her from getting too into Throbb.");
@@ -1625,7 +1625,7 @@ public function pennyFutanariTalk():void {
 				this.clearMenu();
 				this.addButton(0,"Give Throbb",pennyToBigPenny);
 				this.addButton(14,"Back",approachGirlfriendPenny);
-				if(pc.hasItem(new HorseCock())) 
+				if(pc.hasItemByClass(HorseCock)) 
 				{
 					if(CodexManager.entryUnlocked("SynthSheath")) addButton(1,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.\n\nWho needs Throbb when you can be a stallion?");
 					else addButton(1,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. You have a hunch it might be more than it seems. You shouldn’t give this to her unless you’re ready for things to get a little out of hand.\n\nIt might also prevent her from getting too into Throbb.");
@@ -1639,7 +1639,7 @@ public function pennyFutanariTalk():void {
 				output("\n\nTo say that Penny is enthused by the prospect of a bigger member and a heightened libido would be an understatement. She’s jubilant at the prospect and nearly beyond reason with lust from at the prospect of taking more. With her self-control obviously slipping, do you give her the okay to take another dose?");
 				this.clearMenu();
 				this.addButton(0,"Give Throbb",pennyBecomesHYPERPENNY);
-				if(pc.hasItem(new HorseCock())) 
+				if(pc.hasItemByClass(HorseCock)) 
 				{
 					if(CodexManager.entryUnlocked("SynthSheath")) addButton(1,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.\n\nWho needs Throbb when you can be a stallion?");
 					else addButton(1,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. You have a hunch it might be more than it seems. You shouldn’t give this to her unless you’re ready for things to get a little out of hand.\n\nIt might also prevent her from getting too into Throbb.");
@@ -1661,7 +1661,7 @@ public function pennyFutanariTalk():void {
 				clearMenu();
 				addButton(0,"Calm Down",calmDownYouPennySlut);
 				addButton(1,"Tease Her",teasePenny)
-				if(pc.hasItem(new HorseCock())) 
+				if(pc.hasItemByClass(HorseCock)) 
 				{
 					if(CodexManager.entryUnlocked("SynthSheath")) addButton(2,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.");
 					else addButton(2,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. Maybe the randy hermaphrodite could use it as a sex toy.");
@@ -1678,7 +1678,7 @@ public function pennyFutanariTalk():void {
 				output("\n\nPenny will surely lose it if you give her the go ahead to take any more. Her already lustful nature seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her post. No, she can’t have any more now, and you tell her as much.");
 				output("\n\nAmazingly, she actually wilts a little at that. Her masturbation stops as the fennec dreamily says, <i>“Okay, okay, I guess. I’m getting a little out of hand, aren’t I?”</i> You nod. <i>“Good, cause it seems to be keeping you around. I’m going to fuck you so hard as soon as I get caught up on work!”</i> She turns back towards what she was doing while trying to pack her monster dick into her pants. It doesn’t work all that well.");
 				this.clearMenu();
-				if(pc.hasItem(new HorseCock())) 
+				if(pc.hasItemByClass(HorseCock)) 
 				{
 					if(CodexManager.entryUnlocked("SynthSheath")) addButton(1,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.");
 					else addButton(1,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. You have a hunch it might be more than it seems. You shouldn’t give this to her unless you’re ready for things to get a little out of hand.");
@@ -3352,7 +3352,7 @@ public function givePennyAHossCawk():void
 	clearOutput();
 	showPenny(true);
 	author("Alkahest");
-	pc.destroyItemByName("HorseCock",1);
+	pc.destroyItemByClass(HorseCock);
 	if(!penny.hasCock())
 	{
 		output("Penny giggles as she waggles the toy in her hand, the huge balls attached to it swinging back and forth heavily. <i>“What is this even? You know I don’t have a cock, right, [pc.name]?”</i> she chuckles before stripping before you, her big breasts swaying enticingly before you. <i>“That’s okay though! We can still have some fun, regardless,”</i> she says seductively, her eyes half-lidded and focused on you. She looks down at the toy in her hand and absently presses it to her crotch. Giggling, Penny wiggles her ample hips back and forth, the sheath smushed into her groin. Penny laughs as the toy’s huge balls slap into her thighs.");
@@ -3490,7 +3490,7 @@ public function pennyGrowsAHorseCockPart2():void
 		//unlock codex!
 		CodexManager.unlockEntry("SynthSheath");
 	}
-	pc.destroyItem(new HorseCock());
+	pc.destroyItemByClass(HorseCock);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

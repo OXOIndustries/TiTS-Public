@@ -494,7 +494,7 @@ package classes.GameData
 				return kGAMECLASS.pc.hasKeyItem("Goozooka");
 			}
 			GoozookaAttack.ExtendedAvailabilityCheck = function():Boolean {
-				return kGAMECLASS.pc.hasItemByType(GrayMicrobots);
+				return kGAMECLASS.pc.hasItemByClass(GrayMicrobots);
 			}
 			GoozookaAttack.TooltipTitle = "Goozooka";
 			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
@@ -2079,7 +2079,7 @@ package classes.GameData
 		public static var GoozookaAttack:SingleCombatAttack;
 		private static function GoozookaAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			attacker.destroyItem(new GrayMicrobots(), 1);
+			attacker.destroyItemByClass(GrayMicrobots, 1);
 	
 			output("You pull the goo launcher from over your shoulder and slam a vial of Gray Goo into the back. You brace yourself, sighting in on your target and flipping the ON switch. The launcher beeps, and you pull the trigger, sending a great big blob of gray goop hurtling toward your opponent!");
 			

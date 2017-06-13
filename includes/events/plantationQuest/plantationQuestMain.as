@@ -928,7 +928,7 @@ public function footOfTheCliffBonus():Boolean
 	{
 		flags["PQ_CLIFF_FOOTED"] = 1;
 		output("You sigh, gazing up at the looming red cliff face in front of you, so high it’s impossible to ascertain where it levels out. Well... it’s not going to climb itself.");
-		if(pc.hasItem(new ClimbingKit())) output(" At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.");
+		if(pc.hasItemByClass(ClimbingKit)) output(" At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.");
 		output("\n\n");
 	}
 	output("To the immediate west of the foaming waterfall pool the land rises, tufts of scrub growing out of natural steps at the foot of the red rock cliff. If you carefully climb outwards upon them from the waterfall pool, you can work your way around onto the cliff face proper.");
@@ -1122,7 +1122,7 @@ public function zilHornetAggro():void
 	showName("SURPRISE\nATTACK!");
 	output("\n\nSomething flicks past your ear. Imagining falling rock, you look up - and manage to duck to one side as the long, barb-tipped spear is thrust at you more accurately. <i>Real</i> falling rock crumbles beneath your [pc.feet].");
 	output("\n\n<i>“You are mine, far shist pig!”</i> squeaks the painted, armored female zil that is clutching it, roped to the cliff above you. Getting assaulted like this from above this high up is horribly unnerving - your heart chunters and your every instinct screams for you to make her stop.");
-	if(pc.hasItem(new ClimbingKit())) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend her off.");
+	if(pc.hasItemByClass(ClimbingKit)) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend her off.");
 	//Fen note: cute the hand holding mechanic, but I like the flavor!
 	//You will have to clutch to the rock face and fend her off one-handed!
 	//start fighto!
@@ -1316,7 +1316,7 @@ public function hoverFlyIntroProc():void
 	showName("SURPRISE\nATTACK!");
 	output("\n\nThe crash and hush of the waterfall is progressively drowned out by another sound - the throbbing hum of skateboard-sized insect wings. With a dull lurch of dread, you turn your head to take in the male zil hovering above you, short stabbing spear in one hand and long shield in the other, war paint turning his scowl into a mask of fury.");
 	output("\n\n<i>“You should not have exposed yourself like this, far shist land-stealer. You are mine for the plucking!”</i>");
-	if(pc.hasItem(new ClimbingKit())) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend him off.");
+	if(pc.hasItemByClass(ClimbingKit)) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend him off.");
 	//Fen note: Holding on mechanic cut, but I like the climbing kit flavor.
 	//else output("\n\nYou will have to clutch to the rock face and fend him off one-handed!");
 	CombatManager.newGroundCombat();
@@ -2580,16 +2580,14 @@ public function quinnFinishExit():void
 {
 	if(inCombat())
 	{
-		var spear:ZilSpear = new ZilSpear();
-		var bow:ZilBow = new ZilBow();
 		//If neither PC or enemy has champion kit, set it up.
-		if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItem(spear))
+		if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItemByClass(ZilSpear))
 		{
-			if(!enemy.hasItem(spear)) enemy.inventory.push(spear);
+			if(!enemy.hasItemByClass(ZilSpear)) enemy.inventory.push(new ZilSpear());
 		}
-		if(!(pc.rangedWeapon is ZilBow) && !pc.hasItem(bow))
+		if(!(pc.rangedWeapon is ZilBow) && !pc.hasItemByClass(ZilBow))
 		{
-			if(!enemy.hasItem(bow)) enemy.inventory.push(bow);
+			if(!enemy.hasItemByClass(ZilBow)) enemy.inventory.push(new ZilBow());
 		}
 		output("\n\n");
 		CombatManager.genericVictory();
