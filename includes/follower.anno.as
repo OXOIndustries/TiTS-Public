@@ -1,4 +1,4 @@
-﻿import classes.Creature;
+import classes.Creature;
 import classes.GameData.CombatManager;
 import classes.Items.Apparel.SteeleTechSuit;
 import classes.Items.Apparel.AnnosBlouse;
@@ -1261,12 +1261,8 @@ public function annoFollowerSuckAndFuckSexPartII():void
 	
 	output("\n\nSatisfied that your pooch’s pussy is nice and ready for you, you rise back up and take hold of your [pc.cock " + selCock + "], dropping it into the spread hind cleavage of Anno’s ass. Her breath catches when she feels your man-meat slap against her slick skin. You can feel her positively shiver with excitement, looking back at you over her shoulder with bated breath, awaiting your next move. You flash her a grin and rock your hips back, sliding your prick lengthwise through the lips of her cunt, barely suppressing a shudder as the slimy, wet slit reaches out to kiss your cock, smearing it with her ample juices. A few thrusts through that channel, and your [pc.cock " + selCock + "] is coated with a nice sheen of fem-lube, glistening in the dim light of Anno’s store as you bring the [pc.cockHead " + selCock + "] to rest just barely parting the veil of her [anno.cunt].");
 	
-	output("\n\n<i>“H-hold on,”</i> Anno moans, leaning out of your embrace. You give her a questioning look, until she reaches under the bed and pulls out a sealed condom wrapper. With an understanding nod, you take the nanofiber sheath from its packaging and");
-	if (pc.cockVolume(selCock) < 400) output(" slide it easily over your [pc.cock " + selCock + "].");
-	else if (pc.cockVolume(selCock) < 900) output(" spend a moment stretching the tight condom out over your oversized dong.");
-	else output(" spend a minute struggling to just encase the head of your massive prick in the human-sized sheath. Good enough!");
-	
-	output("\n\nWhen you’re finished, Anno smiles appreciatively over her shoulder, wiggling her ass into the underside of your wrapped wang. <i>“Come on then... I’m ready for you,”</i> she breathes, her white tail raising invitingly as your sheathed schlong slowly slides forward. ");
+	if (flags["ANNO_FUCKNSUCK"] == undefined) output("\n\nAnno looks back at you with a smile as she breathily intones, \"Don't worry about cumming inside. I'm on Sterilex. No heat, no pups, and all the creampies I want !\" When she's finished, Anno smiles appreciatively over her shoulder, wiggling her ass teasingly. \"Come on then... I'm ready for you,\" she breathes, her white tail raising invitingly as your schlong slowly slides forward.")
+	else output("\n\nAnno flashes you a lustily smile over her shoulder and wiggles her ass invitingly, raising her tail and spreading her cheeks. \"Come on, [pc.name]. I'm wet and ready for you!\" she breathily moans.");
 	
 	output("\n\nAnno bites her lip, muffling a girlish whimper as your [pc.hips] rock forward, inching your [pc.cock " + selCock + "] into her sodden quim. You nearly join her as you feel your cock submerging into the sultry hole, surrounded by hot, wet, squirming walls as Anno’s pussy clenches around your intruding member. You push forward despite her body’s resistance, the ausar’s incredibly wet sex making it unnaturally easy to spread her walls wide. Anno moans as you plunge deep into her sex, fingers digging into the lip of her desk, tail flicking madly as you bottom out inside her");
 	if (pc.cockVolume(selCock) >= (chars["ANNO"].vaginalCapacity() + 200)) output(", your tremendous cock stretching her out almost painfully wide, distending her gut against the bed");
@@ -1291,10 +1287,12 @@ public function annoFollowerSuckAndFuckSexPartII():void
 		output("\n\nWhile she’s at the peak of her pleasure, you decide it’s time for the main course. With one last, mighty thrust of your hips, you slam the turgid ball of your [pc.knot " + selCock + "] into the sodden delta of Anno’s drooling, orgasming sex. Her cries of pleasure crescendo into a high-pitched scream of shock and mind-wracking ecstasy as her cooch is forced open by your thick " + (pc.cocks[selCock].cType == GLOBAL.TYPE_CANINE ? "canid" : "knotted") + " member. Your thrust pins Anno to the bed, spreading her legs and sex apart as you sink yourself into her, tying the two of you together.");
 	}
 	
-	output("\n\nThanks to the wild, milking motions of Anno’s cunt, you can feel your own orgasm rushing up to follow hers. You push your prick as deep inside your lover as you can, letting her still-spasming muscles do the work for you, squeezing and caressing your cock, slathering it with hot juices trapped inside her wanton hole by the thick cock spearing her, unable to escape. Your orgasm hits you like a hammer, giving you just enough time to let loose a feral roar of pleasure as a thick wad of cum surges up your [pc.cock " + selCock + "], blasting into the trap of the tightly bound sheath around it. You grunt and groan with the spasms, hips bucking against Anno’s red-flushed ass as your load works itself out, eased along by Anno’s own squirming walls. ");
+	output("\n\nThanks to the wild, milking motions of Anno’s cunt, you can feel your own orgasm rushing up to follow hers. You push your prick as deep inside your lover as you can, letting her still-spasming muscles do the work for you, squeezing and caressing your cock, slathering it with hot juices trapped inside her wanton hole by the thick cock spearing her, unable to escape. Your orgasm hits you like a hammer, giving you just enough time to let loose a feral roar of pleasure as a thick wad of cum surges up your [pc.cock " + selCock + "], blasting into the ausar's clenching pussy. You grunt and groan with the spasms, hips bucking against Anno’s red-flushed ass as your load works itself out, eased along by Anno’s own squirming walls. ");
 	
-	output("\n\nChest heaving from exertion, you sigh heavily as your orgasm passes, contained in a now-bloated condom");
-	if (pc.cumQ() >= 750) output(" that feels like a grapefruit stretching Anno wide from the inside");
+	output("\n\nChest heaving from exertion, you sigh heavily as your orgasm passes,");
+	if (!pc.hasKnot()) output(" feeling your [pc.cum] trickle out around your shaft");
+	else output(" your knot trapping every drop of your [pc.cum] in your lover");
+	if (pc.cumQ() >= 750) output(" as your huge load stretches Anno wide from the inside");
 	output(". For a moment, you let yourself lean forward, resting against Anno’s back as the last shockwaves of pleasure pass through you");
 	if (pc.biggestTitSize() >= 1) output(", pressing your tits against her back and letting her feel your every tiny motion against her sweat-sheened skin");
 	output(". With a soft moan, Anno leans back and kisses you, letting you taste your last orgasm still clinging to her lips as she locks tongues with you. You reach under her, cupping her heaving bosom until she squeals with over-sensitivity. Slowly, you roll both of your bodies over and under the cum-stained sheets, arms wrapping tight around her. ");
