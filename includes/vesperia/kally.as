@@ -660,52 +660,64 @@ public function kallyDrinkPurchase(drink:String):void
 	clearOutput();
 	showKally();
 	var special:Boolean = false;
-	if(drink == "Doe-Eyed Draught") 
+	switch(drink)
 	{
-		pc.imbibeAlcohol(28);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		pc.credits -= 6;
-	}
-	else if(drink == "Nutty Nookie") 
-	{
-		pc.imbibeAlcohol(26);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		pc.credits -= 7;
-	}
-	else if(drink == "V. Vapor") 
-	{
-		pc.imbibeAlcohol(14);
-		pc.credits -= 10;
-	}
-	else if(drink == "Royal Red")
-	{
-		pc.imbibeAlcohol(16);
-		pc.credits -= 12;
-	}
-	else if(drink == "Pneumatic Pilsner") 
-	{
-		pc.imbibeAlcohol(32);
-		pc.credits -= 20;
-	}
-	else if(drink == "Kui Creamer") 
-	{
-		pc.imbibeAlcohol(42);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		pc.credits -= 22;
+		case "Doe-Eyed Draught":
+			pc.imbibeAlcohol(28);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			pc.credits -= 6;
+			break;
+		case "Nutty Nookie":
+			pc.imbibeAlcohol(26);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			pc.credits -= 7;
+			break;
+		case "V. Vapor":
+			pc.imbibeAlcohol(14);
+			pc.credits -= 10;
+			break;
+		case "Royal Red":
+			pc.imbibeAlcohol(16);
+			pc.credits -= 12;
+			break;
+		case "Pneumatic Pilsner":
+			pc.imbibeAlcohol(32);
+			pc.credits -= 20;
+			break;
+		case "Kui Creamer":
+			pc.imbibeAlcohol(42);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			pc.credits -= 22;
+			break;
 	}
 	output("You swipe the creds over to Kally. She swiftly rushes off to make your drink, returning with ");
 	if(drink != "Kui Creamer") output("an ice cold glass of " + drink);
 	else output("shot glasses of " + drink);
 	output(". ");
-	if(drink == "Kui Creamer") output("You take them one after the other, surprised at how pleasant they taste. There’s no real alcoholic kick, just the smooth heat of Kally’s creamy drinks.");
-	else if(drink == "Nutty Nookie") output("It goes down slow but smooth, leaving you with a warm, rich feeling settling into your stomach.");
-	else if(drink == "V. Vapor") output("It’s a lovely drink that you can take your time with, swirling the beverage around in your glass in between sips.");
-	else if(drink == "Royal Red") output("The thick head clings to your upper lip with every sip, but you lap it up after every swallow. It’s bitter, just like the drink, and subtly flavorful.");
-	else if(drink == "Doe-Eyed Draught") output("You suck down a long pull of the opaque amber beverage. It’s good. Damned good. You take another few swallows before slapping it down and belching, remembering your manners too late to excuse yourself. The bartender grins.");
-	else if(drink == "Pneumatic Pilsner") output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
+	switch(drink)
+	{
+		case "Kui Creamer":
+			output("You take them one after the other, surprised at how pleasant they taste. There’s no real alcoholic kick, just the smooth heat of Kally’s creamy drinks.");
+			break;
+		case "Nutty Nookie":
+			output("It goes down slow but smooth, leaving you with a warm, rich feeling settling into your stomach.");
+			break;
+		case "V. Vapor":
+			output("It’s a lovely drink that you can take your time with, swirling the beverage around in your glass in between sips.");
+			break;
+		case "Royal Red":
+			output("The thick head clings to your upper lip with every sip, but you lap it up after every swallow. It’s bitter, just like the drink, and subtly flavorful.");
+			break;
+		case "Doe-Eyed Draught":
+			output("You suck down a long pull of the opaque amber beverage. It’s good. Damned good. You take another few swallows before slapping it down and belching, remembering your manners too late to excuse yourself. The bartender grins.");
+			break;
+		case "Pneumatic Pilsner":
+			output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
+			break;
+	}
 	if(pc.hasStatusEffect("Adorahol") && (pc.isBuzzed() || pc.isDrunk()))
 	{
 		//Adoradrunk
@@ -713,7 +725,7 @@ public function kallyDrinkPurchase(drink:String):void
 		{
 			output("\n\nKally looks like she’s breathing sort of heavily, but she studiously turns away while you drink, instead looking over the bar. She swings back with an impish smile. <i>“I guess nobody else needs anything. Wanna have a chat while you savor that flavor?”</i> She bends over to lean on the bar. You can see straight down hear low-hanging cleavage. She doesn’t even stop you when you look, just tousles your hair. <i>“You’re sweet, but why not speak up while you enjoy the view?”</i>");
 		}
-		///Drunk
+		//Drunk
 		else
 		{
 			output("\n\nKally wipes a moist spot on the bar, watching you out of the corner of her eye. She’s not doing a very good job wiping up. A ring of condensation from an old drink is right next to her, and she hasn’t even grazed it.");
