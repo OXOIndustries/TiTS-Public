@@ -10,20 +10,27 @@ public function showDelString(nude:Boolean = false):String
 {
 	var bust_Append:String = "";
 	if(nude) bust_Append = "_NUDE";
-	if(!MailManager.isEntryUnlocked("del_moved"))
+	// Trap
+	if(MailManager.isEntryUnlocked("del_moved_light"))
 	{
-		return ("DELILAH" + bust_Append);
+		return ("DELILAH_TRAP" + bust_Append);
 	}
-	else
+	// Shemale
+	else if(MailManager.isEntryUnlocked("del_moved"))
 	{
 		if(del.hasCock(GLOBAL.TYPE_EQUINE)) return ("DELILAH_SHEMALE_HORSE" + bust_Append);
 		else return ("DELILAH_SHEMALE" + bust_Append);
+	}
+	// Default
+	else
+	{
+		return ("DELILAH" + bust_Append);
 	}
 	return "";
 }
 public function showDel(nude:Boolean = false):void
 {
-	showName("\n" + (!MailManager.isEntryUnlocked("del_moved") ? "DELILAH" : "DEL"));
+	showName("\n" + ((!MailManager.isEntryUnlocked("del_moved") && !MailManager.isEntryUnlocked("del_moved_light")) ? "DELILAH" : "DEL"));
 	showBust(showDelString(nude));
 }
 //Content Pack Intro
