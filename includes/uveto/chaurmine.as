@@ -198,8 +198,9 @@ public function cuddelWithCharmineAfterBeatDown():void
 	output("\n\nEventually, though, you both begrudgingly agree that you must part. Though after having exerted each other, and having a nice rest, the mood is notably high. Just before going your separate ways, Chaurmine grunts something about meeting him near his ship on the moon’s station.");
 
 	processTime(60);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	
+	output("\n\n");
+	CombatManager.genericVictory();
 }
 
 //Get Fucked
@@ -892,9 +893,13 @@ public function battleWithChaurmineVoluntarily():void
 	//move to riiift
 	currentLocation = "UVIP Z22";
 	generateMap();
+	
+	var chaur:Creature = new Chaurmine();
+	chaur.credits = 300 + rand(201);
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Chaurmine());
+	CombatManager.setHostileCharacters(chaur);
 	CombatManager.victoryScene(beatUpCharmine);
 	CombatManager.lossScene(pcLosesToChaurmine);
 	CombatManager.displayLocation("CHAURMINE");

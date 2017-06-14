@@ -442,10 +442,13 @@ package classes.GameData
 			// Mag Binders
 			MagBinders = new SingleCombatAttack();
 			MagBinders.ButtonName = "MagBindrs";
-			MagBinders.DisabledIfEffectedBy = ["Disarmed"];
+			MagBinders.EnergyCost = 25;
+			MagBinders.IsRangedBased = true;
 			MagBinders.RequiresPerk = "Mag Binders";
+			MagBinders.DisabledIfEffectedBy = ["Disarmed"];
 			MagBinders.Implementor = MagBindersImpl;
 			MagBinders.TooltipTitle = "Mag Binders";
+			MagBinders.RequiresTarget = true;
 			MagBinders.TooltipBody = "Throw a set of magnetic restraints at your enemy, dealing light electricity damage and potentially stunning them for up to three turns. Damage and hit chances are based off of reflexes.";
 			MagBinders.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(MagBinders);
@@ -1946,7 +1949,7 @@ package classes.GameData
 				output("[attacker.CombatName] slings a set of self-guided restraints your way.\n");
 			}
 	
-			if (combatMiss(attacker, target))
+			if (rangedCombatMiss(attacker, target))
 			{
 				if (attacker is PlayerCharacter)
 				{
@@ -1961,8 +1964,8 @@ package classes.GameData
 			/* No extra miss for blind. SELF-GUIDED, BITCHES!
 			else if (attacker.hasStatusEffect("Blinded") && rand(2) > 0)
 			{
-				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
-				else output("[attacker.CombatHisHer] blind strike fails to connect.");
+				if (attacker is PlayerCharacter) output("Your blind projectile fails to connect.");
+				else output("[attacker.CombatHisHer] blind projectile fails to connect.");
 			}*/
 			//Attack connected!
 			else
