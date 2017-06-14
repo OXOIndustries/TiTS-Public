@@ -188,7 +188,7 @@ public function kirosShipPistol():void
 }
 public function kirosShipPistolCheck():void
 {
-	if(pc.rangedWeapon is CustomLP17 || pc.hasItemByType(CustomLP17))
+	if(pc.rangedWeapon is CustomLP17 || pc.hasItemByClass(CustomLP17))
 	{
 		mainGameMenu();
 		return;
@@ -211,7 +211,7 @@ public function kirosShipCutlass():void
 }
 public function kirosShipCutlassCheck():void
 {
-	if(pc.meleeWeapon is Cutlass || pc.hasItemByType(Cutlass))
+	if(pc.meleeWeapon is Cutlass || pc.hasItemByClass(Cutlass))
 	{
 		mainGameMenu();
 		return;
@@ -769,10 +769,7 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	}
 	output(". Your [pc.belly] bulges bigger from the weight of the deposit. It actually jiggles and sloshes ponderously on the next bounce, forcing bigger, fatter cum-shots directly inside you, and each time, your swollen sperm-paunch gets bigger and bigger.");
 
-	output("\n\nThis erotic, sensuously exotic fuck is setting your nerves off like overloaded circuit-breakers. They’re flipping from pleasure to mind-crushing orgasm in rapid succession, causing you to arch yourself back against your soft-furred lover’s cushy boobs and ");
-	if(pc.race() != "ausar" && pc.race() != "half-ausar" && pc.originalRace != "half-ausar") output("scream");
-	else output("howl");
-	output(" in delight, your body quaking. She holds you tight through it all, squeezing cumshots that would be considered large to a normal person into you again and again... and again. You whimper when you become so full that her ejaculations are causing spermy backblasts to bathe her ball sack with a spreading puddle of white.");
+	output("\n\nThis erotic, sensuously exotic fuck is setting your nerves off like overloaded circuit-breakers. They’re flipping from pleasure to mind-crushing orgasm in rapid succession, causing you to arch yourself back against your soft-furred lover’s cushy boobs and " + pc.catDog("scream", "howl", false) + " in delight, your body quaking. She holds you tight through it all, squeezing cumshots that would be considered large to a normal person into you again and again... and again. You whimper when you become so full that her ejaculations are causing spermy backblasts to bathe her ball sack with a spreading puddle of white.");
 
 	//Dickgasms
 	if (pc.hasCock())
@@ -869,7 +866,7 @@ public function kirosShipfixDaMachine():void
 
 	output("\n\n<i>“W-what!? Just fuck me already! I tried it!”</i> she cries, but you put up a hand and spin a spanner around your trigger finger. You’re gonna make this machine your bitch. You drop to a crouch, popping a panel off the side, looking down into the maze of wires and chips. And... it’s covered in spooge. Of course it is, what else. You sigh, pull on a glove, and reach in. A few moments, and a few new wires later, you slap the panel back on and hit the power button. Nothing happens.");
 
-	//{If FAIL!}
+	//If FAIL!
 	if (pc.IQ() < 75)
 	{
 		flags["RESCUE KIRO TECHSPEC MACHINE FIX"] = -1;
@@ -878,7 +875,7 @@ public function kirosShipfixDaMachine():void
 		clearMenu();
 		addButton(0, "Next", kirosShipWails, false);
 	}
-	//{Success}
+	//Success
 	else
 	{
 		flags["RESCUE KIRO TECHSPEC MACHINE FIX"] = 1;

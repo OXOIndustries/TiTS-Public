@@ -17,76 +17,55 @@
 			this._neverSerialize = false;
 			
 			this.short = "Aliss";
-			this.originalRace = "ausar";
+			this.originalRace = "ovir";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Placeholder";
-			this.customDodge = "Syri Don't Dodge Foo";
-			this.customBlock = "Obvious placeholder is obvious.";
+			this.long = "";
+			this.customDodge = "";
+			this.customBlock = "";
 			this.isPlural = false;
-			
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "semi-solid fist";
-			this.meleeWeapon.hasRandomProperties = true;
-			
-			this.armor.longName = "durable dermis";
-			this.armor.defense = 10;
-			this.armor.hasRandomProperties = true;
-			
-			this.physiqueRaw = 13;
-			this.reflexesRaw = 10;
-			this.aimRaw = 15;
-			this.intelligenceRaw = 9;
-			this.willpowerRaw = 4;
-			this.libidoRaw = 55;
-			this.HPMod = 15;
-			this.shieldsRaw = this.shieldsMax();
-			this.HPRaw = this.HPMax();
-			this.energyRaw = 100;
-			this.lustRaw = 15;
-			this.level = 3;
-			this.XPRaw = normalXP();
-			this.credits = 0;
 			
 			this.femininity = 75;
 			this.eyeType = 0;
-			this.eyeColor = "dark blue";
+			this.eyeColor = "green";
 			this.tallness = 72;
 			this.thickness = 40;
 			this.tone = 0;
-			this.hairColor = "black";
-			this.scaleColor = "ebony";
-			this.furColor = "black";
+			this.hairColor = "blonde";
+			this.scaleColor = "purple";
+			this.furColor = "blonde";
 			this.hairLength = 10;
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
-			this.skinTone = "tanned";
-			this.skinFlags = [GLOBAL.FLAG_FLUFFY];
-			this.faceType = 0;
-			this.faceFlags = new Array();
-			this.tongueType = 0;
+			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
+			this.skinTone = "light purple";
+			this.skinFlags = [GLOBAL.FLAG_SMOOTH];
+			this.faceType = GLOBAL.TYPE_OVIR;
+			this.faceFlags = [GLOBAL.FLAG_SMOOTH];
+			this.tongueType = GLOBAL.TYPE_OVIR;
+			this.tongueFlags = [GLOBAL.FLAG_LONG];
 			this.lipMod = 2;
-			this.earType = GLOBAL.TYPE_CANINE;
+			this.earType = GLOBAL.TYPE_OVIR;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_CANINE;
+			this.armType = GLOBAL.TYPE_OVIR;
+			this.armFlags = [GLOBAL.FLAG_SCALED, GLOBAL.FLAG_SMOOTH];
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TYPE_CANINE;
+			this.legType = GLOBAL.TYPE_OVIR;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_SMOOTH];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_CANINE;
+			this.tailType = GLOBAL.TYPE_OVIR;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_FLUFFY];
+			this.tailFlags = [GLOBAL.FLAG_SCALED, GLOBAL.FLAG_LONG, GLOBAL.FLAG_THICK, GLOBAL.FLAG_TAPERED];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -151,7 +130,7 @@
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.breastRows[0].breastRatingRaw = 5;
-			this.nippleColor = "pink";
+			this.nippleColor = "purple";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.

@@ -53,10 +53,25 @@ package classes.Engine.Combat
 		
 		if (attacker != null && (special == "ranged" || special == "melee"))
 		{
+			var crittyBonus:Number = 0;
+			if(attacker.hasPerk("Giant Slayer") && target.tallness >= (7*12)) crittyBonus += 5;
+
+			if(target.hasStatusEffect("Deep Freeze") && baseDamage.hasFlag(DamageFlag.CRUSHING))
+			{
+				damageResult.wasCrit = true;
+				baseHPDamage.multiply(target.statusEffectv3("Deep Freeze"));
+			}
+			
 			if (special == "melee")
-			{				
+			{
 				// Melee crit
-				if(attacker.critBonus(true) >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				if(attacker.critBonus(true) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				{
+					damageResult.wasCrit = true;
+					baseHPDamage.multiply(2);
+				}
+				//Alpha strike forcing them criiiiiits!
+				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked"))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
@@ -71,25 +86,43 @@ package classes.Engine.Combat
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
-
+				
 				//Burninate the countryside
-				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)
+				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
 					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+				}
+
+				//Electrified weapons do more damage based on int!
+				if (attacker.hasStatusEffect("Charged Weapon"))
+				{
+					var chargeBonus:Number = attacker.intelligence();
+					if (attacker.hasPerk("Fuck Sense")) 
+					{
+						chargeBonus = attacker.libido();
+						if(chargeBonus > attacker.level * 5) chargeBonus = attacker.level * 5;
+					}
+					baseHPDamage.add(new TypeCollection( { electric: chargeBonus } ));
 				}
 
 				//Special counter - added when PC melees something. Eaten at the end of the round.
 				if(attacker is PlayerCharacter && !target.hasStatusEffect("Melee Counter")) target.createStatusEffect("Melee Counter",0,0,0,0);
 			}
-			else
-			{	
+			if (special == "ranged")
+			{
 				if (attacker.hasStatusEffect("Concentrated Fire"))
 				{
 					baseHPDamage.add(attacker.statusEffectv1("Concentrated Fire"));
 				}
 				
 				// Ranged crit 
-				if(attacker.critBonus(false) >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				if(attacker.critBonus(false) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				{
+					damageResult.wasCrit = true;
+					baseHPDamage.multiply(2);
+				}
+				//Alpha strike forcing them criiiiiits!
+				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked"))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
@@ -105,27 +138,27 @@ package classes.Engine.Combat
 				}
 				
 				//Burninate the countryside
-				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && rand(5) == 0)
+				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
 					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
 				}
 			}
-		}
-		else if (special == "goovolver")
-		{
-			
-		}
-		else if (special == "slut ray")
-		{
-			/*
-			if(attacker.critBonus(false) >= rand(100) + 1 && attacker is PlayerCharacter)
-			{
-				damageResult.wasCrit = true;
-				baseLustDamage.multiply(2);
-			}
-			*/
+			//Track Alpha Strike. Don't need to track the perk here cause who cares.
+			if(attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);
 		}
 		
+		//Reduce damage for gravitational fiiiieeeeelds
+		if(attacker != null && target != null)
+		{
+			if(attacker.hasStatusEffect("Gravitational Anomaly") || target.hasStatusEffect("Gravitational Anomaly"))
+			{
+				//baseHPDamage.multiply(0.5);
+				//baseHPDamage.multiply(new TypeCollection( { kinetic: 0.5 } ));
+				baseHPDamage.kinetic.damageValue *= 0.5;
+			}
+		}
+		
+
 		/****************************
 		 * Now apply the damage.
 		 ****************************/		
@@ -162,7 +195,10 @@ package classes.Engine.Combat
 		damageResult.shieldDamage = Math.round(damageResult.shieldDamage);
 		damageResult.lustDamage = Math.round(damageResult.lustDamage);
 		damageResult.totalDamage = Math.round(damageResult.totalDamage);
-		
+
+		//For tracking shield regeneration for level 10 boopers
+		if(damageResult.shieldDamage > 0 && !target.hasStatusEffect("Shields Damaged")) target.createStatusEffect("Shields Damaged", 0, 0, 0, 0, true, "", "", true, 0);
+
 		return damageResult;
 	}
 

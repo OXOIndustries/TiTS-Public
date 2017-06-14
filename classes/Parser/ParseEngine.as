@@ -16,7 +16,6 @@
 		public var printConditionalEvalDebug:Boolean = false;
 		public var printIntermediateParseStateDebug:Boolean = false;
 
-
 		public function ParseEngine(ownerClass:*, settingsClass:*)
 		{
 			this._ownerClass = ownerClass;
@@ -100,7 +99,6 @@
 			}
 			else
 			{
-
 				// ---------------------------------------------------------------------------------
 				// TODO: Get rid of this shit.
 				// UGLY hack to patch legacy functionality in TiTS
@@ -163,7 +161,7 @@
 			var argTemp:Array = inputArg.split(" ");
 			if (argTemp.length != 2)
 			{
-				return "<b>!Not actually a two-word tag!\"" + inputArg + "\"!</b>"
+				return "<b>!Not actually a two-word tag!\"" + inputArg + "\"!</b>";
 			}
 			var subject:String = argTemp[0];
 			var aspect:* = argTemp[1];
@@ -209,12 +207,9 @@
 					trace("Warning: " + msg);
 					return "<b>"+ msg +"</b>";
 				}
-
 			}
 
-
-
-			if (lookupParserDebug) trace("trying to look-up two-word tag in parent")
+			if (lookupParserDebug) trace("trying to look-up two-word tag in parent");
 
 			// ---------------------------------------------------------------------------------
 			// TODO: Get rid of this shit.
@@ -256,16 +251,14 @@
 					if (isNaN(indice))
 						return "<b>Cannot use non-number as indice to Array \"" + inputArg + "\"! Subject = \"" + subject + ", Aspect = " + aspect + "\</b>";
 					else
-						return thing[indice]
+						return thing[indice];
 				}
 				else if (thing is Object)
 				{
-
 					if (thing.hasOwnProperty(aspectLookup))
-						return thing[aspectLookup]
-
+						return thing[aspectLookup];
 					else if (thing.hasOwnProperty(aspect))
-						return thing[aspect]
+						return thing[aspect];
 					else
 						return "<b>Object does not have aspect as a member \"" + inputArg + "\"! Subject = \"" + subject + ", Aspect = " + aspect + " or " + aspectLookup + "\</b>";
 				}
@@ -329,13 +322,11 @@
 				{
 					return null;
 				}
-
 			}
 
 			if (lookupParserDebug) trace("item: ", inStr, " NOT in: ", localThis);
 
 			return null;
-
 		}
 
 		private var buttonNum:Number;
@@ -358,15 +349,13 @@
 			sceneCont = textCtnt.substr(textCtnt.indexOf('|')+1);
 
 			sceneName = stripStr(sceneName);
-			if (sceneParserDebug) trace("Adding scene with name \"" + sceneName + "\"")
+			if (sceneParserDebug) trace("Adding scene with name \"" + sceneName + "\"");
 
 			// Cleanup the scene content from spurious leading and trailing space.
 			sceneCont = trimStr(sceneCont, "\n");
 			sceneCont = trimStr(sceneCont, "	");
 
-
 			this.parserState[sceneName] = stripStr(sceneCont);
-
 		}
 
 		// Called to determine if the contents of a bracket are a parseable statement or not
@@ -374,10 +363,8 @@
 		// if not, it simply returns the contents as passed
 		private function parseNonIfStatement(textCtnt:String, depth:int):String
 		{
-
 			var retStr:String = "";
 			if (printCcntentDebug) trace("Parsing content string: ", textCtnt);
-
 
 			if (mainParserDebug) trace("Not an if statement")
 				// Match a single word, with no leading or trailing space
@@ -448,7 +435,6 @@
 
 			} while (lastBracket != -1)
 
-
 			if (lastBracket != -1)		// If we have any open brackets
 			{
 				for (i = lastBracket; i < textCtnt.length; i += 1)
@@ -477,7 +463,7 @@
 						prefixTmp = textCtnt.substring(0, lastBracket);
 						if (mainParserDebug) trace("prefix content = ", prefixTmp);
 						if (prefixTmp)
-							retStr += prefixTmp
+							retStr += prefixTmp;
 						// We know there aren't any brackets in the section before the first opening bracket.
 						// therefore, we just add it to the returned string
 
@@ -506,7 +492,7 @@
 						postfixTmp = textCtnt.substring(i+1, textCtnt.length);
 						if (postfixTmp.indexOf("[") != -1)
 						{
-							if (printCcntentDebug) trace("Need to parse trailing text", postfixTmp)
+							if (printCcntentDebug) trace("Need to parse trailing text", postfixTmp);
 							retStr += recParser(postfixTmp, depth);	// Parse the trailing text (if any)
 							// Note: This leads to LOTS of recursion. Since we basically call recParser once per
 							// tag, it means that if a body of text has 30 tags, we'll end up recursing at least
@@ -516,7 +502,7 @@
 						}
 						else
 						{
-							if (printCcntentDebug) trace("No brackets in trailing text", postfixTmp)
+							if (printCcntentDebug) trace("No brackets in trailing text", postfixTmp);
 							retStr += postfixTmp;
 						}
 
@@ -553,13 +539,11 @@
 			// trace("Purging scene parser contents")
 			this.parserState = new Object();
 
-
-
 			var ret:String = "";
 			// Run through the parser
-			contents = contents.replace(/\\n/g, "\n")
+			contents = contents.replace(/\\n/g, "\n");
 			ret = recParser(contents, 0);
-			if (printIntermediateParseStateDebug) trace("Parser intermediate contents = ", ret)
+			if (printIntermediateParseStateDebug) trace("Parser intermediate contents = ", ret);
 			// Currently, not parsing text as markdown by default because it's fucking with the line-endings.
 
 			if (prettyQuotes)
@@ -578,8 +562,8 @@
 			}
 
 			// cleanup escaped brackets
-			ret = ret.replace(/\\\]/g, "]")
-			ret = ret.replace(/\\\[/g, "[")
+			ret = ret.replace(/\\\]/g, "]");
+			ret = ret.replace(/\\\[/g, "[");
 
 			// And repeated spaces (this has to be done after markdown processing)
 			ret = ret.replace(/  +/g, " ");
@@ -617,8 +601,7 @@
 
 			//trace(ret);
 			// trace("Maintext content @ recursiveParser = ", mainText.htmlText.length)
-			return ret
-
+			return ret;
 		}
 
 		// ---------------------------------------------------------------------------------------------------------------------------------------
@@ -627,12 +610,12 @@
 
 		// Make shit look nice
 
-		private function makeQuotesPrettah(inStr:String):String
+		public function makeQuotesPrettah(inStr:String):String
 		{
 			inStr = inStr.replace(/(?<= )'|^'/g,									"‘")
 						 .replace(/(?<=\w)'(?![^<]*>)/g,							"’")
 						 .replace(/(\w)'(\w)/g,										"$1’$2")
-						 .replace(/"(?=<i>)|(?<=<i>)"|^"|(?<=\s)"/g,								"\u201c")
+						 .replace(/"(?=<i>)|(?<=<i>)"|^"|(?<=\s)"/g,				"\u201c")
 						 .replace(/\"$|\"(?<=[^ ])(?![A-z])/g,						"\u201d")
 						 .replace(/--/g,											"\u2014");
 			return inStr;
@@ -698,7 +681,6 @@
 
 		public function capitalizeFirstWord(str:String):String
 		{
-
 			str = str.charAt(0).toUpperCase()+str.slice(1);
 			return str;
 		}

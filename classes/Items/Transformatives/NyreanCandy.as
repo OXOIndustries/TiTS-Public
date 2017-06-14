@@ -313,7 +313,6 @@
 				
 				if(changes < changeLimit && rand(3) == 0)
 				{
-					
 					// Penis
 					//Nyrea Penis parameters: Flared crown like a horse with an x-shaped slit. Will grow a thick knot I’d give it about 2.5 to 3 inches in diameter. Cum will change to Nyrea Cum, which is more a oily lube then cum, but it should function the same way, but send virility down to 0%. Will make penis grow/shrink to 14 inches.
 					// Vagina
@@ -346,6 +345,7 @@
 							target.cocks[0].cLengthRaw = 14;
 							target.shiftVagina(0, GLOBAL.TYPE_NYREA);
 							target.girlCumType = GLOBAL.FLUID_TYPE_NYREA_GIRLCUM;
+							if(target.ballsUnlocked(0)) target.makeBallsInternal();
 							target.orgasm();
 							target.orgasm();
 							changes++;
@@ -362,6 +362,7 @@
 							output("\n\nYour featureless crotch lights up with the fury of a thousand suns! Moaning in ecstasy");
 							if(kGAMECLASS.silly) output(" even though you’re a fucking neuter");
 							output(", it feels like you’re about to cum.");
+							if(target.ballsUnlocked(0)) target.makeBallsInternal();
 							if(rand(2) == 0)
 							{
 								output(" A mighty cock similar to that of nyrea bursts forth! <b>You now have a 14-inch nyrean cock!</b>");
@@ -399,6 +400,7 @@
 							target.createCock();
 							target.shiftCock((target.cocks.length - 1), GLOBAL.TYPE_NYREA);
 							target.cocks[target.cocks.length - 1].cLengthRaw = 14;
+							if(target.ballsUnlocked(0)) target.makeBallsInternal();
 							target.orgasm();
 							changes++;
 						}
@@ -420,6 +422,7 @@
 							target.createVagina();
 							target.shiftVagina((target.vaginas.length - 1), GLOBAL.TYPE_NYREA);
 							target.girlCumType = GLOBAL.FLUID_TYPE_NYREA_GIRLCUM;
+							if(target.ballsUnlocked(0)) target.makeBallsInternal();
 							target.orgasm();
 							changes++;
 						}

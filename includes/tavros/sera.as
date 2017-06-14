@@ -171,7 +171,7 @@ public function approachSera():void
 			output("Sera glares at you and her expression quickly sours. The demoness doesn’t seem too thrilled about your presence.");
 			output("\n\nHer piercing eyes peer into your soul as she asks, <i>“What the do you want this time?”</i>");
 		}
-		else if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		else if(seraIsMistress())
 		{
 			output("Sera leans over the counter, extends her index claw and presses it against your throat. She gently scratches it up to the bottom of your chin.");
 			output("\n\n<i>“Mine,”</i> she says simply, smiling lazily.");
@@ -269,7 +269,7 @@ public function chrysalisInventory():Array
 	inventory.push(new DendroGro());
 	inventory.push(new Rainbotox());
 	inventory.push(new Chocolac());
-	inventory.push(new SweetTreat());
+	inventory.push(new SweetTreat()); // 9999 - Temporary
 	
 	return inventory;
 }
@@ -296,6 +296,11 @@ public function seraStoreSetup():void
 	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined)
 	{
 		chars["SERA"].inventory.push(new Lucifier());
+	}
+	// Other
+	if(CodexManager.entryUnlocked("Muffstick"))
+	{
+		chars["SERA"].inventory.push(new Muffstick());
 	}
 	
 	shopkeep = chars["SERA"];
@@ -470,7 +475,7 @@ public function seraTalkMenu():void
 		// If Priapin in inventory and PC has activated initial [Breed] scene, add [Priapin] option to initial sex "beg" screen
 		else if(flags["SERA_TIMES_BRED"] != undefined)
 		{
-			if(pc.hasItem(new Priapin())) addButton(5, "Priapin", seraPriapinAction, "intro", "Breed Using Priapin", "You brought the fireworks this time.");
+			if(pc.hasItemByClass(Priapin)) addButton(5, "Priapin", seraPriapinAction, "intro", "Breed Using Priapin", "You brought the fireworks this time.");
 			else addDisabledButton(5, "Priapin", "Breed Using Priapin", "You need a Priapin medipen in order to breed with her again.");
 		}
 		else if(pc.hasStatusEffect("Sera Talk Breed")) addDisabledButton(5, "Breed", "Breed", "You’ve already tried this! Give her some time off the topic, then try again later.");
@@ -634,7 +639,7 @@ public function seraTalkTopics(response:String = ""):void
 					output("\n\n<i>“If I had a problem with you looking like someone who works in a kiddie amusement park you would know about it by now, sweetheart,”</i> she says. She leers at you toothily. <i>“I actually </i>like<i> you that way. Working out the aggression on one of the clowns themselves? More satisfying than I thought.”</i>");
 				}
 				// Furry AND submitted:
-				else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] >= 4)
+				else if(seraIsMistress())
 				{
 					output("\n\n<i>“Funny how these things work out, isn’t it,”</i> you smirk. She glares daggers at you.");
 					output("\n\n<i>“If you enslaved me just because of what I said to you before,”</i> she snarls, <i>“that makes you the smallest muzzle-mutant in existence. Which is some achievement. No offence, ‘[pc.master]’.”</i>");
@@ -664,7 +669,7 @@ public function seraSexMenu(display:Boolean = false):void
 		showSera();
 		// If PC gets normally fucked twice, chooses sex again
 		// Further, it's not really fair that players could get locked out of the additional content completely based on that one quick decision. Could the "next step" scene repeat every third time the "Sex?" option is chosen instead?
-		if((((flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"]) >= 2) || timesFuckedSera() >= 10) && (timesFuckedSera() % 3 == 0) && flags["SERA_TRIPLE_X_RATED"] == undefined)
+		if((((flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"]) >= 2) || timesFuckedSera() >= 5) && (timesFuckedSera() % 2 == 0) && flags["SERA_TRIPLE_X_RATED"] == undefined)
 		{
 			author("Nonesuch");
 			output("Sera smirks to herself when she sees you hovering. You look away, pretending to be interested in a collection of particularly disgusting ornaments on a shelf. After you’ve let a few moments go by, you steal another look at her. She’s still gazing at you, brilliant yellow eyes running up and down your frame, that proprietary smile still on her face. You feel a small thrill when she finally disengages herself from the counter and slowly walks across to you, dick and hips swinging.");
@@ -704,7 +709,7 @@ public function seraSexMenu(display:Boolean = false):void
 			return;
 		}
 		// Post-subservience
-		else if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		else if(seraIsMistress())
 		{
 			output("Sera smirks to herself when she sees you. You feel a small thrill when she rounds the desk to press her body against you. The coolness of her armor contrasts palpably with the warmth of her exposed breasts and tumescent, girthy tool. Her hand unabashedly roams across your [pc.butt], squeezing a cheek with an easy grope, pushing you against her just a little bit more firmly.");
 			output("\n\n<i>“You wanna fuck, pet?”</i> Sera asks, grabbing hold of you by the");
@@ -728,7 +733,7 @@ public function seraSexMenu(display:Boolean = false):void
 	clearMenu();
 	if(pc.lust() >= 33)
 	{
-		if(flags["SERA_TRIPLE_X_RATED"] >= 4)
+		if(seraIsMistress())
 		{
 			addButton(0, "Fuck Me", seraSexXXXRouter);
 			if(pc.hasCock())
@@ -747,7 +752,7 @@ public function seraSexMenu(display:Boolean = false):void
 	else
 	{
 		addDisabledButton(0,"Fuck Me","Fuck Me","You aren’t turned on enough for this.");
-		if(flags["SERA_TRIPLE_X_RATED"] >= 4 && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren’t turned on enough for this.");
+		if(seraIsMistress() && pc.hasCock() && flags["SERA_INCH_STEAL"] != undefined) addDisabledButton(1,"Shrink Me", "Shrink Your Cock", "You aren’t turned on enough for this.");
 	}
 	addButton(14,"Back",approachSera);
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
@@ -905,6 +910,7 @@ public function getTailUsedBySera():void
 	pc.loadInCuntTail(chars["SERA"]);
 	processTime(45+rand(15));
 	pc.orgasm();
+	applyPussyDrenched(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1327,13 +1333,14 @@ public function holdBackForSera():void
 	author("Nonesuch");
 	output("You grit your teeth, absolutely determined that your tail-cock isn’t going to cum inside your mistress’s pussy. For a moment you think it is going to get away from you - it’s utterly soaked and loaded with lust, entranced with the moistened honey-trap it’s stuck in - but you clamp down on it hard, denying it with all your will. You exhale raggedly as Sera throws her head back and cries out, her cunt rippling up and down your writhing [pc.cockTail], drops of clear lubricant squirting around her stuffed entrance. Several moments of gratuitous female orgasm cascades into a male one, and she crows as her over-sized cock swells up around her shifting fingers and shoots streamers of musky, pearly jizz onto your hot face. It barely even registers that you’re taking a load this way, even with her throbbing, dilated cockhead in your face; all of your attention is on your tender, bulging dick-tail, ruthlessly used but horribly denied. Alien desire sinks its fingers deep into your mind.");
 	output("\n\nSera rides out the last of her double orgasm and then, with a deeply satisfied sigh, she casually reaches down and pulls your [pc.cockTail] out of her relaxed, dripping twat. It shivers with angry, pent-up lust, sending one throb after another down its lithe, sturdy body - but still, you are able to stop it pulling out of her taloned hand and attempt to bury into her pussy again.");
-	output("\n\n<i>“Very well done,”</i> she croons, smiling toothily down at you. A glow of achievement spreads across your breast, and you grin back, warm cum oozing down your cheeks. <i>“All you needed was your owner telling you to do it for you to be able to! It’s what I like to see.”</i> Your grin turns into a round <i>“oh”</i> as Sera strengthens her grip on your bulging, slickened cock-vine, stroking the sensitized dick flesh. <i>“I’m guessing you want your reward now.”</i> Up and down, up and down goes her smooth, warm hand....”</i>Do you? Does bitch want [pc.hisHer] cummies?”</i>");
+	output("\n\n<i>“Very well done,”</i> she croons, smiling toothily down at you. A glow of achievement spreads across your breast, and you grin back, warm cum oozing down your cheeks. <i>“All you needed was your owner telling you to do it for you to be able to! It’s what I like to see.”</i> Your grin turns into a round <i>“oh”</i> as Sera strengthens her grip on your bulging, slickened cock-vine, stroking the sensitized dick flesh. <i>“I’m guessing you want your reward now.”</i> Up and down, up and down goes her smooth, warm hand.... <i>“Do you? Does bitch want [pc.hisHer] cummies?”</i>");
 	output("\n\n<i>“Yes mistress,”</i> is the only response you’re capable of giving.");
 	output("\n\n<i>“Very well,”</i> the demon morph smirks. She increases the tempo at which she’s jerking your [pc.cockTail], whipping her grip up and down its thick length with the same energy she used to wanked herself; at the same time, she inexorably bends the tail around so that its moistened head is pointing at you. Utterly intoxicated with her touch, the " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "tail") + " obeys her completely. Your moan is momentarily drowned out by a huge, warm gush of plant cum spraying you directly in the face; brilliant, overflowing release rocks your body as Sera breezily jerks you off, adding to the generous amounts of jizz she’s already plastered across your features. The back-up is such that she’s got more than enough to completely cover your face, gel your [pc.hair], artfully scribble across your [pc.chest]... a long, glorious, juicy orgasm, used to completely despoil you.");
 	output("\n\nThe last pulse oozing onto the floor and a throaty giggle tell you, at last, you can wipe your eyes clear and look up. Sera lets your lolling, throbbing " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "tail") + " fall from her hand and casually swaggers her purple butt back behind the counter, leaning on it to drink your drenched form in.");
 	output("\n\n<i>“Hmm,”</i> she smirks contentedly, toying with her hair. <i>“A lustful tail-dick attached to you that </i>I<i> control. Very nice indeed. I think we’ll do this again. Regularly.”</i>");
 	processTime(10);
 	pc.orgasm();
+	applyCumSoaked(pc);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1347,7 +1354,7 @@ public function releaseCuntailonSera():void
 	author("Nonesuch");
 	output("You just can’t help yourself. Or rather, you just can’t help the " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "parasitic tail") + "; you cannot say no to that fiery alien lust wresting control from you. You clutch your [pc.knees], throw your head back and cry out as you let go and surge to orgasm, your [pc.cockTail] opening wide and fluming its thick seed into the clutch of Sera’s pussy. Too fixed upon her own high the demon-morph does nothing but hiss her disapproval, and continues to ride the spurting tentacle dick heedlessly. Denied for so long, it fills out the succubus’s fuck-pocket easily and spurts heavily around its own writhing girth, every pulse unutterably delicious. Somewhere in there Sera cums as well, her semen splattering in your face and pussy clamping up around your pulsating tail-cock, but you don’t care; it’s so good to sink back into that over-charged alien lust, bathe in that primal gratification of seeding a fertile womb... you’ve got to enjoy every moment of this, because when it ends...");
 	output("\n\n<i>“So I was right then.”</i> Sera’s malicious tone slices straight through the wonderful, happy cloud that settles upon you after you’ve pulsed your last. The traitorous cock-vine oozes itself out of her thoroughly creamed pussy and flops down, leaving you alone to face the music. <i>“You can’t control it, even if your owner demands it. You really are a slave to your own lusts, aren’t you bitch?”</i>");
-	output("\n\n<i>“I’m sorry, mistress,”</i> you try. <i>“I - <i>“");
+	output("\n\n<i>“I’m sorry, mistress,”</i> you try. <i>“I -”</i>");
 	output("\n\n<i>“I don’t suppose I’d have it any other way though,”</i> Sera sighs, grimacing as she parts her thighs and looks down. <i>“If you weren’t such a spineless little " + pc.mf("worm","cum dump") + " you’d never put up with my abuse, would you? And then there’d be no fun at all.”</i>");
 	output("\n\n<i>“So you aren’t mad?”</i> you say, staring at the off-white slime sliding down her flawless thighs.");
 	output("\n\n<i>“Mad? Why? Because you got yourself infested with a parasite that is going to constantly get you into trouble? Naw,”</i> laughs the succubus. She ");
@@ -1367,11 +1374,16 @@ public function releaseCuntTailOnSeraCleanup():void
 	showSera(true);
 	author("Nonesuch");
 	//Time forward an hour
+	processTime(50 + rand(11));
+	pc.loadInMouth(chars["COCKVINE"]);
 	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
 	pc.HP(-1 * pc.HPMax() * 0.05);
 	pc.energy(-1 * pc.energyMax() * 0.05);
 
 	output("You lean against the wall outside the Dark Chrysalis a while later, gathering yourself. Your mouth is absolutely caked with the musky, slightly herbal tang of plant cum, and your [pc.ass] and back sting mightily from the whip welts that have been enthusiastically applied there. You can’t help but look venomously down at your [pc.cockTail], which is still throbbing with post-coital bliss. Next time, you swear to yourself. Next time, you’ll control it.");
+	
+	currentLocation = "9018";
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

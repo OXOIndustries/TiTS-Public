@@ -19,6 +19,14 @@ public function fuckedCeria(setItUp:Boolean = false):Boolean
 	if(setItUp) flags["FUCKED_CERIA"] = 1;
 	return (flags["FUCKED_CERIA"] != undefined);
 }
+
+// Price conversion
+public function ceriaServicePrice(price:Number = 0):Number
+{
+	if(pc.hasKeyItem("Coupon - Shear Beauty")) price = Math.round(price * pc.keyItemv1("Coupon - Shear Beauty"));
+	return price;
+}
+
 //Salon
 public function shearBeautyBonusFunc():Boolean
 {
@@ -126,41 +134,41 @@ public function buyFromCeria():void
 		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 		{
 			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
-			if(!chars["CERIA"].hasItem(new Hornitol())) chars["CERIA"].inventory.push(new Hornitol());
+			if(!chars["CERIA"].hasItemByClass(Hornitol)) chars["CERIA"].inventory.push(new Hornitol());
 		}
-		else chars["CERIA"].destroyItem(new Hornitol());
+		else chars["CERIA"].destroyItemByClass(Hornitol);
 		
 		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
 			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin";
 			if(flags["PLANET_3_UNLOCKED"] != undefined)
 			{
-				if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
+				if(!chars["CERIA"].hasItemByClass(DoveBalm)) chars["CERIA"].inventory.push(new DoveBalm());
 				chars["CERIA"].keeperBuy += " balms";
 			}
-			else chars["CERIA"].destroyItem(new DoveBalm());
+			else chars["CERIA"].destroyItemByClass(DoveBalm);
 			if(flags["PLANET_3_UNLOCKED"] != undefined && CodexManager.entryViewed("Rubber-Made")) chars["CERIA"].keeperBuy += " and";
 			if(CodexManager.entryViewed("Rubber-Made"))
 			{
-				if(!chars["CERIA"].hasItem(new SkinClear())) chars["CERIA"].inventory.push(new SkinClear());
+				if(!chars["CERIA"].hasItemByClass(SkinClear)) chars["CERIA"].inventory.push(new SkinClear());
 				chars["CERIA"].keeperBuy += " lotions";
 			}
-			else chars["CERIA"].destroyItem(new SkinClear());
+			else chars["CERIA"].destroyItemByClass(SkinClear);
 			chars["CERIA"].keeperBuy += ".";
 		}
 		else
 		{
-			chars["CERIA"].destroyItem(new DoveBalm());
-			chars["CERIA"].destroyItem(new SkinClear());
+			chars["CERIA"].destroyItemByClass(DoveBalm);
+			chars["CERIA"].destroyItemByClass(SkinClear);
 		}
 		
 		// 9999 - Temporary placement until Aislinn is implemented!
 		if(9999 == 9999)
 		{
 			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
-			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
+			if(!chars["CERIA"].hasItemByClass(LipTease)) chars["CERIA"].inventory.push(new LipTease());
 		}
-		else chars["CERIA"].destroyItem(new LipTease());
+		else chars["CERIA"].destroyItemByClass(LipTease);
 	}
 	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.
@@ -194,22 +202,25 @@ public function hairworkFromCeria():void
 	//[Fur Color] Go to Fur Color Options
 	//[Back] Go to Ceria Main
 	clearMenu();
-	if(pc.hairLength <= 0) addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen","Grow some hair.");
-	else addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen","Get your hair lengthened.");
-	if(pc.hairLength > 0) addButton(1,"Cut",getHairCut,undefined,"Cut","Get your hair cut down to size.");
-	else addDisabledButton(1,"Cut","Cut","You need hair in order to get it cut.");
-	if(pc.hairLength > 0) addButton(2,"Color",hairColorMainMenu,undefined,"Color","Try out a new color!");
-	else addDisabledButton(2,"Color","Color","You need something on your head to dye!");
-	if(pc.hairLength <= 0) addDisabledButton(3,"Style","Style","You need some hair in order to style it!");
-	if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style","Get your hair styled into something fashionable.");
-	else addDisabledButton(3,"Style","Style","You can only get traditional hair styled here.");
-	if(pc.hasPartFur() || pc.hasPartFeathers()) addButton(4,"Fur Color",furColorMenu,undefined,"Fur Color","Get your fur dyed too!");
-	else addDisabledButton(4,"Fur Color","Fur Color","You don’t have fur to dye!");
+	if(pc.hairLength <= 0) addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen Hair","Grow some hair.");
+	else addButton(0,"Lengthen",lengthenHairChoices,undefined,"Lengthen Hair","Get your hair lengthened.");
+	if(pc.hairLength > 0) addButton(1,"Cut",getHairCut,undefined,"Cut Hair","Get your hair cut down to size.");
+	else addDisabledButton(1,"Cut","Cut Hair","You need hair in order to get it cut.");
+	if(pc.hairLength > 0) addButton(2,"Color",hairColorMainMenu,undefined,"Color Hair","Try out a new color!");
+	else addDisabledButton(2,"Color","Color Hair","You need something on your head to dye!");
+	if(pc.hairLength <= 0) addDisabledButton(3,"Style","Style Hair","You need some hair in order to style it!");
+	if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style Hair","Get your hair styled into something fashionable.");
+	else addDisabledButton(3,"Style","Style Hair","You can only get traditional hair styled here.");
+	if(pc.hasFur() && pc.perkv1("Wooly") >= 1) addButton(6,"Fur Shear",furShearMenu,undefined,"Shear Fur","Get your wooly fur sheared!");
+	else addDisabledButton(6,"Fur Shear","Shear Fur","You don’t have any wooly fur to shear!");
+	if(pc.hasPartFur() || pc.hasPartFeathers()) addButton(7,"Fur Color",furColorMenu,undefined,"Color Fur","Get your fur dyed too!");
+	else addDisabledButton(7,"Fur Color","Color Fur","You don’t have fur to dye!");
 	addButton(14,"Back",approachCeria);
 }
-public function serviceFromCeriaFinish():void
+public function serviceFromCeriaFinish(removeCoupon:Boolean = true):void
 {
 	flags["CERIA_BOUGHT"] = 1;
+	if(removeCoupon && pc.hasKeyItem("Coupon - Shear Beauty")) pc.removeKeyItem("Coupon - Shear Beauty");
 	approachCeria();
 }
 
@@ -285,12 +296,12 @@ public function lengthenHairConfirmation(hairInches:Number = 0):void
 	if(!pc.hasHair()) output(", or lack thereof");
 	output(". <i>“With how much you’ve already got, it’ll be ");
 	var cost:Number = Math.round((hairInches - pc.hairLength) * 150);
-	output(cost + " credits. That good with you?”</i>");
+	output(ceriaServicePrice(cost) + " credits. That good with you?”</i>");
 	
 	processTime(2);
 	
 	clearMenu();
-	if(pc.credits >= cost) addButton(0,"Okay",payTheLadyForLongHair,hairInches);
+	if(pc.credits >= ceriaServicePrice(cost)) addButton(0,"Okay",payTheLadyForLongHair,hairInches);
 	else addDisabledButton(0,"Okay","Okay","You can’t pay for that!");
 	//[OK] Go to Lengthen Treatment
 	//[Nevermind] Go to Ceria Main
@@ -320,7 +331,7 @@ public function payTheLadyForLongHair(hairInches:Number):void
 	
 	pc.hairLength = hairInches;
 	pc.hairStyle = "null";
-	pc.credits -= cost;
+	pc.credits -= ceriaServicePrice(cost);
 	
 	clearMenu();
 	addButton(0,"Next",serviceFromCeriaFinish);
@@ -333,7 +344,7 @@ public function getHairCut():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“It’ll be 200 credits a haircut and 100 for a minor trim, how short do you want it? Remember, I’ll have to restyle your hair after you cut it unless you just want it hanging loose.”</i>");
+	output("<i>“It’ll be " + ceriaServicePrice(200) + " credits a haircut and " + ceriaServicePrice(100) + " for a minor trim, how short do you want it? Remember, I’ll have to restyle your hair after you cut it unless you just want it hanging loose.”</i>");
 	processTime(1);
 	//[All below options go to Cut Treatment, gray out options PC is already shorter than or can’t afford]
 	//[Short]
@@ -343,43 +354,43 @@ public function getHairCut():void
 	//[Ankle-Length]
 	//[Back] Go to Ceria Hairwork
 	var btn:int = 0;
-	if (pc.credits >= 200 && pc.hairLength > 0) addButton(btn++, "Shave", cutHair, 0);
+	if (pc.credits >= ceriaServicePrice(200) && pc.hairLength > 0) addButton(btn++, "Shave", cutHair, 0);
 	else if(pc.hairLength > 0) addDisabledButton(btn++, "Shave", "Shave", "You can’t afford that!");
 	else addDisabledButton(btn++, "Shave", "Shave", "You need hair in order to get it cut!");
-	if(pc.credits >= 200 && pc.hairLength > 2) addButton(btn++,"Short",cutHair,2);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > 2) addButton(btn++,"Short",cutHair,2);
 	else if(pc.hairLength > 2) addDisabledButton(btn++,"Short","Short","You can’t afford that!");
 	else addDisabledButton(btn++,"Short","Short","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > 4) addButton(btn++,"Ear Length",cutHair,4);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > 4) addButton(btn++,"Ear Length",cutHair,4);
 	else if(pc.hairLength > 4) addDisabledButton(btn++,"Ear Length","Ear Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Ear Length","Ear Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > 6) addButton(btn++,"Neck Length",cutHair,6);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > 6) addButton(btn++,"Neck Length",cutHair,6);
 	else if(pc.hairLength > 6) addDisabledButton(btn++,"Neck Length","Neck Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Neck Length","Neck Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > 8) addButton(btn++,"Shoulders",cutHair,8);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > 8) addButton(btn++,"Shoulders",cutHair,8);
 	else if(pc.hairLength > 8) addDisabledButton(btn++,"Shoulders","Shoulders","You can’t afford that!");
 	else addDisabledButton(btn++,"Shoulders","Shoulders","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > 13) addButton(btn++,"Long",cutHair,13);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > 13) addButton(btn++,"Long",cutHair,13);
 	else if(pc.hairLength > 13) addDisabledButton(btn++,"Long","Long","You can’t afford that!");
 	else addDisabledButton(btn++,"Long","Long","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2.6) addButton(btn++,"Back Length",cutHair,pc.tallness/2.6);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > pc.tallness/2.6) addButton(btn++,"Back Length",cutHair,pc.tallness/2.6);
 	else if(pc.hairLength > pc.tallness/2.6) addDisabledButton(btn++,"Back Length","Back Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Back Length","Back Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/2) addButton(btn++,"Ass Length",cutHair,pc.tallness/2);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > pc.tallness/2) addButton(btn++,"Ass Length",cutHair,pc.tallness/2);
 	else if(pc.hairLength > pc.tallness/2) addDisabledButton(btn++,"Ass Length","Ass Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Ass Length","Ass Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.6) addButton(btn++,"Thigh Length",cutHair,pc.tallness/1.6);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > pc.tallness/1.6) addButton(btn++,"Thigh Length",cutHair,pc.tallness/1.6);
 	else if(pc.hairLength > pc.tallness/1.6) addDisabledButton(btn++,"Thigh Length","Thigh Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Thigh Length","Thigh Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.4) addButton(btn++,"Knee Length",cutHair,pc.tallness/1.4);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > pc.tallness/1.4) addButton(btn++,"Knee Length",cutHair,pc.tallness/1.4);
 	else if(pc.hairLength > pc.tallness/1.4) addDisabledButton(btn++,"Knee Length","Knee Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Knee Length","Knee Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness/1.2) addButton(btn++,"Calf Length",cutHair,pc.tallness/1.2);
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > pc.tallness/1.2) addButton(btn++,"Calf Length",cutHair,pc.tallness/1.2);
 	else if(pc.hairLength > pc.tallness/1.2) addDisabledButton(btn++,"Calf Length","Calf Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Calf Length","Calf Length","Your hair is already shorter than that!");
-	if(pc.credits >= 200 && pc.hairLength > pc.tallness - 1) addButton(btn++,"Ankle Length",cutHair,(pc.tallness - 1));
+	if(pc.credits >= ceriaServicePrice(200) && pc.hairLength > pc.tallness - 1) addButton(btn++,"Ankle Length",cutHair,(pc.tallness - 1));
 	else if(pc.hairLength > pc.tallness - 1) addDisabledButton(btn++,"Ankle Length","Ankle Length","You can’t afford that!");
 	else addDisabledButton(btn++,"Ankle Length","Ankle Length","Your hair is already shorter than that!");
-	if(pc.credits >= 100 && pc.hairLength > 1) addButton(13,"Trim",cutHair,(pc.hairLength - 1));
+	if(pc.credits >= ceriaServicePrice(100) && pc.hairLength > 1) addButton(13,"Trim",cutHair,(pc.hairLength - 1));
 	else if(pc.hairLength > 1) addDisabledButton(13,"Trim","Trim","You can’t afford that!");
 	else addDisabledButton(13,"Trim","Trim","Your hair is already shorter than that!");
 	addButton(14,"Back",hairworkFromCeria);
@@ -446,7 +457,7 @@ public function cutHair(hairInches:Number):void
 	
 	pc.hairLength = hairInches;
 	pc.hairStyle = "null";
-	pc.credits -= cost;
+	pc.credits -= ceriaServicePrice(cost);
 	
 	clearMenu();
 	addButton(0,"Next",serviceFromCeriaFinish);
@@ -459,17 +470,17 @@ public function hairColorMainMenu():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Right, so are you looking for a vanilla color, something metallic? If you’re looking for something really exotic, we’ve got these new treatments that actually make your hair glow. Personally, I like metallics.”</i> Ceria reaches up to rub one of her own glittering pink locks between her fingers for emphasis. <i>“500 credits for a vanilla or metallic, 600 for one of the glowing ones.”</i>");
+	output("<i>“Right, so are you looking for a vanilla color, something metallic? If you’re looking for something really exotic, we’ve got these new treatments that actually make your hair glow. Personally, I like metallics.”</i> Ceria reaches up to rub one of her own glittering pink locks between her fingers for emphasis. <i>“" + ceriaServicePrice(500) + " credits for a vanilla or metallic, " + ceriaServicePrice(600) + " for one of the glowing ones.”</i>");
 	//[Gray out options the PC can’t afford.]
 	clearMenu();
 	//[Standard] Go to Standard Hair Color
-	if(pc.credits >= 500) addButton(0,"Standard",ceriaHairColorMenu,"standard","Standard","Get dyed a traditional color.");
+	if(pc.credits >= ceriaServicePrice(500)) addButton(0,"Standard",ceriaHairColorMenu,"standard","Standard","Get dyed a traditional color.");
 	else addDisabledButton(0,"Standard","Standard","You can’t afford that!");
 	//[Metallic] Go to Metallic Hair Color
-	if(pc.credits >= 500) addButton(1,"Metallic",ceriaHairColorMenu,"metallic","Metallic","Get dyed a metallic color.");
+	if(pc.credits >= ceriaServicePrice(500)) addButton(1,"Metallic",ceriaHairColorMenu,"metallic","Metallic","Get dyed a metallic color.");
 	else addDisabledButton(1,"Metallic","Metallic","You can’t afford that!");
 	//[Glowing] Go to Glowing Hair Color
-	if(pc.credits >= 600) addButton(2,"Glowing",ceriaHairColorMenu,"glowing","Glowing","Get dyed a color that’ll glow in the dark.");
+	if(pc.credits >= ceriaServicePrice(600)) addButton(2,"Glowing",ceriaHairColorMenu,"glowing","Glowing","Get dyed a color that’ll glow in the dark.");
 	else addDisabledButton(2,"Glowing","Glowing","You can’t afford that!");
 	//[Back] Go To Hairwork
 	addButton(14,"Back",hairworkFromCeria);
@@ -542,6 +553,8 @@ public function ceriaHairDyeColors(colorType:String = "none", dyePart:String = "
 			colorList.push(["glowing silver", "G.Silver"]);
 			colorList.push(["glowing white", "G.White"]);
 			colorList.push(["iridescent", "Iridescent", ("Can’t decide on one color? Dye your " + dyePart + " iridescent for a more multi-colored look.")]);
+			if(pc.level >= 6 || pc.hasItemByClass(Foxfire)) colorList.push(["glowing ember", "Foxfire", ("Dye your " + dyePart + " glowing ember to appear as if it’s emitting hot fire.")]);
+			if(pc.level >= 6 || pc.hasItemByClass(Frostfire)) colorList.push(["fiery blue", "Frostfire", ("Dye your " + dyePart + " fiery blue to appear as if it’s covered in cool flames.")]);
 			break;
 	}
 	
@@ -608,8 +621,8 @@ public function hairColorizing(newColor:String = "black"):void
 		pc.lust(10);
 	}
 	pc.hairColor = newColor;
-	pc.credits -= 500;
-	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= 100;
+	pc.credits -= ceriaServicePrice(500);
+	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= ceriaServicePrice(100);
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",serviceFromCeriaFinish);
@@ -671,12 +684,12 @@ public function styleConfirmation(hStyle:String = ""):void
 	else if(hStyle == "afro") output(" worn as an ");
 	else if(hStyle == "mohawk") output(" done up as a ");
 	else output(" ");
-	output(hStyle + "? That’ll be 1200 credits.”</i>");
+	output(hStyle + "? That’ll be " + ceriaServicePrice(1200) + " credits.”</i>");
 	processTime(1);
 	//[OK] Go to Styling
 	//[Nevermind] Go To Hairwork
 	clearMenu();
-	if(pc.credits >= 1200) addButton(0,"Okay",styleDatHairGo,hStyle);
+	if(pc.credits >= ceriaServicePrice(1200)) addButton(0,"Okay",styleDatHairGo,hStyle);
 	else addDisabledButton(0,"Okay","Okay","You can’t afford that.");
 	addButton(1,"Nevermind",hairworkFromCeria);
 }
@@ -689,11 +702,82 @@ public function styleDatHairGo(hStyle:String):void
 	author("Couch");
 	output("Ceria sits you down in one of the salon chairs and gets out her tools, setting to work on styling your hair. By the time she’s done, you’re the proud bearer of a brand-new look.");
 	processTime(1);
-	pc.credits -= 1200;
+	pc.credits -= ceriaServicePrice(1200);
 	pc.hairStyle = hStyle;
 	//[Next] Go To Ceria Main
 	clearMenu();
 	addButton(0,"Next",serviceFromCeriaFinish);
+}
+
+//Fur Shear Options
+public function furShearMenu():void
+{
+	clearOutput();
+	showCeria();
+	author("Jacques00");
+	
+	output("<i>“Ah, is your wool making you all stuffy and hot or do you just want to keep it under control? In any case, a full body cut like that will cost a bit more than a normal haircut would, but since I can make a profit off the fleece, you get a store discount. It’ll be " + ceriaServicePrice(500) + " credits for a trim with 50% off on the next service or purchase, and " + ceriaServicePrice(900) + " credits for a full shearing with the next service or purchase on-the-house--how’s that sound?”</i>");
+	
+	processTime(1);
+	clearMenu();
+	if(pc.credits >= ceriaServicePrice(500)) addButton(0,"Trim",furShearWool,"trim","Trim","Trim your wool until you have shorter fur.");
+	else addDisabledButton(0,"Trim","Trim","You can’t afford this.");
+	if(pc.credits >= ceriaServicePrice(900)) addButton(1,"Shear",furShearWool,"shear","Shear","Shear off your fleece completely.");
+	else addDisabledButton(1,"Shear","Shear","You can’t afford this.");
+	addButton(14,"Back",hairworkFromCeria);
+}
+public function furShearWool(cutType:String = "none"):void
+{
+	clearOutput();
+	showCeria();
+	author("Jacques00");
+	
+	var cost:Number = 0;
+	
+	output("<i>“Okay, a " + cutType + " it is! Right this way....”</i>");
+	output("\n\nThe fairy-morph guides you to room with a harness chair fit for your body type. You " + (!pc.isNude() ? "remove your clothing" : "set aside your gear") + ", settle in - the padded straps making things a little more comfortable - and wait for Ceria to gather her tools. When she returns, she has a pair of classic shears and an electric razor. Pressing a button on a nearby wall, the chair lifts and you are raised to an upright position where Ceria can access your body freely.");
+	output("\n\n<i>“Now be patient, " + (pc.sheepScore() >= 5 ? "my [pc.raceBoyGirlSimple]" : "cutie") + ", and don’t wriggle too much--it’ll be just a moment.”</i>");
+	output("\n\nWith great expertise, Ceria takes her shears and gets to work trimming the fleece on your body, especially on your chest and back.");
+	
+	switch(cutType)
+	{
+		case "trim":
+			output(" Patch after patch is cut and sliced until your fur is whittled to a much shorter and less curly length, making you appear thinner than you were when you came in. She neatly crops and sculpts a few areas with her clippers and finishes you off with a quick full-body brush down, making sure you’re as clean as possible.");
+			cost = 500;
+			break;
+		case "shear":
+			output(" The scissors are cut very close to your [pc.skinNoun], but the shearer is careful enough to not pierce you. She goes at a rapid pace, snipping away at the base of each wooly follicle until she is creating a large net of your fleece below you. After she completes shearing the major portions of your wool, she takes her clippers and shaves the harder to reach areas, revealing your nude skin underneath. She then brushes you off a few times, making sure you’re as clean as possible, and proceeds to douse and rub your naked body with some kind of skin conditioning lotion, most likely to prevent any itching side effects.");
+			var hasSmooth:Boolean = pc.hasSkinFlag(GLOBAL.FLAG_SMOOTH);
+			var hasFluff:Boolean = pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY);
+			if(hasFluff) output(" She flicks the fluff ball on your chest and giggles. She obviously left that there because she thought it was cute.");
+			pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			pc.clearSkinFlags();
+			if(hasSmooth) pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+			if(hasFluff) pc.addSkinFlag(GLOBAL.FLAG_FLUFFY);
+			cost = 900;
+			break;
+	}
+	output("\n\nWhen another button on the wall is pressed, the harness gently descends and releases you to your [pc.feet].");
+	output("\n\n<i>“Whew. My guess is your wool will grow back in a week or so, so be sure to come back if you want me to " + cutType + " it again.”</i> Ceria wipes her forehead and grabs a data slate near the cash register. <i>“And like I promised, your discount!”</i> A few quick beeps from your codex makes the transaction complete.");
+	if(pc.sheepScore() >= 5) output(" You give her a " + pc.mf("bleated", "soft") + " <i>“baa”</i> like the sheep you are.");
+	output("\n\nYou redon your gear while the fairy sweeps your wool away into a storage container.");
+	
+	// Reset wool timer
+	pc.setPerkValue("Wooly", 1, -7);
+	// Take cash, remove any discounts
+	pc.credits -= ceriaServicePrice(cost);
+	if(pc.hasKeyItem("Coupon - Shear Beauty")) pc.removeKeyItem("Coupon - Shear Beauty");
+	// Give discounts
+	output("\n\n<b>You have gained a coupon for any service or purchase from Shear Beauty!</b>");
+	switch(cutType)
+	{
+		case "trim": pc.createKeyItem("Coupon - Shear Beauty", 0.5, 0, 0, 0, "Save 50% on your next purchase or service at Shear Beauty!"); break;
+		case "shear": pc.createKeyItem("Coupon - Shear Beauty", 0.0, 0, 0, 0, "Your next purchase or service is FREE at Shear Beauty!"); break;
+	}
+	
+	processTime(32);
+	clearMenu();
+	addButton(0,"Next",serviceFromCeriaFinish, false);
 }
 
 //Ceria Does Your Fur
@@ -703,7 +787,7 @@ public function furColorMenu():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("<i>“Fur, huh? Okay, these are pretty much the same options as hair. We’ve got like vanilla colors, metallics, glowy fur... pick whatever kind you want. Because it’s a full-body treatment, I’m gonna have to charge 1,500 credits for a vanilla or metallic, 1,800 for one of the glowy colors. Fur’s a lot of dye.”</i>");
+	output("<i>“Fur, huh? Okay, these are pretty much the same options as hair. We’ve got like vanilla colors, metallics, glowy fur... pick whatever kind you want. Because it’s a full-body treatment, I’m gonna have to charge " + ceriaServicePrice(1500) + " credits for a vanilla or metallic, " + ceriaServicePrice(1800) + " for one of the glowy colors. Fur’s a lot of dye.”</i>");
 
 	//[Standard] Go to Standard Fur Color
 	//[Metallic] Go to Metallic Fur Color
@@ -711,11 +795,11 @@ public function furColorMenu():void
 	//[Back] Go To Hairwork
 	processTime(1);
 	clearMenu();
-	if(pc.credits >= 1500) addButton(0,"Standard",ceriaFurColorMenu,"standard","Standard","Standard colors.");
+	if(pc.credits >= ceriaServicePrice(1500)) addButton(0,"Standard",ceriaFurColorMenu,"standard","Standard","Standard colors.");
 	else addDisabledButton(0,"Standard","Standard","You can’t afford this.");
-	if(pc.credits >= 1500) addButton(1,"Metallic",ceriaFurColorMenu,"metallic","Metallic","Metallic colors.");
+	if(pc.credits >= ceriaServicePrice(1500)) addButton(1,"Metallic",ceriaFurColorMenu,"metallic","Metallic","Metallic colors.");
 	else addDisabledButton(1,"Metallic","Metallic","You can’t afford this.");
-	if(pc.credits >= 1800) addButton(2,"Glowing",ceriaFurColorMenu,"glowing","Glowing","Glowing colors.");
+	if(pc.credits >= ceriaServicePrice(1800)) addButton(2,"Glowing",ceriaFurColorMenu,"glowing","Glowing","Glowing colors.");
 	else addDisabledButton(2,"Glowing","Glowing","You can’t afford this.");
 	addButton(14,"Back",hairworkFromCeria);
 }
@@ -857,8 +941,8 @@ public function furColorApplicationGo(newColor:String):void
 
 		output("\n\nCeria doesn’t stop until she empties out the entire tub, leaving you tingling all over as the payload in the gel gets to work altering your fur all the way down to the roots. By the time she lets you up, you’ve got an all-new palette to your pelt. <b>Your fur is now " + newColor + "!</b>");
 	}
-	pc.credits -= 1500;
-	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= 300;
+	pc.credits -= ceriaServicePrice(1500);
+	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= ceriaServicePrice(300);
 	pc.furColor = newColor;
 	//[Next] Go to Ceria Main
 	processTime(22);
@@ -999,11 +1083,11 @@ public function ceriaAppearance():void
 	clearOutput();
 	showCeria();
 	author("Couch");
-	output("If you had to sum Ceria up in a phrase, it would be <i>“sparkly bubblegum elf”</i>. Practically everything about her, save for her well-tanned skin, is some shade of pink or blue, and most of it metallic at that. Her rose gold hair would hang down to just over her cleavage if it wasn’t tied back into a ponytail, while her eyes are a bright sapphire color with an unnatural gleam, both visibly the product of gene-modding. Her lips too are rose gold, either by mods or by lipstick. They’re just plump enough to be enticing without being slutty, and emphasized by the bubblegum you frequently see her blowing when she’s not doing someone’s hair.");
+	output("If you had to sum Ceria up in a phrase, it would be “sparkly bubblegum elf”. Practically everything about her, save for her well-tanned skin, is some shade of pink or blue, and most of it metallic at that. Her rose gold hair would hang down to just over her cleavage if it wasn’t tied back into a ponytail, while her eyes are a bright sapphire color with an unnatural gleam, both visibly the product of gene-modding. Her lips too are rose gold, either by mods or by lipstick. They’re just plump enough to be enticing without being slutty, and emphasized by the bubblegum you frequently see her blowing when she’s not doing someone’s hair.");
 	output("\n\nA luminous pink arrowhead-like marking adorns each of Ceria’s cheeks, drawing attention to her other notable facial feature, the pair of seven-inch triangular ears that stick out horizontally from either side of her head. Each is as long as her head is wide, twitching and drooping to emphasize - indeed, dramatize - every shift of her expression.");
 	output("\n\nBoth of Ceria’s arms are covered in what look like long metallic blue gloves, but they’re far too form-fitting to really be gloves. They must be the product of transformation as well, replacing her skin with a glistening lapis material that flows and shimmers every time her fingers flex. They come to gently pointed tips with no distinct fingernails, just flawless metal all the way from her hands to halfway up her upper arms. Her legs, though you can’t see them at the moment under her jeans, sport matching coverings from the thigh down. Unlike her hands, her feet forgo toes outright, instead being fused together and shaped in such a way that it looks as though she were wearing slippers with delicately pointed tips.");
 	output("\n\nThe elven girl’s white top and blue jeans are cut just daringly enough that you can see the luminous pink body markings along her lean belly and cleavage, and of course plenty daring enough that you can get a good look at her cleavage itself. Ceria’s sporting a hefty DD-cup rack that sits high and proud on her chest, and as soon as she spots you looking her over she crosses her arms underneath them to push those twin volleyballs up higher still, giving you a playful wink. Her hips are no less impressive, and her butt is just big enough to give her jeans something to stretch nice and tight around.");
-	output("\n\nStanding at 5’8” tall, she’s just a touch on the tall side for a human female, though far from imposingly so.");
+	output("\n\nStanding at 5\' 8\" tall, she’s just a touch on the tall side for a human female, though far from imposingly so.");
 	if(fuckedCeria()) output(" You know from experience that she has a bubblegum-pink terran pussy between her legs, plus a cute little asshole between her cheeks right where it belongs.");
 	//[Next] Go to Ceria Main
 	clearMenu();
@@ -1034,7 +1118,7 @@ public function ceriaSexMenu():void
 	if(pc.hasCock() && pc.cockThatFits(400) >= 0) addButton(2,"Fuck Ceria",fuckCeria,undefined,"Fuck Ceria","Take Ceria to the break room and give her pussy a pounding.");
 	else addDisabledButton(2,"Fuck Ceria","Fuck Ceria","You need a penis that’ll fit inside Ceria to fuck her.");
 	//[Fairy Footjob] You wouldn’t mind finding out what those slipper feet feel like on your dick. // Requires dick.
-	if(pc.hasCock()) addButton(3,"Footjob",fairyFootjob,undefined,"Footjob","You wouldn’t mind finding out what those slipper feet feel like on your dick.");
+	if(pc.hasCock()) addButton(3,"Footjob",fairyFootjob,undefined,"Fairy Footjob","You wouldn’t mind finding out what those slipper feet feel like on your dick.");
 	else addDisabledButton(3,"Footjob","Footjob","You need a dick to get a footjob.");
 	if(pc.hasVagina()) addButton(4,"Ear Fuck",earFuckWithCeria,undefined,"Ear Fuck","Since those ears are so sensitive, and of appropriate length... why not try putting one inside a vagina.");
 	else addDisabledButton(4,"Ear Fuck","Ear Fuck","You need a vagina if you want to put her ear inside one.");
@@ -1462,7 +1546,7 @@ public function earFuckCeriaPart3():void
 //Appearance Adjustments
 //New Stat
 //[pc.hairstyle]
-//String value.  Default value of null.  If null or an unrecognized value, does nothing.  If a recognized value, adds a relevant line to appearance descriptor.
+//String value. Default value of null. If null or an unrecognized value, does nothing. If a recognized value, adds a relevant line to appearance descriptor.
 
 /*
 Revised Description (Vanilla Hair)
@@ -1530,5 +1614,5 @@ Glowing Gold
 
 New Global Flag
 HEARD_OF_NAHRI
-Currently affects a piece of dialogue in the Touch Pointy Ears scene.  Will eventually be used to cause Nahri to appear if/when her xpack is written.
+Currently affects a piece of dialogue in the Touch Pointy Ears scene. Will eventually be used to cause Nahri to appear if/when her xpack is written.
 */

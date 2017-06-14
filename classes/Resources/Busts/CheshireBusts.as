@@ -103,6 +103,20 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
+		public function get Bust_PENNY_NUDE():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_NUDE_VIXEN():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_NUDE_VIXEN_1():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_NUDE_VIXEN_2():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_NUDE_HORSE():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_NUDE_HORSE_1():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_NUDE_HORSE_2():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_BIMBO():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_BIMBO_VIXEN():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_BIMBO_VIXEN_1():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_BIMBO_VIXEN_2():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_BIMBO_HORSE():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_BIMBO_HORSE_1():Class { return Bust_PENNY; }
+		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Reaha.png", mimeType = "image/png")]
 		public var Bust_REAHA:Class;
@@ -113,7 +127,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Syri.png", mimeType = "image/png")]
 		public var Bust_SYRI:Class;
-		public function get Bust_SYRI_NUDE():Class { return Bust_SYRI; }
+		[Embed(source = "../../../assets/images/npcs/cheshire/Syri_Nude.png", mimeType = "image/png")]
+		public var Bust_SYRI_NUDE:Class;
+		//public function get Bust_SYRI_NUDE():Class { return Bust_SYRI; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Vanae_Huntress.png", mimeType = "image/png")]
 		public var Bust_VANAE_HUNTRESS:Class;
@@ -223,6 +239,20 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Penny.png", mimeType = "image/png")]
 			public var Full_PENNY:Class;
+			public function get Full_PENNY_NUDE():Class { return Full_PENNY; }
+			public function get Full_PENNY_NUDE_VIXEN():Class { return Full_PENNY; }
+			public function get Full_PENNY_NUDE_VIXEN_1():Class { return Full_PENNY; }
+			public function get Full_PENNY_NUDE_VIXEN_2():Class { return Full_PENNY; }
+			public function get Full_PENNY_NUDE_HORSE():Class { return Full_PENNY; }
+			public function get Full_PENNY_NUDE_HORSE_1():Class { return Full_PENNY; }
+			public function get Full_PENNY_NUDE_HORSE_2():Class { return Full_PENNY; }
+			public function get Full_PENNY_BIMBO():Class { return Full_PENNY; }
+			public function get Full_PENNY_BIMBO_VIXEN():Class { return Full_PENNY; }
+			public function get Full_PENNY_BIMBO_VIXEN_1():Class { return Full_PENNY; }
+			public function get Full_PENNY_BIMBO_VIXEN_2():Class { return Full_PENNY; }
+			public function get Full_PENNY_BIMBO_HORSE():Class { return Full_PENNY; }
+			public function get Full_PENNY_BIMBO_HORSE_1():Class { return Full_PENNY; }
+			public function get Full_PENNY_BIMBO_HORSE_2():Class { return Full_PENNY; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Reaha.png", mimeType = "image/png")]
 			public var Full_REAHA:Class;
@@ -233,7 +263,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Syri.png", mimeType = "image/png")]
 			public var Full_SYRI:Class;
-			public function get Full_SYRI_NUDE():Class { return Full_SYRI; }
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Syri_Nude.png", mimeType = "image/png")]
+			public var Full_SYRI_NUDE:Class;
+			//public function get Full_SYRI_NUDE():Class { return Full_SYRI; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Vanae_Huntress.png", mimeType = "image/png")]
 			public var Full_VANAE_HUNTRESS:Class;

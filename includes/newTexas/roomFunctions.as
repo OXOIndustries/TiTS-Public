@@ -22,6 +22,42 @@ public function newTexasRoadFirstTime():Boolean
 	return false;
 }
 
+public function milkBarn512Func():Boolean
+{
+	output("You’re standing square in the middle of a wide passage that runs north-south through the center of the barn. Stalls line it on either side along its whole length, but what really catches your eye is the bank of blinking lights built into the eastern wall. Flat panel displays, blinking lights, and various keypads all vie for your attention. It looks like you’ve found the controls for the barn’s machinery.");
+	if(9999 == 9999)
+	{
+		output(" The stall next to the console is closed, and marked “occupied”. Faint moans emanate from within.");
+		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+	}
+	else output(" The stall next to the console is slightly open, and marked “unoccupied”.");
+	output(" Opposite, the door hangs open. You could step inside if you wished.");
+	
+	giannaBonusShit();
+	
+	return false;
+}
+public function milkBarn513Func():Boolean
+{
+	output("It’s not often you get to see buildings constructed in the ancients’ styles, built with nothing more than beams of hewn wood, sweat, and a few metal bolts. Of course, here and there you see hints of modern technology running through it. New Texas may be an upper-class tourist hotspot advertised as getting back to nature, but they’re obviously spending their credits on securing the best milking technology available.");
+	if(9999 == 9999)
+	{
+		output(" Judging by the deep groans of pleasure coming from the sealed stall to the west, they’re milking more than milk too. The door to the east is marked “occupied” as well.");
+		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	}
+	else output(" The door to the east is marked “unoccupied”.");
+	output("\n\nYou can hear a dull thudding coming from one of the stalls to the east.");
+	
+	return randomBarnEventFunc();
+}
+public function milkBarn514Func():Boolean
+{
+	output("The barn’s central thoroughfare comes to an abrupt end here at the north wall. Worse yet, only one of the stalls has the door open. You can enter it to the west, if you like. To the east, there’s rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You’ll need to head south if you want to clear your head.");
+	flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+	
+	return randomBarnEventFunc();
+}
+
 public function manMilkerRoomBonusFunc():Boolean
 {
 	output("Unlike most of the stalls in the Milk Barn, this one isn’t closed or empty.");
@@ -54,8 +90,7 @@ public function NTGiftShopBonusFunc():Boolean
 	{
 		flags["SEEN_ELLIES_SHOP"] = 1;
 		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you’ve just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");
-		//applyDamage(new TypeCollection( { tease: 10 } ), null, pc, "minimal");
-		pc.lust(10);
+		applyDamage(new TypeCollection( { tease: 10 } ), chars["ELLIE"], pc, "minimal");
 	}
 	else pc.lust(5);
 	output("The gift shop looks like every other gift shop in the ‘verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There’s a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled “The Treatment.” ");
@@ -80,6 +115,7 @@ public function NTBarbequeBonusFunc():Boolean
 	output(" is busily trying to fill the orders as they come in, clearly swamped with customers.");
 	addButton(0,"Food",getFoodAtBigTs,undefined,"Food","See what’s on the menu.");
 	addButton(1,"Watch Screen",stephIrsonBySavinWhoSaysHesTiredOfTreatedCowBimbosThenMakesHerATreatedCowGirlForShitsAndGigglesWhyIsThisFunctionNameSoLong,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
+	vendingMachineButton(2);
 	return false;
 }
 

@@ -591,7 +591,7 @@ public function kq2rfYardA1():Boolean
 
 	output("\n\nThere’s a kennel here, made of steel and bearing several power hook-ups. A tag on the side of it indicates it’s a <i>“Fenris assault drone charging and repair station”</i> made by KihaCorp.");
 
-	if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolfDamaged || pc.hasItemByType(TamWolfDamaged)))
+	if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolfDamaged || pc.hasItemByClass(TamWolfDamaged)))
 	{
 		output("\n\nTam-wolf stalks toward the kennel and sniffs at one of the charging bays. <i>“M-m-[pc.master], I am baaaaadly damaged. With your permission, I will-will-will initiate repair protocooooools.”</i>");
 
@@ -605,7 +605,7 @@ public function kq2rfYardA1():Boolean
 		if (pc.accessory is TamWolfDamaged) pc.accessory = new TamWolf();
 		else
 		{
-			pc.destroyItemByType(TamWolfDamaged);
+			pc.destroyItemByClass(TamWolfDamaged);
 			pc.inventory.push(new TamWolf());
 		}
 
@@ -618,7 +618,7 @@ public function kq2rfYardA1():Boolean
 		addButton(0, "Next", mainGameMenu);
 		return true;
 	}
-	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByType(TamWolf)))
+	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByClass(TamWolf)))
 	{
 		output("\n\nTam-wolf stalks toward the kennel and sniffs at one of the charging bays. <i>“[pc.Master], I detect a hardware update available, brought to you free of charge by FenCo, a subsidiary of KihaCorp. May I have permission to be upgraded?”</i>");
 		
@@ -634,7 +634,7 @@ public function kq2rfYardA1():Boolean
 		if (pc.accessory is TamWolf) pc.accessory = new TamWolfII();
 		else
 		{
-			pc.destroyItemByType(TamWolf);
+			pc.destroyItemByClass(TamWolf);
 			pc.inventory.push(new TamWolfII());
 		}
 		processTime(2);
@@ -727,7 +727,7 @@ public function kq2TakeEngineerArmor():void
 
 public function kq2EngineerArmorCheck():void
 {
-	if (pc.armor is VoidPlateArmor || pc.hasItemByType(VoidPlateArmor))
+	if (pc.armor is VoidPlateArmor || pc.hasItemByClass(VoidPlateArmor))
 	{
 	mainGameMenu();
 		return;
@@ -894,7 +894,7 @@ public function kq2rfKhansLab():Boolean
 
 public function kq2rfLab2():Boolean
 {
-	output("A corridor connect’s Khan’s lab up north to what’s marked as <i>“Khan’s Office”</i> to the east, and the <i>“Slave Quarters”</i> and <i>“Server Room”</i> to the south. Several devices of unknowable purpose are pushed up against the walls, buzzing quietly as they work on... whatever it is they do.");
+	output("A corridor connect’s Khan’s lab up north to what’s marked as “Khan’s Office” to the east, and the “Slave Quarters” and “Server Room” to the south. Several devices of unknowable purpose are pushed up against the walls, buzzing quietly as they work on... whatever it is they do.");
 
 	if (flags["KQ2_WATSON_MET"] != undefined) output("\n\nCome on. Khan’s quarters are here. I know we’re in a hurry, but I </i>have<i> to see something!”</i>");
 
@@ -903,7 +903,7 @@ public function kq2rfLab2():Boolean
 
 public function kq2rfKhansQuarters():Boolean
 {
-	output("Khan’s <i>“office”</i> is as much the doctor’s quarters as it is workspace. A very large bed is shoved up against the back wall, clearly custom-made to allow the massively inflated kui-tan to actually recline without having to heft his massive nads from the floor thanks to a half-circle cut from the foot of the bed. How he managed to drag himself all the way from the lab here is another mystery altogether.");
+	output("Khan’s “office” is as much the doctor’s quarters as it is workspace. A very large bed is shoved up against the back wall, clearly custom-made to allow the massively inflated kui-tan to actually recline without having to heft his massive nads from the floor thanks to a half-circle cut from the foot of the bed. How he managed to drag himself all the way from the lab here is another mystery altogether.");
 
 	if (flags["KQ2_WATSON_MET"] != undefined && flags["KQ2_KHANS_FILES"] == undefined) addButton(0, "Kara", kq2KhansQuartersKaraThing, undefined, "Kara", "Have Kara do... whatever it is she needs to do.");
 	return false;

@@ -199,7 +199,6 @@
 			rangedWeapon = new (RandomInCollection(EagleHandgun, HammerPistol, LaserPistol))();
 			sexualPreferences.setRandomPrefs(7, 1);
 			inventory.push(new ReaperArmamentsMarkIShield());
-			
 			this._isLoading = false;
 		}
 		

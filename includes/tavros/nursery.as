@@ -528,7 +528,7 @@ public function nurseryPlayerApptFunc():Boolean
 	if (flags["BRIGET_MET"] != undefined && (pc as PlayerCharacter).hasPregnancyOfTypeOtherThan("EggTrainerFauxPreg")) addButton(0, "Maternity", nurseryMaternityWait, undefined, "Maternity Wait", "The nursery is set up to support you for the long term if need be. If adventuring across the galaxy while pregnant doesn’t seem like the best idea, you can move into the nursery and allow the staff to take care of you until you’re ready to pop.");
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
-	addButton(1, "Shower", showerOptions, 0); // 9999 this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
+	addButton(1, "Shower", showerMenu, "nursery"); // this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
 
 	return false;
 }
@@ -1223,6 +1223,9 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.chitinColor == null) baby.chitinColor = "NOT SET";
 				if(baby.featherColor == null) baby.featherColor = "NOT SET";
 				
+				// Race Hotfix
+				if(baby.originalRace != "human" && baby.originalRace.indexOf("half") != -1 && baby.originalRace.indexOf("human") != -1) baby.originalRace = "human";
+				
 				// Print stats
 				if(baby.Quantity == 1) output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
 				else output("\n<b>* " + StringUtil.toDisplayCase(num2Text(baby.Quantity)) + " Children:</b> ");
@@ -1338,21 +1341,20 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 		case GLOBAL.UPBRINGING_PAMPERED:
 			output("\n\nConsidering the way Briget brought you up, completely in the lap of luxury with all the love and attention - and expensive things - you could ever want, you know she’s telling the truth.");
 			break;
-
 		case GLOBAL.UPBRINGING_AUSTERE:
 			output("\n\nMaybe without Dad around to force your kids to endure what you went through, she’ll actually be able to live up to that promise.");
 			break;
-
 		case GLOBAL.UPBRINGING_ATHLETIC:
 			output("\n\nYou’re more concerned about them growing up nice and strong like you - but despite her soft, curvy physique, you know Briget’s more than capable of ensuring that. She plays a mean game of gravball for a hundred and thirty year old.");
 			break;
-
 		case GLOBAL.UPBRINGING_BOOKWORM:
 			output("\n\nEducation, you know, Briget can handle in spades. She looks every bit the sexy teacher, and has the cyber-brain to match.");
 			break;
-
-		default:
+		/*case GLOBAL.UPBRINGING_SLUTTY:
+			output("\n\nBriget must not have realized exactly what you were up to all those years, but you feel that she won't let them get up to anything naughty for a long while.");
+			break;*/
 		case GLOBAL.UPBRINGING_BALANCED:
+		default:
 			output("\n\nYou turned out better than average under her care, and that was in Dad’s estate, not that much different from your average kid. With a staff of experts and a top of the line facility under her direction, you can’t wait to see what Briget can do.");
 			break;
 	}
@@ -1472,7 +1474,7 @@ public function nurseryBrigetNurseryStaff():void
 	author("Savin");
 	showBriget();
 
-	//{Has no special staff:
+	//Has no special staff:
 	if (!hasNurseryStaff())
 	{
 		output("Out of curiosity, you ask <i>“If I find someone out there in the galaxy that would fit in well here at the nursery, can I offer them a job?”</i>");

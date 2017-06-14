@@ -70,21 +70,114 @@ public function initNewTexasRooms():void
 	rooms["505"] = new RoomClass(this);
 	rooms["505"].roomName = "THE\nROAD";
 	rooms["505"].description = "Little puffs of dust kick up with each step you take on this east-west thoroughfare. The roadway is a simple affair of cleared dirt that’s been weatherworn into what feels more like a series of ruts than a transportation hub. A gleaming white post protrudes from the waving grasses to the north, anchoring the eastmost side of an expansive porch. Behind it sits a large farmhouse; many of the passersby look to be heading towards its entrance - just to the west.";
-	rooms["505"].runOnEnter = undefined;
+	//rooms["505"].runOnEnter = ;
 	rooms["505"].westExit = "504";
-	rooms["505"].eastExit = "506";
+	rooms["505"].eastExit = "505.5";
 	rooms["505"].planet = "PLANET: NEW TEXAS";
 	rooms["505"].system = "SYSTEM: NYE";
 	rooms["505"].addFlag(GLOBAL.OUTDOOR);
 	rooms["505"].addFlag(GLOBAL.PUBLIC);
 	//rooms["505"].addFlag(GLOBAL.NPC);
+
+	//BUCKING BRONCO
+	rooms["BUCKING BRONCO"] = new RoomClass(this);
+	rooms["BUCKING BRONCO"].roomName = "BUCKING\nBRONCO";
+	rooms["BUCKING BRONCO"].description = "";
+	rooms["BUCKING BRONCO"].runOnEnter = saloonInteriorBonus;
+	rooms["BUCKING BRONCO"].northExit = "505.5";
+	rooms["BUCKING BRONCO"].westExit = "BRONCO STAIRS 1";
+	rooms["BUCKING BRONCO"].eastExit = "BRONCO STAGE";
+	rooms["BUCKING BRONCO"].planet = "PLANET: NEW TEXAS";
+	rooms["BUCKING BRONCO"].system = "SYSTEM: NYE";
+	rooms["BUCKING BRONCO"].addFlag(GLOBAL.INDOOR);
+	rooms["BUCKING BRONCO"].addFlag(GLOBAL.PUBLIC);
+	rooms["BUCKING BRONCO"].addFlag(GLOBAL.BAR);
 	
+	//BUCKING BRONCO Stairs Up
+	rooms["BRONCO STAIRS 1"] = new RoomClass(this);
+	rooms["BRONCO STAIRS 1"].roomName = "STAIRS\n1F";
+	rooms["BRONCO STAIRS 1"].description = "There is a flight of stairs located here that leads up to the second floor, or the Broodmare Bordello.";
+	rooms["BRONCO STAIRS 1"].runOnEnter = saloonStairsBonus;
+	rooms["BRONCO STAIRS 1"].eastExit = "BUCKING BRONCO";
+	//rooms["BRONCO STAIRS 1"].inExit = "BRONCO STAIRS 2";
+	//rooms["BRONCO STAIRS 1"].inText = "Up";
+	rooms["BRONCO STAIRS 1"].planet = "PLANET: NEW TEXAS";
+	rooms["BRONCO STAIRS 1"].system = "SYSTEM: NYE";
+	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.INDOOR);
+	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.PUBLIC);
+	rooms["BRONCO STAIRS 1"].addFlag(GLOBAL.LIFTUP);
+	
+	//BUCKING BRONCO Stairs Down
+	rooms["BRONCO STAIRS 2"] = new RoomClass(this);
+	rooms["BRONCO STAIRS 2"].roomName = "STAIRS\n2F";
+	rooms["BRONCO STAIRS 2"].description = "The stairway here travels back down to first floor of the Bucking Bronco Saloon.";
+	rooms["BRONCO STAIRS 2"].runOnEnter = saloonStairsBonus;
+	rooms["BRONCO STAIRS 2"].eastExit = "BROODMARE BORDELLO";
+	//rooms["BRONCO STAIRS 2"].outExit = "BRONCO STAIRS 1";
+	//rooms["BRONCO STAIRS 2"].outText = "Down";
+	rooms["BRONCO STAIRS 2"].planet = "PLANET: NEW TEXAS";
+	rooms["BRONCO STAIRS 2"].system = "SYSTEM: NYE";
+	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.INDOOR);
+	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.PUBLIC);
+	rooms["BRONCO STAIRS 2"].addFlag(GLOBAL.LIFTDOWN);
+	
+	//BUCKING BRONCO Bordello
+	rooms["BROODMARE BORDELLO"] = new RoomClass(this);
+	rooms["BROODMARE BORDELLO"].roomName = "BROODMARE\nBORDELLO";
+	rooms["BROODMARE BORDELLO"].description = "";
+	rooms["BROODMARE BORDELLO"].runOnEnter = undefined;
+	rooms["BROODMARE BORDELLO"].westExit = "BRONCO STAIRS 2";
+	rooms["BROODMARE BORDELLO"].planet = "PLANET: NEW TEXAS";
+	rooms["BROODMARE BORDELLO"].system = "SYSTEM: NYE";
+	rooms["BROODMARE BORDELLO"].addFlag(GLOBAL.INDOOR);
+	rooms["BROODMARE BORDELLO"].addFlag(GLOBAL.PUBLIC);
+	rooms["BROODMARE BORDELLO"].addFlag(GLOBAL.NPC);
+	
+	//BUCKING BRONCO Stage
+	rooms["BRONCO STAGE"] = new RoomClass(this);
+	rooms["BRONCO STAGE"].roomName = "STAGE\nAREA";
+	rooms["BRONCO STAGE"].description = "";
+	rooms["BRONCO STAGE"].runOnEnter = undefined;
+	rooms["BRONCO STAGE"].westExit = "BUCKING BRONCO";
+	rooms["BRONCO STAGE"].planet = "PLANET: NEW TEXAS";
+	rooms["BRONCO STAGE"].system = "SYSTEM: NYE";
+	rooms["BRONCO STAGE"].addFlag(GLOBAL.INDOOR);
+	rooms["BRONCO STAGE"].addFlag(GLOBAL.PUBLIC);
+	rooms["BRONCO STAGE"].addFlag(GLOBAL.NPC);
+	
+
+	//505.5 The Road
+	rooms["505.5"] = new RoomClass(this);
+	rooms["505.5"].roomName = "THE\nROAD";
+	rooms["505.5"].description = "";
+	rooms["505.5"].westExit = "505";
+	rooms["505.5"].eastExit = "505.75";
+	rooms["505.5"].southExit = "BUCKING BRONCO";
+	rooms["505.5"].planet = "PLANET: NEW TEXAS";
+	rooms["505.5"].system = "SYSTEM: NYE";
+	rooms["505.5"].addFlag(GLOBAL.OUTDOOR);
+	rooms["505.5"].addFlag(GLOBAL.PUBLIC);
+	rooms["505.5"].runOnEnter = approachBuckBronoBonus;
+
+	//505.75 The Road
+	rooms["505.75"] = new RoomClass(this);
+	rooms["505.75"].roomName = "THE\nROAD";
+	rooms["505.75"].description = "";
+	rooms["505.75"].runOnEnter = brandyBonusShiiiit;
+	rooms["505.75"].westExit = "505.5";
+	rooms["505.75"].eastExit = "506";
+	rooms["505.75"].planet = "PLANET: NEW TEXAS";
+	rooms["505.75"].system = "SYSTEM: NYE";
+	rooms["505.75"].addFlag(GLOBAL.OUTDOOR);
+	rooms["505.75"].addFlag(GLOBAL.PUBLIC);
+	rooms["505.75"].addFlag(GLOBAL.NPC);
+
 	//506 The Road
 	rooms["506"] = new RoomClass(this);
 	rooms["506"].roomName = "THE\nROAD";
 	rooms["506"].description = "Wooden fence posts line the roadside, polished to such a gleaming sheen that you can see your face reflected across patterned grain. They’re at least eight feet tall and connected by slats inches thick. New Texans either have immense livestock or value size more than the rest of the galaxy. The result is a barrier tall enough to give even the largest beasts pause and strong enough to arrest a speeding hovertruck. Behind the posts, there are acres of rolling fields; you get the impression that wandering off the beaten paths might run you afoul of the locals. It’s best to stay on the road for now. A gap to the southeast reveals a colorful structure.";
 	rooms["506"].runOnEnter = undefined;
-	rooms["506"].westExit = "505";
+	rooms["506"].westExit = "505.75";
 	rooms["506"].eastExit = "507";
 	rooms["506"].planet = "PLANET: NEW TEXAS";
 	rooms["506"].system = "SYSTEM: NYE";
@@ -95,7 +188,7 @@ public function initNewTexasRooms():void
 	//507 The Road
 	rooms["507"] = new RoomClass(this);
 	rooms["507"].roomName = "THE\nROAD";
-	rooms["507"].description = "Despite the rumblings of the occasional, passing hovertruck, this straight and narrow thoroughfare is quite peaceful. The pitted, unkept earth of the roadway has just enough give beneath your [pc.feet] to make your passage one of relative peace so long as you keep from tripping in the rare deep divot. Immense fences protect you on either side, guarding over fields of waving grasses to the north and the south. A decent-sized barn isn’t far to the northeast, and an impressive ranch house stands off the road to the northwest.\n\nA one-story building with smooth tan walls sits to the north of the road, with a bright neon holographic sign across the front proclaiming it to be The “Ten Ton Gym”. The sign shows a cartoonish, overmuscled bull hefting a barbell the size of a small freighter over his head with one hand. Plate glass windows across the front give you a glimpse into a weight room filled with denizens of New Texas, cows and bulls alike lifting weights of varying sizes.\n\nAs you watch, the giant barbell on the sign changes to an actual cow, its eyes wide in surprise, then to a fit cowgirl with breasts the size of her head, raising two weights with her toned arms. The hard-bodied bull winks at you between the changes.";
+	rooms["507"].description = "Despite the rumblings of the occasional, passing hovertruck, this straight and narrow thoroughfare is quite peaceful. The pitted, unkept earth of the roadway has just enough give beneath your [pc.feet] to make your passage one of relative peace so long as you keep from tripping in the rare deep divot. Immense fences protect you on either side, guarding over fields of waving grasses to the north and the south. A decent-sized barn isn’t far to the northeast, and an impressive ranch house stands off the road to the northwest.\n\nA one-story building with smooth tan walls sits to the north of the road, with a bright neon holographic sign across the front proclaiming it to be the “Ten Ton Gym”. The sign shows a cartoonish, overmuscled bull hefting a barbell the size of a small freighter over his head with one hand. Plate glass windows across the front give you a glimpse into a weight room filled with denizens of New Texas, cows and bulls alike lifting weights of varying sizes.\n\nAs you watch, the giant barbell on the sign changes to an actual cow, its eyes wide in surprise, then to a fit cowgirl with breasts the size of her head, raising two weights with her toned arms. The hard-bodied bull winks at you between the changes.";
 	rooms["507"].runOnEnter = icedTeatsExteriorBonusFunc;
 	rooms["507"].westExit = "506";
 	rooms["507"].eastExit = "508";
@@ -188,27 +281,41 @@ public function initNewTexasRooms():void
 	//The Barn (GIANNA)(South Center)
 	rooms["512"] = new RoomClass(this);
 	rooms["512"].roomName = "THE\nBARN";
-	rooms["512"].description = "You’re standing square in the middle of a wide passage that runs north-south through the center of the barn. Stalls line it on either side along its whole length, but what really catches your eye is the bank of blinking lights built into the eastern wall. Flat panel displays, blinking lights, and various keypads all vie for your attention. It looks like you’ve found the controls for the barn’s machinery. The stall next to the console is closed, and marked “occupied”. Faint moans emanate from within. Opposite, the door hangs open. You could step inside if you wished.";
-	rooms["512"].runOnEnter = giannaBonusShit;
+	rooms["512"].description = "";
+	rooms["512"].runOnEnter = milkBarn512Func;
 	rooms["512"].southExit = "511";
 	rooms["512"].northExit = "513";
 	rooms["512"].westExit = "517";
+	rooms["512"].eastExit = "STALL EAST";
 	rooms["512"].moveMinutes = 1;
 	rooms["512"].planet = "PLANET: NEW TEXAS";
 	rooms["512"].system = "SYSTEM: NYE";
 	rooms["512"].addFlag(GLOBAL.INDOOR);
 	rooms["512"].addFlag(GLOBAL.PUBLIC);
 	//rooms["512"].addFlag(GLOBAL.NPC);
+
+	//Stall East
+	rooms["STALL EAST"] = new RoomClass(this);
+	rooms["STALL EAST"].roomName = "MILKING\nSTALL";
+	rooms["STALL EAST"].description = "";
+	rooms["STALL EAST"].runOnEnter = undefined;
+	rooms["STALL EAST"].westExit = "512";
+	rooms["STALL EAST"].moveMinutes = 1;
+	rooms["STALL EAST"].planet = "PLANET: NEW TEXAS";
+	rooms["STALL EAST"].system = "SYSTEM: NYE";
+	rooms["STALL EAST"].addFlag(GLOBAL.INDOOR);
+	rooms["STALL EAST"].addFlag(GLOBAL.PUBLIC);
 	
 	//513
 	//The Barn (North Center)
 	rooms["513"] = new RoomClass(this);
 	rooms["513"].roomName = "THE\nBARN";
-	rooms["513"].description = "It’s not often you get to see buildings constructed in the ancients’ styles, built with nothing more than beams of hewn wood, sweat, and a few metal bolts. Of course, here and there you see hints of modern technology running through it. New Texas may be an upper-class tourist hotspot advertised as getting back to nature, but they’re obviously spending their credits on securing the best milking technology available. Judging by the deep groans of pleasure coming from the sealed stall to the west, they’re milking more than milk too. The door to the east is marked “occupied” as well.\n\nYou can hear a dull thudding coming from one of the stalls to the east.";
-	rooms["513"].runOnEnter = randomBarnEventFunc;
+	rooms["513"].description = "";
+	rooms["513"].runOnEnter = milkBarn513Func;
 	rooms["513"].southExit = "512";
 	rooms["513"].northExit = "514";
 	rooms["513"].eastExit = "HALEY";
+	rooms["513"].westExit = "STALL NW";
 	rooms["513"].moveMinutes = 1;
 	rooms["513"].planet = "PLANET: NEW TEXAS";
 	rooms["513"].system = "SYSTEM: NYE";
@@ -228,15 +335,28 @@ public function initNewTexasRooms():void
 	rooms["HALEY"].addFlag(GLOBAL.INDOOR);
 	rooms["HALEY"].addFlag(GLOBAL.PUBLIC);
 	rooms["HALEY"].addFlag(GLOBAL.NPC);
+
+	//Stall North-west
+	rooms["STALL NW"] = new RoomClass(this);
+	rooms["STALL NW"].roomName = "MILKING\nSTALL";
+	rooms["STALL NW"].description = "";
+	rooms["STALL NW"].runOnEnter = undefined;
+	rooms["STALL NW"].eastExit = "513";
+	rooms["STALL NW"].moveMinutes = 1;
+	rooms["STALL NW"].planet = "PLANET: NEW TEXAS";
+	rooms["STALL NW"].system = "SYSTEM: NYE";
+	rooms["STALL NW"].addFlag(GLOBAL.INDOOR);
+	rooms["STALL NW"].addFlag(GLOBAL.PUBLIC);
 	
 	//514
 	//The Barn (North End)
 	rooms["514"] = new RoomClass(this);
 	rooms["514"].roomName = "THE\nBARN";
-	rooms["514"].description = "The barn’s central thoroughfare comes to an abrupt end here at the north wall. Worse yet, only one of the stalls has the door open. You can enter it to the west, if you like. To the east, there’s rhythmic slapping along with the occasional grunt of male pleasure. Sometimes a quivering moan can be heard as well. The air is particularly thick with the musky scent of heated bodies writhing against one another back here. You’ll need to head south if you want to clear your head.";
-	rooms["514"].runOnEnter = randomBarnEventFunc;
+	rooms["514"].description = "";
+	rooms["514"].runOnEnter = milkBarn514Func;
 	rooms["514"].southExit = "513";
 	rooms["514"].westExit = "BrynnsStall";
+	rooms["514"].eastExit = "STALL NE";
 	rooms["514"].moveMinutes = 1;
 	rooms["514"].planet = "PLANET: NEW TEXAS";
 	rooms["514"].system = "SYSTEM: NYE";
@@ -256,6 +376,18 @@ public function initNewTexasRooms():void
 	rooms["BrynnsStall"].addFlag(GLOBAL.INDOOR);
 	rooms["BrynnsStall"].addFlag(GLOBAL.PUBLIC);
 	rooms["BrynnsStall"].addFlag(GLOBAL.NPC);
+
+	//Stall North-east
+	rooms["STALL NE"] = new RoomClass(this);
+	rooms["STALL NE"].roomName = "MILKING\nSTALL";
+	rooms["STALL NE"].description = "";
+	rooms["STALL NE"].runOnEnter = undefined;
+	rooms["STALL NE"].westExit = "514";
+	rooms["STALL NE"].moveMinutes = 1;
+	rooms["STALL NE"].planet = "PLANET: NEW TEXAS";
+	rooms["STALL NE"].system = "SYSTEM: NYE";
+	rooms["STALL NE"].addFlag(GLOBAL.INDOOR);
+	rooms["STALL NE"].addFlag(GLOBAL.PUBLIC);
 	
 	//515
 	//Milking Stall - Will have a milker someday
@@ -843,6 +975,17 @@ public function initNewTexasRooms():void
 	rooms["540"].addFlag(GLOBAL.NPC);
 	rooms["540"].addFlag(GLOBAL.PUBLIC);
 
+	rooms["MIRRINS"] = new RoomClass(this);
+	rooms["MIRRINS"].roomName = "MIRRIN'S\nPLACE";
+	rooms["MIRRINS"].description = "";
+	rooms["MIRRINS"].runOnEnter = undefined;
+	rooms["MIRRINS"].northExit = "";
+	rooms["MIRRINS"].moveMinutes = 1;
+	rooms["MIRRINS"].planet = "PLANET: NEW TEXAS";
+	rooms["MIRRINS"].system = "SYSTEM: NYE";
+	rooms["MIRRINS"].addFlag(GLOBAL.INDOOR);
+	rooms["MIRRINS"].addFlag(GLOBAL.NPC);
+
 	//GYM SHIT!
 	rooms["569"] = new RoomClass(this);
 	rooms["569"].roomName = "TEN\nTON GYM";
@@ -851,12 +994,24 @@ public function initNewTexasRooms():void
 	rooms["569"].southExit = "507";
 	rooms["569"].northExit = "570";
 	rooms["569"].westExit = "572";
+	rooms["569"].eastExit = "TEN TON OFFICE";
 	rooms["569"].moveMinutes = 1;
 	rooms["569"].planet = "PLANET: NEW TEXAS";
 	rooms["569"].system = "SYSTEM: NYE";
 	rooms["569"].addFlag(GLOBAL.INDOOR);
 	rooms["569"].addFlag(GLOBAL.NPC);
 	rooms["569"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["TEN TON OFFICE"] = new RoomClass(this);
+	rooms["TEN TON OFFICE"].roomName = "QUENTON’S\nOFFICE";
+	rooms["TEN TON OFFICE"].description = "";
+	rooms["TEN TON OFFICE"].runOnEnter = undefined;
+	rooms["TEN TON OFFICE"].westExit = "569";
+	rooms["TEN TON OFFICE"].planet = "PLANET: NEW TEXAS";
+	rooms["TEN TON OFFICE"].moveMinutes = 1;
+	rooms["TEN TON OFFICE"].system = "SYSTEM: NYE";
+	rooms["TEN TON OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["TEN TON OFFICE"].addFlag(GLOBAL.PRIVATE);
 
 	rooms["570"] = new RoomClass(this);
 	rooms["570"].roomName = "MAIN\nHALL";

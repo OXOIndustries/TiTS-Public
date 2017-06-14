@@ -210,7 +210,7 @@ public function talkToErraAboutErra():void
 	output("\n\nErra looks like she’s about to go off on a tangent, tail wagging violently. She stops herself from getting too giddy, smiles, and stares into her drink for a moment. She brings her gaze back up towards yours and asks, <i>“What about you? Do anything interesting?”</i>");
 	output("\n\nOh boy; you take a deep breath before you start to unravel your tale before her: your father, the probes, the fortune, your quest, your crew, ");
 	//notOnTavros:
-	if(getPlanetName() != "Tarkus") output("the planets you’ve been to, ");
+	if(rooms[currentLocation].planet != "TAVROS STATION") output("the planets you’ve been to, ");
 	output("and your good name. Erra is impressed by the time you finish, looking at you wide-eyed for a moment before speaking up, <i>“Uh, wow, you know when you’re picking up random " + pc.mf("guys","chicks") + " at bars, you don’t exactly expect to come across billionaire fortune-hunters, especially not cute ones.”</i>");
 	output("\n\nYou smile and tell her that’s what they usually say.");
 	processTime(15);
@@ -258,7 +258,7 @@ public function erraSexGOOO(shortIntro:Boolean = false):void
 		output("\n\nYou sit up and tell her this wasn’t exactly what you were expecting from her.");
 		output("\n\n<i>“What?”</i> she says, <i>“Aren’t all ausar girls into this kind of stuff?”</i>");
 
-		if(InCollection(pc.race(), ["ausar","half-ausar"])) output("\n\nYou cross your arms, making sure you give your [pc.tail] an emphasizing flick so your canine friend sees it, ");
+		if(pc.race().indexOf("ausar") != -1 && pc.hasTail()) output("\n\nYou cross your arms, making sure you give your [pc.tails] an emphasizing flick so your canine friend sees it, ");
 		else output("\n\nYou cock an eyebrow, ");
 		output("resulting in a sigh from Erra as she brings herself to sit down on the mattress. <i>“Well, honestly, I didn’t really get into, or know much about, this kind of stuff until I started hanging out with humans.”</i> The ausar smiles up at you, bringing herself down on all fours and crawling towards you. <i>“Ended up really liking it, getting treated like a puppy and all that stuff: the petting, the collars and leashes, all the ‘good girls’ and praise.”</i> She visibly shudders at her own words.");
 		output("\n\n<i>“But, you can treat me like a bad girl if you really want,”</i> the ausar whispers, smile turning to a lustful grin as her tail begins to sway back and forth.");
@@ -588,7 +588,7 @@ public function talkToErraAbootHerself():void
 	output("\n\nThe ebony ausar sighs, leaning against the bar like the weight of her conscience was suddenly made reality, <i>“It’s just... I like you, [pc.name], a lot, and I didn’t want to fuck anything up by being hasty or anything.”</i> She gazes at you for a long second and finishes her drink in a single go, <i>“Well, I guess you know now, anyways, so what do you say, [pc.name], think we can be an item?”</i>");
 	output("\n\nErra’s features twist into a nervous smile, her tail flailing in an offbeat rhythm as she taps her furry foot impatiently.");
 	output("\n\n<b>Looks like you’ve got a lovesick ausar on your hands now. You could let the puppy down and reject her affections, or you could become as much of an item as ");
-	if(pc.race().indexOf("ausar") >= 0) output("couple of libidinous aliens");
+	if(pc.race().indexOf("ausar") != -1) output("a couple of libidinous aliens");
 	else output(indefiniteArticle(pc.race()) + " and an extra-horny ausar");
 	output(" could be, like Erra suggested.</b>");
 
@@ -643,7 +643,9 @@ public function ifYouLikeErraThenYouShouldaPutACollarOnIt():void
 	output("\n\nTelling Erra that the box is most certainly for her, you promptly hand it over. She shoots you a curious look but accepts the gift, <i>“You know, you don’t have to start buying me stuff just because we’re a thing now, [pc.name].”</i>");
 	if(pc.isNice()) output("\n\nYou tell the ausar you just thought you’d repay her for the wonderful, purple, paw-printed gift she gave you.");
 	else output("\n\nYou roll your eyes and tell the ausar to just open the box.");
-	output("\n\n<i>“Alright, alright,”</i> she sighs, opening the box, pulling off the top to reveal the small ring of leather held within. Beaming down at it, the happy puppy pulls the collar from the box to get a better look at it, <i>“Hey! This is one of the ones from Happy Tails on Tavros, isn’t it?”</i> Still smiling, she turns the leather loop around, her gaze landing on the brass-colored tag. You watch intently as Erra lifts the tag up with a black-furred hand, before smiling even wider when she reads it, tail wagging swiftly behind her.");
+	output("\n\n<i>“Alright, alright,”</i> she sighs, opening the box, pulling off the top to reveal the small ring of leather held within. Beaming down at it, the happy puppy pulls the collar from the box to get a better look at it, <i>“Hey! This is one of the ones from Happy Tails");
+	if(rooms[currentLocation].planet != "TAVROS STATION") output(" on Tavros");
+	output(", isn’t it?”</i> Still smiling, she turns the leather loop around, her gaze landing on the brass-colored tag. You watch intently as Erra lifts the tag up with a black-furred hand, before smiling even wider when she reads it, tail wagging swiftly behind her.");
 	output("\n\nOnce she’s done with her inspection of the collar, your ausar lover quickly wraps it around her neck and closes the buckle. She turns her head in a few different directions to give you a better look at it, her smile becoming ever more smug, <i>“Suits me well, don’t you think?”</i>");
 	output("\n\nYou let Erra know it looks great on her, and she chuckles happily in response.");
 	output("\n\nThe ausar removes her new collar and starts to settle down a bit, seemingly lost in a sea of bliss and relief, letting out a contented sigh as she puts the leather ring back in its box, <i>“Thanks, [pc.name], it’s perfect.”</i> She flashes you another grin and speaks up once more, <i>“And I think I’ve got a few ways I could repay you for it when we get back to my ship.”</i> You see her tail pick up it’s pace again at its owner’s words.");
@@ -846,8 +848,9 @@ public function walkiesWithErra2(cock:Boolean):void
 	IncrementFlag("ERRA_WALKIES");
 	IncrementFlag("ERRA_SEXED");
 	pc.exhibitionism(2);
+	currentLocation = shipLocation;
 	clearMenu();
-	addButton(0,"Next",move,shipLocation);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Cuddle
@@ -901,8 +904,9 @@ public function erraCuddleScenes2():void
 	processTime(75);
 	pc.energy(100);
 	IncrementFlag("ERRA_CUDDLED");
+	currentLocation = shipLocation;
 	clearMenu();
-	addButton(0,"Next",move,shipLocation);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Getting the Collar

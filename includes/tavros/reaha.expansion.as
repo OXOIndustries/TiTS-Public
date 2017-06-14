@@ -45,20 +45,6 @@ public function reahaAddictionTherapyAvailable():Boolean
 	return true;
 }
 
-public function reahaHeader(nude:Boolean = false):void
-{
-	showName("\nREAHA");
-	author("Savin");
-	var nudeBonus:String = "";
-	if(nude) nudeBonus = "_NUDE";
-	showBust("REAHA"+nudeBonus);
-}
-
-public function showReaha(nude:Boolean = false):void
-{
-	reahaHeader(nude);
-}
-
 public function reahaMoosAboutNewTexas():Boolean
 {
 	if (!reahaIsCrew()) return false;
@@ -355,7 +341,7 @@ public function reahaTalkNewTexas():void
 
 	processTime(10);
 
-	//{one time choice between:
+	//one time choice between:
 	//[Ew] [That's Natural...] [Man Up]
 	clearMenu();
 
@@ -1413,14 +1399,14 @@ public function reahaMilkTalk():void
 	clearMenu();
 
 	// [Give Honeydew] [Give ChocoLac]
-	if (pc.hasItem(new Honeydew()))
+	if (pc.hasItemByClass(Honeydew))
 	{
 		if (reaha.milkType != GLOBAL.FLUID_TYPE_HONEY) addButton(0, "Honeydew", reahaMilkTalkHoneydew, undefined, "Give Honeydew", "Give Reaha some Honeydew.");
 		else addDisabledButton(0, "Honeydew", "Give Honeydew", "Reaha is already producing honey-milk!");
 	}
 	else addDisabledButton(0, "Honeydew", "Give Honeydew", "You could probably give Reaha some Honeydew if you had any to hand.");
 
-	if (pc.hasItem(new Chocolac()))
+	if (pc.hasItemByClass(Chocolac))
 	{
 		if (reaha.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) addButton(1, "Chocolac", reahaMilkTalkChocolac, undefined, "Give Chocolac", "Give Reaha some Chocolac.");
 		else addDisabledButton(0, "Chocolac", "ChocoLac", "Reaha is already producing chocolate-milk!");
@@ -1440,7 +1426,7 @@ public function reahaMilkTalkHoneydew():void
 
 	reaha.milkType = GLOBAL.FLUID_TYPE_HONEY;
 
-	pc.destroyItem(new Honeydew());
+	pc.destroyItemByClass(Honeydew);
 
 	output("You take a golden yellow vial of Honeydew out of your pack and show it to the busty cow. She takes it, looking over the label. <i>“Honey? Isn’t that a little thick for boobs? Well... it’s XenoGen, so I guess it must be safe. I guess you’ll be wanting something sweet for your tea, huh? Alright, let’s see...”</i>");
 	
@@ -1476,7 +1462,7 @@ public function reahaMilkTalkChocolac():void
 
 	reaha.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 
-	pc.destroyItem(new Chocolac());
+	pc.destroyItemByClass(Chocolac);
 
 	output("You take the white-and-brown vial of ChocoLac from your pack and hand it to the busty cow. She takes it, looking over the label. <i>“Oooh! Chocolate milk! I guess it doesn’t hurt to save a step and get it straight from the tap, does it? Alright, let’s see...”</i>");
 	

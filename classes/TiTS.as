@@ -67,7 +67,7 @@
 	import classes.Parser.ParseEngine;
 
 	import classes.DataManager.DataManager;
-	import classes.GameData.StatTracking;
+	import classes.GameData.*;
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;
@@ -95,10 +95,6 @@
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
 	{		
-		// Smoosh all the included stuff into the TiTS class
-		// this is a HORRIBLE way of architecting the system, but it's better then not
-		// using classes at all
-		
 		//Core Game Stuff
 		include "../includes/appearance.as";
 		include "../includes/BackerCredits.as";
@@ -122,6 +118,7 @@
 		include "../includes/masturbation.eggTrainer.as";
 		include "../includes/masturbation.magicMilker.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
 		include "../includes/roomFunctions.as";
 		include "../includes/StubbedFunctions.as";
@@ -142,9 +139,13 @@
 		include "../includes/events/seraSexParty.as";
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
+		include "../includes/events/plantationQuest/plantationQuestMain.as";
 
 		//Misc content
 		include "../includes/masturbation/bubbleBuddy.as";
+		include "../includes/masturbation/cockTailMasturbation.as";
+		include "../includes/masturbation/exhibitionismPerk.as";
+		include "../includes/masturbation/hardlightAGThong.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/saendra.as";
@@ -170,6 +171,7 @@
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
 		include "../includes/tavros/fyn.as";
+		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
 		include "../includes/tavros/jade.as";
@@ -195,11 +197,15 @@
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
 
+		//Tavros Residential Deck
+		include "../includes/tavros/resDeck/liamme.as";
+
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
 		include "../includes/vesperia/gloryhole.as";
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
+		include "../includes/vesperia/mabbs.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";
@@ -234,6 +240,7 @@
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
 		include "../includes/tarkus/drBadger.as";
@@ -260,13 +267,16 @@
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
+		include "../includes/newTexas/brandy.as";
 		include "../includes/newTexas/brynn.as";
+		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
 		include "../includes/newTexas/gobbles.as";
 		include "../includes/newTexas/millie.as";
+		include "../includes/newTexas/mirrin.as";
 		include "../includes/newTexas/rooms.as";
 		include "../includes/newTexas/roomFunctions.as";
 		include "../includes/newTexas/stocks.as";
@@ -337,8 +347,11 @@
 		include "../includes/events/kashimaIncident/roomfunctions.as";
 		
 		// Uveto
-		include "../includes/uveto/drlessau.as";
+		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/carbonado.as";
+		include "../includes/uveto/chaurmine.as";
+		include "../includes/uveto/cynthia.as";
+		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
 		include "../includes/uveto/jerome.as";
@@ -350,27 +363,32 @@
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
+		include "../includes/uveto/subTuner.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
-		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
-		include "../includes/uveto/pippa.as"
+		include "../includes/uveto/vavaGroom.as";
+		include "../includes/uveto/walt.as";
+		include "../includes/follower.pippa.as";
+		include "../includes/follower.multi_interactions.as";
 		
 		include "../includes/chargendata.as";
+		include "../includes/SSTDs/furpies.as";
+		include "../includes/SSTDs/locofever.as";
+		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;
 		public var charDict:Dictionary;
 		public var shipDb:ShipManager;
 
-		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
 		public var days:int;
 		public var hours:int;
 		public var minutes:int;
 		
-		// Get a 'packed' version of the current in-game time. Useful for date/time passage comparisons stored in flags.
 		public function GetGameTimestamp():uint
 		{
 			var value:uint = 0;
@@ -380,7 +398,6 @@
 			return value;
 		}
 
-		// Queued event system
 		public var timestampedEventBuffer:Array;
 		public var eventQueue:Array;
 
@@ -465,7 +482,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.30";
+			version = "0.7.60";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -927,7 +944,6 @@
 			this.userInterface.BufferPagePrevHandler();
 		}
 		
-		// Cheaty hooks for stuff
 		public function IsFunction(name:String):Boolean
 		{
 			if (this[name] != undefined) return true;
@@ -944,7 +960,6 @@
 			this[name](args);
 		}
 		
-		// This is hacky as fuck, but it's the ONLY way I can think of pinning down exactly where this issue happens
 		public function jackJillDetector(btnName:String, tFunc:Function, tArg:*):void
 		{
 			if (flags["RIVALCONFIGURED"] == 1)
@@ -1350,11 +1365,19 @@
 		{
 			return chars["JERYNN"];
 		}
+		public function get del():Delilah
+		{
+			return chars["DELILAH"];
+		}
+
 		public function get yammi():Yammi
 		{
 			return chars["YAMMI"];
 		}
-		
+		public function get mirrin():Mirrin
+		{
+			return chars["MIRRIN"];
+		}
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

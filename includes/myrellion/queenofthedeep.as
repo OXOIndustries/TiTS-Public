@@ -206,7 +206,7 @@ public function queenOfTheDeepPCLoss():void
 	output("\n\n<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues, that I am not the last as my mother prophesied. Surrender your misused body to me, let me give you new purpose...”</i>");
 
 	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you cannot help but whimper as the two largest of her tentacles find their way to your [pc.legOrLegs], gently circling and caressing your [pc.asshole]");
-	if (bEmptyVagina) output(" and [pc.vaginas]");
+	if (bEmptyVagina) output(" and [pc.vagina " + vIdx + "]");
 	output(".");
 
 	var needNL:Boolean = true;
@@ -496,7 +496,7 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	output("<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues. That I am not the last as my mother prophesied. Surrender your body to me, bear my young back among your people. Become the herald of a new age for my kind.”</i>");
 
 	output("\n\nYou knew what was coming. This moment was inevitable from the moment your queen revealed herself to you. Still, you can’t help but whimper as the two largest of her tentacles find their way between your [pc.legOrLegs], gently circling and caressing your [pc.asshole]");
-	if (pc.hasVagina()) output(" and [pc.vagina " + vIdx + "]");
+	if (bEmptyVagina) output(" and [pc.vagina " + vIdx + "]");
 	output(".");
 
 	if (pc.isBiped())

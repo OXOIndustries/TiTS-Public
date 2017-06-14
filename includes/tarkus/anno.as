@@ -68,7 +68,7 @@ public function steeleTechTarkusOutsideFunction():Boolean
 	{
 		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon “Steele Tech” sign hangs above the door, although its usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the " + (flags["TARKUS_DESTROYED"] != undefined ? "now-lost" : "planet’s") + " wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
 	}
-	
+	vendingMachineButton(0, "J'ejune");
 	return false;
 }
 
@@ -558,11 +558,10 @@ public function snuggleWithAnnoAfterWhuppinHerAss2():void
 public function petPlayForAnnoAfterCheating():void
 {
 	clearOutput();
-	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined)
-	{
-		flags["TAKEN_ANNO_AROUND_AS_A_PET"] = 1;
-		pc.addHard(2);
-	}
+	
+	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] == undefined) pc.addHard(2);
+	IncrementFlag("TAKEN_ANNO_AROUND_AS_A_PET");
+	
 	author("Savin");
 	showAnno(true);
 	output("Grinning dangerously at Anno, you tell her to strip out of that uniform: dogs don’t wear clothes.");
@@ -754,7 +753,7 @@ public function annoTalkMenu():void
 	
 	if (!pc.hasKeyItem("Goozooka"))
 	{
-		if (pc.hasItem(new GrayMicrobots()))
+		if (pc.hasItemByClass(GrayMicrobots))
 		{
 			addButton(5, "Gray Goo", beginTheGoozookeningHas, undefined, "Gray Goo", "Ask Anno about the samples you’ve collected from some Gray Goos.");
 		}
@@ -796,7 +795,7 @@ public function askAbootAnnoz():void
 	showAnno();
 	output("<i>“So, tell me about yourself,”</i> you say, by way of breaking the ice.");
 	output("\n\n<i>“No, you,”</i> Anno giggles, giving you a playful punch on the shoulder. <i>“You’re the billionaire playboy’s " + pc.mf("son","daughter") + ". That’s, like, a hundred times more interesting than me.”</i>");
-	output("\n\nYou try and refudiate her claim, but Anno’s insistent, and eventually pries you into telling her a bit about yourself, your rather unorthodox upbringing and training, and eventually to the quest that’s brought you all the way out to Tarkus.");
+	output("\n\nYou try and repudiate her claim, but Anno’s insistent, and eventually pries you into telling her a bit about yourself, your rather unorthodox upbringing and training, and eventually to the quest that’s brought you all the way out to Tarkus.");
 	output("\n\n<i>“Aha! I knew it!”</i> she exclaims, a smug grin across her face. <i>“I thought I picked up a Steele signal coming from the wastes a while ago, but I couldn’t track it. That must be the probe you’re after! Wish I could help you, boss: would be nice to hear Vic’s voice again, even if it’s just a recording in a probe.”</i>");
 	output("\n\nShe hesitates a moment, before placing a hand on your shoulder, squeezing tight. <i>“I bet you would too, huh?”</i>");
 	output("\n\nYou nod sadly. <i>“Yeah... and now, your turn.”</i>");
@@ -1518,7 +1517,7 @@ public function beginTheGoozookeningHas():void
 	
 	var pGoovolver:Goovolver = new Goovolver();
 	
-	if (pc.hasItem(pGoovolver) || pc.rangedWeapon is Goovolver)
+	if (pc.hasItemByClass(Goovolver) || pc.rangedWeapon is Goovolver)
 	{
 		if (pc.credits >= 1000)
 		{
@@ -1571,7 +1570,7 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	if (buyGoovolverToo == false)
 	{
 		pc.credits -= 1000;
-		if (pc.hasItem(pGoovolver)) pc.destroyItem(pGoovolver, 1);
+		if (pc.hasItemByClass(Goovolver)) pc.destroyItemByClass(Goovolver, 1);
 		else if (pc.rangedWeapon is Goovolver) pc.rangedWeapon = new Rock();
 	}
 	else
@@ -1580,7 +1579,7 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 		pc.credits -= (pGooCost + 1000);
 	}
 	
-	pc.destroyItem(new GrayMicrobots());
+	pc.destroyItemByClass(GrayMicrobots);
 
 	pc.createKeyItem("Goozooka", 0, 0, 0, 0, "This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy’s most sensitive spots. Consumes a vial of gray goo per shot!");
 	output("\n\n<b>(Key Item Gained: Goozooka -</b> This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy’s most sensitive spots. Consumes a vial of gray goo per shot!<b>)</b>");
@@ -1603,7 +1602,7 @@ public function goozookaRaepsForAnnoButts():void
 
 	//{+Mischevious, -1 Goo Sample}
 	pc.addMischievous(1);
-	pc.destroyItem(new GrayMicrobots(), 1);
+	pc.destroyItemByClass(GrayMicrobots, 1);
 
 	output("When Anno turns to get back to her job, you quietly break open the back of your new goo-launcher and slot in the vial of goo. With a mischievous grin, you level the cannon at Anno’s hind end and flick the button on the computer beside the trigger.");
 
@@ -2285,7 +2284,7 @@ public function deck13WeaponRacks():void
 }
 public function deck13WeaponPistolCheck():void
 {
-	if(pc.rangedWeapon is NovaPistol || pc.hasItemByType(NovaPistol))
+	if(pc.rangedWeapon is NovaPistol || pc.hasItemByClass(NovaPistol))
 	{
 		mainGameMenu();
 		return;
@@ -2300,7 +2299,7 @@ public function deck13WeaponPistolCheck():void
 }
 public function deck13WeaponRifleCheck():void
 {
-	if(pc.rangedWeapon is NovaRifle || pc.hasItemByType(NovaRifle))
+	if(pc.rangedWeapon is NovaRifle || pc.hasItemByClass(NovaRifle))
 	{
 		mainGameMenu();
 		return;

@@ -180,9 +180,10 @@
 			if(rand(10) == 0) inventory.push(new PrimitiveBow());
 			else if (rand(3) == 0) inventory.push(new ZilHoney());
 			else inventory.push(new ZilRation());
+
+			kGAMECLASS.mhengaSSTDChance(this);
 			
 			Randomize();
-			
 			this._isLoading = false;
 		}
 		

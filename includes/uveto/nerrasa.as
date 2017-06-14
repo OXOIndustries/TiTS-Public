@@ -65,15 +65,26 @@ public function uvetoNerrasaBuy():void
 {
 	if(pc.level >= 4)
 	{
-		if(!chars["NERRASA"].hasItemByType(Frostfire)) chars["NERRASA"].inventory.push(new Frostfire());
+		if(!chars["NERRASA"].hasItemByClass(Frostfire)) chars["NERRASA"].inventory.push(new Frostfire());
 	}
-	else chars["NERRASA"].destroyItem(new Frostfire());
+	else chars["NERRASA"].destroyItemByClass(Frostfire);
+	
+	if(pc.level >= 7)
+	{
+		if(!chars["NERRASA"].hasItemByClass(HardlightDagger)) chars["NERRASA"].inventory.push(new HardlightDagger());
+	}
+	else chars["NERRASA"].destroyItemByClass(HardlightDagger);
+	if(pc.level >= 8)
+	{
+		if(!chars["NERRASA"].hasItemByClass(HardlightBow)) chars["NERRASA"].inventory.push(new HardlightBow());
+	}
+	else chars["NERRASA"].destroyItemByClass(HardlightBow);
 	
 	if(canBuySiegwulfe())
 	{
-		if(!chars["NERRASA"].hasItemByType(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());
+		if(!chars["NERRASA"].hasItemByClass(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());
 	}
-	else chars["NERRASA"].destroyItem(new SiegwulfeItem());
+	else chars["NERRASA"].destroyItemByClass(SiegwulfeItem);
 	
 	shopkeep = nerrasa;
 	buyItem();

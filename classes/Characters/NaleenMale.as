@@ -184,8 +184,8 @@
 			isUniqueInFight = true;
 			btnTargetText = "Naleen";
 			setDefaultSexualPreferences();
-			
 			this._isLoading = false;
+			kGAMECLASS.mhengaSSTDChance(this);
 		}
 		
 		override public function get bustDisplay():String

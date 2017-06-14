@@ -1,5 +1,5 @@
 ﻿//Stocks & Public Use, w/Random Preggo if possible
-//Female, bondage via stocks in public, ring gagged, all three holes used resulting in pregnancy from a random <i>“father”</i> with differing potential offspring, or eggs laid in womb/ass/tits. If this is a <i>“crime punishment”</i> that also gives the PC a permanent tattoo because they’re publicly indecent, great  - I didn’t get the ship pledge, but I suggest one capital ship to be organic, and have people locked in the engine room and milked with the milk/cum being used as ship fuel. More slaves, faster/long your ships goes! Just don’t accidentally step to close to a milker and get caught yourself or bad end!
+//Female, bondage via stocks in public, ring gagged, all three holes used resulting in pregnancy from a random <i>“father”</i> with differing potential offspring, or eggs laid in womb/ass/tits. If this is a <i>“crime punishment”</i> that also gives the PC a permanent tattoo because they’re publicly indecent, great - I didn’t get the ship pledge, but I suggest one capital ship to be organic, and have people locked in the engine room and milked with the milk/cum being used as ship fuel. More slaves, faster/long your ships goes! Just don’t accidentally step to close to a milker and get caught yourself or bad end!
 //Fetysh
 
 //Miscreant Manor - a pair of stocks on the main New Texas road. Very obviously a hokey, touristy set of ye olde timey stocks... except there are lots of stains on the ground, and a wood-burnt sign declaring that the rapscallion locked inside is ‘open for use’ - paying back society with her holes. Obviously self-latches with a digital timer. PC can voluntarily climb in for a little old timey new texan punishment.
@@ -16,11 +16,12 @@ public function miscreantManorBonus():void
 	//Not used
 	if(flags["MISCREANT_MANORED"] == undefined)
 	{
-		output("A set of old timey stocks sit alongside the road, placed in the center of a crudely hewn wooden platform. It has all the markings of your typical tourist trap, complete with a goofy-looking placard declaring it to be <i>“Miscreant Manor.”</i>");
+		output("A set of old timey stocks sit alongside the road, placed in the center of a crudely hewn wooden platform. It has all the markings of your typical tourist trap, complete with a goofy-looking placard declaring it to be “Miscreant Manor.”");
 	}
 	//Used
-	else output("The stocks are still in the same place as the last one, all but inviting you to place your head and hands into the restraints for another punishing visit to <i>“Miscreant Manor.”</i> Despite the hokey name, you know full well you’d be in for the gangbang of your life if you climbed inside.");
+	else output("The stocks are still in the same place as the last time, all but inviting you to place your head and hands into the restraints for another punishing visit to “Miscreant Manor.” Despite the hokey name, you know full well you’d be in for the gangbang of your life if you climbed inside.");
 	addButton(0,"Approach",miscreantManorApproach,undefined,"Approach","Approach the stocks for a closer look.");
+	vendingMachineButton(1, "XXX");
 }
 
 public function miscreantManorApproach():void
@@ -30,15 +31,15 @@ public function miscreantManorApproach():void
 	//Approach unused
 	if(flags["MISCREANT_MANORED"] == undefined)
 	{
-		output("You climb up onto the platform and look around. Unsurprisingly, the slats are marred by white stains in nearly every direction. Not even the stocks themselves could escape a splattering of salty, New Texan seed. Old style nails and construction techniques hold most of it together - except for <i>“Miscreant Manor”</i> itself. While it looks to be of built from simple wood and iron, a number of modern day modifications have been made, not the least of which is a one-hour timer and a high-strength, magnetic locking magnetism.");
+		output("You climb up onto the platform and look around. Unsurprisingly, the slats are marred by white stains in nearly every direction. Not even the stocks themselves could escape a splattering of salty, New Texan seed. Old style nails and construction techniques hold most of it together - except for “Miscreant Manor” itself. While it looks to be built from simple wood and iron, a number of modern day modifications have been made, not the least of which is a one-hour timer and a high-strength, magnetic locking magnetism.");
 		output("\n\nYou can even spot a few sensors - they must only activate the lock if a person is detected as being strapped in. Just below you spot a small warning sticker:");
 		output("\n\n<i>Miscreant Manor is typically reserved as punishment for small crimes by citizens, but tourists are welcome to strap themselves in for an authentic taste of frontier justice! Warning: under New Texan law, patrons of Miscreant Manor are considered to consent to any and all sexual acts. New Texas is not liable for vaginal stretching, anal stretching, sexually transmitted pregnancies, muscle ache, residual soreness, or a desire to return to Miscreant Manor.</i>");
 		output("\n\nIt looks like a one-way ticket to a massive gangbang.");
 	}
 	//Approach used
-	else output("You climb up onto the platform and look around, wondering which of the white-hued markings are leftovers from your last visit. With all the farmer-cum gushing into, around, and over you last time, you have a hard time figuring out how come the whole platform hasn’t been completely whitewashed. Well, the <i>“Miscreant Manor”</i> sign is still hanging from the stocks, and the timer has reset. You could climb in for another <i>“punishment”</i> gangbang if you wanted.");
+	else output("You climb up onto the platform and look around, wondering which of the white-hued markings are leftovers from your last visit. With all the farmer-cum gushing into, around, and over you last time, you have a hard time figuring out how come the whole platform hasn’t been completely whitewashed. Well, the “Miscreant Manor” sign is still hanging from the stocks, and the timer has reset. You could climb in for another <i>“punishment”</i> gangbang if you wanted.");
 	clearMenu();
-	addButton(0,"Use Stocks",useMiscreantManor,undefined,"Use Stocks","Let's be honest, if you do this, you're just going to get gang-banged.");
+	addButton(0,"Use Stocks",useMiscreantManor,undefined,"Use Stocks","Let’s be honest, if you do this, you’re just going to get gang-banged.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -62,7 +63,7 @@ public function useMiscreantManor():void
 	//No vag - no new PG
 	else if(pc.totalVaginas() == 0)
 	{
-		output("\n\n<i>“Well howdy there, pilgrim. This kind of punishment ain't meant for someone so lacking in feminine endowments! Be a dear and come on back once your body’s ready for a thorough breeding!”</i>");
+		output("\n\n<i>“Well howdy there, pilgrim. This kind of punishment ain’t meant for someone so lacking in feminine endowments! Be a dear and come on back once your body’s ready for a thorough breeding!”</i>");
 		output("\n\nThe magnetic lock reverses, popping open the stocks in an instant. You’ll have to come back later, when you have a vagina.");
 		processTime(1);
 		clearMenu();
@@ -72,9 +73,9 @@ public function useMiscreantManor():void
 	//Not preggoz. No new PG
 	else
 	{
-		output("<i>“Well howdy there, pilgrim. Looks like you’ve gotten yourself into a plum pickle! ‘Course that’s just what a naughty cow-to-be like yourself wanted. Ain't it? Well buckle up! A " + pc.mf("tough-looking filly like yourself will have all kinds of suitors lining up to break you in.","pretty filly like yourself will have all kinds of suitors lining up in a jiffy!") + "”</i>");
+		output("<i>“Well howdy there, pilgrim. Looks like you’ve gotten yourself into a plum pickle! ‘Course that’s just what a naughty cow-to-be like yourself wanted. Ain’t it? Well buckle up! A " + pc.mf("tough-looking filly like yourself will have all kinds of suitors lining up to break you in.","pretty filly like yourself will have all kinds of suitors lining up in a jiffy!") + "”</i>");
 
-		output("\n\nThe magnetic lock activates, clicking as it binds the top and bottom of the stocks together so firmly not that even your mightiest heave could budge the sturdy restraints. Faint hisses emanate from the rubber linings around your wrists as the inflate. In the space of a few seconds they completely immobilize your hands. The rubber holds you tight, but not so tightly as to cut off your circulation, leaving you to realize just how completely, totally helpless you've become.");
+		output("\n\nThe magnetic lock activates, clicking as it binds the top and bottom of the stocks together so firmly not that even your mightiest heave could budge the sturdy restraints. Faint hisses emanate from the rubber linings around your wrists as they inflate. In the space of a few seconds they completely immobilize your hands. The rubber holds you tight, but not so tightly as to cut off your circulation, leaving you to realize just how completely, totally helpless you’ve become.");
 	}
 	processTime(2);
 	clearMenu();
@@ -91,7 +92,7 @@ public function useMiscreantManor2():void
 	output("Left alone with your thoughts, there’s nothing to do but wait ");
 	if(hours >= 6 && hours < 20) output("under the heat of the beating sun");
 	else if(hours >= 20 && hours <= 22) output("under the brilliantly-colored evening sky’s radiance");
-	else output("under the stars' crystalline light");
+	else output("under the stars’ crystalline light");
 	output(" to be released.");
 	var inCunt:int = -1;
 	//0 - Kiro
@@ -127,7 +128,7 @@ public function useMiscreantManor2():void
 		output("\n\nThe ecstatic kui-tan kneads your butt a little longer, letting her dick slide down... and down... until the pudgy equine cock-tip is lined up with your ");
 		if(pc.vaginas[x].wetness() > 3) output("sluttily oozing");
 		else output("surprisingly lubricated");
-		output(" folds. <i>“I think you’re going to love this even more than I will.”</i>  Rocking her hips forward, she spreads you like softened butter, slowly but surely filling your [pc.vagina " + x + "], with ever more dickmeat, pushing until you’re so stuffed that it feels like your hips are going to be dislocated by the sheer amount of prick between.");
+		output(" folds. <i>“I think you’re going to love this even more than I will.”</i> Rocking her hips forward, she spreads you like softened butter, slowly but surely filling your [pc.vagina " + x + "], with ever more dickmeat, pushing until you’re so stuffed that it feels like your hips are going to be dislocated by the sheer amount of prick between.");
 		pc.cuntChange(x,chars["KIRO"].cockVolume(0));
 		output("\n\nYou moan. There’s no other word for the sound that leaves your lips, no other description for the unquestionably whorish vibrations tickling past your uvula. Kiro thickens inside of you in response, and she thrusts harder, burying her rod so deeply that her glistening, sweat-soaked balls can slap against ");
 		if(pc.totalClits() > 1) output("all ");
@@ -166,7 +167,7 @@ public function useMiscreantManor2():void
 	//Hellhound 1st
 	else if(inCunt == 2)
 	{
-		output("\n\nA loud snort, followed by a soft, pleased-sounding growl stirs you from your thoughts. Two broad, fur-covered feet prowl up to you, tipped with wicked-long claws. Looking up, you follow carpet of shaggy black to the mid-thigh. There it transitions into bronzed skin, still dirty from the fields... and a bulging loincloth, damp with sweat and musk. It’s exactly at head height, and getting closer by the second. Further up you see a well-defined six-pack, gleaming pectorals... and clawed, bestial hands.");
+		output("\n\nA loud snort, followed by a soft, pleased-sounding growl stirs you from your thoughts. Two broad, fur-covered feet prowl up to you, tipped with wicked-long claws. Looking up, you follow the carpet of shaggy black fur to the mid-thigh. There it transitions into bronzed skin, still dirty from the fields... and a bulging loincloth, damp with sweat and musk. It’s exactly at head height, and getting closer by the second. Further up you see a well-defined six-pack, gleaming pectorals... and clawed, bestial hands.");
 		output("\n\n<i>“Give ‘em a lick.”</i> The command barks forth like plasma from a capital ship’s main battery");
 		if(pc.isBimbo() && pc.isTreated()) output(", washing over your eager, treated mind like an irresistible enchantment");
 		output(". A claw slices through a simple leather thong, and you are confronted with the sight of the male’s eagerness: a rapidly stiffening shaft, as crimson as the setting sun and flanked by a set of balls the size of oranges, dangling low under the weight of their budding load.");
@@ -174,7 +175,7 @@ public function useMiscreantManor2():void
 		output("\n\nPre-cum smears over your face the longer you lick, matched only by the liquid excitement leaking from between your thighs, but just as you reach the apex of the jutting, boner, lapping at it with promiscuous promise, it is taken away, leaving your mouth hollow.");
 		output("\n\nNot to worry, the hunky stud and his delicious dick reappear a moment later - behind you this time. His dick presses against your [pc.vagina " + x + "], reminding you that you have another set of lips. You arch your back as much as the restraints will allow, lifting your [pc.butt] to give him a better target, writhing in bliss once he finally thrusts inside, the tapered shape of his cock easily penetrating your gates. His hands grab hold of the wood to either side of your head, hard enough for you to hear the wood groan in protest, and you whimper with need as he begins to drill you proper.");
 		pc.cuntChange(x,1000);
-		output("\n\nCoarse hair and soft fur alike drag along your back as you're fucked, pounding you into insensibility. A figure is approaching, but you can’t or won’t muffle your cries in the slightest. On some level, you realize, you want the newcomer to join in, praying he smells every bit as sexy as your new ausar stud.");
+		output("\n\nCoarse hair and soft fur alike drag along your back as you’re fucked, pounding you into insensibility. A figure is approaching, but you can’t or won’t muffle your cries in the slightest. On some level, you realize, you want the newcomer to join in, praying he smells every bit as sexy as your new ausar stud.");
 	}
 	//Kaithrit Rich Futa 1st
 	else if(inCunt == 3)
@@ -219,7 +220,7 @@ public function useMiscreantManor2():void
 		output("\n\nYou twist against the rubber, but you can’t escape her fingers no matter how you writhe, nor the excitement she teases from your netherlips. In no time at all, she has your [pc.hips] twitching back against her, aching for her to slip another finger inside. She pushes her cock in instead, giving you a nice warm, cat-dick to tease your cunny. It’s still twitching, smacking into your g-spot, abusing your passage. Despite its small size, it soon has you mewling every bit as eagerly as its owner.");
 		pc.cuntChange(x,5);
 		output("\n\nYour perverse vocalizations soon lure another figure. That, or they heard the unsubtle ’smack-smack-smack’ of a happy couple fucking... or they smelled the scent of a ");
-		if(pc.inHeat() || pc.isBimbo() || pc.race() == "ausar" || pc.race() == "half-ausar") output("bitch in heat");
+		if(pc.inHeat() || pc.isBimbo() || pc.catDog("nyan", "bork", false) == "bork") output("bitch in heat");
 		else output("woman in need");
 		output(". Whatever the case, they jog faster once you start openly moaning from the sudden appearance of the cat-girl’s fingers on [pc.oneClit].");
 	}
@@ -252,9 +253,9 @@ public function useMiscreantManor2():void
 			else if(pc.libido() < 66) output("Still, the younger eager ones typically make up for short fuses with endurance. This should be fun.");
 			else output("Maybe he’ll actually be a good lay.");
 		}
-		else output("\n\nYou briefly consider opening your mouth, but then you realize the best thing you can do is wait. He’s going to be inside you a moment, and you do so want him to enjoy himself. It’ll take all your considering skills to properly milk a dick like that!");
+		else output("\n\nYou briefly consider opening your mouth, but then you realize the best thing you can do is wait. He’s going to be inside you in a moment, and you do so want him to enjoy himself. It’ll take all your considering skills to properly milk a dick like that!");
 		output("\n\nThe leithan circles behind you, hooves clattering on the boards. He rears back, his mid-legs falling over your shoulders while his forelegs come to rest on the surprisingly sturdy stocks. You can actually touch the chitinous surface of his legs if you stretch your fingers, glossy and smooth, glowing with its own internal illumination. You don’t have long to appreciate it, however. Another more potent sensation appears between your legs: the sensation of a big, hard cock slipping and sliding past your [pc.vagina " + x + "], blindly thrusting.");
-		output("\n\nOnce, twice, thrice, it slides by. It would appear that the third time is <i>not</i> the charm. That's the fourth. His dick barrels into your pussy, forcefully pushing you wide, flexing to burrow in until it kisses your cervix. The head fattens within you, thickening and dribbling, lubricating itself as it stuffs you fuller than a Christmas turkey. You scream, partly in shock, partly in pleasure. Your body responds to the invasion whether you want it to or not, synapses firing shocks of sensuous delight straight into your cerebrum.");
+		output("\n\nOnce, twice, thrice, it slides by. It would appear that the third time is <i>not</i> the charm. That’s the fourth. His dick barrels into your pussy, forcefully pushing you wide, flexing to burrow in until it kisses your cervix. The head fattens within you, thickening and dribbling, lubricating itself as it stuffs you fuller than a Christmas turkey. You scream, partly in shock, partly in pleasure. Your body responds to the invasion whether you want it to or not, synapses firing shocks of sensuous delight straight into your cerebrum.");
 		pc.cuntChange(x,1100);
 		output("\n\nYou grunt, then groan, then moan as he takes you. His thrusts make make your vocalizations staccato, choked off affairs, but they do nothing to hinder the volume of your screamed pleasure.");
 		if(pc.legCount > 1) output(" Your [pc.legs] spread wider, entirely on their own,");
@@ -301,7 +302,7 @@ public function stocksOralIntros(args:Array):void
 		if(!pc.isBimbo()) output("you trying not to gag");
 		else output("you need to catch a quick breath");
 		output(". <i>“I could do this all day,”</i> she quips before gently pushing back in, the ruffled edge of her flare tickling your tonsils. <i>“Mmm, I’m gonna take it slow - let the pleasure build so you can get a nice reward for being such an eager little cumslut.”</i> Her balls slap your chin, and you swear you can feel a thick wad of pre-cum splashing into your belly.");
-		output("\n\nYou don't doubt that she will. Already, you can feel her bloated balls expanding the longer she stays in your mouth.");
+		output("\n\nYou don’t doubt that she will. Already, you can feel her bloated balls expanding the longer she stays in your mouth.");
 	}
 	//Zephyr
 	else if(inMouth == 1)
@@ -313,7 +314,7 @@ public function stocksOralIntros(args:Array):void
 		if(flags["MET_ZEPHYR"] != undefined) output("your");
 		else output("some slut’s");
 		output(" pussy today.”</i> She leans heavily on the stocks, aiming her bright red rocket between your lips. <i>“Start suckin’, bitch. It’ll be more fun for you that way.”</i>");
-		output("\n\nWith how hard you’re getting pounded, keeping your mouth closed is an impossibility. Sucking dick an inevitability.");
+		output("\n\nWith how hard you’re getting pounded, keeping your mouth closed is an impossibility. Sucking dick is an inevitability.");
 		if(pc.isBimbo()) output(" Good thing you’re like, super excited to get your lips around a dick again!");
 		output(" You open wide, and ");
 		if(flags["MET_ZEPHYR"] != undefined) output("Zephyr");
@@ -379,8 +380,8 @@ public function stocksOralIntros(args:Array):void
 		if(pc.isTreated() && pc.isBimbo()) output("Aren’t ya glad ya gotcherself Treated?");
 		else output("Shame ya aren’t treated yerself. But maybe this’ll change your mind. Even a core-hugging slut like you has to see Texans have more fun.");
 		output("”</i>");
-		output("\n\nYou start to answer, but a particularly forceful, cervix-kissing thrusts sucks the words right out of the mouth, leaving nothing but delighted grunts and moans in their place.");
-		output("\n\nCockhead plugs your [pc.lips] before you can gather your wits. The helmet alone is big enough to sorely stretch your mouth. The veiny tree trunk behind ");
+		output("\n\nYou start to answer, but a particularly forceful, cervix-kissing thrust sucks the words right out of the mouth, leaving nothing but delighted grunts and moans in their place.");
+		output("\n\nHis cockhead plugs your [pc.lips] before you can gather your wits. The helmet alone is big enough to sorely stretch your mouth. The veiny tree trunk behind ");
 		if(!pc.isBimbo()) output("seems an almost impossible task");
 		else output("seems like the perfect through-plug to a bimbo like you");
 		output(". He smells nice too, like sweat and hay and sex, all bundled up together until you can’t tell one from the other. And since you’re forced to breathe exclusively through your nose, you’ve no choice but drink in his manly aroma, all thick and hard and <i>urgent</i>.");
@@ -388,7 +389,7 @@ public function stocksOralIntros(args:Array):void
 		if(pc.isBimbo()) output("like, ");
 		output("way better, like a sugary drink that fizzes on your tongue, only syrupy and sensuous. You swallow it, the corners of your mouth straining to smile. Somehow the flavorful pre-spunk makes the troublesome girth almost pleasant - that or the pleasant plowing your pussy is receiving.");
 		output("\n\nYou waggle your flattened tongue as he pushes in further. Calloused fingers play with your [pc.ears]. A thumb brushes the flushed skin alongside your chin. <i>“Atta girl, I knew you could do it.”</i>");
-		output("\n\nHis dick feels like it goes on forever, just like the sweet cream it oozes. Whenever his cock feels overwhelming, you just swallow a little more of his slick treat and relax, letting push in farther.");
+		output("\n\nHis dick feels like it goes on forever, just like the sweet cream it oozes. Whenever his cock feels overwhelming, you just swallow a little more of his slick treat and relax, letting him push in farther.");
 		if(pc.isBimbo())
 		{
 			output(" You silently thank ");
@@ -418,7 +419,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 	var inCunt:int = args[0];
 	var inMouth:int = args[1];
 	//A bit of generic getting plowed from both ends and cumming
-	output("The rubbery seals around your arms and neck hold you relatively still, but not even they can fully arrest the motions of your public fucking. You rock back and forth, bounced between the dicks impaling you on either end, feeling every ridge and vein on both ends as they use you. Your [pc.vagina " + x + "] squelches wetly, loud enough for passersby on the street to hear, loud enough to makes you blush with shame and lust. What’s happening to you doesn’t sound like lovemaking");
+	output("The rubbery seals around your arms and neck hold you relatively still, but not even they can fully arrest the motions of your public fucking. You rock back and forth, bounced between the dicks impaling you on either end, feeling every ridge and vein on both ends as they use you. Your [pc.vagina " + x + "] squelches wetly, loud enough for passersby on the street to hear, loud enough to make you blush with shame and lust. What’s happening to you doesn’t sound like lovemaking");
 	if(inMouth != 3) output(", not with those balls slapping so perversely against your chin");
 	output(". It sounds like slut-fucking - brutal, licentious breeding, the kind you’d see recorded for pornography.");
 	output("\n\nThe ");
@@ -435,7 +436,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		if(pc.legCount > 1) output(" between your [pc.legs]");
 	}
 	output(", bursting up through your quivering, boneless middle until your eyes roll back and your tongue flops limply against its prick, too pleasure-drunk for even the most basic of fellatio.");
-	output("\n\nFloating away on bliss, your brain checks out on perceiving anything beyond the rough usage of your body. You may as well be two stuffed and drooling holes, connected by a body whose sole purpose is passing on the pleasure to your short-circuiting cerebrum. The cocks are getting fatter too, pumping up on blood and pre-cum the closer the get to climax, filling your greedy holes more effectively than ever before.");
+	output("\n\nFloating away on bliss, your brain checks out on perceiving anything beyond the rough usage of your body. You may as well be two stuffed and drooling holes, connected by a body whose sole purpose is passing on the pleasure to your short-circuiting cerebrum. The cocks are getting fatter too, pumping up on blood and pre-cum the closer they get to climax, filling your greedy holes more effectively than ever before.");
 	//Cuntgasms first!
 	//Kiro
 	if(inCunt == 0)
@@ -454,9 +455,9 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 	{
 		output("\n\n<i>“Let’s hear your best moo, slut!”</i> Zephyr cries at the edge of her own climactic peak. <i>“Moo!”</i>");
 		output("\n\n");
-		if(pc.isTreated() || pc.race() == "cow") output("If your mouth weren’t so full of cock, you’d be grinning deliriously, but you try your best. <i>“Mmmrrphhh!”</i> The happy, oozing cock in your mouth throbs on your tongue from the vibrations, so you try again, this time louder, <i>“MMMRRPHWW~!”</i>");
+		if(pc.isTreated() || pc.race().indexOf("cow") != -1) output("If your mouth weren’t so full of cock, you’d be grinning deliriously, but you try your best. <i>“Mmmrrphhh!”</i> The happy, oozing cock in your mouth throbs on your tongue from the vibrations, so you try again, this time louder, <i>“MMMRRPHWW~!”</i>");
 		else output("You’d probably feel a little offended if it didn’t feel so goddamned <i>sexy</i>. She humps you to the hilt, popping that knot inside, and you do the only thing you can think of: you try to moo through the prick in your mouth. It comes out as a muffled, <i>“Mmmrph,”</i> but that seems to do the trick.");
-		output(" Zephyr roars triumphantly and yanks down on your hips, flattening your [pc.butt] against her gleaming abdominals, forcing every millimeter of her bestial dong inside your lips' slick embrace.");
+		output(" Zephyr roars triumphantly and yanks down on your hips, flattening your [pc.butt] against her gleaming abdominals, forcing every millimeter of her bestial dong inside your lips’ slick embrace.");
 		output("\n\nThe amazon’s knot pumps up in seconds, massively inflating to the rhythm of her powerful heart. It’s delicious, the way it stretches you, pauses, then stretches you some more. You could probably cum from this alone, but the horny she-stud isn’t content with merely cumming. She keeps trying to hump you, jerking her hips in tiny back-and-forth movements, dragging a knot that feels more like a beach ball than part of her anatomy through your vulnerable passage.");
 		output("\n\nThen you feel the cum, not in your pussy but in your womb. It manifests as a muted, half-felt warmth. In a way, it reminds you of taking a shot of whiskey. That warmth intensifies, radiating outward with every spurt of spunk, twisting to fill up every inch of your fallopian tubes. And still, the cow-girl keeps cumming. It feels like it has gone on for minutes already, but her knot will not deflate. She hump and humps, and you’re left with the impression that even though her orgasm has wound down, she’s still pouring spooge into your body the moment her balls finish brewing it.");
 		output("\n\nAt some point in the half-hour long dick-binding, you cum again, but it’s difficult to tell when it starts and when it stops. You’re floating on cloud nine as it is, caught between orgasmic afterglow, sensuous pleasure, and the ecstasy of giving yourself to potential impregnation.");
@@ -471,9 +472,9 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 	{
 		output("\n\nThe savage ausar doesn’t bother giving you a warning.");
 		if(pc.hasHair()) output(" He just reaches across the stocks to grab your [pc.hair] and give a painful yank.");
-		else output(" He just grabs hold of your middle with a hand big enough palm a prize-winning watermelon and shifts your whole body to better accept his cock.");
+		else output(" He just grabs hold of your middle with a hand big enough to palm a prize-winning watermelon and shifts your whole body to better accept his cock.");
 		output(" Then, he cums. He slams his knot home a split-second before it expands to its full, pussy-gaping size. It feels like it inflates all at once, forcing you so wide open that the pain and pleasure war for your attention, mixing together into a soup of confused sensation that restarts your orgasm all over again.");
-		output("\n\nYou whine around your dick as you climax, nearly inaudible beneath the hellish hound’s bass rumbles of pleasure. His seed shoots into you in thick, potent jets, first flooding your passage with perverse heat, then flooding into your womb thanks to the pressure his expansive knot generates. It’s a bizarre but not entirely unwelcome sensation, and as the jizz sloshes into your uterus, you realize the pain of being so sorely stretched has faded. There’s only a little irritation left in your [pc.vagina " + x + "], the kind of soreness that says, <i>“I’ve been fucked so hard I’m going to walk bow-legged... and I’d do it again in a heartbeat.”</i>");
+		output("\n\nYou whine as you climax, nearly inaudible beneath the hellish hound’s bass rumbles of pleasure. His seed shoots into you in thick, potent jets, first flooding your passage with perverse heat, then flooding into your womb thanks to the pressure his expansive knot generates. It’s a bizarre but not entirely unwelcome sensation, and as the jizz sloshes into your uterus, you realize the pain of being so sorely stretched has faded. There’s only a little irritation left in your [pc.vagina " + x + "], the kind of soreness that says, <i>“I’ve been fucked so hard I’m going to walk bow-legged... and I’d do it again in a heartbeat.”</i>");
 		output("\n\nMoments pass like that: two bodies shuddering against one another, bathing the other in their reproductive fluids. He calms first, but that dick... oh stars, that dick. It doesn’t soften in the slightest. You’re stuck to the brute, but his attentions have turned tender.");
 		if(pc.hasHair()) output(" He strokes your hair apologetically");
 		else output(" He lovingly strokes your [pc.hips]");
@@ -490,7 +491,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output("\n\n<i>“O-oh! Oh! Ohhhh!”</i> the kaithrit cries from behind you, thrusting in as hard as her petite body will allow. Her jiggling udders bounce hard enough to slap into the small of your back, and then you feel her cumming, pouring all of her pent-up lusts directly into your sweltering pussy. It’s a lovely little orgasm, one that bathes your g-spot in warm, delicious cum. The feeling almost restarts your own orgasm, making your [pc.hips] shudder in hyper-sensitive aftershocks.");
 		output("\n\nCat-cum pools along the bottom of your [pc.vagina " + x + "] by the time the sex-kitten finishes releasing her load. When she pulls out, some of it slops out with her, smacking wetly to the boards below, but you’re fairly certain that some got into your womb as well, if the pleasant glow emanating from your belly is any indication.");
 		output("\n\n<i>“Thanks for that. If I see your boss, I’ll be sure to recommend you for a promotion,”</i> the panting kaithrit purrs, <i>“I swear it felt like your pussy was actually begging for me to cum inside it.”</i> She staggers away, shaking her head, mumbling, <i>“What a pro...”</i>");
-		output("\n\nYour [pc.vagina " + x + "] may have acquired a healthy glaze, but without the warm, pulsing rod inside. It just feels empty.");
+		output("\n\nYour [pc.vagina " + x + "] may have acquired a healthy glaze, but without the warm, pulsing rod inside, it just feels empty.");
 		//9999 lazyfen is too lazy to bother wiring up a kaithrit cumdump atm.
 		var ppKaithrit:PregnancyPlaceholder = getZephyrPregContainer();
 		pc.loadInCunt(ppKaithrit, x);
@@ -519,7 +520,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		if(flags["LEITHAN_STOCKED"] != undefined) output("if he’s ever fucked anyone else");
 		else output("if he’s ever fucked anyone before");
 		output(".");
-		output("\n\nThe eager male buries himself in to the hilt and erupts. What he lacks in experience, he makes up for in volume. You can feel his passionate discharge surging into you, flooding your channel so thickly that luxurious wads pour out from between your [pc.thighs]. It’s a sloppy, animalistic climax, no doubt about it. You shudder beneath him and nearly cum all over again. Thrilling at the feeling of his spunk coursing inside of you, you lift your [pc.hips] to better collect it, nevermind that gallons are likely trickling into your womb. Nevermind that the raw sensation of getting used like this, getting bred on a first come, first serve basis, is nearly as powerful a pleasure as orgasm itself.");
+		output("\n\nThe eager male buries himself in to the hilt and erupts. What he lacks in experience, he makes up for in volume. You can feel his passionate discharge surging into you, flooding your channel so thickly that luxurious wads pour out from between your [pc.thighs]. It’s a sloppy, animalistic climax, no doubt about it. You shudder beneath him and nearly cum all over again. Thrilling at the feeling of his spunk coursing inside of you, you lift your [pc.hips] to better collect it, never mind that gallons are likely trickling into your womb. Never mind that the raw sensation of getting used like this, getting bred on a first come, first serve basis, is nearly as powerful a pleasure as orgasm itself.");
 		output("\n\nAfter he finishes cumming, your lucky suitor awkwardly canters back, leaking enough cum in his wake that a tracker might mistake him for a white-hued galotian.");
 		output("\n\n<i>“Sweet fuck, that was awesome.”</i> The leithan slaps your ass, then nervously giggles. <i>“Uh, thanks again for that! I better get back before they find out I was here!”</i> He trots away, waving giddily on his way by. <i>“Thanks again!”</i>");
 		output("\n\nPart of you is glad the bulky brute is no longer weighing down on you. The rest of you, mostly between your [pc.thighs], is wondering if anyone is going to come get sloppy seconds.");
@@ -558,8 +559,8 @@ public function stocksMouthgasms(args:Array):void
 		output("\n\nSperm trickles from the corners of your mouth as the hyper-endowed tanuki continues to climax. Your [pc.belly] bloats and expands");
 		if(pc.bellyRating() > 35) output(", more than it was already. More than you ever thought possible");
 		else output(" larger by the second, wobbling obscenely with its own liquid weight");
-		output(". You feel more balloon than [pc.manWoman], and once it finally becomes too much to bear, Kiro begrudgingly pulls out.");
-		output("\n\nWhite gunk explodes onto your face like water from a firehose, forcing you to close your eyes. It cascades down your chin, and when you do manage to blink past the gummy stuff enough to see, all you can make out are Kiro’s hands frantically pumping, birthing another wave of blinding alabaster. You let your tongue hang out and revel the liquid debauchery of it all. Cum paints your face and sloshes in your [pc.vagina " + x + "].");
+		output(". You feel more like a balloon than a [pc.manWoman], and once it finally becomes too much to bear, Kiro begrudgingly pulls out.");
+		output("\n\nWhite gunk explodes onto your face like water from a firehose, forcing you to close your eyes. It cascades down your chin, and when you do manage to blink past the gummy stuff enough to see, all you can make out are Kiro’s hands frantically pumping, birthing another wave of blinding alabaster. You let your tongue hang out and revel in the liquid debauchery of it all. Cum paints your face and sloshes in your [pc.vagina " + x + "].");
 		output("\n\nYou’re practically creme-filled... and still getting glazed. You shudder in climax, moaning louder and hotter, spurring Kiro to squirt still more upon you. It splatters the boards and coats your back. Pearly bliss oozes down your [pc.hips] and elbows, completing the thickest coat of paint you’ve ever seen.");
 		output("\n\nAt some point, the orgasmic splashes stop falling. A familiar voice says something grateful sounding, and another cock winds its way into your lips. You hum happily and suck, curious how they’ll match up to the kui-tan cum cannon.");
 		pc.loadInMouth(chars["KIRO"]);
@@ -570,7 +571,7 @@ public function stocksMouthgasms(args:Array):void
 	else if(inMouth == 1)
 	{
 		output("\n\nZephyr grunts and growls, then bellows, <i>“Here it comes ");
-		if(pc.isTreated() || pc.race() == "cow") output("cow");
+		if(pc.isTreated() || pc.race().indexOf("cow") != -1) output("cow");
 		else output("bitch");
 		output("!”</i> Her knot pops in, right behind your teeth, and swells, expanding with enough force to pry your jaw wide open. It aches, only mildly dulled by the pleasure coursing through the rest of you, but the amazonian dick-girl doesn’t seem to care in the slightest.");
 		output("\n\nYou ");
@@ -594,8 +595,8 @@ public function stocksMouthgasms(args:Array):void
 	else if(inMouth == 2)
 	{
 		output("\n\n<i>“Swallow, bitch!”</i> the hellhound bellows, the command vibrating through you from head to toe. He slaps all the way in, popping a rapidly expanding knot in behind your teeth mere seconds before it inflates. Oh stars, does it inflate! Your jaw is pulled open to the limit and then some. It aches, but you salivate all the same, giving in to the alpha dog’s barked command with thoughtless subservience.");
-		output("\n\nHis cum barrels directly into your gulping throat, thick enough that reminds you of yogurt yet alien enough to tingle deliciously on the rearmost part of your tongue. It was so nice of him to give you advanced warning. You glow with happiness as you swallow - mostly from the knowledge that you’ve brought off such a strapping male, but a little from the lovely cunt-fucking still going on just across the stocks.");
-		output("\n\nYou almost forget about the apple-sized distention keeping your mouth at a healthy gape. There’s just too many other things going on to worry about a little discomfort, too much cum pumping into you and slopping out of you and dribbling down your [pc.thighs] in lazy, winding streams. Your [pc.belly] gurgles happily, and you join it a second later, vibrating your tongue against the domineering ausar’s throbbing cum-vein in between swallows.");
+		output("\n\nHis cum barrels directly into your gulping throat, thick enough that it reminds you of yogurt yet alien enough to tingle deliciously on the rearmost part of your tongue. It was so nice of him to give you advanced warning. You glow with happiness as you swallow - mostly from the knowledge that you’ve brought off such a strapping male, but a little from the lovely cunt-fucking still going on just across the stocks.");
+		output("\n\nYou almost forget about the apple-sized distention keeping your mouth at a healthy gape. There’s just too many other things going on to worry about a little discomfort, too much cum pumping into you, slopping out of you, and dribbling down your [pc.thighs] in lazy, winding streams. Your [pc.belly] gurgles happily, and you join it a second later, vibrating your tongue against the domineering ausar’s throbbing cum-vein in between swallows.");
 		output("\n\n<i>He’s just so fantastically virile!</i> You drink in his masculine musk when you can. It makes you feel a little dizzy, maybe a little drunk, but you’re being such a good girl. He’s rubbing your head and telling you so! You swallow harder, noisily polishing his knob until the spunky flow slows to a trickle. He’s not going to leave, is he?");
 		output("\n\nThe ausar pulls back with his hips, but there’s simply no room for his massively swollen knot to escape. He’s tied to you - you hope forever. You tongue the sensitive bulb as best you can, coaxing more of his blissful goo into your throat, hoping to keep him inside you as long as you possibly can. Maybe if you milk out every single drop of sperm, he’ll take you with him when he leaves.");
 		output("\n\nRegrettably, it isn’t to be. No amount of feverish tonguing will keep the black-furred ausar’s melon-like knot at full size. After fifteen or twenty minutes, he begins to deflate. You drink in more of his pheromonal fragrance through your nose, savoring it one last time, then give him a loving, parting suck before he can pull out. He waits, gracious man that he is, then pops his rod out into the open air, patting you on the head again and grumbling something about, <i>“");
@@ -626,7 +627,7 @@ public function stocksMouthgasms(args:Array):void
 		else output(" There’s just something about the rich aroma of his pubes that reaches into your nose and tweaks your [pc.clits], begging you to start ovulating. New Texans truly are the masters of inaudible communication.");
 		output(" Puckering up, you drag your bleary eyes open and try to meet the <i>man’s</i> gaze.");
 		output("\n\nHis eyes nearly cross from the smoky look you just flashed, and his cock seems to double in girth in an instant, transitioning from mere phallic firmness into diamond-hard fuck-tool. <i>“Hold onto yer horse!”</i> the yokel grunts, half-chuckling, <i>“’Cause he’s about to cum!”</i>");
-		output("\n\nThrusting deep, the farmer plows so far into your mouth that you can’t even taste the spunk he’s jetting out. You’re forced to feel it in the way his urethra bulges on your tongue and in the warm, healthy gurgles coming from your stomach. He cums and cums, but as the orgasm drags on, he pulls back, finally allowing you savor the salty ambrosia. He’s even courteous enough pop his still-spurting dick out of your insatiable lips and paint a thick layer of bull-boy bliss across your features, showing everyone exactly how good of a cock-sucker you are.");
+		output("\n\nThrusting deep, the farmer plows so far into your mouth that you can’t even taste the spunk he’s jetting out. You’re forced to feel it in the way his urethra bulges on your tongue and in the warm, healthy gurgles coming from your stomach. He cums and cums, but as the orgasm drags on, he pulls back, finally allowing you savor the salty ambrosia. He’s even courteous enough to pop his still-spurting dick out of your insatiable lips and paint a thick layer of bull-boy bliss across your features, showing everyone exactly how good of a cock-sucker you are.");
 		output("\n\nStars, these hicks know how to live! Just when you’re sure that another drop of jism couldn’t possibly fit on your face, he slaps his cock back onto your tongue, letting you gratefully swallow the last few pulses of your reward.");
 		if(!pc.isBimbo()) output(" You never knew dicks could be so... demanding, or that servicing them could feel so good! You’re practically dizzy on cock-sucking bliss, and your [pc.vagina " + x + "] won’t stop spasming. It’s like one constant, orgasmic high that never stops feeling better, not when you’ve got cock in both ends.");
 		else output(" You don’t think you’ll ever get sick of this. The headrush from serving a big, thick slab of lusty prick always feels just as good as the first time. You’re practically dizzy with it, but that doesn’t stop you from working your vaginal muscles like a finely-honed sex-toy. You doubt any force in the universe could stop you from pleasing all these people. It’s like, what you’re best at.");

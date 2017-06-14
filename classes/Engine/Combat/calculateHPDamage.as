@@ -14,6 +14,7 @@ package classes.Engine.Combat
 	 */
 	public function calculateHPDamage(target:Creature, attacker:Creature, damageResult:DamageResult, special:String = ""):void
 	{
+		if (target == null) return;
 		if (target.HP() <= 0) return;
 		
 		var tarResistances:TypeCollection = target.getHPResistances();

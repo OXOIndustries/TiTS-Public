@@ -140,7 +140,7 @@ public function getMilkedByYancyYaSloot():void
 		output("”</i> He flips a switch to cycle the machine’s storage and warm it up for you.");
 	}
 	//Not treated
-	if(!pc.isTreated() && !pc.isBimbo())
+	if(!(pc.isTreated() && pc.isBimbo()))
 	{
 		//Clothed
 		if(!pc.isNude())

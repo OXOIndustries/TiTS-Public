@@ -96,7 +96,7 @@
 				//NOPE! 60%!
 				if(pc.IQ() < 60 && rand(3) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nYour mind wanders back to your [pc.ship], considering all its small, annoying, mechanical problems; ways you could fix them, parts you could reuse in so doing, systems you could make more efficient by taking apart and reworking them... oh, if only you had the time! But the moment you’ve redesigned something in your head you’ve moved on and forgotten it, another manual problem occurring to you and occupying your busy, impatient mind.");
+					kGAMECLASS.output("\n\nYour mind wanders back to your ship, considering all its small, annoying, mechanical problems; ways you could fix them, parts you could reuse in so doing, systems you could make more efficient by taking apart and reworking them... oh, if only you had the time! But the moment you’ve redesigned something in your head you’ve moved on and forgotten it, another manual problem occurring to you and occupying your busy, impatient mind.");
 					pc.slowStatGain("intelligence",2);
 					changes++;
 				}

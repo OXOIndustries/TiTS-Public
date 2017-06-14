@@ -59,7 +59,7 @@ public function eggTrainerInstallation():void
 		processTime(4);
 		flags["EGG_TRAINER_INSTALLED"] = 1;
 		//Consume the item
-		pc.destroyItem(new EggTrainer());
+		pc.destroyItemByClass(EggTrainer);
 		//Display egg trainer options here.
 		eggTrainerMenu();
 	}

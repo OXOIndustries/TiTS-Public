@@ -87,18 +87,18 @@ package classes.Items.Miscellaneous
 					kGAMECLASS.output("You consider another of the medipens containing the Treatment. You already took your dose. Taking more of it won’t do anything but waste it. Maybe you can find an interested friend to try it out with you? This’ll be fun!");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
+				//Faux-cow repeat use
+				else if(pc.isBimbo() && pc.isFauxCow() && pc.isTreated())
+				{
+					output("You nervously eye the pen in your palm. The last one you took made you all cute and girly instead of big, strong, and masculine. At least it didn’t take away your dick. The warnings say it won’t do anything if you’ve already taken one, but maybe you can find someone cute to get to take it. Then you’ll have someone to help keep your balls from getting so painfully full!");
+					if(!kGAMECLASS.infiniteItems()) quantity++;
+				}
 				//Bimbo repeat use
 				else if(pc.isBimbo() && pc.isTreated())
 				{
 					kGAMECLASS.output("Your attention briefly flicks over one of the medipens that made everything so awesome. Giggling, you remember how weird but amazingly hot those days after your dose were. It’s too bad that taking it wouldn’t make you any more sensitive or happy. Maybe you can find a friend to give it to?");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 				}
-				//Faux-cow repeat use
-				else if(pc.isBimbo() && 9999 == 0 && pc.isTreated())
-				{
-					output("You nervously eye the pen in your palm. The last one you took made you all cute and girly instead of big, strong, and masculine. At least it didn’t take away your dick. The warnings say it won’t do anything if you’ve already taken one, but maybe you can find someone cute to get to take it. Then you’ll have someone to help keep your balls from getting so painfully full!");
-					if(!kGAMECLASS.infiniteItems()) quantity++;
-				}	
 				//Bull repeat use
 				else if(pc.isBro() && pc.isTreated())
 				{

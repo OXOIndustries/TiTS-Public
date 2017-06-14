@@ -11,7 +11,7 @@
 		public static const CLASS_NAMES:Array = [
 			"Smuggler",
 			"Mercenary",
-			"Tech Specialist"
+			"Tech Specialist",
 		];
 		
 		public static const UPBRINGING_PAMPERED:uint						= 0;
@@ -19,14 +19,16 @@
 		public static const UPBRINGING_BOOKWORM:uint						= 2;
 		public static const UPBRINGING_AUSTERE:uint							= 3;
 		public static const UPBRINGING_BALANCED:uint						= 4;
-		public static const MAX_UPBRINGINGS:uint							= 5;
+		public static const UPBRINGING_SLUTTY:uint							= 5;
+		public static const MAX_UPBRINGINGS:uint							= 6;
 		
 		public static const UPBRINGING_NAMES:Array = [
 			"Pampered",
 			"Athletic",
 			"Bookworm",
 			"Austere",
-			"Balanced"
+			"Balanced",
+			"Slutty",
 		];
 
 		//Body Part Flags - used for any body part that supports the new flags system.
@@ -75,6 +77,8 @@
 		public static const FLAG_TAILCUNT:int                               = 42;
 		public static const FLAG_BEAK:int									= 43;
 		public static const FLAG_CORKSCREWED:int							= 44;
+		public static const FLAG_TONGUE:int									= 45;
+		public static const FLAG_FRECKLED:int                               = 46;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -120,8 +124,10 @@
 			"Slightly Pumped",
 			"Fully Pumped",
 			"Tailcunt",
-			"Beak",
-			"Corkscrewed"
+			"Beaked",
+			"Corkscrewed",
+			"Tongued",
+			"Freckled",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -159,6 +165,7 @@
 		public static const TYPE_TANUKI:int                                 = 24; //Changed from 18 to 24 soz is the same as kui-tan
 		public static const TYPE_SHARK:int                                  = 19;
 		public static const TYPE_SIREN:int                                  = 20;
+		public static const TYPE_SUULA:int                                  = GLOBAL.TYPE_SIREN;
 		public static const TYPE_DEER:int                                   = 21;
 		public static const TYPE_ANEMONE:int                                = 22;
 		public static const TYPE_TENTACLE:int                               = 23;
@@ -212,6 +219,10 @@
 		public static const TYPE_WORG:int									= 71;
 		public static const TYPE_SWINE:int									= 72;
 		public static const TYPE_QUAD_LAPINE:int 							= 73;
+		public static const TYPE_MOUTHGINA:int 								= 74;
+		public static const TYPE_LUPINE:int 								= 75;
+		public static const TYPE_SHEEP:int 									= 76;
+		public static const TYPE_REDPANDA:int 								= 77;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -287,7 +298,11 @@
 			"Milodan",
 			"Worg",
 			"Swine",
-			"Quad Lapine"
+			"Quad Lapine",
+			"Mouthgina",
+			"Lupine",
+			"Sheep",
+			"Lesser Panda",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -315,6 +330,9 @@
 			TYPE_FROG,
 			TYPE_WORG,
 			TYPE_SWINE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -323,6 +341,7 @@
 			FLAG_MUZZLED,
 			FLAG_ANGULAR,
 			FLAG_BEAK,
+			FLAG_FRECKLED,
 		];
 		
 		public static const VALID_EYE_TYPES:Array = [
@@ -338,7 +357,8 @@
 			TYPE_DEMONIC,
 			TYPE_FROG,
 			TYPE_NYREA,
-			TYPE_GRYVAIN
+			TYPE_GRYVAIN,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -357,7 +377,7 @@
 			TYPE_GOOEY,
 			TYPE_BEE,
 			TYPE_FROG,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -370,6 +390,7 @@
 			FLAG_GOOEY,
 			FLAG_STICKY,
 			FLAG_NUBBY,
+			FLAG_TAPERED,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
@@ -398,7 +419,11 @@
 			TYPE_FROG,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_QUAD_LAPINE
+			TYPE_QUAD_LAPINE,
+			TYPE_DOGGIE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -416,10 +441,13 @@
 			TYPE_KUITAN,
 			TYPE_OVIR,
 			TYPE_MYR,
+			TYPE_VULPINE,
 			TYPE_DEMONIC,
 			TYPE_NYREA,
 			TYPE_FLOWER,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
+			TYPE_LUPINE,
+			TYPE_REDPANDA,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -466,7 +494,10 @@
 			TYPE_NYREA,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -507,6 +538,7 @@
 			TYPE_NARWHAL,
 			TYPE_GRYVAIN,
 			TYPE_DRYAD,
+			TYPE_SHEEP,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -526,7 +558,7 @@
 			TYPE_DOVE,
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -565,7 +597,11 @@
 			TYPE_FROG,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
+			TYPE_DOGGIE,
+			TYPE_LUPINE,
+			TYPE_SHEEP,
+			TYPE_REDPANDA,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -620,7 +656,7 @@
 			TYPE_FELINE,
 			TYPE_VULPINE,
 			TYPE_FLOWER,
-			TYPE_TENTACLE
+			TYPE_TENTACLE,
 		];
 		
 		//SKINTYPES
@@ -836,7 +872,7 @@
 		
 		// HAIRTYPES
 		public static const HAIR_TYPE_REGULAR:int						= 0;
-		public static const HAIR_TYPE_HAIR:int							= 0;
+		public static const HAIR_TYPE_HAIR:int							= HAIR_TYPE_REGULAR;
 		public static const HAIR_TYPE_FEATHERS:int						= 1;
 		public static const HAIR_TYPE_TRANSPARENT:int					= 2;
 		public static const HAIR_TYPE_GOO:int							= 3;
@@ -900,7 +936,7 @@
 			TYPE_GABILANI,
 			TYPE_HRAD,
 			TYPE_GRYVAIN,
-			TYPE_SWINE
+			TYPE_SWINE,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -944,6 +980,7 @@
 			TYPE_GRYVAIN,
 			TYPE_FLOWER,
 			TYPE_SWINE,
+			TYPE_MOUTHGINA,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -958,6 +995,7 @@
 			FLAG_SLIGHTLY_PUMPED,
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
+			FLAG_TONGUE,
 		];
 		
 		//ROOM FLAGS
@@ -990,6 +1028,7 @@
 		public static const FROZENTUNDRA:int							= 26;
 		public static const SHIPINTERIOR:int							= 27; // Used to flag all rooms of player-own ships.
 		public static const POOL:int									= 28;
+		public static const WATERFALL:int								= 29;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -1231,6 +1270,7 @@
 			"JAMESAB",
 			"JAYECHO",
 			"LAPINBEAU",
+			"LILIRURU",
 			"MANIACPAINT",
 			"NUBATTORI",
 			"PEEKAY",
@@ -1259,6 +1299,7 @@
 			"James AB",
 			"Jay Echo",
 			"Lapinbeau",
+			"LiliRuru",
 			"ManiacPaint",
 			"Nu Battori",
 			"Pee-Kay",

@@ -33,9 +33,6 @@
 			
 			//this.meleeWeapon = new RaskvelWrench();
 			
-			rangedWeapon.baseDamage.kinetic.damageValue = 1;
-			rangedWeapon.baseDamage.addFlag(DamageFlag.BULLET);
-			
 			this.rangedWeapon.attack = -5;
 			this.rangedWeapon.longName = "dual-barreled machine gun";
 			this.rangedWeapon.attackVerb = "shoot";
@@ -202,6 +199,8 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.REALLY_DISLIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
 			
+			kGAMECLASS.tarkusSSTDChance(this);
+
 			this._isLoading = false;
 		}
 		

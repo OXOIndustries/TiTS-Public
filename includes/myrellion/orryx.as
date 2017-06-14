@@ -112,7 +112,7 @@ public function encounterFrogapi():void
 		{
 			output("\n\n<i>“Ah hah! It’s you! Wonderful to see you again! Tell me, have you collected enough Golden Honey?”</i> he says, all fours of his hands wringing together excitedly.");
 			clearMenu();
-			if(pc.hasItem(new MyrNectar(),5)) addButton(0,"Yes",IHaveSomeSlutHoneyNowYouLittleMuppetFuck);
+			if(pc.hasItemByClass(MyrNectar,5)) addButton(0,"Yes",IHaveSomeSlutHoneyNowYouLittleMuppetFuck);
 			else addDisabledButton(0,"Yes","Yes","You don't have enough honey yet.");
 			//No
 			addButton(14,"Leave",noHoneyForYouSlut);
@@ -162,9 +162,9 @@ public function investigateFrogapi():void
 	else output("This strange six-legged created sit perched on its fuzzy haunches, bird-like talons hooked over the edge of the glittering screens of its stand. Four, emotive limbs gesture frenetically through the air as it regards you with a row of four, glittering eyes, its sideways pupils regarding you with alien expression. Beneath those eyes clicks a wide, hooked beak, and two, overlong ears twitch in time to its speech. Covered completely in deep-blue fur, the creature looks more like some kind of living stuffed animal.");
 	output(" It beckons you in with one hooked talon, while the other turns the dial on what looks like an antique pocketwatch. Its remaining two limbs brush down an adorably tiny vest buttoned snugly over the creature’s round, fuzzy belly.");
 
-	output("\n\n<i>“Let’s see, you are a...</i>\" it mutters, glancing down at the device in its hand. ");
-	var race:String = pc.race();
-	if(race == "human" || race == "terran" || race == "ausar" || race == "kaithrit" || race == "kui-tan") output("<i>“" + race + "! Wonderful! I’ve worked with your kind before!”</i>");
+	output("\n\n<i>“Let’s see, you are a...”</i> it mutters, glancing down at the device in its hand. ");
+	var race:String = pc.raceShort();
+	if(InCollection(race, ["human", "terran", "ausar", "kaithrit", "kui-tan"])) output("<i>“" + StringUtil.capitalize(race) + "! Wonderful! I’ve worked with your kind before!”</i>");
 	else output("It shakes the device in its hand and tucks it away into a tiny pocket. <i>“Doesn’t matter, a tove that can’t do business with an unknown species is a tove that’ll never get his own wabeship, am I right?”</i>");
 
 	output("\n\n<i>“Good sapient, I am Orryx, a male, if you’re wondering, tove in good standing with the Gyre Galactic Camarilla,”</i> he begins. <i>“Wait! Hold on! I forgot something!”</i> Before you can say a word, he vanishes down into the depths of the podium. The entire structure can’t be more than five feet high, but you hear the sound of splashing and metal clanging before the creature returns.");
@@ -326,7 +326,7 @@ public function itsADealYouLittleMuppetSlut():void
 	output("\n\n<i>“Fantastic! Money for you, money for me, it’s what spins this entire universe around ...at least on one of her axis,”</i> he says. <i>“As soon as you have five units of Golden Honey, drop by, and I’ll trade ya.”</i>");
 	clearMenu();
 	//I have some now!
-	if(pc.hasItem(new MyrNectar(),5)) addButton(0,"I Have It",IHaveSomeSlutHoneyNowYouLittleMuppetFuck)
+	if(pc.hasItemByClass(MyrNectar,5)) addButton(0,"I Have It",IHaveSomeSlutHoneyNowYouLittleMuppetFuck)
 	else addDisabledButton(0,"I Have It","I Have It","You don't have any.");
 	//Farewell.
 	addButton(1,"Farewell",farewellYouSackOfFluff);
@@ -343,16 +343,7 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 		output("\n\nAs you hand him the honey, he fiddles with the dials on his pocketwatch and you feel a buzz from your Codex.");
 		output("\n\n<i>“An easy 500 credits for you, and tidy profit for me,”</i> he burbles happily. A glance at your Codex confirms the amount. <i>“Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!”</i>");
 		output("\n\nYou bid the tove farewell as you walk away.");
-		//[+1 Rep with Orryx]
-		orryxReputation(1);
-		processTime(2);
-		//strip honey item
-		pc.destroyItemByName("MyrNectr",5)
-		pc.credits += 500;
-		flags["ORRYX_SHIPPED_TODAY"] = 1;
 		flags["ORRYX_SHIPPED_HONEY"] = 1;
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
 	}
 	//REPEAT SHITZ!
 	//(Not yet shipped a load) Yes: 
@@ -362,15 +353,16 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 		output("\n\nAs you hand him the honeys, he fiddles with the dials on his pocketwatch and you feel a buzz from your Codex.");
 		output("\n\n<i>“An easy 500 credits for you, and tidy profit for me,”</i> he burbles happily. A glance at your Codex confirms the amount. <i>“Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!”</i>");
 		output("\n\nYou bid the tove farewell as you walk away.");
-		//[+1 Rep with Orryx]
-		orryxReputation(1);
-		pc.destroyItemByName("MyrNectr",5)
-		flags["ORRYX_SHIPPED_TODAY"] = 1;
-		pc.credits += 500;
-		processTime(2);
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
 	}
+	//[+1 Rep with Orryx]
+	orryxReputation(1);
+	processTime(2);
+	//strip honey item
+	pc.destroyItemByClass(MyrNectar, 5);
+	pc.credits += 500;
+	flags["ORRYX_SHIPPED_TODAY"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Farewell: 

@@ -179,7 +179,6 @@
 			this.createStatusEffect("Disarm Immune");
 
 			this.inventory.push(new KerokorasVenom());
-			
 			isUniqueInFight = true;
 			btnTargetText = "Froggirl";
 			
@@ -187,7 +186,7 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
 			randomise();
 			updateDesc();
-			
+			kGAMECLASS.mhengaSSTDChance(this);
 			this._isLoading = false;
 		}
 		

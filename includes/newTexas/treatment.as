@@ -198,6 +198,9 @@ public function treatmentHourProcs(totalHours:int):void
 		{
 			AddLogEvent("You catch yourself glaring at your Codex, like the little tablet did something wrong. All it did was hitch for a second while loading up an extranet page, sometime entirely beyond its control. Still, someone should be held accountable. Perhaps the local relay technicians or the routing center upstream. You make a mental note to look into it down the line. Maybe you can give someone a tongue-lashing over it. And maybe if they take care of it well enough, you can give them an entirely different kind of tongue-lashing.\n\nThe thought doesn’t even make you blush.", "passive", (28 - startHours) * 60);
 			pc.lust(5);
+			//Gain Sexy Thinking - gives sexiness bonus equal to (100-IQ-25)/20 + (100-WQ-25)/20
+			ExtendLogEvent("\n\n(<b>Perk Gained: Sexy Thinking</b> - Increases tease damage inversely to how high willpower and intelligence are.)");
+	 		pc.createPerk("Sexy Thinking",0,0,0,0,"Boosts tease damage more the dumber and less willful you are.");
 		}
 		
 		//15
@@ -708,7 +711,7 @@ public function treatmentHourProcs(totalHours:int):void
 					//H -> big H
 					else if(pc.breastRows[0].breastRatingRaw < 20)
 					{
-						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It’s hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you’re pretty sure that your fingers are sinking a little deeper into your assets. There’s a little bit more weight in your palms. You’re on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] bigger, better boobs than them?"), "passive", (i * 3) * 60);
+						AddLogEvent(ParseText("You keep checking your [pc.chest] for signs of growth. It’s hard not to on the Treatment, knowing that at any moment you could cross the threshold to a whole new cup size and a whole new world of bigger, more sensitive boobs. This time, you’re pretty sure that your fingers are sinking a little deeper into your assets. There’s a little bit more weight in your palms. You’re on the upper edge of an H-cup bra, and you wonder how many of the heifers on New Texas wear H-cups. How many mooing submissives diddle themselves silly to the thought of being taken by a [pc.manWoman] with bigger, better boobs than them?"), "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw = 20;
 					}
 					//big H -> HH
@@ -1143,7 +1146,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//(Ram Horns!)
 		if(pc.horns == 2 && pc.hornType == GLOBAL.TYPE_BOVINE && (pc.hornLength < 10 && pc.hornLength > 4) && startHours < 137 && treatedHours >= 137 && rand(3) == 0)
 		{
-			AddLogEvent("You feel the familiar tightness of your horns growing once more, but this time it doesn’t stop at simple pain. It intensifies into a flaring, twisting agony, like two screws boring into your skull. You double over, grabbing at the bony protrusions in horror in time to feel them twisting through your hands, angling your bovine horns back toward your own ears as inch after inch of fresh growth pushes through your fingers, slick with some kind of fluid as if fresh-birthed.\n\nThis goes on for minutes, but to you, it feels like hours of torture. No amount of willpower or machismo helps you deal with it. All you can do is curl into a ball and feel your horns twisting and changing, losing their bovine nature as they become something... else.\n\nThe pain fades without warning, and the growth goes with it just as suddenly. Shocked, you rise up, unaware of just when you fell to the ground, awed by the magnitude of just what happened. You pull out your Codex with a shaking hand and flick it on, more anxious to see the result of your transformation than you care to admit.\n\n<b>Two curled ram horns twist back over your ears</b>, giving you an appearance that seems both regal and playful, like the fauns of old terran myths. You smile as you take it all in. It was almost worth the pain to get a pair like this.", "passive", (treatedHours - startHours) * 60);
+			AddLogEvent("You feel the familiar tightness of your horns growing once more, but this time it doesn’t stop at simple pain. It intensifies into a flaring, twisting agony, like two screws boring into your skull. You double over, grabbing at the bony protrusions in horror in time to feel them twisting through your hands, angling your bovine horns back toward your own ears as inch after inch of fresh growth pushes through your fingers, slick with some kind of fluid as if fresh-birthed.\n\nThis goes on for minutes, but to you, it feels like hours of torture. No amount of willpower or machismo helps you deal with it. All you can do is curl into a ball and feel your horns twisting and changing, losing their bovine nature as they become something... else.\n\nThe pain fades without warning, and the growth goes with it just as suddenly. Shocked, you rise up, unaware of just when you fell to the ground, awed by the magnitude of just what happened. You pull out your Codex with a shaking hand and flick it on, more anxious to see the result of your transformation than you care to admit.\n\n<b>Two curled goat horns twist back over your ears</b>, giving you an appearance that seems both regal and playful, like the fauns of old terran myths. You smile as you take it all in. It was almost worth the pain to get a pair like this.", "passive", (treatedHours - startHours) * 60);
 			pc.hornType = GLOBAL.TYPE_GOAT;
 			pc.hornLength = 11;
 			pc.horns = 2;
@@ -1211,7 +1214,7 @@ public function treatmentHourProcs(totalHours:int):void
 		}
 		
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && startHours < 141 && treatedHours >= 141 && rand(10) <= 3)
+		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 141 && treatedHours >= 141 && rand(10) <= 3)
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
@@ -1957,7 +1960,7 @@ public function treatmentHourProcs(totalHours:int):void
 				var dickBiggered:Boolean = false;
 				
 				//Can already autofellate - no cock growth - short intro
-				if(pc.canAutoFellate(-1))
+				if(pc.canAutoFellate(-1, true))
 				{
 					x = pc.longestCockIndex();
 					AddLogEvent(ParseText("[pc.OneCock] slaps accusingly against your [pc.chest]"), "passive", (125 - startHours) * 60);
@@ -1975,7 +1978,7 @@ public function treatmentHourProcs(totalHours:int):void
 					ExtendLogEvent(", leaving a trail of slime in its wake, climbing higher and higher.");
 
 					var backupCount:int = 0;
-					while(!pc.canAutoFellate(-1) && backupCount < 100)
+					while(!pc.canAutoFellate(x, true) && backupCount < 100)
 					{
 						pc.cocks[x].cLengthRaw += 2 + rand(4);
 						backupCount++;
@@ -2815,7 +2818,7 @@ public function treatmentHourProcs(totalHours:int):void
 			pc.earType = GLOBAL.TYPE_BOVINE;
 		}
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && startHours < 145 && treatedHours >= 145 && rand(10) <= 1)
+		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 145 && treatedHours >= 145 && rand(10) <= 1)
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{
@@ -3830,7 +3833,7 @@ public function treatmentHourProcs(totalHours:int):void
 		//(Ram Horns!)
 		if(pc.horns == 2 && pc.hornType == GLOBAL.TYPE_BOVINE && pc.hornLength < 10 && startHours < 127 && treatedHours >= 127 && rand(6) == 0)
 		{
-			AddLogEvent("You feel the familiar tightness of your horns growing once more, but this time it doesn’t stop at simple pain. It intensifies into a flaring, twisting agony, like two screws boring into your skull. You double over, grabbing at the bony protrusions in horror in time to feel them twisting through your hands, angling your bovine horns back toward your own ears as inch after inch of fresh growth pushes through your fingers, slick with some kind of fluid as if fresh-birthed.\n\nThis goes on for minutes, but to you, it feels like hours of torture. No amount of willpower or machismo helps you deal with it. All you can do is curl into a ball and feel your horns twisting and changing, losing their bovine nature as they become something... else.\n\nThe pain fades without warning, and the growth goes with it just as suddenly. Shocked, you rise up, unaware of just when you fell to the ground, awed by the magnitude of just what happened. You pull out your Codex with a shaking hand and flick it on, more anxious to see the result of your transformation than you care to admit.\n\n<b>Two curled ram horns twist back over your ears</b>, giving you an appearance that seems both regal and playful, like the satyrs of old terran myths. You smile as you take it all in. It was almost worth the pain to get a pair like this.", "passive", (127 - startHours) * 60);
+			AddLogEvent("You feel the familiar tightness of your horns growing once more, but this time it doesn’t stop at simple pain. It intensifies into a flaring, twisting agony, like two screws boring into your skull. You double over, grabbing at the bony protrusions in horror in time to feel them twisting through your hands, angling your bovine horns back toward your own ears as inch after inch of fresh growth pushes through your fingers, slick with some kind of fluid as if fresh-birthed.\n\nThis goes on for minutes, but to you, it feels like hours of torture. No amount of willpower or machismo helps you deal with it. All you can do is curl into a ball and feel your horns twisting and changing, losing their bovine nature as they become something... else.\n\nThe pain fades without warning, and the growth goes with it just as suddenly. Shocked, you rise up, unaware of just when you fell to the ground, awed by the magnitude of just what happened. You pull out your Codex with a shaking hand and flick it on, more anxious to see the result of your transformation than you care to admit.\n\n<b>Two curled goat horns twist back over your ears</b>, giving you an appearance that seems both regal and playful, like the satyrs of old terran myths. You smile as you take it all in. It was almost worth the pain to get a pair like this.", "passive", (127 - startHours) * 60);
 			pc.hornType = GLOBAL.TYPE_GOAT;
 			pc.hornLength = 11;
 			pc.horns = 2;
@@ -3895,7 +3898,7 @@ public function treatmentHourProcs(totalHours:int):void
 		}
 		
 		//Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
-		if(pc.legType != GLOBAL.TYPE_BOVINE && startHours < 165 && treatedHours >= 165 && rand(10) <= 1)
+		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 165 && treatedHours >= 165 && rand(10) <= 1)
 		{
 			if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES))
 			{

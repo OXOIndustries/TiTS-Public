@@ -1,62 +1,4 @@
-﻿
-/* Thare Plantation */
-
-public function plantationApproachBonus():Boolean
-{
-	author("Nonesuch");
-	
-	var msg:String = "";
-	
-	if(hours >= 6 && hours < 19) msg += "The bright sun of Ara Ara";
-	else msg += "The ghostly light of Mhen’ga’s moons";
-	msg += " becomes less and less filtered as you follow the sawdust trail eastwards, the jungle thinning out until it stops, suddenly, at the edge of a huge field. Row upon row of carefully tended and manicured plants of many different type and size meet your eye, each of them cordoned off from one another by white fencing and wire. Close to the edge of the acres of cleared forest there are defense turrets, similar to the ones guarding Esbeth. The ones nearest haven’t attempted to warn or fire at you.";
-	msg += "\n\n";
-	if(hours >= 6 && hours < 19) msg += "There’s activity, here and there in the sea of clean green, but it’s too far away to make out.";
-	else msg +="The fields look deserted, which is probably not surprising given the time of day.";
-	msg += " Rising above the fields to the south-east though a big, white building can be seen, approached by the same wide track you are on. Behind you, to the west, the alien wilderness encroaches, a complete contrast to this pristine, slightly unnerving farmland.";
-	msg += "";
-	
-	output(msg);
-	
-	flags["NAV_DISABLED"] = undefined;
-	
-	return jungleEncounterChances();
-}
-
-public function plantationFieldsBonus():Boolean
-{
-	author("Nonesuch");
-	
-	var msg:String = "";
-	var fullTime:int = ((hours * 60) + minutes);
-	
-	msg += "Fresh air, blessed next to the mugginess of the jungle, washes over your [pc.skin] in the open expanse of the plantation’s fields.";
-	// Time is 08:00-18:30:
-	if(fullTime >= (8 * 60) && fullTime <= ((18 * 60) + 30)) msg += " There are humanoid workers out there amongst the regimented crops, clad in khaki coveralls, as well as agri-bots that look like walking climbing frames, but they all ignore you.";
-	// Time is 18:31-07:59:
-	else msg += " The fields are deserted; the only sounds are the night insects and the distant, slightly terrifying strains of the Mhen’gan jungle.";
-	msg += "\n\n";
-	msg += "To the east are some low lying buildings which presumably function as dormitories. To the south, behind a tall wall, gate and manicured lawn, lies a multi-tiered white manor house. Its neo-classical design and spotless frontage, nestled within this tropical paradise, speaks only of immense opulence. On the wall next to the gate is a speaker and a brass sign which reads “THARE PLANTATION. A Snugglé enterprise”.";
-	
-	if(!CodexManager.entryUnlocked("Snugglé"))
-	{
-		msg += "\n\nYour Codex beeps with relevant information on the corporation.";
-		CodexManager.unlockEntry("Snugglé");
-	}
-	
-	output(msg);
-	
-	if(flags["THARE_MANOR_ENTERED"] == undefined) addButton(0, "Speaker", tharePlantationManorApproach, "speaker");
-	else
-	{
-		if(pc.hasStatusEffect("Thare Manor Visit") > 0) addDisabledButton(0, "Enter", "Enter", "You have already met Professor Darnock for a meal already. Perhaps you can revisit him later?");
-		else addButton(0, "Enter", tharePlantationManorApproach, "enter");
-	}
-	
-	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
-	
-	return false;
-}
+﻿/* Thare Plantation */
 
 public function tharePlantationManor():Boolean
 {
@@ -245,7 +187,7 @@ public function thareManorResponse(response:String = "none"):void
 		case "appearance":
 			showDarnock();
 			
-			output("Professor Shep Darnock is a 5\'10\" male human who looks to be in his late middle age, which probably means he’s a couple of centuries old at least. Dressed in a plain cotton safari suit, he has a genial, interested expression seemingly carved onto his square, beardless face. He is quite beefy and has tough walnut skin that speaks of a privileged lifetime spent mostly outdoors. His white hair is thick but well-groomed. There is no indication of any outlandish gene modification upon him, except for the sort that would eliminate such irritations as liver spots, back pain and glasses.");
+			output("Professor Shep Darnock is a 5\' 10\" male human who looks to be in his late middle age, which probably means he’s a couple of centuries old at least. Dressed in a plain cotton safari suit, he has a genial, interested expression seemingly carved onto his square, beardless face. He is quite beefy and has tough walnut skin that speaks of a privileged lifetime spent mostly outdoors. His white hair is thick but well-groomed. There is no indication of any outlandish gene modification upon him, except for the sort that would eliminate such irritations as liver spots, back pain and glasses.");
 			output("\n\nIn appearance and mannerism, he is exactly the sort of person that since the dawn of civilization is to be found in the upper echelons of human society, and perhaps always will be.");
 			
 			break;
@@ -278,7 +220,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\n<i>“Rather less encouraging factors.”</i>");
 			
 			processTime(4);
-			
+			IncrementFlag("PLANTATION_PLANTATION_TALK");
 			addDisabledButton(2, "Plantation");
 			break;
 		case "zil":
@@ -295,7 +237,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\n<i>“I would like to chase more rigorous tactics with them, but alas, the current planetary administration has chosen to shackle us with suffocating rule and regulation. Make no mistake though, my young friend,”</i> the professor growls, determination steeling his pale blue eyes, <i>“it is a situation that will change. The zil and their fellows will be brought into the present millennium. Whether it be mercifully through the kind light of the One God, or brutally by uncaring market forces, that is their own choice to make.”</i>");
 			
 			processTime(4);
-			
+			IncrementFlag("PLANTATION_ZIL_TALK");
 			pc.lust(2 + rand (2));
 			
 			// Unlocks <i>“Workers”</i> option
@@ -313,7 +255,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\n<i>“They didn’t get a choice, dear [pc.name],”</i> says Darnock, considering the distant workers with a fond, paternal smile. <i>“And they must understand their posting not as an imposition, but a grand opportunity: to prove they are capable of obedience and a hard, honest day’s work to future employers. Snugglé works closely with the U.G.C. legal system to secure laborers for out-of-the-way installations like this, where locals cannot be sourced for whatever reason. It’s a win-win for all concerned: the burden on our over-taxed prisons is eased, Snugglé gets access to near-free labor, and the prisoners themselves receive valuable experience and a commendation on their CV for when they are released.”</i>");
 			output("\n\nThe professor gets up and strolls over to the terrace, water glass in hand.");
 			output("\n\n<i>“The security concerns are trifling - we barely need the turrets you saw coming in, at least not where the workforce are concerned. The jungle is several times more effective than any wall or fence in deterring prospective runaways. And, of course - what is the next best audience for proselytizing, after native savages? Fertile soil for the One, " + pc.mf("Master", "Miss") + " Steele. Fertile soil!”</i>");
-			
+			IncrementFlag("PLANTATION_WORKERS_TALK");
 			processTime(3);
 			
 			addDisabledButton(4, "Workers");
@@ -342,6 +284,7 @@ public function thareManorResponse(response:String = "none"):void
 			
 			processTime(2);
 			pc.createStatusEffect("Thare Manor Visit", 0, 0, 0, 0, true, "", "", false, 30);
+			IncrementFlag("PLANTATION_MEALS");
 			
 			// Move PC to Thare Plantation square
 			thareManorMenu(true);
@@ -355,7 +298,7 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\nDo zil <i>ever</i> stop thinking about sex?");
 			
 			processTime(2);
-			
+			IncrementFlag("PLANTATION_MEALS");
 			// + Lust
 			pc.lust(10 + rand (11));
 			
@@ -408,10 +351,10 @@ public function thareAbleMenu(menu:String = "intro"):void
 			// [Buttfuck] [Lick n Ride] [Fuck n Ride]
 			if(pc.hasCock() && pc.smallestCockVolume() <= getAblePregContainer().analCapacity()) addButton(0, "Buttfuck", thareSexResponse, "buttfuck", "Buttfuck", "Put the subby zil’s ass to the use it was made for.");
 			else addDisabledButton(0, "Buttfuck", "Buttfuck", "You need a non-gigantic cock to do this.");
-			if(pc.hasVagina()) addButton(1, "Lick n Ride", thareSexResponse, "lick n ride", "Lick n Ride", "Get licked, then give the zil boy a ride.");
-			else addDisabledButton(1, "Lick n Ride", "Lick n Ride", "You need a pussy for this.");
-			if(pc.hasCock() && pc.smallestCockVolume() <= getAblePregContainer().analCapacity() && pc.hasVagina()) addButton(2, "Fuck n Ride", thareSexResponse, "fuck n ride", "Fuck n Ride", "Do the zil up the butt, then let him mount you.");
-			else addDisabledButton(2, "Fuck n Ride", "Fuck n Ride", "You need a reasonably-sized cock and pussy to do this.");
+			if(pc.hasVagina()) addButton(1, "Lick n Ride", thareSexResponse, "lick n ride", "Lick and Ride", "Get licked, then give the zil boy a ride.");
+			else addDisabledButton(1, "Lick n Ride", "Lick and Ride", "You need a pussy for this.");
+			if(pc.hasCock() && pc.smallestCockVolume() <= getAblePregContainer().analCapacity() && pc.hasVagina()) addButton(2, "Fuck n Ride", thareSexResponse, "fuck n ride", "Fuck and Ride", "Do the zil up the butt, then let him mount you.");
+			else addDisabledButton(2, "Fuck n Ride", "Fuck and Ride", "You need a reasonably-sized cock and pussy to do this.");
 			addButton(9, "Sleep", thareAbleResponse, "sleep", "Sleep", "You’re bagged after the jungle trek and meal. No time for anything but a " + sleepTooltip + ".");
 			break;
 		case "sleep":
@@ -443,7 +386,7 @@ public function thareAbleResponse(response:String = "none"):void
 		case "appearance":
 			showAble();
 			
-			output("Able is a 5\'6\" zil male. His black carapace is dressed in white servant robes, tight trousers overlaid by a long, belted smock, emblazoned on the breast, like every other Thare worker’s clothes, with the Snugglé logo. He is perhaps slighter than the zil average, with narrow, girly shoulders. What little meat there is to be found on his lean, supple frame is concentrated on his backside, a heart-shape which subtly blossoms out and stretches the fabric of his tight costume in a pleasing manner. His golden face mimics that shape; a cute, pointed chin which curves out to accommodate his black eyes, delicate cheekbones and short, straight nose. His fuzzy pseudo-hair is combed primly back. When he talks, it’s difficult for your eyes not to be drawn to the wag of his brilliant yellow tube-tongue.");
+			output("Able is a 5\' 6\" zil male. His black carapace is dressed in white servant robes, tight trousers overlaid by a long, belted smock, emblazoned on the breast, like every other Thare worker’s clothes, with the Snugglé logo. He is perhaps slighter than the zil average, with narrow, girly shoulders. What little meat there is to be found on his lean, supple frame is concentrated on his backside, a heart-shape which subtly blossoms out and stretches the fabric of his tight costume in a pleasing manner. His golden face mimics that shape; a cute, pointed chin which curves out to accommodate his black eyes, delicate cheekbones and short, straight nose. His fuzzy pseudo-hair is combed primly back. When he talks, it’s difficult for your eyes not to be drawn to the wag of his brilliant yellow tube-tongue.");
 			if(ableSexed()) output(" Beneath the carapace between his thighs is exactly what you’d expect to be; a five-inch foreskinned zil dick which smells far better than it has any right to.");
 			
 			break;

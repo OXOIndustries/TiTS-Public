@@ -15,6 +15,8 @@ package classes.Engine.Combat
 	 */
 	public function calculateLustDamage(target:Creature, attacker:Creature, damageResult:DamageResult, special:String = ""):void
 	{
+		if (target == null) return;
+		
 		if (target.isLustImmune)
 		{
 			damageResult.remainingLustDamage = new TypeCollection();
@@ -37,28 +39,22 @@ package classes.Engine.Combat
 		var lustDamage:TypeCollection = damageResult.remainingLustDamage.makeCopy();
 		
 		if (lustDamage.tease.damageValue > 0 && attacker != null) lustDamage.tease.damageValue += attacker.sexiness() / 2;
-		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Pheromone Cloud")) lustDamage.pheromone.damageValue += 1 + rand(4);
-		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Alpha Scent")) lustDamage.pheromone.damageValue += 1 + rand(4);
-		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPerk("Pheromone Sweat") && attacker.statusEffectv1("Sweaty") > 0)
-		{
-			var sweatBonus:Number = attacker.statusEffectv1("Sweaty");
-			if (sweatBonus > 5) sweatBonus = 5;
-			lustDamage.pheromone.damageValue += 1 + rand(sweatBonus);
-		}
-		if (lustDamage.tease.damageValue > 0 && target != null && target.hasCock() && attacker != null && attacker.hasStatusEffect("Cum Soaked")) 
+		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPheromones()) lustDamage.pheromone.damageValue += 1 + rand(attacker.pheromoneLevel());
+		if (lustDamage.tease.damageValue > 0 && target.hasCock() && attacker != null && attacker.hasStatusEffect("Cum Soaked")) 
 		{
 			var spunkBonus:Number = attacker.statusEffectv1("Cum Soaked");
 			if (spunkBonus > 5) spunkBonus = 5;
 			lustDamage.tease.damageValue += spunkBonus;
 		}
-		if (lustDamage.tease.damageValue > 0 && target != null && target.hasVagina() && attacker != null && attacker.hasStatusEffect("Pussy Drenched")) 
+		if (lustDamage.tease.damageValue > 0 && target.hasVagina() && attacker != null && attacker.hasStatusEffect("Pussy Drenched")) 
 		{
 			var slutsauceBonus:Number = attacker.statusEffectv1("Pussy Drenched");
 			if (slutsauceBonus > 5) slutsauceBonus = 5;
 			lustDamage.tease.damageValue += slutsauceBonus;
 		}
+
 		//25% dam multiplier
-		if (lustDamage.tease.damageValue > 0 && target != null && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
+		if (lustDamage.tease.damageValue > 0 && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
 
 		// Apply any defensive modifiers
 		var damMulti:Number = 1;
@@ -68,8 +64,13 @@ package classes.Engine.Combat
 		//New status: "Red Myr Venom" replaces this.
 		//if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
 		if (target.hasPerk("Easy")) damMulti += 0.2;
-		if (target != null && target.hasStatusEffect("Fuck Fever") && attacker != null && attacker.hasCock()) damMulti += 0.4;
-		if (target != null && target.hasStatusEffect("Flushed") && attacker != null && attacker.hasCock()) damMulti += 0.2;
+		if (target.hasStatusEffect("Fuck Fever") && attacker != null && attacker.hasCock()) damMulti += 0.4;
+		if (target.hasStatusEffect("Flushed") && attacker != null && attacker.hasCock()) damMulti += 0.2;
+		if (attacker != null && attacker.hasFur())
+		{
+			if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) damMulti += 0.25;
+		}
+		if (target.hasStatusEffect("Oil Aroused")) damMulti += 0.1;
 		if (damMulti != 1) lustDamage.multiply(damMulti);
 		
 		// Apply resistances

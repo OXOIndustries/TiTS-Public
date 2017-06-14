@@ -3007,6 +3007,7 @@ public function vagisilSexForEmbry(spentTime:Boolean = false):void
 	embry.loadInCunt(pc, 0);
 	pc.orgasm();
 	embry.vaginalVirgin = false;
+	embry.vaginas[0].hymen = false;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

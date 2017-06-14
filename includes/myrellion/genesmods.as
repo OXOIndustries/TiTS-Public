@@ -14,7 +14,7 @@ public function isGeneSubmissionDisabled():Boolean
 
 public function isGeneSubmissionLevelMaxed():Boolean
 {
-	return flags["GENE_SUBMISSION_LEVEL"] == 10;
+	return flags["GENE_SUBMISSION_LEVEL"] >= 10;
 }
 
 public function pcIsMyrOrNyrea():Boolean
@@ -24,18 +24,32 @@ public function pcIsMyrOrNyrea():Boolean
 	return false;
 }
 
-public function geneSubmissionLevel(addVal:int = 0):int
+public function geneSubmissionLevel(addVal:Number = 0):int
 {
 	if (flags["GENE_SUBMISSION_LEVEL"] == undefined) flags["GENE_SUBMISSION_LEVEL"] = 0;
 
 	if (isGeneSubmissionDisabled()) return -1;
-
+	
+	if (addVal > 0) flags["GENE_SUBMISSION_DATE"] = days;
+	
 	flags["GENE_SUBMISSION_LEVEL"] += addVal;
 
 	if (flags["GENE_SUBMISSION_LEVEL"] < 0) flags["GENE_SUBMISSION_LEVEL"] = 0;
 	if (flags["GENE_SUBMISSION_LEVEL"] > 10) flags["GENE_SUBMISSION_LEVEL"] = 10;
 
-	return flags["GENE_SUBMISSION_LEVEL"];
+	return Math.floor(flags["GENE_SUBMISSION_LEVEL"]);
+}
+// I also think it would be a good idea for his dominance to decay passively if the PC spends enough time away from him. Thinking:
+// 0-9 Dominance: 1 point down every 30 hours
+// 10 Dominance: 1 point down after 60 hours
+public function geneSubmissionLevelDecay(totalDays:uint):void
+{
+	if(isGeneSubmissionDisabled() || pc.isSubby()) return;
+	
+	var decayDelay:int = (!isGeneSubmissionLevelMaxed() ? 1 : 3);
+	if(flags["GENE_SUBMISSION_DATE"] != undefined && ((days - flags["GENE_SUBMISSION_DATE"]) < decayDelay)) return;
+	
+	geneSubmissionLevel(-(totalDays));
 }
 
 public function geneLustIncrease():void
@@ -250,15 +264,20 @@ public function genesModsBuyStuff():void
 	{
 		if(flags["PURCHASED_GENES_GALO"] == undefined)
 		{
-			if(!chars["GENE"].hasItem(new GaloMax())) chars["GENE"].inventory.push(new GaloMax());
+			if(!chars["GENE"].hasItemByClass(GaloMax)) chars["GENE"].inventory.push(new GaloMax());
 		}
-		else chars["GENE"].destroyItem(new GaloMax());
+		else chars["GENE"].destroyItemByClass(GaloMax);
 	}
 	if(flags["GENE_UNLOCK_CERESPIRIN"] != undefined)
 	{
-		if(!chars["GENE"].hasItemByType(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
+		if(!chars["GENE"].hasItemByClass(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
 	}
-	else chars["GENE"].destroyItem(new Cerespirin());
+	else chars["GENE"].destroyItemByClass(Cerespirin);
+	if(CodexManager.entryUnlocked("Muffstick"))
+	{
+		if(!chars["GENE"].hasItemByClass(Muffstick)) chars["GENE"].inventory.push(new Muffstick());
+	}
+	else chars["GENE"].destroyItemByClass(Muffstick);
 	shopkeep = chars["GENE"];;
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
@@ -318,9 +337,10 @@ public function geneTalk(cFunc:Function = null):void
 			output(" Certain enjoyable elements for one such as I?”</i> He grins");
 			if (pc.tallness < 120) output(" down");
 			output(" at you toothily. <i>“But however many ant women you feast upon, you never lose the passion for more. Not when so many interesting people keep walking through your front door.”</i>");
+			
+			geneSubmissionLevel(1);
 		}
 		processTime(3);
-		geneSubmissionLevel(1);
 
 		genesModsTalkMenu();
 		return;
@@ -963,6 +983,7 @@ public function genesModsBlowjob():void
 		// cumflate
 		if (pc.cumflationEnabled()) pc.maxOutCumflation("mouth", chars["GENE"]);
 		pc.lust(33);
+		pc.orgasm();
 	}
 	processTime(29);
 	IncrementFlag("GENE_BLOWJOB");
@@ -1453,12 +1474,9 @@ public function genesModsOverCounter():void
 		if (pc.isTreated())
 		{
 			output("\n\nYou go slightly cross-eyed and moo softly when he pulls out, your elastic cunt clinging eagerly to every inch of his dick as it recedes, unhappy to see such a well-sized member leave even for a second.");
-		
 			output("\n\n<i>“Oh good grief,”</i> he gasps. <i>“That size, and that tightness... it’s perfect. You have the perfect pussy. How can I possibly let you go when you’ve got that between your thighs");
-			// 9999
-			// {and you suck it down so well, too");
+			if(InCollection(pc.vaginas[x].type, [GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_MOUTHGINA])) output(" and you suck it down so well, too");
 			output("?”</i>");
-			
 			output("\n\n<i>“No talking now,”</i> you reply. It is inexplicable and infuriating to you that, laid out and ready to get the big, hard dicking your body is constantly crying out for, he is wasting time with words. <i>“I should not be able to talk right now you’re fucking me that good, ‘kay?”</i> Gene readily responds by shoving his cock right up to its base, reaching your most sensitive spot- and everything becomes a deep, golden, mooing bliss again."); 
 		}
 		

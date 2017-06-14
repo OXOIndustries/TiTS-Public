@@ -39,12 +39,12 @@ public function siegwulfeIsCrew():Boolean
 }
 public function hasSiegwulfe():Boolean
 {
-	if(InShipInterior() && (pc.hasItemInStorage(new SiegwulfeItem()) || siegwulfeIsCrew())) return true;
+	if(InShipInterior() && (pc.hasItemInStorageByClass(SiegwulfeItem) || siegwulfeIsCrew())) return true;
 	return hasSiegwulfeOnSelf();
 }
 public function hasSiegwulfeOnSelf():Boolean
 {
-	if(pc.accessory is SiegwulfeItem || pc.hasItemByName("Siegwulfe")) return true;
+	if(pc.accessory is SiegwulfeItem || pc.hasItemByClass(SiegwulfeItem)) return true;
 	return false;
 }
 
@@ -86,7 +86,7 @@ public function activateSiegwulfe(fromInv:Boolean = false):void
 	
 	siegwulfeGenitals(-1);
 	siegwulfeGenitals(0);
-	if(flags["WULFE_ON_SHIP"] != true) flags["WULFE_ON_SHIP"] = true;
+	flags["WULFE_ON_SHIP"] = true;
 	
 	// [Insert Namebox Here]
 	clearMenu();
@@ -233,7 +233,7 @@ public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):S
 	// Bought, but not activated.
 	if(flags["WULFE_ON_SHIP"] == false) return "\n\nYou remember an order you placed for a Siegwulfe... <b>perhaps you should check to see if it arrived in your ship’s storage?</b>";
 	// No Siegwulfe!
-	if((!fromInv && !hasSiegwulfe()) || pc.hasItemInStorage(new SiegwulfeItem())) return "";
+	if((!fromInv && !hasSiegwulfe()) || pc.hasItemInStorageByClass(SiegwulfeItem)) return "";
 	
 	var bonusText:String = "";
 	

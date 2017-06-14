@@ -12,7 +12,7 @@ public function tryEncounterFreedomBeef():Boolean
 		return false;
 	}
 
-	if (!InRoomWithFlag(GLOBAL.HAZARD) || InRoomWithFlag(GLOBAL.INDOOR))
+	if (!InRoomWithFlag(GLOBAL.HAZARD) || InRoomWithFlag(GLOBAL.INDOOR) || InRoomWithFlag(GLOBAL.WATERFALL) || rooms[currentLocation].description == "")
 	{
 		return false;
 	}

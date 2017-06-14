@@ -100,12 +100,14 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 				output("\n\nThere’s another sign on the desk that says simple ‘Out - Be Back At 0800.’ Standing next to the desk is what appears to be a very simple droid, doing its best to handle the customs process in Flahne’s absence. Thankfully you don’t have to deal with it yourself as you’ve already come through officially, so you walk right past the small crowd of annoyed-looking travelers.");
 				//[Remove ‘TALK’ and ‘SEX OPTIONS’ buttons when Flahne is not present]}
 				addDisabledButton(0,"Robot");
+				vendingMachineButton(4, "J'ejune");
 				return false;
 			}
 		}
 		else if(flags["FLAHNE_PISSED"] > 0 || pc.hasStatusEffect("Flahne_Extra_Pissed")) {
 			showBust(flahneBustDisplay(false));
 			output("\n\nFlahne doesn’t look like she wants anything to do with you right now.");
+			vendingMachineButton(4, "J'ejune");
 			return false;
 		}
 		else if(flags["FLAHNE_MAKEUP"] == 1) 
@@ -155,6 +157,7 @@ public function meetingFlahne(outputT:Boolean = true):Boolean {
 	}
 	if(hasACumBubble()) addButton(2,"Cum Bubble",giveFlahneATreatSetup,undefined,"Cum Bubble","Give the rahn a gift of sealed cum.");
 	else addDisabledButton(2, "Locked", "Locked", "You do not have the item required for this scene. Purchasing a Bubble Buddy may be a good place to start...");
+	vendingMachineButton(4, "J'ejune");
 	return false;
 }
 
@@ -176,9 +179,38 @@ public function talkToFlahne():void {
 	if(flags["TALKED_ABOUT_FLAHNES_RACE"] == 1) addButton(1,"Her Subrace",flahnesSubRace);
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined) addButton(2,"Ovipositor",flahnesOvipositor);
 	addButton(3,"The Locals",theLocals);
+	if(flags["PQ_RESOLUTION"] == 1 && flags["PQ_PEACE_TIMESTAMP"] + 24*60 < GetGameTimestamp()) addButton(4,"Zil",flahnePostPQZilTalk,undefined,"Zil","Ask if she’s talked to Quinn’s people yet.");
+	else if(flags["PQ_RESOLUTION"] == 1) addDisabledButton(4,"Zil","Zil","Give the Zil some time to meet the citizens of Esbeth before talking to them!");
+	else if(flags["PQ_RESOLUTION"] != undefined) addDisabledButton(4,"There is no peace with the Zil, and nothing to talk about.");
+	else if(pc.level < 6) addDisabledButton(4,"Zil","Zil","Something else has to happen for this... something that you probably ought to be level six for.");
+	else addDisabledButton(4,"Zil","Zil","Relations will the zil would need to be more peaceful for this. Perhaps something involving Thare Plantation...");
 	addButton(14,"Back",mainGameMenu);	
 }
-	
+
+//[Zil?]
+//Tooltip: 
+public function flahnePostPQZilTalk():void
+{
+	clearOutput();
+	showFlahne();
+	output("You ask if any zil have been in town recently.");
+	output("\n\n<i>“Yes!”</i> she squeaks, long ears perking up. <i>“This... I suppose </i>delegation<i> is the only way to describe them, really. Officer Penny brought them up here, and once we got the air conditioning on full blast we had a long talk with them. How did you know about that, [pc.name]?”</i>");
+	output("\n\nYou briefly describe your confrontation with Quinn’s tribe, how you talked them out of terrorizing Thare Plantation and persuaded them to talk to the people of Esbeth instead. ");
+	if(pc.isBimbo()) output("Your account is heavy on the <i>smell</i> and the <i>cuteness</i> of zil boys and oh Void you just wanna eat them up, though that doesn’t seem to turn Flahne off much.");
+	//Brute:
+	else if(pc.isBro()) output("Your account is heavy on how superfine the zil honeys were and just how many of them you laid, though that doesn’t seem to turn Flahne off much.");
+	else if(pc.isNice()) output("You stoically play down your own heroism - not that that dissuades Flahne much.");
+	else if(pc.isMischievous()) output("Your account is heavy on the razor-like wit you used to completely destroy RK Lah.");
+	else output("You briskly present the story as simple cause and effect; you saw what had to be done, and so did it.");
+
+	output("\n\n<i>“So we have you to thank for this!”</i> she exclaims, eyes wide. <i>“You made something really remarkable happen, [pc.name]. No natives have ever approached us like that before - making understandable demands, offering peaceful trade and stuff. It’s the first step in the uplifting process we U.G.C. first contact reps are supposed to look out for, and I’m sooooo pleased the zil cuties have taken it!”</i>");
+	output("\n\nYou ask whether these understandable demands of theirs are achievable.");
+	output("\n\n<i>“Maybe,”</i> sighs Flahne, expression turning significantly gloomier. <i>“</i>Very<i> maybe. It seems likely that Snugglé will want to expand their operation here, and once they do that, a full scale agri-forming won’t be far behind. If the colonists are overwhelmingly against that - as well as the natives - then they might think twice. But being an independent planet is tough, [pc.name]. If they leave then somebody else is likely to step in, and if they don’t then we’re likely to be harassed by pirates and other meanie heads. Couple of years of that, and even the zil might be begging Snugglé to come back.”</i>");
+	output("\n\nShe sucks on her current lollipop morosely.");
+	output("\n\n<i>“I’ve committed myself to looking at ways of getting Snugglé to pack up and go elsewhere, because I love those snugglebugs so much and want to do right by them, but...”</i> she sighs heavily. <i>“Sometimes I think I’m not cut out for making these kinds of big decisions.”</i>");
+	processTime(5);
+}
+
 //Her Race
 public function talkToFlahneAboutHerRace():void {
 	clearOutput();

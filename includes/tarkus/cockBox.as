@@ -43,7 +43,7 @@ public function takeDatCockBawks():void
 }
 public function takeDatCockBawksCheck():void
 {
-	if(pc.hasItemByType(DongDesigner))
+	if(pc.hasItemByClass(DongDesigner))
 	{
 		mainGameMenu();
 		return;

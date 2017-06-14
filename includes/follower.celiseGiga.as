@@ -57,6 +57,7 @@ public function gigaCeliseMenu():void
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
 	addButton(1,"Shrink",shrinkBackToNormalCelise);
+	if(flags["CELISE_NO_BED_SENPAI"] == true) addButton(3,"Allow Bed",celiseBedToggle,true,"Allow Goo Bed","Allow Celise to approach you before bed if she is in the mood.");
 	addButton(4,"Send Away",sendCeliseAway,undefined,"Send Away","Send Celise off the ship to wait for you. She’ll be at the hangar in Tavros if you ever want her back.");
 	this.addButton(14,"Back",crew);
 }
@@ -172,7 +173,7 @@ public function malePartsTentacruelFun():void
 	else if(pc.hasVagina())
 	{
 		output("teases [pc.eachVagina]");
-		if(pc.hasClit()) output(", coiling and rubbing your [pc.eachClit]");
+		if(pc.hasClit()) output(", coiling and rubbing [pc.eachClit]");
 		else output(", ensuring constant stimulation");
 	}
 	else output("massages the base of your pelvis");
@@ -590,7 +591,7 @@ public function tentacleMassageFunShit():void
 		else if(pc.hasCock() && !pc.hasVagina()) output("one of her hands sinks down around [pc.oneCock] like an onahole");
 		else 
 		{
-			output("she teases both of your sexes at once, rubbing your [pc.eachCock] and [pc.eachVagina] in turn");
+			output("she teases both of your sexes at once, rubbing [pc.eachCock] and [pc.eachVagina] in turn");
 			if(pc.balls > 1) output(" while giving your [pc.balls] light presses to encourage them to unleash their load");
 		}
 		output(". After seconds that feel like minutes you feel the waves of pleasure welling up within your body. The final thing that pushes you over the edge is Celise poking one of her gooey thumbs into your [pc.ass] to ");

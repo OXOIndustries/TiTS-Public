@@ -168,7 +168,7 @@
 				// If bald, gives hair of short length
 				// Medium chance of occurring.
 				// Apply set color, if any
-				if((!pc.hasHair() || pc.hairType != GLOBAL.HAIR_TYPE_TENTACLES || (pc.hairType == GLOBAL.HAIR_TYPE_GOO && pc.hairStyle != "tentacle")) && changes < changeLimit && hasVanaeSkinColor(pc) && rand(4) == 0)
+				if((!pc.hasHair() || (pc.hairType != GLOBAL.HAIR_TYPE_TENTACLES && pc.hairStyle != "tentacle")) && changes < changeLimit && hasVanaeSkinColor(pc) && rand(4) == 0)
 				{
 					outputB("\n\nThere’s a tingling on your scalp and you reach up to touch it. ");
 					if(pc.hasHair()) outputB("Suddenly, your " + pc.hairDescript() + " begins to fall out and fall to the ground around you! ");
@@ -177,12 +177,8 @@
 					outputB(", growing out at an incredible rate. Whatever it is, it feels kind of slippery.");
 
 					// Transform hair here.
-					if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) pc.hairStyle = "tentacle";
-					else
-					{
-						pc.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
-						pc.hairStyle = "null";
-					}
+					pc.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
+					pc.hairStyle = "null";
 					pc.hairColor = getVanaeAccentColor(pc);
 					if(!pc.hasHair()) pc.hairLength = 2;
 

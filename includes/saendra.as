@@ -172,6 +172,7 @@ public function saenAtTheBarFirstTimeEvent():void
 
 	output("\n\n<i>“So, where were we, hero?”</i> the captain says, leaning in enough to give you a front-row view of her impressive cleavage through the low cut of her shirt, the two heavy orbs of her breasts pressing against the cold tabletop. <i>“Oh, I know. How about the part where I give you a... </i>proper reward<i> for bailing me out of that tight spot, hmm? I like to be very good to my friends, you know,”</i> she says, grinning wolfishly as you feel a warm, soft tail coil around your [pc.leg]. <i>“I’ve got a room upstairs, hero. What do you say you let me show you just how grateful I am?”</i>");
 
+	processTime(7);
 	saendraAffection(5);
 
 	clearMenu();
@@ -190,6 +191,7 @@ public function dontTakeTheRewardWhaddaYouGayOrSomething():void
 	
 	output("\n\nYou nod, and slip out of the booth, heading towards the door. Over your shoulder, you hear her call, <i>“See you around, hero!”</i>");
 
+	processTime(1);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -218,6 +220,7 @@ public function takeTheRewardYouSlut():void
 
 	output("\n\nFor a second, you part; you’re both panting with lust and desire, hands roaming all over each other. Her voice dripping with raw sexuality, your lover asks, <i>“So how do you want me, hero? I’m all yours....”</i>");
 
+	processTime(8);
 	saendraSexMenu();
 }
 
@@ -230,6 +233,7 @@ public function meetSaenAtTheBar():void
 
 	output("\n\n<i>“Heyya, hero,”</i> she says, grinning even as her pair of fluffy tails coil affectionately around your [pc.leg]. She kicks back what’s left of her drink as you say hello, leaning back in her seat with her arm slung over the back and her chest pressed out, straining her blouse in all the right ways. <i>“So what’s up? Just come for the company... or do you wanna blow off some steam?”</i>");
 
+	processTime(1);
 	saendrasBarMenu();
 }
 
@@ -269,7 +273,6 @@ public function saendrasBarMenu():void
 		// followup about rescue
 		addButton(5, "Pirates", sx1TalkPirates, undefined, "The Pirates", "Follow up with Saendra about the pirates. You deserve answers after all of this.");
 	}
-
 
 	addButton(14, "Leave", leaveSaendraAtTheBar, undefined);
 }
@@ -320,12 +323,21 @@ public function saendraSexMenu():void
 	if (pc.hasTailCock()) addButton(7, "Tailcock", saendraTailcockFuck, undefined, "Tailcock Titfuck", "Get a titfuck for your tailcock from Saendra.");
 	else addDisabledButton(7, "Tailcock", "Tailcock Titfuck", "You need a tailcock for this!");
 	
-	addButton(14, "Leave", function():void {
-		saendraAffection( -5);
-		mainGameMenu();
-	}, undefined,
-	"Leave Her",
-	"Leave Saendra hanging; she’ll probably be a little offended...");
+	addButton(14, "Leave", leaveSaendraFromSex, undefined, "Leave Her", "Leave Saendra hanging; she’ll probably be a little offended...");
+}
+
+public function leaveSaendraFromSex():void
+{
+	saenHeader();
+
+	output("Even after leading her to bed, you decide to leave her by herself anyway...");
+	output("\n\nSaendra gives a " + (saendraAffection() < 70 ? "scoff" : "sigh") + " of disappointment.");
+
+	processTime(1);
+	saendraAffection(-5);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function leaveSaendraAtTheBar():void
@@ -339,6 +351,7 @@ public function leaveSaendraAtTheBar():void
 
 	output("\n\nYou tell her you will as you head on out.");
 
+	processTime(3);
 	saendraAffection(5);
 
 	clearMenu();
@@ -354,7 +367,10 @@ public function kissSaendraOnTheLipsAndEverystuff():void
 	output("\n\nYou hold her for a moment, eyes closed as your enjoy the pleasant warmth of her thin lips, the feel of her hot breath across your own. You’re both smiling when you finally break the kiss, a look of longing in the captain’s eyes as the moment of solace ends. Almost shyly, Saen runs a hand through her fiery hair, looking pointedly away from you. <i>“T-that was... ohhh....”</i> ");
 	
 	output("\n\nYou can see a bright blush under her pale, freckled cheeks, and can’t help but smile.");
-
+	
+	processTime(2);
+	pc.lust(5);
+	
 	saendrasBarMenu();
 }
 
@@ -422,6 +438,7 @@ public function saendraHowsWork():void
 	if (saendraAffection() >= 70)
 		output("\n\nWith a mischievous grin, she adds <i>“Relax. I won’t forget to call.”</i>");
 
+	processTime(5);
 	saendraAffection(5);
 
 	removeButton(0);
@@ -443,6 +460,7 @@ public function saendraHobbies():void
 	
 	output("\n\n<i>“And I can’t believe they left out </i>Melina’s Magic Mace<i> in 12th edition. I mean, that’s easily THE best item in the -- why are you looking at me funny?”</i>");
 
+	processTime(4);
 	saendraAffection(5);
 
 	removeButton(1);
@@ -472,6 +490,7 @@ public function saendraValeriaWork():void
 	
 	output("\n\n<i>“Implying you don’t watch it, too!”</i> Valeria snaps before vanishing back into Saen’s wrist, leaving the halfbreed laughing uncontrollably.");
 
+	processTime(5);
 	saendraAffection(5);
 
 	removeButton(2);
@@ -495,6 +514,7 @@ public function saendraHerRace():void
 	
 	output("\n\nShe shrugs and rests her chin in her hands, looking you square in the eye. <i>“C’mon, hero, let’s change the subject before I get all nostalgic and need a hug. Or are you just trying to get me to introduce you to my folks? Careful, mom’s still got a laser shotgun!”</i>");
 
+	processTime(4);
 	//[Next] [Parents]
 	saendraAffection(5);
 	
@@ -515,6 +535,7 @@ public function saendraParents():void
 	
 	output("\n\nShe shrugs. <i>“It’s fine. That was years ago, I’m okay now,”</i> she says, patting your hand. <i>“Now c’mon, let’s talk about something a little bit more fun, huh?”</i>");
 
+	processTime(2);
 	saendraAffection(-10); // -5 plus remove the 5 we added before the branch.
 	
 	removeButton(3);
@@ -543,7 +564,7 @@ public function saendraHerArm():void
 		output("\n\n<i>“So... when do I get to use this bad boy on you, hero?”</i> she teases, adding an exaggerated wink for emphasis.");
 	}
 
-
+	processTime(5);
 	saendraAffection(5);
 
 	clearMenu();
@@ -598,6 +619,7 @@ public function saendraPhoenixStatus():void
 	if (flags["SAENDRA PHOENIX STATUS TIMES"] == undefined) flags["SAENDRA PHOENIX STATUS TIMES"] = 1;
 	else flags["SAENDRA PHOENIX STATUS TIMES"]++;
 
+	processTime(3);
 	saendraAffection(5);
 
 	removeButton(4);
@@ -623,6 +645,7 @@ public function saendraOfferCredits():void
 	
 	output("\n\nYou nod, and return the chit to your inventory.");
 
+	processTime(2);
 	saendraAffection(5);
 
 	removeButton(5);
@@ -657,6 +680,7 @@ public function saendraFutification():void
 		output("\n\nSaen sighs, rubbing the back of her neck with her silvery arm. <i>“Ahhh. I dunno, hero. I just... I mean... why? I’m happy the way I am. We have good sex -- no, </i>great<i> sex! -- and I’m fine sticking with toys and stuff when I wanna go after a tight little hole like yours. I just don’t see why I need a dick. I like being a girl.”</i> ");
 	}
 
+	processTime(2);
 	saendraAffection(-5);
 
 	//[Drop It] [Push:Reversable] [Push:FeelsGood]
@@ -726,6 +750,7 @@ public function saendraFutaTalkII(reversePath:Boolean = true):void
 		output("\n\nYou break into a big grin as Saendra finally gives into your cocklust. She hops to her feet, suddenly excited. <i>“Alright. I know this creepy demon chick across the hall that does custom mods. But </i>you’re<i> paying for it, you want it so bad.”</i>");
 	}
 
+	processTime(1);
 	saendraDoCockuMenu();
 }
 
@@ -747,7 +772,7 @@ public function saendraDoCockuMenu(triedThrobb:Boolean = false):void
 	}
 	else
 	{
-		if (pc.hasItem(new Throbb()))
+		if (pc.hasItemByClass(Throbb))
 		{
 			addButton(1, "Throbb", saendraUseTheThrobbLuke, undefined, "Use Throbb", "Hey, you’ve got some of this stuff kicking around. Might as well put it to a good use, right?");
 		}
@@ -783,6 +808,7 @@ public function saendraOkayLetsDoItCredits():void
 		output("\n\nYou nod as Saen packs up and pops on out of the bar, reaching back and brushing your cheek with one of her fluffy tails as she goes. ");
 	}
 
+	processTime(1);
 	flags["SAENDRA GONNA GO GET A COCK"] = 1;
 
 	clearMenu();
@@ -797,6 +823,7 @@ public function saendraUseTheThrobbLuke():void
 	
 	output("\n\n<i>“Woah!”</i> Saen says, waving her hands. <i>“Nuh-uh. No way. I’ve heard about that shit. It fucks with your mind, man. I got better shit to do than spend all day fapping my brains out and eating my own cum or something. Not happening. We do it my way, or you can cram your dicklust right up your ass... before I cram my dick up there.”</i>");
 
+	processTime(1);
 	saendraDoCockuMenu(true);
 }
 
@@ -815,6 +842,7 @@ public function saendraBuhuImPoor():void
 	
 	output("\n\nShe gives you a playful punch on the arm. <i>“C’mon, let’s drop it... though all this talk of dicks might have gotten me a little horny. You gonna take responsibility for that, hero?”</i> she teases. ");
 
+	processTime(1);
 	clearMenu();
 	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
 }
@@ -1229,6 +1257,8 @@ public function saendraSexTalk():void
 	else output(" grabbing the throbbing, turgid shaft of her bristly cock");
 	output(". She hooks a clawed hand through your [pc.gear], pulling you into her, trailing kisses along your neck and cheek.");
 	
+	processTime(11);
+	
 	//Getting Futa!Saendra's Panties
 	//Replace her normal sex scenes after Futafication. 10% chance to play when fucking her. 
 	//Replace 3rd paragraph in sex intro with:
@@ -1548,7 +1578,7 @@ public function saendraTakesItUpDaButte():void
 	output("\n\n<i>“Come on, a");
 	if (pc.cocks[selCock].cLength() < 5) output(" cute little");
 	else output(" big, hung");
-	output(" [pc.race] like you’s gotta be able to cum twice... three times... before I wear you out. So come on, let it go, hero. Smear my thighs with your seed.”</i>");
+	output(" [pc.raceBoyGirlShort] like you’s gotta be able to cum twice... three times... before I wear you out. So come on, let it go, hero. Smear my thighs with your seed.”</i>");
 
 	output("\n\nYou couldn’t resist that invitation even if you wanted to. And with the way she moves, the way her burning hot cunt swelters just a hair’s breadth from your leaking cockhead... you wouldn’t dream of holding back. With a fierce grunt, you slam your hips forward, almost piercing the folds of Saen’s sodden box, and blow your pent up load all over her taut thighs and sultry snatch. Your hips piston, fucking the wringing coils of her tail as cum bursts from your [pc.cock "+ selCock +"], hot globs of [pc.cumColor] smearing lewdly across her pussy. She’s quick to reach down and spread herself wide for you, lips agape as your seed pours in or smears around her crotch. <i>“Fuck yeah, hero! Just like that. Let it all out!”</i>");
 
@@ -1871,7 +1901,7 @@ public function newFutaSaendraScenes():void
 	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. It’s the latter one that overpowers you; the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
 
 	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
-	if(pc.race() == "ausar" || pc.race() == "half-ausar") output(", my favorite little bottom bitch");
+	if(pc.race().indexOf("ausar") != -1) output(", my favorite little bottom bitch");
 	output("!”</i>");
 
 	output("\n\nNow that you’re not going to be waking the neighbors - or at least, not the ones three doors down - Saen starts to move faster and harder, hammering your ");

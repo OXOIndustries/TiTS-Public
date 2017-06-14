@@ -154,7 +154,7 @@ package classes.Items.Transformatives
 				}
 				//Worg Face
 				//Effect: Has canine face - turn into worg face.
-				if(pc.faceType == GLOBAL.TYPE_CANINE && rand(4) == 0 && changes < changeLimit)
+				if((pc.faceType == GLOBAL.TYPE_CANINE || pc.faceType == GLOBAL.TYPE_LUPINE) && rand(4) == 0 && changes < changeLimit)
 				{
 					if(pc.faceTypeUnlocked(GLOBAL.TYPE_WORG))
 					{
@@ -473,7 +473,7 @@ package classes.Items.Transformatives
 				
 				//Fur Color Change
 				//Effect: PC has fur - Fur color changes sometimes, usually when there's nothing else to change.
-				var newColor:String = RandomInCollection(["grey","cream","white","golden","brown","silver","orange","black"]);
+				var newColor:String = RandomInCollection(["gray","cream","white","golden","brown","silver","orange","black"]);
 				if(pc.hasFur() && pc.furColor != newColor && rand(5) == 0 && changes < changeLimit)
 				{
 					if(pc.furColorUnlocked(newColor))

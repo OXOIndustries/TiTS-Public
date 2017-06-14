@@ -405,6 +405,7 @@ public function divideAndConquerGinasWithGoos():void
 	pc.orgasm();
 	pc.orgasm();
 	applyPussyDrenched(pc);
+	pc.energy(-5);
 	CombatManager.genericVictory();
 }
 
@@ -514,6 +515,7 @@ public function pcDefeatByGooBitch():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.energy(-5);
 	CombatManager.genericLoss();
 }
 
@@ -602,6 +604,7 @@ public function cockVariantForGrayGooKirbutashis():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.energy(-5);
 	CombatManager.genericLoss();
 }
 
@@ -663,5 +666,6 @@ public function gooGooEnvelopsCunts():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.energy(-5);
 	CombatManager.genericLoss();
 }

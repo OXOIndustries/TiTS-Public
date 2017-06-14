@@ -45,7 +45,7 @@ public function updateBothriocAddiction(totalDays:uint):void
 
 	if (s > 0 && bothriocAddiction() == 0)
 	{
-		AddLogEvent("The world has taken on harder edges in the last couple of hours, and you feel cooler and somehow taller. There’s a small, aching emptiness inside of you where the soft, profound peace you once knew resided - however, that is easy to shake off with the stronger rationality returning on top of it, and the realisation the bothrioc hormones must finally be worked out of your system.", "passive", totalDays * 1440);
+		AddLogEvent("The world has taken on harder edges in the last couple of hours, and you feel cooler and somehow taller. There’s a small, aching emptiness inside of you where the soft, profound peace you once knew resided - however, that is easy to shake off with the stronger rationality returning on top of it, and the realisation the bothrioc hormones must finally be worked out of your system.", "passive", ((1440 - (GetGameTimestamp() % 1440)) + (i * 1440)));
 	}
 }
 
@@ -99,7 +99,7 @@ public function bothriocEggnancySub50Effects(deltaT:uint, opt:int, doOut:Boolean
 
 		bothriocAddiction(1);
 		if (rand(4) <= 2 && pc.libido() < 80) pc.slowStatGain("libido", 2 + rand(2));
-		if (rand(4) <= 2 && pc.tone > 20) pc.modTone(3 + rand(3), true);
+		if (rand(4) <= 2 && pc.tone < 20) pc.modTone(3 + rand(3), true);
 	}
 	else if (opt == 1)
 	{
@@ -313,8 +313,9 @@ public function bothriocEggnancySub100Effects(deltaT:uint, opt:int, doOut:Boolea
 
 		if (rand(4) == 0&& !pc.hasPerk("Sexy Thinking"))
 		{
-			ExtendLogEvent(" <b>You have gained the Sexy Thinking perk. The lower your will, the better your tease attacks will be.</b>");
-			pc.createPerk("Sexy Thinking",0,0,0,0,"Boosts tease damage more the dumber and less willful you are.");
+			//ExtendLogEvent(" <b>You have gained the Sexy Thinking perk. The lower your will, the better your tease attacks will be.</b>");
+			ExtendLogEvent("\n\n(<b>Perk Gained: Sexy Thinking</b> - Increases tease damage inversely to how high willpower and intelligence are.)");
+	 		pc.createPerk("Sexy Thinking",0,0,0,0,"Boosts tease damage more the dumber and less willful you are.");
 		}
 
 		bothriocAddiction(5);
@@ -336,6 +337,8 @@ public function bothriocEggnancy100Effects(deltaT:uint, opt:int):void
 		s += "\n\nYou reluctantly tear your mind away from such wonderful thoughts, and have a go at testing the all-encompassing peace you now feel. You were sure, some time ago, you used to get angry about certain things. Like what? That cousin of yours, for instance. You picture "+ rival.mf("his", "her") +" face, jeering at you, cheating you out of your inheritance. Well, that’s bad certainly, but did you really used to get worked up about that, consider doing them evil? You almost clap your hands to your face in dismay at the very notion. It is simply a case of going about your mission calmly and competently, and if you do that to the very best of your abilities what will there be to get angry about, regardless of whether you succeed or fail? Once this is over you need to sit [rival.name] down and see if you can’t smooth all this unpleasantness over with some oral sex. Yes; a nice, long session of "+ rival.mf("sucking cock", "licking pussy") +" is the key here, as ever.";
 
 		s += "\n\nYou smile widely, reflexively rubbing your swollen belly, relieved that no matter how hard you try, it is no longer possible for you to think aggressive thoughts.";
+		
+		s += ("\n\n(<b>Perk Gained: Peace of Mind</b> - Minimum lust is heightened. Enemies may peacefully surrender to you given their level--however, it may be very hard for you to resist enemies that peacefully demand you submit to them....)");
 
 		AddLogEvent(ParseText(s), "passive", deltaT);
 		pc.personality = 0;
@@ -356,7 +359,7 @@ public function bothriocEggnancy100Effects(deltaT:uint, opt:int):void
 	}
 	else if (opt == 1)
 	{
-		AddLogEvent("The dense glow growing inside you intensifies the total peace you already feel. Nothing is more gratifying than these hours of pregnancy; nothing feels better than the sensation of the warm oil flowing all the way through you, forever honing you into a creature of pure, submissive sensuality.");
+		AddLogEvent("The dense glow growing inside you intensifies the total peace you already feel. Nothing is more gratifying than these hours of pregnancy; nothing feels better than the sensation of the warm oil flowing all the way through you, forever honing you into a creature of pure, submissive sensuality.", "passive", deltaT);
 
 		bothriocEggnancySub100Effects(deltaT, opt, false);
 

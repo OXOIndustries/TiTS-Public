@@ -146,7 +146,8 @@ package classes.Characters
 			btnTargetText = "Frostwyrm";
 			
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
-			
+			kGAMECLASS.uvetoSSTDChance(this);
+
 			this._isLoading = false;
 		}
 		
@@ -172,7 +173,7 @@ package classes.Characters
 			}
 			if (!target.hasStatusEffect("Psychic Miasma"))
 			{
-				{enemyAttacks.push( { v: wyrmPsiMiasma, w: 10 } ); }
+				enemyAttacks.push( { v: wyrmPsiMiasma, w: 10 } );
 			}
 			
 			enemyAttacks.push( { v: wyrmTailSlap, w: 10 } );

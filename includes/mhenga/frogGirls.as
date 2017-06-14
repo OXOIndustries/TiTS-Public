@@ -180,7 +180,7 @@ public function loseAgainstTheFrogs():void
 	//[!hasCock Loss] // basic fem/neuter loss scene
 	//[Item rape] // if fem pc has any items that would cause dick growth, frog girl eats it, sexes pc with new cock.
 	var scenes:Array = new Array();
-	if(pc.hasVagina() && pc.hasItem(new Throbb())) scenes.push(itemRapeAFrogGirl);
+	if(pc.hasVagina() && pc.hasItemByClass(Throbb)) scenes.push(itemRapeAFrogGirl);
 	else if(pc.hasCock()) scenes.push(hasCockLossForForgGirls)
 	else scenes.push(youDontHaveADickLossToFrogGirls);
 	scenes[0]();
@@ -191,7 +191,7 @@ public function submitToFrogSex(tEnemy:Creature):void
 	clearOutput();
 	setEnemy(tEnemy);
 	showFrogGirl(tEnemy);
-	if(pc.hasVagina() && pc.hasItem(new Throbb())) itemRapeAFrogGirl();
+	if(pc.hasVagina() && pc.hasItemByClass(Throbb)) itemRapeAFrogGirl();
 	else if(pc.hasCock()) hasCockLossForForgGirls();
 	else youDontHaveADickLossToFrogGirls();
 }
@@ -698,7 +698,7 @@ public function itemRapeAFrogGirl():void
 {
 	author("Gardeford");
 	showFrogGirl();
-	pc.destroyItem(new Throbb(), 1);
+	pc.destroyItemByClass(Throbb, 1);
 	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision. As you fall to the floor the contents of your pack spill out around you, and the kerokoras pauses to scan the scattered items. She steps over you to pick something up, and you can see her examining it closely.");
 	output("\n\n<i>“Hey, isn’t this one of those things sky people use to become babymakers? I wonder what it feels like...”</i> she says, and you hear her gasp as she injects herself with the syringe of Throbb you were carrying. You hear a wet schlick and a moan of pleasure from the frog-girl before she turns to face you.");
 	output("\n\n<i>“This is feeling like a really good idea so far. I very much hope you’ll agree,”</i> she says as she spins back to face you. An 8” long " + enemy.skinTone + ", human-looking dick sprouts from just above her clit, already rock hard and twitching; the need to use it is apparent in its owner’s eyes. The lithe now-futa girl practically hops over to you, kneading your body with her slippery hands as she strips you of your [pc.gear].");

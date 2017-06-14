@@ -143,7 +143,7 @@ public function approachAraKei():void
 	{
 		flags["ARAKEI_ADDICTION_50"] = 1;
 
-		output("Ara Kei greets you with nothing more than a slight, immaculate curl of the lip. [ara.he] seem"+ ara.mfn("s", "s", "") +" to be waiting for something - and, immediately, you know what it is. This time the urge is completely overwhelming, and you don’t fight it. When you "+ (pc.hasKnees() ? "kneel" : "approximate a kneeling stance with your awkward lower body") +", a huge smile spreads over the quadomme’s face, and you feel a rush of puppyish glee and happiness. The sun shines above when you please the big, dominant bothrioc.");
+		output("Ara Kei greets you with nothing more than a slight, immaculate curl of the lip. [ara.He] seem"+ ara.mfn("s", "s", "") +" to be waiting for something - and, immediately, you know what it is. This time the urge is completely overwhelming, and you don’t fight it. When you "+ (pc.hasKnees() ? "kneel" : "approximate a kneeling stance with your awkward lower body") +", a huge smile spreads over the quadomme’s face, and you feel a rush of puppyish glee and happiness. The sun shines above when you please the big, dominant bothrioc.");
 
 		output("\n\n<i>“You have come far since we first met, [pc.name],”</i> [ara.he] say"+ ara.mfn("s", "s", "") +". [ara.He] reach"+ ara.mfn("es", "es", "") +" a chitinous hand down and strok"+ ara.mfn("es", "es", "") +" your brow. Warmth blooms deep inside you, profound contentment and arousal");
 		if (pc.hasVagina()) output(" moistening [pc.eachVagina]");
@@ -167,7 +167,7 @@ public function approachAraKei():void
 	{
 		flags["ARAKEI_ADDICTION_70"] = 1;
 
-		output("A shiver runs down your spine as Ara considers you. Fantasies of [ara.him] throwing you over the nearby desk and forcefully making you [ara.his] assault you, making your [pc.skinFurScales] feel incredibly sensitive, begging to be touched. [ara.his] voice makes you snap out of your reverie.");
+		output("A shiver runs down your spine as Ara considers you. Fantasies of [ara.him] throwing you over the nearby desk and forcefully making you [ara.his] assault you, making your [pc.skinFurScales] feel incredibly sensitive, begging to be touched. [ara.His] voice makes you snap out of your reverie.");
 		
 		output("\n\n<i>“I am delighted you have embraced who you truly are, little one,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +". The satisfaction in [ara.his] voice is like a soothing balm to your brow. <i>“To see an alien freely accept our gifts and become one of our own - that is a vindication of our ways beyond anything I could once have dreamed. It makes me all the more determined to set our race amongst the stars.”</i> [ara.he] rap"+ ara.mfn("s", "s", "") +" a boot down sharply and you immediately snap to attention. <i>“But enough hubris. Let us discuss you.”</i>");
 		
@@ -220,7 +220,7 @@ public function approachAraKei():void
 			output("\n\n<i>“Very pleasing,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +", smiling widely. <i>“What can the bothrioc do for you today, little one?”</i>");
 		}
 		// not found a master, but lane is currently top of the list
-		else if (flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_COUNTER"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
+		else if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] == undefined && flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_COUNTER"] != undefined && flags["LANE_DETOX_STATUS"] == undefined)
 		{
 			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
 			
@@ -233,7 +233,7 @@ public function approachAraKei():void
 			
 			output("\n\nYou do.");
 		}
-		else if (flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == 1)
+		else if (flags["LANE_FULLY_HYPNOTISED_FOREVER"] == undefined && flags["ARAKEI_RESOLVED_MASTER_LANE"] != undefined && flags["LANE_FULLY_HYPNOTISED"] != undefined && flags["LANE_DETOX_STATUS"] == 1)
 		{
 			output("You kneel in front of Ara Kei, and shudder with pleasure when [ara.he] reach"+ ara.mfn("es", "es", "") +" out and strokes you beneath the chin.");
 
@@ -285,6 +285,7 @@ public function araKeiPotentialMasterBlurbs():void
 
 		// Basically the way I saw it working was, when a Permanently Hypnotised PC reaches this bit they get bumped back down to Partially Hypnotised, and are thus able to detox and confront Lane. What Nik suggests in the comment seems wise, if what he's saying is the case; give the PC a 75% boost to their Willpower for the confront Lane scene only.
 		if(flags["LANE_FULLY_HYPNOTISED_FOREVER"] != undefined) flags["LANE_FULLY_HYPNOTISED_FOREVER"] = undefined;
+		if(flags["FOLLOWER_LANE_INTERVENTION"] != undefined) flags["FOLLOWER_LANE_INTERVENTION"] = undefined;
 		flags["ARAKEI_RESOLVED_MASTER_LANE"] = 1;
 	}
 	// Sera
@@ -440,7 +441,7 @@ public function araKeiAppearance():void
 	clearOutput();
 	showAraKei();
 
-	output("Ara Kei Enya is easily seven feet tall standing, but is currently squatted down amongst four relatively thin and nimble legs, serenely passing on orders to her many underlings. The legs end in feet that are like some sort of chitinous boot. It is segmented and jointed, but has the overall shapes of toe, ball, instep, and heel that you’re familiar with. It is a heeled boot thanks to an upward bite of the chitin, you’d hazard an adaptation for resting comfortably on a web. The chitin in question is black, but under the gas lamps that seem to be preferred in the bothrioc office, it shimmers with deep blue tones. A gauzy, elegant gray shift drapes down from the creature’s upper shoulders down to four gleaming thighs.");
+	output("Ara Kei Enya is easily seven feet tall standing, but is currently squatted down amongst four relatively thin and nimble legs, serenely passing on orders to [ara.her] many underlings. The legs end in feet that are like some sort of chitinous boot. It is segmented and jointed, but has the overall shapes of toe, ball, instep, and heel that you’re familiar with. It is a heeled boot thanks to an upward bite of the chitin, you’d hazard an adaptation for resting comfortably on a web. The chitin in question is black, but under the gas lamps that seem to be preferred in the bothrioc office, it shimmers with deep blue tones. A gauzy, elegant gray shift drapes down from the creature’s upper shoulders down to four gleaming thighs.");
 	
 	output("\n\nThe face is pale with an angular look to it that suggests predatory intent and is framed by long, loose pale-blue hair neatly tucked behind chitin-shelled ears. Not far behind the hairline is a pair of firm, unbending antennae. There aren’t any eyebrows, merely a ridge where you feel like they should be. Beneath that ridge are a pair of eyes that are slightly larger than human standard, but pulled tight. Somewhat unexpectedly, they do have eyelashes atop actual eyelids. The eyes, however, are black as pitch, the particular shade which makes it hard to identify their shape and depth. There’s nothing breaking up the distance between eyes and mouth. The distance isn’t quite as vast as it would normally be if there was a nose, which seems to be largely due to how big the eyes and mouth are. The mouth is thin, seemingly permanently compressed or pursed, but it is wide, and when Ara Kei speaks it splits open hugely, revealing a massive set of teeth and a long tongue.");
 	
@@ -826,7 +827,7 @@ public function araKeiFlirt():void
 			
 			output("\n\n<i>“Will you breed me now, "+ ara.mfn("master", "mistress", "master-mistress") +"?”</i> you ask. Perhaps there was a time when you wouldn’t have had asked such a question so directly. A colder, sadder time.");
 			
-			output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.he] withdraw" + ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. You may believe me cruel and sadistic for this, Steele, but there’s a very important lesson I want you to take away from today: Worshipping a domme is a reward in and of itself. You can feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your");
+			output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.He] withdraw" + ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. You may believe me cruel and sadistic for this, Steele, but there’s a very important lesson I want you to take away from today: Worshipping a domme is a reward in and of itself. You can feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your");
 			if (flags["ARAKEI_RESOLVED_MASTER"] == undefined) output(" future");
 			output(" owner that disservice.");
 			if (flags["ARAKEI_REFUSED_BOOTIES"] != undefined) output(" Given you refused my wish earlier, it is all the more important for you to grasp this.");
@@ -932,7 +933,7 @@ public function araKeiTheReamening():void
 	}
 	else
 	{
-		output("\n\n[ara.His] hands move with business-like briskness over your body, divesting you of your [pc.gear] with the ease only a person with twenty fingers and a lot of practice undressing others could achieve. You shiver as the four hands come to rest on your naked frame, two on your shoulders and two on your waist, this time more tenderly. [ara.his] fingers follow the line of your muscles down one arm whilst another draws the limb out, pulling it taut; every so often [ara.his] fingertips dig in, probing, testing. A particular pinch near your inner elbow makes you gasp slightly, your bicep tensing up. Ara Kei makes a whispering <i>“ahh”</i> noise, and holding your arm in position, loops a knotted rope around your wrist.");
+		output("\n\n[ara.His] hands move with business-like briskness over your body, divesting you of your [pc.gear] with the ease only a person with twenty fingers and a lot of practice undressing others could achieve. You shiver as the four hands come to rest on your naked frame, two on your shoulders and two on your waist, this time more tenderly. [ara.His] fingers follow the line of your muscles down one arm whilst another draws the limb out, pulling it taut; every so often [ara.his] fingertips dig in, probing, testing. A particular pinch near your inner elbow makes you gasp slightly, your bicep tensing up. Ara Kei makes a whispering <i>“ahh”</i> noise, and holding your arm in position, loops a knotted rope around your wrist.");
 
 		output("\n\n<i>“It’s mostly down to memory, you know,”</i> [ara.he] say"+ ara.mfn("s", "s", "") +" briskly, performing the same trick with your other arm, so that both limbs are splayed helplessly above you. <i>“If I can remember exactly what makes each of my subs crease up and whimper with pleasure I can remember exactly which articles need to be cited in front of the Kui Tan Consul, and if I can remember which articles...”</i> chitinous fingers drift over your [pc.groin],");
 		if (pc.hasCock())
@@ -1246,7 +1247,7 @@ public function araKeiPolishBooties():void
 
 	output("\n\n<i>“Will you breed me now, "+ ara.mfn("master", "mistress", "master-mistress") +"?”</i> you ask. Perhaps there was a time when you wouldn’t have had asked such a question so directly. A colder, sadder time.");
 
-	output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.he] withdraw"+ ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. For two reasons. Firstly, you must learn that worshipping a domme is a reward in and of itself. You can perhaps feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your future owner that disservice. Secondly: I can sense that you aren’t quite all the way there yet. Once you are - when I can see the beauty all the way through you, when the thought of disobeying me doesn’t even occur to you, when you will move the stars in order to lick the very tip of my boot - then. I promise you that sincerely, little one.”</i>");
+	output("\n\n<i>“Hmm,”</i> replies Ara Kei thoughtfully. [ara.He] withdraw"+ ara.mfn("s", "s", "") +" [ara.his] hand to touch the pit of your throat with a single finger, drawing it slowly up your neck. You shiver with bliss. <i>“No. For two reasons. Firstly, you must learn that worshipping a domme is a reward in and of itself. You can perhaps feel that for yourself now, but still, connecting the absolutely essential tasks of an incubator to getting packed with eggs - no, I will not do your future owner that disservice. Secondly: I can sense that you aren’t quite all the way there yet. Once you are - when I can see the beauty all the way through you, when the thought of disobeying me doesn’t even occur to you, when you will move the stars in order to lick the very tip of my boot - then. I promise you that sincerely, little one.”</i>");
 
 	output("\n\nThe incandescent words finally cease to echo around the cathedral of your head, and it takes you a few moments to realize that [ara.he] "+ ara.mfn("has", "has", "have") +" denied you again! But with the bliss of worshipping [ara.his] wonderful smooth, warm armor still fresh in your mind, it’s difficult to be incredibly upset about it. And that promise [ara.he] "+ ara.mfn("has", "has", "have") +" given you... leading you inexorably on...");
 
@@ -1299,7 +1300,7 @@ public function approachCharles():void
 		{
 			output("\n\nYou don’t like his tone. You can’t place exactly why, but hearing the kind, generous bothrioc being talked of so cursorily irks you.");
 
-			output("\n\n<i>“Ara Kei is nice! [ara.he] can talk to me all [ara.he] like"+ ara.mfn("s", "s", "") +" if [ara.he] want"+ ara.mfn("s", "s", "") +",”</i> you say hotly. Charles looks at you beadily.");
+			output("\n\n<i>“Ara Kei is nice! [ara.He] can talk to me all [ara.he] like"+ ara.mfn("s", "s", "") +" if [ara.he] want"+ ara.mfn("s", "s", "") +",”</i> you say hotly. Charles looks at you beadily.");
 			
 			output("\n\n<i>“Already gotten tae you, haven’t they?”</i> he says. <i>“Righty ho, well - not sayin’ Ara ain’t nice or anythin’ - but if you want those strange urges to stop before they get so strong you can’t say no to ‘em, cum’n have a chat with me. I can fix ‘em... but only if you’re willing to be fixed.”</i>");
 		}

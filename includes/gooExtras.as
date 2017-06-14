@@ -699,6 +699,8 @@ public function revertGooBody(part:String = "all", consumeBiomass:Boolean = fals
 				if (!InCollection(pc.armFlags[i], GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_SCALED, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_FEATHERED))
 					armProperties.push(pc.armFlags[i]);
 			}
+			// Special exceptions
+			if(pc.armType == GLOBAL.TYPE_DEMONIC && pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) && !pc.hasArmFlag(GLOBAL.FLAG_SMOOTH)) armProperties.push(GLOBAL.FLAG_SMOOTH);
 			pc.clearArmFlags();
 			pc.armFlags = armProperties;
 		}
@@ -1040,7 +1042,7 @@ public function gooBodyCustomizer():void
 	else addDisabledGhostButton(7,"Revert Legs","Revert Lower Body","Your lower body is already made of goo!");
 	if(pc.hasTail())
 	{
-		if(pc.hasArmFlag(GLOBAL.FLAG_FURRED) || pc.hasArmFlag(GLOBAL.FLAG_FLUFFY) || pc.hasArmFlag(GLOBAL.FLAG_SCALED) || pc.hasArmFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasArmFlag(GLOBAL.FLAG_FEATHERED))
+		if(pc.hasTailFlag(GLOBAL.FLAG_FURRED) || pc.hasTailFlag(GLOBAL.FLAG_FLUFFY) || pc.hasTailFlag(GLOBAL.FLAG_SCALED) || pc.hasTailFlag(GLOBAL.FLAG_CHITINOUS) || pc.hasTailFlag(GLOBAL.FLAG_FEATHERED))
 		{
 			if(gooBiomass() >= 20) addGhostButton(8,"Revert Tail",revertGooBodyPart,"tail","Revert Tail","Revert [pc.eachTail] back to goo.\n\n<b>20 mLs Biomass</b>");
 			else addDisabledGhostButton(8,"Revert Tail","Revert Tail","You don’t have enough biomass for that.\n\n<b>20 mLs Biomass</b>");
@@ -1783,8 +1785,8 @@ public function gooShrinkBreastsMenu():void
 	if(pc.bRows() == 1 && pc.biggestTitSize() >= 1)
 	{
 		//Determine boobcost
-		if(pc.breastRows[x].breastRating() < 6) boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-1)) * 0.75)) * pc.breastRows[x].breasts;
-		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-2)) * 0.75)) * pc.breastRows[x].breasts;
+		if(pc.breastRows[0].breastRating() < 6) boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw-1)) * 0.75)) * pc.breastRows[0].breasts;
+		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[0].breastRatingRaw-2)) * 0.75)) * pc.breastRows[0].breasts;
 		//Let's do it.
 		shrinkASpecificTitRow(0);
 		return;
@@ -1796,7 +1798,7 @@ public function gooShrinkBreastsMenu():void
 		else boobCost = (Math.round((boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw) - boobsVolumeCheesed(pc.breastRows[x].breastRatingRaw-2)) * 0.75)) * pc.breastRows[x].breasts;
 		//Display costs
 		output2("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>Biomass Gain: </b>" + boobCost + " mLs");
-		if(pc.breastRows[0].breastRating() >= 1) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
+		if(pc.breastRows[x].breastRating() >= 1) addGhostButton(x,StringUtil.upperCase(num2Text(x+1)),shrinkASpecificTitRow,x,StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","Shrink this row.\n\n<b>" + boobCost + " mLs Biomass Gain</b>");
 		else addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Row","You can’t make this row any smaller.");
 	}
 	showBiomass();
@@ -2795,6 +2797,8 @@ public function vaginaGooRootMenu():void
 	else if(pc.totalVaginas() == 1) addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","You need multiple goo vaginas in order to try this.");
 	//else addDisabledGhostButton(8,"Remove Vags","Remove Vaginas","You have no vaginas to remove.");
 	
+	if(pc.hasVagina() && flags["SUKMASTRED"] != undefined) addGhostButton(9,"Puffiness",gooVaginaPuffMenu,undefined,"Vagina Puffiness","Increase or decrease the puffiness of your vagina.");
+	
 	addGhostButton(14,"Back",gooCrotchCustomizer);
 }
 //Grow Vag
@@ -2872,7 +2876,7 @@ public function addClitGooMenu():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.upperCase(num2Text(x+1)),"This vagina isn’t made of goo and cannot be morphed that way.");
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina","This vagina isn’t made of goo and cannot be morphed that way.");
 		}
 	}
 	showBiomass();
@@ -2981,6 +2985,8 @@ public function pickNewGooCuntMenu(arg:Array):void
 		vTypes.push(GLOBAL.TYPE_NYREA);
 	if (flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_CUNT) == AmberSeed.FLAG_GOO_CUNT)
 		vTypes.push(GLOBAL.TYPE_AVIAN);
+	if(kGAMECLASS.flags["MUFFSTICK_COLORED"] != undefined)
+		vTypes.push(GLOBAL.TYPE_MOUTHGINA);
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -3100,12 +3106,100 @@ public function fixAllVags(nVagsToFix:Number = 0):void
 	clearGhostMenu();
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
+// PuffyAmiYumi
+public function gooVaginaPuffMenu():void
+{
+	clearOutput2();
+	if(pc.totalVaginas() == 1)
+	{
+		clearGhostMenu();
+		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
+		{
+			output2("How do  you want to change your vagina?\n");
+			if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) addDisabledGhostButton(0,"Inflate","Inflate Vagina","Your vagina is as puffy as it is going to get!");
+			else if(gooBiomass() >= 100) addGhostButton(0,"Inflate",gooVaginaInflate,0,"Inflate Vagina","Inflate your vagina.\n\n<b>100 mLs Biomass</b>");
+			else addDisabledGhostButton(0,"Inflate","Inflate Vagina","You do not have enough biomass for this!\n\n<b>100 mLs Biomass</b>");
+			if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) addGhostButton(5,"Deflate",gooVaginaDeflate,0,"Deflate Vagina","Deflate your vagina.");
+			else addDisabledGhostButton(5,"Deflate","Deflate Vagina","Your vagina can’t get any less puffy than it is now!");
+		}
+		else
+		{
+			output2("It seems your vagina isn’t gooey enough to change...\n");
+			addDisabledGhostButton(0,"Inflate","Inflate Vagina","Your vagina isn’t made of goo and cannot be morphed that way.");
+			addDisabledGhostButton(5,"Deflate","Deflate Vagina","Your vagina isn’t made of goo and cannot be morphed that way.");
+		}
+		return;
+	}
+	
+	output2("Which vagina will you like to change?\n");
+	clearGhostMenu();
+	for(var x:int = 0; x < pc.totalVaginas(); x++)
+	{
+		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_GOOEY))
+		{
+			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - ");
+			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) {
+				if(pc.vaginalPuffiness(x) > 2) output2(" Extremely and naturally puffy");
+				else output2(" Obviously puffy");
+			}
+			else if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) {
+				if(pc.vaginalPuffiness(x) > 1) output2(" Obviously and naturally puffy");
+				else output2(" Slightly puffy");
+			}
+			else {
+				if(pc.vaginalPuffiness(x) > 0) output2(" Naturally puffy");
+				else output2(" Not puffy");
+			}
+			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) addDisabledGhostButton(x,("Inflate #" + (x+1)),("Inflate " + StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina"),"This vagina is as puffy as it is going to get!");
+			else if(gooBiomass() >= 100) addGhostButton(x,("Inflate #" + (x+1)),gooVaginaInflate,x,("Inflate " + StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina"),"Inflate this vagina.\n\n<b>100 mLs Biomass</b>");
+			else addDisabledGhostButton(0,("Inflate #" + (x+1)),("Inflate " + StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina"),"You do not have enough biomass for this!\n\n<b>100 mLs Biomass</b>");
+			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) addGhostButton((x + 5),("Deflate #" + (x+1)),gooVaginaDeflate,x,("Deflate " + StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina"),"Deflate this vagina.");
+			else addDisabledGhostButton(5,("Deflate #" + (x+1)),("Deflate " + StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina"),"This vagina can’t get any less puffy than it is now!");
+		}
+		else
+		{
+			output2("\n" + (x+1) + ": [pc.Vagina " + x + "] - <b>Not goo</b>");
+			addDisabledGhostButton(x,("Inflate #" + (x+1)),("Inflate " + StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina"),"This vagina isn’t made of goo and cannot be morphed that way.");
+			addDisabledGhostButton((x + 5),("Deflate #" + (x+1)),("Deflate " + StringUtil.capitalize(num2Ordinal(x + 1)) + " Vagina"),"This vagina isn’t made of goo and cannot be morphed that way.");
+		}
+	}
+	showBiomass();
+	addGhostButton(14,"Back",vaginaGooRootMenu);
+}
+public function gooVaginaInflate(arg:int = 0):void
+{
+	clearOutput2();
+	
+	output2("You concentrate and watch your [pc.vagina " + arg + "] swell larger.");
+	pc.inflateVagina(arg);
+	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
+	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" <b>Your vagina is now slightly puffy!</b>");
+	else output2(" <b>Your vagina is no longer puffy!</b>");
+	gooBiomass(-100);
+	
+	clearGhostMenu();
+	addGhostButton(0,"Next",vaginaGooRootMenu);
+}
+public function gooVaginaDeflate(arg:int = 0):void
+{
+	clearOutput2();
+	
+	output2("You focus and feel your [pc.vagina " + arg + "] lose some mass.");
+	pc.deflateVagina(arg);
+	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
+	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" <b>Your vagina is now slightly puffy!</b>");
+	else output2(" <b>Your vagina is no longer puffy!</b>");
+	gooBiomass(75);
+	
+	clearGhostMenu();
+	addGhostButton(0,"Next",vaginaGooRootMenu);
+}
 
 
 /* Goo Ball Functions */
 public function gooballUsed(gooBall:Class):void
 {
-	pc.destroyItemByType(gooBall);
+	pc.destroyItemByClass(gooBall);
 	
 	clearMenu();
 	addButton(0, "Next", useItemFunction);

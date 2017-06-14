@@ -380,7 +380,7 @@ public function initTavrosRooms():void
 	rooms["9012"].moveMinutes = 1;
 	rooms["9012"].addFlag(GLOBAL.INDOOR);
 	rooms["9012"].addFlag(GLOBAL.PUBLIC);
-	rooms["9012"].runOnEnter = undefined;
+	rooms["9012"].runOnEnter = redlightSEBonus;
 
 	//9013
 	rooms["9013"] = new RoomClass(this);
@@ -423,7 +423,7 @@ public function initTavrosRooms():void
 	rooms["9015"].addFlag(GLOBAL.INDOOR);
 	rooms["9015"].addFlag(GLOBAL.PUBLIC);
 	rooms["9015"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9015"].runOnEnter = undefined;
+	rooms["9015"].runOnEnter = merchantThoroughfareBonus;
 
 	//9016
 	rooms["9016"] = new RoomClass(this);
@@ -677,6 +677,8 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
+	rooms["RESIDENTIAL DECK 12"].runOnEnter = liammeBonus;
 	
 	//1013 North Walkway 2
 	rooms["RESIDENTIAL DECK 13"] = new RoomClass(this);

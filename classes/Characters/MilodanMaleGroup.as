@@ -197,7 +197,7 @@
 			btnTargetText = "Milodan";
 			
 			randomise();
-			
+			kGAMECLASS.uvetoSSTDChance(this);
 			this._isLoading = false;
 		}
 		

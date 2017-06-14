@@ -53,7 +53,7 @@ public function dryadMeeting():void
 	else
 	{
 		output("\n\nYou can hear a high-pitched, frantic voice coming from up ahead. Sounds like someone is in trouble, and as you approach you see there’s a trail of hooved footprints that look to have trampled out an impromptu clearing. Scooping some foliage out of your face, you can see there’s a creature facing away from you off to the side. It looks to be tauric in nature, with four hooved legs, furred, and a bare humanoid upper half at the front of its body. You look down and are unsurprised to see a large, pink and fully erect horsecock swinging from its undercarriage – seems like everything out here wants to fuck. It turns towards you and you’re taken aback – you’re faced with a beautiful woman with flowing red hair down to her chest. She trots in your direction and you can see her hair was partially masking her breasts, which look to be about a C-cup and capped with pink nipples. As she gets closer, you note her face is red and that she’s breathing heavily, her hair strewn wildly and breasts rapidly moving up and down with her inhalations. She greets you first.");
-		output("\n\n<i>“Oh, it's you! I'm in heat again – wanna fuck?”</i>");
+		output("\n\n<i>“Oh, it’s you! I’m in heat again – wanna fuck?”</i>");
 	}
 	
 	output("\n\nShe makes puppy eyes at you, although the effect is somewhat diminished by the gigantic equine cock pointing in your direction. Still, though, it’s pretty clear she is at least telling the truth about the heat thing. She’s obviously desperate to fuck. Given her state, it looks like whatever sex you have is gonna be rough and animalistic regardless of whether you’re on the receiving end.");
@@ -72,23 +72,23 @@ public function dryadMeeting():void
 	{
 		//addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
 		if (pc.hasVagina()) addButton(1, "Get Fucked", dryadPussy, undefined, "Get Fucked", "Let the girl fuck your pussy.");
-		else addDisabledButton(1, "Get Fucked", "Get Fucked", "You don't have a pussy for her to fuck.");
+		else addDisabledButton(1, "Get Fucked", "Get Fucked", "You don’t have a pussy for her to fuck.");
 		addButton(2, "Get Reamed", dryadAss, undefined, "Get Reamed", "Let the girl fuck your ass.");
-		if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl's pussy to get her off.");
+		if (pc.hasCock() && pc.biggestCockLength() >= 12) addButton(3, "Fuck Her", dryadDick, undefined, "Fuck Her", "Fuck the girl’s pussy to get her off.");
 		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Your dick needs to be at least a foot long before the femtaur will let you fuck her.");
-		else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don't have a foot-long dick to fuck her with.");
+		else addDisabledButton(3, "Fuck Her", "Fuck Her", "You don’t have a foot-long dick to fuck her with.");
 		if(pc.hasCuntTail() && pc.tailCuntCapacity() >= pp.cockVolume(0)) addButton(4,"Tail Milk",tailCuntDryadFun,undefined,"Tail Milk","Use your tail to milk her needy member.");
-		else if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You can't fit her inside your cunt tail.");
+		else if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You can’t fit her inside your cunt tail.");
 		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
 		//Dryad Commission – Facefuck/Deepthroat
 		//[SuckMe]
-		if(pc.hasCock()) addButton(5,"Suck Me",dryadFaceFuckSpecial,undefined,"Suck Me", "Make her suck you off. She's sexed up enough she might just cum from it.");
+		if(pc.hasCock()) addButton(5,"Suck Me",dryadFaceFuckSpecial,undefined,"Suck Me", "Make her suck you off. She’s sexed up enough she might just cum from it.");
 		else addDisabledButton(5,"Suck Me","Suck Me","You need a dick for her to suck for this.");
 		//Dryad Anal
 		//Anal (Requires >= 10" length)
 		if(pc.hasCock())
 		{
-			if(pc.longestCockLength() < 10) addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren't long enough for her to be interested.");
+			if(pc.longestCockLength() < 10) addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t long enough for her to be interested.");
 			else addButton(6,"FuckHerAss",dryadAnalFunsies,undefined,"Fuck Her Ass","Put it in her butt and go to town.");
 		}
 		else addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You need a penis in order to fuck her ass.");
@@ -96,19 +96,19 @@ public function dryadMeeting():void
 	}
 	else
 	{
-		//addDisabledButton(0,"Give BJ","Give BJ","You aren't aroused enough for that.");
-		if (pc.hasVagina()) addDisabledButton(1, "Get Fucked", "Get Fucked", "You aren't aroused enough for that.");
-		else addDisabledButton(1, "Get Fucked", "Get Fucked", "Even if you were aroused enough, you don't have a pussy for her to fuck.");
-		addDisabledButton(2,"Get Reamed","Get Reamed","You aren't aroused enough for that.");
-		if (pc.hasCock() && pc.biggestCockLength() >= 12) addDisabledButton(3,"Fuck Her","Fuck Her","You aren't aroused enough for that.");
+		//addDisabledButton(0,"Give BJ","Give BJ","You aren’t aroused enough for that.");
+		if (pc.hasVagina()) addDisabledButton(1, "Get Fucked", "Get Fucked", "You aren’t aroused enough for that.");
+		else addDisabledButton(1, "Get Fucked", "Get Fucked", "Even if you were aroused enough, you don’t have a pussy for her to fuck.");
+		addDisabledButton(2,"Get Reamed","Get Reamed","You aren’t aroused enough for that.");
+		if (pc.hasCock() && pc.biggestCockLength() >= 12) addDisabledButton(3,"Fuck Her","Fuck Her","You aren’t aroused enough for that.");
 		else if (pc.hasCock()) addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, your dick needs to be at least a foot long to fuck her.");
 		else addDisabledButton(3, "Fuck Her", "Fuck Her", "Even if you were aroused enough, you need a dick at least a foot long to fuck her.");
-		if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You aren't aroused enough for this.");
+		if(pc.hasCuntTail()) addDisabledButton(4,"Tail Milk","Tail Milk","You aren’t aroused enough for this.");
 		else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
-		addDisabledButton(5,"Suck Me","Suck Me","You aren't aroused enough for this.");
-		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren't aroused enough for this.");
+		addDisabledButton(5,"Suck Me","Suck Me","You aren’t aroused enough for this.");
+		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t aroused enough for this.");
 	}
-	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don't wanna bang right now.");
+	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don’t wanna bang right now.");
 }
 
 public function dryadBlowjob():void
@@ -127,7 +127,7 @@ public function dryadBlowjob():void
 	if (pc.hasCock()) output("[pc.EachCock] involuntarily stiffens at her praise, shamefully acknowledging your pleasure in having your face fucked. ");
 	output("She pants and shoves her thickening length further into the warmth and wetness of your unprepared throat, her hind legs quivering as your lips and tongue roll across her sensitive surface while she roughly plunges in and out of you. Your saving grace is that she’s so horny that her precum is flowing like a river down your gullet, easing her passage into your esophagus. Your ");
 	if(!pc.isBimbo()) output("gag reflex is completely overwhelmed by such a large object passing through where it shouldn’t, which is great because you’d doubt you’d even be able to get her off you in her lustful frenzy.");
-	else output("throat is completely stuffed by the enormous object, stretched out nice and thick around the big fat cock. Part of you thrills to know that you're hot enough to warrant a true face-fuck.");
+	else output("throat is completely stuffed by the enormous object, stretched out nice and thick around the big fat cock. Part of you thrills to know that you’re hot enough to warrant a true face-fuck.");
 	output("\n\n<i>“Fuuuck, your throat is better than pussy! Hang on babe, I’m gonna cum real soon.”</i>");
 	output("\n\nShe moans desperately and fucks your face with renewed vigor, your loud swallows accentuated by the slap of her heavy, churning balls against your chin as she repeatedly hilts herself in the cocksheath of your mouth, precum drizzling down your throat and leaking from between your [pc.lips].");
 	if(pc.hasCock()) 
@@ -361,7 +361,7 @@ public function tailCuntDryadFun():void
 	if(pc.isTaur()) 
 	{
 		output("\n\nYour tail slides beneath your legs, ");
-		if(pc.balls > 0) output("brushing sinuously against your balls, ");
+		if(pc.balls > 0) output("brushing sinuously against your [pc.balls], ");
 		output("curling under her belly, and running up the length of her cock, smearing your tail cunt’s lubrication along it.");
 	}
 	else
@@ -378,17 +378,18 @@ public function tailCuntDryadFun():void
 	if(pc.hasCock())
 	{
 		output("Your own cock");
-		if(pc.cockTotal() > 1) output("s");
-		output(" are rigid, twitching in the sensory feedback from your cunt tail, pre already starting to bead at your tip");
+		if(pc.cockTotal() == 1) output(" is");
+		else output("s are");
+		output(" rigid, twitching in the sensory feedback from your cunt tail, pre already starting to bead at your tip");
 		if(pc.cockTotal() > 1) output("s");
 		output(". ");
 	}
 	if(pc.hasVagina())
 	{
 		output("Your ");
-		if(pc.totalVaginas() == 1) output("pussy");
-		else output("pussies");
-		output(" throbs, aching to be filled, already sympathetically wet with the pumping one at the end of your tail. ");
+		if(pc.totalVaginas() == 1) output("pussy throbs");
+		else output("pussies throb");
+		output(", aching to be filled, already sympathetically wet with the pumping one at the end of your tail. ");
 	}
 	output("You can feel the taur inside your tail, already twitching, despite not even being halfway engulfed.");
 
@@ -497,7 +498,7 @@ public function dryadFaceFuckSpecial():void
 		else 
 		{
 			output("to gather every single droplet of flavorful [pc.cumNoun].");
-			if(pc.cumQ() < 10) output(" There's not much there, but she clearly makes the most of it, noisily gulping around your cock in order to capture every single sperm.");
+			if(pc.cumQ() < 10) output(" There’s not much there, but she clearly makes the most of it, noisily gulping around your cock in order to capture every single sperm.");
 			else output(" She playfully lets a rivulet escape the corner of her mouth to drip down to her tits, rubbing it into her nipple one-handed.");
 		}
 	}
@@ -611,12 +612,12 @@ public function letZeSuckingsCommence():void
 		output(" the dryad");
 		if(pc.cocks[0].cLength() <= 24) 
 		{
-			output("'s forehead butting into your [pc.stomach] with every deep suck.");
+			output("’s forehead butting into your [pc.stomach] with every deep suck.");
 			if(pc.balls > 1) output(" You feel her tongue slip out and massage the underside of your balls, impressive given how much of you is in her already. She <i>really</i> wants more.");
 		}
 		else
 		{
-			output("'s mouth sliding down your length. She can’t reach your base, but what she lacks in capacity she makes up for with enthusiasm, sucking and licking every little vein and bump down your massive cock.");
+			output("’s mouth sliding down your length. She can’t reach your base, but what she lacks in capacity she makes up for with enthusiasm, sucking and licking every little vein and bump down your massive cock.");
 		}
 	}
 	else

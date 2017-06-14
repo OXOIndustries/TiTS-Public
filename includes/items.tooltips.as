@@ -22,6 +22,18 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		
 		// Consumables
+		case "AmazonaClassic":
+			tooltip += "A 23 oz tin can labeled: “Amazona Classic.” The can is decorated with a stylized drawing of a large, muscular woman showing off her ripped figure. Small text reveals that this is " + (silly ? "Clit Kiwi" : "Grapefruit") + " flavored.";
+			break;
+		case "AmazonaLite":
+			tooltip += "A 12 oz tin can labeled: “Amazona Lite.” The can is decorated with a stylized drawing of an athletically built woman sprinting. Small text reveals that this is " + (silly ? "Lime Crime flavored" : "Lime Cream flavored") + ".";
+			break;
+		case "AmazonaPlus":
+			tooltip += "A 30 oz bottle labeled: “Amazona Plus.” The bottle is decorated with a stylized drawing of an extremely curvy woman cradling her huge tits in her ripped arms. Small text reveals that this is watermelon flavored.";
+			break;
+		case "Futazona":
+			tooltip += "A 20 oz solid steel thermos labeled: “Futazona.” The thermos is decorated with a stylized mural depicting several muscular hermaphrodites caught up in an orgy. The cap has a dial on it labeled: “Classic,” “Lite,” and “Plus.” Small text reveals that this is Hazelnut and Honey flavored.";
+			break;
 		case "KerokorasVenom":
 			tooltip += "A vial of ";
 			if(silly) tooltip += "k";
@@ -43,6 +55,9 @@ public function altTooltip(itemName:String = "none"):String
 			if(!silly) tooltip += " Equally colorful lettering informs you that this is a powerful one-use contraceptive which is guaranteed to prevent pregnancy without impacting sexual performance.";
 			else tooltip += "\n\n<i>“Hi, Milly Bayes here with new Sterilex! Getting ready for an orgy? Making sure your night on the town doesn’t turn sour? Just not ready to start a family with that special someone? Well now J’ejune Pharmaceutical is there for you with Sterilex! Sterilex’s powerful fast-acting agents provide you with twenty-four full hours of protection for any and all of your sexual organs, with no long-term hazards to your fertility! Don’t rely on condoms or other pills! Get protection you can trust, with Sterilex!”</i>";
 			tooltip += "\n\nBelow this, in much smaller text, is a warning informing you <b>not to take Sterilex more than once within twenty-four hours</b>. It also lists off a long string of minor potential side effects. Within the colorful packaging is a dull gray pill.";
+			break;
+		case "StrawberryShortcake":
+			tooltip += "A popular prank dish at parties, this cake roll is made with eggs, milk, flour, targeted microsurgeons that reduce the eater’s height considerably, strawberries and " + (silly ? "soap" : "love") + ".";
 			break;
 		case "SumaCream":
 		case "SumaCreamWhite":

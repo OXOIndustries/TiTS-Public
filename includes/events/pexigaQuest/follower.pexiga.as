@@ -353,7 +353,7 @@ public function pexigaYammiTalkGooo():void
 	output("\n\nPulling the burgundy plastic between her thighs, she leans forward, allowing the steady flow of saliva to rain into the container as she jills herself into a slavering mess. Blobs of fat, crystalline lubrication bubble from between her lower lips, and these too are transported into the bowl with the aid of her dexterous tail. In practically no time at all, the small basin has been filled to the brim with the pexiga’s fluids.");
 	output("\n\nShe pauses, panting and all smiles while a small, steamy cloud rises from her supple body. <i>“Tasty,”</i> she insists, drawing her soaked tail across her tongue. You dip a finger in the bowl and give the warm fluid a lick, confirming to the sugary girl that it is indeed quite flavorful.");
 	output("\n\n<i>“Tastes better with help,”</i> she teases, her big blue eyes full of a mischievous appetite.");
-	//{Player gains +5 lust}
+	//Player gains +5 lust
 	processTime(10);
 	pc.lust(5);
 	pexigaTalkMenu(pexigaYammiTalkGooo);
@@ -652,7 +652,7 @@ public function milkPexigaHandSolo():void
 
 public function milkedPexigaCollect(withYammi:Boolean = false):void
 {
-	if(pc.hasItem(new PexigaSaliva()) || pc.hasItemInStorage(new PexigaSaliva()))
+	if(pc.hasItemByClass(PexigaSaliva) || pc.hasItemInStorageByClass(PexigaSaliva))
 	{
 		pexigaMenu();
 	}
@@ -715,10 +715,10 @@ public function pexigaSexMenu():void
 	//Eat Out
 	addButton(2,"Eat Out",eatOutPexigoo,undefined,"Eat Out","Taste test [pexiga.name] with Yammi.");
 	//Bubble
-	if(pc.hasCock() && pc.hasItem(new BubbleBuddy())) addButton(3,"Bubble",blowBubblesWithpexiga,undefined,"Bubble","Use your Bubble Buddy to make [pexiga.name] a ball to play with.");
+	if(pc.hasCock() && pc.hasItemByClass(BubbleBuddy)) addButton(3,"Bubble",blowBubblesWithpexiga,undefined,"Bubble","Use your Bubble Buddy to make [pexiga.name] a ball to play with.");
 	else addDisabledButton(3,"Bubble","Bubble","You need a penis and a “Bubble Buddy” sex-toy in order to do this. Such toys are available from the TamaniCorp Vendor on Tavros Station.");
 
-	addButton(4,"Back",pexigaMainScreen);
+	addButton(14,"Back",pexigaMainScreen);
 }
 
 //[Facefuck]
@@ -1117,7 +1117,7 @@ public function pexigaFacefuckRouter():void
 {
 	if(pc.cockTotal() == 1) 
 	{
-		if(pc.cocks[y].thickness() <= 4) faceFuckDatPexigaFaceRingGagThingMaybe(0);
+		if(pc.cocks[0].thickness() <= 4) faceFuckDatPexigaFaceRingGagThingMaybe(0);
 		else tooBigPexigaFacefuck(0);
 	}
 	else if(pc.cockTotal() == 0)

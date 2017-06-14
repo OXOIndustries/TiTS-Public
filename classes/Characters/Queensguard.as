@@ -195,7 +195,6 @@
 			isUniqueInFight = true;
 			btnTargetText = "Queensguard";
 			sexualPreferences.setRandomPrefs(8, 2);
-			
 			this._isLoading = false;
 		}
 		

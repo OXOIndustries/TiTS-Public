@@ -326,7 +326,7 @@ package classes.Items.Transformatives
 			}
 			
 			//actually remove item from iventory
-			if (!kGAMECLASS.infiniteItems()) target.destroyItem(new Equilicum(), 1);
+			if (!kGAMECLASS.infiniteItems()) target.destroyItemByClass(Equilicum, 1);
 			//return to game
 			addButton(0, "Next", kGAMECLASS.mainGameMenu);
 		}

@@ -33,6 +33,45 @@ public function TundraEncounterBonus():Boolean
 	}
 	return false;
 }
+public function GlacialRiftEncounterBonus():Boolean
+{
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	//Just reuse Uveto's shit. It doesnt matter much really.
+	IncrementFlag("TUNDRA_STEP");
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
+		//Reset step counter
+		flags["TUNDRA_STEP"] = 0;
+		
+		//POSSIBLE ENCOUNTERS! SABERFLOOF!
+		choices[choices.length] = encounterAMilodan;
+		choices[choices.length] = encounterAMilodan;
+		choices[choices.length] = encounterAMilodan;
+		//POSSIBLE ENCOUNTERS! KORGI!
+		choices[choices.length] = encounterAKorgonneFemaleHostile;
+
+		if(flags["MET_CHAURMINE"] < 2 && chaurmineOnUveto()) 
+		{
+			if(flags["CHAURMINE_WINS"] == undefined)
+			{
+				choices.push(chaurmineChasmShit);
+				choices.push(chaurmineChasmShit);
+				choices.push(chaurmineChasmShit);
+			}
+			choices.push(chaurmineChasmShit);
+		}		
+		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
+		{
+			choices.push(soloFertilityPriestessFight);
+		}
+		
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
 
 public function HereBeDragonBonus():Boolean
 {
@@ -68,6 +107,16 @@ public function uvetoShipDock():Boolean
 	getLetterFromShade();
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
+	
+	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined)) chaurmineUvetoStationBonus();
+
+	return false;
+}
+public function uvetoDockingBonus():Boolean
+{
+	// Vava Groom
+	vavaGroomOutsideBonus();
+	
 	return false;
 }
 
@@ -514,7 +563,7 @@ public function uvetoSearchAbandonedCamp():void
 
 public function uvetoAbandonedCampLootCheck():void
 {
-	if (pc.accessory is LeithaCharm || pc.hasItemByType(LeithaCharm))
+	if (pc.accessory is LeithaCharm || pc.hasItemByClass(LeithaCharm))
 	{
 		mainGameMenu();
 		return;
@@ -562,6 +611,7 @@ public function uvetoFallToColdDamage():void
 	
 	if (InRoomWithFlag(GLOBAL.OUTDOOR))
 	{
+		showBust("LUNA");
 		author("Savin");
 		output("You waken with a start, gasping for breath. Though your insides still throb with the vestigial ache of the Uvetan cold, you can feel heat washing over your limbs, bathing you in dry warmth. Never before has a space heater felt so good.");
 		
@@ -587,6 +637,7 @@ public function uvetoFallToColdDamage():void
 	}
 	else if (InRoomWithFlag(GLOBAL.ICYTUNDRA))
 	{
+		showBust("JEROME");
 		author("Gedan");
 
 		output("A loud crinkling noise draws you back from the brink, a regular rustle akin to a metronome tapping on the side of your near-unconsciousness. You feel yourself shift in time with the noise, something dragging you along as your body resists for a moment before following suit.");
@@ -594,7 +645,7 @@ public function uvetoFallToColdDamage():void
 		output("\n\nIt’s a struggle to peel open your eyes, the endless freezing winds having battered any exposed [pc.skinFurScales] so completely your [pc.face] is covered in outcroppings of icicles hanging from your features. You have to work your face a little, stretching and tugging against the icy buildup, as sensation slowly creeps back in - bringing with it the deep, throbbing pain of penetrating cold having set into the core of your body - before you can open them, finding yourself looking up at");
 		// 9999
 		output(" a crystal clear sky");
-		//an angry, vengeful sky
+		//output(" an angry, vengeful sky");
 		output(".");
 		
 		output("\n\nSomething is moving on the edge of your sight above you - no, in front, you realize. With no small amount of discomfort you look up and make out the shape of a large, nearly formless blob through your fuzzy vision. A person, you reason slowly, given how the shapes moving around; large, lumbering steps, each one taken tugging you forward on what must be some kind of sled through the snow.");
@@ -708,8 +759,9 @@ public function uvetoBarBonus():Boolean
 {
 	removeUvetoCold();
 	
+	// Hana
 	addButton(0, flags["MET_HANA"] == undefined ? "Bartender" : "Hana", approachHana);
-
+	
 	//STEPH IRSON!
 	if(hours % 2 == 0) 
 	{
@@ -724,14 +776,23 @@ public function uvetoBarBonus():Boolean
 	
 	// Shade events.
 	meetingShadeAtUvetoBar(2);
-
+	
+	// Jerome & Jerynn
 	var jeromePresent:Boolean = jeromeAtBar(3);
 	var jerynnPresent:Boolean = jerynnAtBar(jeromePresent ? 4 : 3);
 	
+	// Random Freezer encounters
+	var NPCs:Array = [];
 	// Natalie Irson
-	natalieFreezerAddendum(4);
+	if(natalieAvailableAtBar()) NPCs.push(natalieFreezerAddendum);
+	if(cynthiaAvailableAtBar()) NPCs.push(cynthiaAtTheFreezer);
+	if(waltAvailableAtBar()) NPCs.push(waltAtTheFreezer);
+	if(NPCs.length > 0 && (!jeromePresent || !jerynnPresent)) NPCs[rand(NPCs.length)](4);
+	
 	// Randoms
 	roamingBarEncounter(5);
+	
+	// Beatrice
 	if(flags["BEA_QUEST"] != 4) 
 	{
 		if(beatriceBonusButts(7)) return true;
@@ -921,7 +982,7 @@ public function uvetoIrson3():void
 	output("\n\nThe drone gets thumped away by something, and two pairs of furry arms grab Steph’s shoulders, hauling her away. Off-screen, a yipping voice cries, <i>“Seconds! Much fuck; so breed!”</i>");
 	output("\n\n<i>“BREED!”</i> several other voices echo.");
 	output("\n\n<i>“Tune in next week for - oh no!”</i> Steph yelps as several dark doggy-cocks flop onto her face, even as she’s being hauled off. Before one of them can plug itself in her lips, she manages to shout <i>“Uh, commercials! See ya next time!”</i>");
-	output("\n\n...Somehow she didn’t seem too distressed about her fate, there. Maybe she liked the korgonnes’ <i>“hugs”</i> a little too much...");
+	output("\n\n...Somehow she didn’t seem too distressed about her fate, there. Maybe she liked the korgonnes’ “hugs” a little too much...");
 	
 	watchStephEpisodeBroadcast("STEPH_DARGONED");
 	
@@ -938,22 +999,26 @@ public function uvetoStationLoungeFunc():Boolean
 		output("\n\nGalina and Marina are lounging around in the cafe, probably on their lunch break. Though they’re happily chattering away over their plates and fooling around with data-pads loaded with more science than you can shake a textbook at, they’re perfectly willing to stop and flash you inviting smiles when you pass by.");
 		addButton(0, "Huskars", annoUvetoHuskarFoursomeRepeat, undefined, "Huskar Twins", "Go over and see if you can stir up some sexy trouble with the bimbo-geniuses.");
 	}
+	vendingMachineButton(1, "XXX");
 
 	return false;
 }
 
-public function drLessauBonus():Boolean
+public function uvetoExecLobbyBonus():Boolean
 {
-	if (flags["MET_DR_LESSAU"] == undefined)
-	{
-		output("\n\nBehind the desk is a bizarre mishmash of cat, serpent, bull, and some sort of feathered beast. He doesn’t look like any alien species you recognize. Whatever he is, your entrance prompts him to look up.");
-		addButton(0,"Chimera", drLessauIPresume)
-	}
-	else
-	{
-		output("\n\nDr. Lessau is here as usual, the chimera tapping away at his terminal until he sees you come in.");
-		addButton(0,"Lessau", drLessauIPresume)
-	}
+	vendingMachineButton(1, "J'ejune");
+	
+	//setNavDisabled(NAV_EAST_DISABLE);
+	
+	return false;
+}
+
+public function uvetoSheriffsOfficeBonus():Boolean
+{
+	// 9999
+	buttslutinatorBonus();
+	
+	vendingMachineButton(1);
 	
 	return false;
 }
@@ -1087,7 +1152,7 @@ public function approachKazraAndLorre():void
 		showName("ESSYRA\nTRADERS");
 		output("You approach the pair of pale pink fox-women, putting up a hand in greeting. The closer of the two, somewhat shorter but more muscular than her companion, steps forward to lean against the support pole in the middle of the tent.");
 		
-		output("\n\n<i>“Greetings, [pc.race],”</i> she says evenly, eyeing you with unabashed curiosity. <i>“Welcome to our home and trading post. I am Kazra, and this is my mate, Lorre.”</i>");
+		output("\n\n<i>“Greetings, [pc.raceCute],”</i> she says evenly, eyeing you with unabashed curiosity. <i>“Welcome to our home and trading post. I am Kazra, and this is my mate, Lorre.”</i>");
 		
 		output("\n\nKazra nods back to the heavily pregnant Essyra behind her, who regards you with a much warmer smile than her mate. <i>“Hello,”</i> she says shyly, putting a hand over the hefty belly straining the front of her leather shirt.");
 		
@@ -1335,7 +1400,7 @@ public function GRM44Fight():void
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {
-		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a tall black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
+		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a long black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
 
 		var en:Array = CombatManager.getHostileActors();
 		
@@ -1571,6 +1636,7 @@ public function fertilityPriestessFuckHerGoHard():void
 		output("\n\n<i>“Oooh, that’s the stuff!”</i> the priestess purrs, wrapping her hands around her packed belly. <i>“I can feel your little swimmers working already. Ah, strong enough to defeat me... strong enough to give me a litter of mighty kits!”</i>");
 
 		if (pc.virility() <= 0) output("\n\nWell, maybe not. But no need to tell her that!");
+		else pc.clearRut();
 	}
 	else
 	{
@@ -1786,6 +1852,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		IncrementFlag("FERTILITY_PRIESTESSES_FUCKED");
 
 		pc.orgasm();
+		pc.clearRut();
 		CombatManager.genericLoss();
 		return;
 	}
@@ -1993,36 +2060,6 @@ public function GRM44Apologize():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function GlacialRiftEncounterBonus():Boolean
-{
-	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
-	//Just reuse Uveto's shit. It doesnt matter much really.
-	IncrementFlag("TUNDRA_STEP");
-	var choices:Array = new Array();
-	//If walked far enough w/o an encounter
-	if(flags["TUNDRA_STEP"] >= 5 && rand(4) == 0) {
-		//Reset step counter
-		flags["TUNDRA_STEP"] = 0;
-		
-		//POSSIBLE ENCOUNTERS! SABERFLOOF!
-		choices[choices.length] = encounterAMilodan;
-		choices[choices.length] = encounterAMilodan;
-		choices[choices.length] = encounterAMilodan;
-		//POSSIBLE ENCOUNTERS! KORGI!
-		choices[choices.length] = encounterAKorgonneFemaleHostile;
-		
-		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
-		{
-			choices.push(soloFertilityPriestessFight);
-		}
-		
-		//Run the event
-		choices[rand(choices.length)]();
-		return true;
-	}
-	return false;
-}
-
 public function GlacialRiftCoast():Boolean
 {
 	return HereBeDragonBonus();
@@ -2030,10 +2067,13 @@ public function GlacialRiftCoast():Boolean
 
 public function soloFertilityPriestessFight():void
 {
+	clearOutput();
+	author("Savin");
+	
 	showBust("MILODAN_PRIESTESS");
 	//showName("MILODAN\nPRIESTESS");
 	
-	output("\n\nAs you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they’re wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, baring her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
+	output("As you’re wandering through the snowy wastes of the Rift, you catch sight of a figure moving towards you across the plains. Whoever they are, they’re wrapped up in a heavy, hooded fur coat that billows in the wind, and carry a staff that guides them through the shin-high banks of snow. You have just a moment to ready yourself before a familiar form saunters up through the snow, throwing aside her cloak to reveal the amazonian physique of a milodan woman, baring her saber-tooth fangs... and so much more -- she was naked under that cloak, and now a pair of mammoth breasts, a set of hips made for mothering, and a pair of black pussylips glistening with her shameless desire.");
 
 	output("\n\n<i>“I thought it might be you!”</i> she snarls, twirling her staff until its gemstone head is levelled at your [pc.chest]. <i>“My sister");
 	if (flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined && flags["FERTILITY_PRIESTESSES_FOUGHT"] > 1) output("s have");
@@ -2049,7 +2089,7 @@ public function soloFertilityPriestessFight():void
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {
-		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a tall black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
+		var s:String = "The Fertility Priestess, a female milodan, stands tall and nude before you, wielding a long black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
 		return s;
 	})
 	CombatManager.victoryScene(pcRepeatFertilityPriestessVictory);

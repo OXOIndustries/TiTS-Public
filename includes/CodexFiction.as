@@ -1,4 +1,2023 @@
-﻿
+﻿//Satyr Slave
+public function satyrSlaveStory():void
+{
+	clearOutputCodex();
+	outputCodex(header("Satyr Slave"));
+	outputCodex("By Wsan (<u><a href='http://kotep.xyz/'>https://www.tumblr.com/blog/profoundtigermentality</a></u>), reworked slightly by Fenoxo.");
+	outputCodex("\n<i>Kinks: Male/Female, Female PoV, Satyr x Elf, Mind Break, Breeding, Pregnancy, Body modification</i>");
+
+	outputCodex("\n\nAs the newest druid in Malas, you’ve shown great promise throughout your brief adventure. Moving on to greater things, you set out on foot to the village of Khal. It’s there that you encounter him, on the side of the path.");
+	outputCodex("\n\n<i>“You! Dark elf,”</i> the strange creature calls, pointing at you. <i>“Yes, you. Come over here, I need your help. Gods, you elves do everything so slowly.”</i>");
+	outputCodex("\n\nEmbarrassed and a little hurt at his accusation, you draw closer to him until you’re standing close enough to see what the foul-mouthed creature is. He’s a satyr, a muscular man covered in tufts of shaggy fur whose legs end in hooves. As you approach, you note with some dismay that he smells awful. As a druid you’re well-versed with the outdoors, but there’s some value to be had in bathing. Even the wildest wolf will groom itself or swim in a river.");
+	outputCodex("\n\n<i>“How may I aid you?”</i> you ask.");
+	outputCodex("\n\n<i>“Hmmm,”</i> he says, scratching his chin while he eyes you up and down. <i>“I need you to get me some materials from the local wildlife. Make it snappy,”</i> he sneers.");
+	outputCodex("\n\n<i>“You would ask me, a druid, to kill the wildlife for materials?”</i> you scoff. <i>“I think not, satyr.”</i>");
+	outputCodex("\n\n<i>“Fine. Get out of my face!”</i> he roars, waving his arm like you’re a pesky gnat. You flinch at the sudden outburst, but you’re only too happy for the excuse to leave. There’s something about this man that makes you intensely uncomfortable - perhaps the way his eyes are roaming up and down your body...");
+	outputCodex("\n\nYou turn to leave, but before you’ve even taken a second step he calls out for you.");
+	outputCodex("\n\n<i>“Wait,”</i> he begs, and you turn to see him wearing an expression of tortured regret. <i>“I’m sorry. I didn’t mean to yell at you like that, and that wasn’t really what I wanted to ask you. I’ve just been on edge lately... I might be dying.”</i>");
+	outputCodex("\n\n<i>“Dying?”</i> you ask, concern creasing your brow. <i>“What ails you? I see no wounds upon your body.”</i>");
+	outputCodex("\n\n<i>“It’s heat,”</i> he says, casting his head downwards dejectedly. <i>“Satyrs die if they can’t find anyone to mate with.”</i>");
+	outputCodex("\n\nIs that true? Your mind reels. You know for a fact that this can occur in nature, but it’s usually only in females... and on top of that, satyrs are well-known to be tricksters... but he seems sincere... and if he isn’t lying, what will happen?! You could be responsible for the death of an innocent if you turn him away now!");
+	outputCodex("\n\n<i>“Arris guide me,”</i> you sigh, looking around to see if anyone’s coming down the path. <i>“Fine. Let’s get away from the road, then.”</i>");
+	outputCodex("\n\n<i>“Right,”</i> he says with a grin, slipping his arm around your waist and guiding you further into the trees. You try to convince yourself he’s happy because you’re helping him, rather than because he’s tricking you.");
+
+	outputCodex("\n\nSafely concealed, you turn to lecture him about what you’ll do for him and gasp in shock. His loincloth, scarcely more than a few dirty rags, is tenting upwards. You watch in open-mouthed horror as he pulls it aside to reveal his swollen, bestial cock. Arris, there’s no way this monstrosity could be intended for breeding! It looks more like some kind of horrific tool to inflict suffering on whoever suffers the misfortune of a satyr’s wrath.");
+	outputCodex("\n\nHis bloated penis is thicker than your arm and almost as long. To make matters worse, the blunted tip flares outwards... getting it inside your pussy would be nigh impossible, not that you intend to let him do such a thing. On top of that, halfway down its length is a thick ridge of flesh, whereupon the thickness of it almost doubles! You can’t imagine what the purpose of that is, if not just to cause additional pain. Can taking that... thing... ever feel good?");
+	outputCodex("\n\n<i>“Well?”</i> the satyr inquires, looking at you puzzledly. You realize you’ve just been staring at his penis for an awkward amount of time. <i>“You said you’d help me, druid.”</i>");
+	outputCodex("\n\nI- er,”</i> you stammer nervously, spreading your hands. <i>“I-it’s, it’s different from what I expected...”</i>");
+	outputCodex("\n\n<i>“Worried about the size?”</i> he snorts. <i>“Relax, you have to suck it first. Gods, you elves are useless. Get on your knees, silly girl.”</i>");
+	outputCodex("\n\n<i>“S-suck..? Oh! Right!”</i> You wipe sweat from your brow, relief palpably washing over you in waves. So pleased are you upon the realization that you won’t have to take that behemoth inside, you don’t even really come to terms with the fact he’s convinced you to suck his cock until you’re kneeling before it.");
+	outputCodex("\n\nFrom down here, it’s even more intimidating - it towers over your head, and his musk is... strong, to say the least. You’ve gotten used to it a little, but there’s no denying it’s somewhat off-putting. At the base of his cock, you can see his balls swinging freely - dear Arris, they’re huge! Each one is probably just a bit bigger than if you clenched your fists together. He certainly must be a... ‘productive’ male of his species. Perhaps they’re swollen as a side effect of the heat?");
+	outputCodex("\n\n<i>“At least give it a lick or something,”</i> the satyr sighs frustratedly. <i>“Do I have to tell you to do everything?”</i>");
+	outputCodex("\n\nRight, you still have to actually get him off, and then you can leave. The faster he cums, the sooner you can get away from this disgusting creature. He said to start with a lick, so... you cautiously bring your pouty lips closer and let your tongue slip from between them. You shyly lick along the underside of his cock, tracing an angry-looking vein bulging outwards. You can hear him hiss in approval so he clearly likes what you’re doing, and if you’re honest, the taste isn’t so offensively bad as to put you off. Maybe this won’t be so bad after all?");
+	outputCodex("\n\nTimidly reaching up with your hands, you find they can’t even wrap all the way around his massive cock. Still, he grunts in pleasure at your grip, so you give him a light squeeze and begin to slowly rub up and down as you lean in for another lick. This time you stretch upwards, slowly licking all the way up to his flared crown.");
+	outputCodex("\n\n<i>“Mmh, that’s good,”</i> the satyr murmurs, watching you work his cock. <i>“You enjoying the taste, girl?”</i>");
+	outputCodex("\n\nYour cheeks flush scarlet. It would be too mean to say it’s disgusting, but you don’t want to agree with him, either. The very notion that a satyr’s cock would taste good to you is demeaning. In the end you settle for saying nothing while blushing, a gesture the satyr mistakes for subservience.");
+	outputCodex("\n\n<i>“That’s right, elf. Lick the tip,”</i> he commands.");
+	outputCodex("\n\nYou roll your eyes, but the better he feels, the sooner it’ll be over, right? Besides, you have to admit just a tiny bit of purely academic curiosity as to just how much cum he has in those gigantic balls of his. You begin to lick around the crown, noting the difference in taste while you idly stroke the swollen base of his dick.");
+	outputCodex("\n\n<i>“Oh, that’s more like it,”</i> he grunts, looking down at you amusedly. <i>“Take it in your mouth.”</i>");
+	outputCodex("\n\n<i>“It’ll never fit,”</i> you protest. <i>“You’re far too big.”</i>");
+	outputCodex("\n\n<i>“Just try it,”</i> he sighs in exasperation. <i>“This is good, but you’ll never get me off just licking and rubbing.”</i>");
+	outputCodex("\n\nFine. If that’s how it is, you’ll at least give it a shot. Staring at the blunt flare head-on just makes it look all the more impossible, but you stretch your mouth open and try to take it in anyway.");
+	outputCodex("\n\n<i>“Mind the fucking teeth,”</i> he hisses, his brow creasing.");
+	outputCodex("\n\nArris! You’re tempted to bite down just to pay this guy back for being an asshole. You’re just trying to help, and there’s a obvious size mismatch between his fat, veiny cock and your comparatively tiny mouth. Still, maybe there’s a better way to do this. You let your tongue loll out and suck the underside of his flare, pressing down on the top to try and squeeze it between your outstretched lips. It’s working!");
+	outputCodex("\n\nYou just barely manage to take the first inch inside and to your alarm, his flare immediately expands, spurting a rope of what must be precum across your tongue. It seems like getting him out of your mouth is going to be even harder than getting him in, and it’s not easy to swallow when your jaw is stretched wide. About all you can do is weakly wash your tongue from side to side around his crown.");
+	outputCodex("\n\n<i>“Oh fuck, that’s more like it,”</i> he moans, jerking his hips.");
+	outputCodex("\n\nYou can’t tell if that was on purpose or an accident, but his cock slides a few inches further in. Either way, you need to get him off _now_ before this gets any worse. Your face aches with muscular fatigue and you can scarcely breathe, and the fact his cock is drooling warm, sticky precum down your throat is hardly helping. You begin to desperately masturbate his length with your hands, trying to hasten his orgasm.");
+	outputCodex("\n\nIf his muted grunts of pleasure are any indication, it’s working. You can feel - Arris forbid - his heavy cock begin to swell even further, hardening in your mouth until it feels like your lips are wrapped around a pulsating iron rod.");
+	outputCodex("\n\n<i>“Grrrr, FUCK!”</i> He yells, seizing your head with both hands. You don’t even have time to flinch before he violently thrusts forward, fully impaling you on his throbbing cock. The flow of precum down your throat slows to a trickle, then he begins groaning orgasmically. Suddenly huge, sticky globs of filthy satyr seed begin pumping past your lips every couple of seconds, his cock flexing hard in your mouth with every bountiful splurt. The inside of your throat is immediately glazed white, his cum splattering against the back of it and rolling into your tummy.");
+	outputCodex("\n\nYou beat at him with your fists - how dare he use you as a sex toy when you’ve so graciously helped him up until this point?! Unfortunately, with a massive penis in your throat and tears streaming from your reddened eyes, you have a hard time mustering any strength.");
+	outputCodex("\n\n<i>“Glllk, glb! Gllgh! Glp! Glp! Glp... glp, glp, glp...”</i>");
+	outputCodex("\n\nYour ineffectual protests fade as you divert more and more attention to the torrential deluge of semen rushing down your bulging throat. It... it never ends. Your eyes begin to roll back in your head from lack of oxygen, but the flow of semen just doesn’t stop. Even with your ears full of the rushing of blood as you struggle to breathe, you can still hear splash after splash as his cum finds its way into your rapidly-filling stomach.");
+	outputCodex("\n\nYou feel a strange calmness descend over you as your hands fall by your sides, your mouth limply stretched around a fat, throbbing cock. Your muscles go slack, only further aiding the penetration of your throat. Your neck bulges obscenely, the outline of a pumping cumvein clearly visible from the outside. Your vision swims, then begins to darken, but you don’t even really notice. All you care about is the calming, soothing feeling of being filled to the brim with sticky, fertile sperm.");
+	outputCodex("\n\nAfter an indeterminate amount of time, the satyr pulls you off his cock, catching you in the face with the last few squirts. You stare blankly as his warm seed coats your face, splattering across your visage and dripping onto your robes. Taking advantage of your state, he squeezes himself dry across your clothed breasts and wipes himself off with your hair. You feel his clawed hand affectionately pat your cheek, rousing you from your fucked-silly stupor.");
+	outputCodex("\n\n<i>“Thank you, druid,”</i> he says, putting a hand on your shoulder before standing back up. <i>“You’ve saved my life. Of course, heat for satyrs lasts for a few months, so come back tomorrow. I’m still in danger, but I can rest easy knowing you’ll save me.”</i>");
+	outputCodex("\n\n<i>“O-oh... yes, of cour-blrbl...”</i> you choke, unable to keep his semen down. Rivulets of bubbling spunk run down your already-stained face. You idly wipe a finger across your chin, and it comes away covered in pearlescent glaze. Nodding appreciatively, he makes to leave before calling back over his shoulder.");
+	outputCodex("\n\n<i>“Oh, and my name is Yenn. See you tomorrow, druid.”</i>");
+	outputCodex("\n\nHe leaves you there on your knees, coated both inside and out in his sperm. Your belly bulges under your robes, full with Yenn’s cum. Even clothed, you look like you’re in the early days of pregnancy. Your throat is sore, your jaw aches, your eyes are still teary, your stomach is full of satyr spunk, and you’re absolutely coated in semen. But at least you saved a life... right?");
+	outputCodex("\n\nThere’s no way you can walk into Khal looking like a... a slut. The added weight makes cat form a little ungainly, but it beats explaining the situation. You pad past the innkeeper and up to your room to rest, suddenly so fatigued that you don’t even think to shift back before you’re asleep. You fall unconscious to the sound of your gurgling tummy, an embarrassing reminder of how you were used.");
+	outputCodex("\n\nWhen you awaken, your resolve is set. Even your capacity for good can be exceeded, and as far as you’re concerned, that was it. You’re not going back to Yenn. Ever.");
+	outputCodex("\n\n–");
+	outputCodex("\n\n<i>“Hello,”</i> you mumble lamely, unable to meet his eyes.");
+	outputCodex("\n\n<i>“Ah, my favourite elf,”</i> Yenn declares, grinning viciously. <i>“I almost thought you were going to leave me for dead! But you wouldn’t do that, would you?”</i>");
+	outputCodex("\n\nHe slips a muscular arm around your waist, taking the opportunity to squeeze your ass hard enough that it stings. You move out of his embrace and look at him reproachfully, but he just laughs.");
+	outputCodex("\n\n<i>“Relax, elf. Your mouth suits me fine.”</i>");
+	outputCodex("\n\nBristling a little, you’re about to reply when he takes his dick out and you forget what you were going to say. Yenn *really* doesn’t waste any time, and by Arris, you’d swear it was even bigger than yesterday. Did you really have this in your mouth - well, throat, really - last time? You hesitantly kneel in front of it and look up at him, waiting. He looks down at you, confused, then a look of realization dawns on his face.");
+	outputCodex("\n\n<i>“Are you waiting for me to tell you what to do?”</i> he asks, half-laughing. <i>“Elves... You don’t have to ask me for permission, girl. Just suck my cock.”</i>");
+	outputCodex("\n\nFine, whatever. You don’t particularly like talking to this creature anyway. Still, you can’t help but gulp in nervousness just looking at his big, fat cock. You can only imagine how much of his sperm you’re going to have to suck down today, but no doubt you’ll be finding out soon. Seeing a bead of precum at his tip, you lean forward to lick it off lest it drop on your robes, earning a satisfied grunt for your efforts. Not that it matters to him, but you’re totally not doing it to make him happy - you just don’t want to have your clothes stained to the point of unwearability again.");
+	outputCodex("\n\nAlthough you’d been dreading it, you find that this time slipping your lips around him and letting him fuck your gaping mouth is a lot easier, and less painful, too. You can’t help but feel surprised, and just a little bit ashamed, that you managed to get him inside you with such ease. Still, you have to admit as your cheeks flush scarlet, this is better than having it hurt. Between the slutty hollowing of your cheeks and the dextrous milking motions of your fingers, it’s not long before Yenn is groaning in ecstasy while he unloads into your throat.");
+	outputCodex("\n\nLooking up at him as he vents his balls into your stomach, you can’t help but wonder if it really feels as good as it looks... you swallow down load after load just watching the satyr grit his teeth and grunt, until to your surprise there’s no more cum. You somehow managed to chug down every last warm spurt of ejaculate he had to give you, and wow does your tummy show it. Yenn snickers as he pulls out of your throat, brushing your hair out of your face.");
+	outputCodex("\n\n<i>“You’re a natural, you purple-skinned little tramp,”</i> he sneers, stuffing his prick back behind his loincloth. <i>“Wouldn’t be surprised to find you in the stables. Fuck if you don’t do that well, though.”</i>");
+	outputCodex("\n\n<i>“I’m not like that,”</i> you protest, but he just laughs. He doesn’t believe you, and worse yet, after today, you’re not sure you believe yourself. It’s hard to keep sight of the fact you’re doing this to save a life...");
+	outputCodex("\n\nEither way, Yenn is gone before you can continue, leaving you to ruminate in your thoughts. From the outside looking in this would look like madness, but even knowing why you’re doing what you’re doing, it leaves a bitter taste in your mouth that has nothing to do with licking up Yenn’s cum. If you’re doing such a massive favor for him, shouldn’t he be repaying you somehow? It would only be fair, wouldn’t it? You’re tired of being left with a full stomach and nothing to show for it.");
+	outputCodex("\n\n–");
+	outputCodex("\n\nThe next day when you’ve knelt before him and dutifully swallowed his bountiful load, you reach out and grasp his furred leg before he leaves. The look he gives you when he turns back is akin to that of a wolf cornering its prey, but you try not to pay attention to that.");
+	outputCodex("\n\n<i>“I-I want something back,”</i> you stammer uncertainly, trying to command as much respect as you can with your stomach swollen with sperm and your mouth still dripping.");
+	outputCodex("\n\n<i>“Really,”</i> Yenn says, not unkindly. <i>“And what might that be?”</i>");
+	outputCodex("\n\n<i>“You... I want you to make me feel good too,”</i> you say, blushing as you finally admit it.");
+	outputCodex("\n\n<i>“Oh, I thought you’d never ask,”</i> Yenn says, grinning. <i>“You elves, always so uptight and haughty. It’s a wonder you aren’t the ones dying of heat. Maybe you’ll even enjoy yourself for once.”</i>");
+	outputCodex("\n\nHe takes a seat right behind you, his legs splayed out on either side of yours. Pulling you back slightly, he sets you reclined against his muscular chest. You have to admit, resting against him like this is really quite comfortable... your tummy is filled with warmth, its weight making you lethargic, and you’re more than willing to let him do what he wants.");
+	outputCodex("\n\nHe hikes your robe up, exposing you embarrassingly. Were a passerby to look this way, they would no doubt see your underwear. Still, you stay silent in the hopes Yenn is as good as his word. He grunts as he slides a finger down your panties. You gasp in shock, your hips involuntarily bucking against him before you manage to get control of yourself.");
+	outputCodex("\n\n<i>“You,”</i> you pant, more surprised than distressed. <i>“What are you doing?”</i>");
+	outputCodex("\n\n<i>“Making you feel good,”</i> he murmurs disinterestedly. <i>“Thought that was what you wanted, elf.”</i>");
+	outputCodex("\n\nThe next two minutes of your life are some of the most eye-opening, toe-curling, and breathtaking moments you will ever have. You throw your head back and cry out in pure, womanly bliss, your hips rolling with his finger as it gently rubs your clit. Your legs shake, your back arches, you thrust your chest forward and look up at him with half-lidded eyes. For as long as he’s touching you, this man is your god.");
+	outputCodex("\n\n<i>“Oh, you’re a squirter,”</i> he notes. You don’t even notice he’s talking.");
+	outputCodex("\n\nBy the time he’s done making you sing, you’re a wreck. The moment he stands, you flop onto your back with your legs spread, still quivering with your panties pulled halfway down your thigh. You watch him wide-eyed as he leaves, some new, alien feeling blossoming in the pit of your tummy. It only grows stronger the further away he gets, and when he’s gone the feeling consumes you like a raging inferno. You want more. No, you need more.");
+	outputCodex("\n\nUpon returning to the inn, you spend the night finger-fucking yourself to endless peaks, panting and gasping, images of Yenn flashing through your mind every time your pussy flexes and shudders. When you’re finally spent, the only thought in your fevered mind is that it was better when he did it... much better. You fall asleep with your limbs splayed everywhere and your thighs still covered in sticky girlcum. When you awaken, the first thing you do is seek out Yenn.");
+	outputCodex("\n\nKneeling before him, you’re determined to blow his fucking mind. Anything to entice him into making you feel that good again. You don’t even wait for him to move his loincloth aside, grabbing the spongy flesh of his half-erect cock and jerking it to hardness before you wrap your lips around it. Once you get it inside you, you let him spurt some salty precum across your tongue, licking it up and hollowing your cheeks to suck on his slit before you take it in your throat. Bobbing your head up and down, your neck bulges outwards with every penetration until you’ve taken him so deeply the bump of his flare disappears completely. He grunts in pleasure, slowly moving his hips forward until you find your face pressed against his midriff. You look up at him defiantly, your eyes watering with the effort, and swallow hard.");
+	outputCodex("\n\n<i>“Hunh,”</i> he growls, putting a clawed hand around the back of your head. <i>“Underestimated you, elf. You need a mate.”</i>");
+	outputCodex("\n\nWith the thud of pumping blood rushing through your ears, you can hardly make out what he’s saying, but you think he mentioned mating. You close your eyes and reach out with your hands, gently cupping his massive balls and marvelling at their size. You can’t even fit your hands around them they’re so full. Squeezing them gently, you feel them pull taut in your grip... they’re pulsating with need. He’s about to cum!");
+	outputCodex("\n\nYou put your hands on Yenn’s butt and pull yourself forward, impaling yourself on his cock as deep as you can go when you feel him shudder, his abs tightening against your face. Finally, you feel the first gigantic load slip past your lips and trace down your neck to be deposited in your tummy. Then another, and another, and suddenly, to your surprise, you feel yourself beginning to cum. Your eyes fly open at the sensation, and you find yourself looking up into Yenn’s hazy green irises.");
+	outputCodex("\n\nYou can scarcely hide your shock as he watches you, grinning, as his cum slowly slides down your throat. Your hips begin to rock like you’re being fucked, your pussy squeezing around a cock that isn’t there, trying desperately to milk it. You soak your panties through in an instant, orgasming explosively while you chug down load after load of warm, sticky cum under Yenn’s smug gaze. Eyes rolling back in your head, you feel a slight distaste for his expression even as you gulp down his seed. He knows exactly what he’s doing to you, the power he has over you. It feels so good that you don’t care, though.");
+	outputCodex("\n\nYou squeeze your legs together and moan into his throbbing cock, sedatedly riding out your orgasm while you look up at Yenn in adoration. You could get used to this...");
+	outputCodex("\n\nHe lets you suck down and swallow the last of his loads, his lusts sated. Pulling his prick from your mouth, he holds it in front of you in an unspoken request. You lean forward and lick the tip, sucking the last bits of cum out from his slit and cleaning his flare. Satisfied, he tucks it back beneath his loincloth. Your disappointment is apparently palpable, because Yenn snickers at your expression.");
+	outputCodex("\n\n<i>“Hoping for more, elf? Well, too bad. Getting you off with my fingers is boring.”</i> He stops for a moment, looking down at you, then grins. <i>“Unless you want to try something new.”</i>");
+	outputCodex("\n\nYou’re pretty sure what that entails. You hesitate for a moment before shaking your head, but instead of being disappointed, Yenn only laughs.");
+	outputCodex("\n\n<i>“We’ll see what you think about it tomorrow, elf. See you then.”</i>");
+	outputCodex("\n\n–");
+	outputCodex("\n\nThat night, you don’t bother masturbating. As good as it feels, getting off with your own fingers is just... missing something. There’s something enthralling, something intoxicating about being made to cum, having it forced upon you. Yes... to cum by yourself would be a waste. It would be better if Yenn was the one doing it - just thinking of him makes you want it. Maybe just once before you sleep...");
+	outputCodex("\n\nMorning finds you adorning your robes with particular care, making sure nothing is amiss. You don’t even really take conscious note of the way you inspect yourself in the mirror, brushing your hair and adjusting your posture to accentuate your bust and ass. If only you had something fancier to wear. Then again, Yenn probably wouldn’t even notice. He’s only interested in what’s under your clothes, after all. Or your mouth. You lean into the mirror and pout, showing off your fine, plump lips. Perfect for wrapping around a big, fat, satyr cock. You let your tongue play out of your mouth and think about washing it over his bulging cumsacks before you pull it back in. There’ll be enough time for that later.");
+	outputCodex("\n\nWhen you see him again, the two of you don’t even exchange words. Your cheeks heat up a little with the thrill of submission as you discard your robe completely, presenting yourself to Yenn in your full-bodied entirety. Your luscious lips, plump breasts, taut stomach, and the lovely little delta of white fuzz leading to your tight little pussy. You give him a shy smile before kneeling at his feet, feeling a little warm tingle of pride blooming in your stomach when you find his cock already hardening after your show. He does like it.");
+	outputCodex("\n\nYou’ve hardly started suckling on his tip before he stops you.");
+	outputCodex("\n\n<i>“Lie down,”</i> he grunts. Excitement courses through your body - is he going to finally fuck your pussy?!");
+	outputCodex("\n\nIt doesn’t look like he is, though. As you invitingly spread your legs and lay on your back, he positions himself above you and kneels down, his knees thudding into the grass on either side of your head. Such are the size of his musky balls that they hang over your mouth like two delicious, succulent...");
+	outputCodex("\n\nYou gently grasp one with your hands and lower it into your well-trained mouth, enjoying Yenn’s grunt of approval as you start hollowing your cheeks, sucking his balls as if you were born to. You’d smile in happiness if you could; you can feel the virile cum surging in his testes, just waiting to be roughly fucked into your stomach. Just the thought of it sets your tummy aflutter, gurgling happily in anticipation of being swollen full.");
+	outputCodex("\n\nAfter a few minutes of thoroughly sucking Yenn’s nuts until they’re soaked in your saliva and just bulging with seed, he turns around and begins to lower his hard, dribbling cock towards your lips. You hold them open in the largest, sluttiest ‘O’ you can, and he accepts your invitation. Lying atop you, he begins to hump your face, his flare pushing into the recesses of your throat almost immediately. You swallow as often as you can to aid his penetration, and soon enough he’s almost balls-deep in you.");
+	outputCodex("\n\nYour gag reflex instinctually suppressed by the massive cock stuffing your throat, Yenn’s free to fuck your gullet like it’s a pussy. You actually moan into his balls at the sensation, feeling his fat cock flex and pulse in your warm wetness of your throat. Just having him take you so utterly is enough to set your legs shaking a little, suffering a miniature orgasm every time his balls slap against your nose. Your clit throbs with need, but he’s not interested in getting you off and you know it. You grip his muscular haunches as he bucks, fucking your face with the reckless abandon of one who cares not for their partner.");
+	outputCodex("\n\nYou revel in it. Eagerly gulping down the plentiful precum he spews down your gullet, you can feel him getting closer and closer to cumming, and it’s going to be huge. He begins to grunt, his hips quivering in anticipation. You push yourself into him as much as possible, pressing your nose against his churning nuts, and he finally lets go. You gurgle in pleasure as you feel a deluge of hot, sticky spunk begin to pump down his iron-hard cock, his cumvein bulging outwards as it works overtime to dump a barrelful of semen between your lips.");
+	outputCodex("\n\nYour eyelids flutter in slutty joy as you finally feel his release, his groans of pleasure like music to your elven ears. Firmly holding you down, he hilts himself balls-deep in your face over and over, each penetration accompanied by a massive, throbbing load of cum from his flare. It shoots straight into your receptive stomach, noisily swelling it outwards. Feeling his cum filling you, you suffer an oxygen-deprived orgasm of your own, your hips bucking and jerking weakly under him. The longer he keeps you down and placidly chugging his jizz, the more your vision begins to swim, until you begin to slowly pass out. The last thing you feel before you fall unconscious is Yenn’s flare pushing through your throat again.");
+	outputCodex("\n\nYou’re awakened by a stinging sensation across your cheek. You moan lightly as your senses return, then you feel it across your other cheek. Gasping in shock, you open your eyes to find Yenn slapping you awake with his still-dripping cock. He looks down at you expectantly, and you find yourself instinctively sitting up to clean his prick. The moment you move, though, a dribble of spunk slips from between your lips - then a rivulet, and suddenly heavy cum begins to pour from your mouth onto your tits. Though you did your best, the amount of it just wasn’t meant to be handled by delicate elven bodies... not without some modification, anyway.");
+	outputCodex("\n\nTry as you might to keep your master’s cum inside you, most of it ends up splattered on your breasts, your jutting nipples glazed in spunk. Yenn doesn’t seem to mind, though, apparently approving of the look if his expression is any indicator.");
+	outputCodex("\n\n<i>“Turn over and spread your legs, slut,”</i> he snarls, lifting one of your legs with a cloven hoof.");
+	outputCodex("\n\nYou eagerly roll onto your still-pudgy stomach and spread your legs as far as you possibly can, exposing your glistening sex to the satyr. He immediately jams two fingers up your pussy, making you squeal in both pain and girlish joy. He’s finally doing it... you thrust back into him as best you can, earning a couple of thrills of pleasure before he pulls them back out. Moaning in disappointment but still eager to see what he’ll do to you next, you peek back at him.");
+	outputCodex("\n\nHe kneels behind you, cock in hand, and sees you wiggling your butt enticingly. Raising his hand, he brings it down with a loud slap on your ass, making you cry out and leaving a stinging red welt.");
+	outputCodex("\n\n<i>“That hurt,”</i> you mumble, biting your lip and trying not to whimper.");
+	outputCodex("\n\n<i>“Good, you dumb slut,”</i> he grunts, cruelly slapping the other cheek too. <i>“Hold yourself still so I can get my cock inside.”</i>");
+	outputCodex("\n\nDetermined to not cry like the little bitch he’s making you feel like, you fight your instincts and obediently hold yourself still, lithe elven legs spread so wide you’re almost doing the splits. You feel the heavy bulk of Yenn’s prick slide between your buttcheeks, drooling precum down your puckered asshole, some of it running tantalizingly down your labia.");
+	outputCodex("\n\nThere’s a moment of tension in the air as Yenn lines himself up with your sopping-wet fuckhole, then you feel the blunt, swollen flare push against you. Oh, it hurts! You grit your teeth and pant, feeling the bloated head of his cock slowly tease your folds apart and then stretch them to lengths that shouldn’t be possible.");
+	outputCodex("\n\n<i>“Uh! Uhhhgh, oh, fuck,”</i> you breathe, trying your best to accommodate his girth. <i>“Uhhh- AAH!”</i>");
+	outputCodex("\n\nYou let out a high-pitched scream of agony and bliss as your tortured pussy finally acquiesces, swallowing his fat cock whole and allowing him into the most intimate depths of your body.");
+	outputCodex("\n\n<i>“Finally,”</i> he grunts, putting two giant hands around your hips. <i>“You little fucking cocksleeve.”</i>");
+	outputCodex("\n\nHe starts fucking very un-ladylike grunts and groans out of you, sounds more befitting of a breeding sow in heat than a noble dark elf. You can’t help it, though - it feels so good to let him hear what he’s doing to you, what kind of an effect his massive, throbbing cock is having on your mind. You never knew until you met Yenn, but this is your true nature; that of a writhing, gasping slut, and you’ll repay him the only way you know how.");
+	outputCodex("\n\n<i>“That’s more like it,”</i> he sneers, feeling you flex and tighten your pussy walls around his dick. <i>“Thought for a moment you were going to make me do all the work.”</i>");
+	outputCodex("\n\n<i>“N-no, I- Ah! Oh! Oh! I would never- Oohh! Yenn! Yennnn!”</i>");
+	outputCodex("\n\nThe moment you feel his big, fat, domineering cock tightly pressed against your womb, you know your old life is over. You will never, ever be able to live without this feeling, this ecstasy. Yenn cares not for your revelation, though, and only continues to pound you harder when he feels your cervix kissing his prick. He roughly yanks your arms upward until you’re sitting upright, your naked breasts bouncing up and down as he fucks you as deep as possible.");
+	outputCodex("\n\nYou can’t. stop. cumming. Every savage thrust into your overfull cunt is like a spear right through your brain, shuttering all thought save for mindless pleasure. You’re almost crying with joy, and the expression on your face, under your druidic markings, is one of rapturous ecstasy. When you feel Yenn’s heartbeat in your womb through the pulsing of his cock, you realize: you’re in love. That’s what this feeling is; you’d never known. He rides you all throughout your never-ending orgasm, getting closer and closer himself until he roughly turns you around and slams you down on your back.");
+	outputCodex("\n\nYou scream in utter delight as he brutally hilts himself inside you, grinding into your pelvis and stretching your tortured pussy wide enough to swallow his thick, pulsating base. He roars in dominance as he cums inside you, the fat tip of his flare pushed right up against your womb. You’re instantly filled with the blissful sensation of warmth - his warmth, as his semen begins to spurt, spray, then hose into your defenseless womb. Each body-wrenching thrust of his sends orgasmic shivers down your spine, your back arching and shaky legs trying to lift yourself into his cock.");
+	outputCodex("\n\nHe keeps you pinned down and immobile like a good cumdump should be, thrusting away with no care whatsoever as to your receptiveness. All he cares about is emptying his gigantic balls of their seed, and you’re more than happy to let him do so inside you. You croon, gasp, and sigh seductively as you feel each massive wad of satyr semen splatter into your womb, sticking to its walls. You’d scream to the high heavens in orgasm yourself if Yenn wasn’t fucking you so hard you could hardly breathe, and besides, you doubt he cares if you cum or not.");
+	outputCodex("\n\nYou’re filled with an intense gratitude for this man, this beast, this... conqueror, who’s made you his. The only one to show you the earthly pleasures this world has to offer, and to think he was so close to your home. As he growls, pushing your legs behind your head and crushing your little pussy with the force of his thrusts, all you can think of is how best to please him tomorrow. You can already feel your womb swelling with his jizz, and he’s showing no signs of stopping - you can’t help but lick your lips in anticipation. What a fucking animal! He’s earned the right to stuff your cunt full of his sperm, to make you his cumdump fuckdoll.");
+	outputCodex("\n\nYour legs shake and your hips jerk continuously as he fucks one orgasm after another out of you, never pausing or stopping, displaying the dominant endurance that made you his bitch in the first place. You gaze up at him lovingly, watching the sweat roll down his muscular chest and abs with your mouth hanging open in adoration. Surely, with so much of his cum inside you, you’ll be a mother soon... you could be Yenn’s wife, even. You weakly curl your legs around him, digging your heels into his lower back, trying to keep him inside you, trying to make sure all of his jizz stays in your womb. He notices.");
+	outputCodex("\n\n<i>“Stay still and I’ll make sure you get what you want, you fertile slut,”</i> he snarls, heavy balls slapping against your ass. <i>“A whole litter of runts for that little elf womb of yours.”</i>");
+	outputCodex("\n\n<i>“Yes,”</i> you gasp, eyes rolling back in your head. <i>“Please. Give me your children, I lo- ooooh! Oh! Oh, gods! Don’t stop!”</i>");
+	outputCodex("\n\n–");
+	outputCodex("\n\nMonths later...");
+	outputCodex("\n\nThe sound of slick, wet slaps resound across the grassy knolls of the Narr Woods, heard only by incurious spiders and the native wildlife. The desperate, wailing cries of what sounds like a dark elf in distress are more interesting to them, but few ever find the source. Were they to explore, they might find a very heavily pregnant dark elf druid, her milk-swollen breasts swaying to and fro as she gets her spasming cunt plugged over and over by a grunting, hulking beast of a satyr, the blunt outline of his flared cock clearly visible on her stuffed-full stomach. Under closer inspection, she has multiple golden piercings, too. Two thick ones speared through her lewd, jutting nipples, a decorative stud in her tummy, and a ring through her nose, befitting of her status.");
+	outputCodex("\n\nShe pays no attention to her surroundings, focused wholly on the feeling of being plowed from behind, her face being degradingly dragged along in the mud with every thrust. She doesn’t seem to mind, though, if the orgasmic ecstasy written all over her face is any indication. Her hands grip and pull at the ground, tearing blades of grass away every time the satyr’s massive balls slap hard against her reddened, dripping pussy. Each of her holes drips spunk, testament to both the satyr’s virility and how well-ridden the slutty elf is.");
+	outputCodex("\n\nFor the satyr’s part, he doesn’t seem to care about his partner beyond getting off in her guts as deep and as many times as possible. Every time he blows a load inside her, further swelling her tummy outwards, he picks another position and hole to fuck. The way he uses her, she looks like little more than a ragged fuckdoll, the only purpose of her orifices to gulp down warm mouthfuls of seed. His final orgasm comes after he lifts her fully into the air and slams her down on his cock, gouts of his and her cum spraying from her overfull cunt.");
+	outputCodex("\n\nUnceremoniously dumping her in the grass, the satisfied satyr leaves the elf to her own devices for the time being. Her eyes vacant and glassy, she spreads her still-shaking legs and masturbates, plunging her fingers deep into her abused pussy, alternating between fucking herself and tasting his cum. No doubt after she delivers, the satyr will work on filling her right back up. It’s not long before he returns, picking her up and carefully slinging the giggling elf over his shoulder to carry her back into a cave, whereupon the lewd sounds soon recommence.");
+	outputCodex("\n\n<b>BAD END</b>");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Satyr Slave");
+}
+
+//Captured By the Demons
+public function capturedByTheDemons():void
+{
+	clearOutputCodex();
+	outputCodex(header("Captured By the Demons"));
+	outputCodex("By Wsan (<u><a href='http://kotep.xyz/'>https://www.tumblr.com/blog/profoundtigermentality</a></u>), reworked slightly by Fenoxo.");
+	outputCodex("\n<i>Kinks: Demon, Non-Consensual, Mind Break, Impreg/Preg, Mind Control, Cervix Penetration, Cumflation</i>");
+	
+	outputCodex("\n\nThe moment you awaken, you’re filled with abject terror. Your eyes spring open and you lurch upwards, only to have your flailing arrested by metal restraints. You look down in surprise at the chains binding your hands together, your mind reeling.");
+
+	outputCodex("\n\n<i>“Oh god,”</i> you cry, beginning to hyperventilate. <i>“Oh god, oh god, no no no no no no! NO!”</i>");
+
+	outputCodex("\n\nRattling the bars of your cage, you look out over the dismal landscape. A barren, scorched wasteland is all that lies before you, the land scarred beyond recognition by avarice of Lethice's demons. Tears well in your eyes at the thought of everyone you’ve left behind. Did your family and friends make it out? Did anyone? The cages near you are all empty. Are you just going to be left here?");
+
+	outputCodex("\n\nThe chains hanging from your body start to shake. That’s not you... you look around, but see nothing. The ground wobbles slightly, and you start to hear heavy breathing. Scared, you huddle up into a corner of the cage as what you soon identify as footfalls get closer. A massive demon - it must be close to twenty feet tall, or more - rounds the corner from a tunnel, and it’s looking right at you.");
+
+	outputCodex("\n\nYou scream as the stark reality of your situation sets in. No amount of resistance is going to get you out of your cage or your bonds. The demons have you at their whim.");
+
+	outputCodex("\n\n<i>“Yes, mortal,”</i> the demon rumbles, leering down at your wretched form adorned in rags. <i>“Tremble. Scream. It delights me.”</i>");
+
+	outputCodex("\n\nScared out of your mind but not wanting to give it the satisfaction, you try to still your chattering teeth.");
+
+	outputCodex("\n\n<i>“Fff-f-fuck you,”</i> you stutter, barely getting the words out. The demon gives a harsh, singular laugh - a horrific noise, one not of this world. <i>“You... you fucking monster!”</i>");
+
+	outputCodex("\n\n<i>“Yeees,”</i> it seethes, mouth parting to display its rows and rows of vicious teeth. <i>“I am a monster, little one. And you are my plaything.”</i>");
+
+	outputCodex("\n\n<i>“Just kill me then,”</i> you say with a shudder. <i>“I’d rather be dead.”</i>");
+
+	outputCodex("\n\n<i>“Kill you?”</i> the demon shakes its head, then laughs. <i>“I think not. You’ll be far more useful to me alive.”</i>");
+
+	outputCodex("\n\nHe casually rends the bars in two with a swipe of his hand, the metal screeching in protest as it twists. Reaching in, he grabs you around the hips singlehandedly and tosses you into the dirt. Dishevelled as they are, the rags you’re wearing tear when you hit the ground.");
+
+	outputCodex("\n\n<i>“Get up and walk,”</i> the demon hisses, and you’re compelled to obey. It doesn’t seem to want to kill you immediately, but you have no doubt it wouldn’t hesitate to chop you down if you made a break for it. Besides, you think as you glance back at it, it’s not like you could outrun something of that size. Two steps and he’d eat you alive. Catching yourself shivering, you force yourself to face forward and walk. He takes you back down the tunnel, holding the chain attached to your collar like a leash. You hear strange, unnatural noises emanating from the corridors down the sides, but don’t ask what they are. The answer from this creature would undoubtedly be worse than your imagination.");
+
+	outputCodex("\n\n<i>“Here.”</i>");
+
+	outputCodex("\n\nHe pushes you into a room, and for a moment your confusion overcomes your fear. You stand at the entrance as he pulls the heavy door shut with a clank, and survey the room. In the middle of it, impossible to ignore, is a massive four-poster bed. The floor is adorned with flowing red carpet that feels heavenly beneath your bare feet, and there are fancy pieces of furniture against the walls.");
+
+	outputCodex("\n\n<i>“What... what is this place?”</i> you ask, bewildered.");
+
+	outputCodex("\n\n<i>“An incubus's bedroom,”</i> it replies, tugging on the remnants of your clothes. <i>“And your new home.”</i>");
+
+	outputCodex("\n\n<i>“Hey!”</i> you exclaim, as embarrassed as you are scared as the rags come off completely. The demon tosses them disdainfully into a corner while you cover your breasts with your arms and close your legs. <i>“What are you- gah!”</i>");
+
+	outputCodex("\n\nThe chains hanging from your legs and collar suddenly break off, crashing to the floor with a dull thud. You’d be happy if the metal rings around your neck, ankles and wrists weren’t suddenly scorching hot!");
+
+	outputCodex("\n\n<i>“No, NO! PLEASE! IT BURNS!”</i> you scream, falling to the floor in agony.");
+
+	outputCodex("\n\nJust when you think you’re going to pass out, the pain instantly stops and you collapse, whimpering and crying. Raising a hand and trying to blink the tears out of your eyes, you stare at your gravely injured wrist and see... nothing?");
+
+	outputCodex("\n\nThere are no marks, or any sign that you were harmed at all. You inspect the metallic bracelet, though, and find it’s changed. There’s some kind of glowing demonic pattern that’s fading into the metal even as you watch it. Gingerly stretching your legs, you find you’re still blessedly intact... although your collar bothers you on more than just a physical level. Collars are for pets, not people.");
+
+	outputCodex("\n\n<i>“Enjoying your collar, girl?”</i> the demon asks, startling you. You’d forgotten he was crouched there, as absurd as that is. <i>“It suits you.”</i>");
+
+	outputCodex("\n\n<i>“I’m not your pet, demon,”</i> you spit vehemently, slightly more confident now that you don’t think he’ll kill you. <i>“And I will never give in to your ilk.”</i>");
+
+	outputCodex("\n\n<i>“So much fight in such a little girl, and so beautiful too,”</i> it muses. <i>“I will enjoy breaking you.”</i>");
+
+	outputCodex("\n\nIt rises and turns, apparently leaving. The door swings open and stays that way, igniting a dull spark of hope in your chest. You hear the heavy footfalls of the demon recede into the distance and wonder. There’s no way he’s that dumb... is there? No... this is definitely some kind of a trick. Still, though, you’re not going to let such an obvious avenue of escape elude you without at least giving it a shot. You creep closer to the door and start to hear some kind of fizzing, crackling noise and look down to see sparks beginning to fly from your bracelets.");
+
+	outputCodex("\n\n<i>“Shit!”</i> you curse, falling backwards onto your butt. Alright, so that’s not an option, but damn if you’re going to sit here idle while you’re alone. Not to mention you’re naked now, and the demon’s claws have taken care of your rags. Maybe you can find some clothes in the chest of drawers.");
+
+	outputCodex("\n\nAn hour later and you flop on the bed, exhausted. There’s nothing useful in this room, and the only clothes you could find were so risque you wouldn’t wear them if you were paid to. You don’t know much about incubi, but their taste in clothing is poor at best. This is so frustrating... you’re not a champion, you’re just a soldier. You can’t call on the powers of the gods or summon the elements to get out of here like they could, and the closest you ever had to a combat pet was the family dog that passed away years ago. Hugging a pillow close for comfort, you begin to softly cry into it, tears streaming down your cheeks and staining the fabric. You fall asleep like that, worn out by the day’s events.");
+
+	outputCodex("\n\nYou’re dredged from your slumber hours later by the familiar sound of heavy footfalls, and sit bolt upright in the bed. The demon walks through the door and slams it shut, breathing heavily. It fixes you with a glare.");
+
+	outputCodex("\n\n<i>“You. On your knees.”</i>");
+
+	outputCodex("\n\nYou back yourself up against the headboard, eyes wide.");
+
+	outputCodex("\n\n<i>“What the h-”</i> you begin.");
+
+	outputCodex("\n\nThe demon takes two quick strides and snatches you off the bed before you can even finish, and it’s only then that you see that not only are incubi male, but this one is spectacularly gifted.");
+
+	outputCodex("\n\n<i>“Oh god,”</i> you gasp, ineffectually fending him off. <i>“Nonono don’t! Ple-gllrk! Gllbl!”</i>");
+
+	outputCodex("\n\nYou’re flipped upside down and thrust down onto his cock face-first so fast that your gag reflex doesn’t even register the intrusion. You try to scream, but all you can muster around the penis in your mouth is a gurgling hum.");
+
+	outputCodex("\n\n<i>“Aaaah,”</i> the demon sighs, slowly pulling you upwards by your hips before letting you slide back down his bloated, pulsating cock. <i>“Silence is a virtue, human.”</i>");
+
+	outputCodex("\n\nYou beat at his legs ineffectually, your body wracked with pain as he violates you in ways that shouldn’t be possible. Tears stream from your reddened eyes, your throat bulging ludicrously with the heft of his studded shaft. You can feel the sickening sensation of it pulsating, throbbing against your neck with his heartbeat. It doesn’t take long for the beast to cum, the feeling of his viscous seed travelling down your neck abhorrent to your very soul. He forces you to gulp down what feels like gallons of his semen until, finally, he lifts you off his cock and throws you face-down on the bed like a used rag.");
+
+	outputCodex("\n\nYou immediately throw up, partially from the shock to your body, but mostly because you literally can’t fit any more of his spunk inside you. Collapsing over the side of the bed, you groan in exhaustion. Then... you feel it. A kind of itching in your mind, an errant thought here or there.");
+
+	outputCodex("\n\n<i>“No,”</i> you breathe, one hand on your stomach. <i>“What, what did you... what have you- uergh- done to me?”</i>");
+
+	outputCodex("\n\nThe demon watches you with amusement, crouching down to tip your chin back. You stare at him defiantly, but some of the effect is lost what with the trickles of his semen running from the corners of your mouth.");
+
+	outputCodex("\n\n<i>“Interesting,”</i> he muses, looking into your eyes undeterred. <i>“Still you resist. Most would be begging by now.”</i>");
+
+	outputCodex("\n\n<i>“Now,”</i> he continues, getting on the bed himself. <i>“Sleep.”</i>");
+
+	outputCodex("\n\nYou’re not really inclined to do that right now - or do anything he tells you, really - but at his word you find your eyelids getting extremely heavy. Some kind of enchantment, maybe... you’re suddenly too warm and tired to care. You yawn widely and begin drifting off to sleep next to the watchful demon, curled up at his side. Maybe later your master will stick his big, hard cock right up your juicy little cunt and breed you all day long.");
+
+	outputCodex("\n\nYou sit bolt upright in your bed, shocked. That was not your thought. You look around in a daze, puzzled. You were... you were just falling to sleep when you thought that, but your master- no! The beast that murdered and killed your friends and family! He is not your master! You slam your fist into a pillow to drive the point home, reminding yourself with your anger that you can beat this. You will not be a slave to a demon.");
+
+	outputCodex("\n\nCalming down, you assess the situation. Whoever the demon is, he’s not here any more. Maybe you really did fall asleep, but if so, for how long? And when is he returning? Maybe you can try and escape again, though you’re not optimistic. Sure enough, the moment you approach the door your bracelets and collar begin to vibrate against your skin, heating up uncomfortably. You instinctively know that if you tried to force the issue, they would kill you or worse. As much as you’d like an immediate escape, there’s an inherent value in staying alive and looking for opportunities. Maybe a hero will rescue you, even.");
+
+	outputCodex("\n\n-");
+
+	outputCodex("\n\nYour eyes roll back in your head as Vorothrax, as you’ve come to know him, cums straight down your throat, his massive cock throbbing and flexing in the confines of your neck. The best- worst! The worst part about this is that it almost, almost feels good - like some kind of sickening reward for being his debased cumdump. Whatever’s in his semen, it’s... changing you. When he finally withdraws his dripping rod from your mouth, your jaw hangs slackly until you slowly rouse yourself from your stupor. Even as his sticky seed churns in your stomach, you don’t think to question why he’s doing this - he’s a demon, they live for this. You can practically feel the sinister tendrils of his enchantments begin caressing your mind, slowly fraying your resistance.");
+
+	outputCodex("\n\n<i>“S-stop,”</i> you moan, wrapping your arms around your stomach. <i>“I d-don’t want it...”</i>");
+
+	outputCodex("\n\n<i>“Oh, but you will,”</i> he says with a leer, tipping your chin upwards with a plated finger. <i>“And it will be exquisite.”</i>");
+
+	outputCodex("\n\n<i>“Now,”</i> he declares, rising from the bed. <i>“I have preparations to make. We’re going for a walk tomorrow.”</i>");
+
+	outputCodex("\n\nA faint flicker of hope alights in your heart. Is he going to take you outside? Even if you can’t escape, you can at least survey the surroundings. Learn something useful to take back to the Alliance when you do get out. Besides, you think, idly rubbing your tummy, you’d do anything to keep from being cooped up in this room at the mercy of Vorothrax’s cock.");
+
+	outputCodex("\n\n-");
+
+	outputCodex("\n\nThe next day, Vorothrax attaches a chain leash - there’s no other way to describe it - to your neck restraint and gives it an experimental tug. You stumble along behind him, completely naked with his fel-seed churning in your tummy. You can’t help but notice that you haven’t felt hungry or thirsty ever since he’s started filling you up, bitter hate eating at you even as the realization you may be becoming less human rankles at your mind.");
+
+	outputCodex("\n\n<i>“Where are you taking me?”</i> you ask him, more out of a desire to drive the thoughts away than wanting to know.");
+
+	outputCodex("\n\n<i>“To see someone,”</i> he replies, chuckling darkly.");
+
+	outputCodex("\n\nSomeone you know, maybe? If there’s anything left of them... maybe you can try forming an escape plan. Two heads are better than one, after all. He brings you to a large, empty room full of cages. None of them are occupied, and the doors hang open, swinging freely. Wait... why are they moving? You’re indoors-");
+
+	outputCodex("\n\n<i>“You can’t see it, can you?”</i> Vorothrax says, chuckling again. <i>“Here.”</i>");
+
+	outputCodex("\n\nHe engulfs your skull with his massive palm, and for a brief moment you’re scared he’s going to pop your head off like a bottle of wine. Instead, you can hear him say a muffled incantation and your eyes begin tingling. He pulls his hand away and you blink, rubbing your eyes. It feels like there’s a layer of dust over them.");
+
+	outputCodex("\n\n<i>“Ow... what did you do to me?”</i>");
+
+	outputCodex("\n\n<i>“Gave you eyes,”</i> comes the cryptic reply.");
+
+	outputCodex("\n\nYou look up, and things have... changed. Ghostly images swim in front of your vision, hazy green outlines slowly coming into focus. helhounds. The entire room is full of them. And in the middle of the room...");
+
+	outputCodex("\n\n<i>“Patty?”</i> you say in disbelief.");
+
+	outputCodex("\n\nA tattooed and heavily pregnant figure moans, growls and yelps as two hounds rut her with reckless abandon. Her body rocks forward with every thrust, but she balances it out by shoving her fat ass back into their cocks, asshole and pussy gaped around their canine bulges. You clap your hand over your mouth and try not to throw up as you begin to cry; the fact the girl you knew, one you grew up with, shared secrets with, talked about boys late at night with, has been reduced to such a state... she’s nothing more than a... a cumdump for these beasts.");
+
+	outputCodex("\n\nThe worst part about it? Even if you don’t want to admit it, part of this turns you the fuck on. Seeing your former best friend brought to the level of being rut by animals and loving it - and she IS loving it, it’s written all over her face - makes you wonder if perhaps, just maybe, she’s better off than you are. Maybe ignorance really is bliss in a place like this. Maybe you should just submit and get it over with.");
+
+	outputCodex("\n\n<i>“Stop that,”</i> you mutter, defeated. You don’t have the energy to drive off the invasion of your mind at this point - you don’t even really care. Vorothrax merely laughs and directs you back to your chambers.");
+
+	outputCodex("\n\n-");
+
+	outputCodex("\n\nThat night, you toss and turn in your sheets. You don’t want to end up like Patty, light preserve her soul. Just a piece of meat to be used up by dogs. How long will she live like that? Months? Years? How long can you live like that? Being used as a breeder and delivering... puppies? Imps? Perhaps she gets passed around to different demons. You shudder at the thought, mildly happy you can still muster revulsion at such a thing. Still, though, it might be best to insure your future. Vorothrax is entertained by you now, yes, but how long will that last? And when it’s over, what will happen? It’s not like he’s going to just let you live here.");
+
+	outputCodex("\n\nYou sit up in bed, propping yourself up on your elbows, deep in thought. Eyeing the chest of drawers next to the bed, an idea occurs. Perhaps it would be best to take matters into your own hands, after all. Just to make sure...");
+
+	outputCodex("\n\n-");
+
+	outputCodex("\n\nWhen Vorothrax arrives the next day he finds you scantily-clad, in a night robe that just barely conceals the curves of your luscious, ripe breasts. Your tiny thong down below does hardly anything but cover the small, fuzzy landing strip of hair just above your delicate pussy. Your shapely thighs contour to your hips, drawing all attention to your soft, inviting nethers. Sitting on the edge of the bed as you are, any man would be upon you in seconds.");
+
+	outputCodex("\n\nVorothrax is no man, though, and barely gives you a passing glance. Setting aside his spear, he removes a part of his armour and gives it an experimental knock. He grunts before repeating the process with another piece. Your mouth drops open. He’s just going to ignore you?! Fear begins to seep in, intoxicating doubt swirling about in your head, wrapping itself around your brain.");
+
+	outputCodex("\n\n<i>“Aren’t you going to...”</i> you start, unsure of what to say.");
+
+	outputCodex("\n\n<i>“To?”</i>");
+
+	outputCodex("\n\n<i>“You know,”</i> you say. <i>“What you usually do.”</i>");
+
+	outputCodex("\n\nHe grunts noncommittally and returns to inspecting his armor. It looks like he really is bored of you! You’re going to have to convince him yourself. Hopping off the bed, you sit between the legs of the incurious demon and inspect his groin. His cock is massive, even when flaccid, and his balls are fucking huge! You’ve never noticed, but in hindsight, you suppose it makes sense what with how much churning fel-seed he blasts down your throat. Every time he finishes it’s like you’re pregnant, positively bulging with his virility. Much like the pulsing, veined balls in front of you.");
+
+	outputCodex("\n\nNo time for shyness now. You lift his heavy sack to your mouth with both hands, licking him all over, admiring the sheer liquid weight contained within. Dear god, there must be close to a fucking gallon in each of these things. Small wonder he has to bust so many fat, creamy nuts down your throat. You almost feel sorry that you ever tried to resist - he needs you to suck down and swallow his jizz or else it’d all go to waste.");
+
+	outputCodex("\n\n<i>“Hnn. The human girl finally learns her place,”</i> he grunts with a sneer. <i>“About time.”</i>");
+
+	outputCodex("\n\nYou stay silent, not wishing to invite his wrath. At least he seems receptive to your approach, and plus, he’s actually paying attention to you now. You gaze up at him and flutter your eyelashes coquettishly with your lips wrapped around one of his balls, just to let him know you’re... you’re... well, your mind is blank right now, but that’s not important. What’s important, a stray thought in your mind declares, is this fucking hulking, thick cock that’s just waiting for you to get your plump dick-sucking lips around it and get to work.");
+
+	outputCodex("\n\nThat sounds pretty good to you. Even though your pussy is beginning to soak through your thong, you have no intention of letting a demon betwixt your legs. You don’t want to end up like Patty did, you think as your tongue slowly slides up the veined underside of this rapidly-inflating demonic cock, all fucked full of fel-jizz. Although now that you think about it, that’s not so different from your current situation - but at least you have a choice in the matter.");
+
+	outputCodex("\n\nShifting a hand to rub his swollen prick even while you caress his plump balls with the other, you crane your head upwards and furtively taste the head of his cock. It’s about the same as it has been every time... but at least you’re used to it by now. Careful not to let any precum spill, you fervently lick all around the tip until Vorothrax’s clawed hand ‘guides’ you into taking it between your puffy lips.");
+
+	outputCodex("\n\n<i>“Such a curious human,”</i> he muses, watching you struggle to hollow your cheeks around his fat cock. <i>“So fearful, yet so bold. So weak, and yet somehow...”</i> He shakes his head and lets you return to your task - swallowing his prick. It doesn’t take you long, with your artful ministrations and knowledge of how best to utilize your throat for his benefit, to start receiving cheek-swelling, throat-bulging loads of tainted jizz.");
+
+	outputCodex("\n\nVorothrax grunts in pleasure with every load, possibly the only positive feedback you’ve earned from him since becoming his... well, consort. You have to admit it makes you a little happy to hear it, what with the uncertainty of your position - if you keep this up daily, he’ll have no choice but to keep you around. You dutifully clean him up when you’re done, carefully licking the sweat and cum from his balls and spit-shining his cock before he leaves again.");
+
+	outputCodex("\n\n-");
+
+	outputCodex("\n\nThis arrangement continues for a few days, maybe even a week - you can’t really say. Each visit leaves you full of jizz and, though you’re loathe to admit it, a little horny. Having your stomach swollen up with spunk invites all sorts of lewd thoughts when he’s gone, and on more than one occasion you find yourself idly wondering what it would feel like were his sperm pumped into your womb, not your tummy. Once you catch your hand rubbing your pussylips, stretching them apart just to see, maybe, what it would feel like... but you’ll never let him do that.");
+
+	outputCodex("\n\nBefore long, Vorothrax is visiting you multiple times a day. Sometimes he even rouses you from slumber, too tired to reciprocate his attentions, and uses your throat as a fucktoy while you drift in and out of fitful sleep. Each little fling ends the same way - you get a new deposit of sperm, and your jiggly stomach stays swollen and full of warm cum. You’ve actually adapted to the weight quite well, although the way you have to arch your back to make your clothes fit makes it look like you’re thrusting your titties out for someone to stare at. At least it’s only Vorothrax looking, and you’ve grown to not really mind. In fact, you kinda wish he’d look at you more.");
+
+	outputCodex("\n\nWeeks pass, and with them your resistance to the idea of having Vorothrax’s cock crammed in your pussy erodes. You lie on your bed, freshly facefucked after one of your ball-draining sessions, and ponder that maybe the Alliance never will come for you. Maybe they don’t know you’re gone. Thinking of Patty, you realize that maybe anyone who even knew you existed is already dead or worse. When Vorothrax appears, your resolve wavers - just for a second, only slightly - and it’s like he knows.");
+
+	outputCodex("\n\n<i>“Spread your legs,”</i> he tells you, walking towards your bed.");
+
+	outputCodex("\n\nUnwilling to obey and yet unable to resist, you part your legs and look away bashfully, suddenly embarrassed by the admission. You’re actually going to let him do this. You give a girly little gasp of dismay when he just tears your pretty panties off, then blush as he drinks the sight in. You touch your thighs together, and he laughs.");
+
+	outputCodex("\n\n<i>“Silly bitch. You think I can’t tell you soak yourself every time you swallow my cock?”</i> he asks, amused. <i>“Relax. I’ll just use my finger.”</i>");
+
+	outputCodex("\n\nHis finger? Oh, that’s not nearly as bad! Given the size difference between the two of you, you have to admit you were wo-");
+
+	outputCodex("\n\nHis finger brushes across your clit and your back immediately arches upwards, pressing your pussy towards him as you spontaneously orgasm all over the sheets.");
+
+	outputCodex("\n\n<i>“Oh! Oh, my god! Ooooh, f-fuck! Nnnnnnmm! God!”</i> you cry out, hips jerking in the air against nothing.");
+
+	outputCodex("\n\nHalf a minute of squeezing, flexing contractions later, you lie on the bed panting and dazed, your mind a blinding white. <i>“Wh... what did you...”</i>");
+
+	outputCodex("\n\n<i>“You haven’t even noticed, have you?”</i>");
+
+	outputCodex("\n\nThe demon slips one hand around your waist, capturing you easily.");
+
+	outputCodex("\n\n<i>“You’ve been able to somewhat resist the mental effects... but not so the physical ones.”</i>");
+
+	outputCodex("\n\n<i>“Gruh-uhhhgh! GOD, FUUUCK!”</i> you scream, your next words degenerating into bestial bellows of lust as his finger plumbs the depths of your convulsing pussy. Your back arches off the ground so hard his digit almost slips free, and it takes a push from him to lower you back down, whimpering in need. Conscious thought escapes you, your mind fleeing to the comfortable numb of your baser primal instincts. Your juices sluice freely down his hand as you fuck yourself on his finger, hips bucking wildly as you moan out of control.");
+
+	outputCodex("\n\n<i>“Guh! Uhhhh! P-please! St- uhh! Stuhhhhffffuuuck! Uuugh!”</i>");
+
+	outputCodex("\n\n<i>“Stop what, human? Do you want my cock instead?”</i>");
+
+	outputCodex("\n\n<i>“God, yes! I mea- No! Nuuuhhh! Uh! Uh!”</i> you wail, not even capable of answering his question properly. All you can do is just keep - fucking - bouncing, don’t let it stop, push your chest out and show your master your big fat titties wobbling as he fucks you good, one orgasm rolling through your sodden pussy after another. Finally, your legs give out after a good minute or two, too shaky to support you. You collapse, panting as sweat runs down your body, your mouth hanging open in slack-jawed bliss.");
+
+	outputCodex("\n\n<i>“Ooohhh... my god...”</i> you moan, eyes closed while you shudder out the last of your orgasm, your snatch desperately flexing and gripping the demon’s finger in an attempt to milk it. <i>“Unh! Oooh...”</i>");
+
+	outputCodex("\n\nTaking your time to recover, legs splayed like a wanton slut and relaxing in the after-warmth, you don’t even take note of what Vorothrax is doing beyond taking his finger out. Its presence is sorely missed in your now-empty cunt, but you’ll probably get over it... although you have to admit, you could definitely get used to having him up in there.");
+
+	outputCodex("\n\nSo surprised are you when you feel the familiar swollen head of his cock at the entrance of your pussy, you don’t even register a reaction until you feel your pussylips begin to streeetch apart to welcome it to its new home. You sit bolt upright in alarm, watching his penis entering you.");
+
+	outputCodex("\n\n<i>“No- wait! I... I... oh. Oh, that’s... ooh,”</i> you murmur, a pleasant pink haze settling over your vision. <i>“Mmm.”</i>");
+
+	outputCodex("\n\nYou sit back, propping yourself up with your elbows as you watch the hulking demon’s brutal cock finally penetrate you, and it feels better than any reward you could have dreamed of. A dopey smile settles on your face when you start to see the bloated head bulging your stomach out a little, and you can’t help but giggle when you see it pulse, warming your passage with precum.");
+
+	outputCodex("\n\n<i>“Oh, my goood,”</i> you sigh huskily, looking up at the demon as you slowly spread your legs for him. <i>“You feel so... mmn! Oh! Are you pressing against my womb?”</i> you almost purr in awe, lying back down on the bed. <i>“You’re such a beast.”</i>");
+
+	outputCodex("\n\n<i>“You changed your tone quickly, human,”</i> Vorothrax grunts, holding you down with one massive hand while he slowly fucks you.");
+
+	outputCodex("\n\n<i>“Any- anyone would,”</i> you gasp, legs jittering every time his meaty cock pushes up against your cervix, triggering a miniature orgasm. <i>“Oh! I-I think I’m- ooooh!”</i>");
+
+	outputCodex("\n\nA girlish moan rises from your throat, your legs wrapping around Vorothrax’s hips as if to get him even further inside you. You throw your head backwards into the pillows, panting and moaning like a whore, your pussy convulsing around demon cock. Oh my god, I’m never going back flits through your mind a moment before it’s washed clean by a tidal wave of pleasure, your orgasm rolling through you. For just a moment, it feels like you’re actually in heaven instead of having your gaped-wide cunt messily impaled by a massive, bloated cock.");
+
+	outputCodex("\n\n<i>“You’re almost perfect,”</i> Vorothrax mutters, placing his palm over your bulging tummy. <i>“Just one more thing...”</i>");
+
+	outputCodex("\n\nYou don’t even notice how warm you’re feeling until something alien happens inside you. A wholly unfamiliar sensation rears its head, then leaves you utterly breathless. You look down, confused, to see the glow of corrupted magic receding from your stomach... and that the cock imprint on your stomach has moved further up your body. It feels like...");
+
+	outputCodex("\n\n<i>“Are you-”</i> you start, your eyes going wide in the wake of the realization. <i>“Are you fucking my womb?”</i>");
+
+	outputCodex("\n\n<i>“Now you’re the perfect bitch,”</i> he says, and you find yourself unable to reply when a particularly savage thrust leaves you moaning and gasping in distress. It feels so wrong, but at the same time... doesn’t it feel so right to give up everything you have? He’s already taken your lips and pussy. Does he not have the right to your womb, too? Really, you belong to him. Satisfied you’ve arrived at your own conclusion, you lie back down on the bed and look up at him dreamily.");
+
+	outputCodex("\n\n<i>“I-I’m your perfect bitch,”</i> you say, feeling a little dizzy. Are you? Weren’t you meant to not be his bitch? <i>“I’m your perfect, slutty little bitch,”</i> you say a little louder, as if to affirm your decision.");
+
+	outputCodex("\n\n<i>“That’s right,”</i> Vorothrax replies with a predatory grin, his razor-sharp teeth on display. <i>“Now act like it.”</i>");
+
+	outputCodex("\n\nA lewd, wet noise from your womb accompanies his command, which you joyfully realize is the first of many, many loads he’s pumping straight into your womb.");
+
+	outputCodex("\n\n<i>“Oh! Oh! Oh my god! Uhhhnnmm! Mmmm! Mmm...”</i> you gasp, gazing down at your rapidly-swelling stomach with an expression bordering on love. <i>“I- ah! I can’t believe! How good- oh my GOD!”</i> you cry out, your legs kicking into the bed. <i>“UNNNH!”</i>");
+
+	outputCodex("\n\nVorothrax picks you up with one hand and slams you down on his cock, your orgasmic wailing echoing off the ornate walls of your bedroom. You cry out in delirious joy with every thrust while he uses you like a toy, sliding you up and down his throbbing rod like you’re nothing more than a worthless fuckhole. Cum bubbles and spurts down your shuddering legs in gouts, rolling down your thighs, leaving a warm trail marking you as his.");
+
+	outputCodex("\n\nWhen he’s done with you, he throws you back onto the bed, his cock sliding free of your slippery, well-fucked cunt with a wet slurp. His tainted seed oozes from your snatch, but you’re so stuffed full that your baby-bump barely recedes. You lie there panting and gasping, still suffering the orgasmic aftershocks of having your pussy plowed and your dignity as a human taken from you so thoroughly. This demon just made you feel like his cumrag... and you fucking love him for it. You watch your demonic stud longingly as he puts his armour back on and departs, your gaze lingering on the door. You know he’ll be back for more.");
+
+	outputCodex("\n\n-");
+
+	outputCodex("\n\nHe comes back for more alright. Barely two hours go by before he’s fucking you silly all over again, your mind practically seeping out of your ears every time your cunt gets a new filling of demon-jizz. He keeps your womb packed full of his cum with a bestial fervor, and then when he’s done he takes his pick between your other two holes. You love feeling him in either, but secretly you prefer him in your throat - there’s just something about the way his cumvein bulges and flexes in your neck while you gently knead his balls...");
+
+	outputCodex("\n\nIt doesn’t take long for him to impregnate you. You honestly hardly notice the difference - your tummy gets a bit rounder, but your body is so packed with warm jizz all the time that the only new sensation is the... urges. From what you know of regular pregnancies, the mom tends to get strange urges or pangs of hunger. For you, well, they manifest as depraved, slutty lust. You debase yourself on a daily basis, doing anything - anything - Vorothrax wants you to. Most of the time that just means taking it in your cunt like the good little whore you are. Sometimes, though, it means you have to take a imp's cock in your ass for no other reason than his entertainment.");
+
+	outputCodex("\n\nOne such occasion finds you on all fours, tied in restraining ropes and being viciously fucked in all your holes by helhounds - just like Patty, not that you remember who that is. All you really care about any more is bringing complete pleasure to your master by way of utter submission. If that means being knotted and bred by his pets, you’ll suck and fuck their cocks all day and night, and swallow everything they have to give, too.");
+
+	outputCodex("\n\nThe moment you’re done delivering a veritable horde of imps - wow, you were really knocked up - Vorothrax is upon you again, rutting you for hours at a time to ensure your pregnancy. This comes to be your favorite part - he’s always so amazingly rough with you after your babies are born, and you can’t help but cum multiple times when he skewers you on his cock. The best part is that you’re only pregnant for a few weeks at a time! Demons breed you faster than usual, apparently.");
+
+	outputCodex("\n\nEventually, Vorothrax tires of his toy. So degraded and mind-broken, you hardly notice when it’s the imps breeding you instead of him. The helhounds love you being tied up in their stable, ravaging your needy cunt almost nonstop. You have no idea how or even which one ends up impregnating you, but neither you or the demonic horses care - as far as you’re concerned, it’s an endless carousel of cock. Your body begins to change over time, your pussy retaining its tightness despite being wrapped around monster cock all day, but your breasts slowly growing larger to keep up with the ever-increasing demands of your young, until one day you awaken somewhere completely different.");
+
+	outputCodex("\n\nAt first you’re somewhat alarmed - not because you’re tied up and blind, that part isn’t new - but because you aren’t being fucked. What’s a little human slut to do without a demon cock to fill her up? Luckily, the voice in your head tells you everything is fine and not to worry. You sit idle in the darkness, your only company the hum of machinery, until something latches on to your breast and begins suckling. You coo in approval, your other breast soon having something hanging off it too, your milk being steadily drained.");
+
+	outputCodex("\n\nThe darnedest thing is, though, you never seem to run out! You feel like you’ve been here for hours in your restraints, being milked endlessly. The sensation keeps you continually on the edge of orgasm, never quite enough to push you over the edge, and you begin to fret before you hear loud footsteps approaching.");
+
+	outputCodex("\n\n<i>“The enchantments are really something, aren’t they, pet?”</i>");
+
+	outputCodex("\n\nIt’s him! Your master, he’s here for you! You’re about to tell him you love him when he shoves his cock down your throat, just like old times, and you explosively cum on the spot. The machine doesn’t stop milking you while he works, shooting rivers of jizz into your stomach until your stomach is almost as big as your heaving breasts.");
+
+	outputCodex("\n\n<i>“We won’t be seeing each other again, human. But don’t worry, you’ll be more than taken care of.”</i>");
+
+	outputCodex("\n\nAt first, you’re heartbroken, albeit incapable of expressing that to him what with your throat fucked full of seed. But soon, as demons begin to break in the newest addition to their little farm, you find you don’t mind that much. Between them and the machine, you’re almost never free of entertainment, and eventually they unbind your hands and eyes. This way you get to see and lovingly embrace whatever manner of demon is raping you! Although it’s not what you expected to do with your life, between the anti-aging and fertility enchantments of your numerous incubi lovers, life is good for a cumdump of the Demons. No doubt you’ll have the opportunity to enjoy it for a long, long time...");
+
+	outputCodex("\n\n<b>BAD END</b>");
+
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Captured...");
+
+}
+//Fuck the System
+public function fuckTheSystem():void
+{
+	clearOutputCodex();
+	outputCodex(header("Fuck the System"));
+	outputCodex("By Kotep (<u><a href='http://kotep.xyz/'>http://kotep.xyz/</a></u>)");
+
+	outputCodex("\n<i>In a cyberpunk world, a punk panthress is brainwashed into being a police officer while a shy jackal finds a new, more punkish self through body modding. Explicit.</i>");
+	
+	outputCodex("\n\nOpal stuffed her small red mohawk into a hat made of electrodes, elastic straps, and a tangle of wires. Her natural panther bulk made her an imposing figure, and her black fur only more so. Rows of piercings climbed up her ears and a set of rings jutted from one of her eyebrows. Her chest was stuffed tight into a tank top and her big boots held big paws. In short, she was what the Party called an ‘improper citizen’. It was a term Opal took with pride.");
+	
+	outputCodex("\n\nAt the other end of the wires sat Cai. At his most rebellious, the young jackal looked like an office intern. His pointed ears were the only remarkable thing sticking out of his polo shirt and slacks. But behind that squared-off demeanor and tight-combed black fur was a networking genius with a burning distaste for the status quo. Opal had found him years ago, and now they were partners in hacking.");
+	
+	outputCodex("\n\n<i>“Ready to fuck shit up,”</i> Opal said.");
+	
+	outputCodex("\n\n<i>“Just be careful,”</i> Cai said. If you wanted to hack these days, you had to go full immersion. Riskier than good old screen-and-keyboard like Cai preferred, but you could move as fast as you could think. <i>“Here we go.”</i> He flipped the switch for the neural rig.");
+	outputCodex("\n\nThe countdown blazed directly into Opal’s brain. She licked her lips and gripped the arms of the chair. It hit one, and then she was soaring into space through a data line.");
+	
+	outputCodex("\n\nOpal was in. Data came as raw thought; no need to bother with sensory abstraction. All she had to do was think back. Strings of data flowed by as Cai bounced her between proxies, through unsecured systems, and then everything went blank. No input, no output.");
+	
+	outputCodex("\n\n/quit, she thought. Nothing. /quit, she tried again. /forcequit. Her rig’s functions were locked out. No sensory input, no data–like a brain trapped in a box.");
+	
+	outputCodex("\n\nOn the outside, Cai panicked. None of the commands worked. Someone had locked him out entirely. He looked at the switch for the rig, then up at Opal. Premature disconnection: at best it caused permanent psychosis. At worst...he couldn’t do that. He had to keep trying. If he had enough time, he could find a way around the lock.");
+	
+	outputCodex("\n\nThe police scanner on his desk whined at him. He froze. That couldn’t be right. How did the Defense Force find them so fast? They were in a black zone, outside police surveillance range. He had no time to manually extract Opal. His mind buzzed with useless ideas and rising panic.");
+	
+	outputCodex("\n\nWhat would Opal tell him to do? He imagined her voice, snapping at him, ‘Don’t get caught because you were too much of a pussy to run.’");
+	
+	outputCodex("\n\nCai went into full bug-out mode: Magnet on the side of the computer, police scanner hidden in his bag, both his and Opal’s bags onto his shoulders. The frantic bwip bwip bwip of the scanner only got faster and faster.");
+	
+	outputCodex("\n\n<i>“I’m coming back for you,”</i> Cai said. He touched Opal’s cheek with the back of his palm.");
+	
+	outputCodex("\n\n’Run, you idiot. Stop acting like a hero.’");
+	
+	outputCodex("\n\nCai scrabbled up to a window and squeezed through. Both bags on his back, he ran. He didn’t head for their apartment, he just ran. He kept going until he collapsed in an alleyway. He wanted to cry, but he couldn’t. A gaping hole was scored into his mind. Opal had been a friend, a role model, a partner. Now she was gone.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nOpal had no sense of how long she was adrift. It was one long moment, stretched over an eternity of micro-thoughts. There was nothing but her consciousness to keep her company. It was torture.");
+	
+	outputCodex("\n\nAnd then, all of a sudden, full sensory simulation. Space and time made sense once more. Her simulated snout stuck out into her field of view and her simulated body was sitting in a chair. It wasn’t the plush armchair of their hacking den, it was stark and plastic. Her hands were bound to the back and her ankles to the legs.");
+	
+	outputCodex("\n\nAt first, she thought she was in an empty white void, but as her eyes adjusted to the light, she made out the faint shadows in the corners. It was a white room, uniformly illuminated and utterly featureless, about the size of a one-bedroom apartment.");
+	
+	outputCodex("\n\nAs much of a bland nothing as this was, just some default environment, it was an immense relief. It was something to experience. It let her feel her body again. Her shoulders shivered and her teeth chattered and never before had that felt so good.");
+	
+	outputCodex("\n\nA tri-tone chime played, and a voice spoke from nowhere. <i>“You have been found guilty of improper citizenship,”</i> it said. <i>“This is the legal notice of your conviction. Your trial occurred five days ago at 14:42 Standard Time. For your convenience, your sentence has already been determined. Have a nice day.”</i>");
+	
+	outputCodex("\n\n<i>“Fuck you!”</i> Opal shouted. She had a mouth and she was going to scream. Her twitching became thrashing. The chair remained rooted to the floor as if nailed down, but she just needed to feel something, anything right now.");
+	
+	outputCodex("\n\nIf she was captured, they might have grabbed Cai too. He was too much of an idealist to give up without a fight, but she hoped he’d had the sense to run. She wouldn’t bet on his rescue, but it was a shred of hope to hold onto.");
+	
+	outputCodex("\n\nThe walls of the room dissipated into darkness. The chair vanished. She was floating. Wait, no. They couldn’t send her back there. Her body dissipated. Please, just let her sit in a chair. Her senses unraveled and she was left with only her own thoughts, spinning in a fervor of fury and distress.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nCai held a glowing blue pill in his palm. After a week, he’d worked up the courage to raid her room for her stash. He’d seen her take the blue pills before. They were for when she was at her worst, when she just wanted to forget everything and have wild fun at some club.");
+	
+	outputCodex("\n\nHis computers trawled all the records they could find, searching for any arrest or incarceration matching Opal’s description. There was nothing he could do but wait and hope. He felt boxed in by the apartment, but too anxious to leave. Without Opal there to drag him out of the house, he was becoming a shut-in. She’d always wanted him to be more like her: rebellious, bold, assertive.");
+	
+	outputCodex("\n\nCai had to learn to take risks, to trust his instincts, and to let himself go. He’d always wished he could be as impulsive as Opal. She hit up body mod shops to pick up new piercings whenever she felt like it, and there he was, fascinated by augs and not even a pierced ear to show for it.");
+	
+	outputCodex("\n\nOpal had taken him out to clubs before, and he’d always had a good time with her around. She helped him loosen up. Opal’s pills would take care of that tonight. He shut his eyes and tossed the pill into his mouth. It rolled down his throat. An anxious minute passed, then two, then the pill clocked him in the face. He toppled sideways out of his chair, then staggered to his feet. His tail whapped against his back and he found himself panting. Too many things were in his room and they were all too close. He wobbled out the door and into the living room.");
+	
+	outputCodex("\n\nThe couch got in his way and he splashed into the pillows. He fought his way back off the couch and leaned against the wall. Fuck, pills were probably a bad idea. Should have started with something lighter. His head bounced between the walls like a tennis ball. All energy, zero focus. He had to get out of here. Once he was outside, moving, going somewhere, he felt less like he was going to explode.");
+	
+	outputCodex("\n\nHis memory was hazy. First the neon-choked streets outside of his apartment, then the pounding of thick music, then the sharp burn of alcohol going down his throat. The next thing he knew, there was a girl, a coyote with glowing eye augs. He was talking to her and she was pretty cute. And then he totally blew it.");
+	
+	outputCodex("\n\nCai sat at the bar, staring into his hands, trying not to focus on getting shot down. This wasn’t working. He had to find something to do, something to prove he could be impulsive. He thought about the coyote’s glowing eyes, and when Opal would come home with new piercings, and the way he’d always had that queasy tension in the body mod shop when he tagged along.");
+	
+	outputCodex("\n\nThat settled it. He was going to get augged up. He polished off his glass before he left.");
+	
+	outputCodex("\n\nUnregistered augs were illegal, but that didn’t mean he couldn’t get them. Go down two flights of stairs from the street, knock on the door, say you know Rex. The door opened up and he stepped into the studio, packed with repurposed medical equipment, surgery pods, and photos of clients on the walls.");
+	
+	outputCodex("\n\nLying inside the pod, Cai didn’t remember what he’d asked the fluorescent-scaled lizard to do to him. He remembered the words ‘intense’ and ‘go like wow’, but nothing else. His breath made little flower patterns on the glass. The anaesthetic on top of the alcohol and the pills made him feel chill and pleasantly hollow. Ksshunk, ksshunk echoed in his ears and he recoiled from the jolts beneath his shoulder blades. Brand new ports. Another two–ksshunk, ksshunk–on his back, above his hips. One more at the base of his skull.");
+	
+	outputCodex("\n\nCai yawned. He went limp in the pod. His head lolled to one side. The last thing he remembered were the cables clipping into his ports, the soft whirr of fluid pumping into him, his skin bulging outward.");
+	
+	outputCodex("\n\nThen he woke up in his bed the next morning. The anaesthetic lingered, but at least it numbed the pain of his hangover. His sheets clung to his chest in a way they hadn’t before. He pushed them off and sat up, looking down at his chest. Specifically, his breasts. He made a sleepy groan and groped himself. He felt his own soft flesh, with a new fluid reservoir aug beneath to give him a perky rack.");
+	
+	outputCodex("\n\nCai shuffled off his bed, dragging his ass along the sheets. As he stood up, he jiggled. As he walked to the bathroom, his hips swished from side to side, swinging his tail. His fur rubbed against itself in a way he wasn’t used to, but he was still groggy to the point of not fully registering what was going on.");
+	
+	outputCodex("\n\nIn the bathroom, he turned and saw himself in the mirror. The shock of seeing his reflection was like running into a wall headfirst. He didn’t even move at first, just stared until he was sure that the person in the mirror was him.");
+	
+	outputCodex("\n\nHe leaned over the sink, tracing his soft lower lip with his finger. Then he backed away to look at how his hips gently curved and how his ass stuck out on top of them, pert and squeezable. He spotted the ports along his back in gunmetal black to blend in with his fur. The flesh right around the edges was still swollen to the touch.");
+	
+	outputCodex("\n\nA hand on his hips, he looked his reflection right in the face. As drunken body mods went, this wasn’t bad. And, thankfully, he’d just gotten the ports and fluid implants. Between his legs was his familiar package, right where it was meant to be. Nothing irreversible.");
+	
+	outputCodex("\n\nCai pushed his breasts together. He bit his plush lip, holding in a groan. His cock tensed for a moment. Yes, his tits were tender. But his voice? <i>“Oh. Aaaoh,”</i> he said, rubbing his throat. It was still his voice, but cranked up a few octaves to sound feminine.");
+	
+	outputCodex("\n\nOpal would have approved. The more that Cai watched the way he moved, the more he liked it, too. He was proud of himself. He’d made snap decisions, he’d taken risks, and he’d finally taken the plunge and got augs like he’d always wanted. He was going to keep these. Both for Opal and for himself.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nOpal jolted in her seat.");
+	
+	outputCodex("\n\nShe had a body again. Her senses were back. Her fingers quivered like spiders and flexed her claws. She rocked back and forth in her chair. She took deep, desperate pants. The sudden rush of sensation hurt, but her mind was starved for any kind of input. At first it was just beautiful, painful noise and light and pressure, but then her mind began to make sense of things again.");
+	
+	outputCodex("\n\n<i>“Good morning, citizen!”</i> Opal lifted her head. A glowing, translucent vixen stood in front of her. From her sparkling eyes to her bust left blatantly on display to the tight squeeze of her skirt around her waist, she was an image of beauty squeezed into a blue-and-white Defense Force uniform. Opal sneered, or maybe that was just a twitch. Either the Party was getting really good with its AIs, or they’d brainwashed the shit out of some fox lady. The tag printed on top of her left breast read ‘OFC Yori’.");
+	
+	outputCodex("\n\n<i>“Due to your misconduct, you have been selected for our pilot repurposing program,”</i> Yori said, with a glassy-eyed look. <i>“We thank you for your contribution toward making our city a peaceful place to live. Obey all official directives!”</i>");
+	
+	outputCodex("\n\n<i>“How about you f-fuck off and let me go?”</i> Opal snapped. Her knees jerked involuntarily. If Cai had gotten away, maybe he was looking for her now. She had no clue where she was. They could have kept her connected to whatever black box they’d trapped her in and moved her body anywhere they wanted.");
+	
+	outputCodex("\n\n<i>“I’m sorry for the inconvenience. You’ll have to remain here until the process is complete. We will be working on three major areas: obedience, attitude, and ERC-compliant systems of thought. We’ll–”</i>");
+	
+	outputCodex("\n\n<i>“Shut up! I don’t give a shit. Now let me out of here!”</i> Opal shouted. Her hands and feet struggled against the bonds that held her to the chair, but it was useless. If they programmed her to be unable to get out, she wouldn’t be able to get out.");
+	
+	outputCodex("\n\nYori paused, then said, <i>“Now that we’ve completed the introduction, we can start.”</i>");
+	
+	outputCodex("\n\nOut of nowhere, images flooded into Opal’s eyes, more than she should have been able to see at once. Images of smiling families, of Defense Force officers saluting in front of a flag, of teenage punks being arrested. More images flooded in, pictures of hacking equipment and Defense Force-issue guns and the party logo, the inverted blue cross on a white banner. The images flashed only long enough for a visceral reaction before the next appeared.");
+	
+	outputCodex("\n\nAfter a few minutes, the pictures stopped abruptly. It was just the quiet room and her in the chair and the vixen standing before her. A small panel opened in front of Opal, within reach of the fingers on her right hand. Inside were two buttons: green and red. <i>“Please press the green button,”</i> Yori said.");
+	
+	outputCodex("\n\nOpal sneered, punched the red button a few times, and gave the fox the middle finger. A searing jolt of pain arched across her body. Her muscles convulsed and she thrashed in the chair. It was as if the worst pain she’d ever felt had been torn fresh anew. She was left shuddering, eyes watering, when it was over.");
+	
+	outputCodex("\n\nAn image of a steel pipe appeared behind Yori. <i>“This is not a pipe,”</i> she said. <i>“Do you see a pipe?”</i>");
+	
+	outputCodex("\n\n<i>“Yeah I do, fuck-gghh!”</i> Opal was cut off by another screaming bolt of pain.");
+	
+	outputCodex("\n\n<i>“Now that we have a baseline, we can begin the repurposing process. Please remember to obey all official directives.”</i>");
+	
+	outputCodex("\n\nOpal hung her head, staring at her lap. Her hands balled into fists. She wouldn’t let anyone break her.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nCai needed high-end gear if he wanted to track Opal, and to get that, he needed to talk to Rho. She had connections in manufacturing, so she could slip government-grade equipment to hackers like Cai.");
+	
+	outputCodex("\n\nThat was why Cai was standing outside the door to the back office of a pawn shop that smelled of old circuit boards. Rho’s bodyguard was why he was standing outside that door.");
+	
+	outputCodex("\n\n<i>“I need to talk to Rho,”</i> Cai said.");
+	
+	outputCodex("\n\nThe doberman shrugged and wrinkled his snout. <i>“I need to keep her from getting pestered by wannabe fucks like you.”</i>");
+	
+	outputCodex("\n\nCai knew he should have sprung for some more volume in his breasts. If he’d gone up to double-D’s, maybe he wouldn’t have to be bartering his way in. By taking freelancing jobs in his spare time, he was funding both his search for Opal, and his newfound interest in his body. Taking that first drunken plunge had opened him up to possibilities, and he didn’t regret it.");
+	
+	outputCodex("\n\nHe’d shaved his headfur down to a tuft along the middle of his head, and put two steel rings in his eyebrow. He’d paid for another couple hundred cc between his hips and lips. He’d thrown in a few more inches of height, too, since he’d always felt a bit short. Now he struck a feminine figure, filling out Opal’s jeans snugly. His lips had a subtle but inviting pout. The tank top he wore was also from Opal’s room, though none of her bras had fit well enough, so he had gone without.");
+	
+	outputCodex("\n\nThe doberman quietly studies his body. Cai took notice of the looks he got now. They felt good, after being forgettable for his whole life. Before heading out, he’d popped a few pills for confidence; not the glowing blue ones, but he was still flying high right now. He licked his lips. Everyone liked oral, right? He hadn’t yet had the courage to try his luck with guys at the club. He didn’t see any other good options for winning the doberman’s favor.");
+	
+	outputCodex("\n\n<i>“I’ll show you wannabe,”</i> he said. He pushed the doberman back against the wall and crouched down before him. The bodyguard raised his hands, ready to grab Cai, but then relaxed.");
+	
+	outputCodex("\n\nA fat cock flopped free from the doberman’s pants. The drugs in his brain were telling him to do it or you’re a chicken. He opened his mouth, and then slipped it around the bodyguard’s waiting shaft.");
+	
+	outputCodex("\n\nA cock in his mouth was bigger than he’d expected. His tongue and palate squeezed against it if he didn’t keep his mouth open enough. He bobbed a few times. The doberman reached down, grabbing his scruff of hair. With his head held in place, he started thrusting forward, making Cai clench his throat and sputter. His eyes watered involuntarily.");
+	
+	outputCodex("\n\nFighting back the urge to gag, he kept going. If he worked at it, he could get nearly all the way to the base. Cai lifted his eyes to look up at him. The doberman’s eyes were closed, his fangs sunk into his lip. Good, right? Cai opened his jaw and moved down the shaft. He lapped as he came to the bottom and drew back up. His plush lip made for a smooth slide and his cheeks pinched with each pull.");
+	
+	outputCodex("\n\nCome on, he thought. I don’t want to be here all–and then the doberman came. Cai’s eyes rolled back and he tried to relax his throat, but he couldn’t. He sputtered and a bit of cum dribbled down onto his dark chin. His big jackal ears folded tight against his head.");
+	
+	outputCodex("\n\nPulling back, Cai tried to lap up what had spilled onto his chin and the few drops that had fallen onto his chest. He wanted to apologize for gagging, but the doberman had already unlocked the room. Instead, he just said, <i>“Thanks,”</i> coughed lightly, and stepped inside.");
+	
+	outputCodex("\n\nCai licked his lips again. It had been a lot to manage, but fun all the same. Something about how closely he could manage someone else’s pleasure, how he could make someone else cum, spoke to him. He’d need to try it out some more–once he’d gotten the supplies from Rho.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nOpal’s throat was sore. She had no idea how long she’d been howling in defiance, but it even hurt to swallow. Even that was a blessing on some level. At least she could feel something. Brainwashing was a relief from the maddening nothingness when her simulation was switched off.");
+	
+	outputCodex("\n\nThe numb, toneless narration of the film she was watching felt as if it had been going on for days. She wasn’t sure if she’d been in here a week or a month. Yori stood beside her, a distant look on her eyes, like she wasn’t even watching the film. The vixen was off in her own fantasy land being reamed by Party cock, Opal thought. She managed a small smirk.");
+	
+	outputCodex("\n\n<i>“A proper citizen doesn’t need to fear the government,”</i> the film narrator said. A bright, smiling wolf shook hands with his neighbor and waved good morning to the CCTV camera. <i>“Only an improper citizen fears the government, because they’re afraid of being punished for their crimes.”</i> A nervous-looking ferret hid his face from the camera as he shuffled quickly into his apartment.");
+	
+	outputCodex("\n\nHer fangs creaked against each other. She’d fought this programming so far, and she’d keep fighting it.");
+	
+	outputCodex("\n\nYori refocused her eyes and turned toward Opal. She bent at the waist, so that the neckline of her skintight uniform showed off her deep cleavage. If she wasn’t such a mindless Party drone, Opal might have thought she was hot. (She wasn’t opposed to hate-fucking her, either.)");
+	
+	outputCodex("\n\n<i>“How are you feeling now? Do you trust the Party?”</i> she asked.");
+	
+	outputCodex("\n\n<i>“Eat my pussy,”</i> Opal said.");
+	
+	outputCodex("\n\nYori frowned, like she was actually disappointed. <i>“Level three programming is ineffective, so we’ll move to level two.”</i> They’d started at level six. Opal smiled; she was too tough of a nut to crack. If they kept it up, she was going to break their system from the inside out.");
+	
+	outputCodex("\n\n<i>“Now, in the log, I see you thought something about ‘getting reamed by Party cock’,”</i> Yori said. She looked Opal in the eye and smiled. <i>“I think that’s a great idea.”</i>");
+	
+	outputCodex("\n\nWait, they were logging her–");
+	
+	outputCodex("\n\nAnd then level two started. Opal’s ass lifted off the chair, back curling, breath catching in her throat. Her sense of touch no longer matched what was happening. They had to be feeding her data from a different simulation. Strong hands pressed against the small of her back, holding her down against a cold surface. Her tail curled up, lashing through the air, fur standing on end.");
+	
+	outputCodex("\n\nThe head of a cock pressed against her folds. The hands moved from her back to her shoulders, holding her down at the first powerful thrust came. It drove her down against what felt like a table or counter. It slowed at the end of the thrust, inching deeper, then reared back and spread her pussy with another push. Each stroke was firm and powerful, holding her still against the cold table.");
+	
+	outputCodex("\n\nBut there wasn’t a table, it was just her sitting in the chair and Yori in front of her.");
+	
+	outputCodex("\n\nOpal’s ears twitched. She heard voices, but not spoken; they came straight into her mind. Obey the Party. The Party is order. Citizens will obey. Obey the Party. The Party is order...");
+	
+	outputCodex("\n\n<i>“Your dopamine levels are very high. You must love getting reamed by Party cock!”</i> the fox said.");
+	
+	outputCodex("\n\nOpal bared her fangs and tried to snarl, but her growl turned into desperate yowling halfway through. Her muscles responded to the simulated sex, trying to jerk her hips against her partner. The blast of computerized pleasure from each thrust was dizzying. She was melting, losing her grip on Yori in front of her.");
+	
+	outputCodex("\n\n<i>“Fuck me harder,”</i> slipped from her mouth. Her head slumped and she sunk her claws into the chair.");
+	
+	outputCodex("\n\nThe Party is sex. Citizens will obey. Obey the sex. The intrusive thoughts were just one more addition to her reeling mind.");
+	
+	outputCodex("\n\n<i>“If you become a proper citizen, you could have sex like this all the time,”</i> Yori said.");
+	
+	outputCodex("\n\nOpal didn’t hear her. All she heard as her orgasm hit was her own desperate roar. The feeling of being fucked didn’t stop. She jerked in her chair and the seat grew damp from her juices. She felt like the air was being squeezed from her chest, like her cheek was pushed down against that cool table...");
+	
+	outputCodex("\n\nAnd then it was done. She fell back into the seat. Her head was cocked back, jaw slack, mind sparking and fizzling. Warm wetness trickled along her thighs. Her vision swam, then slowly resolved into shapes again. Opal’s head lolled back to life. She took deep, shivering breaths.");
+	
+	outputCodex("\n\nYori reached out and tipped up her chin so that Opal was looking up at her. <i>“So, if I asked you to <i>“eat my pussy”</i>, would you?”</i> she asked.");
+	
+	outputCodex("\n\nOpal’s jaw slid shut and she bared her fangs weakly. She didn’t want to dignify that with a response.");
+	
+	outputCodex("\n\nYori dropped her hand and smiled. <i>“I’ll take that dopamine hit as a yes. Great news, we’re making progress! You’ll be re-purposed in no time.”</i>");
+	
+	outputCodex("\n\nOpal silently cursed her body. Her eyes were fixed on Yori’s rack.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nCai had changed a lot in the three weeks since Opal had been taken. For instance, female pronouns. They suited her better now, and all the changes she’d been making to her body.");
+	
+	outputCodex("\n\nShe still hadn’t found anything concrete on Opal’s arrest. A couple days ago, she got a hit on a generic arrest warrant dated three weeks back, but no location where she was held, not even a prisoner ID.");
+	
+	outputCodex("\n\nWhat Cai had found was the name of someone who’d dealt with this kind of thing before, another hacker who’d lost a partner. This girl had wiped her information from the net, but by talking around, and with a bit of fucking to loosen people up, Cai got a photo and the name of a club she liked to visit.");
+	
+	outputCodex("\n\nSo now Cai was dressed up for clubbing, sitting at a bar with a drink in front of her, and a little glowing blue pill in her hand. It’d be her third time taking the blue pills. Like Opal, she saved them for when she wanted to get fucked up. The pill plopped into the glass. Before it even began to dissolve, Cai lifted the glass to her lips and gulped it down, pill and all.");
+	
+	outputCodex("\n\nA tank top wrapped around her dark-furred cleavage, lifting it up and out. It provided all the support that her augs didn’t. Now that she had enough aug juice squeezed into her chest to fill up to E-cups, her implants had their own surface tension that kept her perky. A mesh shirt stretched over top of the tank top, though it didn’t cover up much of anything at all.");
+	
+	outputCodex("\n\nCai had started working out, but didn’t want to do it all the old-fashioned way. Her arms were toned and her stomach flat and firm, thanks to extra hormones from the body shop. As a side effect, she found her cock had grown an extra inch when erect. She’d made a good choice keeping it.");
+	
+	outputCodex("\n\nHer PVC pants were perfect for showing off both her hips, and the bulge tucked between them. Her hips flared out enough to give her legs a slow, tapered shape, and her ass was nearly as buoyant as her tits were, thanks to all the fluid she’d pumped herself with. A pair of tall boots capped off her sexy bitch look, with her ear studs and nose ring as a garnish on top.");
+	
+	outputCodex("\n\nSo she liked body modding. Arrest her.");
+	
+	outputCodex("\n\nMaybe fifteen minutes into her buzz, as Cai was grinding her ass against a deer with a nice rack, she spotted the face she was looking for. Hyena girl, kinda stocky, green mohawk, spots over her eyes.");
+	
+	outputCodex("\n\nThe conversation passed by in a blur, but she recalled the gist of it. The hyena’s name was Thera and she thought Cai looked pretty cool. That was a weird coincidence, because Cai thought she looked fucking hot and wanted to make out with her. She knew this great place, too.");
+	
+	outputCodex("\n\nAnd then Cai was making out with Thera in the alley behind the club. Somehow, that had worked; Thera responded well to confidence. They were pressed up tight against the stone, grabbing and groping as if trying to hold on to each other. A bump against her crotch made Cai groan and Thera pull back.");
+	
+	outputCodex("\n\n<i>“The fuck is this?”</i> she asked, grabbing Cai’s package. Cai couldn’t tell if that was eager or upset.");
+	
+	outputCodex("\n\n<i>“My dick. You like modding?”</i> Cai asked.");
+	
+	outputCodex("\n\nThera said, <i>“Yeah,”</i> and grinned. Eager. Good.");
+	
+	outputCodex("\n\nCai smiled and shoved the waistband of her pants down. <i>“Suck it and I’ll show you the shop I go to.”</i>");
+	
+	outputCodex("\n\nThe hyena got down on her knees, palms against Cai’s thighs, and stuffed her mouth around the jackal’s cock. She’d had blowjobs before, but none of them seemed quite as excited as Thera’s. The girl had a god damn fetish or something. In minutes, Cai was growling, bent over with one hand against the wall, pumping into Thera’s mouth. Her cum came gushing out. Thera grunted softly, eyes wide. A wet snort came from her nose, followed by a little spurt of cum dripping from one nostril.");
+	
+	outputCodex("\n\n<i>“You don’t have to choke on it. I know it’s huge already.”</i> Cai winked, then dragged the eager girl off.");
+	
+	outputCodex("\n\nAt the body mod shop, she went first; a couple credits to switch from a tufty mohawk to a one-sided shave, with the other side long and draping down to her chin.");
+	
+	outputCodex("\n\n<i>“So, you figured out what you want?”</i> Cai asked, twisting the curl of her hair around her fingers.");
+	
+	outputCodex("\n\nThera breathed in sharply. <i>“I thought...maybe you’d want to pick for me.”</i>");
+	
+	outputCodex("\n\nCai listened to Thera’s voice, watched the anxious look in her eyes, then slowly grinned. Her high gave her the kind of confidence she’d never had otherwise, the kind to play right into what Thera wanted.");
+	
+	outputCodex("\n\n<i>“You mean you’re a slut who needs someone to tell her how to get modded?”</i> Cai asked gently, grabbing her by the hair. Thera made a whine of delight and a quick nod. Man did she have a fetish. <i>“All right. Let’s pick out some of the good shit for you,”</i> she said. Cai was totally willing to give Thera’s whole thing a shot.");
+	
+	outputCodex("\n\nA short while later, Thera stumbled out of the booth and into Cai’s arms. The hyena’s lower lip stuck out in a gently glistening pout, and her new synthetic cock was stuffed beneath the tight denim of her jeans. She was panting, red-cheeked, and asked breathlessly, <i>“Can we go to your place?”</i>");
+	
+	outputCodex("\n\nThe next thing Cai remembered, they were in her apartment. Her tits sat against Thera’s thighs, cradling her fresh and tender cock. Cai grinned, then slid her mouth down the shaft and pulled back slowly. A string of drool hung from the tip of Thera’s cock to the corner of her tongue. <i>“Like it?”</i> she said. She slurped down again, rolling her tongue along her shaft to hear Thera groan in delight.");
+	
+	outputCodex("\n\nHer memories were hazy for a little while. Then Cai was leaning over Thera, who was on her back on the bed. With every thrust into her pussy, the hyena’s head bounced and her back arched. Cai wrapped her hand around her own breast and squeezed. Her skin sunk between her fingers, the shape defined by the aug implants beneath. <i>“If you want tits like mine, you’d better cum for me,”</i> she said.");
+	
+	outputCodex("\n\nMore blurry bliss. Then they were both lying in bed, on the edge of sleep. Cai had her hand around Thera’s cock, stroking slowly, while her other hand traced the new port on the back of the hyena’s neck. Cai whispered all the things she could do to her, while Thera made small, exhausted moans.");
+	
+	outputCodex("\n\nOver cereal in the morning, Cai mentioned her missing partner, and got Thera to open up about what she knew. Her partner had disappeared about two months ago. Same deal: locked out of everything, then hit by the police before she could get him out. She hadn’t found a trace of him, aside from an errant file in the Defense Force database about a ‘repurposing’ program.");
+	
+	outputCodex("\n\n<i>“I don’t know if it’s labor camps or brainwashing or what. I went dark so they wouldn’t come after me next,”</i> she said.");
+	
+	outputCodex("\n\n<i>“What was he like?”</i> Cai asked.");
+	
+	outputCodex("\n\nThera shrugged. <i>“Small guy, bit of a goth, fox.”</i>");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nYori, in her always-immaculate Defense Force uniform, stood quietly while Opal made ragged grunts and moans. Opal felt the salt on her cheeks, tasted the spittle in her throat, and felt every jerk and shift of her body.");
+	
+	outputCodex("\n\nHer pussy buzzed like radio static, swollen and desperately tender. It was tantric sex times a thousand; constant, crushing arousal that never stopped and never pushed her over the edge.");
+	
+	outputCodex("\n\n<i>“Improper citizens are not allowed to orgasm,”</i> the vixen chimed. She had said it forty-five times now.");
+	
+	outputCodex("\n\nThey’d switched Opal’s visual input. A feed of patriotic images flashed in front of her eyes, so quickly she could barely see each one. The impressions they left echoed in the back of her mind: Goverment. Force. Power. Strength. Submit. Enlist. They were trying to elicit a positive response from her, but she was unbreakable. They couldn’t goad her into compliance with sex, and they couldn’t break her will with this mental torture.");
+	
+	outputCodex("\n\n<i>“Proper citizens are allowed to orgasm,”</i> Yori repeated.");
+	
+	outputCodex("\n\n<i>“Then I’ll fucking suffer!”</i> Opal shouted. Her breath was ragged, chest heaving. Her head was too heavy on her shoulders. She rocked back and forth in the chair..");
+	
+	outputCodex("\n\nSubmit. Join. Strength. Police.");
+	
+	outputCodex("\n\nEverything felt wonderful. Opal was floating off the sea. Her pain like heat was flooding out of her, replaced only with bright, pulsing light. It was like a wild beast let free, tearing through her body. She slumped down into her chair. Her juices tickled along her dark fur.");
+	
+	outputCodex("\n\n<i>“Wait–,”</i> she gasped. She could see again. Yori was beaming at her.");
+	
+	outputCodex("\n\n<i>“This is great!”</i> she said.");
+	
+	outputCodex("\n\n<i>“No, I–you fucked up something.”</i>");
+	
+	outputCodex("\n\nYori shook her head. <i>“You had a positive response. You’re already becoming a proper citizen.”</i>");
+	
+	outputCodex("\n\nOpal folded her ears back. Her gaze fell to the floor. She hadn’t liked any of that stuff, had she? No, of course not. But could she be sure? What if she had already snapped and didn’t know it? The anxiety weighed thick on her shoulders. The more she questioned herself, the less certain she was. If they could read her thoughts, why would they be fooled by some simple error? If they were claiming victory, maybe they had finally forced her to Submit.");
+	
+	outputCodex("\n\nOpal gasped and clamped her thighs together. Her mound swelled slightly just from the thought of the word Submit. Another sudden flush of heat. Her back arched and she bent forward. She felt the dampness against her inner thighs.");
+	
+	outputCodex("\n\nAnd then, all of a sudden, she wasn’t sitting but lying. Her hands and legs were bound, tied to the four corners of the bed she was on. Yori was on top of her, legs straddling her stomach. Her thighs were pressed against Opal’s waist and she felt the warmth of the vixen’s groin against her belly. She grabbed the edge of her uniform top and slowly peeled the tight material off of her. Her breasts each slipped free in turn, slumping gently against her chest, still proud and heavy as ever.");
+	
+	outputCodex("\n\n<i>“Since you’re starting to improve, I can give you a little break,”</i> she said.");
+	
+	outputCodex("\n\nOpal’s breath quickened and she tugged at the ropes binding her, but they were as firm as the ones that tied her to the chair. Yori crawled back until she was kneeling between Opal’s parted legs. With two fingers, she parted the panther’s swollen folds. Yori’s nose dipped down and she pressed her tongue against Opal’s labia.");
+	
+	outputCodex("\n\nOpal’s paws clenched. Her muscles strained against the ropes. She wanted to squirm, but had no space to. The touch of Yori’s tongue was gentle, yet hungry. That desperate politeness sent shivers down Opal’s spine. Obey. Her whole body quivered. Yori made a happy coo and flicked her tail.");
+	
+	outputCodex("\n\nA video feed cut into her vision. She felt every inch of the tongue and every little motion it made as Yori worked her way deeper. But what she saw was a city street, so clean that it glistened in the light from the streetlamps. Hah, where had they found a street that wasn’t choked with litter and– Join.");
+	
+	outputCodex("\n\nOpal mewled and clenched her thighs. Lurking in the shadows, someone dressed in black began to spray-paint one of the buildings. Just seeing it made her stomach churn. As much as she wanted to like him for disobeying authority, she couldn’t. She hated him on an instinctual level.");
+	
+	outputCodex("\n\nHer hips rocked slowly. Her legs were spread as wide as they could and her tail lashed back and forth off to her side. Yori’s paws stroked along her hips and thighs, squeezing and massaging. Her claws sunk into Opal’s supple ass and rubbed her hips until her muscles were loose and glowing. Opal had never felt quite so plush and cushioned before. She wanted to roll to one side and just stroke her hips and bask in her figure. Instead, Yori took care of that need for her while eating her out.");
+	
+	outputCodex("\n\nOpal couldn’t Force say what exactly Power set her off, but Enlist her orgasm came crashing Strength down all at once. Yori wrapped her arms around Opal’s legs and held on as the panthress came, jerking her hips up into the air and roaring lazily.");
+	
+	outputCodex("\n\nYori crawled upward. Her thighs around Opal’s waist again, she leaned forward until her hands touched her breasts. Opal’s nipples stiffened and she sucked in a tight breath. She fought to make some word of protest. All that came from her mouth was a low, hissed, <i>“Yes.”</i>");
+	
+	outputCodex("\n\nAs Yori’s tongue touched her nipple, another scene pushed its way into Opal’s mind. The same street, the same vandal. Now a Defense Force officer appeared, shouting, brandishing his stun club. Opal felt like she was being pulled taut by the teasing tongue on her breasts. Each new stroke or lick or light suckle wound her even tighter. The graffiti artist yowled. The stun club hit him in the back. He crumpled to the ground. The officer grabbed his hands and cuffed him.");
+	
+	outputCodex("\n\nIf he had just Obeyed and Submitted to the officer he wouldn’t have had to use Force...");
+	
+	outputCodex("\n\nOpal’s eyes rolled back. Her pussy throbbed. Yori cupped Opal’s breasts in her paws as they grew heavier and thicker and firmer to the touch. Pulse by pulse, they swelled forward, then spread under the gentle pull of gravity.");
+	
+	outputCodex("\n\nHer breasts felt bare and tender without warm fingers or a wet tongue against them. Yori peeled back and scooted forward onto Opal’s belly. Her blue eyes shimmered. She lowered herself on top of Opal until their lips touched and she sank into a kiss. Opal should have wanted to headbutt her or bite her tongue or pull away, but her mind was muddled with lust and she was starved for contact.");
+	
+	outputCodex("\n\nIn her eyes, Opal saw a young cheetah Defense Force officer, saluting her commanding officer and then walking back to her desk. She had a bright smile on her face. A warm glow washed over Opal and her eyelids fluttered. The officer sat down at her desk and started working on a stack of paperwork. As she filled it out, her co-workers came by to pick up the finished forms, and left smiling, too.");
+	
+	outputCodex("\n\nLook how happy you could make everyone when you Submit to Orders and Obey.");
+	
+	outputCodex("\n\nOpal shut her eyes and whined. A few warm drops fell from her puffy folds onto the bedsheets. Soft creaks echoed up from her trachea, like guitar strings being tightened. Her voice lifted up, sweeter, less scratchy. Opal felt the tingle in her throat, but could do nothing about it.");
+	
+	outputCodex("\n\nYori drew back. Opal was left panting and aching but also satiated for the first time. In the blink of an eye, Yori was back in her uniform and Opal was in the chair again. She shifted her ass to one side and straightened out her tail. Her whole body felt squeezed into a chair one size too small. She had to wiggle around to get comfortable in the seat again.");
+	
+	outputCodex("\n\nThe hatch by her right hand opened, putting her fingers over a red button and a green button. Opal stared up at Yori, squinting, trying to summon up defiance.");
+	
+	outputCodex("\n\n<i>“Please press the green button,”</i> she said.");
+	
+	outputCodex("\n\nOpal’s heartbeat rose. Those words from before were coursing through her mind, whirling together until all she could hear was powersubmitforcenlistobey and all she could feel was an intense desire to follow orders. You’re a free woman, she told herself. Her hand shivered. They’re trying to break you. This is exactly what they want from you. Her fingers traced the top of the red button. Revulsion hit her stomach and she tore her hand away. Your commanding officer gave you an order.");
+	
+	outputCodex("\n\nTeeth clenched, eyes watering, she pressed the green button. A conditioned rush of pleasure sent a guilty shudder across her shoulders.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nCai pushed the blue pill into her mouth and chased it with a shot of vodka. Maybe she should have cut back, but that surge of power right as it hit and the thrumming confidence like a big motor in her chest kept bringing her back.");
+	
+	outputCodex("\n\nShe left her apartment, dressed in her best for her girlfriend. Her one-sided haircut she’d dyed a deep red. With eyeliner and mascara, she made her eyes pop even more against her black fur. A spiked collar hung around the bottom of her neck, just above the heavy tits strapped into her low-cut tank top. As she walked, Cai felt the slshh-slshh of her aug fluid bouncing around. She found E-cups were the right balance between hot and practical, though the cup size was merely academic at this point. The implants acted as their own support.");
+	
+	outputCodex("\n\nThe brush of her collar against her neck port reminded her of sitting in the body shop with hoses hooked up, feeling the gradual pump of fluid filling her out.That was why she had her kissable lip, painted with a dash of purple gloss. Also why her miniskirt clung so tightly to her hips. They were packed with aug juice. She had her implants to thank for her wide, luscious hips and her plump ass. She tugged the hem of the skirt down her thighs as she stepped out onto the street. She didn’t need to flash her cock to anyone on accident. Only on purpose.");
+	
+	outputCodex("\n\nHer legs, in their fishnet stockings and spiked latex boots, knew the way to Thera’s apartment by now. They’d been girlfriends for nearly three weeks. Cai tried to be as much of the modded-up jackal dom punk bitch as Thera wanted. She’d even kept up with working out. Her subtle muscles thickened her shoulders and biceps, rippled her stomach gently, and gave her augged figure a powerful foundation.");
+	
+	outputCodex("\n\nAs Thera opened the door, Cai pushed her way in and gently grabbed the hyena by her mane. Thera looked almost entirely different from the way she’d looked when they had met, and it was all thanks to Cai, who’d picked out every last mod she’d gotten.");
+	
+	outputCodex("\n\nA foot of extra height evened out Thera’s stockier figure into a more elegant form. Her implants were the same models as Cai, but with more volume and a thicker, more viscous aug goo. Packed with the thick stuff, her chest implants made her tits jut out proudly and her ass seem to float on air. Her eyes were synthetic, black with glowing purple irises. Cai had even made her change her fur color, so instead of standard hyena tan-with-brown-spots, she was lavender-with-violet. A glimpse was all you needed to know Thera was modded to all hell.");
+	
+	outputCodex("\n\n<i>“How’s my aug-bitch doing?”</i> Cai cooed. She leaned up to kiss Thera. ‘Little slut’ didn’t fit any more, now that Thera had a full six inches on Cai’s height.");
+	
+	outputCodex("\n\nIt didn’t matter that Cai was shorter or that Thera had her augs pumped up bigger. She was still the horny girl she’d met in the club. Thera whined in the back of her throat and pressed herself against her girlfriend’s body. <i>“I’m doing fine,”</i> she panted.");
+	
+	outputCodex("\n\nCai slowly pushed her toward the couch. She asked, <i>“Do you want me to come with you to your interview?”</i> They’d talked about it a few days ago: Thera wanted to work part-time as a stripper to keep funding her hobby. As long as it was what she wanted to do, Cai would be there for support.");
+	
+	outputCodex("\n\n<i>“Yeah, that’d be nice, to have you there,”</i> she said.");
+	
+	outputCodex("\n\nCai pushed her against the couch and knelt down in front of her. Her hand rested on the thick bulge in Thera’s jeans. She’d made her get a few mods for her synthetic cock, too. Why not? They could both enjoy it. <i>“Looks to me like someone needs her dick sucked,”</i> Cai said.");
+	
+	outputCodex("\n\nThera’s eyes fluttered back in her head. <i>“Fuck yeah,”</i> she breathed.");
+	
+	outputCodex("\n\nCai freed Thera’s cock from her pants and slipped it down her mouth. Oral felt almost like second nature to her, and she knew it well enough that she could fiddle all the knobs. Tighten her jaw, suck harder. Slurp along the shaft, then back down until it hit the back of her throat. Hold the base tight or let her nose slide all the way up until it touched Thera’s stomach. It was bigger than her own by an inch. She might have had trouble taking it, but she’d modded out her gag reflex. Worth every credit.");
+	
+	outputCodex("\n\nThera howled out loud as she came. Cai just opened her throat and let it all flow down. With one last lap of the tongue, she lifted off of Thera’s cock. The couch creaked as she sat beside her. Thera draped her arms over Cai and she wrapped her arms back around Thera’s waist.");
+	
+	outputCodex("\n\nLeaning on Thera’s shoulder, Cai said, <i>“I have some news, too.”</i> The hyena lifted her head curiously. <i>“That re-purposing thing? It’s a brainwashing program.”</i>");
+	
+	outputCodex("\n\n<i>“Man, fuck the Party,”</i> Thera said.");
+	
+	outputCodex("\n\nCai nodded. <i>“I know it’s bad, but I figured out where they’re stationed. And I’ve got a plan to get them out. We owe it to them to try.”</i>");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nOpal was awake. No data feeds directly to her brain, no simulated experiences. She twisted her head around to see where she was. It was a small, clinical room, with some computing equipment stuffed in the corner and a pair of lockers by the door. She sat up in the padded chair, coming eye-to-eye with Yori. In the flesh, not a computer program. Her eyes sparkled like they’d been modded.");
+	
+	outputCodex("\n\n<i>“It’s good to see you’re awake, recruit!”</i> she said.");
+	
+	outputCodex("\n\nAs Opal leaned forward, her hair spilled into her face. It was black, trimmed to jaw-length and straightened into a tight bob. The slosh of fluid brought her eyes down to her heavy chest. <i>“What? I didn’t...”</i> She trailed off. Reaching for her back, she found the ports matching her breast augs.");
+	
+	outputCodex("\n\n<i>“Enlist? Of course you did, that’s why you’re here. Because you’re a good citizen,”</i> Yori said.");
+	
+	outputCodex("\n\nOpal shuddered and heat dripped between her thighs like a drop of warm honey. All the breath left her chest and she just panted at Yori.");
+	
+	outputCodex("\n\n<i>“Now, there’s a few things to know as a new officer. First, anything your superiors say is true,”</i> she said.");
+	
+	outputCodex("\n\n<i>“That’s...no,”</i> Opal said. Her ears were folded back and her tail hung limp. She wanted to curse and rant and fight, but she couldn’t even muster up the will to get out of her seat.");
+	
+	outputCodex("\n\nYori just smiled. <i>“Don’t worry, you’re still getting used to things. You’ll be thinking straight in no time, but until then, let’s get you into a uniform. Stand up.”</i>");
+	
+	outputCodex("\n\nSeconds before, she couldn’t lift an arm, and now, she climbed out of the seat and stood there, waiting expectantly. Her cheeks glowed warm as she felt a flush of delight at following orders. It left her thirsty for more. Her tail twitched. Please, she thought, guilty and furious at her own mind, do that again.");
+	
+	outputCodex("\n\nYori slid open one of the lockers. <i>“Put these on,”</i> she said, taking out a folded white bra and pair of panties.");
+	
+	outputCodex("\n\nOpal took them and flicked her tail as she squeezed them on. The panties wrapped up around her thickened hips. Once she’d nestled the straps right, they hugged her with a gentle squeeze. She didn’t have to check to know she’d gotten aug implants on her waist, too. She clipped the bra around her back and stood straight, chest thrust out. The cups and straps sat low on her chest, offering as much space for cleavage as possible.");
+	
+	outputCodex("\n\nDespite herself, Opal was purring. <i>“These outfits are ridiculous,”</i> she said.");
+	
+	outputCodex("\n\n<i>“These uniforms are regulation,”</i> Yori corrected. Opal’s cheeks only grew warmer. Yes, tell me what I have to wear, she thought. Next came a skirt and top. The skirt was skin-tight and elastic, so she only had to slip it up around her hips and straighten the waist. The hem barely even reached halfway down her thighs. Two strips of blue cut across the white, rolling down the sides of her hips. She felt like she was on display.");
+	
+	outputCodex("\n\nThe top was worse. It was made of the same glossy, stretchy material as her skirt. The neckline of the blue-trimmed, white shirt dropped all the way down to the bottom of her chest. In order to keep her breasts from falling out, a strip of translucent rubber, like a tube top, had been incorporated into it. The effect was to squeeze her breasts and hoist them up, while still showing off as much as possible.");
+	
+	outputCodex("\n\nOpal straightened the short sleeves and tugged down the hem, matching the stripes on her skirt to the ones on her shirt. <i>“Why are these so...sexual?”</i> she asked, gesturing toward her chest.");
+	
+	outputCodex("\n\nYori drew out a small nametag from the locker and rubbed it on top of Opal’s left breast. When she peeled back the plastic, ‘CDT Opal’ was printed onto her shirt.");
+	
+	outputCodex("\n\n<i>“So citizens will associate us with beauty and sexuality. It’s our own little mind control,”</i> Yori said.");
+	
+	outputCodex("\n\nOpal flushed as she imagined stopping some improper citizen on the streets, dragging him into an alley, and fucking him until he swore to uphold the principles of the Party. That was what Force and Power were all about. Two hot tremors ran through her and she purred loudly.");
+	
+	outputCodex("\n\nYori set a pair of black boots on the ground in front of Opal. <i>“Now, back to what I was saying. Anything your superiors tell you is the truth, understood?”</i>");
+	
+	outputCodex("\n\n<i>“Yes, ma’am,”</i> Opal said. She stepped into the boots, which lifted her up about an inch. They encouraged her to stand with a broader, more confident stance. Her mind was a mess of hot, sticky thoughts about Yori and the Defense Force and the Party.");
+	
+	outputCodex("\n\nYori held up two fingers. <i>“I’m holding up three fingers. How many do you see?”</i>");
+	
+	outputCodex("\n\nOpal’s brow wrinkled as she stared at her hand. No willpower she could muster, no different way of looking at it, let her see anything other than three fingers. What if she said something completely unrelated? She could...she just...");
+	
+	outputCodex("\n\n<i>“Three fingers, ma’am.”</i> Following orders felt so good. Too good. She stepped forward and grabbed Yori by the hips and pressed her mouth to the fox’s lips. Her swollen mound dampened her new panties. She stopped thinking and instead listened to the conditioning in her head that told her she loved being a Defense Force officer. Her love for Yori, though, was all her own.");
+	
+	outputCodex("\n\n--");
+	
+	outputCodex("\n\nThe patrol car banked around a high-rise and settled down below the awning of an abandoned gas station, a relic of a different time. ‘Unleaded: $54.99’ was the only part of the sign still standing.");
+	
+	outputCodex("\n\nOpal climbed out of the police car. Her impeccable boots seemed out of place against the dirt and gravel. Yori climbed out of the car on the other side and straightened her shirt. Opal’s eyes, now the same glistening blue augs as her partner’s, roamed from the rusted awning to the boarded-up store to the chain-link fence beyond.");
+	
+	outputCodex("\n\n<i>“Any sign of the drug dealer?”</i> Yori asked.");
+	
+	outputCodex("\n\nOpal turned to look at her partner. <i>“I think this is a black zone.”</i> She gestured around; no cameras. <i>“Shouldn’t have backup?”</i>");
+	
+	outputCodex("\n\nYori frowned and gripped her stun baton. <i>“Let me see that police report,”</i> she said, snatching the tablet out of the patrol car. As she pulled back, a pair of hands clamped around her muzzle and a set of thighs wrapped around her waist. She staggered back, growling in distress.");
+	
+	outputCodex("\n\nOpal looked up to see someone dressed in black assaulting her partner. Sudden intense rage burst inside of her and she went for her stun gun, only to find a hand clamped down around her wrist. She whirled around and snarled. Her attacker was a canine, covered by a black hooded sweatshirt. Opal turned to the side, fists ready, boots scuffing back and forth on the gravel.");
+	
+	outputCodex("\n\n<i>“Sorry, babe,”</i> her attacker growled. They whipped around and a thick boot crashed into the side of her face. Stars in white-and-blue Party colors popped in Opal’s eyes. She spun and fell to the floor. Cai’s hood had fallen off. Her long hair hung over one of her eyes. <i>“How’s it going?”</i> she called out to Thera.");
+	
+	outputCodex("\n\nHer answer came in the form of the vixen cop vaulting over the hood of the car, stun baton raised. Cai hit the ground with Yori on top of her. Her hand shot out to grab Yori’s wrist. For a few anxious moments, the club wavered in the air behind her back, then swung down and lodged its electrodes in Yori’s neck. With a sharp howl, she crumpled into a twitching mess of fox cop.");
+	
+	outputCodex("\n\nThera, a bit of blood dripping from her nose, rounded the car just in time to see Cai get to her feet. The jackal panted, the stun baton gripped tightly in her hand.");
+	
+	outputCodex("\n\n<i>“Good, you got ‘em. Sorry,”</i> Thera said.");
+	
+	outputCodex("\n\nCai wiped her sleeve across Thera’s upper lip. <i>“Don’t be. Now get the rope.”</i> Thera sniffed and nodded.");
+	
+	outputCodex("\n\nThey were going to break the brainwashing and get their partners back. If the Defense Force wanted to stop them, they’d have to break them all down into obedient drones.");
+	
+	outputCodex("\n\nThe Defense Force was more than happy to do so.");
+
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Fuck the System");
+}
+
+//Becoming One of the Girls
+public function becomingOneOfTheGirlsStory():void
+{
+	clearOutputCodex();
+	outputCodex(header("Becoming One of the Girls"));
+	outputCodex("By Kotep (<u><a href='http://kotep.xyz/'>http://kotep.xyz/</a></u>)");
+	outputCodex("\n<i>A fox girl gets made over by a trio of trashy rats. Explicit.</i>");
+	outputCodex("\n\n<i>“Hey, mine aren’t as fake as yours, barbie-tits.”</i>");
+	
+	outputCodex("\n\n<i>“That’s ‘cause I got all this muscle. Means it’s harder to have big fat shit on my body than it is for girls that just stand around all day.”</i>");
+	
+	outputCodex("\n\nMaria scoffed and stuck out her tongue at the rat girl leaning on the other side of the counter.");
+	
+	outputCodex("\n\n<i>“Besides, you’re just jealous you don’t get to come back from work all dirty and messy,”</i> Rita added.");
+	outputCodex("\n\nMaria couldn’t deny that was part of it. She loved when Rita came back with oil and grease staining her fur and smelling like the underside of a car. It was so fucking butch it drove her wild.");
+	
+	outputCodex("\n\n<i>“Nuh-uh. You’re jealous because you don’t get to see hot chicks trying on slutty clothes all day,”</i> Maria said.");
+	
+	outputCodex("\n\n<i>“With roommates like you Toni I don’t need any more slutty shit,”</i> Rita said.");
+	
+	outputCodex("\n\nMaria snickered at her friend across the counter.");
+	
+	outputCodex("\n\nTiffany’s chest was burning and her temples ached from how she clenched her jaw. Prude? Was that what they were calling smart girls now? She wasn’t a prude. She just hadn’t needed to ever look particularly good before. But now that her beau had been taken away, she was no longer willing to take it lying down. She could look sexy when she needed to, and she was going to prove it.");
+	
+	outputCodex("\n\nShe didn’t really know how to prove it, but she was ready to give it a shot, if it could mean getting Jason back. And so that was why the honors student, the wholesome blonde, the traditionally pretty vixen strode into ‘The B*tch Boutique’ (as written on the sign out front) with a resolute expression on her face.");
+	
+	outputCodex("\n\nThere were two rat girls standing on either side of the counter–one in denim cutoffs and an undershirt tank top with short hair and a few stud-style piercings, while the other had longer, slightly curly black hair, big ring earrings, and was snugly squeezed into a miniskirt and black leather tank top. Oh, and yeah, they were both pretty damn stacked.");
+	
+	outputCodex("\n\n<i>“–hold on. Hey girl, you need some help looking for something?”</i> the long-haired one asked.");
+	
+	outputCodex("\n\nShe stepped out from behind the counter and walked toward Tiffany. Just an inch or two above her cleavage was a gold necklace that said ‘Maria’ on it. The sharp tones of the girl’s Brooklyn accent nearly made Tiffany excuse herself and slip back out of the shop to reconsider.");
+	
+	outputCodex("\n\nBut no, she’d come here for a reason, and she wasn’t going to shy away, even if the girl in front of her seemed like trash. Not that she was being classist or anything, of course not, but...really.");
+	
+	outputCodex("\n\n<i>“Yeah, I do,”</i> Tiffany said. <i>“I’m trying to impress a guy I like. Some slut got into his pants and she thought just because I’m smart and independent that I can’t fight back. So I need to look good. I just...don’t have a lot of experience with that.”</i>");
+	
+	outputCodex("\n\nMaria looked the fox up and down while she talked, and slowly grinned a large-toothed smile.");
+	
+	outputCodex("\n\n<i>“Sounds like a plan. C’mon, let’s get started getting you a new look,”</i> Maria said.");
+	
+	outputCodex("\n\nThe other rat, the tough-looking one, gave Tiffany a sleazy smirk as she walked by. She wasn’t feeling one hundred percent sure about this any more. But she was going to do this, she was going to get Jason back.");
+	
+	outputCodex("\n\n<i>“So we’ve got to start at the beginning, right? Let’s see...go and put this on,”</i> Maria said.");
+	
+	outputCodex("\n\nIn her hand was a slim red strap of fabric, a thong for Tiffany to wear. She took it without showing a hint of hesitation and slipped back into the changing room in the back to put it on. She could swear there was a musky smell in the shop and the slow, drumming bass beat playing on the speaker system was bothering her. Hold it together, you do this now and you won’t have to do it again.");
+	
+	outputCodex("\n\nWith the thong on, she turned to the side, grazing her fingers lightly over the curves of her ass. She had never really taken a good look at it before. Her ass was kind of cute, and just a little bit naughty-looking with the thong wrapped around it.");
+	
+	outputCodex("\n\nShe reached down to pull her skirt back on, but as she was bent over, she heard something. Her ears perked up to hear it, her claws just touching the hem of her skirt. If Maria was picking out new clothes, she wouldn’t want her to keep putting her old clothes on. Maria was a girl anyway, it wasn’t like the rat would be trying to get a peek at her.");
+	
+	outputCodex("\n\nWith a little jiggle and bounce below her waist, Tiffany left the changing room, shoes and skirt left behind so that she wore nothing but her shirt, her bra, and the thong. Why did looking at Maria make her feel warm and mushy? Must be nervousness. That was definitely what nervousness felt like. No need to worry.");
+	
+	outputCodex("\n\n<i>“There you go! See, good-lookin’, you just have to start with a sexy foundation,”</i> Maria said.");
+	
+	outputCodex("\n\nHer hand smacked against one of Tiffany’s ass cheeks and the vixen let out a wet pant. Oh yeah, slut, do that again. Er. Tiffany would just ignore that thought.");
+	
+	outputCodex("\n\n<i>“So, a new bra next?”</i> Tiffany asked quickly.");
+	
+	outputCodex("\n\n<i>“Nah, you look like the sort that could go for something strapless. No bra for you,”</i> Maria said.");
+	
+	outputCodex("\n\nThey made their way through the tightly spaced racks to get to where the tops were hung. Tiffany stood back, feeling the occasional breeze brushing against her bare legs and nearly-bare ass. It made her shiver. She wasn’t sure whether that was a good shiver or a bad one.");
+	
+	outputCodex("\n\n<i>“Here we go! Might be a bit loose on you right now, but put it on and I can fix it up when we’re done,”</i> Maria said.");
+	
+	outputCodex("\n\nThe rat passed Tiffany a rather skimpy purple top that covered little more than a band of fur right around her chest–and in fact, it was laced up across the front a bit like a corset, just so that it could show off more cleavage.");
+	
+	outputCodex("\n\nShe was going to excuse herself to go to the changing room. She really had planned to. But she just stood in front of Maria. Tiffany pulled off her shirt, then her bra, discarding them on the floor next to her. She pulled the tube top on. She tugged it up and down, trying to get it to settle snugly. Maria reached in to help, lacing the front up more tightly for now, then checking by squeezing and lifting the cups of the firm but smooth and soft material.");
+	
+	outputCodex("\n\nMaria’s hands felt warm and tight against Tiffany’s tits. Her breasts, she meant. Those hands stroked lightly, the claws dragged along behind her pink paw pads, and it was sending wet, gooey feelings of delight throughout her. Her tail was swaying back and forth in the air. Beneath it on the floor, red and black and white fur was starting to collect as her tail shed it all off.");
+	
+	outputCodex("\n\nTiffany licked her lips lightly and flushed red beneath her fur as she realized she’d been leaning against Maria’s hands.");
+	
+	outputCodex("\n\n<i>“I’m, um, sorry,”</i> she said.");
+	
+	outputCodex("\n\n<i>“Whatever babe, let’s get your legs decked out,”</i> Maria said.");
+	
+	outputCodex("\n\nThe rat girl sat her down on a bench, then began to gather leg accoutrements, while Tiffany’s eyes grazed over the upper reaches of Maria’s thighs and the soft shifting of her breasts within her top. Staring at her gave Tiffany a lightheaded feeling, as if she was looking down at a yawning pit she was tumbling into. Tiffany’s growing front teeth clicked together. She reached down to loosen the knot across her chest, giving her b-r-e-a-s-titties a bit of slack, since they were getting particularly tight and damn it, she did it again, didn’t she! Such a dumb slut! Arrghh.");
+	
+	outputCodex("\n\n<i>“Alright, so we got fishnets,”</i> Maria said, holding the items up in turn, <i>“Some nice boots, and a miniskirt. Legs up!”</i>");
+	
+	outputCodex("\n\nTiffany was still committed to trying to out-seduce Jennifer and get Jason back. Despite the strange way she was feeling, she told herself to stick it through. She lifted up one leg, then the other, allowing Maria to tug up the fishnets and slide on the tall dark boots, then zip up the sides so they snugly hugged her legs. Then, she was pulled up onto her feet to get the tight glossy skirt up around her hips.");
+	
+	outputCodex("\n\nMaria gave Tiffany’s rounded and jiggly ass a tight squeeze. A warm sigh left Tiffany’s mouth. She was used to attention directed toward her sexy hindquarters but they were still so sensitive. Wait, no she wasn’t, and no they weren’t. That wasn’t supposed to be right, but it seemed like it was perfectly correct. This wasn’t good, something was going on. She had to ab fa menfh buh gumba.");
+	
+	outputCodex("\n\n<i>“You like it? Sometimes girls don’t use perfume so much but nothing gets someone going harder than a big fucking can of pheromones,”</i> Maria said.");
+	
+	outputCodex("\n\nA misty cloud drifted down onto Tiffany’s fur. She blinked her eyes quickly as they watered, but she was breathing it in deeply. Her nose was growing, shifting into a longer shape. Tiffany’s tail was completely naked now, and her pointed ears had been softening into rounded shapes.");
+	
+	outputCodex("\n\nShe felt things that she knew weren’t real. Jason, pinning her down, crashing into her with animal fury, fucking her in just the way she deserved it until her makeup was running and her pussy ached and then he’d turn her over and fuck her in the ass and pull her tail and make her squeal and...");
+	
+	outputCodex("\n\nWake up, damn it!");
+	
+	outputCodex("\n\n<i>“Yeah, smells good,”</i> Tiffany said, nearly out of breath.");
+	
+	outputCodex("\n\nShe could see that the boxes of perfumes were all labeled things like ‘Fuck’ and ‘Rutting’ and ‘Cunt’, which brought a blush to her cheeks. Maria tossed the bottle of Rutting back into its box, and set it on the counter. Rita had been waiting there, and now in her hand she held a tattoo needle.");
+	
+	outputCodex("\n\n<i>“Hey,”</i> Rita said, as the two of them came back to the register. <i>“How ‘bout some ink?”</i>");
+	
+	outputCodex("\n\n<i>“You’d look good with one! It’d toughen you up a bit, ha ha,”</i> Maria said.");
+	
+	outputCodex("\n\nTiffany didn’t want a tattoo. This was going to be just a temporary thing. Just clothes, and maybe a bit of makeup. Then she took a deep breath to steady herself. A breath practically sweet with the smell of Rutting. Visions and feelings flooded through her of how she might be treated if she got a tattoo, and she leaned over the counter, bent at her waist.");
+	
+	outputCodex("\n\n<i>“Maybe...just one. Like a tramp stamp,”</i> Tiffany said.");
+	
+	outputCodex("\n\nWhile the shape of her muzzle shifted subtly away from canine, Maria busied herself with putting together an assortment of makeup for Tiffany. Maria’s makeup and rambling also served to distract Tiffany from the jabbing needle down at the base of her back. Dark, almost purplish red lipstick was rolled across Tiffany’s lips, lips which felt tender and puffy, and which were learning to cope with her larger front teeth.");
+	
+	outputCodex("\n\n<i>“You know, you’re not as independent as you think. This guy left you for another girl, yeah? And you’re so desperate for his cock you’re going to show off to try to get him back. Sounds to me like you’re whipped.”</i>");
+	
+	outputCodex("\n\n<i>“But I’m smart, I’m just doing it to, uhm–”</i>");
+	
+	outputCodex("\n\n<i>“You know a lot but that don’t make you smart. You had to fucking ask me how to look sexy. That’s not so smart if you can’t do it on your own.”</i>");
+	
+	outputCodex("\n\nMaria brushed bright eye shadow along the brown fur that was what was becoming of Tiffany’s vibrant vulpine coat. Rita had lifted her needle from the girl’s back and was now starting to work around one of Tiffany’s arms.");
+	
+	outputCodex("\n\nTiffany didn’t protest, because it was little more than a faint ache to her. She was more concerned with her mind. Her resolve and reasoning began to topple around her, leaving her confused, worried, and reaching out for anything that could help. The things that she knew were growing hazy, dissolving, no longer important and therefore starting to fade.");
+	
+	outputCodex("\n\nRita traded the tattoo needle for a piercing gun, carefully punching holes in the thin membranes of Tiffany’s ears, then going so far as to pull out her tongue and give it a tidy piercing in the middle toward the front.");
+	
+	outputCodex("\n\nEarrings were slipped into the piercings in her ears and a stud put into her tongue. The two rat girls pulled back briefly, and as Tiffany rose up, she wanted to run. Her tits were overflowing her top even with the loosened knot. Her legs were thick and shapely and her wide hips flowed into a tight waist, beneath which was situated an ass that, while not having ‘juicy’ written across it, still immediately brought that word to mind.");
+	
+	outputCodex("\n\n<i>“I think I should...nnnh,”</i> Tiffany said.");
+	
+	outputCodex("\n\nHer thick thighs pressed together as Rita’s hungry gaze sent a shiver down her tail.");
+	
+	outputCodex("\n\n<i>“I should really guhhh,”</i> she tried again.");
+	
+	outputCodex("\n\n<i>“Get your hair done? Just what I was thinking! Right through here,”</i> Rita said.");
+	
+	outputCodex("\n\nMaria led them into a small room behind the cash register that had been separated by a curtain draped across the doorway. Rita gave Tiffany a push back into the salon chair that sat in the middle of the floor. Maria fastened a belt around her waist and wrists.");
+	
+	outputCodex("\n\nMaria rubbed her hands in an amber oil before starting to drag her fingers through Tiffany’s tightly trimmed head of blonde hair. Rita pressed a glass filled with a milky, slightly rubbery-smelling sort of drink to Tiffany’s lips and tilted it up to force her to drink. All of Tiffany’s squirming and whimpering amounted to nothing. She was trapped in the chair.");
+	
+	outputCodex("\n\nTiffany’s top was slowly squeezing her ribs back against her lungs until Rita tugged the knot completely loose, letting the laces spring out to their proper tension. Tiffany’s cleavage swelled out into the loosened top, no longer squished so tightly, and promptly set to filling up the slack with warm, heavy mounds a bit too firm to be completely real.");
+	
+	outputCodex("\n\n<i>“Calm down babe, we’re only helping out. Besides, if you’ve still got issues when we’re done...we’ll make sure you won’t have a problem with them,”</i> Maria half-reassured, half-threatened her.");
+	
+	outputCodex("\n\nAfter rinsing and drying out Tiffany’s hair, the chair was spun around so that she could get a look at herself in the mirror. Staring back at her were a coat of brown fur, bare hands and feet, a naked tail, a rodent-like snout, and two thick front teeth...she was a rat. And not just that, she had big, heavy tits squeezed into a little top and sexy-ass curves squeezed into a hot little miniskirt and wild, thick, curly black hair down past her shoulders. She looked like a rat slut! And that was bad, she added. Very bad. She needed to stop this. It wasn’t good. This had to stop. She just had to keep telling herself that.");
+	
+	outputCodex("\n\n<i>“Let me go you sick fucks! You’re both faggot dykes and I hope you eat shit! Let me out of this or I’ll gnaw your fucking tits off!”</i>");
+	
+	outputCodex("\n\nTiffany’s own rage scared her. The rat girls seemed more amused than anything else.");
+	
+	outputCodex("\n\n<i>“Guess you still got issues. Too bad. But trust me, you’re gonna feel way better soon,”</i> Maria said.");
+	
+	outputCodex("\n\nShe reached over Tiffany’s body and slid the thong out from underneath her miniskirt, tugging it down until it was around her knees.");
+	
+	outputCodex("\n\n<i>“Hit it!”</i> Maria said, stepping back.");
+	
+	outputCodex("\n\nTiffany didn’t even have time for another outburst. From within a cleft in the leather seat, a thick latex shaft sprung forward. She could barely move at all, but by the time it was plunging into her, the thought couldn’t even make it halfway through her mind to get away.");
+	
+	outputCodex("\n\nThe whole chair shook and jiggled with the force of the motor that drove it. Tubes mounted on the back swayed in time with the rhythm. Two small needles jabbed into the base of Tiffany’s spine, and the tubes pumped their liquid into her.");
+	
+	outputCodex("\n\nTiffany cried out. Her back was arched and her heels dug into the ground. Each thrust was hard enough to rock her body violently. Her vision was starting to blur into a colorful haze as the powerful drugs worked their way into her nervous system.");
+	
+	outputCodex("\n\nHer mind was being turned into a slurry of ideas, and then drained out of her with the incessant drilling accentuated by hands reaching in to tease and grope at her body. She couldn’t see Maria and Rita beside her. Everything was becoming flashes of shape and color and light, dissolved into their base components.");
+	
+	outputCodex("\n\nShe wasn’t a slut. This wasn’t her. She didn’t really like it. She was smart and collected and she was an honors student and she went to class all the time and she wrote poetry...");
+	
+	outputCodex("\n\nThe drugs that were turning her mind to mush were doing even more to her body. Her hips, barely fitting into her miniskirt, squeezed into the fishnets, making her walk an endless sexy strut putting her ass on display. Her breasts, swelling, the nipples bulging and tender, barely remaining decent inside the top, the outlines of the thick nubs clearly visible from the outside. Her lip, pouted, thick, glossy, begging for something to suck on.");
+	
+	outputCodex("\n\nShe wasn’t a slut. She just liked having sex. Was that wrong? Having sex with people you just met? If dressing like you were ready to fuck at the drop of a hat was wrong it was political correctness gone mad. She was hot and eager and she loved tits and pussies and fucking all the different sorts of ways.");
+	
+	outputCodex("\n\nHer eyes were unfocused. Drool was nearly dripping off her deliciously plump lip. She was getting fucked and fucked and fucked over again. The mechanical nature just drove her own passion even harder. She was pushing back now. She was biting her lip and lifting her hips and moving with the quick rhythm of the chair. She was another part of the machine, the machine that could go on endlessly fucking and she wouldn’t care.");
+	
+	outputCodex("\n\nBut it was going to stop. As Tiffany’s pace shuddered on with wild power, Rita slowly turned down the machine’s speed. Each thrust drew more out of her, reaching deep into her, hooking all those dreams and hopes and thoughts inside of her and tearing them out. All of those things like hoping to get a good degree and marrying Jason, the things that she didn’t need any more because she was becoming a brand new slut.");
+	
+	outputCodex("\n\nThere were still huge gaps though, but who else would fill them in but Maria and Rita. They were so like her, after all. Her mind reached for anything to plaster over the gaps, and the two trashy rat girls were still fresh in her shattered thoughts. And then it was sealed. Muscles twisting, tail thrashing, head thrown back, the bright, wonderful, painful, white-hot, dripping wet orgasm washing over her, washing around her, and washing her away. And then, Tiffany was gone. The rat girl slumped into the chair, out cold.");
+	
+	
+	outputCodex("\n\n<i>“How the fuck does that work though?”</i> Tina asked.");
+	
+	outputCodex("\n\nA pouty scowl was stretched across the rat girl’s face.");
+	
+	outputCodex("\n\n<i>“You can graduate from more than one thing,”</i> Rita explained. <i>“Just ‘cause someone’s graduating doesn’t mean it’s from college.”</i>");
+	
+	outputCodex("\n\n<i>“And...college is still school even though it doesn’t have school in it like high school? Shit, no wonder it takes geniuses to go there.”</i>");
+	
+	outputCodex("\n\n<i>“You being a bimbo doesn’t make everyone else geniuses,”</i> Rita said.");
+	
+	outputCodex("\n\nTina snickered and Rita joined in, the two of them starting to grind their chests together, feeling the firm mounds squeezing against one another and enjoying the sensation until they were interrupted.");
+	
+	outputCodex("\n\n<i>“What’s up?”</i> Maria asked.");
+	
+	outputCodex("\n\nShe carried a towel and ducked back out from behind the curtain. There’d been quite a lot to clean up, but she couldn’t argue with the results. No one could tell that Tina hadn’t always been a rat.");
+	
+	outputCodex("\n\n<i>“Tina says she fucked some high school kid ‘cause she thought she was in college,”</i> Rita said.");
+	
+	outputCodex("\n\nShe winked at Maria, and Maria grinned.");
+	
+	outputCodex("\n\n<i>“Hey Tina, weren’t you talking about some guy who started talking shit about you when he got some prissy bitch to fuck?”</i> Maria asked.");
+	
+	outputCodex("\n\nMaria propped herself up against the counter, while the airheaded rat lifted a claw to her lip.");
+	
+	outputCodex("\n\n<i>“Oh yeah, that girl!”</i> Tina said.");
+	
+	outputCodex("\n\n<i>“You know what’d really piss him off?”</i>");
+
+	outputCodex("\n\n<i>“Ohh, god!”</i>");
+
+	outputCodex("\n\nTina licked her lips as she sat up in the driver’s seat of the car. She tossed her hair and clicked her tongue stud against her teeth.");
+
+	outputCodex("\n\n<i>“Told you,”</i> Tina said.");
+
+	outputCodex("\n\nJennifer felt squeezed inside her clothes after what was quickly becoming a blur in her mind. It had been hot and fast and dirty, but the stud and the spontaneity and the sheer wildness swept her away.");
+
+	outputCodex("\n\nThe cougar girl was pulled into another needy, desperate, hungry kiss. But soon Tina’s lips were pulling away, and the rat girl’s hands were coaxing Jennifer’s head down toward her bare chest, where her fangs nipped and her lips wrapped and sucked and her eyelids fluttered as Tina’s tail teased her.");
+
+	outputCodex("\n\nIf Jason wanted to fuck with her, she’d just have to fuck with his girlfriend. Just tearing her away from him would be great, but maybe Maria would be up for another makeover with Tina’s newest lover.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Becoming One...");
+}
+
+//||||||||
+public function eightClicksStory():void
+{
+	clearOutputCodex();
+	outputCodex(header("||||||||"));
+	outputCodex("By Kotep (<u><a href='http://kotep.xyz/'>http://kotep.xyz/</a></u>)");
+	outputCodex("\n<i>Faceless latex drones convert a hapless photographer in an abandoned hospital. Explicit.</i>");
+
+	outputCodex("\n\nEight clicks echoed through the dead hospital.");
+
+	outputCodex("\n\nThomas raised his head. His ears rose too, stretching to hear the sound again. To him, rusted gurneys and rubble-strewn beds were photogenic, not eerie, and an odd noise was cause for investigation, not panic.");
+
+	outputCodex("\n\nHe pulled his camera off of his tripod. He thought it might be a wild animal, or some sort of scavenger. Whatever it was, he was going to get a picture of it.");
+
+	outputCodex("\n\nHe walked back across the ground floor of Bellvue Hospital, closed down and left to steep in its own formaldehyde for the last thirty years. There had been a quarantine then, a panic–but it was all before Thomas’s time. The hospital had never been sealed up airtight. If there were any pathogens left, simply going inside couldn’t hurt.");
+	outputCodex("\n\nAnd if he did get sick, it would be suffering for his craft. No one else would have pictures of the hospital in decay. Ceiling tiles drooped from the weight of disuse and moth-eaten sheets lay tossed aside on rusted bedframes. It was heaven for the photographer-cum-urban explorer.");
+
+	outputCodex("\n\nThomas took two steps back, dropped to one knee, and held his camera close. He took in the stairwell, surrounded by walls with chipping paint, debris brushed into the corners like sand piling up in some forgotten temple. His mind already ran through what he’d be doing to this shot. Punch up the saturation, really bring out the chipped green. Get a good vignette and wash out the orange.");
+
+	outputCodex("\n\nEight clicks, again.");
+
+	outputCodex("\n\nHe stood back up and brushed out his unruly hyena-mane. He brushed his fingers against the paint and crackled the chips underneath his fingers. The lichen-crinkled paint made the shape of the walls slightly uncertain. He strode up the first flight of stairs to a landing, then turned to face an unruly mess of hospital equipment blocking his path.");
+
+	outputCodex("\n\nMattresses and furniture and stretchers were jammed together, wedged so tightly that he could wrench on the corner of a gurney and it only shifted a little.");
+
+	outputCodex("\n\nNow Thomas was curious. Downstairs he had seen disarray, things left half-done, the unordered mess of individual panic. Nothing had been intentional, which gave his shots a petrified urgency of the heat of the moment left to decay. The chaos here was purposeful and practical. It kept whatever had been on the ground floor trapped there, away from the safety of the upper floors.");
+
+	outputCodex("\n\nHis thoughts were buzzing with conspiracies of doctors, doomed wards, frantic rushes to barricade the stairs from whatever danger had crept up from the ground floor. Thomas’s dark muzzle was split by his smile while he tore down the makeshift wall. What about squatters? Or maybe drug runners, trying to keep the homeless from stumbling onto their base of operations?");
+
+	outputCodex("\n\nThe racket of steel poles clattering down stairs made it impossible to hear further noises from the second floor. With each piece taken away, the barricade sagged further under its own weight, until Thomas could crouch and scoot through the open gap between a mattress and the ceiling.");
+
+	outputCodex("\n\nThomas swung open the door and his footsteps squeaked. The floor was polished to such a mirror shine that he could see himself when he looked down. Fluorescent lighting ate up his shadow, leaving nothing but a dark haze beneath him. He looked up to make sure. Yes, the lights were on.");
+
+	outputCodex("\n\nThe mustiness of the air downstairs, the embalming-smell, was gone from the air. It was clean and just cool enough to keep him from getting comfortable. The scent of bleach mingled with nitrile rubber. It was a scent gently hostile to life.");
+
+	outputCodex("\n\nThe walls were intact. The paint was evenly-coated to a fault and chalky to the touch. There wasn’t a sign of dust or mold or any age at all beyond the door to the stairwell.");
+
+	outputCodex("\n\nThomas remembered himself. He raised his camera, and a flash filled the hall. His photo opportunity had become a mystery, but it all felt like adventure to him. The squeak of his boots filled the hall. He left behind a few footprints, his first uncertain steps out of the door, then his turn to the right, each step fainter as his shoes’ soles were scrubbed down to clean black rubber.");
+
+	outputCodex("\n\nA break in the monotonous walls came up ahead of him. A pair of signs sat on the wall, one pointing to the left and one to the right. The signs said nothing. On each of them, inscribed in white against the gray plastic, were eight narrow lines, each evenly spaced, each identical.");
+
+	outputCodex("\n\nThomas raised his camera, adding a picture of the signs to his photoessay. Investigative photojournalism piece? He looked at his camera’s screen, then up to his right. He thought he’d seen movement out of the corner of his eye.");
+
+	outputCodex("\n\nWhat he could make out was a white figure standing next to a desk with its back to him. Nurse uniform, he guessed from the color. She hadn’t noticed him yet, so he placed the camera against his eye and curled his lips and squeezed the shutter.");
+
+	outputCodex("\n\nThe camera beeped. In the corner of his view, a battery icon blinked. In the center of his view, the nurse turned toward him. He nearly dropped his camera.");
+
+	outputCodex("\n\nA muzzle pointed in his direction, but there were no eyes to look for him. Even the suggestion of eyes, as if eyes had been covered up, was gone. Nor was there any sign of nostrils or lips or even a mouth or teeth at all. It was a sightless, senseless thing. Cave creatures sprung to Thomas’s mind, bleached by their secluded habitat, degenerating without the need for eyes or pigments.");
+
+	outputCodex("\n\nThe nurse-thing was white from head to toe, a uniform color with a glossy sheen. There was no fur, only a sleek membrane that coated its body like bare skin.");
+
+	outputCodex("\n\nIts boots squeaked against the floor. It was walking toward him. Thomas’s mind was blank. He didn’t know what to think. Fear twisted at the pit of his gut and flooded up to fill his mind.");
+
+	outputCodex("\n\nThe thing let out eight clicks, identical and evenly spaced.");
+
+	outputCodex("\n\nThomas ran. Identical, featureless walls whipped by, but every time he looked back, it was there. It was clicking. It was running after him.");
+
+	outputCodex("\n\nHe took a corner at a sprint. His legs shot out and he came down onto his hip.");
+
+	outputCodex("\n\n<i>“Fuck!”</i>");
+
+	outputCodex("\n\nHe clutched his side and his leg buckled under him. It wasn’t broken, it just hurt. He needed a moment. He shoved open the nearest door and limped into the darkness.");
+
+	outputCodex("\n\nHe saw nothing once he closed the door, but he heard every sound his body made. He heard the quiet rushing of air from a vent. He thought he could hear footsteps and clicking outside.");
+
+	outputCodex("\n\nA soft whirr glowed in his ears, lighting up his hearing. He turned, facing toward the source, then felt a prickling heat wash over his fur, like he’d just held his hand in front of his camera’s flash.");
+
+	outputCodex("\n\nHis camera was outside. Damn it!");
+
+	outputCodex("\n\nA colorless glow cast monochrome light across the room. He could make out the silhouette of the door against the stark walls. A large machine arched over him; he was facing a set of blank panels, with a second set of panels behind him. Along one wall, a white backlit board stretched across the room.");
+
+	outputCodex("\n\nHe flinched at the sound of plastic crinkling beneath fingers. Two footsteps, and the sound came again. A furless, glossy figure stood in front of the board. It had sterile white skin and a featureless body. Its silhouette made it look feminine, but Thomas had a hard time thinking of it as anything but an object.");
+
+	outputCodex("\n\nHis eyes were fixed on it as he walked. Slowly, curling each foot down as he stepped, silent but for his heart.");
+
+	outputCodex("\n\nHanging on the board were a set of x-rays. His own x-rays. He glanced behind his shoulder; the door was about ten feet away. The thing clicked to itself–just like the other, eight clicks, identical and even like they were produced by a computer. It studied the x-rays without looking at them. Its sightless face faced forward, looking at neither image, clicking to itself.");
+
+	outputCodex("\n\nThomas grasped the door handle and turned it. The latch chattered into the silent room and he froze. The thing had stopped clicking. Thomas couldn’t tell if it was looking for him. His knuckles ached and he felt like he was going to collapse.");
+
+	outputCodex("\n\nIt reached for the x-rays and pulled them off the board.");
+
+	outputCodex("\n\nThomas slipped out through a crack of light, then eased the door shut again. He glanced toward the floor for his camera, but it wasn’t there. The nurse thing had snatched it, he assumed. He set his teeth together. All the money and care he’d put into the camera kept him from running downstairs. He’d take his camera back. Then he’d run the hell out of here.");
+
+	outputCodex("\n\nHis mouth hung open and he breathed slowly enough that he hardly made a sound. He took careful steps to avoid the squeak of rubber against tile. On top of an empty desk fifty feet away, squatting like a swatted fly, was his camera. Next to the desk were a pair of nurses. Their muzzles pointed past each other and they stood without moving, but by the measured clicking, he knew they were aware.");
+
+	outputCodex("\n\nFifty feet became twenty. He stared at the nurses, studying them for a motion that suggested they had noticed him, for a hesitant pause in their clicks, anything.");
+
+	outputCodex("\n\nTwenty feet was ten, and now five. The weight of fear had lowered him into a crouch. He reached out, stretching for the strap.");
+
+	outputCodex("\n\nA white hand closed around his wrist. The nurses didn’t turn to look at him, but one of them had a stone-firm grip on his arm. He jerked back, but the grip didn’t waver.");
+
+	outputCodex("\n\nThomas had been in fights before. This was something he could handle. Teeth bared, shoulder twisting, he aimed a jawbreaker right at the nurse’s muzzle. His fist plowed into its face. There was no crunch. There was no pain of bone on bone. Its muzzle wobbled and gave way and bounced back and then the arm the nurse held onto was forced behind his back.");
+
+	outputCodex("\n\nThomas hissed at the pain twisting between his shoulder and elbow and wrist. The nurse’s fingers split. The white peeled back like shredded skin. Oily black ooze splashed onto Thomas’s wrist. He kicked and grasped for the nurse’s throat, but his claws dragged straight through the white flesh and into the black tar beneath.");
+
+	outputCodex("\n\nThe other nurse grasped his arm and forced it down against his back. Both arms were encased in the sticky tar that squeezed into every crevasse and glued it all together. It bonded to itself most of all, so when they pressed his arms together, his arms stuck that way, no matter how he twisted or worked his claws or pulled and pulled and pulled.");
+
+	outputCodex("\n\nThe nurse’s skin sealed up as quickly as it had broken. One at his shoulders, the other at his feet, they lifted him kicking and shouting. No matter how he struck them, their bodies bounced back–the worst he could do was push them away, but with his hands bound and legs held, he couldn’t even do that.");
+
+	outputCodex("\n\nHe could only watch the fluorescent lights go by above him. Each was identical. Not one flickered. Not one bulb was different. He wasn’t sure which direction he was going or how far it had been. The hospital itself had grown degenerate, its features smoothed over with a cancerous sameness that defied his internal sense of direction.");
+
+	outputCodex("\n\nThey stepped through a doorway, and then the nurses laid him down onto a narrow bed. He jerked violently, but the nurses grabbed his shoulders and held him down and forced a needle into the soft flesh of his neck. The burning pressure of an injection flared up for a moment, then he was loaded into the small, circular space inside of a large and bulky machine.");
+
+	outputCodex("\n\nNumbness started at the tips of his toes and along his fingers. He could still move, but any fine task left him with numb fingers uselessly groping at the inside of the tarry bonds that held his arms.");
+
+	outputCodex("\n\nAll around him, the machine whirred with a quiet, large noise. His fur prickled as if it had been magnetized, standing on end with a chorus of tiny tingling sensations. His back arched and his chest rose, pulled by powerful forces that worked beneath his skin. Flesh swelled out into his chest. His skin was tender, his nipples swollen, and an ache pounded through his whole torso.");
+
+	outputCodex("\n\nAnother surge rushed through the machine and into the air around him. His gasp was strangled by the pressure blossoming against his chest. His shirt tented out; his flesh was achingly hot and stiff and swollen, He had breasts. They tugged at his shirt and rubbed at the fabric until they were tender and swelled again, large enough to overflow his cupped palms, wobbling atop his ragged breaths.");
+
+	outputCodex("\n\nThomas pulled at his bonds. A new urgency had filled him. The resilient rubber stretched and returned back to normal. He pulled again, holding his arms as far apart as he could. A hole split through the middle, through the membrane that connected his arms. His muscles gave way, and he was forced to relax them for a moment.");
+
+	outputCodex("\n\nA third time the unseen energy swelled through him, forcing mass into his chest. He dragged his arms apart. They trembled from the strain. His nipples dented his shirt visibly, and they ached between the cool air and his body heat. Rubber snapped beneath him and his arms flew free, knocking into the walls of the machine. They were coated by slick, glossy latex, a thin coat that smoothed out the details and left his fingers sleek and soft and rubbery.");
+
+	outputCodex("\n\nHe pushed at the walls and scooted backwards along his spine. Kicking open the small door, he scrambled out, falling to the floor, one hand wrapped across his aching chest, the other helping push him to his feet. In front of the large monitor displaying his brain scan, the two nurses stood, motionless and quiet. Were they studying his brain or sleeping? He had no time to worry about that.");
+
+	outputCodex("\n\nThe muscle relaxant sent his legs flopping and arms wobbling uncomfortably. He could move, but he couldn’t stop his limbs when he wanted to, so at best he could stagger drunkenly down the hall, trying to keep his shirt from chafing his breasts. With his other hand, he grasped a corner and shoved himself into a supply closet.");
+
+	outputCodex("\n\nThomas pried each of his fingers free from the next. Once the membrane was broken, the rubber eased back into a slick, skintight shape that looked almost natural. He rubbed his latex-coated claws through his mane. Each of his claws had been encased, preserving them but also dulling them into rounded rubber points.");
+
+	outputCodex("\n\nHe grabbed at his shirt and threw it up over his head and down to the floor. His breasts hung against their own weight in the air, rising and falling with his breathing.");
+
+	outputCodex("\n\nThomas wiggled his fingers, then touched each fingertip to his palm. The relaxant was wearing off. He was going to make a run for the stairs. Forget his camera, forget everything other than escaping.");
+
+	outputCodex("\n\nHe threw the door open and he ran. Which way didn’t matter; he had to find stairs eventually. He clutched awkwardly at his breasts, to keep them from bouncing and wobbling. He was out of breath and felt dizzy. Hadn’t he passed these doors before? Three doors, then a sign with eight evenly spaced vertical lines. He was going in circles and yet he wasn’t even turning.");
+
+	outputCodex("\n\nHe took a right on instinct and ran straight into white rubber.");
+
+	outputCodex("\n\n<i>“Get off!”</i> he howled,");
+
+	outputCodex("\n\nThomas snapped out at the nurse with his boots. The two of them had him up in the air, then shoved him down onto a stretcher. He immediately wrenched to the side, grabbing at the railing. A thick leather strap pulled his ribcage down against the bed. Another strap held his wrists and waist down. A third pinned his ankles to the stretcher, and a fourth held his shoulders down.");
+
+	outputCodex("\n\nOne nurse pushed the stretcher while the other walked beside it. Thomas snarled and gnashed his fangs and jerked his wrists, but the leather straps held tight. The nurses clicked at one another, always eight identical clicks, always in perfect rhythm.");
+
+	outputCodex("\n\nThomas clenched his teeth and balled his hands into rubber fists. There had to be a weak spot in the straps. If he could get one hand free, maybe he could free himself.");
+
+	outputCodex("\n\nA pair of double doors swung open. The air was colder here and the lights more focused. The floor and walls were hard ceramic tile. Behind a low wall, about six feet high, the seats began. There were four rows, each higher than the next, in nested semicircles around the operating area. The seats were filled. In each of them sat a nurse, with its face pointing blankly outward, as if they were all staring straight ahead and not at Thomas being wheeled in.");
+
+	outputCodex("\n\nNot even gallons of bleach had washed away the smell of vivisection. It was the smell of primal fear seeping out from between the tiles. Thomas could have been blindfolded, and he would have known he didn’t want to be here.");
+
+	outputCodex("\n\nThe nurses stopped. His stretcher was in the middle of the operating area. Another nurse stood by, waiting to receive him. A surgical mask was stretched over its unmoving muzzle in a metastasized imitation of medical procedure.");
+
+	outputCodex("\n\nThomas started to laugh.");
+
+	outputCodex("\n\nThe surgeon clicked at the assembled group, neither moving to face its audience or its patient. Eight clicks, a short pause, eight more, again and again. Thomas raised his head. His x-rays and CAT scan hung on a blackboard.");
+
+	outputCodex("\n\nHe howled with laughter and twisted his hands until his wrists hurt and his skin felt like it would tear. He thrashed, but the stretcher’s weight kept him from tipping over.");
+
+	outputCodex("\n\nHis laughs couldn’t drown out the surgeon’s clicking. Tears squeezing the corner of his eyes, fighting the sobs clinging to his larynx, he fixed the surgeon with a grin.");
+
+	outputCodex("\n\n<i>“What’s up, doc?”</i>");
+
+	outputCodex("\n\nThe surgeon didn’t even pause, but Thomas burst out into cackles so forceful that he pounded his heels against the stretcher and nearly lost his breath.");
+
+	outputCodex("\n\nThe surgeon lifted a black mask from a rolling desk. It held the mask as if to display it for a moment, Thomas rolled his eyes back to get a good look at it. A broad brow and a thick muzzle set it apart from the gracile nurses’ features, but apart from the round rebreathers on either side of the snout and the round, opaque lenses for eyes, it had the same simplified, regressive form as the nurses. It was a face without details.");
+
+	outputCodex("\n\nThomas slammed his shoulders back against the stretcher. His hysterics broken, his breaths were short and clipped and his voice wavered on the edge of a sob.");
+
+	outputCodex("\n\n<i>“Get that away from me you quack!”</i> he snapped. Thomas snickered and grimaced.");
+
+	outputCodex("\n\nThe mask smelled rubber and cold and sterile.");
+
+	outputCodex("\n\nThomas’s voice grasped at defiance. <i>“No, fuck off!”</i>");
+
+	outputCodex("\n\nHis chin and snout were trapped on the inside of the tapered muzzle. He couldn’t stretch the latex enough to open his mouth, nor could he force the mask back off his face. Rubber pushed against his skin, smoothing his fur down, forming a tight seal. A rubber nub, like a short nozzle, popped into his mouth. It fit between his top and bottom teeth and he could do nothing but bite down on it.");
+
+	outputCodex("\n\nHis ears flicked. The respirators hissed softly as he breathed. He tried to speak, but with his jaw and lips and tongue all locked, all that escaped the respirator was an undifferentiated hissed moan.");
+
+	outputCodex("\n\nThomas slammed his head into the stretcher. Sparks popped and his bones ached but the mask sat firmly on his face no matter how much he tossed himself back and forth.");
+
+	outputCodex("\n\nThe rubbery tar on his upper arms seeped upward, pore by pore, pulling itself along Thomas’s skin one miniscule pseudopod at a time. It pulled his skin taut, filling in the creases and swallowing up his fur. The same tightness and prickle and push ran back along his cheeks and his jaw.");
+
+	outputCodex("\n\nThe surgeon produced a brass nozzle connected to a velvety red, woven hose. Thomas looked up at it behind the lenses of his mask, letting out a few ragged hisses through his respirator. The nozzle pressed into the front of the mask, sliding through a tight hole and popping its tip into Thomas’s mouth. The cool metal ring touched his immobile tongue.");
+
+	outputCodex("\n\nThe taste of herbs flooded his mouth and his eyes watered and he nearly gagged. It was as if a spice rack had just exploded on the tip of his tongue. He inhaled to clear his mouth, but it only brought hot fumes seeped in spice and smoke.");
+
+	outputCodex("\n\nSweet grass-taste swirled into his mouth and down his throat. He breathed saffron and exhaled golden clouds. Latex oozed through his scalp and swallowed up his hair and squeezed the life out of his cheeks. It locked his elbows and chilled his veins and stilled his pulse.");
+
+	outputCodex("\n\nThomas still squirmed but it was disoriented and anxious. His claws slapped at the bare metal stretcher. His toes curled and he kicked his feet. The surgeon moved down his body and began examining the soles of his shoes. Every blood vessel ached and his body told him to breathe breathe breathe and he did and all that came was more saffron.");
+
+	outputCodex("\n\nHis head bobbed and a guttural croak came from his respirators, accompanied by wisps of spice. Every motion felt like he was swimming, like he was tired and drowsy and just wanted to close his eyes and...");
+
+	outputCodex("\n\n...and he gasped deeply. Spice flooded into his lungs, and he breathed out. Warm tears warbled in the corners of his eyes. He felt giddy like he’d slipped half-out of his skull and couldn’t quite fit back in. He wore his own body like a baggy costume.");
+
+	outputCodex("\n\nLatex still prickled through his skin, plucking at his biceps and trickling between his shoulderblades and clinging to his shins. He lifted his masked face, squinting through the lenses–yes, his shoes were coated with latex reaching halfway to his knees. His arms still showed the ripple of muscle running through them–even clearer now, with no fur to hide the form.");
+
+	outputCodex("\n\nThe operating room was quiet and empty. A saffron hiss fogged up the air as he turned his wrists. He propped himself, heel and shoulder against one side of the stretcher. With his left side focused on keeping him still, he tugged with his right arm against the straps. He felt the leather give way. One more tug, and his right hand was free.");
+
+	outputCodex("\n\nThe straps clattered to the side as he pushed them away and scuttled down to his feet. A light squeak of wheels met his latex-coated ears–a rolling hook for an IV drip was handcuffed to his wrist. In lieu of an IV, an elegant piece of molded glass orbs and silver joints hung like an ornament from the hook.");
+
+	outputCodex("\n\nHe grasped the hose that ran to his snout. The other end connected to the hookah. Thomas breathed and it burbled softly.");
+
+	outputCodex("\n\nWhile the nozzle in his mouth seemed to be lodged there, he grasped the end of the tube on the hookah and pulled it free. He let out a small hiss of triumph, then began to gag and feel weak. The feeling was a new one, but one he knew well. He’d just felt it–the feeling of suffocation. He sucked in a big breath, but the air might have been car exhaust for all it did to his lungs. Clutching at the hook, he jammed the hose back on and soothed his chest with gulps of saffron smoke.");
+
+	outputCodex("\n\nCompared to his old shoes, the new rubber soles he walked on were thicker. These pushed him up off the ground and lifted his heels slightly. He had the tread marks of combat boots and a hip-swinging gait. His hookah, the only thing that was keeping him breathing, rolled with him every step he took.");
+
+	outputCodex("\n\nHe wasn’t going to stick around the operating room to see what they wanted to do next. As he pushed through the doors, he got used to putting his weight further forward, keeping himself balanced on the balls of his feet. The latex wedge that kept his heels in the air slowly thickened as he adjusted to the new center of gravity.");
+
+	outputCodex("\n\nThomas held onto the rolling hook with one hand, breathing in sugary spice and breathing out tiny clouds that trailed along behind his head. The handcuffs would never come off. Even if he got out of this hospital, how was he going to readjust to normal breathing? He would need a hookah by him all the time.");
+
+	outputCodex("\n\nHe stared at a set of three signs on the wall. Each of them had an arrow, and each of them had eight identical, evenly-spaced lines on it where letters should have been. His knees gave out, and he slumped down onto the floor. His sobs were strangled by the mask, but a sharp, rhythmic hissing accompanied the heaving of his shoulders.");
+
+	outputCodex("\n\nThey had taken away his clothes and trapped him in latex gloves and boots and given him breasts like some kind of freak. The prickling expansion of the latex inched over his chest, toward the mounds that bounced with every motion of his body. He reached to touch his muzzle, and despite the layer of rubber on his hands and on his snout, it almost felt like he could touch skin to skin–both layers were surprisingly thin for their resilience.");
+
+	outputCodex("\n\nOne paw grasped between his legs, where his shaft hung sadly, tip touching the cold floor. The other slipped around one of his breasts, feeling its weight and size to judge just how big it was. His fingers squeezed his shaft gently to feel it stiffen in his hand in response. His claws trailed along one of his swollen nipples, making it crackle with the ache of overstimulation.");
+
+	outputCodex("\n\nFoggy breaths puffed out of his respirators. His hand moved along his shaft slowly, holding tightly, legs spread, hips gently twisting. His other hand moved across his bosom with an eagerness he had always reserved for others, never for himself. With his smooth, glossy hands, it was as if someone else was squeezing and twisting him beneath their latex paws.");
+
+	outputCodex("\n\nLatex tugged itself up around his thighs and inched over his torso, continuing its gradual spread while he rubbed faster and groped and stroked and rubbed his breasts and tweaked his nipples until his heart was pounding and his cheeks were flushed and he sucked down big breaths of hookah smoke. He needed this now, needed it to relieve the pressure in his head and all the way down to the pit of his stomach. His rubber heels squeaked against the floor.");
+
+	outputCodex("\n\nHe was cumming. His nipples were slowly swallowed up beneath the slow march of latex, and his shaft was pulsing and yet completely dry. He couldn’t stop. He needed that release. He needed to feel that rush, the chill that came afterward.");
+
+	outputCodex("\n\nEverything else took second stage now. He needed to get this out. He pumped his paw along his shaft quickly, feeling the fur on his loins prickle as latex swept over them. His shaft pulsed, straining at an orgasm but still producing nothing. There was no burst of numb bliss, just intense need without relief.");
+
+	outputCodex("\n\nThe latex that washed over his groin was tight. It clung to him and pushed at him and swallowed up his shaft mid-stroke, still on the verge of an orgasm that refused to come. He kept rubbing, but the shaft was slipping out of his hands. It retreated back into a smooth and featureless crotch, defined only by the gentle bulge of pubic muscle. He...she pressed her fingers into it and the flesh spread open, pulling back at a tiny seam too small to see, revealing a damp and featureless vulva.");
+
+	outputCodex("\n\nThomas tugged inadvertently at the hose that ran to the hookah and bumped the base with her smooth and sleek and thickened black-coated hips. The wheels rolled out from beneath it and it tipped over, landing square across the latex-covered part of her back. Her skin turned thick and gooey and gaped open, wrapping black tendrils around the hookah’s body. Agitated hisses spewed from her respirators until the whole hookah had sunk into her body, leaving just a large bump along her spine, from which the red hose ran, up over her shoulder and into her mouth.");
+
+	outputCodex("\n\nSharp hisses clicked out of her respirator as she started to laugh and cry at the same time. This whole place was insane. She’d passed out in a puddle of formaldehyde hours ago and this was just a fever dream. Maybe she hadn’t even gotten out of bed this morning. But no matter how hard she convinced herself, she was still sitting against the hospital wall, still snickering through a gas mask.");
+
+	outputCodex("\n\nShe pushed herself onto her feet and found herself a few inches higher. All of that extra height was in her heels. Her shoes, if she could call them that now that they seemed to have merged with her skin, still had thick rubber nubs for gripping the ground, but the way that her heels sat perched six inches above her toes made them far more fashionable than utilitarian.");
+
+	outputCodex("\n\nEach step pitched her hips to one side, then the next. She tucked the snout of her mask as far down as she could make it point, looking at the latex closing in around her bare belly. Around the bare fur was an area of bubbly, wrinkled latex, like rubber sealing up a crack in the road or like the surface of a tar pit. Beyond that ring, where her fur was completely absorbed and her pores filled to the brim, it was smooth and glossy enough to reflect the halls around her and hint at powerful muscle underneath.");
+
+	outputCodex("\n\nShe giggled into the mask, which turned the noise into a staggered hiss. They had feminized her to weaken her, she assumed, but she was a hyena. She was probably stronger than she was as a guy. She stopped, her boots clicking together. She raised one arm, made a thick fist, and flexed. Beneath the black latex her muscles swelled lead-thick. A triumphant puff of saffron smoke spewed from her respirators.");
+
+	outputCodex("\n\nThe sound of tendons tightened and tuned and plucked echoed through her bones and up to her ears. With her black-wrapped fingers, she prodded her stomach, now enveloped in latex. Small spines ran up along her waist from hips to ribs, and by the second they were tightening. Her breaths had to come more shallowly. Her body had already incorporated a hookah into her anatomy; a corset was no surprising feat after that.");
+
+	outputCodex("\n\nThe figure she cut was broad but feminine, stocky and rounded out around the hips and chest and legs so that her muscles worked with her figure, rather than fighting it.");
+
+	outputCodex("\n\nShe clicked out a snicker as she wondered what her girlfriend would think when she got out of here. She held onto that thought as she wandered through hall after hall. She had been walking in a straight line for ten minutes. She imagined knocking on the door of her apartment, announcing to her that she was home with a big puff of smoke, and seeing her girlfriend’s face.");
+
+	outputCodex("\n\nOr, actually, she didn’t imagine her girlfriend’s face. The shape of her was there, the memories of a relationship leading back a month or two, but she couldn’t for the life of her say what her girlfriend looked like.");
+
+	outputCodex("\n\n’Her girlfriend’, because she couldn’t remember what her name was either. There was no longer an expression beneath the opaque black lenses of the mask’s eyes, but if there had been, it would have been one of creeping dread.");
+
+	outputCodex("\n\nHer best friend, she thought. The one who she’d done activities with. She didn’t even have a gender for them. And come to think of it, could she have had a boyfriend? She didn’t see why not.");
+
+	outputCodex("\n\nHer parents, she had to know that they were... No first name came to her mind, no species, no appearance. Not even a last name.");
+
+	outputCodex("\n\nShe thought about herself.");
+
+	outputCodex("\n\nNo name. No relatives. No one she knew other than herself.");
+
+	outputCodex("\n\nThe dread of oblivion clung to her. The world was vanishing beyond her view and she only had the sense of loss to tell her that anything was different.");
+
+	outputCodex("\n\nHer respirators hissed angrily. She dragged her rubber-nubbed claws across her blank face. The pain of motion swirled inside of her, rising up through her chest cavity and spreading laterally. Protrusions warped her smooth flesh and she flexed them and felt the hot, swollen sting of her latex skin stretched over firm forms. Her unsteady muscles tensed, then relaxed. Her mind was testing their movements, adjusting to new sensations.");
+
+	outputCodex("\n\nShe raised her arms. Her one, two, three, four arms. She looked down at her four palms and four exhausted clicks slipped from her respirators.");
+
+	outputCodex("\n\nHer spine, for lack of a better term as her body was slowly plasticized, bunched up along her lower back. She groped behind her and clutched the smoothly curved protrusion, about a foot long, rising from the base of her breathing tube.");
+
+	outputCodex("\n\nFour jolts hit her, screeching against skin and shearing loudly. Four tapered mouthpieces slid from the protrusion on her back, running in a single line like spiny spikes. They split into an upper and lower pair, each pair with one on the left and one on the right. Sleek velvet hoses extended from behind the mouthpieces. The hoses curled around her hips in slow arcs. Each of the four slotted neatly into its own pouch on the front of her stomach.");
+
+	outputCodex("\n\nShe was already her own walking hookah, and now she could serve parties of one to four.");
+
+	outputCodex("\n\nSlow saffron clicks misted out of her respirators. Her upper hands grasped her breasts and pulled them back to feel the tightness of the latex, how it pushed back against her hands. Her lower-left hand parted the hidden folds of her pussy, and her lower-right hand dug into it, searching for pleasure to drown out the dull buzz in her mind.");
+
+	outputCodex("\n\nShe looked up into a white featureless face and didn’t move. It wasn’t looking back. The nurses never did; they had no eyes, so their faces always pointed perpendicular to their shoulders. The only sound was her respirators and their uneven clicks and the light squeak of her fingers against the damp inner recesses of her body.");
+
+	outputCodex("\n\nThe nurse reached out and pressed a collar around her throat. She watched its fingers warily, but once the collar was buckled, it stepped back. Three rows of short, rounded, chrome-steel spikes jutted from the black leather. It was classy, yet just a little rough.");
+
+	outputCodex("\n\nIt was like her. She was classy and a little rough.");
+
+	outputCodex("\n\nShe could imagine herself standing still, nothing but the occasional puff of an exotic flavor from her respirators, holding a plate of hors d’oeuvre in one hand while partygoers puffed on her like a hookah.");
+
+	outputCodex("\n\nAnd then, later, she could pleasure them each. Why did she feel so lustful, she wondered. Her lips curled against her fingers and slick fluids, artificial latex-based lubricants, flowed down her thighs.");
+
+	outputCodex("\n\nShe felt so lustful because she was made that way.");
+
+	outputCodex("\n\nA smokey hiss turned into soft clicks. Four...six...eight clicks slid out in one breath.");
+
+	outputCodex("\n\nShe had been so worried about herself just a moment ago, but now that she knew the truth, she felt a pleasant emptiness. Or, more precisely, she didn’t feel it. There was no self to feel pleasant.");
+
+	outputCodex("\n\nThe nurse clicked eight times at her, each sound identical and evenly spaced. She clicked back, matching the nurse’s pace perfectly.");
+
+	outputCodex("\n\nShe had worried she would lose her identity, but she couldn’t lose what she never had. She had nothing more to define her than a nurse did, or a door, or a machine. She was better than a nurse and a door and a machine, but not because of anything intrinsic to herself. She was better because she was a luxury.");
+
+	outputCodex("\n\nLuxury. The word made her thighs rock lightly and brought more slick lubricant running down her thighs. She needed a name, like a yacht needed a name, or a hunting rifle, or a manor estate. Her imagination had been excised, just like her sense of self, but she liked the word.");
+
+	outputCodex("\n\nHer name was Luxury.");
+
+	outputCodex("\n\nSaffron relief flooded the air. Her lubricants pooled on the floor around her thick boots. She straightened her knees, pulling herself up to her full height and laying both her sets of arms in a neutral position by her sides. She was strong but rounded, her rough edges gently filed down into something pleasant. An interesting conversation piece and a tool for pleasure, all in one.");
+
+	outputCodex("\n\nShe was almost perfect, except for that voice in her head. It had emotion and feeling and self-identity.");
+
+	outputCodex("\n\n<i>You can’t give in. Remember yourself</i>");
+
+	outputCodex("\n\nLuxury breathed and let saffron smoke fill her to the brim and seep into her mind.");
+
+	outputCodex("\n\n<i>Dontforg etwhoyou are|hey can||ake ||a|away |romyo||.");
+
+	outputCodex("\n\nF|g||ti|| yo||can| |e|||||s ||v||||| er||e||| ||||||||");
+
+	outputCodex("\n\n|||s|||| |||||||| |||||g|| ||||||||");
+
+	outputCodex("\n\n|||||||| |||||||| |||||||| ||||||||");
+
+	outputCodex("\n\n|||||||| |||||||| |||||||| ||||||||</i>");
+
+	outputCodex("\n\n\n\nLuxury was still and quiet. She could wait for weeks, just standing here.The passage of time meant nothing to an item like her. Soon she would be sold, and she could be the expensive plaything that she was built to be.");
+
+	outputCodex("\n\nThomas had thought this place was a hospital, but in truth, it was a factory. It was a factory with no owner, no company, no logo, no address, no workers, and no mind. No thought was guiding it but the constant churning of a machine intelligence.");
+
+	outputCodex("\n\nIt was a factory without identity.");
+
+	outputCodex("\n\nEight dead clicks echoed through the hospital.");
+
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("||||||||");
+}
+
+//BXBI 2
+public function bxbiChapter2Story():void
+{
+	clearOutputCodex();
+	outputCodex(header("BXBI: Chapter II"));
+	outputCodex("By Kotep (<u><a href='http://kotep.xyz/'>http://kotep.xyz/</a></u>)");
+	outputCodex("\n<i>Following BXBI 1, Tess talks Chris into trying the bimbo transformation drug himself. Explicit.</i>");
+	outputCodex("\n\nChris was a guy turning into a girl. Did that mean he used the men’s restroom, or the women’s?");
+	outputCodex("\n\nHe paused for a moment before darting past the men’s room door. He shuffled into a stall fast enough to keep anyone from getting a good look at him. Even though there was no one there-better safe than embarrassed.");
+	outputCodex("\n\nHe tried to sit on the seat, but he was too anxious. He was sweating. Was that normal? He stood up and dug his phone out of his pants. Were his pants too tight? No, just paranoia and worry and excitement and one big ball of every emotion that could clench up your chest and make you blush.");
+	outputCodex("\n\n’BXBI’, he typed into the search. A bunch of suggestions popped up. ‘Effects on males’. He wasn’t the first, right?");
+	outputCodex("\n\nNot ten minutes earlier, he’d been eating lunch. Tess sat across from him, in just the right way to show off her new tank top. It was white with pink trim and a glittery logo across the front that jutted out around her silicone-filled breasts. Her new pink hair-ties for her long, fluffy pigtails were distracting, but though his eyes roamed around, they never left her. As a bimbo, she had an amazing fashion sense. Or maybe just an amazing body. She could probably make anything look good.");
+	outputCodex("\n\nTess took a bite of her hotdog and Chris’s eyes glazed over a little. Those lips were eye-catching, no matter what they were doing.");
+	outputCodex("\n\nTess said, <i>“So like, here’s what I was thinking. And before you make the joke, like, don’t.”</i>");
+	outputCodex("\n\nChris had thought ‘must not be thinking too hard’ was a great line, but even a bimbo could think of that one.");
+	outputCodex("\n\n<i>“You should try some of the bee eff...like, the BXBI too,”</i> she said.");
+	outputCodex("\n\nAs he sat in the stall, Chris’s palms were sweaty. There were plenty of results, but most of them were speculation. The BXBI company website said it was a drug meant for females only and ‘could cause unintended side effects’ in males. He rooted around in community forums instead. One poster said he’d gotten nauseous, and that was it. Another said he’d passed out and only woke up once it had worn off completely.");
+	outputCodex("\n\nChris stopped scrolling and lifted his fingers off his phone. They were smaller, but not shorter. They were more slender. His cuticles were clean. His nails were smooth. He set his phone down and looked at his other hand. His knuckles thinned and his skin grew smoother right in front of his eyes.");
+	outputCodex("\n\nHis hands were strange, but they weren’t someone else’s hands. They were right there in front of him, they had the same shapes, and they took up the same spots at the end of his arms. They were the hands he’d have if he was a girl.");
+	outputCodex("\n\n<i>“But I’m a guy,”</i> Chris said. The bottle of pills was in his hand. <i>“What’s going to happen?”</i>");
+	outputCodex("\n\nTess shrugged. Her breasts bounced and Chris stared at the way her nipples moved. She said, <i>“Who knows? Like, maybe you’ll be a super stud. Maybe you’ll be a total girly guy. Maybe you’ll be a bimbo just like me,”</i> she said. With each word of ‘just like me’ she tossed her head to one side, then the other, sending her pigtails bobbling around.");
+	outputCodex("\n\nChris had to admit he’d-");
+	outputCodex("\n\n<i>“You totally thought about this before. It’s in your porn stuff and everything,”</i> Tess added.");
+	outputCodex("\n\nTess was finding new ways to get Chris to blush all the time.");
+	outputCodex("\n\n<i>“I wanna give you a chance to live it out! All of it. I’ll be right there, helping you,”</i> she said.");
+	outputCodex("\n\nChris’s back was up against the stall door. His arms were out in front of him, so he could watch what was happening. He found it surreal, even though he’d seen it happening in videos a hundred times, even though he’d seen it happen to Tess. It was always something that happened to someone he was watching, never to himself.");
+	outputCodex("\n\nWhen he shook his arms, little eddies of hair follicles drifted to the floor. His fingers felt warm, like they were sitting in the sun. He looked closer; he was getting a tan. The deepening color color swam back across his skin, pulled along by that sensation of light and heat and tightness. It faded across his lower arms, from the pasty-pale of someone who sat in an office most of the day, through cream-light, finally settling on a warm latte. It took a subscription to a tanning parlor to get a tan like he had now.");
+	outputCodex("\n\nChris ran his hands along his arms, delicate fingers along teflon-smooth skin. He shivered, both from the strangeness, and from his erection. He’d never been that excited about the little details before. At least, not when they were happening to someone else. He was always about breasts, ass, lips. His knees felt weak, yet he was only changed up to his shoulders.");
+	outputCodex("\n\nThe sun-warmed feeling slid along the tops of his shoulders, then dripped down like a splash of light over his chest.");
+	outputCodex("\n\n<i>“I’m the one keeping you under control,”</i> Chris said. <i>“How can you be sure that we won’t...do something crazy if we’re both gone bimbo?”</i>");
+	outputCodex("\n\nTess pouted her thick lips and gave Chris a firm pair of sex-kitten eyes. <i>“I can keep an eye on you just fine! We both know what each of us want so like, we can keep each other from getting too wild,”</i> she said.");
+	outputCodex("\n\nChris’s pursed frown made it clear that he didn’t put much trust in the BXBI to keep him able to watch over Tess. But Tess was on it right now, and if she was saying she could handle it...");
+	outputCodex("\n\n<i>“It’s a lot to think about all at once. I mean, a lot can go wrong,”</i> Chris said.");
+	outputCodex("\n\nTess said, <i>“I’ll make sure nothing bad happens to you.”</i>");
+	outputCodex("\n\nChris looked down at the bottle of pills again. Tess’s face was still there when he looked up, and he could see the girlfriend he loved inside the body he adored. He rolled the cap underneath the palm of his hand and twisted and pushed.");
+	outputCodex("\n\nChris knew that his breasts were next. He didn’t know whether he wanted to leave his shirt down or pull it up; watch or look away. But he didn’t want to miss this. It was a rare experience. He opened his eyes and tugged his shirt up over his chest and looked down. His nipples swelled and darkened. His rich tan was trickling over his chest.");
+	outputCodex("\n\nThere was something between his skin and his ribs. At first, his chest was barely tender and he could only feel the light pressure and weight of growing mounds. That sensation was strange enough as it was, a weight like a vest bolted onto his chest, moving with his motions and jiggling gently, lifting parts of his body out and away from him.");
+	outputCodex("\n\nHis hands moved from his shirt to rest on top of his breasts delicately, like if he touched them too firmly they might vanish or stop growing. His worries about becoming a girl were far away now. For now, he was focused on the feelings. Warm fingers against hot, tight flesh. The aching tenderness of his palms against his swollen nipples. And then, when he moved, the way his breasts swung against his fingers. And through all of that, the gentle pressure of their slow growth. He squeezed, and he didn’t feel any fake firmness yet. There was still a lot more to come. He moaned, and that moan was high and soft and aching.");
+	outputCodex("\n\nChris dragged the back of his hand across his forehead.");
+	outputCodex("\n\n<i>“Maybe you should go to the bathroom,”</i> Tess said.");
+	outputCodex("\n\nChris gulped softly, then tried to wet his throat with the last traces of soda in his cup.");
+	outputCodex("\n\nHe said, <i>“You won’t be able to watch me if I do.”</i>");
+	outputCodex("\n\nTess shrugged. Her earrings bounced and her pigtails bounced and her breasts really bounced.");
+	outputCodex("\n\n<i>“I’ll be right outside though!”</i> she said.");
+	outputCodex("\n\nHis stomach felt like it was going to tie itself into a knot. He got up. He leaned on the backs of chairs, picking up pace on the way to the food court’s bathrooms. Tess finished up her rice, stacked everything up on a tray, and dumped it into the trash on her way to wait outside the bathrooms.");
+	outputCodex("\n\nChris was changing on two fronts. His rich tan was fading down across his slimmer belly, but he couldn’t see it creeping up his neck. It had already reached his throat; he could hear the change. His small grunts and gasps had a softened, lightened tone. And when he put his hand to his throat, he could feel the lack of stubble and the slenderness of the muscles and the heat of his encroaching tan.");
+	outputCodex("\n\nHis stomach pulled inward. It wasn’t like something constricting his waist, but more like his insides were simply losing mass. That weight was being burned away and restructured, and it meant his coffee-tan belly pinched in pleasantly. While one hand investigated his neck and jaw, where the bones had begun to shift, the other hand brushed down over his stomach.");
+	outputCodex("\n\nHe groped his slender waist and squeezed his weaker jaw. The lines of his body were bending into curves. He felt the gentle sweep of muscle tone, like a dancer’s body, along his front. He felt his smoothened jaw.");
+	outputCodex("\n\nAnd he was hard. The little details thrilled him now: the way he could twist his neck, the shape of his new chin, how he could tighten his abs and feel the slim muscle jump beneath his fingers. He throbbed against his underwear and bit his lip and leaned back against the stall wall.");
+	outputCodex("\n\nWith one hand, he unbuttoned his jeans and pushed his hand into his boxers. His fingers felt unfamiliar wrapped around his cock. The novelty made him moan deep in the back of his throat.");
+	outputCodex("\n\nHe licked his lips. They were softer and more flush. He pulled a lip between his teeth and bit down. The thickness slowly pushed his teeth apart. They were more sensitive now. He lifted his fingers to his lips and trailed them along his top and bottom lip in turn. He closed his eyes and breathed in sharply and his legs ached.");
+	outputCodex("\n\nHe couldn’t spare any attention to the changes now. He pushed his boxers down and rubbed his shaft and gasped out loud. If someone heard him he couldn’t help it. He stroked faster.");
+	outputCodex("\n\nSparkling gold was dancing along his skin. The tan spread up over his face, bringing its warmth and feminine features with it. It washed down along his thighs and his legs.");
+	outputCodex("\n\nIt was there, in the corners of his eyes: darker skin and a slimmer nose. It was there in his socks and shoes: smaller feet, higher arch, thicker and more shapely legs. His cock was stiff and huge with every stroke-or maybe he was just smaller in comparison?");
+	outputCodex("\n\n<i>“Oh, fuck!”</i> he gasped out in the voice of a young woman.");
+	outputCodex("\n\nAt the end of each stroke, with his hand resting against his groin, he pushed in. He started mild , but he was soon pressing harder, spending more time after each stroke. There was less bouncing around beneath his cock, less and less as he kept going, but he was too far to stop.");
+	outputCodex("\n\nStars were popping in front of his eyes. His skin ached. He shivered because he was flecked with sweat. He moaned out loud again. His hand was traveling only half as far as it was before. His pubic hair had vanished, gone without a single trace. Meanwhile, hair was bouncing around his shoulders and tickling the tops of his breasts and dancing along his back and falling down, black and thick and glossy, over his face.");
+	outputCodex("\n\nHis fingers sunk deeper each time. He was doing more rubbing than stroking. His fingers filled him up and he cried out and pushed his pussy against his fingers. He needed to stop, but he couldn’t. He couldn’t stop to inspect the damage until he was done. He had to finish.");
+	outputCodex("\n\nChris screamed and it was completely a girl’s scream. Her legs, spread awkwardly open, trembled as she sunk to the floor. In the aching, guilty afterglow, a shudder ran down her back and she curled her toes and a bit of wetness slid along her new folds.");
+	outputCodex("\n\nIn a sudden, uncertain panic, she tore off some toilet paper, dabbed herself dry, and tossed it into the toilet.");
+	outputCodex("\n\nChris was a girl now. All the way, from his dark-nippled breasts to his tanned and shaven legs. And now she was stuck wearing her guy-clothes. Not that she thought they were bad or gross now. She hadn’t felt any mental effects. The issue was her guy-clothes didn’t fit her girl-body.");
+	outputCodex("\n\nShe had no problem getting her stretchy boxers up around her ass. Her jeans protested against her thighs by creaking like they might fray open. She got the waistband up over her ass, though, and buttoned and zipped up the fly as much as she could. Her shirt fit over her chest, but it was obvious she wasn’t wearing a bra. Her still-stiff nipples poked into the fabric.");
+	outputCodex("\n\nChris opened the stall door. She peeked out one way, then the other, then shuffled in her too-large shoes up to the sink. She needed to see herself.");
+	outputCodex("\n\nIn the mirror was a young brunette, with dark hair down to her chest. She flicked a lock of that hair between her fingers, then brushed it back behind her ears. She remembered Tess talking about how pliant her hair was on BXBI, and she had to agree. It had volume and a bit of curl, but willingly responded to Chris’s amateur attempts to style it.");
+	outputCodex("\n\nWith his hair pushed back, he turned his face from side to side in the mirror. She had small, cute cheeks and a slim nose. Her lips were eye-catching, naturally soft and pouting slightly without having to try. She lifted a hand to her chin, and turned her head from side to side to see the thickness of her lips and the sheen of her dark hair.");
+	outputCodex("\n\nHer breasts were double-D cups, she was sure of it. It was one thing to know what that size looked like, but it was completely different to actually feel that weight on her body. They pressed together beneath her shirt, and when she moved, they shifted and brushed together, and when she moved her arms she’d bump them against her chest and get a shiver down her spine. What she liked most, she found, was the feeling of pressure she got when she cupped her fingers around them.");
+	outputCodex("\n\nShe leaned forward to look at the rest of her body: A slim waist that could have belonged to a cheerleader and a plump ass that rose up into the air when she stood up on her tiptoes. That was all she could see, but it was more than enough to thrill her. Peeking under her shirt, she searched for tan lines and found none. Either she went tanning in the nude, or her rich complexion was all-natural.");
+	outputCodex("\n\nTess’s bimbo-bright expression grew even more surprised when Chris left the bathroom. <i>“Look at you!”</i> she squeaked. <i>“You’re so, like... just hot all over.”</i>");
+	outputCodex("\n\nChris blushed while her girlfriend patted down the sides of her body, feeling from her breasts to her waist. <i>“I know,”</i> Chris said quietly. She looked over Tess’s shoulder and saw some people nearby staring at them, curiously looking at the two hot girls by the bathrooms. Chris’s cheeks grew hot, but some deep part of him liked the attention.");
+	outputCodex("\n\n<i>“You’re not quiiite as hot as me, but congrats, you’re really a girl!”</i>");
+	outputCodex("\n\n<i>“It doesn’t even feel like I’m a girl,”</i> Chris said, gesturing to her chest. <i>“It feels like I’m wearing a girl’s body. I don’t feel any different from usual.”</i>");
+	outputCodex("\n\nTess pressed a nail to her lower lip lightly, letting her puffy lip bulge around the sides of her fake nail. <i>“Maybe the BXBI used up all its...stuff just turning you into a girl, so it didn’t have any left to make you feel girlier.”</i>");
+	outputCodex("\n\nThat was as good an explanation as any, Chris supposed. She tugged at her too-big shirt, trying to adjust it so it wouldn’t hang down. With a shirt like that, everyone would think she was wearing her boyfriend’s shirt. The thought of herself with a boyfriend sent a shiver down Chris’s back. She had never been into guys, but the girl she’d seen in the mirror sure seemed like she would be.");
+	outputCodex("\n\nTess had seen her fidgeting. <i>“Hey! We should go and get you some girl clothes to go with your girl look. In case you like it so much you wanna do it again,”</i> she said.");
+	outputCodex("\n\nTess grabbed Chris’s wrist. The change hadn’t shrunk or weakened Chris that much, but it still made Tess seem bigger and stronger in comparison. She could drag Chris around if she wanted, which gave him that nervous-excited feeling, like he was on a roller coaster and couldn’t get off...");
+	outputCodex("\n\nFrom the food court, Tess led Chris toward the end of the mall, toward one of the big department stores. Tess had never been a big shopper before, but all it had taken was a bit of enthusiasm for fashion to bring that out of her. Chris couldn’t deny that the thought of seeing herself dressed up all sexy was giving her some of that roller coaster thrill.");
+	outputCodex("\n\nWhile Tess surveyed the shoe section, Chris quietly looked her girlfriend up and down. She admired her fashion sense from a new perspective. Lots of white, plenty of pink, and a few pastel accents for her belt and bracelets-it went perfect with her blonde hair and blue eyes. Tess had really embraced the barbie fashion, and it suited her bright blonde looks.");
+	outputCodex("\n\n<i>“Chris?”</i> Tess asked, cocking her head so her pigtails swept sideways.");
+	outputCodex("\n\nShe cleared her throat and blinked and focused on Tess’s face again. <i>“Sorry, I was-”</i>");
+	outputCodex("\n\nTess wrapped her arms around Chris. With Chris being shorter and Tess up on her heels, her breasts pressed against Chris’s chest and shoulders. Tess squeezed softly but firmly, so warm that Chris didn’t want her to let go.");
+	outputCodex("\n\n<i>“I wanna make sure you’re okay with getting all, like, dressed up. Cause I know you’re still a guy and everything,”</i> she said.");
+	outputCodex("\n\nGod, Tess was hot. And even though Chris was also pretty objectively hot now too, Tess was totally outclassing her, she knew. Chris wanted her own chance at being the hot girl. She couldn’t say how soon the opportunity would come again. She was nervous, but Tess was going to be with her. If Tess could care for her enough to ask if Chris was ready for this, she knew she’d be safe.");
+	outputCodex("\n\n<i>“Yeah, I’m fine,”</i> Chris said, patting Tess on the ass and lingering in the hug for a few more moments.");
+	outputCodex("\n\nTess looked almost as excited as she was when they’d come through in the morning, shopping for her own bimbo wardrobe. <i>“Okay! First off, let’s start from the bottom-shoes! I think maybe a bright pink...? Hmm,”</i> she said, wandering down the aisle with all the high-heeled glamour shoes.");
+	outputCodex("\n\nChris trailed behind her, looking at the options she had in glossy black and silver glitter and closed-toe or straps, stiletto or chunky, two-inch, four-inch, six inch...");
+	outputCodex("\n\nWhat would she herself-her guy self-think looked hot on her? She looked around herself, searching for something with that ‘look at me’ attitude.");
+	outputCodex("\n\nTess came back from the end of the aisle with a box of glossy solid pink heels, but Chris had already pulled down a pair of thick open-toed platforms in electric blue with a thin heel and two big straps to wrap around her feet. Chris could imagine herself admiring these shoes on a girl, so why not? She had the chance to literally be her fantasy woman.");
+	outputCodex("\n\n<i>“Oh, wow, you really wanna start off with platform heels?”</i> Tess asked, setting down her own box of shoes.");
+	outputCodex("\n\n<i>“Yeah, why not?”</i> Chris said.");
+	outputCodex("\n\nWith a shrug, Tess popped down onto the bench and patted the seat beside her for Chris to sit next to her. She let Chris pull off her flopping sneakers and socks, then quickly showed her how to slip her feet into the shoes. Chris’s feet curled just like any girl wearing high heels-she’d always seen it, but never had to feel the way it pushed her toes up and stretched the arch of her feet.");
+	outputCodex("\n\nShe felt like she was sitting with her knees pulled into her chest. She waited on the bench wearing her new heels, while Tess bobbled back and forth in front of her a few times. Chris watched the way she moved her feet, swinging the heels and letting them hang, lifting them up high enough to not scrape on the ground.");
+	outputCodex("\n\n<i>“Okay, you try!”</i>");
+	outputCodex("\n\nChris stumbled once as she was getting up. She got a few paces in. Just as she was feeling good, she tripped over herself and nearly fell into a shelf of black pumps. The better she got, the more she could sway her hips with each stride. Her hips started to swing enough that she lifted her hands up, like she was wading through water, trying to keep from bumping her hips against her hands. Tess stifled a giggle and sent Chris down and back the aisle one more time, just to watch her anxious mincing. Then, she declared that she was good enough at walking in heels");
+	outputCodex("\n\nWith the shoe box under her arm, but the shoes still on Chris’s feet, Tess led the way into the lingerie section. Chris’s eyes were still on her ass, jiggling from side to side within her miniskirt. She was still a guy inside, even if she could walk in high heels.");
+	outputCodex("\n\n<i>“So do you know what kinda underwear you wanna get? There’s lacy, or supportive, or slutty, or...like, are you getting all bimbo-distracted?”</i>");
+	outputCodex("\n\nChris blinked and tore her eyes away from a thong that matched her heels. She didn’t remember when she’d stopped staring at Tess.");
+	outputCodex("\n\n<i>“What? Ah, no. I’m not feeling any mental stuff, remember? I like this, though,”</i> she said, picking up the blue thong. It would peek out from beneath her skirt, or shorts, or whatever they’d pick out for her to wear.");
+	outputCodex("\n\n<i>“Fine, but what about a bra?”</i> Tess asked.");
+	outputCodex("\n\n<i>“Just pick one out for me,”</i> Chris said. She was already gravitating toward the changing room. <i>“I’m a double-D.”</i>");
+	outputCodex("\n\n<i>“Like, you sure?”</i> Tess asked.");
+	outputCodex("\n\nEven on her own body, Chris was good at estimating those kinds of measurements, and she’d gotten a good look at herself back in the bathroom. Chris nodded. With a giggle and shrug, the bubbly blonde bobbed off to find Chris a bra, while Chris closed the door to the changing room and started to strip down. She’d be able to see herself from head to toe here, and the softer light here gave her darkly tanned skin a gentle glow.");
+	outputCodex("\n\nChris stripped down to nothing, then put her heels back on. She didn’t let herself get too good a look in the mirror-she wanted to take it in all at once.. She stepped into the thong, and pulled it up until the straps curled over her hips. Then with a few soft clicks, she turned around to look at herself, the slender tanned girl wearing nearly nothing.");
+
+	outputCodex("\n\nHer silhouette was perfect, just the right amount of lift and curve and tuck and jiggle. She pulled at her black hair, letting it fall over her shoulders to see it move. With just a thong and heels, she could actually imagine herself, the reflection in the mirror, as one of the pictures of porn stars she found online. She tried to make the same sort of pose, the kind of thing a guy would want to see. Chest thrust forward, thighs spread a little more, lips pouted. Even without makeup, she could see it. She wanted guys to see her.");
+
+	outputCodex("\n\nBefore she could reflect on the fact that she was fantasizing about guys, a low-cut sleek purple bra flopped over the door. She forgot what she’d been thinking about. <i>“Here you go! Tell me how it looks,”</i> Tess said from the other side.");
+
+	outputCodex("\n\nChris brought the bra straps around her arms, pulling the upper straps over her shoulders, tugging the two sides together. The cups squeezed tight against her chest, and she let out a strained groan. It hurt. It was too tight and it was digging into her skin, but it was a soreness in such a new way that she couldn’t help but be a little fascinated by it.");
+
+	outputCodex("\n\n<i>“Tess!”</i> she called. <i>“You got me the wrong size, or something. These are too small.”</i>");
+
+	outputCodex("\n\n<i>“Well, you said you’re a double-D. Are you like, sure?”</i>");
+
+	outputCodex("\n\n<i>“Yeah, I looked before, when I first changed, and they haven’t...uh...hmm. Maybe they have?”</i> she said, wincing.");
+
+	outputCodex("\n\nShe opened the door for Tess. She pushed Chris’s bra aside and wrapped her fingers around the soft mounds. She squeezed slowly, using the tips of her fingers, and Chris let out an involuntary gasp and arched her body toward the bigger, faker bimbo.");
+
+	outputCodex("\n\n<i>“I think they’re around, like...F cups? But I think they’re getting bigger. You feel that little prickle?”</i> she asked, squeezing again.");
+
+	outputCodex("\n\nChris gasped again. <i>“Meso...sillyco...uhh, whatever. I’m growing implants like you?”</i>");
+
+	outputCodex("\n\n<i>“Looks like it!”</i> Tess said, beaming. <i>“It’s great, you’re gonna be more bimbo-and I know you’re gonna love it. I do,”</i> she said, pulling Chris forward with her grip on Chris’s tits. Their lips met and Tess sucked her into a gentle kiss that lasted only a moment.");
+
+	outputCodex("\n\n<i>“I’ll go find a G-cup bra for you to grow into!”</i> she said, slipping back out of the changing booth.");
+
+	outputCodex("\n\nChris panted softly as she looked into the mirror. She swept some hair out of her face-was it longer? She licked her lips to wet them-were they thicker? She studied her body up and down, looking half-eagerly, half-worriedly for more changes. What had happened so far was fine with her, but something else, something more? She didn’t know what that would be like. And she was feeling different. Not like she was different, but like she was slightly drunk, and couldn’t control herself quite as well..");
+
+	outputCodex("\n\nShe grabbed her phone from her pants pocket, turned on the camera, and started shooting video in the mirror. She’d want to look at this once the effects wore off. As a guy, she’d love to watch a BXBI video she was part of.");
+
+	outputCodex("\n\nHer free hand roamed over her chest, feeling for herself the thickening, perkier feeling of silicone jutting out in front of her. As her breasts bulged, they hung off her chest, sticking out like they were made to be seen. She’d seen plenty of videos of girls on BXBI, time to give a little back. She could post this to the internet, and let the whole world see her growing tits.");
+
+	outputCodex("\n\nA sudden quiver made her gasp. Her free hand plunged down across her stomach, slipping underneath her thong. So many people watching her. She shuddered and her hips jerked and she let out a squeaky moan.");
+
+	outputCodex("\n\nChris’s skin flushed with sweat, from exertion and a vague sense of embarrassment. She was fingering herself in a changing room, after all. But she couldn’t stop, and she couldn’t put her phone down. She was horny, and she was already having trouble controlling herself. She looked at the camera lens and moaned again, thrusting forward her tits, letting them jostle together. Her thighs squeezed tighter. Her cheeks were red. God, she was glad she didn’t have long nails yet. She rubbed frantically until the wet heat rushed out onto her fingers.");
+
+	outputCodex("\n\n<i>“Oh my GAWD!”</i> Chris blurted out all in one breath. She hung in the same position, frozen while her orgasm spread out through her. Then, as her body grew heavy, she slumped down onto the small bench. She jabbed her phone’s power button, but didn’t bother to delete the video. She rubbed her fingers on her old jeans and wondered how wild was too wild.");
+
+	outputCodex("\n\nShe couldn’t deny she found those videos hot, though-she’d certainly watched plenty of them as a guy. And she still liked them as a girl. But as a girl, she could also make her own videos. She couldn’t even say that her exhibitionist streak had come from nowhere. It just had never been at the surface before, because while she’d liked girls showing off for a camera, she’d never been the girls’ place in that situation.");
+
+	outputCodex("\n\nHer feverish thoughts were interrupted by the click of Tess’s heels outside her door.");
+
+	outputCodex("\n\n<i>“Chris, here, I found one for you!”</i> Tess chirped. She pushed another bra over the door, a similar color to the first but with deeper cups and firmer fabric. As Chris slipped it on, she could feel the way it was scooping her up, lifting those fake tits up-not that they needed the lift, with how perky the silicone made them.");
+
+	outputCodex("\n\nChris turned around, herback toward the mirror, and swept her hair over her shoulder so she could see her reflection to do the clasp. The two sides snapped together, and the bra was a comfortable fit. Chris tugged on her old clothes, pulling on her pants and her shirt over her new underwear. She wadding up her old boxers and self-consciously stuffed them into the trash can. They were pretty old anyway.");
+
+	outputCodex("\n\n<i>“I bet that feels like, so much better, right?”</i> Tess asked. Chris clicked out of the dressing room on her heels, which were now partially obscured by her old jeans.");
+
+	outputCodex("\n\n<i>“Honestly...yeah, it’s toootally better,”</i> Chris said. She paused and made an odd face. <i>“Woah, that’s like, not what I said!”</i>");
+
+	outputCodex("\n\nTess squeezed Chris around her waist. <i>“Yeah, like, you gotta just get used to it! Your mouth’s just gonna fill in all that other stuff.”</i>");
+
+	outputCodex("\n\n<i>“It’s like, fun, but also like, I, like, don’t wanna, like, like...blah!”</i> Chris wiggled in mild distress, but Tess held onto her.");
+
+	outputCodex("\n\n<i>“Don’t fight it! Just keep talking and like, don’t worry if you sound dumb. If you think about it too much you won’t get a word in edgewise!”</i>");
+
+	outputCodex("\n\nChris took a deep breath and said, <i>“Fine.”</i>");
+
+	outputCodex("\n\nWith Chris’s underwear sorted out and now resting underneath her old clothes, Tess led the way from the underwear section to the women’s clothing section. As they walked, she educated him about the various options. <i>“So the one thing you gotta be careful with a skirt is if it’s gonna ride up. Like, I know we’re bimbos, but you don’t wanna flash everyone.”</i>");
+
+	outputCodex("\n\nChris’s heart beat a little faster. Yeah, that was right. She didn’t want to flash everyone accidentally, even if that would be kind of hot. She wanted to mention her newfound fascination with showing off to Tess, but just as she was ready to mention it, a wild pattern caught her eye.");
+
+	outputCodex("\n\n<i>“What about leggings?”</i> Chris asked. She paused to look over the selection that the store had, displayed on mannequin legs that were stacked like abstract art.");
+
+	outputCodex("\n\nTess paused and turned to watch Chris picking over the leggings. <i>“Yeah, those are pretty cute too, especially if you get the wet-look kind. Think you wanna get a pink pair, or...?”</i>");
+
+	outputCodex("\n\nShe trailed off as Chris lifted up a pair of purple leopard print leggings. <i>“I want these,”</i> Chris said. <i>“Guys will-um. It’ll look great on me.”</i>");
+
+	outputCodex("\n\n<i>“Great! Now for the top.”</i>");
+
+	outputCodex("\n\nChris followed Tess, but she didn’t listen that closely. She was thinking about guys, and specifically, guys that weren’t her. She didn’t care that much about them, because her and Tess was what was important. Still, she couldn’t shake the feeling that she cared what guys thought of her looks.");
+
+	outputCodex("\n\nChris tuned out Tess for a moment. She imagined herself in a club. In her fantasy was a guy, not too far away, clearly checking her out. She sauntered closer; in the hot haze of her own fantasies, she saw that he was handsome. She leaned into a kiss, then sunk into his arms..");
+
+	outputCodex("\n\n<i>“Yoo-hoo, Chris? Are you thinking bare midriff or what?”</i> Tess asked, breaking Chris’s spell.");
+
+	outputCodex("\n\nShe nodded and cleared her throat. <i>“Yeah, uh, bare midriff, that’s totally cute. I’ve got a hot belly, right? Say, Tess, I wanted to ask. Since you’ve gone bimbo, have you felt, like...into girls?”</i>");
+
+	outputCodex("\n\nTess cocked her head to the side to think about it. <i>“Well, like, I don’t like them a whole lot usually, but as a bimbo I kinda do feel into girls. You’re like, hot enough I’d make out with you...honestly, I’d probably make out with a lot of girls now. As long as they were cute. And only if I like, wasn’t your girlfriend.”</i>");
+
+	outputCodex("\n\nTess passed Chris a small stack of tops to try on and Chris took them into the changing rooms with her. She shed her old clothes, dropping them on the floor along with her shoes..");
+
+	outputCodex("\n\nThe leggings clung to her every curve. With the wild pattern on them, it highlighted every swell and contour of her hips, a visual indication of just how shapely her legs had become. They were probably-no, definitely thicker than in the food court bathroom, and there was no question whether her ass was plumper. It jiggled slightly as she snapped the glossy leggings into place, with its own little shine across her cheeks. They were almost daring someone to slap her on the ass..");
+
+	outputCodex("\n\nWith her leggings on, she put her shoes on again to see how they worked together. Bright and dark, plain and patterned-a good contrast, making sure guys would be looking her up and down from head to foot.");
+
+	outputCodex("\n\nHer mind drifted elsewhere again as she pulled on her first tank top to try it. On her knees, in front of the handsome man, now stowed away with him in a bathroom stall. Her lips were pouted open, wrapped around his cock. She was bobbing slowly, up and down, tightening her lips, curling her tongue as she sucked. His hand was in her hair, holding the back of her head.");
+
+	outputCodex("\n\nChris blinked and licked her lips and looked down at the stretchy zip-up track top, distorting the word ‘Princess’ written in pale pink glitter across the black fabric. The little straps dangling from the hood lay splayed open down her chest, exaggerating the shape of her cleavage. Her burnished tan skin showed through, with just a tiny hint of her bra if she jostled her chest. The fabric was fluffy and velvety-smooth and felt so good wrapped around her.");
+
+	outputCodex("\n\nShe summed up herself in the mirror, from her bright blue platforms to her leopard-wild purple leggings to the hooded top that was barely zipped up in order to show off as much of her smooth, tan bust as possible. She was hot. Guys were going to love this.");
+
+	outputCodex("\n\nA few seconds passed, and there was no instinctive blanching away from the thought that guys were going to love her body. She turned to the side, sticking her chest forward, running a careful finger over her tits, pouting at the mirror. She could imagine the image that might end up on a porn site-her like that, some guy grinding up behind her. This time, she wasn’t imagining it as if she was seeing the image-she was imagining grinding her ass up against some horny guy’s groin and hearing his breath catch in his throat as he got stiff. Then there’d be a camera flash, and-");
+
+	outputCodex("\n\nShe shook herself free from the thought and pouted.");
+
+	outputCodex("\n\n<i>“Tess?”</i> she called through the door.");
+
+	outputCodex("\n\n<i>“Yeah?”</i>");
+
+	outputCodex("\n\n<i>“I think I’m like...getting more girl-straight. I like guys.”</i>");
+
+	outputCodex("\n\nIt wasn’t that she was any different. The change felt more as if a barrier in her mind she’d never noticed was suddenly gone. Nothing about her personality had changed to make her into guys. All that was different was that mental check ingrained in her head, the one that told her she liked girls and not guys, was gone. She liked everyone.");
+
+	outputCodex("\n\nAnd as she was learning, she really liked cock. If she had to guess, and her brain was getting worse at guessing and stuff, it was because she liked having sex with her own cock, you know? So she still liked having sex with cocks involved now, but she didn’t have any of her own, so she wanted other people’s in her.");
+
+	outputCodex("\n\nGawd, even her thoughts were in bimbo-speak.");
+
+	outputCodex("\n\n<i>“Sounds like now you’re feeling like, totally bimbo,”</i> Tess said. Chris could hear her giggling. <i>“Come on out, I wanna see you!”</i>");
+
+	outputCodex("\n\nChris opened the door to the changing room. She stood, framed by the door, pouting, her hands on her hips. Tess looked Chris up and down-she looked like she was dressed up ready for a night of clubbing and picking up guys.");
+
+	outputCodex("\n\n<i>“Oh my god, you look like such a slut!”</i> Tess said.");
+
+	outputCodex("\n\n<i>“I knowww, right?”</i> Chris said. That didn’t even feel like an insult-because it wasn’t. Chris was trying to look like a slut.");
+
+	outputCodex("\n\nBoth of them were grinning giddily. Tess tossed her arm around the brunette bimbo, pulling her close and nearly making Chris trip in her heels.");
+
+	outputCodex("\n\n<i>“I just can’t stop thinking I want guys to stare at me and like, get really horny,”</i> Chris said. She said it out loud because she was still getting used to the thought being there in her head.");
+
+	outputCodex("\n\n<i>“God, Chris, you are a slut!”</i>");
+
+	outputCodex("\n\nChris blushed, but giggled along with Tess.");
+
+	outputCodex("\n\nHer new black purse bumped along Chris’s hip, holding her wallet and cell phone. With her old clothes were stowed away in a shopping bag, Chris kept pace alongside Tess in her heels.");
+
+	outputCodex("\n\n<i>“So then he sticks his cock up through her tits, and she leans down and starts sucking, and she’s just bobbing up and down with her tits all jiggly around it, and then like, there’s the cumshot,”</i> Chris said. <i>“And that’s the end of the video.”</i>");
+
+	outputCodex("\n\n<i>“So you wanna do that to someone?”</i> Tess asked, leading the way toward the salon.");
+
+	outputCodex("\n\n<i>“I’d wanna do it and film it and put it on like, Youtube,”</i> Chris said eagerly, swiping his phone open and calling up the video she’d made in the changing room. <i>“Like that, I’m gonna put it up too,”</i> she said.");
+
+	outputCodex("\n\nTess watched Chris’s reflection moaning for a few moments, then put her hand over the screen and pushed the phone back toward Chris.");
+
+	outputCodex("\n\n<i>“Chris, I don’t think you should be like, making it all super public. You want some privacy, right?”</i>");
+
+	outputCodex("\n\nChris had to think of what to say to that, because she hadn’t really thought about that. She wanted to be the kind of girl she’d watched in all those videos, with the self-confidence to put herself out there. But the more she thought about it, the more she realized she was getting caught up in the moment. It was so easy to do; the BXBI just opened you up to getting carried away. Tess was right: even if it was hot, it wasn’t a good idea.");
+
+	outputCodex("\n\n<i>“Okay, I’ll...like, hold off until I go back and think about. If you’re soo concerned,”</i> she said.");
+
+	outputCodex("\n\nTess pulled Chris close and kissed her cheek. <i>“I gotta watch out for you while we’re both bimboed out!”</i>");
+
+	outputCodex("\n\nChris followed Tess into the salon in the mall. They hadn’t come here earlier, since Tess had done her hair and makeup on her own. But now, as Tess brought Chris up to the front desk to get her an appointment, she asked for not one ‘style plus nails and makeup’, but two.");
+
+	outputCodex("\n\n<i>“I wanna kinda match, y’know?”</i> she said. They slipped down into the seats at the salon and both immediately picked up the fashion magazines lying in front of them. Chris wanted to know more about looking good so she could get that male attention she wanted. Her brain soaked up the knowledge from the magazine like a sponge. She didn’t have the advantage of being a girl her whole life like Tess, didn’t have her subconscious understanding of how to look prettier.");
+
+	outputCodex("\n\n<i>“Tess?”</i> one of the stylists called. <i>“That’s me!”</i> Tess chirped, bouncing up from her seat, wiggling her ass as she walked around the divider and out of Chris’s view. Chris turned back to poring over hair care tips-she’d never realized just what conditioner did, but she was totally gonna buy some as soon as possible. Even as a guy, having softer hair would be super nice.");
+
+	outputCodex("\n\n<i>“Chris?”</i> Chris looked up to see a curly-haired redhead smiling at her from the gap in the divider. She set the magazine down and got up, licking her lips subconsciously. They felt swollen and dry, like she hadn’t had anything to drink. Or maybe they were swelling? Maybe all the thinking about cock sucking was having a psy...psychosom... Maybe her brain was making her body do stuff. She lifted her fingertips and pressed them against her lips lightly, gauging the extra plumpness they now had.");
+
+	outputCodex("\n\nShe had to pull her hands away to sit down in the stylist’s chair. She looked at her reflection in the mirror, and pouted to examine her lips more closely. Definitely plumper, which meant her bimbo body still wasn’t done growing.");
+
+	outputCodex("\n\n<i>“Hi, I’m Erica,”</i> the redhead said as she draped a black smock over Chris’s shoulders.. <i>“So, what do you wanna do with your hair?”</i> she asked. She fluffed some of her locks beneath her fingers. <i>“Ooh, got to say, your hair feels really healthy.”</i> She stroked down along Chris’s bangs.");
+
+	outputCodex("\n\nThere was a moment of silence while she thought. <i>“I wanna look that’ll get me laid,”</i> she said.");
+
+	outputCodex("\n\n<i>“Oh! Well, we can do that,”</i> Erica said.");
+
+	outputCodex("\n\n<i>“I...I just mean, something that like, gets guys’ attention and is all like, ‘hey, I’m fucking hot’.”</i>");
+
+	outputCodex("\n\nChris didn’t mean to talk as dirty as she was, but it was just happening, the same way those ‘like’s and ‘oh my gawd’s were slipping in. She blamed it on her heavy sex drive and her newfound love of attention Tess was right, Chris was totally acting like a slut.");
+
+	outputCodex("\n\nChris let her eyes drift shut while Erica got to work with her hair. She brought in heaters and clamps and small curlers, brushing her hair one way, then the other, then back again. Thanks to the BXBI, her hair was as easy to work with as any hair could be. The faintly stinging smell of hairspray drifted across her nose. She pursed her lips slightly, but let Erica keep working. She knew what she was doing.");
+
+	outputCodex("\n\n<i>“How’s this?”</i> she asked, cranking Chris’s chair back upright. Chris’s hair style hadn’t been changed dramatically, but Erica had taken her plain feminine haircut and turned it into something elegant and eye-catching. Her black hair was thick and shimmering, and it poured down off her head into thick curls that cascaded down her left shoulder-swept to the side, a fluffy, voluminous mane of hair that draped down past her chest, gently pushed aside by her heavy breasts.");
+
+	outputCodex("\n\nAnd then Chris took stock of her lips. They were thicker than they had been, and still swelling. Her upper lip’s arc had smoothed out, the natural shape puffed up into a rounder, tighter, faker pout. Her lower lip matched it for thickness almost perfectly, as if her plastic surgeon had a great eye for detail. They just slightly parted in the middle, making a pout even when she wasn’t trying to pout.");
+
+	outputCodex("\n\n<i>“It’th, like,”</i> she started to say, then licked her lips again and shuddered slightly in her seat. She was thinking about wrapping her lips around a big, firm cock.");
+
+	outputCodex("\n\n<i>“It’s great,”</i> she said, avoiding lisping against her lips.");
+
+	outputCodex("\n\nErica beamed, proud of her work. <i>“Great! So, for your makeup, any thoughts?”</i>");
+
+	outputCodex("\n\nChris rocked her hips slightly and pressed her thighs together. She looked her face over. She thought about not what she’d like to see as a guy, but what other guys would want to see.");
+
+	outputCodex("\n\n<i>“Pink for my lips, and like, light pink, too. And I guess dark and heavy for the other stuff? I’m like, not great with makeup,”</i> she said.");
+
+	outputCodex("\n\nChris watched Erica in the mirror while she worked. Just like reading the magazine, everything she saw her do was sticking to her brain. She could see her reflection in the mirror, too, so she got to watch the makeup slowly come together. First, the lipstick, giving her lips a bright sheen, then some blush in a similar pink, to bring out her cheeks since she was so tan. The silvery-blue eyeshadow looked more like silver-gray when it was brushed out along her skin. With the thick, dark eyeliner and the heavy mascara added on, the makeup brought out her eyes and thickened her lashes. It gave her just the smokey, sexy look she’d wanted but couldn’t quite put into words thanks to her bimboifying vocabulary.");
+
+	outputCodex("\n\nChris’s lips had puffed up tighter and thicker, and had outgrown her first coat of lipstick, showing a bit of naturally pink lip behind the artificially bright pink gloss.");
+
+	outputCodex("\n\n<i>“Mmm, looks like I didn’t quite get the lipstick on right. Hold on,”</i> Erica said. Chris flexed her toes as Erica dabbed her tender lips with a soft, wet towel, clearing away the lipstick for a fresh, clean coat. The first coat hadn’t nearly been as pleasurable though. Now her lips were incredibly sensitive to the touch, even just that of lipstick.");
+
+	outputCodex("\n\n<i>“And for your nails?”</i> Erica asked.");
+
+	outputCodex("\n\n<i>“White, just like...gloss white,”</i> Chris said.");
+
+	outputCodex("\n\nHer nails seemed to go by in a flash. While Erica trimmed, filed, and painted each nail, she made idle chat with Chris about what she normally used for hair and makeup, and the brands that Erica recommended, and how she could do the same stuff at home to keep up the style. Her brain was so hungry for that knowledge that it gobbled it up immediately. It seemed like Erica had just started when she stood up, and let Chris take a look at her squared-off, smooth-glossed, all-white nails.");
+
+	outputCodex("\n\n<i>“Thanks a lot!”</i> Chris said, giving Erica a careful, splayed-finger hug, to be gentle to her new nails. <i>“I’ll come back if I ever need more stuff done!”</i>");
+
+	outputCodex("\n\nWithout having to think about moving her feet, Chris strutted back out to meet Tess, who was reading from the magazine again. Her pigtails were gone, and her hair was pulled back from her forehead, poofed out, and left thick and puffy, rolling down her back in big platinum blonde waves, spilling over her shoulders just a little, but falling to either side around her breasts. Her makeup had been pumped up just a little, brightened into blue behind her eyes and rich, candy-pink for her lips and nails.");
+
+	outputCodex("\n\n<i>“Oh my gawd, Tess, your hair looks awesome,”</i> Chris said immediately.");
+
+	outputCodex("\n\n<i>“Yours too! And your makeup and just like, everything! All that’s left is if you wanna get some jewelry,”</i> Tess said.");
+
+	outputCodex("\n\n<i>“Oh, yeah, definitely. I gotta look flashy for the guys, right?”</i> Chris knew she wasn’t going out to find any guys. She had Tess, after all. The thought of it, though, the teasing sluttiness, it was like the way Tess had teased her before they’d left for the mall, and Chris wanted her turn at it.");
+
+	outputCodex("\n\n<i>“Yeah, you do,”</i> Tess said quietly, while Chris batted her hair into place, then grabbed her phone from her purse to snap a picture-just to save for herself.");
+
+	outputCodex("\n\nChris used the jewelry store as an opportunity to flaunt her newly-polished good looks. <i>“It’s just so freeing, y’know? Like, I stopped caring that I like guys and now I don’t even care about not caring. Like I’m just super okay with being totally into cock,”</i> Chris said as she squeezed her fingers through a blue bracelet that matched her heels.");
+
+	outputCodex("\n\nThe necklaces jostled against each other at Tess’s careful touch as she looked through them.. <i>“I know what you mean. Everything’s just totally cool. Or, well, like...almost everything,”</i> she said, raising her eyebrows at Chris, who seemed to miss what she was trying to suggest.");
+
+	outputCodex("\n\n<i>“Yeah, like, I’m not just whatever.”</i> Chris tilted her head to the side, holding some plastic earrings up to her ears. She comparing them to some gold hoop earrings in a small mirror. <i>“But I’d totally suck a cock, no problem.”</i>");
+
+	outputCodex("\n\nThe girl across the counter shot Chris a mildly disgusted sneer, and Chris sneered right back at her. After a moment, the girl walked off to be annoyed at dumb sluts over by the cash register, away from Chris and Tess. <i>“Oh my gawd,”</i> Chris said, <i>“I’m totally making girls jealous now! I’m like, a fucking great bimbo.”</i>");
+
+	outputCodex("\n\nChris was getting a thrill in the pit of her stomach each time she acted out, a dizzy but exciting feeling that made her want more. Slutting it up a bit got her attention, and she didn’t have to go through on any of it, but it worked all the same. It was funny how Tess was exactly guy-Chris’s type, while Chris was the kind of girl guy-Chris would stay clear of.");
+
+	outputCodex("\n\n<i>“Hey, like, if you’re done sulking, I wanna buy this stuff.”</i> Chris plucked off her earrings, and the ones she had already tried on, and her bracelets, and stacked them beside the cash register. The girl came back over to her, not quite looking Chris in the eye. She mumbled under her breath, something about ‘shallow sluts’.");
+
+	outputCodex("\n\n<i>“’Shallow’? Oh my gawd, I’m not the girl bitching out about someone hotter than me! Like, just cause I could suck your boyfriend’s dick off doesn’t mean you have to be grumpy.”</i>");
+
+	outputCodex("\n\nChris put her hands down on the counter, with a soft chorus of clacks from her manicured nails. The same force sent her tits bouncing, jostling between her arms. She leaned forward, so her ass was arched out, pulling the straps of her thongs up above the waistline of her leggings. Her lips tried to tighten into a frown, but all she managed was a fierce pout with a furrowed brow.");
+
+	outputCodex("\n\n<i>“Uh, Chris, like, people are looking at you,”</i> Tess said, nudging her shoulder.");
+
+	outputCodex("\n\nMm, people were looking at her? Chris bent one knee and pressed her thighs together.");
+
+	outputCodex("\n\nThe cashier’s lips were pursed tight. She scanned all the big, clinky jewelry and stuffed it into a bag and pushed it into Chris’s hands to get her out of her store as fast as possible.");
+
+	outputCodex("\n\n<i>“Ohmigawd, that was so hot,”</i> Chris said, smiling through her plump lips, walking in a wiggling strut a half-pace ahead of Tess out of the jewelry store. <i>“But when I’m a girl, we should have a better name for me.”</i>");
+
+	outputCodex("\n\n<i>“Christie?”</i>");
+
+	outputCodex("\n\n<i>“Nah, that’s too much the same, y’know? I look like, totally different. I wanna name that guys will think is a dumb stripper name. How about...Kiki?”</i>");
+
+	outputCodex("\n\n<i>“You already sound like, super squeaky, you really wanna have your name be that squeaky?”</i>");
+
+	outputCodex("\n\nChris huffed and folded her arms under her breasts, shoving them up and making her top stretch even further to keep them under wraps. <i>“Fine, I’ll stay Chris.”</i>");
+
+	outputCodex("\n\n<i>“Fine, Chriiis,”</i> Tess said, drawing out her new nickname.");
+
+	outputCodex("\n\n<i>“Now you’re saying it funny to make it trashy!”</i> Chris said.");
+
+	outputCodex("\n\n<i>“Like you need help.”</i> Tess cocked her head to the side and leaned in closer to Chris’s face. Chris paused and gave her a funny look. <i>“Speaking of, your eyeliner’s like, smudged. We should hit a bathroom,”</i> Tess said.");
+
+	outputCodex("\n\nChris ticked across the tile floor in her heels and leaned in towards the mirror, admiring herself for a moment. She looked over her hair, her smooth cleavage, and her nails as she brushed her hand down the silicone-plumped curve of her breasts.");
+
+	outputCodex("\n\nHer eyeliner looked just fine, though She opened one eye wide, then the other, pouted at herself, and eyed the dark makeup, but it was perfectly in place.");
+
+	outputCodex("\n\n<i>“Tess? My makeup’s fine, what were you talking about?”</i> Chris asked.");
+
+	outputCodex("\n\nShe started to look over her shoulder as Tess’s arms closed around her from behind. Chris squeaked softly, standing up straighter, leaning right back into Tess’s grasp. One of her hands slipped under Chris’s leggings. Tess was careful of her nails as she pressed her fingertips along Chris’s folds.");
+
+	outputCodex("\n\n<i>“Fffuck, Tess,”</i> she gasped. Chris wanted to get out her cell phone for this, but she’d set her purse down on the counter. Her hips rocked gently against Tess’s arm.");
+
+	outputCodex("\n\n<i>“I wanna show you I can be just as good as any cock,”</i> Tess said, a look in her eyes that was determined, fierce, and possessive. She pushed down Chris’s leggings and thong. In a breath, she said, <i>“I don’t want to lose you.”</i>");
+
+	outputCodex("\n\nThe bottom of Chris’s stomach dropped and she felt like she was dropping. Suddenly she realized how she had been coming off to Tess. Tess had thought all her teasing was real; that her newfound love of cocks meant Chris was no longer going to be interested in her. Chris hadn’t realized it until now, probably thanks to her vapid bimbo brain and its minute attention span.");
+
+	outputCodex("\n\nBut no way in hell was Chris going to leave Tess, the amazing girl who’d given herself BXBI just for Chris’s sake. She was the best significant other Chris could ask for, regardless of gender. She was going to tell her that right now, as soon as she could get the words to form on her tongue.");
+
+	outputCodex("\n\nTess turned Chris around until she had her plump ass up against the counter, her legs spread open slightly, cranked up on top of her tall heels and platforms. Tess kept rubbing slowly, fingers splayed. She lowered herself down to her knees. Chris could stare right down Tess’s cleavage, but she was looking at her girlfriend’s face instead.");
+
+	outputCodex("\n\nTess had a look of clarity and purpose that a bimbo like her could only have toward sex. It was almost like she was looking beyond Chris’s pussy. Her lips were parted slightly, as if she was in a trance. She lifted her hands from Chris’s body, brushed her long hair back over her shoulders, and leaned forward.");
+
+	outputCodex("\n\n<i>“Tess, I-oh my gawd,”</i> Chris said, barely managing to squeak out half a sentence before Tess’s lips pressed against her pussy.");
+
+	outputCodex("\n\nChris had felt Tess’s cock-sucking lips in action before, but that was back when she’d had a cock. Those lips against her pussy now were a wholly different experience. The over-puffed collagen-filled lips were plush and soft against her skin. They spread her open, making room for Tess’s tongue.");
+
+	outputCodex("\n\nHer tongue like, had to be longer than when she wasn’t a bimbo, because Chris didn’t think she could do that sort of stuff before. Tess stretched deep into her, warm and damp and moving unpredictably. It was a kind of feeling completely unlike fingering herself, having to move and gasp and roll her body to someone else’s rhythm.");
+
+	outputCodex("\n\nTess was close enough that her thick and poofy bottle blonde hair tickled against Chris’s belly. It brushed against her each time she rocked her head up and down. Tess was squeezed against Chris in more ways than one. Her breasts, straining in their tank top, were pressed tight to Chris’s thighs. She felt the packed silicone pressing up against her, pinning her back against the counter. She couldn’t move forward but to grind her hips, thanks to Tess’s big bimbo boobs.");
+
+	outputCodex("\n\nTess kept sucking, too, like she’d forgotten this wasn’t a cock she was bobbing along. Chris didn’t mind, it was all knee-weakening pleasure to her. She was trying to say something to Tess, but each time she got the sounds assembled into words, Tess rocked her head or squeezed Chris’s ass or dragged her tapered nails down her thighs. The burst of pleasure scattered her thoughts, and she’d try to recover, only to be knocked down again.");
+
+	outputCodex("\n\nDelicately so as to keep her french tips safe, Chris worked her fingers into Tess’s hair. She needed something to hold onto, and her grip on the counter was slipping. She pushed with her hand and raised her hips, and Tess slipped her tongue deeper into Chris’s pussy.");
+
+	outputCodex("\n\nChris couldn’t take much more of this. Her arched feet ached, her heart was pounding, and her whole body felt red-hot. Tess pushed, and a little creak slipped out of Chris’s throat. She pushed again, and there was a hot gasp. One last time, and Chris squealed as she orgasmed.");
+
+	outputCodex("\n\nUnlike the two times she’d fingered herself, this wasn’t a recoiling, guilty, uneasy orgasm. It sent an aching heat through her, bringing goosebumps to her skin, but it was tender. It left her feeling weak, her knees trembling, but she didn’t feel vulnerable. Definitely not with Tess there.");
+
+	outputCodex("\n\nTess leaned back, looking over the shelf of Chris’s tits, up through her tan cleavage at the brunette bimbo’s face. Chris could see the worry and the longing for approval in her eyes.");
+
+	outputCodex("\n\n<i>“Omigawd Tess. I’m really sorry for like...making you think that,”</i> she said around her uneven gasps. <i>“I’m not gonna...gonna leave you, ever. Like, even if I wanna...suck a ton of cocks. You’re still my girlfriend. BXBI isn’t gonna make me...like, not love you.”</i> Chris took a deep breath. <i>“Now I gotta, like...pay you back.”</i>");
+
+	outputCodex("\n\nTess’s eyes widened, and the corners of her mouth lifted, and a sparkle came into her eyes-and then relief and joy became surprise. Chris pounced on top of Tess and pushed her down, cushioned by her soft ass, onto the tile floor. They were squeezed together, chest to chest. Their tits slid and squished together, wobbling side to side as Tess squirmed beneath Chris. Before long, Chris needed to breathe. She pulled back, sitting up on her knees. Tess gasped softly, splayed out beneath her.");
+
+	outputCodex("\n\nWith a quick tug, Chris pulled down Tess’s super-cute miniskirt and her pink panties. <i>“Oh my gawd, Tess, could you be more of a barbie doll?”</i> she said. She brushed her fingertips against Tess’s folds and made her gasp tenderly.");
+
+	outputCodex("\n\n<i>“Oh, like, shut it, you attention whore,”</i> Tess said.");
+
+	outputCodex("\n\nChris snapped her leggings back up over her waist. She pulled Tess’s legs open and leaned down between them. Her tits squeezed against the cold floor, and even with the cute black top she had on, her nipples hardened from the chill. She didn’t have Tess’s instinctive familiarity with working a pussy, but she was eager and horny, and that was going to be enough.");
+
+	outputCodex("\n\nAs she lowered her firmly plump lips to Tess’s pussy, she got a gasp out of Tess. Her arms slid underneath Tess, sliding her hands under her ass and supporting her thighs with her forearms. She lifted Tess lightly off the ground as she leaned in. Her tongue dipped into Tess and earned another gasp, followed by a soft moan. She just had to follow the sounds.");
+
+	outputCodex("\n\nShe kneaded Tess’s ass gently with her manicured nails. It was so soft and so heavy all at once, and it filled her hands with room to spare. On either side of her, Tess had set her feet down, planting her pink heels against the floor for leverage. As Chris’s tongue hit each tender spot, she pushed off the ground with her shoulders and her feet, raising her hips against Chris’s mouth.");
+
+	outputCodex("\n\nTess’s glitter-pink nails slipped into Chris’s hair, hanging onto her with a grip that was tight, but gentle to her hairdo-just the way a bimbo would hold another bimbo. Tess was the one who knew what she wanted and what she was doing, even if Chris was physically on top. Tess had taken over the pace by now, driving Chris with the motion of her hips, barely giving her time to breathe.");
+
+	outputCodex("\n\nChris closed her eyes and held on to Tess’s rocking body. She felt everything bouncing and jostling-tits and ass, hair and earrings, even her lips jiggling around. Chris didn’t stop twisting sucking and licking until she heard Tess scream out loud enough that people outside totally had to be hearing that.");
+
+	outputCodex("\n\nAs Tess slowly dropped back to the ground, her tits bobbing up and down with the heaving of her chest, Chris wanted to make fun of how loud that had been. And Tess has called her an attention whore? But what she said came out instinctively, without having to think about it.");
+
+	outputCodex("\n\n<i>“Like, I love you so much, oh my gawd,”</i> she said.");
+
+	outputCodex("\n\nChris grabbed Tess’s arms, pulling her up into a kneeling hug. She eased Tess back up onto her feet. She staggered slightly, tugging her panties and skirt back up, tossing her hair to shake it out, licking her lips slowly. They both leaned against the counter, facing each other.");
+
+	outputCodex("\n\n<i>“Chris, I’m sorry I thought-”</i>");
+
+	outputCodex("\n\n<i>“No, like, it’s my fault for not thinking about you and stuff,”</i> Chris said.");
+
+	outputCodex("\n\n<i>“I love you like, so much too,”</i> Tess said.");
+
+	outputCodex("\n\n<i>“Your lipstick’s a little smudged, here.”</i> Chris licked her thumb and wiped the corner of Tess’s mouth.");
+
+	outputCodex("\n\n<i>“Lemme fix your eyeliner,”</i> Tess said, reaching for her purse.");
+
+	outputCodex("\n\nChris puffed her curls in the mirror and pouted slightly. <i>“Think you could lend me your brush too?”</i>");
+
+	outputCodex("\n\nTess held it out for her girlfriend. <i>“Only if you fix my hair pins, miss let’s-fuck-on-the-floor.”</i>");
+
+	outputCodex("\n\nAfter a few minutes of intense refurbishing, the two of them walked out of the bathroom as good as new, clothes adjusted and boobs pushed up, lipstick refreshed and lips pouted. Tess reached for Chris’s hand, and they held hands as they headed back out into the mall.");
+
+	outputCodex("\n\nLater that day, Chris nestled up close against the bathroom mirror in their apartment, holding her phone with its new glitter-studded case in one hand. One of the new translucent pink dildos Tess had bought was in her other hand. She parted her lips, letting the big, fake cocksuckers rest around the tip of big, fake cock she was holding. She looked down at the phone’s screen, aiming the camera just right.");
+
+	outputCodex("\n\nThe flash popped in front of her eyes, and she stood up, tugging at her jacket-top lightly to pull it back up over her tits. As she clicked out into the living room on her heels, she carefully tapped her phone’s screen. If she wasn’t careful, she’d scratch the screen, or worse, chip her nails. A pink filter on the photo, and off it went to get posted.");
+
+	outputCodex("\n\n<i>“So like, how’s Lexi coming?”</i> Tess asked from the couch. She leaned back, thrusting her tits out wholly accidentally as she looked over the back of it toward Chris.");
+
+	outputCodex("\n\n<i>“Great! She’s got a bunch of hits on Twitter and stuff already, and I only posted like, two or three...”</i>");
+
+	outputCodex("\n\nTess raised her eyebrows and pouted her lips, like she was looking at a young girl trying to lie to her.");
+
+	outputCodex("\n\n<i>“Okay, more like ten, but they’re just really fun to make! You just do a slutty pose in the mirror and-bam!”</i> Chris said.");
+
+	outputCodex("\n\nLexi Mane was the solution they’d found to Chris’s newfound love of showing off, just like their new collection of dildos was the answer to Chris’s love of cocks. Fake name, fake identity-the only real thing was the pictures of her, which were really just Chris. She was leaving out anything identifiable. It was a lot of work for a bimbo to be that careful, but it was worth it to be the amateur porn model she’d wanted to be, without letting it affect her real life.");
+
+	outputCodex("\n\nChris plopped her plump butt down on the couch, grabbed one of the dildos from the little dildo forest on the coffee table, and tugged down her leggings. As she shoved it up into her, she kicked up her high heels onto the edge of the table, and let out a sigh of relief.");
+
+	outputCodex("\n\nThe one other benefit to dildos was it meant they didn’t have to try to work around their long nails. They both adored their painted (and in Tess’s case, fake) nails, despite knowing it made girl-on-girl harder.");
+
+	outputCodex("\n\nTess didn’t bat a well-mascaraed eye at Chris fucking herself on the couch next to her. It had been remarkably easy to get used to Chris’s insatiable sex drive when she had one nearly just as strong.");
+
+	outputCodex("\n\nThe two bimbos gazed at the TV, watching one of the reality shows that featured a couple bimbos (the normal kind, not the BXBI-enhanced kind) dealing with all the problems of being pretty, rich, and slutty. Neither of them would have watched the show before, even ironically, but as bimbos, it was all so relatable. Their brains just ate it up like popcorn.");
+
+	outputCodex("\n\nTess woke from her TV-watching trance during a commercial break and looked over at Chris, still with her feet kicked up and legs spread.");
+
+	outputCodex("\n\n<i>“So like, think you wanna take more BXBI when this dose wears off?”</i> Tess asked.");
+
+	outputCodex("\n\n<i>“I dunno if like, right after, but soon, totally. I like, love being a girl,”</i> Chris said.");
+
+	outputCodex("\n\nTess rolled her eyes a little. <i>“Well, being a bimbo’s not like, exactly like being a girl.”</i>");
+
+	outputCodex("\n\n<i>“Still, I think it’s like...super cool.”</i>");
+
+	outputCodex("\n\nTess looked away from Chris and leaned back, stuffing one of the throw pillows under her lower back. <i>“Yeah. I think I need a little break though, cause like, these are pretty heavy,”</i> Tess said, giving her breasts a light bap with her hands and letting them wobble like water balloons. <i>“Plus, being a bimbo is like...letting it all go, and that’s super fun, but you can’t be a super bubbly party girl all the time.”</i>");
+
+	outputCodex("\n\n<i>“Yeah...yeah, like, totally,”</i> Chris said, nodding.");
+
+	outputCodex("\n\nTess was probably right. Chris couldn’t stay like this all the time, she had a job and obligations and people who expected her to be a guy and not a super-hot bimbo who took slutty selfies..");
+
+	outputCodex("\n\nBut what if she could stay like this all the time?");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("BXBI: II");
+}
+
+
+public function bxbiChapter1Story():void
+{
+	clearOutputCodex();
+	outputCodex(header("BXBI: Chapter I"));
+	outputCodex("By Kotep (<u><a href='http://kotep.xyz/'>http://kotep.xyz/</a></u>)");
+	outputCodex("\n<i>A temporary bimbo transformation drug enters the market. Chris’s girlfriend tries it out in front of him.  Explicit.</i>");
+	outputCodex("\n\nChris’s girlfriend had found out about his fetish. He felt terrible. But what made him feel worse was that Tess wanted to try it out.");
+	outputCodex("\n\nNow objectively, this was a great thing. After hours of watching girls high out of their minds and swollen up on B or bim-bips or BXBI, Chris was finally going to see it in real life.");
+	outputCodex("\n\nBut just listening to Tess talk about how they would approach tonight responsibly sent all sorts of guilty knots through his stomach. Tess was slim, with a strong air that made her seem to take up more space than she really did. She wouldn’t be out of place in one of those videos he watched. The girls usually started out safely cute, even a little tomboyish, like her. If you were making a video, you wanted to show off the change, you know? Same reason why they weren’t usually blonde already like she was, with her short head of hay-blonde hair.");
+	outputCodex("\n\nMaybe the problem was that he loved her. He’d tried explaining that he didn’t need this sort of thing from her, that she was already enough to make him happy. She hadn’t believed him. At least, she hadn’t believed that he wouldn’t enjoy this.");
+	outputCodex("\n\n<i>“So I looked up BXBI to see the dosage,”</i> she continued.");
+	outputCodex("\n\nChris grasped the inside of his pockets and looked out the window of their apartment. Just hearing Tess say the name of the drug upset him. It was something he heard in porn, not from her.");
+	outputCodex("\n\n<i>“What I got is way more than enough. If it works out for us, we’ve got a whole month of fun,”</i> she said. She shook the bottle of BXBI pills and stifled what sounded like a giggle.");
+	outputCodex("\n\nHe recognized that sound. Chris lifted his head to look at Tess. She was biting her lip and visibly holding back laughter. Tess had to be playing a prank on him with this. His anxiety wouldn’t accept any other explanation. He said, <i>“You didn’t already–”</i>");
+	outputCodex("\n\nTess let out her giggle. <i>“I took some in the car. It’s acting kinda fast though. Supposed to take thirty minutes but it’s been only like, twenty,”</i> she said.");
+	outputCodex("\n\nFuck. Chris had wanted to convince her not to take it. To watch a few videos together with him, instead of taking things as far as they could go on the first night. She was feeling the first giddy blush of being a bimbo already. Chris wasn’t sure how he felt.");
+	outputCodex("\n\n<i>“Look, maybe we should just stick you in the bedroom and let you ride it out,”</i> he said. <i>“You don’t want to do something you’ll regret while you’re high.”</i>");
+	outputCodex("\n\nTess pushed a handwritten piece of paper into Chris’s hands. It read: <i>“Limits: No permanent alterations (i.e. tattoos), just the two of us, no taking pictures, no other drugs.”</i> On the bottom, Tess had signed it.");
+	outputCodex("\n\n<i>“Anything you want to add?”</i> she asked.");
+	outputCodex("\n\nDamn, she had planned this whole thing out. She’d even written that sheet out in advance. Chris set the paper down. <i>“I don’t want to do this. It’s kind of a...corruption thing...”</i>");
+	outputCodex("\n\nTess rolled her eyes. <i>“And what, you think I’m too pure and delicate for a little fun? Just give it a chance, you–oh!”</i> Her eyes went wide and her shoulders stiffened.");
+	outputCodex("\n\nChris was sweating. He should be enjoying this. He was going to regret enjoying this. He was going to regret not enjoying this more. Tess’s chest pushed at her shirt, making the fabric shift in short spurts. The videos always made it look smooth, but in real life, without a spandex shirt, the fabric slipped and stopped and wiggled, then stretched and slipped again. What was the same was the weight, the way that her chest tugged her shirt down, pulling the neckline with it. The size, too, how her breasts seemed to occupy more of the width of her chest, how gap of her cleavage shrank bit by bit.");
+	outputCodex("\n\n<i>“Do you know what it feels like?”</i> Tess asked. Chris stared. She didn’t look the same with larger breasts. They softened her; they took away from her strong shoulders.");
+	outputCodex("\n\nTess giggled and dragged her fingers down over her shirt. The fabric desperately stretched over her chest, but as hard as the shirt pushed, her chest pushed back harder. She was up two cup sizes by now. Her cheeks were flushed light pink.");
+	outputCodex("\n\n<i>“It’s like honey-sugar-cinnamon,”</i> she said. <i>“It’s warm and sticky, but then sometimes it feels almost like something firm, like crunching a mouthful of sugar, and then when it hits your skin, it tingles.”</i>");
+	outputCodex("\n\nChris’s mind answered before his conscience stopped him. <i>“BXBI is silicone-based, that’s why it feels the way it does.”</i>");
+	outputCodex("\n\nTess licked her lips. <i>“Come on, tell me what’s going to happen.”</i>");
+	outputCodex("\n\nThe core body was the first to feel the effects, followed by the head, then the extremities. Some people tuned out after the tits, but not Chris. He could watch a girl changing all the way through. So why did it feel so strange to see this now, in real life?");
+	outputCodex("\n\nChris shook his head. <i>“No,”</i> he said, <i>“we need to get you somewhere safe. If you’ve got a vibrator...”</i>");
+	outputCodex("\n\nShe grasped the bottom of her shirt and tossed it over her head. Her pale-blue bra squeezed the underside of her breasts. They were perky, forced upward by the bra, and yet they looked wrong on Tess’s frame. They didn’t look like hers, like they were fake. And in the sense of being pumped up with silicone, they were fake.");
+	outputCodex("\n\n<i>“Get this bra off me,”</i> Tess said. She lowered her voice, but her natural pitch was rising, so she only sounded more sultry than before.");
+	outputCodex("\n\nChris shook his head again. Below Tess’s bust, her stomach gently pinched in, like someone had just lightly squeezed her sides. Or like a corset, tucking her waist inward. He’d never had a single problem with Tess’s weight, but he had to admit, a slimmer body highlighted her hips and the natural curve of her abdomen more.");
+	outputCodex("\n\n<i>“Chris! Get this fucking bra off!”</i> Tess groped at her back, trying to grab the clasp. Her skin had turned pink where the straps dug into her sides and her back. She turned his back toward him, shoulders hunched, leaning forward.");
+	outputCodex("\n\nChris was stunned for a moment. This was another thing that never came up in his videos. They must have used tear-away bras that were meant to rip off. He stepped up and wrapped a finger around the clasp, but it was pulled too tight to come undone. He tried tugging the straps. Tess groaned, and not in a pleasant way. Chris was blushing violently. He was embarrassed about enjoying this, about not enjoying this, about ruining the mood because he was incompetent with bras. He grabbed the scissors from the kitchen counter. With two snips, Tess was free.");
+	outputCodex("\n\nTess breathed in deep relief. Chris lifted off the remains of her bra.");
+	outputCodex("\n\nHe grimaced and said, <i>“Sorry, I know it was your favorite.”</i>");
+	outputCodex("\n\nTess shrugged. The motion jostled her breasts together. They wobbled slightly, but kept their rounded shape. For a moment they parted, then met with a small bounce and a sharp breath of surprise from Tess.");
+	outputCodex("\n\nTess’s breasts didn’t look like they belonged to her. They were heavy and they jutted out proudly. They sagged only slightly, like they made one concession to the fact of gravity, to make up for their otherwise taut look. As she moved, she brushed her arms against the sides of her breasts, then squeaked and wrapped one arm around her chest to cradle them. They were more tender than she had expected. From her elbow to her fingertips, she just barely managed to cover the front of her chest. They weren’t quite as large as her head, but the size wasn’t that far off.");
+	outputCodex("\n\n<i>“It’s cool. Think we can go shopping for a new one?”</i> she asked. <i>“Like, I really wanna go to the...mall.”</i> Tess’s eager expression softened in surprise, then returned bright as ever. <i>“Wow! It’s so easy to talk like that I didn’t even notice it, but it’s like, this little teeny warm feeling in my head,”</i> she said.");
+	outputCodex("\n\nIf she was starting to get high off the BXBI, Chris didn’t have a lot of time left to reason with her.");
+	outputCodex("\n\n<i>“I really appreciate that you want to do this for me, but I think you should just wait it out in the bedroom. I’ll go to a sex store, get you anything you want,”</i> he offered.");
+	outputCodex("\n\nTess rubbed the underside of her bare belly, with only the slightest natural bulge to it. Her expression slowly glazed over. <i>“It’s dripping down, down, down...and it’s so warm and it’s getting all over my insides.”</i> She reached out and wrapped her arms around Chris’s neck. <i>“I want you,”</i> she told him.");
+	outputCodex("\n\nChris’s hands instinctively went to her hips. Her skin was soft. She shivered eagerly. Her body was warm, the way she felt warm on winter mornings, when they both stayed beneath the sheets and tried to see how long they could hold each other before they had to get up and eat.");
+	outputCodex("\n\nNow her hips were softer, letting his fingers sink in slightly. They curved so that his hands slipped toward her ass. They guided the eye up and down, inviting anyone who looked to stare all they wanted. Even if her hips didn’t feel familiar, he couldn’t stop himself from rubbing his hands up and down her sides.");
+	outputCodex("\n\nTess pressed her chest against Chris. Her breasts gave way, but they weren’t soft. They squeezed, but they kept their shape. Though they flattened against his chest, pressure from inside kept them rounded as they grew. These weren’t his girlfriend’s breasts, but they were ideal fake tits. They’d really pop in a bikini, or a tank top, or strapless dress. As thoughts thoughts crossed his mind, Chris felt embarrassed and excited in equal measure.");
+	outputCodex("\n\n<i>“I thought you liked fake boobs,”</i> Tess said, pouting to tease him. <i>“Betcha I can’t say a cute me-so-silky–mesosillyco-jenny-sis.”</i>");
+	outputCodex("\n\nAcute mesosilicogenesis, ‘the temporary development of silicone within specific adipose tissue’, was one of the hallmarks of BXBI. Chris knew it, but he didn’t say it. Tess didn’t need encouragement. She was having fun, but Chris couldn’t tell if this was an act for him, or if she was really enjoying it.");
+	outputCodex("\n\n<i>“Tess, you’re embarrassing yourself.”</i> Chris’s cheeks blushed violently.");
+	outputCodex("\n\nTess smiled. Her lips were plush and so kissable that it took conscious effort from Chris not to. <i>“There’s no one here but you, me, and your cock,”</i> she said.");
+	outputCodex("\n\nShe paused a moment, then laughed out loud.");
+	outputCodex("\n\n<i>“Ohmigawd, that’s so dirty! Like, does it really make you do that?”</i> She got a thoughtful look on her face. Her eyes trailed down from Chris’s anxious brow and pursed lips, down to his chest–and her own, as her deep silicone-engorged cleavage was shoved up against him.");
+	outputCodex("\n\n<i>“These are my...tits,”</i> Tess said. She snickered. <i>“Titties! Boooo-bs. The smart word doesn’t even, like come out in my head.”</i>");
+	outputCodex("\n\nAll of that guilt that Chris had forced down every time he watched a video of a girl going bimbo, all of it swelled back up in his chest. He was anxious and horny and a little upset. He wrapped his arm around Tess and tugged her, trying to be gentle but firm.");
+	outputCodex("\n\n<i>“I don’t care what you say, I’m going to make sure you ride out this thing safely,”</i> he said.");
+	outputCodex("\n\nTess’s lips swelled and pulled the skin taut. From the glisten on her lips, she’d put on lip balm in the car. It was supposed to be good for your first time; it let your lips grow more freely. Her lower lip was rounded, curling outward as it grew, getting closer to her chin. Her upper lip swelled out, rounded too. At the top it pinched in slightly, following the upper contour of her lips. Still, the shape was stretched out into rounded, plush excess. The plumpness of her lips forced them to stand out from her face. They were a plump O, parted lightly in the middle.");
+	outputCodex("\n\nA lisp whispered among Tess’s words. They were thick enough to make moving them to speak challenging. <i>“These are really...uh, they feel really good,”</i> she cooed. Her voice was higher still; she squeaked a little, with a bubbly, energetic tone. She pressed two of her fingers against her lower lip and made a soft sound of delight. With the same two fingers, she rubbed along her lips. A shudder ran through the great pillows of her chest and the thick handrests of her hips.");
+	outputCodex("\n\nHer fingers slipped into her mouth; her eyes fluttered. She slid them in and out, experimenting with the motions. With Chris’s arm around her, he could feel when a particular press or push of her tongue made her shudder or made her tense her back.");
+	outputCodex("\n\n<i>“Please, stop doing that with your lips,”</i> he said. He didn’t want Tess to get distracted already. At the same time, he was worried she might get a kick out of being ordered around as a bimbo.");
+	outputCodex("\n\nTess popped her fingers out of her lips with a wet splop.");
+	outputCodex("\n\n<i>“They’re cock-sucking lips, get it right. Woah, hee hee, now that’s dirty!”</i> she chuckled. <i>“But it’s like...umm. I wanna tell you how my lips feel but it’s hard without knowing, y’know, good words.”</i>");
+	outputCodex("\n\nChris gulped to wet his throat. He pushed Tess toward the bedroom as she babbled in her new, glittery voice.");
+	outputCodex("\n\n<i>“But, umm. You know when you’ve been standing up for so long? And it’s like, you really wanna lie down? So then you lie down in bed and it feels good no matter how you do it? Like just doing it’s the best thing ever right now? That’s how it feels. I bet it’d feel so much better with the real thing though,”</i> Tess said.");
+	outputCodex("\n\nHer hand slipped toward his crotch. Chris turned to keep her from grasping it. He didn’t need her to know that he was getting hard. He was already upset that Tess was going through this for him. She didn’t need to! He wasn’t getting off on this. He just needed to keep telling himself that. Maybe that would make it true.");
+	outputCodex("\n\nHe pushed Tess into their bedroom and stood in the doorway. She took a few steps to catch her balance. With a hazy, distracted look in her eyes, she grabbed her pants, unbuttoned them, and pushed them down. When she leaned over, her breasts swung down beneath her and bounced together briefly. They held their shape, even when she was bent over. Mesosilicogenesis, Chris thought. Big, fake porn star tits out of nowhere. That’s what they were. Tess kicked off her pants and stood up straight. For a moment, her breasts kept moving. They bounced upward as she straightened, then jiggled back into their proper place. Her breasts turned any motion she made into a sexual display.");
+	outputCodex("\n\nTess’s lips, swollen to a tender and vulgar size, drew in Chris’s eyes when he looked at her. She stared straight ahead as she pressed two fingers between her lips. Her lips curled inward as she sucked. By the motion of her throat, she was keeping a slow rhythm. Her eyes went unfocused and her fingers disappeared up to her thumb.");
+	outputCodex("\n\nChris should have closed the door. He stood in the doorway, watching. Tess’s stomach was no longer flat. Instead of the tucked, nearly anorexic look, she had a gentle bit of tone to her belly, like she took care of her body. Like she exercised her hips every day. Like she spent all her time grinding on–");
+	outputCodex("\n\nStop it. Stop thinking about it.");
+	outputCodex("\n\nTess’s eyebrows perked and she pulled her hand from her mouth slowly. <i>“Wow. It’s like...all I could think about were my lips. It’s not not thinking, it’s like, my focus is all weird,”</i> she said.");
+	outputCodex("\n\nTess turned and walked to her dresser. Even from behind, the outer edges of Tess’s breasts were visible. They were simply that big. Like her stomach, her back was gently toned, though not to any athletic extent. She probably couldn’t even play beach volleyball, the semi-official sport of bimbos. What mattered was that her back was strong enough to hold her chest up.");
+	outputCodex("\n\nChris let his gaze drift lower. He had already felt Tess’s soft ass, but seeing it all as one, ass and hips and waist, made it clear just how wide her hips had gotten. They were as wide across as her breasts were, like a line drawn straight down from the side of one tit would just graze across the side of her hips. Her body had a carnal symmetry.");
+	outputCodex("\n\n<i>“Ugh.”</i> Tess exhaled so sharply, he could see her rolling her eyes. <i>“This makeup is lame,”</i> she said. <i>“And it’s weird, cause it’s my makeup, y’know? I know why I bought it.”</i>");
+	outputCodex("\n\nChris did too. Tess never liked to get dressed up. He didn’t mind. It was nice having a cute, low-maintenance girlfriend.");
+	outputCodex("\n\n<i>“Chris.”</i> Tess’s tone was gentle, but serious. She looked up at him, pursing her obscene lips. <i>“When I’m back, you gotta get me to dress up and stuff.”</i>");
+	outputCodex("\n\nFor the first time, it crossed Chris’s mind that Tess’s tomboyish, unconcerned look might not have been intentional. He’d fallen in love with her like that, but hadn’t considered that it wasn’t the way she always wanted to look. Maybe she wanted to be prettier and more sexual. Maybe that was why she was doing this. Maybe he didn’t need to blame himself.");
+	outputCodex("\n\nTess stood up and turned around. She’d made do with what was in her makeup drawer, adding a sexual edge to the lip gloss and running eyeliner in thicker, more confident strokes around her eyes. Her usual light, natural look wouldn’t match the way she looked now. Her eyeliner was dark and flared at the corners to complement her thick mascara, while her mild blue eyeshadow added a bit more contrast. Her lip gloss only had a light pink tint, but with a couple applications, she’d reached a peachy-pink with a candy gloss shine.");
+	outputCodex("\n\n<i>“Make me go shopping, and like, take me to a salon, kay? I’m telling you cause I’m way super shy about–oop!”</i> Tess moved to take a step, and her heel missed the ground entirely and she tipped forward.");
+	outputCodex("\n\nChris rushed forward, arms out. Tess was heavier than he remembered. He caught her, arms under her shoulders. Her hands clung to his hips. She dropped to her knees in front of him.");
+	outputCodex("\n\nBXBI could shorten the achilles heel in up to twenty-five percent of individuals, the Wikipedia entry in his mind told him. He couldn’t remember if Tess owned any pairs of heels she could wear for now. He glanced down at her. She was fidgeting quietly around his waist. His belt buckle jingled.");
+	outputCodex("\n\n<i>“Tess!”</i>");
+	outputCodex("\n\nTess sat back, her hands on his thighs, looking up at him. She giggled. <i>“Gawd, it’s like a big test and I gotta be ready so I can’t stop thinking about it. Like, it’s just there, and it doesn’t go away and it gets worse and worse. Like, I look at you and I can’t stop thinking about how you’ve got a cock and why I’m not doing anything with it.”</i>");
+	outputCodex("\n\nShe licked her lips. Chris had so many opportunities to turn away and shut the door, but the way Tess made it sound, it was like he’d be hurting her if he left her alone. Damn it. His body definitely appreciated what was going on, but he still felt guilty about liking this.");
+	outputCodex("\n\nWhile Chris was distracted with his moral conflict, Tess tugged down his boxers and wrapped her fingers around the base of his cock. It swung up, heavy and warm and warmed further by her touch. Chris had words formed, but they melted when Tess’s lips parted and her tongue moved and the feeling of her overstuffed lips, her cocksuckers, enveloped him.");
+	outputCodex("\n\nHer mouth knocked the wind from his lungs. Tess had given him head before, but this was different. Her lips was soft and tight and clung to his cock. Every time she pulled back, they tugged back along with her. They were so plush and glossy-smooth that he almost thought they might still be growing. Even just at their current size, Chris couldn’t deny it. Tess’s mouth was made for fucking. Sure, she could use them for other things, but her lips right now were sexual objects first and foremost.");
+	outputCodex("\n\nTess lifted her eyes and looked up at Chris. BXBI brought out blue pigmentation, but her eyes were already a drab, cloudy grey-blue. They lightened from the inside out, like little icy blue crystals. Even though the lustre of her irises made her look vacant, a cheeky twinkle still remained in her eyes. That playful look was just so Tess.");
+	outputCodex("\n\nTess’s tongue did things Chris had never known. It twisted around his shaft, it curled and slurped and danced along his skin. She dragged her tongue along the underside of his cock. She let go of the base of his cock and let her lips slide down until her forehead touched his stomach.");
+	outputCodex("\n\nEvery inch of the way, she was sucking like it was her life’s work, like her whole worth lay in oral. He watched her shoulders and back tense, her thick, rounded ass rising and falling. He couldn’t see her breasts, but god, could he feel them. They sunk against his thighs, squeezing together, jostling for space between his legs.");
+	outputCodex("\n\nTess rose back, then sunk down onto his shaft again and again. Each time, the warmth was deeper, her throat pulling tighter, her sucking more desperate.");
+	outputCodex("\n\nChris’s head throbbed. He felt weak in his knees and his stomach churned. His lower half seized and he felt a hot, sharp ache rise through him. His cock throbbed once, then spilled his load into Tess’s waiting mouth. She kept bobbing, an automatic motion, until the last spurt had left.");
+	outputCodex("\n\nTess slid off with a wet pop. She knelt on the floor, vapid eyes wide, cocksucking lips hanging open.");
+	outputCodex("\n\n<i>“Ohmigawd,”</i> she said. Her voice had a vacant cadence, breathy and almost dizzy, like she was trying to remember a dream.");
+	outputCodex("\n\nChris was blushing again. <i>“I couldn’t stop–”</i>");
+	outputCodex("\n\n<i>“Ohmigawd, ohmigawd. Cum is amayyzing,”</i> Tess said. <i>“It’s so, like, hot and wet and it goes down so easy and it tastes like cock which is super delicious anyway.”</i>");
+	outputCodex("\n\nTess dragged her finger across her lips, wiping up the small bit of cum that had spilled out. She slipped her finger into her mouth. With her other hand, she rubbed along her thighs and over her puffy mound.");
+	outputCodex("\n\n<i>“It’s...gawd, I can’t stop thinking about cum now! It’s all warm down my throat and in my belly. And there’s like, so many different tastes, when it first comes and the last drops and when it’s fresh and when it’s sticky. Ohmigawd I sound like such a slut, right?”</i> she asked.");
+	outputCodex("\n\nTess licked her lips. Her fingers pushed between her folds. She ground her hips against her hand, eyes rolled back, mouth hanging open.");
+	outputCodex("\n\n<i>“I just,”</i> she said between gasps, <i>“fucking love...cum!”</i>");
+	outputCodex("\n\nA small splash of liquid fell to the carpet from between her fingers. Tess slumped against the side of the bed, red-cheeked. Even though Chris and Tess had always enjoyed sex, Chris had never seen her squirt before. It was too overtly sexual for Tess. This whole thing was too overt. The guilt rushed back in.");
+	outputCodex("\n\n<i>“Ooh,”</i> Tess cooed. <i>“I think it’s gonna, like, do my brain now.”</i>");
+	outputCodex("\n\nChris had to clear his throat before speaking. <i>“I think it’s already done that.”</i>");
+	outputCodex("\n\nTess looked as thoughtful as she could, working her finger around a lock of her hair. <i>“You sure? It’s tingly and stuff up there.”</i>");
+	outputCodex("\n\n<i>“Your–it’s your hair,”</i> he said.");
+	outputCodex("\n\nTess furrowed her brow and pouted. Then she saw the lighter strands of hair wrapped around her finger, and realization washed over her face. <i>“Ohhh. I thought it wasn’t gonna do anything, since I’m like, already blonde.”</i>");
+	outputCodex("\n\nBXBI could take a raven-haired brunette and leave them honey blonde. Tess already was blonde, but that wasn’t stopping the drug. Her hair was already lighter at the roots. Chris got to watch the familiar way that it trickled out toward the tips of Tess’s hair. The color leeched out of each strand. Her hair was pale, light, almost silvery. Platinum blonde fit the perfectly-fake BXBI look.");
+	outputCodex("\n\nTess scratched at her scalp and chuckled. <i>“It’s like tingly shampoo,”</i> she said. Tess shook out her hair, and each time it swayed, it swung back longer, reaching down further. The same process that bleached it also tamed its natural unruliness, leaving it softer and smoother and easier to style. By the time she’d shaken out her impeccably straight locks, they nearly reached to her ass.");
+	outputCodex("\n\n<i>“I’m gonna have like, so much fun with this,”</i> she said. She rose from beside the bed and walked, carefully on her tiptoes, to the mirror. She turned her head from side to side, grasping big handfuls of her amiably silky hair. <i>“It’s like when I played with Barbies, but now I’m the doll.”</i>");
+	outputCodex("\n\nWhile Tess tested out pigtails and ponytails in the mirror, Chris sat down on the bed to breathe. So much for locking Tess in the bedroom alone.");
+	outputCodex("\n\n<i>“You played with Barbie dolls? That’s not just the BXBI talking?”</i> he asked.");
+	outputCodex("\n\nTess clicked her tongue and rolled her eyes at Chris’s reflection. <i>“Uhh, yeah, I’m like, a tomboy, not a weirdo.”</i>");
+	outputCodex("\n\nTess combed her hair forward with her fingers. It fell down over her face and she left it there while she searched for scissors. She tucked the pair of scissors underneath her bangs, and trimmed them straight across, just above her eyebrows. The tight cut gave her a pop-star look, albeit a faked-up, bimbo one.");
+	outputCodex("\n\n<i>“I think I wanna hit a salon,”</i> she said. She let her ass fall to the bed and she bounced in all the ways she shouldn’t have. Her breasts jostled together. Even her lips jiggled slightly. <i>“I wanna get some curls and pink dye and stuff.”</i>");
+	outputCodex("\n\nChris nodded. <i>“I get that doing this is important to you,”</i> Chris said. It had been a bit selfish to think she was only doing this for him. <i>“I want to be here for you, no matter what you’re like.”</i>");
+	outputCodex("\n\nTess smiled as much as her lips would allow and leaned forward. <i>“Wanna call me Titty Doll?”</i> she asked.");
+	outputCodex("\n\n<i>“No,”</i> Chris said, gently.");
+	outputCodex("\n\n<i>“Fine, but I’m still your titty doll even if you don’t say it!”</i> Tess stuck out her tongue, though it didn’t reach very far beyond her lips. She lifted herself onto the bed and lay back, knees bent, her toes touching the sheets. She normally had a naturally light complexion, but already it looked as if she’d spent some time out in the sun. Her cheeks were warmer and her breasts and belly were tanned.");
+	outputCodex("\n\nWith her platinum blonde hair carefully cut and her silicone tits sitting on top of her chest, thick enough that she could barely see him without lifting her head, Chris imagined she was a professional porn star. He could see it, too: tiny bikinis, fancy mansions, showing her tits for the camera, giving blowjobs on private planes. None of that was true, but if he didn’t know Tess wasn’t always a bimbo, he could have believed it.");
+	outputCodex("\n\nAt the same time, she was definitely Tess. Even with her idealized features, he could recognize her, and even with all her inhibitions peeled back, her personality peeked through. She liked to tease him, after all, and that’s what this whole thing had been.");
+	outputCodex("\n\nChris pulled off his shirt. He took a deep breath. He tried to relax. He didn’t, but he climbed next to Tess on the bed. He wrapped his arms around her. The tan made Tess’s skin feel warmer against his, or maybe that was just how excited she was. She curled into his arms and her chest lay against his. A flicker of delight ran through her eyes.");
+	outputCodex("\n\nChris was going to say something about how he knew this was what she wanted and he’d do this for her. He breathed in, and was cut off by Tess giving him a tug against her chest.");
+	outputCodex("\n\n<i>“Ohmigawwd, just fuck me,”</i> she whined in her pink bimbo-squeak.");
+	outputCodex("\n\nThey could talk later.");
+	outputCodex("\n\nChris tried to nestle in against Tess like usual, but no matter which way he moved, her breasts were there, firm, too big to squeeze against. As a compromise, he rolled onto his back, and Tess straddled him, laying on top of him, propped up by her tits like pillows.");
+	outputCodex("\n\nHis hands were on her hips again and his cock was already hard. As Chris lifted his hips to thrust into Tess, he had to hold back a heavy groan. Reading ‘BXBI can cause genital restructuring’ on the internet was one thing. The unblemished, uniform perfection of a sex toy plus the reality of sex; the tiny motions, the warmth and wetness and clenching muscles and intimacy; that was something else.");
+	outputCodex("\n\nTess rose and fell on Chris’s hips. Her hair bounced in heavy waves. Her breasts wobbled with slow sloshes of silicone. The two of them began separated by just Tess’s breasts, but as Chris found a rhythm and as Tess tucked her knees up by his hips for support, she rose into the air. Soon Tess was sitting up straight, arching her back, showing off for Chris.");
+	outputCodex("\n\nThere was a name for this position but it escaped Chris. They weren’t ‘doing’ positions. Neither of them could devote enough mental energy to consider anything beyond their own pleasure.");
+	outputCodex("\n\nTess let gravity aid her descent. She fell down over his cock, and he sunk deep into her perfectly-molded pussy. Every inch of her tightened and squeezed and he could see every inch written on her swollen lips and bright, blank eyes.");
+	outputCodex("\n\nEvery physical sensation screamed utter bimbo, but in Tess’s breathless moans and hungry gasps, he could tell it was her. It was the sort of noise she’d made when they slipped into bed late at night, both exhausted and both horny.");
+	outputCodex("\n\nRaw guilt clenched at the bottom of his stomach. Chris used the nervous energy. He arched his hips and held tight to Tess’s waist. She fell down over him and he rose up to meet her. Chris clenched his teeth. Each thrust was ferocious. He focused his anger and tension and pent-up lust into his sex and she let out a pink-tinted squeal.");
+	outputCodex("\n\nHe was holding onto her too hard. He let go and raised his hands to her chest. She made a stifled, surprised sound and her eyes rolled back.");
+	outputCodex("\n\n<i>“G-gawd, more,”</i> she gasped.");
+	outputCodex("\n\nHe stroked her breasts. He squeezed; the silicone pushing back against his fingers. He rubbed his thumb over her nipples until they were stiff and any touch made her gasp and whimper. Her breasts wanted to bounce free. Each time she fell down over him, they wobbled thickly in his palms. With their fake tightness, they couldn’t slip out of his grasp.");
+	outputCodex("\n\nChris’s vision blurred. His eyelids fluttered and he curled his body. His shoulders pressed back against the bed, his hands holding onto her huge tits, knees bent, heels dug into the sheets.");
+	outputCodex("\n\nFor a brief time, all he could feel was her weight. Her hips fell with perfect balance, pushing her thighs against his side. The weight of her body came down on top of him, thick and taut, pushing him down against the bed. Her breasts fell against his hands, far overflowing his grip, making his arms ache against their weight.");
+	outputCodex("\n\nEvery last bit of Tess was made for sex. And he...");
+	outputCodex("\n\nEverything came into focus as he orgasmed. His fingers tightened instinctively. Tess’s tits bulged in the spaces between his fingers. Her cocksucking lips were wide open; she was screaming. Her perfectly sculpted pussy clenched. Her muscles shook with strain, and he trembled just like her. Then hot and wet filled the space between them, and it filled Tess, and it kept going.");
+	outputCodex("\n\nTess dragged her tongue over her lips to wet them. She was the first to move, before Chris had even finished. Chris tried to follow her with his eyes, but he couldn’t catch how she switched from pussy to mouth so quickly. BXBI...something...flexibility? He was too exhausted to recall the facts. All he could tell was that Tess was fast, and still hungry for cum.");
+	outputCodex("\n\nTess slipped her lips around him again, working her tongue along his cock, sucking down the last few bursts of cum. She sucked until the last trace of his seed was gone, then pulled free with a plop. As she sat back on the bed, she dipped two fingers into her pussy, then brought her fingers to her mouth and sucked them clean, without batting an eye.");
+	outputCodex("\n\n<i>“Like, I didn’t even think that my tits would be so...um, like that they’d feel so good. It’s like a tingly thing that goes straight down to my pussy. Gawd, I can’t think of any good words!”</i> She giggled, then shook her head, making her blonde hair shimmer before falling back into its silky straight locks.");
+	outputCodex("\n\nChris didn’t say anything. It had been the best sex he’d had, no contest. He stared at her, panting quietly, not smiling but in quiet adoration.");
+	outputCodex("\n\n<i>“So, you wanna get cleaned up in the shower with me?”</i> she asked as she stood up on her tip-toes.");
+	outputCodex("\n\nChris shook his head and tried to dampen his throat with a gulp. <i>“S-sorry, I need some time.”</i>");
+	outputCodex("\n\nHe couldn’t even see a difference between Tess going into the shower and Tess coming out. Both of them were faked-out, BXBI-doll perfect. He slid into the shower after her, and quietly enjoyed how the bathroom smelled like their sex.");
+	outputCodex("\n\nChris tried to imagine what he’d do with Tess for the rest of the day. The BXBI wouldn’t wear off until the next morning, but he didn’t know if he had the energy to keep pleasing her. Maybe a movie that Tess wouldn’t have trouble following in her distracted state, he thought.");
+	outputCodex("\n\nWhen Chris came out of the bathroom, he found Tess sitting on the bed. She had squeezed into an old tank top of hers that barely fit, leaving her nipples sticking into the fabric. She’d paired some blue tiger-stripe leggings she’d bought for an 80’s-themed party with a denim skirt she hadn’t worn in ages, and was wearing polished black formal shoes with a three-inch heel. Even in the least-coordinated outfit he could imagine, Tess couldn’t help but ooze sexuality.");
+	outputCodex("\n\n<i>“What’s up?”</i> he asked. Chris tugged on a new pair of boxers.");
+	outputCodex("\n\nTess smiled coyly. <i>“Well I was thinking like, maybe we could go to the mall?”</i>");
+	outputCodex("\n\n<i>“Wasn’t the second thing on your limits ‘just the two of us’? The mall is kind of public,”</i> he said.");
+	outputCodex("\n\nTess huffed theatrically. <i>“Like, I meant no threesomes or anything. I wanna go shopping so I have stuff to wear when I’m all bimboed. Have you seen what I’m wearing?”</i>");
+	outputCodex("\n\nChris hesitated. It was easier to keep a controlled environment here in the house, and there was the question of what he’d do if anyone he knew saw him with this drugged-out bimbo.");
+	outputCodex("\n\n<i>“I know just the kinda outfits you li-ike,”</i> she sang.");
+	outputCodex("\n\nChris’s face flushed. She’d found his porn, after all. She’d know all his weaknesses. He’d get to see her in snug tank tops and hip-hugging shorts and plastic heels...");
+	outputCodex("\n\n<i>“Okay! Okay, we’ll go to the mall.”</i> Half out of eagerness, half because he didn’t want to hear her keep talking about what she’d found. He was embarrassed enough already.");
+	outputCodex("\n\nTess smiled brightly and hopped to her feet. She teetered forward on her heels, then took a step backward to steady herself. Even three-inch heels weren’t high enough to counteract her shorter tendons. Chris tried not to get too excited thinking about what kinds of shoes she could try on.");
+	outputCodex("\n\n<i>“Great! I just gotta grab my purse and stuff,”</i> Tess said, breezing by on her way to the living room.");
+	outputCodex("\n\nChris sighed and rested his head against his dresser for a moment. Even as a bimbo, Tess was clever enough to keep pressing his buttons. No doubt that she was still his girlfriend, no matter how faked-out she was on bimbo drugs.");
+	outputCodex("\n\nTess had just finished scooping her bottle of BXBI into her bag when Chris came out to join her, dressed casually and doing his best to smile.");
+	outputCodex("\n\n<i>“Ready to go?”</i> he asked.");
+	outputCodex("\n\n<i>“Yep, got everything!”</i> Tess chirped, patting the side of her bag.");
+	outputCodex("\n\nShe swung her bag onto her shoulder as she followed him out the door. Her fingers slipped into her bag and her fingertips ran around the cap of the BXBI bottle.");
+	outputCodex("\n\nTess couldn’t wait to get to the mall.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("BXBI: I");
+}
 public function dragonsHordeCodexStory():void
 {
 	clearOutputCodex();

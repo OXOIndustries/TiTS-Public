@@ -30,9 +30,11 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kaithrit", kaithritCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kalabast/Fhan’i", kalabastFhaniCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kui-Tan", kuitanCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rodenians", rodenianCodexEntry);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Roehm", roehmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saeri", saeriCodexEntry);
@@ -121,6 +123,9 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Chill Pill", chillPillCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
@@ -128,10 +133,20 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: II", bxbiChapter2Story);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Captured...", capturedByTheDemons);	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Diverting Jokes", DivertingTarkusJokesAndJests);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck the System", fuckTheSystem);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
 }
 
 public function codexHomeFunction():void
@@ -208,7 +223,7 @@ public function humanTerranCodex():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
 	outputCodex("Humans have managed to maintain extensive records deep into their history such that it would be impossible to properly describe the entirety of their development in this short summary. Two traits have remained constants - exploration and conflict. Nearly every major advancement has come as a result of one of these two. Humans are a race that easily throws themselves to war, falling back on tribal instincts that lead them to obliterate or dominate others. Additionally, they will recklessly throw themselves at the unknown, determined to go to difficult locations for no other reason than to be the first.");
-	outputCodex("\n\nBoth these instincts have been reigned in over the years, but one need only look at the early human wars with their own colonies to see how quickly they will jump to violence, even with their with people.");
+	outputCodex("\n\nBoth these instincts have been reigned in over the years, but one need only look at the early human wars with their own colonies to see how quickly they will jump to violence, even with their own people.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Other Notes"));
 	outputCodex("Mostly harmless.");
@@ -315,7 +330,7 @@ public function leithanCodexEntry():void
 	outputCodex(blockHeader("Combat"));
 	outputCodex("Unlike many advanced species through the galaxy, the Leithans began as prey creatures on their homeworld, and have over the millennia developed several defensive adaptations to ward off the very large, unintelligent predators that attacked them. The first feature most people notice about a Leithan is her natural armor: while the tauric lower body is completely covered with thick, leathery scales (befitting the species’ reptilian origin), the flanks, arms, legs, and tail are protected by a chitinous secondary layer. Leithan armor is thick enough to stop most low-caliber bullets, and even deflect low-grade laser fire at range; more importantly for the species, however, it is capable of withstanding the enormous pressure of most titanic predators’ crushing maws, giving Leithans some defense against their native hunters.");
 	outputCodex("\n\nSecond, the Leithans have developed six powerful legs, allowing them unparalleled running speeds over short bursts. Leithan endurance is not above average, but their speed is usually enough to avoid or outrun danger before exhaustion sets in.");
-	outputCodex("\n\nThird, Leithans have adapted bright warning signs on their armor plates. These yellow, bioluminescent patterns are unique to each Leithans, and serve to frighten off some larger predators, especially at night. The coloration of their warning lights has become iconic in Leithan culture, and many Leithans choose to dye their hair or decorate themselves with gold stripes and swirls, adding to the effect of their natural defense. The bioluminescent stripes have a variable brightness, controlled subconsciously by their owner: in times of extreme emotion or distress, they flare brighter, while when calm and relaxed, the lights are almost completely dimmed.");
+	outputCodex("\n\nThird, Leithans have adapted bright warning signs on their armor plates. These yellow, bioluminescent patterns are unique to each Leithan, and serve to frighten off some larger predators, especially at night. The coloration of their warning lights has become iconic in Leithan culture, and many Leithans choose to dye their hair or decorate themselves with gold stripes and swirls, adding to the effect of their natural defense. The bioluminescent stripes have a variable brightness, controlled subconsciously by their owner: in times of extreme emotion or distress, they flare brighter, while when calm and relaxed, the lights are almost completely dimmed.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Environs"));
 	outputCodex("The Leithan homeworld, a small planet orbiting Alpha Centauri (hence the common nickname for the species, Centaurins) is a vast, cold-weather desert and shrubland for the most part, punctuated by several dozen small seas, but no proper oceans. The atmosphere is naturally very dense and humid, with a water content much higher than that of Terra or Ausaril.");
@@ -348,7 +363,7 @@ public function kuitanCodexEntry():void
 	outputCodex("\n<b>Eyes:</b> Kui-tan have two forward facing eyes situated in their face, in the same manner as humans. Eye color tends towards shades of brown and orange, though gold eyes are possible, if rare.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Appearance"));
-	outputCodex("The kui-tan are a humanoid species native to the Arcysus's single moon of Jitafore, which orbits the planet Arcysus, who visually call to mind the mythical ‘tanuki’ of Japanese lore. Their bodies are typical of most intelligent humanoids - two legs, a torso, two arms, and a single head atop the torso. Kui-tan faces are strikingly similar to galactic norms, except that nose and jaws grow together and extend into a short but expressive muzzle, containing prominent canines but altogether omnivorous teeth. A single pair of ears, just pointy enough at the top to be oval-shaped rather than circular, sit atop the head with limited mobility.");
+	outputCodex("The kui-tan are a humanoid species native to Arcysus’s single orbiting moon, Jitafore, who visually call to mind the mythical ‘tanuki’ of Japanese lore. Their bodies are typical of most intelligent humanoids - two legs, a torso, two arms, and a single head atop the torso. Kui-tan faces are strikingly similar to galactic norms, except that nose and jaws grow together and extend into a short but expressive muzzle, containing prominent canines but altogether omnivorous teeth. A single pair of ears, just pointy enough at the top to be oval-shaped rather than circular, sit atop the head with limited mobility.");
 	outputCodex("\n\nThough they have five-fingered hands at the ends of their human-like arms, their plantigrade legs end in paw-like, four-toed feet. A single tail sprouts from every kui-tan’s rear, starting at a narrow base and swelling out immensely the closer one comes to the tip. These tails can be almost as long as a kui-tan is tall and as thick around as one’s waist. However, the bulk of a kui-tan’s tail is actually very dense, firmly packed fur, making it surprisingly light despite its bulky shape.");
 	outputCodex("\n\nKui-tan grow thick, dense fur that often makes them looking quite pudgy if left ungroomed. Most kui-tan do their best to keep it cut short and form-hugging, both to keep cool and for appearances’ sake. Their fur colors are generally browns with patches of black around the eyes, on the tips of the ears, in rings around the length of the tail, and in the shape of black socks over their feet and thighs. This fur grays in old age. It is not unheard of for kui-tan to dye themselves to suit personal preferences and tastes.");
 	outputCodex("\n\nAll kui-tan bear tapered penises thanks to their lack of a female sex. The tips have vaguely heart-shaped crowns formed by two rounded bulges on the underside of the glans at a tip at the tip. During kui-tan mating, the unique shape stimulates the cervix to dilate, allowing the father direct access to a fertile womb. A trio of knots, spaced along the length, swells upon orgasm, locking the lucky father in place. The erect length of a typical kui-tan falls somewhere between six and ten inches and not more than two inches in width, though reports of kui-tan with outsized genitals from mods are common; the race seems to have strong reactions to such items.");
@@ -471,7 +486,7 @@ public function galotianCodexEntry():void
 	outputCodex("\n<b>Homeword:</b> Galotia");
 	outputCodex("\n<b>Height & Weight:</b> Highly variable");
 	outputCodex("\n<b>Coloration:</b> Highly variable, typically matches the local environs for camouflage purposes.");
-	outputCodex("\nLifespan: Indefinite. Galotians show no signs of aging or cellular degeneration.");
+	outputCodex("\n<b>Lifespan:</b> Indefinite. Galotians show no signs of aging or cellular degeneration.");
 	outputCodex("\n\n");	
 	outputCodex(blockHeader("History"));
 	outputCodex("Galotians were the first species encountered with any true shape-shifting potential. Discovered during the chaotic second Planet Rush, they were originally thought to be hostile predators. Early explorers fought tooth and nail to stop themselves from being enveloped in the horrifying blobs of goo that rolled out of Galotia’s swamps with little success.");
@@ -517,7 +532,7 @@ public function anataeCodexEntry():void
 	outputCodex(header("Anatae"));
 	outputCodex("<i>Ad maius bonum.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Anat");
-	outputCodex("\n<b>Genders:</b> Male (85%), Female (15%)");
+	outputCodex("\n<b>Sexes:</b> Male (85%), Female (15%)");
 	outputCodex("\n<b>Height:</b> Both sexes range between 5\' 11\" and 6\' 4\"");
 	outputCodex("\n<b>Weight:</b> 160 to 200 lbs");
 	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colours, often artificial.");
@@ -561,7 +576,7 @@ public function daynarCodexEntry():void
 	outputCodex("<i>Not all lizards are untrustworthy: Just most.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Daynar");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
-	outputCodex("\n<b>Height:</b> Males - 5\' 9\" ft, Females - 5\' 7\"");
+	outputCodex("\n<b>Height:</b> Males - 5\' 9\", Females - 5\' 7\"");
 	outputCodex("\n<b>Weight:</b> Males - 150 lbs, Females - 140 lbs");
 	outputCodex("\n<b>Hair:</b> None");
 	outputCodex("\n<b>Eyes:</b> Slit, reptilian irises. Sandy brown sclera, but self-controllable iris color.");
@@ -682,6 +697,44 @@ public function fanfirCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Fanfir");
 }
+public function kalabastFhaniCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Kalabast / Fhan’i"));
+	outputCodex("<b>Name:</b> Kalabast (singular & plural); Fhan’i (singular & plural)");
+	outputCodex("\n<b>Genders:</b> Biologically, Kalabast 100% male, Fhan’i 100% female. Gene-modded exceptions are uncommon but existent.");
+	outputCodex("\n<b>Height:</b> 6\' 2\" Kalabast avg, 5\' 3\" Fhan’i avg.");
+	outputCodex("\n<b>Weight:</b> (105 kg) Kalabast avg, (75 kg) Fhan’i avg.");
+	outputCodex("\n<b>Hair:</b> Kalabast grow thick amounts of fur from the top of their heads. Fhan’i grow thick, pale tentacles in a hair-like arrangement.");
+	outputCodex("\n<b>Skin Color:</b> Kalabast grow short fur all across their bodies, which can be many natural shades from cream to dark brown. Fhan’i are hairless and albino white across their bodies, however their extremities are usually purple, red, orange or pink.");
+	outputCodex("\n<b>Ears:</b> Kalabast have large, lynx-like ears. Fhan’i have finned, human-like ears. Although less impressive in appearance, fhan’i have a far superior audial sense to the kalabast.");
+	outputCodex("\n<b>Eyes:</b> Kalabast have four eyes, two on either side of their face. The pupil is round but small, and the sclera is usually a rich brown or yellow. The Fhan’i have two black, pupil-less eyes. The fhan’i have poor natural vision whereas the kalabast are capable of perceiving infrared and ultraviolet.");
+	outputCodex("\n<b>Lifespan:</b> 100-110 years Kalabast, 70-75 years Fhan’i.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Bodily Structure"));
+	outputCodex("The Kalabast are a digitigrade bipedal race with four digits on each limb, as well as a long, short-furred, prehensile tail. They tend towards a heavy musculature in their arms, enabling them to run on all fours over short distances. They have long faces and wide noses which, with their mane-like hair, lends them a profile not dissimilar to the great feline beasts native to Earth and Rosha. They have loose-hanging balls and a single knotted penis around 7 inches in length, with nodules along the shaft.");
+	outputCodex("\n\nThe Fhan’i are a plantigrade bipedal race with five webbed digits on each limb, as well as a long, semi-rigid tail. This tail is forked into two thick leaf-like fronds at the tip, and enables a natural expertise at swimming. A number of vestigial tentacles hang around this appendage. They grow large breasts which produce milk naturally; this milk has weak transformative and psychoactive effects on others, engendering arousal universally and testicle growth in those that have them. They have a feminine shape and face immediately recognisable to the galactic norm. Between their thick thighs they have a single vagina, notable for its cilia-lined, penis-milking interior.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Breeding"));
+	outputCodex("The Fhan’i naturally produce extremely adaptable ovi, which make them capable of breeding with almost anything with a male sex to produce fhan’i offspring after a six month gestation. The Kalabast are not as able at crossbreeding, but produce dominant sperm which makes kalabast offspring a near-certainty within those couplings they are capable of. Within kalabast/fhan’i pairings, a kalabast offspring is the outcome in about 1 in 4 cases - a fact that has enabled the continuation of both races, and shaped their shared history (see below).");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Domestic History"));
+	outputCodex("The Kalabast are natives to Denkozenne, a lush world filled with a myriad of biomes. Like most denizens of the planet, they had a roughly equal split of males and females. Before the kalabast had fully evolved sapience, a spacecraft carrying the extinct Fhan’i antecedent race crash-landed in the warm marshes that dominated a large continent of the planet. After a short time these individuals apparently reverted to a primitive state, and came to rely upon captured Denkozennian males to propagate.");
+	outputCodex("\n\nThe two reached the Bronze Age at roughly the same time, and quickly came to be the dominant races on the planet. Unsurprisingly the fhan’i’s needs - and predilection to express it in the form of male slave-taking - lead to wars of escalating savagery, with the fhan’i’s numbers and organisation matched by the kalabast’s physical strength and richer territories.");
+	outputCodex("\n\nAround the turn of the Digital Age, a fhan’i cabal of extremists invented a solution to finally break the impasse: a genophage that would change the kalabasts’ own DNA to irreversibly stop them producing females. Released secretly into the planet’s atmosphere and seas in fhan’i controlled territories in huge quantities, the virus was horribly effective, removing kalabast females within a generation. Unfortunately for the fhan’i, once the kalabast had understood what had happened they attacked their enemies with a hitherto unknown unity and purpose, brought together by a shared hatred. Within five years, the kalabast had won a thoroughly pyrrhic global victory.");
+	outputCodex("\n\nForced into reconciliation, the kalabast adopted the remaining fhan’i into their own society as second class citizens. Slowly but surely a new culture evolved, in which the fhan’i were kept as beloved pets or concubines, and breeding was carefully managed. With this benign form of sexual slavery in place, kalabast/fhan’i society became both peaceful and stagnant, with little to drive scientific endeavour. Many centuries passed by, the norm becoming more and more concrete with each passing generation until both races had come to see themselves as a single, conjoined people. This was the state of affairs when the anatae made landfall in the 10th Planetary Rush.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Galactic History"));
+	outputCodex("The Kalabast/Fhan’i represented a remarkably interesting but challenging project to the anatae; how to uplift them both, and dissolve the fhan’i’s slavehood, without upsetting the peaceful equilibrium the two races had managed to find? Around a dozen new worlds were swiftly annexed, with the most promising offered specifically to the kalabast to populate if they agreed to null their fhan’i pets second citizenship; the rest as alternatives. On all twelve worlds, the anatae relocated a slow trickle of alien migrants likely to be able to act as surrogates for one or both races.");
+	outputCodex("\n\nBoth races spread quickly throughout Imperial space. Whilst matriarchal fhan’i realms and hardliner kalabast slave kingdoms emerged, by and large the two fell along the lines the anatae were hoping, with open, equal societies under Imperial jurisdiction becoming the norm.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Present Day Culture"));
+	outputCodex("Over the years the relationship between the two races has broadly softened, with its former laws now acting as social tropes. Although they both have access to technology that can create female kalabast and male fhan’i, the kalabast regard the fhan’i as their ‘natural’ females, and vice versa. A general, genial patriarchal vibe still abounds; a kalabast is likely to keep 1-3 fhan’i as willing pets, although within U.G.C./Imperial space they will have the same legal rights as him. The kalabast are seen as natural leaders and providers, the fhan’i as muses and entertainers. This is by no means set in concrete; strict matriarchal societies exist, and both races are known to be sexually open-minded.");
+	outputCodex("\n\nIn more cultural terms the kalabast are stereotypically a laidback, individualist and pleasure-driven race. Historians and sociologists note that once in complete control of Denkozenne, their scientific advancement stalled completely. In comparison the fhan’i are energetic, inquisitive and selfless, and fit much more comfortably into the anatae way of thinking. They are almost always the liaison officers of their home planets and stations.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Kalabast/Fhan’i");
+}
 public function laquineCodexEntry():void
 {
 	clearOutputCodex();
@@ -772,6 +825,55 @@ public function rahnCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Rahn");
 }
+
+public function rodenianCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("MABBS");
+	outputCodex(header("Rodenians"));
+	outputCodex("<i>“Do not refer to a rodenian as a mouse unless you are looking to start a fight, and be wary of calling them ‘cute’. More than one careless spacefarer has parted ways with a finger for daring to compare one to a rat. Basically, just don’t point out that they resemble lowly pests. Definitely don’t point out that their English name was derived from the word ‘rodent’. It remains a sore spot centuries on.”</i>\n\t-The Intergalactic Guide to Manners, Volume VI, Terran Edition\n\n");
+	outputCodex("<b>Name:</b> Name: Rodenian (singular), Rodenians (plural) / Ch’squee’ch’chk");
+	outputCodex("\n<b>Homeworld:</b> The forest world of Corvus");
+	outputCodex("\n<b>Lifespan:</b> 150");
+	outputCodex("\n<b>Sexes:</b> 33% Male and 66% Female");
+	outputCodex("\n<b>Height:</b> 4\' 2\" to 5\' 3\" (1.26 - 1.6 m)");
+	outputCodex("\n<b>Weight:</b> 50 to 170 lbs");
+	outputCodex("\n<b>Ears:</b> Large, multifunction ears similar in structure to a terran mouse.");
+	outputCodex("\n<b>Fur:</b> Full body - typically white, pink, gray, or black (but often dyed).");
+	outputCodex("\n<b>Eyes:</b> Nearly identical to terran/ausar standard. Colored green, red, or blue.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Small and short-furred, rodenians bodies share many visual cues with the rodents of earth. They have large, dish-shaped ears with a small amount of mobility, allowing for superb hearing. Just below, their faces bear short, mouse-like muzzles that lack the oversized teeth one might expect. Their incisors are merely mildly oversized. Their hands and feet have claws extending from their tips for climbing. The legs themselves are plantigrade in structure, though rodenians tend to walk with an upraised heel, owing to slight variations in tendon length and bone structure. A tapered, prehensile tail provides near flawless counterbalance, as well as an additional limb for tool use.");
+	outputCodex("\n\nIn short, rodenians look like walking, talking mice, excepting for a few major reproductive differences covered further below.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Rodenians method of reproduction is highly unusual and, to many minds in the greater UGC, perverted. The females’ wombs are located in their breasts rather than their abdomen. Stranger still, those same wombs are accessed for breeding via secondary channels recessed deep in the ear. They do not lubricate during arousal. Instead, the flesh is lined with a friction-denying structure, similar to the nonstick coatings employed in cooking vessels. (Non rodenians have reported them to feel strange but pleasant.) Those passages route through the back of the skull, merge together, then travel down the neck and into the torso to split off into the twin uteruses.");
+	outputCodex("\n\nCleverly, a membrane seals the aural entrances as pressure is applied to the reproductive tissues, preventing hearing damage and sealing out any stray fluids. This adaptation is redundant, however, for the holes themselves are positioned so that any drainage naturally flows into ‘ear-ginas,’ allowing for the rodenian’s keen hearing to remain unobstructed.");
+	outputCodex("\n\nInsemination is handled by the more traditional males, for while they too have vestigial ear-cunts, their bodies have produced a more typical arrangement of genitalia for impregnation: one phallus between the legs, backed up by two testes, shaped and sized similarly to golf balls. The largeness of their gonads relative to their body size affords them impressive sexual endurance - something they need since there are two females with two wombs each for every rodenian male.");
+	outputCodex("\n\nIt’s no surprise then that rodenians mate in threes, with one male joining two females for life. Intercourse happens often, typically at least twice a day for the poor, overworked male, yet fertility rates are quite low. Females only ovulate every year or so, and their eggs have a thicker membrane than a terran’s. Scientists seem convinced that such a change was self-inflicted before UGC contact, a forward-thinking move to counter potential overpopulation.");
+	outputCodex("\n\nOnce inseminated, the female’s other womb will begin ovulating, throwing one egg after another out until the mother carries a set of unborn twins. The children grow slowly within her to minimize food stress, but after four to five months, the eggs are large enough to impede the mother’s movement, and birth can begin. It is at this point that she lays them - through her nipples. The first time can be quite painful, as residual membranes must tear, but each successive laying is typically viewed as more pleasant than the last. Some older rodenians even delight in it.");
+	outputCodex("\n\nThe mother’s body recovers quickly, her elastic flesh snapping closed in a matter of minutes if not seconds. The vacant womb will shrink, converting excess mass into a nutrient-rich cream over the coming days which the mother will then milk onto her adsorbent egg. This is not necessary for the production of healthy offspring, but those whose mothers took the time to milk-bathe their eggs are 2-3 inches taller on average. Only after all this secondary incubation will a rodenian child emerge, clawing free from his or her shell with quiet squeaks and a sharp birth-tooth.");
+	outputCodex("\n\nRodenian children mature rapidly, over 13-14 years, though females’ bodies do not begin to ovulate until late in their twenties, another quirk suspected to be by design rather than happenstance.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Culture"));
+	outputCodex("Rodenian culture has been shaped by a single gland - what has come to be known as the hedonary gland. It grows in the rear of the skull, near the passages used for breeding, and when pressured, it releases a potent chemical cocktail that induces trance-like behavior. The resulting hyper-suggestibility leaves the recipient of nearly any sexual contact utterly at the mental mercy of their mates, an aspect slightly mitigated by their tendency to form romantic entanglements in trios.");
+	outputCodex("\n\nInvariably, all three sexual partners find themselves changed, utterly infatuated with each other, their minor irritants smoothed away into unwavering loyalty. Conflict is a thing of the past. Rodenian relationships are tripods of reinforced titanium. There is no weakness within them. Their language has no word for divorce, nor does it need one. The concept is utterly foreign. When one partner dies, the other two either die of grief or bond together all the stronger.");
+	outputCodex("\n\nFor this reason, they naturally became xenophobic. Aliens cannot come to love the way they do, cannot submit their very being during sexual congress. Their ears and their hedonary glands are a vulnerability all too easy to exploit, particularly for clever slavers. For this reason, many rodenians have formed closely guarded enclaves, limiting their contact with the outside. Those who do venture into the wider UGC typically do so with some sort of protection for their ears - specially designed headphones are the most common.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("Corvus is a planet dominated by forests on its one, large continent, and that is where the Rodenians developed. They had attained access to advanced levels of biosciences before first contact was made, three rushes ago, though they lagged behind in many other disciplines. No atmospheric craft had yet been devised. Self-drawing crossbows were their main form of self-defense. Slug-throwers had not even been invented. Power was siphoned from the roots of certain types of trees, a naturally occurring form of solar power.");
+	outputCodex("\n\nAt first, they welcomed outsiders with open arms... until more and more of their people vanished in the night, taken with a whimper and wiggle. The UGC did little to protect them from the dangers of the wider galaxy - pirates, slavers, and criminals - so the rodenians took matters into their own hands. They traded away their expertise in gene-modification for guns - big ones, and threatened to shoot down any ship who landed without their express consent. The crackling reports of their cannons made good on those threats.");
+	outputCodex("\n\nThe mouse-people of Corvus had learned a painful lesson about their own vulnerability, one they would not soon forget. With their home relatively secure from unwanted intervention, they allowed themselves to establish colonies on other worlds, but only after arming their colonists with the finest guns and the toughest helmets they could buy. Their caution has limited their influence on the galactic scale, but it has kept them safe for the most part.");
+	outputCodex("\n\nPirates prize them as easily programmed pleasure slaves. There is no need for drugs with side effects or expensive neurotherapy. A few slow fucks with a looping audio file playing in the background is all that’s needed to convert a proud rodenian into a simpering slave.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Psychics"));
+	outputCodex("In recent years, rodenians have begun displaying a heretofore unforeseen talent for all things psychic. Skills in telepathy and telekinesis are most common, but odd reports of clairvoyants have cropped up as well. Rodenian ambassadors categorically deny any allegations of mass genetic modification of their people, instead claiming it as a natural evolution against predation. Experts in the field suggest that such a change cannot be explained by natural phenomena, but since access to Corvus is tightly restricted, no real investigation has been conducted.");
+	outputCodex("\n\nThese frightening powers are rare among most core species, and frequently only a result of surgical implantation or extreme genetic manipulation. That a member race of the UGC would suddenly begin to show widespread psionic talent has caused many to reevaluate their opinion of the oft-ignored rodenians. Some theorize that this is the beginning of their rise to prominence. Others assume it is a destabilizing act that will bring about the big-eared mice’s downfall. Only time will tell.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Rodenians");
+}
+
+
 public function roehmCodexEntry():void
 {
 	clearOutputCodex();
@@ -780,7 +882,7 @@ public function roehmCodexEntry():void
 	outputCodex("<i>Whom to where gluttony is not a cardinal sin, but a way of life.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Roehm");
 	outputCodex("\n<b>Sexes:</b> 100% Hermaphrodite");
-	outputCodex("\n<b>Height:</b> Adults reach 6\'4\" height, 9\' length avg.");
+	outputCodex("\n<b>Height:</b> Adults reach 6\' 4\" height, 9\' length avg.");
 	outputCodex("\n<b>Weight:</b> 330 lbs (150 kg) avg.");
 	outputCodex("\n<b>Hair:</b> None.");
 	outputCodex("\n<b>Skin Color:</b> Naturally many different shades, from bright blue and red stripes, to dappled black, to uniform yellow. Different skin color confers no distinct physical traits.");
@@ -815,7 +917,7 @@ public function saeriCodexEntry():void
 	outputCodex("<i>Butterfly girls. Second form of caterpillar-like siel.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Saeri");
 	outputCodex("\n<b>Taxonym:</b> Saeri");
-	outputCodex("\n<b>Genders:</b> Male, Female");
+	outputCodex("\n<b>Sexes:</b> Male, Female");
 	outputCodex("\n<b>Sex:</b> Male, Female");
 	outputCodex("\n<b>Height:</b> Fully matured saeri commonly range from five feet to just over six.");
 	outputCodex("\n<b>Weight:</b> Saeri are very light for their size, ranging between forty to sixty kilos.");
@@ -2121,7 +2223,7 @@ public function myrFungusCodex():void
 	outputCodex(header("Myr Fungi"));
 	if(silly) outputCodex("<i>Gross.</i>\n\n");
 	outputCodex("<b>Name:</b> Ophiocordyceps Myrmedius (Myr Fungus)");
-	outputCodex("\n<b>Genders:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
+	outputCodex("\n<b>Sexes:</b> Spores are technically genderless. Upon attaching to a host, the spores develop a gender based on a number of factors within the host.");
 	outputCodex("\n<b>Height:</b> Spores are a half-inch in diameter at the most. Manifested fungi are typically around half the host’s height.");
 	outputCodex("\n<b>Weight:</b> Spores are lighter than feathers. Manifested fungi weigh about as much as a full travel backpack. Fungal “queens” can weigh up to a few hundred pounds at the base.");
 	outputCodex("\n<b>Hair:</b> Normal manifestations have no hair. Instead, their heads are covered by mushroom “hats.” Fungal queens have clear hair that pulses with colored light.");
@@ -2266,7 +2368,7 @@ public function essyraCodexEntry():void
 	
 	outputCodex(header("Essyras"));
 	outputCodex("<b>Name:</b> Essyra (Singular), Essyras (Plural)");
-	outputCodex("\n<b>Genders:</b> Female and Hermaphrodites");
+	outputCodex("\n<b>Sexes:</b> Female and Hermaphrodites");
 	outputCodex("\n<b>Height:</b> 6\' 6\" to 7\' 0\"");
 	outputCodex("\n<b>Hair:</b> Snow-white, pink, or light blue");
 	outputCodex("\n<b>Eyes:</b> Pink, human in shape and size");
@@ -2312,7 +2414,7 @@ public function frostwyrmCodexEntry():void
 	
 	outputCodex(header("Frostwyrm"));
 	outputCodex("<b>Name:</b> Unknown (Colloquially: Frostwyrm)");
-	outputCodex("\n<b>Genders:</b> Unknown. Assumed Male and Female.");
+	outputCodex("\n<b>Sexes:</b> Unknown. Assumed Male and Female.");
 	outputCodex("\n<b>Height:</b> 15\' to 20\'");
 	outputCodex("\n<b>Scales:</b> Snow white, flecked with glistening blue and silver");
 	outputCodex("\n<b>Eyes:</b> Four flame-red eyes");
@@ -2411,7 +2513,7 @@ public function lurelingsCodexEntry():void
 	showBust("9999");
 	
 	outputCodex(header("Lureling"));
-	outputCodex("<b>Genders:</b> Male and Female");
+	outputCodex("<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> 8\' 0\" to 8\' 8\" at the shoulders. Roughly 9\' from tip to tail.");
 	outputCodex("\n<b>Hair:</b> None.");
 	outputCodex("\n<b>Eyes:</b> Large, featureless black orbs.");
@@ -2467,7 +2569,7 @@ public function milodanCodexEntry():void
 	
 	outputCodex(header("Milodan"));
 	outputCodex("<b>Name:</b> Milodan");
-	outputCodex("\n<b>Genders:</b> Males and Females, Rare Hermaphrodites");
+	outputCodex("\n<b>Sexes:</b> Males and Females, Rare Hermaphrodites");
 	outputCodex("\n<b>Height:</b> 5\' 10\" to 7\' 5\". Males are significantly taller than females.");
 	outputCodex("\n<b>Hair:</b> Milodans have longer patches of fur atop their heads, which can vary in color from their fur patterns. Typical coloration includes black, light or dark blue, orange, or gray.");
 	outputCodex("\n<b>Eyes:</b> Slitted, feline eyes. Coloration is similar to that of humans.");
@@ -2510,7 +2612,7 @@ public function divraniCodexEntry():void
 	
 	outputCodex(header("Divrani"));
 	outputCodex("<b>Name:</b> Divrani (singular and plural)");
-	outputCodex("\n<b>Genders:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
+	outputCodex("\n<b>Sexes:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
 	outputCodex("\n<b>Height:</b> Divrani are short compared to most other Xamdam races, with both sexes standing between 4\' 10\" and 5\' 5\".");
 	outputCodex("\n<b>Hair:</b> Naturally bald. Once bonded, divrani grow a thick pate of slender, styleable flowering vines from their scalps. Usually green, but browns, whites, and blue-green colors are not uncommon.");
 	outputCodex("\n<b>Skin:</b> Divrani skin is naturally made up of body-wide soft, supple scales similar to those of an ovir. Upon bonding with a radglow plant, their skin becomes much smoother and covered with a thin gloss of oil. It takes on a very latex-like quality, and the divrani’s tactile sensation increases dramatically.");
@@ -2575,7 +2677,7 @@ public function hyraxxiCodexEntry():void
 	
 	outputCodex(header("Hyraxxi"));
 	outputCodex("<b>Name:</b> Hyraxx (Singular), Hyraxxi (Plural, Adjectival)");
-	outputCodex("\n<b>Genders:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");
+	outputCodex("\n<b>Sexes:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");
 	outputCodex("\n<b>Height:</b> Average 6\' 3\" to 6\' 9\" (Male) or 6\' 10\" to 7\' 5\" (Female)");
 	outputCodex("\n<b>Hair:</b> Thick, lustrous, and extremely soft hair covers the head, and similar fur coats the forelimbs and tail. Pubic and facial hair is noted to be exceptionally silky and smooth. Hair colors range from stone gray to dark browns and blues. Some rare cases of cyan blue or cream-white occur, especially in females.");
 	outputCodex("\n<b>Skin:</b> Hyraxx have exposed skin on their upper limbs, torsos, and faces. Most Hyraxx are dark-skinned, ranging from coal-black to tans and brown. A minority population has skin in shades of gray, with lighter colorations tending towards heavy freckling due to sun exposure.");
@@ -2645,23 +2747,23 @@ public function throbbCodexEntry():void
 	outputCodex(blockHeader("Legality"));
 	outputCodex("The UGC prohibits chemical manufacturing equipment from being sold with the capability to manufacture Throbb, though the chemical itself is not illegal at the Confederation level. 97% of all UGC planets have outlawed the substance in one way or another. Many of the remaining 3% make a brisk trade on sexual tourism, often taxing Throbb heavily to subsidize medical and psychological treatment for addicts.\n\n");
 	outputCodex(blockHeader("Known Effects"));
-	outputCodex("\t* Sudden phallus growth.");
-	outputCodex("\n\t* Abrupt phallus expansion.");
-	outputCodex("\n\t* Testicle growth.");
-	outputCodex("\n\t* Increased virility.\n\n");
+	outputCodex("<b>*</b> Sudden phallus growth.");
+	outputCodex("\n<b>*</b> Abrupt phallus expansion.");
+	outputCodex("\n<b>*</b> Testicle growth.");
+	outputCodex("\n<b>*</b> Increased virility.\n\n");
 	outputCodex(blockHeader("Known Side Effects"));
-	outputCodex("\t* Dramatic increase to libido.");
-	outputCodex("\n\t* Brief sexual euphoria.");
-	outputCodex("\n\t* Spontaneous orgasm.");
-	outputCodex("\n\t* Permanently reduced inhibitions.");
-	outputCodex("\n\t* Increased genital sensitivity.");
-	outputCodex("\n\t* Enlarged pleasure centers of the brain.\n\n");
+	outputCodex("<b>*</b> Dramatic increase to libido.");
+	outputCodex("\n<b>*</b> Brief sexual euphoria.");
+	outputCodex("\n<b>*</b> Spontaneous orgasm.");
+	outputCodex("\n<b>*</b> Permanently reduced inhibitions.");
+	outputCodex("\n<b>*</b> Increased genital sensitivity.");
+	outputCodex("\n<b>*</b> Enlarged pleasure centers of the brain.\n\n");
 	outputCodex(blockHeader("Known Users"));
-	outputCodex("\t* Aileh Atru, porn star");
-	outputCodex("\n\t* Juan Gartex, sex worker");
-	outputCodex("\n\t* Kawthon Kandy, ultraporn star");
-	outputCodex("\n\t* Rod Chrysler, former Vesperian Prime Minister turned porn star");
-	outputCodex("\n\t* Tank Kannon, ultraporn star\n\n");
+	outputCodex("<b>*</b> Aileh Atru, porn star");
+	outputCodex("\n<b>*</b> Juan Gartex, sex worker");
+	outputCodex("\n<b>*</b> Kawthon Kandy, ultraporn star");
+	outputCodex("\n<b>*</b> Rod Chrysler, former Vesperian Prime Minister turned porn star");
+	outputCodex("\n<b>*</b> Tank Kannon, ultraporn star\n\n");
 	outputCodex(blockHeader("WARNINGS"));
 	outputCodex("Throbb is almost assuredly illegal. Do not use it. Should you come across any, turn it over to your local UGC Peacekeepers or planetary security forces. If you are on a planet where it is legal, avoid it all costs. It could ruin your life. (Attached is a short, anti-drug video clip. In it, a kaithrit is holding up a hotdog. She says, <i>“This is your dick. And this-”</i> Then she pivots and smacks face-first into the side of a tubular ship, rusted out with age. Rubbing her nose, she adds, <i>“...is your dick on Throbb. It isn’t going anywhere, and certainly not in me. Any questions?”</i>)");
 	outputCodex("\n\n");
@@ -2820,7 +2922,7 @@ public function tentacoolCodexEntry():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Tentatool"));
-	outputCodex("The drug commonly known as “Tentacool” has origins in research into restoring limb usage to those that have lost it. The researchers were successful in restoring limb usage with a simple pill. However, they quickly realized they’d gone beyond their original goal and could even give control to and enhance usage of parts besides the limbs, including tails and penises.");
+	outputCodex("The drug commonly known as “Tentatool” has origins in research into restoring limb usage to those that have lost it. The researchers were successful in restoring limb usage with a simple pill. However, they quickly realized they’d gone beyond their original goal and could even give control to and enhance usage of parts besides the limbs, including tails and penises.");
 	outputCodex("\n\nResearch continued along these lines until the drug came to a state much like its current state. The researchers, truthfully, didn’t understand how the drug they had developed worked, only that it did work. Subjects, with a simple pill, could turn all manner of body parts into highly dexterous, prehensile tentacles, and even grow new tentacles. With extra dosages, subjects could go well beyond the original research entirely, discarding their limbs in favor of tentacle bunches.");
 	outputCodex("\n\nThe research was nearly considered complete when one subject seemed to snap, rampaging around the lab and groping at everything he could get his tentacles on. While fixated on one of the female researchers, he was subdued and restrained. Looking into what had gone wrong, the researchers came to discover exactly what their drug did. While use of the drug was safe up to a point, the ultimate result of continued use was a complete decentralization of the nervous system. A subject’s nervous system would eventually be distributed among their many tentacles, leading to a complete loss of their sense of self and leaving them a mindless, instinct-driven monster.");
 	outputCodex("\n\nThe researchers naturally didn’t want their time and hard work to go to waste, and pleaded for the continued development of the drug. They argued that limited use and a strong will could mitigate the negative effects of the drug, even if they couldn’t get rid of the effects entirely. Despite their pleading, the research was quickly locked away and the existing drugs were seemingly destroyed. Nonetheless, the drug found its way into the galaxy. It is unknown if one or more rogue scientists stole some of the drug before its destruction or if they later replicated their research.");
@@ -2945,6 +3047,49 @@ public function rubberMadeCodex():void
 	outputCodex("\n\nWhen exposed to moisture and sufficiently agitated, the gum-like product will spread rapidly, synthetically bonding with the subject’s underlying skin and fur. This produces a thin, latex-like coating over much if not all of a subject’s body. Repeat use creates subsequently thicker layers, potentially subsuming body hair and fur. J’ejune representatives caution against the accidental ingestion of Rubber-Made.");
 	outputCodex("\n");
 	CodexManager.viewedEntry("Rubber-Made");
+}
+public function muffstickCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Muffstick"));
+	outputCodex("<b>Manufactured By:</b> JoyCo");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("After an incredibly positive reception of the surprising side effects of Clippex, a nipple transforming specialist mod, JoyCo decided to create a similar product, specifically designed to change one’s pussy lips into those of a mouth. It has since become exceedingly popular among oral enthusiasts and has gotten great feedback from the more adventurous couples, praising it as the new best way of kissing.");
+	outputCodex("\n\nThe Muffstick was released in a brand new, more playful looking packaging. Although it was a blatant attempt of JoyCo’s marketing team to appeal to the customers using a more ‘cute’ approach, the product was met with splendid reviews from the modding community, with most reviewers comparing it favorably to the company’s usual ‘mundane and uninspired’ image. This has given JoyCo an incentive to consider the potential profitability of more colorful advertisement. However, with Muffstick being a rather new product, only time will tell if this approach will bring the company long-term success and convince its CEOs to continue along this path.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Muffstick");
+}
+public function fizzyfixCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("FizzyFix"));
+	outputCodex("<b>Manufactured By:</b> JoyCo");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Although most customers enjoyed having an erogenous tongue inside of their new ‘mouth’ after applying Muffstick, some found it too intense or just distasteful, not liking the idea of having an extra organ in their canal. Always aiming to please their customers and maximize their profits, JoyCo swiftly created the FizzyFix to address those concerns. However, due to a limited testing time, the product wasn‘t free from a major side-effect of its own that occurs when someone without a tongue in their cavern uses the pill. Thanks to the tingly pleasurable feeling it gives off, which is almost guaranteed to end just before achieving one’s climax, the FizzyFix quickly grew in popularity in various circles. Some found it to be a fantastic type of foreplay, others enjoyed the use of it in BDSM. The product designed to fix what some people thought of as an issue quickly became more popular than the Muffstick itself. Once again, not one to throw away a good business opportunity, JoyCo decided not only to always include a FizzyFix pill with the Muffstick, but to also have it be sold separately for a small amount of credits.");
+	outputCodex("\n");
+	CodexManager.unlockEntry("Muffstick");
+	CodexManager.viewedEntry("FizzyFix");
+}
+public function chillPillCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Chill Pill"));
+	outputCodex("<b>Manufactured By:</b> SolarRise Laboratory");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Chill Pill is the first and only product released by the now bankrupt SolarRise Laboratory. Marketed as a libido-reduction drug, Chill Pill quickly became the subject of many lawsuits, with users reporting an overwhelming variety of negative side effects - ranging from hair loss and rashes to stomach ulcers, fatigue, infertility, and headaches.");
+	outputCodex("\n\nCompany founders and head scientists, Dr. Morgan Solar and Dr. Harold Rise insisted during proceedings that their product had been thoroughly tested, and that that no such side effects had ever surfaced. However, despite their ability to back these claims up with testing logs and other documents, judges ruled against them again and again.");
+	outputCodex("\n\nIt is frequently rumored that a certain well-known sex product manufacturer may have - concerned about the potential loss in sales that decreased libidos would bring - had a hand in the proceedings, possibly financing lawsuits or even paying off court members. In fact, many of the plaintiffs were later discovered to have had preexisting connections with employees of the company itself.");
+	outputCodex("\n\nHowever, not even these rumors were enough to stop reputation-conscious stores from pulling the product off their shelves. Already struggling with costs from the court case, and now unable to find buyers for their product or even anyone willing to associate with their brand name, SolarRise was forced to close.");
+	outputCodex("\n\nDr. Solar and Dr. Rise seem to have taken the fiasco in remarkably good spirits, and while their current whereabouts are unknown, they later went on to make Chill Pill’s recipe available to the public. Thusly, it is reasonably easy for a dedicated customer to find less reputable sellers stocking functionally similar products - going by names such as Frigidol, Lustop, and Limpstick.");
+	outputCodex("\n\nSome sellers even claim to have salvaged stocks of the original product, but it is unclear whether these items are the real deal, or simply more counterfeits.");
+	outputCodex("\n");
+	CodexManager.viewedEntry("Chill Pill");
 }
 
 
@@ -3169,7 +3314,7 @@ public function camarillaCodex():void
 public function humphardIncCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_HUMPHARD");
 	outputCodex(header("Humphard Inc."));
 	outputCodex("<b>Company Name:</b> Humphard Incorporated");
 	outputCodex("\n<b>Industry:</b> Sex product manufacturer and distributor");
@@ -3234,7 +3379,7 @@ public function kihaCorpCodex():void
 public function novaSecuritiesCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_NOVA_SECURITIES");
 	outputCodex(header("Nova Securities"));
 	outputCodex("<b>Company Name:</b> Nova Securities");
 	outputCodex("\n<b>Industry:</b> Private military");
@@ -3272,7 +3417,7 @@ public function reaperCodex():void
 public function rhenWorldCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_RHENWORLD");
 	outputCodex(header("RhenWorld"));
 	outputCodex("<b>Company Name:</b> RhenWorld Stellar Excavations");
 	outputCodex("\n<b>Industry:</b> Mining");
@@ -3415,3 +3560,53 @@ public function stormguardCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Stormguard");
 }
+
+/* SSTDs */
+
+public function furpiesCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Furpies"));
+	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on \\\[REDACTED\\\], but it was not identified for six more months thanks to its insidious design.");
+	outputCodex("\n\nThis strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.");
+	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("How Furpies is Spread"));
+	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as well as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
+	outputCodex("\n\nAs always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Asymptomatic Carriers"));
+	outputCodex("In most hosts, Furpies lies dormant, transforming its infected host into an inadvertent seeder. This was thought a blessing at first, but examination of the disease’s genetic code has revealed that it is simply biding its time. A biological clock built into the virus itself will count down over five to ten years, then switch Furpies to an active state.");
+	outputCodex("\n\nThis is alluded to in Doctor Badger’s manifesto as “The Furpocalypse.”");
+	outputCodex("\n\nIf strong steps to eradicate Furpies are not taken, the galaxy may become a lot furrier in the years to come, something some species would welcome with open arms - and others would violently protest.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Symptoms and Effects"));
+	outputCodex("<b>* 2 Days</b>: Temporary genital swelling - this is thought to be the beginning of Furpies’ attempts to increase sexual drive.");
+	outputCodex("\n<b>* 2-4 Days</b>: Increased attraction to other furry species. This typically manifests as a sort of fetish for soft fur. Patients report this to be particularly pleasant.");
+	outputCodex("\n<b>* 5-6 Days</b>: Growth of animal ears. Furpies Simplex H, C, and D are the main variants, each one tied to a different animal species. Victims with Furpies H gain the features of a horse, while C and D refer to cats and dogs.");
+	outputCodex("\n<b>* 7-9 Days</b>: Genital transformation. Some patients have declined cures for the disease until after this stage of infection, citing the pleasure of attaining animal genitalia. This is not recommended.");
+	outputCodex("\n<b>* 8-10 Days</b>: Limbs transform into a hybridization of human and animal features. Luckily Furpies is carefully engineered to momentarily sever nervous connections with the legs and arms to prevent any pain.");
+	outputCodex("\n<b>* 9 Days</b>: Animal tail growth.");
+	outputCodex("\n<b>* 10-11 Days</b>: Full body fur. Heat-sensitive races must be careful if they reach this stage, as the extra insulation makes them vulnerable to heat stroke.");
+	outputCodex("\n<b>* 12-14 Days</b>: Animal-like face. This is the final transformation that the disease will wreak on its hosts, though it remains in the body for long after.");
+	outputCodex("\n\nFurpies remains active in the host’s body indefinitely, making them more susceptible to sexual advances of other furry individuals, and more sexually active in general. Among infected, sexual intercourse occurs roughly 400% more often than galactic norms.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Doctor Badger"));
+	outputCodex("The UGC is aggressively looking for any sign of the disease’s creator in hopes of finding an effective, easy-to-produce cure. She is considered armed and extremely dangerous. Please call your local Peacekeeper office if you have any information on Doctor Badger’s whereabouts, and DO NOT APPROACH HER PERSONALLY.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Furpies");
+}
+public function locofeverCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Locofever"));
+	outputCodex("An ever-present danger of planet rushes is the intermingling of spaceborne illnesses with indigenous lifeforms and the mutations that can result. In the case of the junk planet Tarkus, it was the mingling of a simple fever brought by one of the rushers with the breeding-driven biology of the local raskvel that brought about locofever.");
+	outputCodex("\n\nThe locofever virus attacks the brain and reproductive organs, causing the production of hormones that produce an estrus-like response in the infectee akin to the natural state of raskvel. The desire to breed becomes overwhelming, while pleasure from masturbation is sharply reduced to further encourage the infectee to have sex as often as possible.");
+	outputCodex("\n\nA typical host is capable of fighting off the infection within one to two weeks. Most publicly available immune boosters are able to prevent the spread of the infection, which has prevented locofever from becoming an epidemic, but curing the illness requires direct medical treatment or letting it run its course.");
+	outputCodex("\n\nLocofever is believed to still be uncommon among raskvel, though the exact numbers of infected are difficult to determine both because of raskvel breeding habits and because the species is asymptomatic. Aside from them it is most commonly found among younger ausar, who have been known to deliberately infect themselves with locofever as a form of recreational drug and cultural rebellion.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Locofever");
+}
+

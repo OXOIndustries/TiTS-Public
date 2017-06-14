@@ -29,6 +29,7 @@ public function mhengaShipHangarFunc():Boolean
 public function xenogenOutsideBlurb():Boolean
 {
 	variableRoomUpdateCheck();
+	if(zilXenogenProtestBonus()) return true;
 	if(hours < 6 || hours >= 17)
 	{
 		output("\n\n<b>The doorway to the north is currently marked “Closed.”</b> A notice declares that it will be open again at 6:00 standard terran time.");		
@@ -36,6 +37,10 @@ public function xenogenOutsideBlurb():Boolean
 	else
 	{
 		output("\n\n<b>Xenogen Biotech is currently open!</b> Office hours are 6:00 to 17:00 standard terran time.");
+	}
+	if (pc.hasStatusEffect("Mhen'ga Xenogen Protestors"))
+	{
+		output("\n\nA small crowd of mixed races are visible on the side, passionately protesting Xenogen’s presence. Their synchronous chants and undulating signs can be heard and seen by all passerbys in the area.");
 	}
 	return false;
 }
@@ -74,12 +79,14 @@ public function checkOutBountyBoard():void
 		flags["SEEN_JULIANS_AD"] = 1;
 	}
 	else {
-		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output("<b>Completed:</b>");
-		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == 1) output("<b>Accepted:</b>");
+		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output("<b>Completed:</b>");
+		else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output("<b>No Longer Needed:</b>");
+		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined) output("<b>Accepted:</b>");
 		else output("<b>Seen Before:</b>");
 	}
 	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for ‘a strapping, adventurous type’ to brave the jungles in search of something he can use for his research.");
-	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it’s quite lucrative.");
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined) output(" You know from experience that it’s quite lucrative.");
+	else if(flags["JULIANS_QUEST_DISABLED"] != undefined) output(" <i>However, it seems like Xenogen is no longer in need of this service anymore.</i>");
 	else output(" It seems like it could be quite lucrative.");
 	// SynthSap
 	if(synthSapNoticeUnlock())
@@ -320,7 +327,7 @@ public function jungleDeepEncounters():Boolean {
 			}
 		}
 	}
-	if(rand(100) == 0 && !pc.hasItem(new StrangeEgg()))
+	if(rand(100) == 0 && !pc.hasItemByClass(StrangeEgg))
 	{
 		findStrangeEgg();
 		return true;
@@ -574,7 +581,8 @@ public function mhengaVanaeAbandonedCamp():Boolean
 	if(flags["SALVAGED VANAE CAMP"] != 2) addButton(0, "Salvage", mhengaSalvageFromCamp);
 	else 
 	{
-		if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It’ll cost you 40 credits to ride back to Mhen’ga.");
+		if(pc.hasKeyItem("RK Lah - Captured")) addDisabledButton(0,"Call Taxi","Call Taxi","You should take RK Lah back to the Plantation before getting out of here.");
+		else if(pc.credits >= 40) addButton(0,"Call Taxi",fastTravelToEsbeth,undefined,"Call Taxi","Call a taxi from the transit authority. It’ll cost you 40 credits to ride back to Mhen’ga.");
 		else addDisabledButton(0,"Call Taxi","Call Taxi","You can’t afford the 40 credits for a taxi. Damn.");
 	}
 	addButton(9,"Sleep",sleepInRuinedCamp,undefined,"Sleep", ((flags["CLEARED_XENOGEN_CAMP_BODIES"] == undefined ? "The camp is a wreck, but if you cleaned it up" : "With the camp mostly cleaned up") + ", you might be able to bed down here."));
@@ -675,7 +683,7 @@ public function mhengaSalvageFromCamp():void
 }
 public function mhengaSalvageArmorCheck():void
 {
-	if(pc.armor is AtmaArmor || pc.hasItemByType(AtmaArmor))
+	if(pc.armor is AtmaArmor || pc.hasItemByClass(AtmaArmor))
 	{
 		mainGameMenu();
 		return;
@@ -752,3 +760,45 @@ public function encounterMango(choice:String = "encounter"):void
 		addButton(0, "Next", mainGameMenu);
 	}
 }
+
+// Xenogen Protest Event
+// Occurs on the square outside the Xenogen Biotech building, but only if the PC has completed the first Zil Capture Quest for Dr. Haswell, and has not completed the second, and last, quest.
+public function zilXenogenProtestBonus():Boolean
+{
+	if
+	(	flags["SEEN_XENOGEN_PROTEST"] == undefined
+	&&	( flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined )
+	&&	flags["JULIANS_QUEST_DISABLED"] == undefined
+	&&	!pc.hasStatusEffect("Mhen'ga Xenogen Protest Delay")
+	) {
+		zilXenogenProtest();
+		return true;
+	}
+	return false;
+}
+public function zilXenogenProtest():void
+{
+	clearOutput();
+	showBust("XENOGEN_PROTESTORS");
+	showName("XENOGEN\nPROTEST");
+	author("RanmaChan");
+	clearMenu();
+	
+	output("Walking by the Xenogen Biotech building you notice some sort of commotion. As you get closer you see that a small crowd has formed, made up of a myriad of different races. It is mostly a group of humans, ausar, and kaithrit; but it even contains a few laquines, gryvians, and lethians. They seem to be chanting something, and you can see some of them holding up signs.");
+	output("\n\nAs you walk closer you can start to hear what they are chanting:");
+	output("\n\n<i>“Xenogen go home. Leave the Zil alone! Xenogen go home! Leave the Zil alone!”</i>");
+	output("\n\nWalking closer still, you can read the signs now:");
+	output("\n\n‘Go home Xenogen!’ ‘Leave them alone!’ ‘Stop the exploitation!’ ‘Zil are people too!’");
+	output("\n\nOne sign is just a crude drawing of what you presume to be a Zil and what might be a human holding hands, with hearts randomly drawn all around it.");
+	if(pc.isNice()) output("\n\nHmm, these people feel pretty strongly about this, and what Xenogen is doing. Maybe you ought to rethink your actions?");
+	else if(pc.isMischievous()) output("\n\nHey, maybe their protest will work, and maybe it won’t, but it doesn’t matter. You need to find your dad’s probes, and to do that you need credits. Dr. Haswell’s are as good as anyone’s, right?");
+	else output("\n\nThe UGC is pretty clear on this sort of thing when it comes to planet rushes, these new species don’t have any rights. Xenogen can do what they want with them, and nothing the protesters do will matter, other than slowing down progress; both scientific, and commercial. If these people got their way, nothing would ever get done.");
+	
+	processTime(5);
+	
+	pc.createStatusEffect("Mhen'ga Xenogen Protestors", 0, 0, 0, 0, true, "", "", false, (3 * 1440));
+	flags["SEEN_XENOGEN_PROTEST"] = 1;
+	
+	addButton(0, "Next", mainGameMenu);
+}
+

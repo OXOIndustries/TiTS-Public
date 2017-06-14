@@ -8,6 +8,11 @@ flags["KAEDE_CS_COUNTDOWN"]			- Set as game timestamp to track 14 time on statio
 flags["GLORYHOLED_KAEDE"]			- Counts time gloryholed Kaede... capped at 1 for now.
 
 */
+public function kaedeCouldBeOnNewCanadaRepeats():Boolean
+{
+	if(flags["KAEDE_FUCKED"] != undefined && flags["KAEDE_FUCKED"] > 0 && flags["KAEDE_NT_ENCOUNTER"] != undefined && flags["KAEDE_CANADA_MET"] != undefined && !pc.hasStatusEffect("Kaede Canada Cooldown") && flags["KAEDE_CS_COUNTDOWN"] != -1) return true;
+	return false;
+}
 
 //add to Kui Country bar description. Must have banged Kaede at least once and have met her on New Texas.
 public function kaedeBlurb4KuiCountryBarAndGrilllll(button:int):Boolean

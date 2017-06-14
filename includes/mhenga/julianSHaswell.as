@@ -178,7 +178,6 @@ public function zilBaggedApproach():void {
 	//Dudezil:
 	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
 	{
-		if(!chars["KELLY"].hasItem(new HoneySeed())) chars["KELLY"].inventory.push(new HoneySeed());
 		output("\n\nHe’s suspended in the air by dozens of oily black tentacles, thrusting his hips furtively against the rippling black tube again and again. His rhythm is steady with only the barest hint of quiver, though his eyes are rolled back in his head, lost in whatever ecstasy he’s trapped in.");
 		output("\n\n<i>“The males of the species have proven quite adept at providing us large quantities of genetic material. All it takes is a little modification and motivation, or the M and M’s, I like to call them.”</i>");
 		output("\n\nThe zil’s nuts appear at least three times larger than when you saw him before, doubtless responsible for his current state and immense productivity.");
@@ -188,8 +187,6 @@ public function zilBaggedApproach():void {
 	//Femzil:
 	else
 	{
-		if(!chars["KELLY"].hasItem(new Honeydew())) chars["KELLY"].inventory.push(new Honeydew());
-		if(!chars["KELLY"].hasItem(new Honeypot())) chars["KELLY"].inventory.push(new Honeypot());
 		output("\n\nShe’s suspended in the air by dozens of oily black tentacles, thrusting her hips furtively against a rippling black tube that lies embedded in her mons. You can see the surface buzzing and vibrating as it does its best to extract her nectar, its obscene motions obviously bringing great pleasure to the female. Her eyes have long ago rolled back into her head, lost to the never-ending ecstasy she’s been trapped in.");
 		output("\n\n<i>“The females of the species are going to be a veritable goldmine. Not only are their pussies nearly as pleasant to smell as flowers, but their sexual fluids are absolutely delicious. Such a transformation will fetch us millions of credits, easy!”</i> Julian cheers. <i>“All it took was a little modification and motivation - the M and M’s, I like to call them.”</i>");
 		output("\n\nThe zil’s breasts appear to be nearly three times as large as the last time you met her. The heavy, pendulous globes are capped with nipple-encapsulating tubes that vaguely resemble the one in her pussy, and judging from the way these are moving, they’re suckling very aggressively.");
@@ -201,6 +198,9 @@ public function zilBaggedApproach():void {
 	pc.lust(8+rand(4));
 	processTime(5);
 	flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] = 1;
+	
+	pc.createStatusEffect("Mhen'ga Xenogen Protest Delay", 0, 0, 0, 0, true, "", "", false, 15);
+	
 	clearMenu();
 	addButton(0,"Accept",acceptRepeatZilMission);
 	addButton(1,"Decline",declineDrHaswellsRepeatMission);

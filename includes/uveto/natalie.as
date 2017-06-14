@@ -12,10 +12,13 @@ public function natalieBustDisplay(nude:Boolean = false):String
 }
 
 // Add to the Freezer after watching Uveto’s Steph Irson:
+public function natalieAvailableAtBar():Boolean
+{
+	if(flags["STEPH_DARGONED"] == undefined) return false;
+	return (rand(4) != 0);
+}
 public function natalieFreezerAddendum(btnSlot:int = 0):void
 {
-	if(flags["STEPH_DARGONED"] == undefined) return;
-	
 	if(flags["NATALIE_MET"] == undefined)
 	{
 		output("\n\nYou notice a blonde woman sitting in one of the booths near the back of the bar, cradling a mug of something frothy and steaming. Unlike most of the natives’ cold color palettes, she’s wearing a khaki button-up shirt and trousers underneath a wool-padded jacket and pulled-up hood. She’s sitting quietly and alone, looking very much like she doesn’t want to be disturbed. Your attention almost wanders right by her, until you realize... she looks an awful lot like Steph Irson. Could it be...?");
@@ -85,7 +88,7 @@ public function natalieMenu():void
 	addButton(0, "Talk", talkNatalie, "talk", "Talk", "Ask Natalie about herself -- and not her work, this time.");
 	if(flags["NATALIE_TAMES_VARMINT"] == undefined)
 	{
-		if(flags["NATALIE_NEED_SILICONE"] != undefined && !pc.hasItem(new Silicone()))
+		if(flags["NATALIE_NEED_SILICONE"] != undefined && !pc.hasItemByClass(Silicone))
 		{
 			if(!varmintIsWild()) flags["NATALIE_NEED_SILICONE"] = undefined;
 			else addDisabledButton(1, "Varmint", "Varmint", "Natalie can only help you if you’re carrying some silicone first!");
@@ -231,14 +234,14 @@ public function talkNatalie(response:String = "none"):void
 			msg += "\n\n<i>“Of course, that’s just, like, the most mundane part of the job! The real exciting stuff is getting to look at never-before-seen species, or try and figure out the real mysterious ones. What I’m most interested of anything here on the planet is what the locals call the ‘frostwyrms,’ these huge dragon-like beasties that’re supposed to be bigger than Terran blue whales, and whose roars can shatter the ice for miles!”</i>";
 			msg += "\n\n";
 			// Has seen frostwyrm, not killed:
-			if(9999 == 0) msg += "Yeah, you’ve seen one of those. Huge and terrifying is right.";
+			if(flags["MET_FROSTWYRM"] != undefined && flags["FROSTWYRMSLAIN"] == undefined) msg += "Yeah, you’ve seen one of those. Huge and terrifying is right.";
 			// Has killed wyrm:
-			else if(9999 == 0) msg += "<i>“Yeah, about that...”</i> you chuckle awkwardly. Whoops. There’s probably more than that one wyrm, though, right?";
+			else if(flags["MET_FROSTWYRM"] != undefined && flags["FROSTWYRMSLAIN"] != undefined) msg += "<i>“Yeah, about that...”</i> you chuckle awkwardly. Whoops. There’s probably more than that one wyrm, though, right?";
 			// not seen:
 			else msg += "Wow, that sounds like something out of " + (MailManager.isEntryUnlocked("syribooks") ? "one of Syri’s" : "some") + " fantasy books.";
 			msg += "\n\nNat chuckles, brushing a loose lock of hair behind an ear. <i>“Yeah, so, I’ve been trying to track a live one down every chance I get, but no luck. I coulda sworn I’ve caught glimpses of one out on the Rift, but...";
 			// killed:
-			if(9999 == 0) msg += " I guess you took care of that one, huh? Damn, what a shame. B-b-but I know you probably didn’t have a ch-choice, right?";
+			if(flags["FROSTWYRMSLAIN"] != undefined) msg += " I guess you took care of that one, huh? Damn, what a shame. B-b-but I know you probably didn’t have a ch-choice, right?";
 			// else:
 			else msg += " I can never get c-close enough to be sure. Always flies off.";
 			msg += "”</i>";
@@ -310,7 +313,7 @@ public function talkNatalie(response:String = "none"):void
 			processTime(2);
 			
 			// If doesn’t have silicone:
-			if(!pc.hasItem(new Silicone()))
+			if(!pc.hasItemByClass(Silicone))
 			{
 				output("\n\nYou shake your head. You don’t have enough silicone on hand to feed the big blue beast.");
 				output("\n\n<i>“Okay,”</i> Nat says. <i>“No problem. Go find some, and bring ‘er back here. I’ll help you sort the little guy out, but we’re gonna need the r-r-raw materials, first.”</i>");
@@ -336,7 +339,7 @@ public function talkNatalie(response:String = "none"):void
 			currentLocation = "SHIP INTERIOR";
 			generateMap();
 			processTime(25 + rand(10));
-			pc.destroyItem(new Silicone(), 1);
+			pc.destroyItemByClass(Silicone, 1);
 			flags["NATALIE_NEED_SILICONE"] = undefined;
 			
 			showBust(natalieBustDisplay(), "VARMINT");

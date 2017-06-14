@@ -48,7 +48,7 @@ public function deck13MakeGoo():void
 	
 	output("\n\nPoke. Nothing again.");
 	
-	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo cannister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down");
+	output("\n\nYou grumble and pull your Codex out, hoping your device can sync with the goo canister. You flip the Codex on and search for nearby networks. Again, nothing close enough to be the goo. Shit. You drop down");
 	if (pc.hasKnees()) output(" to a [pc.knee]");
 	output(" and start looking for an old-school data port. Sure enough, there’s one hidden underneath the console. You pull a universal cable from your Codex, and thankfully manage to slot it into the port. The Codex takes over from there, booting up the ancient computer and interfacing for you. The Bell-Isle/Grunmann logo appears, followed by a button-press command prompt, which the Codex translates onto its touch screen. That’s better. You tap through a few commands, instructing the machine to print you out a great big pile of gray goo.");
 	
@@ -348,8 +348,8 @@ public function gooDickFap(fromCrew:Boolean = false):void
 			else output(" naked and exposed");
 			output(" backside and");
 		}
-		else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
-		else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
+		else if(pc.hasItemByClass(GooArmor)) output(" open your inventory and");
+		else if(InShipInterior() && pc.hasItemInStorageByClass(GooArmor)) output(" open your storage and");
 	}
 	output(" ask [goo.name] if she’s up for a little fun. Wordlessly, the goo surrounding you squirms and writhes across your [pc.skinFurScales], caressing your [pc.nipples] and [pc.crotch] in ways that make your [pc.knees] tremble.");
 	if (!(pc.lowerUndergarment is EmptySlot) || !(pc.upperUndergarment is EmptySlot))
@@ -499,8 +499,8 @@ public function grayGooCockSleeve(fromCrew:Boolean = false):void
 	if(!fromCrew)
 	{
 		if(pc.armor is GooArmor) { /* Fine here! */ }
-		else if(pc.hasItemByName("Goo Armor")) output(" open your inventory and");
-		else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage and");
+		else if(pc.hasItemByClass(GooArmor)) output(" open your inventory and");
+		else if(InShipInterior() && pc.hasItemInStorageByClass(GooArmor)) output(" open your storage and");
 	}
 	output(" ask [goo.name] if she’s up for a little fun.");
 	
@@ -549,8 +549,8 @@ public function grayGooCockSleeveII(allowIt:Boolean = false):void
 	
 	output("\n\nYou give her a grin and");
 	if(pc.armor is GooArmor) output(" extend an arm to her, inviting your gooey bodysuit to envelop you once again");
-	else if(pc.hasItemByName("Goo Armor")) output(" open your inventory, inviting your gooey friend to return");
-	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor())) output(" open your storage, inviting your gooey friend to return");
+	else if(pc.hasItemByClass(GooArmor)) output(" open your inventory, inviting your gooey friend to return");
+	else if(InShipInterior() && pc.hasItemInStorageByClass(GooArmor)) output(" open your storage, inviting your gooey friend to return");
 	else output(" let your gooey friend on her way");
 	output(". Back to business!");
 
@@ -661,12 +661,12 @@ public function gooArmorIsCrew():Boolean
 }
 public function hasGooArmor():Boolean
 {
-	if(InShipInterior() && (pc.hasItemInStorage(new GooArmor()) || gooArmorIsCrew())) return true;
+	if(InShipInterior() && (pc.hasItemInStorageByClass(GooArmor) || gooArmorIsCrew())) return true;
 	return hasGooArmorOnSelf();
 }
 public function hasGooArmorOnSelf():Boolean
 {
-	if(pc.armor is GooArmor || pc.hasItemByName("Goo Armor")) return true;
+	if(pc.armor is GooArmor || pc.hasItemByClass(GooArmor)) return true;
 	return false;
 }
 public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true):Boolean
@@ -683,7 +683,7 @@ public function hasGooArmorUpgrade(upgrade:String = "none", bInv:Boolean = true)
 	{
 		for(var i:int = 0; i < pc.inventory.length; i++)
 		{
-			if(pc.inventory[i].shortName == "Goo Armor")
+			if(pc.inventory[i] is GooArmor)
 			{
 				switch(upgrade)
 				{
@@ -708,7 +708,7 @@ public function gooArmorDefense(def:Number = 0):Number
 	// Inventory
 	for(i = 0; i < pc.inventory.length; i++)
 	{
-		if(pc.inventory[i].shortName == "Goo Armor")
+		if(pc.inventory[i] is GooArmor)
 		{
 			if(def != 0) pc.inventory[i].defense += def;
 			gooDef = pc.inventory[i].defense;
@@ -717,7 +717,7 @@ public function gooArmorDefense(def:Number = 0):Number
 	// Ship Storage
 	for(i = 0; i < pc.ShipStorageInventory.length; i++)
 	{
-		if(pc.ShipStorageInventory[i].shortName == "Goo Armor")
+		if(pc.ShipStorageInventory[i] is GooArmor)
 		{
 			if(def != 0) pc.ShipStorageInventory[i].defense += def;
 			gooDef = pc.ShipStorageInventory[i].defense;
@@ -822,7 +822,7 @@ public function gooArmorOnSelfBonus(btnSlot:int = 0, fromCrew:Boolean = true):St
 		//else if(!fromCrew && !kGAMECLASS.canSaveAtCurrentLocation) gooArmorAddDisabledButton(fromCrew, btnSlot, chars["GOO"].short, chars["GOO"].short, "You can’t seem to do anything with her at the moment.");
 		else gooArmorAddButton(fromCrew, btnSlot, chars["GOO"].short, approachGooArmorCrew, [true, fromCrew], chars["GOO"].short, "Interact with your silvery shape-shifting armor.");
 	}
-	else if(InShipInterior() && pc.hasItemInStorage(new GooArmor()))
+	else if(InShipInterior() && pc.hasItemInStorageByClass(GooArmor))
 	{
 		bonusText += RandomInCollection([
 			"\n\nYou can try to fish [goo.name] from your storage if you want to do anything with her...",
@@ -908,7 +908,7 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	}
 	else gooArmorAddDisabledButton(fromCrew, 2, "Sex", "Sex", "You are not aroused enough for this.");
 	
-	if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 7 ? " She may be more confident if you are a higher level." : " Maybe try" + (pc.hasItem(new GrayMicrobots(), 10) ? "" : " stocking up and") + " carrying some drinkable health items," + ((pc.armor is GooArmor) ? " taking her off," : " and") + " then talking to her" + (InShipInterior() ? "" : " while in your ship") + "?"));
+	if(flags["GOO_ARMOR_HEAL_LEVEL"] == undefined) gooArmorAddDisabledButton(fromCrew, 5, "Locked", "Locked", "[goo.name] hasn’t learned how to do this yet..." + (pc.level < 7 ? " She may be more confident if you are a higher level." : " Maybe try" + (pc.hasItemByClass(GrayMicrobots, 10) ? "" : " stocking up and") + " carrying some drinkable health items," + ((pc.armor is GooArmor) ? " taking her off," : " and") + " then talking to her" + (InShipInterior() ? "" : " while in your ship") + "?"));
 	else if(pc.HP() >= pc.HPMax()) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "You are already at full health!");
 	else if(gooArmorDefense() < 2) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name]’s defense is too low to use her healing ability.");
 	else if(pc.hasStatusEffect("Goo Armor Healed")) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name] has already healed you in the past hour. She may need some time to recover before trying it again.");
@@ -1004,7 +1004,7 @@ public function gooArmorCrewOption(arg:Array):void
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["helmet 0", fromCrew, exitMain]);
 			}
 			// Level 7
-			else if(pc.level >= 7 && flags["GOO_ARMOR_HEAL_LEVEL"] == undefined && InShipInterior() && !(pc.armor is GooArmor) && pc.hasItemByName("Goo Armor") && pc.hasItem(new GrayMicrobots(), 10))
+			else if(pc.level >= 7 && flags["GOO_ARMOR_HEAL_LEVEL"] == undefined && InShipInterior() && !(pc.armor is GooArmor) && pc.hasItemByClass(GooArmor) && pc.hasItemByClass(GrayMicrobots, 10))
 			{
 				txt += "You approach [goo.name] for a chat, but find her face suddenly blanche (that is, if she wasn’t already a full coat of solid silver-gray).";
 				txt += "\n\n<i>“" + (pc.isBimbo() ? "Hey girl" : "Oh, [goo.name]") + ", something wrong?”</i> You ask, noticing her ill expression.";
@@ -1024,10 +1024,18 @@ public function gooArmorCrewOption(arg:Array):void
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["healing 0", fromCrew, exitMain]);
 			}
 			// Level 9
-			else if(9999 == 0 && pc.level >= 9 && flags["GOO_ARMOR_CUSTOMIZE"] == 1 && InShipInterior() && !(pc.armor is GooArmor) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)))
+			else if(9999 == 0 && pc.level >= 9 && flags["GOO_ARMOR_CUSTOMIZE"] == 1 && InShipInterior() && !(pc.armor is GooArmor) &&
+			(	(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+			||	((pc.armor is EmptySlot) && !(pc.upperUndergarment is EmptySlot) && !(pc.lowerUndergarment is EmptySlot) &&
+				(	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)
+				||	pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)
+				))
+			))
 			{
-				txt += "9999 - Text.";
-				txt += "\n\n9999 - Text.";
+				txt += "You find [goo.name] sitting on the floor, shifting and humming about to herself. She seems to be sipping away at a straw connected to a" + (flags["GOO_ARMOR_HEAL_LEVEL"] != undefined ? " familiar-looking" : "n empty juice") + " canister, her head tilting side to side as she hums. She is looking down at a spare data slate, periodically swiping the screen, flipping through different pages of what looks to be a fashion magazine. You call out to the goo girl and she instantly perks up and turns to you, the drinking tube dropping from her mouth.";
+				txt += "\n\n<i>“Oh, heya, [pc.name]! What’s up?”</i> She gleems, her smile as bright as ever. You ask if she wants to chat and she nods excitedly, forming her lower body into a blob and extending herself towards you. As she swirls herself around you, she continues, <i>“Sure, what do ya--...”</i> Her orbit slows down as she examines you deeper. Expression furrowing, she pouts in concentration. <i>“Hey...”</i>";
+				txt += "\n\n<i>“Is something wrong?”</i> you ask.";
+				txt += "\n\nIn response, [goo.name] melts into a puddle and surrounds your [pc.feet]. Then, her amorphous mass gradually rises and climbs your [pc.legOrLegs]...";
 				
 				gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["expose 0", fromCrew, exitMain]);
 			}
@@ -1382,7 +1390,7 @@ public function gooArmorCrewOption(arg:Array):void
 				
 				for(var i:int = 0; i < pc.inventory.length; i++)
 				{
-					if(pc.inventory[i].shortName == "Goo Armor")
+					if(pc.inventory[i] is GooArmor)
 					{
 						getArmor = pc.inventory[i];
 						pc.inventory.splice(i, 1);
@@ -1499,7 +1507,6 @@ public function gooArmorCrewTalk(arg:Array):void
 			txt += "\n\nHer eyelids slowly fall... then close.";
 			txt += "\n\n.....";
 			txt += "\n\nWith her still body in your arms, you look away.";
-			txt += "\n\n";
 			
 			processTime(5);
 			gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["helmet 1", fromCrew, exitMain]);
@@ -1518,8 +1525,34 @@ public function gooArmorCrewTalk(arg:Array):void
 			else gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
 			break;
 		case "expose 0":
+			var chestExposed:Boolean = pc.isChestExposed();
+			var crotchExposed:Boolean = pc.isCrotchExposed();
+			var assExposed:Boolean = pc.isAssExposed();
+			
+			/*
+				txt += "You find [goo.name] sitting on the floor, shifting and humming about to herself. She seems to be sipping away at a straw connected to a" + (flags["GOO_ARMOR_HEAL_LEVEL"] != undefined ? " familiar-looking" : "n empty juice") + " canister, her head tilting side to side as she hums. She is looking down at a spare data slate, periodically swiping the screen, flipping through different pages of what looks to be a fashion magazine. You call out to the goo girl and she instantly perks up and turns to you, the drinking tube dropping from her mouth.";
+				txt += "\n\n<i>“Oh, heya, [pc.name]! What’s up?”</i> She gleems, her smile as bright as ever. You ask if she wants to chat and she nods excitedly, forming her lower body into a blob and extending herself towards you. As she swirls herself around you, she continues, <i>“Sure, what do ya--...”</i> Her orbit slows down as she examines you deeper. Expression furrowing, she pouts in concentration. <i>“Hey...”</i>";
+				txt += "\n\n<i>“Is something wrong?”</i> you ask.";
+				txt += "\n\nIn response, [goo.name] melts into a puddle and surrounds your [pc.feet]. Then, her amorphous mass gradually rises and climbs your [pc.legOrLegs]...";
+			*/
+			
 			txt += "9999 - Text.";
-			txt += "\n\n9999 - Text.";
+			txt += "\n\n";
+			txt += "\n\n";
+			txt += "\n\n";
+			txt += "\n\n";
+			txt += "\n\n";
+			txt += "\n\n";
+			txt += "\n\n";
+			
+			processTime(5);
+			gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewTalk, ["expose 1", fromCrew, exitMain]);
+			break;
+		case "expose 1":
+			txt += "9999 - Text.";
+			txt += "\n\n";
+			txt += "\n\n";
+			txt += "\n\n";
 			txt += "\n\n<b>[goo.name] has learned how to make exposed armor</b>--although it may come with some minor drawbacks!";
 			
 			flags["GOO_ARMOR_CUSTOMIZE"] = 2;
@@ -1545,10 +1578,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			processTime(15);
 			flags["GOO_ARMOR_HEAL_LEVEL"] = 1;
 			
-			for(var i:int = 0; i < 10; i++)
-			{
-				pc.destroyItem(new GrayMicrobots());
-			}
+			pc.destroyItemByClass(GrayMicrobots, 10);
 			pc.HP(10);
 			
 			if(exitMain) gooArmorAddButton(fromCrew, 0, "Next", gooArmorCrewOption, ["leave", fromCrew, exitMain]);
@@ -1676,6 +1706,11 @@ public function gooArmorDetails():String
 					case 2: msg += " and is topped with an intimidating-looking pressure helmet that protects your head from harm"; break;
 					case 3: msg += " and is topped with a bubble-shaped space helmet that covers the entirety of your head"; break;
 					case 4: msg += " and is topped with a smoothly-mirrored, featureless helmet that shrouds your visage in mystery"; break;
+					case 5: msg += " and is topped with a protective bike helmet that have adorable animal ears"; break;
+					case 6: msg += " and is topped with a heavy-duty military-style helmet that protects your head in combat"; break;
+					case 7: msg += " and is topped with an impressively designed helmet that is shaped into a tricorn hat"; break;
+					case 8: msg += " and is topped with a regal-looking knight’s helmet that shields the majority of your head from harm"; break;
+					case 9: msg += " and is topped with a roguish styled hood that covers your light, protective helmet"; break;
 				}
 			}
 			msg += ".";
@@ -1797,7 +1832,7 @@ public function gooArmorCheck(repair:Boolean = false):Boolean
 	||	pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)
 	) return true;
 	
-	// Make sure there isn't any active status effects affecting the armor's stats.
+	// Make sure there isn’t any active status effects affecting the armor’s stats.
 	if
 	(	pc.hasStatusEffect("Reduced Goo")
 	||	pc.hasStatusEffect("Goo Armor Defense Drain")
@@ -1844,7 +1879,6 @@ public function gooArmorChangePart(part:String = "null", expose:Boolean = false)
 			}
 			else
 			{
-				pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
 				pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
 				pc.armor.defense -= 2;
 				pc.armor.sexiness += 1;
@@ -1865,7 +1899,6 @@ public function gooArmorChangePart(part:String = "null", expose:Boolean = false)
 			}
 			else
 			{
-				pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
 				pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
 				pc.armor.defense -= 2;
 				pc.armor.sexiness += 1;
@@ -1886,7 +1919,6 @@ public function gooArmorChangePart(part:String = "null", expose:Boolean = false)
 			}
 			else
 			{
-				pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_AIRTIGHT);
 				pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
 				pc.armor.defense -= 2;
 				pc.armor.sexiness += 1;
@@ -1894,7 +1926,7 @@ public function gooArmorChangePart(part:String = "null", expose:Boolean = false)
 			break;
 	}
 	
-	// Convert expuser flags to full if all exist.
+	// Convert exposure flags to full if all exist.
 	if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 	{
 		pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
@@ -2089,19 +2121,21 @@ public function gooArmorChangeArmor(arg:Array):void
 	switch(toggle)
 	{
 		case "chest":
+			var chestExposed:Boolean = pc.isChestExposedByUpperUndergarment();
+			var titSize:Number = pc.biggestTitSize();
 			if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			{
-				txt += "\n\n<i>“So, you want to cover your " + (pc.biggestTitSize() < 3 ? "chest" : "sisters") + ", huh?”</i> [goo.name] bellows from underneath you.";
-				if(pc.biggestTitSize() < 3) txt += " With rapid efficiency, the silvery goo-girl gets to work and makes a protective layer of liquid microbots to cover your chest. <i>“All done!”</i> she says with an approving giggle.";
+				txt += "\n\n<i>“So, you want to cover your " + (titSize < 3 ? "chest" : "sisters") + ", huh?”</i> [goo.name] bellows from underneath you.";
+				if(titSize < 3) txt += " With rapid efficiency, the silvery goo-girl gets to work and makes a protective layer of liquid microbots to cover your chest. <i>“All done!”</i> she says with an approving giggle.";
 				else
 				{
 					txt += " The silvery goo-girl then gets to work and makes a protective layer of liquid microbots to cover your breasts.";
-					if(pc.biggestTitSize() < 10) txt += " <i>“Nice and perky...”</i> She wraps herself around your tits with ease. <i>“Ever decide that you might wanna, like, y’know, go bigger? You’d look so much hotter!”</i> she comments after finishing her work.";
-					else if(pc.biggestTitSize() < 30) txt += " <i>“Yes, just how I like ‘em, big and juicy!”</i> She joyfully engulfs your mammaries, covering every inch with glee. <i>“I’d gladly protect these knockers any day!”</i>";
-					else if(pc.biggestTitSize() < 60) txt += " <i>“Oooh, so big! Come to mamma!”</i> She greedily hugs your mammaries with every inch of her mass as she can, spreading herself out for full effect. <i>“I hope that’s not too tight for ya!”</i>";
-					else if(pc.biggestTitSize() < 120) txt += " <i>“Yeah, baby, it’s my lucky day! Just look at these chest pillows! Gimme! Gimme!”</i> She expands to meet your size and paints your tits in silver-gray. <i>“This is heaven!”</i>";
-					else if(pc.biggestTitSize() < 240) txt += " Struggling to cover all your titflesh, she exclaims, <i>“[pc.name]! What have you done to your tits! Like, ohmygosh!”</i> Fortunately, she expands herself enough to cover all your sweater meat. <i>“Is there such a thing as too much boobage? Nope!”</i>";
-					else txt += " <i>“I must, I must, I must cover this bust!”</i> she chants as she tries her best to engulf the vast surface area of each tit. <i>“This must be, like, a world record or something!" + (silly ? " Boy, you sure are taking the title to heart!" : " </i>Phew!<i>") + "”</i>";
+					if(titSize < 10) txt += " <i>“Nice and perky...”</i> She wraps herself around your tits with ease. <i>“Ever decide that you might wanna, like, y’know, go bigger? You’d look so much hotter!”</i> she comments after finishing her work.";
+					else if(titSize < 30) txt += " <i>“Yes, just how I like ‘em, big and juicy!”</i> She joyfully engulfs your mammaries, covering every inch with glee. <i>“I’d gladly protect these knockers any day!”</i>";
+					else if(titSize < 60) txt += " <i>“Oooh, so big! Come to mamma!”</i> She greedily hugs your mammaries with every inch of her mass as she can, spreading herself out for full effect. <i>“I hope that’s not too tight for ya!”</i>";
+					else if(titSize < 120) txt += " <i>“Yeah, baby, it’s my lucky day! Just look at these chest pillows! Gimme! Gimme!”</i> She expands to meet your size and paints your tits in silver-gray. <i>“This is heaven!”</i>";
+					else if(titSize < 240) txt += " Struggling to cover all your titflesh, she exclaims, <i>“[pc.name]! What have you done to your tits! Like, ohmygosh!”</i> Fortunately, she expands herself enough to cover all your sweater meat. <i>“Is there such a thing as too much boobage? Nope!”</i>";
+					else txt += " <i>“I must, I must, I must cover this bust!”</i> she chants as she tries her best to engulf the vast surface area of each tit. <i>“This must be, like, a galactic record or something!" + (silly ? " Boy, you sure are taking the title to heart!" : " </i>Phew!<i>") + "”</i>";
 					if(pc.bRows() == 2) txt += " She continues this for the next row until it is completely covered.";
 					else if(pc.bRows() > 2) txt += " She continues this for the other rows until they are completely covered.";
 				}
@@ -2110,27 +2144,272 @@ public function gooArmorChangeArmor(arg:Array):void
 			}
 			else
 			{
-				txt += "\n\n9999 - Text.";
+				txt += "\n\n<i>“Ah, you wanna see about freeing " + (titSize < 3 ? "up your chest" : "these babies") + ", eh?”</i> [goo.name] remarks from underneath you.";
+				if(titSize < 3) txt += " With one quick motion, the silvery goo-girl gets to work and shifts the protective layer of liquid microbots from covering your chest. <i>“And finished!”</i> she exclaims.";
+				else
+				{
+					txt += " The silvery goo-girl then gets to work and unravels the protective layer of liquid microbots that cover your breasts.";
+					if(!chestExposed) txt += " <i>“Okay babies, time for some fresh air... ah... aah, phooey! How can I free them if they are snug in a top already?”</i> Only slightly disappointed, she allows your clothed breasts to pop out into the open air. <i>“Maybe I’ll have better luck next time...”</i>";
+					else if(titSize < 10) txt += " <i>“Hello, girls, it’s time to get some fresh air!”</i> And just like that, your breasts pop out and perk up in the open air. <i>“Enjoy it, okay?”</i>";
+					else if(titSize < 30) txt += " <i>“You’re free, my children, free!”</i> She giggles as she lets your tits bounce out from their confines. <i>“Roam the land and conquer, my babies!”</i>";
+					else if(titSize < 60) txt += " <i>“Oh yes, you’re gonna make mamma proud, aren’t ya?”</i> She coos as she lets your mammaries jostle out of her grip. <i>“Be sure to give that extra jiggle, just for me, okay?”</i>";
+					else if(titSize < 120) txt += " <i>“Ooo, I just love hugging these big babies so much!”</i> she whines, <i>“But sometimes, you’ve just gotta let ‘em grow! -- I mean, </i>go<i>!”</i> With that, she allows your tits to flop out over your chest.";
+					else if(titSize < 240) txt += " <i>“My thoughts exactly. What’s the point in hiding these giants if they are this big anyway?”</i> she teases. Starting from your covered [pc.nipplesNoun], a hole appears and grows until your massive breast flesh is entirely engulfed by the air around you. <i>“Just as nature intended!”</i>";
+					else txt += " <i>“Like, there’s no holding back this dam -- Prepare for freeeeedom!”</i> She exclaims as she creates a hole around each of your areolas and then widens them to make way for your immense mass of tit flesh, spilling them out into the open air. <i>“Ah, this is much better now, don’t ya think?”</i>";
+					if(pc.bRows() == 2) txt += " She continues this for the next row until it is completely naked.";
+					else if(pc.bRows() > 2) txt += " She continues this for the other rows until they are completely naked.";
+				}
 				txt += "\n\nWith your [pc.chest] exposed, your sexual presence is more noticeable, but at the cost of some defense if you were to really get into trouble.";
 				txt += "\n\n<b>Your chest is now exposed!</b>";
 				expose = true;
 			}
 			break;
 		case "crotch":
+			var crotchExposed:Boolean = pc.isCrotchExposedByLowerUndergarment();
+			var hasGenitals:Boolean = (pc.hasGenitals() || pc.balls > 0);
+			var hasSlit:Boolean = (pc.hasStatusEffect("Genital Slit"));
+			var cLength:Number = (pc.hasCock() ? pc.cLength(pc.biggestCockIndex(), true) : 0);
+			var uniball:Boolean = (pc.balls == 1 || pc.hasStatusEffect("Uniball"));
+			var ballDiameter:Number = (pc.balls > 0 ? pc.ballDiameter() : 0);
+			var vPuffiness:Number = (pc.hasVagina() ? pc.puffiestVaginalPuffiness() : 0);
+			
 			if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			{
-				txt += "\n\n9999 - Text.";
+				txt += "\n\n<i>“" + (hasGenitals ? "Oo-hoo, covering up the good bits, I see..." : "Nothing wrong with covering a bare spot, I’d say!") + "”</i> [goo.name] replies from under you.";
+				if(!crotchExposed || !hasGenitals) txt += " With a quick twirl, the silvery goo-girl closes the gap to completely cloak your crotch. <i>“... And finished!”</i> she says, punctuated by a short giggle.";
+				else
+				{
+					if(pc.hasCock())
+					{
+						txt += "\n\n";
+						if(pc.hasVagina() || pc.balls > 0) txt += "First, she";
+						else txt += "She";
+						txt += " starts with your [pc.cocks].";
+						if(pc.cocks.length == 1)
+						{
+							txt += " Giving some experimental strokes to your";
+							if(cLength <= 4) txt += " small";
+							else if(cLength >= 18) txt += " enormous";
+							else if(cLength >= 18) txt += " thick";
+							txt += " shaft, [goo.name]";
+							if(pc.cocks[0].hasFlag(GLOBAL.FLAG_SHEATHED)) txt += " caresses your sheath,";
+							txt += " envelopes your manhood, then takes a moment to";
+							if(pc.cocks[0].hasFlag(GLOBAL.FLAG_FORESKINNED)) txt += " pinch your foreskin and";
+							txt += " tease your [pc.cockhead 0].";
+							txt += " <i>“Mmm, such a delicious cock, [pc.name],”</i> she comments as she creates a large blob of silver goo at the tip of your cock, then undulates it downward towards the base, mimicking a condom with a bulbous head that is giving you a sensuous deepthroat session.";
+							if(pc.lust() >= 33)
+							{
+								txt += " She takes your ";
+								if(pc.lust() < 66) txt += "semi-";
+								txt += "erect length and";
+								if(hasSlit) txt += " gently slides it into your wet genital slit, making sure it stays hidden yet fresh and ready for action when the time calls. <i>“Hafta put the jack back in the box, right babe?”</i>";
+								else
+								{
+									txt += " presses it against your";
+									if(cLength <= 4) txt += " underbelly, covering it up with the reflexive surface of her body. <i>“Gotta hide this cutie for later!”</i>";
+									else if(cLength <= (pc.tallness / 4)) txt += " belly, doing her best to mask the bulge. <i>“Gotta hide this man-meat for later!”</i>";
+									else if(cLength <= (pc.tallness / 3)) txt += " " + (pc.genitalLocation() <= 1 ? "chest" : "lower body") + ", shifting her mass to better hide the large tent you are making in her body. <i>“We’ve got a big one over here!”</i>";
+									else if(cLength <= (pc.tallness / 2)) txt += " body, struggling to hide its massive length underneath. <i>“Wow, you sure are packing some serious meat!”</i>";
+									else txt += " entire body, unsure if she can do much to hide its presence... <i>“Ohmygosh, you’re, like, more cock than [pc.manWoman]! Well, you know what they say: the more the cock, the more to love! Um... or something like that!”</i>";
+								}
+							}
+							else
+							{
+								txt += " She takes your flaccid length and";
+								if(hasSlit) txt += " gently tucks it back into your wet genital slit, making sure it stays hidden yet fresh and ready for action when the time calls. <i>“Do come out and play when you are in the mood, okay babe?”</i>";
+								else
+								{
+									txt += " smooshes it against your";
+									if(cLength <= 4) txt += " " + (pc.genitalLocation() <= 1 ? "crotch" : "underbelly") + ", covering it up with the reflexive surface of her body. <i>“Gotta cover it up just right!”</i>";
+									else if(cLength <= (pc.tallness / 4)) txt += " " + (pc.genitalLocation() <= 1 ? "[pc.thigh]" : "belly") + ", doing her best to mask the bulge. <i>“I love hugging a juicy cock!”</i>";
+									else if(cLength <= (pc.tallness / 3)) txt += " " + (pc.genitalLocation() <= 1 ? "[pc.knee]" : "lower body") + ", shifting her mass to better hide the large, floppy bulge you are making in her body. <i>“Oh, I’ve caught a big one for sure!”</i>";
+									else if(cLength <= (pc.tallness / 2)) txt += " " + (pc.genitalLocation() <= 1 ? "[pc.leg]" : "body") + ", struggling to hide its massive length underneath. <i>“It’s so huge and it’s not even hard yet!”</i>";
+									else txt += " " + (pc.genitalLocation() <= 1 ? "entire [pc.leg]" : "entire body") + ", unsure if she can do much to hide its presence... <i>“Ack! I’m not even sure I can completely cover this third leg, but I’ll try my best!”</i>";
+								}
+							}
+						}
+						else
+						{
+							var sameCocks:Boolean = pc.hasSamecType();
+							
+							txt += " Giving some experimental strokes to your";
+							if(sameCocks)
+							{
+								if(cLength <= 4) txt += " small";
+								else if(cLength >= 18) txt += " enormous";
+								else if(cLength >= 18) txt += " thick";
+								else txt += " matching";
+							}
+							else txt += " mismatched";
+							txt += " shafts, [goo.name]";
+							if(pc.hasFullSheaths()) txt += " caresses your sheath,";
+							txt += " envelopes your manhoods, then takes a moment to";
+							if(sameCocks && pc.cocks[0].hasFlag(GLOBAL.FLAG_FORESKINNED)) txt += " pinch your foreskins and";
+							txt += " tease your [pc.cockheads].";
+							txt += " <i>“Mmm, such delicious cocks, [pc.name],”</i> she comments as she creates large blobs of silver goo, one at the each cock tip, then undulates them downward towards the base, each mimicking a condom with a bulbous head that is giving you a sensuous deepthroat session.";
+							if(pc.lust() >= 33)
+							{
+								txt += " She takes your ";
+								if(pc.lust() < 66) txt += "semi-";
+								txt += "erect lengths and";
+								if(hasSlit) txt += " gently slides them into your wet genital slit, making sure they stay hidden yet fresh and ready for action when the time calls. <i>“Hafta put the jack back in the box, right babe?”</i>";
+								else
+								{
+									txt += " presses them against your";
+									if(cLength <= 4) txt += " underbelly, covering them up with the reflexive surface of her body. <i>“Gotta hide these cuties for later!”</i>";
+									else if(cLength <= (pc.tallness / 4)) txt += " belly, doing her best to mask the bulge they create. <i>“Gotta hide these man-meats for later!”</i>";
+									else if(cLength <= (pc.tallness / 3)) txt += " " + (pc.genitalLocation() <= 1 ? "chest" : "lower body") + ", shifting her mass to better hide the large tent you are making in her body. <i>“We’ve got big ones over here!”</i>";
+									else if(cLength <= (pc.tallness / 2)) txt += " body, struggling to hide their massive lengths underneath. <i>“Wow, you sure are packing some serious meat!”</i>";
+									else txt += " entire body, unsure if she can do much to hide their presence... <i>“Ohmygosh, you’re, like, more cock than [pc.manWoman]! Well, you know what they say: the more the cock, the more to love! Um... or something like that!”</i>";
+								}
+							}
+							else
+							{
+								txt += " She takes your flaccid lengths and";
+								if(hasSlit) txt += " gently tucks them back into your wet genital slit, making sure they stay hidden yet fresh and ready for action when the time calls. <i>“Do have them come out and play when you are in the mood, okay babe?”</i>";
+								else
+								{
+									txt += " smooshes them against your";
+									if(cLength <= 4) txt += " " + (pc.genitalLocation() <= 1 ? "crotch" : "underbelly") + ", covering them up with the reflexive surface of her body. <i>“Gotta cover ‘em up just right!”</i>";
+									else if(cLength <= (pc.tallness / 4)) txt += " " + (pc.genitalLocation() <= 1 ? "[pc.thighs]" : "belly") + ", doing her best to mask the combined bulge. <i>“I love hugging these juicy cocks!”</i>";
+									else if(cLength <= (pc.tallness / 3)) txt += " " + (pc.genitalLocation() <= 1 ? "[pc.knees]" : "lower body") + ", shifting her mass to better hide the large, floppy bulge you are creating in her body. <i>“Oh, I’ve caught big ones for sure!”</i>";
+									else if(cLength <= (pc.tallness / 2)) txt += " " + (pc.genitalLocation() <= 1 ? "[pc.legOrLegs]" : "body") + ", struggling to hide their massive length underneath. <i>“You’re so huge and aren’t even hard yet!”</i>";
+									else txt += " " + (pc.genitalLocation() <= 1 ? "full [pc.legOrLegs]" : "entire body") + ", unsure if she can do much to hide their presence... <i>“Ack! I’m not even sure I can completely cover these all, but I’ll try my best!”</i>";
+								}
+							}
+						}
+					}
+					if(pc.balls > 0)
+					{
+						txt += "\n\n";
+						if(pc.isHerm()) txt += "Then, she";
+						else if(pc.hasVagina()) txt += "First, she";
+						else if(pc.hasCock()) txt += "Next, she";
+						else txt += "She";
+						txt += " makes her way to your [pc.ballsack], covering it with a thin coat of silver goo. Nodules appear across the surface and softly massage " + (uniball ? "your uniball" : "each of your testicles") + ", gradually thickening the layers of goo until the coat is unified with the entier suit. <i>“";
+						if(ballDiameter < 1) txt += "Such " + (uniball ? "a cute little pouch" : "tiny balls") + " you have!";
+						else if(ballDiameter < 2) txt += "Such " + (uniball ? "a cute pouch" : "yummy balls") + " you have!";
+						else if(ballDiameter < 5) txt += "Such " + (uniball ? "a big pouch" : "yummy, big balls") + " you have!";
+						else if(ballDiameter < 9) txt += "Mmm, you have such " + (uniball ? "a huge pouch" : "yummy, huge balls") + "!";
+						else if(ballDiameter < 15) txt += "Wow, I wonder how you can carry such " + (uniball ? "a massive pouch" : "yummy, massive balls") + " around!";
+						else if(ballDiameter < 40) txt += "Are ya smuggling " + (uniball ? "a barrel" : "barrels") + " with that giant sack of yours?!";
+						else txt += "Oh, gosh! I hope your " + (uniball ? "pouch isn’t" : "balls aren’t") + " backed up with baby batter or I’ll have to suck it all out of you!";
+						txt += "”</i>";
+					}
+					if(pc.hasVagina())
+					{
+						txt += "\n\n";
+						if(pc.hasCock() && pc.balls > 0) txt += "Finally, she";
+						else if(pc.hasCock() || pc.balls > 0) txt += "Next, she";
+						else txt += "She";
+						txt += " moves her mass towards your [pc.vaginas].";
+						
+						txt += " With delicate motions, she surrounds";
+						if(pc.vaginas.length == 2) txt += " both of";
+						else if(pc.vaginas.length > 2) txt += " each of";
+						txt += " your";
+						if(pc.lust() >= 66) txt += " aroused";
+						else if(pc.lust() >= 33) txt += " semi-aroused";
+						else txt += " feminine";
+						txt += " netherlips, pressing them together and engulfing them, as if your " + (pc.vaginas.length == 1 ? "pussy is" : "pussies are") + " participating in an erotic makeout session. <i>“Muah! Giving the girl" + (pc.vaginas.length == 1 ? "" : "s") + " a goodnight kiss before tucking " + (pc.vaginas.length == 1 ? "her" : "them") + " in if you don’t mind!”</i> With that, your " + (pc.vaginas.length == 1 ? "vagina is" : "vaginas are") + " left hidden under her silver body.";
+						if(vPuffiness >= 4) txt += ".. or at least the portions that don’t bulge obscenely outward!";
+						else if(vPuffiness >= 2) txt += ".. for the most part, anyway...";
+					}
+				}
 				txt += "\n\nNow that you’ve covered your";
-				if(pc.hasGenitals() && pc.hasStatusEffect("Genital Slit") && pc.lust() < 33) txt += " genital slit";
+				if(hasGenitals && hasSlit) txt += " genitals and genital slit";
 				else txt += " [pc.crotch]";
 				txt += ", you feel a little less defenseless.";
 				txt += "\n\n<b>Your groin is now covered!</b>";
 			}
 			else
 			{
-				txt += "\n\n9999 - Text.";
+				txt += "\n\n<i>“" + (hasGenitals ? "Just what I wanna hear! Freedom at last!" : "Nothing to share down there, but it’s not illegal, is it?") + "”</i> [goo.name] stirs beneath you.";
+				if(!crotchExposed || !hasGenitals)
+				{
+					txt += " With quick motion, a gap opens up at your crotch area, allowing your";
+					if(!crotchExposed) txt += " clothed";
+					txt += " groin to";
+					if(cLength > 4 || ballDiameter >= 2 || vPuffiness >= 2) txt += " bulge out and";
+					txt += " breathe. <i>“Done!”</i> she says, punctuated by a short giggle.";
+				}
+				else
+				{
+					if(pc.hasCock())
+					{
+						txt += "\n\nMoving some mass around, she opens up a space for your [pc.cocksNoun].";
+						if(pc.lust() >= 33)
+						{
+							if(hasSlit)
+							{
+								txt += " Your genital slit is exposed to the open air, but instead of leaving it at that, the mischievous goo-girl rubs either side of the orifice, attempting to stimulate it into action. <i>“C’mon, let " + (pc.cocks.length == 1 ? "that baby" : "those babies") + " out for mama!”</i> Her attention proves successful as a reflexive response sends your ";
+								if(pc.lust() < 66) txt += "semi-";
+								else if(pc.lust() >= 100) txt += "incredibly ";
+								txt += "erect length" + (pc.cocks.length == 1 ? "" : "s") + " springing right out, free and unrestrained. <i>“Ooo, I’d love to play peek-a-boo with you anytime, baby!”</i>";
+							}
+							else
+							{
+								txt += " Your ";
+								if(pc.lust() < 66) txt += "semi-";
+								else if(pc.lust() >= 100) txt += "incredibly ";
+								txt += "erect length" + (pc.cocks.length == 1 ? " springs" : "s spring") + " forth, out into the open air.";
+								if(cLength <= 4) txt += " <i>“Awww... such " + (pc.cocks.length == 1 ? "a cute little thing" : "cute little things") + "!”</i>";
+								else if(cLength <= (pc.tallness / 4)) txt += " <i>“Yea, let " + (pc.cocks.length == 1 ? "it" : "‘em") + " all hang out, baby!”</i>";
+								else if(cLength <= (pc.tallness / 3)) txt += " <i>“Wow, what have you been feeding " + (pc.cocks.length == 1 ? "it" : "them") + ", boss?”</i>";
+								else if(cLength <= (pc.tallness / 2)) txt += " <i>“Release the Kraken! Rawr!”</i>";
+								else txt += " <i>“Finally, I get to drop " + (pc.cocks.length == 1 ? "this anaconda" : "these anacondas") + " off! Whew!”</i>";
+							}
+						}
+						else
+						{
+							if(hasSlit) txt += " Your genital slit is exposed to the open air, ready to reveal your [pc.cocks] on command. <i>“C’mon, you can let " + (pc.cocks.length == 1 ? "that baby" : "those babies") + " out for me, right?”</i> she teases.";
+							else
+							{
+								txt += " Your flaccid length" + (pc.cocks.length == 1 ? " is" : "s are") + " exposed to the open air. <i>“";
+								if(cLength <= 4) txt += "Floppy little wiener" + (pc.cocks.length == 1 ? "" : "s") + "--so cute!";
+								else if(cLength <= (pc.tallness / 4)) txt += "Let me know if you want me to perk " + (pc.cocks.length == 1 ? "it" : "them") + " up, okay?";
+								else if(cLength <= (pc.tallness / 3)) txt += "Woof, " + (pc.cocks.length == 1 ? "that’s" : "they’re") + " big--try not to pass out after you get a stiffy, okay?";
+								else if(cLength <= (pc.tallness / 2)) txt += "Rolling out the cock carpet! Watch your step!";
+								else txt += "Be careful turning around, you might trip with " + (pc.cocks.length == 1 ? "it" : "them") + " dragging on the ground like that!";
+								txt += "”</i>";
+							}
+						}
+					}
+					if(pc.balls > 0)
+					{
+						txt += "\n\nThere is a strong pressure around your [pc.ballsack]. [goo.name] squeezes on it for a brief moment before letting go, opening up the area and letting " + (uniball ? "your uniball" : "each of your testicles") + " free. <i>“";
+						if(ballDiameter < 1) txt += "You’re free, " + (uniball ? "my cute little nutsack" : "my little gonads") + "!";
+						else if(ballDiameter < 2) txt += "That’s right, breathe it in! It’s fresh air!";
+						else if(ballDiameter < 5) txt += "I hope that wasn’t too snug for you!";
+						else if(ballDiameter < 9) txt += "My, my, " + (uniball ? "it sure outgrows its" : "they sure outgrow their") + " home fast!";
+						else if(ballDiameter < 15) txt += "Like, " + (uniball ? "this is" : "these are") + " totally a travel hazard, for sure!";
+						else if(ballDiameter < 40) txt += "Oof, this giant sack sure is cumbersome! It’s good to take " + (uniball ? "a" : "some") + " load off!";
+						else txt += "Whew! It’s like carrying a " + (uniball ? "beanbag chair" : "bundle of beanbag chairs") + "! Well, at least I know what we can rest on if we ever get too tired!";
+						txt += "”</i>";
+					}
+					if(pc.hasVagina())
+					{
+						txt += "\n\nA funny feeling reverberates around your [pc.vaginasNoun] and you hear several smacking vocalizations. Is she... is she playing with your puss" + (pc.vaginas.length == 1 ? "y" : "ies") + "? Sure enough, by pressing your vagina lips together, she is making " + (pc.vaginas.length == 1 ? "it" : "them") + " do kissy faces. Before you can speak, she stops for a second, giggles, then opens up a hole to expose your";
+						if(pc.vaginas.length != 1)
+						{
+							if(pc.matchedVaginas())
+							{
+								if(vPuffiness >= 4) txt += " overly bloated,";
+								else if(vPuffiness >= 2) txt += " puffy,";
+								else txt += " matching,";
+							}
+							else if(pc.vaginas.length == 2) txt += " mismatched,";
+							else txt += " mixed boquet of";
+						}
+						if(pc.lust() >= 66) txt += " aroused";
+						else if(pc.lust() >= 33) txt += " semi-aroused";
+						else txt += " feminine";
+						txt += " vagina" + (pc.vaginas.length == 1 ? "" : "s") + ". <i>“You’re free! Free, my prett" + (pc.vaginas.length == 1 ? "y" : "ies") + "! Free!”</i>";
+					}
+				}
+				
 				txt += "\n\nHaving your";
-				if(pc.hasGenitals() && pc.hasStatusEffect("Genital Slit") && pc.lust() < 33) txt += " genital slit visible to the public";
+				if(hasGenitals && hasSlit) txt += " genital slit and genitals visible to the public";
 				else txt += " [pc.crotch] bathe in the open air";
 				txt += " will certainly increase your physical appeal, but that may prove troublesome if you are in a bind.";
 				txt += "\n\n<b>Your groin is now exposed!</b>";
@@ -2138,15 +2417,52 @@ public function gooArmorChangeArmor(arg:Array):void
 			}
 			break;
 		case "ass":
+			var assExposed:Boolean = pc.isAssExposedByLowerUndergarment();
+			var buttSize:Number = pc.buttRating();
+			var assLube:Number = pc.ass.wetness();
+			var donutLevel:int = pc.analPuffiness();
 			if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL))
 			{
-				txt += "\n\n9999 - Text.";
+				txt += "\n\n<i>“Ooo-hoo-hoo, booty, booty, booty!”</i> [goo.name] rumbles. <i>“";
+				if(buttSize <= 0) txt += "Hm... you’re about as flat as a board back here, capt’n!";
+				else if(buttSize <= 5) txt += "Like, you have such a cute little booty back here!";
+				else if(buttSize <= 10) txt += "A decent-sized booty--good for smacking and butt-stuff!";
+				else if(buttSize <= 15) txt += "Mmm... big and " + (pc.hasSoftButt() ? "soft" : "bouncy") + ", just how I like ‘em!";
+				else if(buttSize <= 20) txt += "Wah! So huge and " + (pc.hasSoftButt() ? "squishy" : "huggable") + "! I’ll try my best to cover it all!";
+				else txt += "Like, wow, you totes got a donk for miles! It’ll be tough to capture such a majestic beauty!";
+				txt += "”</i>";
+				if(!assExposed) txt += " With one quick motion, she drapes your backside and covers up any exposed gaps.";
+				else
+				{
+					txt += " After covering your buttcheeks, her mass makes its way toward your [pc.asshole]. <i>“";
+					if(donutLevel >= 5) txt += "Whoa, look at this monster! Uh, I guess it would be hard to miss... You must really, </i>really<i> like donuts, huh?";
+					else if(donutLevel >= 4) txt += "Would ya look at that fatty. I’ll have to give this big donut a ride later!";
+					else if(donutLevel >= 3) txt += "This pucker is really soft and puffy, I could squeeze it for days!";
+					else if(donutLevel >= 2) txt += "Your pucker is so soft and squishy" + (pc.hasPlumpAsshole() ? "--like a donut" : "! Yum") + "!";
+					else if(donutLevel >= 1) txt += "A little soft and plump--I like it!";
+					else txt += "A cutie of a pucker you have here, [pc.name]!";
+					txt += "”</i> she says, before giving it a pinch";
+					if(assLube >= 2) txt += ", resulting in a " + (assLube >= 4 ? "gush" : "bit") + " of lubricant squirting out,";
+					txt += " and finally enveloping your backdoor with her silvery surface.";
+				}
 				txt += "\n\nPatching up that area makes you feel protected, especially from incoming penetrative attacks.";
 				txt += "\n\n<b>Your asshole is now covered!</b>";
 			}
 			else
 			{
-				txt += "\n\n9999 - Text.";
+				txt += "\n\n<i>“Opening the back door, huh? That’s easy peasy!”</i> [goo.name] squeaks. The goo girl tightly squeezes your rear and releases while creating an opening in the back of the suit. She then produces a rolled tendril with the excess and shoots you a playful <i>SMACK!</i>";
+				txt += "\n\nOuch!";
+				txt += "\n\nThe silvery suit just giggles as your cheeks";
+				if(buttSize <= 0) txt += " shake and recover";
+				else if(buttSize <= 5) txt += " jostle and quiver";
+				else if(buttSize <= 15) txt += " " + (pc.hasSoftButt() ? "jiggle and jump" : "bounce and flex");
+				else if(buttSize <= 20) txt += " clap and " + (pc.hasSoftButt() ? "reverberate like jello" : "bounce ubruptly");
+				else txt += " " + (pc.hasSoftButt() ? "produce oceanic waves and jiggle uncontrollably" : "quake and rebound like rubber");
+				txt += ", and your [pc.asshole]";
+				if(assLube >= 6) txt += " gushes lube and";
+				else if(assLube >= 4) txt += " squirts lube and";
+				else if(assLube >= 2) txt += " drips lube and";
+				txt += " dialates, from the surprise whipping. <i>“That’s what happens when you expose yourself to the elements!”</i>";
 				txt += "\n\nWhile this allows others to admire your [pc.butts], it removes a significant amount of armor to do so, giving easier access to your " + (!silly ? "butthole" : "heinie-hole") + "!";
 				txt += "\n\n<b>Your asshole is now exposed!</b>";
 				expose = true;
@@ -2232,31 +2548,62 @@ public function gooArmorChangeDesign(arg:Array):void
 			else gooArmorAddDisabledButton(fromCrew, btn++, "None");
 			if(pc.statusEffectv3("Goo Armor Design") != 1)
 			{
-				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Stylish", "Stylish", "[goo.name]’s defense is too low to apply a helmet.");
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Stylish", "Stylish Helmet", "[goo.name]’s defense is too low to apply a helmet.");
 				else gooArmorAddButton(fromCrew, btn++, "Stylish", gooArmorChangeHelmet, [1, fromCrew], "Stylish Helmet", "Change the suit’s helmet to look like head gear worn by a snazzy spacer.");
 			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Stylish");
 			if(pc.statusEffectv3("Goo Armor Design") != 2)
 			{
-				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Fierce", "Fierce", "[goo.name]’s defense is too low to apply a helmet.");
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Fierce", "Intimidating Helmet", "[goo.name]’s defense is too low to apply a helmet.");
 				else gooArmorAddButton(fromCrew, btn++, "Fierce", gooArmorChangeHelmet, [2, fromCrew], "Intimidating Helmet", "Change the suit’s helmet to look menacing to your opponents.");
 			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Fierce");
 			if(pc.statusEffectv3("Goo Armor Design") != 3)
 			{
-				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Retro", "Retro", "[goo.name]’s defense is too low to apply a helmet.");
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Retro", "Bubble Helmet", "[goo.name]’s defense is too low to apply a helmet.");
 				else gooArmorAddButton(fromCrew, btn++, "Retro", gooArmorChangeHelmet, [3, fromCrew], "Bubble Helmet", "Change the suit’s helmet to look like something that came from the ancient terran gray-toned films.");
 			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Retro");
 			if(pc.statusEffectv3("Goo Armor Design") != 4)
 			{
-				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Mystery", "Mystery", "[goo.name]’s defense is too low to apply a helmet.");
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Mystery", "Mysterious Mask", "[goo.name]’s defense is too low to apply a helmet.");
 				else gooArmorAddButton(fromCrew, btn++, "Mystery", gooArmorChangeHelmet, [4, fromCrew], "Mysterious Mask", "Change the suit’s helmet to look like a mirrored mask and keep your face anonymous.");
 			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Mystery");
+			if(pc.statusEffectv3("Goo Armor Design") != 5)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Cute", "Animal Ears", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Cute", gooArmorChangeHelmet, [5, fromCrew], "Animal Ears", "Change the suit’s helmet to appear non-hostile and topped with adorable animal ears.");
+			}
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Cute");
+			if(pc.statusEffectv3("Goo Armor Design") != 6)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Combat", "Military Helmet", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Combat", gooArmorChangeHelmet, [6, fromCrew], "Military Helmet", "Change the suit’s helmet to mimic the features of military-issue combat headgear.");
+			}
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Combat");
+			if(pc.statusEffectv3("Goo Armor Design") != 7)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Tricorn", "Triangular Helmet", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Tricorn", gooArmorChangeHelmet, [7, fromCrew], "Triangular Helmet", "Change the suit’s helmet to resemble a shape similar to a tricorn hat.");
+			}
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Tricorn");
+			if(pc.statusEffectv3("Goo Armor Design") != 8)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Knightly", "Knight’s Helmet", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Knightly", gooArmorChangeHelmet, [8, fromCrew], "Knight’s Helmet", "Change the suit’s helmet to appear like a knight of medieval lore.");
+			}
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Knightly");
+			if(pc.statusEffectv3("Goo Armor Design") != 9)
+			{
+				if(pc.armor.defense < 2) gooArmorAddDisabledButton(fromCrew, btn++, "Roguish", "Rogue’s Hood", "[goo.name]’s defense is too low to apply a helmet.");
+				else gooArmorAddButton(fromCrew, btn++, "Roguish", gooArmorChangeHelmet, [9, fromCrew], "Rogue’s Hood", "Change the suit’s helmet to be one covered in a rogue-like hood.");
+			}
+			else gooArmorAddDisabledButton(fromCrew, btn++, "Roguish");
 			break;
 	}
 	
+	txt += "\n\n" + gooArmorDetails();
 	gooArmorOutput(fromCrew, txt);
 	
 	gooArmorAddButton(fromCrew, 14, "Back", gooArmorChangeArmorMenu, fromCrew);
@@ -2275,8 +2622,27 @@ public function gooArmorEmblemMenu(arg:Array):void
 		["BI/G", "Bell-Isle/Grunmann patch"],
 		["Steele", "Steele Tech logo"],
 	];
+	
 	// Push other emblems in the list for unlocking!
-	if(9999 == 0) emblemList.push(["None", "none"]);
+	
+	if(CodexManager.entryViewed("Aegis")) emblemList.push(["Aegis", "Aegis logo"]);
+	if(CodexManager.entryViewed("Camarilla")) emblemList.push(["Camarilla", "Camarilla patch"]);
+	if(CodexManager.entryViewed("Humphard Inc.")) emblemList.push(["Humphard", "Humphard Inc. logo"]);
+	if(CodexManager.entryViewed("J’ejune")) emblemList.push(["J’ejune", "J’ejune logo"]);
+	if(CodexManager.entryViewed("JoyCo")) emblemList.push(["JoyCo", "JoyCo logo"]);
+	if(CodexManager.entryViewed("KihaCorp")) emblemList.push(["KihaCorp", "KihaCorp logo"]);
+	if(CodexManager.entryViewed("Nova Securities")) emblemList.push(["Nova Sec.", "Nova Securities logo"]);
+	if(CodexManager.entryViewed("Pyrite")) emblemList.push(["Pyrite", "Pyrite Industries logo"]);
+	if(CodexManager.entryViewed("Reaper")) emblemList.push(["Reaper", "Reaper Armaments logo"]);
+	if(CodexManager.entryViewed("RhenWorld")) emblemList.push(["RhenWorld", "RhenWorld logo"]);
+	if(CodexManager.entryViewed("Snugglé")) emblemList.push(["Snugglé", "Snugglé logo"]);
+	if(CodexManager.entryViewed("Xenogen")) emblemList.push(["Xenogen", "Xenogen Biotech logo"]);
+	
+	if(CodexManager.entryViewed("Black Void")) emblemList.push(["Black Void", "Black Void patch"]);
+	if(CodexManager.entryViewed("J.A.F.")) emblemList.push(["J.A.F.", "Joint Ausar Federation patch"]);
+	if(CodexManager.entryViewed("Scarlet Federation")) emblemList.push(["Scarlet Fed.", "Scarlet Federation patch"]);
+	if(CodexManager.entryViewed("T.S.C.")) emblemList.push(["T.S.C.", "Terran Space Coalition patch"]);
+	if(CodexManager.entryViewed("U.G.C.")) emblemList.push(["U.G.C.", "United Galactic Confederacy patch"]);
 	
 	for(i = (fromCrew ? 0 : offset); i < (fromCrew ? emblemList.length : (offset + 10)); i++)
 	{
@@ -2312,6 +2678,7 @@ public function gooArmorChangeStyle(arg:Array):void
 	var txt:String = "";
 	var airtight:String = "";
 	var swimwear:String = "";
+	var partList:Array = [];
 	
 	gooArmorClearOutput(fromCrew);
 	author("Jacques00");
@@ -2395,10 +2762,11 @@ public function gooArmorChangeStyle(arg:Array):void
 			if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 			{
 				txt += " by leaving your";
-				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) txt += ", " + (pc.hasBreasts() ? "breasts" : "chest");
-				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) txt += ", crotch";
-				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) txt += ", ass";
-				txt += ", arms and " + (pc.legCount == 1 ? "[pc.legNoun]" : "[pc.legsNoun]") + " exposed,";
+				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) partList.push(pc.hasBreasts() ? "breasts" : "chest");
+				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) partList.push("crotch");
+				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL)) partList.push("ass");
+				if(partList.length > 0) txt += " " + CompressToList(partList) + ",";
+				txt += " arms and " + (pc.legCount == 1 ? "[pc.legNoun]" : "[pc.legsNoun]") + " exposed,";
 			}
 			else txt += " by keeping your arms and " + (pc.legCount == 1 ? "[pc.legNoun]" : "[pc.legsNoun]") + " uncovered,";
 			txt += " your armor looks more suitable for swimming in.";
@@ -2548,6 +2916,26 @@ public function gooArmorChangeHelmet(arg:Array):void
 		case 4:
 			txt += "\n\nThe helmet’s surface smoothes out and warps to match the dimensions of your head, then the transparency re-shades itself in a silver, reflexive film - painting the entire front to form a smooth, featureless mask. No one can see your face even though you can see through it just fine. This definitely gives you a very anonymous appearance.";
 			txt += "\n\n<i>“Ooo, mysterious!”</i>";
+			break;
+		case 5:
+			txt += "\n\nThe headgear’s surface molds into a shape that looks very similar to a round hoverbike helmet, complete with its own flip visor, and fits snugly with your head. At the top, two blobs protrude from the surface. They reshape to form a pair of large, triangular animal ears, like those belonging to a cat or fennec-like creature.";
+			txt += "\n\n<i>“Aw, that makes you look like such a cutie!”</i>";
+			break;
+		case 6:
+			txt += "\n\nThe mass around the helmet reshapes itself into a more blocky shape, yet retaining some familiar curvature. A tough-looking visor and an obvious mouthguard form in the front while a slight cap tops the frame and thick ear shells cover the sides, making the headgear appear in line with standard military wear. After a few adjustments, the final design looks like it can take a good beating but remain intact.";
+			txt += "\n\n<i>“Like, do you wanna live forever?! Ooh-rah!”</i>";
+			break;
+		case 7:
+			txt += "\n\nThe silvery blob splits and forms into two pointed pieces, one below your lower jaw and the other above your head, looking very much like a shark or bird maw--and, like the mouth of a beast, the “jaw” closes around your head, flattening and reshaping as it goes, the corners polarized at three distinct points. When finished, the helmet gives off the illusion that you are wearing a tricorn hat, closed off by a large collar under your chin.";
+			txt += "\n\n<i>“Cool, you look kinda like a pirate now!”</i>";
+			break;
+		case 8:
+			txt += "\n\nThe silver surface of the new helmet begins to split and form seperate plates of armor. The plates move and position themselves around your head, creating a regal, crown-like shape at the top and leaving a “Y”-shaped gap as a primary slit for your eyes.";
+			txt += "\n\n<i>“I hereby dub thee, Knight of Steele!”</i>";
+			break;
+		case 9:
+			txt += "\n\nThe helmet then forms a cloth-shaped piece that extends in front of you, draping over your head, falling to the sides, and resting atop your shoulders, resulting in a very rouge-like hood. The inside of the helmet is covered in shadow when you are in the right light.";
+			txt += "\n\n<i>“Hoodies like this are in style, right?”</i>";
 			break;
 		default:
 			txt += "\n\nThe blob shifts and changes to the desired shape you suggested. You find that [goo.name] pays very close attention to detail, even though she gets carried away with her own unique flourishes. When all is said and done, you find that your suit now possesses a newly designed helmet.";

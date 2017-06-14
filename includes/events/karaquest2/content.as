@@ -193,7 +193,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	if(9999 == 9999) output(" Z14")
 	output(" in a while.”</i>");
 
-	//{if PC has Anno aboard:
+	//if PC has Anno aboard:
 	if (annoIsCrew())
 	{
 		output("\n\nYou hear footsteps coming your way. Both you and Kara turn to see Anno walking towards the galley, reading on a tablet couched in her arm. She looks up at the two of you and blinks. <i>“Oh, hey boss. Didn’t know we were expecting company.”</i> She tucks her datapad away and extends a hand to your companion. <i>“Anno Dorna. Ship’s scientist.”</i>");
@@ -614,11 +614,11 @@ public function kq2QUESTTIME():void
 	if (flags["SILENCE_RESCUED_CONNIE"] != undefined)
 	{
 		output("\n\nAs you’re walking, a side passage in the corridor slides open with a hiss, and a pale blue beauty sashays out into your path. You blink hard as the robotic bombshell smiles at you with big, ultramarine lips, putting her hand on a set of broad hips that strain the band of her skin-tight yoga pants. Her flat, sleek belly is left bare, all the way up to a too-tight black sports bra that’s somehow hugging back a set of tits that would look more at home");
-		//{if met Irellia:
+		//if met Irellia:
 		if (flags["MET_IRELLIA"] != undefined) output(" on a gold myr queen");
 		else output(" on a hyperporn star - and emphasis on the hyper");
 		output("!");
-		// {if met Gianna:
+		// if met Gianna:
 		if (flags["MET_GIANNA"] != undefined) output(" She looks a lot like a certain New Texan companion droid you know - maybe they’re the same model?");
 
 		output("\n\n<i>“Welcome back, captain,”</i> the droid says, oddly emotionless despite the husky purr in her voice. Almost eerily so. <i>“I assume this is [pc.name] Steele. Pleased to meet you.”</i>");
@@ -1079,7 +1079,7 @@ public function kq2GibEngyDirtyMag():void
 	output("\n\n<i>“So. Keycard?”</i>");
 	
 	output("\n\nShe looks up, startled. <i>“Uh. Yeah, sure. Card, whatever,”</i> she says, grabbing a card off of the desk behind her and shoving it into your hand. <i>“Now fuck off.");
-	//{if convinced Steph to do porn:
+	//if convinced Steph to do porn:
 	if (flags["STEPH_WORK_CHOICE"] == STEPH_WORK_PORNSTAR) output(" I’ve been waiting for the first issue of </i>Galactic Fucktress<i> for ages!");
 	output("”</i>");
 	
@@ -1420,7 +1420,7 @@ public function kq2LootLabCoat(noncombatMenu:Boolean = false):void
 // Cheesy hack to see what the player did with the item. If they discarded it, clear the flag that said they looted it.
 public function kq2LabCoatCheck():void
 {
-	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	if (pc.armor is KhansLabCoat || pc.hasItemByClass(KhansLabCoat))
 	{
 		kq2KhanVictoryMenu();
 		return;
@@ -1431,7 +1431,7 @@ public function kq2LabCoatCheck():void
 
 public function kq2LabCoatCheckMenu():void
 {
-	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	if (pc.armor is KhansLabCoat || pc.hasItemByClass(KhansLabCoat))
 	{
 		mainGameMenu();
 		return;
@@ -1450,7 +1450,7 @@ public function kq2LootArcCaster(noncombatMenu:Boolean = false):void
 
 public function kq2LootArcCasterCheck():void
 {
-	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByClass(KhansArcCaster))
 	{
 		kq2KhanVictoryMenu();
 		return;
@@ -1461,7 +1461,7 @@ public function kq2LootArcCasterCheck():void
 
 public function kq2LootArcCasterCheckMenu():void
 {
-	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByClass(KhansArcCaster))
 	{
 		mainGameMenu();
 		return;
@@ -1763,7 +1763,7 @@ public function kq2EncounterShade():void
 		output("\n\nKara scowls, leveling her plasma caster at the other kaithrit. <i>“God </i>damn<i>, don’t you ever give up!?”</i>");
 		
 		output("\n\n<i>“Wouldn’t be much of a bounty hunter if I did,”</i> Shade laughs, whistling to her assault drones. They advance, lowering their heads and growling metallically. <i>“Now, why don’t you and your friend come quietly, hmm?");
-		//{if didn’t fight Shade: 
+		//if didn’t fight Shade: 
 		if(flags["DISTRACTED_SHADE"] != undefined || flags["TRIPPED_ON_SHADE"] != undefined) output(" And </i>you<i>, [pc.name]... that was a dirty trick you pulled. Damned scummy... maybe I’ll beat some better manners into you.");
 		output("”</i>");
 		
@@ -2669,7 +2669,7 @@ public function kq2KaraFuckKittysKitty():void
 	
 	output("\n\nGrabbing Kara by the tits, you ram yourself home into her steaming twat, making the whole bed rock forward with the weight of your thrust. She screams; no more cute moans and girly cries, just a feral roar of pleasure as you start to pound her. Her pierced nipples make the most perfect hand-holds, teasing her bars between your fingers between rough squeezes and pulls. The familiar sounds of flesh colliding with flesh echo loudly off the bare walls, mixing with your moans and Kara’s until her quarters are awash in a symphony of sensuality.");
 
-	//{if PC has a knot!
+	//if PC has a knot!
 	if (pc.hasKnot())
 	{
 		output("\n\nYour hips hammer Kara’s raised rear-end, filling you with a visceral glee at seeing her derriere quiver to the beat of your thrusting hips. You barely even notice how swollen your [pc.knot] has become until Kara lets out a startled cry, and you realize you nearly buried it in her. Fuck it - you’ve earned this! You rear your hips back and ram them forward one last time, shoving the swollen bulb of your knot into the wet embrace of Kara’s pussylips. She shrieks, a wordless cry of pleasure as your knot drives her to climax.");
@@ -2862,7 +2862,7 @@ public function kq2NukeExplodesLater():void
 
 	output("\n\nWell, that doesn’t bode well for the cold war down there. Indeed, as you sweep towards the planet’s surface, your sensors start to blip up with various radiological alerts. The closer you get, the better you can see mushroom clouds billowing up through the planet’s atmosphere. Oh, shit. Dozens of ships are desperately zooming out of orbit, small spacer freighters and solo-ships, and the cargo vessels from every mega-corp that had a stake in the place. You wonder how much warning they had.");
 
-	//{if PC hadn't gotten the probe yet:
+	//if PC hadn't gotten the probe yet:
 	if (!reclaimedProbeMyrellion())
 	{
 		output("\n\nSuddenly, your comms beep with an incoming message. From your cousin.");
@@ -2932,7 +2932,7 @@ public function kq2DaneCoordEmail():void
 
 	output("Your Codex beeps unexpectedly, alerting you to an incoming extranet message. When you pull your device out, you’re greeted by an message addressed from one <i>“doubledog27@ausal.ril”</i> You flip it open and start to read:");
 	
-	//{if fucked on Mhen'ga:
+	//if fucked on Mhen'ga:
 	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) output("\n\nHow’s my favorite cocksleeve doing?");
 	else output("Sure hope this is actually your email address...");
 	
@@ -2945,7 +2945,7 @@ public function kq2DaneCoordEmail():void
 
 	output("\n\nJust sayin.");
 
-	//{if fucked:
+	//if fucked:
 	if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
 	{
 		output("\n\nSoooo if you want a repeat of Mhen’ga, maybe we can hook up sometime? C’mon, I know you liked it ;)");
@@ -3171,7 +3171,7 @@ public function KQ2shadeHalfSisterOhNoes():void
 	output("\n\nOne of the Steele Tech pilots jogs over, pulling his Codex back out. <i>“Hey, weren’t these things only supposed to turn on for you, " + pc.mf("Mr.","Ms.") + " Steele?”</i>");
 	output("\n\n<i>“Yeah,”</i> you admit. <i>“Me or anybody with enough of my Dad’s DNA.”</i>");
 	output("\n\n<i>“Oh, shit,”</i> Shade says, forcing a chuckle. <i>“That’s a hell of a bug.");
-	if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") output(" What, does it think I’m your mom or something?");
+	if(pc.raceShort() == "kaithrit") output(" What, does it think I’m your mom or something?");
 	else output(" What, does it think I’m your long-lost sister or something?");
 	output("”</i>");
 	output("\n\nThe company pilot punches a few buttons on his Codex and waves its scanner over the banged-up old probe, mumbling about that specific model of probe and software hiccups. After a moment, though, he scratches his stubbly chin and furrows his brow. You and Shade both look at him expectantly, but rather than assuring you it’s just some random bug in the century-old probe, he pushes another button and turns the scanner towards Shade.");

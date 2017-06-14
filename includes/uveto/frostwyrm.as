@@ -146,7 +146,7 @@ public function frostwyrmPCLoss():void
 		if (pc.HP() <= 0) output("physical defeat.");
 		else output("overwhelming sexual arousal.");
 		output(" Your defenses are compromised, and you can feel them slowly peeled apart, stripped layer by layer like an onion until you’re suddenly aware of another presence in your mind, a worming coldness squirming through your brain.");	
-		output("\n\nA voice pounds between your ears, bestial and guttural, yet soft as a whisper. <i>You did not run</i>, it says, an echo of your prior defeat. <i>I warned you once to never again darken my door. Yet not only do I find you here again, but you lack the sense to flee when confronted.</i");
+		output("\n\nA voice pounds between your ears, bestial and guttural, yet soft as a whisper. <i>You did not run</i>, it says, an echo of your prior defeat. <i>I warned you once to never again darken my door. Yet not only do I find you here again, but you lack the sense to flee when confronted.</i>");
 		output("\n\nThe frostwyrm looms down on you, billowing icy breath across your face. You shiver, scrabbling back away from it... until one of its huge, bestial claws reaches out and grabs you around the waist, pinning you to the ice.");
 		output("\n\nThe beast seems to consider you for a moment, its draconic eyes drilling into you before it exudes a long breath and clutches its claws around you. For a moment, you feel as if you’ll be crushed to pulp, but then find that its claws are wrapping around you, lifting you up off the ground. With a roar, the wyrm takes wing, hefting you up and flying off with you.");
 		output("\n\nA scream tears from your throat as you’re whisked away through the freezing wind, over the edge of the glacial rift and out over the vast, icy ocean below. The wyrm roars, a thunderous sound that echoes across the rift for miles around and all but deafens you in the process. You can’t hear, the icy wind is burning you eyes, and you’re completely incapable of movement crushed between the wyrm’s talons.");
@@ -200,18 +200,18 @@ public function frostwyrmBadEnd():void
 	output("\n\nThe wyrm rises to its full height, its long neck coiling over the altar-like block he’s laid you out on, staring at you for a long moment. For the first time, you realize that you’re naked and bereft of your equipment; your sex is bared for the creature’s inspection, and you become quickly aware that its stare is firmly focused there.");
 	
 	output("\n\n<i>In truth, I am glad you did not heed my warning,</i> the voice says, and the cool, queer feeling in your mind tingles with sensual suggestion. Unbidden arousal flushes through your body, brought forth by the probing thoughts coursing through your mind. ");
-	if (pc.hasCock()) output("You watch your [pc.cock] slowly rise to half - mast, reaching up towards the snowy wyrm."); 
-	else if (pc.hasVagina()) output("You feel your [pc.cunt] wink invitingly at the creature, wide open and beading with lustful juices.");
-	output("The wyrm’s face twists into something like a smile. <i>Good, your body agrees. It has been many years since a proper mate has wandered into my territory. We are so few, now... you will have to do instead. I require someone to</i>");
-	if (pc.hasVagina()) output("<i>bear my young. I will fill your body with eggs, again and again. You will be mother to my brood.</i>"); 
-	else if (pc.hasCock()) output("<i>be father to my brood. You will give life to my eggs, again and again, until my lair sings with life.</i>"); 
+	if (pc.hasCock()) output("You watch your [pc.cock] slowly rise to half - mast, reaching up towards the snowy wyrm. "); 
+	else if (pc.hasVagina()) output("You feel your [pc.cunt] wink invitingly at the creature, wide open and beading with lustful juices. ");
+	output("The wyrm’s face twists into something like a smile. <i>Good, your body agrees. It has been many years since a proper mate has wandered into my territory. We are so few, now... you will have to do instead. I require someone to ");
+	if (pc.hasVagina()) output("bear my young. I will fill your body with eggs, again and again. You will be mother to my brood."); 
+	else if (pc.hasCock()) output("be father to my brood. You will give life to my eggs, again and again, until my lair sings with life."); 
 	//default to female
-	else output("<i>bear my young. I will fill your body with eggs, again and again. You will be mother to my brood.</i>"); 
-	output(" <i>It will be pleasurable for you, if you let it.</i>");
+	else output("bear my young. I will fill your body with eggs, again and again. You will be mother to my brood."); 
+	output(" It will be pleasurable for you, if you let it.</i>");
 	
 	output("\n\n<i>“I... will,”</i> you answer, ");
-	if(pc.legCount > 1) output("and you find your [pc.legorLegs] spreading invitingly, "); 
-	output ("as if begging the wyrm to proceed with its inevitable plans for you.");
+	if(pc.legCount > 1) output("and you find your [pc.legorLegs] spreading invitingly, ");
+	output("as if begging the wyrm to proceed with its inevitable plans for you.");
 
 	processTime(90)
 	pc.lust(pc.lustMax());
@@ -244,7 +244,7 @@ public function frostwyrmBadEndII():void
 		
 		output("\n\nInstead of tearing you apart, the frostwyrm begins to move its hindquarters, drawing itself almost out of you, and grinding back in again. It’s not everything you wanted, but the thunderous pleasure that crashes through you erases any sense of deprivation. Conscious thought gives way to cries of animalistic pleasure, followed by orgasm as the wyrm hammers you, filling you utterly and completely. Your head lolls back, insensate as you climax around the beastial member, spraying it with [pc.girlCumNoun]");
 		if (pc.hasCock()) output(" and hosing your belly with your own spunk as your [pc.multiCock] erupts.");
-		else output (".");
+		else output(".");
 		
 		output("\n\nThe wyrm follows you a mere moment later, bellowing a triumphant roar as its cock swells with impending need. You have but a moment to brace yourself before the flood of cold, sticky wetness floods into your womb, bloating your gut as a monstrous load of wyrm-spunk takes root.");
 		output("\n\nAfter a long minute, the frostwyrm withdraws from you with a wet, resounding squelch. The moment it does, you feel like you’re a balloon deflating with gallons of spunk leaking out of your abused hole. The sensation is as frightening as it is amazing.");

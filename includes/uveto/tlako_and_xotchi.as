@@ -217,16 +217,34 @@ public function tlakoHerselfTopic():void
 	output("\n\nYou pat the seat next to you and ask her what she means by that.");
 	output("\n\n<i>“Oh, in tove society, it's considered a poor investment to raise more than two children,”</i> she begins as she clambers up onto the bench next to you, her legs kicking as she takes her seat. <i>“So when a third child is born, they're given to the government to raise,”</i> she says, looking up at you with a smile. <i>“I'm a third child.”</i>");
 	output("\n\nYou reflect on your own childhood and how big a role your father played in it.");
-	//pc.Nature
-	if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_ATHLETIC) output(" You remember kicking off the wall of a zero-g court, and the burst of joy at catching the ricocheting grav ball that your father threw to you.");
-	//pc. Nature= Bookworm:
-	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_BOOKWORM) output(" Quite suddenly you recall the faint buzz of the old lamp in your father's library, being picked up by him and carried to your bed after falling asleep in a pile of books.");
-	//c. Nature=Pampered:
-	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_PAMPERED) output(" You run your thumb across your fingernails, remembering the spa days you and your father would schedule. You remember the long hours of talking about nothing in particular over massages, saunas, and manicures.");
-	//pc Nature=Austere:
-	else if(flags["PC_UPBRINGING"] == GLOBAL.UPBRINGING_AUSTERE) output(" You remember the cabin by the purple lake on Dorlin IV, the long hours spent with your father, enjoying the silence of the woods around you, and all those times he fished you out of the lake.");
-	//pc.Nature=Balanced:
-	else output(" Unbidden, your fingers touch a small spot on your midsection. You remember a year spent building a treehouse under the twin suns of a garden planet. You fell, hitting several branches on your way down. Your father was there in a flash, picking you up and carrying you to the nearest med station.");
+	switch(flags["PC_UPBRINGING"])
+	{
+		// pc Nature = Athletic:
+		case GLOBAL.UPBRINGING_ATHLETIC:
+			output(" You remember kicking off the wall of a zero-g court, and the burst of joy at catching the ricocheting grav ball that your father threw to you.");
+			break;
+		// pc Nature = Bookworm:
+		case GLOBAL.UPBRINGING_BOOKWORM:
+			output(" Quite suddenly you recall the faint buzz of the old lamp in your father's library, being picked up by him and carried to your bed after falling asleep in a pile of books.");
+			break;
+		// pc Nature = Pampered:
+		case GLOBAL.UPBRINGING_PAMPERED:
+			output(" You run your thumb across your fingernails, remembering the spa days you and your father would schedule. You remember the long hours of talking about nothing in particular over massages, saunas, and manicures.");
+			break;
+		// pc Nature = Austere:
+		case GLOBAL.UPBRINGING_AUSTERE:
+			output(" You remember the cabin by the purple lake on Dorlin IV, the long hours spent with your father, enjoying the silence of the woods around you, and all those times he fished you out of the lake.");
+			break;
+		// pc Nature = Slutty:
+		/*case GLOBAL.UPBRINGING_SLUTTY:
+			output(" You remember blushing as your father coached you on how to score the perfect date. It seemed awkward at the time, but it turned out to be the most useful advice you got.");
+			break;*/
+		// pc Nature = Balanced:
+		case GLOBAL.UPBRINGING_BALANCED:
+		default:
+			output(" Unbidden, your fingers touch a small spot on your midsection. You remember a year spent building a treehouse under the twin suns of a garden planet. You fell, hitting several branches on your way down. Your father was there in a flash, picking you up and carrying you to the nearest med station.");
+			break;
+	}
 	output(" You try to imagine life without that memory, and you wince.");
 
 	output("\n\n<i>“Oh, it's really not that bad,”</i> she says, gesturing energetically. <i>“You see, tove children that grow up with their parents get billed for the cost of raising them once they're adults. Bureaucrats don't get billed - we just work for the government. That's my job here on Uveto Station - I'm a Camarilla-assigned assistant for Sub-Madam Xotchi Tzall, since this is largely a government endeavor.”</i>");

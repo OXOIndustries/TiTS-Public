@@ -81,7 +81,7 @@ public function approachFarmer():void
 		showBust("CAMERON");
 		output("<i>“Hey!”</i> Cameron says as you approach. <i>“Got any varmints tied up for me? Or you got something else on your mind?”</i>");
 		//{Options!}
-		if(pc.hasItem(new VarmintItem(),1)) addButton(0,"Varmint",turnInAVarmint,undefined,"Hand Over a Varmint","Turn in a varmint you've bagged for some cash.");
+		if(pc.hasItemByClass(VarmintItem,1)) addButton(0,"Varmint",turnInAVarmint,undefined,"Hand Over a Varmint","Turn in a varmint you've bagged for some cash.");
 		else addDisabledButton(0,"Varmint","Varmint","You haven't caught any varmints to turn in yet.");
 		if(pc.lust() >= 33) addButton(1,"Flirt",flirtWithCameron,undefined,"Flirt","Flirt with Cameron.");
 		else addDisabledButton(1,"Flirt","Flirt","You don't really feel like flirting at the moment.");
@@ -150,7 +150,7 @@ public function turnInAVarmint():void
 	pc.credits += 5;
 	output("\n\nYou take the payment, and Cameron takes the varmint. Which promptly goes flying into the back of his hover-pickup sitting nearby. You don’t ask what happens next to the critter.");
 	processTime(3);
-	pc.destroyItem(new VarmintItem(),1);
+	pc.destroyItemByClass(VarmintItem,1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -341,7 +341,7 @@ public function varmintProc():void
 //PC uses "Lasso" -- based on AIM
 public function lassoAVarmint(attacker:Creature, target:Creature):void
 {
-	clearOutput();
+	//clearOutput();
 	//Set drone target
 	//attacker.droneTarget = target;
 	output("You twirl your light lasso, trying to get a bead on " + target.getCombatName() + ". When you've got enough spin, you let the lasso go, hurling it toward " + target.getCombatName() + "!");
@@ -381,7 +381,7 @@ public function pcVictoryVsVarmints(clearText:Boolean = false):void
 	showBust("VARMINT");
 	if(enemy.hasStatusEffect("Lassoed"))
 	{
-		if(!pc.hasItem(new VarmintItem(),1))
+		if(!pc.hasItemByClass(VarmintItem,1))
 		{
 			output("You get the varmint on the ground with your lasso and yank it over to you. The blue creature gives a yelp of pain and frustration as you drag it in and tie it up. You give the defeated creature a swift punch, knocking it cold so you can transport it. Once done, it's easy enough to sling the creature over your shoulder and move on.");
 			output("\n\n<b>Varmint bagged!</b>");
@@ -562,7 +562,7 @@ public function varmintStowaway():Boolean
 	// Can only produce once!
 	if(varmintIsCrew()) return false;
 	// Has a Varmint item? Yes.
-	if(pc.hasItem(new VarmintItem())) return true;
+	if(pc.hasItemByClass(VarmintItem)) return true;
 	// Otherwise, no.
 	return false;
 }
@@ -590,7 +590,7 @@ public function hasVarmintBuddy():Boolean
 // Do you have the leash anywhere?
 public function hasVarmintLeash():Boolean
 {
-	if(pc.accessory is VarmintLeash || pc.hasItemByName("Pink Leash")) return true;
+	if(pc.accessory is VarmintLeash || pc.hasItemByClass(VarmintLeash)) return true;
 	for (var i:int = 0; i < pc.ShipStorageInventory.length; i++)
 	{
 		var sItem:ItemSlotClass = pc.ShipStorageInventory[i] as ItemSlotClass;
@@ -666,7 +666,7 @@ public function getAPetVarmint():void
 		output("\n\n");
 		
 		processTime(8);
-		pc.destroyItem(new VarmintItem(), 1);
+		pc.destroyItemByClass(VarmintItem, 1);
 	}
 	else showName("\nVARMINT");
 	// Repeat Interactions

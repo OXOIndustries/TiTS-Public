@@ -388,7 +388,7 @@ public function inessaSaeriTalk():void
 	else // Not first time:
 	{
 		output("<i>“Anything else you can tell me about your species?”</i> you ask, and Inessa shakes her head.");
-		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being a [pc.race]–?”</i>");
+		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being a [pc.raceShort]–?”</i>");
 		output("\n\nYou tell her a bit about about being a [pc.race], and she seems fascinated. Once you’re done talking, she looks at the time and gulps. <i>“Whoops... I was meant to be on the clock, but I got distracted by your story. I should really get back to work!”</i>");
 	}
 	processTime(4);
@@ -584,16 +584,16 @@ public function inessaBuyGo():void
 	//Have biowhip if gotten to Myrellion.
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(!chars["INESSA"].hasItem(new BioWhip())) chars["INESSA"].inventory.push(new BioWhip());
+		if(!chars["INESSA"].hasItemByClass(BioWhip)) chars["INESSA"].inventory.push(new BioWhip());
 	}
 	//Else no whip
-	else chars["INESSA"].destroyItem(new BioWhip());
+	else chars["INESSA"].destroyItemByClass(BioWhip);
 	
 	if(flags["MET_SERA"] != undefined)
 	{
-		if(!chars["INESSA"].hasItem(new LeatherLeash())) chars["INESSA"].inventory.push(new LeatherLeash());
+		if(!chars["INESSA"].hasItemByClass(LeatherLeash)) chars["INESSA"].inventory.push(new LeatherLeash());
 	}
-	else chars["INESSA"].destroyItem(new LeatherLeash());
+	else chars["INESSA"].destroyItemByClass(LeatherLeash);
 	
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
@@ -1159,7 +1159,7 @@ public function hoverholeFapFapFap():void
 public function cuffNFuckButton(btnSlot:int = 0, sexedFoe:Creature = null):void
 {
 	if(sexedFoe == null) return;
-	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+	if(pc.hasItemByClass(GravCuffs) && pc.lust() >= 33)
 	{
 		var fitsInside:Boolean = false;
 		if(sexedFoe.hasVagina()) fitsInside = (pc.cockThatFits(sexedFoe.vaginalCapacity(0)) >= 0);
@@ -1470,7 +1470,7 @@ public function newTexanGanguBangu():void
 	if(pc.race().toLowerCase().indexOf("cow") != -1 || (pc.isTreated() && pc.isBimbo())) output("\n\n<i>“Please enjoy your slutty fuck cow,”</i> you huskily moan, mooing and rubbing yourself desperately against their delectable dicks. You’re a cow, and cows are meant to get fucked and mated by bulls!");
 	else
 	{
-		output("\n\n<i>“I-I’m your slutty little [pc.race] whore - please use me as you wish!”</i> you huskily moan, rubbing yourself against their delectable dicks. It feels so <i>right</i>, like this is your purpose, to be the bull’s ");
+		output("\n\n<i>“I-I’m your slutty little [pc.raceCuteShort] whore - please use me as you wish!”</i> you huskily moan, rubbing yourself against their delectable dicks. It feels so <i>right</i>, like this is your purpose, to be the bull’s ");
 		if(pc.biggestTitSize() < 1) output("flat-chested");
 		else if(pc.biggestTitSize() <= 2) output("small-breasted");
 		else if(pc.biggestTitSize() <= 4) output("bare-breasted");
@@ -2016,9 +2016,12 @@ public function inessaWalksOnTheWildSide():void
 		output("\n\n<i>“I - I noticed that when you first came in [pc.name] - I mean, [pc.master],”</i> your butterfly sub twitters, apprehension quickening her tone. There’s a flush to her dark blue cheeks as she takes in the utterly obscene appendage. <i>“What - ? Is it a mod? Or were you born - ?”</i>");
 		output("\n\n<i>“It’s a tail dick, dear,”</i> you assure her calmly. You flagrantly eye the bare-chested saeri, hot arousal veining down your " + (pc.hasParasiteTailCock() ? "parasitic " : "tail-" ) + "cock as your gaze slides over her petite tits and pretty lips; your rightful property, to do with as you wish. <i>“Every so often I have a need to shove it into a deserving slut’s cock-hole. Nice and deep.”</i>");
 		output("\n\nInessa doesn’t know what to say to this; mouth slightly ajar, she seems paralysed by the gentle wave and wag of your [pc.tail], drawing ever closer to her, its head moist now with musky pre. You land it on her skin just south of her breasts, relishing the supple coolness of her skin as you lead it upwards, rearing it so its head dabs at her tiny, pointy nipples. It" + (pc.hasParasiteTailCock() ? " takes all of your willpower to keep the impulses of the parasite under control - it desperately wants to arrow in on the soft, warm hole it can sense above it - but it" : "" ) + "’s so much fun to fondle the sensitive little sub like this, drink in her tenderly open lips, little stutters and squeaks escaping them as you brush over her tender, navy nubs, inundating the swollen cock-head in pleasure all the while.");
-		output("\n\nWith her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows. As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
+		output("\n\n");
+		if(flags["INESSA_BELTED"] != 2) output("With her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows.");
+		else output("Even with her genitals exposed, the saeri’s tits act as if they are her only major erogenous zone available to her, and it shows.");
+		output(" As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
 		//PC does not have grav-cuffs: 
-		if(!pc.hasItem(new GravCuffs()))
+		if(!pc.hasItemByClass(GravCuffs))
 		{
 			output("\n\n<i>“You sell grav cuffs here, don’t you?”</i> you say levelly.");
 			output("\n\n<i>“I - yes, [pc.master], of course.”</i> She fetches a packet off and then fumbles it open, her own nervousness and eagerness to please making her clumsy, her blush climbing higher as she struggles with the packaging; it’s very cute. At last she hands you the pair of metal rings.");
@@ -2029,7 +2032,7 @@ public function inessaWalksOnTheWildSide():void
 			output("\n\nNot breaking your gaze away from her solemn, puppy-dog eyes, you pull out your pair of grav cuffs.");
 			output("\n\n<i>“O-oh...”</i> flutters Inessa, an apprehensive thrill gusting through her voice. <i>“I think I recognise those.”</i>");
 		}
-		//{merge}
+		//merge
 		output("\n\n<i>“Kneel here,”</i> you order, pointing at a spot right next to the counter. Inessa dutifully does as she’s told, a delighted shudder visibly running through her as she kneels in front of you. <i>“Hands behind your back.”</i> You bend down and snap her wrists together. You rise in front of her, stroking your [pc.cockTail], allowing her to see for a moment how pleased it makes you to see her knelt and helpless like this in front of you... before slowly move away, behind the counter. Your tentacle dick remains, curling and slathering with hot anticipation at her chest and neck.");
 		output("\n\n<i>“Um...”</i> the saeri quavers, starry eyes fixed on the snake-like appendage. <i>“I don’t mean to speak out of turn [pc.master], but... I do kinda have a store to run.”</i>");
 		output("\n\n<i>“That’s the whole point, bitch. Didn’t you know?”</i> you reply with mocking surprise. You rear your " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " up and press it against her cute, soft lips. <i>“Your [pc.master] will look after your shop whilst you concentrate on what you’re good at - polishing ");
@@ -2043,10 +2046,13 @@ public function inessaWalksOnTheWildSide():void
 	{
 		output("\n\n<i>“O-oh.”</i> Color blooms in Inessa’s cheeks. <i>“Are you saying that - ?”</i>");
 		output("\n\nHer words end in a breathy, shaky sigh as you land it on her skin just south of her breasts, relishing the supple coolness of her skin as you lead it upwards, rearing it so its head dabs at her tiny, pointy nipples. It" + (pc.hasParasiteTailCock() ? " takes all of your willpower to keep the impulses of the parasite under control - it desperately wants to arrow in on the soft, warm hole it can sense above it - but it" : "" ) + "’s so much fun to fondle the sensitive little sub like this, drink in her tenderly open lips, little stutters and squeaks escaping them as you brush over her tender, navy nubs, inundating the swollen cock-head in pleasure all the while. Arousal is soon throbbing through you, unstoppably powering your feral impulses on.");
-		output("\n\nWith her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows. As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
+		output("\n\n");
+		if(flags["INESSA_BELTED"] != 2) output("With her genitals securely under lock and key, the saeri’s tits are the only major erogenous zone available to her, and it shows.");
+		else output("Even with her genitals exposed, the saeri’s tits act as if they are her only major erogenous zone available to her, and it shows.");
+		output(" As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
 		output("\n\n<i>“I shouldn’t have to tell you what to do.”</i>");
 		//PC has grav cuffs: 
-		if(pc.hasItem(new GravCuffs()))
+		if(pc.hasItemByClass(GravCuffs))
 		{
 			output("Inessa abandons the counter and swiftly assumes the position; knelt down, hands behind her back, petite breasts out, timorous but earnest. You give her a fond grin as you pull out the grav-cuffs, reach behind her and securely cuff her wrists together. You step back, rear your " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " up and press its musky, dripping tip against her cute, soft lips.");
 			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");
@@ -2057,7 +2063,7 @@ public function inessaWalksOnTheWildSide():void
 			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");
 		}
 	}
-	//{merge}
+	//merge
 	output("\n\nSloppy, muffled sounds fill the shop as your lithe tail dick energetically explores Inessa’s mouth. The sensation is not great at first - her teeth keep rubbing over the bulging meat of your shaft, and without hands to help her she struggles to properly get hold of the over-excited tentacle. You clamp down on the impulse to impatiently throat-fuck her, though - she’s young and inexperienced. Leaning on the counter and concentrating on the door, you husk instructions and sigh your approval when she gets it right, until she is hollowing her cheeks fulsomely around your [pc.cockTail], providing a wonderful, wet suck for you to thrust your throbbing tail into with succulent strokes. You reward her quick learning by pulling out and smearing the pre-oozing tip over her cute lips and nose; she pants for breath and coos with submissive delight, licking at the slit of her new best friend. Heavy and full with fervent arousal now, you rear it back and shove it into her fuck-hole, delighted that she immediately tightens her walls back around your shaft...");
 	output("\n\nWa-<b>TSSSHHHH!</b> It takes all of your self-discipline not to freeze as the shop door opens, and to smoothly continue undulating your [pc.cockTail] into Inessa’s face. Her eyes go wide though, and she spasms slightly in her bonds.");
 	output("\n\n<i>“I’m sorry,”</i> says the business-suited platinum blond human male, stood stock-still in the doorway, <i>“is this a bad time?”</i>");
@@ -2090,7 +2096,7 @@ public function inessaWalksOnTheWildSide():void
 	output("\n\n<i>“Did I do alright, [pc.master]?”</i> she manages at last, wiping a trailer of cum off one of her star-burst eyes.");
 	output("\n\n<i>“Very,”</i> you reply. You let your gaze drift beyond her to the shelves and hoardings, a possessive hand running down Inessa’s warm, slim flank. <i>“There’s plenty of other gear to advertise in here, isn’t there? More... advanced goods, that customers need real inducement to buy. Have a long think about that before I next visit.”</i>");
 	output("\n\nYou step away and let an extremely flushed saeri hurry off to find a wash basin in the back.");
-	if(flags["INESSA_BELTED"] == 2) output(" You think you hear her twitter curses about her chastity belt all the way.");
+	if(flags["INESSA_BELTED"] != 2) output(" You think you hear her twitter curses about her chastity belt all the way.");
 	//Small Exhibitionism score bump
 	pc.exhibitionism(2);
 	processTime(35);

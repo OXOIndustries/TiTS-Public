@@ -52,7 +52,7 @@
 
 public function metBeth():Boolean
 {
-	if(flags["MET_DEL"] != undefined) return true;
+	if(flags["MET_BETH_CARVER"] != undefined || flags["MET_DEL"] != undefined) return true;
 	return false;
 }
 
@@ -1759,6 +1759,10 @@ public function bethsPermaContractBadEnd(response:String = "ask"):void
 		output("”</i>");
 		
 		processTime(3);
+		
+		pc.createStatusEffect("Cum Paused");
+		pc.createStatusEffect("Milk Paused");
+		
 		clearMenu();
 		addButton(0, "Next", bethsPermaContractBadEnd, (pc.isFemboy() ? "sign trap" : "sign next"));
 		return;
@@ -1974,7 +1978,8 @@ public function brothelTurnTrixLadyNonFem():void
 		}
 	}
 	// [Ok] [Nope]
-	addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+	if(pc.hasVagina() && pc.hasWombPregnancy()) addDisabledButton(0, "Okay", "Okay", "It is too dangerous to try this while you are pregnant!");
+	else addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
 	addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
 }
 
@@ -2070,7 +2075,8 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			
 			processTime(1);
 			
-			addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
+			if(pc.hasVagina() && pc.hasWombPregnancy()) addDisabledButton(0, "Okay", "Okay", "It is too dangerous to try this while you are pregnant!");
+			else addButton(0, "Okay", brothelTrappifyAnswer, "okay", "Okay", "An extensive beauty treatment for the price of a couple weeks sucking dick? What’s the downside?");
 			addButton(1, "Nope", brothelTrappifyAnswer, "nope", "Nope", "Maybe not the best idea.");
 			break;
 		case "license":
@@ -2134,6 +2140,9 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			
 			processTime(2);
 			
+			pc.createStatusEffect("Cum Paused");
+			pc.createStatusEffect("Milk Paused");
+			
 			addButton(0, "Next", brothelTrappifyAnswer, "trapification");
 			break;
 		case "trapification":
@@ -2178,12 +2187,18 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			if(pc.biggestTitSize() > 1)
 			{
 				msg += ParseText("Intense pressure clamps around your [pc.chest], the soft flesh there feeling like it is being pushed inwards. You massage your boobs and take deep breaths, urging the sensation to pass. Which it does, but not before your proud bust has been winnowed down to a winsome, timid pair of A cups; bare, sensitive handfuls. ");
-				pc.milkFullness = 0;
-				for(i = 0; i < pc.bRows(); i++)
+				if(pc.breastRows.length > 1)
 				{
-					pc.breastRows[i].breastRatingRaw = 1;
-					pc.breastRows[i].breastRatingHoneypotMod = 0;
+					while (pc.breastRows.length > 1)
+					{
+						pc.removeBreastRow((pc.breastRows.length - 1), 1);
+					}
 				}
+				pc.breastRows[0].breasts = 2;
+				pc.breastRows[0].breastRatingRaw = 1;
+				pc.breastRows[0].breastRatingHoneypotMod = 0;
+				pc.breastRows[0].breastRatingLactationMod = 0;
+				pc.milkFullness = 0;
 				minPass += 2;
 			}
 			// If height > 5'5" reduce to 5'5"
@@ -2353,6 +2368,10 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			output("\n\nThe constant buzz of horniness the mods gave you never dissipates, and you usually greet your customers with thong-clad [pc.butt] arched and a smouldering gaze over your shoulder. You love the rough, impulsive couplings you can get this way, often spraying [pc.cum] onto the sheets with a girly moan before they’re halfway done with you. More often though, males who’ve paid the premium want the fantasy they always envisaged with a gorgeous trap. They want to watch you spend minutes worshipping their cocks with honey, oil, long drags of the lips, expert curls of the tongue, thirsty hollows of the cheeks; they want to jack themselves up on Priapin so they can bend you over on the bed and spend hours filling out your tight, elastic back passage with said cocks, pounding your sensitive bitch boi buzzer over and over; they sometimes even want you to penetrate them with your cute, unintimidating dick, live out things they never would elsewhere.");
 			output("\n\nYou get a few female clients, too. Women who don’t trust regular boy toys to be gentle or solicitous enough. Women with boyfriends that won’t countenance a threeway with a hunk, but will with a sissy. Kaithrit females’ tastes run naturally towards girly boys, and they are not gentle, or easy to satiate. You wind up nursing a bruised torso after particularly long and rough rides with some curt, muscular lioness twice your size a few times.");
 			
+			output("\n\n");
+			pc.buttChange(pp.cockVolume(0), true, false, true);
+			pc.cockChange(false, true, true);
+			
 			//if(flags["BETHS_TIMES_WHORED_HANDS"] == undefined) flags["BETHS_TIMES_WHORED_HANDS"] = 0;
 			//if(flags["BETHS_TIMES_WHORED_MOUTH"] == undefined) flags["BETHS_TIMES_WHORED_MOUTH"] = 0;
 			
@@ -2419,7 +2438,9 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			
 			processTime(2);
 			
-			// [Sign Contract] [Leave]
+			pc.removeStatusEffect("Cum Paused");
+			pc.removeStatusEffect("Milk Paused");
+			
 			addButton(0, "Next", move, rooms[currentLocation].westExit);
 			break;
 		// [Sign Contract]

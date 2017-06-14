@@ -596,6 +596,8 @@
 			
 			// Disable all but the relevant side buttons
 			mainButtonsOnly();
+			
+			if(kGAMECLASS.pc.short.length > 0) addGhostButton(14, "Back", mainMenuToggle);
 		}
 		
 		public function showOptionsModule():void
@@ -706,10 +708,10 @@
 			author("");
 		}
 		
-		public function showLevelUpPerks(character:PlayerCharacter):void
+		public function showLevelUpPerks(character:PlayerCharacter, gavePoints:Boolean = false):void
 		{
 			showModule("LevelUpPerks");
-			(_currentModule as LevelUpPerksModule).setCreatureData(character);
+			(_currentModule as LevelUpPerksModule).setCreatureData(character, gavePoints);
 			kGAMECLASS.showPCBust();
 			setLocation("", "LEVEL UP", "PERKS");
 			author("");
@@ -955,6 +957,9 @@
 		
 		public function clearOutput():void
 		{
+			// No need to clear already blank pages!
+			if (outputBuffer == "\n") return;
+			
 			pushToBuffer();
 			showPrimaryOutput();
 			
@@ -1395,13 +1400,20 @@
 
 		public function showBust(... args):void 
 		{
+			if(args.length == 1 && args[0] == "")
+			{
+				hideBust();
+				return;
+			}
+			/*
 			var argS:String = "";
 			for (var i:int = 0; i < args.length; i++)
 			{
 				if (i > 0) argS += ", ";
 				argS += args[i];
 			}
-			//trace("showBust called with args: [" + argS + "]");
+			*/
+			//trace("showBust called with args: [" + args.join(", ") + "]");
 			if(args.length > 0) _leftSideBar.locationBlock.showBust(args);
 			else _leftSideBar.locationBlock.showBust(args);
 		}
@@ -1413,7 +1425,7 @@
 		
 		public function hideBust():void
 		{
-			trace("hideBust called");
+			//trace("hideBust called");
 			_leftSideBar.locationBlock.hideBust();
 		}
 

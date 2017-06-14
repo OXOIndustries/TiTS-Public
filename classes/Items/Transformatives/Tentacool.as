@@ -127,7 +127,7 @@ package classes.Items.Transformatives
 			// Normal dosage transformations
 			
 			// If target doesn't have tentacle hair
-			if (target.hairType != GLOBAL.HAIR_TYPE_TENTACLES) TFList.push(1);
+			if (target.hairType != GLOBAL.HAIR_TYPE_TENTACLES && target.hairStyle != "tentacle") TFList.push(1);
 			// If target doesn't have tentacle tongue
 			if (target.tongueType != GLOBAL.TYPE_TENTACLE) TFList.push(2);
 			// If target has any non-tentacle nipples
@@ -181,20 +181,18 @@ package classes.Items.Transformatives
 				// #1 If target doesn't have tentacle hair, give tentacle hair
 				if(select == 1)
 				{
-					if (target.hairTypeUnlocked(GLOBAL.HAIR_TYPE_TENTACLES)) {
-						msg += ParseText("\n\nYou feel an intense itch in your scalp, and run your hands through your [pc.hair] just in time to feel it <b>turning into a writhing mass of tentacles</b>.");
-						
-						if (target.hairLength < 20) {
-							msg += " The tentacles also lengthen, seeking further reach.";
-							target.hairLength = 20;
-						}
-						
-						target.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
-						target.hairColor = target.skinTone;
-						
-						changed = true;
+					msg += ParseText("\n\nYou feel an intense itch in your scalp, and run your hands through your [pc.hair] just in time to feel it <b>turning into a writhing mass of tentacles</b>.");
+					
+					if (target.hairLength < 20) {
+						msg += " The tentacles also lengthen, seeking further reach.";
+						target.hairLength = 20;
 					}
-					else msg += "\n\n" + target.hairTypeLockedMessage(); 
+					
+					target.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
+					target.hairColor = target.skinTone;
+					target.hairStyle = "null";
+					
+					changed = true;
 				}
 				// #2 If target doesn't have a tentacle tongue, give a tentacle tongue
 				else if (select == 2)

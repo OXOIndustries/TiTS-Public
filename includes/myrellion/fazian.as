@@ -1560,7 +1560,7 @@ public function fazianQuestApproachBackMenu():void
 
 	if (flags["FAZIAN_BACK_WINDOW"] == undefined)
 	{
-		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByType(Hoverboard)) addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
+		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByClass(Hoverboard)) addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
 		else addDisabledButton(1, "Window", "The Window", "You can’t possibly reach that.");
 	}
 	else

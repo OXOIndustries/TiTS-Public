@@ -75,7 +75,7 @@ public function introToBigTSeeMeAfterClass():void
 	clearOutput();
 	showBigT();
 	flags["MET_BIG_T"] = 1;
-	//{Something something transition from secretary here}
+	//Something something transition from secretary here
 	output("You step through the door into Governor Tee’s office. The inside is nothing like any government office you’ve seen before, looking more like a hunting lodge’s lobby than the soulless, bleak affairs you’re familiar with from the core worlds. The room’s dominated by a huge oaken desk facing the door, a semi-circle of solid hardwood inlaid with enough holo-displays to light up the room. The screens show flickering glimpses of milk production, food exports, and the comings and goings of ships from all over the planet’s many towns. Hunting trophies line the room, culminating in a massive stuffed creature behind the desk, looking something like a six-legged polar bear with a unicorn’s horn jamming out from its head.");
 	output("\n\nPacing in front of the desk is a huge, barrel-chested bull man. He’s better dressed than you might have expected, clad in slacks and a white button-up shirt, just low enough to show a forest of dark, curly chest hair over taut muscles. The only Texan thing about him is the wide-brimmed white Stetson hat he’s wearing, pierced by a pair of huge steer horns growing from his brow, and the over-sized six-gun slung low on his hip. For a man of his size, though, it looks like a popgun: New Texas’s governor stands a formidable ten feet in height, at the least, and taller with his horns and cowboy hat added in. He’s a wrecking ball of a man, massive and muscular, all crammed into business casual wear that looks ready to burst if he takes a deep breath.");
 	output("\n\nSeeing you walk in, the governor points to a headset buried in one of his bovine ears and says, <i>“Sorry, hoss, visitors a‘comin’. We’ll settle up later. Yeah. Ya’ll take care, now.”</i>");
@@ -397,7 +397,7 @@ public function bigTCockSuckPartII():void
 	author("JimThermic");
 	output("<b>-- Some Time Later --</b>");
 	// An hour
-	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist,");
+	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily pass his receptionist,");
 	if(!pc.isNude()) output(" half");
 	output(" naked and too spaced out to care.");
 	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
@@ -515,7 +515,7 @@ public function drunkenCowgirlBoy():void
 	else output("ass");
 	output(".");
 
-	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your chest, your [pc.thighs] utterly coated in bull cum. You giddily past his receptionist,");
+	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your chest, your [pc.thighs] utterly coated in bull cum. You giddily pass his receptionist,");
 	if(!pc.isNude()) output(" half");
 	output(" naked and too spaced out to care. What a ride!");
 	// Might want to kick the player two squares south after this. 
@@ -774,7 +774,7 @@ public function bigTFucksYouEpilogue():void
 	author("JimThermic");
 	output("<b>-- Some Time Later --</b>");
 	// An hour
-	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily past his receptionist,");
+	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily pass his receptionist,");
 	if(!pc.isNude()) output(" half");
 	output(" naked and too spaced out to care.");
 	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");

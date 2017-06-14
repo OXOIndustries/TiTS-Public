@@ -194,9 +194,8 @@
 			btnTargetText = "Red Myr";
 			
 			sexualPreferences.setRandomPrefs(2 + rand(3),1);
-			
+			kGAMECLASS.myrellionSSTDChance(this);
 			_isMasked = rand(2) == 0;
-			
 			this._isLoading = false;
 		}
 		

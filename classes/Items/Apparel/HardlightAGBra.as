@@ -7,8 +7,6 @@
 
 	public class HardlightAGBra extends ItemSlotClass
 	{
-
-		//constructor
 		public function HardlightAGBra()
 		{
 			this._latestVersion = 1;
@@ -17,25 +15,19 @@
 			this.stackSize = 1;
 			this.type = GLOBAL.UPPER_UNDERGARMENT;
 			
-			//Used on inventory buttons
 			this.shortName = "HL Bra";
-			
-			//Regular name
 			this.longName = "hardlight anti-grav bra";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			//Longass shit, not sure what used for yet.
-			this.description = "a hardlight, anti-gravity bra";
+			this.description = "a hardlight anti-gravity bra";
 			
-			//Displayed on tooltips during mouseovers
 			this.tooltip = "A sleek metallic necklace fitted with a hard light projector. Upon activation it coats the wearer’s bust in dazzling sapphire light, leaving the breasts in full view as they press against the transparent glow. Guaranteed to fit all sizes, and to help prevent heftier chests from sagging on high gravity planets.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "null";
 			
-			//Information
 			this.basePrice = 2000;
 			this.attack = 0;
 			this.defense = 0;

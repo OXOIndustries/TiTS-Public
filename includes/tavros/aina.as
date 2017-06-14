@@ -654,6 +654,9 @@ public function applyAinaMareMuskEffect():void
 public function applyAinaHearTeaEffect():void 
 {
 	if(!pc.hasStatusEffect("Heart Tea")) pc.createStatusEffect("Heart Tea",0,0,0,0,false,"Pill","Aina’s special blend, brewed with care, makes you feel healthier than ever!",false,1440);
+	else pc.setStatusMinutes("Heart Tea",1440);
+	pc.maxOutHP();
+	pc.maxOutEnergy();
 }
 
 public function ainaSexMenu(text:Boolean = true):void

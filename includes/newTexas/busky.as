@@ -334,11 +334,14 @@ public function buskySex(): void {
 		
 		if (pc.hasBreasts() && pc.femininity <= 40) output(" tits on a guy");
 		else if (pc.hasBreasts() || pc.femininity > 40) {
-			if (pc.isTreated()) output(" cows");
+			if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" femboys");
+			else if (pc.isTreated()) output(" cows");
 			else output(" chicks");
 		}
-		output(", plenty of other bulls are, just not me.");
-		output(" Sorry, just really not looking for what you’ve got. No offense intended of course.”</i>");
+		output(", plenty of other bulls are, just not me. Sorry,");
+		if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" you’re a bit too girly for my tastes - not into that myself.");
+		else output(" just really not looking for what you’ve got");
+		output(". No offense intended of course.”</i>");
 		
 		clearMenu();
 		addButton(14, "Back", buskyMenu);
@@ -556,7 +559,7 @@ public function buskySexGetBlown():void {
 		if(pc.hasArmor()) output(" fiddling with your clothes until he finally gets access to your package,");
 		output(" and buries his face in your crotch, your fully erect [pc.cocks] already throbbing against it.");
 		
-		output("\n\nOvercome by Busky’s pheromones saturating the air, it’s all you can do to lean back against the countertop, a limp smile crawling across your face as Busky presses his face against your [pc.race] crotch");
+		output("\n\nOvercome by Busky’s pheromones saturating the air, it’s all you can do to lean back against the countertop, a limp smile crawling across your face as Busky presses his face against your " + GLOBAL.TYPE_NAMES[pc.cocks[cockIndex].cType].toLowerCase() + " crotch");
 		if(pc.hasPerk("Pheromone Cloud")) output(", drinking in the overwhelming scent of masculinity emanating from you");
 		output(".");
 	
@@ -833,21 +836,21 @@ public function buskyShopInitialization():void {
 	// Unlockables
 	if(StatTracking.getStat("milkers/prostate milker uses") > 0)
 	{
-		if(!chars["BUSKY"].hasItemByType(SumaCream)) chars["BUSKY"].inventory.push(new SumaCream());
+		if(!chars["BUSKY"].hasItemByClass(SumaCream)) chars["BUSKY"].inventory.push(new SumaCream());
 		CodexManager.unlockEntry("Suma Cream");
 	}
-	else chars["BUSKY"].destroyItem(new SumaCream());
+	else chars["BUSKY"].destroyItemByClass(SumaCream);
 	
 	//During christmas season sell extra stuff
 	if (checkDate(24, 12, 14)) {
 		//make sure this is not added everytime you visit him
-		if(!chars["BUSKY"].hasItem(new Nutnog())) chars["BUSKY"].inventory.push(new Nutnog());
-		if(!chars["BUSKY"].hasItem(new Peckermint())) chars["BUSKY"].inventory.push(new Peckermint());
+		if(!chars["BUSKY"].hasItemByClass(Nutnog)) chars["BUSKY"].inventory.push(new Nutnog());
+		if(!chars["BUSKY"].hasItemByClass(Peckermint)) chars["BUSKY"].inventory.push(new Peckermint());
 	}
 	else
 	{
-		chars["BUSKY"].destroyItem(new Nutnog());
-		chars["BUSKY"].destroyItem(new Peckermint());
+		chars["BUSKY"].destroyItemByClass(Nutnog);
+		chars["BUSKY"].destroyItemByClass(Peckermint);
 	}
 }
 
@@ -859,7 +862,8 @@ public function buyModsFromBusky():void {
 
 //Calculate item price from base price and sellMark Up from Busky.as
 public function getBuskyPrice(item:*):Number {
-	return Math.round(item.basePrice * chars["BUSKY"].sellMarkup);
+	//return Math.round(item.basePrice * chars["BUSKY"].sellMarkup);
+	return Math.round(item.basePrice);
 }
 
 //Buy some cloths from Busky - custom menu as all pieces of clothing have a sub menu

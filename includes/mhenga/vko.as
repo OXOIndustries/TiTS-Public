@@ -93,7 +93,7 @@ public function approachVKo(showShit:Boolean = true):void {
 	else addDisabledButton(3,"Heal");
 	addButton(4,"CustomInput",customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss);
 
-	if(pc.hasItem(new DamagedVIChip())) addButton(5,"Give VI Chip",nurseDroidChipTurnIn,"VKO","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
+	if(pc.hasItemByClass(DamagedVIChip)) addButton(5,"Give VI Chip",nurseDroidChipTurnIn,"VKO","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
 
 	addButton(14,"Back",mainGameMenu);
 }
@@ -126,24 +126,55 @@ public function getDiseaseProbedYo():void
 	output("\n\n<i>“Analyzing....”</i>");
 	output("\n\n<i>“Analyzing....”</i> V-Ko bites her tongue as she focuses, working.");
 
+	var button:Number = 0;
 	var detectedParasites:int = 0;
 	clearMenu();
-	
+	//SSTD check first!
+	if(pc.hasSSTD())
+	{
+		var sstds:Number = pc.sstdTotal();
+		var disease:String = pc.getRandomSSTD();
+		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with " + disease + "! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. ");
+		if(sstds > 1)
+		{
+			output("<i>“I’m detecting multiple infections! How could this happen? The prototype immune system boosters I detected in your system should have protected you!”</i>");
+		}
+		else
+		{
+			output("<i>“The prototype immune system in your blood should have protected you. This must be a particularly nasty specimen.”</i>");
+		}
+		output(" V-Ko tilts her head, eyes flickering. <i>“I can provide them with additional processing power to properly identify and remove the infectious material for a modest sum of 500 credits.");
+		if(pc.credits < 500)
+		{
+			output(" Unfortunately, your bank account does not contain sufficient funds.”</i>");
+		}
+		else
+		{
+			output(" Treatment will take no longer than fifteen minutes.”</i>");
+			output("\n\n<i>“Do you consent?”</i>");
+			clearMenu();
+			addButton(button, "CureDisease", removeDiseasesVKO);
+			addButton(14, "No Removal", turnDownTreatment);
+			button++;
+		}		
+	}	
 	//Cunt snake
 	if(pc.hasCuntSnake())
 	{
 		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by a class ‘C’ parasitic snake! In order to treat that I will have to administer anesthesia.”</i>");
-		addButton(detectedParasites, "Treat C.Snk", removeParasite, "cuntsnake");
+		addButton(button, "Treat C.Snk", removeParasite, "cuntsnake");
 		addButton(14, "No Removal", turnDownTreatment);
 		detectedParasites++;
+		button++;
 	}
 	
 	if (pc.tailType == GLOBAL.TYPE_COCKVINE)
 	{
 		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by a hydrus constuprula parasitic vine! In order to treat that I will have to administer anesthesia.”</i>");
-		addButton(detectedParasites, "Treat C.Vne", removeParasite, "cockvine");
+		addButton(button, "Treat C.Vne", removeParasite, "cockvine");
 		addButton(14, "No Removal", turnDownTreatment);
 		detectedParasites++;
+		button++;
 	}
 
 	if (attachedMimbranes() > 0)
@@ -166,20 +197,29 @@ public function getDiseaseProbedYo():void
 		else output(" them");
 		output(" I will have to administer anesthesia. Shall we begin?”</i>");
 				
-		addButton(detectedParasites, "Treat Mimbs", removeParasite, "mimbrane");
+		addButton(button, "Treat Mimbs", removeParasite, "mimbrane");
 		addButton(14, "No Removal", turnDownTreatment);
 		detectedParasites++;
+		button++;
 	}
-	
-	if (detectedParasites == 0)
+	if(button == 0 && detectedParasites == 0 && sstds > 0)
 	{
-		output("\n\nShe gasps, <i>“You’re completely clean! I could not find a single foreign contaminant in your system, though my sensors did detect a highly advanced group of microsurgeons. My heuristic programs have determined them to be safe, likely part of an immune supplement.”</i>");
+		output("\n\n<i>“Is there any other way in which I could assist you today?”</i>");
+		approachVKo(false);
+	}
+	else if (button == 0)
+	{
+		output("\n\nShe gasps, <i>“You’re completely clean! ");
+		if(sstds == 0) output("I could not find a single foreign contaminant in your system, though my sensors did detect a highly advanced group of microsurgeons. My heuristic programs have determined them to be safe, likely part of an immune supplement.”</i>");
+		else output("The pathogens inside you are already breaking down thanks to your microsurgeon immune boosters. Though I am unfamiliar with the make and model, my heuristic programs have determined them to be an advanced prototype. Lucky you!”</i>");
 		output("\n\nYou inform her that she’s correct as you hop down off the table. <i>“");
+
 		if(pc.isNice()) output("Is there a charge?");
 		else if(pc.isMischievous()) output("I hope I didn’t forget to pay again....");
 		else output("If you were going to charge me, it’s too late now.");
 		output("”</i>");
-		output("\n\nV-Ko titters, <i>“Examinations are always free! Treatment is another matter. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
+		if(sstds > 0) output("\n\nV-Ko titters, <i>“Examinations are always free! Treatments have a price, but your immune boosters provided a trust to bill for the licensing cost of this software algorithm. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
+		else output("\n\nV-Ko titters, <i>“Examinations are always free! Treatment is another matter. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
 		//Menu
 		approachVKo(false);
 	}
@@ -190,9 +230,21 @@ public function getDiseaseProbedYo():void
 	else if (detectedParasites == 1)
 	{
 		output("\n\n<i>“Shall we begin your treatment?”</i>");
-	}
-	
+	}	
 	processTime(10+rand(3));
+}
+
+public function removeDiseasesVKO():void
+{
+	clearOutput();
+	showVKo();
+	author("Fenoxo");
+	output("After a few moments of simulated concentration, the nursedroid speaks up, <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
+	output("\n\n<i>“Do you require additional services?”</i>");
+	pc.removeSSTDs();
+	processTime(15);
+	pc.credits -= 500;
+	approachVKo(false);
 }
 
 //Negatory during exam:
@@ -319,7 +371,7 @@ public function payVKoForHealing(cost:int):void
 	output("\n\nYou do your best to relax as the droid fusses with your injuries. Her deft hands move around your wounded flesh with practiced ease. V-Ko’s flesh is remarkably soft for something so artificial. If it wasn’t for the other obvious signs of her manufacture, you could almost believe that her hands were human. Of course, when her index finger’s tip bends backward at the first joint to expose a spray nozzle, any illusions of her humanity are shattered like a cockpit window in a meteor storm.");
 	output("\n\nPressing her mechanical digit’s tips near to your hurts, she coos, <i>“This will only take a moment.”</i> Her words are chased by a blast of frigid mist against your wounds, so cold that your teeth chatter. However, the chill soon fades away, replaced by warmth as your tissues knit together to repair the damage. Whatever she’s packing in that little sprayer is potent stuff! She repeats the process at the site of every injury, and you do your best to let her work as swiftly as possible.");
 	output("\n\nA few minutes later, you’re preparing to leave and feeling as hale ");
-	if(pc.race() != "horse") output("as a horse");
+	if(pc.raceShort() != "equine") output("as a horse");
 	else output("as the horse that you so resemble");
 	output(".");
 	processTime(8+rand(5));

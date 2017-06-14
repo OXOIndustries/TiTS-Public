@@ -458,7 +458,7 @@ public function buyBeersForMooseSloot():void
 		output("\n\nScooping it right up, Sylvie mock-salutes ");
 		if(flags["MET_KALLY"] != undefined) output("Kally");
 		else output("the chubby bartender");
-		output(" and begins to chug. She’s quite adept at pounding down the drink if the falling fluid level is any indication. Half the drink is gone before she comes up for air, smiling and licking the amber foam from her greenish blue-painted lips. <i>“Since you’ve been such a " + pc.mf("gentleman","classy lady") + ", it seems only fair I give you a little entertainment for your effort. Good thing a girl with a job like mine has enough stories to keep you entertained till closing time.”</i> She wraps an arm around your shoulders and pulls you close. <i>“Things around here can get pretty wild at times...”</i> She pauses for dramatic effect.");
+		output(" and begins to chug. She’s quite adept at pounding down the drink if the falling fluid level is any indication. Half the drink is gone before she comes up for air, smiling and licking the amber foam from her greenish blue-painted lips. <i>“Since you’ve been such a " + pc.mf("gentleman","classy lady") + ", it seems only fair I give you a little entertainment for your effort. Good thing a girl with a job like mine has enough stories to keep you entertained ‘til closing time.”</i> She wraps an arm around your shoulders and pulls you close. <i>“Things around here can get pretty wild at times...”</i> She pauses for dramatic effect.");
 		//Merge to sober stories
 		moosyStoriesGo(2,false);
 	}
@@ -715,7 +715,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\nYou shake your head, curious.");
 		output("\n\n<i>“We didn’t have to clean up any of it ourselves.”</i> Sylvie giggles to herself, content in her secret for a moment. <i>“Once word got out, just about every kaithrit on the station found their way down to the accident site. The milk came back clear from contaminants, so we let ‘em go at it. An hour later there wasn’t a drop left to be found anywhere, though I swear that corridor still smells like a dairy.”</i> She shakes her head and laughs. <i>“So much for avoiding stereotypes, eh?”</i>");
 		output("\n\nLaughing along with her, you can’t shake the image of twenty or thirty kaithrit, crawling all over a hallway in search of more creamy milk.");
-		if(InCollection(pc.raceShort(),["kaithrit","cat","tiger","panther","cheetah","feline"]) || pc.felineScore() >= 3) output(" Not that you can blame them. You’d likely do the same, given the chance.");
+		if(pc.catDog("nyan", "bork") == "nyan") output(" Not that you can blame them. You’d likely do the same, given the chance.");
 		output("\n\nSylvie drinks a little bit more, eyes twinkling. <i>“");
 		processTime(13);
 		pc.lust(5);
@@ -1364,6 +1364,7 @@ public function sylvieSexyTimeIntro():void
 		{
 			output("The moment you speak, Sylvie is drunkenly shaking her head.");
 			output(" <i>“Nope! You still don’t have any genitals silly. Did you lose the Throbb I gave you?”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I don’t have any more on me, but that mouse over there might. She deals, but I haven’t busted her because she’s such a good informant. Just be careful, okay? Don’t go crazy with that stuff or I’ll only get to see you in the slammer.”</i> She pouts as if it would be the worst thing in the world.");
+			flags["SYLVIE_MABBSED"] = 1;
 			CodexManager.unlockEntry("Throbb");
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
@@ -1375,6 +1376,7 @@ public function sylvieSexyTimeIntro():void
 		output("The moment you speak, Sylvie is drunkenly shaking her head.");
 		output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some Throbb.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
 		output("\n\nSylvie nods as if that was the easiest task in the world.");
+		flags["SYLVIE_MABBSED"] = 1;
 		CodexManager.unlockEntry("Throbb");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -1415,12 +1417,12 @@ public function sylvieSexMenu():void
 	}
 	if(pc.hasVagina())
 	{
-		addButton(2,"Spank ‘N Grind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutual orgasm.");
+		addButton(2,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
 		addButton(3,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
 	}
 	else 
 	{
-		addDisabledButton(2,"Spank ‘N Grind","Spank ‘N Grind","You need a vagina in order to do all this.");
+		addDisabledButton(2,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
 		addDisabledButton(3,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
 	}
 	//[COMPLETE] [VenomKiss] Red Myr PCs only, kiss and lick her for an hour or two, making her cum like crazy.
@@ -1449,7 +1451,7 @@ public function sylvieForcyRouter():void
 public function leaveSylvieHighAndLessThanDryYaCunt():void
 {
 	clearOutput();
-	showSylvie();
+	showSylvie(true);
 	output("When you turn to leave, Sylvie ");
 	if(!(pc.armor is EmptySlot)) output("snags you by the collar");
 	else output("grabs you by the shoulder");
@@ -1742,7 +1744,7 @@ public function crotchBustingSnuSnuPartTwo():void
 		output("\n\nSylvie looks on in bliss, then alarm as she feels the extent of your first torrential ejaculation. So much [pc.cum] erupts inside her that her middle balloons big enough for her to look pregnant, then bigger still. Your second squirt inflates her enough to lift her halfway out of the pool");
 		if(!pc.hasKnot(x)) output(", but at that point the pressure is simply too great for your [pc.cock " + x + "]. Thick gouts of excessively spermy relief backwash out of her alongside your orgasmic contractions, soaking you from the waist down and raising the level of the pool high enough that it may soon overflow.");
 		else output(", but you’re just getting started. With your knot stuck inside her, you fill her with enough spermy ecstasy that her hooves barely scrape the floor - and your [pc.butt] is lifted clean off the ground, supported entirely by the friction of your passion-conjoined forms. No seal is perfect, however. A few squirts later, [pc.cumGem] streams are spraying out of Sylvie’s puss in every direction, flooding the pool with evidence of the tryst.");
-		output("\n\nBy the time you’re done, you realize Sylvie has checked out mentally. Her eyes are rolled back so that only the whites are visible, and her tongue hangs out the size, drooling up her cheek. [pc.Cum] squirts out of her from vicious, post-orgasmic tremors, accompanied by gasps and moans that sound too earnest to be anything less than expressions of pure, subconscious ecstasy.");
+		output("\n\nBy the time you’re done, you realize Sylvie has checked out mentally. Her eyes are rolled back so that only the whites are visible, and her tongue hangs out the side, drooling up her cheek. [pc.Cum] squirts out of her from vicious, post-orgasmic tremors, accompanied by gasps and moans that sound too earnest to be anything less than expressions of pure, subconscious ecstasy.");
 	}
 	pc.HP(-40);
 	processTime(20);
@@ -1896,9 +1898,9 @@ public function fuckyTittyBlowblow2():void
 	//More than 500 mLs - no new PG
 	if(cumQ > 500) output(" The [pc.cumGem] flow thickens into a belly-slicking downpour while the pool floods, drizzling runners of [pc.cumNoun] down the outer curvature of her boobs.");
 	//More than 1k
-	if(cumQ > 1000) output("\n\nBut you aren’t done, and Sylvie seems to know it. She steps back, sliding your cock completely free of your tits. It jerks wildly as it unloads, releasing thick ropes across the moose-taur’s front. You grab hold of it and aim, painting Sylvie’s tits until they’re little more than your cum-glazed canvas.");
+	if(cumQ > 1000) output("\n\nBut you aren’t done, and Sylvie seems to know it. She steps back, sliding your cock completely free of her tits. It jerks wildly as it unloads, releasing thick ropes across the moose-taur’s front. You grab hold of it and aim, painting Sylvie’s tits until they’re little more than your cum-glazed canvas.");
 	//More than 4k - no new PG
-	if(cumQ > 4000) output(" So you shift your aim lower to smother her hips and belly, slicking down the coarse fur below. [pc.cumNoun] pools around her hooves, but the cum-drunk slut just laughs and spins around, letting you frost her back, flanks, tail, and even her pussy.");
+	if(cumQ > 4000) output(" So you shift your aim lower to smother her hips and belly, slicking down the coarse fur below. [pc.CumNoun] pools around her hooves, but the cum-drunk slut just laughs and spins around, letting you frost her back, flanks, tail, and even her pussy.");
 	//More than 10k
 	if(cumQ > 10000) output("\n\nThe policegirl must think the mess is getting out of hand, because she steps back to slide your [pc.cockHead " + x + "] back inside her tunnel, capturing wave after wave of virile bliss.");
 	//More than 20k - no new PG.
@@ -1970,7 +1972,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	clearOutput();
 	showSylvie(true);
 	author("Meredith Caerwyn");
-	//{NON-FORCEFUL START}
+	//NON-FORCEFUL START
 	if(!forcy) 
 	{
 		output("Well, if that isn’t an invitation, you don’t know what is. Unable to resist, you ");
@@ -1994,7 +1996,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 		else output(" Amused");
 		output(" by her pleading, you decide to give this needy ‘taur exactly what she wants.");
 	}
-	//{FORCEFUL START}
+	//FORCEFUL START
 	else
 	{
 		currentLocation = "CANADA7";
@@ -2021,7 +2023,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 		else output("crotch");
 		output(".");
 	}
-	//{MERGE SCENES}
+	//MERGE SCENES
 	output("\n\nOf course, the spanking had hardly left you indifferent, as the wetness ");
 	//(biped)
 	if(pc.legCount > 1) output("between your [pc.legs]");
@@ -2160,7 +2162,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 	}
 	//Body
 	output("\n\nOnce you’re both safely inside a cabin room, Sylvie pushes you down onto your [pc.knees] before slamming the door closed with a single swing of her hefty behind. It’s a dizzying, intoxicating feeling to be at the mercy of this huge, tauric woman. Or have you just breathed in enough of the vast amount of alcohol she’s put away to become passively sozzled yourself? You shiver, tensing your trapped wrists as black, shiny hooves clop slowly around you, moving with the heavy deliberation of drunken concentration.");
-	output("\n\n<i>“I know where you been looking,”</i> slurs Sylvie. You can just about make out her flushed, jolly face peering over her shoulder at you, beyond the vast furred behind dominating your vision. She lifts her short tail, and the tang of heavy female arousal hits you, emanating from that big, puffy, purple fuck-hole of hers, slick with arousal. [pc.eachVagina] swims with lusty heat; partially in reflex and partially for provocative effect, you lick your [pc.lips] so that they shine with the saliva filling your mouth. That draws a pleased, lusty groan from the moosetaur hovering above you.");
+	output("\n\n<i>“I know where you been looking,”</i> slurs Sylvie. You can just about make out her flushed, jolly face peering over her shoulder at you, beyond the vast furred behind dominating your vision. She lifts her short tail, and the tang of heavy female arousal hits you, emanating from that big, puffy, purple fuck-hole of hers, slick with arousal. [pc.EachVagina] swims with lusty heat; partially in reflex and partially for provocative effect, you lick your [pc.lips] so that they shine with the saliva filling your mouth. That draws a pleased, lusty groan from the moosetaur hovering above you.");
 	output("\n\n<i>“Yeah. Can’t help yourself, can you? ");
 	//First:
 	if(flags["SYLVIE_CUFFNFUCK"] == undefined) output("No offence, but I had you down as a subby lil pussy munch from the start. Just a question of, could you go the distance with me...”</i> She sighs as she slowly lowers her hindquarters, down far enough to reach out and eagerly lick her plump labia, oiling your [pc.tongue] with her scent. <i>“ ...lemme tell ya, I’m glad you did.”</i>");
@@ -2287,7 +2289,7 @@ public function redMyrSylvieFunz():void
 	else output("putting an arm under yours");
 	output(" and bringing you close to her as she begins to cover the short distance.");
 
-	output("\n\n<i>“I almost forgot! I don’t want you bursting from the pressure before we get to the bath. The venom’s effects can be...”</i> you pause to lick her from the base of her neck all the way up to her ear, <i>“... quite </i>potent<i> You trace a ring around her engorged pussy, just roughly enough to start her juices flowing.”</i>");
+	output("\n\n<i>“I almost forgot! I don’t want you bursting from the pressure before we get to the bath. The venom’s effects can be...”</i> you pause to lick her from the base of her neck all the way up to her ear, <i>“... quite </i>potent<i>.”</i> You trace a ring around her engorged pussy, just roughly enough to start her juices flowing.");
 	output("\n\nTo her credit, the sturdy moose-taur stays on her feet. Her legs buckle, almost bringing her crashing into a table of partying bar-goers. She mumbles something that might have been an attempted apology, but her tongue lolls out of her mouth in the process, preventing the words from escaping. Embarrassment and excitement raise the already immense heat of her body as your saliva’s hold strengthens.");
 	output("\n\nYou spend the last few steps across the bathing area gathering spit in your mouth, building up a veritable salvo of liquid lust. The dazed centaur gets a silly, hopeful grin on her face when she sees the first available jacuzzi, wobbling as she steps toward it a little too quickly. You let her make it maybe halfway there before leaning in and releasing the waterfall of fluid fervor along her collarbone. Thick globules collect and trickle down along her chest, mixing with her sweat to grow even more rapidly.");
 	output("\n\nThe massive moose drops like a rock, clutching at her breasts to free them from the carpet of flaming passion. She manages to rub the slick substance further in, growing ever more feverish in her attempts. With a little effort you manage to remove her bra, granting her spasming hands extra space. Twitching fingers find her nipples, squeezing them tightly enough for a guttural moan to break through her venom induced silence.");
@@ -2539,7 +2541,7 @@ public function sylvieRutFunPart4():void
 	else output(" ");
 	output("calm, mmm? Placid, feeling like you’ve done your duty as a male, eh?”</i>");
 	output("\n\nThat’s true. She still smells... well, arousing, but you are no longer quite so driven, quite so determined to impregnate every fertile pussy in a five mile radius. <b>Your rut has ended.</b>");
-	output("\n\nSylvie nods. <i>“It’s a shame you [pc.boyGirls] get so sug");
+	output("\n\nSylvie nods. <i>“It’s a shame you [pc.boyGirl]s get so sug");
 	if(sylvieDrunkLevel() >= 2) output("... shug... sug");
 	output("gestible while you’re in rut, but God, can you ever </i>fuck<i>. I can’t even get knocked up right now, but a few words and you cum like a firehose!”</i>");
 	output("\n\nSlowly closing your jaw, you shake your head and smile ruefully. Regardless of whether you could knock her up, that was truly an experience to remember. <b>You should return to her whenever you’re in rut, and she can help you bring it to a swift end.</b>");

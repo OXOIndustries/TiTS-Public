@@ -45,8 +45,6 @@ package classes.Items.Transformatives
 		}
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
-			var pc:Creature = kGAMECLASS.pc;
-			var changes:int = 0;
 			clearOutput();
 			author("Shysquare");
 			
@@ -55,6 +53,10 @@ package classes.Items.Transformatives
 				output(target.capitalA + target.short + " uses it to little to no effect.");
 				return false;
 			}
+			
+			var pc:Creature = target;
+			var changes:int = 0;
+			
 			//Subsequent Uses (PC is Blood Fevered):
 			//Effect : auto raises pc lust by 15
 			if(pc.hasStatusEffect("Fuck Fever"))
@@ -70,7 +72,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou don’t feel particularly different from before, but... the heat in your body feels <i>denser</i>, somehow.");
 					output(" <b>The Fuck Fever has been extended.</b>");
-					updateOmega(4);
+					updateOmega(pc, 4);
 					changes++;
 				}
 				else if(!pc.hasPerk("Omega Fever") && pc.getStatusMinutes("Fuck Fever") >= 7000 && pc.ass.wetnessRaw >= 5 && pc.ass.bonusCapacity >= 200 && pc.elasticity >= 3 && rand(5) == 0)
@@ -136,7 +138,7 @@ package classes.Items.Transformatives
 					output("fantasy from your mind. There’s a dull throbbing in your [pc.asshole] that demands to be satisfied. Somehow you have a feeling mere fingers won’t be nearly enough to find relief, and you aren’t quite sure how far you would go to ease this craving. The next few days are certainly going to be... <i>interesting</i>.");
 					output("\n\n<b>You have Fuck Fever, and will suffer from it for the next 72 hours.</b>");
 					
-					updateOmega(3);
+					updateOmega(pc, 3);
 					if(kGAMECLASS.flags["OMEGA_FEVERED"] == undefined) kGAMECLASS.flags["OMEGA_FEVERED"] = 1;
 					changes++;
 				}
@@ -195,7 +197,7 @@ package classes.Items.Transformatives
 					else output(", waiting for a well-endowed mate to claim you for their own. ");
 					output("\n\nEventually the haze begins to lift and the world rights itself. As you pull yourself together however, it feels like <b>you are a bit hornier than before!</b>");
 					
-					updateOmega(2);
+					updateOmega(pc, 2);
 					changes++;
 				}
 			}
@@ -221,7 +223,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nYou fantasize about submitting and presenting your needy [pc.asshole] to a faceless, well-endowed stranger, having them ram your ass like it’s going out of style. <b>You feel like you’ll stay hornier than normal... at least for a while!</b>");
 					
-					updateOmega(1);
+					updateOmega(pc, 1);
 					changes++;
 				}
 				pc.lust(15);
@@ -297,60 +299,58 @@ package classes.Items.Transformatives
 			IncrementFlag("OMEGA_OILED");
 			return false;
 		}
-		private function updateOmega(phase:int = -1):void
+		private static function updateOmega(target:Creature, phase:int = -1):void
 		{
-			var pc:Creature = kGAMECLASS.pc;
 			switch(phase)
 			{
 				case 0:
-					pc.removeStatusEffect("Strangely Warm");
-					pc.removeStatusEffect("Flushed");
-					pc.removeStatusEffect("Fuck Fever");
-					pc.removeStatusEffect("Omega Oil");
-					if(pc.hasPerk("Omega Fever")) pc.createStatusEffect("Omega Fever Delay", 0, 0, 0, 0, true, "", "", false, 1440);
+					target.removeStatusEffect("Strangely Warm");
+					target.removeStatusEffect("Flushed");
+					target.removeStatusEffect("Fuck Fever");
+					target.removeStatusEffect("Omega Oil");
+					if(target.hasPerk("Omega Fever")) target.createStatusEffect("Omega Fever Delay", 0, 0, 0, 0, true, "", "", false, 1440);
 					break;
 				case 1:
-					pc.createStatusEffect("Strangely Warm",0,0,0,0,false,"Icon_LustUp","You are more passively lusty than before.\n\n(+15 minimum lust)",false,4320,0xB793C4);
-					pc.removeStatusEffect("Flushed");
-					pc.removeStatusEffect("Fuck Fever");
-					pc.createStatusEffect("Omega Oil",15,0,0,0,true,"","Hidden status that actually tracks the lust mod so we only gotta check 1.",false,4320);
+					target.createStatusEffect("Strangely Warm",0,0,0,0,false,"Icon_LustUp",(target is PlayerCharacter ? "You are more passively lusty than before.\n\n(+15 minimum lust)" : "Slight case of being passively lusty."),false,4320,0xB793C4);
+					target.removeStatusEffect("Flushed");
+					target.removeStatusEffect("Fuck Fever");
+					target.createStatusEffect("Omega Oil",15,0,0,0,true,"","Hidden status that actually tracks the lust mod so we only gotta check 1.",false,4320);
 					break;
 				case 2:
-					pc.removeStatusEffect("Strangely Warm");
-					pc.createStatusEffect("Flushed",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+25 minimum lust)\n(Vulnerable to phallus-bearing foes.)",false,4320,0xB793C4);
-					pc.removeStatusEffect("Fuck Fever");
-					pc.setStatusValue("Omega Oil",1,25);
-					pc.setStatusMinutes("Omega Oil",4320);
+					target.removeStatusEffect("Strangely Warm");
+					target.createStatusEffect("Flushed",0,0,0,0,false,"Icon_LustUp",(target is PlayerCharacter ? "You are significantly more passively lusty than before.\n\n(+25 minimum lust)\n(Vulnerable to phallus-bearing foes.)" : "Significant case of being passively lusty and drawn to phalluses."),false,4320,0xB793C4);
+					target.removeStatusEffect("Fuck Fever");
+					target.setStatusValue("Omega Oil",1,25);
+					target.setStatusMinutes("Omega Oil",4320);
 					break;
 				case 3:
-					pc.removeStatusEffect("Strangely Warm");
-					pc.removeStatusEffect("Flushed");
-					pc.createStatusEffect("Fuck Fever",0,0,0,0,false,"Icon_LustUp","You are significantly more passively lusty than before.\n\n(+33 minimum lust)\n(Extremely vulnerable to phallus-bearing foes.)",false,5760,0xB793C4);
-					pc.setStatusValue("Omega Oil",1,33);
-					pc.setStatusMinutes("Omega Oil",5760);
+					target.removeStatusEffect("Strangely Warm");
+					target.removeStatusEffect("Flushed");
+					target.createStatusEffect("Fuck Fever",0,0,0,0,false,"Icon_LustUp",(target is PlayerCharacter ? "You are significantly more passively lusty than before.\n\n(+33 minimum lust)\n(Extremely vulnerable to phallus-bearing foes.)" : "Extreme case of being passively lusty and vulnerable to phalluses."),false,5760,0xB793C4);
+					target.setStatusValue("Omega Oil",1,33);
+					target.setStatusMinutes("Omega Oil",5760);
 					break;
 				case 4:
-					pc.addStatusMinutes("Omega Oil",7000);
-					pc.addStatusMinutes("Fuck Fever",7000);
+					target.addStatusMinutes("Omega Oil",7000);
+					target.addStatusMinutes("Fuck Fever",7000);
 					break;
 			}
 		}
-		public function reduceOmegaEffect():void
+		public static function reduceOmegaEffect(pc:Creature):void
 		{
-			var pc:Creature = kGAMECLASS.pc;
 			var msg:String = "";
 			
 			if(pc.hasStatusEffect("Fuck Fever"))
 			{
 				msg += "Relieved, your mind clears a bit as the Fuck Fever subsides... however, your [pc.asshole] continues to twitch in anticipation. <b>You now feel Flushed!</b>";
 				msg = ParseText(msg);
-				updateOmega(2);
+				updateOmega(pc, 2);
 			}
 			else if(pc.hasStatusEffect("Flushed"))
 			{
 				msg += "Your [pc.asshole] doesn’t seem as hungry for penetration as it did before, though you can still feel the excited warmth it continues to glow. <b>You now feel Strangely Warm!</b>";
 				msg = ParseText(msg);
-				updateOmega(1);
+				updateOmega(pc, 1);
 			}
 			else
 			{
@@ -358,15 +358,13 @@ package classes.Items.Transformatives
 				if(pc.hasPerk("Omega Fever")) msg += "... at least for now";
 				msg += "!</b>";
 				msg = ParseText(msg);
-				updateOmega(0);
+				updateOmega(pc, 0);
 			}
 			
 			if(msg.length > 0) AddLogEvent(msg, "passive");
 		}
-		public function checkOmegaFever():void
+		public static function checkOmegaFever(pc:Creature):void
 		{
-			var pc:Creature = kGAMECLASS.pc;
-			
 			if(pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Omega Fever Delay") || pc.hasAnalPregnancy())
 			{
 				/* Nada! */
@@ -387,7 +385,7 @@ package classes.Items.Transformatives
 				msg += ". Despite already being hornier than usual, the desire to be claimed constantly burns even stronger in your blood. There’s a dull throbbing in your [pc.asshole] that demands to be satisfied. You have a feeling mere fingers won’t be nearly enough to find relief, and you aren’t quite sure how far you would go to ease this craving. <b>You now have Fuck Fever!</b>";
 				pc.lust(15);
 				msg = ParseText(msg);
-				updateOmega(3);
+				updateOmega(pc, 3);
 			}
 			else if(pc.hasStatusEffect("Strangely Warm") && !pc.hasStatusEffect("Flushed"))
 			{
@@ -404,17 +402,17 @@ package classes.Items.Transformatives
 				msg += "... Eventually the haze lifts and the world rights itself. As you pull yourself together however, it feels like <b>you are now a bit hornier than before!</b>";
 				pc.lust(35);
 				msg = ParseText(msg);
-				updateOmega(2);
+				updateOmega(pc, 2);
 			}
 			else
 			{
 				msg += "You fantasize about submitting and presenting your needy [pc.assholeNoun] to a stranger and having them vigorously penetrate your ass. <b>It feels like you’ll stay hornier than normal now... at least for a while!</b>";
 				pc.lust(15);
 				msg = ParseText(msg);
-				updateOmega(1);
+				updateOmega(pc, 1);
 			}
 			
-			if(msg.length > 0) AddLogEvent(msg, "passive");
+			if(msg.length > 0) AddLogEvent(msg, "passive", 1440 - (GetGameTimestamp() % 1440));
 		}
 		//Codex - not presently enabled because it's completely unneeded and unremarkable.
 		//History

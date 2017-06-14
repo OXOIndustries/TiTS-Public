@@ -132,7 +132,7 @@ public function kellyOfficeApproach():void {
 
 	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. <i>“Welcome back to Xenogen Research Labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");
-	//{my friend}/{honey}
+	// my friend / honey
 	output("?”</i>");
 	processTime(1);
 	//[PurchaseMods] [Talk] [Flirt] [Leave]
@@ -173,14 +173,17 @@ public function kellysStoreSetup():void
 	{
 		chars["KELLY"].inventory.push(new Ovilium());
 	}
-	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined || flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined)
 	{
-		chars["KELLY"].inventory.push(new HoneySeed());
-	}
-	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined)
-	{
-		chars["KELLY"].inventory.push(new Honeydew());
-		chars["KELLY"].inventory.push(new Honeypot());
+		if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+		{
+			chars["KELLY"].inventory.push(new HoneySeed());
+		}
+		if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+		{
+			chars["KELLY"].inventory.push(new Honeydew());
+			chars["KELLY"].inventory.push(new Honeypot());
+		}
 	}
 	if(flags["SYNTHSAP_UNLOCKED"] != undefined)
 	{
@@ -445,7 +448,7 @@ public function giveKellySkySap(count:int):void
 	
 	for(var x:int = 0; x < count; x++)
 	{
-		pc.destroyItem(new SkySap(), 1);
+		pc.destroyItemByClass(SkySap, 1);
 		IncrementFlag("KELLY_SKYSAP_COLLECT");
 		creds += 100;
 	}
@@ -1432,7 +1435,7 @@ public function kellyShopping():void
 	}
 	output("\n\n<i>“And that’s the last of it,”</i> she declares happily, closing the final cupboard. <i>“You’re such a sweet " + pc.mf("man","woman") + ", to help a little lady like myself,”</i> she says, turning her head to look over her shoulder to shoot a mock-innocent smile at you as she does. With a sigh of relief, she starts to fiddle with her bra-like mini-top, casually dropping it to the floor once it springs free of her breasts, then bending over to start removing her pants, ass up and pointed towards you, each shapely curve of buttock and leg emphasised as her pants slide with slow, deliberate motion down to the floor. She steps out of them with one foot, and then a delicate backwards kick flicks the garment away.");
 	output("\n\n<i>“Much better,”</i> she announces. <i>“Always so much more comfortable like this; it’s nice to let the girls breathe.”</i> She stops and giggles to herself. <i>“My moms would spank my cute little bunny-butt until it glowed red for doing this... but that’s half the fun, isn’t it?”</i> she asks; you’re not sure if she’s being hypothetical or not. <i>“Oh, please, don’t be shy on my account; my home is your home. Go on and make yourself comfortable, too,”</i> she adds, almost as an afterthought.");
-	processTime(7);
+	processTime(70);
 	//[GetComfy][No]
 	
 	goToKellysHouse();
@@ -1516,6 +1519,7 @@ public function getComfyAfterKellyShopping():void
 	//if Attraction =< 50:
 	if(kellyAttraction() <= 50) output("\n\nKelly turns to watch you, openly enjoying every moment as your clothes come off and you are standing naked before her. She lets out a wolf whistle of delight once the last comes off. <i>“Now there’s a sight to admire; stick around after dinner, maybe we’ll have a bit of my special dessert,”</i> she coos, winking at you.");
 	else output("\n\nKelly immediately snaps around to face you, blatantly ogling with glee as you make yourself as naked as she is. With an almost predatory intensity she struts towards you, making a circuit around you as the last bit of gear hits the floor. <i>“Now you, honey, are what we call <b>damn</b> fine... you have <b>got</b> to stick around after dinner, try some of my special dessert,”</i> she coos. The sudden admiring slap she delivers to your [pc.butt] in emphasis of the word “special” leaves you with little doubt as to what’s on her mind.");
+	processTime(3);
 	tempNudeOn();
 	kellyDinnerPrepGogo();
 }
@@ -1793,8 +1797,8 @@ public function eatingWithKellysHoneyForSeasoning():void
 	//[BlowHer][EatHerOut][Refuse]
 	clearMenu();
 	//link to sex scenes with special intros turned off.
-	addButton(0,"BlowHer",kellysCocksGetBLOWN,undefined,"Blow Her","Give Kelly a blowjob.");
-	addButton(1,"EatHerOut",eatOutKellysQuoteUnquoteCunny,undefined,"Eat Her Out","Eat Kelly out.");
+	addButton(0,"BlowHer",kellysCocksGetBLOWN,false,"Blow Her","Give Kelly a blowjob.");
+	addButton(1,"EatHerOut",eatOutKellysQuoteUnquoteCunny,false,"Eat Her Out","Eat Kelly out.");
 	addButton(3,"Refuse",refuseDesertFromKellysWang);
 }
 
@@ -2094,17 +2098,17 @@ public function relaxAfterEatingRegularHoneyMealWithKelly():void
 	author("Quiet Browser & LD");
 	output("Nodding, you head over to her couch, plopping down and sighing as you lean back and close your eyes for a spell.");
 	output("\n\nKelly carries on into the kitchen nonplussed, and from within you can hear the sounds of running water and dishes being scrubbed. Soon enough, she finishes her tasks and comes out to join you.");
-	postMealEpilogue();
+	postMealEpilogue(true);
 }
 
 //Both choices join here
-public function postMealEpilogue():void
+public function postMealEpilogue(onCouch:Boolean = false):void
 {
 	output("\n\n<i>“Well, honey... since dinner went down so smooth, how about some dessert before you go, hmm?”</i> Kelly’s voice is husky with desire as she suggests this, one hip outthrust, shafts rising shamelessly before her, one hand kneading her breasts with abandon as she awaits your decision.");
 	processTime(12);
 	//Display Sex Scene options, PC gains a boost to Attraction (say, 15, 20?)//
 	kellyAttraction(15);
-	kellyBarSexMenu();
+	kellyBarSexMenu(onCouch);
 }
 
 //Flirt
@@ -2195,16 +2199,21 @@ public function kellyBarFlirtContinuation():void
 
 	output("\n\nIt’s not like you have anything to hide, you smile.");
 
-	output("\n\nShe smiles back and steps in closer to remove your [pc.gear]; she doesn’t rip it off of you, like you might have expected, but she visibly savors everything that is revealed, tongue darting out to caress your [pc.nipple] as she makes her way down your chest, loudly inhaling your musk as she exposes your loins. <i>“Mmm... much better,”</i> she declares, standing up again. <i>“So, honey, had anything in particular in mind, now that we’re here...?”</i>");
+	output("\n\nShe smiles back and steps in closer");
+	if(!pc.isNude()) output(" to remove your [pc.gear]; she doesn’t rip it off of you, like you might have expected, but she visibly savors everything that is revealed");
+	output(", tongue darting out to caress your [pc.nipple] as she makes her way down your chest, loudly inhaling your musk");
+	if(!pc.isNude()) output(" as she exposes your loins");
+	output(". <i>“Mmm... much better,”</i> she declares, standing up again. <i>“So, honey, had anything in particular in mind, now that we’re here...?”</i>");
 	processTime(20);
 	pc.lust(10+rand(3));
+	tempNudeOn();
 	
 	goToKellysHouse();
 	
 	//Display sex options//
 	kellyBarSexMenu();
 }
-public function kellyBarSexMenu():void
+public function kellyBarSexMenu(onCouch:Boolean = false):void
 {
 	clearMenu();
 	showKelly(true);
@@ -2220,7 +2229,7 @@ public function kellyBarSexMenu():void
 	//Get Licked
 	if(pc.hasVagina()) addButton(2,"GetLicked",getLickedOutByKellllaaaahhhh,false,"GetLicked","Get a vagina properly served by the laquine.");
 	else addDisabledButton(2,"GetLicked","GetLicked","You need a pussy in order to get your pussy licked.");
-	if(pc.hasCock() || pc.hasVagina()) addButton(3,"Oral Her",oralHer,undefined,"Oral Her","Go down on Kelly or suck her cocks, whichever you prefer.");
+	if(pc.hasCock() || pc.hasVagina()) addButton(3,"Oral Her",oralHer,onCouch,"Oral Her","Go down on Kelly or suck her cocks, whichever you prefer.");
 	else addDisabledButton(3,"Oral Her","Oral Her","This scene does not current support genderless characters.");
 	if(pc.hasVagina() && pc.isTaur()) addButton(4,"Get DPed",kellyDPForTaursThatWannaGetDPed,undefined,"Get DPed","Take one of Kelly’s lengths in each hole. Of course any vaginas will get priority.");
 	else if(pc.hasVagina()) addButton(4,"Get DPed",getDPedByKelly,undefined,"Get DPed","Take one of Kelly’s lengths in each hole. Priority is given to multiple vaginas over assholes.");
@@ -2268,7 +2277,7 @@ public function kellyHyperPlayAwwwYiss():void
 			output("\n\nKelly bites her lip indecisively, but from the way you can see precum starting to bead at the tip of each dick and drool down, you know you’ve got her. <i>“O-okay,”</i> she declares, nodding as she convinces herself. <i>“If you want to see all of me, then I’ll give you a show to remember.”</i> she declares. <i>“But my medicine just doesn’t wear off like that; I’ll need a counter-agent first. There’s this mod I’ve heard of called Throbb; a small dose of that should be just the trick. But I don’t have any on me, and it’s not the sort of thing I can get at work, though I could synthesize more for my needs if I did have some. Do you have any?”</i> she asks.");
 		}
 		//No Throbb in inventory:
-		if(!pc.hasItem(new Throbb(),1))
+		if(!pc.hasItemByClass(Throbb,1))
 		{
 			output("\n\nYou shrug. Sadly you don’t really have any on yourself. But you’ll keep this chat of yours in mind in case you ever come across any.");
 			output("\n\n<i>“Good idea,”</i> Kelly grins. <i>“But, since we both seem to be in the mood for some ‘fun,’ I’m sure there’s plenty of other things we can do together,”</i> she suggests, posing slightly for emphasis.");
@@ -2284,7 +2293,7 @@ public function kellyHyperPlayAwwwYiss():void
 			output("\n\nKelly takes it from you, a little uncertainly, but with a determined look on her face, already adjusting the delivery mechanism. <i>“Right, I just need a little of this; too much and I might end up getting modded, not countered,”</i> she explains. Satisfied with her tweaking, she nods and brings the business end of it to rest against the base of her shafts. <i>“Alright, here goes nothing,”</i> she declares, and depresses the trigger, hissing as the minute dose rushes into her bloodstream.");
 			output("\n\nShe shivers, and rubs the injection site tenderly. <i>“Okay now... it’s going to take time for this stuff to kick in, but arousal should help; why don’t you and I have a little fun to give it a jumpstart?”</i> she suggests. <i>“Your cock in my cunt would be just the thing... besides, it’d be more fun than just sitting around watching my junk,”</i> she manages to quip dryly.");
 			output("\n\nSounds like a plan.");
-			pc.destroyItem(new Throbb(),1);
+			pc.destroyItemByClass(Throbb,1);
 		}
 	}
 	//After Throbb (Repeatable)
@@ -3044,8 +3053,8 @@ public function deepFuckKellysButthole():void
 }
 
 //Oral Her
-//If coming from <i>“Share a Meal”</i> automatically go to one of the variants, skipping the setup completely.
-public function oralHer():void
+//If coming from “Share a Meal” automatically go to one of the variants, skipping the setup completely.
+public function oralHer(onCouch:Boolean = false):void
 {
 	clearOutput();
 	showKelly(true);
@@ -3054,12 +3063,12 @@ public function oralHer():void
 	processTime(1);
 	//[BlowHer][EatHerOut]
 	clearMenu();
-	addButton(0,"BlowHer",kellysCocksGetBLOWN,undefined,"Blow Her","Give Kelly a blowjob.");
-	addButton(1,"EatHerOut",eatOutKellysQuoteUnquoteCunny,undefined,"Eat Her Out","Eat Kelly out.");
+	addButton(0,"BlowHer",kellysCocksGetBLOWN,onCouch,"Blow Her","Give Kelly a blowjob.");
+	addButton(1,"EatHerOut",eatOutKellysQuoteUnquoteCunny,onCouch,"Eat Her Out","Eat Kelly out.");
 }
 
 //Kelly's Cocks
-public function kellysCocksGetBLOWN():void
+public function kellysCocksGetBLOWN(onCouch:Boolean = false):void
 {
 	clearOutput();
 	showKelly(true);
@@ -3067,9 +3076,9 @@ public function kellysCocksGetBLOWN():void
 	if(flags["KELLY_BLOWJOBS_GIVEN"] == undefined) flags["KELLY_BLOWJOBS_GIVEN"] = 1;
 	else flags["KELLY_BLOWJOBS_GIVEN"]++;
 	//If Clothed:
-	if(!pc.isNude() && !(pc.hasStatusEffect("Temporary Nudity Cheat")))
+	if(!pc.isNude())
 	{
-		output("<i>“Hold it!”</i> Kelly suddenly interjects, frowning as she holds up a hand for emphasis. <i>“Off with the [pc.gear] first, sugar; I’m a very messy honey-bunny, and take it from me, bunny-honey is very hard to get out of clothes. You just take your things off and put them out of the way before we start; save you some very nasty cleaning bills after we’re done,”</i> she declares.");
+		output("<i>“Hold it!”</i> Kelly suddenly interjects, frowning as she holds up a hand for emphasis. <i>“Off with the clothes first, sugar; I’m a very messy honey-bunny, and take it from me, bunny-honey is very hard to get out of clothes. You just take your things off and put them out of the way before we start; save you some very nasty cleaning bills after we’re done,”</i> she declares.");
 		output("\n\nConceding she has a point, you see no reason to refuse. So you strip off your [pc.gear] and lay it neatly on a table in the living room. Somewhere where you don’t think she has a chance in heavens of hitting.\n\n");
 	}
 	output("You stroke her topmost shaft, admiring it. The texture, the warmth, the way it throbs before you. Her flared tip has already worked itself into a translucent, yellowish honey-glaze. It drips down with each little twitch of her shaft. Encircling her pole with a hand, you gently test it with a squeeze. This nets you a small burst of pre from her tip. Truly, Kelly has one fine pair of juicy horse-dongs.");
@@ -3196,12 +3205,12 @@ public function kellysCocksGetBLOWN():void
 	pc.lust(15);
 	//[Splatter][DrinkAll]
 	clearMenu();
-	addButton(0,"Splatter",splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ,undefined,"Splatter","Splatter yourself with Kelly’s honey.");
-	addButton(1,"DrinkAll",drinkAllOfKellysSpoo,undefined,"Drink All","Try not to waste a single drop of Kelly’s copious honey.");
+	addButton(0,"Splatter",splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ,onCouch,"Splatter","Splatter yourself with Kelly’s honey.");
+	addButton(1,"DrinkAll",drinkAllOfKellysSpoo,onCouch,"Drink All","Try not to waste a single drop of Kelly’s copious honey.");
 }
 
 //[=DrinkAll=]
-public function drinkAllOfKellysSpoo():void
+public function drinkAllOfKellysSpoo(onCouch:Boolean = false):void
 {
 	clearOutput();
 	showKelly(true);
@@ -3215,9 +3224,11 @@ public function drinkAllOfKellysSpoo():void
 	output("\n\nFinally, with some very unlady-like grunts and moans, Kelly’s monstrous orgasm comes to an end, her shafts going slack against you. From above, you can hear her heaving for breath, panting like a marathon runner who just finished a four-minute mile. <i>“By all the old gods, that was intense,”</i> she sighs eventually, utter satisfaction dripping from her words. Tension suddenly fills her body as she remembers that she wasn’t alone for this climax. <i>“Oh gods - honey, are you okay?!”</i> she yelps.");
 	output("\n\nYou pull away with a grunt, coughing shortly after. With a groan you pat your distended belly. That was quite a load she was carrying. Still you could use a little more sweetness. You lean over and lift her previously neglected lower shaft, sucking on its flared tip like a straw and draining her of every little bit of stray honey that might’ve escaped through your grip.");
 	output("\n\nKelly bites her lip and whimpers in pleasure as you complete your task of emptying her, then lets out a laugh of equal parts amusement and disbelief. <i>“I’ve heard of gluttons for punishment before, sugar, but you take the honeycake,”</i> she giggles, reaching down a hand to gently stroke your cheek. <i>“So, are you full now? Because if the answer is no,”</i> a quick glance down at your monstrously bloated stomach and the smirk on her face makes it clear she’s not expecting a “no” from you, <i>“I have to confess I can’t give you anymore. I think you’ve literally sucked me dry,”</i> she declares. Her tone tries to be lamentful, but the self-satisfied smile that splits her face makes a total lie of the effort.");
-	output("\n\nYeah, you’ll have to refuse. How about she help you get on the couch so you can have a few moments to rest?");
+	output("\n\nYeah, you’ll have to refuse.");
+	if(!onCouch) output(" How about she help you get on the couch so you can have a few moments to rest?");
 	output("\n\n<i>“Sure thing, sugar,”</i> she replies with a grin. Unfurling her legs from around you, she clambers off of her chair, wobbling a little at first as she takes the floor. Once her own legs are straight beneath her, she leans down to help you up, offering you her shoulder and struggling to lift you to your [pc.feet].");
-	output("\n\n<i>“Ooof! You’re heavy, honey,”</i> she complains, even as she starts awkwardly walking to over to the couch. She carefully makes sure that you’re ready first, and then lowers you down; the springs complain a little, but it holds up under you.");
+	output("\n\n<i>“Ooof! You’re heavy, honey,”</i> she complains, even as she starts awkwardly walking to over to the couch.");
+	if(!onCouch) output(" She carefully makes sure that you’re ready first, and then lowers you down; the springs complain a little, but it holds up under you.");
 	output("\n\nThanking her for the aid, you let her know you just need a quick rest before you go on your way. She’s really filled you up with her special dessert.");
 	output("\n\nKelly nods absently, even as she drums idly on your belly with her fingertips, an introspective look on her face. Finally, she nods again and looks you in the eye. <i>“Sugar? There’s an old laquine home remedy for helping folks in your... situation... to get over it quicker. You want me to give it a shot?”</i> she purrs as she asks. As if to give you a clue as to what she means, her fingers trail playfully down your belly towards your loins, her tongue slurping lewdly from her mouth and flailing in the air before her before she sucks it back inside.");
 	output("\n\nYou can’t do much in your condition, so you tell her, <i>“Sure, go on.”</i>");
@@ -3230,9 +3241,9 @@ public function drinkAllOfKellysSpoo():void
 	pc.loadInMouth(chars["KELLY"]);
 	//[Cock][Pussy]
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly);
+	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly, true);
 	else addDisabledButton(0,"Cock","Cock","You need a cock for Kelly to suck it.");
-	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh);
+	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh, true);
 	else addDisabledButton(1,"Pussy","Pussy","You need a pussy in order for Kelly to lick it.");
 	if(!pc.hasCock() && !pc.hasVagina()) addButton(2,"Neither",noDrinksForKelly,true,"Oops...","Tell her you have nothing for her to drink...");
 	else addButton(2,"Neither",noDrinksForKelly,false,"Neither","Decline her advances and don’t allow her a drink.");
@@ -3240,7 +3251,7 @@ public function drinkAllOfKellysSpoo():void
 
 //Go to appropriate/selected "Kelly gives the PC oral" sex scene//
 //[=Splatter=]
-public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
+public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ(onCouch:Boolean = false):void
 {
 	clearOutput();
 	showKelly(true);
@@ -3332,7 +3343,8 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 			output("\n\nYou break the kiss and push her off, getting up after her. That’ll be enough for now.");
 			output("\n\nKelly simply grins, giggling softly as she nods in agreement.");
 		}
-		output("\n\nNow that you’re clean of her honeyed batter, you decide a small rest is in order. So you make your way to her couch, where you plop down.");
+		output("\n\nNow that you’re clean of her honeyed batter, you decide a small rest is in order.");
+		if(!onCouch) output(" So you make your way to her couch, where you plop down.");
 		output("\n\nThe laquine looks at you, studying you. <i>“Would you like something, sugar? You look a little worn out.”</i>");
 		output("\n\nA drink would be fine right now, you tell her.");
 		output("\n\n<i>“Coming right up,”</i> Kelly replies, already walking towards the kitchen. Within moments, she returns with a glass filled with cold water, which she presents to you.");
@@ -3348,9 +3360,9 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 		pc.shower();
 		//[GetBlown] [GetLicked]
 		clearMenu();
-		if(pc.hasCock()) addButton(0,"GetBlown",getBlownByKelly);
+		if(pc.hasCock()) addButton(0,"GetBlown",getBlownByKelly, true);
 		else addDisabledButton(0,"GetBlown","GetBlown","You need a cock for Kelly to suck it.");
-		if(pc.hasVagina()) addButton(1,"GetLicked",getLickedOutByKellllaaaahhhh);
+		if(pc.hasVagina()) addButton(1,"GetLicked",getLickedOutByKellllaaaahhhh, true);
 		else addDisabledButton(1,"GetLicked","GetLicked","You need a pussy in order for Kelly to lick it.");
 		if(!pc.hasCock() && !pc.hasVagina()) addButton(2,"Neither",noDrinksForKelly,true,"Oops...","Tell her you have nothing for her to drink...");
 		else addButton(2,"Neither",noDrinksForKelly,false,"Neither","Decline her advances and don’t allow her a drink.");
@@ -3414,7 +3426,7 @@ public function leaveKellyNext(fromOffice:Boolean = false):void
 }
 
 //Kelly's Cunny
-public function eatOutKellysQuoteUnquoteCunny():void
+public function eatOutKellysQuoteUnquoteCunny(onCouch:Boolean = false):void
 {
 	pc.girlCumInMouth(chars["KELLY"]);
 	clearOutput();
@@ -3453,13 +3465,18 @@ public function eatOutKellysQuoteUnquoteCunny():void
 		output("\n\nSomehow you figured it would end this way. You extend a hand to help her up and motion for her to show you the way.");
 		output("\n\nThe sticky, gooey bunny-herm slides easily off the table, still dripping thick globs of honey. She stretches a kink from her back, favors you with a smile, and starts leading the way to the bathroom, still holding you by the hand.");
 		output("\n\n<b>Later....</b>");
+		output("\n\n");
+		if(!onCouch) output("You move to sit on Kelly’s couch, still stark naked, but clean. ");
 		//if clothed:
 		if(!pc.isNude())
 		{
-			output("\n\nYou move to sit on Kelly’s couch, still stark naked, but clean. She said your [pc.gear] would take a while to finish washing, so she told you to just make yourself comfortable while she finishes bathing. Apparently bunny-honey tends to stick to her fur.");
+			output("She said your [pc.gear] would take a while to finish washing, so she told you to just make yourself comfortable while she finishes bathing. Apparently bunny-honey tends to stick to her fur.");
 		}
-		else output("\n\nYou move to sit on Kelly’s couch, still stark naked, but clean. You’ve been feeling a bit tired after your little encounter. Not that Kelly’s playfulness during the bath helped either. So you decide to make good on her offer to just relax while she finishes bathing. Maybe it’s her way of apologizing for wearing you out... not that you minded.");
-		output("\n\nAs you lounge on her couch, you find that your little stint with the bee-bunny has gotten you a bit aroused");
+		else output("You’ve been feeling a bit tired after your little encounter. Not that Kelly’s playfulness during the bath helped either. So you decide to make good on her offer to just relax while she finishes bathing. Maybe it’s her way of apologizing for wearing you out... not that you minded.");
+		output("\n\n");
+		if(!onCouch) output("As you lounge on her couch, y");
+		else output("Y");
+		output("ou find that your little stint with the bee-bunny has gotten you a bit aroused");
 		if(pc.hasCock()) 
 		{
 			output(" if your half-erect [pc.cocks] ");
@@ -3730,9 +3747,9 @@ public function masturbateAfterKellyLingus():void
 		output("\n\nShe pauses for a moment, looking contemplatively at your binary genitalia sets. <i>“Honey, which would you prefer me to please?”</i>");
 	}
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly);
+	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly, true);
 	else addDisabledButton(0,"Cock","Cock","You need a cock for Kelly to suck it.");
-	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh);
+	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh, true);
 	else addDisabledButton(1,"Pussy","Pussy","You need a pussy in order for Kelly to lick it.");
 }
 
@@ -3782,9 +3799,9 @@ public function mischievousMasturbateAfterCunnilingateKelly():void {
 		//[Cock] [Pussy]
 	}
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly);
+	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly, true);
 	else addDisabledButton(0,"Cock","Cock","You need a cock for Kelly to suck it.");
-	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh);
+	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh, true);
 	else addDisabledButton(1,"Pussy","Pussy","You need a pussy in order for Kelly to lick it.");
 }
 //NUDE
@@ -3841,9 +3858,9 @@ public function kellyNudeMasturbateAfterCunnilingate():void
 		//[Cock] [Pussy]
 	}
 	clearMenu();
-	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly);
+	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly, true);
 	else addDisabledButton(0,"Cock","Cock","You need a cock for Kelly to suck it.");
-	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh);
+	if(pc.hasVagina()) addButton(1,"Pussy",getLickedOutByKellllaaaahhhh, true);
 	else addDisabledButton(1,"Pussy","Pussy","You need a pussy in order for Kelly to lick it.");
 }
 
@@ -4629,18 +4646,20 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 		else output("\n\nRolling your eyes, you follow her lead. Let’s hope she doesn’t act like <b>that</b> when she’s licking you.");
 
 		output("\n\nWith quick steps and a cheerful smile, Kelly settles herself before you, kneeling down on the floor so that her head is properly level with your crotch.");
+		output("\n\n");
 	}
 	//Give Oral - Masturbate=Pussy rejoins here//
 	//If PC hasCock=True:
 	if(pc.hasCock())
 	{
-		output("\n\nShe smirks up at you and runs swift, dextrous fingers up and down the base of your [pc.cockBiggest]. <i>“");
+		output("She smirks up at you and runs swift, dextrous fingers up and down the base of your [pc.cockBiggest]. <i>“");
 		if(pc.cockTotal() == 1) output("This is a lot of fun too");
 		else output("These can be pretty fun too");
 		output(",”</i> she notes. <i>“But that’s not what you and I are here for, is it?”</i> Her tongue slurps wetly out between pursed lips and sloppily licks its way up your [pc.cockBiggest], from base to tip, before it shoots back inside and her hands move to get your male genitalia out of the way, exposing your [pc.vagina] for her.");
+		output("\n\n");
 	}
 
-	output("\n\nLeaning in for a better view, she scrutinizes your womanhood, smiling with satisfaction as it evidently passes whatever test she had in mind. With a grin, she plants a warm, wet kiss right at the base of your netherlips, then retreats her head, just enough that you can see as her tongue slides from her mouth like a perverse, bright yellow tentacle and reaches for your outer lips. She keeps her eyes focused on your face, even as her warm, wet tongue begins to glide smoothly and steadily around the rim of your pussy, the very tip dipping itself shallowly inside and curving in under the lips as she slides up and down first one wall, and then the other.");
+	output("Leaning in for a better view, she scrutinizes your womanhood, smiling with satisfaction as it evidently passes whatever test she had in mind. With a grin, she plants a warm, wet kiss right at the base of your netherlips, then retreats her head, just enough that you can see as her tongue slides from her mouth like a perverse, bright yellow tentacle and reaches for your outer lips. She keeps her eyes focused on your face, even as her warm, wet tongue begins to glide smoothly and steadily around the rim of your pussy, the very tip dipping itself shallowly inside and curving in under the lips as she slides up and down first one wall, and then the other.");
 
 	output("\n\nYou hiss at her teasing caresses, [pc.legs] tensing as she continues to do so. There’s a part of you that just wants to grab her and shove her into your muff so she can properly do her job. But for now you decide to let her take the lead. After all, you can take a little teasing.");
 

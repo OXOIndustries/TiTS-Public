@@ -409,7 +409,7 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	processTime(15);
 	currentLocation = "602";
 	generateMap();
-	//{Shade’s Scenes go Here}
+	//Shade’s Scenes go Here
 	shadeSexMenu(true);
 }
 
@@ -815,7 +815,7 @@ public function takeShadesHardlightPenisInYerBoot():void
 	if(x >= 0) output("pussy");
 	else output("ass");
 	output(" tantalizingly close to the glowing cock sprouting from her panties. She leans in, pushing your backside up off the bed and curling your spine in as she goes, ");
-	if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") output("making full use of your feline flexibility");
+	if(pc.raceShort() == "kaithrit") output("making full use of your feline flexibility");
 	else output("putting your flexibility to the limit");
 	output(" as she crawls up your prone body, trailing kisses up your belly, [pc.chest], and neck. Finally, she reaches your [pc.lips], pressing hers to yours and slowly urging your mouth open, just wide enough to let her tongue slip in.");
 
@@ -1071,7 +1071,7 @@ public function shadeDoubleTitfuck():void
 }
 
 
-//{Combine All}
+//Combine All
 public function shadePostCoitusHangouts():void
 {
 	clearOutput();
@@ -1361,7 +1361,7 @@ public function askShade4Sex():void
 	currentLocation = "602";
 	generateMap();
 	
-	//{Shade’s Scenes go Here}
+	//Shade’s Scenes go Here
 	shadeSexMenu();
 }
 
@@ -1416,15 +1416,15 @@ public function shadeTalkMenu(arg:Function):void
 		}
 		else
 		{
-			if ((!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK) && (pc.hasItem(new Lactaid()) || pc.hasItem(new MilkCaramelGushers(), 5)))
+			if ((!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK) && (pc.hasItemByClass(Lactaid) || pc.hasItemByClass(MilkCaramelGushers, 5)))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (shade.milkType != GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_HONEY && (pc.hasItemByClass(Honeyizer) || pc.hasItemByClass(Honeydew)))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (shade.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItemByClass(Chocolac))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
@@ -1645,7 +1645,7 @@ public function runesYouTurdShade():void
 	else output(" The temple took me in after the docs were finished with me. Uveto is");
 	output(" a protectorate-world, and I’d be in big trouble for sneaking in, they said, as if stowing away on a ship was nothing. I didn’t have much choice but to stay with them: I was weak, half-starved, and didn’t stop shivering for days.”</i>");
 	output("\n\nShade finishes her drink, knocking back the rest of the mug and slamming it down on the table, hard enough to make you jump. <i>“Better them than the ausar, I guess. ");
-	if(pc.race() == "ausar" || pc.race() == "half-ausar") output("Uh, no offense. ");
+	if(pc.raceShort() == "ausar") output("Uh, no offense. ");
 	output("Planet was lousy with them, all heavy-set and snowy-haired. I guess they must have been the main colonists, since there were only a few hundred humans I ever saw. No kaithrit in sight, but then, we tend to colonize in the opposite direction of the Federation if we can. Not much good blood between ausar and kaithrit... heh, says the woman with a half-ausar kid. Sorry, I’m rambling, I know. You wanted to know about these runes, right?");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" Well, the church that took me in was some kind of old-Terra-style pagan sect, thought they’d found the promised land on a stormy ball of ice. Neo-norse, some of the locals called ‘em. I don’t know much about terran mythology, but the cult - the Stormguard - were obsessed with their thunder god. They told me the only way I’d ever get off the planet was by joining them, to squeeze through the same legal loopholes they did to exist on an otherwise locked-down world. I figured, ‘what the hell?’, and joined up.");
 	output("”</i>");
@@ -1687,8 +1687,12 @@ public function inseminateShadesCuntTail():void
 {
 	if(pc.virility() <= 0) return;
 	
-	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined) flags["SHADE_INSEMINATION_COUNTER"] = 1;
-	flags["SHADES_CUNTTAIL_FED"] = 1;
+	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined)
+	{
+		flags["SHADE_INSEMINATION_COUNTER"] = 1;
+		pc.clearRut();
+	}
+	IncrementFlag("SHADES_CUNTTAIL_FED");
 }
 
 //Tailcunt Oviposition
@@ -2119,10 +2123,10 @@ public function gibShadeModItems():void
 	clearMenu();
 	if (!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK)
 	{
-		if (pc.hasItem(new Lactaid(), 1)) addButton(0, "1x Lactaid", gibShadeModItemsII, "lactaid");
+		if (pc.hasItemByClass(Lactaid, 1)) addButton(0, "1x Lactaid", gibShadeModItemsII, "lactaid");
 		else addDisabledButton(0, "1x Lactaid", "Lactaid", "You don’t have any Lactaid.");
 
-		if (pc.hasItem(new MilkCaramelGushers(), 5)) addButton(1, "5x M.Gush", gibShadeModItemsII, "gushers");
+		if (pc.hasItemByClass(MilkCaramelGushers, 5)) addButton(1, "5x M.Gush", gibShadeModItemsII, "gushers");
 		else addDisabledButton(1, "5x M.Gush", "Milk Gushers", "You don’t have enough Milk Gushers.");
 	}
 	
@@ -2134,13 +2138,13 @@ public function gibShadeModItems():void
 	}
 	else
 	{
-		if (pc.hasItem(new Honeyizer())) addButton(2, "1x Hnyizr", gibShadeModItemsII, "honeyizer");
+		if (pc.hasItemByClass(Honeyizer)) addButton(2, "1x Hnyizr", gibShadeModItemsII, "honeyizer");
 		else addDisabledButton(2, "1x Hnyizr", "Honeyizer", "You don’t have any Honeyizer.");
 
-		if (pc.hasItem(new Chocolac())) addButton(3, "1x Chclac", gibShadeModItemsII, "chocolac");
+		if (pc.hasItemByClass(Chocolac)) addButton(3, "1x Chclac", gibShadeModItemsII, "chocolac");
 		else addDisabledButton(3, "1x Chclac", "Chocolac", "You don’t have any Chocolac.");
 
-		if (pc.hasItem(new Honeydew())) addButton(4, "1x Hnydew", gibShadeModItemsII, "honeydew");
+		if (pc.hasItemByClass(Honeydew)) addButton(4, "1x Hnydew", gibShadeModItemsII, "honeydew");
 		else addDisabledButton(4, "1x Hnydew", "Honeydew", "You don’t have any Honeydew");
 	}
 
@@ -2155,30 +2159,30 @@ public function gibShadeModItemsII(selItem:String):void
 	switch (selItem)
 	{
 		case "lactaid":
-			pc.destroyItem(new Lactaid(), 1);
+			pc.destroyItemByClass(Lactaid, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_MILK;
 			shade.milkMultiplier = 75;
 			shade.milkFullness = 75;
 			break;
 		case "gushers":
-			pc.destroyItem(new MilkCaramelGushers(), 5);
+			pc.destroyItemByClass(MilkCaramelGushers, 5);
 			shade.milkType = GLOBAL.FLUID_TYPE_MILK;
 			shade.milkMultiplier = 75;
 			shade.milkFullness = 75;
 			break;
 
 		case "honeyizer":
-			pc.destroyItem(new Honeyizer(), 1);
+			pc.destroyItemByClass(Honeyizer, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			break;
 
 		case "honeydew":
-			pc.destroyItem(new Honeydew(), 1);
+			pc.destroyItemByClass(Honeydew, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			break;
 
 		case "chocolac":
-			pc.destroyItem(new Chocolac(), 1);
+			pc.destroyItemByClass(Chocolac, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 			break;
 

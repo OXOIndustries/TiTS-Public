@@ -442,7 +442,7 @@ public function sx1PuzzleOfDoomMenu():void
 	else if (flags["SAENDRA_XPACK1_ASKEDVAL"] == 1) addButton(3, "Holo Burn", sx1Holoburn, undefined, "Holo Burn", "Try and overload the rooms electronics, and fry whoever’s jacked into the computer system in there.");
 	else addDisabledButton(3, "Holo Burn");
 
-	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.hasItem(new FlashGrenade())) addButton(4, "Flashbang", sx1ThrowFlashbang, undefined, "Flashbang", "Throw a flashbang in and storm the room.");
+	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.hasItemByClass(FlashGrenade)) addButton(4, "Flashbang", sx1ThrowFlashbang, undefined, "Flashbang", "Throw a flashbang in and storm the room.");
 	else addDisabledButton(4, "Flashbang", "Throw Flashbang", "You don’t have any flashbangs to hand.");
 }
 
@@ -1447,6 +1447,7 @@ public function zilCallGirlKnockUp(nVirility:Number = 0):void
 		if (nVirility >= 2 && rand(10) == 0) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(4);
 		flags["ZIL_CALLGIRL_GESTATION"] = (debug ? 30 : ((180 + rand(31)) * 24 * 60));
 		flags["ZIL_CALLGIRL_PREG"] = GetGameTimestamp();
+		pc.clearRut();
 		trace("Knocked up");
 	}
 	return;
@@ -1723,8 +1724,7 @@ public function zilCallgirlStopWhoring(fromPregnancyTalk:Boolean = false):void
 		else if (pc.isBro() || pc.isAss()) output(" Taking her hips possessively in your hands, you once again say that you want her to give up on whoring. This is no way for your child’s mother to be living.");
 		else output(" You understand she enjoys it, but surely she doesn’t have to turn tricks to make ends meet. Amorous encounters on her terms would be so much better, wouldn’t they?");
 
-		output("\n\nZheniya sighs, running a hand through her wild black hair. <i>“Sweetie... [pc.name]... listen, I understand where you’re coming from, but you’ve gotta understand, there’s not much else I can do to make a living here. I hate to say it, but even if I wanted a change of profession, what would I do? There’s not a lot of call for a spear-hunter on a metal city in space, with no animals to be found.");
-
+		output("\n\nZheniya sighs, running a hand through her wild black hair. <i>“Sweetie... [pc.name]... listen, I understand where you’re coming from, but you’ve gotta understand, there’s not much else I can do to make a living here. I hate to say it, but even if I wanted a change of profession, what would I do? There’s not a lot of call for a spear-hunter on a metal city in space, with no animals to be found.”</i>");
 
 		output("\n\n<i>“And before you ask,”</i> she says, putting a black-plated finger on your [pc.lips], <i>“I don’t want you to completely support me. A little help with");
 		if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == undefined || flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1) output(" the baby");

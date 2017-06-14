@@ -169,9 +169,9 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "Sydian";
+			kGAMECLASS.tarkusSSTDChance(this);
 			
 			randomise();
-			
 			this._isLoading = false;
 		}
 		

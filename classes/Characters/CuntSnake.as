@@ -32,7 +32,7 @@
 			this.tallness = 24 + rand(36);
 			this.scaleColor = "green";
 			this.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(this.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
-			this.customDodge = "The cunt snake sways aside at the last second!";
+			this.customDodge = "Your attack slips between the writhing coils, accomplishing nothing.";
 			this.customBlock = "Your attack deflects off the cunt snake's " + this.scaleColor + " scales!";
 			this.isPlural = false;
 			
@@ -169,7 +169,6 @@
 			
 			this.createPerk("Ranged Immune",0,0,0,0);
 			this.createStatusEffect("Disarm Immune");
-			
 			isUniqueInFight = true;
 			btnTargetText = "Cuntsnake";
 			randomise();

@@ -207,12 +207,21 @@
 		private function CheckPages():void
 		{
 			var lastButtonIndex:int = 0;
+			var lastButtonPage:int = Math.ceil(_buttonData.length / 15);
 			
 			for (var i:int = (_buttonData.length - 1); i >= 0; i--)
 			{
 				if (_buttonData[i].buttonName != "")
 				{
 					lastButtonIndex = i;
+					if(lastButtonIndex <= 14) _buttonPage = 1;
+					else
+					{
+						var newButtonPage:int = Math.ceil((lastButtonIndex + 1) / 15);
+						if (newButtonPage < 1) newButtonPage = 1;
+						if (newButtonPage > 4) newButtonPage = 4;
+						if (_buttonPage > lastButtonPage && newButtonPage < lastButtonPage) _buttonPage = newButtonPage;
+					}
 					i = -1;
 				}
 			}
@@ -242,7 +251,7 @@
 		public function resetButtons():void
 		{
 			CheckPages();
-			if (lastButton() < 14) _buttonPage = 1;
+			//if (lastButton() < 14) _buttonPage = 1;
 			
 			var initialIndex:int = (_buttonPage - 1) * 15;
 			

@@ -574,7 +574,7 @@ public function annoFollowerInventoryCheck():void
 	if (flags["ANNO_MISSION_OFFER"] == 3)
 	{
 		// Check for the presence of a unique item, if not there, add all
-		if (!anno.hasItem(new SteeleTechSuit()))
+		if (!anno.hasItemByClass(SteeleTechSuit))
 		{
 			anno.inventory = new Array();
 			
@@ -590,6 +590,10 @@ public function annoFollowerInventoryCheck():void
 			anno.inventory.push(new AHCock());
 			anno.inventory.push(new ADCock());
 		}
+		if(pc.level >= 5)
+		{
+			if(!anno.hasItemByClass(ZhouLingRifle)) anno.inventory.push(new ZhouLingRifle());
+		}
 
 		// Buy/Sell markups
 		anno.sellMarkup = 1.1;
@@ -598,7 +602,7 @@ public function annoFollowerInventoryCheck():void
 	else
 	// Unemployed by Steeletech
 	{
-		if (!anno.hasItem(new JoyCoPremiumShield()))
+		if (!anno.hasItemByClass(JoyCoPremiumShield))
 		{
 			anno.inventory = new Array();
 			
@@ -1807,7 +1811,7 @@ public function annoFollowerShowerSex():void
 	annoSexed(1);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", showerExit);
 }
 
 public function annoFollowerSpecialGear():void
@@ -1817,20 +1821,20 @@ public function annoFollowerSpecialGear():void
 	clearMenu();
 
 	// Merc/Smuggler + Quest Done
-	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3 && !anno.hasItem(new HoldoutHP()))
+	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3 && !anno.hasItemByClass(HoldoutHP))
 	{
 		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, undefined, "Her Gun", "Ask Anno about her personal gun. That didn’t seem like a stock model.")
 	}
 	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) addDisabledButton(0, "Her Gun", "Her Gun", "Her gun is an old-style powder-blaster. You couldn’t imagine a less interesting firearm.");
 	else addDisabledButton(0, "Her Gun", "Her Gun", "You’ve already asked her about her gun.");
 
-	if (pc.hasItem(new GrayMicrobots()) && !pc.hasKeyItem("Goozooka"))
+	if (pc.hasItemByClass(GrayMicrobots) && !pc.hasKeyItem("Goozooka"))
 	{
 		addButton(1, "Gray Goo", annoFollowerSpecialGearGrayGoo, undefined, "Gray Microbots", "Ask Anno about the samples of Gray Microbots.");
 	}
 	else
 	{
-		if (!pc.hasItem(new GrayMicrobots())) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You need to have a sample of Gray Microbots to hand.");
+		if (!pc.hasItemByClass(GrayMicrobots)) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You need to have a sample of Gray Microbots to hand.");
 		if (pc.hasKeyItem("Goozooka")) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You’ve already wrangled an upgraded version of the Goovolver out of Anno.");
 	}
 
@@ -1852,7 +1856,7 @@ public function annoFollowerSpecialGearHerGun():void
 	
 	output("\n\nAnno chuckles. <i>“It’s a one-and-only, but... toss a couple thousand credits my way, and I might be able to find those replication codes somewhere.”</i>");
 
-	if (!anno.hasItem(new HoldoutHP()))
+	if (!anno.hasItemByClass(HoldoutHP))
 	{
 		anno.inventory.push(new HoldoutHP());
 	}
@@ -1885,7 +1889,7 @@ public function annoFollowerSpecialGearGrayGoo():void
 
 	var pGoovolver:Goovolver = new Goovolver();
 	
-	if (pc.hasItem(pGoovolver) || pc.rangedWeapon is Goovolver)
+	if (pc.hasItemByClass(Goovolver) || pc.rangedWeapon is Goovolver)
 	{
 		if (pc.credits >= 1000)
 		{
@@ -1937,7 +1941,7 @@ public function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false)
 	if (buyGoovolverToo == false)
 	{
 		pc.credits -= 1000;
-		if (pc.hasItem(pGoovolver)) pc.destroyItem(pGoovolver, 1);
+		if (pc.hasItemByClass(Goovolver)) pc.destroyItemByClass(Goovolver, 1);
 		else if (pc.rangedWeapon is Goovolver) pc.rangedWeapon = new Rock();
 	}
 	else
@@ -1946,7 +1950,7 @@ public function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false)
 		pc.credits -= (pGooCost + 1000);
 	}
 	
-	pc.destroyItem(new GrayMicrobots());
+	pc.destroyItemByClass(GrayMicrobots);
 
 	pc.createKeyItem("Goozooka", 0, 0, 0, 0, "This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy’s most sensitive spots. Consumes a vial of gray goo per shot!");
 	output("\n\n<b>(Key Item Gained: Goozooka -</b> This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy’s most sensitive spots. Consumes a vial of gray goo per shot!<b>)</b>");
@@ -3632,10 +3636,16 @@ public function annoRandoBarBonus(button:int = 0):void
 
 public function annoBarEncounterRouter():void
 {
-	if(rand(4) == 0) annoShootsAGuyDownnnn();
-	else if(rand(3) == 0) annoGonnaGitIt();
-	else if(rand(2) == 0) annoGonnaGitDragonBOOOTAYYYYY();
-	else annoPupAtWork();
+	var funcList:Array = [];
+	
+	funcList.push(annoShootsAGuyDownnnn);
+	funcList.push(annoGonnaGitIt);
+	funcList.push(annoGonnaGitDragonBOOOTAYYYYY);
+	if(syriAtBurts() && currentLocation != "BURT'S MAIN HALL") funcList.push(annoPupAtWork);
+	
+	if(funcList.length > 0) funcList[rand(funcList.length)]();
+	
+	return;
 }
 //Anno Shoots a Guy Down
 public function annoShootsAGuyDownnnn():void
@@ -3862,6 +3872,17 @@ public function annoPupAtWork():void
 //[PetPlay] See if Anno’s willing to spend some time on the business end of a leash. 
 //Requires cock that fits or vagina. 
 //Accessible when Anno is a crew member.
+public function annoIsPet():Boolean
+{
+	return (flags["TAKEN_ANNO_AROUND_AS_A_PET"] != undefined || flags["ANNO_PETPLAYED"] != undefined);
+}
+public function annoTimesWalked():Number
+{
+	var timesWalked:Number = 0;
+	if(flags["TAKEN_ANNO_AROUND_AS_A_PET"] != undefined) timesWalked += flags["TAKEN_ANNO_AROUND_AS_A_PET"];
+	if(flags["ANNO_PETPLAYED"] != undefined) timesWalked += flags["ANNO_PETPLAYED"];
+	return timesWalked;
+}
 public function annoPupperPlay():void
 {
 	clearOutput();

@@ -206,8 +206,20 @@ public function configureMails():void
 	
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("del_moved",delEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
+	MailManager.addMailEntry("del_moved_light",delLightEmailString,"Change of Venue","Del Crawford","Delray.Crawford.136572@Galnet.org",quickPCTo,quickPCToAddress);
 	
 	MailManager.addMailEntry("pippa_nuru", pippaNuruEmail, "New Service", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("pippa_crew", pippaCrewEmail, "Request", "Pippa", "pippa_pig@cmail.com", quickPCTo, quickPCToAddress);
+
+	MailManager.addMailEntry("plantation_quest_start", shepDarnocksPlantationQuestInviteText, "Salutations!", "Shep Darnock", "theshepard12@snugglecorp.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("kally_kiro_milkvite",kallyKiroMilkvite,"Safety First!","Kally Tamahime","kally@kui_country.cas",quickPCTo,quickPCToAddress);
+}
+
+public function kallyKiroMilkvite():String
+{
+	var ret:String = "";
+	ret += "Hey, Rush-" + pc.mf("Boy", "Girl") + "!\n\nIs Kiro not taking care of you? I got word that you were looking pretty backed up out there. Don’t wait to pop off a load! It’s a serious health risk. Hell, grab Kiro and swing those big ol’ balls my way, and I might show you guys a place that’ll help relieve some of the pressure. Just don’t expect me to remember if you aren’t properly packing! This place doesn’t accept anything less than twelve-inch nuts swimming in their own sperm!\n\n-Kally ;3\n\nP.S. Don’t show up with a fuckin’ log either. They don’t exactly cater to Throbb addicts there, ya know?";
+	return ret;
 }
 
 public function cuzName():String
@@ -383,6 +395,18 @@ public function pippaNuruEmail():String
 	return ret;
 }
 
+public function pippaCrewEmail():String
+{
+	var ret:String = "Hi " + pc.short + ",";
+	
+	ret += "\n\nI’ve been thinking recently, and I’d like to talk to you about something. Or more like, I have a request for you. Please stop by when you get a chance.";
+	
+	ret += "\n\nSee you soon,";
+	ret += "\nPippa";
+	
+	return ret;
+}
+
 public function initialMailConfiguration():void
 {
 	clearOutput2();
@@ -446,4 +470,5 @@ public function confirmMailConfig():void
 	(userInterface as GUI).perkDisplayButton.Activate();
 	(userInterface as GUI).dataButton.Activate();
 	(userInterface as GUI).appearanceButton.Activate();
+	(userInterface as GUI).mailsDisplayButton.Activate();
 }

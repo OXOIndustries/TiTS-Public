@@ -215,10 +215,17 @@ public function walkUpToDocLashAgain(back:Boolean = true):void
 	addButton(0,"Services",genitalRemovalShit,undefined,"Services","Access Dr. Lash’s services.");
 	addButton(1,"Talk",talkToDocLash);
 	if(pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) addButton(2,"Raygun?",raygunStuff,undefined,"Ask About Doctor Badger’s Raygun","Talk to Doctor Lash about the raygun Dr. Badger gave you for Penny, and see if he can help you change it to work on her instead");
-	shopkeep = chars["DRLASH"];
-	addButton(5,"Buy",buyItem,undefined,"Buy","Ask Dr. Lash if he has any items to sell.");
+	addButton(5,"Buy",drLashBuyWrapper,undefined,"Buy","Ask Dr. Lash if he has any items to sell.");
 	if(peacekeeperTalkAvailable()) addButton(6,"Peacekeepers",drLashPeacekeeprTalk);
 	addButton(14,"Back",mainGameMenu);
+}
+public function drLashBuyWrapper():void
+{
+	shopkeep = chars["DRLASH"];
+	
+	CodexManager.unlockEntry("Chill Pill");
+	
+	buyItem();
 }
 
 //Genital Removal Menu
@@ -348,6 +355,18 @@ public function lashTreatment(treatment:String):void
 	addButton(0,"Next",lashTreatment2,treatment);
 }
 
+public function hasParasites(pType:String = "all"):Boolean
+{
+	if(pType == "tail" || pType == "all")
+	{
+		if (pc.hasParasiteTail()) return true;
+	}
+	if(pType == "mimbranes" || pType == "all")
+	{
+		if (attachedMimbranes() > 0) return true;
+	}
+	return false;
+}
 public function purgeParasites(pType:String = "all"):Boolean
 {
 	var parasites:Boolean = false;
@@ -522,7 +541,69 @@ public function talkToDocLash():void
 	addButton(1,"Why?",whyDrLashDoesShit,undefined,"Why?","Why is he out here doing this weird stuff?");
 	addButton(2,"Flirt",flirtWithDrLash,undefined,"Flirt","Maybe he’s cooled off a bit. He’s gotta have a butthole he can still have fun with, right?");
 	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drLashTalkAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	if(flags["LASHED_IMMUNITY"] != undefined) addButton(4,"STD Immunity",immuneSystemBoost,undefined,"STD Immunity","See Dr. Lash will reverse his work.");
+	else if(!pc.isSSTDImmune()) addButton(4,"STD Immunity",immuneSystemBoost,undefined,"STD Immunity","Carefully broach the topic of STD immunity to the Doctor. Maybe he can improve your immune system?");
+	else addDisabledButton(4,"STD Immunity","STD Immunity","You are already immune to STDs.");
 	addButton(14,"Back",walkUpToDocLashAgain);
+}
+
+public function immuneSystemBoost():void
+{
+	clearOutput();
+	showDrLash();
+	if(flags["LASHED_IMMUNITY"] != undefined)
+	{
+		output("<i>“So could you reverse...”</i>");
+		output("\n\n<i>“No.”</i> Doctor Lash interrupts. <i>“No and do not even think to inquire further. It is not my business to undo my own work.”</i>");
+		addDisabledButton(4,"STD Immunity","STD Immunity","Well that’s a bust.");
+		return;
+	}
+	else
+	{
+		output("Picking up on the Doctor’s distaste for all things sexual, you decide to tack a diplomatic tack. <i>“Any chance you could upgrade the nanites in my immune system? There’s some real nasty diseases out there... and some of the aliens on this rush don’t take no for an answer.”</i>");
+		output("\n\nLash’s mouth curls into an unkind sneer. <i>“Please. Don’t pretend your motives equate to my own.”</i> He waves two of his arms dismissively. <i>“It does not take a genius to see which arguments might appeal to me. Nonetheless, you display at least a token of problem-solving ability, and more importantly, your claim has some merit.”</i> Doctor Lash pauses for effect, then pauses some more. Once the air is suitably uncomfortable, he explains, <i>“There are many diseases which render the infected more... amenable to sexual contact - and reproduction. Both are enemies of the reasoning mind. And it is true that many species have little regard for consent.”</i>");
+		output("\n\n<i>“So you’ll do it?”</i>");
+		output("\n\n<i>“I am familiar with the microsurgeon-based immune system boosters common among the core.”</i> He adjusts his goggles. <i>“I’ve taken the liberty of scanning yours. It is... more adequate than most. I could enhance it for a generous donation to my research here. Say 10,000 credits?”</i>");
+		output("\n\nDo you agree?");
+		processTime(3);
+		clearMenu();
+		if(pc.credits >= 10000) addButton(0,"Agree",agreeToLashingHealth,undefined,"Agree","Agree to have Dr. Lash make you immune to STDs... <b>for 10,000 credits.</b>");
+		else addDisabledButton(0,"Agree","Agree","You don’t have enough money for this.");
+		addButton(1,"Don’t",dontAgreeToLashStuff);
+	}
+}
+
+public function dontAgreeToLashStuff():void
+{
+	clearOutput();
+	showDrLash();
+	output("You politely decline Doctor Lash’s offer. He returns to his work as if you were never there.");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function agreeToLashingHealth():void
+{
+	clearOutput();
+	output("You nod and transfer the credits.");
+	output("\n\nDoctor Lash smirks. <i>“Of course you accepted. My work is far more valuable than that vulgar price, but things being as they are... we all must make sacrifices from time to time.”</i> He sighs. <i>“Give me your hand.”</i>");
+	output("\n\nYou do.");
+	if(pc.isBro() || pc.isAss()) output(" If he tries anything funny, you can always sock him one.");
+	output("\n\nDoctor Lash produces a small device and waves it over your palm four or five times. <i>“Money well spent. You should be immune to everything under the sun and then some. However, I cannot be blamed if my modifications adversely affect your ability to reproduce. After all, my personal code needs no such considerations.”</i>");
+	output("\n\nWell, that’s something.");
+	output("\n\nThe doctor turns away, finished with you.");
+	pc.credits -= 10000;
+	//virility/fertility halved.
+	pc.fertilityRaw /= 2;
+	pc.cumQualityRaw /= 2;
+	//perk!
+	output("\n\n(<b>Perk Gained: STD Immune</b> - You can no longer be infected with sexually transmitted diseases.)");
+	pc.createPerk("STD Immune",0,0,0,0,"You are immune to sexually transmitted diseases.");
+	flags["LASHED_IMMUNITY"] = 1;
+	pc.removeSSTDs();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //UGC

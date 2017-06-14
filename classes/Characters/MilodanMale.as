@@ -197,7 +197,7 @@
 			btnTargetText = "Milodan";
 			
 			randomise();
-			
+			kGAMECLASS.uvetoSSTDChance(this);
 			this._isLoading = false;
 		}
 		
@@ -433,7 +433,9 @@
 			}
 			else output(" He appears stronger than ever!");
 			this.physiqueMod += 35;
-			this.createStatusEffect("Berserk",1,0,0,0,false,"Icon_Bull","Physique is greatly enhanced. (+35)",true,0);
+			this.createStatusEffect("Berserk",1,0,0,0,false,"Icon_Bull","Physique is greatly enhanced. (+35 physique)",true,0);
+			this.createStatusEffect("Stun Immune");
+			this.createStatusEffect("Stagger Immune");
 		}
 		public function scentOfThePrey(target:Creature):void
 		{

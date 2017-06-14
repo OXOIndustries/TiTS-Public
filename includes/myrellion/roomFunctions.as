@@ -1,56 +1,4 @@
-﻿import classes.Characters.PlayerCharacter;
-//Landing on Myrellion, First Time
-public function myrellionHangarBonus():Boolean
-{
-	if(flags["MYRELLION_PROBE_CASH_GOT"] == undefined && (flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["TAIVRA_NEW_THRONE"] == 0)) 
-	{
-		probeReclamationShit();
-		return true;
-	}
-	
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
-	}
-	// KQ2 Entry Proc
-	if (tryProcKQuest2Entry())
-	{
-		return true;
-	}
-	//Procs at the ship
-	if(!pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.") && flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined){
-		emmysPantiesGet();
-		return true;
-	}
-	
-	return false;
-}
-
-public function airFieldNorthBonus():Boolean
-{
-	if(flags["SEXED_SHADE"] != undefined && shadeAtTheBar())
-	{
-		output(" You recognize Shade's ship, a purple MS-XI with \"Mirage\" painted in bold white letters across its bow, parked next to one of the hangers here.")
-	}
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
-	}
-	return false;
-}
-
-public function DMZRandoEventsBonus():Boolean
-{
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
-	}
-	return false;
-}
-
+﻿//Landing on Myrellion, First Time
 public function flyToMyrellion():void
 {
 	if(flags["VISITED_MYRELLION"] == undefined)
@@ -58,9 +6,9 @@ public function flyToMyrellion():void
 		author("Savin");
 		showBust("MYR_GOLD_PILOT");
 		showName("MYR\nESCORT");
-		output("You guide your vessel into the space around Myrellion, the only inhabited planet in the system. While most planets in the Rush are magnets for explorers and pioneers, this is the first world where you've seen warships in orbit: your sensors pick up a small battle group of Ausar Federation and Terran-Space Coalition ships holding in high orbit: a cursory glance says that their shields are up and their weapons are locked on the planet below.");
-		output("\n\nYour shipboard computer automatically syncs with the U.G.C. Scout Authority beacon hanging in the atmosphere as you glide down towards the surface. A warning appears on screen:\n\n<i>Notice: the Myrellion System has been flagged as Extremely Dangerous to civilians. There is a high risk of bodily harm or death while exploring this world, especially beyond the U.G.C. embassy on the surface. Your safety cannot be guaranteed beyond the planet's atmosphere.</i>");
-		output("\n\nWhat's going on here? You let the autopilot guide you down towards the surface, homing in on the embassy you've been told to go to. As you start to near it, your sensors bleep an urgent warning: <i>several unidentified aircraft incoming!</i> You glance at your display, watching a half-dozen bogies zip towards you from behind. You're about to power up weapons when your emergency radio beeps.");
+		output("You guide your vessel into the space around Myrellion, the only inhabited planet in the system. While most planets in the Rush are magnets for explorers and pioneers, this is the first world where you’ve seen warships in orbit: your sensors pick up a small battle group of Ausar Federation and Terran-Space Coalition ships holding in high orbit: a cursory glance says that their shields are up and their weapons are locked on the planet below.");
+		output("\n\nYour shipboard computer automatically syncs with the U.G.C. Scout Authority beacon hanging in the atmosphere as you glide down towards the surface. A warning appears on screen:\n\n<i>Notice: the Myrellion System has been flagged as Extremely Dangerous to civilians. There is a high risk of bodily harm or death while exploring this world, especially beyond the U.G.C. embassy on the surface. Your safety cannot be guaranteed beyond the planet’s atmosphere.</i>");
+		output("\n\nWhat’s going on here? You let the autopilot guide you down towards the surface, homing in on the embassy you’ve been told to go to. As you start to near it, your sensors bleep an urgent warning: <i>several unidentified aircraft incoming!</i> You glance at your display, watching a half-dozen bogies zip towards you from behind. You’re about to power up weapons when your emergency radio beeps.");
 		output("\n\nMost pilots go their whole careers without ever actually getting an old-fashioned radio transmission. Nobody even uses these things anymore... so what the hell? You pick up.");
 		output("\n\n<i>“Unidentified offworld aircraft,”</i> a female voice says over the radio, difficult to hear over an incredible amount of background noise. <i>“This is Cadence Squadron. We’ll be guiding you into the embassy airfield. Please follow us.”</i>");
 		output("\n\nAs she’s speaking, the aircraft finally come into view around your ship: they’re... they’re old prop-rotor airplanes, not even starfighters. Hell, they’re not much more than biplanes with machine guns strapped to the open cockpits. The planes fall in around you, forcing you to slow to a veritable crawl to keep from crashing into them; one of the planes comes almost level with your cockpit, and the pilot gives you a friendly wave from one of her four arms. You blink as you see a pair of large, insectile antenna whipping in the wind over her head, poking out from an old-school aviator’s cap.");
@@ -104,7 +52,7 @@ public function flyToMyrellion():void
 	{
 		showBust("MYR_GOLD_PILOT");
 		showName("MYR\nESCORT");
-		output("Flying to Myrellion is no quick jaunt down the road, but before you know it, you're guiding your ship back through the atmosphere for a flawless landing on the tarmac, escorted by a squadron of myr pilots in old-timey biplanes.");
+		output("Flying to Myrellion is no quick jaunt down the road, but before you know it, you’re guiding your ship back through the atmosphere for a flawless landing on the tarmac, escorted by a squadron of myr pilots in old-timey biplanes.");
 		output("\n\nAfter making sure you are docked properly, you prepare your things");
 		if(leaveShipOK()) output(" and step out of your ship.");
 	}
@@ -126,9 +74,57 @@ public function myrellionLeaveShip():Boolean
 	return true;
 }
 
+public function myrellionHangarBonus():Boolean
+{
+	if(flags["MYRELLION_PROBE_CASH_GOT"] == undefined && (flags["BEAT_TAIVRA_TIMESTAMP"] != undefined || flags["TAIVRA_NEW_THRONE"] == 0)) 
+	{
+		probeReclamationShit();
+		return true;
+	}
+	
+	if(dmzFanDickSigningBonus()) return true;
+	if(sluttyMcSlutOralBonus()) return true;
+	
+	// KQ2 Entry Proc
+	if (tryProcKQuest2Entry()) return true;
+	//Procs at the ship
+	if(!pc.hasKeyItem("Panties - Emmy's - Silky, purple, and cum-stained.") && flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined){
+		emmysPantiesGet();
+		return true;
+	}
+	
+	return false;
+}
+
+public function airFieldNorthBonus():Boolean
+{
+	if(dmzFanDickSigningBonus()) return true;
+	if(sluttyMcSlutOralBonus()) return true;
+	if(flags["SEXED_SHADE"] != undefined && shadeAtTheBar())
+	{
+		output(" You recognize Shade’s ship, a purple MS-XI with “Mirage” painted in bold white letters across its bow, parked next to one of the hangers here.")
+	}
+	return false;
+}
+
+public function airFieldCentralBonus():Boolean
+{
+	if(dmzFanDickSigningBonus()) return true;
+	if(sluttyMcSlutOralBonus()) return true;
+	return false;
+}
+
+public function DMZRandoEventsBonus():Boolean
+{
+	if(sluttyMcSlutOralBonus()) return true;
+	return false;
+}
+
 public function streetOutsideBarBonus():Boolean
 {
-	if (karaQuestTurninNeeded()) output(" <b>Kara's standing in a dark alley down at the end of the street to the south, almost out of sight.</b>");
+	if(sluttyMcSlutOralBonus()) return true;
+	
+	if (karaQuestTurninNeeded()) output(" <b>Kara’s standing in a dark alley down at the end of the street to the south, almost out of sight.</b>");
 	
 	if(karaAndShadeUnfinished())
 	{
@@ -140,38 +136,25 @@ public function streetOutsideBarBonus():Boolean
 	{
 		output("\n\nA sign has been posted outside the Xenogen outpost, reading in big, bold red letters: THE DOCTOR IS <i><b>OUT</b></i>!");
 	}
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
-	}
 
 	return false;
 }
 public function spacersRowBonusFunc():Boolean
 {
+	if(sluttyMcSlutOralBonus()) return true;
 	if(karaQuestTurninNeeded()) output(" <b>where Kara is hiding</b>");
 	output(".");
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
-	}
 	return false;
 }
 public function backAlleyBonus():Boolean
 {
+	if(sluttyMcSlutOralBonus()) return true;
 	if(karaQuestTurninNeeded()) 
 	{
 		meetUpWithKaraInTheBackAlley();
 		return true;
 	}
 	else output(" Not much to see here.");
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
-	}
 	return false;
 }
 
@@ -200,37 +183,37 @@ public function approachAntrias():void
 	else
 	{
 		output("<i>“Ho there, what can I do for you?”</i> the man asks, sitting up straight as you approach. <i>“Comm arrays are coming online in places we can get you, so where do you want to go, friend? <b>Only 150 credits a trip!</b>”</i>");
-		//{Destination -- 150 Credits}
+		// Destination -- 150 Credits
 		myrellionTaxiMenu();
 	}
 }
 public function myrellionTaxiMenu():void
 {
 	clearMenu();
-	if(currentLocation == "610") addDisabledButton(0,"ScoutAuth.","Scout Authority","You're already at the scout authority!");
+	if(currentLocation == "610") addDisabledButton(0,"ScoutAuth.","Scout Authority","You’re already at the scout authority!");
 	else
 	{
 		if(pc.credits >= 150) addButton(0,"ScoutAuth.",takeATransPortMyrellion,"610","Scout Authority","Spend 150 credits to go back to the scout authority in the DMZ.");
-		else addDisabledButton(0,"ScoutAuth.","Scout Authority","You can't afford the taxi fee.");
+		else addDisabledButton(0,"ScoutAuth.","Scout Authority","You can’t afford the taxi fee.");
 	}
-	if(currentLocation == "1L18") addDisabledButton(1,"NoMyr'sLand","No Myr's Land","You're already at that taxi stop.");
+	if(currentLocation == "1L18") addDisabledButton(1,"NoMyr’sLand","No Myr’s Land","You’re already at that taxi stop.");
 	else
 	{
-		if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined) addDisabledButton(1,"NoMyr'sLand","No Myr's Land","You haven't unlocked the comm array in no myr's land yet.");
+		if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined) addDisabledButton(1,"NoMyr’sLand","No Myr’s Land","You haven’t unlocked the comm array in no myr’s land yet.");
 		else
 		{
-			if(pc.credits >= 150) addButton(1,"NoMyr'sLand",takeATransPortMyrellion,"1L18","No Myr's Land","Spend 150 credits to go to no myr's land.");
-			else addDisabledButton(1,"NoMyr'sLand","No Myr's Land","You can't afford the taxi fee.");
+			if(pc.credits >= 150) addButton(1,"NoMyr’sLand",takeATransPortMyrellion,"1L18","No Myr’s Land","Spend 150 credits to go to no myr’s land.");
+			else addDisabledButton(1,"NoMyr’sLand","No Myr’s Land","You can’t afford the taxi fee.");
 		}
 	}
-	if(currentLocation == "2I7") addDisabledButton(2,"Deep Caves","Deep Caves","You're already at the deep caves taxi beacon!");
+	if(currentLocation == "2I7") addDisabledButton(2,"Deep Caves","Deep Caves","You’re already at the deep caves taxi beacon!");
 	else
 	{
-		if(flags["DEEP_CAVES_TAXI_UNLOCKED"] == undefined) addDisabledButton(2,"Deep Caves","Deep Caves","You haven't unlocked the comm array in the deep caves yet.");
+		if(flags["DEEP_CAVES_TAXI_UNLOCKED"] == undefined) addDisabledButton(2,"Deep Caves","Deep Caves","You haven’t unlocked the comm array in the deep caves yet.");
 		else
 		{
 			if(pc.credits >= 150) addButton(2,"Deep Caves",takeATransPortMyrellion,"2I7","Deep Caves","Spend 150 credits to go to the deep caves.");
-			else addDisabledButton(2,"Deep Caves","Deep Caves","You can't afford the taxi fee.");
+			else addDisabledButton(2,"Deep Caves","Deep Caves","You can’t afford the taxi fee.");
 		}
 	}
 	addButton(14,"Leave",mainGameMenu);
@@ -256,13 +239,13 @@ public function takeATransPortMyrellion(arg:String = ""):void
 	//Deep caves -> scout authority
 	else if(currentLocation == "2I7" && arg == "610")
 	{
-		output("You send a databurst to the local Scout Authority base, requesting a shuttle pickup. It only takes a few minutes for the shuttle to arrive, slipping precariously through the crack in the cavern ceiling and puttering down to your level. The door pops open and the robot driver inside beckons you in; moments later you're racing through the desert skyline over Myrellion, headed back to the DMZ.\n\nYou're dropped off just behind the Scout office, and make your way inside.");
+		output("You send a databurst to the local Scout Authority base, requesting a shuttle pickup. It only takes a few minutes for the shuttle to arrive, slipping precariously through the crack in the cavern ceiling and puttering down to your level. The door pops open and the robot driver inside beckons you in; moments later you’re racing through the desert skyline over Myrellion, headed back to the DMZ.\n\nYou’re dropped off just behind the Scout office, and make your way inside.");
 	}
 	//Anything else
 	else
 	{
 		output("You send a databurst to the Scout Authority, requesting transit. You receive what amounts to a Morse code affirmation over the radio in return, and spend the next few minutes waiting for your ride.");
-		output("\n\nThe robot-driven shuttle dives down through the crack in the roof quickly enough, parking just outside with open doors. You hop aboard and zoom off to your destination. If only it didn't cost you 150 credits for the luxury of it all.");
+		output("\n\nThe robot-driven shuttle dives down through the crack in the roof quickly enough, parking just outside with open doors. You hop aboard and zoom off to your destination. If only it didn’t cost you 150 credits for the luxury of it all.");
 	}
 	pc.credits -= 150;
 	currentLocation = arg;
@@ -278,20 +261,20 @@ public function noAntsLandBeaconBonus():Boolean
 {
 	author("Savin");
 	//Room Descript
-	output("What could have been a small military bunker sits here, tucked away almost imperceptibly against the far wall of the cavern. The only reason you'd notice it at all is the huge tear in the earth overhead, letting in beams of sunlight which reveal the pillbox's firing port, now devoid of armament. There's no indication of who built it or why its been abandoned, but a quick look inside reveals a beat up old radio sitting against a back wall, hooked up to several wires that lead all the way up to the surface.");
+	output("What could have been a small military bunker sits here, tucked away almost imperceptibly against the far wall of the cavern. The only reason you’d notice it at all is the huge tear in the earth overhead, letting in beams of sunlight which reveal the pillbox’s firing port, now devoid of armament. There’s no indication of who built it or why its been abandoned, but a quick look inside reveals a beat up old radio sitting against a back wall, hooked up to several wires that lead all the way up to the surface.");
 	if(flags["NO_ANTS_LAND_TAXI_UNLOCKED"] == undefined)
 	{
-		output(" You might be able to use your Codex to tune it into the Scout's comm network and set up a taxi beacon here.");
+		output(" You might be able to use your Codex to tune it into the Scout’s comm network and set up a taxi beacon here.");
 		addButton(0,"Fix Radio",repairRadio);
 	}
 	else 
 	{
 		output(" The radio is currently beeping rhythmically, sending coordinates to and fro the Scout base at the DMZ.");
-		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you'll pay 150 credits for the convenience.");
+		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you’ll pay 150 credits for the convenience.");
 	}
-	if(flags["LOOTED_MYR_RIFLE"] == undefined) addButton(1,"Search",searchDatBunker,undefined,"Search","Spend a little time scavenging. Maybe there's something worthwhile here?");
+	if(flags["LOOTED_MYR_RIFLE"] == undefined) addButton(1,"Search",searchDatBunker,undefined,"Search","Spend a little time scavenging. Maybe there’s something worthwhile here?");
 	else if(flags["LOOTED_MYR_RIFLE"] == 0) addButton(1,"Rifle",searchDatBunker,undefined,"Rifle","Take the old rifle.");
-	else addDisabledButton(1,"Search","Search","You've already searched this location.");
+	else addDisabledButton(1,"Search","Search","You’ve already searched this location.");
 	//[Repair Radio] [Search]
 	return false;
 }
@@ -302,7 +285,7 @@ public function repairRadio():void
 	clearOutput();
 	author("Savin");
 	showName("\nTINKERING");
-	output("You do a little basic techno-wizardry: using your Codex to look up the Scout Authority's emergency radio frequency, tuning the radio to it, and sending a databurst from your Codex to the computer at the DMZ. You should be able to bring in a taxi drone now - assuming somebody at the Scouts knows how to read morse code in this day and age.");
+	output("You do a little basic techno-wizardry: using your Codex to look up the Scout Authority’s emergency radio frequency, tuning the radio to it, and sending a databurst from your Codex to the computer at the DMZ. You should be able to bring in a taxi drone now - assuming somebody at the Scouts knows how to read morse code in this day and age.");
 	processTime(3);
 	flags["NO_ANTS_LAND_TAXI_UNLOCKED"] = 1;
 	clearMenu();
@@ -327,7 +310,7 @@ public function searchDatBunker():void
 	{
 		author("Savin");
 		showName("\nSEARCHING...");
-		output("You spend a few minutes poking around in the old bunker, looking for anything salvageable. The place is an absolute wreck, and the closer you look, the more you realize why: there are scorch marks all along the entrance chambers, and several bullet holes in the concrete. This place has seen its share of action, and you'd imagine some of that involved a flamethrower. You do find one piece of equipment still intact, though: buried underneath a bit of collapsed roof, you're able to dig out a beat up old rifle. Looks like it's been sat here for months if not years, but with a little cleaning, it might still work.\n\n");
+		output("You spend a few minutes poking around in the old bunker, looking for anything salvageable. The place is an absolute wreck, and the closer you look, the more you realize why: there are scorch marks all along the entrance chambers, and several bullet holes in the concrete. This place has seen its share of action, and you’d imagine some of that involved a flamethrower. You do find one piece of equipment still intact, though: buried underneath a bit of collapsed roof, you’re able to dig out a beat up old rifle. Looks like it’s been sat here for months if not years, but with a little cleaning, it might still work.\n\n");
 		processTime(18);
 	}
 	flags["LOOTED_MYR_RIFLE"] = 1;
@@ -337,7 +320,7 @@ public function searchDatBunker():void
 }
 public function searchBunkerRifleCheck():void
 {
-	if(pc.rangedWeapon is MyrRifle || pc.hasItemByType(MyrRifle))
+	if(pc.rangedWeapon is MyrRifle || pc.hasItemByClass(MyrRifle))
 	{
 		mainGameMenu();
 		return;
@@ -369,8 +352,8 @@ public function myrellionUndergroundCrashSiteBonus():Boolean
 	}
 	else 
 	{
-		output(" The beacon is beeping softly, ready to be used to send a message to the Scouts' taxi service.");
-		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you'll pay 150 credits for the convenience.");
+		output(" The beacon is beeping softly, ready to be used to send a message to the Scouts’ taxi service.");
+		addButton(0,"Taxi",callATaxiYeScrub,undefined,"Taxi","Call a taxi, though you’ll pay 150 credits for the convenience.");
 	}
 	return false;
 }
@@ -400,7 +383,7 @@ public function kressiaGatesBonus():Boolean
 	//first time:
 	if(flags["LIEVE_INVITE"] == undefined)
 	{
-		output("\n\nAs you're passing by, a young woman with short, almost punkish purple hair pokes her head out of firing port. \"<i>Hey you!</i>\" she calls, \"<i>Come talk to me if you're going out there. You don't want to be heading into the trenches blind.</i>\"");
+		output("\n\nAs you’re passing by, a young woman with short, almost punkish purple hair pokes her head out of firing port. <i>“Hey you!”</i> she calls, <i>“Come talk to me if you’re going out there. You don’t want to be heading into the trenches blind.”</i>");
 		output("\n\nBefore you can answer, she pops back into the bunker, pulled in by a pair of gold-chitined hands. Giggles echo out through the port after her.");
 		flags["LIEVE_INVITE"] = 1;
 	}
@@ -409,7 +392,7 @@ public function kressiaGatesBonus():Boolean
 }
 public function n20StreetBonusFunc():Boolean
 {
-	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" You'd be tempted to offer to help if you had any idea what the hell that behemoth even is.");
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" You’d be tempted to offer to help if you had any idea what the hell that behemoth even is.");
 	return false;
 }
 
@@ -428,18 +411,14 @@ public function myrellionSecurityCheckpointEvents():Boolean
 
 public function DMZKressiaAirstrip():Boolean
 {
+	if(sluttyMcSlutOralBonus()) return true;
 	if(!pc.hasKeyItem("Kressia Pass")) {
-		output("\n\nYou'll need clearance to visit Kressia before you can depart. You should check with the red myr diplomat on station.")
+		output("\n\nYou’ll need clearance to visit Kressia before you can depart. You should check with the red myr diplomat on station.")
 	}
 	else
 	{
-		output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red's cities.");
+		output("\n\nA red myr trooper checks your papers and identification again before waving you through the checkpoint and telling you to hurry aboard if you want to go to Kressia, the closest of the Red’s cities.");
 		addButton(0,"Enter Plane",aeroplaneFlightShit,true,"Enter Plane","Hop on a plane for a quick trip to Kressia.");
-	}
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
 	}
 	return false;
 }
@@ -453,13 +432,13 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 		output("The plane ride is short, but bumpy. You");
 		if(flags["RODE_AIRPLANE"] == undefined)
 		{
-			output("'ve never ridden on an old-school airplane before");
+			output("’ve never ridden on an old-school airplane before");
 			flags["RODE_AIRPLANE"] = 1;
 		}
-		else output("'ll never get used to these old-school airplanes");
+		else output("’ll never get used to these old-school airplanes");
 		output(". The plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.");
 		output("\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable...");
-		output("\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
+		output("\n\nIt’s a blessed relief when the plane lands, even if you’re nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane’s crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
 		currentLocation = "800";
 		generateMapForLocation(currentLocation);
 	}
@@ -468,7 +447,7 @@ public function aeroplaneFlightShit(kressia:Boolean = true):void
 	//Add [To DMZ] to airfield
 	else
 	{
-		output("You hop onto a diplomatically-marked plane idling on the runway, bound for the Demilitarized Zone deep in Republic territory. It's only a few minutes of waiting before the captain arrives and the rest of the seats fill up with red myr troops and other offworlders heading back to their ships. The plane takes off punctually, sending you hurtling through the sky towards your destination.\n\nThe plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable....\n\nIt's a blessed relief when the plane lands, even if you're nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane's crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
+		output("You hop onto a diplomatically-marked plane idling on the runway, bound for the Demilitarized Zone deep in Republic territory. It’s only a few minutes of waiting before the captain arrives and the rest of the seats fill up with red myr troops and other offworlders heading back to their ships. The plane takes off punctually, sending you hurtling through the sky towards your destination.\n\nThe plane rocks and shudders seemingly at random, making you and every ant-girl aboard sway uneasily. Engines roar deafeningly outside, and your [pc.ears] keep popping with the random changes in pressure. A couple of times, other passengers get visibly ill, and go for small paper bags tucked in the seats ahead of them.\n\nYou mumble a curse for the red myr not having a spaceport of their own and put a hand to your own stomach, trying not to puke too. Miserable things, these old planes. Absolutely miserable....\n\nIt’s a blessed relief when the plane lands, even if you’re nearly certain the bucket of bolts with rattle itself apart when it skids down the runway. But finally, the ride comes to an end and the plane’s crew chief kicks the ramp down, letting you and the other passengers shuffle off.");
 		currentLocation = "612";
 		generateMapForLocation(currentLocation);
 	}
@@ -481,7 +460,7 @@ public function kressiaGateBonus():Boolean
 {
 	if (!pc.hasKeyItem("Kressia Pass"))
 	{
-		output("\n\nYou're forced to wait while they check your clearance. When it comes up negative, you're ordered to walk back into the caves or into a hail of bullets. You'll take the caves.");
+		output("\n\nYou’re forced to wait while they check your clearance. When it comes up negative, you’re ordered to walk back into the caves or into a hail of bullets. You’ll take the caves.");
 		processTime(2);
 		clearMenu();
 		addButton(11,"South",move,"1H8");
@@ -489,18 +468,14 @@ public function kressiaGateBonus():Boolean
 	}
 	else
 	{
-		output("\n\nYou're forced to wait while they check your clearance. They wave you through after a minute or two.");
+		output("\n\nYou’re forced to wait while they check your clearance. They wave you through after a minute or two.");
 		processTime(2);
 	}
 	return false;
 }
 public function kressiaBasicBonusBitches():Boolean
 {
-	if(pc.hasStatusEffect("Myr Venom Withdrawal") && rand(10) == 0)
-	{
-		sluttyMcSlutOral();
-		return true;
-	}
+	if(sluttyMcSlutOralBonus()) return true;
 	return false;
 }
 
@@ -544,7 +519,7 @@ public function northGildenmereCheckpoint():Boolean
 	if(!pc.hasKeyItem("Gildenmere Pass"))
 	{
 		showBust("MYR_GOLD_GUARD","MYR_GOLD_GUARD");
-		output("\n\nA group of golden soldiers approaches you here, checking you for the paperwork that would allow one free roam of this part of Gildenmere. When you don't have it, they show you the door. Looks like you'll have to go walk through the caves of no ant's land.");
+		output("\n\nA group of golden soldiers approaches you here, checking you for the paperwork that would allow one free roam of this part of Gildenmere. When you don’t have it, they show you the door. Looks like you’ll have to go walk through the caves of no ant’s land.");
 		processTime(2);
 		clearMenu();
 		addButton(6,"North",move,"1J34");
@@ -641,6 +616,7 @@ public function noManzLandBonus():Boolean
 //==========================
 public function gildenmereStreetBonus():Boolean
 {
+	if(orangeMyrSightingBonus()) return true;
 	if(currentLocation == "717") genesModsExteriorRoomDecorator();
 	if(flags["IRELLIA_QUEST_STATUS"] == 1 && (rand(35) == 0 || debug))
 	{
@@ -649,7 +625,7 @@ public function gildenmereStreetBonus():Boolean
 	}
 	if(pc.hasCock())
 	{
-		if((flags["LAST_ANT_ORGY"] == undefined && rand(50) == 0) || (flags["LAST_ANT_ORGY"] != undefined && pc.isCrotchExposed() && rand(20) == 0 && ((flags["ANT_ORGY_TIME"] + 1440) <= GetGameTimestamp())))
+		if((flags["LAST_ANT_ORGY"] == undefined && rand(50) == 0) || (flags["LAST_ANT_ORGY"] != undefined && pc.isCrotchVisible() && rand(20) == 0 && ((flags["ANT_ORGY_TIME"] + 1440) <= GetGameTimestamp())))
 		{
 			publicUseForDickedPCsInGildenmere();
 			return true;
@@ -740,7 +716,7 @@ public function pillarsBonusFunc():Boolean
 }
 public function deepCavesEntranceBonus():Boolean
 {
-	if(!reclaimedProbeMyrellion()) output(" Something tells you Dad's probe is down there somewhere...");
+	if(!reclaimedProbeMyrellion()) output(" Something tells you Dad’s probe is down there somewhere...");
 	output("\n\nTo the south, you can see a glowing lake, illuminated by luminescent fungus and surrounded by pillars of stone that guard a passage eastward, back to the myrmedion tunnel network.");
 	addButton(7,"Descend",deepCavesDescend,undefined,"Descend","Climbing down will take at least an hour and wear you out a good bit. Who knows what terrors lie down there.");
 	return false;
@@ -758,7 +734,7 @@ public function caveBottomEntranceBonus():Boolean
 {
 	if (flags["KQ2_MYRELLION_STATE"] == 2)
 	{
-		output(" There's a hastily painted radiation symbol to one side of the cave here; a universal warning to any who might venture through these parts that it'd probably be prudent <i>not</i> to ascend to the upper levels of the cave system.");
+		output(" There’s a hastily painted radiation symbol to one side of the cave here; a universal warning to any who might venture through these parts that it’d probably be prudent <i>not</i> to ascend to the upper levels of the cave system.");
 		addDisabledButton(5,"Ascend");
 		return false;
 	}
@@ -783,11 +759,11 @@ public function deepCavesDescend():void
 	{
 		showName("CLIMBING\nDOWN");
 		//Pass 1 hour. Drain 50 Energy.
-		var bHasKit:Boolean = pc.hasItemByType(ClimbingKit);
+		var bHasKit:Boolean = pc.hasItemByClass(ClimbingKit);
 		
 		output("You grab some of the ropes hanging off the cliff face and test their strength - they seem solid enough to hold your weight");
 		if(pc.isGoo() || pc.isTaur() || pc.isNaga() || pc.isDrider()) output(", at least if you use several of them together");
-		output(". Once you've secured yourself, you hop off the cliff's edge and start to rappel down in the chasm below.");
+		output(". Once you’ve secured yourself, you hop off the cliff’s edge and start to rappel down in the chasm below.");
 		
 		if (!bHasKit)
 		{
@@ -817,18 +793,18 @@ public function ascendFromDeepCaves():void
 		showName("CLIMBING\nUP");
 		//Pass 90 minutes. Drain 50 Energy. For the lulz, could make ton-weight centaurs unable to climb back up. 
 		
-		var bHasKit:Boolean = pc.hasItemByType(ClimbingKit);
+		var bHasKit:Boolean = pc.hasItemByClass(ClimbingKit);
 		
 		if (!bHasKit)
 		{
-			output("You grab the ropes dangling from above and begin the arduous task of hauling yourself back up the chasm, towards the myrmedion caves. It takes ages to climb back up what feels like hundreds or thousands of feet, scrambling up the cliffside up you finally see the dim light of the glowing fungus native to the myrmedion tunnels. When you haul yourself up onto the cliff's top, you end up collapsing in a panting, gasping heap, desperately trying to catch your breath. There's got to be a better way to get out of there...");
+			output("You grab the ropes dangling from above and begin the arduous task of hauling yourself back up the chasm, towards the myrmedion caves. It takes ages to climb back up what feels like hundreds or thousands of feet, scrambling up the cliffside up you finally see the dim light of the glowing fungus native to the myrmedion tunnels. When you haul yourself up onto the cliff’s top, you end up collapsing in a panting, gasping heap, desperately trying to catch your breath. There’s got to be a better way to get out of there...");
 			pc.energy(-50);
 			processTime(91);
 			StatTracking.track("movement/time travelled", 91);
 		}
 		else
 		{
-			output("You hook your high-tech climbing gear up to the rope and begin the task of hauling yourself back up the chasm, towards the myrmedion caves. The gadgets make the task relatively easy and you find yourself crawling over the edge of the cliffside before you know what's going on.\n\nYou crest the summit with ease and pack up your gear.\n\nNot bad.");
+			output("You hook your high-tech climbing gear up to the rope and begin the task of hauling yourself back up the chasm, towards the myrmedion caves. The gadgets make the task relatively easy and you find yourself crawling over the edge of the cliffside before you know what’s going on.\n\nYou crest the summit with ease and pack up your gear.\n\nNot bad.");
 			processTime(20);
 			StatTracking.track("movement/time travelled", 20);
 		}
@@ -836,7 +812,7 @@ public function ascendFromDeepCaves():void
 	else
 	{
 		showName("FLYING\nUP");
-		output("Rather than climbing up the ropes ahead like some kind of wingless peasant, you spread your [pc.wings] and take flight, soaring up the cliff face in all your inhuman majesty. The ascent takes what seems like ages, minutes and minutes spent in darkness and silence, barely able to see the ropes and rocks mere feet from your face.\n\nEventually, you arrive at the top of the chasm and land, stopping to catch your breath for a few long minutes. Whew, going up's certainly a lot more work than going down...");
+		output("Rather than climbing up the ropes ahead like some kind of wingless peasant, you spread your [pc.wings] and take flight, soaring up the cliff face in all your inhuman majesty. The ascent takes what seems like ages, minutes and minutes spent in darkness and silence, barely able to see the ropes and rocks mere feet from your face.\n\nEventually, you arrive at the top of the chasm and land, stopping to catch your breath for a few long minutes. Whew, going up’s certainly a lot more work than going down...");
 		pc.energy(-25);
 		processTime(20);
 		StatTracking.track("movement/time travelled", 20);
@@ -849,15 +825,15 @@ public function ascendFromDeepCaves():void
 
 public function k13Bonus():Boolean
 {
-	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody's painted a sign on the wall, near the tunnel going westward reading ");
-	if(flags["KILLED_TAIVRA"] == undefined) output("\"Long live Queen Taivra!\"");
-	else output("\"Down with Queen Taivra!\"");
+	output("You stand in a wide, largely open cavern chamber. In the center of the chamber is a huge stone pillar, stretching up from floor to ceiling, and covered in cave drawings and softly glowing fungus. Somebody’s painted a sign on the wall, near the tunnel going westward reading ");
+	if(flags["KILLED_TAIVRA"] == undefined) output("“Long live Queen Taivra!”");
+	else output("“Down with Queen Taivra!”");
 	return DeepCavesBonus();
 }
 
 public function queensRoadTradingPost():Boolean
 {
-	output("You find yourself walking among several humanoids, peacefully talking and trading under the glowing light of fungal lamps - a welcome sight against the dark, hostile caves you've traveled through until now. You see around you several myr of both colors, wearing tattered remains of uniforms or rough clothes that look stitched together from scraps; several ");
+	output("You find yourself walking among several humanoids, peacefully talking and trading under the glowing light of fungal lamps - a welcome sight against the dark, hostile caves you’ve traveled through until now. You see around you several myr of both colors, wearing tattered remains of uniforms or rough clothes that look stitched together from scraps; several ");
 	if(CodexManager.entryUnlocked("Nyrea")) output("nyrea");
 	else output("chitinous women with spiky hair and bulging crotch-plates");
 	output(" are among the crowd, along with ");
@@ -1395,3 +1371,191 @@ public function antOrgyEnding(voluntary:Boolean):void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+// Dick Signing Event
+// This event only occurs after the PC has defeated Queen Taivra, and the probe collected from the Deep Caves of Myrellion. It can only occur 3 to 6 days after she has been defeated (in any way) and the news has spread to the Myr, then to the surface. Maybe this should be locked behind the Silly Mode?
+// Event occurs on a random tile in the DMZ, at any random time during the day.
+public function dmzFanDickSigningBonus():Boolean
+{
+	if
+	(	silly
+	&&	flags["DMZ_DICK_SIGNING"] == undefined
+	&&	nyreaDungeonFinished()
+	&&	(GetGameTimestamp() - flags["BEAT_TAIVRA_TIMESTAMP"]) >= (5 * 24 * 60)
+	&&	( hours > 6 && hours <= 18 )
+	&&	rand(5) == 0
+	) {
+		dmzFanDickSigning();
+		return true;
+	}
+	return false;
+}
+public function dmzFanDickSigning(response:String = "intro"):void
+{
+	clearOutput();
+	// Up close you can see that the uniform she wears is actually a UGC uniform, but something that a regular spacer or cargo hauler would wear.
+	// Short cropped blonde hair, a little under six feet tall, with brown eyes, and a slightly tan complexion.
+	// Penis: it is a good ten inches long, and two inches wide.
+	showBust("STEELE_FANGIRL");
+	showName("EXCITED\nFANGIRL");
+	author("RanmaChan");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "intro":
+			output("It is just another normal day on Myrellion, here in the DMZ. If you can call being on a planet of bug people paused on the brink of annihilating themselves with primitive nuclear weapons normal. Walking through the DMZ you experience the familiar sights and sounds of ships taking off and landing, spacers going about their business, and the occasional bouts of shouting coming from the direction of the embassies. It was only after walking another couple steps that you realize it: someone is calling your name; but their voice is unfamiliar.");
+			output("\n\nTurning to look for the source, you spot a young woman jogging towards you and waving her arms; her breasts bouncing madly in her uniform and straining the fabric. You stop walking, and let her continue towards you.");
+			output("\n\n<i>“Hey there, you...”</i> She pauses for a moment to catch her breath, and points at you. <i>“You’re Steele right? [pc.name] Steele?”</i> You say to her that yes, you are indeed [pc.name] Steele. She suddenly starts jumping up and down, a smile instantly growing on her face. <i>“Oh my gosh, oh my gosh! I can’t believe I found <i>the</i> [pc.name] Steele. My friends are going to all freak out!”</i>");
+			output("\n\nWhile she is freaking out, you take the time to look her over. Up close you can see that the uniform she wears is actually a UGC uniform, but something that a regular spacer or cargo hauler would wear. She probably works aboard a supply ship of some sort, you see them all the time in the DMZ.");
+			output("\n\nOther than that though she doesn’t really look remarkable or have any distinguishing features. Short cropped blonde hair, a little under six feet tall, with brown eyes, and a slightly tan complexion. You have to stop looking at her now, and figure out why she is still making all that noise.");
+			output("\n\nYou politely ask her to calm down, and then inquire as to what she wants. Surely she must have a reason for running across the tarmac after you like a crazy person?");
+			output("\n\nHopefully she isn’t just a crazy person.");
+			output("\n\nShe answers. <i>“Well, I wanted to meet you! You are pretty famous after all. An heir to a fortune, traveling to dangerous places and taking on everything the galaxy has to throw at you! I hear stories about you all the time! My friends and I want to be like you soooo badly!”</i> Oh, interesting. Intergalactic fame might be catching up with you.");
+			output("\n\n<i>“Oh my gosh,”</i> she says, a worried look suddenly crossing her face. <i>“What if they don’t believe me? They will never believe that I met <i>the</i> [pc.name] Steele! My friends will think I am a big fat liar.”</i> After she says this her whole body seems to deflate, even her massive boobs seeming to sag a little. Then, almost as soon as she deflated, she bounces back up, now with a gleam in her eye. <i>“I know, I can get proof, then they would have to believe me!”</i>");
+			output("\n\nYou ask her, how does she want to get proof? A picture maybe?");
+			output("\n\n<i>“No!”</i> she responds. <i>“Something even better! Can you sign my...”</i> As she says this her hands start trailing down to her chest. Oh man, she wants you to sign her boobs!");
+			output("\n\n<i>“Dick?”</i>");
+			output("\n\nPardon?");
+			output("\n\n<i>“Can you sign my dick?”</i> O-wait-what? Her hands continue down past her chest and to the line of her uniform pants. There at her crotch you can see it, something really big, starting to get <i>really</i> hard. <i>“Please? It would be really great if you did, I could show it to all of my friends, and they would believe me for sure!”</i>");
+			
+			processTime(7);
+			
+			if(pc.personality < 90)
+			{
+				// pc.personality = Kind (If Kind is closer to 0 on the spectrum of 1 to 100, this is limited to 10 and lower.)
+				// The PC is given no option to decline if they are at 10 or lower on the personality spectrum, they are too nice to crush this girl’s dream, and ruin meeting their hero. See cock signing below.
+				if(pc.personality <= 10) output("\n\nWell, of course you can sign it for her! It’s the least you can do for a fan! Then it hits you, you have a fan! This is shaping up to be a pretty good day.");
+				// pc.personality = Mischievous (This will be the most common option, as players with a personality from 11 to 89 on the spectrum will receive this.)
+				else output("\n\nYou guess you can sign it for her. What does it matter what body part you sign, so long as you do the signing? Sure, all of the stories are of famous people signing beautiful women’s breasts, but, this is the next best thing right? Then again, you could ask her about her breasts? Or, you could just say no, but it will probably crush her.");
+				
+				// The PC is given three menu options, Yes, Boobs Please, and No, with the No option later receiving another menu with a sub-option:
+				// Yes - The PC agrees to sign her cock. Cock Signing. (This moves them closer to Kind.)
+				// No - The PC declines to sign her cock, or imposes conditions. Cock Block/Some Conditions May Apply. (This moves them closer to Hard.)
+				// Boobs Please? - The PC asks to sign her chest instead. (No movement on the personality spectrum.)
+				addButton(0, "Yes", dmzFanDickSigning, "cock sign", "Cock Signing", "Agree to sign her cock.");
+				if(pc.personality > 10) addButton(1, "No", dmzFanDickSigning, "cock block", "Cock Block", "Refuse to sign her cock.");
+				else addDisabledButton(1, "No", "Cock Block", "Aw, you can’t possibly turn down a fan!");
+				addButton(2, "Boobs?", dmzFanDickSigning, "boobs sign", "Boobs Please?", "Agree to sign her boobs instead.");
+			}
+			else
+			{
+				// pc.personality = Hard (If Hard is closer to 100 on the spectrum of 1 to 100, this is limited to 90 and higher.)
+				// The PC is given no choices, they refuse to sign her dick if they are at 90 or higher on the personality spectrum. This results in Cock Block/Some Conditions May Apply.
+				// The PC is then given another menu, this time of two options rather than three. The first option is No, and leads to Cock Block. The second option is Make it Worth My While, and leads to Some Conditions May Apply.
+				output("\n\nWho ever heard of famous people signing dicks? No one! Plus, you don’t have time for something silly like this. Unless... Maybe you can make it worth your time?");
+				addButton(0, "No", dmzFanDickSigning, "cock block", "Cock Block", "Why would you give her what she wants?");
+				addButton(1, "Conditions...", dmzFanDickSigning, "conditions", "Some Conditions May Apply", "Yes, only if it is worth your time...");
+			}
+			break;
+		// If Boobs Please? - See paragraph immediately below.
+		case "boobs sign":
+			output("As she fishes out a black marker from somewhere you slyly slide in a comment about how much easier it will be for <i>everyone</i> to see that she met you, and that she got your signature, if she displays it proudly, front and center.");
+			output("\n\n<i>“Ohh, you’re right!”</i> She winks at you. <i>“That is why you’re the badass space hero, you’re brilliant!”</i>");
+			output("\n\nYes, yes you are.");
+			output("\n\nShe hands you the marker, and then lowers her top, popping her boobs out of her bra and exposing them to you.");
+			// If the PC has some score in exhibitionism they are fine, if not, add in:
+			if(pc.exhibitionism() < 33) output("\n\nThen it hits you. You realizes that you are doing this right in the middle of the DMZ, with a couple dozen pairs of eyes on you. You start to blush a little bit.");
+			// If the PC has some score in exhibitionism ignore the above, and continue:
+			output("\n\nWith her breasts exposed for the world to see, and with the air blowing against them, you can see her nipples start to harden. You decide that you ought to do this quickly, and sign your name. Stepping back to admire your work, she giggles in delight. <i>“Thank you so much! You don’t know how much this means to me, my friends are going to be soooo jealous!”</i>");
+			output("\n\nThen, with very little decorum, she pops them in and runs off, back towards the landing area. As she disappears into a hangar she gives you a little wave, and an air kiss.");
+			
+			processTime(3);
+			flags["DMZ_DICK_SIGNING"] = "tits";
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		// If Yes - See Cock Signing below.
+		// If the PC is Kind (10-), or said Yes, then they go to the Cock Signing immediately below: 
+		case "cock sign":
+			output("She fishes out a marker from somewhere and as soon as you take it she immediately starts to pull down her pants, exposing a pair of panties that are coming dangerously close to exploding. She is already rock hard and ready to go. Just from meeting you? How flattering. She pulls it out and holds it in her hands: it is a good ten inches long, and two inches wide. You should be able to sign your name right along the side of her shaft.");
+			output("\n\n<i>“Ok, I’m ready, let’s do this, I can’t wait!”</i> She starts to shake a little, causing her dick to wobble, even whilst gripped in her hands. You tell her to calm down, or else you won’t be able to sign it properly.");
+			if(pc.isBimbo() || pc.exhibitionism() >= 66) output(" If she keeps going like this she might accidently wank herself off and you may just get a cum facial, which wouldn’t be too bad. It would be really hard to sign her cock afterwards though.");
+			else output(" That and you don’t want her accidently wanking off and cumming into your face in the middle of the DMZ.");
+			output(" You get down on your knees.");
+			// If the PC has some score in exhibitionism they are fine, if not, add in:
+			if(pc.exhibitionism() < 33) output("\n\nThen it hits you. You realizes that you are doing this right in the middle of the DMZ, with a couple dozen pairs of eyes on you. You start to blush a little bit.");
+			// If the PC has some score in exhibitionism ignore the above, and continue:
+			output("\n\nSlowly and delicately you sign your name along the length of her shaking shaft, doing your best not to smudge it or make a mistake. After about a minute you pop back up and hand her the marker. All done. <i>“Oh my gosh, thank you thank you! You’re the greatest! You have no idea how much this means to me, and how jealous this is going to make my friends!”</i> You can only imagine.");
+			output("\n\nThen, with very little decorum she stuffs her dick back into her panties, and pulls her pants back up from around her legs. As she walks away from you and towards a nearby hangar, you can see she is having some difficulty, due to how hard she is. Just as she is about to disappear inside she gives you a little wave, an air kiss, and finally shouts to you: <i>“This is so great, I am </i>never<i> going to wash my dick again!”</i> Ew. Maybe she was a crazy person after all? Then again, it could just be using a figure of speech, right? Hopefully...");
+			
+			processTime(3);
+			pc.addNice(5);
+			flags["DMZ_DICK_SIGNING"] = "cock";
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		// If No - See Cock Block/Some Conditions May Apply below.
+		// If the PC is Hard (90+) or said No, then they go to the Cock Block/Conditions May Apply immediately below:
+		// If Cock Block:
+		case "cock block":
+			output("You decline, telling her that you aren’t really interested in having fans. You are on a mission, and you don’t have time for such things. Fame and fans will just slow you down. She hangs her head, and you can see her deflate again. This time you can see it in the bulge of her pants as well. <i>“Ok,”</i> she says. <i>“I, I guess I kind of understand. It’s just... Ok.”</i> She slowly walks away from you, back towards a nearby hangar.");
+			output("\n\nShe stops, and turns around to face you again. <i>“I won’t give up though, rooting for you that is.”</i> She continues towards the hangar, walking backwards, but stops again to consider her words. <i>“You’re busy now, and on a mission, I get it. That is why you’re putting yourself in so much danger.”</i> She keeps walking backwards, towards the hangar. <i>“Well, I will keep cheering you on, and when you complete your mission, and we meet again, you can sign my cock then!”</i> She gives you a wink, and blows you a little air kiss before she finally disappears into the hangar.");
+			
+			processTime(2);
+			pc.addHard(5);
+			flags["DMZ_DICK_SIGNING"] = "none";
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		// Else add 500 credits to the PC: Some Conditions May Apply:
+		case "conditions":
+			output("You are about to decline, and tell her that you don’t have time for this, or fans in general, when inspiration strikes. Maybe she can make all of this worth your time? After all, time is money...");
+			output("\n\nExplaining to her that you are very busy, and that right now even as the two of you speak you are on a very important mission, her eyes start to widen. Both in awe, and in disappointment. She thinks she knows where this is headed, but you are in control. You turn away from her, and let her start to deflate a little bit, before you cast out the bait. After a couple of moments you turn back to her and tell her that if she hands over say, five hundred credits, you would be more than willing to accommodate her request for an autograph.");
+			output("\n\nMixed emotions flicker across her face. At first, hope that she will be able to get your autograph, then hesitation. Maybe she doesn’t have five hundred credits on her? Or maybe she can’t afford it, but eventually her face lights up again.");
+			output("\n\nShe quickly transfers five hundred credits to you, smiles, and fishes out a marker from somewhere. As soon as you take it she immediately starts to pull down her pants, exposing a pair of panties that are coming dangerously close to exploding. She is already rock hard and ready to go. Just from meeting you? How flattering. She pulls it out and holds it in her hands: it is a good ten inches long, and two inches wide. You should be able to sign your name right along the side of her shaft.");
+			output("\n\n<i>“Ok, I’m ready, let’s do it, this is going to be worth every credit!”</i> She starts to shake a little, causing her dick to wobble, even whilst gripped in her hands. You tell her to calm down, or else you won’t be able to sign it properly.");
+			if(pc.isBimbo() || pc.exhibitionism() >= 66) output(" If she keeps going like this she might accidently wank herself off and you may just get a cum facial, which wouldn’t be too bad. It would be really hard to sign her cock afterwards though.");
+			else output(" That and you don’t want her accidently wanking off and cumming into your face in the middle of the DMZ.");
+			output(" You get down on your knees.");
+			// If the PC has some score in exhibitionism they are fine, if not, add in:
+			if(pc.exhibitionism() < 33) output("\n\nThen it hits you. You realizes that you are doing this right in the middle of the DMZ, with a couple dozen pairs of eyes on you. You start to blush a little bit.");
+			// If the PC has some score in exhibitionism ignore the above, and continue:
+			output("\n\nSlowly and delicately you sign your name along the length of her shaking shaft, doing your best not to smudge it or make a mistake. After about a minute you pop back up and hand her the marker. All done. <i>“Oh my gosh, thank you thank you! You’re the greatest! You have no idea how much this means to me, and how jealous this is going to make my friends!”</i> You can only imagine.");
+			output("\n\nThen, with very little decorum she stuffs her dick back into her panties, and pulls her pants back up from around her legs. That was some easy money. As she walks away from you and towards a nearby hangar, you can see she is having some difficulty, due to how hard she is. Just as she is about to disappear inside she gives you a little wave, an air kiss, and finally shouts to you: <i>“This is so great, I am </i>never<i> going to wash my dick again!”</i> Ew. Maybe she was a crazy person after all? Then again, it could just be using a figure of speech, right? Hopefully...");
+			
+			processTime(4);
+			pc.credits += 500;
+			flags["DMZ_DICK_SIGNING"] = "dosh";
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
+// Orange Myr Sighting Event
+// Can only be found after the PC has completed the entire Myr Hybridity Quest, including giving the Orange Pill to the UGC Diplomat Juro. This event can only trigger after 7 to 14 days have passed of Juro telling the PC he would offer the transformative item.
+// Location, random Gildenmere tile. Time, anywhere between 12:00 - 4:00 in the afternoon.
+public function orangeMyrSightingBonus():Boolean
+{
+	if
+	(	flags["SEEN_ORANGE_MYR"] == undefined
+	&&	flags["MCALLISTER_MYR_HYBRIDITY"] == 4
+	&&	( hours >= 12 && hours <= 16 )
+	&&	( !pc.hasStatusEffect("Orange Myr Sighting Delay") && ((GetGameTimestamp() - flags["MCALLISTER_MYR_HYBRIDITY_START"]) >= (14 * 24 * 60)) )
+	) {
+		orangeMyrSighting();
+		return true;
+	}
+	return false;
+}
+public function orangeMyrSighting():void
+{
+	clearOutput();
+	showBust("ORANGE_MYR_GROUP");
+	showName("ORANGE\nMYR!");
+	author("RanmaChan");
+	clearMenu();
+	
+	output("Walking around Gildenmere you are surprised at what you see, a group of orange Myr! Sure, they are getting some odd looks from the golds around them, even a hostile glance every now and then, but they don’t seem to be paying any attention to it at all. In fact they are acting quite normally; walking, talking, looking into stores and window shopping like they were just having a regular day out on the town. Before the crowds overtake you, and the group turns the street corner, you even catch sight of what might be a modified human traveling with the group.");
+	if(pc.isNice()) output("\n\nHuh, who would have thought! It looks like Juro kept his promise. Maybe this will work after all?");
+	else if(pc.isMischievous()) output("\n\nHopefully things continue to go well for them, they looked happy. Maybe this will have a positive effect? You hope nothing bad happens to them.");
+	else output("\n\nYou really hope that this won’t turn out like Juro said. This may end up causing more harm than good, but it will be up to them and the examples they set.");
+	
+	processTime(3);
+	
+	flags["SEEN_ORANGE_MYR"] = 1;
+	
+	addButton(0, "Next", mainGameMenu);
+}
+

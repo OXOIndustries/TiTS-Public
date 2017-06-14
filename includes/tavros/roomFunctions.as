@@ -22,6 +22,16 @@ public function puntToShip():Boolean
 	addButton(0,"Next",mainGameMenu);
 	return true;
 }
+public function exitToShipLocation():Boolean
+{
+	rooms[currentLocation].planet = rooms[shipLocation].planet;
+	rooms[currentLocation].system = rooms[shipLocation].system;
+	if (currentLocation != shipLocation)
+	{
+		addButton(7, "Exit", move, (rooms[shipLocation].hasFlag(GLOBAL.NUDITY_ILLEGAL) ? "SHIP INTERIOR" : shipLocation));
+	}
+	return false;
+}
 
 public function liftMove(destination:String):void
 {
@@ -159,14 +169,24 @@ public function tavrosHangarStuff():Boolean
 	return false;
 }
 
-public function merchantThoroughfareBonus():void
+public function merchantThoroughfareBonus():Boolean
 {
+	if(currentLocation == "9015")
+	{
+		vendingMachineButton(0, "J'ejune");
+	}
+	if(currentLocation == "9017")
+	{
+		repeatGilBonus();
+	}
 	if(currentLocation == "9018")
 	{
 		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
+		if(gilPupperProccer()) return true;
 	}
 	else flags["NAV_DISABLED"] = undefined;
+	return false;
 }
 
 public function redlightNEBonus():void
@@ -181,6 +201,10 @@ public function redlightNEBonus():void
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	}
 	else output("To the east is the unmistakable white glare of Sentient Acquisitions.");
+}
+public function redlightSEBonus():void
+{
+	vendingMachineButton(0, "XXX");
 }
 
 public function anonsBarAddendums():Boolean {

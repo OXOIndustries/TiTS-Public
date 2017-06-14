@@ -126,9 +126,9 @@ public function giannaAvailableSilicone(arg:int = 0):Number
 //  ACTUAL CONTENT FUNCTIONS
 //================================
 
-public function giannaBonusShit():Boolean
+public function giannaBonusShit():void
 {
-	if(giannaAWOL()) return false;
+	if(giannaAWOL()) return;
 	
 	//Unmet blurb
 	if(flags["MET_GIANNA"] == undefined)
@@ -205,7 +205,6 @@ public function giannaBonusShit():Boolean
 	}
 	addButton(0,"Gianna",approachGianna,undefined,"Gianna","Approach the naked android.");
 	if(flags["MET_GIANNA"] == undefined) addButton(0,"Android",approachGianna,undefined,"Android","Approach the naked android.");
-	return false;
 }
 
 public function approachGianna(special:String = ""):void
@@ -1440,7 +1439,7 @@ public function giannaBodyModMenu(display:Boolean = true):void
 		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna’s [gianna.lips] will free up 2 units of silicone.");
 	}
 	
-	if(pc.hasItem(new Silicone(),1)) addButton(8,"GiveSilicone",giveGiannaSilicone,undefined,"GiveSilicone","Give Gianna a bag of silicone.");
+	if(pc.hasItemByClass(Silicone,1)) addButton(8,"GiveSilicone",giveGiannaSilicone,undefined,"GiveSilicone","Give Gianna a bag of silicone.");
 	else addDisabledButton(8,"GiveSilicone","GiveSilicone","You need to find a bag of silicone before you can give it to Gianna.");
 
 	if(!gianna.hasStatusEffect("Hose Plugged In")) addButton(14,"Back",approachGianna,"back");
@@ -2003,7 +2002,7 @@ public function giveGiannaSilicone():void
 	output("\n\nGianna pushes her prize against a port in the machinery on the wall. Shortly after, you hear the sound of liquid being sucked away, presumably to a holding tank somewhere. A mechanical click follows, and Gianna takes the empty canister to toss into a nearby disposal. <i>“Let’s get started.”</i>");
 	//Menu!
 	giannaAvailableSilicone(6);
-	pc.destroyItem(new Silicone(),1);
+	pc.destroyItemByClass(Silicone,1);
 	giannaBodyModMenu(false);
 }
 
@@ -3160,6 +3159,7 @@ public function suckGiannasRoboCockDuring69():void
 	output("\n\nShe holds the door for you once you gather your gear, and you walk back into the barn proper together. It swings closed, hiding the evidence of your tryst from casual inspection. Not that the locals would notice or care.");
 	processTime(10);
 	pc.orgasm();
+	pc.loadInMouth(chars["GIANNA"]);
 	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3245,6 +3245,7 @@ public function eatOutPussyOfRoboChicksDuring69():void
 	output("\n\nYou wipe the cherry-flavored evidence of Gianna’s lust from your [pc.face] and sit up with a sated smile. She’s smiling over at you and shaking her head, eminently pleased. The android helps you gather your things and holds the door for you with a sated smile.");
 	processTime(11);
 	pc.orgasm();
+	pc.girlCumInMouth(chars["GIANNA"]);
 	flags["GIANNA_FUCK_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3940,18 +3941,18 @@ public function giveGiannaSomethingCoolYouSlut():void
 	processTime(2);
 	//Menu of give things
 	clearMenu();
-	if(pc.hasItem(new AHCock())) addButton(0,"A.H.Cock",giveGiannaSomethingTransform,"hoss","Android Horse Cock","Give Gianna the android horse-cock you’ve been carrying around.");
+	if(pc.hasItemByClass(AHCock)) addButton(0,"A.H.Cock",giveGiannaSomethingTransform,"hoss","Android Horse Cock","Give Gianna the android horse-cock you’ve been carrying around.");
 	else addDisabledButton(0,"Locked","Locked","You’ve no idea what this could be.");
-	if(pc.hasItem(new ACock())) addButton(1,"A.Cock",giveGiannaSomethingTransform,"humancock","Android Cock","Give Gianna the android cock you’ve been carrying around.");
+	if(pc.hasItemByClass(ACock)) addButton(1,"A.Cock",giveGiannaSomethingTransform,"humancock","Android Cock","Give Gianna the android cock you’ve been carrying around.");
 	else addDisabledButton(1,"Locked","Locked","You’ve no idea what this could be.");
-	if(pc.hasItem(new ADCock())) addButton(2,"A.D.Cock",giveGiannaSomethingTransform,"dragon","Android Dragon Cock","Give Gianna the android dragon-cock you’ve been carrying around.");
+	if(pc.hasItemByClass(ADCock)) addButton(2,"A.D.Cock",giveGiannaSomethingTransform,"dragon","Android Dragon Cock","Give Gianna the android dragon-cock you’ve been carrying around.");
 	else addDisabledButton(2,"Locked","Locked","You’ve no idea what this could be.");
 	addButton(14,"Back",giannaMenu);
 }
 
 public function hasGiannaGift():Boolean
 {
-	if (pc.hasItem(new AHCock()) || pc.hasItem(new ACock()) || pc.hasItem(new ADCock())) return true;
+	if (pc.hasItemByClass(AHCock) || pc.hasItemByClass(ACock) || pc.hasItemByClass(ADCock)) return true;
 	return false;
 }
 
@@ -4083,7 +4084,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 		if(flags["GIANNA_HAS_HORSE_COCK"] == undefined)
 		{
 			flags["GIANNA_HAS_HORSE_COCK"] = 1;
-			pc.destroyItem(new AHCock());
+			pc.destroyItemByClass(AHCock);
 		}
 		gianna.createCock(14,1.3);
 		gianna.shiftCock(0,GLOBAL.TYPE_EQUINE);
@@ -4094,7 +4095,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 		if(flags["GIANNA_HAS_HUMAN_COCK"] == undefined)
 		{
 			flags["GIANNA_HAS_HUMAN_COCK"] = 1;
-			pc.destroyItem(new ACock());
+			pc.destroyItemByClass(ACock);
 		}
 		gianna.createCock(10,1.1);
 		gianna.cocks[0].cockColor = "pink";
@@ -4104,7 +4105,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 		if(flags["GIANNA_HAS_DRAGON_COCK"] == undefined)
 		{
 			flags["GIANNA_HAS_DRAGON_COCK"] = 1;
-			pc.destroyItem(new ADCock());
+			pc.destroyItemByClass(ADCock);
 		}
 		gianna.createCock(10,1.1);
 		gianna.shiftCock(0,GLOBAL.TYPE_DRACONIC);
@@ -4112,7 +4113,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 	}
 	if(arg == "clit")
 	{
-		
+		/* Nada */
 	}
 }
 
