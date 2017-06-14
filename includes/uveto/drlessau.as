@@ -74,24 +74,24 @@ public function drLessauShop():void
 {
 	if (flags["MET_CYNTHIA"] >= 2)
 	{
-		if (!chars["DRLESSAU"].hasItemByType(Holstaria)) chars["DRLESSAU"].inventory.push(new Holstaria());
+		if (!chars["DRLESSAU"].hasItemByClass(Holstaria)) chars["DRLESSAU"].inventory.push(new Holstaria());
 	}
-	else chars["DRLESSAU"].destroyItem(new Holstaria(), -1);
+	else chars["DRLESSAU"].destroyItemByClass(Holstaria, -1);
 	if (flags["MET_WALT"] >= 2)
 	{
-		if (!chars["DRLESSAU"].hasItemByType(Lupinol)) chars["DRLESSAU"].inventory.push(new Lupinol());
+		if (!chars["DRLESSAU"].hasItemByClass(Lupinol)) chars["DRLESSAU"].inventory.push(new Lupinol());
 	}
-	else chars["DRLESSAU"].destroyItem(new Lupinol(), -1);
+	else chars["DRLESSAU"].destroyItemByClass(Lupinol, -1);
 	if (flags["DECK13_COMPLETE"] == 1)
 	{
-		if(!chars["DRLESSAU"].hasItemByType(GrayMicrobots)) chars["DRLESSAU"].inventory.push(new GrayMicrobots());
+		if(!chars["DRLESSAU"].hasItemByClass(GrayMicrobots)) chars["DRLESSAU"].inventory.push(new GrayMicrobots());
 	}
-	else chars["DRLESSAU"].destroyItem(new GrayMicrobots(), -1);
+	else chars["DRLESSAU"].destroyItemByClass(GrayMicrobots, -1);
 	if (flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
 	{
-		if(!chars["DRLESSAU"].hasItemByType(OrangePill)) chars["DRLESSAU"].inventory.push(new OrangePill());
+		if(!chars["DRLESSAU"].hasItemByClass(OrangePill)) chars["DRLESSAU"].inventory.push(new OrangePill());
 	}
-	else chars["DRLESSAU"].destroyItem(new OrangePill(), -1);
+	else chars["DRLESSAU"].destroyItemByClass(OrangePill, -1);
 	
 	shopkeep = chars["DRLESSAU"];
 	buyItem();

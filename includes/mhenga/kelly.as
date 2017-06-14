@@ -173,14 +173,17 @@ public function kellysStoreSetup():void
 	{
 		chars["KELLY"].inventory.push(new Ovilium());
 	}
-	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined || flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined)
 	{
-		chars["KELLY"].inventory.push(new HoneySeed());
-	}
-	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
-	{
-		chars["KELLY"].inventory.push(new Honeydew());
-		chars["KELLY"].inventory.push(new Honeypot());
+		if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+		{
+			chars["KELLY"].inventory.push(new HoneySeed());
+		}
+		if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+		{
+			chars["KELLY"].inventory.push(new Honeydew());
+			chars["KELLY"].inventory.push(new Honeypot());
+		}
 	}
 	if(flags["SYNTHSAP_UNLOCKED"] != undefined)
 	{

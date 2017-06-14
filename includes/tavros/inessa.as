@@ -584,16 +584,16 @@ public function inessaBuyGo():void
 	//Have biowhip if gotten to Myrellion.
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(!chars["INESSA"].hasItem(new BioWhip())) chars["INESSA"].inventory.push(new BioWhip());
+		if(!chars["INESSA"].hasItemByClass(BioWhip)) chars["INESSA"].inventory.push(new BioWhip());
 	}
 	//Else no whip
-	else chars["INESSA"].destroyItem(new BioWhip());
+	else chars["INESSA"].destroyItemByClass(BioWhip);
 	
 	if(flags["MET_SERA"] != undefined)
 	{
-		if(!chars["INESSA"].hasItem(new LeatherLeash())) chars["INESSA"].inventory.push(new LeatherLeash());
+		if(!chars["INESSA"].hasItemByClass(LeatherLeash)) chars["INESSA"].inventory.push(new LeatherLeash());
 	}
-	else chars["INESSA"].destroyItem(new LeatherLeash());
+	else chars["INESSA"].destroyItemByClass(LeatherLeash);
 	
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
