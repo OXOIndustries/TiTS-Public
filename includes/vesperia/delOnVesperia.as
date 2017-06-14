@@ -13,13 +13,13 @@ public function showDelString(nude:Boolean = false):String
 	// Trap
 	if(MailManager.isEntryUnlocked("del_moved_light"))
 	{
-		return ("DELILAH_TRAP" + bust_Append);
+		return ("DELILAH_BOY" + bust_Append);
 	}
 	// Shemale
 	else if(MailManager.isEntryUnlocked("del_moved"))
 	{
 		if(del.hasCock(GLOBAL.TYPE_EQUINE)) return ("DELILAH_SHEMALE_HORSE" + bust_Append);
-		else return ("DELILAH_SHEMALE" + bust_Append);
+		return ("DELILAH_SHEMALE" + bust_Append);
 	}
 	// Default
 	else
