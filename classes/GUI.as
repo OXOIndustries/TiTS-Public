@@ -951,7 +951,9 @@
 		{
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "PrimaryOutput")
 			{
-				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+				var gmt:GameTextModule = _currentModule as GameTextModule;
+				gmt.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+				if (gmt.inputEnabled()) gmt.showInput();
 			}
 		}
 		
@@ -982,7 +984,9 @@
 		{
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
 			{
-				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
+				var gmt:GameTextModule = _currentModule as GameTextModule;
+				gmt.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
+				if (gmt.inputEnabled()) gmt.showInput();
 			}
 		}
 		
