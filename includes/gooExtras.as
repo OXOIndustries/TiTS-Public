@@ -2082,9 +2082,23 @@ public function gooBallsMenu():void
 		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don’t have any balls to shrink!");
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
+	if(pc.balls < 0 || pc.ballDiameter() < 0) addGhostButton(13, "Fix Balls", gooFixBalls, undefined, "Fix Balls", "Something is wrong here... maybe you should fix it?");
 	addGhostButton(14,"Back",gooCrotchCustomizer);
 }
 
+public function gooFixBalls():void
+{
+	clearOutput2();
+	
+	output2("You concentrate hard on some weird anomalies near your crotch. After it bubbles, a feeling of normalcy runs through you. Your crotch anatomy has been corrected!");
+	
+	pc.balls = 0;
+	pc.ballSizeRaw = 0;
+	if(pc.ballSize() < 0) pc.ballSizeMod = 0;
+	
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooBallsMenu);
+}
 public function gooSpecialSack(response:String = "none"):void
 {
 	clearOutput2();
