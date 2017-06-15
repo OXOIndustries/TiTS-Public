@@ -1141,7 +1141,10 @@
 			dataFile.children = cloneObject(ChildManager.getSaveObject());
 			
 			// Ship management stuff
-			dataFile.ships = cloneObject(kGAMECLASS.shipDb.getSaveObject());
+			CONFIG::debug
+			{
+				dataFile.ships = cloneObject(kGAMECLASS.shipDb.getSaveObject());
+			}
 		}
 		
 		/**
@@ -1380,11 +1383,19 @@
 				ChildManager.resetChildren();
 			}
 			
-			if (obj.ships != undefined)
+			CONFIG::debug
 			{
-				kGAMECLASS.shipDb.loadSaveObject(cloneObject(obj.ships));
+				if (obj.ships != undefined)
+				{
+					kGAMECLASS.shipDb.loadSaveObject(cloneObject(obj.ships));
+				}
+				else
+				{
+					kGAMECLASS.shipDb.NewGame();
+				}
 			}
-			else
+			
+			CONFIG::release
 			{
 				kGAMECLASS.shipDb.NewGame();
 			}
