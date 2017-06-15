@@ -2063,7 +2063,7 @@ public function gooBallsMenu():void
 	{
 		if(gooBiomass() >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
 		else addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don’t have the necessary biomass to expand your testicular endowments.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
-		if(pc.ballDiameter() > 1) addGhostButton(3,"Shrink Balls",nutShrinkGo,undefined,"Shrink Balls","Reduce the size of your testicular endowments significantly.");
+		if(pc.ballSizeRaw > 0.5) addGhostButton(3,"Shrink Balls",nutShrinkGo,undefined,"Shrink Balls","Reduce the size of your testicular endowments significantly.");
 		else addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You can’t get any smaller down there!");
 
 		if(pc.hasStatusEffect("Uniball")) addGhostButton(5,"Loosen Sack",tautSackToggle,undefined,"Loosen Sack","Let your nutsack hang a little lower and freer.");
@@ -2082,9 +2082,23 @@ public function gooBallsMenu():void
 		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don’t have any balls to shrink!");
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
+	if(isNaN(pc.ballSize()) || pc.balls < 0 || pc.ballDiameter() < 0) addGhostButton(13, "Fix Balls", gooFixBalls, undefined, "Fix Balls", "Something is wrong here... maybe you should fix it?");
 	addGhostButton(14,"Back",gooCrotchCustomizer);
 }
 
+public function gooFixBalls():void
+{
+	clearOutput2();
+	
+	output2("You concentrate hard on some weird anomalies near your crotch. After it bubbles, a feeling of normalcy runs through you. Your crotch anatomy has been corrected!");
+	
+	if(isNaN(pc.balls) || pc.balls < 0) pc.balls = 0;
+	if(isNaN(pc.ballSizeRaw) || pc.ballSize() < 0) pc.ballSizeRaw = 0;
+	if(isNaN(pc.ballSizeMod) || pc.ballSize() < 0) pc.ballSizeMod = 0;
+	
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooBallsMenu);
+}
 public function gooSpecialSack(response:String = "none"):void
 {
 	clearOutput2();
