@@ -47,7 +47,7 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 		var immobileParts:int = (bodyPart.length);
 		
 		// Hoverboard exception!
-		if(pc.hasItem(new Hoverboard())) immobileParts = 0;
+		if(pc.hasItemByClass(Hoverboard)) immobileParts = 0;
 		// Underwear exceptions!
 		if(pc.lowerUndergarment is HardlightAGJock)
 		{
@@ -112,7 +112,7 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 			msg += " make";
 			if(InCollection(bodyText, "gigantic gonad", "bloated belly")) msg += "s";
 			msg += " it impossible for you to move at all, you luckily have a remedy for that...";
-			if(pc.hasItem(new Hoverboard()))
+			if(pc.hasItemByClass(Hoverboard))
 			{
 				msg += " Pulling out your pink hoverboard, you carefully guide it under your";
 				if(bodyPart.length == 1)
@@ -206,7 +206,7 @@ public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 				pc.lust(5);
 			}
 			//hit person size
-			if(weightQ >= percentBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItem(new Hoverboard()))
+			if(weightQ >= percentBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItemByClass(Hoverboard))
 			{
 				AddLogEvent("You strain as hard as you can, but there’s just no helping it. You’re immobilized. Your", "passive", deltaT);
 				if(pc.balls == 1) ExtendLogEvent(" testicle is");

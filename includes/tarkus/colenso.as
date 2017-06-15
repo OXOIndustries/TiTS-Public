@@ -43,9 +43,9 @@ public function colensoBuyMenu():void
 {
 	if(!CodexManager.entryUnlocked("Diverting Jokes"))
 	{
-		if(!chars["COLENSO"].hasItem(new TarkusJokeBook())) chars["COLENSO"].inventory.push(new TarkusJokeBook());
+		if(!chars["COLENSO"].hasItemByClass(TarkusJokeBook)) chars["COLENSO"].inventory.push(new TarkusJokeBook());
 	}
-	else chars["COLENSO"].destroyItem(new TarkusJokeBook(), 1);
+	else chars["COLENSO"].destroyItemByClass(TarkusJokeBook, 1);
 	
 	buyItem();
 }

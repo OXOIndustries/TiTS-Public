@@ -349,7 +349,7 @@ public function snugglePlantationQuestStartMeetAble2():void
 	output("\n\n<i>“Not another word, Steele! Sit yourself down. Act as if you just spent the best part of a day ploughing through space traffic and then a hostile jungle, just to take audience with a foolish old man.”</i>");
 	output("\n\nYou do so. A glass of water and a small meal is provided to you by a silent, unsmiling Snugglé prisoner employee. Munching, you watch as the professor goes back to silently gazing at the screens thrown across the glass windows and plush furnishings of the veranda. From what you can gather from a cursory glance, they are analytics of the plantation’s probationers.");
 	output("\n\n<i>“Problem with the prisoners?”</i> you venture.");
-	output("\n\n<i>“Something like that,”</i> the white-haired human sighs. He sounds reluctant, as if you were talking to you about something taboo. <i>“A laborer jumped the fence a few weeks ago. It would not ordinarily be a problem - the jungle usually discharges them either to the plantation or Esbeth, quivering and begging to be taken back. Unfortunately, in this particular laborer’s case, the jungle itself </i>was<i> the goal.”</i>");
+	output("\n\n<i>“Something like that,”</i> the white-haired human sighs. He sounds reluctant, as if he were talking to you about something taboo. <i>“A laborer jumped the fence a few weeks ago. It would not ordinarily be a problem - the jungle usually discharges them either to the plantation or Esbeth, quivering and begging to be taken back. Unfortunately, in this particular laborer’s case, the jungle itself </i>was<i> the goal.”</i>");
 	processTime(9);
 	clearMenu();
 	addButton(0,"Next",snugglePlantationQuestStartMeetAble3);
@@ -928,7 +928,7 @@ public function footOfTheCliffBonus():Boolean
 	{
 		flags["PQ_CLIFF_FOOTED"] = 1;
 		output("You sigh, gazing up at the looming red cliff face in front of you, so high it’s impossible to ascertain where it levels out. Well... it’s not going to climb itself.");
-		if(pc.hasItem(new ClimbingKit())) output(" At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.");
+		if(pc.hasItemByClass(ClimbingKit)) output(" At least you came well prepared. You spend a few moments fastening on the climbing kit’s carabiner and familiarising yourself with its paraphernalia. Carefully tuning the emergency stabilizer and preparing an auto-mining bolt, you set your hands on the rock.");
 		output("\n\n");
 	}
 	output("To the immediate west of the foaming waterfall pool the land rises, tufts of scrub growing out of natural steps at the foot of the red rock cliff. If you carefully climb outwards upon them from the waterfall pool, you can work your way around onto the cliff face proper.");
@@ -955,7 +955,8 @@ public function driftwoodShoulderDoofiness(forceFall:Boolean = false):Boolean
 	if(pc.reflexes() / 2 + rand(20)+1 >= 35 && !forceFall) output("\n\nYou begin to pick your way across the driftwood-scattered shoulder - and pause. Carefully, you reach out and pluck one of the lumps of dry bleached wood off the rock. A black hole yawns beneath it, breathing water-cooled air into your face. This whole section is as hollow as a honeycomb! You move as daintily as you can around the side, not putting your weight on any of the old vegetation. You think you hear sighs and hisses beneath you, carried up from what sounds like many feet below... thankfully no zil takes this particular opportunity to molest you, and after a tense few minutes you reach the other side. Whew!");
 	else
 	{
-		clearOutput();
+		if(forceFall) clearOutput();
+		else output("\n\n");
 		output("You pick your way across the driftwood-scattered shoulder. It’s rather pleasant to not have to use your hands for once. You are halfway to the other side when a large tangle of rotten wood and dried scrub gives way beneath you, and with a horrified wail and a lurch in your chest you fall [pc.feet] first into a gaping chasm below.");
 		output("\n\nYou hurtle downwards, imagining the terrible impact, your broken body splayed on jagged stone in some Oneforsaken cave nobody will ever find you... before your [pc.butt] touches smooth rock, you whizz down a natural, water-carved slide and are flung into a deep, black pit, landing in something soft and dry before you can properly take in what’s happened.");
 		output("\n\nYou have a single, short moment to feel adrenaline-soaked relief, to move your limbs and feel for yourself that nothing is broken... before the couch beneath you shifts lugubriously, a multitude of hands touch your [pc.chest] and [pc.groin], and the stench of leathery sex settles into your nostrils.");
@@ -1077,7 +1078,7 @@ public function pcDunFallsOffDatHill():Boolean
 	{
 		output("You bring your [pc.weapon] up to bear, preparing to give your insectile opponent a swatting... and place your weight on rock that suddenly isn’t there at all. You suck in a huge gulp of air as you find yourself slipping, falling, desperately clawing at the cliff face as you slide off the perch, jutting stone clawing at your chest and face. The callous laughter of the zil rings in your ears as handfuls of dirt come loose in your hands and you find yourself watching the ledge fly away from you... and the only sound is the waterfall and the air in your ears, very loud...");
 		//Fell from 3 squares up from Waterfall Pool or more: 
-		if(currentLocation == "5. RED ROCK LEDGE" || currentLocation == "6. WATERFALL STAIRWAY" || currentLocation == "7. DRIFTWOOD SHOULDER" || currentLocation == "8. RED ROCK SCREE" || currentLocation == "10. TOP OF THE CLIFF") 
+		if(InCollection(currentLocation, ["5. RED ROCK LEDGE", "6. WATERFALL STAIRWAY", "7. DRIFTWOOD SHOULDER", "8. RED ROCK SCREE", "10. TOP OF THE CLIFF"])) 
 		{
 			output("\n\nSMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legOrLegs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
 			pc.HP(-1000);
@@ -1089,14 +1090,17 @@ public function pcDunFallsOffDatHill():Boolean
 		}
 		//Take 75% HP damage. If 2 < squares move down 2 squares, If less move to WP square
 		//Gotta make individual shit for individual rooms. Thanks 'suchy.
-		if(currentLocation == "3. FOOT OF THE CLIFF") currentLocation = "2. WATERFALL POOL";
-		else if(currentLocation == "4. RED ROCK OUTCROP") currentLocation = "3. FOOT OF THE CLIFF";
-		else if(currentLocation == "5. RED ROCK LEDGE") currentLocation = "3. FOOT OF THE CLIFF";
-		else if(currentLocation == "6. WATERFALL STAIRWAY") currentLocation = "4. RED ROCK OUTCROP";
-		else if(currentLocation == "7. DRIFTWOOD SHOULDER") currentLocation = "5. RED ROCK LEDGE";
-		else if(currentLocation == "8. RED ROCK SCREE") currentLocation = "6. WATERFALL STAIRWAY";
-		else if(currentLocation == "10. TOP OF THE CLIFF") currentLocation = "7. DRIFTWOOD SHOULDER";
-		else currentLocation == "2. WATERFALL POOL";
+		switch(currentLocation)
+		{
+			case "3. FOOT OF THE CLIFF": currentLocation = "2. WATERFALL POOL"; break;
+			case "4. RED ROCK OUTCROP": currentLocation = "3. FOOT OF THE CLIFF"; break;
+			case "5. RED ROCK LEDGE": currentLocation = "3. FOOT OF THE CLIFF"; break;
+			case "6. WATERFALL STAIRWAY": currentLocation = "4. RED ROCK OUTCROP"; break;
+			case "7. DRIFTWOOD SHOULDER": currentLocation = "5. RED ROCK LEDGE"; break;
+			case "8. RED ROCK SCREE": currentLocation = "6. WATERFALL STAIRWAY"; break;
+			case "10. TOP OF THE CLIFF": currentLocation = "7. DRIFTWOOD SHOULDER"; break;
+			default: currentLocation == "2. WATERFALL POOL"; break;
+		}
 		generateMap();
 	}
 	return false;
@@ -1118,7 +1122,7 @@ public function zilHornetAggro():void
 	showName("SURPRISE\nATTACK!");
 	output("\n\nSomething flicks past your ear. Imagining falling rock, you look up - and manage to duck to one side as the long, barb-tipped spear is thrust at you more accurately. <i>Real</i> falling rock crumbles beneath your [pc.feet].");
 	output("\n\n<i>“You are mine, far shist pig!”</i> squeaks the painted, armored female zil that is clutching it, roped to the cliff above you. Getting assaulted like this from above this high up is horribly unnerving - your heart chunters and your every instinct screams for you to make her stop.");
-	if(pc.hasItem(new ClimbingKit())) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend her off.");
+	if(pc.hasItemByClass(ClimbingKit)) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend her off.");
 	//Fen note: cute the hand holding mechanic, but I like the flavor!
 	//You will have to clutch to the rock face and fend her off one-handed!
 	//start fighto!
@@ -1312,7 +1316,7 @@ public function hoverFlyIntroProc():void
 	showName("SURPRISE\nATTACK!");
 	output("\n\nThe crash and hush of the waterfall is progressively drowned out by another sound - the throbbing hum of skateboard-sized insect wings. With a dull lurch of dread, you turn your head to take in the male zil hovering above you, short stabbing spear in one hand and long shield in the other, war paint turning his scowl into a mask of fury.");
 	output("\n\n<i>“You should not have exposed yourself like this, far shist land-stealer. You are mine for the plucking!”</i>");
-	if(pc.hasItem(new ClimbingKit())) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend him off.");
+	if(pc.hasItemByClass(ClimbingKit)) output("\n\nAt least your climbing gear give you a semblance of security whilst you fend him off.");
 	//Fen note: Holding on mechanic cut, but I like the climbing kit flavor.
 	//else output("\n\nYou will have to clutch to the rock face and fend him off one-handed!");
 	CombatManager.newGroundCombat();
@@ -2576,16 +2580,14 @@ public function quinnFinishExit():void
 {
 	if(inCombat())
 	{
-		var spear:ZilSpear = new ZilSpear();
-		var bow:ZilBow = new ZilBow();
 		//If neither PC or enemy has champion kit, set it up.
-		if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItem(spear))
+		if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItemByClass(ZilSpear))
 		{
-			if(!enemy.hasItem(spear)) enemy.inventory.push(spear);
+			if(!enemy.hasItemByClass(ZilSpear)) enemy.inventory.push(new ZilSpear());
 		}
-		if(!(pc.rangedWeapon is ZilBow) && !pc.hasItem(bow))
+		if(!(pc.rangedWeapon is ZilBow) && !pc.hasItemByClass(ZilBow))
 		{
-			if(!enemy.hasItem(bow)) enemy.inventory.push(bow);
+			if(!enemy.hasItemByClass(ZilBow)) enemy.inventory.push(new ZilBow());
 		}
 		output("\n\n");
 		CombatManager.genericVictory();

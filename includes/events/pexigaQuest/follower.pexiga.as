@@ -652,7 +652,7 @@ public function milkPexigaHandSolo():void
 
 public function milkedPexigaCollect(withYammi:Boolean = false):void
 {
-	if(pc.hasItem(new PexigaSaliva()) || pc.hasItemInStorage(new PexigaSaliva()))
+	if(pc.hasItemByClass(PexigaSaliva) || pc.hasItemInStorageByClass(PexigaSaliva))
 	{
 		pexigaMenu();
 	}
@@ -715,7 +715,7 @@ public function pexigaSexMenu():void
 	//Eat Out
 	addButton(2,"Eat Out",eatOutPexigoo,undefined,"Eat Out","Taste test [pexiga.name] with Yammi.");
 	//Bubble
-	if(pc.hasCock() && pc.hasItem(new BubbleBuddy())) addButton(3,"Bubble",blowBubblesWithpexiga,undefined,"Bubble","Use your Bubble Buddy to make [pexiga.name] a ball to play with.");
+	if(pc.hasCock() && pc.hasItemByClass(BubbleBuddy)) addButton(3,"Bubble",blowBubblesWithpexiga,undefined,"Bubble","Use your Bubble Buddy to make [pexiga.name] a ball to play with.");
 	else addDisabledButton(3,"Bubble","Bubble","You need a penis and a “Bubble Buddy” sex-toy in order to do this. Such toys are available from the TamaniCorp Vendor on Tavros Station.");
 
 	addButton(14,"Back",pexigaMainScreen);

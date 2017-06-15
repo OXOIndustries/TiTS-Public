@@ -772,7 +772,7 @@ public function saendraDoCockuMenu(triedThrobb:Boolean = false):void
 	}
 	else
 	{
-		if (pc.hasItem(new Throbb()))
+		if (pc.hasItemByClass(Throbb))
 		{
 			addButton(1, "Throbb", saendraUseTheThrobbLuke, undefined, "Use Throbb", "Hey, you’ve got some of this stuff kicking around. Might as well put it to a good use, right?");
 		}

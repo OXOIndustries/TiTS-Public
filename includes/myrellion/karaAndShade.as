@@ -1416,15 +1416,15 @@ public function shadeTalkMenu(arg:Function):void
 		}
 		else
 		{
-			if ((!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK) && (pc.hasItem(new Lactaid()) || pc.hasItem(new MilkCaramelGushers(), 5)))
+			if ((!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK) && (pc.hasItemByClass(Lactaid) || pc.hasItemByClass(MilkCaramelGushers, 5)))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (shade.milkType != GLOBAL.FLUID_TYPE_HONEY && (pc.hasItem(new Honeyizer()) || pc.hasItem(new Honeydew())))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_HONEY && (pc.hasItemByClass(Honeyizer) || pc.hasItemByClass(Honeydew)))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
-			else if (shade.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItem(new Chocolac()))
+			else if (shade.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && pc.hasItemByClass(Chocolac))
 			{
 				addButton(5, "Mods", gibShadeModItems, undefined, "Mods", "Give Shade some mod goodies.");
 			}
@@ -1687,8 +1687,12 @@ public function inseminateShadesCuntTail():void
 {
 	if(pc.virility() <= 0) return;
 	
-	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined) flags["SHADE_INSEMINATION_COUNTER"] = 1;
-	flags["SHADES_CUNTTAIL_FED"] = 1;
+	if(flags["SHADE_INSEMINATION_COUNTER"] == undefined)
+	{
+		flags["SHADE_INSEMINATION_COUNTER"] = 1;
+		pc.clearRut();
+	}
+	IncrementFlag("SHADES_CUNTTAIL_FED");
 }
 
 //Tailcunt Oviposition
@@ -2119,10 +2123,10 @@ public function gibShadeModItems():void
 	clearMenu();
 	if (!shade.canLactate() || shade.milkType != GLOBAL.FLUID_TYPE_MILK)
 	{
-		if (pc.hasItem(new Lactaid(), 1)) addButton(0, "1x Lactaid", gibShadeModItemsII, "lactaid");
+		if (pc.hasItemByClass(Lactaid, 1)) addButton(0, "1x Lactaid", gibShadeModItemsII, "lactaid");
 		else addDisabledButton(0, "1x Lactaid", "Lactaid", "You don’t have any Lactaid.");
 
-		if (pc.hasItem(new MilkCaramelGushers(), 5)) addButton(1, "5x M.Gush", gibShadeModItemsII, "gushers");
+		if (pc.hasItemByClass(MilkCaramelGushers, 5)) addButton(1, "5x M.Gush", gibShadeModItemsII, "gushers");
 		else addDisabledButton(1, "5x M.Gush", "Milk Gushers", "You don’t have enough Milk Gushers.");
 	}
 	
@@ -2134,13 +2138,13 @@ public function gibShadeModItems():void
 	}
 	else
 	{
-		if (pc.hasItem(new Honeyizer())) addButton(2, "1x Hnyizr", gibShadeModItemsII, "honeyizer");
+		if (pc.hasItemByClass(Honeyizer)) addButton(2, "1x Hnyizr", gibShadeModItemsII, "honeyizer");
 		else addDisabledButton(2, "1x Hnyizr", "Honeyizer", "You don’t have any Honeyizer.");
 
-		if (pc.hasItem(new Chocolac())) addButton(3, "1x Chclac", gibShadeModItemsII, "chocolac");
+		if (pc.hasItemByClass(Chocolac)) addButton(3, "1x Chclac", gibShadeModItemsII, "chocolac");
 		else addDisabledButton(3, "1x Chclac", "Chocolac", "You don’t have any Chocolac.");
 
-		if (pc.hasItem(new Honeydew())) addButton(4, "1x Hnydew", gibShadeModItemsII, "honeydew");
+		if (pc.hasItemByClass(Honeydew)) addButton(4, "1x Hnydew", gibShadeModItemsII, "honeydew");
 		else addDisabledButton(4, "1x Hnydew", "Honeydew", "You don’t have any Honeydew");
 	}
 
@@ -2155,30 +2159,30 @@ public function gibShadeModItemsII(selItem:String):void
 	switch (selItem)
 	{
 		case "lactaid":
-			pc.destroyItem(new Lactaid(), 1);
+			pc.destroyItemByClass(Lactaid, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_MILK;
 			shade.milkMultiplier = 75;
 			shade.milkFullness = 75;
 			break;
 		case "gushers":
-			pc.destroyItem(new MilkCaramelGushers(), 5);
+			pc.destroyItemByClass(MilkCaramelGushers, 5);
 			shade.milkType = GLOBAL.FLUID_TYPE_MILK;
 			shade.milkMultiplier = 75;
 			shade.milkFullness = 75;
 			break;
 
 		case "honeyizer":
-			pc.destroyItem(new Honeyizer(), 1);
+			pc.destroyItemByClass(Honeyizer, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			break;
 
 		case "honeydew":
-			pc.destroyItem(new Honeydew(), 1);
+			pc.destroyItemByClass(Honeydew, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			break;
 
 		case "chocolac":
-			pc.destroyItem(new Chocolac(), 1);
+			pc.destroyItemByClass(Chocolac, 1);
 			shade.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 			break;
 

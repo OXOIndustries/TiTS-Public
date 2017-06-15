@@ -622,7 +622,7 @@ output("\n\nPossibly add scenes for: Jardi, Sera’s private slut; Zo’dee, Adv
 // “Give the galotian a gift of sealed cum.”
 public function hasACumBubble():Boolean
 {
-	return (pc.hasItem(new SmallCumBubble()) || pc.hasItem(new MediumCumBubble()) || pc.hasItem(new LargeCumBubble()) || pc.hasItem(new HugeCumBubble()));
+	return (pc.hasItemByClass(SmallCumBubble) || pc.hasItemByClass(MediumCumBubble) || pc.hasItemByClass(LargeCumBubble) || pc.hasItemByClass(HugeCumBubble));
 }
 
 
@@ -1338,7 +1338,7 @@ public function giveVaandeATreatSetup():void
 		else if(pc.inventory[x] is HugeCumBubble) choices.push(x);
 	}
 	var func:Function = giveVaandeTheGiftOfCum;
-	if(pc.hasItem(new BubbleBuddy()) && pc.hasCock()) func = giveVaandeBubbleBuddyFun;
+	if(pc.hasItemByClass(BubbleBuddy) && pc.hasCock()) func = giveVaandeBubbleBuddyFun;
 
 
 	if(choices.length == 1) func(pc.inventory[choices[0]]);

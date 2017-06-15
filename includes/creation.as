@@ -1187,8 +1187,8 @@ public function applySexualGift(arg:String = "none"):void {
 			pc.createPerk("Extra Ardor",0,0,0,0,"Increases lust gain over time.");
 			break;
 		case "ice cold":
-			break;
 			pc.createPerk("Ice Cold",0,0,0,0,"Slows lust gain over time.");
+			break;
 		case "infertile":
 			pc.createPerk("Infertile",0,0,0,0,"You are unable to reproduce offspring naturally.");
 			break;

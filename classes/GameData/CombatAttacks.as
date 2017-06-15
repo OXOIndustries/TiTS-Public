@@ -442,10 +442,13 @@ package classes.GameData
 			// Mag Binders
 			MagBinders = new SingleCombatAttack();
 			MagBinders.ButtonName = "MagBindrs";
-			//MagBinders.DisabledIfEffectedBy = [""];
+			MagBinders.EnergyCost = 25;
+			MagBinders.IsRangedBased = true;
 			MagBinders.RequiresPerk = "Mag Binders";
+			MagBinders.DisabledIfEffectedBy = ["Disarmed"];
 			MagBinders.Implementor = MagBindersImpl;
 			MagBinders.TooltipTitle = "Mag Binders";
+			MagBinders.RequiresTarget = true;
 			MagBinders.TooltipBody = "Throw a set of magnetic restraints at your enemy, dealing light electricity damage and potentially stunning them for up to three turns. Damage and hit chances are based off of reflexes.";
 			MagBinders.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(MagBinders);
@@ -494,7 +497,7 @@ package classes.GameData
 				return kGAMECLASS.pc.hasKeyItem("Goozooka");
 			}
 			GoozookaAttack.ExtendedAvailabilityCheck = function():Boolean {
-				return kGAMECLASS.pc.hasItemByType(GrayMicrobots);
+				return kGAMECLASS.pc.hasItemByClass(GrayMicrobots);
 			}
 			GoozookaAttack.TooltipTitle = "Goozooka";
 			GoozookaAttack.TooltipBody = "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.";
@@ -560,7 +563,7 @@ package classes.GameData
 		 */
 		public static function SingleRangedAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "ranged"):Boolean
 		{
-			if(target is Kane && target.hasStatusEffect("KANE RANGED PREP") && !target.hasStatusEffect("KANE_AI_SKIP"))
+			if(target is Kane && target.hasStatusEffect("KANE RANGED PREP") && !target.hasStatusEffect("KANE_AI_SKIP") && !target.isImmobilized())
 			{
 				kGAMECLASS.kaneRangedInterrupt();
 				var d:TypeCollection = target.meleeDamage();
@@ -569,7 +572,7 @@ package classes.GameData
 				target.createStatusEffect("KANE_AI_SKIP");
 				return false;
 			}
-			if(target.hasStatusEffect("KANE_AI_SKIP") && target is Kane) 
+			if(target is Kane && target.hasStatusEffect("KANE_AI_SKIP")) 
 			{
 				output("Further action is interrupted!");
 				return false;
@@ -607,7 +610,7 @@ package classes.GameData
 				else output("[target.CombatName] manages to avoid " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.attackNoun + ".");
 				return false;
 			}
-			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
+			if (target is NymFoe && target.hasStatusEffect("Bouncy!"))
 			{
 				var k:TypeCollection = attacker.rangedDamage();
 				if(k.kinetic.damageValue > 0)
@@ -646,7 +649,7 @@ package classes.GameData
 		
 		public static function SingleMeleeAttackImpl(attacker:Creature, target:Creature, asFlurry:Boolean = false, special:String = "melee"):Boolean
 		{
-			if(target is Kane && target.hasStatusEffect("KANE MELEE PREP") && !target.hasStatusEffect("KANE_AI_SKIP"))
+			if(target is Kane && target.hasStatusEffect("KANE MELEE PREP") && !target.hasStatusEffect("KANE_AI_SKIP") && !target.isImmobilized())
 			{
 				kGAMECLASS.kaneMeleeInterrupt();
 				var e:TypeCollection = target.meleeDamage();
@@ -655,14 +658,14 @@ package classes.GameData
 				target.createStatusEffect("KANE_AI_SKIP");
 				return false;
 			}
-			if(target.hasStatusEffect("KANE_AI_SKIP") && target is Kane) 
+			if(target is Kane && target.hasStatusEffect("KANE_AI_SKIP")) 
 			{
 				output("Further action is interrupted!");
 				return false;
 			}
 			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
 			{
-				output("You can't reach [target.combatName]!" + target.mfn(" He"," She"," It") + " is too high!");
+				output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " can’t reach [target.combatName]! " + (!target.isPlural ? (target.mfn("He","She","It") + " is") : "They are") + " too high!");
 				return false;
 			}
 			if (combatMiss(attacker, target))
@@ -704,7 +707,7 @@ package classes.GameData
 				return false;
 			}
 			
-			if (target.hasStatusEffect("Bouncy!") && target is NymFoe)
+			if (target is NymFoe && target.hasStatusEffect("Bouncy!"))
 			{
 				var k:TypeCollection = attacker.meleeDamage();
 				if(k.kinetic.damageValue > 0)
@@ -738,8 +741,9 @@ package classes.GameData
 			applyDamage(d, attacker, target, special);
 			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
-				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0,0xFF0000);
-				output(" <b>[target.CombatName] is staggered by your lunge!</b>");
+				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are staggered, and your" : (target.getCombatName() + " is staggered, and " + target.getCombatPronoun("hisher")) + " Aim and Reflexes have been reduced!"), true, 0,0xFF0000);
+				if(target is PlayerCharacter) output(" <b>You are staggered by the lunge!</b>");
+				else output(" <b>[target.CombatName] is staggered by " + (attacker is PlayerCharacter ? "your" : "the") + " lunge!</b>");
 			}
 			if(attacker.hasPerk("Cloak and Dagger"))
 			{
@@ -833,7 +837,7 @@ package classes.GameData
 			if (attacker.hasStatusEffect("Disarmed"))
 			{
 				if (attacker is PlayerCharacter) output("You try to attack until you remember you got disarmed!");
-				else output("[attacker.CombatName] scrabbles about, trying to find [attacker.combatHimHer] missing weapon.");
+				else output("[attacker.CombatName] scrabbles about, trying to find [attacker.combatHisHer] missing weapon.");
 				return;
 			}
 			
@@ -1188,8 +1192,9 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			if (!target.hasStatusEffect("Staggered") && attacker.hasPerk("Rending Attacks"))
 			{
-				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0,0xFF0000);
-				output(" <b>[target.CombatName] is staggered by the hail of fire!</b>");
+				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are staggered, and your" : (target.getCombatName() + " is staggered, and " + target.getCombatPronoun("hisher")) + " Aim and Reflexes have been reduced!"), true, 0,0xFF0000);
+				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");
+				else output(" <b>[target.CombatName] is staggered by the hail of fire!</b>");
 			}
 		}
 		
@@ -1347,14 +1352,14 @@ package classes.GameData
 		public static var ChargeWeapon:SingleCombatAttack;
 		private static function chargeWeaponImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if(target is PlayerCharacter) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.mfn("his","her","its") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
+			if(!(attacker is PlayerCharacter)) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.mfn("his","her","its") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
 			else 
 			{
 				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It’s just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden ‘<i>kzzzt</i>’ of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe’s way!");
 				else output("You flick the switch on a wrist-mounted powercell, pumping arcs of deadly electricity into your " + attacker.meleeWeapon.longName + ", then try for a quick strike with the newly charged weapon!\n");
 			}
-			if (attacker.hasPerk("Fuck Sense")) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~", true, 0);
-			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity.", true, 0);
+			if (attacker is PlayerCharacter) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", (attacker.hasPerk("Fuck Sense") ? "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~" : "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity."), true, 0);
+			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Weapon is electrified and will deal bonus damage based upon current intellectual capacity.", true, 0);
 			SingleMeleeAttackImpl(attacker, target, true);
 		}
 		
@@ -1931,6 +1936,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You dig deep and find a reserve of energy from deep within yourself!\n");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " visibly steels " + attacker.mfn("himself", "herself", "itself") + ", reaching deep and finding a reserve of energy!");
 		}
+		
 		public static var MagBinders:SingleCombatAttack;
 		public static function MagBindersImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
@@ -1943,7 +1949,7 @@ package classes.GameData
 				output("[attacker.CombatName] slings a set of self-guided restraints your way.\n");
 			}
 	
-			if (combatMiss(attacker, target))
+			if (rangedCombatMiss(attacker, target))
 			{
 				if (attacker is PlayerCharacter)
 				{
@@ -1958,13 +1964,13 @@ package classes.GameData
 			/* No extra miss for blind. SELF-GUIDED, BITCHES!
 			else if (attacker.hasStatusEffect("Blinded") && rand(2) > 0)
 			{
-				if (attacker is PlayerCharacter) output("Your blind strike fails to connect.");
-				else output("[attacker.CombatHisHer] blind strike fails to connect.");
+				if (attacker is PlayerCharacter) output("Your blind projectile fails to connect.");
+				else output("[attacker.CombatHisHer] blind projectile fails to connect.");
 			}*/
 			//Attack connected!
 			else
 			{
-				output("They connect with an audible 'zap'");
+				output("They connect with an audible ‘<i>zap</i>’");
 				if (attacker.reflexes() / 2 + rand(20) + 1 >= target.reflexes() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{
 					if(target is PlayerCharacter) output(" and snap into place, wrapping you up. <b>You are stunned!</b>");
@@ -1983,9 +1989,7 @@ package classes.GameData
 				applyDamage(damageRand(new TypeCollection( { electric: attacker.reflexes() + attacker.level * 2 } ), 15), attacker, target, "minimal");
 			}
 		}
-
-
-
+		
 		public static var ConcussiveShot:SingleCombatAttack;
 		private static function ConcussiveShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
@@ -1994,15 +1998,15 @@ package classes.GameData
 			
 			if (rangedCombatMiss(attacker, target, 0))
 			{
-				if (attacker is PlayerCharacter) output(" You let fly, but the arrow sails clean past your intended target.");
+				output(" You let fly, but the arrow sails clean past your intended target.");
 			}
 			else if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
 			{
-				if (attacker is PlayerCharacter) output(" Your blind <b>concussion shot</b> missed.");
+				output(" Your blind <b>concussion shot</b> missed.");
 			}
 			else
 			{
-				if (attacker is PlayerCharacter) output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
+				output(" You let fly, and a moment later, the arrow explodes in a shockwave of force");
 				
 				if (target.physique()/2 + rand(20) + 1 >= attacker.aim()/2 + 10 || target.hasStatusEffect("Stun Immune"))
 				{
@@ -2078,7 +2082,7 @@ package classes.GameData
 		public static var GoozookaAttack:SingleCombatAttack;
 		private static function GoozookaAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			attacker.destroyItem(new GrayMicrobots(), 1);
+			attacker.destroyItemByClass(GrayMicrobots, 1);
 	
 			output("You pull the goo launcher from over your shoulder and slam a vial of Gray Goo into the back. You brace yourself, sighting in on your target and flipping the ON switch. The launcher beeps, and you pull the trigger, sending a great big blob of gray goop hurtling toward your opponent!");
 			
@@ -2302,7 +2306,7 @@ package classes.GameData
 				}
 				else output("You whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
 			}
-			if(target.lust() < target.lustMax() && attacker is RaskvelMale)
+			if(attacker is RaskvelMale && target.lust() < target.lustMax())
 			{
 				target.createStatusEffect("Attempt Seduction", 0, 0, 0, 0, true, "", "", true, 0);
 			}

@@ -323,7 +323,7 @@ public function kiP16TakeSword():void
 
 public function kiP16TakeSwordCheck():void
 {
-	if (pc.meleeWeapon is VampBlade || pc.hasItemByType(VampBlade))
+	if (pc.meleeWeapon is VampBlade || pc.hasItemByClass(VampBlade))
 	{
 		mainGameMenu();
 		return;
@@ -438,7 +438,7 @@ public function kiK5CMOQuartersMeds():void
 
 public function kiK5CMOMedSuppliesCheck():void
 {
-	if (pc.hasItemByType(OSStimBoost) || flags["KI_CMO_MEDSUPPLIES"] == 2)
+	if (pc.hasItemByClass(OSStimBoost) || flags["KI_CMO_MEDSUPPLIES"] == 2)
 	{
 		mainGameMenu();
 		return;

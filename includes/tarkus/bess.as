@@ -357,7 +357,7 @@ public function bessHasClothingItem(clothingType:Class):Boolean
 	// 9999
 	// can't really pack this into uints -- too many options (outfits) even if we split armor/upper/lower (more than 32 options)
 	// creature inventory I guess is a decent placeholder for now maybe -- can look into other options later, hence wrapping simple call here
-	return bess.hasItemByType(clothingType);
+	return bess.hasItemByClass(clothingType);
 }
 
 public function bessHasGlasses():Boolean
@@ -12304,7 +12304,7 @@ public function bessGetCunni():void
 		if (pc.genitalSpot <= 1)
 		{
 			output("\n\n<i>“Roll over and on your back, "+ bessPCSexName() +"!”</i> Your second set of instructions comes like a whip-crack, and you immediately comply.");
-			if (pc.isBiped()) output(" Rolling on to your back like an animal, [bess.sheHe] then forcibly spreads your legs apart.");
+			if (pc.isBiped()) output(" Rolling on to your back like an animal, [bess.heShe] then forcibly spreads your legs apart.");
 			
 			output("\n\nYou furiously flush as your shamefully dewy mound is exposed. [bess.HeShe] clearly notices too, a glimmer of amusement in [bess.hisHer] sharp [bess.eyeColor] eyes. You try not to wiggle with pleasure under [bess.hisHer] gaze, feeling it penetrate your very soul.");
 			

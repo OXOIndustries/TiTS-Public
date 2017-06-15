@@ -517,7 +517,7 @@ public function pexigaVisit():void
 	processTime(2);
 	//[Pet] [Milk Saliva]
 	clearMenu();
-	if(pc.hasItem(new PexigaSaliva()) || pc.hasItemInStorage(new PexigaSaliva())) addDisabledButton(1,"Milk Saliva","Milk Saliva","You already have some of that. No need to be greedy!");
+	if(pc.hasItemByClass(PexigaSaliva) || pc.hasItemInStorageByClass(PexigaSaliva)) addDisabledButton(1,"Milk Saliva","Milk Saliva","You already have some of that. No need to be greedy!");
 	else addButton(1,"Milk Saliva",milkSalivaFromPexiga,undefined,"Milk Saliva","Get yourself some of that sweet, sweet pexiga saliva.");
 	addButton(0,"Pet",petPexiga,undefined,"Pet","Poor thing. The least you could do is spend a few minutes giving her some love.");
 	addButton(14,"Back",yammiInTheKitchen);

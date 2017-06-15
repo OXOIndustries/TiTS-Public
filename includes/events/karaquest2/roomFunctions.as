@@ -591,7 +591,7 @@ public function kq2rfYardA1():Boolean
 
 	output("\n\nThere’s a kennel here, made of steel and bearing several power hook-ups. A tag on the side of it indicates it’s a <i>“Fenris assault drone charging and repair station”</i> made by KihaCorp.");
 
-	if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolfDamaged || pc.hasItemByType(TamWolfDamaged)))
+	if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolfDamaged || pc.hasItemByClass(TamWolfDamaged)))
 	{
 		output("\n\nTam-wolf stalks toward the kennel and sniffs at one of the charging bays. <i>“M-m-[pc.master], I am baaaaadly damaged. With your permission, I will-will-will initiate repair protocooooools.”</i>");
 
@@ -605,7 +605,7 @@ public function kq2rfYardA1():Boolean
 		if (pc.accessory is TamWolfDamaged) pc.accessory = new TamWolf();
 		else
 		{
-			pc.destroyItemByType(TamWolfDamaged);
+			pc.destroyItemByClass(TamWolfDamaged);
 			pc.inventory.push(new TamWolf());
 		}
 
@@ -618,7 +618,7 @@ public function kq2rfYardA1():Boolean
 		addButton(0, "Next", mainGameMenu);
 		return true;
 	}
-	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByType(TamWolf)))
+	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByClass(TamWolf)))
 	{
 		output("\n\nTam-wolf stalks toward the kennel and sniffs at one of the charging bays. <i>“[pc.Master], I detect a hardware update available, brought to you free of charge by FenCo, a subsidiary of KihaCorp. May I have permission to be upgraded?”</i>");
 		
@@ -634,7 +634,7 @@ public function kq2rfYardA1():Boolean
 		if (pc.accessory is TamWolf) pc.accessory = new TamWolfII();
 		else
 		{
-			pc.destroyItemByType(TamWolf);
+			pc.destroyItemByClass(TamWolf);
 			pc.inventory.push(new TamWolfII());
 		}
 		processTime(2);
@@ -727,7 +727,7 @@ public function kq2TakeEngineerArmor():void
 
 public function kq2EngineerArmorCheck():void
 {
-	if (pc.armor is VoidPlateArmor || pc.hasItemByType(VoidPlateArmor))
+	if (pc.armor is VoidPlateArmor || pc.hasItemByClass(VoidPlateArmor))
 	{
 	mainGameMenu();
 		return;

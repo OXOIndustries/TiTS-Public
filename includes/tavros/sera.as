@@ -475,7 +475,7 @@ public function seraTalkMenu():void
 		// If Priapin in inventory and PC has activated initial [Breed] scene, add [Priapin] option to initial sex "beg" screen
 		else if(flags["SERA_TIMES_BRED"] != undefined)
 		{
-			if(pc.hasItem(new Priapin())) addButton(5, "Priapin", seraPriapinAction, "intro", "Breed Using Priapin", "You brought the fireworks this time.");
+			if(pc.hasItemByClass(Priapin)) addButton(5, "Priapin", seraPriapinAction, "intro", "Breed Using Priapin", "You brought the fireworks this time.");
 			else addDisabledButton(5, "Priapin", "Breed Using Priapin", "You need a Priapin medipen in order to breed with her again.");
 		}
 		else if(pc.hasStatusEffect("Sera Talk Breed")) addDisabledButton(5, "Breed", "Breed", "You’ve already tried this! Give her some time off the topic, then try again later.");

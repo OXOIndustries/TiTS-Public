@@ -447,29 +447,18 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	//Cheese shit for GaloMax
 	if(arg is GaloMax)
 	{
-		if(shopkeep is Gene) 
-		{
-			flags["PURCHASED_GENES_GALO"] = 1;
-			chars["GENE"].destroyItem(new GaloMax());
-		}
-		else if(shopkeep is Sera) 
-		{
-			flags["PURCHASED_SERAS_GALO"] = 1;
-			chars["SERA"].destroyItem(new GaloMax());
-		}
-		else if(shopkeep is ChrysalisDrone) 
-		{
-			flags["PURCHASED_SERAS_GALO"] = 1;
-			chars["CHRYSALISDRONE"].destroyItem(new GaloMax());
-		}
+		if(shopkeep is Gene) flags["PURCHASED_GENES_GALO"] = 1;
+		if(shopkeep is Sera) flags["PURCHASED_SERAS_GALO"] = 1;
+		if(shopkeep is ChrysalisDrone) flags["PURCHASED_SERAS_GALO"] = 1;
+		shopkeep.destroyItemByClass(GaloMax);
 	}
 	// Siegwulfe Special
 	if(arg is SiegwulfeItem)
 	{
-		purchasedItems = [];
+		purchasedItems.length = 0;
 		output("\n\nThe display model of the droid is much too big and lofty to carry around, especially unpowered. Instead, an order has been placed for a brand-new model and is currently being delivered straight to your ship. <b>Be sure to check your ship’s storage for it!</b>");
-		chars["WULFE"].accessory = new SiegwulfeItem();
-		shopkeep.destroyItem(new SiegwulfeItem());
+		chars["WULFE"].accessory = arg;
+		shopkeep.destroyItemByClass(SiegwulfeItem);
 		flags["WULFE_ON_SHIP"] = false;
 		IncrementFlag("WULFE_PURCHASED");
 	}

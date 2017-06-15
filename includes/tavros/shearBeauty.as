@@ -134,41 +134,41 @@ public function buyFromCeria():void
 		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 		{
 			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
-			if(!chars["CERIA"].hasItem(new Hornitol())) chars["CERIA"].inventory.push(new Hornitol());
+			if(!chars["CERIA"].hasItemByClass(Hornitol)) chars["CERIA"].inventory.push(new Hornitol());
 		}
-		else chars["CERIA"].destroyItem(new Hornitol());
+		else chars["CERIA"].destroyItemByClass(Hornitol);
 		
 		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
 			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin";
 			if(flags["PLANET_3_UNLOCKED"] != undefined)
 			{
-				if(!chars["CERIA"].hasItem(new DoveBalm())) chars["CERIA"].inventory.push(new DoveBalm());
+				if(!chars["CERIA"].hasItemByClass(DoveBalm)) chars["CERIA"].inventory.push(new DoveBalm());
 				chars["CERIA"].keeperBuy += " balms";
 			}
-			else chars["CERIA"].destroyItem(new DoveBalm());
+			else chars["CERIA"].destroyItemByClass(DoveBalm);
 			if(flags["PLANET_3_UNLOCKED"] != undefined && CodexManager.entryViewed("Rubber-Made")) chars["CERIA"].keeperBuy += " and";
 			if(CodexManager.entryViewed("Rubber-Made"))
 			{
-				if(!chars["CERIA"].hasItem(new SkinClear())) chars["CERIA"].inventory.push(new SkinClear());
+				if(!chars["CERIA"].hasItemByClass(SkinClear)) chars["CERIA"].inventory.push(new SkinClear());
 				chars["CERIA"].keeperBuy += " lotions";
 			}
-			else chars["CERIA"].destroyItem(new SkinClear());
+			else chars["CERIA"].destroyItemByClass(SkinClear);
 			chars["CERIA"].keeperBuy += ".";
 		}
 		else
 		{
-			chars["CERIA"].destroyItem(new DoveBalm());
-			chars["CERIA"].destroyItem(new SkinClear());
+			chars["CERIA"].destroyItemByClass(DoveBalm);
+			chars["CERIA"].destroyItemByClass(SkinClear);
 		}
 		
 		// 9999 - Temporary placement until Aislinn is implemented!
 		if(9999 == 9999)
 		{
 			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
-			if(!chars["CERIA"].hasItem(new LipTease())) chars["CERIA"].inventory.push(new LipTease());
+			if(!chars["CERIA"].hasItemByClass(LipTease)) chars["CERIA"].inventory.push(new LipTease());
 		}
-		else chars["CERIA"].destroyItem(new LipTease());
+		else chars["CERIA"].destroyItemByClass(LipTease);
 	}
 	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.
@@ -553,8 +553,8 @@ public function ceriaHairDyeColors(colorType:String = "none", dyePart:String = "
 			colorList.push(["glowing silver", "G.Silver"]);
 			colorList.push(["glowing white", "G.White"]);
 			colorList.push(["iridescent", "Iridescent", ("Can’t decide on one color? Dye your " + dyePart + " iridescent for a more multi-colored look.")]);
-			if(pc.level >= 6 || pc.hasItemByType(Foxfire)) colorList.push(["glowing ember", "Foxfire", ("Dye your " + dyePart + " glowing ember to appear as if it’s emitting hot fire.")]);
-			if(pc.level >= 6 || pc.hasItemByType(Frostfire)) colorList.push(["fiery blue", "Frostfire", ("Dye your " + dyePart + " fiery blue to appear as if it’s covered in cool flames.")]);
+			if(pc.level >= 6 || pc.hasItemByClass(Foxfire)) colorList.push(["glowing ember", "Foxfire", ("Dye your " + dyePart + " glowing ember to appear as if it’s emitting hot fire.")]);
+			if(pc.level >= 6 || pc.hasItemByClass(Frostfire)) colorList.push(["fiery blue", "Frostfire", ("Dye your " + dyePart + " fiery blue to appear as if it’s covered in cool flames.")]);
 			break;
 	}
 	

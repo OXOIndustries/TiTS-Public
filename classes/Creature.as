@@ -1853,6 +1853,7 @@
 					break;
 				case "crotch":
 				case "groin":
+				case "genitals":
 					buffer = crotchDescript();
 					break;
 				case "base":
@@ -2611,6 +2612,7 @@
 			if(hasPerk("Hidden Loot")) slots += 2;
 			return slots;
 		}
+		
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(arg == null || inventory.length == 0) return false;
@@ -2634,7 +2636,7 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
-		public function hasItemByType(ref:Class, amount:int = 1):Boolean
+		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if (ref == null || inventory.length == 0) return false;
 			
@@ -2660,6 +2662,7 @@
 			if (amt >= amount) return true;
 			return false;
 		}
+		
 		public function destroyItemByName(arg:String, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2694,7 +2697,6 @@
 			}
 			return;
 		}
-		
 		public function destroyItemByReference(arg:ItemSlotClass):void
 		{
 			if (arg == null || inventory.length == 0) return;
@@ -2706,7 +2708,6 @@
 				inventory.splice(inventory.indexOf(arg), 1);
 			}
 		}
-		
 		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
@@ -2741,9 +2742,9 @@
 			}
 			return;
 		}
-		public function destroyItemByType(type:Class, amount:int = 1):void
+		public function destroyItemByClass(arg:Class, amount:int = 1):void
 		{
-			if (type == null || inventory.length == 0 || amount == 0) return;
+			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
 			var i:int = 0;
 			
@@ -2752,7 +2753,7 @@
 			{
 				for (i = 0; i < inventory.length; i++)
 				{
-					if (inventory[i] is type) inventory.splice(i, 1);
+					if (inventory[i] is arg) inventory.splice(i, 1);
 				}
 			}
 			// Normal
@@ -2761,10 +2762,10 @@
 				for (i = 0; i < inventory.length; i++)
 				{
 					//Item in the slot?
-					if (inventory[i] is type) 
+					if (inventory[i] is arg) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0 && (inventory[i] is type)) 
+						while(amount > 0 && inventory[i].quantity > 0 && (inventory[i] is arg)) 
 						{
 							inventory[i].quantity--;
 							amount--;
@@ -3307,7 +3308,7 @@
 			
 			if (isAssVisible())
 			{
-				if(ass.hasFlag(GLOBAL.FLAG_PUMPED) || (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !isFluffy) || !hasFurOrFeathers)
+				if(analPuffiness() >= 2 || (analPuffiness() >= 1 && !isFluffy) || !hasFurOrFeathers)
 				{
 					bitsNeedCover++; // you always need at least 1 tail to cover your ass, unless you have fluffy fur
 				}
@@ -4394,6 +4395,7 @@
 		}
 		public function willpowerMax(): Number {
 			var bonuses:int = 0;
+			if(hasPerk("Iron Will")) bonuses += Math.floor(physiqueMax()/5);
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			return ((level * 5) + bonuses);
 		}
@@ -8988,10 +8990,7 @@
 		{
 			for(var x:int = 1; x < breastRows.length; x++)
 			{
-				if(x > 0)
-				{
-					if(breastRows[x].nippleType != breastRows[x-1].nippleType) return false;
-				}
+				if(breastRows[x].nippleType != breastRows[x-1].nippleType) return false;
 			}
 			return true;
 		}
@@ -10871,6 +10870,7 @@
 						break;
 					case "lesser panda":
 						sRaceShort = "panda";
+						break;
 					case "gabilani":
 						sRaceShort = "goblin";
 						break;
@@ -12048,10 +12048,10 @@
 				descripted++;
 			}
 			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
-			if(!simple && descripted == 0 && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(2) == 0)
+			if(!simple && descripted == 0 && (analPuffiness() >= 1) && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
-				if (!ass.hasFlag(GLOBAL.FLAG_PUMPED)) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
+				if (analPuffiness() < 2) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
 				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "bloated", "pillowy"]);
 				descripted++;
 			}
@@ -12065,7 +12065,7 @@
 			if (descripted > 0) desc += " ";
 			//Butt descriptor
 			rando = rand(18);
-			if(!simple && (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED)) && rand(4) == 0) desc += "donut";
+			if(!simple && hasPlumpAsshole() && rand(4) == 0) desc += "donut";
 			else if (rando <= 2) desc += "ass";
 			else if (rando <= 5) desc += "anus";
 			else if (rando <= 7) desc += "pucker";
@@ -14005,22 +14005,18 @@
 			return matchedVaginas();
 		}
 		public function matchedVaginas():Boolean {
+			//After the first cooch, see if they match against the previous.
 			for(var x:int = 1; x < totalVaginas(); x++)
 			{
-				//After the first cooch, see if they match against the previous.
-				if(x > 0)
+				//Don't match? NOT MATCHED. GTFO.
+				if(vaginas[x].type != vaginas[x-1].type) return false;
+				//Flag check
+				if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
 				{
-					//Don't match? NOT MATCHED. GTFO.
-					if(vaginas[x].type != vaginas[x-1].type) return false;
-					//Flag check
-					if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
+					for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
 					{
-						for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
-						{
-							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
-						}
+						if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 					}
-					//return false;
 				}
 			}
 			return true;
@@ -18520,13 +18516,10 @@
 				{
 					if (ass.loosenessRaw < ass.minLooseness) ass.loosenessRaw = ass.minLooseness;
 					
-					if (this is PlayerCharacter && origTightness <= 4)
+					if (this is PlayerCharacter)
 					{
-						AddLogEvent("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>", "passive", deltaT);
-					}
-					else
-					{
-						AddLogEvent("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has recieved and tightens up.</b>", "passive", deltaT);
+						if (origTightness <= 4) AddLogEvent("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>", "passive", deltaT);
+						else AddLogEvent("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>", "passive", deltaT);
 					}
 				}
 			}
@@ -18990,7 +18983,7 @@
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							if(armor is GooArmor) AddLogEvent(ParseText("[goo.name] wriggles around you and tightens, testing her strength. <i>“Ahh, I feel better now!”</i> She seems to have fully recovered!"), "passive", maxEffectLength);
-							if(hasItemByName("Goo Armor")) AddLogEvent(ParseText("[goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!"), "passive", maxEffectLength);
+							if(hasItemByClass(GooArmor)) AddLogEvent(ParseText("[goo.name] happily mumbles something to herself, but you don’t quite catch it. Feeling her energetic movements, you can only assume that she has finally recovered!"), "passive", maxEffectLength);
 							kGAMECLASS.gooArmorDefense(thisStatus.value1);
 						}
 						break;

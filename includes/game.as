@@ -575,7 +575,7 @@ public const CREW_SIEGEWFULFE:int = 11;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
-	var crewMembers:Array = new Array();;
+	var crewMembers:Array = new Array();
 	
 	// Actual crew members
 	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
@@ -964,12 +964,18 @@ public function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 	
-	if (kiMedbaySleeps()) return;
-	
 	var minPass:int = 420 + rand(80) + 1;
+	var inShip:Boolean = InShipInterior(pc);
 	
-	if(outputs) clearOutput();
-	if(InShipInterior(pc))
+	if(outputs)
+	{
+		clearOutput();
+		eventBufferXP();
+	}
+	
+	// Before sleep events
+	if(kiMedbaySleeps()) return;
+	if(inShip)
 	{
 		if(outputs)
 		{
@@ -979,42 +985,42 @@ public function sleep(outputs:Boolean = true):void {
 				annoSleepWithIntroduce();
 				return;
 			}
-		}
-		//Queue up cured Reaha
-		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
-		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
-		{
-			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
-		}
-	}
-	if(outputs)
-	{
-		eventBufferXP();
-	}
-	if(InShipInterior(pc))
-	{
-		if(outputs)
-		{
-			//CELISE NIGHT TIME BEDTIMEZ
-			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined && flags["CELISE_NO_BED_SENPAI"] == undefined)
+			
+			var interrupt:Boolean = false;
+			
+			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
-				celiseOffersToBeYourBedSenpai();
-				return;
+				case "ANNO":
+					if (annoIsCrew() && rand(3) == 0)
+					{
+						annoSleepSexyTimes();
+						interrupt = true;
+					}
+					break;
+				case "REAHA":
+					if (reahaIsCrew() && rand(3) == 0)
+					{
+						sleepWithCuredReaha();
+						interrupt = true;
+					}
+					break;
+				case "BESS":
+					if (bessIsCrew() && rand(3) == 0)
+					{
+						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+					}
+					break;
+				// No partner selected.
+				default:
+					//CELISE NIGHT TIME BEDTIMEZ
+					if(celiseIsCrew() && rand(3) == 0 && flags["CELISE_NO_BED_SENPAI"] == undefined)
+					{
+						celiseOffersToBeYourBedSenpai();
+						interrupt = true;
+					}
+					break;
 			}
-			else if (annoIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
-			{
-				annoSleepSexyTimes();
-				return;
-			}
-			else if (bessIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
-			{
-				flags["BESS_SLEEPWITH_DOMORNING"] = 1;
-			}
-			else if (reahaIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA")
-			{
-				sleepWithCuredReaha();
-				return;
-			}
+			if(interrupt) return;
 		}
 	}
 	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minPass/60)) + " hours.");
@@ -1022,18 +1028,35 @@ public function sleep(outputs:Boolean = true):void {
 	sleepHeal();
 	
 	processTime(minPass);
-	dreamChances();
-	if(outputs)
-	{
-		mimbraneSleepEvents();
-		if(InShipInterior(pc)) grayGooSpessSkype();
-	}
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
 	
+	// Dream events
+	var dreamed:Boolean = dreamChances();
+	
+	// Between sleep events
+	if(outputs)
+	{
+		mimbraneSleepEvents();
+		if(inShip) grayGooSpessSkype();
+	}
+	
+	// After sleep events
+	if(inShip)
+	{
+		//Queue up cured Reaha
+		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
+		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
+		{
+			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
+		}
+	}
+	
 	clearMenu();
-	if(InShipInterior(pc))
+	
+	// Waking up events
+	if(inShip && !dreamed)
 	{
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
 		{
@@ -1344,7 +1367,7 @@ public function flyTo(arg:String):void
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
-		if (pc.hasItemByType(StrangeEgg) || pc.hasItemInStorage(new StrangeEgg()))
+		if (pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg))
 		{
 			//PC can preggo with it?
 			//Has an open spot!
@@ -1684,9 +1707,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	moveMinutes += immobilizedUpdate(true);
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
-	if(pc.hasItemByType(DongDesigner)) moveMinutes *= 2;
+	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
 	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
-	if(pc.hasItemByType(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
+	if(pc.hasItemByClass(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
@@ -2331,6 +2354,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
 		}
+		if(pc.hasCock() && pc.thinnestCockThickness() < 7 && pc.balls >= 2 && pc.ballDiameter() >= 12 && pc.ballFullness >= 50 && !MailManager.isEntryUnlocked("kally_kiro_milkvite") && kiroKallyThreesomesAvailable() && rand(20) == 0 && flags["KIRO_KALLY_TEAM_MILKED"] == undefined) goMailGet("kally_kiro_milkvite");
 
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();

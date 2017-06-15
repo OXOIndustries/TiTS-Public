@@ -54,17 +54,16 @@ package classes.Engine.Combat
 		if (attacker != null && (special == "ranged" || special == "melee"))
 		{
 			var crittyBonus:Number = 0;
-			if(attacker.hasPerk("Giant Slayer") && target.tallness >= 7*12) crittyBonus += 5;
+			if(attacker.hasPerk("Giant Slayer") && target.tallness >= (7*12)) crittyBonus += 5;
 
 			if(target.hasStatusEffect("Deep Freeze") && baseDamage.hasFlag(DamageFlag.CRUSHING))
 			{
 				damageResult.wasCrit = true;
 				baseHPDamage.multiply(target.statusEffectv3("Deep Freeze"));
 			}
-
 			
 			if (special == "melee")
-			{				
+			{
 				// Melee crit
 				if(attacker.critBonus(true) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
 				{
@@ -109,7 +108,7 @@ package classes.Engine.Combat
 				//Special counter - added when PC melees something. Eaten at the end of the round.
 				if(attacker is PlayerCharacter && !target.hasStatusEffect("Melee Counter")) target.createStatusEffect("Melee Counter",0,0,0,0);
 			}
-			else
+			if (special == "ranged")
 			{
 				if (attacker.hasStatusEffect("Concentrated Fire"))
 				{
@@ -145,7 +144,7 @@ package classes.Engine.Combat
 				}
 			}
 			//Track Alpha Strike. Don't need to track the perk here cause who cares.
-			if(!attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);
+			if(attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);
 		}
 		
 		//Reduce damage for gravitational fiiiieeeeelds

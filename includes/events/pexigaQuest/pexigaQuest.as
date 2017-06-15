@@ -1972,16 +1972,16 @@ public function salvageNymFoe():void
 	showNymFoe();
 	author("Adjatha");
 	
-	if(enemy.hasItem(new Silicone(),4) && enemy.hasItem(new Gush(),5) && enemy.hasItem(new DamagedVIChip()))
+	if(enemy.hasItemByClass(Silicone,4) && enemy.hasItemByClass(Gush,5) && enemy.hasItemByClass(DamagedVIChip))
 	{
 		output("It seems you have looted all the robot’s detachable belongings.");
 	}
 	else
 	{
 		output("Waste not, want not, right? You bend over the repurposed robot and release her safety clamps, opening her warm, squishy exterior. Unsurprisingly, the nurse’s interior is a dizzying mess of rewired circuitry and oily servos. Badger really did a number on this one.");
-		if(!enemy.hasItem(new Silicone(),4)) output("\n\nIt seems her chest has been stuffed with military-grade silicone. Luckily, the pouches seem to be intact, so carrying them away shouldn’t be too much trouble. Who could possibly need this much silicone?");
-		if(!enemy.hasItem(new Gush(),5)) output("\n\nRight near where her heart would be, an elaborate hydraulic pump has been added, connected to a massive tank of Gush. You could probably load up some nearby spray pens from this central tank, if you wanted. You’ll just have to be careful not to let on that you’re carrying enough of the illegal drug to start a cartel.");
-		if(!enemy.hasItem(new DamagedVIChip())) output("\n\nThe nursedroid’s Artificial Intelligence chip should be somewhere around her head. You could probably get a few credits for that, despite Badger’s reprogramming.");
+		if(!enemy.hasItemByClass(Silicone,4)) output("\n\nIt seems her chest has been stuffed with military-grade silicone. Luckily, the pouches seem to be intact, so carrying them away shouldn’t be too much trouble. Who could possibly need this much silicone?");
+		if(!enemy.hasItemByClass(Gush,5)) output("\n\nRight near where her heart would be, an elaborate hydraulic pump has been added, connected to a massive tank of Gush. You could probably load up some nearby spray pens from this central tank, if you wanted. You’ll just have to be careful not to let on that you’re carrying enough of the illegal drug to start a cartel.");
+		if(!enemy.hasItemByClass(DamagedVIChip)) output("\n\nThe nursedroid’s Artificial Intelligence chip should be somewhere around her head. You could probably get a few credits for that, despite Badger’s reprogramming.");
 	}
 	processTime(4);
 	
@@ -2022,13 +2022,13 @@ public function salvageNymFoeMenu():void
 	
 	//[Silicone] (up to 4x Silicone bags, gadget) [Gush] (up to 10x Gush medipens, consumable) [Chip] (1x Damaged AI chip, gadget) [Leave]
 	
-	if(enemy.hasItem(new Silicone(),4)) addDisabledButton(0,"Silicone","Silicone","You’ve already taken all her silicone.");
+	if(enemy.hasItemByClass(Silicone,4)) addDisabledButton(0,"Silicone","Silicone","You’ve already taken all her silicone.");
 	else addButton(0,"Silicone x4",lootTheNymFoe,new Silicone(),"Silicone x4","Take four bags of silicone out of her.");
 
-	if(enemy.hasItem(new Gush(),5)) addDisabledButton(1,"Gush","Gush","You’ve already taken all her Gush.");
+	if(enemy.hasItemByClass(Gush,5)) addDisabledButton(1,"Gush","Gush","You’ve already taken all her Gush.");
 	else addButton(1,"Gush x5",lootTheNymFoe,new Gush(),"Gush x5","Load up five medipens worth of Gush.");
 
-	if(enemy.hasItem(new DamagedVIChip())) addDisabledButton(2,"VI Chip","VI Chip","You’ve already pulled her chip.");
+	if(enemy.hasItemByClass(DamagedVIChip)) addDisabledButton(2,"VI Chip","VI Chip","You’ve already pulled her chip.");
 	else addButton(2,"VI Chip",lootTheNymFoe,new DamagedVIChip(),"VI Chip","Loot the damaged VI chip.");
 
 	addButton(14,"Back",pcVictoryVsNymFoeMenu);
@@ -2057,7 +2057,7 @@ public function nurseDroidChipTurnIn(droid:String):void
 	flags["NYM-FOE_CHIP_RETURN"] = 1;
 	
 	pc.credits += 5000;
-	pc.destroyItem(new DamagedVIChip());
+	pc.destroyItemByClass(DamagedVIChip);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2214,13 +2214,13 @@ public function dollmakerSalvageMenu():void
 	//[Gun] (Mouse Over: A custom designed Bimboleum Emitter, like the kind Doctor Badger uses.)
 	//[Leave] (Mouse Over: You’re done here. Time to get your pexiga healed!)
 	
-	if(enemy.hasItem(new IQBGone())) addDisabledButton(0,"Syringe","Syringe","You’ve already taken her IQ B-Gone syringe.");
+	if(enemy.hasItemByClass(IQBGone)) addDisabledButton(0,"Syringe","Syringe","You’ve already taken her IQ B-Gone syringe.");
 	else addButton(0,"Syringe",dollmakerSalvage,new IQBGone(),"Syringe","A harvested needle filled with Doctor Badger’s patented IQ B-Gone serum. Law enforcement would be interested in this - maybe they can make a cure?");
 
-	if(enemy.hasItem(new BrokenBrainmeltLamp())) addDisabledButton(1,"Lamp","Lamp","You already took the lamp.");
+	if(enemy.hasItemByClass(BrokenBrainmeltLamp)) addDisabledButton(1,"Lamp","Lamp","You already took the lamp.");
 	else addButton(1,"Lamp",dollmakerSalvage,new BrokenBrainmeltLamp(),"Lamp","The deceptively innocuous pink-bulbed Brainmelt Lamp seems to have been damaged in the fight. You might be able to sell it for scrap.");
 
-	if(enemy.hasItem(new BimboleumEmitter())) addDisabledButton(2,"Gun","Gun","You’ve already taken the gun.");
+	if(enemy.hasItemByClass(BimboleumEmitter)) addDisabledButton(2,"Gun","Gun","You’ve already taken the gun.");
 	else addButton(2,"Gun",dollmakerSalvage,new BimboleumEmitter(),"Gun","A custom designed Bimboleum Emitter, like the kind Doctor Badger uses. Effects are probably not permanent... probably.");
 
 	addButton(14,"Leave",leaveTheDollmaker,undefined,"Leave","You’re done here. Time to get your pexiga healed!");
@@ -2255,7 +2255,7 @@ public function turnInIQBGoneToPenpen():void
 	//Normal Penny: 
 	if(flags["PENNY_BIMBO"] == undefined) output("<i>“What’s that, [pc.name]? ‘IQ B-Gone?’ Is this...?”</i> She trails off, narrowing her eyes. <i>“Where did you get this from?”</i> Probably better not to tell the policegirl that you’ve been dealing with Doctor Badger right now. You make up a story about buying it off some scrapper on Tarkus and that seems to satisfy the vixen. <i>“Well, wherever it came from, this stuff is nasty business. I’m going to send it off to the UGC for analysis. Maybe they can use it to make a cure.”</i> Penny’s gaze softens to a look of concern. <i>“You watch yourself out there, okay? Things must seem like a big adventure, I’m sure, but there’s a lot of dangerous people who don’t even need an excuse to hurt you.”</i> You assure her that you’ll watch your back, setting a comforting hand on her shoulder.");
 	else output("<i>“Oooh, got something new for me, mate?”</i> You explain that the syringe is IQ B-Gone and it’d probably be better if Penny avoided taking it in her state. She giggles and shrugs. <i>“So what do we do with it?”</i> You suggest sending it off to the UGC. Keep it out of the wrong hands. <i>“If you think that’s, like, the right thing to do, I guess!”</i> Penny takes the needle and drops it in a box. <i>“Personally, I think I’d be way sexier with a few less IQ points,”</i> she teases, licking her lips with bubble-headed delight. Yeah, definitely better to keep that away from her.");
-	pc.destroyItem(new IQBGone());
+	pc.destroyItemByClass(IQBGone);
 	pc.createStatusEffect("IQBGoneTimer", 0, 0, 0, 0, true, "", "", false, 1440);
 	flags["IQBGONE_POLICED"] = 1;
 	processTime(2);

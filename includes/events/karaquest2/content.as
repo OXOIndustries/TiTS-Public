@@ -1420,7 +1420,7 @@ public function kq2LootLabCoat(noncombatMenu:Boolean = false):void
 // Cheesy hack to see what the player did with the item. If they discarded it, clear the flag that said they looted it.
 public function kq2LabCoatCheck():void
 {
-	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	if (pc.armor is KhansLabCoat || pc.hasItemByClass(KhansLabCoat))
 	{
 		kq2KhanVictoryMenu();
 		return;
@@ -1431,7 +1431,7 @@ public function kq2LabCoatCheck():void
 
 public function kq2LabCoatCheckMenu():void
 {
-	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	if (pc.armor is KhansLabCoat || pc.hasItemByClass(KhansLabCoat))
 	{
 		mainGameMenu();
 		return;
@@ -1450,7 +1450,7 @@ public function kq2LootArcCaster(noncombatMenu:Boolean = false):void
 
 public function kq2LootArcCasterCheck():void
 {
-	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByClass(KhansArcCaster))
 	{
 		kq2KhanVictoryMenu();
 		return;
@@ -1461,7 +1461,7 @@ public function kq2LootArcCasterCheck():void
 
 public function kq2LootArcCasterCheckMenu():void
 {
-	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByClass(KhansArcCaster))
 	{
 		mainGameMenu();
 		return;

@@ -7,10 +7,10 @@ import classes.Items.Toys.TamaniBionaHole;
 import classes.Items.Toys.BubbleBuddy;
 import classes.Items.Toys.SukMastr;
 
-public function checkToyDrawer(arg:ItemSlotClass,amount:int = 1):Boolean
+public function checkToyDrawer(arg:Class,amount:int = 1):Boolean
 {	
-	var HaveToy:Boolean = pc.hasItem(arg, amount);
-	if (!HaveToy && InShipInterior()) HaveToy = pc.hasItemInStorage(arg, amount);
+	var HaveToy:Boolean = pc.hasItemByClass(arg, amount);
+	if (!HaveToy && InShipInterior()) HaveToy = pc.hasItemInStorageByClass(arg, amount);
 	return HaveToy;
 }
 public function canArouseSelf():Boolean
@@ -25,7 +25,7 @@ public function nonLustFaps():Array
 	
 	if (pc.canLactate())
 	{
-		if (checkToyDrawer(new MagicMilker(), 1))
+		if (checkToyDrawer(MagicMilker, 1))
 		{
 			faps.push(["Magic Milker", joyCoMagicMilker7Sucks, "", ""]);
 		}
@@ -190,7 +190,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = multiCockFap;
 		faps.push(fap);
 	}
-	if (pc.hasCock() && checkToyDrawer(new HoverHole()))
+	if (pc.hasCock() && checkToyDrawer(HoverHole))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "HoverHole";
@@ -200,7 +200,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	
 	if (((pc.canLactate() || pc.milkQ() >= 200) && !roundTwo) || (pc.isLactating() && pc.milkFullness >= 70 && roundTwo))
 	{
-		if (checkToyDrawer(new MagicMilker(), 1))
+		if (checkToyDrawer(MagicMilker, 1))
 		{
 			fap = new FapCommandContainer();
 			fap.text = "Magic Milker";
@@ -350,7 +350,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	if(checkToyDrawer(new NivasBionaHole()) && pc.hasCock())
+	if(checkToyDrawer(NivasBionaHole) && pc.hasCock())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "NivasB.Hole";
@@ -359,7 +359,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = nivasFapSetup;
 		faps.push(fap);
 	}
-	if(checkToyDrawer(new NivasBionaHole()) && pc.hasCock() && flags["NIVAS_TUTORIAL"] != undefined)
+	if(checkToyDrawer(NivasBionaHole) && pc.hasCock() && flags["NIVAS_TUTORIAL"] != undefined)
 	{
 		fap = new FapCommandContainer();
 		fap.text = "NivasTutorial";
@@ -368,7 +368,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = bionaHoleInstructionalBullshit;
 		faps.push(fap);
 	}
-	if(checkToyDrawer(new TamaniBionaHole()) && pc.hasCock())
+	if(checkToyDrawer(TamaniBionaHole) && pc.hasCock())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Tamani B.H.";
@@ -377,7 +377,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = TamaniFapSetup;
 		faps.push(fap);
 	}
-	if(checkToyDrawer(new TamaniBionaHole()) && pc.hasCock() && flags["TAMANI_HOLED"] != undefined)
+	if(checkToyDrawer(TamaniBionaHole) && pc.hasCock() && flags["TAMANI_HOLED"] != undefined)
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Tamani Tut.";
@@ -397,7 +397,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		faps.push(fap);
 	}
 	//Special new texas shit
-	if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+	if(pc.hasItemByClass(GravCuffs) && rooms[currentLocation].planet == "PLANET: NEW TEXAS" && rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "CuffSelf";
@@ -425,7 +425,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = stolenDildoFap;
 		faps.push(fap);
 	}
-	if(checkToyDrawer(new BubbleBuddy()) && pc.hasCock())
+	if(checkToyDrawer(BubbleBuddy) && pc.hasCock())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "BubbleBuddy";
@@ -434,7 +434,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = jackIntoDaBubbleBooty;
 		faps.push(fap);
 	}
-	if(checkToyDrawer(new SukMastr()) && pc.hasVagina())
+	if(checkToyDrawer(SukMastr) && pc.hasVagina())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "SukMastr";
@@ -577,7 +577,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 			
 			addButton(btnSlot++,"Exhibitionism",goddamnitJimTAndYourExhibitionism);
 			//Special new texas shit
-			if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS")
+			if(pc.hasItemByClass(GravCuffs) && rooms[currentLocation].planet == "PLANET: NEW TEXAS")
 			{
 				addButton(btnSlot++,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
 			}
@@ -596,7 +596,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 			
 			addButton(btnSlot++,"Exhibitionism",moderateExhibitionOmniFap);
 			//Special new texas shit
-			if(pc.hasItem(new GravCuffs()) && rooms[currentLocation].planet == "PLANET: NEW TEXAS")
+			if(pc.hasItemByClass(GravCuffs) && rooms[currentLocation].planet == "PLANET: NEW TEXAS")
 			{
 				addButton(btnSlot++,"CuffSelf",cuffSelfRouter,undefined,"Cuff Yourself","You bet that if you cuffed yourself naked somewhere public, there’d be at least one randy bull to give you a reaming.");
 			}

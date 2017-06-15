@@ -66,12 +66,21 @@ public function saloonInteriorBonus():Boolean
 		addButton(3,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),approachSally,undefined,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),"Follow the wonderful scent of that cowgirl to the bar.");
 	}
 	//[Ride Bronco]
-	addButton(4,"Ride Bronco",ridingTheBuckingBronco,undefined,"Ride Bronco","Get on that perverted horsey!");;
+	addButton(4,"Ride Bronco",ridingTheBuckingBronco,undefined,"Ride Bronco","Get on that perverted horsey!");
 	//put the bar-based NPC blurbs like Kiro, Erra, and Anno here
 	roamingBarEncounter(5);
 	// 9999 - Disable other directions until content is available!
 	setNavDisabled(NAV_EAST_DISABLE);
 	setNavDisabled(NAV_WEST_DISABLE);
+	return false;
+}
+public function saloonStairsBonus():Boolean
+{
+	switch(currentLocation)
+	{
+		case "BRONCO STAIRS 1": addButton(5, "Up", move, "BRONCO STAIRS 2"); break;
+		case "BRONCO STAIRS 2": addButton(7, "Down", move, "BRONCO STAIRS 1"); break;
+	}
 	return false;
 }
 

@@ -507,6 +507,11 @@
 		public function get Bust_SAENDRA_FUTA_NUDE():Class { return Bust_SAENDRA; }
 		public function get Bounds_SAENDRA_FUTA_NUDE():Rectangle { return Bounds_SAENDRA; }
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/salire.png", mimeType = "image/png")]
+		public var Bust_SALIRE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/salire_nude.png", mimeType = "image/png")]
+		public var Bust_SALIRE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/sean.png", mimeType = "image/png")]
 		public var Bust_SEAN:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/sean_nude.png", mimeType = "image/png")]
@@ -1087,6 +1092,11 @@
 			public function get Full_SAENDRA_FUTA():Class { return Full_SAENDRA; }
 			public function get Full_SAENDRA_NUDE():Class { return Full_SAENDRA; }
 			public function get Full_SAENDRA_FUTA_NUDE():Class { return Full_SAENDRA; }
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/salire.png", mimeType = "image/png")]
+			public var Full_SALIRE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/salire_nude.png", mimeType = "image/png")]
+			public var Full_SALIRE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/sean.png", mimeType = "image/png")]
 			public var Full_SEAN:Class;

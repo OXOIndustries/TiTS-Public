@@ -1,17 +1,3 @@
-import classes.Creature;
-import classes.ItemSlotClass;
-import classes.Items.Apparel.Boyshorts;
-import classes.Items.Apparel.PlainPanties;
-import classes.Items.Apparel.Stockings;
-import classes.Items.Apparel.Thong;
-import classes.Items.Miscellaneous.BBQToGo;
-import classes.Items.Miscellaneous.Kalocrunch;
-import classes.Items.Miscellaneous.LargeEgg;
-import classes.Items.Miscellaneous.MhengaMango;
-import classes.Items.Miscellaneous.MyrNectar;
-import classes.Items.Miscellaneous.SmallEgg;
-import classes.Items.Miscellaneous.ZilHoney;
-import classes.Items.Recovery.PexigaSaliva;
 /*
 Flags Key:
 

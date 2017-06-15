@@ -209,14 +209,14 @@ public function hasItemForLerris():Array
 {
 	var itemTypes:Array = [];
 
-	if (pc.hasItemByType(Lactaid)) itemTypes.push(Lactaid);
-	if (pc.hasItemByType(Chocolac) && lerris.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) itemTypes.push(Chocolac);
-	if (pc.hasItemByType(Honeydew) && lerris.milkType != GLOBAL.FLUID_TYPE_HONEY) itemTypes.push(Honeydew);
-	if (pc.hasItemByType(BoobswellPads) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(BoobswellPads);
-	if (pc.hasItemByType(Tittyblossom) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(Tittyblossom);
-	if (pc.hasItemByType(Nepeta) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(Nepeta);
-	if (flags["FUCKED_LERRIS"] != undefined && !lerris.hasVagina() && flags["LERRIS_ITEMS_GIVEN"] != undefined && pc.hasItemByType(Pussybloom)) itemTypes.push(Pussybloom); // (Only if PC has found out she's a trap)
-	if (flags["FUCKED_LERRIS"] != undefined && flags["LERRIS_ITEMS_GIVEN"] != undefined && flags["LERRIS_BOVINIUMED"] == undefined && pc.hasItemByType(Bovinium)) itemTypes.push(Bovinium); 
+	if (pc.hasItemByClass(Lactaid)) itemTypes.push(Lactaid);
+	if (pc.hasItemByClass(Chocolac) && lerris.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) itemTypes.push(Chocolac);
+	if (pc.hasItemByClass(Honeydew) && lerris.milkType != GLOBAL.FLUID_TYPE_HONEY) itemTypes.push(Honeydew);
+	if (pc.hasItemByClass(BoobswellPads) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(BoobswellPads);
+	if (pc.hasItemByClass(Tittyblossom) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(Tittyblossom);
+	if (pc.hasItemByClass(Nepeta) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(Nepeta);
+	if (flags["FUCKED_LERRIS"] != undefined && !lerris.hasVagina() && flags["LERRIS_ITEMS_GIVEN"] != undefined && pc.hasItemByClass(Pussybloom)) itemTypes.push(Pussybloom); // (Only if PC has found out she's a trap)
+	if (flags["FUCKED_LERRIS"] != undefined && flags["LERRIS_ITEMS_GIVEN"] != undefined && flags["LERRIS_BOVINIUMED"] == undefined && pc.hasItemByClass(Bovinium)) itemTypes.push(Bovinium); 
 
 	return itemTypes;
 }

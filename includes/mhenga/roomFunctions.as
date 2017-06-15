@@ -327,7 +327,7 @@ public function jungleDeepEncounters():Boolean {
 			}
 		}
 	}
-	if(rand(100) == 0 && !pc.hasItem(new StrangeEgg()))
+	if(rand(100) == 0 && !pc.hasItemByClass(StrangeEgg))
 	{
 		findStrangeEgg();
 		return true;
@@ -683,7 +683,7 @@ public function mhengaSalvageFromCamp():void
 }
 public function mhengaSalvageArmorCheck():void
 {
-	if(pc.armor is AtmaArmor || pc.hasItemByType(AtmaArmor))
+	if(pc.armor is AtmaArmor || pc.hasItemByClass(AtmaArmor))
 	{
 		mainGameMenu();
 		return;

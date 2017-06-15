@@ -34,7 +34,7 @@ public function milodanCombatPrep():Creature
 	milodan.long = "The male Milodan stands at about seven and a half feet, ";
 	//Pc tallness < 85: 
 	if(pc.tallness < 85) milodan.long += "towering above you.";
-	//{Pc tallness > 85:
+	//Pc tallness > 85:
 	else milodan.long += "looking you fiercely in the eye.";
 	milodan.long += " His thick " + milodan.furColor + " fur serves to keep him warm in the blistering cold of the rift, a particularly shaggy tuft of it sticking out from his chest. He’s built like a goddamn house, his fur unable to conceal the thick muscle lurking beneath it. His feline ears are laid back and his fangs and claws are prominently displayed, ";
 	//milodan_weapon = club: 
@@ -1003,8 +1003,8 @@ public function milodanPregnancyEnds():void
 {
 	clearOutput();
 	author("Wsan");
-	showName("\nBIRTHING!");
 	showBust("");
+	showName("\nBIRTHING!");
 
 	var se:StorageClass = pc.getStatusEffect("Milodan Pregnancy Ends");
 	
@@ -1049,12 +1049,12 @@ public function milodanPregnancyEnds():void
 	else output("their");
 	output(" little arms and feet about. Oddly enough, none of them are crying. That Milodan toughness at work, you suspect. With a tired smile, you gently wash ");
 	if(numChildren > 1) output("each one");
-	if( babym ) output("him");
-	else output("her");
+	else output( babym ? "him" : "her" );
 	output(" off with some warm water and bundle your ");
 	if(numChildren == 1) output("child");
 	else output("children");
-	output(" up in some comfortable sheets before calling for the nursery pods. Watching the kit");
+	output(" up in some comfortable sheets before calling for the nursery pods.");
+	output("\n\nWatching the kit");
 	if(numChildren > 1) output("s");
 	output(" disappear makes you forlorn for a while, but you remind yourself that it’d be wildly irresponsible to take your kids along on your incredibly dangerous space journey. This is for the best, really. You can see them on Tavros any time you want to.");
 	output("\n\nAs for you, you quickly wash yourself off in the shower and practically crawl into your bed looking and feeling like some kind of half-dead sea slug. Giving birth is tiring work, and it’s definitely time for a nap.");

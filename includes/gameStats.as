@@ -181,6 +181,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasPerk("Regal Mane")) output2("\n<b>* Neck, Mane:</b> " + GLOBAL.FLAG_NAMES[pc.perkv1("Regal Mane")]);
 		// Body
 		output2("\n<b><u>Body</u></b>");
+		if(pc.hasStatusEffect("Sore Counter")) output2("\n<b>* Soreness Level:</b> " + pc.statusEffectv1("Sore Counter"));
+		if(pc.hasStatusEffect("Sweaty")) output2("\n<b>* Sweat Level:</b> " + pc.statusEffectv1("Sweaty"));
 		output2("\n<b>* Tone:</b> " + pc.tone + "/" + pc.toneMax());
 		output2("\n<b>* Thickness:</b> " + pc.thickness + "/" + pc.thicknessMax());
 		output2("\n<b>* Skin:</b>");
@@ -2077,7 +2079,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
 				if(flags["NYM-FOE_FUCKED"] != undefined) output2("\n<b>* Nym-Foe, Times Sexed Her:</b> " + flags["NYM-FOE_FUCKED"]);
 				if(flags["NYM-FOE_LOSSES"] != undefined) output2("\n<b>* Nym-Foe, Times Lost to Her:</b> " + flags["NYM-FOE_LOSSES"]);
-				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItem(new DamagedVIChip()))
+				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItemByClass(DamagedVIChip))
 				{
 					output2("\n<b>* Damaged V.I. Chip:</b> Looted");
 					if(flags["NYM-FOE_CHIP_RETURN"] == undefined) output2(", In possession");
@@ -2095,7 +2097,7 @@ public function displayQuestLog(showID:String = "All"):void
 						default: output2(" Seen it"); break;
 					}
 				}
-				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItem(new IQBGone()))
+				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone))
 				{
 					output2("\n<b>* IQ B-Gone:</b> Looted");
 					if(flags["IQBGONE_POLICED"] == undefined) output2(", In possession");
@@ -2270,7 +2272,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["EMMY_QUEST"] == 0)
 				{
 					output2(" Requested a flower");
-					if(!pc.hasItem(new VenusBloom())) output2(", <i>Find her a flower!</i>");
+					if(!pc.hasItemByClass(VenusBloom)) output2(", <i>Find her a flower!</i>");
 					else output2(", Flower found, <i>Give her a flower!</i>");
 				}
 				if(flags["EMMY_QUEST"] >= 1)
@@ -5241,7 +5243,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", Gave her a flower");
 						if(flags["GAVE_LYS_FLOWER"] != 1) output2(" " + flags["GAVE_LYS_FLOWER"] + " times");
 					}
-					else if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) output2(", <i>Give her a flower!</i>");
+					else if(pc.hasItemByClass(VenusBloom) && flags["ENABLE_LYS_FLOWER"] != undefined) output2(", <i>Give her a flower!</i>");
 					if(flags["GOLD_DILDOED"] != undefined) output2("\n<b>* " + goldMyrDeserterName + ", Times Used Dildo:</b> " + flags["GOLD_DILDOED"]);
 				}
 				if(flags["MET_RED_DESERTER"] != undefined)
@@ -5511,7 +5513,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", She offered to help you with your varmint stowaway");
 						if(flags["NATALIE_NEED_SILICONE"] != undefined)
 						{
-							if(!pc.hasItem(new Silicone())) output2(", <i>Find silicone!</i>");
+							if(!pc.hasItemByClass(Silicone)) output2(", <i>Find silicone!</i>");
 							else output2(", Have silicone, <i>Return to her!</i>");
 						}
 					}
@@ -5708,6 +5710,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Spunk Bunker
+			if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined || flags["VIXETTE_MOUTHGASMED"] != undefined)
+			{
+				output2("\n<b><u>Spunk Bunker</u></b>");
+				if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined) output2("\n<b>* Services, Times Cock-Milked with Kiro and Kally:</b> " + flags["KIRO_KALLY_TEAM_MILKED"]);
+				if(flags["VIXETTE_MOUTHGASMED"] != undefined) output2("\n<b>* Vixette, Times She Sucked Your Dick:</b> " + flags["VIXETTE_MOUTHGASMED"]);
+				variousCount++;
+			}
 		}
 		
 		// Nothing recorded
@@ -5792,7 +5802,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 1: output2(", Lovers"); break;
 				}
 			}
-			if(flags["CHAURMINE_WINS"] > 0) output2("\n<b>* " + chaurmineName + ", Times Defeated Him in Combat:</b> " + flags["CHAURMINE_WINS"]);
+			var chaurFightWin:int = (flags["CHAURMINE_WINS"] > 0 ? flags["CHAURMINE_WINS"] : 0);
+			var chaurFightLoss:int = (flags["CHAURMINE_LOSSES"] > 0 ? flags["CHAURMINE_LOSSES"] : 0);
+			var chaurmineFights:int = (chaurFightWin + chaurFightLoss);
+			if(chaurmineFights > 0) output2("\n<b>* " + chaurmineName + ", Combat, Your Win/Loss Ratio:</b> " + chaurFightWin + "/" + chaurFightLoss + ", of " + chaurmineFights + " encounters");
 			if(flags["SEXED_CHAURMINE"] > 0) output2("\n<b>* " + chaurmineName + ", Times Sexed Him:</b> " + flags["SEXED_CHAURMINE"]);
 			//sideCount++;
 			roamCount++;
@@ -5856,6 +5869,15 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kiro:</b>");
 			if(flags["KIRO_DISABLED_MINUTES"] > 0) output2(" Away");
 			else output2(" Active");
+			if(flags["KIRO_PHONE_EVENT"] != undefined)
+			{
+				output2("\n<b>* Kiro, Her Codex:</b> Found");
+				switch(flags["KIRO_PHONE_EVENT"])
+				{
+					case 1: output2(", You sent her nudes for her"); break;
+					case 2: output2(", You sent her nudes to Kally"); break;
+				}
+			}
 			output2("\n<b>* Kiro, Trust:</b> " + kiroTrust() + " %");
 			if(flags["KIRO_DRINKING_CONTEST_RESULTS"] != undefined)
 			{
@@ -5969,6 +5991,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(chars["SHADE"].isLactating()) output2("\n<b>* Shade, Milk Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[chars["SHADE"].milkType]);
 			}
 			if(flags["SEXED_SHADE"] != undefined) output2("\n<b>* Shade, Times Sexed:</b> " + flags["SEXED_SHADE"]);
+			if(flags["SHADES_CUNTTAIL_FED"] != undefined) output2("\n<b>* Shade, Times Fed Her Tail Cunt:</b> " + flags["SHADES_CUNTTAIL_FED"]);
 			if(flags["TAKEN_SHADES_HARDLIGHT"] != undefined) output2("\n<b>* Shade, Times Fucked by Her Hardlight Strap-on:</b> " + flags["TAKEN_SHADES_HARDLIGHT"]);
 			if(flags["SHADE_BOOBWORSHIP"] != undefined) output2("\n<b>* Shade, Times Worshipped Her Boobs:</b> " + flags["SHADE_BOOBWORSHIP"]);
 			roamCount++;
@@ -6179,7 +6202,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Sexploration: The Sex Toys
-		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["WULFE_PURCHASED"] != undefined || flags["SUKMASTRED"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
+		if(flags["NIVAS_BIONAHOLE_USES"] != undefined || flags["SYRI_BIONAHOLE_USES"] != undefined || flags["TAMANI_HOLED"] != undefined || flags["GRAVCUFFS_USES"] != undefined || flags["HOVERHOLE_USES"] != undefined || flags["WULFE_PURCHASED"] != undefined || flags["SUKMASTRED"] != undefined || flags["BUBBLE_BUDDIED"] != undefined || flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItemByClass(EggTrainer))
 		{
 			output2("\n<b><u>Sex Toys</u></b>");
 			// BionaHoles
@@ -6214,7 +6237,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			// Bubble Buddy
 			if(flags["BUBBLE_BUDDIED"] != undefined) output2("\n<b>* TamaniCorp, Bubble Buddy, Times Used:</b> " + flags["BUBBLE_BUDDIED"]);
 			// Egg Trainer
-			if(flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItem(new EggTrainer()))
+			if(flags["EGG_TRAINER_INSTALLED"] != undefined || pc.hasItemByClass(EggTrainer))
 			{
 				output2("\n<b>* TamaniCorp, Egg Trainer:</b>");
 				if(flags["EGG_TRAINER_INSTALLED"] != undefined) output2(" Installed");

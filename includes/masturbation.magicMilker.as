@@ -493,7 +493,7 @@ public function altTooltipMilkBag():String
 public function milkBagTooltipBonus(milkBag:MilkBag):String
 {
 	var tooltip:String = "\n";
-	tooltip += "\n<b>Fluid Type:</b> " + GLOBAL.FLUID_TYPE_NAMES[milkBag.fluidType];
+	tooltip += "\n<b>Fluid Type:</b> " + (GLOBAL.FLUID_TYPE_NAMES.indexOf(milkBag.fluidType) != -1 ? GLOBAL.FLUID_TYPE_NAMES[milkBag.fluidType] : "<i>Unknown</i>");
 	tooltip += "\n<b>Fullness:</b> ";
 	switch(milkBag.fullnessLevel)
 	{
@@ -502,6 +502,7 @@ public function milkBagTooltipBonus(milkBag:MilkBag):String
 		case 2: tooltip += "Somewhat Full"; break;
 		case 3: tooltip += "Mostly Full"; break;
 		case 4: tooltip += "Dangerously Full"; break;
+		default: tooltip += "<i>Unknown</i>"; break;
 	}
 	return tooltip;
 }

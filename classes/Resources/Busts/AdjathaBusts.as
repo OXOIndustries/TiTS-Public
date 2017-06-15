@@ -119,6 +119,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/bronco.png", mimeType = "image/png")]
 		public var Bust_BRONCO:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/khorgan.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/khorgan_nude.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/khorgan_jail.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN_JAIL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/khorgan_jail_preg.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN_JAIL_PREG:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/carrie.png", mimeType = "image/png")]
 		public var Bust_CARRIE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/carrie_nude.png", mimeType = "image/png")]
@@ -159,6 +168,7 @@ package classes.Resources.Busts
 		public var Bust_DELILAH_SHEMALE_HORSE_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/del_boy.png", mimeType = "image/png")]
 		public var Bust_DELILAH_BOY:Class;
+		public function get Bust_DELILAH_BOY_NUDE():Class { return Bust_DELILAH_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/dollmaker.png", mimeType = "image/png")]
 		public var Bust_DOLLMAKER:Class;
@@ -490,6 +500,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/tamani_nude.png", mimeType = "image/png")]
 		public var Bust_TAMANI_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/tam.png", mimeType = "image/png")]
+		public var Bust_TAMTAM:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/tam_nude.png", mimeType = "image/png")]
+		public var Bust_TAMTAM_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/tam_jail.png", mimeType = "image/png")]
+		public var Bust_TAMTAM_JAIL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/tam_jail_preg.png", mimeType = "image/png")]
+		public var Bust_TAMTAM_JAIL_PREG:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/tank_kannon.png", mimeType = "image/png")]
 		public var Bust_TANK_KANNON:Class;
 		
@@ -665,6 +684,15 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bronco.png", mimeType = "image/png")]
 			public var Full_BRONCO:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan.png", mimeType = "image/png")]
+			public var Full_CAPTAIN_KHORGAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan_nude.png", mimeType = "image/png")]
+			public var Full_CAPTAIN_KHORGAN_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan_jail.png", mimeType = "image/png")]
+			public var Full_CAPTAIN_KHORGAN_JAIL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan_jail_preg.png", mimeType = "image/png")]
+			public var Full_CAPTAIN_KHORGAN_JAIL_PREG:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carrie.png", mimeType = "image/png")]
 			public var Full_CARRIE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carrie_nude.png", mimeType = "image/png")]
@@ -996,6 +1024,15 @@ package classes.Resources.Busts
 			public var Full_STEPH_6:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_6_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam.png", mimeType = "image/png")]
+			public var Full_TAMTAM:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam_nude.png", mimeType = "image/png")]
+			public var Full_TAMTAM_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam_jail.png", mimeType = "image/png")]
+			public var Full_TAMTAM_JAIL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam_jail_preg.png", mimeType = "image/png")]
+			public var Full_TAMTAM_JAIL_PREG:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tamani.png", mimeType = "image/png")]
 			public var Full_TAMANI:Class;

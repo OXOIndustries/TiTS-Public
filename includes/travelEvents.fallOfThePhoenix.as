@@ -576,7 +576,7 @@ public function phoenixEngineeringTakeShield():void
 }
 public function phoenixEngineeringTakeShieldCheck():void
 {
-	if(pc.shield is JoyCoPremiumShield || pc.hasItemByType(JoyCoPremiumShield))
+	if(pc.shield is JoyCoPremiumShield || pc.hasItemByClass(JoyCoPremiumShield))
 	{
 		mainGameMenu();
 		return;

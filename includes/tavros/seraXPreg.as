@@ -269,7 +269,7 @@ public function seraPriapinAction(response:String = ""):void
 			break;
 		case "give":
 			pc.createStatusEffect("Give Sera Priapin");
-			pc.destroyItem(new Priapin());
+			pc.destroyItemByClass(Priapin);
 			seraBreedResponse(["ready"]);
 			break;
 		default:
@@ -380,7 +380,7 @@ public function seraBreedResponse(arg:Array):void
 			chars["SERA"].impregnationType = "SeraSpawnPregnancy";
 			chars["SERA"].createStatusEffect("Priapin", 1, 1, 1.75, 30, false, "Icon_DrugVial", "Masculine virility has been piqued temporarily.", false, 1440);
 			
-			// {merge}
+			// merge
 			output("\n\nIt’s less of a kiss and more of a ravaging; she bends her wet muscle into you as far as she can, almost brushing your tonsils before thrusting it into a cheek wall, apparently intent on touching as much of you as possible.");
 			if(!pc.isNude())
 			{
@@ -475,7 +475,7 @@ public function seraBreedResponse(arg:Array):void
 			// If dedicked:
 			if(!pc.hasCock() && flags["SERA_CREATE_VAG"] != undefined) output("\n\n<i>“Doesn’t it feel good your mistress got rid of that useless dick of yours?”</i> the yellow eyes and white teeth below you whisper. She jerks upwards suddenly, making you spasm with pleasure. <i>“Got to say, when I did that and broke you in, I never thought that one day I’d also be making you bear my spawn. That’s what I love about you - you keep coming up with adorable ways to tighten your collar all on your own.”</i>");
 			
-			// {merge}
+			// merge
 			output("\n\nShe clutches your [pc.thighs] and bucks into you ferociously as a new high approaches. You orgasm as she’s still ramming herself into you, the pump and shift of her dick inside of you impossible to resist; you cry out at the pleasure whiplashes through you, your [pc.vagina " + vag + "] clenching up again and again around your multiple obdurate insertions. Then you wail as Sera grabs your nipple chain in her mouth and yanks at it,");
 			if(pc.hasErectNipples(0)) output(" seizing at your trapped nipples");
 			else if(pc.hasFuckableNipples(0)) output(" forcing you to boob-gasm around the trembling plugs");
@@ -529,7 +529,7 @@ public function seraBreedResponse(arg:Array):void
 			if(pregBellyRating >= 10) output("\n\n<i>“We should make videos, you know,”</i> she giggles in your ear. <i>“I’m sure junior will want to know how mommy met daddy eventually.”</i>");
 			else output("\n\n<i>“Now that’s what I call an impregnation,”</i> she giggles throatily. <i>“Gotta admit - you’re going to look pretty cute, carrying around a belly like that.”</i>");
 			
-			// {merge}
+			// merge
 			output("\n\nAfter she’s stripped you of her toys, she lets you use her shower with her in a show of magnanimity. Pressing against her soaped, curvy form in the cramped, humid cubicle is the perfect opportunity to screw around a little more, but you’re far too exhausted for it - and perhaps even Sera has found her limits, because she makes no humiliating demands of you here. Despite a long wash you’re still feeling distinctly bloated around the midriff when you hobble back to the store front, a fact that makes the heeled hellion laugh with delight when you turn around. Is there a slight amount of reluctance in the way she lets go of your hand?");
 			if(pc.hasStatusEffect("Give Sera Priapin"))
 			{
@@ -573,6 +573,7 @@ public function seraSpawnPregnancyEnds():void
 	clearOutput();
 	author("Nonesuch");
 	showBust("");
+	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Sera Spawn Pregnancy Ends");
 	var numChildren:int = se.value1;
@@ -614,8 +615,8 @@ public function seraSpawnPregnancyEnds():void
 	// merge
 	output("\n\nSpasms wrack your pregnant body for the next hour as it works the baby free. During the painful frenzy you operate mostly on biological autopilot, but glimpse a few details of your new little miracle. The baby drops " + (rand(10) == 0 ? "head" : "feet") + "-first, noodling its way out " + (pc.vaginas[pregSlot].looseness() >= 5 ? "easily" : "in a protracted battle with your tight vagina") + ", and the placenta follows.");
 	
-	// {vag hymen/stretch check here}
-	pc.cuntChange(pregSlot, 3000);
+	// vag hymen/stretch check here
+	//pc.cuntChange(pregSlot, 3000);
 	
 	output("\n\nYour new bundle launches into a throaty cry when the air hits its skin. As the pain fades and the endorphin haze clears from your eyes, the noise brings you home to yourself; you gather the squirming baby into your arms and dab the gore away. It’s a " + (babym ? "boy" : "girl") + "! A fuzz of hazel hair coats " + (babym ? "his" : "her") + " pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
 	
@@ -668,7 +669,7 @@ public function seraSpawnPregnancyBlurbs(pregDays:Number = 0):Boolean
 		if(pc.isNice()) output("\n\n<i>“It is a little difficult for me to pretend that, yes,”</i> you reply patiently. <i>“But you knew, Mistress. And you agreed.”</i>");
 		else if(pc.isMischievous()) output("\n\n<i>“Who would think this would be the outcome of pumping yourself full of fertility drugs and then creampie-ing me repeatedly?”</i> you reply witheringly.");
 		else if(pc.isAss()) output("\n\n<i>“If you want I can explain the bees and the birds to you, Mistress,”</i> you deadpan. <i>“Kinda hoped you knew about them, back when you agreed to bareback me silly.”</i>");
-		// {merge}
+		// merge
 		output("\n\n<i>“Yeah, but that was just... playing,”</i> snorts the demon-morph. <i>“Fucking like horny teenagers, who wouldn’t turn that down? This is real, though.”</i> She pauses for a while longer. <i>“Can I touch?”</i>");
 		output("\n\nIt’s slightly strange to hear her ask your permission for anything. You watch her gently scrape her claws over your bulging belly, her expression slowly shifting from wariness to a kind of pride.");
 		output("\n\n<i>“It’s a kind of sexy punishment, isn’t it?”</i> she breathes. <i>“Swelling out your body with horny hormones, slowing you down and making you waddle for enjoying yourself so much on the end of my dick for, what, almost a year?”</i> She shakes her head, transfixed. <i>“I really am sadistic, aren’t I?”</i>");
@@ -998,7 +999,7 @@ public function nameSeraSpawnResult(arg:Array):void
 	{
 		output("<i>“" + babyName + ",”</i> Sera tries, rolling it around her mouth. <i>“Alright, I’m on board. Worst things " + (babym ? "he" : "she") + " could be called, I guess.”</i>");
 	}
-	// {merge}
+	// merge
 	output("\n\nThe purple-skinned succubus goes back to toying with her meal.");
 	output("\n\n<i>“I guess I can come up here every once in a while,”</i> she says. <i>“Make sure they don’t sell little " + babyName + " to a corporation or whatever, whilst you’re slutting it up on the frontier. The food’s pretty good for a kiddie joint, so I’m perfectly happy to keep freeloading here until they start refusing to let me in.”</i>");
 	output("\n\n<i>“And also because you think your " + (babym ? "son" : "daughter") + "’s really cute,”</i> you say, gazing at her shrewdly. <i>“Don’t you?”</i>");
@@ -1120,7 +1121,7 @@ public function seraNurseryActions(arg:Array):void
 			// +1 Hour
 			processTime(45 + rand(11));
 			
-			// {merge}
+			// merge
 			addButton(0, "Next", seraNurseryActions, ["visit done", babyIdx, babym, babyName]);
 			break;
 		case "visit done":
@@ -1241,7 +1242,7 @@ public function seraNurseryActions(arg:Array):void
 			// +1 Hour
 			processTime(45 + rand(11));
 			
-			// {merge}
+			// merge
 			addButton(0, "Next", seraNurseryActions, ["play done", babyIdx, babym, babyName]);
 			break;
 		case "play done":

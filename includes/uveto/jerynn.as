@@ -60,7 +60,7 @@ public function isWearingJerynnsCollar():Boolean
 
 public function hasJerynnsHarness():Boolean
 {
-	return ((pc as PlayerCharacter).hasItemByType(MagneticHarness));
+	return ((pc as PlayerCharacter).hasItemByClass(MagneticHarness));
 }
 
 public function isWearingJerynnsHarness():Boolean
@@ -1548,7 +1548,7 @@ public function jerynnPetstuffCleanup(isLemmeOut:Boolean = false):void
 
 	output("\n\nEventually though she turns the steamy water off and directs you out of her shower.");
 
-	if (jerynnPetstuffLevel() == 4 && !pc.hasItemByType(MagneticHarness) && !pc.upperUndergarment is MagneticHarness)
+	if (jerynnPetstuffLevel() == 4 && !pc.hasItemByClass(MagneticHarness) && !pc.upperUndergarment is MagneticHarness)
 	{
 		output("\n\nShe points you to her packs and you make with retrieving all of your gear. Tucked under your stuff is a little parcel intended for you, PET simply written across the top of it. Inside is a modified version of the harness you’ve become intimately familiar with whilst under the taur; each of the magnetic clasps has a tiny status light hidden on the corner, all of them dim. You slip it on automatically and you realize it’s sized perfectly for you, your suspicions about the clasps confirmed when you bend your arm double but the tell-tale smack of the clasps locking together is absent.");
 		

@@ -188,7 +188,7 @@ public function kirosShipPistol():void
 }
 public function kirosShipPistolCheck():void
 {
-	if(pc.rangedWeapon is CustomLP17 || pc.hasItemByType(CustomLP17))
+	if(pc.rangedWeapon is CustomLP17 || pc.hasItemByClass(CustomLP17))
 	{
 		mainGameMenu();
 		return;
@@ -211,7 +211,7 @@ public function kirosShipCutlass():void
 }
 public function kirosShipCutlassCheck():void
 {
-	if(pc.meleeWeapon is Cutlass || pc.hasItemByType(Cutlass))
+	if(pc.meleeWeapon is Cutlass || pc.hasItemByClass(Cutlass))
 	{
 		mainGameMenu();
 		return;
