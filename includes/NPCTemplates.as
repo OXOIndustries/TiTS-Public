@@ -1,6 +1,16 @@
-﻿public function initializeNPCs(justUpdate:Boolean = false):void 
+﻿import classes.Characters.PlayerCharacter;
+import flash.utils.Dictionary;
+public function initializeNPCs(justUpdate:Boolean = false):void 
 {
-	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
+	if (!justUpdate)
+	{
+		chars = new Object();
+		charDict = new Dictionary();
+		
+		var nPC:PlayerCharacter = new PlayerCharacter();
+		chars["PC"] = nPC;
+		charDict[nPC] = "PC";
+	}
 	
 	prepChar(justUpdate, "CELISE", Celise);
 	prepChar(justUpdate, "RIVAL", Rival);
@@ -126,6 +136,7 @@
 	prepChar(justUpdate, "CYNTHIA", Cynthia);
 	prepChar(justUpdate, "CHAURMINE", Chaurmine);
 	prepChar(justUpdate, "MIRRIN", Mirrin);
+	prepChar(justUpdate, "YAMMI", Yammi);
 	
 	
 	// Check all characters have version information set
@@ -146,6 +157,8 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 {
 	if (!justUpdate || (justUpdate && chars[index] == undefined))
 	{
-		chars[index] = new classT();
+		var objInst:Object = new classT();
+		chars[index] = objInst;
+		charDict[objInst] = index;
 	}
 }

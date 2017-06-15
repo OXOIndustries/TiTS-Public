@@ -2043,8 +2043,8 @@ public function deck13SecurityFunc():Boolean
 		anno.long = "Anno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.";
 		anno.customDodge = "Anno quickly dodges out of the way and lands to safety.";
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters([pc, anno]);
-		CombatManager.setHostileCharacters([new SecurityDroids(), new SecurityDroids(), new SecurityDroids()]);
+		CombatManager.setFriendlyActors([pc, anno]);
+		CombatManager.setHostileActors([new SecurityDroids(), new SecurityDroids(), new SecurityDroids()]);
 		CombatManager.victoryScene(victoryOverSecurityDroid);
 		CombatManager.lossScene(lossToSecurityDroid);
 		CombatManager.displayLocation("SEC. DROIDS");
@@ -2445,8 +2445,8 @@ public function deck13ShieldControlFunc():Boolean
 		anno.long = "Anno is positioned nearby, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she swivels continuously to avoid incoming attacks.";
 		anno.customDodge = "Anno leans to the side and luckily dodges the attack.";
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters([pc, anno]);
-		CombatManager.setHostileCharacters(tPrime);
+		CombatManager.setFriendlyActors([pc, anno]);
+		CombatManager.setHostileActors(tPrime);
 		CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tPrime);
 		CombatManager.victoryScene(victoryOverGrayPrime);
 		CombatManager.lossScene(lossToGrayPrime);
@@ -2479,7 +2479,7 @@ public function deck13ShieldControlFunc():Boolean
 
 public function grayPrimeEscapeGrapple():void
 {
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayPrime) hostiles[i].createStatusEffect("Grapple Cooldown", 4);
@@ -3128,8 +3128,8 @@ public function deck13DecisionStopHer():void
 	anno.long = "Anno is stooped near you, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she constantly sways to avoid losing her center of balance on the moving elevator car.";
 	anno.customDodge = "With a quick tactical roll to the side, Anno manages to dodge the attack!";
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, anno]);
-	CombatManager.setHostileCharacters(new GigaGoo());
+	CombatManager.setFriendlyActors([pc, anno]);
+	CombatManager.setHostileActors(new GigaGoo());
 	CombatManager.victoryScene(victoryOverGigaGoo);
 	CombatManager.lossScene(loseToGigaGoo);
 	CombatManager.displayLocation("GIGA GOO");

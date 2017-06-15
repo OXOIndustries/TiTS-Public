@@ -34,8 +34,8 @@ public function encounterMaleSydian():void
 	
 	CodexManager.unlockEntry("Sydians");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new SydianMale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new SydianMale());
 	CombatManager.victoryScene(beatUpARustMonster);
 	CombatManager.lossScene(loseToSydianMaleRouter);
 	CombatManager.displayLocation("SYDIAN (M)");

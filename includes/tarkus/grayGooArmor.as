@@ -637,7 +637,7 @@ public function pcRecallGoo():void
 	clearOutput();
 	
 	// Attacker will be the caster, target are going to basically be null-elements
-	var foes:Array = CombatManager.getHostileCharacters();
+	var foes:Array = CombatManager.getHostileActors();
 	for (var i:uint = 0; i < foes.length; i++)
 	{
 		if (foes[i].hasStatusEffect("Gray Goo Clone"))

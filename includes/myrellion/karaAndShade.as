@@ -333,8 +333,8 @@ public function itsADealToBetrayKaraSloots():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, shade]);
-	CombatManager.setHostileCharacters(kara);
+	CombatManager.setFriendlyActors([pc, shade]);
+	CombatManager.setHostileActors(kara);
 	CombatManager.victoryScene(pcAndShadeBeatKara);
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
@@ -489,8 +489,8 @@ public function karaAndPCVersusShadeFightIntroduction():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, kara]);
-	CombatManager.setHostileCharacters(shade);
+	CombatManager.setFriendlyActors([pc, kara]);
+	CombatManager.setHostileActors(shade);
 	CombatManager.victoryScene(pcAndKaraBeatShade);
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");
@@ -591,8 +591,8 @@ public function helpShadeOutLastChance():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, shade]);
-	CombatManager.setHostileCharacters(kara);
+	CombatManager.setFriendlyActors([pc, shade]);
+	CombatManager.setHostileActors(kara);
 	CombatManager.victoryScene(pcAndShadeBeatKara);
 	CombatManager.lossScene(pcAndShadeDefeated);
 	CombatManager.displayLocation("KARA");
@@ -619,8 +619,8 @@ public function helpKaraOutLastChance():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, kara]);
-	CombatManager.setHostileCharacters(shade);
+	CombatManager.setFriendlyActors([pc, kara]);
+	CombatManager.setHostileActors(shade);
 	CombatManager.victoryScene(pcAndKaraBeatShade);
 	CombatManager.lossScene(loseWithKaraYouSlut);
 	CombatManager.displayLocation("SHADE");

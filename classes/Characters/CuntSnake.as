@@ -11,8 +11,8 @@
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
-	import classes.Engine.Combat.outputDamage;
 	import classes.Engine.Combat.*;
+	import classes.Engine.Interfaces.*;
 	
 	public class CuntSnake extends Creature
 	{

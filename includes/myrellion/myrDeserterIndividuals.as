@@ -230,8 +230,8 @@ public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 public function configureGoldDeserterFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");
@@ -240,8 +240,8 @@ public function configureGoldDeserterFight(tEnemy:Creature):void
 public function configureRedDeserterFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	CombatManager.displayLocation(flags["KNOW_RED_MYR_NAME"] == undefined ? "RED DSTR" : "BRIHA");
@@ -424,8 +424,8 @@ public function fightADumbShitAntWaifu(gold:Boolean = false):void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(enemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(enemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	if (gold) CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");

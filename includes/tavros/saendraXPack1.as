@@ -181,8 +181,8 @@ public function initsx1PirateGroupFight():void
 	}
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saendra]);
-	CombatManager.setHostileCharacters(enemies);
+	CombatManager.setFriendlyActors([pc, saendra]);
+	CombatManager.setHostileActors(enemies);
 	CombatManager.victoryScene(sx1PirateGroupPCVictory);
 	CombatManager.lossScene(sx1PirateGroupPCLoss);
 	CombatManager.displayLocation("VOID PIRATES");
@@ -850,8 +850,8 @@ public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saendra]);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors([pc, saendra]);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(sx1ShotguardPCVictory);
 	CombatManager.lossScene(sx1ShotguardPCLoss);
 	CombatManager.displayLocation("VOID PIRATE");
@@ -939,8 +939,8 @@ public function sx1InitTechguardFight():void
 	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saendra]);
-	CombatManager.setHostileCharacters(new SX1Techguard());
+	CombatManager.setFriendlyActors([pc, saendra]);
+	CombatManager.setHostileActors(new SX1Techguard());
 	CombatManager.victoryScene(sx1TechguardPCVictory);
 	CombatManager.lossScene(sx1TechguardPCLoss);
 	CombatManager.displayLocation("VOID TECHIE");

@@ -149,8 +149,8 @@ public function turnDownRobotSexuals(opts:Array):void
 	
 	CodexManager.unlockEntry("Sexbot");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tSexBot);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tSexBot);
 	CombatManager.victoryScene(defeatTheSexBot);
 	CombatManager.lossScene(combatLossToSexbot);
 	CombatManager.displayLocation("SEXBOT");

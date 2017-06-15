@@ -222,8 +222,7 @@ package classes.Characters
 			//Fail physical check, blinded and tripped
 			else
 				{
-					output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re knocked down and all but blinded");
-					output("!</b>");
+					output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re knocked down and all but blinded!</b>");
 					target.createStatusEffect("Blinded", rand(2) + 2, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
 					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
 				}

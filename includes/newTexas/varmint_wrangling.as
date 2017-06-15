@@ -326,8 +326,8 @@ public function varmintProc():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Varmint());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Varmint());
 	CombatManager.victoryScene(pcVictoryVsVarmints);
 	CombatManager.lossScene(pcLosesToVarmint);
 	CombatManager.displayLocation("VARMINT");
@@ -508,8 +508,8 @@ public function varmintPackFight(numVarmints:int = 4):void
 	}
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryScene(pcVictoryVsVarmintPack);
 	CombatManager.lossScene(pcLosesToVarmintPack);
 	CombatManager.displayLocation("VARMINT PACK");

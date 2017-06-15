@@ -150,8 +150,8 @@ public function liftStationBonus():Boolean
 		//Start fight!
 		
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new GunTurrets());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new GunTurrets());
 		CombatManager.victoryScene(tamtamGetsPunkedByPCs);
 		CombatManager.lossScene(tamtamBadEndPetPooch);
 		CombatManager.displayLocation("TURRETS");
@@ -735,8 +735,8 @@ public function liftDownEvent():void
 public function configRocketFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new RocketTurrets());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new RocketTurrets());
 	CombatManager.victoryScene(pcBeatsRocketPods);
 	CombatManager.lossScene(pcLosesToRocketPods);
 	CombatManager.displayLocation("TURRETS");
@@ -944,8 +944,8 @@ public function pirateCaptainBossFightIntro():void
 	flags["KHORGAN_RIGHT_COVER"] = 100;
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CaptainKhorganMech());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CaptainKhorganMech());
 	CombatManager.victoryScene(victoriousVsCaptainOrcButt);
 	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
 	CombatManager.displayLocation("CAP. KHORGAN");
@@ -1054,8 +1054,8 @@ public function victoriousVsCaptainOrcButt():void
 public function configKhorganFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CaptainKhorgan());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CaptainKhorgan());
 	CombatManager.victoryScene(youBeatUpAnOrcWaytoGo);
 	CombatManager.lossScene(loseToCaptainKhorganBadEnd);
 	CombatManager.displayLocation("CAP KHORGAN");
@@ -1510,8 +1510,8 @@ public function meetUpWithKaskaZeBossSloot():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Kaska());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Kaska());
 	CombatManager.victoryScene(defeatKaska);
 	CombatManager.lossScene(defeatedByKaska);
 	CombatManager.displayLocation("KASKA");
@@ -1550,7 +1550,7 @@ public function failToStruggleKaskaBoobs():void
 //Automatically escapes tittygrapple at the expense of a little bit of lust damage to both of you.
 public function pinchKaskaNipple():void
 {
-	setEnemy(CombatManager.getHostileCharacters()[0]);
+	setEnemy(CombatManager.getHostileActors()[0]);
 	clearOutput();
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It’s hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
 	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?");

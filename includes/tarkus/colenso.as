@@ -367,8 +367,8 @@ public function noTalkPlease():void
 private function configFirewallFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new HandSoBot());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new HandSoBot());
 	CombatManager.victoryScene(pcWinsVsHanSoSosTool);
 	CombatManager.lossScene(pcLosesToHanSoSosBot);
 	CombatManager.displayLocation("FIREWALL");

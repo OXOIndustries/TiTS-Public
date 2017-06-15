@@ -77,8 +77,8 @@ public function fenfernoAndIce():void
 	clearMenu();
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Chaurmine());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Chaurmine());
 	CombatManager.victoryScene(beatUpCharmine);
 	CombatManager.lossScene(pcLosesToChaurmine);
 	CombatManager.displayLocation("CHAURMINE");
@@ -898,8 +898,8 @@ public function battleWithChaurmineVoluntarily():void
 	chaur.credits = 300 + rand(201);
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(chaur);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(chaur);
 	CombatManager.victoryScene(beatUpCharmine);
 	CombatManager.lossScene(pcLosesToChaurmine);
 	CombatManager.displayLocation("CHAURMINE");

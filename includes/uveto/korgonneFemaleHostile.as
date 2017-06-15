@@ -55,8 +55,8 @@ public function fightFemKorg():void
 	var tEnemy:KorgonneFemale = new KorgonneFemale();
 	CodexManager.unlockEntry("Korgonne");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(defeatDaKorgiShit);
 	CombatManager.lossScene(loseToKorgiGirlRouter);
 	CombatManager.displayLocation("KORGONNE (F)");

@@ -317,7 +317,7 @@ package classes.Engine.Combat
 					output("\n");
 					if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
 					else output("[target.CombatName] " + (target.isPlural ? "are" : "is") + " mentally filled with sexual fantasies, briefly obscuring [target.combatHisHer] vision with " + lewdAdjective + " images!");
-					output(" " + CombatContainer.teaseReactions(damageResult.lustDamage, target));
+					output(" " + teaseReactions(damageResult.lustDamage, target));
 					break;
 				default:
 					// TODO: Maybe move tease reaction shit here???

@@ -33,8 +33,8 @@ public function maleZilEncounter():void {
 	
 	CodexManager.unlockEntry("Zil");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilMale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilMale());
 	CombatManager.victoryScene(winVsZil);
 	CombatManager.lossScene(zilLossRouter);
 	CombatManager.displayLocation("MALE ZIL");

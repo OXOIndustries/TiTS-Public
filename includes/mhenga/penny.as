@@ -462,8 +462,8 @@ public function seriouslyFightTheZil():void {
 	
 	//Start combat
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilPack());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilPack());
 	CombatManager.victoryScene(defeatZilPair);
 	CombatManager.lossScene(loseToZilPair);
 	CombatManager.displayLocation("TWO ZIL");

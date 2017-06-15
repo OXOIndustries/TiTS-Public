@@ -29,8 +29,8 @@ public function milodanCombatPrep():Creature
 {
 	var milodan:Creature = new MilodanMale();
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(milodan);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(milodan);
 	CombatManager.victoryScene(winVsMilodanMale);
 	CombatManager.lossScene(lossSceneToMaleMilodan);
 	CombatManager.displayLocation("MILODAN");

@@ -28,8 +28,8 @@ public function encounterALapinara():void
 	IncrementFlag("ENCOUNTERED_PARASITIC_LAPINARA");
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new LapinaraFemale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new LapinaraFemale());
 	CombatManager.victoryScene(defeatDatLapinara);
 	CombatManager.lossScene(loseToFemaleLapinara);
 	CombatManager.displayLocation("LAPINARA (F)");

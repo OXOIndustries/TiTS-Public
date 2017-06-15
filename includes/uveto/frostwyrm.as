@@ -42,8 +42,8 @@ public function encounterFrostwyrm():void
 public function fightFrostwyrm():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Frostwyrm());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Frostwyrm());
 	CombatManager.victoryScene(frostwyrmPCVictory);
 	CombatManager.lossScene(frostwyrmPCLoss);
 	CombatManager.displayLocation("FROSTWYRM");

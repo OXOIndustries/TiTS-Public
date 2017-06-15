@@ -565,8 +565,8 @@ public function waterfallPoolBonusSchtuff():Boolean
 		output("\n\nHe is on the ground in a flickering flow of diaphanous wings and compact tar muscle, spinning his weapon in a vicious arc as he advances on you.");
 		//start fighto!
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new Kane());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new Kane());
 		CombatManager.victoryScene(kaneDefeated);
 		CombatManager.lossScene(loseToKane);
 		CombatManager.displayLocation("KANE");
@@ -584,8 +584,8 @@ public function waterfallPoolBonusSchtuff():Boolean
 		output("\n\nHe is on the ground in a flickering flow of diaphanous wings and compact tar muscle, spinning his weapon in a vicious arc as he advances on you.");
 		//start fighto!
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new Kane());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new Kane());
 		CombatManager.victoryScene(kaneDefeated);
 		CombatManager.lossScene(loseToKane);
 		CombatManager.displayLocation("KANE");
@@ -969,8 +969,8 @@ public function driftwoodShoulderDoofiness(forceFall:Boolean = false):Boolean
 		showName("\nFALLING!");
 		showBust("NALEEN_BALL");
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new NaleenMatingBall());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new NaleenMatingBall());
 		CombatManager.victoryScene(beatUpNaleenRapeBall);
 		CombatManager.lossScene(loseToNaleenRapeyBall);
 		CombatManager.displayLocation("MANY NALEEN");
@@ -1127,8 +1127,8 @@ public function zilHornetAggro():void
 	//You will have to clutch to the rock face and fend her off one-handed!
 	//start fighto!
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilHornet());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilHornet());
 	CombatManager.victoryScene(pcWinsAgainstHornet);
 	CombatManager.lossScene(pcLoses2Hornet);
 	CombatManager.displayLocation("ZIL HORNET");
@@ -1320,8 +1320,8 @@ public function hoverFlyIntroProc():void
 	//Fen note: Holding on mechanic cut, but I like the climbing kit flavor.
 	//else output("\n\nYou will have to clutch to the rock face and fend him off one-handed!");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilHoverFly());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilHoverFly());
 	CombatManager.victoryScene(winVsHoverfly);
 	CombatManager.lossScene(loseToHoverfly);
 	CombatManager.displayLocation("HOVERFLY");
@@ -1669,8 +1669,8 @@ public function fightTheWholeVillageYaMaroon():void
 	processTime(3);
 	flags["PQ_FOUGHT_TRIBE"] = 1;
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilTribe());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilTribe());
 	CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 	CombatManager.lossScene(loseToZatZilTribe);
 	CombatManager.displayLocation("ZIL TRIBE");
@@ -1704,8 +1704,8 @@ public function talkToQuinn():void
 	//Go to Zil Tribe fight
 	flags["PQ_FOUGHT_TRIBE"] = 1;
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilTribe());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilTribe());
 	CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 	CombatManager.lossScene(loseToZatZilTribe);
 	CombatManager.displayLocation("ZIL TRIBE");
@@ -1732,8 +1732,8 @@ public function agreeWithDemBiyaaaatches():void
 		//Go to Zil Tribe fight
 		flags["PQ_FOUGHT_TRIBE"] = 1;
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new ZilTribe());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new ZilTribe());
 		CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 		CombatManager.lossScene(loseToZatZilTribe);
 		CombatManager.displayLocation("ZIL TRIBE");
@@ -1791,8 +1791,8 @@ public function challengeLahToAFight():void
 		//Go to Zil Tribe fight
 		flags["PQ_FOUGHT_TRIBE"] = 1;
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new ZilTribe());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new ZilTribe());
 		CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 		CombatManager.lossScene(loseToZatZilTribe);
 		CombatManager.displayLocation("ZIL TRIBE");
@@ -1871,8 +1871,8 @@ public function chooseYourWeapon(bow:Boolean = false):void
 	pc.lockItemSlot(GLOBAL.RANGED_WEAPON, "<b>You can’t arm yourself with different weapons--you agreed to an honorable battle, remember?</b>");
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(MisterLah);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(MisterLah);
 	CombatManager.victoryScene(beatUpRickLah);
 	CombatManager.lossScene(losesToRKLah);
 	CombatManager.displayLocation("RK LAH");
@@ -2024,8 +2024,8 @@ public function fightTheEntireTribeYaMoroon():void
 		TribeyDibey.inventory.push(enemy.inventory[x]);
 	}
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(TribeyDibey);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(TribeyDibey);
 	CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 	CombatManager.lossScene(loseToZatZilTribe);
 	CombatManager.displayLocation("ZIL TRIBE");
@@ -2146,8 +2146,8 @@ public function insistOnDiplomancyWithQuinnYaCunt():void
 	//Go to Zil Tribe fight
 	var TribeyDibey:Creature = new ZilTribe();
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(TribeyDibey);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(TribeyDibey);
 	CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 	CombatManager.lossScene(loseToZatZilTribe);
 	CombatManager.displayLocation("ZIL TRIBE");
@@ -2368,8 +2368,8 @@ public function insistOnBeingADickbag():void
 	//Doesnt need any inventory shifting. PC shoulda got shit.
 	flags["PQ_FOUGHT_TRIBE"] = 1;
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilTribe());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilTribe());
 	CombatManager.victoryScene(pcBeatsUpAWholeTribeNewsAt11);
 	CombatManager.lossScene(loseToZatZilTribe);
 	CombatManager.displayLocation("ZIL TRIBE");

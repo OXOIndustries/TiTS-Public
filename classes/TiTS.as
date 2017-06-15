@@ -1,6 +1,10 @@
 ﻿package classes
 {
+	import classes.GameData.CombatManager;
 	import classes.GameData.Perks;
+	import classes.GameData.ShipManager;
+	import classes.Ships.Library.TestHostileShip;
+	import classes.Ships.SpaceShip;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModules.GameTextModule;
@@ -378,6 +382,8 @@
 		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;
+		public var charDict:Dictionary;
+		public var shipDb:ShipManager;
 
 		public var days:int;
 		public var hours:int;
@@ -483,9 +489,9 @@
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
-			import classes.ShipClass;
 
 			chars = new Object();
+			charDict = new Dictionary();
 			
 			//What inventory screen is up?
 			shopkeep = undefined;
@@ -530,7 +536,11 @@
 			
 			mapper = new Mapper(this.rooms)
 
-			this.chars["PC"] = new PlayerCharacter();
+			var tPC:PlayerCharacter = new PlayerCharacter();
+			chars["PC"] = tPC;
+			charDict[tPC] = "PC";
+			
+			shipDb = new ShipManager(); // Gotta do this after at least the PC object exists
 			_perkDB = new Perks();
 			
 			inputManager = new InputManager(stage, false);
@@ -562,6 +572,7 @@
 		private function finishInit(e:Event):void
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			addEventListener(Event.ENTER_FRAME, updateBuffers);
 			this.configureCodex();
 			this.configureMails();
 			this.userInterface.showMainMenu();
@@ -1102,6 +1113,18 @@
 		public function get enemy():Creature { return _enemy; }
 		public function setEnemy(v:Creature):void { _enemy = v; }
 		
+		private var _targetShip:SpaceShip = null;
+		public function get TargetShip():SpaceShip { return _targetShip; }
+		public function SetTargetShip(v:SpaceShip):void { _targetShip = v; }
+		
+		private var _attackerShip:SpaceShip = null;
+		public function get AttackerShip():SpaceShip { return _attackerShip; }
+		public function SetAttackerShip(v:SpaceShip):void { _attackerShip = v; }
+		
+		private var _enemyShip:SpaceShip = null;
+		public function get EnemyShip():SpaceShip { return _enemyShip; }
+		public function SetEnemyShip(v:SpaceShip):void { _enemyShip = v; }
+		
 		public function get celise():Celise
 		{
 			return chars["CELISE"];
@@ -1346,9 +1369,29 @@
 		{
 			return chars["DELILAH"];
 		}
+
+		public function get yammi():Yammi
+		{
+			return chars["YAMMI"];
+		}
 		public function get mirrin():Mirrin
 		{
 			return chars["MIRRIN"];
+		}
+		public function testShipCombat():void
+		{
+			CombatManager.newSpaceCombat();
+			CombatManager.setFriendlyActors(shipDb.ActivePlayerShip);
+			CombatManager.setHostileActors(new TestHostileShip());
+			CombatManager.victoryScene(function():void { } );
+			CombatManager.lossScene(function():void { } );
+			CombatManager.displayLocation("Basic Ship Test");
+			
+			clearOutput();
+			output("Basic Ship Fight Test");
+			
+			clearMenu();
+			addButton(0, "Next", CombatManager.beginCombat);
 		}
 	}
 }

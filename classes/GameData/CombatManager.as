@@ -1,6 +1,7 @@
 package classes.GameData 
 {
 	import classes.Creature;
+	import classes.Ships.SpaceShip;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Interfaces.*;
@@ -28,9 +29,16 @@ package classes.GameData
 		
 		public static function newGroundCombat():void
 		{
-			combatContainer = new CombatContainer();
+			combatContainer = new GroundCombatContainer();
 			victoryCondition(ENTIRE_PARTY_DEFEATED);
 			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.pc);
+		}
+		
+		public static function newSpaceCombat():void
+		{
+			combatContainer = new SpaceCombatContainer();
+			victoryCondition(ENTIRE_PARTY_DEFEATED);
+			lossCondition(SPECIFIC_TARGET_DEFEATED, kGAMECLASS.shipDb.ActivePlayerShip);
 		}
 		
 		public static function displayLocation(r:String, p:String = null, s:String = null):void
@@ -49,8 +57,8 @@ package classes.GameData
 			combatContainer.encounterTextGenerator = tFunc;
 		}
 		
-		private static var _friendlyCharacters:Array;
-		public static function setFriendlyCharacters(... args):void
+		private static var _friendlyActors:Array;
+		public static function setFriendlyActors(... args):void
 		{
 			if (args.length == 0) throw new Error("Invalid arguments");
 			var param:Array;
@@ -59,19 +67,21 @@ package classes.GameData
 			else param = args;
 			
 			combatContainer.setPlayerGroup(param);
-			_friendlyCharacters = param;
-		}
-		public static function getFriendlyCharacters():Array
-		{
-			return _friendlyCharacters;
-		}
-		public static function addFriendlyCreature(newC:Creature):void
-		{
-			combatContainer.addFriendlyCreature(newC);
+			_friendlyActors = param;
 		}
 		
-		private static var _hostileCharacters:Array;
-		public static function setHostileCharacters(... args):void
+		public static function getFriendlyActors():Array
+		{
+			return _friendlyActors;
+		}
+		
+		public static function addFriendlyActor(newC:*):void
+		{
+			combatContainer.addFriendlyActor(newC);
+		}
+		
+		private static var _hostileActors:Array;
+		public static function setHostileActors(... args):void
 		{
 			if (args.length == 0) throw new Error("Invalid arguments");
 			
@@ -80,19 +90,21 @@ package classes.GameData
 			else param = args;
 			
 			combatContainer.setEnemyGroup(param);
-			_hostileCharacters = param;
+			_hostileActors = param;
 		}
-		public static function getHostileCharacters():Array
+		public static function getHostileActors():Array
 		{
-			return _hostileCharacters;
+			return _hostileActors;
 		}
-		public static function addHostileCreature(newC:Creature):void
+		
+		public static function addHostileActor(newC:*):void
 		{
-			combatContainer.addHostileCreature(newC);
+			combatContainer.addHostileActor(newC);
 		}
-		public static function removeHostileCreature(remC:Creature):void
+		
+		public static function removeHostileActor(remC:*):void
 		{
-			combatContainer.removeHostileCreature(remC);
+			combatContainer.removeHostileActor(remC);
 		}
 		
 		public static const SPECIFIC_TARGET_DEFEATED:String = "target_defeat";
@@ -122,35 +134,11 @@ package classes.GameData
 			combatContainer.lossScene(func);
 		}
 		
-		public static function entryScene(func:Function):void
-		{
-			combatContainer.entryFunction = func;
-		}
-		
 		public static function beginCombat():void
 		{
 			combatContainer.beginCombat();
 		}
-	
-		public static function resetCombat():void
-		{
-			clearOutput();
-			var exec:Function = combatContainer.entryFunction;
-			combatContainer.doCombatCleanup();
-			combatContainer = null;
 			
-			// better solution would be to serialize characters when set using setFriendlyChars() and keep them- would reset all details (f.ex non-combat status durations etc)
-			for (var i:int = 0; i < _friendlyCharacters.length; i++)
-			{
-				var char:Creature = _friendlyCharacters[i];
-				char.HP(char.HPMax());
-				char.shieldsRaw = char.shieldsMax();
-				char.clearCombatStatuses();
-			}
-			
-			exec();
-		}
-		
 		public static function genericVictory():void
 		{
 			combatContainer.genericVictory();
@@ -215,15 +203,19 @@ package classes.GameData
 			if (combatContainer) return combatContainer.roundCounter;
 			return -1;
 		}
-		public static function getCreaturesGroup(c:Creature):Array
+		public static function getActorsGroup(c:*):Array
 		{
-			if (_hostileCharacters.indexOf(c) == -1) return _friendlyCharacters;
-			return _hostileCharacters;
+			if (!(c is Creature) && !(c is SpaceShip)) throw new Error("getActorsGroup called with an invalid object.");
+			
+			if (_hostileActors.indexOf(c) == -1) return _friendlyActors;
+			return _hostileActors;
 		}
-		public static function getCreaturesOpposition(c:Creature):Array
+		public static function getActorsOpposition(c:*):Array
 		{
-			if (_hostileCharacters.indexOf(c) != -1) return _friendlyCharacters;
-			return _hostileCharacters;
+			if (!(c is Creature) && !(c is SpaceShip)) throw new Error("getActorsOpposition called with an invalid object.");
+			
+			if (_hostileActors.indexOf(c) != -1) return _friendlyActors;
+			return _hostileActors;
 		}
 		public static function continueCombat():void
 		{
@@ -231,8 +223,8 @@ package classes.GameData
 		}
 		public static function multipleEnemies():Boolean
 		{
-			if (_hostileCharacters.length > 1) return true;
-			if ((_hostileCharacters[0] as Creature).isPlural) return true;
+			if (_hostileActors.length > 1) return true;
+			if (combatContainer is GroundCombatContainer && (_hostileActors[0] as Creature).isPlural) return true;
 			return false;
 		}
 		public static function hasEnemyOfClass(t:Class):Boolean
@@ -240,7 +232,7 @@ package classes.GameData
 			if (combatContainer) return combatContainer.hasEnemyOfClass(t);
 			return false;
 		}
-		public static function getEnemyOfClass(t:Class):Creature
+		public static function getEnemyOfClass(t:Class):*
 		{
 			if (combatContainer) return combatContainer.getEnemyOfClass(t);
 			return null;
@@ -273,6 +265,11 @@ package classes.GameData
 		{
 			if (combatContainer) return combatContainer.getCombatEffect(effectName);
 			return null;
+		}
+		public static function getCombatRange():uint
+		{
+			if (!(combatContainer is SpaceCombatContainer)) throw new Error("Range is only applicable to space combat scenarios.");
+			return (combatContainer as SpaceCombatContainer).CurrentCombatRange;
 		}
 	}
 

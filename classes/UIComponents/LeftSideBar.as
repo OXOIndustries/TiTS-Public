@@ -1,9 +1,12 @@
 package classes.UIComponents 
 {
 	import classes.Characters.Celise;
+	import classes.Creature;
+	import classes.Ships.SpaceShip;
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.UIComponents.SideBarComponents.CompressedLocationHeader;
 	import classes.UIComponents.SideBarComponents.EnemyPartyBlock;
+	import classes.UIComponents.SideBarComponents.EnemyShipBlock;
 	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import fl.transitions.Tween;
 	import fl.transitions.TweenEvent;
@@ -29,6 +32,7 @@ package classes.UIComponents
 		private var _locationHeader:LocationHeader;
 		private var _compressedLocationHeader:CompressedLocationHeader;
 		private var _enemyEncounterBlock:EnemyEncounterBlock;
+		private var _enemyShipBlock:EnemyShipBlock;
 		private var _enemyPartyBlock:EnemyPartyBlock;
 		private var _miniMapBlock:MiniMapBlock;
 		private var _genInfoBlock:GeneralInfoBlock;
@@ -60,6 +64,7 @@ package classes.UIComponents
 		public function get locationBlock():LocationHeader { return _locationHeader; }
 		public function get miniMapBlock():MiniMapBlock { return _miniMapBlock; }
 		public function get encounterBlock():EnemyEncounterBlock { return _enemyEncounterBlock; }
+		public function get enemyShipBlock():EnemyShipBlock { return _enemyShipBlock; }
 		public function get generalInfoBlock():GeneralInfoBlock { return _genInfoBlock; }
 		public function get menuButtonBlock():SideBarButtonBlock { return _menuButtonBlock; }
 		
@@ -91,6 +96,11 @@ package classes.UIComponents
 			_enemyPartyBlock = new EnemyPartyBlock();
 			addChild(_enemyPartyBlock);
 			_enemyPartyBlock.y = _compressedLocationHeader.y + _compressedLocationHeader.height + 1;
+			
+			_enemyShipBlock = new EnemyShipBlock();
+			addChild(_enemyShipBlock);
+			_enemyShipBlock.y = _enemyPartyBlock.y;
+			_enemyShipBlock.visible = false;
 			
 			// Minimap container block
 			_miniMapBlock = new MiniMapBlock();
@@ -132,7 +142,7 @@ package classes.UIComponents
 			
 			if (inCombat())
 			{
-				var multi:Boolean = CombatManager.getHostileCharacters().length > 1;
+				var multi:Boolean = CombatManager.getHostileActors().length > 1;
 				
 				_enemyEncounterBlock.visible = !multi;
 				_enemyPartyBlock.visible = multi;
@@ -177,45 +187,58 @@ package classes.UIComponents
 			this._locationHeader.showLocationText();
 		}
 		
-		public function showHostileParty(chars:Array, asInit:Boolean):void
+		public function showHostiles(hostiles:Array, asInit:Boolean):void
 		{
-			if (chars.length == 1)
+			if (hostiles.length == 0) return;
+			
+			if (hostiles[0] is Creature)
 			{
-				_genInfoBlock.visible = true;
-				_genInfoBlock.HideDateTime();
-				_enemyPartyBlock.visible = false;
-				_enemyEncounterBlock.visible = true;
-				_miniMapBlock.visible = false;
-				_compressedLocationHeader.visible = false;
-				_locationHeader.visible = true;
-				
-				_enemyEncounterBlock.showStatsForCreature(chars[0]);
+				if (hostiles.length == 1) showSingleCreature(hostiles[0] as Creature, asInit);
+				else showPartyCreatures(hostiles, asInit);
 			}
 			else
 			{
-				_genInfoBlock.visible = true;
-				_genInfoBlock.HideDateTime();
-				_enemyPartyBlock.visible = true;
-				_enemyEncounterBlock.visible = false;
-				_miniMapBlock.visible = false;
-				_compressedLocationHeader.visible = true;
-				_locationHeader.visible = false;
-				
-				_enemyPartyBlock.showForCreatures(chars, asInit);
+				if (hostiles.length == 1) showSingleShip(hostiles[0] as SpaceShip, asInit);
+				else throw new Error("UI does not yet support multiple ship display for combat.");
 			}
+		}
+		
+		private function showSingleCreature(c:Creature, asInit:Boolean):void
+		{
+			_locationHeader.visible = _enemyEncounterBlock.visible = _genInfoBlock.visible = true;
+			_enemyShipBlock.visible = _compressedLocationHeader.visible = _miniMapBlock.visible = _enemyPartyBlock.visible = false;
+			_genInfoBlock.HideDateTime();
+			_enemyEncounterBlock.showStatsForCreature(c, asInit);
+		}
+		
+		private function showPartyCreatures(p:Array, asInit:Boolean):void
+		{
+			_compressedLocationHeader.visible = _enemyPartyBlock.visible = _genInfoBlock.visible = true;
+			_enemyShipBlock.visible = _locationHeader.visible = _miniMapBlock.visible = _enemyEncounterBlock.visible = false;
+			_genInfoBlock.HideDateTime();
+			_enemyPartyBlock.showForCreatures(p, asInit);
+		}
+		
+		private function showSingleShip(ss:SpaceShip, asInit:Boolean):void
+		{
+			_locationHeader.visible = _enemyShipBlock.visible = _genInfoBlock.visible = true;
+			_enemyEncounterBlock.visible = _enemyPartyBlock.visible = _miniMapBlock.visible = _locationHeader.visible = false;
+			_genInfoBlock.HideDateTime();
+			_enemyShipBlock.showForShip(ss, asInit);
 		}
 		
 		public function resetItems():void
 		{
 			_enemyEncounterBlock.resetItems();
 			_enemyPartyBlock.resetItems();
+			_enemyShipBlock.resetItems();
 		}
 		
 		public function defaultLayout():void
 		{
 			_compressedLocationHeader.visible = false;
 			_locationHeader.visible = true;
-			_enemyPartyBlock.visible = false;
+			_enemyShipBlock.visible = _enemyEncounterBlock.visible = _enemyPartyBlock.visible = false;
 			_genInfoBlock.visible = true;
 			_genInfoBlock.ShowDateTime();
 		}

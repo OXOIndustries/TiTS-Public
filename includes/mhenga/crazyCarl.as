@@ -574,8 +574,8 @@ public function fightMachina():void {
 	flags["JUNGLE_STEP"] = 0;
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CarlsRobot());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CarlsRobot());
 	CombatManager.victoryScene(pushButtanOnMagicTedsFireRobot);
 	CombatManager.lossScene(ohShitLoseToRobot);
 	CombatManager.displayLocation("MACHINA");

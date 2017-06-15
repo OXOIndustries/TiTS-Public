@@ -201,8 +201,8 @@ public function daneOmniExplanation():void {
 	//Start fight
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Dane());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Dane());
 	CombatManager.victoryScene(defeatDane);
 	CombatManager.lossScene(loseToDane);
 	CombatManager.displayLocation("DANE");

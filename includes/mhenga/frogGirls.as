@@ -114,8 +114,8 @@ public function frogGirlsEncounter():void
 public function configFrogGirlFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(victoryAgainstTheFrogs);
 	CombatManager.lossScene(loseAgainstTheFrogs);
 	CombatManager.displayLocation("KEROKORAS");

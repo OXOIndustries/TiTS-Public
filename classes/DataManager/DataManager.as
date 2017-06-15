@@ -1,12 +1,12 @@
 ﻿package classes.DataManager 
 {
+	import classes.GameData.ShipManager;
 	import classes.Items.Apparel.TSTArmor;
 	import classes.Items.Miscellaneous.PHAccess;
 	import classes.Items.Miscellaneous.TestGrenade;
 	import classes.Items.Miscellaneous.TestHPBooster;
 	import classes.Items.Protection.DBGShield;
 	import classes.kGAMECLASS;
-	import classes.ShipClass;
 	import flash.display.Shader;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -1139,6 +1139,12 @@
 			
 			// Children
 			dataFile.children = cloneObject(ChildManager.getSaveObject());
+			
+			// Ship management stuff
+			CONFIG::debug
+			{
+				dataFile.ships = cloneObject(kGAMECLASS.shipDb.getSaveObject());
+			}
 		}
 		
 		/**
@@ -1261,7 +1267,8 @@
 			if (obj.saveNotes != "No notes available.") kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
 			
 			// Game data
-			kGAMECLASS.chars = new Object();
+			kGAMECLASS.initializeNPCs();
+			
 			var aRef:Object = kGAMECLASS.chars;
 			var failure:Boolean = false;
 			
@@ -1374,6 +1381,23 @@
 			else
 			{
 				ChildManager.resetChildren();
+			}
+			
+			CONFIG::debug
+			{
+				if (obj.ships != undefined)
+				{
+					kGAMECLASS.shipDb.loadSaveObject(cloneObject(obj.ships));
+				}
+				else
+				{
+					kGAMECLASS.shipDb.NewGame();
+				}
+			}
+			
+			CONFIG::release
+			{
+				kGAMECLASS.shipDb.NewGame();
 			}
 			
 			//Update room placement:

@@ -68,8 +68,8 @@ public function encounterNaleen():void {
 	
 	CodexManager.unlockEntry("Naleen");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Naleen());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Naleen());
 	CombatManager.victoryScene(beatDatCatNaga);
 	CombatManager.lossScene(pcLosesToNaleenLiekABitch);
 	CombatManager.displayLocation("NALEEN");

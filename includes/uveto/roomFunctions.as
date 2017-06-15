@@ -1395,14 +1395,14 @@ public function GRM44Fight():void
 	IncrementFlag("FERTILITY_PRIESTESSES_FOUGHT");
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters([new MilodanFertilityPriestess(), new MilodanMaleGroup(), new MilodanMaleGroup()]);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors([new MilodanFertilityPriestess(), new MilodanMaleGroup(), new MilodanMaleGroup()]);
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {
 		var s:String = "You’re fighting a Fertility Priestess, a female milodan standing tall and nude before you, wielding a long black staff tipped with a glowing green crystal. She’s got a decidedly fertile figure, with broad hips and large breasts, each capped with a bone-pierced black nipple, with all her sensuous curved covered in a thick layer of spotted white fur. A streak of ice-blue hair adorns her head, shaved down to run between her pointed feline ears and trail down her back.";
 
-		var en:Array = CombatManager.getHostileCharacters();
+		var en:Array = CombatManager.getHostileActors();
 		
 		var fem:MilodanFertilityPriestess;
 		var m1:MilodanMaleGroup;
@@ -2084,8 +2084,8 @@ public function soloFertilityPriestessFight():void
 	output("”</i>");
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new MilodanFertilityPriestess());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new MilodanFertilityPriestess());
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.encounterTextGenerator(function():String {

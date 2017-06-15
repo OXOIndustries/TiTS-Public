@@ -1403,8 +1403,8 @@ public function fightTheNymfoe():void
 	author("Adjatha");
 	output("You pull out your weapons and get ready for a fight!");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new NymFoe());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new NymFoe());
 	CombatManager.victoryScene(pcVictoryVsNymFoe);
 	CombatManager.lossScene(loseToNymfoeLossRouter);
 	CombatManager.displayLocation("NYM-FOE");
@@ -2131,8 +2131,8 @@ public function fightTheDollmaker():void
 	showDollmaker();
 	output("You pull out your weapons and get ready for a fight!");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Dollmaker());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Dollmaker());
 	CombatManager.victoryScene(playerBeatUpDollmaker);
 	CombatManager.lossScene(gitcherAssKickedByDollymakah);
 	CombatManager.displayLocation("DOLL MAKER");

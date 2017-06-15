@@ -64,12 +64,12 @@ public function creationHeader(sName:String = ""):void
 }
 public function startCharacterCreation(e:Event = null):void 
 {
-	chars["PC"] = new PlayerCharacter();
 	initializeNPCs();
-	chars["PC"].short = "uncreated";
-	chars["PC"].level = 1;
-	chars["PC"].shield = new classes.Items.Protection.BasicShield();
-	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
+	
+	pc.short = "uncreated";
+	pc.level = 1;
+	pc.shield = new classes.Items.Protection.BasicShield();
+	pc.shieldsRaw = pc.shieldsMax();
 	MailManager.resetMails();
 	ChildManager.resetChildren();
 	userInterface.mailsDisplayButton.Deactivate();
@@ -77,6 +77,7 @@ public function startCharacterCreation(e:Event = null):void
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
 	userInterface.resetPCStats();
+	shipDb.NewGame();
 	hours = 0;
 	minutes = 0;
 	days = 0;
@@ -97,7 +98,7 @@ public function startCharacterCreation(e:Event = null):void
 
 	userInterface.currentPCNotes = undefined;
 	//Tag as in creation.
-	chars["PC"].createStatusEffect("In Creation",0,0,0,0);
+	pc.createStatusEffect("In Creation",0,0,0,0);
 	clearOutput();
 	if(stage.contains(userInterface.textInput)) removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");
@@ -1631,14 +1632,13 @@ public function openDoorToTutorialCombat():void {
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(celise);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(celise);
 	// These are configured by default, but can be overriden after a call to newGroundCombat^
 	// CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	// CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(defeatCelise);
 	CombatManager.lossScene(function():void { } ); // The loss scene MUST be set, this is just an end-run for celise.
-	CombatManager.entryScene(openDoorToTutorialCombat); // This is an optional thing, I figured it might be useful for things like "reset combat and do over" or whatever, or potentially to modify an in-progress fight.
 	CombatManager.displayLocation("CELISE");
 		
 	addButton(0, "Next", CombatManager.beginCombat);
