@@ -8,6 +8,9 @@
 //Pre-fite text
 //Description of terrain goes here as prelude to encounter
 
+//#Flags:
+//MILO_MALE_CON_LOSSES	number of consecutive losses to the milodan male
+
 public function showMilodanMale(nude:Boolean = false):void
 {
 	showBust(bustDisplayMilodanMale(nude));
@@ -91,6 +94,9 @@ public function winVsMilodanMale():void
 	clearOutput();
 	showMilodanMale();
 	author("Wsan");
+	
+	flags["MILO_MALE_CON_LOSSES"] = 0;
+	
 	//Beatdown
 	if(enemy.HP() <= 1)
 	{
@@ -679,6 +685,10 @@ public function lossSceneToMaleMilodan():void
 	clearOutput();
 	showMilodanMale(true);
 	author("Wsan");
+	
+	if (flags["MILO_MALE_CON_LOSSES"] == undefined) flags["MILO_MALE_CON_LOSSES"] = 0;
+	flags["MILO_MALE_CON_LOSSES"] += 1;
+	
 	output("You collapse onto the ice, the savage beating of the milodan too much to bear. He saunters over to you casually, the confident hunter having secured his quarry. ");
 	if(enemy.meleeWeapon.longName != "claw") output("Dropping his weapon");
 	else output("Sheathing his claws");
@@ -780,9 +790,8 @@ public function pussyWrasslin():void
 		output("\n\n<i>“I knew a guy like you had to have more in you,”</i> you growl affectionately, rubbing the side of your face against his. <i>“Show me what you’re good for?”</i>");
 		output("\n\nHe’s more than happy to oblige you, spinning you around in his lap and looping his arms under your armpits to restrain you. You can scarcely do anything but gasp and cry out in his grip as he pumps you from below, thrusting his still-inflated knot in and out of your pussy. You orgasm in record time, your shaking and flexing kept in check by his iron grip. You’re certain now; he was sandbagging in your earlier fight. There’s no possibility you can do anything to resist right now, and the thought of fighting back is so far from your mind you don’t even care.");
 		output("\n\nThe next few hours pass by in a blur, switching to positions that only a male of his build could support. He fucks you full of spunk over and over, at one point bouncing you on his hips while standing, the next moment lying under you with his legs holding yours apart and arms wrapped around yours to keep you immobile. He demonstrates a martial mastery of your own body, bringing you to restrained orgasms again and again.");
-		output("\n\nBy the time he’s finished with you, you’re a limp mess in his grasp. He gently lays your moaning form atop your clothes, your pussy still spilling his warm spunk onto the ice. He watches over you until you regain motor function, then trudges off into the snowy icelands. Looks like you earned a bit of his respect, at least. You’re not sure how well you’ll be able to walk tomorrow, though, you admit to yourself ruefully. You ");
-		if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
-		output("get moving again.");
+		milodanBadEndHandler();
+		if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 	}
 	else if(!pc.isTaur())
 	{
@@ -807,10 +816,8 @@ public function pussyWrasslin():void
 
 		output("\n\n....");
 
-		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
-		if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
-		output("get moving again.");
-
+		milodanBadEndHandler();
+		if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 	}
 	else
 	{
@@ -832,9 +839,8 @@ public function pussyWrasslin():void
 
 		output("\n\n....");
 
-		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
-		if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
-		output("get moving again.");
+		milodanBadEndHandler();
+		if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 	}
 	processTime(250+rand(100));
 	for(var x:int = 0; x < 15; x++)
@@ -876,9 +882,8 @@ public function dontWrassleBecauseWrasslinIsDumbAndYourPussyNeedsFucked():void
 
 	output("\n\n....");
 
-	output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt smarting. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
-	if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
-	output("get moving again.");
+	milodanBadEndHandler();
+	if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 
 	processTime(250+rand(100));
 	for(var x:int = 0; x < 15; x++)
@@ -912,9 +917,8 @@ public function cockwrassleTheMilodanMale():void
 		output("\n\n<i>“I knew a guy like you had to have more in you,”</i> you growl affectionately, rubbing the side of your face against his. <i>“Show me what you’re good for?”</i>");
 		output("\n\nHe’s more than happy to oblige you, spinning you around in his lap and looping his arms under your armpits to restrain you. You can scarcely do anything but gasp and cry out in his grip as he pumps you from below, thrusting his still-inflated knot in and out of your ass. You orgasm in record time, your shaking and flexing kept in check by his iron grip. You’re certain now; he was sandbagging in your earlier fight. There’s no possibility you can do anything to resist right now, and the thought of fighting back is so far from your mind you don’t even care.");
 		output("\n\nThe next few hours pass by in a blur, switching to positions that only a male of his build could support. He fucks you full of spunk over and over, at one point bouncing you on his hips while standing, the next moment lying under you with his legs holding yours apart and arms wrapped around yours to keep you immobile. He demonstrates a martial mastery of your own body, bringing you to restrained orgasms again and again.");
-		output("\n\nBy the time he’s finished with you, you’re a limp mess in his grasp. He gently lays your moaning form atop your clothes, your asshole still spilling his warm spunk onto the ice. He watches over you until you regain motor function, then trudges off into the snowy icelands. Looks like you earned a bit of his respect, at least. You’re not sure how well you’ll be able to walk tomorrow, though, you admit to yourself ruefully. You ");
-		if(!pc.isAssExposed()) output("chuck your clothes on and ");
-		output("get moving again.");
+		milodanBadEndHandler();
+		if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 	}
 	else if(!pc.isTaur())
 	{
@@ -930,9 +934,8 @@ public function cockwrassleTheMilodanMale():void
 		output("\n\nA few minutes of feeling his jizz spurt into you in ropes passes by quickly, and soon enough you feel his knot begin to deflate. You’re forced to admit you’re almost disappointed, but as you go to rise you notice the milodan hasn’t loosened his grip on you at all. Pulling his knot free, your asshole finally lets go of the loads it was holding, running down your legs and onto the ground. You’re granted a few moments of reprieve before you gasp in shock, feeling his dick rub along your still-sensitive butt.");
 		output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
 		output("\n\n....");
-		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
-		if(!pc.isAssExposed()) output("chuck your clothes on and ");
-		output("get moving again.");
+		milodanBadEndHandler();
+		if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 	}
 	else
 	{
@@ -948,9 +951,8 @@ public function cockwrassleTheMilodanMale():void
 		output("\n\nA few minutes of feeling his jizz spurt into you in ropes passes by quickly, and soon enough you feel his knot begin to deflate. You’re forced to admit you’re almost disappointed, but as you go to rise you notice the milodan hasn’t loosened his grip on you at all. Pulling his knot free, your asshole finally lets go of the loads it was holding, running down your legs and onto the ground. You’re granted a few moments of reprieve before you gasp in shock, feeling his dick rub along your still-sensitive butt.");
 		output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
 		output("\n\n....");
-		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
-		if(!pc.isAssExposed()) output("chuck your clothes on and ");
-		output("get moving again.");
+		milodanBadEndHandler();
+		if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 	}
 	processTime(250+rand(100));
 	for(var x:int = 0; x < 15; x++)
@@ -985,9 +987,8 @@ public function dontWrestleTheMilodanBecauseHisCockIsBetterThanYours():void
 	output("\n\nA few minutes of feeling his jizz spurt into you in ropes passes by quickly, and soon enough you feel his knot begin to deflate. You’re forced to admit you’re almost disappointed, but as you go to rise you notice the milodan hasn’t loosened his grip on you at all. Pulling his knot free, your asshole finally lets go of the loads it was holding, running down your legs and onto the ground. You’re granted a few moments of reprieve before you gasp in shock, feeling his dick rub along your still-sensitive butt.");
 	output("\n\nHe’s still raging hard, a fact he’s only too eager to demonstrate when he thrusts right back into your gaped-wide hole. Slamming his hips against your rump, your voice comes out in sharp little cries of bliss. He begins to work himself back up to the same intensity you were just subjected to, and you begin to realize you’re going to be under him for quite some time...");
 	output("\n\n....");
-	output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt smarting. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
-	if(!pc.isCrotchExposed()) output("chuck your clothes on and ");
-	output("get moving again.");
+	milodanBadEndHandler();
+	if (flags["MILO_MALE_CON_LOSSES"] >= 6) return; 
 
 	processTime(250+rand(100));
 	for(var x:int = 0; x < 15; x++)
@@ -1076,4 +1077,64 @@ public function milodanPreggoEpilogue():void
 	output("You wake up with a slight headache and a dry mouth, both of which dissipate when you rouse yourself from your well-deserved slumber and wash yourself. Time to get back to adventuring!");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function milodanBadEndHandler():void
+{
+	if (flags["MILO_MALE_CON_LOSSES"] < 2)
+	{
+		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. By the time you look around, he’s already gone and you’re starting to get a little chilly. Feeling slightly used as his spunk continues to roll down your thighs, you ");
+		if(!pc.isAssExposed()) output("chuck your clothes on and ");
+		output("get moving again.");
+	}
+	else if (flags["MILO_MALE_CON_LOSSES"] < 4)
+	{
+		output("\n\nBy the time he finally pulls out with a groan, you’ve been fucked senseless. Your eyes are half-rolled back in your head, your tongue lolls from your drooling mouth and your chest is heaving with effort. It’s only when the milodan gives you a sharp slap on the ass that you woozily rouse yourself to consciousness, your butt stinging. As you gather your belongings and prepare to leave, something stops you - the milodan male you were just in coitus with is still here for once. He's watching you with interest, seeming to be considering something for a few long moments. Is he going to go for another round? Finally though, seeing you watching him, the milodan shakes his head, grunts and departs into the snow without a word. Feeling confused as his spunk continues to leak out of your body, you ");
+		if(!pc.isAssExposed()) output("chuck your clothes on and ");
+		output("get moving again.");
+	}
+	else if (flags["MILO_MALE_CON_LOSSES"] < 5)
+	{
+		output("\n\nThe milodan begins to pull out but stops halfway, humming low and deep from the back of his throat - almost a purr. Then his warm weight is settling back onto your back, pinning you under hundreds of pounds of fur-covered muscle and sinew. <i>“Like you,”</i> the beastman grunts, placing one hand on the back of your head and sniffing you, inhaling your scent deeply before exhaling, his hot breath washing over your neck and drawing a happy shiver from you. He's just so <b>warm</b> and powerful… you feel like you belong here, under him.");
+		output("\n\n<i>“Frail. Weak. Soft,”</i> he continues gruffly, his hand moving to grip your right shoulder possessively. <i>“Always lose to tribsemen. But keep coming for more. Maybe you want to stay with us.”</i>");
+		output("\n\nHe lays on top of you for a few more minutes, idly groping and toying with your body, then finally pulls out and collects his loincloth, walking into the snow without a word as his seed leaks down your thighs. It might be dangerous to keep losing to him, assuming you value your freedom...");
+	}
+	else if (flags["MILO_MALE_CON_LOSSES"] < 6)
+	{
+		output("\n\nThe milodan pulls himself out of you with a grunt and collects his loincloth… then stands over you silently for a moment. Too dazed from the incredible pounding your [pc.ass] just took, you barely even notice - until he begins to speak.");
+		output("\n\n<i>“You make good ");
+		if (pc.hasVagina()) output("wife");
+		else output("bed-warmer");
+		output(". If you come back again… I make you mine before someone else does,”</i> he warns, voice gruff and deep. Then he's trekking into the snows of Uveto, not looking back as he leaves your jizz-leaking form behind.");
+		output("\n\nWell, that was a pretty damn strong hint. If you don't want to give up your quest and become a milodan hunter’s bitch, you'd best train up, or consider rushing on another planet for a while.");
+	}
+	else
+	{
+		output("\n\nThe milodan pulls out of your abused form with a low growl, standing and collecting his loincloth as he has so many times before… right before collecting you, picking your cum-leaking body up with frightening ease, dressing you clumsily and slinging you over one bulging, furry shoulder with no sign of strain, resting his palm possessively on your [pc.ass]. Dimly understanding that you're being taken as a slave by this primitive, you struggle and squirm, but it's useless - weak and battered as you are, your weapons freezing in the snow where you were just claimed, you have no chance whatsoever of escaping his iron grasp. He ignores your squirming for the most part, though his hand does tighten on your rump, further quashing your chances of regaining freedom.");
+		output("\n\nSome thirty minutes later, shivering and afraid, you find yourself passing a thick wall of ice as you enter a village, other milodan tribe members watching curiously as you're carried into a large tent and laid on your belly on a pile of sheets, still struggling and protesting feebly. The milodan climbs in with you, his furry weight pinning you down as he slides his hardening cock into your jizz-leaking ");
+		if (pc.hasVagina()) output("cunt");
+		else output("[pc.asshole]");
+		output(" , picking up a rhythm alarmingly quickly, railing your helpless form pronebone. When he finally finishes with you hours later, the edge taken off his libido by his romp with you in the snow, you're too tired, too well-fucked to do much of anything besides leak jizz and whimper, your entire body now agonizingly sore from being pounded so brutally and cumming so many times. When he pulls a thick pelt over the two of you and begins to snore you make no protest, though a small whimper escapes your [pc.lips] before you drift into sweet, dreamless sleep.");
+		if (pc.hasVagina())
+		{
+			output("\n\nYou try to escape, of course - more than once. Each time, your new alpha finds you in the snow, drags you back to his tent and spanks you like a disobedient child until your [pc.ass] is glowing red, until you can't sit without whimpering in discomfort. Eventually, you realize it's hopeless; he knows the terrain around the village too well - your only hope is that someone will come rescue you. They don't though, and at some point during your first pregnancy ");
+			if (pc.fertility() == 0) output(" after the fertility priestesses ‘cure’ you of your barren womb, ");
+			output("you stop wishing they would. Becoming this milodan’s wife, bearing and rearing this magnificent barbarian’s kits is the best thing that could have happened to you, you realize now.  What does the quest matter, really? You're <b>happy.</b> Content. Fulfilled.  Every time your new alpha takes you into his bed and leaves you a squirming, writhing puddle of bitchmeat you care less and less about Steele Tech, about recovering the pods or protecting your inheritance from your cousin. Let them have the stupid company. You've got everything you need growing in your swollen belly.");
+			output("\n\nIt's not an easy life, of course. Your alpha demands that you learn to cook the food he brings home, clean and dress wounds and a myriad of other chores that always need doing around the village, even while you're waddling about heavy with his spawn. You're constantly sore for the first month or so of your new life, a result of your alpha’s insane libido and the work you're always doing. It's where you belong though, you know that now. Why else would you have kept coming back to be bred in the snow, if you didn't want to become his forever?");
+			output("\n\nYou've forgotten all about your ‘quest’ by the time the milodan who took you for his own is putting his third litter of kits in your tummy. All you can think about is how <i>happy</i> and <i>proud</i> you are to bear another litter for your mate, how good and <i>right</i> it feels to be under him, hundreds of pounds of pure muscle pounding you senseless before his familiar knot begins to do its work, opening your [pc.cunt] up and planting more gorgeous, strong kits in your womb, his musky scent permeating your nostrils. When the first jet of seed sprays your cervix you squeal happily and wrap your arms and legs around your mate, fingers clutching up handfuls of warm fur as your body seizes up, knowing you're going to be a mother to his kits again, the way you were always meant to be.");
+			output("\n\nYou're home, where you belong, birthing and raising the next generation of milodan.");
+			output("\n\nThe only home you'll ever need.");	
+		}
+		else
+		{
+			output("\n\nYou try to escape, of course - more than once. Each time, your new alpha finds you in the snow, drags you back to his tent and spanks you like a disobedient child until your [pc.ass] is glowing red, until you can't sit without whimpering in discomfort. Eventually, you realize it's hopeless; he knows the terrain around the village too well - your only hope is that someone will come rescue you. They don't though, and at some point during your first few months of captivity you stop wishing they would. It's not a bad life, if a hard one; the first few months are the hardest, learning your <i>true</i> place in the galaxy as a milodan’s bitch. You're sore day in and day out; when he's not fucking your [pc.ass] until you can't walk, the milodan has you doing various chores around the village, cooking, cleaning, repairing and building new tents and igloos.");
+			output("\n\nThe highlight of your new life as a fuckhole is when your alpha eventually trusts you enough to take you hunting with him, both to help hunt and to serve as a bedwarmer on the go. Eventually you even stop being sore all the time, your body toughening from the combination of hard work and hard dicking. Eventually you're able (and willing) to give almost as good as you get, in bed and on the hunt. You even have chances to escape as time goes on, but of course you don't take them. Why would you? You belong here now, and you're okay - no, more than okay with that. What does the company, what does your inheritance matter anyway? Let ");
+			if (rival.isMale()) output("Jack");
+			else output("Jill");
+			output(" have it if they want it that badly. You've got something better, you muse as your alpha pushes you down onto his makeshift bed of furs, his musky scent overwhelming you as he pushes into your bowels - it’s not as luxurious as the bed you had back home, so long ago, or even the bed you had on your ship, but as your alpha, your magnificent milodan master rails your brains out on top of it, your mouth opening to bite down on one of the fur blankets as he knots you and pumps your intestines full of cum… you come to a realization.");
+			output("\n\nIt’s home. Your home.");
+			output("\n\nThe only one you'll ever need.");
+		}
+		badEnd();
+	}
 }
