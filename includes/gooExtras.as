@@ -2092,9 +2092,9 @@ public function gooFixBalls():void
 	
 	output2("You concentrate hard on some weird anomalies near your crotch. After it bubbles, a feeling of normalcy runs through you. Your crotch anatomy has been corrected!");
 	
-	pc.balls = 0;
-	pc.ballSizeRaw = 0;
-	if(isNaN(pc.ballSize()) || pc.ballSize() < 0) pc.ballSizeMod = 0;
+	if(isNaN(pc.balls) || pc.balls < 0) pc.balls = 0;
+	if(isNaN(pc.ballSizeRaw) || pc.ballSize() < 0) pc.ballSizeRaw = 0;
+	if(isNaN(pc.ballSizeMod) || pc.ballSize() < 0) pc.ballSizeMod = 0;
 	
 	clearGhostMenu();
 	addGhostButton(0,"Next",gooBallsMenu);
