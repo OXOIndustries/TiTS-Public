@@ -4046,8 +4046,6 @@ package classes.GameData
 				else output(num2Text(enemiesAlive()) + " hostiles:");
 			}
 			
-			
-
 			// TODO: I guess this would be the place to point out blindness or whatever.
 			var totalBlinded:int = 0;
 			for (i = 0; i < _friendlies.length; i++)
@@ -4078,13 +4076,14 @@ package classes.GameData
 					{
 						if(_hostiles[i].hasGenitals())
 						{
-							//Foe is masculine furry
-							if(_hostiles[i].mf("m","f") == "m")
+							if(_hostiles[i].isPlural)
 							{
-								output("\n\nHe’s got such sexy fur covering his body! You could just snuggle into it and let him have his way with you... <b>Better hope he doesn’t tease you or you’ll spread your legs like a </b>");
-								if(pc.hasVagina(GLOBAL.TYPE_EQUINE) || pc.horseScore() >= 3) output("<b>mare</b>");
-								else output("<b>bitch</b>");
-								output("<b> in heat!</b>");
+								output("\n\nTheir fur is so incredibly sexy! Better <b>hope they don’t tease you or you’ll be forced to pile with them to get some personal grooming!</b>");
+							}
+							//Foe is masculine furry
+							else if(_hostiles[i].mf("m","f") == "m")
+							{
+								output("\n\nHe’s got such sexy fur covering his body! You could just snuggle into it and let him have his way with you... <b>Better hope he doesn’t tease you or you’ll spread your legs like a " + ((pc.hasVagina(GLOBAL.TYPE_EQUINE) || pc.horseScore() >= 3)  ? "mare" : "bitch") + " in heat!</b>");
 							}
 							//Foe is feminine furry
 							else
