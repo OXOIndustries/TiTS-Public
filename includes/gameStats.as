@@ -5584,6 +5584,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_FEMKORGONNE"] != undefined) output2("\n<b>* Female Korgonne, Times Encountered:</b> " + flags["MET_FEMKORGONNE"]);
 				if(flags["MET_MILODAN_MALE"] != undefined) output2("\n<b>* Male Milodan, Times Encountered:</b> " + flags["MET_MILODAN_MALE"]);
+				if(flags["MILO_MALE_CON_LOSSES"] > 1) output2("\n<b>* Male Milodan, Combat, Times You Consecutively Lost:</b> " + flags["MILO_MALE_CON_LOSSES"]);
 				if(flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined)
 				{
 					output2("\n<b>* Milodan Priestess, Times Encountered:</b> " + flags["FERTILITY_PRIESTESSES_FOUGHT"]);
