@@ -43,6 +43,7 @@
 			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			itemFlags.push(GLOBAL.ITEM_FLAG_ANTIGRAV);
 			
 			this.version = _latestVersion;
 		}

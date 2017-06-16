@@ -49,13 +49,13 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 		// Hoverboard exception!
 		if(pc.hasItemByClass(Hoverboard)) immobileParts = 0;
 		// Underwear exceptions!
-		if(pc.lowerUndergarment is HardlightAGJock)
+		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 		{
 			if(InCollection("balls", bodyPart)) immobileParts--;
 			if(InCollection("penis", bodyPart)) immobileParts--;
 			if(InCollection("clitoris", bodyPart)) immobileParts--;
 		}
-		if(pc.upperUndergarment is HardlightAGBra)
+		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 		{
 			if(InCollection("breast", bodyPart)) immobileParts--;
 		}
@@ -129,9 +129,9 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 				else msg += " it";
 				msg += " against the toy’s surface. With a few audible struggles, the hoverboard does its job and lifts your immobilizing weight off the ground!";
 			}
-			else if((pc.lowerUndergarment is HardlightAGJock) || (pc.upperUndergarment is HardlightAGBra))
+			else if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 			{
-				msg += " Activating the anti-gravity switches in your undergarments, you quickly feel the immobilizing weight being lifted off the ground!";
+				msg += " Activating the anti-gravity switches on your" + (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) ? " outfit" : " undergarments") + ", you quickly feel the immobilizing weight being lifted off the ground!";
 			}
 			msg += " Now you can travel with ease... more or less.";
 			
@@ -152,8 +152,8 @@ public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 	
 	// Exceptions
 	if(pc.isGoo()) { /* Goos are immune to immobilization? */ }
-	else if(InCollection(partName, ["testicle", "penis", "clitoris"]) && (pc.lowerUndergarment is HardlightAGJock)) { /* Anti-grav underwear lifts crotch stuff. */ }
-	else if(InCollection(partName, ["breast"]) && (pc.upperUndergarment is HardlightAGBra)) { /* Anti-grav tops lifts chest stuff. */ }
+	else if(InCollection(partName, ["testicle", "penis", "clitoris"]) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))) { /* Anti-grav underwear lifts crotch stuff. */ }
+	else if(InCollection(partName, ["breast"]) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))) { /* Anti-grav tops lifts chest stuff. */ }
 	// Weigh parts and add effects where necessary
 	else
 	{
@@ -263,22 +263,22 @@ public function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 	switch (partName)
 	{
 		case "testicle":
-			altCheck = (pc.balls <= 0 || (pc.lowerUndergarment is HardlightAGJock));
+			altCheck = (pc.balls <= 0 || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioBalls;
 			perRatio = percentBalls;
 			break;
 		case "penis":
-			altCheck = (!pc.hasCock() || (pc.lowerUndergarment is HardlightAGJock));
+			altCheck = (!pc.hasCock() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioPenis;
 			perRatio = percentPenis;
 			break;
 		case "clitoris":
-			altCheck = (!pc.hasVagina() || (pc.lowerUndergarment is HardlightAGJock));
+			altCheck = (!pc.hasVagina() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioClits;
 			perRatio = percentClits;
 			break;
 		case "breast":
-			altCheck = (!pc.hasBreasts() || (pc.upperUndergarment is HardlightAGBra));
+			altCheck = (!pc.hasBreasts() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioBoobs;
 			perRatio = percentBoobs;
 			break;
@@ -322,7 +322,7 @@ public function nutSwellUpdates(deltaT:uint = 0):void
 	bodyPartUpdates("testicle", deltaT);
 	
 	// Special underwear changes!
-	if(pc.lowerUndergarment is HardlightAGJock)
+	if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 	{
 		var bigEndowments:Boolean = ((pc.balls > 0 && pc.ballSizeRaw >= 15) || (pc.cocks.length > 0 && pc.biggestCockLength() >= 15) || (pc.totalClits() > 0 && pc.clitLength >= 15));
 		if(bigEndowments && pc.lowerUndergarment.sexiness <= 3)
