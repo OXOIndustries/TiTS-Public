@@ -103,7 +103,8 @@ public function eggTrainerMenu():void
 		var ovaTooltip:String = "Get yourself sorted with a single, spooge-sponging, self-replicating egg.";
 		if(flags["EGG_TRAINING_OVALASTING"] == undefined) ovaTooltip = "This button is dull. It looks like you need to try some of the other options first before the machine will activate something that’s obviously for experienced users only.";
 		else if(flags["EGG_TRAINING_OVALASTING"] == 0) ovaTooltip = "Some sort of permanent egging procedure?";
-		addButton(4, "Ovalasting", eggTrainerOvalastingMenu, undefined, "Ovalasting", ovaTooltip);
+		if(flags["EGG_TRAINING"] >= 4) addButton(4, "Ovalasting", eggTrainerOvalastingMenu, undefined, "Ovalasting", ovaTooltip);
+		else addDisabledButton(4, "Ovalasting", "Ovalasting", "You are not yet experienced enough for this. You’ll have to work up to it.");
 	}
 	else
 	{
@@ -313,7 +314,8 @@ public function eggTrainingMachineTime():void
 
 	output("\n\nAnd that was just the first egg. Another thick engorgement wriggles its way up through the tube, making it push out on your lubed-up walls, rubbing its dozens and dozens of rounded nubs against you. The orgasmic pleasure tearing through you refuses to abate, especially with that kind of handling - and with another thick, heavy bulb plopping into your body, followed by another... and another. You watch with bulging eyes as egg after egg slurps out of the see-through tub and vanishes into the throbbing tube beneath you. Your [pc.butt] bounces on the fuck-saddle, riding that plastic shaft as it thoroughly breeds your [pc.vagOrAss " + x + "] with its eggy load.");
 
-	//{@eggTraining: eggTrained pc} //That’s a new stat to see how many eggs you can take!
+	// @eggTraining: eggTrained pc
+	// That’s a new stat to see how many eggs you can take!
 	if(flags["EGG_TRAINING"] == 1)
 	{
 		output("\n\nThe tentacle squirts and thrusts, laying a belly-straining load of tumbling spheres inside you. You lose count after six big, orgasmic pops that bloat your ");
@@ -505,7 +507,8 @@ public function carryTrainingWithEggMachine():void
 
 	output("\n\nAnd that was just the first egg. Another thick engorgement wriggles its way up through the tube, making it push out on your lubed-up walls, rubbing its dozens and dozens of rounded nubs against you. The orgasmic pleasure tearing through you refuses to abate, especially with that kind of handling - and with another thick, heavy bulb plopping into your body, followed by another... and another. You watch with bulging eyes as egg after egg slurps out of the see-through tub and vanishes into the throbbing tube beneath you. Your [pc.butt] bounces on the fuck-saddle, riding that plastic shaft as it thoroughly breeds your [pc.vagOrAss " + x + "] with its eggy load.");
 
-	// {@eggTraining: eggTrained pc} //That’s a new stat to see how many eggs you can take!
+	// @eggTraining: eggTrained pc
+	// That’s a new stat to see how many eggs you can take!
 	// == 1
 	if(flags["EGG_TRAINING"] == 1) 
 	{
@@ -804,9 +807,9 @@ public function eggTrainerPreggoRemoval():void
 	output("\n\nWith a sigh, you tap the egg-trainer’s holoscreen and select the removal option. As usual, it tells you to disrobe and relax in the saddle, assuring you that it’ll take care of everything. You do as it says, settling down in the fuck-saddle and angling your pregnant hole with the slit under your [pc.butt]. You don’t even need to be told to grab the handlebars and relax, familiar with the device’s modus operandi as you are. Still, it goes through the usual motions of facing the screen towards you and telling you that, depending on how gravid you’ve let yourself get, this might be a hell of a ride.");
 
 	output("\n\nLooks like the <i>“faux pregnancy”</i> even includes birth. You shudder with anticipation, feeling your excitement mount. The tentacle’s bay opens under you, and the familiar, wriggling crown quickly presses against your [pc.vagOrAss " + x + "], spraying your ass and thighs indiscriminately with hot, slick lube. A little moan escapes your lips, forced out by a slow but insistent insertion that spreads your hole open wider and wider.");
-	if(pc.hasCock()) 
+	if(pc.hasCock())
 	{
-		if(pc.cockTotal() == 1) output(" Your [pc.cock] is soon as hard as diamonds, begging for attention you don’t want to give it");
+		if(pc.cocks.length == 1) output(" Your [pc.cock] is soon as hard as diamonds, begging for attention you don’t want to give it");
 		else output(" Your [pc.cocks] are soon as hard as diamonds, begging for attention you don’t want to give them");
 		output("; letting the tentacle milk all the cum out of you is so much sweeter than giving in and using your hands!");
 	}
@@ -1177,7 +1180,7 @@ public function ovalastingPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:in
 		if(pc.hasVagina()) output(" [pc.femcum]");
 		output(" and");
 	}
-	output(" clear egg-lube. You blearily consider the # eggs that you’ve birthed,");
+	output(" clear egg-lube. You blearily consider the " + num2Text(pregEggs) + " eggs that you’ve birthed,");
 	if(pregEggs <= 36) output(" a small but still considerable pile");
 	else output(" a vast, cairn-like pile that is testament to your dedication to being a dutiful egg slut");
 	output(".");
@@ -1398,7 +1401,12 @@ public function eggTrainerOvalastingRemoval(oIdx:int = -2):void
 	output(" You run a hand over your [pc.belly], slightly sad about getting rid of your endlessly productive little toy. It’s been fun.");
 	output("\n\nYou tap the egg-trainer’s holoscreen and select the removal option. As usual, it tells you to disrobe and relax in the saddle, assuring you that it’ll take care of everything. You do as it says, settling down in the fuck-saddle and angling your pregnant hole with the slit under your [pc.butt]. You don’t even need to be told to grab the handlebars and relax, familiar with the device’s modus operandi as you are. It still warns you to take hold - this might be a bit of a ride.");
 	output("\n\nYou shudder with anticipation, excitement replacing heavy heartedness. The tentacle’s bay opens under you, and the familiar, wriggling crown quickly presses against your [pc.vagOrAss " + oIdx + "], spraying your ass and thighs indiscriminately with hot, slick lube. A little moan escapes your lips, forced out by a slow but insistent insertion that spreads your hole open wider and wider.");
-	output(" Your [pc.cocks] " + (pc.cocks.length == 1 ? "is" : "are") + " soon as hard as diamonds, begging for attention you don’t want to give it: letting the tentacle milk all the cum out of you is so much sweeter than giving in and using your hands!");
+	if(pc.hasCock())
+	{
+		if(pc.cocks.length == 1) output(" Your [pc.cock] is soon as hard as diamonds, begging for attention you don’t want to give it");
+		else output(" Your [pc.cocks] are soon as hard as diamonds, begging for attention you don’t want to give them");
+		output("; letting the tentacle milk all the cum out of you is so much sweeter than giving in and using your hands!");
+	}
 	output("\n\nYou rock your hips back against the tentacle, taking it as deep as you can. It fills you with lube, squirting the stuff into your " + (oIdx < 0 ? "bowels" : "womb") + " and making sure that every blessed inch of your insides is absolutely drenched. After a few minutes of its usual, pleasant fucking, though... something changes. The tentacle goes completely still and rigid inside you, not budging an inch even against your grinding hips -- the way it’s buried in your [pc.vagOrAss " + oIdx + "], you can’t move at all!");
 	output("\n\nWith a grunt of displeasure, you try and squirm off the tentacle, but it holds you firm for a long moment. During the still second, you realize that the tentacle isn’t entirely frozen: it’s swelling, ever so slightly, but definitely growing thicker inside you. You gulp, feeling the slow and steady sensation of being stretched out by the inflating pseudo-phallus. When it finishes, you’re almost painfully stretched, groaning constantly from the intense pressure in your loins -- and the fire of arousal burning in you, desperate for more.");
 	

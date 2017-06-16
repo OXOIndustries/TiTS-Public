@@ -17,7 +17,7 @@
 			_latestVersion = 1;
 			
 			quantity = 1;
-			stackSize = 20;
+			stackSize = 10;
 			type = GLOBAL.GADGET;
 			
 			shortName = "Lg.OvaEgg";
@@ -31,7 +31,7 @@
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			basePrice = 10;
+			basePrice = 20;
 			
 			isUsable = false;
 			

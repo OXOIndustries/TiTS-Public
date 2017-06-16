@@ -31,7 +31,7 @@
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			basePrice = 5;
+			basePrice = 10;
 			
 			isUsable = false;
 			
