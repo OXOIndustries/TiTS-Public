@@ -19097,7 +19097,7 @@
 							{
 								thisStatus.minutesLeft = 0;
 								requiresRemoval = false;
-				}
+							}
 						}
 						break;
 					case "Undetected Locofever":
@@ -19108,6 +19108,7 @@
 							if(requiresRemoval) 
 							{
 								kGAMECLASS.locofeverFinish(deltaT, maxEffectLength, doOut, this, thisStatus);
+								requiresRemoval = false;
 							}
 						}
 						break;
