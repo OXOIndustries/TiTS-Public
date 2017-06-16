@@ -166,6 +166,7 @@
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
+		include "../includes/tavros/fisianna.as";
 		include "../includes/tavros/fyn.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
@@ -1349,6 +1350,11 @@
 		public function get mirrin():Mirrin
 		{
 			return chars["MIRRIN"];
+		}
+		
+		public function get fisianna():Fisianna
+		{
+			return chars["FISIANNA"];
 		}
 	}
 }
