@@ -3444,7 +3444,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Residential Deck Stuff!
-			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined)
+			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined)
 			{
 				output2("\n<b><u>Residential Deck</u></b>");
 				// Aina
@@ -3464,6 +3464,33 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 						if(flags["AINA_SEXED"] > 0) output2("\n<b>* Aina, Times Sexed:</b> " + flags["AINA_SEXED"]);
 						if(flags["AINA_SEXED_WITH_TOY"] > 0) output2("\n<b>* Aina, Times Fucked with Anal Wand:</b> " + flags["AINA_SEXED_WITH_TOY"]);
+					}
+				}
+				//Fisianna
+				if (flags["FISI_MET"] != undefined)
+				{
+					
+					output2("\n<b>* Fisianna:</b> Met her, ");
+					if (flags["FISI_AT_RES_DECK"] == undefined) output2("Acquaintances");
+					else if (flags["FISI_MAX"] == undefined) output2("Friends");
+					else if (flags["FISI_LOVER"] != undefined) output2("Lovers");
+					else if (flags["FISI_REJECTED"] != undefined) output2("Ex-friends");
+					else output2("Best friends");
+					output2("\n<b>* Fisianna, Trust:</b> " + flags["FISI_TRUST"] + " %");
+					if (flags["FISI_REL_TYPE"] != undefined)
+					{
+						output2("\n<b>* Fisianna, Relationship:</b> ");
+						if (flags["FISI_REL_TYPE"] == 1) output2("Monogamous");
+						else if (flags["FISI_REL_TYPE"] == 2) output2("Open Relationship");
+						else if (flags["FISI_REL_TYPE"] == 3) output2("Polyamorous");
+					}
+					if (flags["FISI_TIMES_SEXED"] != undefined)
+					{
+						output2("\n<b>* Fisianna, Total Times Sexed:</b> " + flags["FISI_TIMES_SEXED"]);
+						output2("\n<b>* Fisianna, Times Had a Tailjob from Her:</b> " + flags["FISI_TIMES_TJ"]);
+						output2("\n<b>* Fisianna, Times Eaten Her Out:</b> " + flags["FISI_TIMES_EATEN"]);
+						output2("\n<b>* Fisianna, Times Sixty-Nine'd:</b> " + flags["FISI_TIMES_69"]);
+						output2("\n<b>* Fisianna, Times Fucked "+ (silly ? "the Pussy's Pussy" : "Her Pussy")+ "</b> " + flags["FISI_TIMES_VAG"]);
 					}
 				}
 				// Fyn

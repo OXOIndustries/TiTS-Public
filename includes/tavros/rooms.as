@@ -563,6 +563,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 5"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 5"].southExit = "RESIDENTIAL DECK 4";
 	rooms["RESIDENTIAL DECK 5"].westExit = "RESIDENTIAL DECK 6";
+	rooms["RESIDENTIAL DECK 5"].runOnEnter = northEastPlazaBonus;
 	rooms["RESIDENTIAL DECK 5"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.PUBLIC);
@@ -687,10 +688,23 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 13"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
+	rooms["RESIDENTIAL DECK 13"].westExit = "RESIDENTIAL DECK FISIS APARTMENT";
 	rooms["RESIDENTIAL DECK 13"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 13"].runOnEnter = fisiannaApartmentHandler;
+	
+	//Fisianna's Apartment - Doesn't do much for now.
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].roomName = "FISIANNA'S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].description = " ";
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].eastExit = "RESIDENTIAL DECK 13";
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].addFlag(GLOBAL.PRIVATE);
 	
 	//1014 West Walkway 1
 	rooms["RESIDENTIAL DECK 14"] = new RoomClass(this);
