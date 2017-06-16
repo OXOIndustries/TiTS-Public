@@ -93,18 +93,44 @@ public function eggTrainerMenu():void
 	if(pc.findEmptyPregnancySlot(0) != -1)
 	{
 		addButton(1,"Egg Trainer",eggTrainingMachineTime,undefined,"Egg Training","Have the machine fill you with eggs and lube, then lay them right back into the cleaning pool. Something tells you between a tentacle fucking and a two-way oviposition, you’d be in for a wild ride.");
+		
 		if(flags["EGG_TRAINING"] == undefined) addDisabledButton(2,"Carry Train","Carry Train","You aren’t experienced enough with this machine to try this.");
 		else addButton(2,"Carry Train",carryTrainingWithEggMachine,undefined,"Carry Train","Have the tentacle-device fill you with eggs. This option advertises TamaniCorp brand Lock-Lube, made to ensure that your eggs are lodged inside you for a good long while... You’ll be carrying so many eggs that you’ll look positively pregnant for about a week, it tells you.");
-		if(flags["EGG_TRAINING"] >= 4) addButton(3,"Faux Preg",fauxPregImplantation,undefined,"Faux Preg","This special <i>“service”</i> causes the tentacle to fuck a single, unique egg into you - what the screen labels a <i>“faux-preg egg.”</i> This special egg lodges inside you and grows, grows, grows inside you until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.");
+		
+		if(flags["EGG_TRAINING"] >= 4) addButton(3,"Faux Preg",fauxPregImplantation,undefined,"Faux Preg","This special “service” causes the tentacle to fuck a single, unique egg into you - what the screen labels a “faux-preg egg.” This special egg lodges inside you and grows, grows, grows inside you until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.");
 		else addDisabledButton(3,"Faux Preg","Faux Preg","You are not yet experienced enough for this. You’ll have to work up to it.");
+		
+		var ovaTooltip:String = "Get yourself sorted with a single, spooge-sponging, self-replicating egg.";
+		if(flags["EGG_TRAINING_OVALASTING"] == undefined) ovaTooltip = "This button is dull. It looks like you need to try some of the other options first before the machine will activate something that’s obviously for experienced users only.";
+		else if(flags["EGG_TRAINING_OVALASTING"] == 0) ovaTooltip = "Some sort of permanent egging procedure?";
+		addButton(4, "Ovalasting", eggTrainerOvalastingMenu, undefined, "Ovalasting", ovaTooltip);
 	}
 	else
 	{
 		addDisabledButton(1,"Egg Training","Egg Training","You have no room for eggs.");
 		addDisabledButton(2,"Carry Train","Carry Train","You have no room for eggs.");
 		addDisabledButton(3,"Faux Preg","Faux Preg","You have no room for eggs.");
+		addDisabledButton(4, "Ovalasting", "Ovalasting", "All holes are occupied.");
 	}
 	if(pc.hasPregnancyOfType("EggTrainerFauxPreg")) addButton(3,"Remove Egg",eggTrainerPreggoRemoval,undefined,"Remove Egg","Have the Egg Trainer remove your Faux Preg Egg... somehow?");
+	// Remove OL Egg
+	// Only possible if OL egg is not currently fertilized
+	// Prioritizes most recently implanted if multiple
+	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");
+	if(ovaEffect != null)
+	{
+		if(pc.hasPregnancyOfType("OvalastingEggPregnancy")) addDisabledButton(9, "Rem. OL Egg", "Remove Ovalasting Egg", "The interface flashes ‘IN PROGRESS’ in red when you press this. Looks like you’re going to have to see the whole incubation through before the machine is willing to reverse the procedure!");
+		else
+		{
+			var ovas:int = 0;
+			if(ovaEffect.value1 != 0) ovas++;
+			if(ovaEffect.value2 != 0) ovas++;
+			if(ovaEffect.value3 != 0) ovas++;
+			if(ovaEffect.value4 != 0) ovas++;
+			if(ovas + pc.totalPregnancies() >= 4) addDisabledButton(4, "Ovalasting", "Ovalasting", "All holes are occupied.");
+			addButton(9, "Rem. OL Egg", eggTrainerOvalastingRemovalMenu, undefined, "Remove Ovalasting Egg", ("Get " + (ovas == 1 ? "the Ovalasting Egg" : "one of the Ovalasting Eggs") + " out of you."));
+		}
+	}
 	addButton(14,"Leave",leaveEggMachine);
 }
 
@@ -692,8 +718,8 @@ public function bonusEggTrainingLayEffects(pregSlot:int, pregEggs:int, doOut:Boo
 }
 
 //Faux Preg
-//Replace with <i>“Remove Egg”</i> if already has Faux Preg Egg installed in body.
-//This special <i>“service”</i> causes the tentacle to fuck a single, unique egg into you - what the screen labels a <i>“faux-preg egg.”</i> This special egg lodges inside you and grows, grows, grows in your {womb / bowels} until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.
+//Replace with “Remove Egg” if already has Faux Preg Egg installed in body.
+//This special “service” causes the tentacle to fuck a single, unique egg into you - what the screen labels a “faux-preg egg.” This special egg lodges inside you and grows, grows, grows in your {womb / bowels} until your belly is completely gravid. And there’s no way it’s coming out once it goes in without some medical intervention, or the help of the Egg Trainer machine. All the joys of being perpetually, gravidly pregnant without the inevitable childbirth.
 
 public function fauxPregImplantation():void
 {
@@ -916,3 +942,517 @@ public function leaveEggMachine():void
 	if(InShipInterior()) addButton(0,"Next",shipStorageMenuRoot);
 	else addButton(0,"Next",mainGameMenu);
 }
+
+
+// Egg Trainer: Ovalasting
+// Has the same unlock requirements as Faux-preg option. [Remove] option needs to be separate rather than replacing, since PC can Ovalast as many holes as they own. Vaginas prioritized, ass elseif
+public function eggTrainerOvalastingMenu():void
+{
+	clearOutput();
+	showName("\nOVALASTING");
+	author("Nonesuch");
+	
+	output("You study the final button on your ovipositing machine. “Ovalasting”? It’s not exactly self-explanatory. You push it, and watch as the holo display once again lights up.");
+	output("\n\nThe doodle of the machine runs onto the screen, followed by the featureless human, who duly saddles himself up. <i>“OVALASTING: BECAUSE THERE’S NO SUCH THING AS INCOMPATIBLE!”</i> The letters squeeze themselves together around the conjoined cartoon.");
+	output("\n\nThis time, when the cartoon segues to a cut away, there’s only a single egg in the machine - bright pink but standard-sized. It pumps it into the human and then melts away, replaced in the next instant by a many-breasted, insect-legged thing several times the size of the human. The two hold hands (the human takes hold of two fronds, anyway) and cartoon hearts appear above them. The alien sticks... well, something up the human, and injects the chamber the egg is in full of white fluid. It pats the human on the head with a frond and then disappears with a poof.");
+	output("\n\nThe cartoon zeroes in on the human’s midriff. A stopwatch appears in the corner; as it advances the white fluid disappears, at the same time as the egg multiplies with little ‘pop’ sounds, until the fluid is all gone and the man is left with an entire belly full of pink eggs. The stopwatch ‘ding’s and the eggs dance their way out of him... all but one, which remains snugly inside. <i>“OVALASTING: BECOME A PERMANENT INCUBATOR!”</i> read the letters that appear around him this time. The human looks up at the outline of the alien thing bending back into frame, hearts above its head.");
+	output("\n\nIt looks like the sequence is going to keep repeating until you press a button...");
+	
+	if(flags["EGG_TRAINING_OVALASTING"] == undefined) flags["EGG_TRAINING_OVALASTING"] = 0;
+	
+	clearMenu();
+	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");
+	var btnSlot:int = 0;
+	if(pc.hasVagina())
+	{
+		if(pc.vaginas.length == 1)
+		{
+			if(ovaEffect != null && ovaEffect.value1 != 0) addDisabledButton(btnSlot++, "Vagina", "Ovalasting: Vagina", "Your womb already has an Ovalasting egg.");
+			else if(pc.isPregnant(0)) addDisabledButton(btnSlot++, "Vagina", "Ovalasting: Vagina", "Your [pc.vagina] is already occupied!");
+			else addButton(btnSlot++, "Vagina", eggTrainerOvalastingGo, 0, "Ovalasting: Vagina", "Use Ovalasting with your [pc.vagina].");
+		}
+		else
+		{
+			if(ovaEffect != null && ovaEffect.value1 != 0) addDisabledButton(btnSlot++, "Vagina #1", "Ovalasting: Vagina No.1", "Your first womb already has an Ovalasting egg.");
+			else if(pc.isPregnant(0)) addDisabledButton(btnSlot++, "Vagina #1", "Ovalasting: Vagina No.1", "Your [pc.vagina 0] is already occupied!");
+			else addButton(btnSlot++, "Vagina #1", eggTrainerOvalastingGo, 0, "Ovalasting: Vagina No.1", "Use Ovalasting with your [pc.vagina 0].");
+			if(ovaEffect != null && ovaEffect.value2 != 0) addDisabledButton(btnSlot++, "Vagina #2", "Ovalasting: Vagina No.2", "Your second womb already has an Ovalasting egg.");
+			else if(pc.isPregnant(1)) addDisabledButton(btnSlot++, "Vagina #2", "Ovalasting: Vagina No.2", "Your [pc.vagina 1] is already occupied!");
+			else addButton(btnSlot++, "Vagina #2", eggTrainerOvalastingGo, 1, "Ovalasting: Vagina No.2", "Use Ovalasting with your [pc.vagina 1].");
+			if(pc.vaginas.length >= 3)
+			{
+				if(ovaEffect != null && ovaEffect.value3 != 0) addDisabledButton(btnSlot++, "Vagina #3", "Ovalasting: Vagina No.3", "Your third womb already has an Ovalasting egg.");
+				else if(pc.isPregnant(2)) addDisabledButton(btnSlot++, "Vagina #3", "Ovalasting: Vagina No.3", "Your [pc.vagina 2] is already occupied!");
+				else addButton(btnSlot++, "Vagina #3", eggTrainerOvalastingGo, 2, "Ovalasting: Vagina No.3", "Use Ovalasting with your [pc.vagina 2].");
+			}
+		}
+		if(ovaEffect != null && ovaEffect.value4 != 0) addDisabledButton(btnSlot++, "Asshole", "Ovalasting: Asshole", "Your ass already has an Ovalasting egg.");
+		else if(pc.isPregnant(3)) addDisabledButton(btnSlot++, "Asshole", "Ovalasting: Asshole", "Your ass is already occupied!");
+		else addButton(btnSlot++, "Asshole", eggTrainerOvalastingGo, -1, "Ovalasting: Asshole", "Use Ovalasting with your [pc.asshole].");
+	}
+	else addButton(0, "Ovalasting", eggTrainerOvalastingGo);
+	addButton(14, "Cancel", repeatEggTrainerApproach);
+}
+// [Ovalasting]
+public function eggTrainerOvalastingGo(oIdx:int = -1):void
+{
+	clearOutput();
+	showName("\nOVALASTING");
+	author("Nonesuch");
+	
+	var ovas:int = 0;
+	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");
+	if(ovaEffect != null)
+	{
+		if(ovaEffect.value1 != 0) ovas++;
+		if(ovaEffect.value2 != 0) ovas++;
+		if(ovaEffect.value3 != 0) ovas++;
+		if(ovaEffect.value4 != 0) ovas++;
+	}
+	
+	// No holes OL’d:
+	if(ovas == 0) output("So, an artificial egg that multiplies when it comes into contact with sexual fluids, and is a permanent fixture? Shiver-inducing ideas parade through your head... of getting held down and reamed hard by some irresistible xeno-breeder, then feeling your belly swell slowly with the absorbent eggs, then having to lay them... all in the knowledge that you’d have to do it again, if you let someone else take your " + (oIdx < 0 ? "ass pussy" : "cunt") + ".");
+	// Holes OL’d:
+	else output("You rub your [pc.belly], lost in pleasure-stuffed memory. Insert another Ovilasting egg up you? Is that really wise? To fill as many holes as possible with cum-thirsty sponge-eggs so you become utterly bloated with them, helplessly gorged on pregnant bliss?");
+	output("You realize that in a daze you have already");
+	if(!pc.isCrotchExposed()) output(" taken off your [pc.lowerGarments] and");
+	output(" plunked yourself down on the Egg Trainer’s saddle, presenting your [pc.vagOrAss " + oIdx + "] to it, before you’ve even given it careful thought.");
+	output("\n\nThe screen flipping around and revealing its handlebars gives you time, though. As does the warning that flashes up on the holographic screen, informing you that the implanting of an Ovalasting egg is permanent unless you use the machine to take the original back out of you, and that you are going to be carrying and laying a lot of eggs if you engage in sexual activity with it in place. You hesitate for a moment - and then press the OK button and take hold of the bars. What the hell. Let’s go.");
+	output("\n\nA faint heat starts rising from the metal, and you feel a shuddering vibration as the machine " + (!pc.hasLegs() ? "under you" : "between your [pc.legs]") + " hums to life. You squeeze your eyes shut and hold on tight as a thick, tapered tentacle wriggles up from the machine and presses its pointed crown against your [pc.vagOrAss " + oIdx + "]. It gives you a squirt of lube, painting your thighs and ass indiscriminately before forging ahead. There’s a moment of pressure as it aligns itself, and then the familiar, wonderful pleasure that presages the real treat; the tentacle slithers inside you, stretching your hole ever wider as it grows thicker, and inch after inch of smooth tube is fed into your [pc.vagOrAss " + oIdx + "].");
+	
+	if(oIdx < 0) pc.buttChange(200);
+	else pc.cuntChange(200, oIdx);
+	
+	output("\n\nYou moan out your enjoyment, bucking your [pc.hips] back against the steadily thrusting artificial member. The familiar sensation still sends a thrill through you no matter how many times you get to enjoy it. Your knuckles turn white, squeezing down around the handle bars and letting the tentacle fuck you. It’s more vigorous and more thorough in its business than it strictly needs to be, you well know by now, but you can hardly complain as it " + (oIdx < 0 ? "milks your prostate" : "pounds your pussy") + " to orgasm.");
+	if(pc.hasCock()) output(" Your [pc.cocks] spray" + (pc.cocks.length == 1 ? "s its" : " their") + " load all over the top of the box, throbbing and squirting in wondrous ways even without a single bit of direct stimulation.");
+	output("\n\nWith a soft moan, you slump forward against the grip of the trainer box. You can feel the tentacle pumping lube into your [pc.vagOrAss " + oIdx + "] like a cock blowing its load, making sure that your insides are completely soaked and ready for anything. Weight blossoms in your " + (oIdx < 0 ? "gut" : "womb") + "; nothing like as substantial as some of the egg-loads you’ve taken in the past, but a sure, dense presence nonetheless. After a moment, the holoscreen blinks the message, <i>“Egg implanted! Be sure to feed your baby with lots of cum!”</i>");
+	if(StatTracking.getStat("pregnancy/ovalasting eggs laid") <= 0) output("\n\nThe tentacle slithers out of you without a moment’s more notice, leaving you feeling a little gaped, and a little more full. What it implanted feels barely there, particularly to well-broken-in you. Your belly hasn’t even gained a bump, and you feel vaguely cheated by the lack of sensation. Still... you were expressly told not to expect anything until you’ve taken a load from some forceful, fertile someone first.");
+	else output("\n\nThe tentacle slithers out of you without a moment’s more notice, leaving you feeling a little gaped, and a little more full. What it implanted feels barely there, particularly to well-broken-in you. But you know with a bit of help from a friendly, sexy someone, this orifice of yours will soon be packed to the gills to with round, ever-swelling love. You practically purr at the thought, rubbing your [pc.hip] and [pc.chest] in rich anticipation.");
+	output("\n\nDoing your best to clench up so the egg doesn’t fall out of your loosened hole, you grab your gear and stagger to the washroom to clean up.");
+	
+	processTime(4);
+	
+	// Ovalasting Status Effect
+	// v1: Timestamp of Vagina 1
+	// v2: Timestamp of Vagina 2
+	// v3: Timestamp of Vagina 3
+	// v4: Timestamp of Asshole
+	pc.createStatusEffect("Ovalasting", 0, 0, 0, 0, false, "Icon_Belly_Pregnant", "You are under the effects of Ovalasting.", false, 0, 0xB793C4);
+	ovaEffect = pc.getStatusEffect("Ovalasting");
+	
+	var pregSlot:int = (oIdx < 0 ? 3 : oIdx);
+	switch(pregSlot)
+	{
+		case 0: ovaEffect.value1 = kGAMECLASS.GetGameTimestamp(); break;
+		case 1: ovaEffect.value2 = kGAMECLASS.GetGameTimestamp(); break;
+		case 2: ovaEffect.value3 = kGAMECLASS.GetGameTimestamp(); break;
+		case 3: ovaEffect.value4 = kGAMECLASS.GetGameTimestamp(); break;
+	}
+	ovaEffect.tooltip = ovalastingTooltip(ovaEffect);
+	
+	IncrementFlag("EGG_TRAINING_OVALASTING");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function ovalastingTooltip(ovaEffect:StorageClass):String
+{
+	var tooltip:String = "You are under the effects of Ovalasting.";
+	if(ovaEffect != null)
+	{
+		var eggSlots:Array = new Array();
+		
+		if(ovaEffect.value1 != 0) eggSlots.push(pc.vaginas.length == 1 ? "womb" : "first womb");
+		if(ovaEffect.value2 != 0) eggSlots.push("second womb");
+		if(ovaEffect.value3 != 0) eggSlots.push("third womb");
+		if(ovaEffect.value4 != 0) eggSlots.push("ass");
+		
+		if(eggSlots.length == 1) tooltip += "\n\nYou currently have an egg in your " + eggSlots[0] + ".";
+		else if(eggSlots.length > 0) tooltip += "\n\nYou currently have eggs in your " + CompressToList(eggSlots) + ".";
+	}
+	return tooltip;
+}
+
+// Mechanics
+/*
+Any type of sexual fluid ejaculated into OL’d hole will cause it to activate - e.g. stuff like rahn eggs will also work. OL’d hole should be considered taken for large egg layers, e.g. bothrioc and nyrea should not attempt to lay in it.
+ 
+Once in active state, OL egg spends a week growing into a clutch before forcing birth. How many develop is dependent upon ET level:
+ 
+Egg Training Level	No. of Eggs Developed
+0	4-10
+1	8-14
+2	14-20
+3	20-26
+4	28-34
+5	38-46
+
+If the PC takes a second ejaculation in an already active OL hole AND is at level 3 or above, eggs become large.
+*/
+
+public function ovalastingEggCount():Number
+{
+	if(flags["EGG_TRAINING"] == undefined) return 4;
+	if(flags["EGG_TRAINING"] == 0) return (4 + rand(7));
+	if(flags["EGG_TRAINING"] <= 1) return (8 + rand(7));
+	if(flags["EGG_TRAINING"] <= 2) return (14 + rand(7));
+	if(flags["EGG_TRAINING"] <= 3) return (20 + rand(7));
+	if(flags["EGG_TRAINING"] <= 4) return (28 + rand(7));
+	if(flags["EGG_TRAINING"] <= 5) return (38 + rand(9));
+	return 60;
+}
+
+// Check for Ovalasting eggs in respective preg slot
+public function hasOvalastingEgg(mother:Creature, pregSlot:int = -1):Boolean
+{
+	if(pregSlot < 0 || pregSlot > 3) return false;
+	
+	var ovaEffect:StorageClass = mother.getStatusEffect("Ovalasting");
+	if(ovaEffect == null) return false;
+	
+	var ovaEgg:Boolean = false;
+	switch(pregSlot)
+	{
+		case 0:
+			if(ovaEffect.value1 != 0) ovaEgg = true;
+			break;
+		case 1:
+			if(ovaEffect.value2 != 0) ovaEgg = true;
+			break;
+		case 2:
+			if(ovaEffect.value3 != 0) ovaEgg = true;
+			break;
+		case 3:
+			if(ovaEffect.value4 != 0) ovaEgg = true;
+			break;
+	}
+	return ovaEgg;
+}
+// PC takes a load in inactive OL hole
+public function ovalastingPregnancySwap(cumFrom:Creature, mother:Creature, pregSlot:int = -1):Creature
+{
+	var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+	// Big egg if already has pregnancy
+	if(pData.pregnancyType == "OvalastingEggPregnancy")
+	{
+		// PC takes second load in already fertilized OLhole
+		mother.createStatusEffect("Ovalasting Message", (pregSlot == 3 ? -1 : pregSlot), 0, 0, 0, true, "", "", false, 10);
+		if(flags["EGG_TRAINING"] >= 3) mother.createStatusEffect("Ovalasting Big Egg " + pregSlot);
+	}
+	// Change pregnancy type if occupied by Ovalasting egg.
+	else
+	{
+		var ppOvalasting:PregnancyPlaceholder = new PregnancyPlaceholder();
+		ppOvalasting.impregnationType = "OvalastingEggPregnancy";
+		cumFrom = ppOvalasting;
+	}
+	
+	return cumFrom;
+}
+
+// 7 days (birth)
+public function ovalastingPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:int):void
+{
+	clearOutput();
+	showBust("");
+	showName("\nEGGS!");
+	author("Nonesuch");
+	
+	var bigEgg:Boolean = (pc.statusEffectv1("Ovalasting Big Egg " + pregSlot) > 0);
+	
+	output("There’s a rumbling in your [pc.belly], followed by a distinct pulling, liquefying sensation. The eggs in your Ovalasted " + (pregSlot == 3 ? "ass" : "pussy") + " are coming!");
+	output("\n\nIn a slight panic, you waddle");
+	if(InShipInterior()) output(" to your bedroom");
+	else if(InPublicSpace()) output(" to a nearby bathroom");
+	else output(" to a secluded spot");
+	output(". Biological imperative makes you squat and, as the feeling intensifies dramatically, bear down mightily with your hips. Sweat standing out on your brow, you cry out as the first egg stretches your " + (pregSlot == 3 ? "sphincter" : "pussy lips") + " wide.");
+	if(bigEgg) output(" Oh fucking Void, it’s so big! What were you thinking, letting them absorb so much cum? Lube gushes liberally around it, and you scream as the sheer pressure from the egg-train above forces it through, pushing you straight into delirious orgasm, the pulses of pleasure seizing up your " + (pregSlot == 3 ? "colon" : "twat") + " only making the grapefruit-sized ovals come faster. And that was just the first...");
+	else output(" It’s intense, so intense that stars float in your eyes as it slides through, coming free in a great gush of lube. You moan, feeling pressure build inexorably as the next egg pushes its broad mass against your sensitive hole, and you squeal in orgasm as you push it to freedom, squirting " + (pregSlot == 3 ? "[pc.femcum]" : "[pc.cum]") + " in dazed clenches.");
+	output("\n\nThey just keep coming, one after the other sliding down " + (pregSlot == 3 ? "your back passage" : "the tunnel of your twat") + " and stretching you wide, requiring huffing, hefty pushes of your [pc.hips] to come free and land in the oozing, ever-growing pile. Another orgasm follows swiftly upon the heels of the last, blowing away all thought as you lay yet another " + (!bigEgg ? "cute, pink oval" : "huge, pink, ostrich-like egg") + ", the pressure put on your " + (pregSlot == 3 ? "prostate" : "sensitive pussy lips") + "; you lose yourself utterly in the process, nothing more than a helpless, egg-producing machine, squatting and birthing the wonderful, hefty brood that you grew within you.");
+	output("\n\nEventually you fall to one side, numbed, dazed and thoroughly gaped, your [pc.groin] and thighs utterly coated in");
+	if(pc.hasGenitals())
+	{
+		if(pc.hasCock()) output(" [pc.cum]");
+		if(pc.isHerm()) output(",");
+		if(pc.hasVagina()) output(" [pc.femcum]");
+		output(" and");
+	}
+	output(" clear egg-lube. You blearily consider the # eggs that you’ve birthed,");
+	if(pregEggs <= 36) output(" a small but still considerable pile");
+	else output(" a vast, cairn-like pile that is testament to your dedication to being a dutiful egg slut");
+	output(".");
+	if(flags["OVALASTING_EGGS_SOLD"] == undefined) output("What are you going to do with them? Presumably the egg trainer machine doesn’t need them. Perhaps if you cleaned them up, you could try and sell them to someone...?");
+	else output(" Once you’ve cleaned them up, they should fetch a nice price. Or you could sit your [pc.ass] down on them, keep them nice and warm...? You push that deep, enticing vaguery away.");
+	output("\n\nYou");
+	if(InShipInterior()) output(" wash them in the bathroom");
+	else if(InPublicSpace()) output(" wash them in the sink");
+	else output(" rub them off as best you can");
+	output(" before cleaning yourself up. Now that the overwhelming sensation of birthing has faded, you realize there’s still a small, warm glow emanating from your gut - the original Ovalasting egg, still lodged within your " + (pregSlot == 3 ? "ass" : "womb") + ", awaiting another bath of fertile fluids to kick-start the whole process again. You shiver slightly at the thought as you continue what you were doing. Slowly. You’re going to be walking rather gingerly for a little while.");
+	
+	pc.energy((!bigEgg ? -1 : -2) * pregEggs);
+	processTime(20 + rand(11));
+	
+	// Loot egg!
+	output("\n\n");
+	ovalastingEggReward(bigEgg, pregEggs);
+}
+
+// Premature Birth
+// Happens 1 hour after load taken in an inactive OL’d vagina AND actual fertilization takes place. If OL active and dividing, fertilization should not take place.
+public function ovalastingPrematureBirth():void
+{
+	clearOutput();
+	showBust("");
+	showName("\nUH-OH!");
+	author("Nonesuch");
+	
+	var pregSlot:int = pc.statusEffectv1("Ovalasting Early Clutch Timer");
+	if(pregSlot == 3) kGAMECLASS.pc.removeStatusEffect("Anally-Filled");
+	else kGAMECLASS.pc.removeStatusEffect("Vaginally-Filled");
+	
+	output("There’s a rumbling in your [pc.belly], followed by a distinct pulling, liquefying sensation. The egg lodged in your [pc.pussy " + pregSlot + "] is coming out!");
+	output("\n\nIn a slight panic, you waddle");
+	if(InShipInterior()) output(" to your bedroom");
+	else if(InPublicSpace()) output(" to a nearby bathroom");
+	else output(" to a secluded spot");
+	output(". Biological imperative makes you squat and, as the feeling intensifies dramatically, bear down with your hips. You huff and grunt as your lips are spread wide by the smooth oval, arousal peaking as it planes over your [pc.clit] - and then it’s gone, slipping out of you and landing on the floor with a wet clack.");
+	output("\n\nYou frown as you pick it up. Is that supposed to happen?");
+	if(StatTracking.getStat("pregnancy/ovalasting eggs laid") <= 0) output(" The Egg Trainer was pretty clear that the thing was going to divide if bathed in cum.");
+	else output(" You know from intense experience that the thing usually divides if bathed in cum.");
+	output(" Unless it’s programmed somehow to abort itself if the fluids in question actually manage to... you shiver slightly at the thought, hand darting down to your [pc.belly]. Is <i>that</i> it?");
+	
+	// Switch failed egg off
+	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");
+	if(ovaEffect != null)
+	{
+		switch(pregSlot)
+		{
+			case 0: ovaEffect.value1 = 0; break;
+			case 1: ovaEffect.value2 = 0; break;
+			case 2: ovaEffect.value3 = 0; break;
+			case 3: ovaEffect.value4 = 0; break;
+		}
+	}
+	ovaEffect.tooltip = ovalastingTooltip(ovaEffect);
+	
+	pc.removeStatusEffect("Ovalasting Early Clutch Timer");
+	
+	processTime(10 + rand(11));
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+public function ovalastingNurseryEnds():void
+{
+	clearOutput();
+	showBust("");
+	showName("\nEGGS!");
+	author("Nonesuch");
+	
+	// Loot egg!
+	var bigEgg:Boolean = false;
+	var pregEggs:int = 0;
+	for(var i:int = -1; i < pc.pregnancyData.length; i++)
+	{
+		pregEggs += pc.statusEffectv1("Ovalasting Egg " + i);
+		pc.removeStatusEffect("Ovalasting Eggs " + i);
+		if(pc.statusEffectv1("Ovalasting Big Egg " + i) > 0) bigEgg = true;
+	}
+	ovalastingEggReward(bigEgg, pregEggs);
+}
+private function ovalastingEggReward(bigEgg:Boolean = false, pregEggs:int = 4):void
+{
+	var eggItem:ItemSlotClass = null;
+	
+	if (!bigEgg) eggItem = new OvalastingEggSmall();
+	else eggItem = new OvalastingEggLarge();
+	
+	var eggList:Array = [eggItem];
+	
+	// Adjust quantity for item stacking.
+	var idx:int = 0;
+	var iQuantity:int = 0;
+	while(pregEggs > 0)
+	{
+		iQuantity = Math.min(pregEggs, eggList[idx].stackSize);
+		eggList[idx].quantity = iQuantity;
+		pregEggs -= iQuantity;
+		if(pregEggs > 0)
+		{
+			eggList.push(eggItem);
+			idx++;
+		}
+	}
+	
+	for(var i:int = -1; i < pc.pregnancyData.length; i++)
+	{
+		if(pc.statusEffectv1("Ovalasting Big Egg " + i) > 0) pc.removeStatusEffect("Ovalasting Big Egg " + i);
+	}
+	
+	if (eggList.length > 0)
+	{
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(eggList);
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+// Remove OL Egg
+// Only possible if OL egg is not currently fertilized
+// Prioritizes most recently implanted if multiple
+public function eggTrainerOvalastingRemovalMenu():void
+{
+	clearOutput();
+	showName("\nOVALASTING");
+	author("Nonesuch");
+	
+	clearMenu();
+	var ovas:int = 0;
+	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");
+	if(ovaEffect != null)
+	{
+		if(ovaEffect.value1 != 0) ovas++;
+		if(ovaEffect.value2 != 0) ovas++;
+		if(ovaEffect.value3 != 0) ovas++;
+		if(ovaEffect.value4 != 0) ovas++;
+	}
+	var btnSlot:int = 0;
+	if(ovas >= 2 || pc.hasVagina())
+	{
+		output("Which Ovalasting egg would you like to remove?");
+		
+		if(pc.vaginas.length == 1)
+		{
+			if(ovaEffect == null || ovaEffect.value1 == 0) addDisabledButton(btnSlot++, "Vagina", "Ovalasting: Vagina", "Your womb does not have an Ovalasting egg.");
+			else if(pc.isPregnant(0)) addDisabledButton(btnSlot++, "Vagina", "Ovalasting: Vagina", "Your [pc.vagina] is currently occupied!");
+			else addButton(btnSlot++, "Vagina", eggTrainerOvalastingRemoval, 0, "Ovalasting: Vagina", "Remove the Ovalasting egg from your [pc.vagina].");
+		}
+		else
+		{
+			if(ovaEffect == null || ovaEffect.value1 == 0) addDisabledButton(btnSlot++, "Vagina #1", "Ovalasting: Vagina No.1", "Your first womb does not have an Ovalasting egg.");
+			else if(pc.isPregnant(0)) addDisabledButton(btnSlot++, "Vagina #1", "Ovalasting: Vagina No.1", "Your [pc.vagina 0] is currently occupied!");
+			else addButton(btnSlot++, "Vagina #1", eggTrainerOvalastingRemoval, 0, "Ovalasting: Vagina No.1", "Remove the Ovalasting egg from your [pc.vagina 0].");
+			if(ovaEffect == null || ovaEffect.value2 == 0) addDisabledButton(btnSlot++, "Vagina #2", "Ovalasting: Vagina No.2", "Your second womb does not have an Ovalasting egg.");
+			else if(pc.isPregnant(1)) addDisabledButton(btnSlot++, "Vagina #2", "Ovalasting: Vagina No.2", "Your [pc.vagina 1] is currently occupied!");
+			else addButton(btnSlot++, "Vagina #2", eggTrainerOvalastingRemoval, 1, "Ovalasting: Vagina No.2", "Remove the Ovalasting egg from [pc.vagina 1].");
+			if(pc.vaginas.length >= 3)
+			{
+				if(ovaEffect == null || ovaEffect.value3 == 0) addDisabledButton(btnSlot++, "Vagina #3", "Ovalasting: Vagina No.3", "Your third womb does not have an Ovalasting egg.");
+				else if(pc.isPregnant(2)) addDisabledButton(btnSlot++, "Vagina #3", "Ovalasting: Vagina No.3", "Your [pc.vagina 2] is currently occupied!");
+				else addButton(btnSlot++, "Vagina #3", eggTrainerOvalastingRemoval, 2, "Ovalasting: Vagina No.3", "Remove the Ovalasting egg from your [pc.vagina 2].");
+			}
+		}
+		if(ovaEffect == null || ovaEffect.value4 == 0) addDisabledButton(btnSlot++, "Asshole", "Ovalasting: Asshole", "Your ass does not have an Ovalasting egg.");
+		else if(pc.isPregnant(3)) addDisabledButton(btnSlot++, "Asshole", "Ovalasting: Asshole", "Your ass is currently occupied!");
+		else addButton(btnSlot++, "Asshole", eggTrainerOvalastingRemoval, -1, "Ovalasting: Asshole", "Remove the Ovalasting egg from your [pc.asshole].");
+		
+		if(ovas >= 2) addButton(13, "Lastest", eggTrainerOvalastingRemoval, -2, "Ovalasting: Latest", "Remove the most recently implanted Ovalasting egg.");
+	}
+	else
+	{
+		output("Are you sure you want to remove the Ovalasting egg inside you?");
+		
+		addButton(0, "Remove", eggTrainerOvalastingRemoval);
+	}
+	addButton(14, "Cancel", repeatEggTrainerApproach);
+}
+public function eggTrainerOvalastingRemoval(oIdx:int = -2):void
+{
+	clearOutput();
+	showName("\nOVALASTING");
+	author("Nonesuch");
+	
+	var ovaEffect:StorageClass = pc.getStatusEffect("Ovalasting");
+	
+	if(ovaEffect == null)
+	{
+		output("<b>ERROR:</b> Ovalasting egg not found!");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	if(pc.findPregnancyOfType("OvalastingEggPregnancy") >= 0)
+	{
+		output("<b>ERROR:</b> You cannot remove Ovalasting egg while it is <i>IN PROGRESS</i>.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	// For prioritizing the latest one.
+	if(oIdx == -2)
+	{
+		var eggSlots:Array = [ovaEffect.value1, ovaEffect.value2, ovaEffect.value3, ovaEffect.value4];
+		oIdx = eggSlots.indexOf(Math.max(ovaEffect.value1, ovaEffect.value2, ovaEffect.value3, ovaEffect.value4));
+	}
+	
+	output("As enjoyable as it’s been, you’ve decided it’s time to get the Ovalasting egg out of you.");
+	if(oIdx > 0) output(" If anything, having it has made you crave a real baby -- or just a belly full of alien eggs -- more than ever!");
+	output(" You run a hand over your [pc.belly], slightly sad about getting rid of your endlessly productive little toy. It’s been fun.");
+	output("\n\nYou tap the egg-trainer’s holoscreen and select the removal option. As usual, it tells you to disrobe and relax in the saddle, assuring you that it’ll take care of everything. You do as it says, settling down in the fuck-saddle and angling your pregnant hole with the slit under your [pc.butt]. You don’t even need to be told to grab the handlebars and relax, familiar with the device’s modus operandi as you are. It still warns you to take hold - this might be a bit of a ride.");
+	output("\n\nYou shudder with anticipation, excitement replacing heavy heartedness. The tentacle’s bay opens under you, and the familiar, wriggling crown quickly presses against your [pc.vagOrAss " + oIdx + "], spraying your ass and thighs indiscriminately with hot, slick lube. A little moan escapes your lips, forced out by a slow but insistent insertion that spreads your hole open wider and wider.");
+	output(" Your [pc.cocks] " + (pc.cocks.length == 1 ? "is" : "are") + " soon as hard as diamonds, begging for attention you don’t want to give it: letting the tentacle milk all the cum out of you is so much sweeter than giving in and using your hands!");
+	output("\n\nYou rock your hips back against the tentacle, taking it as deep as you can. It fills you with lube, squirting the stuff into your " + (oIdx < 0 ? "bowels" : "womb") + " and making sure that every blessed inch of your insides is absolutely drenched. After a few minutes of its usual, pleasant fucking, though... something changes. The tentacle goes completely still and rigid inside you, not budging an inch even against your grinding hips -- the way it’s buried in your [pc.vagOrAss " + oIdx + "], you can’t move at all!");
+	output("\n\nWith a grunt of displeasure, you try and squirm off the tentacle, but it holds you firm for a long moment. During the still second, you realize that the tentacle isn’t entirely frozen: it’s swelling, ever so slightly, but definitely growing thicker inside you. You gulp, feeling the slow and steady sensation of being stretched out by the inflating pseudo-phallus. When it finishes, you’re almost painfully stretched, groaning constantly from the intense pressure in your loins -- and the fire of arousal burning in you, desperate for more.");
+	
+	if(oIdx < 0) pc.buttChange(200);
+	else pc.cuntChange(200, oIdx);
+	
+	output("\n\nSomething ice-cold and sticky sprays from the tentacle’s tapered tip, blasting the bottom of the egg inside you. You yelp in surprise, almost orgasming from the shock... and finish as the tentacle decides it’s done, and slides right out of you. Gasping and crying out, you buck in the saddle and drench yourself and your trainer machine in ");
+	if(pc.hasGenitals())
+	{
+		if(pc.isHerm()) output("both masculine and feminine ");
+		else if(pc.hasVagina()) output("fem-");
+		output("cum");
+	}
+	else output("ass lube");
+	output(". The unexpected climax leaves you slumping against the machine, knuckles white from how hard you’re gripping the handlebars and leaking lube from your pregnant hole.");
+	output("\n\nWhatever the tendril shot into your " + (oIdx < 0 ? "colon" : "womb") + " seems to have affected your egg. The synthetic orb shifts restlessly inside you. Your gut gurgles uneasily as the egg dislodges and shrinks a bit, getting properly aligned for what’s to come.");
+	output("\n\nThe holoscreen helpfully tells you to please face your rump into the lube-tank. The lid slides off, revealing the sloshing tank of hot, steamy lube for you to give “birth” into. You swing your [pc.legOrLegs] forward, grabbing your belly to steady yourself as you feel the egg start to drop. A big, bold, pink word appears on screen: “<b>PUSH</b>.”");
+	output("\n\nYou grit your teeth and push as hard as you can, bracing against the box for a little extra leverage.");
+	output("\n\nHonestly, for a well-broken-in incubator like you, it’s a piece of cake. Almost disappointingly so. Whatever the tentacle pumped into you " + (oIdx < 0 ? "is make your ass spasm, finally flushing the thick bundle of synthetic substance that’s been nesting inside you for ages" : "has relaxed your womb, making it open up and regurgitate its unwanted occupant") + ". You grunt and push, and nearly orgasm again thanks to how well-trained to pump out eggs your body has become.");
+	output("\n\nIt doesn’t take long for your seasoned muscles long to work the oval out, right up to your " + (oIdx < 0 ? "anal ring" : "pussy-lips") + " and then, with a climactic burst of effort, it pops out and goes sailing into the lube-bath, splashing into the tank with its friends. The breath goes out of you with a ragged gasp of pleasure, and you all but collapse backwards. A feeling of utter, absolute contentment spreads slowly through you. After that, you feel like you could drift off to sleep.");
+	output("\n\nThe machine beeps something at you, but you’re way too worn out to get up and read it. Smiling to yourself, you glance into the tub, and see a pink ball slightly bigger than the other eggs resting atop the trainer’s payload, slowly submerging in the heated lube. A pang of... regret? Longing? Some emotion you can’t quite put words to tugs at your heartstrings for a moment as the lid slides closed, and you’re left to recover.");
+	
+	var pregSlot:int = (oIdx < 0 ? 3 : oIdx);
+	switch(pregSlot)
+	{
+		case 0: ovaEffect.value1 = 0; break;
+		case 1: ovaEffect.value2 = 0; break;
+		case 2: ovaEffect.value3 = 0; break;
+		case 3: ovaEffect.value4 = 0; break;
+	}
+	ovaEffect.tooltip = ovalastingTooltip(ovaEffect);
+	
+	if(ovaEffect.value1 == 0 && ovaEffect.value2 == 0 && ovaEffect.value3 == 0 && ovaEffect.value4 == 0) pc.removeStatusEffect("Ovalasting");
+	
+	for(var i:int = -1; i < pc.pregnancyData.length; i++)
+	{
+		if(pc.statusEffectv1("Ovalasting Big Egg " + i) > 0) pc.removeStatusEffect("Ovalasting Big Egg " + i);
+	}
+	
+	processTime(35);
+	pc.orgasm();
+	pc.energy(-10);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+/*
+
+Pink Eggs
+ 
+//Stack to 10 in inventory. If PC birthed them on ship, place any excess in storage. Otherwise they’ll have to chuck ‘em
+ 
+//1 x SPE sell for 5 credits, LPE for 10, at wholesalers.
+
+*/
+

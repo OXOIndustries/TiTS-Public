@@ -575,6 +575,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "SeraSpawnPregnancy": output2(" Sera"); break;
 						case "MilodanPregnancy": output2(" Milodan"); break;
 						case "BothriocPregnancy": output2(" Bothrioc, Eggs"); break;
+						case "OvalastingEggPregnancy": output2(" Ovalasting, Eggs"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -952,6 +953,8 @@ public function statisticsScreen(showID:String = "All"):void
 			{
 				output2("\n<b><u>Produce</u></b>");
 				output2("\n<b>* Total:</b> " + totalProduce);
+				if(StatTracking.getStat("pregnancy/ovalasting eggs laid") > 0)
+					output2("\n<b>* Births, Ovalasting Eggs, Total:</b> " + StatTracking.getStat("pregnancy/ovalasting eggs laid"));
 				if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 					output2("\n<b>* Births, Ovilium Eggs, Total:</b> " + StatTracking.getStat("pregnancy/ovilium eggs laid"));
 				if(StatTracking.getStat("pregnancy/egg trainer eggs laid") > 0)
@@ -6249,6 +6252,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["EGG_TRAINING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Training Level:</b> " + flags["EGG_TRAINING"]);
 				if(flags["CARRY_TRAINING_TIMES"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Carry Training:</b> " + flags["CARRY_TRAINING_TIMES"]);
+				if(flags["EGG_TRAINING_OVALASTING"] != undefined) output2("\n<b>* TamaniCorp, Egg Trainer, Times Used Ovalasting:</b> " + flags["EGG_TRAINING_OVALASTING"]);
 			}
 			miscCount++;
 		}

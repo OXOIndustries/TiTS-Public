@@ -10657,6 +10657,7 @@
 			if (hasStatusEffect("Mimbrane Pussy")) return false;
 			//Amazon Treatment prevents cunt-loss during.
 			if (hasStatusEffect("Treated Amazon") && totalVaginas() <= 1 && hasStatusEffect("The Treatment")) return false;
+			if (hasStatusEffect("Ovalasting")) return false;
 			if (isPregnant(0) || isPregnant(1) || isPregnant(2)) return false;
 			return true;
 		}
@@ -10682,6 +10683,7 @@
 		{
 			if (vaginas.length == 1 && hasStatusEffect("Mimbrane Pussy")) return false;
 			if (hasStatusEffect("Treated Amazon") && totalVaginas() <= 1 && hasStatusEffect("The Treatment")) return false;
+			if (hasStatusEffect("Ovalasting")) return false;
 			if (isPregnant(arraySpot)) return false;
 			return true;
 		}
@@ -16775,8 +16777,27 @@
 			// The array storing chars will just throw out a null if a key doesn't exist - catch that and shit out an obvious error.
 			if (cumFrom == null)
 			{
+				if(this is PlayerCharacter && kGAMECLASS.hasOvalastingEgg(this, pregSlot))
+				{
+					cumFrom = kGAMECLASS.ovalastingPregnancySwap(cumFrom, this, pregSlot);
+					return PregnancyManager.tryKnockUp(cumFrom, this, pregSlot);
+				}
 				throw new Error("Null creature used to call tryKnockUp. Does this creature actually have a defined statblock?");
 				return false;
+			}
+			
+			if(!cumFrom.hasStatusEffect("Ovilium Effect") && this is PlayerCharacter && kGAMECLASS.hasOvalastingEgg(this, pregSlot))
+			{
+				if(PregnancyManager.tryKnockUp(cumFrom, this, pregSlot))
+				{
+					// Ovalasting abort for vaginas that get preg while unfertilized
+					if(pregSlot >= 0 && pregSlot <= 2 && pregnancyData[pregSlot] != "OvalastingEggPregnancy")
+					{
+						createStatusEffect("Ovalasting Early Clutch Timer", pregSlot, 0, 0, 0, true, "", "", false, 60);
+						return true;
+					}
+				}
+				cumFrom = kGAMECLASS.ovalastingPregnancySwap(cumFrom, this, pregSlot);
 			}
 			
 			return PregnancyManager.tryKnockUp(cumFrom, this, pregSlot);
@@ -19001,6 +19022,23 @@
 							else deferredEvents.push(kGAMECLASS.venomExpirationNotice);
 						}
 						break;
+					case "Ovalasting Message":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							var ovaBigEggMsg:String = "";
+							// Ten minutes later if Egg Trainer level < 3
+							if(flags["EGG_TRAINING"] < 3) ovaBigEggMsg += "Warm gooeyness continues to ooze out of your [pc.vagOrAss " + thisStatus.value1 + "] and down your [pc.thigh], conspicuously not getting soaked up by the Ovalasting eggs within. Presumably they’ve gotten all they want - or they can sense, somehow, you aren’t built to take any more swelling. You feel a nagging annoyance about that. What a nice feature it is, to not worry about " + (isCrotchGarbed() ? "ruining your [pc.underGarments]" : "leaving a trail of cum behind you") + " every time you take a good, hard fuck. Perhaps if you egg trained yourself a little more...?";
+							else ovaBigEggMsg += "Warmth throbs within you, the Ovalasting eggs within your [pc.vagOrAss " + thisStatus.value1 + "] reacting eagerly to the second bath of healthy, filthy fluids you’ve soaked them in. You groan with sheer contentment as your [pc.belly] swells even further, your brood already pushing against your sensitive walls, eager to colonize every last inch of space you have to give. Hell in the Void, is this making you feel ponderous... and amazing. Perhaps you could call back your last lover, see if they aren’t willing to pump you even fuller?";
+							AddLogEvent(ovaBigEggMsg, "passive", maxEffectLength);
+						}
+						break;
+					case "Ovalasting Early Clutch Timer":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							requiresRemoval = false;
+							kGAMECLASS.eventQueue.push(kGAMECLASS.ovalastingPrematureBirth);
+						}
+						break;
 					case "Ovilium":
 						if (!hasPregnancyOfType("OviliumEggPregnancy"))
 						{
@@ -19042,12 +19080,11 @@
 						desc += "\nIt’s easier to slip away from someone’s grasp.";
 						setStatusTooltip("Oil Slicked", desc);
 						break;
-						
 					case "Tentatool":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							Tentacool.tentacoolTF(this, thisStatus); 
-						}				
+						}
 						break;
 					case "Undetected Furpies":
 					case "Furpies Simplex H":
