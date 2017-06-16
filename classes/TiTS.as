@@ -114,9 +114,6 @@
 		include "../includes/items.as";
 		include "../includes/items.tooltips.as";
 		include "../includes/MailEntries.as";
-		include "../includes/masturbation.as";
-		include "../includes/masturbation.eggTrainer.as";
-		include "../includes/masturbation.magicMilker.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
@@ -126,14 +123,16 @@
 		//Holiday shit
 		include "../includes/holidayEvents/halloweenCostumes.as";
 		include "../includes/holidayEvents/freedomBeef.as";
-		include "../includes/event.puppyslutmas.as";
+		include "../includes/holidayEvents/puppyslutmas.as";
 
 		//Followers
-		include "../includes/follower.anno.as";
-		include "../includes/follower.celise.as";
-		include "../includes/follower.celiseGiga.as";
-		include "../includes/follower.siegwulfe.as";
-		include "../includes/follower.yammi.as";
+		include "../includes/follower/anno.as";
+		include "../includes/follower/celise.as";
+		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/pippa.as";
+		include "../includes/follower/siegwulfe.as";
+		include "../includes/follower/yammi.as";
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
@@ -142,17 +141,15 @@
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
 
 		//Misc content
+		include "../includes/masturbation.as";
 		include "../includes/masturbation/bubbleBuddy.as";
 		include "../includes/masturbation/cockTailMasturbation.as";
+		include "../includes/masturbation/eggTrainer.as";
 		include "../includes/masturbation/exhibitionismPerk.as";
 		include "../includes/masturbation/hardlightAGThong.as";
+		include "../includes/masturbation/magicMilker.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
-		include "../includes/saendra.as";
-		include "../includes/travelEvents.as";
-		include "../includes/travelEvents.fallOfThePhoenix.as";
-		include "../includes/travelEvents.kiroRescue.as";
-		include "../includes/travelEvents.kiro.as";
 		include "../includes/vendingMachine.as";
 		
 		// Misc Events
@@ -164,13 +161,17 @@
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		
+		// Travel Events
+		include "../includes/travelEvents.as";
+		include "../includes/travelEvents/fallOfThePhoenix.as";
+		include "../includes/travelEvents/kiro.as";
+		include "../includes/travelEvents/kiroRescue.as";
 
 		//Tavros Station
-		include "../includes/tavros/aina.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
-		include "../includes/tavros/fyn.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
@@ -184,9 +185,9 @@
 		include "../includes/tavros/riya.as";
 		include "../includes/tavros/rooms.as";
 		include "../includes/tavros/roomFunctions.as";
+		include "../includes/tavros/saendra.as";
 		include "../includes/tavros/saendraXPack1.as";
 		include "../includes/tavros/sellesy.as";
-		include "../includes/tavros/semith.as";
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/seraXPack2.as";
@@ -198,7 +199,10 @@
 		include "../includes/tavros/vahn.as";
 
 		//Tavros Residential Deck
+		include "../includes/tavros/resDeck/aina.as";
+		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
+		include "../includes/tavros/resDeck/semith.as";
 
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
@@ -373,8 +377,6 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
-		include "../includes/follower.pippa.as";
-		include "../includes/follower.multi_interactions.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";

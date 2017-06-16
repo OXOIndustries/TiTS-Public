@@ -1,25 +1,4 @@
-//Bar Preview Blurb
-public function kiroSetup(button:int = 0):void
-{
-	if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) output("\n\nThe tanuki-girl pirate you saved is here, keeping an eye on her sister’s patrons, ready to crack some heads at a moment’s notice.");
-	else if(kiro.ballDiameter() <= 7) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here sipping on a drink and thumbing idly through a data slate.");
-	else if(kiro.ballDiameter() <= 14) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here, casting lecherous looks over everyone else in the bar. She spots you and waves you over, but the look in her eyes is more hungry than friendly.");
-	else output("\n\nThe tanuki-girl pirate you saved, Kiro, is here, looking lustily around the bar. Her swollen balls are obvious to anyone who looks. She very clearly needs some relief.");
-	addButton(button,"Kiro",approachKiroAtTheBar,undefined,"Kiro","That tanuki pirate with the giant balls you rescued is here.");
-}
-
-public function roamingKiroAvailable():Boolean
-{
-	if(flags["KIRO_3SOME_REACTION"] == -1) return false;
-	//flags["RESCUE KIRO FROM BLUEBALLS"] = 1;
-	//Not yet rescued.
-	if(flags["RESCUE KIRO FROM BLUEBALLS"] != 1) return false;
-	//Kiro off doing something else...
-	if(flags["KIRO_DISABLED_MINUTES"] != undefined) return false;
-	//She can be there!
-	return true;
-}
-
+// Roaming Bar Encounter Button
 public function roamingBarEncounter(button:int = 0):void
 {
 	//Build list of available NPCs
@@ -41,6 +20,28 @@ public function roamingBarEncounter(button:int = 0):void
 	{
 		NPCs[rand(NPCs.length)](button);
 	}
+}
+
+//Bar Preview Blurb
+public function kiroSetup(button:int = 0):void
+{
+	if(currentLocation == "CANADA5" && flags["KIRO_MET_KALLY"] != undefined) output("\n\nThe tanuki-girl pirate you saved is here, keeping an eye on her sister’s patrons, ready to crack some heads at a moment’s notice.");
+	else if(kiro.ballDiameter() <= 7) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here sipping on a drink and thumbing idly through a data slate.");
+	else if(kiro.ballDiameter() <= 14) output("\n\nThe tanuki-girl pirate you saved, Kiro, is here, casting lecherous looks over everyone else in the bar. She spots you and waves you over, but the look in her eyes is more hungry than friendly.");
+	else output("\n\nThe tanuki-girl pirate you saved, Kiro, is here, looking lustily around the bar. Her swollen balls are obvious to anyone who looks. She very clearly needs some relief.");
+	addButton(button,"Kiro",approachKiroAtTheBar,undefined,"Kiro","That tanuki pirate with the giant balls you rescued is here.");
+}
+
+public function roamingKiroAvailable():Boolean
+{
+	if(flags["KIRO_3SOME_REACTION"] == -1) return false;
+	//flags["RESCUE KIRO FROM BLUEBALLS"] = 1;
+	//Not yet rescued.
+	if(flags["RESCUE KIRO FROM BLUEBALLS"] != 1) return false;
+	//Kiro off doing something else...
+	if(flags["KIRO_DISABLED_MINUTES"] != undefined) return false;
+	//She can be there!
+	return true;
 }
 
 public function kiroSexed():Boolean
