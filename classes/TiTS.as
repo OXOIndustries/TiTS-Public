@@ -379,6 +379,7 @@
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";
 		include "../includes/SSTDs/locofever.as";
+		include "../includes/SSTDs/sneezingTits.as";
 		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;

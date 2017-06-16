@@ -1288,6 +1288,7 @@ package classes.GameData
 					kGAMECLASS.setEnemy(null);
 				}
 				else output("You choose not to act.");
+				kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
 				processCombat();
 			}
 			else
@@ -1301,6 +1302,7 @@ package classes.GameData
 				{
 					(_hostiles[0] as CrystalGooT2).SpecialAction( { isWait: true } );
 				}
+				kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
 				processCombat();
 			}
 		}
@@ -4092,6 +4094,10 @@ package classes.GameData
 							}
 						}
 					}
+				}
+				if (_hostiles[i].hasStatusEffect("Undetected Sneezing Tits"))
+				{
+					kGAMECLASS.sneezingTitsCombatTurnBonus(_hostiles[i], roundCounter);
 				}
 			}
 			if(pc.hasKeyItem("RK Lah - Captured")) kGAMECLASS.lahAddendumToCombat();

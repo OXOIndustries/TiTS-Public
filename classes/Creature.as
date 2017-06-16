@@ -19112,6 +19112,19 @@
 							}
 						}
 						break;
+					case "Undetected Sneezing Tits":
+					case "Sneezing Tits":
+						if(this is PlayerCharacter)
+						{
+							kGAMECLASS.sneezingTitsProcs(deltaT, maxEffectLength, doOut, this, thisStatus);
+							if(thisStatus.value2 > 200 || thisStatus.value4 < 0) requiresRemoval = true;
+							if(requiresRemoval) 
+							{
+								kGAMECLASS.sneezingTitsFinish(deltaT, maxEffectLength, doOut, this, thisStatus);
+								requiresRemoval = false;
+							}
+						}
+						break;
 				}
 				
 				if (requiresRemoval)
@@ -19368,6 +19381,10 @@
 					case "Undetected Locofever":
 						if(hasSSTD("Locofever", true)) { /* Already have it! */ }
 						else createStatusEffect("Undetected Locofever", 0, 0, 0, 0, true, "LustUp", "Hidden Locofever infection!", false, 17280, 0xFF69B4);
+						break;
+					case "Undetected Sneezing Tits":
+						if(hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
+						else createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 						break;
 				}
 			}
