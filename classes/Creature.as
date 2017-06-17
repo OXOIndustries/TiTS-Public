@@ -16788,10 +16788,10 @@
 			
 			if(!cumFrom.hasStatusEffect("Ovilium Effect") && this is PlayerCharacter && kGAMECLASS.hasOvalastingEgg(this, pregSlot))
 			{
-				if(PregnancyManager.tryKnockUp(cumFrom, this, pregSlot))
+				// Ovalasting abort for vaginas that get preg while unfertilized
+				if(pregSlot >= 0 && pregSlot <= 2 && pregnancyData[pregSlot] != "OvalastingEggPregnancy")
 				{
-					// Ovalasting abort for vaginas that get preg while unfertilized
-					if(pregSlot >= 0 && pregSlot <= 2 && pregnancyData[pregSlot] != "OvalastingEggPregnancy")
+					if(PregnancyManager.tryKnockUp(cumFrom, this, pregSlot))
 					{
 						createStatusEffect("Ovalasting Early Clutch Timer", pregSlot, 0, 0, 0, true, "", "", false, 60);
 						return true;
