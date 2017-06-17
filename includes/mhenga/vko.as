@@ -130,9 +130,9 @@ public function getDiseaseProbedYo():void
 	var detectedParasites:int = 0;
 	clearMenu();
 	//SSTD check first!
-	if(pc.hasSSTD())
+	var sstds:Number = pc.sstdTotal();
+	if(sstds > 0)
 	{
-		var sstds:Number = pc.sstdTotal();
 		var disease:String = pc.getRandomSSTD();
 		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with " + disease + "! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. ");
 		if(sstds > 1)
@@ -225,7 +225,7 @@ public function getDiseaseProbedYo():void
 	}
 	else if (detectedParasites > 1)
 	{
-		output("\n\n<i>“Unfortunately, I am only able to treat one categorisation of parasitic infection in a single procedure. Please indicate which of your infestations you would like to treat first.”</i>");
+		output("\n\n<i>“Unfortunately, I am only able to treat one categorization of parasitic infection in a single procedure. Please indicate which of your infestations you would like to treat first.”</i>");
 	}
 	else if (detectedParasites == 1)
 	{

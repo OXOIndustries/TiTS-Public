@@ -19310,7 +19310,7 @@
 			if(inFamily)
 			{
 				if(sstdTotal(sstdName) > 0) return true;
-	}
+			}
 			else if(sstdName != "all")
 			{
 				var sstdList:Array = kGAMECLASS.sstdList();
@@ -19319,7 +19319,7 @@
 					for(var i:int = 0; i < statusEffects.length; i++)
 					{
 						if(statusEffects[i].storageName == sstdName) return true;
-}
+					}
 				}
 				return false;
 			}
