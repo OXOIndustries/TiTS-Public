@@ -3797,7 +3797,7 @@
 							{
 								if(msg != "") msg += "\n\n";
 								msg += ultra;
-			}
+							}
 						}
 					}
 					else setPerkValue("Ultra-Exhibitionist", 2, 0);
@@ -18664,10 +18664,12 @@
  						}
 						}
 						break;
+					/*
 					case "Exhibitionism Reserve":
 						// Wearing exposed clothing should not prevent reset.
 						if(isFullyExposed(true)) thisStatus.minutesLeft += deltaT;
 						break;
+					*/
 				}
 				
 				// Effects created with a 0 or less duration aren't handled by this code ever.
