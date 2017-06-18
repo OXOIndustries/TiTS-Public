@@ -127,5 +127,6 @@ public function unlockSSTDCodex():void
 {
 	CodexManager.unlockEntry("Furpies");
 	CodexManager.unlockEntry("Locofever");
+	CodexManager.unlockEntry("Sneezing Tits");
 }
 
