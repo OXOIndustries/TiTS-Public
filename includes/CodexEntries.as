@@ -135,6 +135,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Sneezing Tits", sneezingTitsCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
@@ -3608,5 +3609,17 @@ public function locofeverCodexEntry():void
 	outputCodex("\n\nLocofever is believed to still be uncommon among raskvel, though the exact numbers of infected are difficult to determine both because of raskvel breeding habits and because the species is asymptomatic. Aside from them it is most commonly found among younger ausar, who have been known to deliberately infect themselves with locofever as a form of recreational drug and cultural rebellion.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Locofever");
+}
+public function sneezingTitsCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("The Sneezing Tits"));
+	outputCodex("The mammovirus (more commonly known as the ‘Sneezing Tits’) is a viral infectious agent known to affect a significant number of mammalian species. While it is both acquired and passed in a similar faction to the rhinovirus (more commonly known as the common cold) and causes many of the same effects, its additional effect of causing spontaneous mammary gland enlargement led to its unique classification.");
+	outputCodex("\n\nBecause its initial symptoms are no different from the common cold, most who carry the mammovirus are unaware of it until they sneeze. The virus causes each sneeze to accelerate the growth of the infected’s mammary tissue. While the growth is usually to small degrees, a single cup size in standard measurement, growth of as much as four cup sizes has been observed.");
+	outputCodex("\n\nThe origins of the mammovirus are unknown. Rumors trace it back to an abandoned Xenogen Biotech project, an inhalable mammary-enlarging fluid that was intended to compete with the Boobswell pads. Xenogen Biotech listed this product among other items for upcoming release, but never became available to the public. The first known case of the mammovirus was recorded several months later, leading to rumors that the two were related. Xenogen Biotech has not commented on the matter.");
+	outputCodex("\n\nDue to the mammovirus’s effects, reaction to it varies greatly. Those who do not want the additional mammary growth often seek to cure any cold they get as quickly as possible, while those who desire the effect will seek to induce sneezes. In some communities, those who are known to be infected visit and attempt to infect those who desire the additional mammary growth.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Sneezing Tits");
 }
 

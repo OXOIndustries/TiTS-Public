@@ -22,9 +22,42 @@ public function sneezingTitsProcs(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		msg += "You feel a faint tickle at the back of your throat. Did the previous combat encounter get you sick? It might be nothing, but you could always get it checked out.";
 		effect.value4 = 1;
 	}
-	// Sneeze events
-	else if (rand(50) == 0 || (deltaT >= 15 && rand(40) == 0) || (deltaT >= 30 && rand(30) == 0) || (deltaT >= 60 && rand(20) == 0) || (deltaT >= 180 && rand(10) == 0) || (deltaT >= 720 && rand(5) == 0) || deltaT >= 1440)
+	// Reveal and Codex unlock
+	else if (effect.storageName == "Undetected Sneezing Tits" && (effect.minutesLeft <= 9360 || effect.value3 > 0))
 	{
+		effect.storageName = "Sneezing Tits";
+		effect.tooltip = ("You have been infected!\n\n<i>Caution: Sporadic sneezing may cause spontaneous breast growth.</i>");
+		effect.iconShade = 0xFF69B4;
+		effect.hidden = false;
+		
+		msg += "Your Codex beeps, alerting you that <b>you’ve been infected with The Sneezing Tits!</b> While your microsurgeons will be working full time to prevent you from spreading the virus around, sneezing " + (effect.value3 <= 0 ? "may" : "will") + " cause you to gain";
+		if (target.hasBreasts()) msg += " extra";
+		msg += " breast tissue...";
+		
+		CodexManager.unlockEntry("Sneezing Tits");
+	}
+	// Sneeze events
+	else
+	{
+		// Adjust chances based on progression of time...
+		var chances:int = 50;
+		// Effect duration
+		if (effect.minutesLeft <= 8640) chances = 40;
+		else if (effect.minutesLeft <= 7200) chances = 35;
+		else if (effect.minutesLeft <= 5760) chances = 30;
+		else if (effect.minutesLeft <= 4320) chances = 25;
+		else if (effect.minutesLeft <= 2880) chances = 20;
+		else if (effect.minutesLeft <= 1440) chances = 15;
+		// Time passed
+		if (chances > 40 && deltaT >= 15) chances = 40;
+		else if (chances > 30 && deltaT >= 30) chances = 30;
+		else if (chances > 20 && deltaT >= 60) chances = 20;
+		else if (chances > 10 && deltaT >= 180) chances = 10;
+		else if (chances > 5 && deltaT >= 720) chances = 5;
+		else if (chances > 2 && deltaT >= 1440) chances = 2;
+		
+		if (rand(chances) != 0) return;
+		
 		switch(effect.value4)
 		{
 			case 1:
@@ -106,14 +139,7 @@ public function sneezingTitsSneeze(target:Creature, effect:StorageClass = null, 
 	
 	var newBoobRating:Number = target.breastRows[biggestTitRow].breastRating();
 	if (target is PlayerCharacter)
-	{	
-		if (effect.storageName == "Undetected Sneezing Tits")
-		{
-			effect.storageName = "Sneezing Tits";
-			effect.tooltip = ("You have been infected!\n\n<i>Caution: Sporadic sneezing may cause spontaneous breast growth.</i>");
-			effect.iconShade = 0xFF69B4;
-			effect.hidden = false;
-		}
+	{
 		switch(sneezes)
 		{
 			case 1:
@@ -127,7 +153,7 @@ public function sneezingTitsSneeze(target:Creature, effect:StorageClass = null, 
 				// If final size is I-cup or higher:
 				else if (newBoobRating < 199) msg += ParseText("Your " + breasts + " have grown, and when you look down, it’s hard to see past them. " + (!target.isChestExposed() ? "You adjust your [pc.upperGarments] to account for your new size, doing your best to give yourself more room." : "Your chest bounces as you walk, your [pc.breasts] free for all to see.") + " What’s one more cup size when you’re already this big? <b>You are now " + indefiniteArticle(target.breastCup(biggestTitRow)) + ".</b>");
 				// If final size maxes out boob size:
-				else msg += "Your " + breasts + ", already " + (effect.value3 > 0 ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
+				else msg += "Your " + breasts + ", already " + ((effect != null && effect.value3 > 0) ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
 				break;
 			case 2:
 				msg += "\n\n";
@@ -140,7 +166,7 @@ public function sneezingTitsSneeze(target:Creature, effect:StorageClass = null, 
 				// If final size is I-cup or higher:
 				else if (newBoobRating < 199) msg += ParseText("Your " + breasts + " have grown, and when you look down, it’s hard to see past them. " + (!target.isChestExposed() ? "You adjust your [pc.upperGarments] to account for your new size, doing your best to give yourself more room." : "Your chest bounces as you walk, your [pc.breasts] free for all to see.") + " What’s another cup size or two when you’re already this big? <b>You are now " + indefiniteArticle(target.breastCup(biggestTitRow)) + ".</b>");
 				// If final size maxes out boob size:
-				else msg += "Your " + breasts + ", already " + (effect.value3 > 0 ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
+				else msg += "Your " + breasts + ", already " + ((effect != null && effect.value3 > 0) ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
 				break;
 			case 3:
 				msg += "\n\n";
@@ -153,7 +179,7 @@ public function sneezingTitsSneeze(target:Creature, effect:StorageClass = null, 
 				// If final size is I-cup or higher:
 				else if (newBoobRating < 199) msg += ParseText("Your " + breasts + " have grown, and when you look down, it’s hard to see past them. " + (!target.isChestExposed() ? "You adjust your [pc.upperGarments] to account for your new size, doing your best to give yourself more room." : "Your chest bounces as you walk, your [pc.breasts] free for all to see.") + " What’s a growth spurt like that when you’re already this big? <b>You are now " + indefiniteArticle(target.breastCup(biggestTitRow)) + ".</b>");
 				// If final size maxes out boob size:
-				else msg += "Your " + breasts + ", already " + (effect.value3 > 0 ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
+				else msg += "Your " + breasts + ", already " + ((effect != null && effect.value3 > 0) ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
 				break;
 			case 4:
 				msg += "\n\n";
@@ -164,18 +190,20 @@ public function sneezingTitsSneeze(target:Creature, effect:StorageClass = null, 
 				// If final size is I-cup or higher:
 				else if (newBoobRating < 199) msg += ParseText("Your " + breasts + " have grown, and when you look down, it’s hard to see past them. " + (!target.isChestExposed() ? "You adjust your [pc.upperGarments] to account for your new size, doing your best to give yourself more room." : "Your chest bounces as you walk, your [pc.breasts] free for all to see.") + " What’s a growth spurt, even one as big as that, when you’re already this big? <b>You are now " + indefiniteArticle(target.breastCup(biggestTitRow)) + ".</b>");
 				// If final size maxes out boob size:
-				else msg += "Your " + breasts + ", already " + (effect.value3 > 0 ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
+				else msg += "Your " + breasts + ", already " + ((effect != null && effect.value3 > 0) ? "grown nearly beyond belief, swell once more" : "a size beyond belief, swell bigger") + ", and a shudder goes through you. Something about that seemed final, as though your body knows it can grow no more. <b>You have " + target.breastCup(biggestTitRow) + " breasts.</b> Your cold feels like it’s cleared up for now.";
 				break;
 		}
 	}
-	if(effect != null)
+	if (effect != null)
 	{
-		// Previous tit size
+		// Original tit size
+		if (effect.value3 == 0) effect.value1 = oldBoobRating;
+		// New tit size
 		effect.value2 = newBoobRating;
 		// Total Sneezes
 		effect.value3 += sneezes;
 		// End effect if boob too big!
-		if(newBoobRating > 200) effect.value4 = -1;
+		if (newBoobRating >= 199) effect.value4 = -1;
 	}
 	
 	return msg;
@@ -188,7 +216,7 @@ public function sneezingTitsFinish(deltaT:uint, maxEffectLength:uint, doOut:Bool
 	var msg:String = "";
 	
 	msg += "Your head feels clearer now. <b>It looks like your cold went away on its own";
-	if (effect.value3) msg += ", though the growth it caused remains";
+	if ((effect.value2 - effect.value1) > 0) msg += ", though the growth it caused remains";
 	msg += ".</b>";
 	
 	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
@@ -252,7 +280,7 @@ public function sneezingTitsCombatTurnBonus(target:Creature, roundNum:int = 1):v
 // If Steele selects the [Wait] action twice in battle, the following scene will happen after the second round of waiting:
 public function sneezingTitsCombatWaitBonus(hostiles:Array):void
 {
-	if(pc.hasSSTD("Sneezing Tits", true) || pc.statusEffectv1("Sneezing Tits Infection") >= 2) return;
+	if (pc.hasSSTD("Sneezing Tits", true) || pc.statusEffectv1("Sneezing Tits Infection") >= 2) return;
 	
 	var target:Creature = sneezingTitsGetHostile(hostiles);
 	if (target == null) return;

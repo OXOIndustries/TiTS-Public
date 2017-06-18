@@ -19117,8 +19117,8 @@
 						if(this is PlayerCharacter)
 						{
 							kGAMECLASS.sneezingTitsProcs(deltaT, maxEffectLength, doOut, this, thisStatus);
-							if(thisStatus.value2 > 200 || thisStatus.value4 < 0) requiresRemoval = true;
-							if(requiresRemoval) 
+							if(thisStatus.value4 < 0) requiresRemoval = true;
+							else if(requiresRemoval)
 							{
 								kGAMECLASS.sneezingTitsFinish(deltaT, maxEffectLength, doOut, this, thisStatus);
 								requiresRemoval = false;
