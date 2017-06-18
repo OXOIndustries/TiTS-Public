@@ -11,8 +11,16 @@ When Steele is affected with Sneezing Tits, there’s a small chance for them to
 
 */
 
-// Infection Text
+// Infection Proc
 public function sneezingTitsProcs(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
+{
+	var msg:String = sneezingTitsText(deltaT, maxEffectLength, doOut, target, effect);
+	
+	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
+}
+
+// Infection Text
+public function sneezingTitsText(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass, forced:Boolean = false):String
 {
 	var msg:String = "";
 	
@@ -26,44 +34,47 @@ public function sneezingTitsProcs(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else if (effect.storageName == "Undetected Sneezing Tits" && (effect.minutesLeft <= 9360 || effect.value3 > 0))
 	{
 		effect.storageName = "Sneezing Tits";
-		effect.tooltip = ("You have been infected!\n\n<i>Caution: Sporadic sneezing may cause spontaneous breast growth.</i>");
+		effect.tooltip = ("You have been infected!\n\n<i><b>Caution:</b> Sporadic sneezing may cause spontaneous breast growth.</i>");
 		effect.iconShade = 0xFF69B4;
 		effect.hidden = false;
 		
 		msg += "Your Codex beeps, alerting you that <b>you’ve been infected with The Sneezing Tits!</b> While your microsurgeons will be working full time to prevent you from spreading the virus around, sneezing " + (effect.value3 <= 0 ? "may" : "will") + " cause you to gain";
 		if (target.hasBreasts()) msg += " extra";
-		msg += " breast tissue...";
+		msg += " breast tissue... Unless you get it treated, of course.";
 		
 		CodexManager.unlockEntry("Sneezing Tits");
 	}
 	// Sneeze events
 	else
 	{
-		// Adjust chances based on progression of time...
-		var chances:int = 50;
-		// Effect duration
-		if (effect.minutesLeft <= 8640) chances = 40;
-		else if (effect.minutesLeft <= 7200) chances = 35;
-		else if (effect.minutesLeft <= 5760) chances = 30;
-		else if (effect.minutesLeft <= 4320) chances = 25;
-		else if (effect.minutesLeft <= 2880) chances = 20;
-		else if (effect.minutesLeft <= 1440) chances = 15;
-		// Time passed
-		if (chances > 40 && deltaT >= 15) chances = 40;
-		else if (chances > 30 && deltaT >= 30) chances = 30;
-		else if (chances > 20 && deltaT >= 60) chances = 20;
-		else if (chances > 10 && deltaT >= 180) chances = 10;
-		else if (chances > 5 && deltaT >= 720) chances = 5;
-		else if (chances > 2 && deltaT >= 1440) chances = 2;
-		
-		if (rand(chances) != 0) return;
+		if (!forced)
+		{
+			// Adjust chances based on progression of time...
+			var chances:int = 50;
+			// Effect duration
+			if (effect.minutesLeft <= 8640) chances = 45;
+			else if (effect.minutesLeft <= 7200) chances = 40;
+			else if (effect.minutesLeft <= 5760) chances = 35;
+			else if (effect.minutesLeft <= 4320) chances = 30;
+			else if (effect.minutesLeft <= 2880) chances = 25;
+			else if (effect.minutesLeft <= 1440) chances = 20;
+			// Time passed
+			if (chances > 40 && deltaT >= 15) chances = 40;
+			else if (chances > 30 && deltaT >= 30) chances = 30;
+			else if (chances > 20 && deltaT >= 60) chances = 20;
+			else if (chances > 10 && deltaT >= 180) chances = 10;
+			else if (chances > 5 && deltaT >= 720) chances = 5;
+			else if (chances > 2 && deltaT >= 1440) chances = 2;
+			
+			if (rand(chances) != 0) return "";
+		}
 		
 		switch(effect.value4)
 		{
 			case 1:
 				// Single Sneeze
 				// Every time Steele moves on the map, there’s a 1/100 chance that they’ll trigger a sneeze. When Steele sneezes, the following event occurs:
-				if (rand(4) != 0)
+				if (forced || rand(4) != 0)
 				{
 					msg += "All of a sudden, your nose tickles, and you sneeze. There’s a strange billowing sensation from your chest. You catch your breath and look down at yourself.";
 					// (+1 cup size)
@@ -80,7 +91,7 @@ public function sneezingTitsProcs(deltaT:uint, maxEffectLength:uint, doOut:Boole
 			// The next time Steele moves, there’s a 50/50 chance they’ll sneeze.
 			case 2:
 				// If they sneeze, the following event occurs:
-				if (rand(2) == 0)
+				if (forced || rand(2) == 0)
 				{
 					msg += "You lean back and make an <i>“Ah–ah–aaah”</i> noise, then let out a sneeze, not too loud but enough to draw notice. You take a deep breath once you’re sure you’re not going to sneeze again, and realize that your chest feels weightier than before.";
 					// (+2 cup sizes)
@@ -96,7 +107,7 @@ public function sneezingTitsProcs(deltaT:uint, maxEffectLength:uint, doOut:Boole
 			// The next time Steele moves, there’s a 50/50 chance they’ll sneeze.
 			case 3:
 				// If they sneeze, the following event occurs:
-				if (rand(2) == 0)
+				if (forced || rand(2) == 0)
 				{
 					msg += "The tingling in your nose finally becomes too much, and you sneeze loud enough to startle anyone nearby. You wipe at your eyes, breathing deep. Each breath comes with the realization of a considerably increased weight from your chest.";
 					// (+3 cup sizes)
@@ -114,11 +125,13 @@ public function sneezingTitsProcs(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				msg += "The sneeze hits you all at once and harder than you’d thought possible. Your eyes squeeze shut as you bend yourself nearly in half at the sudden and violent exhalation, the sound so loud it echoes all around you. As you take a deep breath and attempt to recover, you feel a new and significant heaviness from your chest.";
 				// (+4 cup sizes)
 				msg += sneezingTitsSneeze(target, effect, 4);
+				// Reset so it doesn’t become repetitive?
+				effect.value4 = 1;
 				break;
 		}
 	}
 	
-	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
+	return msg;
 }
 
 // Grow function
@@ -213,8 +226,9 @@ public function sneezingTitsSneeze(target:Creature, effect:StorageClass = null, 
 // The disease will go away on its own, like a cold, after 4-7 days. When its duration is over, Steele will automatically have one sneeze for a single cup size of growth, with the following line added at the end:
 public function sneezingTitsFinish(deltaT:uint, maxEffectLength:uint, doOut:Boolean, target:Creature, effect:StorageClass):void
 {
-	var msg:String = "";
+	var msg:String = sneezingTitsText(deltaT, maxEffectLength, doOut, target, effect, true);
 	
+	if (msg != "") msg += "\n\n";
 	msg += "Your head feels clearer now. <b>It looks like your cold went away on its own";
 	if ((effect.value2 - effect.value1) > 0) msg += ", though the growth it caused remains";
 	msg += ".</b>";
