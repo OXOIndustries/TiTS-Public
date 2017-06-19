@@ -885,7 +885,13 @@ public function wait(minPass:int = 0):void
 	if(hrPass <= 0) output(" " + num2Text(minPass) + " minutes");
 	else if(hrPass == 1) output(" one hour");
 	else output(" " + num2Text(hrPass) + " hours");
-	output(". While doing this doesn’t keep you rested, it manages to pass the time.");
+	output(".");
+	
+	var waitMult:Number = 0.20 * (minPass / 240);
+	if(pc.HPRaw < pc.HPMax()) pc.HP(Math.round(pc.HPMax() * waitMult));
+	if(pc.energyRaw < pc.energyMax()) pc.energy(Math.round(pc.energyMax() * waitMult));
+	
+	if(pc.HPRaw < pc.HPMax() || pc.energyRaw < pc.energyMax()) output(" While doing this doesn’t keep you well rested, it manages to pass the time.");
 	
 	processTime(minPass);
 	
@@ -968,7 +974,7 @@ public function restHeal():void
 		else 
 		pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
 	}
-	if(pc.energy() < pc.energyMax()) {
+	if(pc.energyRaw < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 	}
 }
@@ -1126,7 +1132,7 @@ public function sleepHeal():void
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
 	
-	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
+	if (pc.energyRaw < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
 public function genericSleep(baseTime:int = 480):void

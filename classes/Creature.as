@@ -3946,9 +3946,12 @@
 		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
-			if(arg > 0 && hasStatusEffect("Worn Out")) return 0;
-			if(arg > 0 && hasStatusEffect("Very Sore")) arg /= 4;
-			if(arg > 0 && hasStatusEffect("Sore")) arg /= 2;
+			if(arg > 0)
+			{
+				if(hasStatusEffect("Worn Out")) return 0;
+				if(hasStatusEffect("Very Sore")) arg /= 4;
+				if(hasStatusEffect("Sore")) arg /= 2;
+			}
 			energyRaw += arg;
 			if (energyRaw > energyMax()) energyRaw = energyMax();
 			else if (energyRaw < energyMin()) energyRaw = energyMin();

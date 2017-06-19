@@ -1977,7 +1977,7 @@ public function catchVaginalFromKiro():void
 	output(". <i>“Your wish is my command.”</i>");
 	output("\n\nSlowly, that feeling of wondrous, delicious fullness recedes, leaving a hot, wet, squishy sensation deep in your core. The passage of her every vein and ridge sets your nerves alight, to say nothing of the way her flare seems to massage every part of you on its way out. The motion is slow and steady as if with great effort or care. Void, it’s so easy and natural, so right. You grab hold of the edges of the bed when her crown stops, just inside you, holding your entrance open for the column behind it.");
 	output("\n\n<i>“What an ass you’ve got, " + pc.mf("boy","girl") + ".”</i> Kiro’s thrust forward lacks any of the subtlety or gentleness of her measured withdrawal. It’s a powerful, forceful stroke, slamming itself through your stretchy tunnel like a well-oiled piston.");
-	if(pc.buttRating() >= 10 && pc.tone < 60) output(" Your [pc.butt] actually ripples from the impact, giving the tanuki a bouncy show for the lovely fuck she’s doling out.");
+	if(pc.buttRating() >= 10 && pc.buttTone() < 60) output(" Your [pc.butt] actually ripples from the impact, giving the tanuki a bouncy show for the lovely fuck she’s doling out.");
 	output(" It’s so hot and wet. Even if you weren’t drenched with your own [pc.girlCum], Kiro’s prodigious pre-cum leaves a bigger oilslick inside of you with each pass, transforming a demure, tight pussy into a dripping-wet cock-holster.");
 	//Cunt stretch! FULL POWAH
 	pc.cuntChange(x,kiro.cockVolume(0));

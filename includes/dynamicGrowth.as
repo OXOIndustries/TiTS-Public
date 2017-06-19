@@ -322,7 +322,7 @@ public function nutSwellUpdates(deltaT:uint = 0):void
 	bodyPartUpdates("testicle", deltaT);
 	
 	// Special underwear changes!
-	if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
+	if(pc.lowerUndergarment is HardlightAGJock)
 	{
 		var bigEndowments:Boolean = ((pc.balls > 0 && pc.ballSizeRaw >= 15) || (pc.cocks.length > 0 && pc.biggestCockLength() >= 15) || (pc.totalClits() > 0 && pc.clitLength >= 15));
 		if(bigEndowments && pc.lowerUndergarment.sexiness <= 3)
