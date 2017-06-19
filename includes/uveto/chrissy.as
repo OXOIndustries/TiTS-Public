@@ -291,7 +291,8 @@
 	 output("The place is a <i>bit</i> of a mess, with stray clothing lying around the floor, clearly left there by their tanuki owner.");
 	 output("\n\nEventually, Chrissy leads you to her bed, shedding her coat along the way before she turns around to face you, rocking back and forth on her heels, <i>“So, uh, what do you wanna do?”</i>");
 	 
-	 if (flags["CHRISSY_SEXED"] == undefined) flags["CHRISSY_SEXED"] = 1;
+	 if (flags["CHRISSY_SEXED"] == undefined) flags["CHRISSY_SEXED"] = 0;
+	 flags["CHRISSY_SEXED"] += 1;
 	 
 	 if (pc.hasCock()) addButton(0, "ButtFuck", buttFuckChrissy, undefined, "ButtFuck", "Put your cock up Chrissy's booty.");
 	 else addDisabledButton(0, "ButtFuck", "ButtFuck", "You must have a cock for this scene.")
