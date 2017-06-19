@@ -792,6 +792,9 @@ public function uvetoBarBonus():Boolean
 	// Randoms
 	roamingBarEncounter(5);
 	
+	//Chrissy
+	if (chrissyAtBar()) chrissyAtTheFreezer(6);
+	
 	// Beatrice
 	if(flags["BEA_QUEST"] != 4) 
 	{
