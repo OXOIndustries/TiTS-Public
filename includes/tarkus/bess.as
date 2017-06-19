@@ -11258,7 +11258,7 @@ public function bessGetBlowjob():void
 			}
 			else
 			{
-				output("\n\nAfterwards, [bess.name] seems to be glowing with sheer satisfaction, an utterly blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. [bess.HisHer] mouth is slightly parted and splattered with your [pc.cumColor] seed]; the rest [bess.heShe] swallowed without a moment’s hesitation. <i>“... Mmm, delicious! Your [pc.cum] is the best, "+ bessPCSexName() +"”</i>");
+				output("\n\nAfterwards, [bess.name] seems to be glowing with sheer satisfaction, an utterly blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. [bess.HisHer] mouth is slightly parted and splattered with your [pc.cumColor] seed; the rest [bess.heShe] swallowed without a moment’s hesitation. <i>“... Mmm, delicious! Your [pc.cum] is the best, "+ bessPCSexName() +"”</i>");
 			}
 		}
 	}
