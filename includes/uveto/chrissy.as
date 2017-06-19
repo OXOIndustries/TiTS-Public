@@ -87,6 +87,8 @@
 		 output("\n\nYou cock an eyebrow at the clearly intended double-meaning of that last phrase, resulting in a playful giggle from the half kui-tan. She quickly settles down, resting her head in her hands and eagerly awaiting your answer.");
 	 }
 	 
+	 processTime(5 + rand(3));
+	 
 	 addButton(0, "Appearance", appearanceChrissy, undefined, "Appearance", "Take a look at Chrissy.");
 	 addButton(1, "Talk", talkChrissy, undefined, "Talk", "Learn a little about Chrissy from the tanuki-girl herself.");
 	 addButton(2, "Video Games", playChrissy, undefined, "Video Games", "She likes video games right? Maybe you could play some together.");
@@ -110,6 +112,8 @@
 	 output("\n\nThough, opposite her bottom rests her massive bulge, a sure sign of her kui-tan-package: big, fuzzy balls and a cute knotty cock, and past that is a dusky, almost bestial vagina, leaking femlube and ready to accept any knots or big cocks that come Chrissy's way.");
 	 output("\n\nEvery once in a while you are able to get a glimpse at the soft, leather pads lining the kui-girl's paw-like fingertips: soft, supple, and oh-so perfect for handjobs and groping. Both her legs and arms are covered with kui-tan floof, almost like an ausar… but a tanuki.");
 	
+	 processTime(2 + rand(3));
+	 
 	 addButton(0, "Next", approachChrissy);
  }
  
@@ -147,6 +151,8 @@
 	 output("\n\nOnce Chrissy finished her tale of how she got to this moon, she sighs and leans back in her seat, staring at her drink for a moment before she turns to you again, <i>“Like I said, there's not much you don't already know, and I hope I don't sound weird by saying this, but I like to be held, ya know? Feeling someone's arms around you… covered in blankets until the sound of their breathing makes you fall asleep.”</i> As she's explaining herself, the half-breed seems lost in her own thoughts, a clear bit of blush appearing on her cheeks until she pulls herself back to reality, when her cheeks get even more red. <i>“That's not a weird thing to tell someone, r- right?”</i>");
 	 output("\n\nYou shake your head and tell Chrissy you've met people who are a lot more open about their desires than she is, and thank her for sharing that, resulting in a warm smile from the tanuki girl.");
 	 
+	 processTime(10 + rand(3));
+	 
 	 addDisabledButton(0, "Her");
 	 addButton(1, "Family", talkChrissyFamily, undefined, "Family", "What's Chrissy's family like?");
 	 addButton(2, "Uveto", talkChrissyUveto, undefined, "Uveto", "Ask Chrissy what she thinks of her new home.");
@@ -168,6 +174,8 @@
 	 output("\n\n<i>“I'm not as weirded out by it as I used to be,”</i> the kui-girl responds, picking herself up again, looking a bit more confident this time, <i>“I still don't, you know, use it often, or care enough to get rid of those parts… I'm still kinda attached to em'. I don't know why, but I always feel like people are bothered by it, probably just some leftovers from growing up on Earth, and all that stuff.”</i>");
 	 output("\n\nShe smirks after that, staring down into her drink, <i>“Feels pretty nice when you can cum from two spots at once, too.”</i> Though, once she says that she looks back at you and blood rushes to her face, turning her a bright red, <i>“Th- that… I shoulda kept that to myself, sorry.”</i>");
 	 output("\n\nYou tell Chrissy she doesn't need to apologize and tell her you wouldn't have asked if you weren't expecting something like that to have been said.");
+	 
+	 processTime(10 + rand(3));
 	 
 	 addButton(0, "Her", talkChrissyHer, undefined, "Her", "Ask the half-breed about herself.");
 	 addDisabledButton(1, "Family");
@@ -191,6 +199,8 @@
 	 output("\n\n<i>“Well…”</i> she's says with more than a hint of tentativeness, <i>“Not really… I'm not very good at asking people out or stuff like that. So I just sort've… do whatever, and sometimes people come up to me, which is nice, but I don't go out of my way for sex… even if I did, I wouldn't be very good at it because I just get so nervous when I have to go up to someone, which is weird because I'm perfectly fine when someone comes up to me. It's just weird.”</i>");
 	 output("\n\nWell, looks like you made the right move by making the first move and walking up to Chrissy's booth" + (silly ? ", what a smoothy." : "."));
 	 
+	 processTime(10 + rand(3));
+	 
 	 addButton(0, "Her", talkChrissyHer, undefined, "Her", "Ask the half-breed about herself.");
 	 addButton(1, "Family", talkChrissyFamily, undefined, "Family", "What's Chrissy's family like?");
 	 addDisabledButton(2, "Uveto");
@@ -209,6 +219,8 @@
 	 output("\n\nHer face immediately lights up at that suggestion, her brown eyes suddenly filled with a long-lost joy and a big grin appearing on her face. <i>“Yeah! Let's do it!”</i> the tanuki girl exclaims, standing up from her seat, <i>“I usually don't ever get to play with anyone in real life anymore, almost everything I do is online.”</i> With that last sentence Chrissy finishes picking herself up and grabs a coat lying next to her, <i>“It'll be nice to play with someone else next to me for a change.”</i>");
 	 output("\n\nThe kui-girl makes her way to the bar's entrance, pulling her coat on, which ends up covering most of her body, and has the effect of turning her into a half kui-tan marshmallow, <i>“Let's get going, then.”</i>");
 	
+	 processTime(1 + rand(3));
+	 
 	 addButton(0, "Next", playChrissy2)
  }
  
@@ -246,6 +258,8 @@
 		 else pc.createPerk("Calm Aim", 1, 50, 0, 0, "You're a pretty good shot when things aren't too hectic, so you gain +1 accuracy when above 50% health.");
 	 }
 	 
+	 processTime(60 + rand(15));
+	 
 	 addButton(0, "Next", mainGameMenu);
  }
  
@@ -255,6 +269,8 @@
 	 author("HugsAlright");
 	 showChrissy();
 	 clearMenu();
+	 
+	 processTime(2 + rand(3));
 	 
 	 if (pc.tallness <= 61)
 	 {
@@ -360,6 +376,8 @@
 	 
 	 pc.orgasm();
 	 
+	 processTime(60 + rand(60));
+	 
 	 addButton(0, "Next", mainGameMenu);
  }
  
@@ -415,6 +433,8 @@
 	 
 	 pc.orgasm();
 	 
+	 processTime(60 + rand(60));
+	 
 	 addButton(0, "Next", mainGameMenu);
  }
  
@@ -452,6 +472,8 @@
 	 flags["CHRISSY_RIDDEN"] += 1;
 	 
 	 pc.lust(30);
+	 
+	 processTime(60 + rand(60));
 	 
 	 addButton(0, "Next", mainGameMenu);
  }
@@ -491,6 +513,8 @@
 	 flags["CHRISSY_GETFKD"] += 1;
 	 
 	 pc.orgasm();
+	 
+	 processTime(60 + rand(60));
 	 
 	 addButton(0, "Next", mainGameMenu);
  }
