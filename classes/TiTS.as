@@ -354,6 +354,7 @@
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/carbonado.as";
 		include "../includes/uveto/chaurmine.as";
+		include "../includes/uveto/chrissy.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";

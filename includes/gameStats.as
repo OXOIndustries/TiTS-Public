@@ -5483,7 +5483,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined || flags["CHRISSY_MET"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
@@ -5539,6 +5539,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["BEA_RESTS"] != undefined) output2("\n<b>* Beatrice Reasner, Times Rested with Her:</b> " + flags["BEA_RESTS"]);
 					if(flags["BEA_SEXED"] != undefined) output2("\n<b>* Beatrice Reasner, Times Sexed:</b> " + flags["BEA_SEXED"]);
 					if(flags["MET_BEA_HUBBY"] != undefined) output2("\n<b>* Traven Reasner:</b> Met him");
+				}
+				// Chrissy
+				if (flags["CHRISSY_MET"] != undefined)
+				{
+					output2("\n<b>* Chrissy:</b> Met her");
+					if(flags["CHRISSY_SEXED"] != undefined) output2("\n<b>* Chrissy, Times Sexed:</b> " + flags["CHRISSY_SEXED"]);
 				}
 				variousCount++;
 			}

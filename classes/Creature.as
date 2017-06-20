@@ -4616,7 +4616,10 @@
 			if (melee) temp += meleeWeapon.attack;
 			else temp += rangedWeapon.attack;
 			//Bonus to hit for Tech Specialists above level 7!
-			if(hasPerk("Fight Smarter")) temp += Math.round(intelligence()/7);
+			if (hasPerk("Fight Smarter")) temp += Math.round(intelligence()/7);
+			//Bonus to hit with Rage and Calm Aim perks
+			if (hasPerk("Rage Aim") && (HP() < (HPMax() / 2))) temp += 1;
+			else if (hasPerk("Calm Aim") && (HP() > (HPMax() / 2))) temp += 1;
 			temp += armor.attack + upperUndergarment.attack + lowerUndergarment.attack + accessory.attack + shield.attack;
 			return temp;
 		}
