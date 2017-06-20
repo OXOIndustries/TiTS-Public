@@ -208,17 +208,18 @@ public function redlightSEBonus():void
 }
 
 public function anonsBarAddendums():Boolean {
-	if (saendraBarAddendum(3))
-	{
-		return true;
-	}
 	anonsBarWaitressAddendum(0);
 	alexManHermIntro(1);
 	ShellyBlurb(2);
+	if (saendraBarAddendum(3)) return true;
 	annoAtAnonsAddendum(4);
-	ramisAtAnonsAddendum(5);
+	
+	var NPCs:Array = [];
+	if (ramisAtAnons()) NPCs.push(ramisAtAnonsAddendum);
+	if (fisiAtAnons()) NPCs.push(fisiAtAnonsAddendum);
+	if (NPCs.length > 0) NPCs[rand(NPCs.length)](5);
+	
 	roamingBarEncounter(7);
-	fisiAtAnonsAddendum(12);
 	return false;
 }
 

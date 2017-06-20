@@ -792,14 +792,17 @@ public function uvetoBarBonus():Boolean
 	// Randoms
 	roamingBarEncounter(5);
 	
+	// More random Freezer encounters
+	NPCs.length = 0;
 	//Chrissy
-	if (chrissyAtBar()) chrissyAtTheFreezer(6);
-	
+	if (chrissyAtBar()) NPCs.push(chrissyAtTheFreezer);
 	// Beatrice
-	if(flags["BEA_QUEST"] != 4) 
+	if(flags["BEA_QUEST"] != 4)
 	{
-		if(beatriceBonusButts(7)) return true;
+		if(beatriceLeavesBonus()) return true;
+		NPCs.push(beatriceBonusButts);
 	}
+	if(NPCs.length > 0) NPCs[rand(NPCs.length)](7);
 
 	return false;
 }

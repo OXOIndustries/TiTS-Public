@@ -55,8 +55,6 @@ public function ramisFemboyHours():Boolean
 }
 public function ramisAtAnonsAddendum(btnSlot:int = 0):void
 {
-	if(!ramisAtAnons()) return;
-	
 	output("\n\n");
 	if(flags["RAMIS_MET"] == undefined)
 	{

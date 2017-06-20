@@ -3474,7 +3474,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				//Fisianna
 				if (flags["FISI_MET"] != undefined)
 				{
-					
 					output2("\n<b>* Fisianna:</b> Met her, ");
 					if (flags["FISI_AT_RES_DECK"] == undefined) output2("Acquaintances");
 					else if (flags["FISI_MAX"] == undefined) output2("Friends");
@@ -3494,8 +3493,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2("\n<b>* Fisianna, Total Times Sexed:</b> " + flags["FISI_TIMES_SEXED"]);
 						output2("\n<b>* Fisianna, Times Had a Tailjob from Her:</b> " + flags["FISI_TIMES_TJ"]);
 						output2("\n<b>* Fisianna, Times Eaten Her Out:</b> " + flags["FISI_TIMES_EATEN"]);
-						output2("\n<b>* Fisianna, Times Sixty-Nine'd:</b> " + flags["FISI_TIMES_69"]);
-						output2("\n<b>* Fisianna, Times Fucked "+ (silly ? "the Pussy's Pussy" : "Her Pussy")+ "</b> " + flags["FISI_TIMES_VAG"]);
+						output2("\n<b>* Fisianna, Times Sixty-Nine’d:</b> " + flags["FISI_TIMES_69"]);
+						output2("\n<b>* Fisianna, Times Fucked "+ (silly ? "the Pussy’s Pussy" : "Her Pussy")+ "</b> " + flags["FISI_TIMES_VAG"]);
 					}
 				}
 				// Fyn

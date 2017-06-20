@@ -697,8 +697,8 @@ public function initTavrosRooms():void
 	
 	//Fisianna's Apartment - Doesn't do much for now.
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"] = new RoomClass(this);
-	rooms["RESIDENTIAL DECK FISIS APARTMENT"].roomName = "FISIANNA'S\nAPARTMENT";
-	rooms["RESIDENTIAL DECK FISIS APARTMENT"].description = " ";
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].roomName = "FISIANNA’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK FISIS APARTMENT"].description = "";
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].eastExit = "RESIDENTIAL DECK 13";

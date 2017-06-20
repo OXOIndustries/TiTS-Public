@@ -112,14 +112,8 @@ public function showBeatrice(nude:Boolean = false):void
 
 //Add to the Freezer
 //room descriptions
-public function beatriceBonusButts(button:int):Boolean
+public function beatriceBonusButts(button:int = 0):void
 {
-	//Quest is over! BOOSH!
-	if(flags["BEA_QUEST"] == 3 && !pc.hasStatusEffect("Bea Leave Delay"))
-	{
-		beatriceLeavesYOUFORANOTHERMANOHSHIT();
-		return true;
-	}
 	//before approaching:
 	if(flags["BEA_RELATIONSHIP"] == undefined)
 	{
@@ -134,6 +128,16 @@ public function beatriceBonusButts(button:int):Boolean
 		addButton(button,flags["BEA_TITLE"],approachBeatrice,undefined,flags["BEA_TITLE"],"Head to her table.");
 	}
 	//addButton(button+1,"Savicite",quickLoot,new Savicite());
+	return;
+}
+public function beatriceLeavesBonus():Boolean
+{
+	//Quest is over! BOOSH!
+	if(flags["BEA_QUEST"] == 3 && !pc.hasStatusEffect("Bea Leave Delay"))
+	{
+		beatriceLeavesYOUFORANOTHERMANOHSHIT();
+		return true;
+	}
 	return false;
 }
 
