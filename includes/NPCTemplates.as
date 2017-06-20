@@ -137,6 +137,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "CHAURMINE", Chaurmine);
 	prepChar(justUpdate, "MIRRIN", Mirrin);
 	prepChar(justUpdate, "YAMMI", Yammi);
+	prepChar(justUpdate, "FISIANNA", Fisianna);
+	
 	
 	
 	// Check all characters have version information set
