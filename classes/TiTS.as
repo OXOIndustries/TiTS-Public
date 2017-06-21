@@ -1403,6 +1403,11 @@
 			clearMenu();
 			addButton(0, "Next", CombatManager.beginCombat);
 		}
+		public function testShipSave():void
+		{
+			var sCopy:Object = shipDb.getSaveObject();
+			trace(sCopy.Agility);
+		}
 	}
 }
 

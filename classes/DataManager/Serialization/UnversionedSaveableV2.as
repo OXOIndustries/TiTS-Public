@@ -53,7 +53,7 @@ package classes.DataManager.Serialization
 				// Otherwise, determine if we have another custom Class exposing the ISaveable interface, and call it...
 				if (this[prop.name] is ISaveable)
 				{
-					saveObject[prop.name] = this[prop.name].GetSaveObject();
+					saveObject[prop.name] = this[prop.name].getSaveObject();
 				}
 				// Otherwise, treat this like a basic object type and make a copy.
 				else if (prop.type == "Array")
@@ -74,7 +74,7 @@ package classes.DataManager.Serialization
 							
 							for (var fromIdx:uint = 0; fromIdx < fromArray.length; fromIdx++)
 							{
-								toArray.push(fromArray[fromIdx].GetSaveObject());
+								toArray.push(fromArray[fromIdx].getSaveObject());
 							}
 						}
 						else if (SerializationUtility.IsBasicType(fromArray[0]))
@@ -88,9 +88,37 @@ package classes.DataManager.Serialization
 						}
 					}
 				}
+				else if (prop.type == "Object")
+				{
+					var fromObject:Object = this[prop.name];
+					var toObject:Object = {};
+					saveObject[prop.name] = toObject;
+					
+					for (var objKey:String in fromObject)
+					{
+						var objProp:* = fromObject[objKey];
+						
+						if (objProp is ISaveable)
+						{
+							toObject[objKey] = (objProp as ISaveable).getSaveObject();
+						}
+						else if (SerializationUtility.IsBasicType(objProp))
+						{
+							toObject[objKey] = objProp;
+						}
+						else
+						{
+							throw new Error("Unhandled serialization type within Object.");
+						}
+					}
+				}
 				else if (SerializationUtility.IsBasicTypeString(prop.type))
 				{
 					saveObject[prop.name] = this[prop.name];
+				}
+				else
+				{
+					throw new Error("Unhandled serialization type within ISaveable.");
 				}
 			}
 			
@@ -106,7 +134,28 @@ package classes.DataManager.Serialization
 				if (saveObject[key] is Object && saveObject[key].hasOwnProperty("classInstance"))
 				{
 					this[key] = CreateSubInstance(saveObject[key].classInstance);
-					this[key].LoadSaveObject(saveObject[key]);
+					this[key].loadSaveObject(saveObject[key]);
+				}
+				else if (saveObject[key] is Object)
+				{
+					this[key] = { };
+					
+					for (var objKey:String in saveObject[key])
+					{
+						if (saveObject[key][objKey].hasOwnProperty("classInstance"))
+						{
+							this[key][objKey] = CreateSubInstance(saveObject[key][objKey].classInstance);
+							this[key][objKey].loadSaveObject(saveObject[key][objKey]);
+						}
+						else if (SerializationUtility.IsBasicType(saveObject[key][objKey]))
+						{
+							this[key][objKey] = saveObject[key][objKey];
+						}
+						else
+						{
+							throw new Error("Unhandled serialization type in subobject.");
+						}
+					}
 				}
 				else if (saveObject[key] is Array)
 				{

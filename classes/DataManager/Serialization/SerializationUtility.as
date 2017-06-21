@@ -22,7 +22,7 @@ package classes.DataManager.Serialization
 		// ergo a Class will be its class path and a raw base {} object will be "Object".
 		public static function IsBasicTypeString(type:String):Boolean
 		{
-			return (type == "int" || type == "uint" || type == "Number" || type == "String" || type == "Boolean" || type == "Object");
+			return (type == "int" || type == "uint" || type == "Number" || type == "String" || type == "Boolean");
 		}
 		public static function IsBasicType(type:*):Boolean
 		{

@@ -84,12 +84,17 @@ package classes.GameData
 			}
 			
 			// TODO: If we support players swapping out the core modules on the ship, we'll also need to pull those off the old ship and store them!
+			
+			_persistentShips["PCShip"] = newShip;
+			_activePlayerShip = newShip;
 		}
 		
 		[Serialize]
 		public var _persistentShips:Object;
 		public function get PersistentShips():Object { return _persistentShips; }
 		
+		// The players currently active ship should always be stored in _persistentShips under the key "PCShip".
+		// We're not saving it here, just not bothering to go through an object-key lookup to find it.
 		private var _activePlayerShip:SpaceShip;
 		public function get ActivePlayerShip():SpaceShip { return _activePlayerShip; }
 		
@@ -268,6 +273,7 @@ package classes.GameData
 			super.loadSaveObject(o);
 			
 			HydrateBoardedShip(dehydratedBoardedShip);
+			_activePlayerShip = _persistentShips["PCShip"];
 		}
 		
 		private function DehydrateBoardedShip(o:Object):void
@@ -320,11 +326,6 @@ package classes.GameData
 			}
 		}
 		
-		// Also store any persistent ships we may eventually give a shit about, f.ex:
-		/*
-		[Serialize]
-		public var phoenix:PhoenixShip; 
-		*/
 		// This should probably require us to give a shit about any other ship first but HO HUM
 	}
 }
