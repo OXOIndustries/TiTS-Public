@@ -44,7 +44,6 @@
 	 }
 	 else
 	 {
-		 output("\n\n");
 		 output("\n\nChrissy is at her usual spot, alone in her booth, either here to just relax or waiting for someone to make a move on her. She notices you walk in and takes a break from her drink to smile and wave your way.");
 		 
 		 addButton(btnSlot, "Chrissy", approachChrissy);
