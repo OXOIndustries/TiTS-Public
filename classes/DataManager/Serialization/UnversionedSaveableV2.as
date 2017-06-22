@@ -172,17 +172,27 @@ package classes.DataManager.Serialization
 		{
 			var tClass:Class = (getDefinitionByName(classInstance) as Class);
 			var tClassDesc:Object = SerializationUtility.GetClassDescription(tClass);
-			var newInstance:ISaveable = new tClass();
+			var newInstance:ISaveable;
 			
-			if (this is IOwner && ChildIsIOwned(tClassDesc))
-			{	
+			if (this is IOwner && RequiresCreateWithOwner(tClassDesc))
+			{
+				newInstance = new tClass(this);
+			}
+			else if (this is IOwner && ChildIsIOwned(tClassDesc))
+			{
+				newInstance = new tClass();
 				(newInstance as IOwned).Owner = (this as IOwner);
 			}
+			else
+			{
+				newInstance = new tClass();
+			}
 			
-			return new tClass();
+			return newInstance;
 		}
 		
 		private var _iOwnedInterfaceClassName:String = null;
+		private var _iOwnerInterfaceClassName:String = null;
 		private function ChildIsIOwned(tClassDesc:Object):Boolean
 		{
 			var interfaces:Array = tClassDesc.traits.interfaces;
@@ -193,6 +203,28 @@ package classes.DataManager.Serialization
 			}
 			
 			return (interfaces != null && interfaces.length > 0 && interfaces.indexOf(_iOwnedInterfaceClassName) != -1)
+		}
+		
+		private function RequiresCreateWithOwner(tClassDesc:Object):Boolean
+		{
+			var constructor:Array = tClassDesc.traits.constructor;
+			
+			if (_iOwnerInterfaceClassName == null)
+			{
+				_iOwnerInterfaceClassName = getQualifiedClassName(IOwner);
+			}
+			
+			if (constructor == null || constructor.length == 0) return false;
+			
+			for (var i:int = 0; i < constructor.length; i++)
+			{
+				if (constructor[i].type == _iOwnerInterfaceClassName && constructor[i].optional == false)
+				{
+					return true;
+				}
+			}
+			
+			return false;
 		}
 		
 		public function makeCopy():*

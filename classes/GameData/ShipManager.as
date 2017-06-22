@@ -221,6 +221,7 @@ package classes.GameData
 		override public function loadSaveObject(o:Object):void
 		{
 			var dehydratedBoardedShip:* = o.boardedShip;
+			delete o.boardedShip;
 			
 			NewGame();
 			
