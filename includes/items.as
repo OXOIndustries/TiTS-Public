@@ -40,78 +40,80 @@ public function useItem(item:ItemSlotClass):Boolean
 {
 	showName("");
 	
+	if (item.quantity <= 0) 
+	{
+		clearOutput();
+		output("Attempted to use " + item.description + " which had zero quantity.");
+		clearMenu();
+		if(item.type != GLOBAL.QUEST_ITEM)
+		{
+			addButton(0, "Remove", deleteItemPrompt, item);
+			addButton(14, "Back", useItemFunction);
+		}
+		else
+		{
+			item.quantity = 1;
+			addButton(0, "Next", useItemFunction);
+		}
+		return false;
+	}
 	if (item.isUsable == false)
 	{
 		//trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
 		clearOutput();
 		output("Unable to use " + item.description + " at present.");
-		//clearMenu();
-		//addButton(14,"Back",useItemFunction);
 		return false;
 	}
-	if (item.quantity == 0) 
+	
+	//Equippable items are equipped!
+	if (isEquippableItem(item))
 	{
-		clearOutput();
-		output("Attempted to use " + item.description + " which had zero quantity.");
-		clearMenu();
-		addButton(14,"Back",useItemFunction);
-		return false;
+		// Preventive measures
+		if(!pc.itemSlotUnlocked(item.type))
+		{
+			itemDisabledMessage(item.type);
+			return false;
+		}
+		// Order of operations band-aid.
+		// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
+		// item replacement. The player can have a "full" inventory including the item they've just equipped!
+		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
+		equipItem(item);
 	}
+	//Else try to use a stored function!
 	else 
 	{
-		//Equippable items are equipped!
-		if (isEquippableItem(item))
+		//If has a special global function set
+		if (item.useFunction != null)
 		{
-			// Preventive measures
-			if(!pc.itemSlotUnlocked(item.type))
+			//if item use returns false, set up a menu.
+			if (!item.useFunction(chars["PC"])) 
 			{
-				itemDisabledMessage(item.type);
-				return false;
+				clearMenu();
+				addButton(0, "Next", useItemFunction);
 			}
-			// Order of operations band-aid.
-			// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
-			// item replacement. The player can have a "full" inventory including the item they've just equipped!
-			if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
-			equipItem(item);
-			return true;
+			if (item.combatUsable == false) output("\n\n");
 		}
-		//Else try to use a stored function!
+		//else: Error checking
 		else 
 		{
-			//If has a special global function set
-			if (item.useFunction != null)
+			clearOutput();
+			output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");
+			clearMenu();
+			addButton(0, "Next", useItemFunction);
+		}
+		
+		// Consume an item from the stack
+		if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
+		{
+			item.quantity--;
+			if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
 			{
-				//if item use returns false, set up a menu.
-				if (!item.useFunction(chars["PC"])) 
-				{
-					clearMenu();
-					addButton(0,"Next",useItemFunction);
-				}
-				if (item.combatUsable == false) output("\n\n");
+				pc.inventory.splice(pc.inventory.indexOf(item), 1);
 			}
-			//else: Error checking
-			else 
-			{
-				clearOutput();
-				output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");
-				clearMenu();
-				addButton(0,"Next",useItemFunction);
-			}
-			
-			// Consume an item from the stack
-			if (!infiniteItems() && !item.hasFlag(GLOBAL.NOT_CONSUMED_BY_DEFAULT))
-			{
-				item.quantity--;
-				if (item.quantity <= 0 && pc.inventory.indexOf(item) != -1)
-				{
-					pc.inventory.splice(pc.inventory.indexOf(item), 1);
-				}
-			}
-			
-			return true;
 		}
 	}
-	return false;
+	return true;
 }
 
 // A call with just an item will 
@@ -708,28 +710,26 @@ public function dropItem():void {
 			btnSlot++;
 		}
 		
-		if(pc.inventory[x].quantity > 0) {
-			if(!pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) {
-				output("\n");
-				if(pc.inventory[x].stackSize > 1) output(pc.inventory[x].quantity + "x ");
-				output(StringUtil.toDisplayCase(pc.inventory[x].longName) + " - " + pc.inventory[x].basePrice + " credits.");
-				if(dropOptions)
-				{
-					addItemButton(btnSlot, pc.inventory[x], dropItemQuantity, pc.inventory[x], null, null, pc, null);
-				}
-				else
-				{
-					addItemButton(btnSlot, pc.inventory[x], dropItemGo, pc.inventory[x], null, null, pc, null);
-				}
+		if(!pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) {
+			output("\n");
+			if(pc.inventory[x].stackSize > 1) output(pc.inventory[x].quantity + "x ");
+			output(StringUtil.toDisplayCase(pc.inventory[x].longName) + " - " + pc.inventory[x].basePrice + " credits.");
+			if(dropOptions)
+			{
+				addItemButton(btnSlot, pc.inventory[x], dropItemQuantity, pc.inventory[x], null, null, pc, null);
 			}
-			else {
-				output("\n");
-				if(pc.inventory[x].stackSize > 1) output(pc.inventory[x].quantity + "x ");
-				output(StringUtil.toDisplayCase(pc.inventory[x].longName) + " - <i>Not droppable</i>.");
-				addDisabledButton(btnSlot, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+			else
+			{
+				addItemButton(btnSlot, pc.inventory[x], dropItemGo, pc.inventory[x], null, null, pc, null);
 			}
-			btnSlot++;
 		}
+		else {
+			output("\n");
+			if(pc.inventory[x].stackSize > 1) output(pc.inventory[x].quantity + "x ");
+			output(StringUtil.toDisplayCase(pc.inventory[x].longName) + " - <i>Not droppable</i>.");
+			addDisabledButton(btnSlot, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+		}
+		btnSlot++;
 		
 		if(pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
 		{
@@ -859,6 +859,27 @@ public function dropItemGo(arg:ItemSlotClass):void {
 	}
 	clearMenu();
 	addButton(0, "Next", dropItem);
+}
+
+public function deleteItemPrompt(arg:ItemSlotClass):void
+{
+	clearOutput();
+	output("Are you sure you want to remove " + arg.description + "?");
+	output("\n\n<i>Note that removing the item will purge it from your inventory and cannot be reclaimed.</i>\n\n");
+		
+	clearMenu();
+	addButton(0, "Yes", deleteItemGo, arg);
+	addButton(1, "No", useItemFunction);
+}
+public function deleteItemGo(arg:ItemSlotClass):void {
+	clearOutput();
+	
+	output("You remove " + arg.description + " from your inventory.");
+	
+	pc.inventory.splice(pc.inventory.indexOf(arg), 1);
+	
+	clearMenu();
+	addButton(0, "Next", useItemFunction);
 }
 
 public function unequipMenu(inCombat:Boolean = false):void
@@ -1101,10 +1122,7 @@ public function generalInventoryMenu():void
 		}
 		
 		//normal inventory
-		if (pc.inventory[i].quantity > 0)
-		{
-			addItemButton(btnSlot, pc.inventory[i], useItem, pc.inventory[i]);
-		}
+		addItemButton(btnSlot, pc.inventory[i], useItem, pc.inventory[i]);
 		btnSlot++;
 		
 		if(pc.inventory.length > 10 && (i + 1) == pc.inventory.length)
@@ -1224,7 +1242,7 @@ public function combatInventoryMenu():void
 		}
 		
 		var tItem:ItemSlotClass = pc.inventory[i];
-		if (tItem.type == GLOBAL.MELEE_WEAPON || tItem.type == GLOBAL.RANGED_WEAPON || tItem.combatUsable == true)
+		if (InCollection(tItem.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON]) || tItem.combatUsable == true)
 		{
 			addItemButton(btnSlot, pc.inventory[i], combatUseItem, pc.inventory[i]);
 		}
@@ -1668,7 +1686,7 @@ public function replaceItemPicker(lootList:Array):void {
 	output("What will you replace?");
 	clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
-		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
+		if(pc.inventory[x].shortName != "")
 		{
 			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
 			addButton(x,butDesc,replaceItemGo,[x, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array

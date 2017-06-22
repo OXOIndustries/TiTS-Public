@@ -1398,6 +1398,7 @@ public function gooArmorCrewOption(arg:Array):void
 				}
 				goo.armor = getArmor;
 			}
+			if(goo.armor.quantity < 1) goo.armor.quantity = 1;
 			
 			flags["GOO_ARMOR_ON_SHIP"] = true;
 			
@@ -1405,6 +1406,7 @@ public function gooArmorCrewOption(arg:Array):void
 			break;
 		case "take":
 			// Get the goo armor.
+			if(goo.armor.quantity < 1) goo.armor.quantity = 1;
 			var newArmor:ItemSlotClass = goo.armor;
 			
 			// Swap Nova armor back to old armor.
