@@ -219,6 +219,10 @@
 				if(target.hasBeard())
 				{
 					choices[choices.length] = 10;
+					if (target.femininity >= 25) choices[choices.length] = 10;
+					if (target.femininity >= 50) choices[choices.length] = 10;
+					if (target.femininity >= 75) choices[choices.length] = 10;
+					if (target.femininity >= 90) choices[choices.length] = 10;
 				}
 
 				//Default to no changes, then roll on the array for a change if some are available.
