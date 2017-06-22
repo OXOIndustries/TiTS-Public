@@ -203,6 +203,7 @@ public function initMhengaRooms():void
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
 	rooms["NORTHEAST ESBETH"].southExit = "EAST ESBETH ENTRANCE";
 	rooms["NORTHEAST ESBETH"].moveMinutes = 2;
+	rooms["NORTHEAST ESBETH"].runOnEnter = azraMhengaHook;
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 

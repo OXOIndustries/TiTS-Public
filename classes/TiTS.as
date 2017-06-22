@@ -127,6 +127,7 @@
 
 		//Followers
 		include "../includes/follower/anno.as";
+		include "../includes/follower/azra.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/multi_interactions.as";

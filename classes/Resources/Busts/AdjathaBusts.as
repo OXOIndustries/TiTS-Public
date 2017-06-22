@@ -138,6 +138,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass_nude.png", mimeType = "image/png")]
 		public var Bust_CASS_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/chrissy.png", mimeType = "image/png")]
+		public var Bust_CHRISSY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/chrissy_nude.png", mimeType = "image/png")]
+		public var Bust_CHRISSY_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/cockvine_single.png", mimeType = "image/png")]
 		public var Bust_COCKVINE_SEEDLING:Class;
 		
@@ -702,6 +707,11 @@ package classes.Resources.Busts
 			public var Full_CASS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cass_nude.png", mimeType = "image/png")]
 			public var Full_CASS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chrissy.png", mimeType = "image/png")]
+			public var Full_CHRISSY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chrissy_nude.png", mimeType = "image/png")]
+			public var Full_CHRISSY_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cockvine_single.png", mimeType = "image/png")]
 			public var Full_COCKVINE_SEEDLING:Class;

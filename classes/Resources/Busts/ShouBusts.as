@@ -77,6 +77,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ceria_nude.png", mimeType = "image/png")]
 		public var Bust_CERIA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/chrissy.png", mimeType = "image/png")]
+		public var Bust_CHRISSY:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/chrissy_nude.png", mimeType = "image/png")]
+		public var Bust_CHRISSY_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
 		public var Bust_ADULTCOCKVINE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
@@ -681,6 +686,11 @@
 			public var Full_CERIA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ceria_nude.png", mimeType = "image/png")]
 			public var Full_CERIA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chrissy.png", mimeType = "image/png")]
+			public var Full_CHRISSY:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chrissy_nude.png", mimeType = "image/png")]
+			public var Full_CHRISSY_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/cockvine.png", mimeType = "image/png")]
 			public var Full_ADULTCOCKVINE:Class;
