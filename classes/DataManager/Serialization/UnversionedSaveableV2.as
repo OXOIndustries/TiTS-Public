@@ -20,57 +20,44 @@ package classes.DataManager.Serialization
 	{
 		public function getSaveObject():Object
 		{
-			var classType:Object = SerializationUtility.GetClassDescription(this);
-			
+			var serializableTraits:Array = SerializationUtility.GetClassSerializableProperties(this);
 			var saveObject:Object = { };
 
 			// Store the classpath for this object
-			saveObject.classInstance = classType.name;
+			saveObject.classInstance = getQualifiedClassName(this);
 			
 			// If the object has no properties to save, just return the object as-is
-			if (classType.traits.variables == null || classType.traits.variables.length == 0) return saveObject;
+			if (serializableTraits.length == 0) return saveObject;
 			
 			// For each property
-			for (var propIndex:uint = 0; propIndex < classType.traits.variables.length; propIndex++)
+			for (var propIndex:uint = 0; propIndex < serializableTraits.length; propIndex++)
 			{
-				var prop:Object = classType.traits.variables[propIndex];
+				var prop:String = serializableTraits[propIndex];
 				
-				// Check the meta keys
-				var doSave:Boolean = false;
-				for (var metaIndex:uint = 0; metaIndex < prop.metadata.length; metaIndex++)
+				if (this[prop] is ISaveable)
 				{
-					// Check for our custom metadata tag
-					if (prop.metadata[metaIndex].name == "Serialize")
-					{
-						doSave = true;
-						break;
-					}					
+					saveObject[prop] = this[prop].getSaveObject();
 				}
-
-				// If not marked for serialization, skip
-				if (!doSave) continue;
-				
-				// Otherwise, determine if we have another custom Class exposing the ISaveable interface, and call it...
-				if (this[prop.name] is ISaveable)
+				else if (SerializationUtility.IsBasicType(this[prop]))
 				{
-					saveObject[prop.name] = this[prop.name].getSaveObject();
+					saveObject[prop] = this[prop];
 				}
 				// Otherwise, treat this like a basic object type and make a copy.
-				else if (prop.type == "Array")
+				else if (this[prop] is Array)
 				{
-					var fromArray:Array = this[prop.name];
+					var fromArray:Array = this[prop];
 					var toArray:Array;
 					
 					if (fromArray.length > 0)
 					{
 						if (fromArray[0] == undefined)
 						{
-							throw new Error("The array backing '" + prop.name + "' has a registered length, but contained undefined data. This is likely an issue with array initialization.");
+							throw new Error("The array backing '" + prop + "' has a registered length, but contained undefined data. This is likely an issue with array initialization.");
 						}
 						else if (fromArray[0] is ISaveable)
 						{
 							toArray = [];
-							saveObject[prop.name] = toArray;
+							saveObject[prop] = toArray;
 							
 							for (var fromIdx:uint = 0; fromIdx < fromArray.length; fromIdx++)
 							{
@@ -80,19 +67,19 @@ package classes.DataManager.Serialization
 						else if (SerializationUtility.IsBasicType(fromArray[0]))
 						{
 							toArray = fromArray.slice();
-							saveObject[prop.name] = toArray;
+							saveObject[prop] = toArray;
 						}
 						else
 						{
-							throw new Error("Unable to handle saving the property '" + prop.name + "'");
+							throw new Error("Unable to handle saving the property '" + prop + "'");
 						}
 					}
 				}
-				else if (prop.type == "Object")
+				else if (this[prop] is Object)
 				{
-					var fromObject:Object = this[prop.name];
+					var fromObject:Object = this[prop];
 					var toObject:Object = {};
-					saveObject[prop.name] = toObject;
+					saveObject[prop] = toObject;
 					
 					for (var objKey:String in fromObject)
 					{
@@ -111,10 +98,6 @@ package classes.DataManager.Serialization
 							throw new Error("Unhandled serialization type within Object.");
 						}
 					}
-				}
-				else if (SerializationUtility.IsBasicTypeString(prop.type))
-				{
-					saveObject[prop.name] = this[prop.name];
 				}
 				else
 				{

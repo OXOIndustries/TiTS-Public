@@ -26,10 +26,58 @@ package classes.DataManager.Serialization
 		}
 		public static function IsBasicType(type:*):Boolean
 		{
-			return (type is int || type is uint || type is Number || type is String || type is Boolean);
+			return (type is int || type is uint || type is Number || type is String || type is Boolean || type == null);
 		}
 		
 		private static const ClassDescriptions:Object = { };
+		private static const ClassSerializableTraits:Object = { };
+		
+		public static function GetClassSerializableProperties(target:*):Array
+		{
+			var typeName:String;
+			var typeDef:Class;
+			
+			if (target is String)
+			{
+				typeName = target;
+				typeDef = (getDefinitionByName(typeName) as Class);
+			}
+			else if (target is Class)
+			{
+				typeName = getQualifiedClassName(target);
+				typeDef = target;
+			}
+			else if (target is Object)
+			{
+				typeName = getQualifiedClassName(target);
+				typeDef = (getDefinitionByName(typeName) as Class);
+			}
+			
+			if (ClassSerializableTraits[typeName] == undefined)
+			{
+				var classDesc:Object = GetClassDescription(target);
+				var traits:Array = [];
+				
+				ClassSerializableTraits[typeName] = traits;
+				
+				if (classDesc.traits.variables != null && classDesc.traits.variables.length > 0)
+				{
+					for (var propIndex:uint = 0; propIndex < classDesc.traits.variables.length; propIndex++)
+					{
+						var prop:Object = classDesc.traits.variables[propIndex];
+						for (var metaIndex:uint = 0; metaIndex < prop.metadata.length; metaIndex++)
+						{
+							if (prop.metadata[metaIndex].name == "Serialize")
+							{
+								traits.push(prop.name);
+							}
+						}
+					}
+				}
+			}
+			
+			return ClassSerializableTraits[typeName];
+		}
 		
 		public static function GetClassDescription(target:*):Object
 		{
