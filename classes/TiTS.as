@@ -1406,8 +1406,9 @@
 		}
 		public function testShipSave():void
 		{
-			var sCopy:Object = shipDb.getSaveObject();
-			trace(sCopy.Agility);
+			var v:* = shipDb.ActivePlayerShip.Agility;
+			v = shipDb.ActivePlayerShip.Armor;
+			trace("bp");
 		}
 	}
 }

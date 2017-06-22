@@ -11,7 +11,11 @@ package classes.Ships.Modules
 		{
 			super(owner);
 			
-			_agilityMultiplier = 1.0;
+			_agilityBonus = 0.0;
+			_agilityMultiplier = 0.0;
+			
+			_thrustBonus = 0.0;
+			_thrustMultiplier = 0.0;
 		}
 		
 		protected var _agilityBonus:Number;

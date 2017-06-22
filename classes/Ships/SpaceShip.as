@@ -56,6 +56,8 @@ package classes.Ships
 			_hullMaxBase = 100;
 			Hull = HullMax;
 			
+			_armor = _shieldHardness = 0;
+			
 			_shieldsMaxBase = 100;
 			Shields = ShieldsMax;
 			
@@ -63,6 +65,7 @@ package classes.Ships
 			Capacitor = CapacitorMax;
 			
 			_targeting = _thrust = _aim = _agility = _systems = 10;
+			_power = 1000;
 			
 			_internalMap = new TestMapInterior(this);
 			
@@ -73,8 +76,10 @@ package classes.Ships
 			
 			_inventory = [];
 			_fittedModules = [];
+			_level = 1;
 			
 			_hullResistances = new ShipTypeCollection( { em: 50, kin: 20, exp: 10, therm: 40 }, ShipDamageFlag.TYPE_HULL);
+			_shieldResistances = new ShipTypeCollection( { em: 0, kin: 40, exp: 60, therm: 20 }, ShipDamageFlag.TYPE_SHIELD);
 		}
 		
 		//{ region Display & other info
