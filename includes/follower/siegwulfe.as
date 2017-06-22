@@ -406,7 +406,6 @@ public function doSiegwulfeAction(arg:Array):void
 				}
 				chars["WULFE"].accessory = getAccessory;
 			}
-			if(chars["WULFE"].accessory.quantity < 1) chars["WULFE"].accessory.quantity = 1;
 			
 			flags["WULFE_ON_SHIP"] = true;
 			
@@ -422,7 +421,6 @@ public function doSiegwulfeAction(arg:Array):void
 			processTime(1);
 			
 			// Get the Siegwulfe item.
-			if(chars["WULFE"].accessory.quantity < 1) chars["WULFE"].accessory.quantity = 1;
 			var newAccessory:ItemSlotClass = chars["WULFE"].accessory;
 			
 			// Empty Siegwulfe accessory slot.

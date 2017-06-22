@@ -452,7 +452,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		if(shopkeep is Gene) flags["PURCHASED_GENES_GALO"] = 1;
 		if(shopkeep is Sera) flags["PURCHASED_SERAS_GALO"] = 1;
 		if(shopkeep is ChrysalisDrone) flags["PURCHASED_SERAS_GALO"] = 1;
-		shopkeep.destroyItemByClass(GaloMax);
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
 	}
 	// Siegwulfe Special
 	if(arg is SiegwulfeItem)
@@ -460,7 +460,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		purchasedItems.length = 0;
 		output("\n\nThe display model of the droid is much too big and lofty to carry around, especially unpowered. Instead, an order has been placed for a brand-new model and is currently being delivered straight to your ship. <b>Be sure to check your ship’s storage for it!</b>");
 		chars["WULFE"].accessory = arg;
-		shopkeep.destroyItemByClass(SiegwulfeItem);
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
 		flags["WULFE_ON_SHIP"] = false;
 		IncrementFlag("WULFE_PURCHASED");
 	}
@@ -1578,7 +1578,6 @@ public function isSameItem(itemA:ItemSlotClass, itemB:ItemSlotClass):Boolean
 
 public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void 
 {
-	
 	if(clearScreen) clearOutput();
 	
 	var target:PlayerCharacter = pc;

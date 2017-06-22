@@ -1263,13 +1263,14 @@ public function ovalastingNurseryEnds():void
 	}
 	ovalastingEggReward(bigEgg, pregEggs);
 }
+private function ovalastingGetEgg(bigEgg:Boolean = false):ItemSlotClass
+{
+	if (bigEgg) return new OvalastingEggLarge();
+	return new OvalastingEggSmall();
+}
 private function ovalastingEggReward(bigEgg:Boolean = false, pregEggs:int = 4):void
 {
-	var eggItem:ItemSlotClass = null;
-	
-	if (!bigEgg) eggItem = new OvalastingEggSmall();
-	else eggItem = new OvalastingEggLarge();
-	
+	var eggItem:ItemSlotClass = ovalastingGetEgg(bigEgg);
 	var eggList:Array = [eggItem];
 	
 	// Adjust quantity for item stacking.
@@ -1277,14 +1278,19 @@ private function ovalastingEggReward(bigEgg:Boolean = false, pregEggs:int = 4):v
 	var iQuantity:int = 0;
 	while(pregEggs > 0)
 	{
-		iQuantity = Math.min(pregEggs, eggList[idx].stackSize);
-		eggList[idx].quantity = iQuantity;
-		pregEggs -= iQuantity;
-		if(pregEggs > 0)
+		iQuantity = ((pregEggs < eggList[idx].stackSize) ? pregEggs : eggList[idx].stackSize);
+		if(iQuantity > 0)
 		{
-			eggList.push(eggItem);
-			idx++;
+			eggList[idx].quantity = iQuantity;
+			pregEggs -= iQuantity;
+			if(pregEggs > 0)
+			{
+				eggItem = ovalastingGetEgg(bigEgg);
+				eggList.push(eggItem);
+				idx = (eggList.length - 1);
+			}
 		}
+		else pregEggs = 0;
 	}
 	
 	for(var i:int = -1; i < pc.pregnancyData.length; i++)

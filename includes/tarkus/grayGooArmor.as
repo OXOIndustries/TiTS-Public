@@ -1398,7 +1398,6 @@ public function gooArmorCrewOption(arg:Array):void
 				}
 				goo.armor = getArmor;
 			}
-			if(goo.armor.quantity < 1) goo.armor.quantity = 1;
 			
 			flags["GOO_ARMOR_ON_SHIP"] = true;
 			
@@ -1406,7 +1405,6 @@ public function gooArmorCrewOption(arg:Array):void
 			break;
 		case "take":
 			// Get the goo armor.
-			if(goo.armor.quantity < 1) goo.armor.quantity = 1;
 			var newArmor:ItemSlotClass = goo.armor;
 			
 			// Swap Nova armor back to old armor.
@@ -2642,6 +2640,7 @@ public function gooArmorEmblemMenu(arg:Array):void
 	
 	if(CodexManager.entryViewed("Black Void")) emblemList.push(["Black Void", "Black Void patch"]);
 	if(CodexManager.entryViewed("J.A.F.")) emblemList.push(["J.A.F.", "Joint Ausar Federation patch"]);
+	if(CodexManager.entryViewed("Gilden Republic")) emblemList.push(["Gilden Rep.", "Gilden Republic patch"]);
 	if(CodexManager.entryViewed("Scarlet Federation")) emblemList.push(["Scarlet Fed.", "Scarlet Federation patch"]);
 	if(CodexManager.entryViewed("T.S.C.")) emblemList.push(["T.S.C.", "Terran Space Coalition patch"]);
 	if(CodexManager.entryViewed("U.G.C.")) emblemList.push(["U.G.C.", "United Galactic Confederacy patch"]);
