@@ -127,6 +127,7 @@
 
 		//Followers
 		include "../includes/follower/anno.as";
+		include "../includes/follower/azra.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/multi_interactions.as";
@@ -487,7 +488,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.61";
+			version = "0.7.62";
 
 			//temporary nonsense variables.
 			temp = 0;

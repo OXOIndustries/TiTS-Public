@@ -398,7 +398,7 @@ public function doSiegwulfeAction(arg:Array):void
 				
 				for(var i:int = 0; i < pc.inventory.length; i++)
 				{
-					if(pc.inventory[i].shortName == "Siegwulfe")
+					if(pc.inventory[i] is SiegwulfeItem)
 					{
 						getAccessory = pc.inventory[i];
 						pc.inventory.splice(i, 1);
@@ -406,6 +406,7 @@ public function doSiegwulfeAction(arg:Array):void
 				}
 				chars["WULFE"].accessory = getAccessory;
 			}
+			if(chars["WULFE"].accessory.quantity < 1) chars["WULFE"].accessory.quantity = 1;
 			
 			flags["WULFE_ON_SHIP"] = true;
 			
@@ -421,6 +422,7 @@ public function doSiegwulfeAction(arg:Array):void
 			processTime(1);
 			
 			// Get the Siegwulfe item.
+			if(chars["WULFE"].accessory.quantity < 1) chars["WULFE"].accessory.quantity = 1;
 			var newAccessory:ItemSlotClass = chars["WULFE"].accessory;
 			
 			// Empty Siegwulfe accessory slot.

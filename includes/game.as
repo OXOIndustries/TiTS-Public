@@ -572,6 +572,7 @@ public const CREW_PIPPA:int = 8;
 public const CREW_GOO_ARMOR_NOT:int = 9;
 public const CREW_VARMINT:int = 10;
 public const CREW_SIEGEWFULFE:int = 11;
+public const CREW_AZRA:int = 12;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -587,7 +588,8 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
 	if (pippaOnShip()) crewMembers.push(CREW_PIPPA);
-	
+	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
+
 	// Pets or other non-speaking crew members
 	if (allcrew)
 	{
@@ -675,6 +677,8 @@ public function getCrewOnShip():Array
 	if (yammiIsCrew()) c.push(yammi);
 	if (gooArmorIsCrew()) c.push(gooArmor);
 	if (siegwulfeIsCrew()) c.push(wulfe);
+	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
+	//if (azraIsCrew()) c.push(azra);
 	return c;
 }
 
@@ -696,12 +700,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
+	if(azraIsCrew())
+	{
+		if(!counter) crewMessages += azraCrewBlurbs(count+other);
+		count++;
+	}
 	if(reahaIsCrew())
 	{
 		count++;
 		if(!counter)
 		{
-
 			//Not Addicted (CURED XPACK: reaha.cured_expansion.as)
 			if(!reahaAddicted())
 			{
@@ -1261,6 +1269,11 @@ public function shipMenu():Boolean
 	if (flags["ANNO_NOVA_UPDATE"] == 2)
 	{
 		grayGooArrivesAtShip();
+		return true;
+	}
+	if(flags["AZRA_RECRUITED"] == 1 && azraIsCrew())
+	{
+		azraInShipGreeting();
 		return true;
 	}
 	
