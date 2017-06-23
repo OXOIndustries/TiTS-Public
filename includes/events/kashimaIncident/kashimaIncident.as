@@ -1080,6 +1080,8 @@ public function kiHendersonMedbay():void
 
 	output("\n\nShe’s barely finished speaking when you hear a thunderous <i>CLANG</i> from just outside. You spin around as the MedBay doors slide open, and several armed and armored men in Steele Tech suits storm in, covering you with laser sights. They’re all kit up in HAZMAT gear, vacuum-sealed and shielded. They shout to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm, even as she’s yelling about lights in her eyes and people staring at her crotch. Back to her old self, it seems!");
 
+	flags["KASHIMA_OUTCOME"] = 1;
+	
 	processTime(11);
 	
 	clearMenu();

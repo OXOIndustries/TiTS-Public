@@ -205,6 +205,7 @@
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";
+		include "../includes/vesperia/ushamee.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";

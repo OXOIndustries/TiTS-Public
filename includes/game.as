@@ -2145,6 +2145,13 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["CANADA7"].eastExit = "";
 	*/
+	
+	//Ushamee Corridor
+	if (MailManager.isEntryViewed("ushamee_meet") && flags["USHA_MET3"] == undefined)
+	{
+		if(!rooms["CANADA3"].hasFlag(GLOBAL.NPC)) rooms["CANADA3"].addFlag(GLOBAL.NPC);
+	}
+	else rooms["CANADA3"].removeFlag(GLOBAL.NPC);
 
 
 	/* MISC */
@@ -2331,7 +2338,14 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
 		}
-
+		
+		//Ushamee Meet Invite
+		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["STATE"] == 3) && canadiaUnlocked())
+		{
+			if(flags["KASHIMA_DELAY_TIMER"] == undefined) flags["KASHIMA_DELAY_TIMER"] = GetGameTimestamp();
+			else if(GetGameTimestamp() >= flags["KASHIMA_DELAY_TIMER"] + 60*24*5) goMailGet("ushamee_meet");
+		}
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}
