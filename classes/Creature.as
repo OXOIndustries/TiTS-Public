@@ -3156,15 +3156,15 @@
 			if (this is PlayerCharacter) 
 			{
 				//Dumbfuck orgasms
-			if (hasStatusEffect("Dumbfuck"))
-			{
-				if(!hasStatusEffect("Dumbfuck Orgasm Procced"))
+				if (hasStatusEffect("Dumbfuck"))
 				{
-					createStatusEffect("Dumbfuck Orgasm Procced", 0, 0, 0, 0, true, "", "", false, 0);
+					if(!hasStatusEffect("Dumbfuck Orgasm Procced"))
+					{
+						createStatusEffect("Dumbfuck Orgasm Procced", 0, 0, 0, 0, true, "", "", false, 0);
+					}
+					addStatusValue("Dumbfuck Orgasm Procced",1,1);
+					trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
 				}
-				addStatusValue("Dumbfuck Orgasm Procced",1,1);
-				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
-			}
 				//Energy loss/gain checks
 				var energyLoss:Boolean = true;
 				if(hasPerk("Snu-Snu Queen") || hasPerk("Energizing Libido"))
@@ -3174,20 +3174,20 @@
 					{
 						createStatusEffect("Remove Energizing Libido", 0, 0, 0, 0, true, "", "", false, 0);
 						energy(-10);
-		}
+					}
 					// 1/4 chance to gain 1-3 energy per sexual encounter. Guaranteed at >95 libido
 					else if(libido() >= 95 || rand(4) == 0)
-			{
+					{
 						energy(1 + rand(3));
-				}
-					energyLoss = false;
 					}
+					energyLoss = false;
+				}
 				if(hasPerk("Amazonian Endurance")) energyLoss = false;
 				if(energyLoss) energy(-5);
-					}
+			}
 			minutesSinceCum = 0;
 			timesCum++;
-				}
+		}
 		
 		public function isNude(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return true;

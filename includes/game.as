@@ -2310,27 +2310,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	immobilizedUpdate(false, deltaT);
 
 	//Queue up dumbfuck procs
-	if(pc.hasStatusEffect("Dumbfuck"))
-	{
-		//Got some cums to pile oN?
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
-		{
-			//No sneezes set up yet. Start dis shit.
-			if(!pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
-			{
-				pc.createStatusEffect("Dumbfuck Orgasm Queued", pc.statusEffectv1("Dumbfuck Orgasm Procced"), 0, 0, 0, true, "", "", false, 0);
-			}
-			//Already got some. PILE ON!
-			else pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
-			//Clear out the holding status now that we're cued up for sneezin'
-			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
-		}
-		//Add to event queue so long as it isn't on there already
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
-		{
-			if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
-		}
-	}
+	if(pc.hasStatusEffect("Dumbfuck")) processDumbfuckEvents();
 	
 	var sendMails:Boolean = true;
 	

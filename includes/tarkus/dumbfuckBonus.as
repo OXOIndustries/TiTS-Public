@@ -76,11 +76,40 @@ public function goAheadAndDumbfuck():void
 //After Orgasm Procs
 //Stored in: "Dumbfuck Orgasm Procced" in v1.
 //Probably going to be done via an event queue-like system. Add to Q AFTER time passage.
+public function processDumbfuckEvents():void
+{
+	//Got some cums to pile oN?
+	if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
+	{
+		//No sneezes set up yet. Start dis shit.
+		pc.createStatusEffect("Dumbfuck Orgasm Queued", 0, 0, 0, 0, true, "", "", false, 0);
+		//Already got some. PILE ON!
+		pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
+		//Clear out the holding status now that we're cued up for sneezin'
+		pc.removeStatusEffect("Dumbfuck Orgasm Procced");
+	}
+	//Add to event queue so long as it isn't on there already
+	if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
+	{
+		if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
+	}
+}
 public function procDumbfuckStuff():void
 {
 	clearOutput();
+	
+	var dumbfuckOrgasms:StorageClass = pc.getStatusEffect("Dumbfuck Orgasm Queued");
+	
+	if(dumbfuckOrgasms == null)
+	{
+		output("Error: “Dumbfuck Orgasm Queued” Status Effect does not exist!");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	//Small sneeze - 1 cum
-	if(pc.statusEffectv1("Dumbfuck Orgasm Queued") <= 1)
+	if(dumbfuckOrgasms.value1 <= 1)
 	{
 		//Random variant
 		if(rand(3) == 0) output("An abrupt sneeze brings you to a standstill.");
@@ -90,7 +119,7 @@ public function procDumbfuckStuff():void
 		pc.libido(1);
 	}
 	//Medium sneeze - 2-3 cums
-	else if(pc.statusEffectv1("Dumbfuck Orgasm Queued") <= 3)
+	else if(dumbfuckOrgasms.value1 <= 3)
 	{
 		if(rand(3) == 0) output("A large, messy sneeze doubles you over.");
 		else if(rand(2) == 0) output("Nearly knocking you back, the inevitable, dumbfuck-created sneeze stops you in your tracks.");
@@ -99,7 +128,7 @@ public function procDumbfuckStuff():void
 		pc.libido(2);
 	}
 	//Huge sneeze - 4-6 cums
-	else if(pc.statusEffectv1("Dumbfuck Orgasm Queued") <= 6)
+	else if(dumbfuckOrgasms.value1 <= 6)
 	{
 		if(rand(3) == 0) output("Oh wow, there’s a huge sneeze coming. You can feel it building up, already making you lightheaded. You get a tissue up just in time to catch some of the mess.");
 		else if(rand(2) == 0) output("A sneeze the size of a house rocks you back on your [pc.feet] and nearly topples you to the ground.");
@@ -117,8 +146,9 @@ public function procDumbfuckStuff():void
 	}
 	
 	if(flags["DUMBFUCK_SNEEZES"] == undefined) flags["DUMBFUCK_SNEEZES"] = 0;
-	flags["DUMBFUCK_SNEEZES"] += pc.statusEffectv1("Dumbfuck Orgasm Queued");
+	flags["DUMBFUCK_SNEEZES"] += dumbfuckOrgasms.value1;
 	pc.removeStatusEffect("Dumbfuck Orgasm Queued");
+	
 	if(flags["DUMBFUCK_SNEEZES"] <= 1)
 	{
 		
