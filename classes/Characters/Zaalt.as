@@ -506,8 +506,7 @@
 			kGAMECLASS.anno.lustRaw = 10;
 			kGAMECLASS.anno.long = "Anno is next to you, her compact holdout held out in front of her as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head, and body poised and ready to avoid incoming attacks.";
 			kGAMECLASS.anno.customDodge = "Anno quickly jumps to the side and evades the attack.";
-			CombatManager.addFriendlyActor(kGAMECLASS.anno);
-
+			CombatManager.setFriendlyActors([kGAMECLASS.pc, kGAMECLASS.anno]);
 		}
 	}
 }
