@@ -1591,7 +1591,7 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	
 	// I'm implying that Anno left the sample you gave her loaded into the thing
 	addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
-	addButton(1, "Leave", mainGameMenu);
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function goozookaRaepsForAnnoButts():void
@@ -1697,7 +1697,7 @@ public function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 	processTime(3);
 	//Join Crew or Hold Up
 	clearMenu();
-	// addDisabledButton(0, "Join Crew", "Join Crew", "Whoah there, space cowboy! This encounter isn't coded yet.");
+	// addDisabledButton(0, "Join Crew", "Join Crew", "Whoah there, space cowboy! This encounter isn’t coded yet.");
 	addButton(0, "Join Crew", joinCrewPlanetCrackerVersion, undefined, "Join Crew", "Invite Anno to join your crew.");
 	addButton(1, "Hold Up", holdOnAnno,undefined,"Hold Up","You aren’t ready to take her on as crew just yet.")
 }
@@ -2038,19 +2038,7 @@ public function deck13SecurityFunc():Boolean
 
 		output("\n\nBefore you can react, Anno squeezes the trigger of her sidearm. An almost silent crack echoes through the corridor, and one of the droids crumples to its knees. The others instantly start squeezing their triggers, hurling red bolts of energy downrange at you! ");
 
-		clearMenu();
-		
-		anno.long = "Anno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.";
-		anno.customDodge = "Anno quickly dodges out of the way and lands to safety.";
-		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyActors([pc, anno]);
-		CombatManager.setHostileActors([new SecurityDroids(), new SecurityDroids(), new SecurityDroids()]);
-		CombatManager.victoryScene(victoryOverSecurityDroid);
-		CombatManager.lossScene(lossToSecurityDroid);
-		CombatManager.displayLocation("SEC. DROIDS");
-		CombatManager.encounterText("These security bots are old and outmoded, but that doesn’t make them any less dangerous. They fearlessly march forward through all the fire you and Anno can pour at them, lighting up the corridor with laser fire as they advance over the shattered remains of their fallen comrades.");
-		
-		addButton(0, "Fight!", CombatManager.beginCombat);
+		securityDroidFightGo();
 		return true;
 	}
 	else
@@ -2060,6 +2048,22 @@ public function deck13SecurityFunc():Boolean
 
 		return false;
 	}
+}
+public function securityDroidFightGo():void
+{
+	clearMenu();
+	
+	anno.long = "Anno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.";
+	anno.customDodge = "Anno quickly dodges out of the way and lands to safety.";
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors([pc, anno]);
+	CombatManager.setHostileActors([new SecurityDroids(), new SecurityDroids(), new SecurityDroids()]);
+	CombatManager.victoryScene(victoryOverSecurityDroid);
+	CombatManager.lossScene(lossToSecurityDroid);
+	CombatManager.displayLocation("SEC. DROIDS");
+	CombatManager.encounterText("These security bots are old and outmoded, but that doesn’t make them any less dangerous. They fearlessly march forward through all the fire you and Anno can pour at them, lighting up the corridor with laser fire as they advance over the shattered remains of their fallen comrades.");
+	
+	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
 public function lossToSecurityDroid():void
@@ -2134,7 +2138,7 @@ public function deck13ArmoryFunc():Boolean
 				addDisabledButton(1, "Pick Locks", "Pick Locks", "Smugglers probably carry the kind of tools around for this kinda job...");
 		}
 
-		addButton(2, "Leave", move, "DECK 13 SECURITY CHECKPOINT");
+		addButton(14, "Leave", move, "DECK 13 SECURITY CHECKPOINT");
 
 		return true;
 	}
@@ -2438,21 +2442,7 @@ public function deck13ShieldControlFunc():Boolean
 		
 		processTime(5);
 		
-		clearMenu();
-		
-		var tPrime:Creature = new GrayPrime();
-		
-		anno.long = "Anno is positioned nearby, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she swivels continuously to avoid incoming attacks.";
-		anno.customDodge = "Anno leans to the side and luckily dodges the attack.";
-		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyActors([pc, anno]);
-		CombatManager.setHostileActors(tPrime);
-		CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tPrime);
-		CombatManager.victoryScene(victoryOverGrayPrime);
-		CombatManager.lossScene(lossToGrayPrime);
-		CombatManager.displayLocation("GRAY PRIME");
-		
-		addButton(0, "Fight!", CombatManager.beginCombat);
+		grayPrimeFightGo();
 		return true;
 	}
 	else
@@ -2475,6 +2465,24 @@ public function deck13ShieldControlFunc():Boolean
 
 		return false;
 	}
+}
+public function grayPrimeFightGo():void
+{
+	clearMenu();
+	
+	var tPrime:Creature = new GrayPrime();
+	
+	anno.long = "Anno is positioned nearby, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she swivels continuously to avoid incoming attacks.";
+	anno.customDodge = "Anno leans to the side and luckily dodges the attack.";
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors([pc, anno]);
+	CombatManager.setHostileActors(tPrime);
+	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tPrime);
+	CombatManager.victoryScene(victoryOverGrayPrime);
+	CombatManager.lossScene(lossToGrayPrime);
+	CombatManager.displayLocation("GRAY PRIME");
+	
+	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
 public function grayPrimeEscapeGrapple():void
@@ -2717,7 +2725,7 @@ public function deck13Shields():void
 
 	clearMenu();
 	addButton(0, "Yes", deck13TurnOnShields);
-	addButton(1, "Leave", mainGameMenu);
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function deck13TurnOnShields():void
@@ -3124,7 +3132,12 @@ public function deck13DecisionStopHer():void
 	
 	processTime(2);
 	
+	gigaGooFightGo();
+}
+public function gigaGooFightGo():void
+{
 	clearMenu();
+	
 	anno.long = "Anno is stooped near you, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she constantly sways to avoid losing her center of balance on the moving elevator car.";
 	anno.customDodge = "With a quick tactical roll to the side, Anno manages to dodge the attack!";
 	CombatManager.newGroundCombat();
@@ -3133,7 +3146,8 @@ public function deck13DecisionStopHer():void
 	CombatManager.victoryScene(victoryOverGigaGoo);
 	CombatManager.lossScene(loseToGigaGoo);
 	CombatManager.displayLocation("GIGA GOO");
-	addButton(0, "Next", CombatManager.beginCombat)
+	
+	addButton(0, "Next", CombatManager.beginCombat);
 }
 
 public function loseToGigaGoo():void

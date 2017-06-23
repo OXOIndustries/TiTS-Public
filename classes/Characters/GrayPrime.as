@@ -316,14 +316,15 @@ package classes.Characters
 		{
 			//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
 			output("The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. <i>“Why don’t you just surrender? I could use a few tough new sources of lubricant...”</i> she teases, shifting to emphasize her cleavage and jiggling it at you.");
-						
+			
 			// If they don't already exist/have been defeated, add them
 			if (allied.length == 1)
 			{
 				for (var i:int = 0; i < 3; i++)
 				{
-					CombatManager.addHostileActor(new GooClone());
+					allied.push(new GooClone());
 				}
+				CombatManager.setHostileActors(allied);
 				
 				output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
 			}
@@ -342,6 +343,7 @@ package classes.Characters
 					{
 						numResurrected++;
 						tarClone.HPRaw = tarClone.HPMax();
+						tarClone.lustRaw = tarClone.lustMin();
 						tarClone.alreadyDefeated = false;
 					}
 				}

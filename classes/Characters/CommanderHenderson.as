@@ -461,7 +461,7 @@ package classes.Characters
 			CombatManager.processCombat();
 		}
 		
-		public function actuallyFreeChief():void
+		public function actuallyFreeChief(allied:Array):void
 		{
 			output("\n\nYou glance behind yourself, just in time to see the Chief struggling to her feet. She looks dizzy and horny and altogether disheveled, but she nevertheless staggers up and grabs her machinegun from where it had clattered aside some time before. Neykkar trots up to your side, racking the gun’s bolt and shouldering it. She gives you a slight nod, even as her tentacle-bloated belly strains and deforms around the creature inside it.\n\n<b>Chief Neykkar has joined the fight!</b>");
 			
@@ -469,8 +469,9 @@ package classes.Characters
 			
 			var f:ChiefNeykkar = new ChiefNeykkar();
 			f.hendersonConfig();
+			allied.push(f);
 			
-			CombatManager.addFriendlyActor(f);
+			CombatManager.setFriendlyActors(allied);
 		}
 		
 		public function attemptCure():void

@@ -183,7 +183,7 @@ package classes.GameData
 					}
 					else if (h.statusEffectv1("Free Chief") == 1)
 					{
-						h.actuallyFreeChief();
+						h.actuallyFreeChief(_friendlies);
 					}
 				}
 			}
