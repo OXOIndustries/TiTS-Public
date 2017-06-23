@@ -311,7 +311,11 @@ public function procDumbfuckStuff():void
 			pc.createPerk("Brute Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 		}
 	}
-
+	
+	// Sneezing Tits synergy
+	var sneezeTits:StorageClass = pc.getStatusEffect("Sneezing Tits");
+	if(sneezeTits != null) output(sneezingTitsSneeze(pc, sneezeTits, sneezeTits.value4));
+	
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
