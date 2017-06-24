@@ -563,7 +563,8 @@ public function femSydianGentleFuck():void
 		
 		output("\n\n<i>“That’s good,”</i> the girl sighs. You shiver as her enzymes work, forcing the same feeling in you.");
 		if (pc.hasCock()) output(" Her hand sits on your cock, waiting for a signal that her pussy-focused brain never sends until you thrust gently; the woman bites her lip, chagrined, and begins to masturbate you.");
-		else output(" Her fingers are adroit despite being in an alien - judging by her skill at tickling nerves and finding your clit, she plays with herself often. }Your climax runs at you with long strides, pursued by sydian enzymes and closing fast; you mention it to your eager lover.");
+		else output(" Her fingers are adroit despite being in an alien - judging by her skill at tickling nerves and finding your clit, she plays with herself often.");
+		output(" Your climax runs at you with long strides, pursued by sydian enzymes and closing fast; you mention it to your eager lover.");
 
 		//male ending - favored if available
 		if (pc.hasCock())

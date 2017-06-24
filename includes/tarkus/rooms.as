@@ -662,7 +662,7 @@ public function initTarkusRooms():void
 	//#43 NEXT TO\nA JUNK PILE
 	rooms["243"] = new RoomClass(this);
 	rooms["243"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["243"].description = "You gape at this section of the robot pile. Different parts have been loosely arranged into different heaps. You’re aware that it was likely someone sorting through the scrap, but the end result is extremely unnerving. A tangle of limbs, rusted pistons, snapped and bent bars, makes up the largest pile, a thicket of malformed pincers and robotic hands. Next to them is a heap of chassis of varying colors, smeared with the fungal encroach of rust and verdigris. Most unnerving, though, is the pile of heads next to the path. You know it to be act of a scrapper, but you just can’t shake the vaguely threatening feel of a stack of two dozen severed, metal heads pointed at you. The gathered robots continue to loom above you to the east and west. Distantly to the south, you can see huge, metal blades sticking up out of the metal-flaked earth.";
+	rooms["243"].description = "You gape at this section of the robot pile. Different parts have been loosely arranged into different heaps. You’re aware that it was likely someone sorting through the scrap, but the end result is extremely unnerving. A tangle of limbs, rusted pistons, snapped and bent bars, makes up the largest pile, a thicket of malformed pincers and robotic hands. Next to them is a heap of chassis of varying colors, smeared with the fungal encroach of rust and verdigris. Most unnerving, though, is the pile of heads next to the path. You know it to be the act of a scrapper, but you just can’t shake the vaguely threatening feel of a stack of two dozen severed, metal heads pointed at you. The gathered robots continue to loom above you to the east and west. Distantly to the south, you can see huge, metal blades sticking up out of the metal-flaked earth.";
 	rooms["243"].runOnEnter = rustRidgesEncounters;
 	rooms["243"].eastExit = "242";
 	rooms["243"].westExit = "244";
@@ -1346,8 +1346,8 @@ public function initTarkusRooms():void
 	rooms["295"].planet = "PLANET: TARKUS";
 	rooms["295"].system = "SYSTEM: REDACTED";
 	rooms["295"].addFlag(GLOBAL.INDOOR);
-    rooms["295"].addFlag(GLOBAL.COMMERCE);
-    rooms["295"].addFlag(GLOBAL.NOFAP);
+	rooms["295"].addFlag(GLOBAL.COMMERCE);
+	rooms["295"].addFlag(GLOBAL.NOFAP);
 
 	rooms["301"] = new RoomClass(this);
 	rooms["301"].roomName = "THE\nMESS";

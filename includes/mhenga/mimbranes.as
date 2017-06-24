@@ -1840,7 +1840,7 @@ public function mimbraneSleepEvents():void
 		{
 			if (mimbraneDebug) trace("Unnoticed Mimbrane Boobs Reproduction!");
 
-			addMimbraneEvent("As you bid farewell to your dreams, a significant loss in weight on your chest catches your attention. It would seem that your [pc.fullChest] has returned back to its normal size and stature. Your supple mounds are a little tender to the touch, leading you to believe that your Mimbrane was able to split off its offspring while you were asleep.");
+			addMimbraneEvent("As you bid farewell to your dreams, a significant loss in weight on your chest catches your attention. It would seem that your [pc.fullChest] " + (!pc.hasBreasts() ? "has returned back to its" : "have returned back to their") + " normal size and stature. Your " + (!pc.hasBreasts() ? "sensitive chest is" : "supple mounds are") + " a little tender to the touch, leading you to believe that your Mimbrane was able to split off its offspring while you were asleep.");
 		}
 
 		mimbraneReproduce("Mimbrane Boobs");

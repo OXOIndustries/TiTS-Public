@@ -919,7 +919,7 @@ public function keepBessYouSloot():void
 
 	//Tutorial / Configure 
 	output("You decide that you’ll take [bess.himHer] along after all. You don’t really want to leave [bess.himHer] on Tavros, and you don’t want to get rid of [bess.himHer] either.");
-	if (pc.isNice()) output(" <i>“Plus, it kind of seems mean to leave [bess.himHer] alone in your hanger just because [bess.heShe]’s an android”</i>.");
+	if (pc.isNice()) output(" <i>“Plus, it kind of seems mean to leave [bess.himHer] alone in your hangar just because [bess.heShe]’s an android”</i>.");
 	else if (pc.isMischievous()) output(" Plus it might be kind of fun to add [bess.himHer] to your crew.");
 	else output(" <i>“Besides, you need every edge you can get if you’re going to find that hidden treasure stash.”</i>");
 	//Nice:
