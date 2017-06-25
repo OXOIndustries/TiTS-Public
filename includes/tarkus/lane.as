@@ -974,7 +974,7 @@ public function lanesShopFullyUnder():void
 	output("”</i>");
 	
 	processTime(15);
-	applyDamage(new TypeCollection( { tease: 15 } ), chars["LANE"], pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 65 } ), chars["LANE"], pc, "minimal");
 
 	laneShowMenu();
 }
