@@ -438,7 +438,7 @@ public function enterLanesShop():Boolean
 		lanesShopFirstRepeat();
 		return true;
 	}
-	else if (hasMaxedLaneHypnosis())
+	else if (hasMaxedLaneHypnosis() && flags["LANE_FULLY_HYPNOTISED"] != undefined)
 	{
 		lanesShopFullyUnder();
 		return true;
@@ -960,14 +960,21 @@ public function lanesShopFullyUnder():void
 	output("You approach Lane’s Plane, eager for another dose of your "+ lane.mf("master", "mistress") +"’s medicine. [lane.HisHer] hut has been taking on a rather extravagant turn lately, with all that extra money [lane.heShe]’s been siphoning from you. When you enter, you see [lane.himHer] lounging languidly, [lane.hisHer] legs spread and [lane.hisHer] chair leaned back, waiting for some other unlucky- or lucky, from your twisted, controlled perspective- customer to walk into [lane.hisHer] trap.");
 
 	output("\n\n[lane.HeShe] smirks that familiar smirk when you walk in, and [lane.heShe] drops [lane.hisHer] feet to the floor" + lane.mf("", ", making her bust bounce just slightly from the motion and the vibration") + ".");
-	output(" [lane.HeShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins,");
-	if (pc.hasCock() && !pc.hasVagina()) output(" [pc.eachCock] rousing to attention, hoping Lane will provide you some ‘other’ service. Beads of your [pc.cum] begin to stain your clothing as you sit.");
-	else if (pc.hasVagina() && !pc.hasCock()) output(" [pc.eachVagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over you to give you another life-altering orgasm.");
-	else if (pc.hasVagina() && pc.hasCock()) output(" each and every part of you ready to sink deeper into [lane.hisHer] control, if it means getting off the way only [lane.heShe] can get you off anymore.");
+	output(" [lane.HeShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins");
+	if (pc.hasGenitals() && (flags["LANE_MALE_SEXED"] != undefined || flags["LANE_FEMALE_SEXED"] != undefined))
+	{
+		if (pc.hasCock() && !pc.hasVagina()) output(", [pc.eachCock] rousing to attention, hoping Lane will provide you some ‘other’ service. Beads of your [pc.cum] begin to stain your clothing as you sit.");
+		else if (pc.hasVagina() && !pc.hasCock()) output(", [pc.eachVagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over you to give you another life-altering orgasm.");
+		else output(", each and every part of you ready to sink deeper into [lane.hisHer] control, if it means getting off the way only [lane.heShe] can get you off anymore.");
+	}
 	else output(" which only serves to frustrate you, but your waking mind knows that your needs are secondary to [lane.hisHer], and providing yourself to Lane is the greatest pleasure you'll ever need.");
 
-	output("\n\n[lane.HeShe] flairs [lane.hisHer] tassels open, only for a moment, to let you taste of the sweet pleasure you’ve come to [lane.himHer] for. Teasingly, they shut again, and you’re left horny and thirsty for more of [lane.himHer]. <i>“Welcome back, my pet,”</i> [lane.heShe] says sensually, dragging a loving claw gently over your [pc.face]. <i>“Have you come to Lane for more of [lane.hisHer] magic? Or are you here to pay your ‘taxes’?”</i>");
+	output("\n\n[lane.HeShe] flairs [lane.hisHer] tassels open, only for a moment, to let you taste of the sweet pleasure you’ve come to [lane.himHer] for. Teasingly, they shut again, and you’re left horny and thirsty for more of [lane.himHer]. <i>“Welcome back, my pet,”</i> [lane.heShe] says sensually, dragging a loving claw gently over your [pc.face]. <i>“Have you come to Lane for more of [lane.hisHer] magic?");
+	if (flags["LANE_MALE_SEXED"] != undefined || flags["LANE_FEMALE_SEXED"] != undefined) output(" Or are you here to pay your ‘taxes’?");
+	output("”</i>");
+	
 	processTime(15);
+	applyDamage(new TypeCollection( { tease: 15 } ), chars["LANE"], pc, "minimal");
 
 	laneShowMenu();
 }
