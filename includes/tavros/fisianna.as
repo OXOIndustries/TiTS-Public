@@ -2254,7 +2254,7 @@ public function vaginalFisi():void
 		if (x < 0 || pc.cocks[x].cLength() < 9) output("you bottom out inside of her. ");
 		else output("you see a visible bulge coming through the neko’s tummy. ");
 		output("You look at her face and find that she has a somewhat spaced out look from being penetrated for the first time, already far away, lost to the throes of pleasure. ");
-		if (pc.cockVirgin)
+		if (x >= 0 && pc.cockVirgin)
 		{
 			output("Your [pc.cockNoun " + x + "] gives off an excited throb while the both of you share your first moments being joined with another.");
 			pc.cockChange(true, false, true);

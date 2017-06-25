@@ -536,7 +536,7 @@ public function milkGainNotes(deltaT:uint = 0):void
 		}
 		
 		AddLogEvent(ParseText("Your [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It’s actually getting kind of painful to hold in all that liquid weight, and if "), "passive", deltaT);
-		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) ExtendLogEvent("it wasn’t for your genetically engineered super-tits, your body would be slowing down production");
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) ExtendLogEvent("it wasn’t for your genetically engineered super-tits, your body would be slowing down production");
 		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("it wasn’t for your honeypot gene, your body would be slowing down production");
 		else if(pc.isPregnant()) ExtendLogEvent("you weren’t pregnant, you’d probably be slowing production.");
 		else if(pc.upperUndergarment is BountyBra) ExtendLogEvent("you weren’t wearing a <b>Bounty Bra</b>, your body would be slowing down production");
@@ -556,7 +556,7 @@ public function milkGainNotes(deltaT:uint = 0):void
 		}
 		
 		AddLogEvent(ParseText("The tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can’t help but wish for relief or a cessation of your lactation, whichever comes first. "), "passive", deltaT);
-		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) ExtendLogEvent("<b>However, with your excessively active udders, you are afraid the production will never stop.</b>");
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) ExtendLogEvent("<b>However, with your excessively active udders, you are afraid the production will never stop.</b>");
 		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("<b>However, with your honeypot gene, they’ll likely never stop.</b>");
 		else if(pc.isPregnant()) ExtendLogEvent("<b>With a pregnancy on the way, there’s no way your body will stop producing.</b>");
 		else if(pc.upperUndergarment is BountyBra) ExtendLogEvent(ParseText("<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>"));
@@ -595,7 +595,7 @@ public function lactationUpdateHourTick(totalHours:int):void
 	//Bounty bra never loses milkMultiplier!
 	if(pc.upperUndergarment is BountyBra || pc.isPregnant() || pc.hasPerk("Honeypot") || pc.hasPerk("Mega Milk") || pc.hasPerk("Hypermilky"))
 	{
-
+		/* Nada! */
 	}
 	else
 	{
