@@ -527,15 +527,15 @@ public function visitLaneAfterDetoxing():void
 
 			output("\n\nLane breaks eye contact to glance at [lane.hisHer] codex. At the threat of ruining [lane.hisHer] reputation, [lane.heShe] sighs in defeat. <i>“What do you want from me, [pc.name]?”</i>");
 
-			output("\n\nYou tap your chin as you think about it. <i>“I think five-hundred credits a day is a good start, don’t you? An eye for an eye?”</i>");
+			output("\n\nYou tap your chin as you think about it. <i>“I think five hundred credits a day is a good start, don’t you? An eye for an eye?”</i>");
 
 			output("\n\nAt that, Lane becomes visibly upset. [lane.HeShe] begins to quiver in [lane.hisHer] seat. <i>“I can’t afford that sort of cash!”</i>");
 
 			output("\n\n<i>“Well then, you and I are going to have a problem.”</i>");
 
-			output("\n\n<i>“I’m serious, [pc.name], come on,”</i> [lane.heShe] all but pleads. <i>“I specialize in</i> hypnotism, <i>and I live in a one-story mud-tent in the middle of a desert planet! At five-hundred credits a day, with the customers I get and the bills I pay, I’d be starving after a week! Please, I’m begging you–”</i> [lane.HeShe] clasps [lane.hisHer] hands together and reaches over [lane.hisHer] desk, pleading for mercy, <i>“I can do two-hundred credits. Two-hundred credits a day.”</i>");
+			output("\n\n<i>“I’m serious, [pc.name], come on,”</i> [lane.heShe] all but pleads. <i>“I specialize in</i> hypnotism, <i>and I live in a one-story mud-tent in the middle of a desert planet! At five hundred credits a day, with the customers I get and the bills I pay, I’d be starving after a week! Please, I’m begging you–”</i> [lane.HeShe] clasps [lane.hisHer] hands together and reaches over [lane.hisHer] desk, pleading for mercy, <i>“I can do two hundred credits. Two hundred credits a day.”</i>");
 
-			output("\n\nYou tilt your nose up, looking down at [lane.himHer] as [lane.heShe] begs for [lane.hisHer] financial security. <i>“If I remember right,”</i> you say threateningly, <i>“didn’t you once say that Daynarian blood was once highly valued? Do you think a black market for it exists?”</i> You’re bluffing, but watching the color literally drain from Lane’s face is worth the visit alone. You stand. <i>“Two-hundred credits a day, Lane. After what you did to me, you should be thankful. Be sure to not miss a payment.”</i> You turn towards the door, but you stop. <i>“And – don’t ever hypnotize another person like you did to me. I’ll find out.”</i>");
+			output("\n\nYou tilt your nose up, looking down at [lane.himHer] as [lane.heShe] begs for [lane.hisHer] financial security. <i>“If I remember right,”</i> you say threateningly, <i>“didn’t you once say that Daynarian blood was once highly valued? Do you think a black market for it exists?”</i> You’re bluffing, but watching the color literally drain from Lane’s face is worth the visit alone. You stand. <i>“Two hundred credits a day, Lane. After what you did to me, you should be thankful. Be sure to not miss a payment.”</i> You turn towards the door, but you stop. <i>“And – don’t ever hypnotize another person like you did to me. I’ll find out.”</i>");
 
 			output("\n\nYou hear Lane slump forward onto [lane.hisHer] desk as you victoriously leave [lane.hisHer] hut. With any luck, you won’t have to visit [lane.himHer] again anytime soon. Not that you’d be welcomed with open arms, anyway.");
 
@@ -620,7 +620,7 @@ public function visitLaneAfterDetoxing():void
 
 		output("\n\nYour mind’s voice screams at you to move, to thrash [lane.himHer] and take back what belonged to you. You fought so hard to break away from Lane – you should be clean now! [lane.HeShe] should have no power over you anymore! But your body disobeys your every command, and, on its own volition, you drop to your [pc.knees], looking up at Lane helplessly.");
 
-		output("\n\nFerociously, Lane clamps both [lane.hisHer] hands against your head, rocking your eyes in your skull from the blow, but you don’t look away. Lane leans in close until [lane.hisHer] ever-changing eyes are all you see. You feel [lane.hisHer] breath blow down your neck through clenched teeth, and you feel [lane.hisHer] claws dig into the roots of your [pc.hair] painfully. <i>“You’re a very special person, [pc.name],”</i> [lane.HeShe] says disdainfully, forcing your head still to make sure your eyes never leave [lane.hisHer]. <i>“I’ve never heard of a person breaking out of their hypnosis before. You’re much stronger than I gave credit for.”</i>");
+		output("\n\nFerociously, Lane clamps both [lane.hisHer] hands against your head, rocking your eyes in your skull from the blow, but you don’t look away. Lane leans in close until [lane.hisHer] ever-changing eyes are all you see. You feel [lane.hisHer] breath blow down your neck through clenched teeth, and you feel [lane.hisHer] claws dig into the roots of your [pc.hair] painfully. <i>“You’re a very special person, [pc.name],”</i> [lane.HeShe] says disdainfully, forcing your head still to make sure your eyes never leave " + lane.mf("his", "hers") + ". <i>“I’ve never heard of a person breaking out of their hypnosis before. You’re much stronger than I gave credit for.”</i>");
 
 		output("\n\nYour shoulders begin to go slack and loose in [lane.hisHer] grip. Visions of you serving [lane.himHer] once more begin to fill your eye, and the wonderful feel of being " + lane.mf("his", "hers") + " creeps over you. You begin to question why you had ever bothered to try and fight [lane.himHer] in the first place – you know happiness when you’re with Lane. <i>“Perhaps I gave you too much leeway, giving you enough freedom to wander the stars as you like. We won’t be making that mistake again, that’s for damn sure.”</i>");
 
@@ -667,9 +667,9 @@ public function laneGonnaFuckYourDetoxinAssUp():void
 	
 	output("<i>“Now, I want you to open your eyes. Don’t force them open. Just let them.”</i>");
 
-	output("\n\nYour [lane.master] instructed you to hide behind [lane.hisHer] chair in the hypnosis room as [lane.heShe] works with another client of [lane.hisHer]. You sit, totally naked, as you await for your further instruction.");
+	output("\n\nYour [lane.master] instructed you to hide behind [lane.hisHer] chair in the hypnosis room as [lane.heShe] works with another client of " + lane.mf("his", "hers") + ". You sit, totally naked, as you await for your further instruction.");
 
-	output("\n\nThis wouldn’t be the first time you’ve done this with your [lane.master] to a client of [lane.hisHer], but it is a relatively new idea. You are nonetheless eager to do it again; you’ve noticed some real changes in attitude in some of the clients after you’ve finished. You sit there");
+	output("\n\nThis wouldn’t be the first time you’ve done this with your [lane.master] to a client of " + lane.mf("his", "hers") + ", but it is a relatively new idea. You are nonetheless eager to do it again; you’ve noticed some real changes in attitude in some of the clients after you’ve finished. You sit there");
 	if (pc.hasCock()) output(", stroking [pc.eachCock] torturously, arousing yourself for what comes next");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	else output(",");
@@ -922,7 +922,7 @@ public function lanesShopFirstRepeat():void
 	clearOutput();
 	laneHeader();
 
-	output("You march right into Lane’s little hut, a hundred angry things to say to [lane.himHer] all at once. [lane.heShe]’s there, lounging at [lane.hisHer] desk and playing with [lane.hisHer] codex, and [lane.heShe] hardly seems phased at all when you start stomping into [lane.hisHer] business with a look like you’re going to rip [lane.hisHer] head off.");
+	output("You march right into Lane’s little hut, a hundred angry things to say to [lane.himHer] all at once. [lane.HeShe]’s there, lounging at [lane.hisHer] desk and playing with [lane.hisHer] codex, and [lane.heShe] hardly seems phased at all when you start stomping into [lane.hisHer] business with a look like you’re going to rip [lane.hisHer] head off.");
 
 	output("\n\n<i>“Lane!”</i> you shout, slapping at [lane.hisHer] desk forcefully, rumbling the little knicks and knacks [lane.heShe] has placed all around it. [lane.HeShe] looks up from [lane.hisHer] codex and into your eyes, fearlessly.");
 
@@ -962,7 +962,7 @@ public function lanesShopFullyUnder():void
 	output("\n\n[lane.HeShe] smirks that familiar smirk when you walk in, and [lane.heShe] drops [lane.hisHer] feet to the floor" + lane.mf("", ", making her bust bounce just slightly from the motion and the vibration") + ".");
 	output(" [lane.HeShe] regulates [lane.hisHer] pulse, and already you’re weak in the [pc.knees] and horny in the loins,");
 	if (pc.hasCock() && !pc.hasVagina()) output(" [pc.eachCock] rousing to attention, hoping Lane will provide you some ‘other’ service. Beads of your [pc.cum] begin to stain your clothing as you sit.");
-	else if (pc.hasVagina() && !pc.hasCock()) output(" [pc.eachVagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over to you give you another life-altering orgasm.");
+	else if (pc.hasVagina() && !pc.hasCock()) output(" [pc.eachVagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over you to give you another life-altering orgasm.");
 	else if (pc.hasVagina() && pc.hasCock()) output(" each and every part of you ready to sink deeper into [lane.hisHer] control, if it means getting off the way only [lane.heShe] can get you off anymore.");
 	else output(" which only serves to frustrate you, but your waking mind knows that your needs are secondary to [lane.hisHer], and providing yourself to Lane is the greatest pleasure you'll ever need.");
 
@@ -1296,7 +1296,7 @@ public function laneServiceReflexes():void
 {
 	clearOutput();
 	laneHeader();
-	output("Before you sign your confirmation, you ask [lane.himHer] if [lane.heShe] could improve your reflexes. You’ve walked down enough streets, hiked through enough forests, and drank in enough shady bars to know that anything could get the jump on you at any time. <i>“Of course,”</i> [lane.heShe] says assuredly. <i>“You wouldn’t be the first adventurer I’ve had. I can sharpen each of your senses to be more in-tune with your surroundings: you’ll see, hear, and smell anything stalking you in the sands of Veran before they’d realize it. You’ll know exactly when you are and are not alone, and you’ll be able to react to it faster than you ever could before. I’ve been known to service more than one starship pilot, as well.”</i>");
+	output("Before you sign your confirmation, you ask [lane.himHer] if [lane.heShe] could improve your reflexes. You’ve walked down enough streets, hiked through enough forests, and drank in enough shady bars to know that anything could get the jump on you at any time. <i>“Of course,”</i> [lane.heShe] says assuredly. <i>“You wouldn’t be the first adventurer I’ve had. I can sharpen each of your senses to be more in-tune with your surroundings: you’ll see, hear, and smell anything stalking you in the sands of Venar before they’d realize it. You’ll know exactly when you are and are not alone, and you’ll be able to react to it faster than you ever could before. I’ve been known to service more than one starship pilot, as well.”</i>");
 
 	output("\n\nLane certainly seems sure of [lane.himHer]self. Do you ask [lane.himHer] to improve your reflexes, by attuning your senses to your environment?");
 
@@ -1743,7 +1743,7 @@ public function munchLanesCarpet():void
 	clearOutput();
 	laneHeader(true);
 
-	output("Lane walks past you and sits on the edge of her large bed, splaying her legs and displaying all of herself to you. <i>“I want that talented tongue of your inside me,”</i> she says, reaching down with one hand and spreading her already moist and welcoming cunny for you. <i>“I want you to lick me until I cum in that pretty mouth of your and I want you to thank me for the opportunity.”</i>");
+	output("Lane walks past you and sits on the edge of her large bed, splaying her legs and displaying all of herself to you. <i>“I want that talented tongue of yours inside me,”</i> she says, reaching down with one hand and spreading her already moist and welcoming cunny for you. <i>“I want you to lick me until I cum in that pretty mouth of yours and I want you to thank me for the opportunity.”</i>");
 
 	output("\n\nYou don’t need any further commanding; you take a step forward and sink to your [pc.knees], eagerly placing yourself between her open knees and your mouth just inches away from her pussy. It’s similar to most other cunts you’ve seen, but with a few differences: beside her spread labia is her genital slit, which is tough and stiff when she’s unaroused, but is soft and malleable when she is. Her pink, narrow walls wink at you invitingly, waiting for you to take the plunge into her and pull you inside. Unfortunately, she has no clitoris – ");
 	if (pc.hasVagina()) output("you feel sorry for your mistress. She doesn’t even know what she’s missing.");
@@ -1801,7 +1801,7 @@ public function munchLanesCarpet():void
 
 	output("\n\nStreams of it drip from your assaulted lips; you swallow all that you can, in worship for your mistress, but the seal around her cunny wasn’t as airtight as you had thought,");
 	if (!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" especially with her tail in the corner of your mouth");
-	output(". She has two smaller orgasms, pumping her cream into your thirst mouth each time, before she finally relaxes.");
+	output(". She has two smaller orgasms, pumping her cream into your thirsty mouth each time, before she finally relaxes.");
 
 	output("\n\n<i>“That was excellent, pet,”</i> she says, breathing heavily. She places a hand on your head and you feel a sense of pride for your good work. <i>“You’ve done me well. Now, where are your manners?”</i>");
 
@@ -1838,7 +1838,7 @@ public function fuckedByMaleLane():void
 
 	output("\n\nYou do everything you can to get him to get harder faster: you gently suck; you lick; you kiss and tease every centimeter you can reach. Your hands keep busy pinching and groping at the fat of his thighs and the thick of his ass. You keep trying to fuck him with your eyes. It all works to your advantage: <i>“You’re a thirsty little slut, aren’t you?”</i> he says, twirling his fingers and lightly scratching at your head. <i>“Keep it up. We’re nearly ready.”</i>");
 
-	output("\n\nYou obligingly keep up your pace, slathering his penis with your saliva. You can taste the occasional bead of precum from the his tip whet your gullet and then wash down your throat. By the time Lane’s had enough and pulls away, his cock is considerably thicker: it’s easily twelve centimeters thick when it leaves your lips again, a far cry from the spindly thing it was when it went in. You almost feel proud.");
+	output("\n\nYou obligingly keep up your pace, slathering his penis with your saliva. You can taste the occasional bead of precum from the his tip wet your gullet and then wash down your throat. By the time Lane’s had enough and pulls away, his cock is considerably thicker: it’s easily twelve centimeters thick when it leaves your lips again, a far cry from the spindly thing it was when it went in. You almost feel proud.");
 
 	output("\n\n<i>“There you go,”</i> he praises warmly, <i>“you’ve done well. You’re an excellent cock fluffer.”</i> You’re a little confused as to what he wants, but it gets clearer when he lifts you by your armpits and then throws you onto the bed, face down and bent at the waist, your [pc.vagOrAss] exposed and winking vulnerably to him.");
 
@@ -1896,7 +1896,7 @@ public function fuckedByMaleLane():void
 
 	output("\n\nYour head lowers and you relax. Your master is back inside you again – Lane wanted to fuck you, so you wanted to be fucked, and you’re getting what you wanted. You nearly don’t notice when his hands let go of your body and roughly grip onto the sheets on either side of your face. He pulls away, withdrawing from you, making you whimper at the sudden chill around your junk, and then he roughly thrusts back in.");
 
-	output("\n\nThe room is filled with the squelching of your mixing juices and the slapping of his hips against yours as he fucks you like he were running a marathon. You can’t help but smile as he goes at it; your [pc.vagOrAss] spreads invitingly around his tool, sucking him in and resisting when he tries to pull away. His breath starts coming out raggedly, with shuttering exhales and long inhales; it washes down your back in a warm wave, and you absolutely love it.");
+	output("\n\nThe room is filled with the squelching of your mixing juices and the slapping of his hips against yours as he fucks you like he were running a marathon. You can’t help but smile as he goes at it; your [pc.vagOrAss] spreads invitingly around his tool, sucking him in and resisting when he tries to pull away. His breath starts coming out raggedly, with shuddering exhales and long inhales; it washes down your back in a warm wave, and you absolutely love it.");
 
 	output("\n\n<i>“Is this what you had in mind?”</i> Lane asks you. His voice comes out unevenly between his thrusts. <i>“Pressed into my bed, getting fucked like an animal by your master? Do you want my cum inside you, and to come back for seconds when it leaks out?”</i>");
 
@@ -2006,7 +2006,7 @@ public function fuckedByFemLane():void
 	output("\n\nIt doesn’t take much doing for her to get absolutely soaked, coating your tongue in her lubricant. She’s as horny as she’s probably going to be already – maybe you had left her a little pent up? You’ll be sure to give your mistress more attention to prevent that. Either way, the foreplay probably isn’t what she’s after: if her welcoming pussy isn’t hint enough, then the way she humps against your face and constantly runs her hands through your [pc.hair] is telltale enough.");
 
 	output("\n\nThe sound of her moaning out pleasurably joins the wet kisses and licks you’re giving her mound. <i>“That’s right, pet,”</i> she says as you work.");
-	if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG) && !pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" You dig into her as far as you can, but you know you’re [pc.tongue] isn’t quite long enough to reach her sensitive G-spot deep inside her. You compensate as much as you can by working your lips against her labia, knowing what they do for her too.");
+	if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG) && !pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" You dig into her as far as you can, but you know your [pc.tongue] isn’t quite long enough to reach her sensitive G-spot deep inside her. You compensate as much as you can by working your lips against her labia, knowing what they do for her too.");
 	else if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" You know how much your mistress likes it when you stuff her cunt full of your [pc.tongue], and you’re not going to disappoint her. Your long, slippery muscle slips in with ease and then places itself directly on top of her G-spot. She laughs in delight and thrusts her hips forward, and you don’t stop laying in more and more tongue, packing her full even when your tongue starts layering on top of itself.")
 	else if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" Your [pc.tongue] reaches all the way to her cervix with a little bit left to spare. Every pass the tip of your tongue makes over her G-spot, she clenches hard on your head, which, with her claws, hurts quite a bit. But, she wants you to keep going, so you want to keep going, in spite of the pain.");
 
@@ -2033,7 +2033,7 @@ public function fuckedByFemLane():void
 		output("\n\nLane’s earlier aggression keeps up as she tops you on her bed. Her hands slap next to your head on either side, making you flinch; before you can right yourself, Lane’s lips are on yours, claiming and dominating you with her mouth. Your mouth is full of her swatting tongue, beating yours down into submission. Her body grinds yours into the bed; her heavy breasts, inferior to yours, squashing your better pair flat, which awkwardly bends her upper back upward but she’s insistent on bettering you. Her thigh worms in between yours, where she practically knees you in the crotch in her passion; it’s <i>definitely</i> stimulating, at least.</i>");
 	}
 
-	output("\n\nShe breaks away from you, panting, breathless from the intense makeout sassion.");
+	output("\n\nShe breaks away from you, panting, breathless from the intense make-out session.");
 	if (pc.biggestTitSize() <= 5) output(" <i>“You’re such a beautiful creature, [pc.name].”</i> You blush at the undue praise – you didn’t even kiss <i>her,</i> she kissed <i>you</i>. <i>“I love what you’ve become and what our relationship is.”</i> Your heart nearly leaps into your throat, but she keeps avoiding the context you’re after. <i>“You’re such a good toy. And I like to treat my toys well. I think you’re going to enjoy this.”</i>");
 	else output(" <i>“You hot big-tittied bitch,”</i> she says, her eyes drills and boring into yours. She’s talking dirty, but her tone is serious. <i>“You think you’re better off just because your tits are bigger than mine.”</i> Is she jealous of your [pc.chest]? You open your mouth to respond, but she keeps going. <i>“I’m going to fuck you into the dirt. I can’t promise it’ll be good for you. I want you to look into breast reduction when we’re done here – I can’t have my pets walking around like they’re better than me.”</i>");
 
@@ -2056,7 +2056,7 @@ public function fuckedByFemLane():void
 		output("\n\nShe touches her cunt down on your");
 		if (pc.hasVagina()) output("s");
 		else output(" empty pelvis, meeting nothing but skin");
-		output(". The feeling of her warm sex wetly meeting your body so suddenly makes you bite your lip. She keeps her body still, not stimulating you any further.] Your hands grip onto the bedsheets; she had commanded you not to use your hands, and you desperately wait for her to rescind her order. <i>“Would you like me to fuck you, [pc.name]?”</i>");
+		output(". The feeling of her warm sex wetly meeting your body so suddenly makes you bite your lip. She keeps her body still, not stimulating you any further. Your hands grip onto the bedsheets; she had commanded you not to use your hands, and you desperately wait for her to rescind her order. <i>“Would you like me to fuck you, [pc.name]?”</i>");
 	}
 
 	output("\n\n<i>“Yes!”</i> you bark out loudly.");
@@ -2393,13 +2393,13 @@ public function laneFullyHypnotisesYouDumbshit():void
 
 	output("Lane spreads [lane.hisHer] legs apart, already making [lane.himHer]self comfortable before your hypnotized, immobile, impressionable, compliant self... [lane.heShe] doesn’t say anything as [lane.heShe] stares at you, rubbing [lane.himHer]self through the fabric of [lane.hisHer] pants and undergarment, arousing [lane.himHer]self as [lane.heShe] imagines the oh-so-delectable things [lane.heShe] could make [lane.hisHer] absolute favorite customer do...");
 
-	output("\n\n[lane.HeShe] frowns to [lane.himHer]self, and [lane.hisHer] eyes wander for a moment. [lane.HeShe] begins to fight with [lane.himHer]self silently, trying to decide if [lane.heShe]’s gone too far already and if [lane.heShe] should just give you what it is you paid for... but that’s a short lived battle, and [lane.hisHer] eyes lock on yours once more, steeled with dangerous, predatory resolve." + lane.mf(" The nub of his penis slowly but determinately erecting underneath his clothing is plainly visible, and he paws at it with one hand.", "Moisture begins to dampen the center of her undergarment as she palms at herself idly, and her musk joins the incense of the candles in your nose."));
+	output("\n\n[lane.HeShe] frowns to [lane.himHer]self, and [lane.hisHer] eyes wander for a moment. [lane.HeShe] begins to fight with [lane.himHer]self silently, trying to decide if [lane.heShe]’s gone too far already and if [lane.heShe] should just give you what it is you paid for... but that’s a short lived battle, and [lane.hisHer] eyes lock on yours once more, steeled with dangerous, predatory resolve. " + lane.mf("The nub of his penis slowly but determinately erecting underneath his clothing is plainly visible, and he paws at it with one hand.", "Moisture begins to dampen the center of her undergarment as she palms at herself idly, and her musk joins the incense of the candles in your nose."));
 
 	output("\n\n<i>“[pc.name]”,</i> [lane.heShe] says, but of course, you don’t answer. <i>“You can no longer stand it. Lane is everything you ever wanted in life. You can’t bear the thought of leaving [lane.hisHer] hut today without fucking [lane.himHer]. " + lane.mf("You want his dick in your mouth; the taste of his cock on your tongue and the feel of his cum in your throat is the greatest pleasure in your life. You want his dick in your ass; knowing that Lane is inside you, owning you, and dominating you, will forever be your wildest, most desirable indulgence.", "You want her cunt in your mouth; her cum is finer than any wine, sweeter than any honey, and smoother than any malt. You want her to dominate you; being underneath her as she asserts herself is where you belong, and nothing is more relieving, more thrilling, or more pleasurable than being where you belong.") + " You will surrender yourself, mentally, physically, and emotionally to Lane, and you will not object to whatever [lane.heShe] desires. [lane.HisHer] wishes, [lane.hisHer] kinks, and [lane.hisHer] desires are now yours.”</i>");
 
 	output("\n\n[lane.HeShe] spends far longer reinforcing [lane.hisHer] new commands on you than [lane.heShe] ever has on anything before, and you absorb every word and every command [lane.heShe] tells you. You’re in the room for the better part of an hour as [lane.heShe] reprograms you into being [lane.hisHer] new sex slave, and you, helpless and enraptured as you are, are defenseless against [lane.hisHer] unrelenting onslaught of suggestions.");
 
-	output("\n\nSuddenly, your eyes, and your mind, clear completely. You blink, the familiar dizziness and ringing ears welcoming you back to the conscious world. You shake your head, trying to re-familiarize yourself with the waking world, and when you open your eyes, the first thing you see is Lane, sitting across from you, [lane.hisHer] elbows on [lane.hisHer] deck and [lane.hisHer] chin in [lane.hisHer] hands. <i>“How do you feel?”</i> [lane.heShe] asks you innocently.");
+	output("\n\nSuddenly, your eyes, and your mind, clear completely. You blink, the familiar dizziness and ringing ears welcoming you back to the conscious world. You shake your head, trying to re-familiarize yourself with the waking world, and when you open your eyes, the first thing you see is Lane, sitting across from you, [lane.hisHer] elbows on [lane.hisHer] desk and [lane.hisHer] chin in [lane.hisHer] hands. <i>“How do you feel?”</i> [lane.heShe] asks you innocently.");
 
 	output("\n\nYour eyes focus solely on [lane.himHer], and... something comes over you. Your breathing quickens, your heart races, and your head becomes light, likely from all the blood rushing from it to your loins. A sort of dissatisfaction washes over you, and you crave something, something from Lane. You see hundreds of images in your mind in quick succession – some of them are panicky, trying to get you to get up and run from [lane.himHer], but everything else sees you on your [pc.knees], pleasuring Lane with your mouth, or on a bed," + lane.mf(" [pc.legOrLegs] in the air", " on your back") + " as [lane.heShe] pounds you – fucks you - <i>claims</i> you and <i>owns</i> you for [lane.himHer]self. Your imagination soars blissfully with the idea of giving yourself to [lane.himHer] and [lane.hisHer] pleasure, of letting [lane.himHer] control your wants and your actions and your life.");
 	if (pc.hasCock()) output(" [pc.EachCock] is raging hard in your pants, already nearly at full mast, more than eager for the pleasures it knows Lane would bestow upon you for your obedience.");
@@ -2411,7 +2411,7 @@ public function laneFullyHypnotisesYouDumbshit():void
 
 	output("\n\n<i>“Please!”</i> you beg [lane.himHer] shamelessly, lowering your head. <i>“I want you, Lane! I... I won’t leave until you fuck me! I’ll do anything; I’ll do whatever you ask! Just... just let me have you!”</i>");
 
-	output("\n\n<i>“Anything?”</i> [lane.heShe] asks you, and you confirm three times. Lane is <i>so close</i>, but [lane.heShe] won’t let you close that last little distance that’ll make you [lane.hisHer]. [lane.HeShe]’s very clearly aroused and enjoying your begging and pleading, but [lane.heShe] just won’t let you! <i>“I want you to tell me that you’re mine forever, [pc.name].”</i>");
+	output("\n\n<i>“Anything?”</i> [lane.heShe] asks you, and you confirm three times. Lane is <i>so close</i>, but [lane.heShe] won’t let you close that last little distance that’ll make you " + lane.mf("his", "hers") + ". [lane.HeShe]’s very clearly aroused and enjoying your begging and pleading, but [lane.heShe] just won’t let you! <i>“I want you to tell me that you’re mine forever, [pc.name].”</i>");
 
 	output("\n\n<i>“I’m yours! I’m yours until the day I die!”</i>");
 
@@ -2425,7 +2425,7 @@ public function laneFullyHypnotisesYouDumbshit():void
 
 	output("\n\n<i>“There’s one last thing. One last thing, and then I’ll give you,”</i> [lane.heShe] says, using [lane.hisHer] hands to frame [lane.hisHer] crotch, <i>“what you want.”</i> You don’t dare move or speak, listening rapturously for whatever else [lane.heShe] has in mind for you. <i>“From now on, I want you to call me your " + lane.mf("master", "mistress") + ". You will no longer address me as Lane, or as " + lane.mf("mister", "missus") + " anything. I own you now, [pc.name], and I demand respect from my pets.”</i>");
 
-	output("\n\nYou beg and plead with your " + lane.mf("master", "mistress") + ", asking them to give you what you need, to douse the fire in your loins, to physically claim you as [lane.hisHer] and [lane.hisHer] alone for the rest of your life. Wordlessly, [lane.heShe] grabs you by the collar of your [pc.armor], lifting you up. You feel some anxiety, pulled from [lane.himHer] as roughly as you are, but your fear turns to curiosity as [lane.heShe] leads you behind the curtain splitting the room in half once more. Instead of turning towards the hypnosis room, [lane.heShe] turns to [lane.hisHer] left, and shows you through the second door.");
+	output("\n\nYou beg and plead with your " + lane.mf("master", "mistress") + ", asking them to give you what you need, to douse the fire in your loins, to physically claim you as " + lane.mf("his and his", "hers and hers") + " alone for the rest of your life. Wordlessly, [lane.heShe] grabs you by the collar of your [pc.armor], lifting you up. You feel some anxiety, pulled from [lane.himHer] as roughly as you are, but your fear turns to curiosity as [lane.heShe] leads you behind the curtain splitting the room in half once more. Instead of turning towards the hypnosis room, [lane.heShe] turns to [lane.hisHer] left, and shows you through the second door.");
 
 	output("\n\nIt leads to what looks to be Lane’s bedroom. It’s a modest place, all told: there are two dressers leaning against both the left and right walls, and a small nightstand sitting in the corner with a large lamp on top of it. Pressed against the far wall is a queen-sized bed with a thick, fluffy, plain white quilt atop of it. Rather than windows on the walls, there’s a large skylight above the bed with a thick pane of glass set in it. Everything is kept quite clean and tidy, but the room is very plain and without much personality.");
 
@@ -2573,7 +2573,7 @@ public function firstTimeLaneMPCM():void
 	{
 		output("\n\n<i>“Here’s the deal, [pc.name],”</i> he says. You listen to his words raptly. <i>“You’re going to wire me five hundred credits every twenty-four solar hours. If you can’t afford it, just send me what you have.”</i> You nod in understanding; you had agreed to this before. <i>“If you want to be hypnotized again, I’ll charge you the regular fee for the regular service. But you’re... going to pay me a tax. The ‘Body Tax’. I’ll be taking a little extra from you physically.”</i> You feel a fire beginning to stoke in your pelvis, and you tell him that you’re looking forward to it.");
 	}
-	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving solidarity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
+	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving singularity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
 
 	output("\n\nStill, you do what you’re told. In just minutes, your [pc.armor] is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the caves of Venar.");
 
@@ -2608,7 +2608,7 @@ public function firstTimeLaneMPCFH():void
 
 	output("\n\nYou heave your chest into his maw, enjoying the new wet sensation on your chest and loving the delectable sounds of his tongue slurping on your [pc.skin]. He humps his waist against you the whole time, grinding his expanding dick against your thigh. You moan out as you trail your hands down his scaly, rough back, your fingers bumping over each ridge and crevice exquisitely until your reach the base of his tail. Your deftly wrap your fingers around it, tugging, massaging and tickling at it, groping what little ass muscle he has, for his pleasure.");
 
-	output("\n\nAs you do that, Lane’s appetite for your breasts is voracious: his tongue is quick and deft, swishing over your sensitive mounds, across your [pc.nipples], and through the cleavage between them as you transitions to your other boob and repeating the process. The sound of Lane hungrily sucking and licking at you like a beast makes you all the hornier.");
+	output("\n\nAs you do that, Lane’s appetite for your breasts is voracious: his tongue is quick and deft, swishing over your sensitive mounds, across your [pc.nipples], and through the cleavage between them as he transitions to your other boob and repeats the process. The sound of Lane hungrily sucking and licking at you like a beast makes you all the hornier.");
 	if (pc.biggestTitSize() <= 1) output(" As you feel his long tongue mark your chest, you moan in both pleasure and disappointment; it feels great – beautiful, even, the way he samples you – but you can’t help but feel a little self-conscious about your cup size. From the way he’s going at it, though, maybe he’s a fan of tiny titties...");
 	else if (pc.biggestTitSize() <= 7) output(" You thrust your [pc.chest] higher, eager to feed more of them to him, to feel his mouth wrap around your two proud puppies, to feel his teeth nip at your skin excitedly and to feel his breath wash between them... you’re just as absorbed into Lane as he is into you. You flex your arms against them, squeezing them together, thrusting your [pc.nipple] further along his tongue.");
 	else if (pc.biggestTitSize() <= 18) output(" You love the way Lane sinks his face into your chest as he presses forward. He makes you feel so wanted, so sexy; he gently but demandingly nips at the flesh of your [pc.chest], groping at it aggressively with his face. It takes him some time to cover you in his saliva as he slobbers over them, but you’re more than happy to lay there and let him have his way with you. From the way his cock slides against your thigh as his humps grow more insistent, he’s certainly enjoying himself.");
@@ -2662,7 +2662,7 @@ public function firstTimeLaneMPCFH():void
 
 	output("\n\nEvery centimeter he goes into you is divine.");
 	if (pc.hasCock()) output(" [pc.EachCock] stands tall and almost painfully hard between you, wishing for some action, but he outright ignores your masculine half.");
-	output(" His hands trail to your [pc.hips], and he squeezes them roughly – you feel his claws pinch against your skin as he gropes you, and you almost hope it leaves a mark, if only so you’ll have proof of your consummation later. He roils his hips forward, and you go cross-eyed: every push against your walls lights another firework in your senses. You look down,");
+	output(" His hands trail to your [pc.hips], and he squeezes them roughly – you feel his claws pinch against your skin as he gropes you, and you almost hope it leaves a mark, if only so you’ll have proof of your consummation later. He rolls his hips forward, and you go cross-eyed: every push against your walls lights another firework in your senses. You look down,");
 	if (pc.biggestTitSize() <= 19)
 	{
 		if (pc.biggestTitSize() >= 8) output(" straining to see over your sizeable bust,");
@@ -2722,7 +2722,7 @@ public function firstTimeLaneMPCFH():void
 	{
 		output("\n\n<i>“Here’s the deal, [pc.name],”</i> he says. You listen to his words raptly. <i>“You’re going to wire me five hundred credits every twenty-four solar hours. If you can’t afford it, just send me what you have.”</i> You nod in understanding; you had agreed to this before. <i>“If you want to be hypnotized again, I’ll charge you the regular fee for the regular service. But you’re... going to pay me a tax. The ‘Body Tax’. I’ll be taking a little extra from you physically.”</i> You feel a fire beginning to stoke in your pelvis, and you tell him that you’re looking forward to it.");
 	}
-	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving solidarity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
+	output("\n\n<i>“That’s a good pet,”</i> he tells you. <i>“Now, get dressed. As much as I’d like to fuck you every hour of the day, it doesn’t pay the bills. Go out there and make me my money.”</i> He then leaves you alone in his room, without so much as a glance. But you like that quality about Lane – a sort of hard, unforgiving singularity of a man who takes what he wants. Thinking of him as a vicious sexual conqueror makes you hot all over again.");
 
 	output("\n\nStill, you do what you’re told. In just minutes, your [pc.armor] is back on, and you leave his bedroom. Lane is sitting at his desk as though nothing had happened; you give him a sultry grin that he does not return, before you leave his little hut and return to the caves of Venar.");
 
@@ -2982,7 +2982,7 @@ public function firstTimeLaneFPCFGenderless():void
 	clearOutput();
 	laneHeader(true);
 
-	output("Lane crawls onto the bed, stalking her way across it and up your body. She moves slowly, dragging her heavy breasts and smooth front scales across your skin in a delicious, electric way that sends alights your senses. Her soft hands map the way for her as she crawls over you and drapes her body over yours; she feels along the fat of your legs and the thick of your [pc.hips], across your belly and over your [pc.chest] until she’s completely on top of you, face-to-face, her snout just centimeters from your [pc.face].");
+	output("Lane crawls onto the bed, stalking her way across it and up your body. She moves slowly, dragging her heavy breasts and smooth front scales across your skin in a delicious, electric way that alights your senses. Her soft hands map the way for her as she crawls over you and drapes her body over yours; she feels along the fat of your legs and the thick of your [pc.hips], across your belly and over your [pc.chest] until she’s completely on top of you, face-to-face, her snout just centimeters from your [pc.face].");
 
 	output("\n\n");
 	if (pc.biggestTitSize() <= 5)
@@ -3001,9 +3001,9 @@ public function firstTimeLaneFPCFGenderless():void
 	output("\n\nLane straddles your left thigh, and she’s then fucking herself on you, deliberately keeping her own leg away from your [pc.vagina] to keep you teased. She removes her left hand from your tit and moves it up to your head,");
 	if (pc.biggestTitSize() <= 5) output(" caressing your cheek lightly");
 	else output(" clamping onto your scalp roughly");
-	output(") as she kisses you and rocks against you. You move to warp your own arms and legs over her body, to reciprocate some of her affection, but she slaps at your wrists and kicks at your [pc.knees]. <i>“I’m in charge”</i> she tells you in a sing-song tone, and then goes right back to dominating your body and your mouth.");
+	output(" as she kisses you and rocks against you. You move to wrap your own arms and legs over her body, to reciprocate some of her affection, but she slaps at your wrists and kicks at your [pc.knees]. <i>“I’m in charge”</i> she tells you in a sing-song tone, and then goes right back to dominating your body and your mouth.");
 
-	output("\n\nYour breath leaves your nose in heavy gasps from the stimulation you’re receiving, but it’s not nearly going to be enough to make you orgasm, and Lane knows it. Finally, she has her fill of you, and she pulls away for a moment, to catch her own breath for a bit. She looks down at you predatorily, a toothy wry grin on her scaly face; she can see in the reflection of your eyes how into her you are, and the sight of you, underneath her, panting and squirming for a release only she can provide, makes her chuckle.");
+	output("\n\nYour breath leaves your nose in heavy gasps from the stimulation you’re receiving, but it’s not nearly going to be enough to make you orgasm, and Lane knows it. Finally, she has her fill of you, and she pulls away for a moment, to catch her own breath for a bit. She looks down at you predatorily; a wry, toothy grin spread on her scaly face; she can see in the reflection of your eyes how into her you are, and the sight of you, underneath her, panting and squirming for a release only she can provide, makes her chuckle.");
 
 	output("\n\nYet, she’s not satisfied either. She begins climbing her way forward, only slightly, and presents her own chest to your face. She straddles your waist and continues to rub her now wet cunt across your lower stomach while she sandwiches your face between her scaly boobs.");
 	if (pc.biggestTitSize() <= 5) output(" She coos out in delight once you, without instruction, begin kissing and licking at her ‘skin’, pleasuring her and appreciating her superior rack as she clearly wants you to. The smoothness and the warmth of her body are positively divine on your face; you wouldn’t mind coming home to this for the rest of your life. The scent of her scales and the light of her blood accompany the taste of her on your tongue, and you find a nirvana you’d never thought you’d encounter before now.");
@@ -3017,7 +3017,7 @@ public function firstTimeLaneFPCFGenderless():void
 
 	output("\n\nA drop of her girl cum drips onto your nose, sliding down it and across your cheek. <i>“That’s where we’re most sensitive. It’s so we want our Daynarian cocks as deep as they can go, so there’s a better chance of getting knocked up.”</i> She shivers, and then finally lowers herself on your face, pressing her against you, and letting you fulfill your purpose in life. <i>“I’m sure you’ll do a fine job, [pc.name]. You won’t disappoint me.”</i>");
 
-	output("\n\nThe finality of finding yourself where you want to be – between Lane’s luscious, smooth, thick thighs, your lips against her vulva, the taste of her just an easy lick away – leaves you a little light headed. You feel as though you’ve waited so long to have everything you’ve wanted, and it’s right there. You almost forget to appreciate it.");
+	output("\n\nThe finality of finding yourself where you want to be – between Lane’s luscious, smooth, thick thighs, your lips against her vulva, the taste of her just an easy lick away – leaves you a little light-headed. You feel as though you’ve waited so long to have everything you’ve wanted, and it’s right there. You almost forget to appreciate it.");
 
 	output("\n\nYou want to grip onto Lane’s legs for stability, but you remember her earlier instruction, and you force yourself to keep still.");
 	if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG) && !pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" You drag the fat of your [pc.tongue] once languidly across her gash, making her shiver in delight and press more of her weight onto you. You respond by pressing your lips to hers tightly, doing your best to not leave any part of her wanting, while you dig as deeply into her as you can. You adore her every taste, scent, and texture – her inner muscles are peculiarly streamlined, designed to pull you deeper into her, and you’re absolutely willing to let them. She coos and laughs in delight at your work, sloppy as it is, but your obvious excitement makes up for it.");
@@ -3110,7 +3110,7 @@ public function firstTimeLaneFPCFGenderless():void
 		output("\n\nYou look on in curiosity as she climbs down your body once again, towards your");
 		if (pc.hasVagina()) output(" neglected [pc.vagina], which burns with need and arousal but hasn’t had any chance to be a part of the action yet");
 		else output(" blank crotch, which is frustratingly hot with arousal but has no outlet to vent with");
-		output(". Moving like a predator stalking prey in the wild, she slithers forward and turns her body until she’s facing you once more, her cunt just hair’s breadth from");
+		output(". Moving like a predator stalking prey in the wild, she slithers forward and turns her body until she’s facing you once more, her cunt just a hair’s breadth from");
 		if (!pc.hasVagina()) output(" where");
 		output(" yours");
 		if (!pc.hasVagina()) output(" would be");
@@ -3209,7 +3209,7 @@ public function firstTimeLaneFPCFGenderless():void
 	}
 	output("\n\n<i>“Now then.”</i> When she’s finished, she stands before you, fully dressed and looking almost no different from when you had walked into her hut just an hour ago. <i>“As cute as you are, and as much as I wouldn’t mind going again, I’m afraid fucking my new property doesn’t pay the bills. Get out there and make me some money.”</i> And, without another word, she leaves the room, leaving you naked and soaked in a variety of juices. That was a little harsh, the way she talked to you like you were a tool in her toolbox, but in a way, that sort of attitude is what makes Lane so attractive to you – the way she’s focused on what she wants, like a predator, and when she’s done with it, she leaves it for her next target.");
 
-	output("\n\nYou peel yourself from her bed and gather your belongings. Once your fully dressed once more, you leave her room, walking your way back through her ‘office.’ She’s found something to entertain her in her codex, and she barely even looks at you as you leave.");
+	output("\n\nYou peel yourself from her bed and gather your belongings. Once you’re fully dressed once more, you leave her room, walking your way back through her ‘office.’ She’s found something to entertain her in her codex, and she barely even looks at you as you leave.");
 
 	// Lust reduced to 0, time progresses by 1 hour, place PC one square outside Lane’s Plane
 	processTime(60);
@@ -3238,7 +3238,7 @@ public function lanesAppearance():void
 
 		output("\n\nThe most mesmerizing thing about Lane is a rather unique feature that only the Daynarians have: their blood is naturally luminescent. All throughout Lane’s body, you can see his blood course: it’s easiest to see in his wrists and in his tassels, but it’s visible all over his body, from the thick of his chest to the thin of his cheeks. The luminescent blood lights a warm red with every beat of his heart, and on every rest, different veins map out a different route on his body with a calm, pale blue. The blood flowing through his tassels compliment his tattoos and his piercings exquisitely: you could just sit there and watch the glowing patterns for hours....");
 
-		if (flags["LANE_MALE_SEXED"] != undefined) output("\n\n“You remember Lane’s equipment rather clearly. Between the crease of his legs is a genital slit roughly 7cm long, concealing a smooth, tapered Daynarian tool that’s 24cm in length when fully aroused. When you first get it to flop out of his slit, it’s only 6cm across, but the longer you go and the hornier he gets, it inflates to a girth twice that size. His dick has a pointed tip and has almost no distinguishing features: the typical Daynarian penis has thick skin that hides the veins, although the excited pulsing of his blood is still barely visible. You also know that, unlike most species, he’s the most sensitive at the base rather than the tip.”");
+		if (flags["LANE_MALE_SEXED"] != undefined) output("\n\nYou remember Lane’s equipment rather clearly. Between the crease of his legs is a genital slit roughly 7cm long, concealing a smooth, tapered Daynarian tool that’s 24cm in length when fully aroused. When you first get it to flop out of his slit, it’s only 6cm across, but the longer you go and the hornier he gets, it inflates to a girth twice that size. His dick has a pointed tip and has almost no distinguishing features: the typical Daynarian penis has thick skin that hides the veins, although the excited pulsing of his blood is still barely visible. You also know that, unlike most species, he’s the most sensitive at the base rather than the tip.");
 	}
 	else
 	{
@@ -3254,7 +3254,7 @@ public function lanesAppearance():void
 
 		if (flags["LANE_FEMALE_SEXED"] != undefined)
 		{
-			output("\n\n“You remember Lane’s honeypot rather clearly. Between the crease of her legs is a genital slit roughly 7cm long, concealing a hungry, wet vagina, with streamlined muscles adorning a narrow tunnel, designed to pull you deeper into her. She has no clitoris, unlike most other species you’ve encountered. The lips of her cunny are among the most sensitive part of her genitals, although the real prize, for her, is reaching as deep inside with whatever you can as possible. Her genital slit is not actually a part of her genitals, and is stubborn to move when she’s not in the mood, but are spongy and pliable when she is.”");
+			output("\n\nYou remember Lane’s honeypot rather clearly. Between the crease of her legs is a genital slit roughly 7cm long, concealing a hungry, wet vagina, with streamlined muscles adorning a narrow tunnel, designed to pull you deeper into her. She has no clitoris, unlike most other species you’ve encountered. The lips of her cunny are among the most sensitive part of her genitals, although the real prize, for her, is reaching as deep inside with whatever you can as possible. Her genital slit is not actually a part of her genitals, and is stubborn to move when she’s not in the mood, but are spongy and pliable when she is.");
 		}
 	}
 
@@ -3321,7 +3321,7 @@ public function followerLaneIntervention(followerName:String):void
 	else output(" angry, confused, upset, distraught, and a plethora of others");
 	output(". You pat "+ lFollowerMF("him", "her") +" on the shoulder warmly and ask "+ lFollowerMF("him", "her") +" what the problem is.");
 
-	output("\n\n" + lFollowerMF("He", "She") + " brings up "+ lFollowerMF("his", "her") +" codex, and on it is a long list of numbers. In particular, a lot of negative numbers, usually around the five-hundred area. Beside each number is a green ‘before’ and a red ‘after’ – and both of those numbers steadily shrink as the days pass by.");
+	output("\n\n" + lFollowerMF("He", "She") + " brings up "+ lFollowerMF("his", "her") +" codex, and on it is a long list of numbers. In particular, a lot of negative numbers, usually around the five hundred area. Beside each number is a green ‘before’ and a red ‘after’ – and both of those numbers steadily shrink as the days pass by.");
 	if (lFollowerName() == "Dane") output(" <i>“Remiss as it may be to take too fine an interest in my </i>employers<i> financial situation...”</i>");
 	else output("<i>“I was looking over our financial reports,”</i>");
 	output(" "+ lFollowerMF("he", "she") +" says, holding "+ lFollowerMF("his", "her") +" voice steady and concealing "+ lFollowerMF("his", "her") +" thoughts, <i>“");
@@ -3380,7 +3380,7 @@ public function followerLaneInterventionConfide():void
 	else output(" an entire array of emotions from " + lFollowerName());
 	output("–");
 	if (lFollowerName() != "Dane") output(" happiness that you’ve found the one that makes your heart flutter;");
-	output(" acceptance that Lane means everything to you and that five-hundred credits is a minor sum");
+	output(" acceptance that Lane means everything to you and that five hundred credits is a minor sum");
 	if (lFollowerName() != "Dane") output("; maybe even jealousy that Lane didn’t choose "+ lFollowerMF("him", "her"));
 	output(". The expression you get – jaw slack, eyes wide, lips curled and quivering, brow furrowed – looks appalled and disgusted.");
 
@@ -3389,15 +3389,15 @@ public function followerLaneInterventionConfide():void
 	else output(" to love [lane.himHer]");
 	output(". [lane.HeShe] took your dignity, and now [lane.heShe]’s taking your money too.”</i>");
 
-	output("\n\nYou try to insist that [lane.heShe] isn’t, but "+ lFollowerName() +"’s not having any of it. <i>“Try and think. When did you first realize you ‘loved’ this Daynar?”</i> You squint your eyes as you recall it. It was a glorious afternoon; the weather was flawless; the smell of vanilla and lavender was – <i>“Focus!”</i> "+ lFollowerMF("he", "she") +" snaps, and you think harder. You can’t remember the date, but it was shortly after one of your sessions with [lane.himHer].");
+	output("\n\nYou try to insist that [lane.heShe] isn’t, but "+ lFollowerName() +" is not having any of it. <i>“Try and think. When did you first realize you ‘loved’ this Daynar?”</i> You squint your eyes as you recall it. It was a glorious afternoon; the weather was flawless; the smell of vanilla and lavender was – <i>“Focus!”</i> "+ lFollowerMF("he", "she") +" snaps, and you think harder. You can’t remember the date, but it was shortly after one of your sessions with [lane.himHer].");
 
 	output("\n\n<i>“And what was your opinion of [lane.himHer] before that ‘session’?”</i>");
 
 	output("\n\nIt was a cloudier time, you admit, but after focusing on it a moment longer, you tell her that your opinion of Lane before that was that [lane.heShe] was an all right person, all around. [lane.HeShe] was a dependable business" + lane.mf("", "wo") + "man that ran a fair, if obscure, little business in the desert. You thought [lane.heShe] was attractive and were considering asking [lane.himHer] out on a date, or something.");
 
-	output("\n\n<i>“That’s weird, [pc.name], that you would go straight from ‘eh, [lane.heShe]’s alright,’ to ‘surrender your livelihood to [lane.himHer]’ in the space of a single session, don’t you think?”</i> You don’t have a response to that – you never really considered it that way before. <i>“[lane.HeShe] didn’t do whatever you paid [lane.himHer] to do to you, and [lane.heShe] made you [lane.hisHer] little lovesick battered-housewife " + lane.mf("cumdump", "cuntslave") +" instead that day. Do you really love [lane.himHer]?”</i> You nod your head, though "+lFollowerName()+"’s making you think thoughts you’d rather not. <i>“Has [lane.heShe] ever told you that [lane.heShe] loves you back?”</i>");
+	output("\n\n<i>“That’s weird, [pc.name], that you would go straight from ‘eh, [lane.heShe]’s alright,’ to ‘surrender your livelihood to [lane.himHer]’ in the space of a single session, don’t you think?”</i> You don’t have a response to that – you never really considered it that way before. <i>“[lane.HeShe] didn’t do whatever you paid [lane.himHer] to do to you, and [lane.heShe] made you [lane.hisHer] little lovesick battered-housewife " + lane.mf("cumdump", "cuntslave") +" instead that day. Do you really love [lane.himHer]?”</i> You nod your head, though "+lFollowerName()+" is making you think thoughts you’d rather not. <i>“Has [lane.heShe] ever told you that [lane.heShe] loves you back?”</i>");
 
-	output("\n\nYou’re stricken for words at that, and your mind desperately scrambles to recall some instance where [lane.heShe] did something for you that required some sacrifice on [lane.hisHer] part. There was that one time [lane.heShe] – no, that was someone else. But at least [lane.heShe] – actually, not once has Lane given you a discount. At the very least, Lane is a good lover! But... now that you think about it, most of your bouts with [lane.himHer] involve you doing all the work. [lane.heShe]’s never wanted to go down on you... [lane.heShe]’s never even let you kiss [lane.himHer]; [lane.heShe]’s always the kisser.");
+	output("\n\nYou’re stricken for words at that, and your mind desperately scrambles to recall some instance where [lane.heShe] did something for you that required some sacrifice on [lane.hisHer] part. There was that one time [lane.heShe] – no, that was someone else. But at least [lane.heShe] – actually, not once has Lane given you a discount. At the very least, Lane is a good lover! But... now that you think about it, most of your bouts with [lane.himHer] involve you doing all the work. [lane.HeShe]’s never wanted to go down on you... [lane.heShe]’s never even let you kiss [lane.himHer]; [lane.heShe]’s always the kisser.");
 
 	output("\n\nYou suddenly feel very itchy, particularly around");
 	if (pc.hasCock() && !pc.hasVagina()) output(" [pc.eachCock] and your [pc.asshole]");
@@ -3418,7 +3418,7 @@ public function followerLaneInterventionConfide():void
 	output(" in you. We can all break whatever hold this asshole has on you.”</i>");
 	if (lFollowerName() == "Dane") output(" He squeezes your shoulder as a measure of reassurance");
 	else output(" " + lFollowerMF("He", "She") + " cups your cheeks gently, and smiles warmly at you");
-	output(". <i>“Whatever you think only [lane.heShe] can do, you can find someone else in the whole wide universe who can do it better. If you just need to blow off some steam and relieve some tension... you don’t need to pay a whole five-hundred bones and look any farther than your own ship for that.”</i> You smile back at "+lFollowerMF("him", "her")+" – you knew you brought "+lFollowerMF("him", "her")+" on your ship for a reason.");
+	output(". <i>“Whatever you think only [lane.heShe] can do, you can find someone else in the whole wide universe who can do it better. If you just need to blow off some steam and relieve some tension... you don’t need to pay a whole five hundred bones and look any farther than your own ship for that.”</i> You smile back at "+lFollowerMF("him", "her")+" – you knew you brought "+lFollowerMF("him", "her")+" on your ship for a reason.");
 
 	output("\n\n"+ lFollowerName() +" is confident in your strength, and you feel some relief in confiding with "+lFollowerMF("him", "her")+" – and you thank "+lFollowerMF("him", "her")+" for her help in realizing what Lane was doing to you. <b>From now on, you <i>cannot</i> visit Lane again.</b> You’re afraid of what might happen if you do. You and "+lFollowerName()+" both figure that <b>if you can make it ten days without any contact with Lane,</b> you ought to be cleansed of [lane.hisHer] influence.");
 
@@ -3443,7 +3443,7 @@ public function followerLaneInterventionFuckOff():void
 
 	output("You look "+ lFollowerName() +" dead in the eye. <i>“It’s not any of your business,”</i> you tell "+ lFollowerMF("him", "her") +" sternly. You try to look as serious as possible, but "+ lFollowerMF("he", "she") +"’s not entirely convinced.");
 
-	output("\n\n<i>“At five-hundred credits a day, I would think it’s the whole ship’s business, [pc.name].”</i> "+ lFollowerMF("He", "She") +" meets your stare unflinchingly and refuses to back down. <i>“That’s not chump change disappearing here. We could be using that for repairs or improvements");
+	output("\n\n<i>“At five hundred credits a day, I would think it’s the whole ship’s business, [pc.name].”</i> "+ lFollowerMF("He", "She") +" meets your stare unflinchingly and refuses to back down. <i>“That’s not chump change disappearing here. We could be using that for repairs or improvements");
 	if (lFollowerName() == "Dane") output("- or keeping the resident mercenary paid well enough to stick around");
 	output(".”</i>");
 
@@ -3523,7 +3523,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	}
 	if (oldT < 144 * 60 && newT >= 144 * 60)
 	{
-		AddLogEvent(ParseText("The feel the vibration of your codex before you hear the beep. You scratch at its edges before you realize you’re even touching it. You have to re-read the message on it three times before you realize what it’s saying.\n\nNo matter how much you drink, your thirst is never quenched. For a split second, you see Lane in your mind’s eye, you at [lane.hisHer] feet, [lane.hisHer] genitals unaroused, [lane.hisHer] happy smile at your obedience cleansing your fiery nerves. You blink and chastise yourself for thinking about [lane.himHer] and promise not to do it again, and then you’re right back to your fantasies not even two minutes later."), "good", minutes);
+		AddLogEvent(ParseText("You feel the vibration of your codex before you hear the beep. You scratch at its edges before you realize you’re even touching it. You have to re-read the message on it three times before you realize what it’s saying.\n\nNo matter how much you drink, your thirst is never quenched. For a split second, you see Lane in your mind’s eye, you at [lane.hisHer] feet, [lane.hisHer] genitals unaroused, [lane.hisHer] happy smile at your obedience cleansing your fiery nerves. You blink and chastise yourself for thinking about [lane.himHer] and promise not to do it again, and then you’re right back to your fantasies not even two minutes later."), "good", minutes);
 
 		if (pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
@@ -3558,7 +3558,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 	{
 		AddLogEvent("You see only bold, blasé colors: reds, browns, blacks and whites. Your vision has tunneled slightly, and you have to squint to look at your codex, to read the very harsh words you left yourself nine days ago. The beep it made hurt your ears, even though it didn’t sound any louder than a heartbeat, to you.\n\nOh well. You put your codex away and turn back to Lane,", "good", minutes);
 		if (lane.mf("m", "f") == "m") ExtendLogEvent(ParseText(" sticking his wonderful cock back into your mouth and nursing on him gently. You feel his hands on the sides of your head as he warmly but eagerly guides you across his length. <i>“I’ve missed you, [pc.name],”</i> he says, and you’re instantly gratified. You lean forward to deepthroat him – and you feel something sharp across your soft palate."));
-		else ExtendLogEvent(ParseText(" placing your [pc.lips] back on her wonderful cunt and lapping at her honeypot like a cat with a saucer of milk. You feel her hands on the sides of your head as she gently but eagerly presses your [pc.face] deeper into her. <i>“I’ve missed you, [pc.name],”</i> she says, and your heart flutters. Your tilt your head up, to dig into her as deep as you can with your [pc.tongue] – and you feel something sharp across your palate."));
+		else ExtendLogEvent(ParseText(" placing your [pc.lips] back on her wonderful cunt and lapping at her honeypot like a cat with a saucer of milk. You feel her hands on the sides of your head as she gently but eagerly presses your [pc.face] deeper into her. <i>“I’ve missed you, [pc.name],”</i> she says, and your heart flutters. You tilt your head up, to dig into her as deep as you can with your [pc.tongue] – and you feel something sharp across your palate."));
 		ExtendLogEvent(ParseText("\n\nYou’re snapped back to reality. You look down at where your [lane.master] was, and find your thumb in your mouth, wet and compressed from you sucking on it. You wail in despair that it wasn’t real."));
 		if (shipLocation != "201") ExtendLogEvent(" Tarkus is only a flight away – you could easily make it real!");
 		else ExtendLogEvent(" Lane is only a few hours walk away - you could easily make it real!");

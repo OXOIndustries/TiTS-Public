@@ -99,7 +99,7 @@ public function azraBonusProc():Boolean
 
 		output("\n\n<i>“Bravo! Excellent! Exemplary! My name is Azra, freelance Xenobiologist... " + pc.mf("Mister","Miss") + "...?”</i> The suula grabs your hand and shakes it hard enough for you to feel it in your [pc.feet]. Quite a grip on that one.");
 		output("\n\n<i>“[pc.name] Steele,”</i> you answer.");
-		output("\n\n<i>“Have you room on your craft for a passenger?”</i> You see, I’m a freelance Xenobiologist specializing in the adaptations of alien flora, but I am completely without transportation.”</i> She shakes her head and sighs. <i>“My chartered captain left without me when customs delayed my arrival at Tavros. ‘Riches wait for no man’ or some such.  The greedy syot took off with nearly all my credits! I have neither the funding to charter another or an alternative means of transit, leaving me to put myself upon the kindness of " + pc.mf("dashing","fetching") + " adventurers like yourself. Would you take me onboard? I don’t take up much room.”</i> Azra tucks her wings in tight and hunches her shoulders in, slouching as much as her nine-foot tall frame will allow. <i>“Relatively speaking, of course.”</i> A blush the color of a terran sunset colors her cheeks.");
+		output("\n\n<i>“Have you room on your craft for a passenger? You see, I’m a freelance Xenobiologist specializing in the adaptations of alien flora, but I am completely without transportation.”</i> She shakes her head and sighs. <i>“My chartered captain left without me when customs delayed my arrival at Tavros. ‘Riches wait for no man’ or some such.  The greedy syot took off with nearly all my credits! I have neither the funding to charter another or an alternative means of transit, leaving me to put myself upon the kindness of " + pc.mf("dashing","fetching") + " adventurers like yourself. Would you take me onboard? I don’t take up much room.”</i> Azra tucks her wings in tight and hunches her shoulders in, slouching as much as her nine-foot tall frame will allow. <i>“Relatively speaking, of course.”</i> A blush the color of a terran sunset colors her cheeks.");
 		output("\n\nDo you have room for a scientist on your ship?");
 		flags["MET_AZRA"] = 1;
 		processTime(5);
@@ -415,7 +415,7 @@ public function talkToAzraAboutHerSexGreat():void
 	else output(" You get to rock the best of both worlds.");
 	output("”</i>");
 	output("\n\nAzra smiles impishly. <i>“Good to hear, but you keep it in your pants for the time being.”</i>");
-	if(pc.isCrotchExposed() && pc.hasGenitals()) output(" She glances at your completely exposed genitalia. <i>“Or at the very least, keep it at arm’s length.");
+	if(pc.isCrotchExposed() && pc.hasGenitals()) output(" She glances at your completely exposed genitalia. <i>“Or at the very least, keep it at arm’s length. ");
 	else output(" She keeps her gaze fixed firmly on your eyes. <i>“");
 	output("I’m not the type of girl to hop in the sack just because a " + pc.mf("guy","girl") + " likes my sex organs.”</i> She wiggles her fingers at you. <i>“You’ll have to woo me for that. For now, why do you have anything else you’d like to ask me about? Something less personal, perhaps.”</i>");
 	processTime(2);
