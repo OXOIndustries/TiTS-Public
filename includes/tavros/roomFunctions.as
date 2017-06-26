@@ -218,6 +218,7 @@ public function anonsBarAddendums():Boolean {
 	annoAtAnonsAddendum(4);
 	ramisAtAnonsAddendum(5);
 	roamingBarEncounter(7);
+	fisiAtAnonsAddendum(12);
 	return false;
 }
 
@@ -276,4 +277,9 @@ public function displayNoticeBoardRD():void {
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function northEastPlazaBonus():void
+{
+	fisiAtResDeckAddendum(0);
 }
