@@ -70,6 +70,14 @@ public function liammeBonus():void
 	}
 	else if(flags["MET_LIAMME"] != undefined) 
 	{
+		// Remove status hotfix
+		if(pc.getStatusMinutes("Liamme Disabled") <= 0)
+		{
+			pc.removeStatusEffect("Liamme Disabled");
+			liammeBonus();
+			return;
+		}
+		
 		addDisabledButton(0,"Liamme","Liamme","Once a day is probably enough for the little ausar.");
 		pc.removeStatusEffect("LIAMME_OUTFIT");
 	}
@@ -341,12 +349,12 @@ public function applyLiamDisable():void
 {
 	pc.createStatusEffect("Liamme Disabled");
 	if(hours <= 5) pc.setStatusMinutes("Liamme Disabled",240);
-	else if(hours >= 12 && hours < 20) pc.setStatusMinutes("Liamme Disabled",960);
-	else if(hours >= 20) pc.setStatusMinutes("Liamme Disabled",500);
+	else if(hours < 20) pc.setStatusMinutes("Liamme Disabled",960);
+	else pc.setStatusMinutes("Liamme Disabled",500);
 }
 
 //Fuck
-//[Sex] //Liamme can only be sexed once a day before he <i>“goes to work”</i> and can’t be found again until 12:00 the next day.
+//[Sex] //Liamme can only be sexed once a day before he “goes to work” and can’t be found again until 12:00 the next day.
 public function fuckLiamme():void
 {
 	clearOutput();
