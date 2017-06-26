@@ -1684,7 +1684,7 @@ public function seraGetSalary():void
 	
 	if(pc.hasCuntTail()) surpriseSex.push(getTailUsedBySera);
 	if(pc.hasParasiteTailCock()) surpriseSex.push(seraCockvineScene);
-	if((flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["MET_KEROKORAS"] != undefined) && pc.hasGenitals()) surpriseSex.push(seraTongueFuckBonus);
+	if((flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["MET_KEROKORAS"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined) && pc.hasGenitals()) surpriseSex.push(seraTongueFuckBonus);
 	
 	if(surpriseSex.length > 0) selFunc = surpriseSex[rand(surpriseSex.length)];
 	
