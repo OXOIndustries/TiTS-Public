@@ -836,7 +836,8 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["KIRO"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["LERRIS"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["PENNY"].cockVirgin) totalVirginitiesTaken++;
-		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
+		if (!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
+		if (!chars["FISIANNA"].vaginalVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
@@ -845,7 +846,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["INESSA_VIRGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["SERA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
 		if(flags["GIL_PUSS_FUCKED"] != undefined) totalVirginitiesTaken++;
-		if(!ainaIsVirgin()) totalVirginitiesTaken++;
+		if (!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
 			output2("\n<b><u>Sexploration</u></b>");
