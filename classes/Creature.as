@@ -4616,7 +4616,7 @@
 			if (melee) temp += meleeWeapon.attack;
 			else temp += rangedWeapon.attack;
 			//Bonus to hit for Tech Specialists above level 7!
-			if (hasPerk("Fight Smarter")) temp += Math.round(intelligence()/7);
+			if (hasPerk("Fight Smarter")) temp += Math.round(bimboIntelligence()/7);
 			//Bonus to hit with Rage and Calm Aim perks
 			if (hasPerk("Rage Aim") && (HP() < (HPMax() / 2))) temp += 1;
 			else if (hasPerk("Calm Aim") && (HP() > (HPMax() / 2))) temp += 1;
@@ -4743,7 +4743,7 @@
 			if (accessory is SiegwulfeItem)
 			{
 				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
-				else temp += Math.round(intelligence() * 0.1);
+				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			//Sweaty penalties!
 			if(hasStatusEffect("Sweaty"))
@@ -4826,7 +4826,7 @@
 			if (accessory is SiegwulfeItem)
 			{
 				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
-				else temp += Math.round(intelligence() * 0.1);
+				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			if (hasPerk("Agility")) {
 				if ((temp * .5) < 10) temp += 10;

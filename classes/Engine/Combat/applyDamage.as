@@ -144,7 +144,7 @@ package classes.Engine.Combat
 			output(".");
 			
 			//Blind chance!
-			if(target.statusEffectv4("Charged Shield") / 2 + rand(20) + 1 > attacker.intelligence() / 2 + 10 && !attacker.hasStatusEffect("Blinded"))
+			if(target.statusEffectv4("Charged Shield") / 2 + rand(20) + 1 > attacker.bimboIntelligence() / 2 + 10 && !attacker.hasStatusEffect("Blinded"))
 			{
 				if(attacker is PlayerCharacter) output(" <b>You are blinded!</b>");
 				else output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " is blinded!</b>");

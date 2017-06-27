@@ -82,7 +82,7 @@ package classes.Engine.Combat
 				{
 					damageResult.wasSneak = true;
 					
-					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
+					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
@@ -96,7 +96,7 @@ package classes.Engine.Combat
 				//Electrified weapons do more damage based on int!
 				if (attacker.hasStatusEffect("Charged Weapon"))
 				{
-					var chargeBonus:Number = attacker.intelligence();
+					var chargeBonus:Number = attacker.bimboIntelligence();
 					if (attacker.hasPerk("Fuck Sense")) 
 					{
 						chargeBonus = attacker.libido();
@@ -132,7 +132,7 @@ package classes.Engine.Combat
 				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blinded")) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
-					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
+					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);
 					if(attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
