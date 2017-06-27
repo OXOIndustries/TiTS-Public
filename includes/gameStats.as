@@ -840,6 +840,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["LERRIS"].vaginalVirgin) totalVirginitiesTaken++;
 		if(!chars["PENNY"].cockVirgin) totalVirginitiesTaken++;
 		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
+		if(!chars["FISIANNA"].vaginalVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
@@ -3472,23 +3473,23 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 				}
 				//Fisianna
-				if (flags["FISI_MET"] != undefined)
+				if(flags["FISI_MET"] != undefined)
 				{
 					output2("\n<b>* Fisianna:</b> Met her, ");
-					if (flags["FISI_AT_RES_DECK"] == undefined) output2("Acquaintances");
-					else if (flags["FISI_MAX"] == undefined) output2("Friends");
-					else if (flags["FISI_LOVER"] != undefined) output2("Lovers");
-					else if (flags["FISI_REJECTED"] != undefined) output2("Ex-friends");
+					if(flags["FISI_AT_RES_DECK"] == undefined) output2("Acquaintances");
+					else if(flags["FISI_MAX"] == undefined) output2("Friends");
+					else if(flags["FISI_LOVER"] != undefined) output2("Lovers");
+					else if(flags["FISI_REJECTED"] != undefined) output2("Ex-friends");
 					else output2("Best friends");
 					output2("\n<b>* Fisianna, Trust:</b> " + flags["FISI_TRUST"] + " %");
-					if (flags["FISI_REL_TYPE"] != undefined)
+					if(flags["FISI_REL_TYPE"] != undefined)
 					{
 						output2("\n<b>* Fisianna, Relationship:</b> ");
-						if (flags["FISI_REL_TYPE"] == 1) output2("Monogamous");
-						else if (flags["FISI_REL_TYPE"] == 2) output2("Open Relationship");
-						else if (flags["FISI_REL_TYPE"] == 3) output2("Polyamorous");
+						if(flags["FISI_REL_TYPE"] == 1) output2("Monogamous");
+						else if(flags["FISI_REL_TYPE"] == 2) output2("Open Relationship");
+						else if(flags["FISI_REL_TYPE"] == 3) output2("Polyamorous");
 					}
-					if (flags["FISI_TIMES_SEXED"] != undefined)
+					if(flags["FISI_TIMES_SEXED"] != undefined)
 					{
 						output2("\n<b>* Fisianna, Total Times Sexed:</b> " + flags["FISI_TIMES_SEXED"]);
 						output2("\n<b>* Fisianna, Times Had a Tailjob from Her:</b> " + flags["FISI_TIMES_TJ"]);
@@ -5567,7 +5568,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["MET_BEA_HUBBY"] != undefined) output2("\n<b>* Traven Reasner:</b> Met him");
 				}
 				// Chrissy
-				if (flags["CHRISSY_MET"] != undefined)
+				if(flags["CHRISSY_MET"] != undefined)
 				{
 					output2("\n<b>* Chrissy:</b> Met her");
 					if(flags["CHRISSY_SEXED"] != undefined) output2("\n<b>* Chrissy, Times Sexed:</b> " + flags["CHRISSY_SEXED"]);
