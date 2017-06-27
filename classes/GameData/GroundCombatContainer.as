@@ -386,6 +386,12 @@ package classes.GameData
 	
 			if (target.hasPerk("Juggernaut"))
 			{
+				if (target.hasStatusEffect("Staggered") && rand(4) == 0)
+				{
+					if (target is PlayerCharacter) output("\n\n<b>You shake off the stagger! You’re unstoppable!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " shakes off the stagger!</b>");
+					target.removeStatusEffect("Staggered");
+				}
 				if (target.hasStatusEffect("Stunned") && rand(4) == 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You shake off your stun! You’re unstoppable!</b>");

@@ -88,7 +88,7 @@ package classes.GameData
 			juggernaut.levelLimit = 4;
 			juggernaut.autoGained = true;
 			juggernaut.perkName = "Juggernaut";
-			juggernaut.perkDescription = "Grants a 25% chance to overcome any paralysis or stun effect every combat round.";
+			juggernaut.perkDescription = "Grants a 25% chance to overcome any paralysis, stun or stagger effect every combat round.";
 			insertPerkData(juggernaut);
 			
 			var riposte:PerkData = new PerkData();
