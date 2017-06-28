@@ -576,6 +576,8 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 	//hasCock:
 	if(x >= 0)
 	{
+		showName("BELLE\n& SAEC");
+		showBust("BELLE","SAEC");
 		output("\n\nYour master takes one look at your throbbing, needy cock");
 		if(pc.cockTotal() > 1) output("s");
 		output(" before giving you a knowing smile, <i>“What’s wrong, " + pc.mf("boy","girl") + ", feeling pent up?”</i>");
@@ -597,6 +599,11 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 	//hasVag:
 	if(v >= 0)
 	{
+		if(x >= 0)
+		{
+			showName("BELLE\n& SAEC");
+			showBust("BELLE_NUDE","SAEC");
+		}
 		output("\n\nYour master circles around behind you, getting a good look at your wet, needy pussy as she kneels down, getting her hands all over your [pc.hips]. Shortly after, you feel a finger run along your nether-lips, gathering up beads of [pc.girlCum] as it makes its way towards your taint.");
 		output("\n\n<i>“My, my,”</i> Belle breaths lustfully, <i>“Looks like the heat harmonics might have been tuned a little too high, judging by how wet you are. What do you say, " + pc.mf("boy","girl") + ", want me to fix that problem for you?”</i>");
 		if(x >= 0) output("\n\nAs you’re still fucking Saec with as much vigor as you can muster, you manage to look over your shoulder");
