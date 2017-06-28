@@ -4358,7 +4358,7 @@ public function giannaXAnnoThreesomeGo():void
 	//Unclothed
 	else
 	{
-		output("\n\nSlender digits abruptly encircle [pc.oneCock] and stroke. Somehow Gianna is able to continue kissing, eyes closed, all while effortlessly giving you the beginnings of a handjob. She caresses. She squeezes. She lovingly fondles your [pc.cockNoun]");
+		output("\n\nSlender digits abruptly encircle [pc.oneCock] and stroke. Somehow Gianna is able to continue kissing, eyes closed, all while effortlessly giving you the beginnings of a handjob. She caresses. She squeezes. She lovingly fondles your [pc.cockNoun " + x + "]");
 		if(pc.lust() < 66) output(" until it is in a fully erect state");
 		output(".");
 	}
@@ -4374,7 +4374,7 @@ public function giannaXAnnoThreesomeGo():void
 	output(".”</i> An alabaster thumb dances in circles over a pinkish clit. <i>“And most importantly you’re wet enough to take half the bulls on the planet... or [pc.name].”</i>");
 
 	output("\n\nAnno whimpers, hips grinding back against Gianna’s palm. <i>“B-boss,”</i> she whimpers, <i>“Do something. Ah~!”</i> A full-body shudder wracks her. <i>“I d-don’t want to cum yet.”</i>");
-	output("\n\nWatching those fingers slip in and out... and in and out over and over, you cannot help but feel a touch jealous. Your [pc.cock] wants inside the horned-up ausar, bad, and Gianna’s incessant stroking of your erection and Anno alike has only worsened the devilish cravings.");
+	output("\n\nWatching those fingers slip in and out... and in and out over and over, you cannot help but feel a touch jealous. Your [pc.cock " + x + "] wants inside the horned-up ausar, bad, and Gianna’s incessant stroking of your erection and Anno alike has only worsened the devilish cravings.");
 	output("\n\nFortunately Gianna seems to be on the same page as you. She nods her head slightly, cooing, <i>“");
 	if(giannaPersonality() < 65) output("Allow me to roll out the red carpet for you.");
 	else output("Let me see how wet we can make this puppy first.”</i> She rubs small circles beneath your glans, the rest of her fingers squeezing you tight. <i>“You deserve the wettest, cummiest boxes to bring yourself off in.");
@@ -4409,14 +4409,14 @@ public function giannaXAnnoThreesomeGo2():void
 	showBust("ANNO_NUDE",giannaBustDisplay());
 	var x:int = pc.cockThatFits(anno.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
-	output("You’re on Anno in a flash, [pc.cockNoun] delving deep into the ausar’s needy cunny. She is so <i>drenched</i> that it’s like riding into her pussy on a red carpet. Her velvety folds squeeze tight, just like the girl behind them. Her knees lock behind your back to pull you deeper, and her arms fall on your shoulders, sharp-clawed fingers scraping ");
+	output("You’re on Anno in a flash, [pc.cockNoun " + x + "] delving deep into the ausar’s needy cunny. She is so <i>drenched</i> that it’s like riding into her pussy on a red carpet. Her velvety folds squeeze tight, just like the girl behind them. Her knees lock behind your back to pull you deeper, and her arms fall on your shoulders, sharp-clawed fingers scraping ");
 	if(!pc.hasScales()) output("across your [pc.skinFurScales]");
 	else output("furrows into your [pc.skin]");
 	output(". You grunt with the force of your thrust. Anno tilts her head upward and captures your lips with hers, silencing you with a feverish tongue.");
 	pc.cockChange();
 	output("\n\nWhen the kiss breaks, she growls, <i>“Harder! Fuck me harder!”</i>");
 	output("\n\nYou answer by slamming your pelvis into hers hard enough to make her eyes roll halfway back and her voice cut off into a canine squeak. Pounding this bitch feels <i>good</i>. Her pussy can’t get enough, and neither can you, now that you’ve started really working her over. You take Anno on a first-class trip to poundtown. Pussyjuice squirts over your thighs from how forcefully you penetrate her, but the bitch just eats it up, squirming and gasping, her tail thumping the wall with excited wags.");
-	output("\n\nYou fuck her like the animal she is, and she loves it. It’s musky, feral sex. The kind that makes you both break out in sweat. You’re going to smell like puppy pussy for hours when this is over, and you relish it. Your [pc.cockNoun] swells inside her, thicker and harder, preparing to disgorge a load of [pc.cum] inside her. Girlcum sprays your middle again and again as Anno climaxes repeatedly, the long denied pleasure scorching through her nerves in bolts of erotic lightning.");
+	output("\n\nYou fuck her like the animal she is, and she loves it. It’s musky, feral sex. The kind that makes you both break out in sweat. You’re going to smell like puppy pussy for hours when this is over, and you relish it. Your [pc.cockNoun " + x + "] swells inside her, thicker and harder, preparing to disgorge a load of [pc.cum] inside her. Girlcum sprays your middle again and again as Anno climaxes repeatedly, the long denied pleasure scorching through her nerves in bolts of erotic lightning.");
 	output("\n\nShe whimpers and begs. Her orgasms seem endless. She even stops squirting after a time, but you can feel her clenching about you as if her body is trying to expel another girlish load over you. Anno grimaces and shakes her head. <i>“Too much!”</i> She pushes on the bench, trying to drag herself away. <i>“Too sensitive!”</i>");
 	processTime(6);
 	clearMenu();
@@ -4432,22 +4432,22 @@ public function giannaXAnnoThreesomeGo3():void
 	if(x < 0) x = pc.smallestCockIndex();
 	output("It is then that Gianna takes your hand and presses it against her tight, synthetic cunt. She leans over the table next to Anno, offering you a chance to take her doggie-style for desert after having your fill of missionary with the canine slut. Something seems mismatched about that, but you’re too horny to care. You pull out of the fucked-out pup and thrust yourself into the eager android, burying your ausar-basted bone deep into silken lips of Gianna’s talented nethers. They cup and caress you, stroking you, fluttering over your flesh in ripples that demand you orgasm as soon as possible.");
 	output("\n\nGianna moans, but not for long. The exhausted Anno slides over to her, and soon the two hotties are frenching, trading tongues as you satisfy your second quim of the day. There are differences between the two that you’d love to point out, were you not on the edge of exploding. Gianna’s cunt is definitely the more active of the two, but Anno’s has a certain something to it, perhaps the smell, perhaps her pheromones that keep Gianna’s expertly manipulated folds from massaging her out of your brain entirely.");
-	output("\n\nThey’re both watching you from the corners of their eyes. Gianna’s twinkle mischievously, and her [gianna.butt] starts twerking against you, rocking and bouncing, the lips dragging tightly along your length. It’s too much, too pleasing to the eye and the dick. Overwhelmed by the erotic might of these two seductresses, you groan and climax, your [pc.cock] becoming hypersensitive as Gianna’s synthflesh folds squeeze down on your [pc.cockHead].");
+	output("\n\nThey’re both watching you from the corners of their eyes. Gianna’s twinkle mischievously, and her [gianna.butt] starts twerking against you, rocking and bouncing, the lips dragging tightly along your length. It’s too much, too pleasing to the eye and the dick. Overwhelmed by the erotic might of these two seductresses, you groan and climax, your [pc.cock " + x + "] becoming hypersensitive as Gianna’s synthflesh folds squeeze down on your [pc.cockHead " + x + "].");
 	//No cum!
-	if(pc.cumQ() < 4) output("\n\nYou feel your [pc.cock] flex with the rhythmic force of attempted ejaculations, and Gianna must feel it too, because her eyes flash white with what you can only assume is pleasure. The android shakes beneath you, her kisses suddenly artless. She cums right alongside you until the feeling passes, leaving muted satisfaction and exhaustion in its wake. You slide out of her slippery slit and flop down alongside the two girls, cuddling into soft breasts and post-coital hugs.");
+	if(pc.cumQ() < 4) output("\n\nYou feel your [pc.cock " + x + "] flex with the rhythmic force of attempted ejaculations, and Gianna must feel it too, because her eyes flash white with what you can only assume is pleasure. The android shakes beneath you, her kisses suddenly artless. She cums right alongside you until the feeling passes, leaving muted satisfaction and exhaustion in its wake. You slide out of her slippery slit and flop down alongside the two girls, cuddling into soft breasts and post-coital hugs.");
 	//Normal jizz
 	else if(pc.cumQ() < 250) 
 	{
-		output("\n\nYou feel your [pc.cock] flex in rhythmic ejaculation, even some slight trickles along your ");
+		output("\n\nYou feel your [pc.cock " + x + "] flex in rhythmic ejaculation, even some slight trickles along your ");
 		if(pc.balls > 0) output("[pc.sack]");
 		else output("taint");
-		output(" as a little leaks out of Gianna’s slippery slit.. The android shakes and squirms beneath you, her kisses suddenly artless. She’s cumming to the feeling of your orgasm, her pleasure matched in perfect 1 to 1 ratio. When the feeling finally passes, you sag down together, you [pc.cock] slipping free with one last shock of heavenly satisfaction.");
+		output(" as a little leaks out of Gianna’s slippery slit.. The android shakes and squirms beneath you, her kisses suddenly artless. She’s cumming to the feeling of your orgasm, her pleasure matched in perfect 1 to 1 ratio. When the feeling finally passes, you sag down together, you [pc.cock " + x + "] slipping free with one last shock of heavenly satisfaction.");
 		output("\n\nYou flop onto the table alongside the two fucked-out girls, cuddling into soft breasts and post-coital hugs.");
 	}
 	//Biggo Jizzo
 	else
 	{
-		output("\n\nYou feel your [pc.cock] erupting in rhythmic ejaculation, dumping huge loads of [pc.cumVisc] spooge into Gianna’s syrupy slit. Her eyes flash white with what you can only assume is pleasure. Her body shakes and quivers, her kisses suddenly artless. She’s cumming right alongside you, her bliss perfectly synced to yours. You keep basting her perfect pussy for as long as you can, more than long enough for [pc.cumGem] juices to drizzle out of her box in steady streams.");
+		output("\n\nYou feel your [pc.cock " + x + "] erupting in rhythmic ejaculation, dumping huge loads of [pc.cumVisc] spooge into Gianna’s syrupy slit. Her eyes flash white with what you can only assume is pleasure. Her body shakes and quivers, her kisses suddenly artless. She’s cumming right alongside you, her bliss perfectly synced to yours. You keep basting her perfect pussy for as long as you can, more than long enough for [pc.cumGem] juices to drizzle out of her box in steady streams.");
 		output("\n\nWhen you finally pull out, you’re pleased to see Gianna’s cunt absolutely drenched in [pc.cum]. You sit down on the bench, snuggling into the two exhausted beauties and their curvaceous bodies, trading tired kisses and reveling in the post-coital bliss together.");
 	}
 	//Merge
