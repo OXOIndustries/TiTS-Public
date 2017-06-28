@@ -66,7 +66,7 @@
 				if(CodexManager.entryUnlocked("Tentacles & Tanukis")) kGAMECLASS.output("You realize that you already have this story and toss out the useless code.");
 				else
 				{
-					kGAMECLASS.output("You scan the code with your Codex, unlocking \"Tentacles & Tanukis\" in your Codex’s fiction section.");
+					kGAMECLASS.output("You scan the code with your Codex, unlocking “Tentacles & Tanukis” in your Codex’s fiction section.");
 					CodexManager.unlockEntry("Tentacles & Tanukis");
 				}
 			}

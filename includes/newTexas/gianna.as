@@ -562,7 +562,7 @@ public function giannaAppearance():void
 {
 	clearOutput();
 	giannaDisplay();
-	output("Gianna is a 5\'8\" tall android of terran appearance and design, so realistic that if her eyes didn’t glow a pale blue she could pass for an albino human, if humans had sculpted proportions and pranced around without a single scrap of clothing. The surface of her skin looks and feels exactly like the organic equivalent");
+	output("Gianna is a 5\' 8\" tall android of terran appearance and design, so realistic that if her eyes didn’t glow a pale blue she could pass for an albino human, if humans had sculpted proportions and pranced around without a single scrap of clothing. The surface of her skin looks and feels exactly like the organic equivalent");
 	if(flags["GIANNA_TEMP"] == 0) output(", right down to a 98.6 degree body heat.");
 	else if(flags["GIANNA_TEMP"] == -1) output(", if you can ignore the chilly temperature she currently has it set to.");
 	else output(", if you can ignore the fact that she radiates an almost feverish heat from her manufactured dermis.");
@@ -4345,7 +4345,9 @@ public function giannaXAnnoThreesomeGo():void
 	showBust("ANNO_NUDE",giannaBustDisplay());
 	var x:int = pc.cockThatFits(anno.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
-	output("The moment the door closes behind you, Anno is on Gianna, kissing her hard, bearing her  into the wall. The synthetic companion squeaks cutely, slamming hard into the rustic, wood-panelled wall before sliding down to the bench.{ Her silicone-packed ass distends beneath the weight of two eager girls, creating half-moons that protrude out to either side.} Savage ausar muscle collides with a well-engineered simulacrum, slurping wetly. A throaty sound of passion squeezes from the corners of their locked lips, followed by wet smacking and near-orgasmic moans from Gianna.");
+	output("The moment the door closes behind you, Anno is on Gianna, kissing her hard, bearing her into the wall. The synthetic companion squeaks cutely, slamming hard into the rustic, wood-panelled wall before sliding down to the bench.");
+	if(gianna.buttRating() >= 15) output(" Her silicone-packed ass distends beneath the weight of two eager girls, creating half-moons that protrude out to either side.");
+	output(" Savage ausar muscle collides with a well-engineered simulacrum, slurping wetly. A throaty sound of passion squeezes from the corners of their locked lips, followed by wet smacking and near-orgasmic moans from Gianna.");
 	//Clothed
 	if(!pc.isCrotchExposed())
 	{
