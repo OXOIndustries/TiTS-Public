@@ -174,7 +174,7 @@ public function rensMainMenu():void
 		if(flags["SEXED_REAHA"] != undefined && flags["RENSA_FUCKED"] != undefined) addButton(4,"Cow-Slut",renshaAndReaha,undefined,"Cow-Slut","Bring up the cow-girl downstairs.");
 		else addDisabledButton(4,"Cow-Slut","Cow-Slut","You need to have had sex with the cow-slut and Terensha for this.");
 	}
-	else addDisabledButton(4,"Cow-Slut","Cow-Slut","Reaha doesn't work here. Not much point in hiring a call-girl that doesn't work there.");
+	else addDisabledButton(4,"Cow-Slut","Cow-Slut","Reaha doesn’t work here. Not much point in hiring a call-girl that doesn’t work there.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -205,7 +205,7 @@ public function renTableServe():void
 	output("Looking the curvaceous halfbreed over, you smile and say that you’d love to see what she can do here at the table.");
 	output("\n\n<i>“Quick and dirty, hmm? Popular choice,”</i> Ren says, running a hand along her thigh. It returns with a handheld scanner that she rolls between her fingers. Taking the hint, you pull out your Codex and let her siphon off her fee. Once done, Ren gives you a green-lipped smile and you both stow your devices. Her prodigious breasts shift enticingly on the table as she drinks in your body, deciding how best to service you....");
 	pc.credits -= 75;
-	//{PCs with cocks can choose [Footjob] [Ride Her]; else, append:}
+	// PCs with cocks can choose [Footjob] [Ride Her]; else, append:
 	if(pc.hasCock())
 	{
 		clearMenu();
@@ -1030,7 +1030,7 @@ public function terenshaDancingEpilog():void
 		output("\n\n<i>“That was a blast, cow-[pc.boyGirl],”</i> she whispers into your [pc.ear]. <i>“Even if I’m ninety-percent [pc.cumNoun] by volume right now. See if you can save up an even bigger load for me next time - I kind of want to see just how stretched out I can get!”</i>");
 		output("\n\nSmiling and flushed red, Ren crawls off your lap and, both hands on her belly, waddles off towards the back rooms. You’re pleased to watch her leave a trail of [pc.cumColor] on the floor and her own thighs with every step. God only knows what she’d look like if you saved up even more....");
 	}
-	//{Medcumvol:
+	//Medcumvol:
 	else if(pc.cumQ() > 750)
 	{
 		output("You grunt with desire, rolling your head back in your seat and letting your body take control. Your [pc.balls] soon send");
@@ -1227,7 +1227,7 @@ public function renshaAndReaha():void
 	//[Threeway] [Talk: Reaha]
 	addButton(1,"Talk: Reaha",talkToRenshaAboutReaha,undefined,"Talk: Reaha","Reaha must still be enslaved");
 	if(pc.credits >= 200) addButton(0,"Threeway",askRenshaForACow3Way,undefined,"Threeway","Ask Ren if she’d be up for double-teaming the cow-slut downstairs. Will probably run you about 200 Credits.");
-	else addDisabledButton(0,"Threeway","Threeway","Whore's cost money, and you don't have the 200 credits this is likely to cost.");
+	else addDisabledButton(0,"Threeway","Threeway","Whore’s cost money, and you don’t have the 200 credits this is likely to cost.");
 	addButton(14,"Back",backToRensMainMenu);
 }
 public function backToRensMainMenu():void
@@ -1287,7 +1287,7 @@ public function takeReahaAndRenshaFromBehind():void
 	if(!pc.isCrotchExposed()) output("shrug off your [pc.crotchCovers] and ");
 	output("step up behind the kneeling cow-girl, planting your hands on her plump behind. Reaha moans softly around her mouthful of dragon-dick, glancing over her shoulder at you.");
 	output("\n\n<i>“Shh, sweetie,”</i> Ren coos, gently drawing the cow-girl’s attention back with a few gentle strokes of her hair. <i>“Let [pc.name] do [pc.hisHer] thing. Keep your eyes on me.”</i>");
-	output("\n\nThe cow-girl shudders but does as she’s told, looking up at Ren with those big brown eyes of hers. Just to test, you rear back and give her ass a sharp slap, making those tattooed cheeks quake like gelatin, slapping lewdly around her wet snatch. Their owner moans but doesn’t avert her gaze,  leaving you totally free to abuse her backside as you see fit. A few more spanks and harsh squeezes leave her a whimpering, drooling mess: pussy juice glides down her thighs in thick rivers, and her pretty pink lips wink lustfully at you every time you pull her meaty cheeks apart. Whatever they’re pumping this girl full of is making her so sensitive that just having her butt teased is enough to halfway bring her to orgasm, on the ropes without so much as a friendly touch to either hole.");
+	output("\n\nThe cow-girl shudders but does as she’s told, looking up at Ren with those big brown eyes of hers. Just to test, you rear back and give her ass a sharp slap, making those tattooed cheeks quake like gelatin, slapping lewdly around her wet snatch. Their owner moans but doesn’t avert her gaze, leaving you totally free to abuse her backside as you see fit. A few more spanks and harsh squeezes leave her a whimpering, drooling mess: pussy juice glides down her thighs in thick rivers, and her pretty pink lips wink lustfully at you every time you pull her meaty cheeks apart. Whatever they’re pumping this girl full of is making her so sensitive that just having her butt teased is enough to halfway bring her to orgasm, on the ropes without so much as a friendly touch to either hole.");
 	output("\n\n<i>“Having fun back there?”</i> Ren laughs, punctuating each word with a little thrust into Reaha’s mouth. <i>“Just try not to smack that ass hard enough she bites, huh?”</i>");
 	var x:int = pc.cockThatFits(500);
 	var y:int = pc.cockThatFits2(500);
@@ -1365,7 +1365,7 @@ public function redirectAnalButtTerenshaAndReaha(x:int):void
 	output(". <i>“How about this, cow-[pc.boyGirl]?”</i> Ren teases, flicking her tongue along your [pc.knot " + x + "]. <i>“More your style?”</i>");
 	output("\n\nOh yeah. That’s more like it.");
 	output("\n\nWith Ren pulled out of Reaha, you’re left free to start pistoning your hips again, thrusting into the stretched-out chasm of her cunt like a jackhammer. Every motion is capstoned by a lick and a kiss from the other whore at the nadir before your crown hammers back in to kiss her womb. With Ren’s mouth added to the equation, your restraint quickly evaporates. Grunting like a feral beast, you piston your [pc.hips] into Reaha’s ass as hard as you can, letting her squeezing muscles");
-	if(pc.cockTotal() > 1 && x >= 0) output(" and tight asshole");
+	if(pc.cockTotal() > 1 && y >= 0) output(" and tight asshole");
 	if(x >= 0) output(" milk the first thick ropes of [pc.cumNoun] out of your [pc.cock " + x + "].");
 	else output(" finally overload your strapon’s synthetic nerves, sending lightning bolts of pleasure up your spine.");
 
@@ -1435,8 +1435,8 @@ public function dubbleDagron():void
 {
 	clearOutput();
 	showRenshaAndReaha(true);
-	var x:int = rand(pc.totalVaginas());
-	if(!pc.hasVagina()) x = -1;
+	var x:int = -1;
+	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	var y:int = pc.cockThatFits(500);
 	output("All yours, huh? Well, while Ren’s getting busy with the cow-girl’s mouth, you’ve got some ideas on how to use <i>her</i> in turn. Running your hands along Reaha’s wiggling backside, you make your way around the pair until your [pc.knees] are planted behind Terensha and your arms are slipping around the lusty dragoness’s thick frame, running up her soft belly before groping at the heavy, sinfully soft mounds of her chest.");
 	output("\n\n<i>“Mmm. Hey there,”</i> Ren moans, twisting around to plant a kiss on your [pc.lips]. <i>“Found something you like?”</i>");
@@ -1466,11 +1466,12 @@ public function dubbleDagron():void
 	output("\n\nShe never skips a beat on Reaha while she’s teasing you, fucking the lusty cow-girl and thumbing your hungry hole. Ren scoops up a little of the excess cum spilling from Reaha’s pussy and slathers up her thumbs, pressing one into your [pc.vagOrAss " + x + "]. You gasp, squeezing down around the probing digit, letting Ren smear her seed around your shallow depths like lube. Of course, she plays with you while she works: teasing out your sensitive spots, seeing where a little pressure can make you gasp and moan.");
 	if(y >= 0) 
 	{
-		output("\n\n<i>“Switch places, babe,”</i> Ren murmurs, popping her finger out of you and tracing the slippery latex tip down your [pc.cock]’s half-hard length. You blink, confused, until Ren’s hand wraps around your shaft and presses your crown to the lips of the cow-girl’s pussy. Ren’s latex-wrapped shaft pulls out, and you’re guided into the vacant, cum-drooling hole. Your [pc.cock " + y + "] is submerged in cum-filled cow-pussy, squeezed and kneaded by her well-trained muscles,, drawing you deep inside.");
+		output("\n\n<i>“Switch places, babe,”</i> Ren murmurs, popping her finger out of you and tracing the slippery latex tip down your [pc.cock " + y + "]’s half-hard length. You blink, confused, until Ren’s hand wraps around your shaft and presses your crown to the lips of the cow-girl’s pussy. Ren’s latex-wrapped shaft pulls out, and you’re guided into the vacant, cum-drooling hole. Your [pc.cockNoun " + y + "] is submerged in cum-filled cow-pussy, squeezed and kneaded by her well-trained muscles,, drawing you deep inside.");
+		pc.cockChange();
 	}
 	else output("\n\nRen pulls out of Reaha at the nadir of a thrust, yanking her dick out and thrusting it into the cleavage of your ass. You gasp, feeling a squirt of wet heat across your back before her bare, tapered tip finds the entrance to your [pc.vagOrAss " + x + "].");
 	output("\n\nTerensha doesn’t keep playing for very long: she’s too far gone into her unending orgasm to let herself go without a slutty cock-sleeve for more than a moment. You’re lubed and ready for her, desperate enough to feel that thick cock of hers that your [pc.hips] thrust back, taking her to the hilt");
-	if(y >= 0) output(" and thrusting to the [pc.knot " + x + "] into Reaha");
+	if(y >= 0) output(" and thrusting to the [pc.knot " + y + "] into Reaha");
 	output(" in one go.");
 
 	if(x >= 0) pc.cuntChange(x,terenshaCockVolume());

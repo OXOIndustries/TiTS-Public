@@ -3258,6 +3258,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["REAHA_BOVINIUMED"] != undefined) output2("\n<b>* Reaha, Times Given Bovinium:</b> " + flags["REAHA_BOVINIUMED"]);
 						if(flags["REAHA_ADDICTION_CURED"] == undefined && reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 					}
+					if(flags["SEXED_REAHA"] != undefined) output2("\n<b>* Reaha, Times Sexed:</b> " + flags["SEXED_REAHA"]);
 				}
 				// Ovir Gurrrl
 				if(flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined)
