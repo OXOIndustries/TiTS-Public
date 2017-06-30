@@ -10882,6 +10882,12 @@
 			
 			return sRaceShort;
 		}
+		public function isPuppyorKitten():Boolean
+		{
+			var sRaceShort:String = raceShort();
+			if(InCollection(sRaceShort, ["ausar", "kaithrit", "huskar", "milodan", "canine", "feline", "vulpine", "lupine"])) return true;
+			return false;
+		}
 		
 		public function equineRace():String
 		{

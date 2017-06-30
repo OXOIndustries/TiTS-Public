@@ -120,7 +120,7 @@ public function meetingBelle():void
 	output("\n\nYou try to speak, but nothing’s coming out of your mouth, your [pc.lipsChaste] refusing to move. <i>No, silence will do for now.</i>");
 
 	output("\n\nThe woman suddenly reaches a hand down toward your head followed by a sense of growing eagerness on your part. You close your eyes in anticipation, awaiting her touch, <i>no longer worrying about that pesky collar</i>");
-	if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG))
+	if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG))
 	{
 		output("; your [pc.tail] even start");
 		if(pc.tailCount == 1) output("s");
@@ -150,7 +150,7 @@ public function getSubTunered():void
 	output("\n\nFinally walking inside behind the scientist, your eyes are greeted by a wealth of scientific equipment: blinking lights and computers, and bundles of wires lining the walls of the small lab. Though, beyond that most of the equipment seems to be related to audio: radios and speakers, various instruments lined up next to microphones, even a row of wine glasses and spoons placed carefully near a group of transceivers.");
 	output("\n\n<i>“Welcome,”</i> the lady-scientist exclaims, extending an arm, <i>“To Accu-Pitch labs, or </i>my lab<i>, if you want to get specific.”</i> She turns around to look down at you, <i>“What you’re wearing there is one of my inventions. I call it the Sub-Tuner. It releases a series of harmonic frequencies that alter brain patterns, making the wearer more submissive and... suggestible, but I’m sure you’ve already noticed that.”</i>");
 	output("\n\nWell, that does explain a lot, but you can’t work up the drive to question anything that’s going on right now. <i>All you want to do is await more orders</i>, so you content yourself to sitting there on your hands and knees, looking up at the black-haired woman with a smile on your face ");
-	if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(", [pc.tails] swaying gently");
+	if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(", [pc.tails] swaying gently");
 	output(".");
 
 	output("\n\nShe grins back down at you before continuing, <i>“The specific collar you’re wearing is one of my latest prototypes, and it has a few new features which you’re going to help me test; isn’t that right?”</i>");
@@ -380,7 +380,7 @@ public function kennelSubTuner():void
 	output(" <i>“That means the submission protocols are working better than I could have expected.”</i>");
 
 	output("\n\nBelle stands herself up again, keeping a tight grip on your leash as she walks around in front of you again. Before she says anything else, the human woman bends down and gives you ");
-	if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.hasEmoteEars()) output("a scritch between your [pc.ears]");
+	if(pc.isPuppyorKitten() && pc.hasEmoteEars()) output("a scritch between your [pc.ears]");
 	else output("an appreciative pat on the head");
 	output(", <i>“Nice job with that test, " + pc.mf("boy","girl") + ".”</i>");
 	output("\n\n<i>You did do a good job with that, didn’t you?</i> Though, a “good job” doesn’t exactly give your ");
@@ -405,7 +405,7 @@ public function walkiesWithBelleButt():void
 	output("<i>“But,”</i> Belle begins, giving her finger a little waggle and walking towards the door of her lab in a way that makes her booty quake in the most perfect way, <i>“Why don’t we see just how far we can push those protocols?”</i>");
 	output("\n\nYou’re not quite sure what that means, but ");
 	//pcAusar/Kaithrit/Half:
-	if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG))
+	if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG))
 	{
 		output("your tail");
 		if(pc.tailCount > 1) output("s wag");
@@ -464,13 +464,16 @@ public function walkiesPart2():void
 	//SyriCrew:
 	if(select == 1)
 	{
+		var pcRace:String = pc.raceShort();
+		var isAusar:Boolean = InCollection(pcRace, ["ausar", "huskar"]);
+		
 		output("\n\nAt one point, you’re walking through the pathways of the re-purposed wabeship when you come across a very familiar ravenette ausar: Syri. She approaches you and Belle with ");
 		//pcAusar/Half: 
-		if(pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) output("a big roll of her blue eyes, her disdain for your perpetuation of stereotypes clear on her face.");
+		if(isAusar) output("a big roll of her blue eyes, her disdain for your perpetuation of stereotypes clear on her face.");
 		else output("a confused look on her face, clearly intrigued by the sight of you in a collar.");
 
 		output("\n\n<i>“Hey there, Steele,”</i> the ausar beauty calls out, causing you to look up at her, ");
-		if(pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) output("<i>“Out here giving the rest of us a bad name, I see.”</i>");
+		if(isAusar) output("<i>“Out here giving the rest of us a bad name, I see.”</i>");
 		else output("<i>“Having fun out here?”</i>");
 		output(" Giving you an odd, slightly lustful look, Syri turns her attention to Belle, who is just as interested in the wolfy bitch as she is in you.");
 		
@@ -509,7 +512,7 @@ public function walkiesPart2():void
 	output("\n\n<i>“Well, come on then,”</i> the dual-dicked woman says, <i>“Fetch.”</i>");
 	output("\n\nThat’s all the invitation you need. You dart for her lower shaft almost immediately, taking her cockhead into your mouth and starting to slide your [pc.lips] down her shaft, barely giving yourself any time to breath. Belle places a hand on your head, letting a pleasured, shuddering breath escape her lips as the molten cockflesh of her upper dong carresses your cheek. Speaking of her other cock, it seems a little neglected, desperately and enviously leaking pre onto your face. <i>That won’t do at all; you need to make sure your master feels as good as possible.</i> Far beyond being able to have second thoughts at this point, you reach a hand up and take hold of Belle’s other cock, gently stroking it as you start bob your head up and down her lower, equally turgid and lengthy rod.");
 	output("\n\n<i>“</i>Ah<i>, yes!”</i> The lady scientist moans, ");
-	if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.hasEmoteEars()) output("giving your ears a scritch, ");
+	if(pc.isPuppyorKitten() && pc.hasEmoteEars()) output("giving your ears a scritch, ");
 	output("<i>“Good " + pc.mf("boy","girl") + ", keep going, just like that.”</i>");
 
 	output("\n\nYou can almost feel the woman’s grip on your leash tighten as you start to move your tongue along the cock lodged firmly in your mouth, tracing all along her shaft and wetting her cockflesh with your saliva. Even though you can’t see it, you can definitely sense a crowd gathering behind you to watch this little spectacle unfold, <i>but you can’t focus on that right now, because all that matters is making your master cum</i>.");
@@ -587,7 +590,7 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 		output("\n\n<i>“This is Saec,”</i> the human woman starts, leading her blonde ausar beauty over to you, <i>“She’s another one of my pets, and she just </i>loves<i> being bred by big, thick cocks; don’t you, girl?”</i> The ausar gives a happy little bark in response, like a good puppy, before her master turns back to you, <i>“And I want </i>you<i> to breed her for me. How does that sound?”</i>");
 		output("\n\nYou take one look at Saec before nodding eagerly, ");
 		//pcAusar/Kaithrit/Half:
-		if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("[pc.tail] wagging in an off-beat rhythm, ");
+		if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("[pc.tail] wagging in an off-beat rhythm, ");
 		output("barely able to contain your excitement.");
 		output("\n\n<i>“Good,”</i> the lady scientist coos, smiling at your impatience before turning to face her other pet and giving the ausar a scratch between her ears, <i>“Alright, girl, think you’re ready for more pups?”</i>");
 		output("\n\nThe blonde-haired girl takes her gaze off Belle for a moment to look at you, and your [pc.cocks] in particular before a big, dumb grin appears on her face. Turning back to her master, she nods vigorously, clearly ready to take what you plan to give her. Belle gives the pup one last <i>“Good girl”</i> as she lets go of Saec’s leash, allowing the happy ausar to crawl her way over to you on her fluffy hands and her fuzzy knees before she throws herself onto her back. Once she’s well and in position, the slutpuppy spreads her shapely legs for you, giving you a good view of her slobbering cunt, looking at you with a gaze that’s just as hungry as yours.");
@@ -735,7 +738,7 @@ public function subTunerOvah():void
 		output("\n\n<i>“Before I let you go,”</i> Belle begins, reaching over to a nearby lab bench and grabbing a small, black, rectangular box, <i>“There’s just one last thing I need to give you.”</i>");
 		output("\n\nWith that said, the Lady scientist walk around behind you, taking up a position just behind your [pc.butt]. <i>You’re unable to control your excitement, expecting another treat from your master");
 		//pcAusar/Kaithrit/Half:
-		if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(", [pc.tails] wagging uncontrollably");
+		if(pc.isPuppyorKitten() && pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(", [pc.tails] wagging uncontrollably");
 		output(".</i>");
 
 		output("\n\nThen you feel plastic press against your [pc.skinFurScales] followed by a light tingling sensation from what you can only assume to be the strange device only moments before Belle pulls herself back with a quiet <i>“There we go.”</i>");
@@ -751,7 +754,7 @@ public function subTunerOvah():void
 	output("\n\nBelle goes to grab your leash, giving you and order of <i>“Up, " + pc.mf("boy","girl") + "”</i> as she pulls your tether taut, and quick to follow orders, you stand up.");
 	output("\n\n<i>“Everything’s working better than I could have hoped,”</i> your master exclaims, reaching to unhook her leash from your collar, <i>“Which means this little endeavor has yielded more potential than I would have ever believed, and I couldn’t have done it without you, good " + pc.mf("boy","girl") + ".”</i> She ");
 	//pcAusar/Kaithrit/Half: 
-	if((pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1) && pc.hasEmoteEars()) output("scratches your [pc.ears]");
+	if(pc.isPuppyorKitten() && pc.hasEmoteEars()) output("scratches your [pc.ears]");
 	else output("ruffles your [pc.hair]");
 	output(", giving you the most profound sense of fulfillment you’ve felt in a while.");
 
