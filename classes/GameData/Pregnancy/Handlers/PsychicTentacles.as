@@ -63,7 +63,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				pData.pregnancyBellyRatingContribution += 5;
-				AddLogEvent("You realize that you’ve been rubbing your belly whenever you nervous, or excited... or bored. Anytime, really. It’s a very soothing feeling, nurturing a creature within yourself, <i>letting it hijack your body for its own ends.</i> Fuck, now you’re getting turned on again. Maybe this thing feeds off of sexual pleasure?", "passive");
+				AddLogEvent("You realize that you’ve been rubbing your belly whenever you’re nervous, or excited... or bored. Anytime, really. It’s a very soothing feeling, nurturing a creature within yourself, <i>letting it hijack your body for its own ends.</i> Fuck, now you’re getting turned on again. Maybe this thing feeds off of sexual pleasure?", "passive");
 				kGAMECLASS.pc.lust(25);
 			}, true);
 
@@ -141,20 +141,26 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
-			ChildManager.addChild(
-				Child.NewChildWeights(
-					thisPtr.pregnancyChildRace,
-					thisPtr.childMaturationMultiplier,
-					pData.pregnancyQuantity,
-					thisPtr.childGenderWeights
-				)
-			);
-			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
 			StatTracking.track("pregnancy/psychic tentacle beast birthed", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
-			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
+			
+			if(mother.hasStatusEffect("Psychic Tentacles Birth To Nursery"))
+			{
+				mother.removeStatusEffect("Psychic Tentacles Birth To Nursery");
+				
+				ChildManager.addChild(
+					Child.NewChildWeights(
+						thisPtr.pregnancyChildRace,
+						thisPtr.childMaturationMultiplier,
+						pData.pregnancyQuantity,
+						thisPtr.childGenderWeights
+					)
+				);
+				StatTracking.track("pregnancy/psychic tentacle beast birthed/day care", pData.pregnancyQuantity);
+				StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
+			}
 			
 			pData.reset();
 		}
@@ -177,6 +183,7 @@ package classes.GameData.Pregnancy.Handlers
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
 			StatTracking.track("pregnancy/psychic tentacle beast birthed", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/psychic tentacle beast birthed/day care", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			

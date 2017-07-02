@@ -81,7 +81,7 @@ public function azraIsCrew():Boolean
 }
 
 //Tavros elevator or Uveto elevator, procs after using it the fourth time.
-public function azraBonusProc():Boolean
+public function azraBonusProc(btnSlot:int = 0):Boolean
 {
 	showAzra();
 	if(flags["MET_AZRA"] == undefined)
@@ -113,7 +113,7 @@ public function azraBonusProc():Boolean
 	else
 	{
 		output("\n\nAzra the suula scientist is here, trying to catch a ride to the frontier from another rusher. As you recall, she was quite keen to join your crew.");
-		addButton(0,"Azra",walkUpToRepeatElevatorAzra);
+		addButton(btnSlot,"Azra",walkUpToRepeatElevatorAzra);
 	}
 	return false;
 }

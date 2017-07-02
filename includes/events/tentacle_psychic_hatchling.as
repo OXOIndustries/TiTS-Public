@@ -245,6 +245,14 @@ public function PsychicTentacleBirthing(pregSlot:int):void
 		output(" <b>You’re pretty sure the master’s slime changed your body, making it far stretchier than ever before.</b>");
 	}
 	pc.orgasm();
+	
+	if(rooms[currentLocation].planet == "TAVROS STATION" || InPublicSpace())
+	{
+		output("\n\nAfter your head clears, you check the time on your Codex. It gives you a beep and informs you that your lovely tentacle beast was encountered in the public and has been swiftly caught by one of your droids and sent to your nursery.");
+		
+		pc.createStatusEffect("Psychic Tentacles Birth To Nursery");
+	}
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

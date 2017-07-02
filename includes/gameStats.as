@@ -900,6 +900,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Nyrean Eggs, Total:</b> " + nyreanEggs);
 				if(StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0)
 					output2("\n<b>* Births, Psychic Tentacle Beasts:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
+				if(StatTracking.getStat("pregnancy/psychic tentacle beast birthed/day care") > 0)
+					output2("\n<b>* Births, Psychic Tentacle Beasts @ Daycare:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed/day care"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children:</b> " + StatTracking.getStat("pregnancy/renvra kids"));
 				if(StatTracking.getStat("pregnancy/sera kids") > 0)

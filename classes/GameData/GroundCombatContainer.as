@@ -3114,10 +3114,10 @@ package classes.GameData
 					}
 				}
 				output(", but they can still see vestiges of ");
-				if (pc.hasCock()) output("[pc.cumColor]");
+				if (pc.hasCock()) output("[pc.cumColor] [pc.cumNoun]");
 				if (pc.cumType != pc.girlCumType || !pc.hasCock()) {
 					if (pc.hasVagina() && pc.hasCock()) output(" and ");
-					if (pc.hasVagina()) output("[pc.girlCumColor]");
+					if (pc.hasVagina()) output("[pc.girlCumColor] [pc.girlCumNoun]");
 				}
 				output(" on your lips.");
 			}

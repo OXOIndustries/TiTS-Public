@@ -2280,6 +2280,10 @@
 				case "cumColor":
 					buffer = cumColor();
 					break;
+				case "cumColorNoun":
+				case "cumColorSimple":
+					buffer = fluidColorSimple(cumType);
+					break;
 				case "cumGem":
 					buffer = cumGem();
 					break;
@@ -2294,8 +2298,18 @@
 				case "girlCumColor":
 					buffer = girlCumColor();
 					break;
+				case "femCumColorNoun":
+				case "femCumColorSimple":
+				case "girlCumColorNoun":
+				case "girlCumColorSimple":
+					buffer = fluidColorSimple(girlCumType);
+					break;
 				case "milkColor":
 					buffer = milkColor();
+					break;
+				case "milkColorNoun":
+				case "milkColorSimple":
+					buffer = fluidColorSimple(milkType);
 					break;
 				case "cumVisc":
 					buffer = fluidViscosity(cumType);
@@ -15369,169 +15383,261 @@
 			return fluidColor(girlCumType);
 		}
 		public function fluidFlavor(arg: int):String {
-			var collection:Array = [];
+			var collection:Array = new Array();
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK) {
-				collection = ["creamy","creamy","creamy","creamy","creamy","delicious","delicious","delicious","sweet","creamy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CUM) {
-				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
-				if(isBimbo()) collection.push("yummy","yummy","yummy","delicious","delicious","tasty");
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
-				collection = ["sweet","sweet","sweet","sweet","sweet","syrupy","syrupy","syrupy","sugary","sugary"];
-			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				collection = ["tasteless"];
-			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				collection = ["creamy","creamy","creamy","creamy","creamy","sweet","sweet","sweet","sugary","delicious"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				collection = ["tangy","tangy","tangy","tangy","tangy","tangy","tangy","flavorful","flavorful","flavorful"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				collection = ["salty-sweet","salty-sweet","salty-sweet","salty-sweet","salty-sweet","syrupy","syrupy","syrupy","salty","salty"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
-				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","chocolatey","cocoa-flavored","rich"];
-			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
-				collection = ["creamy","creamy","creamy","delicious","delicious","sweet","strawberry-flavored","fruity","rich"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
-				collection = ["citrusy","citrusy","citrusy","citrusy","citrusy","tangy","tangy","tangy","metallic","metallic"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
-				collection = ["sweet","fruity"];
-			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
-				collection = ["tangy","tangy","tangy","tangy","tangy","sweet","sweet","sweet","intoxicating","intoxicating"];
-			} else if (arg == GLOBAL.FLUID_TYPE_VANILLA) {
-				collection = ["sweet","sugary","creamy","vanilla"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_NYREA_CUM, GLOBAL.FLUID_TYPE_NYREA_GIRLCUM)) {
-				collection = ["salty","salty","salty","salty","salty","salty","salty","potent","potent","potent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) {
-				collection = ["salty","potent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
-				collection = ["tangy","flavorful"];
-			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
-				collection = ["blueberry","blueberry","blueberry","delicious","sweet","fruity"];
-			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
-				collection = ["sweet","vanilla","sugary"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
-				collection = ["sweet","tangy","citrusy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
-				collection = ["fruity","sweet","tart","zesty","citrusy", "pear-flavored","apple-flavored"];
-			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
-				collection = ["sweet","sweet","savory","rich","rich", "rich","delicious", "delicious","creamy","creamy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
-				collection = ["minty","minty","minty","fresh","fresh", "sweet","minty-sweet", "minty-sweet"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
-				collection = ["sweet","sweet","sweet","sugary","sugary","saccharine"];
+			switch(arg)
+			{
+				case GLOBAL.FLUID_TYPE_MILK:
+					collection.push("creamy", "creamy", "creamy", "creamy", "creamy", "delicious", "delicious", "delicious", "sweet", "creamy");
+					break;
+				case GLOBAL.FLUID_TYPE_CUM:
+					collection.push("salty", "salty", "salty", "salty", "salty", "salty", "salty", "potent", "potent", "potent");
+					if(isBimbo()) collection.push("yummy", "yummy", "yummy", "delicious", "delicious", "tasty");
+					break;
+				case GLOBAL.FLUID_TYPE_HONEY:
+				case GLOBAL.FLUID_TYPE_NECTAR:
+					collection.push("sweet", "sweet", "sweet", "sweet", "sweet", "syrupy", "syrupy", "syrupy", "sugary", "sugary");
+					break;
+				case GLOBAL.FLUID_TYPE_OIL:
+					collection.push("tasteless");
+					break;
+				case GLOBAL.FLUID_TYPE_MILKSAP:
+					collection.push("creamy", "creamy", "creamy", "creamy", "creamy", "sweet", "sweet", "sweet", "sugary", "delicious");
+					break;
+				case GLOBAL.FLUID_TYPE_GIRLCUM:
+					collection.push("tangy", "tangy", "tangy", "tangy", "tangy", "tangy", "tangy", "flavorful", "flavorful", "flavorful");
+					break;
+				case GLOBAL.FLUID_TYPE_CUMSAP:
+					collection.push("salty-sweet", "salty-sweet", "salty-sweet", "salty-sweet", "salty-sweet", "syrupy", "syrupy", "syrupy", "salty", "salty");
+					break;
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
+					collection.push("creamy", "creamy", "creamy", "delicious", "delicious", "sweet", "chocolatey", "cocoa-flavored", "rich");
+					break;
+				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+					collection.push("creamy", "creamy", "creamy", "delicious", "delicious", "sweet", "strawberry-flavored", "fruity", "rich");
+					break;
+				case GLOBAL.FLUID_TYPE_SYDIAN_CUM:
+					collection.push("citrusy", "citrusy", "citrusy", "citrusy", "citrusy", "tangy", "tangy", "tangy", "metallic", "metallic");
+					break;
+				case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+				case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+				case GLOBAL.FLUID_TYPE_VANAE_CUM:
+					collection.push("sweet", "fruity");
+					break;
+				case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+					collection.push("tangy", "tangy", "tangy", "tangy", "tangy", "sweet", "sweet", "sweet", "intoxicating", "intoxicating");
+					break;
+				case GLOBAL.FLUID_TYPE_VANILLA:
+					collection.push("sweet", "sugary", "creamy", "vanilla");
+					break;
+				case GLOBAL.FLUID_TYPE_NYREA_CUM:
+				case GLOBAL.FLUID_TYPE_NYREA_GIRLCUM:
+					collection.push("salty", "salty", "salty", "salty", "salty", "salty", "salty", "potent", "potent", "potent");
+					break;
+				case GLOBAL.FLUID_TYPE_GABILANI_CUM:
+					collection.push("salty", "potent");
+					break;
+				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
+					collection.push("tangy", "flavorful");
+					break;
+				case GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT:
+					collection.push("blueberry", "blueberry", "blueberry", "delicious", "sweet", "fruity");
+					break;
+				case GLOBAL.FLUID_TYPE_HRAD_CUM:
+					collection.push("sweet", "vanilla", "sugary");
+					break;
+				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
+				case GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO:
+					collection.push("sweet", "tangy", "citrusy");
+					break;
+				case GLOBAL.FLUID_TYPE_FRUIT_CUM:
+				case GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM:
+					collection.push("fruity", "sweet", "tart", "zesty", "citrusy", "pear-flavored", "apple-flavored");
+					break;
+				case GLOBAL.FLUID_TYPE_EGGNOG:
+					collection.push("sweet", "sweet", "savory", "rich", "rich", "rich", "delicious", "delicious", "creamy", "creamy");
+					break;
+				case GLOBAL.FLUID_TYPE_PEPPERMINT:
+					collection.push("peppermint", "minty", "minty", "minty", "fresh", "fresh", "sweet", "minty-sweet", "minty-sweet");
+					break;
+				case GLOBAL.FLUID_TYPE_SUGAR:
+					collection.push("sweet", "sweet", "sweet", "sugary", "sugary", "saccharine");
+					break;
+				default:
+					return "bland";
 			}
-			
-			else collection = ["bland"];
 			
 			return RandomInCollection(collection);
 		}
 		public function fluidViscosity(arg: int):String {
-			var collection:Array = [];
+			var collection:Array = new Array();
 			
 			//CUM & MILK TYPES
-			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANILLA)) {
-				collection = ["creamy"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
-				collection = ["thick","thick","thick","slick","creamy"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
-				collection = ["sticky","sticky","sticky","slick","slick"];
-			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				collection = ["slippery","slick"];
-			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				collection = ["creamy","syrupy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				collection = ["slick","slick","slick","slick","slick","slick","slick","slippery","slippery","slippery"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				collection = ["slick","slick","slick","slick","slick","sticky","sticky","sticky","syrupy","syrupy"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) {
-				collection = ["creamy","creamy","creamy","sticky","sticky"];
-			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
-				collection = ["thick","thick","thick","creamy","creamy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
-				collection = ["thick","thick","thick","slick","creamy"];
-				if(statusEffectv1("Nyrea Eggs") > 0) collection.push("egg-filled","eggy","bubbly","pulpy");
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
-				collection = ["oily","coating"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
-				collection = ["slick","viscous","slippery"]; /* "slimy", */
-			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM) {
-				collection = ["thick","sticky"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
-				collection = ["thick","sticky"];
-			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
-				collection = ["thick"];
-			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
-				collection = ["semi-thick","syrupy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
-				collection = ["juicy","liquid","drippy"];
-			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
-				collection = ["thick","smooth","smooth", "creamy", "creamy", "viscous"];
-			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
-				collection = ["sticky","sticky","sticky", "gooey", "gooey", "molasses-like"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
-				collection = ["gooey","sticky","syrupy"];
+			switch(arg)
+			{
+				case GLOBAL.FLUID_TYPE_MILK:
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+				case GLOBAL.FLUID_TYPE_VANILLA:
+					collection.push("creamy");
+					break;
+				case GLOBAL.FLUID_TYPE_CUM:
+				case GLOBAL.FLUID_TYPE_SYDIAN_CUM:
+				case GLOBAL.FLUID_TYPE_VANAE_CUM:
+					collection.push("thick", "thick", "thick", "slick", "creamy");
+					break;
+				case GLOBAL.FLUID_TYPE_GIRLCUM:
+					collection.push("slick", "slick", "slick", "slick", "slick", "slick", "slick", "slippery", "slippery", "slippery");
+					break;
+				case GLOBAL.FLUID_TYPE_HONEY:
+				case GLOBAL.FLUID_TYPE_NECTAR:
+					collection.push("sticky", "sticky", "sticky", "slick", "slick");
+					break;
+				case GLOBAL.FLUID_TYPE_OIL:
+					collection.push("slippery", "slick");
+					break;
+				case GLOBAL.FLUID_TYPE_MILKSAP:
+					collection.push("creamy", "syrupy");
+					break;
+				case GLOBAL.FLUID_TYPE_CUMSAP:
+					collection.push("slick", "slick", "slick", "slick", "slick", "sticky", "sticky", "sticky", "syrupy", "syrupy");
+					break;
+				case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+				case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+					collection.push("creamy", "creamy", "creamy", "sticky", "sticky");
+					break;
+				case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+				case GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT:
+					collection.push("thick", "thick", "thick", "creamy", "creamy");
+					break;
+				case GLOBAL.FLUID_TYPE_NYREA_CUM:
+					collection.push("thick", "thick", "thick", "slick", "creamy");
+					if(statusEffectv1("Nyrea Eggs") > 0) collection.push("egg-filled", "eggy", "bubbly", "pulpy");
+					break;
+				case GLOBAL.FLUID_TYPE_GABILANI_CUM:
+				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
+					collection.push("oily", "coating");
+					break;
+				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
+				case GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO:
+					collection.push("slick", "viscous", "slippery"); /* "slimy", */
+					break;
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
+				case GLOBAL.FLUID_TYPE_NYREA_GIRLCUM:
+					collection.push("thick", "sticky");
+					break;
+				case GLOBAL.FLUID_TYPE_HRAD_CUM:
+					collection.push("semi-thick", "syrupy");
+					break;
+				case GLOBAL.FLUID_TYPE_FRUIT_CUM:
+				case GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM:
+					collection.push("juicy", "liquid", "drippy");
+					break;
+				case GLOBAL.FLUID_TYPE_EGGNOG:
+					collection.push("thick", "smooth", "smooth", "creamy", "creamy", "viscous");
+					break;
+				case GLOBAL.FLUID_TYPE_PEPPERMINT:
+					collection.push("sticky", "sticky", "sticky", "gooey", "gooey", "molasses-like");
+					break;
+				case GLOBAL.FLUID_TYPE_SUGAR:
+					collection.push("gooey", "sticky", "syrupy");
+					break;
+				default:
+					return "fluid";
 			}
-			
-			else collection = ["fluid"];
 			
 			return RandomInCollection(collection);
 		}
 		public function fluidColor(arg: int): String {
 			var collection:Array = new Array();
-			trace("BOOP DA SNOOT");
+			//trace("BOOP DA SNOOT");
 			//CUM & MILK TYPES
-			if (InCollection(arg, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA)) {
-				collection = ["white","white","white","white","white","alabaster","alabaster","alabaster","ivory","ivory"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR)) {
-				collection = ["amber","amber","amber","amber","amber","yellow","yellow","yellow","gold","tawny"];
-			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				collection = ["semi-transparent","semi-transparent","semi-transparent","semi-transparent","semi-transparent","translucent brown","translucent brown","translucent brown","lucent","lucent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				collection = ["whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","whitish-yellow","ivory gold","ivory gold","ivory gold","off-white","off-white"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
-				collection = ["translucent","translucent","translucent","translucent","translucent","clear","clear","clear","semi-transparent","semi-transparent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				collection = ["off-white","off-white","off-white","off-white","off-white","pearl-marbled amber","pearl-marbled amber","pearl-marbled amber","ivory-amber","ivory-amber"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) {
-				collection = ["chocolate","chocolate","chocolate","chocolate","chocolate","creamy brown","creamy brown","creamy brown","dark chocolate","dark chocolate"];
-			} else if (arg == GLOBAL.FLUID_TYPE_STRAWBERRY_MILK) {
-				collection = ["pink","pink","pink","pink","pink","creamy pink","creamy pink","creamy pink","light pink","light pink"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) {
-				collection = ["silvery","silvery","silvery","silvery","silvery","metallic silver","metallic silver","metallic silver","silver","silver"];
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
-				collection = ["pink","pink","pink","pink","pink","milky-pink","milky-pink","milky-pink","pink-marbled cream","pink-marbled cream"];
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
-				collection = ["violet","violet","violet","violet","violet","milky-violet","milky-violet","milky-violet","violet-marbled cream","violet-marbled cream"];
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_CUM) {
-				collection = ["blue","blue","glowing blue","glowing blue","glow-in-the-dark"];
-			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
-				collection = ["alabaster","alabaster","alabaster","alabaster","alabaster","semi-transparent","semi-transparent","semi-transparent","off-white","off-white"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
-				collection = ["purple","purple"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
-				collection = ["off-white","semi-transparent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) {
-				collection = ["off-white", "semi-clear", "semi-transparent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) {
-				collection = ["gray", "semi-clear", "semi-transparent"];
-			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
-				collection = ["violet","purple"];
-			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
-				collection = ["translucent white","creamy white","nearly transparent","ghostly white"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
-				if(skinType == GLOBAL.SKIN_TYPE_GOO) collection = [String(skinTone)];
-				else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection = [String(hairColor)];
-				else collection = ["green","emerald"];
-			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM || arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
-				collection = ["pale yellow","blanched yellow","creamy lemon"];
-			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
-				collection = ["creamy yellow", "creamy yellow", "light yellow","muddy golden", "cream colored", "cream colored"];
-			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
-				collection = ["white", "opaque white", "ivory", "ivory", "alabaster", "alabaster"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
-				collection = ["white", "white", "semi-clear", "ivory", "alabaster", "pure white"];
+			switch(arg)
+			{
+				case GLOBAL.FLUID_TYPE_MILK:
+				case GLOBAL.FLUID_TYPE_CUM:
+				case GLOBAL.FLUID_TYPE_VANILLA:
+					collection.push("white", "white", "white", "white", "white", "alabaster", "alabaster", "alabaster", "ivory", "ivory");
+					break;
+				case GLOBAL.FLUID_TYPE_HONEY:
+				case GLOBAL.FLUID_TYPE_NECTAR:
+					collection.push("amber", "amber", "amber", "amber", "amber", "yellow", "yellow", "yellow", "gold", "tawny");
+					break;
+				case GLOBAL.FLUID_TYPE_OIL:
+					collection.push("semi-transparent", "semi-transparent", "semi-transparent", "semi-transparent", "semi-transparent", "translucent brown", "translucent brown", "translucent brown", "lucent", "lucent");
+					break;
+				case GLOBAL.FLUID_TYPE_MILKSAP:
+					collection.push("whitish-yellow", "whitish-yellow", "whitish-yellow", "whitish-yellow", "whitish-yellow", "ivory gold", "ivory gold", "ivory gold", "off-white", "off-white");
+					break;
+				case GLOBAL.FLUID_TYPE_GIRLCUM:
+					collection.push("translucent", "translucent", "translucent", "translucent", "translucent", "clear", "clear", "clear", "semi-transparent", "semi-transparent");
+					break;
+				case GLOBAL.FLUID_TYPE_CUMSAP:
+					collection.push("off-white", "off-white", "off-white", "off-white", "off-white", "pearl-marbled amber", "pearl-marbled amber", "pearl-marbled amber", "ivory-amber", "ivory-amber");
+					break;
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
+					collection.push("chocolate", "chocolate", "chocolate", "chocolate", "chocolate", "creamy brown", "creamy brown", "creamy brown", "dark chocolate", "dark chocolate");
+					break;
+				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+					collection.push("pink", "pink", "pink", "pink", "pink", "creamy pink", "creamy pink", "creamy pink", "light pink", "light pink");
+					break;
+				case GLOBAL.FLUID_TYPE_SYDIAN_CUM:
+					collection.push("silvery", "silvery", "silvery", "silvery", "silvery", "metallic silver", "metallic silver", "metallic silver", "silver", "silver");
+					break;
+				case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+					collection.push("pink", "pink", "pink", "pink", "pink", "milky-pink", "milky-pink", "milky-pink", "pink-marbled cream", "pink-marbled cream");
+					break;
+				case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+					collection.push("violet", "violet", "violet", "violet", "violet", "milky-violet", "milky-violet", "milky-violet", "violet-marbled cream", "violet-marbled cream");
+					break;
+				case GLOBAL.FLUID_TYPE_VANAE_CUM:
+					collection.push("blue", "blue", "glowing blue", "glowing blue", "glow-in-the-dark");
+					break;
+				case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+					collection.push("alabaster", "alabaster", "alabaster", "alabaster", "alabaster", "semi-transparent", "semi-transparent", "semi-transparent", "off-white", "off-white");
+					break;
+				case GLOBAL.FLUID_TYPE_NYREA_CUM:
+					collection.push("purple", "purple", "purple", "violet");
+					break;
+				case GLOBAL.FLUID_TYPE_NYREA_GIRLCUM:
+					collection.push("off-white", "semi-transparent");
+					break;
+				case GLOBAL.FLUID_TYPE_GABILANI_CUM:
+					collection.push("off-white", "semi-clear", "semi-transparent");
+					break;
+				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
+					collection.push("gray", "semi-clear", "semi-transparent");
+					break;
+				case GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT:
+					collection.push("violet", "purple");
+					break;
+				case GLOBAL.FLUID_TYPE_HRAD_CUM:
+					collection.push("translucent white", "creamy white", "nearly transparent", "ghostly white");
+					break;
+				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
+				case GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO:
+					if(skinType == GLOBAL.SKIN_TYPE_GOO) collection.push(String(skinTone));
+					else if(hairType == GLOBAL.HAIR_TYPE_GOO) collection.push(String(hairColor));
+					else collection.push("green", "emerald");
+					break;
+				case GLOBAL.FLUID_TYPE_FRUIT_CUM:
+				case GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM:
+					collection.push("pale yellow", "blanched yellow", "creamy lemon");
+					break;
+				case GLOBAL.FLUID_TYPE_EGGNOG:
+					collection.push("creamy yellow", "creamy yellow", "light yellow", "muddy golden", "cream colored", "cream colored");
+					break;
+				case GLOBAL.FLUID_TYPE_PEPPERMINT:
+					collection.push("white", "opaque white", "ivory", "ivory", "alabaster", "alabaster");
+					break;
+				case GLOBAL.FLUID_TYPE_SUGAR:
+					collection.push("white", "white", "semi-clear", "ivory", "alabaster", "pure white");
+					break;
+				default:
+					return "ERROR, INVALID FLUID TYPE.";
 			}
-			
-			else collection = ["ERROR, INVALID FLUID TYPE."];
 			
 			return RandomInCollection(collection);
 		}
@@ -15554,108 +15660,156 @@
 			switch(fColor)
 			{
 				case "white":
-					return RandomInCollection("pearl","opal");
+					return RandomInCollection("pearl", "opal");
 				case "pink":
 					return "rose quartz";
 				case "red":
-					return RandomInCollection("ruby","garnet");
+					return RandomInCollection("ruby", "garnet");
+				case "brown":
+					return RandomInCollection("citrine", "citrine");
 				case "orange":
 				case "yellow":
-					return RandomInCollection("amber","citrine","topaz");
+					return RandomInCollection("amber", "citrine", "topaz");
 				case "green":
-					return RandomInCollection("emerald","jade");
+					return RandomInCollection("emerald", "jade");
 				case "blue":
-					return RandomInCollection("aquamarine","sapphire");
+					return RandomInCollection("aquamarine", "sapphire");
 				case "purple":
-					return RandomInCollection("amethyst","amethyst");
-				case "transparent":
-					return RandomInCollection("crystal","diamond");
-				case "brown":
-					return RandomInCollection("citrine","citrine");
+					return RandomInCollection("amethyst", "amethyst");
 				case "silver":
 				case "gray":
-					return RandomInCollection("silver","silver");
+					return RandomInCollection("silver", "silver");
+				case "transparent":
+					return RandomInCollection("crystal", "diamond");
 				default:
-					return RandomInCollection("pearl","pearl");		
+					return RandomInCollection("pearl", "pearl");		
 			}
 		}
 		public function fluidColorSimple(arg: int):String
 		{
-			if (InCollection(arg, GLOBAL.FLUID_TYPE_LEITHAN_MILK, GLOBAL.FLUID_TYPE_CUMSAP, GLOBAL.FLUID_TYPE_MILK, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_PEPPERMINT, GLOBAL.FLUID_TYPE_SUGAR)) return "white";
-			else if (InCollection(arg, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG)) return "yellow";
-			else if (InCollection(arg, GLOBAL.FLUID_TYPE_OIL, GLOBAL.FLUID_TYPE_GIRLCUM)) return "transparent";
-			else if (InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM)) return "brown";
-			else if (InCollection(arg, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK)) return "pink";
-			else if (arg == GLOBAL.FLUID_TYPE_SYDIAN_CUM) return "silver";
-			else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) return "purple";
-			else if (arg == GLOBAL.FLUID_TYPE_VANAE_CUM) return "blue";
-			else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) return "purple";
-			else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) return "white";
-			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_CUM) return "white";
-			else if (arg == GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM) return "gray";
-			else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) return "purple";
-			else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) return "white";
-			else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO || arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO)
+			switch(arg)
 			{
-				if(skinType == GLOBAL.SKIN_TYPE_GOO) return skinTone;
-				else if(hairType == GLOBAL.HAIR_TYPE_GOO) return hairColor;
-				return "green";
+				case GLOBAL.FLUID_TYPE_MILK:
+				case GLOBAL.FLUID_TYPE_CUM:
+				case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+				case GLOBAL.FLUID_TYPE_CUMSAP:
+				case GLOBAL.FLUID_TYPE_MILKSAP:
+				case GLOBAL.FLUID_TYPE_VANILLA:
+				case GLOBAL.FLUID_TYPE_PEPPERMINT:
+				case GLOBAL.FLUID_TYPE_SUGAR:
+				case GLOBAL.FLUID_TYPE_NYREA_GIRLCUM:
+				case GLOBAL.FLUID_TYPE_GABILANI_CUM:
+				case GLOBAL.FLUID_TYPE_HRAD_CUM:
+					return "white";
+				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+				case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+					return "pink";
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
+					return "brown";
+				case GLOBAL.FLUID_TYPE_HONEY:
+				case GLOBAL.FLUID_TYPE_NECTAR:
+				case GLOBAL.FLUID_TYPE_FRUIT_CUM:
+				case GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM:
+				case GLOBAL.FLUID_TYPE_EGGNOG:
+					return "yellow";
+				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
+				case GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO:
+					if(skinType == GLOBAL.SKIN_TYPE_GOO) return skinTone;
+					else if(hairType == GLOBAL.HAIR_TYPE_GOO) return hairColor;
+					return "green";
+				case GLOBAL.FLUID_TYPE_VANAE_CUM:
+					return "blue";
+				case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+				case GLOBAL.FLUID_TYPE_NYREA_CUM:
+				case GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT:
+					return "purple";
+				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
+					return "gray";
+				case GLOBAL.FLUID_TYPE_SYDIAN_CUM:
+					return "silver";
+				case GLOBAL.FLUID_TYPE_OIL:
+				case GLOBAL.FLUID_TYPE_GIRLCUM:
+					return "transparent";
+				default:
+					return "white";
 			}
-			return "white";
 		}
 		public function fluidNoun(arg: int): String {
-			var collection:Array = [];
+			var collection:Array = new Array();
 			
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.FLUID_TYPE_MILK) {
-				collection = ["milk","cream"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_SYDIAN_CUM, GLOBAL.FLUID_TYPE_GABILANI_CUM, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_VANAE_CUM)) {
-				collection = ["cum"];
-				if(isBimbo() || isBro()) collection.push("cum","spunk","spunk","jism","jizz");
-			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
-				collection = ["honey"];
-			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
-				collection = ["oil"];
-			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
-				collection = ["milk-sap"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_GIRLCUM, GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM)) {
-				collection = ["girl-cum"];
-				if(isBimbo() || isBro()) collection.push("girl-cum","girl-lube","girl-lube","girl-juice","cunny-honey");
-			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
-				collection = ["cum-sap","cum-sap","botanical spunk","floral jism"];
-			} else if(InCollection(arg, GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_VANILLA)) {
-				collection = ["milk"];
-			} else if (InCollection(arg, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) {
-				collection = ["milk"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NECTAR) {
-				collection = ["nectar"];
-			} else if (arg == GLOBAL.FLUID_TYPE_LEITHAN_MILK) {
-				collection = ["milk"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_CUM) {
-				collection = ["girl-cum"];
-			} else if (arg == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) {
-				collection = ["cum"];
-			} else if (arg == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) {
-				collection = ["yogurt"];
-			} else if (arg == GLOBAL.FLUID_TYPE_HRAD_CUM) {
-				collection = ["syrup","cum"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_GOO) {
-				collection = ["slime","goo"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO) {
-				collection = ["slime-spunk","goo-cum","slime-semen","goo-spooge","slime-spooge","goo-spunk","slime-cum"]
-			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_CUM) {
-				collection = ["seed"];
-			} else if (arg == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM) {
-				collection = ["juice"];
-			} else if (arg == GLOBAL.FLUID_TYPE_EGGNOG) {
-				collection = ["eggnog"];
-			} else if (arg == GLOBAL.FLUID_TYPE_PEPPERMINT) {
-				collection = ["peppermint", "minty cum"];
-			} else if (arg == GLOBAL.FLUID_TYPE_SUGAR) {
-				collection = ["glaze", "frosting", "icing"];
+			switch(arg)
+			{
+				case GLOBAL.FLUID_TYPE_MILK:
+					collection.push("milk", "cream");
+					break;
+				case GLOBAL.FLUID_TYPE_CUM:
+				case GLOBAL.FLUID_TYPE_SYDIAN_CUM:
+				case GLOBAL.FLUID_TYPE_GABILANI_CUM:
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
+				case GLOBAL.FLUID_TYPE_VANAE_CUM:
+				case GLOBAL.FLUID_TYPE_NYREA_GIRLCUM:
+				case GLOBAL.FLUID_TYPE_PEPPERMINT:
+					collection.push("cum");
+					if(isBimbo() || isBro()) collection.push("cum", "spunk", "spunk", "jism", "jizz");
+					break;
+				case GLOBAL.FLUID_TYPE_GIRLCUM:
+				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
+				case GLOBAL.FLUID_TYPE_NYREA_CUM:
+					collection.push("girl-cum");
+					if(isBimbo() || isBro()) collection.push("girl-cum", "girl-lube", "girl-lube", "girl-juice", "cunny-honey");
+					break;
+				case GLOBAL.FLUID_TYPE_HONEY:
+					collection.push("honey");
+					break;
+				case GLOBAL.FLUID_TYPE_OIL:
+					collection.push("oil");
+					break;
+				case GLOBAL.FLUID_TYPE_MILKSAP:
+					collection.push("milk-sap");
+					break;
+				case GLOBAL.FLUID_TYPE_CUMSAP:
+					collection.push("cum-sap", "cum-sap", "botanical spunk", "floral jism");
+					break;
+				case GLOBAL.FLUID_TYPE_CHOCOLATE_MILK:
+				case GLOBAL.FLUID_TYPE_STRAWBERRY_MILK:
+				case GLOBAL.FLUID_TYPE_VANILLA:
+				case GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK:
+				case GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK:
+				case GLOBAL.FLUID_TYPE_LEITHAN_MILK:
+					collection.push("milk");
+					break;
+				case GLOBAL.FLUID_TYPE_NECTAR:
+					collection.push("nectar");
+					break;
+				case GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT:
+					collection.push("yogurt");
+					break;
+				case GLOBAL.FLUID_TYPE_HRAD_CUM:
+					break;
+					collection.push("syrup", "cum");
+				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
+					collection.push("slime", "goo");
+					break;
+				case GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO:
+					collection.push("slime-spunk", "goo-cum", "slime-semen", "goo-spooge", "slime-spooge", "goo-spunk", "slime-cum");
+					break;
+				case GLOBAL.FLUID_TYPE_FRUIT_CUM:
+					collection.push("seed");
+					break;
+				case GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM:
+					collection.push("juice");
+					break;
+				case GLOBAL.FLUID_TYPE_EGGNOG:
+					collection.push("eggnog");
+					break;
+				case GLOBAL.FLUID_TYPE_SUGAR:
+					collection.push("glaze", "frosting", "icing");
+					break;
+				default:
+					return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun.";
 			}
-			
-			else collection = ["ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun."];
 			
 			return RandomInCollection(collection);
 		}
