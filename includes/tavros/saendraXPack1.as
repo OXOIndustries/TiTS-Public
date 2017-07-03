@@ -846,7 +846,7 @@ public function sx1DoorBreach():void
 public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
 	var tEnemy:Creature = new SX1Shotguard();
-	tEnemy.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+	CombatAttacks.applyBlind(tEnemy, 3);
 	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
 	
 	CombatManager.newGroundCombat();

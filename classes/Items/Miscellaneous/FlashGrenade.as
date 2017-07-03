@@ -114,7 +114,7 @@ package classes.Items.Miscellaneous
 				
 				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded") && !cTarget.hasBlindImmunity())
 				{
-					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(cTarget, 3);
 					
 					if (cTarget is PlayerCharacter) output("\n<b>You’re blinded by the luminous flashes.</b>");
 					else output("\n<b>" + StringUtil.capitalize(cTarget.getCombatName(), false) + " is blinded by the luminous flashes.</b>");

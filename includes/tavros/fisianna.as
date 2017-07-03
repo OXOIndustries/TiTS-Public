@@ -630,7 +630,7 @@ public function topicProgramming():void
 	
 	addButton(0, "Fisianna", topicFisianna);
 	addButton(1, "Tavros", topicTavros);
-	addDisabledButton(2, "Programming", "Programming","You’re talking about this right now.");;
+	addDisabledButton(2, "Programming", "Programming","You’re talking about this right now.");
 	addButton(3, "Gaming", topicGaming);
 	
 	if (flags["FISI_TRUST"] >= 50) addButton(4, "Friends", topicFriends);

@@ -843,7 +843,7 @@ public function mimbranesIncreaseDaysSinceFed(totalDays:uint):void
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
-			mimStates[mimbraneEffects[i]] = pc.statusEffectv2(mimbraneEffects[i]);;
+			mimStates[mimbraneEffects[i]] = pc.statusEffectv2(mimbraneEffects[i]);
 			pc.addStatusValue(mimbraneEffects[i], 2, totalDays);
 		}
 	}

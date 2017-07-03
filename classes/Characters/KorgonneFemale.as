@@ -302,8 +302,8 @@
 			else
 			{
 				output("\n\nYou try to close your eyes, but it’s not enough. The flare turns the reflective snow all around you into diamond-sharp luminance that feels like it’s cauterizing your eyes. Your head reels, a slight ringing in your ears as you blink rapidly, unable to clear the white emptiness that fills your sight. <b>You have been blinded!</b>");
-				//(Inflicts the <i>“Blindness”</i> status)
-				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
+				//(Inflicts the “Blindness” status)
+				CombatAttacks.applyBlind(target, rand(3) + 1);
 			}
 			createStatusEffect("Korgi Blind Used");
 		}
@@ -338,7 +338,7 @@
 				applyDamage(damage, this, target);
 				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 35)
 				{
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 					output(" Worst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
 				}
 			}
@@ -363,7 +363,7 @@
 					applyDamage(damage, this, target);
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < physique() + 4)
 					{
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+						CombatAttacks.applyStun(target, 1);
 						output(" <b>The blow leaves you stunned and reeling.</b>");
 					}
 				}
@@ -412,8 +412,7 @@
 					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
 					{
 						output(" <b>You are sent realing by the blow, staggered.</b>");
-						if (target.hasStatusEffect("Staggered")) target.setStatusValue("Staggered", 1, 5);
-						else target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You’re staggered, and your Aim and Reflexes have been reduced!", true, 0);
+						CombatAttacks.applyStagger(target, 5, true);
 					}
 				}
 				//Miss

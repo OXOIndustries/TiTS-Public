@@ -130,12 +130,12 @@ package classes.Items.Miscellaneous
 				{
 					if(cTarget is PlayerCharacter)
 					{
-						cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your equipment!", true, 0,0xFF0000);
+						CombatAttacks.applyStun(cTarget, 2, false,"An electrical burst has temporarily stunned your equipment!");
 						output("\n\nThe electronic burst from the grenade has temporarily disrupted your systems!");
 					}
 					else
 					{
-						cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your target!", true, 0,0xFF0000);
+						CombatAttacks.applyStun(cTarget, 2, false,"An electrical burst has temporarily stunned the target!");
 						output("\n\nThe electronic burst from the grenade has temporarily disrupted " + cTarget.a + cTarget.short + "’s systems!");
 					}
 				}

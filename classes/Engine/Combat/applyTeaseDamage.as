@@ -206,8 +206,8 @@ package classes.Engine.Combat
 			{
 				//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
 				var stunDur:int = 1 + rand(2);
-				target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stun","Cannot take action!",true,0,0xFF0000);
-				target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stun","Cannot take action!",true,0,0xFF0000);
+				CombatAttacks.applyStun(target, stunDur);
+				CombatAttacks.applyLustStun(target, stunDur);
 			}
 		}
 		

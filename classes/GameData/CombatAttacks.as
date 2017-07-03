@@ -741,7 +741,7 @@ package classes.GameData
 			applyDamage(d, attacker, target, special);
 			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
-				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are staggered, and your" : (target.getCombatName() + " is staggered, and " + target.getCombatPronoun("hisher")) + " Aim and Reflexes have been reduced!"), true, 0,0xFF0000);
+				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output(" <b>You are staggered by the lunge!</b>");
 				else output(" <b>[target.CombatName] is staggered by " + (attacker is PlayerCharacter ? "your" : "the") + " lunge!</b>");
 			}
@@ -878,7 +878,7 @@ package classes.GameData
 				
 				for (i = 0; i < others.length; i++)
 				{
-					if (!others[i].isDefeated() && others[i] != target)
+					if (!others[i].isDefeated() && (others[i] != target || others[i].isPlural))
 					{
 						//if (numHits > 0 || i != 0) output("\n");
 						output("\n");
@@ -1044,7 +1044,7 @@ package classes.GameData
 		
 		public static function ACECannonAttack(attacker:Creature, target:Creature):void
 		{
-			output("The gun on " + (attacker is PlayerCharacter ? "your" : possessive(attacker.getCombatName())) +" shoulder tracks towards " + (target is PlayerCharacter ? "you" : target.getCombatName()) +", charging up with power. As " + (attacker is PlayerCharacter ? target.getCombatName() : attacker.getCombatName()) +" moves, it works on its own, targeting and firing at " + (target is PlayerCharacter ? "you" : target.getCombatName()) +".");
+			output("The gun on " + possessive(attacker.getCombatName()) + " shoulder tracks towards " + target.getCombatName() +", charging up with power. As " + (attacker is PlayerCharacter ? target.getCombatName() : attacker.getCombatName()) + " moves, it works on its own, targeting and firing at " + target.getCombatName() + ".");
 			
 			if (target.reflexes() / 2 + rand(20) + 1 >= 35)
 			{
@@ -1123,6 +1123,112 @@ package classes.GameData
 		//} endregion
 		
 		
+		// Apply common combat status effects.
+		public static function applyBleed(target:Creature, stacks:int = 1, rounds:int = 3, damage:int = 15, apply:Boolean = false):void
+		{
+			/* Bleeding
+			v1 = stacks
+			v2 = remaining rounds
+			v3 = base damage
+			*/
+			target.createStatusEffect("Bleeding", 0, 0, 0, 0, false, "Icon_Crying", "", true, 0);
+			// Add a stack and refresh duration
+			if(apply) target.setStatusValue("Bleeding", 1, stacks);
+			else target.addStatusValue("Bleeding", 1, stacks);
+			target.setStatusValue("Bleeding", 2, rounds);
+			target.setStatusValue("Bleeding", 3, damage);
+			stacks = target.statusEffectv1("Bleeding");
+			rounds = target.statusEffectv2("Bleeding");
+			damage = target.statusEffectv3("Bleeding");
+			target.setStatusTooltip("Bleeding", (target is PlayerCharacter ? "You’re bleeding!" : "Suffering bleeding damage over time.") + "\n" + damage + " bleed strength.\n" + stacks + " stack" + ((stacks == 1) ? "" : "s") + ".\n" + rounds + " round" + ((rounds == 1) ? "" : "s") + " remaining.");
+		}
+		public static function applyBlind(target:Creature, turns:int = 3, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Blinded", 0, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
+			if(apply) target.setStatusValue("Blinded", 1, turns);
+			else target.addStatusValue("Blinded", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Blinded", tooltip);
+		}
+		public static function applyBurn(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Burn", 0, 0, 0, 0, false, "Icon_Smelly", "Burning for thermal damage over time.", true, 0);
+			if(apply) target.setStatusValue("Burn", 1, turns);
+			else target.addStatusValue("Burn", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Burn", tooltip);
+		}
+		public static function applyBurning(target:Creature, turns:int = 3, threshold:Number = 0, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Burning", 2, 0, 0, 0, false, "DefenseDown", "Reduces defense by five points and causes damage over time.", true, 0);
+			if(apply) target.setStatusValue("Burning", 1, turns);
+			else target.addStatusValue("Burning", 1, turns);
+			target.setStatusValue("Burning", 2, threshold);
+			if(tooltip != "") target.setStatusTooltip("Burning", tooltip);
+		}
+		public static function applyDisarm(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0, 0xFF0000);
+			if(apply) target.setStatusValue("Disarmed", 1, turns);
+			else target.addStatusValue("Disarmed", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Disarmed", tooltip);
+		}
+		public static function applyGassed(target:Creature, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Gassed", 0, 0, 0, 0, false, "Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0);
+			target.aimMod -= 5;
+			target.reflexesMod -= 5;
+			if(tooltip != "Gassed") target.setStatusTooltip("Disarmed", tooltip);
+		}
+		public static function applyGrapple(target:Creature, chance:int = 30, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Grappled", 0, 0, 0, 0, false, "Constrict", (target is PlayerCharacter ? "You’re pinned in a grapple." : "Pinned in a grapple."), true, 0);
+			if(apply) target.setStatusValue("Disarmed", 2, chance);
+			else target.addStatusValue("Disarmed", 2, chance);
+			if(tooltip != "") target.setStatusTooltip("Disarmed", tooltip);
+		}
+		public static function applyLustStun(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Lust Stunned", 0, 0, 0, 0, true, "Stun", "Cannot take action!", true, 0, 0xFF0000);
+			if(apply) target.setStatusValue("Lust Stunned", 1, turns);
+			else target.addStatusValue("Lust Stunned", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Lust Stunned", tooltip);
+		}
+		public static function applyParalyze(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Paralyzed", 0, 0, 0, 0, false, "Paralyze", "Cannot act!", true, 0);
+			if(apply) target.setStatusValue("Paralyzed", 1, turns);
+			else target.addStatusValue("Paralyzed", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Paralyzed", tooltip);
+		}
+		public static function applyStagger(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Staggered", 0, 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are" : (StringUtil.capitalize(target.getCombatName()) + " is")) + " staggered, and " + target.getCombatPronoun("hisher") + " aim and reflexes have been reduced!", true, 0, 0xFF0000);
+			if(apply) target.setStatusValue("Staggered", 1, turns);
+			else target.addStatusValue("Staggered", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Staggered", tooltip);
+		}
+		public static function applyStun(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Stunned", 0, 0, 0, 0, false, "Stun", (target is PlayerCharacter ? "You are stunned and cannot act until you recover!" : "Cannot take action!"), true, 0, 0xFF0000);
+			if(apply) target.setStatusValue("Stunned", 1, turns);
+			else target.addStatusValue("Stunned", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Stunned", tooltip);
+		}
+		public static function applySunder(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Sundered", 0, 0, 0, 0, false, "DefenseDown", "Defense is reduced by 50%!", true, 0, 0xFF0000);
+			if(apply) target.setStatusValue("Sundered", 1, turns);
+			else target.addStatusValue("Sundered", 1, turns);
+			if(tooltip != "") target.setStatusTooltip("Sundered", tooltip);
+		}
+		public static function applyTrip(target:Creature, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", (target is PlayerCharacter ? "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up." : "Until able to stand, physique and reflexes have been reduced by 4."), true, 0);
+			if(tooltip != "") target.setStatusTooltip("Tripped", tooltip);
+		}
+		
+		
+		// Special Attacks
+		
 		public static var Headbutt:SingleCombatAttack;
 		public static function HeadbuttImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
@@ -1169,7 +1275,7 @@ package classes.GameData
 						if (target.isPlural) output("\n<b>[target.CombatName] are stunned.</b>");
 						else output("\n<b>[target.CombatName] is stunned.</b>");
 					}
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0,0xFF0000);
+					applyStun(target, 2);
 				}
 				else
 				{
@@ -1192,7 +1298,7 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			if (!target.hasStatusEffect("Staggered") && attacker.hasPerk("Rending Attacks"))
 			{
-				target.createStatusEffect("Staggered", 4 + rand(2), 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are staggered, and your" : (target.getCombatName() + " is staggered, and " + target.getCombatPronoun("hisher")) + " Aim and Reflexes have been reduced!"), true, 0,0xFF0000);
+				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");
 				else output(" <b>[target.CombatName] is staggered by the hail of fire!</b>");
 			}
@@ -1212,8 +1318,7 @@ package classes.GameData
 			
 			if (attacker.hasStatusEffect("Blinded") && rand(10) > 0)
 			{
-				if (attacker is PlayerCharacter) output("Your blind power strike missed.");
-				else output(possessive(attacker.getCombatName()) + " blind power strike missed.");
+				output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " blind power strike missed.");
 				
 				return;
 			}
@@ -1231,7 +1336,7 @@ package classes.GameData
 			if(!target.hasStatusEffect("Sundered") && attacker.hasPerk("Rending Attacks"))
 			{
 				output(" <b>Sundered</b>!");
-				target.createStatusEffect("Sundered", 4+rand(2), 0, 0, 0, false, "DefenseDown", "Defense is reduced by 50%!", true,0,0xFF0000);
+				applySunder(target, 4 + rand(2));
 			}
 		}
 		
@@ -1270,7 +1375,6 @@ package classes.GameData
 		private static function DetonationChargeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of [target.combatName]!");
-			else if (target is PlayerCharacter) output("[attacker.CombatName] throws a bundle of explosives in your direction!");
 			else output("[attacker.CombatName] throws a bundle of explosives in " + possessive(target.getCombatName()) + " direction!");
 			
 			var d:int = 15 + (attacker.level * 4) + attacker.intelligence();
@@ -1319,7 +1423,7 @@ package classes.GameData
 				output("\nThe effect is immediate! ");
 				if (target is PlayerCharacter) output(" You shudder and stop, temporarily paralyzed!");
 				else output("[target.CombatName] shudders and stops, temporarily paralyzed.");
-				target.createStatusEffect("Paralyzed", 2 + rand(2), 0, 0, 0, false, "Paralyze", "Cannot act!", true, 0);
+				applyParalyze(target, 2 + rand(2));
 			}
 			else
 			{
@@ -1345,14 +1449,14 @@ package classes.GameData
 				else if (attacker is PlayerCharacter) output("<b>[target.CombatName] is blinded by your " + possessive(attacker.rangedWeapon.longName) + " flashes.</b>\n");
 				else output("<b>[target.CombatName] is blinded by flashes from " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.longName + ".</b>");
 				
-				target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+				applyBlind(target, 3);
 			}
 		}
 
 		public static var ChargeWeapon:SingleCombatAttack;
 		private static function chargeWeaponImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if(!(attacker is PlayerCharacter)) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.mfn("his","her","its") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
+			if(!(attacker is PlayerCharacter)) output("[attacker.CombatName] toggles a wrist-mounted switch to light " + attacker.getCombatPronoun("hisher") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
 			else 
 			{
 				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It’s just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden ‘<i>kzzzt</i>’ of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe’s way!");
@@ -1412,7 +1516,7 @@ package classes.GameData
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
 				else output("<b>[target.CombatName] is stunned!</b>");
-				target.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0,0xFF0000);
+				applyStun(target, 1);
 			}
 		}
 		
@@ -1490,7 +1594,7 @@ package classes.GameData
 
 			if(!target.hasStatusEffect("Burning"))
 			{
-				target.createStatusEffect("Burning", 2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
+				applyBurning(target, 2);
 				output(" <b>[target.CombatName] is on fire!</b>");
 			}
 		}
@@ -1545,7 +1649,6 @@ package classes.GameData
 			if (!target.hasShields() || target.shields() <= 0)
 			{
 				if (attacker is PlayerCharacter) output("You attempt to hack the nonexistent shield protecting [target.combatName]! It doesn’t work - <b>there’s no shield there.</b>");
-				else if (target is PlayerCharacter) output("[attacker.CombatName] attempts to hack your shield! It doesn’t work - <b>there’s no shield there.</b>");
 				else output("[attacker.CombatName] attempts to hack " + possessive(target.getCombatName()) + " shield! It doesn’t work - <b>there’s no shield there.</b>");
 				return;
 			}
@@ -1561,12 +1664,12 @@ package classes.GameData
 			
 			if (target.shields() > 0)
 			{
-				if (target is PlayerCharacter) output(" Your shield crackles but holds.");
-				else output(" [target.combatName] crackles but holds.");
+				if (target.isPlural) output(" " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shields crackle but hold.");
+				else output(" " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shield crackles but holds.");
 			}
 			else
 			{
-				if (target is PlayerCharacter) output(" There is a concussive boom and a tingling aftershock of energy as your shield is breached.");
+				if (target.isPlural) output(" There is a concussive boom and tingling aftershock of energy as " + possessive(target.getCombatName()) + " shields are breached.");
 				else output(" There is a concussive boom and a tingling aftershock of energy as " + possessive(target.getCombatName()) + " shield is breached.");
 			}
 			
@@ -1581,7 +1684,7 @@ package classes.GameData
 				if (attacker.hasPerk("Fuck Sense")) output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. You do a happy little wiggle while you work. It’ll make your butt look super great.");
 				else output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. It should be good for two pulses, minimum.");
 			}
-			else output("[attacker.CombatName] tweaks " + attacker.mfn("his","her","its") + " shield generator. The nearly invisible barrier shines brighter as a result. Better be careful when attacking!");
+			else output("[attacker.CombatName] tweaks " + attacker.getCombatPronoun("hisher") + " shield generator. The nearly invisible barrier shines brighter as a result. Better be careful when attacking!");
 
 			var moddedInt:int = attacker.intelligence();
 			if(attacker.hasPerk("Fuck Sense"))
@@ -1601,7 +1704,6 @@ package classes.GameData
 			if (target.hasStatusEffect("Disarm Immune"))
 			{
 				if (attacker is PlayerCharacter) output("You try to hack " + possessive(target.getCombatName()) + " weapon but can’t. <b>It’s physically impossible!</b>");
-				else if (target is PlayerCharacter) output("[attacker.CombatName] tries to hack your weapon but can’t!");
 				else output("[attacker.CombatName] tries to hack " + possessive(target.getCombatName()) + " weapon but can’t. <b>It’s physically impossible!</b>");
 				return;
 			}
@@ -1609,7 +1711,6 @@ package classes.GameData
 			if (target.hasStatusEffect("Disarmed"))
 			{
 				if (attacker is PlayerCharacter) output("You try to hack " + possessive(target.getCombatName()) + " weapon but can’t. <b>You’ve already hacked it!</b>");
-				else if (target is PlayerCharacter) output("[attacker.CombatName] tries to hack your weapon but can’t!");
 				else output("[attacker.CombatName] tries to hack " + possessive(target.getCombatName()) + " weapon but can’t. <b>It’s already been hacked!</b>");
 				return;
 			}
@@ -1617,7 +1718,6 @@ package classes.GameData
 			if (!target.hasEnergyWeapon())
 			{
 				if (attacker is PlayerCharacter) output("You try to hack " + possessive(target.getCombatName()) + " weapon but [target.combatHeShe] has no energy weapons to shut down!");
-				else if (target is PlayerCharacter) output("[attacker.CombatName] tries to hack your weapon but you don’t have an energy weapon for them to shut down!");
 				else output("[attacker.CombatName] tries to hack " + possessive(target.getCombatName()) + " weapon but [target.combatHeShe] has no energy weapons to shut down!");
 				return;
 			}
@@ -1642,12 +1742,11 @@ package classes.GameData
 			}
 			
 			// Successful
-			
 			if (attacker is PlayerCharacter) output("You hack " + possessive(target.getCombatName()) + " weapon, disarming them.");
 			else if (target is PlayerCharacter) output("[attacker.CombatName] hacks your weapon, disarming you temporarily!");
 			else output("[attacker.CombatName] hacks " + possessive(target.getCombatName()) + " weapon, disarming [target.combatHimHer].");
 			
-			target.createStatusEffect("Disarmed", 4 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0,0xFF0000);
+			applyDisarm(target, 4 + rand(2));
 		}
 		
 		public static var PocketSand:SingleCombatAttack;
@@ -1670,7 +1769,7 @@ package classes.GameData
 				
 				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded") && !cTarget.hasBlindImmunity())
 				{
-					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					applyBlind(cTarget, 3);
 					
 					output("\n<b>" + cTarget.getCombatName() + " is blinded by the coarse granules.</b>");
 				}
@@ -1704,7 +1803,7 @@ package classes.GameData
 				
 				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded") && !cTarget.hasBlindImmunity())
 				{
-					cTarget.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					applyBlind(cTarget, 3);
 					
 					if (cTarget is PlayerCharacter) output("\n<b>You’re blinded by the luminous flashes.</b>");
 					else output("\n<b>" + cTarget.getCombatName() + " is blinded by the luminous flashes.</b>");
@@ -1757,20 +1856,14 @@ package classes.GameData
 					if (target is Kaska)
 					{
 						output("\nKaska’s eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She’s very, very stunned.</b>");
-						target.createStatusEffect("Stunned", 3 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while. You hit her balls pretty hard!", true, 0,0xFF0000);
+						applyStun(target, 3 + rand(2), false, "Cannot act for a while. You hit her balls pretty hard!");
 					}
 					else
 					{
-						if (target is PlayerCharacter)
-						{
-							output("\n<b>You are stunned!</b>");
-						}
-						else
-						{
-							output("\n<b>[target.CombatName] is stunned.</b>");
-						}
+						if (target is PlayerCharacter) output("\n<b>You are stunned!</b>");
+						else output("\n<b>[target.CombatName] is stunned.</b>");
 						
-						target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0,0xFF0000);
+						applyStun(target, 2 + rand(2), false, "Cannot act for a while.");
 					}
 				}
 				else
@@ -1820,10 +1913,9 @@ package classes.GameData
 			
 			// Hits
 			if (attacker is PlayerCharacter) output("You land a crack shot on " + possessive(target.getCombatName()) + " weapon, disarming them.");
-			else if (target is PlayerCharacter) output("[attacker.CombatName] shoots your weapons away with well-placed shots!");
 			else output("[attacker.CombatName] shoots " + possessive(target.getCombatName()) + " weapons away with well-placed shots!");
 			
-			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0,0xFF0000);
+			applyDisarm(target, 4);
 		}
 		
 		public static var StealthFieldGenerator:SingleCombatAttack;
@@ -1858,7 +1950,7 @@ package classes.GameData
 			
 			if (attacker is PlayerCharacter) output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + aTarget.getCombatName() + "!");
 			else if (target is PlayerCharacter) output("[attacker.CombatName] hucks a small device in your direction, unleashing an explosive blast scant inches from your body!");
-			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " hucks a small device in " + possessive(aTarget.getCombatName()) + " direction, unleashing an explosive blast scant inches from " + aTarget.mfn("his", "her", "its") + " form!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " hucks a small device in " + possessive(aTarget.getCombatName()) + " direction, unleashing an explosive blast scant inches from " + aTarget.getCombatPronoun("hisher") + " form!");
 				
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
 			var totalDamage:DamageResult = new DamageResult();
@@ -1979,7 +2071,7 @@ package classes.GameData
 						if (target.isPlural) output(" and wrap up <b>[target.CombatName], stunning them.</b>");
 						else output(" and snap into place. <b>[target.CombatName] is stunned!</b>");
 					}
-					target.createStatusEffect("Stunned", 2+rand(3), 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0,0xFF0000);
+					applyStun(target, 2 + rand(3));
 				}
 				else
 				{
@@ -2017,7 +2109,7 @@ package classes.GameData
 					output(", stunning your enemy!");
 					
 					var rounds:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",rounds,0,0,0,false,"Stun","Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".",true,0,0xFF0000);
+					applyStun(target, rounds, false, "Cannot act for " + rounds + " turn" + (rounds == 1 ? "" : "s") + ".");
 				}
 				
 				// Add some burning damage for the explosion
@@ -2133,7 +2225,7 @@ package classes.GameData
 			if(aTarget == null)
 			{
 				if (attacker is PlayerCharacter) output("It seems you have no target to use your lust-inducing spores on.");
-				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempts to use " + attacker.mfn("his", "her", "its") + " spores but there is not one to use it on.");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempts to use " + attacker.getCombatPronoun("hisher") + " spores but there is not one to use it on.");
 				return;
 			}
 			
@@ -2143,7 +2235,7 @@ package classes.GameData
 			}
 			else
 			{
-				output(StringUtil.capitalize(attacker.getCombatName(), false) + " forces liquid amber from " + attacker.mfn("his", "her", "its") + " body which quickly hardens into a layer of armor.");
+				output(StringUtil.capitalize(attacker.getCombatName(), false) + " forces liquid amber from " + attacker.getCombatPronoun("hisher") + " body which quickly hardens into a layer of armor.");
 			}
 			
 			var resinDur:int = 4;
@@ -2177,7 +2269,7 @@ package classes.GameData
 			}
 			else
 			{
-				output(StringUtil.capitalize(attacker.getCombatName(), false) + " emits a cloud of lust-inducing spores from " + attacker.mfn("his", "her", "its") + " body in " + ((aTarget is PlayerCharacter) ? "your" : (possessive(aTarget.getCombatName()))) + " direction.");
+				output(StringUtil.capitalize(attacker.getCombatName(), false) + " emits a cloud of lust-inducing spores from " + attacker.getCombatPronoun("hisher") + " body in " + possessive(aTarget.getCombatName()) + " direction.");
 			}
 			
 			var lustDur:int = 4;
@@ -2221,7 +2313,7 @@ package classes.GameData
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 40)
 					{
 						output(" <b>The hit was hard enough to stun you!</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+						applyStun(target, 1);
 					}
 					var damage:TypeCollection = attacker.meleeDamage();
 					damage.multiply(2);
@@ -2240,7 +2332,7 @@ package classes.GameData
 			else
 			{
 				output("You go down to the ground! <b>You’re going to have a difficult time fighting from down here!</b>");
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
+				applyTrip(target);
 				
 				applyDamage(new TypeCollection( { kinetic: 1 } ), attacker, target);
 			}

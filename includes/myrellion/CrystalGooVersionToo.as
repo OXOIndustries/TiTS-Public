@@ -107,7 +107,6 @@ public function crystalGooEncounterType1():void
 			}
 			else
 			{
-				
 				output(" Your slow strike glances harmlessly to the side as the ganrael barrels into you, coiling and holding you with spindly, jointed legs.");
 				pc.createStatusEffect("Grappled", 3); // 9999
 			}

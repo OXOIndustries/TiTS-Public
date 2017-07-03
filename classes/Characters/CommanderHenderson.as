@@ -274,7 +274,7 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { corrosive: 8 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 				
-				target.createStatusEffect("Grappled", 0, 66, 0, 0, false, "Constrict", "You’re pinned in a grapple.", true, 0);
+				CombatAttacks.applyGrapple(target, 66);
 			}
 		}
 		
@@ -311,7 +311,7 @@ package classes.Characters
 						else if(!struct.pc.hasStatusEffect("Blinded"))
 						{
 							output(" forming a blinding morass of sticky goop.");
-							struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are for more likely to miss.", true, 0xFF0000);
+							CombatAttacks.applyBlind(struct.pc, rand(3) + 1);
 						}
 						else
 						{
@@ -328,7 +328,7 @@ package classes.Characters
 				{
 					output(" Another roar and spray of liquid splatters across the Chief’s face, forming a blinding mask of sticky aphrodesiacs!");
 					applyDamage(damageRand(new TypeCollection( { drug: 7 } ), 15), this, struct.neykkar, "minimal");
-					struct.neykkar.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+					CombatAttacks.applyBlind(struct.neykkar, rand(3) + 1);
 				}
 			}
 			else
@@ -347,7 +347,7 @@ package classes.Characters
 						else if(!struct.pc.hasStatusEffect("Blinded"))
 						{
 							output(" forming a blinding mask of sticky aphrodesiacs!");
-							struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+							CombatAttacks.applyBlind(struct.pc, rand(3) + 1);
 						}
 						else
 						{
@@ -365,7 +365,7 @@ package classes.Characters
 				{
 					output(" Even as you’re struggling against the fumes, another roar and spray of liquid splatters across the Chief’s face, forming a blinding mask of sticky aphrodesiacs!");
 					applyDamage(damageRand(new TypeCollection( { drug: 7 } ), 15), this, struct.neykkar, "minimal");
-					struct.neykkar.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+					CombatAttacks.applyBlind(struct.neykkar, rand(3) + 1);
 				}
 			}
 		}
@@ -420,7 +420,7 @@ package classes.Characters
 			}
 			else
 			{
-				target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You’re staggered, and your Aim and Reflexes have been reduced!" : "Staggered, Aim and Reflexes are reduced."), true, 0);
+				CombatAttacks.applyStagger(target, 5);
 			}
 		}
 		

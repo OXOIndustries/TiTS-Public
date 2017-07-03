@@ -4215,7 +4215,7 @@ private function seraHasItem(setItem:ItemSlotClass):Boolean
 	
 	for(var i:int = 0; i < seraWalkItems.length; i++)
 	{
-		if(seraWalkItems[i].shortName == setItem.shortName) return true;;
+		if(seraWalkItems[i].shortName == setItem.shortName) return true;
 	}
 	
 	return false;
@@ -4226,7 +4226,7 @@ private function seraHasItemByClass(setItem:Class):Boolean
 	
 	for(var i:int = 0; i < seraWalkItems.length; i++)
 	{
-		if(seraWalkItems[i] is setItem) return true;;
+		if(seraWalkItems[i] is setItem) return true;
 	}
 	
 	return false;

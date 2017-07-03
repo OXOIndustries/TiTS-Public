@@ -269,13 +269,13 @@ package classes.Characters
 				if (blindedPC && blindedKara)
 				{
 					output(" blinding you and Kara.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
-					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(pc, 3);
+					CombatAttacks.applyBlind(kara, 3);
 				}
 				else if (!blindedPC && blindedKara)
 				{
 					output(" blinding Kara, though you manage to avoid any serious effect.");
-					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(kara, 3);
 				}
 				else
 				{
@@ -290,7 +290,7 @@ package classes.Characters
 				if (blindedPC)
 				{
 					output(" blinding you.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(pc, 3);
 				}
 				else
 				{

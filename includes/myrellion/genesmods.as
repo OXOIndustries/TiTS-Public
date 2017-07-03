@@ -278,7 +278,7 @@ public function genesModsBuyStuff():void
 		if(!chars["GENE"].hasItemByClass(Muffstick)) chars["GENE"].inventory.push(new Muffstick());
 	}
 	else chars["GENE"].destroyItemByClass(Muffstick);
-	shopkeep = chars["GENE"];;
+	shopkeep = chars["GENE"];
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;

@@ -351,7 +351,7 @@
 				{
 					output("\nA hot, burning sensation sprays out from your chest. Your [pc.legs] go weak and you fall to the ground.");
 					//Effect: Decent physical damage with small crit chance. If the PC’s shields are down, there is a 25% knockback chance. 100% knockback chance on crit.
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 			}
 		}
@@ -382,7 +382,7 @@
 				output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you.");
 				if (target.hasAirtightSuit())
 				{
-					output(" Fortunately for you, the smoke doesn't leak through your airtight [pc.armor], but it obscures your vision just briefly.");
+					output(" Fortunately for you, the smoke doesn’t leak through your airtight [pc.armor], but it obscures your vision just briefly.");
 				}
 				else
 				{

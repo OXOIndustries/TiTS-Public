@@ -276,7 +276,7 @@ package classes.Characters
 				else
 				{
 					output(". You taste iron, and the horrible sound of pain and shock rings in your [pc.ears]. <b>You are stunned.</b>");
-					target.createStatusEffect("Stunned",2+rand(2),0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 2 + rand(2));
 					if(!this.hasStatusEffect("Roofied")) this.createStatusEffect("Roofied",4,0,0,0);
 					else this.addStatusValue("Roofied",1,4);
 				}
@@ -336,7 +336,7 @@ package classes.Characters
 					else
 					{
 						output(" - unfortunately, it leaves a smear that obscures your vision. <b>You are now blind!</b>");
-						target.createStatusEffect("Blinded",2,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+						CombatAttacks.applyBlind(target, 2);
 					}
 				}
 				else

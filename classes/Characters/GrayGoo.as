@@ -28,9 +28,9 @@
 			this.originalRace = "conglomerate";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This goo-like creature is made of a writhing mass of nano-bots, trillions of the little things coalesced into the form of an almost comically-busty woman, with wide hips and thick thighs over long legs that seem to have trouble maintaining their shape, as her feet are constantly turning to an amorphous liquid on the ground as she walks. Her arms, too, are constantly shifting, turning into masses of thin tentacles or else reforming into the shape of various sex toys and restraints, some parts of her intelligence clearly over-eager to milk all the \"natural lube\" she can out of you! ";
-			this.customDodge = "The goo's body twists and morphs outlandishly to avoid your attack.";
-			this.customBlock = "The goo's remarkable composition somehow allows her to take your attack unharmed.";
+			this.long = "This goo-like creature is made of a writhing mass of nano-bots, trillions of the little things coalesced into the form of an almost comically-busty woman, with wide hips and thick thighs over long legs that seem to have trouble maintaining their shape, as her feet are constantly turning to an amorphous liquid on the ground as she walks. Her arms, too, are constantly shifting, turning into masses of thin tentacles or else reforming into the shape of various sex toys and restraints, some parts of her intelligence clearly over-eager to milk all the “natural lube” she can out of you! ";
+			this.customDodge = "The goo’s body twists and morphs outlandishly to avoid your attack.";
+			this.customBlock = "The goo’s remarkable composition somehow allows her to take your attack unharmed.";
 			this.isPlural = false;
 			this.meleeWeapon = new Fists();
 			
@@ -40,7 +40,7 @@
 			this.rangedWeapon.attackNoun = "dart";
 			this.rangedWeapon.hasRandomProperties = true;
 			
-			this.armor.longName = "glittering \"skin\"";
+			this.armor.longName = "glittering “skin”";
 			this.armor.defense = 1;
 			this.armor.hasRandomProperties = true;
 			
@@ -237,9 +237,9 @@
 		private function grayGooReformatting():void
 		{
 			author("Savin");
-			//{Restores light HP, removes status effects}
+			// Restores light HP, removes status effects
 			clearCombatStatuses();
-			output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she's doing. After a moment, her eyes light up again, a dopey grin on her face. <i>\"All better now!\"</i> she chirps before slotting a hand up her gooey twat. (+15 HP and all statuses cleared!)");
+			output("You see the goo-girl shudder, her eyes dimming for a moment. You hesitate, waiting to see what she’s doing. After a moment, her eyes light up again, a dopey grin on her face. <i>“All better now!”</i> she chirps before slotting a hand up her gooey twat. (+15 HP and all statuses cleared!)");
 			lust(5);
 			HP(15);
 		}
@@ -249,13 +249,13 @@
 			author("Savin");
 			if(!target.hasStatusEffect("Grappled"))
 			{
-				output("The nano-goo's arms deform into thick tentacles of nanomachines, hurtling toward you! The tendrils wrap around your arms, splaying you out and leaving you to struggle in their surprisingly strong grasp.");
-				target.createStatusEffect("Grappled",0,30,0,0,false,"Constrict","You're trapped in a gray goo's hold!",true,0);
+				output("The nano-goo’s arms deform into thick tentacles of nanomachines, hurtling toward you! The tendrils wrap around your arms, splaying you out and leaving you to struggle in their surprisingly strong grasp.");
+				target.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You’re trapped in a gray goo’s hold!", true, 0);
 			}
 			//Turn 1: 
 			else if(target.statusEffectv3("Grappled") == 0)
 			{
-				output("Seeing that you can't quite wriggle free of her grasp, the gray goo giddily closes the distance between you, grabbing a handful of your [pc.butt] and squeezing just enough to make you groan.");
+				output("Seeing that you can’t quite wriggle free of her grasp, the gray goo giddily closes the distance between you, grabbing a handful of your [pc.butt] and squeezing just enough to make you groan.");
 				target.addStatusValue("Grappled",3,1);
 				applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), this, target, "minimal");
 			}

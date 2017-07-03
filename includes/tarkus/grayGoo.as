@@ -174,7 +174,7 @@ public function reprogramGrayGoosForYerPleasure():void
 	clearMenu();
 	if(pc.HP() < pc.maxHP()) addButton(0,"Heal Me",healMeGrayGooYoureMyOnlyHopeDotDotDot,undefined,"Heal Me","Have the goo woman user her microsurgeons to heal you.");
 	else addDisabledButton(0,"Heal Me");
-	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");;
+	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 

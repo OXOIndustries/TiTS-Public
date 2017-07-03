@@ -241,7 +241,11 @@ package classes.Characters
 			var attack:Function = weightedRand(enemyAttacks);
 			attack(target);
 			
-			enemyAttacks.splice(enemyAttacks.indexOf(attack), 1);
+			//enemyAttacks.splice(enemyAttacks.indexOf(attack), 1);
+			for (var cnt:int = 0; cnt < enemyAttacks.length; cnt++)
+			{
+				if (enemyAttacks[cnt].v == attack) enemyAttacks.splice(cnt, 1);
+			}
 			
 			output("\n\n");
 			
@@ -377,7 +381,7 @@ package classes.Characters
 			{
 				output(" The whirling trap hits you right in the middle, heavy ropes wrapping themselves around your limbs and weights thumping into you with hard momentum.\n\nYou try and tear yourself loose of the tangle, but before you can the bothrioc pounces on you, pinning you to the ground under them.\n\n<i>“Now then, precious,”</i> they whisper, caressing your face. <i>“Let’s have no more silly struggling, hmm?”</i>");
 				
-				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "The bolos are still tangled around your limbs!", true, 0);
+				CombatAttacks.applyGrapple(target, 50, false, "The bolos are still tangled around your limbs!");
 				_grappleRound = 0;
 			}
 		}

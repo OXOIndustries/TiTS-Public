@@ -605,7 +605,7 @@ package classes.GameData
 					if(rand(10) == 0) 
 					{
 						output("\n\n<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>")
-						pc.createStatusEffect("Blinded",2,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+						CombatAttacks.applyBlind(target, 2);
 					}
 				}
 			}
@@ -3162,7 +3162,7 @@ package classes.GameData
 					msg += "”</i>";
 					output(msg);
 				}
-				output("\n\nYou allow your fingers to rub up and down across your folds, showcasing it for your foe. <i>“I’ve gotta say, I’m really loving having a honeypot like this... maybe I’ll give you a taste, if you’re a good " + target.mfn("boy","girl","... thing") + ".”</i>");
+				output("\n\nYou allow your fingers to rub up and down across your folds, showcasing it for your foe. <i>“I’ve gotta say, I’m really loving having a honeypot like this... maybe I’ll give you a taste, if you’re a good" + target.mfn(" boy"," girl","... thing") + ".”</i>");
 				//Clothed:
 				if(!pc.isCrotchExposed()) output(" You close up your [pc.lowerGarments]");
 				else output(" You adjust your thighs back to their normal stance");
@@ -3429,8 +3429,8 @@ package classes.GameData
 				{
 					//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
 					var stunDur:int = 1 + rand(2);
-					target.createStatusEffect("Stunned",stunDur,0,0,0,false,"Stun","Cannot take action!",true,0,0xFF0000);
-					target.createStatusEffect("Lust Stunned",stunDur,0,0,0,true,"Stun","Cannot take action!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, stunDur);
+					CombatAttacks.applyLustStun(target, stunDur);
 				}
 			}
 			

@@ -274,7 +274,7 @@ package classes.Characters
 			if(target.intelligence()/2+rand(20)+1 < this.reflexes()/2+10)
 			{
 				output(" You make the mistake of trying to track his movements, and dust is blown into your [pc.eyes]. <b>You are blinded!</b>");
-				target.createStatusEffect("Blinded", 2+rand(2), 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
+				CombatAttacks.applyBlind(target, 2 + rand(2));
 			}
 			applyDamage(new TypeCollection( { tease: 7+rand(4) } ), this, target, "minimal");
 		}

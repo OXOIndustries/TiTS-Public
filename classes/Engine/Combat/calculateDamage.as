@@ -10,6 +10,7 @@ package classes.Engine.Combat
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.kGAMECLASS;
+	import classes.GameData.CombatAttacks;
 	
 	/**
 	 * ...
@@ -90,7 +91,7 @@ package classes.Engine.Combat
 				//Burninate the countryside
 				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
-					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+					CombatAttacks.applyBurn(target, 2);
 				}
 
 				//Electrified weapons do more damage based on int!
@@ -140,7 +141,7 @@ package classes.Engine.Combat
 				//Burninate the countryside
 				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
-					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+					CombatAttacks.applyBurn(target, 2);
 				}
 			}
 			//Track Alpha Strike. Don't need to track the perk here cause who cares.
