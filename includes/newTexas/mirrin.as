@@ -288,9 +288,10 @@ public function downTurnDragonPT():void
 	clearOutput();
 	showMirrin();
 	author("SoAndSo");
-	if(pc.isNice()) output("<i>“I’m afraid I’ve just remembered: I’ve another appointment. Back later?”</i> You say sincerely.");
-	else if(pc.isMischievous()) output("<i>“So sooorry, double booked. Catch you later?”</i> You say with a cheeky smile.");
-	else output("<i>“Important things to do, some other time perhaps,”</i> you say with a dismissive sniff.");
+	var tired:Boolean = (pc.energy() < 50 || pc.isWornOut());
+	if(pc.isNice()) output("<i>“I’m afraid I’" + (tired ? "m a bit too tired at the moment" : "ve just remembered: I’ve another appointment") + ". Back later?”</i> You say sincerely.");
+	else if(pc.isMischievous()) output("<i>“So sooorry, " + (tired ? "kinda tired" : "double booked") + ". Catch you later?”</i> You say with a cheeky smile.");
+	else output("<i>“" + (tired ? "Too tired right now" : "Important things to do") + ", some other time perhaps,”</i> you say with a dismissive sniff.");
 	output("\n\nMirrin shrugs and smirks. <i>“Sure, I’m here most of the day.”</i>");
 	if(pc.isNice()) output("\n\nWith a wave, ");
 	else if(pc.isMischievous()) output("\n\nBlowing a kiss, ");
