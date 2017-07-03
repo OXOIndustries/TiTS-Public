@@ -113,7 +113,8 @@ public function sayYesToDragonPT():void
 	clearMenu();
 	var momsSpaghetti:String = "";
 	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
-	addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(0,"Train","Train","You’re too tired for a training session.");
+	else addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Free?",askMirrinAboutFreebootie,false,"Free?","Seems too good to be true.");
 	addButton(2,"Not Now",downTurnDragonPT,undefined,"Not Now","You can train with her later.");
 }
@@ -141,7 +142,8 @@ public function uhNoDragonPT():void
 	clearMenu();
 	var momsSpaghetti:String = "";
 	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
-	addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(0,"Train","Train","You’re too tired for a training session.");
+	else addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Free?",askMirrinAboutFreebootie,true,"Free?","Seems too good to be true.");
 	addButton(2,"Not Now",downTurnDragonPT,undefined,"Not Now","You can train with her later.");
 }
@@ -246,6 +248,8 @@ public function trainWivDragonBonars():void
 	pc.slowStatGain("willpower",1);
 	soreDebuff(5);
 	sweatyDebuff(1);
+	pc.energy(-50);
+	
 	IncrementFlag("MIRRIN_TRAINED_FIRSTIE");
 	clearMenu();
 	addButton(0,"Next",goToFrontOfGym);
@@ -272,7 +276,8 @@ public function askMirrinAboutFreebootie(bonusLust:Boolean = false):void
 	clearMenu();
 	var momsSpaghetti:String = "";
 	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
-	addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(0,"Train","Train","You’re too tired for a training session.");
+	else addButton(0,"Train",trainWivDragonBonars,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Not Now",downTurnDragonPT,undefined,"Not Now","You can train with her later.");
 }
 
@@ -351,7 +356,8 @@ public function mirrinMenu():void
 {
 	clearMenu();
 	addButton(0,"Appearance",mirrinAppearance,undefined,"Appearance","Quick! She’s not looking...");
-	if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_TREATMENT_TALKED"] == undefined) addDisabledButton(1,"Training","Training","Maybe you should talk about what happened before doing more training.");
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(1,"Training","Training","You’re too tired for a training session.");
+	else if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_TREATMENT_TALKED"] == undefined) addDisabledButton(1,"Training","Training","Maybe you should talk about what happened before doing more training.");
 	else if(flags["MIRRIN_TRAINED"] == 4 && flags["MIRRIN_CONFIDENTED"] == undefined) addDisabledButton(1,"Training","Training","Maybe you should talk about that last bout of fun before any more training...");
 	else addButton(1,"Training",repeatableMirrinTraining,undefined,"Training",("Get cut!" + (silly ? " Put that knife down..." : "")));
 
@@ -482,6 +488,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
 		sweatyDebuff(1);
+		pc.energy(-50);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -541,6 +548,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
 		sweatyDebuff(1);
+		pc.energy(-50);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -599,6 +607,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
 		sweatyDebuff(1);
+		pc.energy(-50);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -718,6 +727,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
 		sweatyDebuff(1);
+		pc.energy(-50);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Food!]
 		clearMenu();
@@ -741,6 +751,7 @@ public function repeatableMirrinTraining():void
 		pc.slowStatGain("willpower",1);
 		soreDebuff(5);
 		sweatyDebuff(1);
+		pc.energy(-50);
 		IncrementFlag("MIRRIN_TRAINED");
 		//[Her Place]* [Leave]
 		//*Goes straight to [Her Place] dialogue/scene.
@@ -1270,11 +1281,13 @@ public function mirrinModsTalk():void
 	else if(pc.isMischievous()) output("\n\nYou laugh along with her.");
 	else output("\n\n<i>“Can say that again,”</i> you add, a wry grin spreading across your face.");
 	output(" She’s a little bit more loose towards you now...");
-	output("\n\nOne more thought crosses your brainwaves: Why does she have <i>two</i> dongers?");
-	output("\n\nShe shrugs. <i>“It just happened, really. Gryvain plus enough of the right mods all going crazy inside. I don’t really want to remove them...”</i> she replies, shuffling about.");
-	output("\n\n<i>“Using them is still... normal, just using one sometimes sets the other off unintentionally. And I often... tend to make a mess.”</i>");
-	output("\n\nInteresting that she’s so candid about it.");
-
+	if(flags["SEXED_MIRRIN"] != undefined)
+	{
+		output("\n\nOne more thought crosses your brainwaves: Why does she have <i>two</i> dongers?");
+		output("\n\nShe shrugs. <i>“It just happened, really. Gryvain plus enough of the right mods all going crazy inside. I don’t really want to remove them...”</i> she replies, shuffling about.");
+		output("\n\n<i>“Using them is still... normal, just using one sometimes sets the other off unintentionally. And I often... tend to make a mess.”</i>");
+		output("\n\nInteresting that she’s so candid about it.");
+	}
 	processTime(30);
 	flags["MIRRIN_MODS_TALKED"] = 1;
 	mirrinTalkMenu();
@@ -1606,7 +1619,7 @@ public function mirrinFirstTimev1Part2():void
 	clearOutput();
 	showMirrin(true);
 	author("SoAndSo");
-	output("She lets you down onto the bed, a little sluggish in her movements. Your body is completely worn out, both from being manhandled and fucked silly from you qilin friend; so you just lay back, [pc.legs] and arms stretched out on the bed. Mirrin moves out of sight but the sound of a shower turning on tells you where she is.");
+	output("She lets you down onto the bed, a little sluggish in her movements. Your body is completely worn out, both from being manhandled and fucked silly from you qilin friend; so you just lay back, [pc.legOrLegs] and arms stretched out on the bed. Mirrin moves out of sight but the sound of a shower turning on tells you where she is.");
 	output("\n\nShe comes back after letting you have a breather, sitting by your side.");
 	output("\n\n<i>“Well then, [pc.name]... I’m a little drained right now but I want you again. I’m always at the gym if you want me back,”</i> she softly says, holding one of your hands. She then lets go, wandering off to the sound of running water.");
 	output("\n\nYou feel it’s best to let her go after such an energetic session, gripping as it was, so you redress into your [pc.gear], call out your goodbyes and return to New Texas proper.");
@@ -1954,7 +1967,7 @@ public function trainFuckWivDisBitchMirrin():void
 		}
 	}
 	//PC is Tech Specialist:
-	else
+	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
 	{
 		output("Mirrin goes on the offensive.");
 		output("\n\nUsing your technique, you stick to dodging and pushing away blows and grabs rather than countering or attacking. It works well: She can barely get a finger on you despite her speed and size!");
