@@ -3,11 +3,12 @@ package classes.GameData
 	import classes.Creature;
 	import classes.Engine.ShipCombat.*;
 	import classes.Engine.Interfaces.*;
+	import classes.Ships.Actions.ShipAction;
 	import classes.Ships.Modules.*;
 	import classes.Ships.SpaceShip;
 	import classes.Ships.StatusEffectPayload;
 	import classes.kGAMECLASS;
-	import classes.Engine.ShipCombat.ActionLibrary;
+	import classes.Ships.ActionLibrary;
 	import classes.Engine.Utility.rand;
 	
 	/**
@@ -74,6 +75,8 @@ package classes.GameData
 		
 		override public function showCombatMenu():void
 		{
+			clearOutput();
+			
 			if (!doneRoundActions())
 			{
 				// doPerRoundActions can exit early if a victory/loss condition has been hit -- respect the exeuction.
@@ -95,7 +98,7 @@ package classes.GameData
 			}
 			else
 			{
-				addDisabledButton(2, "Gadgets");
+				addDisabledButton(2, "Gadgets", "Gadgets", "You haven't got any available gadgets!");
 			}
 			
 			addButton(5, "Navigation", showNavigationMenu);
@@ -366,7 +369,7 @@ package classes.GameData
 				var ga:ShipAction = gadgets[i] as ShipAction;
 				
 				cc.text = ga.ButtonName;
-				cc.IsDisabled = PlayerShip.CombatOrders.SelectedAction == ga || ga.IsAvailable(PlayerShip);
+				cc.IsDisabled = ga.IsAvailable(PlayerShip) == false;
 				cc.func = function(new_act:ShipAction, return_f:Function):Function {
 					return function():void {
 						selectAction(new_act, return_f);
@@ -593,7 +596,6 @@ package classes.GameData
 		
 		private function doPerRoundActions():Boolean
 		{
-			clearOutput();
 			clearMenu();
 			showCombatUI();
 			
@@ -654,6 +656,11 @@ package classes.GameData
 			if (_friendlies.length > 1 || _hostiles.length > 1)
 			{
 				throw new Error("Ship range resolution requires refactoring to handle multiple ships on either side of combat!");
+			}
+			else
+			{
+				(_friendlies[0] as SpaceShip).CombatOrders.SelectedTarget = _hostiles[0];
+				(_hostiles[0] as SpaceShip).CombatOrders.SelectedTarget = _friendlies[0];
 			}
 			
 			resolveRangeChanges(_friendlies[0], _hostiles[0]);

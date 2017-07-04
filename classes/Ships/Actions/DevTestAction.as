@@ -1,9 +1,10 @@
-package classes.Engine.ShipCombat.Actions 
+package classes.Ships.Actions 
 {
-	import classes.Engine.ShipCombat.ShipAction;
+	import classes.Ships.Actions.ShipAction;
 	import classes.Ships.SpaceShip;
 	import classes.Engine.Interfaces.*;
-	
+	import classes.Ships.StatusEffectPayload;
+	import classes.Resources.StatusIcons;
 	/**
 	 * ...
 	 * @author Gedan
@@ -27,6 +28,21 @@ package classes.Engine.ShipCombat.Actions
 		override public function Implementor(user:SpaceShip, target:SpaceShip, playerGroup:Array, hostileGroup:Array):void
 		{
 			output(user.Name + " has used a test action!");
+			
+			var se:StatusEffectPayload = new StatusEffectPayload(
+				"Test Effect", 
+				{ testValue: 1 }, 
+				3, 
+				StatusEffectPayload.DURATION_ROUNDS, 
+				StatusIcons.Icon_RadioSignal, 
+				true, 
+				false,
+				"ExampleOnRemove",
+				"ExampleOnCreate",
+				"ExampleOnRoundStart",
+				"ExampleOnRoundEnd");
+				
+			target.AddStatusEffect(se);
 		}
 	}
 

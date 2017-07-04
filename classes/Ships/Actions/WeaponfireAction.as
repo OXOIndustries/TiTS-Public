@@ -1,6 +1,6 @@
-package classes.Engine.ShipCombat.Actions 
+package classes.Ships.Actions 
 {
-	import classes.Engine.ShipCombat.ShipAction;
+	import classes.Ships.Actions.ShipAction;
 	import classes.Engine.ShipCombat.ShipDamageResult;
 	import classes.Ships.Modules.UpgradeModules.WeaponModule;
 	import classes.Ships.SpaceShip;

@@ -41,7 +41,7 @@ package classes.UIComponents.SideBarComponents
 			
 			_barContainer = new Sprite();
 			_barContainer.x = 10;
-			_barContainer.y = 20;
+			_barContainer.y = _headerText == null ? 0 : 20;
 			addChild(_barContainer);
 			
 			BuildHeader();
@@ -50,30 +50,33 @@ package classes.UIComponents.SideBarComponents
 		
 		private function BuildHeader():void
 		{
-			_statsUnderline = new Sprite();
-			_statsUnderline.x = _leftAlign ? 0 : 10;
-			_statsUnderline.y = 17;
-			_statsUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
-			_statsUnderline.graphics.drawRect(0, 0, 190, 1);
-			_statsUnderline.graphics.endFill();
-			addChild(_statsUnderline);
-			
-			_statsHeaderText = new TextField();
-			_statsHeaderText.x = 10;
-			_statsHeaderText.y = 0;
-			_statsHeaderText.width = 190;
-			_statsHeaderText.defaultTextFormat = UIStyleSettings.gStatBlockHeaderFormatter;
-			_statsHeaderText.embedFonts = true;
-			_statsHeaderText.antiAliasType = AntiAliasType.ADVANCED;
-			_statsHeaderText.text = _headerText;
-			_statsHeaderText.mouseEnabled = false;
-			_statsHeaderText.mouseWheelEnabled = false;
-			addChild(_statsHeaderText);
+			if (_headerText != null)
+			{
+				_statsUnderline = new Sprite();
+				_statsUnderline.x = _leftAlign ? 0 : 10;
+				_statsUnderline.y = 17;
+				_statsUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
+				_statsUnderline.graphics.drawRect(0, 0, 190, 1);
+				_statsUnderline.graphics.endFill();
+				addChild(_statsUnderline);
+				
+				_statsHeaderText = new TextField();
+				_statsHeaderText.x = 10;
+				_statsHeaderText.y = 0;
+				_statsHeaderText.width = 190;
+				_statsHeaderText.defaultTextFormat = UIStyleSettings.gStatBlockHeaderFormatter;
+				_statsHeaderText.embedFonts = true;
+				_statsHeaderText.antiAliasType = AntiAliasType.ADVANCED;
+				_statsHeaderText.text = _headerText;
+				_statsHeaderText.mouseEnabled = false;
+				_statsHeaderText.mouseWheelEnabled = false;
+				addChild(_statsHeaderText);
+			}
 		}
 		
 		private function BuildStatBlock():void
 		{
-			_shieldBar = BarFactory("SHIELDS", "1");
+			_shieldBar = BarFactory("SHIELD", "1");
 			_hullBar = BarFactory("HULL", "1", _shieldBar.y + 40);
 			_capacitorBar = BarFactory("CAP", "1", _hullBar.y + 40);
 		}

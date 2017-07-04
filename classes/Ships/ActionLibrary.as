@@ -1,6 +1,9 @@
-package classes.Engine.ShipCombat 
+package classes.Ships 
 {
 	import classes.Engine.ShipCombat.Actions.*
+	import classes.Ships.Actions.DevTestAction;
+	import classes.Ships.Actions.SpoolLightdriveAction;
+	import classes.Ships.Actions.WeaponfireAction;
 	
 	/**
 	 * ...
@@ -15,8 +18,7 @@ package classes.Engine.ShipCombat
 		public static function get SpoolLightdrive():SpoolLightdriveAction { return _SpoolLightdrive; }
 		
 		private static var _Weaponfire:WeaponfireAction = new WeaponfireAction();
-		public static function get Weaponfire():WeaponfireAction { return _Weaponfire; }
-		
+		public static function get Weaponfire():WeaponfireAction { return _Weaponfire; }		
 	}
 
 }

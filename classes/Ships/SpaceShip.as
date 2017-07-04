@@ -7,6 +7,7 @@ package classes.Ships
 	import classes.Engine.ShipCombat.DamageTypes.*;
 	import classes.Engine.ShipCombat.*
 	import classes.Resources.StatusIcons;
+	import classes.Ships.Actions.ShipAction;
 	import classes.Ships.Map.*;
 	import classes.Ships.Map.Library.TestMapInterior;
 	import classes.Ships.Modules.*;

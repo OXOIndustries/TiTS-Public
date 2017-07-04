@@ -1,4 +1,4 @@
-package classes.Engine.ShipCombat 
+package classes.Ships.Actions 
 {
 	import classes.Ships.Modules.UpgradeModules.WeaponModule;
 	import classes.Ships.SpaceShip;
@@ -92,7 +92,7 @@ package classes.Engine.ShipCombat
 		{
 			var s:String = TooltipBody;
 			
-			if (IsAvailable(user))
+			if (IsAvailable(user) == false)
 			{
 				s += "\n\nThis action is currently unavailable.";
 			}

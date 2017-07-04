@@ -11,7 +11,7 @@ package classes.Ships.Library
 	import classes.Ships.SpaceShip;
 	import classes.Engine.ShipCombat.ShipCombatOrderContainer;
 	import classes.Engine.Utility.rand;
-	import classes.Engine.ShipCombat.ActionLibrary;
+	import classes.Ships.ActionLibrary;
 	
 	/**
 	 * ...
@@ -22,15 +22,15 @@ package classes.Ships.Library
 		
 		public function TestHostileShip() 
 		{
-			Name = "Test Hostile Ship";
-			_manufacturer = "GDN Heavy Industries";
+			Name = "Test Ship";
+			_manufacturer = "GDN";
 			_model = "FSP5";
 			_baseValue = 150000;
 			
-			_hullMaxBase = 3500;
+			_hullMaxBase = 500;
 			Hull = HullMax;
 			
-			_shieldsMaxBase = 10000;
+			_shieldsMaxBase = 1000;
 			Shields = ShieldsMax;
 			
 			_capacitorMaxBase = 1000;

@@ -221,7 +221,7 @@ package classes.UIComponents
 		
 		private function showSingleShip(ss:SpaceShip, asInit:Boolean):void
 		{
-			_locationHeader.visible = _enemyShipBlock.visible = _genInfoBlock.visible = true;
+			_compressedLocationHeader.visible = _enemyShipBlock.visible = _genInfoBlock.visible = true;
 			_enemyEncounterBlock.visible = _enemyPartyBlock.visible = _miniMapBlock.visible = _locationHeader.visible = false;
 			_genInfoBlock.HideDateTime();
 			_enemyShipBlock.showForShip(ss, asInit);

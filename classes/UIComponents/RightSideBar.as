@@ -95,8 +95,8 @@ package classes.UIComponents
 		
 		private function showPlayerShip(ss:SpaceShip, asInit:Boolean = false):void
 		{
-			_statusEffectDisplay.visible = true;
-			_combatStatBlock.visible = _coreStatBlock.visible = _advancementBlock.visible = false;
+			 _playerShipBlock.visible = true;
+			_statusEffectDisplay.visible = _combatStatBlock.visible = _coreStatBlock.visible = _advancementBlock.visible = false;
 			_playerPartyBlock.visible = false;
 			
 			_playerShipBlock.showForShip(ss, asInit);
@@ -145,6 +145,11 @@ package classes.UIComponents
 			_playerPartyBlock = new PlayerPartyBlock();
 			_playerPartyBlock.y = 4;
 			addChild(_playerPartyBlock);
+			
+			_playerShipBlock = new PlayerShipBlock();
+			_playerShipBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 11;
+			addChild(_playerShipBlock);
+			_playerShipBlock.visible = false;
 			
 			_coreStatBlock = new CoreStatsBlock();
 			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height));

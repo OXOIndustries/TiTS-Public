@@ -42,7 +42,7 @@ package classes.UIComponents.SideBarComponents
 			BuildInfoBars();
 			
 			_statusEffects = new StatusEffectsBlock(false);
-			_statusEffects.y = Math.floor(_shipMfr.y + (_shipMfr.height - 7));
+			_statusEffects.y = Math.floor(_shipModel.y + (_shipModel.height - 7));
 			addChild(_statusEffects);
 			
 			_statusEffects.displayText = "ENEMY SHIP STATUS";
@@ -61,14 +61,14 @@ package classes.UIComponents.SideBarComponents
 			addChild(_shipMfr);
 			_shipMfr.x = 10;
 			_shipMfr.y = _levelDisplay.y + 30;
-			_shipMfr.caption = "MFR:";
+			_shipMfr.caption = "MFR";
 			_shipMfr.value = "REAPER";
 			
 			_shipModel = new StatBar(StatBar.MODE_NOBAR);
 			addChild(_shipModel);
 			_shipModel.x = 10;
 			_shipModel.y = _shipMfr.y + 30;
-			_shipModel.caption = "MDL:";
+			_shipModel.caption = "MDL";
 			_shipModel.value = "RX-10A";
 		}
 		
