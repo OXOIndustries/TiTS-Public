@@ -3868,8 +3868,10 @@ package classes.GameData
 				makeCharacterUnique(_friendlies[i], FRIENDLY_GROUP);
 			}
 		}
-		public function addFriendlyCreature(newC:Creature):void
+		override public function addFriendlyActor(newC:*):void
 		{
+			if (!(newC is Creature)) throw new Error("New actor is not a creature.");
+			
 			prepFriendlyForCombat(newC);
 			_friendlies.push(newC);
 			makeCharacterUnique(newC, FRIENDLY_GROUP);
@@ -3902,16 +3904,21 @@ package classes.GameData
 				makeCharacterUnique(_hostiles[i], HOSTILE_GROUP);
 			}
 		}
-		public function addHostileCreature(newC:Creature):void
+		
+		override public function addHostileActor(newC:*):void
 		{
+			if (!(newC is Creature)) throw new Error("New actor is not a creature.");
+			
 			prepHostileForCombat(newC);
 			_hostiles.push(newC);
 			makeCharacterUnique(newC, HOSTILE_GROUP);
 			showCombatUI(); // force an update
 		}
 		
-		public function removeHostileCreature(remC:Creature):void
+		override public function removeHostileActor(remC:*):void
 		{
+			if (!(remC is Creature)) throw new Error("Removed actor is not a creature.");
+			
 			_hostiles.splice(_hostiles.indexOf(remC), 1);
 			showCombatUI();
 		}
