@@ -201,6 +201,9 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 		output(".");
 		currentLocation = shipLocation;
 		clearMenu();
+		
+		flags["REAHA_MYR_SCENE"] = 1;
+		
 		addButton(0,"Next",mainGameMenu);
 	}
 	//PC's fucked Shade

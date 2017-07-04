@@ -5679,7 +5679,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Kui Country Bar and Lodge
-			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined || flags["MET_MABBS"] != undefined || flags["MET_SYLVIE"] != undefined)
+			if(flags["GLORYHOLE_MOUNTER"] > 0 || flags["GLORYHOLE_SERVER"] > 0 || flags["MET_KALLY"] != undefined || flags["MET_DEL_SHEMALE"] != undefined || flags["MET_MABBS"] != undefined || flags["MET_SYLVIE"] != undefined || flags["USHA_MET3"] != undefined)
 			{
 				output2("\n<b><u>Kui Country Bar and Lodge</u></b>");
 				// Gloryholes
@@ -5748,6 +5748,19 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_SYLVIE"] > 0) output2("\n<b>* Sylvie, Times Sexed:</b> " + flags["SEXED_SYLVIE"]);
 					if(flags["SYLVIE_CUFFNFUCK"] != undefined) output2("\n<b>* Sylvie, Times You Were Cuffed and Fucked by Her:</b> " + flags["SYLVIE_CUFFNFUCK"]);
 					if(flags["SYLVIE_TAURMOUNT"] != undefined) output2("\n<b>* Sylvie, Times You Mounted Her:</b> " + flags["SYLVIE_TAURMOUNT"]);
+				}
+				//Ushamee
+				if (flags["USHA_MET3"] != undefined)
+				{
+					output2("\n<b>* Ushamee:</b> Met her");
+					if (flags["USHA_SEXED"] != undefined)
+					{
+						output2("\n<b>* Ushamee, Times Sexed:</b> " + flags["USHA_SEXED"]);
+						output2("\n<b>* Ushamee, Times Fucked Her Bum:</b> " + (flags["USHA_BUMLOVE"] != undefined ? flags["USHA_BUMLOVE"] : "0"));
+						output2("\n<b>* Ushamee, Times Traded Oral:</b> " + (flags["USHA_ORAL"] != undefined ? flags["USHA_ORAL"] : "0"));
+						output2("\n<b>* Ushamee, Times Mounted Her:</b> " + (flags["USHA_MOUNT"] != undefined ? flags["USHA_MOUNT"] : "0"));
+					}
+					
 				}
 				variousCount++;
 			}
