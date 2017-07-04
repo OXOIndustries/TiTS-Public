@@ -1,9 +1,6 @@
 package classes.Ships 
 {
-	import classes.Engine.ShipCombat.Actions.*
-	import classes.Ships.Actions.DevTestAction;
-	import classes.Ships.Actions.SpoolLightdriveAction;
-	import classes.Ships.Actions.WeaponfireAction;
+	import classes.Ships.Actions.*;
 	
 	/**
 	 * ...
