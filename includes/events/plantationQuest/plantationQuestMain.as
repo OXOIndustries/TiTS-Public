@@ -1583,7 +1583,7 @@ public function chieftansCircleBonusFuckery():Boolean
 		//[Talk] [Challenge] [Fight] [Agree]
 		clearMenu();
 		addButton(0,"Talk",talkToQuinn,undefined,"Talk","Reason with Quinn. They really like words, right?");
-		addButton(1,"Challenge",challengeLahToAFight,undefined,"Challenge","Challenge Lah to a fight, zil-style.");;
+		addButton(1,"Challenge",challengeLahToAFight,undefined,"Challenge","Challenge Lah to a fight, zil-style.");
 		addButton(2,"Fight",fightTheWholeVillageYaMaroon,undefined,"Fight","Enough nonsense. Scatter this rabble to the wind and take Lah alive.");
 		addButton(3,"Agree",agreeWithDemBiyaaaatches,undefined,"Agree","So he’s gone a bit off the rails, but Lah isn’t wrong.");
 		return true;

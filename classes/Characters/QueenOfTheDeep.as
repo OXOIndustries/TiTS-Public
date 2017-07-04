@@ -31,9 +31,9 @@
 			originalRace = "water queen";
 			a = "the ";
 			capitalA = "The ";
-			long = "The creature before you is a monstrous amalgam of bestial features: stalk-like legs with too many joints, writhing masses of envenomed tentacles, and a pair of huge claws all grow from a dark red body covered in carapace as thick as a tank's armor. Rising from atop the fifteen-foot-high body comes a woman's torso, with creamy cyan and white skin covered in patches of bioluminescent algae that strobe to the beat of their owner's heart. The mossy substance is arranged across her almost like clothing, though the moss leaves her pair of pendulous breasts bare, exposing eight nipples, each drooling with amber moisture. A long braid of tentacle-hair falls down the upper half's back, glowing softly in shades of blue and green.";
-			customDodge = "The creature's many tentacles dance and weave around, making it difficult to focus your attack toward her properly!";
-			customBlock = "The alien's chitin deflects the attack.";
+			long = "The creature before you is a monstrous amalgam of bestial features: stalk-like legs with too many joints, writhing masses of envenomed tentacles, and a pair of huge claws all grow from a dark red body covered in carapace as thick as a tank’s armor. Rising from atop the fifteen-foot-high body comes a woman’s torso, with creamy cyan and white skin covered in patches of bioluminescent algae that strobe to the beat of their owner’s heart. The mossy substance is arranged across her almost like clothing, though the moss leaves her pair of pendulous breasts bare, exposing eight nipples, each drooling with amber moisture. A long braid of tentacle-hair falls down the upper half’s back, glowing softly in shades of blue and green.";
+			customDodge = "The creature’s many tentacles dance and weave around, making it difficult to focus your attack toward her properly!";
+			customBlock = "The alien’s chitin deflects the attack.";
 			isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
@@ -188,11 +188,11 @@
 				if (statusEffectv1("Water Veil") <= 0)
 				{
 					removeStatusEffect("Water Veil");
-					output("The creature's claws stop thrashing in the water, finally letting it settle. <b>The veil of mist is gone now!</b>\n\n");
+					output("The creature’s claws stop thrashing in the water, finally letting it settle. <b>The veil of mist is gone now!</b>\n\n");
 				}
 				else
 				{
-					output("The creature's claws are thrashing against the surface of the water, kicking up a heavy veil of mist!\n\n");
+					output("The creature’s claws are thrashing against the surface of the water, kicking up a heavy veil of mist!\n\n");
 				}
 			}
 			
@@ -251,7 +251,7 @@
 					crabAttacks.push( { v: queenOfTheDeepClawChomp, 		w: 15 } );
 				}
 				crabAttacks.push( { v: queenOfTheDeepWaterVeil, 			w: 15 } );
-				crabAttacks.push( { v: queenOfTheDeepLegStomp,  			w: 30 } );
+				crabAttacks.push( { v: queenOfTheDeepLegStomp,				w: 30 } );
 				crabAttacks.push( { v: queenOfTheDeepTentacleBarrage, 		w: 30 } );
 				
 				weightedRand(crabAttacks)(target);
@@ -326,7 +326,7 @@
 
 			lustRaw = 0;
 			createStatusEffect("Climaxed", 0, 0, 0, 0, true);
-			createStatusEffect("Stunned", 1, 0, 0, 0, false,"Stun","Cannot take action!",true,0,0xFF0000);
+			CombatAttacks.applyStun(this, 1);
 		}
 		
 		private function queenOfTheDeepTittySuckle(target:Creature):void
@@ -369,7 +369,7 @@
 				if (!combatMiss(this, target)) numHits++;
 			}
 			
-			if (numHits == 0) output(" though you're able to duck their attacks, especially now that you're out of the water");
+			if (numHits == 0) output(" though you’re able to duck their attacks, especially now that you’re out of the water");
 			else
 			{
 				var hitText:Array = ["nonce", "once", "twice", "thrice"]; // nonce, lol
@@ -380,14 +380,14 @@
 			
 			var clawHit:Boolean = !combatMiss(this, target, -1, 2)
 			
-			if (!clawHit) output(" You're able to dodge -- for now!");
+			if (!clawHit) output(" You’re able to dodge -- for now!");
 			else
 			{
-				output(" The mammoth jaws of her claw grab hold of you, hauling you off its owner's back with frightening strength.");
+				output(" The mammoth jaws of her claw grab hold of you, hauling you off its owner’s back with frightening strength.");
 
 				output("\n\n<i>“I said OFF!”</i> the woman bellows, hurling you like a rag doll across the cavern and into the depths of the lake. <b>There goes your advantage!</b>");
 				
-				target.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You're submerged in water, and your movements are dramatically slowed because of it. While you're fighting in the lake, your Reflex is reduced!", true, 0);
+				target.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You’re submerged in water, and your movements are dramatically slowed because of it. While you’re fighting in the lake, your Reflex is reduced!", true, 0);
 			}
 			
 			if (numHits > 0 || clawHit)
@@ -468,15 +468,15 @@
 			// miss
 			if (combatMiss(this, target))
 			{
-				output(" You stumble out of the way, avoiding the crushing weight of the creature's pincers snapping closed inches in front of your nose with bone-crushing finality.");
+				output(" You stumble out of the way, avoiding the crushing weight of the creature’s pincers snapping closed inches in front of your nose with bone-crushing finality.");
 			}
 			else
 			{
-				output(" You try to leap out of the way, but are too slow to avoid the monstrous crab-drider's embrace. Mammoth claws close around your waist, hauling you up and out of the water, leaving you thrashing and screaming as the claws squeeze you. <b>You're grappled -- and getting crushed by a monster's claws to boot!</b>");
+				output(" You try to leap out of the way, but are too slow to avoid the monstrous crab-drider’s embrace. Mammoth claws close around your waist, hauling you up and out of the water, leaving you thrashing and screaming as the claws squeeze you. <b>You’re grappled -- and getting crushed by a monster’s claws to boot!</b>");
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 20 }, DamageFlag.CRUSHING ), 15), this, target, "minimal");
 				
-				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
+				CombatAttacks.applyGrapple(target, 50);
 			}
 			
 			createStatusEffect("Clawgrab Cooldown", 5);

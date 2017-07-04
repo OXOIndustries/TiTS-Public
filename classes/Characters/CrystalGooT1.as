@@ -50,8 +50,8 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "The goo's liquid flexibility allows it to handily avoid your attack.";
-			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
+			this.customDodge = "The goo’s liquid flexibility allows it to handily avoid your attack.";
+			this.customBlock = "The goo’s liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
@@ -392,9 +392,9 @@ package classes.Characters
 				else if (missed && !target.hasWings()) output(" You easily hop over it.");
 				else
 				{
-					output(" It takes out your support and you crash to the cave floor!");
+					output(" It takes out your support and you crash to the cave floor! <b>You’ve been tripped!</b>");
 					applyDamage(new TypeCollection( { kinetic: 7 + rand(5) } ), this, target, "minimal");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 			}
 			else
@@ -412,8 +412,8 @@ package classes.Characters
 				{
 					output(" Your [pc.foot] slips on its gooey trunk and you stumble, landing right on the alien’s body! It drags you to the ground, oozing warm tongues of flesh into your intimate places. Using all your focus, you");
 					if (target.lust() >= target.lustMax() * 0.66) output(" barely");
-					output(" resist its caresses and roll away.");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
+					output(" resist its caresses and roll away. <b>You’ve been tripped!</b>");
+					CombatAttacks.applyTrip(target);
 					applyDamage(new TypeCollection( { tease: 5 + rand(3) } ), this, target, "minimal");
 				}
 			}

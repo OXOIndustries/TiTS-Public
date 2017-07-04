@@ -17,6 +17,11 @@ package classes.Resources.Busts
 		public var Bust_AMARA:Class;
 		public var Bounds_AMARA:Rectangle = new Rectangle(28, 2, 58, 64);
 		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/belle.png", mimeType = "image/png")]
+		public var Bust_BELLE:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/belle_nude.png", mimeType = "image/png")]
+		public var Bust_BELLE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/busky.png", mimeType = "image/png")]
 		public var Bust_BUSKY:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/busky_nude.png", mimeType = "image/png")]
@@ -68,6 +73,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/nayna_nude.png", mimeType = "image/png")]
 		public var Bust_NAYNA_SUIT_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/saec.png", mimeType = "image/png")]
+		public var Bust_SAEC:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/sellera.png", mimeType = "image/png")]
 		public var Bust_SELLERA:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/sellera_nude.png", mimeType = "image/png")]
@@ -93,6 +101,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/amara.png", mimeType = "image/png")]
 			public var Full_AMARA:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/belle.png", mimeType = "image/png")]
+			public var Full_BELLE:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/belle_nude.png", mimeType = "image/png")]
+			public var Full_BELLE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/busky.png", mimeType = "image/png")]
 			public var Full_BUSKY:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/busky_nude.png", mimeType = "image/png")]
@@ -141,6 +154,9 @@ package classes.Resources.Busts
 			public var Full_NAYNA_SUIT:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/nayna_nude.png", mimeType = "image/png")]
 			public var Full_NAYNA_SUIT_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/saec.png", mimeType = "image/png")]
+			public var Full_SAEC:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/sellera.png", mimeType = "image/png")]
 			public var Full_SELLERA:Class;

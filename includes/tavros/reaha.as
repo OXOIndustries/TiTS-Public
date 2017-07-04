@@ -320,7 +320,7 @@ public function titjobFromSlaveCow():void {
 	output("\n\nWith a heavy, contented sigh, you let your head rest against the bulkhead, panting hard after the sexual exertion. Below you, your dutiful cow-slut swallows a mouthful of your seed before letting your spent [pc.cock " + x + "] flop out of her mouth, still drooling a trickle of cum out onto her tits. You reach down to caress one of the heavy orbs, running your fingers through the heady mixture of [reaha.milk], [pc.cum], and girly-cum. Reaha smiles up at you, ");
 	if(flags["REAHA_FREE"] == 1) output("<i>“You really know how to show a girl a good time, don’tcha? Glad we can get my money’s worth out of these,”</i> she laughs, shaking her huge tits happily.");
 	else output("<i>“I hope you got your money’s worth, " + pc.mf("master","mistress") + ". I know I did.”</i>");
-
+	IncrementFlag("SEXED_REAHA");
 	processTime(20+rand(5));
 	pc.orgasm();
 	clearMenu();
@@ -430,6 +430,7 @@ public function beSubmissiveToReaha():void {
 	}
 	processTime(20+rand(10));
 	pc.orgasm();
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -474,6 +475,7 @@ public function dominantReahaAss():void {
 	pc.milkInMouth(chars["REAHA"]);
 	pc.milkInMouth(chars["REAHA"]);
 	processTime(20+rand(5));
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -516,6 +518,7 @@ public function tieUpReahaAndFuckHerButt():void {
 	pc.orgasm();
 	chars["REAHA"].loadInAss(pc);
 	processTime(20+rand(10));
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -833,6 +836,7 @@ public function fuckReahasPussyintheBrothel():void
 	processTime(10+rand(4));
 	pc.orgasm();
 	chars["REAHA"].loadInCunt(pc, 0);
+	IncrementFlag("SEXED_REAHA");
 	//Clears menu data
 	clearMenu();
 	//Set up a button: first argument is the button index 0 to 14 for the first page.
@@ -901,6 +905,7 @@ public function RideReahasStraponAtTheBrothel():void
 	pc.milkInMouth(chars["REAHA"]);
 	pc.milkInMouth(chars["REAHA"]);
 	pc.orgasm();
+	IncrementFlag("SEXED_REAHA");
 	//Clears menu data
 	clearMenu();
 	//Set up a button: first argument is the button index 0 to 14 for the first page.

@@ -282,7 +282,7 @@
 				else output("You");
 				output(" cannot prevent yourself losing balance and falling onto your back, winding yourself. The clamor of male laughter is in your ears.");
 
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
+				CombatAttacks.applyTrip(target);
 			}
 		}
 		
@@ -331,7 +331,7 @@
 				{
 					//Stunned:
 					output("\nOne of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 1);
 				}
 			}
 		}

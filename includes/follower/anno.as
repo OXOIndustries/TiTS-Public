@@ -2812,7 +2812,7 @@ public function annoFollowerTailcockSex(asFollower:Boolean = true):void
 
 	output(" Anno’s eyes widen when she sees the parasite attached to the base of your spine.");
 
-	output("\n\n<i>“Uh... As much as I like trying out new things, I’m not sure I want a parasite anywhere inside me, Boss... <i>“ she says, casting a worried glance at your [pc.tailCock].");
+	output("\n\n<i>“Uh... As much as I like trying out new things, I’m not sure I want a parasite anywhere inside me, Boss...”</i> she says, casting a worried glance at your [pc.tailCock].");
 
 	if(pc.isBimbo()) output("\n\n<i>“Wha-? W- why not? Like I said, it’s going to be loads of fun!”</i> you bubble, your foggy mind unable to wrap around the idea that someone could pass up something so fun and sexually gratifying.");
 	else if(pc.isBro()) output("\n\n<i>“I don’t recall giving you a choice, puppyslut. Now bend over!”</i> you growl.");

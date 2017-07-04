@@ -259,14 +259,14 @@
 		//
 		//Shields: 0
 		//HP: Super High (boss fight)
-		//Lust: 0  {immune to lust damage}
+		//Lust: 0 {immune to lust damage}
 		//Energy: 100
 		//Level: 8
 		//Race: Automaton
 		//Sex: N/A
 		//
 
-		//{range weapons have a low hit chance due to the small size of the limbs}
+		// range weapons have a low hit chance due to the small size of the limbs
 		//Combat Attacks
 		//Restraining Cuffs (legs/tail > arms > collar)
 		public function restrainingCuffs(target:Creature):void
@@ -287,14 +287,14 @@
 				else if(target.isNaga()) output("\n\nAn especially large ring snaps around your midsection, while a slightly smaller one nabs your [pc.tail]. Despite your writhing attempts to slither out, the arms seem to have caught your lower body with inescapable tension. There’ll be no running from this!");
 				if(target.legCount >= 3) output("\n\nA bevvy of cuffs wind their way around you, each clicking in place around all of our [pc.legs]. You lift and pull at each in turn, but you can’t seem to break their grip. There’ll be no running from this!");
 				else output("\n\nTwo of the cuffs snap around your ankles, holding your [pc.legs] rooted to the ground. You struggle to no avail - the Doll Maker has you in its grasp. There’ll be no running from this!");
-				//{Increases the Doll Maker’s attack accuracy by 25%}
+				// Increases the Doll Maker’s attack accuracy by 25%
 				target.createStatusEffect("Restrained", 1, 0, 0, 0, false, "Icon_DefDown","Bound by lower body restraints, you are less capable of evading attacks!", true, 0);
 			}
 			//Second Hit - Neck
 			else if(target.statusEffectv1("Restrained") == 1)
 			{
 				output("\n\nA large, belt-like loop swings around and manages to catch your neck. It cinches up and drags your head down to better expose your [pc.ass]. Your fingers scramble to free yourself, and in doing so you see that the make-shift collar has a name tag on it. Apparently you’re <i>“Doll In Training”</i> now. This is getting bad!");
-				//{Increases the Doll Maker’s attack accuracy by 25%}
+				// Increases the Doll Maker’s attack accuracy by 25%
 				target.addStatusValue("Restrained",1,1);
 				target.setStatusTooltip("Restrained","Bound by lower body and neck restraints, you are less capable of evading attacks!");
 			}
@@ -302,8 +302,8 @@
 			else if(!target.hasStatusEffect("Grappled"))
 			{
 				output("\n\nMore cuffs find you, their padded interiors grasping your wrists as the locks slam into place. Your arms are dragged behind you, restraining any further struggles. You can’t do anything like this! You’re going to have to break free or it’ll all be over.");
-				//{Player is <i>“Bound”</i> and can only struggle to get free. Doll Maker’s attacks always hit while the player is bound.}
-				target.createStatusEffect("Grappled", 0, 60, 0, 0, false, "Constrict", "The bindings are so tight that you are effectively grappled!", true, 0);
+				// Player is “Bound” and can only struggle to get free. Doll Maker’s attacks always hit while the player is bound.
+				CombatAttacks.applyGrapple(target, 60, false, "The bindings are so tight that you are effectively grappled!");
 			}
 		}
 		//Musk Spray
@@ -322,14 +322,14 @@
 			else if(target.hasAirtightSuit())
 			{
 				output("\n\nThe musk settles in the air around you, but the protections in your [pc.armor] filter out the worst of it. <i>“Bringing a gas mask to a laboratory? You’re smarter than you look, Nut Stain.”</i>");
-				//{No longer uses this attack}
+				// No longer uses this attack
 				addStatusValue("musked",1,1);
 			}
 			//Hit
 			else
 			{
 				output("\n\nYou try to turn away, but the smell of Badger’s musk is everywhere. Like biological gasoline, it worms its way through your nose and into your brain, the burning scent both seductive and offensive. Your body relaxes even as your mind rebels. You’ve got to get out of this before you surrender completely!");
-				//{player takes 15-20 lust damage}
+				// player takes 15-20 lust damage
 				var damage:TypeCollection = new TypeCollection( { pheromone: 15+rand(11) } );
 				applyDamage(damageRand(damage, 15), this, target);
 			}
@@ -350,7 +350,7 @@
 			else
 			{
 				output("\n\nBracing for the worst, it’s almost a relief when the bullets turn out to be nothing more than small, thumb-sized vibrators. You grunt at the impact, but straighten up and try to brush them off of you. The vibes, however, refuse to come off. Even trying to grab them with both hands, you can’t seem to pry them from your [pc.skinFurScales]!");
-				//{Player takes 1 point of kinetic damage and gains one stack of the <i>“Vibe”</i> DoT, dealing lust damage every round}
+				// Player takes 1 point of kinetic damage and gains one stack of the “Vibe” DoT, dealing lust damage every round
 				var damage:TypeCollection = new TypeCollection( { kinetic: 1 } );
 				applyDamage(damage, this, target);
 				if(!target.hasStatusEffect("Vibed")) target.createStatusEffect("Vibed", 1, 0, 0, 0, false, "Icon_RadioSignal", "Tiny vibrators are stuck to you!\n\n<b>1 stack.</b>", true, 0);
@@ -378,7 +378,7 @@
 			else
 			{
 				output("\n\nThere’s a slight pinch as the needle goes in and you nearly jump as your flesh drinks in the wicked broth of Doctor Badger’s patented IQ B-Gone formula. In a second, the syringe is empty and you swat the injector arm away, but you can already feel it going to work. You try to think, but the sensations from your body are just far more important. It feels... ticklish. You giggle and try to assess the damage, but the tickling grows more intense and you start drooling with delight. Uh oh...");
-				//{player takes 2-5 points of temporary Intelligence damage}
+				// player takes 2-5 points of temporary Intelligence damage
 				if(!target.hasStatusEffect("IQ B-Gone")) target.createStatusEffect("IQ B-Gone", 5, 0, 0, 0, false, "Icon_Lips_Lick", "It’s like, harder to think and stuff! Hopefully it’ll be tempor... temp... short!\n\n<b>-5 Intelligence.</b>", true, 0);
 				else 
 				{
@@ -408,7 +408,7 @@
 			else
 			{
 				output("\n\nSomething about the light from the lamp catches your attention and it sure isn’t the fake hypno-swirl scrawled on it. Your head feels fuzzy and hot, like someone’s microwaving your brain. You should be more concerned, but your body seems to be drinking in the radiation like a sponge thrown in an ocean. <i>“Please don’t tell the Doctor that I tampered with her Brainmelt Lamp, Spurt Sucker”</i> the Doll Maker coaxes. <i>“I mean, uh, you will forget all that you have seen!”</i> Honestly, it’s getting really hard to remember much of anything.");
-				//{player takes 2-5 points of temporary Willpower damage}
+				// player takes 2-5 points of temporary Willpower damage
 				if(!target.hasStatusEffect("Brainmelt Lamps")) target.createStatusEffect("Brainmelt Lamps", 5, 0, 0, 0, false, "Icon_DizzyDrunk","It’s hard to focus.\n\n<b>-5 Willpower.</b>", true, 0);
 				else 
 				{
@@ -440,7 +440,7 @@
 			else
 			{
 				output("\n\nYou’re too slow to avoid the visor and it clicks around your eyes like an optic explosion. Rapid images of incredibly graphic ultraporn crackle across your vision. More alarmingly, YOU seem to be the star of every single one! Fake memories of fictitious fucking floods into you and, like a full sink with the tap on full blast, your real memories start flowing out of the basin. Years of training gurgle away as your life story is rewritten, chapter by cum-soaked chapter. Gaps in your memory start opening up like black holes-you can tell something’s missing, but you can’t put a finger on what it’s supposed to have been. When the visor finally pulls away, you’re so dizzy, you doubt you could hit the broadside of a ship, much less spindly robotic arms!");
-				//{player takes 2-5 points of temporary Aim damage}
+				// player takes 2-5 points of temporary Aim damage
 				if(!target.hasStatusEffect("Mindwashed")) target.createStatusEffect("Mindwashed", 5, 0, 0, 0, false, "Icon_MindcontrolledMindbroke","You’re dizzy from having so much smut stuffed into your brain!\n\n<b>-5 Aim.</b>", true, 0);
 				else 
 				{
@@ -478,7 +478,7 @@
 				output(", hardening almost as quickly as it touches you. Gooey layers of latex thicken, leaving your body rigid and your movements stiff.");
 				if(!target.hasAirtightSuit()) output(" Somehow, the glossy rubber manages to transmit sensation directly into your nerves, leaving you far more sensitive with a heavy coating than if you’d been completely naked.");
 				output(" <i>“That’s a good Doll,”</i> the machine coos and admittedly, you’re starting to look the part!");
-				//{player takes 2-5 points of temporary Reflex damage}
+				// player takes 2-5 points of temporary Reflex damage
 				if(!target.hasStatusEffect("Latex Sprayed")) target.createStatusEffect("Latex Sprayed", 5, 0, 0, 0, false, "Icon_Perfume","You feel slower with all this latex on you!\n\n<b>-5 Reflexes.</b>", true, 0);
 				else 
 				{
@@ -507,9 +507,9 @@
 			//Hit
 			else
 			{
-				output("\n\nThe Emitter fires and the air ripples as a ring-like distortion bloops out of the barrel and into your defenseless body. You prepared for the worst but when the bliss hits you, it’s all you can do to keep yourself from orgasming on the spot! Sheer, animal pleasure cascades up and down your frame, impregnating your cells with the empty-headed need to be used. You giggle, hiccup, and your body shudders as curves start filling out like you’re being inflated from within. Unfamiliar mass balloons on your [pc.ass] and [pc.chest] as your muscles are repurposed into sweet, sensitive  fuckmeat. You bite your lower lip and try to fight through the crippling ecstasy.");
+				output("\n\nThe Emitter fires and the air ripples as a ring-like distortion bloops out of the barrel and into your defenseless body. You prepared for the worst but when the bliss hits you, it’s all you can do to keep yourself from orgasming on the spot! Sheer, animal pleasure cascades up and down your frame, impregnating your cells with the empty-headed need to be used. You giggle, hiccup, and your body shudders as curves start filling out like you’re being inflated from within. Unfamiliar mass balloons on your [pc.ass] and [pc.chest] as your muscles are repurposed into sweet, sensitive fuckmeat. You bite your lower lip and try to fight through the crippling ecstasy.");
 				output("\n\nThe expanded flesh slowly begins to shrink a second later, not fast enough for your liking. You’ve no doubt that if you don’t win this fight, the machine will dose you again and again... until it becomes permanent.");
-				//{player takes 2-5 points of temporary Physique damage}
+				// player takes 2-5 points of temporary Physique damage
 				if(!target.hasStatusEffect("Bimboleum")) target.createStatusEffect("Bimboleum", 5, 0, 0, 0, false, "Icon_Drug_Pill_Heart","Your body is weird and squishy, the muscles too plush with pleasure to flex properly.\n\n<b>-5 Physique.</b>", true, 0);
 				else 
 				{

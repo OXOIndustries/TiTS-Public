@@ -266,7 +266,7 @@
 			}
 			else
 			{
-				target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
+				CombatAttacks.applyStagger(target, 5);
 			}
 			applyDamage(meleeDamage(), this, target, "melee");
 		}
@@ -297,7 +297,7 @@
 				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output("\n<b>You’re stunned by the blow!</b>");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 1);
 				}
 			}
 		}
@@ -361,7 +361,7 @@
 					else
 					{
 						output(", knocking the wind out of you enough that the knight is easily able to strike you again, sending you flat on your back. <b>You’re knocked prone!</b>");
-						if(!target.hasStatusEffect("Tripped")) target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+						CombatAttacks.applyTrip(target);
 					}
 				}
 				output("!");

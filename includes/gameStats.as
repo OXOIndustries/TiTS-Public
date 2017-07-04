@@ -900,6 +900,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Nyrean Eggs, Total:</b> " + nyreanEggs);
 				if(StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0)
 					output2("\n<b>* Births, Psychic Tentacle Beasts:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
+				if(StatTracking.getStat("pregnancy/psychic tentacle beast birthed/day care") > 0)
+					output2("\n<b>* Births, Psychic Tentacle Beasts @ Daycare:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed/day care"));
 				if(StatTracking.getStat("pregnancy/renvra kids") > 0)
 					output2("\n<b>* Births, Renvra’s Children:</b> " + StatTracking.getStat("pregnancy/renvra kids"));
 				if(StatTracking.getStat("pregnancy/sera kids") > 0)
@@ -3258,6 +3260,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["REAHA_BOVINIUMED"] != undefined) output2("\n<b>* Reaha, Times Given Bovinium:</b> " + flags["REAHA_BOVINIUMED"]);
 						if(flags["REAHA_ADDICTION_CURED"] == undefined && reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 					}
+					if(flags["SEXED_REAHA"] != undefined) output2("\n<b>* Reaha, Times Sexed:</b> " + flags["SEXED_REAHA"]);
 				}
 				// Ovir Gurrrl
 				if(flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined)
@@ -3855,6 +3858,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					// Timer
 					if(flags["GIANNA_FUCK_TIMER"] != undefined) output2("\n<b>* Gianna, Time Since Last Fucked:</b> " + prettifyMinutes(flags["GIANNA_FUCK_TIMER"]));
+					if(flags["GIANNA_X_ANNO_3SUM"] != undefined) output2("\n<b>* Gianna, Times Sexed in Threesome with Anno:</b> " + prettifyMinutes(flags["GIANNA_X_ANNO_3SUM"]));
 				}
 				// Haley
 				if(flags["MET_HALEY"] != undefined || flags["USED_MILKER"] != undefined)

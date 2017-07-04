@@ -155,7 +155,7 @@ package classes.Characters
 		{
 			if (this.cocks.length > 0)
 			{
-				trace("Saen already has a cock. Can't add a second.");
+				trace("Saen already has a cock. Can’t add a second.");
 				return;
 			}
 			
@@ -262,8 +262,8 @@ package classes.Characters
 
 			if (rand(3) == 0)
 			{
-				output(" and the target's weapon goes flying to the ground in a shower of sparks! Damn, she's a deadshot!");
-				target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0,0xFF0000);
+				output(" and the target’s weapon goes flying to the ground in a shower of sparks! Damn, she’s a deadshot!");
+				CombatAttacks.applyDisarm(target, 4);
 
 				applyDamage(new TypeCollection({kinetic: 7}), this, target, "minimal");
 			}
@@ -312,7 +312,7 @@ package classes.Characters
 			// Valeria Shield Hack
 			output("Saendra taps on her wrist, yanking Valeria out of her digital hidey-hole and aiming the fluttery holo-avatar at");
 			if (CombatManager.multipleEnemies()) output(" one of");
-			output(" " + target.a + target.short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
+			output(" " + target.a + target.short + ". A concussive wave blasts from her target’s shield belt as it’s overloaded,");
 			if (CombatManager.multipleEnemies()) output(" a chain of energy shooting forth and connecting to his compatriots");
 			if (target.shields() <= 0) output(" completely");
 			else output(" nearly");
@@ -384,7 +384,7 @@ package classes.Characters
 				
 				applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BULLET), this, target);
 
-				target.createStatusEffect("Disarmed", 2 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0,0xFF0000);
+				CombatAttacks.applyDisarm(target, 2 + rand(2));
 			}
 		}
 		

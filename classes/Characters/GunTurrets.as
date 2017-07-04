@@ -199,7 +199,7 @@
 			else
 			{
 				output("\n\nYou try and cover your eyes, but too late! A streak of machine oil jets out of the drone dog, splattering across your face! <b>You are blinded!</b>");
-				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+				CombatAttacks.applyBlind(target, rand(3) + 1);
 			}
 		}
 		

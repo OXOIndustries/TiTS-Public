@@ -30,7 +30,7 @@
 			this.originalRace = "wetra";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This huge, muscular creature has a slavering maw full of razor-sharp fangs, and walks on four legs in an almost gorilla-like gait. The hound's claws dig into the earth, clattering across the stone and echoing through the cavern. Glowing blue eyes look you over with a bestial, hungry intelligence.";
+			this.long = "This huge, muscular creature has a slavering maw full of razor-sharp fangs, and walks on four legs in an almost gorilla-like gait. The hound’s claws dig into the earth, clattering across the stone and echoing through the cavern. Glowing blue eyes look you over with a bestial, hungry intelligence.";
 			this.customDodge = "Claws scrabbling, the wetra slips away from your attack.";
 			this.customBlock = "The hounds thick hide soak up your attack.";
 			this.isPlural = false;
@@ -190,7 +190,7 @@
 			}
 			else
 			{
-				output(" You tumble out of the way as quick as you can, letting the hound's momentum carry it past you. Its head slams into a wall with what should have been lethal force... but the beast just shakes it off and whirls around, ready to keep fighting!");
+				output(" You tumble out of the way as quick as you can, letting the hound’s momentum carry it past you. Its head slams into a wall with what should have been lethal force... but the beast just shakes it off and whirls around, ready to keep fighting!");
 				return false;
 			}
 		}
@@ -221,8 +221,8 @@
 				output(" Pow, right in the kisser! You stagger back under the massive weight of the blow");
 				if (rand(target.reflexes() / 2) + target.reflexes() / 2 >= reflexes())
 				{
-					output(", and suddenly find yourself tripping on a rocky outcropping. <b>You're knocked prone</b>");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
+					output(", and suddenly find yourself tripping on a rocky outcropping. <b>You’re knocked prone</b>");
+					CombatAttacks.applyTrip(target);
 				}
 				output("!");
 
@@ -231,7 +231,7 @@
 			}
 			else
 			{
-				output(" You put up your dukes and block the punch, deflecting the beast's mighty blow!");
+				output(" You put up your dukes and block the punch, deflecting the beast’s mighty blow!");
 				return false;
 			}
 		}
@@ -246,22 +246,8 @@
 				output(" The hound bites your arm, bringing its jaws down around you with crushing weight. You yelp in pain as its fangs sink into you!");
 				if (target.shields() <= 0)
 				{
-					/* Bleeding
-					v1 = stacks
-					v2 = remaining rounds
-					v3 = base damage
-					*/
-					if (target.hasStatusEffect("Bleeding"))
-					{
-						target.addStatusValue("Bleeding", 1, 1);
-						target.setStatusValue("Bleeding", 2, 3);
-					}
-					else
-					{
-						target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You've been savaged and are bleeding!", true, 0);
-					}
-
-					output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You're bleeding!</b>");
+					output(" When the creature pries itself off of you, you watch in horror as blood spurts from the wound. <b>You’re bleeding!</b>");
+					CombatAttacks.applyBleed(target, 1, 3, 15);
 				}
 				var damage:TypeCollection = new TypeCollection( { kinetic: 15 }, DamageFlag.PENETRATING );
 				damageRand(damage, 15);

@@ -3880,7 +3880,7 @@ public function teamMilkingAfterEffects(arg:String):void
 		if(pc.refractoryRate < 3)
 		{
 			output("\n\nThe residual tingle in your reproductive anatomy hints that all that shocking has energized... something. <b>A bio-scan with your Codex indicates that your refractory period has shortened...</b>");
-			pc.refractoryRate += 0.25;;
+			pc.refractoryRate += 0.25;
 		}
 		else if(pc.refractoryRate < 10)
 		{

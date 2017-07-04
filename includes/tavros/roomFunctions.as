@@ -94,7 +94,7 @@ public function hangarBonus():Boolean
 	}
 	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
 	{
-		if(azraBonusProc()) return true;
+		if(azraBonusProc(btnSlot++)) return true;
 	}
 	
 	return false;

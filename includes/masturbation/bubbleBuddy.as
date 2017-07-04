@@ -175,7 +175,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 			}
 			if(!targetCreature.isGoo() && !targetCreature.hasStatusEffect("Tripped") && (((usingCreature.aim()/2) + rand(20) + 1) > ((targetCreature.reflexes()/4) + (targetCreature.physique()/4) + 10)))
 			{
-				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "Cannot act for a turn.", true, 0,0xFF0000);
+				CombatAttacks.applyTrip(targetCreature, "Cannot act for a turn.");
 				output("\n\n<b>There’s so much [pc.cumNoun] that " + targetCreature.getCombatName() + " is tripped!</b>");
 			}
 		}

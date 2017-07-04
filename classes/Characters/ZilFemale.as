@@ -322,8 +322,8 @@
 					//PC must pass an willpower check, else:
 					target.lust(5);
 					if(target.willpower() + rand(20) + 1 < 20 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity()) {
-						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, you’re <b>blinded</b>!");
-						target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, <b>you’re blinded</b>!");
+						CombatAttacks.applyBlind(target,rand(3) + 1 );
 					}
 				}
 			}

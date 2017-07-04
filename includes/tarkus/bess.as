@@ -6538,7 +6538,7 @@ public function bessEvent3Yes():void
 
 	output("\n\nNow that [bess.heShe]’s got your permission to ask, [bess.name] seems to be thinking hard about exactly how to word [bess.hisHer] question. <i>“... Well, how much do you know about my core directives?”</i>");
 	
-	output("\n\n<i>“Nothing, you’ve never told me them.”</i> You inform [bess.himHer]. [bess.HeShe] didn’t exactly come with a user manual, either.");
+	output("\n\n<i>“Nothing, you’ve never told me about them.”</i> You inform [bess.himHer]. [bess.HeShe] didn’t exactly come with a user manual, either.");
 	
 	output("\n\n<i>“Okay. Well, I have five core directives. The lower the number, the more important that directive is.”</i> [bess.name] begins to explain them to you, listing them out one by one.");
 	

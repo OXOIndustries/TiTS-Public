@@ -28,7 +28,7 @@
 			this.originalRace = "thraggen";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
+			this.long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams “party-shop pirate,” with ruffles and a tricorn hat and everything. Even the suit she’s wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it’s been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
 			this.customBlock = "The exoskeleton easily absorbs your attack.";
 			this.isPlural = false;
 			
@@ -211,9 +211,9 @@
 			
 			var percent:int = HP()/HPMax() * 100;
 			//if the suit's taken little damage:
-			long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
+			long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams “party-shop pirate,” with ruffles and a tricorn hat and everything. Even the suit she’s wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it’s been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
 			if(percent >= 66) long += " This monstrosity could probably give a military suit a run for its money, and against you? Better bring your A-game, Steele!";
-			else if(percent >= 33) long += " The mech's armor plates are starting to fall off, and smoke and sparks fly from damaged servos and circuits. Keep up the pressure!";
+			else if(percent >= 33) long += " The mech’s armor plates are starting to fall off, and smoke and sparks fly from damaged servos and circuits. Keep up the pressure!";
 			else long += " The suit is smoking like a cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!";
 
 			//Actual enemy AI function nau!
@@ -244,7 +244,7 @@
 			if(!hasStatusEffect("Missile Chargeup"))
 			{
 				createStatusEffect("Missile Chargeup",0,0,0,0);
-				output("<i>\"YOU WANT SOME!? GET SOME!\"</i> the captain shouts, bringing her suit down into a low crouch and bringing up the launcher on its back. Oh, shit. You cover your ears as the missile launches, hurtling straight up in the air.");
+				output("<i>“YOU WANT SOME!? GET SOME!”</i> the captain shouts, bringing her suit down into a low crouch and bringing up the launcher on its back. Oh, shit. You cover your ears as the missile launches, hurtling straight up in the air.");
 				output("\n\n<b>MISSILE INCOMING.</b>");
 				flags["MISSILE_TARGET"] = kGAMECLASS.currentLocation;
 			}
@@ -255,7 +255,7 @@
 				//{if PC moved.}
 				if(flags["MISSILE_TARGET"] != kGAMECLASS.currentLocation)
 				{
-					output("You hear a deafening KABLAM beside you, and a sudden shockwave of force throws you to the ground. You cough and splutter, waving dust out of your face as the blast zone clears. Damn, there's barely anything left of that platform anymore!");
+					output("You hear a deafening KABLAM beside you, and a sudden shockwave of force throws you to the ground. You cough and splutter, waving dust out of your face as the blast zone clears. Damn, there’s barely anything left of that platform anymore!");
 					//nuke cover at target!
 					flags[flags["MISSILE_TARGET"]] = 0;
 					output(" <b>(-100% Cover)</b>");
@@ -263,7 +263,7 @@
 				//{if PC didn't move. YA GOOF}
 				else
 				{
-					output("You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a body full of shrapnel, tearing into you as you're tossed about like a ragdoll.");
+					output("You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a body full of shrapnel, tearing into you as you’re tossed about like a ragdoll.");
 					flags[flags["MISSILE_TARGET"]] = 0;
 					output(" <b>(-100% Cover)</b>");
 					
@@ -287,7 +287,7 @@
 			//Hit:
 			else
 			{
-				output("\n\nYou try and run, but there's nowhere to hide from the death laser as it slams into you, throwing you to the deck as the captain concentrates fire on you, shearing into your ");
+				output("\n\nYou try and run, but there’s nowhere to hide from the death laser as it slams into you, throwing you to the deck as the captain concentrates fire on you, shearing into your ");
 				if(target.shields() > 0) output("shields and ");
 				output("gear.");
 				
@@ -320,7 +320,7 @@
 				output("\n\nOHSHIT. You scream as the box slams into you with rib-cracking force, hurling you to the edge of the platform, where you only just catch yourself. With a grunt, you scramble back up onto the hover-plat");
 				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
 				{
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 1);
 					output(", but find yourself STUNNED");
 				}
 				output(".");
@@ -411,7 +411,7 @@
 				}
 				else
 				{
-					output("\nEven cover isn't enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.");
+					output("\nEven cover isn’t enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.");
 					
 					damage = new TypeCollection( { burning: 10 } );
 					damageRand(damage, 15);

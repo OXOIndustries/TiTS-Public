@@ -34,8 +34,8 @@ package classes.Characters
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
-			//this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
-			this.long = "A gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest. He's packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
+			//this.long = "The mercenary guard is a gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest -- enough armor for a corporate jackboot, but less than the assassins you fought upstairs. He’s packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
+			this.long = "A gruff, weathered human man with a long, faded-brown coat pulled over a ballistic vest. He’s packing a pump-action shotgun and a bandolier full of grenades and other goodies.";
 			this.customBlock = "The mercs armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -227,15 +227,15 @@ package classes.Characters
 			{
 				if (target is PlayerCharacter)
 				{
-					output(" You take a shock right to the chest, zapping you! <b>Worse, you're stunned!</b>");
+					output(" You take a shock right to the chest, zapping you! <b>Worse, you’re stunned!</b>");
 				}
 				else output(" " + target.capitalA + target.short + " takes a shock right to the chest! <b>" + target.mfn("He", "She", "It") + " looks a little unsteady on their feet!</b>");
 				
-				target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
+				CombatAttacks.applyStun(target, 1);
 			}
 			else
 			{
-				output(" " + (target is PlayerCharacter ? "You just manage" : target.capitalA + target.short + " manages") + " to duck under the swing, evading the pirate's attack!");
+				output(" " + (target is PlayerCharacter ? "You just manage" : target.capitalA + target.short + " manages") + " to duck under the swing, evading the pirate’s attack!");
 			}
 
 			energy(-10);
@@ -257,12 +257,12 @@ package classes.Characters
 				if (target is Saendra)
 				{
 					output(" her arms against her side. Saendra is");
-					target.createStatusEffect("Stunned",3,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 3);
 				}
 				else
 				{
 					output(" your arms to your side. You are");
-					target.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're stuck in the pirate's net!", true, 0);
+					CombatAttacks.applyGrapple(target, 30, false, "You’re stuck in the pirate’s net!");
 					// 9999 -- might need new grappletexts for this to make sense
 				}
 				

@@ -28,7 +28,7 @@
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";
-			this.customBlock = "Your attack fails to damage the 'bot.";
+			this.customBlock = "Your attack fails to damage the ‘bot.";
 			this.isPlural = false;
 			
 			this.meleeWeapon.attack = 5;

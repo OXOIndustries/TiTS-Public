@@ -46,7 +46,7 @@
 			this.tallness = 72;
 			this.scaleColor = "green";
 			
-			this.long = "This insectile woman looks like a black-armored amazon, tall and exceptionally buxom, with dark chitin plates covering her arms and legs, combining into an underbust corset of armor to protect her torso -- though conveniently leaving her big tits and groin exposed -- a groin which is sporting an impressive cock. Easily a foot long, her shaft is barely restrained by a padded chainmail bikini, though even partially covered you can see how thick and heavy it is. Even as one weapon draws your attention, the huntress moves with preternatural grace, circling you, probing at your defenses with her long, steel-tipped spear. Any hesitation, any weakness, and she'll be on you!";
+			this.long = "This insectile woman looks like a black-armored amazon, tall and exceptionally buxom, with dark chitin plates covering her arms and legs, combining into an underbust corset of armor to protect her torso -- though conveniently leaving her big tits and groin exposed -- a groin which is sporting an impressive cock. Easily a foot long, her shaft is barely restrained by a padded chainmail bikini, though even partially covered you can see how thick and heavy it is. Even as one weapon draws your attention, the huntress moves with preternatural grace, circling you, probing at your defenses with her long, steel-tipped spear. Any hesitation, any weakness, and she’ll be on you!";
 			
 			this.isPlural = false;
 			
@@ -255,7 +255,7 @@
 			}
 			else
 			{
-				output("\nYou try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn't give for a taste of that sweet cream...");
+				output("\nYou try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn’t give for a taste of that sweet cream...");
 			}
 
 			applyDamage(damageRand(damage, 15), this, target);
@@ -274,7 +274,7 @@
 			else
 			{
 				output("\nYou try and dodge, but too late! You give a yelp as the heavy net carries you down to the ground, entangling you!");
-				target.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "You're stuck in a nyrea's hunting net!", true, 0);
+				CombatAttacks.applyGrapple(target, 35, false, "You’re stuck in a nyrea’s hunting net!");
 			}
 		}
 		
@@ -293,7 +293,7 @@
 			}
 			else
 			{
-				output("\nYou can't deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
+				output("\nYou can’t deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
 
 				var damage:TypeCollection = new TypeCollection( { tease: 15 } );
 				applyDamage(damageRand(damage, 15), this, target);
@@ -374,7 +374,7 @@
 					else output(" wiping blood from your brow");
 					output(" as your vision swims. The nyrea, battered herself, scowls at you. <i>“You wanted to do this the hard way!”</i>");
 
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 			}
 		}

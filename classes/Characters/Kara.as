@@ -346,7 +346,7 @@
 				{
 					if(target is PlayerCharacter) output("\nThe bolt explodes across you, slathering you in burning hot green plasma. <b>You are burning!</b>");
 					else output("\nThe bolt explodes across " + target.a + target.short + ", slathering " + target.mfn("him","her","it") + " in burning hot green plasma. <b>" + target.mfn("He","She","It") + " is burning!</b>");
-					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+					CombatAttacks.applyBurn(target, 2);
 				}
 			}
 		}
