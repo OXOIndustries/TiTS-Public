@@ -322,9 +322,8 @@ package classes.Characters
 			{
 				for (var i:int = 0; i < 3; i++)
 				{
-					allied.push(new GooClone());
+					CombatManager.addHostileActor(new GooClone());
 				}
-				CombatManager.setHostileActors(allied);
 				
 				output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
 			}
