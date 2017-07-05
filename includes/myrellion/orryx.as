@@ -112,7 +112,7 @@ public function encounterFrogapi():void
 		{
 			output("\n\n<i>“Ah hah! It’s you! Wonderful to see you again! Tell me, have you collected enough Golden Honey?”</i> he says, all fours of his hands wringing together excitedly.");
 			clearMenu();
-			if(pc.hasItem(new MyrNectar(),5)) addButton(0,"Yes",IHaveSomeSlutHoneyNowYouLittleMuppetFuck);
+			if(pc.hasItemByClass(MyrNectar,5)) addButton(0,"Yes",IHaveSomeSlutHoneyNowYouLittleMuppetFuck);
 			else addDisabledButton(0,"Yes","Yes","You don't have enough honey yet.");
 			//No
 			addButton(14,"Leave",noHoneyForYouSlut);
@@ -326,7 +326,7 @@ public function itsADealYouLittleMuppetSlut():void
 	output("\n\n<i>“Fantastic! Money for you, money for me, it’s what spins this entire universe around ...at least on one of her axis,”</i> he says. <i>“As soon as you have five units of Golden Honey, drop by, and I’ll trade ya.”</i>");
 	clearMenu();
 	//I have some now!
-	if(pc.hasItem(new MyrNectar(),5)) addButton(0,"I Have It",IHaveSomeSlutHoneyNowYouLittleMuppetFuck)
+	if(pc.hasItemByClass(MyrNectar,5)) addButton(0,"I Have It",IHaveSomeSlutHoneyNowYouLittleMuppetFuck)
 	else addDisabledButton(0,"I Have It","I Have It","You don't have any.");
 	//Farewell.
 	addButton(1,"Farewell",farewellYouSackOfFluff);
@@ -343,16 +343,7 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 		output("\n\nAs you hand him the honey, he fiddles with the dials on his pocketwatch and you feel a buzz from your Codex.");
 		output("\n\n<i>“An easy 500 credits for you, and tidy profit for me,”</i> he burbles happily. A glance at your Codex confirms the amount. <i>“Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!”</i>");
 		output("\n\nYou bid the tove farewell as you walk away.");
-		//[+1 Rep with Orryx]
-		orryxReputation(1);
-		processTime(2);
-		//strip honey item
-		pc.destroyItemByName("MyrNectr",5)
-		pc.credits += 500;
-		flags["ORRYX_SHIPPED_TODAY"] = 1;
 		flags["ORRYX_SHIPPED_HONEY"] = 1;
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
 	}
 	//REPEAT SHITZ!
 	//(Not yet shipped a load) Yes: 
@@ -362,15 +353,16 @@ public function IHaveSomeSlutHoneyNowYouLittleMuppetFuck():void
 		output("\n\nAs you hand him the honeys, he fiddles with the dials on his pocketwatch and you feel a buzz from your Codex.");
 		output("\n\n<i>“An easy 500 credits for you, and tidy profit for me,”</i> he burbles happily. A glance at your Codex confirms the amount. <i>“Remember, I can only ship one load of these per day, so come back again tomorrow with the same amount and I’ll be happy to take them off your hands!”</i>");
 		output("\n\nYou bid the tove farewell as you walk away.");
-		//[+1 Rep with Orryx]
-		orryxReputation(1);
-		pc.destroyItemByName("MyrNectr",5)
-		flags["ORRYX_SHIPPED_TODAY"] = 1;
-		pc.credits += 500;
-		processTime(2);
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
 	}
+	//[+1 Rep with Orryx]
+	orryxReputation(1);
+	processTime(2);
+	//strip honey item
+	pc.destroyItemByClass(MyrNectar, 5);
+	pc.credits += 500;
+	flags["ORRYX_SHIPPED_TODAY"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Farewell: 

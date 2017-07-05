@@ -32,7 +32,7 @@ package classes.Characters
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "You're fighting a Black Void Juggernaut, a behemoth of a man strapped into a suit of military-spec powered armor. Not an inch of flesh is visible under all that armor, just the outline of a face hidden behind a holographic Jolly Roger on his helmet.";
+			this.long = "You’re fighting a Black Void Juggernaut, a behemoth of a man strapped into a suit of military-spec powered armor. Not an inch of flesh is visible under all that armor, just the outline of a face hidden behind a holographic Jolly Roger on his helmet.";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -295,13 +295,13 @@ package classes.Characters
 				if (blindedPC && blindedKara)
 				{
 					output(", blinding you and Kara.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
-					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(pc, 3);
+					CombatAttacks.applyBlind(kara, 3);
 				}
 				else if (!blindedPC && blindedKara)
 				{
 					output(" and blinds Kara, though you manage to avoid any serious effect.");
-					kara.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(kara, 3);
 				}
 				else
 				{
@@ -316,7 +316,7 @@ package classes.Characters
 				if (blindedPC)
 				{
 					output(" and blinds you.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(pc, 3);
 				}
 				else
 				{
@@ -342,7 +342,7 @@ package classes.Characters
 			{
 				if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
 				else output(" <b>Kara is stunned!</b>");
-				target.createStatusEffect("Stunned", 2 + rand(2), 0, 0, 0, false, "Stun", "Cannot act for a while.", true, 0,0xFF0000);
+				CombatAttacks.applyStun(target, 2 + rand(2));
 			}
 		}
 		
@@ -350,7 +350,7 @@ package classes.Characters
 		{
 			output(" The Juggernaut’s packing a light machinegun, fired from the hip");
 			if (!hasStatusEffect("GunShield Overloaded")) output(", which projects a massive hardlight shield in front of him.");
-			else output(". Thankfully, the gun's shield emitter has been overloaded.");
+			else output(". Thankfully, the gun’s shield emitter has been overloaded.");
 		}
 	}
 }

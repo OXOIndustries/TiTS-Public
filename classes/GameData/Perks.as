@@ -88,7 +88,7 @@ package classes.GameData
 			juggernaut.levelLimit = 4;
 			juggernaut.autoGained = true;
 			juggernaut.perkName = "Juggernaut";
-			juggernaut.perkDescription = "Grants a 25% chance to overcome any paralysis or stun effect every combat round.";
+			juggernaut.perkDescription = "Grants a 25% chance to overcome any paralysis, stun or stagger effect every combat round.";
 			insertPerkData(juggernaut);
 			
 			var riposte:PerkData = new PerkData();
@@ -505,7 +505,7 @@ package classes.GameData
 			magBinders.classLimit = GLOBAL.CLASS_SMUGGLER;
 			magBinders.levelLimit = 10;
 			magBinders.perkName = "Mag Binders";
-			magBinders.perkDescription = "Grants the ability to throw a set of magnetic, self-guided restraints at the enemy, potentiall stunning them for 1-3 rounds and dealing light shocking damage.";
+			magBinders.perkDescription = "Grants the ability to throw a set of magnetic, self-guided restraints at the enemy, potentially stunning them for 1-3 rounds and dealing light shocking damage.";
 			insertPerkData(magBinders);
 
 		}
@@ -741,7 +741,7 @@ package classes.GameData
 			boostedCharges.classLimit = GLOBAL.CLASS_ENGINEER;
 			boostedCharges.levelLimit = 10;
 			boostedCharges.perkName = "Boosted Charges";
-			boostedCharges.perkDescription = "Enhances your gravidic and thermal charges' damage, and also provides secondary effects. Gravidic charge leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal charge has a chance of lighting your foes on fire.";
+			boostedCharges.perkDescription = "Enhances your gravidic and thermal charges’ damage, and also provides secondary effects. Gravidic charge leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal charge has a chance of lighting your foes on fire.";
 			insertPerkData(boostedCharges);
 
 			//2. Linked Emitters: While your shields are up, you gain a bonus 5% Critical chance with all energy weapons.*/

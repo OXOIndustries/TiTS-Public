@@ -193,7 +193,7 @@ package classes.Characters
 			if (target.willpower() + rand(20) + 1 < willpower())
 				{
 					output("\n\nThe psychic onslaught leaves you staggered, reeling from the mental blow. <b>You’re Stunned</b>");
-					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 2);
 				}
 			//PC passes willpower save
 			else
@@ -215,18 +215,17 @@ package classes.Characters
 			
 			//Pass physical check, blinded
 			if (target.physique() + rand(20) + 1 > physique())
-				{
-					output("\n\nYou dig your [pc.feet] in and hold on for dear life, refusing to be blown away by the beast... but even then, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re all but blinded!</b>");
-					target.createStatusEffect("Blinded",rand(2)+2,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
-				}
+			{
+				output("\n\nYou dig your [pc.feet] in and hold on for dear life, refusing to be blown away by the beast... but even then, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re all but blinded!</b>");
+				CombatAttacks.applyBlind(target, rand(2) + 2);
+			}
 			//Fail physical check, blinded and tripped
 			else
-				{
-					output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re knocked down and all but blinded");
-					output("!</b>");
-					target.createStatusEffect("Blinded", rand(2) + 2, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
-				}
+			{
+				output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re knocked down and all but blinded!</b>");
+				CombatAttacks.applyBlind(target, rand(2) + 2);
+				CombatAttacks.applyTrip(target);
+			}
 			
 			createStatusEffect("Buffet Cooldown", 6)
 		}

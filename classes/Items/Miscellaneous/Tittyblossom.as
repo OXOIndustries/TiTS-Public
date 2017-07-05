@@ -244,6 +244,10 @@
 				if(target.hasBeard())
 				{
 					choices[choices.length] = 12;
+					if (target.femininity >= 25) choices[choices.length] = 12;
+					if (target.femininity >= 50) choices[choices.length] = 12;
+					if (target.femininity >= 75) choices[choices.length] = 12;
+					if (target.femininity >= 90) choices[choices.length] = 12;
 				}
 				//Default to no changes, then roll on the array for a change if some are available.
 				var select:int = 9;

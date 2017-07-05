@@ -836,21 +836,21 @@ public function buskyShopInitialization():void {
 	// Unlockables
 	if(StatTracking.getStat("milkers/prostate milker uses") > 0)
 	{
-		if(!chars["BUSKY"].hasItemByType(SumaCream)) chars["BUSKY"].inventory.push(new SumaCream());
+		if(!chars["BUSKY"].hasItemByClass(SumaCream)) chars["BUSKY"].inventory.push(new SumaCream());
 		CodexManager.unlockEntry("Suma Cream");
 	}
-	else chars["BUSKY"].destroyItem(new SumaCream());
+	else chars["BUSKY"].destroyItemByClass(SumaCream);
 	
 	//During christmas season sell extra stuff
 	if (checkDate(24, 12, 14)) {
 		//make sure this is not added everytime you visit him
-		if(!chars["BUSKY"].hasItem(new Nutnog())) chars["BUSKY"].inventory.push(new Nutnog());
-		if(!chars["BUSKY"].hasItem(new Peckermint())) chars["BUSKY"].inventory.push(new Peckermint());
+		if(!chars["BUSKY"].hasItemByClass(Nutnog)) chars["BUSKY"].inventory.push(new Nutnog());
+		if(!chars["BUSKY"].hasItemByClass(Peckermint)) chars["BUSKY"].inventory.push(new Peckermint());
 	}
 	else
 	{
-		chars["BUSKY"].destroyItem(new Nutnog());
-		chars["BUSKY"].destroyItem(new Peckermint());
+		chars["BUSKY"].destroyItemByClass(Nutnog);
+		chars["BUSKY"].destroyItemByClass(Peckermint);
 	}
 }
 

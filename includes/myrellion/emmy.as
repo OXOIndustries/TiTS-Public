@@ -302,7 +302,7 @@ public function emmyMainMenu():void
 	else if(pc.lust() >= 33) addButton(3,"SexRequest",sexAttemptStart);
 	else addDisabledButton(3,"SexRequest","SexRequest","You aren’t turned on enough for that.");
 	//Flower overwrites
-	if(flags["EMMY_QUEST"] == 0 && pc.hasItem(new VenusBloom())) 
+	if(flags["EMMY_QUEST"] == 0 && pc.hasItemByClass(VenusBloom)) 
 	{
 		if(pc.hasGenitals()) addButton(3,"GiveFlower",bringEmmyVenusBloom,undefined,"Give Flower","Give Emmy the flower you brought her.");
 		else addDisabledButton(3,"GiveFlower","Give Flower","You should probably get some genitals before doing that...");
@@ -1219,7 +1219,7 @@ public function bringEmmyVenusBloom():void
 	clearOutput();
 	showEmmy();
 	output("<i>“");
-	pc.destroyItem(new VenusBloom());
+	pc.destroyItemByClass(VenusBloom);
 	if(pc.isBimbo()) output("I like, got you a present!");
 	else if(pc.isBro()) output("Gotcha somethin’.");
 	else if(pc.isNice() || pc.isMischievous()) output("Here - a pretty girl told me she could use one of these.");
@@ -1384,17 +1384,17 @@ public function giveEmmyAnItemMenu():void
 	showEmmy();
 	output("What will you give her?");
 	clearMenu();
-	if(pc.hasItem(new Kirkite())) addButton(0,"Kirkite",giveEmmyAnItem,"Kirkite","Kirkite","Give Emmy a piece of Kirkite.");
+	if(pc.hasItemByClass(Kirkite)) addButton(0,"Kirkite",giveEmmyAnItem,"Kirkite","Kirkite","Give Emmy a piece of Kirkite.");
 	else addDisabledButton(0,"Kirkite","Kirkite","You don’t have any Kirkite.");
-	if(pc.hasItem(new Satyrite())) addButton(1,"Satyrite",giveEmmyAnItem,"Satyrite","Satyrite","Give Emmy a piece of Satyrite.");
+	if(pc.hasItemByClass(Satyrite)) addButton(1,"Satyrite",giveEmmyAnItem,"Satyrite","Satyrite","Give Emmy a piece of Satyrite.");
 	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Kirkite.");
-	if(pc.hasItem(new Picardine())) addButton(2,"Picardine",giveEmmyAnItem,"Picardine","Picardine","Give Emmy a piece of Picardine.");
+	if(pc.hasItemByClass(Picardine)) addButton(2,"Picardine",giveEmmyAnItem,"Picardine","Picardine","Give Emmy a piece of Picardine.");
 	else addDisabledButton(2,"Picardine","Picardine","You don’t have any Picardine.");
-	if(pc.hasItem(new CrystalShard()))
+	if(pc.hasItemByClass(CrystalShard))
 	{
 		if(flags["EMMY_GIVEN_SHARD"] == 1)
 		{
-			if(!pc.hasItem(new CrystalShard(),10)) addDisabledButton(3,"C.Shard x10","Crystal Shard x10","Emmy requested you bring her ten of these. You’d better go hunting for more.");
+			if(!pc.hasItemByClass(CrystalShard,10)) addDisabledButton(3,"C.Shard x10","Crystal Shard x10","Emmy requested you bring her ten of these. You’d better go hunting for more.");
 			else addButton(3,"C.Shard x10",giveEmmyAnItem,"Crystal Shard","Crystal Shard x10","Give Emmy the ten Crystal Shards she requested.");
 		}
 		else addButton(3,"C.Shard",giveEmmyAnItem,"Crystal Shard","Crystal Shard","Give Emmy a Crystal Shard. It’s not quite the kind of gemstone she’s looking for, but it might be fun to watch...");
@@ -1475,7 +1475,7 @@ public function giveEmmyAnItem(item:String):void
 
 			output("\n\nShe doesn’t move to eject you, but stands behind the counter, statuesque and wearing a stony expression. With no more talk forthcoming from her, you slip out the door - but before it closes completely, you sneak one last glance. Emmy has abandoned her sudden dignity and is awkwardly trying to about-face, rocking her arms side-to-side to get one unbending leg far enough off the ground that she can twist her hip forward without pitching her snout right into the floor, like a toy army man trying to walk on his fused plastic base.");
 			//boot PC to map square, remove 1x Crystal Shard, remove buttons for other gems and move Emmyquest into crystal shard sub-stage or w/e
-			pc.destroyItem(new CrystalShard());
+			pc.destroyItemByClass(CrystalShard);
 			currentLocation = "607";
 			generateMapForLocation(currentLocation);
 			showLocationName();
@@ -1538,7 +1538,7 @@ public function giveEmmyAnItem(item:String):void
 			output("\n\nPlacing the weapon on the table, the grinning Jackaless wiggles with unbounded excitement. <i>“All yours, hero.”</i>\n\n");
 			//Loot, queue next page in eventqueue
 			eventQueue.push(emmyLootPart2);
-			for(var i:int = 0; i < 10; i++) { pc.destroyItem(new CrystalShard()); }
+			pc.destroyItemByClass(CrystalShard, 10);
 			quickLoot(emmyLoot);
 		}
 		return;
@@ -1566,7 +1566,7 @@ public function giveEmmyAnItem(item:String):void
 			emmyLoot = new EmmysLavaSaber();
 		}
 		output("”</i>");
-		pc.destroyItem(new Kirkite());
+		pc.destroyItemByClass(Kirkite);
 	}
 	//Satyrite
 	else if(item == "Satyrite")
@@ -1591,7 +1591,7 @@ public function giveEmmyAnItem(item:String):void
 			output("<i>“You’ve probably seen a Jolthammer around the shop, but you haven’t seen </i>this<i> Jolthammer. I fiddled with the power source to try and boost the yield. It doesn’t always work, but when it does, the result is shocking.”</i> She giggles at her own pun. <i>“Just make sure not to touch the electric-ey end.”</i>");
 			emmyLoot = new EmmysJolthammer();
 		}
-		pc.destroyItem(new Satyrite());
+		pc.destroyItemByClass(Satyrite);
 	}
 	//Picardine
 	else if(item == "Picardine")
@@ -1612,7 +1612,7 @@ public function giveEmmyAnItem(item:String):void
 			emmyLoot = new EmmysSalamanderRifle2();
 		}
 		output("”</i>");
-		pc.destroyItem(new Picardine());
+		pc.destroyItemByClass(Picardine);
 	}
 	//Merge
 	output("\n\nPlacing the weapon on the table, the grinning Jackaless wiggles with unbounded excitement. <i>“All yours, hero.”</i>\n\n");

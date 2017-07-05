@@ -112,8 +112,8 @@ public function beSuperDumbAndGetLashFight():void
 public function configDocLashFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new DoctorLash());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new DoctorLash());
 	CombatManager.victoryScene(winVsDoctorLash);
 	CombatManager.lossScene(loseToDoctorLash);
 	CombatManager.displayLocation("DR. LASH");

@@ -240,22 +240,9 @@ package classes.Characters
 				damage.multiply(0.5);
 				applyDamage(damageRand(damage, 15), this, target);
 				//If bleed:
-				if(!target.hasStatusEffect("Bleeding")) 
-				{
-					target.createStatusEffect("Bleeding", 1, 3, 5, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0,0xFF0000);
-					output("\n<b>Blood dribbles freely from the ragged wound.</b>");
-				}
-				else 
-				{
-					output("\n<b>The deepened cuts bleed faster!</b>");
-					// Add a stack and refresh duration
-					target.addStatusValue("Bleeding", 1, 1);
-					target.setStatusValue("Bleeding", 2, 3);
-				}
-				var stacks:int = target.statusEffectv1("Bleeding");
-				var rounds:int = target.statusEffectv2("Bleeding");
-				var damage2:int = target.statusEffectv3("Bleeding");
-				target.setStatusTooltip("Bleeding","You’re bleeding!\n" + damage2 + " bleed strength.\n" + stacks + " stack" + ((stacks > 1) ? "s":"") + ".\n" + rounds + " round" + ((rounds > 1) ? "s":"") + " remaining.");
+				if(!target.hasStatusEffect("Bleeding")) output("\n<b>Blood dribbles freely from the ragged wound.</b>");
+				else output("\n<b>The deepened cuts bleed faster!</b>");
+				CombatAttacks.applyBleed(target, 1, 3, 5);
 			}
 		}
 		//Dances With Wolves
@@ -281,22 +268,9 @@ package classes.Characters
 				//Causes bleed:
 				if(rand(5) == 0 && target.shields() <= 0)
 				{
-					if(!target.hasStatusEffect("Bleeding"))
-					{
-						output("\nHorribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet]. <b>You are bleeding.</b>");
-						target.createStatusEffect("Bleeding", 1, 3, 5, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0,0xFF0000);
-					}
-					else 
-					{
-						output("\n<b>The deepened cuts bleed faster!</b>");
-						// Add a stack and refresh duration
-						target.addStatusValue("Bleeding", 1, 1);
-						target.setStatusValue("Bleeding", 2, 3);
-					}
-					var stacks:int = target.statusEffectv1("Bleeding");
-					var rounds:int = target.statusEffectv2("Bleeding");
-					var damage2:int = target.statusEffectv3("Bleeding");
-					target.setStatusTooltip("Bleeding","You’re bleeding!\n" + damage2 + " bleed strength.\n" + stacks + " stack" + ((stacks > 1) ? "s":"") + ".\n" + rounds + " round" + ((rounds > 1) ? "s":"") + " remaining.");
+					if(!target.hasStatusEffect("Bleeding")) output("\nHorribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet]. <b>You are bleeding.</b>");
+					else output("\n<b>The deepened cuts bleed faster!</b>");
+					CombatAttacks.applyBleed(target, 1, 3, 5);
 				}
 			}
 		}
@@ -306,7 +280,7 @@ package classes.Characters
 		{
 			output("Lah staggers backwards, seemingly cringing away from you in fear - before snatching a torch out of the hand of a zil behind him and thrusting its lit end at your face.");
 			output("\n\n<i>“Burn, pig!”</i> he snarls.");
-			//{Thankfully your shield deflects it upwards.} {Your shield can’t stop it entirely and instinctively you throw your arms in the way. Ffffffuck that stings!}
+			// {Thankfully your shield deflects it upwards.} {Your shield can’t stop it entirely and instinctively you throw your arms in the way. Ffffffuck that stings!}
 			
 			if(combatMiss(this, target)) output("\nYou manage to sidestep the attack.");
 			else
@@ -317,7 +291,7 @@ package classes.Characters
 				if(rand(2) == 0 && !target.hasStatusEffect("Burning") && target.shields() <= 0)
   				{
   					output("\n<b>You are now on fire!</b>");
-  					target.createStatusEffect("Burning", rand(2)+2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
+					CombatAttacks.applyBurning(target, 2 + rand(2));
   				}
 			}
 		}
@@ -331,7 +305,7 @@ package classes.Characters
 			{
 				output(" Wind escapes your lungs as he grabs you around the neck, forcing you downwards in an arm-lock.");
 				output("\n\n<i>“Give in,”</i> he barks gruffly in your ear. <i>“Better now, before your wounds force you to.”</i>");
-				target.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "You’re pinned in a grapple.", true, 0);
+				CombatAttacks.applyGrapple(target, 35);
 			}
 		}
 	}

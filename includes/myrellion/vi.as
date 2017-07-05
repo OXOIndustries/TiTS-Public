@@ -113,7 +113,7 @@ public function viMenu():void
 	// ‘Pleasure’ talk topic must have been watched, to learn that she’s been tampered with already.
 	if(flags["VI_PLEASURE_TALKED"] != undefined) addButton(7,"Modify",modifyViMenu,undefined,"Modify","Modify Vi’s specs to suit your tastes!");
 	else addDisabledButton(7,"Modify","Modify","She doesn’t look like the kind of ‘bot that would modify her chassis.");
-	if(pc.hasItem(new DamagedVIChip())) addButton(8,"Give VI Chip",nurseDroidChipTurnIn,"Vi","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
+	if(pc.hasItemByClass(DamagedVIChip)) addButton(8,"Give VI Chip",nurseDroidChipTurnIn,"Vi","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
 	addButton(14,"Leave",mainGameMenu);
 	
 }
@@ -2007,7 +2007,7 @@ public function viBoobSizeMenu():void
 	clearMenu();
 	//Tooltip.increaseboobs: 
 	if(flags["VI_BIGBOOBS"] == 1) addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You’ve already filled Vi’s breasts to capacity!")
-	else if(pc.hasItem(new Silicone(), 2)) addButton(0,"IncreaseBoobs",inflateViBoobs,undefined,"IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized!\n\n<b>Cost: 2 units of Silicone</b>");
+	else if(pc.hasItemByClass(Silicone, 2)) addButton(0,"IncreaseBoobs",inflateViBoobs,undefined,"IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized!\n\n<b>Cost: 2 units of Silicone</b>");
 	else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized! You’ll need 2 units of silicone in order to inflate Vi’s breasts");
 	//Tooltip.Shrinkbreasts: 
 	if(flags["VI_BIGBOOBS"] == 1) addButton(1,"ShrinkBreasts",shrinkViBreasts,undefined,"ShrinkBreasts","Bring Vi’s breasts back down to their original size.");
@@ -2126,7 +2126,7 @@ public function inflateViBoobs():void
 	processTime(15);
 	flags["VI_BIGBOOBS"] = 1;
 	IncrementFlag("INFLATED_VI");
-	pc.destroyItem(new Silicone(),2);
+	pc.destroyItemByClass(Silicone,2);
 	showVi(true);
 	viMenu();
 }

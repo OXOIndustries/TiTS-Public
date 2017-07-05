@@ -135,6 +135,7 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Sneezing Tits", sneezingTitsCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
@@ -147,6 +148,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck the System", fuckTheSystem);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Stolen Goods", stolenGoodsStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tentacles & Tanukis", tentacleTroubleForTurnedOnTanukis);	
 }
 
 public function codexHomeFunction():void
@@ -3568,12 +3571,12 @@ public function furpiesCodexEntry():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Furpies"));
-	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on <REDACTED>, but it was not identified for six more months thanks to its insidious design.");
+	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on \\\[REDACTED\\\], but it was not identified for six more months thanks to its insidious design.");
 	outputCodex("\n\nThis strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.");
 	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("How Furpies is Spread"));
-	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
+	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as well as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
 	outputCodex("\n\nAs always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Asymptomatic Carriers"));
@@ -3608,5 +3611,17 @@ public function locofeverCodexEntry():void
 	outputCodex("\n\nLocofever is believed to still be uncommon among raskvel, though the exact numbers of infected are difficult to determine both because of raskvel breeding habits and because the species is asymptomatic. Aside from them it is most commonly found among younger ausar, who have been known to deliberately infect themselves with locofever as a form of recreational drug and cultural rebellion.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Locofever");
+}
+public function sneezingTitsCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("The Sneezing Tits"));
+	outputCodex("The mammovirus (more commonly known as the ‘Sneezing Tits’) is a viral infectious agent known to affect a significant number of mammalian species. While it is both acquired and passed in a similar faction to the rhinovirus (more commonly known as the common cold) and causes many of the same effects, its additional effect of causing spontaneous mammary gland enlargement led to its unique classification.");
+	outputCodex("\n\nBecause its initial symptoms are no different from the common cold, most who carry the mammovirus are unaware of it until they sneeze. The virus causes each sneeze to accelerate the growth of the infected’s mammary tissue. While the growth is usually to small degrees, a single cup size in standard measurement, growth of as much as four cup sizes has been observed.");
+	outputCodex("\n\nThe origins of the mammovirus are unknown. Rumors trace it back to an abandoned Xenogen Biotech project, an inhalable mammary-enlarging fluid that was intended to compete with the Boobswell pads. Xenogen Biotech listed this product among other items for upcoming release, but never became available to the public. The first known case of the mammovirus was recorded several months later, leading to rumors that the two were related. Xenogen Biotech has not commented on the matter.");
+	outputCodex("\n\nDue to the mammovirus’s effects, reaction to it varies greatly. Those who do not want the additional mammary growth often seek to cure any cold they get as quickly as possible, while those who desire the effect will seek to induce sneezes. In some communities, those who are known to be infected visit and attempt to infect those who desire the additional mammary growth.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Sneezing Tits");
 }
 

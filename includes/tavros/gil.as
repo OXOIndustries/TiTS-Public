@@ -22,7 +22,7 @@ public function showGil(nude:Boolean = false):void
 //Triggers if the PC leaves Jade’s shop with a Pupper Popper in their inventory.
 public function gilPupperProccer():Boolean
 {
-	if(pc.hasItem(new PupperPoppers()) && flags["MET_GIL"] == undefined)
+	if(pc.hasItemByClass(PupperPoppers) && flags["MET_GIL"] == undefined)
 	{
 		showGil();
 		author("Lashcharge");
@@ -134,14 +134,14 @@ public function gilMenu():void
 	addButton(0,"Appearance",gilAppearance,undefined,"Appearance","Take a gander at the dog boy.");
 	if(flags["GIL_DOSES"] == undefined || flags["GIL_DOSES"] < 9) 
 	{
-		if(pc.hasItem(new PupperPoppers())) addButton(1,"Trade",giveDoggoADoggoTreat,undefined,"Trade","Give Gil one of the Pupper Poppers he wants.");
+		if(pc.hasItemByClass(PupperPoppers)) addButton(1,"Trade",giveDoggoADoggoTreat,undefined,"Trade","Give Gil one of the Pupper Poppers he wants.");
 		else addDisabledButton(1,"Trade","Trade","You need a Pupper Popper to trade it to him.");
 		addDisabledButton(2,"Talk","Talk","Gil might be more inclined to chat after his transformative problems are over.");
 		addDisabledButton(3,"Sex","Sex","You’ll need to deal with his transformative problems before you can have sex with him for free.");
 	}
 	else
 	{
-		if(pc.hasItem(new PupperPoppers())) addButton(1,"Sell",getCashForDoggo,true,"Sell","Sell him some pupper poppers.");
+		if(pc.hasItemByClass(PupperPoppers)) addButton(1,"Sell",getCashForDoggo,true,"Sell","Sell him some pupper poppers.");
 		else addDisabledButton(1,"Sell","Sell","You don’t have any Pupper Poppers to sell.");
 		addButton(2,"Talk",talkToGilDoggo,undefined,"Talk","Chat with him.");
 		if(pc.lust() >= 33) addButton(3,"Sex",sexWithGilYaDumbshit,undefined,"Sex","Tell him that you would like to collect his reward.");
@@ -199,7 +199,7 @@ public function giveDoggoADoggoTreat():void
 	clearOutput();
 	showGil();
 	author("Lashcharge");
-	pc.destroyItem(new PupperPoppers());
+	pc.destroyItemByClass(PupperPoppers);
 	//1st snausage tf:
 	if(flags["GIL_DOSES"] == undefined)
 	{
@@ -345,7 +345,7 @@ public function getCashForDoggo(direct:Boolean = false):void
 	if(direct) 
 	{
 		IncrementFlag("GIL_DOSES");
-		if(flags["GIL_BONUS_TALK"] != undefined) pc.destroyItem(new PupperPoppers());
+		if(flags["GIL_BONUS_TALK"] != undefined) pc.destroyItemByClass(PupperPoppers);
 	}
 	//If first time selling it after getting worg eyes:
 	if(flags["GIL_DOSES"] > 9 && flags["GIL_BONUS_TALK"] == undefined)

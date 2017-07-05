@@ -11,8 +11,8 @@
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
-	import classes.Engine.Combat.outputDamage;
 	import classes.Engine.Combat.*;
+	import classes.Engine.Interfaces.*;
 	
 	public class CuntSnake extends Creature
 	{
@@ -33,7 +33,7 @@
 			this.scaleColor = "green";
 			this.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(this.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
 			this.customDodge = "Your attack slips between the writhing coils, accomplishing nothing.";
-			this.customBlock = "Your attack deflects off the cunt snake's " + this.scaleColor + " scales!";
+			this.customBlock = "Your attack deflects off the cunt snake’s " + this.scaleColor + " scales!";
 			this.isPlural = false;
 			
 			isLustImmune = true;
@@ -207,7 +207,7 @@
 				else tailGenitalColor = "";
 				if(rand(10) == 0 && kGAMECLASS.pc.skinTone != "") tailGenitalColor = kGAMECLASS.pc.skinTone;
 				else tailGenitalColor += RandomInCollection("red", "orange", "yellow", "green", "blue", "purple", "white", "pink");
-				long += "<b>slippery slime creature's " + tailGenitalColor + " cunt</b>";
+				long += "<b>slippery slime creature’s " + tailGenitalColor + " cunt</b>";
 			}
 			else 
 			{
@@ -221,7 +221,7 @@
 
 			long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
 			customDodge = "The cunt snake sways aside at the last second!";
-			customBlock = "Your attack deflects off the cunt snake's " + scaleColor + " scales!";
+			customBlock = "Your attack deflects off the cunt snake’s " + scaleColor + " scales!";
 		}
 		
 		override public function get bustDisplay():String
@@ -274,14 +274,14 @@
 		{
 			output("Coiling its body like a spring, the cunt snake launches its body towards you!");
 
-			//{standard miss/block text}
+			// standard miss/block text
 			if (combatMiss(this, target))
 			{
 				output(" It misses!");
 			}
 			//Blind miss
 			else if(hasStatusEffect("Blinded") && rand(2) == 0) output(" It misses due to its blindness!");
-			//{hit} 
+			// hit
 			else
 			{
 				output(" It twists to slap at your [pc.face]");
@@ -292,19 +292,19 @@
 				
 				if (damageResult.shieldDamage > 0)
 				{
-					if (target.shieldsRaw > 0) output(", bouncing off your shield with a loud 'snap'!");
+					if (target.shieldsRaw > 0) output(", bouncing off your shield with a loud ‘snap’!");
 					else output(", breaching your shield.");
 				}
 				
 				if (damageResult.hpDamage > 0)
 				{
-					if (damageResult.shieldDamage > 0) output(" You're sent reeling from the impact while it flops onto the ground.");
+					if (damageResult.shieldDamage > 0) output(" You’re sent reeling from the impact while it flops onto the ground.");
 					else output(", sending you reeling from the impact while it flaps onto the ground.");
 					
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
 					{
 						output("<b> The hit was hard enough to stun you!</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+						CombatAttacks.applyStun(target, 1);
 					}
 				}
 				
@@ -315,14 +315,14 @@
 		private function NPCTripAttackGo(target:Creature):void
 		{
 			output("Your foe contorts its body inward and abruptly snaps its tail around like a whip, directed at your [pc.feet]! ");
-	//{standard miss/block text}
+			// standard miss/block text
 			if (combatMiss(this, target))
 			{
 				output("It misses!");
 			}
 			//Blind miss
 			else if(hasStatusEffect("Blinded") && rand(2) == 0) output("It misses due to its blindness!");
-			//{hit} 
+			// hit
 			else
 			{
 				output("Your [pc.legOrLegs]");
@@ -357,7 +357,7 @@
 					output(", trying to get at [pc.oneCock]. Moist secretions stain your crotch as you find yourself becoming unintentionally aroused by the contact.");
 					target.lust(3+rand(3));
 				}
-				//{not defeated}
+				// not defeated
 				output(" You roll aside and climb upright, feeling a little more sore");
 				if(target.hasCock()) output(" and horny");
 				output(" than before.");
@@ -367,14 +367,14 @@
 		private function aphrodisiacBite(target:Creature):void
 		{
 			output("The snake coils up, then flashes out at you with mouth open and fangs exposed. ");
-			//{standard miss/block text}
+			// standard miss/block text
 			if (combatMiss(this, target)) 
 			{
 				output(" It misses!");
 			}
 			//Blind miss
 			else if(hasStatusEffect("Blinded") && rand(2) == 0) output("It misses due to its blindness!");
-			//{hit}
+			// hit
 			else 
 			{
 				output("Two spears of hot lust slip through your defenses and straight into your vulnerable veins. In a second, genitalia-engorging chemicals are pumped throughout your body. More and more of them spread through you as the snake injects artificial ardor straight into you.");
@@ -389,7 +389,7 @@
 					else output("grabbing your [pc.nipples] in an attempt");
 					output(" to satisfy the urges welling up within you.");
 				}
-				//{not defeated}
+				// not defeated
 				else output("\n\nYou wriggle away as hard as you can, and the snake releases its grip on you. The holes its fangs left close up almost as soon as they emptied, leaving you sore and aroused.");
 			}
 		}
@@ -397,33 +397,33 @@
 		private function paralyzingVenom(target:Creature):void
 		{
 			output("The snake coils up, then flashes out at you with mouth open and fangs exposed.");
-			//{standard miss/block text}
+			// standard miss/block text
 			if (combatMiss(this, target)) 
 			{
 				output(" It misses!");
 			}
 			//Blind miss
 			else if(hasStatusEffect("Blinded") && rand(2) == 0) output(" It misses due to its blindness!");
-			//{hit}
+			// hit
 			else 
 			{
 				if (target.shieldsRaw > 0) output(" It passes right through your shields, and i");
 				else output(" I");
 				output("ts attack lands, and you feel the needles sliding through your [pc.skin]. There is a moment of burning pain as the venom enters your bloodstream followed by the gentle deadness of numbed sensation.");
-				//{no save}
+				// no save
 				if (target.physique() + rand(20) + 1 < 15) 
 				{
 					if (target.hasStatusEffect("Paralyzed")) 
 					{
-						output(" <b>You're even more paralyzed than before!</b>");
+						output(" <b>You’re even more paralyzed than before!</b>");
 					}
 					else
 					{
-						output(" <b>After a second, you realize you've been paralyzed by the creature's bite!</b>");
-						target.createStatusEffect("Paralyzed",2,0,0,0,false,"Paralyze","You are paralyzed and cannot move until the venom wears off!",true,0);
+						output(" <b>After a second, you realize you’ve been paralyzed by the creature’s bite!</b>");
+						CombatAttacks.applyParalyze(target, 2, false, "You are paralyzed and cannot move until the venom wears off!");
 					}
 				}
-				//{resist/make save}
+				// resist/make save
 				else 
 				{
 					output(" You yank it off before it can deposit its entire payload, rubbing the sore, rapidly healing spot on your arm in irritation.");

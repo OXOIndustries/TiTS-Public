@@ -93,7 +93,7 @@ public function approachVKo(showShit:Boolean = true):void {
 	else addDisabledButton(3,"Heal");
 	addButton(4,"CustomInput",customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss);
 
-	if(pc.hasItem(new DamagedVIChip())) addButton(5,"Give VI Chip",nurseDroidChipTurnIn,"VKO","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
+	if(pc.hasItemByClass(DamagedVIChip)) addButton(5,"Give VI Chip",nurseDroidChipTurnIn,"VKO","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
 
 	addButton(14,"Back",mainGameMenu);
 }
@@ -130,9 +130,9 @@ public function getDiseaseProbedYo():void
 	var detectedParasites:int = 0;
 	clearMenu();
 	//SSTD check first!
-	if(pc.hasSSTD())
+	var sstds:Number = pc.sstdTotal();
+	if(sstds > 0)
 	{
-		var sstds:Number = pc.sstdTotal();
 		var disease:String = pc.getRandomSSTD();
 		output("\n\nShe gasps, <i>“Oh no! You’ve been infected with " + disease + "! One second.”</i> Her eyes blink closed, and you feel a strange tingle run through your whole body. ");
 		if(sstds > 1)
@@ -225,7 +225,7 @@ public function getDiseaseProbedYo():void
 	}
 	else if (detectedParasites > 1)
 	{
-		output("\n\n<i>“Unfortunately, I am only able to treat one categorisation of parasitic infection in a single procedure. Please indicate which of your infestations you would like to treat first.”</i>");
+		output("\n\n<i>“Unfortunately, I am only able to treat one categorization of parasitic infection in a single procedure. Please indicate which of your infestations you would like to treat first.”</i>");
 	}
 	else if (detectedParasites == 1)
 	{

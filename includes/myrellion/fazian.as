@@ -1560,7 +1560,7 @@ public function fazianQuestApproachBackMenu():void
 
 	if (flags["FAZIAN_BACK_WINDOW"] == undefined)
 	{
-		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByType(Hoverboard)) addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
+		if (pc.canFly() || (pc.accessory is Hoverboard) || pc.hasItemByClass(Hoverboard)) addButton(1, "Window", fazianQuestApproachBackWindow, undefined, "The Window", "Perhaps you have something that will enable you to get up there...");
 		else addDisabledButton(1, "Window", "The Window", "You can’t possibly reach that.");
 	}
 	else
@@ -1857,11 +1857,11 @@ public function fazianQuestApproachFight():void
 	if (flags["GUARD_BRIBE"] != undefined) tEnemy.credits += flags["GUARD_BRIBE"];
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(fazianQuestOutdoorGuardVictory);
 	CombatManager.lossScene(fazianQuestOutdoorGuardLoss);
 	CombatManager.lossCondition(CombatManager.ESCAPE, 2);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.displayLocation("WAREHOUSE\nGUARD");
 
 	clearMenu();
@@ -2109,10 +2109,10 @@ public function fazianQuestDontGetBribed():void
 	processTime(5);
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(fazianQuestEhstraffeVictory);
 	CombatManager.lossScene(fazianQuestEhstraffeLoss);
-	CombatManager.setHostileCharacters([new Ehstraffe(), new RedMyrGuard(), new RedMyrGuard(), new RedMyrGuard()]);
+	CombatManager.setHostileActors([new Ehstraffe(), new RedMyrGuard(), new RedMyrGuard(), new RedMyrGuard()]);
 	CombatManager.displayLocation("EHSTRAFFES\nDETAIL");
 	CombatManager.encounterText("You are fighting <b>Ehstraffe’s detail</b>: Fully a dozen trained, chitin-armored red myr soldier women, all dressed in Federation standard trench-coats and berets, armed with semi-automatic slug-launchers and axes. Fortunately, you do not have to fight them all at once; a couple of them are keeping watch on the prisoners, and as long as you keep moving in close to at least one of them, the others cannot simply stand back and riddle you with bullets. Still, against their crude but effective machine guns, their heavy, well-aimed blows and the saliva they keep trying to forcibly introduce you to, you aren’t going to last forever against all of them.")
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 4);

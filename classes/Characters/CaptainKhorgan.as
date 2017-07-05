@@ -25,7 +25,7 @@
 			this.originalRace = "thraggen";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you've been sent to disarm. She's breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she's getting off on the fight!";
+			this.long = "Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you’ve been sent to disarm. She’s breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she’s getting off on the fight!";
 			this.customBlock = "She easily deflects your attack.";
 			this.isPlural = false;
 
@@ -76,7 +76,7 @@
 			this.tone = 44;
 			this.hairColor = "red";
 			this.hairType = GLOBAL.TYPE_HUMAN;
-			this.scaleColor = "unknown";;
+			this.scaleColor = "unknown";
 			this.furColor = "unknown";
 			this.hairLength = 6;
 			
@@ -206,8 +206,8 @@
 		
 		private function gettingOffOnZePain(target:Creature):void
 		{
-			output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets.");
-			output("\n\nGrinning she says, <i>\"Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do...\"</i>");
+			output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It’s almost like the more you hurt her, the more excited she gets.");
+			output("\n\nGrinning she says, <i>“Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don’t know what I might do...”</i>");
 			HP(25);
 			lust(5+rand(3));
 			target.lust(2);
@@ -219,7 +219,7 @@
 			//Success: 
 			if(target.willpower() + rand(20) + 1 < 25)
 			{
-				output("\n\nYou try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan's tits and taking out your own mounting lust on those big, perfect green orbs.");
+				output("\n\nYou try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan’s tits and taking out your own mounting lust on those big, perfect green orbs.");
 				applyDamage(new TypeCollection( { tease: 7 + rand(3) } ), this, target, "minimal");
 			}
 			//Failure:
@@ -232,7 +232,7 @@
 			//Success:
 			if(target.willpower() + rand(20) + 1 < 20)
 			{
-				output("\n\nYou shudder as the potent, earthy smell of the captain's arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there's a powerful heat starting to spread through your loins before she releases you.");
+				output("\n\nYou shudder as the potent, earthy smell of the captain’s arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there’s a powerful heat starting to spread through your loins before she releases you.");
 				applyDamage(new TypeCollection( { tease: 15 } ), this, target, "minimal");
 			}
 			else 
@@ -259,16 +259,16 @@
 		
 		private function roundHouseKickFromCapn(target:Creature):void
 		{
-			output("You parry a few sword-strokes, but find yourself pushed back by the captain's unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
+			output("You parry a few sword-strokes, but find yourself pushed back by the captain’s unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
 			//If Miss: 
-			if(combatMiss(this, target)) output("\n\nYou grab the captain's foot a hand's breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
+			if(combatMiss(this, target)) output("\n\nYou grab the captain’s foot a hand’s breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
 			//If Hit:
 			else
 			{
 				output("\n\nYou grunt as the kick connects, throwing you back ");
 				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 25)
 				{
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 					output("onto your back!");
 				}
 				else output(".");

@@ -283,7 +283,7 @@ public function exhibitionismBlurbs():void
 			var exhibFaps:Array = [];
 			exhibFaps.push(moderateExhibitionOmniFap);
 			exhibFaps.push(goddamnitJimTAndYourExhibitionism);
-			if(pc.hasItem(new GravCuffs()) && pcLocation == "New Texas") exhibFaps.push(cuffSelfRouter);
+			if(pc.hasItemByClass(GravCuffs) && pcLocation == "New Texas") exhibFaps.push(cuffSelfRouter);
 			exhibFaps.push(exhibitionismForceStrip);
 			
 			exhibFunc = exhibFaps[rand(exhibFaps.length)];
@@ -373,7 +373,9 @@ public function exhibitionismStrip(voluntary:Boolean = true):void
 				if(pc.biggestTitSize() >= 11) output(" attempt to");
 				output(" cover your [pc.chest] with one hand as you");
 			}
-			output(" throw your underwear to the side with the other. Finally, you release your " + (bigWings ? "[pc.wings]" : "hand") + " " + (pc.hasBreasts() ? "sending your [pc.breasts] bouncing with an enticing jiggle" : "exposing your [pc.breasts]") + ", mesmerizing the gathering crowd. Finally, you proceed with");
+			output(" throw your underwear to the side");
+			if(!bigWings) output(" with the other");
+			output(". Finally, you release your " + (bigWings ? "[pc.wings]" : "hand") + " " + (pc.hasBreasts() ? "sending your [pc.breasts] bouncing with an enticing jiggle" : "exposing your [pc.breasts]") + ", mesmerizing the gathering crowd. Finally, you proceed with");
 		}
 		if(pc.hasLowerGarment())
 		{

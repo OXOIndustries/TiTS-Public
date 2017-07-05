@@ -131,8 +131,8 @@ public function taivrasPalaceSquareBonus():Boolean
 public function configurePraetorianFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new NyreanPraetorians());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new NyreanPraetorians());
 	CombatManager.victoryScene(spankDaShitOuttaPraetorians);
 	CombatManager.lossScene(loseToPraetorianNyreaGangbangu);
 	CombatManager.displayLocation("NYREA GUARDS");
@@ -251,7 +251,7 @@ public function giveDemAGem(gems:int):void
 	showPraetorians();
 	output("You take out a pouch ");
 	if(gems > 1) output("laden with gemstones");
-	else if(pc.hasItem(new GemSatchel())) output("laden with gemstones");
+	else if(pc.hasItemByClass(GemSatchel)) output("laden with gemstones");
 	else output("with a gemstone");
 	output(" and offer them to the guards, hoping to appeal to their avarice. The guards approach, their dark eyes glinting with greed as you reveal your briberous payload. When they get a good look at the stones, though, their lips curl, and the lead guard plants her hands on her hips.");
 	output("\n\n<i>“Is that it?”</i> she scowls, squinting at your offering. <i>“No, no, I’m not going to risk Queen Taivra’s wrath for </i>that<i>,”</i> she scoffs, shoving your hand back.");
@@ -509,7 +509,7 @@ public function searchTheQueensChambers():void
 }
 public function lootTaivrasGemsCheck():void
 {
-	if(pc.hasItemByType(GemSatchel))
+	if(pc.hasItemByClass(GemSatchel))
 	{
 		mainGameMenu();
 		return;
@@ -738,8 +738,8 @@ public function stepBackFromGloryHoles():void
 public function configureGoocubatorFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(goocubator);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(goocubator);
 	CombatManager.victoryScene(pcBeatsGoo);
 	CombatManager.lossScene(loseToRoyalIncuGoo);
 	CombatManager.displayLocation("GOO");
@@ -1253,8 +1253,8 @@ public function startFightingQueenButt(plat190:Boolean = false):void
 public function configureQueensguardFight():void
 {	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Queensguard());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Queensguard());
 	CombatManager.victoryScene(spankedQueensguardsAss);
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEENSGUARD");
@@ -1646,7 +1646,7 @@ public function spankedQueensguardsAss(daneEndedIt:Boolean = false):void
 {
 	if (daneEndedIt)
 	{
-		setEnemy(CombatManager.getHostileCharacters()[0]);
+		setEnemy(CombatManager.getHostileActors()[0]);
 	}
 	clearOutput();
 	author("Savin");
@@ -1680,8 +1680,8 @@ public function spankedQueensguardsAss(daneEndedIt:Boolean = false):void
 	}
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Taivra());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Taivra());
 	CombatManager.victoryScene(whupTaivrasAss);
 	CombatManager.lossScene(loseToQueensTaivra);
 	CombatManager.displayLocation("QUEEN TAIVRA");
@@ -3706,8 +3706,8 @@ public function resistPrincessYouSloot():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new Princess());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Princess());
 	CombatManager.victoryScene(beatUpPrincessYeSlut);
 	CombatManager.lossScene(loseToPrincessYeGit);
 	CombatManager.displayLocation("PRINCESS");

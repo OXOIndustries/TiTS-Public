@@ -163,5 +163,8 @@ public function locofeverFinish(deltaT:uint, maxEffectLength:uint, doOut:Boolean
 	}
 	msg += ". You must have gotten over your case of locofever.</b>";
 	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
+	
+	pc.removeStatusEffect("Undetected Locofever");
+	pc.removeStatusEffect("Locofever");
 }
 

@@ -198,8 +198,8 @@ public function testNyreaAlpha():void
 public function testOtherBusts():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
 	CombatManager.victoryScene(function():void { CombatManager.genericVictory(); } );
 	CombatManager.lossScene(function():void { CombatManager.genericLoss(); } );
 	CombatManager.beginCombat();
@@ -208,8 +208,8 @@ public function testOtherBusts():void
 public function testBusts():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters([new SecurityDroids(), new SecurityDroids()]);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors([new SecurityDroids(), new SecurityDroids()]);
 	CombatManager.victoryScene(function():void { CombatManager.genericVictory(); } );
 	CombatManager.lossScene(function():void { CombatManager.genericLoss(); } );
 	CombatManager.beginCombat();
@@ -218,8 +218,8 @@ public function testBusts():void
 public function testNoBusts():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters([new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors([new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
 	CombatManager.victoryScene(function():void { CombatManager.genericVictory(); } );
 	CombatManager.lossScene(function():void { CombatManager.genericLoss(); } );
 	CombatManager.beginCombat();
@@ -228,8 +228,8 @@ public function testNoBusts():void
 public function testGooT1():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CrystalGooT1());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CrystalGooT1());
 	CombatManager.victoryScene(pcDefeatsCrystalGooToo);
 	CombatManager.lossScene(crystalGooPCLoss);
 	CombatManager.displayLocation("CRYSTAL GOO");
@@ -240,8 +240,8 @@ public function testGooT1():void
 public function testGooT2():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CrystalGooT2());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CrystalGooT2());
 	CombatManager.victoryScene(pcDefeatsCrystalGooToo);
 	CombatManager.lossScene(crystalGooPCLoss);
 	CombatManager.displayLocation("CRYSTAL GOO");
@@ -263,8 +263,8 @@ public function instaLossTestLust():void
 	(pc as Creature).lustRaw = pc.lustMax();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new ZilFemale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new ZilFemale());
 	CombatManager.victoryScene(pcVsOneEnemyWin);
 	CombatManager.lossScene(pcVsOneEnemyLoss);
 	CombatManager.displayLocation("INSTANT LOSS LUST");
@@ -278,8 +278,8 @@ public function instaLossTestLust():void
 public function pcVsOneEnemy():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new SX1GroupPirates());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new SX1GroupPirates());
 	CombatManager.victoryScene(pcVsOneEnemyWin);
 	CombatManager.lossScene(pcVsOneEnemyLoss);
 	CombatManager.displayLocation("1V1 TEST");
@@ -307,8 +307,8 @@ public function pcVsOneEnemyWin():void
 public function pcVsTwoEnemies():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1Techguard()]);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors([new SX1GroupPirates(), new SX1Techguard()]);
 	CombatManager.victoryScene(pcVsTwoEnemiesWin);
 	CombatManager.lossScene(pcVsTwoEnemiesLoss);
 	CombatManager.displayLocation("1V2 TEST");
@@ -336,8 +336,8 @@ public function pcVsTwoEnemiesWin():void
 public function pcPlusAnnoVsOneEnemy():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, new Anno()]);
-	CombatManager.setHostileCharacters(new SX1GroupPirates());
+	CombatManager.setFriendlyActors([pc, new Anno()]);
+	CombatManager.setHostileActors(new SX1GroupPirates());
 	CombatManager.victoryScene(pcPlusAnnoV1Win);
 	CombatManager.lossScene(pcPlusAnnoV1Loss);
 	CombatManager.displayLocation("2V1 TEST");
@@ -365,8 +365,8 @@ public function pcPlusAnnoV1Loss():void
 public function pcPlusAnnoVsTwoEnemies():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, new Anno()]);
-	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1Techguard()]);
+	CombatManager.setFriendlyActors([pc, new Anno()]);
+	CombatManager.setHostileActors([new SX1GroupPirates(), new SX1Techguard()]);
 	CombatManager.victoryScene(pcPlusAnnoV2Win);
 	CombatManager.lossScene(pcPlusAnnoV2Loss);
 	CombatManager.displayLocation("2V2 TEST");
@@ -394,8 +394,8 @@ public function pcPlusAnnoV2Loss():void
 public function maximumClusterfuck():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, new Anno(), new Saendra()]);
-	CombatManager.setHostileCharacters([new SX1GroupPirates(), new SX1Techguard(), new SX1GroupPirates(), new SX1Shotguard()]);
+	CombatManager.setFriendlyActors([pc, new Anno(), new Saendra()]);
+	CombatManager.setHostileActors([new SX1GroupPirates(), new SX1Techguard(), new SX1GroupPirates(), new SX1Shotguard()]);
 	CombatManager.victoryScene(fuckfuckfuckWin);
 	CombatManager.lossScene(fuckfuckfuckLoss);
 	CombatManager.displayLocation("WHARGBL");

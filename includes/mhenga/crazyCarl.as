@@ -263,6 +263,7 @@ public function crazyCarlShop():void {
 	addItemButton(3, new TheShocker(), shockerBuyTalk);
 	if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == undefined) addItemButton(4, new ZKRifle(), zkRifleCarlTalk);
 	else if(flags["ROBOT_QUEST_COMPLETE"] != 2) addDisabledButton(4, "ZK Rifle");
+	else addDisabledButton(4, "ZK Rifle", "ZK Rifle", "You have already earned this weapon!");
 	addItemButton(5, new Warhammer(), warhammerBuyTalk);
 	addItemButton(6, new Machette(), machetteBuyTalk);
 	addItemButton(7, new Shortsword(), shortswordBuyTalk);
@@ -270,6 +271,11 @@ public function crazyCarlShop():void {
 	{
 		addItemButton(8, new ShockBow(), shockBowBuyTalk);
 		addItemButton(9, new LightningRod(), lightningRodBuyTalk);
+	}
+	else
+	{
+		addDisabledButton(8, "Locked", "Locked", "Return at a level 6 or higher to reveal this weapon!");
+		addDisabledButton(9, "Locked", "Locked", "Return at a level 6 or higher to reveal this weapon!");
 	}
 	
 	addButton(14,"Back",insideCarlsShop); 
@@ -568,8 +574,8 @@ public function fightMachina():void {
 	flags["JUNGLE_STEP"] = 0;
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CarlsRobot());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CarlsRobot());
 	CombatManager.victoryScene(pushButtanOnMagicTedsFireRobot);
 	CombatManager.lossScene(ohShitLoseToRobot);
 	CombatManager.displayLocation("MACHINA");

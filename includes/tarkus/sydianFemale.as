@@ -52,8 +52,8 @@ public function encounterFemaleSydian():void
 	
 	CodexManager.unlockEntry("Sydians");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(sydianFemalePCVictory);
 	CombatManager.lossScene(sydianFemalePCLoss);
 	CombatManager.displayLocation("SYDIAN (F)");
@@ -392,7 +392,7 @@ public function sydianFemalePCVictory():void
 		else
 		{
 			output(" or just leave her here.");
-			if (pc.hasItem(new Throbb())) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
+			if (pc.hasItemByClass(Throbb)) output(" There’s an item you’re carrying that might adjust her bad attitude, too.");
 		}
 
 		if (!pc.hasCock()) addDisabledButton(0, "Fuck Her", "Fuck Her", "You don’t have a wiener!");
@@ -405,7 +405,7 @@ public function sydianFemalePCVictory():void
 
 		addButton(1, "Get Licked", femSydianEatsButtholes, undefined, "Get Licked", "Make her service your " + (pc.hasVagina() ? "vagina" : "asshole"));
 
-		if (!pc.hasItem(new Throbb())) addDisabledButton(2, "Give Throbb", "Give Throbb", "You’re not carrying any Throbb.");
+		if (!pc.hasItemByClass(Throbb)) addDisabledButton(2, "Give Throbb", "Give Throbb", "You’re not carrying any Throbb.");
 		else if (enemy.hasStatusEffect("Unarmored")) addDisabledButton(2, "Give Throbb", "Give Throbb", "The broken-armored sydian’s too nervous for you to get a clean stick with the needle.");
 		else addButton(2, "Give Throbb", femSydianGiveThrob, undefined, "Give Throbb", "Jab the cocky bitch with a dose of Throbb and watch her break down and beg.");
 
@@ -563,7 +563,8 @@ public function femSydianGentleFuck():void
 		
 		output("\n\n<i>“That’s good,”</i> the girl sighs. You shiver as her enzymes work, forcing the same feeling in you.");
 		if (pc.hasCock()) output(" Her hand sits on your cock, waiting for a signal that her pussy-focused brain never sends until you thrust gently; the woman bites her lip, chagrined, and begins to masturbate you.");
-		else output(" Her fingers are adroit despite being in an alien - judging by her skill at tickling nerves and finding your clit, she plays with herself often. }Your climax runs at you with long strides, pursued by sydian enzymes and closing fast; you mention it to your eager lover.");
+		else output(" Her fingers are adroit despite being in an alien - judging by her skill at tickling nerves and finding your clit, she plays with herself often.");
+		output(" Your climax runs at you with long strides, pursued by sydian enzymes and closing fast; you mention it to your eager lover.");
 
 		//male ending - favored if available
 		if (pc.hasCock())
@@ -1214,7 +1215,7 @@ public function femSydianGiveThrob():void
 	
 	output("\n\nYou watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.\n\n");
 	
-	pc.destroyItem(new Throbb(), 1);
+	pc.destroyItemByClass(Throbb, 1);
 	
 	CombatManager.genericVictory();
 }
@@ -1415,7 +1416,7 @@ public function femSydianFuck():void
 	else
 	{
 		output("You lower yourself and lift her ass with your hands");
-		//{(bare hands), savoring the tingle of pleasure on your palms}
+		// (bare hands), savoring the tingle of pleasure on your palms
 		output(". Lining your");
 		if (!asTailcock) output(" [pc.cock "+cockIdx+"]");
 		else output(" [pc.tail]");
@@ -1436,7 +1437,7 @@ public function femSydianFuck():void
 	else output("<i>“Find out, slut,”</i> you command.");
 	output(" The sydian’s reply is transformed into a grunt as you thrust forward, impaling her pussy on your");
 	if (asTailcock) output(" tailcock");
-	else output(" cock."); //{greater of cock length or 24} inches.");
+	else output(" cock."); // (greater of cock length or 24) inches.
 
 	//Cockcchange check (whatever the fuck this is)
 	if (!asTailcock) pc.cockChange(true, false);
@@ -1509,6 +1510,8 @@ public function sydianPregnancyEnds():void
 {
 	clearOutput();
 	author("Zeikfried");
+	showBust("");
+	showName("\nBIRTHING!");
 
 	var se:StorageClass = pc.getStatusEffect("Sydian Pregnancy Ends");
 	
@@ -1558,7 +1561,7 @@ public function sydianPregnancyEnds():void
 	if (babym) output(" his");
 	output(" her");
 	output(" pate and chubby pink hands grasp for yours. Your new baby is a picture-perfect human child.");
-	//{ (comment out if methods to know father are added) 
+	// (comment out if methods to know father are added) 
 	output(" That raises an interesting question. Which human did you sleep with to make such a beautiful");
 	if (babym) output(" boy");
 	else output(" girl");

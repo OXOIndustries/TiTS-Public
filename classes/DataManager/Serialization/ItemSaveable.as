@@ -214,7 +214,7 @@
 						this[prop] = dataObject[prop];
 					}
 				}
-				if (dataObject.hasOwnProperty("classInstance") && (dataObject['hasUniqueName'] == true))
+				if (dataObject.hasUniqueName == true)
 				{
 					this['shortName'] = dataObject['shortName'];
 					TooltipManager.addFullName(this['shortName'],StringUtil.toTitleCase(this['longName']))

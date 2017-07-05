@@ -2267,9 +2267,9 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		}
 		
 		output("\n\nTalking done, she uses the hand not holding your wrists back to pull your head back, squeezing it between her heaving breasts as she rams into you, filling you from stem to stern.");
-		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG))
+		if(pc.hasLongTongue())
 		{
-			output(" Aware this is one of her favourite moves and ready for it, you slide your long, flexible tongue out of your open mouth and glide it across your skin and hers, flicking it over one of her erect nipples.");
+			output(" Aware this is one of her favorite moves and ready for it, you slide your long, flexible tongue out of your open mouth and glide it across your skin and hers, flicking it over one of her erect nipples.");
 			output("\n\n<i>“Oh – you – clever – fucking – [pc.boy]!”</i> she gasps, between slams of her hips into your ass.");
 		}
 		output("\n\nYour moans turn into cries of ecstasy as your");
@@ -2793,8 +2793,10 @@ public function seraTongueFuckBonus():Boolean
 	if(pc.tongueType == GLOBAL.TYPE_DEMONIC) select = 1;
 	if(pc.tongueType == GLOBAL.TYPE_RASKVEL) select = 2;
 	if(pc.tongueType == GLOBAL.TYPE_FROG) select = 3;
-	if(select < 0 && (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined)) convoList.push(4);
-	if(select < 0 && flags["MET_KEROKORAS"] != undefined) convoList.push(5);
+	if(pc.tongueType == GLOBAL.TYPE_BEE) select = 4;
+	if(select < 0 && (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined)) convoList.push(5);
+	if(select < 0 && flags["MET_KEROKORAS"] != undefined) convoList.push(6);
+	if(select < 0 && (flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined)) convoList.push(7);
 	
 	if(select < 0 && convoList.length > 0) select = (convoList[rand(convoList.length)]);
 	
@@ -2813,15 +2815,24 @@ public function seraTongueFuckBonus():Boolean
 		// Kerokeras tongue:
 		case 3:
 			output("\n\n<i>“Kinda?”</i> Your tongue never turns down the opportunity to perform, and the moment you open your mouth it’s out there, whipping this way and that with wet, sticky intent. You have it catch a fetish doll off a nearby shelf and deposit it clumsily next to Sera. Her eyes widen slightly, and she retracts her own to speak.");
-			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Bit lizard-y, but... useful-looking. Tell me how you got it.”</i>");
+			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Bit frog-like, but... useful-looking. Tell me how you got it.”</i>");
+			break;
+		// Zil tongue:
+		case 4:
+			output("\n\n<i>“Kinda?”</i> You open your own mouth and lollop out your own tongue, a hollow, wet, yellow muscle that touches the your [pc.chest]. You make it run kisses all along the surface with its talented tip. Sera eyes widen slightly, and she retracts her own to speak.");
+			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Too much like a nectar-sucking bug, but... useful-looking. Tell me how you got it.”</i>");
 			break;
 		// Raskvel met:
-		case 4:
+		case 5:
 			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the raskvel, the Tarkus-born race of rabbit-reptiles and their big, long tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
 			break;
-		// If not raskvel but kerokeras:
-		case 5:
+		// Kerokeras met:
+		case 6:
 			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the kerokeras, the obscure race of frog-alogues that inhabit Mhen’ga, and their long, sticky whip-tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
+			break;
+		// Zil met:
+		case 7:
+			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the zil, the race of wasp-like beings that inhabit Mhen’ga, and their long, hollow tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
 			break;
 	}
 	
@@ -2832,7 +2843,7 @@ public function seraTongueFuckBonus():Boolean
 	if(hasCock) output(" gripping your [pc.cock] and brusquely jerking you, working leaden arousal into your shaft with sharp, certain movements");
 	else output(" sliding her digits into your [pc.pussy], brusquely fingering you with clever, certain movements");
 	output(". You quiver as she ravages you, pinioned upon her extremities at both ends, and she husks something wicked into your mouth, " + (hasCock ? "jacking" : "jilling") + " you harder. The next second she’s withdrawing her tongue, slithering up your esophagus and then past your own [pc.tongue], pulling away from you sharply. You heave for breath.");
-	output("\n\n<i>“‘S why I’m interested in long tongues,”</i> she growls. <i>“For me, anyway. " + (InCollection(select, [1, 2, 3]) ? "Yours is for other purposes." : "On you it’d be for other purposes.") + " Sub, dom... a tonsil toucher is something to have. I wanna have a selection of gene mods that produce ‘em in my shop.”</i>");
+	output("\n\n<i>“‘S why I’m interested in long tongues,”</i> she growls. <i>“For me, anyway. " + (InCollection(select, [1, 2, 3, 4]) ? "Yours is for other purposes." : "On you it’d be for other purposes.") + " Sub, dom... a tonsil toucher is something to have. I wanna have a selection of gene mods that produce ‘em in my shop.”</i>");
 	
 	processTime(4);
 	pc.lust(20);
@@ -2915,7 +2926,7 @@ public function seraTongueFuck(arg:Array):void
 	{
 		output("\n\nShe steps back and considers the respectably sized puddle of " + (hasCock ? "[pc.cum]" : "[pc.girlCum]") + " on the floor beneath you dispassionately.");
 		output("\n\n<i>“You’re such a messy pet, aren’t you?”</i> She shakes her head. <i>“It’s fun making you squirt, but man, I don’t envy the person who has to clean that up.”</i> She sashays back behind her counter, tail swinging. <i>“");
-		if(InCollection(select, [1, 2, 3])) output("Good thing you’ve got that tongue.");
+		if(InCollection(select, [1, 2, 3, 4])) output("Good thing you’ve got that tongue.");
 		else output("Like I said - you need to sort yourself out with a better tongue.");
 		output(" Don’t take too long - I don’t want a customer slipping in it.”</i>");
 		output("\n\nHumiliation burns on your cheeks as you " + (pc.hasKnees() ? "kneel" : "lower yourself") + " down over the " + (hasCock ? "[pc.cumVisc]" : "[pc.girlCumVisc]") + " pool and begin to lap it up. This tastes nowhere <i>near</i> as good going cold. The pleasant ache in your genitals and the fuzz of subspace help a lot, though...");

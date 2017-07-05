@@ -245,12 +245,12 @@ package classes.Characters
 		{
 			output("The Mimbrane divebombs you again. Just as it closes in on you, the parasite contorts its body into a half circle, aiming for your [pc.leg].");
 
-			//{standard miss/block text}
+			// standard miss/block text
 			if (combatMiss(this, target))
 			{
 				output("\n\nYou dodge!");
 			}
-			//{hit}
+			// hit
 			else
 			{
 				output("\n\nIt successfully hooks onto your [pc.leg] and pulls it out from under you, tripping you hard against the ground.");
@@ -267,7 +267,7 @@ package classes.Characters
 				if (damageResult.hpDamage > 0)
 				{
 					output(" You take a moment to shake the stars from your vision, your rapid introduction to the floor suprisingly painful considering the circumstances.");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 				
 				outputDamage(damageResult);
@@ -284,7 +284,7 @@ package classes.Characters
 		{
 			output("What amounts to your adversary’s face bulges intensely. The Mimbrane’s mouth struggles for a bit before launching a thick, deep red payload of concentrated sexual craving right at you.");
 
-			//{standard miss/block text}
+			// standard miss/block text
 			if (combatMiss(this, target))
 			{
 				output(" You tuck out of the way!");
@@ -293,7 +293,7 @@ package classes.Characters
 			{
 				output(" The parasite’s discharge makes its mark, smothering you in a volatile mix of a supersaturated batch of its oily residue and dense cloud of prurient perspiration -- however, the airtight properties of your [pc.armor] proves such an attack completely useless.");
 			}
-			//{hit} 
+			// hit
 			else
 			{
 				output(" The parasite’s discharge makes its mark, smothering you in a volatile mix of a supersaturated batch of its oily residue and dense cloud of prurient perspiration.");
@@ -305,7 +305,7 @@ package classes.Characters
 		{
 			if(target.hasAirtightSuit())
 			{
-				output("The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net! Your head is encased in the parasite’s embrace, futilely trying to smother you in its slick, salacious skin. Its secretions don't make it past your [pc.armor]; giving you a chance to breathe a sign of relief.");
+				output("The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net! Your head is encased in the parasite’s embrace, futilely trying to smother you in its slick, salacious skin. Its secretions don’t make it past your [pc.armor]; giving you a chance to breathe a sign of relief.");
 				output("\n\nThe creature quickly slides off, waiting for the opportune moment to strike you again.");
 				// Just in case:
 				target.removeStatusEffect("Mimbrane Smother");
@@ -317,7 +317,7 @@ package classes.Characters
 				target.createStatusEffect("Mimbrane Smother", 0, 0, 0, 0, false, "Constrict", "Your face is being smothered by a Mimbrane!", true);
 			}
 			
-			//{hit} 
+			// hit
 			output(" Your head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breathe.");
 			target.lust(10 + target.libido()/10);
 		}
@@ -328,7 +328,7 @@ package classes.Characters
 
 			output("Your adversary grows more dense in the air for a second, appearing as if it were wringing out more passionate sweat from its flesh. In one fluid motion, it stretches back out again, a large square of flesh suspended above you surrounding the visible cloud of lust it created. The Mimbrane spins in the air, pushing the fog your way!");
 
-			//{standard miss/block text}
+			// standard miss/block text
 			if (combatMiss(this, target))
 			{
 				output("\n\nAnticipating the Mimbranes attack, you’re already poised to avoid the creatures mist before it can take effect.");
@@ -339,14 +339,14 @@ package classes.Characters
 			}
 			else
 			{
-				//{hit} 
+				// hit
 				output("\n\nThe parasite’s cloud of wanton desire consumes you, seeping into every pore and driving you ever further off the edge.");
 				
 				// Always increase lust from the initial attack
 				// No save will also attach a lust increasing effect to the player.
 				target.lust(10 + rand(10));
 
-				//{no save}
+				// no save
 				if (target.reflexes() + rand(20) + 1 < 15)
 				{
 					output(" You’re too disoriented to get out of the veil before it can sink its fangs into you. The best you can hope for is for it to dissipate on its own.");
@@ -373,23 +373,23 @@ package classes.Characters
 		{
 			output("It’s hard to keep track of the Mimbrane as it dashes through the air around you. You finally catch sight of the parasite just as it rears up in place above you, narrowing its form. It’s dive bombing straight towards you!");
 
-			//{standard miss/block text} 
+			// standard miss/block text
 			if (combatMiss(this, target))
 			{
 				output("\n\nYou twist out of the path of the speeding Mimbrane at the last second!");
 			}
 			else if(target.hasAirtightSuit())
 			{
-				output(" You’re quick enough to avoid being hit head-on, but the parasite manages to brush up against you as it sails by. Oily perspiration smears along your [pc.armor], but it is all for naught thanks to your outfit's impermeability.");
+				output(" You’re quick enough to avoid being hit head-on, but the parasite manages to brush up against you as it sails by. Oily perspiration smears along your [pc.armor], but it is all for naught thanks to your outfit’s impermeability.");
 			}
-			//{hit}
+			// hit
 			else
 			{
 				output(" You’re quick enough to avoid being hit head-on, but the parasite manages to brush up against you as it sails by. Oily perspiration smears along your [pc.armor], forcing a healthy whiff of wanton lust down your nostrils.");
 
 				target.lust(5 + target.libido()/20);
 
-				// {not defeated}
+				// not defeated
 				if (target.lust() < target.lustMax())
 				{
 					output("\n\nYou quickly brush off the residue before it can affect you more than it already has.");

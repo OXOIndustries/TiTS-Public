@@ -35,8 +35,8 @@ public function encounterDasGooGray():void
 	
 	CodexManager.unlockEntry("Gray Goos");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new GrayGoo());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new GrayGoo());
 	CombatManager.victoryScene(pcDefeatsGrayGooInTheNameOfLove);
 	CombatManager.lossScene(loseToGrayGooRouter);
 	CombatManager.displayLocation("GRAY GOO");
@@ -57,7 +57,7 @@ public function dontDoAnythingFromHardenAttack():void
 	
 	// TODO Peep a better way to handle this
 	// GetHostileOfType? Index override? By unique-name?
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)
@@ -91,7 +91,7 @@ public function quickieAfterGooHarden():void
 	}
 	pc.orgasm();
 	
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)
@@ -174,7 +174,7 @@ public function reprogramGrayGoosForYerPleasure():void
 	clearMenu();
 	if(pc.HP() < pc.maxHP()) addButton(0,"Heal Me",healMeGrayGooYoureMyOnlyHopeDotDotDot,undefined,"Heal Me","Have the goo woman user her microsurgeons to heal you.");
 	else addDisabledButton(0,"Heal Me");
-	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");;
+	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 

@@ -47,15 +47,15 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 		var immobileParts:int = (bodyPart.length);
 		
 		// Hoverboard exception!
-		if(pc.hasItem(new Hoverboard())) immobileParts = 0;
+		if(pc.hasItemByClass(Hoverboard)) immobileParts = 0;
 		// Underwear exceptions!
-		if(pc.lowerUndergarment is HardlightAGJock)
+		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 		{
 			if(InCollection("balls", bodyPart)) immobileParts--;
 			if(InCollection("penis", bodyPart)) immobileParts--;
 			if(InCollection("clitoris", bodyPart)) immobileParts--;
 		}
-		if(pc.upperUndergarment is HardlightAGBra)
+		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 		{
 			if(InCollection("breast", bodyPart)) immobileParts--;
 		}
@@ -112,7 +112,7 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 			msg += " make";
 			if(InCollection(bodyText, "gigantic gonad", "bloated belly")) msg += "s";
 			msg += " it impossible for you to move at all, you luckily have a remedy for that...";
-			if(pc.hasItem(new Hoverboard()))
+			if(pc.hasItemByClass(Hoverboard))
 			{
 				msg += " Pulling out your pink hoverboard, you carefully guide it under your";
 				if(bodyPart.length == 1)
@@ -129,9 +129,9 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 				else msg += " it";
 				msg += " against the toy’s surface. With a few audible struggles, the hoverboard does its job and lifts your immobilizing weight off the ground!";
 			}
-			else if((pc.lowerUndergarment is HardlightAGJock) || (pc.upperUndergarment is HardlightAGBra))
+			else if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 			{
-				msg += " Activating the anti-gravity switches in your undergarments, you quickly feel the immobilizing weight being lifted off the ground!";
+				msg += " Activating the anti-gravity switches on your" + (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) ? " outfit" : " undergarments") + ", you quickly feel the immobilizing weight being lifted off the ground!";
 			}
 			msg += " Now you can travel with ease... more or less.";
 			
@@ -152,8 +152,8 @@ public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 	
 	// Exceptions
 	if(pc.isGoo()) { /* Goos are immune to immobilization? */ }
-	else if(InCollection(partName, ["testicle", "penis", "clitoris"]) && (pc.lowerUndergarment is HardlightAGJock)) { /* Anti-grav underwear lifts crotch stuff. */ }
-	else if(InCollection(partName, ["breast"]) && (pc.upperUndergarment is HardlightAGBra)) { /* Anti-grav tops lifts chest stuff. */ }
+	else if(InCollection(partName, ["testicle", "penis", "clitoris"]) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))) { /* Anti-grav underwear lifts crotch stuff. */ }
+	else if(InCollection(partName, ["breast"]) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))) { /* Anti-grav tops lifts chest stuff. */ }
 	// Weigh parts and add effects where necessary
 	else
 	{
@@ -206,7 +206,7 @@ public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 				pc.lust(5);
 			}
 			//hit person size
-			if(weightQ >= percentBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItem(new Hoverboard()))
+			if(weightQ >= percentBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItemByClass(Hoverboard))
 			{
 				AddLogEvent("You strain as hard as you can, but there’s just no helping it. You’re immobilized. Your", "passive", deltaT);
 				if(pc.balls == 1) ExtendLogEvent(" testicle is");
@@ -263,22 +263,22 @@ public function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 	switch (partName)
 	{
 		case "testicle":
-			altCheck = (pc.balls <= 0 || (pc.lowerUndergarment is HardlightAGJock));
+			altCheck = (pc.balls <= 0 || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioBalls;
 			perRatio = percentBalls;
 			break;
 		case "penis":
-			altCheck = (!pc.hasCock() || (pc.lowerUndergarment is HardlightAGJock));
+			altCheck = (!pc.hasCock() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioPenis;
 			perRatio = percentPenis;
 			break;
 		case "clitoris":
-			altCheck = (!pc.hasVagina() || (pc.lowerUndergarment is HardlightAGJock));
+			altCheck = (!pc.hasVagina() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioClits;
 			perRatio = percentClits;
 			break;
 		case "breast":
-			altCheck = (!pc.hasBreasts() || (pc.upperUndergarment is HardlightAGBra));
+			altCheck = (!pc.hasBreasts() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioBoobs;
 			perRatio = percentBoobs;
 			break;
@@ -536,7 +536,7 @@ public function milkGainNotes(deltaT:uint = 0):void
 		}
 		
 		AddLogEvent(ParseText("Your [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It’s actually getting kind of painful to hold in all that liquid weight, and if "), "passive", deltaT);
-		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) ExtendLogEvent("it wasn’t for your genetically engineered super-tits, your body would be slowing down production");
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) ExtendLogEvent("it wasn’t for your genetically engineered super-tits, your body would be slowing down production");
 		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("it wasn’t for your honeypot gene, your body would be slowing down production");
 		else if(pc.isPregnant()) ExtendLogEvent("you weren’t pregnant, you’d probably be slowing production.");
 		else if(pc.upperUndergarment is BountyBra) ExtendLogEvent("you weren’t wearing a <b>Bounty Bra</b>, your body would be slowing down production");
@@ -556,7 +556,7 @@ public function milkGainNotes(deltaT:uint = 0):void
 		}
 		
 		AddLogEvent(ParseText("The tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can’t help but wish for relief or a cessation of your lactation, whichever comes first. "), "passive", deltaT);
-		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk")) ExtendLogEvent("<b>However, with your excessively active udders, you are afraid the production will never stop.</b>");
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) ExtendLogEvent("<b>However, with your excessively active udders, you are afraid the production will never stop.</b>");
 		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("<b>However, with your honeypot gene, they’ll likely never stop.</b>");
 		else if(pc.isPregnant()) ExtendLogEvent("<b>With a pregnancy on the way, there’s no way your body will stop producing.</b>");
 		else if(pc.upperUndergarment is BountyBra) ExtendLogEvent(ParseText("<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>"));
@@ -595,7 +595,7 @@ public function lactationUpdateHourTick(totalHours:int):void
 	//Bounty bra never loses milkMultiplier!
 	if(pc.upperUndergarment is BountyBra || pc.isPregnant() || pc.hasPerk("Honeypot") || pc.hasPerk("Mega Milk") || pc.hasPerk("Hypermilky"))
 	{
-
+		/* Nada! */
 	}
 	else
 	{

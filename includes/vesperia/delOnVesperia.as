@@ -10,20 +10,27 @@ public function showDelString(nude:Boolean = false):String
 {
 	var bust_Append:String = "";
 	if(nude) bust_Append = "_NUDE";
-	if(!MailManager.isEntryUnlocked("del_moved"))
+	// Trap
+	if(MailManager.isEntryUnlocked("del_moved_light"))
 	{
-		return ("DELILAH" + bust_Append);
+		return ("DELILAH_BOY" + bust_Append);
 	}
-	else
+	// Shemale
+	else if(MailManager.isEntryUnlocked("del_moved"))
 	{
 		if(del.hasCock(GLOBAL.TYPE_EQUINE)) return ("DELILAH_SHEMALE_HORSE" + bust_Append);
-		else return ("DELILAH_SHEMALE" + bust_Append);
+		return ("DELILAH_SHEMALE" + bust_Append);
+	}
+	// Default
+	else
+	{
+		return ("DELILAH" + bust_Append);
 	}
 	return "";
 }
 public function showDel(nude:Boolean = false):void
 {
-	showName("\n" + (!MailManager.isEntryUnlocked("del_moved") ? "DELILAH" : "DEL"));
+	showName("\n" + ((!MailManager.isEntryUnlocked("del_moved") && !MailManager.isEntryUnlocked("del_moved_light")) ? "DELILAH" : "DEL"));
 	showBust(showDelString(nude));
 }
 //Content Pack Intro
@@ -211,52 +218,64 @@ public function delDrinkPurchase(drink:String):void
 	clearOutput();
 	showDel();
 	var special:Boolean = false;
-	if(drink == "Doe-Eyed Draught") 
+	switch(drink)
 	{
-		pc.imbibeAlcohol(28);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		pc.credits -= 6;
+		case "Doe-Eyed Draught":
+			pc.imbibeAlcohol(28);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			pc.credits -= 6;
+			break;
+		case "Nutty Nookie":
+			pc.imbibeAlcohol(26);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			pc.credits -= 7;
+			break;
+		case "V. Vapor":
+			pc.imbibeAlcohol(14);
+			pc.credits -= 10;
+			break;
+		case "Royal Red":
+			pc.imbibeAlcohol(16);
+			pc.credits -= 12;
+			break;
+		case "Pneumatic Pilsner":
+			pc.imbibeAlcohol(32);
+			pc.credits -= 20;
+			break;
+		case "Kui Creamer":
+			pc.imbibeAlcohol(42);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			pc.credits -= 22;
+			break;
 	}
-	else if(drink == "Nutty Nookie") 
-	{
-		pc.imbibeAlcohol(26);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		pc.credits -= 7;
-	}
-	else if(drink == "V. Vapor") 
-	{
-		pc.imbibeAlcohol(14);
-		pc.credits -= 10;
-	}
-	else if(drink == "Royal Red")
-	{
-		pc.imbibeAlcohol(16);
-		pc.credits -= 12;
-	}
-	else if(drink == "Pneumatic Pilsner") 
-	{
-		pc.imbibeAlcohol(32);
-		pc.credits -= 20;
-	}
-	else if(drink == "Kui Creamer") 
-	{
-		pc.imbibeAlcohol(42);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		pc.credits -= 22;
-	}
-	output("You swipe the creds over to Del. She swiftly rushes off to make your drink, returning with ");
+	output("You swipe the creds over to Del. He swiftly rushes off to make your drink, returning with ");
 	if(drink != "Kui Creamer") output("an ice cold glass of " + drink);
 	else output("shot glasses of " + drink);
 	output(". ");
-	if(drink == "Kui Creamer") output("You take them one after the other, surprised at how pleasant they taste. There’s no real alcoholic kick, just the smooth heat of Kally’s creamy drinks.");
-	else if(drink == "Nutty Nookie") output("It goes down slow but smooth, leaving you with a warm, rich feeling settling into your stomach.");
-	else if(drink == "V. Vapor") output("It’s a lovely drink that you can take your time with, swirling the beverage around in your glass in between sips.");
-	else if(drink == "Royal Red") output("The thick head clings to your upper lip with every sip, but you lap it up after every swallow. It’s bitter, just like the drink, and subtly flavorful.");
-	else if(drink == "Doe-Eyed Draught") output("You suck down a long pull of the opaque amber beverage. It’s good. Damned good. You take another few swallows before slapping it down and belching, remembering your manners too late to excuse yourself. The bartender grins.");
-	else if(drink == "Pneumatic Pilsner") output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
+	switch(drink)
+	{
+		case "Kui Creamer":
+			output("You take them one after the other, surprised at how pleasant they taste. There’s no real alcoholic kick, just the smooth heat of Kally’s creamy drinks.");
+			break;
+		case "Nutty Nookie":
+			output("It goes down slow but smooth, leaving you with a warm, rich feeling settling into your stomach.");
+			break;
+		case "V. Vapor":
+			output("It’s a lovely drink that you can take your time with, swirling the beverage around in your glass in between sips.");
+			break;
+		case "Royal Red":
+			output("The thick head clings to your upper lip with every sip, but you lap it up after every swallow. It’s bitter, just like the drink, and subtly flavorful.");
+			break;
+		case "Doe-Eyed Draught":
+			output("You suck down a long pull of the opaque amber beverage. It’s good. Damned good. You take another few swallows before slapping it down and belching, remembering your manners too late to excuse yourself. The bartender grins.");
+			break;
+		case "Pneumatic Pilsner":
+			output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
+			break;
+	}
 	processTime(4);
 	delVesperiaMenu();
 }
@@ -434,7 +453,7 @@ public function sexWithKallysDel():void
 	//If the PC has a SynthSheath in their inventory, add [Horsecock?] to Del’s talk menu
 	else
 	{
-		if(pc.hasItem(new HorseCock())) addButton(2,"Horse-Cock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
+		if(pc.hasItemByClass(HorseCock)) addButton(2,"Horse-Cock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
 		else addDisabledButton(2,"Horsecock?","Horsecock?","You need to have an item that can give her a horse-dick for this.");
 	}
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(5,"Public Use",delSlutTraining,undefined,"Public Use","Kallly’s customers look a little pent up! You and Del could take care of them all with your asses, just like old times.");
@@ -461,7 +480,7 @@ public function fuckDelsAss():void
 	output("\n\nYou reach forward and under her skirt, groping her ass with both hands. Using your thumbs, you spread her chubby cheeks, revealing the dark little cock-hole nestled between them. Her dick throbs under your inspection, drooling a little streak of white onto the hem of her skirt. Cute. You snake one of your thumbs into her crack, gently pressing it against her well-used hole - just enough to make her gasp and get nice and hard, but not enough to actually spread her open. Not that it would take much, considering how much cock this trap-slut’s seen since you first met.");
 	output("\n\n<i>“You’re gonna want to get me ready,”</i> you suggest, giving her a playful slap that sets her bubbly cheeks jiggling.");
 	output("\n\nDel spins on her high heels and grins. <i>“Yes, " + pc.mf("sir","ma’am") + "!”</i>");
-	output("\n\nShe eagerly drops to her knees, already oh so eager for a taste of your cock. She opens wide, ready to recieve your package. You step forward, tossing your equipment onto a bench and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore’s face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock.");
+	output("\n\nShe eagerly drops to her knees, already oh so eager for a taste of your cock. She opens wide, ready to receive your package. You step forward, tossing your equipment onto a bench and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore’s face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock.");
 	output("\n\n<i>“My favorite snack! Mmm, I love the taste of your cock...”</i> she purrs, nuzzling the shaft of your [pc.cock] affectionately as her tongue lavishes it with affection. <i>“The first... and the best...”</i> she adds happily, planting a kiss on the tip. You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip a rail to support yourself, [pc.legs] shaky under the startlingly skilled ministrations of the trappy slut.");
 	output("\n\n<i>“Juuust like that,”</i> you moan through clenched teeth, trying to control yourself. Your fingers snake through the whore’s blonde-dyed hair, coaxing her on as she licks and kisses at the underside of your member, slowly but surely working herself up to taking it wholesale. ");
 	if(pc.balls > 1) output("But first, she lets a hand wander free up one of your [pc.legs], caressing the tender flesh slowly as she works up to your base, hands cupping your swinging sack, rolling your nads between her dainty little fingers. The slutty, dusky whore grins up at you, her mouth trailing kisses down your girthy length until she can lap at your [pc.balls], lavishing your hefty nuts with the tip of her eager tongue before opening wide and swallowing them up, suckling on your gonads like a pair of teats. You groan and shudder, trying not to cum as your sexy shemale slut sucks on your sack like the pro she’s turned out to be.");
@@ -829,7 +848,7 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	clearOutput();
 	showDel(true);
 	author("Savin");
-	pc.destroyItem(new HorseCock());
+	pc.destroyItemByClass(HorseCock);
 
 	output("<i>“I think we can work with that,”</i> you say, patting Del’s thigh. <i>“Let’s get you attached to your new horsey friend here.”</i>");
 	output("\n\nDel hops out of your lap and takes your hand. <i>“’Kay! Let’s go to the baths and try it on. Um, miss Kally! I’m gonna go on break for a minute!”</i>");
@@ -1448,10 +1467,10 @@ public function carverMainMenu():void
 	addButton(14,"Leave",doneSuckingUpToBethsBoobers);
 }
 
-//Adding Del to NC Station
+//Adding Trap Del to NC Station
 public function shittyDelBonus(num:Number):Number
 {
-	output("\n\nYou recognise Del sauntering around the bar, waiting on tables and manning the bar when the owner is busy elsewhere. He’s wearing a slick black waiter’s outfit with a slick red tie, pinned with some sort of glowing holographic button. There’s almost no trace of the slutty femboy you met on Tarkus: Del’s voice is a touch deeper, and his movements carry a masculine confidence that would have seemed comical before; now, it suits him just fine. Still, his figure is slight and effeminate, with wide hips and soft curves that almost beg for a squeeze or a grope.");
+	output("\n\nYou recognize Del sauntering around the bar, waiting on tables and manning the bar when the owner is busy elsewhere. He’s wearing a slick black waiter’s outfit with a slick red tie, pinned with some sort of glowing holographic button. There’s almost no trace of the slutty femboy you met on Tarkus: Del’s voice is a touch deeper, and his movements carry a masculine confidence that would have seemed comical before; now, it suits him just fine. Still, his figure is slight and effeminate, with wide hips and soft curves that almost beg for a squeeze or a grope.");
 	//[Del]
 	addButton(num,"Del",approachVesperianTrapDel);
 	return (num+1);
@@ -1474,8 +1493,8 @@ public function approachVesperianTrapDel():void
 		output(" and ask him how he’s been. What happened since the last time you spoke?");
 
 		output("\n\n<i>“I’m good. Real good!”</i> he grins. <i>“The woman who bought me, Kally... she’s been great. After that bitch Carver, I was pretty terrified this whole indentured servitude thing was going to be an unending nightmare, but whatever you said to her must have changed her mind. And thank God, it turns out there’s actually decent people in the slave market. She’s been great so far, letting me get back into some decent clothes, and doing decent work. I haven’t had to fuck anybody I don’t want to, and heck, Kally herself hasn’t even tried to get in my pants. Not that I’d mind if she asked...”</i>");
-		output("\n\nHe chuckles and lazily tucks a lock of blonde hair behind a ear. <i>“It almost feels like a normal life again. All thanks to you and that silver tongue! Kally’s even helping me put away some money away to clear out my debt. It’ll be awhile, but eventually...”</i>");
-		output("\n\n<i>“That’s great,”</i> you tell him. The two of you spend the next little while chatting, with Del seeming happier by the minute. Eventually, though, the kui-tan behind the bar calls for her, cutting your conversation short. Del slips away with a smile, reminding you that drinks are on her for what you did for her.");
+		output("\n\nHe chuckles and lazily tucks a lock of blonde hair behind a ear. <i>“It almost feels like a normal life again. All thanks to you and that silver tongue! Kally’s even helping me put some money away to clear out my debt. It’ll be awhile, but eventually...”</i>");
+		output("\n\n<i>“That’s great,”</i> you tell him. The two of you spend the next little while chatting, with Del seeming happier by the minute. Eventually, though, the kui-tan behind the bar calls for him, cutting your conversation short. Del slips away with a smile, reminding you that drinks are on him for what you did for him.");
 		output("\n\nLooks like you did some good in the galaxy this time...");
 		processTime(5);
 		flags["MET_VESPERIAN_DEL"] = 1;
@@ -1505,7 +1524,7 @@ public function drinkFromTrapDel():void
 	clearOutput();
 	showDel();
 	output("You tell Del you’re feeling thirsty, alright.");
-	output("\n\n<i>“A drink? Sure, here’s what we’ve got on tap,”</i> Del says, flipping a handpiece out of her skirt’s pocket and projecting the menu across her deliciously flat chest, making sure you have to stare right at her softly moving breasts to pick out your drink of choice. <i>“See anything you want?”</i>");
+	output("\n\n<i>“A drink? Sure, here’s what we’ve got on tap,”</i> Del says, flipping a handpiece out of his shirt pocket and projecting the menu across his deliciously flat chest, making sure you have to stare right at his soft pecs to pick out your drink of choice. <i>“See anything you want?”</i>");
 	//Same drink choices as Kally has. If it’s before 18:00, add [Body Shots] option.
 	kallyDrinkDisplay();
 	delTrapDrinkMenu();
@@ -1580,55 +1599,67 @@ public function delTrapDrinkPurchase(drink:String):void
 		flags["MET_VESPERIAN_DEL"] = 2;
 		bill = false;
 	}
-	if(drink == "Doe-Eyed Draught") 
+	switch(drink)
 	{
-		pc.imbibeAlcohol(28);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		if(bill) pc.credits -= 6;
-	}
-	else if(drink == "Nutty Nookie") 
-	{
-		pc.imbibeAlcohol(26);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		if(bill) pc.credits -= 7;
-	}
-	else if(drink == "V. Vapor") 
-	{
-		pc.imbibeAlcohol(14);
-		if(bill) pc.credits -= 10;
-	}
-	else if(drink == "Royal Red")
-	{
-		pc.imbibeAlcohol(16);
-		if(bill) pc.credits -= 12;
-	}
-	else if(drink == "Pneumatic Pilsner") 
-	{
-		pc.imbibeAlcohol(32);
-		if(bill) pc.credits -= 20;
-	}
-	else if(drink == "Kui Creamer") 
-	{
-		pc.imbibeAlcohol(42);
-		special = true;
-		addLoveyDoveWithAlcohol();
-		if(bill) pc.credits -= 22;
+		case "Doe-Eyed Draught":
+			pc.imbibeAlcohol(28);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			if(bill) pc.credits -= 6;
+			break;
+		case "Nutty Nookie":
+			pc.imbibeAlcohol(26);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			if(bill) pc.credits -= 7;
+			break;
+		case "V. Vapor":
+			pc.imbibeAlcohol(14);
+			if(bill) pc.credits -= 10;
+			break;
+		case "Royal Red":
+			pc.imbibeAlcohol(16);
+			if(bill) pc.credits -= 12;
+			break;
+		case "Pneumatic Pilsner":
+			pc.imbibeAlcohol(32);
+			if(bill) pc.credits -= 20;
+			break;
+		case "Kui Creamer":
+			pc.imbibeAlcohol(42);
+			special = true;
+			addLoveyDoveWithAlcohol();
+			if(bill) pc.credits -= 22;
+			break;
 	}
 	output("You ");
 	if(bill) output("swipe the creds over to Del");
 	else output("make your order");
-	output(". She swiftly rushes off to make your drink, returning with ");
+	output(". He swiftly rushes off to make your drink, returning with ");
 	if(drink != "Kui Creamer") output("an ice cold glass of " + drink);
 	else output("shot glasses of " + drink);
 	output(". ");
-	if(drink == "Kui Creamer") output("You take them one after the other, surprised at how pleasant they taste. There’s no real alcoholic kick, just the smooth heat of Kally’s creamy drinks.");
-	else if(drink == "Nutty Nookie") output("It goes down slow but smooth, leaving you with a warm, rich feeling settling into your stomach.");
-	else if(drink == "V. Vapor") output("It’s a lovely drink that you can take your time with, swirling the beverage around in your glass in between sips.");
-	else if(drink == "Royal Red") output("The thick head clings to your upper lip with every sip, but you lap it up after every swallow. It’s bitter, just like the drink, and subtly flavorful.");
-	else if(drink == "Doe-Eyed Draught") output("You suck down a long pull of the opaque amber beverage. It’s good. Damned good. You take another few swallows before slapping it down and belching, remembering your manners too late to excuse yourself. The bartender grins.");
-	else if(drink == "Pneumatic Pilsner") output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
+	switch(drink)
+	{
+		case "Kui Creamer":
+			output("You take them one after the other, surprised at how pleasant they taste. There’s no real alcoholic kick, just the smooth heat of Kally’s creamy drinks.");
+			break;
+		case "Nutty Nookie":
+			output("It goes down slow but smooth, leaving you with a warm, rich feeling settling into your stomach.");
+			break;
+		case "V. Vapor":
+			output("It’s a lovely drink that you can take your time with, swirling the beverage around in your glass in between sips.");
+			break;
+		case "Royal Red":
+			output("The thick head clings to your upper lip with every sip, but you lap it up after every swallow. It’s bitter, just like the drink, and subtly flavorful.");
+			break;
+		case "Doe-Eyed Draught":
+			output("You suck down a long pull of the opaque amber beverage. It’s good. Damned good. You take another few swallows before slapping it down and belching, remembering your manners too late to excuse yourself. The bartender grins.");
+			break;
+		case "Pneumatic Pilsner":
+			output("You knock back a gulp of it and nearly screw up your face from the sharp, alcoholic kick. It feels like it uses your tonsils for a punching bag and sandpapers the inside of your throat, leaving both raw from the intense beating. Nevertheless, as you drink it, you begin to appreciate the warm glow spreading through your body.");
+			break;
+	}
 	processTime(4);
 	delTrapMenu();
 }

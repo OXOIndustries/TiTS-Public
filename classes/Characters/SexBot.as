@@ -31,7 +31,7 @@
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customBlock = "Your attack fails to damage the 'bot.";
+			this.customBlock = "Your attack fails to damage the ‘bot.";
 			this.isPlural = false;
 			
 			isLustImmune = true;
@@ -233,7 +233,7 @@
 			}
 			else
 			{
-				long = "The sexbot stands 6’ tall. The gray fiber cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its fit, supple body: its ropey, hard-looking hips and waist, its pert bum and the slight suggestions of ripples and plateaus of muscle underneath its latex combine to create a vision of beguiling, skilfully understated masculinity. This subtlety is rather undermined by the thick, white 8 inch penis which swings bluntly between its swimmer’s thighs; it pulses occasionally with a warm, red light. Framed by its spiky, plastic haircut its synthetic face is defined, calm, blandly beautiful, the smile curling its full lips small and confident. If its skin was tan and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a deodorant advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
+				long = "The sexbot stands 6\' tall. The gray fiber cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its fit, supple body: its ropey, hard-looking hips and waist, its pert bum and the slight suggestions of ripples and plateaus of muscle underneath its latex combine to create a vision of beguiling, skilfully understated masculinity. This subtlety is rather undermined by the thick, white 8 inch penis which swings bluntly between its swimmer’s thighs; it pulses occasionally with a warm, red light. Framed by its spiky, plastic haircut its synthetic face is defined, calm, blandly beautiful, the smile curling its full lips small and confident. If its skin was tan and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a deodorant advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
 				createCock();
 				cocks[0].cLength(9,true);
 				hipRatingRaw = 2;
@@ -329,7 +329,7 @@
 
 					output("\n\n<i>“You are encouraged to struggle as hard as you can,”</i> says the sexbot, green eyes glittering as it forcibly masturbates you. <i>“This unit prides itself on its bondage sub-routine, crash tested upon more than two hundred sentient beings to ensure every client may experience true helplessness.”</i>");
 					applyDamage(new TypeCollection( { tease: 10 + rand(5)}), this, target, "minimal");
-					target.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
+					CombatAttacks.applyGrapple(target, 35);
 				}
 			}
 		}
@@ -357,7 +357,7 @@
 			{
 				output("\n\nYour drone rights itself... and then turns itself to you, green light beaming out of its optical sensors. Images flicker all around it, endlessly changing images of soft flesh, breasts, ass, bulging phalluses, pink on pink, pink on brown, blue on mauve.... It’s accompanied with the moans, grunts and slurps of the extranet porn it is now helplessly streaming and projecting in ways you never thought it had the capacity to do. You bat it away, irritated, and it immediately flies back. It hovers near your shoulder, forcing the sounds and images into your head.");
 				output("\n\n<i>“I hope you enjoy this taster, insert name here.”</i> The voice of the sexbot surfs calmly to you over a chorus of gleeful squeals and orgasmic groans.");
-				target.createStatusEffect("Porno Hacked Drone", 2 + rand(3), 0, 0, 0, false, "Charmed", "Your drone has been hacked to broadcast porn at you! You'll have to wait for your programming to overcome the rogue process. Hopefully it won't take too long!", true, 0);
+				target.createStatusEffect("Porno Hacked Drone", 2 + rand(3), 0, 0, 0, false, "Charmed", "Your drone has been hacked to broadcast porn at you! You’ll have to wait for your programming to overcome the rogue process. Hopefully it won’t take too long!", true, 0);
 			}
 		}
 		

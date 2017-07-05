@@ -2,10 +2,12 @@ package classes.UIComponents
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.Ships.SpaceShip;
 	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
 	import classes.UIComponents.SideBarComponents.PlayerPartyBlock;
+	import classes.UIComponents.SideBarComponents.PlayerShipBlock;
 	import classes.UIComponents.SideBarComponents.StatusEffectsBlock;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import fl.transitions.Tween;
@@ -35,6 +37,7 @@ package classes.UIComponents
 		private var _statusEffectDisplay:StatusEffectsBlock;
 		
 		private var _playerPartyBlock:PlayerPartyBlock;
+		private var _playerShipBlock:PlayerShipBlock;
 		
 		// All of the individual bars are broken out here, because *this* class is where I'd likely configure
 		// bindUtils.bindProperty things back out into the game data classes. On load, the load code
@@ -45,7 +48,7 @@ package classes.UIComponents
 		
 		public function get statusEffects():StatusEffectsDisplay { return _statusEffectDisplay.statusDisplay; }
 		
-		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
+		private function showPlayerParty(chars:Array, asInit:Boolean = false):void
 		{
 			if (chars.length == 1)
 			{
@@ -56,13 +59,9 @@ package classes.UIComponents
 				}
 				else
 				{
-					_combatStatBlock.visible = true;
-					_coreStatBlock.visible = true;
-					_statusEffectDisplay.visible = true;
+					_advancementBlock.visible = _nameTextUnderline.visible = _nameText.visible = true;
+					_statusEffectDisplay.visible = _coreStatBlock.visible = _combatStatBlock.visible = true;
 					_playerPartyBlock.visible = false;
-					_nameText.visible = true;
-					_nameTextUnderline.visible = true;
-					_advancementBlock.visible = true; // Possibly, maybe, potentially, move this thing lower and anchor it to the bottom of the sidebar
 					
 					_combatStatBlock.showStatsForCreature(chars[0], asInit);
 					_coreStatBlock.showStatsForCreature(chars[0], asInit);
@@ -73,13 +72,9 @@ package classes.UIComponents
 			}
 			else
 			{
-				_combatStatBlock.visible = false;
-				_coreStatBlock.visible = false;
-				_statusEffectDisplay.visible = false;
+				_statusEffectDisplay.visible = _coreStatBlock.visible = _combatStatBlock.visible = false;
+				_advancementBlock.visible = _nameTextUnderline.visible = _nameText.visible = false;
 				_playerPartyBlock.visible = true;
-				_nameText.visible = false;
-				_nameTextUnderline.visible = false;
-				_advancementBlock.visible = false;
 				
 				_playerPartyBlock.showForCreatures(chars, asInit);
 				
@@ -95,6 +90,30 @@ package classes.UIComponents
 				}
 				
 				_advancementBlock.showStatsForCreature(pc);
+			}
+		}
+		
+		private function showPlayerShip(ss:SpaceShip, asInit:Boolean = false):void
+		{
+			 _playerShipBlock.visible = true;
+			_statusEffectDisplay.visible = _combatStatBlock.visible = _coreStatBlock.visible = _advancementBlock.visible = false;
+			_playerPartyBlock.visible = false;
+			
+			_playerShipBlock.showForShip(ss, asInit);
+			_statusEffectDisplay.statusDisplay.updateShipDisplay(ss.StatusEffects);
+		}
+		
+		public function showPlayer(pParty:Array, asInit:Boolean = false):void
+		{
+			if (pParty.length == 0) return;
+			
+			if (pParty[0] is Creature)
+			{
+				showPlayerParty(pParty, asInit);
+			}
+			else
+			{
+				showPlayerShip(pParty[0], asInit);
 			}
 		}
 		
@@ -126,6 +145,11 @@ package classes.UIComponents
 			_playerPartyBlock = new PlayerPartyBlock();
 			_playerPartyBlock.y = 4;
 			addChild(_playerPartyBlock);
+			
+			_playerShipBlock = new PlayerShipBlock();
+			_playerShipBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 11;
+			addChild(_playerShipBlock);
+			_playerShipBlock.visible = false;
 			
 			_coreStatBlock = new CoreStatsBlock();
 			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height));

@@ -190,7 +190,8 @@
 
 			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			this.createPerk("Multiple Shots",1,0,0,0,"");
-			this.createPerk("Stun Immune",1,0,0,0,"");
+			//this.createStatusEffect("Stun Immune", 0, 0, 0, 0, true, "", "", false, 0);
+			this.createStatusEffect("Disarm Immune", 0, 0, 0, 0, true, "", "", false, 0);
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 
 			isUniqueInFight = true;
@@ -271,7 +272,7 @@
 				output("\n\nYou grunt as his metal skull rams into you, ");
 				if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < 15)
 				{
-					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 2);
 					output("knocking the air from your lungs and sending you sliding on the icy floor, your mind reeling.");
 				}
 				else output("though you manage to avoid being dazed.");
@@ -282,7 +283,7 @@
 			else
 			{
 				output("\n\nYou dodge out of the way just in time, and watch as his momentum carries him into the surrounding icy walls and pierces his horns into the frigid, crystalline surface, locking him in place.");
-				createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "He is stuck in place and cannot attack.", true, 0, 0xFF0000);
+				CombatAttacks.applyStun(this, 3, false, "He is stuck in place and cannot attack.");
 				baseHPResistances = new TypeCollection();
 				baseHPResistances.tease.damageValue = 100.0;
 				baseHPResistances.drug.damageValue = 90.0;

@@ -292,7 +292,7 @@ package classes.Characters
 				if (!target.hasBlindImmunity())
 				{
 					output(" <b>" + (target is PlayerCharacter ? "You" : "The Chief is") + " blinded!</b>");
-					target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
+					CombatAttacks.applyBlind(target, 3);
 				}
 				
 				applyDamage(damageRand(new TypeCollection( { drug: 15 } ), 15), this, target, "minimal");
@@ -312,7 +312,7 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 4, drug: target.hasAirtightSuit() ? 0 : 4 } ), 15), this, target, "minimal");
 				
-				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "You’re pinned in a grapple.", true, 0);
+				CombatAttacks.applyGrapple(target, 50);
 			}
 			else
 			{
@@ -332,7 +332,7 @@ package classes.Characters
 				output("The deranged mutant roars, hefting you up with his half dozen tentacles. You scream, flailing about as you’re hauled off your [pc.feet] by inhuman strength. Holmes lets out a bellow that rocks the bridge, and you’re sent flying across the room. You slam head-first into one of the bulkheads, and your vision explodes in shooting stars! <b>The force of the blow leaves you stunned!</b>");
 
 				applyDamage(damageRand(new TypeCollection( { kinetic: 25 }, DamageFlag.CRUSHING), 15), this, target, "minimal");
-				target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0, 0xFF0000);
+				CombatAttacks.applyStun(target, 2);
 				target.removeStatusEffect("Grappled");
 			}
 		}

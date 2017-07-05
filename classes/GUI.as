@@ -951,11 +951,9 @@
 		{
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "PrimaryOutput")
 			{
-				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
-			}
-			else
-			{
-				throw new Error("Output called whilst the currently active module was not the PrimaryOutput display!");
+				var gmt:GameTextModule = _currentModule as GameTextModule;
+				gmt.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+				if (gmt.inputEnabled()) gmt.showInput();
 			}
 		}
 		
@@ -986,11 +984,9 @@
 		{
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
 			{
-				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
-			}
-			else
-			{
-				throw new Error("Output2 called whilst the currently active module was not the SecondaryOutput display!");
+				var gmt:GameTextModule = _currentModule as GameTextModule;
+				gmt.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
+				if (gmt.inputEnabled()) gmt.showInput();
 			}
 		}
 		
@@ -1340,12 +1336,12 @@
 		
 		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
 		{
-			_rightSideBar.showPlayerParty(chars, false);
+			_rightSideBar.showPlayer(chars, asInit);
 		}
 		
 		public function showHostileParty(chars:Array, asInit:Boolean = false):void
 		{
-			_leftSideBar.showHostileParty(chars, false);
+			_leftSideBar.showHostiles(chars, asInit);
 		}
 		
 		public function hideTime():void 
@@ -1413,13 +1409,14 @@
 				hideBust();
 				return;
 			}
-			
+			/*
 			var argS:String = "";
 			for (var i:int = 0; i < args.length; i++)
 			{
 				if (i > 0) argS += ", ";
 				argS += args[i];
 			}
+			*/
 			//trace("showBust called with args: [" + args.join(", ") + "]");
 			if(args.length > 0) _leftSideBar.locationBlock.showBust(args);
 			else _leftSideBar.locationBlock.showBust(args);

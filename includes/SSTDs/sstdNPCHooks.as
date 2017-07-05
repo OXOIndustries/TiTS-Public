@@ -15,6 +15,11 @@ public function sstdList(filter:String = "all"):Array
 		nameList.push("Undetected Locofever");
 		nameList.push("Locofever");
 	}
+	if(filter == "all" || filter == "Sneezing Tits")
+	{
+		nameList.push("Undetected Sneezing Tits");
+		nameList.push("Sneezing Tits");
+	}
 	
 	return nameList;
 };
@@ -33,6 +38,10 @@ public function sstdMaxTime(sstdName:String):Number
 		case "Locofever":
 			maxTime = 17280;
 			break;
+		case "Undetected Sneezing Tits":
+		case "Sneezing Tits":
+			maxTime = 10080;
+			break;
 	}
 	
 	return maxTime;
@@ -42,6 +51,7 @@ public function mhengaSSTDChance(arg:Creature):void
 {
 	var sstdList:Array = [];
 	if(rand(50) == 0) sstdList.push("Undetected Furpies");
+	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -50,6 +60,7 @@ public function tarkusSSTDChance(arg:Creature):void
 	var sstdList:Array = [];
 	if(rand(40) == 0) sstdList.push("Undetected Furpies");
 	if((arg.originalRace == "raskvel" || arg.raceShort() == "raskvel") && rand(30) == 0) sstdList.push("Undetected Locofever");
+	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -57,6 +68,7 @@ public function uvetoSSTDChance(arg:Creature):void
 {
 	var sstdList:Array = [];
 	if(rand(50) == 0) sstdList.push("Undetected Furpies");
+	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -64,6 +76,7 @@ public function myrellionSSTDChance(arg:Creature):void
 {
 	var sstdList:Array = [];
 	if(rand(70) == 0) sstdList.push("Undetected Furpies");
+	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
@@ -82,6 +95,7 @@ public function induceSSTD():void
 	clearMenu();
 	addButton(btnSlot++, "Furpies", induceSSTDGo, "Undetected Furpies");
 	addButton(btnSlot++, "Locofever", induceSSTDGo, "Undetected Locofever");
+	addButton(btnSlot++, "Sneezing Tits", induceSSTDGo, "Undetected Sneezing Tits");
 	addButton(14, "Back", mainGameMenu);
 }
 public function induceSSTDGo(arg:String = "none"):void
@@ -113,5 +127,6 @@ public function unlockSSTDCodex():void
 {
 	CodexManager.unlockEntry("Furpies");
 	CodexManager.unlockEntry("Locofever");
+	CodexManager.unlockEntry("Sneezing Tits");
 }
 

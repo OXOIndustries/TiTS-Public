@@ -57,8 +57,8 @@ public function fightFemRask(tEnemy:Creature):void
 {
 	CodexManager.unlockEntry("Raskvel");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(victoryVsRaskvel);
 	CombatManager.lossScene(defeatRoutingForFemRasks);
 	CombatManager.displayLocation("RASKVEL (F)");

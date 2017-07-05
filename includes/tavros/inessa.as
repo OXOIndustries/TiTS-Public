@@ -584,16 +584,16 @@ public function inessaBuyGo():void
 	//Have biowhip if gotten to Myrellion.
 	if(flags["PLANET_3_UNLOCKED"] != undefined)
 	{
-		if(!chars["INESSA"].hasItem(new BioWhip())) chars["INESSA"].inventory.push(new BioWhip());
+		if(!chars["INESSA"].hasItemByClass(BioWhip)) chars["INESSA"].inventory.push(new BioWhip());
 	}
 	//Else no whip
-	else chars["INESSA"].destroyItem(new BioWhip());
+	else chars["INESSA"].destroyItemByClass(BioWhip);
 	
 	if(flags["MET_SERA"] != undefined)
 	{
-		if(!chars["INESSA"].hasItem(new LeatherLeash())) chars["INESSA"].inventory.push(new LeatherLeash());
+		if(!chars["INESSA"].hasItemByClass(LeatherLeash)) chars["INESSA"].inventory.push(new LeatherLeash());
 	}
-	else chars["INESSA"].destroyItem(new LeatherLeash());
+	else chars["INESSA"].destroyItemByClass(LeatherLeash);
 	
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
@@ -1159,7 +1159,7 @@ public function hoverholeFapFapFap():void
 public function cuffNFuckButton(btnSlot:int = 0, sexedFoe:Creature = null):void
 {
 	if(sexedFoe == null) return;
-	if(pc.hasItem(new GravCuffs()) && pc.lust() >= 33)
+	if(pc.hasItemByClass(GravCuffs) && pc.lust() >= 33)
 	{
 		var fitsInside:Boolean = false;
 		if(sexedFoe.hasVagina()) fitsInside = (pc.cockThatFits(sexedFoe.vaginalCapacity(0)) >= 0);
@@ -2021,7 +2021,7 @@ public function inessaWalksOnTheWildSide():void
 		else output("Even with her genitals exposed, the saeri’s tits act as if they are her only major erogenous zone available to her, and it shows.");
 		output(" As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
 		//PC does not have grav-cuffs: 
-		if(!pc.hasItem(new GravCuffs()))
+		if(!pc.hasItemByClass(GravCuffs))
 		{
 			output("\n\n<i>“You sell grav cuffs here, don’t you?”</i> you say levelly.");
 			output("\n\n<i>“I - yes, [pc.master], of course.”</i> She fetches a packet off and then fumbles it open, her own nervousness and eagerness to please making her clumsy, her blush climbing higher as she struggles with the packaging; it’s very cute. At last she hands you the pair of metal rings.");
@@ -2052,7 +2052,7 @@ public function inessaWalksOnTheWildSide():void
 		output(" As her trepidation visibly melts into puppy-like eagerness, she tries to raise her hands to her small mounds, either trying to present them to your [pc.cockTail] or to catch hold of it. You swing the appendage to bat her twelve fingers down with a stern frown.");
 		output("\n\n<i>“I shouldn’t have to tell you what to do.”</i>");
 		//PC has grav cuffs: 
-		if(pc.hasItem(new GravCuffs()))
+		if(pc.hasItemByClass(GravCuffs))
 		{
 			output("Inessa abandons the counter and swiftly assumes the position; knelt down, hands behind her back, petite breasts out, timorous but earnest. You give her a fond grin as you pull out the grav-cuffs, reach behind her and securely cuff her wrists together. You step back, rear your " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " up and press its musky, dripping tip against her cute, soft lips.");
 			output("\n\n<i>“Remember, slut - effort and enthusiasm,”</i> you order. <i>“That’s the key to any good advertisement broad.”</i> You finally let go of all restraint and thrust inwards past her lips and teeth, inundating your [pc.cockTail]’s end in hot, silky goodness.");

@@ -154,7 +154,7 @@ public function nyreaFight(settings:Array):void
 	var tEnemy:Creature;
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(pcVictoryOverNyrea);
 	if ((nyreaType == NYREA_ALPHA) && (lostToAlpha() == 3)) //not exactly elegant
 	{
@@ -180,13 +180,13 @@ public function nyreaFight(settings:Array):void
 	if (nyreaType == NYREA_ALPHA)
 	{
 		tEnemy = new NyreaAlpha();
-		CombatManager.setHostileCharacters(tEnemy);
+		CombatManager.setHostileActors(tEnemy);
 		CombatManager.displayLocation("NYREA ALPHA");
 	}
 	else
 	{
 		tEnemy = new NyreaBeta();
-		CombatManager.setHostileCharacters(tEnemy);
+		CombatManager.setHostileActors(tEnemy);
 		CombatManager.displayLocation("NYREA BETA");
 	}
 

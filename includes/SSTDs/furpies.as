@@ -122,17 +122,17 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		if(rand(3) == 0) 
 		{
 			textBuff += "H";
-			pc.createStatusEffect("Furpies Simplex H",0,0,0,3,false,"Icon_Cow","You’ve been infected with Furpies Simplex H! If left untreated, it will slowly transform you into a furry horse-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
+			pc.createStatusEffect("Furpies Simplex H",0,0,0,3,false,"Icon_Horse","You’ve been infected with Furpies Simplex H! If left untreated, it will slowly transform you into a furry horse-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
 		}
 		else if(rand(2) == 0) 
 		{
 			textBuff += "C";
-			pc.createStatusEffect("Furpies Simplex C",0,0,0,3,false,"Icon_Cow","You’ve been infected with Furpies Simplex C! If left untreated, it will slowly transform you into a furry cat-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
+			pc.createStatusEffect("Furpies Simplex C",0,0,0,3,false,"Icon_Dog_Paw","You’ve been infected with Furpies Simplex C! If left untreated, it will slowly transform you into a furry cat-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
 		}
 		else 
 		{
 			textBuff += "D";
-			pc.createStatusEffect("Furpies Simplex D",0,0,0,3,false,"Icon_Cow","You’ve been infected with Furpies Simplex D! If left untreated, it will slowly transform you into a furry dog-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
+			pc.createStatusEffect("Furpies Simplex D",0,0,0,3,false,"Icon_Dog_Paw","You’ve been infected with Furpies Simplex D! If left untreated, it will slowly transform you into a furry dog-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
 		}
 		textBuff += " in your bloodstream, an artificial pathogen developed by Doctor Badger. Your enhanced immune system should prevent contagious infection, but removal will require the assistance of a medical installation.”</i>";
 		textBuff += "\n\nShit.";

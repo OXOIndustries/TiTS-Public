@@ -139,9 +139,9 @@ public function shekkaShop(sell:Boolean = false):void
 	
 	if(pc.level >= 7)
 	{
-		if(!chars["SHEKKA"].hasItemByType(FZRFireSuppressionSystem)) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
+		if(!chars["SHEKKA"].hasItemByClass(FZRFireSuppressionSystem)) chars["SHEKKA"].inventory.push(new FZRFireSuppressionSystem());
 	}
-	else chars["SHEKKA"].destroyItem(new FZRFireSuppressionSystem());
+	else chars["SHEKKA"].destroyItemByClass(FZRFireSuppressionSystem);
 	
 	if(!sell) buyItem();
 	else sellItem();

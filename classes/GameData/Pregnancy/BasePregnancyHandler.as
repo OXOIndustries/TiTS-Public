@@ -229,6 +229,9 @@ package classes.GameData.Pregnancy
 			if (newInc < 0 && oldInc >= 0)
 			{
 				if (_debugTrace) trace("Incubation expired");
+				
+				pData.pregnancyIncubation = -1;
+				
 				if (_onDurationEnd != null)
 				{
 					if (debugTrace) trace("Calling onDurationEnd handler");
@@ -238,9 +241,6 @@ package classes.GameData.Pregnancy
 				{
 					throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onDurationEnd event handler.");
 				}
-				
-				pData.pregnancyIncubation = -1;
-				
 				return;
 			}
 			

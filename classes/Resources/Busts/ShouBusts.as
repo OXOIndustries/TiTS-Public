@@ -77,6 +77,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ceria_nude.png", mimeType = "image/png")]
 		public var Bust_CERIA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/chrissy.png", mimeType = "image/png")]
+		public var Bust_CHRISSY:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/chrissy_nude.png", mimeType = "image/png")]
+		public var Bust_CHRISSY_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
 		public var Bust_ADULTCOCKVINE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/cockvine.png", mimeType = "image/png")]
@@ -507,6 +512,11 @@
 		public function get Bust_SAENDRA_FUTA_NUDE():Class { return Bust_SAENDRA; }
 		public function get Bounds_SAENDRA_FUTA_NUDE():Rectangle { return Bounds_SAENDRA; }
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/salire.png", mimeType = "image/png")]
+		public var Bust_SALIRE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/salire_nude.png", mimeType = "image/png")]
+		public var Bust_SALIRE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/sean.png", mimeType = "image/png")]
 		public var Bust_SEAN:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/sean_nude.png", mimeType = "image/png")]
@@ -676,6 +686,11 @@
 			public var Full_CERIA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ceria_nude.png", mimeType = "image/png")]
 			public var Full_CERIA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chrissy.png", mimeType = "image/png")]
+			public var Full_CHRISSY:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/chrissy_nude.png", mimeType = "image/png")]
+			public var Full_CHRISSY_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/cockvine.png", mimeType = "image/png")]
 			public var Full_ADULTCOCKVINE:Class;
@@ -1087,6 +1102,11 @@
 			public function get Full_SAENDRA_FUTA():Class { return Full_SAENDRA; }
 			public function get Full_SAENDRA_NUDE():Class { return Full_SAENDRA; }
 			public function get Full_SAENDRA_FUTA_NUDE():Class { return Full_SAENDRA; }
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/salire.png", mimeType = "image/png")]
+			public var Full_SALIRE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/salire_nude.png", mimeType = "image/png")]
+			public var Full_SALIRE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/sean.png", mimeType = "image/png")]
 			public var Full_SEAN:Class;

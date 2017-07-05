@@ -47,8 +47,8 @@ public function encounterWetraHound():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new WetraHound());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new WetraHound());
 	CombatManager.victoryScene(wetraHoundPCVictory);
 	CombatManager.lossScene(wetraHoundPCLoss);
 	CombatManager.displayLocation("WETRA HOUND");
@@ -173,8 +173,8 @@ public function encounterWetraxxelBrawler():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new WetraxxelBrawler());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new WetraxxelBrawler());
 	CombatManager.victoryScene(wetraxxelBrawlerPCVictory);
 	CombatManager.lossScene(wetraxxelBrawlerPCLoss);
 	CombatManager.displayLocation("WETRAXXEL");

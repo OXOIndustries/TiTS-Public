@@ -46,8 +46,8 @@ public function encounterCuntSnakeOnJungleLand():void {
 	CodexManager.unlockEntry("Cunt Snakes");
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CuntSnake());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CuntSnake());
 	CombatManager.victoryScene(defeatACuntSnake);
 	CombatManager.lossScene(loseToCuntSnake);
 	CombatManager.displayLocation("CUNT SNAKE");
@@ -573,7 +573,7 @@ public function approachCuntSnake(response:String = "intro"):void
 					output("\n\nYou stare at your new [pc.tailVagina], then look down at your fully erect dick" + (pc.cockTotal() == 1 ? "" : "s") + ". It’s certainly not rocket science. You " + (oldTailCount > 0 ? "shift the tip of your new and improved tail downwards" : "clumsily shift your tail downwards, still getting a feel for moving the strange new addition,") + " and press it against the [pc.cockHead] of your [pc.biggestCock]. With an awkward combination of pelvic thrusts and tail curling, you penetrate yourself, sinking to " + (pc.isBiped() ? "your knees as your legs grow weak" : "the ground as your strength fails you") + ".");
 					output("\n\nOh yeah, that’s good. That’s really good. Your tail seems to take it upon itself to keep going, hinting that a trace of the cunt snake is still there, but you don’t mind. Not one bit. You moan as your tail convulses around your [pc.biggestCock], and you wrap your hands around it to keep it in place. With a building excitement, you buck your hips, using your tail like an onahole and fucking yourself into a stupor.");
 					output("\n\nThere’s definitely a bit of the cunt snake’s aphrodisiac-laced venom in your system, because you don’t last long. Your excited tail-fuck only lasts for a dozen or so thrusts before you’re leaning back and screaming, [pc.cum] flooding your [pc.tailVagina]. You can feel both sides of experience, and the pleasure is mind-numbing.");
-					if(pc.hasVagina()) output(" Your other " + (pc.totalVaginas() == 1 ? "vagina soaks" : "vaginas soak") + " your [pc.thighs] with [pc.girlCum], wishing " + (pc.totalVaginas() == 1 ? "it" : "they") + " could recieve such splendid attention.");
+					if(pc.hasVagina()) output(" Your other " + (pc.totalVaginas() == 1 ? "vagina soaks" : "vaginas soak") + " your [pc.thighs] with [pc.girlCum], wishing " + (pc.totalVaginas() == 1 ? "it" : "they") + " could receive such splendid attention.");
 					output(" You’re pulled in " + (pc.totalGenitals() <= 1 ? "two" : num2Text(pc.totalGenitals() + 1)) + " different directions as you orgasm, and your brain just can’t keep up. You collapse onto your back as the world starts to spin.");
 					output("\n\nA few minutes pass before your senses return. You whistle as you sit up, your tail still giving the occasional twitch around your limp [pc.biggestCock]. It slides off as you stand up, and you’re pleased to learn you can control it with almost no effort now that it’s been fed. It seems like it’s in your best interest to keep your new friend full and happy, not that it’s going to be too hard to convince you to do so. Desires satisfied, you rise to your feet and collect your things.");
 				}

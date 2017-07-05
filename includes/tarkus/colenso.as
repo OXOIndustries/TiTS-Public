@@ -43,9 +43,9 @@ public function colensoBuyMenu():void
 {
 	if(!CodexManager.entryUnlocked("Diverting Jokes"))
 	{
-		if(!chars["COLENSO"].hasItem(new TarkusJokeBook())) chars["COLENSO"].inventory.push(new TarkusJokeBook());
+		if(!chars["COLENSO"].hasItemByClass(TarkusJokeBook)) chars["COLENSO"].inventory.push(new TarkusJokeBook());
 	}
-	else chars["COLENSO"].destroyItem(new TarkusJokeBook(), 1);
+	else chars["COLENSO"].destroyItemByClass(TarkusJokeBook, 1);
 	
 	buyItem();
 }
@@ -367,8 +367,8 @@ public function noTalkPlease():void
 private function configFirewallFight():void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new HandSoBot());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new HandSoBot());
 	CombatManager.victoryScene(pcWinsVsHanSoSosTool);
 	CombatManager.lossScene(pcLosesToHanSoSosBot);
 	CombatManager.displayLocation("FIREWALL");

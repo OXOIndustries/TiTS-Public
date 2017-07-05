@@ -10,6 +10,7 @@ package classes.Engine.Combat
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.kGAMECLASS;
+	import classes.GameData.CombatAttacks;
 	
 	/**
 	 * ...
@@ -54,17 +55,16 @@ package classes.Engine.Combat
 		if (attacker != null && (special == "ranged" || special == "melee"))
 		{
 			var crittyBonus:Number = 0;
-			if(attacker.hasPerk("Giant Slayer") && target.tallness >= 7*12) crittyBonus += 5;
+			if(attacker.hasPerk("Giant Slayer") && target.tallness >= (7*12)) crittyBonus += 5;
 
 			if(target.hasStatusEffect("Deep Freeze") && baseDamage.hasFlag(DamageFlag.CRUSHING))
 			{
 				damageResult.wasCrit = true;
 				baseHPDamage.multiply(target.statusEffectv3("Deep Freeze"));
 			}
-
 			
 			if (special == "melee")
-			{				
+			{
 				// Melee crit
 				if(attacker.critBonus(true) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
 				{
@@ -83,7 +83,7 @@ package classes.Engine.Combat
 				{
 					damageResult.wasSneak = true;
 					
-					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
+					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
@@ -91,13 +91,13 @@ package classes.Engine.Combat
 				//Burninate the countryside
 				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
-					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+					CombatAttacks.applyBurn(target, 2);
 				}
 
 				//Electrified weapons do more damage based on int!
 				if (attacker.hasStatusEffect("Charged Weapon"))
 				{
-					var chargeBonus:Number = attacker.intelligence();
+					var chargeBonus:Number = attacker.bimboIntelligence();
 					if (attacker.hasPerk("Fuck Sense")) 
 					{
 						chargeBonus = attacker.libido();
@@ -109,7 +109,7 @@ package classes.Engine.Combat
 				//Special counter - added when PC melees something. Eaten at the end of the round.
 				if(attacker is PlayerCharacter && !target.hasStatusEffect("Melee Counter")) target.createStatusEffect("Melee Counter",0,0,0,0);
 			}
-			else
+			if (special == "ranged")
 			{
 				if (attacker.hasStatusEffect("Concentrated Fire"))
 				{
@@ -133,7 +133,7 @@ package classes.Engine.Combat
 				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blinded")) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
-					baseHPDamage.add(attacker.level * 3 + attacker.intelligence()/2);
+					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);
 					if(attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
 					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
 				}
@@ -141,11 +141,11 @@ package classes.Engine.Combat
 				//Burninate the countryside
 				if (baseHPDamage.getTotal() > 0 && baseHPDamage.hasFlag(DamageFlag.CHANCE_APPLY_BURN) && target.willTakeBurnDamage(baseDamage.burning.damageValue) && rand(5) == 0)
 				{
-					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+					CombatAttacks.applyBurn(target, 2);
 				}
 			}
 			//Track Alpha Strike. Don't need to track the perk here cause who cares.
-			if(!attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);
+			if(attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);
 		}
 		
 		//Reduce damage for gravitational fiiiieeeeelds

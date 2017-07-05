@@ -345,7 +345,8 @@
 			{
 				output(" and you suddenly feel very bored. Slowly, you blink and yawn, stretching out, unable to help yourself despite the imminent danger. <b>You simply can’t bring yourself to act!</b>");
 				
-				target.createStatusEffect("Stunned",2,1,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+				//target.createStatusEffect("Stunned",2,1,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+				CombatAttacks.applyStun(target, 2);
 			}
 		}
 		
@@ -434,7 +435,7 @@
 				var tC:Creature = alliedCreatures[i] as Creature;
 				if (tC is MilodanMaleGroup)
 				{
-					CombatManager.removeHostileCreature(tC);
+					CombatManager.removeHostileActor(tC);
 					i--;
 				}
 			}

@@ -524,9 +524,9 @@ public function mods4UChrysalisBuy():void
 	{
 		if(flags["PURCHASED_SERAS_GALO"] == undefined)
 		{
-			if(!chars["CHRYSALISDRONE"].hasItem(new GaloMax())) chars["CHRYSALISDRONE"].inventory.push(new GaloMax());
+			if(!chars["CHRYSALISDRONE"].hasItemByClass(GaloMax)) chars["CHRYSALISDRONE"].inventory.push(new GaloMax());
 		}
-		else chars["CHRYSALISDRONE"].destroyItem(new GaloMax());
+		else chars["CHRYSALISDRONE"].destroyItemByClass(GaloMax);
 	}
 	
 	buyItem();
@@ -3460,9 +3460,9 @@ public function seraBitcheningStore(response:String = "buy"):void
 	{
 		if(flags["PURCHASED_SERAS_GALO"] == undefined)
 		{
-			if(!chars["SERA"].hasItem(new GaloMax())) chars["SERA"].inventory.push(new GaloMax());
+			if(!chars["SERA"].hasItemByClass(GaloMax)) chars["SERA"].inventory.push(new GaloMax());
 		}
-		else chars["SERA"].destroyItem(new GaloMax());
+		else chars["SERA"].destroyItemByClass(GaloMax);
 	}
 	
 	shopkeep = chars["SERA"];
@@ -4065,8 +4065,8 @@ public function seraBitcheningPunishMenu():Boolean
 	if(pc.hasCock()) addButton(1, "Cum Ration", seraBitcheningPunishCumRation);
 	else addDisabledButton(1, "Cum Ration", "Cum Ration", "You need a penis to try this!");
 	
-	if(getPlanetName().toLowerCase() == "tavros station" && (pc.hasItem(new LeatherLeash()) || pc.hasItemInStorage(new LeatherLeash()))) addButton(2, "Walkies", seraBitcheningPunishWalkies, true);
-	else if(pc.hasItem(new LeatherLeash()) || pc.hasItemInStorage(new LeatherLeash())) addDisabledButton(2, "Walkies", "Walkies", "You need to be on Tavros to do this!");
+	if(getPlanetName().toLowerCase() == "tavros station" && (pc.hasItemByClass(LeatherLeash) || pc.hasItemInStorageByClass(LeatherLeash))) addButton(2, "Walkies", seraBitcheningPunishWalkies, true);
+	else if(pc.hasItemByClass(LeatherLeash) || pc.hasItemInStorageByClass(LeatherLeash)) addDisabledButton(2, "Walkies", "Walkies", "You need to be on Tavros to do this!");
 	else if(getPlanetName().toLowerCase() == "tavros station") addDisabledButton(2, "Walkies", "Walkies", "You need to have a leash to do this!");
 	else addDisabledButton(2, "Walkies", "Walkies", "You need to have a leash and be on Tavros to do this!");
 	
@@ -4215,22 +4215,33 @@ private function seraHasItem(setItem:ItemSlotClass):Boolean
 	
 	for(var i:int = 0; i < seraWalkItems.length; i++)
 	{
-		if(seraWalkItems[i].shortName == setItem.shortName) return true;;
+		if(seraWalkItems[i].shortName == setItem.shortName) return true;
+	}
+	
+	return false;
+}
+private function seraHasItemByClass(setItem:Class):Boolean
+{
+	if(seraWalkItems.length == 0) return false;
+	
+	for(var i:int = 0; i < seraWalkItems.length; i++)
+	{
+		if(seraWalkItems[i] is setItem) return true;
 	}
 	
 	return false;
 }
 private function seraWalkSchoolgirl():Boolean
 {
-	return (seraHasItem(new SchoolgirlOutfit()) || seraHasItem(new SchoolgirlCostume()));
+	return (seraHasItemByClass(SchoolgirlOutfit) || seraHasItemByClass(SchoolgirlCostume));
 }
 private function seraWalkCuffs():Boolean
 {
-	return (seraHasItem(new GravCuffs()));
+	return (seraHasItemByClass(GravCuffs));
 }
 private function seraWalkWhip():Boolean
 {
-	return (seraHasItem(new Whip()) || seraHasItem(new BioWhip()));
+	return (seraHasItemByClass(Whip) || seraHasItemByClass(BioWhip));
 }
 public function seraBitcheningPunishWalkies(initialize:Boolean = false):void
 {
@@ -4269,14 +4280,14 @@ public function seraBitcheningPunishWalkAcc():void
 	setItem = (new SchoolgirlOutfit());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(seraHasItem(new SchoolgirlCostume())) addDisabledButton(0, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		if(seraHasItemByClass(SchoolgirlCostume)) addDisabledButton(0, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
 		else if(!seraHasItem(setItem)) addButton(0, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(0, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
 	setItem = (new SchoolgirlCostume());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(seraHasItem(new SchoolgirlOutfit())) addDisabledButton(5, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		if(seraHasItemByClass(SchoolgirlOutfit)) addDisabledButton(5, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
 		else if(!seraHasItem(setItem)) addButton(5, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(5, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
@@ -4291,14 +4302,14 @@ public function seraBitcheningPunishWalkAcc():void
 	setItem = (new Whip());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(seraHasItem(new BioWhip())) addDisabledButton(2, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		if(seraHasItemByClass(BioWhip)) addDisabledButton(2, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
 		else if(!seraHasItem(setItem)) addButton(2, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(2, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}
 	setItem = (new BioWhip());
 	if(pc.hasItem(setItem) || pc.hasItemInStorage(setItem))
 	{
-		if(seraHasItem(new Whip())) addDisabledButton(7, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
+		if(seraHasItemByClass(Whip)) addDisabledButton(7, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "There is already a similar item being used.");
 		else if(!seraHasItem(setItem)) addButton(7, setItem.shortName, seraBitcheningPunishWalkAccSelect, setItem, StringUtil.toDisplayCase(setItem.longName), "Use this item.");
 		else addDisabledButton(7, setItem.shortName, StringUtil.toDisplayCase(setItem.longName), "This item is already being used.");
 	}

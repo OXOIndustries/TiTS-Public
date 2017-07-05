@@ -112,14 +112,8 @@ public function showBeatrice(nude:Boolean = false):void
 
 //Add to the Freezer
 //room descriptions
-public function beatriceBonusButts(button:int):Boolean
+public function beatriceBonusButts(button:int = 0):void
 {
-	//Quest is over! BOOSH!
-	if(flags["BEA_QUEST"] == 3 && !pc.hasStatusEffect("Bea Leave Delay"))
-	{
-		beatriceLeavesYOUFORANOTHERMANOHSHIT();
-		return true;
-	}
 	//before approaching:
 	if(flags["BEA_RELATIONSHIP"] == undefined)
 	{
@@ -134,6 +128,16 @@ public function beatriceBonusButts(button:int):Boolean
 		addButton(button,flags["BEA_TITLE"],approachBeatrice,undefined,flags["BEA_TITLE"],"Head to her table.");
 	}
 	//addButton(button+1,"Savicite",quickLoot,new Savicite());
+	return;
+}
+public function beatriceLeavesBonus():Boolean
+{
+	//Quest is over! BOOSH!
+	if(flags["BEA_QUEST"] == 3 && !pc.hasStatusEffect("Bea Leave Delay"))
+	{
+		beatriceLeavesYOUFORANOTHERMANOHSHIT();
+		return true;
+	}
 	return false;
 }
 
@@ -432,12 +436,11 @@ public function sellSaviciteToBeatrice():void
 	processTime(1);
 	//[1] [5] [10] [Nevermind]
 	clearMenu();
-	var sav:ItemSlotClass = new Savicite();
-	if(pc.hasItem(sav)) addButton(0,"1",actuallySellSaviciteToBeatrice,1);
+	if(pc.hasItemByClass(Savicite)) addButton(0,"1",actuallySellSaviciteToBeatrice,1);
 	else addDisabledButton(0,"1","1","You don’t have that much savicite.");
-	if(pc.hasItem(sav,5)) addButton(1,"5",actuallySellSaviciteToBeatrice,5);
+	if(pc.hasItemByClass(Savicite,5)) addButton(1,"5",actuallySellSaviciteToBeatrice,5);
 	else addDisabledButton(1,"5","5","You don’t have that much savicite.");
-	if(pc.hasItem(sav,10)) addButton(2,"10",actuallySellSaviciteToBeatrice,10);
+	if(pc.hasItemByClass(Savicite,10)) addButton(2,"10",actuallySellSaviciteToBeatrice,10);
 	else addDisabledButton(2,"10","10","You don’t have that much savicite.");
 	addButton(14,"Nevermind",nevermindSaviciteBeatrice);
 }
@@ -457,7 +460,7 @@ public function actuallySellSaviciteToBeatrice(quantity:Number):void
 	pc.credits += quantity * savicite.basePrice;
 	//after selling, automatically goes back to her main menu
 	processTime(3);
-	pc.destroyItem(savicite,quantity);
+	pc.destroyItemByClass(Savicite,quantity);
 	clearMenu();
 	while(quantity > 0)
 	{
@@ -483,7 +486,7 @@ public function nevermindSaviciteBeatrice():void
 	clearOutput();
 	showBeatrice();
 	author("Tacit");
-	if(!pc.hasItem(new Savicite())) output("Actually, you tell her you don’t have any on you at the moment.");
+	if(!pc.hasItemByClass(Savicite)) output("Actually, you tell her you don’t have any on you at the moment.");
 	else output("On second thought, you plan on holding on to what you’ve got, for now.");
 	output("\n\n<i>“It’s quite alright, sweetie,”</i> she says honestly, <i>“take your time. I just don’t want you to get hurt.”</i>");
 	//goes back to her main menu

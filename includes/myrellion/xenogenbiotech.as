@@ -204,21 +204,21 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 
 	if(MailManager.isEntryUnlocked("myrpills"))
 	{
-		if(!nevrie.hasItem(new RedPill())) nevrie.inventory.push(new RedPill());
-		if(!nevrie.hasItem(new GoldPill())) nevrie.inventory.push(new GoldPill());
+		if(!nevrie.hasItemByClass(RedPill)) nevrie.inventory.push(new RedPill());
+		if(!nevrie.hasItemByClass(GoldPill)) nevrie.inventory.push(new GoldPill());
 	}
 	else
 	{
-		nevrie.destroyItem(new RedPill());
-		nevrie.destroyItem(new GoldPill());
+		nevrie.destroyItemByClass(RedPill);
+		nevrie.destroyItemByClass(GoldPill);
 	}
 	if(flags["MCALLISTER_MYR_HYBRIDITY"] == 3 || flags["MCALLISTER_MYR_HYBRIDITY"] == 4)
 	{
-		if(!nevrie.hasItem(new OrangePill())) nevrie.inventory.push(new OrangePill());
+		if(!nevrie.hasItemByClass(OrangePill)) nevrie.inventory.push(new OrangePill());
 	}
 	else
 	{
-		nevrie.destroyItem(new OrangePill());
+		nevrie.destroyItemByClass(OrangePill);
 	}
 	processTime(8 + rand(2));
 

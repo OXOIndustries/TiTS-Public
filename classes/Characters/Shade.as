@@ -264,7 +264,7 @@
 		
 		public function updateDesc():void
 		{
-			var hostiles:Array = CombatManager.getHostileCharacters();
+			var hostiles:Array = CombatManager.getHostileActors();
 			
 			if (hostiles.indexOf(this) == -1)
 			{
@@ -331,7 +331,7 @@
 				
 				if (aim() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned")) 
 				{
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 1);
 					if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
 					else output(" <b>Kara is stunned!</b>");
 				}
@@ -343,13 +343,13 @@
 			energy(-20);
 			if (target.hasStatusEffect("Disarm Immune")) 
 			{
-				if (target is PlayerCharacter) output("Shade tries to shoot your weapons out of your hands but can't. <b>It's physically impossible!</b>\n");
-				else output("Shade tries to shoot the weapon out of Kara's hands but can't. <b>It's physically impossible!</b>\n");
+				if (target is PlayerCharacter) output("Shade tries to shoot your weapons out of your hands but can’t. <b>It’s physically impossible!</b>\n");
+				else output("Shade tries to shoot the weapon out of Kara’s hands but can’t. <b>It’s physically impossible!</b>\n");
 			}
 			else if (target.hasStatusEffect("Disarmed"))
 			{
-				if (target is PlayerCharacter) output("Shade tries to shoot your weapons out of your hands but can't. <b>You're already disarmed!</b>");
-				else output("Shade tries to shoot the weapon out of Kara's hands but can't. <b>She's already disarmed!</b>!");
+				if (target is PlayerCharacter) output("Shade tries to shoot your weapons out of your hands but can’t. <b>You’re already disarmed!</b>");
+				else output("Shade tries to shoot the weapon out of Kara’s hands but can’t. <b>She’s already disarmed!</b>!");
 			}
 			else if (rangedCombatMiss(this, target))
 			{
@@ -359,8 +359,8 @@
 			else 
 			{
 				if (target is PlayerCharacter) output("Shade shoots your weapons away with well-placed shots!");
-				else output("Shade shoots Kara's weapon away with a well-placed shot!");
-				target.createStatusEffect("Disarmed",2,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0,0xFF0000);
+				else output("Shade shoots Kara’s weapon away with a well-placed shot!");
+				CombatAttacks.applyDisarm(target, 2);
 			}
 		}
 		
@@ -387,10 +387,8 @@
 			for (var i:int = 0; i < hostiles.length; i++)
 			{
 				var t:Creature = hostiles[i];
-				t.createStatusEffect("Gassed",0,0,0,0,false,"Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!",true,0);
-				t.aimMod -= 5;
-				t.reflexesMod -= 5;	
-			}			
+				CombatAttacks.applyGassed(t);
+			}
 		}
 		
 		private function shootFirst(target:Creature):void

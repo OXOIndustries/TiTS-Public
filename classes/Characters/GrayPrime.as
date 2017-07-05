@@ -40,9 +40,9 @@ package classes.Characters
 			this.originalRace = "gray goo";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This glistening gray goo-girl isn't like her sisters. Tall, well-built, and realistically proportioned, she's almost human. The gray goo has modeled herself on a human woman, with a long ponytail and a hefty shirt-straining rack that bounces with every step she takes. She's even made clothes out of her goo: a knee-skirt and blouse over tall boots and stockings. Her shirt has a Bell-Isle/Grunmann patch stitched onto the shoulders, the field of stars on the logo rippling and shining as she moves. A sword of glistening goo extends seamlessly from her hand, cutting through the air with an audible <i>zing</i> as she advances.";
-			this.customDodge = "The goo's liquid flexibility allows it to handily avoid your attack.";
-			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
+			this.long = "This glistening gray goo-girl isn’t like her sisters. Tall, well-built, and realistically proportioned, she’s almost human. The gray goo has modeled herself on a human woman, with a long ponytail and a hefty shirt-straining rack that bounces with every step she takes. She’s even made clothes out of her goo: a knee-skirt and blouse over tall boots and stockings. Her shirt has a Bell-Isle/Grunmann patch stitched onto the shoulders, the field of stars on the logo rippling and shining as she moves. A sword of glistening goo extends seamlessly from her hand, cutting through the air with an audible <i>zing</i> as she advances.";
+			this.customDodge = "The goo’s liquid flexibility allows it to handily avoid your attack.";
+			this.customBlock = "The goo’s liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
 			
 			meleeWeapon = new GooeyPsuedopod();
@@ -245,15 +245,15 @@ package classes.Characters
 		private function gooSword(target:Creature):void
 		{
 			//One heavy physical attack
-			output("The gray goo adapts an almost-textbook duelist's pose before she lunges at " + (target is PlayerCharacter ? "you" : "Anno") + ", her razor-sharp saber cutting through the air towards your " + (target is Anno ? "companions " : "") + "neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as " + (target is PlayerCharacter ? "you riddle" : "Anno riddles") + " the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around " + (target is PlayerCharacter ? "at you." : "toward Anno."));
+			output("The gray goo adapts an almost-textbook duelist’s pose before she lunges at " + (target is PlayerCharacter ? "you" : "Anno") + ", her razor-sharp saber cutting through the air towards your " + (target is Anno ? "companions " : "") + "neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as " + (target is PlayerCharacter ? "you riddle" : "Anno riddles") + " the goo’s back with bullets, the monstrous woman pirouettes and brings her blade back around " + (target is PlayerCharacter ? "at you." : "toward Anno."));
 
 			if (combatMiss(this, target))
 			{
-				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back, evading the goo's sword strike. Before she can swing again, " + (target is PlayerCharacter ? "you get" : "Anno gets") + " a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once " + (target is PlayerCharacter ? "you're" : "shes") +" safely away.");
+				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back, evading the goo’s sword strike. Before she can swing again, " + (target is PlayerCharacter ? "you get" : "Anno gets") + " a shot off, blasting the goo’s sword into pieces... only for it to reform a moment later, once " + (target is PlayerCharacter ? "you’re" : "shes") +" safely away.");
 			}
 			else
 			{
-				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!\n");
+				output(" " + (target is PlayerCharacter ? "You duck" : "Anno ducks") + " back just in time, turning what might have been a mortal blow into a stinging graze. She isn’t playing around!\n");
 
 				var damage:TypeCollection = meleeDamage();
 				damageRand(damage, 15);
@@ -300,9 +300,9 @@ package classes.Characters
 				// 25% of knockdown
 				if (rand(4) == 0)
 				{
-					if (target is PlayerCharacter) output(" The blow hits you so hard you're seeing stars!");
-					else output(" Anno doesn't look all that steady on her feet!");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					if (target is PlayerCharacter) output(" The blow hits you so hard you’re seeing stars!");
+					else output(" Anno doesn’t look all that steady on her feet!");
+					CombatAttacks.applyTrip(target);
 				}
 
 				var damage:TypeCollection = meleeDamage();
@@ -316,13 +316,13 @@ package classes.Characters
 		{
 			//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
 			output("The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. <i>“Why don’t you just surrender? I could use a few tough new sources of lubricant...”</i> she teases, shifting to emphasize her cleavage and jiggling it at you.");
-						
+			
 			// If they don't already exist/have been defeated, add them
 			if (allied.length == 1)
 			{
 				for (var i:int = 0; i < 3; i++)
 				{
-					CombatManager.addHostileCreature(new GooClone());
+					CombatManager.addHostileActor(new GooClone());
 				}
 				
 				output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
@@ -342,6 +342,7 @@ package classes.Characters
 					{
 						numResurrected++;
 						tarClone.HPRaw = tarClone.HPMax();
+						tarClone.lustRaw = tarClone.lustMin();
 						tarClone.alreadyDefeated = false;
 					}
 				}

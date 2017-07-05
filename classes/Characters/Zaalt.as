@@ -182,7 +182,7 @@
 		
 		override public function get long():String
 		{
-			var msg:String = "Zaalt is a towering milodan male, a heavily furred feline with a coat of orange and black stripes. His hair falls loosely around his shoulders, half black and half dyed blue. He's a big man in more ways than just height: barrel chested and broad-shouldered, built more like a boxer than a spacer to your eye. He's dressed in a dark jacket and weather-worn clothes beneath, now straining against his hammering chest and rippling muscle... and an uncontrollable fire in his loins that demands attention, bulging against his breeches. Claws adorn his fingers, though they seem a small threat compared to his saber-like fangs";
+			var msg:String = "Zaalt is a towering milodan male, a heavily furred feline with a coat of orange and black stripes. His hair falls loosely around his shoulders, half black and half dyed blue. He’s a big man in more ways than just height: barrel chested and broad-shouldered, built more like a boxer than a spacer to your eye. He’s dressed in a dark jacket and weather-worn clothes beneath, now straining against his hammering chest and rippling muscle... and an uncontrollable fire in his loins that demands attention, bulging against his breeches. Claws adorn his fingers, though they seem a small threat compared to his saber-like fangs";
 			if (meleeWeapon is ShockBlade) msg += " and deadly blade.";
 			else msg += ".";
 			return msg;
@@ -218,7 +218,7 @@
 		
 		public function SetDisarmed():void
 		{
-			createStatusEffect("No Weaponry", 1000, 0, 0, 0, false, "Blocked", "Zaalt doesn't have his usual complement of weapons to hand!", true, 0, 0xFF0000);
+			createStatusEffect("No Weaponry", 1000, 0, 0, 0, false, "Blocked", "Zaalt doesn’t have his usual complement of weapons to hand!", true, 0, 0xFF0000);
 			meleeWeapon = new Fists();
 		}
 		
@@ -302,14 +302,14 @@
 			//Psionic attack. Deals Lust damage and staggers (Will save resists).
 			energy( -15);
 			
-			output("Screaming with rage, Zaalt grabs his head and almost doubles over backwards. A second later and the bridge erupts with power, slamming you back against a bulkhead. The real pain comes after, though: your mind sears with a burning, uncontrollable need: for sex, for comfort, for anything that isn't battle.");
+			output("Screaming with rage, Zaalt grabs his head and almost doubles over backwards. A second later and the bridge erupts with power, slamming you back against a bulkhead. The real pain comes after, though: your mind sears with a burning, uncontrollable need: for sex, for comfort, for anything that isn’t battle.");
 			
 			applyDamage(new TypeCollection( { psionic: 8, kinetic: 3 } ), this, target, "minimal");
 			
 			if (10 + (rand(target.willpower()) / 2) < (willpower() / 2))
 			{
 				output(" <b>The mental blast has left your momentarily staggered!</b>");
-				target.createStatusEffect("Staggered", 4, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
+				CombatAttacks.applyStagger(target, 4);
 			}
 			
 		}
@@ -321,11 +321,11 @@
 			
 			//Psionic attack. Drains some of Zaalt's lust onto the PC, and restores a moderate amount of Health. 2/encounter; only targets PC. 
 
-			output("Zaalt thrusts a hand out at you, as if to grab your head. You manage to duck back, but even as you dodge the swipe, you realize that it wasn't his intention to <i>physically</i> attack you! Leeches of mental force gnaw at your mind, making you stagger back and grab your head, trying desperately to force out the invading force.");
+			output("Zaalt thrusts a hand out at you, as if to grab your head. You manage to duck back, but even as you dodge the swipe, you realize that it wasn’t his intention to <i>physically</i> attack you! Leeches of mental force gnaw at your mind, making you stagger back and grab your head, trying desperately to force out the invading force.");
 			
 			if (10 + (rand(target.willpower()) / 2) > willpower())
 			{
-				output("\n\nYou only barely manage to shrug off Zaalt's mental attack, resisting the subtle claws of psionic energy.");
+				output("\n\nYou only barely manage to shrug off Zaalt’s mental attack, resisting the subtle claws of psionic energy.");
 			}
 			else
 			{
@@ -361,18 +361,18 @@
 				if (blindedPC && blindedAnno)
 				{
 					output(" blinding you and Anno.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
-					anno.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(pc, 3);
+					CombatAttacks.applyBlind(anno, 3);
 				}
 				else if (!blindedPC && blindedAnno)
 				{
 					output(" blinding Anno, though you manage to avoid any serious effect.");
-					anno.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(anno, 3);
 				}
 				if (blindedPC)
 				{
 					output(" blinding you.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(pc, 3);
 				}
 				else
 				{
@@ -385,7 +385,7 @@
 				if (blindedPC)
 				{
 					output(" blinding you.");
-					pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(pc, 3);
 				}
 				else
 				{
@@ -451,9 +451,7 @@
 			for (i = 0; i < targets.length; i++)
 			{
 				var t:Creature = targets[i];
-				t.createStatusEffect("Gassed", 0, 0, 0, 0, false,"Icon_Blind", "The gas makes it hard to see and aim. Aim and reflex decreased!", true, 0, 0xFF0000);
-				t.aimMod -= 5;
-				t.reflexesMod -= 5;	
+				CombatAttacks.applyGassed(t);
 			}
 			
 			createStatusEffect("Nade Cooldown", 3);
@@ -497,7 +495,7 @@
 		{
 			//Play if the PC has Anno follower. Chance for any time after Turn 2.
 
-			output("\n\n<i>“[pc.name]!?”</i> You hear Anno shouting from back in the crew quarters. She comes running towards the sound of your scuffle, and thankfully she arrives with her gun in hand. <i>“What's going... what's wrong with him?”</i>");
+			output("\n\n<i>“[pc.name]!?”</i> You hear Anno shouting from back in the crew quarters. She comes running towards the sound of your scuffle, and thankfully she arrives with her gun in hand. <i>“What’s going... what’s wrong with him?”</i>");
 
 			output("\n\n<i>“No idea!”</i> you answer back, pushing back the feral cat-man as best you can. Anno just shrugs and takes her place at your side to defend you -- and her home!");
 			
@@ -506,8 +504,7 @@
 			kGAMECLASS.anno.lustRaw = 10;
 			kGAMECLASS.anno.long = "Anno is next to you, her compact holdout held out in front of her as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head, and body poised and ready to avoid incoming attacks.";
 			kGAMECLASS.anno.customDodge = "Anno quickly jumps to the side and evades the attack.";
-			CombatManager.addFriendlyCreature(kGAMECLASS.anno);
-
+			CombatManager.addFriendlyActor(kGAMECLASS.anno);
 		}
 	}
 }

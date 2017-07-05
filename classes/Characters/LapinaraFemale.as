@@ -29,7 +29,7 @@
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = ""; // Implementation in prepForCombat
-			this.customBlock = "Somehow, the attack doesn't penetrate the lapinara's fur!";
+			this.customBlock = "Somehow, the attack doesn’t penetrate the lapinara’s fur!";
 			this.customDodge = "The lapinara uses its small size to slip out of the way.";
 			this.isPlural = false;
 			
@@ -200,7 +200,7 @@
 			else hairColor = "gray";
 			furColor = hairColor;
 			
-			long = "A typical example of the parasitic gender, according to your Codex, the lapinara stands at no more than " + height() + " tall. From her head grows medium-length, wild " + hairColor + " hair styled into a perm. A pair of metal-reinforced horns poke out from under her bangs. A long, whip-like tail hangs from above her ass, thrashing about menacingly. She wears a rather intimidating spiked gauntlet on each hand, her chest protected by a metal armor plate. There is a leather belt about her waist, holding an assortment of syringes at her side, likely drugs. She is unarmored from the waist down, her pseudopenis ovipositor standing at attention, faux testicles heavy and swollen with the eggs that they're holding."
+			long = "A typical example of the parasitic gender, according to your Codex, the lapinara stands at no more than " + height() + " tall. From her head grows medium-length, wild " + hairColor + " hair styled into a perm. A pair of metal-reinforced horns poke out from under her bangs. A long, whip-like tail hangs from above her ass, thrashing about menacingly. She wears a rather intimidating spiked gauntlet on each hand, her chest protected by a metal armor plate. There is a leather belt about her waist, holding an assortment of syringes at her side, likely drugs. She is unarmored from the waist down, her pseudopenis ovipositor standing at attention, faux testicles heavy and swollen with the eggs that they’re holding."
 			ass.loosenessRaw = rand(4) + 1;
 			vaginas[0].loosenessRaw = rand(4) + 1;
 			credits = 25+rand(25);
@@ -242,7 +242,7 @@
 					if (target.armor.defense > 0 && rand(3) == 0) 
 					{
 						output("The lapinara charges at you, ramming you. However, thanks to your protective armor, she is instead knocked aback, stunned.");
-						createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
+						CombatAttacks.applyStun(this, 1);
 					}
 					else 
 					{

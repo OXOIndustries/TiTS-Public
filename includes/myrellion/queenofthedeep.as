@@ -79,8 +79,8 @@ public function queenOfTheDeepInitFight():void
 	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You’re submerged in water, and your movements are dramatically slowed because of it. While you’re fighting in the lake, your Reflex is reduced!", true, 0);
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new QueenOfTheDeep());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new QueenOfTheDeep());
 	CombatManager.victoryScene(queenOfTheDeepPCVictory);
 	CombatManager.lossScene(queenOfTheDeepPCLoss);
 	CombatManager.displayLocation("DEEPS QUEEN");

@@ -33,7 +33,7 @@ package classes.Characters
 			this.originalRace = "ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Amara Faell, a Dread Lord of the Black Void. She's clad in sleek, heavy black power armor that protects her from the neck down. She's got a crash helmet on, leaving her face guarded only by floating holographic displays and shields. Curly red hair spills out from under her helm, a stark contrast to blue-painted lips and emerald green eyes. She's packing a massive chaingun in one hand, supported by her powered suit's superhuman strength. In the other, she wields a flamethrower strapped to the wrist, projecting a constant flicker of flame between bursts. ";
+			this.long = "Amara Faell, a Dread Lord of the Black Void. She’s clad in sleek, heavy black power armor that protects her from the neck down. She’s got a crash helmet on, leaving her face guarded only by floating holographic displays and shields. Curly red hair spills out from under her helm, a stark contrast to blue-painted lips and emerald green eyes. She’s packing a massive chaingun in one hand, supported by her powered suit’s superhuman strength. In the other, she wields a flamethrower strapped to the wrist, projecting a constant flicker of flame between bursts. ";
 			this.customBlock = "The pirate’s armor deflects your attack with alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -220,7 +220,7 @@ package classes.Characters
 		
 		private function powerRegen():void
 		{
-			output("The reactor powering Amara's battlesuit hums audibly, providing her equipment with a near limitless supply of energy!\n\n");
+			output("The reactor powering Amara’s battlesuit hums audibly, providing her equipment with a near limitless supply of energy!\n\n");
 			if (energy() < energyMax())
 			{
 				energy(energyMax() * 0.4);
@@ -275,8 +275,11 @@ package classes.Characters
 				
 				if (target.reflexes() / 2 + rand(20) + 1 < 25)
 				{
+					/*
 					if (!target.hasStatusEffect("Burning")) target.createStatusEffect("Burning", 3, 7, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
 					else target.setStatusValue("Burning", 1, 3);
+					*/
+					CombatAttacks.applyBurning(target, 3, 7, true);
 					output(" <b>" + (target is PlayerCharacter ? "You are" : "Kara is") +" burning!</b>");
 				}
 			}
@@ -341,7 +344,7 @@ package classes.Characters
 				
 				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 25)
 				{
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 					output(" <b>" + (target is PlayerCharacter ? "You smash" : "Kara smashes") + " back-first into the floor, HARD.</b>");
 				}
 			}
@@ -352,7 +355,7 @@ package classes.Characters
 			energy( -50);
 			
 			//Heavy melee hit (half blunt, half energy), chance to stun
-			output("With a ground-shaking roar, booster jets on Amara's suit's feet activate and propel her into the air. She lunges up and comes back down foot-first towards " + (target is PlayerCharacter ? "your" : "Kara’s") +" face!");
+			output("With a ground-shaking roar, booster jets on Amara’s suit’s feet activate and propel her into the air. She lunges up and comes back down foot-first towards " + (target is PlayerCharacter ? "your" : "Kara’s") +" face!");
 			
 			if (combatMiss(this, target, -1, 2))
 			{
@@ -366,7 +369,7 @@ package classes.Characters
 				
 				if (target.physique() / 2 + rand(20) + 1 < 35)
 				{
-					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Stunned and cannot act until recovered!", true, 0,0xFF0000);
+					CombatAttacks.applyStun(target, 3);
 				}
 			}
 		}

@@ -357,7 +357,7 @@ public function bessHasClothingItem(clothingType:Class):Boolean
 	// 9999
 	// can't really pack this into uints -- too many options (outfits) even if we split armor/upper/lower (more than 32 options)
 	// creature inventory I guess is a decent placeholder for now maybe -- can look into other options later, hence wrapping simple call here
-	return bess.hasItemByType(clothingType);
+	return bess.hasItemByClass(clothingType);
 }
 
 public function bessHasGlasses():Boolean
@@ -919,7 +919,7 @@ public function keepBessYouSloot():void
 
 	//Tutorial / Configure 
 	output("You decide that you’ll take [bess.himHer] along after all. You don’t really want to leave [bess.himHer] on Tavros, and you don’t want to get rid of [bess.himHer] either.");
-	if (pc.isNice()) output(" <i>“Plus, it kind of seems mean to leave [bess.himHer] alone in your hanger just because [bess.heShe]’s an android”</i>.");
+	if (pc.isNice()) output(" <i>“Plus, it kind of seems mean to leave [bess.himHer] alone in your hangar just because [bess.heShe]’s an android”</i>.");
 	else if (pc.isMischievous()) output(" Plus it might be kind of fun to add [bess.himHer] to your crew.");
 	else output(" <i>“Besides, you need every edge you can get if you’re going to find that hidden treasure stash.”</i>");
 	//Nice:
@@ -6538,7 +6538,7 @@ public function bessEvent3Yes():void
 
 	output("\n\nNow that [bess.heShe]’s got your permission to ask, [bess.name] seems to be thinking hard about exactly how to word [bess.hisHer] question. <i>“... Well, how much do you know about my core directives?”</i>");
 	
-	output("\n\n<i>“Nothing, you’ve never told me them.”</i> You inform [bess.himHer]. [bess.HeShe] didn’t exactly come with a user manual, either.");
+	output("\n\n<i>“Nothing, you’ve never told me about them.”</i> You inform [bess.himHer]. [bess.HeShe] didn’t exactly come with a user manual, either.");
 	
 	output("\n\n<i>“Okay. Well, I have five core directives. The lower the number, the more important that directive is.”</i> [bess.name] begins to explain them to you, listing them out one by one.");
 	
@@ -11258,7 +11258,7 @@ public function bessGetBlowjob():void
 			}
 			else
 			{
-				output("\n\nAfterwards, [bess.name] seems to be glowing with sheer satisfaction, an utterly blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. [bess.HisHer] mouth is slightly parted and splattered with your [pc.cumColor] seed]; the rest [bess.heShe] swallowed without a moment’s hesitation. <i>“... Mmm, delicious! Your [pc.cum] is the best, "+ bessPCSexName() +"”</i>");
+				output("\n\nAfterwards, [bess.name] seems to be glowing with sheer satisfaction, an utterly blissed-out look in [bess.hisHer] [bess.eyeColor] eyes. [bess.HisHer] mouth is slightly parted and splattered with your [pc.cumColor] seed; the rest [bess.heShe] swallowed without a moment’s hesitation. <i>“... Mmm, delicious! Your [pc.cum] is the best, "+ bessPCSexName() +"”</i>");
 			}
 		}
 	}
@@ -12304,7 +12304,7 @@ public function bessGetCunni():void
 		if (pc.genitalSpot <= 1)
 		{
 			output("\n\n<i>“Roll over and on your back, "+ bessPCSexName() +"!”</i> Your second set of instructions comes like a whip-crack, and you immediately comply.");
-			if (pc.isBiped()) output(" Rolling on to your back like an animal, [bess.sheHe] then forcibly spreads your legs apart.");
+			if (pc.isBiped()) output(" Rolling on to your back like an animal, [bess.heShe] then forcibly spreads your legs apart.");
 			
 			output("\n\nYou furiously flush as your shamefully dewy mound is exposed. [bess.HeShe] clearly notices too, a glimmer of amusement in [bess.hisHer] sharp [bess.eyeColor] eyes. You try not to wiggle with pleasure under [bess.hisHer] gaze, feeling it penetrate your very soul.");
 			

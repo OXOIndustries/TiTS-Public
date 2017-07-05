@@ -92,6 +92,10 @@ public function hangarBonus():Boolean
 			}
 		}
 	}
+	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
+	{
+		if(azraBonusProc(btnSlot++)) return true;
+	}
 	
 	return false;
 }
@@ -208,15 +212,17 @@ public function redlightSEBonus():void
 }
 
 public function anonsBarAddendums():Boolean {
-	if (saendraBarAddendum(3))
-	{
-		return true;
-	}
 	anonsBarWaitressAddendum(0);
 	alexManHermIntro(1);
 	ShellyBlurb(2);
+	if (saendraBarAddendum(3)) return true;
 	annoAtAnonsAddendum(4);
-	ramisAtAnonsAddendum(5);
+	
+	var NPCs:Array = [];
+	if (ramisAtAnons()) NPCs.push(ramisAtAnonsAddendum);
+	if (fisiAtAnons()) NPCs.push(fisiAtAnonsAddendum);
+	if (NPCs.length > 0) NPCs[rand(NPCs.length)](5);
+	
 	roamingBarEncounter(7);
 	return false;
 }
@@ -276,4 +282,9 @@ public function displayNoticeBoardRD():void {
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function northEastPlazaBonus():void
+{
+	fisiAtResDeckAddendum(0);
 }

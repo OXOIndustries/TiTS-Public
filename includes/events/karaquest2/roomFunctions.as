@@ -82,8 +82,8 @@ public function kq2FightBlackVoidGruntsOutside():void
 	for (var i:int = 0; i < num; i++) h.push(new KQ2BlackVoidGrunt());
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryScene(kq2MooksVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
@@ -106,8 +106,8 @@ public function kq2FightBlackVoidGrunts():void
 	for (var i:int = 0; i < num; i++) h.push(new KQ2BlackVoidGrunt());
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryScene(kq2MooksVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("VOID GRUNTS");
@@ -146,8 +146,8 @@ public function kq2FightSecDrones():void
 	for (var i:int = 0; i < num; i++) h.push(new KQ2SecurityDroid());
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryScene(kq2DroneVictory);
 	CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
 	CombatManager.displayLocation("SEC. DRONES");
@@ -527,8 +527,8 @@ public function kq2rfKaraOverride():void
 	output("\n\nYou nod and turn to face the open courtyard. Now that you’re stuck in one place, you can see several black-armored Void soldiers rushing towards you. You ready your [pc.rangedWeapon] and take cover next to the door. This is going to be rough...");
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc]);
-	CombatManager.setHostileCharacters([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
+	CombatManager.setFriendlyActors([pc]);
+	CombatManager.setHostileActors([new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()]);
 	CombatManager.displayLocation("VOID GRUNTS");
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 5);
 	CombatManager.victoryScene(kq2KaraHotwiresSumDoors);
@@ -591,7 +591,7 @@ public function kq2rfYardA1():Boolean
 
 	output("\n\nThere’s a kennel here, made of steel and bearing several power hook-ups. A tag on the side of it indicates it’s a <i>“Fenris assault drone charging and repair station”</i> made by KihaCorp.");
 
-	if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolfDamaged || pc.hasItemByType(TamWolfDamaged)))
+	if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolfDamaged || pc.hasItemByClass(TamWolfDamaged)))
 	{
 		output("\n\nTam-wolf stalks toward the kennel and sniffs at one of the charging bays. <i>“M-m-[pc.master], I am baaaaadly damaged. With your permission, I will-will-will initiate repair protocooooools.”</i>");
 
@@ -605,7 +605,7 @@ public function kq2rfYardA1():Boolean
 		if (pc.accessory is TamWolfDamaged) pc.accessory = new TamWolf();
 		else
 		{
-			pc.destroyItemByType(TamWolfDamaged);
+			pc.destroyItemByClass(TamWolfDamaged);
 			pc.inventory.push(new TamWolf());
 		}
 
@@ -618,7 +618,7 @@ public function kq2rfYardA1():Boolean
 		addButton(0, "Next", mainGameMenu);
 		return true;
 	}
-	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByType(TamWolf)))
+	else if (flags["KQ2_RF_KENNEL_USED"] == undefined && (pc.accessory is TamWolf || pc.hasItemByClass(TamWolf)))
 	{
 		output("\n\nTam-wolf stalks toward the kennel and sniffs at one of the charging bays. <i>“[pc.Master], I detect a hardware update available, brought to you free of charge by FenCo, a subsidiary of KihaCorp. May I have permission to be upgraded?”</i>");
 		
@@ -634,7 +634,7 @@ public function kq2rfYardA1():Boolean
 		if (pc.accessory is TamWolf) pc.accessory = new TamWolfII();
 		else
 		{
-			pc.destroyItemByType(TamWolf);
+			pc.destroyItemByClass(TamWolf);
 			pc.inventory.push(new TamWolfII());
 		}
 		processTime(2);
@@ -727,7 +727,7 @@ public function kq2TakeEngineerArmor():void
 
 public function kq2EngineerArmorCheck():void
 {
-	if (pc.armor is VoidPlateArmor || pc.hasItemByType(VoidPlateArmor))
+	if (pc.armor is VoidPlateArmor || pc.hasItemByClass(VoidPlateArmor))
 	{
 	mainGameMenu();
 		return;
@@ -1020,8 +1020,8 @@ public function kq2rfLabElevator():Boolean
 		if (flags["KQ2_KARA_WITH_PC"] == 1) f.push(kara);
 
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(f);
-		CombatManager.setHostileCharacters([new KQ2Juggernaut()]);
+		CombatManager.setFriendlyActors(f);
+		CombatManager.setHostileActors([new KQ2Juggernaut()]);
 		CombatManager.displayLocation("JUGGERNAUT");
 		CombatManager.victoryScene(kq2JuggernautPCVictory);
 		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);

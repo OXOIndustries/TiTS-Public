@@ -317,7 +317,7 @@
 					if (!target.hasStatusEffect("Staggered") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 					{
 						output("<b> You’ve been staggered!</b>");
-						target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You’re staggered, and your Aim and Reflexes have been reduced by 20%!", true, 0);
+						CombatAttacks.applyStagger(target, 5);
 					}
 				}
 				
@@ -359,25 +359,12 @@
 					output(" rending you with his razor-sharp claws.");
 					damageRand(d, 15);
 					applyDamage(d, this, target, "melee");
-					//{bleed chance}
+					// bleed chance
 					if(this.physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 14 && target.shields() <= 0)
 					{
-						if (!target.hasStatusEffect("Bleeding"))
-						{
-							output(" <b>You’re bleeding!</b>");
-							target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0);
-						}
-						else
-						{
-							output(" <b>Your bleeding is aggravated further!</b>");
-							// Add a stack and refresh duration
-							target.addStatusValue("Bleeding", 1, 1);
-							target.setStatusValue("Bleeding", 2, 3);
-						}
-						var stacks:int = target.statusEffectv1("Bleeding");
-						var rounds:int = target.statusEffectv2("Bleeding");
-						var damage:int = target.statusEffectv3("Bleeding");
-						target.setStatusTooltip("Bleeding","You’re bleeding!\n" + damage + " bleed strength.\n" + stacks + " stack" + ((stacks > 1) ? "s":"") + ".\n" + rounds + " round" + ((rounds > 1) ? "s":"") + " remaining.");
+						if (!target.hasStatusEffect("Bleeding")) output(" <b>You’re bleeding!</b>");
+						else output(" <b>Your bleeding is aggravated further!</b>");
+						CombatAttacks.applyBleed(target, 1, 3, 15);
 					}
 				}
 			}
@@ -415,7 +402,7 @@
 				//Stun chance
 				if (!target.hasStatusEffect("Stunned") && target.physique()/2 + rand(20) + 1 < this.physique()/2 + 10)
 				{
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 1);
 					output(" <b>You are stunned!</b>");
 				}
 			}

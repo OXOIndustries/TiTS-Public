@@ -208,7 +208,7 @@ package classes.Characters
 			output("Chief Neykkar rears up on her rear legs, bellowing an amazonian battle-cry before bringing her other four legs down hard on [target.combatName], throwing [target.combatHimHer] back with rib-crushing force!");
 			if (rand(3) > 0 && !target.hasStatusEffect("Staggered"))
 			{
-				target.createStatusEffect("Staggered", 2 + rand(2), 0, 0, 0, false, "Icon_OffDown", target.getCombatName() + " is staggered, and "+ target.getCombatPronoun("hisher") +" Aim and Reflexes have been reduced!", true, 0);
+				CombatAttacks.applyStagger(target, 2 + rand(2));
 				output(" <b>[target.CombatName] is staggered by the blow!</b>");
 			}
 			

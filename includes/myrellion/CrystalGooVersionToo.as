@@ -107,7 +107,6 @@ public function crystalGooEncounterType1():void
 			}
 			else
 			{
-				
 				output(" Your slow strike glances harmlessly to the side as the ganrael barrels into you, coiling and holding you with spindly, jointed legs.");
 				pc.createStatusEffect("Grappled", 3); // 9999
 			}
@@ -126,10 +125,10 @@ public function crystalGooEncounterType1():void
 	flags["CRYSTALGOO_T1_ENCOUNTERS"]++;
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(pcDefeatsCrystalGooToo);
 	CombatManager.lossScene(crystalGooPCLoss);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.displayLocation("CRYSTAL GOO");
 
 	showCrystalGooToo();
@@ -199,10 +198,10 @@ public function crystalGooEncounterType2():void
 	flags["CRYSTALGOO_T2_ENCOUNTERS"]++;
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(pcDefeatsCrystalGooToo);
 	CombatManager.lossScene(crystalGooPCLoss);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.displayLocation("CRYSTAL GOO");
 
 	showCrystalGooToo();

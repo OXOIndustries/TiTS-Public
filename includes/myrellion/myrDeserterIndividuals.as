@@ -230,8 +230,8 @@ public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 public function configureGoldDeserterFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");
@@ -240,8 +240,8 @@ public function configureGoldDeserterFight(tEnemy:Creature):void
 public function configureRedDeserterFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	CombatManager.displayLocation(flags["KNOW_RED_MYR_NAME"] == undefined ? "RED DSTR" : "BRIHA");
@@ -404,7 +404,7 @@ public function myrDeserterNonCombatMenu(gold:Boolean = false):void
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(gold)
 	{
-		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(4,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		if(pc.hasItemByClass(VenusBloom) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(4,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(4,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
 		else addDisabledButton(4,"Locked","Locked","You don’t know her well enough for this.");
 	}
@@ -424,8 +424,8 @@ public function fightADumbShitAntWaifu(gold:Boolean = false):void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(enemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(enemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	if (gold) CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");
@@ -577,7 +577,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(gold)
 	{
-		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(1,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		if(pc.hasItemByClass(VenusBloom) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(1,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(1,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
 		else addDisabledButton(1,"Locked","Locked","You don’t know her well enough for this.");
 	}
@@ -1066,7 +1066,7 @@ public function winVsAntGrillDeserts():void
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(enemy is MyrGoldFemaleDeserter)
 	{
-		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(7,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		if(pc.hasItemByClass(VenusBloom) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(7,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(7,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
 		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
@@ -3204,7 +3204,7 @@ public function giveFlowerToLys():void
 	showDeserter(true);
 	author("Zeikfried");
 	pc.addNice(2);
-	pc.destroyItem(new VenusBloom());
+	pc.destroyItemByClass(VenusBloom);
 	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 
 	if(pc.isBro() || pc.isBimbo()) output("<i>“Um, I found a thing,”</i> you announce.");

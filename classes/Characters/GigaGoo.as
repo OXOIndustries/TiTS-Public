@@ -236,7 +236,7 @@ package classes.Characters
 			if (rand(50) <= pcDR.totalDamage)
 			{
 				output("\n<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>");
-				pc.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				CombatAttacks.applyTrip(pc);
 			}
 		}
 		
@@ -255,7 +255,7 @@ package classes.Characters
 	
 			if (rand(4) == 0)
 			{
-				pc.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "You are stunned and cannot act until you recover!", true, 0,0xFF0000);
+				CombatAttacks.applyStun(pc, 3);
 				output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 			}
 			

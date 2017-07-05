@@ -572,10 +572,11 @@ public const CREW_PIPPA:int = 8;
 public const CREW_GOO_ARMOR_NOT:int = 9;
 public const CREW_VARMINT:int = 10;
 public const CREW_SIEGEWFULFE:int = 11;
+public const CREW_AZRA:int = 12;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
-	var crewMembers:Array = new Array();;
+	var crewMembers:Array = new Array();
 	
 	// Actual crew members
 	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
@@ -587,7 +588,8 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
 	if (pippaOnShip()) crewMembers.push(CREW_PIPPA);
-	
+	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
+
 	// Pets or other non-speaking crew members
 	if (allcrew)
 	{
@@ -664,6 +666,22 @@ public function multiCrewInteractions():Array
 	return crewMembers;
 }
 
+// TODO: This is a temporary solution, I just don't want to refactor ALL of the crew shit right now
+public function getCrewOnShip():Array
+{
+	var c:Array = [];
+	if (celiseIsCrew()) c.push(celise);
+	if (reahaIsCrew()) c.push(reaha);
+	if (annoIsCrew()) c.push(anno);
+	if (bessIsCrew()) c.push(bess);
+	if (yammiIsCrew()) c.push(yammi);
+	if (gooArmorIsCrew()) c.push(gooArmor);
+	if (siegwulfeIsCrew()) c.push(wulfe);
+	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
+	//if (azraIsCrew()) c.push(azra);
+	return c;
+}
+
 public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
@@ -682,12 +700,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
+	if(azraIsCrew())
+	{
+		if(!counter) crewMessages += azraCrewBlurbs(count+other);
+		count++;
+	}
 	if(reahaIsCrew())
 	{
 		count++;
 		if(!counter)
 		{
-
 			//Not Addicted (CURED XPACK: reaha.cured_expansion.as)
 			if(!reahaAddicted())
 			{
@@ -871,7 +893,13 @@ public function wait(minPass:int = 0):void
 	if(hrPass <= 0) output(" " + num2Text(minPass) + " minutes");
 	else if(hrPass == 1) output(" one hour");
 	else output(" " + num2Text(hrPass) + " hours");
-	output(". While doing this doesn’t keep you rested, it manages to pass the time.");
+	output(".");
+	
+	var waitMult:Number = 0.20 * (minPass / 240);
+	if(pc.HPRaw < pc.HPMax()) pc.HP(Math.round(pc.HPMax() * waitMult));
+	if(pc.energyRaw < pc.energyMax()) pc.energy(Math.round(pc.energyMax() * waitMult));
+	
+	if(pc.HPRaw < pc.HPMax() || pc.energyRaw < pc.energyMax()) output(" While doing this doesn’t keep you well rested, it manages to pass the time.");
 	
 	processTime(minPass);
 	
@@ -954,7 +982,7 @@ public function restHeal():void
 		else 
 		pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
 	}
-	if(pc.energy() < pc.energyMax()) {
+	if(pc.energyRaw < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 	}
 }
@@ -964,12 +992,18 @@ public function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 	
-	if (kiMedbaySleeps()) return;
-	
 	var minPass:int = 420 + rand(80) + 1;
+	var inShip:Boolean = InShipInterior(pc);
 	
-	if(outputs) clearOutput();
-	if(InShipInterior(pc))
+	if(outputs)
+	{
+		clearOutput();
+		eventBufferXP();
+	}
+	
+	// Before sleep events
+	if(kiMedbaySleeps()) return;
+	if(inShip)
 	{
 		if(outputs)
 		{
@@ -979,42 +1013,42 @@ public function sleep(outputs:Boolean = true):void {
 				annoSleepWithIntroduce();
 				return;
 			}
-		}
-		//Queue up cured Reaha
-		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
-		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
-		{
-			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
-		}
-	}
-	if(outputs)
-	{
-		eventBufferXP();
-	}
-	if(InShipInterior(pc))
-	{
-		if(outputs)
-		{
-			//CELISE NIGHT TIME BEDTIMEZ
-			if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined && flags["CELISE_NO_BED_SENPAI"] == undefined)
+			
+			var interrupt:Boolean = false;
+			
+			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
-				celiseOffersToBeYourBedSenpai();
-				return;
+				case "ANNO":
+					if (annoIsCrew() && rand(3) == 0)
+					{
+						annoSleepSexyTimes();
+						interrupt = true;
+					}
+					break;
+				case "REAHA":
+					if (reahaIsCrew() && rand(3) == 0)
+					{
+						sleepWithCuredReaha();
+						interrupt = true;
+					}
+					break;
+				case "BESS":
+					if (bessIsCrew() && rand(3) == 0)
+					{
+						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+					}
+					break;
+				// No partner selected.
+				default:
+					//CELISE NIGHT TIME BEDTIMEZ
+					if(celiseIsCrew() && rand(3) == 0 && flags["CELISE_NO_BED_SENPAI"] == undefined)
+					{
+						celiseOffersToBeYourBedSenpai();
+						interrupt = true;
+					}
+					break;
 			}
-			else if (annoIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
-			{
-				annoSleepSexyTimes();
-				return;
-			}
-			else if (bessIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
-			{
-				flags["BESS_SLEEPWITH_DOMORNING"] = 1;
-			}
-			else if (reahaIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "REAHA")
-			{
-				sleepWithCuredReaha();
-				return;
-			}
+			if(interrupt) return;
 		}
 	}
 	if(outputs) output("You lie down and sleep for about " + num2Text(Math.round(minPass/60)) + " hours.");
@@ -1022,18 +1056,35 @@ public function sleep(outputs:Boolean = true):void {
 	sleepHeal();
 	
 	processTime(minPass);
-	dreamChances();
-	if(outputs)
-	{
-		mimbraneSleepEvents();
-		if(InShipInterior(pc)) grayGooSpessSkype();
-	}
 	
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
 	
+	// Dream events
+	var dreamed:Boolean = dreamChances();
+	
+	// Between sleep events
+	if(outputs)
+	{
+		mimbraneSleepEvents();
+		if(inShip) grayGooSpessSkype();
+	}
+	
+	// After sleep events
+	if(inShip)
+	{
+		//Queue up cured Reaha
+		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
+		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
+		{
+			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
+		}
+	}
+	
 	clearMenu();
-	if(InShipInterior(pc))
+	
+	// Waking up events
+	if(inShip && !dreamed)
 	{
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined)
 		{
@@ -1089,7 +1140,7 @@ public function sleepHeal():void
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
 	
-	if (pc.energy() < pc.energyMax()) pc.energyRaw = pc.energyMax();
+	if (pc.energyRaw < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
 public function genericSleep(baseTime:int = 480):void
@@ -1220,6 +1271,11 @@ public function shipMenu():Boolean
 		grayGooArrivesAtShip();
 		return true;
 	}
+	if(flags["AZRA_RECRUITED"] == 1 && azraIsCrew())
+	{
+		azraInShipGreeting();
+		return true;
+	}
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -1344,7 +1400,7 @@ public function flyTo(arg:String):void
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
-		if (pc.hasItemByType(StrangeEgg) || pc.hasItemInStorage(new StrangeEgg()))
+		if (pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg))
 		{
 			//PC can preggo with it?
 			//Has an open spot!
@@ -1684,9 +1740,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	moveMinutes += immobilizedUpdate(true);
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
-	if(pc.hasItemByType(DongDesigner)) moveMinutes *= 2;
+	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
 	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
-	if(pc.hasItemByType(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
+	if(pc.hasItemByClass(Hoverboard) || (pc.legType == GLOBAL.TYPE_TENTACLE && pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))) moveMinutes = (moveMinutes > 1 ? 1 : 0);
 	if(moveMinutes < 0) moveMinutes = 0;
 	StatTracking.track("movement/time travelled", moveMinutes);
 	processTime(moveMinutes);
@@ -1774,6 +1830,12 @@ public function variableRoomUpdateCheck():void
 		if(!rooms["9017"].hasFlag(GLOBAL.NPC)) rooms["9017"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["9017"].removeFlag(GLOBAL.NPC);
+	
+	if(fisiAtResDeck()) 
+	{
+		if(!rooms["RESIDENTIAL DECK 5"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NPC);
+	}
+	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
 
 	/* MHENGA */
 	
@@ -2158,6 +2220,13 @@ public function variableRoomUpdateCheck():void
 	else rooms["CANADA7"].eastExit = "";
 	*/
 
+	//Ushamee Corridor
+	if (MailManager.isEntryViewed("ushamee_meet") && flags["USHA_MET3"] == undefined)
+	{
+		if(!rooms["CANADA3"].hasFlag(GLOBAL.NPC)) rooms["CANADA3"].addFlag(GLOBAL.NPC);
+	}
+	else rooms["CANADA3"].removeFlag(GLOBAL.NPC);
+
 
 	/* MISC */
 	
@@ -2260,27 +2329,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	immobilizedUpdate(false, deltaT);
 
 	//Queue up dumbfuck procs
-	if(pc.hasStatusEffect("Dumbfuck"))
-	{
-		//Got some cums to pile oN?
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
-		{
-			//No sneezes set up yet. Start dis shit.
-			if(!pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
-			{
-				pc.createStatusEffect("Dumbfuck Orgasm Queued", pc.statusEffectv1("Dumbfuck Orgasm Procced"), 0, 0, 0, true, "", "", false, 0);
-			}
-			//Already got some. PILE ON!
-			else pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
-			//Clear out the holding status now that we're cued up for sneezin'
-			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
-		}
-		//Add to event queue so long as it isn't on there already
-		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
-		{
-			if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
-		}
-	}
+	if(pc.hasStatusEffect("Dumbfuck")) processDumbfuckEvents();
 	
 	var sendMails:Boolean = true;
 	
@@ -2343,7 +2392,15 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= flags["PQUEST_DELAY_TIMER"] + 60*10) goMailGet("plantation_quest_start");
 		}
+		if(pc.hasCock() && pc.thinnestCockThickness() < 7 && pc.balls >= 2 && pc.ballDiameter() >= 12 && pc.ballFullness >= 50 && !MailManager.isEntryUnlocked("kally_kiro_milkvite") && kiroKallyThreesomesAvailable() && rand(20) == 0 && flags["KIRO_KALLY_TEAM_MILKED"] == undefined) goMailGet("kally_kiro_milkvite");
 
+		//Ushamee Meet Invite
+		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["STATE"] == 3) && canadiaUnlocked())
+		{
+			if(flags["KASHIMA_DELAY_TIMER"] == undefined) flags["KASHIMA_DELAY_TIMER"] = GetGameTimestamp();
+			else if(GetGameTimestamp() >= flags["KASHIMA_DELAY_TIMER"] + 60*24*5) goMailGet("ushamee_meet");
+		}
+		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette();
 	}

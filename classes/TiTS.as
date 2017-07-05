@@ -1,6 +1,10 @@
 ﻿package classes
 {
+	import classes.GameData.CombatManager;
 	import classes.GameData.Perks;
+	import classes.GameData.ShipManager;
+	import classes.Ships.Library.TestHostileShip;
+	import classes.Ships.SpaceShip;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModules.GameTextModule;
@@ -110,9 +114,6 @@
 		include "../includes/items.as";
 		include "../includes/items.tooltips.as";
 		include "../includes/MailEntries.as";
-		include "../includes/masturbation.as";
-		include "../includes/masturbation.eggTrainer.as";
-		include "../includes/masturbation.magicMilker.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
@@ -122,14 +123,17 @@
 		//Holiday shit
 		include "../includes/holidayEvents/halloweenCostumes.as";
 		include "../includes/holidayEvents/freedomBeef.as";
-		include "../includes/event.puppyslutmas.as";
+		include "../includes/holidayEvents/puppyslutmas.as";
 
 		//Followers
-		include "../includes/follower.anno.as";
-		include "../includes/follower.celise.as";
-		include "../includes/follower.celiseGiga.as";
-		include "../includes/follower.siegwulfe.as";
-		include "../includes/follower.yammi.as";
+		include "../includes/follower/anno.as";
+		include "../includes/follower/azra.as";
+		include "../includes/follower/celise.as";
+		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/pippa.as";
+		include "../includes/follower/siegwulfe.as";
+		include "../includes/follower/yammi.as";
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
@@ -138,17 +142,15 @@
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
 
 		//Misc content
+		include "../includes/masturbation.as";
 		include "../includes/masturbation/bubbleBuddy.as";
 		include "../includes/masturbation/cockTailMasturbation.as";
+		include "../includes/masturbation/eggTrainer.as";
 		include "../includes/masturbation/exhibitionismPerk.as";
 		include "../includes/masturbation/hardlightAGThong.as";
+		include "../includes/masturbation/magicMilker.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
-		include "../includes/saendra.as";
-		include "../includes/travelEvents.as";
-		include "../includes/travelEvents.fallOfThePhoenix.as";
-		include "../includes/travelEvents.kiroRescue.as";
-		include "../includes/travelEvents.kiro.as";
 		include "../includes/vendingMachine.as";
 		
 		// Misc Events
@@ -160,13 +162,18 @@
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		
+		// Travel Events
+		include "../includes/travelEvents.as";
+		include "../includes/travelEvents/fallOfThePhoenix.as";
+		include "../includes/travelEvents/kiro.as";
+		include "../includes/travelEvents/kiroRescue.as";
 
 		//Tavros Station
-		include "../includes/tavros/aina.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
-		include "../includes/tavros/fyn.as";
+		include "../includes/tavros/fisianna.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
@@ -180,9 +187,9 @@
 		include "../includes/tavros/riya.as";
 		include "../includes/tavros/rooms.as";
 		include "../includes/tavros/roomFunctions.as";
+		include "../includes/tavros/saendra.as";
 		include "../includes/tavros/saendraXPack1.as";
 		include "../includes/tavros/sellesy.as";
-		include "../includes/tavros/semith.as";
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/seraXPack2.as";
@@ -194,7 +201,10 @@
 		include "../includes/tavros/vahn.as";
 
 		//Tavros Residential Deck
+		include "../includes/tavros/resDeck/aina.as";
+		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
+		include "../includes/tavros/resDeck/semith.as";
 
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
@@ -205,6 +215,7 @@
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";
+		include "../includes/vesperia/ushamee.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
@@ -347,6 +358,7 @@
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/carbonado.as";
 		include "../includes/uveto/chaurmine.as";
+		include "../includes/uveto/chrissy.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
@@ -370,15 +382,16 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
-		include "../includes/follower.pippa.as";
-		include "../includes/follower.multi_interactions.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";
 		include "../includes/SSTDs/locofever.as";
+		include "../includes/SSTDs/sneezingTits.as";
 		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;
+		public var charDict:Dictionary;
+		public var shipDb:ShipManager;
 
 		public var days:int;
 		public var hours:int;
@@ -477,16 +490,16 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.59";
+			version = "0.7.65";
 
 			//temporary nonsense variables.
 			temp = 0;
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
-			import classes.ShipClass;
 
 			chars = new Object();
+			charDict = new Dictionary();
 			
 			//What inventory screen is up?
 			shopkeep = undefined;
@@ -531,7 +544,11 @@
 			
 			mapper = new Mapper(this.rooms)
 
-			this.chars["PC"] = new PlayerCharacter();
+			var tPC:PlayerCharacter = new PlayerCharacter();
+			chars["PC"] = tPC;
+			charDict[tPC] = "PC";
+			
+			shipDb = new ShipManager(); // Gotta do this after at least the PC object exists
 			_perkDB = new Perks();
 			
 			inputManager = new InputManager(stage, false);
@@ -563,6 +580,7 @@
 		private function finishInit(e:Event):void
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			addEventListener(Event.ENTER_FRAME, updateBuffers);
 			this.configureCodex();
 			this.configureMails();
 			this.userInterface.showMainMenu();
@@ -1103,6 +1121,18 @@
 		public function get enemy():Creature { return _enemy; }
 		public function setEnemy(v:Creature):void { _enemy = v; }
 		
+		private var _targetShip:SpaceShip = null;
+		public function get TargetShip():SpaceShip { return _targetShip; }
+		public function SetTargetShip(v:SpaceShip):void { _targetShip = v; }
+		
+		private var _attackerShip:SpaceShip = null;
+		public function get AttackerShip():SpaceShip { return _attackerShip; }
+		public function SetAttackerShip(v:SpaceShip):void { _attackerShip = v; }
+		
+		private var _enemyShip:SpaceShip = null;
+		public function get EnemyShip():SpaceShip { return _enemyShip; }
+		public function SetEnemyShip(v:SpaceShip):void { _enemyShip = v; }
+		
 		public function get celise():Celise
 		{
 			return chars["CELISE"];
@@ -1347,9 +1377,40 @@
 		{
 			return chars["DELILAH"];
 		}
+
+		public function get yammi():Yammi
+		{
+			return chars["YAMMI"];
+		}
 		public function get mirrin():Mirrin
 		{
 			return chars["MIRRIN"];
+		}
+		
+		public function get fisianna():Fisianna
+		{
+			return chars["FISIANNA"];
+		}
+		public function testShipCombat():void
+		{
+			CombatManager.newSpaceCombat();
+			CombatManager.setFriendlyActors(shipDb.ActivePlayerShip);
+			CombatManager.setHostileActors(new TestHostileShip());
+			CombatManager.victoryScene(function():void { } );
+			CombatManager.lossScene(function():void { } );
+			CombatManager.displayLocation("Basic Ship Test");
+			
+			clearOutput();
+			output("Basic Ship Fight Test");
+			
+			clearMenu();
+			addButton(0, "Next", CombatManager.beginCombat);
+		}
+		public function testShipSave():void
+		{
+			var v:* = shipDb.ActivePlayerShip.Agility;
+			v = shipDb.ActivePlayerShip.Armor;
+			trace("bp");
 		}
 	}
 }

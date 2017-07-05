@@ -219,8 +219,7 @@
 			if(rand(10) <= 3 && !target.hasStatusEffect("Burning"))
 			{
 				output("\n<b>You are now on fire!</b>");
-				target.createStatusEffect("Burning", rand(2)+2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
-
+				CombatAttacks.applyBurning(target, 2 + rand(2));
 			}
 			//If already on fire, add another two rounds.
 			else if(target.hasStatusEffect("Burning"))

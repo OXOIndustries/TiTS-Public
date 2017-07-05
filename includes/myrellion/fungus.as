@@ -53,8 +53,8 @@ public function infectedMyrmedionShit():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new MyrInfectedFemale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new MyrInfectedFemale());
 	CombatManager.victoryScene(winVsInfectedMyr);
 	CombatManager.lossScene(loseToInfectedMyrYouSubbieSloot);
 	CombatManager.displayLocation("INFECT. MYR");
@@ -695,8 +695,8 @@ public function fuckYesPlantLadyIllSaveYou():void
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new GardeBot());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new GardeBot());
 	CombatManager.victoryScene(beatUpConstructoBot);
 	CombatManager.lossScene(roboQueenFightPCLoss);
 	CombatManager.displayLocation("ROGUE BOT");
@@ -753,7 +753,7 @@ public function gardeBotBonusButtons():void
 
 public function gardeBotMove(arg:int = 1):void
 {
-	var tEnemy:Creature = CombatManager.getHostileCharacters()[0];
+	var tEnemy:Creature = CombatManager.getHostileActors()[0];
 	
 	tEnemy.setStatusValue("Sporebutt",1,arg);
 	clearOutput();

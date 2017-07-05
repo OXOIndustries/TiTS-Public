@@ -52,8 +52,8 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "The goo's liquid flexibility allows [enemy.himHerIt] to handily avoid your attack.";
-			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
+			this.customDodge = "The goo’s liquid flexibility allows [enemy.himHerIt] to handily avoid your attack.";
+			this.customBlock = "The goo’s liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
@@ -411,18 +411,9 @@ package classes.Characters
 					else
 					{
 						output(" A sharp pain spreads and you look down to see a shard of crystal plating sticking out!");
-						if (!target.hasStatusEffect("Bleeding"))
-						{
-							output(" <b>You’re bleeding!</b>");
-							target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You're bleeding!", true, 0);
-						}
-						else
-						{
-							output(" <b>You're bleeding a little!</b>");
-							// Add a stack and refresh duration
-							target.addStatusValue("Bleeding", 1, 1);
-							target.setStatusValue("Bleeding", 2, 3);
-						}
+						if (!target.hasStatusEffect("Bleeding")) output(" <b>You’re bleeding!</b>");
+						else output(" <b>You’re bleeding a little!</b>");
+						CombatAttacks.applyBleed(target, 1, 3, 15);
 					}
 				}
 				
@@ -477,18 +468,9 @@ package classes.Characters
 				
 				if (dr.hpDamage > 0)
 				{
-					if (!target.hasStatusEffect("Bleeding"))
-					{
-						output(" <b>You’re bleeding!</b>");
-						target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You're bleeding!", true, 0);
-					}
-					else
-					{
-						output(" <b>Your bleeding is aggravated further!</b>");
-						// Add a stack and refresh duration
-						target.addStatusValue("Bleeding", 1, 1);
-						target.setStatusValue("Bleeding", 2, 3);
-					}
+					if (!target.hasStatusEffect("Bleeding")) output(" <b>You’re bleeding!</b>");
+					else output(" <b>Your bleeding is aggravated further!</b>");
+					CombatAttacks.applyBleed(target, 1, 3, 15);
 				}
 			}
 		}

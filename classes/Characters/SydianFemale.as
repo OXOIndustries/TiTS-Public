@@ -35,7 +35,7 @@
 			this.capitalA = "The ";
 			this.long = "Placeholder";
 			this.customDodge = "The sydian rolls aside in a remarkable display of agility for one with such a large frame.";
-			this.customBlock = "The alien's chitin deflects the attack.";
+			this.customBlock = "The alien’s chitin deflects the attack.";
 			this.isPlural = false;
 			
 			this.meleeWeapon = new Fists();
@@ -323,7 +323,7 @@
 					
 					applyDamage(new TypeCollection( { kinetic: 9 + rand(2), drug: dd } ), this, target, "minimal");
 					
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 				else
 				{
@@ -388,7 +388,7 @@
 				else
 				{
 					output(" blinding you!");
-					target.createStatusEffect("Blinded", 2 + rand(2), 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(target, 2 + rand(2));
 				}
 			}
 		}
@@ -420,8 +420,8 @@
 			else
 			{
 				output(" Her coy smile distracts you from the tail that caresses your [pc.leg] and then yanks it from under you!");
-				output(" <b>You're going to have a difficult time fighting from down here!</b>");
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				output(" <b>You’re going to have a difficult time fighting from down here!</b>");
+				CombatAttacks.applyTrip(target);
 				applyDamage(new TypeCollection( { kinetic: 9 + rand(2) } ), this, target, "minimal");
 			}
 		}

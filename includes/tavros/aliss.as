@@ -1767,7 +1767,7 @@ public function lustOvahTimeEvent():void
 				else if(pc.hasVagina()) output("the nub of your [pc.clit]");
 				else output("your flat, featureless groin");
 				output(". You tremble, and she stops just short. Your climax is so urgent that your vision begins to sharpen. Her chest falls with a released breath... her pussy glints as a drop of moisture wets her labia... her fingers flinch, then extend again. Her eyes lock to yours, reading your expression; your need brings a twinkle to her eye, and she presses her palm into you. You can no longer hold back. At the same moment as her hand begins to cup your ");
-				if(pc.hasCock()) output("[pc.cockHeadNoun]");
+				if(pc.hasCock()) output("[pc.cockHead]");
 				else if(pc.hasVagina()) output("[pc.vagina]");
 				else output("crotch");
 				output(", you orgasm.");

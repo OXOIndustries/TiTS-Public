@@ -335,7 +335,7 @@
 				if(target.shields() < 0 && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 				{
 					output(" You taste iron, and you’re knocked to a place where it seems as if the battle is coming from a long way away...");
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0, 0xFF0000);
+					CombatAttacks.applyStun(target, 2);
 				}
 			}
 			meleeWeapon.attackVerb = "stab";
@@ -370,7 +370,7 @@
 			else
 			{
 				output(" You can’t stop yourself being pulled down in turn! The remaining zil cheer and close in, scenting victory.");
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				CombatAttacks.applyTrip(target);
 			}
 			this.createStatusEffect("Trip CD",5,0,0,0);
 		}

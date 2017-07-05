@@ -159,9 +159,9 @@ package classes.Resources.Busts
 			public function get Full_ALISS_NUDE():Class { return Full_ALISS; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/anno.png", mimeType = "image/png")]
-			public var Bust_ANNO:Class;
+			public var Full_ANNO:Class;
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/anno_nude.png", mimeType = "image/png")]
-			public var Bust_ANNO_NUDE:Class;
+			public var Full_ANNO_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Carl.png", mimeType = "image/png")]
 			public var Full_CARL:Class;

@@ -175,7 +175,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 			}
 			if(!targetCreature.isGoo() && !targetCreature.hasStatusEffect("Tripped") && (((usingCreature.aim()/2) + rand(20) + 1) > ((targetCreature.reflexes()/4) + (targetCreature.physique()/4) + 10)))
 			{
-				targetCreature.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "Cannot act for a turn.", true, 0,0xFF0000);
+				CombatAttacks.applyTrip(targetCreature, "Cannot act for a turn.");
 				output("\n\n<b>There’s so much [pc.cumNoun] that " + targetCreature.getCombatName() + " is tripped!</b>");
 			}
 		}
@@ -622,7 +622,7 @@ output("\n\nPossibly add scenes for: Jardi, Sera’s private slut; Zo’dee, Adv
 // “Give the galotian a gift of sealed cum.”
 public function hasACumBubble():Boolean
 {
-	return (pc.hasItem(new SmallCumBubble()) || pc.hasItem(new MediumCumBubble()) || pc.hasItem(new LargeCumBubble()) || pc.hasItem(new HugeCumBubble()));
+	return (pc.hasItemByClass(SmallCumBubble) || pc.hasItemByClass(MediumCumBubble) || pc.hasItemByClass(LargeCumBubble) || pc.hasItemByClass(HugeCumBubble));
 }
 
 
@@ -1338,7 +1338,7 @@ public function giveVaandeATreatSetup():void
 		else if(pc.inventory[x] is HugeCumBubble) choices.push(x);
 	}
 	var func:Function = giveVaandeTheGiftOfCum;
-	if(pc.hasItem(new BubbleBuddy()) && pc.hasCock()) func = giveVaandeBubbleBuddyFun;
+	if(pc.hasItemByClass(BubbleBuddy) && pc.hasCock()) func = giveVaandeBubbleBuddyFun;
 
 
 	if(choices.length == 1) func(pc.inventory[choices[0]]);
