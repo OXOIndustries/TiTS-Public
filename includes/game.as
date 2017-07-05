@@ -2004,6 +2004,18 @@ public function variableRoomUpdateCheck():void
 		}
 	}
 	*/
+	//THE ENTITE
+	if (entiteAvailable() && rooms["720"].northExit == "")
+	{
+		rooms["720"].northExit = "ENTITE";
+		generateMap();
+		
+	}
+	else if (!entiteAvailable() && rooms["720"].northExit == "ENTITE")
+	{
+		rooms["720"].northExit = "";
+		generateMap();
+	}
 	// Doc McAllister
 	if (mcallisterIsIn())
 	{
