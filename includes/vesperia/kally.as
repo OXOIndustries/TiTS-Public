@@ -3618,7 +3618,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	else if(arg == "green")
 	{
 		output("You choose the green, waxy-looking entrance over the more technological marvels on offer. ");
-		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock" + x + "] from confinement. ");
+		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock " + x + "] from confinement. ");
 		output("As you press against the verdant faux-cunt, you are struck by the texture: it doesn’t feel anything like it looks. It reminds you of a slippery version of felt. You could thrust in with ease, but you take the time to admire the spreading lips. They’re gorgeously ruffled, almost neon green at the fringes but rich emerald on the inside.");
 		if(CodexManager.entryUnlocked("Venus Pitchers")) output("\n\nYou are briefly reminded of the venus pitchers of Mhen’ga.");
 		else output("\n\nIf fucking plant pussies counted as botany, the galaxy would have a whole lot more scientists.");
@@ -3661,7 +3661,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	else
 	{
 		output("You choose the devious purple pussy over the the other exotic choices on offer. ");
-		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock" + x + "] from confinement and has it ready to go. ");
+		if(!pc.isCrotchExposed()) output("A few quick tugs frees your [pc.cock " + x + "] from confinement and has it ready to go. ");
 		output("The innocuous-looking entrance reacts to your proximity by spreading its lips before you even make content, revealing a pink-tinted interior that seems to wink at you even as its clit engorges. You jerk to a stop at the sight, but the pussy just keeps getting wetter and wetter. The lips visibly puff up. The clit turns a deeper purple, almost black, and grows till it’s nearly an inch long. This sinful slit seems to be doing everything it can to beckon you into its velvety folds.");
 		output("\n\n<i>As if you needed any encouragement.</i>");
 		output("\n\nYou");
