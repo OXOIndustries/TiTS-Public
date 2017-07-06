@@ -941,7 +941,7 @@ package classes.GameData
 			}
 		}
 		
-		// region Item Attack Implementors
+		//{ region Item Attack Implementors
 		public static function DroneAttack(attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) output("Your");

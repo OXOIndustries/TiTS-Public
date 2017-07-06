@@ -53,7 +53,7 @@
 				pc.libido(1);
 				if((pc.isBimbo() || pc.isBro()) && (pc.IQ() < 95 || rand(2) == 0))
 				{
-					//{If a player with bimbo brains tries to use Rubber-Made, they receive the following warning}
+					// If a player with bimbo brains tries to use Rubber-Made, they receive the following warning
 					output("You playfully turn the funny gum in your fingers, admiring the shiny, striped packaging. There’s some kind of writing on one side, but it seems boring. Something about eating the gum. That’d be kinda icky! Doesn’t that stuff stay in your stomach forever? You’re pretty sure you heard that somewhere before.");
 					output("\n\nWould you like to chew the gum anyway?");
 					clearMenu();
@@ -66,14 +66,14 @@
 				{
 					output("Pulling the colorful wrapper away, you clutch the small, cream-colored resin between your fingers, turning it over cautiously. It is a small thing, easily squished but bouncing more or less back into its original shape immediately. Doubtfully, you pop the piece of gum into your mouth and begin chewing. Oddly, it tastes like cherries.\n\nYour mouth waters the longer you chew and gradually the gummy block begins to grow softer and less elastic. As the cherry flavoring begins to fade, you push the waxy substance against the back of your teeth with your [pc.tongue] until it forms a thin plaster. Opening your [pc.lips] slightly, you begin to blow, your breath pushing the pale white gum outward in a small bubble. With each puff, the bubble grows larger, until it even dwarfs your head.");
 					output("\n\nThe pasty bubble thins as it grows and emits a slight keening sound as it is put under unsustainable tension. You give it one more puff and the bubble pops with an audible clap. The gooey gunk splatters all over your face and neck, the moisture warm and slimy. What a mess!");
-					//{if the player has non-latex hair, they gain latex hair. The player gains a rank of Latex Skin}
+					// if the player has non-latex hair, they gain latex hair. The player gains a rank of Latex Skin
 					kGAMECLASS.flags["RUBBER_MADED"] = 1;
 				}
 				//Repeat
 				else
 				{
 					output("You pop another stick of Rubber-Made into your mouth and wetly chew away. Smacking your lips as you nibble and munch on the sticky gum, your cheeks slowly fill with saliva that threatens to run out of your mouth. You try chewing with your mouth closed, but your jaw quickly becomes fatigued and you simply have to accept a little drool as the gooey treat is chomped to elasticity. When the flavor fades, you blow another bubble, fingertips playing along its straining latex surface as it fills and fills. Then, with cherry saliva dripping over your [pc.lips], you give one more puff to pop the rubber goo all over your body.");
-					//{if the player has non-latex hair, they gain latex hair. The player gains a rank of Latex Skin}
+					// if the player has non-latex hair, they gain latex hair. The player gains a rank of Latex Skin
 				}
 				//Hair
 				if(pc.hairLength >= 3 && !pc.hasStatusEffect("Latex Hair"))
@@ -81,14 +81,14 @@
 					output("\n\nYour fingers run over sticky goop in your hair, despairing at the thought of trying to get it out. As your pull them back, blobs of gooey latex form loose webs from your hand to your head. The longer you look at the drooping slime, however, the thicker it gets, as if growing. You shake off the muck and pat up and down your [pc.hairsDescript]. The [pc.hair] seems almost entirely covered by the thin putty of your bubblegum, rapidly cooling in a glistening sheath. Your hand comes away dry and you shake your head at the added weight of your freshly lacquered mane.");
 					pc.createStatusEffect("Latex Hair");
 					output("\n\n<b>You have latex hair!</b>");
-					//{player gains the Latex Hair trait}
+					// player gains the Latex Hair trait
 				}
 				//Skin
 				if(pc.skinType != GLOBAL.SKIN_TYPE_LATEX)
 				{
 					output("\n\nFlinching at the pop, you clasp your goo-soaked face and wipe the slime off with your palms. Blinking and flushed, you almost don’t notice that the liquid latex on your hands seems to be spreading. It drips down your wrists and over your forearms. You try to touch the slimy seam, but your fingertips have already been covered and it’s impossible to get a firm grip on the oozing membrane. The resin sheath flows over your [pc.skinFurScales] and under your [pc.clothes], sheathing your body in a seamless, glistening rubber coating no thicker than a layer of body oil.");
 					output("\n\nYou’d almost believe the gum had simply vanished into your skin, but when you rub a finger along your cheek, the rude rubber squeak tells you that the latex is permanent. Surprisingly, your sensitivity hasn’t been impaired by the second skin. Touching your pliant, plastic skin confirms that you can feel with surprisingly improved acuteness. <b>You now have rubber skin.</b>");
-					//{if the player had fur, they lose it. Tail descriptors also gain the latex descriptors}
+					// if the player had fur, they lose it. Tail descriptors also gain the latex descriptors
 					pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
 					pc.clearSkinFlags();
 					pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
@@ -96,14 +96,14 @@
 					pc.removeStatusEffect("Latex Skin");
 					//Latex skin ranks counter!
 					pc.createStatusEffect("Latex Skin",1,0,0,0);
-					//{Libido increases by 1-3 points and player gains the Latex Skin trait}
+					// Libido increases by 1-3 points and player gains the Latex Skin trait
 					pc.libido(1+rand(3));
 				}
 				//If Skin is already Latex
 				else if(pc.statusEffectv1("Latex Skin") < 3)
 				{
 					output("\n\nA fresh coating of Rubber-Made gum spreads over your shiny body, adding a little extra to the latex second skin. Your body feels warm as the goo settles over your glistening skin, thickening the sheath almost imperceptibly. Drawing a palm down your throat, over your [pc.chest] and across your [pc.hips] pulls a shuddering moan from your lips that leaves you feeling cheap and easy. Given that your body is increasingly looking like a sex doll, it’s no wonder you’re feeling a little vulgar. You take a deep breath to calm yourself, but it doesn’t work.");
-					//{Player’s lust increases by 5-10 points and they gain a rank in Latex Skin}
+					// Player’s lust increases by 5-10 points and they gain a rank in Latex Skin
 					pc.lust(5+rand(6));
 					pc.addStatusValue("Latex Skin",1,1);
 				}
@@ -125,7 +125,7 @@
 					if(pc.hasVagina()) output(" The gushing resin floods your inner recesses, coating the walls of your [pc.vaginas] with a lip-biting fervor that leaves your fingers trembling and your jet-black skin prickling.");
 					output(" The feeling of utter encasement is too much, and you sink to the ground, shivers of too-tender delight swimming through your body.");
 					if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) output("\n\nThe sudden feeling of shocked and lustful eyes on you rouses you from your reverie. Slowly rising from the ground, you try to maintain as much dignity as you can muster. As you move on, you realize that a moaning squeak accompanies your every step. You don’t have a mirror close at hand, but you realize that with the fresh lacquer, you must look like a black rubber fuckdoll. Putting an embarrassed urgency in your steps, you find a little privacy and try to clean up as best you can.");
-					//{Gives player "Black Latex" condition, increasing minimum lust by 10 but making their attempts to escape grapples or constricts far more successful}
+					// Gives player "Black Latex" condition, increasing minimum lust by 10 but making their attempts to escape grapples or constricts far more successful
 					pc.createPerk("Black Latex",0,0,0,0,"Gives you delightful latex skin, but keeps you slightly more aroused at all times.");
 					output("\n\n(<b>Gained Perk: Black Latex</b> - Your skin is now hyper-sensitive latex, keeping you constantly at least a little aroused.)");
 					pc.skinTone = "black";

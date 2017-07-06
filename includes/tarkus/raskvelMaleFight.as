@@ -191,7 +191,7 @@ public function sureRaskLetsHaveFun():void
 	else output("You practically giggle as you run your eyes over their male forms. Three of these energetic little fuck-pumps at once? How nice of them to ask!");
 	output("\n\n<i>“Fun sounds like fun,”</i> you say. <i>“Know a good spot?”</i>");
 	output("\n\n<i>“Wouldn’t offer if we didn’t,”</i> he grins. The three raskvel skillfully work their way down towards you. Chattering and laughing between you, they put their warm, smooth hands in yours and lead you off into the depths of the junk.");
-	//{Go to cons gang bang}
+	// Go to cons gang bang
 	clearMenu();
 	addButton(0,"Next",consensualGangBang);
 }
@@ -217,7 +217,7 @@ public function dontPayForSafePassageSlut():void
 	output("<i>“You must know I’m not giving you anything,”</i> you say.");
 	output("\n\n<i>“So few people have the public good at heart,”</i> the first one sighs. <i>“Ah well. Examples have to be made.”</i>");
 	output("\n\nThe three of them skillfully clamber down from their junk and close in on you.");
-	//{go to fight}
+	// go to fight
 	clearMenu();
 	configRaskGangFight();
 	addButton(0, "Next", CombatManager.beginCombat);
@@ -252,7 +252,7 @@ public function pay4SafetyWivSmex():void
 	{
 		output("<i>“If you want to fuck, cut the bullshit and let’s fuck,”</i> you say curtly. There’s a short silence.\n\n<i>“I like your style offworlder,”</i> the first raskvel says, as the three of them quickly clamber down to you. Chattering and laughing between you, they put their warm, smooth hands in yours and lead you off into the depths of the junk.");
 	}
-	//{Go to cons gang bang}
+	// Go to cons gang bang
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",consensualGangBang);
@@ -1231,7 +1231,7 @@ public function cuntTailRaskPlay(args:Array):void
 	addButton(0,"Next",vaginaRaskStuffEpilogus,args);
 }
 
-//{merge}
+// merge
 public function vaginaRaskStuffEpilogus(args:Array):void
 {
 	var x:int = args[0];

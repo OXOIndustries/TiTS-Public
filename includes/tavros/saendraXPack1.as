@@ -838,7 +838,7 @@ public function sx1DoorBreach():void
 	
 	processTime(1);
 
-	//{To Shotgun Guard fite}
+	// To Shotgun Guard fite
 	clearMenu();
 	addButton(0, "Fight!", sx1InitShotguardFight);
 }

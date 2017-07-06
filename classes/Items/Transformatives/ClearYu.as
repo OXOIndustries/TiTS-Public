@@ -57,16 +57,16 @@
 					output("Pulling off the wrapper, you pop the candy into your mouth and suck at the sweet treat with delight. Faint hints of ripe fruit and bubbly champagne tingle through your lips as as you lap at the firm lollipop.");
 					output("\n\nThe tingle from your mouth spreads until it seems to settling in the back of your head, a slightly fuzzy feeling washing over you. What were you just thinking about? It seems distant and unimportant, especially compared to the lovely tingling that loosens the stress in your neck and shoulders. It’s as if a weight has been lifted from your chest and you can breathe deeper and more easily than ever before.");
 					kGAMECLASS.flags["CLEARED_YU"] = 1;
-					//{Reduce Intellect by 3-5 points. Increase Reflexes, Aim, and Libido by 1-3 points each, to a max of 60.}
+					// Reduce Intellect by 3-5 points. Increase Reflexes, Aim, and Libido by 1-3 points each, to a max of 60.
 				}
 				//Critical Levels
-				//{If a player has already consumed one of these items and their Intelligence is at 10 or lower, this plays instead of the normal Repeat text}
+				// If a player has already consumed one of these items and their Intelligence is at 10 or lower, this plays instead of the normal Repeat text
 				else if(target.intelligence() <= 10)
 				{
 					//Bad End
 					if(target.hasStatusEffect("Sweet Tooth"))
 					{
-						//{If a player tries to consume another ClearYu while they have the <i>“Sweet Tooth”</i> status effect, they will attempt to eat two at the same time, triggering a Bad End. This can only trigger if the player has an Intelligence below 10}
+						// If a player tries to consume another ClearYu while they have the “Sweet Tooth” status effect, they will attempt to eat two at the same time, triggering a Bad End. This can only trigger if the player has an Intelligence below 10
 						output("Rolling the partially dissolved lollipop from your lips and holding the glistening candy to eye level, it occurs to you that you’ve never tried two at once. If one of these is so delicious you could just about suck on it all day long, just think how good two must be. Popping the first treat back into your mouth, you pull out a second and unwrap the waxy paper from it. The interior of the wrapper seems to have some kind of safety information written on it and you giggle. Putting nutrition facts on a lollipop? How silly! You crumple up the paper and let it fall to the ground as you stuff the second ClearYu past your [pc.lips]");
 						output("\n\nThe two hard candies clink against each other as you roll them around in your mouth, your [pc.tongue] swirling and caressing each in turn as your mouth fills with saliva. The taste is better than you could’ve imagined, a sugar rush overtaking you as raw sensation floods your brain. ");
 						if(target.isBald()) output("The faint wind rolls across your [pc.skin] sending deserate shivers through your back and up your spine.");
@@ -98,14 +98,14 @@
 					output("You unwrap another lollipop and stare at it for a moment. The crimson candy is still as bright as alluring as ever, but you notice perhaps for the first time, that the red seems to darken towards the interior. The whorling patterns across its surface are almost mesmeric, drawing you into that dark, unknown depth within.");
 					output("\n\nYou blink, the daydream vanishing before your eyes. Weird! You move to consume the candy with your normal joyful relish, but the memory of your silly fantasy gives you pause. Maybe you’ll take your time with this lollipop, rather than just sucking it down as quickly as possible.");
 
-					//{Reduces Intellect by 1 point. Player gains the status effect: <i>“Sweet Tooth.”</i> This status lasts for 12 hours and has the mouseover text <i>“Sucking seductively on a lollipop.”</i> In combat, this increases your tease effectiveness.}
+					// Reduces Intellect by 1 point. Player gains the status effect: “Sweet Tooth.” This status lasts for 12 hours and has the mouseover text “Sucking seductively on a lollipop.” In combat, this increases your tease effectiveness.
 					normal = false;
 				}
 				//Repeat
 				else
 				{
 					output("Popping another ClearYu in your mouth, you suck with abandon, grinning as the fizzy lollipop fills your plump, puckered lips. Your fingers twist the flavorful lollipop around and around, pulling it nearly out to kiss the tip before thrusting it back in to swallow the firm sphere within your needy cheeks. Your body tingles as a warm bloom fills your sight, everything around you becoming both softer and clearer. You’re more aware of your body and while you vaguely sense you’re losing something else, it’s probably not important.");
-					//{Reduce Intellect by 3-5 points. Increase Reflexes, Aim, and Libido by 1-3 points each, to a max of 60)
+					// Reduce Intellect by 3-5 points. Increase Reflexes, Aim, and Libido by 1-3 points each, to a max of 60)
 				}
 				if(normal)
 				{
@@ -126,12 +126,12 @@
 					target.libido(3);
 				}
 				//Transformation Effects
-				//{Each transformation has a 30% chance to trigger with each item consumed}
+				// Each transformation has a 30% chance to trigger with each item consumed
 				//Lips
 				if(target.lipColor != "ruby" && rand(3) == 0)
 				{
 					output("\n\nAbsently, you grip the little stick and pull the candy to your lips, twirling it between your forefinger and thumb. The sticky pop leaves a warm, red lacquer across your lips that seems to harden, like a candy shell. You lick your lips and the moisture softens them instantly, rewarding you for the effort with another tingling flutter that leaves you blushing.");
-					//{Increase Lip Size by 2. Change Lip Color to Candy Apple Red}
+					// Increase Lip Size by 2. Change Lip Color to Candy Apple Red
 					target.lipMod += 2;
 					target.lipColor = "ruby";
 				}
@@ -144,27 +144,27 @@
 						output("\n\nThe tingle in your mouth wiggles its way up through your brain and settles at the top of your head, leaving you a bit giggly, as if drunk. You run a palm across the [pc.skin] of your head and find a fuzzy growth covering your previously smooth scalp. How odd! It seems you’ve got hair now. Oh well! No use worrying about it.");
 						target.hairLength = 0.5;
 					}
-					//{if not bald}
+					// if not bald
 					else
 					{
 						output("\n\nAs you enjoy the treat, you flick your hand over your shoulder, fingers flitting against the [pc.skin] of your neck. To your surprise, they end up tangled amid your [pc.hair], finding rather more of it than you’d expected. Can a candy make your hair grow? No, that’s silly. You must’ve just forgotten how long your luscious locks are.");
 						target.hairLength += 2 + rand(4);
-						//{Increases Hair Length by 2-5 inches}
+						// Increases Hair Length by 2-5 inches
 					}
 				}
 				//Hair Color
 				if(target.hairColor != "raven" && target.hairLength >= 6 && rand(3) == 0)
 				{
-					//{Only changes if the player’s hair is 6 inches or longer and not already Raven Black}
+					// Only changes if the player’s hair is 6 inches or longer and not already Raven Black
 					output("\n\nFlipping your hair back, a moment of confusion washes over you. Did you always have dark black hair? Wasn’t it... you struggle to recapture the memory of your own hair color, but it’s gone. Oh well, you shrug. Not really all that important afterall. You shake out your shimmering black tresses and lick the lollipop in an oblivious, dreamy daze.");
 					target.hairColor = "raven";
-					//{Change hair color to Raven Black}
+					// Change hair color to Raven Black
 				}
 				//Height
 				if(target.tallness < 102 && rand(3) == 0)
 				{
 					output("\n\nA wave of exhaustion pours over you and settles in the pit of your stomach. You yawn, tongue curling up at the tip, and stretch vigorously. Your limbs tremble at the intensity of your taut muscles. When the weariness passes, your full body strain leaves your [pc.legOrLegs] wobbling slightly. Glancing down, you tilt your head to one side, noisily sucking on your lollipop. Were you always this tall? Your upper body seems more or less normal, but below your waist, it seems like you’ve gotten a bit longer. Must be one of those late growth spurts!");
-					//{Height increases by 1-2 inches, up to a maximum of 102 inches}
+					// Height increases by 1-2 inches, up to a maximum of 102 inches
 					target.tallness += 1 + rand(2);
 				}				
 			}

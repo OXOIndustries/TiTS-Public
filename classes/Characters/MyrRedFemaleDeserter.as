@@ -325,7 +325,8 @@
 			else
 			{
 				output("\nHer feint succeeds - she lands a blow with her blade!");
-				//{ShieldUp: and your shield crackles in protest/else: and you swear loudly. There’s no shield to stop her strikes}!");
+				// ShieldUp: and your shield crackles in protest!
+				// else: and you swear loudly. There’s no shield to stop her strikes!
 				applyDamage(meleeDamage(), this, target, "melee");
 			}
 		}

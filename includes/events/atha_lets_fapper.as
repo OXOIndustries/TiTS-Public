@@ -28,13 +28,13 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 		output("Your console is still active. Do you want to watch anything in particular?");
 	}
 	
-	//{First time: Cock Review}
-	//{Repeat: New Let’s Fap}
-	//{If the player becomes a Champeon: Let’s Fap}
-	//{Champeons select from any of the episodes they’ve already viewed, or the newest one. The newest episode is just marked <i>“New Let’s Fap”</i> to keep the cock type a surprise.}
+	// First time: Cock Review
+	// Repeat: New Let’s Fap
+	// If the player becomes a Champeon: Let’s Fap
+	// Champeons select from any of the episodes they’ve already viewed, or the newest one. The newest episode is just marked <i>“New Let’s Fap”</i> to keep the cock type a surprise.
 
-	//{New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week}
-	//{Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?}
+	// New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week
+	// Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?
 	var possibleFuncs:Array = [];
 	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Atha’s Let’s Fap episodes", f: letsFapSelectionMain, ar: undefined } );
 	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "On demand episodes of Steph Irson: Galactic Huntress", f: stephOnDemandVODs, ar: undefined } );
@@ -129,7 +129,7 @@ public function letsFapUnlockFromName():String
 public function futaLetsPlayerIntroEmail():String
 {
 	var ret:String = "Hey " + pc.short + ". I saw this show that you might get a kick out of. Basically, some girl does reviews of different dicks. She uses some machine to give herself a different cock every week and ends up soaked in her own cum more often than not.\n\nIf you’re gonna watch, you probably want to do so from the privacy of your own ship, ha ha.\n\nA site address has been included below.\n\n(<b>The Smut menu has been added to your ship’s Masturbate option!</b>)";
-	//{Adds new option to Ship’s <i>“Masturbate”</i> menu: <i>“Smut”</i>.}
+	// Adds new option to Ship’s “Masturbate” menu: “Smut”.
 	return ret;
 }
 
@@ -149,14 +149,14 @@ public function athasChampeonPage():void
 	output("\n\n<b>Hydrant Tier:</b> Pledge 250 credits");
 	output("\nAccess the recording history for all previous Let’s Fap episodes.");
 	output("\nGain early access to new Let’s Fap episodes.");
-	//{new episodes go up every five days instead of every seven}
+	// new episodes go up every five days instead of every seven
 	output("\n\n<b>Geyser Tier:</b> Pledge 2500 credits");
 	output("\nAccess the recording history for all previous Let’s Fap episodes.");
 	output("\nGain early access to new Let’s Fap episodes.");
 	output("\nParticipate in a live CumStreamer episode, with a Q&A and special requests segment.");
 
 	output("\n\nWould you like to help support Atha?");
-	//[Faucet]   [Hydrant]   [Geyser]   [Leave]
+	// [Faucet]   [Hydrant]   [Geyser]   [Leave]
 	processTime(2);
 	clearMenu();
 	if(pc.credits >= 25) addButton(0,"Faucet",champeonAthaDonate,25,"Faucet","Donate at the faucet level, allowing you to view old episodes.");
@@ -168,7 +168,7 @@ public function athasChampeonPage():void
 	addButton(14,"Back",backToSmutMenu);
 }
 
-//{if the player donates}
+// if the player donates
 public function champeonAthaDonate(amount:int):void
 {
 	clearOutput();
@@ -191,7 +191,7 @@ public function champeonAthaDonate(amount:int):void
 }
 
 //Confirmation Email//
-//{if the player becomes a Champeon, they receive an email from Atha:
+// if the player becomes a Champeon, they receive an email from Atha:
 //From: Atha Peters <CockAddict001@CumStreamer.com>
 //To: [pc.email]@SteeleTech.corp
 //Subject: Thank You For Your Support!
@@ -676,9 +676,9 @@ public function cockVinePart5():void
 }
 
 //Let’s Fap - Live CumStreamer Episode
-//{for Geyser-tier Champeons only. Becomes available in the Smut menu as <i>“CumStreamer”</i> after the player pledges, but cannot be accessed after the Cock Tail event is viewed.}
-//{The Chat Names are more or less random, with a few oblique references. We can change them to whatever, if you’ve got better ideas}
-//{Is it possible to save the player’s choices and the random questions asked by the audience to this episode can be <i>“saved”</i> for the player’s later play back, or would it make more sense to have it viewable only the once?}
+// for Geyser-tier Champeons only. Becomes available in the Smut menu as “CumStreamer” after the player pledges, but cannot be accessed after the Cock Tail event is viewed.
+// The Chat Names are more or less random, with a few oblique references. We can change them to whatever, if you’ve got better ideas
+// Is it possible to save the player’s choices and the random questions asked by the audience to this episode can be “saved” for the player’s later play back, or would it make more sense to have it viewable only the once?
 
 public function liveCumstreamerEpisode():void
 {
@@ -737,8 +737,8 @@ public function liveCumstreamerEpisode2(cName:String):void
 
 	//Player Questions
 	output("\n\nWhat would you like to ask?");
-	//[Your Gender]   [Your Fetishes]   [Do You Travel?]   [No Questions]
-	//{For more questions the player can ask, check with Fen & Savin if they have any questions}
+	// [Your Gender]   [Your Fetishes]   [Do You Travel?]   [No Questions]
+	// For more questions the player can ask, check with Fen & Savin if they have any questions
 	processTime(4);
 	clearMenu();
 	addButton(0,"Your Gender",askCumStreamerHerGender,cName);

@@ -384,7 +384,7 @@
 					target.removeBeard();
 				}
 				//Growing TiTS
-				//{PC has a flat chest / tiny lil' moobs; always append as the last TF}
+				// PC has a flat chest / tiny lil' moobs; always append as the last TF
 				else if(select == 10)
 				{
 					kGAMECLASS.output("\n\nMinutes pass. You fidget around expectantly, awaiting the appearance of your new boobs. The label insisted there was a “good chance” of growth, right? You start pacing, ");
@@ -419,7 +419,7 @@
 						target.lust(9+rand(5));
 					}
 					//Breasturbation
-					//{Proc if PC has high lust & grows D+ cups. Append to end of TF segment so it looks longer and more interesting.}
+					// Proc if PC has high lust & grows D+ cups. Append to end of TF segment so it looks longer and more interesting.
 					if(target.lust() >= 75)
 					{
 						author("Savin");
@@ -474,7 +474,7 @@
 					select = 10;
 				}
 				//Cunt TF (requires no cunt)
-				//{If PC uses 5+ times in 24 hours, and doesn't already have a vagina. Procs last in scene
+				// If PC uses 5+ times in 24 hours, and doesn't already have a vagina. Procs last in scene
 				if(target.statusEffectv1("TittiesUsed") >= 6)
 				{
 					//→ No vagoo
@@ -518,7 +518,7 @@
 						target.orgasm();
 						author("Gruey");
 						target.lust(30+rand(20));
-						//{+LOTS of Lust}
+						// +LOTS of Lust
 					}
 					//Prevent "nothing happens" message.
 					select = 10;

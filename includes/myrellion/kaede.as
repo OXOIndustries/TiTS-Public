@@ -362,7 +362,7 @@ public function kaedeMyrellionBarFlirt():void
 	
 	output("\n\n<i>“I guess,”</i> she says. Her human side is trying awfully hard to be coy about it, but you can see the way her fluffy red tail starts swishing a little faster behind her that she’s enjoying your presence, and your growing closeness.");
 
-	//{If PC's fucked Kaede before:
+	// If PC's fucked Kaede before:
 	if (hasFuckedKaede())
 	{
 		output("\n\nYou hand slips down to stroke the wagging bush of canid tail behind her, making the halfbreed girl moan softly. <i>“What do you say we get out of here?”</i> you suggest, letting your hand play down from her tail to the tight butt beneath it.");
@@ -1189,7 +1189,7 @@ public function joinInCleaningUpCassKaedePostScene():void
 	addButton(0,"Next",postCassKaedeOrgasmEpilogue);
 }
 
-//{Combine ALL}
+// Combine ALL
 public function postCassKaedeOrgasmEpilogue():void
 {
 	clearOutput();

@@ -2203,7 +2203,7 @@ public function DivertingTarkusJokesAndJests():void
 	outputCodex(header("Diverting Jokes and Jests"));
 	outputCodex("<i>compiled by Jaskel Nuch</i>");
 	author("Zeikfried");
-	//{(big font if possible)}
+	// (big font if possible)
 
 	outputCodex("\n\nBosh the raskvel was worried. His friend asked him, <i>“What’s wrong, Bosh?”</i>");
 	outputCodex("\n\n<i>“Oh, it’s my new girlfriend. I really like her but... she’s a lapinara. Every time she comes over she wants to put her eggs in my butt, and I’m terrified of trying it.”</i>");

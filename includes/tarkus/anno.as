@@ -232,12 +232,12 @@ public function repeatAnnoApproach():void
 	clearOutput();
 	author("Savin");
 	showAnno();
-	//{If not sex'd yet:}
+	// If not sex'd yet:
 	if(annoSexed() == 0)
 	{
 		output("Anno looks up from her data slate as you approach her. <i>“Hey, boss! What’s up?”</i>");
 	}
-	//{if Sex'd:}
+	// if Sex'd:
 	else
 	{
 		output("Anno rests her chin in her hand, still leaning over the counter to give you a nice look down the half-zipped front of her uniform. <i>“Hey, sexy. Come back to see lil’ old me? Or did you have something else in mind...”</i>");
@@ -287,7 +287,7 @@ public function annoShopSetup():void
 	shopkeep = chars["ANNO"];
 	if(flags["TARKUS_DESTROYED"] != undefined)
 	{
-		//{First Time}
+		// First Time
 		chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue?”</i> Anno says hopefully. <i>“Not a lot of business to work with after the planet blew, so I’ve got some pretty decent weapons and armor in stock. Even some military-grade stuff, which I’m pretty sure you’re allowed to buy. Plus, plenty of junk I’ve managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.”</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop’s goods.\n";
 	}
 	else chars["ANNO"].keeperBuy = "<i>“Wanna take a look through the catalogue? Victor said I could give you a pretty nice discount.”</i>\n";
@@ -337,7 +337,7 @@ public function noAnnoSexPlz():void
 	showAnno();
 	output("<i>“Not exactly professional,”</i> you say, shaking your head.");
 	output("\n\nAnno’s lips twist into a pout. <i>“Fiiine. You’re the boss, I guess. C’mon, let’s get back up to the shop.”</i>");
-	//{Return to shop}
+	// Return to shop
 	processTime(2);
 	annoMainMenu();
 }
@@ -379,7 +379,7 @@ public function gropeAnnoShoots():void
 	clearOutput();
 	author("Savin");
 	showAnno();
-	//{2nd time +; tiny Mischievous bump?}
+	// 2nd time +; tiny Mischievous bump?
 	output("You’re not going to let Anno get the better of you this time... at least not without returning the favor. As Anno’s lining up her shot, you slip behind the bent-over ausar and grab a handful of her ass, squeezing hard enough to make her yelp.");
 	output("\n\n<i>“Hey! W-what’re you...”</i> she snaps, her voice turning into a low mewl as you grope and squeeze her butt, working your hand up around the base of her bushy white tail. Her leg twitches visibly as you stroke her tail, fingers running through the soft fur before trailing down between her now limply spread legs. You slip a pair of fingers down through her groin, pushing up through the sheer material of her catsuit uniform until you feel the hot ridges of her cunt, already moist with sudden excitement at your unexpected touch.");
 	output("\n\n<i>“You’re gonna mess up my shot,”</i> she whines, though you don’t hear anything but arousal in her voice as you finger her through her uniform. After a few seconds of searching, you find your prize: the tiny bump of her clitoral hood, just poking out against the uniform as you turn the horny ausar more and more on. When you brush it, she lets out a pitiful whimper of pleasure, and her finger slips - right on the trigger. You both wince as the sniper rifle fires and Annos sends a heavy lead package down range, slamming into the target dummy.");
@@ -438,7 +438,7 @@ public function annoShootsResults(easy:Boolean = false):void
 		addButton(1,"Snuggle",snuggleWithAnnoAfterWhuppinHerAss,undefined,"Snuggle","Be nice to the cute lil’ pooch and let her snuggle up on your lap for a little nap. She said anything, after all...");
 		//Anal
 		//Note to Fen: If she doesn't already, Anno needs a tight, virgin asshole (right where it belongs). This scene can take her anal virginity, after which she'd be a little looser, but still tight as hell.
-		//{PC must have a cock that fits in Anno's heiny-hole} + 50%
+		// PC must have a cock that fits in Anno's heiny-hole: + 50%
 		if(pc.hasCock() && pc.cockThatFits(chars["ANNO"].analCapacity() * 1.5) >= 0) addButton(2,"Buttfuck",putItInAnnosButtYouSloot,undefined,"Buttfuck","Fuck that needy ass like you mean it.");
 		else if(pc.hasCock()) addDisabledButton(2,"Buttfuck","Buttfuck","You’re too big to fit in her ass.");
 		else addDisabledButton(2,"Buttfuck","Buttfuck","You need a dick to buttfuck her.");
@@ -530,7 +530,7 @@ public function snuggleWithAnnoAfterWhuppinHerAss():void
 	output("\n\n<i>“You’re nice,”</i> she murmurs sleepily, planting a tiny kiss on your cheek before settling back in, and joining you in drifting off to sleep.");
 	processTime(5);
 	//[Next]
-	//{Pass ~2 hours}
+	// Pass ~2 hours
 	clearMenu();
 	addButton(0,"Next",snuggleWithAnnoAfterWhuppinHerAss2);
 }
@@ -640,7 +640,7 @@ public function publicUsePuppyAnno():void
 }
 
 //Repair Gear
-//{PC must have a Rust Monster Debuff active}
+// PC must have a Rust Monster Debuff active
 public function repairMyRustBroInjuryAnno():void
 {
 	//Cost: ~50 Creds? 
@@ -667,15 +667,15 @@ public function earScritchesForAnno():void
 	clearOutput();
 	author("Savin");
 	showAnno();
-	//{if First time:}
+	// if First time:
 	if(flags["ANNO_SCRITCHES_HAPPENED"] == undefined)
 	{
 		flags["ANNO_SCRITCHES_HAPPENED"] = 1;
 		output("You reach across the counter, planting an open palm between Anno’s perky white wolf-ears. <i>“Hrmm?”</i> she murmurs, ears perking up. <i>“H-hey, what’re you...”</i>");
 	}
-	//{If repeat}
+	// If repeat
 	else output("You reach across the counter, planting an open palm between Anno’s perky white wolf-ears. <i>“Hey, c’mon boss, it’s work hours...”</i> you flick one of her big ears, and she wriggles under your grasp. <i>“Then again...”</i>");
-	//{Combine}
+	// Combine
 	output(" Grinning, you start scratching the sensitive space between her ears, fingers running through her snowy hair. Her protestation melts away in an instant as you give ");
 	if(!silly) output("her a playful scratch");
 	else output("that bitch a scratch. Bitches love scratches");
@@ -805,9 +805,9 @@ public function askAbootAnnoz():void
 	output("\n\n<i>“Oh, yeah. That’s DOCTOR Anno Dorna to, uh... not you, my Glorious Corporate Paymaster,”</i> she says with a wink. <i>“Anyway, bopped around in R&D for a few years, discharged after some budget cuts got my panties in a twist, and then your dad gave me a job working for Steele Tech R&D. Which is a step up </i>if only<i> because of these sexy uniforms,”</i> she says, pushing out her chest until it strains against the tight, nearly-latex material of her ultra-sheer catsuit, a nipple making itself visible beneath your company logo.");
 	output("\n\n<i>“So yeah, um... God, you know how you can have all the deep thoughts in the world, but when someone asks you about yourself, you’re like... ‘uh... I like hamburgers’ or something. Let’s see, uh, my parents are old money! Something something cousins of His Royal Highness the Star-King of Ausaril, fifty times removed or so. You know the type: they spend all their time going to charity balls and other assorted rich people stuff. I’ve got a crazy little sister who’s into video games and pretending she’s a wizard or whatever. She’s a hoot, though we aren’t exactly close these days. Working on other ends of the galaxy and all.”</i>");
 	processTime(8);
-	//{FEN, PREPARE YOURSELF FOR A DIALOGUE TREE. CALL ACTION STATIONS, HERE WE GO!!!}
-	//{if PC hasn't met Syri, append "end of talk" section here}
-	//{if PC has met Syri:}
+	// FEN, PREPARE YOURSELF FOR A DIALOGUE TREE. CALL ACTION STATIONS, HERE WE GO!!!
+	// if PC hasn't met Syri, append "end of talk" section here
+	// if PC has met Syri:
 	if(flags["MET_SYRI"] != undefined)
 	{
 		if(flags["TOLD_TO_ANNO_ABOUT_SYRI_RELATIONSHIP"] == undefined)
@@ -880,7 +880,7 @@ public function endAnnoSyriTalk():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-//{NEW SYRI TALK OPTION: "Anno"}
+// NEW SYRI TALK OPTION: "Anno"
 public function syriTalksAboutAnno():void
 {
 	clearOutput();
@@ -1113,7 +1113,7 @@ public function howsBusiness():void
 }
 
 //Appearance
-//{Unlocked after sexed at least once}
+// Unlocked after sexed at least once
 public function annoAppearance():void
 {
 	clearOutput();
@@ -1283,7 +1283,7 @@ public function fuckAnnoAfterBeeJay():void
 }
 
 //Get Slurped
-//{Va-jay-jay-type characters} Slurp-rise!
+// Va-jay-jay-type characters: Slurp-rise!
 //[13:21] <Fenoxo> @Savin to stretch out F/F, I suggest some full body massage that turns into her jamming her nose into your cunt in licking, then scissoring, then sixtynining up the mess
 public function getSlurpedOnByAnnoz():void
 {
@@ -1356,7 +1356,7 @@ public function getSlurpedOnByAnnoz():void
 
 //Anal
 //Note to Fen: If she doesn't already, Anno needs a tight, virgin asshole (right where it belongs). This scene can take her anal virginity, after which she'd be a little looser, but still tight as hell.
-//{PC must have a cock that fits in Anno's heiny-hole} + 50%
+// PC must have a cock that fits in Anno's heiny-hole: + 50%
 public function putItInAnnosButtYouSloot():void
 {
 	clearOutput();
@@ -1600,7 +1600,7 @@ public function goozookaRaepsForAnnoButts():void
 	author("Savin");
 	showAnno();
 
-	//{+Mischevious, -1 Goo Sample}
+	// +Mischevious, -1 Goo Sample
 	pc.addMischievous(1);
 	pc.destroyItemByClass(GrayMicrobots, 1);
 
@@ -1637,7 +1637,7 @@ public function insideSteeleTechPostPlanetCrack():Boolean
 	else
 	{
 		output("The Steele Tech shop is a bigger wreck than ever; it’s more of a death trap than a storefront now. Piles of junk are scattered around in complete disarray, wall panels and lighting fixtures are hanging by threads of loose wire, and sparks occasionally fly from tears in the bulkhead. The shop clearly took a beating when the ship went orbital.");
-		//{PC has met Anno before, first time back in the shop:}
+		// PC has met Anno before, first time back in the shop:
 		if(flags["MET_ANNO_POST_SPLOSION"] == undefined)
 		{
 			firstTimeBackAfterPlanetSplosionsButMetAnnoBefore();
@@ -1670,7 +1670,7 @@ public function firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWi
 	annoMainMenu();
 }
 
-//{PC has met Anno before, first time back in the shop:}
+// PC has met Anno before, first time back in the shop:
 public function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 {
 	author("Savin");
@@ -1750,7 +1750,7 @@ public function joinCrewPlanetCrackerVersionHelpHer():void
 	
 	output("\n\nYou nod as Anno vanishes, scurrying off to her quarters.");
 	
-	//{PC is put back in hall outside Steele Tech. Can no longer access shop.}
+	// PC is put back in hall outside Steele Tech. Can no longer access shop.
 	flags["ANNOS_SHOP_CLOSED"] = 1;
 	flags["ANNO_CREWMEMBER"] = 1;
 	
@@ -1796,7 +1796,7 @@ public function joinCrewPlanetCrackerVersionSheWantsIt():void
 		output("\n\n<i>“Alright! Let’s do it, boss. You and me against the stars!”</i> Anno grins, extending a hand. You firmly shake it. <i>“I’ll go get my stuff, boss. Meet you ship-board!”</i>");
 		
 		output("\n\nYou nod as Anno vanishes, scurrying off to her quarters. ");
-		//{PC is put back in hall outside Steele Tech. Can no longer access shop.}
+		// PC is put back in hall outside Steele Tech. Can no longer access shop.
 		clearMenu();
 		flags["ANNOS_SHOP_CLOSED"] = 1;
 		flags["ANNO_CREWMEMBER"] = 1;

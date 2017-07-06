@@ -292,7 +292,7 @@
 		private function zilPheromoneFanPlural(target:Creature):void 
 		{
 			output("The two zil abruptly begin to fondle their rigid members, stimulating the organs as they alter their wingbeats to gust musk-laced air your direction. There’s nothing to do but try and hold your breath!");
-			//{Moderate toughness check pass}
+			// Moderate toughness check pass
 			if (target.physique() + rand(20) + 1 > 20) 
 			{
 				output("\nThey get tired long before you do and give up, but it still leaves a cloud of their delicious aroma floating around you. It’s strong enough to make your pulse quicken.");

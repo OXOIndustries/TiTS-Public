@@ -46,7 +46,7 @@ public function encounterLandmines():void
 	}
 	else
 	{
-		//{if Failed: PC takes heavy damage + Lust}
+		// if Failed: PC takes heavy damage + Lust
 		output("\n\nYou have just enough time to scream before the mine detonates. A deafening explosion rocks the cavern, throwing you back against the far wall with concussive force. Shrapnel and debris slam into you, tearing into your");
 		if (pc.shields() > 0) output(" shields");
 		else if (pc.hasArmor()) output(" [pc.armor]");

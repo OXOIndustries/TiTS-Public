@@ -24,7 +24,7 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
 				if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBITwo());
 				if(!CodexManager.entryUnlocked("Satyr Slave")) tempLoot.push(new SatyrSlave());
-				if(!CodexManager.entryUnlocked("Tentacles & Tanukis") && flags["MET_KIRO"] != undefined && flags["MET_SYRI"] != undefined) tempLoot.push(new TentaclesAndTanukis());
+				if(!CodexManager.entryUnlocked("Tentacles & Tanukis") && metKiro() && flags["MET_SYRI"] != undefined) tempLoot.push(new TentaclesAndTanukis());
 				break;
 			case "tarkus":
 				if(!CodexManager.entryUnlocked("||||||||")) tempLoot.push(new EightClicks());

@@ -63,7 +63,7 @@
 			if(target is PlayerCharacter) {
 				//Usage text:
 				//Using Honeydew
-				//{Effect: If the PC is lactating, it changes the lactation type to Honey. If the PC is not currently lactating but has a large bust (F+ cup?), then there is a chance that a honey lactation will be induced. Side effects! >:3 }
+				// Effect: If the PC is lactating, it changes the lactation type to Honey. If the PC is not currently lactating but has a large bust (F+ cup?), then there is a chance that a honey lactation will be induced. Side effects! >:3
 				kGAMECLASS.output("You pull the bottle of ChocoLac cream out of your pack, staring at the dark, chocolatey label and the cavalcade of busty girls on display, all arranged just right to keep them work-safe. Clever positioning, indeed. You slowly shrug out of your [pc.gear], leaving your [pc.chest] bare, your [pc.nipples] already stiffening at the thought of your new lactic bounty. With a grin of anticipation, you twist the cap off of the bottle and scoop a bit of the nanomachine-laced cream out onto your fingers. It feels almost like ice cream, cool and creamy to the touch, practically rolling into a ball as you scoop it out of the jar. You shudder slightly as you bring the cold cream to your bare [pc.chest], smearing it across your [pc.skin]. God damn, that’s cold. You struggle to spread the cream across your breasts, but eventually manage to smear the whole jar across your chest, leaving you looking mud-covered.");
 				//Milk TF (Already Lactating)
 				if(target.canLactate() && target.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
@@ -83,7 +83,7 @@
 						else kGAMECLASS.output("the flush of wetness down your thighs as [pc.eachVagina] drools its excitement.");
 					}
 					kGAMECLASS.output("\n\nSlowly, the feeling of fullness drains from your [pc.chest], leaving you panting and gasping for breath, barely cognizant enough to realize how sodden you’ve made yourself. So much chocolate milk! You shudder in delight at the sight of your new productivity, and can’t possibly stop yourself from licking a few drops off your hands. Delicious! <b>It looks like you now lactate a sweet chocolate milk!</b>");
-					//{+ MilkVol}
+					// + MilkVol
 					if(target.milkStorageMultiplier < 3) target.milkStorageMultiplier += .5;
 					target.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 					//Flag as milked

@@ -300,7 +300,7 @@ public function alexSexMenu(display:Boolean = true):void {
 		else output("your partner");
 		output(" peeking in. He whistles appreciatively.");
 
-		//{If first time boning Alex (or if first time since changing genital configuration if that’s not too much of a bitch to code):
+		// If first time boning Alex (or if first time since changing genital configuration if that’s not too much of a bitch to code):
 		if(flags["FUCKED_ALEX"] == undefined) {
 			var he:String = pc.mfn("he","she","meh");
 			//If herm:

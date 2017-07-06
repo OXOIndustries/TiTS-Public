@@ -165,7 +165,7 @@ public function talkToAntQueenButt(arg:Function = undefined):void
 
 	//Sex-life
 	//Is she constantly having sex? Even now...
-	//{Unlocks flirt/sex}
+	// Unlocks flirt/sex
 	if(arg == OiIsDatBitchHavingSexAllDay) addDisabledButton(3,"Sex-Life","Sex-Life","You just finished that discussion");
 	else addButton(3,"Sex-Life",OiIsDatBitchHavingSexAllDay,undefined,"Sex-Life","Is she constantly having sex? Even now...");
 
@@ -226,7 +226,7 @@ public function sozYouzAQueen():void
 
 //Sex-life
 //Is she constantly having sex? Even now...
-//{Unlocks flirt/sex}
+// Unlocks flirt/sex
 public function OiIsDatBitchHavingSexAllDay():void
 {
 	clearOutput();
@@ -236,7 +236,7 @@ public function OiIsDatBitchHavingSexAllDay():void
 	output("\n\n<i>“Of course it’s boring,”</i> the queen rather immediately snaps. It sounds like she’s had this conversation in the past and has grown a bit weary of it. <i>“If you find someone with the ability to ‘keep it fresh in the bedroom’ with the sole purpose of procreation after a week straight I’ll be </i>rather<i> surprised. That’s not to say I don’t have my individual pleasures here and there, but my sex-life isn’t the purview of some random off-worlder. Well. Save when they’re a part of it, anyway.”</i>");
 	output("\n\nOh? There’s an interesting thought. The merchant responds to your mild surprise with a knowing grin of her own. <b>Maybe there’s something you could do there...</b>");
 	processTime(3);
-	//{Unlocks flirt}
+	// Unlocks flirt
 	flags["MERCHANT_QUEEN_SEX_UNLOCKED"] = 1;
 	talkToAntQueenButt(OiIsDatBitchHavingSexAllDay);
 }
@@ -276,7 +276,7 @@ public function whatYouMeanAboutInfluenceEh():void
 
 
 //Flirt {Sex}
-//{Unlocked with Sex? dialog}
+// Unlocked with Sex? dialog
 public function flirtSexWithAnAntQueenMerchantButt():void
 {
 	clearOutput();
@@ -476,7 +476,7 @@ public function femlustWithQueen():void
 
 	output("\n\n<i>“Hmhm, left you breathless? Feel free to come by and ‘buy something’ again... who knows what products might be available.”</i>");
 	output("\n\nYou’re pretty sure it’d be more of the same.");
-	//{Modest time loss, orgasm.}
+	// Modest time loss, orgasm.
 	processTime(30+rand(15));
 	pc.orgasm();
 	pc.orgasm();

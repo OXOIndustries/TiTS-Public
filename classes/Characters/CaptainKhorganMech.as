@@ -252,7 +252,7 @@
 			else
 			{
 				removeStatusEffect("Missile Chargeup");
-				//{if PC moved.}
+				// if PC moved.
 				if(flags["MISSILE_TARGET"] != kGAMECLASS.currentLocation)
 				{
 					output("You hear a deafening KABLAM beside you, and a sudden shockwave of force throws you to the ground. You cough and splutter, waving dust out of your face as the blast zone clears. Damn, there’s barely anything left of that platform anymore!");
@@ -260,7 +260,7 @@
 					flags[flags["MISSILE_TARGET"]] = 0;
 					output(" <b>(-100% Cover)</b>");
 				}
-				//{if PC didn't move. YA GOOF}
+				// if PC didn't move. YA GOOF
 				else
 				{
 					output("You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a body full of shrapnel, tearing into you as you’re tossed about like a ragdoll.");

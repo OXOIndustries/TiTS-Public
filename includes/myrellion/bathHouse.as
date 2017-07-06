@@ -1102,7 +1102,7 @@ public function doubleEndedOserre():void
 	output("\n\n");
 	if(pc.looseness(x) <= 1) output("The warning is appropriate; you feel fingers spreading your labia and creating a guided pathway just before her abdomen bobs down again and a sharp sensation of pressure washes over you. The nubby toy presses against your opening and slowly slips into you, though not before your tight snatch feels every ridge and fake vein on it.");
 	else output("The warning is unnecessary, as are the fingers sent down to spread your labia; the nubby cock plunges right into you without so much as a coat-check, hilting itself so deeply that your [pc.vagina " + x + "] kisses Oserre’s.");
-	//{hymen/stretch check}
+	// hymen/stretch check
 	pc.cuntChange(x,30,true,true,false);
 	output("\n\nThe myr sighs as her grip on your shoulders tightens. Her backside begins to bob regularly, thrusting the lubed dick inside both of you with regular, even strokes. A feeling of stickiness spreads over your chest; the rhythmic compressions caused by her pumping must be squeezing myr nectar from her golden boobs. You enjoy the warm, wet smears her nipples make, but more acutely feel the veiny, thick surface of the false cock as Oserre slides it into your [pc.vagina " + x + "], clamping down on it instinctually in a way that your lover is likely to appreciate, since it draws the shaft part way from her own hole for the next thrust.");
 	output("\n\n<i>“Yes... yess,”</i> she moans, quivering as if close to orgasm.");
@@ -1241,7 +1241,7 @@ public function declineBathHJs():void
 	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	//{return to savins main room menu}
+	// return to savins main room menu
 }
 
 //Accept

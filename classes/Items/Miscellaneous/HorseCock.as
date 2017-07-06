@@ -139,11 +139,11 @@
 			{
 				kGAMECLASS.output("Your [pc.cock " + target + "] lies draped over your thigh as you look at the far smaller sheath in your hand. There’s no way in heaven this could fit on your massive dong, but you ruefully lose yourself in a daydream of having a horse-cock this large. The ones you saw on ultraporn stars on the extranet always looked so... bestial and masculine. It’s hard not to appreciate the qualities.\n\nAbsentmindedly, you tug on the opening of the tube and find it stretches far farther than you would have first thought. You don’t know why, but you can’t seem to stop yourself from taking the head of your [pc.cock " + target + "] and gently stuff it in the stretchy end of the sheath. The rubbery tube distends massively as your enormous cock invades its depths, stretching wide and long to hang heavily from your crotch.");
 				if(pc.hasKnot(target)) kGAMECLASS.output(" Your thick knot stretches the poor abused toy even further, a visible lump remains in the depths of the sheath.");
-				//{if Balls}
+				// if Balls
 				if(pc.balls > 0)
 				{
 					kGAMECLASS.output("\n\n");
-					//{if Small -> Average}
+					// if Small -> Average
 					if(pc.ballDiameter() <= 2)
 					{
 						kGAMECLASS.output("You pull the skin of the sheath’s balls up and around your own modest ");
@@ -153,7 +153,7 @@
 						kGAMECLASS.output("; now it looks as though your balls have been replaced with a massive set of apple-sized nuts.");
 						pc.ballSizeRaw = 11;
 					}
-					//{If Large -> Goddamn}
+					// If Large -> Goddamn
 					else
 					{
 						kGAMECLASS.output("You look at your [pc.balls] and at the rubbery sack dangling from the sheath. You sigh and think to yourself that if it’s worth doing, it’s worth doing right. Reaching down, you tug at the rubbery skin to stretch it wide around your ");
@@ -183,16 +183,16 @@
 				pc.cocks[target].cockColor = "mottled pink and black";
 				pc.shower();
 			}
-			//{ifRegularCock/LargeCockles}
+			// ifRegularCock/LargeCockles
 			else
 			{
 				kGAMECLASS.output("You examine the fleshy sheath in your hand before looking at your [pc.cock " + target + "]. A momentary daydream passes through your mind of you with a massive horse-cock, surrounded by a number of buxom aliens all interested in taking your equine seed for their own. You look in the end of the tube and slide your [pc.cock " + target + "] into the tight, rubbery orifice.");
 				if(pc.hasKnot(target)) kGAMECLASS.output(" Your thick knot stretches the toy even further, a visible lump remains in the depths of the sheath.");
-				//{if Balls}
+				// if Balls
 				if(pc.balls > 0)
 				{
 					kGAMECLASS.output("\n\n");
-					//{if Small -> Average}
+					// if Small -> Average
 					if(pc.ballDiameter() <= 2)
 					{
 						kGAMECLASS.output("You pull the skin of the sheath’s balls up and around your own modest ");
@@ -202,7 +202,7 @@
 						kGAMECLASS.output("; now it looks as though your balls have been replaced with a massive set of apple-sized nuts.");
 						pc.ballSizeRaw = 11;
 					}
-					//{If Large -> Goddamn}
+					// If Large -> Goddamn
 					else
 					{
 						kGAMECLASS.output("You look at your [pc.balls] and at the rubbery sack dangling from the sheath. You sigh and think to yourself that if it’s worth doing, it’s worth doing right. Reaching down, you tug at the rubbery skin to stretch it wide around your ");

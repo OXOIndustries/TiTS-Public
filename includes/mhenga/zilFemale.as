@@ -27,7 +27,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		if(flags["ENCOUNTERED_ZIL"] != undefined) output("\n\nYour codex beeps out a warning about the zil, but it doesn’t take an anthropologist to figure out you’ve found one of their females. You start to ready a weapon as the girl turns toward you, but seeing you, she quickly puts up her hands in an disarming gesture of peace. <i>“Hey there, no need for violence!”</i>");
 		//Else if PC has not encountered a zil bro before:
 		else output("\n\nYour codex beeps out a warning about a race called the zil, advising against approach and especially against inhaling their pheromones. However, contrary to the device’s warnings about extreme hostility, the girl puts her hands up in a gesture of peace. <i>“Hey there, stranger.”</i>");
-		//{Combine, same paragraph:}
+		// Combine, same paragraph:
 		output("\n\nShe smiles. <i>“Don’t worry, I don’t mean you any harm. Just the opposite!”</i> she says, leaning back and spreading her legs, revealing the pale yellow flesh around her vulva. A pair of fingers dips in to massage her hole.");
 		output("\n\n<i>“Come on, stranger, help yourself! Or.. maybe you’d like a taste of my home-made honey?”</i> she asks, pushing aside the chitin plate on her chest to reveal a full, pert breast; at the slightest squeeze, a thick dollop of an amber liquid drips from her nipple, sticking to her fingers.");
 		output("\n\n<i>“Any way you want it, stranger, that’s the way you need it! Just show me what you’ve got!”</i>");
@@ -37,7 +37,7 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		addButton(0,"Fight Her",fightDatFriendlyFemzil);
 		//[Leave]
 		addButton(14,"Leave",tryToLeaveFemzil);
-		//{Sex Options Here}
+		// Sex Options Here
 		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);	
 		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
 	}
@@ -49,11 +49,10 @@ public function femzilEncounter(forceFriendly:Boolean = false):void {
 		//[Fight her]
 		//[Leave]
 		//[Get Honey]
-		//{Sex Options Here}
 		clearMenu();
 		//[Fight her]
 		addButton(0,"Fight Her",fightDatFriendlyFemzil);
-		//{Sex Options Here}
+		// Sex Options Here
 		if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) addButton(1,"Sex",submitToFriendlyZil);	
 		else addDisabledButton(1,"Sex","Sex","You need to be in the mood for sex and have genitals to submit to her sexually.");
 		addButton(2,"Get Honey",getHoney);
@@ -255,7 +254,7 @@ public function getHoney():void {
 	processTime(10+rand(5));
 	eventQueue[eventQueue.length] = getSomeHoney;
 	//[Nah]
-	//{Sex Options]
+	//[Sex Options]
 	clearMenu();
 	zilConsensualSexMenu();
 	addButton(14,"Nah",noSexForMeThen);
@@ -1015,7 +1014,7 @@ public function forceyFaceSittingFromFemzil():void {
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
 	// clearOutput();
-	//{HEALTH POWAHHHHHHH LAWS}
+	// HEALTH POWAHHHHHHH LAWS
 	if(pc.HP() < 1) {
 		output("Prone on the ground, your body aching in pain, you look up at the victorious zil female as she advances towards you. A confident smile twists her sable lips.");
 	}
@@ -1104,12 +1103,12 @@ public function forceyFaceSittingFromFemzil():void {
 public function defeatHostileZil():void {
 	showBust("ZILFEMALE");
 	showName("FEMALE\nZIL");
-	//{HP}
+	// HP
 	if(enemy.HP() <= 0) {
 		output("The zil girl collapses in the face of your superior prowess, face down, ass up, and panting heavily as she tries to recover from the hits she’s taken. While her bulbous, stinger-tipped tail obscures her rear entrance and scented honeypot from view, you know they’re still there.");
 		output("\n\nHer faint voice rouses you a second later when she faintly mumbles, <i>“You win, off-worlder. By custom, I am yours to " + pc.mf("seed","use") + ".”</i>");
 	}
-	//Lust
+	// Lust
 	else {
 		output("Sighing needily, the wasp-girl’s hand dives back between her legs, digging her fingers knuckle-deep into the simmering slit in an effort to quench the excitement you’ve stoked within her. She moans as she realizes how futile an effort it is, dropping down onto all fours to present herself more perfectly for you. Her voice escapes in a needy pant, <i>“I yield to you. </i>");
 		if(pc.race() != "zil") output("<i>You’re more like... like us than you let on, traveler.</i>");

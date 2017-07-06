@@ -238,7 +238,7 @@
 				output("\n");
 				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 			}
-			//{You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.}
+			// You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.
 		}
 		
 		private function nyreaGroupBackstabby(target:Creature):void

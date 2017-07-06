@@ -303,7 +303,7 @@ public function malesBeatGoo():void
 		output(" You decide to leave the girl frozen there. You think you remember something in the Codex about them being able to melt their crystals over time. You grab your [pc.gear] and head back to cave spelunking.");
 	}
 
-	//{get a gemstone if nice/naughty}{pass 1 hour}
+	// {get a gemstone if nice/naughty}{pass 1 hour}
 	processTime(65);
 	pc.orgasm();
 	output("\n\n");
@@ -365,7 +365,7 @@ public function femaleCrystalGooWin():void
 	//pc mean: 
 	else output("\n\nYou find her gear, but decide that maybe you shouldn’t free her. She did attack you after all, and you remember something in the codex about them being able to melt their crystal over time. You gather your [pc.gear] and return to your cave spelunking, leaving the statue of a girl to wait.");
 
-	//{get a gemstone}{pass 1 hour}
+	// {get a gemstone}{pass 1 hour}
 	processTime(65);
 	pc.orgasm();
 	output("\n\n");

@@ -791,7 +791,7 @@ public function flahneMunchesBoxesMetalBawkses():void {
 	output(". She goes faster and faster with each passing second. At times, her tongue is pulled out to wrap around your [pc.clit], rolling in circles around the oversensitive organ until you’re seeing white and your eyes have rolled halfway back in their sockets.");
 	
 	output("\n\nStarbursts of ecstasy are firing off one after another inside your skull, and you’re wondering how much more you can take before you hit the orgasm you so crave. That question is answered when Flahne begins to hum a low note deep in her throat, vibrating her lips ever-so-subtly against your vulva. Your clit is treated to the sensations as well, and when they travel down her tongue and straight into the most sensitive spot Flahne could find, the starbursts turn into a supernova of bliss. A ragged moan tears its way out of your throat. It is unmistakably a sound of exquisite pleasure but at the same time a feral, animalistic enunciation. You scream yourself hoarse, your body quaking in the chair, filling the air with the scent of your [pc.girlCum]. Your convulsions do a fine job of squeezing out the accumulated fluids Flahne soaked into her squishy, soaked seat. Her unmistakably sweet aroma soon joins yours, while droplets of liquid lust splatter on the floor.");
-	//{Dicks}
+	// Dicks
 	if(pc.hasCock()) {
 		output("\n\nThe way Flahne’s attacking your [pc.vaginas], she barely notices your [pc.cocks] expanding in her hair, first dripping pre-cum and then lurching, firing long jets of [pc.cum] into squishy curls.");
 		if(pc.cumQ() < 25) output(" You quickly spend your phallic passion in her hair, turning it into a slippery, [pc.cumColor] mess.");
@@ -799,18 +799,18 @@ public function flahneMunchesBoxesMetalBawkses():void {
 		else output(" Your virility seems almost boundless. You soak her hair with lewd, [pc.cumColor] ropes. The spunky mess is only just getting started. Her entire head becomes wreathed with jizz. A river of the stuff runs down her back, pooling above her wobbling butt before a trickle slides through her asscrack.");
 		if(pc.cumQ() >= 500) output(" You can hear it dripping off of her and onto a puddle on the floor.");
 	}
-	//{Nipplecunt}
+	// Nipplecunt
 	if(pc.hasFuckableNipples()) {
 		output(" Your [pc.nipple] drips around her fingers in an imitation of your primary pussy, matched in moisture by the other empty one");
 		if(pc.totalNipples() > 2) output("s");
 		output(". Flahne playfully pulls it out and squeezes on the outside of your areola, milking the slick secretions from your strangely-positioned honeypot.");
 	}
-	//{Nippledicks}
+	// Nippledicks
 	else if(pc.hasNippleCocks()) {
 		output(" Your [pc.nippleCocks] spasm at the same time, firing lances of [pc.cum] out with aplomb. They rain down over Flahne as she tends to [pc.eachVagina], splattering across her forehead. She closes her eyes and simply enjoys it, letting her face be painted with the [pc.cumColor] mess.");
 		if(pc.cumQ() >= 100) output(" Even after it looks like she’s wearing a spunky mask, you keep shooting, forming a massive puddle beneath her where it drips from her oversized tits.");
 	}
-	//{Milk}
+	// Milk
 	else if(pc.canMilkSquirt()) {
 		output(" Your [pc.nipples] abruptly begin to ");
 		if(pc.lactationQ() <= 5) output("leak");
@@ -822,7 +822,7 @@ public function flahneMunchesBoxesMetalBawkses():void {
 		if(pc.lactationQ() >= 500) output(", at least, until they’re concealed in [pc.milk]");
 		output(".");
 	}
-	//{merge}
+	// merge
 	output("\n\nFlahne eventually flops back onto her butt, connected to [pc.oneVagina] by a few strings of your [pc.girlCum]. She breaks those with a finger, slurps them down, and then proceeds to lick her plump lips clean with lewd enthusiasm. Her palm slides out of her own stretched slit");
 	if(flahneDickOut()) output(" while her wilting ovipositor slowly receeds. The undersides of her tits have been liberally splattered with her sweet spooge");
 	output(".");

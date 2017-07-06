@@ -787,11 +787,11 @@ package classes.Items.Transformatives
 			{
 				if (target.tailTypeUnlocked(GLOBAL.TYPE_FELINE) || target.hasParasiteTail())
 				{
-					//{If PC had a tail before: }
+					// If PC had a tail before:
 					if(target.tailCount == 1) output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as [pc.furColor] bristles, the beginnings of a thin coat of fur, sprout up across the length of your reforming posterior appendage. It starts curling and twisting as the change completes, leaving you with a <b>feline tail.</b>");
 					//Multitails
 					else if(target.tailCount > 1) output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They’re merging together into a single, narrow entity. The flesh crawls eerily, as it assumes its new shape. Hairs sprout out of it while you watch, thickening into a coat of [pc.furColor] fur. <b>Your [pc.tails] have combined into a single feline tail.</b>");
-					//{If PC is tailless peasant: }
+					// If PC is tailless peasant:
 					else
 					{
 						output("\n\nOuch! A knot of discomfort forms just above your [pc.butt] as if it had suffered a nasty sting or bite, but no such injury occurred. You twist for a look at it");

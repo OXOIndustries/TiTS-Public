@@ -593,7 +593,7 @@ public function yesBoneShellyWivHardlight():void
 	output("\n\n<i>“Okay,”</i> she says nervously, <i>“I’m going to put it in.”</i>");
 
 	output("\n\nYou waggle your ass at her, eager to get beyond the preludes and apologies. Shelly gets the message. Her awkward hesitation disappears, her back straightens, and she grips your [pc.ass] in both hands. Confidently, she shoves forward, impaling your [pc.vagOrAss] on the resized rod; it’s still so drenched in Shelly’s pussy-juice that it hilts in a single stroke.");
-	//{very small stretch/verginity check}
+	// very small stretch/verginity check
 	if(pc.hasVagina()) pc.cuntChange(0,50);
 	else pc.buttChange(50);
 

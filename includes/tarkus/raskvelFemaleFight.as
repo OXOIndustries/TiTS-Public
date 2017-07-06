@@ -496,7 +496,7 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 	else showName("RASKVEL\nFEMALE");
 	//By Savin
 	author("Savin");
-	//{Combat Loss: Have a Dick}
+	// Combat Loss: Have a Dick
 	if(combat)
 	{
 		output("You slump to the ground, ");
@@ -508,13 +508,13 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 		output("to resist her.");
 		output("\n\n<i>“Tsk, could have just paid the fee...”</i> she sighs, tossing her wrench-gun aside.");
 	}
-	//{Pay the Fee & Have a Cock}
+	// Pay the Fee & Have a Cock
 	else
 	{
 		clearOutput();
 		output("Well, let’s be honest. You don’t want to fight the little scaly slut, and the way she moves those hips and flaunts her pussy... you couldn’t resist that if you tried. You pull out a credit chit and toss it her way, and the tiny raskvel girl snatches it eagerly, stumbling to catch it. She looks awfully surprised when you decide to pay up, but the look of glee on her face is priceless. She must really need the cash!");
 		output("\n\nBut just as you’re starting to warm up to the girl, her look of glee turns into one of lust, and she’s on you in a moment, tossing her wrench aside and pushing you down onto the ground. You decide to go along with it, letting her man-handle you onto your back, pinning you down with one of her warm, leathery soles.");
-		//{Combine}
+		// Combine
 		//charge money
 		payRaskvel();
 	}
@@ -571,7 +571,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	showBust(raskvelFemaleBustDisplay(true));
 	if(combat) showName("LOST VS: F.\nRASKVEL");
 	else showName("RASKVEL\nFEMALE");
-	//{Combat Loss: Don't Have a Dick}
+	// Combat Loss: Don't Have a Dick
 	if(combat)
 	{
 		output("You fall to your [pc.knees], too ");
@@ -580,7 +580,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 		output("to resist the slutty scaly’s advances. She grins as you succumb, sharp teeth flashing brightly as she drops the bulging head of her wrench to the ground, leaning on it as you collapse.");
 		output("\n\n<i>“Tsk, coulda just paid the fee,”</i> she scolds, her voice playful as one of her hands deftly hooks into her clothes, neatly stripping herself bare with a flourish. <i>“Now that we had to do it the hard way, I guess I’ll just have to take a little... extra.”</i>");
 	}
-	//{Pay the Fee: Don't Have a Dick}
+	// Pay the Fee: Don't Have a Dick
 	else
 	{
 		clearOutput();
@@ -589,7 +589,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 		//deduct credits!
 		payRaskvel();
 	}
-	//{Combine:}
+	// Combine:
 	output("\n\nYou follow her gaze as she hungrily takes in your body, eyes trailing from your [pc.legOrLegs] to your [pc.hips]; she makes a little twirling motion with her finger, and you slowly turn around, getting onto all ");
 	if(pc.legCount == 2) output("fours");
 	else output(num2Text(pc.legCount + 2));

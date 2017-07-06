@@ -95,7 +95,7 @@
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
 			kGAMECLASS.output("Bottoms up! You pop the cork on your vial and down the reprogrammed healer bots.");
-			//{Restores moderate HP}
+			// Restores moderate HP
 			var healing:int = 40;
 			if(targetCreature.HP() + healing > targetCreature.HPMax())
 			{
@@ -110,7 +110,7 @@
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
 			kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls a vial of silvery-looking goo and downs it!");
-			//{Restores moderate HP}
+			// Restores moderate HP
 			var healing:int = 40;
 			if(targetCreature.HP() + healing > targetCreature.HPMax())
 			{

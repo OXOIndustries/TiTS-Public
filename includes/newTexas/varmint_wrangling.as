@@ -20,13 +20,13 @@ PC Defeat*/
 //Faux Cow Farmer
 public function fauxCowFarmerBonus():Boolean
 {
-	//{1st Time Room Add}
+	// 1st Time Room Add
 	if(flags["MET_CAMERON"] == undefined)
 	{
 		output("\n\nSitting by the gate to the field is a New Texan dressed in overalls and a wide-brimmed straw hat. For a moment, you think you've found the mythic flat-chested cow-girl by the figure's extremely feminine face, nub-like horns, tiny cloven hooves, and slight figure - until your eyes wander down and see the very blatant bulge in his pants, holding what must be a pretty sizable member at bay. He seems to be in something of a huff, kicking at a fence post and thumbing the handle of a slug gun on his belt.");
 		addButton(0,"Farmer",approachFarmer);
 	}
-	//{Repeat Room Add}
+	// Repeat Room Add
 	else 
 	{
 		output("\n\nCameron is leaning up against the fence, mumbling to himself about the \"darned varmints\" running rampant in the fields still.");
@@ -80,7 +80,7 @@ public function approachFarmer():void
 		showName("\nCAMERON");
 		showBust("CAMERON");
 		output("<i>“Hey!”</i> Cameron says as you approach. <i>“Got any varmints tied up for me? Or you got something else on your mind?”</i>");
-		//{Options!}
+		// Options!
 		if(pc.hasItemByClass(VarmintItem,1)) addButton(0,"Varmint",turnInAVarmint,undefined,"Hand Over a Varmint","Turn in a varmint you've bagged for some cash.");
 		else addDisabledButton(0,"Varmint","Varmint","You haven't caught any varmints to turn in yet.");
 		if(pc.lust() >= 33) addButton(1,"Flirt",flirtWithCameron,undefined,"Flirt","Flirt with Cameron.");
@@ -162,7 +162,7 @@ public function flirtWithCameron():void
 	author("Savin");
 	showName("\nCAMERON");
 	showBust("CAMERON");
-	//{if PC hasn't gotten 5+ varmints}
+	// if PC hasn't gotten 5+ varmints
 	if(flags["VARMINTS_CAUGHT"] == undefined || flags["VARMINTS_CAUGHT"] < 5)
 	{
 		output("<i>\"Hey, Cameron... what do you say we put the critter hunt away for a while and go some place a little more comfortable?\"</i>");
@@ -170,14 +170,14 @@ public function flirtWithCameron():void
 		if(flags["VARMINTS_CAUGHT"] != undefined) output(" You've already caught " + num2Text(flags["VARMINTS_CAUGHT"]) + "!");
 		output("\"</i>");
 	}
-	//{if PC has bagged 5+ varmints, PC doesn't have a cock}
+	// if PC has bagged 5+ varmints, PC doesn't have a cock
 	else if(!pc.hasCock())
 	{
 		output("<i>“Hey, Cameron, now that I’ve helped out with your critter problem... what do you say we get out of here and wrangle something more... fun?”</i>");
 		output("\n\nHe blushes at the suggestion, shuffling his high-booted feet. <i>“I, uh...”</i> he looks up at you with his big, hazel eyes. <i>“Look, I appreciate the help with the critters an’ all, but, uh, I mean... ya seem nice and all, but I don’t ride your flavor of bull, ya know?”</i>");
 		output("\n\nWhoops. You apologize for the unwanted advance, which Cameron brushes off. <i>“Don’t fret, it’s fine! Now, anything else I can do for ya?”</i>");
 	}
-	//{if PC has bagged 5+ varmints, PC has a cock}
+	// if PC has bagged 5+ varmints, PC has a cock
 	else
 	{
 		output("<i>“Hey, Cameron, now that I’ve helped out with your critter problem... what do you say we get out of here and wrangle something more... fun?”</i>");
@@ -265,7 +265,7 @@ public function rimHimFirst():void
 	output("\n\nYou stroke the faux-cow’s thigh, soothing him... even as you squirt a little extra lube onto your hand and slather up your [pc.cock " + x + "] again, making sure it’s nice and ready for him. The best thing about a Treated lover? He’s ready to go again almost instantly.");
 	pc.lust(25);
 	processTime(7);
-	//{to Fuck Him}
+	// to Fuck Him
 	clearMenu();
 	addButton(0,"Next",fuckCamsButt,true);
 }

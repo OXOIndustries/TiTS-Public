@@ -251,7 +251,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 		else output("under your arm");
 		output(" and hurriedly pulling you through the curtain. Renvra leads you through a short span of the back room, to a small office with shaded windows and <i>“Quartermaster”</i> printed on the door. She unlocks it and leads you in, her hands already moving to the buttons on her uniform.\n\n");
 	}
-	//{Combine:}
+	// Combine:
 	output("In the blink of an eye, Renvra’s uniform hangs limply from her shoulder, revealing the hefty swells of her F-cup breasts, each tipped with a rose-red nipple that stiffens under your gaze. She shrugs her shirt off, leaving herself with hands planted in her hips, black eyes wandering over your body. You slip off your [pc.gear] and go to her, pulling the halfbreed tight against yourself and grabbing one of her tits. Your fingers disappear into the startlingly soft boobflesh, a stark and pleasant contrast to the hardened woman they’re attached to. Renvra’s feelers twitch through her short hair, and her chitinous hands wrap around your waist. You gasp as her fingers brush your bare ass, squeezing your cheeks hard enough to make you groan.");
 
 	output("\n\nThe moment your mouth is open, her lips are hot against yours, her tongue thrusting in between them. You melt into the surprise attack, squeezing Ren’s breasts and ass in turn, exploring every inch of her body until your hands find the loops of her belt. You yank it down with a single, rough motion, dropping her pants down around her ankles. More than a foot of thick, half-hard, horse-shaped ovipositor drops free between her legs. The thankfully spine-free flare of her ovicock throbs with anticipation, and its X-shaped slit glistens with a viscous pink moisture.");
@@ -627,7 +627,7 @@ public function buttFuckRenvra():void
 		else if(pc.cumQ() < 1000) output(" The moment you part, though, you’re treated to a veritable waterfull of your seed racing out after you, splattering onto the floor.");
 		output("\n\n<i>“Ugh,”</i> Renvra groans, finishing with her own load before flicking the towel down between her legs to clean up your mess as well. When she’s done, she tosses the towel into a waste basket with a contemptuous grunt and picks up her shirt, careful to avoid the puddle of spunk you’ve left on the floor. As she gets dressed, you hear her muttering about getting her trench wives to clean it up later.");
 	}
-	//{Combine}
+	// Combine
 	output("\n\n<i>“Well, I think that’s a long enough smoke break,”</i> Renvra says, flashing you a slight grin over her shoulders as she pulls her pants up and works at her belt. It looks like a herculean effort to shove that much cock back into such tight pants.");
 	output("\n\nAs you gather your [pc.gear], Ren steps over to you, grabbing your chin and pulling you up to look her in the eye. <i>“Let’s do this again,”</i> she says, quickly pressing her lips to yours. <i>“I’ve had much worse distractions.”</i>");
 	output("\n\nHigh praise, coming from her. ");
@@ -1538,7 +1538,7 @@ public function renvraDoubleTrouble():void
 		else output("taint");
 		output(". <i>“Damn, it’s unusual to find such a good breeding slut outside the Federation camps,”</i> she says, squeezing your [pc.butt] in appreciation.");
 	}
-	//{vag or anal stretch check}
+	// vag or anal stretch check
 	if(x >= 0) pc.cuntChange(x,renvra.cockVolume(0));
 	else pc.buttChange(renvra.cockVolume(0));
 

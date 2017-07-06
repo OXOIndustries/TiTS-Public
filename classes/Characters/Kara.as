@@ -341,7 +341,8 @@
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
 
-				//{It hits for X damage! // } {If burn: ");
+				// It hits for X damage!
+				// If burn:
 				if(!target.hasStatusEffect("Burn") && rand(2) == 0)
 				{
 					if(target is PlayerCharacter) output("\nThe bolt explodes across you, slathering you in burning hot green plasma. <b>You are burning!</b>");
