@@ -952,8 +952,24 @@
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "PrimaryOutput")
 			{
 				var gmt:GameTextModule = _currentModule as GameTextModule;
-				gmt.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
-				if (gmt.inputEnabled()) gmt.showInput();
+				if (gmt.inputEnabled())
+				{
+					gmt.htmlText = "";
+					
+					var str:String = outputBuffer;
+					var res:Array = str.split("\n\n\n");
+					
+					for(var i:int = 0; i < res.length; i++)
+					{
+						gmt.htmlText += "<span class='words'><p>" + res[i] + "</p></span>";
+						if(i == 0)
+						{
+							gmt.showInput();
+							gmt.htmlText += "<span class='words'><p>\n</p></span>";
+						}
+					}
+				}
+				else gmt.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
 			}
 		}
 		
@@ -985,8 +1001,24 @@
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
 			{
 				var gmt:GameTextModule = _currentModule as GameTextModule;
-				gmt.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
-				if (gmt.inputEnabled()) gmt.showInput();
+				if (gmt.inputEnabled())
+				{
+					gmt.htmlText = "";
+					
+					var str:String = outputBuffer2;
+					var res:Array = str.split("\n\n\n");
+					
+					for(var i:int = 0; i < res.length; i++)
+					{
+						gmt.htmlText += "<span class='words'><p>" + res[i] + "</p></span>";
+						if(i == 0)
+						{
+							gmt.showInput();
+							gmt.htmlText += "<span class='words'><p>\n</p></span>";
+						}
+					}
+				}
+				else gmt.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
 			}
 		}
 		
