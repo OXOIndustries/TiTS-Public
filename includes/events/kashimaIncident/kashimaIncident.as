@@ -7,11 +7,6 @@ KASHIMA_STATE:
 	4 				ended without curing shit
 	-1 				avoided/abandoned/failed
 
-KASHIMA_OUTCOME:
-	0/undefined		unknown
-	1 				removed & killed neykkars parasite
-	2 				ST removed the parasite
-
 CHIEF_NEYKKAR_WITH_PC
 	0/undefined		not with pc/unknown cause
 	1 				with pc
@@ -1079,8 +1074,6 @@ public function kiHendersonMedbay():void
 	output("\n\n<i>“Get fucked you little bastard,”</i> she grunts, scraping the parasite off of her clawed foot. <i>“That’s for my crew.”</i>");
 
 	output("\n\nShe’s barely finished speaking when you hear a thunderous <i>CLANG</i> from just outside. You spin around as the MedBay doors slide open, and several armed and armored men in Steele Tech suits storm in, covering you with laser sights. They’re all kit up in HAZMAT gear, vacuum-sealed and shielded. They shout to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm, even as she’s yelling about lights in her eyes and people staring at her crotch. Back to her old self, it seems!");
-
-	flags["KASHIMA_OUTCOME"] = 1;
 	
 	processTime(11);
 	

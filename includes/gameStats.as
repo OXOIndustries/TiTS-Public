@@ -5750,17 +5750,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SYLVIE_TAURMOUNT"] != undefined) output2("\n<b>* Sylvie, Times You Mounted Her:</b> " + flags["SYLVIE_TAURMOUNT"]);
 				}
 				//Ushamee
-				if (flags["USHA_MET3"] != undefined)
+				if(flags["USHA_MET3"] != undefined)
 				{
 					output2("\n<b>* Ushamee:</b> Met her");
-					if (flags["USHA_SEXED"] != undefined)
+					if(flags["USHA_DATE"] != undefined) output2(", Dated her");
+					if(flags["USHA_SEXED"] != undefined)
 					{
 						output2("\n<b>* Ushamee, Times Sexed:</b> " + flags["USHA_SEXED"]);
-						output2("\n<b>* Ushamee, Times Fucked Her Bum:</b> " + (flags["USHA_BUMLOVE"] != undefined ? flags["USHA_BUMLOVE"] : "0"));
-						output2("\n<b>* Ushamee, Times Traded Oral:</b> " + (flags["USHA_ORAL"] != undefined ? flags["USHA_ORAL"] : "0"));
-						output2("\n<b>* Ushamee, Times Mounted Her:</b> " + (flags["USHA_MOUNT"] != undefined ? flags["USHA_MOUNT"] : "0"));
+						if(flags["USHA_BUMLOVE"] != undefined) output2("\n<b>* Ushamee, Times Fucked Her Bum:</b> " + flags["USHA_BUMLOVE"]);
+						if(flags["USHA_ORAL"] != undefined) output2("\n<b>* Ushamee, Times Traded Oral:</b> " + flags["USHA_ORAL"]);
+						if(flags["USHA_MOUNT"] != undefined) output2("\n<b>* Ushamee, Times Mounted Her:</b> " + flags["USHA_MOUNT"]);
 					}
-					
 				}
 				variousCount++;
 			}
