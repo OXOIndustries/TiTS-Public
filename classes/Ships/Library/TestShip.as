@@ -1,6 +1,7 @@
 package classes.Ships.Library 
 {
 	import classes.Ships.Modules.*;
+	import classes.Ships.Modules.Library.TestWeaponModule;
 	import classes.Ships.SpaceShip;
 	import classes.Ships.Map.Library.TestMapInterior;
 	import classes.Ships.ActionLibrary;
@@ -10,6 +11,10 @@ package classes.Ships.Library
 	 */
 	public class TestShip extends SpaceShip
 	{
+		protected function get TypedMap():TestMapInterior
+		{
+			return _internalMap as TestMapInterior;
+		}
 		
 		public function TestShip() 
 		{
@@ -47,6 +52,9 @@ package classes.Ships.Library
 			_inherentGadgets = [ActionLibrary.TestAction];
 			_inventory = [];
 			_fittedModules = [];
+			
+			EquipModule(new TestWeaponModule(this), TypedMap.WeaponRoom1);
+			EquipModule(new TestWeaponModule(this), TypedMap.WeaponRoom2);
 		}
 		
 	}

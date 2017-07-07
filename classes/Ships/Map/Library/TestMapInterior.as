@@ -28,6 +28,9 @@ package classes.Ships.Map.Library
 		public var CrewQuarters1:ShipRoom;
 		public var CrewQuarters2:ShipRoom;
 		
+		public var WeaponRoom1:ShipRoom;
+		public var WeaponRoom2:ShipRoom;
+		
 		public var ModuleRoom:ModularShipRoom;
 		
 		override public function Configure():void
@@ -112,7 +115,21 @@ package classes.Ships.Map.Library
 			ModuleRoom.Index = "ModRoom";
 			ModuleRoom.Name = "Modular Room";
 			ModuleRoom.SouthExit = "Cargo";
+			ModuleRoom.EastExit = "Wep1";
+			ModuleRoom.WestExit = "Wep";
 			AddRoom(ModuleRoom);
+			
+			WeaponRoom1 = new ModularShipRoom(this);
+			WeaponRoom1.Index = "Wep1";
+			WeaponRoom1.Name = "Weapon Bay";
+			WeaponRoom1.WestExit = "ModRoom";
+			AddRoom(WeaponRoom1);
+			
+			WeaponRoom2 = new ModularShipRoom(this);
+			WeaponRoom2.Index = "Wep";
+			WeaponRoom2.Name = "Weapon Bay";
+			WeaponRoom2.EastExit = "ModRoom";
+			AddRoom(WeaponRoom2);
 			
 		}
 		
