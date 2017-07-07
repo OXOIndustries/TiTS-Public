@@ -98,7 +98,7 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 	//Procs upon selecting [Nehzara] if PC is female/herm and pregnant and is visiting Nehzara after engaging in at least one sex scene. Unsure if it should happen more than once. I’m thinking one time only, or at least only once per pregnancy.
 	clearOutput();
 	output("You approach the pair of Red Myr standing watch over the nearest entrance, noting to yourself that they’re not wearing gasmasks like the pair outside the warehouse. For that matter, none of the Reds in here are covering their faces. One guard steps forward to stop you before you get within ten feet of the door, and she asks your name and reason for being here. She’s rather terse and straight to the point, but that’s a military girl for you. Standing around with a loaded weapon all day doesn’t engender politeness toward meddling strangers wandering about.");
-	//{if not talked to Juro}
+	// if not talked to Juro
 	if(flags["MYRELLION_EMBASSY_VISITED"] == undefined)
 	{
 		showBust("MYR_RED_GUARD");
@@ -109,7 +109,7 @@ public function nehzaraGuardsFirstTimeMeetingStuff():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-	//{if talked to Juro}
+	// if talked to Juro
 	else
 	{
 		showNehzara();
@@ -179,19 +179,19 @@ public function talkAboutNehzarasShittyPeople():void
 
 	output("\n\n<i>“Ah. I’m sure that you’ve heard </i>something<i> already, haven’t you?”</i> the uniformed woman replies. At your nod, she scoffs bitterly and practically spits out her next words. <i>“Let me guess: the Scarlets are a bunch of warmongering monsters who thirst for the tears and suffering of everyone good and wholesome in this world. That close to the mark on what you’ve heard so far?”</i>");
 
-	//{(if PC has talked to GM ambassador)}
+	// (if PC has talked to GM ambassador)
 	if(flags["MET_LYRALLA"] != undefined)
 	{
 		output("\n\nThough you’re a little taken back by the sudden heat from the previously composed and chilly officer, you respond in the affirmative. Perhaps it wasn’t quite so damning as all that, but you distinctly remember something about the Reds wanting nothing less than the extermination of every other species and total domination over the world.");
 		output("\n\nNehzara shakes her head in a universal gesture of exasperation. <i>“Sounds about right for Lyralla. That brainwashed, spineless nectar-guzzler spends every waking moment trying to convince everyone that we’re nothing short of evil given form. Well, any moment her lips aren’t wrapped around a swollen honey-spout. I could swear the stuff kills their brain cells. So she’s cried on your shoulder and given her usual cockamamie spiel about how the heartless Reds eat babes and kill prisoners for sport?”</i>");
 	}
-	//{(if PC hasn’t)}
+	// (if PC hasn’t)
 	else
 	{
 		output("\n\nThough you’re a little taken back by the sudden heat from the previously composed and chilly officer, you shake your head and tell her you haven’t heard that much. No one’s given you a comprehensive run-down on the situation on Myrellion. You just have a general idea of the situation here on the ground.");
 		output("\n\n<i>“Oh, so the virtuous and victimized Ambassador Lyralla hasn’t had a chance to weep at you about how evil we all are, and how their use of immoral and inhumane chemical and biological weaponry was all in self-defense?”</i> The Red Myr diplomat gives you a little smile, and you think there might be something conspiratorial to the expression. <i>“Well then,”</i> she says slowly, <i>“that means I get the rare chance to explain things </i>my<i> way without worrying about preconceived notions from... other influences.”</i> Judging by her body language and the tone of her voice, she’s quite pleased by that.");
 	}
-	//{Merge}
+	// Merge
 	output("\n\nNehzara leans back in her chair and crosses her arms, looking right into your eyes. You find yourself both reassured and challenged by her utter confidence. <i>“Listen up,”</i> she continues, <i>“I’m not going to say we’re all saints or that every Gold queen is a tyrant. If you really believe there are through-and-through good guys and bad guys in war, then you’ve obviously never picked up a weapon for your people and your land. There are soldiers, and maybe some are heroes or villains, but most of them are somewhere between the two.”</i>");
 	//(if merc:)
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" You find yourself nodding in agreement. As a mercenary, you’ve definitely seen an equal measure of virtue and vice among your fellow hired guns.");
@@ -345,7 +345,7 @@ public function talkToNehzaraAboutHerMission():void
 
 //Sex: Under Desk
 //Tooltip: It’d be more than a little humiliating to be hidden under a desk and used like some stress-relief toy, but there’s a saying about scratching backs...
-//{From Mission Talk}
+// From Mission Talk
 public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 {
 	clearOutput();
@@ -358,7 +358,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 		else if(pc.isMischievous()) output("<i>“Why not?”</i> you reply with a wink. <i>“Just promise to be this polite when my head’s between your legs.”</i>");
 		else output("Heh. Why not? <i>“All right,”</i> you reply in a sultry, lustful tone, <i>“but only because you could use that stick pulled out of your ass.”</i>");
 	}
-	//{From Main Screen}
+	// From Main Screen
 	else
 	{
 		output("You ");
@@ -370,7 +370,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 		else output("If I take care of it, think you could be a </i>little<i> warmer after?”</i>");
 		output(" Not a moment after you ask, your gaze travels down her chest to settle on her desk. On the other side of that wooden surface lies exactly what you’re after.");
 	}
-	//{Merge}
+	// Merge
 	output("\n\n<i>“Excellent,”</i> she murmurs. You see her fidget a little and draw back from the desk in her rolling chair. Once you’ve come around the desk to stand beside her, you can see that she’s hiked down her uniform pants to expose a pair of glistening, inviting lips positioned between two sinfully smooth, slender-yet-strong thighs. Oh, you’re pretty sure you’re going to enjoy this.");
 	output("\n\nYour eyes meet Nehzara’s, and her mouth quirks into a little smile that you can’t help but find devilishly attractive. Rough and commanding she may be, but there’s an oddly charming woman beneath all the abrasive bluntness.");
 
@@ -389,7 +389,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 		else output("give her a cold smile before hunkering down on the floor between the desk and her chair. You turn your torso so you’re facing ");
 		output("the myrmedion’s spread legs and open lap.");
 	}
-	//{Biped}
+	// Biped
 	else
 	{
 		output("\n\nThe myr officer beckons toward the space under the desk, that faint smile widening subtly as she watches you get down on your knees and make your way under there. ");
@@ -398,7 +398,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 		else output("There’s just enough space for you to fit beneath the large desk, and it gets rather crowded once she slides forward and places her knees on either side of your head");
 		output(".");
 	}
-	//{Merge}
+	// Merge
 	output("\n\nNehzara looks down at you, her normally severe expression broken by a smile she’s making no attempt to hide. A little heartened by this, you give a deep, lingering kiss to the sweet-smelling snatch before you, and are immediately rewarded with a gasp escaping from the professional officer’s lips. This will be worth it just to hear her struggle to maintain composure, you think to yourself... which makes the ambrosial aroma of her alien-yet-familiar womanhood and the smooth, red thighs on either side of your head mere bonuses.");
 	output("\n\n<i>“Ah,”</i> she starts, forced into holding back another involuntary gasp of pleasure by your [pc.tongue] flicking out and giving the moistening lips of her labia a good lick. Further emboldened by her suppressed reaction, you give another quick, probing lick. And another. And another. Nehzara looks down at you as if to ask what you’re doing, and you choose that exact moment to go forward and thrust your tongue into the tight snatch you’ve been teasing.");
 	output("\n\nThe response is exactly what you’d hoped for. The myr woman gives a breathy little coo of encouragement before she reaches down to pat at your head approvingly. It’s always nice to be appreciated once in a while, you think, and you allow yourself to savor a rush of satisfaction when Nehzara ");
@@ -461,7 +461,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 {
 	clearOutput();
 	showNehzara(true);
-	//{From Mission Talk}
+	// From Mission Talk
 	if(fromMissionTalk)
 	{
 		output("Nehzara seems to have expected the proposal to take you aback, but she’s certainly not the first alien to proposition you. Still, you suppose it <i>is</i> a little odd coming from someone so... strict. Even now that she’s asked something so lewd of you, she’s straight-backed and composed, regarding you calmly and coolly and patiently awaiting a reply.");
@@ -470,7 +470,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 		else if(pc.isMischievous()) output("<i>“Why not?”</i> you reply with a wink. <i>“I’m running a sale on [pc.cumNoun] today, anyways.”</i>");
 		else output("Heh. Why not? <i>“All right,”</i> you reply in a sultry, lustful tone, <i>“but only because you could use that stick pulled out of your ass.”</i>");
 	}
-	//{From Main Screen}
+	// From Main Screen
 	else
 	{
 		output("You ");
@@ -482,7 +482,7 @@ public function sexWivNehzaraInStorageCloset(fromMissionTalk:Boolean = false):vo
 		else output("<i>“If I take care of it, think you could be a </i>little<i> warmer after?”</i>");
 		output(" A smile crosses your [pc.face] when you finish speaking, and the myr colonel returns the expression with an understated smirk of her own.");
 	}
-	//{Merge}
+	// Merge
 	output("\n\nYou notice exactly where her eyes go and clear your throat to get her attention. <i>“I’m up here, you know.”</i> Her reaction is almost perfect: between the sudden turning of her head and the sullen pursing of her lips, it’s the closest you’ve seen to Nehzara being flustered.");
 	output("\n\nShe draws back from the desk in her rolling chair and gets to her feet, eyes fixed on your face this time. <i>“I know just the place,”</i> she announces. The ant-like woman hooks a finger into your [pc.gear] to lead you toward the doorway. A little taken aback, you follow along, feeling almost like you’re on a leash.");
 	output("\n\nThe guards salute when the two of you exit the office, and Nehzara nods approvingly to both of them before returning the formal gesture. <i>“Watch the office and tell any visitors I was pulled away on business,”</i> she states firmly. <i>“Steele and I have to... discuss future diplomatic relations between us.”</i> To their credit, the Scarlet Federation soldiers answer the order firmly and professionally in the affirmative, their faces giving no indication that they suspect their commanding officer was doing anything but what she said. You’re sure the guards are fully aware of what’s really going on, but you can’t tell by looking at them.");
@@ -584,7 +584,7 @@ public function nehzaraClosetPartII():void
 		output("\n\nYour tired, used [pc.cock " + x + "] slips out of her [pc.cumNoun]-filled womanhood, and you find yourself leaning against the wall at your back for support even after she steps back and is no longer pinning you against it.");
 		processTime(33);
 	}
-	//{(Cock > 7"thick Version:)}
+	// (Cock > 7"thick Version:)
 	//Cock doesn't fit version
 	else
 	{
@@ -611,7 +611,7 @@ public function nehzaraClosetPartII():void
 	addButton(0,"Next",closetFuckFinaleWithNehzara);
 }
 
-//{(Merge:)}
+// (Merge:)
 public function closetFuckFinaleWithNehzara():void
 {
 	clearOutput();

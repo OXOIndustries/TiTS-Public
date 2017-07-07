@@ -1782,7 +1782,7 @@ public function crystalGooVagooLoss():void
 	else if (pc.isGoo())
 	{
 		output("\n\n<i>“You need to be punished for hunting in my territory,");
-		//{(type 1) droplet,}
+		// (type 1) droplet,
 		if(enemy is CrystalGooT1) output(" droplet,");
 		output("<i>“ "+ cgender("she", "it") +" says. <i>“I’m going to find your sweet spots and tease them until you beg me for reprieve.”</i>");
 		

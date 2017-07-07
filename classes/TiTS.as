@@ -489,7 +489,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.64";
+			version = "0.7.66";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -845,10 +845,12 @@
 				{
 					this.userInterface.showLevelUpPerks(pc);
 				}
-				// else if ((pc as PlayerCharacter).unclaimedGenericPerks > 0)
-				//{
-				//		this.userInterface.showLevelUpGenericPerks(pc);
-				//}
+				/*
+				else if ((pc as PlayerCharacter).unclaimedGenericPerks > 0)
+				{
+					this.userInterface.showLevelUpGenericPerks(pc);
+				}
+				*/
 				userInterface.DeGlowButtons();
 				this.userInterface.levelUpButton.Glow();
 			}

@@ -300,7 +300,7 @@ public function celiseSucksYouDry():void {
 	output(".");
 	
 	output("\n\nBefore your muscles can properly clench to release your lusty payload, you feel some of it sliding through your urethra, burning a hot, passionate trail through your not-quite-ready cock before spilling into the hot, wet slickness of the vacuum-chamber. The stream of [pc.cum] doesn’t come in spurts or jets, like a normal orgasm. Instead, it’s one long rope of [pc.cumColor] food for the galotian to devour. You haven’t even reached your peak, but your [pc.hips] and [pc.legOrLegs] are shaking wildly, almost like you’ve gone past orgasm without ever actually experiencing it. Pleasure washes through you, but it’s a needy, aching pleasure, the pleasure of orgasm without the salve of release.");
-	//{Multivag}
+	// Multivag
 	if(pc.vaginaTotal() > 1) {
 		output("\n\nYour multiple vaginas, bereft of proper penetration, spasm against a multitude of unbound tongues that rove across their engorged vulvae.");
 		if(pc.hasClit()) output(" Sometimes, they touch your clits, other times, t");
@@ -309,7 +309,7 @@ public function celiseSucksYouDry():void {
 		if(pc.hasClit()) output(" or connecting with a clit properly");
 		output(" enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
 	}
-	//{Singlevag}
+	// Singlevag
 	else if(pc.hasVagina()) {
 		output("\n\nYour [pc.vagina], bereft of proper penetration, spasms against a multitude of unbound tongues that rove across its engorged vulvae.");
 		if(pc.hasClit()) output(" Sometimes, they touch your clit, other times, t");
@@ -318,7 +318,7 @@ public function celiseSucksYouDry():void {
 		if(pc.hasClit()) output(" or connecting with a clit properly");
 		 output(" enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
 	}
-	//{Tailcock}
+	// Tailcock
 	if(pc.hasTailCock()) {
 		if(pc.tailCount == 1) {
 			output("\n\nYour [pc.tailCock] is dripping, though it is not leaking ejaculate with the fervor of your bound erection");
@@ -327,7 +327,7 @@ public function celiseSucksYouDry():void {
 			if(pc.cockTotal() > 1) output("s");
 			output(".");
 		}
-		//{Tailcocks}
+		// Tailcocks
 		else {
 			output("\n\nYour " + plural(pc.tailCockDescript()) + " are dripping, though they are not leaking ejaculate with the fervor of your bound erection");
 			if(pc.cockTotal() > 1) output("s");
@@ -418,11 +418,11 @@ public function celiseDoesSomeAnalMilking():void {
 	
 	output("\n\nThe rest of Celise isn’t idle either.");
 	
-	//{Nipple dick docking}
+	// Nipple dick docking
 	if(pc.hasNippleCocks()) {
 		output("\n\nYour nipples part as the pressure on its prostate affects all your penises, forcing your " + plural(pc.nippleCockDescript()) + " to emerge from your surprisingly sheath-like areola, parting the sensitive skin to expose new pillars of throbbing hardness. Celise doesn’t seem shocked by this at all, in fact, her smiling face displays nothing but delight. She leans forward, lifting her heaving bosom up toward your protrusions to press her own nipples against your exposed titmembers. Her supple, pebbly areolae part around you as she leans forward, giving a tiny bit before they flex inward, slowly, deliciously starting to part around your throbbing, leaking hardnesses.");
 	}
-	//{Nipplecunt dock}
+	// Nipplecunt dock
 	else if(pc.hasFuckableNipples()) {
 		output("\n\nYour nipples begin to leak liquid lust as the prostate pressure pushes you into arousal overdrive. The areolae protecting your [pc.nipples] part ever so slightly, revealing their true nature to the busy galotian, who only smiles at the sight. She leans forward, lifting her heaving bosom up to be level with your own, her pebbly protrusions growing longer by the second, first extending an inch past her mammaries and then another... and another.... The dripping wet, nipples have become boners");
 		if(pc.nipplesPerBreast > 1) output(", splitting lengwise into a number suitable to match your " + num2Text(pc.nipplesPerBreast) + " entrances");
@@ -1015,7 +1015,7 @@ public function letCeliseInForBed():void {
 	// the sleep event, check the flag to react appropriately, and then clean up afterwards.
 	flags["CELISE_BEDSTUFF_HAPPENED"] = 1;
 	
-	//{if PC is not nude}
+	// if PC is not nude
 	if(!pc.isNude())
 	{
 		output("\n\nHowever, when you make a move towards her she suddenly cries out, <i>“Wait! You should totally be naked before you try me out. It will be lots better, trust me!”</i>");
@@ -1056,7 +1056,7 @@ public function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 	clearOutput();
 	author("TheDarkMaster");
 	showCelise();
-	//{if PC is not nude} 
+	// if PC is not nude
 	if(disrobe) output("You remove your clothing at Celise’s suggestion, prompting happy applause from the green woman. It sounds rather like two wet towels slapping together. Once completely nude, you’re once again invited to lay down on the bed of ooze and rest your head between her appropriately sized pillowcase cup breasts.\n\n");
 	output("Her gel is warm to the touch, and is quite pleasant on your skin. You let out a contented sigh as your head sinks partially into her bust and she puts her hands onto your chest, hugging you to her breast. You switch off the lights in your room and close your eyes, completely relaxed on the thick goopy body of the Galotian.");
 	output("\n\nBefore you’re actually able to fall asleep, you feel the mat of goo suddenly run up your [pc.legOrLegs] and around your body, enveloping it in mere moments. Fear of being trapped is quickly banished from your mind as Celise’s goo begins caressing and vibrating on your skin. Long veins rub across your back and shoulders, working out the pains and knots from your muscles after a long day. Damn, this girl is a natural with massages!");

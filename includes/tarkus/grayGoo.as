@@ -51,7 +51,7 @@ public function dontDoAnythingFromHardenAttack():void
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
-	//{PC +Lust, Goo -Lust}
+	// PC +Lust, Goo -Lust
 	output("The goo gives you a pleading look, but after a moment her now more-solid fingers plunge into her empty cooch anyway, jilling the slavering hole with abandon. Her synthetic voice cries out as she teases her nub of a clit, back arching as she slides a pair of fingers in up to the last knuckle. You feel a stirring in your [pc.groin] as the goo puts on a show for you, her eyes locking with yours as she puts on her lewd display. After a moment, she hops onto her feet, keeping to a low crouch as she continues to finger herself; she cups one of her oversized tits, bringing the teat up to her mouth to suckle on it, tongue swirling around her hard, silver areola.");
 	output("\n\n<i>“Like what you see, space cow" + pc.mfn("boy","girl","person") + "?”</i> she giggles, rolling onto all fours and giving you a full view of her jiggling ass. She reaches back around, sticking a few fingers back in her slit before humping back against them, thrusting faster and faster until you can see a wet sheen spilling down around her digits... which she promptly licks up, bringing it to her lips and cleaning off each finger with measured, sultry slowness. Licking her lips, she rises back to her feet, clearly done going it solo and ready for more!");
 	
@@ -150,7 +150,7 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 }
 
 //Reprogram
-//{Requirement: Tech Specialist /or/ INT of 20+}
+// Requirement: Tech Specialist /or/ INT of 20+
 public function reprogramGrayGoosForYerPleasure():void
 {
 	clearOutput();
@@ -179,7 +179,7 @@ public function reprogramGrayGoosForYerPleasure():void
 }
 
 //Heal Me
-//{Needs less than max HP}
+// Needs less than max HP
 public function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	clearOutput();
 	author("Savin");
@@ -224,7 +224,7 @@ public function getSomeGrayGoo():void {
 
 
 //Multicock Victory
-//{PC has 2+ cocks}
+// PC has 2+ cocks
 public function multiCockMayhem():void
 {
 	clearOutput();
@@ -253,7 +253,7 @@ public function multiCockMayhem():void
 		output(" your [pc.legOrLegs] to the crack of your [pc.butt], strong enough to spread your cheeks apart and bare your [pc.asshole] to the naked air. Breath catches in your throat as the goo’s tongue teases the tight-clenched ring of your ass, gentle yet forceful strokes that soon have you subconsciously relaxing your body. Biting your lip to contain your gasps of pleasure, you let your hands sink into the goo’s slippery, pliant body, at one moment groping her big, soft tits, and the next watching your hands delve into them, surrounded by a gooey prison of churning cyber-goo. It’s impossible to concentrate on that, though, as the silvery babe slowly presses her long, writhing tongue into your [pc.asshole], spreading you apart and pushing the tip into you.");
 		output("\n\nThe sensation is practically overwhelming, feeling the writhing, tentacle-like length of gooey micro-bots slithering through your ass, spreading your rectal passage wide. You shift your [pc.hips], rolling them back across the goo’s face, shuddering as her tongue slips almost out of you, only to thrust back in. Your back arches as you’re penetrated, hips moving instinctively as the goo-girl rims you; your hips bring your [pc.cocks] closer and closer to the goo’s chest-cunt, inching towards the spread cleavage between her massive mounds, the gash between them all but drooling in anticipation.");
 	}
-	//{Combine}
+	// Combine
 	output("\n\nSpurred on by the goo’s oral ministrations, you finally press into the slick slit between her tits. You both share a gasp as your [pc.cocks] spread");
 	output(" the forged lips of her silver pussy, spreading her whole body wide to take your multiple lengths together like only a goo can. You watch with glee as her torso deforms to take your [pc.cocks], widening and deepening to accommodate all the cockmeat you can offer her. And you’re happy to give it: the feeling of your cocks submerged in an undulating sea of slippery goo is almost too much for you, and it takes everything you have to hold back your orgasm.");
 	pc.cockChange();
@@ -331,7 +331,7 @@ public function mutualGooMasturbation():void
 }
 
 //Divide and Conquer (Goo Splits in half, double-teams)
-//{PC needs a ladyhole}
+// PC needs a ladyhole
 public function divideAndConquerGinasWithGoos():void
 {
 	clearOutput();
@@ -411,7 +411,7 @@ public function divideAndConquerGinasWithGoos():void
 
 //PC Defeat
 //PC gets Body-Suited and Fucked in Every Hole
-//{Omni-gender. In soviet Tarkus, goo wear you.}
+// Omni-gender. In soviet Tarkus, goo wear you.
 public function pcDefeatByGooBitch():void
 {
 	author("Savin");
@@ -464,7 +464,7 @@ public function pcDefeatByGooBitch():void
 		output("\n\nYou shudder as the goo surrounding your dong shifts and writhes, sending shockwaves of pleasure through your body, nearly enough to knock your off your [pc.feet].");
 		if(pc.cocks[pc.biggestCockIndex()].cType != GLOBAL.TYPE_EQUINE) output(" You gasp and groan as the glistening waves of liquid metal shape your member into the form of an immense, equine-like phallus.");
 	}
-	//{Combine all cock variants:}
+	// Combine all cock variants:
 	output("\n\nHappily jerking on her big, new cock, the goo-girl takes a few steps forward, twisting her head as if looking for something. <i>“Hmm. Where’s a cute lil’ raskvel when you need one, huh? Ooh! I think I hear one over there!”</i>");
 	output("\n\nA few more paces brings you around a nearby pile of junk and right into the waiting wrench of a diminutive brown raskvel girl. Seeing what’s coming for her, though, she gives a terrified yelp and drops her wrench, trying to escape. You and your gooey captor are much too fast for the little thing, though, and in a flash she’s been barreled to the ground, pinned beneath your [pc.legOrLegs] as your massive prick slaps down onto her belly, half as large as she is!");
 	output("\n\n<i>“G-get away from me!”</i> the scaley wench cries out, squirming underneath the goo’s grasp. <i>“You can’t even give me eggs!”</i>");

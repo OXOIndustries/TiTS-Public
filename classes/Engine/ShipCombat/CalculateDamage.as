@@ -14,6 +14,7 @@ package classes.Engine.ShipCombat
 		
 		ApplyWeaponDamageBonuses(user, weapon, sdr);
 		CalculateShieldDamage(target, weapon, sdr);
+		CalculateHullDamage(target, weapon, sdr);
 		
 		user.DealDamage(sdr);
 		target.TakeDamage(sdr);

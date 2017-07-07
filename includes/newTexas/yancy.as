@@ -1034,7 +1034,7 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 	output(" Now that your blissed-out attendant’s gotten off, you let yourself go utterly, dropping all your defenses and letting the milker and Yancy’s sweet, hot, tight ass finish you off in return.");
 
 	output("\n\nYou cup one of your [pc.breasts], giving it a squeeze to urge the [pc.milkNoun] out faster - and to elicit just a little more pleasure from your quickly draining mounds. A few moments of that and your cock twitches and erupts inside Yancy, filling him with [pc.cumNoun].");
-	//{if PC is Hard & has used prostate milker: }
+	// if PC is Hard & has used prostate milker:
 	if(pc.isAss() && StatTracking.getStat("milkers/prostate milker uses") > 0) output(" He’ll probably have to go across the hall to Carrie after you’re done with him!");
 	output(" You give his up-turned butt a squeeze as you cum, making him clamp down on your with vice-like intensity, striking that border between pain and pleasure that can’t help but milk out every drop of cum from your [pc.balls].");
 

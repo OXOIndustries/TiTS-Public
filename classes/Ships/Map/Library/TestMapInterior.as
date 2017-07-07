@@ -28,8 +28,8 @@ package classes.Ships.Map.Library
 		public var CrewQuarters1:ShipRoom;
 		public var CrewQuarters2:ShipRoom;
 		
-		public var WeaponRoom1:ShipRoom;
-		public var WeaponRoom2:ShipRoom;
+		public var WeaponRoom1:ModularShipRoom;
+		public var WeaponRoom2:ModularShipRoom;
 		
 		public var ModuleRoom:ModularShipRoom;
 		

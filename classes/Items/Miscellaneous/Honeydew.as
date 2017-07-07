@@ -64,7 +64,7 @@
 			if(target is PlayerCharacter) {
 				//Usage text:
 				//Using Honeydew
-				//{Effect: If the PC is lactating, it changes the lactation type to Honey. If the PC is not currently lactating but has a large bust (F+ cup?), then there is a chance that a honey lactation will be induced. Side effects! >:3 }
+				// Effect: If the PC is lactating, it changes the lactation type to Honey. If the PC is not currently lactating but has a large bust (F+ cup?), then there is a chance that a honey lactation will be induced. Side effects! >:3
 				kGAMECLASS.output("You take out the jar of Honeydew from your pack, staring at the large label on the side proclaiming its name in large, yellow letters over a field of honeycombs. Several buxom Zil females, barely modest thanks to their positions, are showing around the label under the directions to apply the cream onto the bosom for best effect. Alright, that makes sense, you suppose. You shrug out of your [pc.upperGarments], leaving yourself bare-chested before you twist the top off of the cream jar and smear some across your fingers. Oh, that’s cold! You try and suppress a shiver as you bring your hands up to your [pc.chest], spreading a bit across yourself.");
 				kGAMECLASS.output("\n\nAs your fingers work their way up toward your [pc.nipples], you quickly break down into a shudder and a moan. Your nipples stiffen at the touch, and you can feel your skin tingling as the nanomachine-laden cream starts to work, the microscopic machines penetrating your skin and entering your bloodstream, right where they’re needed.");
 				//Milk TF (Already Lactating)
@@ -73,7 +73,7 @@
 					kGAMECLASS.output("\n\nSuddenly, you feel a heart-pounding pressure building up in your [pc.chest], swelling inside the mounds of your bosom. You clutch at your chest, fingers working entirely by instinct as your motherly fluids are altered by a surge of gene-mods rushing through your system. You roll yourself onto all fours, squeezing and tugging at your teats until with a gasp you feel yourself start to bead with sweet cream - except it isn’t. You bring a hand up to your face and see your fingers glazed with thick, sweet-smelling honey, sticking between your digits in a viscous web.");
 					kGAMECLASS.output("\n\nYou can’t stop to think about it for long: the need in your [pc.nipples] is far too much to be ignored for more than a moment. Your hands return to your tits, working them as you always do, milking yourself of the thick, flowing yellow honey demanding release. You’re panting and moaning before long, kneeling in a puddle of sticky honey as your breasts finally begin to calm down, settling into their new, fuller norm.");
 					kGAMECLASS.output("\n\n<b>You now lactate honey!</b>");
-					//{+ MilkVol}
+					// + MilkVol
 					if(target.milkStorageMultiplier < 3) target.milkStorageMultiplier += .5;
 					target.milkType = GLOBAL.FLUID_TYPE_HONEY;
 					//Flag as milked

@@ -233,7 +233,7 @@ package classes.Characters
 			long = "The ganraen knight’s " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";
 			if(lust() < 66) long += " You can’t see her face, but you hear labored breathing behind the helmet.";
 			else long += " The knight’s hands keep shying toward her sex, but are blocked by the armor that protects her.";
-			//{33% lust/66%/66% hp/33%} 
+			// 33% lust/66%/66% hp/33%
 			if(HP()/HPMax() > .66) {}
 			else if(HP()/HPMax() > .33) long += " The knight’s armor has begun to fall apart, revealing small portions of her gooey interior.";
 			else long += " A chestplate, helmet, and skirt are all that remain of the knight’s armor, leaving most of her " + skinTone + " goo visible.";

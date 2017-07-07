@@ -239,7 +239,7 @@
 			author("Savin");
 			output("The naleen girl lunges at you with a predatory grin, jaw opening wide as she closes. You can almost see the glint of venom on her fangs!");
 			
-			//{standard dodge/miss messages}
+			// standard dodge/miss messages
 			if (combatMiss(this, target)) 
 			{
 				output(" You manage to avoid " + a + possessive(short) + " bite!");

@@ -798,10 +798,12 @@ public function lerrisTalkMenu(fromFunc:Function = null):void
 			if (fromFunc != lerrisTalkGirlfriend) addButton(1, "Her Girlfriend", lerrisTalkGirlfriend, undefined, "Her Girlfriend", "Ask Lerris about her girlfriend. She sounds like a real hard-ass of a mistress.");
 			else addDisabledButton(1, "Her Girlfriend");
 		}
-		//else
-		//{
-			//addDisabledButton(1, "Jessa"); // 9999 scenes not finished/present :V
-		//}
+		/*
+		else
+		{
+			addDisabledButton(1, "Jessa"); // 9999 scenes not finished/present :V
+		}
+		*/
 	}
 	
 	addButton(14, "Back", lerrisMenu);

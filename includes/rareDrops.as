@@ -24,17 +24,17 @@ public function genericRareDrops(loot:Array):Array
 				if(!CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBIOne());
 				if(!CodexManager.entryUnlocked("BXBI: II") && CodexManager.entryUnlocked("BXBI: I")) tempLoot.push(new BXBITwo());
 				if(!CodexManager.entryUnlocked("Satyr Slave")) tempLoot.push(new SatyrSlave());
-				if(!CodexManager.entryUnlocked("Tentacles & Tanukis") && flags["MET_KIRO"] != undefined && flags["MET_SYRI"] != undefined) tempLoot.push(new TentaclesAndTanukis());
+				if(!CodexManager.entryUnlocked("Tentacles & Tanukis") && metKiro() && flags["MET_SYRI"] != undefined) tempLoot.push(new TentaclesAndTanukis());
 				break;
 			case "tarkus":
 				if(!CodexManager.entryUnlocked("||||||||")) tempLoot.push(new EightClicks());
-				if(!CodexManager.entryUnlocked("FuckTheSystem")) tempLoot.push(new FuckTheSystem());
+				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
 				break;
 			case "myrellion":
 				if(!CodexManager.entryUnlocked("Captured...")) tempLoot.push(new CapturedByTheDemons());
 				if(!CodexManager.entryUnlocked("Satyr Slave")) tempLoot.push(new SatyrSlave());
-				if(!CodexManager.entryUnlocked("FuckTheSystem")) tempLoot.push(new FuckTheSystem());
+				if(!CodexManager.entryUnlocked("Fuck the System")) tempLoot.push(new FuckTheSystem());
 				if(!CodexManager.entryUnlocked("Stolen Goods")) tempLoot.push(new StolenGoods());
 				break;
 			default:
@@ -65,12 +65,17 @@ public function isEaster():Boolean
 
 public function eggSelect():ItemSlotClass
 {
-	if(rand(8) == 0) return new EggBlueLarge();
-	else if(rand(7) == 0) return new EggBlueSmall();
-	else if(rand(6) == 0) return new EggPinkLarge();
-	else if(rand(5) == 0) return new EggPinkSmall();
-	else if(rand(4) == 0) return new EggWhiteLarge();
-	else if(rand(3) == 0) return new EggWhiteSmall();
-	else if(rand(2) == 0) return new SmallEgg();
-	else return new LargeEgg();
+	var egg:int = rand(8);
+	switch(egg)
+	{
+		case 0: return new EggBlueLarge(); break;
+		case 1: return new EggBlueSmall(); break;
+		case 2: return new EggPinkLarge(); break;
+		case 3: return new EggPinkSmall(); break;
+		case 4: return new EggWhiteLarge(); break;
+		case 5: return new EggWhiteSmall(); break;
+		case 6: return new SmallEgg(); break;
+		case 7: return new LargeEgg(); break;
+	}
+	return null;
 }

@@ -548,7 +548,7 @@ public function pitchAnalRensa():void
 
 	output("\n\nWhile you turn your attention to the selection on hand, Ren twists around onto her hands and knees and crawls up the heart-shaped bed. Her arms come to rest on the curvy headboard, making sure to leave her breasts where they can sway for you later, and nestles her chin into her hands, watching you with a playful smile. You make your choice in a hurry");
 	//hugedick + Kiro fucked: 
-	if(x >= 0 && pc.cocks[x].thickness() >= 4 && flags["MET_KIRO"] != undefined) output(", happy to find some of the same elasticizing lube Kiro uses on hand,");
+	if(x >= 0 && pc.cocks[x].thickness() >= 4 && metKiro()) output(", happy to find some of the same elasticizing lube Kiro uses on hand,");
 	output(" and mount the bed after her. Ren’s tail curls up her back, getting out of the way of your unrestricted access to the hermaphroditic whore’s backside. She gives you an enticing wiggle, making her full cheeks jiggle - and letting the hefty pillar of meat between her legs sway.");
 
 	output("\n\nYou’re not interested in that for now, though. Your gaze is firmly fixed on the full, soft cheeks of Terensha’s ass. The way the latex hugs her skin makes her seem almost doll-like, too perfectly sculpted to be real. When you sink your fingers into it, though, her ass yields to your touch, soft and pliant, readily pulled open to reveal her twinned holes. You squirt a generous load of lube directly into the cleft between her cheeks, eliciting a gasp from the whorish halfbreed and making her ass wink at you as the lube splatters across it.");

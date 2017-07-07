@@ -158,7 +158,7 @@ package classes.GameData.Pregnancy.Handlers
 						thisPtr.childGenderWeights
 					)
 				);
-				StatTracking.track("pregnancy/psychic tentacle beast birthed/day care", pData.pregnancyQuantity);
+				StatTracking.track("pregnancy/psychic tentacle beast day care", pData.pregnancyQuantity);
 				StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			}
 			
@@ -183,7 +183,7 @@ package classes.GameData.Pregnancy.Handlers
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
 			StatTracking.track("pregnancy/psychic tentacle beast birthed", pData.pregnancyQuantity);
-			StatTracking.track("pregnancy/psychic tentacle beast birthed/day care", pData.pregnancyQuantity);
+			StatTracking.track("pregnancy/psychic tentacle beast day care", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			

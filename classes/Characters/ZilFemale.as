@@ -259,7 +259,7 @@
 			//Counter-melee / last resort. Light physical,medium lust, slows victim
 			output("Leaping at you, the zil girl spins around and dives ass-first toward you, her deadly stinger on full display!");
 			
-			//{standard dodge/miss messages}
+			// standard dodge/miss messages
 			if (combatMiss(this, target))
 			{
 				output(" You avoid it at the last moment!");
@@ -334,7 +334,7 @@
 			author("Savin");
 			//Light physical + light poison damage/ DOT
 			output("Pursing her black lips in anger, the zil girl leans back and lets fly with a red-tipped dart, sending it right at you!");
-			//{standard dodge/miss messages}
+			// standard dodge/miss messages
 			if (combatMiss(this, target)) 
 			{
 				output("\nYou twist to avoid the dart!");
@@ -377,7 +377,7 @@
 				output("\n\nLuckily your [pc.armor] is airtight, so you don’t have to worry about being affected by it - but you can see <i>she</i> definitely is!");
 				lust(8);
 			}
-			//{Moderate toughness check pass}
+			// Moderate toughness check pass
 			else if(target.physique() + rand(20) + 1 > 20) {
 				output(" You wonder what the hell she’s doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
 				output("\nYou hold your breath as long as you can, waving the lusty cloud away from you. Before long, the zil girl tires out, nearly cumming before she stumbles back with chest heaving. There’s a thick scent of sex in the air by the time you breathe again...");

@@ -260,7 +260,7 @@
 			{
 				output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
 			}
-			//{Moderate toughness check pass}
+			// Moderate toughness check pass
 			else if(target.physique() + rand(20) + 1 > 20) {
 				output(" There’s nothing to do but try and hold your breath!");
 				output("\nHe gets tired long before you do and gives up, but it still leaves a cloud of his delicious aroma floating around you. It’s strong enough to make your pulse quicken.");
@@ -340,10 +340,10 @@
 				output(" You avoid it!");
 				return;
 			}
-			//{lift fail}
+			// lift fail
 			if((target.thickness + 100) * target.tallness >= 9900) {
 				output(" He strains for a second, but the zil just can’t get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");
-				//{low damage}
+				// low damage
 				applyDamage(new TypeCollection( { kinetic: 1 + rand(4) } ), this, target);
 			}
 			else 

@@ -63,7 +63,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				//Usage text:
-				//{Effect: If the PC has a cock, changes cumType to Honey.}
+				// Effect: If the PC has a cock, changes cumType to Honey.
 				kGAMECLASS.output("You take out the oversized yellow pill from your pack, staring at the large HONEYSEED label on its side, name superimposed over a field of vibrant honeycombs. With a deep breath to steady yourself, you shimmy out of your [pc.gear] and lower yourself to the ground, lifting your [pc.legOrLegs] to get a good angle on your own [pc.asshole]. You briefly think that some medical professional should be doing this when you buy the damn thing, but brush the thought from your mind as you reach down to your tightly clenched hole, pressing the rounded head of the thick pill to your dark star.");
 				kGAMECLASS.output(" Here goes. You bite your lip and press in, ");
 				if(target.ass.looseness() >= 5) kGAMECLASS.output("the yellow pill easily slipping through the gaping hole of your ruined asshole");

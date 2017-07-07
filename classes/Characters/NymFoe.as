@@ -242,7 +242,7 @@
 			var attacks:Array = [];
 
 			//GUSHing Teats
-			//{ignores shields, high accuracy, cannot be used unless Nym-Foe has at least 1 stack of <i>“Bouncy”</i>}
+			// ignores shields, high accuracy, cannot be used unless Nym-Foe has at least 1 stack of “Bouncy”
 			//v2 of Bouncy! disables if 1 (for sealed suits)
 			if(statusEffectv2("Bouncy!") == 0 && statusEffectv1("Bouncy!") > 0) attacks.push(gushingTreats);
 			if(!hasStatusEffect("Sampled")) attacks.push(sampleTailAttack);
@@ -276,14 +276,14 @@
 				if(!(target.armor is EmptySlot)) output("around your [pc.armor], ");
 				output("through your [pc.skinFurScales], and piercing into the flesh beneath with smooth, surgical precision. There is a slight sting, and the tail pulls back with a single droplet of blood on its point. Vacuum pressure sucks the blood into a tiny hole in the tail and Nym-Foe’s eyes flicker for a moment.");
 				output("\n\n<i>“Analysis complete. Bio-silicone reformatted.”</i> Before your eyes, her ass plumps up, globular cheeks fattened through some internal process. A trickle of clear goo oozes from her tail.");
-				//{deals 1 Kinetic point of hp damage. Unlocks the Injection Tail attack and disables the Sample Tail attack}
+				// deals 1 Kinetic point of hp damage. Unlocks the Injection Tail attack and disables the Sample Tail attack
 				this.createStatusEffect("Sampled");
 				var damage:TypeCollection = new TypeCollection( { kinetic: 1 } );
 				applyDamage(damage, this, target);
 			}
 		}
 		//Injection Tail
-		//{Requires a hit with the Sample Tail first}
+		// Requires a hit with the Sample Tail first
 		public function injectionTail(target:Creature):void
 		{
 			//First time
@@ -301,11 +301,11 @@
 			else
 			{
 				output("\n\nThe spike finds its way through your defenses and you feel a pinch of penetration. The flexible steel bulges and distorts as the nursedroid pumps her payload through it, and into your body. The pressure of the silicone sliding inside your body makes you feel woozy and a little sick. You jerk away, pulling free of the needle, but not quite fast enough. Your [pc.skinFurScales] shifts as the inflating goo slides around your body, looking for a spot to settle in. You’re going to have to win quickly or these implants are going to be permanent!");
-				//{deals 15-25 Drug hp damage}
+				// deals 15-25 Drug hp damage
 				var damage:TypeCollection = new TypeCollection( { drug: 15+rand(11) } );
 				applyDamage(damageRand(damage, 15), this, target);
 
-				//{randomly choose one of the following:}
+				// randomly choose one of the following:}
 				//lips
 				if(rand(4) == 0 && target.lipMod < 5)
 				{
@@ -316,21 +316,21 @@
 				else if(rand(3) == 0)
 				{
 					output("\n\nYour posterior thickens, the cheeks of your [pc.ass] growing broader and fatter as the bio-silicone deposits itself in your rump. You wiggle your backside uncomfortably, trying to get used to the extra mass before the nursedroid has another chance to pump more into you!");
-					//{pc’s ass increases by 1 step.}
+					// pc’s ass increases by 1 step.
 					kGAMECLASS.nymFoeInjection(2,3);
 				}
 				//breasts
 				else if(rand(2) == 0)
 				{
 					output("\n\nYou gasp as the fluid filling settles into your [pc.chest], turning into a semi-firm gel that expands your [pc.chest] considerably. You press an arm against the inflated mounds, but the enlarged breasts are just as responsive as if you’d grown them yourself - albeit far more gravity-defying than natural!");
-					//{pc’s breasts increase by 1 cup size}
+					// pc’s breasts increase by 1 cup size
 					kGAMECLASS.nymFoeInjection(3,3);
 				}
 				//hips
 				else
 				{
 					output("\n\nA groaning pressure floods across your [pc.legOrLegs], and you squirm in your place. Before your eyes, your [pc.hips] grow and swell as the silicone settles into your flanks like a feast of cheesecakes. Frankly, it’s a little embarrassing, but you resolve not to be distracted by this added weight.");
-					//{pc’s hips increase by 1 step}
+					// pc’s hips increase by 1 step
 					kGAMECLASS.nymFoeInjection(1,3);
 				}
 			}
@@ -355,7 +355,7 @@
 			{
 				output("\n\nThe chloroform-soaked glove claps down around your [pc.lips], but luckily your [pc.armor] seems to block everything but a wiff of the sweet-scented inhalant. You pry the droid’s hand off and wipe the fluid from your face.");
 				output("\n\nNym-Foe blinks, looking down at her hand. <i>“Error, subdual mechanism insufficient.”</i> Experimentally, she holds her glove up to her own face and takes a deep breath. <i>“Modifying treatment subroutine.”</i>");
-				//{She no longer uses this attack}
+				// She no longer uses this attack
 				addStatusValue("Gloved",1,1);
 			}
 			//Miss
@@ -368,7 +368,7 @@
 			else
 			{
 				output("\n\nThe fiercely strong android manages to clap her palm across your nostrils and the scent of slightly sweet chemicals floods your senses. You struggle to pull away, holding your breath as best you can. The sinisterly seductive scent coils up, behind your eyes, tinting the world with a darkening oblivion. Adrenaline pounding, you manage to jerk her hand away before you’re completely lost to the aromatic inhalant.");
-				//{player loses 34 points from their Energy. If at 0 energy, they take 10-15 Poison hp damage}
+				// player loses 34 points from their Energy. If at 0 energy, they take 10-15 Poison hp damage
 				if(target.energy() <= 0)
 				{
 					var damage:TypeCollection = new TypeCollection( { poison: 20 } );
@@ -401,13 +401,13 @@
 			else
 			{
 				output("\n\nThe candy cracks against your forehead with all the velocity the nurse could put into it. Stars explode behind your eyes and a bubble of darkness blinds you for a split second. When you recover, your head is still ringing. Not only that, but the lollipop was practically reduced to dust by the impact.");
-				//{deals 10-15 kinetic damage if it hits}
+				// deals 10-15 kinetic damage if it hits
 				var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
 				applyDamage(damageRand(damage, 15), this, target);
 			}
 		}
 		//GUSHing Teats
-		//{ignores shields, high accuracy, cannot be used unless Nym-Foe has at least 1 stack of <i>“Bouncy”</i>}
+		// ignores shields, high accuracy, cannot be used unless Nym-Foe has at least 1 stack of “Bouncy”
 		//v2 of Bouncy! disables if 1 (for sealed suits)
 		public function gushingTreats(target:Creature):void
 		{
@@ -424,7 +424,7 @@
 				output("\n\n<i>“Analyzing...”</i>");
 				output("\n\n<i>“Error. Tissue insufficiently deep. Deploying medical assistance.”</i> She grips her nipples and sprays another pair of showering blasts at you!");
 			}
-			//{Removes 1 stack of <i>“Bouncy”</i> from Nym-Foe}
+			// Removes 1 stack of <i>“Bouncy”</i> from Nym-Foe
 			this.addStatusValue("Bouncy!",1,-1);
 			var stacks:int = statusEffectv1("Bouncy!");
 			if(stacks <= 0) removeStatusEffect("Bouncy!");
@@ -436,7 +436,7 @@
 			if(target.hasAirtightSuit())
 			{
 				output("\n\nThe chemical lactation splashes against your [pc.armor]. Thin streams trickle down harmlessly, repelled by your sealed suit. Nym-Foe blinks, looking down at her dripping chest. <i>“Error, subdual mechanism insufficient.”</i> Sadly, she tweaks her nipples, stopping their gushing streams. <i>“Modifying treatment subroutine.”</i>");
-				//{She no longer uses this attack}
+				// She no longer uses this attack
 				addStatusValue("Bouncy",2,1);
 			}
 			//Miss
@@ -453,7 +453,7 @@
 				{
 					output("\n\nYou dodge, but the multitude of sex toys and half-broken garbage all over Doctor Badger’s floor trips you up. Nym-Foe’s spray catches you and you sputter as the fluid seeps into your [pc.skinFurScales], leaving your body feeling swollen and slightly numb. Pinpricks of sensation radiate through your [pc.chest], and you shudder as your body throbs under the building pressure.");
 					output("\n\n<b>At least she’s less bouncy!</b>");
-					//{24 lust damage}
+					// 24 lust damage
 					target.lust(24);
 				}
 				//Second Hit:
@@ -461,7 +461,7 @@
 				{
 					output("\n\nYour body is woozy and doesn’t seem to be responding to your brain very well anymore. Another spray of clear fluid drenches you and the numbness floods you once more. When it recedes, the sensation in your chest is as suffocating as if you were being pinned under a starship. You gasp and moan, trying your best to ignore the furnace of your [pc.chest].");
 					output("\n\n<b>At least she’s less bouncy!</b>");
-					//{24 lust damage}
+					// 24 lust damage
 					target.lust(24);
 				}
 				//Third Hit:
@@ -469,7 +469,7 @@
 				{
 					output("\n\nIt’s like you’re not even trying to get out of the way anymore. The android’s glistening bounty spurts from her pink nipples and hoses you down yet again. Your gut tells you something terrible is happening, but your brain can’t be bothered to investigate. You exult in the cold numbness and rejoice at the tingling warmth. It feels so good, tears start brimming in your eyes and it’s hard to keep your mouth closed, your [pc.tongue] hanging out as you pant like a bitch in heat.");
 					output("\n\n<b>At least she’s less bouncy!</b>");
-					//{24 lust damage}
+					// 24 lust damage
 					target.lust(24);
 				}
 				//Fourth Hit
@@ -477,14 +477,14 @@
 				{
 					output("\n\nYou raise an arm weakly, as if your palm will hold back the gushing tide of the nursedroid’s twin geysers. A fresh coating of the translucent lactation leaves you barely standing. The temptation to drop to your knees is so strong that you’re fighting yourself nearly as much as the reprogramed android. Your body feels wound up tighter than a spring-loaded trap, every muscle and nerve twitching with pent-up need.");
 					output("\n\n<b>At least she’s less bouncy!</b>");
-					//{24 lust damage}
+					// 24 lust damage
 					target.lust(24);
 				}
 				//Fifth Hit
 				else
 				{
 					output("\n\nYou fall to your [pc.ass] and open your mouth wide, accepting the droid’s shower with an obedient moan. Heat overtakes you and, body dripping with the oily drug, all resistance fades from your slack limbs.");
-					//{15000 lust damage. Go to <i>“GUSH’d Bad End”</i>}
+					// 15000 lust damage. Go to “GUSH’d Bad End”
 					target.lust(1500000);
 					//9999
 				}

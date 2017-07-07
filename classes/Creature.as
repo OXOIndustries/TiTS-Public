@@ -13805,20 +13805,12 @@
 				{
 					descripted++;
 					// 9999 CoC's black cunts. Might still use!
-					//if(InCollection(vaginas[vaginaNum].vaginaColor, "black", "ebony", "obsidian", "onyx", "sable") && rand(2) == 0) {
-					//	if(descripted) vag += ", ";
-					//	rand = Math.floor(Math.random() * 8);
-					//	if(rand == 0) vag += "black";
-					//	else if(rand == 1) vag += "onyx";
-					//	else if(rand == 2) vag += "ebony";
-					//	else if(rand == 3) vag += "dusky";
-					//	else if(rand == 4) vag += "sable";
-					//	else if(rand == 5) vag += "obsidian";
-					//	else if(rand == 6) vag += "midnight-hued";
-					//	else vag += "jet black";
-					//	descripted = true;
-					//}
-					//else 
+					if(InCollection(vaginas[vaginaNum].vaginaColor, "black", "ebony", "obsidian", "onyx", "sable") && rand(2) == 0) {
+						if(descripted) vag += ", ";
+						vag += RandomInCollection("black", "onyx", "ebony", "dusky", "sable", "obsidian", "midnight-hued", "jet black");
+						descripted = true;
+					}
+					else 
 					vag += vaginas[vaginaNum].vaginaColor;
 				}
 				else
@@ -15464,9 +15456,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("sweet", "sweet", "sweet", "sugary", "sugary", "saccharine");
 					break;
-				default:
-					return "bland";
 			}
+			if(collection.length <= 0) return "bland";
 			
 			return RandomInCollection(collection);
 		}
@@ -15543,9 +15534,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("gooey", "sticky", "syrupy");
 					break;
-				default:
-					return "fluid";
 			}
+			if(collection.length <= 0) return "fluid";
 			
 			return RandomInCollection(collection);
 		}
@@ -15635,9 +15625,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("white", "white", "semi-clear", "ivory", "alabaster", "pure white");
 					break;
-				default:
-					return "ERROR, INVALID FLUID TYPE.";
 			}
+			if(collection.length <= 0) return "ERROR, INVALID FLUID TYPE.";
 			
 			return RandomInCollection(collection);
 		}
@@ -15787,8 +15776,8 @@
 					collection.push("yogurt");
 					break;
 				case GLOBAL.FLUID_TYPE_HRAD_CUM:
-					break;
 					collection.push("syrup", "cum");
+					break;
 				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
 					collection.push("slime", "goo");
 					break;
@@ -15807,9 +15796,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("glaze", "frosting", "icing");
 					break;
-				default:
-					return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun.";
 			}
+			if(collection.length <= 0) return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun.";
 			
 			return RandomInCollection(collection);
 		}

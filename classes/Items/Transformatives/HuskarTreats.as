@@ -330,11 +330,11 @@
 			{
 				if (target.tailTypeUnlocked(GLOBAL.TYPE_CANINE))
 				{
-					//{If PC had a tail before: }
+					// If PC had a tail before:
 					if(pc.tailCount == 1) kGAMECLASS.output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as " + pc.furColor + " bristles, the beginnings of a thick coat of fur, sprout up across the length of your reforming posterior appendage. It starts wagging as the change completes, <b>leaving you with an ausar’s dog-like tail.</b>");
 					//Multitails
 					else if(pc.tailCount == 2) kGAMECLASS.output("\n\nYour [pc.tails] knot together, torturing you with brief convulsions. A kind of numb heat spreads through them, forcing you to twist about for a visual inspection. They’re merging together into a single, narrow entity. The flesh crawls eerily as it assume its new shape. Hairs sprout out of it while you watch, thickening into a coat of fur. <b>Your [pc.tails] have combined into a single ausar tail.</b>");
-					//{If PC is tailless peasant: }
+					// If PC is tailless peasant:
 					else
 					{
 						kGAMECLASS.output("\n\nOuch! A knot of discomfort forms just above your [pc.butt] as if it had suffered a nasty sting or bite, but no such injury occured. You twist for a look at it");

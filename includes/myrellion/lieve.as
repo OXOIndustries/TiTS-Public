@@ -2205,7 +2205,7 @@ public function lieveTourManorHouse(fromBath:Boolean = true):void
 	output("\n\n<i>“Is that right?”</i> Lieve says, letting you hear the humor in her voice. <i>“Well, good old marshal’s quite the disciplinarian, after all.”</i>");
 	
 	output("\n\n");
-	//{if Marshal Sellera met: 
+	// if Marshal Sellera met: 
 	if (flags["MET_SELLERA"] != undefined) output("You imagine so!");
 	else output("You’re picking up on some fairly blatant innuendo here, but opt not to push it with a group of strangers.");
 	

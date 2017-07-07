@@ -722,10 +722,12 @@ package classes.Items.Transformatives
 			
 			var toneChange:Function = function():*{
 					// Squishy skin blocks it, not gel body.
-					//if (!target.toneUnlocked(tone)) {
-						//output("\n\n" + target.toneLockedMessage());
-						//return;
-					//}
+					/*
+					if (!target.toneUnlocked(tone)) {
+						output("\n\n" + target.toneLockedMessage());
+						return;
+					}
+					*/
 					
 					if (both) output("\n\nAfter feeling up your changed body for a moment, you discover that it is now tightly bound in sleek yet strong muscles.");
 					else if (target.tone - tone >= 20) output("\n\nYou feel strange sensation of something shifting beneath your [pc.skinNoun], flowing through your body. When it finally settles down, you end up finding yourself covered in powerful muscles that are sleek yet taut.");

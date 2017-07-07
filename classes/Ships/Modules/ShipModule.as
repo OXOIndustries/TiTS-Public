@@ -31,8 +31,7 @@ package classes.Ships.Modules
 		public function get Owner():IOwner { return _owner; }
 		public function set Owner(v:IOwner):void { _owner = v; }
 		
-		public function get OwningShip():SpaceShip { return ParentLocation.Owner as SpaceShip; }
-		public function get ParentLocation():ShipMap { return Owner as ShipMap; }
+		public function get OwningShip():SpaceShip { return Owner as SpaceShip; }
 		
 		protected var _name:String;
 		public function get Name():String { return _name; }

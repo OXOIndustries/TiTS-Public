@@ -275,7 +275,7 @@ public function phoenixBridgeShields():void
 {
 	clearOutput();
 	author("Savin");
-	//{PC hasn't routed the power}
+	// PC hasn't routed the power
 	if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] != 2)
 	{
 		output("<i>“There’s the button,”</i> the disembodied A.I. says. A moment passes as she tries to point it out, sans body. <i>“Uh... the big green one. Under the fuzzy dice.”</i>");
@@ -287,7 +287,7 @@ public function phoenixBridgeShields():void
 		output("\n\n<i>“Uh...”</i> the A.I. groans, half-thinking and half-panicking. <i>“Pirates must have shorted the systems out when they hit us. Oh, no. Okay, okay, uh... there’s a flux coupling behind the bulkhead in the captain’s quarters. Come on, we can re-route the power from there!”</i>");
 		flags["FALL OF THE PHOENIX SHIELDS STATUS"] = 1;
 	}
-	// {PC has routed the power}
+	// PC has routed the power
 	else
 	{
 		output("You press the shield control again, and this time, you’re rewarded with a roaring sound from the back of the ship and several panels in the cockpit shorting out, showering you in sparks. Through the viewscreen, you’re rewarded with the sight of bright orange energy wrapping around the cockpit, spreading out from the emitters overhead and enveloping the wreck of the <i>Phoenix</i>. ");
@@ -435,7 +435,7 @@ public function startPhoenixPirateFight():void
 
 public function loseToPhoenixPirates():void 
 {
-	//{Not a Bad End: Saendra sold into slavery!}
+	// Not a Bad End: Saendra sold into slavery!
 	flags["FALL OF THE PHOENIX STATUS"] = -1;
 	flags["FALL OF THE PHOENIX DEFEATED PIRATES"] = -1;
 	clearOutput();
@@ -465,7 +465,7 @@ public function loseToPhoenixPirates():void
 	processTime(60 * (4 + rand(4)));
 	output("\n\n<b>Hours pass...</b>");
 
-	//{PC loses 75% of credits + all equipment save underclothes}
+	// PC loses 75% of credits + all equipment save underclothes
 	pc.credits = Math.floor(pc.credits * 0.25);
 	pc.shield = new EmptySlot();
 	pc.accessory = new EmptySlot();

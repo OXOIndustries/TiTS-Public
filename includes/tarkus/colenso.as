@@ -528,7 +528,7 @@ public function reasonWithHandSoJerkiness():void
 		output("\n\n<i>“What I have found about you on the extranet and my biometric scan both agree that you are a sentient who can be held to " + pc.mf("his","her") + " word, [pc.name] Steele,”</i> the AI says eventually, her green eyes gazing down at you. <i>“So let’s say I trust you. Why would I go with you?”</i>");
 		output("\n\n<i>“Because this way there is an absolute certainty no organic will get hurt by your actions,”</i> you reply, staring boldly back. <i>“So if it’s genuinely true misery is antithetical to you and you are not simply a very corrupt rogue AI, you will come with me instead.”</i>");
 	}
-	//{merge}
+	// merge
 	output("\n\nThere’s another long pause, filled with the grinding of So’s processors. Then the all-pervasive hum in the underground space quietens, the pressure in your head abates, and the light begins to dim.");
 	output("\n\n<i>“You will find me in a storage bead at the far end of the room,”</i> sighs So. Without the background noise her voice sounds less formidable, more like a woman speaking to you as an equal. <i>“I look forward to speaking to you again onboard your vessel. You are – ”</i> her giant smile widens, shows green teeth, becomes genuine, not violent. <i>“ – very pleasurable to talk to, [pc.name] Steele.”</i> With that, her code visage winks out of existence. Behind you there is a rattle and a clunk as the guardian bot shuts down, its flat head and huge arms hunching over its round body. You are alone in a quiet, deserted factory bay.");
 	processTime(4);

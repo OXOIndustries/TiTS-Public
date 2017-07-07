@@ -137,7 +137,7 @@ public function naleenFucksBoysScene():void {
 		if(pc.balls > 1) output("s");
 		output(".");
 	}
-	//{If PC has a small dick (less than 6)
+	// If PC has a small dick (less than 6)
 	if(pc.cocks[x].cLength() < 6) output("\n\n<i>“Hmm?”</i> the naleen purrs, cocking her head askance, <i>“is this all you've got for me, </i>little<i> pet? Tsk, oh well. I hear tell that it's not how much you have, but how you use it... in your condition, my pet, I do hope you can live up to it. I promise I'll reward you if you do...”</i>");
 
 	//(If PC's got a BIGGUS DICKUS (more than 15):
@@ -146,7 +146,7 @@ public function naleenFucksBoysScene():void {
 	//If PC got a medium/normal dick:
 	else output("\n\n<i>“Ahhh, here we are,”</i> the serpent girl purrs, giving your [pc.cock " + x + "] a little squeeze. <i>“Such a nice, perfect cock, and it's all mine. You don't mind if I borrow it, do you? I promise I'll pay you back.”</i>");
 	
-	//{combine:}
+	// combine:
 	output("\n\nYou gulp and try to squirm away, but the paralytic in your veins keeps you perfectly placid and unresisting as the naleen's hand gently glides from your [pc.hair] down your [pc.chest], stopping to giving one of your [pc.nipples] a pinch and a tug before sliding it down to where the groin would be on a humanoid. Where the feline torso meets serpent body, the naleen's fingers slip into a nearly hidden vertical slit, vanishing up to the knuckle. She breathes deep as her fingers work, the swells of her breasts carrying your head as you lie paralyzed against her, helpless but to listen as a wet schlicking echoes up from her slit and the hand on your [pc.cock " + x + "] gives it a little tug, lining it up with the naleen's reptilian cunt.");
 	
 	output("\n\nOver you, the naleen gives a surprisingly feminine whimper of pleasure as your [pc.cock " + x + "] brushes her folds, just barely parting the lips of her slit. She pushes you in further a moment later, and before you can blink your prick's engulfed in a warm, silken cocoon: the naleen's tender muscles gently contract and squeeze the invading [pc.cock " + x + "], massaging and caressing inch after glorious inch as the serpentine cunt takes your dick. Helpless as you are, you can do little but moan as your rod slides into the slick snake-pussy, engulfed in her magnificent muff.");
@@ -265,9 +265,9 @@ public function beatDatCatNaga():void {
 	author("Savin");
 	userInterface.showBust("NALEEN");
 	userInterface.showName("\nNALEEN");
-	//{if by Physical damage:}
+	// if by Physical damage:
 	if(enemy.HP() <= 0) output("Battered and beaten, the strange alien feline-naga collapses into the dirt. She shakily tries to pick herself up, but only serves to flop down on her side, staring up at you with wide, slitted eyes. <i>“So... you were strong enough after all. So very rare on this planet. Very well, off-worlder. What will you do with me, hmm? Perhaps I can offer you something; an apology for my attack, hmm? I have soooo many ways to make it up to you,”</i> she says with a light coo, a hand resting on her big hip, with her huge bosom bared to you, so soft and inviting.\n\n");
-	//{if by Lust:}
+	// if by Lust:
 	else output("A master of carnal desire such as you is more than a match for such a lusty huntress. Panting heavily, the alien kitty-naga collapses to the ground, her desire clearly visible through the slick, parted folds of her sex. True to form, though, she shakily rights herself, resting on an elbow with her great big tits on enticing display as one hand dives toward her sex, starting to finger the wanton hole. <i>“You're so.... so sensual, so beautiful. I am at your mercy, off-worlder. My body is yours to command, and I do so hope you can forgive my attack... I have soooo many ways to make it up to you.”</i>\n\n");
 	
 	clearMenu();
@@ -428,7 +428,7 @@ public function feedDatNaleenSumMilk():void {
 }
 
 //Bend Her Over (+DP)
-//{For PCs with 1+ dicks}
+// For PCs with 1+ dicks
 public function bendNaleenOver():void {
 	clearOutput();
 	userInterface.showBust("NALEEN");
@@ -475,7 +475,7 @@ public function bendNaleenOver():void {
 		output("\n\n<i>“You started it,”</i> you snap, giving her ass a rough squeeze - hard enough to spatter a little bit of fem-slime out onto your cock, getting you nice and lubed for what's to come.");
 	}
 	
-	//{Combine:}
+	// Combine:
 	output("\n\nThe way your naleen slut's purring and whining, she's practically begging for it. You line the crown");
 	if(y >= 0) output("s");
 	output(" of your cock");

@@ -3,6 +3,10 @@ import classes.Creature;
 import classes.Items.Guns.CustomLP17;
 import classes.Items.Melee.Cutlass;
 
+public function metKiro():Boolean
+{
+	return (flags["KIRO_BAR_MET"] != undefined || flags["RESCUE KIRO FROM BLUEBALLS"] == 1);
+}
 public function showKiro(nude:Boolean = false):void
 {
 	showKiroBust(nude);

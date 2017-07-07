@@ -1232,7 +1232,7 @@ public function hugeEarShekkaFaps():void
 	addButton(0,"Next",pageTwoOfShekkaStuffs);
 }
 
-//{next page}
+// next page
 public function pageTwoOfShekkaStuffs():void
 {
 	clearOutput();

@@ -108,7 +108,7 @@ public function taivrasPalaceSquareBonus():Boolean
 			//[Approach]
 			addButton(0,"Approach",approachNyreanGuardsFirstTime,undefined,"Approach","Talk to the nyrea guards and see if you can get passage past the gate. You’re almost sure the coordinates you got for Dad’s probe lead to a position right near here...");
 		}
-		//{if PC has done Praetoran fite:}
+		// if PC has done Praetoran fite:
 		else
 		{
 			//within 12 hours:
@@ -1595,7 +1595,7 @@ public function breakOutDane():void
 	{
 		output("You’ve got a clear shot at Dane’s cage now, and the ausar knows it. <i>“Get me out of here!”</i> he growls, eyeing Queensguard dangerously. <i>“C’mon already!”</i>");
 		output("\n\nYou take aim at the lock and strike!");
-		//{Unfortunately for you, the lock isn’t completely destroyed by your attack - you’ll need to try again! //else, [Next] to Dane Breakout Fen wrote}");
+		// Unfortunately for you, the lock isn’t completely destroyed by your attack - you’ll need to try again! //else, [Next] to Dane Breakout Fen wrote
 		showName("DANE &\nQUEENSGUARD");
 		showBust("DANE_NUDE","QUEENSGUARD");
 		output("\n\nAs soon as you destroy the cage’s primitive lock, Dane is surging into action. The big ausar combat rolls into the door, smashing it fully open with his muscular bulk. His hands wrap around the haft of his warden’s spear, and with a simple tug, the weapon is liberated from the gape-mouthed nyrea. As big as Dane is, the spear looks like a toothpick in his hammer-thick hands. He growls, deep in his throat and snaps it in two, simultaneously backhanding the surprised cave-dweller into the wall with one of his free hands.");
@@ -2351,7 +2351,7 @@ public function probeReclamationShit():void
 	flags["MYRELLION_PROBE_CASH_GOT"] = 1;
 	
 	clearMenu();
-	//{if Shade is still on-planet and not pissed/your enemy, continue. Else, [Next] to map}
+	// if Shade is still on-planet and not pissed/your enemy, continue. Else, [Next] to map
 	if(shadeAtTheBar()) addButton(0,"Next",shadeHalfSisterShit);
 	else addButton(0,"Next",myrellionProbeEnd);
 }
@@ -3614,7 +3614,7 @@ public function queensGuardRepeatApproaches():void
 	author("Savin");
 	//First Time Greeting
 	//if(flags["MET_CERRES"] == undefined)
-	//{
+	// {
 		output("Seeing the wounded nyrean knight standing beside the fountain, you decide to go over and check on your subject.");
 		output("\n\nAbnormally for her, you suspect, her helmet is resting on the stone beside her, revealing a pale, battle-scarred face and a head of short, spiky black hair falling just over her oddly amethyst-colored eyes. Hearing you approach, she blinks away a thousand-yard stare and turns to face you, gauntlets respectfully abandoning the planted hilt of her sword.");
 		output("\n\n<i>“My " + pc.mf("lord","lady") + ",”</i> she says with a slight nod of her head.");
@@ -3627,7 +3627,7 @@ public function queensGuardRepeatApproaches():void
 		output("\n\nWait, Queensguard’s a... a male? That’s certainly new - you’ve never seen a male nyrea as anything but a submissive in your time on Myrellion. Still, with skills like hers, you imagine Queensguard must fought her way to the top and earned her place. Taivra doesn’t seem like the type to keep pets as mere gimmicks.");
 		output("\n\nMaybe there’s more to Queensguard than a mere soldier after all...");
 		flags["MET_CERRES"] = 1;
-	//}
+	// }
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

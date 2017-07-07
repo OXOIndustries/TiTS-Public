@@ -690,6 +690,8 @@ package classes.GameData
 		
 		override public function endCombatRound():void
 		{
+			showCombatUI();
+			
 			if (checkForVictory(true)) return;
 			if (checkForLoss(true)) return;
 			

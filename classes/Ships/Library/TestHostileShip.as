@@ -5,6 +5,7 @@ package classes.Ships.Library
 	import classes.Ships.Modules.EngineModule;
 	import classes.Ships.Modules.GunneryModule;
 	import classes.Ships.Modules.HullArmoringModule;
+	import classes.Ships.Modules.Library.TestWeaponModule;
 	import classes.Ships.Modules.LightdriveModule;
 	import classes.Ships.Modules.ReactorModule;
 	import classes.Ships.Modules.ShieldModule;
@@ -19,15 +20,27 @@ package classes.Ships.Library
 	 */
 	public class TestHostileShip extends SpaceShip
 	{
+		protected function get TypedMap():TestMapInterior
+		{
+			return _internalMap as TestMapInterior;
+		}
 		
 		public function TestHostileShip() 
 		{
-			Name = "Test Ship";
+			_lightdriveModule = new LightdriveModule(this);
+			_engineModule = new EngineModule(this);
+			_shieldModule = new ShieldModule(this);
+			_hullArmoringModule = new HullArmoringModule(this);
+			_reactorModule = new ReactorModule(this);
+			_capacitorModule = new CapacitorModule(this);
+			_gunneryModule = new GunneryModule(this);
+			
+			Name = "Hostile Ship";
 			_manufacturer = "GDN";
 			_model = "FSP5";
 			_baseValue = 150000;
 			
-			_hullMaxBase = 500;
+			_hullMaxBase = 3500;
 			Hull = HullMax;
 			
 			_shieldsMaxBase = 1000;
@@ -45,17 +58,12 @@ package classes.Ships.Library
 			_storageTypeArmor = 10;
 			_storageTypeWeapons = 20;
 			
+			_inherentGadgets = [ActionLibrary.TestAction];
 			_inventory = [];
-			
-			_lightdriveModule = new LightdriveModule(this);
-			_engineModule = new EngineModule(this);
-			_shieldModule = new ShieldModule(this);
-			_hullArmoringModule = new HullArmoringModule(this);
-			_reactorModule = new ReactorModule(this);
-			_capacitorModule = new CapacitorModule(this);
-			_gunneryModule = new GunneryModule(this);
-			
 			_fittedModules = [];
+			
+			EquipModule(new TestWeaponModule(this), TypedMap.WeaponRoom1);
+			EquipModule(new TestWeaponModule(this), TypedMap.WeaponRoom2);
 		}
 		
 		override public function get Reflexes():Number { return 10; }

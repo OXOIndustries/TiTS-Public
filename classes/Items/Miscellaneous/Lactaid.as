@@ -91,7 +91,7 @@ package classes.Items.Miscellaneous
 			}
 			else if (target.isLactating() && !target.milkType == GLOBAL.FLUID_TYPE_MILK && target.milkTypeUnlocked(GLOBAL.FLUID_TYPE_MILK))
 			{
-				//{If PC is lactating already, not milk tho:
+				// If PC is lactating already, not milk tho:
 				//Chance milkType to milk. Fill to capacity.
 				output("\n\nNow that you’ve filled yourself with the nanomachine treatment, you toss the pen aside and grope at your chest, waiting for them to take effect. Doesn’t take long, it turns out - mere moments later, you feel an intense clenching in your [pc.chest], and you barely have enough time to squeeze your breasts before they start to geyser out, splattering you and the ground and everything around you in [pc.milk].");
 

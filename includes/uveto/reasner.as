@@ -223,7 +223,7 @@ public function setBeatriceName(arg:String):void
 	else if(pc.isMischievous()) output(" <i>“A pleasure to meet such a beauty.”</i>");
 
 	output("\n\n");
-	//{if chose Mrs. Reasner:
+	// if chose Mrs. Reasner:
 	if(arg == "Mrs. Reasner") output("<i>“My, how nice to meet such a polite young [pc.manWoman].”</i> ");
 	output("She shakes your hand. Her skin is cool to the touch, and her grip is gentle, yet firm.");
 

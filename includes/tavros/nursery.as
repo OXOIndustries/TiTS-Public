@@ -723,6 +723,7 @@ public function nurseryComputerChildren():void
 		var genders:Genders = ChildManager.numGenders();
 		output("Your one and only child here at the nursery is the center of attention.");
 		if (genders.Male > 0) output(" His");
+		else if (genders.Neuter > 0) output(" Its");
 		else output(" Her");
 		output(" status is summarized below:");
 	}
@@ -740,7 +741,7 @@ public function nurseryComputerChildren():void
 private var orphanList:Array = [
 	"pregnancy/cockvine seedlings captured",
 	"pregnancy/nyrea eggs", "pregnancy/royal nyrea eggs", "pregnancy/renvra eggs", "pregnancy/renvra kids",
-	"pregnancy/psychic tentacle beast birthed/day care",
+	"pregnancy/psychic tentacle beast day care",
 	"pregnancy/sydian births",
 	"pregnancy/fertilized venus pitcher seeds/day care",
 	"pregnancy/briha kids",
@@ -756,7 +757,7 @@ public function nurseryOrphanedBabyDiff():int
 		numNurseryKids += StatTracking.getStat(orphanList[i]);
 		
 		// Fix uneven stats.
-		if(orphanList[i] == "pregnancy/psychic tentacle beast birthed/day care" && ChildManager.numOfType(GLOBAL.TYPE_TENTACLE) > 0)
+		if(orphanList[i] == "pregnancy/psychic tentacle beast day care" && ChildManager.numOfType(GLOBAL.TYPE_TENTACLE) > 0)
 		{
 			if(ChildManager.numOfType(GLOBAL.TYPE_TENTACLE) != StatTracking.getStat(orphanList[i])) StatTracking.setStat(orphanList[i], ChildManager.numOfType(GLOBAL.TYPE_TENTACLE));
 		}
@@ -883,7 +884,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 			childTotal = (StatTracking.getStat("pregnancy/nyrea eggs") + StatTracking.getStat("pregnancy/renvra eggs") + StatTracking.getStat("pregnancy/royal nyrea eggs") + StatTracking.getStat("pregnancy/renvra kids"));
 			break;
 		// Tentacle
-		case "pregnancy/psychic tentacle beast birthed/day care":
+		case "pregnancy/psychic tentacle beast day care":
 			childType = GLOBAL.TYPE_TENTACLE;
 			childMRate = 2.5;
 			childTotal = StatTracking.getStat(statPath);

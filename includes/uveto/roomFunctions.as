@@ -845,7 +845,7 @@ public function watchTankBlowFirstPornLoad():void
 	output("\n\nThe disembodied voice of Tank’s ball-polishing enthusiast urges, <i>“Don’t make the viewers wait, Tank.”</i> Another giggle surfaces at his chosen pseudonym, swiftly forgotten when confronted by her stallion’s needs.");
 	output("\n\n<i>“Cum!”</i>");
 	output("\n\nTank throws his head back and howls, but the focus isn’t on his head. The feed cuts to a second camera, positioned above the tub for a bird’s-eye view of the coming cum-carnage. Pre-cum already fills the tub to half-way, even with the drain open and gurgling. Then tank’s flare flares wider, undoubtedly and obscenely equine. His urethra looks almost alien, protruding slightly from the otherwise smooth surface of his outlandish show-pony. It distends, stretching almost six-inches wide, and releases ");
-	if(flags["MET_KIRO"] != undefined ) output("a single squirt of cum big enough to make Kiro’s look like drops in a bucket");
+	if(metKiro()) output("a single squirt of cum big enough to make Kiro’s look like drops in a bucket");
 	else if(flags["NAYNA_BLOWN"] != undefined) output("a single squirt of cum big enough to make Nayna’s look like drops in a bucket");
 	else if(penny.hasCock()) output("a single squirt of cum big enough to make Penny’s look like drops in a bucket");
 	else if(flags["SUCKED_BRYNN"] != undefined || flags["DEEPTHROATED_BRYNN"] != undefined) output("a single squirt of cum big enough to make Brynn’s look like drops in a bucket");

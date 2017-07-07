@@ -43,6 +43,9 @@ package classes.Ships
 		{
 			_temporaryEffects = { };
 			_statusEffects = { };
+			_inventory = [];
+			_fittedModules = [];
+			_inherentGadgets = [];
 			
 			_lightdriveModule = new LightdriveModule(this);
 			_engineModule = new EngineModule(this);
@@ -51,8 +54,6 @@ package classes.Ships
 			_reactorModule = new ReactorModule(this);
 			_capacitorModule = new CapacitorModule(this);
 			_gunneryModule = new GunneryModule(this);
-			
-			_inherentGadgets = [];
 			
 			_hullMaxBase = 100;
 			Hull = HullMax;
@@ -75,8 +76,6 @@ package classes.Ships
 			_storageTypeArmor = 10;
 			_storageTypeWeapons = 20;
 			
-			_inventory = [];
-			_fittedModules = [];
 			_level = 1;
 			
 			_hullResistances = new ShipTypeCollection( { em: 50, kin: 20, exp: 10, therm: 40 }, ShipDamageFlag.TYPE_HULL);
@@ -118,7 +117,10 @@ package classes.Ships
 		[Serialize]
 		public var _hull:Number;
 		public function get Hull():Number { return _hull; }
-		public function set Hull(v:Number):void { _hull = v; }
+		public function set Hull(v:Number):void
+		{
+			_hull = Math.min(v, HullMax);
+		}
 		
 		protected var _hullMaxBase:Number;
 		public function get HullMax():Number
@@ -222,7 +224,10 @@ package classes.Ships
 		[Serialize]
 		public var _shields:Number;
 		public function get Shields():Number { return _shields; }
-		public function set Shields(v:Number):void { _shields = v; }
+		public function set Shields(v:Number):void
+		{
+			_shields = Math.min(v, ShieldsMax);
+		}
 		
 		protected var _shieldsMaxBase:Number;
 		public function get ShieldsMax():Number 
@@ -319,7 +324,10 @@ package classes.Ships
 		[Serialize]
 		public var _capacitor:Number;
 		public function get Capacitor():Number { return _capacitor; }
-		public function set Capacitor(v:Number):void { _capacitor = v; }
+		public function set Capacitor(v:Number):void
+		{ 
+			_capacitor = Math.min(v, CapacitorMax); 
+		}
 		
 		protected var _capacitorMaxBase:Number;
 		public function get CapacitorMax():Number
@@ -771,9 +779,7 @@ package classes.Ships
 		{ 
 			if (_cachedFittedModules == null)
 			{
-				_cachedFittedModules = [];
-				_cachedFittedModules.concat(_fittedModules);
-				_cachedFittedModules.concat(Lightdrive, Engine, ShieldGenerator, HullArmoring, Reactor, CapacitorBattery, Gunnery);
+				_cachedFittedModules = _fittedModules.concat(Lightdrive, Engine, ShieldGenerator, HullArmoring, Reactor, CapacitorBattery, Gunnery);
 			}
 			return _cachedFittedModules;
 		}
@@ -1304,8 +1310,7 @@ package classes.Ships
 		{
 			if (_cachedGadgets == null)
 			{
-				_cachedGadgets = [];
-				_cachedGadgets = _cachedGadgets.concat(_inherentGadgets);
+				_cachedGadgets = _inherentGadgets.concat(); // "easiest" way to take a copy of an array
 				
 				var m:Array = FittedModules;
 				for each (var mod:ShipModule in m)

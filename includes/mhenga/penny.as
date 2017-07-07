@@ -2087,7 +2087,7 @@ public function getAssFuckedByPenny(fromFaceFuck:Boolean = false):void {
 	}
 	//[Dickless scene intro combines back here]
 	output("\n\nBut you’ll have none of that! You put a firm hand on her thigh, pushing her back down against the chair. Penny groans but doesn’t resist, letting you hold her down as you slip down between her legs, tongue rolling out down across her cock’s base. Slowly, you trail up and up her shaft, leaving a nice slick trail from stem to stern. Whining with pleasure, Penny tears her shirt open, bearing her nicely-rounded tits; she cups the two swollen mounds, squeezing her pink teats as you plant an affectionate kiss on her cockhead.");
-	//{If PC has C+ cup tits:
+	// If PC has C+ cup tits:
 	if(pc.biggestTitSize() >= 3) {
 		output(" The sight of the sexy fox playing with her own tits gives you an idea, though....");
 	
@@ -2330,12 +2330,12 @@ public function getGroundOnByPenny():void {
 	output("<i>“Huh,”</i> Penny responds, <i>“I was kind of looking forward to seeing how much of your [pc.face] and [pc.tongue] I could cram in my pussy.”</i> She shrugs noncommittally. <i>“A cock is fine too.”</i>");
 	output("\n\nYour [pc.cockBiggest] is suddenly squeezed by the vixen’s soft fingertips. She caresses it lovingly while admitting, <i>“Oh, I’m definitely going to enjoy this.”</i> One furry thigh after another, Penny throws herself up onto the cot to straddle your [pc.hips]. Your member, previously hard and jutting slightly upward, is swiftly pinned between your two bodies. Penny’s plush mound and petite cleft grind against it, spreading slightly over your urethral bulge. Her legs splay wider, almost into a perfect split as she settles in, rubbing her plush, pink cunt back and forth along your length gently, smearing a trickle of lubricants onto your dick. You sigh and look up at the big breasted fennec. Her curvy breasts bounce slightly, and your eyes fixate on the pink nipples while you enjoy the feel of her sex on you.");
 	output("\n\nPenny sighs and leans forward, letting her elbows drop down to either side of your face. Her big, blue eyes peer into yours, and she abruptly licks the side of your face. You frown up at her until she tilts her head to plant a proper kiss upon your [pc.lips], putting that tongue to work in your mouth. At the same time, her rump begins to shake, ass-cheeks jiggling. The bouncing can be felt through the soft folds shrouding part of your [pc.cockBiggest]. Shivers of excitement radiate out around the point of sensuous contact, causing you to moan excitedly. Giggling, the fox-girl slides herself forward, dragging her posh cunt across your cock, the velvet curtains massaging your flesh every bit as wonderfully as a masseuse’s hands.");
-	//{Boobiegrind}
+	// Boobiegrind
 	if (pc.biggestTitSize() >= 1) 
 	{
 		output("\n\nYour [pc.nipples] drag across Penny’s lush breasts as she moves into position. She giggles and squeezes your breasts with one hand - an act that requires her to balance quite oddly on the other. She manages it quite well, letting you enjoy the feeling of her furry teats pressed against yours, rubbing back and forth the same way her twat is gliding along your [pc.cockBiggest]. You grab hold of the matched bosoms and let your hands do what they want, sometimes squeezing Penny’s teats and other times groping your own. Sometimes your fingers find your way into the sea of nipples to pinch, tug, and tweak.");
 	}
-	//{No boobies}
+	// No boobies
 	else
 	{
 		output("\n\nWith her tits hanging down like that above you, there’s no way you couldn’t grab hold of them and squeeze. Your hands reach up to cup Penny’s soft bosom, caressing her heaving mammaries, feeling the sweat beading on her skin under the fur. It makes your hands slide all the more easily across the plush orbs. You arrest your slippery gropes and let your digits find her pink, puffed up nipples. They’re pebbly and humanlike in shape in texture, unlike much of the rest of the vixen, and you grab them, tugging Penny’s perky nipples up and down to guide her cunt across your [pc.cockBiggest].");

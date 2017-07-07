@@ -1491,7 +1491,7 @@ public function giveEmmyAnItem(item:String):void
 		{
 			output("\n\nEmmy carefully accepts the shards from you two at a time, packing them into a container. When you’ve passed over the last, you lean in for a look inside. The shards are spaced apart and cradled by a form-fitting packing foam that neatly sets atop a familiar white-and-red jumpsuit covered with dusty green crystals and residue... as well as a long, blackened gash, like it was cut off its wearer with a laser. Ouch.");
 			output("\n\nShe shoos you away kindly and snaps a lid onto the package, then sighs like a bomb has been disarmed. With the shipment prepared, the weapon seller turns to a drawer and opens it up. <i>“Crazy how no matter how much we know, there’s always something else out there waiting to surprise us. If I hadn’t met you, I never would’ve gotten tipped off to the gold mine just below Myrellion’s surface, and I damn sure wouldn’t be so happy about the idea of parting with this beaut. Here it is!”</i>\n\nShe slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
-			//{insert weapon collecting blurb here once weapons are chosen}
+			// insert weapon collecting blurb here once weapons are chosen
 			//go to ‘merge’
 			//reward weapon should reflect a total cost of 4950 credits (1 demo shard plus 10 shards for the mail @ 450 ea)
 			if(rand(3) == 0)

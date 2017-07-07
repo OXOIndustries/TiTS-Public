@@ -261,7 +261,7 @@
 						return;
 					}
 				}
-				//{Permeated armor or no armor:}
+				// Permeated armor or no armor:
 				output(" Once it hits your [pc.skinFurScales], it soaks ");
 				if(!target.hasFur() && !target.hasScales()) output("in");
 				else output("into the [pc.skin] beneath");

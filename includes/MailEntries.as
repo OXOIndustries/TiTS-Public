@@ -158,7 +158,7 @@ public function configureMails():void
 	function():String {
 		var msg:String = "";
 		
-		//{if fucked on Mhen'ga:
+		// if fucked on Mhen'ga:
 		if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined) msg += "How’s my favorite cocksleeve doing?";
 		else msg += "Sure hope this is actually your email address...";
 		msg += "\n\nSo I don’t know if you’re actually the one that blew Myrellion up or not. Don’t really care either. Your dickweed cousin fired me right after.";
@@ -167,7 +167,7 @@ public function configureMails():void
 		msg += " Didn’t even get my last paycheck. So I wrote down those dumb coordinates [rival.heShe] was yammering on about on my way out.";
 		msg += "\n\nOops, I must have accidentally attached them to this message. Ha, silly me. Be a shame if somebody put a boot up [rival.name]’s ass on the next planet when [rival.heShe]’s not expecting it.";
 		msg += "\n\nJust sayin’.";
-		//{if fucked:
+		// if fucked:
 		if (flags["FOUGHT_DANE_ON_MHENGA"] == 1 && flags["WHUPPED_DANES_ASS_ON_MHENGA"] == undefined)
 		{
 			msg += "\n\nSoooo if you want a repeat of Mhen’ga, maybe we can hook up sometime? C’mon, I know you liked it ;)"; 

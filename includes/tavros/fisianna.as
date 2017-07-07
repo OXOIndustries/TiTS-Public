@@ -387,7 +387,8 @@ public function approachFisi():void
 	//Sex Button
 	else if (flags["FISI_DATE_NUMBER"] == 6)
 	{
-		if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
+		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
 		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten! ");
 		
 		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.")
@@ -494,7 +495,8 @@ public function talkBack():void
 	//Sex Button
 	else if (flags["FISI_DATE_NUMBER"] == 6)
 	{
-		if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
+		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
 		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten! ");
 		
 		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.")
@@ -950,7 +952,8 @@ public function hangoutBack():void
 	//Sex Button
 	else if (flags["FISI_DATE_NUMBER"] == 6)
 	{
-		if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
+		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
 		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten! ");
 		
 		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.")
@@ -1823,30 +1826,18 @@ public function sexFisi():void
 	else output("You follow suit and walk arm in arm back to Fisianna’s apartment.");
 	output("\n\nOnce the two of you arrive, you jump to the attack and seize Fisianna in a fierce and passionate kiss. You lock lips with each other tightly while your tongues dance between the seal of your mouths. Without breaking the kiss, the two of you stumble all the way into her bedroom, where you eventually trip over the edge of her bed, consequently pulling the both of you apart. Fisianna looks at you with her golden eyes, filled with passion and hunger for you as you lay next to each other side by side on the bed, panting for breath from the long kiss. You think about what you would like to do with your feline lover this time.");
 
-	if (pc.hasCock() || pc.hasVagina())
-	{
-		if (pc.lust() >= 33) addButton(0, "Tailjob", tailjobFisi, undefined, "Tailjob", "Let her tails go to work on you.");
-		else addDisabledButton(0, "Tailjob", "Tailjob", "You aren’t aroused enough for this.");
-	}
+	if (pc.hasCock() || pc.hasVagina()) addButton(0, "Tailjob", tailjobFisi, undefined, "Tailjob", "Let her tails go to work on you.");
 	else addDisabledButton(0, "Tailjob", "Tailjob", "You need a cock or vagina for this.")
 	
 	if (flags["FISI_SEX_NUMBER"] >= 1) addButton(1, "Eat Her Out", eatOutFisi, undefined, "Eat Her Out", "Munch on her pussy.");
 	else addDisabledButton(1, "Eat Her Out", "Eat Her Out", "It doesn’t look like she is comfortable enough with you to do this yet.")
 	
 	if (!(flags["FISI_SEX_NUMBER"] >= 2)) addDisabledButton(2, "Sixty-Nine", "Sixty-Nine", "It doesn’t look like she is comfortable enough with you to do this yet.");
-	else if (pc.hasVagina() || largestCockIndexThatFitsFisiDimensions() >= 0)
-	{
-		if (pc.lust() >= 33) addButton(2, "Sixty-Nine", sixtyNineFisi, undefined, "Sixty-Nine", "Lick each other up.");
-		else addDisabledButton(2, "Sixty-Nine", "Sixty-Nine", "You aren’t aroused enough for this.");
-	}
+	else if (pc.hasVagina() || largestCockIndexThatFitsFisiDimensions() >= 0) addButton(2, "Sixty-Nine", sixtyNineFisi, undefined, "Sixty-Nine", "Lick each other up.");
 	else addDisabledButton(2, "Sixty-Nine", "Sixty-Nine", "You need a cock that fits or vagina for this.");
 	
 	if (!(flags["FISI_SEX_NUMBER"] >= 3)) addDisabledButton(3, "Vaginal", "Vaginal", "It doesn’t look like she is comfortable enough with you to do this yet.");
-	else if (largestCockIndexThatFitsFisiDimensions() >= 0 || (pc.hasHardLightEquipped() && pc.hasVagina())) 
-	{
-		if (pc.lust() >= 33) addButton(3, "Vaginal", vaginalFisi, undefined, "Vaginal", "Make love with the feline.");
-		else addDisabledButton(3, "Vaginal", "Vaginal", "You aren’t aroused enough for this.");
-	}
+	else if (largestCockIndexThatFitsFisiDimensions() >= 0 || (pc.hasHardLightEquipped() && pc.hasVagina())) addButton(3, "Vaginal", vaginalFisi, undefined, "Vaginal", "Make love with the feline.");
 	else addDisabledButton(3, "Vaginal", "Vaginal", "You need a cock that fits, or a vagina and a hardlight strapon for this.");
 }
 
