@@ -6,14 +6,20 @@ public function altTooltip(itemName:String = "none"):String
 	
 	switch(itemName)
 	{
+		// Perks
+		case "Overcharge":
+			if(pc.hasPerk("Heroic Reserves")) tooltip += "200";
+			else tooltip += "150";
+			break;
+		
 		// Weapons
 		case "HoldOutPistol":
-			tooltip = "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch";
+			tooltip += "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch";
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) tooltip += ", the perfect weapon for a smuggler";
 			tooltip += ".";
 			break;
 		case "EagleHandgun":
-			tooltip = "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon.";
+			tooltip += "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon.";
 			if(pc.characterClass == GLOBAL.CLASS_MERCENARY) tooltip += " It’s the perfect weapon for a mercenary on the go.";
 			break;
 		case "LaserPistol":

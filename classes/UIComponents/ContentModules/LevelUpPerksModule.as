@@ -19,6 +19,7 @@ package classes.UIComponents.ContentModules
 	import classes.GameData.PerkData;
 	import classes.Engine.Interfaces.ExtendLogEvent;
 	import classes.Engine.Interfaces.AddLogEvent;
+	import classes.Engine.Interfaces.ParseText;
 	
 	/**
 	 * ...
@@ -118,7 +119,7 @@ package classes.UIComponents.ContentModules
 			
 			_selectedPerkButton = tarButton;
 			_selectedPerkDetails.selectedPerkName = _selectedPerkButton.perkReference.perkName;
-			_selectedPerkDetails.selectedPerkText = _selectedPerkButton.perkReference.perkDescription;
+			_selectedPerkDetails.selectedPerkText = ParseText(_selectedPerkButton.perkReference.perkDescription);
 		}
 		
 		public function confirmSelection(gavePoints:Boolean = false):void

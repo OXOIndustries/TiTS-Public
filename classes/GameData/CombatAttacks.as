@@ -229,7 +229,7 @@ package classes.GameData
 			Overcharge.RequiresDamageFlags = [DamageFlag.ENERGY_WEAPON];
 			Overcharge.IsRangedBased = true;
 			Overcharge.TooltipTitle = "Overcharge";
-			Overcharge.TooltipBody = "A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher intelligence increases the chance of successfully stunning your foe.";
+			Overcharge.TooltipBody = "A powerful ranged attack, Overcharge deals [altTooltip Overcharge]% damage and has a chance of stunning. Higher intelligence increases the chance of successfully stunning your foe.";
 			Overcharge.Implementor = OverchargeImpl;
 			Overcharge.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(Overcharge);
