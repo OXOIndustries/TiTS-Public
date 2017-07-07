@@ -1685,16 +1685,10 @@ package classes.GameData
 				else output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. It should be good for two pulses, minimum.");
 			}
 			else output("[attacker.CombatName] tweaks " + attacker.getCombatPronoun("hisher") + " shield generator. The nearly invisible barrier shines brighter as a result. Better be careful when attacking!");
-
-			var moddedInt:int = attacker.intelligence();
-			if(attacker.hasPerk("Fuck Sense"))
-			{
-				moddedInt = attacker.intelligenceMax() - attacker.intelligence() + 1;
-				moddedInt += attacker.libido()/10;
-				if(moddedInt > attacker.level * 5) moddedInt = attacker.level * 5;
-			}
+			
+			var moddedInt:int = attacker.bimboIntelligence();
 			var targetDamage:int = Math.round(10 + attacker.level * 3 + moddedInt);
-					
+			
 			attacker.createStatusEffect("Charged Shield", 2, targetDamage, 0, moddedInt, false, "DefenseUp", "Chance of blinding attackers - and damaging melee attackers for up to " + targetDamage + " electrical damage!", true, 0);
 		}
 		

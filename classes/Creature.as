@@ -4175,7 +4175,7 @@
 				var bimbInt:Number = (intelligenceMax() - intelligence() + 1);
 				bimbInt += libido()/10;
 				//Gotta cap it so it doesn't get FUCKED SILLY
-				if(bimbInt >= level*5) bimbInt = level*5;
+				if(bimbInt >= level * 5) bimbInt = level * 5;
 				//Compare actual intelligence (for exceptions like Dumb4Cum and extra smart bimbos)
 				return Math.max(bimbInt, amount);
 			}
