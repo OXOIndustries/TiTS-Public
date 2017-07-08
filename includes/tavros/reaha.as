@@ -529,7 +529,7 @@ public function reahaFollowerAppearance():void {
 	author("Savin");
 	reahaHeader();
 	output("Reaha Hayes was certainly born a human, though she’s put more than a few gene-mods in her system over the years that have given her a distinctly bovine appearance. She’s not much over five foot, with tremendously wide hips, and an ass you could lose yourself in, thick enough to sink a hand into. On the right cheek of her butt, she’s got a large tattoo of the Coalition Expeditionary Force’s logo: the only remaining hint on her fleshy, cow-like body that she was once a warrior. Sprouting from her backside, just above her butt, is a slender tail that swishes absently as you look at her: nearly a yard from tip to base, with a plume of red fur at the end. Her face is still fully human, save for a pair of cute little bovine horns poking out from her flowing ass-length strawberry hair. She’s standing stark naked, if only because her massive and often variable bust-size denies all attempts to constrain it: her tits, swollen with [reaha.milk], are truly massive when she doesn’t get them milked, though happily she’s able to tend to that herself now. With her hands free, she’s able to keep them small enough to let her walk around her cabin, though she’s often resting them on a tabletop or folding her arms under them for support.");
-	output("\n\nReaha has a pair of huge FF-cup breasts, each with a big inch-long nipple at its tip.");
+	output("\n\nReaha has a pair of huge " + chars["REAHA"].breastCup(0) + " breasts, each with a big inch-long nipple at its tip.");
 	output("\n\nShe has a loose, wet pussy tucked between her legs, and a snug little asshole between her expansive ass cheeks, right where it belongs.");
 
 	clearMenu();

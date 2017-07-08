@@ -203,7 +203,7 @@ public function reahaAppearanceCured():void
 	}
 	output("\n\nNo longer bound and chained in Beth’s dungeon, Reaha’s able to keep herself milked down enough to stay nice and mobile, though she’s still extraordinarily busty by any human standard. Her breasts are nice and full of [reaha.milk], and Reaha’s more than happy to show her bountiful rack off to you at the slightest provocation, milking herself in the ship’s common areas or pressing them up against you");
 	if(!reaha.isNude()) output(" through her clothes");
-	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty FF-cups, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
+	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty " + chars["REAHA"].breastCup(0) + "s, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
 	output("\n\nShe has a loose, wet pussy tucked between her legs and a [reaha.asshole] between the cheeks of her [reaha.ass], right where it belongs.");
 	curedReahaMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
@@ -718,7 +718,7 @@ public function talkToReahaFamily():void
 		output("\n\nFor starters, how big of a family does she have. Any siblings?");
 		output("\n\n<i>“For a New Texan family, mine’s about average I guess. Even with all the birth control medicine the government puts in the water - what? You do </i>not<i> want them to stop that, trust me! Everyone would be pregnant all of the time. Even the men, probably. The Treatment makes sure people are rutting pretty much constantly, so to avoid over-population....”</i>");
 		output("\n\n<i>“Anyway! Even with all that, New Texans still tend to have lots of kids. Put your mind to something and nothing stops you, I guess. Certainly didn’t stop my mother. I swear the Treatment must have given her a breeding fetish, the rate she popped me and my sisters out. There’s six of us; no brothers. She was always pretty proud of that. Even prouder that every one of us had a different father. ‘Diversity,’ she called it. Ha! Even then, most of us all look pretty much the same: short, soft, a little on the big-boned side. Every one but me was totally stacked, too!”</i>");
-		output("\n\nReaha, not stacked? You cock an inquisitive eyebrow and grope one of her meaty F-cups, just hard enough that a little [reaha.milkNoun] ");
+		output("\n\nReaha, not stacked? You cock an inquisitive eyebrow and grope one of her meaty " + chars["REAHA"].breastCup(0) + "s, just hard enough that a little [reaha.milkNoun] ");
 		if(reaha.isChestExposed()) output("trickles onto your fingers");
 		else output("stains the front of her [reaha.upperGarment]");
 		output(". She squeals with pleasure, kicking her legs around in your lap.");
