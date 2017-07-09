@@ -576,8 +576,11 @@ public function aboutChaurmineTheCunt():void
 	output("\n\nChaurmine nods and leans forward. <i>“Must be some ship, huh?”</i> he rumbles.");
 
 	processTime(15);
-	if(flags["CHAURMINE_HIM_TALKED"] == undefined) chaurmineRelationship(5);
-	flags["CHAURMINE_HIM_TALKED"] = 1;
+	if(flags["CHAURMINE_HIM_TALKED"] == undefined)
+	{
+		flags["CHAURMINE_HIM_TALKED"] = 1;
+		chaurmineRelationship(5);
+	}
 	clearMenu();
 	//[Tarkus] What brought him to Tarkus?
 	addButton(0,"Tarkus",talkToChaurmineAboutTarkus,undefined,"Tarkus","What brought him to Tarkus?");
@@ -769,7 +772,7 @@ public function chaurmineFamilyPush():void
 	output("\n\nYou mention how open he’s been so far, feeling put off by having the ‘book’ close shut in front of you.");
 	output("\n\nThis only earns you a hard frown. His nostrils puff out a gust of hot breath across the table as he folds his heavy arms over his chest dismissively.");
 	if(flags["CHAURMINE_FAMIRY_TALKED"] == 2) chaurmineRelationship(-5);
-	flags["CHAURMINE_FAMIRY_TALKED"] = 2;
+	else flags["CHAURMINE_FAMIRY_TALKED"] = 2;
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",backToChaurmineMain,1);
