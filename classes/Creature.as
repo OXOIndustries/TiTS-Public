@@ -3060,9 +3060,7 @@
 		{
 			if(hasStatusEffect("Shower Douche Toggle"))
 			{
-				removeStatusEffect("Anally-Filled");
-				removeStatusEffect("Vaginally-Filled");
-				removeStatusEffect("Orally-Filled");
+				flushCumflation();
 				removeStatusEffect("Shower Douche Toggle");
 			}
 			removeStatusEffect("Sweaty");
@@ -3074,6 +3072,12 @@
 			removeStatusEffect("Oil Numbed");
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
+		}
+		public function flushCumflation():void
+		{
+			removeStatusEffect("Anally-Filled");
+			removeStatusEffect("Vaginally-Filled");
+			removeStatusEffect("Orally-Filled");
 		}
 		public function canMasturbate():Boolean
 		{
@@ -7041,7 +7045,7 @@
 			// Cumflation adjectives for non-flat bellies - 50%
 			else if(!bForceSize && !isPregnant() && belly >= 10 && rand(2) == 0)
 			{
-				var cumFluid:Number = (statusEffectv1("Anally-Filled") + statusEffectv1("Vaginally-Filled") + statusEffectv1("Orally-Filled"));
+				var cumFluid:Number = cumFlationAmount();
 				// At least 500 mLs
 				if(cumFluid >= 500)
 				{
@@ -18301,6 +18305,14 @@
 					createStatusEffect("Omit Cumflation Messages", 0, 0, 0, 0, true, "Icon_Sperm_Hearts", "Cumflation messages are currently disabled.", false, delayTime);
 				}
 			}
+		}
+		public function isCumflated():Boolean
+		{
+			return (cumFlationAmount() > 0);
+		}
+		public function cumFlationAmount():Number
+		{
+			return (statusEffectv1("Anally-Filled") + statusEffectv1("Vaginally-Filled") + statusEffectv1("Orally-Filled"));
 		}
 
 		/**
