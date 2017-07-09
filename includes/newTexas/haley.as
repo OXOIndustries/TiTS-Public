@@ -514,7 +514,7 @@ public function leaveAfterWatchingHaleyABit():void
 	addButton(0,"Next",move,rooms[currentLocation].westExit);
 }
 
-//[Masturbate] (Not a 'taur, not in enclosed armor)");
+//[Masturbate] (Not a 'taur, not in enclosed armor)
 //Watch the girl chase an orgasm in pursuit of your own.
 public function masturbateWhileWatchingHaleyHumphumphump():void
 {
@@ -557,13 +557,13 @@ public function masturbateWhileWatchingHaleyHumphumphump():void
 	else if(pc.hasCock() && !pc.hasVagina())
 	{
 		output("Fuck it, this needs tending to <i>now</i> and you’re not going to pass up the opportunity to use a sexy leithan girl as masturbation fodder. You sneakily tug down your [pc.lowerGarments] and work a hand in, your [pc.cocks] already at full mast with the spectacle in front of you.");
-		//If pc.cocktotal() < 2:")
+		//If pc.cocktotal() < 2:
 		if(pc.cockTotal() < 2)
 		{
 			if(pc.biggestCockLength() > 10) output(" Sliding both hands down your stiff length, you begin to rub yourself while watching.");
 			else output(" Sliding a hand down your stiff length, you begin to rub yourself while watching.");
 		}
-		if(pc.cockTotal() == 2) output(" Your [pc.cock 0] and [pc.cock 1] both firmly in hand, you begin to rub yourself while watching.");
+		else if(pc.cockTotal() == 2) output(" Your [pc.cock 0] and [pc.cock 1] both firmly in hand, you begin to rub yourself while watching.");
 		else output(" You slide your hands down two of your cocks, beginning to rub yourself.");
 		output("\n\nThere’s no time for warm, subtle pleasure spreading throughout your body until your climax – this is gonna be quick, dirty, and sweaty. ");
 		if(flags["MET_HALEY"] != undefined) output("Haley’s");
