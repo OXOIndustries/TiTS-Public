@@ -223,7 +223,7 @@ public function azraInShipGreeting():void
 	if(pc.isMischievous() && celiseIsCrew()) output("blushes.");
 	else output("smiles warmly.");
 	output(" <i>“Fantastic. I’ll settle in for the long haul. I can’t wait to see the frontier!”</i>");
-	output("\n\nYou walk into the ship beside your new crewmate, making smalltalk along the way. She peels off for her quarters once inside.");
+	output("\n\nYou walk into the ship beside your new crewmate, making small talk along the way. She peels off for her quarters once inside.");
 	output("\n\n(<b>Azra has joined your crew!</b>)");
 	flags["AZRA_RECRUITED"] = 2;
 	processTime(4);
