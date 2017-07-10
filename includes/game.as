@@ -985,6 +985,7 @@ public function restHeal():void
 	if(pc.energyRaw < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 	}
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
 }
 
 public function sleep(outputs:Boolean = true):void {
@@ -1136,7 +1137,7 @@ public function sleepHeal():void
 		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
 		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
 	}
-	if(pc.isSore()) soreChange(-3);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
 	
