@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Characters.Azra;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
@@ -13,6 +14,7 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.author;
+	import classes.Engine.Utility.*
 	
 	public class NaleenBrotherA extends Creature
 	{
@@ -234,6 +236,12 @@
 			}
 			else chargeOver(target);
 		}
+		private function notifyTargetSelection(attacker:Creature, target:Creature, enemy:Creature):void
+		{
+			kGAMECLASS.setAttacker(attacker);
+			kGAMECLASS.setTarget(target);
+			kGAMECLASS.setEnemy(enemy);
+		}
 		private function selectAzraTarget(otherTeam:Array):Creature
 		{
 			var selTarget:Creature = null;
@@ -358,12 +366,12 @@
 				else
 				{
 					output("The naleen hucks seven or eight vials at you at once. There’s too many to dodge! They burst all around you in a cloud of libido-hijacking  pheromones.");
-					if(pc.hasAirtightSuit()) output(" Fortunately, your airtight equipment saves you from its inebriating effects. Haha!");
+					if(target.hasAirtightSuit()) output(" Fortunately, your airtight equipment saves you from its inebriating effects. Haha!");
 					else 
 					{
 						output(" You gasp in alarm, inadvertently drinking deeply of the tainted air. It’s overwhelming. Tremendous lust surges through you");
 						var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, target, "suppress");
-						if(pc.lust() < pc.lustMax()) output(", though you somehow shake it off before you find yourself kneeling before these chimeric aggressors.");
+						if(target.lust() < target.lustMax()) output(", though you somehow shake it off before you find yourself kneeling before these chimeric aggressors.");
 						else output(", reaching into your crotch and stirring the pot of your lust until it threatens to boil over. You drop to your knees in desperation, resistance forgotten. All you can think about is getting off.");
 						outputDamage(dr2);
 					}

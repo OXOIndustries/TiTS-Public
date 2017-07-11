@@ -7,13 +7,24 @@
 
 //<i>“Munitions”</i> plant on Myrellion. Bloated pepper-like growths that are under high pressure. If squeezed or thrown, they puff in a neurotoxic seed cloud that leaves the victim hypersensitive to even slight touches.
 
+
+public function azraExpeditionAvailable():Boolean
+{
+	//"new texas", "tarkus", "phaedra", 
+	if(getPlanetName().toLowerCase() == "mhen'ga")
+	{
+		if(flags["AZRA_MHENGAED"] == undefined) return true;
+	}
+	return false;
+}
+
 //Rush Expedition Introduction
 public function azraExpeditionStartup():void
 {
 	clearOutput();
 	showAzra();
 	//Too Advanced (Gotta go in order for Fen’s sanity) (Or planet doesn’t have one available)
-	if(9999)
+	if(azraExpeditionAvailable())
 	{
 		output("You let Azra know that you’re ready to help her with her next expedition.");
 		output("\n\n<i>“I’m not,”</i> Azra replies. <i>“My research into the local biomes leads me to believe that we would be better served spending our time on another world until we are more prepared for the dangers ahead.”</i>");
@@ -21,14 +32,14 @@ public function azraExpeditionStartup():void
 		azraMenu();
 	}
 	//Failure Introduction
-	else if(9999)
+	else if(flags["AZRA_EXP_FAILED"] == getPlanetName().toLowerCase())
 	{
 		output("You let Azra know you’re ready to help her with an expedition.");
 		output("\n\n<i>“Really?”</i> Azra looks at you uncertainly. <i>“I’d rather not risk it if things are just going to go sideways again. Are you sure?”</i>");
 		//[Yep] [Nope]
 		clearMenu();
-		addButton(0,"Yep",,undefined,"Yep","Go on an <i>ADVENNNNTUUUUUURRRRRRRE</i>");
-		addButton(1,"Nope",,undefined,"Nope","Maybe you should prepare first.");
+		addButton(0,"Yep",actuallyGoOnTarkusExpedition,true,"Yep","Go on an <i>ADVENNNNTUUUUUURRRRRRRE</i>");
+		addButton(1,"Nope",nopeOutOfAdventures,undefined,"Nope","Maybe you should prepare first.");
 	}
 	else
 	{
@@ -43,14 +54,14 @@ public function azraExpeditionStartup():void
 		//Merge
 		output("\n\nAzra’s ink-black lips curl in a slight smile. <i>“Then I should prepare a plan before begin. Allow me a few seconds to search my database. I’ve flagged thousands of potential reports of unique species on Rush worlds for further investigation.”</i> She picks up her codex and rapidly taps on the screen. <i>“");
 
-		if(9999) output("Ah yes... this one could be fun for both of us. Ready to go?");
-		else output("It doesn’t look like there’s much to investigate here. Perhaps another world might have an item on my list.");
+		output("Ah yes... this one could be fun for both of us. Ready to go?");
 		output("”</i>");
 
 		processTime(3);
 		clearMenu();
-		if(9999) addButton(0,"Expedition",,undefined,"Expedition","Go on an expedition with Azra.");
+		if(getPlanetName().toLowerCase() == "mhen'ga") addButton(0,"Expedition",actuallyGoOnTarkusExpedition,undefined,"Expedition","Go on an expedition with Azra.");
 		else addDisabledButton(0,"Expedition","Expedition","Azra doesn't have any expeditions to do on this planet.");
+		addButton(4,"Back",nopeOutOfAdventures);
 	}
 }
 	
@@ -84,11 +95,11 @@ output("\n\n<i>“Nope,”</i> Azra counters. <i>“That region contains low amo
 */
 
 //Mhen’ga Expedition
-public function actuallyGoOnTarkusExpedition():void
+public function actuallyGoOnTarkusExpedition(warned:Boolean = false):void
 {
 	clearOutput();
 	showAzra();
-	if(9999) output("You let Azra know you’re ready to help her with an expedition on Mhen’ga.");
+	if(!warned) output("You let Azra know you’re ready to help her with an expedition on Mhen’ga.");
 	else output("You tell her in no uncertain terms that are you really ready. No room for failure on this trip!");
 	output("\n\n<i>“Superb,”</i> the shark-like alien exclaims, grabbing her codex and a pack stuffed with all  manner of scientific implements. <i>“I think you’re  going to like this one.”</i> She grins at you. <i>“It was too dangerous to pursue by myself, but the prize... ohhh the prize.”</i> She steeples her fingers together. <i>“You see, Mhen’ga is famous for its fuck-hungry locals and sexually voracious flora. Venus Pitchers in particular. It isn’t the pitchers that interest me, however. It’s a smaller, more benign plant that grows almost exclusively in areas densely populated by zil.”</i>");
 	output("\n\nYou adjust your own gear and ask her what makes it so interesting.");
@@ -135,6 +146,8 @@ public function movingOnOutToMhengaExp():void
 {
 	clearOutput();
 	showAzra();
+	currentLocation = "OVERGROWN ROCK 3";
+	generateMap();
 	output("Azra directs you to the jungle but wisely stays in the rear, leaving you to push your way through the thick, alien foliage. At every strange sound or cracking twig, she tenses up. Her wings catch on vines numerous times, leading the fiery-haired siren to noisily grumble and groan as she picks leaves from her mane.");
 	output("\n\n<i>“What an inhospitable planet. I can’t believe anyone actually lives here, interesting flora or not!”</i>");
 	output("\n\nYou shrug and do your best to keep your eyes open and alert. No journey through Mhen’ga is likely to end without at least one hostile encounter, and this one is no exception.");
@@ -146,8 +159,19 @@ public function movingOnOutToMhengaExp():void
 	output("\n\n<i>“We should teach them a lesson.”</i>");
 	output("\n\n<i>“We should.”</i>");
 	output("\n\n<i>“We shall.”</i>");
+	output("\n\n<b>It's a fight!</b>");
 	clearMenu();
-	addButton(0,"Next",);
+	addButton(0,"Next",naleenBrosCombat);
+}
+public function naleenBrosCombat():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc,azra);
+	CombatManager.setHostileActors(new NaleenBrotherA, new NaleenBrotherB);
+	CombatManager.victoryScene(winVsNaleenBros);
+	CombatManager.lossScene(loseToNaleenBros);
+	CombatManager.displayLocation("NALEEN BROS");
+	CombatManager.beginCombat();
 }
 
 /*Naleen Brothers Fight:
@@ -160,87 +184,223 @@ A naleen circles on the right. His build is typical of the kitty-snakes of Mhen�
 One of the naleen brothers holds the left flank of the jungle against you and Azra. He appears genuinely irritated by your presence, his ears flat back against his jet-black hair. His claws and fangs are clearly visible, brandished in an attempt to cow you into submission by threat alone. Behind him, his tail swishes angrily. A satchel bounces on his far hip, and judging by the way he holds it, he wants to keep it far from your reach.
 */
 
+public function showNaleenBros():void
+{
+	showBust("NALEEN_BROTHER_A","NALEEN_BROTHER_B");
+	showName("NALEEN\nBROS");
+}
 
+//Lose The Fight
+public function loseToNaleenBros():void
+{
+	clearOutput();
+	showNaleenBros();
+	output("The naleen close in. One for you, one for Azra");
+	if(azra.lust() >= 100) output(", who is frantically jacking off an enormous boner.");
+	else output(", who is still too dazed to protest the removal of her crotch plate or the sudden erectness of her enormous boner.");
 
-output("\n\n//Naleen B Attacks");
+	output("\n\nAn uncorked bottle hits the ground next to you. Then another. Then another. Yellowish mist issues forth from each, swaddling you in a lingering, sweet scent. The scent of concentrated zil pheromones is inescapable");
+	if(pc.lust() >= pc.lustMax()) output(", not that it matters, aroused as you already are. You flare your nostrils and drink it in, openly touching yourself and looking up in undisguised lust.");
+	else 
+	{
+		if(pc.hasAirtightSuit()) output(", especially once your [pc.armor] is pulled back to exposed your head.");
+		else output(".");
+		output(" You hold your breath for a few seconds before simply giving in, breathing deep of the corrupted atmosphere. Stars, does it make your <i>horny</i>. Your blood burns. Your loins enflame. A blizzard could roll in, and you wouldn’t feel the snow for how wantonly aroused you have become.");
+	}
+	output(" He... can fuck you if he wants. Your mouth, your ass");
+	if(!pc.hasVagina()) output(", whatever");
+	else output(", your [pc.vaginas]");
+	output(". He can have you anywhere, so long as you do something to sate this molten desire.");
+	output("\n\n<i>You need it.</i>");
+	output("\n\nHalfway hidden behind a tree, you hear that Azra is in a similar state. She pants and moans, lilting voice raises in mixed sounds of protest and pleasure... then apology. She’s apologizing for invading the naleens’ planet even as she strips out of her armor, leaning how whimpering lips against one of his doubled dicks, the glossy curve of her inky maw begging for mercy with tender touches to his purple cock.");
+	output("\n\nThe savage naleen groans in pleasure, whispering something as he nods his head.");
+	output("\n\nAzra goes right to work with a bright red organ - her tongue, you belatedly realize. It slithers out and wraps around one cock, then the other, revealing another inch of gleaming shaft-slurping muscle with every passing second. It forms a twisted helix around both members, weaving them closer and closer together until thin bands of tongue are grinding against both, slipping and sliding in alternating directions. It is the naleen’s turn to groan in mindless bliss, this time.");
+	output("\n\nAzra, through it all, masturbates herself, at first stroking her dick, then diving deeper, hands disappearing below her pendulous balls. Her arms flex with the effort of savaging her pussy. You can only assume she’s at least three digits deep inside herself. Ribbons of pre cascade from the rounded crown of her dick. The tendrils around it, upon contact with the sloppy lubricant, go wild, slapping into the shaft. They must be stinging it; it grows harder and firmer before your eyes, and Azra’s wantonly curling tongue accelerates at the same pace.");
+	processTime(25);
+	pc.lust(200);
+	clearMenu();
+	addButton(0,"Next",loseToNaleenBrosHarder);
+}
+public function loseToNaleenBrosHarder():void
+{
+	clearOutput();
+	showNaleenBros();
+	output("A bottle is uncorked under you nose, and you nearly cum from the smell alone. That rapturous, sweetened gas has you shivering with excitement, and what’s happening to Azra isn’t helping any. You’re too addled to care that you didn’t have a choice in the matter, that she didn’t either. All you can see is the sinful exchange of bodily fluids, the way her tongue makes one dick after another bob into her mouth so that she can harvest the creamy drippings from the tips.");
+	output("\n\nUntil your sight is blocked by cock. Not just one, but two. Your naleen has grown impatient, his dicks woefully unsucked.");
+	if(pc.isBimbo()) output(" Your mouth waters so heavily that drool slips from the corner of your [pc.lips]. They look so fucking good. Why aren’t they inside you already?");
+	else if(pc.isBro()) output(" You grunt in instinctive appreciation, mouth watering. Dick wouldn’t usually get you going this easily, but these ones look pretty cute, all things told.");
+	else output(" You feel like you shouldn’t be quite so excited at the prospect of getting them in your lips, but then the overwhelming arousal wads that idea up and tosses it in the wastebin.");
+	output(" You look up in time for the kitty-snake to put his hand on your head and guide you forward. First one pointed tip meets your [pc.lips], then the other. Each time, you offer nothing but encouragement, opening wide to take them deep, humming in near contentment at the opportunity to wiggle your tongue against the musky jungle rod.");
+	output("\n\nThere’s no balls to fondle, but there is something else, something your nose dips into every time you take him to the base: his slit. The naleen’s slit is even muskier than his lengths, laden with different, more bestial pheromones. You flick your [pc.tongue] in the next time you slide down a shaft, and the naleen smashes your head hard against his scaled waistline, giving you a deeper sample. He all but loses control at the slightest probing into his twin-cocks’ home. When you thrust your tongue... or a finger... in, he cries out and falls to the floor, dragging you with him.");
+	output("\n\nYou wouldn’t have it any other way now that you’re focused utterly on sucking snake-dick. From atop him, you can bob your head however you want, kiss his concealing slit with your lips, even finger him if you want. And you do. You stuff two digits into his hole, one above and one below, then work your tongue back and forth between them, circling around his quaking cock-flesh. The naleen’s smooth-scaled hips lurch upward, but you ride him with like your [pc.lips] are sewed to his needy loins, either incapable or unwilling to be bucked off.");
+	processTime(20);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",loseToNaleenBrosHardest);
+}
 
-output("\n\n//Swipe");
-output("\n\n<i>“Foolish creature.”</i> The other naleen swings his fist in a vicious backhand.");
+public function loseToNaleenBrosHardest():void
+{
+	clearOutput();
+	showNaleenBros();
+	output("Azra goes off well before you or either naleen. You can hear it, barely, over the sounds of your frenzied face-fucking. The loud wet slap of volleys of seed impacting tree bark is unmistakable. So is the keening wail of a woman who is cumming so hard she’s liable to get addicted to it.");
+	output("\n\nYou look, out of the corner of your eyes.");
+	output("\n\nThe siren’s thighs are slick with her girlcum. Her eyes have rolled back, overwhelmed by the feelings her quivering body is experience. Her cock is still shooting too. Creamy spunk messily slops everywhere, falling in small Azra-made lakes on the forest floor. She seems like she could orgasm forever, the way she is carrying on. Somehow, the twirling length of her tongue keeps moving, though it is no longer sliding about in a sensuous cock-massage. It is tweaking and jerking, violently jacking off a naleen who looks like he’s incapable of understanding how he’s feeling so much pleasure.");
+	output("\n\nThe cat-snake’s eyes roll back a moment before one of his purplish shafts sprays onto Azra’s shoulder, painting her golden skin and glimmering locks in liquid ivory. Her throat bobs, swallowing the rest while her own turgid shaft leaks its last few droplets.");
+	processTime(4);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",loseToNaleenBrosHardestWithAVengeance);
+}
 
-output("\n\n//Rend");
-output("\n\n<i>“Bleed.”</i> The other naleen swipes at you with his claws!");
-output("\n\n//75% damage on hit, +rending status");
-output("\n\nThe strike leaves bloody furrows in your flesh. You’re bleeding!");
+public function loseToNaleenBrosHardestWithAVengeance():void
+{
+	clearOutput();
+	showNaleenBros();
+	//Hascock
+	if(pc.hasCock())
+	{
+		output("Fuuuuuck, your [pc.cocks] ");
+		if(pc.cockTotal() == 1) output("is");
+		else output("are");
+		output(" jumping wildly, flexing and relaxing, trying to squeeze the [pc.cumNoun] out of your [pc.balls] in a final moment of hands-free orgasm. You’re so hard that it feels more like you’ve got ");
+		if(pc.totalCocks() == 1) output("an iron bar");
+		else output("iron bars");
+		if(pc.legCount > 1) output(" between your [pc.legs]");
+		else output(" down below");
+		output(". You hollow your cheeks and suck, flexing your [pc.cocks] at the same time. It’s incredible, being so hard and so full of dick, feeling the pre dribble out of you and into your mouth, like you’re just a tube connecting one dick to another, taking in and putting out [pc.cumVisc] juices.");
+		if(pc.hasVagina()) output("\n\n");
+	}
+	//Vagina
+	if(pc.hasVagina())
+	{
+		if(pc.wettestVaginalWetness() >= 4) output("[pc.GirlCum] is getting everywhere. You feel like a faucet, like someone turned you on and just left you running forever without putting a dick in the right hole to plug you up... plug you up so fucking good. You’re more pussy-juice than [pc.boyGirl] now, more aching quim and everlasting desire than person. You rock your [pc.hips], leaking and fountaining, on the edge of orgasm. The humid air blowing across your lips is enough to make you release tiny squirts. The contractions of your hungry muscles rubbing your lips together to the timing of your sucks... It’s too much.");
+		else output("Feminine moisture is getting everywhere. You feel broken, like you don’t remember how to be anything other than being turned on. Like you’d let him fuck you in the pussy right now. Like you’re so wet anyone could fuck. Bareback, condom, whatever, just so long as somebody fucks you. The air itself feels like it fucks you. The smallest humid breeze is a tongue on your [pc.clit]. The spasmodic clenching of your thighs squeezing your netherlips together is like world-class oral. You can hardly stand how good it feels.");
+	}
+	//Merge any genitals.
+	if(pc.hasGenitals()) 
+	{
+		output("\n\n");
+		output("The naleen grabs your arm. You aren’t sure where he got the strength, and he bites you, hard. Needle-like fangs sink into your flesh, pumping his venom into you. Your muscles slacken. Your pulse races. Your [pc.lips] feel like pussy lips all their own, pointlessly guarding the wide-open muscles of your throat. Swallowing him up, you feel your [pc.crotch] quiver in aphrodisiac-induced ecstasy, and then you cum.");
+		output("\n\nYou cum at the taste of cock on your tongue. You cum at the feeling of naleen venom coursing into you. You cum at the way ");
+		if(pc.isBimbo()) output("his dick slides inside you without a hint of gag reflex");
+		else output("his venom obliterates your gag reflexes");
+		output(". It’s such a powerful orgasm that for a moment you forget how to suck, but soon enough you recover. You put every ounce of orgasmic energy into pleasing your naleen lover, doing everything you can to share the blissful experience with him.\n\n");
+	}
+	//No genitals start here.
+	output("Feverishly jacking off the naleen with one hand, you continue to fingerfuck him with the other. Your [pc.lips] slide back and forth, your [pc.tongue] plunging deep");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" before looping around him, sliding over every inch of hypersensitive slit");
+		output(". It this is how the naleen intended to teach you a lesson, they’ve either failed or taught you that sucking cock is really, really fun.");
+	if(pc.isBimbo()) output(" Joke’s on them, you’ve always known that. Dick is the best!");
 
-output("\n\n//Doubleswipe! (Normal attack text)");
+	output("\n\nHe locks up, back arching, lifting you into the air. His creamy kitty-seed pours into your vacuously sucking throat to be happily devoured, the spare dick spraying the rest across your face.");
+	if(pc.isBimbo()) output(" You make sure to get some in your hair too. That’ll be like, way hotter.");
+	output(" You don’t stop sucking, not until he stops feeding you cum and pulls himself out from beneath you.");
+	if(pc.isSquirter() || (pc.hasCock() && pc.cumQ() >= 1000)) output(" Wow, the ground is really soggy.");
+	applyCumSoaked(pc);
+	output("\n\nYou close your eyes from exhaustion, just for a minute.");
+	processTime(20);
+	pc.loadInMouth(enemy);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",loseToNaleenBrosEpilogue);
+}
 
-output("\n\n//Tail trip");
-output("\n\n<i>“You should be on the ground. Let me help you.”</i>  The second naleen pivots his tail to slap at your [pc.feet].");
-output("\n\n{You hop over it!}");
-output("\n\n{It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.}");
-output("\n\n{The world spins 90 degrees as <b>you’re tripped</b>! Ouch!}");
-output("\n\n//40% melee damage.");
+public function loseToNaleenBrosEpilogue():void
+{
+	clearOutput();
+	showAzra();
+	output("Azra shakes you awake some time later. <i>“Come on, we have to go.”</i>");
+	output("\n\nYou stumble up, still covered in naleen-spunk, noting that she’s just as messy.");
+	output("\n\n<i>“No way we can pull this now. Let’s head back to the ship and regroup. We can try again later.”</i>");
+	if(pc.isBimbo()) output("\n\nAwww, but you just gotta suck a dick! <i>“Fiiine.”</i>");
+	else output("\n\n<i>“Yeah,”</i> you agree.");
 
-output("\n\n//Laughs - used if pc constricted and over 50% HP and under 50% lusto.");
-output("\n\nThe other naleen watches the constriction in amusement, cackling all the way. <i>“Foolish creatures. Will they never learn?”</i>");
+	//bimbo
+	if(pc.isBimbo()) output("\n\nShe doesn’t stop you from licking the excess off her, though her blush is a sight to see.");
 
-output("\n\n//Blind powder");
-output("\n\nThe second naleen reaches into his pouch. <i>“Allow me to extend a present to you, from my brother and I.”</i> He throws a handful of white powder in {your direction/Azra’s direction}. It catches on the smallest eddy and breeze, spreading into a stinging white cloud.");
-output("\n\n//Avoid");
-output("\n\n{You avoid getting any in your eyes./Azra avoids getting any in her eyes.}");
-output("\n\n//Blind");
-output("\n\n{Some of it gets in your eyes! <b>You are blinded!</b>/Some gets in Azra’s eyes. <b>She is blinded!</b>”</i>}");
-output("\n\nLose The Fight");
-output("\n\nThe naleen close in. One for you, one for Azra{, who is frantically jacking off an enormous boner./, who is still too dazed to protest the removal of her crotch plate or the sudden erectness of her enormous boner.}");
-output("\n\nAn uncorked bottle hits the ground next to you. Then another. Then another. Yellowish mist issues forth from each, swaddling you in a lingering, sweet scent. The scent of concentrated zil pheromones is inescapable{, not that it matters, aroused as you already are. You flare your nostrils and drink it in, openly touching yourself and looking up in undisguised lust./{, especially once your [pc.armor] is pulled back to exposed your head./.} You hold your breath for a few seconds before simply giving in, breathing deep of the corrupted atmosphere. Stars, does it make your <i>horny</i>. Your blood burns. Your loins enflame. A blizzard could roll in, and you wouldn’t feel the snow for how wantonly aroused you have become.} He... can fuck you if he wants. Your mouth, your ass{, whatever/, your [pc.vaginas]}. He can have you anywhere, so long as you do something to sate this molten desire.");
-output("\n\n<i>You need it.</i>");
-output("\n\nHalfway hidden behind a tree, you hear that Azra is in a similar state. She pants and moans, lilting voice raises in mixed sounds of protest and pleasure... then apology. She’s apologizing for invading the naleens’ planet even as she strips out of her armor, leaning how whimpering lips against one of his doubled dicks, the glossy curve of her inky maw begging for mercy with tender touches to his purple cock.");
-output("\n\nThe savage naleen groans in pleasure, whispering something as he nods his head.");
-output("\n\nAzra goes right to work with a bright red organ - her tongue, you belatedly realize. It slithers out and wraps around one cock, then the other, revealing another inch of gleaming shaft-slurping muscle with every passing second. It forms a twisted helix around both members, weaving them closer and closer together until thin bands of tongue are grinding against both, slipping and sliding in alternating directions. It is the naleen’s turn to groan in mindless bliss, this time.");
-output("\n\nAzra, through it all, masturbates herself, at first stroking her dick, then diving deeper, hands disappearing below her pendulous balls. Her arms flex with the effort of savaging her pussy. You can only assume she’s at least three digits deep inside herself. Ribbons of pre cascade from the rounded crown of her dick. The tendrils around it, upon contact with the sloppy lubricant, go wild, slapping into the shaft. They must be stinging it; it grows harder and firmer before your eyes, and Azra’s wantonly curling tongue accelerates at the same pace.");
-output("\n\n[Next]");
-output("\n\nA bottle is uncorked under you nose, and you nearly cum from the smell alone. That rapturous, sweetened gas has you shivering with excitement, and what’s happening to Azra isn’t helping any. You’re too addled to care that you didn’t have a choice in the matter, that she didn’t either. All you can see is the sinful exchange of bodily fluids, the way her tongue makes one dick after another bob into her mouth so that she can harvest the creamy drippings from the tips.");
-output("\n\nUntil your sight is blocked by cock. Not just one, but two. Your naleen has grown impatient, his dicks woefully unsucked.{ Your mouth waters so heavily that drool slips from the corner of your [pc.lips]. They look so fucking good. Why aren’t they inside you already?/ You grunt in instinctive appreciation, mouth watering. Dick wouldn’t usually get you going this easily, but these ones look pretty cute, all things told./ You feel like you shouldn’t be quite so excited at the prospect of getting them in your lips, but then the overwhelming arousal wads that idea up and tosses it in the wastebin.} You look up in time for the kitty-snake to put his hand on your head and guide you forward. First one pointed tip meets your [pc.lips], then the other. Each time, you offer nothing but encouragement, opening wide to take them deep, humming in near contentment at the opportunity to wiggle your tongue against the musky jungle rod.");
-output("\n\nThere’s no balls to fondle, but there is something else, something your nose dips into every time you take him to the base: his slit. The naleen’s slit is even muskier than his lengths, laden with different, more bestial pheromones. You flick your [pc.tongue] in the next time you slide down a shaft, and the naleen smashes your head hard against his scaled waistline, giving you a deeper sample. He all but loses control at the slightest probing into his twin-cocks’ home. When you thrust your tongue... or a finger... in, he cries out and falls to the floor, dragging you with him.");
-output("\n\nYou wouldn’t have it any other way now that you’re focused utterly on sucking snake-dick. From atop him, you can bob your head however you want, kiss his concealing slit with your lips, even finger him if you want. And you do. You stuff two digits into his hole, one above and one below, then work your tongue back and forth between them, circling around his quaking cock-flesh. The naleen’s smooth-scaled hips lurch upward, but you ride him with like your [pc.lips] are sewed to his needy loins, either incapable or unwilling to be bucked off.");
-output("\n\n[Next]");
-output("\n\nAzra goes off well before you or either naleen. You can hear it, barely, over the sounds of your frenzied face-fucking. The loud wet slap of volleys of seed impacting tree bark is unmistakable. So is the keening wail of a woman who is cumming so hard she’s liable to get addicted to it.");
-output("\n\nYou look, out of the corner of your eyes.");
-output("\n\nThe siren’s thighs are slick with her girlcum. Her eyes have rolled back, overwhelmed by the feelings her quivering body is experience. Her cock is still shooting too. Creamy spunk messily slops everywhere, falling in small Azra-made lakes on the forest floor. She seems like she could orgasm forever, the way she is carrying on. Somehow, the twirling length of her tongue keeps moving, though it is no longer sliding about in a sensuous cock-massage. It is tweaking and jerking, violently jacking off a naleen who looks like he’s incapable of understanding how he’s feeling so much pleasure.");
-output("\n\nThe cat-snake’s eyes roll back a moment before one of his purplish shafts sprays onto Azra’s shoulder, painting her golden skin and glimmering locks in liquid ivory. Her throat bobs, swallowing the rest while her own turgid shaft leaks its last few droplets.");
-output("\n\n[Next]");
-output("\n\n//Hascock");
-output("\n\nFuuuuuck, your [pc.cocks] {is/are} jumping wildly, flexing and relaxing, trying to squeeze the [pc.cumNoun] out of your [pc.balls] in a final moment of hands-free orgasm. You’re so hard that it feels more like you’ve got {an iron bar/iron bars} {between your [pc.legs]/down below}. You hollow your cheeks and suck, flexing your [pc.cocks] at the same time. It’s incredible, being so hard and so full of dick, feeling the pre dribble out of you and into your mouth, like you’re just a tube connecting one dick to another, taking in and putting out [pc.cumVisc] juices.");
-output("\n\n//Vagina");
-output("\n\n{[pc.GirlCum] is getting everywhere. You feel like a faucet, like someone turned you on and just left you running forever without putting a dick in the right hole to plug you up... plug you up so fucking good. You’re more pussy-juice than [pc.boyGirl] now, more aching quim and everlasting desire than person. You rock your [pc.hips], leaking and fountaining, on the edge of orgasm. The humid air blowing across your lips is enough to make you release tiny squirts. The contractions of your hungry muscles rubbing your lips together to the timing of your sucks... It’s too much.");
-output("\n\n/");
-output("\n\nFeminine moisture is getting everywhere. You feel broken, like you don’t remember how to be anything other than turned on. Like you’d let him fuck you in the pussy right now. Like you’re so wet anyone could fuck you in the pussy right now. Bareback, condom, whatever, just so long as somebody fucks you. The air itself feels it fucks you. The smallest humid breeze is a tongue on your [pc.clit]. The spasmodic clenching of your thighs squeezing your netherlips together is like world class oral. You can hardly stand how good it feels.");
-output("\n\n//Merge any genitals.");
-output("\n\nThe naleen grabs your arm. You aren’t sure where he got the strength, and he bites you, hard. Needle-like fangs sink into your flesh, pumping his venom into you. Your muscles slacken. Your pulse races. Your [pc.lips] feel like pussy lips all their own, pointlessly guarding the wide-open muscles of your throat. Swallowing him up, you feel your [pc.crotch] quiver in aphrodisiac-induced ecstasy, and then you cum.");
-output("\n\nYou cum at the taste of cock on your tongue. You cum at the feeling of naleen venom coursing into you. You cum at the way {his dick slides inside you without a hint of gag reflex/his venom obliterates your gag reflexes}. It’s such a powerful orgasm that for a moment you forget how to suck, but soon enough you recover. You put every ounce of orgasmic energy into pleasing your naleen lover, doing everything you can to share the blissful experience with him.");
-output("\n\n//No genitals start here.");
-output("\n\nFeverishly jacking off the naleen with one hand, you continue to fingerfuck him with the other. Your [pc.lips] slide back and forth, your [pc.tongue] plunging deep{ before looping around him, sliding over every inch of hypersensitive slit}. It this is how the naleen intended to teach you a lesson, they’ve either failed or taught you that sucking cock is really, really fun.{ Joke’s on them, you’ve always known that. Dick is the best!}");
-output("\n\nHe locks up, back arching, lifting you into the air. His creamy kitty-seed pours into your vacuously sucking throat to be happily devoured, the spare dick spraying the rest across your face.{ You make sure to get some in your hair too. That’ll be like, way hotter.} You don’t stop sucking, not until he stops feeding you cum and pulls himself out from beneath you.{ Wow, the ground is really soggy.//Apply cumsoak}");
-output("\n\nYou close your eyes from exhaustion, just for a minute.");
-output("\n\n[Next]");
-output("\n\nAzra shakes you awake some time later. <i>“Come on, we have to go.”</i>");
-output("\n\nYou stumble up, still covered in naleen-spunk, noting that she’s just as messy.");
-output("\n\n<i>“No way we can pull this now. Let’s head back to the ship and regroup. We can try again later.”</i>");
-output("\n\n{Awww, but you just gotta suck a dick! <i>“Fiiine.”</i>/"Yeah,”</i> you agree.}");
-output("\n\n//bimbo");
-output("\n\nShe doesn’t stop you from licking the excess off her, though her blush is a sight to see.");
+	flags["AZRA_EXP_FAILED"] = getPlanetName().toLowerCase();
 
-output("\n\nWin vs NaleenBros");
-output("\n\nThe last naleen goes down in the dirt at last.{ Azra struggles up to her feet, rubbing the back of her neck in pain. <i>“Good job.”</i> She puts a green-colored ointment on a bruise. <i>“I knew this had to be a team effort.”</i>/ With the fighting over, Azra slowly comes to her senses. You aren’t sure how she packs her pant-ripping python back into her armor without some kind of pocket dimension to store it in, but she does. <i>“Sorry about that, Captain,”</i> Azra says, blushing. <i>“I don’t know what would have happened if you weren’t here to protect me.”</i>/ Azra {tucks away her dick and }nods respectfully. <i>“Good thing I had an ace in my back pocket, eh Captain?”</i>}");
-output("\n\nYou nod. <i>“{I’m going to need a minute./I’m going to have to let off some stress before we move on.../Those two packed a punch. Got anything in that pack of yours to get me back on my feet?/So what’s next?}”</i>");
-output("\n\n//Uninjured/Lowlust:");
-output("\n\nAzra positively beams. <i>“So you’re courageous on top of being good in a fight? I like that.”</i> She she steps over one of the defeated naleen and into the jungle, glancing back over her shoulder to watch you. <i>“We find the Fuck-Lilies. Come on, we’re close.”</i>");
-output("\n\n//Else");
-output("\n\nThe sharky scientist reaches into her bag. <i>“I have just the thing.”</i> She pulls out {an ointment}{ and }{a stoppered vial}. <i>“{This ought to patch up your wounds. A rare extract I isolated from a carnivorous plant. Don’t worry, I isolated it from the poisonous contaminants.}{ Now the vial.../This vial...} it has a sample of a rather... pungent pollen. I wouldn’t recommend sniffing it in ordinary circumstances, but it ought to clear your head.}”</i>");
-output("\n\nYou hesitantly accept the gift{s}. <i>“You sure this is safe?”</i>");
-output("\n\n<i>“Positive,”</i> Azra retorts. <i>“Tested {them/it} myself.”</i>");
-output("\n\nOn that ringing endorsement, you make use of her {ointment/and/smelling... pollen}.{ That smell... that smell will haunt your dreams. It punches you square in the nose and knocks you off your feet. You nearly sick up a time or two, but at least you aren’t so turned on any more./else just ointment: While the ointment does seem to mend your wounds, the greasy texture is something you could do without. The scent of half-rotten grass clippings is far from appealing.}");
-output("\n\n<i>“Come on,”</i> Azra bids, stepping over one of the defeated naleen. <i>“We’re getting close.”</i> She lifts a frond and looks back over her shoulder. <i>“I doubt I’ll make it without my protector.”</i>");
+	CombatManager.genericLoss();
+}
+
+public function relocatePostNaleenBrosLoss():void
+{
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	mainGameMenu();
+}
+
+//Win vs NaleenBros
+public function winVsNaleenBros():void
+{
+	clearOutput();
+	showNaleenBros();
+	showName("VICTORY:\nNALEEN BROS");
+	output("The last naleen goes down in the dirt at last.");
+	if(azra.HP() <= 1) output(" Azra struggles up to her feet, rubbing the back of her neck in pain. <i>“Good job.”</i> She puts a green-colored ointment on a bruise. <i>“I knew this had to be a team effort.”</i>");
+	else if(azra.lust() >= azra.lustMax()) output(" With the fighting over, Azra slowly comes to her senses. You aren’t sure how she packs her pant-ripping python back into her armor without some kind of pocket dimension to store it in, but she does. <i>“Sorry about that, Captain,”</i> Azra says, blushing. <i>“I don’t know what would have happened if you weren’t here to protect me.”</i>");
+	else
+	{
+		output(" Azra ");
+		if(azra.hasStatusEffect("cock out")) output("tucks away her dick and ");
+		output("nods respectfully. <i>“Good thing I had an ace in my back pocket, eh Captain?”</i>");
+	}
+	output("\n\nYou nod. <i>“");
+	if(pc.lust() >= 50 && pc.HP()/pc.HPMax() < 0.5) output("I’m going to need a minute.");
+	else if(pc.lust() >= 50) output("I’m going to have to let off some stress before we move on...");
+	else if(pc.HP()/pc.HPMax() < 0.5) output("Those two packed a punch. Got anything in that pack of yours to get me back on my feet?");
+	else output("So what’s next?");
+	output("”</i>");
+
+	//Uninjured/Lowlust:
+	if(pc.lust() < 50 && pc.HP()/pc.HPMax() >= 0.5) output("\n\nAzra positively beams. <i>“So you’re courageous on top of being good in a fight? I like that.”</i> She she steps over one of the defeated naleen and into the jungle, glancing back over her shoulder to watch you. <i>“We find the Fuck-Lilies. Come on, we’re close.”</i>");
+	//Else
+	else
+	{
+		output("\n\nThe sharky scientist reaches into her bag. <i>“I have just the thing.”</i> She pulls out ");
+		if(pc.HP()/pc.HPMax() < 0.5) 
+		{
+			output("an ointment");
+			if(pc.lust() >= 50) output(" and ");
+		}
+		if(pc.lust() >= 50) output("a stoppered vial");
+		output(". <i>“");
+		if(pc.HP()/pc.HPMax() < 0.5) 
+		{
+			output("This ought to patch up your wounds. A rare extract I isolated from a carnivorous plant. Don’t worry, I isolated it from the poisonous contaminants.");
+			if(pc.lust() >= 50) output(" Now the vial...");
+		}
+		else output("This vial...");
+		if(pc.lust() >= 50) output(" it has a sample of a rather... pungent pollen. I wouldn’t recommend sniffing it in ordinary circumstances, but it ought to clear your head.");
+		output("”</i>");
+		output("\n\nYou hesitantly accept the gift");
+		if(pc.lust() >= 50 && pc.HP()/pc.HPMax() < 0.5) output("s");
+		output(". <i>“You sure this is safe?”</i>");
+		output("\n\n<i>“Positive,”</i> Azra retorts. <i>“Tested ");
+		if(pc.lust() >= 50 && pc.HP()/pc.HPMax() < 0.5) output("them");
+		else output("it");
+		output(" myself.”</i>");
+		output("\n\nOn that ringing endorsement, you make use of her ");
+		if(pc.HP() / pc.HPMax() < 0.5)
+		{
+			output("ointment");
+			if(pc.lust() >= 50) output(" and ");
+		}
+		if(pc.lust() >= 50) output("smelling... pollen");
+		output(".");
+		if(pc.lust() >= 50) output(" That smell... that smell will haunt your dreams. It punches you square in the nose and knocks you off your feet. You nearly sick up a time or two, but at least you aren’t so turned on any more.");
+		else output(" While the ointment does seem to mend your wounds, the greasy texture is something you could do without. The scent of half-rotten grass clippings is far from appealing.");
+		output("\n\n<i>“Come on,”</i> Azra bids, stepping over one of the defeated naleen. <i>“We’re getting close.”</i> She lifts a frond and looks back over her shoulder. <i>“I doubt I’ll make it without my protector.”</i>");
+		pc.HP(pc.HPMax());
+		pc.lust(-55);
+		processTime(5);
+	}
+	processTime(4);
+	CombatManager.genericVictory();
+	//eventQueue.push(9999);
+}
+/*
 output("\n\n[Next]");
 
 output("\n\n9-Tails Protection Fight");
@@ -554,3 +714,4 @@ output("\n\n[Next] - to fuck-flower epilogue");
 
 output("\n\n//FUCK FLOWAH EPILOGUEY");
 output("\n\nAzra {hesitantly re-enters/barges into the room in a rush, hoping to catch you mid-coitus}. <i>“I see you’ve finished your ‘inspection’.{ Maybe you’d like to inspect something else?/ Is there anything else I can help you with, Captain [pc.name]?”</i>");
+*/

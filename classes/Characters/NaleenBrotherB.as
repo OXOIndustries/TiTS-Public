@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Characters.Azra;
 	import classes.Items.Miscellaneous.*;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -14,10 +15,10 @@
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.author;
 	
-	public class NaleenBrotherA extends Creature
+	public class NaleenBrotherB extends Creature
 	{
 		//constructor
-		public function NaleenBrotherA()
+		public function NaleenBrotherB()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
@@ -183,7 +184,7 @@
 			//this.inventory.push(new NaleenNip());
 			
 			isUniqueInFight = true;
-			btnTargetText = "NaleenBroA";
+			btnTargetText = "NaleenBroB";
 			setDefaultSexualPreferences();
 			this._isLoading = false;
 			kGAMECLASS.mhengaSSTDChance(this);
@@ -220,156 +221,94 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(target.hasStatusEffect("Naleen Coiled"))
-			{
-				biteAttackDudeleen(target);
-			}
-			else if(CombatManager.getRoundCount() % 5 == 0 && target is PlayerCharacter) naleenDudeConstrict(target);
-			else if(rand(4) > 0) zilmuskPowersActivate(target);
-			else if(!this.hasStatusEffect("charging musk")) 
-			{
-				//If Azra is up, target her... somehow.
-				target = selectAzraTarget(hostileCreatures);
-				chargeMuskAttack(target);
-			}
-			else chargeOver(target);
+			if(target.hasStatusEffect("Naleen Coiled")) laffoTaffo(target);
+			else if(rand(5) == 0 && !target.hasStatusEffect("Tripped")) naleenTailTrip(target);
+			else if(rand(7) == 0 && !target.hasStatusEffect("Blinded")) blindoPowdo(target);
+			else if(rand(10) == 0) naleenBSwipe(target);
+			else if(rand(5) == 0) naleenRendoPotato(target);
+			else if(rand(2) == 0) naleenDoubleAttack(target);
 		}
-		private function selectAzraTarget(otherTeam:Array):Creature
+		//Naleen B Attacks
+		//Swipe
+		public function naleenBSwipe(target:Creature):void
 		{
-			var selTarget:Creature = null;
-			
-			var posTargets:Array = [];
-			
-			for (var i:int = 0; i < otherTeam.length; i++)
-			{
-				// If it hasn't been defeated already this turn
-				if (otherTeam[i].HP() > 0 && otherTeam[i].lust() < otherTeam[i].lustMax())
-				{
-					var posTarget:Object = { v: otherTeam[i], w: 10 };
-					posTargets.push(posTarget);
-					
-					// Force Azra to be the target
-					if (otherTeam[i].short == "Azra")
-					{
-						selTarget = otherTeam[i];
-						notifyTargetSelection(this, selTarget, this);
-						return selTarget;
-					}
-					
-					// Smugglers are slightly less likely to be targeted
-					if (otherTeam[i].characterClass == GLOBAL.CLASS_SMUGGLER)
-					{
-						posTarget.w -= 1;
-					}
-					// Mercs slightly more
-					else if (otherTeam[i].characterClass == GLOBAL.CLASS_MERCENARY)
-					{
-						posTarget.w += 1;
-					}
-					
-				}
-			}
-			
-			if (posTargets.length == 0) selTarget = null;
-			else if (posTargets.length == 1) selTarget = posTargets[0].v;
-			else selTarget = weightedRand(posTargets);
-			
-			notifyTargetSelection(this, selTarget, this);
-			
-			return selTarget;
+			output("<i>“Foolish creature.”</i> The other naleen swings his fist in a vicious backhand.\n");
+			CombatAttacks.SingleMeleeAttackImpl(this, target, false);
 		}
-		//Naleen A Attacks
-		//Zilmusk - used 2x as often as other moves.
-		public function zilmuskPowersActivate(target:Creature):void
+		//Rend
+		public function naleenRendoPotato(target:Creature):void
 		{
-			output("Pulling a bottle from his bandolier, the smiling naleen brother throws it at [target.combatName]! It shatters to release a cloud of");
-			if(target is Azra) output(" amber-tinted honey scent, by the faint whiff you catch. Azra seems rather enamored by it, her nostrils flaring excitedly.");
-			else output("... sweet... sweet... whatever it is, it smells like honey and sex mixed together in a pot. Your blood burns from the delightful scent.");
-			applyDamage(new TypeCollection( { tease: 10 + rand(6) } ), this, target, "minimal");
-		}
-		//constrict and bite
-		//Take existing texts and playful them up a bit.
-		//ONLY IF pc IS TARGET
-		private function naleenDudeConstrict(target:Creature):void
-		{
-			if(!target.hasStatusEffect("Naleen Coiled"))
-			{
-				output("The grinning naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he circles around you, squeezing tight! Your breath is knocked away, and in a moment you're seeing stars!");
-				
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
-			}
-			
-			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
-			var damageResult:DamageResult = calculateDamage(damage, this, target, "dudeconstrict");
-			
-			if (damageResult.shieldDamage > 0)
-			{
-				if (damageResult.hpDamage == 0) output(" Your shield crackles but holds. ");
-				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. ");
-			}
-			
-			if (damageResult.hpDamage > 0)
-			{
-				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
-			}
-			outputDamage(damageResult);
-		}
-		//ONLY CONSTRICTED TARGETS
-		private function biteAttackDudeleen(target:Creature):void
-		{
-			author("Savin");
-			output("The coils tighten ever so slightly, further immobilising you. With a knowing grin, the naleen exposes his fangs and ");
-			if(!target.isChestGarbed()) output("bites the exposed skin near your shoulder");
-			else output("bites, punching through a thin spot in your [pc.upperGarment]");
-			output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
-			//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10,0xFF0000);
-			target.physiqueMod -= .5;
-			target.aimMod -= .5;
-			target.willpowerMod -= .5;
-			target.reflexesMod -= .5;
-			target.addStatusValue("Naleen Venom",1,.5);
-			target.lust(10+rand(10));
-			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
-		}
-		//Charge musk
-		public function chargeMuskAttack(target:Creature):void
-		{
-			output("The naleen meticulously plucks one vial at a time from his bandoleer, collecting them between his clawed fingers. One, two, three... four... He’s really loading up! You’d better do something to interrupt him, or someone is in for a world of hurt!");
-			this.createStatusEffect("charging musk");
-		}
-		//Charge interrupted by stun, blind, staggered, or trip
-		public function chargeOver(target:Creature):void
-		{
-			if(this.hasStatusEffect("Stunned") || this.hasStatusEffect("Stun") || this.hasStatusEffect("Blinded") || this.hasStatusEffect("Blind") || this.hasStatusEffect("Staggered") ||  this.hasStatusEffect("Trip") || this.hasStatusEffect("Tripped"))
-			{
-				output("The naleen drops seven or eight of his bottles at once. They shatter in a shower of tinkling shards and sweet-smelling musk. Bathed in the sugary pheromones, the naleen shudders once, then collapses into his coiling tail, hands and scales sliding sensuously across his form. He won’t be fighting anyone for a while.");
-			}
-			//Charge goes off! Hits Azra first, PC second time.
+			output("<i>“Bleed.”</i> The other naleen swipes at you with his claws!");
+			if(combatMiss(this, target)) output(" You duck out of the way!");
+			//75% damage on hit, +rending status
 			else
 			{
-				//Azra
-				if(target is Azra)
-				{
-					output("The naleen hucks seven or eight vials at Azra at once. There’s nothing she can do! They burst all around her in a cloud of libido-hijacking pheromones. She gasps once, drinking deeply of the tainted air, mouths, <i>“Oh my...”</i> and sinks to her knees, lost in raw, unfiltered sexual desire.\n\n<b>Azra is down!</b>");
-					target.lust(1000);
-				}
-				//PC - 100 damage!
-				else
-				{
-					output("The naleen hucks seven or eight vials at you at once. There’s too many to dodge! They burst all around you in a cloud of libido-hijacking  pheromones.");
-					if(pc.hasAirtightSuit()) output(" Fortunately, your airtight equipment saves you from its inebriating effects. Haha!");
-					else 
-					{
-						output(" You gasp in alarm, inadvertently drinking deeply of the tainted air. It’s overwhelming. Tremendous lust surges through you");
-						var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, target, "suppress");
-						if(pc.lust() < pc.lustMax()) output(", though you somehow shake it off before you find yourself kneeling before these chimeric aggressors.");
-						else output(", reaching into your crotch and stirring the pot of your lust until it threatens to boil over. You drop to your knees in desperation, resistance forgotten. All you can think about is getting off.");
-						outputDamage(dr2);
-					}
-				}
+				output(" The strike leaves bloody furrows in your flesh. <b>You’re bleeding!</b>");
+				CombatAttacks.applyBleed(target, 1, 4, 4);
+				var damage:TypeCollection = meleeDamage();
+				damage.multiply(0.75);
+				applyDamage(damageRand(damage, 15), this, target);
 			}
 		}
+		//Doubleswipe! (Normal attack text)
+		private function naleenDoubleAttack(target:Creature):void
+		{
+			author("Savin");
+			output("The naleen surges forward, lunging at you and swinging his razor-sharp claws right at your throat!\n");
+			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+			output("\n");
+			CombatAttacks.SingleMeleeAttackImpl(this, target, true);
+		}
+		//Tail trip
+		public function naleenTailTrip(target:Creature):void
+		{
+			var damage:TypeCollection = meleeDamage();
+			output("<i>“You should be on the ground. Let me help you.”</i>  The second naleen pivots his tail to slap at your [pc.feet].");
+			if(this.physique()/2 + rand(20) + 5 < target.reflexes()/2 + 10) output(" You hop over it!");
+			else if(this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10)
+			{
+				output(" It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.");
+				damage.multiply(0.40);
+				applyDamage(damageRand(damage, 15), this, target);
+			}
+			else
+			{
+				output(" The world spins 90 degrees as <b>you’re tripped</b>! Ouch!");
+				//40% melee damage.
+				damage.multiply(0.40);
+				applyDamage(damageRand(damage, 15), this, target);
+				CombatAttacks.applyTrip(target);
+			}
+		}
+		//Laughs - used if pc constricted and over 50% HP and under 50% lusto.
+		public function laffoTaffo(target:Creature):void
+		{
+			output("The other naleen watches the constriction in amusement, cackling all the way. <i>“Foolish creatures. Will they never learn?”</i>");
+		}
+		//Blind powder
+		public function blindoPowdo(target:Creature):void
+		{
+			output("The second naleen reaches into his pouch. <i>“Allow me to extend a present to you, from my brother and I.”</i> He throws a handful of white powder in ");
+			if(target is PlayerCharacter) output("your direction");
+			else output("Azra’s direction");
+			output(". It catches on the smallest eddy and breeze, spreading into a stinging white cloud.");
+
+			//Avoid
+			if(rangedCombatMiss(this, target))
+			{
+				if(target is PlayerCharacter) output(" You avoid getting any in your eyes.");
+				else output(" Azra avoids getting any in her eyes.");
+			}
+			//Blind
+			else
+			{
+				if(target is PlayerCharacter) output("Some of it gets in your eyes! <b>You are blinded!</b>");
+				else output("Some gets in Azra’s eyes. <b>She is blinded!</b>");
+				CombatAttacks.applyBlind(target);
+			}
+		}
+
+
 		/* OLD NALEEN SHIT
 		private function dudeNaleenPounce(target:Creature):void
 		{

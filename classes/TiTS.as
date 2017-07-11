@@ -128,6 +128,7 @@
 		//Followers
 		include "../includes/follower/anno.as";
 		include "../includes/follower/azra.as";
+		include "../includes/follower/azraExpeditions.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/multi_interactions.as";
@@ -489,7 +490,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.66";
+			version = "0.7.67";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1387,10 +1388,13 @@
 		{
 			return chars["MIRRIN"];
 		}
-		
 		public function get fisianna():Fisianna
 		{
 			return chars["FISIANNA"];
+		}
+		public function get azra():Fisianna
+		{
+			return chars["AZRA"];
 		}
 		public function testShipCombat():void
 		{

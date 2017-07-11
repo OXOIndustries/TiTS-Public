@@ -1225,7 +1225,24 @@ package classes.GameData
 			target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", (target is PlayerCharacter ? "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up." : "Until able to stand, physique and reflexes have been reduced by 4."), true, 0);
 			if(tooltip != "") target.setStatusTooltip("Tripped", tooltip);
 		}
-		
+		//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
+		public static function applyAphroGas(target:Creature, damage:int = 5, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
+		{
+			if(target.hasStatusEffect("Aphro Gas"))
+			{
+				//Increase duration!
+				if(apply) target.setStatusValue("Aphro Gas",2,turns);
+				else target.addStatusValue("Aphro Gas",2,turns);
+				//DAMAGE LEVEL UP!
+				if(!apply) target.addStatusValue("Aphro Gas",1,1);
+			}
+			if(tooltip == "")
+			{
+				if(target is PlayerCharacter) tooltip = "A cloud of aphrodisiac hangs in the air, turning you on as you breathe!";
+				else tooltip = "A cloud of aphrodisiac hangs in the air, causing continuous arousal.";
+			}
+			target.createStatusEffect("Aphro Gas",damage,turns,0,0,false,"Icon_LustUp",tooltip,true,0);
+		}
 		
 		// Special Attacks
 		
