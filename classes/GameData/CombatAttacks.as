@@ -317,6 +317,7 @@ package classes.GameData
 			ChargeShield.ButtonName = "Charge Sh.";
 			ChargeShield.EnergyCost = 15;
 			ChargeShield.RequiresPerk = "Charge Shield";
+			ChargeShield.RequiresTarget = false;
 			ChargeShield.DisabledIfEffectedBy = ["Charged Shield"];
 			ChargeShield.TooltipTitle = "Charge Shield";
 			ChargeShield.TooltipBody = "Charge your shield so that it can overload when struck, creating flashes bright enough to blind the unwary - or zap those stupid enough to try for a punch.";
