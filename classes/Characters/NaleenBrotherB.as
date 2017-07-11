@@ -24,7 +24,7 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "naleen male";
+			this.short = "dour naleen";
 			this.originalRace = "naleen";
 			this.a = "the ";
 			this.capitalA = "The ";
@@ -45,6 +45,12 @@
 			this.armor.longName = "shimmering scales";
 			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
+
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.kinetic.damageValue = 60.0;
+			baseHPResistances.electric.damageValue = 25.0;
+			baseHPResistances.burning.damageValue = 25.0;
+			baseHPResistances.corrosive.damageValue = 25.0;
 			
 			this.physiqueRaw = 9;
 			this.reflexesRaw = 11;
@@ -58,7 +64,7 @@
 			this.level = 2;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 15;
+			this.HPMod = 40;
 			this.HPRaw = this.HPMax();
 
 			this.femininity = 5;
@@ -179,6 +185,7 @@
 			this.ass.bonusCapacity = 1000;
 			
 			this.createStatusEffect("Disarm Immune");
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 
 			//No loot on this fuckboy.
 			//this.inventory.push(new NaleenNip());
@@ -226,7 +233,7 @@
 			else if(rand(7) == 0 && !target.hasStatusEffect("Blinded")) blindoPowdo(target);
 			else if(rand(10) == 0) naleenBSwipe(target);
 			else if(rand(5) == 0) naleenRendoPotato(target);
-			else if(rand(2) == 0) naleenDoubleAttack(target);
+			else naleenDoubleAttack(target);
 		}
 		//Naleen B Attacks
 		//Swipe
@@ -239,11 +246,16 @@
 		public function naleenRendoPotato(target:Creature):void
 		{
 			output("<i>“Bleed.”</i> The other naleen swipes at you with his claws!");
-			if(combatMiss(this, target)) output(" You duck out of the way!");
+			if(combatMiss(this, target)) 
+			{
+				if(target is PlayerCharacter) output(" You duck out of the way!");
+				else output(target.short + " ducks out of the way.");
+			}
 			//75% damage on hit, +rending status
 			else
 			{
-				output(" The strike leaves bloody furrows in your flesh. <b>You’re bleeding!</b>");
+				if(target is Azra) output( "The strike leaves bloody furrows in her flesh. <b>Azra is bleeding!</b>");
+				else output(" The strike leaves bloody furrows in your flesh. <b>You’re bleeding!</b>");
 				CombatAttacks.applyBleed(target, 1, 4, 4);
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(0.75);
@@ -302,8 +314,8 @@
 			//Blind
 			else
 			{
-				if(target is PlayerCharacter) output("Some of it gets in your eyes! <b>You are blinded!</b>");
-				else output("Some gets in Azra’s eyes. <b>She is blinded!</b>");
+				if(target is PlayerCharacter) output(" Some of it gets in your eyes! <b>You are blinded!</b>");
+				else output(" Some gets in Azra’s eyes. <b>She is blinded!</b>");
 				CombatAttacks.applyBlind(target);
 			}
 		}

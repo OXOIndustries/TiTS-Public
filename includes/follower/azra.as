@@ -236,8 +236,13 @@ public function azraInShipGreeting():void
 public function azraCrewBlurbs(button:Number):String
 {
 	var buffer:String = "";
-	
-	if(rand(10) == 0) buffer += "\n\nAzra is sitting in front a codex-projected hardlight terminal. She appears to be answering emails.";
+	if(pc.hasStatusEffect("Azra Plant CD")) 
+	{
+		buffer += "\n\nAzra is busy giving your latest samples a more permanent home on the ship, lest the rare flora die out.";
+		addDisabledButton(button,"Azra","Azra","She's too busy with the latest sample to be bothered right now.");
+		return buffer;
+	}
+	else if(rand(10) == 0) buffer += "\n\nAzra is sitting in front a codex-projected hardlight terminal. She appears to be answering emails.";
 	else if(rand(9) == 0)
 	{
 		output("\n\nAzra the suula scientist is reclining on her bunk, reading something on her Codex.");
@@ -289,6 +294,8 @@ public function azraMenu():void
 	addButton(0,"Appearance",azraAppearance);
 	addButton(1,"Talk",azraTalk);
 	addButton(2,"Expeditions",azraExpeditionStartup,undefined,"Expeditions","Go on an expedition with Azra.");
+	if(flags["AZRA_MHENGAED"] != undefined) addButton(3,"Plant Samples",azraPlantSamples,undefined,"Plant Samples","Personally inspect the fruits of your labors.");
+	else addDisabledButton(3,"Plant Samples","Plant Samples","You have yet to recover any plant samples on an expedition with Azra.");
 	addButton(13,"Leave Crew",talkToAzraAboutLeavingTheCrew);
 	addButton(14,"Leave",mainGameMenu);
 }

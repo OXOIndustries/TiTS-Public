@@ -25,7 +25,7 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "naleen male";
+			this.short = "grinning naleen";
 			this.originalRace = "naleen";
 			this.a = "the ";
 			this.capitalA = "The ";
@@ -46,6 +46,12 @@
 			this.armor.longName = "shimmering scales";
 			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
+
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.tease.damageValue = 90.0;
+			baseHPResistances.drug.damageValue = 75.0;
+			baseHPResistances.pheromone.damageValue = 75.0;
+			baseHPResistances.psionic.damageValue = 75.0;
 			
 			this.physiqueRaw = 9;
 			this.reflexesRaw = 11;
@@ -59,7 +65,7 @@
 			this.level = 2;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 15;
+			this.HPMod = 10;
 			this.HPRaw = this.HPMax();
 
 			this.femininity = 5;
@@ -180,7 +186,8 @@
 			this.ass.bonusCapacity = 1000;
 			
 			this.createStatusEffect("Disarm Immune");
-
+			this.createPerk("Inhuman Desire",50,0,0,0);
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			//No loot on this fuckboy.
 			//this.inventory.push(new NaleenNip());
 			
@@ -222,19 +229,23 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(target.hasStatusEffect("Naleen Coiled"))
+			if(this.hasStatusEffect("charging musk")) 
+			{
+				target = selectAzraTarget(hostileCreatures);
+				chargeOver(target);
+			}
+			else if(target.hasStatusEffect("Naleen Coiled"))
 			{
 				biteAttackDudeleen(target);
 			}
 			else if(CombatManager.getRoundCount() % 5 == 0 && target is PlayerCharacter) naleenDudeConstrict(target);
-			else if(rand(4) > 0) zilmuskPowersActivate(target);
-			else if(!this.hasStatusEffect("charging musk")) 
+			else if(!this.hasStatusEffect("charging musk") && rand(5) == 0) 
 			{
 				//If Azra is up, target her... somehow.
 				target = selectAzraTarget(hostileCreatures);
 				chargeMuskAttack(target);
 			}
-			else chargeOver(target);
+			else zilmuskPowersActivate(target);
 		}
 		private function notifyTargetSelection(attacker:Creature, target:Creature, enemy:Creature):void
 		{
@@ -352,6 +363,8 @@
 			if(this.hasStatusEffect("Stunned") || this.hasStatusEffect("Stun") || this.hasStatusEffect("Blinded") || this.hasStatusEffect("Blind") || this.hasStatusEffect("Staggered") ||  this.hasStatusEffect("Trip") || this.hasStatusEffect("Tripped"))
 			{
 				output("The naleen drops seven or eight of his bottles at once. They shatter in a shower of tinkling shards and sweet-smelling musk. Bathed in the sugary pheromones, the naleen shudders once, then collapses into his coiling tail, hands and scales sliding sensuously across his form. He won’t be fighting anyone for a while.");
+				var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, this, "suppress");
+				outputDamage(dr2);
 			}
 			//Charge goes off! Hits Azra first, PC second time.
 			else
@@ -360,7 +373,8 @@
 				if(target is Azra)
 				{
 					output("The naleen hucks seven or eight vials at Azra at once. There’s nothing she can do! They burst all around her in a cloud of libido-hijacking pheromones. She gasps once, drinking deeply of the tainted air, mouths, <i>“Oh my...”</i> and sinks to her knees, lost in raw, unfiltered sexual desire.\n\n<b>Azra is down!</b>");
-					target.lust(1000);
+					var dr3:DamageResult = applyDamage(new TypeCollection( { tease: 1000 } ), this, target, "suppress");
+					outputDamage(dr3);
 				}
 				//PC - 100 damage!
 				else
@@ -370,10 +384,10 @@
 					else 
 					{
 						output(" You gasp in alarm, inadvertently drinking deeply of the tainted air. It’s overwhelming. Tremendous lust surges through you");
-						var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, target, "suppress");
+						var dr4:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, target, "suppress");
 						if(target.lust() < target.lustMax()) output(", though you somehow shake it off before you find yourself kneeling before these chimeric aggressors.");
 						else output(", reaching into your crotch and stirring the pot of your lust until it threatens to boil over. You drop to your knees in desperation, resistance forgotten. All you can think about is getting off.");
-						outputDamage(dr2);
+						outputDamage(dr4);
 					}
 				}
 			}

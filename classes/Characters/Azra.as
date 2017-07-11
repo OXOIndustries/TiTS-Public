@@ -349,10 +349,10 @@
 		public function dustStormAzra(target:Creature):void
 		{
 			output("Azra beats her wings until a gusting gale-force wind is blowing through the battle, hurling bits of dust and detritus at [target.combatName]!");
-			if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" [target.combatName] closes [target.hisHer] eyes in time to avoid being blinded!");
+			if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" [target.CombatName] closes [target.hisHer] eyes in time to avoid being blinded!");
 			else
 			{
-				output(" <b>[target.combatName] is blinded!</b>");
+				output(" <b>[target.CombatName] is blinded!</b>");
 				CombatAttacks.applyBlind(target);
 			}
 		}
