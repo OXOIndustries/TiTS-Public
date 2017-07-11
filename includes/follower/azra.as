@@ -288,6 +288,7 @@ public function azraMenu():void
 	clearMenu();
 	addButton(0,"Appearance",azraAppearance);
 	addButton(1,"Talk",azraTalk);
+	addButton(2,"Expeditions",azraExpeditionStartup,undefined,"Expeditions","Go on an expedition with Azra.");
 	addButton(13,"Leave Crew",talkToAzraAboutLeavingTheCrew);
 	addButton(14,"Leave",mainGameMenu);
 }

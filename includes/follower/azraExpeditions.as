@@ -24,7 +24,7 @@ public function azraExpeditionStartup():void
 	clearOutput();
 	showAzra();
 	//Too Advanced (Gotta go in order for Fen’s sanity) (Or planet doesn’t have one available)
-	if(azraExpeditionAvailable())
+	if(!azraExpeditionAvailable())
 	{
 		output("You let Azra know that you’re ready to help her with her next expedition.");
 		output("\n\n<i>“I’m not,”</i> Azra replies. <i>“My research into the local biomes leads me to believe that we would be better served spending our time on another world until we are more prepared for the dangers ahead.”</i>");
@@ -38,8 +38,13 @@ public function azraExpeditionStartup():void
 		output("\n\n<i>“Really?”</i> Azra looks at you uncertainly. <i>“I’d rather not risk it if things are just going to go sideways again. Are you sure?”</i>");
 		//[Yep] [Nope]
 		clearMenu();
-		addButton(0,"Yep",actuallyGoOnTarkusExpedition,true,"Yep","Go on an <i>ADVENNNNTUUUUUURRRRRRRE</i>");
+		addButton(0,"Yep",actuallyGoOnMhengaExpedition,true,"Yep","Go on an <i>ADVENNNNTUUUUUURRRRRRRE</i>");
 		addButton(1,"Nope",nopeOutOfAdventures,undefined,"Nope","Maybe you should prepare first.");
+	}
+	//If not on Mhen'ga, go straight to the hot shit.
+	else if(getPlanetName().toLowerCase() != "mhen'ga") 
+	{
+		adventureStartRouter();	
 	}
 	else
 	{
@@ -54,15 +59,19 @@ public function azraExpeditionStartup():void
 		//Merge
 		output("\n\nAzra’s ink-black lips curl in a slight smile. <i>“Then I should prepare a plan before begin. Allow me a few seconds to search my database. I’ve flagged thousands of potential reports of unique species on Rush worlds for further investigation.”</i> She picks up her codex and rapidly taps on the screen. <i>“");
 
-		output("Ah yes... this one could be fun for both of us. Ready to go?");
+		output("Ah yes... this one could be fun for both of us. Ready to get the ball rolling?");
 		output("”</i>");
 
 		processTime(3);
 		clearMenu();
-		if(getPlanetName().toLowerCase() == "mhen'ga") addButton(0,"Expedition",actuallyGoOnTarkusExpedition,undefined,"Expedition","Go on an expedition with Azra.");
-		else addDisabledButton(0,"Expedition","Expedition","Azra doesn't have any expeditions to do on this planet.");
+		addButton(0,"Ready",adventureStartRouter,undefined,"Ready","Go on an expedition with Azra.");
 		addButton(4,"Back",nopeOutOfAdventures);
 	}
+}
+public function adventureStartRouter():void
+{
+	if((getPlanetName().toLowerCase()) == "mhen'ga") actuallyGoOnMhengaExpedition();
+	else output("ERRORRRRRRRRRRRR NO EXPEDITION FOUND");	
 }
 	
 //Nope:
@@ -80,7 +89,7 @@ public function actuallyGoOnTarkusExpedition():void
 {
 	clearOutput();
 	showAzra();
-	if(9999) output("You let Azra know you’re ready to help her with an expedition on Mhen’ga.");
+	if(9999) output("You let Azra know you’re ready to help her with an expedition on Mhen'ga.");
 	else  output("You tell her in no uncertain terms that are you really ready. No room for failure on this trip!");
 
 	output("\n\n<i>“Fantastic!”</i> Azra exclaims, grabbing her codex and her usual pack full of scientific miscellany. <i>“Luckily, we don’t have to save anything from extinction. The species that survived this planet’s cataclysmic history are more than robust enough to survive colonization by rogue core elements.”</i> Azra gives you a serious look. <i>“But that does not mean that there aren’t discoveries to be made. I’ve found three.”</i>");
@@ -94,14 +103,14 @@ output("\n\nYou ask her if it happens to be next to a tribe of angry aliens.");
 output("\n\n<i>“Nope,”</i> Azra counters. <i>“That region contains low amounts of sapients and fauna in general relative to the rest of the planet");
 */
 
-//Mhen’ga Expedition
-public function actuallyGoOnTarkusExpedition(warned:Boolean = false):void
+//Mhen'ga Expedition
+public function actuallyGoOnMhengaExpedition(warned:Boolean = false):void
 {
 	clearOutput();
 	showAzra();
-	if(!warned) output("You let Azra know you’re ready to help her with an expedition on Mhen’ga.");
+	if(!warned) output("You let Azra know you’re ready to help her with an expedition on Mhen'ga.");
 	else output("You tell her in no uncertain terms that are you really ready. No room for failure on this trip!");
-	output("\n\n<i>“Superb,”</i> the shark-like alien exclaims, grabbing her codex and a pack stuffed with all  manner of scientific implements. <i>“I think you’re  going to like this one.”</i> She grins at you. <i>“It was too dangerous to pursue by myself, but the prize... ohhh the prize.”</i> She steeples her fingers together. <i>“You see, Mhen’ga is famous for its fuck-hungry locals and sexually voracious flora. Venus Pitchers in particular. It isn’t the pitchers that interest me, however. It’s a smaller, more benign plant that grows almost exclusively in areas densely populated by zil.”</i>");
+	output("\n\n<i>“Superb,”</i> the shark-like alien exclaims, grabbing her codex and a pack stuffed with all  manner of scientific implements. <i>“I think you’re  going to like this one.”</i> She grins at you. <i>“It was too dangerous to pursue by myself, but the prize... ohhh the prize.”</i> She steeples her fingers together. <i>“You see, Mhen'ga is famous for its fuck-hungry locals and sexually voracious flora. Venus Pitchers in particular. It isn’t the pitchers that interest me, however. It’s a smaller, more benign plant that grows almost exclusively in areas densely populated by zil.”</i>");
 	output("\n\nYou adjust your own gear and ask her what makes it so interesting.");
 	output("\n\n<i>“Well, rushers who’ve come across them have taken to calling them Fuck Lilies.”</i> Azra folds her arms across her chest. <i>“Preliminary reports indicate that they survive almost entirely upon the sugary secretions of the zil, not the overcrowded soils below. And they do it without any identifiable hint of coercion. No restraining tentacles, no venomous injections. The zil just fuck them instead of masturbating, because it feels so good.”</i> Her tail wiggles excitedly. <i>“Think of the potential uses! The credits we could make! They could be sold as masturbation aids-slash-houseplants, or used to refine new lubricants, sensation-enhancers, or even texture-creating cellulose structures.”</i>");
 	output("\n\nYou nod");
@@ -145,12 +154,13 @@ public function sureLetsDoThisMhengaThing():void
 public function movingOnOutToMhengaExp():void
 {
 	clearOutput();
-	showAzra();
+	showNaleenBros();
+	showName("FIGHT:\nNALEEN BROS");
 	currentLocation = "OVERGROWN ROCK 3";
 	generateMap();
 	output("Azra directs you to the jungle but wisely stays in the rear, leaving you to push your way through the thick, alien foliage. At every strange sound or cracking twig, she tenses up. Her wings catch on vines numerous times, leading the fiery-haired siren to noisily grumble and groan as she picks leaves from her mane.");
 	output("\n\n<i>“What an inhospitable planet. I can’t believe anyone actually lives here, interesting flora or not!”</i>");
-	output("\n\nYou shrug and do your best to keep your eyes open and alert. No journey through Mhen’ga is likely to end without at least one hostile encounter, and this one is no exception.");
+	output("\n\nYou shrug and do your best to keep your eyes open and alert. No journey through Mhen'ga is likely to end without at least one hostile encounter, and this one is no exception.");
 	output("\n\nTwo figures slither out of bioluminescent bushes with nary a sound, one to each side of your small party.");
 	if(CodexManager.hasUnlockedEntry("Naleen")) output("\n\nYour Codex pings, <i>“Warning, Naleen detected. These snake-like felines should be avoided if possible. Beware their venom.”</i>");
 	else output("\n\nThey’re naleen!");
@@ -160,24 +170,20 @@ public function movingOnOutToMhengaExp():void
 	output("\n\n<i>“We should.”</i>");
 	output("\n\n<i>“We shall.”</i>");
 	output("\n\n<b>It's a fight!</b>");
-	clearMenu();
-	addButton(0,"Next",naleenBrosCombat);
-}
-public function naleenBrosCombat():void
-{
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc,azra);
 	CombatManager.setHostileActors(new NaleenBrotherA, new NaleenBrotherB);
 	CombatManager.victoryScene(winVsNaleenBros);
 	CombatManager.lossScene(loseToNaleenBros);
 	CombatManager.displayLocation("NALEEN BROS");
-	CombatManager.beginCombat();
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 /*Naleen Brothers Fight:
 //Naleen A: Zilmusk bombs.
 //Beaten by Physical or psychic only.
-A naleen circles on the right. His build is typical of the kitty-snakes of Mhen’ga: snake from the waist down and furry, humanoid feline from the waist up. Sharp-clawed fingers wiggle eagerly at the sight of you, darting to a bandoleer of amber-colored bottles that ring his torso as if he cannot wait to unleash whatever is contained within. His ears are alert and playful. His dicks are too, jutting free from a reptilian slit to stab accusingly in your direction.
+A naleen circles on the right. His build is typical of the kitty-snakes of Mhen'ga: snake from the waist down and furry, humanoid feline from the waist up. Sharp-clawed fingers wiggle eagerly at the sight of you, darting to a bandoleer of amber-colored bottles that ring his torso as if he cannot wait to unleash whatever is contained within. His ears are alert and playful. His dicks are too, jutting free from a reptilian slit to stab accusingly in your direction.
 
 //Naleen B:
 //Beaten by lust. Resistant to physical and psychic.
@@ -318,17 +324,11 @@ public function loseToNaleenBrosEpilogue():void
 
 	//bimbo
 	if(pc.isBimbo()) output("\n\nShe doesn’t stop you from licking the excess off her, though her blush is a sight to see.");
-
-	flags["AZRA_EXP_FAILED"] = getPlanetName().toLowerCase();
-
-	CombatManager.genericLoss();
-}
-
-public function relocatePostNaleenBrosLoss():void
-{
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
-	mainGameMenu();
+	flags["AZRA_EXP_FAILED"] = getPlanetName().toLowerCase();
+	CombatManager.genericLoss();
+
 }
 
 //Win vs NaleenBros
@@ -391,7 +391,7 @@ public function winVsNaleenBros():void
 		output(".");
 		if(pc.lust() >= 50) output(" That smell... that smell will haunt your dreams. It punches you square in the nose and knocks you off your feet. You nearly sick up a time or two, but at least you aren’t so turned on any more.");
 		else output(" While the ointment does seem to mend your wounds, the greasy texture is something you could do without. The scent of half-rotten grass clippings is far from appealing.");
-		output("\n\n<i>“Come on,”</i> Azra bids, stepping over one of the defeated naleen. <i>“We’re getting close.”</i> She lifts a frond and looks back over her shoulder. <i>“I doubt I’ll make it without my protector.”</i>");
+		output("\n\n<i>“Come on,”</i> Azra bids, stepping over one of the defeated naleen. <i>“We’re getting close.”</i> She lifts a frond and looks back over her shoulder. <i>“I doubt I’ll make it without my protector.”</i>\n\n");
 		pc.HP(pc.HPMax());
 		pc.lust(-55);
 		processTime(5);
@@ -436,7 +436,7 @@ output("\n\nFrom that terror comes adrenalin, and with adrenalin comes speed. Yo
 output("\n\nA few minutes later, you’re relatively sure you’ve lost him. You double back around, using your Codex to keep from getting lost. You jump at every buzzing insect that flies by, but the infested zil is well and truly behind you.");
 output("\n\nYou emerge from the woods to find Azra in the middle of packing away a brightly colored flower.");
 output("\n\n<i>“[pc.name]! I was so worried he was going to catch you,”</i> Azra says, scaled tail wagging behind her. <i>“Let’s get out of here before he comes back.”</i>");
-output("\n\nYou give her an affirmative nod and leave for Mhen’ga. On your way back, you wonder if the zil will figure out that it was all a ruse. Probably not. He didn’t seem like the type to miss one flower.");
+output("\n\nYou give her an affirmative nod and leave for Mhen'ga. On your way back, you wonder if the zil will figure out that it was all a ruse. Probably not. He didn’t seem like the type to miss one flower.");
 
 
 output("\n\n//Feed - reqs penor");
@@ -691,7 +691,7 @@ output("\n\nAzra kisses you on the forehead on her way out the door, tail swishi
 output("\n\nThe door hisses shut behind her.");
 
 output("\n\nFuck Lilies");
-output("\n\nSince being placed in specially mixed soil, the Fuck Lilies have sprouted like weeds. You select one in particular to approach. The stalk itself is waist-high and extraordinarily sturdy looking, more like a small tree trunk than a flower’s stalk. Atop it sits a huge, violet bloom. The obscene flower looks positively female in every sense, right down to a clit-shaped bump and moist, gently parted lips.  Inside that central passage, you can see a bevy of wiggling staman surrounding a larger, flared stalk.  The scent that wafts out of that opening is sweet and floral, but undoubtedly sexual.  It looks like a carefully designed organic sex toy more than a naturally occurring flower, nevertheless, nature on Mhen’ga has provided it to you.");
+output("\n\nSince being placed in specially mixed soil, the Fuck Lilies have sprouted like weeds. You select one in particular to approach. The stalk itself is waist-high and extraordinarily sturdy looking, more like a small tree trunk than a flower’s stalk. Atop it sits a huge, violet bloom. The obscene flower looks positively female in every sense, right down to a clit-shaped bump and moist, gently parted lips.  Inside that central passage, you can see a bevy of wiggling staman surrounding a larger, flared stalk.  The scent that wafts out of that opening is sweet and floral, but undoubtedly sexual.  It looks like a carefully designed organic sex toy more than a naturally occurring flower, nevertheless, nature on Mhen'ga has provided it to you.");
 output("\n\n//Fuck It!");
 output("\n\n{Undoing your [pc.crotchCover]/Hefting [pc.oneCock]|}, you approach the pulsating plant with one thought in mind: fucking it.  At the sight of [pc.eachCock], the petals flutter happily, their surface glimmering with moisture in an instant, slick and wet for your pleasure.  You lean down to inhale the sweet yet sensual nature of the flower’s aroma, letting it tickle your nostrils as you idly fondle [pc.oneCock].  Your maleness quickly assumes {your favorite state/an aroused state/its favorite state} - hard and sensitive, ready to plunge into the nearest set of wet lips with the reckless abandon.  At the same time, you can see the wriggling tendrils inside the flower’s vase waving about hungrily.");
 output("\n\nYou {smile/chuckle/laugh} in amusement; who are you to deny it the creamy treat it so richly deserves?  Letting go of your [pc.cock <i>“ + x + <i>“], you reach around the soft petals to the harder, central bud and slide yourself through the honeyed embraced into the pulsating, tentacled flower-core.  Juicy warmth snuggles about your dick, the velvet-soft chamber immediately tightening up while the petals fold in, crossing over one another until they form a tube long enough to swallow you whole.  Gentle suction begins to rhythmically tug at your [pc.cockHead <i>“ + x + <i>“], swelling you larger and more sensitive inside.  Immediately, the tiny tendrils you saw swarming around earlier reach up to massage your cock, slithering across your skin like tiny, sinuous snakes.");
