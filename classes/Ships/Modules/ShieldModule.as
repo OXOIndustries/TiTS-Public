@@ -17,6 +17,8 @@ package classes.Ships.Modules
 			_rechargeRatePerRound = 10;
 			_rechargeRatePerMinute = 10;
 			_resistances = new ShipTypeCollection( { em: 0, kin: 40, exp: 50, therm: 20 }, ShipDamageFlag.TYPE_SHIELD);
+			_shieldHardness = 0;
+			_shieldHardnessMultiplier = 0.0;
 		}
 		
 		protected var _shieldBonus:Number;

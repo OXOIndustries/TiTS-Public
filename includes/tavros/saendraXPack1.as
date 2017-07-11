@@ -2433,6 +2433,8 @@ public function zilCallGirlBirthMessage():String
 
 public function zilCallGirlPregnancyEnds(deltaT:uint):void
 {
+	if(flags["ZIL_CALLGIRL_EGG_COUNT"] == undefined || flags["ZIL_CALLGIRL_EGG_COUNT"] <= 0) return;
+	
 	_tempZilGirlChildRef = new ZilCallgirlUniqueChild();
 	_tempZilGirlChildRef.RaceType = GLOBAL.TYPE_BEE;
 	_tempZilGirlChildRef.BornTimestamp = GetGameTimestamp() + deltaT;

@@ -548,7 +548,7 @@ package classes.GameData
 			overcharge.classLimit = GLOBAL.CLASS_ENGINEER;
 			overcharge.levelLimit = 3;
 			overcharge.perkName = "Overcharge";
-			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for 150% normal damage. If the target’s shields have been depleted, the shot may stun the target. Requires an energy weapon.";
+			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for [altTooltip Overcharge]% normal damage. If the target’s shields have been depleted, the shot may stun the target. Requires an energy weapon.";
 			insertPerkData(overcharge);
 			
 			/*

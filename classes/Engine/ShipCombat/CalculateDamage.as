@@ -78,7 +78,6 @@ function CalculateShieldDamage(target:SpaceShip, weapon:WeaponModule, sdr:ShipDa
 	}
 	
 	postResDam = Math.max(1, Math.round(postResDam - defReduction));
-	
 	if (postResDam <= target.Shields)
 	{
 		sdr.typedShieldDamage = shieldDam;

@@ -2365,7 +2365,7 @@ public function appearance(forTarget:Creature):void
 	else if(tempBelly <= 20) output2("Your [target.belly] is pretty decent-sized. There’s no real hiding it.");
 	else if(tempBelly <= 30) output2("Your [target.belly] is impossible to miss. Wearing loose clothing wouldn’t even help at this point.");
 	//full round bulky
-	else if(tempBelly <= 40) output2("Your [target.belly] is big enough that passersby might think you pregnant at a glance.");
+	else if(tempBelly <= 40) output2("Your [target.belly] is big enough that a passersby might think you pregnant at a glance.");
 	//expansive extensive spacious
 	else if(tempBelly <= 50) output2("Your [target.belly] would look more at home on a woman in the later stages of her pregnancy than an adventuring rusher.");
 	//inflated excessive whopping

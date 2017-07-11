@@ -229,7 +229,7 @@ package classes.GameData
 			Overcharge.RequiresDamageFlags = [DamageFlag.ENERGY_WEAPON];
 			Overcharge.IsRangedBased = true;
 			Overcharge.TooltipTitle = "Overcharge";
-			Overcharge.TooltipBody = "A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher intelligence increases the chance of successfully stunning your foe.";
+			Overcharge.TooltipBody = "A powerful ranged attack, Overcharge deals [altTooltip Overcharge]% damage and has a chance of stunning. Higher intelligence increases the chance of successfully stunning your foe.";
 			Overcharge.Implementor = OverchargeImpl;
 			Overcharge.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(Overcharge);
@@ -317,6 +317,7 @@ package classes.GameData
 			ChargeShield.ButtonName = "Charge Sh.";
 			ChargeShield.EnergyCost = 15;
 			ChargeShield.RequiresPerk = "Charge Shield";
+			ChargeShield.RequiresTarget = false;
 			ChargeShield.DisabledIfEffectedBy = ["Charged Shield"];
 			ChargeShield.TooltipTitle = "Charge Shield";
 			ChargeShield.TooltipBody = "Charge your shield so that it can overload when struck, creating flashes bright enough to blind the unwary - or zap those stupid enough to try for a punch.";
@@ -1225,7 +1226,24 @@ package classes.GameData
 			target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", (target is PlayerCharacter ? "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up." : "Until able to stand, physique and reflexes have been reduced by 4."), true, 0);
 			if(tooltip != "") target.setStatusTooltip("Tripped", tooltip);
 		}
-		
+		//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
+		public static function applyAphroGas(target:Creature, damage:int = 5, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
+		{
+			if(target.hasStatusEffect("Aphro Gas"))
+			{
+				//Increase duration!
+				if(apply) target.setStatusValue("Aphro Gas",2,turns);
+				else target.addStatusValue("Aphro Gas",2,turns);
+				//DAMAGE LEVEL UP!
+				if(!apply) target.addStatusValue("Aphro Gas",1,1);
+			}
+			if(tooltip == "")
+			{
+				if(target is PlayerCharacter) tooltip = "A cloud of aphrodisiac hangs in the air, turning you on as you breathe!";
+				else tooltip = "A cloud of aphrodisiac hangs in the air, causing continuous arousal.";
+			}
+			target.createStatusEffect("Aphro Gas",damage,turns,0,0,false,"Icon_LustUp",tooltip,true,0);
+		}
 		
 		// Special Attacks
 		
@@ -1685,16 +1703,10 @@ package classes.GameData
 				else output("Your fingers fly across your shield generator, adjusting components to build up damaging static charge. It should be good for two pulses, minimum.");
 			}
 			else output("[attacker.CombatName] tweaks " + attacker.getCombatPronoun("hisher") + " shield generator. The nearly invisible barrier shines brighter as a result. Better be careful when attacking!");
-
-			var moddedInt:int = attacker.intelligence();
-			if(attacker.hasPerk("Fuck Sense"))
-			{
-				moddedInt = attacker.intelligenceMax() - attacker.intelligence() + 1;
-				moddedInt += attacker.libido()/10;
-				if(moddedInt > attacker.level * 5) moddedInt = attacker.level * 5;
-			}
+			
+			var moddedInt:int = attacker.bimboIntelligence();
 			var targetDamage:int = Math.round(10 + attacker.level * 3 + moddedInt);
-					
+			
 			attacker.createStatusEffect("Charged Shield", 2, targetDamage, 0, moddedInt, false, "DefenseUp", "Chance of blinding attackers - and damaging melee attackers for up to " + targetDamage + " electrical damage!", true, 0);
 		}
 		

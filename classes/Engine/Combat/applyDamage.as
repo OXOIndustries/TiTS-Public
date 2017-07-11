@@ -135,7 +135,7 @@ package classes.Engine.Combat
 			{
 				if(attacker is PlayerCharacter) output(" <b>You are blinded!</b>");
 				else output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " is blinded!</b>");
-				CombatAttacks.applyBlind(target, 2);
+				CombatAttacks.applyBlind(attacker, 2);
 			}
 			//Melee damage
 			if(special == "melee") 

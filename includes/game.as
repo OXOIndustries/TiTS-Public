@@ -118,6 +118,8 @@ public function disableExploreEvents():Boolean
 	if (flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0) return true;
 	// Deck 13 Duration
 	if (flags["ANNO_MISSION_OFFER"] > 1 && flags["DECK13_COMPLETE"] == undefined) return true;
+	// KaraQuest2 Duration
+	if (flags["KQ2_QUEST_BEGIN"] == 1 && flags["KQ2_QUEST_FINISHED"] == undefined) return true;
 	// Pirate Base (Bomb Timer)
 	if (flags["KQ2_NUKE_STARTED"] != undefined && flags["KQ2_NUKE_EXPLODED"] == undefined) return true;
 	// Kashima Duration
@@ -203,7 +205,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		if (tryEncounterFreedomBeef()) return;
 		if (currentLocation == shipLocation)
 		{
-			if(seranigansTrigger("hijacked")) return;
+			if(seraRecruited() && seranigansTrigger("hijacked")) return;
 		}
 	}
 	
@@ -985,6 +987,7 @@ public function restHeal():void
 	if(pc.energyRaw < pc.energyMax()) {
 		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 	}
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
 }
 
 public function sleep(outputs:Boolean = true):void {
@@ -1136,7 +1139,7 @@ public function sleepHeal():void
 		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
 		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
 	}
-	if(pc.isSore()) soreChange(-3);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
 	

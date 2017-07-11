@@ -112,7 +112,7 @@ public function fisiAtResDeckAddendum(btnSlot:int = 0):void
 public function approachGirls():void{
 	clearOutput();
 	author("Lkynmbr24");
-	showName("GIRLS")
+	showName("GIRLS");
 	clearMenu();
 	
 	if (flags["FISI_MET"] == undefined)
@@ -130,7 +130,7 @@ public function approachGirls():void{
 		output("\n\n<i>“Don’t be a such a ball-buster, Tara. I’m just trying to make our guest feel welcome.”</i>");
 		output("\n\n<i>“More like tryin’ to make [pc.himHer] feel welcome in your pants.”</i> The fox-girl snidely remarks. The bird-girl immediately and slightly amusingly ruffles her feathers in exasperation before she casts a death glare at the kitsune in retaliation for her outburst.");
 		output("\n\n<i>“TARA! Don’t you start!”</i> The feathered girl breathes out a heavy sigh after her scolding, to which both the dragoness and the vulpine both laugh heartily.");
-		output("\n\n<i>“Sorry about those two... Let me start over. My name’s Aya. The smart-ass, hot-headed fox over there is Tarariel. The dragon-gal with you is Britannia, and the kitty girl here is Fisianna!”</i> At that cue, Aya starts to prod Fisianna softly with her elbow. The feline jumps slightly at the nudges, but she continues to look demurely down at her lap. ");
+		output("\n\n<i>“Sorry about those two... Let me start over. My name’s Aya. The smart-ass, hot-headed fox over there is Tarariel. The dragon-gal with you is Britannia, and the kitty girl here is Fisianna!”</i> At that cue, Aya starts to prod Fisianna softly with her elbow. The feline jumps slightly at the nudges, but she continues to look demurely down at her lap.");
 		output("\n\nFisianna manages to murmur a barely audible, <i>“H-hi,”</i> before returning to silence, never lifting her gaze from her lap.");
 		output("\n\nBritannia leans in to your [pc.ear] whispering, <i>“She’s a shy little kitten she is. We’re trying to break her in on her intergalactic travels and get a little more friendly with the locals.”</i>");
 		output("\n\nWell, that seems to have straightened things out a little bit anyways, though it does make Fisianna stand out even more from the group of colorful women. Where the other three girls seem outgoing and comfortable in their own skin, and scales... and fur... and feathers, Fisianna just looks very <i>“delicate”</i> comparatively.");
@@ -218,7 +218,7 @@ public function stayGirls():void
 {
 	clearOutput();
 	author("Lkynmbr24");
-	showName("GIRLS")
+	showName("GIRLS");
 	clearMenu();
 	
 	output("You decide after a moment of thought to take your seat back next to Britannia and resume talking with the three exotic ");
@@ -228,19 +228,19 @@ public function stayGirls():void
 	if (flags["JUNGLE_STEP"] != undefined)
 	{
 		output("\n\nYou tell them about random adventures you had on planets you recently visited, ");
-		if (pc.isBimbo() || pc.isBro() || pc.lust() >= 30) output("making sure to spare no detail");
+		if (pc.isBimbo() || pc.isBro() || pc.lust() >= 33) output("making sure to spare no detail");
 		else output("skipping over the more salacious details");
-		output(" as the ladies become wrapped up in your stories. ");
+		output(" as the ladies become wrapped up in your stories.");
 	}
 	else
 	{
 		switch(flags["PC_UPBRINGING"])
 		{
-			case GLOBAL.UPBRINGING_PAMPERED: output("\n\nYou regale the ladies with stories of your childhood, telling them about a lavish party you attended and the interesting people you met there. "); break;
+			case GLOBAL.UPBRINGING_PAMPERED: output("\n\nYou regale the ladies with stories of your childhood, telling them about a lavish party you attended and the interesting people you met there."); break;
 			case GLOBAL.UPBRINGING_ATHLETIC: output("\n\nYou regale the ladies with stories of your childhood, telling them about a rather intense game you played while growing up and making a big play that won your team the championship."); break;
 			case GLOBAL.UPBRINGING_BOOKWORM: output("\n\nYou regale the ladies with stories of your childhood, telling them about a particularly interesting sci-fi book that you read as a child that wound up becoming true."); break;
-			case GLOBAL.UPBRINGING_AUSTERE: output("\n\nYou regale the ladies with stories of your childhood, telling them about the struggles of finding a suitable job while living a tough but hard working life. "); break;
-			case GLOBAL.UPBRINGING_PAMPERED: output("\n\nYou regale the ladies with stories of your childhood, telling them about things you did with your father while growing up and reflecting on things you wish you did with him now that he is gone. "); break;
+			case GLOBAL.UPBRINGING_AUSTERE: output("\n\nYou regale the ladies with stories of your childhood, telling them about the struggles of finding a suitable job while living a tough but hard working life."); break;
+			case GLOBAL.UPBRINGING_PAMPERED: output("\n\nYou regale the ladies with stories of your childhood, telling them about things you did with your father while growing up and reflecting on things you wish you did with him now that he is gone."); break;
 			default: output("\n\nMISSING FLAVOR TEXT FOR AN UPBRINGING.");
 		}
 	}
@@ -300,10 +300,16 @@ public function nahFisi():void
 
 public function approachFisi():void
 {
+	//We went to her sleepover, she trusts us loads, and we haven't had this scene yet - Time for a Max Trust Scene
+	if (flags["FISI_MAX"] == undefined && flags["FISI_SLEPT_WITH"] != undefined && flags["FISI_TRUST"] == 100)
+	{
+		maxTrustScene();
+		return;
+	}
+	
 	clearOutput();
 	author("Lkynmbr24");
 	showFisi();
-	clearMenu();
 	
 	//First time seeing Fisi here
 	if (flags["FISI_AT_RES_DECK"] == 1)
@@ -324,12 +330,6 @@ public function approachFisi():void
 		output("\n\n<i>“Mmm... a-anyway, I wanted to meet up with you here to, uh... start over from the night at Anon’s. Y-you know... to get to know each other better. I still owe you for storming out on you that night. You seem like a good person, s-so if you’ll give me a chance...”</i> Fisianna trails off, looking worriedly at you.");
 		output("\n\n<i>“Like I said before, it’s ok! I wouldn’t be here if I wasn’t intending on giving you a chance. Relax!”</i> You give Fisianna your best reassuring smile.");
 		output("\n\n<i>“R-right.”</i> After a pregnant pause, Fisianna continues. <i>“Sooo... Is there anything you wanted to talk about? M-maybe we can tell each other a bit about ourselves?”</i>");
-	}
-	//We went to her sleepover, she trusts us loads, and we haven't had this scene yet - Time for a Max Trust Scene
-	else if (flags["FISI_MAX"] == undefined && flags["FISI_SLEPT_WITH"] != undefined && flags["FISI_TRUST"] == 100)
-	{
-		maxTrustScene();
-		return;
 	}
 	//Nothing special, whats up Fisi
 	else
@@ -369,10 +369,18 @@ public function approachFisi():void
 		}
 	}
 	
+	processTime(1);
+	
+	fisiMainMenu();
+}
+public function fisiMainMenu(fromBack:Boolean = false):void
+{
+	clearMenu();
+	
 	addButton(0, "Appearance", appearanceFisi, undefined, "Appearance", "Get a good look at the catgirl.");
 	addButton(1, "Talk", talkFisi, undefined, "Talk", "Get to know Fisianna better.");
 	
-	if (flags["FISI_TRUST"] >= 25) addButton(2, "Hangout", hangoutFisi, undefined, "Hangout", "Go hangout someplace with Fisianna. You might bump into a friend of hers. ");
+	if (flags["FISI_TRUST"] >= 25) addButton(2, "Hangout", hangoutFisi, undefined, "Hangout", "Go hangout someplace with Fisianna. You might bump into a friend of hers.");
 	else addDisabledButton(2, "Hangout", "Hangout", "You don’t know her well enough to know where she might like to hang out.");
 	
 	//Date Button
@@ -380,18 +388,19 @@ public function approachFisi():void
 	{
 		if (pc.isTaur() && flags["FISI_DATE_NUMBER"] == 5) addDisabledButton(3, "Date", "Date", "It doesn’t look like she wants to take things further due to your formidable anatomy.");
 		else if (flags["FISI_DATE_NUMBER"] == undefined && pc.credits < 200) addDisabledButton(3, "Date", "Date", "You don’t have enough credits to taker her out on a date.");
-		else addButton(3, "Date", dateFisi, undefined, "Date", "Go out on a date with Fisianna. ");
+		else addButton(3, "Date", dateFisi, undefined, "Date", "Go out on a date with Fisianna.");
 		
-		addDisabledButton(4, "Sex", "Sex", "You’ll have to get her to open up to you more to do this with her.")
+		if(!fromBack) addDisabledButton(4, "Sex", "Sex", "You’ll have to get her to open up to you more to do this with her.");
+		else addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable enough with you to do this yet.");
 	}
 	//Sex Button
 	else if (flags["FISI_DATE_NUMBER"] == 6)
 	{
+		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.");
+		
 		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
 		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten! ");
-		
-		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.")
+		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten!");
 	}
 	else 
 	{
@@ -400,8 +409,6 @@ public function approachFisi():void
 	}
 	
 	addButton(14, "Leave", leaveFisi);
-	
-	processTime(1);
 }
 
 public function appearanceFisi():void
@@ -469,45 +476,11 @@ public function talkBack():void
 	clearOutput();
 	author("Lkynmbr24");
 	showFisi();
-	clearMenu();
 	
 	output("You decide to change your mind about talking with Fisianna.");
 	output("\n\n<i>“O-oh, ok, if that’s what you want. Did you have anything else in mind for us then?”</i> Fisianna asks tentatively.");
 	
-	addButton(0, "Appearance", appearanceFisi, undefined, "Appearance", "Get a good look at the catgirl.");
-	addButton(1, "Talk", talkFisi, undefined, "Talk", "Get to know Fisianna better.");
-	
-	addButton(0, "Appearance", appearanceFisi, undefined, "Appearance", "Get a good look at the catgirl.");
-	addButton(1, "Talk", talkFisi, undefined, "Talk", "Get to know Fisianna better.");
-	
-	if (flags["FISI_TRUST"] >= 25) addButton(2, "Hangout", hangoutFisi, undefined, "Hangout", "Go hangout someplace with Fisianna. You might bump into a friend of hers. ");
-	else addDisabledButton(2, "Hangout", "Hangout", "You don’t know her well enough to know where she might like to hang out.");
-	
-	//Date Button
-	if (flags["FISI_LOVER"] != undefined && flags["FISI_DATE_NUMBER"] != 6)
-	{
-		if (pc.isTaur() && flags["FISI_DATE_NUMBER"] == 5) addDisabledButton(3, "Date", "Date", "It doesn’t look like she wants to take things further due to your formidable anatomy.");
-		else if (flags["FISI_DATE_NUMBER"] == undefined && pc.credits < 200) addDisabledButton(3, "Date", "Date", "You don’t have enough credits to taker her out on a date.");
-		else addButton(3, "Date", dateFisi, undefined, "Date", "Go out on a date with Fisianna. ");
-		
-		addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable enough with you to do this yet.")
-	}
-	//Sex Button
-	else if (flags["FISI_DATE_NUMBER"] == 6)
-	{
-		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
-		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten! ");
-		
-		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.")
-	}
-	else 
-	{
-		addDisabledButton(3, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		addDisabledButton(4, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-	}
-	
-	addButton(14,"Leave",leaveFisi);
+	fisiMainMenu(true);
 }
 
 public function topicFisianna():void
@@ -926,45 +899,11 @@ public function hangoutBack():void
 	clearOutput();
 	author("Lkynmbr24");
 	showFisi();
-	clearMenu();
 	
 	output("You decide to change your mind about traveling somewhere with Fisianna.");
 	output("\n\n<i>“O-oh, ok. I’m perfectly fine with staying here too. Just let me know whenever you do want to go somewhere. I’m up for anything else you might have planned.”</i> Fisianna says expectantly.");
 	
-	addButton(0, "Appearance", appearanceFisi, undefined, "Appearance", "Get a good look at the catgirl.");
-	addButton(1, "Talk", talkFisi, undefined, "Talk", "Get to know Fisianna better.");
-	
-	addButton(0, "Appearance", appearanceFisi, undefined, "Appearance", "Get a good look at the catgirl.");
-	addButton(1, "Talk", talkFisi, undefined, "Talk", "Get to know Fisianna better.");
-	
-	if (flags["FISI_TRUST"] >= 25) addButton(2, "Hangout", hangoutFisi, undefined, "Hangout", "Go hangout someplace with Fisianna. You might bump into a friend of hers. ");
-	else addDisabledButton(2, "Hangout", "Hangout", "You don’t know her well enough to know where she might like to hang out.");
-	
-	//Date Button
-	if (flags["FISI_LOVER"] != undefined && flags["FISI_DATE_NUMBER"] != 6)
-	{
-		if (pc.isTaur() && flags["FISI_DATE_NUMBER"] == 5) addDisabledButton(3, "Date", "Date", "It doesn’t look like she wants to take things further due to your formidable anatomy.");
-		else if (flags["FISI_DATE_NUMBER"] == undefined && pc.credits < 200) addDisabledButton(3, "Date", "Date", "You don’t have enough credits to taker her out on a date.");
-		else addButton(3, "Date", dateFisi, undefined, "Date", "Go out on a date with Fisianna. ");
-		
-		addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable enough with you to do this yet.")
-	}
-	//Sex Button
-	else if (flags["FISI_DATE_NUMBER"] == 6)
-	{
-		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
-		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten! ");
-		
-		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.")
-	}
-	else 
-	{
-		addDisabledButton(3, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		addDisabledButton(4, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-	}
-	
-	addButton(14,"Leave",leaveFisi);
+	fisiMainMenu(true);
 }
 
 public function goArcade():void

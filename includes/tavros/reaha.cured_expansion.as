@@ -203,7 +203,7 @@ public function reahaAppearanceCured():void
 	}
 	output("\n\nNo longer bound and chained in Beth’s dungeon, Reaha’s able to keep herself milked down enough to stay nice and mobile, though she’s still extraordinarily busty by any human standard. Her breasts are nice and full of [reaha.milk], and Reaha’s more than happy to show her bountiful rack off to you at the slightest provocation, milking herself in the ship’s common areas or pressing them up against you");
 	if(!reaha.isNude()) output(" through her clothes");
-	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty FF-cups, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
+	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty " + chars["REAHA"].breastCup(0) + "s, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
 	output("\n\nShe has a loose, wet pussy tucked between her legs and a [reaha.asshole] between the cheeks of her [reaha.ass], right where it belongs.");
 	curedReahaMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
@@ -718,7 +718,7 @@ public function talkToReahaFamily():void
 		output("\n\nFor starters, how big of a family does she have. Any siblings?");
 		output("\n\n<i>“For a New Texan family, mine’s about average I guess. Even with all the birth control medicine the government puts in the water - what? You do </i>not<i> want them to stop that, trust me! Everyone would be pregnant all of the time. Even the men, probably. The Treatment makes sure people are rutting pretty much constantly, so to avoid over-population....”</i>");
 		output("\n\n<i>“Anyway! Even with all that, New Texans still tend to have lots of kids. Put your mind to something and nothing stops you, I guess. Certainly didn’t stop my mother. I swear the Treatment must have given her a breeding fetish, the rate she popped me and my sisters out. There’s six of us; no brothers. She was always pretty proud of that. Even prouder that every one of us had a different father. ‘Diversity,’ she called it. Ha! Even then, most of us all look pretty much the same: short, soft, a little on the big-boned side. Every one but me was totally stacked, too!”</i>");
-		output("\n\nReaha, not stacked? You cock an inquisitive eyebrow and grope one of her meaty F-cups, just hard enough that a little [reaha.milkNoun] ");
+		output("\n\nReaha, not stacked? You cock an inquisitive eyebrow and grope one of her meaty " + chars["REAHA"].breastCup(0) + "s, just hard enough that a little [reaha.milkNoun] ");
 		if(reaha.isChestExposed()) output("trickles onto your fingers");
 		else output("stains the front of her [reaha.upperGarment]");
 		output(". She squeals with pleasure, kicking her legs around in your lap.");
@@ -2184,7 +2184,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nReaha draws in a sharp gasp and grabs her tits, moaning under her breath as something changes beneath the surface. She pinches her nipples, and rather than her normal [reaha.milkNoun], you’re greeted by a squirt of milky white cream!");
 			output("\n\n<i>“Oh! Back to the same old, same old, I guess!”</i> she giggles, scooping up a boob and sucking her teat dry. <i>“Mmm, and tasty, too! Wanna try?”</i>");
 			output("\n\nDon’t mind if you do...");
-			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast op to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
+			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast up to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
 			output("\n\nWhen you’ve had your fill, you slip off her nipple and give her a pat on the flank. She giggles and presses back against your hand. <i>“Lemme know when you want some milk in your morning tea... or coffee... or if you just wanna get your fill from the tap. I’m your girl. Always.”</i>");
 			reaha.milkType = GLOBAL.FLUID_TYPE_MILK;
 		}
@@ -2240,7 +2240,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nReaha draws in a sharp gasp and grabs her tits, moaning under her breath as something changes beneath the surface. She pinches her nipples, and rather than her normal [reaha.milk], you’re greeted by a squirt of milky white cream!");
 			output("\n\n<i>“Oh! Back to the same old, same old, I guess!”</i> she giggles, scooping up a boob and sucking her teat dry. <i>“Mmm, and tasty, too! Wanna try?”</i>");
 			output("\n\nDon’t mind if you do...");
-			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast op to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
+			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast up to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
 			output("\n\nWhen you’ve had your fill, you slip off her nipple and give her a pat on the flank. She giggles and presses back against your hand. <i>“Lemme know when you want some milk in your morning tea... or coffee... or if you just wanna get your fill from the tap. I’m your girl. Always.”</i>");
 			reaha.milkType = GLOBAL.FLUID_TYPE_MILK;
 		}
@@ -2292,7 +2292,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		output(". Eventually, Reaha shivers with pleasure and cups her breasts. She thumbs her nipples, gently coaxing out a few droplets of her new lactic bounty. With a moan, she produces a few droplets of [reaha.milk], staining her fingers before drooling down her curvaceous chest. Once a steady flow has worked up, Reaha brings her boob up to her mouth and takes a long, deep drink from herself, moaning all the while.");
 		output("\n\n<i>“Oooh, tasty!”</i> she giggles, licking her lips. <i>“Wanna try?”</i>");
 		output("\n\nDon’t mind if you do...");
-		output("\n\nYou nod and, at Reaha’s prompting, cup the other breast op to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
+		output("\n\nYou nod and, at Reaha’s prompting, cup the other breast up to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
 		output("\n\nWhen you’ve had your fill, you slip off her nipple and give her a pat on the flank. She giggles and presses back against your hand. <i>“Lemme know when you want some milk in your morning tea... or coffee... or if you just wanna get your fill from the tap. I’m your girl. Always.”</i>");
 		pc.lust(5);
 	}
