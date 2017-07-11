@@ -35,6 +35,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/cynthia_nude.png", mimeType = "image/png")]
 		public var Bust_CYNTHIA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jay_echo/dane.png", mimeType = "image/png")]
+		public var Bust_DANE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/ehstraffe.png", mimeType = "image/png")]
 		public var Bust_EHSTRAFFE:Class;
 		public var Bounds_EHSTRAFFE:Rectangle = new Rectangle(28, 0, 60, 60);
@@ -118,6 +121,9 @@ package classes.Resources.Busts
 			public var Full_CYNTHIA:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/cynthia_nude.png", mimeType = "image/png")]
 			public var Full_CYNTHIA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/dane.png", mimeType = "image/png")]
+			public var Full_DANE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/ehstraffe.png", mimeType = "image/png")]
 			public var Full_EHSTRAFFE:Class;
