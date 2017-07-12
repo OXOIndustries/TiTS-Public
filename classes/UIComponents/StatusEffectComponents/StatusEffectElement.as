@@ -60,14 +60,14 @@ package classes.UIComponents.StatusEffectComponents
 		 * @param	duration
 		 * @param	parentMouseHandler
 		 */
-		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipText:String, duration:int, iconShade:uint, parentMouseHandler:Function) 
+		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipHeader:String, tooltipText:String, duration:int, iconShade:uint, parentMouseHandler:Function) 
 		{
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
 			this._iconT = iconT;
 			this._tooltipText = tooltipText;
 			this.name = effectName.toLowerCase();
-			this._displayName = effectName;
+			this._displayName = tooltipHeader == null ? effectName : tooltipHeader;
 			this._durationRemaining = duration;
 			this._parentMouseHandler = parentMouseHandler;
 			this._iconShade = iconShade;

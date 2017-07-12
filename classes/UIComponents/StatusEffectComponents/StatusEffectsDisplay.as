@@ -153,7 +153,7 @@
 		 * Create a new child and push it into the storage array
 		 * @param	iconClass
 		 */
-		private function BuildNewChild(effectName:String, iconClass:*, tooltipText:String, durationRemaining:int, iconShade:uint):StatusEffectElement
+		private function BuildNewChild(effectName:String, iconClass:*, tooltipHeader:String, tooltipText:String, durationRemaining:int, iconShade:uint):StatusEffectElement
 		{
 			var iconT:Class;
 
@@ -173,7 +173,7 @@
 				iconT = iconClass;
 			}
 			
-			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipText, durationRemaining, iconShade, this.mouseHandlerFunc);
+			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipHeader, tooltipText, durationRemaining, iconShade, this.mouseHandlerFunc);
 		}
 
 		/**
@@ -399,13 +399,13 @@
 						{
 							matched = true;
 							dispElem.durationRemaining = se.Duration;
-							dispElem.tooltipText = se.TooltipBody;
+							dispElem.tooltipText = se.DisplayableTooltipBody;
 							// iconShade
 							
 							if (dispElem == _lastActiveElement)
 							{
 								_tooltipElement.UpdateDurationText(se.Duration);
-								_tooltipElement.UpdateTooltip(se.TooltipBody);
+								_tooltipElement.UpdateTooltip(se.DisplayableTooltipBody);
 								// iconShade
 							}
 						}
@@ -414,7 +414,7 @@
 				
 				if (matched == false)
 				{
-					_childElements.push(BuildNewChild(se.Name, se.IconClass, se.TooltipBody, se.Duration, se.IconColor));
+					_childElements.push(BuildNewChild(se.Name, se.IconClass, se.DisplayableTooltipHeader, se.DisplayableTooltipBody, se.Duration, se.IconColor));
 				}
 			}
 			
@@ -474,7 +474,7 @@
 					// No match? It must be a new effect, so we need to create the displayable element
 					if (!gotMatch)
 					{
-						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft, statusEffects[seElem].iconShade));
+						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, null, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft, statusEffects[seElem].iconShade));
 					}
 				}
 			}

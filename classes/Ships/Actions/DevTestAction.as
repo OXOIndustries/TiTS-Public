@@ -44,6 +44,8 @@ package classes.Ships.Actions
 					"ExampleOnCreate",
 					"ExampleOnRoundStart",
 					"ExampleOnRoundEnd");
+				se.TooltipHeader = "A Test Effect";
+				se.TooltipBody = "This effect is created by a test action that is used to test ship combat output order.";
 				
 				target.AddStatusEffect(se);
 			}

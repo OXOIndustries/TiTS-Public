@@ -25,6 +25,16 @@ package classes.Ships
 		public function get TooltipBody():String { return _tooltipBody; }
 		public function set TooltipBody(v:String):void { _tooltipBody = v; }
 		
+		public function get DisplayableTooltipHeader():String
+		{
+			return _tooltipHeader;
+		}
+		
+		public function get DisplayableTooltipBody():String
+		{
+			return _tooltipBody;
+		}
+		
 		[Serialize]
 		public var Payload:Object = { };
 		
@@ -76,7 +86,7 @@ package classes.Ships
 				}
 				else
 				{
-					IconClass = null;
+					IconClass = StatusIcons.Icon_Missing;
 				}
 			}
 		}
@@ -126,7 +136,7 @@ package classes.Ships
 			Payload = sePayload;
 			Duration = seDuration;
 			DurationMode = seDurationType;
-			_iconClassRef = seIconClass;
+			IconClassRef = seIconClass;
 			CombatOnly = removeAfterCombat;
 			Hidden = hideFromDisplay;
 			OnRemoveFuncLookup = seOnRemove;

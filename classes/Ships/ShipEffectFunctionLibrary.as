@@ -23,7 +23,7 @@ package classes.Ships
 		}
 		public static function ExampleOnRoundStart(se:StatusEffectPayload, ship:SpaceShip):void
 		{
-			output("\n\nExampleOnRoundStart called for " + se.Name + " on " + ship.Name);
+			output("ExampleOnRoundStart called for " + se.Name + " on " + ship.Name + "\n\n");
 		}
 		public static function ExampleOnRoundEnd(se:StatusEffectPayload, ship:SpaceShip):void
 		{
