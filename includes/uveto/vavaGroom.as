@@ -344,11 +344,11 @@ public function vavaGroomRoleResponse(response:String = ""):void
 			break;
 		case "own reaha":
 			output("You describe Reaha, how you rescued her from sexual servitude by buying her, how you");
-			if(flags["REAHA_ADDICTION_CURED"] != undefined) output(" eventually trained her out of her pleasure patch habit");
+			if(reahaIsCured()) output(" eventually trained her out of her pleasure patch habit");
 			else output(" have been having all sorts of fun with the over-sensitive cowgirl ever since");
 			output(". Your initial awkwardness gives way to enthusiasm as Cruff prods you along with interested questions. It’s actually really good to say out loud exactly how enjoyable the sound and impact of your hand on her big behind is!");
 			output("\n\n<i>“I don’t like indenturehood, never will,”</i> says Cruff baldly. <i>“However - we do service plenty of pets and owners that came together that way, and it definitely sounds as if she’s a lot healthier under your care than in that brothel.");
-			if(flags["REAHA_ADDICTION_CURED"] != undefined) output(" I am very impressed by the way you handled her drug problem - that’s how a true owner responds to a situation like that.");
+			if(reahaIsCured()) output(" I am very impressed by the way you handled her drug problem - that’s how a true owner responds to a situation like that.");
 			output(" She sounds a fine candidate for erotic training; we’d refine all the sexual experience she has into intense expertise. As for you, [pc.name] - why not enjoy a pampering session, whilst you’re here? They aren’t just for pets, you know.”</i>");
 			
 			flags["VAVA_GROOM_SPECIAL_PET"] = "Reaha";

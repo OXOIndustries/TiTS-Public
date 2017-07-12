@@ -1078,7 +1078,7 @@ public function sleep(outputs:Boolean = true):void {
 	{
 		//Queue up cured Reaha
 		//reahaConfidence at 75 or better. Reaha Addiction at 0%. Happens the next time the PC sleeps aboard ship after Addiction 0.
-		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && flags["REAHA_ADDICTION_CURED"] == undefined)
+		if(reahaConfidence() >= 75 && reahaAddiction() <= 0 && !reahaIsCured())
 		{
 			if(eventQueue.indexOf(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches) == -1) eventQueue.push(reahaIsAStrongIndependantMilkSlootWhoDontNeedNoPatches);
 		}

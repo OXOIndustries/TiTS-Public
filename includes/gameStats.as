@@ -3254,11 +3254,11 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["REAHA_TALK_ADDICTION_CURE"] != undefined)
 						{
 							output2("\n<b>* Reaha, Patch Addiction:</b> " + reahaAddiction() + " %");
-							if(flags["REAHA_ADDICTION_CURED"] != undefined) output2(", Cured");
+							if(reahaIsCured()) output2(", Cured");
 							else output2(", Ongoing");
 						}
 						if(flags["REAHA_BOVINIUMED"] != undefined) output2("\n<b>* Reaha, Times Given Bovinium:</b> " + flags["REAHA_BOVINIUMED"]);
-						if(flags["REAHA_ADDICTION_CURED"] == undefined && reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
+						if(!reahaIsCured() && reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 					}
 					if(flags["SEXED_REAHA"] != undefined) output2("\n<b>* Reaha, Times Sexed:</b> " + flags["SEXED_REAHA"]);
 				}
