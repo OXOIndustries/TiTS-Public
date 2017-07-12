@@ -95,12 +95,12 @@ package classes.UIComponents
 		
 		private function showPlayerShip(ss:SpaceShip, asInit:Boolean = false):void
 		{
-			 _playerShipBlock.visible = true;
+			_playerShipBlock.visible = true;
 			_statusEffectDisplay.visible = _combatStatBlock.visible = _coreStatBlock.visible = _advancementBlock.visible = false;
 			_playerPartyBlock.visible = false;
 			
 			_playerShipBlock.showForShip(ss, asInit);
-			_statusEffectDisplay.statusDisplay.updateShipDisplay(ss.StatusEffects);
+			_playerShipBlock.StatusEffects.updateShipDisplay(ss.StatusEffects);
 		}
 		
 		public function showPlayer(pParty:Array, asInit:Boolean = false):void

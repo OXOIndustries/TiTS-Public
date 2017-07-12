@@ -1062,7 +1062,7 @@ package classes.Ships
 		{
 			var se:StatusEffectPayload = new StatusEffectPayload("Cloaked", {
 				strength: cloakStrength
-			}, duration, durationType, StatusIcons.Icon_Blind, true, false);
+			}, duration, durationType, "Icon_Blind", true, false);
 			
 			AddStatusEffect(se);
 		}

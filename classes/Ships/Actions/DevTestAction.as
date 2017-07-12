@@ -37,7 +37,7 @@ package classes.Ships.Actions
 					{ testValue: 1 }, 
 					3, 
 					StatusEffectPayload.DURATION_ROUNDS, 
-					StatusIcons.Icon_RadioSignal, 
+					"Icon_RadioSignal", 
 					true, 
 					false,
 					"ExampleOnRemove",

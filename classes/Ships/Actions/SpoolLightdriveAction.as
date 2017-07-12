@@ -37,7 +37,7 @@ package classes.Ships.Actions
 				},
 				-1, 
 				StatusEffectPayload.DURATION_PERM, 
-				StatusIcons.Constrict,
+				"Constrict",
 				true,
 				false));
 		}

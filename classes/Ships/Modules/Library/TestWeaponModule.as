@@ -15,7 +15,7 @@ package classes.Ships.Modules.Library
 			super(owner);
 			
 			_powerConsumption = 0;
-			_baseDamage.kin.DamageValue = 50;
+			_baseDamage.kin.DamageValue = 100;
 			_requiresStaff = false;
 		}
 		
