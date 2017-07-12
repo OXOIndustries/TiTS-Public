@@ -1923,6 +1923,18 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			// Azra's Expeditions
+			if(flags["AZRA_MHENGAED"] != undefined)
+			{
+				output2("\n<b><u>Azra’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Accepted, Defeated naleen brothers");
+				if(flags["FOUGHT_9TAIL"] != undefined) output2(", Defeated nine-tailed zil");
+				if(flags["FED_9TAIL"] != undefined) output2(", Fed nine-tailed zil");
+				if(flags["AZRA_MHENGAED"] == -1) output2(", Completed, Resisted Azra");
+				else if(flags["AZRA_MHENGAED"] == 1) output2(", Completed, Welcomed Azra");
+				else output2(", <i>In progress...</i>");
+				sideCount++;
+			}
 			// Penny's Zil Problem
 			if(flags["MET_PENNY"] != undefined)
 			{
@@ -5822,6 +5834,21 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(", He fucked your ass");
 				if(flags["TAURFUCKED_DANE"] != undefined) output2(", Fucked him as a centaur");
 			}
+			roamCount++;
+		}
+		// Azra
+		if(flags["MET_AZRA"] != undefined)
+		{
+			output2("\n<b>* Azra:</b> Met her");
+			if(!azraRecruited())
+			{
+				output2(", Crew member");
+				if(azraIsCrew()) output2(" (Onboard Ship)");
+				else if(flags["AZRA_ONBOARD"] == undefined) output2(" (At Mhen’ga)");
+			}
+			else if(flags["AZRA_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
+			if(flags["AZRA_KISSED"] != undefined) output2("\n<b>* Azra, Times Kissed:</b> " + flags["AZRA_KISSED"]);
+			if(flags["AZRA_SEXED"] != undefined) output2("\n<b>* Azra, Times Sexed:</b> " + flags["AZRA_SEXED"]);
 			roamCount++;
 		}
 		// Chaurmine

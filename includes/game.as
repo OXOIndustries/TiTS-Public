@@ -1845,6 +1845,9 @@ public function variableRoomUpdateCheck():void
 	//Bounties
 	if(mhengaActiveBounty()) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.OBJECTIVE);
+	//Azra stuff
+	if(azraRecruited() && !azraIsCrew()) rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.NPC);
+	else rooms["NORTHEAST ESBETH"].removeFlag(GLOBAL.NPC);
 	//Kelly's work - close/open Xenogen Biotech.
 	//Open up shop: link room
 	if(hours >= 6 && hours < 17) 

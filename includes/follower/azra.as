@@ -922,6 +922,7 @@ public function talkToAzraAboutLeavingTheCrew():void
 	else output("Thanks for dropping me on Mhen’ga.");
 	output(" Finding lodging there should be cheap enough, and the biological diversity will keep me busy for a few months, at least.”</i> She begins packing up her workstation. <i>“If you’re in the neighborhood and need a girl who knows her way around plants, you’ll be able to find me.”</i>");
 	output("\n\nShe pats you on the shoulder on her way out the door.");
+	output("\n\n(<b>Azra is no longer on your crew. You can find her again in Mhen’ga.</b>)");
 	processTime(3);
 	flags["AZRA_ONBOARD"] = undefined;
 	clearMenu();
@@ -960,6 +961,7 @@ public function yesAzraRejoinMuhCrew():void
 	output("Sure.");
 	output("\n\n<i>“Excellent!”</i> Azra pulls you into a hug made far less comforting by her hard-edged armor, then lets go to gather her things. <i>“Same deal as before. I’ll be all but invisible, unless you need me. Come find me if you need anything.”</i>");
 	output("\n\nAzra walks off a brisk pace, pumping a fist in the air victoriously.");
+	output("\n\n(<b>Azra has rejoined your crew!</b>)");
 	processTime(2);
 	flags["AZRA_ONBOARD"] = 1;
 	clearMenu();
