@@ -33,14 +33,18 @@ public function reahaAddiction(addict:int = 0):int
 
 public function reahaAddicted():Boolean
 {
-	if (flags["REAHA_ADDICTION_CURED"] == undefined) return true;
+	if (!reahaIsCured()) return true;
 	return false;
+}
+public function reahaIsCured():Boolean
+{
+	return (flags["REAHA_ADDICTION_CURED"] != undefined);
 }
 
 public function reahaAddictionTherapyAvailable():Boolean
 {
 	if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] == undefined) return false;
-	if (flags["REAHA_ADDICTION_CURED"] != undefined) return false;
+	if (reahaIsCured()) return false;
 	if (flags["REAHA_ADDICTION_THERAPY_LAST_DAY"] == days) return false;
 	return true;
 }
@@ -1225,7 +1229,7 @@ public function reahaBreastMilkIceCreamShare():void
 
 public function tryProcDommyReahaTime(tMinutes:Number):Boolean
 {
-	if (flags["REAHA_ADDICTION_CURED"] != undefined) return false; // Reaha cured.
+	if (reahaIsCured()) return false; // Reaha cured.
 	if (!reahaIsCrew()) return false;
 	if (!InShipInterior()) return false; // Only care about processTime calls onboard the ship
 	if (!reahaFree()) return false; // Free only

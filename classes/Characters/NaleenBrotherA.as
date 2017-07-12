@@ -25,7 +25,7 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "naleen male";
+			this.short = "grinning naleen";
 			this.originalRace = "naleen";
 			this.a = "the ";
 			this.capitalA = "The ";
@@ -46,6 +46,12 @@
 			this.armor.longName = "shimmering scales";
 			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
+
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.tease.damageValue = 90.0;
+			baseHPResistances.drug.damageValue = 75.0;
+			baseHPResistances.pheromone.damageValue = 75.0;
+			baseHPResistances.psionic.damageValue = 75.0;
 			
 			this.physiqueRaw = 9;
 			this.reflexesRaw = 11;
@@ -59,7 +65,7 @@
 			this.level = 2;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 15;
+			this.HPMod = 10;
 			this.HPRaw = this.HPMax();
 
 			this.femininity = 5;
@@ -180,7 +186,8 @@
 			this.ass.bonusCapacity = 1000;
 			
 			this.createStatusEffect("Disarm Immune");
-
+			this.createPerk("Inhuman Desire",50,0,0,0);
+			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			//No loot on this fuckboy.
 			//this.inventory.push(new NaleenNip());
 			
@@ -222,19 +229,23 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(target.hasStatusEffect("Naleen Coiled"))
+			if(this.hasStatusEffect("charging musk")) 
+			{
+				target = selectAzraTarget(hostileCreatures);
+				chargeOver(target);
+			}
+			else if(target.hasStatusEffect("Naleen Coiled"))
 			{
 				biteAttackDudeleen(target);
 			}
 			else if(CombatManager.getRoundCount() % 5 == 0 && target is PlayerCharacter) naleenDudeConstrict(target);
-			else if(rand(4) > 0) zilmuskPowersActivate(target);
-			else if(!this.hasStatusEffect("charging musk")) 
+			else if(!this.hasStatusEffect("charging musk") && rand(5) == 0) 
 			{
 				//If Azra is up, target her... somehow.
 				target = selectAzraTarget(hostileCreatures);
 				chargeMuskAttack(target);
 			}
-			else chargeOver(target);
+			else zilmuskPowersActivate(target);
 		}
 		private function notifyTargetSelection(attacker:Creature, target:Creature, enemy:Creature):void
 		{
@@ -302,9 +313,9 @@
 		{
 			if(!target.hasStatusEffect("Naleen Coiled"))
 			{
-				output("The grinning naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he circles around you, squeezing tight! Your breath is knocked away, and in a moment you're seeing stars!");
+				output("The grinning naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he circles around you, squeezing tight! Your breath is knocked away, and in a moment you’re seeing stars!");
 				
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You’re trapped in the naleen’s coils!",true,0);
 			}
 			
 			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
@@ -318,7 +329,7 @@
 			
 			if (damageResult.hpDamage > 0)
 			{
-				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
+				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you’re seeing stars! ");
 			}
 			outputDamage(damageResult);
 		}
@@ -331,14 +342,14 @@
 			else output("bites, punching through a thin spot in your [pc.upperGarment]");
 			output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
 			//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10,0xFF0000);
+			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you’ll lose!",false,10,0xFF0000);
 			target.physiqueMod -= .5;
 			target.aimMod -= .5;
 			target.willpowerMod -= .5;
 			target.reflexesMod -= .5;
 			target.addStatusValue("Naleen Venom",1,.5);
 			target.lust(10+rand(10));
-			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
+			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
 		}
 		//Charge musk
 		public function chargeMuskAttack(target:Creature):void
@@ -349,9 +360,11 @@
 		//Charge interrupted by stun, blind, staggered, or trip
 		public function chargeOver(target:Creature):void
 		{
-			if(this.hasStatusEffect("Stunned") || this.hasStatusEffect("Stun") || this.hasStatusEffect("Blinded") || this.hasStatusEffect("Blind") || this.hasStatusEffect("Staggered") ||  this.hasStatusEffect("Trip") || this.hasStatusEffect("Tripped"))
+			if(this.hasStatusEffect("Stunned") || this.hasStatusEffect("Stun") || this.hasStatusEffect("Blinded") || this.hasStatusEffect("Blind") || this.hasStatusEffect("Staggered") || this.hasStatusEffect("Trip") || this.hasStatusEffect("Tripped"))
 			{
 				output("The naleen drops seven or eight of his bottles at once. They shatter in a shower of tinkling shards and sweet-smelling musk. Bathed in the sugary pheromones, the naleen shudders once, then collapses into his coiling tail, hands and scales sliding sensuously across his form. He won’t be fighting anyone for a while.");
+				var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, this, "suppress");
+				outputDamage(dr2);
 			}
 			//Charge goes off! Hits Azra first, PC second time.
 			else
@@ -360,20 +373,21 @@
 				if(target is Azra)
 				{
 					output("The naleen hucks seven or eight vials at Azra at once. There’s nothing she can do! They burst all around her in a cloud of libido-hijacking pheromones. She gasps once, drinking deeply of the tainted air, mouths, <i>“Oh my...”</i> and sinks to her knees, lost in raw, unfiltered sexual desire.\n\n<b>Azra is down!</b>");
-					target.lust(1000);
+					var dr3:DamageResult = applyDamage(new TypeCollection( { tease: 1000 } ), this, target, "suppress");
+					outputDamage(dr3);
 				}
 				//PC - 100 damage!
 				else
 				{
-					output("The naleen hucks seven or eight vials at you at once. There’s too many to dodge! They burst all around you in a cloud of libido-hijacking  pheromones.");
+					output("The naleen hucks seven or eight vials at you at once. There’s too many to dodge! They burst all around you in a cloud of libido-hijacking pheromones.");
 					if(target.hasAirtightSuit()) output(" Fortunately, your airtight equipment saves you from its inebriating effects. Haha!");
 					else 
 					{
 						output(" You gasp in alarm, inadvertently drinking deeply of the tainted air. It’s overwhelming. Tremendous lust surges through you");
-						var dr2:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, target, "suppress");
+						var dr4:DamageResult = applyDamage(new TypeCollection( { tease: 100 } ), this, target, "suppress");
 						if(target.lust() < target.lustMax()) output(", though you somehow shake it off before you find yourself kneeling before these chimeric aggressors.");
 						else output(", reaching into your crotch and stirring the pot of your lust until it threatens to boil over. You drop to your knees in desperation, resistance forgotten. All you can think about is getting off.");
-						outputDamage(dr2);
+						outputDamage(dr4);
 					}
 				}
 			}
@@ -424,14 +438,14 @@
 			else output("bites, punching through a thin spot in your [pc.upperGarment]");
 			output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
 			//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10,0xFF0000);
+			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you’ll lose!",false,10,0xFF0000);
 			target.physiqueMod -= .5;
 			target.aimMod -= .5;
 			target.willpowerMod -= .5;
 			target.reflexesMod -= .5;
 			target.addStatusValue("Naleen Venom",1,.5);
 			target.lust(10+rand(10));
-			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
+			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
 		}
 		
 		private function naleenDudeAttack(target:Creature):void
@@ -444,9 +458,9 @@
 		{
 			if(!target.hasStatusEffect("Naleen Coiled"))
 			{
-				output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he moves around you, squeezing tight! Your breath is knocked away, and in a moment you're seeing stars!");
+				output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he moves around you, squeezing tight! Your breath is knocked away, and in a moment you’re seeing stars!");
 				
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You’re trapped in the naleen’s coils!",true,0);
 			}
 			else
 			{
@@ -464,7 +478,7 @@
 			
 			if (damageResult.hpDamage > 0)
 			{
-				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
+				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you’re seeing stars! ");
 			}
 			
 			outputDamage(damageResult);

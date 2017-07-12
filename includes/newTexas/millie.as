@@ -568,7 +568,7 @@ public function fuckMillie():void
 	output("\n\nThe dark-haired cow-woman ");
 	if(pc.isNude()) output("bats your hand away");
 	else output("uses a foot to kick your [pc.lowerGarments] aside");
-	output(", then flicks the volume on control on her tablet, filling the stall with harsh-sounding tunes. <i>“Yeah, you look like you need a good... thorough... milking.”</i> Her gray-blue eyes twinkle while her hand wraps you in a firm grip. <i>“This needs a more personal touch, don’t you agree?”</i>");
+	output(", then flicks the volume control on her tablet, filling the stall with harsh-sounding tunes. <i>“Yeah, you look like you need a good... thorough... milking.”</i> Her gray-blue eyes twinkle while her hand wraps you in a firm grip. <i>“This needs a more personal touch, don’t you agree?”</i>");
 
 	pc.lust(10);
 	processTime(5);
@@ -688,7 +688,7 @@ public function yeahMillieLetsFuck():void
 
 	pc.cockChange();
 
-	output("\n\nMillie’s eyebrows wrinkle as if she’s about to scold you, but when her prominant clitty rubs presses down on your crotch, she’s all smiles again. The inside of her pussy is as warm and wet as you’d expect, so capable and elastic. Yet, the real treat is the way she moves the muscles inside, firmly squeezing you one moment and fluttering up the length of your shaft the next. A few seconds later, now that the cow-girl has started happily bouncing in your lap, her insides begin to rhythmically contract, squeezing your [pc.cockHead " + x + "] to press it against the most sensitive places within her as it slides in and out.");
+	output("\n\nMillie’s eyebrows wrinkle as if she’s about to scold you, but when her prominent clitty rubs and presses down on your crotch, she’s all smiles again. The inside of her pussy is as warm and wet as you’d expect, so capable and elastic. Yet, the real treat is the way she moves the muscles inside, firmly squeezing you one moment and fluttering up the length of your shaft the next. A few seconds later, now that the cow-girl has started happily bouncing in your lap, her insides begin to rhythmically contract, squeezing your [pc.cockHead " + x + "] to press it against the most sensitive places within her as it slides in and out.");
 	output("\n\nYou don’t have to do anything but hold onto her cushy bottom and try not to go insane from her skillful lovemaking. Your [pc.hips] do occasionally make the odd upward thrust, but Millie meets the errant motions with the weight of her full, curvaceous form, slamming you into the table with almost bruising force. Her eyes are half-vacant, fogged with pleasure, but the knowing quirk at the corners of her lips give away her intent; she isn’t getting fucked. She’s riding you, and if you push back, she’ll take you into the ground like a rebellious rodeo bull.");
 	output("\n\nWell, when in New Texas, do as the Texans do. You tip your head to the side during one of her excited, upward bounces and open wide, capturing a cream-drizzling nipple on her cock-squeezing downstroke.");
 	output("\n\nMillie gasps, <i>“Now you’re getting it! I take care of you.”</i> Her inner muscles ripple along your [pc.cock " + x + "] from stern to stem. <i>“And you can take care of me.”</i> The milk courses down your throat, sweet, warm, and filling. Moaning, the cow-girl’s loses her confident, domineering facade to the pleasure of having her most sensitive places attended to. Her rhythmic bucking degenerates into an off-beat crotch-pounding, and the free nipple is spraying milk ");

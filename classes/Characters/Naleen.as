@@ -26,7 +26,7 @@
 			this.originalRace = "naleen";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "A towering, serpentine predator from the waist down, the naleen is supporting a beautiful and quite busty humanoid torso that bares a more than passing resemblance to a feline, with brilliant orange and black tiger stripes and perky feline ears. Her long, fiery hair is braided down her back, ending in a green  leaf-woven bow just above her wide hips and full ass. Despite a body that screams raw sexuality, the naleen's claws are razor sharp and pointed at you as she slithers around the battleground, ready to pounce with feline grace and reptilian power.";
+			this.long = "A towering, serpentine predator from the waist down, the naleen is supporting a beautiful and quite busty humanoid torso that bares a more than passing resemblance to a feline, with brilliant orange and black tiger stripes and perky feline ears. Her long, fiery hair is braided down her back, ending in a green  leaf-woven bow just above her wide hips and full ass. Despite a body that screams raw sexuality, the naleen’s claws are razor sharp and pointed at you as she slithers around the battleground, ready to pounce with feline grace and reptilian power.";
 			this.customDodge = "The naleen slides out of the way of your attack, serpentine body stretching and contorting in ways far beyond human ability.";
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
 			this.isPlural = false;
@@ -246,20 +246,20 @@
 			}
 			else 
 			{
-				output(" The naleen sinks her teeth into you, twin fangs piercing your tender [pc.skin]. You grunt in pain, but that's replaced a moment later by an overwhelming feeling of calm, of peace, of slow dreariness. You just want to curl up in a ball and take a nap. Maybe with a beautiful kitty-snake to ");
+				output(" The naleen sinks her teeth into you, twin fangs piercing your tender [pc.skin]. You grunt in pain, but that’s replaced a moment later by an overwhelming feeling of calm, of peace, of slow dreariness. You just want to curl up in a ball and take a nap. Maybe with a beautiful kitty-snake to ");
 				if(target.hasCock()) output("stroke you off");
 				else if(target.hasVagina()) output("eat you out");
 				else output("fuck your ass with her big tail");
-				output(" until you're fast asleep.");
+				output(" until you’re fast asleep.");
 				//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-				if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10,0xFF0000);
+				if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you’ll lose!",false,10,0xFF0000);
 				target.physiqueMod -= .5;
 				target.aimMod -= .5;
 				target.willpowerMod -= .5;
 				target.reflexesMod -= .5;
 				target.addStatusValue("Naleen Venom", 1, .5);
 				applyDamage(new TypeCollection( { drug: 10 + rand(10) } ), this, target, "minimal");
-				if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
+				if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
 			}
 		}
 		
@@ -270,11 +270,11 @@
 			{
 				output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel leather and fur coursing across your body as the serpentine feline coils around you, squeezing tight!");
 				
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You’re trapped in the naleen’s coils!",true,0);
 			}
 			else
 			{
-				output("The naleen's constricting embrace tightens slightly, coil after coil slithering around your compressing flesh.");
+				output("The naleen’s constricting embrace tightens slightly, coil after coil slithering around your compressing flesh.");
 			}
 			
 			var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: 5 + rand(5) } ), 15);
@@ -288,7 +288,7 @@
 			
 			if (damageResult.hpDamage > 0)
 			{
-				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars!");
+				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you’re seeing stars!");
 			}
 			
 			outputDamage(damageResult);

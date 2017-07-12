@@ -490,7 +490,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.67";
+			version = "0.7.68";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1392,10 +1392,15 @@
 		{
 			return chars["FISIANNA"];
 		}
-		public function get azra():Fisianna
+		public function get azra():Azra
 		{
 			return chars["AZRA"];
 		}
+		public function get zil9tails():Zil9Tail
+		{
+			return chars["ZIL9TAILS"];
+		}
+
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

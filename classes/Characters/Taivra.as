@@ -408,7 +408,7 @@
 				output("\nThe vial shatters against your chest, bursting into a cloud of pink mist. You cough as the mist billows out, making your eyes water and flesh tingle. <b>You are surrounded by a cloud of lust-drug!</b>");
 				applyDamage(new TypeCollection( { drug: 6 } ), this, target, "minimal");
 				//4 rounds of lust damage!
-				if(!target.hasStatusEffect("Aphro Gas")) target.createStatusEffect("Aphro Gas",5,4,0,0,false,"Icon_LustUp","A cloud of aphrodisiac hangs in the air, turning you on as you breathe!",true,0);
+				if(!target.hasStatusEffect("Aphro Gas")) CombatAttacks.applyAphroGas(target, 5, 4);
 				else 
 				{
 					output(" <b>The chemical in your air is getting stronger!</b>");

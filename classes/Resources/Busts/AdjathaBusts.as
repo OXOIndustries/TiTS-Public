@@ -293,6 +293,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kane_nude.png", mimeType = "image/png")]
 		public var Bust_KANE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/kaska.png", mimeType = "image/png")]
+		public var Bust_KASKA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kaska_nude.png", mimeType = "image/png")]
+		public var Bust_KASKA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kaska_nude_cum.png", mimeType = "image/png")]
+		public var Bust_KASKA_CUM:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/kitsune-traders.png", mimeType = "image/png")]
 		public var Bust_KAZRA_AND_LORRE:Class;
 
@@ -847,6 +854,13 @@ package classes.Resources.Busts
 			public var Full_KANE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kane_nude.png", mimeType = "image/png")]
 			public var Full_KANE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kaska.png", mimeType = "image/png")]
+			public var Full_KASKA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kaska_nude.png", mimeType = "image/png")]
+			public var Full_KASKA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kaska_nude_cum.png", mimeType = "image/png")]
+			public var Full_KASKA_CUM:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;

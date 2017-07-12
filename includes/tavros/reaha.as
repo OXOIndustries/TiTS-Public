@@ -99,7 +99,7 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 	if (!reahaAddictionTherapyAvailable()) 
 	{
 		if (flags["REAHA_DONE_NEWTEXAS_SPIEL"] == undefined) addDisabledButton(3, "Addiction","Addiction","You need to know Reaha a bit better for this.");
-		else if (flags["REAHA_ADDICTION_CURED"] != undefined) addDisabledButton(3, "Addiction","Addiction","You’ve already cured her!");
+		else if (reahaIsCured()) addDisabledButton(3, "Addiction","Addiction","You’ve already cured her!");
 		else if (flags["REAHA_ADDICTION_THERAPY_LAST_DAY"] == days) addDisabledButton(3, "Addiction","Addiction","You can only do this once a day.");
 		else addDisabledButton(3, "Addiction");
 	}
