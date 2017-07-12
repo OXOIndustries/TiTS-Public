@@ -1913,16 +1913,6 @@ public function displayQuestLog(showID:String = "All"):void
 
 		if(showID == "Mhen'ga" || showID == "All")
 		{
-			// The Forge Machina
-			if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined)
-			{
-				output2("\n<b><u>The Forge Machina</u></b>");
-				output2("\n<b>* Status:</b>");
-				if(flags["ROBOT_QUEST_COMPLETE"] >= 2) output2(" Robot retrieved, Completed");
-				else if(flags["ROBOT_QUEST_COMPLETE"] == 1) output2(" Robot found, Return to Carl");
-				else output2(" <i>In progress...</i>");
-				sideCount++;
-			}
 			// Azra's Expeditions
 			if(flags["AZRA_MHENGAED"] != undefined)
 			{
@@ -1933,6 +1923,16 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["AZRA_MHENGAED"] == -1) output2(", Completed, Resisted Azra");
 				else if(flags["AZRA_MHENGAED"] == 1) output2(", Completed, Welcomed Azra");
 				else output2(", <i>In progress...</i>");
+				sideCount++;
+			}
+			// The Forge Machina
+			if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined)
+			{
+				output2("\n<b><u>The Forge Machina</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["ROBOT_QUEST_COMPLETE"] >= 2) output2(" Robot retrieved, Completed");
+				else if(flags["ROBOT_QUEST_COMPLETE"] == 1) output2(" Robot found, Return to Carl");
+				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
 			// Penny's Zil Problem
