@@ -99,7 +99,7 @@ public function azraBonusProc(btnSlot:int = 0):Boolean
 
 		output("\n\n<i>“Bravo! Excellent! Exemplary! My name is Azra, freelance Xenobiologist... " + pc.mf("Mister","Miss") + "...?”</i> The suula grabs your hand and shakes it hard enough for you to feel it in your [pc.feet]. Quite a grip on that one.");
 		output("\n\n<i>“[pc.name] Steele,”</i> you answer.");
-		output("\n\n<i>“Have you room on your craft for a passenger? You see, I’m a freelance Xenobiologist specializing in the adaptations of alien flora, but I am completely without transportation.”</i> She shakes her head and sighs. <i>“My chartered captain left without me when customs delayed my arrival at Tavros. ‘Riches wait for no man’ or some such.  The greedy syot took off with nearly all my credits! I have neither the funding to charter another or an alternative means of transit, leaving me to put myself upon the kindness of " + pc.mf("dashing","fetching") + " adventurers like yourself. Would you take me onboard? I don’t take up much room.”</i> Azra tucks her wings in tight and hunches her shoulders in, slouching as much as her nine-foot tall frame will allow. <i>“Relatively speaking, of course.”</i> A blush the color of a terran sunset colors her cheeks.");
+		output("\n\n<i>“Have you room on your craft for a passenger? You see, I’m a freelance Xenobiologist specializing in the adaptations of alien flora, but I am completely without transportation.”</i> She shakes her head and sighs. <i>“My chartered captain left without me when customs delayed my arrival at Tavros. ‘Riches wait for no man’ or some such. The greedy syot took off with nearly all my credits! I have neither the funding to charter another or an alternative means of transit, leaving me to put myself upon the kindness of " + pc.mf("dashing","fetching") + " adventurers like yourself. Would you take me onboard? I don’t take up much room.”</i> Azra tucks her wings in tight and hunches her shoulders in, slouching as much as her nine-foot tall frame will allow. <i>“Relatively speaking, of course.”</i> A blush the color of a terran sunset colors her cheeks.");
 		output("\n\nDo you have room for a scientist on your ship?");
 		flags["MET_AZRA"] = 1;
 		processTime(5);
@@ -239,7 +239,7 @@ public function azraCrewBlurbs(button:Number):String
 	if(pc.hasStatusEffect("Azra Plant CD")) 
 	{
 		buffer += "\n\nAzra is busy giving your latest samples a more permanent home on the ship, lest the rare flora die out.";
-		addDisabledButton(button,"Azra","Azra","She's too busy with the latest sample to be bothered right now.");
+		addDisabledButton(button,"Azra","Azra","She’s too busy with the latest sample to be bothered right now.");
 		return buffer;
 	}
 	else if(rand(10) == 0) buffer += "\n\nAzra is sitting in front a codex-projected hardlight terminal. She appears to be answering emails.";
@@ -335,7 +335,7 @@ public function azraAppearance():void
 	output("er asshole is placed in the classical position: nestled snugly between her voluptuous buttocks and sheltered beneath the swaying mass of her tail.");
 	if(flags["AZRA_SEXED"] != undefined) output(" You’ve seen her naked enough to know that her golden skin fades to orange-red at the crinkled skin of her pucker.");
 	azraMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're looking at her right now.");
+	addDisabledButton(0,"Appearance","Appearance","You’re looking at her right now.");
 }
 
 //Talk
@@ -485,7 +485,7 @@ public function talkToAzraAboutHer():void
 	output("\n\n<i>“Me?”</i> Azra leans back and gestures at her chest in disbelief. <i>“You want to know more about little ol’ me?”</i> Her sable lips take on a small smile, her cheeks flushing a richer gold than before. <i>“Very well. I’m an open book, so long as you restrain yourself to </i>proper<i> queries. I have heard of the sorts of hijinks you rushers get into out here, after all.”</i>");
 
 	processTime(2);
-	//[Her Race] [Her Job] [Her Age]  [Her Sex]
+	//[Her Race] [Her Job] [Her Age] [Her Sex]
 	clearMenu();
 	addButton(0,"Her Race",talkToAzraAboutHerRace);
 	addButton(1,"Her Job",talkToAzraAboutHerJorb);
@@ -519,7 +519,7 @@ public function talkToAzraAboutHerRace():void
 	if(pc.isNice()) output("answers,");
 	else if(pc.isMischievous()) output("blushes.");
 	else output("rolls her eyes.");
-	output(" <i>“I’m a suula, but if you prefer something simpler, you can call me a siren.  Just don’t expect me to burst into song. My daughters long ago disabused me me of any notion of talent.”</i>");
+	output(" <i>“I’m a suula, but if you prefer something simpler, you can call me a siren. Just don’t expect me to burst into song. My daughters long ago disabused me me of any notion of talent.”</i>");
 	flags["AZRA_RACE_TALK"] = 1;
 
 	processTime(1);
@@ -563,7 +563,7 @@ public function talkToAzraAboutHerDaughters():void
 	if(pc.isBimbo() || pc.isBro()) output("You have daughters?");
 	else output("Could you tell me about your daughters?");
 	output("”</i>");
-	output("\n\nAzra sighs happily, a contented smile painted on her shark-like features. <i>“They’re the lights of my life. My two precocious little scamps. Just  blossoming into adulthood and yet willing to keep an eye on the house while Mom’s busy surveying the frontier.”</i> After a second, she produces a small holo of the pair of them. <i>“Jell is the taller one, and Kryz is the one with the grumpy look on her face. She never did like taking holos.”</i>");
+	output("\n\nAzra sighs happily, a contented smile painted on her shark-like features. <i>“They’re the lights of my life. My two precocious little scamps. Just blossoming into adulthood and yet willing to keep an eye on the house while Mom’s busy surveying the frontier.”</i> After a second, she produces a small holo of the pair of them. <i>“Jell is the taller one, and Kryz is the one with the grumpy look on her face. She never did like taking holos.”</i>");
 	output("\n\nYou note that Jell isn’t just taller. She’s bigger all over: boobs, butt, and body curves in general. Kryz is no slouch either; beauty must run in the family. The dour sibling is sporting a punky hairstyle and rebellious-looking lip piercing, but with a little cleaning up she could easily pass for a model. <i>“");
 	if(pc.isNice()) output("They look lovely.");
 	else if(pc.isMischievous()) output("I can see where they got their good looks from their mother.");
@@ -792,7 +792,7 @@ public function talkToAzraAboutCollege():void
 	output("\n\n<i>“");
 	if(!silly) output("Saint Benrard’s Institute of Science and Technology");
 	else output("Saint Bernard’s School for Good Girls");
-	output(". One of the top schools back on Valdera, our homeworld. It used to be exclusively an all-girl’s college a few decades ago, but they opened it up to all sexes a few decades back as part of an initiative to level the playing field for males and hermaphrodites.”</i> Azra flashes her teeth. <i>“I can’t believe we did something so primitive this century. It’s the sort of thing you’d read about terrans doing millenia ago, not something any space-faring race should  be bothered by.”</i>");
+	output(". One of the top schools back on Valdera, our homeworld. It used to be exclusively an all-girl’s college a few decades ago, but they opened it up to all sexes a few decades back as part of an initiative to level the playing field for males and hermaphrodites.”</i> Azra flashes her teeth. <i>“I can’t believe we did something so primitive this century. It’s the sort of thing you’d read about terrans doing millenia ago, not something any space-faring race should be bothered by.”</i>");
 	output("\n\n");
 	if(pc.isBimbo()) output("You suggest that it might have been really hard to think with a bunch of yummy cocks around.");
 	else if(pc.isBro()) output("You suggest that the boys might have found it hard to think of anything but all that sweet sweet shark tail.");
@@ -805,7 +805,7 @@ public function talkToAzraAboutCollege():void
 	//Else
 	else output("\n\n<i>“Oh. I should’ve gone to suula school.”</i>");
 	//merge
-	output("\n\n<i>“...Right. Student orgies aside, Saint Benrard’s provided me with the best education one could ask for. The facilities were top notch, the professors highly intelligent individuals who were publishing groundbreaking work on a daily basis. The xenobiology department, where I spent most of my time, was particularly impressive.  More than one commercial gene-mod exists solely because of my professors’ work.”</i> Azra’s chest puffs up, and her wings lift slightly with pride. <i>“I switched my major from biology to xenobiology by my second year, and the rest is history, I guess. I made some contacts at a few leading genetic modification companies by the time I graduated - near the top of my class, by the way.”</i> Azra grins. <i>“Since then I’ve worked on identifying and isolating useful genetic structures to sell to whichever company wants to pay best for them.”</i>");
+	output("\n\n<i>“...Right. Student orgies aside, Saint Benrard’s provided me with the best education one could ask for. The facilities were top notch, the professors highly intelligent individuals who were publishing groundbreaking work on a daily basis. The xenobiology department, where I spent most of my time, was particularly impressive. More than one commercial gene-mod exists solely because of my professors’ work.”</i> Azra’s chest puffs up, and her wings lift slightly with pride. <i>“I switched my major from biology to xenobiology by my second year, and the rest is history, I guess. I made some contacts at a few leading genetic modification companies by the time I graduated - near the top of my class, by the way.”</i> Azra grins. <i>“Since then I’ve worked on identifying and isolating useful genetic structures to sell to whichever company wants to pay best for them.”</i>");
 	output("\n\nYou congratulate her on her good choices.");
 	output("\n\nAzra returns a self-deprecating shrug. <i>“I guess. Signing up with Xenogen on a permanent basis would’ve paid so much better. I could be retired by now, if all I cared about was credits, but then I wouldn’t have had time to spend with my daughters, let alone the ability to put down roots wherever I felt the urge, or run off alongside a " + pc.mf("handsome","fabulous") + " rush captain in an attempt to claim the choicest discoveries.”</i>");
 
@@ -900,7 +900,7 @@ public function talkToAzraAboutDiscoveries():void
 	output("\n\nAzra bites her lip but nods. <i>“Sure. I’ve been polling the extranet for reports on interesting possibilities. No matter where you go, I bet I can find something interesting or useful to research, or...”</i> A flash of lust crosses her features as she raises her fingers in air quotes, <i>“Research.”</i> This time, she winks, though it’s awkward enough that you can tell it’s not a gesture she makes frequently.");
 	if(pc.libido() < 33) output("\n\nYou give her a neutral nod back.");
 	else if(pc.libido() < 66) output("\n\nYou try not to show the thrill the idea gives you.");
-	else output("You answer with a lewd smile. You’re down for that kind of 'research.'");
+	else output("You answer with a lewd smile. You’re down for that kind of ‘research.’");
 	output("\n\n<i>“I doubt my college professors expected I would spent so much time investigating plants that fuck the ever-loving shit out of their victims so many years ago, but they’d damn sure give me an A+ for my quality of work.”</i> Azra flashes her teeth at you. <i>“Maybe you could lend me a hand. Sometimes it pays to have a research assistant. Speaking of which... when we’re on a rush planet, maybe you could escort me on an expedition. This armor is great, but I’d feel a lot safer with someone to have my back.”</i>");
 
 	processTime(10);

@@ -189,7 +189,7 @@
 			createPerk("Fixed CumQ",2500,0,0,0);
 		}
 
-		/* DESC UPDATE ON COMBAT STUFF: Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop.{ She'd be far more imposing if it wasn't for the fact that her 20" dick and soft-ball sized balls are swinging in the open, doing their best to dribble pre everywhere she goes.}*/
+		/* DESC UPDATE ON COMBAT STUFF: Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop.{ She’d be far more imposing if it wasn’t for the fact that her 20" dick and soft-ball sized balls are swinging in the open, doing their best to dribble pre everywhere she goes.}*/
 		public function azraCombatCleanup():void
 		{
 			this.removeStatusEffect("cock out");
@@ -197,7 +197,7 @@
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			if(this.hasStatusEffect("cock out")) this.long = "Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop. She'd be far more imposing if it wasn't for the fact that her 20\" dick and soft-ball sized balls are swinging in the open, doing their best to dribble pre everywhere she goes.";
+			if(this.hasStatusEffect("cock out")) this.long = "Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop. She’d be far more imposing if it wasn’t for the fact that her 20\" dick and soft-ball sized balls are swinging in the open, doing their best to dribble pre everywhere she goes.";
 			else this.long = "Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop.";
 			
 
@@ -286,7 +286,7 @@
 			if (combatMiss(this, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else output("[target.CombatName] manages to avoid Azra's uppercut.");
+				else output("[target.CombatName] manages to avoid Azra’s uppercut.");
 			}
 			//Hit for 1.5x damage and applies Sunder :3
 			else
@@ -329,7 +329,7 @@
 			if (combatMiss(this, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
-				else output("[target.CombatName] manages to avoid Azra's spinning kick!");
+				else output("[target.CombatName] manages to avoid Azra’s spinning kick!");
 			}
 			//Normal damage.
 			else

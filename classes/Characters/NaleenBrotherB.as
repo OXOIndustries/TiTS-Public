@@ -275,7 +275,7 @@
 		public function naleenTailTrip(target:Creature):void
 		{
 			var damage:TypeCollection = meleeDamage();
-			output("<i>“You should be on the ground. Let me help you.”</i>  The second naleen pivots his tail to slap at your [pc.feet].");
+			output("<i>“You should be on the ground. Let me help you.”</i> The second naleen pivots his tail to slap at your [pc.feet].");
 			if(this.physique()/2 + rand(20) + 5 < target.reflexes()/2 + 10) output(" You hop over it!");
 			else if(this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10)
 			{
@@ -367,14 +367,14 @@
 			else output("bites, punching through a thin spot in your [pc.upperGarment]");
 			output(". You yell as you feel his venom pumping into your bloodstream. Ceasing your struggle momentarily, your thoughts become hazy and your movements sluggish; suddenly the idea of surrendering to this powerful male’s coils doesn’t sound like such a bad idea....");
 			//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10,0xFF0000);
+			if(!target.hasStatusEffect("Naleen Venom")) target.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you’ll lose!",false,10,0xFF0000);
 			target.physiqueMod -= .5;
 			target.aimMod -= .5;
 			target.willpowerMod -= .5;
 			target.reflexesMod -= .5;
 			target.addStatusValue("Naleen Venom",1,.5);
 			target.lust(10+rand(10));
-			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
+			if(target.lust() >= target.lustMax() || ((target.physique() == 0 || target.willpower() == 0) && target.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You’re too doped up to care anymore. You give in.</b>");
 		}
 		
 		private function naleenDudeAttack(target:Creature):void
@@ -387,9 +387,9 @@
 		{
 			if(!target.hasStatusEffect("Naleen Coiled"))
 			{
-				output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he moves around you, squeezing tight! Your breath is knocked away, and in a moment you're seeing stars!");
+				output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel his leathery scales coursing across your body as he moves around you, squeezing tight! Your breath is knocked away, and in a moment you’re seeing stars!");
 				
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You’re trapped in the naleen’s coils!",true,0);
 			}
 			else
 			{
@@ -407,7 +407,7 @@
 			
 			if (damageResult.hpDamage > 0)
 			{
-				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you're seeing stars! ");
+				if (damageResult.shieldDamage == 0) output(" Your breath is taken away by a brutal squeezes, and in a moment you’re seeing stars! ");
 			}
 			
 			outputDamage(damageResult);
