@@ -2395,10 +2395,10 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if(pc.hasCock() && pc.thinnestCockThickness() < 7 && pc.balls >= 2 && pc.ballDiameter() >= 12 && pc.ballFullness >= 50 && !MailManager.isEntryUnlocked("kally_kiro_milkvite") && kiroKallyThreesomesAvailable() && rand(20) == 0 && flags["KIRO_KALLY_TEAM_MILKED"] == undefined) goMailGet("kally_kiro_milkvite");
 
 		//Ushamee Meet Invite
-		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["STATE"] == 3) && canadiaUnlocked())
+		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["KASHIMA_STATE"] == 3) && canadiaUnlocked())
 		{
 			if(flags["KASHIMA_DELAY_TIMER"] == undefined) flags["KASHIMA_DELAY_TIMER"] = GetGameTimestamp();
-			else if(GetGameTimestamp() >= flags["KASHIMA_DELAY_TIMER"] + 60*24*5) goMailGet("ushamee_meet");
+			else if(GetGameTimestamp() >= (flags["KASHIMA_DELAY_TIMER"] + 60*24*5)) goMailGet("ushamee_meet");
 		}
 		
 		//Other Email Checks!

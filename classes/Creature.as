@@ -15464,9 +15464,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("sweet", "sweet", "sweet", "sugary", "sugary", "saccharine");
 					break;
-				default:
-					return "bland";
 			}
+			if(collection.length <= 0) return "bland";
 			
 			return RandomInCollection(collection);
 		}
@@ -15543,9 +15542,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("gooey", "sticky", "syrupy");
 					break;
-				default:
-					return "fluid";
 			}
+			if(collection.length <= 0) return "fluid";
 			
 			return RandomInCollection(collection);
 		}
@@ -15635,9 +15633,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("white", "white", "semi-clear", "ivory", "alabaster", "pure white");
 					break;
-				default:
-					return "ERROR, INVALID FLUID TYPE.";
 			}
+			if(collection.length <= 0) return "ERROR, INVALID FLUID TYPE.";
 			
 			return RandomInCollection(collection);
 		}
@@ -15787,8 +15784,8 @@
 					collection.push("yogurt");
 					break;
 				case GLOBAL.FLUID_TYPE_HRAD_CUM:
-					break;
 					collection.push("syrup", "cum");
+					break;
 				case GLOBAL.FLUID_TYPE_SPECIAL_GOO:
 					collection.push("slime", "goo");
 					break;
@@ -15807,9 +15804,8 @@
 				case GLOBAL.FLUID_TYPE_SUGAR:
 					collection.push("glaze", "frosting", "icing");
 					break;
-				default:
-					return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun.";
 			}
+			if(collection.length <= 0) return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun.";
 			
 			return RandomInCollection(collection);
 		}
