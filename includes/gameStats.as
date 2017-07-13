@@ -1913,6 +1913,18 @@ public function displayQuestLog(showID:String = "All"):void
 
 		if(showID == "Mhen'ga" || showID == "All")
 		{
+			// Azra's Expeditions
+			if(flags["AZRA_MHENGAED"] != undefined)
+			{
+				output2("\n<b><u>Azra’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Accepted, Defeated naleen brothers");
+				if(flags["FOUGHT_9TAIL"] != undefined) output2(", Defeated nine-tailed zil");
+				if(flags["FED_9TAIL"] != undefined) output2(", Fed nine-tailed zil");
+				if(flags["AZRA_MHENGAED"] == -1) output2(", Completed, Resisted Azra");
+				else if(flags["AZRA_MHENGAED"] == 1) output2(", Completed, Welcomed Azra");
+				else output2(", <i>In progress...</i>");
+				sideCount++;
+			}
 			// The Forge Machina
 			if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined)
 			{
@@ -3254,11 +3266,11 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["REAHA_TALK_ADDICTION_CURE"] != undefined)
 						{
 							output2("\n<b>* Reaha, Patch Addiction:</b> " + reahaAddiction() + " %");
-							if(flags["REAHA_ADDICTION_CURED"] != undefined) output2(", Cured");
+							if(reahaIsCured()) output2(", Cured");
 							else output2(", Ongoing");
 						}
 						if(flags["REAHA_BOVINIUMED"] != undefined) output2("\n<b>* Reaha, Times Given Bovinium:</b> " + flags["REAHA_BOVINIUMED"]);
-						if(flags["REAHA_ADDICTION_CURED"] == undefined && reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
+						if(!reahaIsCured() && reahaFree() && flags["REAHA_LAST_DOMMY_FUCK"] != undefined) output2("\n<b>* Reaha, Days Since Last Dommy Fuck Attempt:</b> " + (days - flags["REAHA_LAST_DOMMY_FUCK"]));
 					}
 					if(flags["SEXED_REAHA"] != undefined) output2("\n<b>* Reaha, Times Sexed:</b> " + flags["SEXED_REAHA"]);
 				}
@@ -5822,6 +5834,21 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(", He fucked your ass");
 				if(flags["TAURFUCKED_DANE"] != undefined) output2(", Fucked him as a centaur");
 			}
+			roamCount++;
+		}
+		// Azra
+		if(flags["MET_AZRA"] != undefined)
+		{
+			output2("\n<b>* Azra:</b> Met her");
+			if(!azraRecruited())
+			{
+				output2(", Crew member");
+				if(azraIsCrew()) output2(" (Onboard Ship)");
+				else if(flags["AZRA_ONBOARD"] == undefined) output2(" (At Mhen’ga)");
+			}
+			else if(flags["AZRA_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
+			if(flags["AZRA_KISSED"] != undefined) output2("\n<b>* Azra, Times Kissed:</b> " + flags["AZRA_KISSED"]);
+			if(flags["AZRA_SEXED"] != undefined) output2("\n<b>* Azra, Times Sexed:</b> " + flags["AZRA_SEXED"]);
 			roamCount++;
 		}
 		// Chaurmine

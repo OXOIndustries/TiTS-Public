@@ -292,7 +292,7 @@
 			else 
 			{
 				output("Your movements are limited in this pit of writhing, sighing flesh, and you can’t get yourself clear of it in time. A few moments more of sinuous movement, and you are completely bound in the naleen’s coils.");
-				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0,0xFF0000);
+				target.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You’re trapped in the naleen’s coils!",true,0,0xFF0000);
 				createStatusEffect("Constrict CD",5,0,0,0);
 			}
 		}
