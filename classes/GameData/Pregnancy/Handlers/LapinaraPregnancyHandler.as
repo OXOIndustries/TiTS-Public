@@ -43,6 +43,10 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			_pregnancyChildRace = GLOBAL.TYPE_LAPINARA;
 			
+			_childGenderWeights.Male = 0.33;
+			_childGenderWeights.Female = 0.33;
+			_childGenderWeights.Intersex = 0.34;
+			
 			/*Example: 
 			this.addStageProgression(4760, function(pregSlot:int):void {
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
