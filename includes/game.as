@@ -1262,7 +1262,6 @@ public function shipMenu():Boolean
 	{
 		return true;
 	}
-	
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
@@ -1280,6 +1279,7 @@ public function shipMenu():Boolean
 		grayGooArrivesAtShip();
 		return true;
 	}
+	// Azra follower greeting
 	if(flags["AZRA_RECRUITED"] == 1 && azraIsCrew())
 	{
 		azraInShipGreeting();

@@ -3328,6 +3328,9 @@ public function tryFollowerLaneIntervention():Boolean
 		if (reahaIsCrew() && reahaIsCured()) availFollowers.push("Reaha");
 		if (bessIsCrew() && flags["BESS_JUST_A_SEXBOT"] != 1 && (flags["BESS_LOVER"] != undefined || flags["BESS_IS_FRIEND"] != undefined || bessAffection() >= 30)) availFollowers.push(chars["BESS"].mf("Ben-14","Bess-13"));
 		if (syriIsCrew()) availFollowers.push("Syri");
+		if (azraIsCrew()) availFollowers.push("Azra");
+		if (kiroIsCrew()) availFollowers.push("Kiro");
+		if (shekkaIsCrew()) availFollowers.push("Shekka");
 		
 		if (availFollowers.length > 0)
 		{
