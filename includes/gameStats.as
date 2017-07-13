@@ -1135,7 +1135,7 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 	if(printMeters < 1)
 	{
 		// Prettified over an inch
-		if(amount >= 12 && printMeters != -2)
+		if(amount >= 1 && printMeters != -2)
 		{
 			// Feet
 			var feet:int = Math.floor(amount / 12);
@@ -1164,7 +1164,11 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 					else if(fraction <= 0.8125) { num = "13"; den = "16"; }
 					else if(fraction <= 0.875) { num = "7"; den = "8"; }
 					else if(fraction <= 0.9375) { num = "15"; den = "16"; }
-					else { feet++; num = ""; den = ""; }
+					else {
+						inch++;
+						if(inch == 12) { feet++; inch = 0; }
+						num = ""; den = "";
+					}
 				}
 			}
 			if(feet > 0) retStr += feet + "\'";
