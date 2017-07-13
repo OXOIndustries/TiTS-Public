@@ -601,11 +601,25 @@ public function initializeMyrellionRooms():void
 	rooms["720"].system = "SYSTEM: SINDATHU";
 	rooms["720"].eastExit = "719";
 	rooms["720"].westExit = "721";
+	//rooms["720"].northExit = "ENTITE";
 	rooms["720"].moveMinutes = 2;
-	rooms["720"].runOnEnter = gildenmereStreetBonus;
+	rooms["720"].runOnEnter = entiteExteriorShitz;
 	rooms["720"].addFlag(GLOBAL.INDOOR);
 	rooms["720"].addFlag(GLOBAL.PUBLIC);
 	rooms["720"].addFlag(GLOBAL.CAVE);
+	
+	//THE ENTITE
+	rooms["ENTITE"] = new RoomClass(this);
+	rooms["ENTITE"].roomName = "THE\nENTITE";
+	rooms["ENTITE"].description = "";
+	rooms["ENTITE"].planet = "PLANET: MYRELLION";
+	rooms["ENTITE"].system = "SYSTEM: SINDATHU";
+	rooms["ENTITE"].southExit = "720";
+	rooms["ENTITE"].moveMinutes = 2;
+	rooms["ENTITE"].runOnEnter = theEntiteBonus;
+	rooms["ENTITE"].addFlag(GLOBAL.INDOOR);
+	rooms["ENTITE"].addFlag(GLOBAL.PUBLIC);
+	rooms["ENTITE"].addFlag(GLOBAL.COMMERCE);
 
 	//721 Halcyon Way
 	rooms["721"] = new RoomClass(this);
