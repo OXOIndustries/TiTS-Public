@@ -9930,6 +9930,8 @@
 			}
 			return false
 		}
+		//Arg -1 for check for any penis.
+		
 		public function canAutoFellate(arg: int = 0, lengthOnly:Boolean = false): Boolean {
 			if (!hasCock()) return false;
 			if (arg >= 0) {
@@ -9939,12 +9941,12 @@
 			}
 			//Negative is code for see if any can.
 			if (!lengthOnly && isFlexible()) return true;
-				for (var x: int = 0; x < cocks.length; x++) {
-					if (cocks[x].cLength() >= tallness / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness / 3) && genitalLocation() <= 1)
-						return true;
-				}
-				return false;
+			for (var x: int = 0; x < cocks.length; x++) {
+				if (cocks[x].cLength() >= tallness / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() >= tallness / 3) && genitalLocation() <= 1)
+					return true;
 			}
+			return false;
+		}
 		public function canSelfSuck(arg: int = 0, lengthOnly:Boolean = false): Boolean {
 			return canAutoFellate(arg, lengthOnly);
 		}
