@@ -8,6 +8,7 @@
 	import classes.GameData.Pregnancy.Handlers.EggTrainerCarryTraining;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerFauxPreg;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
+	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OvalastingEggPregnancy;
@@ -35,6 +36,7 @@
 			PregnancyManager.insertNewHandler(new RenvraEggPregnancy());
 			PregnancyManager.insertNewHandler(new RenvraFullPregnancy());
 			PregnancyManager.insertNewHandler(new CockvinePregnancy());
+			PregnancyManager.insertNewHandler(new LapinaraPregnancyHandler());
 			PregnancyManager.insertNewHandler(new MilodanPregnancyHandler());
 			PregnancyManager.insertNewHandler(new NyreaHuntressPregnancy());
 			PregnancyManager.insertNewHandler(new QueenOfTheDeepPregnancy());

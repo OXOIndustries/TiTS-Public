@@ -615,7 +615,7 @@ public function initNewTexasRooms():void
 
 	rooms["539"] = new RoomClass(this);
 	rooms["539"].roomName = "THE\nFIELDS";
-	rooms["539"].description = "You walk over a low fence, to face an army of scarecrows. Spaced regularly amidst the lines of heavy grain, you observe dozens and dozens of scarecrows. The local animals must love these crops … or someone just really, really likes scarecrows. You eye them suspiciously before moving on.";
+	rooms["539"].description = "You walk over a low fence, to face an army of scarecrows. Spaced regularly amidst the lines of heavy grain, you observe dozens and dozens of scarecrows. The local animals must love these crops... or someone just really, really likes scarecrows. You eye them suspiciously before moving on.";
 	rooms["539"].runOnEnter = varmintRoomsBonus;
 	rooms["539"].northExit = "537";
 	//rooms["539"].eastExit = "534";

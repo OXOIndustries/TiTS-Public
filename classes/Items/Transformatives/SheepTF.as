@@ -72,7 +72,7 @@ package classes.Items.Transformatives
 				//Reduce willpower by 2 points/1 point: 
 				if(pc.WQ() > 20 && rand(2) == 0 && changes < changeLimit)
 				{
-					output("\n\nThe fuzzy feeling doesn’t stop at your stomach, it soon fills your brain, leaving you calm, relaxed… Maybe it’s better to just let life take you where it wants.");
+					output("\n\nThe fuzzy feeling doesn’t stop at your stomach, it soon fills your brain, leaving you calm, relaxed... Maybe it’s better to just let life take you where it wants.");
 					pc.willpower(-1);
 					if(pc.WQ() >= 70) pc.willpower(-1);
 					changes++;

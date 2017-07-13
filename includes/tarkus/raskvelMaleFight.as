@@ -894,7 +894,7 @@ public function raskMaleButtfuckery():void
 
 		output("\n\n<i>“Sorry to say, but I’ve only got time");
 		if(pc.cockTotal() == 1) output(" and dick");
-		output(" for one of you today,”</i> you murmur. <i>“Maybe next time you’ll get lucky though, who knows…”</i> he’s on his feet and scurrying away with his young friend back into the looming junk before you’ve finished. Maybe the pair of them will watch the show from their cover; your attention though is entirely on the big, mouthy one in front of you, the one you adjudged to be most in need of a good ass-fucking.");
+		output(" for one of you today,”</i> you murmur. <i>“Maybe next time you’ll get lucky though, who knows...”</i> he’s on his feet and scurrying away with his young friend back into the looming junk before you’ve finished. Maybe the pair of them will watch the show from their cover; your attention though is entirely on the big, mouthy one in front of you, the one you adjudged to be most in need of a good ass-fucking.");
 
 		output("\n\n<i>“He would have been way better for this,”</i> he tries. <i>“I don’t – look, why don’t we call it a dr- Ack!”</i> You shush his whimpers by taking a firm hold of his shoulders and carefully spreading his sphincter with your oily prick, penetrating the delicious clinging warmth within.");
 		pc.cockChange();
@@ -930,7 +930,7 @@ public function raskMaleButtfuckery():void
 		output("\n\n<i>“Your friend did a runner the moment he handed me the oil,”</i> you reply lowly, leaning back and taking a moment to revel in the sensation of having ");
 		if(pc.cockTotal() > 1) output("two");
 		else output("both of your");
-		output(" cockheads encased in tight flesh, before taking hold of the big one’s flanks again and slowly driving forward, embedding yourself further and further into each passage with each passing moment. <i>“So it’s just you…”</i> You slap one wide butt cheek, sighing as he fleetingly tightens up on your [pc.cock " + x + "] in response, <i>“...you…”</i> your palm lands on another cheek, your [pc.cockTail] throbbing with approval as the other raskvel does likewise, <i>“and me.”</i> You begin to slowly pump your hips.");
+		output(" cockheads encased in tight flesh, before taking hold of the big one’s flanks again and slowly driving forward, embedding yourself further and further into each passage with each passing moment. <i>“So it’s just you...”</i> You slap one wide butt cheek, sighing as he fleetingly tightens up on your [pc.cock " + x + "] in response, <i>“...you...”</i> your palm lands on another cheek, your [pc.cockTail] throbbing with approval as the other raskvel does likewise, <i>“and me.”</i> You begin to slowly pump your hips.");
 		output("\n\nThe raskvel certainly seem to be novices to being on the receiving end, continuously tightening up and gasping harshly as you feed more and more of your [pc.cock " + x + "] and [pc.cockTail] into their tunnels. In your mind this makes it even more important that they be forced to enjoy this, particularly as – you gasp as a series of contractions ripple up your cock – your initial impressions were correct, in raw physical terms they are excellent. The heavy, supple padding of his broad behind feels wonderful against your groin ");
 		if(pc.balls > 0) output("and [pc.balls] ");
 		output("when you spear into him deep, your cock-tail just seems to keep finding more and more taut tunnel to wriggle into, and the fact that their dense forms and the amount of labor they evidently engage in mean they’re a wonderful squeeze all the way down.");

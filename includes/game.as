@@ -581,23 +581,23 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	var crewMembers:Array = new Array();
 	
 	// Actual crew members
-	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
-	if (reahaRecruited()) crewMembers.push(CREW_REAHA);
 	if (!annoNotRecruited()) crewMembers.push(CREW_ANNO);
-	if (seraRecruited()) crewMembers.push(CREW_SERA);
+	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
 	if (bessIsFollower()) crewMembers.push(CREW_BESS);
+	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
+	if (pippaOnShip()) crewMembers.push(CREW_PIPPA);
+	if (reahaRecruited()) crewMembers.push(CREW_REAHA);
+	if (seraRecruited()) crewMembers.push(CREW_SERA);
 	if (yammiIsCrew()) crewMembers.push(CREW_YAMMI);
 	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
-	if (pippaOnShip()) crewMembers.push(CREW_PIPPA);
-	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
 	{
 		if (hasGooArmor() && !gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_NOT);
-		if (varmintIsTame()) crewMembers.push(CREW_VARMINT);
 		if (siegwulfeIsCrew()) crewMembers.push(CREW_SIEGEWFULFE);
+		if (varmintIsTame()) crewMembers.push(CREW_VARMINT);
 	}
 	
 	return crewMembers;
@@ -672,15 +672,15 @@ public function multiCrewInteractions():Array
 public function getCrewOnShip():Array
 {
 	var c:Array = [];
+	if (annoIsCrew()) c.push(anno);
+	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
+	//if (azraIsCrew()) c.push(azra);
+	if (bessIsCrew()) c.push(bess);
 	if (celiseIsCrew()) c.push(celise);
 	if (reahaIsCrew()) c.push(reaha);
-	if (annoIsCrew()) c.push(anno);
-	if (bessIsCrew()) c.push(bess);
 	if (yammiIsCrew()) c.push(yammi);
 	if (gooArmorIsCrew()) c.push(gooArmor);
 	if (siegwulfeIsCrew()) c.push(wulfe);
-	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
-	//if (azraIsCrew()) c.push(azra);
 	return c;
 }
 
@@ -694,20 +694,56 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	var crewMessages:String = crewMembers.pop();
 	var count:int = 0; // For actual crew members
 	var other:int = 0; // For pets or other non-speaking crew members
-	if(celiseIsCrew()) {
+	var btnSlot:int = 0;
+	
+	// Followers
+	if (annoIsCrew())
+	{
 		count++;
-		if(!counter) {
-			addButton((count + other) - 1, "Celise", celiseFollowerInteractions);
-			if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
-			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
+		if (!counter)
+		{
+			if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
+			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
+			else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
+			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
+			addButton(btnSlot++, "Anno", annoFollowerApproach);
 		}
 	}
-	if(azraIsCrew())
+	if (azraIsCrew())
 	{
-		if(!counter) crewMessages += azraCrewBlurbs(count+other);
+		if(!counter) crewMessages += azraCrewBlurbs(btnSlot++);
 		count++;
 	}
-	if(reahaIsCrew())
+	if (bessIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			if (InCollection(CREW_BESS, crewMembers)) crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
+			addButton(btnSlot++, bess.short, approachFollowerBess);
+		}
+	}
+	if (celiseIsCrew())
+	{
+		count++;
+		if(!counter) {
+			if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
+			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
+			addButton(btnSlot++, "Celise", celiseFollowerInteractions);
+		}
+	}
+	if (pippaOnShip())
+	{
+		count++;
+		if (!counter)
+		{
+			if (InCollection(CREW_PIPPA, crewMembers)) crewMessages += "\n\n" + pippaShipBonusText();
+			if (flags["PIPPA_SETTLED_IN"] != 1) addButton(btnSlot++, "Pippa", pippaShipIntro);
+			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot++, "Pippa", pippaYammiThreesomeIntro);
+			else addButton(btnSlot++, "Pippa", pippaMainMenu);
+		}
+	}
+	if (reahaIsCrew())
 	{
 		count++;
 		if(!counter)
@@ -717,64 +753,42 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			{
 				if (InCollection(CREW_REAHA, crewMembers))
 				{
-				//Slave Reaha, random choice: 
-				if(curedReahaInDebt()) 
-				{
-					crewMessages += RandomInCollection([
-						"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
-						"\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.",
-						"\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...",
-					]);
+					//Slave Reaha, random choice: 
+					if(curedReahaInDebt()) 
+					{
+						crewMessages += RandomInCollection([
+							"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+							"\n\nReaha’s sitting in the galley, surrounded by bottles of fresh [reaha.milk]. She’s milking herself to the point of exhaustion trying to pay off her debt to you, by the looks of things.",
+							"\n\nReaha’s in her bunk, the doors closed. Whenever you get too near her quarters you can hear muffled moans and grunts of pleasure. You suppose even without her patches, Reaha’s still exceptionally libidinous after all...",
+						]);
+					}
+					//Freed Reaha, random choice: 
+					else
+					{
+						crewMessages += RandomInCollection([
+							"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
+							"\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.",
+							"\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.",
+							"\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.",
+						]);
+					}
 				}
-				//Freed Reaha, random choice: 
-				else
-				{
-					crewMessages += RandomInCollection([
-						"\n\nReaha’s wandering around the ship, trying to make herself useful. Mostly cleaning up the place, making sure everything’s spick and span.",
-						"\n\nReaha’s catching a quick nap in the common area, flopped down on the couch and snoozing peacefully.",
-						"\n\nReaha’s in the galley, using her Magic Milker to drain her boobs - and make a little cash on the side.",
-						"\n\nReaha’s fiddling with the ship’s point-defenses, making sure they’re calibrated to military spec.",
-					]);
-				}
-				}
-				addButton((count + other) - 1, "Reaha", curedReahaApproach);
+				addButton(btnSlot++, "Reaha", curedReahaApproach);
 			}
 			//Normal Reaha
 			else 
 			{
 				crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
-				addButton((count + other) - 1, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+				addButton(btnSlot++, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
 			}
 		}
 	}
-	if (annoIsCrew())
-	{
-		count++;
-		if (!counter)
-		{
-			addButton((count + other) - 1, "Anno", annoFollowerApproach);
-			if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
-			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno’s busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. <i>“Gotta keep in shape!”</i> she says.";
-			else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
-			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
-		}
-		//output("\n\n{PC has Freed Reaha and Anno, add to Anno’s random selection: }");
-	}
 	if (seraIsCrew())
 	{
-		other++;
-		if (!counter)
-		{
-			crewMessages += seraOnShipBonus((count + other) - 1);
-		}
-	}
-	if (bessIsCrew())
-	{
 		count++;
 		if (!counter)
 		{
-			if (InCollection(CREW_BESS, crewMembers)) crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
-			addButton((count + other) - 1, bess.short, approachFollowerBess);
+			crewMessages += seraOnShipBonus(btnSlot++);
 		}
 	}
 	if (yammiIsCrew())
@@ -783,8 +797,19 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			if (InCollection(CREW_YAMMI, crewMembers)) crewMessages += "\n\n" + yammiShipBonusText();
-			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Yammi", pippaYammiThreesomeIntro);
-			else addButton((count + other) - 1, "Yammi", yammiInTheKitchen);
+			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot++, "Yammi", pippaYammiThreesomeIntro);
+			else addButton(btnSlot++, "Yammi", yammiInTheKitchen);
+		}
+	}
+	
+	// Pets
+	if (hasGooArmor() || gooArmorIsCrew())
+	{
+		if(gooArmorIsCrew()) count++; // Speaking crew member on ship.
+		else other++; // Mostly quiet member on person or in storage.
+		if (!counter)
+		{
+			crewMessages += gooArmorOnSelfBonus(btnSlot++);
 		}
 	}
 	if (pexigaIsCrew())
@@ -793,36 +818,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += "\n\n" + pexigaShipBonusText();
-			addButton((count + other) - 1, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
-		}
-	}
-	if (pippaOnShip())
-	{
-		count++;
-		if (!counter)
-		{
-			if (InCollection(CREW_PIPPA, crewMembers)) crewMessages += "\n\n" + pippaShipBonusText();
-			
-			if (flags["PIPPA_SETTLED_IN"] != 1) addButton((count + other) - 1, "Pippa", pippaShipIntro);
-			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton((count + other) - 1, "Pippa", pippaYammiThreesomeIntro);
-			else addButton((count + other) - 1, "Pippa", pippaMainMenu);
-		}
-	}
-	if (hasGooArmor() || gooArmorIsCrew())
-	{
-		if(gooArmorIsCrew()) count++; // Speaking crew member on ship.
-		else other++; // Mostly quiet member on person or in storage.
-		if (!counter)
-		{
-			crewMessages += gooArmorOnSelfBonus((count + other) - 1);
-		}
-	}
-	if (varmintIsCrew())
-	{
-		other++;
-		if (!counter)
-		{
-			crewMessages += varmintOnShipBonus((count + other) - 1);
+			addButton(btnSlot++, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
 		}
 	}
 	if (hasSiegwulfe() || siegwulfeIsCrew() || flags["WULFE_ON_SHIP"] == false)
@@ -830,9 +826,19 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		other++;
 		if (!counter)
 		{
-			crewMessages += siegwulfeOnShipBonus((count + other) - 1);
+			crewMessages += siegwulfeOnShipBonus(btnSlot++);
 		}
 	}
+	if (varmintIsCrew())
+	{
+		other++;
+		if (!counter)
+		{
+			crewMessages += varmintOnShipBonus(btnSlot++);
+		}
+	}
+	
+	// Crew display
 	if(!counter) {
 		if((count + other) > 0) {
 			clearBust();
@@ -1845,6 +1851,9 @@ public function variableRoomUpdateCheck():void
 	//Bounties
 	if(mhengaActiveBounty()) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.OBJECTIVE);
+	//Azra stuff
+	if(azraRecruited() && !azraIsCrew()) rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.NPC);
+	else rooms["NORTHEAST ESBETH"].removeFlag(GLOBAL.NPC);
 	//Kelly's work - close/open Xenogen Biotech.
 	//Open up shop: link room
 	if(hours >= 6 && hours < 17) 

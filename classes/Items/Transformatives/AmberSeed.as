@@ -540,7 +540,7 @@ package classes.Items.Transformatives
 						output("\n\n" + target.vaginaTypeLockedMessage());
 						return;
 					}
-					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! … Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
+					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! ... Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
 					output("that your vagina" + (toChange == 1?"":"s") + " now resemble" + (toChange == 1?"s":"") + " a bird’s cloaca, with thin exterior lips around a mostly featureless opening");
 					if (target.hasFur() || target.hasFeathers()) {
 						if (target.hasFeathers() && target.hasPartFur("leg")) output(", that is barely visible under your fur"); // for chimerical birds
@@ -574,7 +574,7 @@ package classes.Items.Transformatives
 						output("\n\n" + target.vaginaTypeLockedMessage());
 						return;
 					}
-					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! … Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
+					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! ... Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
 					output("that you now have " + (toChange == 1?"an":num2Text(toChange)) + " almost featureless hole" + (toChange == 1?"":"s") + " with a vestigial labia");
 					if (target.hasFur() || target.hasFeathers()) {
 						if (target.hasFeathers() && target.hasPartFur("leg")) output(" that can be easily hidden under your fur");
@@ -607,7 +607,7 @@ package classes.Items.Transformatives
 						return;
 					}
 					if (newVagColor == null) newVagColor = "black";
-					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! … Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
+					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! ... Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
 					output("that your puss" + (toChange == 1?"y is":"ies are") + " now fat and swollen, with thick, " + newVagColor + " rubbery lips that feel leathery to the touch and a triangular clit. Giving a distinct equine bent to it. <b>You now have " + (toChange == 1?"an":"") + " equine vagina" + (toChange == 1?"":"s") + "!</b>");
 					for (slot = 0; slot < target.vaginaTotal(); slot++)
 						if (target.vaginas[slot].type != GLOBAL.TYPE_EQUINE && target.vaginaTypeUnlocked(slot, GLOBAL.TYPE_EQUINE)) {
@@ -634,7 +634,7 @@ package classes.Items.Transformatives
 						output("\n\n" + target.vaginaTypeLockedMessage());
 						return;
 					}
-					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! … Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
+					output("\n\nYou feel a hot sensation washing over your nether region, causing you to clench your thighs tightly together and moan out in pleasure, as your [pc.vaginas] erupt" + (toChange == 1?"s":"") + " in a sudden gush of [pc.girlCumNoun]! ... Wait. Did you just have a orgasm? You reach down to cup [pc.oneVagina] with a hand, only to realize it has changed! Upon closer inspection you discover ");
 					output("that you now possess " + (toChange == 1?"a":num2Text(toChange)) + " modest reptilian slit" + (toChange == 1?"s":"") + ", with narrow lips around a mostly featureless opening");
 					if (target.hasLegFlag(GLOBAL.FLAG_SCALED)) output(", surrounded by soft scales");
 					output(". <b>You now have " + (toChange == 1?"a":"") + " reptilian vagina" + (toChange == 1?"":"s") + "!</b>");

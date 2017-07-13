@@ -5,7 +5,7 @@
 
 //Alt Tarkus: - Slutshrooms (+moderate libido, moderate fertility, +wet if fertile enough) ? Spunkshrooms (+moderate libido, moderate fertility, +balls? +cumstorage)? Motherhusk (Accelerates pregnancy)
 
-//<i>“Munitions”</i> plant on Myrellion. Bloated pepper-like growths that are under high pressure. If squeezed or thrown, they puff in a neurotoxic seed cloud that leaves the victim hypersensitive to even slight touches.
+//“Munitions” plant on Myrellion. Bloated pepper-like growths that are under high pressure. If squeezed or thrown, they puff in a neurotoxic seed cloud that leaves the victim hypersensitive to even slight touches.
 
 
 public function azraExpeditionAvailable():Boolean
@@ -65,7 +65,7 @@ public function azraExpeditionStartup():void
 		processTime(3);
 		clearMenu();
 		addButton(0,"Ready",adventureStartRouter,undefined,"Ready","Go on an expedition with Azra.");
-		addButton(4,"Back",nopeOutOfAdventures);
+		addButton(14,"Back",nopeOutOfAdventures);
 	}
 }
 public function adventureStartRouter():void
@@ -329,7 +329,6 @@ public function loseToNaleenBrosEpilogue():void
 	flags["AZRA_EXP_FAILED"] = getPlanetName().toLowerCase();
 	azra.azraCombatCleanup();
 	CombatManager.genericLoss();
-
 }
 
 //Win vs NaleenBros
@@ -591,7 +590,7 @@ public function zil9tailFightGo():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new Zil9Tail);
-	CombatManager.victoryScene(CombatManager.genericVictory);
+	CombatManager.victoryScene(spankDatZilBut);
 	CombatManager.lossScene(loseToCunnerSnakers);
 	CombatManager.displayLocation("9-TAILED ZIL");
 	clearMenu();

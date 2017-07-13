@@ -467,7 +467,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 			{
 				output(" There’s nothing for it. You try and find as quiet a spot as possible and, desperately hoping nothing attacks you whilst you’re in this state,");
 				if (pc.hasLowerGarment()) output(" remove your [pc.lowerGarments] and");
-				output(") squat.");
+				output(" squat.");
 			}
 
 			output("\n\nYou tense up as the first egg travels down your vaginal passage and stretches your labia.");

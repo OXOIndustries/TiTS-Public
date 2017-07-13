@@ -184,6 +184,7 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "Lapinara";
+			this.impregnationType = "LapinaraPregnancy";
 			kGAMECLASS.tarkusSSTDChance(this);
 			randomise();
 			

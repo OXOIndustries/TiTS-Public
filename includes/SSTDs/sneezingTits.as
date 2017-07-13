@@ -116,7 +116,7 @@ public function sneezingTitsText(deltaT:uint, maxEffectLength:uint, doOut:Boolea
 				// If Steele doesn’t sneeze, the following event occurs:
 				else
 				{
-					msg += "Your eyes are watering, and your nose feels like it’s rebelling against the rest of your body. What is going on with your sinuses? You need to sneeze, but no matter what you do,it’s just not happening.";
+					msg += "Your eyes are watering, and your nose feels like it’s rebelling against the rest of your body. What is going on with your sinuses? You need to sneeze, but no matter what you do, it’s just not happening.";
 					effect.value4 = 4;
 				}
 				break;
