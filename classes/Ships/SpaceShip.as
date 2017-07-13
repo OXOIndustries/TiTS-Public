@@ -1279,9 +1279,14 @@ package classes.Ships
 				if (se.OnRoundEnd != null)
 				{
 					se.OnRoundEnd(se, this);
-					if (se.DurationMode == StatusEffectPayload.DURATION_ROUNDS && se.Duration == 0)
+					
+					if (se.DurationMode == StatusEffectPayload.DURATION_ROUNDS)
 					{
-						rem.push(key);
+						se.Duration--;
+						if (se.Duration < 0)
+						{
+							rem.push(key);
+						}
 					}
 				}
 			}

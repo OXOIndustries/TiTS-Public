@@ -153,7 +153,7 @@
 		 * Create a new child and push it into the storage array
 		 * @param	iconClass
 		 */
-		private function BuildNewChild(effectName:String, iconClass:*, tooltipHeader:String, tooltipText:String, durationRemaining:int, iconShade:uint):StatusEffectElement
+		private function BuildNewChild(effectName:String, iconClass:*, tooltipHeader:String, tooltipText:String, durationType:String, durationRemaining:int, iconShade:uint):StatusEffectElement
 		{
 			var iconT:Class;
 
@@ -173,7 +173,7 @@
 				iconT = iconClass;
 			}
 			
-			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipHeader, tooltipText, durationRemaining, iconShade, this.mouseHandlerFunc);
+			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipHeader, tooltipText, durationType, durationRemaining, iconShade, this.mouseHandlerFunc);
 		}
 
 		/**
@@ -214,7 +214,7 @@
 		 */
 		private function DisplayTooltip(activeObj:StatusEffectElement):void
 		{		
-			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType, activeObj.durationRemaining, activeObj.iconShade);
+			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType, activeObj.durationType, activeObj.durationRemaining, activeObj.iconShade);
 			stage.addChild(_tooltipElement);
 			
 			var tPt:Point = this.localToGlobal(new Point(0, 0));
@@ -404,7 +404,7 @@
 							
 							if (dispElem == _lastActiveElement)
 							{
-								_tooltipElement.UpdateDurationText(se.Duration);
+								_tooltipElement.UpdateDurationText(se.Duration, se.DurationMode);
 								_tooltipElement.UpdateTooltip(se.DisplayableTooltipBody);
 								// iconShade
 							}
@@ -414,7 +414,7 @@
 				
 				if (matched == false)
 				{
-					_childElements.push(BuildNewChild(se.Name, se.IconClass, se.DisplayableTooltipHeader, se.DisplayableTooltipBody, se.Duration, se.IconColor));
+					_childElements.push(BuildNewChild(se.Name, se.IconClass, se.DisplayableTooltipHeader, se.DisplayableTooltipBody, se.DurationMode, se.Duration, se.IconColor));
 				}
 			}
 			
@@ -460,7 +460,7 @@
 								// Force through an update of the timer if we're looking at the active tooltip element!
 								if (_workElems[vecElem] == _lastActiveElement)
 								{
-									_tooltipElement.UpdateDurationText(statusEffects[seElem].minutesLeft);
+									_tooltipElement.UpdateDurationText(statusEffects[seElem].minutesLeft, StatusEffectPayload.DURATION_TIME);
 									_tooltipElement.UpdateTooltip(statusEffects[seElem].tooltip);
 									_tooltipElement.UpdateIconShade(statusEffects[seElem].iconShade);
 								}
@@ -474,7 +474,7 @@
 					// No match? It must be a new effect, so we need to create the displayable element
 					if (!gotMatch)
 					{
-						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, null, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft, statusEffects[seElem].iconShade));
+						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, null, statusEffects[seElem].tooltip, StatusEffectPayload.DURATION_TIME, statusEffects[seElem].minutesLeft, statusEffects[seElem].iconShade));
 					}
 				}
 			}

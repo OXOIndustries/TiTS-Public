@@ -1,5 +1,6 @@
 package classes.UIComponents.StatusEffectComponents 
 {
+	import classes.Ships.StatusEffectPayload;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -284,11 +285,11 @@ package classes.UIComponents.StatusEffectComponents
 		 * @param	icon
 		 * @param	remainingDuration
 		 */
-		public function SetData(statusName:String, tooltipText:String, icon:Class, remainingDuration:int, iconShade:uint):void
+		public function SetData(statusName:String, tooltipText:String, icon:Class, durationType:String, remainingDuration:int, iconShade:uint):void
 		{
 			this._headerText.text = statusName;
 			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
-			this.UpdateDurationText(remainingDuration);
+			this.UpdateDurationText(remainingDuration, durationType);
 			if (!(_iconElement is icon)) CreateIcon(icon);
 			UpdateIconShade(iconShade);
 			this.Resize();
@@ -309,7 +310,7 @@ package classes.UIComponents.StatusEffectComponents
 			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
 		}
 		
-		public function UpdateDurationText(remainingDuration:int):void
+		public function UpdateDurationText(remainingDuration:int, durationType:String):void
 		{
 			if (remainingDuration == 0)
 			{
@@ -317,48 +318,59 @@ package classes.UIComponents.StatusEffectComponents
 				return;
 			}
 			
-			var tDuration:int;
-			var rDays:int = 0;
-			var rHours:int = 0;
-			var rMins:int = 0;
-			
-			rDays = remainingDuration / (24 * 60);
-			tDuration = remainingDuration - (rDays * 24 * 60);
-			
-			rHours = tDuration / 60;
-			tDuration = tDuration - (rHours * 60)
-			
-			if (tDuration >= 60) throw new Error("You done bad at math, girl");
-			
-			rMins = tDuration;
-			
-			// Gen the output string
-			var outStr:String = "";
-			
-			if (rDays > 0)
+			if (durationType == StatusEffectPayload.DURATION_PERM)
 			{
-				outStr += rDays + "D";
+				_durationText.htmlText = "<span class='words'><p>Permenant</p></span>";
 			}
-			
-			if (rHours > 0)
+			else if (durationType == StatusEffectPayload.DURATION_ROUNDS)
 			{
+				_durationText.htmlText = ",span class='words'><p>" + String(remainingDuration) + "\nrounds</p></span>";
+			}
+			else
+			{
+				var tDuration:int;
+				var rDays:int = 0;
+				var rHours:int = 0;
+				var rMins:int = 0;
+				
+				rDays = remainingDuration / (24 * 60);
+				tDuration = remainingDuration - (rDays * 24 * 60);
+				
+				rHours = tDuration / 60;
+				tDuration = tDuration - (rHours * 60)
+				
+				if (tDuration >= 60) throw new Error("You done bad at math, girl");
+				
+				rMins = tDuration;
+				
+				// Gen the output string
+				var outStr:String = "";
+				
 				if (rDays > 0)
 				{
-					outStr += ", ";
+					outStr += rDays + "D";
 				}
-				outStr += rHours + "H";
-			}
-			
-			if (rMins > 0)
-			{
+				
 				if (rHours > 0)
 				{
-					outStr += ", ";
+					if (rDays > 0)
+					{
+						outStr += ", ";
+					}
+					outStr += rHours + "H";
 				}
-				outStr += rMins + "M";
+				
+				if (rMins > 0)
+				{
+					if (rHours > 0)
+					{
+						outStr += ", ";
+					}
+					outStr += rMins + "M";
+				}
+				
+				this._durationText.htmlText = "<span class='words'><p>" + outStr + "\nremaining</p></span>";
 			}
-			
-			this._durationText.htmlText = "<span class='words'><p>" + outStr + "\nremaining</p></span>";
 		}
 	}
 

@@ -18,6 +18,7 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private var _displayName:String;
 		private var _tooltipText:String;
+		private var _durationType:String;
 		private var _durationRemaining:int;
 		
 		private var _iconPadding:int = 8;
@@ -37,8 +38,10 @@ package classes.UIComponents.StatusEffectComponents
 		public function get effectName():String { return _displayName; }
 		public function get tooltipText():String { return _tooltipText; }
 		public function get displayName():String { return _displayName; }
+		public function get durationType():String { return _durationType; }
 		public function get durationRemaining():int { return _durationRemaining; }
 		
+		public function set durationType(v:String):void { _durationType = v; }
 		public function set durationRemaining(v:int):void { _durationRemaining = v; }
 		public function set tooltipText(v:String):void { _tooltipText = v; };
 		public function set iconShade(v:uint):void
@@ -60,7 +63,7 @@ package classes.UIComponents.StatusEffectComponents
 		 * @param	duration
 		 * @param	parentMouseHandler
 		 */
-		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipHeader:String, tooltipText:String, duration:int, iconShade:uint, parentMouseHandler:Function) 
+		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipHeader:String, tooltipText:String, InDurationType:String, duration:int, iconShade:uint, parentMouseHandler:Function) 
 		{
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
@@ -68,6 +71,7 @@ package classes.UIComponents.StatusEffectComponents
 			this._tooltipText = tooltipText;
 			this.name = effectName.toLowerCase();
 			this._displayName = tooltipHeader == null ? effectName : tooltipHeader;
+			_durationType = InDurationType;
 			this._durationRemaining = duration;
 			this._parentMouseHandler = parentMouseHandler;
 			this._iconShade = iconShade;
