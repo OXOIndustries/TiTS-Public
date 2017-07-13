@@ -4941,6 +4941,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				else if(flags["LYRALLA_DISCUSSED_HER_QUEEN"] != undefined) output2(" Know of her");
 				variousCount++;
 			}
+			//The Entite
+			if (flags["SEER_MET"] != undefined)
+			{
+				output2("\n<b><u>The Entite</u></b>");
+				//The Seer
+				output2("\n<b>* The Seer:</b> Met her... you think");
+				if (flags["SEER_SEXED"] != undefined) output2("\n<b>* The Seer, Times Sexed:</b> " + flags["SEER_SEXED"]);
+				variousCount++;
+			}
 			// Silken Serenity
 			if(flags["MET_XANTHE"] != undefined)
 			{

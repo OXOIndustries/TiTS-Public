@@ -1,3 +1,6 @@
+import classes.Creature;
+import classes.Items.Miscellaneous.Rainbotox;
+import classes.Items.Miscellaneous.YTRLube;
 /*
  * The Entite/The Seer - https://docs.google.com/document/d/12Ln9wqosjT8V_H-wi2vH7pHbWu05KN8yTf3T5vjLbo4/edit#
  *
@@ -5,8 +8,7 @@
  * SEER_MET		1 if Seer has introduced herself, else undefined
  * SEER_LOUNGE	1-2, 1 if done the lounge option, 2 if done her sex menu, else undefined
  * SEER_SEXED	1-INFINITY how many times you borked Seer, undefined if not sexed her
- * SEER_BOUGHT_WISP	1 if bought Wisp, else undefined
- * USED_WISP	1 if done Wisp, else undefined
+ * USED_WISP	1 if done Wisp, else undefined - should be set by the wisp item
  * 
  */
 
@@ -104,8 +106,9 @@ public function approachSeer():void
 		output("\n\n<i>“How may I assist? Products... perhaps?”</i> she enquires, tilting her head to the side as if something is standing behind you.");
 	}
 	
-	if (silly) addButton(0, "Shop", shopSeer, undefined, "Shop", "Heh, heh, you wanna buy a... funnel cake??");
-	else addButton(0, "Shop", shopSeer, undefined, "Shop", "What kinds of insanity does money buy these days?");
+	setupShopSeer();
+	if (silly) addButton(0, "Shop", buyItem, undefined, "Shop", "Heh, heh, you wanna buy a... funnel cake??");
+	else addButton(0, "Shop", buyItem, undefined, "Shop", "What kinds of insanity does money buy these days?");
 	addButton(1, "Appearance", appearanceSeer, undefined, "Appearance", "At least she’s nice to look at… and probably won’t even notice you doing it.");
 	addButton(2, "Talk", talkSeer, undefined, "Talk", "What’s her story? Do you even really want to know?");
 	if (flags["SEER_LOUNGE"] != undefined) addButton(3, "Sex", sexSeer, undefined, "Sex", " Apparently ‘it has to be’!");
@@ -113,10 +116,15 @@ public function approachSeer():void
 	addButton(14, "Leave", mainGameMenu);
 }
 
-public function shopSeer():void
+public function setupShopSeer():void
 {
-	
-	
+	shopkeep = new Seer();
+	shopkeep.inventory.push(new Rainbotox);
+	shopkeep.inventory.push(new YTRLube);
+	shopkeep.inventory.push(new Tentacool);
+	//shopkeep.inventory.push(new Capraphorm);
+	//shopkeep.inventory.push(new Illumorphene);
+	//shopkeep.inventory.push(new WiffOWisp);
 }
 
 
@@ -211,8 +219,7 @@ public function topicShopSeer():void
 	output("\n\n<i>“Ah, aha! Yes, they’d say that. They would... the shop is merely an extension of my being, so to speak. I see parts of me in all of its corners, the candles, the seclusion, the search for wonder! Were I to not see, this place would melt away and perhaps be a nice, clean wall that a set of yellow drapes would cover,”</i> she says, cryptic as always but oddly sincere all the same.");
 	output("\n\nShe points to a wall of gemstones on shelves, some you could make a guess at - rubies, peridot, non-native pieces certainly - while others are so utterly alien and strange that you’re not even convinced they’re from the same galaxy. There’s a green orb of marble-like material that seems to float three inches off of the shelf on its own, while another gravel-like ring of stones constantly emits, refracts, then dulls with a baby blue glow.");
 	output("\n\n<i>“All these have a place in here and one out there. Only when the right key is found do they leave. Most are content with where they are, especially him,”</i> she explains, pointing to a human-like idol near the counter.");
-	output("\n\n<i>“But for simpler needs, I much like these transformatives and mutationals. A little closer to a certain truth, perhaps. Plus, Envyoidics is a very sharp company and enjoys the arrangement we have,”</i> she says with a smug tone of voice. <b>Your codex beeps, signifying that there’s some information about this ‘Envyoidics’.</b>");
-	//TODO: CODEX UNLOCK ENVYIONICS
+	output("\n\n<i>“But for simpler needs, I much like these transformatives and mutationals. A little closer to a certain truth, perhaps. Plus, Envyoidics is a very sharp company and enjoys the arrangement we have,”</i> she says with a smug tone of voice. ");
 	output("\n\nYou ask her what makes them a particular supplier, keeping to the train of thought she made before she derails it herself.");
 	output("\n\n<i>“Oh, such history! A way of capturing what was and will be into what is. I am enthralled with this one, this ‘Illumorpheme’,”</i> she exclaims, reaching for a small box inside the glass case behind the counter. She holds it in her palm: A fancy black box with a beautiful moth shape on top of it, an antiquated brass lock keeping it closed.");
 	output("\n\n<i>“Even this box, beauty incarnate to me. To you too, et tu? Maybe more so than me?”</i>");
@@ -236,18 +243,13 @@ public function topicModsSeer():void
 	output("\n\n<i>“It’s all history, all in the moment! All of it is needed. Or is some of it needed? Depends, for I don’t need any of it. I should think you... could?”</i>");
 	output("\n\nCan’t she just keep a straight answer for once? You point to the box labeled ‘Illumorpheme’. What could possibly be in there?");
 	output("\n\n<i>“Mm, a curious selection inside. Have you heard of... the Tear?”</i>");
-	//TODO: IF READ FOLLOWERS OF THE TEAR
-	if (999 != 999)output("\n\nYeah! But not a lot.");
-	else output("\n\nNo...");
+	output("\n\nNo...");
 	output("\n\n<i>“‘Tis but a fragment, mewling and mindless. The mothrine... they were too before they knew. But the Tear did not swallow them, they lived far before. They predicted it! Envyoidics is fascinated with history... they uncovered the remains of the mothrine. Organic, ancient, pious. Moths! Fluffy pretty moths with big eyes!”</i> She explains, her tone shifting from explanatory to immersed then to playful in but a few words.");
 	output("\n\n<i>“The mothrine were saved in that regard. Right here in a box like this! 12,000 credits! Or next best offer, I’m not too fussy.”</i>");
-	output("\n\nHer bewildering leap from history lesson to haggling leaves more questions than answers. Your codex beeps! Perhaps it could shed light on the ‘mothrine’? <b>(Codex entry unlock. Race: Mothrine)</b>");
-	//TODO: CODEX UNLOCK MOTHRINE
+	output("\n\nHer bewildering leap from history lesson to haggling leaves more questions than answers. ");
 	output("\n\nBut what about the other things? What’s that inhaler-like device next to it?");
 	output("\n\nAs if predicting your questions, the Seer takes out the inhaler and holds it in her palm.");
 	output("\n\n<i>“Capraphorm!”</i> She whispers with delight, her pupils almost constricting to pinprick dots. <i>“Another ancient race from another ancient place, another container of history! How does one even begin... perhaps at the end. All that I can say is that these ancient beings worshipped thunder and sky like one needs the air to breathe...”</i>");
-	//TODO: CODEX UNLOCK CAPRAPHORM
-	output("\n\nIntriguing! Your codex beeps again! <b>(Codex entry unlock. Item: Capraphorm)</b>");
 	output("\n\nTaking your averted gaze away from your codex, it appears the shopkeepers vision has become distracted with something in the corner of the room.");
 	output("\n\n<i>“I wouldn’t... or would you? I think he should,”</i> she mumbles.");
 	output("\n\nWhat?");
@@ -428,6 +430,9 @@ public function yesDommeSeer():void
 	output("\n\nAs she reels you in, two of the writhing feelers slink and slither across your neck to your [pc.face], prodding and teasing your [pc.lips] to let them inside.");
 	output("\n\n<i>“So many ways... I wonder what fate leads us to?”</i>");
 	
+	if (flags["SEER_SEXED"] == undefined) flags["SEER_SEXED"] = 0;
+	flags["SEER_SEXED"]++;
+	
 	if (!pc.isTaur() && (pc.hasVagina() || pc.hasCock())) addButton(0, "TentaDomme", tentaSeer, undefined, "TentaDomme", "You’re gonna get filled in so many different ways.");
 	else addDisabledButton(0, "TentaDomme", "TentaDomme", "You must have a cock or vagina, and not be a taur.");
 	if (pc.isFemale() && !pc.isTaur()) addButton(1, "LezDomme", lezSeer, undefined, "LezDomme", "Girly fun! Fun being entirely subjective!");
@@ -453,6 +458,9 @@ public function yesSexSeer():void
 	output("\n\nNo sooner than you’ve acknowledged the sight before you, she is already pressing her semi-monstrous form against your willing body. All of her fleshy feelers wrap, squeeze and slither over your [pc.skinFurScales], their goals inevitable. Two thick tentacles twist themselves around your neck and their tips pull and prod at your [pc.face] and [pc.lips] with their own frenzied lust while another two wrap around your [pc.belly] tightly.");
 	output("\n\nWelp? It really is too late to turn back now.");
 	output("\n\n<i>“Now what do we do with this one...”</i> coos the Seer, tilting her head to the side.");
+	
+	if (flags["SEER_SEXED"] == undefined) flags["SEER_SEXED"] = 0;
+	flags["SEER_SEXED"]++;
 	
 	if (!pc.isTaur() && (pc.hasVagina() || pc.hasCock())) addButton(0, "TentaDomme", tentaSeer, undefined, "TentaDomme", "You’re gonna get filled in so many different ways.");
 	else addDisabledButton(0, "TentaDomme", "TentaDomme", "You must have a cock or vagina, and not be a taur.");
@@ -635,7 +643,7 @@ public function wispedSeer():void
 	
 	output("After holding you place for some time, the Seers amber eyes brighten up, even more so than usual.");
 	output("\n\n<i>“What a plan, a perfect plan... imperfect in its perfection, oh I can barely contain myself,”</i> she rambles, holding her wrist to her forehead like an overly dramatic actress.");
-	output("\n\nAs you’re reeled in by her arm tentacles, she produces a " + (flags["SEER_BOUGHT_WISP"] != undefined ? "familiar amphora of Wiff-O-Wisp" : "a strange glass bottle of reddish liquid") + "from... <i>somewhere</i>. As you’re dragged in closer till you both touch - her E-cup chest pressing warmly against your [pc.skinFurScales] - she holds the amphora in between the two of you. Without a pause, she inhales deeply through her nose and thick vapours rise ex nihilo from the glass vial.");
+	output("\n\nAs you’re reeled in by her arm tentacles, she produces a " + (flags["USED_WISP"] != undefined ? "familiar amphora of Wiff-O-Wisp" : "a strange glass bottle of reddish liquid") + "from... <i>somewhere</i>. As you’re dragged in closer till you both touch - her E-cup chest pressing warmly against your [pc.skinFurScales] - she holds the amphora in between the two of you. Without a pause, she inhales deeply through her nose and thick vapours rise ex nihilo from the glass vial.");
 	output("\n\n<i>Breathe</i>");
 	output("\n\nThis thought reverberates through your mind, but one that’s not organic to your reaction. Was that... <i>her</i> voice? Breathe...? Should I...?");
 	output("\n\n<i>Breathe</i>.");

@@ -100,6 +100,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Snugglé", snuggleCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Steele Tech", steeleTechCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Xenogen", xenogenCodex, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Black Void", blackVoidCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "J.A.F.", jointAusarFederationCodex, true);
@@ -3468,6 +3469,20 @@ public function xenogenCodex():void
 	outputCodex("\n\nOut on the rim, there are many Xenogen installations and facilities, many of which are rumored to engage in questionable and unethical research. There have even been suggestions that the company is tied to the illegal slave trade, selling research specimens it has finished with as permanent indentured servants. Nothing has ever been proven, and so long as their products work better than the competition’s, they’ll continue to hold a strong market share.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Xenogen");
+}
+
+public function envyoidicsCodex():void
+{
+	clearOutputCodex();
+	showBust("LOGO_ENVYOIDICS");
+	outputCodex(header("Envyoidics LTD"));
+	outputCodex("<b>Company Name:</b> Envyoidics LTD");
+	outputCodex("\n<b>Industry:</b> Modification, historical preservation");
+	outputCodex("\n\n");
+	outputCodex("Formed relatively recently with the increase in rushes and technological developments, Envyoidics is a boutique gene-modding company specializing in obscure, exotic morphs. Whilst relatively successful for such a small company, they remain mostly unknown to U.G.C space as their distributors and partners tend to be independant businesses operating on the frontier.");
+	outputCodex("\n\nTheir reputation is such that prominent scientists and historians, who do know about them, hold great respect for their work; and yet there is a sharp ethical divide about their business patterns: Uncovering histories of long dead civilizations and then marketing them as play toys for the rich. So far, their slow but provable growth shows that the researchers and scientists at Envyoidics know their niche: Illumorpheme in particular has taken some sectors by storm with it’s body-friendly transformations, exclusivity and pleasing end results.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Envyoidics");
 }
 
 
