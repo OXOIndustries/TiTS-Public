@@ -603,7 +603,7 @@ public function initializeMyrellionRooms():void
 	rooms["720"].westExit = "721";
 	//rooms["720"].northExit = "ENTITE";
 	rooms["720"].moveMinutes = 2;
-	rooms["720"].runOnEnter = entiteExteriorShitz;
+	rooms["720"].runOnEnter = gildenmereStreetBonus;
 	rooms["720"].addFlag(GLOBAL.INDOOR);
 	rooms["720"].addFlag(GLOBAL.PUBLIC);
 	rooms["720"].addFlag(GLOBAL.CAVE);

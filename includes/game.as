@@ -2079,16 +2079,13 @@ public function variableRoomUpdateCheck():void
 	}
 	*/
 	//THE ENTITE
-	if (entiteAvailable() && rooms["720"].northExit == "")
+	if (entiteAvailable())
 	{
 		rooms["720"].northExit = "ENTITE";
-		generateMap();
-		
 	}
-	else if (!entiteAvailable() && rooms["720"].northExit == "ENTITE")
+	else
 	{
 		rooms["720"].northExit = "";
-		generateMap();
 	}
 	// Doc McAllister
 	if (mcallisterIsIn())

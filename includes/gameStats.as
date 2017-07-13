@@ -1135,7 +1135,7 @@ public function prettifyLength(amount:Number, printMeters:int = -1):String
 	if(printMeters < 1)
 	{
 		// Prettified over an inch
-		if(amount >= 1 && printMeters != -2)
+		if(amount >= 12 && printMeters != -2)
 		{
 			// Feet
 			var feet:int = Math.floor(amount / 12);

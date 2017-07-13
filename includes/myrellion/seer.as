@@ -10,8 +10,8 @@ import classes.Items.Miscellaneous.YTRLube;
  * SEER_SEXED	1-INFINITY how many times you borked Seer, undefined if not sexed her
  * USED_WISP	1 if done Wisp, else undefined - needs be set by the wisp item
  * 
- * Using the name "WiffOWisp" for the status effect check for the bad end if you overdose, may need to change once it's implemented.
- * Adding the unique items to her inventory is commented out as they aren't implemented yet.
+ * Using the name "WiffOWisp" for the status effect check for the bad end if you overdose, may need to change once it’s implemented.
+ * Adding the unique items to her inventory is commented out as they aren’t implemented yet.
  */
 
 public function showSeer(nude:Boolean = false):void
@@ -40,7 +40,6 @@ public function entiteExteriorShitz():void
 		output("\n\nIt’s funny, you could’ve sworn that where you’re standing had a shop right next to you. Something purplish and... ah whatever, it’s probably just deja vu kicking you round the head again.");
 	}
 	else output("\n\nThere’s a familiarly Terran-looking shop just to your side. It’s old looking and the shop front seems medieval in design. Calligraphic letters spell out ‘The Entite’ in gold lettering over a purple sign that hangs above the solid wooden door. You get the feeling you’ve already been there before, maybe in another, more whimsical lifetime.");
-
 }
 
 public function theEntiteBonus():void
@@ -70,7 +69,7 @@ public function theEntiteBonus():void
 		var option:int = rand(4);
 		switch(option)
 		{
-			case 0: output("\n\n<i>“Ahh, Steele! At least, that is what I have seen. Are you </i>that<i> Steele? Possibly. Possibly the other...and the others...”</i> she mutters, returning to the counter to accept your custom."); break;
+			case 0: output("\n\n<i>“Ahh, Steele! At least, that is what I have seen. Are you </i>that<i> Steele? Possibly. Possibly the other... and the others...”</i> she mutters, returning to the counter to accept your custom."); break;
 			case 1: output("\n\n<i>“[pc.name]. A name known! Names known. Names replaced... names, nay, beings! Beings are being, named and not seen...”</i> she mutters, returning to the counter to accept your custom."); break;
 			case 2: output("\n\n<i>“Chest pounding, stomach burning, the lungs, they fail! Oh... but to see what was birthed. That is and that is not... and it is not you,”</i> she mutters, returning to the counter to accept your custom."); break;
 			case 3: output("\n\n<i>“Did you live that life? Watch it? Feel it? Die in it? Reborn... as something. That much is clear,”</i> she mutters, returning to the counter to accept your custom."); break;
@@ -108,7 +107,7 @@ public function approachSeer():void
 	}
 	
 	setupShopSeer();
-	if (silly) addButton(0, "Shop", buyItem, undefined, "Shop", "Heh, heh, you wanna buy a... funnel cake??");
+	if (silly) addButton(0, "Shop", buyItem, undefined, "Shop", "Heh, heh, you wanna buy a... funnel cake?");
 	else addButton(0, "Shop", buyItem, undefined, "Shop", "What kinds of insanity does money buy these days?");
 	addButton(1, "Appearance", appearanceSeer, undefined, "Appearance", "At least she’s nice to look at... and probably won’t even notice you doing it.");
 	addButton(2, "Talk", talkSeer, undefined, "Talk", "What’s her story? Do you even really want to know?");
@@ -120,13 +119,14 @@ public function approachSeer():void
 public function setupShopSeer():void
 {
 	shopkeep = new Seer();
-	shopkeep.inventory.push(new Rainbotox);
-	shopkeep.inventory.push(new YTRLube);
-	shopkeep.inventory.push(new Tentacool);
-	//9999 - THESE CAN BE ADDED TO HER INVENTORY ONCE THEY'RE IMPLEMENTED
-	//shopkeep.inventory.push(new Capraphorm);
-	//shopkeep.inventory.push(new Illumorphene);
-	//shopkeep.inventory.push(new WiffOWisp);
+	shopkeep.inventory = new Array();
+	shopkeep.inventory.push(new Rainbotox());
+	shopkeep.inventory.push(new YTRLube());
+	shopkeep.inventory.push(new Tentacool());
+	//9999 - THESE CAN BE ADDED TO HER INVENTORY ONCE THEY’RE IMPLEMENTED
+	//shopkeep.inventory.push(new Capraphorm());
+	//shopkeep.inventory.push(new Illumorphene());
+	//shopkeep.inventory.push(new WiffOWis());
 }
 
 
@@ -152,7 +152,7 @@ public function appearanceSeer():void
 		output("\n\nThe rest of her naked body is relatively normal: A groomed, tight Terran pussy hides between her thighs and her perky butt is rather cute, all things considered...");
 	}
 	
-	addDisabledButton(1, "Appearance", "Appearance", "You're looking at her already.");
+	addDisabledButton(1, "Appearance", "Appearance", "You’re looking at her already.");
 }
 
 
@@ -187,7 +187,7 @@ public function topicHerSeer():void
 	output("\n\nDo you? What?");
 	output("\n\n<i>“Ah, oh, nevermind,”</i> she says, distracted by something else. <i>“If I may say, I do hope that you don’t.”</i>");
 	output("\n\nDon’t? Don’t what? You ask her what she means.");
-	output("\n\n<i>“You must know, if I know then you must know, surely! You see?”</i> She gestures erratically with her left hand to the shop's entrance.");
+	output("\n\n<i>“You must know, if I know then you must know, surely! You see?”</i> She gestures erratically with her left hand to the shop’s entrance.");
 	output("\n\nThere’s nothing there.");
 	output("\n\n<i>“Ah, I see. I see! </i><b>I</b><i> see.”</i>");
 	output("\n\nWithout much warning, she places her open palm to the top of your [pc.chest]. You’re taken aback but you’re compelled to not react, seeing as it’s a non-violent maneuver. She stares you down with those widened, piercing eyes.");
@@ -276,7 +276,7 @@ public function topicLoungeSeer():void
 	output("\n\n<i>“Enjoying the seats, Steele? You all seem to agree, especially that one over there,”</i> she states, pointing to an empty part of the couch. Ignoring that odd statement, you nod to her, reclining even further into the fabric. Hey, finally time to do something truly relaxing! You hadn’t even noticed the thin veil of mist filling the lounge! Wait, what?");
 	output("\n\nThe Seer is staring at you with a deadpan, wide-eyed smile as you feel your mind losing its grasp on consciousness. So sleepy... you just need to close your eyes for a few sec... maybe a min... mm, that sweet smelling mist...");
 	
-	addButton(0, "Sleep...", loungeSleepSeer, undefined, "Sleep...", "Better strap in kid, cuz you're going on a trip.");
+	addButton(0, "Sleep...", loungeSleepSeer, undefined, "Sleep...", "Better strap in kid, cuz you’re going on a trip.");
 }
 
 public function loungeSleepSeer():void
@@ -427,7 +427,7 @@ public function yesDommeSeer():void
 	output("\n\n<i>“Some more secrets...”</i>");
 	output("\n\nBefore you can ask, she flings the robe off to the side.");
 	output("\n\nWhat you’re greeted with is unlike anything you could’ve dreamt of..");
-	output("\n\nInstead of a human arm, three thick-meated, grayish purple tentacle limbs undulate and squirm from the Seer's right shoulder. Each has another, smaller tentacle attached, making six in total. Before you can even word your reaction, they lash out around your midsection!");
+	output("\n\nInstead of a human arm, three thick-meated, grayish purple tentacle limbs undulate and squirm from the Seer’s right shoulder. Each has another, smaller tentacle attached, making six in total. Before you can even word your reaction, they lash out around your midsection!");
 	output("\n\nThe slimey, warm squeeze of the Seer’s manipulators pulls you closer to her. You try to force them off of you but their strength of grip is immense! They must be at least 6’ in length, able to wrap around your middle with ease it would seem.");
 	output("\n\nAs she reels you in, two of the writhing feelers slink and slither across your neck to your [pc.face], prodding and teasing your [pc.lips] to let them inside.");
 	output("\n\n<i>“So many ways... I wonder what fate leads us to?”</i>");
@@ -495,14 +495,14 @@ public function tentaSeer():void
 	output("\n\n<i>Feel it</i>");
 	output("\n\nI-I can feel it everywhere...");
 	output("\n\n<i>Embrace it</i>");
-	output("\n\nEmbrace...??");
+	output("\n\nEmbrace...?");
 	output("\n\nA strange, euphoric heat surges through your guts {pcVagina: , womb} and gullet! It’s a liquidy, slimey heat that coincides with the energetic twisting and squirming from the multitude of slimy beasts lodged into your body! Without even realising it, your body has pushed out an orgasm so hard that it’s numbed your senses to its strength.");
 	if (pc.hasCock() && pc.cumQ() >= 1000) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of spraying a weighty load, your [pc.cum] dribbles out with a painful heat like a slack hose. It flows and spreads all over your tentacle-stuffed [pc.belly], then the table, and then to the floor below.");
 	else if (pc.hasCock()) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of shooting a rope of [pc.cum], it dribbles and leaks out with a painful heat like a slack hose. It forms a [pc.cumVisc] puddle in between your [pc.thighs].");
 	else output("\n\nInside your [pc.pussy], [pc.girlCum] oozes around and then out of your well-fucked hole. The tentacle that threatens to press into your womb makes it impossible to squirt out! The thought of being bred by monstrous limbs almost becomes too much to bear...");
 	output("\n\nThe Seer takes a wobbly step back, her foot leaving your chest and her squirming tendrils sliding ever so slowly out of the various holes in your body. As soon as her alien tentacles leave you, watery fluids leak and burble from your [pc.lips]" + (pc.hasVagina() ? ", [pc.pussy]" : "") + " and [pc.asshole]. You can’t even think to clear it away, so absolutely burned out is your body.");
 	output("\n\n<i>More</i>");
-	output("\n\nMm...more??");
+	output("\n\nMm... more?");
 	
 	addButton(0, "Next", tentaSeer2);
 }
@@ -558,7 +558,7 @@ public function lezSeer():void
 	output("\n\nShe pulls back, or rather, seems to drift back and straightens herself up. She sits atop your [pc.belly] with her taut pussy slowing rubbing against your navel.");
 	output("\n\n<i>“Forgive me, Steele,”</i> she half-whispers. <i>“I treated you roughly, before. Or now. But after... I wish to make amends.”</i>");
 	output("\n\nShe leans in again, not letting you get a word in. She drags her jiggly, shapely chest across your [pc.fullChest], stopping when her nubless nips brush against your own [pc.nipples]. The mere contact makes your [pc.nipples] stand to attention. She lowers her body even further, a definitive arching to her back as she lines her mouth with your [pc.lips] one more time. The Seer goes again for your [pc.tongue] but this time... a little bit more forcefully. Nope, <i>very</i> forcefully...! Instead of the gentle playfulness of before, her tongue wraps, constricts around, and twists past your own!");
-	output("\n\nAnother t-tentacle?? You whine through the mouth-lock as the thick fleshy ‘tongue’ dives down your gullet. " + (pc.isBimbo() ? "So easily does it slide down your especially gifted throat that the Seer coos in approval through a muffled mouth" : "You have to supress your gag reflex entirely and what little resistance you can give is battered down by the Seers mouth-beast") + ".");
+	output("\n\nAnother t-tentacle? You whine through the mouth-lock as the thick fleshy ‘tongue’ dives down your gullet. " + (pc.isBimbo() ? "So easily does it slide down your especially gifted throat that the Seer coos in approval through a muffled mouth" : "You have to supress your gag reflex entirely and what little resistance you can give is battered down by the Seers mouth-beast") + ".");
 	output("\n\nBut that’s not all...");
 	
 	addButton(0, "Next", lezSeer2);
@@ -571,16 +571,16 @@ public function lezSeer2():void
 	showSeer();
 	clearMenu();
 	
-	output("\n\nThrough the peripheral view below you, you see the Seer's tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
+	output("\n\nThrough the peripheral view below you, you see the Seer’s tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
 	if (pc.hasTailGenital()) output("\n\nYour " + (pc.hasTailCock() ? "[pc.tailCock]" : "[pc.tailCunt]") + " is ensnared in sync: a fleshy, slimy appendage squeezes and teases against its sensitive surface.");
 	output("\n\nHer tenta-nips completely engorge themselves on your " + (pc.hasDickNipples() ? "[pc.dicknipples]" : "[pc.milkyNipples]") + ". It appears there’s a hidden orifice nestled in between her nipple-feelers and they’re warm, comforting confines pleasure your nerves and [pc.nipples] to no end.");
 	output("\n\nIn one final demonstration of her complete physical control over your body, a thick squirming tentacle pushes itself without hesitation into your [pc.pussy]! It slithers and grinds against the soft, sensitive flesh inside you like some primordial monster!");
 	output("\n\n<i>“Mmmffuhhuf!”</i> You try to scream, yet your mouth is so full of tongue that nothing comes out. The Seer slows her oral onslaught as you do...");
 	output("\n\n<i>Watch</i>. A thought that’s not yours echoes from all angles in your mind. Looking down, you just about see through the double cleavage of tentacle ensnared breasts that the Seer is <i>also</i> penetrating her tight, puffy pussy with her own appendage! This must be her idea of ‘mutual’...");
 	output("\n\n<i>I feel</i>. Another thought, one that vibrates through your skull. The mouth-lock becomes increasingly loose as the Seer grinds and humps against your [pc.belly]. The writhing meat that fills your already-brutalized throat and [pc.cunt] becomes even more slippery and frenzied as if searching for every possible pleasure zone that exists within your body. ");
-	output("\n\nFuck, that feels amazing...!  Even through this tentacled subjugation, your body is in love with being completely taken over by a mass of tentacles. Your [pc.chest] tingles with heat and sensation as it is unrelentingly squeezed, squished, and sucked on by the Seer’s tenta-nipples; your [pc.pussy] invaded and fucked like a well-used toy. " + (pc.hasTailGenital() ? ("Your " + (pc.hasTailCock() ? "[pc.tailCock]" : "[pc.tailCunt]") + " is left unused, constantly teased by random fleshy feelers.") : "") + " Finally, with your mouth and [pc.tongue] having been the first barrier to fall, your resistance is crushed...");
+	output("\n\nFuck, that feels amazing...! Even through this tentacled subjugation, your body is in love with being completely taken over by a mass of tentacles. Your [pc.chest] tingles with heat and sensation as it is unrelentingly squeezed, squished, and sucked on by the Seer’s tenta-nipples; your [pc.pussy] invaded and fucked like a well-used toy. " + (pc.hasTailGenital() ? ("Your " + (pc.hasTailCock() ? "[pc.tailCock]" : "[pc.tailCunt]") + " is left unused, constantly teased by random fleshy feelers.") : "") + " Finally, with your mouth and [pc.tongue] having been the first barrier to fall, your resistance is crushed...");
 	output("\n\n<i>Together</i>. One more resounding thought reverberates through your mind, its decaying echoes flow through your bones all the way to your [pc.legs].");
-	output("\n\nT-together...??");
+	output("\n\nT-together...?");
 	output("\n\n<i>Together</i>.");
 	output("\n\nAn intense rush of euphoria blazes through your lower body, building and building until it boils over into a muscle-seizing orgasm. You try to scream but all that comes out is a choked whine that’s drowned out by the sounds of: <i>Together...</i> roiling through your mind. Your limbs, unwilling to resist before, gain fresh waves of pleasured pain as they lock up, while your [pc.cunt] " + (pc.isSquirter() ? "squirts" : "oozes and leaks") + " a monochromatic mix of [pc.femCum] and tentacle juice all over the table!");
 	output("\n\nThe Seer seems to have frozen in place, her tentacular, twitching appendages locked in place. After several seconds, she tries to push herself up from your face-to-[pc.face] embrace but... only manages to slump herself onto her back. Her array of purplish tentacles recede from your body and limply slide themselves back to a flaccid resting position. Both of you can barely handle the freshness of the cooled air around you and your lungs have barely caught up with regular breathing as it is.");
@@ -606,7 +606,7 @@ public function lezSeer3():void
 	output("\n\n<i>“What I mean is...”</i> replies the Seer, as if knowing what you wanted to say. <i>“That you’re quite the picture when sprawled onto your back.”</i>");
 	output("\n\nShe giggles to herself.");
 	output("\n\n<i>“However... now you must forget.”</i>");
-	output("\n\nForget...?? But..");
+	output("\n\nForget...? But...");
 	output("\n\n<i>“Forget.”</i>");
 	output("\n\nNo, I-");
 	output("\n\n<i>Forget...</i>");
@@ -648,7 +648,7 @@ public function wispedSeer():void
 	output("\n\nThis thought reverberates through your mind, but one that’s not organic to your reaction. Was that... <i>her</i> voice? Breathe...? Should I...?");
 	output("\n\n<i>Breathe</i>.");
 	output("\n\nYou’re compelled to do so: The ruby red fumes give off a tantalizing aroma... something warm and wonderous that you couldn’t describe without analysing it to the molecule.");
-	output("\n\nYou too inhale deeply - though hesitantly - through your [pc.nose], a warm ache filling your [pc.face]. " + (flags["USED_WISP"] != undefined ? "That tell-tale scent of woodsmoke and spice triggers the memory of what’s to come next. " : "It feels akin to breathing in fresh woodsmoke or obscure incense. It’s pretty nice! You hadn't even noticed that the room’s spinning!") + "");
+	output("\n\nYou too inhale deeply - though hesitantly - through your [pc.nose], a warm ache filling your [pc.face]. " + (flags["USED_WISP"] != undefined ? "That tell-tale scent of woodsmoke and spice triggers the memory of what’s to come next. " : "It feels akin to breathing in fresh woodsmoke or obscure incense. It’s pretty nice! You hadn’t even noticed that the room’s spinning!") + "");
 	output("\n\nOh boy, room’s already spinning...");
 	output("\n\nYou feel your [pc.legs] start to give way as that same heat travels from head to toe in almost no time at all. Good thing those tightening tentacles were there to stop your fall! Wait, tightening...?");
 	output("\n\nAs your vision begins to blur and darken, you sense the tips of those fleshy feelers reaching for your [pc.lips] and see the blazing, amber eyes of the Seer...");
@@ -663,7 +663,7 @@ public function wispedSeer2():void
 	showSeer();
 	clearMenu();
 	
-	//Bad End due to already being under the effects of the wispy and overdosing - May need to change name of status effect once it's implemented
+	//Bad End due to already being under the effects of the wispy and overdosing - May need to change name of status effect once it’s implemented
 	if (pc.hasStatusEffect("WiffOWisp"))
 	{
 		output("Ooo, these are some fancy colors. Your eyes start being able to see the past interactions you’ve had with every living thing in the past 24 hours. Not that you can actually tell who or what those things are as they take the form of amorphous grey blobs.");
@@ -675,7 +675,7 @@ public function wispedSeer2():void
 		output("\n\nOh hey, you’re over there! But how can you be over here if you’re over there and... where’s the Seer?");
 		output("\n\nA pair of amber, glowing orbs slowly move from the right into your field of view. Sharp static sounds come forth as they hover and blaze. And they move out of range...");
 		output("\n\nYou try to look around you.");
-		output("\n\nYou’re on a... shelf??");
+		output("\n\nYou’re on a... shelf?");
 		output("\n\nOh.");
 		output("\n\nYou’ve become a curio along the walls of the Entite, destined to live out your days as a pair of eyes and nothing more.");
 		output("\n\nStill, could be worse.");
