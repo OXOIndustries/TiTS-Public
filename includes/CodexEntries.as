@@ -100,7 +100,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Snugglé", snuggleCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Steele Tech", steeleTechCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Xenogen", xenogenCodex, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Black Void", blackVoidCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "J.A.F.", jointAusarFederationCodex, true);
@@ -3471,6 +3471,7 @@ public function xenogenCodex():void
 	CodexManager.viewedEntry("Xenogen");
 }
 
+/*
 public function envyoidicsCodex():void
 {
 	clearOutputCodex();
@@ -3484,6 +3485,7 @@ public function envyoidicsCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Envyoidics");
 }
+*/
 
 
 /* Organizations */
