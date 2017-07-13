@@ -10450,7 +10450,7 @@
 			var raceSimple:String = stripRace(race);
 			
 			// Type changes
-			if(InCollection(raceSimple, ["ausar", "canine"]))
+			if(InCollection(raceSimple, ["ausar", "huskar", "canine", "lupine"]))
 			{
 				shiftCock(arg,GLOBAL.TYPE_CANINE);
 				if(raceSimple == "ausar") cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath

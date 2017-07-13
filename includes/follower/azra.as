@@ -310,7 +310,7 @@ public function azraAppearance():void
 	if(flags["AZRA_KISSED"] != undefined) output(" You know from experience that her tongue is a length, prehensile serpent, capable of incredible dexterity and tenderness.");
 	output("\n\nTiny, interlocking scales serve as her skin, shimmering softly under any light. They’re rich gold in hue, and with nine feet of suula to cover, ");
 	if(flags["AZRA_SEXED"] == undefined) output("you imagine ");
-	output("there’s shortage of glittering girl to admire. She covers up most of her form with a restricting suit of armor most of the time, but not even the padded chestplate can ");
+	output("there’s no shortage of glittering girl to admire. She covers up most of her form with a restricting suit of armor most of the time, but not even the padded chestplate can ");
 	if(9999 == 9999) output("conceal her soccerball-sized breasts");
 	else if(9999 == 0) output("cover up her massive, motherly breasts");
 	else output("contain her mountainous, back-breaking boobs. A lesser creature would collapse under the weight, but not Azra");
@@ -328,7 +328,7 @@ public function azraAppearance():void
 	}
 	//Merge
 	output("\n\nWide, child-bearing hips flare out below her waist, threatening to knock a table’s worth of knick-knacks to the floor with every step. It’s amazing she could find armor broad enough to contain them. With hips that like, every step is a swaying advertisement to potential suitors of her reproductive fitness, and the ass she carries behind them is sized to match, only partially hidden by the lengthy, finned tail of a suula as it sways behind her.");
-	if(flags["AZRA_SEXED"] == undefined) output(" The crotch of her armor bulges with something substantive than a purely feminine slit, but until you get to know her better, you doubt you’ll get a peek inside.");
+	if(flags["AZRA_SEXED"] == undefined) output(" The crotch of her armor bulges with something more substantive than a purely feminine slit, but until you get to know her better, you doubt you’ll get a peek inside.");
 	else output(" You know for a fact that she’s hiding a fat, tendril-ringed dick under there. When hard, it can get up to 19 or 20 inches long, though when she’s unaroused, it’s a cute, chubby little thing all but asking you to fondle it. Two peach-sized balls hang under, almost perfectly spherical and swaddled in a supremely soft sack. Just behind are the folds of her sweet little pussy, tempting you with their saccharine scent and the promise of their tendrils’ embrace.");
 	if(flags["AZRA_SEXED"] == undefined) output("\n\nYou can’t see it, but you can only assume h");
 	else output("\n\nH");
@@ -610,7 +610,7 @@ public function talkToAzraAboutStud():void
 	output("\n\n");
 	if(pc.race() == "terran") output("You decide to let that one slide. ");
 	output("<i>“What happened to him?”</i>");
-	output("\n\n<i>“Pirates.”</i> Azra pauses, inhaling shakily. <i>“They ambushed the ship he was on, and he refused to get down and grovel with the rest of the passengers.”</i> She wipes at the corner of her eye before a tear can form. <i>“I’m told he prevented them from abducting a juvenile kaithrit. He fought the pirates long enough for the peacekeepers to show up on scanners and drive them. His wounds must have hurt him terribly, but... my Troktun died a hero.”</i> There’s no hiding the moisture leaking from her eyes now. <i>“I wish he hadn’t... but the man I loved, my stud... he would never sit idly by while a youngling was in danger.”</i>");
+	output("\n\n<i>“Pirates.”</i> Azra pauses, inhaling shakily. <i>“They ambushed the ship he was on, and he refused to get down and grovel with the rest of the passengers.”</i> She wipes at the corner of her eye before a tear can form. <i>“I’m told he prevented them from abducting a juvenile kaithrit. He fought the pirates long enough for the peacekeepers to show up on scanners and drive them out. His wounds must have hurt him terribly, but... my Troktun died a hero.”</i> There’s no hiding the moisture leaking from her eyes now. <i>“I wish he hadn’t... but the man I loved, my stud... he would never sit idly by while a youngling was in danger.”</i>");
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nYou sweep her up in a big, silent hug, instinctively comforting her with your body. No words could ever suffice, even if you were any good at putting them together.");
 	//Bro
@@ -854,7 +854,7 @@ public function talkToAzraAboutHerJorb():void
 	output("<i>“What can you tell me about your job?”</i>");
 	output("\n\nAzra says, <i>“For starters, it’s not what most would consider a job. I don’t have a boss. I don’t clock in anywhere or hang around a watercooler talking about the latest gravball match. It sounds pretty great, I’m sure.”</i>");
 	output("\n\nYou nod emphatically.");
-	output("\n\n<i>“But I’m my own boss. That means I have to make myself do my work without any external pressure. I have to get up every morning and force myself to sit down and peel apart genomes instead of catching the latest episode of The Youthful and Sleepless. If I slack off, I hurt myself and have noone else to blame. Not that different from being a captain out on the rush, I imagine.”</i> Azra nods to you. <i>“Not everybody can do it.”</i>");
+	output("\n\n<i>“But I’m my own boss. That means I have to make myself do my work without any external pressure. I have to get up every morning and force myself to sit down and peel apart genomes instead of catching the latest episode of The Youthful and Sleepless. If I slack off, I hurt myself and have no one else to blame. Not that different from being a captain out on the rush, I imagine.”</i> Azra nods to you. <i>“Not everybody can do it.”</i>");
 	output("\n\nYou agree but ask her if she can give you more specifics, more details on the exact kind of work she does.");
 	output("\n\n<i>“Oh, well I used to work at home, buying exotic plant samples to study in hopes of finding valuable mutations, enzymes, and the like. People will sell you almost anything on the extranet if you know where to look.”</i> Azra gestures to her codex. <i>“I’d spend most of my day hunched at my workstation, pouring over holoscreens filled with genetic data and computer simulations trying to unravel the secrets of alien life. It’s almost as much art as science, puzzling out the relevant genes and how to best recode the sequence for use in other plants or animals. The latter part is usually done by the scientists at Xenogen, JoyCo, or another biotech firm, but I dabble.”</i>");
 	output("\n\n<i>“How do you get paid?”</i>");
