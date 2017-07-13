@@ -1922,7 +1922,8 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>Azra’s Expedition</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["AZRA_EXP_FAILED"] == "mhen'ga") output2(" Defeated by naleen brothers");
-				else output2(" Defeated naleen brothers");
+				else if(flags["AZRA_MHENGAED"] != 0) output2(" Defeated naleen brothers");
+				else output2(" Accepted");
 				if(flags["FOUGHT_9TAIL"] != undefined) output2(", Defeated nine-tailed zil");
 				if(flags["FED_9TAIL"] != undefined) output2(", Fed nine-tailed zil");
 				if(flags["AZRA_MHENGAED"] == -1) output2(", Completed, Resisted Azra");
@@ -4437,6 +4438,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2(", Seen her sexbots");
 					if(flags["SEEN_SHEKKAS_SEXBOTS"] != undefined) output2(" and her <i>new</i> sexbots");
 				}
+				if(9999 == 0)
+				{
+					output2(", Crew member");
+					if(shekkaIsCrew()) output2(" (Onboard Ship)");
+				}
 				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
 				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Sexed:</b> " + flags["TIMES_SEXED_SHEKKA"]);
 				if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Tail-Vibrator:</b> " + flags["TIMES_TAILVIBED_WITH_SHEKKA"]);
@@ -5956,6 +5962,11 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kiro:</b>");
 			if(flags["KIRO_DISABLED_MINUTES"] > 0) output2(" Away");
 			else output2(" Active");
+			if(9999 == 0)
+			{
+				output2(", Crew member");
+				if(kiroIsCrew()) output2(" (Onboard Ship)");
+			}
 			if(flags["KIRO_PHONE_EVENT"] != undefined)
 			{
 				output2("\n<b>* Kiro, Her Codex:</b> Found");

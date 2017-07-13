@@ -294,7 +294,7 @@ public function azraMenu():void
 	addButton(0,"Appearance",azraAppearance);
 	addButton(1,"Talk",azraTalk);
 	addButton(2,"Expeditions",azraExpeditionStartup,undefined,"Expeditions","Go on an expedition with Azra.");
-	if(flags["AZRA_MHENGAED"] != undefined) addButton(3,"Plant Samples",azraPlantSamples,undefined,"Plant Samples","Personally inspect the fruits of your labors.");
+	if(flags["AZRA_MHENGAED"] != undefined && flags["AZRA_MHENGAED"] != 0) addButton(3,"Plant Samples",azraPlantSamples,undefined,"Plant Samples","Personally inspect the fruits of your labors.");
 	else addDisabledButton(3,"Plant Samples","Plant Samples","You have yet to recover any plant samples on an expedition with Azra.");
 	addButton(13,"Leave Crew",talkToAzraAboutLeavingTheCrew);
 	addButton(14,"Leave",mainGameMenu);
@@ -678,15 +678,6 @@ public function askAzraOutOnADate():void
 	addButton(1,"Daughters",talkToAzraAboutHerDaughters);
 	addButton(2,"Polyamory?",talkToAzraAboutPolyamory);
 	addButton(14,"Back",azraTalk,true);
-}
-
-public function kiroIsCrew():Boolean
-{
-	return false;//9999
-}
-public function shekkaIsCrew():Boolean
-{
-	return false;//9999
 }
 
 //Polyamory

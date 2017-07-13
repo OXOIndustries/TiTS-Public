@@ -13,7 +13,7 @@ public function azraExpeditionAvailable():Boolean
 	//"new texas", "tarkus", "phaedra", 
 	if(getPlanetName().toLowerCase() == "mhen'ga")
 	{
-		if(flags["AZRA_MHENGAED"] == undefined) return true;
+		if(flags["AZRA_MHENGAED"] == undefined || flags["AZRA_MHENGAED"] == 0) return true;
 	}
 	return false;
 }
@@ -23,6 +23,9 @@ public function azraExpeditionStartup():void
 {
 	clearOutput();
 	showAzra();
+	
+	var planet:String = getPlanetName().toLowerCase();
+	
 	//Too Advanced (Gotta go in order for Fen’s sanity) (Or planet doesn’t have one available)
 	if(!azraExpeditionAvailable())
 	{
@@ -32,17 +35,18 @@ public function azraExpeditionStartup():void
 		azraMenu();
 	}
 	//Failure Introduction
-	else if(flags["AZRA_EXP_FAILED"] == getPlanetName().toLowerCase())
+	else if(flags["AZRA_EXP_FAILED"] == planet)
 	{
 		output("You let Azra know you’re ready to help her with an expedition.");
 		output("\n\n<i>“Really?”</i> Azra looks at you uncertainly. <i>“I’d rather not risk it if things are just going to go sideways again. Are you sure?”</i>");
+		
 		//[Yep] [Nope]
 		clearMenu();
-		addButton(0,"Yep",actuallyGoOnMhengaExpedition,true,"Yep","Go on an <i>ADVENNNNTUUUUUURRRRRRRE</i>");
+		addButton(0,"Yep",adventureStartRouter,true,"Yep","Go on an <i>ADVENNNNTUUUUUURRRRRRRE!</i>");
 		addButton(1,"Nope",nopeOutOfAdventures,undefined,"Nope","Maybe you should prepare first.");
 	}
 	//If not on Mhen'ga, go straight to the hot shit.
-	else if(getPlanetName().toLowerCase() != "mhen'ga") 
+	else if(planet != "mhen'ga") 
 	{
 		adventureStartRouter();	
 	}
@@ -68,10 +72,19 @@ public function azraExpeditionStartup():void
 		addButton(14,"Back",nopeOutOfAdventures);
 	}
 }
-public function adventureStartRouter():void
+public function adventureStartRouter(warned:Boolean = false):void
 {
-	if((getPlanetName().toLowerCase()) == "mhen'ga") actuallyGoOnMhengaExpedition();
-	else output("ERRORRRRRRRRRRRR NO EXPEDITION FOUND");	
+	var planet:String = getPlanetName().toLowerCase();
+	switch(planet)
+	{
+		case "mhen'ga": actuallyGoOnMhengaExpedition(warned); break;
+		default:
+			clearOutput();
+			showAzra();
+			output("<b>ERRORRRRRRRRRRRR NO EXPEDITION FOUND!</b>");
+			azraMenu();
+			break;
+	}
 }
 	
 //Nope:
@@ -158,6 +171,9 @@ public function movingOnOutToMhengaExp():void
 	showName("FIGHT:\nNALEEN BROS");
 	currentLocation = "OVERGROWN ROCK 3";
 	generateMap();
+	
+	flags["AZRA_MHENGAED"] = 0;
+	
 	output("Azra directs you to the jungle but wisely stays in the rear, leaving you to push your way through the thick, alien foliage. At every strange sound or cracking twig, she tenses up. Her wings catch on vines numerous times, leading the fiery-haired siren to noisily grumble and groan as she picks leaves from her mane.");
 	output("\n\n<i>“What an inhospitable planet. I can’t believe anyone actually lives here, interesting flora or not!”</i>");
 	output("\n\nYou shrug and do your best to keep your eyes open and alert. No journey through Mhen’ga is likely to end without at least one hostile encounter, and this one is no exception.");
@@ -810,6 +826,7 @@ public function resistAzrasAdvancesYouMonster():void
 	output("\n\nYou get the sense she’s done talking to you for the time being. <b>Your relationship with Azra is strictly professional.</b>");
 	processTime(3);
 	flags["AZRA_MHENGAED"] = -1;
+	if(flags["AZRA_EXP_FAILED"] == "mhen'ga") flags["AZRA_EXP_FAILED"] = undefined;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	pc.createStatusEffect("Azra Plant CD");
@@ -851,6 +868,7 @@ public function welcomeToAzraSmoochesBuddy():void
 	processTime(23);
 	clearMenu();
 	flags["AZRA_MHENGAED"] = 1;
+	if(flags["AZRA_EXP_FAILED"] == "mhen'ga") flags["AZRA_EXP_FAILED"] = undefined;
 	addButton(0,"Next",mainGameMenu);
 	pc.createStatusEffect("Azra Plant CD");
 	pc.setStatusMinutes("Azra Plant CD",60);
