@@ -370,7 +370,7 @@ package classes.Characters
 			}
 			else
 			{
-				output("The bothrioc turns away, displaying their round bum beneath their abdomen, looking over their shoulder with mischievous black eyes… and the next moment they hurl the bolos in their upper pair of hands overarm at you with all their strength.");
+				output("The bothrioc turns away, displaying their round bum beneath their abdomen, looking over their shoulder with mischievous black eyes... and the next moment they hurl the bolos in their upper pair of hands overarm at you with all their strength.");
 			}
 			
 			if (rangedCombatMiss(this, target))

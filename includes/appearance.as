@@ -2386,7 +2386,7 @@ public function appearance(forTarget:Creature):void
 	else if(tempBelly < 120) output2("Your [target.belly] protrudes obscenely from your form, hanging heavily. Getting around is a struggle with so much extra mass on you.");
 	else
 	{
-		output2("Your distended belly is so gargantuanly huge that you have no hope of seeing the floor anywhere near you, let alone your [pc.legs]. It's a small miracle that you can even stand upright with all that mass slung out in front of you.");
+		output2("Your distended belly is so gargantuanly huge that you have no hope of seeing the floor anywhere near you, let alone your [pc.legOrLegs]. It’s a small miracle that you can even stand upright with all that mass slung out in front of you.");
 	}
 	
 	//Tack on preg flavor shit to the end of belly descripts.

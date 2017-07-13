@@ -576,6 +576,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "MilodanPregnancy": output2(" Milodan"); break;
 						case "BothriocPregnancy": output2(" Bothrioc, Eggs"); break;
 						case "OvalastingEggPregnancy": output2(" Ovalasting, Eggs"); break;
+						case "LapinaraPregnancy": output2(" Lapinara, Eggs"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -878,6 +879,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cockvines:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings birthed"));
 				if(StatTracking.getStat("pregnancy/cockvine seedlings captured") > 0)
 					output2("\n<b>* Births, Cockvines, Captured:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
+				if(StatTracking.getStat("pregnancy/lapinara eggs") > 0)
+					output2("\n<b>* Births, Lapinara Eggs:</b> " + StatTracking.getStat("pregnancy/lapinara eggs"));
 				if(StatTracking.getStat("pregnancy/milodan births") > 0)
 					output2("\n<b>* Births, Milodan Young:</b> " + StatTracking.getStat("pregnancy/milodan births"));
 				var nyreanEggs:Number = 0;
@@ -1914,14 +1917,17 @@ public function displayQuestLog(showID:String = "All"):void
 		if(showID == "Mhen'ga" || showID == "All")
 		{
 			// Azra's Expeditions
-			if(flags["AZRA_MHENGAED"] != undefined)
+			if(flags["AZRA_MHENGAED"] != undefined || flags["AZRA_EXP_FAILED"] == "mhen'ga")
 			{
 				output2("\n<b><u>Azra’s Expedition</u></b>");
-				output2("\n<b>* Status:</b> Accepted, Defeated naleen brothers");
+				output2("\n<b>* Status:</b>");
+				if(flags["AZRA_EXP_FAILED"] == "mhen'ga") output2(" Defeated by naleen brothers");
+				else output2(" Defeated naleen brothers");
 				if(flags["FOUGHT_9TAIL"] != undefined) output2(", Defeated nine-tailed zil");
 				if(flags["FED_9TAIL"] != undefined) output2(", Fed nine-tailed zil");
 				if(flags["AZRA_MHENGAED"] == -1) output2(", Completed, Resisted Azra");
 				else if(flags["AZRA_MHENGAED"] == 1) output2(", Completed, Welcomed Azra");
+				else if(flags["AZRA_EXP_FAILED"] == "mhen'ga") output2(", Failed");
 				else output2(", <i>In progress...</i>");
 				sideCount++;
 			}

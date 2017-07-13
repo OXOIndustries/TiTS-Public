@@ -57,10 +57,10 @@ public function lapinaraBust():void
 **She will only attempt this if your shield is down. You really don’t want her to succeed at this attack (or maybe you do?).
 
 Dodge: <i>“The lapinara swings her tail in the direction of your [pc.legs]. Thinking fast, you jump, her tail swishing harmlessly under you.”</i>
-Hit: <i>“The lapinara swings her tail in the direction of your [pc.legs], subsequently tripping you. She immediately hops on top of you, pinning you down. Damn, she’s strong for such a little thing! You'll need to break free of her grasp, and fast!”</i>
+Hit: <i>“The lapinara swings her tail in the direction of your [pc.legs], subsequently tripping you. She immediately hops on top of you, pinning you down. Damn, she’s strong for such a little thing! You’ll need to break free of her grasp, and fast!”</i>
 Struggle (strength, succeed):  <i>“You pry the lapinara off you you, tossing her backwards and you get back on your feet.”</i>
 Struggle (reflex, succeed): <i>“You manage to slip out from under the lapinara, clearly catching her off guard.”</i>
-Struggle (first fail, both strength and reflex): <i>“The lapinara strengthens her grasp, pulling a syringe from her belt. She uncaps it, delving the needle into your neck. You scream loudly. The pain is unbearable! As she withdraws you needle, you can already feel the potent drug going to work on your body. You'll need to break free soon, before this drug overwhelms you!”</i>
+Struggle (first fail, both strength and reflex): <i>“The lapinara strengthens her grasp, pulling a syringe from her belt. She uncaps it, delving the needle into your neck. You scream loudly. The pain is unbearable! As she withdraws you needle, you can already feel the potent drug going to work on your body. You’ll need to break free soon, before this drug overwhelms you!”</i>
 Struggle (second fail onwards): <i>“As the powerful drug continues to rack your body, the lapinara laughs in your face as you continue to struggle in her grasp, delivering a swift blow to your jaw.”</i>
 
 Likes and Dislikes:
@@ -104,7 +104,7 @@ public function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	output("\n\n<i>“Did you hear me, " + pc.mfn("boy","girl","offworlder") + "? Here it is again: ");
 	if(pc.legCount > 1) output("[pc.Legs]. ");
 	output("Spread");
-	if(pc.legCount < 2) output(" 'em");
+	if(pc.legCount < 2) output(" ‘em");
 	output(",”</i> she orders once more, waving a syringe in your face.");
 
 	output("\n\nYou really don’t want to experience whatever it is she has in that syringe. It can’t be pleasant. At all. You do as the bunny says, albeit rolling your eyes as you do.");
@@ -160,7 +160,7 @@ public function loseToLapinaraAndGetEggplantedChicks():void
 	output("\n\n<i>“Did you hear me, " + pc.mf("boy","girl") + "? Here it is again: ");
 	if(pc.legCount > 1) output("[pc.Legs]. ");
 	output("Spread");
-	if(pc.legCount < 2) output(" 'em");
+	if(pc.legCount < 2) output(" ‘em");
 	output(",”</i> she orders once more, waving a syringe in your face.");
 	output("\n\nYou really don’t want to experience whatever it is she has in that syringe. It can’t be pleasant. At all. You do as the bunny says, albeit rolling your eyes as you do.");
 	output("\n\n<i>“That’s a good " + pc.mf("boy","girl") + ",”</i> she coos");
@@ -211,7 +211,7 @@ public function defeatDatLapinara():void
 	output("\n\n<i>“I’m... sorry for being so rough with you, okay? It’s just that my hormones go all crazy when I have eggs ready. I’d still like to fuck, if you feel up to it. I’ll even let you pick how we do it, I promise! Please?”</i>");
 	if(pc.lust() >= 33) output("\n\nThat does sound like a tempting offer. What will you do?\n\n");
 	else {
-		output("\n\nYou aren't anywhere near horny enough to even consider the offer.\n\n");
+		output("\n\nYou aren’t anywhere near horny enough to even consider the offer.\n\n");
 		clearMenu();
 		addButton(14,"Leave",CombatManager.genericVictory);
 		return;
@@ -219,7 +219,7 @@ public function defeatDatLapinara():void
 	clearMenu();
 	if(pc.hasCock()) 
 	{
-		addButton(0,"Pitch Anal",targetLapinaraSex,lapinaraButtfuckSelector,"Pitch Anal","Attempt to fuck her butt, or if you're too big, hotdog her.");
+		addButton(0,"Pitch Anal",targetLapinaraSex,lapinaraButtfuckSelector,"Pitch Anal","Attempt to fuck her butt, or if you’re too big, hotdog her.");
 		addButton(1,"Get Blown",targetLapinaraSex,getBlownByLapinara,"Get Blown","Receive a blowjob from the lapinara.");
 	}
 	else
@@ -231,9 +231,9 @@ public function defeatDatLapinara():void
 	else addDisabledButton(2,"Get Licked","Get Licked","This scene requires a vagina.");
 	if(pc.hasCuntTail()) addButton(3,"Tail-Milk",cuntTailFuckLapinaraParasitic,undefined,"Tail-Milk","Use your parasitic cunt tail to suck on her ovipositor.");
 	else addDisabledButton(3,"Tail-milk","Tail-milk","This requires a parasitic vagina tail to access.");
-	if(!pc.isTaur() && !pc.hasPregnancyOfType("LapinaraPregnancy") && pc.findEmptyPregnancySlot(0) != -1) addButton(4,"Get Stuffed",getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM,undefined,"Get Stuffed","Lie back and have the lapinara put that handsome ovi-dong to work. You'll probably get stuffed with more than just an ovipositor though....");
-	else if(pc.isTaur()) addDisabledButton(4,"Get Stuffed","Get Stuffed","The poor little rabbit-girl just can't line things up with your tauric anatomy. Sorry!");
-	else addDisabledButton(4,"Get Stuffed","Get Stuffed","It probably isn't a good idea to do this when you're already so pregnant.");
+	if(!pc.isTaur() && !pc.hasPregnancyOfType("LapinaraPregnancy") && pc.findEmptyPregnancySlot(0) != -1) addButton(4,"Get Stuffed",getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM,undefined,"Get Stuffed","Lie back and have the lapinara put that handsome ovi-dong to work. You’ll probably get stuffed with more than just an ovipositor though....");
+	else if(pc.isTaur()) addDisabledButton(4,"Get Stuffed","Get Stuffed","The poor little rabbit-girl just can’t line things up with your tauric anatomy. Sorry!");
+	else addDisabledButton(4,"Get Stuffed","Get Stuffed","It probably isn’t a good idea to do this when you’re already so pregnant.");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
@@ -440,10 +440,10 @@ public function getBlownByLapinara(cockNum:int = 0):void
 
 //Primary - Spread Eagle
 //Button Text: "Get Stuffed"
-//Button Tooltip: "Lie back and have the lapinara put that handsome ovi-dong to work. You'll probably get stuffed with more than just an ovipositor though…."
+//Button Tooltip: "Lie back and have the lapinara put that handsome ovi-dong to work. You’ll probably get stuffed with more than just an ovipositor though...."
 //Orifice Priority: A non-pregnant vagina, then non-pregnant anus
-//Prerequisites: A non-pregnant orifice that will accommodate the lapinara ovipositor. Can't be a taur, because the positions and description just wouldn't work. :(
-//Greyed-Out Text: "It probably isn't a good idea to do this when you're so pregnant."
+//Prerequisites: A non-pregnant orifice that will accommodate the lapinara ovipositor. Can’t be a taur, because the positions and description just wouldn’t work. :(
+//Greyed-Out Text: "It probably isn’t a good idea to do this when you’re so pregnant."
 
 public function lapiTrain(arg:int = 0, apply:Boolean = false):Number
 {
@@ -506,7 +506,7 @@ public function getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM():voi
 	if(pc.hasCock()) output(" The intense pressure wrings a new torrent of [pc.cum] out of your already-spurting [pc.cocksLight].");
 
 	output("\n\nThe bunny girl impregnating you forces out a yell, but you are too enraptured by your own pleasure to understand what was said. Your climax reaches new heights as an egg plops free of the ovipositor inside you. Before you can recover, you recognize the familiar pressure of another egg that’s already halfway to its destination. The pleasure from the first egg nestling inside you hasn’t subsided, ");
-	//{IF LapiTrain < 2 THEN}
+	// IF LapiTrain < 2 THEN
 	if(lapiTrain() < 2) output("and concern briefly penetrates the euphoric haze of your mind. <i>This orgasm won’t stop... I don’t know how much more I can handle... what if I can’t? What if it kills....</i>");
 	else output("and an eager greediness penetrates the haze of your euphoria. <i>Come my little egg baby, make me feel even better! I’ll be the best home for....</i>");
 	output(" The rampantly-growing pleasure from the second egg leaves you unable to form a coherent thought, replacing everything with nearly unbearable pleasure. Your unfocused [pc.eyes] stare blankly ahead, seeing only radiant white as your senses are overwhelmed by the pleasure of the second egg lodging inside you.");
@@ -525,7 +525,7 @@ public function getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM():voi
 
 	if(pc.hasCock()) applyCumSoaked(pc);
 
-	//{Two Options are possible: Ending 1 or Continuation 1.}
+	// Two Options are possible: Ending 1 or Continuation 1.
 	//Ending 1
 	//Button Text: <i>“It’s Enough”</i>
 	//Button Tooltip: <i>“You’ve spent enough time getting plowed, it’s time to move on.”</i>
@@ -534,11 +534,11 @@ public function getStuffedInTheStuffByStuffWithStuffForStuffFREEEEEEDOOOOM():voi
 	// LapiTrain of 1+ means continuation 1 will be available, so there won’t be a <i>“no available choices”</i> situation.
 	//Greyed-Out Text: <i>“There’s no way you could willingly leave with this hard meat still stretching you out inside.”</i>
 	clearMenu();
-	//Fen note: adjusted so if you're trained, you can only turn it down with good will, contrary to the check as written by the author
-	if((lapiTrain() >= 1 && pc.WQ() >= 50) || lapiTrain() < 1) addButton(0,"It's Enough",voluntaryEggEnding1,x,"It's Enough","You’ve spent enough time getting plowed, it’s time to move on.");
-	else addDisabledButton(0,"It's Enough","It's Enough","There’s no way you could willingly leave with this hard meat still stretching you out inside.");
+	//Fen note: adjusted so if you’re trained, you can only turn it down with good will, contrary to the check as written by the author
+	if((lapiTrain() >= 1 && pc.WQ() >= 50) || lapiTrain() < 1) addButton(0,"It’s Enough",voluntaryEggEnding1,x,"It’s Enough","You’ve spent enough time getting plowed, it’s time to move on.");
+	else addDisabledButton(0,"It’s Enough","It’s Enough","There’s no way you could willingly leave with this hard meat still stretching you out inside.");
 	//LapiTraining > 0 |or| eggTrainerTraining > 0 // |or| pc.libido > 75LapiTraining > 0 |or| eggTrainerTraining > 0 // |or| pc.libido > 75
-	//Fen note: this was a mess to me, so I just made it if you've done the training or have high libido.
+	//Fen note: this was a mess to me, so I just made it if you’ve done the training or have high libido.
 	if(lapiTrain() > 0 || flags["EGG_TRAINING"] != undefined || pc.libido() > 75) addButton(1,"Keep Going",lapinaraBonusInsemination1,x,"Keep Going","You’ve already started, why stop now? Why would you even want to?");
 	else addDisabledButton(1,"Keep Going","Keep Going","As enticing as it seems, you’re not sure if your body is ready to handle any more eggs just yet. Maybe once you’ve finished incubating these....");
 }
@@ -552,7 +552,7 @@ public function voluntaryEggEnding1(x:int):void
 	output("\n\nYou turn away, determined to go, and retrieve your gear. You dress in silence, neither of you speaking. When you’re, finished you glance backward over your shoulder, taking one last look at the resigned bunny before setting off across the sand.");
 	addLapinaraEgg(2);
 	processTime(5);
-	//{PC has lapinara egg pregnancy, pregnancyQuantity = 4}
+	// PC has lapinara egg pregnancy, pregnancyQuantity = 4
 	//Fen note: should be handled by "loadIn" calls.
 	output("\n\n");
 	CombatManager.genericVictory();
@@ -569,11 +569,11 @@ public function lapinaraBonusInsemination1(x:int):void
 	clearOutput();
 	lapinaraBust();
 	author("ThaumX");
-	output("Sure, it’s a decision, but it’s not like it’s a very hard one. It’s more about staying in charge of this encounter, anyway. Reaching up with both hands, you grope at the bunny’s small breasts, squeezing them before beginning to pinch and play with the firm nipples. You feel a small surge of pressure below, and your [pc.lips] turn upward in a naughty smile. Almost like prey pouncing on its predator, you wrap your [pc.legs] around the bunny’s soft thighs while your [pc.arms] clasp behind her back to pull her close to you. Once you feel the lapinara’s soft fur pressed against your [pc.skinFurScalesNoun], you lift your head to whisper in her large ear. \"<i>Don’t tell me you’re done already....</i>\" Almost immediately you feel an answer in the form of increased pressure from the swollen ovi-dong buried inside your [pc.vagOrAss " + x + "].");
+	output("Sure, it’s a decision, but it’s not like it’s a very hard one. It’s more about staying in charge of this encounter, anyway. Reaching up with both hands, you grope at the bunny’s small breasts, squeezing them before beginning to pinch and play with the firm nipples. You feel a small surge of pressure below, and your [pc.lips] turn upward in a naughty smile. Almost like prey pouncing on its predator, you wrap your [pc.legOrLegs] around the bunny’s soft thighs while your [pc.arms] clasp behind her back to pull her close to you. Once you feel the lapinara’s soft fur pressed against your [pc.skinFurScalesNoun], you lift your head to whisper in her large ear. <i>“Don’t tell me you’re done already....”</i> Almost immediately you feel an answer in the form of increased pressure from the swollen ovi-dong buried inside your [pc.vagOrAss " + x + "].");
 	output("\n\nThe futa bunny doesn’t even try to escape your grasp; your head drops back onto the sand as she leverages her hips to start making hard shallow thrusts. Your arousal from the previous orgasm apparently hasn’t faded much; in just a few short thrusts, you’re already racing back towards climax. The lapinara, however, is just getting started. After a short trial of getting used to the motion, she ratchets up her pace until she’s pounding inside of you like a jackhammer. With each thrust the bunny’s body slams against your groin, intensifying your pleasure.");
-	//{IF Orifice == Ass Then}
+	// IF Orifice == Ass Then
 	if(x < 0) output("\n\nThis intense fucking is completely different from the last time, sending what seems to be a whole new set of pleasure signals to your overloaded brain. Gone is the determined assault slowly reshaping your rectum. It has been replaced by rapid-fire waves of pressure on the flesh that’s already taken on the shape of its invader. The sensation would be more than enough for you to scream yourself hoarse in ecstasy, but the pleasure went past the point of vocalization some time ago. Some detached part of you mind wonders about the eggs already in your colon, but simply acknowledging that they’re probably fine is all your floating segment of consciousness can accomplish.");
-	//{ELSE pussy}
+	// ELSE pussy
 	else
 	{
 		output("\n\nThis intense fucking is completely different from the last time, sending what seems to be a whole new set of pleasure signals to your overloaded brain. Gone is the determined assault slowly prying open your cervix; it has been replaced by rapid-fire waves of pressure extending deep into the womb that’s already opened itself up to its invader. The sensation would be more than enough for you to scream yourself hoarse in ecstasy, but the pleasure went past the point of vocalization some time ago. As you’re pounded insensate, some detached part of you mind wonders about the eggs already nestled in your womb. Simply acknowledging that they’re probably fine is all your floating segment of consciousness can accomplish.");
@@ -584,13 +584,13 @@ public function lapinaraBonusInsemination1(x:int):void
 	else output("colon.");
 	output(" You can’t help but notice that the bunny’s fat ovi-dong is still firmly engorged, pointed rigidly into the air and glistening from the coating of your mixed juices.");
 
-	//{increment orgasm count by 2}
+	// increment orgasm count by 2
 	processTime(25);
 	pc.orgasm();
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(enemy,x);
 	else pc.loadInAss(enemy);
-	//{Choice between Ending 2 or Continuation 2}
+	// Choice between Ending 2 or Continuation 2
 	clearMenu();
 	if((lapiTrain() > 1 && pc.WQ() >= 50) || lapiTrain() <= 1 || !pc.hasVagina()) addButton(1,"Leave",lapinaraEggStuffEnding2,undefined,"Leave","You’re feeling great already, there’s no need to take advantage of your defeated foe any longer.");
 	else addDisabledButton(1,"Leave","Leave","You may think you’re satisfied, but your body has other ideas. It’s like it knows it should get more babies while it can, and you can’t seem to work up the willpower to refuse.");
@@ -619,9 +619,9 @@ public function lapinaraEggStuffEnding2():void
 
 	processTime(10);
 	pc.lust(15);
-	//{Apply vaginally/anally filled status as appropriate, 1800ml}
+	// Apply vaginally/anally filled status as appropriate, 1800ml
 	//Fen note: done in prev scene
-	//{PC has lapinara egg pregnancy, pregnancyQuantity = 6}
+	// PC has lapinara egg pregnancy, pregnancyQuantity = 6
 	addLapinaraEgg(4);
 	output("\n\n");
 	CombatManager.genericVictory();
@@ -638,7 +638,7 @@ public function continueToGetEggStuffedByLapiButtsPart2(x:int):void
 	clearOutput();
 	lapinaraBust();
 	author("ThaumX");
-	output("While still laying in the warm sand, you gaze at the lapinara catching her breath. Her soaked ovipositor seems as hard as ever, and you stare as the engorged shaft makes barely-noticeable bobbing motions in time with the bunny’s pulse. The fat ovi-dong is too rigid to move much, and if anything, it seems larger and more swollen than before. Moving your gaze downward, you take in the futa’s pseudo-sack, still stretched taut with a load of eggs. You get up, your [pc.legs] and [pc.arms] still shaky, to head over to your interim lover. You could come up with all sorts of excuses for why, but the simple fact is that you don’t want to wait anymore, not when there’s such a beautiful cock to impale yourself on only a few feet away.");
+	output("While still laying in the warm sand, you gaze at the lapinara catching her breath. Her soaked ovipositor seems as hard as ever, and you stare as the engorged shaft makes barely-noticeable bobbing motions in time with the bunny’s pulse. The fat ovi-dong is too rigid to move much, and if anything, it seems larger and more swollen than before. Moving your gaze downward, you take in the futa’s pseudo-sack, still stretched taut with a load of eggs. You get up, your [pc.legOrLegs] and [pc.arms] still shaky, to head over to your interim lover. You could come up with all sorts of excuses for why, but the simple fact is that you don’t want to wait anymore, not when there’s such a beautiful cock to impale yourself on only a few feet away.");
 	output("\n\nIn only a couple steps you’re next to the lapinara; her breathing has slowed, but her ovi-dick is still straining for release. You swing your [pc.leg] over her, and stand straddling her hips.");
 	if(pc.isHerm()) output(" Your [pc.groin] drip [pc.cum] and [pc.girlCum], along with a rivulet of lapinera spunk, onto the slim body beneath you.");
 	else if(pc.hasCock()) 
@@ -649,7 +649,7 @@ public function continueToGetEggStuffedByLapiButtsPart2(x:int):void
 	}
 	else if(pc.hasVagina()) output(" [pc.EachVagina] is soaked, dripping [pc.girlCum] along with a rivulet of lapinera spunk onto the slim body beneath you.");
 	else output(" A rivulet of lapinera spunk leaks out of you, splattering the slim body beneath you.");
-	//{END IF} {IF pc.milkRate > 0 THEN} 
+	// IF pc.milkRate > 0 THEN
 	if(pc.isLactating()) output(" The fluids are joined by occasional dribbles of [pc.milk] from your [pc.milkyNipples].");
 	output(" The horny bunny doesn’t seem to care though, she’s entirely focused on the [pc.race] body standing above her.");
 
@@ -669,7 +669,7 @@ public function continueToGetEggStuffedByLapiButtsPart2(x:int):void
 	{
 		output(" [pc.EachCock] slaps against the lapinara’s belly with each bounce, smearing it with your [pc.cumColor] pre.");
 	}
-	output(" The pleasurable ride doesn’t last long before you feel the lapinara arching her back beneath you. She thrusts upwards until her hefty ovipositor is hilted inside you, and only then do you feel the rippling pressure that indicates another egg is on the way. The sudden thrust is joined by a soft cry from the dick-girl. ‘<i>Ohh! Ohh.. I’m... I’m cumming!</i>’ She doesn’t drop back down, her instincts driving her to keep her rod deep inside until her eggs are in their new home. The sudden new sensation combines with lustful thoughts about the impending load, and you’re pushed over the edge into a rampaging climax. Your [pc.legs] go");
+	output(" The pleasurable ride doesn’t last long before you feel the lapinara arching her back beneath you. She thrusts upwards until her hefty ovipositor is hilted inside you, and only then do you feel the rippling pressure that indicates another egg is on the way. The sudden thrust is joined by a soft cry from the dick-girl. ‘<i>Ohh! Ohh.. I’m... I’m cumming!</i>’ She doesn’t drop back down, her instincts driving her to keep her rod deep inside until her eggs are in their new home. The sudden new sensation combines with lustful thoughts about the impending load, and you’re pushed over the edge into a rampaging climax. Your [pc.legOrLegs] go");
 	if(pc.legCount == 1) output("es");
 	output(" weak, unable to support you any longer, and your merged bodies crash down into the sand.");
 
@@ -684,7 +684,7 @@ public function continueToGetEggStuffedByLapiButtsPart2(x:int):void
 		if(pc.isSquirter()) output(", soaking the bunny’s fur until rivulets of the [pc.girlCumColor] fluid pour off of her to wet the sand");
 		output(".");
 	}
-	//{ELSE IF pc.hascock == true THEN}
+	// ELSE IF pc.hascock == true THEN
 	else if(pc.hasCock())
 	{
 		output("your [pc.cocks] erupt");
@@ -701,16 +701,16 @@ public function continueToGetEggStuffedByLapiButtsPart2(x:int):void
 	}
 	else output("your body shudders in impaled bliss.");
 	output(" The lapinara shouts ‘<i>eeh... eg... EGG!</i>’, and sure enough, you feel the egg knot stretching you as it travels up the burly ovipositor. Your orgasm explodes in intensity, but somehow you manage to avoid losing your senses like you did previously. It isn’t that this orgasm is weaker, just that you seem to have adapted somehow to the ridiculous pleasure. Though the world seems distant, you’re able to focus on the grimacing face of the lapinara as she works to deposit her egg. You finally get to experience the blossoming pleasure of the egg stretching out a new home for itself deep inside you, enjoying it in a way you hadn’t been able to in the past.");
-	output("\n\nYour orgasm doesn’t end, rather it simply starts fading slowly away. The bunny beneath you is panting, but it seems to be more out of pleasure than exertion. You would start riding the ovi-dong again to keep your orgasm going, but your [pc.legs] are just too weak to manage more than a few more bounces.");
+	output("\n\nYour orgasm doesn’t end, rather it simply starts fading slowly away. The bunny beneath you is panting, but it seems to be more out of pleasure than exertion. You would start riding the ovi-dong again to keep your orgasm going, but your " + (pc.legCount == 1 ? "[pc.leg] is" : "[pc.legs] are") + " just too weak to manage more than a few more bounces.");
 
 	processTime(25);
-	//{Player Becomes Sweaty? Not sure how this one works yet}
+	// Player Becomes Sweaty? Not sure how this one works yet
 	sweatyDebuff(1);
-	//{increment orgasm count by 1}
+	// increment orgasm count by 1
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(enemy,x);
 	else pc.loadInAss(enemy);
-	//{Choice between Ending 3 or Continuation 3}
+	// Choice between Ending 3 or Continuation 3
 	clearMenu();
 	if((lapiTrain() > 2 && pc.WQ() >= 50) || lapiTrain() <= 2) addButton(1,"Give Up",lapinaraImpregShitEnding3,undefined,"Give Up","The fact that you can hardly move anymore means that it’s probably time to call it quits. Besides, you have things to do.");
 	else addDisabledButton(1,"Give Up","Give Up","You know there are more of those wonderful eggs waiting for you in this cute bunny’s sack. There’s no way you can leave without at least <i>trying</i> to help them get where they belong.");
@@ -730,15 +730,15 @@ public function lapinaraImpregShitEnding3():void
 	clearOutput();
 	lapinaraBust();
 	author("ThaumX");
-	output("Putting all your strength into your [pc.legs], you lift yourself off the turgid ovi-dong that’s impaling you. Falling to your hands and knees in the sand, you crawl over to to where you discarded your gear. You’re still floating from the intensity of what you just experienced, and giddy with the contentment radiating from your new passengers. You stumble a bit as you stand up and start to pick up your gear. Your fumbling actions resemble those of a patient just waking up from general anesthetic. You don’t care, let alone notice, as you drunkenly pick up your things and once-again equip yourself for the harsh Tarkus desert.");
+	output("Putting all your strength into your [pc.legOrLegs], you lift yourself off the turgid ovi-dong that’s impaling you. Falling to your hands and knees in the sand, you crawl over to to where you discarded your gear. You’re still floating from the intensity of what you just experienced, and giddy with the contentment radiating from your new passengers. You stumble a bit as you stand up and start to pick up your gear. Your fumbling actions resemble those of a patient just waking up from general anesthetic. You don’t care, let alone notice, as you drunkenly pick up your things and once-again equip yourself for the harsh Tarkus desert.");
 	output("\n\nBy the time you finish the drawn-out process of getting dressed, you are far more steady on your feet. The harsh environment helped to pull you out of your erotic stupor, and you’re [pc.eyes] are able to take in your surroundings with a much clearer mind. You still feel a blissful sense of contentment, but it isn’t so powerful that it overwhelms your ability to handle yourself out here. You look over at the lapinara still laying in the sand. She has recovered, and is sitting up watching you get ready to depart. She gives you a cute smile when she notices you looking, but she doesn’t exactly look content. Still, she offloaded far more eggs than she had any right to expect, and seems to be grateful. Your thoughts are still hazy, but it makes you wonder what these parasitic females would be like if they didn’t have eggs driving them into rut all the time. You don’t put much thought into it though, because what point would there be if the cute little bunnies couldn’t fill you with eggs? You give the bunny girl a wave goodbye as you set off over the sand. You spend the next few minutes trying to clear your head and focus on what you have to do next.");
 	output("\n\nSome time later, you feel the lapinara anesthetic starting to wear off. Because you know what’s coming, you manage to sit down before the rush of pleasure hits you like an avalanche. The endless vibrations of pleasure have once again invaded your [pc.groin], and there’s nothing to do but sit back and enjoy it. After a few minutes that seem like hours, you’re back to normal and once again making your way across the junk-strewn sand.");
 
 	processTime(5);
 	pc.lust(20);
-	//{Apply vaginally/anally filled status as appropriate, 2400ml}
+	// Apply vaginally/anally filled status as appropriate, 2400ml
 	//Fen note: done in prev scene.
-	//{PC has lapinara egg pregnancy, pregnancyQuantity = 8}
+	// PC has lapinara egg pregnancy, pregnancyQuantity = 8
 	addLapinaraEgg(6);
 	output("\n\n");
 	CombatManager.genericVictory();
@@ -761,7 +761,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 	//IF LapiTrain == 4 THEN
 	if(lapiTrain() == 4) output("This isn’t your first time squeezing the most out of a defeated futa bunny, so you know exactly what to do. You lick your [pc.lips] as you prepare to get started, wondering if this time you’ll be able to completely empty the bunny’s pseudo-sack inside you.");
 	else output("Sitting on what is rapidly becoming your favorite spot, you run your hand through your [pc.hair] and ponder the problem of making your bunny cum. She may technically be female, but you figure that it’d probably work if you treated her like a normal male you wanted to milk.");
-	output(" When you prepare to reposition yourself, you find that your anticipation has restored some measure of strength to your [pc.legs]. You lift yourself halfway off the rod imbedded in you and start to turn your body. It’s a bit awkward, but before long you’re able to plop back down in a reverse cowgirl position. You sigh contentedly as your [pc.vagOrAss " + x + "] is once again full, momentarily distracted by a brief intensification of your fading orgasm. You won’t be sidetracked, however, and immediately continue your preparations. You take all the weight off your [pc.legs]");
+	output(" When you prepare to reposition yourself, you find that your anticipation has restored some measure of strength to your [pc.legOrLegs]. You lift yourself halfway off the rod imbedded in you and start to turn your body. It’s a bit awkward, but before long you’re able to plop back down in a reverse cowgirl position. You sigh contentedly as your [pc.vagOrAss " + x + "] is once again full, momentarily distracted by a brief intensification of your fading orgasm. You won’t be sidetracked, however, and immediately continue your preparations. You take all the weight off your [pc.legOrLegs]");
 	if(pc.legCount > 1 && pc.hasKnees()) output(", and leverage your [pc.hips] to splay your [pc.legsNoun] open wide and rest the heels of your [pc.feet] on the sand");
 	output(".");
 
@@ -785,7 +785,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 	output(" You use one hand to start gently kneading the lapinara’s ovary sack, while the other starts rubbing the rim of her tight anus. Both are already soaked with a mix of fluids, no doubt increasing the effect of your ministrations.");
 
 	//This is a short paragraph for futa players with a cock long enough for autofellatio. I am ‘changing’ the required length to 20% of height due to the situation. In humans (that aren’t overweight or have limits to their flexibility) 10% is sufficient for most people to perform autofellatio anyways. This won’t interfere with normal masturbation scenes, so should be fine. Of course, change it if you need to! ^_^
-	//{IF pc.cocks[n].cLength / pc.tallness >= 0.2 THEN}
+	// IF pc.cocks[n].cLength / pc.tallness >= 0.2 THEN
 	//Fen note: no cheating! Autofellatio requirements are what they are!
 	if(pc.canAutoFellate(-1))
 	{
@@ -793,13 +793,13 @@ public function finalLapinaraEggStuffScene(x:int):void
 		if(pc.biggestTitSize() >= 7) output("you force it between your tightly-squeezed [pc.biggestBreastDescript]. The tremendous member won’t be contained, however, and juts out proudly at your face.");
 		else output("you leverage it up towards your face.");
 		output(" This close, you can see the dribbling stream of [pc.cumColor] ejaculate in minute detail, your unending chemical orgasm forcing it out as fast as your body can produce it.");
-		//{IF pc has perk ‘Autofellatio Queen’ || ‘Auto-Autofellatio’ || ‘Dumb-4-Cum OR pcData.autofellatioTimes > 2 THEN}
+		// IF pc has perk ‘Autofellatio Queen’ || ‘Auto-Autofellatio’ || ‘Dumb-4-Cum OR pcData.autofellatioTimes > 2 THEN
 		if(pc.hasPerk("Autofellatio Queen") || pc.hasPerk("Auto-Autofellatio") || pc.hasPerk("Dumb4Cum")) output(" You can’t resist that delicious [pc.cum], and you suck your [pc.cockHeadBiggest] past your [pc.lips] without a second thought. Savoring the flavor of your own [pc.cum], you almost forget the reason for putting in your mouth in the first place. Though you’d probably do it regardless, you suck hard on your [pc.cockHeadBiggest] to help keep it from escaping.");
 		else output(" Your mind is too busy trying to focus on your goal through the rampant pleasure, and you simply don’t stop to consider what you’re about to do. You pop your [pc.cockHeadBiggest] into your mouth, sucking it deeper to help hold it in place.");
 		output(" Your [pc.cockBiggest] now out of the way, you return your hand and begin kneading the buny’s pseudo-sack once more.");
-		//{proc Autofellatio Queen energy gain}
+		// proc Autofellatio Queen energy gain
 		//Fen Note: Done automatically via loadInMouth below :3
-		//{proc oral cumflation, amount = pc.ballEfficiency * 200ml * pc.refractoryRate} // by default this would work out to 3*200=600, 600*1=600ml. Players with higher efficiency or refractory rate will have consumed more. (a ‘boosted’ player might swallow 25*200*3 for 15,000ml) The idea is that the pc is leaking cum about as fast as it’s made, so cumflation amount would depend on their production during the event.
+		// proc oral cumflation, amount = pc.ballEfficiency * 200ml * pc.refractoryRate // by default this would work out to 3*200=600, 600*1=600ml. Players with higher efficiency or refractory rate will have consumed more. (a ‘boosted’ player might swallow 25*200*3 for 15,000ml) The idea is that the pc is leaking cum about as fast as it’s made, so cumflation amount would depend on their production during the event.
 		//Fen note - I think 3 orgasms worth is plenty.
 		pc.ballFullness = 100;
 		pc.loadInMouth(pc);
@@ -807,7 +807,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 		pc.loadInMouth(pc);
 		pc.ballFullness = 100;
 		pc.loadInMouth(pc);
-		//{END IF}
+		// END IF
 	}
 	output("\n\nIt would seem that lapinara are sensitive to ovary play, or at least your particular bunny has become sensitive, because you’ve been hearing moaning the whole time you’ve been playing with her exposed sack. As for yourself, that last whopper of an orgasm keeps going... Perhaps that intense girlcum being pumped into you has something to do with it. Whatever the reason, you certainly won’t complain. If you were more cognizant, you might even consider preserving some fresh samples to send to Steele Tech, to be licensed off as a pleasure enhancement chem. You’ve been massaging the bunny’s full sack and pert tailhole for a few minutes now, but the erotic noises from behind you aren’t getting any more intense. If anything, the moans have taken on a certain needy quality, as if desperate for release. Suddenly, you feel the bunny’s paws gripping your [pc.hips], trying futilely to pull you down further. You know what that means! ");
 	if(pc.canAutoFellate(-1)) output("You attempt to smile around the [pc.cockHeadBiggest] stuffed in your mouth, and prepare to send the desperate bunny over the edge.");
@@ -819,7 +819,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 	output(" Even through the distracting bliss, you’re surprised when you feel the scrotum squeezed in your hand suddenly deflate a little, one of the eggs inside sucked out by some miracle of anatomy. Moments later, you feel the lapinara’s ovipositor bulge outward inside you, as the egg begins its journey down the thick egg layer. The egg finally arrives in its new home after a journey that seemed to last forever. The sensation is just as intense as before, and you only manage to keep squeezing the bunny’s egg sack because you brain was too busy to let your hand muscles relax. Regardless of the reason, your persistence is rewarded when you feel the sack shrink once more.");
 
 	//This part is a sort of reward for players with the broodmother perk. Instead of passing out with the second egg, the PC manages to milk the bunny dry before passing out. It’s hinted at in the beginning of Cont. 3, where the PC mentions finally getting all the eggs.
-	//{IF LapiTrain == 4 THEN}
+	// IF LapiTrain == 4 THEN
 	if(lapiTrain() == 4)
 	{
 		output("\n\nYou steel yourself for the onslaught of pleasure you know is coming, attempting to focus exclusively on the somewhat deflated bag cupped in your hand. When you feel the next egg bolus sliding into you, you bite your [pc.lip], using the pain to help keep you in control. You squeeze the bunny’s egg sack harder, and push like you’re trying to shove the whole thing back inside her body. Your efforts bear fruit, and you feel the eggs being sucked up toward the lapinara’s ovipositor one-by-one. One, two, ");
@@ -832,7 +832,7 @@ public function finalLapinaraEggStuffScene(x:int):void
 		if(x >= 0) pc.loadInCunt(enemy,x);
 		else pc.loadInAss(enemy);
 	}
-	//{ELSE}
+	// ELSE
 	else
 	{
 		output("\n\nYou thought you had adapted to the ludicrous pleasure, but it seems your assumption was premature. The overwhelming pleasure erupting from the new egg knot stretching its way inside you blows away your ability to reason. All there is, everything, becomes ecstasy as the overdose of fem cum completely overloads your brain. Your [pc.face] goes slack while your [pc.eyes] stare blankly into space. Your body slumps over, only held upright by the thick ovipositor that now makes up the core of your existence. When the egg finally lodges inside you, the burst of pleasure shoots you past the breaking point. You lose consciousness, your mind too tired for anything but dreamless sleep.");
@@ -858,9 +858,9 @@ public function finalEggSlutWrapup(randEggs:Number):void
 	output(" You feel simply <i>amazing</i>, you feel so content that you’re practically bubbling with happiness. You take a moment lying in the warm sand to just appreciate everything, all the while enjoying the giddiness suffusing you. Despite the contentment and overall ecstatic mood, you still seem to be clear headed. It just seems that the more eggs you have inside you, the more powerful the effect of their combined hormones. You might enjoy... hell, you love a good egging, but you know it isn’t for everyone. Maybe one day when you’re in charge of Steele Tech, you can have them figure out how to distill whatever these eggs do into a pill. It’d probably make a fortune.");
 	output("\n\nAfter a few more minutes of blissful contemplation, you finally sit up and take a look around. You don’t see your lover bunny anywhere, but you do see that all of your stuff has been neatly stacked a few feet away from you. You can also make out the drag marks and occasional footprint left in the sand from when the lapinara moved you over here. It seems she was plenty appreciative about you taking so many eggs off her hands, or out of her sack, as it were. After spending a few more minutes thinking about your cute futa bunny, you stand up and start getting ready to depart. Soon you’re setting off across the desert once more, but this time you have a spring in your step and a smile on your face.\n\n");
 	
-	//{increment orgasm count by 1}
+	// increment orgasm count by 1
 	pc.orgasm();
-	//{IF player has broodmother perk THEN}
+	// IF player has broodmother perk THEN
 	if(pc.hasPerk("Broodmother"))
 	{
 		//Apply vaginally/anally filled status as appropriate, 5000ml
@@ -885,12 +885,12 @@ public function addLapinaraEgg(arg:Number):void
 {
 	for (var i:int = 0; i < pc.pregnancyData.length; i++)
 	{
-		pc.pregnancyData[i];
+		//pc.pregnancyData[i];
 		if(pc.pregnancyData[i].pregnancyType == "LapinaraPregnancy") 
 		{
-			output(" OLD EGGS: " + pc.pregnancyData[i].pregnancyQuantity);
+			//output("\nOLD EGGS: " + pc.pregnancyData[i].pregnancyQuantity);
 			pc.pregnancyData[i].pregnancyQuantity += arg;
-			output("\n NEW EGGS: " + pc.pregnancyData[i].pregnancyQuantity);
+			//output("\n NEW EGGS: " + pc.pregnancyData[i].pregnancyQuantity);
 			pc.addPregnancyBellyMod(i, arg*5, false);
 		}
 	}
@@ -944,7 +944,7 @@ public function lapinaraBirthinBuhbies2(pregSlot:int):void
 	if(pc.fertilityRaw < 10) pc.fertilityRaw++;
 	if(pc.pregnancyIncubationBonusMotherRaw < lapiTrain()) pc.pregnancyIncubationBonusMotherRaw++;
 	//Give Deep Lapinara Heat Status Effect
-	pc.createStatusEffect("Heat", 5, 25, 10, 3, false, "LustUp", "Now that you're no longer gestating any eggs or nursing any bunnies you have an insatiable need to breed. Perhaps you should avoid people if you don't want to succumb to your desires and get pregnant again.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage", false, 28800, 0xB793C4);
+	pc.createStatusEffect("Heat", 5, 25, 10, 3, false, "LustUp", "Now that you’re no longer gestating any eggs or nursing any bunnies you have an insatiable need to breed. Perhaps you should avoid people if you don’t want to succumb to your desires and get pregnant again.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage", false, 28800, 0xB793C4);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

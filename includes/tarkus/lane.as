@@ -1582,7 +1582,7 @@ public function lanePostApplyEffect(selectedService:String):void
 			break;
 
 		case HYPNO_STAT_INT:
-			output(" this very situation reminds you of this one time you were being quizzed in middle school. You remember the teacher, your classmates, and the class so perfectly… you even remember the quiz, and each of its questions, and more importantly, each of their answers. <b>Your intelligence is better than ever!</b>");
+			output(" this very situation reminds you of this one time you were being quizzed in middle school. You remember the teacher, your classmates, and the class so perfectly... you even remember the quiz, and each of its questions, and more importantly, each of their answers. <b>Your intelligence is better than ever!</b>");
 			break;
 
 		case HYPNO_STAT_WILL:

@@ -633,7 +633,7 @@ package classes.Items.Transformatives
 				//If no tail
 				if (target.tailType == 0 || target.tailCount == 0)
 				{
-					output("\n\nA piercing pain suddenly strikes your back, as if your spine were being stretched. You double over, clutching your stomach until the pain subsides. When you stand back up, you nearly topple over backwards as you notice a new weight on your body… a large, thick reptilian tail extends from your tailbone. You swish it back and forth, getting used to its bulk.");
+					output("\n\nA piercing pain suddenly strikes your back, as if your spine were being stretched. You double over, clutching your stomach until the pain subsides. When you stand back up, you nearly topple over backwards as you notice a new weight on your body... a large, thick reptilian tail extends from your tailbone. You swish it back and forth, getting used to its bulk.");
 				}
 				//If PC has a tail
 				else
