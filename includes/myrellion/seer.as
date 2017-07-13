@@ -8,8 +8,10 @@ import classes.Items.Miscellaneous.YTRLube;
  * SEER_MET		1 if Seer has introduced herself, else undefined
  * SEER_LOUNGE	1-2, 1 if done the lounge option, 2 if done her sex menu, else undefined
  * SEER_SEXED	1-INFINITY how many times you borked Seer, undefined if not sexed her
- * USED_WISP	1 if done Wisp, else undefined - should be set by the wisp item
+ * USED_WISP	1 if done Wisp, else undefined - needs be set by the wisp item
  * 
+ * Using the name "WiffOWisp" for the status effect check for the bad end if you overdose, may need to change once it's implemented.
+ * Adding the unique items to her inventory is commented out as they aren't implemented yet.
  */
 
 public function showSeer(nude:Boolean = false):void
@@ -35,8 +37,7 @@ public function entiteExteriorShitz():void
 {
 	if (!entiteAvailable())
 	{
-		//flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
-		output("\n\nIt’s funny, you could’ve sworn that where you’re standing had a shop right next to you. Something purplish and… ah whatever, it’s probably just deja vu kicking you round the head again.");
+		output("\n\nIt’s funny, you could’ve sworn that where you’re standing had a shop right next to you. Something purplish and... ah whatever, it’s probably just deja vu kicking you round the head again.");
 	}
 	else output("\n\nThere’s a familiarly Terran-looking shop just to your side. It’s old looking and the shop front seems medieval in design. Calligraphic letters spell out ‘The Entite’ in gold lettering over a purple sign that hangs above the solid wooden door. You get the feeling you’ve already been there before, maybe in another, more whimsical lifetime.");
 
@@ -109,7 +110,7 @@ public function approachSeer():void
 	setupShopSeer();
 	if (silly) addButton(0, "Shop", buyItem, undefined, "Shop", "Heh, heh, you wanna buy a... funnel cake??");
 	else addButton(0, "Shop", buyItem, undefined, "Shop", "What kinds of insanity does money buy these days?");
-	addButton(1, "Appearance", appearanceSeer, undefined, "Appearance", "At least she’s nice to look at… and probably won’t even notice you doing it.");
+	addButton(1, "Appearance", appearanceSeer, undefined, "Appearance", "At least she’s nice to look at... and probably won’t even notice you doing it.");
 	addButton(2, "Talk", talkSeer, undefined, "Talk", "What’s her story? Do you even really want to know?");
 	if (flags["SEER_LOUNGE"] != undefined) addButton(3, "Sex", sexSeer, undefined, "Sex", " Apparently ‘it has to be’!");
 	else addDisabledButton(3, "Sex", "Sex", "That’s a bit of a nosedive, she hasn’t expressed interest... yet.");
@@ -122,6 +123,7 @@ public function setupShopSeer():void
 	shopkeep.inventory.push(new Rainbotox);
 	shopkeep.inventory.push(new YTRLube);
 	shopkeep.inventory.push(new Tentacool);
+	//9999 - THESE CAN BE ADDED TO HER INVENTORY ONCE THEY'RE IMPLEMENTED
 	//shopkeep.inventory.push(new Capraphorm);
 	//shopkeep.inventory.push(new Illumorphene);
 	//shopkeep.inventory.push(new WiffOWisp);
@@ -145,7 +147,7 @@ public function appearanceSeer():void
 	{
 		output("\n\nIf you focus on her as a memory, you recall your experiences with the shopkeeper and what her true nature is.");
 		output("\n\nAh, of course! You remember why she has her right arm covered... and the reason is still stomach-turning. Underneath, instead of the expected human arm, there are three greyish-purple tentacle-like appendages that tightly wrap together. Near the ends, the writhing flesh stalks taper off to a soft, membranous point like octopus legs without the suckers. There’s a smaller appendage also near the middle of each main tentacle, essentially giving her ‘arm’ six ‘fingers.’ She has an extreme measure of control over them, as you’ve borne witness to before and they can extend to her entire body length if she chooses.The tenta-tips tend to ooze a strange fluid from unseen pores.");
-		if (flags["SEER_LEZ"] != undefined) output("\n\nAnd yes! Her chest is covered in a way that raises concern. " + (pc.hasNormalNipples() ? "For some unholy reason," : "Much like you and your [pc.nipples],") + " her milkmakers hide surprises! When she wills it, both her areola extend into three tentacular forms with a 2’’-wide hole in the middle. The appendages extend to almost a foot in length themselves, a similar shape and color to her right ‘arm’s’ manipulators. When extended, they grasp needily for something to latch on to, clamp down on or otherwise ensnare with slippery, slimy sensations. Inside her mouth hides one more foot-long tentacle, dripping in unpleasant saliva when let loose.");
+		if (flags["SEER_LEZ"] != undefined) output("\n\nAnd yes! Her chest is covered in a way that raises concern. " + (pc.hasNormalNipples() ? "For some unholy reason," : "Much like you and your " + (pc.hasDickNipples() ? "[pc.dickNipples]" : "[pc.nipples]") + ",") + " her milkmakers hide surprises! When she wills it, both her areola extend into three tentacular forms with a 2’’-wide hole in the middle. The appendages extend to almost a foot in length themselves, a similar shape and color to her right ‘arm’s’ manipulators. When extended, they grasp needily for something to latch on to, clamp down on or otherwise ensnare with slippery, slimy sensations. Inside her mouth hides one more foot-long tentacle, dripping in unpleasant saliva when let loose.");
 		output("\n\nHer skin hides something else in the form of geometric, linguistic markings and spirals that tend to glow a mild pink. Some designs seem recognisable while others are so alien that they would give you a physical headache if you stared too long.");
 		output("\n\nThe rest of her naked body is relatively normal: A groomed, tight Terran pussy hides between her thighs and her perky butt is rather cute, all things considered...");
 	}
@@ -219,7 +221,7 @@ public function topicShopSeer():void
 	output("\n\n<i>“Ah, aha! Yes, they’d say that. They would... the shop is merely an extension of my being, so to speak. I see parts of me in all of its corners, the candles, the seclusion, the search for wonder! Were I to not see, this place would melt away and perhaps be a nice, clean wall that a set of yellow drapes would cover,”</i> she says, cryptic as always but oddly sincere all the same.");
 	output("\n\nShe points to a wall of gemstones on shelves, some you could make a guess at - rubies, peridot, non-native pieces certainly - while others are so utterly alien and strange that you’re not even convinced they’re from the same galaxy. There’s a green orb of marble-like material that seems to float three inches off of the shelf on its own, while another gravel-like ring of stones constantly emits, refracts, then dulls with a baby blue glow.");
 	output("\n\n<i>“All these have a place in here and one out there. Only when the right key is found do they leave. Most are content with where they are, especially him,”</i> she explains, pointing to a human-like idol near the counter.");
-	output("\n\n<i>“But for simpler needs, I much like these transformatives and mutationals. A little closer to a certain truth, perhaps. Plus, Envyoidics is a very sharp company and enjoys the arrangement we have,”</i> she says with a smug tone of voice. ");
+	output("\n\n<i>“But for simpler needs, I much like these transformatives and mutationals. A little closer to a certain truth, perhaps. Plus, Envyoidics is a very sharp company and enjoys the arrangement we have,”</i> she says with a smug tone of voice. Huh. Guess that’s some obscure brand that isn’t well known in U.G.C...");
 	output("\n\nYou ask her what makes them a particular supplier, keeping to the train of thought she made before she derails it herself.");
 	output("\n\n<i>“Oh, such history! A way of capturing what was and will be into what is. I am enthralled with this one, this ‘Illumorpheme’,”</i> she exclaims, reaching for a small box inside the glass case behind the counter. She holds it in her palm: A fancy black box with a beautiful moth shape on top of it, an antiquated brass lock keeping it closed.");
 	output("\n\n<i>“Even this box, beauty incarnate to me. To you too, et tu? Maybe more so than me?”</i>");
@@ -425,13 +427,12 @@ public function yesDommeSeer():void
 	output("\n\n<i>“Some more secrets...”</i>");
 	output("\n\nBefore you can ask, she flings the robe off to the side.");
 	output("\n\nWhat you’re greeted with is unlike anything you could’ve dreamt of..");
-	output("\n\nInstead of a human arm, three thick-meated, grayish purple tentacle limbs undulate and squirm from the Seers right shoulder. Each has another, smaller tentacle attached, making six in total. Before you can even word your reaction, they lash out around your midsection!");
+	output("\n\nInstead of a human arm, three thick-meated, grayish purple tentacle limbs undulate and squirm from the Seer's right shoulder. Each has another, smaller tentacle attached, making six in total. Before you can even word your reaction, they lash out around your midsection!");
 	output("\n\nThe slimey, warm squeeze of the Seer’s manipulators pulls you closer to her. You try to force them off of you but their strength of grip is immense! They must be at least 6’ in length, able to wrap around your middle with ease it would seem.");
 	output("\n\nAs she reels you in, two of the writhing feelers slink and slither across your neck to your [pc.face], prodding and teasing your [pc.lips] to let them inside.");
 	output("\n\n<i>“So many ways... I wonder what fate leads us to?”</i>");
 	
-	if (flags["SEER_SEXED"] == undefined) flags["SEER_SEXED"] = 0;
-	flags["SEER_SEXED"]++;
+	IncrementFlag("SEER_SEXED");
 	
 	if (!pc.isTaur() && (pc.hasVagina() || pc.hasCock())) addButton(0, "TentaDomme", tentaSeer, undefined, "TentaDomme", "You’re gonna get filled in so many different ways.");
 	else addDisabledButton(0, "TentaDomme", "TentaDomme", "You must have a cock or vagina, and not be a taur.");
@@ -459,8 +460,7 @@ public function yesSexSeer():void
 	output("\n\nWelp? It really is too late to turn back now.");
 	output("\n\n<i>“Now what do we do with this one...”</i> coos the Seer, tilting her head to the side.");
 	
-	if (flags["SEER_SEXED"] == undefined) flags["SEER_SEXED"] = 0;
-	flags["SEER_SEXED"]++;
+	IncrementFlag("SEER_SEXED");
 	
 	if (!pc.isTaur() && (pc.hasVagina() || pc.hasCock())) addButton(0, "TentaDomme", tentaSeer, undefined, "TentaDomme", "You’re gonna get filled in so many different ways.");
 	else addDisabledButton(0, "TentaDomme", "TentaDomme", "You must have a cock or vagina, and not be a taur.");
@@ -571,7 +571,7 @@ public function lezSeer2():void
 	showSeer();
 	clearMenu();
 	
-	output("\n\nThrough the peripheral view below you, you see the Seers tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
+	output("\n\nThrough the peripheral view below you, you see the Seer's tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
 	if (pc.hasTailGenital()) output("\n\nYour " + (pc.hasTailCock() ? "[pc.tailCock]" : "[pc.tailCunt]") + " is ensnared in sync: a fleshy, slimy appendage squeezes and teases against its sensitive surface.");
 	output("\n\nHer tenta-nips completely engorge themselves on your " + (pc.hasDickNipples() ? "[pc.dicknipples]" : "[pc.milkyNipples]") + ". It appears there’s a hidden orifice nestled in between her nipple-feelers and they’re warm, comforting confines pleasure your nerves and [pc.nipples] to no end.");
 	output("\n\nIn one final demonstration of her complete physical control over your body, a thick squirming tentacle pushes itself without hesitation into your [pc.pussy]! It slithers and grinds against the soft, sensitive flesh inside you like some primordial monster!");
@@ -663,6 +663,28 @@ public function wispedSeer2():void
 	showSeer();
 	clearMenu();
 	
+	//Bad End due to already being under the effects of the wispy and overdosing - May need to change name of status effect once it's implemented
+	if (pc.hasStatusEffect("WiffOWisp"))
+	{
+		output("Ooo, these are some fancy colors. Your eyes start being able to see the past interactions you’ve had with every living thing in the past 24 hours. Not that you can actually tell who or what those things are as they take the form of amorphous grey blobs.");
+		output("\n\nThe imagery becomes more and more distorted, noise and static tearing away at the edges of your minds projected vision. Each new scene becomes darker, blurrier and more disorienting but at the same time you can feel yourself becoming a part of each scene as observer, director and participant!");
+		output("\n\nAt the nadir of this dark and twisted world’s hold on you, you’re alone yet free: arms and legs floating and flying into a foggy abyss of what could be anything...");
+		output("\n\nBut then, light.");
+		output("\n\nSoft light. Purple light. Amaranthine light...");
+		output("\n\nAs a scene blurs into view, you can see... the Entite. You’re... up, somewhere. You can see the curtains of the lounge.");
+		output("\n\nOh hey, you’re over there! But how can you be over here if you’re over there and... where’s the Seer?");
+		output("\n\nA pair of amber, glowing orbs slowly move from the right into your field of view. Sharp static sounds come forth as they hover and blaze. And they move out of range...");
+		output("\n\nYou try to look around you.");
+		output("\n\nYou’re on a... shelf??");
+		output("\n\nOh.");
+		output("\n\nYou’ve become a curio along the walls of the Entite, destined to live out your days as a pair of eyes and nothing more.");
+		output("\n\nStill, could be worse.");
+		
+		badEnd();
+		return;
+	}
+	
+	//Regular trips
 	switch(rand(3))
 	{
 		case 0:
