@@ -263,7 +263,12 @@ public function appearance(forTarget:Creature):void
 				else output2(". Instead you have a toothy reptilian muzzle, making your visage rather unsettling");
 			}
 			output2(".");
-			if((target.hasFeathers() || target.hasScales() || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) && target.hasMuzzle() && !target.hasBeak()) output2(" It is adorned with " + faceFurScales + ", completing the image.");
+			if(target.hasFeathers() || target.hasScales() || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED))
+			{
+				output2(" It is adorned with " + faceFurScales);
+				if(target.hasMuzzle() && !target.hasBeak()) output2(", completing the image");
+				output2(".");
+			}
 			else output2(" The lack of feathers on your " + target.skinNoun() + " look rather strange.");
 			if(target.hasBeak() && !target.hasFeathers() && !target.hasFur() && target.isBald()) output2(" You somewhat resemble a vulture.");
 			break;

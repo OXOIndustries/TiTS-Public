@@ -1497,7 +1497,11 @@
 			var desc: String = firstLetter + restOfString;
 			//var desc = arg;
 			var buffer: String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
-			if (!arg2) arg2 = 0;
+			if (!arg2)
+			{
+				if(desc == "clits") arg2 = -1;
+				else arg2 = 0;
+			}
 			switch (desc) {
 				case "height":
 					buffer = height();
@@ -13130,7 +13134,7 @@
 				if (vaginas[pussy].clits == 1) return clitDescript(pussy);
 				return plural(clitDescript(pussy));
 			}
-			if (totalClits() > 1) return plural(clitDescript());
+			if (totalClits() != 1) return plural(clitDescript());
 			return clitDescript();
 		}
 		public function clitDescript(pussy: Number = -1, nounOnly:Boolean = false): String {
