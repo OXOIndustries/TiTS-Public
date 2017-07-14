@@ -27,9 +27,11 @@ public function encounterALapinara():void
 	}
 	IncrementFlag("ENCOUNTERED_PARASITIC_LAPINARA");
 	
+	var lapButt:LapinaraFemale = new LapinaraFemale();
+	if(!pc.hasPregnancyOfType("LapinaraPregnancy")) lapButt.impregnationType = "LapinaraPregnancy";
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors(new LapinaraFemale());
+	CombatManager.setHostileActors(lapButt);
 	CombatManager.victoryScene(defeatDatLapinara);
 	CombatManager.lossScene(loseToFemaleLapinara);
 	CombatManager.displayLocation("LAPINARA (F)");
