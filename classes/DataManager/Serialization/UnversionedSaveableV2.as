@@ -119,27 +119,6 @@ package classes.DataManager.Serialization
 					this[key] = CreateSubInstance(saveObject[key].classInstance);
 					this[key].loadSaveObject(saveObject[key]);
 				}
-				else if (saveObject[key] is Object)
-				{
-					this[key] = { };
-					
-					for (var objKey:String in saveObject[key])
-					{
-						if (saveObject[key][objKey].hasOwnProperty("classInstance"))
-						{
-							this[key][objKey] = CreateSubInstance(saveObject[key][objKey].classInstance);
-							this[key][objKey].loadSaveObject(saveObject[key][objKey]);
-						}
-						else if (SerializationUtility.IsBasicType(saveObject[key][objKey]))
-						{
-							this[key][objKey] = saveObject[key][objKey];
-						}
-						else
-						{
-							throw new Error("Unhandled serialization type in subobject.");
-						}
-					}
-				}
 				else if (saveObject[key] is Array)
 				{
 					if (saveObject[key].length > 0)
@@ -158,6 +137,27 @@ package classes.DataManager.Serialization
 						else
 						{
 							this[key] = saveObject[key].slice();
+						}
+					}
+				}
+				else if (saveObject[key] is Object)
+				{
+					this[key] = { };
+					
+					for (var objKey:String in saveObject[key])
+					{
+						if (saveObject[key][objKey].hasOwnProperty("classInstance"))
+						{
+							this[key][objKey] = CreateSubInstance(saveObject[key][objKey].classInstance);
+							this[key][objKey].loadSaveObject(saveObject[key][objKey]);
+						}
+						else if (SerializationUtility.IsBasicType(saveObject[key][objKey]))
+						{
+							this[key][objKey] = saveObject[key][objKey];
+						}
+						else
+						{
+							throw new Error("Unhandled serialization type in subobject.");
 						}
 					}
 				}

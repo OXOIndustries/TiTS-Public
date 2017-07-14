@@ -23,7 +23,6 @@ package classes.GameData.Pregnancy.Handlers
 	 */
 	public class LapinaraPregnancyHandler extends BasePregnancyHandler
 	{
-		
 		public function LapinaraPregnancyHandler() 
 		{
 			_handlesType = "LapinaraPregnancy";
@@ -43,9 +42,9 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			_pregnancyChildRace = GLOBAL.TYPE_LAPINARA;
 			
-			_childGenderWeights.Male = 0.33;
-			_childGenderWeights.Female = 0.33;
-			_childGenderWeights.Intersex = 0.34;
+			_childGenderWeights.Male = 33;
+			_childGenderWeights.Female = 33;
+			_childGenderWeights.Intersex = 34;
 			
 			/*Example: 
 			this.addStageProgression(4760, function(pregSlot:int):void {
