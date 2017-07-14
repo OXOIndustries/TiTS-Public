@@ -1035,7 +1035,7 @@ public function sielCodexEntry():void
 public function saurmorianCodexEntry():void
 {
 	clearOutputCodex();
-	showChaurmine();
+	showBust("CHAURMINE");
 	author("Aullama");
 	outputCodex(header("Saurmorians"));
 	outputCodex("<i>Hot-blooded dinosaurs from outer space.</i>\n\n");
