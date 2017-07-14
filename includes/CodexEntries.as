@@ -41,7 +41,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saurmorians",saurmorianCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Simii", simiiCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Suulas", suulaCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Suulas", suulaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Tarratch", tarratchCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Toves", toveCodexEntry);
@@ -72,15 +72,15 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
-
+	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Essyras", essyraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Korgonne", korgonneCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Lurelings", lurelingsCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Milodan", milodanCodexEntry);
-
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Divrani", divraniCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Hyraxxi", hyraxxiCodexEntry);
+	
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Divrani", divraniCodexEntry);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Hyraxxi", hyraxxiCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko IVs", VKoIVsCodex);
@@ -144,14 +144,14 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: II", bxbiChapter2Story);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Captured...", capturedByTheDemons);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Captured...", capturedByTheDemons);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Diverting Jokes", DivertingTarkusJokesAndJests);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck the System", fuckTheSystem);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Stolen Goods", stolenGoodsStory);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tentacles & Tanukis", tentacleTroubleForTurnedOnTanukis);	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tentacles & Tanukis", tentacleTroubleForTurnedOnTanukis);
 }
 
 public function codexHomeFunction():void
@@ -492,7 +492,7 @@ public function galotianCodexEntry():void
 	outputCodex("\n<b>Height & Weight:</b> Highly variable");
 	outputCodex("\n<b>Coloration:</b> Highly variable, typically matches the local environs for camouflage purposes.");
 	outputCodex("\n<b>Lifespan:</b> Indefinite. Galotians show no signs of aging or cellular degeneration.");
-	outputCodex("\n\n");	
+	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
 	outputCodex("Galotians were the first species encountered with any true shape-shifting potential. Discovered during the chaotic second Planet Rush, they were originally thought to be hostile predators. Early explorers fought tooth and nail to stop themselves from being enveloped in the horrifying blobs of goo that rolled out of Galotia’s swamps with little success.");
 	outputCodex("\n\nThese unfortunate first victims often did not survive the curious creature’s attentions. The galotians did not understand most species’ need to be exposed to gaseous oxygen in order to remain alive. Rather than devour the resulting corpses, the living oozes spat out the lifeless bodies and lumbered away. For no explicable reason, ‘Attacks’ died away almost entirely after the first week of contact with the rest of the galaxy. Plans to declare the planet unfit for colonization were scuttled, and more and more visitors came to the wet, swampy planet, seeking riches amongst the muck.");

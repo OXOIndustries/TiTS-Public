@@ -90,7 +90,11 @@ public function azraBonusProc(btnSlot:int = 0):Boolean
 		if(pc.tallness < 84) output("bends her impressive stature low in order to make eye contact");
 		else output("looks you square in the eye");
 		output(". <i>“Pardon me, are you a rush captain?”</i> The gentle voice is entirely at odds with her imposing appearance and shiny new armor. The woman pulls back her hood to reveal the shark-like face of a gold-skinned suula, framed in a halo of wavy burnished hair.");
-		if(CodexManager.entryUnlocked("Suulas")) output("\n\n{In the background, your Codex quietly announces that it has compiled an article on the race for your later perusal.");
+		if(!CodexManager.entryUnlocked("Suulas"))
+		{
+			output("\n\nIn the background, your Codex quietly announces that it has compiled an article on the race for your later perusal.");
+			CodexManager.unlockEntry("Suulas");
+		}
 		output("\n\nYou ");
 		if(pc.isBimbo()) output("nod rapidly at the amazonian alien.");
 		else if(pc.isNice()) output("give a friendly nod. <i>“You guessed it.”</i>");
@@ -519,7 +523,14 @@ public function talkToAzraAboutHerRace():void
 	if(pc.isNice()) output("answers,");
 	else if(pc.isMischievous()) output("blushes.");
 	else output("rolls her eyes.");
-	output(" <i>“I’m a suula, but if you prefer something simpler, you can call me a siren. Just don’t expect me to burst into song. My daughters long ago disabused me me of any notion of talent.”</i>");
+	output(" <i>“I’m a suula, but if you prefer something simpler, you can call me a siren. Just don’t expect me to burst into song. My daughters long ago disabused me of any notion of talent.”</i>");
+	
+	if(!CodexManager.entryUnlocked("Suulas"))
+	{
+		output("\n\nIn the background, your Codex quietly announces that it has compiled an article on the race for your later perusal.");
+		CodexManager.unlockEntry("Suulas");
+	}
+	
 	flags["AZRA_RACE_TALK"] = 1;
 
 	processTime(1);

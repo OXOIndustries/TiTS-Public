@@ -42,9 +42,9 @@ public function entiteExteriorShitz():void
 	else output("\n\nThere’s a familiarly Terran-looking shop just to your side. It’s old looking and the shop front seems medieval in design. Calligraphic letters spell out ‘The Entite’ in gold lettering over a purple sign that hangs above the solid wooden door. You get the feeling you’ve already been there before, maybe in another, more whimsical lifetime.");
 }
 
-public function theEntiteBonus():void
+public function theEntiteBonus():Boolean
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	
@@ -58,36 +58,41 @@ public function theEntiteBonus():void
 		output("\n\nBehind the counter sits a cowled, robed figure, a long stick or staff of sorts by their side. It appears to just be a black rod save for a smooth ball of crystal at the end. It reminds you of something you would’ve heard of in ancient Earth tales of yore. The figure appears to be reading a particularly antique book, one with real leather binding and faded yellow-brown pages that they are turning in a very delicate manner.");
 		output("\n\nThe figure looks up as you amble towards the counter.");
 		output("\n\n<i>“Customer... customer. Customer!”</i> comes an exuberant, feminine voice. The figure rises to greet you, a thin-fingered left hand gracefully sliding out of its heavy sleeve. They don’t try to shake your hand, merely holding it in your direction. Their other arm is curled just above the waistline, the loose sleeve that covers it dangling with excess length.");
+		
+		processTime(3);
+		
+		clearMenu();
 		addButton(0, "Uh, Hey", approachSeer);
+		return true;
 	}
-	else
+	
+	output("The Entite seems to have drawn you into its being. You feel as if you’ve been here before... wait, you <i>have</i> been here before. You even remember what it looks like. It seems off though: Was that candle always on that book stack? That statue staring at you? Both? But maybe neither?");
+	output("\n\nThe shopkeeper is behind the counter, which you’ve seen her do before. Possibly. Have you even met her before? What was her name again? Did she do anything to you last time? You’re sure <i>something</i> did, maybe. ");
+	if (flags["SEER_LOUNGE"] != undefined) output(" Your body seems to remember: A strange sinking sensation rushes through you at an ephemeral pace when you glance at the shopkeeper.");
+	output("\n\nShe rises to welcome you with her left hand outstretched.");
+	var option:int = rand(4);
+	switch(option)
 	{
-		output("The Entite seems to have drawn you into its being. You feel as if you’ve been here before... wait, you <i>have</i> been here before. You even remember what it looks like. It seems off though: Was that candle always on that book stack? That statue staring at you? Both? But maybe neither?");
-		output("\n\nThe shopkeeper is behind the counter, which you’ve seen her do before. Possibly. Have you even met her before? What was her name again? Did she do anything to you last time? You’re sure <i>something</i> did, maybe. ");
-		if (flags["SEER_LOUNGE"] != undefined) output(" Your body seems to remember: A strange sinking sensation rushes through you at an ephemeral pace when you glance at the shopkeeper.");
-		output("\n\nShe rises to welcome you with her left hand outstretched.");
-		var option:int = rand(4);
-		switch(option)
-		{
-			case 0: output("\n\n<i>“Ahh, Steele! At least, that is what I have seen. Are you </i>that<i> Steele? Possibly. Possibly the other... and the others...”</i> she mutters, returning to the counter to accept your custom."); break;
-			case 1: output("\n\n<i>“[pc.name]. A name known! Names known. Names replaced... names, nay, beings! Beings are being, named and not seen...”</i> she mutters, returning to the counter to accept your custom."); break;
-			case 2: output("\n\n<i>“Chest pounding, stomach burning, the lungs, they fail! Oh... but to see what was birthed. That is and that is not... and it is not you,”</i> she mutters, returning to the counter to accept your custom."); break;
-			case 3: output("\n\n<i>“Did you live that life? Watch it? Feel it? Die in it? Reborn... as something. That much is clear,”</i> she mutters, returning to the counter to accept your custom."); break;
-			default: output("\n\n<b>!INVALID SWITCH VALUE!</b>");
-		}
-		addButton(0, "The Seer", approachSeer);
+		case 0: output("\n\n<i>“Ahh, Steele! At least, that is what I have seen. Are you </i>that<i> Steele? Possibly. Possibly the other... and the others...”</i> she mutters, returning to the counter to accept your custom."); break;
+		case 1: output("\n\n<i>“[pc.name]. A name known! Names known. Names replaced... names, nay, beings! Beings are being, named and not seen...”</i> she mutters, returning to the counter to accept your custom."); break;
+		case 2: output("\n\n<i>“Chest pounding, stomach burning, the lungs, they fail! Oh... but to see what was birthed. That is and that is not... and it is not you,”</i> she mutters, returning to the counter to accept your custom."); break;
+		case 3: output("\n\n<i>“Did you live that life? Watch it? Feel it? Die in it? Reborn... as something. That much is clear,”</i> she mutters, returning to the counter to accept your custom."); break;
+		default: output("\n\n<b>!INVALID SWITCH VALUE!</b>"); break;
 	}
+	addButton(0, "The Seer", approachSeer);
+	return false;
 }
 
 public function approachSeer():void
 {
+	clearOutput();
+	author("SoAndSo");
+	showSeer();
 	clearMenu();
+	
 	if (flags["SEER_MET"] == undefined)
 	{
 		flags["SEER_MET"] = 1;
-		clearOutput()
-		author("SoAndSo");
-		showSeer();
 		
 		output("You wave in the shopkeeper’s direction, continuing to approach the counter. You have a look over the proprietor: tall, slender and robed in rich, purple velvet from head to toe. As you get closer, you can see what is clearly <i>her</i> face peaking out from under a hood, a pallid tone to her skin. You can only see below the nose but she seems rather pretty, her black-lipped mouth curved into a faint smile. She speaks first.");
 		output("\n\n<i>“Welcome, traveller! I am... The Seer. Welcome to this place, this cynosure of uncertainty: The Entite! A realm of dreamscapes and portents, myths and realities. All is known and yet, most certainly unknown! What you’ll find here, even </i>I<i> know not! Although I do provide all for a reasonable sum.”</i>");
@@ -95,16 +100,14 @@ public function approachSeer():void
 	}
 	else
 	{
-		clearOutput()
-		author("SoAndSo");
-		showSeer();
-		
 		output("You approach the counter although a nebulous feeling within wants to say that something or even some <i>one</i> is compelling you. Well, it’s <i>you</i> of course. Absolutely. ");
 		if (silly) output("One hundred fifty thousand percent sure, youz is youz.");
 		output("\n\nHer mien is approachable enough aside from an unblinking amber eye peering from under the velvet hood. Her left hand strokes her right sleeve, as if petting a beloved cat. ");
 		if (flags["SEER_SEXED"] != undefined) output("Memory pleads with you that you’re certain that she’s doing it for a mildly concerning reason. A reason that can’t quite form in your mind...");
 		output("\n\n<i>“How may I assist? Products... perhaps?”</i> she enquires, tilting her head to the side as if something is standing behind you.");
 	}
+	
+	processTime(1);
 	
 	setupShopSeer();
 	if (silly) addButton(0, "Shop", buyItem, undefined, "Shop", "Heh, heh, you wanna buy a... funnel cake?");
@@ -132,7 +135,7 @@ public function setupShopSeer():void
 
 public function appearanceSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	
@@ -158,15 +161,21 @@ public function appearanceSeer():void
 
 public function talkSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
-	clearMenu();
 	
 	output("You’re curious about this ‘Seer’, about pretty much everything, especially this strange shop that you feel a sense of nostalgia for even though you’ve only been here the once. Or twice? Have you <i>ever</i> been here before...? When was the last time you left?!");
 	output("\n\nShe seems to be on the same line of thinking, anticipating your intent.");
 	output("\n\n<i>“Ah, you’re Steele, of course. Not to buy, no no, you want to... speak with me? Are you sure? Is he sure? She sure? I think they are. What do you wish to know of me?”</i> She pre-empts in grandiose, semi-delirious phrasing.");
 	
+	processTime(1);
+	
+	talkSeerMenu();
+}
+public function talkSeerMenu():void
+{
+	clearMenu();
 	addButton(0, "Her", topicHerSeer, undefined, "Her", "Ask her about herself. Good a place to start as any!");
 	addButton(1, "The Shop", topicShopSeer, undefined, "The Shop", "It seems odd that this place even exists at all, no one else has come in...");
 	addButton(2, "Odd Mods", topicModsSeer, undefined, "Odd Mods", "Where’d she get all these " + (silly ? "funnel cakes" : "obscure mods") + "?");
@@ -176,7 +185,7 @@ public function talkSeer():void
 
 public function topicHerSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	
@@ -205,15 +214,15 @@ public function topicHerSeer():void
 	output("\n\n<i>“How else may I help you, dear Steele?”</i>");
 	output("\n\nAs well as not learning <i>a single damn thing about her</i>, you’re a little wary of accepting more ‘help’.");
 	
-	addButton(1, "The Shop", topicShopSeer, undefined, "The Shop", "It seems odd that this place even exists at all, no one else has come in...");
-	addButton(2, "Odd Mods", topicModsSeer, undefined, "Odd Mods", "Where’d she get all these " + (silly ? "funnel cakes" : "obscure mods") + "?");
-	addButton(3, "Lounge", topicLoungeSeer, undefined, "Lounge", "Chill for a bit! Or at least, try to. Warning: Out of body experience.");
+	processTime(4);
+	
+	talkSeerMenu();
 	addDisabledButton(0, "Her");
 }
 
 public function topicShopSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	
@@ -229,15 +238,15 @@ public function topicShopSeer():void
 	output("\n\n<i>“Ahh a pity, truly, pitiful. A pitfall of yours but a picture I’ve already seen...”</i>");
 	output("\n\n...Huh?");
 	
-	addButton(0, "Her", topicHerSeer, undefined, "Her", "Ask her about herself. Good a place to start as any!");
-	addButton(2, "Odd Mods", topicModsSeer, undefined, "Odd Mods", "Where’d she get all these " + (silly ? "funnel cakes" : "obscure mods") + "?");
-	addButton(3, "Lounge", topicLoungeSeer, undefined, "Lounge", "Chill for a bit! Or at least, try to. Warning: Out of body experience.");
+	processTime(3);
+	
+	talkSeerMenu();
 	addDisabledButton(1, "The Shop");
 }
 
 public function topicModsSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	
@@ -256,15 +265,15 @@ public function topicModsSeer():void
 	output("\n\n<i>“I wouldn’t... or would you? I think he should,”</i> she mumbles.");
 	output("\n\nWhat?");
 	
-	addButton(0, "Her", topicHerSeer, undefined, "Her", "Ask her about herself. Good a place to start as any!");
-	addButton(1, "The Shop", topicShopSeer, undefined, "The Shop", "It seems odd that this place even exists at all, no one else has come in...");
-	addButton(3, "Lounge", topicLoungeSeer, undefined, "Lounge", "Chill for a bit! Or at least, try to. Warning: Out of body experience.");
+	processTime(3);
+	
+	talkSeerMenu();
 	addDisabledButton(2, "Odd Mods");
 }
 
 public function topicLoungeSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -276,12 +285,14 @@ public function topicLoungeSeer():void
 	output("\n\n<i>“Enjoying the seats, Steele? You all seem to agree, especially that one over there,”</i> she states, pointing to an empty part of the couch. Ignoring that odd statement, you nod to her, reclining even further into the fabric. Hey, finally time to do something truly relaxing! You hadn’t even noticed the thin veil of mist filling the lounge! Wait, what?");
 	output("\n\nThe Seer is staring at you with a deadpan, wide-eyed smile as you feel your mind losing its grasp on consciousness. So sleepy... you just need to close your eyes for a few sec... maybe a min... mm, that sweet smelling mist...");
 	
+	processTime(5);
+	
 	addButton(0, "Sleep...", loungeSleepSeer, undefined, "Sleep...", "Better strap in kid, cuz you’re going on a trip.");
 }
 
 public function loungeSleepSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -299,12 +310,14 @@ public function loungeSleepSeer():void
 	output("\n\n<i>[pc.name]...</i>");
 	output("\n\nAnother immense thought burns through your skull. You meekly try to cover your face with your arms, a primitive reaction to the force of power that draws nearer and nearer. The eye drives further, the light becoming painful and overwhelming even through your covered face! Closer and closer, until...!");
 	
+	processTime(12 + rand(9));
+	
 	addButton(0, "Wake Up!", loungeWakeUpSeer, undefined, "Wake Up!", (silly ? "Grababrushandputalittlemakeup!" : "ARRRH"));
 }
 
 public function loungeWakeUpSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -326,12 +339,14 @@ public function loungeWakeUpSeer():void
 	output("\n\n<i>PFSSHHH!</i>");
 	output("\n\nA burst of light from the center of the table blurs your next thought!");
 	
+	processTime(12 + rand(9));
+	
 	addButton(0, "Wake Up!", loungeWakeAgainSeer, undefined, "Wake Up! Again!", " Oh come on now...");
 }
 
 public function loungeWakeAgainSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -342,6 +357,8 @@ public function loungeWakeAgainSeer():void
 	output("\n\n<i>“The En-tite...?”</i> You say out loud. <i>“Wait...”</i>");
 	output("\n\nCurious, your memory wants to tell you that you’ve been inside before. Well, it’s not like you had anything better to do! Or did you...");
 	
+	processTime(12 + rand(9));
+	
 	if (flags["SEER_LOUNGE"] == undefined) flags["SEER_LOUNGE"] = 1;
 	
 	currentLocation = "720";
@@ -351,7 +368,7 @@ public function loungeWakeAgainSeer():void
 
 public function sexSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -368,6 +385,8 @@ public function sexSeer():void
 		output("\n\n<i>“Give yourself over to me. Allow me to guide you to what is greater than even </i>you<i>! That is, if you wish to... and many of you seem to agree,”</i> she says in a surprisingly sober manner, leaning in so that her bust presses and squishes tightly to your [pc.chest]. <i>“So what do </i>you<i> say?”</i>");
 		output("\n\nDo you give yourself over to the Seer? (Warning: Domme content)");
 		
+		processTime(3);
+		
 		addButton(0, "Yes", yesDommeSeer, undefined, "Yes", (silly ? "Uh oh, looks like you’ve been BEANED ya friccin moron!" : "Screw it, she’s crazy and hot, what could go wrong?"));
 		addButton(1, "No", noDommeSeer, undefined, "No", "This has a bit of the heebie jeebies floatin’ around...");
 	}
@@ -379,6 +398,8 @@ public function sexSeer():void
 		output("\n\n<i>“We should,”</i> she says, her amber eyes locked onto your face.");
 		output("\n\nDo you follow through?");
 		
+		processTime(1);
+		
 		if (flags["SEER_DOM"] == undefined) addButton(0, "Yes", yesDommeSeer, undefined, "Yes", (silly ? "Uh oh, looks like you’ve been BEANED ya friccin moron!" : "Screw it, she’s crazy and hot, what could go wrong?"));
 		else addButton(0, "Yes", yesSexSeer);
 		addButton(1, "No", noDommeSeer, undefined, "No", "This has a bit of the heebie jeebies floatin’ around...");
@@ -387,7 +408,7 @@ public function sexSeer():void
 
 public function noDommeSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -397,6 +418,8 @@ public function noDommeSeer():void
 	output("\n\n<i>“Very well, some did agree to that too,”</i> she half-whispers, stepping back from you and wandering back to the counter. <i>“Perchance: There’s still a spark, yes? I am... awaiting you, dear Steele.”</i>");
 	output("\n\nYou say it’s not off the table, to which she seems to ‘smile’ in a sort of crumpled, awkward shape. <i>“If so... then do feel free to continue being. If you did not, I’d be awfully lonesome,”</i> she replies, before getting back to her reading.");
 	
+	processTime(1);
+	
 	flags["SEER_LOUNGE"] = 2;
 	currentLocation = "720";
 	addButton(0, "Leave", mainGameMenu);
@@ -404,12 +427,12 @@ public function noDommeSeer():void
 
 public function yesDommeSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
 	
-	pc.lust(pc.lustMax() - pc.lust());
+	pc.maxOutLust();
 	flags["SEER_DOM"] = 1;
 	flags["SEER_LOUNGE"] = 2;
 	
@@ -432,6 +455,8 @@ public function yesDommeSeer():void
 	output("\n\nAs she reels you in, two of the writhing feelers slink and slither across your neck to your [pc.face], prodding and teasing your [pc.lips] to let them inside.");
 	output("\n\n<i>“So many ways... I wonder what fate leads us to?”</i>");
 	
+	processTime(3);
+	
 	IncrementFlag("SEER_SEXED");
 	
 	if (!pc.isTaur() && (pc.hasVagina() || pc.hasCock())) addButton(0, "TentaDomme", tentaSeer, undefined, "TentaDomme", "You’re gonna get filled in so many different ways.");
@@ -443,12 +468,12 @@ public function yesDommeSeer():void
 
 public function yesSexSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
 	
-	pc.lust(pc.lustMax() - pc.lust());
+	pc.maxOutLust();
 	
 	output("You say yes: Although your memory is hazy of the experience, something is compelling you to give in to your and her desires.");
 	output("\n\nHer eyes as wide and as alert as they could possibly be, the Seer pulls you buy the arm to the lounge with an enthusiastic urgency. Without a pause, she’s pushed you into the lounge, turned you towards the table, and told you to strip. Well, if she’s this eager! " + (pc.isNude() ? "You’re actually already prepped but you entertain her strange need for privacy." : "You strip yourself of you [pc.gear] and stash it all under the geometrically patterned table.") + "");
@@ -459,6 +484,8 @@ public function yesSexSeer():void
 	output("\n\nNo sooner than you’ve acknowledged the sight before you, she is already pressing her semi-monstrous form against your willing body. All of her fleshy feelers wrap, squeeze and slither over your [pc.skinFurScales], their goals inevitable. Two thick tentacles twist themselves around your neck and their tips pull and prod at your [pc.face] and [pc.lips] with their own frenzied lust while another two wrap around your [pc.belly] tightly.");
 	output("\n\nWelp? It really is too late to turn back now.");
 	output("\n\n<i>“Now what do we do with this one...”</i> coos the Seer, tilting her head to the side.");
+	
+	processTime(2);
 	
 	IncrementFlag("SEER_SEXED");
 	
@@ -471,7 +498,7 @@ public function yesSexSeer():void
 
 public function tentaSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -504,12 +531,14 @@ public function tentaSeer():void
 	output("\n\n<i>More</i>");
 	output("\n\nMm... more?");
 	
+	processTime(11 + rand(9));
+	
 	addButton(0, "Next", tentaSeer2);
 }
 
 public function tentaSeer2():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -521,13 +550,15 @@ public function tentaSeer2():void
 	output("\n\n<i>“Forget...”</i> she whispers.");
 	output("\n\nHuh...?");
 	
+	processTime(5 + rand(3));
+	
 	pc.orgasm();
 	addButton(0, "Next", tentaSeer3);
 }
 
 public function tentaSeer3():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -539,6 +570,8 @@ public function tentaSeer3():void
 	output("\n\n‘En...ti...te?’");
 	output("\n\nOhhhh, of course. It’s that weird place with that shopkeeper and the... hmm. There’s certainly a memory that your mind wants to form but you just can’t picture it. You’re sure it’s nothing, though. Time to get back to it!");
 	
+	processTime(3);
+	
 	currentLocation = "720";
 	generateMap();
 	addButton(0, "Next", mainGameMenu);
@@ -546,7 +579,7 @@ public function tentaSeer3():void
 
 public function lezSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -561,12 +594,14 @@ public function lezSeer():void
 	output("\n\nAnother t-tentacle? You whine through the mouth-lock as the thick fleshy ‘tongue’ dives down your gullet. " + (pc.isBimbo() ? "So easily does it slide down your especially gifted throat that the Seer coos in approval through a muffled mouth" : "You have to supress your gag reflex entirely and what little resistance you can give is battered down by the Seers mouth-beast") + ".");
 	output("\n\nBut that’s not all...");
 	
+	processTime(11 + rand(9));
+	
 	addButton(0, "Next", lezSeer2);
 }
 
 public function lezSeer2():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -588,13 +623,15 @@ public function lezSeer2():void
 	output("\n\nWithout her body heat on top of you, the room feels far colder than before. As if sensing this, your tentacular lover manages to pull her discard robes over the both of you. The snug velvet quickly warms your [pc.skinFurScales] and the sexual afterglow feels doubly pleasant. She idly plays with your [pc.hair], her thin fingers making slow and effortless movements.");
 	output("\n\nSome time passes...");
 	
+	processTime(15 + rand(9));
+	
 	pc.orgasm();
 	addButton(0, "Next", lezSeer3);
 }
 
 public function lezSeer3():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -611,12 +648,14 @@ public function lezSeer3():void
 	output("\n\nNo, I-");
 	output("\n\n<i>Forget...</i>");
 	
+	processTime(5 + rand(3));
+	
 	addButton(0, "Next", lezSeer4);
 }
 
 public function lezSeer4():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -629,6 +668,8 @@ public function lezSeer4():void
 	output("\n\nYou put a hand to your sternum: There’s a gnawing sense of apprehension knotting inside but you can’t place why. It feels like... a sense of loss.");
 	output("\n\nWell, if it can’t be explained! You pick yourself up and get back to your business.");
 	
+	processTime(3);
+	
 	currentLocation = "720";
 	generateMap();
 	addButton(0, "Next", mainGameMenu);
@@ -636,7 +677,7 @@ public function lezSeer4():void
 
 public function wispedSeer():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -653,12 +694,14 @@ public function wispedSeer():void
 	output("\n\nYou feel your [pc.legs] start to give way as that same heat travels from head to toe in almost no time at all. Good thing those tightening tentacles were there to stop your fall! Wait, tightening...?");
 	output("\n\nAs your vision begins to blur and darken, you sense the tips of those fleshy feelers reaching for your [pc.lips] and see the blazing, amber eyes of the Seer...");
 	
+	processTime(11 + rand(9));
+	
 	addButton(0, "Trip", wispedSeer2);
 }
 
 public function wispedSeer2():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -679,6 +722,8 @@ public function wispedSeer2():void
 		output("\n\nOh.");
 		output("\n\nYou’ve become a curio along the walls of the Entite, destined to live out your days as a pair of eyes and nothing more.");
 		output("\n\nStill, could be worse.");
+		
+		processTime(69);
 		
 		badEnd();
 		return;
@@ -741,15 +786,17 @@ public function wispedSeer2():void
 			else output("\n\nSome try to go for your [pc.multiCocks] but upon making contact, they recoil back into the shadows.");
 			output("\n\nThe apprehension fueled by being on the verge of a tentacular violation makes you want to call for help, shout, no, scream! You yell at " + (silly ? "THE TOP OF LUNGS" : "the highest level you can muster") + " again and again! You close your eyes, wishing for this unexplained madness to end, until-");
 			break;
-		default: output("\n\n<b>!SWITCH IS FUCKED BROSEF!</b>");
+		default: output("\n\n<b>!SWITCH IS FUCKED BROSEF!</b>"); break;
 	}
+	
+	processTime(11 + rand(9));
 	
 	addButton(0, "Wake Up!", wispedSeer3);
 }
 
 public function wispedSeer3():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -768,12 +815,14 @@ public function wispedSeer3():void
 	output("\n\n<i>Forget</i>");
 	output("\n\nForget...");
 	
+	processTime(5 + rand(3));
+	
 	addButton(0, "Wake Up!", wispedSeer4);
 }
 
 public function wispedSeer4():void
 {
-	clearOutput()
+	clearOutput();
 	author("SoAndSo");
 	showSeer();
 	clearMenu();
@@ -785,6 +834,8 @@ public function wispedSeer4():void
 	output("\n\nOh and hey, it’s that shop again. The one with the crazy owner and the... something. Your memory seems to want to pinpoint an image down but it never arrives.");
 	output("\n\nInhaling deeply in an attempt to focus, you pick up a strange flavour at the back of your throat: Salt and... lemons?");
 	output("\n\nThinking nothing of it, you dust yourself down and get back to your business.");
+	
+	processTime(3);
 	
 	currentLocation = "720";
 	generateMap();

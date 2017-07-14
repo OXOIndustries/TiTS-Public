@@ -99,8 +99,14 @@ public function approachUshameeCorridor2():void
 	else output("Del ");
 	output("quickly comes over and takes a drink order from you both before leaving you in peace with the brawny space-centauress. Once she’s settled in one her haunches, the chief reaches up and yanks off the elastic tie holding her ebony locks back in a ponytail. Her luxuriously long hair comes spilling down around her shoulders, drawing your attention to the fact that she’s not wearing the armor you remember from your first meeting, but rather a white t-shirt with a picture of a railgun printed atop her ample rack underneath an unbuttoned red flannel shirt, and a blanket made of blue denim wrapped over her bestial lower half.");
 	output("<i>“Yeah, I was hoping we could talk. About what happened, and um... what we did.”</i>");
-	output("\n\nThe last few words there cause a dark, purplish flush to spread across her cheeks. Your mind immediately flashes back to those last, involuntarily intimate moments aboard the ship, with the parasites wriggling inside of the chief’s gravid belly, peeking their tentacle-like appendages back out of her chocolate-hued pussy. The two of you certainly found a rather lewd way of dealing with her overwhelming parasite problem.");
-	output("\n\n<i>“Yeah, we sure did,”</i> she chuckles, rubbing at one of her plated ears. <i>“I just... shit, look, I wanted to say thanks, first of all. I don’t think me or my guys would have made it out of there without you. I totally had you wrong when we first met, and now you saved my life. And you’ve seen a lot more of me -- a different side -- than even the people I’ve fought side by side with for years. I don’t know whether to be incredibly embarrassed or seriously aroused by that.”</i>");
+	output("\n\nThe last few words there cause a dark, purplish flush to spread across her cheeks. Your mind immediately flashes back to those last, involuntarily intimate moments aboard the ship, with the parasites wriggling inside of the chief’s gravid belly, peeking their tentacle-like appendages back out of her chocolate-hued pussy.");
+	if (flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
+	{
+		output(" The two of you certainly found a rather lewd way of dealing with her overwhelming parasite problem.");
+		output("\n\n<i>“Yeah, we sure did,”</i> s");
+	}
+	else output("\n\nS");
+	output("he chuckles, rubbing at one of her plated ears. <i>“I just... shit, look, I wanted to say thanks, first of all. I don’t think me or my guys would have made it out of there without you. I totally had you wrong when we first met, and now you saved my life. And you’ve seen a lot more of me -- a different side -- than even the people I’ve fought side by side with for years. I don’t know whether to be incredibly embarrassed or seriously aroused by that.”</i>");
 	
 	processTime(1 + rand(2));
 	
