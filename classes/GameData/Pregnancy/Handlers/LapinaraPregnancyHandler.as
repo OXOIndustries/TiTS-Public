@@ -12,7 +12,6 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
 	import classes.Engine.Interfaces.AddLogEvent;
-	import classes.Engine.Interfaces.ExtendLogEvent;
 	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.getPlanetName;
 	
@@ -32,7 +31,7 @@ package classes.GameData.Pregnancy.Handlers
 			_ignoreInfertility = true;
 			_ignoreMotherInfertility = true;
 			_ignoreFatherInfertility = true;
-			_allowMultiplePregnancies = false;
+			_allowMultiplePregnancies = true;
 			_canImpregnateButt = true;
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
@@ -326,7 +325,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 				
 				//Single elasticity increase, lactation increase 
-				buffer += ParseText("Your [pc.belly] just keeps on growing. As happy as you are having this rambunctious bunch of bunnies inside you, you are really starting to wonder just how much longer you’ll have to wait in order to meet them. A quick peek at your codex reveals that you have around 1 week left. Realizing just how soon the babies will be born, you do an emotional 180 and feel a bit sad that the pregnancy will be over so much sooner than you thought. Your sadness doesn’t last long though, because you soon remember that all you have to do is go find another bunny to give you eggs.");
+				buffer += ParseText("Your [pc.belly] just keeps on growing. As happy as you are having this rambunctious bunch of bunnies inside you, you are really starting to wonder just how much longer you’ll have to wait in order to meet them. A quick peek at your codex reveals that you have around a week left. Realizing just how soon the babies will be born, you do an emotional 180 and feel a bit sad that the pregnancy will be over so much sooner than you thought. Your sadness doesn’t last long though, because you soon remember that all you have to do is go find another bunny to give you eggs.");
 				// IF pc.elasticity < lapipregElasticity(LapiTrain) THEN pc.elasticity += 1
 				if(kGAMECLASS.pc.elasticity < kGAMECLASS.lapiTrain())
 				{
@@ -387,7 +386,7 @@ package classes.GameData.Pregnancy.Handlers
 				//Final modification for hips, butt,.
 				buffer += "You instinctually know there isn’t much time left before you give birth.";
 				// IF not on tarkus THEN
-				if(getPlanetName().toLowerCase() == "tarkus") buffer += " You feel a strong desire to head back to Tarkus; it seems like the natural place to give birth, but more importantly you’ll be ready to start hunting for your next eggs as soon as the bunnies are weaned.";
+				if(getPlanetName().toLowerCase() != "tarkus") buffer += " You feel a strong desire to head back to Tarkus; it seems like the natural place to give birth, but more importantly you’ll be ready to start hunting for your next eggs as soon as the bunnies are weaned.";
 				else buffer += " You’re glad that you’re already on Tarkus; it seems like the natural place to give birth, but more importantly you’ll be ready to start hunting for your next eggs as soon as the bunnies are weaned.";
 				// IF pc.hipRatingRaw < lapipregHipMax(LapiTrain) THEN pc.hipRatingRaw += 1
 				if(kGAMECLASS.pc.hipRatingRaw < lapiPregModMax("hip"))
@@ -435,7 +434,7 @@ package classes.GameData.Pregnancy.Handlers
 		public function lapiPregModMax(part:String = "hip"):Number 
 		{
 			var arg:int = kGAMECLASS.lapiTrain();
-			var hips:Array = [10,15,20,25,30];
+			var hips:Array = [10, 15, 20, 25, 30];
 			var ass:Array = [5, 10, 10, 15, 20]; //maximum butt size for increase
 			var capacity:Array = [200, 300, 400, 500, 500]; //maximum bonus capacity for orifice
 			var boobers:Array = [5, 10, 15, 20, 25]; //maximum breast size for increase

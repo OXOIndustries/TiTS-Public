@@ -59,7 +59,7 @@ public function geneLustIncrease():void
 	if (geneSubmissionLevel() >= 7) pc.lust(5);
 }
 
-public function genesModsExteriorRoomDecorator():Boolean
+public function genesModsExteriorRoomDecorator():void
 {
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
@@ -69,8 +69,6 @@ public function genesModsExteriorRoomDecorator():Boolean
 	{
 		output("\n\nTo the west are the jarringly modern white curves of Gene’s Mods. The entrance to the shop, as ever, yawns open a welcome to you.");
 	}
-
-	return false;
 }
 
 public function genesModsInteriorBonus():Boolean

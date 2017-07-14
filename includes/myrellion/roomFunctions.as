@@ -617,7 +617,11 @@ public function noManzLandBonus():Boolean
 public function gildenmereStreetBonus():Boolean
 {
 	if(orangeMyrSightingBonus()) return true;
-	if(currentLocation == "717") genesModsExteriorRoomDecorator();
+	switch(currentLocation)
+	{
+		case "717": genesModsExteriorRoomDecorator(); break;
+		case "720": entiteExteriorShitz(); break;
+	}
 	if(flags["IRELLIA_QUEST_STATUS"] == 1 && (rand(35) == 0 || debug))
 	{
 		unificationInvitationEventProcInGildenmere();
