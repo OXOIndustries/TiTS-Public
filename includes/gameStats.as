@@ -2994,7 +2994,7 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["KI_CMO_MEDSUPPLIES"] >= 2) output2(", Used stim booster");
 			}
 			// Master Chief
-			var sNeykkarName:String = ("Chief " + ((flags["KASHIMA_BRIDGE"] == 1 || flags["KASHIMA_BRIDGE"] == 2) ? "Ushamee" : "") + " Neykkar");
+			var sNeykkarName:String = ("Chief" + ((flags["KASHIMA_BRIDGE"] == 1 || flags["KASHIMA_BRIDGE"] == 2) ? " Ushamee" : "") + " Neykkar");
 			output2("\n<b>* " + sNeykkarName + ":</b> Met her");
 			if(flags["KASHIMA_STATE"] < 2)
 			{

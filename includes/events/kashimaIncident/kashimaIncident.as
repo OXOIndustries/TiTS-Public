@@ -1180,7 +1180,11 @@ public function kiHendersonSteeleTech():void
 	}
 
 	output("\n\nYou squint, shielding your eyes as the lights consolidate into several flashlights, carried by Steele Tech security personnel, all armed and armored. They look down at you from under HAZMAT visors, shouting for everyone to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm");
-	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined)) output(" when she gets off your crotch");
+	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined))
+	{
+		output(" when she gets off your crotch");
+		IncrementFlag("FUCKED_CHIEF_NEYKKAR");
+	}
 	output(". Per your communique, they quickly surround Chief Neykkar and, as gently as they can, surround her in a quarantine forcefield and start to cart her off. She looks around confused, glancing at you for reassurance. You tell her everything’s going to be fine all the way until the security folks have her aboard their rescue boat.");
 
 	processTime(12);

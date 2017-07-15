@@ -1532,7 +1532,7 @@ public function gooArmorCrewTalk(arg:Array):void
 			var hasGenitals:Boolean = (pc.hasGenitals() || pc.balls > 0);
 			var isHerm:Boolean = (pc.isHerm() || (pc.balls > 0 && pc.hasVagina()));
 			
-			txt += "A voice eminates from below you.";
+			txt += "A voice emanates from below you.";
 			txt += "\n\n<i>“You know...”</i> Silver tendrils crawl up and around your [pc.lowerBody]. <i>“... You’re looking quite sexy today... And <b>I wanna be sexy too!</b>”</i>";
 			txt += "\n\nThe reflexive coils manage to grope your rear on the way up,";
 			if(assExposed) txt += " then a tedril slides between your [pc.butts] and prods and traces the rim of your [pc.asshole]. <i>“Ooo, naughty.”</i>";
