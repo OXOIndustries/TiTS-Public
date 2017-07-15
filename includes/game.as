@@ -1831,18 +1831,18 @@ public function variableRoomUpdateCheck():void
 	
 	if((hours < 4 || hours >= 12) && !pc.hasStatusEffect("Liamme Disabled")) 
 	{
-		if(!rooms["RESIDENTIAL DECK 12"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
+		rooms["RESIDENTIAL DECK 12"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["RESIDENTIAL DECK 12"].removeFlag(GLOBAL.NPC);
 	if(flags["MET_GIL"] != undefined)
 	{
-		if(!rooms["9017"].hasFlag(GLOBAL.NPC)) rooms["9017"].addFlag(GLOBAL.NPC);
+		rooms["9017"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["9017"].removeFlag(GLOBAL.NPC);
 	
 	if(fisiAtResDeck()) 
 	{
-		if(!rooms["RESIDENTIAL DECK 5"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NPC);
+		rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
 
@@ -1851,23 +1851,22 @@ public function variableRoomUpdateCheck():void
 		//Riya isnt there:
 		if(pc.hasStatusEffect("RIYA_CANADIA_CD"))
 		{
-			if(rooms["CANADA4"].hasFlag(GLOBAL.NPC)) rooms["CANADA4"].removeFlag(GLOBAL.NPC);
+			rooms["CANADA4"].removeFlag(GLOBAL.NPC);
 		}
 		//She there but no flag! FIIXXXX
-		else if(!rooms["CANADA4"].hasFlag(GLOBAL.NPC)) rooms["CANADA4"].addFlag(GLOBAL.NPC);
-
-		if(rooms["9008"].hasFlag(GLOBAL.NPC)) rooms["9008"].removeFlag(GLOBAL.NPC);
+		else rooms["CANADA4"].addFlag(GLOBAL.NPC);
+		rooms["9008"].removeFlag(GLOBAL.NPC);
 	}
 	else
 	{
 		//Riya is there:
 		if(!pc.hasStatusEffect("RIYA_CANADIA_CD"))
 		{
-			if(!rooms["9008"].hasFlag(GLOBAL.NPC)) rooms["9008"].addFlag(GLOBAL.NPC);
+			rooms["9008"].addFlag(GLOBAL.NPC);
 		}
 		//Riya not there:
-		else if(rooms["9008"].hasFlag(GLOBAL.NPC)) rooms["9008"].removeFlag(GLOBAL.NPC);
-		if(rooms["CANADA4"].hasFlag(GLOBAL.NPC)) rooms["CANADA4"].removeFlag(GLOBAL.NPC);
+		else rooms["9008"].removeFlag(GLOBAL.NPC);
+		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
 	}
 
 	/* MHENGA */
@@ -2256,7 +2255,7 @@ public function variableRoomUpdateCheck():void
 	//Ushamee Corridor
 	if (MailManager.isEntryViewed("ushamee_meet") && flags["USHA_MET3"] == undefined)
 	{
-		if(!rooms["CANADA3"].hasFlag(GLOBAL.NPC)) rooms["CANADA3"].addFlag(GLOBAL.NPC);
+		rooms["CANADA3"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["CANADA3"].removeFlag(GLOBAL.NPC);
 
@@ -2428,7 +2427,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if(pc.hasCock() && pc.thinnestCockThickness() < 7 && pc.balls >= 2 && pc.ballDiameter() >= 12 && pc.ballFullness >= 50 && !MailManager.isEntryUnlocked("kally_kiro_milkvite") && kiroKallyThreesomesAvailable() && rand(20) == 0 && flags["KIRO_KALLY_TEAM_MILKED"] == undefined) goMailGet("kally_kiro_milkvite");
 
 		//Ushamee Meet Invite
-		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["KASHIMA_STATE"] == 3) && canadiaUnlocked())
+		if (!MailManager.isEntryUnlocked("ushamee_meet") && (flags["KASHIMA_STATE"] == 2 || flags["KASHIMA_STATE"] == 3))
 		{
 			if(flags["KASHIMA_DELAY_TIMER"] == undefined) flags["KASHIMA_DELAY_TIMER"] = GetGameTimestamp();
 			else if(GetGameTimestamp() >= (flags["KASHIMA_DELAY_TIMER"] + 60*24*5)) goMailGet("ushamee_meet");

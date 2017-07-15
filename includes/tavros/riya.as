@@ -53,15 +53,14 @@ public function riyaBonus():Boolean
 	{
 		if(pc.hasStatusEffect("RIYA_CANADIA_CD"))
 		{
-			if(flags["MET_RIYA_ON_CANADA"] == undefined)
-			output("\n\nRiya is nowhere to be found...");
+			if(flags["MET_RIYA_ON_CANADA"] == undefined) output("\n\nRiya is nowhere to be found...");
 			return false;
 		}
 		//Franks
 		//-Should trigger after PC hits level 7-8(TBD) or two weeks after PC meets Riya
 		//-PC sees Riya talking to Grence before rushing to the hangar and leaving
-		//-PC has option to follow to see what's going on
-		//-Black Void  trying shit, oh noes!
+		//-PC has option to follow to see what’s going on
+		//-Black Void trying shit, oh noes!
 		//-Reveals that Riya isn’t actually ‘ex’ Black Wing, was just put on Tavros in preparation for a raid on aforementioned pirates
 		//-Triggers when PC walks into Riya’s square
 		if(pc.level >= 7 && flags["MET_RIYA"] != undefined && GetGameTimestamp() >= (flags["MET_RIYA"] + 60*24*14) && flags["RIYA_QUEST_RESULT"] == undefined)
@@ -973,15 +972,15 @@ public function riyaFellatioScene():void
 //Franks
 //-Should trigger after PC hits level 7-8(TBD) or two weeks after PC meets Riya
 //-PC sees Riya talking to Grence before rushing to the hangar and leaving
-//-PC has option to follow to see what's going on
-//-Black Void  trying shit, oh noes!
+//-PC has option to follow to see what’s going on
+//-Black Void trying shit, oh noes!
 //-Reveals that Riya isn’t actually ‘ex’ Black Wing, was just put on Tavros in preparation for a raid on aforementioned pirates
 //-Triggers when PC walks into Riya’s square
 
 public function riyaQuestProc():void
 {
 	showRiya();
-	showName("SOMETHING'S\nHAPPENING!");
+	showName("SOMETHING’S\nHAPPENING!");
 	output("\n\nAs you walk through the merchant deck of Tavros, you spot something out of the ordinary; Riya is marching quickly towards the elevator ");
 	//PC has reported Riya: 
 	if(flags["RIYA_REPORTED"] != undefined) output("with Commander Grence at her side");
@@ -992,7 +991,7 @@ public function riyaQuestProc():void
 	//[Follow]
 	//[Don’t]
 	addButton(0,"Follow",followRihaOnRihaQuest);
-	addButton(1,"Don't",riyaQuestTurnedDown);
+	addButton(1,"Don’t",riyaQuestTurnedDown);
 }
 
 //PC selects ‘don’t’
@@ -1015,7 +1014,10 @@ public function followRihaOnRihaQuest():void
 {
 	clearOutput();
 	showName("\nFOLLOWING...");
+	
 	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	
 	output("They don’t seem to be paying much mind to anything besides each other, so it’s a simple enough matter to follow them. It gets more complicated once they get in the elevator together, still huddled together and whispering, but some jogging has them back in your line of sight after you follow on the next elevator as they... walk into a hangar guarded by several uniformed U.G.C. Peacekeepers. Damn it. You walk to your own ship as quickly as possible without arousing suspicion, boarding and leaving the station. Where to go, though? You can see a U.G.C. ship that you presume is theirs entering a warp gate, but to where? You wrack your brains for a long few minutes, acutely aware that every second you spend thinking is more time for you to miss whatever’s going down... finally though, you recall the brief snatch of conversation you caught. Pirates, and... an asteroid field. For the Commander of Tavros’s Peacekeeper detachment to be going out herself, it must be nearby, and important.");
 	output("\n\nA quick extranet search later, you have a few likely candidates, all reasonably close to Tavros. Which one <i>is</i> it, though? You sigh in frustration, realizing you have no choice but to guess as your fingers type in the coordinates of the nearest asteroid field to Tavros. You arrive some time later, dropping out of warp and checking your scanners. Nothing. You curse in irritation, pulling up the results of your extranet search again, heading to the next location on the list.");
 	output("\n\nYou see instantly that his one has yielded more fruit as you come out of warp to the sight of a large and intimidating cruiser with U.G.C. markings trading fire with a number of smaller ships bearing the distinctive black and red of the Black Void. They don’t seem to be paying you any mind, no doubt because they’re rather busy trying to kill each other. You can see what looks like a hangar bay in one of the larger asteroids, with several smaller ships either pulling in, or docked already, as you can just barely see. You start to pull in after them, not seeing another docking bay. This probably isn’t the best idea you’ve ever had, but it’ll have to do for now.");
@@ -1043,6 +1045,9 @@ public function goHomeFromRiyaQuest():void
 //If PC selects ‘Stay’
 public function stayForQuest():void
 {
+	currentLocation = "GAME OVER";
+	generateMap();
+	
 	clearOutput();
 	showName("PIRATE\nBASE");
 	output("As soon as you get out of your ship, you realize exactly how badly you fucked up. Nobody hailed you or tried to stop you from docking in, but now you see the dozen or so Black Void armored bodies strewn haphazardly about, blast marks and bloodstains marring the otherwise surprisingly pristine walls, and a blur at the edge of your vision right before you’re tackled to the ground and dogpiled none too gently by no less than four masked, armored soldiers. You faintly hear a voice ordering them to flip you over - they do so promptly, and you blink, seeing Riya and Commander Grence standing over you. Riya is the first to speak, eyes distinctly cold.");
@@ -1189,9 +1194,6 @@ public function riyaQuestCombat3Setup():void
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 }
-
-
-
 
 //If PC loses
 public function riyaQuestCombat3Loss():void

@@ -1847,6 +1847,19 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["SERA_SALARY_PAID"] != undefined && flags["SERA_SALARY_DATE"] != undefined) output2("\n<b>* Time Since Last Salary Payment:</b> " + prettifyMinutes(GetGameTimestamp() - flags["SERA_SALARY_DATE"]));
 				sideCount++;
 			}
+			// Riya Quest
+			if(flags["RIYA_QUEST_RESULT"] != undefined)
+			{
+				output2("\n<b><u>RiyaQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["RIYA_QUEST_RESULT"])
+				{
+					case -1: output2(" Did not follow Riya, Completed"); break;
+					case 1: output2(" Followed Riya, Helped Riya with raid, Completed"); break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
+				sideCount++;
+			}
 		}
 		if(showID == "New Texas" || showID == "All")
 		{
@@ -2349,7 +2362,7 @@ public function displayQuestLog(showID:String = "All"):void
 			// FazianQuest
 			if(flags["FAZIAN_QUEST_STATE"] != undefined && flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_NOTSTARTED && (flags["FAZIAN_QUEST_STATE"] != FAZIAN_QUEST_OFFERING || flags["FAZIAN_QUEST_DELAY"] != undefined))
 			{
-				output2("\n<b><u>Faz Quest</u></b>");
+				output2("\n<b><u>FazianQuest</u></b>");
 				output2("\n<b>* Status:</b>");
 				switch(flags["FAZIAN_QUEST_STATE"])
 				{
@@ -3170,6 +3183,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", Reported her");
 						if(flags["RIYA_REPORTED"] == 2) output2(" and snapped at Commander Lorna Grence");
 					}
+					if(flags["RIYA_RELOCATED"] != undefined) output2(", Relocated to" + (flags["RIYA_RELOCATED"] == 1 ? "Canadia Station" : "Tavros Station"));
 					if(flags["RIYA_FUCKED_YA"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Ass:</b> " + flags["RIYA_FUCKED_YA"]);
 					if(flags["RIYA_CUNTPOUNDED_YOU"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Vagina:</b> " + flags["RIYA_CUNTPOUNDED_YOU"]);
 					if(flags["RIYA_GOT_BLOWN"] != undefined) output2("\n<b>* Riya, Times You Sucked Her Cock:</b> " + flags["RIYA_GOT_BLOWN"]);

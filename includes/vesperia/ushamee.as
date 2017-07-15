@@ -25,6 +25,7 @@ public function ushameeMeetInviteText():String
 	buff += "\n\nAnyway, I’m going to be visiting my brother on Canadia Station for the next while. Come by if you get a chance... we should talk about what happened.";
 	buff += "\n\nSincerely,";
 	buff += "\nUsha";
+	buff += "\n\n<i>Attached below the message are coordinates to Canadia Station.</i>";
 	
 	return buff;
 }
