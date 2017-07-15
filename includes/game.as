@@ -1846,6 +1846,30 @@ public function variableRoomUpdateCheck():void
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
 
+	if(riyaOnCanada())
+	{
+		//Riya isnt there:
+		if(pc.hasStatusEffect("RIYA_CANADIA_CD"))
+		{
+			if(rooms["CANADA4"].hasFlag(GLOBAL.NPC)) rooms["CANADA4"].removeFlag(GLOBAL.NPC);
+		}
+		//She there but no flag! FIIXXXX
+		else if(!rooms["CANADA4"].hasFlag(GLOBAL.NPC)) rooms["CANADA4"].addFlag(GLOBAL.NPC);
+
+		if(rooms["9008"].hasFlag(GLOBAL.NPC)) rooms["9008"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		//Riya is there:
+		if(!pc.hasStatusEffect("RIYA_CANADIA_CD"))
+		{
+			if(!rooms["9008"].hasFlag(GLOBAL.NPC)) rooms["9008"].addFlag(GLOBAL.NPC);
+		}
+		//Riya not there:
+		else if(rooms["9008"].hasFlag(GLOBAL.NPC)) rooms["9008"].removeFlag(GLOBAL.NPC);
+		if(rooms["CANADA4"].hasFlag(GLOBAL.NPC)) rooms["CANADA4"].removeFlag(GLOBAL.NPC);
+	}
+
 	/* MHENGA */
 	
 	//Bounties

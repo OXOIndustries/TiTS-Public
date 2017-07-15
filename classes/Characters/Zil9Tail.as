@@ -31,7 +31,7 @@
 			this.originalRace = "zil";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "This male zil would be a typical example of his species, were it not for the nine hungry parasites hanging off the end of his spin. They constantly move around him as he moves, leaking slick fluids on the forest floor in eagerness. He himself is naked, his armor plates fully retracted, safe for a few small pouches tied to a leather thong. His seven inch dick is hard, seemingly permanently, absolutely turgid with rapacious intent.\n\nAzra is in the distance, trying to save as many Fuck Lilies as possible. You’ll need to take this guy down if you want to make sure Azra can escape.";
+			this.long = "This male zil would be a typical example of his species, were it not for the nine hungry parasites hanging off the end of his spine. They constantly move around him as he moves, leaking slick fluids on the forest floor in eagerness. He himself is naked, his armor plates fully retracted, safe for a few small pouches tied to a leather thong. His seven inch dick is hard, seemingly permanently, absolutely turgid with rapacious intent.\n\nAzra is in the distance, trying to save as many Fuck Lilies as possible. You’ll need to take this guy down if you want to make sure Azra can escape.";
 			this.customDodge = "The zil zips out of the way with a swift contortion of his agile frame.";
 			this.customBlock = "The zil’s chitinous armor deflects your attack.";
 			this.isPlural = false;

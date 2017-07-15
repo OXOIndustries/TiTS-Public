@@ -31,20 +31,52 @@ public function riyaAppearance():void
 	clearOutput();
 	showRiya();
 	author("Franks");
-	output("Riya is very tall for a human woman, standing 6\' 2\" by ancient Imperial measurements. She has midnight-black hair in a crew cut, smooth, dusky skin and deep, intense brown eyes. She is in remarkable shape, her rolled-up sleeves showing forearms corded with muscles that flex powerfully with every slight movement she makes. She has two heavy, round, firm D-cup breasts, a flat, hard stomach, and slender, powerful thighs that propel her forward with panther-like grace. She has one tattoo, a lone black wing on the left side of her neck just under her jaw.");
+	output("Riya is very tall for a human woman, standing 6\' 2\" by ancient Imperial measurements. She has midnight-black hair in a crew cut, smooth, dusky skin and deep, intense brown eyes. She is in remarkable shape, her rolled-up sleeves showing forearms corded with muscles that flex powerfully with every slight movement she makes. She has two heavy, round, firm D-cup breasts, a flat, hard stomach, and slender, powerful thighs that propel her forward with panther-like grace. She has one tattoo, a lone ebony wing on the left side of her neck just under her jaw.");
 	output("\n\nShe is clad in a U.G.C. Peacekeeper uniform and dark blue beret. As you gaze on her form, you notice a rather conspicuous bulge down the left leg of her pants... it seems officer Batra is packing a little something extra.");
 	riyaMenu();
 }
 
+public function riyaOnCanada():Boolean
+{
+	if(flags["RIYA_RELOCATED"] == 1 && pc.hasStatusEffect("RIYA_CANADIA_CD")) return false;
+	//RIYA_RELOCATED 1 && !CD - CANADA
+	if(flags["RIYA_RELOCATED"] == 1 && !pc.hasStatusEffect("RIYA_CANADIA_CD")) return true;
+	//RIYA_RELOCATED 2 && CD - CANADA
+	if(flags["RIYA_RELOCATED"] == 2 && pc.hasStatusEffect("RIYA_CANADIA_CD")) return true;
+	//All else? FALSEROONI!
+	return false;
+}
+
 public function riyaBonus():Boolean
 {
-	//If nonhuman: 
-	if(!pc.isHuman()) output("\n\nThere’s a woman in a U.G.C. uniform loitering about, gazing at you with undisguised suspicion. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
-	else output("\n\nThere’s a woman in a U.G.C. uniform loitering about, watching the passing shoppers keenly. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
+	if((riyaOnCanada() && getPlanetName().toLowerCase() == "canadia station") || (!riyaOnCanada() && getPlanetName().toLowerCase() == "tavros station"))
+	{
+		if(pc.hasStatusEffect("RIYA_CANADIA_CD"))
+		{
+			if(flags["MET_RIYA_ON_CANADA"] == undefined)
+			output("\n\nRiya is nowhere to be found...");
+			return false;
+		}
+		//Franks
+		//-Should trigger after PC hits level 7-8(TBD) or two weeks after PC meets Riya
+		//-PC sees Riya talking to Grence before rushing to the hangar and leaving
+		//-PC has option to follow to see what's going on
+		//-Black Void  trying shit, oh noes!
+		//-Reveals that Riya isn’t actually ‘ex’ Black Wing, was just put on Tavros in preparation for a raid on aforementioned pirates
+		//-Triggers when PC walks into Riya’s square
+		if(pc.level >= 7 && flags["MET_RIYA"] != undefined && GetGameTimestamp() >= (flags["MET_RIYA"] + 60*24*14) && flags["RIYA_QUEST_RESULT"] == undefined)
+		{
+			riyaQuestProc();
+			return true;
+		}
+		//If nonhuman: 
+		if(!pc.isHuman()) output("\n\nThere’s a woman in a U.G.C. uniform loitering about, gazing at you with undisguised suspicion. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
+		else output("\n\nThere’s a woman in a U.G.C. uniform loitering about, watching the passing shoppers keenly. There is a rather conspicuous bulge down her left pant leg - It seems this officer is packing something extra between her legs.");
 
-	//[U.G.C. Officer]
-	if(flags["RIYA_PUNCHED"] == 2) addDisabledButton(0,"Riya","Riya","After punching her, it’s probably best to avoid Riya.");
-	else addButton(0,(flags["MET_RIYA"] == undefined ? "UGC Officer" : "Riya"),approachRiya);
+		//[U.G.C. Officer]
+		if(flags["RIYA_PUNCHED"] == 2) addDisabledButton(0,"Riya","Riya","After punching her, it’s probably best to avoid Riya.");
+		else addButton(0,(flags["MET_RIYA"] == undefined ? "UGC Officer" : "Riya"),approachRiya);
+	}
 	return false;
 }
 
@@ -58,6 +90,37 @@ public function approachRiya():void
 		sockHerEpilogue();
 		return;
 	}
+	//Riya moved back to Tavros
+	//First time PC approaches Riya after reporting her on Canadia (and getting her moved back to Tavros)
+	if(flags["RIYA_RELOCATED"] == 2 && flags["MET_RIYA_ON_CANADA"] == 1)
+	{
+		flags["MET_RIYA_ON_CANADA"] = 2;
+		output("As you approach Riya, she perks up suddenly, smiling widely at you. Uh... should she be so happy after being reassigned <i>twice</i> thanks to your reports? Probably not, but that doesn’t change the fact that well, she is.");
+		output("\n\n<i>“Steele! I should thank you!”</i> she says, hands on her hips. <i>“I wasn’t surprised at all the first time I got reassigned - didn’t even figure it was you, honestly. I’ve gotten on Grence’s nerves enough that she’d probably want me gone regardless of how many times I saved her life. Couldn’t even blame her, honestly. The second time though, and after seeing you on Canadia right before getting myself shuttled back to Tavros? I’d have to be a complete idiot not to put two and two together. I’m back now, though. It’s nice as fuck not having to pay rent again. Thanks, buddy!”</i> she says, clapping you on the back before returning to her duties.");
+		output("\n\nLittle shit...");
+		processTime(4);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	//First Canadia meeting
+	else if(flags["RIYA_RELOCATED"] == 1 && flags["MET_RIYA_ON_CANADA"] == undefined) 
+	{
+		flags["MET_RIYA_ON_CANADA"] = 1;
+		output("Approaching Riya, you can’t help but notice that she looks... irritated. Not quite <i>angry</i>, but definitely not happy. You’re sure you can imagine why, a sly smirk coming to your face. Still, she doesn’t seem to be as troubled as you’d think, which irks you more than you’d care to admit. Seeing you approach she perks up a bit, kicking herself off the wall she was leaning on and placing her hands on her hips, meandering towards you.");
+		output("\n\n<i>“");
+
+		if(pc.race() == "human") output("Steele");
+		else output(StringUtil.upperCase(riyaNickname()));
+		output(" How’s it going? They sent me up creek to this place, but it’s not so bad,”</i> she says, squinting as a group of ausar walks by joking and shouting boisterously to each other. She flags their leader down, ignoring you for the moment.");
+		output("\n\n<i>“Hey Rover, could you keep your barking to a minimum? Thanks.”</i> she says, turning back to you without a care in the world. The ausar walk away with their ears flat against their skulls, glaring silently at Officer Batra. <i>“Anyway, yeah - sucks not living rent-free in that apartment I bought on Tavros, but at least I can rent the place out and make some money off it.”</i>");
+		output("\n\nSo she’s not mad at Grence for removing her, you ask? She shrugs. <i>“Not really. I kinda got on her nerves, after all. Besides, she’ll see the light soon enough. Any day now, she’ll send me a picture of her with those bigass white titties of hers hanging out, begging for her best officer back. And I will be happy to oblige,”</i> she says, smug lopsided grin plastered across her face.");
+		output("\n\nWell, she’s... certainly confident...");
+		processTime(1);
+		riyaMenu();
+		return;
+	}
+	//Typical repeats
 	var inhuman:Boolean = (!pc.isHuman());
 	if(flags["MET_RIYA"] == undefined)
 	{
@@ -70,7 +133,7 @@ public function approachRiya():void
 		output("\n\n<i>“Need help with anything, " + pc.mf("sir","ma’am") + "?”</i> She inquires cordially.");
 		if(inhuman) output(" You notice, though, that her hand is still hovering near her taser.");
 		
-		flags["MET_RIYA"] = 1;
+		flags["MET_RIYA"] = GetGameTimestamp();
 	}
 	else output("You walk up to Officer Batra, who is patrolling the merchant deck as usual. Her watchful gaze turns to you as you approach.");
 	processTime(1);
@@ -125,7 +188,10 @@ public function talkToRiya(inhuman:Boolean):void
 		{
 			output("You don’t need anything, you explain, you just wanted to make conversation. The dark-skinned security officer squints at you, brown eyes narrowing.");
 			output("\n\n<i>“What, while your buddies hold up a store? Nice try, " + riyaNickname() + ". Get on your way before I decide you’re resisting arrest.”</i>");
-			output("\n\nShe’s preparing to draw her handcuffs and you decide it’s not worth starting a fracas with a uniformed security officer in the middle of Tavros station. You turn, walking away without another word.");
+			output("\n\nShe’s preparing to draw her handcuffs and you decide it’s not worth starting a fracas with a uniformed security officer in the middle of ");
+			if(riyaOnCanada()) output("Canadia");
+			else output("Tavros");
+			output(" Station. You turn, walking away without another word.");
 			output("\n\nWhat an asshole.");
 			flags["RIYA_TALK"] = 1;
 		}
@@ -155,8 +221,14 @@ public function talkToRiya(inhuman:Boolean):void
 			output("\n\nShe squints at you for a moment.");
 			output("\n\n<i>“Lot of questions there, Steele. I was born on Earth - The region known as India, more specifically. Dad’s a freight captain, mom’s his first mate. I thought about following in their footsteps, but... Well, I did a stint in the U.G.C. Marines, and I guess I just decided I like the discipline and structure. Not to mention getting to cruise around the galaxy and get paid for it, kill all kinds of different aliens... dirty deeds, done dirt cheap. Oh, and chicks </i>love<i> the uniform. Of course, sleeping in a bed the size of a coffin, getting yelled at all the time, woken up at ungodly hours of the night for drills, and eating cat food three meals a day, that’s not so much fun.”</i>");
 			output("\n\nShe shrugs.");
-			output("\n\n<i>“So I compromised. Now I get paid basically the same, eat whatever the fuck I want, and play mall cop here on Tavros. Almost nobody breaks the law here, surprisingly.”</i>");
-			output("\n\n<i>“So, are you the only Peacekeeper on Tavros?”</i> you ask. She scoffs.");
+			output("\n\n<i>“So I compromised. Now I get paid basically the same, eat whatever the fuck I want, and play mall cop here on ");
+			if(riyaOnCanada()) output("Canadia");
+			else output("Tavros");
+			output(". Almost nobody breaks the law here, surprisingly.”</i>");
+			output("\n\n<i>“So, are you the only Peacekeeper on ");
+			if(riyaOnCanada()) output("Canadia");
+			else output("Tavros");
+			output("?”</i> you ask. She scoffs.");
 			output("\n\n<i>“Of course not. We help the station’s private security do patrols, send officers into nearby systems as needed, chase warrants, and formally arrest anyone station security apprehends.”</i>");
 			output("\n\nCuriosity getting the better of you, you ask exactly how many peacekeepers are on the station, earning another squint from Riya.");
 			output("\n\n<i>“And why do you need to know that?”</i> she says, continuing before you can reply. <i>“Ah, that’s right. You don’t.”</i>");
@@ -205,14 +277,19 @@ public function riyaRacismTalk():void
 	author("Franks");
 	output("How does Riya get away with her blatant racism? ");
 	if(silly) output("her real-life shitposting");
-	output("? It doesn’t make sense. She’s in a pretty visible position, walking patrol around Tavros station, and you find it hard to believe you’re the only person she’s treated like that. So why is she allowed to continue? Friends in high places, maybe?");
+	output("? It doesn’t make sense. She’s in a pretty visible position, walking patrol around ");
+	if(flags["RIYA_RELOCATED"] == 1) output("Canadia Station");
+	else output("Tavros Station");
+	output(", and you find it hard to believe you’re the only person she’s treated like that. So why is she allowed to continue? Friends in high places, maybe?");
 	output("\n\nRegardless of why, though... Maybe there’s something you can do about it.");
 	processTime(4);
 	clearMenu();
 	//[Nah]
 	addButton(0,"Nah",nahNoRacismShit);
 	//[Report]
-	if(flags["RIYA_REPORTED"] != 2) addButton(1,"Report",reportRiyaIfYouWant);
+	if(flags["RIYA_REPORT_DISABLED"] != undefined) addDisabledButton(1,"Report","Report","You doubt you’ll get a chance to report her again.");
+	else if(flags["RIYA_RELOCATED"] == 1 || flags["RIYA_RELOCATED"] == 2) addButton(1,"Report",reportRiyaIfYouWant);
+	else if(flags["RIYA_REPORTED"] != 2 && flags["RIYA_RELOCATED"] != 3) addButton(1,"Report",reportRiyaIfYouWant);
 	else addDisabledButton(1,"Report","Report","You doubt you’ll get a chance to report her again.");
 	//[Confront]
 	addButton(2,"Confront",confrontRiyasCommandingOfficer);
@@ -234,6 +311,40 @@ public function nahNoRacismShit():void
 public function reportRiyaIfYouWant():void
 {
 	clearOutput();
+	//If PC chooses ‘report’ on Canadia
+	if(flags["RIYA_RELOCATED"] == 1)
+	{
+		output("Well, maybe the second time’s the charm. You’ve already gotten her relocated here to Canadia... maybe you can get her moved somewhere else, somewhere you’re not likely to ever go? You spend a few minutes digging up the info for the local U.G.C. public relations officer, then shoot them off an email with your contact information. It doesn’t take long to get a call after that, and you’re speaking shortly with a tired-sounding, irritable female voice who, in between taking loud sips of whatever drink she has and typing away at her keyboard assures you that your complaint will be looked into.");
+		output("\n\nReport filed, you continue smugly on your way. There’s no way this could possibly backfire, right? Of course not.");
+		flags["RIYA_RELOCATED"] = 2;
+		pc.createStatusEffect("RIYA_CANADIA_CD");
+		pc.setStatusMinutes("RIYA_CANADIA_CD",24*60*7);
+		processTime(15);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	else if(flags["RIYA_RELOCATED"] == 2)
+	{
+		clearOutput();
+		showName("\nGRENCE");
+		showBust("GRENCE");
+		output("Well, fuck. Back to square one. You’re not giving up, though. Fuming, you dig up Commander Grence’s contact information again, requesting a meeting with the gold-maned ausar. As before, she’s willing to meet with you on short notice - in fact, you get a response even faster this time, more than likely because of the help you provided against the Black Void. When you enter her office she’s at her desk, typing faster than you’ve ever seen... anyone type really, eyes scanning a screen you can’t see, fluffy yellow ears pinned against her skull. They stand straight up as you enter though, the woman turning to face you with a warm smile on her face.");
+		output("\n\n<i>“Good to see you again, Steele. How may I help you?”</i> she asks, fingers steepled. You ");
+		if(pc.legCount == 2) output("take a seat in front of her desk");
+		else output("stand before her desk");
+		output(" as she reaches under her desk for refreshments, coming up with nice cold glasses of fruit juice for both of you. Taking a sip and setting it down, you begin to speak. It’s about Riya again, you say, but before you can get even halfway through your sentence Grence raises her hand to interrupt you.");
+		output("\n\n<i>“Steele, do you think this is a taxi service?”</i> she asks evenly, sipping her drink.");
+		output("\n\nWhat? Of course you don’t. What does that have to do with anything, you ask? The ausar women takes another sip before replying.");
+		output("\n\n<i>“Do you think we’re going to endlessly shuttle Lieutenant Batra back and forth between duty stations?”</i> she asks, still even and polite. <i>“I understand that she’s abrasive, but honestly? I don’t have nearly as much of a problem with it now that I know I can trust her with my life. I’m very sorry, but I’m afraid I’m not going to try to reassign her this time.”</i>");
+		output("\n\nYou gape for a moment, speechless. Grence notes your demeanor and blinks, ears twitching. <i>“Furthermore, aside from being the single most aggravating person I’ve met in the past year, she’s got an exemplary knack for busting up crime here on Tavros - including human crime - which makes me a lot less leery of her continued presence in my command. So... will that be all?”</i>");
+
+		processTime(4);
+		clearMenu();
+		addButton(0,"Yes",yesIUnderstandThatFranksIsBeatingMeOverTheHead,undefined,"Yes","Pieces of your mind are a valuable commodity and should not be sold, given, or traded lightly.");
+		addButton(1,"No",noImGonnaLetFranksGrumpMe,undefined,"No","Give her a piece of your mind.");
+		return;
+	}
 	showBust("");
 	showName("THE\nCOMMANDER");
 	author("Franks");
@@ -856,4 +967,332 @@ public function riyaFellatioScene():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+}
+
+
+//Franks
+//-Should trigger after PC hits level 7-8(TBD) or two weeks after PC meets Riya
+//-PC sees Riya talking to Grence before rushing to the hangar and leaving
+//-PC has option to follow to see what's going on
+//-Black Void  trying shit, oh noes!
+//-Reveals that Riya isn’t actually ‘ex’ Black Wing, was just put on Tavros in preparation for a raid on aforementioned pirates
+//-Triggers when PC walks into Riya’s square
+
+public function riyaQuestProc():void
+{
+	showRiya();
+	showName("SOMETHING'S\nHAPPENING!");
+	output("\n\nAs you walk through the merchant deck of Tavros, you spot something out of the ordinary; Riya is marching quickly towards the elevator ");
+	//PC has reported Riya: 
+	if(flags["RIYA_REPORTED"] != undefined) output("with Commander Grence at her side");
+	else output("with an ausar woman wearing the rank of a U.G.C. Commander, her golden fur practically shining in the station’s overhead lights. Her name-badge says ‘Grence’.");
+	output(" They’re both sporting deadly serious faces, Riya leaning down to exchange mostly inaudible whispers with the blonde ausar as they pass you. You manage to overhear something about an asteroid field and pirates, but nothing else. Is something happening? Whatever it is, it sounds dangerous.");
+
+	clearMenu();
+	//[Follow]
+	//[Don’t]
+	addButton(0,"Follow",followRihaOnRihaQuest);
+	addButton(1,"Don't",riyaQuestTurnedDown);
+}
+
+//PC selects ‘don’t’
+public function riyaQuestTurnedDown():void
+{
+	clearOutput();
+	showRiya();
+	output("This looks an awful lot like something that doesn’t concern you, you decide. You watch the pair marching away until they board the elevator and the doors shut, removing them from your sight.");
+	//(Nothing happens. Riya remains on Tavros.)
+	flags["RIYA_QUEST_RESULT"] = -1;
+	pc.createStatusEffect("RIYA_CANADIA_CD");
+	pc.setStatusMinutes("RIYA_CANADIA_CD",8*60);
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//PC selects ‘follow’
+public function followRihaOnRihaQuest():void
+{
+	clearOutput();
+	showName("\nFOLLOWING...");
+	currentLocation = "SHIP INTERIOR";
+	output("They don’t seem to be paying much mind to anything besides each other, so it’s a simple enough matter to follow them. It gets more complicated once they get in the elevator together, still huddled together and whispering, but some jogging has them back in your line of sight after you follow on the next elevator as they... walk into a hangar guarded by several uniformed U.G.C. Peacekeepers. Damn it. You walk to your own ship as quickly as possible without arousing suspicion, boarding and leaving the station. Where to go, though? You can see a U.G.C. ship that you presume is theirs entering a warp gate, but to where? You wrack your brains for a long few minutes, acutely aware that every second you spend thinking is more time for you to miss whatever’s going down... finally though, you recall the brief snatch of conversation you caught. Pirates, and... an asteroid field. For the Commander of Tavros’s Peacekeeper detachment to be going out herself, it must be nearby, and important.");
+	output("\n\nA quick extranet search later, you have a few likely candidates, all reasonably close to Tavros. Which one <i>is</i> it, though? You sigh in frustration, realizing you have no choice but to guess as your fingers type in the coordinates of the nearest asteroid field to Tavros. You arrive some time later, dropping out of warp and checking your scanners. Nothing. You curse in irritation, pulling up the results of your extranet search again, heading to the next location on the list.");
+	output("\n\nYou see instantly that his one has yielded more fruit as you come out of warp to the sight of a large and intimidating cruiser with U.G.C. markings trading fire with a number of smaller ships bearing the distinctive black and red of the Black Void. They don’t seem to be paying you any mind, no doubt because they’re rather busy trying to kill each other. You can see what looks like a hangar bay in one of the larger asteroids, with several smaller ships either pulling in, or docked already, as you can just barely see. You start to pull in after them, not seeing another docking bay. This probably isn’t the best idea you’ve ever had, but it’ll have to do for now.");
+	output("\n\nUnless... maybe it’d be best to pack up for home now? This really doesn’t look like it’s a party you were invited to, and the trouble you might get in for dropping in on a U.G.C. Peacekeeper raid is the type even your dad’s legal team might not be able to pull you out of, not to mention possible loss of life and limb.");
+	processTime(75);
+	clearMenu();
+	addButton(0,"Go Home",goHomeFromRiyaQuest);
+	addButton(1,"Stay",stayForQuest);
+}
+
+//If PC selects ‘Go home’
+public function goHomeFromRiyaQuest():void
+{
+	clearOutput();
+	showName("FUCK\nTHIS");
+	output("On second thought, this probably - no, definitely isn’t one of your better ideas. Turning your ship around and heading back into the gate, you take comfort in the fact that none of the ships fighting have noticed you yet.");
+	processTime(60);
+	flags["RIYA_QUEST_RESULT"] = -1;
+	pc.createStatusEffect("RIYA_CANADIA_CD");
+	pc.setStatusMinutes("RIYA_CANADIA_CD",8*60);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//If PC selects ‘Stay’
+public function stayForQuest():void
+{
+	clearOutput();
+	showName("PIRATE\nBASE");
+	output("As soon as you get out of your ship, you realize exactly how badly you fucked up. Nobody hailed you or tried to stop you from docking in, but now you see the dozen or so Black Void armored bodies strewn haphazardly about, blast marks and bloodstains marring the otherwise surprisingly pristine walls, and a blur at the edge of your vision right before you’re tackled to the ground and dogpiled none too gently by no less than four masked, armored soldiers. You faintly hear a voice ordering them to flip you over - they do so promptly, and you blink, seeing Riya and Commander Grence standing over you. Riya is the first to speak, eyes distinctly cold.");
+	output("\n\n<i>“You just landed your ship in the middle of a special forces raid on a Black Void base. What in the everlasting fuck are you doing here, Steele?”</i> she asks, smoothly drawing her sidearm and cocking it, waiting for an answer. <i>“Choose your next words carefully.”</i>");
+	output("\n\nYou open your mouth to reply, but just then an explosion rocks the asteroid, sending everyone nearby - Riya and Grence included - sprawling to the ground. You quickly gain your [pc.legs], taking cover and grabbing your [pc.weapon] as more Void soldiers pour through the hangar doors. Riya and company are on their feet in record time, trading fire with the pirates in a series of plasma flashes so bright as to be nearly blinding.");
+	processTime(13);
+	//Recycle pirate mob from Karaquest
+	var h:Array = [new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()];
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors([pc]);
+	CombatManager.setHostileActors(h);
+	//CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
+	CombatManager.displayLocation("VOID GOONS");
+	CombatManager.victoryScene(riyaQuestCombat1Victory);
+	CombatManager.lossScene(riyaQuestCombat1Loss);
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+public function riyaQuestCombat1Loss():void
+{
+	showName("\nOH NO...");
+	output("As your knees hit the metal of the deck, you look up to see the pirates advancing on you, the sound of their taunting laughter filling your ears - then a blinding flash, and then... nothing. Grence, Riya and the rest may make it out without you, or they may not. It’s of no consequence to the pile of charcoal that used to be [pc.name] Steele.");
+	badEnd("GAME OVER.");
+}
+
+//If PC wins
+public function riyaQuestCombat1Victory():void
+{
+	clearOutput();
+	showRiya();
+	output("As the last of the pirates falls, Riya turns to face you, blinking and speaking. <i>“Well then. Guess you’re with us for now, Steele. We’re conducting a raid on this station because we’ve traced a large amount of slavery, weapons and drug running operations being conducted by the Black Void back here - this is one of their hubs, as far as we can tell. I’m sure it won’t stop them from setting up shop on another asteroid somewhere, but we can at least use whatever info we get here to break up some of their crime rings. Come on,”</i> she says, jogging down a hallway leading further into the station.");
+	output("\n\n");
+	processTime(3);
+	CombatManager.genericVictory();
+	eventQueue.push(riyaQuest1CombatVictoryMenu);
+}
+
+public function riyaQuest1CombatVictoryMenu():void
+{
+	clearOutput();
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("Commander Grence is in the back of the group with one of the Ebon Wing troopers beside her, giving you a chance to slow down and talk to her as the group moves.");
+	clearMenu();
+	//[Riya]
+	addButton(0,"Riya",riyaQuestGrenceTalkAboutRiya);
+	//[Grence]
+	addButton(1,"Grence",riyaQuestGrenceTalkAboutGrence);
+}
+
+//If PC selects ‘Riya’
+public function riyaQuestGrenceTalkAboutRiya():void
+{
+	clearOutput();
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("So what’s the deal with Riya? You’re guessing she’s not really a cop...");
+	output("\n\nGrence nods, fluffy golden ears swiveling to and fro rapidly. <i>“Nope. She’s still in the Ebon Wing, as it turns out. ");
+	if(flags["RIYA_REPORTED"] != undefined) output("This explains why I wasn’t able to get her in any kind of trouble. ");
+	output("This explains why she got a soundproofed office. And this explains...”</i> she pauses, ears twitching as she jogs. <i>“Well. And a lot of other things. Nobody ever told me, but I really should’ve figured it out before now. It doesn’t explain how someone with her unashamed, disgusting racism rose to the upper echelons of soldiery, though,”</i> she finishes, simmering anger clear on her pale face as her ears pin back against her skull.");
+	output("\n\nThe burly, surprisingly masculine kaithrit keeping pace with the two of you takes this moment to speak up, his voice a rumbling, deep growl. <i>“She’s not as bad as all that, believe it or not. In combat, Lieutenant Batra is one of the finest sapient beings in the galaxy. She just needs someone to throw hand grenades at her for the rest of her life,”</i> he says, chuckling. Commander Grence looks unconvinced, but says nothing.");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",afterPostCombatTalkies);
+}
+
+//If PC selects ‘Grence’
+public function riyaQuestGrenceTalkAboutGrence():void
+{
+	clearOutput();
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("So, you ask, how did Grence herself end up tagging along for this mission? She doesn’t look like a fighter, you say - no offense intended, of course. She actually giggles a bit before answering. <i>“None taken, Steele. It’s true enough - I’m a desk jockey. I can finish a stack of paperwork half as tall as me in record time, I can get leave approved for just about any of my officers, I can save credits like nobody else, I pull overtime almost every day, and I’m cute as a button to boot. It’s how I got promoted so fast. I’m only thirty, you know.”</i> she says proudly. That <i>is</i> pretty impressive, you have to admit. She never answered your initial question, though - what made a self-admitted desk jockey like her tag along for a dangerous top secret mission?");
+	output("\n\nHer ears droop off to the sides, and she looks sheepish, even a bit ashamed.");
+	output("\n\n<i>“I kinda, well... I kinda forced my way in. I was so ticked off at Riya that when she told me she had a top secret matter to attend to, I pulled rank. I do have top secret clearance after all, being a Commander, but I never would’ve been approved to tag along on a raid like this. And rightfully so,”</i> she says, baby blue eyes shifting. <i>“I’m way more than a little bit in over my head. Those pirates you fought back in the hangar would’ve eaten me alive, and apparently they’re the small fries.”</i>");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",afterPostCombatTalkies);
+}
+
+public function afterPostCombatTalkies():void
+{
+	clearOutput();
+	showRiya();
+	output("Making your way further into the asteroid complex, you’re stopped by a barricade, small arms fire spraying out from behind it - up until the kaithrit you spoke to earlier lifts his rifle next to your shoulder and fires the grenade launcher slung under the rifle’s barrel. The barricade explodes in a deafening hail of shrapnel and fire, and you continue on. The group doesn’t get very far though, before you find yourselves in what appears to be a planning room - datachips, holo-tapes and even regular old-fashioned stacks of paper are strewn haphazardly across the many tables, control centers and desks. Buttons and beeping alarms are flashing everywhere, and a few helmless pirates of assorted races are frantically setting fire to everything and smashing computers with sledgehammers. They stop when your group enters the room, diving for cover and drawing their weapons.");
+	
+	//Fight(Recycle pirate mob from Karaquest, 3 pirates)
+	//Recycle pirate mob from Karaquest
+	var h:Array = [new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()];
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors([pc]);
+	CombatManager.setHostileActors(h);
+	//CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
+	CombatManager.displayLocation("VOID GOONS");
+	CombatManager.victoryScene(riyaQuestCombat2Victory);
+	CombatManager.lossScene(riyaQuestCombat1Loss);
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+//After fight
+public function riyaQuestCombat2Victory():void
+{
+	clearOutput();
+	showName("RIYA\n& CO");
+	showBust("RIYA","GRENCE");
+	output("As the last of the pirates you were fighting collapses, you see movement out of the corner of your eye - head swiveling, you see it’s Commander Grence, kicking and clawing frantically as she’s dragged down a hallway by two pirates in full armor, her eyes wild and full of terror. More pirates are laying down covering fire on you and the Ebon Wing troopers beside you. They must’ve seen her rank and grabbed her while everyone was distracted fighting!\n\n");
+	CombatManager.genericVictory();
+	eventQueue.push(riyaQuestCombat2VictoryMenu);
+}
+
+public function riyaQuestCombat2VictoryMenu():void
+{
+	clearOutput();
+	showName("RIYA\n& CO");
+	showBust("RIYA","GRENCE");
+	output("You turn towards them, weapon raised, but they just jerk Grence around so she’s in the line of fire and keep retreating... they’re almost at the door when Riya of all people comes out of nowhere, elbowing one of the pirates in the jaw and scooping the golden-haired ausar up like a baby, setting out towards you at a full sprint. She’s unable to use her weapons while carrying Grence and so naturally the Black Void open fire, plasma bolts and slugs skipping off the deck as the dusky shemale makes her escape. Her squadmates lay down covering fire, and the pirates are forced to retreat down the corridor, diving and sliding on her back to safety. Grence simply stares at her, jaw working silently for a moment as Riya sets her down on her legs, the ausar woman still clutching the human’s forearms.");
+	output("\n\n<i>“You... saved me. You risked your life. I thought-”</i> the ausar cuts off as Riya begins to talk over her.");
+	output("\n\n<i>“All fucking ausar must fucking hang,”</i> Riya says, smug grin on her face. Grence just stares at her in bewilderment for a second... and then slaps her across the face and storms away, the sound cracking through the room. The kaithrit soldier shakes his head slowly as the group begins to rifle through the scattered datacards and other bits of information in the room, Grence joining in with her ears pinned flat against her skull while Riya stands guard, smirking. A few short moments later, Grence’s ears stand straight up and her bushy golden tail begins to wag slowly. The ausar officer hurriedly and carefully places a stack of papers into Riya’s hands, her earlier anger seemingly forgotten amidst the excitement of whatever she’s found. Riya takes it and stares at it for a moment before smiling and wrapping one arm around Grence’s shoulders, pulling the high-ranking pup tight against her side.");
+	output("\n\n<i>“Jackpot,”</i> she says, handing the papers off to another helmeted trooper who stows them in a duffel bag at his side, the container already almost overflowing with other captured information. <i>“Alright,”</i> Riya says, releasing a now confused-looking Commander Grence, <i>“let’s get the fuck out of here before more scumbags show up.”</i>");
+	clearMenu();
+	addButton(0,"Next",riyaQuestCombat3Setup);
+}
+
+public function riyaQuestCombat3Setup():void
+{
+	clearOutput();
+	showName("OH\nSHIT!");
+	showBust("JUGGERNAUT","HOVER_DRONE","HOVER_DRONE");
+	output("Just then, as if on cue, you hear the sound of metal clanking against the deck plates. Turning, you see a hulking humanoid in Black Void armor bringing weapons to bear on you, two sentry drones angrily buzzing about him.");
+	//Recycle Black Void Juggernaut from Karaquest, plus Security Drone from Karaquest x2
+	var h:Array = [new KQ2Juggernaut(), new KQ2SecurityDroid(), new KQ2SecurityDroid()];
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors([pc]);
+	CombatManager.setHostileActors(h);
+	//CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
+	CombatManager.displayLocation("JUGGERNAUT");
+	CombatManager.victoryScene(riyaQuestCombat3Victory);
+	CombatManager.lossScene(riyaQuestCombat3Loss);
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+
+
+
+//If PC loses
+public function riyaQuestCombat3Loss():void
+{
+	showName("\nUH OH...");
+	output("As your knees hit the metal of the deck, you look up to see the Juggernaut advancing on you, the sound of his taunting laughter filling your ears - then a blinding flash, and then... nothing. Grence, Riya and the rest may make it out without you, or they may not. It’s of no consequence to the pile of charcoal that used to be [pc.name] Steele.");
+	badEnd("GAME OVER");
+}
+
+//If PC wins
+public function riyaQuestCombat3Victory():void
+{
+	clearOutput();
+	showName("RIYA\n& CO.");
+	showBust("GRENCE","RIYA");
+	output("As the last of your enemies falls, you look over to see Riya and co. rifling through the pockets of their fallen foes, presumably looking for more information or trophies. After a moment they’re finished, jogging back down the corridor towards the hangar as the asteroid takes another impact, your feet barely staying under you. You meet no opposition on your way back to the hangar, though you notice the short run has poor Commander Grence completely out of breath, her fluffy ears drooping as she struggles to hold the duffel bag in her arms aloft. Riya slows down as you reach the hangar, plucks the bag out of the tuckered-out ausar’s hands and bends down, scooping the unresisting Commander up around her belly and carrying her into their ship.\n\n");
+	CombatManager.genericVictory();
+	eventQueue.push(riyaQuestCombat3VictoryMenu);
+}
+
+public function riyaQuestCombat3VictoryMenu():void
+{
+	clearOutput();
+	showName("RIYA\n& CO.");
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("<i>“Gotta get your ass in shape, Rover!”</i> she quips as plasma bolts begin to splatter off the decks and ships around you, the pirates making a last-ditch effort to save their intel. You make your way onto your own ship with time to spare, the Ebon Wing dropship firing up and lifting off alongside you. The naval battle you were watching earlier is drawing to a close, with several reinforcement ships from the U.G.C. Navy having entered the fight. In fact, just as you leave the system the last of the pirate ships explodes down its port side, the warship listing off to the side with crewmembers being sucked into the hard vacuum of space by the dozens. It’s over. And now you notice that the dropship carrying Riya and Grence is gone too, presumably having started the jump back to Tavros. You key in the coordinates too, not wanting to be mistaken for a hostile by the small U.G.C. fleet that is currently searching the asteroid field for any surviving pirates.");
+	output("\n\nArriving back at Tavros, you’re immediately hailed by the station’s chief customs officer and instructed to dock and submit to inspection. The wrinkled, tired-looking old human man looks incredibly bored as he sips his coffee and waits for you to comply. Not very much time later you’re stepping off your ship to the sight of Riya, Grence and a few of the troopers from the raid on the pirates. Grence steps forward and hands you a small stack of papers and pen, blinking as you take it, then speaking.");
+	output("\n\n<i>“Here, Steele. These are non-disclosure agreements and... other things you need to sign. You can read it if you want, but you’re going to want to sign it- trust me.”</i>");
+	output("\n\nWhat? And what if you don’t want to? There’s a <b>lot</b> of fine print on these, after all. Riya shrugs and cuts in just as Grence opens her mouth to speak.");
+	output("\n\n<i>“The alternative is you being arrested and detained indefinitely on suspicion of espionage for interfering with a top-secret U.G.C. operation. We’re doing you a big favor, Steele. Just sign. This isn’t Carver’s whorehouse, there’s no secret clause that says we get to mod the shit out of you or something.”</i>");
+	output("\n\nWhatever. Deciding to pick your battles (Not least because you’re in a hangar full of armed, uniformed Peacekeepers and naval personnel), you make your mark on the papers presented and hand them back. Riya takes them and marches off with them, idly flipping through to make sure you signed, though her body expression tells you she doesn’t actually care that much. Grence watches her leave for a few moments, ears swiveling back and forth slowly, a thoughtful expression on her face. She turns to you after the human woman is out of sight.");
+	output("\n\n<i>“So... my boss hinted to me after we got back that now would be a good time to make noise about Riya, if I still wanted to. Apparently she was only really here for the raid, but since some of the intel her team captured was pretty good stuff, the powers that be want to leave her here to head up regional anti-piracy operations. Explains why I couldn’t get rid of her the last time I tried. Thing is, as abrasive as she is... I’m not totally sure I still <b>want</b> to get rid of her. She saved my life twice back there, after all.”</i> the ausar says.");
+	processTime(200);
+	output("\n\nIf you wanted to weigh in, now seems like it’d be a good time.");
+	clearMenu();
+	addButton(0,"Report Riya",getRidOfRiya);
+	addButton(1,"LetHerStay",keepRiyaAround);
+}
+
+//If PC selects ‘Stay’
+public function keepRiyaAround():void
+{
+	clearOutput();
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("Maybe Riya has grown on you. Maybe you never wanted her gone in the first place. Whatever your reason is, you consider for a moment and then tell the golden pup before you that you’d rather she stays. After all, as Grence pointed out, she did save the Commander’s life at no small risk to her own. She can’t be <b>that</b> bad.");
+	output("\n\nGrence nods, ears still swiveling slowly.");
+	output("\n\n<i>“Yeah. It’d be nice to have more reliable hands around, too. I’ll have to have a talk with her first, though...”</i>");
+	flags["RIYA_REPORT_DISABLED"] = 1;
+	processTime(4);
+	riyaQuestEpilogue();
+}
+
+public function getRidOfRiya():void
+{
+	clearOutput();
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("No, you say, shaking your head for emphasis. Riya may be a good soldier, but she’s <b>not</b> a good person, and you don’t want to have to deal with her and her nastiness - or for anyone else to be subjected to it, for that matter. Besides, she’ll be an even better soldier once she learns to respect other species.");
+	output("\n\nGrence nods, ears still swiveling slowly.");
+	output("\n\n<i>“Yeah. Yeah, you’re right. I can’t risk her causing a PR nightmare here, or... yeah.”</i>");
+	//Riya relocated to Canadia Station, disappears from Tavros and reappears at Canadia (Bar Lounge) after one week
+	flags["RIYA_RELOCATED"] = 1;
+	pc.createStatusEffect("RIYA_CANADIA_CD");
+	pc.setStatusMinutes("RIYA_CANADIA_CD",24*60*7);
+	riyaQuestEpilogue();
+}
+
+public function riyaQuestEpilogue():void
+{
+	output("\n\nDecision made, the ausar nods solemnly and turns, marching away to her office. You don’t envy her the mountain of paperwork she probably has to fill out now. You go your own way, thoroughly exhausted from all the excitement and stress of the raid you just took part in.\n\n");
+	flags["RIYA_QUEST_RESULT"] = 1;
+	currentLocation = shipLocation;
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//If PC selects ‘Yes’
+public function yesIUnderstandThatFranksIsBeatingMeOverTheHead():void
+{
+	clearOutput();
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("Well, you suppose there’s not much more you can really say at this point. Grence has made the decision to keep Riya aboard Tavros station, and that’s her decision to make. Getting mad here won’t accomplish anything. Telling the Commander you don’t have anything else you politely exit her office, a uniformed officer escorting you back to the elevator and sending you on your way.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//‘Report’ grayed out
+public function noImGonnaLetFranksGrumpMe():void
+{
+	clearOutput();
+	showName("\nGRENCE");
+	showBust("GRENCE");
+	output("This is absolutely absurd, and you don’t mind saying so. How can she possibly <b>want</b> Riya to stay, after all the things she’s said? After she herself tried to get her removed? The Commander thinks for a moment, expression softening. <i>“Steele, I understand where you’re coming from. I do. But as abrasive and obnoxious as Riya can be, she’s someone I can truly rely on. That’s... not as common as I’d like it to be, in the Peacekeepers or the U.G.C. in general. If you haven’t noticed, there aren’t nearly as many competent people in this organization as we need. So like I said... knowing now that I can rely on her, the benefits of having Riya around outweigh the detriments. I’m sorry, but that’s my decision and it’s final. I’ll have one of my officers see you out.”</i>");
+	output("\n\nYou can’t do much more than sit there in dumbfounded shock as Grence pages one of her officers in. The pink-haired human woman politely escorts you to the elevator, opening and activating it for you as she sees you on your way.");
+	flags["RIYA_RELOCATED"] = 3;
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

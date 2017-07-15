@@ -30,14 +30,13 @@ public function canadiaHallwayBonus():Boolean
 {
 	kiroKallyCanadiaHallwayBonus();
 	ushameeCanadiaCorridorBonus(0);
-	
 	return false;
 }
 
 public function outsideCanadiaBarBonus():Boolean
 {
+	if(riyaBonus()) return true;
 	kiroKallyCanadiaBarBonus();
-	
 	return false;
 }
 
