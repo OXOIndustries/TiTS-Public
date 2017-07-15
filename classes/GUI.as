@@ -794,7 +794,7 @@
 		
 		public function restoreLocation():void
 		{
-			if (cachePlanet == "CODEX")
+			if (cachePlanet == "CODEX" || cachePlanet == "LEVEL UP" || cacheRoom == "MAIN\nMENU" || cacheRoom == "DATA\nMENU" || cacheRoom == "\nAPPEARANCE")
 			{
 				if (InShipInterior())
 				{

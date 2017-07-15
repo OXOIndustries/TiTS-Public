@@ -399,9 +399,9 @@ public function showCodex():void
 // Temp display stuff for perks
 public function showPerkListHandler(e:Event = null):void
 {
-	var pButton:SquareButton = (userInterface as GUI).perkDisplayButton;
-	
 	if (pc.short.length == 0) return;
+	
+	var pButton:SquareButton = (userInterface as GUI).perkDisplayButton;
 	
 	if (pButton.isActive && !pButton.isHighlighted)
 	{
@@ -417,9 +417,9 @@ public function showPerkListHandler(e:Event = null):void
 
 public function showMailsHandler(e:Event = null):void
 {
-	var pButton:SquareButton = (userInterface as GUI).mailsDisplayButton;
-	
 	if (pc.short.length == 0) return;
+	
+	var pButton:SquareButton = (userInterface as GUI).mailsDisplayButton;
 	
 	if (!pc || pc.hasStatusEffect("In Creation"))
 	{

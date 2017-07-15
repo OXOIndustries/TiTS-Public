@@ -3,23 +3,23 @@ import classes.Creature;
 import classes.StorageClass;
 public function pcAppearance(e:MouseEvent = null):void 
 {
-	if(pc.short.length == 0) return;
+	if (pc.short.length == 0) return;
 	
-	if(!userInterface.appearanceButton.isActive)
-	{
-		return;
-	}
-	else if(userInterface.showingPCAppearance)
-	{
-		backToPrimaryOutput();
-		userInterface.showingPCAppearance = false;
-	}
-	else
+	var pButton:SquareButton = (userInterface as GUI).appearanceButton;
+	
+	if (pButton.isActive && !pButton.isHighlighted)
 	{
 		userInterface.showSecondaryOutput();
 		userInterface.appearanceButton.Glow();
 		appearance(pc);
 		userInterface.showingPCAppearance = true;
+		userInterface.DeGlowButtons();
+		pButton.Highlight();
+	}
+	else if (pButton.isActive && pButton.isHighlighted)
+	{
+		backToPrimaryOutput();
+		userInterface.showingPCAppearance = false;
 	}
 }
 

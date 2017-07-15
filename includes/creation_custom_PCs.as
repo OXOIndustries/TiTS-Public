@@ -264,7 +264,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.removePerk("Infertile");
 			pc.cumQualityRaw = 3;
 			if(pc.femininity < 70) pc.femininity = 70;
-			bonusTexts += "You’ve always had an amazing physique, and the best of both genders - the better to colonate new worlds with your young.";
+			bonusTexts += "You’ve always had an amazing physique, and the best of both genders - the better to colonize new worlds with your young.";
 			break;
 		/*Name : Kaeln
 		Gender : male

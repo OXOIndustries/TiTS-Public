@@ -444,7 +444,7 @@ public function confirmMailConfig():void
 	if (hasIllegalInput(userInterface.textInput.text))
 	{
 		initialMailConfiguration();
-		output("\n\n\n<b>To prevent complications, please avoid using code characters.</b>");
+		output2("\n\n\n<b>To prevent complications, please avoid using code characters.</b>");
 		return;
 	}
 	if (userInterface.textInput.text.indexOf(" ") != -1)

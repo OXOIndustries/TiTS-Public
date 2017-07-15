@@ -1073,12 +1073,12 @@ public function inventoryDisplay():void
 	output("\n\n");
 }
 
+/*
 public function generalInventoryMenu():void
 {
 	clearOutput();
 	showBust("");
 	showName("\nINVENTORY");
-	var x:int = 0;
 	itemScreen = inventory;
 	useItemFunction = inventory;
 	
@@ -1144,6 +1144,45 @@ public function generalInventoryMenu():void
 	addButton(13, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
 	addButton(14, "Back", mainGameMenu);
 }
+*/
+public function generalInventoryMenu():void
+{
+	showBust("");
+	showName("\nINVENTORY");
+	itemScreen = inventory;
+	useItemFunction = inventory;
+	
+	clearOutput();
+	output("What item would you like to use?");
+	if(pc.inventory.length > 10) output("\n(<b>Multiple pages of items are available. Please be aware of the page forward/back buttons in the lower right corner of the user interface when making your selections.</b>)");
+	output("\n\n");
+	inventoryDisplay();
+	
+	clearMenu();
+	var btnSlot:int = -5;
+	var i:int = 0;
+	while (true)
+	{
+		if (i % 10 == 0 && (i < pc.inventory.length || !i))
+		{
+			btnSlot += 5;
+			addButton(btnSlot+10, "Drop", dropItem, undefined, "Drop Item", "Drop an item to make room in your inventory.");
+			addButton(btnSlot+11, "Interact", itemInteractMenu, undefined, "Interact", "Interact with some of your items.");
+			addButton(btnSlot+12, "Key Item", keyItemDisplay, undefined, "Key Items", "View your list of key items.");
+			addButton(btnSlot+13, "Unequip", unequipMenu, undefined, "Unequip", "Unequip an item.");
+			addButton(btnSlot+14, "Back", mainGameMenu);
+		}
+		
+		if (i == pc.inventory.length) break;
+		
+		addItemButton(btnSlot, pc.inventory[i], useItem, pc.inventory[i]);
+		btnSlot++;
+		i++;
+	}
+	
+	//Set user and target.
+	itemUser = pc;
+}
 
 public function itemInteractMenu(counter:Boolean = false):Number
 {
@@ -1203,6 +1242,7 @@ public function itemInteractMenu(counter:Boolean = false):Number
 	return count;
 }
 
+/*
 public function combatInventoryMenu():void
 {
 	clearOutput();
@@ -1268,6 +1308,46 @@ public function combatInventoryMenu():void
 	//addButton(12, "", null, undefined, "", "");
 	addButton(13, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
 	addButton(14, "Back", CombatManager.showCombatMenu);
+}
+*/
+public function combatInventoryMenu():void
+{
+	showName("\nINVENTORY");
+	itemScreen = inventory;
+	useItemFunction = inventory;
+	
+	clearOutput();
+	output("What item would you like to use?");
+	output("\n\n");
+	inventoryDisplay();
+	equipmentDisplay();
+	
+	clearMenu();
+	var btnSlot:int = -5;
+	var i:int = 0;
+	while (true)
+	{
+		if (i % 10 == 0 && (i < pc.inventory.length || !i))
+		{
+			btnSlot += 5;
+			addButton(btnSlot+13, "Unequip", unequipMenu, true, "Unequip", "Unequip an item.");
+			addButton(btnSlot+14, "Back", CombatManager.showCombatMenu);
+		}
+		
+		if (i == pc.inventory.length) break;
+		
+		var tItem:ItemSlotClass = pc.inventory[i];
+		if (InCollection(tItem.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON]) || tItem.combatUsable == true)
+		{
+			addItemButton(btnSlot, pc.inventory[i], combatUseItem, pc.inventory[i]);
+		}
+		else
+		{
+			addDisabledButton(btnSlot, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
+		}
+		btnSlot++;
+		i++;
+	}
 }
 
 public function inventory():void 
