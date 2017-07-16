@@ -314,7 +314,7 @@ public function selleraTheWar():void
 	clearOutput();
 	selleraHeader();
 
-	output("Deciding the address the most obvious issue, you ask about the war. Specifically, what it was like practically directing the entire course of it.");
+	output("Deciding to address the most obvious issue, you ask about the war. Specifically, what it was like practically directing the entire course of it.");
 	
 	output("\n\n<i>“I wouldn’t know,”</i> Sellera says simply. When your eyes widen in surprise at her response, she flashes you a sharp smile. <i>“My promotion was recent, Steele. I was given command a week prior to the invasion of Kressia. Lasted three days, that did, and I was at the very front during the first push inside. Started out as an infantry commander fighting the nyrea menace, and I’ll die an infantry commander, field marshal or no.”</i> An emphatic nod punctuates the end of her last sentence.");
 	
