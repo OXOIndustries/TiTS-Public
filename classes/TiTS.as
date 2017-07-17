@@ -658,7 +658,7 @@
 				trace("Button " + evt.currentTarget.caption.text + " clicked.");
 			}
 			
-			if (evt.currentTarget.arg == undefined)
+			if (evt.currentTarget.arg === undefined)
 			{
 				if (evt.currentTarget.func != null) evt.currentTarget.func();
 			}

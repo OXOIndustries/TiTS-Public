@@ -2684,15 +2684,20 @@
 			// Remove all!
 			if (amount < 0)
 			{
-				for (i = 0; i < inventory.length; i++)
+				while (i < inventory.length)
 				{
-					if (inventory[i].shortName == arg) inventory.splice(i, 1);
+					if (inventory[i].shortName == arg)
+					{
+						inventory[i].quantity = 0;
+						inventory.splice(i, 1);
+					}
+					else i++;
 				}
 			}
 			// Normal
 			else
 			{
-				for (i = 0; i < inventory.length; i++)
+				while (i < inventory.length)
 				{
 					//Item in the slot?
 					if (inventory[i].shortName == arg) 
@@ -2702,9 +2707,14 @@
 						{
 							inventory[i].quantity--;
 							amount--;
-							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+							if (inventory[i].quantity <= 0)
+							{
+								inventory[i].quantity = 0;
+								inventory.splice(i, 1);
+							}
 						}
 					}
+					else i++;
 				}
 			}
 			return;
@@ -2717,7 +2727,9 @@
 			
 			if (arg.quantity <= 0)
 			{
-				inventory.splice(inventory.indexOf(arg), 1);
+				var i:int = inventory.indexOf(arg);
+				inventory[i].quantity = 0;
+				inventory.splice(i, 1);
 			}
 		}
 		public function destroyItem(arg:ItemSlotClass, amount:int = 1):void
@@ -2729,27 +2741,37 @@
 			// Remove all!
 			if (amount < 0)
 			{
-				for (i = 0; i < inventory.length; i++)
+				while (i < inventory.length)
 				{
-					if (inventory[i].shortName == arg.shortName) inventory.splice(i, 1);
+					if (inventory[i].shortName == arg.shortName)
+					{
+						inventory[i].quantity = 0;
+						inventory.splice(i, 1);
+					}
+					else i++;
 				}
 			}
 			// Normal
 			else
 			{
-				for (i = 0; i < inventory.length; i++)
+				while (i < inventory.length)
 				{
 					//Item in the slot?
 					if (inventory[i].shortName == arg.shortName) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg.shortName) 
+						while (amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg.shortName) 
 						{
 							inventory[i].quantity--;
 							amount--;
-							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+							if (inventory[i].quantity <= 0)
+							{
+								inventory[i].quantity = 0;
+								inventory.splice(i, 1);
+							}
 						}
 					}
+					else i++;
 				}
 			}
 			return;
@@ -2763,27 +2785,37 @@
 			// Remove all!
 			if (amount < 0)
 			{
-				for (i = 0; i < inventory.length; i++)
+				while (i < inventory.length)
 				{
-					if (inventory[i] is arg) inventory.splice(i, 1);
+					if (inventory[i] is arg)
+					{
+						inventory[i].quantity = 0;
+						inventory.splice(i, 1);
+					}
+					else i++;
 				}
 			}
 			// Normal
 			else
 			{
-				for (i = 0; i < inventory.length; i++)
+				while (i < inventory.length)
 				{
 					//Item in the slot?
 					if (inventory[i] is arg) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0 && (inventory[i] is arg)) 
+						while (amount > 0 && inventory[i].quantity > 0 && (inventory[i] is arg)) 
 						{
 							inventory[i].quantity--;
 							amount--;
-							if (inventory[i].quantity <= 0) inventory.splice(i, 1);
+							if (inventory[i].quantity <= 0)
+							{
+								inventory[i].quantity = 0;
+								inventory.splice(i, 1);
+							}
 						}
 					}
+					else i++;
 				}
 			}
 			return;
