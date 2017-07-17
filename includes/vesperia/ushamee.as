@@ -120,7 +120,6 @@ public function approachUshameeCorridor2():void
 public function embarassedUshamee():void
 {
 	clearOutput();
-	clearMenu();
 	chiefNeykkarHeader();
 	
 	output("<i>“Embarrassed, probably,”</i> you answer. <i>“What happened back on the ship should probably stay there.”</i>");
@@ -135,7 +134,6 @@ public function embarassedUshamee():void
 public function arousedUshamee():void
 {
 	clearOutput();
-	clearMenu();
 	chiefNeykkarHeader();
 	
 	output("Giving her your most charming smile, you tell the chief that you certainly liked seeing that side of her. And you gotta say: you wouldn’t mind seeing it again, in less dire circumstances.");
@@ -155,7 +153,6 @@ public function arousedUshamee():void
 public function noIdeaUshamee():void
 {
 	clearOutput();
-	clearMenu();
 	chiefNeykkarHeader();
 	
 	output("You answer with a shrug, saying that how she feels is up to her.");
@@ -175,7 +172,6 @@ public function mainMenuUsha(intro:Boolean = false):void
 		if(intro)
 		{
 			clearOutput();
-			clearMenu();
 			chiefNeykkarHeader();
 			
 			output("<i>“Back again?”</i> Usha says with a hungry little smile. <i>“Good to see you, [pc.name]! Sit down, take a load off. Let me buy you a drink!”</i>");
@@ -184,10 +180,13 @@ public function mainMenuUsha(intro:Boolean = false):void
 			else output("Del by the shoulder as [del.heShe] passes by");
 			output(" and orders drinks for the both of you, giving you time to settle into the seat across from her. Once the drinks arrive, Usha turns back to you and dunks a straw into the bubbling black liquor she’s ordered.");
 			output("\n\n<i>“So, what’s on your mind, [pc.name]?”</i>");
+			
+			processTime(2);
 		}
 	}
 	else flags["USHA_MET3"] = 1;
 	
+	clearMenu();
 	addButton(0, "Date", dateUsha, undefined, "Date", "Dating a Bugpony.");
 	if (flags["USHA_STATE"] != undefined && pc.lust() >= 33) addButton(1, "Sex", sexUsha, undefined, "Sex", "See if the chief’s up for a roll in the proverbial hay.");
 	else if (pc.lust() < 33) addDisabledButton(1, "Sex", "Sex", "You aren’t turned on enough for this.");
@@ -205,6 +204,7 @@ public function dateUsha():void
 	output("\n\n<i>“On the station? You’re looking at it,”</i> Ushamee chuckles. <i>“But I’ve been all over Vesperia with my brother and his family. Tell you what, rich " + (pc.isMale() ? "boy" : "girl") + ". If you foot the bill, I’ll show you some of the best places down there.”</i>");
 	output("\n\nWell, that’s certainly an offer, thought no telling how much Usha’s going to take you for...");
 	
+	processTime(1);
 	//If going on first date and don’t have 250 credits, or don’t have 100 credits you can’t date her
 	var dateCost:int = 100;
 	if (flags["USHA_DATE"] == undefined || flags["USHA_DATE"] == 2) dateCost = 250;
@@ -355,7 +355,6 @@ public function quickieUsha():void
 public function laterUsha():void
 {
 	clearOutput();
-	clearMenu();
 	chiefNeykkarHeader();
 	
 	output("<i>“On second thought, I’m liking the bar here,”</i> you tell her, taking a long draw from your drink. Usha just throws her head back and laughs, loud enough that a few patrons nearby turn and stare at her.");

@@ -112,7 +112,7 @@ public function fisiAtResDeckAddendum(btnSlot:int = 0):void
 public function approachGirls():void{
 	clearOutput();
 	author("Lkynmbr24");
-	showName("GIRLS");
+	showName("\nGIRLS");
 	clearMenu();
 	
 	if (flags["FISI_MET"] == undefined)
@@ -218,7 +218,7 @@ public function stayGirls():void
 {
 	clearOutput();
 	author("Lkynmbr24");
-	showName("GIRLS");
+	showName("\nGIRLS");
 	clearMenu();
 	
 	output("You decide after a moment of thought to take your seat back next to Britannia and resume talking with the three exotic ");

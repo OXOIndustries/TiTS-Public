@@ -1024,7 +1024,9 @@
 		
 		public function clearOutput2():void
 		{
+			if (outputBuffer2 == "\n") return;
 			showSecondaryOutput();
+			(_currentModule as GameTextModule).htmlText = "\n";
 			outputBuffer2 = "\n";
 		}
 		
