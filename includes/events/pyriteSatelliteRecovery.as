@@ -38,6 +38,7 @@ public function kaithritSatelliteShit():void
 {
 	clearOutput();
 	showKaithritBoyslut();
+	author("Savin");
 	if(pc.isNice()) output("<i>“You okay there, sir?”</i>");
 	else if(pc.isMischievous()) output("<i>“What’s got your tails, buddy?”</i>");
 	else output("<i>“Something wrong?”</i>");
@@ -65,6 +66,7 @@ public function noThanksBub():void
 {
 	clearOutput();
 	showKaithritBoyslut();
+	author("Savin");
 	output("<i>“No? Damn,”</i> he says, shoulders slumping. <i>“Well, if you happen across the satellite while you’re exploring and change your mind, I’ll be just outside the space port.”</i>");
 	output("\n\nThe kaithrit salaryman sighs and turns back towards the town, trudging away.");
 	flags["SATELLITE_QUEST"] = -1;
@@ -77,6 +79,7 @@ public function acceptThatSatelliteShit():void
 {
 	clearOutput();
 	showKaithritBoyslut();
+	author("Savin");
 	output("You nod, saying that shouldn’t be a problem.");
 	output("\n\n<i>“Excellent!”</i> the salaryman says with a smile. <i>“When you find it, bring it back to me at your earliest convenience. You can find me just outside the space port. Oh! While I don’t have an exact location, I have reason to believe the satellite crashed more-or-less due east of here. Maybe near the border of the deeper jungle section southwards?”</i>");
 	output("\n\nSeemingly satisfied, the man gives you a friendly nod and walks back towards town.");
@@ -92,6 +95,7 @@ public function pubbieDriveShit():void
 {
 	clearOutput();
 	showKaithritBoyslut();
+	author("Savin");
 	output("<i>“Actually, I already found it,”</i> you say, reaching into your pack and pulling the hard drive out.");
 	output("\n\nThe man’s mis-matched eyes light up, and he takes it from you with a toothy smile. <i>“Ah, yes, this is it exactly! What luck!”</i>");
 	output("\n\nHe takes his datapad and, with some difficulty given the state of his arm, he runs a cable into a port on the side of the drive and does a quick scan. <i>“Ah, yes, everything’s in order... and damn! Just as I thought, there’s evidence of a breach in our security protocols. I’ve had a feeling that satellite didn’t crash on its own!”</i>");
@@ -128,6 +132,7 @@ public function turnInTheKaithritDiskuDrivo():void
 {
 	clearOutput();
 	showKaithritBoyslut();
+	author("Savin");
 	output("You approach the kaithrit company man, hard drive in hand. He looks up as you approach, and his concerned scowl evaporates in an instant, replaced by an ear-to-ear grin.");
 	output("\n\n<i>“Nevermind. I’ll call you back,”</i> he says into his commpad, tucking it into his arm’s sling. <i>“As for you! I see you’ve had success out there. Thank the One for that. My superiors were breathing down my neck something fierce. May I examine it?”</i>");
 	output("\n\nYou hand the device over, and the man (with some awkwardness due to his arm) runs a cable from his datapad to the drive. After a moment of squinting at the screen and muttering to himself, the cat-man gives a satisfied nod and detaches the cable. <i>“Ah, yes, everything’s in order... and just as I thought, there’s evidence of a breach in our security protocols. I’ve had a feeling that satellite didn’t crash on its own!”</i>");
@@ -174,6 +179,7 @@ public function investigateSatelliteShit():void
 {
 	clearOutput();
 	showGryvainShit();
+	author("Savin");
 	output("You ");
 	if(pc.isNaga()) output("slither");
 	else output("scrabble");
@@ -219,6 +225,7 @@ public function letTheGryvainTakeTheShit():void
 {
 	clearOutput();
 	showName("FUCK\nTHIS");
+	author("Savin");
 	output("You take a step back from the downed satellite, putting your [pc.weapon] away. The dragon-woman smirks and slides down the side of the impact crater, keeping her gun trained on you. She uses her tail to rip off a side panel on the casing, revealing a sealed compartment that comes open with a little jiggling, letting her pull out a rather large black box with her free hand.");
 	output("\n\n<i>“Made a good choice, kid. Now scram,”</i> she says, a smug smile spreading across her dark lips. <i>“Go on, get lost.”</i>");
 	output("\n\nYou take her advice and beat feet out of the crater.");
@@ -246,6 +253,7 @@ public function fightDataMiniBaws():void
 public function lostFightToGryvainAgentDotDotDotShit():void
 {
 	showGryvainShit();
+	author("Savin");
 	output("You stumble back against the edge of the crater, gasping for breath. The gryvain woman stalks forward, effortlessly batting your [pc.weapon] out of your hand with a swipe of her tail. Her clawed hand digs into the loamy dirt next to your head, and her chest presses in against your own, pinning you against the crater’s side.");
 	output("\n\n<i>“That was fun. You’re kind of cute, in a pathetic sorta way,”</i> she says with a smirk. When you open your mouth to protest, though, she pushes her entire weight against you, making you eat your words with a gasp - before she thrusts her tongue into your mouth, silencing you with a rough kiss.");
 	output("\n\nYou’re too stunned to resist before she can break it, taking a step back from you and letting her eyes run all over your body. <i>“Yeah, alright,”</i> she murmurs, tracing her hand down from the wall to your shoulder. Her other hand hooks into your ");
@@ -272,6 +280,7 @@ public function lostFightToGryvainAgentDotDotDotShit():void
 public function pcBeatsUpAGryvainCauseTheyreAShit():void
 {
 	showGryvainShit();
+	author("Savin");
 	output("With a ");
 	if(enemy.HP() <= 1) output("cry of pain");
 	else output("shameless moan, groping her tits through her armor");
@@ -304,6 +313,7 @@ public function getOutOfHereSkank():void
 {
 	clearOutput();
 	showGryvainShit();
+	author("Savin");
 	output("<i>“Get out of here,”</i> you command, pointing to the top of the crater. <i>“Go on!”</i>");
 	output("\n\nThe gryvain whimpers and complies, scrambling up the edge and out of sight. You listen until her footfalls are long gone, deep into the jungle, before turning your attention back to the satellite. You find your way to a sealed compartment on its side, hidden under a panel");
 	if(flags["SATELLITE_QUEST"] == 1) output(" right where the kaithrit man told you to look");
@@ -327,6 +337,7 @@ public function rideDatCockAndShit():void
 {
 	clearOutput();
 	showGryvainShit();
+	author("Savin");
 	output("With the defenseless dragon-girl now at your mercy, you decide to have some fun with her. You take a step forward that closes the distance, pushing her onto her back and spreading her legs. Her four wings splay out on the ground behind her, little talons clawing into the dirt, but the moment you have her on her ass, you see the straining bulge in her pants throb greedily, begging for release. You lean down and hook your hands through her belt, yanking her pants down and off with one rough pull. The gryvain woman gasps, and sure enough you’re treated to the sight of a dark blue dick peeking out from a pair of black panties, surrounded by the scales of her lower body.");
 	output("\n\nThe half-turgid member bobs up, wiggling in the warm jungle air when you tear her panties away, exposing the thick base of her tapered shaft and the parted slit of a pussy below it. You lick your lips and twirl a finger, telling the would-be gunslinger to pull her armor off and show you those big ol’ tits of hers.");
 	output("\n\n<i>“" + pc.mf("Bastard","Bitch") + ",”</i> she grumbles, but she complies, pulling the armored vest up over her head and revealing a lacy bra that matches her torn underwear. Before you can tear it off too, the gryvain sits up and grudgingly takes it off, bearing a pair of quite large breasts - E-cups, you’d guess - each capped with a nipple as blue as the scales on her extremities, surrounded by cream-pale skin. You lower yourself down over her, running your hands over her tits, groping the big mounds of boobflesh until she’s squirming, soft moans replacing her distasteful grunts. Her cock stiffens, pressing against your thigh.");
@@ -395,6 +406,7 @@ public function fuckDatGryvainShit():void
 {
 	clearOutput();
 	showGryvainShit();
+	author("Savin");
 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if((x < 0 || !pc.hasCock()) && pc.hasHardLightEquipped()) x = -1;
 	else x = pc.smallestCockIndex();
