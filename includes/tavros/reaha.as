@@ -4,9 +4,7 @@
 	{
 		author("Savin");
 
-		output("\n\nReaha is sitting quietly near the dance stage, watching with wide eyes as a ");
-		output(RandomInCollection("ausar", "kaithrit", "human", "leithan", "rahn"));
-		output(" girl shakes her stuff for the crowd. The little cow perks up when she sees you, flashing you a hopeful smile.");
+		output("\n\nReaha is sitting quietly near the dance stage, watching with wide eyes as " + indefiniteArticle(RandomInCollection(["ausar", "kaithrit", "human", "leithan", "rahn"])) + " girl shakes her stuff for the crowd. The little cow perks up when she sees you, flashing you a hopeful smile.");
 
 		addButton(1, "Reaha", reahaBackAtBeths);
 	}

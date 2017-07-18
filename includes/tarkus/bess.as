@@ -11901,7 +11901,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 			output("\n\n<i>“Oh NO, you’re not going anywhere,”</i> [bess.name] orders you, thrusting [bess.hisHer] cock even <i>deeper</i>, <i>“...You’re going to stay there and be knotted by my [bess.cockNoun], "+ bessPCSexName() +"!”</i>");
 			
 			output("\n\nYou tremble and flush as [bess.hisHer]’s knot swells and stretches your inner walls. You feel like an animal being mated");
-			if (pc.race().indexOf("ausar") != -1)
+			if (pc.isAusar())
 			{
 				output("; but as an ausar, it flicks your breeding switch. You pant with pleasure, your mind fogged up by thoughts of filling your");
 				if (bTargetVag) output(" pussy");

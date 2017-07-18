@@ -442,7 +442,7 @@ public function catchVahnCowgirl():void
 	}
 	
 	output("\n\nUnwilling to wait a second longer, you reach down and undo the lower half of Vahn’s jumpsuit. The second you do, his ")
-	if(pc.hasCock(GLOBAL.TYPE_CANINE) && String(pc.race()).indexOf("ausar") != -1) output("own "); 
+	if(pc.hasCock(GLOBAL.TYPE_CANINE) && pc.isAusar()) output("own "); 
 	output("half-ausar cock springs out. Preparing him first, you ");
 	if(pc.hasCock()) output("lift your own [pc.cocks] out of the way and ");
 	output("rub your slick slit against his undershaft, coating his veiny length in your lube-like juices. Your lover moans and rubs up and back against you in carnal rhythm, twitching against your womanhood.");

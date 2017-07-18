@@ -464,8 +464,7 @@ public function walkiesPart2():void
 	//SyriCrew:
 	if(select == 1)
 	{
-		var pcRace:String = pc.raceShort();
-		var isAusar:Boolean = InCollection(pcRace, ["ausar", "huskar"]);
+		var isAusar:Boolean = pc.isAusar();
 		
 		output("\n\nAt one point, you’re walking through the pathways of the re-purposed wabeship when you come across a very familiar ravenette ausar: Syri. She approaches you and Belle with ");
 		//pcAusar/Half: 

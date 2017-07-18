@@ -1716,7 +1716,7 @@ public function insistOnCoochFucksSyri():void
 	output("\n\nSyri appears unmoved – probably it didn’t help to imply that she’s insane – but the body language of the other patrons shifts. They have been expecting a show, after all. Maybe if you can sway them....");
 	output("\n\n<i>“You were the one who brought ‘pups’ into this whole thing,”</i> you rationalize. <i>“I can totally understand why this is the wrong place and time to start a ");
 	//(if PC's race is half ausar or more) litter
-	if(pc.race().indexOf("ausar") != -1) output("litter");
+	if(pc.isAusar()) output("litter");
 	else output("family");
 	output(". So why don’t we just ask, does anybody here have a condom handy?”</i>");
 	output("\n\nA skinny male zil in the crowd immediately volunteers, <i>“I will get one.”</i>");
@@ -2525,7 +2525,7 @@ public function barStrippySyriDooda():void
 	showSyri(true);
 	author("HugsAlright");
 	output("You decide it best to just strip and collar your new wolf-puppy while you’re here. With almost ");
-	if(pc.race().indexOf("kaithrit") >= 0 || pc.felineScore() >= 3) output("(or outright) ");
+	if(pc.catDog("nyan", "bork") == "nyan") output("(or outright) ");
 	output("feline grace you bound forward, grab Syri by her flared hips, push her up against a nearby wall, and turn her around until you’re pressing your hips into her big, squishy butt. She squirms in your grasp as you strip her down, making sure you take a moment to squeeze at her supple tits and bare ass as her clothes come off, drawing forth a few suppressed whimpers from the ausar. Once Syri’s bared before you (and the rest of the bar), you take the ring of black leather in your hands and close it around her neck. You give the collar a little tug before you close the buckle, making sure it’s nice and secure. <i>“Not so tight, dammit,”</i> Syri speaks out in response.");
 	output("\n\nYou give her leash a little tug, making the ausar wince. <i>“Seems fine to me,”</i> you say with a smile, <i>“Now be a good little puppy and be quiet.”</i>");
 	output("\n\nSyri’s face turns sour at your words, <i>“What did you just call me?”</i>");
@@ -2561,7 +2561,7 @@ public function walkieMcWalkerson():void
 	showSyri(true);
 	author("HugsAlright");
 	output("You decide it best to just strip and collar your new wolf-puppy while you’re here. With almost ");
-	if(pc.race().indexOf("kaithrit") >= 0 || pc.felineScore() >= 3) output("(or outright) ");
+	if(pc.catDog("nyan", "bork") == "nyan") output("(or outright) ");
 	output("feline grace you bound forward, grab Syri by her flared hips, push her up against a nearby wall, and turn her around until you’re pressing your hips into her big, squishy butt. She squirms in your grasp as you strip her down, making sure you take a moment to squeeze at her supple tits and bare ass as her clothes come off, drawing forth a few suppressed whimpers from the ausar. Once Syri’s bared before you (and the rest of the bar), you take the ring of black leather in your hands and close it around her neck. You give the collar a little tug before you close the buckle, making sure it’s nice and secure. <i>“Not so tight, dammit,”</i> Syri speaks out in response.");
 	output("\n\nYou give her leash a little tug, making the ausar wince. <i>“Seems fine to me,”</i> you say with a smile, <i>“now be a good little puppy and be quiet.”</i>");
 	output("\n\nSyri’s face turns sour at your words, <i>“What did you just call me?”</i>");
@@ -2606,12 +2606,12 @@ public function voluntaryPetPlayAfterSyriWin():void
 	output("Syri gives you a confused look as you stop in your tracks and hand the collar over to her, and even more confused as you ");
 	if(!pc.isCrotchExposed() && !pc.isChestExposed()) output("strip yourself of your [pc.gear] right in front of her, and ");
 	output("drop down on your knees, craning your neck forward. <i>“Uh, you know you </i>won<i> the bet, right, [pc.name]?”</i> You don’t say a word, you just look up at her and smile.");
-
+	var isAusar:Boolean = pc.isAusar();
 	output("\n\nThe she-wolf rolls her eyes at you and bends downward, starting to bring the black leather collar to your neck. ");
-	if(pc.race().indexOf("ausar") >= 0 && pc.tailCount > 0) output("<i>“You know,”</i> she begins, rolling her eyes and bringing the collar around your neck, <i>“If you were anyone else I’d probably berate you a bit for perpetuating this whole ausar-pet thing. I mean, do you know how many people still think it’s okay to just come up and </i>pet<i> us?”</i> The shining stainless-steel buckle snaps close around you neck. <i>“But,”</i> Syri says, rebutting her own statement, <i>“I guess I can make a </i>small<i> exception.”</i> Your [pc.ears] perk up at her words, [pc.tail] beginning to sway with growing eagerness.");
+	if(isAusar && pc.tailCount > 0) output("<i>“You know,”</i> she begins, rolling her eyes and bringing the collar around your neck, <i>“If you were anyone else I’d probably berate you a bit for perpetuating this whole ausar-pet thing. I mean, do you know how many people still think it’s okay to just come up and </i>pet<i> us?”</i> The shining stainless-steel buckle snaps close around you neck. <i>“But,”</i> Syri says, rebutting her own statement, <i>“I guess I can make a </i>small<i> exception.”</i> Your [pc.ears] perk up at her words, [pc.tail] beginning to sway with growing eagerness.");
 	else output("<i>“Gods,”</i> she begins, bringing the black leather collar around your neck, <i>“you could’ve just, </i>lost<i> the bet if this is what you wanted.”</i> You say nothing, but continue smiling up at your new master as the shining stainless steel buckle snaps close around your neck, a feeling of eagerness swelling up inside of you.");
 	output("\n\nGrabbing hold of your leash, Syri straightens herself and looks down at her new pet. ");
-	if(pc.race().indexOf("ausar") >= 0 && pc.tailCount > 0) output("You beam up at the wolf-girl, your [pc.tail] wagging happily back and forth as you lower your gaze, presenting your [pc.ears] to your master. Syri lets a drawn out sigh escape her lungs. <i>“Fine,”</i> she announces, reaching a soft, furry hand down to caress your [pc.ears]. You coo with pleasure as her hand works itself all over your sensitive spots.");
+	if(isAusar && pc.tailCount > 0) output("You beam up at the wolf-girl, your [pc.tail] wagging happily back and forth as you lower your gaze, presenting your [pc.ears] to your master. Syri lets a drawn out sigh escape her lungs. <i>“Fine,”</i> she announces, reaching a soft, furry hand down to caress your [pc.ears]. You coo with pleasure as her hand works itself all over your sensitive spots.");
 	else output("You beam up at the wolf-girl, your posture displaying your yearning to be treated like a puppy as you lower your gaze, presenting your head to your master. Syri lets a drawn out sigh escape her lungs. <i>“Fine,”</i> she announces, reaching a soft, furry hand down to tussle your [pc.hair].");
 	output(" Your master seems relieved that she’s not going to be the one on the leash today. <i>“C’mon, we’re going for a little walk, you and I,”</i> she declares, gathering up your belongings and beckoning you to follow her out of the bar. You’re quick to follow her, eager for whatever’s to come.");
 	output("\n\nYour new master totes you around Esbeth for the next half hour, showing off her new pet to whomever she sees walking around the streets, and you’re happy to be shown-off. Sometimes she makes you do tricks, so you roll over and sit, other times she makes you speak, so you arf and bark; you’re completely at her whim, all the while she praises you for being a good little puppy. Your time on the streets is brought to an end when Syri brings you back around to the customs office again.");

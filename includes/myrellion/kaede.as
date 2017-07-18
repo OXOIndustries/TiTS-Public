@@ -129,7 +129,7 @@ public function kaedeMyrellionDrinks():void
 	output(". <i>“I guess. It’s nice having a steady job for once. I don’t know if Anno ever told you, but for a long time I was struggling just to eat noodles and crackers more often than not.”</i>");
 	
 	output("\n\nYou shake your head - no, Anno never mentioned. Her tail flicks a little in response, though she says nothing.");
-	if (pc.originalRace == "ausar") output(" You’re sure that was a relieved gesture, at least.");
+	if (pc.originalRace == "half-ausar") output(" You’re sure that was a relieved gesture, at least.");
 	output(" You and Kaede take a seat at the bar, and Kaede flashes a pair of fingers to the bartender.");
 	
 	output("\n\nA moment later, and a quick word with the ausar girl working behind the bar, and you’ve both got a whiskey on the rocks sitting in front of you.");
@@ -650,7 +650,7 @@ public function kaedeMyrellionSucknRide():void
 	kaedeHeader(true);
 
 	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly.");
-	if (pc.race().indexOf("ausar") != -1) output(" Now that’s one doggy bone you can’t wait to lick!");
+	if (pc.catDog("nyan", "bork", false) == "bork") output(" Now that’s one doggy bone you can’t wait to lick!");
 	else output(" You can’t help but lick your lips at the sight of it.");
 	output(" Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
 	
@@ -1280,7 +1280,7 @@ public function girlsCassMeetingEpilogue():void
 	output("Cass’s final orgasm barely elicits a whimper from the sweaty, cum-drenched kitty. It’s taken many, many rounds of vigorous oral sex to get her this far, but finally the treated slut’s starting to wear out despite all that sexual stamina. With a heavy sigh of contentment, you feel Cass let out the last of her tension around your sore tongue in a strained trickle of fem-cum, adding to the veritable lake the two of you have made on her couch.");
 	output("\n\nYou’re pretty sure it’s water-proof, at least.");
 	output("\n\nLeaving her insensate on the couch, you stagger up onto your [pc.feet] and collect the gear you’ve left scattered all over the floor. While you’re wearily re-equipping yourself, you hear Kaede coming back downstairs, tiptoeing around a now-sleeping Cass to give you a big kiss on the lips");
-	if(silly || pc.race() == "half-ausar" || pc.race() == "ausar") output(", which spirals into her spending a few moments licking your face clean of her lover’s juices");
+	if(silly || pc.isAusar()) output(", which spirals into her spending a few moments licking your face clean of her lover’s juices");
 	output(".");
 	output("\n\n<i>“Thanks for that, [pc.name],”</i> she whispers, giving you a firm hug. <i>“I’ve never... ever... been this worn out by someone before.”</i>");
 	output("\n\nGiven that she knows Anno, that’s probably saying something.");

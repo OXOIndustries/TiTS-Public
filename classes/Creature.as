@@ -2703,7 +2703,7 @@
 					if (inventory[i].shortName == arg) 
 					{
 						//If we still need to eat some, eat em up!
-						while(amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg) 
+						while (amount > 0 && inventory[i].quantity > 0 && inventory[i].shortName == arg) 
 						{
 							inventory[i].quantity--;
 							amount--;
@@ -2712,6 +2712,7 @@
 								inventory[i].quantity = 0;
 								inventory.splice(i, 1);
 							}
+							else i++;
 						}
 					}
 					else i++;
@@ -2769,6 +2770,7 @@
 								inventory[i].quantity = 0;
 								inventory.splice(i, 1);
 							}
+							else i++;
 						}
 					}
 					else i++;
@@ -2813,6 +2815,7 @@
 								inventory[i].quantity = 0;
 								inventory.splice(i, 1);
 							}
+							else i++;
 						}
 					}
 					else i++;
@@ -5208,12 +5211,16 @@
 			var adjectives:Array = new Array();
 			var nouns:Array = ["ear"];
 			var description:String = "";
+			var sRace:String = "";
 			var nonFurrySkin:Boolean = InCollection(skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
 			
 			switch (earType)
 			{
 				case GLOBAL.TYPE_CANINE:
-					adjectives = ["pointed", "ausar", "upraised", "anubis-like"];
+					adjectives = ["pointed", "upraised", "anubis-like"];
+					sRace = race();
+					if(sRace.indexOf("ausar") != -1) adjectives.push("ausar");
+					if(sRace.indexOf("huskar") != -1) adjectives.push("huskar");
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_DOGGIE:
@@ -5235,6 +5242,8 @@
 					break;
 				case GLOBAL.TYPE_FELINE:
 					adjectives = ["pointed", "feline", "cat-like", "cat-like"];
+					sRace = race();
+					if(sRace.indexOf("kaithrit") != -1) adjectives.push("kaithrit");
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_LIZAN:
@@ -5373,6 +5382,7 @@
 			var types:Array = new Array();
 			var description:String = "";
 			var descripted:int = 0;
+			var sRace:String = "";
 			
 			//Pick adjective
 			if(hasTongueFlag(GLOBAL.FLAG_LONG))
@@ -5454,14 +5464,17 @@
 					break;
 				case GLOBAL.TYPE_CANINE:
 					types.push("dog-like", "canine", "large", "floppy");
-					if(race().indexOf("ausar") != -1) types.push("ausar");
+					sRace = race();
+					if(sRace.indexOf("ausar") != -1) types.push("ausar");
+					if(sRace.indexOf("huskar") != -1) types.push("huskar");
 					break;
 				case GLOBAL.TYPE_VULPINE:
 					types.push("fox-like", "narrow", "cute", "vulpine");
 					break;
 				case GLOBAL.TYPE_FELINE:
 					types.push("cat-like", "feline", "cute");
-					if(race().indexOf("kaithrit") != -1) types.push("kaithrit");
+					sRace = race();
+					if(sRace.indexOf("kaithrit") != -1) types.push("kaithrit");
 					break;
 				case GLOBAL.TYPE_AVIAN:
 					types.push("bird-like", "avian");
@@ -5474,9 +5487,10 @@
 					break;
 				case GLOBAL.TYPE_GOOEY:
 					types.push("goo-like", "amorphous", "gelatinous", "slimy", "gooey");
+					sRace = race();
 					if(isRahn()) types.push("rahn");
-					if(race() == "galotian") types.push("galotian");
-					if(race() == "conglomerate") types.push("nanomite");
+					if(sRace == "galotian") types.push("galotian");
+					if(sRace == "conglomerate") types.push("nanomite");
 					break;
 				case GLOBAL.TYPE_BEE:
 					types.push("bright yellow", "insectile", "straw-like", "bee-like");
@@ -6310,6 +6324,7 @@
 			var adjectives:Array = new Array();
 			var nouns:Array = ["tail"];
 			var description:String = "";
+			var sRace:String = "";
 			// Types
 			switch (tailType)
 			{
@@ -6323,7 +6338,9 @@
 					break;
 				case GLOBAL.TYPE_CANINE:
 					adjectives = ["canine", "dog-like"];
-					if (race().indexOf("ausar") != -1) adjectives.push("ausar");
+					sRace = race();
+					if (sRace.indexOf("ausar") != -1) adjectives.push("ausar");
+					if (sRace.indexOf("huskar") != -1) adjectives.push("huskar");
 					break;
 				case GLOBAL.TYPE_BOVINE:
 					adjectives = ["bovine", "cow-like"];
@@ -6339,7 +6356,8 @@
 					break;
 				case GLOBAL.TYPE_FELINE:
 					adjectives = ["feline", "cat-like"];
-					if (race().indexOf("kaithrit") != -1) adjectives.push("kaithrit");
+					sRace = race();
+					if (sRace.indexOf("kaithrit") != -1) adjectives.push("kaithrit");
 					break;
 				case GLOBAL.TYPE_DRIDER:
 				case GLOBAL.TYPE_ARACHNID:
@@ -10494,7 +10512,7 @@
 			if(InCollection(raceSimple, ["ausar", "huskar", "canine", "lupine"]))
 			{
 				shiftCock(arg,GLOBAL.TYPE_CANINE);
-				if(raceSimple == "ausar") cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
+				if(InCollection(raceSimple, ["ausar", "huskar"])) cocks[arg].delFlag(GLOBAL.FLAG_SHEATHED); // 'cause ausar have not enough inner beast to have sheath
 			}
 			else if (race.indexOf("dragonne") == -1 && InCollection(raceSimple, ["kaithrit", "feline"]))
 			{
@@ -10834,7 +10852,7 @@
 			if (frogScore() >= 5) race = "kerokoras";
 			if (kaithritScore() >= 6) race = "kaithrit";
 			if (felineScore() >= 5 && race != "kaithrit") race = felineRace();
-			if (canineScore() + lupineScore() >= 5 && race != "ausar") race = canineRace();
+			if (canineScore() + lupineScore() >= 5 && !InCollection(race, ["ausar", "huskar"])) race = canineRace();
 			if (leithanScore() >= 6) race = "leithan";
 			if (nukiScore() >= 6) race = "kui-tan";
 			if (vanaeScore() >= 6) race = "vanae-morph";
@@ -10946,7 +10964,13 @@
 		public function isPuppyorKitten():Boolean
 		{
 			var sRaceShort:String = raceShort();
-			if(InCollection(sRaceShort, ["ausar", "kaithrit", "huskar", "milodan", "canine", "feline", "vulpine", "lupine"])) return true;
+			if(InCollection(sRaceShort, ["ausar", "kaithrit", "huskar", "milodan", "korgonne", "canine", "feline", "vulpine", "lupine"])) return true;
+			return false;
+		}
+		public function isAusar():Boolean
+		{
+			var sRaceShort:String = raceShort();
+			if(InCollection(sRaceShort, ["ausar", "huskar"])) return true;
 			return false;
 		}
 		
@@ -11110,8 +11134,9 @@
 		
 		public function isHalfHuman():Boolean
 		{
-			if (race().indexOf("half-") != -1) return true;
-			if (race().indexOf("half ") != -1) return true;
+			var sRace:String = race();
+			if (sRace.indexOf("half-") != -1) return true;
+			if (sRace.indexOf("half ") != -1) return true;
 			return false;
 		}
 		public function humanScore(): int {
@@ -11808,8 +11833,9 @@
 			return counter;
 		}
 		public function isRahn(): Boolean {
-			if(InCollection(race(), "rahn", "fuu'rahn", "zel'rahn", "loo'rahn", "doh'rahn", "go'rahn")) return true;
-			else if (race().indexOf("rahn") != -1) return true;
+			var sRace:String = race();
+			if(InCollection(sRace, ["rahn", "fuu'rahn", "zel'rahn", "loo'rahn", "doh'rahn", "go'rahn"])) return true;
+			else if (sRace.indexOf("rahn") != -1) return true;
 			return false;
 		}
 		public function cyborgScore():int
@@ -19511,7 +19537,7 @@
 		{
 			var r:String = raceShort();
 			if (r.indexOf("kaithrit") != -1 || r.indexOf("feline") != -1) return c;
-			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
+			if (r.indexOf("ausar") != -1 || r.indexOf("huskar") != -1 || r.indexOf("milodan") != -1 || r.indexOf("korgonne") != -1 || r.indexOf("canine") != -1 || r.indexOf("vulpine") != -1 || r.indexOf("lupine") != -1) return d;
 			return (prefDog ? d : c);
 		}
 		

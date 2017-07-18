@@ -2005,7 +2005,7 @@ public function kq2CapturedByPiratesBadEndII():void
 	output("\n\nYou nod, slowly, dread forming a knot in your stomach. What’s about to happen to you?");
 
 	output("\n\n<i>“Be a good");
-	if (pc.race().indexOf("ausar") != -1) output(" puppy");
+	if (pc.catDog("nyan", "bork", false) == "bork") output(" puppy");
 	else output(pc.mf(" boy", " girl"));
 	output(", and you won’t even notice it’s there. Unless I decide to play with it, that is. See, you’ve got some fire in you. That meek, beaten act doesn’t suit you... and it doesn’t fool me. You’ve seen some action and adventure, haven’t you?”</i>");
 

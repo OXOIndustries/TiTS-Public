@@ -951,8 +951,8 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 		output(" you challenge, irritated.");
 
 		output("\n\n<i>“Is so,”</i> snaps the dog bitch. She slips her pudgy fingers into her pussy, burying her hand to the knuckle - and then, with no discomfort and every evidence of relish, <i>curls them into a fist inside herself</i>. She is apparently much roomier on the inside, built to accommodate a huge knot. The korgonne shudders as she pulls her fist back out. <i>“");
-		if(InCollection(pc.race(), "korgonne","half-korgonne","huskar","half-huskar","ausar","half-ausar","canine","dog-morph","doggo","pupper")) output("Stranger");
-		else if(InCollection(pc.race(), "milodan","half-milodan","naleen","kaithrit","half-kaithrit","cat-morph")) output("Cat");
+		if(pc.catDog("nyan", "bork", false) == "bork") output("Stranger");
+		else if(pc.catDog("nyan", "bork") == "nyan") output("Cat");
 		else output("Alien");
 		output(" too thin.”</i>");
 
@@ -983,7 +983,8 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 
 		output("\n\nThe pudgy dog-girl begins to giggle disturbingly - moreso because she’s staring at your crotch when she does.");
 		output("\n\n<i>“Dumb ");
-		if(pc.felineScore() >= 4) output("cat");
+		var isCat:Boolean = (pc.felineScore() >= 4 || pc.catDog("nyan", "bork") == "nyan");
+		if(isCat) output("cat");
 		else output("stranger");
 		output(" no need get butt cold,”</i> the barbarian laughs. <i>“Can see in pants... much flat, no bulge. No pleasure. Use hand instead.”</i> She spreads her fuzzy, plump thighs wide, exposing herself. Her puffy, bluish labia look normal, until she sticks her pudgy fingers inside and spreads them easily, revealing that deeper within she could easily accommodate a leithan without any trouble.");
 		if(!pc.isAss()) output("\n\n<i>“Hand? I could fit a leg in there,”</i> you spit.");
@@ -991,7 +992,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 		else output("\n\n<i>“It doesn’t matter if you don’t have the key when the lock is stripped,”</i> you frown.");
 
 		output("\n\nThe korgonne still laughs. <i>“Dumb ");
-		if(pc.felineScore() >= 4) output("cat");
+		if(isCat) output("cat");
 		else output("stranger");
 		output("...”</i> she repeats. The busty bitch’s mocking eyes bring the blood to your face; your nerves tingle as the cold wind licks at you through your protection, and you find yourself getting angry. Your thoughts flash to your ");
 		if(!pc.isTaur()) output("thumbs still tucked in the waist of your ");
@@ -1026,11 +1027,12 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	else output(" Instead of guiding her onto the prick as she expects, however, you release her hips and lean forward, grabbing two handfuls of her huge breasts and carrying her off the ground, mashing them to her chest as you pull her roughly down onto your crotch. The korgonne moans as you manhandle her, a deep rumble that’s almost like a purr of pleasure. With the holographic rod in place, you let her drop again and she hits the ground with a ‘whoof’.");
 	output("\n\nAs you begin to pump, you can feel the korgonne trying to shift her hips to stimulate herself on the dildo - she continually drags the tip against a ring of nerves deep inside, emitting cute yips and grunts whenever you touch it.");
 	if(!pc.isTaur()) output(" Her enthusiasm is such that you find you have to move your hands back to her hips to keep the strap-on inside her, but this just makes her whine harder when she can’t scratch her itch.");
-	output("\n\n<i>“Bigger!”</i> grunts the wide-assed bitch. <i>“Need bigger for joy!”</i> She pushes her colossal heinie into you, trying to force more dildo inside, but there’s nothing left to take - your photonic cock is so deep in her pussy that the emitter is in the shade. <i>“");
-	if(pc.canineScore() >= 4) output("Stranger");
-	else if(pc.felineScore() >= 4) output("Cat");
-	else output("Alien");
-	output(" too small!”</i>");
+	
+	var sThing:String = "Alien";
+	if(pc.catDog("nyan", "bork", false) == "bork") sThing = "Stranger";
+	else if(pc.catDog("nyan", "bork") == "nyan") sThing = "Cat";
+	
+	output("\n\n<i>“Bigger!”</i> grunts the wide-assed bitch. <i>“Need bigger for joy!”</i> She pushes her colossal heinie into you, trying to force more dildo inside, but there’s nothing left to take - your photonic cock is so deep in her pussy that the emitter is in the shade. <i>“" + sThing + " too small!”</i>");
 
 	output("\n\nWhy, this awful slut... your back stiffens in anger");
 	if(!pc.isTaur()) output(" and your fingers dig into her plush ass, which only makes her purr again");
@@ -1039,19 +1041,11 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	output("\n\nYou swallow the last insult she’ll deliver and hilt yourself deep inside, then release the safety and begin to crank up the size of the projection - rapidly. The hum from the device intensifies, but it’s still barely audible above the ambient wind... and the korgonne’s mewling. Suddenly, her spine straightens.");
 	output("\n\n<i>“Ooh?”</i> grunts the alien.");
 	output("\n\nYou can only imagine the sensations she’s experiencing. The length control maxes out early as the tip of the holo-cock bumps against the stout korgonne’s womb... but the girth just keeps going and going, spreading the dog-girl’s cerulean labia wider and wider. The slider reaches 60% of the maximum and the korgonne is only just now beginning to feel the effects.");
-	output("\n\n<i>“");
-	if(pc.canineScore() >= 4) output("Stranger");
-	else if(pc.felineScore() >= 4) output("Cat");
-	else output("Alien");
-	output(" get bigger? Give water-heat soon?”</i> the puppy slut croons.");
+	output("\n\n<i>“" + sThing + " get bigger? Give water-heat soon?”</i> the puppy slut croons.");
 
 	output("\n\nYou continue to swell your penile projection, inch by inch, until you begin to feel resistance. The big-booty bitch feels it as well - she lowers her chest to the ground, mashing her huge tits into the snow, trying to angle her body to help the tool touch every one of her insides.");
 
-	output("\n\n<i>“What? ");
-	if(pc.canineScore() >= 4) output("Stranger");
-	else if(pc.felineScore() >= 4) output("Cat");
-	else output("Alien");
-	output(" knot everywhere!”</i> She clenches her jaw as you max out the girth slider - the tip is clearly hurting, but the base must be touching <i>all</i> of her sweet spots, because she’s gyrating her hips like a dynamo and moaning. <i>“Joy! Korgonne feel joy!”</i>");
+	output("\n\n<i>“What? " + sThing + " knot everywhere!”</i> She clenches her jaw as you max out the girth slider - the tip is clearly hurting, but the base must be touching <i>all</i> of her sweet spots, because she’s gyrating her hips like a dynamo and moaning. <i>“Joy! Korgonne feel joy!”</i>");
 
 	if(bimbo) output("\n\n<i>“I bet you do, honey,”</i> you sigh, looking wistfully at the monster cock you’re plunging into her ravenous pussy.");
 	else if(bro) output("\n\n<i>“Fuckin’ a right,”</i> you grunt.");
@@ -1072,7 +1066,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 		output("\n\n<i>“Why stop?”</i> grunts the savage, mazy with endorphins. <i>“Want finish...”</i>");
 		output("\n\nYou ignore her whining and reach into your [pc.lowerUndergarment], fishing for your maligned [pc.cockNounSimple " + pc.smallestCockIndex() + "]. When you feel the [pc.cockHead " + pc.smallestCockIndex() + "] in your hand, you pull it free and let it hang over the waistband of your underwear, bobbing merrily above the holographic hard-on. The korgonne shifts uneasily in your hands, and you squeeze harder to quiet her, which makes her purr unbecomingly once more. Lining up with her asshole, you draw back and thrust in again, spearing her gaping pussy on the strap-on and her asshole on your pre-drooling prick.");
 		output("\n\nThe new pressure straightens the korgonne’s back immediately. ");
-		if(pc.felineScore() >= 4) output("<i>“Ooh... cat aim bad like usual... wrong hole,”</i>");
+		if(sThing == "Cat") output("<i>“Ooh... cat aim bad like usual... wrong hole,”</i>");
 		else output("<i>“Stranger fuck like cat... wrong hole,”</i>");
 		output(" she snarks. Despite her sass, she pushes back against you eagerly, and her tight pucker wraps around your prick like melting velvet as you resume thrusting once again.");
 	}

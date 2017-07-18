@@ -36,7 +36,7 @@
 		if(sRace.indexOf("anthro") != -1) sRace = "anthro";
 		if(InCollection(sRace, ["cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
 		if(InCollection(sRace, ["horse", "alicorn", "unicorn", "pegasus"])) sRace = "equine";
-		if(InCollection(sRace, ["dog", "doge", "puppy", "bitch", "hellhound", "husky"])) sRace = "canine";
+		if(InCollection(sRace, ["dog", "doge", "doggo", "puppy", "pupper", "bitch", "hellhound", "husky"])) sRace = "canine";
 		if(InCollection(sRace, ["fox", "vixen"])) sRace = "vulpine";
 		if(InCollection(sRace, ["wolf", "worg"])) sRace = "lupine";
 		if(InCollection(sRace, ["cat", "kitten", "tiger", "tigeress", "panther", "jaguar", "cheetah", "lion", "lioness", "chakat", "nekomata", "dragonne"])) sRace = "feline";

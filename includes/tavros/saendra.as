@@ -1901,7 +1901,7 @@ public function newFutaSaendraScenes():void
 	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. It’s the latter one that overpowers you; the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
 
 	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
-	if(pc.race().indexOf("ausar") != -1) output(", my favorite little bottom bitch");
+	if(pc.catDog("nyan", "bork", false) == "bork") output(", my favorite little bottom bitch");
 	output("!”</i>");
 
 	output("\n\nNow that you’re not going to be waking the neighbors - or at least, not the ones three doors down - Saen starts to move faster and harder, hammering your ");

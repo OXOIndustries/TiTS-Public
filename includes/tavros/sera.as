@@ -1112,7 +1112,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	showSera();
 	output("You nod your assent to the demon-morphed mistress’s demand, which earns you a small grin from her blue-sheened lips.");
 	//If PC “cat” score > 3 and “dog” score < 4
-	if(pc.earType == GLOBAL.TYPE_FELINE || (pc.felineScore() > 3 && pc.canineScore() < 4))
+	if(pc.earType == GLOBAL.TYPE_FELINE || pc.catDog("nyan", "bork") == "nyan" || (pc.felineScore() > 3 && pc.canineScore() < 4))
 	{
 		author("Nonesuch & Savin");
 		output(" <i>“Then prove it. Meow, little pussy.”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said MEOW, slut.”</i>");
@@ -1131,7 +1131,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	else
 	{
 		output(" <i>“Then prove it. Bark, little ");
-		if(pc.race().indexOf("ausar") != -1 || pc.canineScore() >= 4) output("bitch");
+		if(pc.catDog("nyan", "bork", false) == "bork") output("bitch");
 		else output("doggy");
 		output(".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
 		

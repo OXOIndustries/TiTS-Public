@@ -313,7 +313,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		output(" You are well trained now in handling ovipositors, and though you coo with delight at being penetrated, it doesn’t knock the breath out of you like it once did. Well, almost. By the third or fourth ring that stretches your ass wide, the rhythmic hammering of inch after inch of eggtube being fed into your ass is still threatening to knock the breath completely out of you. The only thing keeping your breathing relatively steady is plenty of practice.");
 		
 		output("\n\nYou can already taste the euphoria. Your mind feels almost as though it has been short-circuited. The only thing that matters right now is enjoying this breeding as much as possible, and that in part means spurring your temporary lover onward. You");
-		if (pc.race().indexOf("kaithrit") != -1) output(" purr");
+		if (pc.catDog("nyan", "bork") == "nyan") output(" purr");
 		else output(" moan");
 		output(" loudly and put on a show for the victorious warrior and their long, thick, um... spear. You can immediately feel the heightened arousal in your ass, as the first spurts of slime shoot deep into your guts. The bothrioc is now actively running their many hands over you, delighting in exploring your body as much as thrusting into your hot clench.");
 		

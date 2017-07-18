@@ -2410,7 +2410,7 @@ public function shadeHalfSisterShit():void
 	output("\n\n<i>“Yeah,”</i> you admit. <i>“Me or anybody with enough of my Dad’s DNA.”</i>");
 
 	output("\n\n<i>“Oh, shit,”</i> Shade says, forcing a chuckle. <i>“That’s a hell of a bug.");
-	if(pc.race() == "kaithrit" || pc.race() == "half-kaithrit") output(" What, does it think I’m your mom or something?");
+	if(pc.raceShort() == "kaithrit") output(" What, does it think I’m your mom or something?");
 	else output(" What, does it think I’m your long-lost sister or something?");
 	output("”</i>");
 
