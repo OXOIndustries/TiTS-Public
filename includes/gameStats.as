@@ -2037,6 +2037,25 @@ public function displayQuestLog(showID:String = "All"):void
 				
 				sideCount++;
 			}
+			// Pyrite Satellite Recovery
+			if(flags["SATELLITE_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Pyrite Satellite Recovery</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["SATELLITE_QUEST"])
+				{
+					case -1: output2(" Refused to help Pyrite Rep"); break;
+					case 1:
+						output2(" Accepted");
+						if(!pcHasDrive()) output2(", <i>Find hard drive...</i>");
+						else output2(", Obtained hard drive, <i>Return to Pyrite Rep...</i>");
+						break;
+					case 2: output2(" Accepted, Obtained and returned hard drive, Completed"); break;
+					default: output2(" <i>In progress...</i>"); break;
+				}
+				if(flags["SATELLITE_GRYVAIN_DEFEAT"] != undefined) output2("\n<b>* Gryvain Agent:</b> Defeated her in combat");
+				sideCount++;
+			}
 			// Zil Capture
 			if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined)
 			{

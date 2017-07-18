@@ -1873,7 +1873,13 @@ public function variableRoomUpdateCheck():void
 	
 	//Bounties
 	if(mhengaActiveBounty()) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OBJECTIVE);
-	else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.OBJECTIVE);
+	else
+	{
+		rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.OBJECTIVE);
+		// Pyrite Satellite Quest
+		if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
+		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
+	}
 	//Azra stuff
 	if(azraRecruited() && !azraIsCrew()) rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.NPC);
 	else rooms["NORTHEAST ESBETH"].removeFlag(GLOBAL.NPC);
@@ -1922,6 +1928,11 @@ public function variableRoomUpdateCheck():void
 	// Visited Thare Plantation
 	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);
+	// Pyrite Satellite Quest
+	if(pyriteSatelliteLocationUnlocked() && rooms["A TURNING POINT"].eastExit == "") rooms["A TURNING POINT"].eastExit = "CRASHYMCSATELLITEFACE";
+	else if(rooms["A TURNING POINT"].eastExit != "") rooms["A TURNING POINT"].eastExit = "";
+	if(pyriteSatelliteIntroActive()) rooms["JUNGLE EDGE"].addFlag(GLOBAL.NPC);
+	else rooms["JUNGLE EDGE"].removeFlag(GLOBAL.NPC);
 	//Mhenga Probe
 	if(flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] == undefined && flags["FOUGHT_DANE_ON_MHENGA"] == undefined)
 	{

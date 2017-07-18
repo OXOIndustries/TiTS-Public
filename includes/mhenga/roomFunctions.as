@@ -56,6 +56,7 @@ public function mhengaActiveBounty():Boolean
 	
 	if(flags["SEEN_JULIANS_AD"] == undefined) openQuests++;
 	if(synthSapNoticeUnlock() && flags["SEEN_SYNTHSAP_AD"] == undefined) openQuests++;
+	if(flags["SEEN_SATELLITE_AD"] == undefined) openQuests++;
 	
 	if(openQuests > 0) return true;
 	return false;
@@ -64,8 +65,9 @@ public function bountyBoardExtra():Boolean
 {
 	output("\n\nA large bulletin board has been erected against the wall of the building to the north.");
 	if(mhengaActiveBounty()) output(" <b>There are new notices there.</b>");
-	addButton(0,"Bulletins",checkOutBountyBoard);
-	repeatRepresentativeSatelliteShit(1);
+	var btnSlot:int = 0;
+	addButton(btnSlot++,"Bulletins",checkOutBountyBoard);
+	repeatRepresentativeSatelliteShit(btnSlot++);
 	return false;
 }
 public function checkOutBountyBoard():void
@@ -423,6 +425,7 @@ public function vanaeWarningBot():Boolean
 {
 	output("\n\n<b>A small, sleek drone bearing the U.G.C. Peacekeeper emblem is hovering here, puttering around in a small circle.</b> When you approach, the drone intones in a clearly mechanical voice: <i>“Peacekeeper Inoue has posted the following safety advisory: beyond this point, the southern area of jungle is classified as a level four threat and is to be avoided if at all possible.”</i>");
 	addButton(0,"Drone",talkToWarningDrone);
+	if(pyriteSatelliteLocationUnlocked()) output("\n\nThere’s a small streak of burned trees, all pushed aside as if by some massive impact, leading eastward. There’s a pillar of black smoke rising from that direction, too...");
 	return false;
 }
 

@@ -7215,6 +7215,11 @@
 				aimMod += 5;
 				reflexesMod += 5;
 			}
+			if (hasStatusEffect("Toxic Trickery"))
+			{
+				physiqueMod += 4;
+				aimMod += 4;
+			}
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
 				{

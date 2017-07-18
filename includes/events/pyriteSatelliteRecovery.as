@@ -4,16 +4,22 @@
 
 //Quest Get
 //Add to the first square of Mhen’ga jungle, after the PC is at least Level 2
-public function satelliteIntroShit(button:int = 0):Number
+public function pyriteSatelliteLocationUnlocked():Boolean
 {
-	if(flags["SATELLITE_QUEST"] == undefined)
+	return (pc.level >= 2);
+}
+public function pyriteSatelliteIntroActive():Boolean
+{
+	return (pyriteSatelliteLocationUnlocked() && flags["SATELLITE_QUEST"] == undefined);
+}
+public function satelliteIntroShit(button:int = 0):void
+{
+	if(pyriteSatelliteIntroActive())
 	{
 		output("\n\nStanding at the very end of the path into the jungle is a man wearing a skin-tight corporate jumpsuit, colored a dark, almost mahogany red and trimmed with dark blue. A pair of feline ears poke out from a messy fop of moss green hair, and a brace of fuzzy tails swish behind him. One of his arms is in a sling, and the other is fumbling with a bulky Codex much like your own. He’s muttering and cursing under his breath, pacing in circles.");
 		//[Kaithrit]
-		addButton(0,"Kaithrit",kaithritSatelliteShit,undefined,"Kaithrit","The feline man seems to be rather distressed about something...");
-		button++;
+		addButton(button,"Kaithrit",kaithritSatelliteShit,undefined,"Kaithrit","The feline man seems to be rather distressed about something...");
 	}
-	return button;
 }
 
 public function pcHasDrive():Boolean
@@ -43,7 +49,6 @@ public function kaithritSatelliteShit():void
 	else if(pc.isMischievous()) output("<i>“What’s got your tails, buddy?”</i>");
 	else output("<i>“Something wrong?”</i>");
 	output(" you ask, approaching the kaithrit man.");
-
 	output("\n\nHe looks up with a start, blinking a pair of mismatched eyes, green and gold, at you. <i>“Huh? Sorry, I’m a bit distracted as you can see.”</i> He indicates the datapad in his hand, which is displaying what looks like a topographical map of the area. The man looks you up and down, seeming to settle his eyes on your [pc.weapon]. <i>“Say, you don’t happen to be headed into the jungle, do you friend?”</i>");
 	output("\n\n<i>“That’s why I’m headed this way,”</i> you answer.");
 	output("\n\n<i>“Good. Great, even!”</i> he says with a sudden smile. <i>“Interested in earning a few credits for a side trip? Wouldn’t be far out of your way if you’re exploring the south side of the jungle.”</i>");
@@ -111,7 +116,7 @@ public function pubbieDriveShit():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function repeatRepresentativeSatelliteShit(button:Number = 0):Number
+public function repeatRepresentativeSatelliteShit(button:Number = 0):void
 {
 	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1)
 	{
@@ -119,9 +124,7 @@ public function repeatRepresentativeSatelliteShit(button:Number = 0):Number
 		//PC can’t talk to him again until they’ve gotten the Hard Drive.
 		if(pcHasDrive()) addButton(button,"Pyrite Rep",turnInTheKaithritDiskuDrivo,undefined,"Pyrite Rep","Turn in the hard drive you recovered from the fallen satellite.");
 		else addDisabledButton(button,"Pyrite Rep","Pyrite Rep","You should find his missing satellite before talking to him again.");
-		button++;
 	}
-	return button;
 }
 
 //Finishing the Quest
@@ -162,7 +165,7 @@ public function turnInTheKaithritDiskuDrivo():void
 /* Fen note: ech.... though it is an accessory. Maybe.
 output("\n\nShield Amp");
 output("\n\n//A high-tech amplifier of gryvain make that can be plugged into any shield generator. While equipped, you can spend 20 Energy to restore Shields equal to your Intelligence score.");
-output("\n\n//Adds the <i>“Shield Amp”</i> special power.");
+output("\n\n//Adds the “Shield Amp” special power.");
 
 output("\n\nPyrite Hard Drive (Key Item)");
 */
@@ -292,14 +295,14 @@ public function pcBeatsUpAGryvainCauseTheyreAShit():void
 	clearMenu();
 	if(pc.lust() >= 33)
 	{
-		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",rideDatCockAndShit,undefined,"Fuck Her","You see a bulge in her pants. Take this naughty dragon for a ride...");
+		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatGryvainShit,undefined,"Fuck Her","You see a bulge in her pants. Take this naughty dragon for a ride...");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that will fit inside her or a hardlight strap-on in order to this.");
 		addButton(1,"Ride Cock",rideDatCockAndShit,undefined,"Ride Cock","You see a bulge in her pants. Take this naughty dragon for a ride...");
 	}
 	else
 	{
-		addDisabledButton(0,"Fuck Her","Fuck Her","You aren't aroused enough for this.");
-		addDisabledButton(1,"Ride Cock","Ride Cock","You aren't aroused enough for this.");
+		addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
+		addDisabledButton(1,"Ride Cock","Ride Cock","You aren’t aroused enough for this.");
 	}
 	flags["SATELLITE_GRYVAIN_DEFEAT"] = 1;
 	//[Fuck Her] [Ride Cock] [Leave]
@@ -342,8 +345,8 @@ public function rideDatCockAndShit():void
 	output("\n\nThe half-turgid member bobs up, wiggling in the warm jungle air when you tear her panties away, exposing the thick base of her tapered shaft and the parted slit of a pussy below it. You lick your lips and twirl a finger, telling the would-be gunslinger to pull her armor off and show you those big ol’ tits of hers.");
 	output("\n\n<i>“" + pc.mf("Bastard","Bitch") + ",”</i> she grumbles, but she complies, pulling the armored vest up over her head and revealing a lacy bra that matches her torn underwear. Before you can tear it off too, the gryvain sits up and grudgingly takes it off, bearing a pair of quite large breasts - E-cups, you’d guess - each capped with a nipple as blue as the scales on her extremities, surrounded by cream-pale skin. You lower yourself down over her, running your hands over her tits, groping the big mounds of boobflesh until she’s squirming, soft moans replacing her distasteful grunts. Her cock stiffens, pressing against your thigh.");
 	output("\n\nHer dick begs for attention with its throbbing heat, drooling a slime of pre across your [pc.skinFurScales] until you finally deign to let one of its owner’s tits go, wrapping your fingers around her girthy dragoncock. You squeeze just enough to make her gasp, arching her back off the dirt and making those big boobs quake for you. That’s the stuff! You lean down, running your [pc.tongue] around one of her cobalt nipples, nibbling around the pebbling ring until you feel clawed fingers digging into your back, and her cock’s slender tip swells in your hand, leaking across your fingers.");
-	var x:int = rand(pc.totalVaginas());
-	if(!pc.hasVagina()) x = -1;
+	var x:int = -1;
+	if(pc.hasVagina()) x = rand(pc.totalVaginas());
 	output("\n\n<i>“You really want it, don’t you?”</i> you tease, pumping your wrist up and down her length. The gryvain snarls and turns away, her cheeks flushing crimson under your lustful gaze. Guess you’re not getting a rise out of her - well, that part of her anyway. You’ve definitely got her attention where it really matters: even when you take your hand away, her dick stands straight upright, bobbing with the beat of her heart while you rise up on your [pc.knees], pulling your gear off and giving the dragon-slut a good look at your [pc.vagOrAss " + x + "].");
 
 	output("\n\nYou slowly sink down onto her cock, pausing as the tip presses ");
@@ -386,13 +389,10 @@ public function rideDatCockAndShit():void
 	output("\n\nYou take the black box and stuff it in your pack.");
 	if(flags["SATELLITE_QUEST"] == 1) output(" Time to take it back to the Pyrite suit in town.");
 	else output("Maybe somebody’ll pay out for it?");
-
 	
 	pc.createKeyItem("Satellite Hard Drive")
 	output("\n\n(<b>Gained Key Item: Satellite Hard Drive</b>.)");
-
 	output("\n\n");
-
 
 	processTime(30);
 	clearMenu();

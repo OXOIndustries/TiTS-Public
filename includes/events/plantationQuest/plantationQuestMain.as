@@ -2728,7 +2728,7 @@ public function lahDetectorTest():Boolean
 		takeLahToEsbeth();
 		return true;
 	}
-	satelliteIntroShit(1);
+	satelliteIntroShit(0);
 	return false;
 }
 

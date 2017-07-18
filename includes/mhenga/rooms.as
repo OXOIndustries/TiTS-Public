@@ -1411,12 +1411,12 @@ public function initMhengaRooms():void
 	// Vanae map additions
 	rooms["A TURNING POINT"] = new RoomClass(this);
 	rooms["A TURNING POINT"].roomName = "TURNING\nPOINT";
-	rooms["A TURNING POINT"].description = "You are in a narrow passageway in the jungle. The vegetation curves in an arc heading from the west to the south. The south end dips on a slow descent. The temperature here is cool and moist. There is glowing bioluminescent lichen growing on the trees here.\n\nSouth looks a little misty. It might get a little hard to see if you head in that direction.\n\nThere’s a small streak of burned trees, all pushed aside as if by some massive impact, leading eastward. There’s a pillar of black smoke rising from that direction, too...";
+	rooms["A TURNING POINT"].description = "You are in a narrow passageway in the jungle. The vegetation curves in an arc heading from the west to the south. The south end dips on a slow descent. The temperature here is cool and moist. There is glowing bioluminescent lichen growing on the trees here.\n\nSouth looks a little misty. It might get a little hard to see if you head in that direction.";
 	rooms["A TURNING POINT"].runOnEnter = vanaeWarningBot;
 	rooms["A TURNING POINT"].planet = "PLANET: MHEN'GA";
 	rooms["A TURNING POINT"].system = "SYSTEM: ARA ARA";
 	//rooms["A TURNING POINT"].northExit = "";
-	rooms["A TURNING POINT"].eastExit = "CRASHYMCSATELLITEFACE";
+	//rooms["A TURNING POINT"].eastExit = "CRASHYMCSATELLITEFACE";
 	rooms["A TURNING POINT"].southExit = "VALLEY DESCENT 1";
 	rooms["A TURNING POINT"].westExit = "DEEP JUNGLE 2";
 	rooms["A TURNING POINT"].addFlag(GLOBAL.OUTDOOR);
