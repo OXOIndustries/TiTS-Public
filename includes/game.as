@@ -1929,7 +1929,10 @@ public function variableRoomUpdateCheck():void
 	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);
 	// Pyrite Satellite Quest
-	if(pyriteSatelliteLocationUnlocked() && rooms["A TURNING POINT"].eastExit == "") rooms["A TURNING POINT"].eastExit = "CRASHYMCSATELLITEFACE";
+	if(pyriteSatelliteLocationUnlocked())
+	{
+		if(rooms["A TURNING POINT"].eastExit == "") rooms["A TURNING POINT"].eastExit = "CRASHYMCSATELLITEFACE";
+	}
 	else if(rooms["A TURNING POINT"].eastExit != "") rooms["A TURNING POINT"].eastExit = "";
 	if(pyriteSatelliteIntroActive()) rooms["JUNGLE EDGE"].addFlag(GLOBAL.NPC);
 	else rooms["JUNGLE EDGE"].removeFlag(GLOBAL.NPC);

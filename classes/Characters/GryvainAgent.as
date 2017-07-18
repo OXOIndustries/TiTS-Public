@@ -25,7 +25,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "gryvain agent";
-			this.originalRace = "naleen";
+			this.originalRace = "gryvain";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "She’s a tall, plush woman in a dark jacket and silvery armor. A pair of dark horns sprout from her hair, curling over a head of cobalt-blue hair - the same color as the four wings coming from her back, and the scaly tail hanging behind her. The freelancer’s carrying a heavy energy pistol, charged up so hot that the barrel’s glowing with every shot.";
