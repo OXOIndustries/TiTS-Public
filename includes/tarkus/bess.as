@@ -8527,6 +8527,8 @@ public function bessEvent18Response(response:String):void
 		output(" music playing.");
 		
 		output("\n\nDo you move and risk waking [bess.himHer] up?");
+		
+		processTime(180+rand(15));
 
 		// [Yes] [No]
 		clearMenu();
@@ -8545,7 +8547,7 @@ public function bessEvent18Yes():void
 	output("\n\nYou take off and leave [bess.himHer] to get re-oriented with a small chuckle. [bess.name] rubs [bess.hisHer] sleepy eyes before promptly curling up and going back to sleep.");
 
 	flags["BESS_EVENT_18"] = GetGameTimestamp();
-	processTime(180+rand(15));
+	processTime(1);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -8570,6 +8572,7 @@ public function bessEvent18No():void
 
 	flags["BESS_EVENT_18"] = GetGameTimestamp();
 	processTime(180+rand(15));
+	restHeal();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
