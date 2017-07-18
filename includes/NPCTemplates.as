@@ -142,6 +142,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "NALEENBROB", NaleenBrotherB);
 	prepChar(justUpdate, "AZRA", Azra);
 	prepChar(justUpdate, "ZIL9TAILS", Zil9Tail);
+	prepChar(justUpdate, "GRYVAINAGENT", GryvainAgent);
 	
 	
 	

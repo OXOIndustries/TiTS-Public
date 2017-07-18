@@ -65,6 +65,7 @@ public function bountyBoardExtra():Boolean
 	output("\n\nA large bulletin board has been erected against the wall of the building to the north.");
 	if(mhengaActiveBounty()) output(" <b>There are new notices there.</b>");
 	addButton(0,"Bulletins",checkOutBountyBoard);
+	repeatRepresentativeSatelliteShit(1);
 	return false;
 }
 public function checkOutBountyBoard():void
@@ -104,7 +105,18 @@ public function checkOutBountyBoard():void
 		}
 		output(" Xenogen Biotech Labs is seeking samples of ‘Sky Sap’ from the vanae natives. They are offering a monetary reward to anyone who can provide a steady supply of this substance.");
 	}
-	
+	output("\n\n");
+	if(flags["SEEN_SATELLITE_AD"] == undefined)
+	{
+		output("<b>New:</b>");
+		flags["SEEN_SATELLITE_AD"] = 1;
+	}
+	else
+	{
+		if(flags["SATELLITE_QUEST"] == 2) output("<b>Completed:</b>");
+		else output("<b>Seen Before:</b>");
+	}
+	output(" Pyrite Industries requires assistance locating a crashed satellite in the jungle. They are offering a 2,500 credit bounty for the return of its stolen hard drive.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

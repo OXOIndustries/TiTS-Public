@@ -1411,17 +1411,32 @@ public function initMhengaRooms():void
 	// Vanae map additions
 	rooms["A TURNING POINT"] = new RoomClass(this);
 	rooms["A TURNING POINT"].roomName = "TURNING\nPOINT";
-	rooms["A TURNING POINT"].description = "You are in a narrow passageway in the jungle. The vegetation curves in an arc heading from the west to the south. The south end dips on a slow descent. The temperature here is cool and moist. There is glowing bioluminescent lichen growing on the trees here.\n\nSouth looks a little misty. It might get a little hard to see if you head in that direction.";
+	rooms["A TURNING POINT"].description = "You are in a narrow passageway in the jungle. The vegetation curves in an arc heading from the west to the south. The south end dips on a slow descent. The temperature here is cool and moist. There is glowing bioluminescent lichen growing on the trees here.\n\nSouth looks a little misty. It might get a little hard to see if you head in that direction.\n\nThere’s a small streak of burned trees, all pushed aside as if by some massive impact, leading eastward. There’s a pillar of black smoke rising from that direction, too...";
 	rooms["A TURNING POINT"].runOnEnter = vanaeWarningBot;
 	rooms["A TURNING POINT"].planet = "PLANET: MHEN'GA";
 	rooms["A TURNING POINT"].system = "SYSTEM: ARA ARA";
 	//rooms["A TURNING POINT"].northExit = "";
-	//rooms["A TURNING POINT"].eastExit = "";
+	rooms["A TURNING POINT"].eastExit = "CRASHYMCSATELLITEFACE";
 	rooms["A TURNING POINT"].southExit = "VALLEY DESCENT 1";
 	rooms["A TURNING POINT"].westExit = "DEEP JUNGLE 2";
 	rooms["A TURNING POINT"].addFlag(GLOBAL.OUTDOOR);
 	rooms["A TURNING POINT"].addFlag(GLOBAL.HAZARD);
 	rooms["A TURNING POINT"].addFlag(GLOBAL.JUNGLE);
+
+	// Special Stuff Goobygoob
+	rooms["CRASHYMCSATELLITEFACE"] = new RoomClass(this);
+	rooms["CRASHYMCSATELLITEFACE"].roomName = "A\nSATELLITE";
+	rooms["CRASHYMCSATELLITEFACE"].description = "There’s a great big crater plunged into the forest floor here, surrounded by the shattered husks of Mhen’gan trees that have been blasted back by the impact. Smoke rises lazily from the inside of the crater, emanating from a sphere of metal surrounded by cracked mirrored wings. A satellite!";
+	rooms["CRASHYMCSATELLITEFACE"].runOnEnter = satelliteBonus;
+	rooms["CRASHYMCSATELLITEFACE"].planet = "PLANET: MHEN'GA";
+	rooms["CRASHYMCSATELLITEFACE"].system = "SYSTEM: ARA ARA";
+	//rooms["CRASHYMCSATELLITEFACE"].northExit = "";
+	//rooms["CRASHYMCSATELLITEFACE"].eastExit = "";
+	//rooms["CRASHYMCSATELLITEFACE"].southExit = "VALLEY DESCENT 1";
+	rooms["CRASHYMCSATELLITEFACE"].westExit = "A TURNING POINT";
+	rooms["CRASHYMCSATELLITEFACE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["CRASHYMCSATELLITEFACE"].addFlag(GLOBAL.HAZARD);
+	rooms["CRASHYMCSATELLITEFACE"].addFlag(GLOBAL.JUNGLE);
 
 	rooms["VALLEY DESCENT 1"] = new RoomClass(this);
 	rooms["VALLEY DESCENT 1"].roomName = "VALLEY\nDESCENT";

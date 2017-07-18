@@ -484,6 +484,25 @@ package classes.GameData
 					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
 				}
 			}
+			//"Toxic Trickery"
+			if (target.hasStatusEffect("Toxic Trickery"))
+			{
+				target.addStatusValue("Toxic Trickery",1,-1);
+				//Status time out!
+				if(target.statusEffectv1("Toxic Trickery") <= 0)
+				{
+					output("\n\n<b>The leaden feeling in your arms finally subsides. Looks like the poison’s run its course...</b>");
+					target.physiqueMod += 4;
+					target.aimMod += 4;
+					target.removeStatusEffect("Toxic Trickery");
+				}
+				//Effect gooo!
+				else
+				{
+					output("\n\n<b>You're still feeling warm and lethargic from her poison...</b>");
+					applyDamage(new TypeCollection( { drug: 2+rand(3) } ), null, target);
+				}
+			}
 			//"Gravitational Anomaly" reduces kinetic damage!
 			if(target.hasStatusEffect("Gravitational Anomaly"))
 			{
