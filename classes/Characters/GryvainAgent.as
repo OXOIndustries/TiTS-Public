@@ -190,6 +190,7 @@
 			this.vaginas[0].vaginaColor = "blue";
 			
 			//this.createStatusEffect("Disarm Immune");
+			createStatusEffect("Force Fem Gender");
 
 			this.inventory.push(new HeavyLaser());
 			
@@ -210,10 +211,11 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
+			if(this.hasStatusEffect("Disarmed")) CombatAttacks.MeleeAttack(this, target);
 			//Toxic Trickery
 			//Only attempts when your shields are down. Deals 1 pt. of Kinetic damage, but greatly reduces AIM and PHYS and inflicts some Lust damage each turn for 2-4 turns.
-			if(target.shields() <= 0 && !target.hasStatusEffect("Toxic Trickery") && rand(3) == 0) toxicShittery(target);
-			else if(this.energy() >= 25 && this.shields() == 0 && target.shields() > 0) vampBoltShooterooni(target);
+			else if(target.shields() <= 0 && !target.hasStatusEffect("Toxic Trickery") && rand(3) == 0) toxicShittery(target);
+			else if(this.energy() >= 25 && this.shields() <= 0 && target.shields() > 0) vampBoltShooterooni(target);
 			else if(!target.hasStatusEffect("Blind") && !target.hasStatusEffect("Blinded") && this.energy() >= 25 && rand(3) == 0) searingBoltAttackamundo(target);
 			else gryvainPistolShot(target);
 		}
@@ -239,7 +241,7 @@
 			applyDamage(damage, this, target, "minimal");
 			this.energy(-25);
 			//damage.multiply(0.5);
-			output("\nTEST DATA: " + damage.getTotal());
+			//output("\nTEST DATA: " + damage.getTotal());
 			output("\nHer shields flicker and come back online, soaking up the energy from your own!");
 			this.shields(Math.round(damage.getTotal()/2));
 		}

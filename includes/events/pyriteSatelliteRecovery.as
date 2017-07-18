@@ -328,7 +328,7 @@ public function getOutOfHereSkank():void
 	output("\n\nYou take the black box and stuff it in your pack. ");
 	if(flags["SATELLITE_QUEST"] == 1) output("Time to take it back to the Pyrite suit in town.");
 	else output("Maybe somebody’ll pay out for it?");
-	pc.createKeyItem("Satellite Hard Drive")
+	pc.createKeyItem("Satellite Hard Drive");
 	output("\n\n(<b>Gained Key Item: Satellite Hard Drive</b>.)");
 	output("\n\n");
 	CombatManager.genericVictory();
@@ -388,9 +388,9 @@ public function rideDatCockAndShit():void
 
 	output("\n\nYou take the black box and stuff it in your pack.");
 	if(flags["SATELLITE_QUEST"] == 1) output(" Time to take it back to the Pyrite suit in town.");
-	else output("Maybe somebody’ll pay out for it?");
+	else output(" Maybe somebody’ll pay out for it?");
 	
-	pc.createKeyItem("Satellite Hard Drive")
+	pc.createKeyItem("Satellite Hard Drive");
 	output("\n\n(<b>Gained Key Item: Satellite Hard Drive</b>.)");
 	output("\n\n");
 
@@ -465,7 +465,7 @@ public function fuckDatGryvainShit():void
 	if(flags["SATELLITE_QUEST"] == 1) output(" Time to take it back to the Pyrite suit in town.");
 	else output(" Maybe somebody’ll pay out for it?");
 
-	pc.createKeyItem("Satellite Hard Drive")
+	pc.createKeyItem("Satellite Hard Drive");
 	output("\n\n(<b>Gained Key Item: Satellite Hard Drive</b>.)");
 	output("\n\n");
 	enemy.loadInCunt(pc,0);

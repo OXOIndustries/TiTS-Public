@@ -210,8 +210,9 @@
 				}
 			}
 			if(baseHPResistances.kinetic.resistanceValue < 30 && rand(3) == 0) zilHardenSingle(target);
+			else if(this.hasStatusEffect("Disarmed")) CombatAttacks.MeleeAttack(this, target);
 			else if(this.energy() >= 10 && (CombatManager.getRoundCount() % 4 == 0 || CombatManager.getRoundCount() == 2)) snakePitch(target);
-			else shockyShockAttack(target);			
+			else shockyShockAttack(target);
 		}
 		//Shock
 		public function shockyShockAttack(target:Creature):void
