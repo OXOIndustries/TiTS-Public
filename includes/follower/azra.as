@@ -553,16 +553,18 @@ public function talkToAzraAboutSuula(skippy:Boolean = false):void
 		output("<i>“Is there anything you can tell me about what it’s like to be a Suula?”</i>");
 	}
 	//Merge
-	output("\n\nAzra chuckles dryly, dragging her fingers through her hair while she gathers her thoughts. <i>“Tough to say? What’s it feel like to be a [pc.race]? Normal, I guess.”</i> She taps her chin with a finger. <i>“I get some odd looks from the odd sheltered ausar, even the occasional insult from an backwards terran.”</i> Ticking off her fingers, the suula begins to make a list of gripes. <i>“Then you have the idiots who think that my race’s reputation for polyamory means I’ll spread my legs at the first sight of dick. I won’t, and I don’t. If I do ever take another stud, it’ll be because he’s a man of worth and substance.”</i> Azra shakes her head. <i>“I doubt that’ll ever happen.”</i>");
+	output("\n\nAzra chuckles dryly, dragging her fingers through her hair while she gathers her thoughts. <i>“Tough to say? What’s it feel like to be " + indefiniteArticle(pc.race()) + "? Normal, I guess.”</i> She taps her chin with a finger. <i>“I get some strange looks from the odd sheltered ausar, even the occasional insult from a backwards terran.”</i> Ticking off her fingers, the suula begins to make a list of gripes. <i>“Then you have the idiots who think that my race’s reputation for polyamory means I’ll spread my legs at the first sight of dick. I won’t, and I don’t. If I do ever take another stud, it’ll be because he’s a man of worth and substance.”</i> Azra shakes her head. <i>“I doubt that’ll ever happen.”</i>");
 	output("\n\nYou prod her for more information on her species. Surely she has something to share besides gripes!");
-	output("\n\n<i>“Oh, well we’re amazing swimmers and half-decent fliers if I do say so myself. I’m a bit out of practice in the air, but I’m told I look more at home in the water than on the land. The wings are actually great for maneuverability - extra control surfaces, even if the extra drag will keep me from winning a race with any other aquatic species.”</i> Azra wraps her wings around herself and happily strokes them. <i>“They get in the way sometimes, but you can’t be the freedom they offer - or the aesthetics. More than once I’ve seen a nun equate me with an angel.”</i> She shakes her head disbelievingly. <i>“It’s hard to let them down once they get so excited.”</i>");
+	output("\n\n<i>“Oh, well we’re amazing swimmers and half-decent fliers if I do say so myself. I’m a bit out of practice in the air, but I’m told I look more at home in the water than on the land. The wings are actually great for maneuverability - additional control surfaces, even if the extra drag will keep me from winning a race with any other aquatic species.”</i> Azra wraps her wings around herself and happily strokes them. <i>“They get in the way sometimes, but you can’t beat the freedom they offer - or the aesthetics. More than once I’ve seen a nun equate me with an angel.”</i> She shakes her head disbelievingly. <i>“It’s hard to let them down once they get so excited.”</i>");
 	processTime(4);
 	clearMenu();
 	//[Daughters] [Stud] [Religion] [Polyamory] [Her Sex]
-	addButton(14,"Back",azraTalk,true);
 	addButton(0,"Daughters",talkToAzraAboutHerDaughters);
 	addButton(1,"Stud",talkToAzraAboutStud);
-	addButton(2,"Her Sex",talkToAzraAboutHerSex);
+	addButton(2,"Religion",talkToAzraAboutReligion);
+	addButton(3,"Polyamory?",talkToAzraAboutPolyamory);
+	addButton(4,"Her Sex",talkToAzraAboutHerSex);
+	addButton(14,"Back",azraTalk,true);
 }
 
 //Daughters
@@ -603,23 +605,24 @@ public function talkToAzraAboutHerDaughters():void
 	flags["AZRA_DAUGHTER_TALK"] = 1;
 	//[Stud] [Religion]
 	clearMenu();
-	addButton(14,"Back",azraTalk,true);
-	addButton(0,"Stud",talkToAzraAboutStud);
+	addButton(0,"Stud",talkToAzraAboutStud, true);
 	addButton(1,"Religion",talkToAzraAboutReligion);
+	addButton(14,"Back",azraTalk,true);
 }
 
 //[Stud]
-public function talkToAzraAboutStud():void
+public function talkToAzraAboutStud(fromDaughters:Boolean = false):void
 {
 	clearOutput();
 	showAzra();
 	output("You ask her about her stud and why she chose that particular word.");
 	output("\n\nRaising an eyebrow, Azra says, <i>“Well, in the human tongue, stud is the closest translation, though it’s more significant than that. A stud is more than a mere breeding partner, even if he shares his affection between more than a single woman. There is an aspect of bonded loyalty and the promise of support for any future children that may arise from the more physical aspects of intimacy. Absentee fathers are quite rare among my people, you see.”</i> Her significant breasts swell with pride. <i>“");
-	if(pc.race() == "terran") output("You");
+	var isHuman:Boolean = pc.isHuman();
+	if(isHuman) output("You");
 	else output("The");
 	output(" terrans could learn a thing or two from us.”</i>");
 	output("\n\n");
-	if(pc.race() == "terran") output("You decide to let that one slide. ");
+	if(isHuman) output("You decide to let that one slide. ");
 	output("<i>“What happened to him?”</i>");
 	output("\n\n<i>“Pirates.”</i> Azra pauses, inhaling shakily. <i>“They ambushed the ship he was on, and he refused to get down and grovel with the rest of the passengers.”</i> She wipes at the corner of her eye before a tear can form. <i>“I’m told he prevented them from abducting a juvenile kaithrit. He fought the pirates long enough for the peacekeepers to show up on scanners and drive them out. His wounds must have hurt him terribly, but... my Troktun died a hero.”</i> There’s no hiding the moisture leaking from her eyes now. <i>“I wish he hadn’t... but the man I loved, my stud... he would never sit idly by while a youngling was in danger.”</i>");
 	//Bimbo
@@ -648,10 +651,11 @@ public function talkToAzraAboutStud():void
 	flags["AZRA_STUD_TALK"] = 1;
 	clearMenu();
 	//[Daughters (grayed out if came from Daughters)] [Date] [Age]
-	addButton(14,"Back",azraTalk,true);
-	addButton(0,"Daughters",talkToAzraAboutHerDaughters);
+	if(fromDaughters) addDisabledButton(0,"Daughters");
+	else addButton(0,"Daughters",talkToAzraAboutHerDaughters);
 	addButton(1,"Date",askAzraOutOnADate);
 	addButton(2,"Age",talkToAzraAboutAge);
+	addButton(14,"Back",azraTalk,true);
 }
 
 //Date
