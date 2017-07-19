@@ -12566,7 +12566,8 @@
 						adjectives.push("gigantic ");
 				}
 				//FLABBAH
-				else {
+				else 
+				{
 						adjectives.push("ginormous, jiggly ");
 						adjectives.push("plush, ginormous ");
 						adjectives.push("seam-destroying ");
@@ -12594,8 +12595,8 @@
 				else if (rando == 12) {
 					if (buttRating() >= 10) desc += "booty";
 					else desc += "derriere";
-			}
-				else desc += RandomInCollection(["rump", "bottom", "behind", "keister", mf("butt", "tush"), "rear end", "heinie", "posterior"]);
+				}
+				else desc += RandomInCollection(["rump", "bottom", mf("butt", "tush"), "rear end"]);
 			}
 			else desc += "cheeks";
 			return desc;
@@ -12887,8 +12888,8 @@
 				descript += "head";
 				return descript;
 			}
-			//50% odds of adjectives
-			if ((forceLength || rand(2) == 0) && !InCollection(hairStyle, "afro", "mohawk")) {
+			//25% odds of adjectives
+			if ((forceLength || rand(4) == 0) && !InCollection(hairStyle, "afro", "mohawk")) {
 				if (hairLength < 1) {
 					if (rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
@@ -12907,14 +12908,20 @@
 					else if(hairLength < 8) descript += "neck-length";
 					else descript += "shoulder-length";
 				}
-				else if (hairLength < 16) descript += "long";
+				else if (hairLength < 16) {
+					descript += RandomInCollection(["long","lengthy"]);
+				}
 				//Relativistic hair
 				else if (hairLength < tallness / 2.5)
 				{
-					descript += RandomInCollection(["very long", "back-length", "lengthy"]);
+					descript += RandomInCollection(["very long", "back-length"]);
 				}
 				else if (hairLength < tallness / 1.7) {
-					if(hairLength < tallness/1.6) descript += "ass-length";
+					if(rand(3) == 0) descript += "cascading";
+					else if(hairLength < tallness/1.6) 
+					{
+						descript += "ass-length";
+					}
 					else descript += "thigh-length";
 				}
 				else if (hairLength < tallness / 1.3) 
