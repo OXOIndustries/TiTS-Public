@@ -5922,17 +5922,17 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2(" Active");
 				if(chaurmineOnUveto()) output2(" (On Uveto)");
-				else output2(" (On Tarkus)");
+				else if(chaurmineOnTarkus()) output2(" (On Tarkus)");
 			}
 			if(flags["ABANDONED_CHAURMINE"] != undefined)
 			{
-				output2(", abandoned him");
+				output2(", Abandoned him");
 				if(flags["ABANDONED_CHAURMINE"] == 2) output2(" twice");
 				else if(flags["ABANDONED_CHAURMINE"] > 2) output2(" " + num2Text(flags["ABANDONED_CHAURMINE"]) + " times");
 			}
-			if(flags["CHAURMINE_HELPED"] > 0) output2("\n<b>* " + chaurmineName + ", Times Helped Him:</b> " + flags["CHAURMINE_HELPED"]);
-			if(flags["CHAURMINE_GUARDED"] > 0) output2("\n<b>* " + chaurmineName + ", Times Guarded Him:</b> " + flags["CHAURMINE_GUARDED"]);
-			if(flags["CHAURMINE_RELATIONSHIP"] != undefined)
+			if(flags["CHAURMINE_HELPED"] != undefined) output2(", Helped him");
+			if(flags["CHAURMINE_GUARDED"] != undefined) output2(", Guarded him");
+			if(flags["MET_CHAURMINE"] >= 1)
 			{
 				output2("\n<b>* " + chaurmineName + ", Affection:</b> " + chaurmineRelationship() + " %");
 				switch(flags["CHAURMINE_LOVER"])

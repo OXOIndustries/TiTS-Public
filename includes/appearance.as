@@ -1665,7 +1665,9 @@ public function appearance(forTarget:Creature):void
 			}
 			break;
 		case GLOBAL.TYPE_DEMONIC:
-			output2(" A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
+			if(target.tailCount == 1) output2(" A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
+			else output2(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " narrow tails curl down from your " + target.buttDescript() + ", each ending in a spaded tip. They sensually wrap around your " + target.leg() + " at every opportunity.");
+			
 			break;
 		case GLOBAL.TYPE_BOVINE:
 			if(target.tailCount == 1)
@@ -2391,7 +2393,7 @@ public function appearance(forTarget:Creature):void
 	else if(tempBelly < 120) output2("Your [target.belly] protrudes obscenely from your form, hanging heavily. Getting around is a struggle with so much extra mass on you.");
 	else
 	{
-		output2("Your distended belly is so gargantuanly huge that you have no hope of seeing the floor anywhere near you, let alone your [pc.legOrLegs]. It’s a small miracle that you can even stand upright with all that mass slung out in front of you.");
+		output2("Your distended belly is so gargantuanly huge that you have no hope of seeing the floor anywhere near you, let alone your [target.legOrLegs]. It’s a small miracle that you can even stand upright with all that mass slung out in front of you.");
 	}
 	
 	//Tack on preg flavor shit to the end of belly descripts.

@@ -63,7 +63,7 @@ public function approachLuca(back:Boolean = false):void
 	author("RequiemForAMeme");
 	if(back)
 	{
-		output("Is there something else you'd rather ask of Luca?");
+		output("Is there something else you’d rather ask of Luca?");
 		lucaMenu();
 		return;
 	}
@@ -114,7 +114,7 @@ public function lucaAppearance():void
 	output("\n\nShe is wearing a dark blue and black dress with an ever changing pattern of stars and planets on it. The dress, though not skin tight, leaves little to the imagination of Luca’s curvaceous body. Her breasts, which could fill a E-cup bra, seem to support themselves.");
 	output("\n\nDespite the distraction her ample breasts provide it is impossible to miss her other endowments. She displays a well defined hourglass figure with wide hips, voluptuous thighs, and a large round ass. Surprisingly, an inverted V cut in her dress puts her cock on clear display. It is darker in color than the rest of her skin and just an inch shy of being a foot long. It is nearly three inches wide, pushed forward by two large cum filled balls.");
 	lucaMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're already doing that.");
+	addDisabledButton(0,"Appearance","Appearance","You’re already doing that.");
 }
 
 //Talk Options
@@ -205,7 +205,7 @@ public function lucaBusinessMenu():void
 	clearOutput();
 	showLuca();
 	author("RequiemForAMeme");
-	output("Which part of Luca's business would you like to inquire about?");
+	output("Which part of Luca’s business would you like to inquire about?");
 	clearMenu();
 	addButton(0,"Items",buyFromLuca,undefined,"Items","Luca sells a few items at retail price.");
 	if(pc.credits >= 500) addButton(1,"VR Simulation",lucasVRSims,undefined,"VR Simulation","Luca allows people to experience a wide range of virtual fantasies.\n\n<b>Cost:</b> 500 credits");
@@ -222,6 +222,9 @@ public function buyFromLuca():void
 	showLuca();
 	chars["LUCA"].keeperBuy = "<i>“Can I see what you have for sale?”</i>\n\n<i>“Of course.”</i> Luca answers. She pulls out a tablet from beneath her desk and presents it to you. <i>“This is a list of everything The Lotus Eater has, pick what you want and I’ll have one of my little helpers get it for you.”</i>\n";
 	//[Show Inventory]
+	chars["LUCA"].inventory = new Array();
+	chars["LUCA"].inventory.push(new FocusPill());
+	
 	shopkeep = chars["LUCA"];
 	//[Shop Menu Here]
 	buyItem();
@@ -267,8 +270,8 @@ public function simmPubbiPrivateChoice(arg:String):void
 	showName("PUBLIC\nOR PRIVATE");
 	output("Do you want a public or private experience?");
 	clearMenu();
-	addButton(0,"Private",simmRouting,[arg,0]);
-	addButton(1,"Public",simmRouting,[arg,1]);
+	addButton(0,"Private",simmRouting,[arg,false]);
+	addButton(1,"Public",simmRouting,[arg,true]);
 }
 
 public function simmRouting(args:Array):void
@@ -302,8 +305,9 @@ public function simmOutro(exhibition:Boolean):void
 	clearOutput();
 	showLuca();
 	author("RequiemForAMeme");
-	if(exhibition) output("The simulation shuts down and you begin to regain your normal senses. As you try to remove your headset Luca places a warm hand on your shoulder and carefully removes the VR equipment. She makes sure your senses and perception of time have re-adjusted properly. Once you have fully rested you leave.");
+	if(!exhibition) output("The simulation shuts down and you begin to regain your normal senses. As you try to remove your headset Luca places a warm hand on your shoulder and carefully removes the VR equipment. She makes sure your senses and perception of time have re-adjusted properly. Once you have fully rested you leave.");
 	else output("The simulation shuts down and you begin to regain your normal senses. You receive several cheers and hollers as Luca carefully removes the VR equipment. She makes sure your senses and perception of time have re-adjusted properly. Once you have fully rested you leave.");
+	processTime(3);
 	IncrementFlag("VR_SIMMED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -333,7 +337,7 @@ public function thePirateQueenScenario(exhibition:Boolean):void
 	output("\n\nHer cum tastes sweet, so you take your time milking her for all she’s worth. You cup her balls and massage them as they pump their load out and into you. Eventually though she inevitably runs out of cum. With a sigh you plop her dick out of your mouth. She looks completely worn out by the ordeal. You caress her cheek and tell her to rest for a while.");
 	output("\n\nWith that done you wipe away any cum on your lips and check out your figure. Your belly is still slim and yet you feel so full. Weird. You proceed onwards towards your goal.");
 	output("\n\nMoving through the ship you find yourself caught between a forked hallway and the heavy footsteps of patrolling guards. The left hall leads to ‘Testing Center 34-N.’ The right hall leads to ‘Nutrient Stalls 12-N.’ You can’t let yourself get caught by the guards and there isn’t an immediate alternative, so which hallway do you take?");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.lust(30);
 	clearMenu();
 	// Left Hallway follows A path and Right Hallway follows B path.
@@ -353,7 +357,7 @@ public function testingChamberAhoy(exhibition:Boolean):void
 	flags["SIMM_PATH"] = "A";
 	author("RequiemForAMeme");
 	output("Having gone down the left hallway you quickly slip into ‘Testing Center 34-N’. The room is filled with robot arms dangling from the ceiling, each ending in various types of dildos and onaholes. There are medical beds lining the walls, most occupied with various people and all of them being tended to by at least two robotic arms. Their moans and cries of passion resound through the room.");
-	output("\n\nBefore anyone notices you, you find a changing room with accompanying sanitation station. Searching the area, you manage to acquire a nurse's outfit. You quickly slip out of your latex suit with a button press. A second push causes it to fold up into a small, palmable package, allowing you to swap outfits in record time. You’re not sure how large this Testing Center is, but you need to get to the other end fast.");
+	output("\n\nBefore anyone notices you, you find a changing room with accompanying sanitation station. Searching the area, you manage to acquire a nurse’s outfit. You quickly slip out of your latex suit with a button press. A second push causes it to fold up into a small, palmable package, allowing you to swap outfits in record time. You’re not sure how large this Testing Center is, but you need to get to the other end fast.");
 	output("\n\nAs you exit the changing room, a poofy furred ausar in a doctor’s coat confronts you. <i>“Nurse! Thanks to the One,”</i> he exclaims. <i>“I need your help immediately.”</i>");
 	output("\n\n<i>“Of course Doctor.”</i> You say, trying to blend in.");
 	output("\n\nThe doctor brings you to a Kaithrit who has the ends of two robot arms lodged into her pussy and asshole, the end of a third arm shoved down her gullet, and a sizable onahole at the end of a fourth arm surrounding a bouquet of kitty dicks. He needs you to remove the arms filling her bottom holes while he holds her down. When he tried earlier, the Kaithrit tried to maul him, he explains.");
@@ -373,7 +377,7 @@ public function testingChamberAhoy(exhibition:Boolean):void
 	output("\n\nAs the tongues continue to work your lower holes, you start to fantasize about the ausar doctor and his naughty knotty doggy dick, just arm’s reach away from your face. He could just ask you to suck it, and you would. Or even better, he could force it into your mouth. <i>You feel so thirsty.</i> Just a few licks and you’re sure he would be pouring wonderfully salty precum into your mouth.");
 	output("\n\nAs you’re about to lean towards his amazing-smelling cock, the doctor exclaims that he’s finished. He flips a switch on both the arms and suddenly both tongues swell up. You lift your hips as the tongues expand, and cry out as they pump some kind of thick slime into you. You fall onto the medical bed spasming from your unending orgasm. The doctor seems to still be talking, but you can’t make out the words as you black out.");
 	output("\n\nFortunately, you awaken some time later, still on the medical bed. The Testing Center is still filled with noise as you get your bearings. You look at your belly expecting to see yourself bloated, but you’re as slim as ever. Though you are still thirsty. You quickly get off the bed and slip out of the room. You’ve wasted enough time... well maybe not wasted, because it felt sooo good.");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.lust(100);
 	pc.orgasm();
 	pc.lust(30);
@@ -389,7 +393,7 @@ public function part3ADoorDildo(exhibition:Boolean):void
 	clearOutput();
 	showName("DOOR\nDILDO");
 	author("RequiemForAMeme");
-	output("Having got through the Testing Center you change back into your latex suit, dispose of the nurse's outfit, and continue your mission. You move through the ship in search of the Pirate Queen, this time more carefully. You don’t want any guard patrols cornering you. Eventually, your patience pays off as you reach a side door to the command deck. The door doesn’t have a control panel, instead there is a sign that reads: <i>“Suck Me, Open Me.”</i> A long ribbed dildo with a thick head is protruding from the wall.");
+	output("Having got through the Testing Center you change back into your latex suit, dispose of the nurse’s outfit, and continue your mission. You move through the ship in search of the Pirate Queen, this time more carefully. You don’t want any guard patrols cornering you. Eventually, your patience pays off as you reach a side door to the command deck. The door doesn’t have a control panel, instead there is a sign that reads: <i>“Suck Me, Open Me.”</i> A long ribbed dildo with a thick head is protruding from the wall.");
 	output("\n\nA quick scan of the door reveals that you will have to use your mouth on the dildo. When it releases it’s load it will cause the door to open. However the load is nearly a gallon of serum-infused cum. The dildo also appears to be coated with some sort of aphrodisiac. You don’t know how many more times you can ingest cum before the counter-serum is no longer effective, but you’re feeling pretty thirsty and the last load was delightful, so it can’t be all that bad.");
 	if(exhibition) output("\n\nA series of numbers and letters are displayed above the door: Views - " + (42+rand(4)));
 	output("\n\nYou get onto your knees and lick the head of the dildo. The aphrodisiac tastes like some sort of fruit. A second lick tastes slightly different. The third and fourth all taste different too. Before you know it, the head of the dildo is in your mouth and you’re rolling your tongue all around it. The longer you taste it, the more powerful and delicious it is.");
@@ -398,7 +402,7 @@ public function part3ADoorDildo(exhibition:Boolean):void
 	output("\n\nSuddenly the dildo begins vibrating, and the ribbed sections pulse outward. You instinctively try to pull it out, but it feels so good as you pull your head back. You immediately thrust forward again. You face fuck yourself with the dildo, and it rewards you with cum every time the head is in your mouth. You don’t even wonder how it knows, you just want more.");
 	output("\n\nThen you cum. You didn’t even realize how wet you made yourself. You stop moving as you deep throat the dildo. Your body seizes up as it cums from the face fucking you’ve given yourself. The dildo, sensing your orgasm, then releases its full load down your throat. You internally cry out, knowing you won’t be able to taste all of the delicious cum being pumped down your throat.");
 	output("\n\nEventually your oral orgasm subsides and you slide off of the dildo. The door opens up and you shakily walk through it.\n\nYou have to complete your mission.");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.orgasm();
 	pc.lust(20);
 	clearMenu();
@@ -413,7 +417,7 @@ public function part3ADoorDildo(exhibition:Boolean):void
 }
 
 
-// Part 2B  - Nutrient Stalls
+// Part 2B - Nutrient Stalls
 public function nutrientStallsWheee(exhibition:Boolean):void
 {
 	clearOutput();
@@ -433,7 +437,7 @@ public function nutrientStallsWheee(exhibition:Boolean):void
 	output("\n\nYou wonder how anyone could hate this sensation. How could this vulgar scene possibly be considered awful? All you need now are two burly guards or some double dicked partner to fill your empty cunt and anus. Both of your holes start feeling more and more painfully hollow as you keep moving.");
 	output("\n\nEventually though you manage to reach the end of the trough. You feel heavy as you pull yourself out of the heavenly gunk. Once you’re fully out, you book it to the door and out of the Nutrient Stalls. You quickly find a safe corner to rest in and plan your next move.");
 	output("\n\nAs you catch your breath you wonder just how much cum you drank. No matter how much you ingested, it wasn’t enough. Your body craves more, but your stomach must be bloated by now. Upon examination however, your belly is nice and flat; kind of empty when you think about it.");
-	processTime(60);
+	processTime(55 + rand(11));
 	// Next Scene
 	pc.lust(100);
 	clearMenu();
@@ -482,7 +486,7 @@ public function showersSimmScene(exhibition:Boolean):void
 	//[Next] or [Bail]
 	//Tooltip Next: Proceed with the simulation.
 	//Tooltip Bail: You’ve had enough of this simulation and you want out.
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.orgasm();
 	pc.lust(20);
 	clearMenu();
@@ -516,7 +520,7 @@ public function theBadEndHappensNow(exhibition:Boolean):void
 	output("\n\n<i>“Now I just need to finish turning my crew and harem into cum addicted herms. Would you like to join them?”</i> All you can do is moan as she pulls your head forward. Her cock diving deep into your throat. You can feel her cock pulsating in your mouth; she is having an orgasm. The cum is expelled in light bursts at first, then gradually turns into an unstoppable torrent. Soon she fills your stomach completely and then your mouth until you can’t keep it closed. You lose consciousness as you experience an unending chain of oral orgasms.");
 	output("\n\nSeveral months have passed since then. After you awoke Titania filled your pussy and ass with her seed, and you accepted it like the good cumslut you were. She then ordered two members of her harem with thick knotted doggy dicks to fill your holes while she was away. Their cum wasn’t as good as your new mistresses’, but it was enough for you. You became a favorite cocksleeve of the crew and harem alike for a few months.");
 	output("\n\nThen one day, Titania gave you a cock all your own, and doted on you with gene mod after gene mod. You can cum rivers with your swollen quadruple nuki nuts now. She even made it so that you can survive off of cum alone. Now you don’t even need to eat or drink anything other than your favorite thing in the universe. One day, months later, as you take in your mistress’s eleventh load you remember you were once spy of some sort, but as she face fucks you for a twelfth load the thought fades away.");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.orgasm();
 	pc.orgasm();
 	// End Scene
@@ -534,7 +538,7 @@ public function theAmazoniaScenario(exhibition:Boolean):void
 	//Part 1 - Exploration
 	output("You begin to lose feeling in you body as the VR Simulation loads up. You feel like you’re about to blackout once the simulation activates. Your avatar is Dixon Cider, a renowned space explorer. Dixon is a terran with fair, slightly tanned skin, a heroic muscle toned body, and an eight inch penis. You are wearing a white shirt, a leather vest, cargo pants filled with gadgets, and combat boots.");
 	output("\n\nThe first thing you do is make sure your small crew is alive and unharmed. After you’re done with the role call you ask your mechanic, a cat-girl named Chris, what the hell happened to your ship. Unfortunately until the crew completes their damage assessment, she can only guess.");
-	output("\n\nYou check on the rest of the crew again before going to your cabin. There you test which of your ship's systems are still operational. Fortunately most of them are still working to some degree. You pull up the ship’s auto-cartography function. It reveals that there is some sort of structure nearby, but it is about a six hour hike away.");
+	output("\n\nYou check on the rest of the crew again before going to your cabin. There you test which of your ship’s systems are still operational. Fortunately most of them are still working to some degree. You pull up the ship’s auto-cartography function. It reveals that there is some sort of structure nearby, but it is about a six hour hike away.");
 	output("\n\nYou plot out the path and gather the supplies you’ll need. The sun is rising, and the ship informs you that days last roughly thirty two hours on this planet. You tell the crew about your plan, either the structure means help of some kind, or it will be another place for Dixon Cider to explore thoroughly. As you’re about to leave, you tell them to send a search party if they don’t hear from you at least once every four hours. Then you embark into the dense jungle of Amazonia Prime.");
 
 	if("exhibition") output("\n\nA series of numbers and letters are displayed along the trees as you enter the jungle: Views - " + (15+rand(4)));
@@ -551,7 +555,7 @@ public function theAmazoniaScenario(exhibition:Boolean):void
 	//Tooltip Inner Chamber: Pry open the doors to the inner chamber and see what’s inside.
 	//Tooltip Bath Chamber: Go take a nice relaxing soak in the bath chamber.
 	//Tooltip Bail: You’ve had enough of this simulation and you want out.
-	processTime(60);
+	processTime(55 + rand(11));
 	clearMenu();
 	addButton(0,"Inner Chamber",goddessDildoTiems,exhibition,"Inner Chamber","Pry open the doors to the inner chamber and see what’s inside.");
 	addButton(1,"Bath Chamber",amazoniaBathTime2B,exhibition,"Bath Chamber","Go take a nice relaxing soak in the bath chamber.");
@@ -582,7 +586,7 @@ public function goddessDildoTiems(exhibition:Boolean):void
 	output("\n\nYou cover your chest, sheets, and bed with seed as you keep plunging the silver dildo in and out. You thrash about until you feel utterly spent, until you feel like you can’t milk any more semen from your balls. When you collapse upon your baby batter covered bed, you nearly pass out.");
 	output("\n\nBut something tells you rise up. You feel drawn outside. You gather your things and prepare for another journey to the amazon temple. You don’t bother to wipe the cum from your chest. <i>The smell is kind of nice.</i> You make sure the prize you stole from the temple is firmly secured in your ass before leaving the ship; you don’t even bother to close the door.");
 	output("\n\nOnly a few minutes into your delirious journey, you find yourself panting and burning with need. You unbuckle your pants and fall to the ground trying to thrust the silver cock into your rectum, but it is getting hard to think or move. You lie down breathless and black out with unfulfilled need.");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.orgasm();
 	pc.lust(25);
 	// Next Scene
@@ -635,7 +639,7 @@ public function simmCaged3A(exhibition:Boolean):void
 	output("\n\nYou pull her deeper into your mouth and start tasting her precum. In only a minute her crown starts to tickle the back of your throat. That’s when two hands grasp the back of your head and slam you forward. Her ribbed meaty length forcing itself down your gullet. The guard takes the lead assailing your oral cavity. Before long she climaxes and injects her cum directly into your stomach.");
 	output("\n\nThe guard releases her hold on your skull and you fall backwards onto your butt. She chuckles and walks away. You blissfully start sucking a finger in and out of your mouth. Tasting what little cum you didn’t swallow, you start rolling it around with your tongue.");
 	output("\n\nThe guard eventually returns with a plate of cold fruit and warm meat. She hand feeds each piece to you like a pet, one bite at a time. Once or twice you catch a finger between your lips, sucking on them as she pulls her hand away. When you’re finished you lie down full of food and semen and try to get a real night’s worth of sleep.");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.lust(100);
 	// Next Scene
 	//[Next] [Bail]
@@ -682,7 +686,7 @@ public function fightNight4A(exhibition:Boolean):void
 	output("\n\nYou relax in Hippolyta’s grip, which she takes as a signal to lower you all the way down. Her ribbed length stretches your rectum and you feel completely full before she even bottoms out. When you finally stop sinking, her cock engorges as a flood of baby batter surges up from her hefty balls.");
 	output("\n\nShe’s not even finished with her first ejaculation by the time your abdomen starts to swell. She leans in close and whispers. <i>“You’re not leaving this river till I’m satisfied. In fact, you might not even leave my dick unless I’m about to fuck someone else.”</i> You spasm as she uses you as a human cock sleeve. She parades you all around the river while she fucks you full of her second, third, fourth, and fifth load.");
 	output("\n\nAfter the fight Hippolyta decided to keep you and your crew around for the tribe to use as cum dumps. Though Hippolyta and a certain guard use you more than the others; and you love every moment of it.");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -709,7 +713,7 @@ public function amazoniaBathTime2B(exhibition:Boolean):void
 	output("\n\nSome kind of strange black snake thing is between your legs. <i>The way it wiggles is just so mesmerizing.</i> Your eyes dart back and forth between the sway of your cock and the black snake. It must be massaging your prostate! That’s so nice of it. You didn’t even feel it enter your anus. How weird. What a coincidence too, here you were just thinking how nice it would be to get your prostate - No how <i>amazing it would be to get your ass fucked.</i>");
 	output("\n\nAs you think you couldn’t feel any better the black snake disappears from view and your cock spasms as you climax. Seed gushes from your dick as your hips buck up and down. Your mind goes blank as you stare at your phallus pump out more and more of it’s load. Your eyelids grow heavy and close as your balls continue to empty themselves.");
 	output("\n\nAs sleep begins to take you, you hear the voices of women approaching. But you just know that they’ll take <i>good</i> care of you.");
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.orgasm();
 	// Next Scene
 	//[Next] [Bail]
@@ -738,7 +742,7 @@ public function trainingWith3B(exhibition:Boolean):void
 	output("\n\nYou have so many questions. You have so many reasons to tell her and their tribe no. But as you continue to stare at her rigid dick all that comes out of your mouth is: <i>“That sounds great! When can we start?”</i>");
 	output("\n\nSeylia smiles and says: <i>“At once! But it will take some time as you body fully adjusts.”</i>");
 	output("\n\nTrue to her word, your ‘training’ started immediately. First you were forbidden from touching your shrinking six inch dick. If you wanted to ejaculate you needed to request a priestess to suck you off. Given your small, size most of the priestesses would tease you before performing their duty. Each time it felt more and more pleasurable, and each time you would pop off earlier and earlier. You were told it had to do with their saliva.");
-	output("\n\nSecond you were to eat only what they provided you; specific fruits and meats, along with a special brew which smelled heavily of semen. Quickly your skin became soft and smooth and your breasts grew into B cups. Sadly your chest didn’t come close to any of the amazons, especially the priestess', but you well up with pride when you look at them.");
+	output("\n\nSecond you were to eat only what they provided you; specific fruits and meats, along with a special brew which smelled heavily of semen. Quickly your skin became soft and smooth and your breasts grew into B cups. Sadly your chest didn’t come close to any of the amazons, especially the priestess’, but you well up with pride when you look at them.");
 	output("\n\nThird was the training of your body. Your ass and mouth were stuffed with cock or dildos day and night. Seylia explained that their chieftain is the largest in the tribe and she required properly trained holes to fulfill her needs. But no matter how hard you were fucked in the ass you weren’t able to climax like you first did in that bath so long ago.");
 	output("\n\nWeeks and months passed as you were trained to suck and fuck. Each time you were fucked into the ground by a priestess you rode a pleasure high, but never had an orgasm. You always need your four inch prick to be gobbled up by one of the priestesses to get off. Then you realize one day that none of the priestess have ever cum inside you, not even in your mouth.");
 	output("\n\nThe question bothered you for days until you decided to just ask. <i>“Seylia?”</i> you say.");
@@ -761,6 +765,7 @@ public function trainingWith3B(exhibition:Boolean):void
 	//[Next] [Bail]
 	//Tooltip Next: Proceed with the simulation.
 	//Tooltip Bail: You’ve had enough of this simulation and you want out.
+	processTime(55 + rand(11));
 	clearMenu();
 	addButton(0,"Next",badEndBedBitch,exhibition,"Next","Proceed with the simulation.");
 	addButton(14,"Bail",simmOutro,exhibition,"Bail","You’ve had enough of this simulation and you want out.");
@@ -802,7 +807,7 @@ public function badEndBedBitch(exhibition:Boolean):void
 	// End Scene
 	// Simulation End Text
 	// Return PC to lobby
-	processTime(60);
+	processTime(55 + rand(11));
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",simmOutro,exhibition);

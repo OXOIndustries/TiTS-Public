@@ -64,6 +64,10 @@ public function chaurmineOnTarkus():Boolean
 	}
 	return false;
 }
+public function chaurmineAtWastes():Boolean
+{
+	return (flags["CHAURMINE_GUARDED"] == undefined && flags["CHAURMINE_HELPED"] == undefined && (flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] < 3));
+}
 
 public function encounterChaurmine():void
 {
@@ -413,7 +417,7 @@ public function leaveChaurmineToiletPaper():void
 //Add to the bar of The Mess on Novahome
 
 //Room description
-public function chaurmineBonus(button:Number):Number
+public function chaurmineBonus(button:Number):void
 {
 	if(chaurmineOnTarkus())
 	{
@@ -430,9 +434,7 @@ public function chaurmineBonus(button:Number):Number
 			//[Chaurmine] // Go to Approach Chaurmine
 			addButton(button,"Chaurmine",approachTarkusCivilizedChaurmine);
 		}
-		return (button + 1);
 	}
-	else return (button);
 
 }
 
@@ -1656,15 +1658,12 @@ public function chaurmineShippyShipTitfuckyDuckyHucky():void
 
 //Novahome Event
 //Unlocks at 50% relationship, taking place in the Eastern Hangar tile just east of Steele’s ship on the Novahome
-public function novahomeChaurmineGoodbyeBonus():void
+public function novahomeChaurmineGoodbyeBonus(btnSlot:int = 0):void
 {
 	//Removes Chaurmine from The Mess
 	//Add to Eastern Hanger tile description
-	if(chaurmineRelationship() >= 50 && flags["CHAURMINE_LOVER"] == undefined && flags["ABANDONED_CHAURMINE"] != 3)
-	{
-		output("\n\nEasily spotted among the droves of much shorter and less metallic people, you see Chaurmine standing near his corvette in the distance. He’s looking at his clunky codex, occasionally interrupted when he shoos away a few curious or grabby raskvel.");
-		addButton(0,"Chaurmine",whatsNewChaurmine,undefined,"Chaurmine","Ask him what’s new.");
-	}
+	output("\n\nEasily spotted among the droves of much shorter and less metallic people, you see Chaurmine standing near his corvette in the distance. He’s looking at his clunky codex, occasionally interrupted when he shoos away a few curious or grabby raskvel.");
+	addButton(btnSlot,"Chaurmine",whatsNewChaurmine,undefined,"Chaurmine","Ask him what’s new.");
 }
 
 //What’s New

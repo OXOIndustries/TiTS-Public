@@ -41,7 +41,7 @@ public function initTarkusRooms():void
 	rooms["202"] = new RoomClass(this);
 	rooms["202"].roomName = "EASTERN\nHANGAR";
 	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It’s obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator’s doors sit askew in their frame, obviously nonfunctional.\n\nThe U.G.C. scouts have set up an office to the north. They might be able to give you a lift to some of the more remote destinations on planet.";
-	rooms["202"].runOnEnter = novahomeChaurmineGoodbyeBonus;
+	rooms["202"].runOnEnter = novahomeHangerBonus;
 	rooms["202"].westExit = "201";
 	rooms["202"].eastExit = "203";
 	rooms["202"].northExit = "TARKUS SCOUT AUTHORITY";

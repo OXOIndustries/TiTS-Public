@@ -52,18 +52,11 @@ public function barBonusFunction():Boolean
 		addDisabledButton(0,"Bartender","Bartender","Del isn’t working the bar any longer. It looks like they’re having a tough time finding a replacement.");
 	}
 	addButton(1,"Watch TV",stephIrsonEpisodeTwo,undefined,"Watch TV","Watch the television. It looks like an episode of Steph Irson: Galactic Hunter is on.");
-	var button:Number = 2;
-	if((flags["CHAURMINE_GUARDED"] != undefined || flags["CHAURMINE_HELPED"] != undefined) && flags["ABANDONED_CHAURMINE"] != 3) button = chaurmineBonus(2);
-
-	roamingBarEncounter(button);
-	button++;
-	vendingMachineButton(button, "XXX");
-	button++;
-	if(flags["MET_CARVER"] != undefined) 
-	{
-		addButton(button,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
-		button++;
-	}
+	vendingMachineButton(2, "XXX");
+	roamingBarEncounter(3);
+	if((flags["CHAURMINE_GUARDED"] != undefined || flags["CHAURMINE_HELPED"] != undefined) && flags["ABANDONED_CHAURMINE"] != 3) chaurmineBonus(4);
+	if(flags["MET_CARVER"] != undefined) addButton(5,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
+	
 	return false;
 }
 //Order Food
