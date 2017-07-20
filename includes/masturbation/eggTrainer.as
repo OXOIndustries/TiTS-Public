@@ -280,11 +280,8 @@ public function eggTrainingMachineTime():void
 	else output("ass");
 	output(", faster and faster. More of the little nubs snake in with the shaft, rubbing pleasurably against your ");
 	if(x >= 0) output("pussy’s walls");
-	else
-	{
-		if(!pc.hasCock()) output("anal walls");
-		else output("prostate");
-	}
+	else if(!pc.hasCock()) output("anal walls");
+	else output("prostate");
 	output(". This is just a taste of the pleasure your Egg Trainer is promising, though.");
 
 	output("\n\nWhat feels like the better part of a foot lodges in you before the tentacle seems to think it’s deep enough to start <i>really</i> working. The tentacle goes completely rigid for the span of a heartbeat, making sure you’re nice and stretched out around its thick girth, before it starts to swell and shudder, and you feel something moving <i>inside</i> it. Your eyes go wide as the tentacle hilted in your [pc.vagOrAss " + x + "] stretches out, passing the first thick knot of plastic through your ");
@@ -1026,7 +1023,7 @@ public function eggTrainerOvalastingGo(oIdx:int = -1):void
 	if(oIdx < 0) pc.buttChange(200);
 	else pc.cuntChange(200, oIdx);
 	
-	output("\n\nYou moan out your enjoyment, bucking your [pc.hips] back against the steadily thrusting artificial member. The familiar sensation still sends a thrill through you no matter how many times you get to enjoy it. Your knuckles turn white, squeezing down around the handle bars and letting the tentacle fuck you. It’s more vigorous and more thorough in its business than it strictly needs to be, you well know by now, but you can hardly complain as it " + (oIdx < 0 ? "milks your prostate" : "pounds your pussy") + " to orgasm.");
+	output("\n\nYou moan out your enjoyment, bucking your [pc.hips] back against the steadily thrusting artificial member. The familiar sensation still sends a thrill through you no matter how many times you get to enjoy it. Your knuckles turn white, squeezing down around the handle bars and letting the tentacle fuck you. It’s more vigorous and more thorough in its business than it strictly needs to be, you well know by now, but you can hardly complain as it " + (oIdx < 0 ? (pc.hasCock() ? "milks your prostate" : "rails your rectum") : "pounds your pussy") + " to orgasm.");
 	if(pc.hasCock()) output(" Your [pc.cocks] spray" + (pc.cocks.length == 1 ? "s its" : " their") + " load all over the top of the box, throbbing and squirting in wondrous ways even without a single bit of direct stimulation.");
 	output("\n\nWith a soft moan, you slump forward against the grip of the trainer box. You can feel the tentacle pumping lube into your [pc.vagOrAss " + oIdx + "] like a cock blowing its load, making sure that your insides are completely soaked and ready for anything. Weight blossoms in your " + (oIdx < 0 ? "gut" : "womb") + "; nothing like as substantial as some of the egg-loads you’ve taken in the past, but a sure, dense presence nonetheless. After a moment, the holoscreen blinks the message, <i>“Egg implanted! Be sure to feed your baby with lots of cum!”</i>");
 	if(StatTracking.getStat("pregnancy/ovalasting eggs laid") <= 0) output("\n\nThe tentacle slithers out of you without a moment’s more notice, leaving you feeling a little gaped, and a little more full. What it implanted feels barely there, particularly to well-broken-in you. Your belly hasn’t even gained a bump, and you feel vaguely cheated by the lack of sensation. Still... you were expressly told not to expect anything until you’ve taken a load from some forceful, fertile someone first.");
@@ -1171,7 +1168,7 @@ public function ovalastingPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:in
 	output(". Biological imperative makes you squat and, as the feeling intensifies dramatically, bear down mightily with your hips. Sweat standing out on your brow, you cry out as the first egg stretches your " + (pregSlot == 3 ? "sphincter" : "pussy lips") + " wide.");
 	if(bigEgg) output(" Oh fucking Void, it’s so big! What were you thinking, letting them absorb so much cum? Lube gushes liberally around it, and you scream as the sheer pressure from the egg-train above forces it through, pushing you straight into delirious orgasm, the pulses of pleasure seizing up your " + (pregSlot == 3 ? "colon" : "twat") + " only making the grapefruit-sized ovals come faster. And that was just the first...");
 	else output(" It’s intense, so intense that stars float in your eyes as it slides through, coming free in a great gush of lube. You moan, feeling pressure build inexorably as the next egg pushes its broad mass against your sensitive hole, and you squeal in orgasm as you push it to freedom, squirting " + (pregSlot == 3 ? "[pc.femcum]" : "[pc.cum]") + " in dazed clenches.");
-	output("\n\nThey just keep coming, one after the other sliding down " + (pregSlot == 3 ? "your back passage" : "the tunnel of your twat") + " and stretching you wide, requiring huffing, hefty pushes of your [pc.hips] to come free and land in the oozing, ever-growing pile. Another orgasm follows swiftly upon the heels of the last, blowing away all thought as you lay yet another " + (!bigEgg ? "cute, pink oval" : "huge, pink, ostrich-like egg") + ", the pressure put on your " + (pregSlot == 3 ? "prostate" : "sensitive pussy lips") + "; you lose yourself utterly in the process, nothing more than a helpless, egg-producing machine, squatting and birthing the wonderful, hefty brood that you grew within you.");
+	output("\n\nThey just keep coming, one after the other sliding down " + (pregSlot == 3 ? "your back passage" : "the tunnel of your twat") + " and stretching you wide, requiring huffing, hefty pushes of your [pc.hips] to come free and land in the oozing, ever-growing pile. Another orgasm follows swiftly upon the heels of the last, blowing away all thought as you lay yet another " + (!bigEgg ? "cute, pink oval" : "huge, pink, ostrich-like egg") + ", the pressure put on your " + (pregSlot == 3 ? (pc.hasCock() ? "prostate" : "rectum") : "sensitive pussy lips") + "; you lose yourself utterly in the process, nothing more than a helpless, egg-producing machine, squatting and birthing the wonderful, hefty brood that you grew within you.");
 	output("\n\nEventually you fall to one side, numbed, dazed and thoroughly gaped, your [pc.groin] and thighs utterly coated in");
 	if(pc.hasGenitals())
 	{
