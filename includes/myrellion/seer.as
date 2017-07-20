@@ -111,8 +111,7 @@ public function approachSeer():void
 	processTime(1);
 	
 	setupShopSeer();
-	if (silly) addButton(0, "Shop", buyItem, undefined, "Shop", "Heh, heh, you wanna buy a... funnel cake?");
-	else addButton(0, "Shop", buyItem, undefined, "Shop", "What kinds of insanity does money buy these days?");
+	addButton(0, "Shop", buyItem, undefined, "Shop", (silly ? "Heh, heh, you wanna buy a... funnel cake?" : "What kinds of insanity does money buy these days?"));
 	addButton(1, "Appearance", appearanceSeer, undefined, "Appearance", "At least she’s nice to look at... and probably won’t even notice you doing it.");
 	addButton(2, "Talk", talkSeer, undefined, "Talk", "What’s her story? Do you even really want to know?");
 	if (flags["SEER_LOUNGE"] != undefined) addButton(3, "Sex", sexSeer, undefined, "Sex", " Apparently ‘it has to be’!");
@@ -738,7 +737,8 @@ public function wispedSeer2():void
 			output("Your vision doesn’t quite darken so much as falls, falling further and further away from those two amber spheres above you. A swirling cloud of black dust funnels around them, growing and spiralling to a greater size every second.");
 			output("\n\nThe further you ‘fall’, the blurrier those eyes become. Suddenly you hit a surface. It’s soft like sand but does little to cushion your impact. You feel that your limbs have spread out haphazardly, and the distant point from above has grown brighter with a whitish, sharp light. The light descends towards you, up to you, <i>in</i> to you, and then through you. It feels like nothing aside from a swift sensation of buoyancy that fades in a moments time. As you look around, the place you’ve landed at becomes clearer to see.");
 			output("\n\nA field of black stones, sands and plateaus mixed with gray-green grasses. Long, moonlit shadows form artistic patterns against the plane. The night sky is splattered with rich aurorae, pale green nebulae and the distant sight of a golden yellow star...");
-			output("\n\nAn alien world. " + (silly ? "Oh how very original." : "") + "");
+			output("\n\nAn alien world.");
+			if(silly) output(" Oh how very original.");
 			output("\n\nMoving feels like moving through liquid: Slow, disorienting, floaty. Where can you go? What do you do? Logic can make sense of <i>what</i> is in front of you but <i>where</i> is a very different question...");
 			output("\n\nYour eyes adjust to the odd flow of whitish light from where you ‘fell’ from. Its source appears to fly off into nothingness but the direction is towards that particularly prominent yellow star. How peculiar. The star, as if alerted to this thought with some sort of cognizance, grows brighter.");
 			output("\n\nAnd brighter.");
@@ -750,15 +750,20 @@ public function wispedSeer2():void
 			output("\n\nAs the eye draws closer, the light grows brighter and brighter! You lose your vision and then...!");
 			break;
 		case 1:
-			output("The world around you seems to be a visual liquid: Shapes and colors seem familiar but fluid, their corners bend and slough into awkward positions. The Seer is looking at you, her amber gaze " + (silly ? "~BE THE GOD YOU WERE BORN TO BEEE~ " : "") + "the only fixed constant of normalcy in the blurry reality around you. Your face fixes to hers instinctively and it seems as if your surroundings are shifting...");
+			output("The world around you seems to be a visual liquid: Shapes and colors seem familiar but fluid, their corners bend and slough into awkward positions. The Seer is looking at you, her amber gaze");
+			if(silly) output(" ~BE THE GOD YOU WERE BORN TO BEEE~");
+			output(" the only fixed constant of normalcy in the blurry reality around you. Your face fixes to hers instinctively and it seems as if your surroundings are shifting...");
 			output("\n\nHowever, you haven’t left the room. Your head comes to rest, so you believe, on to the Seers lap. Whatever true sensation you had before is replaced by an unsettling sense of lightness. Floating, perhaps. It’s hard to discern. Daring to try and make sense of what’s happening around you, you turn your head to the side...");
 			output("\n\nHuh? There’s another me over there... [pc.eyes], [pc.skinFurScales]... and another Seer?");
 			output("\n\nAnother version of you both sits barely a few centimeters away. The exact same pose, features and state of nakedness save for some small details: The Seers hair is very short, your [pc.legs] have been replaced by some reptilian snake tail and you’re looking at a slight angle upwards...");
-			output("\n\nWhat in the tits? " + (silly ? "AHA, HE SAID IT, AHA, OHO (SHRAPNEL)" : "") + "");
+			output("\n\nWhat in the tits?");
+			if(silly) output(" AHA, HE SAID IT, AHA, OHO (SHRAPNEL)");
 			output("\n\nYou turn your head to the other side: Another you, another Seer, another set of differences...");
-			output("\n\nWith slowness, you try to look at other places of the lounge: There could be up to thirteen versions of you and the Seer, all different in many aspects! " + (silly ? "You’re certain that one of the Seers is actually just your dad with boobs, further conflicting your soul and sexual preferences." : "") + "");
+			output("\n\nWith slowness, you try to look at other places of the lounge: There could be up to thirteen versions of you and the Seer, all different in many aspects!");
+			if(silly) output(" You’re certain that one of the Seers is actually just your dad with boobs, further conflicting your soul and sexual preferences.");
 			output("\n\nThen, in some strangely hypnotic unison, all of the Seers start using their arm tentacles to tease at your [pc.lips]. There’s so little sense to what’s happening that your mouth doesn’t even react. One tentacle tip slides gently into your mouth, as if let in willingly. With it comes some sort of... wash of fluid down your throat. Your own [pc.tongue] instinctively laps and sucks on the strange juice, inadvertently brushing against the oozing tentacle within. Mm, that flavour... salty lemons?");
-			output("\n\nFruity ginger root...? Something oddly delicious but unplaceable. " + (pc.isBimbo() ? "Doesn’t taste like any babybatter you’ve greedily swallowed before, that’s for sure..." : "") + "");
+			output("\n\nFruity ginger root...? Something oddly delicious but unplaceable.");
+			if(pc.isBimbo()) output(" Doesn’t taste like any babybatter you’ve greedily swallowed before, that’s for sure...");
 			output("\n\nAs it continues to flow into you at a slow but steady pace, your vision is just a few distorted edges away from turning into a colored, super dense smudge. There’s some sort of chanting hanging around, just lightly reaching into your [pc.ear] and tickling it. Tickling it just so. Yeah, right there...");
 			output("\n\nIt reaches into the base of your skull, forming pulses and rhythms. Polymetric <i>oobs</i> and <i>dinks</i> sculamble themselves together. So mesmachanting is this chorusade of wondrous sonicology that you get moranged in its baltiddlious duphlility.");
 			output("\n\nIt’s dawned on you that the smudged edges of your vision are fading, darkening but ever so slowly... the strange rhythms beating away at your spine grow in complexity and density until-");
