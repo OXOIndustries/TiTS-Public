@@ -1012,6 +1012,13 @@ public function sleep(outputs:Boolean = true):void {
 	
 	// Before sleep events
 	if(kiMedbaySleeps()) return;
+	//Whiff o Wisp > Dreams or sex!
+	if(pc.hasStatusEffect("Woozy") && outputs) 
+	{
+		trace("SHIT PROCCED, SCRUB");
+		whiffOWhateverTexts();
+		return;
+	}
 	if(inShip)
 	{
 		if(outputs)
@@ -1066,9 +1073,13 @@ public function sleep(outputs:Boolean = true):void {
 	
 	processTime(minPass);
 	
+	
+
 	// Time passing effects
 	if(passiveTimeEffects(minPass)) return;
 	
+	
+
 	// Dream events
 	var dreamed:Boolean = dreamChances();
 	

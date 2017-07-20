@@ -1,6 +1,7 @@
 import classes.Creature;
 import classes.Items.Miscellaneous.Rainbotox;
 import classes.Items.Miscellaneous.YTRLube;
+import classes.Items.Miscellaneous.WhiffOWisp;
 /*
  * The Entite/The Seer - https://docs.google.com/document/d/12Ln9wqosjT8V_H-wi2vH7pHbWu05KN8yTf3T5vjLbo4/edit#
  *
@@ -126,6 +127,7 @@ public function setupShopSeer():void
 	shopkeep.inventory.push(new Rainbotox());
 	shopkeep.inventory.push(new YTRLube());
 	shopkeep.inventory.push(new Tentacool());
+	shopkeep.inventory.push(new WhiffOWisp());
 	//9999 - THESE CAN BE ADDED TO HER INVENTORY ONCE THEY’RE IMPLEMENTED
 	//shopkeep.inventory.push(new Capraphorm());
 	//shopkeep.inventory.push(new Illumorphene());
@@ -840,4 +842,169 @@ public function wispedSeer4():void
 	currentLocation = "720";
 	generateMap();
 	addButton(0, "Next", mainGameMenu);
+}
+
+//‘Transformation’/When sleeping
+//Instead of set scenes, a max of 3 random blurbs play in any order from the list below with each use.
+//Upon sleeping
+public function whiffOWhateverTexts():void
+{
+	clearOutput();
+	showName("\nTRIPPY!");
+	output("Ooo, that Wiff-O-Whatsit really made you drowsy. As sleep takes over, the darkness that comes is so total that all sense of perception becomes befuddled.");
+	output("\n\nA thousand images come and go in the space of seconds, none of which you could give a surety as to their meaning. A planet’s destruction, a grey tree blooming purple fruit in the middle of a brown ocean, thousands of aliens gravitating in a spiral towards an object of worship, a neon face mouthing something and then exploding into shards of red: all unrepresentative of each other with no interconnection.");
+	output("\n\nHowever, some images and visions seem to repeat. Some of those can even then be interpreted despite their chaotic appearances...");
+	
+
+	var x:Number = 0;
+	for(var i:int = 0; i < 3; i++)
+	{
+		eventQueue.push(whiffAssemble);
+	}
+	//Push on cleanup message whynot
+	eventQueue.push(wakingUpWhiff);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function whiffAssemble():void
+{
+	clearOutput();
+	showName("TRIPPING\nBALLS");
+	output(giveWhiffBlurb())
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function wakingUpWhiff():void {
+	clearOutput();
+	showName("WAKING\nUP");
+	author("SoAndSo");
+	output("You’re pulled back from the brink of... something orange and blue when the dream world blurs away from your thoughts.");
+	output("\n\nYou wake up!");
+	if(pc.hasGenitals())
+	{
+		output(" And you’re covered in ");
+		if(pc.isHerm()) output("[pc.cum] and [pc.femcum]");
+		else if(pc.hasCock()) output("[pc.cum]");
+		else if(pc.hasVagina()) output("[pc.femcum]");
+		output("... Well this is highly inconvenient.");
+	}
+	else output(" And you feel exquisitely satisfied.");
+	output("\n\nShower time!");
+	pc.removeStatusEffect("Woozy");
+	pc.intelligenceMod -= 10;
+	pc.aimMod += 10;
+	pc.reflexesMod += 10;
+	pc.lustMod -= 9000;
+	sleepHeal();
+	processTime(455+rand(30));
+	pc.orgasm();
+	pc.energy(5)
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function giveWhiffBlurb():String
+{
+	var disabled:Array = [];
+	if(pc.statusEffectv1("Woozy") > 0) disabled.push(pc.statusEffectv1("Woozy")-1);
+	if(pc.statusEffectv2("Woozy") > 0) disabled.push(pc.statusEffectv2("Woozy")-1);
+	if(pc.statusEffectv3("Woozy") > 0) disabled.push(pc.statusEffectv3("Woozy")-1);
+	var whiffTexts:Array = [];
+
+	var buffer:String = "";
+	//Blurb 1
+	if(!InCollection(0, disabled))
+	{
+		buffer = "A ceremony of some sort: heavy mountain ranges covering a plateau of hooded figures chanting in unison. The sky cracks with lightning and the chorus escalates in volume.";
+		//pcHasPrimorditatts: 
+		if(9999 == 0) buffer += " This scene feels eerily familiar...";
+		buffer += " Two more prominent figures are the focus. You’re able to tell that they’re...Goats? One is small and pure white, the other is green, gold, and muscular. They appear to be locked into an awkward missionary position... <i>oh</i>. Something about the primal display before you awakens a deep lust in your mind. The sound of thunder and the sight of lightning adds an intangible sense of adrenaline with each crack of white light. But your enjoyment is cut short as the image fades and burns away to more random visual treats...";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 2
+	if(!InCollection(1, disabled))
+	{
+		buffer = "A verdant green planet dotted with oddly colored stone formations: Orange, white, black and cyan. A canopy of angular leaves covers a forest floor, which you appear to dive into...\n\nBreaching through the purple wood of the trees, you see that the fauna is unlike anything you’ve ever seen: Green but oddly proportioned and consisting of straight lined-shapes, almost perfectly so. Unnatural nature.\n\nThere are humanoids walking along a vague path. Not human... moths? Moth people? They’re so graceful and alien, unlike any other race you can name. Their wings flitter and flutter behind them; then at once, all of the moth-people take to the skies in silent unison.\n\nAs the canopy shakes from the display, the image distorts, then fades away...";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 3
+	if(!InCollection(2, disabled))
+	{
+		buffer = "The world shifts to a strange location: The lip of a rock formation at the edge of a mountain.\n\nIt’s an Earth-like place, covered in grass with a crystal clear sky. You can’t feel much but there’s a definite force bouncing through the rocks... wind? Most certainly.\n\nFrom it, you jump off.\n\nAnd fly?\n\nYou see the ground below you and spy movement in the grasses below. A mouse?! You head straight for it, whatever it might be. Primal instinct causes you to dive downwards and your black talons extend like eight blades of indignant death!";
+		if(silly) buffer += " Gonna grab me some tasty Tacit!";
+		buffer += "\n\nAs you approach the ground, the image funnels, blurs, and dissipates...";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 4
+	if(!InCollection(3, disabled))
+	{
+		buffer = "You spend a day as a baby, a week as a child, a month as an adult and five minutes as an elder. You learn nothing, lose everything and wonder if it was all worth it to begin with.";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 5
+	if(!InCollection(4, disabled))
+	{
+		buffer = "You spend an afternoon as a flower in a dustbin.";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 6
+	if(!InCollection(5, disabled))
+	{
+		buffer = "Somehow, the plane of existence morphs into a crystal void of refracted light. Sound and light bend off of each surface and each other, dazzling your mortal senses to the point of inertia. You fly amid stones of blues and greens, ones that form and reform ex nihilo in front of your very eyes like thick gel or liquid.\n\nYou find that your limbs aren’t responsive... for you have no limbs. This plane of existence then morphs violently, a twisting blurred mess of visual distortion adapting to something you still don’t recognize.\n\nIt happens a second and third time, the fourth eventually ‘bleeding’ away from your perception into another image...";
+		whiffTexts.push(buffer);
+	}
+	//Blurb 7
+	if(!InCollection(6, disabled))
+	{
+		buffer = "You end up in the hell knows where. It’s some sorta barn, you’d reckon. Sturdy, big, filled wi’ hay, just as it should be!\n\nHey, there’s noises outside! Something like... grunting. No, maybe... laughter?\n\nOh damn, that’s someone <i>gettin’ it awn!</i> And you ain’t been invited? Po-lease.\n\nWell color me horseraddish red now what do we have here?\n\nA moo cow! Why ya out here on ya lonesome, cutie?\n\nBreak from work? Ain’t no fun without a second pair o’ hands!\n\nNow wait a sec, why’dya gotta start fadin’ like that, I wanted the moo cow...";
+		whiffTexts.push(buffer);
+	}
+	//Blurb 8
+	if(!InCollection(7, disabled))
+	{
+		buffer = "You’re sitting in an office, a highly personalized one.\n\nThe wood walls and array of awards on a shelf seems familiar for some reason...\n\nA man walks through a double door in front of you.\n\nOh hey! Didn’t see ya there buddy!\n\nStill locked away in theoretical R&D world, Joe?\n\nYou betcha, gotta make sure this gene adaptor tech doesn’t turn my little " + pc.mf("prince","princess") + " into a pile of coagulate goo, ya know?\n\nNo kiddin’, didya remember the self destruct codes?\n\nYep yep, got ‘em right here in case of unintended anti-christ scenario. Here have a look...\n\nThe scene folds itself away into something new...";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 9
+	if(!InCollection(8, disabled))
+	{
+		buffer = "You’re a tall, green haired giant with massive pecs. For whatever reason, the sight of carrots makes you extremely perturbed. Best thing to is shout at it.\n\nYeah shout that carrot down!\n\nStupid orange carrot.\n\nSMASH CARROT.\n\nThe scene fades upon your fist meeting the vegetable...";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 10
+	if(!InCollection(9, disabled))
+	{
+		buffer = "You’ve stumbled upon someone’s birthday party.\n\nEarth?\n\nProbably.\n\nEveryone’s human.\n\nAnd they’re taking all their clothes off?\n\nAnd your clothes?\n\nIt’s all wrapped in wordless silence. Even the ambience of the room doesn’t exist. All you can hear is a faint but omnipresent whine that tickles the inner parts of your brain.\n\nWhere did all these clothes come from? So many different ones.\n\nYou’re cold, lets jump in them!\n\nOh no, there’s a belt buckle and you’ve got it trapped round your toes!\n\nBetter ahigafalugahayah....";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 11
+	if(!InCollection(10, disabled))
+	{
+		buffer = "Hey Chad, <i>sweet</i> dick bro!\n\n<i>t</i><b>H</b>aAan<i><b>K</i></b>s BrooooOOOOoo...";
+		whiffTexts.push(buffer);
+	}
+
+	//Blurb 12
+	if(!InCollection(11, disabled))
+	{
+		buffer = "You’re standing in a cold, silent room.\n\nThe walls are covered in what seem to be a foam of some sort and there’s a silent aircon unit above your head, gently recycling the air above.\n\nIn front of you is a skinny man with long blond hair and heavy, black clothing. He’s standing in front of... a really old look microphone. Is it a microphone? Has to be, why would he be levelling it to his mouth?\n\n<i>“This is HUH, WOW”</i>\n\nWhat.\n\nThe next few seconds are a visual and audio blur as something screams in metallic notes and spine shaking cacophony.\n\nIt’s a blessing when the scene vanishes and transcends to the next vision...";
+		whiffTexts.push(buffer);
+	}
+	var x:int = rand(whiffTexts.length);
+	if(pc.statusEffectv1("Woozy") == 0) pc.setStatusValue("Woozy",1,(x+1));
+	else if(pc.statusEffectv2("Woozy") == 0) pc.setStatusValue("Woozy",2,(x+1));
+	else if (pc.statusEffectv3("Woozy") == 0) pc.setStatusValue("Woozy", 3, (x + 1));
+	
+	return whiffTexts[x];
 }

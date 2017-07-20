@@ -18954,6 +18954,16 @@
 					case "Exhibitionism Reserve":
 						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("The urge to publicly display yourself, which has been welling up inside of you fades from your body. <b>You may now enjoy public sex without the risk of becoming a permanent exhibitionist... for a while.</b>");
 						break;
+					case "Woozy":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent("You are no longer woozy.");
+							intelligenceMod -= 10;
+							aimMod += 10;
+							reflexesMod += 10;
+							lustMod -= 9000;
+						}
+						break;
 					case "Curdsonwhey": 
 						if(this is PlayerCharacter)
 						{
