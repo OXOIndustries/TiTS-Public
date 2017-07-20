@@ -213,6 +213,7 @@
 		include "../includes/vesperia/gloryhole.as";
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
+		include "../includes/vesperia/luca.as";
 		include "../includes/vesperia/mabbs.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
@@ -492,7 +493,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.72";
+			version = "0.7.73";
 
 			//temporary nonsense variables.
 			temp = 0;
