@@ -108,7 +108,7 @@ public function lucaAppearance():void
 	output("Luca is a six and a half foot tall modded");
 	//if the PC hasn’t chosen to speak to her about her Race, or encountered a Dzaan before:
 	if(!CodexManager.entryUnlocked("Dzaan")) output(" human?");
-	else output("Dzaan.");
+	else output(" Dzaan.");
 	output(" She has enchanting emerald eyes. Bioluminescent hair that constantly shifts colors flows from her head in a thick braid ending below her hips. A set of crescent moon earrings adorn her elongated ears.");
 	output("\n\nLuca’s perfectly feminine face displays her high cheekbones and a small button nose. Her lips are luscious, ample, and ever so slightly pursed. Her magenta colored skin looks smooth and polished like a doll. The only noticeable blemish, if you would call it that, of her otherwise perfect skin are the white freckles dotting her cheeks.");
 	output("\n\nShe is wearing a dark blue and black dress with an ever changing pattern of stars and planets on it. The dress, though not skin tight, leaves little to the imagination of Luca’s curvaceous body. Her breasts, which could fill a E-cup bra, seem to support themselves.");
@@ -165,7 +165,7 @@ public function askLucaAboutHerSign():void
 	output("\n\nYou reflexively move back.");
 	output("\n\n<i>“I’m sorry. That was really unprofessional. I just get sensitive when my babies get mistreated. About once a week one of my drone helpers gets damaged by a rowdy patron; and it just feels like no matter what I do it keeps happening. It’s not a matter of money, it’s that I put time and effort into each of them and they need to be repaired because some asshole got ‘excited’, or ‘got up too fast’ or my personal favorite: ‘I’m sorry Luca, I didn’t see it beneath my fat fucking ass’.”</i>");
 	output("\n\nSomeone sat on one of her drones?");
-	output("\n\nLuca sighs exasperated. <i>“Yup. Tess is a regular though, so I couldn’t stay mad at her forever. She’s actually real sweet and keeps trying to pay me back for damaging it.”</i> She composes herself before continuing. <i>“Ever since I put the sign out people seem to have been more careful, which is nice. Can we talk about something else please?”</i>");
+	output("\n\nLuca sighs exasperated. <i>“Yup. Tess is a regular though, so I couldn’t stay mad at her forever. She’s actually real sweet and keeps trying to pay me back for damaging it.”</i> She composes herself before continuing. <i>“Ever since I put the sign out people seem to have been more careful, which is nice. Can we talk about something else, please?”</i>");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",lucaTalkChoices);
@@ -191,6 +191,9 @@ public function talkToLucasAboutRace():void
 	output("\n\n<i>“Do you have a harem?”</i> you ask.");
 	output("\n\n<i>“No, no, no. I uh... I don’t have a harem. I just, I just run this place. Speaking of which, can I interest you in a virtual fantasy?”</i>");
 	processTime(8);
+	
+	CodexManager.unlockEntry("Dzaan");
+	
 	clearMenu();
 	addButton(0,"Next",lucaTalkChoices);
 }
@@ -224,6 +227,8 @@ public function buyFromLuca():void
 	//[Show Inventory]
 	chars["LUCA"].inventory = new Array();
 	chars["LUCA"].inventory.push(new FocusPill());
+	chars["LUCA"].inventory.push(new FizzyFix());
+	chars["LUCA"].inventory.push(new SaltyJawBreaker());
 	
 	shopkeep = chars["LUCA"];
 	//[Shop Menu Here]
@@ -250,8 +255,9 @@ public function lucasVRSims():void
 			output("\n\n<i>“Only as dangerous as the name brand stuff you can buy... I didn’t have customers sign this stuff before. But a couple months ago a few assholes came in and then a week later they came back with lawyers and a bunch of false claims about how my equipment caused them mental trauma. Cunts.”</i>");
 			output("\n\nYou assume she won the case.");
 			output("\n\n<i>“I wouldn’t be here if I didn’t. I personally test each and every simulation extensively before I offer it to a customer, even the ones I get from other developers.”</i>");
-			output("\n\nSatisfied with her answer you sign and accept the Terms & Conditions.");
+			output("\n\nSatisfied with her answer, you sign and accept the Terms & Conditions.");
 		}
+		flags["VR_SIMMED"] = 0;
 	}
 	// merge
 	output("\n\nLuca spins a hardlight screen towards her and works on it briefly. When she’s finished she turns it back towards you. <i>“The price is 500 credits, and I can even set you up personally. I just need you to select which fantasy you would like to experience and if you want it private or public viewing. With private I’ll set you up in a private room and public you’ll be in the middle of the lounge with your simulation up on the screens for everyone in here to see.”</i>");
@@ -285,6 +291,9 @@ public function simmRouting(args:Array):void
 	if(!exhibition) output("a private room with a cushiony reclining chair.");
 	else output("a soft couch in the middle of her establishment.");
 	output(" She quickly sets you up and tells you to simply relax and enjoy yourself.");
+	
+	pc.credits -= 500;
+	
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",simmPlaying,args);
@@ -306,7 +315,7 @@ public function simmOutro(exhibition:Boolean):void
 	showLuca();
 	author("RequiemForAMeme");
 	if(!exhibition) output("The simulation shuts down and you begin to regain your normal senses. As you try to remove your headset Luca places a warm hand on your shoulder and carefully removes the VR equipment. She makes sure your senses and perception of time have re-adjusted properly. Once you have fully rested you leave.");
-	else output("The simulation shuts down and you begin to regain your normal senses. You receive several cheers and hollers as Luca carefully removes the VR equipment. She makes sure your senses and perception of time have re-adjusted properly. Once you have fully rested you leave.");
+	else output("The simulation shuts down and you begin to regain your normal senses. You receive several cheers and hollers as Luca carefully removes the VR equipment. She makes sure your senses and perception of time have re-adjusted properly. Once you have fully rested, you leave.");
 	processTime(3);
 	IncrementFlag("VR_SIMMED");
 	clearMenu();
@@ -326,7 +335,7 @@ public function thePirateQueenScenario(exhibition:Boolean):void
 	showName("AUSAR\nGUARD");
 	author("RequiemForAMeme");
 	// Part 1 - Ausar Guard
-	output("You begin to lose feeling in you body as the VR Simulation loads up. As you feel like you’re about to blackout the simulation activates. Your avatar is Stella Goodhead, an agent for the Space League of United Terrestrial Species. Stella is an ausar with white fur, a hefty rack, and a large ass. As her, you are wearing a tight latex body suit emblazoned with the emblem of the Space League of United Terrestrial Species.");
+	output("You begin to lose feeling in you body as the VR Simulation loads up. As you feel like you’re about to black out the simulation activates. Your avatar is Stella Goodhead, an agent for the Space League of United Terrestrial Species. Stella is an ausar with white fur, a hefty rack, and a large ass. As her, you are wearing a tight latex body suit emblazoned with the emblem of the Space League of United Terrestrial Species.");
 	output("\n\nYou take a moment to get used to moving, and then proceed with your mission. Your first obstacle is a burly amazonian ausar standing guard at a door. She is wearing a ball gag and keeps getting distracted by a large bulge in her pants.");
 	output("\n\nA quick scan of the guard reveals she has not ejaculated in three days. You deduce that you can incapacitate her with a simple blow job. However she appears to have been injected with the Pirate Queen’s ‘Cum Addiction’ serum. Before this mission, the S.L.U.T.S inventor, Agent 69, gave you an experimental counter serum to fight off the effects. You don’t know how many times you will be able to ingest the altered cum before the counter serum is no longer effective.");
 	//Public:
@@ -536,7 +545,7 @@ public function theAmazoniaScenario(exhibition:Boolean):void
 	showName("\nEXPLORATION");
 	author("RequiemForAMeme");
 	//Part 1 - Exploration
-	output("You begin to lose feeling in you body as the VR Simulation loads up. You feel like you’re about to blackout once the simulation activates. Your avatar is Dixon Cider, a renowned space explorer. Dixon is a terran with fair, slightly tanned skin, a heroic muscle toned body, and an eight inch penis. You are wearing a white shirt, a leather vest, cargo pants filled with gadgets, and combat boots.");
+	output("You begin to lose feeling in you body as the VR Simulation loads up. You feel like you’re about to black out once the simulation activates. Your avatar is Dixon Cider, a renowned space explorer. Dixon is a terran with fair, slightly tanned skin, a heroic muscle toned body, and an eight inch penis. You are wearing a white shirt, a leather vest, cargo pants filled with gadgets, and combat boots.");
 	output("\n\nThe first thing you do is make sure your small crew is alive and unharmed. After you’re done with the role call you ask your mechanic, a cat-girl named Chris, what the hell happened to your ship. Unfortunately until the crew completes their damage assessment, she can only guess.");
 	output("\n\nYou check on the rest of the crew again before going to your cabin. There you test which of your ship’s systems are still operational. Fortunately most of them are still working to some degree. You pull up the ship’s auto-cartography function. It reveals that there is some sort of structure nearby, but it is about a six hour hike away.");
 	output("\n\nYou plot out the path and gather the supplies you’ll need. The sun is rising, and the ship informs you that days last roughly thirty two hours on this planet. You tell the crew about your plan, either the structure means help of some kind, or it will be another place for Dixon Cider to explore thoroughly. As you’re about to leave, you tell them to send a search party if they don’t hear from you at least once every four hours. Then you embark into the dense jungle of Amazonia Prime.");
@@ -568,7 +577,7 @@ public function goddessDildoTiems(exhibition:Boolean):void
 	clearOutput();
 	showName("DILDO OF\nTHE GODDESS");
 	author("RequiemForAMeme");
-	output("You mess with the doors using a variety of gadgets and ingenuity. Eventually your efforts pay off when you manage to slide them open, the heavy stone gliding across the top of the floor. You step into the inner chamber and are greeted with what appears to be a twelve inch silver sculpture of a ribbed cock and balls sitting upon a pedestal.");
+	output("You mess with the doors using a variety of gadgets and ingenuity. Eventually, your efforts pay off when you manage to slide them open, the heavy stone gliding across the top of the floor. You step into the inner chamber and are greeted with what appears to be a twelve inch silver sculpture of a ribbed cock and balls sitting upon a pedestal.");
 	output("\n\nYou stifle a laugh, knowing you’ve seen stranger things in your career. You quickly scan the silver dildo and it’s pedestal for traps. You’re actually a bit disappointed when you find none. You quickly snatch the sculpture and leap out of the room hoping for some sort of danger to present itself. Unfortunately nothing happens.");
 	output("\n\nYou place your prize into your satchel. Prize? You sigh, annoyed at the situation and its anticlimactic reward. As you leave the temple, you prepare for a horde of burly amazonian warriors to ambush you, but no one does. As you enter the jungle you keep your eyes peeled for big cats trained to attack trespassers, but no animal comes. When you return to your ship, you expect something to be wrong, but the repairs went smoothly, and you along with the crew should be able to leave tomorrow morning.");
 	output("\n\nOver dinner, you tell the crew of your adventure into the amazon’s temple and the strange object you found within. All of you share a long laugh over the absurdity of your ‘prize.’ Chris in particular mocks its extreme proportions. After food and conversation, you tell the crew to lock down the ship and get some rest.");
@@ -742,7 +751,7 @@ public function trainingWith3B(exhibition:Boolean):void
 	output("\n\nYou have so many questions. You have so many reasons to tell her and their tribe no. But as you continue to stare at her rigid dick all that comes out of your mouth is: <i>“That sounds great! When can we start?”</i>");
 	output("\n\nSeylia smiles and says: <i>“At once! But it will take some time as you body fully adjusts.”</i>");
 	output("\n\nTrue to her word, your ‘training’ started immediately. First you were forbidden from touching your shrinking six inch dick. If you wanted to ejaculate you needed to request a priestess to suck you off. Given your small, size most of the priestesses would tease you before performing their duty. Each time it felt more and more pleasurable, and each time you would pop off earlier and earlier. You were told it had to do with their saliva.");
-	output("\n\nSecond you were to eat only what they provided you; specific fruits and meats, along with a special brew which smelled heavily of semen. Quickly your skin became soft and smooth and your breasts grew into B cups. Sadly your chest didn’t come close to any of the amazons, especially the priestess’, but you well up with pride when you look at them.");
+	output("\n\nSecond, you were to eat only what they provided you; specific fruits and meats, along with a special brew which smelled heavily of semen. Quickly your skin became soft and smooth and your breasts grew into B cups. Sadly your chest didn’t come close to any of the amazons, especially the priestess’, but you well up with pride when you look at them.");
 	output("\n\nThird was the training of your body. Your ass and mouth were stuffed with cock or dildos day and night. Seylia explained that their chieftain is the largest in the tribe and she required properly trained holes to fulfill her needs. But no matter how hard you were fucked in the ass you weren’t able to climax like you first did in that bath so long ago.");
 	output("\n\nWeeks and months passed as you were trained to suck and fuck. Each time you were fucked into the ground by a priestess you rode a pleasure high, but never had an orgasm. You always need your four inch prick to be gobbled up by one of the priestesses to get off. Then you realize one day that none of the priestess have ever cum inside you, not even in your mouth.");
 	output("\n\nThe question bothered you for days until you decided to just ask. <i>“Seylia?”</i> you say.");
@@ -778,7 +787,7 @@ public function badEndBedBitch(exhibition:Boolean):void
 	showName("BOTTOM\nBITCH");
 	author("RequiemForAMeme");
 	output("You awaken from a fitful, lust filled sleep. Nearly two weeks have passed since you last saw Seylia. Your short penis aches with the need for release, but you can’t bring yourself to touch it. It’s taken what little willpower you have left to not break, you know if you start masturbating you won’t be able to stop.");
-	output("\n\nBefore your mind begins to wander too far a priestess enters your hut. Her cock bounces at attention, <i>it looks so good!</i>. She says something, but all you care about is how good it would feel to get your mouth and ass reamed by her. She grabs your chin and stares into your eyes. She smells like sweat and sex. You feel your mini dick squirt a little precum as her scent overwhelms you.");
+	output("\n\nBefore your mind begins to wander too far a priestess enters your hut. Her cock bounces at attention, <i>it looks so good!</i> She says something, but all you care about is how good it would feel to get your mouth and ass reamed by her. She grabs your chin and stares into your eyes. She smells like sweat and sex. You feel your mini dick squirt a little precum as her scent overwhelms you.");
 	output("\n\nYou think you hear her say: <i>“You’re ready.”</i>");
 	output("\n\nThe priestess places a blindfold over your eyes and then calls for assistance. Shortly after you feel yourself being carried away from your hut. It’s been so long since you’ve felt the sun on your skin. You think about how pale and blinding your skin must be compared to the amazons carrying you.");
 	output("\n\nThere’s some kind of festival going on as you keep moving. Hours pass in utter agony as they carry you. The further you go the more voices you hear. You’re surrounded by the noise of revelry and screams of sex. Each moan and gasp resonates through the crowd and makes you squirm with need.");
@@ -793,7 +802,7 @@ public function badEndBedBitch(exhibition:Boolean):void
 	output("\n\n<i>“You will be known as Diana,”</i> hippolyta decrees.");
 	output("\n\n<i>Hearing her give you your new name sends a wave of pleasure through your body. Now all you need is for her to command you to get on your knees with your ass up high.</i>");
 	output("\n\n<i>“Come closer Diana. It is time you took your place in the tribe.”</i>");
-	output("\n\nYou stumble forward into Hippolyta’s lap, your legs feeling like rubber. Your ass burns with a need to be filled by her. Your face stops just out of tongue reach of her ribbed cock. Her aroma nearly overpowers you, nearly causing you to blackout from all the sensations.");
+	output("\n\nYou stumble forward into Hippolyta’s lap, your legs feeling like rubber. Your ass burns with a need to be filled by her. Your face stops just out of tongue’s reach of her ribbed cock. Her aroma nearly overpowers you, nearly causing you to black out from all the sensations.");
 	output("\n\nHippolyta lifts you from the floor, her rough hands carefully caressing your soft skin. With one hand she slips a finger into your painfully hollow backdoor. You clench down and nearly orgasm right then.");
 	output("\n\n<i>“You poor thing.”</i> She says stroking your face. <i>“You must feel like you’re ready to burst.”</i>");
 	output("\n\nYou can only nod as your hips rock back and forth on her hand.");
@@ -803,7 +812,7 @@ public function badEndBedBitch(exhibition:Boolean):void
 	output("\n\nHer cock milks your prostate for all it has. Each time you slam back down more of your spooge is forced out of your cute little phallus. You become lost in pleasure as Hippolyta drills into your rear end. Although she fondles your body carefully, it is clear that you are her personal cock sleeve, <i>now and forever.</i>");
 	output("\n\nHer first orgasm distends your stomach as you ride atop her lap through it all. Each thrust and pulse of warm cum into your rectum causes your dick to spray more of your own alabaster goo. When she’s finished she turns you around and starts again.");
 	output("\n\nFor the rest of that day and night Hippolyta had her way with you and the tribe. Her lust seemed insatiable, she would fuck one hole after another. But in the end she would become frustrated as no one else could get her off as much as you. She always returned to you to take the edge off and experience a proper orgasm. By the end of the night you were completely filled and covered with her seed.");
-	output("\n\nUp until that point you had forgotten about your crew. At least until you saw them in orgasmic bliss, relieving members of the tribe. They looked like they were having so much fun that you asked your chieftain if she would fuck you in front of them. As the months pass you become dependant on Hippolyta and her cock. Eventually she just started carrying you around mounted on her dick. <i>You couldn’t care less about being an explorer, this life suits you so much more.</i>");
+	output("\n\nUp until that point, you had forgotten about your crew. At least until you saw them in orgasmic bliss, relieving members of the tribe. They looked like they were having so much fun that you asked your chieftain if she would fuck you in front of them. As the months pass, you become dependant on Hippolyta and her cock. Eventually she just started carrying you around mounted on her dick. <i>You couldn’t care less about being an explorer, this life suits you so much more.</i>");
 	// End Scene
 	// Simulation End Text
 	// Return PC to lobby

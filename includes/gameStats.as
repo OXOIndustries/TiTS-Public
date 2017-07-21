@@ -3203,7 +3203,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", Reported her");
 						if(flags["RIYA_REPORTED"] == 2) output2(" and snapped at Commander Lorna Grence");
 					}
-					if(flags["RIYA_RELOCATED"] != undefined) output2(", Relocated to" + (flags["RIYA_RELOCATED"] == 1 ? "Canadia Station" : "Tavros Station"));
+					if(flags["RIYA_RELOCATED"] != undefined) output2(", Relocated to " + (flags["RIYA_RELOCATED"] == 1 ? "Canadia Station" : "Tavros Station"));
 					if(flags["RIYA_FUCKED_YA"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Ass:</b> " + flags["RIYA_FUCKED_YA"]);
 					if(flags["RIYA_CUNTPOUNDED_YOU"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Vagina:</b> " + flags["RIYA_CUNTPOUNDED_YOU"]);
 					if(flags["RIYA_GOT_BLOWN"] != undefined) output2("\n<b>* Riya, Times You Sucked Her Cock:</b> " + flags["RIYA_GOT_BLOWN"]);
@@ -5833,6 +5833,14 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["USHA_MOUNT"] != undefined) output2("\n<b>* Ushamee, Times Mounted Her:</b> " + flags["USHA_MOUNT"]);
 					}
 				}
+				variousCount++;
+			}
+			// VR Lounge
+			if(flags["MET_LUCA"] != undefined)
+			{
+				output2("\n<b><u>The Lotus Eater</u></b>");
+				if(flags["VR_SIMMED"] > 0) output2("\n<b>* Services, Times Used Virtual Reality Simulators:</b> " + flags["VR_SIMMED"]);
+				output2("\n<b>* Luca:</b> Met her");
 				variousCount++;
 			}
 			// Spunk Bunker

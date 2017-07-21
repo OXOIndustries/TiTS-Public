@@ -168,10 +168,10 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			if(planet != "tavros station") chars["VENDINGMACHINE"].inventory.push(new BreedersBliss());
 			chars["VENDINGMACHINE"].inventory.push(new Condensol());
 			chars["VENDINGMACHINE"].inventory.push(new EasyFit());
-			chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
+			if(planet != "canadia station") chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
 			chars["VENDINGMACHINE"].inventory.push(new MightyTight());
 			chars["VENDINGMACHINE"].inventory.push(new OmegaOil());
-			if(planet != "new texas") chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
+			if(!InCollection(planet, ["new texas", "canadia station"])) chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
 			chars["VENDINGMACHINE"].inventory.push(new Sterilex());
 			if(planet != "uveto station" || flags["TLAKO_THANKED"] != undefined) chars["VENDINGMACHINE"].inventory.push(new YTRLube());
 			

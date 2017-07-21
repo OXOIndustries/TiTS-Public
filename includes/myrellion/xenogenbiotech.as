@@ -60,7 +60,7 @@ public function myrellionBiotechInteriorAddition():Boolean
 	output(" is sitting behind the desk, her oddly-arched bare feet propped up on it while she reads the information flickering across her displays and munches on a sack of " + RandomInCollection("gummy candy", "salty pork rinds", "potato chips", "miniature cookies", "chocolate-covered pretzels") + ".");
 	if(!CodexManager.entryUnlocked("Dzaan"))
 	{
-		output("\n\nYour codex suddenly beeps, telling you the woman is of the \"Dzaan\" species. <b>('Dzaan' Codex entry unlocked!)</b>");
+		output("\n\nYour codex suddenly beeps, telling you the woman is of the “Dzaan” species. <b>(‘Dzaan’ Codex entry unlocked!)</b>");
 		CodexManager.unlockEntry("Dzaan");
 	}
 
@@ -154,7 +154,7 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 {
 	clearMenu();
 
-	if (cFunc != myrellionNevrieShop) addButton(0, "Shop", myrellionNevrieShop, undefined, "Shop", "Ask to see the shop's inventory.");
+	if (cFunc != myrellionNevrieShop) addButton(0, "Shop", myrellionNevrieShop, undefined, "Shop", "Ask to see the shop’s inventory.");
 	else addDisabledButton(0, "Shop");
 
 	if (cFunc != myrellionNevrieHerRace)
@@ -166,21 +166,21 @@ public function myrellionNevrieMenu(cFunc:Function = null):void
 
 	if (cFunc != myrellionNevrieDiscount)
 	{
-		if (flags["NEVRIE_SHOPPED"] == undefined) addDisabledButton(2, "Discount", "Discount", "You should probably check out the prices she's offering to begin with before you start begging for a discount!");
+		if (flags["NEVRIE_SHOPPED"] == undefined) addDisabledButton(2, "Discount", "Discount", "You should probably check out the prices she’s offering to begin with before you start begging for a discount!");
 		else if (flags["NEVRIE_DISCOUNT"] == undefined) addButton(2, "Discount", myrellionNevrieDiscount, undefined, "Discount", "Maybe you could convince Nevrie here to give you a discount....");
-		else addButton(2, "Discount", myrellionNevrieDiscount, undefined, "Discount", "Try and wrangle the shop's prices down, though something tells you you'll be using your mouth to do more than smooth-talk....");
+		else addButton(2, "Discount", myrellionNevrieDiscount, undefined, "Discount", "Try and wrangle the shop’s prices down, though something tells you you’ll be using your mouth to do more than smooth-talk....");
 	}
 	else addDisabledButton(2, "Discount");
 
 	if (flags["NEVRIE_QUEST"] == undefined)
 	{
-		if (cFunc != myrellionNevrieCoworkers) addButton(3, "Coworkers?", myrellionNevrieCoworkers, undefined, "Coworkers?", "Ask Nevrie about the co-workers she mentioned. How come she's the only person in the store?");
+		if (cFunc != myrellionNevrieCoworkers) addButton(3, "Coworkers?", myrellionNevrieCoworkers, undefined, "Coworkers?", "Ask Nevrie about the co-workers she mentioned. How come she’s the only person in the store?");
 		else addDisabledButton(3, "Coworkers?");
 	}
 	else if (flags["NEVRIE_QUEST"] == 1)
 	{
 		if (pc.hasKeyItem("Red Myr Blood")) addButton(3, "Blood Vial", myrellionNevrieBloodVial, undefined, "Blood Vial", "Hand over a vial of red myr blood to Nevrie. Maybe you can finally get things moving about this myr gene-mod.");
-		else addDisabledButton(3, "Blood Vial", "Blood Vial", "You'd need a blood sample to hand first...");
+		else addDisabledButton(3, "Blood Vial", "Blood Vial", "You’d need a blood sample to hand first...");
 	}
 	
 	addButton(14, "Leave", mainGameMenu);
@@ -346,7 +346,7 @@ public function myrellionNevrieBlowjerb():void
 	output("\n\nOpening wide for");
 	if (pc.isTreated() || pc.isBimbo()) output(" her cute little girl-cock");
 	else output(" the hot slab of girl-cock at the tip of your tongue");
-	output(", you give Nevrie a lascivious wink and gulp down the first inches of her petite member. She’s got maybe six inches to her name, human in shape but graced with a row of smooth keratin nubs on either side. You shiver at the thought of those rounded bulbs pounding into your [pc.vagOrAss]. You're sure they'd more than make up for her otherwise average length: just enough to fill your mouth with prick to suckle on while you plant your lips against her crotch... and the great big pair of balls still tucked under her pants. Now <i>those</i> look even more succulent than her dick!");
+	output(", you give Nevrie a lascivious wink and gulp down the first inches of her petite member. She’s got maybe six inches to her name, human in shape but graced with a row of smooth keratin nubs on either side. You shiver at the thought of those rounded bulbs pounding into your [pc.vagOrAss]. You’re sure they’d more than make up for her otherwise average length: just enough to fill your mouth with prick to suckle on while you plant your lips against her crotch... and the great big pair of balls still tucked under her pants. Now <i>those</i> look even more succulent than her dick!");
 
 	output("\n\nSuppressing a little smile, you reach into Nevrie’s pants and fish out her cum-swollen sack. Your partner moans loudly when your hands wrap around her nads, putting just enough of a squeeze on them to make her prick throb in your mouth, drooling a drop of pre onto the back of your tongue. You roll Nevrie’s full sack between your fingers, enjoying the weight of them: you can all but hear the musky alien spunk roiling inside them, waiting to surge out and splatter your face with hot seed.");
 
@@ -578,7 +578,7 @@ public function mcallisterMenu(cFunc:Function = null):void
 	if (cFunc != mcallisterXenogen) addButton(4, "Xenogen", mcallisterXenogen, undefined, "Xenogen Biotech", "Ask Dr. McAllister about the mega-corporation he works for.");
 	else addDisabledButton(4, "Xenogen");
 
-	if(pexigaQuestDocChatsAvailable()) addButton(5,"Pexiga Help",drByronMcallisterProfessionalPexigaAnus,undefined,"Pexiga Help","Ask for help with the Pexiga's unique situation.");
+	if(pexigaQuestDocChatsAvailable()) addButton(5,"Pexiga Help",drByronMcallisterProfessionalPexigaAnus,undefined,"Pexiga Help","Ask for help with the Pexiga’s unique situation.");
 
 	addButton(14, "Back", mainGameMenu);
 }
@@ -843,21 +843,21 @@ public function mcallisterMeetThemIII():void
 
 	if (!pc.hasCock() && !pc.hasVagina())
 	{
-		addButton(0, "No, Thanks", mcallisterMeetThemNoThanks, undefined, "No, Thanks", "You'd rather not get in on a McAllister-Ant foursome. Get out whilst you can.");
+		addButton(0, "No, Thanks", mcallisterMeetThemNoThanks, undefined, "No, Thanks", "You’d rather not get in on a McAllister-Ant foursome. Get out whilst you can.");
 	}
 	else
 	{
 		if (pc.hasCock() && pc.hasVagina())
 		{
 			addButton(0, "Join (Cock)", mcallisterMyrGirlsCocky, undefined, "Go Along", "Well, if she insists. Toss your robe aside and hop onto the pair of lusty ant-babes.");
-			addButton(1, "Join (Vag)", mcallisterMyrGirlsCunty, undefined, "Go Along", "Well, if she insists. Toss your robe aside and hop onto the pair of lusty ant-babes. You'll probably also get a taste of McAllister's great big cock on the way.");
-			addButton(2, "No, Thanks", mcallisterMeetThemNoThanks, undefined, "No, Thanks", "You'd rather not get in on a McAllister-Ant foursome. Get out whilst you can.");
+			addButton(1, "Join (Vag)", mcallisterMyrGirlsCunty, undefined, "Go Along", "Well, if she insists. Toss your robe aside and hop onto the pair of lusty ant-babes. You’ll probably also get a taste of McAllister’s great big cock on the way.");
+			addButton(2, "No, Thanks", mcallisterMeetThemNoThanks, undefined, "No, Thanks", "You’d rather not get in on a McAllister-Ant foursome. Get out whilst you can.");
 		}
 		else
 		{
 			if (pc.hasCock()) addButton(0, "Go Along", mcallisterMyrGirlsCocky, undefined, "Go Along", "Well, if she insists. Toss your robe aside and hop onto the pair of lusty ant-babes.");
-			else addButton(0, "Go Along", mcallisterMyrGirlsCunty, undefined, "Go Along", "Well, if she insists. Toss your robe aside and hop onto the pair of lusty ant-babes. You'll probably also get a taste of McAllister's great big cock on the way.");
-			addButton(1, "No, Thanks", mcallisterMeetThemNoThanks, undefined, "No, Thanks", "You'd rather not get in on a McAllister-Ant foursome. Get out whilst you can.");
+			else addButton(0, "Go Along", mcallisterMyrGirlsCunty, undefined, "Go Along", "Well, if she insists. Toss your robe aside and hop onto the pair of lusty ant-babes. You’ll probably also get a taste of McAllister’s great big cock on the way.");
+			addButton(1, "No, Thanks", mcallisterMeetThemNoThanks, undefined, "No, Thanks", "You’d rather not get in on a McAllister-Ant foursome. Get out whilst you can.");
 		}
 	}
 }
