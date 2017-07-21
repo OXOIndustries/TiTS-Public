@@ -40,7 +40,7 @@ public function hollidayOweenAlert():void
 		MailManager.readEntry("the_masque", GetGameTimestamp());
 	}
 	
-	//// Adds <i>“Poe A”</i> to navigation list
+	//// Adds “Poe A” to navigation list
 	processTime(3);
 	flags["HOLIDAY_OWEEN_ACTIVATED"] = GetGameTimestamp();
 	clearMenu();
@@ -98,8 +98,7 @@ public function holidayMenu():void
 		addButton(1,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits");
 		addButton(2,"Helmet",metroidMaskParody,undefined,"Helmet","This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits");
 		if(!pc.hasGenitals()) addDisabledButton(3,"Armor","Armor","Looks like that outfit is for people with genitalia.");
-		else if(flags["MET_SYRI"] == undefined) addButton(3,"Armor",greenArmor,undefined,"Armor","There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character. The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
-		else addButton(3,"Armor",greenArmor,undefined,"Armor","There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character... didn’t you see Syri playing as this chick once? The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits");
+		else addButton(3,"Armor",greenArmor,undefined,"Armor",("There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character." + (flags["MET_SYRI"] == undefined ? "" : ".. didn’t you see Syri playing as this chick once?") + " The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits"));
 		if(pc.isTaur()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur... though you have a tauric lower half already.");
 		else if(pc.isPregnant()) addDisabledButton(4,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.");
 		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(4,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
@@ -158,41 +157,48 @@ public function leaveLikeABitch():void
 	output("\n\nYou think back on the strange, strangled, chanting cry that the masked creatures had been yelling. Now that you think of it, they may have been saying <i>“GPD! Freeze!”</i> Grabbing the mask and tearing it open, you find a small chip buried in the velvet lining with itty, bitty, tiny prongs barely poking through on the inside.");
 	output("\n\nNo wonder they were chasing you: <b>thanks to her sabotaged mask, you look like Holiday!</b>");
 	processTime(44);
-	if(pc.hasTailCock() || pc.hasTailCunt())
-	{
-		if(pc.tailGenitalUnlocked(0)) pc.tailGenital = 0;
-		if(pc.tailGenitalArgUnlocked(0)) pc.tailGenitalArg = 0;
-		if(pc.tailGenitalColorUnlocked("null")) pc.tailGenitalColor = "";
-		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-	}
-	if(pc.tailCountUnlocked(1)) pc.tailCount = 1;
-	if(pc.tailTypeUnlocked(GLOBAL.TYPE_DEMONIC)) pc.tailType = GLOBAL.TYPE_DEMONIC;
-	if(pc.tailFlagsUnlocked([GLOBAL.FLAG_PREHENSILE,GLOBAL.FLAG_LONG]))
-	{
-		pc.clearTailFlags();
-		pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
-		pc.addTailFlag(GLOBAL.FLAG_LONG);
-	}
 	
-	if(pc.hairLength < 12 && pc.hairLengthUnlocked(12)) pc.hairLength = 12;
-	if(pc.hairColorUnlocked("pink")) pc.hairColor = "pink";
-	if(pc.hairTypeUnlocked(GLOBAL.HAIR_TYPE_REGULAR)) pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
-	if(pc.hornsUnlocked(2) && pc.hornTypeUnlocked(GLOBAL.TYPE_DEMONIC))
-	{
-		pc.removeHorns();
-		pc.horns = 2;
-		pc.hornLength = 2;
-		pc.hornType = GLOBAL.TYPE_DEMONIC;
-	}
-	if(pc.earTypeUnlocked(GLOBAL.TYPE_DEMONIC)) 
-	{
-		pc.earType = GLOBAL.TYPE_DEMONIC;
-		pc.earLength = 2;
-	}
-	if(pc.eyeColorUnlocked("glowing amber")) pc.eyeColor = "glowing amber";
-	if(pc.eyeTypeUnlocked(GLOBAL.TYPE_DEMONIC)) pc.eyeType = GLOBAL.TYPE_DEMONIC;
-	if(pc.wingTypeUnlocked(GLOBAL.TYPE_SMALLDEMONIC)) pc.shiftWings(GLOBAL.TYPE_SMALLDEMONIC, 4);
+	var tailCnt:Number = pc.tailCount;
+	var tailGen:Number = GLOBAL.TAIL_GENITAL_NONE;
+	if (pc.hasTailCock()) tailGen = GLOBAL.TAIL_GENITAL_COCK;
+	else if (pc.hasTailCunt()) tailGen = GLOBAL.TAIL_GENITAL_VAGINA;
+	var tailGenArg:Number = pc.tailGenitalArg;
+	var tailGenCol:String = pc.tailGenitalColor;
+	
+	pc.removeTails();
+	if(tailCnt <= 0) pc.tailCount = 1;
+	else pc.tailCount = tailCnt;
+	pc.tailType = GLOBAL.TYPE_DEMONIC;
+	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	if (tailGen == GLOBAL.TAIL_GENITAL_COCK) pc.addTailFlag(GLOBAL.FLAG_TAILCOCK);
+	if (tailGen == GLOBAL.TAIL_GENITAL_VAGINA) pc.addTailFlag(GLOBAL.FLAG_TAILCUNT);
+	pc.tailGenital = tailGen;
+	pc.tailGenitalArg = tailGenArg;
+	pc.tailGenitalColor = tailGenCol;
+	
+	if(pc.hairLength < 12) pc.hairLength = 12;
+	pc.hairColor = "pink";
+	pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
+	
+	var hornLen:Number = pc.hornLength;
+	
+	pc.removeHorns();
+	pc.horns = 2;
+	if(hornLen < 2) pc.hornLength = 2;
+	else if(hornLen > 8) pc.hornLength = 8;
+	else pc.hornLength = hornLen;
+	pc.hornType = GLOBAL.TYPE_DEMONIC;
+	
+	pc.earType = GLOBAL.TYPE_DEMONIC;
+	if(pc.earLength < 2) pc.earLength = 2;
+	if(pc.earLength > 6) pc.earLength = 6;
+	
+	pc.eyeColor = "glowing amber";
+	pc.eyeType = GLOBAL.TYPE_DEMONIC;
+	
+	pc.shiftWings(GLOBAL.TYPE_SMALLDEMONIC, 4);
+	
 	flags["HOLIDAY_OWEEN_LEFT"] = 1;
 	halloweenShipMove();
 	clearMenu();
@@ -1221,7 +1227,7 @@ public function taurTFs(arg:int = 1):void
 	pc.removeStatusEffect("Uniball");
 	pc.balls = 0;
 	pc.ballSizeRaw = 3.4;
-	//Tallness boost to 6’ if below.
+	//Tallness boost to 6' if below.
 	if(pc.tallness < 72) pc.tallness = 72;
 	//Taurbody, ofcourse.
 	pc.legType = GLOBAL.TYPE_EQUINE;
@@ -1235,21 +1241,13 @@ public function taurTFs(arg:int = 1):void
 	if(70-pc.libido() < 10) pc.libido(10);
 	else pc.libido(70,true);
 	//All tails gone.
-	if(pc.hasTailCock() || pc.hasTailCunt())
-	{
-		pc.tailGenital = 0;
-		pc.tailGenitalArg = 0;
-		pc.tailGenitalColor = "";
-		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-	}
+	pc.removeTails();
 	pc.tailCount = 1;
 	pc.tailType = GLOBAL.TYPE_EQUINE;
-	pc.clearTailFlags();
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
 	if(arg == 1 || arg == 3)
 	{
-		//22”</i> horsecock.
+		//22" horsecock.
 		pc.createCock();
 		pc.cocks[0].cLengthRaw = 22;
 		pc.cocks[0].cType = GLOBAL.TYPE_EQUINE;

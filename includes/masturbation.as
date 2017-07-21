@@ -3015,7 +3015,7 @@ public function moderateExhibitionOmniFap():void
 		output(" gasping as you groan and rub your [pc.vaginas] and [pc.asshole], perversely stretching out your orgasmic high for as long as you can!");
 	}
 	output("\n\nAfter the afterglow wears off, your cheeks burn as you realize just how much of a spectacle you made. You really didn’t mean to touch yourself that much! For some reason, you’re filled with a fuzzy sense of fulfilment. You’d better not do this kind of thing too often - it feels like it could be addictive!");
-	if(pc.exhibitionism() >= 75) output(" Could... could you secretly be an exhibitionist, perhaps-?");
+	if(pc.exhibitionism() < 66) output(" Could... could you secretly be an exhibitionist, perhaps?");
 	processTime(20+rand(10));
 	pc.exhibitionism(1);
 	pc.orgasm();

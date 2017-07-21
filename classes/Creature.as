@@ -9883,6 +9883,11 @@
 			tailType = GLOBAL.TYPE_HUMAN;
 			tailCount = 0;
 			clearTailFlags();
+			removeTailGenitals();
+			return;
+		}
+		public function removeTailGenitals():void
+		{
 			tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 			tailGenitalArg = 0;
 			tailGenitalColor = "";

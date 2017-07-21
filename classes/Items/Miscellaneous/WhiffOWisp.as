@@ -70,7 +70,7 @@
 
 			//Consumption
 			//Wiff-O-Wisp can be used anywhere like normal consumables and will apply the ‘Woozy’ effect. Nothing truly happens until the PC goes to sleep.
-			if(target == kGAMECLASS.pc)
+			if(target is PlayerCharacter)
 			{
 				var pc:Creature = target;
 				if(!pc.hasStatusEffect("Woozy"))
@@ -89,7 +89,7 @@
 						else output("themselves...");
 					}
 					output("\n\nA minute after inhaling, you’re feeling very pleasant but also pretty horny. On top of that, your vision is a little blurred... perhaps a nap will fix it? You discard the glass bottle and carry on with what you wanted to.");
-					target.createStatusEffect("Woozy",0,0,0,0,false,"Icon_DizzyDrunk","You're especially horny, sleepy, and above all woozy!\n\nLust maxxed!\n+10 Intelligence\n-10 Aim\n-10 Reflexes",false,60*4,0xB793C4);
+					target.createStatusEffect("Woozy",0,0,0,0,false,"Icon_DizzyDrunk","You’re especially horny, sleepy, and above all woozy!\n\nLust maxxed!\n+10 Intelligence\n-10 Aim\n-10 Reflexes",false,60*4,0xB793C4);
 					pc.intelligenceMod += 10;
 					pc.aimMod += -10;
 					pc.reflexesMod += -10;
@@ -98,7 +98,8 @@
 				//Bad End
 				else
 				{
-					output("Damn, this Wiff-O-Wisp must be awful nice cuz you’re ready to use another. Sweet dreams are made of Wiff! {silly: Who are you to disagree, you greedy hippy??}");
+					output("Damn, this Wiff-O-Wisp must be awful nice cuz you’re ready to use another. Sweet dreams are made of Wiff!");
+					if(kGAMECLASS.silly) output(" Who are you to disagree, you greedy hippy?");
 					output("\n\nYou repeat the inhaling ritual again, making sure to bring it even closer to your nostril for that pure, raw vapour. Oxygen is only a contaminant.");
 					output("\n\nThe same heat from the first dose is rocking your [pc.face] even more than before. Oh boy, you can’t even feel your fingers! Or your knees! You’re not even sure if you had knees! You’re on the floor!");
 					output("\n\nAs you desperately snort and sniff at the last few vapours left, desperately trying to understand why they’re not fixing your sudden case of decaying nervous system, you try dumping the rest of the fluid right into your nose!");

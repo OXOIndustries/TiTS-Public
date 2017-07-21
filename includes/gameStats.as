@@ -3203,7 +3203,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", Reported her");
 						if(flags["RIYA_REPORTED"] == 2) output2(" and snapped at Commander Lorna Grence");
 					}
-					if(flags["RIYA_RELOCATED"] != undefined) output2(", Relocated to" + (flags["RIYA_RELOCATED"] == 1 ? "Canadia Station" : "Tavros Station"));
+					if(flags["RIYA_RELOCATED"] != undefined) output2(", Relocated to " + (flags["RIYA_RELOCATED"] == 1 ? "Canadia Station" : "Tavros Station"));
 					if(flags["RIYA_FUCKED_YA"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Ass:</b> " + flags["RIYA_FUCKED_YA"]);
 					if(flags["RIYA_CUNTPOUNDED_YOU"] != undefined) output2("\n<b>* Riya, Times She Fucked Your Vagina:</b> " + flags["RIYA_CUNTPOUNDED_YOU"]);
 					if(flags["RIYA_GOT_BLOWN"] != undefined) output2("\n<b>* Riya, Times You Sucked Her Cock:</b> " + flags["RIYA_GOT_BLOWN"]);
@@ -5835,6 +5835,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// VR Lounge
+			if(flags["MET_LUCA"] != undefined)
+			{
+				output2("\n<b><u>The Lotus Eater</u></b>");
+				if(flags["VR_SIMMED"] > 0) output2("\n<b>* Services, Times Used Virtual Reality Simulators:</b> " + flags["VR_SIMMED"]);
+				output2("\n<b>* Luca:</b> Met her");
+				variousCount++;
+			}
 			// Spunk Bunker
 			if(flags["KIRO_KALLY_TEAM_MILKED"] != undefined || flags["VIXETTE_MOUTHGASMED"] != undefined)
 			{
@@ -5922,17 +5930,17 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2(" Active");
 				if(chaurmineOnUveto()) output2(" (On Uveto)");
-				else output2(" (On Tarkus)");
+				else if(chaurmineOnTarkus()) output2(" (On Tarkus)");
 			}
 			if(flags["ABANDONED_CHAURMINE"] != undefined)
 			{
-				output2(", abandoned him");
+				output2(", Abandoned him");
 				if(flags["ABANDONED_CHAURMINE"] == 2) output2(" twice");
 				else if(flags["ABANDONED_CHAURMINE"] > 2) output2(" " + num2Text(flags["ABANDONED_CHAURMINE"]) + " times");
 			}
-			if(flags["CHAURMINE_HELPED"] > 0) output2("\n<b>* " + chaurmineName + ", Times Helped Him:</b> " + flags["CHAURMINE_HELPED"]);
-			if(flags["CHAURMINE_GUARDED"] > 0) output2("\n<b>* " + chaurmineName + ", Times Guarded Him:</b> " + flags["CHAURMINE_GUARDED"]);
-			if(flags["CHAURMINE_RELATIONSHIP"] != undefined)
+			if(flags["CHAURMINE_HELPED"] != undefined) output2(", Helped him");
+			if(flags["CHAURMINE_GUARDED"] != undefined) output2(", Guarded him");
+			if(flags["MET_CHAURMINE"] >= 1)
 			{
 				output2("\n<b>* " + chaurmineName + ", Affection:</b> " + chaurmineRelationship() + " %");
 				switch(flags["CHAURMINE_LOVER"])
