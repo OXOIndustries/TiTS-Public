@@ -72,12 +72,12 @@ public function fisiAtResDeck():Boolean
 }
  
 //Makes Fisi unavailable for the specified number of days. 1 = "until tomorrow", 2 = "until 2 days from now", etc. NOT 1 = 24 hours, etc.
-public function setFisiAway(days:int = 1):void
+public function setFisiAway(iDays:int = 1):void
 {
-	if (hours < 3) days -= 1;
-	if (days <= 0) return;
+	if (hours < 3) iDays -= 1;
+	if (iDays <= 0) return;
 	var time:int = ((23 - hours) * 60) + (60 - minutes);
-	time += (24 * 60) * (days - 1);
+	time += (24 * 60) * (iDays - 1);
 	
 	pc.createStatusEffect("Fisianna Disabled", 0, 0, 0, 0, true, "", "", false, time);
 }
@@ -399,6 +399,7 @@ public function fisiMainMenu(fromBack:Boolean = false):void
 		addDisabledButton(3, "Date", "Date", "You’ve already been on all the dates with her.");
 		
 		if (pc.lust() < 33) addDisabledButton(4, "Sex", "Sex", "You aren’t aroused enough for this.");
+		else if (flags["FISI_SEX_NUMBER"] == undefined && !pc.hasGenitals()) addDisabledButton(4, "Sex", "Sex", "You can’t access this without genitals first.");
 		else if (pc.isTaur()) addDisabledButton(4, "Sex", "Sex", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
 		else addButton(4, "Sex", sexFisi, undefined, "Sex", "Have some fun with the kitten!");
 	}
@@ -1431,11 +1432,6 @@ public function dateFisi():void
 	else if (flags["FISI_DATE_NUMBER"] == 5)
 	{
 		flags["FISI_DATE_NUMBER"] = 6;
-		if (flags["FISI_TIMES_SEXED"] == undefined) flags["FISI_TIMES_SEXED"] = 0;
-		if (flags["FISI_TIMES_TJ"] == undefined) flags["FISI_TIMES_TJ"] = 0;
-		if (flags["FISI_TIMES_EATEN"] == undefined) flags["FISI_TIMES_EATEN"] = 0;
-		if (flags["FISI_TIMES_69"] == undefined) flags["FISI_TIMES_69"] = 0;
-		if (flags["FISI_TIMES_VAG"] == undefined) flags["FISI_TIMES_VAG"] = 0;
 		sixthDateFisi();
 		return;
 	}
@@ -1757,7 +1753,7 @@ public function sexFisi():void
 	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
 	generateMap();
 	
-	flags["FISI_TIMES_SEXED"] += 1;
+	IncrementFlag("FISI_TIMES_SEXED");
 	
 	output("You propose the idea of going back to Fisianna’s place for a bit of ‘fun’ while shooting an unsubtle wink at her, making your intentions clear.");
 	output("\n\n<i>“O-oh my... Y-you wanna do... that?”</i> Fisianna’s face lights up in surprise as her face flushes pink. She recovers quickly as her eyes lower halfway, making her look both cute and seductive. <i>“W-well... I-I suppose we <b>could</b>...”</i> Fisianna drags the <i>“could”</i> in mock thought as she stands up from the bench. ");
@@ -1766,10 +1762,10 @@ public function sexFisi():void
 	output("\n\nOnce the two of you arrive, you jump to the attack and seize Fisianna in a fierce and passionate kiss. You lock lips with each other tightly while your tongues dance between the seal of your mouths. Without breaking the kiss, the two of you stumble all the way into her bedroom, where you eventually trip over the edge of her bed, consequently pulling the both of you apart. Fisianna looks at you with her golden eyes, filled with passion and hunger for you as you lay next to each other side by side on the bed, panting for breath from the long kiss. You think about what you would like to do with your feline lover this time.");
 
 	if (pc.hasCock() || pc.hasVagina()) addButton(0, "Tailjob", tailjobFisi, undefined, "Tailjob", "Let her tails go to work on you.");
-	else addDisabledButton(0, "Tailjob", "Tailjob", "You need a cock or vagina for this.")
+	else addDisabledButton(0, "Tailjob", "Tailjob", "You need a cock or vagina for this.");
 	
 	if (flags["FISI_SEX_NUMBER"] >= 1) addButton(1, "Eat Her Out", eatOutFisi, undefined, "Eat Her Out", "Munch on her pussy.");
-	else addDisabledButton(1, "Eat Her Out", "Eat Her Out", "It doesn’t look like she is comfortable enough with you to do this yet.")
+	else addDisabledButton(1, "Eat Her Out", "Eat Her Out", "It doesn’t look like she is comfortable enough with you to do this yet.");
 	
 	if (!(flags["FISI_SEX_NUMBER"] >= 2)) addDisabledButton(2, "Sixty-Nine", "Sixty-Nine", "It doesn’t look like she is comfortable enough with you to do this yet.");
 	else if (pc.hasVagina() || largestCockIndexThatFitsFisiDimensions() >= 0) addButton(2, "Sixty-Nine", sixtyNineFisi, undefined, "Sixty-Nine", "Lick each other up.");
@@ -1790,7 +1786,7 @@ public function tailjobFisi():void
 	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
 	generateMap();
 	
-	flags["FISI_TIMES_TJ"] += 1;
+	IncrementFlag("FISI_TIMES_TJ");
 	
 	if (flags["FISI_SEX_NUMBER"] == undefined) output("<i>“Mmm... [pc.name]. I-I’ve actually been thinking... I wanted to repay you for what you did during the movie the time before. Your caress... your touch felt so good, and I appreciate that you’re willing to take things slow with me. I feel I might have left you a little hot and bothered then so... I was wondering if I could provide some... ‘help’ with that?”</i> Fisianna asks coyly as she raises her twin tails, waving them in front of her to hint at what she plans to do to repay your earlier effort. ");
 	else output("<i>“D-did you like the feel of my tails on you the last time? I’d be happy to rub them on you again since you seem to like them so much!”</i> Fisianna raises both of her tails and waves them in front of you like snakes to a charmer’s flute. The anticipation of feeling those on your loins again is killing you.");
@@ -1912,7 +1908,7 @@ public function eatOutFisi():void
 	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
 	generateMap();
 	
-	flags["FISI_TIMES_EATEN"] += 1;
+	IncrementFlag("FISI_TIMES_EATEN");
 	
 	output("Without warning, you pounce onto Fisianna and fiercely lock lips with her again, resuming your kiss from before. The two of you press so hard into each other’s mouths with such passion that you almost wind up brushing teeth against one another. Your tongues vie for dominance in a sensual struggle between closed lips. Eventually you win out and roll Fisianna below you, pinning her down under you. She moans fervidly into your mouth as she concedes defeat in the tongue battle.");
 	output("\n\nYou start to snake one of your hands off of Fisianna’s face and run it down her lithe body. Her breath catches when your hand reaches one of her breasts. You give it a playful squeeze and Fisianna squeals with delight into your mouth. Unfortunately for the feline, her chest pillows are not your main target this time. Your hand snakes lower and lower down her petite body until you bridge the hem of cloth between her shirt and her pants. There, you worm your hands under her pants and feel the familiar trail of fur leading down to her sensitive knob. On contact with Fisianna’s pleasure button, she breaks the kiss and lets out a hearty moan. After she quickly settles down, she looks into your eyes and smiles excitedly.");
@@ -1975,7 +1971,7 @@ public function sixtyNineFisi():void
 	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
 	generateMap();
 	
-	flags["FISI_TIMES_69"] += 1;
+	IncrementFlag("FISI_TIMES_69");
 	
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 	
@@ -2076,7 +2072,7 @@ public function vaginalFisi():void
 	currentLocation = "RESIDENTIAL DECK FISIS APARTMENT";
 	generateMap();
 	
-	flags["FISI_TIMES_VAG"] += 1;
+	IncrementFlag("FISI_TIMES_VAG");
 	
 	var x:int = largestCockIndexThatFitsFisiDimensions();
 	

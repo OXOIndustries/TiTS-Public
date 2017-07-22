@@ -1808,9 +1808,9 @@ public function displayQuestLog(showID:String = "All"):void
 		if(mainCount == 0)
 		{
 			output2("\n<b><u>Not Available</u></b>");
-			output2("\n* <i>No data from your main mission has been logged</i>");
-			if(showID != "All") output2("<i> at this location</i>");
-			output2("<i>.</i>");
+			output2("\n* <i>No data from your main mission has been logged");
+			if(showID != "All") output2(" at this location");
+			output2(".</i>");
 		}
 		
 		// Side quests:
@@ -2833,9 +2833,9 @@ public function displayQuestLog(showID:String = "All"):void
 		if(sideCount == 0)
 		{
 			output2("\n<b><u>Not Available</u></b>");
-			output2("\n* <i>No side mission data has been logged</i>");
-			if(showID != "All") output2("<i> at this location</i>");
-			output2("<i>.</i>");
+			output2("\n* <i>No side mission data has been logged");
+			if(showID != "All") output2(" at this location");
+			output2(".</i>");
 		}
 	}
 	
@@ -3549,13 +3549,13 @@ public function displayEncounterLog(showID:String = "All"):void
 						else if(flags["FISI_REL_TYPE"] == 2) output2("Open Relationship");
 						else if(flags["FISI_REL_TYPE"] == 3) output2("Polyamorous");
 					}
-					if(flags["FISI_TIMES_SEXED"] != undefined)
+					if(flags["FISI_TIMES_SEXED"] > 0)
 					{
-						output2("\n<b>* Fisianna, Total Times Sexed:</b> " + flags["FISI_TIMES_SEXED"]);
-						output2("\n<b>* Fisianna, Times Had a Tailjob from Her:</b> " + flags["FISI_TIMES_TJ"]);
-						output2("\n<b>* Fisianna, Times Eaten Her Out:</b> " + flags["FISI_TIMES_EATEN"]);
-						output2("\n<b>* Fisianna, Times Sixty-Nine’d:</b> " + flags["FISI_TIMES_69"]);
-						output2("\n<b>* Fisianna, Times Fucked "+ (silly ? "the Pussy’s Pussy" : "Her Pussy")+ "</b> " + flags["FISI_TIMES_VAG"]);
+						output2("\n<b>* Fisianna, Times Sexed:</b> " + flags["FISI_TIMES_SEXED"]);
+						if(flags["FISI_TIMES_TJ"] > 0) output2("\n<b>* Fisianna, Times Had a Tailjob from Her:</b> " + flags["FISI_TIMES_TJ"]);
+						if(flags["FISI_TIMES_EATEN"] > 0) output2("\n<b>* Fisianna, Times Eaten Her Out:</b> " + flags["FISI_TIMES_EATEN"]);
+						if(flags["FISI_TIMES_69"] > 0) output2("\n<b>* Fisianna, Times Sixty-Nine’d:</b> " + flags["FISI_TIMES_69"]);
+						if(flags["FISI_TIMES_VAG"] > 0) output2("\n<b>* Fisianna, Times Fucked "+ (silly ? "the Pussy’s Pussy" : "Her Pussy")+ "</b> " + flags["FISI_TIMES_VAG"]);
 					}
 				}
 				// Fyn
@@ -5839,7 +5839,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_LUCA"] != undefined)
 			{
 				output2("\n<b><u>The Lotus Eater</u></b>");
-				if(flags["VR_SIMMED"] > 0) output2("\n<b>* Services, Times Used Virtual Reality Simulators:</b> " + flags["VR_SIMMED"]);
+				if(flags["VR_SIMMED"] > 0) output2("\n<b>* Services, Times Used Virtual Reality Simulator:</b> " + flags["VR_SIMMED"]);
 				output2("\n<b>* Luca:</b> Met her");
 				variousCount++;
 			}
@@ -5857,9 +5857,9 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(variousCount == 0)
 		{
 			output2("\n<b><u>Not Available</u></b>");
-			output2("\n* <i>No encounter data has been logged</i>");
-			if(showID != "All") output2("<i> at this location</i>");
-			output2("<i>.</i>");
+			output2("\n* <i>No encounter data has been logged");
+			if(showID != "All") output2(" at this location");
+			output2(".</i>");
 		}
 	}
 	
