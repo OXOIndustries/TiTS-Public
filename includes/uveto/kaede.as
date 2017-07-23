@@ -502,7 +502,7 @@ public function uvetoKaedeShowerWith(fuckedHer:Boolean = false):void
 	output(" as Kaede starts for the shower.");
 	
 	output("\n\n");
-	if (silly) output("<i>“Only if you don’t mind the smell of wet ausar!”</i> she teases");
+	if (silly) output("<i>“Only if you don’t mind the smell of wet ausar!”</i> she teases.");
 	else output("<i>“Only if you don’t mind scrubbing some hard-to-reach places,”</i> Kaede laughs.");
 	output(" Your lover takes you by the hand and leads you through a hatch into a decidedly cramped, dark bathroom. About what you’d expect from a one-man-crew ship, though it’s definitely standing room only in her stall. Kaede gives you an apologetic smile as she taps a control panel inside, and steaming-hot water starts pumping out. She turns on a heel, leading you in and pulling you tight against herself as the water beats down from above, drenching you and your lover in a heartbeat. Kaede quickly grabs a cloth and wipes away the cum sticking to her flesh, but catches your hand when you move to do the same.");
 	
