@@ -44,6 +44,9 @@ package classes.UIComponents.SideBarComponents
 		private var _configureControlBack:Sprite;
 		private var _configureControl:Sprite;
 		
+		private var _bustSwapControlBack:Sprite;
+		private var _bustSwapControl:Sprite;
+		
 		private var _tempHideRoomTextControlBack:Sprite;
 		private var _tempHideRoomTextControl:Sprite;
 		
@@ -53,6 +56,9 @@ package classes.UIComponents.SideBarComponents
 		
 		private var _configIsGlowing:Boolean = false;
 		private var _configGlowFilter:GlowFilter;
+		
+		private var _bustSwapIsGlowing:Boolean = false;
+		private var _bustSwapGlowFilter:GlowFilter;
 		
 		private var _hideTextIsGlowing:Boolean = false;
 		private var _roomTextGlowFilter:GlowFilter;
@@ -211,7 +217,7 @@ package classes.UIComponents.SideBarComponents
 			_configureControlBack.visible = false;
 			
 			_configGlowFilter = new GlowFilter(UIStyleSettings.gHighlightColour, _minGlow, 6, 6, 5, 1, false, false);
-			_configureControlBack.filters = [_configGlowFilter];	
+			_configureControlBack.filters = [_configGlowFilter];
 			
 			_configureControl = new StatusIcons.Icon_Gears_Three();
 			addChild(_configureControl);
@@ -239,6 +245,45 @@ package classes.UIComponents.SideBarComponents
 			ha.mouseEnabled = false;
 			ha.buttonMode = true;
 			_configureControl.hitArea = ha;
+			
+			/* Rotate bust displays */
+			_bustSwapControlBack = new StatusIcons.Icon_Rotate();
+			addChild(_bustSwapControlBack);
+			_bustSwapControlBack.transform.colorTransform = cfgct;
+			_bustSwapControlBack.alpha = 1;
+			_bustSwapControlBack.width = 20;
+			_bustSwapControlBack.height = 20;
+			_bustSwapControlBack.x = _configureControl.x - 30;
+			_bustSwapControlBack.y = _configureControl.y;
+			_bustSwapControlBack.visible = false;
+			
+			_bustSwapGlowFilter = new GlowFilter(UIStyleSettings.gHighlightColour, _minGlow, 6, 6, 5, 1, false, false);
+			_bustSwapControlBack.filters = [_bustSwapGlowFilter];
+			
+			_bustSwapControl = new StatusIcons.Icon_Rotate();
+			addChild(_bustSwapControl);
+			_bustSwapControl.transform.colorTransform = ct;
+			_bustSwapControl.alpha = 0.6;
+			_bustSwapControl.width = 20;
+			_bustSwapControl.height = 20;
+			_bustSwapControl.x = _configureControl.x - 30;
+			_bustSwapControl.y = _configureControl.y;
+			_bustSwapControl.addEventListener(MouseEvent.CLICK, swapBustConfig);
+			_bustSwapControl.addEventListener(MouseEvent.MOUSE_OVER, bustSwapFadeIn);
+			_bustSwapControl.addEventListener(MouseEvent.MOUSE_OUT, bustSwapFadeOut);
+			_bustSwapControl.visible = false;
+			_bustSwapControl.buttonMode = true;
+			
+			ha = new Sprite();
+			ha.graphics.beginFill(0xFFFFFF, 0);
+			ha.graphics.drawRect(-10, -10, 30, 40);
+			ha.graphics.endFill();
+			addChild(ha);
+			ha.x = _bustSwapControl.x;
+			ha.y = _bustSwapControl.y;
+			ha.mouseEnabled = false;
+			ha.buttonMode = true;
+			_bustSwapControl.hitArea = ha;
 			
 			/* Temporary toggle for room text */
 			_tempHideRoomTextControlBack = new StatusIcons.Icon_BlindAlt();
@@ -339,6 +384,19 @@ package classes.UIComponents.SideBarComponents
 				_configureControlBack.filters = [_configGlowFilter];
 			}
 			
+			if (_bustSwapIsGlowing && _bustSwapGlowFilter.alpha < _maxGlow)
+			{
+				_bustSwapGlowFilter.alpha += _glowRate;
+				if (_bustSwapGlowFilter.alpha > _maxGlow) _bustSwapGlowFilter.alpha = _maxGlow;
+				_bustSwapControlBack.filters = [_bustSwapGlowFilter];
+			}
+			else if (!_bustSwapIsGlowing && _bustSwapGlowFilter.alpha > _minGlow)
+			{
+				_bustSwapGlowFilter.alpha -= _glowRate;
+				if (_bustSwapGlowFilter.alpha < _minGlow) _bustSwapGlowFilter.alpha = _minGlow;
+				_bustSwapControlBack.filters = [_bustSwapGlowFilter];
+			}
+			
 			if (_hideTextIsGlowing && _roomTextGlowFilter.alpha < _maxGlow)
 			{
 				_roomTextGlowFilter.alpha += _glowRate;
@@ -379,6 +437,16 @@ package classes.UIComponents.SideBarComponents
 			_configIsGlowing = false;
 		}
 		
+		private function bustSwapFadeIn(e:Event):void
+		{
+			_bustSwapIsGlowing = true;
+		}
+		
+		private function bustSwapFadeOut(e:Event):void
+		{
+			_bustSwapIsGlowing = false;
+		}
+		
 		private function hideRoomFadeIn(e:Event):void
 		{
 			_hideTextIsGlowing = true;
@@ -403,6 +471,12 @@ package classes.UIComponents.SideBarComponents
 			
 			private function showHRBust(e:Event):void
 			{
+				if (stage.getChildByName("bigImage"))
+				{
+					stage.removeChild(stage.getChildByName("bigImage"));
+					return;
+				}
+				
 				if (stage.getChildByName("bigImage") == null)
 				{
 					var imageT:Class = NPCBustImages.getHighResBustForCharacter(lastSetBust);
@@ -418,10 +492,28 @@ package classes.UIComponents.SideBarComponents
 		
 		private function openBustConfig(e:Event):void
 		{
-			if (stage.getChildByName("bustSelector")) return;
+			if (stage.getChildByName("bustSelector"))
+			{
+				stage.removeChild(stage.getChildByName("bustSelector"));
+				return;
+			}
 			
-			var o:CharacterBustOverrideSelector = new CharacterBustOverrideSelector(lastSetBust);
+			var o:CharacterBustOverrideSelector = new CharacterBustOverrideSelector(lastBustList, lastBustList.indexOf(lastSetBust));
 			stage.addChild(o);
+		}
+		
+		private function swapBustConfig(e:Event):void
+		{
+			// Initialise busts
+			var _bustList:Array = bustList;
+			var _bustName:String = bustList[0];
+			// Remove the current bust display
+			removeCurrentBusts();
+			// Shift the bust order
+			_bustList.push(_bustName);
+			_bustList.splice(0, 1);
+			// Render the new bust order
+			showBust(_bustList);
 		}
 		
 		private function toggleRoomTextDisplay(e:Event):void
@@ -430,6 +522,9 @@ package classes.UIComponents.SideBarComponents
 			opts.tempHideRoomAndSceneNames = !opts.tempHideRoomAndSceneNames;
 			updateRoomTextVisibility();
 		}
+		
+		private var bustList:Array = new Array();
+		private var lastBustList:Array = new Array();
 		
 		private var _lastSetBust:String;
 		private function set lastSetBust(v:String):void
@@ -502,6 +597,9 @@ package classes.UIComponents.SideBarComponents
 			else bustT = NPCBustImages.getBust(name);
 			
 			lastSetBust = name;
+			bustList = [name];
+			lastBustList = [name];
+			_bustSwapControlBack.visible = _bustSwapControl.visible = false;
 			
 			if (bustT != null)
 			{
@@ -548,6 +646,9 @@ package classes.UIComponents.SideBarComponents
 		private function showMultipleBusts(args:Array):void
 		{
 			lastSetBust = "none";
+			bustList = args;
+			lastBustList.length = 0;
+			_bustSwapControlBack.visible = _bustSwapControl.visible = false;
 			
 			// Build a list of available busts from the incoming args
 			var available:Array = new Array();
@@ -557,7 +658,17 @@ package classes.UIComponents.SideBarComponents
 			{
 				bustT = NPCBustImages.getBust(args[i]);
 				if (bustT != null) available.push(bustT);
+				if (bustT != null || kGAMECLASS.gameOptions.configuredBustPreferences[args[i]] == "NONE")
+				{
+					if(lastBustList.indexOf(args[i]) == -1)
+					{
+						if(lastSetBust == "none") lastSetBust = args[i];
+						lastBustList.push(args[i]);
+					}
+				}
 			}
+			
+			if(lastBustList.length > 1) _bustSwapControlBack.visible = _bustSwapControl.visible = true;
 			
 			// We're going to add the images in reverse order, so to check if the busts currently present are the same,
 			// The list should be reversed

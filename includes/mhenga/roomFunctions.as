@@ -434,7 +434,7 @@ public function talkToWarningDrone():void
 	clearOutput();
 	author("Savin");
 	showName("\nDRONE");
-	showBust("DRONE");
+	showBust("UGC_DRONE");
 	output("You step up to the drone and ask it for more information.");
 	output("\n\n<i>“Peacekeeper Inoue has classified the local species ‘Vanae’ as a level four threat. This species is highly aggressive. Only well-equipped explorers with significant off-world experience should proceed beyond this point.”</i>");
 	if(flags["SEXED_PENNY"] != undefined) output("\n\nAs you step back from the drone, it chirps and suddenly displays a holographic image of Penny. <i>“Hi, mate. I thought you might find this! Be safe out there, alright?”</i>\n\nYou smile and nod as the bonus message flickers off.");

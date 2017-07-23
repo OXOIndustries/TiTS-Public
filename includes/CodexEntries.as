@@ -158,7 +158,7 @@ public function codexHomeFunction():void
 {
 	// Written in style of technical documentation because why not.
 	clearOutputCodex();
-	showBust("NONE");
+	clearBust();
 	outputCodex("Welcome to the Steele Industries® Computerized Observational Directory of Environmental eXposure® (CODEX™), version 12b.");
 	outputCodex("\n\nThe Steele Industries® CODEX™ system has been designed to provide emergency-level informative warnings of Class 4 environmental and Class M biological hazards to a designated user of the device and will notify the user should the CODEX™ device detect such a hazard within a defined unsafe radius.");
 	outputCodex("\n\nSystem usability has been designed for rapid dissemination of information to the designated user when facing potentially life threatening situations. The following QuickStart™ documentation is always available from the CODEX™ root menu:");
@@ -1556,7 +1556,7 @@ public function cuntSnakeCodexEntry():void
 public function kerokorasCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("FROG_" + rand(2 + rand(7)),"FROG_" + rand(2 + rand(7)),"FROG_" + rand(2 + rand(7)));
+	showBust("FROG_" + (1 + rand(8)),"FROG_" + (1 + rand(8)),"FROG_" + (1 + rand(8)));
 	outputCodex(header("Kerokoras"));
 	outputCodex("<i>U.G.C. survival guidelines recommend you do not lick them.</i>\n\n")
 	outputCodex("<b>Name (Singular & Plural):</b> Kerokoras");

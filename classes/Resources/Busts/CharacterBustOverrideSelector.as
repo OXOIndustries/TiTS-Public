@@ -20,6 +20,7 @@ package classes.Resources.Busts
 	 */
 	public class CharacterBustOverrideSelector extends Sprite
 	{
+		private var _bustList:Array;
 		private var _bustName:String;
 		private var _bustDisplays:Object;
 		private var _numBustDisplays:int;
@@ -30,10 +31,11 @@ package classes.Resources.Busts
 		private var _blank:MainMenuButton;
 		private var _clear:MainMenuButton;
 		
-		public function CharacterBustOverrideSelector(bustName:String) 
+		public function CharacterBustOverrideSelector(bustList:Array, bustIdx:int) 
 		{
 			super();
-			_bustName = bustName;
+			_bustList = bustList;
+			_bustName = bustList[bustIdx];
 			name = "bustSelector";
 			_numBustDisplays = 0;
 			_bustDisplays = { };
@@ -180,7 +182,22 @@ package classes.Resources.Busts
 		private function closeDisplay():void
 		{
 			stage.removeChild(stage.getChildByName("bustSelector"));
-			kGAMECLASS.showBust(_bustName);
+			
+			// For some reason, kGAMECLASS.showBust() can't take in an array input and output the result properly...
+			switch(_bustList.length)
+			{
+				case 2: kGAMECLASS.showBust(_bustList[0],_bustList[1]); break;
+				case 3: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2]); break;
+				case 4: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3]); break;
+				case 5: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4]); break;
+				case 6: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4],_bustList[5]); break;
+				case 7: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4],_bustList[5],_bustList[6]); break;
+				case 8: kGAMECLASS.showBust(_bustList[0],_bustList[1],_bustList[2],_bustList[3],_bustList[4],_bustList[5],_bustList[6],_bustList[7]); break;
+				default: kGAMECLASS.showBust(_bustName); break;
+			}
+			/*
+			kGAMECLASS.showBust(_bustList);
+			*/
 		}
 		
 		private function addSelectableBust(artistName:String, targetBustName:String):void

@@ -1438,22 +1438,9 @@
 
 		public function showBust(... args):void 
 		{
-			if(args.length == 1 && args[0] == "")
-			{
-				hideBust();
-				return;
-			}
-			/*
-			var argS:String = "";
-			for (var i:int = 0; i < args.length; i++)
-			{
-				if (i > 0) argS += ", ";
-				argS += args[i];
-			}
-			*/
-			//trace("showBust called with args: [" + args.join(", ") + "]");
-			if(args.length > 0) _leftSideBar.locationBlock.showBust(args);
-			else _leftSideBar.locationBlock.showBust(args);
+			var busts:Array = (args is String ? [args] : args);
+			
+			_leftSideBar.locationBlock.showBust(busts);
 		}
 		
 		public function bringLastBustToTop():void

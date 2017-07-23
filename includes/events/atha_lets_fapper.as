@@ -215,7 +215,7 @@ public const LETS_FAP_EPISODES:Array =
 public function letsFapSelectionMain():void
 {
 	clearOutput();
-	showBust("9999");
+	showBust("LOGO_CHAMPEON");
 	showName("");
 	
 	letsFapSelectionMenu();
