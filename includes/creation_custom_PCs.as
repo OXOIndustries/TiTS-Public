@@ -628,7 +628,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			break;
 		/*Name: Dawn
 		Eyes: Blue
-		Hair: Blond (shoulder length)
+		Hair: Blonde (shoulder length)
 		Genitals: pussy and 12" dick (human)
 		Breasts: DD
 		Height: 5'4"*/
@@ -1058,7 +1058,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		/*Name: Junker
 		Physical Description:
 		Dog everything (head, brown fur, tail, ears, etc.), except:
-		medium-long blond hair
+		medium-long blonde hair
 		bipedal hooved legs
 		2x 2"x12" horsedicks
 		4x 2" balls
@@ -1089,7 +1089,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.earType = GLOBAL.TYPE_CANINE;
 			pc.faceType = GLOBAL.TYPE_CANINE;
 			pc.hairLength = 6;
-			pc.hairColor = "blond";
+			pc.hairColor = "blonde";
 			pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 			break;
 		/*Calvin Snowden You are a 7 foot 0 inch tall human, with a somewhat lithe body and a fair amount of definition. You are currently wearing comfortable clothes and using your fists as a weapon. Your face is human in shape and structure, with albino skin. A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance. It has a well-defined jawline and a fairly masculine profile. Your shaggy, midnight black hair looks good on you, accentuating your features well. A slowly undulating tongue occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal. A quartet of prominent horns has broken through your skin. The back pair are longer, and curve back along your head. The front pair protrude forward demonically.

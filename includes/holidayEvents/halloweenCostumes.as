@@ -18,6 +18,7 @@ public function halloweenShipMove():void
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	showLocationName();
+	clearBust();
 }
 
 public function hollidayOweenAlert():void
@@ -348,10 +349,11 @@ public function samusCostumeGo():void
 	output("\n\n<i>Squeeeee...</i>");
 
 	//[PC.breasts & PC.ass increase 1 step without outputting any text]
-	for(var x:int = 0; x < pc.bRows(); x++)
+	var i:int = 0;
+	for(i = 0; i < pc.bRows(); i++)
 	{
-		pc.breastRows[x].breastRatingRaw++;
-		pc.breastRows[x].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
 	}
 	pc.libido(5);
 	pc.buttRating(1);
@@ -371,10 +373,11 @@ public function bountyHuntsPart2():void
 	output("\n\n<i>Squeeeee...</i>");
 
 	//[Pc.breasts & PC.ass increase 1 step without outputting any text.]
-	for(var x:int = 0; x < pc.bRows(); x++)
+	var i:int = 0;
+	for(i = 0; i < pc.bRows(); i++)
 	{
-		pc.breastRows[x].breastRatingRaw++;
-		pc.breastRows[x].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
 	}
 	pc.buttRating(1);
 	pc.hipRating(1);
@@ -387,11 +390,11 @@ public function bountyHuntsPart2():void
 	output("\n\n<i>Squeeeee...</i>");
 
 	//[Pc.breasts & PC.ass increase 1 step without outputting any text.]
-	for(var y:int = 0; y < pc.bRows(); y++)
+	for(i = 0; i < pc.bRows(); i++)
 	{
-		pc.breastRows[y].breastRatingRaw++;
-		pc.breastRows[y].breastRatingRaw++;
-		pc.breastRows[y].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
 	}
 	pc.buttRating(1);
 	pc.hipRating(1);
@@ -405,13 +408,13 @@ public function bountyHuntsPart2():void
 	output("\n\n<i>Squeee!</i>");
 
 	//[Pc.breasts & PC.ass increase 3 steps without outputting any text.]
-	for(x = 0; x < pc.bRows(); x++)
+	for(i = 0; i < pc.bRows(); i++)
 	{
-		pc.breastRows[x].breastRatingRaw++;
-		pc.breastRows[x].breastRatingRaw++;
-		pc.breastRows[x].breastRatingRaw++;
-		pc.breastRows[x].breastRatingRaw++;
-		pc.breastRows[x].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
+		pc.breastRows[i].breastRatingRaw++;
 	}
 	pc.buttRating(2);
 	pc.hipRating(2);

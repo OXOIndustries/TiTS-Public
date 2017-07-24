@@ -1576,12 +1576,12 @@ List of Colors By Type
 Standard
 Auburn
 Black
-Blond
+Blonde
 Blue
 Brown
 Cerulean
 Crimson
-Dirty Blond
+Dirty Blonde
 Gray
 Green
 Lavender

@@ -402,9 +402,9 @@ public function nurseryCafeteriaFunc():Boolean
 public function nurseryG14Func():Boolean
 {
 	output("You’re standing in a long, pastel-blue corridor connecting the foyer to the children’s wing of the nursery.");
-	var numKids:int = ChildManager.numOfMobileGendersInRange(2, 8).total;
-	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
-	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
+	var numKids:Genders = ChildManager.numOfMobileGendersInRange(ChildManager.ALL_GENDERS, 2, 8);
+	if (numKids.total >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
+	else if (numKids.total >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
 
 	nurseryZilCallgirlRandomEvents();
 	

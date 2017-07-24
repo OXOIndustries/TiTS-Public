@@ -49,9 +49,9 @@
 			this.tallness = 65;
 			this.thickness = 20;
 			this.tone = 30;
-			this.hairColor = "blond";
+			this.hairColor = "blonde";
 			this.scaleColor = "black";
-			this.furColor = "blond";
+			this.furColor = "blonde";
 			this.hairLength = 9;
 			this.hairType = 0;
 			this.beardLength = 0;

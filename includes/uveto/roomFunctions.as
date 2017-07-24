@@ -1054,7 +1054,7 @@ public function GlacialRiftPlateauCamp():Boolean
 		//gives you a flirty grin over her shoulder as she works, and you see a little more spring make its way into her step as she works
 		output(" gives you a slight nod of acknowledgement as you wander.");
 	}
-	else if (hours <= 6 && hours <= 20) output(" A woman in white ceramic armor is patrolling the gun line, carrying a spear almost as tall as she is over one shoulder. She’s clearly human, if the head of blond hair and cream-pale skin are anything to go by. The lightningbolt patterns on her armor tell you she’s probably a member of the local Stormguard.");
+	else if (hours <= 6 && hours <= 20) output(" A woman in white ceramic armor is patrolling the gun line, carrying a spear almost as tall as she is over one shoulder. She’s clearly human, if the head of blonde hair and cream-pale skin are anything to go by. The lightningbolt patterns on her armor tell you she’s probably a member of the local Stormguard.");
 	
 	return false;
 }

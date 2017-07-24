@@ -2,7 +2,7 @@
 //By JimT
 
 //Concept
-//Vahn Desai is one of the technician that work on your ship. He's a blond half-Ausar with brown ears, a bushy canine tail (also blonde) and a (slightly modded) phallus. He's lean but muscular, fairly tall, and bisexual. He's often working up a light sweat, and he lives and works on Tavros station.
+//Vahn Desai is one of the technician that work on your ship. He's a blonde half-Ausar with brown ears, a bushy canine tail (also blonde) and a (slightly modded) phallus. He's lean but muscular, fairly tall, and bisexual. He's often working up a light sweat, and he lives and works on Tavros station.
 //Vahn has a fascination for ships, and loves junkers because they break down often.
 //He's a switch, fairly easy, and attracted to the PC.
 //His cock is terran except for his knot and how long he cums for. This is the result of some slight gene modding.
@@ -76,7 +76,7 @@ public function appearanceForVahn():void
 {
 	clearOutput();
 	showVahn();
-	output("Looking Vahn over from head to toe, he’d definitely qualify as ‘handsome’ under those oil-stained cheeks. The half-ausar male is usually smiling, bright teeth flashing with good humor as he works up a sweat over your rusty spaceship. He has chestnut-hued canine ears and sandy blond hair, which looks perpetually tousled. His blond tail swishes behind him.");
+	output("Looking Vahn over from head to toe, he’d definitely qualify as ‘handsome’ under those oil-stained cheeks. The half-ausar male is usually smiling, bright teeth flashing with good humor as he works up a sweat over your rusty spaceship. He has chestnut-hued canine ears and sandy blonde hair, which looks perpetually tousled. His blonde tail swishes behind him.");
 	output("\n\nThe hard-working ausar stands six feet tall and has a lean yet muscular build. All those hours of hard labor repairing starships have perfectly tuned his body, as well as your vessel. His eyes are a glimmering green, filled with obvious intelligence - it takes brains to know how to properly calibrate a sublight drive!");
 	output("\n\nHe’s wearing a technician’s outfit, which would be plain except he wears it rather well. The otherwise dull fabric hugs his muscles and slim waist, accentuating everything beneath. The one item of note is his tool belt, with different gadgets of importance tacked on.");
 	clearMenu();
@@ -135,7 +135,7 @@ public function talkToVahnAboutHisHobbies():void
 	showVahn();
 	output("You ask Vahn about his hobbies. The friendly half-ausar seems happy to discuss them with you.");
 	output("\n\n<i>“My hobbies? Vehicle restoration’s a biggie; I’ve got two vintage hovercars I bought for a steal and I’m doing them up,”</i> Vahn explains, <i>“One is a Atlas Dynamus, a beautiful old twin-seater with an old quad-levi axel. It was really big during the last rush. The other one is a Lexi Fusion that I’m missing half the parts for; I’m hand machining half of them myself since I can’t find a seller.”</i>");
-	output("\n\nThere’s a distinct gleam in the blond tech’s eyes and his bushy tail is waggling. It’s pretty obvious Vahn loves talking about his toys!");
+	output("\n\nThere’s a distinct gleam in the blonde tech’s eyes and his bushy tail is waggling. It’s pretty obvious Vahn loves talking about his toys!");
 	output("\n\n<i>“Um, what else? Oh - I also love playing graviball. There’s a court on the station and I play twice a week. We’re not the best team, but we’re in the top three. I play point guard. I’ve started playing back when I was at Ausaril Tech and I’ve kept with it since then.”</i>");
 	output("\n\n<i>“Other than that, I usually like going out with the crew, having a few drinks and playing a few rounds of billiards. If I’m lucky, usually the night ends with me sinking one in a nice, tight pocket.”</i>");
 	processTime(5);
@@ -152,7 +152,7 @@ public function vahnSexMenu():void
 	if(fuckedVahn())
 	{
 		output("You ask if Vahn is interested in servicing something <i>other</i> than your ship, like you, for instance.");
-		output("\n\nThe blond ausar brushes back his hair and grins, <i>“...Well, I’m definitely keen to warm up your engines.”</i> He gives a quick glance over his shoulder, to make sure none of the other crew are watching.");
+		output("\n\nThe blonde ausar brushes back his hair and grins, <i>“...Well, I’m definitely keen to warm up your engines.”</i> He gives a quick glance over his shoulder, to make sure none of the other crew are watching.");
 		output("\n\n<i>“So - what did you have in mind?”</i>");
 	}
 	//Repeat
@@ -315,7 +315,7 @@ public function giveVahnAnal():void
 	output("\n\nPicking up on your body language, Vahn’s tail begins to wag, and he suggestively raises an eyebrow. <i>“You’re... thinking about something. Something good.”</i>");
 	output("\n\nYou step forward and whisper in his fluffy canine ear exactly what you’re thinking about doing to him in intimate detail. The moment you utter your sensuous intentions, his breathing becomes hot and heavy.");
 	output("\n\nSlipping your arms around his waist, you kiss and suckle on his neck, pressing your hips against his. Vahn lets out a breathy sigh and you feel a stiffening against your [pc.cockNounSimple " + x + "].");
-	output("\n\n<i>“I’d... yes, I think I’d like that,”</i> he huskily murmurs. You lead him by the hand up the ramp and into your ship’s cargo bay. There, you tell him to strip for you. Blushing, the blond haired ausar unzips his jumpsuit and begins to slide it down his muscled yet slender body, exposing his broad chest, well-toned abs, and slender waist.");
+	output("\n\n<i>“I’d... yes, I think I’d like that,”</i> he huskily murmurs. You lead him by the hand up the ramp and into your ship’s cargo bay. There, you tell him to strip for you. Blushing, the blonde haired ausar unzips his jumpsuit and begins to slide it down his muscled yet slender body, exposing his broad chest, well-toned abs, and slender waist.");
 	if(fuckedVahn()) output(" His veiny, knotted manhood is already proudly pointing upwards and achingly erect.");
 
 	else output("\n\nYour mouth wettens at the sight of his wonderful manhood. His dick is long and thick - ten inches of deliciously rigidity - and completely terran except for the knot at his base. His low-hanging balls look full and ripe.");
@@ -335,7 +335,7 @@ public function giveVahnAnal():void
 	if(flags["FUCKED_VAHNS_ASS"] == undefined)
 	{
 		output("\n\n<i>“Is this your first time?”</i> You ask, rubbing your [pc.cockHead " + x + "] against his oh-so-sensitive tail base. His thighs tremble with delight.");
-		output("\n\n<i>“N-no, when I was an apprentice, the older guys liked to celebrate a job well done – usually with me,”</i> Vahn moans as you hotdog his hunky ass and his bushy blond tail waggles happily. <i>“Sometimes they’d bend me over and fuck me while I was working, just like this.”</i>");
+		output("\n\n<i>“N-no, when I was an apprentice, the older guys liked to celebrate a job well done – usually with me,”</i> Vahn moans as you hotdog his hunky ass and his bushy blonde tail waggles happily. <i>“Sometimes they’d bend me over and fuck me while I was working, just like this.”</i>");
 		output("\n\n<i>“Now I’m a senior tech, nobody fucks me like that anymore.”</i>");
 		output("\n\nWell, you’re definitely going to have to fix <i>that</i>.");
 	}
@@ -351,7 +351,7 @@ public function giveVahnAnal():void
 	else output("massive");
 	output(" length, eagerly and instinctively wringing it for every [pc.cumVisc] drip.");
 
-	output("\n\n<i>“Who does your ass belong to?”</i> You demand of Vahn, grabbing his fluffy tail in one of your hands. At the same time, you pointedly grind your [pc.hips] against his delectable rump, and the blond lets out a sinful little cry.");
+	output("\n\n<i>“Who does your ass belong to?”</i> You demand of Vahn, grabbing his fluffy tail in one of your hands. At the same time, you pointedly grind your [pc.hips] against his delectable rump, and the blonde lets out a sinful little cry.");
 
 	//FirstTimeAnal:
 	if(flags["FUCKED_VAHNS_ASS"] == undefined)
@@ -383,7 +383,7 @@ public function giveVahnAnal():void
 		else output("slippery stream");
 		output(" of [pc.cumColor] gushes out and sensuously runs down his thighs. ");
 	}
-	output("His fluffy blond tail twitches and he lets out a sexy groan. Beneath his furry appendage, his dilated pucker clasps at the empty air.");
+	output("His fluffy blonde tail twitches and he lets out a sexy groan. Beneath his furry appendage, his dilated pucker clasps at the empty air.");
 
 	//if pc.doesnothaveknot:
 	if(!pc.hasKnot(x))
@@ -392,7 +392,7 @@ public function giveVahnAnal():void
 		output("\n\nHe moans and trembles as you tease his tender dick, coaxing out each slick spurt. It lewdly batters the cargo bay wall, smearing it in his canine seed. It takes a while for the virile tech to get it all out - he’s got quite a lot to give!");
 	}
 	output("\n\nTurning Vahn around in your arms, you pull him close and give him a dreamy, post-orgasmic kiss. He moans and slides his arms around your waist. Teasing him a little, you slide one of your fingers into his sloppy butt and he trembles with delight.");
-	output("\n\n<i>“... Ahh-! I-If you tease me like t-that, I-I’ll want to go again...”</i> the male tech lightly whines, his blond doggy ears flattened back. He sucks on your lower lip, nibbling it playfully - he doesn’t seem <i>entirely</i> against the idea...");
+	output("\n\n<i>“... Ahh-! I-If you tease me like t-that, I-I’ll want to go again...”</i> the male tech lightly whines, his blonde doggy ears flattened back. He sucks on your lower lip, nibbling it playfully - he doesn’t seem <i>entirely</i> against the idea...");
 	output("\n\nThere’s a shout from outside the ship. One of the ground crew is looking for him! You both hastily get redressed, barely finishing in time as a tech jogs up the ramp.");
 	output("\n\nVahn winks to you and walks down the ramp with his co-worker, getting back to work. There’s a slight wobble to his step and his tail is wagging happily.");
 	output("\n\nWith a little grin, you wonder how long it will be before the half-ausar notices the dripping trail of cum he’s leaving on the deck floor...?");

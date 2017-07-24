@@ -1003,7 +1003,7 @@ public function giveWhiffBlurb():String
 	//Blurb 12
 	if(!InCollection(11, disabled))
 	{
-		buffer = "You’re standing in a cold, silent room.\n\nThe walls are covered in what seem to be a foam of some sort and there’s a silent aircon unit above your head, gently recycling the air above.\n\nIn front of you is a skinny man with long blond hair and heavy, black clothing. He’s standing in front of... a really old look microphone. Is it a microphone? Has to be, why would he be levelling it to his mouth?\n\n<i>“This is HUH, WOW”</i>\n\nWhat.\n\nThe next few seconds are a visual and audio blur as something screams in metallic notes and spine shaking cacophony.\n\nIt’s a blessing when the scene vanishes and transcends to the next vision...";
+		buffer = "You’re standing in a cold, silent room.\n\nThe walls are covered in what seem to be a foam of some sort and there’s a silent aircon unit above your head, gently recycling the air above.\n\nIn front of you is a skinny man with long blonde hair and heavy, black clothing. He’s standing in front of... a really old look microphone. Is it a microphone? Has to be, why would he be levelling it to his mouth?\n\n<i>“This is HUH, WOW”</i>\n\nWhat.\n\nThe next few seconds are a visual and audio blur as something screams in metallic notes and spine shaking cacophony.\n\nIt’s a blessing when the scene vanishes and transcends to the next vision...";
 		whiffTexts.push(buffer);
 	}
 	var x:int = rand(whiffTexts.length);

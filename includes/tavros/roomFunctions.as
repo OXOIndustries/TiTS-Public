@@ -13,7 +13,7 @@ public function puntToShip():Boolean
 		landingOnPoeA();
 		return true;
 	}
-	output("You really don't want to step out into the cold void of space. Maybe you should land somewhere?");
+	output("You really don’t want to step out into the cold void of space. Maybe you should land somewhere?");
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
 	showLocationName();
@@ -142,18 +142,18 @@ public function hangarMoveTo(arg:Array):void
 public function tavrosHangarStuff():Boolean
 {
 	if(flags["MET_VAHN"] == undefined) {
-		output("\n\nYou spot a blond, half-ausar technician standing next to your ship, looking down at a datapad.");
+		output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
 		addButton(0,"Tech",VahnTheMechanic);
 	}
 	else
 	{
-		output("\n\nVahn's around here somewhere, if you want to look for him.");
+		output("\n\nVahn’s around here somewhere, if you want to look for him.");
 		addButton(0,"Vahn",VahnTheMechanic);
 	}
 	//Celise In Tavros
 	if(celiseIsFollower() && !celiseIsCrew())
 	{
-		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
+		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station’s mechanics.");
 		addButton(1,"Celise",approachNonCrewCelise);
 	}
 	if (bessAtTavros())
@@ -253,7 +253,7 @@ public function tavrosResidentialDeckNoticeBoard():void
 public function displayNoticeBoardRD():void {
 	clearOutput();
 	
-	output("While this public notice board is holographic, it's easy to bring up a digipen and scribble whatever you want on it. There's a section for official notices to deck residents, informing them of maintenance schedules and other important events. The rest is for use by the public; filled with general requests or advertisements.");
+	output("While this public notice board is holographic, it’s easy to bring up a digipen and scribble whatever you want on it. There’s a section for official notices to deck residents, informing them of maintenance schedules and other important events. The rest is for use by the public; filled with general requests or advertisements.");
 	
 	output("\n\n");
 	if(flags["AINA_NOTICE_1_READ"] == undefined) {
@@ -261,7 +261,7 @@ public function displayNoticeBoardRD():void {
 		flags["AINA_NOTICE_1_READ"] = true;
 	}
 	else output("<b>Seen Before:</b>");
-	output(" It appears someone in the western walkway, room 154, is looking for a 'discreet individual' to help them with an unspecified problem. Pretty ambiguous.");
+	output(" It appears someone in the western walkway, room 154, is looking for a ‘discreet individual’ to help them with an unspecified problem. Pretty ambiguous.");
 	
 	output("\n\n");
 	if(flags["FYN_NOTICE_1_READ"] == undefined) {
@@ -269,7 +269,7 @@ public function displayNoticeBoardRD():void {
 		flags["FYN_NOTICE_1_READ"] = true;
 	}
 	else output("<b>Seen Before:</b>");
-	output(" There's a notice for 'interested individuals' to visit the eastern walkway for 'lessons', room 112. There seems to have been more to the message, but someone else has placed their own holo notice over it.");
+	output(" There’s a notice for ‘interested individuals’ to visit the eastern walkway for ‘lessons’, room 112. There seems to have been more to the message, but someone else has placed their own holo notice over it.");
 	
 	output("\n\n");
 	if(flags["SEMITH_NOTICE_1_READ"] == undefined) {

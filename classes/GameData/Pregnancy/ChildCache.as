@@ -1015,7 +1015,7 @@ package classes.GameData.Pregnancy
 		}
 		
 		/** Utility functions **/
-		private function isMobile(RaceType:int):Boolean
+		private function isMobile(cc:Child):Boolean
 		{
 			var noRoamTypeList:Array = [
 				GLOBAL.TYPE_TENTACLE,
@@ -1025,7 +1025,7 @@ package classes.GameData.Pregnancy
 				GLOBAL.TYPE_WATERQUEEN,
 			];
 			
-			if (noRoamTypeList.indexOf(RaceType) == -1) return true;
+			if (noRoamTypeList.indexOf(cc.RaceType) == -1) return true;
 			return false;
 		}
 		

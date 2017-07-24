@@ -679,7 +679,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 			// Naga:
 			if(pc.isNaga()) output(" It’s more of a flop-dive really, but the way your tail reared and flowed into the pool probably looked impressive.");
 			output(" The buzz you feel at your spontaneous audacity dissolves as a dozen soft hands and lips fasten themselves onto you, easily slipping beneath your meager clothes to touch, cusp and wetly pinch your flesh, impatiently searching out your [pc.crotch], slathering");
-			if(pc.totalGenitals() <= 1) output(" it");
+			if(pc.totalGenitals() + pc.balls <= 1) output(" it");
 			else output(" them");
 			output(" in milking, kneading goo. A cacophony of excited, tittering voices in your ears and your mouth full of goo, you find yourself pulled further and deeper into the pool, the pressure of the galotians and other trapped guests piling on top of you. You struggle – try and madly swim, even - but there’s nothing to grab onto, no purchase to be had except upon quivering wetness which coos delightedly when you sink your fingers into it. When your pulse is pounding in your head and you think you might scream you are carried to the top, allowed to breathe for a second, and then carried back to the depths where the licking, milking and fucking continues unabated.");
 			output("\n\nYour eyes roll as one goo girl pressed on top of you forms a club-like limb, spreads your cheeks and vigorously fists your [pc.anus] with it,");
@@ -1573,7 +1573,9 @@ public function seraSexPartyStage4(response:String = "none"):void
 			// Went to Vedice:
 			if(flags["SERA_PARTY_STAGE4"] == "vedice") {
 				output(" <i>“You know I’m – I’m very angry with you. Why didja wander off with that snake cow for, huh? I’m your mistress, not her.”</i> She giggles slightly. <i>“You know if I hadn’t stepped in, I could have sworn she was going to take you home with her! Probably to, like, a snake pit or something.”</i> She laughs hilariously at her own Wildean wit. <i>“Good thing your mistress looks out for you even when you’re being the sluttiest of sluts, ain’t it?”</i>");
-				output("\n\n<i>“Uh huh,”</i> you say fervently. You close your eyes as once again your lips tingle and the taste of Vedice comes vividly back; your [pc.groin] throbs achingly at the same time. You really hope the blowback the evil naga has inflicted on you doesn’t last.");
+				output("\n\n<i>“Uh huh,”</i> you say fervently. You close your eyes as once again your lips tingle and the taste of Vedice comes vividly back; your [pc.groin] throb");
+				if(pc.totalGenitals() + pc.balls <= 1) output("s");
+				output(" achingly at the same time. You really hope the blowback the evil naga has inflicted on you doesn’t last.");
 			}
 			// Went to Sera:
 			if(flags["SERA_PARTY_STAGE4"] == "sera") {
