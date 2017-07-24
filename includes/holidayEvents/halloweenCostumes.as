@@ -93,6 +93,7 @@ public function holidayoweenPartDues():void
 
 public function holidayMenu():void
 {
+	clearMenu();
 	addButton(0,"Talk",talkToHoliday);
 	if(pc.credits >= 1000)
 	{
@@ -218,7 +219,7 @@ public function goblinCostume():void
 	processTime(4);
 	clearMenu();
 	//[Goblin] [Costume] [Mask] [Leave]
-	addButton(0,"Buy It",chooseDatGobboCostume,undefined,"Buy It","1000 credits.");
+	addButton(0,"Buy It",chooseDatGobboCostume,undefined,"Buy It","Costs 1000 credits.");
 	addButton(14,"Back",holidayMenu);
 }
 
@@ -247,6 +248,7 @@ public function chooseDatGobboCostume():void
 public function goblinPartTwo():void
 {
 	clearOutput();
+	clearBust();
 	showName("OUT ON\nTHE TOWN");
 	author("Adjatha");
 	output("Enjoying the lingering sting of Holiday’s slap, you head back to the main streets, noticing that you forgot to grab any shoes. Oh well, you decide, the pavement feels good on your bare soles, and it’s hard enough to walk straight as is! Eventually you find that a swaying sort of strut seems to work best, giving your broad hips plenty of room to swing while offering your head-sized breasts plenty of opportunity to jiggle against the straps barely restraining them. The few people you pass on the way back give you a cursory glance before turning their attention to you entirely, undisguised lust clear even through their masks. You fiddle with the ring-like collar around your neck, contemplating opening the suit just long enough to show them who’s inside, but decide not to break the illusion. Besides, the suit’s slightly warm interior has finally matched the heat of your own body, making it so comfortable you’ve got to give yourself a little grope, squeezing your waist with a delighted giggle.");
@@ -328,7 +330,7 @@ public function metroidMaskParody():void
 	//[Helmet] [Costume] [Bodysuit] [Leave]
 	processTime(4);
 	clearMenu();
-	addButton(0,"Buy It",samusCostumeGo,undefined,"Buy It","1000 credits.");
+	addButton(0,"Buy It",samusCostumeGo,undefined,"Buy It","Costs 1000 credits.");
 	addButton(14,"Back",holidayMenu);
 }
 
@@ -588,7 +590,7 @@ public function greenArmor():void
 	output("\n\nWould you like to buy the amazon-like armor, or look at another costume?");
 	processTime(4);
 	clearMenu();
-	addButton(0,"Buy It",chooseToBeMissChief,undefined,"Buy It","1000 credits");
+	addButton(0,"Buy It",chooseToBeMissChief,undefined,"Buy It","Costs 1000 credits.");
 	addButton(14,"Back",holidayMenu);
 }
 
@@ -650,6 +652,7 @@ public function chooseToBeMissChief():void
 public function barbariannaCosplay():void
 {
 	clearOutput();
+	clearBust();
 	showName("OUT ON\nTHE TOWN");
 	output("You laugh it off and strut your stuff, swaying your hips and affecting all the cool self-assurity that a giant amazon ought to have among a throng of people so much smaller and weaker than you are. The act works better than you could have hoped and soon the crowd is parting for you like the Red Sea, the lustful gazes of dozens of men and women firmly settled on your ultra-generous cleavage, firm ass, and powerful");
 	if(pc.legCount == 1) output(" [pc.legNoun]");
@@ -792,7 +795,7 @@ public function annoPartyEpiloooogue():void
 {
 	clearOutput();
 	halloweenShipMove();
-	showName("THE\nSHIP");
+	//showName("THE\nSHIP");
 	author("Savin");
 
 	output("The taxi dumps you off, and this time you grab the girl by the waist, burying her face firmly into your tits as you find your ship, fumble with the security seal, and stumble drunkenly in.");
@@ -1009,7 +1012,7 @@ public function centaurBunsBunsBuns():void
 	output("\n\nWould you like to buy the centaur body or something else?");
 	processTime(2);
 	clearMenu();
-	addButton(0,"Buy It",buyTaurSuit,undefined,"Buy It","1000 credits.");
+	addButton(0,"Buy It",buyTaurSuit,undefined,"Buy It","Costs 1000 credits.");
 	addButton(14,"Back",holidayMenu);
 }
 
@@ -1113,6 +1116,7 @@ public function horsecockForHorseButts(config:int = 1):void
 public function taurStreetAdventure(config:int = 1):void
 {
 	clearOutput();
+	clearBust();
 	showName("OUT ON\nTHE TOWN");
 	output("The worst part is how right her assessment is. Now that you’re out in the open, prancing down a street, you can’t deny your own mounting arousal.");
 	if(pc.hasCock())
@@ -1374,6 +1378,7 @@ public function ladyTaursFuckDane():void
 public function femTaurCostumeEpilogue():void
 {
 	clearOutput();
+	clearBust();
 	showName("MORNING\nAFTER");
 	output("You wake up with a pounding headache back on your ship, and out in space. You don’t remember anything about taking off - letting Holiday ride your back and slap your ass while Dane has you up against the wall? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure a white-furred ausar lass had a scoreboard to keep track of how many creampies you got. You came harder than ever, but you’re feeling pretty sore now.");
 	output("\n\nIt isn’t until you check your ship’s logs that you stumble upon some clarity. There’s a new message, one you didn’t put in there. You hit play, bringing it up on the main screen. A cute, white-furred kaithrit pops up on screen, waving nervously.");
@@ -1508,6 +1513,7 @@ public function fuckLeithansAsTaur(arg:String = "M"):void
 public function mailTaurCostumeEpilogue():void
 {
 	clearOutput();
+	clearBust();
 	showName("HOURS\nLATER...")
 	output("Your memories of the night are an indistinct blur of fucking and drinking, sometimes simultaneously. Sa’andi and Ma’andi seemed insatiable at first, but after two or three cream fillings each, they settled right down, passed out in the corner like two drunken, six-legged angels.");
 	output("\n\nMore disturbing is the fact that you woke up onboard your ship... and that you aren’t on the planet any longer. You don’t remember anything about setting out into space - rearing up on a table and letting a galotian squeeze your load out onto Holidays tits? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure that Ma’andi snuck her tail up your ass while you were mounting some white-furred ausar lass.");
@@ -1588,6 +1594,7 @@ public function centaurShitFromAlkahest():void
 public function maleTaurSubbyEpilogue():void
 {
 	clearOutput();
+	clearBust();
 	showName("HOURS\nLATER...")
 	output("Your memories of the night are an indistinct blur of humping, drinking, and cumming. No matter how times you did your best to paint the bar, you never got more than a few hands on your cock, draining your oozy horse-cock into laughing mouths or sloshing cups. You aren’t even sure how many times you came, just that your balls ache like they’ve been pumped dry.");
 	output("\n\nMore disturbing is the fact that you woke up onboard your ship... and that you aren’t on the planet any longer. You don’t remember anything about setting out into space - rearing up on a table and letting a galotian squeeze your load out onto Holidays tits? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure that a curvy leithan snuck her tail up your ass while you were spanked by some white-furred ausar lass.");
